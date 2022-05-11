@@ -2,10 +2,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import GameMode from 'interfaces/game-mode';
-import ScoreJson, { ScoreStatisticsAttribute } from 'interfaces/score-json';
+import SoloScoreJson, { SoloScoreStatisticsAttribute } from 'interfaces/solo-score-json';
 import core from 'osu-core-singleton';
 
-export function canBeReported(score: ScoreJson): score is ScoreJson & Required<Pick<ScoreJson, 'best_id' | 'user'>> {
+export function canBeReported(score: SoloScoreJson): score is SoloScoreJson & Required<Pick<SoloScoreJson, 'best_id' | 'user'>> {
   return score.best_id != null
     && score.user != null
     && !score.user.is_deleted
@@ -14,20 +14,32 @@ export function canBeReported(score: ScoreJson): score is ScoreJson & Required<P
 }
 
 // TODO: move to application state repository thingy later
-export function hasMenu(score: ScoreJson) {
+export function hasMenu(score: SoloScoreJson) {
   return canBeReported(score) || hasReplay(score) || hasShow(score) || core.scorePins.canBePinned(score);
 }
 
-export function hasReplay(score: ScoreJson) {
-  return score.replay;
+export function hasReplay(score: SoloScoreJson) {
+  return score.replay != null && score.replay;
 }
 
-export function hasShow(score: ScoreJson): score is ScoreJson & Required<Pick<ScoreJson, 'best_id'>> {
+export function hasShow(score: SoloScoreJson): score is SoloScoreJson & Required<Pick<SoloScoreJson, 'best_id'>> {
   return score.best_id != null;
 }
 
+export function isPerfectCombo(score: SoloScoreJson) {
+  // TODO: Check against beatmap max_combo instead.
+  //       It's currently done this way because the beatmap data is sometimes
+  //       missing max_combo attribute for the score's mods combination.
+  return score.legacy_perfect ?? (
+    ([
+      'miss',
+      'large_tick_miss',
+    ] as const).every((attr) => score.statistics[attr] == null || score.statistics[attr] === 0)
+  );
+}
+
 interface AttributeData {
-  attribute: ScoreStatisticsAttribute;
+  attribute: SoloScoreStatisticsAttribute;
   label: string;
 }
 
@@ -35,28 +47,28 @@ const labelMiss = osu.trans('beatmapsets.show.scoreboard.headers.miss');
 
 export const modeAttributesMap: Record<GameMode, AttributeData[]> = {
   fruits: [
-    { attribute: 'count_300', label: 'fruits' },
-    { attribute: 'count_100', label: 'ticks' },
-    { attribute: 'count_katu', label: 'drp miss' },
-    { attribute: 'count_miss', label: labelMiss },
+    { attribute: 'great', label: 'fruits' },
+    { attribute: 'large_tick_hit', label: 'ticks' },
+    { attribute: 'small_tick_miss', label: 'drp miss' },
+    { attribute: 'miss', label: labelMiss },
   ],
   mania: [
-    { attribute: 'count_geki', label: 'max' },
-    { attribute: 'count_300', label: '300' },
-    { attribute: 'count_katu', label: '200' },
-    { attribute: 'count_100', label: '100' },
-    { attribute: 'count_50', label: '50' },
-    { attribute: 'count_miss', label: labelMiss },
+    { attribute: 'perfect', label: 'max' },
+    { attribute: 'great', label: '300' },
+    { attribute: 'good', label: '200' },
+    { attribute: 'ok', label: '100' },
+    { attribute: 'meh', label: '50' },
+    { attribute: 'miss', label: labelMiss },
   ],
   osu: [
-    { attribute: 'count_300', label: '300' },
-    { attribute: 'count_100', label: '100' },
-    { attribute: 'count_50', label: '50' },
-    { attribute: 'count_miss', label: labelMiss },
+    { attribute: 'great', label: '300' },
+    { attribute: 'ok', label: '100' },
+    { attribute: 'meh', label: '50' },
+    { attribute: 'miss', label: labelMiss },
   ],
   taiko: [
-    { attribute: 'count_300', label: 'great' },
-    { attribute: 'count_100', label: 'good' },
-    { attribute: 'count_miss', label: labelMiss },
+    { attribute: 'great', label: 'great' },
+    { attribute: 'ok', label: 'good' },
+    { attribute: 'miss', label: labelMiss },
   ],
 };

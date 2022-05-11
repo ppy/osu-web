@@ -401,6 +401,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         $this->storage()->put($this->coverPath().$target_filename, file_get_contents($source_path));
     }
 
+    public function downloadLimited()
+    {
+        return $this->download_disabled || $this->download_disabled_url !== null;
+    }
+
     public function previewURL()
     {
         return '//b.ppy.sh/preview/'.$this->beatmapset_id.'.mp3';
