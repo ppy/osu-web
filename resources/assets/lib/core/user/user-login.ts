@@ -92,6 +92,12 @@ export default class UserLogin {
 
   private loginSuccess = (event: unknown, data: LoginSuccessJson) => {
     const callback = this.callback;
+
+    if (callback == null) {
+      osu.reloadPage();
+      return;
+    }
+
     this.reset();
 
     this.refreshToken();
@@ -105,8 +111,7 @@ export default class UserLogin {
       $('.js-user-header').replaceWith(data.header);
       $('.js-user-header-popup').html(data.header_popup);
       this.captcha.untrigger();
-
-      (callback ?? osu.reloadPage)();
+      callback();
     }, 0);
   };
 
