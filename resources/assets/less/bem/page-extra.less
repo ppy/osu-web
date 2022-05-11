@@ -3,8 +3,8 @@
 
 .page-extra {
   --dragdrop-margin: 0;
-  --gutter-desktop: @gutter-profile-page-desktop;
-  --gutter: @gutter-profile-page;
+  --gutter-desktop: @gutter-v2-desktop;
+  --gutter: @gutter-v2;
   --inner-gutter: calc(var(--gutter) - var(--outer-gutter));
   --outer-gutter-desktop: 10px;
   --outer-gutter: 2px;
@@ -73,15 +73,11 @@
   }
 
   &__content-overflow-wrapper-inner {
-    padding-right: @gutter-profile-page;
+    padding-right: var(--gutter);
     padding-bottom: 20px;
     max-height: 400px;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-
-    @media @desktop {
-      padding-right: @gutter-profile-page-desktop;
-    }
   }
 
   &__content-overflow-wrapper-outer {
