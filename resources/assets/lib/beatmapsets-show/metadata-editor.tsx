@@ -8,6 +8,7 @@ import { route } from 'laroute';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
 import { parseJson } from 'utils/json';
+import { getInt } from 'utils/math';
 
 interface Props {
   beatmapset: BeatmapsetJsonForShow;
@@ -28,14 +29,6 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
 
   get canEditOffset() {
     return this.props.beatmapset.current_user_attributes.can_edit_offset;
-  }
-
-  get numericOffset() {
-    if (this.state.offset !== '') {
-      const ret = Number(this.state.offset);
-
-      if (Number.isInteger(ret)) return ret;
-    }
   }
 
   constructor(props: Props) {
@@ -168,7 +161,7 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
         genre_id: this.state.genreId,
         language_id: this.state.languageId,
         nsfw: this.state.nsfw,
-        offset: this.canEditOffset ? this.numericOffset : undefined,
+        offset: this.canEditOffset ? getInt(this.state.offset) : undefined,
       } },
       method: 'PATCH',
     }).done((beatmapset: BeatmapsetJsonForShow) => $.publish('beatmapset:set', { beatmapset }))
