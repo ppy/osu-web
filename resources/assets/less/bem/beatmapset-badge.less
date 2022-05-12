@@ -21,8 +21,14 @@
   }
 
   &--panel {
-    position: relative;
-    bottom: 0.2em;
-    margin-left: auto;
+    margin-left: 5px;
+  }
+
+  &--spotlight {
+    color: hsl(var(--hsl-pink-1));
+
+    .link-hover({
+      color: hsl(var(--hsl-pink-2));
+    });
   }
 }
