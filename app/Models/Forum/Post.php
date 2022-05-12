@@ -57,7 +57,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $topic_id
  * @property User $user
  */
-class Post extends Model implements AfterCommit, Indexable
+class Post extends Model implements AfterCommit, Indexable, Traits\ReportableInterface
 {
     use Traits\Es\ForumPostSearch, Traits\Reportable, Traits\WithDbCursorHelper, Validatable;
     use SoftDeletes {

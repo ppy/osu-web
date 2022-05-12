@@ -7,7 +7,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ValidationException;
 use App\Libraries\MorphMap;
-use App\Models\Reportable;
+use App\Models\Traits\ReportableInterface;
 
 class ReportsController extends Controller
 {
@@ -32,8 +32,13 @@ class ReportsController extends Controller
             abort(404);
         }
 
-        /** @var Reportable $reportable */
+        $classInstance = new $class();
+        if (!($classInstance instanceof ReportableInterface)) {
+            abort(404);
+        }
+
         $reportable = $class::findOrFail($params['reportable_id']);
+        priv_check('UserReport', $reportable)->ensureCan();
 
         try {
             $reportable->reportBy(auth()->user(), [
