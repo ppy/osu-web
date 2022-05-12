@@ -26,6 +26,7 @@ use App\Models\LegacyMatch\LegacyMatch;
 use App\Models\Multiplayer\Room;
 use App\Models\OAuth\Client;
 use App\Models\Score\Best\Model as ScoreBest;
+use App\Models\Traits\ReportableInterface;
 use App\Models\User;
 use App\Models\UserContestEntry;
 use Carbon\Carbon;
@@ -1896,6 +1897,18 @@ class OsuAuthorize
         }
 
         return 'ok';
+    }
+
+    public function checkUserReport(?User $user, ReportableInterface $model): string
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if (!$model->trashed()) {
+            return 'ok';
+        }
+
+        return 'unauthorized';
     }
 
     /**

@@ -36,7 +36,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property \Illuminate\Database\Eloquent\Collection $votes CommentVote
  * @property int $votes_count_cache
  */
-class Comment extends Model
+class Comment extends Model implements Traits\ReportableInterface
 {
     use Traits\Reportable, Traits\WithDbCursorHelper, Validatable;
 

@@ -25,7 +25,7 @@ use Ds\Set;
  * @property User $user
  * @property int|null $user_id
  */
-class BeatmapDiscussionPost extends Model
+class BeatmapDiscussionPost extends Model implements Traits\ReportableInterface
 {
     use Traits\Reportable, Validatable;
 

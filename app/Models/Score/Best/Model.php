@@ -21,7 +21,7 @@ use GuzzleHttp\Client;
 /**
  * @property User $user
  */
-abstract class Model extends BaseModel
+abstract class Model extends BaseModel implements Traits\ReportableInterface
 {
     use Traits\Reportable, Traits\WithDbCursorHelper;
 
@@ -359,6 +359,11 @@ abstract class Model extends BaseModel
         $class = ReplayViewCount::class.'\\'.get_class_basename(static::class);
 
         return $this->hasOne($class, 'score_id');
+    }
+
+    public function trashed()
+    {
+        return (bool) $this->getAttributes()['hidden'];
     }
 
     public function user()
