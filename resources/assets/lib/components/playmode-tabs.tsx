@@ -21,10 +21,6 @@ interface Props {
 }
 
 export default class PlaymodeTabs extends React.Component<Props> {
-  static defaultProps = {
-    iconLink: false,
-  };
-
   render() {
     return (
       <ul className={classWithModifiers('game-mode', this.props.modifiers)}>
