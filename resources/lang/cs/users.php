@@ -50,7 +50,7 @@ return [
     ],
 
     'disabled' => [
-        'title' => '',
+        'title' => 'Ale ne! Vypadá to, že váš účet byl zablokován.',
         'warning' => "",
 
         'if_mistake' => [
@@ -60,10 +60,10 @@ return [
 
         'reasons' => [
             'compromised' => '',
-            'opening' => '',
+            'opening' => 'Je řada důvodů, které mohou vést k tomu, že váš účet bude vypnut:',
 
             'tos' => [
-                '_' => '',
+                '_' => 'Porušil jsi jeden nebo více z našich :community_rules nebo :tos.',
                 'community_rules' => 'pravidla komunity',
                 'tos' => 'smluvní podmínky',
             ],
@@ -71,12 +71,12 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => '',
+        'by_game_mode' => 'Uživatelé podle herního režimu',
     ],
 
     'force_reactivation' => [
         'reason' => [
-            'inactive_different_country' => "",
+            'inactive_different_country' => "Váš účet nebyl využíván dlouhou dobu.",
         ],
     ],
 
@@ -207,6 +207,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Pohřbené Beatmapy',
+                ],
+                'guest' => [
+                    'title' => '',
                 ],
                 'loved' => [
                     'title' => 'Oblíbené Beatmapy',
@@ -422,7 +425,7 @@ return [
             'total_hits' => 'Celkově zásahů',
             'total_score' => 'Celkové skóre',
             // modding stats
-            'graveyard_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => 'Pohřbené Beatmapy',
             'loved_beatmapset_count' => 'Oblíbené Beatmapy',
             'pending_beatmapset_count' => 'Čekající Beatmapy',
             'ranked_beatmapset_count' => 'Hodnocené Beatmapy',
@@ -447,8 +450,8 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => '',
-        'card' => '',
-        'list' => '',
+        'brick' => 'Zobrazit jako cihly',
+        'card' => 'Zobrazit jako karty',
+        'list' => 'Zobrazit jako seznam',
     ],
 ];

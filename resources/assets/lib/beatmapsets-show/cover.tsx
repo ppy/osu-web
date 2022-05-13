@@ -2,16 +2,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsetCover from 'components/beatmapset-cover';
-import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
-import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import Controller from './controller';
 
 interface Props {
-  beatmapset: BeatmapsetExtendedJson;
-  currentBeatmap: BeatmapExtendedJson;
+  controller: Controller;
 }
 
 @observer
@@ -22,7 +20,8 @@ export default class Cover extends React.Component<Props> {
     return (
       <div className={classWithModifiers('beatmapset-page-cover', { expanded })}>
         <BeatmapsetCover
-          beatmapset={this.props.beatmapset}
+          beatmapset={this.props.controller.beatmapset}
+          forceShowVisual // check already covered by parent component
           modifiers={['full', 'rect']}
           size='cover'
         />
@@ -32,14 +31,14 @@ export default class Cover extends React.Component<Props> {
             <div
               className='beatmapset-status beatmapset-status--cover'
               style={{
-                '--bg': `var(--beatmapset-${this.props.currentBeatmap.status}-bg-transparent)`,
-                '--colour': `var(--beatmapset-${this.props.currentBeatmap.status}-colour)`,
+                '--bg': `var(--beatmapset-${this.props.controller.currentBeatmap.status}-bg-transparent)`,
+                '--colour': `var(--beatmapset-${this.props.controller.currentBeatmap.status}-colour)`,
               } as React.CSSProperties}
             >
-              {osu.trans(`beatmapsets.show.status.${this.props.currentBeatmap.status}`)}
+              {osu.trans(`beatmapsets.show.status.${this.props.controller.currentBeatmap.status}`)}
             </div>
 
-            {this.props.beatmapset.nsfw && (
+            {this.props.controller.beatmapset.nsfw && (
               <div className='beatmapset-badge beatmapset-badge--cover beatmapset-badge--nsfw'>
                 {osu.trans('beatmapsets.nsfw_badge.label')}
               </div>
@@ -47,7 +46,7 @@ export default class Cover extends React.Component<Props> {
           </div>
 
           <div className='beatmapset-page-cover__content-item beatmapset-page-cover__content-item--right'>
-            {this.props.beatmapset.storyboard && (
+            {this.props.controller.beatmapset.storyboard && (
               <div
                 className='beatmapset-status beatmapset-status--show-icon'
                 title={osu.trans('beatmapsets.show.info.storyboard')}
@@ -58,7 +57,7 @@ export default class Cover extends React.Component<Props> {
 
             <button
               className='beatmapset-page-cover__preview js-audio--play js-audio--player'
-              data-audio-url={this.props.beatmapset.preview_url}
+              data-audio-url={this.props.controller.beatmapset.preview_url}
               type='button'
             >
               <span className='play-button' />

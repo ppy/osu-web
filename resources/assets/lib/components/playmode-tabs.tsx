@@ -3,7 +3,7 @@
 
 import GameMode from 'interfaces/game-mode';
 import * as React from 'react';
-import { classWithModifiers } from 'utils/css';
+import { classWithModifiers, Modifiers } from 'utils/css';
 
 interface Entry {
   count?: number;
@@ -16,6 +16,7 @@ interface Props {
   currentMode: GameMode;
   defaultMode?: GameMode;
   entries: Entry[];
+  modifiers?: Modifiers;
   onClick?: (event: React.MouseEvent<HTMLAnchorElement>, mode: GameMode) => void;
 }
 
@@ -26,7 +27,7 @@ export default class PlaymodeTabs extends React.Component<Props> {
 
   render() {
     return (
-      <ul className='game-mode'>
+      <ul className={classWithModifiers('game-mode', this.props.modifiers)}>
         {this.props.entries.map(this.renderLink)}
       </ul>
     );

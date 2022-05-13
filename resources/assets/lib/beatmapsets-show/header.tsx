@@ -4,20 +4,23 @@
 import BeatmapList from 'beatmap-discussions/beatmap-list';
 import StringWithComponent from 'components/string-with-component';
 import { UserLink } from 'components/user-link';
-import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
-import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import { route } from 'laroute';
+import { observer } from 'mobx-react';
 import * as React from 'react';
 import { getArtist, getTitle } from 'utils/beatmap-helper';
 import BeatmapPicker from './beatmap-picker';
+import Controller from './controller';
 
 interface Props {
-  beatmaps: BeatmapExtendedJson[];
-  beatmapset: BeatmapsetExtendedJson;
-  currentBeatmap: BeatmapExtendedJson;
+  controller: Controller;
 }
 
-export default class Header extends React.PureComponent<Props> {
+@observer
+export default class Header extends React.Component<Props> {
+  private get controller() {
+    return this.props.controller;
+  }
+
   render() {
     return (
       <div className='beatmapset-header'>
@@ -25,14 +28,14 @@ export default class Header extends React.PureComponent<Props> {
           <div
             className='beatmapset-status beatmapset-status--header'
             style={{
-              '--bg': `var(--beatmapset-${this.props.currentBeatmap.status}-bg)`,
-              '--colour': `var(--beatmapset-${this.props.currentBeatmap.status}-colour)`,
+              '--bg': `var(--beatmapset-${this.controller.currentBeatmap.status}-bg)`,
+              '--colour': `var(--beatmapset-${this.controller.currentBeatmap.status}-colour)`,
             } as React.CSSProperties}
           >
-            {osu.trans(`beatmapsets.show.status.${this.props.currentBeatmap.status}`)}
+            {osu.trans(`beatmapsets.show.status.${this.controller.currentBeatmap.status}`)}
           </div>
 
-          {this.props.beatmapset.nsfw && (
+          {this.controller.beatmapset.nsfw && (
             <div className='beatmapset-badge beatmapset-badge--header beatmapset-badge--nsfw'>
               {osu.trans('beatmapsets.nsfw_badge.label')}
             </div>
@@ -43,9 +46,9 @@ export default class Header extends React.PureComponent<Props> {
           <div className='beatmapset-header__title u-ellipsis-overflow'>
             <a
               className='beatmapset-header__text-link'
-              href={route('beatmapsets.index', { q: getTitle(this.props.beatmapset) })}
+              href={route('beatmapsets.index', { q: getTitle(this.controller.beatmapset) })}
             >
-              {getTitle(this.props.beatmapset)}
+              {getTitle(this.controller.beatmapset)}
             </a>
           </div>
 
@@ -55,9 +58,9 @@ export default class Header extends React.PureComponent<Props> {
                 artist:
                   <a
                     className='beatmapset-header__text-link'
-                    href={route('beatmapsets.index', { q: getArtist(this.props.beatmapset) })}
+                    href={route('beatmapsets.index', { q: getArtist(this.controller.beatmapset) })}
                   >
-                    {getArtist(this.props.beatmapset)}
+                    {getArtist(this.controller.beatmapset)}
                   </a>,
               }}
               pattern={osu.trans('beatmapsets.show.details.by_artist')}
@@ -70,7 +73,7 @@ export default class Header extends React.PureComponent<Props> {
             mappings={{
               creator:
                 <UserLink
-                  user={{ id: this.props.beatmapset.user_id, username: this.props.beatmapset.creator }}
+                  user={{ id: this.controller.beatmapset.user_id, username: this.controller.beatmapset.creator }}
                 />,
             }}
             pattern={osu.trans('beatmapsets.show.details.created_by')}
@@ -80,9 +83,9 @@ export default class Header extends React.PureComponent<Props> {
         <div className='beatmapset-header__chooser'>
           <div className='beatmapset-header__chooser-list'>
             <BeatmapList
-              beatmaps={this.props.beatmaps}
-              beatmapset={this.props.beatmapset}
-              currentBeatmap={this.props.currentBeatmap}
+              beatmaps={this.controller.currentBeatmaps}
+              beatmapset={this.controller.beatmapset}
+              currentBeatmap={this.controller.currentBeatmap}
               large={false}
               modifiers='beatmapset-show'
               onSelectBeatmap={this.onSelectBeatmap}
@@ -90,10 +93,7 @@ export default class Header extends React.PureComponent<Props> {
           </div>
 
           <div className='beatmapset-header__chooser-picker'>
-            <BeatmapPicker
-              beatmaps={this.props.beatmaps}
-              currentBeatmap={this.props.currentBeatmap}
-            />
+            <BeatmapPicker controller={this.controller} />
           </div>
         </div>
       </div>
@@ -101,8 +101,12 @@ export default class Header extends React.PureComponent<Props> {
   }
 
   private onSelectBeatmap = (beatmapId: number) => {
-    const selectedBeatmap = this.props.beatmaps.find((beatmap) => beatmap.id === beatmapId);
+    const selectedBeatmap = this.controller.currentBeatmaps.find((beatmap) => beatmap.id === beatmapId);
 
-    $.publish('beatmapset:beatmap:set', { beatmap: selectedBeatmap });
+    if (selectedBeatmap == null) {
+      throw new Error('invalid beatmapId specified');
+    }
+
+    this.controller.setCurrentBeatmap(selectedBeatmap);
   };
 }

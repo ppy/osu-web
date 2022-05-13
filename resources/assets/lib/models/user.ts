@@ -5,6 +5,10 @@ import UserGroupJson from 'interfaces/user-group-json';
 import UserJson from 'interfaces/user-json';
 import { action, makeObservable, observable } from 'mobx';
 
+export function normaliseUsername(username: string) {
+  return username.trim().toLowerCase();
+}
+
 export default class User {
   @observable avatarUrl = '/images/layout/avatar-guest.png'; // TODO: move to a global config store?
   @observable countryCode = 'XX';

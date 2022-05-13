@@ -11,6 +11,7 @@ import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as _ from 'lodash';
 import * as React from 'react';
+import { onError } from 'utils/ajax';
 import { classWithModifiers } from 'utils/css';
 
 interface Props {
@@ -104,7 +105,7 @@ export class Nominator extends React.PureComponent<Props, State> {
         .done((response) => {
           $.publish('beatmapsetDiscussions:update', {beatmapset: response});
         })
-        .fail(osu.ajaxError)
+        .fail(onError)
         .always(this.hideNominationModal);
     });
   };

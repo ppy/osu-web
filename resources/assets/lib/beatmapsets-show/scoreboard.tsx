@@ -2,17 +2,18 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import StringWithComponent from 'components/string-with-component';
-import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
-import { ScoreJsonForBeatmap } from 'interfaces/score-json';
 import { route } from 'laroute';
+import { computed, makeObservable } from 'mobx';
+import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { switchNever } from 'utils/switch-never';
+import Controller from './controller';
 import ScoreTop from './score-top';
 import ScoreboardMod from './scoreboard-mod';
 import ScoreboardTab from './scoreboard-tab';
 import ScoreboardTable from './scoreboard-table';
-import ScoreboardType, { scoreboardTypes } from './scoreboard-type';
+import { scoreboardTypes } from './scoreboard-type';
 
 const defaultMods = ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'HD', 'FL', 'SO'];
 const osuMods = defaultMods.concat('TD');
@@ -20,55 +21,63 @@ const maniaMods = ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'FI', '
 const maniaKeyMods = ['4K', '5K', '6K', '7K', '8K', '9K'];
 
 interface Props {
-  beatmap: BeatmapExtendedJson;
-  enabledMods: string[];
-  isScoreable: boolean;
-  loadingState: null | 'error' | 'loading' | 'supporter_only' | 'unranked';
-  scores: ScoreJsonForBeatmap[];
-  type: ScoreboardType;
-  userScore?: ScoreJsonForBeatmap;
-  userScorePosition?: number;
+  controller: Controller;
 }
 
-export default class Scoreboard extends React.PureComponent<Props> {
-  get mods() {
-    if (this.props.beatmap.mode === 'mania') {
-      if (this.props.beatmap.convert) {
+@observer
+export default class Scoreboard extends React.Component<Props> {
+  private get controller() {
+    return this.props.controller;
+  }
+
+  @computed
+  private get mods() {
+    if (this.controller.currentBeatmap.mode === 'mania') {
+      if (this.controller.currentBeatmap.convert) {
         return [...maniaMods, ...maniaKeyMods];
       }
 
       return maniaMods;
     }
 
-    if (this.props.beatmap.mode === 'osu') {
+    if (this.controller.currentBeatmap.mode === 'osu') {
       return osuMods;
     }
 
     return defaultMods;
   }
 
-  render() {
-    const enabledMods = new Set(this.props.enabledMods);
+  private get scores() {
+    return this.controller.state.scores;
+  }
 
+  constructor(props: Props) {
+    super(props);
+    makeObservable(this);
+  }
+
+  render() {
     return (
       <div className='beatmapset-scoreboard'>
         <div className='page-tabs'>
           {scoreboardTypes.map((type) => (
             <ScoreboardTab
               key={type}
-              active={this.props.type === type}
+              controller={this.controller}
               type={type}
             />
           ))}
         </div>
 
-        {this.props.isScoreable &&
-          <div className={classWithModifiers('beatmapset-scoreboard__mods', { initial: enabledMods.size === 0 })}>
-            {this.mods.map((mod) => <ScoreboardMod key={mod} enabled={enabledMods.has(mod)} mod={mod} />)}
+        {this.controller.currentBeatmap.is_scoreable &&
+          <div className={classWithModifiers('beatmapset-scoreboard__mods', { initial: this.controller.enabledMods.size === 0 })}>
+            {this.mods.map((mod) => <ScoreboardMod key={mod} controller={this.controller} mod={mod} />)}
           </div>
         }
 
-        <div className={classWithModifiers('beatmapset-scoreboard__main', { loading: this.props.loadingState === 'loading' })}>
+        <div className={classWithModifiers('beatmapset-scoreboard__main', {
+          loading: this.controller.state.scoreLoadingState === 'loading',
+        })}>
           {this.renderMain()}
         </div>
       </div>
@@ -76,7 +85,7 @@ export default class Scoreboard extends React.PureComponent<Props> {
   }
 
   private readonly onClickRetryButton = () => {
-    $.publish('beatmapset:scoreboard:retry');
+    this.controller.setCurrentScoreboard({ forceReload: true });
   };
 
   private renderEmptyMessage(key: string) {
@@ -104,13 +113,13 @@ export default class Scoreboard extends React.PureComponent<Props> {
   }
 
   private renderMain() {
-    switch (this.props.loadingState) {
+    switch (this.controller.state.scoreLoadingState) {
       case null:
-        if (this.props.scores.length > 0) {
+        if (this.scores.scores.length > 0) {
           return this.renderScores();
         }
 
-        return this.renderEmptyMessage(this.props.type);
+        return this.renderEmptyMessage(this.controller.state.currentScoreboardType);
 
       case 'error':
         return this.renderErrorMessage();
@@ -125,7 +134,7 @@ export default class Scoreboard extends React.PureComponent<Props> {
         return this.renderSupporterOnlyMessage();
 
       default:
-        switchNever(this.props.loadingState);
+        switchNever(this.controller.state.scoreLoadingState);
         throw new Error('unsupported loading state');
     }
   }
@@ -135,21 +144,25 @@ export default class Scoreboard extends React.PureComponent<Props> {
       <div>
         <div className='beatmap-scoreboard-top'>
           <div className='beatmap-scoreboard-top__item'>
-            <ScoreTop beatmap={this.props.beatmap} position={1} score={this.props.scores[0]} />
+            <ScoreTop
+              beatmap={this.controller.currentBeatmap}
+              position={1}
+              score={this.scores.scores[0]}
+            />
           </div>
 
-          {this.props.userScore != null && this.props.scores[0].user.id !== this.props.userScore.user.id &&
+          {this.scores.user_score != null && this.scores.scores[0].user.id !== this.scores.user_score.score.user.id &&
             <div className='beatmap-scoreboard-top__item'>
-              <ScoreTop beatmap={this.props.beatmap} position={this.props.userScorePosition} score={this.props.userScore} />
+              <ScoreTop
+                beatmap={this.controller.currentBeatmap}
+                position={this.scores.user_score.position}
+                score={this.scores.user_score.score}
+              />
             </div>
           }
         </div>
 
-        <ScoreboardTable
-          beatmap={this.props.beatmap}
-          scoreboardType={this.props.type}
-          scores={this.props.scores}
-        />
+        <ScoreboardTable controller={this.controller} />
       </div>
     );
   }

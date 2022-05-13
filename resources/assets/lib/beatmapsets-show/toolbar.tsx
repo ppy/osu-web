@@ -2,20 +2,18 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BigButton from 'components/big-button';
-import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
-import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import { route } from 'laroute';
+import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { toggleFavourite } from 'utils/beatmapset-helper';
 import { formatNumber } from 'utils/html';
 import { beatmapDownloadDirect } from 'utils/url';
 import BeatmapsetMenu from './beatmapset-menu';
+import Controller from './controller';
 
 interface Props {
-  beatmapset: BeatmapsetExtendedJson;
-  currentBeatmap: BeatmapExtendedJson;
-  favcount: number;
-  hasFavourited: boolean;
+  controller: Controller;
 }
 
 interface DownloadButtonProps {
@@ -44,7 +42,8 @@ const DownloadButton = ({
   />
 );
 
-export default class Toolbar extends React.PureComponent<Props> {
+@observer
+export default class Toolbar extends React.Component<Props> {
   render() {
     return (
       <div className='beatmapset-toolbar'>
@@ -54,7 +53,7 @@ export default class Toolbar extends React.PureComponent<Props> {
               {osu.trans('beatmapsets.show.details.count.total_play')}
             </div>
             <div className='beatmapset-toolbar__count-value'>
-              {formatNumber(this.props.beatmapset.play_count)}
+              {formatNumber(this.props.controller.beatmapset.play_count)}
             </div>
           </div>
 
@@ -63,7 +62,7 @@ export default class Toolbar extends React.PureComponent<Props> {
               {osu.trans('beatmapsets.show.details.count.diff_play')}
             </div>
             <div className='beatmapset-toolbar__count-value'>
-              {formatNumber(this.props.currentBeatmap.playcount)}
+              {formatNumber(this.props.controller.currentBeatmap.playcount)}
             </div>
           </div>
         </div>
@@ -79,29 +78,29 @@ export default class Toolbar extends React.PureComponent<Props> {
   }
 
   private renderDownloadButtons() {
-    if (core.currentUser != null && !this.props.beatmapset.availability?.download_disabled) {
+    if (core.currentUser != null && !this.props.controller.beatmapset.availability?.download_disabled) {
       return (
         <>
-          {this.props.beatmapset.video ? (
+          {this.props.controller.beatmapset.video ? (
             <>
               <DownloadButton
                 bottomTextKey='video'
-                href={route('beatmapsets.download', { beatmapset: this.props.beatmapset.id })}
+                href={route('beatmapsets.download', { beatmapset: this.props.controller.beatmapset.id })}
               />
               <DownloadButton
                 bottomTextKey='no-video'
-                href={route('beatmapsets.download', { beatmapset: this.props.beatmapset.id, noVideo: 1 })}
+                href={route('beatmapsets.download', { beatmapset: this.props.controller.beatmapset.id, noVideo: 1 })}
               />
             </>
           ) : (
             <DownloadButton
-              href={route('beatmapsets.download', { beatmapset: this.props.beatmapset.id })}
+              href={route('beatmapsets.download', { beatmapset: this.props.controller.beatmapset.id })}
             />
           )}
 
           <DownloadButton
             href={core.currentUser.is_supporter
-              ? beatmapDownloadDirect(this.props.currentBeatmap.id)
+              ? beatmapDownloadDirect(this.props.controller.currentBeatmap.id)
               : route('support-the-game')
             }
             osuDirect
@@ -113,18 +112,24 @@ export default class Toolbar extends React.PureComponent<Props> {
   }
 
   private renderFavouriteButton() {
-    const action = this.props.hasFavourited ? 'unfavourite' : 'favourite';
-    const icon = `${this.props.hasFavourited ? 'fas' : 'far'} fa-heart`;
+    const button = this.props.controller.beatmapset.has_favourited
+      ? {
+        action: 'unfavourite',
+        icon: 'fas fa-heart',
+      } : {
+        action: 'favourite',
+        icon: 'far fa-heart',
+      };
 
     return (
       <button
         className='btn-osu-big btn-osu-big--beatmapset-favourite btn-osu-big--pink'
         onClick={this.toggleFavourite}
-        title={osu.trans(`beatmapsets.show.details.${action}`)}
+        title={osu.trans(`beatmapsets.show.details.${button.action}`)}
       >
-        <i className={icon} />
+        <i className={button.icon} />
         {' '}
-        {formatNumber(this.props.favcount)}
+        {formatNumber(this.props.controller.beatmapset.favourite_count)}
       </button>
     );
   }
@@ -145,11 +150,11 @@ export default class Toolbar extends React.PureComponent<Props> {
   }
 
   private renderMenuButton() {
-    if (core.currentUser != null && core.currentUser.id !== this.props.beatmapset.user_id) {
+    if (core.currentUser != null && core.currentUser.id !== this.props.controller.beatmapset.user_id) {
       return (
         <div className='beatmapset-toolbar__menu'>
           <div className='btn-circle btn-circle--page-toggle'>
-            <BeatmapsetMenu beatmapset={this.props.beatmapset} />
+            <BeatmapsetMenu beatmapset={this.props.controller.beatmapset} />
           </div>
         </div>
       );
@@ -157,10 +162,6 @@ export default class Toolbar extends React.PureComponent<Props> {
   }
 
   private toggleFavourite = () => {
-    if (core.userLogin.showIfGuest(this.toggleFavourite)) {
-      return;
-    }
-
-    $.publish('beatmapset:favourite:toggle');
+    toggleFavourite(this.props.controller.beatmapset);
   };
 }

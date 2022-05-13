@@ -58,6 +58,7 @@ class UserCompactTransformer extends TransformerAbstract
         'friends',
         'graveyard_beatmapset_count',
         'groups',
+        'guest_beatmapset_count',
         'is_admin',
         'is_bng',
         'is_full_bn',
@@ -119,7 +120,7 @@ class UserCompactTransformer extends TransformerAbstract
             'id' => $user->user_id,
             'is_active' => $user->isActive(),
             'is_bot' => $user->isBot(),
-            'is_deleted' => $user->isDeleted(),
+            'is_deleted' => $user->trashed(),
             'is_online' => $user->isOnline(),
             'is_supporter' => $user->isSupporter(),
             'last_visit' => json_time($user->displayed_last_visit),
@@ -234,6 +235,11 @@ class UserCompactTransformer extends TransformerAbstract
     public function includeGroups(User $user)
     {
         return $this->collection($user->userGroupsForBadges(), new UserGroupTransformer());
+    }
+
+    public function includeGuestBeatmapsetCount(User $user)
+    {
+        return $this->primitive($user->profileBeatmapsetsGuest()->count());
     }
 
     public function includeIsAdmin(User $user)

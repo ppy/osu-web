@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { padStart } from 'lodash';
 import { CSSProperties } from 'react';
 
 export function bottomPage() {
@@ -35,6 +36,22 @@ export function cssVar2x(url?: string | null) {
     '--bg': osu.urlPresence(url),
     '--bg-2x': osu.urlPresence(make2x(url)),
   } as CSSProperties;
+}
+
+function padTimeComponent(time: number) {
+  return padStart(time.toString(), 2, '0');
+}
+
+export function formatDuration(valueSecond: number) {
+  const s = valueSecond % 60;
+  const m = Math.floor(valueSecond / 60) % 60;
+  const h = Math.floor(valueSecond / 3600);
+
+  if (h > 0) {
+    return `${h}:${padTimeComponent(m)}:${padTimeComponent(s)}`;
+  }
+
+  return `${m}:${padTimeComponent(s)}`;
 }
 
 const defaultNumberFormatter = new Intl.NumberFormat(window.currentLocale);

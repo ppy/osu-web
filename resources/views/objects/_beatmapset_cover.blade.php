@@ -4,14 +4,21 @@
 --}}
 @php
     $class = class_with_modifiers('beatmapset-cover', $modifiers);
-    $attributesBag = request()->attributes;
-    $userShowNsfw = $attributesBag->get('user_beatmapset_show_nsfw');
-    if ($userShowNsfw === null) {
-        $user = auth()->user();
-        $userShowNsfw = ($user->userProfileCustomization ?? $user->userProfileCustomization()->make())->beatmapset_show_nsfw;
-        $attributesBag->set('user_beatmapset_show_nsfw', $userShowNsfw);
+
+    $isNsfw = $beatmapset->nsfw;
+    if ($isNsfw) {
+        $attributesBag = request()->attributes;
+        $userShowNsfw = $attributesBag->get('user_beatmapset_show_nsfw');
+        if ($userShowNsfw === null) {
+            $user = auth()->user();
+            $userShowNsfw = $user !== null
+                ? ($user->userProfileCustomization ?? $user->userProfileCustomization()->make())->beatmapset_show_nsfw
+                : false;
+            $attributesBag->set('user_beatmapset_show_nsfw', $userShowNsfw);
+        }
     }
-    $style = $userShowNsfw || !$beatmapset->nsfw
+
+    $style = !$isNsfw || $userShowNsfw
         ? css_var_2x('--bg', $beatmapset->coverURL($size))
         : '';
 @endphp

@@ -10,6 +10,7 @@ import { reaction } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { onError } from 'utils/ajax';
 import { nextVal } from 'utils/seq';
 import { SearchStatus } from './beatmapset-search-controller';
 
@@ -77,7 +78,7 @@ export class Main extends React.Component<Props> {
 
   private searchStatusErrorHandler = (value: SearchStatus) => {
     if (value.error != null) {
-      osu.ajaxError(value.error);
+      onError(value.error);
     }
   };
 }

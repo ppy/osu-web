@@ -5,22 +5,22 @@
   .inner-shadow-top();
   position: relative;
   display: flex;
-  min-height: @gutter-profile-page-desktop;
+  min-height: @gutter-v2-desktop;
   justify-content: center;
   flex-direction: column;
-  padding: @padding-profile-page @gutter-profile-page;
+  padding: 10px var(--gutter);
   font-size: @font-size--normal;
   background-color: @osu-colour-b4;
+  --gutter: @gutter-v2;
 
   @media @desktop {
-    padding-left: @gutter-profile-page-desktop;
-    padding-right: @gutter-profile-page-desktop;
+    --gutter: @gutter-v2-desktop;
   }
 
   &__edit {
     position: absolute;
     top: 0;
-    right: @gutter-profile-page;
+    right: var(--gutter);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,7 +28,7 @@
 
     @media @desktop {
       right: 0;
-      width: @gutter-profile-page-desktop;
+      width: var(--gutter);
     }
   }
 

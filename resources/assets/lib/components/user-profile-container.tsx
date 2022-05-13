@@ -4,7 +4,7 @@
 import BlockButton from 'components/block-button';
 import NotificationBanner from 'components/notification-banner';
 import UserJson from 'interfaces/user-json';
-import { computed, makeObservable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -15,14 +15,9 @@ interface Props {
   user: UserJson;
 }
 
-interface State {
-  forceShow: boolean;
-}
-
 @observer
-export default class UserProfileContainer extends React.Component<Props, State> {
-  // TODO: move to context?
-  state = { forceShow: false };
+export default class UserProfileContainer extends React.Component<Props> {
+  @observable private forceShow = false;
 
   @computed
   get isBlocked() {
@@ -36,17 +31,12 @@ export default class UserProfileContainer extends React.Component<Props, State> 
   }
 
   render() {
-    let cssClass: string | undefined;
-    const modifiers = ['full'];
-    if (this.isBlocked && !this.state.forceShow) {
-      cssClass = 'osu-layout__no-scroll';
-      modifiers.push('masked');
-    }
+    const masked = this.isBlocked && !this.forceShow;
 
     return (
-      <div className={cssClass}>
+      <div className={masked ? 'osu-layout__no-scroll' : undefined}>
         {this.isBlocked && this.renderBanner()}
-        <div className={classWithModifiers('osu-layout', modifiers)}>
+        <div className={classWithModifiers('osu-layout', 'full', { masked })}>
           {this.props.children}
         </div>
       </div>
@@ -64,7 +54,7 @@ export default class UserProfileContainer extends React.Component<Props, State> 
             <span>
               <i className='textual-button__icon fas fa-low-vision' />
               {' '}
-              {this.state.forceShow ? osu.trans('users.blocks.hide_profile') : osu.trans('users.blocks.show_profile')}
+              {this.forceShow ? osu.trans('users.blocks.hide_profile') : osu.trans('users.blocks.show_profile')}
             </span>
           </button>
         </div>
@@ -78,7 +68,8 @@ export default class UserProfileContainer extends React.Component<Props, State> 
     );
   }
 
+  @action
   private handleClick = () => {
-    this.setState({ forceShow: !this.state.forceShow });
+    this.forceShow = !this.forceShow;
   };
 }

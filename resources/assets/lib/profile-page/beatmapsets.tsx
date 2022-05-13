@@ -26,6 +26,11 @@ const sectionKeys = [
     translationKey: 'loved',
   },
   {
+    countKey: 'guest_beatmapset_count',
+    key: 'guestBeatmapsets',
+    translationKey: 'guest',
+  },
+  {
     countKey: 'pending_beatmapset_count',
     key: 'pendingBeatmapsets',
     translationKey: 'pending',

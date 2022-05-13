@@ -341,7 +341,7 @@ return [
                 'user' => [
                     'count' => '{0} tidak ada suara|{1} :count_delimited suara|[2,*] :count_delimited suara',
                     'current' => 'Anda memiliki :votes tersisa.',
-                    'not_enough' => "Anda tidak memiliki cukup hak suara untuk dapat mempromosikan gagasan ini lebih jauh.",
+                    'not_enough' => "Anda tidak memiliki hak suara yang tersisa",
                 ],
             ],
 

@@ -6,19 +6,20 @@ import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import ErrorJson from 'interfaces/error-json';
 import EventJson from 'interfaces/event-json';
 import KudosuHistoryJson from 'interfaces/kudosu-history-json';
-import { ScoreJsonForUser } from 'interfaces/score-json';
+import { SoloScoreJsonForUser } from 'interfaces/solo-score-json';
 
 export default interface ExtrasJson {
   beatmapPlaycounts: BeatmapPlaycountJson[];
   favouriteBeatmapsets: BeatmapsetExtendedJson[];
   graveyardBeatmapsets: BeatmapsetExtendedJson[];
+  guestBeatmapsets: BeatmapsetExtendedJson[];
   lovedBeatmapsets: BeatmapsetExtendedJson[];
   pendingBeatmapsets: BeatmapsetExtendedJson[];
   rankedBeatmapsets: BeatmapsetExtendedJson[];
   recentActivity: EventJson[];
   recentlyReceivedKudosu: KudosuHistoryJson[];
-  scoresBest: ScoreJsonForUser[] | ErrorJson;
-  scoresFirsts: ScoreJsonForUser[];
-  scoresPinned: ScoreJsonForUser[];
-  scoresRecent: ScoreJsonForUser[];
+  scoresBest: SoloScoreJsonForUser[] | ErrorJson;
+  scoresFirsts: SoloScoreJsonForUser[];
+  scoresPinned: SoloScoreJsonForUser[];
+  scoresRecent: SoloScoreJsonForUser[];
 }

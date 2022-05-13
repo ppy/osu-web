@@ -4,51 +4,58 @@
 import { Modal } from 'components/modal';
 import TimeWithTooltip from 'components/time-with-tooltip';
 import { UserLink } from 'components/user-link';
-import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
 import { route } from 'laroute';
+import { action, computed, makeObservable, observable } from 'mobx';
+import { observer } from 'mobx-react';
 import { deletedUser } from 'models/user';
 import * as moment from 'moment';
 import * as React from 'react';
+import Controller from './controller';
 import MetadataEditor from './metadata-editor';
 
 interface Props {
-  beatmapset: BeatmapsetJsonForShow;
+  controller: Controller;
 }
 
-interface State {
-  isEditing: boolean;
-}
+@observer
+export default class Metadata extends React.PureComponent<Props> {
+  @observable private isEditing = false;
 
-export default class Metadata extends React.PureComponent<Props, State> {
+  private get beatmapset() {
+    return this.props.controller.beatmapset;
+  }
+
+  @computed
+  private get nominators() {
+    return this.beatmapset.beatmapset_nominations?.filter((n) => n.reset === 0).map((n) => n.user ?? deletedUser.toJson());
+  }
+
   constructor(props: Props) {
     super(props);
-
-    this.state = {
-      isEditing: false,
-    };
+    makeObservable(this);
   }
 
   render() {
-    const tags = this.props.beatmapset.tags.split(' ');
-    const canEdit = this.props.beatmapset.current_user_attributes?.can_edit_metadata ?? false;
-    const nominators = this.props.beatmapset.beatmapset_nominations?.filter((n) => n.reset === 0).map((n) => n.user ?? deletedUser.toJson());
+    const tags = this.beatmapset.tags.split(' ');
+    const canEdit = this.beatmapset.current_user_attributes?.can_edit_metadata ?? false;
+    const nominators = this.nominators;
 
     return (
       <div className='beatmapset-metadata u-fancy-scrollbar'>
-        {this.state.isEditing && (
+        {this.isEditing && (
           <Modal onClose={this.toggleEditing} visible>
-            <MetadataEditor beatmapset={this.props.beatmapset} onClose={this.toggleEditing} />
+            <MetadataEditor controller={this.props.controller} onClose={this.toggleEditing} />
           </Modal>
         )}
 
-        {this.props.beatmapset.source !== '' && (
+        {this.beatmapset.source !== '' && (
           <>
             <div>
               {osu.trans('beatmapsets.show.info.source')}
             </div>
             <div className='beatmapset-metadata__value'>
-              <a href={route('beatmapsets.index', { q: this.props.beatmapset.source })}>
-                {this.props.beatmapset.source}
+              <a href={route('beatmapsets.index', { q: this.beatmapset.source })}>
+                {this.beatmapset.source}
               </a>
             </div>
           </>
@@ -58,8 +65,8 @@ export default class Metadata extends React.PureComponent<Props, State> {
           {osu.trans('beatmapsets.show.info.genre')}
         </div>
         <div className='beatmapset-metadata__value'>
-          <a href={route('beatmapsets.index', { g: this.props.beatmapset.genre.id })}>
-            {this.props.beatmapset.genre.name}
+          <a href={route('beatmapsets.index', { g: this.beatmapset.genre.id })}>
+            {this.beatmapset.genre.name}
           </a>
         </div>
 
@@ -69,8 +76,8 @@ export default class Metadata extends React.PureComponent<Props, State> {
           {osu.trans('beatmapsets.show.info.language')}
         </div>
         <div className='beatmapset-metadata__value'>
-          <a href={route('beatmapsets.index', { l: this.props.beatmapset.language.id })}>
-            {this.props.beatmapset.language.name}
+          <a href={route('beatmapsets.index', { l: this.beatmapset.language.id })}>
+            {this.beatmapset.language.name}
           </a>
         </div>
 
@@ -110,24 +117,24 @@ export default class Metadata extends React.PureComponent<Props, State> {
           </>
         )}
 
-        {this.props.beatmapset.submitted_date != null && (
+        {this.beatmapset.submitted_date != null && (
           <>
             <div>
               {osu.trans('beatmapsets.show.info.submitted')}
             </div>
             <div className='beatmapset-metadata__value'>
-              {this.renderDate(this.props.beatmapset.submitted_date)}
+              {this.renderDate(this.beatmapset.submitted_date)}
             </div>
           </>
         )}
 
-        {this.props.beatmapset.ranked > 0 && this.props.beatmapset.ranked_date != null ? (
+        {this.beatmapset.ranked > 0 && this.beatmapset.ranked_date != null ? (
           <>
             <div>
-              {osu.trans(`beatmapsets.show.info.${this.props.beatmapset.status}`)}
+              {osu.trans(`beatmapsets.show.info.${this.beatmapset.status}`)}
             </div>
             <div className='beatmapset-metadata__value'>
-              {this.renderDate(this.props.beatmapset.ranked_date)}
+              {this.renderDate(this.beatmapset.ranked_date)}
             </div>
           </>
         ) : (
@@ -136,7 +143,7 @@ export default class Metadata extends React.PureComponent<Props, State> {
               {osu.trans('beatmapsets.show.info.updated')}
             </div>
             <div className='beatmapset-metadata__value'>
-              {this.renderDate(this.props.beatmapset.last_updated)}
+              {this.renderDate(this.beatmapset.last_updated)}
             </div>
           </>
         )}
@@ -167,7 +174,8 @@ export default class Metadata extends React.PureComponent<Props, State> {
     );
   }
 
-  private toggleEditing = () => {
-    this.setState({ isEditing: !this.state.isEditing });
+  @action
+  private readonly toggleEditing = () => {
+    this.isEditing = !this.isEditing;
   };
 }

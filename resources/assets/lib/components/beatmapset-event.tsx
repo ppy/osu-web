@@ -85,7 +85,7 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
             <BeatmapsetCover beatmapset={this.props.event.beatmapset} size='list' />
           </a>
         ) : (
-          <BeatmapsetCover isDeleted size='list' />
+          <BeatmapsetCover isDeleted />
         )}
         <div
           className={classWithModifiers('beatmapset-event__icon', ['beatmapset-activities'])}

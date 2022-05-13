@@ -4,11 +4,11 @@
 import { route } from 'laroute'
 import { discussionLinkify } from 'utils/beatmapset-discussion-helper'
 import { currentUrl } from 'utils/turbolinks'
+import { getInt } from 'utils/math'
 import { openBeatmapEditor, linkHtml } from 'utils/url'
 
 class window.BeatmapDiscussionHelper
   @DEFAULT_BEATMAP_ID: '-'
-  @DEFAULT_MODE: 'timeline'
   @DEFAULT_FILTER: 'total'
   @MAX_MESSAGE_PREVIEW_LENGTH: 100
   @MAX_LENGTH_TIMELINE: 750
@@ -22,6 +22,13 @@ class window.BeatmapDiscussionHelper
     user ?= currentUser
 
     user.is_admin || user.is_moderator
+
+
+  @defaultMode: (beatmapId) =>
+    if beatmapId? && beatmapId != @DEFAULT_BEATMAP_ID
+      'timeline'
+    else
+      'generalAll'
 
 
   @discussionMode: (discussion) ->
@@ -132,7 +139,7 @@ class window.BeatmapDiscussionHelper
     timestampRe = message.match @TIMESTAMP_REGEX
 
     if timestampRe?
-      timestamp = timestampRe.slice(1).map (x) => parseInt x, 10
+      timestamp = timestampRe.slice(1).map getInt
 
       # this isn't all that smart
       (timestamp[2] * 60 + timestamp[3]) * 1000 + timestamp[4]
@@ -150,6 +157,7 @@ class window.BeatmapDiscussionHelper
       discussions # for validating discussionId and getting relevant params
       discussion
       post
+      postId
       user
     } = if useCurrent then _.assign(@urlParse(), options) else options
 
@@ -160,13 +168,14 @@ class window.BeatmapDiscussionHelper
       beatmapId = beatmap.id
 
     params.beatmapset = beatmapsetId
-    params.mode = mode ? @DEFAULT_MODE
 
     params.beatmap =
-      if !beatmapId? || params.mode in ['events', 'generalAll', 'reviews']
+      if !beatmapId? || mode in ['events', 'generalAll', 'reviews']
         @DEFAULT_BEATMAP_ID
       else
         beatmapId
+
+    params.mode = mode ? @defaultMode(beatmapId)
 
     if filter? && filter != @DEFAULT_FILTER && params.mode != 'events'
       params.filter = filter
@@ -187,7 +196,9 @@ class window.BeatmapDiscussionHelper
     url = new URL(route('beatmapsets.discussion', params))
     if discussionId?
       url.hash = "/#{discussionId}"
-      url.hash += "/#{post.id}" if post?
+
+      postId = post.id if post?
+      url.hash += "/#{postId}" if postId?
 
 
     if user?
@@ -207,21 +218,21 @@ class window.BeatmapDiscussionHelper
 
     return if pathBeatmapsets != 'beatmapsets' || pathDiscussions != 'discussion'
 
-    beatmapsetId = parseInt(beatmapsetId, 10)
-    beatmapId = parseInt(beatmapId, 10)
+    beatmapsetId = getInt(beatmapsetId)
+    beatmapId = getInt(beatmapId)
 
     ret =
-      beatmapsetId: if isFinite(beatmapsetId) then beatmapsetId
-      beatmapId: if isFinite(beatmapId) then beatmapId
+      beatmapsetId: beatmapsetId
+      beatmapId: beatmapId
       # empty path segments are ''
-      mode: if @MODES.has(mode) then mode else @DEFAULT_MODE
+      mode: if @MODES.has(mode) then mode else @defaultMode(beatmapId)
       filter: if @FILTERS.has(filter) then filter else @DEFAULT_FILTER
-      user: parseInt(url.searchParams.get('user'), 10) if url.searchParams.get('user')?
+      user: getInt(url.searchParams.get('user')) if url.searchParams.get('user')?
 
     if url.hash[1] == '/'
-      [discussionId, postId] = url.hash[2..].split('/').map((id) -> parseInt(id, 10))
+      [discussionId, postId] = url.hash[2..].split('/').map(getInt)
 
-      if isFinite(discussionId)
+      if discussionId?
         if discussions?
           discussion = _.find discussions, id: discussionId
 
@@ -232,7 +243,7 @@ class window.BeatmapDiscussionHelper
         else if options.forceDiscussionId
           ret.discussionId = discussionId
 
-    ret.postId = postId if ret.discussionId? && isFinite(postId)
+    ret.postId = postId if ret.discussionId? && postId?
 
     ret
 

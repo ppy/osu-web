@@ -118,11 +118,6 @@ class Beatmap extends Model
         return $this->hasMany(BeatmapDiscussion::class);
     }
 
-    public function creator()
-    {
-        return $this->parent->user();
-    }
-
     public function difficulty()
     {
         return $this->hasMany(BeatmapDifficulty::class);

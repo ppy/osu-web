@@ -1,18 +1,20 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
+import { observer } from 'mobx-react';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
+import Controller from './controller';
 import CountBadge from './count-badge';
 
 interface Props {
-  beatmap: BeatmapExtendedJson;
+  controller: Controller;
 }
 
-export default class Stats extends React.PureComponent<Props> {
-  private get statsKey() {
-    switch (this.props.beatmap.mode) {
+@observer
+export default class Stats extends React.Component<Props> {
+  private get statKeys() {
+    switch (this.props.controller.currentBeatmap.mode) {
       case 'mania':
         return ['cs', 'drain', 'accuracy', 'difficulty_rating'] as const;
       case 'taiko':
@@ -28,45 +30,58 @@ export default class Stats extends React.PureComponent<Props> {
         <div className='beatmapset-stats__count'>
           <CountBadge
             data={{
-              circle_count: formatNumber(this.props.beatmap.count_circles),
-              slider_count: formatNumber(this.props.beatmap.count_sliders),
+              circle_count: formatNumber(this.props.controller.currentBeatmap.count_circles),
+              slider_count: formatNumber(this.props.controller.currentBeatmap.count_sliders),
             }}
           />
         </div>
 
-        {this.statsKey.map((key) => (
-          <React.Fragment key={key}>
-            {this.renderStat(key, this.props.beatmap[key])}
-          </React.Fragment>
-        ))}
+        {this.statKeys.map(this.renderStat)}
       </div>
     );
   }
 
-  private renderStat = (label: string, value: number) => {
-    const addSpacer = label === 'accuracy';
-    if (this.props.beatmap.mode === 'mania' && label === 'cs') {
-      label += '-mania';
+  private readonly renderStat = (key: typeof this.statKeys[number]) => {
+    const rawValue = this.props.controller.currentBeatmap[key];
+    let addSpacer = false;
+    let label: string = key;
+    let value: string;
+
+    switch (key) {
+      case 'accuracy':
+        addSpacer = true;
+        break;
+      case 'difficulty_rating':
+        label = 'stars';
+        value = formatNumber(rawValue, 2);
+        break;
+      case 'cs':
+        if (this.props.controller.currentBeatmap.mode === 'mania') {
+          label += '-mania';
+        }
+        break;
     }
 
+    value ??= formatNumber(rawValue);
+
     return (
-      <>
+      <React.Fragment key={key}>
         {addSpacer && <div className='beatmapset-stats__spacer' />}
         <div>{osu.trans(`beatmapsets.show.stats.${label}`)}</div>
         <div className='beatmapset-stats__value'>
-          {formatNumber(value)}
+          {value}
         </div>
         <div className='beatmapset-stats__bar'>
           <div className='bar bar--beatmap-stats'>
             <div
               className='bar__fill'
               style={{
-                width: `${10 * Math.min(10, value)}%`,
+                width: `${10 * Math.min(10, rawValue)}%`,
               }}
             />
           </div>
         </div>
-      </>
+      </React.Fragment>
     );
   };
 }

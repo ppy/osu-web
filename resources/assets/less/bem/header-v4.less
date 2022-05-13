@@ -185,6 +185,10 @@
       background-image: url('~@images/icons/beatmappacks.svg');
     }
 
+    .@{_top}--beatmapset & {
+      background-image: url('~@images/icons/beatmapsets.svg');
+    }
+
     .@{_top}--beatmapsets & {
       background-image: url('~@images/icons/beatmapsets.svg');
     }
@@ -292,12 +296,9 @@
       }
     }
 
-    .@{_top}--users & {
-      padding-left: @gutter-profile-page;
-      padding-right: $padding-left;
-
+    .@{_top}--beatmapset & {
       @media @desktop {
-        padding-left: @gutter-profile-page-desktop;
+        padding-left: @gutter-beatmapset-desktop;
         padding-right: $padding-left;
       }
     }

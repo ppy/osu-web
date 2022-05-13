@@ -3,31 +3,25 @@
 
 import BbcodeEditor, { OnChangeProps } from 'components/bbcode-editor';
 import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
-import { BeatmapsetDescription } from 'interfaces/beatmapset-json';
 import { route } from 'laroute';
+import { action, makeObservable, observable, runInAction } from 'mobx';
+import { observer } from 'mobx-react';
 import * as React from 'react';
-import { error, onErrorWithClick } from 'utils/ajax';
+import { onErrorWithClick } from 'utils/ajax';
+import Controller from './controller';
 
 interface Props {
-  beatmapset: BeatmapsetJsonForShow;
+  controller: Controller;
 }
 
-interface State {
-  description?: BeatmapsetDescription;
-  isBusy: boolean;
-  isEditing: boolean;
-}
-
-export default class Description extends React.PureComponent<Props, State> {
-  private xhr?: JQueryXHR;
+@observer
+export default class Description extends React.PureComponent<Props> {
+  @observable private isEditing = false;
+  @observable private xhr: JQuery.jqXHR<BeatmapsetJsonForShow> | null = null;
 
   constructor(props: Props) {
     super(props);
-
-    this.state = {
-      isBusy: false,
-      isEditing: false,
-    };
+    makeObservable(this);
   }
 
   componentWillUnmount() {
@@ -35,14 +29,14 @@ export default class Description extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const canEdit = this.props.beatmapset.description.bbcode !== undefined;
-    const description = this.state.description ?? this.props.beatmapset.description;
+    const canEdit = this.props.controller.beatmapset.description.bbcode !== undefined;
+    const description = this.props.controller.beatmapset.description;
 
     return (
       <div className='beatmapset-description u-fancy-scrollbar'>
-        {this.state.isEditing && canEdit ? (
+        {this.isEditing && canEdit ? (
           <BbcodeEditor
-            disabled={this.state.isBusy}
+            disabled={this.xhr != null}
             modifiers='beatmapset-description-editor'
             onChange={this.onEditorChange}
             rawValue={description.bbcode ?? ''}
@@ -56,11 +50,11 @@ export default class Description extends React.PureComponent<Props, State> {
           </div>
         )}
 
-        {!this.state.isEditing && canEdit && (
+        {!this.isEditing && canEdit && (
           <div className='beatmapset-description__edit-button'>
             <button
               className='btn-circle'
-              onClick={this.toggleEditing}
+              onClick={this.onStartEditClick}
               type='button'
             >
               <span className='btn-circle__content'>
@@ -73,45 +67,43 @@ export default class Description extends React.PureComponent<Props, State> {
     );
   }
 
-  private onEditorChange = (action: OnChangeProps) => {
-    switch (action.type) {
+  @action
+  private onEditorChange = (change: OnChangeProps) => {
+    switch (change.type) {
       case 'cancel':
-        this.setState({ isEditing: false });
+        this.isEditing = false;
         break;
 
       case 'save':
-        if (action.hasChanged) {
-          this.saveDescription(action);
+        if (change.hasChanged) {
+          this.saveDescription(change);
         } else {
-          this.setState({ isEditing: false });
+          this.isEditing = false;
         }
+        break;
     }
   };
 
-  private saveDescription = ({ event, value }: OnChangeProps) => {
-    this.setState({ isBusy: true });
-
-    const failCallback = event == null
-      ? (xhr: JQuery.jqXHR, status: string) => error(xhr, status)
-      : onErrorWithClick(event.target);
-
-    this.xhr = $.ajax(route('beatmapsets.update', { beatmapset: this.props.beatmapset.id }), {
-      data: {
-        description: value,
-      },
-      method: 'PATCH',
-    }).done((data: BeatmapsetJsonForShow) => {
-      this.setState({
-        description: data.description,
-        isEditing: false,
-      });
-    }).fail(failCallback)
-      .always(() => {
-        this.setState({ isBusy: false });
-      });
+  @action
+  private readonly onStartEditClick = () => {
+    this.isEditing = true;
   };
 
-  private toggleEditing = () => {
-    this.setState({ isEditing: !this.state.isEditing });
+  private readonly saveDescription = ({ event, value }: OnChangeProps) => {
+    if (this.xhr != null) return;
+
+    this.xhr = $.ajax(route('beatmapsets.update', { beatmapset: this.props.controller.beatmapset.id }), {
+      data: { description: value },
+      method: 'PATCH',
+    });
+
+    this.xhr.done((beatmapset) => runInAction(() => {
+      this.isEditing = false;
+      this.props.controller.state.beatmapset = beatmapset;
+    })).fail(
+      onErrorWithClick(event?.target),
+    ).always(action(() => {
+      this.xhr = null;
+    }));
   };
 }

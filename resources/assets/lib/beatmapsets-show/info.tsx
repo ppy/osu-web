@@ -4,38 +4,23 @@
 import BeatmapListItem from 'components/beatmap-list-item';
 import StringWithComponent from 'components/string-with-component';
 import { UserLink } from 'components/user-link';
-import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
-import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
-import { padStart } from 'lodash';
+import { observer } from 'mobx-react';
 import * as React from 'react';
-import { formatNumber } from 'utils/html';
+import { formatDuration, formatNumber } from 'utils/html';
+import Controller from './controller';
 import CountBadge from './count-badge';
 import Extra from './extra';
 import Metadata from './metadata';
 import Stats from './stats';
 
 interface Props {
-  beatmapset: BeatmapsetJsonForShow;
-  currentBeatmap: BeatmapExtendedJson;
-  hoveredBeatmap: BeatmapExtendedJson | null;
+  controller: Controller;
 }
 
-// value is in second
-function formatDuration(value: number) {
-  const s = value % 60;
-  const m = Math.floor(value / 60) % 60;
-  const h = Math.floor(value / 3600);
-
-  if (h > 0) {
-    return `${h}:${padStart(String(m), 2, '0')}:${padStart(String(s), 2, '0')}`;
-  } else {
-    return `${m}:${padStart(String(s), 2, '0')}`;
-  }
-}
-
-export default class Header extends React.PureComponent<Props> {
+@observer
+export default class Info extends React.Component<Props> {
   render() {
-    const showedBeatmap = this.props.hoveredBeatmap ?? this.props.currentBeatmap;
+    const showedBeatmap = this.props.controller.hoveredBeatmap ?? this.props.controller.currentBeatmap;
 
     return (
       <div className='beatmapset-info'>
@@ -64,11 +49,11 @@ export default class Header extends React.PureComponent<Props> {
         </div>
 
         <div className='beatmapset-info__item beatmapset-info__item--stats'>
-          <Metadata beatmapset={this.props.beatmapset} />
+          <Metadata controller={this.props.controller} />
           <div className='beatmapset-info__line' />
-          <Stats beatmap={this.props.currentBeatmap} />
+          <Stats controller={this.props.controller} />
           <div className='beatmapset-info__line beatmapset-info__line--mobile' />
-          <Extra beatmap={this.props.currentBeatmap} beatmapset={this.props.beatmapset} />
+          <Extra controller={this.props.controller} />
         </div>
       </div>
     );

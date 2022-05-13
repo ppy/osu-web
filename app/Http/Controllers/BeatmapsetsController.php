@@ -221,7 +221,7 @@ class BeatmapsetsController extends Controller
     {
         $beatmapset = Beatmapset::findOrFail($id);
 
-        priv_check('BeatmapsetLove')->ensureCan();
+        priv_check('BeatmapsetRemoveFromLoved')->ensureCan();
 
         $result = $beatmapset->removeFromLoved(Auth::user(), request('reason'));
         if (!$result['result']) {
@@ -254,20 +254,31 @@ class BeatmapsetsController extends Controller
             'genre_id:int',
             'language_id:int',
             'nsfw:bool',
+        ]);
+
+        $offsetParams = get_params($params, 'beatmapset', [
             'offset:int',
         ]);
 
+        $updateParams = array_merge($metadataParams, $offsetParams);
+
         if (count($metadataParams) > 0) {
             priv_check('BeatmapsetMetadataEdit', $beatmapset)->ensureCan();
+        }
 
-            DB::transaction(function () use ($beatmapset, $metadataParams) {
+        if (count($offsetParams) > 0) {
+            priv_check('BeatmapsetOffsetEdit')->ensureCan();
+        }
+
+        if (count($updateParams) > 0) {
+            DB::transaction(function () use ($beatmapset, $updateParams) {
                 $oldGenreId = $beatmapset->genre_id;
                 $oldLanguageId = $beatmapset->language_id;
                 $oldNsfw = $beatmapset->nsfw;
                 $oldOffset = $beatmapset->offset;
                 $user = auth()->user();
 
-                $beatmapset->fill($metadataParams)->saveOrExplode();
+                $beatmapset->fill($updateParams)->saveOrExplode();
 
                 if ($oldGenreId !== $beatmapset->genre_id) {
                     BeatmapsetEvent::log(BeatmapsetEvent::GENRE_EDIT, $user, $beatmapset, [

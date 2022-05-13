@@ -1,9 +1,6 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import ScoreboardTableRow from 'beatmapsets-show/scoreboard-table-row';
-import BeatmapJson from 'interfaces/beatmap-json';
-import { ScoreJsonForBeatmap } from 'interfaces/score-json';
 import { action, computed, observable, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
@@ -11,26 +8,25 @@ import { ContainerContext, KeyContext } from 'stateful-activation-context';
 import { shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 import { modeAttributesMap } from 'utils/score-helper';
-import ScoreboardType from './scoreboard-type';
+import Controller from './controller';
+import ScoreboardTableRow from './scoreboard-table-row';
 
 const bn = 'beatmap-scoreboard-table';
 
 interface Props {
-  beatmap: BeatmapJson;
-  scoreboardType: ScoreboardType;
-  scores: ScoreJsonForBeatmap[];
+  controller: Controller;
 }
 
 @observer
 export default class ScoreboardTable extends React.Component<Props> {
   @observable activeKey: number | null = null;
   private readonly containerContextValue: {
-    activeKeyDidChange: (key: number | null) => void;
+    activeKeyDidChange: typeof this.activeKeyDidChange;
   };
 
   @computed
   get showPp() {
-    return shouldShowPp(this.props.beatmap);
+    return shouldShowPp(this.props.controller.currentBeatmap);
   }
 
   constructor(props: Props) {
@@ -65,7 +61,7 @@ export default class ScoreboardTable extends React.Component<Props> {
                 <th className={`${bn}__header ${bn}__header--maxcombo`}>
                   {osu.trans('beatmapsets.show.scoreboard.headers.combo')}
                 </th>
-                {modeAttributesMap[this.props.beatmap.mode].map((stat) => (
+                {modeAttributesMap[this.props.controller.currentBeatmap.mode].map((stat) => (
                   <th
                     key={stat.attribute}
                     className={classWithModifiers(`${bn}__header`, ['hitstat', `hitstat-${stat.attribute}`])}
@@ -88,12 +84,12 @@ export default class ScoreboardTable extends React.Component<Props> {
               </tr>
             </thead>
             <tbody className={`${bn}__body`}>
-              {this.props.scores.map((score, index) => (
+              {this.props.controller.state.scores.scores.map((score, index) => (
                 <KeyContext.Provider key={index} value={index}>
                   <ScoreboardTableRow
                     activated={this.activeKey === index}
-                    beatmap={this.props.beatmap}
-                    highlightFriends={this.props.scoreboardType !== 'friend'}
+                    beatmap={this.props.controller.currentBeatmap}
+                    highlightFriends={this.props.controller.state.currentScoreboardType !== 'friend'}
                     index={index}
                     score={score}
                     showPp={this.showPp}
