@@ -59,6 +59,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
             'play_count' => $beatmapset->play_count,
             'preview_url' => $beatmapset->previewURL(),
             'source' => $beatmapset->source,
+            'spotlight' => $beatmapset->spotlight,
             'status' => $beatmapset->status(),
             'title' => $beatmapset->title,
             'title_unicode' => $beatmapset->title_unicode,

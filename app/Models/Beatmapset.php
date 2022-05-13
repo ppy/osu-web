@@ -83,6 +83,7 @@ use Illuminate\Database\QueryException;
  * @property \Carbon\Carbon|null $queued_at
  * @property float $rating
  * @property string $source
+ * @property bool $spotlight
  * @property int $star_priority
  * @property bool $storyboard
  * @property \Carbon\Carbon|null $submit_date
@@ -110,13 +111,14 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     protected $casts = [
         'active' => 'boolean',
+        'discussion_enabled' => 'boolean',
+        'discussion_locked' => 'boolean',
         'download_disabled' => 'boolean',
         'epilepsy' => 'boolean',
         'nsfw' => 'boolean',
+        'spotlight' => 'boolean',
         'storyboard' => 'boolean',
         'video' => 'boolean',
-        'discussion_enabled' => 'boolean',
-        'discussion_locked' => 'boolean',
     ];
 
     protected $dates = [
