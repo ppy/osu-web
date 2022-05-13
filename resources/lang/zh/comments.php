@@ -24,7 +24,7 @@ return [
 
     'editor' => [
         'textarea_hint' => [
-            '_' => '按回车 :action 。使用 Shift+Enter 换行。',
+            '_' => '按回车:action。使用 Shift+Enter 换行。',
             'edit' => '保存',
             'new' => '发送',
             'reply' => '回复',

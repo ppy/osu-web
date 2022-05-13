@@ -5,41 +5,41 @@
 
 return [
     'admin' => [
-        '_' => '',
+        '_' => 'admin',
     ],
     'admin_forum' => [
-        '_' => '',
+        '_' => 'admin',
     ],
     'admin_store' => [
-        '_' => '',
+        '_' => 'admin',
     ],
     'error' => [
         'error' => [
-            '400' => '',
-            '404' => '',
-            '403' => '',
-            '401' => '',
-            '401-verification' => '',
-            '405' => '',
-            '422' => '',
-            '429' => '',
-            '500' => '',
-            '503' => '',
+            '400' => 'nevažeći zahtjev',
+            '404' => 'nedostaje',
+            '403' => 'zabranjeno',
+            '401' => 'neovlašteno',
+            '401-verification' => 'potvrda računa',
+            '405' => 'nedostaje',
+            '422' => 'nevažeći zahtjev',
+            '429' => 'previše zahtjeva',
+            '500' => 'nešto je puklo',
+            '503' => 'održavanje',
         ],
     ],
     'forum' => [
-        '_' => '',
+        '_' => 'forum',
         'topic_logs_controller' => [
-            'index' => '',
+            'index' => 'zapisnici tema',
         ],
         'topic_watches_controller' => [
-            'index' => '',
+            'index' => 'kontrolna ploča',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => '',
-            'verify_link' => '',
+            'edit' => 'kontrolna ploča',
+            'verify_link' => 'potvrda računa',
         ],
         'artist_tracks_controller' => [
             '_' => 'istaknuti umjetnici',
@@ -48,89 +48,89 @@ return [
             '_' => 'istaknuti umjetnici',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => '',
+            '_' => 'objave rasprave o beatmapama',
         ],
         'beatmap_discussions_controller' => [
-            '_' => '',
+            '_' => 'rasprave o beatmapama',
         ],
         'beatmap_packs_controller' => [
-            '_' => '',
+            '_' => 'paketi beatmapa',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => '',
+            '_' => 'glasovi za raspravu beatmapa',
         ],
         'beatmapset_events_controller' => [
-            '_' => '',
+            '_' => 'povijest beatmape',
         ],
         'beatmapset_watches_controller' => [
-            'index' => '',
+            'index' => 'kontrolna ploča',
         ],
         'beatmapsets_controller' => [
-            'discussion' => '',
-            'index' => '',
-            'show' => '',
+            'discussion' => 'rasprava o beatmapama',
+            'index' => 'popis beatmapa',
+            'show' => 'beatmap info',
         ],
         'changelog_controller' => [
-            '_' => '',
+            '_' => 'popis promjena',
         ],
         'chat_controller' => [
-            '_' => '',
+            '_' => 'razgovor',
         ],
         'comments_controller' => [
-            '_' => '',
+            '_' => 'komentari',
         ],
         'contests_controller' => [
-            '_' => '',
+            '_' => 'natjecanja',
         ],
         'follows_controller' => [
-            'index' => '',
+            'index' => 'kontrolna ploča',
         ],
         'friends_controller' => [
-            'index' => '',
+            'index' => 'kontrolna ploča',
         ],
         'groups_controller' => [
-            'show' => '',
+            'show' => 'grupe',
         ],
         'home_controller' => [
-            'get_download' => '',
-            'index' => '',
+            'get_download' => 'preuzmi',
+            'index' => 'kontrolna ploča',
             'search' => 'pretraži',
-            'support_the_game' => '',
-            'testflight' => '',
+            'support_the_game' => 'podrži igricu',
+            'testflight' => 'testflight',
         ],
         'legal_controller' => [
-            '_' => '',
+            '_' => 'informacije',
         ],
         'livestreams_controller' => [
-            '_' => '',
+            '_' => 'strujanja Uživo',
         ],
         'matches_controller' => [
-            '_' => '',
+            '_' => 'utakmice',
         ],
         'news_controller' => [
             '_' => 'vijesti',
         ],
         'notifications_controller' => [
-            '_' => '',
+            '_' => 'povijest obavijesti',
         ],
         'password_reset_controller' => [
-            '_' => '',
+            '_' => 'resetiranje lozinke',
         ],
         'ranking_controller' => [
-            '_' => '',
+            '_' => 'ljestvice',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => 'izvedba',
         ],
         'store_controller' => [
-            '_' => '',
+            '_' => 'trgovina',
         ],
         'tournaments_controller' => [
-            '_' => '',
+            '_' => 'turniri',
         ],
         'users_controller' => [
-            '_' => '',
-            'disabled' => '',
+            '_' => 'informacije o igraču',
+            'disabled' => 'napomena',
         ],
         'wiki_controller' => [
             '_' => 'wiki',
@@ -138,23 +138,23 @@ return [
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            '_' => '',
+            '_' => 'ljestvice',
         ],
     ],
     'passport' => [
         'authorization_controller' => [
-            '_' => '',
+            '_' => 'autoriziraj aplikaciju',
         ],
     ],
     'store' => [
-        '_' => '',
+        '_' => 'trgovina',
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => '',
+            '_' => 'informacije o modifikatoru',
         ],
         'multiplayer_controller' => [
-            '_' => '',
+            '_' => 'povijest multiplayera',
         ],
     ],
 ];

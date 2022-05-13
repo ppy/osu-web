@@ -35,7 +35,7 @@ return [
                 'disqualified' => 'Hylätty',
                 'never_qualified' => '',
                 'qualified' => 'Hyväksytty',
-                'ranked' => '',
+                'ranked' => 'Hyväksytty',
             ],
 
             'user' => [
@@ -59,10 +59,10 @@ return [
     ],
 
     'owner_editor' => [
-        'button' => '',
+        'button' => 'Vaikeustason Omistaja',
         'reset_confirm' => '',
-        'user' => '',
-        'version' => '',
+        'user' => 'Omistaja',
+        'version' => 'Vaikeustaso',
     ],
 
     'reply' => [
@@ -75,7 +75,7 @@ return [
     'review' => [
         'block_count' => '',
         'go_to_parent' => '',
-        'go_to_child' => '',
+        'go_to_child' => 'Näytä keskustelu',
         'validation' => [
             'block_too_large' => '',
             'external_references' => '',

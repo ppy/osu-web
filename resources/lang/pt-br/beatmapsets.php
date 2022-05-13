@@ -12,7 +12,7 @@ return [
     ],
 
     'cover' => [
-        'deleted' => '',
+        'deleted' => 'Beatmap excluído',
     ],
 
     'download' => [
@@ -213,5 +213,9 @@ return [
             'pending' => 'Pendente',
             'graveyard' => 'Cemitério',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

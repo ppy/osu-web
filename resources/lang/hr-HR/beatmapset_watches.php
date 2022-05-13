@@ -5,25 +5,25 @@
 
 return [
     'index' => [
-        'description' => '',
-        'title_compact' => '',
+        'description' => 'Ovo su beatmap rasprave koje pratiš. Bit ćeš obaviješten kada izađu nove objave ili novosti.',
+        'title_compact' => 'lista gledanja beatmap rasprava',
 
         'counts' => [
-            'total' => '',
-            'unread' => '',
+            'total' => 'Gledane beatmape',
+            'unread' => 'Beatmape s novom aktivnošću',
         ],
 
         'table' => [
-            'empty' => '',
-            'last_update' => '',
-            'open_issues' => '',
+            'empty' => 'Nema gledanih beatmapa.',
+            'last_update' => 'Posljednje ažuriranje',
+            'open_issues' => 'Otvoreni problemi',
             'state' => 'Status',
             'title' => 'Naslov',
         ],
     ],
 
     'status' => [
-        'read' => '',
+        'read' => 'Pročitaj',
         'unread' => 'Nepročitano',
     ],
 ];

@@ -102,7 +102,7 @@ return [
                 '_' => 'Map này đang ở trạng thái :status.',
 
                 'status' => [
-                    'pending' => 'chờ',
+                    'pending' => 'đang chờ',
                     'qualified' => 'đủ tư cách',
                     'wip' => 'đang thực hiện',
                 ],
@@ -213,5 +213,9 @@ return [
             'pending' => 'Đang Chờ',
             'graveyard' => 'Đắp mộ',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

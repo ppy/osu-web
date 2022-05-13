@@ -257,6 +257,7 @@ return [
         'featured_artists' => '注目アーティスト',
         'follows' => 'サブスクライブ中のマッパー',
         'recommended' => '推奨難易度',
+        'spotlights' => '',
     ],
     'mode' => [
         'all' => '全て',

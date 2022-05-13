@@ -209,7 +209,7 @@ return [
                     'title' => 'Mapas Abandonados',
                 ],
                 'guest' => [
-                    'title' => '',
+                    'title' => 'Mapas con participación de invitados',
                 ],
                 'loved' => [
                     'title' => 'Mapas Amados',

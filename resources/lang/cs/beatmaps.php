@@ -257,6 +257,7 @@ return [
         'featured_artists' => 'Featured artists',
         'follows' => 'Odebíraní autoři map',
         'recommended' => 'Doporučená obtížnost',
+        'spotlights' => '',
     ],
     'mode' => [
         'all' => 'Všechny',

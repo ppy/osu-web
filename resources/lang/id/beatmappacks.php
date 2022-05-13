@@ -27,7 +27,7 @@ return [
         ],
         'no_diff_reduction' => [
             '_' => 'Anda tidak dapat menggunakan :link untuk menuntaskan paket beatmap ini.',
-            'link' => 'mod-mod pengurang kesulitan',
+            'link' => 'mod pengurang kesulitan',
         ],
     ],
 

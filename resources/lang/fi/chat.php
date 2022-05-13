@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'talking_in' => 'keskustellaan :channel:ssa',
+    'talking_in' => 'keskustellaan kanavalla :channel',
     'talking_with' => 'keskustelu :name:n kanssa',
     'title_compact' => 'viestit',
 
@@ -16,22 +16,22 @@ return [
     'channels' => [
         'list' => [
             'title' => [
-                'ANNOUNCE' => '',
-                'GROUP' => '',
-                'PM' => '',
-                'PUBLIC' => '',
+                'ANNOUNCE' => 'Tiedotukset',
+                'GROUP' => 'Ryhmät',
+                'PM' => 'Yksityisviestit',
+                'PUBLIC' => 'Kanavat',
             ],
         ],
     ],
 
     'not_found' => [
         'message' => '',
-        'title' => '',
+        'title' => 'kanavaa ei löydetty',
     ],
 
     'input' => [
         'disabled' => 'viestiä ei voida lähettää...',
-        'disconnected' => '',
+        'disconnected' => 'Yhteys katkaistu',
         'placeholder' => 'kirjoita viesti...',
         'send' => 'Lähetä',
     ],

@@ -209,7 +209,7 @@ return [
                     'title' => 'Beatmaps no cemitério',
                 ],
                 'guest' => [
-                    'title' => '',
+                    'title' => 'Beatmaps onde participaram convidados',
                 ],
                 'loved' => [
                     'title' => 'Beatmaps adorados',

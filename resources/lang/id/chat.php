@@ -37,7 +37,7 @@ return [
     ],
 
     'no-conversations' => [
-        'howto' => "Mulailah suatu percakapan dengan meng-klik tombol yang tersedia pada halaman profil atau kartu pop-up pengguna.",
+        'howto' => "Mulailah percakapan baru melalui tombol yang tertera pada laman profil atau kartu pop-up pengguna.",
         'lazer' => 'Kanal chat publik yang Anda buka melalui <a href=":link">osu!lazer</a> juga akan terlihat di sini.',
         'title' => 'belum ada percakapan',
     ],
