@@ -152,7 +152,7 @@ export default class Header extends React.Component<Props> {
               {this.controller.beatmapset.nsfw &&
                 <span className='beatmapset-badge beatmapset-badge--nsfw'>{osu.trans('beatmapsets.nsfw_badge.label')}</span>
               }
-              {this.props.beatmapset.spotlight &&
+              {this.controller.beatmapset.spotlight &&
                 <a
                   className='beatmapset-badge beatmapset-badge--spotlight'
                   href={wikiUrl('Beatmap_Spotlights')}
