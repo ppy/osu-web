@@ -2,7 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import core from 'osu-core-singleton'
-import { bottomPage, formatNumber } from 'utils/html'
+import { bottomPage, formatNumber, isInputElement } from 'utils/html'
 import { hideLoadingOverlay } from 'utils/loading-overlay'
 import { pageChange } from 'utils/page-change'
 import { currentUrl } from 'utils/turbolinks'
@@ -198,7 +198,7 @@ export default class Forum
     true
 
   keyboardNavigation: (e) =>
-    return if osu.isInputElement(e.target) or not @_postsCounter.length
+    return if isInputElement(e.target) or not @_postsCounter.length
 
     e.preventDefault()
 
