@@ -2,24 +2,26 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapBasicStats from 'components/beatmap-basic-stats';
-import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
-import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
+import { computed, makeObservable } from 'mobx';
+import { observer } from 'mobx-react';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
+import Controller from './controller';
 
 interface Props {
-  beatmap: BeatmapExtendedJson;
-  beatmapset: BeatmapsetJsonForShow;
+  controller: Controller;
 }
 
+@observer
 export default class Stats extends React.Component<Props> {
   // the one in beatmapset has invalid rating 0 data in it
+  @computed
   private get ratings() {
-    return this.props.beatmapset.ratings.slice(1);
+    return this.props.controller.beatmapset.ratings.slice(1);
   }
 
   private get statKeys() {
-    switch (this.props.beatmap.mode) {
+    switch (this.props.controller.currentBeatmap.mode) {
       case 'mania':
         return ['cs', 'drain', 'accuracy', 'difficulty_rating'] as const;
       case 'taiko':
@@ -29,12 +31,17 @@ export default class Stats extends React.Component<Props> {
     }
   }
 
+  constructor(props: Props) {
+    super(props);
+    makeObservable(this);
+  }
+
   render() {
     return (
       <div className='beatmapset-stats'>
         <button
           className='beatmapset-stats__row beatmapset-stats__row--preview js-audio--play js-audio--player'
-          data-audio-url={this.props.beatmapset.preview_url}
+          data-audio-url={this.props.controller.beatmapset.preview_url}
           type='button'
         >
           <span className='play-button' />
@@ -42,7 +49,10 @@ export default class Stats extends React.Component<Props> {
         </button>
 
         <div className='beatmapset-stats__row beatmapset-stats__row--basic'>
-          <BeatmapBasicStats beatmap={this.props.beatmap} beatmapset={this.props.beatmapset} />
+          <BeatmapBasicStats
+            beatmap={this.props.controller.currentBeatmap}
+            beatmapset={this.props.controller.beatmapset}
+          />
         </div>
 
         <div className='beatmapset-stats__row beatmapset-stats__row--advanced'>
@@ -53,7 +63,7 @@ export default class Stats extends React.Component<Props> {
           </table>
         </div>
 
-        {this.props.beatmapset.is_scoreable &&
+        {this.props.controller.beatmapset.is_scoreable &&
           <div className='beatmapset-stats__row beatmapset-stats__row--rating'>
             <div className='beatmapset-stats__rating-header'>{osu.trans('beatmapsets.show.stats.user-rating')}</div>
 
@@ -103,7 +113,7 @@ export default class Stats extends React.Component<Props> {
   }
 
   private renderRatingChart() {
-    if (!this.props.beatmapset.is_scoreable) return;
+    if (!this.props.controller.beatmapset.is_scoreable) return;
 
     const ratings = this.ratings;
     const maxValue = Math.max(1, Math.max(...ratings));
@@ -125,7 +135,7 @@ export default class Stats extends React.Component<Props> {
   }
 
   private readonly renderStat = (key: typeof this.statKeys[number]) => {
-    const rawValue = this.props.beatmap[key];
+    const rawValue = this.props.controller.currentBeatmap[key];
     let label: string = key;
     let value: string;
 
@@ -135,7 +145,7 @@ export default class Stats extends React.Component<Props> {
         value = formatNumber(rawValue, 2);
         break;
       case 'cs':
-        if (this.props.beatmap.mode === 'mania') {
+        if (this.props.controller.currentBeatmap.mode === 'mania') {
           label += '-mania';
         }
         break;

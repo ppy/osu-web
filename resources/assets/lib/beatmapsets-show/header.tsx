@@ -211,10 +211,7 @@ export default class Header extends React.Component<Props> {
           <div className='beatmapset-header__box beatmapset-header__box--stats'>
             {this.renderStatusBar()}
 
-            <Stats
-              beatmap={this.controller.currentBeatmap}
-              beatmapset={this.controller.beatmapset}
-            />
+            <Stats controller={this.controller} />
           </div>
         </div>
       </div>
