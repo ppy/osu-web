@@ -182,6 +182,9 @@
         "source": {
           "type": "text"
         },
+        "spotlight": {
+          "type": "boolean"
+        },
         "star_priority": {
           "type": "long"
         },
