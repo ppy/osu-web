@@ -5,7 +5,6 @@ import { BeatmapIcon } from 'components/beatmap-icon';
 import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import { getDiffColour } from 'utils/beatmap-helper';
 import { generate as generateHash } from 'utils/beatmapset-page-hash';
 import { classWithModifiers } from 'utils/css';
 import Controller from './controller';
@@ -28,7 +27,7 @@ export default class BeatmapSelection extends React.Component<Props> {
   }
 
   render() {
-    const className = classWithModifiers('beatmapset-beatmap-picker__beatmap', { active: this.active });
+    const className = classWithModifiers('beatmapset-beatmap-selection', { active: this.active });
 
     return (
       <a
@@ -37,9 +36,6 @@ export default class BeatmapSelection extends React.Component<Props> {
         onClick={this.onClick}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
-        style={{
-          '--stripe-colour': `${getDiffColour(this.props.beatmap.difficulty_rating)}`,
-        } as React.CSSProperties}
       >
         <BeatmapIcon beatmap={this.props.beatmap} modifiers='beatmapset' />
       </a>
