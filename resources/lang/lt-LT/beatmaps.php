@@ -257,6 +257,7 @@ return [
         'featured_artists' => '',
         'follows' => '',
         'recommended' => 'Rekomenduojamas sudėtingumas',
+        'spotlights' => '',
     ],
     'mode' => [
         'all' => '',

@@ -339,10 +339,10 @@ return [
                     'to_0' => 'Ablösen',
                     'to_0_done' => 'Abgelöster Score',
                     'to_1' => 'Anheften',
-                    'to_1_done' => 'Angehefteter Score',
+                    'to_1_done' => 'Angepinnter Score',
                 ],
                 'pinned' => [
-                    'title' => 'Angeheftete Scores',
+                    'title' => 'Angepinnte Scores',
                 ],
             ],
             'votes' => [

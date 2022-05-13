@@ -25,7 +25,7 @@ return [
 
         'hype' => [
             'discussion_locked' => "Anda tidak dapat memberikan hype karena laman diskusi beatmap ini tengah dikunci",
-            'guest' => 'Silakan masuk untuk dapat memberikan hype.',
+            'guest' => 'Anda harus masuk untuk dapat memberikan hype.',
             'hyped' => 'Anda telah memberikan hype untuk beatmap ini.',
             'limit_exceeded' => 'Anda telah mempergunakan seluruh hype yang Anda miliki.',
             'not_hypeable' => 'Beatmap ini tidak dapat di-hype',

@@ -158,9 +158,9 @@ return [
     ],
 
     'hype' => [
-        'button' => 'Hype Beatmap!',
+        'button' => 'Berikan Hype!',
         'button_done' => 'Telah di-Hype!',
-        'confirm' => "Apakah Anda yakin? Dengan ini Anda akan memberikan 1 hype kepada beatmap ini dari :n hype yang Anda miliki saat ini. Tindakan ini tidak dapat diurungkan.",
+        'confirm' => "Apakah Anda yakin? Dengan ini, Anda akan memberikan 1 hype kepada beatmap ini dari :n hype yang Anda miliki saat ini. Tindakan ini tidak dapat diurungkan.",
         'explanation' => 'Berikanlah hype Anda untuk membawa beatmap ini lebih dekat menuju Ranked!',
         'explanation_guest' => 'Masuk dan berikan hype kepada beatmap ini agar beatmap ini dapat segera dinominasikan dan di-rank!',
         'new_time' => "Anda akan mendapatkan hype tambahan :new_time.",
@@ -257,6 +257,7 @@ return [
         'featured_artists' => 'Featured artist',
         'follows' => 'Mapper yang diikuti',
         'recommended' => 'Rentang kesulitan yang disarankan',
+        'spotlights' => '',
     ],
     'mode' => [
         'all' => 'Semua',

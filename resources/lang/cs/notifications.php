@@ -5,13 +5,13 @@
 
 return [
     'all_read' => 'Všechna oznámení přečtena!',
-    'delete' => '',
+    'delete' => 'Odstranit :type',
     'loading' => 'Načítání nepřečtených oznámení...',
-    'mark_read' => '',
+    'mark_read' => 'Vymazat :type',
     'none' => 'Žádná oznámení',
     'see_all' => 'zobrazit všechna oznámení',
     'see_channel' => 'přejít na chat',
-    'verifying' => '',
+    'verifying' => 'Prosím ověřte relaci pro zobrazení oznámení',
 
     'filters' => [
         '_' => 'vše',
@@ -28,9 +28,9 @@ return [
             '_' => 'Beatmapa',
 
             'beatmap_owner_change' => [
-                '_' => '',
-                'beatmap_owner_change' => '',
-                'beatmap_owner_change_compact' => '',
+                '_' => 'Obtížnost hosta',
+                'beatmap_owner_change' => 'Nyní jsi vlastníkem obtížnosti ":beatmap" pro beatmapu ":title"',
+                'beatmap_owner_change_compact' => 'Nyní jsi vlastníkem obtížnosti ":beatmap"',
             ],
 
             'beatmapset_discussion' => [
@@ -41,45 +41,45 @@ return [
                 'beatmapset_discussion_post_new_empty' => 'Nový příspěvek v ":title" od :username',
                 'beatmapset_discussion_post_new_compact' => 'Nový příspěvek od :username ":content"',
                 'beatmapset_discussion_post_new_compact_empty' => 'Nový příspěvek od :username',
-                'beatmapset_discussion_review_new' => '',
-                'beatmapset_discussion_review_new_compact' => '',
+                'beatmapset_discussion_review_new' => 'Nová recenze na ":title" od :username obsahující problémy: :problems, návrhy: :suggestions, ocenění: :praises',
+                'beatmapset_discussion_review_new_compact' => 'Nová recenze od :username obsahující problémy: :problems, návrhy: :suggestions, ocenění: :praises',
                 'beatmapset_discussion_unlock' => 'Diskuze ":title" byla odemčena',
                 'beatmapset_discussion_unlock_compact' => 'Diskuze byla odemčena',
             ],
 
             'beatmapset_problem' => [
-                '_' => '',
-                'beatmapset_discussion_qualified_problem' => '',
-                'beatmapset_discussion_qualified_problem_empty' => '',
-                'beatmapset_discussion_qualified_problem_compact' => '',
+                '_' => 'Problém s kavlifikovanou Beatmapou',
+                'beatmapset_discussion_qualified_problem' => 'Nahlášeno uživatelem :username na ":title": ":content"',
+                'beatmapset_discussion_qualified_problem_empty' => 'Nahlášeno uživatelem :username na ":title"',
+                'beatmapset_discussion_qualified_problem_compact' => 'Nahlášeno uživatelem :username ":content"',
                 'beatmapset_discussion_qualified_problem_compact_empty' => 'Nahlásil :username',
             ],
 
             'beatmapset_state' => [
                 '_' => 'Stav Beatmapy se změnil',
-                'beatmapset_disqualify' => '',
+                'beatmapset_disqualify' => '":title" byla diskvalifikována',
                 'beatmapset_disqualify_compact' => 'Beatmapa byla diskvalifikována',
-                'beatmapset_love' => '',
-                'beatmapset_love_compact' => '',
+                'beatmapset_love' => '":title" byla povýšena do milované kategorie',
+                'beatmapset_love_compact' => 'Beatmapa byla povýšena do milované kategorie',
                 'beatmapset_nominate' => '":title" byla nominována',
                 'beatmapset_nominate_compact' => 'Beatmapa byla nominována',
-                'beatmapset_qualify' => '',
-                'beatmapset_qualify_compact' => '',
+                'beatmapset_qualify' => '":title" získala dostatek nominací a vstoupila do fronty hodnocení',
+                'beatmapset_qualify_compact' => 'Beatmapa zadána do fronty hodnocení',
                 'beatmapset_rank' => '":title" byla hodnocena',
                 'beatmapset_rank_compact' => 'Beatmapa byla hodnocena',
-                'beatmapset_remove_from_loved' => '',
-                'beatmapset_remove_from_loved_compact' => '',
-                'beatmapset_reset_nominations' => '',
+                'beatmapset_remove_from_loved' => '":title" byla odstraněna z milované kategorie',
+                'beatmapset_remove_from_loved_compact' => 'Beatmapa byla odstraněna z milované kategorie',
+                'beatmapset_reset_nominations' => 'Nominace ":title" byla obnovena',
                 'beatmapset_reset_nominations_compact' => 'Nominace byla obnovena',
             ],
 
             'comment' => [
                 '_' => 'Nový komentář',
 
-                'comment_new' => '',
+                'comment_new' => ':username okomentoval ":content" v ":title"',
                 'comment_new_compact' => ':username okomentoval ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username odpověděl ":content" v ":title"',
+                'comment_reply_compact' => ':username odpověděl ":content"',
             ],
         ],
 

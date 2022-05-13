@@ -4,10 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'instrument_declined' => 'Paypal je odbio odabran način uplate.',
-    'invalid_resource_id' => 'Informacije o uplati nisu pronađene.',
-    'invalid_token' => '',
-    'old_format' => '',
-    'resource_not_found' => '',
+    'instrument_declined' => 'Paypal je odbio odabran način plaćanja.',
+    'invalid_resource_id' => 'Podaci o plaćanju nisu pronađeni.',
+    'invalid_token' => 'Došlo je do pogreške pri dovršavanju plaćanja.',
+    'old_format' => 'Veza za plaćanje je istekla, pokušajte ponovo.',
+    'resource_not_found' => 'Podaci o plaćanju nisu pronađeni.',
     'unknown' => "Uplata je odbijena, ali nismo sigurni zašto.",
 ];

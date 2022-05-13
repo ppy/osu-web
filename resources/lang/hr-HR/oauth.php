@@ -7,55 +7,55 @@ return [
     'cancel' => 'Poništi',
 
     'authorise' => [
-        'request' => '',
-        'scopes_title' => '',
-        'title' => '',
+        'request' => 'traži dopuštenje za pristup tvom računu.',
+        'scopes_title' => 'Ova aplikacija će moći:',
+        'title' => 'Zahtjev za autorizaciju',
     ],
 
     'authorized_clients' => [
-        'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
-        'none' => '',
+        'confirm_revoke' => 'Jesi li siguran da želiš ukinuti dopuštenja ovog klijenta?',
+        'scopes_title' => 'Ova aplikacija može:',
+        'owned_by' => 'Napravio :user',
+        'none' => 'Nema klijenata',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Ukini pristup',
+            'true' => 'Pristup ukinut',
         ],
     ],
 
     'client' => [
-        'id' => '',
-        'name' => '',
-        'redirect' => '',
-        'reset' => '',
-        'reset_failed' => '',
-        'secret' => '',
+        'id' => 'ID klijenta',
+        'name' => 'Ime aplikacije',
+        'redirect' => 'Callback URL aplikacije',
+        'reset' => 'Resetiraj Client Secret',
+        'reset_failed' => 'Resetiranje client secreta nije uspjelo',
+        'secret' => 'Secret klijenta',
 
         'secret_visible' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Pokaži secret klijenta',
+            'true' => 'Sakrij secret klijenta',
         ],
     ],
 
     'new_client' => [
-        'header' => '',
-        'register' => '',
+        'header' => 'Registriraj novu OAuth aplikaciju',
+        'register' => 'Registriraj aplikaciju',
         'terms_of_use' => [
-            '_' => '',
-            'link' => '',
+            '_' => 'Korištenjem API-ja pristaješ na :link.',
+            'link' => 'Uvjete korištenja',
         ],
     ],
 
     'own_clients' => [
-        'confirm_delete' => '',
-        'confirm_reset' => '',
-        'new' => '',
-        'none' => '',
+        'confirm_delete' => 'Jesi li siguran da želiš obrisati ovog klijenta?',
+        'confirm_reset' => 'Jesi li siguran da želiš resetirati secret klijenta? Ovo će ukinuti sve postojeće tokene.',
+        'new' => 'Nova OAuth aplikacija',
+        'none' => 'Nema klijenata',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Izbriši',
+            'true' => 'Izbrisano',
         ],
     ],
 ];

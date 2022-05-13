@@ -5,9 +5,9 @@
 
 return [
     'countries' => [
-        'all' => 'Svi
+        'all' => 'Sve
 ',
-        'title' => 'Zemlje',
+        'title' => 'Država',
     ],
 
     'filter' => [
@@ -15,12 +15,12 @@ return [
 ',
 
         'variant' => [
-            'title' => '',
+            'title' => 'Varijanta',
         ],
     ],
 
     'type' => [
-        'charts' => '',
+        'charts' => 'istaknuto',
         'country' => 'države',
         'multiplayer' => 'multiplayer',
         'performance' => 'izvedba',
@@ -37,7 +37,7 @@ return [
     'stat' => [
         'accuracy' => 'Preciznost',
         'active_users' => 'Aktivni Korisnici',
-        'country' => 'Zemlje',
+        'country' => 'Države',
         'play_count' => 'Broj Igranja',
         'performance' => 'Izvedba',
         'total_score' => 'Ukupni Bodovi',

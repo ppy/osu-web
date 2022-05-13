@@ -12,7 +12,7 @@ return [
     ],
 
     'cover' => [
-        'deleted' => '',
+        'deleted' => '已刪除圖譜',
     ],
 
     'download' => [
@@ -213,5 +213,9 @@ return [
             'pending' => '待處理',
             'graveyard' => '拋棄',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

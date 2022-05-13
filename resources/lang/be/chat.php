@@ -16,10 +16,10 @@ return [
     'channels' => [
         'list' => [
             'title' => [
-                'ANNOUNCE' => '',
-                'GROUP' => '',
-                'PM' => '',
-                'PUBLIC' => '',
+                'ANNOUNCE' => 'Аб\'явы',
+                'GROUP' => 'Групы',
+                'PM' => 'Паведамлення',
+                'PUBLIC' => 'Каналы',
             ],
         ],
     ],
