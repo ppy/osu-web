@@ -12,14 +12,10 @@ interface Props {
 
 @observer
 export default class BeatmapPicker extends React.Component<Props> {
-  private get beatmaps() {
-    return this.props.controller.beatmaps.get(this.props.controller.currentBeatmap.mode) ?? [];
-  }
-
   render() {
     return (
       <div className='beatmapset-beatmap-picker'>
-        {this.beatmaps.map((beatmap) => (
+        {this.props.controller.currentBeatmaps.map((beatmap) => (
           <BeatmapSelection
             key={beatmap.id}
             beatmap={beatmap}

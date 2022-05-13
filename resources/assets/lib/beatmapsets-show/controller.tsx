@@ -90,6 +90,11 @@ export default class Controller {
   }
 
   @computed
+  get currentBeatmaps() {
+    return this.beatmaps.get(this.currentBeatmap.mode) ?? [];
+  }
+
+  @computed
   get enabledMods() {
     return new Set(this.state.enabledMods);
   }
