@@ -6,17 +6,10 @@
  * import them somewhere if you need them.
  */
 
-import Shopify from 'shopify-buy';
-
-const options = {
-  domain: process.env.SHOPIFY_DOMAIN,
-  storefrontAccessToken: process.env.SHOPIFY_STOREFRONT_TOKEN,
-};
-
-const client = Shopify.buildClient(options);
+import client from './shopify-client';
 
 export function fetchAllProducts(): Promise<any[]> {
-  return client.product.fetchAll();
+  return client().product.fetchAll();
 }
 
 export async function fetchAllProductIds(): Promise<string[]> {
