@@ -257,6 +257,7 @@ return [
         'featured_artists' => '',
         'follows' => 'Tilatut kartoittajat',
         'recommended' => 'Suositeltu vaikeustaso',
+        'spotlights' => '',
     ],
     'mode' => [
         'all' => 'Kaikki',

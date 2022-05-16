@@ -12,7 +12,7 @@ return [
     ],
 
     'cover' => [
-        'deleted' => '',
+        'deleted' => '삭제된 비트맵',
     ],
 
     'download' => [
@@ -152,7 +152,7 @@ return [
             'friend' => '친구 순위',
             'global' => '전체 순위',
             'supporter-link' => '서포터로서 누릴 수 있는 다른 멋진 기능들을 확인하려면 <a href=":link">여기</a>를 클릭해주세요!',
-            'supporter-only' => '서포터가 되어야 국가 및 친구 간 순위를 확인할 수 있습니다!',
+            'supporter-only' => 'osu! 서포터가 되어야 국가 및 친구 간 순위를 확인할 수 있습니다!',
             'title' => '점수판',
 
             'headers' => [
@@ -213,5 +213,9 @@ return [
             'pending' => '보류 중',
             'graveyard' => '무덤에 감',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

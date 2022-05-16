@@ -258,6 +258,7 @@ return [
         'featured_artists' => '',
         'follows' => '',
         'recommended' => 'Ieteiktais grūtības līmenis',
+        'spotlights' => '',
     ],
     'mode' => [
         'all' => '',

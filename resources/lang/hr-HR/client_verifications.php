@@ -5,14 +5,14 @@
 
 return [
     'completed' => [
-        'home' => '',
+        'home' => 'Idi na kontrolnu ploču',
         'logout' => 'Odjava',
-        'text' => '',
-        'title' => '',
+        'text' => 'Sada možeš zatvoriti ovu karticu/prozor',
+        'title' => 'Potvrda osu! klijenta je završena',
     ],
 
     'create' => [
-        'confirm' => '',
-        'title' => '',
+        'confirm' => 'Klikni donji gumb za autorizaciju da bi završio/la potvrdu klijenta.',
+        'title' => 'Potvrda osu! klijenta',
     ],
 ];

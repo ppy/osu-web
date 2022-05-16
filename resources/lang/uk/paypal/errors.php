@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'instrument_declined' => 'Даний метод платежу був відхилений PayPal-ом.',
+    'instrument_declined' => 'Даний метод платежу був відхилений Paypal-ом.',
     'invalid_resource_id' => 'Не знайдено платіжної інформації.',
     'invalid_token' => 'Сталася помилка при завершенні вашого платежу.',
     'old_format' => 'Термін платіжного посилання скінчився, будь ласка, спробуйте знову.',

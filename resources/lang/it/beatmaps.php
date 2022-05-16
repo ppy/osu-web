@@ -257,6 +257,7 @@ return [
         'featured_artists' => 'Artisti in primo piano',
         'follows' => 'Mapper iscritti',
         'recommended' => 'Difficoltà consigliata',
+        'spotlights' => '',
     ],
     'mode' => [
         'all' => 'Qualsiasi',

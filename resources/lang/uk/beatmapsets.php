@@ -12,7 +12,7 @@ return [
     ],
 
     'cover' => [
-        'deleted' => '',
+        'deleted' => 'Карта видалена',
     ],
 
     'download' => [
@@ -213,5 +213,9 @@ return [
             'pending' => 'На розгляді',
             'graveyard' => 'Закинуті',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

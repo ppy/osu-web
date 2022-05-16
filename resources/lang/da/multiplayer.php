@@ -5,14 +5,14 @@
 
 return [
     'empty' => [
-        '_' => '',
+        '_' => 'Ingen osu!(lazer) :type_group spil spillet endnu!',
         'playlists' => '',
         'realtime' => '',
     ],
 
     'room' => [
         'hosted_by' => '',
-        'invalid_password' => '',
+        'invalid_password' => 'Ugyldig adgangskode til rummet',
         'map_count' => '',
         'player_count' => '',
         'time_left' => '',
@@ -22,9 +22,9 @@ return [
         ],
 
         'status' => [
-            'active' => '',
-            'ended' => '',
-            'soon' => '',
+            'active' => 'aktiv',
+            'ended' => 'afsluttet',
+            'soon' => 'afslutter snart',
         ],
     ],
 ];

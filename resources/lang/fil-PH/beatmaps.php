@@ -257,6 +257,7 @@ return [
         'featured_artists' => 'Featured artists',
         'follows' => 'Mga naka-subscribe na mappers',
         'recommended' => 'Nirerekomenda na difficulty',
+        'spotlights' => '',
     ],
     'mode' => [
         'all' => 'Lahat',

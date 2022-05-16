@@ -5,7 +5,7 @@
 
 return [
     'edit' => [
-        'title_compact' => 'postavke',
+        'title_compact' => 'postavke računa',
         'username' => 'korisničko ime',
 
         'avatar' => [
@@ -15,10 +15,10 @@ return [
         ],
 
         'email' => [
-            'current' => 'trenutna e-mail adresa',
-            'new' => 'nova e-mail adresa',
-            'new_confirmation' => 'potvrda e-mail adrese',
-            'title' => 'E-mail adresa',
+            'current' => 'trenutna adresa e-pošte',
+            'new' => 'nova adresa e-pošte',
+            'new_confirmation' => 'potvrda adrese e-pošte',
+            'title' => 'E-pošta',
         ],
 
         'password' => [
@@ -48,21 +48,21 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'primaj obavijesti o novom problemu na kvalificiranim beatmap-ima sljedećih modusa',
-        'beatmapset_disqualify' => 'primaj obavijesti kad beatmap-ovi sljedećih modusa budu diskvalificirani',
+        'beatmapset_discussion_qualified_problem' => 'primaj obavijesti o novim problemima na kvalificiranim beatmapovima sljedećih modova',
+        'beatmapset_disqualify' => 'primaj obavijesti kad beatmap-ovi sljedećih modova budu diskvalificirani',
         'comment_reply' => 'primaj obavijesti za odgovore na tvoje komentare',
         'title' => 'Obavijesti',
-        'topic_auto_subscribe' => 'automatski uključi obavijesti na nove forum teme koje kreiraš',
+        'topic_auto_subscribe' => 'automatski uključi obavijesti na nove forum teme koje stvoriš',
 
         'options' => [
             '_' => 'načine isporuke',
-            'beatmap_owner_change' => '',
-            'beatmapset:modding' => '',
+            'beatmap_owner_change' => 'gostova težina',
+            'beatmapset:modding' => 'modificiranje beatmapa',
             'channel_message' => 'privatne chat poruke',
             'comment_new' => 'nove komentare',
             'forum_topic_reply' => 'odgovor na temu',
-            'mail' => 'mail',
-            'mapping' => '',
+            'mail' => 'pošta',
+            'mapping' => 'autor beatmape',
             'push' => 'push',
             'user_achievement_unlock' => 'otključanje korisničke medalje',
         ],
@@ -119,11 +119,11 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => 'Možes ovaj tab/prozor sada zatvoriti',
-        'title' => 'Verifikacija je završena',
+        'text' => 'Sada možeš zatvoriti ovu karticu/prozor',
+        'title' => 'Potvrda je završena',
     ],
 
     'verification_invalid' => [
-        'title' => 'Nevažeći ili isteknut link za verifikaciju',
+        'title' => 'Nevažeći ili isteknut link za potvrdu',
     ],
 ];

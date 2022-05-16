@@ -13,21 +13,21 @@ return [
     ],
 
     'scopes' => [
-        'bot' => '',
+        'bot' => 'Správať sa ako chat bot.',
         'identify' => 'Identifikovať vás a prezerať verejný profil.',
 
         'chat' => [
-            'write' => '',
+            'write' => 'Posielajte správy vo vašom mene.',
         ],
 
         'forum' => [
-            'write' => '',
+            'write' => 'Vytvárajte a upravujte témy a príspevky fóra vo vašom mene.',
         ],
 
         'friends' => [
             'read' => 'Pozrieť koho sledujete.',
         ],
 
-        'public' => '',
+        'public' => 'Čítajte verejné údaje vo vašom mene.',
     ],
 ];

@@ -5,7 +5,7 @@
 
 return [
     'page_description' => 'Istaknuti izvođači na osu!',
-    'title' => 'Istaknuti Umjetnici',
+    'title' => 'Istaknuti Izvođači',
 
     'admin' => [
         'hidden' => 'IZVOĐAČ JE TRENUTNO SKRIVEN',
@@ -18,11 +18,11 @@ return [
     ],
 
     'index' => [
-        'description' => 'Istaknuti umjetnici su umjetnici s kojima skupa radimo kako bi doveli novu i originalnu glazbu u osu!. Ovi umjetnici i dio njihovih pjesama su ručno odabrani od osu! ekipe kao kul i prikladno za mapiranje. Neki od ovih istaknuti umjetnika su također napravili nove pjesme isključivo za osu!.<br><br>Sve pjesme u ovom odjeljku su pružene kao pre-tajmirane .osz datoteke i službeno licencirane za upotrebu u osu! i povezanim osu! sadržajima.',
+        'description' => 'Istaknudi izvođači su izvođači s kojima skupa radimo kako bi doveli novu i originalnu glazbu u osu!. osu! ekipa je ručno odabrala ove izvođače i dio njihovih pjesama jer su bile kul i spremne za mapirati. Neki od ovih istaknutih izvođača su također napravili nove pjesme isključivo za osu!. <br><br>Sve pjesme u ovom odjeljku su pružene kao pre-tajmirane .osz datoteke i službeno su licencirane za upotrebu u osu! i povezanim osu! sadržajima.',
     ],
 
     'links' => [
-        'beatmaps' => 'osu! beatmaps',
+        'beatmaps' => 'osu! beatmape',
         'osu' => 'osu! profil',
         'site' => 'Službena Stranica',
     ],
@@ -43,7 +43,7 @@ return [
 
     'tracks' => [
         'index' => [
-            '_' => '',
+            '_' => 'pretraživanje pjesama',
 
             'form' => [
                 'advanced' => 'Napredno pretraživanje',
@@ -51,11 +51,11 @@ return [
                 'artist' => 'Izvođač',
                 'bpm_gte' => 'Minimalni BPM',
                 'bpm_lte' => 'Maximalni BPM',
-                'empty' => '',
+                'empty' => 'Nisu pronađene pjesme koje odgovaraju kriterijima pretraživanja.',
                 'genre' => 'Žanr',
                 'genre_all' => 'Sve',
                 'length_gte' => 'Minimalna dužina',
-                'length_lte' => 'Maximalna dužina',
+                'length_lte' => 'Maksimalna dužina',
             ],
         ],
     ],

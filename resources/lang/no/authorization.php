@@ -74,6 +74,9 @@ return [
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => '',
+        ],
         'update' => [
             'deleted' => "Kan ikke redigere slettet innlegg.",
         ],

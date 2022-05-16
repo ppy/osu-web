@@ -214,4 +214,8 @@ return [
             'graveyard' => 'Hřbitov',
         ],
     ],
+
+    'spotlight_badge' => [
+        'label' => '',
+    ],
 ];

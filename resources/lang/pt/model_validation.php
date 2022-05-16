@@ -24,7 +24,7 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "Este mapa está atualmente bloqueado para ser discutido e não pode ser publicado",
+            'discussion_locked' => "Este mapa está bloqueado presentemente para ser discutido e não pode ser hypeado",
             'guest' => 'Tens que estar com a sessão iniciada para hypear.',
             'hyped' => 'Já hypeaste este beatmap.',
             'limit_exceeded' => 'Usaste todo o teu hype.',

@@ -257,6 +257,7 @@ return [
         'featured_artists' => '',
         'follows' => '',
         'recommended' => '',
+        'spotlights' => '',
     ],
     'mode' => [
         'all' => '',

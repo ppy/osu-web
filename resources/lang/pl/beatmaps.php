@@ -257,6 +257,7 @@ return [
         'featured_artists' => 'Wyróżnieni artyści',
         'follows' => 'Obserwowani twórcy',
         'recommended' => 'Polecany poziom trudności',
+        'spotlights' => '',
     ],
     'mode' => [
         'all' => 'Wszyscy',

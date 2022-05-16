@@ -74,6 +74,9 @@ return [
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => '',
+        ],
         'update' => [
             'deleted' => "削除済みの投稿は編集できません。",
         ],

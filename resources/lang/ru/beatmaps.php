@@ -257,6 +257,7 @@ return [
         'featured_artists' => 'Избранные исполнители',
         'follows' => 'Авторизованные мапперы',
         'recommended' => 'Рекомендованная сложность',
+        'spotlights' => '',
     ],
     'mode' => [
         'all' => 'Все',
