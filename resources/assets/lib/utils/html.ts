@@ -94,6 +94,10 @@ export function make2x(url?: string) {
   return url.replace(/(\.[^.]+)$/, '@2x$1');
 }
 
+export function setBrowserTitle(title: string) {
+  document.title = `${title} | osu!`;
+}
+
 export function stripTags(str: string) {
   return str.replace(/<[^>]*>/g, '');
 }
