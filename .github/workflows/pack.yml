@@ -39,6 +39,10 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v2
         with:
+          build-args: |
+            "APP_URL=https://osu.ppy.sh"
+            "DOCS_URL=https://osu.ppy.sh/docs/"
+            "GIT_SHA=${{ github.ref_name }}"
           context: .
           file: ./Dockerfile.deployment
           platforms: linux/amd64
