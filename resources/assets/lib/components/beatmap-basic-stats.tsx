@@ -3,26 +3,8 @@
 
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
-import { padStart } from 'lodash';
 import * as React from 'react';
-import { formatNumber } from 'utils/html';
-
-function padTimeComponent(time: number) {
-  return padStart(time.toString(), 2, '0');
-}
-
-// value is in second
-function formatDuration(value: number) {
-  const s = value % 60;
-  const m = Math.floor(value / 60) % 60;
-  const h = Math.floor(value / 3600);
-
-  if (h > 0) {
-    return `${h}:${padTimeComponent(m)}:${padTimeComponent(s)}`;
-  }
-
-  return `${m}:${padTimeComponent(s)}`;
-}
+import { formatDuration, formatNumber } from 'utils/html';
 
 const bn = 'beatmap-basic-stats';
 
