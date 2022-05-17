@@ -5,17 +5,17 @@
 
 return [
     'mode' => [
-        'beatmapset' => '',
+        'beatmapset' => 'Beatmapa',
         'forum_post' => 'Forum',
-        'other' => '',
+        'other' => 'Ostalo',
         'user' => 'Igrač',
         'wiki_page' => 'Wiki',
     ],
 
     'result' => [
-        'empty' => '',
-        'empty_for' => '',
-        'more' => '',
-        'title' => '',
+        'empty' => 'Nema rezultata',
+        'empty_for' => 'Nema rezultata za :modes',
+        'more' => 'Više :mode rezultata',
+        'title' => ':mode rezultati pretraživanja',
     ],
 ];

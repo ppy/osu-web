@@ -31,7 +31,7 @@ return [
         '_' => 'Kappaleet',
         'count' => ':count kappale|:count kappaletta',
         'original' => '',
-        'original_badge' => '',
+        'original_badge' => 'ALKUPERÄINEN',
     ],
 
     'tracklist' => [
@@ -47,13 +47,13 @@ return [
 
             'form' => [
                 'advanced' => '',
-                'album' => '',
-                'artist' => '',
+                'album' => 'Albumi',
+                'artist' => 'Esittäjä',
                 'bpm_gte' => '',
                 'bpm_lte' => '',
                 'empty' => '',
-                'genre' => '',
-                'genre_all' => '',
+                'genre' => 'Tyylilaji',
+                'genre_all' => 'Kaikki',
                 'length_gte' => '',
                 'length_lte' => '',
             ],

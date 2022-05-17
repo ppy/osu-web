@@ -257,6 +257,7 @@ return [
         'featured_artists' => 'Utvalda artister',
         'follows' => 'Prenumererade mappare',
         'recommended' => 'Rekommenderad svårighetsgrad',
+        'spotlights' => '',
     ],
     'mode' => [
         'all' => 'Alla',

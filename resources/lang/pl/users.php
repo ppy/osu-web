@@ -209,7 +209,7 @@ return [
                     'title' => 'Porzucone beatmapy',
                 ],
                 'guest' => [
-                    'title' => '',
+                    'title' => 'Współtworzone beatmapy',
                 ],
                 'loved' => [
                     'title' => 'Ulubione beatmapy społeczności',

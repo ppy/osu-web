@@ -5,26 +5,26 @@
 
 return [
     'empty' => [
-        '_' => '',
-        'playlists' => '',
-        'realtime' => '',
+        '_' => 'Nijedna osu!(lazer) :type_group još nije odigrana!',
+        'playlists' => 'popis za reprodukciju',
+        'realtime' => 'multiplayer',
     ],
 
     'room' => [
-        'hosted_by' => '',
-        'invalid_password' => '',
-        'map_count' => '',
-        'player_count' => '',
-        'time_left' => '',
+        'hosted_by' => 'hostano od :user',
+        'invalid_password' => 'Nevažeća lozinka sobe',
+        'map_count' => ':count_delimited mapa|:count_delimited mape',
+        'player_count' => ':count_delimited igrač|:count_delimited igrača',
+        'time_left' => 'preostalo :time',
 
         'errors' => [
-            'duration_too_long' => '',
+            'duration_too_long' => 'Trajanje je predugo.',
         ],
 
         'status' => [
-            'active' => '',
+            'active' => 'aktivno',
             'ended' => 'završeno',
-            'soon' => '',
+            'soon' => 'uskoro završava',
         ],
     ],
 ];

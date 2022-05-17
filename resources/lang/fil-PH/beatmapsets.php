@@ -214,4 +214,8 @@ return [
             'graveyard' => 'Abandunado',
         ],
     ],
+
+    'spotlight_badge' => [
+        'label' => '',
+    ],
 ];

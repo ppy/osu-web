@@ -26,8 +26,8 @@ return [
         ],
 
         'beatmapsets' => [
-            'show' => '',
-            'discussions' => '',
+            'show' => 'informacje',
+            'discussions' => 'dyskusja',
         ],
 
         'changelog' => [

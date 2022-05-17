@@ -5,16 +5,16 @@
 
 return [
     'index' => [
-        'description' => '',
-        'nav_title' => '',
-        'title' => '',
+        'description' => 'Unaprijed zapakirane zbirke beatmapa temeljenih na zajedničkoj temi.',
+        'nav_title' => 'popis',
+        'title' => 'Paketi beatmapa',
 
         'blurb' => [
-            'important' => '',
-            'install_instruction' => '',
+            'important' => 'PROČITAJ OVO PRIJE PREUZIMANJA',
+            'install_instruction' => 'Instalacija: Nakon što je paket preuzet, raspakiraj sadržaj paketa u svoju osu! Songs mapu i osu! će učiniti ostalo.',
             'note' => [
-                '_' => '',
-                'scary' => '',
+                '_' => 'Također imajte na umu da je jako preporučeno :scary, budući da su starije mape općenito mnogo slabije kvalitete od novijih.',
+                'scary' => 'preuzeti pakete od najnovijih do najranijih',
             ],
         ],
     ],
@@ -22,24 +22,24 @@ return [
     'show' => [
         'download' => 'Preuzmi',
         'item' => [
-            'cleared' => '',
-            'not_cleared' => '',
+            'cleared' => 'očišćeno',
+            'not_cleared' => 'nije očišćeno',
         ],
         'no_diff_reduction' => [
-            '_' => '',
-            'link' => '',
+            '_' => ':link se ne smije se koristiti za čišćenje ovog paketa.',
+            'link' => 'Modovi za smanjivanje težine',
         ],
     ],
 
     'mode' => [
-        'artist' => 'Umjetnik/Album',
-        'chart' => '',
-        'standard' => '',
+        'artist' => 'Izvođač/Album',
+        'chart' => 'Istaknuto',
+        'standard' => 'Standardni',
         'theme' => 'Tema',
     ],
 
     'require_login' => [
-        '_' => '',
-        'link_text' => '',
+        '_' => 'Moraš biti :link za preuzimanje',
+        'link_text' => 'prijavljen',
     ],
 ];

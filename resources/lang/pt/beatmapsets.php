@@ -8,11 +8,11 @@ return [
         'disabled' => 'Este beatmap não está disponível atualmente para transferência.',
         'parts-removed' => 'Algumas porções deste beatmap foram removidas a pedido do criador ou dum titular de direitos de terceiros.',
         'more-info' => 'Clica aqui para mais informações.',
-        'rule_violation' => 'Alguns elementos contidos neste mapa foram removidos após terem sido avaliados como não sendo adequados para uso no osu!',
+        'rule_violation' => 'Alguns elementos contidos neste mapa foram removidos após terem sido considerados como não sendo adequados para utilização no osu!',
     ],
 
     'cover' => [
-        'deleted' => '',
+        'deleted' => 'Beatmaps eliminados',
     ],
 
     'download' => [
@@ -152,7 +152,7 @@ return [
             'friend' => 'Classificação de amigos',
             'global' => 'Classificação global',
             'supporter-link' => 'Clica <a href=":link">aqui</a> para ver todas as funcionalidades extravagantes que obténs!',
-            'supporter-only' => 'Precisas de ser um osu!supporter para ter acesso às classificações de amigos e nacional!',
+            'supporter-only' => 'Precisas de ser um osu!supporter para acederes às classificações de amigos e países!',
             'title' => 'Tabela de pontuações',
 
             'headers' => [
@@ -213,5 +213,9 @@ return [
             'pending' => 'Pendente',
             'graveyard' => 'Cemitério',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

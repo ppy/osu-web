@@ -5,10 +5,10 @@
 
 return [
     'deleted' => 'șters',
-    'deleted_by' => 'șters de :timeago de :user',
+    'deleted_by' => 'șters din :timeago de :user',
     'deleted_by_system' => 'sistem',
     'deleted_count' => ':count_delimited comentariu șters|:count_delimited comentariu șters',
-    'edited' => 'editat :timeago de :user',
+    'edited' => 'editat acum :timeago de :user',
     'pinned' => 'fixat',
     'empty' => 'Niciun comentariu încă.',
     'load_replies' => 'încarcă răspunsurile',

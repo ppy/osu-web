@@ -58,7 +58,7 @@ return [
 
     'beatmapset' => [
         'metadata' => [
-            'nominated' => '추천된 맵의 메타데이터를 변경할 순 없습니다. 잘못 지정된 것 같으면 BN이나 NAT 멤버에게 알려주세요.',
+            'nominated' => '추천된 맵의 메타데이터를 변경할 수는 없습니다. 잘못 지정된 것 같으시면 BN이나 NAT 멤버에게 알려주세요.',
         ],
     ],
 
@@ -74,6 +74,9 @@ return [
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => '',
+        ],
         'update' => [
             'deleted' => "삭제된 게시물을 수정 할 수 없습니다.",
         ],

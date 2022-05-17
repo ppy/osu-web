@@ -6,102 +6,102 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => '',
-            'system_generated' => '',
-            'wrong_user' => '',
+            'null_user' => 'Moraš biti prijavljen kako bi uredio.',
+            'system_generated' => 'Sistemski generirana objava se ne može uređivati.',
+            'wrong_user' => 'Moraš biti autor objave za uređivanje.',
         ],
     ],
 
     'events' => [
-        'empty' => '',
+        'empty' => 'Ništa se nije dogodilo... još.',
     ],
 
     'index' => [
-        'deleted_beatmap' => '',
-        'none_found' => '',
-        'title' => '',
+        'deleted_beatmap' => 'izbrisano',
+        'none_found' => 'Nisu pronađene rasprave koje odgovaraju tim kriterijima pretraživanja.',
+        'title' => 'Rasprava o beatmapama',
 
         'form' => [
             '_' => 'Pretraži',
-            'deleted' => '',
-            'mode' => '',
-            'only_unresolved' => '',
-            'types' => '',
-            'username' => '',
+            'deleted' => 'Uključi izbrisane rasprave ',
+            'mode' => 'Mod beatmape',
+            'only_unresolved' => 'Pokaži samo neriješene rasprave',
+            'types' => 'Vrsta poruke',
+            'username' => 'Korisničko ime',
 
             'beatmapset_status' => [
-                '_' => '',
+                '_' => 'Status beatmape',
                 'all' => 'Svi',
-                'disqualified' => '',
-                'never_qualified' => '',
-                'qualified' => '',
-                'ranked' => '',
+                'disqualified' => 'Diskvalificiran',
+                'never_qualified' => 'Nikad kvalificiran',
+                'qualified' => 'Kvalificiran',
+                'ranked' => 'Rangiran',
             ],
 
             'user' => [
                 'label' => 'Korisnik',
-                'overview' => '',
+                'overview' => 'Pregled aktivnosti',
             ],
         ],
     ],
 
     'item' => [
-        'created_at' => '',
-        'deleted_at' => '',
-        'message_type' => '',
-        'permalink' => '',
+        'created_at' => 'Datum objave',
+        'deleted_at' => 'Datum brisanja',
+        'message_type' => 'Tip',
+        'permalink' => 'Trajna poveznica',
     ],
 
     'nearby_posts' => [
-        'confirm' => '',
-        'notice' => '',
-        'unsaved' => '',
+        'confirm' => 'Niti jedna objava me ne zabrinjava',
+        'notice' => 'Postoje objave od oko :timestamp (:existing_timestamps). Molimo da ih provjerite prije objavljivanja.',
+        'unsaved' => ':count u ovoj recenziji',
     ],
 
     'owner_editor' => [
-        'button' => '',
-        'reset_confirm' => '',
+        'button' => 'Vlasnik težine',
+        'reset_confirm' => 'Resetiraj vlasnika ove težine?',
         'user' => 'Vlasnik',
-        'version' => '',
+        'version' => 'Težina',
     ],
 
     'reply' => [
         'open' => [
-            'guest' => '',
-            'user' => '',
+            'guest' => 'Prijavi se da odgovoriš',
+            'user' => 'Odgovori',
         ],
     ],
 
     'review' => [
-        'block_count' => '',
-        'go_to_parent' => '',
-        'go_to_child' => '',
+        'block_count' => ':used / :max blokova iskorišteno',
+        'go_to_parent' => 'Pogledaj recenziju',
+        'go_to_child' => 'Pogledaj raspravu ',
         'validation' => [
-            'block_too_large' => '',
-            'external_references' => '',
-            'invalid_block_type' => '',
-            'invalid_document' => '',
-            'invalid_discussion_type' => '',
-            'minimum_issues' => '',
-            'missing_text' => '',
-            'too_many_blocks' => '',
+            'block_too_large' => 'svaki blok može iskoristiti do :limit karaktera ',
+            'external_references' => 'recenzija sadrži reference na probleme koji ne pripadaju ovoj recenziji',
+            'invalid_block_type' => 'nevažeća vrsta blokova',
+            'invalid_document' => 'nevažeća recenzija',
+            'invalid_discussion_type' => 'nevažeća vrsta rasprave ',
+            'minimum_issues' => 'recenzija mora sadržavati najmanje :count problem|recenzija mora sadržavati najmanje :count problema',
+            'missing_text' => 'bloku nedostaje tekst',
+            'too_many_blocks' => 'recenzije mogu sadržavati samo :count paragraf/problem|recenzije mogu sadržavati samo do :count paragrafa/problema',
         ],
     ],
 
     'system' => [
         'resolved' => [
-            'true' => '',
-            'false' => '',
+            'true' => 'Označeno kao riješeno od :user',
+            'false' => 'Ponovno otvoreno od :user',
         ],
     ],
 
     'timestamp_display' => [
-        'general' => '',
-        'general_all' => '',
+        'general' => 'općenito',
+        'general_all' => 'općenito (sve)',
     ],
 
     'user_filter' => [
-        'everyone' => '',
-        'label' => '',
+        'everyone' => 'Svi',
+        'label' => 'Filtriraj prema korisniku',
     ],
 ];

@@ -257,6 +257,7 @@ return [
         'featured_artists' => '',
         'follows' => '',
         'recommended' => 'Dificultatea recomandată',
+        'spotlights' => '',
     ],
     'mode' => [
         'all' => 'Toate',

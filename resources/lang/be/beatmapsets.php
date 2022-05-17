@@ -12,7 +12,7 @@ return [
     ],
 
     'cover' => [
-        'deleted' => '',
+        'deleted' => 'Выдаленыя карты',
     ],
 
     'download' => [
@@ -125,7 +125,7 @@ return [
             'language' => 'Мова',
             'no_scores' => 'Усё яшчэ ідзе падлік даных...',
             'nsfw' => 'Непрыстойны змест',
-            'offset' => '',
+            'offset' => 'Анлайн аўсэт',
             'points-of-failure' => 'Колькасць правалаў',
             'source' => 'Крыніца',
             'storyboard' => 'Гэта карта ўтрымлівае раскадроўку',
@@ -197,7 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Колькасць кругоў',
             'count_sliders' => 'Колькасць слайдараў',
-            'offset' => '',
+            'offset' => 'Анлайн аўсэт :offset',
             'user-rating' => 'Рэйтынг карыстальнікаў',
             'rating-spread' => 'Шкала рэйтынгу',
             'nominations' => 'Намінацыі',
@@ -213,5 +213,9 @@ return [
             'pending' => 'У чаканні',
             'graveyard' => 'Закінутая',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

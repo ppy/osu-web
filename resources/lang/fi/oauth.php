@@ -14,12 +14,12 @@ return [
 
     'authorized_clients' => [
         'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
+        'scopes_title' => 'Tämä sovellus voi:',
+        'owned_by' => 'Omistaa :user',
         'none' => '',
 
         'revoked' => [
-            'false' => '',
+            'false' => 'Kumoa käyttöoikeudet',
             'true' => '',
         ],
     ],
@@ -39,11 +39,11 @@ return [
     ],
 
     'new_client' => [
-        'header' => '',
+        'header' => 'Rekisteröi uusi OAuth-sovellus',
         'register' => '',
         'terms_of_use' => [
             '_' => '',
-            'link' => '',
+            'link' => 'Käyttöehdot',
         ],
     ],
 
@@ -55,7 +55,7 @@ return [
 
         'revoked' => [
             'false' => 'Poista',
-            'true' => '',
+            'true' => 'Poistettu',
         ],
     ],
 ];
