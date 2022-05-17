@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import core from 'osu-core-singleton';
-import KeyboardEvent from 'react';
+import { KeyboardEvent } from 'react';
 
 export enum InputEventType {
   Cancel = 'cancel',
