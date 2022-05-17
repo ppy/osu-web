@@ -1,20 +1,25 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
+import core from 'osu-core-singleton';
+import KeyboardEvent from 'react';
 
-class window.InputHandler
-  @CANCEL = 'cancel'
-  @SUBMIT = 'submit'
+export enum InputEventType {
+  Cancel = 'cancel',
+  Submit = 'submit',
+}
 
-  @KEY_ENTER = 13
-  @KEY_ESC = 27
+export function makeTextAreaHandler(callback: (type: InputEventType | null, event: KeyboardEvent<HTMLTextAreaElement>) => void) {
+  return (event: KeyboardEvent<HTMLTextAreaElement>) => {
+    let type: InputEventType | null = null;
 
-  @textarea: (callback) =>
-    (event) =>
-      if event.keyCode == @KEY_ESC
-        type = @CANCEL
-      else if event.keyCode == @KEY_ENTER && !event.shiftKey && osuCore.windowSize.isDesktop
-        event.preventDefault()
-        type = @SUBMIT
+    if (event.key === 'Escape') {
+      type = InputEventType.Cancel;
+    } else if (event.key === 'Enter' && !event.shiftKey && core.windowSize.isDesktop) {
+      event.preventDefault();
+      type = InputEventType.Submit;
+    }
 
-      callback?(type, event)
+    callback(type, event);
+  };
+}
