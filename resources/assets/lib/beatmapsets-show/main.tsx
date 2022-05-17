@@ -100,26 +100,31 @@ export default class Main extends React.Component<Props> {
         <div className='osu-page osu-page--generic-compact'>
           <Header controller={this.controller} />
           <Info controller={this.controller} />
-        </div>
 
-        {this.controller.beatmapset.can_be_hyped &&
-          <div className='osu-page osu-page--generic-compact'>
-            <Hype beatmapset={this.controller.beatmapset} />
+          <div className='user-profile-pages user-profile-pages--no-tabs'>
+            {this.controller.beatmapset.can_be_hyped &&
+              <div className='page-extra page-extra--compact'>
+                <Hype beatmapset={this.controller.beatmapset} />
+              </div>
+            }
+
+            {this.controller.currentBeatmap.is_scoreable &&
+              <div className='page-extra'>
+                <Scoreboard controller={this.controller} />
+              </div>
+            }
+
+            <div className='page-extra page-extra--compact'>
+              <CommentsManager
+                commentableId={this.controller.beatmapset.id}
+                commentableType='beatmapset'
+                component={Comments}
+                componentProps={{
+                  modifiers: 'page-extra',
+                }}
+              />
+            </div>
           </div>
-        }
-
-        {this.controller.currentBeatmap.is_scoreable &&
-          <div className='osu-page osu-page--generic'>
-            <Scoreboard controller={this.controller} />
-          </div>
-        }
-
-        <div className='osu-page osu-page--generic-compact'>
-          <CommentsManager
-            commentableId={this.controller.beatmapset.id}
-            commentableType='beatmapset'
-            component={Comments}
-          />
         </div>
       </>
     );
