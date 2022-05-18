@@ -3,10 +3,13 @@
 
 .page-extra-tabs {
   position: sticky;
-  top: @navbar-height;
+  --navbar-height: @navbar-height;
+  // 1px overlap with navbar to prevent possible gap in some cases.
+  // Reference: https://bugs.chromium.org/p/chromium/issues/detail?id=1261852
+  top: calc(var(--navbar-height) - 1px);
   z-index: @z-index--page-extra-tabs;
 
   @media @desktop {
-    top: @nav2-height--pinned;
+    --navbar-height: @nav2-height--pinned;
   }
 }
