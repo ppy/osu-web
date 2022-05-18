@@ -9,6 +9,7 @@ import NotificationDeleteButton from 'notifications/notification-delete-button';
 import NotificationReadButton from 'notifications/notification-read-button';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { isClickable } from 'utils/html';
 
 interface Props {
   canMarkAsRead?: boolean;
@@ -64,7 +65,7 @@ export default class Item extends React.Component<Props> {
   }
 
   private handleContainerClick = (event: React.SyntheticEvent) => {
-    if (osu.isClickable(event.target as HTMLElement)) return;
+    if (isClickable(event.target)) return;
 
     if (this.props.markRead != null) {
       this.props.markRead();
