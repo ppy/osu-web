@@ -48,7 +48,7 @@ RUN rm -f /var/log/nginx/access.log /var/log/nginx/error.log && \
     ln -s /dev/stderr /var/log/nginx/error.log
 
 COPY . .
-RUN mkdir -p bootstrap/cache storage/logs storage/framework/cache storage/framework/views storage/framework/sessions public/uploads public/uploads-avatar public/uploads-replay
+RUN mkdir -p bootstrap/cache storage/logs storage/framework/cache storage/framework/views storage/framework/sessions storage/htmlpurifier public/uploads public/uploads-avatar public/uploads-replay
 RUN composer dump-autoload
 
 ARG APP_URL
