@@ -13,7 +13,7 @@ return [
         'http-401' => 'Mohon masuk untuk melanjutkan.',
         'http-403' => 'Akses ditolak.',
         'http-404' => 'Tidak ditemukan.',
-        'http-429' => 'Terlalu banyak percobaan. Mohon coba lagi nanti.',
+        'http-429' => 'Terlalu banyak percobaan. Silakan coba lagi nanti.',
     ],
     'account' => [
         'profile-order' => [

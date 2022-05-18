@@ -257,6 +257,7 @@ return [
         'featured_artists' => '',
         'follows' => '',
         'recommended' => 'דרגת קושי מומלצת',
+        'spotlights' => '',
     ],
     'mode' => [
         'all' => 'הכל',

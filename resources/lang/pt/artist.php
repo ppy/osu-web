@@ -18,7 +18,7 @@ return [
     ],
 
     'index' => [
-        'description' => 'Os artistas destacados são artistas com os quais estamos a trabalhar em colaboração com o objetivo de trazer músicas novas e originais para o osu! Estes artistas e uma seleção das suas faixas, foram escolhidas pela equipa do osu! como sendo fantásticas e adequadas para mapeamento. Alguns destes artistas destacados também criaram novas faixas exclusivas para uso no osu!<br><br>Todas as faixas nesta secção estão disponibilizadas em ficheiros .osz e foram oficialmente licenciadas para utilizar no osu! e conteúdo relacionado com ele.',
+        'description' => 'Os artistas destacados são artistas com os quais estamos a trabalhar em colaboração com o objetivo de trazer músicas novas e originais para o osu! Estes artistas e uma seleção das suas faixas, foram escolhidas pela equipa do osu! como sendo fantásticas e adequadas para mapeamento. Alguns destes artistas destacados também criaram novas faixas exclusivas para utilização no osu!<br><br>Todas as faixas nesta secção estão disponibilizadas em ficheiros .osz e foram oficialmente licenciadas para se usarem no osu! e no seu conteúdo relacionado.',
     ],
 
     'links' => [

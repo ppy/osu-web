@@ -25,7 +25,7 @@ return [
     ],
 
     'not_found' => [
-        'message' => '',
+        'message' => 'Nic tu nie ma, być może opuściłeś kanał lub nie istnieje...',
         'title' => 'nie znaleziono kanału',
     ],
 

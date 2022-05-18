@@ -214,4 +214,8 @@ return [
             'graveyard' => 'Cimitir',
         ],
     ],
+
+    'spotlight_badge' => [
+        'label' => '',
+    ],
 ];

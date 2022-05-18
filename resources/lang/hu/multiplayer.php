@@ -6,8 +6,8 @@
 return [
     'empty' => [
         '_' => '',
-        'playlists' => '',
-        'realtime' => '',
+        'playlists' => 'lejátszási lista',
+        'realtime' => 'többjátékos',
     ],
 
     'room' => [
@@ -18,7 +18,7 @@ return [
         'time_left' => ':time van hátra',
 
         'errors' => [
-            'duration_too_long' => '',
+            'duration_too_long' => 'Az időtartam túl hosszú.',
         ],
 
         'status' => [

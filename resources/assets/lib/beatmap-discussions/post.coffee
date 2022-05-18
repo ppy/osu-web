@@ -18,6 +18,7 @@ import TextareaAutosize from 'react-autosize-textarea'
 import { a, button, div, span } from 'react-dom-factories'
 import { badgeGroup } from 'utils/beatmapset-discussion-helper'
 import { classWithModifiers } from 'utils/css'
+import { InputEventType, makeTextAreaHandler } from 'utils/input-handler'
 import { MessageLengthCounter } from './message-length-counter'
 import { UserCard } from './user-card'
 
@@ -32,7 +33,7 @@ export class Post extends React.PureComponent
     @textareaRef = React.createRef()
     @messageBodyRef = React.createRef()
     @throttledUpdatePost = _.throttle @updatePost, 1000
-    @handleKeyDown = InputHandler.textarea @handleKeyDownCallback
+    @handleKeyDown = makeTextAreaHandler @handleKeyDownCallback
     @xhr = {}
     @reviewEditor = React.createRef()
 
@@ -101,7 +102,7 @@ export class Post extends React.PureComponent
 
   handleKeyDownCallback: (type, event) =>
     switch type
-      when InputHandler.SUBMIT
+      when InputEventType.Submit
         @throttledUpdatePost()
 
 

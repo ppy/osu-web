@@ -257,6 +257,7 @@ return [
         'featured_artists' => '',
         'follows' => '',
         'recommended' => 'Anbefalt vanskelighetsgrad',
+        'spotlights' => '',
     ],
     'mode' => [
         'all' => 'Alle',

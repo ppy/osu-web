@@ -12,6 +12,7 @@ import * as React from 'react'
 import TextareaAutosize from 'react-autosize-textarea'
 import { button, div, input, label, p, i, span } from 'react-dom-factories'
 import { nominationsCount } from 'utils/beatmapset-helper'
+import { InputEventType, makeTextAreaHandler } from 'utils/input-handler'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { linkHtml } from 'utils/url'
 import { MessageLengthCounter } from './message-length-counter'
@@ -27,7 +28,7 @@ export class NewDiscussion extends React.PureComponent
     @disposers = new Set
     @inputBox = React.createRef()
     @throttledPost = _.throttle @post, 1000
-    @handleKeyDown = InputHandler.textarea @handleKeyDownCallback
+    @handleKeyDown = makeTextAreaHandler @handleKeyDownCallback
 
     @state =
       cssTop: null
@@ -229,7 +230,7 @@ export class NewDiscussion extends React.PureComponent
   handleKeyDownCallback: (type, event) =>
     # Ignores SUBMIT, requiring shift-enter to add new line.
     switch type
-      when InputHandler.CANCEL
+      when InputEventType.Cancel
         @setSticky(false)
 
 

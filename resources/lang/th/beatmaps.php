@@ -257,6 +257,7 @@ return [
         'featured_artists' => '',
         'follows' => 'ติดตามผู้ทำแมพ',
         'recommended' => 'ระดับความยากที่แนะนำ',
+        'spotlights' => '',
     ],
     'mode' => [
         'all' => 'ทั้งหมด',
