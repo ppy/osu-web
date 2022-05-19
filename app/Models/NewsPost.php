@@ -118,7 +118,7 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
 
         foreach (static::all() as $post) {
             if (array_key_exists($post->slug, $latestSlugs)) {
-                if ($latestSlugs[$post->slug] !== $post->hash) {
+                if ($post->published_at === null || $latestSlugs[$post->slug] !== $post->hash) {
                     $post->sync(true);
                 }
 
