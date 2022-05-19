@@ -320,7 +320,7 @@ class BBCodeFromDB
         $text = $this->parseProfile($text);
 
         $text = str_replace("\n", '<br />', $text);
-        $text = CleanHTML::purify($text);
+        $text = app('clean-html')->purify($text);
 
         $className = class_with_modifiers('bbcode', $this->options['modifiers']);
 
