@@ -44,7 +44,7 @@ interface SearchResultUser extends SearchResultSummary {
 const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
 
 export default class Worker {
-  debouncedSearch = debounce(this.search, 500);
+  debouncedSearch = debounce(() => this.search(), 500);
   @observable query = '';
   @observable searchResult: SearchResult | null = null;
   @observable searching = false;

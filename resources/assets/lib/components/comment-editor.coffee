@@ -10,6 +10,7 @@ import TextareaAutosize from 'react-autosize-textarea'
 import { button, div, span } from 'react-dom-factories'
 import { onErrorWithCallback } from 'utils/ajax'
 import { classWithModifiers } from 'utils/css'
+import { InputEventType, makeTextAreaHandler } from 'utils/input-handler'
 
 el = React.createElement
 
@@ -22,7 +23,7 @@ export class CommentEditor extends React.PureComponent
     @textarea = React.createRef()
     @throttledPost = _.throttle @post, 1000
 
-    @handleKeyDown = InputHandler.textarea @handleKeyDownCallback
+    @handleKeyDown = makeTextAreaHandler @handleKeyDownCallback
 
     @state =
       message: @props.message ? ''
@@ -116,9 +117,9 @@ export class CommentEditor extends React.PureComponent
 
   handleKeyDownCallback: (type, event) =>
     switch type
-      when InputHandler.CANCEL
+      when InputEventType.Cancel
         @close()
-      when InputHandler.SUBMIT
+      when InputEventType.Submit
         @throttledPost()
 
 
