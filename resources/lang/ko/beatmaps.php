@@ -220,7 +220,7 @@ return [
             'prompt' => '검색어를 입력하세요...',
             'login_required' => '검색하려면 로그인하세요.',
             'options' => '검색 옵션 더 보기',
-            'supporter_filter' => ':filters로 검색하려면 osu! 서포터 권한이 필요합니다.',
+            'supporter_filter' => ':filters로 검색하려면 osu! 서포터 태그가 필요합니다.',
             'not-found' => '결과 없음',
             'not-found-quote' => '... 없네요, 아무것도 못 찾았습니다.',
             'filters' => [
@@ -257,6 +257,7 @@ return [
         'featured_artists' => '공식 아티스트',
         'follows' => '구독한 비트맵 제작자',
         'recommended' => '권장 난이도',
+        'spotlights' => '',
     ],
     'mode' => [
         'all' => '전체',

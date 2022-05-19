@@ -209,7 +209,7 @@ return [
                     'title' => 'Beatmap Abbandonate',
                 ],
                 'guest' => [
-                    'title' => '',
+                    'title' => 'Beatmap Partecipazione Ospite',
                 ],
                 'loved' => [
                     'title' => 'Beatmap Amate',

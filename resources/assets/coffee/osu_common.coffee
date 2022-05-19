@@ -27,19 +27,6 @@ window.osu =
       $(element).trigger 'ajax:error', [xhr, status, error]
 
 
-  isInputElement: (el) ->
-    el.tagName in ['INPUT', 'SELECT', 'TEXTAREA'] || el.isContentEditable
-
-
-  isClickable: (el) ->
-    if osu.isInputElement(el) || el.tagName in ['A', 'BUTTON']
-      true
-    else if el.parentNode
-      osu.isClickable el.parentNode
-    else
-      false
-
-
   # mobile safari zooms in on focus of input boxes with font-size < 16px, this works around that
   focus: (el) =>
     el = $(el)[0] # so we can handle both jquery'd and normal dom nodes

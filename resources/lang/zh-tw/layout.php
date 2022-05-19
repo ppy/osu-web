@@ -26,8 +26,8 @@ return [
         ],
 
         'beatmapsets' => [
-            'show' => '',
-            'discussions' => '',
+            'show' => '資訊',
+            'discussions' => '討論',
         ],
 
         'changelog' => [

@@ -4,37 +4,37 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'generic' => '',
+    'generic' => 'Ispravci pogrešaka i manja poboljšanja',
 
     'build' => [
-        'title' => '',
+        'title' => 'promjene u :version',
     ],
 
     'builds' => [
-        'users_online' => '',
+        'users_online' => ':count_delimited korisnik na mreži|:count_delimited korisnika na mreži',
     ],
 
     'entry' => [
-        'by' => '',
+        'by' => 'od :user',
     ],
 
     'index' => [
         'page_title' => [
-            '_' => '',
-            '_from' => '',
-            '_from_to' => '',
-            '_stream' => '',
-            '_stream_from' => '',
-            '_stream_from_to' => '',
-            '_stream_to' => '',
-            '_to' => '',
+            '_' => 'popis promjena',
+            '_from' => 'promjene od :from',
+            '_from_to' => 'promjene od :from do :to',
+            '_stream' => 'promjene u :stream',
+            '_stream_from' => 'promjene u :stream od :from',
+            '_stream_from_to' => 'promjene u :stream između :from i :to',
+            '_stream_to' => 'promjene u :stream sve do :to',
+            '_to' => 'promjene sve do :to',
         ],
     ],
 
     'support' => [
-        'heading' => '',
-        'text_1' => '',
-        'text_1_link' => '',
-        'text_2' => '',
+        'heading' => 'Voliš ovo ažuriranje?',
+        'text_1' => 'Podrži danji razvoj osu! i :link danas!',
+        'text_1_link' => 'postani osu!supporter',
+        'text_2' => 'Ne samo da ćeš pomoći u ubrzavanju razvoja, već ćeš također dobiti neke dodatne značajke i prilagodbe!',
     ],
 ];

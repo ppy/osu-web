@@ -97,7 +97,7 @@ return [
         'username' => 'Nama Pengguna',
 
         'beta' => [
-            'main' => 'Akses beta saat ini hanya terbuka kepada pengguna-pengguna tertentu.',
+            'main' => 'Akses beta saat ini hanya tersedia bagi para pengguna tertentu.',
             'small' => '(para pemilik osu!supporter akan segera masuk)',
         ],
     ],
@@ -138,7 +138,7 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Akun Anda telah di-restrict!',
-        'message' => 'Selama akun Anda di-restrict, Anda tidak akan dapat berinteraksi dengan para pengguna lain dan skor-skor yang telah Anda raih hanya akan dapat dilihat oleh diri Anda sendiri. Hal ini pada umumnya merupakan efek samping dari proses yang dilakukan oleh sistem secara otomatis dan akan diangkat dalam 24 jam apabila Anda memang tidak melanggar aturan apapun. Apabila Anda ingin mengajukan banding, mohon <a href="mailto:accounts@ppy.sh">hubungi layanan dukungan</a>.',
+        'message' => 'Selama akun Anda di-restrict, Anda tidak akan dapat berinteraksi dengan para pengguna lain dan skor yang telah Anda raih hanya akan dapat dilihat oleh diri Anda sendiri. Hal ini pada umumnya merupakan efek samping dari proses yang dilakukan oleh sistem kami secara otomatis dan akan diangkat dalam 24 jam apabila Anda memang tidak melanggar peraturan apapun. Apabila Anda ingin mengajukan banding, mohon <a href="mailto:accounts@ppy.sh">hubungi layanan dukungan</a>.',
     ],
     'show' => [
         'age' => ':age tahun',
@@ -209,7 +209,7 @@ return [
                     'title' => 'Beatmap Graveyard',
                 ],
                 'guest' => [
-                    'title' => '',
+                    'title' => 'Beatmap Dengan Kontribusi Guest Difficulty',
                 ],
                 'loved' => [
                     'title' => 'Beatmap Loved',
@@ -360,7 +360,7 @@ return [
                 'recent_infringements' => [
                     'title' => 'Pelanggaran Terkini',
                     'date' => 'waktu',
-                    'action' => 'tindakan',
+                    'action' => 'tindak lanjut',
                     'length' => 'durasi',
                     'length_permanent' => 'Permanen',
                     'description' => 'keterangan',

@@ -209,7 +209,7 @@ return [
                     'title' => '已停更的谱面',
                 ],
                 'guest' => [
-                    'title' => '',
+                    'title' => '参与客串制作的谱面',
                 ],
                 'loved' => [
                     'title' => 'Loved 的谱面',

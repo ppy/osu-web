@@ -74,6 +74,9 @@ return [
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => '',
+        ],
         'update' => [
             'deleted' => "ไม่สามารถแก้ไขโพสต์ที่ถูกลบได้",
         ],

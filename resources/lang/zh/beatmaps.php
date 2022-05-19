@@ -257,6 +257,7 @@ return [
         'featured_artists' => '精选艺术家',
         'follows' => '已关注谱师',
         'recommended' => '推荐难度',
+        'spotlights' => '',
     ],
     'mode' => [
         'all' => '全部',

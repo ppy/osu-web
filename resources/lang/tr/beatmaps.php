@@ -257,6 +257,7 @@ return [
         'featured_artists' => 'Featured artist\'ler',
         'follows' => 'Abone olunan mapperlar',
         'recommended' => 'Önerilen zorluk seviyesi',
+        'spotlights' => '',
     ],
     'mode' => [
         'all' => 'Hepsi',

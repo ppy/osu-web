@@ -5,11 +5,11 @@
 
 return [
     'index' => [
-        'title' => '',
+        'title' => 'Objave rasprave o beatmapama',
     ],
 
     'item' => [
-        'content' => '',
-        'modding_history_link' => '',
+        'content' => 'Sadržaj',
+        'modding_history_link' => 'Pogledaj povijest modificiranja',
     ],
 ];

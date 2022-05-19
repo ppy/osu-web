@@ -118,7 +118,7 @@ return [
         ],
 
         'show' => [
-            'title' => ':title mappé par :mapper',
+            'title' => ':title mappée par :mapper',
         ],
 
         'sort' => [
@@ -257,6 +257,7 @@ return [
         'featured_artists' => 'Featured artists',
         'follows' => 'Mappeurs suivis',
         'recommended' => 'Difficulté recommandée',
+        'spotlights' => '',
     ],
     'mode' => [
         'all' => 'Tous',

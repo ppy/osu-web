@@ -257,6 +257,7 @@ return [
         'featured_artists' => 'الفنانين المميزين',
         'follows' => 'ألمنشئين المشتركين',
         'recommended' => 'الصعوبة الموصاة',
+        'spotlights' => '',
     ],
     'mode' => [
         'all' => 'الكل',
