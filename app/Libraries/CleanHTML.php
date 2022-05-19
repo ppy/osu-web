@@ -5,6 +5,7 @@
 
 namespace App\Libraries;
 
+use ErrorException;
 use HTMLPurifier;
 use HTMLPurifier_Config;
 
@@ -15,8 +16,12 @@ class CleanHTML
     public function __construct()
     {
         $cachePath = storage_path().'/htmlpurifier';
-        if (!is_dir($cachePath)) {
+        try {
             mkdir($cachePath, 0700, true);
+        } catch (ErrorException $e) {
+            if (!is_dir($cachePath)) {
+                throw $e;
+            }
         }
 
         $config = HTMLPurifier_Config::createDefault();
