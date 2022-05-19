@@ -53,9 +53,6 @@ RUN composer dump-autoload
 
 ARG APP_URL
 ARG DOCS_URL
-ARG PAYMENT_SANDBOX
-ARG SHOPIFY_DOMAIN
-ARG SHOPIFY_STOREFRONT_TOKEN
 RUN yarnpkg production
 
 RUN rm -rf node_modules
