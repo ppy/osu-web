@@ -10,10 +10,17 @@ use HTMLPurifier_Config;
 
 class CleanHTML
 {
-    public static function purify($text)
+    private HTMLPurifier $purifier;
+
+    public function __construct()
     {
+        $cachePath = storage_path().'/htmlpurifier';
+        if (!is_dir($cachePath)) {
+            mkdir($cachePath, 0700, true);
+        }
+
         $config = HTMLPurifier_Config::createDefault();
-        $config->set('Cache.SerializerPath', storage_path().'/htmlpurifier');
+        $config->set('Cache.SerializerPath', $cachePath);
         $config->set('Attr.AllowedRel', ['nofollow']);
         $config->set('HTML.Trusted', true);
 
@@ -43,6 +50,11 @@ class CleanHTML
 
         $def->addAttribute('a', 'data-user-id', 'Text');
 
-        return (new HTMLPurifier($config))->purify($text);
+        $this->purifier = new HTMLPurifier($config);
+    }
+
+    public function purify($text)
+    {
+        return $this->purifier->purify($text);
     }
 }
