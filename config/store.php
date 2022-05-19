@@ -18,4 +18,8 @@ return [
     'queue' => [
         'notifications' => presence(env('STORE_NOTIFICATIONS_QUEUE'), 'store-notifications'),
     ],
+    'shopify' => [
+        'domain' => presence(env('SHOPIFY_DOMAIN')),
+        'storefront_token' => presence(env('SHOPIFY_STOREFRONT_TOKEN')),
+    ],
 ];
