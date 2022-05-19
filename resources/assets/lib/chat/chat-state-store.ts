@@ -13,6 +13,7 @@ import { clamp, maxBy } from 'lodash';
 import { action, autorun, computed, makeObservable, observable, observe, runInAction } from 'mobx';
 import Channel from 'models/chat/channel';
 import ChannelStore from 'stores/channel-store';
+import { setBrowserTitle } from 'utils/html';
 import { updateQueryString } from 'utils/url';
 import ChannelJoinEvent from './channel-join-event';
 import ChannelPartEvent from './channel-part-event';
@@ -136,6 +137,7 @@ export default class ChatStateStore implements DispatchListener {
 
       Turbolinks.controller[mode](updateQueryString(null, params));
     }
+    setBrowserTitle(`${channel.name} · ${osu.trans('page_title.main.chat_controller._')}`);
   }
 
   @action

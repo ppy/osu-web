@@ -103,12 +103,39 @@ export function htmlElementOrNull(thing: unknown) {
   return null;
 }
 
+export function isClickable(maybeEl: unknown): boolean {
+  const el = htmlElementOrNull(maybeEl);
+
+  if (el == null) {
+    return false;
+  }
+
+  if (isInputElement(el) || ['A', 'BUTTON'].includes(el.tagName)) {
+    return true;
+  }
+
+  const parentEl = htmlElementOrNull(el.parentNode);
+  if (parentEl != null) {
+    return isClickable(parentEl);
+  }
+
+  return false;
+}
+
+export function isInputElement(el: HTMLElement) {
+  return ['INPUT', 'OPTION', 'SELECT', 'TEXTAREA'].includes(el.tagName) || el.isContentEditable;
+}
+
 export const transparentGif = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
 export function make2x(url?: string) {
   if (url == null) return;
 
   return url.replace(/(\.[^.]+)$/, '@2x$1');
+}
+
+export function setBrowserTitle(title: string) {
+  document.title = `${title} | osu!`;
 }
 
 export function stripTags(str: string) {

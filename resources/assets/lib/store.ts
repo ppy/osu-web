@@ -3,10 +3,10 @@
 
 import { route } from 'laroute';
 import core from 'osu-core-singleton';
-import Shopify from 'shopify-buy';
 import { toShopifyVariantGid } from 'shopify-gid';
 import { createClickCallback } from 'utils/html';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
+import client from './shopify-client';
 
 declare global {
   interface Window {
@@ -14,16 +14,7 @@ declare global {
   }
 }
 
-// process.env.$ has to be static as it is injected by webpack at compile time.
-const options = {
-  domain: process.env.SHOPIFY_DOMAIN,
-  storefrontAccessToken: process.env.SHOPIFY_STOREFRONT_TOKEN,
-};
-
-const client = Shopify.buildClient(options);
-
 export class Store {
-
   private constructor() {
     $(document).on('click', '.js-store-checkout', this.beginCheckout.bind(this));
     $(document).on('click', '.js-store-resume-checkout', this.resumeCheckout.bind(this));
@@ -71,7 +62,7 @@ export class Store {
     try {
       // create shopify checkout.
       // error returned will be a JSON string in error.message
-      checkout = await client.checkout.create({
+      checkout = await client().checkout.create({
         customAttributes: [{ key: 'orderId', value: orderId }],
         lineItems: this.collectShopifyItems(),
       });
@@ -112,7 +103,7 @@ export class Store {
     showLoadingOverlay();
     showLoadingOverlay.flush();
 
-    const checkout = await client.checkout.fetch(checkoutId);
+    const checkout = await client().checkout.fetch(checkoutId);
     if (checkout != null) {
       window.location.href = checkout.webUrl;
     } else {
