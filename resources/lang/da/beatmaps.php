@@ -258,6 +258,7 @@ return [
         'follows' => 'Subscribed mappers
 ',
         'recommended' => 'Rekommenderat sværhedsgrad',
+        'spotlights' => '',
     ],
     'mode' => [
         'all' => 'Alle',

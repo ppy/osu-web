@@ -36,7 +36,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property \Illuminate\Database\Eloquent\Collection $votes CommentVote
  * @property int $votes_count_cache
  */
-class Comment extends Model
+class Comment extends Model implements Traits\ReportableInterface
 {
     use Traits\Reportable, Traits\WithDbCursorHelper, Validatable;
 
@@ -136,6 +136,17 @@ class Comment extends Model
         $this->attributes['commentable_type'] = $value;
     }
 
+    public function setCommentable()
+    {
+        if ($this->parent_id === null || $this->parent === null) {
+            return;
+        }
+
+        $this->commentable_id = $this->parent->commentable_id;
+        $this->commentable_type = $this->parent->commentable_type;
+        $this->unsetRelation('commentable');
+    }
+
     public function isValid()
     {
         $this->validationErrors()->reset();
@@ -187,11 +198,6 @@ class Comment extends Model
 
     public function save(array $options = [])
     {
-        if ($this->parent_id !== null && $this->parent !== null) {
-            $this->commentable_id = $this->parent->commentable_id;
-            $this->commentable_type = $this->parent->commentable_type;
-        }
-
         if (!$this->isValid()) {
             return false;
         }

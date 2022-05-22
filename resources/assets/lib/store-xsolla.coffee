@@ -10,10 +10,8 @@ export class StoreXsolla
     Promise.all([
       StoreXsolla.fetchToken(orderNumber), StoreXsolla.fetchScript()
     ]).then (values) ->
-      token = values[0]
-      options = StoreXsolla.optionsWithToken(token)
       StoreXsolla.onXsollaReady(orderNumber)
-      XPayStationWidget.init(options)
+      XPayStationWidget.init(values[0])
 
 
   @fetchScript: ->
@@ -25,15 +23,10 @@ export class StoreXsolla
       $.post route('payments.xsolla.token'), { orderNumber }
       .done (data) ->
         # Make sure laroute hasn't trolled us.
-        return reject(message: 'wrong token length') unless data.length == 32
+        return reject(message: 'wrong token length') unless data.access_token?.length == 32
         resolve(data)
       .fail (xhr) ->
         reject(xhr: xhr)
-
-
-  @optionsWithToken: (token) ->
-    access_token: token,
-    sandbox: process.env.PAYMENT_SANDBOX # injected by webpack.DefinePlugin
 
 
   @onXsollaReady: (orderNumber) ->

@@ -5,6 +5,10 @@ import UserGroupJson from 'interfaces/user-group-json';
 import UserJson from 'interfaces/user-json';
 import { action, makeObservable, observable } from 'mobx';
 
+export function normaliseUsername(username: string) {
+  return username.trim().toLowerCase();
+}
+
 export function usernameSortAscending(x: UserJson | User , y: UserJson | User) {
   return x.username.localeCompare(y.username);
 }

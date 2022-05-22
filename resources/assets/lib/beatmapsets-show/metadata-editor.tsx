@@ -5,44 +5,53 @@ import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
 import GenreJson from 'interfaces/genre-json';
 import LanguageJson from 'interfaces/language-json';
 import { route } from 'laroute';
+import { action, makeObservable, observable } from 'mobx';
+import { observer } from 'mobx-react';
 import * as React from 'react';
+import { onError } from 'utils/ajax';
 import { parseJson } from 'utils/json';
+import { getInt } from 'utils/math';
 
 interface Props {
   beatmapset: BeatmapsetJsonForShow;
   onClose: () => void;
 }
 
-interface State {
-  genreId: number;
-  isBusy: boolean;
-  languageId: number;
-  nsfw: boolean;
-  offset: string;
+let genresCache: GenreJson[];
+function genres() {
+  return genresCache ??= parseJson('json-genres');
 }
 
-export default class MetadataEditor extends React.PureComponent<Props, State> {
-  private genres = parseJson<GenreJson[]>('json-genres');
-  private languages = parseJson<LanguageJson[]>('json-languages');
+let languagesCache: LanguageJson[];
+function languages() {
+  return languagesCache ??= parseJson('json-languages');
+}
 
-  get numericOffset() {
-    if (this.state.offset !== '') {
-      const ret = Number(this.state.offset);
+@observer
+export default class MetadataEditor extends React.Component<Props> {
+  @observable private genreId: number;
+  @observable private languageId: number;
+  @observable private nsfw: boolean;
+  @observable private offset: string;
+  @observable private xhr: JQuery.jqXHR<BeatmapsetJsonForShow> | null = null;
 
-      if (Number.isInteger(ret)) return ret;
-    }
+  private get canEditOffset() {
+    return this.props.beatmapset.current_user_attributes.can_edit_offset;
   }
 
   constructor(props: Props) {
     super(props);
 
-    this.state = {
-      genreId: props.beatmapset.genre.id ?? 0,
-      isBusy: false,
-      languageId: props.beatmapset.language.id ?? 0,
-      nsfw: props.beatmapset.nsfw ?? false,
-      offset: props.beatmapset.offset.toString(),
-    };
+    this.genreId = this.props.beatmapset.genre.id ?? 0;
+    this.languageId = this.props.beatmapset.language.id ?? 0;
+    this.nsfw = this.props.beatmapset.nsfw ?? false;
+    this.offset = this.props.beatmapset.offset.toString();
+
+    makeObservable(this);
+  }
+
+  componentWillUnmount() {
+    this.xhr?.abort();
   }
 
   render() {
@@ -58,9 +67,9 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
               className='form-select__input'
               name='beatmapset[language_id]'
               onChange={this.setLanguageId}
-              value={this.state.languageId}
+              value={this.languageId}
             >
-              {this.languages.map((language) => (
+              {languages().map((language) => (
                 language.id === null ? null :
                   <option key={language.id} value={language.id}>
                     {language.name}
@@ -80,9 +89,9 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
               className='form-select__input'
               name='beatmapset[genre_id]'
               onChange={this.setGenreId}
-              value={this.state.genreId}
+              value={this.genreId}
             >
-              {this.genres.map((genre) => (
+              {genres().map((genre) => (
                 genre.id === null ? null :
                   <option key={genre.id} value={genre.id}>
                     {genre.name}
@@ -92,20 +101,22 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
           </div>
         </label>
 
-        <label className='simple-form__row'>
-          <div className='simple-form__label'>
-            {osu.trans('beatmapsets.show.info.offset')}
-          </div>
+        {this.canEditOffset &&
+          <label className='simple-form__row'>
+            <div className='simple-form__label'>
+              {osu.trans('beatmapsets.show.info.offset')}
+            </div>
 
-          <input
-            className='simple-form__input'
-            maxLength={6}
-            name='beatmapset[offset]'
-            onChange={this.setOffset}
-            type='text'
-            value={this.state.offset}
-          />
-        </label>
+            <input
+              className='simple-form__input'
+              maxLength={6}
+              name='beatmapset[offset]'
+              onChange={this.setOffset}
+              type='text'
+              value={this.offset}
+            />
+          </label>
+        }
 
         <div className='simple-form__row'>
           <div className='simple-form__label'>
@@ -114,7 +125,7 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
 
           <label className='osu-switch-v2'>
             <input
-              checked={this.state.nsfw}
+              checked={this.nsfw}
               className='osu-switch-v2__input'
               name='beatmapset[nsfw]'
               onChange={this.setNsfw}
@@ -129,7 +140,7 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
             <div className='simple-form__button'>
               <button
                 className='btn-osu-big btn-osu-big--rounded-thin'
-                disabled={this.state.isBusy}
+                disabled={this.xhr != null}
                 onClick={this.save}
                 type='button'
               >
@@ -140,7 +151,7 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
             <div className='simple-form__button'>
               <button
                 className='btn-osu-big btn-osu-big--rounded-thin'
-                disabled={this.state.isBusy}
+                disabled={this.xhr != null}
                 onClick={this.props.onClose}
                 type='button'
               >
@@ -153,40 +164,46 @@ export default class MetadataEditor extends React.PureComponent<Props, State> {
     );
   }
 
-  private save = () => {
-    this.setState({ isBusy: true });
-
-    $.ajax(route('beatmapsets.update', { beatmapset: this.props.beatmapset.id }), {
+  @action
+  private readonly save = () => {
+    this.xhr = $.ajax(route('beatmapsets.update', { beatmapset: this.props.beatmapset.id }), {
       data: { beatmapset: {
-        genre_id: this.state.genreId,
-        language_id: this.state.languageId,
-        nsfw: this.state.nsfw,
-        offset: this.numericOffset,
+        genre_id: this.genreId,
+        language_id: this.languageId,
+        nsfw: this.nsfw,
+        offset: this.canEditOffset ? getInt(this.offset) : undefined,
       } },
       method: 'PATCH',
-    }).done((beatmapset: BeatmapsetJsonForShow) => $.publish('beatmapset:set', { beatmapset }))
-      .fail(osu.ajaxError)
-      .always(() => this.setState({ isBusy: false }))
-      .done(this.props.onClose);
+    });
+    this.xhr.fail(onError).always(action(() => {
+      this.xhr = null;
+    })).done((beatmapset) => {
+      $.publish('beatmapset:set', { beatmapset });
+      this.props.onClose();
+    });
   };
 
-  private setGenreId = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    this.setState({ genreId: parseInt(e.currentTarget.value, 10) });
+  @action
+  private readonly setGenreId = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    this.genreId = parseInt(e.currentTarget.value, 10);
   };
 
-  private setLanguageId = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    this.setState({ languageId: parseInt(e.currentTarget.value, 10) });
+  @action
+  private readonly setLanguageId = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    this.languageId = parseInt(e.currentTarget.value, 10);
   };
 
-  private setNsfw = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ nsfw: e.currentTarget.checked });
+  @action
+  private readonly setNsfw = (e: React.ChangeEvent<HTMLInputElement>) => {
+    this.nsfw = e.currentTarget.checked;
   };
 
-  private setOffset = (e: React.ChangeEvent<HTMLInputElement>) => {
+  @action
+  private readonly setOffset = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value;
 
     if (/^-?\d*$/.test(value)) {
-      this.setState({ offset: value });
+      this.offset = value;
     }
   };
 }

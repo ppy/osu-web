@@ -250,6 +250,46 @@ class BeatmapsControllerTest extends TestCase
         $this->assertSame($beatmapsetEventCount, BeatmapsetEvent::count());
     }
 
+    /**
+     * @dataProvider dataProviderForTestUpdateOwnerLoved
+     */
+    public function testUpdateOwnerLoved(int $approved, bool $ok): void
+    {
+        $moderator = User::factory()->withGroup('loved')->create();
+        $this->beatmap->beatmapset->update([
+            'approved' => $approved,
+            'approved_date' => now(),
+        ]);
+
+        $this->expectCountChange(fn () => BeatmapsetEvent::count(), $ok ? 1 : 0);
+        $expectedOwner = $ok ? $this->user->getKey() : $this->beatmap->fresh()->user_id;
+
+        $this->actingAsVerified($moderator)
+            ->json('PUT', route('beatmaps.update-owner', $this->beatmap), [
+                'beatmap' => ['user_id' => $this->user->getKey()],
+            ])->assertStatus($ok ? 200 : 403);
+
+        $this->assertSame($expectedOwner, $this->beatmap->fresh()->user_id);
+    }
+
+    public function testUpdateOwnerModerator(): void
+    {
+        $moderator = User::factory()->withGroup('nat')->create();
+        $this->beatmap->beatmapset->update([
+            'approved' => Beatmapset::STATES['ranked'],
+            'approved_date' => now(),
+        ]);
+
+        $this->expectCountChange(fn () => BeatmapsetEvent::count(), 1);
+
+        $this->actingAsVerified($moderator)
+            ->json('PUT', route('beatmaps.update-owner', $this->beatmap), [
+                'beatmap' => ['user_id' => $this->user->getKey()],
+            ])->assertSuccessful();
+
+        $this->assertSame($this->user->getKey(), $this->beatmap->fresh()->user_id);
+    }
+
     public function testUpdateOwnerNotOwner(): void
     {
         $otherUser = User::factory()->create();
@@ -298,6 +338,16 @@ class BeatmapsControllerTest extends TestCase
             'checksum' => ['checksum', fn (Beatmap $b) => $b->checksum],
             'filename' => ['filename', fn (Beatmap $b) => $b->filename],
             'id' => ['id', fn (Beatmap $b) => $b->getKey()],
+        ];
+    }
+
+    public function dataProviderForTestUpdateOwnerLoved(): array
+    {
+        return [
+            [Beatmapset::STATES['graveyard'], true],
+            [Beatmapset::STATES['loved'], true],
+            [Beatmapset::STATES['ranked'], false],
+            [Beatmapset::STATES['wip'], false],
         ];
     }
 

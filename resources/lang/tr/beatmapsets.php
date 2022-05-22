@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Bu beatmap üzerinde yer alan bazı varlıklar osu!\'da kullanıma uygun olmadığına karar verildikten sonra kaldırıldı.',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Yavaş ol, daha çok oyna.',
     ],
@@ -121,6 +125,7 @@ return [
             'language' => 'Dil',
             'no_scores' => 'Veriler hala hesaplanıyor...',
             'nsfw' => 'Müstehcen içerik',
+            'offset' => '',
             'points-of-failure' => 'Başarısız Olunan Kısımlar',
             'source' => 'Kaynak',
             'storyboard' => 'Bu beatmap storyboard içeriyor',
@@ -192,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Daire Sayısı',
             'count_sliders' => 'Slider Sayısı',
+            'offset' => '',
             'user-rating' => 'Kullanıcı Reytingi',
             'rating-spread' => 'Reyting Dağılımı',
             'nominations' => 'Adaylıklar',
@@ -207,5 +213,9 @@ return [
             'pending' => 'Beklemede',
             'graveyard' => 'Mezarlıkta',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

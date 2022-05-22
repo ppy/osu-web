@@ -11,6 +11,10 @@ return [
         'rule_violation' => '已在审核后移除了谱面中不适合于 osu! 展示的内容。',
     ],
 
+    'cover' => [
+        'deleted' => '已删除的谱面',
+    ],
+
     'download' => [
         'limit_exceeded' => '慢一点，打几张图再回来吧。',
     ],
@@ -57,7 +61,7 @@ return [
         'discussion' => '讨论',
 
         'details' => [
-            'by_artist' => '曲师：:artist',
+            'by_artist' => 'by :artist',
             'favourite' => '收藏这张谱面',
             'favourite_login' => '登录以收藏这张谱面',
             'logged-out' => '下载谱面前请先登录！',
@@ -121,6 +125,7 @@ return [
             'language' => '语言',
             'no_scores' => '数据还在计算中。。。',
             'nsfw' => '少儿不宜内容',
+            'offset' => '在线偏移值',
             'points-of-failure' => '失败位置',
             'source' => '来源',
             'storyboard' => '此谱面包含故事板',
@@ -192,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => '圆圈总数',
             'count_sliders' => '滑条总数',
+            'offset' => '在线偏移值：:offset',
             'user-rating' => '玩家评价',
             'rating-spread' => '评分情况',
             'nominations' => '提名状态',
@@ -207,5 +213,9 @@ return [
             'pending' => 'Pending',
             'graveyard' => 'Graveyard',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

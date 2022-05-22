@@ -22,7 +22,7 @@ return [
         'advanced_link' => 'Pokročilé vyhledávání',
         'button' => 'Hledat',
         'empty_result' => 'Nebylo nic nenalezeno!',
-        'keyword_required' => '',
+        'keyword_required' => 'Je vyžadováno hledané slovo',
         'placeholder' => 'zadejte hledaný výraz',
         'title' => 'hledat',
 

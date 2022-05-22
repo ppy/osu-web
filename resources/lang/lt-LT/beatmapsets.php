@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => '',
     ],
@@ -121,6 +125,7 @@ return [
             'language' => 'Kalba',
             'no_scores' => '',
             'nsfw' => '',
+            'offset' => '',
             'points-of-failure' => '',
             'source' => 'Šaltinis',
             'storyboard' => '',
@@ -192,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Apskritimų skaičius',
             'count_sliders' => '',
+            'offset' => '',
             'user-rating' => 'Narių įvertinimas',
             'rating-spread' => 'Vertimų išsidėstymas',
             'nominations' => '',
@@ -207,5 +213,9 @@ return [
             'pending' => '',
             'graveyard' => '',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

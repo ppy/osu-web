@@ -8,7 +8,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "سجل اقتراحات :user",
-        'title_compact' => 'الإقتراحات',
+        'title_compact' => 'تقديم الإقتِراحات',
 
         'discussions' => [
             'title_recent' => 'المناقشات التي بدأت مؤخرا',
@@ -160,8 +160,8 @@ return [
             'count' => ':count_delimited تعليق|:count_delimited تعليقات',
         ],
         'cover' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'إخفاء الغلاف',
+            'to_1' => 'إظهار الغلاف',
         ],
         'edit' => [
             'cover' => [
@@ -208,14 +208,17 @@ return [
                 'graveyard' => [
                     'title' => 'الخرائط المقبورة',
                 ],
+                'guest' => [
+                    'title' => 'خرائط من مشاركات الضيف',
+                ],
                 'loved' => [
-                    'title' => 'الخرائط المُحَبَبة',
+                    'title' => 'خرائط Loved',
                 ],
                 'pending' => [
                     'title' => 'الخرائط المعلقة',
                 ],
                 'ranked' => [
-                    'title' => 'الخرائط المصفوفة والمقبولة',
+                    'title' => 'الخرائط الـ Ranked',
                 ],
             ],
             'discussions' => [
@@ -244,8 +247,8 @@ return [
                     'title' => 'الخرائط الملعوبة اخر (24 ساعة)',
                 ],
                 'replays_watched_counts' => [
-                    'title' => 'تاريخ مشاهدات النتائج',
-                    'count_label' => 'مشاهدات النتائج',
+                    'title' => 'تاريخ مشاهدات الـ Replays',
+                    'count_label' => 'الـ Replays التي شاهدتها',
                 ],
             ],
             'kudosu' => [
@@ -306,7 +309,7 @@ return [
                 'title' => 'الاوسمة',
             ],
             'playlists' => [
-                'title' => '',
+                'title' => 'العاب قائمة التشغيل',
             ],
             'posts' => [
                 'title' => 'المنشورات',
@@ -317,11 +320,11 @@ return [
                 'title' => 'الأخيرة',
             ],
             'realtime' => [
-                'title' => '',
+                'title' => 'ألـ ألعاب الجماعية',
             ],
             'top_ranks' => [
-                'download_replay' => 'تحميل النتيجة',
-                'not_ranked' => 'فقط الخرائط المصفوفة تعطي نقاط خبرة.',
+                'download_replay' => 'تحميل الـ Replay',
+                'not_ranked' => 'فقط الخرائط الـ Ranked تعطي نقاط خبرة',
                 'pp_weight' => 'موزون :percentage',
                 'view_details' => 'عرض التفاصيل',
                 'title' => 'النتائج',
@@ -333,13 +336,13 @@ return [
                     'title' => 'المراكز الاولى',
                 ],
                 'pin' => [
-                    'to_0' => '',
-                    'to_0_done' => '',
-                    'to_1' => '',
-                    'to_1_done' => '',
+                    'to_0' => 'إزالة التثبيت',
+                    'to_0_done' => 'نتيجة غير مثبتة',
+                    'to_1' => 'تثبيت',
+                    'to_1_done' => 'نتيجة مثبتة',
                 ],
                 'pinned' => [
-                    'title' => '',
+                    'title' => 'النتائج المثبتة',
                 ],
             ],
             'votes' => [
@@ -412,20 +415,20 @@ return [
             'hit_accuracy' => 'دقة التصويب',
             'level' => 'المستوى :level',
             'level_progress' => 'التقدم للمستوى التالي',
-            'maximum_combo' => 'السرد الأقصى',
+            'maximum_combo' => 'اقصى كومبو',
             'medals' => 'الاوسمة',
             'play_count' => 'مرات اللعب',
             'play_time' => 'وقت اللعب الإجمالي',
-            'ranked_score' => 'نقاط الترتيب',
-            'replays_watched_by_others' => 'النتائج التي شوهدت بواسطة الاخرين',
+            'ranked_score' => 'عدد نقاط الـ Ranked',
+            'replays_watched_by_others' => 'الـ Replays التي شاهدها الأخرون',
             'score_ranks' => 'ترتيب النقاط',
             'total_hits' => 'مجموع التصويبات',
             'total_score' => 'مجموع النقاط',
             // modding stats
             'graveyard_beatmapset_count' => 'الخرائط المقبورة',
-            'loved_beatmapset_count' => 'الخرائط المُحَبَبة',
+            'loved_beatmapset_count' => 'خرائط Loved',
             'pending_beatmapset_count' => 'الخرائط المعلقة',
-            'ranked_beatmapset_count' => 'الخرائط المصفوفة والمقبولة',
+            'ranked_beatmapset_count' => 'الخرائط الـ Ranked',
         ],
     ],
 

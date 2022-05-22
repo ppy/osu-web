@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'deleted' => '[被删除的用户]',
+    'deleted' => '[已删除的用户]',
 
     'beatmapset_activities' => [
         'title' => ":user 的摸图历史",
@@ -160,8 +160,8 @@ return [
             'count' => ':count_delimited 条评论',
         ],
         'cover' => [
-            'to_0' => '隐藏头图',
-            'to_1' => '显示头图',
+            'to_0' => '隐藏封面',
+            'to_1' => '显示封面',
         ],
         'edit' => [
             'cover' => [
@@ -199,7 +199,7 @@ return [
                 'title' => '成就',
             ],
             'beatmaps' => [
-                'by_artist' => '曲师：:artist',
+                'by_artist' => 'by :artist',
                 'title' => '谱面',
 
                 'favourite' => [
@@ -207,6 +207,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => '已停更的谱面',
+                ],
+                'guest' => [
+                    'title' => '参与客串制作的谱面',
                 ],
                 'loved' => [
                     'title' => 'Loved 的谱面',

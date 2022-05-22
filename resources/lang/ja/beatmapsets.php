@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'このマップに含まれる一部のアセットは、osu!での使用に適さないと判断され、削除されています。',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => 'スピードを落として、もっと遊ぼう。',
     ],
@@ -121,6 +125,7 @@ return [
             'language' => '言語',
             'no_scores' => 'データはまだ計算中です・・・',
             'nsfw' => '過激な表現を含むコンテンツ',
+            'offset' => '',
             'points-of-failure' => '失敗地点',
             'source' => 'ソース',
             'storyboard' => 'このビートマップにはストーリーボードが含まれています',
@@ -192,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'サークルの数',
             'count_sliders' => 'スライダーの数',
+            'offset' => '',
             'user-rating' => 'ユーザーの評価',
             'rating-spread' => '評価分布',
             'nominations' => 'ノミネーション',
@@ -207,5 +213,9 @@ return [
             'pending' => 'Pending',
             'graveyard' => 'Graveyard',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

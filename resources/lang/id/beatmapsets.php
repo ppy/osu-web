@@ -11,8 +11,12 @@ return [
         'rule_violation' => 'Sebagian aset yang terkandung dalam berkas beatmap ini telah dihapus setelah tim kami memutuskan bahwa aset-aset yang bersangkutan tidak layak untuk osu!.',
     ],
 
+    'cover' => [
+        'deleted' => 'Beatmap yang telah dihapus',
+    ],
+
     'download' => [
-        'limit_exceeded' => 'Jangan terlalu bernafsu dalam mengunduh. Harap mainkan beatmap-beatmap yang telah Anda miliki terlebih dahulu.',
+        'limit_exceeded' => 'Jangan terlalu bernafsu dalam mengunduh. Mainkan beatmap yang telah Anda miliki terlebih dahulu.',
     ],
 
     'featured_artist_badge' => [
@@ -121,6 +125,7 @@ return [
             'language' => 'Bahasa',
             'no_scores' => 'Data sedang diproses...',
             'nsfw' => 'Konten eksplisit',
+            'offset' => 'Offset online',
             'points-of-failure' => 'Titik-Titik Kegagalan',
             'source' => 'Sumber',
             'storyboard' => 'Beatmap ini menyertakan storyboard',
@@ -183,7 +188,7 @@ return [
 
         'stats' => [
             'cs' => 'Circle Size',
-            'cs-mania' => 'Key Amount',
+            'cs-mania' => 'Jumlah Key',
             'drain' => 'HP Drain',
             'accuracy' => 'Accuracy',
             'ar' => 'Approach Rate',
@@ -192,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Jumlah Circle',
             'count_sliders' => 'Jumlah Slider',
+            'offset' => 'Offset online: :offset',
             'user-rating' => 'Nilai Pengguna',
             'rating-spread' => 'Persebaran Nilai Pengguna',
             'nominations' => 'Nominasi',
@@ -207,5 +213,9 @@ return [
             'pending' => 'Pending',
             'graveyard' => 'Graveyard',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

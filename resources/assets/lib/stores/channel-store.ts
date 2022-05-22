@@ -1,9 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import {
-  ChatMessageSendAction,
-} from 'actions/chat-message-send-action';
+import { ChatMessageSendAction } from 'actions/chat-message-send-action';
 import { ChatNewConversationAdded } from 'actions/chat-new-conversation-added';
 import ChatUpdateSilences from 'actions/chat-update-silences';
 import DispatcherAction from 'actions/dispatcher-action';
@@ -19,6 +17,7 @@ import { action, computed, makeObservable, observable, runInAction } from 'mobx'
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
+import { onError } from 'utils/ajax';
 
 function alphabeticalSort(a: Channel, b: Channel) {
   return a.name.localeCompare(b.name);
@@ -278,7 +277,8 @@ export default class ChannelStore implements DispatchListener {
     } catch (error) {
       channel.afterSendMesssage(message, null);
       // FIXME: this seems like the wrong place to tigger an error popup.
-      osu.ajaxError(error);
+      // FIXME: error is typed as any
+      onError(error);
     }
   }
 

@@ -4,6 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'mixture' => '',
-    'required' => '',
+    'mixture' => ':attribute nestaje broj ili slovo',
+    'required' => ':attribute je potreban',
 ];

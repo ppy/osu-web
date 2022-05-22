@@ -208,6 +208,9 @@ return [
                 'graveyard' => [
                     'title' => 'Mapas Abandonados',
                 ],
+                'guest' => [
+                    'title' => 'Mapas con participación de invitados',
+                ],
                 'loved' => [
                     'title' => 'Mapas Amados',
                 ],

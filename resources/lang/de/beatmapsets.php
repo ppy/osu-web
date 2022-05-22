@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Einige in dieser Beatmap enthaltene Assets wurden entfernt, nachdem sie als nicht für die Verwendung in osu! geeignet eingestuft worden waren.',
     ],
 
+    'cover' => [
+        'deleted' => 'Gelöschte Beatmap',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Nur langsam, spiel mehr.',
     ],
@@ -121,6 +125,7 @@ return [
             'language' => 'Sprache',
             'no_scores' => 'Die Daten werden noch verarbeitet...',
             'nsfw' => 'Expliziter Inhalt',
+            'offset' => 'Online-Offset',
             'points-of-failure' => 'Stellen, an denen Spieler gescheitert sind',
             'source' => 'Quelle',
             'storyboard' => 'Diese Beatmap enthält ein Storyboard',
@@ -143,7 +148,7 @@ return [
         'scoreboard' => [
             'achieved' => 'erreicht :when',
             'country' => 'Landesrangliste',
-            'error' => '',
+            'error' => 'Die Rangliste konnte nicht geladen werden',
             'friend' => 'Freundesrangliste',
             'global' => 'Globale Rangliste',
             'supporter-link' => '<a href=":link">Hier</a> klicken, um alle tollen Features zu entdecken!',
@@ -192,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Circle-Anzahl',
             'count_sliders' => 'Slider-Anzahl',
+            'offset' => 'Online-Offset: :offset',
             'user-rating' => 'Benutzerbewertungen',
             'rating-spread' => 'Bewertungsverteilung',
             'nominations' => 'Nominierungen',
@@ -207,5 +213,9 @@ return [
             'pending' => 'Ausstehend',
             'graveyard' => 'Friedhof',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

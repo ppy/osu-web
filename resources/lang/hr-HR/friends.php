@@ -5,11 +5,11 @@
 
 return [
     'title_compact' => 'prijatelji',
-    'too_many' => '',
+    'too_many' => 'Dosegnuto je ograničenje prijatelja',
 
     'buttons' => [
-        'add' => '',
-        'disabled' => '',
-        'remove' => '',
+        'add' => 'dodaj prijatelja',
+        'disabled' => 'pratitelji',
+        'remove' => 'ukloni prijatelja',
     ],
 ];

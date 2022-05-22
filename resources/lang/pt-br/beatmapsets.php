@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Alguns arquivos contidos neste mapa foram removidos depois de serem julgados como não sendo adequados para uso no osu!.',
     ],
 
+    'cover' => [
+        'deleted' => 'Beatmap excluído',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Vá devagar, jogue mais.',
     ],
@@ -121,6 +125,7 @@ return [
             'language' => 'Idioma',
             'no_scores' => 'Dados ainda sendo calculados...',
             'nsfw' => 'Conteúdo explícito',
+            'offset' => 'Atraso de áudio online',
             'points-of-failure' => 'Pontos de Falha',
             'source' => 'Fonte',
             'storyboard' => 'Este beatmap contém storyboard',
@@ -192,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Quantidade de Círculos',
             'count_sliders' => 'Quantidade de Sliders',
+            'offset' => 'Atraso de áudio online: :offset',
             'user-rating' => 'Avaliação',
             'rating-spread' => 'Gráfico de Avaliações',
             'nominations' => 'Nomeações',
@@ -207,5 +213,9 @@ return [
             'pending' => 'Pendente',
             'graveyard' => 'Cemitério',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

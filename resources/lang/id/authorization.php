@@ -74,6 +74,9 @@ return [
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => '',
+        ],
         'update' => [
             'deleted' => "Tidak dapat menyunting post yang telah dihapus.",
         ],
@@ -111,7 +114,7 @@ return [
 
             'store' => [
                 'play_more' => 'Anda harus memainkan beberapa beatmap dahulu sebelum Anda dapat memposting di forum! Jika Anda memiliki permasalahan yang terkait dengan permainan, silakan kunjungi forum Help & Support.',
-                'too_many_help_posts' => "Anda harus memainkan lebih banyak beatmap sebelum Anda dapat membuat postingan tambahan. Jika Anda masih membutuhkan bantuan lebih lanjut, silakan mengirimkan email ke support@ppy.sh", // FIXME: unhardcode email address.
+                'too_many_help_posts' => "Anda harus lebih banyak bermain sebelum Anda dapat membuat postingan tambahan. Apabila Anda masih membutuhkan bantuan lebih lanjut, silakan kirim email ke support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
@@ -138,7 +141,7 @@ return [
             'vote' => [
                 'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin Anda tuju.',
                 'over' => 'Polling selesai dan tidak dapat dipilih lagi.',
-                'play_more' => 'Anda harus bermain lebih banyak untuk dapat memberikan suara pada forum.',
+                'play_more' => 'Anda harus lebih banyak bermain sebelum Anda dapat memberikan suara pada forum.',
                 'voted' => 'Pengubahan suara tidak diizinkan.',
 
                 'user' => [

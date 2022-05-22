@@ -208,6 +208,9 @@ return [
                 'graveyard' => [
                     'title' => 'Beatmap Abbandonate',
                 ],
+                'guest' => [
+                    'title' => 'Beatmap Partecipazione Ospite',
+                ],
                 'loved' => [
                     'title' => 'Beatmap Amate',
                 ],
@@ -321,7 +324,7 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Scarica Replay',
-                'not_ranked' => 'Solo le mappe classificate danno pp.',
+                'not_ranked' => 'Solo le beatmap classificate conferiscono pp',
                 'pp_weight' => 'valutata :percentage',
                 'view_details' => 'Visualizza Dettagli',
                 'title' => 'Rank',

@@ -3,7 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
-    $username = $score->user === null || $score->user->isDeleted() ? osu_trans('users.deleted') : $score->user->username;
+    $username = $score->user === null || $score->user->trashed() ? osu_trans('users.deleted') : $score->user->username;
     $title = osu_trans('scores.show.title', [
         'username' => $username,
         'title' => $score->beatmap->beatmapset->getDisplayTitle(auth()->user()),

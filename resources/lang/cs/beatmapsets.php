@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Některé assety obsažené v této mapě byly odstraněny poté, co byly posouzeny jako nevhodné pro použití v osu!.',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Zpomal, více hraj.',
     ],
@@ -121,6 +125,7 @@ return [
             'language' => 'Jazyk',
             'no_scores' => 'Data se vypočítávají...',
             'nsfw' => 'Explicitní obsah',
+            'offset' => 'Online offset',
             'points-of-failure' => 'Body neúspěchů',
             'source' => 'Zdroj',
             'storyboard' => 'Tato beatmapa obsahuje storyboard',
@@ -192,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Počet koleček',
             'count_sliders' => 'Počet sliderů',
+            'offset' => 'Online offset: :offset',
             'user-rating' => 'Uživatelské hodnocení',
             'rating-spread' => 'Graf hodnocení',
             'nominations' => 'Nominace',
@@ -207,5 +213,9 @@ return [
             'pending' => 'Nevyřízené',
             'graveyard' => 'Hřbitov',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

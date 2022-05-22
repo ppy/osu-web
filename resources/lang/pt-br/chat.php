@@ -13,9 +13,20 @@ return [
         'user' => 'Você não pode conversar com este usuário no momento. Isso pode ter ocorrido pelos seguintes motivos:',
     ],
 
+    'channels' => [
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => 'Comunicados',
+                'GROUP' => 'Grupos',
+                'PM' => 'Mensagens diretas',
+                'PUBLIC' => 'Canais',
+            ],
+        ],
+    ],
+
     'not_found' => [
-        'message' => '',
-        'title' => '',
+        'message' => 'Não há nada aqui, talvez você tenha saído do canal ou ele não existe...',
+        'title' => 'canal não encontrado',
     ],
 
     'input' => [

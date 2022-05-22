@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'חלק מהקבצים של המפה הוסרו אחרי שהגדרו כלא מתאימים לשימוש ב-!osu.',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => '',
     ],
@@ -121,6 +125,7 @@ return [
             'language' => 'שפה',
             'no_scores' => 'נתונים עדיין מחושבים...',
             'nsfw' => '',
+            'offset' => '',
             'points-of-failure' => 'נקודות כשל',
             'source' => 'מקור',
             'storyboard' => '',
@@ -192,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'מספר עיגולים',
             'count_sliders' => 'מספר סליידרים',
+            'offset' => '',
             'user-rating' => 'דירוג משתמשים',
             'rating-spread' => 'התפרסות דירוג',
             'nominations' => 'מינויים',
@@ -207,5 +213,9 @@ return [
             'pending' => 'בהמתנה',
             'graveyard' => 'ננטש',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Vissa delar av denna map har tagits bort då de anses vara olämpliga i osu!.',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Sakta ner, spela mer.',
     ],
@@ -121,6 +125,7 @@ return [
             'language' => 'Språk',
             'no_scores' => 'Data beräknas...',
             'nsfw' => 'Explicit innehåll',
+            'offset' => '',
             'points-of-failure' => 'Punkter av Misslyckande',
             'source' => 'Källa',
             'storyboard' => 'Denna beatmap innehåller storyboard',
@@ -192,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Cirkelantal',
             'count_sliders' => 'Sliderantal',
+            'offset' => '',
             'user-rating' => 'Användarbetyg',
             'rating-spread' => 'Betygsspridning',
             'nominations' => 'Nomineringar',
@@ -207,5 +213,9 @@ return [
             'pending' => 'Väntande',
             'graveyard' => 'Kyrkogård',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

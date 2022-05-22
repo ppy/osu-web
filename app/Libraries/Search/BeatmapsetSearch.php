@@ -74,6 +74,7 @@ class BeatmapsetSearch extends RecordSearch
         $this->addExtraFilter($query);
         $this->addNsfwFilter($query);
         $this->addRankedFilter($query);
+        $this->addSpotlightsFilter($query);
         $this->addStatusFilter($query);
 
         $nested = new BoolQuery();
@@ -297,6 +298,13 @@ class BeatmapsetSearch extends RecordSearch
 
             $q = substr($options['field'], 0, $nestedPrefixLength) === $nestedPrefix ? $nested : $query;
             $q->filter([$options['type'] => [$options['field'] => $this->params->$prop]]);
+        }
+    }
+
+    private function addSpotlightsFilter($query)
+    {
+        if ($this->params->showSpotlights) {
+            $query->filter(['term' => ['spotlight' => true]]);
         }
     }
 

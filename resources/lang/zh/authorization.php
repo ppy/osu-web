@@ -5,7 +5,7 @@
 
 return [
     'play_more' => '为何不先玩几局 osu! 呢？',
-    'require_login' => '登录以继续。',
+    'require_login' => '请先登录以继续。',
     'require_verification' => '请验证以继续。',
     'restricted' => "账户处于限制模式，无法进行该操作。",
     'silenced' => "账户被禁言，无法进行该操作。",
@@ -32,7 +32,7 @@ return [
 
         'vote' => [
             'bot' => "不能对机器人的讨论投票",
-            'limit_exceeded' => '在投更多票之前请稍等一会。',
+            'limit_exceeded' => '请稍等后再投票。',
             'owner' => "不能为自己的讨论投票！",
             'wrong_beatmapset_state' => '只能给 pending 谱面的讨论投票。',
         ],
@@ -74,6 +74,9 @@ return [
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => '',
+        ],
         'update' => [
             'deleted' => "无法编辑已删除的回复。",
         ],

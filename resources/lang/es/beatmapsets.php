@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Algunos de los elementos contenidos en este mapa han sido eliminados después de ser considerados no aptos para su uso en osu!.',
     ],
 
+    'cover' => [
+        'deleted' => 'Mapa eliminado',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Reduzca la velocidad, juegue más.',
     ],
@@ -121,6 +125,7 @@ return [
             'language' => 'Idioma',
             'no_scores' => 'Los datos todavía están siendo calculados...',
             'nsfw' => 'Contenido explícito',
+            'offset' => 'Compensación en línea',
             'points-of-failure' => 'Puntos de fracaso',
             'source' => 'Fuente',
             'storyboard' => 'Este mapa contiene storyboard',
@@ -192,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Número de círculos',
             'count_sliders' => 'Número de deslizadores',
+            'offset' => 'Compensación en línea: :offset',
             'user-rating' => 'Valoración de los usuarios',
             'rating-spread' => 'Desglose de valoraciones',
             'nominations' => 'Nominaciones',
@@ -207,5 +213,9 @@ return [
             'pending' => 'Pendiente',
             'graveyard' => 'Abandonado',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

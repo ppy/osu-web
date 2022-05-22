@@ -7,10 +7,10 @@ return [
     'pinned_topics' => 'Subiecte fixate',
     'slogan' => "este periculos să te joci singur.",
     'subforums' => 'Subforumuri',
-    'title' => 'forumuri osu!',
+    'title' => 'Forumuri osu!',
 
     'covers' => [
-        'edit' => 'Editare copertă',
+        'edit' => 'Editează coperta',
 
         'create' => [
             '_' => 'Setează imaginea de copertă',
@@ -47,12 +47,12 @@ return [
         'confirm_restore' => 'Sigur dorești să restaurezi postarea?',
         'edited' => 'Editat ultima dată de către :user :when, editat de :count ori în total.',
         'posted_at' => 'postat :when',
-        'posted_by' => '',
+        'posted_by' => 'postat de :username',
 
         'actions' => [
             'destroy' => 'Șterge postarea',
             'edit' => 'Editează postarea',
-            'report' => '',
+            'report' => 'Raportați postarea',
             'restore' => 'Restaurează postarea',
         ],
 
@@ -75,8 +75,8 @@ return [
     ],
 
     'topic' => [
-        'confirm_destroy' => '',
-        'confirm_restore' => '',
+        'confirm_destroy' => 'Sigur dorești să ștergi postarea?',
+        'confirm_restore' => 'Sigur dorești să restaurezi postarea?',
         'deleted' => 'subiect șters',
         'go_to_latest' => 'vezi cea mai recentă postare',
         'has_replied' => 'Ai răspuns în acest topic',
@@ -92,8 +92,8 @@ return [
         'started_by_verbose' => 'început de :user',
 
         'actions' => [
-            'destroy' => '',
-            'restore' => '',
+            'destroy' => 'Ștergeți subiectul',
+            'restore' => 'Restaurați subiectul',
         ],
 
         'create' => [
@@ -109,13 +109,13 @@ return [
 
                 'new_topic' => [
                     '_' => "Acest subiect a fost inactiv pentru o vreme. Dacă nu ai un motiv specific pentru a posta aici, te rugăm să :create în schimb.",
-                    'create' => 'creezi un subiect nou',
+                    'create' => 'crează un subiect nou',
                 ],
             ],
 
             'placeholder' => [
                 'body' => 'Introdu conținutul postării aici',
-                'title' => 'Click aici pentru a stabili un titlu',
+                'title' => 'Apasă aici pentru a stabili un titlu',
             ],
         ],
 
@@ -123,56 +123,56 @@ return [
             'enter' => 'click pentru a introduce numărul postării',
             'first' => 'mergi la prima postare',
             'last' => 'mergi la ultima postare',
-            'next' => 'sari peste următoarele 10 postări',
+            'next' => 'sari peste 10 postări',
             'previous' => 'mergi înapoi 10 postări',
         ],
 
         'logs' => [
-            '_' => '',
-            'button' => '',
+            '_' => 'Jurnal subiecte',
+            'button' => 'Răsfoiți jurnal cu subiecte',
 
             'columns' => [
-                'action' => '',
-                'date' => '',
-                'user' => '',
+                'action' => 'Acțiune ',
+                'date' => 'Dată ',
+                'user' => 'Utilizator',
             ],
 
             'data' => [
-                'add_tag' => '',
-                'announcement' => '',
-                'edit_topic' => '',
-                'fork' => '',
-                'pin' => '',
-                'post_operation' => '',
-                'remove_tag' => '',
-                'source_forum_operation' => '',
-                'unpin' => '',
+                'add_tag' => 'adăugat eticheta ":tag"',
+                'announcement' => 'subiect fixat şi marcat ca anunţ',
+                'edit_topic' => 'către :title',
+                'fork' => 'din :topic',
+                'pin' => 'subiect fixat',
+                'post_operation' => 'postat de :username',
+                'remove_tag' => 'eliminat eticheta ":tag"',
+                'source_forum_operation' => 'din :forum',
+                'unpin' => 'subiect nefixat ',
             ],
 
-            'no_results' => '',
+            'no_results' => 'niciun jurnal găsit...',
 
             'operations' => [
-                'delete_post' => '',
-                'delete_topic' => '',
-                'edit_topic' => '',
-                'edit_poll' => '',
-                'fork' => '',
-                'issue_tag' => '',
-                'lock' => '',
-                'merge' => '',
-                'move' => '',
-                'pin' => '',
-                'post_edited' => '',
-                'restore_post' => '',
-                'restore_topic' => '',
-                'split_destination' => '',
-                'split_source' => '',
-                'topic_type' => '',
-                'topic_type_changed' => '',
-                'unlock' => '',
-                'unpin' => '',
-                'user_lock' => '',
-                'user_unlock' => '',
+                'delete_post' => 'Postare ștearsă',
+                'delete_topic' => 'Subiect șters ',
+                'edit_topic' => 'Subiectul titlului a fost modificat',
+                'edit_poll' => 'Sondaj subiect modificat',
+                'fork' => 'Subiect copiat',
+                'issue_tag' => 'Etichetă publicată ',
+                'lock' => 'Subiect închis ',
+                'merge' => 'Postări unite în acest subiect',
+                'move' => 'Subiect mutat',
+                'pin' => 'Subiect fixat',
+                'post_edited' => 'Postare editată ',
+                'restore_post' => 'Postare restaurată ',
+                'restore_topic' => 'Subiect restaurat ',
+                'split_destination' => 'Mesaje separate mutate',
+                'split_source' => 'Separă postările ',
+                'topic_type' => 'Setează tipul subiectului ',
+                'topic_type_changed' => 'Tipul subiectului a fost modificat',
+                'unlock' => 'Subiect deschis',
+                'unpin' => 'Subiect nefixat',
+                'user_lock' => 'Subiect propriu închis',
+                'user_unlock' => 'Subiect propriu deschis',
             ],
         ],
 

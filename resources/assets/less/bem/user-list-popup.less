@@ -2,53 +2,30 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .user-list-popup {
-  @avatar-size: 32px;
-  @avatar-margin: 1px;
-  @columns: 10;
-  @columns-mobile: 5;
-
-  z-index: @z-index--user-card-tooltip !important;
-
-  background-color: hsla(var(--hsl-b6), 0.75);
-  color: white;
+  color: hsl(var(--hsl-c1));
   font-size: @font-size--normal;
-  max-width: ((@avatar-size + 2*@avatar-margin) * @columns) + 20px;
-  padding: 5px;
+  display: grid;
+  gap: 10px;
+  --columns: 5;
 
-  .default-border-radius();
-  .default-box-shadow();
-
-  @media @mobile {
-    max-width: ((@avatar-size + 2*@avatar-margin) * @columns-mobile) + 20px;
-  }
-
-  // for when it's inside another container (for example qtip)
-  &--blank {
-    background-color: transparent;
-    padding: 0;
-    box-shadow: none;
-  }
-
-  &__title {
-    margin-bottom: 10px;
+  @media @desktop  {
+    --columns: 10;
   }
 
   &__user {
     .default-border-radius();
-    display: inline-block;
-    width: @avatar-size;
-    height: @avatar-size;
-    margin: 0px @avatar-margin;
+    width: 32px;
+    height: $width;
     overflow: hidden;
+  }
+
+  &__users {
+    display: grid;
+    grid-template-columns: repeat(var(--columns), auto);
+    gap: 2px;
   }
 
   &__remainder-count {
     text-align: right;
-    margin-top: 5px;
-  }
-
-  // fix qtip's padding
-  .qtip-content {
-    padding: 5px;
   }
 }

@@ -13,6 +13,20 @@ jobs:
         name: Checkout
         uses: actions/checkout@v2
       -
+        name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          # list of Docker images to use as base name for tags
+          images: |
+            pppy/osu-web
+          # generate Docker tags based on the following events/attributes
+          tags: |
+            type=raw,value=latest,enable=${{ !contains(github.ref_name, '-') }}
+            type=raw,value=${{ github.ref_name }}
+          flavor: |
+            latest=false
+      -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       -
@@ -25,8 +39,24 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v2
         with:
+          build-args: |
+            "APP_URL=https://osu.ppy.sh"
+            "DOCS_URL=https://osu.ppy.sh/docs/"
+            "GIT_SHA=${{ github.ref_name }}"
           context: .
           file: ./Dockerfile.deployment
           platforms: linux/amd64
           push: true
-          tags: pppy/osu-web:latest,pppy/osu-web:${{ github.event.release.tag_name }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Create Sentry release
+        uses: getsentry/action-release@v1
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ppy
+          SENTRY_PROJECT: osu-web
+          SENTRY_URL: https://sentry.ppy.sh/
+        with:
+          environment: production
+          version: ${{ github.ref }}

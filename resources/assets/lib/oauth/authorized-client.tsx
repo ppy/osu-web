@@ -7,6 +7,7 @@ import { UserLink } from 'components/user-link';
 import { observer } from 'mobx-react';
 import { Client } from 'models/oauth/client';
 import * as React from 'react';
+import { onError } from 'utils/ajax';
 
 interface Props {
   client: Client;
@@ -73,6 +74,6 @@ export class AuthorizedClient extends React.Component<Props> {
   revokeClicked = () => {
     if (!confirm(osu.trans('oauth.authorized_clients.confirm_revoke'))) return;
 
-    this.props.client.revoke().catch(osu.ajaxError);
+    this.props.client.revoke().fail(onError);
   };
 }

@@ -219,7 +219,7 @@ return [
     'listing' => [
         'search' => [
             'prompt' => 'escreve em palavras-chave...',
-            'login_required' => 'Inicia sessão para procurares.',
+            'login_required' => 'Inicia sessão para procurares',
             'options' => 'Mais opções de pesquisa',
             'supporter_filter' => 'Filtrar por :filters requer uma etiqueta osu!supporter',
             'not-found' => 'sem resultados',
@@ -258,6 +258,7 @@ return [
         'featured_artists' => 'Artistas destacados',
         'follows' => 'Mapeadores subscritos',
         'recommended' => 'Dificuldade recomendada',
+        'spotlights' => '',
     ],
     'mode' => [
         'all' => 'Todos',

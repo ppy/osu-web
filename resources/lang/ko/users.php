@@ -145,7 +145,7 @@ return [
         'change_avatar' => '아바타를 바꾸세요!',
         'first_members' => 'osu!의 초창기부터 함께한 유저',
         'is_developer' => 'osu!developer',
-        'is_supporter' => 'osu!supporter',
+        'is_supporter' => 'osu! 서포터',
         'joined_at' => ':date에 가입',
         'lastvisit' => ':date에 마지막으로 접속',
         'lastvisit_online' => '현재 온라인',
@@ -207,6 +207,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => '무덤에 간 비트맵',
+                ],
+                'guest' => [
+                    'title' => '게스트 참여 비트맵',
                 ],
                 'loved' => [
                     'title' => 'Loved 비트맵',

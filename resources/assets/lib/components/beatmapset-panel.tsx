@@ -67,9 +67,9 @@ const BeatmapDots = observer(({ compact, beatmaps, mode }: { beatmaps: BeatmapJs
   </div>
 ));
 
-const FeaturedArtistBadge = () => (
-  <span className='beatmapset-badge beatmapset-badge--featured-artist beatmapset-badge--panel'>
-    {osu.trans('beatmapsets.featured_artist_badge.label')}
+const BeatmapsetBadge = ({ type }: { type: string }) => (
+  <span className={`beatmapset-badge beatmapset-badge--${type} beatmapset-badge--panel`}>
+    {osu.trans(`beatmapsets.${type.replace(/-/g, '_')}_badge.label`)}
   </span>
 );
 
@@ -79,12 +79,6 @@ const MapperLink = observer(({ beatmapset }: { beatmapset: BeatmapsetJson }) => 
     user={{ id: beatmapset.user_id, username: beatmapset.creator }}
   />
 ));
-
-const NsfwBadge = () => (
-  <span className='beatmapset-badge beatmapset-badge--nsfw beatmapset-badge--panel'>
-    {osu.trans('beatmapsets.nsfw_badge.label')}
-  </span>
-);
 
 const PlayIcon = ({ icon, titleVariant }: { icon: string; titleVariant: string }) => (
   <div
@@ -417,13 +411,22 @@ export default class BeatmapsetPanel extends React.Component<Props> {
           <a className='beatmapset-panel__main-link u-ellipsis-overflow' href={this.url}>
             {getTitle(this.props.beatmapset)}
           </a>
-          {this.props.beatmapset.nsfw && <NsfwBadge />}
+          {(this.props.beatmapset.nsfw || this.props.beatmapset.spotlight) &&
+            <div className="beatmapset-panel__badge-container">
+              {this.props.beatmapset.nsfw && <BeatmapsetBadge type='nsfw' />}
+              {this.props.beatmapset.spotlight && <BeatmapsetBadge type='spotlight' />}
+            </div>
+          }
         </div>
         <div className='beatmapset-panel__info-row beatmapset-panel__info-row--artist'>
           <a className='beatmapset-panel__main-link u-ellipsis-overflow' href={this.url}>
             {osu.trans('beatmapsets.show.details.by_artist', { artist: getArtist(this.props.beatmapset) })}
           </a>
-          {(this.props.beatmapset.track_id != null) && <FeaturedArtistBadge />}
+          {this.props.beatmapset.track_id != null &&
+            <div className="beatmapset-panel__badge-container">
+              <BeatmapsetBadge type='featured-artist' />
+            </div>
+          }
         </div>
 
         <div className='beatmapset-panel__info-row beatmapset-panel__info-row--source'>

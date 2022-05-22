@@ -68,12 +68,15 @@ return [
         'friends_only' => 'Användaren blockerar meddelanden från personer som inte finns på sin vänlista.',
         'moderated' => 'Den kanalen är för närvarande modererad.',
         'no_access' => 'Du har ingen behörighet till denna kanalen.',
-        'receive_friends_only' => '',
+        'receive_friends_only' => 'Användaren kanske inte kan svara eftersom du bara accepterar meddelanden från personer på din vänlista.',
         'restricted' => 'Du kan inte skicka meddelanden medan du är tystad, begränsad eller bannad.',
         'silenced' => 'Du kan inte skicka meddelanden medan du är tystad, begränsad eller bannad.',
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => '',
+        ],
         'update' => [
             'deleted' => "Kan ej redigera raderade inlägg.",
         ],

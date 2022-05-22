@@ -13,9 +13,20 @@ return [
         'user' => 'Anda sedang tidak dapat mengirimkan pesan kepada pengguna ini.',
     ],
 
+    'channels' => [
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => 'Pengumuman',
+                'GROUP' => 'Grup',
+                'PM' => 'Pesan pribadi',
+                'PUBLIC' => 'Kanal chat',
+            ],
+        ],
+    ],
+
     'not_found' => [
-        'message' => '',
-        'title' => '',
+        'message' => 'Tidak ada apa-apa di sini. Mungkin Anda telah meninggalkan kanal ini atau kanal yang hendak Anda tuju tidak ada...',
+        'title' => 'kanal percakapan tidak ditemukan',
     ],
 
     'input' => [
@@ -26,7 +37,7 @@ return [
     ],
 
     'no-conversations' => [
-        'howto' => "Mulailah suatu percakapan dengan meng-klik tombol yang tersedia pada halaman profil atau kartu pop-up pengguna.",
+        'howto' => "Mulailah percakapan baru melalui tombol yang tertera pada laman profil atau kartu pop-up pengguna.",
         'lazer' => 'Kanal chat publik yang Anda buka melalui <a href=":link">osu!lazer</a> juga akan terlihat di sini.',
         'title' => 'belum ada percakapan',
     ],

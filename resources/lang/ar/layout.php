@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => 'تشغيل المقطع التالي تلقائياً',
+        'autoplay' => 'تشغيل الأغنية التالية تلقائياً',
     ],
 
     'defaults' => [
@@ -23,6 +23,11 @@ return [
 
         'artists' => [
             'index' => 'القائمة',
+        ],
+
+        'beatmapsets' => [
+            'show' => 'معلومات',
+            'discussions' => 'المناقشة',
         ],
 
         'changelog' => [
@@ -46,8 +51,8 @@ return [
 
         'users' => [
             'modding' => 'الاِقتراح',
-            'playlists' => '',
-            'realtime' => '',
+            'playlists' => 'قوائم التشغيل',
+            'realtime' => 'لعب جماعي',
             'show' => 'معلومات',
         ],
     ],

@@ -73,8 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Mazání metadat beatmapy není povoleno.',
             'beatmapset_post_no_edit' => 'Editace metadat beatmapy není povoleno.',
-            'first_post_no_delete' => '',
-            'missing_topic' => '',
+            'first_post_no_delete' => 'Počáteční pozici nelze odstranit',
+            'missing_topic' => 'Příspěvku chybí téma',
             'only_quote' => 'Tvoje odpověď obsahuje jenom citát.',
 
             'attributes' => [
@@ -110,11 +110,11 @@ return [
 
     'oauth' => [
         'client' => [
-            'too_many' => '',
+            'too_many' => 'Byl překročen limit povolených možností.',
             'url' => 'Zadejte prosím platnou adresu URL.',
 
             'attributes' => [
-                'name' => '',
+                'name' => 'Název aplikace',
                 'redirect' => '',
             ],
         ],
@@ -127,7 +127,7 @@ return [
         'invalid_country' => 'Stát není v databázi.',
         'invalid_discord' => 'Discord uživatelské jmeno je neplatné.',
         'invalid_email' => "Vypadá to na neplatnou e-mailovou adresu.",
-        'invalid_twitter' => '',
+        'invalid_twitter' => 'Twitter uživatelské jméno je neplatné.',
         'too_short' => 'Nové heslo je příliš krátké.',
         'unknown_duplicate' => 'Uživatelské jméno nebo e-mailová adresa je již použita.',
         'username_available_in' => 'Toto uživatelské jméno bude k dispozici za :duration.',

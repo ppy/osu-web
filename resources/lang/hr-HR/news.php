@@ -5,44 +5,44 @@
 
 return [
     'index' => [
-        'title_page' => '',
+        'title_page' => 'osu!vijesti',
 
         'nav' => [
-            'newer' => '',
-            'older' => '',
+            'newer' => 'Novije objave',
+            'older' => 'Starije objave',
         ],
 
         'title' => [
             '_' => 'vijesti',
-            'info' => '',
+            'info' => 'naslovna stranica',
         ],
     ],
 
     'show' => [
-        'by' => '',
+        'by' => 'od :user',
 
         'nav' => [
-            'newer' => '',
-            'older' => '',
+            'newer' => 'Novija objava',
+            'older' => 'Starija objava',
         ],
 
         'title' => [
             '_' => 'vijesti',
-            'info' => '',
+            'info' => 'objava',
         ],
     ],
 
     'sidebar' => [
-        'archive' => '',
+        'archive' => 'Arhiva vijesti',
     ],
 
     'store' => [
         'button' => 'Ažuriraj',
-        'ok' => '',
+        'ok' => 'Popis ažuriran.',
     ],
 
     'update' => [
         'button' => 'Ažuriraj',
-        'ok' => '',
+        'ok' => 'Objava ažurirana.',
     ],
 ];

@@ -8,6 +8,7 @@ namespace Tests\Controllers;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
+use App\Models\Forum;
 use App\Models\Genre;
 use App\Models\Language;
 use App\Models\User;
@@ -113,21 +114,19 @@ class BeatmapsetsControllerTest extends TestCase
         ]);
         $newGenre = Genre::factory()->create();
         $newLanguage = Language::factory()->create();
-        $newOffset = $beatmapset->offset + 25;
 
         $moderator = User::factory()->withGroup('nat')->create();
 
         $resultGenreId = $newGenre->getKey();
         $resultLanguageId = $newLanguage->getKey();
 
-        $eventCountBeforeTry = BeatmapsetEvent::count();
+        $this->expectCountChange(fn () => BeatmapsetEvent::count(), 2);
 
         $this->actingAsVerified($moderator)
             ->put(route('beatmapsets.update', ['beatmapset' => $beatmapset->getKey()]), [
                 'beatmapset' => [
                     'genre_id' => $newGenre->getKey(),
                     'language_id' => $newLanguage->getKey(),
-                    'offset' => $newOffset,
                 ],
             ])->assertSuccessful();
 
@@ -135,8 +134,6 @@ class BeatmapsetsControllerTest extends TestCase
 
         $this->assertSame($resultGenreId, $beatmapset->genre_id);
         $this->assertSame($resultLanguageId, $beatmapset->language_id);
-        $this->assertSame($newOffset, $beatmapset->offset);
-        $this->assertSame(BeatmapsetEvent::count(), $eventCountBeforeTry + 3);
     }
 
     /**
@@ -151,13 +148,11 @@ class BeatmapsetsControllerTest extends TestCase
         ]);
         $newGenre = Genre::factory()->create();
         $newLanguage = Language::factory()->create();
-        $newOffset = $beatmapset->offset + 25;
 
         $resultGenreId = $beatmapset->genre_id;
         $resultLanguageId = $beatmapset->language_id;
-        $resultOffset = $beatmapset->offset;
 
-        $eventCountBeforeTry = BeatmapsetEvent::count();
+        $this->expectCountChange(fn () => BeatmapsetEvent::count(), 0);
 
         $user = User::factory()->create();
 
@@ -166,7 +161,6 @@ class BeatmapsetsControllerTest extends TestCase
                 'beatmapset' => [
                     'genre_id' => $newGenre->getKey(),
                     'language_id' => $newLanguage->getKey(),
-                    'offset' => $newOffset,
                 ],
             ])->assertStatus(403);
 
@@ -174,8 +168,37 @@ class BeatmapsetsControllerTest extends TestCase
 
         $this->assertSame($resultGenreId, $beatmapset->genre_id);
         $this->assertSame($resultLanguageId, $beatmapset->language_id);
-        $this->assertSame($resultOffset, $beatmapset->offset);
-        $this->assertSame(BeatmapsetEvent::count(), $eventCountBeforeTry);
+    }
+
+    /**
+     * @dataProvider dataProviderForTestBeatmapsetUpdateDescriptionAsOwner
+     */
+    public function testBeatmapsetUpdateDescriptionAsOwner(bool $downloadDisabled, ?string $downloadDisabledUrl, bool $ok)
+    {
+        $topic = factory(Forum\Topic::class)->create();
+        $post = factory(Forum\Post::class)->create(['topic_id' => $topic->getKey()]);
+        $topic->refreshCache();
+
+        $beatmapset = Beatmapset::factory()->create([
+            'download_disabled' => $downloadDisabled,
+            'download_disabled_url' => $downloadDisabledUrl,
+            'user_id' => User::factory(),
+            'thread_id' => $topic->getKey(),
+        ]);
+        $owner = $beatmapset->user;
+        $beatmapset->updateDescription('old description', $owner);
+
+        $newDescription = 'new description';
+        $expectedDescription = $ok ? $newDescription : $beatmapset->editableDescription();
+
+        $this->actingAsVerified($owner)
+            ->put(route('beatmapsets.update', ['beatmapset' => $beatmapset->getKey()]), [
+                'description' => $newDescription,
+            ])->assertStatus($ok ? 200 : 403);
+
+        $beatmapset->refresh();
+
+        $this->assertSame($expectedDescription, $beatmapset->editableDescription());
     }
 
     /**
@@ -192,20 +215,17 @@ class BeatmapsetsControllerTest extends TestCase
         ]);
         $newGenre = Genre::factory()->create();
         $newLanguage = Language::factory()->create();
-        $newOffset = $beatmapset->offset + 25;
 
         $resultGenreId = $ok ? $newGenre->getKey() : $beatmapset->genre_id;
         $resultLanguageId = $ok ? $newLanguage->getKey() : $beatmapset->language_id;
-        $resultOffset = $ok ? $newOffset : $beatmapset->offset;
 
-        $eventCountBeforeTry = BeatmapsetEvent::count();
+        $this->expectCountChange(fn () => BeatmapsetEvent::count(), $ok ? 2 : 0);
 
         $this->actingAsVerified($owner)
             ->put(route('beatmapsets.update', ['beatmapset' => $beatmapset->getKey()]), [
                 'beatmapset' => [
                     'genre_id' => $newGenre->getKey(),
                     'language_id' => $newLanguage->getKey(),
-                    'offset' => $newOffset,
                 ],
             ])->assertStatus($ok ? 200 : 403);
 
@@ -213,8 +233,36 @@ class BeatmapsetsControllerTest extends TestCase
 
         $this->assertSame($resultGenreId, $beatmapset->genre_id);
         $this->assertSame($resultLanguageId, $beatmapset->language_id);
-        $this->assertSame($resultOffset, $beatmapset->offset);
-        $this->assertSame(BeatmapsetEvent::count(), $ok ? $eventCountBeforeTry + 3 : $eventCountBeforeTry);
+    }
+
+    /**
+     * @dataProvider dataProviderForTestBeatmapsetUpdateOffset
+     */
+    public function testBeatmapsetUpdateOffset(string $userGroupOrOwner, bool $ok): void
+    {
+        $beatmapset = Beatmapset::factory()->create([
+            'approved' => Beatmapset::STATES['ranked'],
+        ]);
+
+        $user = $userGroupOrOwner === 'owner'
+            ? $beatmapset->user
+            : User::factory()->withGroup($userGroupOrOwner)->create();
+
+        $newOffset = $beatmapset->offset + 25;
+        $expectedOffset = $ok ? $newOffset : $beatmapset->offset;
+
+        $this->expectCountChange(fn () => BeatmapsetEvent::count(), $ok ? 1 : 0);
+
+        $this->actingAsVerified($user)
+            ->put(route('beatmapsets.update', ['beatmapset' => $beatmapset->getKey()]), [
+                'beatmapset' => [
+                    'offset' => $newOffset,
+                ],
+            ])->assertStatus($ok ? 200 : 403);
+
+        $beatmapset->refresh();
+
+        $this->assertSame($expectedOffset, $beatmapset->offset);
     }
 
     public function beatmapsetStatesDataProvider()
@@ -222,5 +270,27 @@ class BeatmapsetsControllerTest extends TestCase
         return array_map(function ($state) {
             return [$state];
         }, array_keys(Beatmapset::STATES));
+    }
+
+    public function dataProviderForTestBeatmapsetUpdateOffset(): array
+    {
+        return [
+            ['admin', true],
+            ['bng', false],
+            ['default', false],
+            ['gmt', false],
+            ['nat', false],
+            ['owner', false],
+        ];
+    }
+
+    public function dataProviderForTestBeatmapsetUpdateDescriptionAsOwner(): array
+    {
+        return [
+            [false, null, true],
+            [true, null, false],
+            [false, 'https://fail.works/notice', false],
+            [true, 'https://fail.works/notice', false],
+        ];
     }
 }

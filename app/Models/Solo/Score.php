@@ -57,6 +57,11 @@ class Score extends Model
         return $score;
     }
 
+    public function beatmap()
+    {
+        return $this->belongsTo(Beatmap::class, 'beatmap_id');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -110,5 +115,10 @@ class Score extends Model
         $score->saveOrExplode();
 
         return $score;
+    }
+
+    public function getMode()
+    {
+        return Beatmap::modeStr($this->ruleset_id);
     }
 }

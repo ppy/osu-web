@@ -23,6 +23,7 @@ use App\Models\UserAccountHistory;
 use App\Models\UserNotFound;
 use App\Transformers\CurrentUserTransformer;
 use App\Transformers\ScoreTransformer;
+use App\Transformers\Solo\ScoreTransformer as SoloScoreTransformer;
 use App\Transformers\UserCompactTransformer;
 use App\Transformers\UserTransformer;
 use Auth;
@@ -110,7 +111,7 @@ class UsersController extends Controller
 
     public function checkUsernameExists()
     {
-        $username = Request::input('username');
+        $username = get_string(request('username'));
         $user = User::lookup($username, 'username') ?? UserNotFound::instance();
 
         return json_item($user, 'UserCompact', ['cover', 'country']);
@@ -729,12 +730,12 @@ class UsersController extends Controller
 
                 // Score
                 case 'scoresBest':
-                    $transformer = new ScoreTransformer();
+                    $transformer = $this->getScoreTransformer();
                     $includes = [...ScoreTransformer::USER_PROFILE_INCLUDES, 'weight'];
                     $collection = $user->beatmapBestScores($options['mode'], $perPage, $offset, ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
                     break;
                 case 'scoresFirsts':
-                    $transformer = new ScoreTransformer();
+                    $transformer = $this->getScoreTransformer();
                     $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
                     $query = $user->scoresFirst($options['mode'], true)
                         ->visibleUsers()
@@ -742,7 +743,7 @@ class UsersController extends Controller
                         ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
                     break;
                 case 'scoresPinned':
-                    $transformer = new ScoreTransformer();
+                    $transformer = $this->getScoreTransformer();
                     $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
                     $query = $user
                         ->scorePins()
@@ -753,7 +754,7 @@ class UsersController extends Controller
                     $collectionFn = fn ($pins) => $pins->map->score;
                     break;
                 case 'scoresRecent':
-                    $transformer = new ScoreTransformer();
+                    $transformer = $this->getScoreTransformer();
                     $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
                     $query = $user->scores($options['mode'], true)
                         ->includeFails($options['includeFails'] ?? false)
@@ -773,5 +774,10 @@ class UsersController extends Controller
         } catch (ElasticsearchException $e) {
             return ['error' => search_error_message($e)];
         }
+    }
+
+    private function getScoreTransformer()
+    {
+        return is_api_request() ? new ScoreTransformer() : new SoloScoreTransformer();
     }
 }

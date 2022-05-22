@@ -5,7 +5,8 @@ import AchievementJson from 'interfaces/achievement-json';
 import CurrentUserJson from 'interfaces/current-user-json';
 import GameMode from 'interfaces/game-mode';
 import ExtrasJson from 'interfaces/profile-page/extras-json';
-import ScoreJson, { isScoreJsonForUser, ScoreCurrentUserPinJson } from 'interfaces/score-json';
+import { ScoreCurrentUserPinJson } from 'interfaces/score-json';
+import SoloScoreJson, { isSoloScoreJsonForUser } from 'interfaces/solo-score-json';
 import UserCoverJson from 'interfaces/user-cover-json';
 import { ProfileExtraPage, profileExtraPages } from 'interfaces/user-extended-json';
 import { route } from 'laroute';
@@ -129,9 +130,10 @@ export default class Controller {
     this.scoresNotice = initialData.scores_notice;
     this.displayCoverUrl = this.state.user.cover.url;
 
-    $.subscribe('score:pin', this.onScorePinUpdate);
-
     makeObservable(this);
+
+    $.subscribe('score:pin', this.onScorePinUpdate);
+    $(document).on('turbolinks:before-cache', this.saveState);
   }
 
   @action
@@ -330,6 +332,8 @@ export default class Controller {
     Object.values(this.xhr).forEach((xhr) => xhr?.abort());
     this.debouncedSetDisplayCoverUrl.cancel();
     $.unsubscribe('score:pin', this.onScorePinUpdate);
+    $(document).off('turbolinks:before-cache', this.saveState);
+    this.saveState();
   }
 
   paginatorJson<T extends ProfilePageSection>(section: T) {
@@ -350,9 +354,10 @@ export default class Controller {
     this.displayCoverUrl = url ?? this.state.user.cover.url;
   }
 
-  private readonly onScorePinUpdate = (event: unknown, isPinned: boolean, score: ScoreJson) => {
+  @action
+  private readonly onScorePinUpdate = (event: unknown, isPinned: boolean, score: SoloScoreJson) => {
     // make sure the typing is correct
-    if (!isScoreJsonForUser(score)) {
+    if (!isSoloScoreJsonForUser(score)) {
       return;
     }
 

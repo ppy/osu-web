@@ -5,10 +5,10 @@
 
 return [
     'index' => [
-        'title' => '',
+        'title' => 'Glasovi za raspravu beatmapa',
     ],
 
     'item' => [
-        'score' => '',
+        'score' => 'Bodovi',
     ],
 ];

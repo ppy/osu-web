@@ -20,8 +20,8 @@ return [
         'empty' => [
             'text' => 'O teu carrinho está vazio.',
             'return_link' => [
-                '_' => 'Volta ao :link para encontrar brindes!',
-                'link_text' => 'listagem da loja',
+                '_' => 'Regressa ao :link para descobrires coisas fixolas!',
+                'link_text' => 'catálogo da loja',
             ],
         ],
     ],
@@ -106,7 +106,7 @@ return [
 
         'stock' => [
             'out' => 'Este artigo está esgotado atualmente. Volta mais tarde!',
-            'out_with_alternative' => 'Infelizmente este artigo está fora de stock. Usa a opção de colapsar para escolher um tipo diferente ou volta mais tarde!',
+            'out_with_alternative' => 'Infelizmente este artigo está fora de stock. Usa a opção acima para escolher um tipo diferente ou volta mais tarde!',
         ],
 
         'add_to_cart' => 'Adicionar ao carrinho',
@@ -121,7 +121,7 @@ return [
     'supporter_tag' => [
         'gift' => 'oferecer ao jogador',
         'require_login' => [
-            '_' => 'Precisas de ser :link para arranjar uma etiqueta osu!supporter!',
+            '_' => 'Precisas de ter :link para obter uma etiqueta osu!supporter!',
             'link_text' => 'sessão iniciada',
         ],
     ],
@@ -130,7 +130,7 @@ return [
         'check' => 'Introduz um nome de utilizador para confirmar disponibilidade!',
         'checking' => 'A confirmar disponibilidade de :username...',
         'require_login' => [
-            '_' => 'Precisas de ser :link para mudares o teu nome!',
+            '_' => 'Precisas de ter :link para mudares o teu nome!',
             'link_text' => 'sessão iniciada',
         ],
     ],

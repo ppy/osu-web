@@ -27,7 +27,7 @@ return [
         ],
         'no_diff_reduction' => [
             '_' => 'Anda tidak dapat menggunakan :link untuk menuntaskan paket beatmap ini.',
-            'link' => 'mod-mod pengurang kesulitan',
+            'link' => 'mod pengurang kesulitan',
         ],
     ],
 
@@ -39,7 +39,7 @@ return [
     ],
 
     'require_login' => [
-        '_' => 'Anda harus :link untuk dapat mengunduh',
+        '_' => 'Anda harus :link untuk mengunduh',
         'link_text' => 'masuk',
     ],
 ];

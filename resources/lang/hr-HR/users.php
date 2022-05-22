@@ -4,118 +4,118 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'deleted' => '',
+    'deleted' => '[izbrisani korisnik]',
 
     'beatmapset_activities' => [
-        'title' => "",
-        'title_compact' => '',
+        'title' => "Povijest modificiranja od :user",
+        'title_compact' => 'Modificiranje',
 
         'discussions' => [
-            'title_recent' => '',
+            'title_recent' => 'Nedavno započete rasprave',
         ],
 
         'events' => [
-            'title_recent' => '',
+            'title_recent' => 'Nedavni događaji',
         ],
 
         'posts' => [
-            'title_recent' => '',
+            'title_recent' => 'Novi objave',
         ],
 
         'votes_received' => [
-            'title_most' => '',
+            'title_most' => 'Najviše glasova (posljednja 3 mjeseca)',
         ],
 
         'votes_made' => [
-            'title_most' => '',
+            'title_most' => 'Najviše glasova (posljednja 3 mjeseca)',
         ],
     ],
 
     'blocks' => [
-        'banner_text' => '',
-        'blocked_count' => '',
-        'hide_profile' => '',
-        'not_blocked' => '',
-        'show_profile' => '',
-        'too_many' => '',
+        'banner_text' => 'Blokirao/la si ovog korisnika.',
+        'blocked_count' => 'blokirani korisnici (:count)',
+        'hide_profile' => 'Sakrij profil',
+        'not_blocked' => 'Taj korisnik nije blokiran.',
+        'show_profile' => 'Prikaži profil',
+        'too_many' => 'Dosegnuto je ograničenje blokiranja.',
         'button' => [
-            'block' => '',
-            'unblock' => '',
+            'block' => 'Blokiraj',
+            'unblock' => 'Odblokiraj',
         ],
     ],
 
     'card' => [
-        'loading' => '',
-        'send_message' => '',
+        'loading' => 'Učitavanje...',
+        'send_message' => 'Pošalji poruku',
     ],
 
     'disabled' => [
-        'title' => '',
-        'warning' => "",
+        'title' => 'Uh oh! Čini se da je tvoj račun onemogućen.',
+        'warning' => "U slučaju da si prekršio/la pravilo, imaj na umu da općenito postoji razdoblje mirovanja od mjesec dana tijekom kojeg nećemo razmatrati nikakve zahtjeve za amnestiju. Nakon tog razdoblja, slobodni ste nas kontaktirati ako smatrate da je potrebno. Imaj na umu da će stvaranje novih računa nakon što si jedan onemogućio/la rezultirati <strong>produženjem ovog jednomjesečnog hlađenja</strong>.  Također imaj na umu da za <strong>svaki račun koji izradiš dodatno kršiš pravila</strong>.  Toplo preporučamo da ne idete ovim putem!",
 
         'if_mistake' => [
-            '_' => '',
-            'email' => '',
+            '_' => 'Ako smatraš da je ovo pogreška, slobodno nas kontaktiraj (putem :email ili klikom na "?" u donjem desnom kutu ove stranice).  Napominjemo da smo uvijek potpuno sigurni u svoje postupke, jer se temelje na vrlo čvrstim podacima. Zadržavamo pravo zanemariti tvoj zahtjev ako smatramo da si namjerno nepošten/a.',
+            'email' => 'e-pošta',
         ],
 
         'reasons' => [
-            'compromised' => '',
-            'opening' => '',
+            'compromised' => 'Smatra se da je vaš račun ugrožen. Može biti privremeno onemogućen dok se potvrdi njegov identitet.',
+            'opening' => 'Brojni su razlozi koji mogu dovesti do onemogućavanja tvog računa:',
 
             'tos' => [
-                '_' => '',
-                'community_rules' => '',
-                'tos' => '',
+                '_' => 'Prekršio/la si jedno ili više naših :community_rules ili :tos.',
+                'community_rules' => 'pravila zajednice',
+                'tos' => 'uvjete korištenja',
             ],
         ],
     ],
 
     'filtering' => [
-        'by_game_mode' => '',
+        'by_game_mode' => 'Članovi prema modu igre',
     ],
 
     'force_reactivation' => [
         'reason' => [
-            'inactive_different_country' => "",
+            'inactive_different_country' => "Tvoj račun nije korišten dugo vremena.",
         ],
     ],
 
     'login' => [
         '_' => 'Prijava',
         'button' => 'Prijava',
-        'button_posting' => '',
-        'email_login_disabled' => '',
-        'failed' => '',
-        'forgot' => '',
-        'info' => '',
-        'invalid_captcha' => '',
-        'locked_ip' => '',
-        'password' => '',
-        'register' => "",
-        'remember' => '',
-        'title' => '',
-        'username' => '',
+        'button_posting' => 'Prijavljivanje...',
+        'email_login_disabled' => 'Prijava putem e-pošte trenutno je onemogućena.  Umjesto toga upotrijebi korisničko ime.',
+        'failed' => 'Netočna prijava',
+        'forgot' => 'Zaboravljena lozinka?',
+        'info' => 'Molimo se prijavi za nastavak',
+        'invalid_captcha' => 'Previše neuspjelih pokušaja prijave, ispuni captchu i pokušaj ponovno. (Osvježi stranicu ako captcha nije vidljiva)',
+        'locked_ip' => 'Tvoja IP adresa je zaključana. Molimo pričekaj nekoliko minuta.',
+        'password' => 'Lozinka',
+        'register' => "Nemaš osu! račun? Napravi ga",
+        'remember' => 'Upamti ovo računalo',
+        'title' => 'Molimo da se prijaviš kako bi nastavio/la',
+        'username' => 'Korisničko ime',
 
         'beta' => [
-            'main' => '',
-            'small' => '',
+            'main' => 'Pristup beta verziji trenutno je ograničen na privilegirane korisnike.',
+            'small' => '(osu!supporteri će ući uskoro)',
         ],
     ],
 
     'posts' => [
-        'title' => '',
+        'title' => 'Objave od :username',
     ],
 
     'anonymous' => [
-        'login_link' => '',
+        'login_link' => 'klikni za prijavu',
         'login_text' => 'prijava',
-        'username' => '',
-        'error' => '',
+        'username' => 'Gost',
+        'error' => 'Moraš biti prijavljen da bi to učinio/la.',
     ],
-    'logout_confirm' => '',
+    'logout_confirm' => 'Jesi li siguran/na da se želiš odjaviti?  :(',
     'report' => [
-        'button_text' => '',
-        'comments' => '',
+        'button_text' => 'Prijavi',
+        'comments' => 'Komentari',
         'placeholder' => '',
         'reason' => 'Razlog',
         'thanks' => '',
@@ -208,87 +208,90 @@ return [
                 'graveyard' => [
                     'title' => '',
                 ],
+                'guest' => [
+                    'title' => 'Beatmape sudjelovanja gostiju',
+                ],
                 'loved' => [
-                    'title' => '',
+                    'title' => 'Voljene beatmape',
                 ],
                 'pending' => [
-                    'title' => '',
+                    'title' => 'Beatmape na čekanju',
                 ],
                 'ranked' => [
-                    'title' => '',
+                    'title' => 'Rangirane beatmape',
                 ],
             ],
             'discussions' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Rasprave',
+                'title_longer' => 'Nove rasprave',
+                'show_more' => 'pogledaj još rasprava',
             ],
             'events' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Događaji',
+                'title_longer' => 'Nedavni događaji',
+                'show_more' => 'pogledaj još događaja',
             ],
             'historical' => [
-                'title' => '',
+                'title' => 'Povijesno',
 
                 'monthly_playcounts' => [
-                    'title' => '',
-                    'count_label' => '',
+                    'title' => 'Povijest igranja',
+                    'count_label' => 'Igranja',
                 ],
                 'most_played' => [
-                    'count' => '',
-                    'title' => '',
+                    'count' => 'puta igrano',
+                    'title' => 'Najigranije beatmape',
                 ],
                 'recent_plays' => [
-                    'accuracy' => '',
-                    'title' => '',
+                    'accuracy' => 'preciznost: :percentage',
+                    'title' => 'Nedavne igre (24h)',
                 ],
                 'replays_watched_counts' => [
-                    'title' => '',
-                    'count_label' => '',
+                    'title' => 'Povijest gledanja repriza',
+                    'count_label' => 'Repriza gledano',
                 ],
             ],
             'kudosu' => [
-                'recent_entries' => '',
-                'title' => '',
-                'total' => '',
+                'recent_entries' => 'Nedavna povijest Kudosua',
+                'title' => 'Kudosu!',
+                'total' => 'Ukupno zarađeno Kudosua',
 
                 'entry' => [
-                    'amount' => '',
-                    'empty' => "",
+                    'amount' => ':amount kudosu',
+                    'empty' => "Ovaj korisnik nema nijedan kudosu!",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => '',
+                            'give' => 'Dobio/la :amount od kudosu ukidanja objave modificiranja :post',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => '',
+                            'reset' => 'Odbijeno :amount od objave modificiranja :post',
                         ],
 
                         'delete' => [
-                            'reset' => '',
+                            'reset' => 'Izgubljeno :amount od brisanja objave modificiranja :post',
                         ],
 
                         'restore' => [
-                            'give' => '',
+                            'give' => 'Dobiveno :amount od obnove objave modificiranja :post',
                         ],
 
                         'vote' => [
-                            'give' => '',
-                            'reset' => '',
+                            'give' => 'Dobiveno :amount od dobivanja glasova na objavi modificiranja :post',
+                            'reset' => 'Izgubljeno :amount zbog gubljenja glasova na objavi modificiranja :post',
                         ],
 
                         'recalculate' => [
-                            'give' => '',
-                            'reset' => '',
+                            'give' => 'Dobiveno :amount od preračunavanja glasova na objavi modificiranja :post',
+                            'reset' => 'Izgubljeno :amount od preračunavanja glasova na objavi modificiranja :post',
                         ],
                     ],
 
                     'forum_post' => [
-                        'give' => '',
-                        'reset' => '',
-                        'revoke' => '',
+                        'give' => 'Dobiveno :amount od :giver za objavu na :post',
+                        'reset' => 'Kudosu resetiran od :giver za objavu :post',
+                        'revoke' => 'Zabranjen kudosu od :giver za objavu :post',
                     ],
                 ],
 

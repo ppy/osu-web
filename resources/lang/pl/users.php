@@ -115,7 +115,7 @@ return [
     'logout_confirm' => 'Na pewno chcesz się wylogować? :(',
     'report' => [
         'button_text' => 'Zgłoś',
-        'comments' => 'Dodatkowe informacje',
+        'comments' => 'Opis',
         'placeholder' => 'Podaj wszystkie informacje, które mogą okazać się przydatne.',
         'reason' => 'Powód',
         'thanks' => 'Dziękujemy za zgłoszenie!',
@@ -207,6 +207,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Porzucone beatmapy',
+                ],
+                'guest' => [
+                    'title' => 'Współtworzone beatmapy',
                 ],
                 'loved' => [
                     'title' => 'Ulubione beatmapy społeczności',

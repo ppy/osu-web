@@ -16,14 +16,14 @@ return [
     'username' => 'اسم المُستخدم',
 
     'artist_tracks' => [
-        'album' => '',
-        'artist' => '',
-        'bpm' => '',
-        'genre' => '',
-        'length' => '',
-        'relevance' => '',
-        'title' => '',
-        'update' => '',
+        'album' => 'ألبوم',
+        'artist' => 'الفنان',
+        'bpm' => 'BPM',
+        'genre' => 'الصنف',
+        'length' => 'المدة',
+        'relevance' => 'الصِلة',
+        'title' => 'العنوان',
+        'update' => 'تحديث',
     ],
 
     'forum_posts' => [

@@ -257,6 +257,7 @@ return [
         'featured_artists' => 'Nghệ sĩ nổi bật',
         'follows' => 'Mapper đã đăng ký',
         'recommended' => 'Độ khó đề nghị',
+        'spotlights' => '',
     ],
     'mode' => [
         'all' => 'Tất cả',
@@ -274,9 +275,9 @@ return [
         'leaderboard' => 'Có danh sách xếp hạng',
         'loved' => 'Được yêu mến',
         'mine' => 'Map của tôi',
-        'pending' => 'Đang chờ & WIP',
+        'pending' => 'Đang chờ',
         'wip' => 'Chưa xong',
-        'qualified' => 'Đủ tư cách',
+        'qualified' => 'Qualified',
         'ranked' => 'Đã được xếp hạng',
     ],
     'genre' => [

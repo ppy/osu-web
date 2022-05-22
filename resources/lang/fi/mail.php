@@ -47,13 +47,13 @@ return [
 
     'password_reset' => [
         'code' => 'Vahvistuskoodisi on:',
-        'requested' => '',
+        'requested' => 'Joko sinä tai joku joka teeskentelee sinua, on pyytänyt salasanan palautusta osu! -tilillesi.',
         'subject' => 'osu! tilin palauttaminen',
     ],
 
     'store_payment_completed' => [
-        'prepare_shipping' => '',
-        'processing' => '',
+        'prepare_shipping' => 'Olemme saaneet maksusi ja valmistelemme tilaustasi kuljetukseen. Se voi kestää muutaman päivän lähettää, riippuen tilausten määrästä. Voit seurata tilauksesi edistymistä täällä, mukaan lukien seurantatiedot, jos saatavilla:',
+        'processing' => 'Olemme vastaanottaneet maksusi ja käsittelemme tällä hetkellä tilaustasi. Voit seurata tilauksesi etenemistä täällä:',
         'questions' => "Jos sinulla on kysyttävää, älä epäröi vastata tähän sähköpostiin.",
         'shipping' => 'Toimitus',
         'subject' => 'Vastaanotimme osu!kauppa-tilauksesi!',
@@ -66,32 +66,32 @@ return [
         'anonymous_gift_maybe_not' => 'Mutta taidat jo tietää kuka se mahtaa olla ;).',
         'duration' => '',
         'features' => '',
-        'gifted' => '',
+        'gifted' => 'Joku on juuri antanut sinulle osu! -tukijan!',
         'subject' => 'Sinulle on lahjoitettu osu!tukijatagi!',
     ],
 
     'user_email_updated' => [
-        'changed_to' => '',
-        'check' => '',
-        'sent' => '',
+        'changed_to' => 'Tämä on vahvistussähköposti ilmoittaaksesi sinulle, että osu! -sähköpostiosoite on muutettu osoitteeseen: ":email".',
+        'check' => 'Varmista, että olet saanut tämän sähköpostin uuteen osoitteeseesi, jotta et menetä käyttöoikeuttasi osu!-tiliisi tulevaisuudessa.',
+        'sent' => 'Turvallisuussyistä tämä sähköposti on lähetetty sekä uuteen että vanhaan sähköpostiosoitteeseen.',
         'subject' => 'osu!-sähköpostin muutoksen vahvistaminen',
     ],
 
     'user_force_reactivation' => [
-        'main' => '',
-        'perform_reset' => '',
+        'main' => 'Tilisi epäillään olevan kompromisoitu, sillä on ollut epäilyttävää toimintaa tai ERITTÄIN heikko salasana. Tämän seurauksena vaadimme, että asetat uuden salasanan. Varmista, että valitset TURVALLISEN salasanan.',
+        'perform_reset' => 'Voit suorittaa nollauksen kohteesta :url',
         'reason' => 'Syy:',
-        'subject' => '',
+        'subject' => 'osu! Tilin Uudelleenaktivointi Vaaditaan',
     ],
 
     'user_notification_digest' => [
         'new' => '',
-        'settings' => '',
+        'settings' => 'Muuta sähköposti-ilmoitusten asetuksia:',
         'subject' => 'Uusia osu!-ilmoituksia',
     ],
 
     'user_password_updated' => [
-        'confirmation' => '',
+        'confirmation' => 'Tämä on vain vahvistus siitä, että osu!-salasanasi on vaihdettu.',
         'subject' => 'osu!-salasanan muutoksen vahvistaminen',
     ],
 

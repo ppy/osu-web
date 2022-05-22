@@ -6,12 +6,12 @@
 return [
     'all_read' => 'Kaikki ilmoitukset luettu!',
     'delete' => 'Poista :type',
-    'loading' => '',
-    'mark_read' => '',
+    'loading' => 'Ladataan lukemattomia ilmoituksia...',
+    'mark_read' => 'Tyhjennä :type',
     'none' => 'Ei ilmoituksia',
     'see_all' => 'näytä kaikki ilmoitukset',
-    'see_channel' => '',
-    'verifying' => '',
+    'see_channel' => 'siirry keskusteluun',
+    'verifying' => 'Vahvista istuntosi nähdäksesi ilmoitukset',
 
     'filters' => [
         '_' => 'kaikki',
@@ -44,7 +44,7 @@ return [
                 'beatmapset_discussion_review_new' => 'Uusi arvostelu beatmapissa ":title" käyttäjältä :username sisältäen ongelmia: :problems, ehdotuksia: :suggestions, kehuja: :praises',
                 'beatmapset_discussion_review_new_compact' => 'Uusi arvostelu käyttäjältä :username sisältäen ongelmia: :problems, ehdotuksia: :suggestions, kehuja: :praises',
                 'beatmapset_discussion_unlock' => '',
-                'beatmapset_discussion_unlock_compact' => '',
+                'beatmapset_discussion_unlock_compact' => 'Keskustelu on avattu',
             ],
 
             'beatmapset_problem' => [
@@ -91,7 +91,7 @@ return [
 
                 'announce' => [
                     'channel_announcement' => '',
-                    'channel_announcement_compact' => '',
+                    'channel_announcement_compact' => ':title',
                     'channel_announcement_group' => '',
                 ],
             ],
@@ -129,7 +129,7 @@ return [
                 'comment_new' => '',
                 'comment_new_compact' => ':username kommentoi":content"',
                 'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply_compact' => ':username vastasi ":content"',
             ],
         ],
 
@@ -154,10 +154,10 @@ return [
 
         'user' => [
             'user_beatmapset_new' => [
-                '_' => '',
+                '_' => 'Uusi beatmappi',
 
                 'user_beatmapset_new' => '',
-                'user_beatmapset_new_compact' => '',
+                'user_beatmapset_new_compact' => 'Uusi beatmap ":title"',
                 'user_beatmapset_new_group' => '',
 
                 'user_beatmapset_revive' => '',

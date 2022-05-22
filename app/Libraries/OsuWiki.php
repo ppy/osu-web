@@ -35,9 +35,9 @@ class OsuWiki
             ->pluck('path');
     }
 
-    public static function getTree()
+    public static function getTree(?string $sha = null, bool $recursive = true): array
     {
-        return Github::gitData()->trees()->show(static::user(), static::repository(), static::branch(), true);
+        return GitHub::gitData()->trees()->show(static::user(), static::repository(), $sha ?? static::branch(), $recursive);
     }
 
     public static function fetch($path)

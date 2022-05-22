@@ -4,7 +4,7 @@
 import headerLinks from 'beatmapsets-show/header-links'
 import BeatmapBasicStats from 'components/beatmap-basic-stats'
 import BeatmapsetCover from 'components/beatmapset-cover'
-import { BeatmapsetMapping } from 'components/beatmapset-mapping'
+import BeatmapsetMapping from 'components/beatmapset-mapping'
 import BigButton from 'components/big-button'
 import HeaderV4 from 'components/header-v4'
 import PlaymodeTabs from 'components/playmode-tabs'
@@ -21,6 +21,8 @@ import Chart from './chart'
 import { Nominations } from './nominations'
 import { Subscribe } from './subscribe'
 import { UserFilter } from './user-filter'
+import { wikiUrl } from 'utils/url'
+
 
 el = React.createElement
 
@@ -101,6 +103,11 @@ export class Header extends React.PureComponent
             getTitle(@props.beatmapset)
             if @props.beatmapset.nsfw
               span className: 'beatmapset-badge beatmapset-badge--nsfw', osu.trans('beatmapsets.nsfw_badge.label')
+            if @props.beatmapset.spotlight
+              a
+                className: 'beatmapset-badge beatmapset-badge--spotlight'
+                href: wikiUrl('Beatmap_Spotlights')
+                osu.trans('beatmapsets.spotlight_badge.label')
           h2
             className: "#{bn}__title #{bn}__title--artist"
             getArtist(@props.beatmapset)
@@ -206,4 +213,4 @@ export class Header extends React.PureComponent
   onSelectBeatmap: (beatmapId) =>
     $.publish 'beatmapsetDiscussions:update',
       beatmapId: beatmapId
-      mode: BeatmapDiscussionHelper.DEFAULT_MODE
+      mode: 'timeline'

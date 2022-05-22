@@ -3,17 +3,17 @@
 
 import { UserCard } from 'components/user-card';
 import BeatmapJson from 'interfaces/beatmap-json';
-import { ScoreJsonForShow } from 'interfaces/score-json';
+import { SoloScoreJsonForShow } from 'interfaces/solo-score-json';
 import * as React from 'react';
 import PpValue from 'scores/pp-value';
-import { shouldShowPp } from 'utils/beatmap-helper';
+import { rulesetName, shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
-import { modeAttributesMap } from 'utils/score-helper';
+import { isPerfectCombo, modeAttributesMap } from 'utils/score-helper';
 
 interface Props {
   beatmap: BeatmapJson;
-  score: ScoreJsonForShow;
+  score: SoloScoreJsonForShow;
 }
 
 export default function Stats(props: Props) {
@@ -38,7 +38,7 @@ export default function Stats(props: Props) {
             <div className='score-stats__stat-row score-stats__stat-row--label'>
               {osu.trans('beatmapsets.show.scoreboard.headers.combo')}
             </div>
-            <div className={classWithModifiers('score-stats__stat-row', { perfect: props.score.max_combo === props.beatmap.max_combo })}>
+            <div className={classWithModifiers('score-stats__stat-row', { perfect: isPerfectCombo(props.score) })}>
               {formatNumber(props.score.max_combo)}x
             </div>
           </div>
@@ -55,13 +55,13 @@ export default function Stats(props: Props) {
           )}
         </div>
         <div className='score-stats__group-row'>
-          {modeAttributesMap[props.score.mode].map((attr) => (
+          {modeAttributesMap[rulesetName(props.score.ruleset_id)].map((attr) => (
             <div key={attr.attribute} className='score-stats__stat'>
               <div className='score-stats__stat-row score-stats__stat-row--label'>
                 {attr.label}
               </div>
               <div className='score-stats__stat-row'>
-                {props.score.statistics[attr.attribute]}
+                {formatNumber(props.score.statistics[attr.attribute] ?? 0)}
               </div>
             </div>
           ))}

@@ -5,14 +5,18 @@
 
 return [
     'availability' => [
-        'disabled' => '',
-        'parts-removed' => '',
-        'more-info' => '',
-        'rule_violation' => '',
+        'disabled' => 'Ova beatmapa trenutno nije dostupna za preuzimanje.',
+        'parts-removed' => 'Dijelovi ove beatmape su uklonjeni na zahtjev vlasnika ili noslitelja prava treće strane.',
+        'more-info' => 'Klikni ovdje za više informacija.',
+        'rule_violation' => 'Neka sredstva sadržana u ovoj mapi su uklonjena nakon što su ocijenjena kao neprikladna za korištenje u osu!.',
+    ],
+
+    'cover' => [
+        'deleted' => 'Izbrisana beatmapa,',
     ],
 
     'download' => [
-        'limit_exceeded' => '',
+        'limit_exceeded' => 'Uspori, igraj više.',
     ],
 
     'featured_artist_badge' => [
@@ -20,75 +24,75 @@ return [
     ],
 
     'index' => [
-        'title' => '',
-        'guest_title' => '',
+        'title' => 'Popis beatmapa',
+        'guest_title' => 'Beatmape',
     ],
 
     'panel' => [
-        'empty' => '',
+        'empty' => 'nema beatmapa',
 
         'download' => [
-            'all' => '',
-            'video' => '',
-            'no_video' => '',
-            'direct' => '',
+            'all' => 'preuzmi',
+            'video' => 'preuzmi uz video',
+            'no_video' => 'preuzmi bez videa',
+            'direct' => 'otvori u osu!direct',
         ],
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => '',
-        'incorrect_mode' => '',
-        'full_bn_required' => '',
-        'too_many' => '',
+        'hybrid_requires_modes' => 'Hibridne beatmape zahtijevaju da odabereš barem jedan način igranja za nominaciju.',
+        'incorrect_mode' => 'Nemaš dopuštenje da nominiraš za mod: :mode',
+        'full_bn_required' => 'Moraš biti puni nominator da izvršiš ovu kvalifikacijsku nominaciju.',
+        'too_many' => 'Uvjet za nominaciju je već ispunjen.',
 
         'dialog' => [
-            'confirmation' => '',
-            'header' => '',
-            'hybrid_warning' => '',
-            'which_modes' => '',
+            'confirmation' => 'Jesi li siguran/na da želiš nominirati ovu beatmapu?',
+            'header' => 'Nominiraj beatmapu',
+            'hybrid_warning' => 'napomena: možetš nominirati samo jednom, stoga te molimo da budeš siguran/na da nominiraš za sve načine igre koje namjeravaš',
+            'which_modes' => 'Nominiraj za koje modove?',
         ],
     ],
 
     'nsfw_badge' => [
-        'label' => '',
+        'label' => 'Eksplicitno',
     ],
 
     'show' => [
-        'discussion' => '',
+        'discussion' => 'Rasprava',
 
         'details' => [
             'by_artist' => 'od :artist',
-            'favourite' => '',
-            'favourite_login' => '',
-            'logged-out' => '',
-            'mapped_by' => '',
-            'unfavourite' => '',
-            'updated_timeago' => '',
+            'favourite' => 'Označi beatmapu kao omiljenu',
+            'favourite_login' => 'Prijavi se kako bi označio/la ovu beatmapu kao omiljenu',
+            'logged-out' => 'Moraš se prijaviti prije preuzimanja beatmapa!',
+            'mapped_by' => 'mapirano od :mapper',
+            'unfavourite' => 'Ukloni beatmapu sa oznake omiljeno',
+            'updated_timeago' => 'zadnje ažurirano :timeago',
 
             'download' => [
                 '_' => 'Preuzmi',
                 'direct' => '',
-                'no-video' => '',
-                'video' => '',
+                'no-video' => 'bez videa',
+                'video' => 'sa videom',
             ],
 
             'login_required' => [
-                'bottom' => '',
-                'top' => '',
+                'bottom' => 'za pristup više značajki',
+                'top' => 'Prijavi se',
             ],
         ],
 
         'details_date' => [
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'ranked' => '',
-            'submitted' => '',
-            'updated' => '',
+            'approved' => 'odobreno :timeago',
+            'loved' => 'voljeno :timeago',
+            'qualified' => 'kvalificirano :timeago',
+            'ranked' => 'rangirano :timeago',
+            'submitted' => 'podnešeno :timeago',
+            'updated' => 'zadnje ažurirano :timeago',
         ],
 
         'favourites' => [
-            'limit_reached' => '',
+            'limit_reached' => 'Imaš previše omiljenih beatmapa! Molimo ukloni neke od njih prije ponovnog pokušaja.',
         ],
 
         'hype' => [
@@ -121,6 +125,7 @@ return [
             'language' => 'Jezik',
             'no_scores' => '',
             'nsfw' => '',
+            'offset' => '',
             'points-of-failure' => '',
             'source' => 'Izvor',
             'storyboard' => '',
@@ -192,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => '',
             'count_sliders' => '',
+            'offset' => '',
             'user-rating' => '',
             'rating-spread' => '',
             'nominations' => '',
@@ -207,5 +213,9 @@ return [
             'pending' => '',
             'graveyard' => '',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

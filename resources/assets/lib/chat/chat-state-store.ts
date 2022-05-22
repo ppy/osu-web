@@ -14,6 +14,7 @@ import { action, autorun, computed, makeObservable, observable, observe, runInAc
 import Channel from 'models/chat/channel';
 import CreateAnnouncement from 'models/chat/create-announcement';
 import ChannelStore from 'stores/channel-store';
+import { setBrowserTitle } from 'utils/html';
 import { updateQueryString } from 'utils/url';
 import ChannelJoinEvent from './channel-join-event';
 import ChannelPartEvent from './channel-part-event';
@@ -157,6 +158,7 @@ export default class ChatStateStore implements DispatchListener {
 
       Turbolinks.controller[mode](updateQueryString(null, params, ''));
     }
+    setBrowserTitle(`${channel.name} · ${osu.trans('page_title.main.chat_controller._')}`);
   }
 
   @action

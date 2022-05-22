@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => '',
     ],
@@ -121,6 +125,7 @@ return [
             'language' => 'Sprog',
             'no_scores' => 'Data er stadig ved at blive beregnet...',
             'nsfw' => '',
+            'offset' => '',
             'points-of-failure' => 'Fejl-steder',
             'source' => 'Kilde',
             'storyboard' => 'Dette beatmap indeholder storyboard',
@@ -192,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Antal Cirkler',
             'count_sliders' => 'Antal Sliders',
+            'offset' => '',
             'user-rating' => 'Brugerbedømmelse',
             'rating-spread' => 'Ratings-distribution',
             'nominations' => 'Nomineringer',
@@ -207,5 +213,9 @@ return [
             'pending' => 'Afventende',
             'graveyard' => 'Kirkegården',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

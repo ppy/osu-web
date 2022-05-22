@@ -4,30 +4,41 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'talking_in' => '',
-    'talking_with' => '',
-    'title_compact' => '',
+    'talking_in' => 'razgovaranje u :channel',
+    'talking_with' => 'razgovaranje sa :name',
+    'title_compact' => 'razgovor',
 
     'cannot_send' => [
-        'channel' => '',
-        'user' => '',
+        'channel' => 'Trenutno ne možeš slati poruke u ovom kanalu.',
+        'user' => 'Trenutno ne možeš slati poruke ovom korisniku.',
+    ],
+
+    'channels' => [
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => 'Obaveštenja',
+                'GROUP' => 'Grupe',
+                'PM' => 'Direktne Poruke',
+                'PUBLIC' => 'Kanali',
+            ],
+        ],
     ],
 
     'not_found' => [
-        'message' => '',
-        'title' => '',
+        'message' => 'Ovdje nema ničega, možda si napustio kanal ili ne postoji...',
+        'title' => 'kanal nije pronađen',
     ],
 
     'input' => [
-        'disabled' => '',
-        'disconnected' => '',
-        'placeholder' => '',
+        'disabled' => 'nije moguće poslati poruku...',
+        'disconnected' => 'Odspojeno',
+        'placeholder' => 'upišite poruku...',
         'send' => 'Pošalji',
     ],
 
     'no-conversations' => [
-        'howto' => "",
-        'lazer' => '',
-        'title' => '',
+        'howto' => "Započni razgovore iz korisničkog profila ili skočnog prozora korisničke kartice.",
+        'lazer' => 'Ovdje će također biti vidljivi javni kanali kojima se pridružiš putem <a href=":link">osu!lazera</a>.',
+        'title' => 'još nema razgovora',
     ],
 ];

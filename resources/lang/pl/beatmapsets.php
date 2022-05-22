@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Część zawartości tej beatmapy została usunięta po uznaniu jej za nieodpowiednią do użycia w osu!.',
     ],
 
+    'cover' => [
+        'deleted' => 'Usunięta beatmapa',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Zwolnij, pograj więcej!',
     ],
@@ -121,6 +125,7 @@ return [
             'language' => 'Język',
             'no_scores' => 'Dane są nadal ładowane...',
             'nsfw' => 'Treść dla pełnoletnich',
+            'offset' => '',
             'points-of-failure' => 'Wykres porażek',
             'source' => 'Źródło',
             'storyboard' => 'Ta beatmapa zawiera scenorys',
@@ -192,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Liczba kółek',
             'count_sliders' => 'Liczba sliderów',
+            'offset' => '',
             'user-rating' => 'Oceny użytkowników',
             'rating-spread' => 'Wykres ocen',
             'nominations' => 'Nominacje',
@@ -207,5 +213,9 @@ return [
             'pending' => 'Oczekująca',
             'graveyard' => 'Porzucona',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

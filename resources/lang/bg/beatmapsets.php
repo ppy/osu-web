@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Някои части от бийтмапа са премахнати, тъй като бяха определени като неподходящи за използване в osu!.',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Забави малко, играй повече.',
     ],
@@ -121,6 +125,7 @@ return [
             'language' => 'Език',
             'no_scores' => 'Информацията все още се обработва...',
             'nsfw' => 'Explicit съдържание',
+            'offset' => '',
             'points-of-failure' => 'Връхни точки на провал',
             'source' => 'Източник',
             'storyboard' => 'Този бийтмап съдържа анимирана история',
@@ -192,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Брой кръгове',
             'count_sliders' => 'Брой плъзгачи',
+            'offset' => '',
             'user-rating' => 'Потребителски рейтинг',
             'rating-spread' => 'Разпределение на рейтинг',
             'nominations' => 'Номинации',
@@ -207,5 +213,9 @@ return [
             'pending' => 'Изчакващ',
             'graveyard' => 'Гробище',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

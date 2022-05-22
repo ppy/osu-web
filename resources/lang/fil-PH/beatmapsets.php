@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Iilang bagay sa map na ito ang tinanggal pagkatapos ituring na hindi angkop para gamitin sa osu!.',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Hinay lang, maglaro ka muna.',
     ],
@@ -121,6 +125,7 @@ return [
             'language' => 'Wika',
             'no_scores' => 'Kinakalkula pa ang mga datos...',
             'nsfw' => 'Maselang nilalaman',
+            'offset' => '',
             'points-of-failure' => 'Mga punto ng pagkabigo',
             'source' => 'Pinagmulan',
             'storyboard' => 'Ang beatmap na ito ay may storyboard',
@@ -192,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Bilang ng Bilog',
             'count_sliders' => 'Bilang ng Slider',
+            'offset' => '',
             'user-rating' => 'Rating ng mga User',
             'rating-spread' => 'Pagkakalatag ng Rating',
             'nominations' => 'Mga Nominasyon',
@@ -207,5 +213,9 @@ return [
             'pending' => 'Nakabinbin',
             'graveyard' => 'Abandunado',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

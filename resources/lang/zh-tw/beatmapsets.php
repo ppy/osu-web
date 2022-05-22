@@ -11,6 +11,10 @@ return [
         'rule_violation' => '已移除此圖譜中部份被評斷為不合適於 osu! 的內容。',
     ],
 
+    'cover' => [
+        'deleted' => '已刪除圖譜',
+    ],
+
     'download' => [
         'limit_exceeded' => '欲速則不達。',
     ],
@@ -121,6 +125,7 @@ return [
             'language' => '語言',
             'no_scores' => '資料還在計算中...',
             'nsfw' => '成人內容',
+            'offset' => '線上偏移調整',
             'points-of-failure' => '失敗位置',
             'source' => '來源',
             'storyboard' => '這張圖譜包含 Storyboard',
@@ -192,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => '圓圈總數',
             'count_sliders' => '滑條總數',
+            'offset' => '線上偏移調整：:offset',
             'user-rating' => '玩家評價',
             'rating-spread' => '評分情況',
             'nominations' => '提名',
@@ -207,5 +213,9 @@ return [
             'pending' => '待處理',
             'graveyard' => '拋棄',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

@@ -83,6 +83,7 @@ use Illuminate\Database\QueryException;
  * @property \Carbon\Carbon|null $queued_at
  * @property float $rating
  * @property string $source
+ * @property bool $spotlight
  * @property int $star_priority
  * @property bool $storyboard
  * @property \Carbon\Carbon|null $submit_date
@@ -100,7 +101,7 @@ use Illuminate\Database\QueryException;
  * @property bool $video
  * @property \Illuminate\Database\Eloquent\Collection $watches BeatmapsetWatch
  */
-class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
+class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, Traits\ReportableInterface
 {
     use Memoizes, SoftDeletes, Traits\CommentableDefaults, Traits\Es\BeatmapsetSearch, Traits\Reportable, Validatable;
 
@@ -110,13 +111,14 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
     protected $casts = [
         'active' => 'boolean',
+        'discussion_enabled' => 'boolean',
+        'discussion_locked' => 'boolean',
         'download_disabled' => 'boolean',
         'epilepsy' => 'boolean',
         'nsfw' => 'boolean',
+        'spotlight' => 'boolean',
         'storyboard' => 'boolean',
         'video' => 'boolean',
-        'discussion_enabled' => 'boolean',
-        'discussion_locked' => 'boolean',
     ];
 
     protected $dates = [
@@ -399,6 +401,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     public function storeCover($target_filename, $source_path)
     {
         $this->storage()->put($this->coverPath().$target_filename, file_get_contents($source_path));
+    }
+
+    public function downloadLimited()
+    {
+        return $this->download_disabled || $this->download_disabled_url !== null;
     }
 
     public function previewURL()

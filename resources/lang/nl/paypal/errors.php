@@ -9,5 +9,5 @@ return [
     'invalid_token' => 'Er is een fout opgetreden bij het voltooien van uw betaling.',
     'old_format' => 'De betalings link is verlopen, probeer het opnieuw.',
     'resource_not_found' => 'Er is geen betalingsinformatie gevonden.',
-    'unknown' => "De betaling was afgewezen, maar we weten niet waarom.",
+    'unknown' => "De betaling was afgewezen, maar we weten niet zeker waarom.",
 ];

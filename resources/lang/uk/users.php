@@ -8,7 +8,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "Історія редагування карт користувача :user",
-        'title_compact' => 'Редагування',
+        'title_compact' => 'Модифікація',
 
         'discussions' => [
             'title_recent' => 'Нещодавно розпочаті дискусії',
@@ -207,6 +207,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Закинуті карти',
+                ],
+                'guest' => [
+                    'title' => 'Карти с гостьовими складностями',
                 ],
                 'loved' => [
                     'title' => 'Улюблені карти',

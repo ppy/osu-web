@@ -257,6 +257,7 @@ return [
         'featured_artists' => '',
         'follows' => '',
         'recommended' => 'Προτεινόμενη δυσκολία',
+        'spotlights' => '',
     ],
     'mode' => [
         'all' => 'Όλα',

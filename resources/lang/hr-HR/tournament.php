@@ -5,35 +5,35 @@
 
 return [
     'index' => [
-        'none_running' => '',
-        'registration_period' => '',
+        'none_running' => 'Trenutačno se ne održava nijedan turnir, provjeri kasnije!',
+        'registration_period' => 'Registracija: :start do :end',
 
         'header' => [
-            'title' => '',
+            'title' => 'Turniri zajednice',
         ],
 
         'item' => [
-            'registered' => '',
+            'registered' => 'Registrirani igrači',
         ],
 
         'state' => [
-            'current' => '',
-            'previous' => '',
+            'current' => 'Aktivni turniri',
+            'previous' => 'Prošli turniri',
         ],
     ],
 
     'show' => [
-        'banner' => '',
-        'entered' => '',
-        'info_page' => '',
-        'login_to_register' => '',
-        'not_yet_entered' => '',
-        'rank_too_low' => '',
-        'registration_ends' => '',
+        'banner' => 'Podrži svoj team',
+        'entered' => 'Registriran si za ovaj turnir.<br><br>Napominjemo da to <b>ne</b> znači da si dodijeljen/a timu.<br><br>Daljnje upute biti će ti poslane putem e-pošte bliže datumu turnira, stoga te molimo da osiguraš svoje osu! adresa e-pošte na tvom osu! računu ispravna!',
+        'info_page' => 'Stranica s informacijama',
+        'login_to_register' => 'Molimo te da :login kako bi vidjeo/la detalje o registraciji!',
+        'not_yet_entered' => 'Nisi registiran/a za ovaj turnir.',
+        'rank_too_low' => 'Žao nam je, ne ispunjavaš uvjete za rang za ovaj turnir!',
+        'registration_ends' => 'Registracije se zatvaraju na :date',
 
         'button' => [
-            'cancel' => '',
-            'register' => '',
+            'cancel' => 'Otkaži registraciju',
+            'register' => 'Registriraj me!',
         ],
 
         'period' => [
@@ -42,11 +42,11 @@ return [
         ],
 
         'state' => [
-            'before_registration' => '',
-            'ended' => '',
-            'registration_closed' => '',
-            'running' => '',
+            'before_registration' => 'Registracije za ovaj turnir se još nisu otvorile.',
+            'ended' => 'Ovaj turnir je završen. Pogledaj stranicu s informacijama za rezultate.',
+            'registration_closed' => 'Registracija za ovaj turnir je završena. Pogledaj stranicu s informacijama za najnovije podatke.',
+            'running' => 'Ovaj turnir je trenutno u tijeku. Pogledaj stranicu s informacijama za više detalja.',
         ],
     ],
-    'tournament_period' => '',
+    'tournament_period' => ':start do :end',
 ];

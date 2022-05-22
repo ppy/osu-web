@@ -257,6 +257,7 @@ return [
         'featured_artists' => 'Обрані артисти',
         'follows' => 'Маппери на яких ви підписані',
         'recommended' => 'Рекомендована складність',
+        'spotlights' => '',
     ],
     'mode' => [
         'all' => 'Всі',

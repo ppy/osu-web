@@ -15,7 +15,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
     php8.0-common \
     php8.0-curl \
     php8.0-ds \
-    php8.0-fpm \
     php8.0-gd \
     php8.0-intl \
     php8.0-mbstring \
@@ -49,14 +48,11 @@ RUN rm -f /var/log/nginx/access.log /var/log/nginx/error.log && \
     ln -s /dev/stderr /var/log/nginx/error.log
 
 COPY . .
-RUN mkdir -p bootstrap/cache storage/framework/views
+RUN mkdir -p bootstrap/cache storage/logs storage/framework/cache storage/framework/views storage/framework/sessions public/uploads public/uploads-avatar public/uploads-replay
 RUN composer dump-autoload
 
 ARG APP_URL
 ARG DOCS_URL
-ARG PAYMENT_SANDBOX
-ARG SHOPIFY_DOMAIN
-ARG SHOPIFY_STOREFRONT_TOKEN
 RUN yarnpkg production
 
 RUN rm -rf node_modules
@@ -65,12 +61,12 @@ ARG GIT_SHA
 RUN printf "%s" "$GIT_SHA" > version
 
 RUN useradd -m osuweb
-RUN chown -R osuweb bootstrap/cache storage /var/lib/nginx
+RUN chown -R osuweb /var/lib/nginx bootstrap/cache storage
 USER osuweb
 ENV LOG_CHANNEL stderr
 
 EXPOSE 8000
-EXPOSE 9000
+EXPOSE 8080
 
 ENTRYPOINT ["/app/docker/deployment/entrypoint.sh"]
 CMD ["php"]

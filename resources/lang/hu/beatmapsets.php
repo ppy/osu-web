@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Ennek a map-nek néhány elemét eltávolítottuk, mert nem találtuk őket megfelelőnek az osu!-ban történő használathoz.',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Lassíts le, játssz többet.',
     ],
@@ -121,6 +125,7 @@ return [
             'language' => 'Nyelv',
             'no_scores' => 'Az adatok még számítás alatt...',
             'nsfw' => 'Felnőtt tartalom',
+            'offset' => '',
             'points-of-failure' => 'Kibukási Alkalmak',
             'source' => 'Forrás',
             'storyboard' => 'Ez a beatmap storyboard-ot tartalmaz',
@@ -192,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Körök Száma',
             'count_sliders' => 'Sliderek Száma',
+            'offset' => '',
             'user-rating' => 'Felhasználói Értékelés',
             'rating-spread' => 'Értékelési Szórás',
             'nominations' => 'Nominálások',
@@ -207,5 +213,9 @@ return [
             'pending' => 'Függőben',
             'graveyard' => 'Temető',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

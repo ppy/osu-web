@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Hidasta vähän, pelaa enemmän.',
     ],
@@ -121,6 +125,7 @@ return [
             'language' => 'Kieli',
             'no_scores' => 'Dataa lasketaan...',
             'nsfw' => '',
+            'offset' => '',
             'points-of-failure' => 'Epäonnistumiskohdat',
             'source' => 'Lähde',
             'storyboard' => '',
@@ -192,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Ympyröiden määrä',
             'count_sliders' => 'Slidereiden määrä',
+            'offset' => '',
             'user-rating' => 'Käyttäjien arvio',
             'rating-spread' => 'Arvioiden jakauma',
             'nominations' => 'Suositukset',
@@ -207,5 +213,9 @@ return [
             'pending' => '',
             'graveyard' => 'Hautausmaa',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];
