@@ -8,6 +8,7 @@ import { route } from 'laroute';
 import { debounce } from 'lodash';
 import { action, autorun, computed, makeObservable, observable, runInAction } from 'mobx';
 import core from 'osu-core-singleton';
+import { onError } from 'utils/ajax';
 
 interface LocalStorageProps extends Record<InputKey, string> {
   validUsers: number[];
@@ -79,7 +80,7 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
 
     createAnnoucement(json)
       .fail(action((xhr: JQueryXHR) => {
-        osu.ajaxError(xhr);
+        onError(xhr);
         this.busy.delete('create');
       }));
   }
@@ -199,11 +200,7 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
 
       this.extractValidUsers(response.users);
     } catch (error) {
-      if (this.xhrLookupUsers?.readyState === 0 && this.xhrLookupUsers === error) {
-        return;
-      }
-
-      osu.ajaxError(error);
+      onError(error);
     } finally {
       runInAction(() => this.busy.delete('lookupUsers'));
     }
