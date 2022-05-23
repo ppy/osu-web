@@ -6,6 +6,7 @@
 namespace App\Models;
 
 use App\Exceptions\ModelNotSavedException;
+use App\Libraries\MorphMap;
 use App\Libraries\Transactions\AfterCommit;
 use App\Libraries\Transactions\AfterRollback;
 use App\Libraries\TransactionStateManager;
@@ -46,6 +47,13 @@ abstract class Model extends BaseModel
         ];
 
         return array_merge($this->macros ?? [], $baseMacros);
+    }
+
+    public function getMorphClass()
+    {
+        $className = static::class;
+
+        return MorphMap::getType($className) ?? $className;
     }
 
     /**
