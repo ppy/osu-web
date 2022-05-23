@@ -178,11 +178,6 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
     this.validUsers.delete(core.currentUserOrFail.id);
   }
 
-  private fetchUsers(ids: (string | null)[]) {
-    return $.getJSON(route('chat.users.index'), { ids }) as JQuery.jqXHR<{ users: UserJson[] }>;
-  }
-
-
   @action
   private async lookupUsers() {
     this.xhrLookupUsers?.abort();
@@ -195,7 +190,7 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
     }
 
     try {
-      this.xhrLookupUsers = this.fetchUsers(userIds);
+      this.xhrLookupUsers = $.getJSON(route('chat.users.index'), { ids: userIds });
       const response = await this.xhrLookupUsers;
 
       this.extractValidUsers(response.users);
