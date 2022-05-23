@@ -46,6 +46,13 @@ class MorphMap
 
     public static function getClass($type)
     {
-        return array_search_null($type, static::MAP);
+        return static::flippedMap()[$type] ?? null;
+    }
+
+    public static function flippedMap()
+    {
+        static $ret;
+
+        return $ret ??= array_flip(static::MAP);
     }
 }
