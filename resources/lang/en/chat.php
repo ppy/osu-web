@@ -34,7 +34,7 @@ return [
         'labels' => [
             'description' => 'description',
             'name' => 'room name',
-            'users' => 'players to invite',
+            'users' => 'players to add',
         ],
     ],
 
