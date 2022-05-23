@@ -1,7 +1,6 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { createAnnoucement } from 'chat/chat-api';
 import { FancyForm } from 'components/input-container';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
@@ -23,9 +22,10 @@ export function isInputKey(key: string): key is InputKey {
   return (inputKeys as Readonly<string[]>).includes(key);
 }
 
+// This class is owned by ChatStateStore
 export default class CreateAnnouncement implements FancyForm<InputKey> {
-  @observable busy = new Set<'create' | 'lookupUsers'>();
   @observable inputs: Record<InputKey, string>;
+  @observable lookingUpUsers = false;
   @observable showError: Record<InputKey, boolean>;
   @observable validUsers = new Map<number, UserJson>();
 
@@ -60,29 +60,11 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
   @action
   clear() {
     this.xhrLookupUsers?.abort();
-    this.busy.clear();
+    this.lookingUpUsers = false;
     this.resetErrors();
     this.resetInputs();
     this.validUsers.clear();
     // localStorage key not removed because the currently the autorun will fill it again with empty values.
-  }
-
-  @action
-  create() {
-    if (!this.isValid || this.busy.has('create')) return;
-
-    // busy state should remain active so the same model can't be used to send multiple requests
-    // until the entire workflow is complete, including switching the channel.
-    // TODO: need a cancel or timeout or something?
-    this.busy.add('create');
-    const json = this.toJson();
-    core.dataStore.chatState.waitJoinChannelUuid = json.uuid;
-
-    createAnnoucement(json)
-      .fail(action((xhr: JQueryXHR) => {
-        onError(xhr);
-        this.busy.delete('create');
-      }));
   }
 
   @action
@@ -130,6 +112,18 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
     this.initialized = true;
   }
 
+  toJson() {
+    const { description, message, name } = this.inputs;
+
+    return {
+      channel: { description, name },
+      message,
+      target_ids: [...this.validUsers.keys()],
+      type: 'ANNOUNCE' as const,
+      uuid: this.uuid,
+    };
+  }
+
   @action
   updateUsers(text: string, immediate: boolean) {
     this.debouncedLookupUsers.cancel();
@@ -138,12 +132,13 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
     // TODO: check if change is only whitespace.
     if (text.trim().length === 0) {
       this.xhrLookupUsers?.abort();
-      this.busy.delete('lookupUsers');
+      this.lookingUpUsers = false;
 
       return;
     }
 
-    this.busy.add('lookupUsers');
+    // spinner should trigger even before request is sent.
+    this.lookingUpUsers = true;
     this.debouncedLookupUsers();
 
     if (immediate) {
@@ -185,7 +180,7 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
 
     const userIds = this.inputs.users.split(',').map((s) => osu.presence(s.trim())).filter(Boolean);
     if (userIds.length === 0) {
-      this.busy.delete('lookupUsers');
+      this.lookingUpUsers = false;
       return;
     }
 
@@ -197,7 +192,7 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
     } catch (error) {
       onError(error);
     } finally {
-      runInAction(() => this.busy.delete('lookupUsers'));
+      runInAction(() => this.lookingUpUsers = false);
     }
   }
 
@@ -218,18 +213,6 @@ export default class CreateAnnouncement implements FancyForm<InputKey> {
       message: '',
       name: '',
       users: '',
-    };
-  }
-
-  private toJson() {
-    const { description, message, name } = this.inputs;
-
-    return {
-      channel: { description, name },
-      message,
-      target_ids: [...this.validUsers.keys()],
-      type: 'ANNOUNCE' as const,
-      uuid: this.uuid,
     };
   }
 

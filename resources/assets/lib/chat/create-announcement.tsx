@@ -24,7 +24,7 @@ const BusySpinner = ({ busy }: { busy: boolean }) => (
 export default class CreateAnnouncement extends React.Component<Props> {
   @computed
   private get canSend() {
-    return core.dataStore.chatState.isReady && !this.model.busy.has('create') && this.model.isValid;
+    return core.dataStore.chatState.isReady && !core.dataStore.chatState.isJoiningChannel && this.model.isValid;
   }
 
   @computed
@@ -81,7 +81,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
                 onPaste={this.handleUsersInputPaste}
                 value={this.model.inputs.users}
               />
-              <BusySpinner busy={this.model.busy.has('lookupUsers')} />
+              <BusySpinner busy={this.model.lookingUpUsers} />
             </div>
           </InputContainer>
           <InputContainer model={this.model} modifiers='chat' name='message'>
@@ -101,7 +101,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
           <BigButton
             disabled={!this.canSend}
             icon='fas fa-bullhorn'
-            isBusy={this.model.busy.has('create')}
+            isBusy={core.dataStore.chatState.isJoiningChannel}
             modifiers='chat-send'
             props={{ onClick: this.handleButtonClick }}
             text={osu.trans(core.dataStore.chatState.isReady ? 'chat.input.create' : 'chat.input.disconnected')}
@@ -122,7 +122,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
 
   @action
   private handleButtonClick = () => {
-    this.model.create();
+    core.dataStore.chatState.joinChannel();
   };
 
   @action

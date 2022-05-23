@@ -14,11 +14,12 @@ import { action, autorun, computed, makeObservable, observable, observe, runInAc
 import Channel from 'models/chat/channel';
 import CreateAnnouncement from 'models/chat/create-announcement';
 import ChannelStore from 'stores/channel-store';
+import { onError } from 'utils/ajax';
 import { setBrowserTitle } from 'utils/html';
 import { updateQueryString } from 'utils/url';
 import ChannelJoinEvent from './channel-join-event';
 import ChannelPartEvent from './channel-part-event';
-import { getUpdates } from './chat-api';
+import { createAnnoucement, getUpdates } from './chat-api';
 import MainView from './main-view';
 import PingService from './ping-service';
 
@@ -31,16 +32,22 @@ export default class ChatStateStore implements DispatchListener {
   @observable isReady = false;
   skipRefresh = false;
   @observable viewsMounted = new Set<MainView>();
-  @observable waitJoinChannelUuid: string | null = null;
   @observable private isConnected = false;
   private lastHistoryId: number | null = null;
   private pingService: PingService;
   @observable private selected: ChannelId = null;
   private selectedIndex = 0;
+  @observable private waitJoinChannelUuid: string | null = null;
 
   @computed
   get isChatMounted() {
     return this.viewsMounted.size > 0;
+  }
+
+  // Should not join/create another channel if still waiting for a pending request.
+  @computed
+  get isJoiningChannel() {
+    return this.waitJoinChannelUuid != null;
   }
 
   @computed
@@ -111,6 +118,24 @@ export default class ChatStateStore implements DispatchListener {
     } else if (event instanceof SocketStateChangedAction) {
       this.handleSocketStateChanged(event);
     }
+  }
+
+  // TODO: This will support the other types of joining channels in the future
+  // Only up to one join/create channel operation should be allowed to be running at any time.
+  // For consistency, the operation is considered complete when the websocket message arrives, not when the request completes.
+  @action
+  joinChannel() {
+    if (!this.createAnnoucement.isValid || this.isJoiningChannel) return;
+
+    const json = this.createAnnoucement.toJson();
+    this.waitJoinChannelUuid = json.uuid;
+    // TODO: when adding more channel types to join, remember to add separate busy spinner states for them.
+
+    createAnnoucement(json)
+      .fail(action((xhr: JQueryXHR) => {
+        onError(xhr);
+        this.waitJoinChannelUuid = null;
+      }));
   }
 
   @action
@@ -191,6 +216,7 @@ export default class ChatStateStore implements DispatchListener {
 
     if (this.waitJoinChannelUuid != null && this.waitJoinChannelUuid === event.json.uuid) {
       this.selectChannel(event.json.channel_id);
+      this.waitJoinChannelUuid = null;
       if (event.json.type === 'ANNOUNCE') {
         this.createAnnoucement.clear();
       }
