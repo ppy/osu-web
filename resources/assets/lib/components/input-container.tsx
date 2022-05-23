@@ -11,16 +11,15 @@ interface CommonProps {
   modifiers?: Modifiers;
 }
 
-export interface FancyForm<T extends string> {
+export interface FormWithErrors<T extends string> {
   errors: Record<T, boolean>;
-  inputs: Record<T, string>;
   showError: Record<T, boolean>;
 }
 
 // extra props when error marking support is used.
 type Props<T extends string> =
   CommonProps & (
-    { model: FancyForm<T>; name: T }
+    { model: FormWithErrors<T>; name: T }
     | { model?: never; name?: never }
   );
 

@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { FancyForm } from 'components/input-container';
+import { FormWithErrors } from 'components/input-container';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { debounce } from 'lodash';
@@ -23,7 +23,7 @@ export function isInputKey(key: string): key is InputKey {
 }
 
 // This class is owned by ChatStateStore
-export default class CreateAnnouncement implements FancyForm<InputKey> {
+export default class CreateAnnouncement implements FormWithErrors<InputKey> {
   @observable inputs: Record<InputKey, string>;
   @observable lookingUpUsers = false;
   @observable showError: Record<InputKey, boolean>;
