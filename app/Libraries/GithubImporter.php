@@ -27,8 +27,8 @@ class GithubImporter
             OsuWiki::updateFromGithub($this->data);
         } elseif ($this->isMergedPullRequest()) {
             return ChangelogEntry::importFromGithub($this->data);
-        } elseif ($this->isNewTag()) {
-            return Build::importFromGithubNewTag($this->data);
+        } elseif ($this->isNewRelease()) {
+            return Build::importFromGithubNewRelease($this->data);
         }
     }
 
@@ -39,10 +39,9 @@ class GithubImporter
             $this->data['pull_request']['merged'];
     }
 
-    public function isNewTag()
+    public function isNewRelease()
     {
-        return $this->eventType === 'push' &&
-            starts_with($this->data['ref'], 'refs/tags/');
+        return $this->eventType === 'release' && $this->data['action'] === 'published';
     }
 
     public function isPushTo(string $branch): bool
