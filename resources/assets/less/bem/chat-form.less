@@ -7,13 +7,6 @@
   flex: 1;
   background: hsl(var(--hsl-b4));
 
-  &__box {
-    .reset-input();
-    color: hsl(var(--hsl-c1));
-    font-size: var(--input-size);
-    resize: none;
-  }
-
   &__button-bar {
     display: flex;
     justify-content: flex-end;
@@ -34,12 +27,14 @@
     color: hsl(var(--hsl-c1));
     font-size: var(--input-size);
 
+    &--box {
+      resize: none;
+    }
+
     &--users {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2px;
-      justify-content: flex-start;
-      min-width: 0; // so user-card-brick overflows properly.
+      flex: 1;
+      // can't do much about wrapping the input itself...
+      min-width: 40px;
     }
   }
 
@@ -53,10 +48,12 @@
     font-size: @font-size--title;
   }
 
-  &__users-text {
-    .reset-input();
-    flex: 1;
-    // can't do much about wrapping the input itself...
-    min-width: 40px;
+  &__users {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    justify-content: flex-start;
+    min-width: 0; // so user-card-brick overflows properly.
+    font-size: var(--input-size);
   }
 }

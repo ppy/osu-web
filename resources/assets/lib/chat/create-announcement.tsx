@@ -68,11 +68,11 @@ export default class CreateAnnouncement extends React.Component<Props> {
             />
           </InputContainer>
           <InputContainer for='chat-form-users' labelKey='chat.form.labels.users' model={this.model} modifiers='chat' name='users'>
-            <div className='chat-form__input chat-form__input--users'>
+            <div className='chat-form__users'>
               <UserCardBrick modifiers='fit' user={core.currentUserOrFail} />
               {this.renderValidUsers()}
               <input
-                className='chat-form__users-text'
+                className='chat-form__input chat-form__input--users'
                 id='chat-form-users'
                 name='users'
                 onBlur={this.handleBlur}
@@ -87,7 +87,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
           <InputContainer model={this.model} modifiers='chat' name='message'>
             <textarea
               autoComplete='off'
-              className='chat-form__box'
+              className='chat-form__input chat-form__input--box'
               defaultValue={this.model.inputs.message}
               name='message'
               onBlur={this.handleBlur}
