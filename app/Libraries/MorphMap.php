@@ -14,14 +14,15 @@ use App\Models\Comment;
 use App\Models\Forum;
 use App\Models\NewsPost;
 use App\Models\Score;
+use App\Models\Solo;
 use App\Models\User;
 
 class MorphMap
 {
     const MAP = [
         BeatmapDiscussion::class => 'beatmapset_discussion',
-        Beatmapset::class => 'beatmapset',
         BeatmapDiscussionPost::class => 'beatmapset_discussion_post',
+        Beatmapset::class => 'beatmapset',
         Build::class => 'build',
         Channel::class => 'channel',
         Comment::class => 'comment',
@@ -32,6 +33,7 @@ class MorphMap
         Score\Best\Mania::class => 'score_best_mania',
         Score\Best\Osu::class => 'score_best_osu',
         Score\Best\Taiko::class => 'score_best_taiko',
+        Solo\Score::class => 'solo_score',
         User::class => 'user',
     ];
 

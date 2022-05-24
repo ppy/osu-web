@@ -8,7 +8,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { rulesetName } from 'utils/beatmap-helper';
-import { canBeReported, hasReplay, hasShow } from 'utils/score-helper';
+import { canBeReported, hasReplay, hasShow, scoreUrl } from 'utils/score-helper';
 import { PopupMenuPersistent } from './popup-menu-persistent';
 import { ReportReportable } from './report-reportable';
 
@@ -33,10 +33,7 @@ export class PlayDetailMenu extends React.Component<Props> {
         )}
 
         {hasShow(score) && (
-          <a
-            className='simple-menu__item'
-            href={route('scores.show', { mode: ruleset, score: score.best_id })}
-          >
+          <a className='simple-menu__item' href={scoreUrl(score)}>
             {osu.trans('users.show.extra.top_ranks.view_details')}
           </a>
         )}

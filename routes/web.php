@@ -102,8 +102,9 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::group(['prefix' => 'scores/{mode}', 'as' => 'scores.'], function () {
         Route::get('{score}/download', 'ScoresController@download')->name('download');
-        Route::get('{score}', 'ScoresController@show')->name('show');
+        Route::get('{score}', 'ScoresController@show')->name('show-legacy');
     });
+    Route::resource('scores', 'ScoresController', ['only' => ['show']]);
 
     Route::delete('score-pins', 'ScorePinsController@destroy')->name('score-pins.destroy');
     Route::put('score-pins', 'ScorePinsController@reorder')->name('score-pins.reorder');
