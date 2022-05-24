@@ -9,7 +9,7 @@ import { shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 import { modeAttributesMap } from 'utils/score-helper';
 import Controller from './controller';
-import ScoreboardTableRow from './scoreboard-table-row';
+import TableRow from './table-row';
 
 const bn = 'beatmap-scoreboard-table';
 
@@ -18,7 +18,7 @@ interface Props {
 }
 
 @observer
-export default class ScoreboardTable extends React.Component<Props> {
+export default class Table extends React.Component<Props> {
   @observable activeKey: number | null = null;
   private readonly containerContextValue: {
     activeKeyDidChange: typeof this.activeKeyDidChange;
@@ -26,7 +26,7 @@ export default class ScoreboardTable extends React.Component<Props> {
 
   @computed
   get showPp() {
-    return shouldShowPp(this.props.controller.currentBeatmap);
+    return shouldShowPp(this.props.controller.beatmap);
   }
 
   constructor(props: Props) {
@@ -61,7 +61,7 @@ export default class ScoreboardTable extends React.Component<Props> {
                 <th className={`${bn}__header ${bn}__header--maxcombo`}>
                   {osu.trans('beatmapsets.show.scoreboard.headers.combo')}
                 </th>
-                {modeAttributesMap[this.props.controller.currentBeatmap.mode].map((stat) => (
+                {modeAttributesMap[this.props.controller.beatmap.mode].map((stat) => (
                   <th
                     key={stat.attribute}
                     className={classWithModifiers(`${bn}__header`, ['hitstat', `hitstat-${stat.attribute}`])}
@@ -84,12 +84,12 @@ export default class ScoreboardTable extends React.Component<Props> {
               </tr>
             </thead>
             <tbody className={`${bn}__body`}>
-              {this.props.controller.state.scores.scores.map((score, index) => (
+              {this.props.controller.state.data.scores.map((score, index) => (
                 <KeyContext.Provider key={index} value={index}>
-                  <ScoreboardTableRow
+                  <TableRow
                     activated={this.activeKey === index}
-                    beatmap={this.props.controller.currentBeatmap}
-                    highlightFriends={this.props.controller.state.currentScoreboardType !== 'friend'}
+                    beatmap={this.props.controller.beatmap}
+                    highlightFriends={this.props.controller.state.currentType !== 'friend'}
                     index={index}
                     score={score}
                     showPp={this.showPp}

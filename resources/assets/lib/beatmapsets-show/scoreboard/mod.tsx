@@ -29,6 +29,6 @@ export default class ScoreboardMod extends React.Component<Props> {
   }
 
   private onClick = () => {
-    this.props.controller.setCurrentScoreboard({ enabledMod: this.props.mod });
+    this.props.controller.setCurrent({ toggleMod: this.props.mod });
   };
 }

@@ -16,7 +16,7 @@ import headerLinks from './header-links';
 import Hype from './hype';
 import Info from './info';
 import NsfwWarning from './nsfw-warning';
-import Scoreboard from './scoreboard';
+import ScoreboardMain from './scoreboard/main';
 
 interface Props {
   container: HTMLElement;
@@ -110,7 +110,10 @@ export default class Main extends React.Component<Props> {
 
         {this.controller.currentBeatmap.is_scoreable &&
           <div className='osu-page osu-page--generic'>
-            <Scoreboard controller={this.controller} />
+            <ScoreboardMain
+              beatmap={this.controller.currentBeatmap}
+              container={this.props.container}
+            />
           </div>
         }
 
