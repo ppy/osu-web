@@ -12,6 +12,7 @@ use App\Libraries\Transactions\AfterRollback;
 use App\Libraries\TransactionStateManager;
 use App\Scopes\MacroableModelScope;
 use Exception;
+use Illuminate\Database\ClassMorphViolationException;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model as BaseModel;
 
@@ -53,7 +54,13 @@ abstract class Model extends BaseModel
     {
         $className = static::class;
 
-        return MorphMap::getType($className) ?? $className;
+        $ret = MorphMap::getType($className);
+
+        if ($ret !== null) {
+            return $ret;
+        }
+
+        throw new ClassMorphViolationException($this);
     }
 
     /**
