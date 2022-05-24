@@ -18,7 +18,7 @@ abstract class ModelFactory extends Factory
         return [
             'beatmap_id' => fn () => Beatmap::factory()->state([
                 // force playmode to match score type
-                'playmode' => Beatmap::modeInt($this->model::getMode()),
+                'playmode' => Beatmap::modeInt((new $this->model())->getMode()),
             ]),
             'date' => fn () => $this->faker->dateTimeBetween('-5 years'),
             'enabled_mods' => array_rand_val([0, 16, 24, 64, 72]),

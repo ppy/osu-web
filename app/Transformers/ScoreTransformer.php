@@ -46,7 +46,6 @@ class ScoreTransformer extends TransformerAbstract
             $best = $score->best;
 
             $createdAt = $score->date;
-            $mode = $score->getMode();
 
             if ($best !== null) {
                 $bestId = $best->getKey();
@@ -56,8 +55,9 @@ class ScoreTransformer extends TransformerAbstract
         } else {
             // LegacyMatch\Score
             $createdAt = $score->game->start_time;
-            $mode = $score->gameModeString();
         }
+
+        $mode = $score->getMode();
 
         $statistics = [
             'count_100' => $score->count100,

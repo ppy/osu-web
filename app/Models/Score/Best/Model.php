@@ -55,7 +55,7 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
     {
         $instance = new static();
         $table = $instance->getTable();
-        $modeId = Beatmap::MODES[static::getMode()];
+        $modeId = Beatmap::MODES[$instance->getMode()];
 
         $instance->getConnection()->insert(
             "INSERT INTO score_process_queue (score_id, mode, status) SELECT score_id, {$modeId}, 1 FROM {$table} WHERE user_id = {$user->getKey()}"
@@ -380,7 +380,7 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
             $statsColumn = static::RANK_TO_STATS_COLUMN_MAPPING[$this->rank] ?? null;
 
             if ($statsColumn !== null && $this->isPersonalBest()) {
-                $userStats = $this->user?->statistics($this->gameModeString());
+                $userStats = $this->user?->statistics($this->getMode());
 
                 if ($userStats !== null) {
                     $userStats->decrement($statsColumn);
