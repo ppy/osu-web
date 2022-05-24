@@ -298,10 +298,12 @@ class BeatmapsController extends Controller
                 $userScore = (clone $query)->where('user_id', $currentUser->user_id)->first();
             }
 
+            $scoreTransformer = new ScoreTransformer();
+
             $results = [
                 'scores' => json_collection(
                     $query->visibleUsers()->forListing(),
-                    new ScoreTransformer(),
+                    $scoreTransformer,
                     static::DEFAULT_SCORE_INCLUDES
                 ),
             ];
