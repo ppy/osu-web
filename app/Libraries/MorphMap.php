@@ -12,6 +12,7 @@ use App\Models\Build;
 use App\Models\Chat\Channel;
 use App\Models\Comment;
 use App\Models\Forum;
+use App\Models\LegacyMatch;
 use App\Models\NewsPost;
 use App\Models\Score;
 use App\Models\User;
@@ -27,6 +28,7 @@ class MorphMap
         Comment::class => 'comment',
         Forum\Post::class => 'forum_post',
         Forum\Topic::class => 'forum_topic',
+        LegacyMatch\Score::class => 'legacy_match_score',
         NewsPost::class => 'news_post',
         Score\Best\Fruits::class => 'score_best_fruits',
         Score\Best\Mania::class => 'score_best_mania',
