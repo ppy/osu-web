@@ -21,8 +21,8 @@ class MorphMap
 {
     const MAP = [
         BeatmapDiscussion::class => 'beatmapset_discussion',
-        Beatmapset::class => 'beatmapset',
         BeatmapDiscussionPost::class => 'beatmapset_discussion_post',
+        Beatmapset::class => 'beatmapset',
         Build::class => 'build',
         Channel::class => 'channel',
         Comment::class => 'comment',
@@ -34,6 +34,10 @@ class MorphMap
         Score\Best\Mania::class => 'score_best_mania',
         Score\Best\Osu::class => 'score_best_osu',
         Score\Best\Taiko::class => 'score_best_taiko',
+        Score\Fruits::class => 'score_fruits',
+        Score\Mania::class => 'score_mania',
+        Score\Osu::class => 'score_osu',
+        Score\Taiko::class => 'score_taiko',
         User::class => 'user',
     ];
 
