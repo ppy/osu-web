@@ -47,7 +47,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Relation::morphMap(array_flip(MorphMap::MAP));
+        Relation::morphMap(MorphMap::flippedMap());
 
         Validator::extend('mixture', function ($attribute, $value, $parameters, $validator) {
             return preg_match('/[\d]/', $value) === 1 && preg_match('/[^\d\s]/', $value) === 1;
