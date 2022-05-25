@@ -51,7 +51,7 @@ class ScorePin extends Model
 
     public function scopeWithVisibleScore($query): Builder
     {
-        return $query->whereHasMorph('score', static::SCORES, fn ($q) => $q->visibleUsers());
+        return $query->whereHasMorph('score', static::SCORES);
     }
 
     public function score(): MorphTo
