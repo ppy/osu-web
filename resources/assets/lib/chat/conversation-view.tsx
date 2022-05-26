@@ -250,7 +250,7 @@ export default class ConversationView extends React.Component<Props> {
           </>
         ) : (
           this.currentChannel.announcementUsers.map((user) => (
-            <UserCardBrick key={user?.id} modifiers='fit' user={(user ?? deletedUser).toJson()} />
+            <UserCardBrick key={user?.id} user={(user ?? deletedUser).toJson()} />
           ))
         )}
       </div>
