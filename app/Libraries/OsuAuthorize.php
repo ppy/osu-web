@@ -822,7 +822,11 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($user->isProjectLoved() && $beatmapset->isLoved()) {
+        static $lovedEditable = [
+            Beatmapset::STATES['graveyard'],
+            Beatmapset::STATES['loved'],
+        ];
+        if ($user->isProjectLoved() && in_array($beatmapset->approved, $lovedEditable, true)) {
             return 'ok';
         }
 
@@ -831,16 +835,15 @@ class OsuAuthorize
             Beatmapset::STATES['pending'],
             Beatmapset::STATES['qualified'],
         ];
+        if ($user->isBNG() && in_array($beatmapset->approved, $bnEditable, true)) {
+            return 'ok';
+        }
+
         static $ownerEditable = [
             Beatmapset::STATES['graveyard'],
             Beatmapset::STATES['wip'],
             Beatmapset::STATES['pending'],
         ];
-
-        if ($user->isBNG() && in_array($beatmapset->approved, $bnEditable, true)) {
-            return 'ok';
-        }
-
         if ($user->getKey() !== $beatmapset->user_id || !in_array($beatmapset->approved, $ownerEditable, true)) {
             return 'unauthorized';
         }
