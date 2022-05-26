@@ -256,8 +256,7 @@ export default class ChannelStore implements DispatchListener {
 
     try {
       if (channel.newPmChannel) {
-        const users = channel.userIds.slice();
-        const userId = users.find((user) => user !== core.currentUserOrFail.id);
+        const userId = channel.pmTarget;
 
         if (userId == null) {
           console.debug('sendMessage:: userId not found?? this shouldn\'t happen');
