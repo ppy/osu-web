@@ -6,7 +6,7 @@ import ChannelJson, { ChannelType, SupportedChannelType, supportedTypeLookup } f
 import MessageJson from 'interfaces/chat/message-json';
 import { minBy, sortBy } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
-import User from 'models/user';
+import User, { usernameSortAscending } from 'models/user';
 import core from 'osu-core-singleton';
 import Message from './message';
 
@@ -30,10 +30,21 @@ export default class Channel {
     autoScroll: true,
     scrollY: 0,
   };
-  @observable users: number[] = [];
+  @observable userIds: number[] = [];
 
   @observable private messagesMap = new Map<number | string, Message>();
   private serverLastMessageId?: number;
+  @observable private usersLoaded = false;
+
+  @computed
+  get announcementUsers() {
+    return this.usersLoaded
+      ? this.userIds
+        .map((userId) => core.dataStore.userStore.get(userId))
+        .filter((u): u is User => u != null)
+        .sort(usernameSortAscending)
+      : null;
+  }
 
   @computed
   get canMessage() {
@@ -98,7 +109,7 @@ export default class Channel {
       return;
     }
 
-    return this.users.find((userId: number) => userId !== core.currentUserOrFail.id);
+    return this.userIds.find((userId: number) => userId !== core.currentUserOrFail.id);
   }
 
   @computed
@@ -118,7 +129,7 @@ export default class Channel {
     channel.type = 'PM';
     channel.name = target.username;
     channel.icon = target.avatarUrl;
-    channel.users = [core.currentUserOrFail.id, target.id];
+    channel.userIds = [core.currentUserOrFail.id, target.id];
 
     return channel;
   }
@@ -170,7 +181,11 @@ export default class Channel {
     // nothing to load
     if (this.newPmChannel) return;
 
-    this.refreshMessages();
+    if (this.type === 'ANNOUNCE' && !this.usersLoaded) {
+      this.loadMetadata();
+    }
+
+    this.loadRecentMessages();
   }
 
   @action
@@ -204,15 +219,18 @@ export default class Channel {
   }
 
   @action
-  markAsRead() {
-    this.setLastReadId(this.lastMessageId);
+  loadMetadata() {
+    getChannel(this.channelId).done((json) => {
+      runInAction(() => {
+        this.updateWithJson(json);
+        this.usersLoaded = true;
+      });
+    });
   }
 
   @action
-  refresh() {
-    getChannel(this.channelId).done((response) => {
-      this.updateWithJson(response.channel);
-    });
+  markAsRead() {
+    this.setLastReadId(this.lastMessageId);
   }
 
   @action
@@ -235,7 +253,7 @@ export default class Channel {
     this.description = json.description;
     this.type = json.type;
     this.icon = json.icon ?? Channel.defaultIcon;
-    this.users = json.users ?? this.users;
+    this.userIds = json.users ?? this.userIds;
 
     this.serverLastMessageId = json.last_message_id;
 
@@ -246,17 +264,7 @@ export default class Channel {
   }
 
   @action
-  private persistMessage(message: Message, json: MessageJson) {
-    if (json.uuid != null) {
-      this.messagesMap.delete(json.uuid);
-    }
-
-    message.persist(json);
-    this.messagesMap.set(message.messageId, message);
-  }
-
-  @action
-  private async refreshMessages() {
+  private async loadRecentMessages() {
     if (!this.needsRefresh || this.loadingMessages) return;
 
     this.loadingMessages = true;
@@ -291,6 +299,16 @@ export default class Channel {
     } catch {
       runInAction(() => this.loadingMessages = false);
     }
+  }
+
+  @action
+  private persistMessage(message: Message, json: MessageJson) {
+    if (json.uuid != null) {
+      this.messagesMap.delete(json.uuid);
+    }
+
+    message.persist(json);
+    this.messagesMap.set(message.messageId, message);
   }
 
   @action

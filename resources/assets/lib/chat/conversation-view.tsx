@@ -5,11 +5,13 @@ import ShowMoreLink from 'components/show-more-link';
 import { Spinner } from 'components/spinner';
 import StringWithComponent from 'components/string-with-component';
 import UserAvatar from 'components/user-avatar';
+import UserCardBrick from 'components/user-card-brick';
 import { route } from 'laroute';
 import { each, isEmpty, last, throttle } from 'lodash';
 import { action, computed, makeObservable, reaction } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import Message from 'models/chat/message';
+import { deletedUser } from 'models/user';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -192,6 +194,7 @@ export default class ConversationView extends React.Component<Props> {
         <div className='chat-conversation__new-chat-avatar'>
           <UserAvatar user={{ avatar_url: channel.icon }} />
         </div>
+        {this.renderUsers()}
         <div className='chat-conversation__chat-label'>
           {channel.pmTarget != null ? (
             <StringWithComponent
@@ -232,6 +235,24 @@ export default class ConversationView extends React.Component<Props> {
         {!channel.canMessage &&
           this.renderCannotSendMessage()
         }
+      </div>
+    );
+  }
+
+  renderUsers() {
+    if (this.currentChannel?.type !== 'ANNOUNCE') return null;
+
+    return (
+      <div className={classWithModifiers('chat-conversation__users', { loading: this.currentChannel.announcementUsers == null })}>
+        {this.currentChannel.announcementUsers == null ? (
+          <>
+            <Spinner modifiers='self-center' /><span>{osu.trans('chat.loading_users')}</span>
+          </>
+        ) : (
+          this.currentChannel.announcementUsers.map((user) => (
+            <UserCardBrick key={user?.id} user={(user ?? deletedUser).toJson()} />
+          ))
+        )}
       </div>
     );
   }
