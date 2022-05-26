@@ -5,7 +5,7 @@
 
 return [
     'insufficient_stock' => 'Nema dovoljno ovog artikla!',
-    'must_separate' => '',
+    'must_separate' => 'Ovaj artikl se mora kupiti odvojeno od ostalih artikala',
     'not_available' => 'Ovaj artikl nije dostupan.',
     'too_many' => 'Možete samo naručiti :count ovog artikla po narudžbi.',
 ];

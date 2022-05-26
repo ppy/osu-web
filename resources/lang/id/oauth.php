@@ -49,7 +49,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => 'Apakah Anda yakin untuk menghapus klien ini?',
-        'confirm_reset' => 'Apakah Anda yakin untuk mengatur ulang client secret? Tindakan ini akan menganulir izin akses token-token yang telah diotorisir sebelumnya.',
+        'confirm_reset' => 'Apakah Anda yakin untuk mengatur ulang client secret? Tindakan ini akan menganulir izin akses seluruh token yang telah diotorisir sebelumnya.',
         'new' => 'Buat Izin Aplikasi Baru',
         'none' => 'Tidak Ada Klien',
 

@@ -25,9 +25,6 @@ dotenv.config({ path: `.env.${env}` });
 dotenv.config();
 
 const inProduction = env === 'production' || process.argv.includes('-p');
-const paymentSandbox = !(process.env.PAYMENT_SANDBOX === '0'
-                         || process.env.PAYMENT_SANDBOX === 'false'
-                         || !process.env.PAYMENT_SANDBOX);
 
 const writeManifest = !(process.env.SKIP_MANIFEST === '1'
                         || process.env.SKIP_MANIFEST === 'true'
@@ -153,9 +150,6 @@ const plugins = [
   }),
   new webpack.DefinePlugin({
     'process.env.DOCS_URL': JSON.stringify(process.env.DOCS_URL || 'https://docs.ppy.sh'),
-    'process.env.PAYMENT_SANDBOX': JSON.stringify(paymentSandbox),
-    'process.env.SHOPIFY_DOMAIN': JSON.stringify(process.env.SHOPIFY_DOMAIN),
-    'process.env.SHOPIFY_STOREFRONT_TOKEN': JSON.stringify(process.env.SHOPIFY_STOREFRONT_TOKEN),
   }),
   new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // don't add moment locales to bundle.
   new MiniCssExtractPlugin({

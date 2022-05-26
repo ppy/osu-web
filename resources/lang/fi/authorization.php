@@ -42,7 +42,7 @@ return [
         'destroy' => [
             'not_owner' => 'Voit poistaa vaan omia viestejä.',
             'resolved' => '',
-            'system_generated' => '',
+            'system_generated' => 'Automaattisesti luotua viestiä ei voi poistaa.',
         ],
 
         'edit' => [
@@ -63,17 +63,20 @@ return [
     ],
 
     'chat' => [
-        'annnonce_only' => '',
+        'annnonce_only' => 'Tämä kanava on tarkoitettu vain tiedotuksiin.',
         'blocked' => 'Et voi lähettää viestejä käyttäjälle, joka on estänyt sinut tai jonka olet estänyt.',
         'friends_only' => 'Käyttäjä on estänyt viestit henkilöiltä, jotka eivät ole hänen kaverilistassaan.',
         'moderated' => 'Tätä kanavaa moderoidaan.',
         'no_access' => 'Sinulla ei ole oikeuksia tälle kanavalle.',
         'receive_friends_only' => '',
         'restricted' => 'Et voi lähettää viestejä mykistettynä, rajoitettuna tai bännättynä.',
-        'silenced' => '',
+        'silenced' => 'Et voi lähettää viestejä mykistettynä, rajoitettuna tai bännättynä.',
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => '',
+        ],
         'update' => [
             'deleted' => "Poistettuja viestejä ei voi mukata.",
         ],

@@ -8,11 +8,11 @@ return [
         'home' => 'Mergi la panoul de comenzi',
         'logout' => 'Deconectează-te',
         'text' => 'Acum poți închide această fereastră/tab',
-        'title' => 'osu! verificarea clientului a fost completată',
+        'title' => 'verificarea clientului osu! a fost completată',
     ],
 
     'create' => [
         'confirm' => 'Fă click pe butonul de autorizare de mai jos pentru a finaliza verificarea clientului.',
-        'title' => 'osu! verificare client',
+        'title' => 'verificare client osu!',
     ],
 ];

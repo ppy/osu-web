@@ -12,11 +12,11 @@ return [
     ],
 
     'cover' => [
-        'deleted' => '',
+        'deleted' => 'Beatmap yang telah dihapus',
     ],
 
     'download' => [
-        'limit_exceeded' => 'Jangan terlalu bernafsu dalam mengunduh. Harap mainkan beatmap-beatmap yang telah Anda miliki terlebih dahulu.',
+        'limit_exceeded' => 'Jangan terlalu bernafsu dalam mengunduh. Mainkan beatmap yang telah Anda miliki terlebih dahulu.',
     ],
 
     'featured_artist_badge' => [
@@ -188,7 +188,7 @@ return [
 
         'stats' => [
             'cs' => 'Circle Size',
-            'cs-mania' => 'Key Amount',
+            'cs-mania' => 'Jumlah Key',
             'drain' => 'HP Drain',
             'accuracy' => 'Accuracy',
             'ar' => 'Approach Rate',
@@ -213,5 +213,9 @@ return [
             'pending' => 'Pending',
             'graveyard' => 'Graveyard',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

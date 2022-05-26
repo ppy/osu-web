@@ -12,7 +12,7 @@ return [
     ],
 
     'cover' => [
-        'deleted' => '',
+        'deleted' => 'Удалённая карта',
     ],
 
     'download' => [
@@ -213,5 +213,9 @@ return [
             'pending' => 'На рассмотрении',
             'graveyard' => 'Заброшенная',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

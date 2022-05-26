@@ -6,11 +6,11 @@
 return [
     'landing' => [
         'download' => 'Preuzmi',
-        'online' => '',
-        'peak' => '',
-        'players' => '',
+        'online' => '<strong>:players</strong> trenutno na mreži u <strong>:games</strong> igrama ',
+        'peak' => 'Vrhunac, :count korisnika na mreži',
+        'players' => '<strong>:count</strong> registriranih igrača',
         'title' => 'dobro došli',
-        'see_more_news' => '',
+        'see_more_news' => 'pogledaj još vijesti',
 
         'slogan' => [
             'main' => 'najbolja besplatna ritmička igra',
@@ -22,63 +22,63 @@ return [
         'advanced_link' => 'Napradna pretraga',
         'button' => 'Pretraži',
         'empty_result' => 'Nije pronađeno!',
-        'keyword_required' => '',
-        'placeholder' => '',
+        'keyword_required' => 'Potrebna je ključna riječ za pretraživanje',
+        'placeholder' => 'unesite za pretraživanje',
         'title' => 'pretraži',
 
         'beatmapset' => [
-            'login_required' => '',
-            'more' => '',
-            'more_simple' => '',
-            'title' => '',
+            'login_required' => 'Prijavi se kako bi pretražio beatmape',
+            'more' => 'Još :count rezultata u pretraživanju beatmapa',
+            'more_simple' => 'Pogledaj još rezultata pretraživanja beatmapa',
+            'title' => 'Beatmape',
         ],
 
         'forum_post' => [
-            'all' => '',
-            'link' => '',
-            'login_required' => '',
-            'more_simple' => '',
-            'title' => '',
+            'all' => 'Svi forumi',
+            'link' => 'Pretraga foruma',
+            'login_required' => 'Prijavi se kako bi pretražio forum',
+            'more_simple' => 'Pogledaj još rezultata pretraživanja foruma',
+            'title' => 'Forum',
 
             'label' => [
-                'forum' => '',
-                'forum_children' => '',
-                'topic_id' => '',
-                'username' => '',
+                'forum' => 'pretrži u forumima',
+                'forum_children' => 'uključi podforume',
+                'topic_id' => 'tema #',
+                'username' => 'autor',
             ],
         ],
 
         'mode' => [
             'all' => 'svi',
-            'beatmapset' => '',
-            'forum_post' => '',
+            'beatmapset' => 'beatmapa',
+            'forum_post' => 'forum',
             'user' => 'igrač',
             'wiki_page' => 'wiki',
         ],
 
         'user' => [
-            'login_required' => '',
-            'more' => '',
-            'more_simple' => '',
-            'more_hidden' => '',
+            'login_required' => 'Prijavi se kako bi pretražio korisnike',
+            'more' => 'Još :count rezultata u pretraživanju igrača',
+            'more_simple' => 'Još rezultata u pretraživanju igrača',
+            'more_hidden' => 'Pretraživanje igrača ograničeno je na :max igrača.  Pokušajte precizirati upit za pretraživanje.',
             'title' => 'Igrači',
         ],
 
         'wiki_page' => [
-            'link' => '',
-            'more_simple' => '',
+            'link' => 'Pretraži wiki',
+            'more_simple' => 'Pogledaj još rezultata pretraživanja wikia',
             'title' => 'Wiki',
         ],
     ],
 
     'download' => [
-        'tagline' => "",
+        'tagline' => "idemo<br>započeti!",
         'action' => 'Preuzmi osu!',
 
         'help' => [
-            '_' => '',
-            'help_forum_link' => '',
-            'support_button' => '',
+            '_' => 'ako imaš problema s pokretanjem igre ili registracijom računa, :help_forum_link ili :support_button.',
+            'help_forum_link' => 'provjeri forum za pomoć',
+            'support_button' => 'kontaktiraj podršku',
         ],
 
         'os' => [
@@ -86,49 +86,49 @@ return [
             'macos' => 'za macOS',
             'linux' => 'za Linux',
         ],
-        'mirror' => '',
-        'macos-fallback' => '',
+        'mirror' => 'mirror',
+        'macos-fallback' => 'macOS korisnici',
         'steps' => [
             'register' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'nabavi račun',
+                'description' => 'slijedite upute prilikom pokretanja igre da se prijavite ili napravite novi račun',
             ],
             'download' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'instaliraj igricu',
+                'description' => 'klikni gornji gumb za preuzimanje instalacijskog programa, a zatim ga pokreni!',
             ],
             'beatmaps' => [
-                'title' => '',
+                'title' => 'nabavi beatmape',
                 'description' => [
-                    '_' => '',
+                    '_' => ':browse golemu knjižnicu beatmapa koje su kreirali korisnici i kreni igrati!',
                     'browse' => 'pretraži',
                 ],
             ],
         ],
-        'video-guide' => '',
+        'video-guide' => 'video vodič',
     ],
 
     'user' => [
-        'title' => '',
+        'title' => 'kontrolna ploča',
         'news' => [
             'title' => 'Vijesti',
-            'error' => '',
+            'error' => 'Pogreška pri učitavanju vijesti, pokušaj osvježiti stranicu?...',
         ],
         'header' => [
             'stats' => [
-                'friends' => '',
-                'games' => '',
-                'online' => '',
+                'friends' => 'Prijatelji na mreži',
+                'games' => 'Igre',
+                'online' => 'Korisnici na mreži ',
             ],
         ],
         'beatmaps' => [
-            'new' => '',
-            'popular' => '',
-            'by_user' => '',
+            'new' => 'Nove rangirane beatmape',
+            'popular' => 'Popularne beatmape',
+            'by_user' => 'od :user',
         ],
         'buttons' => [
-            'download' => '',
-            'support' => '',
+            'download' => 'Preuzmi osu!',
+            'support' => 'Podrži osu!',
             'store' => '',
         ],
     ],

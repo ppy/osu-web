@@ -133,8 +133,8 @@ return [
 
             'columns' => [
                 'action' => '',
-                'date' => '',
-                'user' => '',
+                'date' => 'Päivämäärä',
+                'user' => 'Käyttäjä',
             ],
 
             'data' => [

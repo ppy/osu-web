@@ -64,7 +64,6 @@ interface JQueryStatic {
 interface OsuCommon {
   formatBytes: (bytes: number, decimals?: number) => string;
   groupColour: (group?: import('interfaces/group-json').default) => React.CSSProperties;
-  isClickable: (el: Element | EventTarget) => boolean;
   navigate: (url: string, keepScroll?: boolean, action?: Partial<Record<string, unknown>>) => void;
   popup: (message: string, type: string) => void;
   presence: (str?: string | null) => string | null;

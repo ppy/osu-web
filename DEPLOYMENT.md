@@ -8,9 +8,6 @@ There are several build arguments required:
 
 - `APP_URL`
 - `DOCS_URL`
-- `PAYMENT_SANDBOX`
-- `SHOPIFY_DOMAIN`
-- `SHOPIFY_STOREFRONT_TOKEN`
 - `GIT_SHA` (build version. Something like `"$(date "+%Y%m%d-%H%M%S")-$(git rev-parse HEAD | cut -c1-7)"` should work)
 
 ## Updating image
