@@ -3,6 +3,7 @@
 
 import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
+import { usernameSortAscending } from 'models/user';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -38,10 +39,6 @@ interface State {
 
 function rankSortDescending(x: UserJson, y: UserJson) {
   return (x.statistics?.global_rank ?? Number.MAX_VALUE) - (y.statistics?.global_rank ?? Number.MAX_VALUE);
-}
-
-function usernameSortAscending(x: UserJson, y: UserJson) {
-  return x.username.localeCompare(y.username);
 }
 
 export class UserList extends React.PureComponent<Props> {

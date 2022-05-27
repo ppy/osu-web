@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'loading_users' => '',
     'talking_in' => 'parle dans :channel',
     'talking_with' => 'parle avec :name',
     'title_compact' => 'tchat',

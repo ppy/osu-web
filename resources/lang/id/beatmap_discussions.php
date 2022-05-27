@@ -7,7 +7,7 @@ return [
     'authorizations' => [
         'update' => [
             'null_user' => 'Anda harus masuk untuk dapat menyunting.',
-            'system_generated' => 'Post yang dihasilkan secara otomatis tidak dapat disunting.',
+            'system_generated' => 'Post yang dibuat secara otomatis tidak dapat disunting.',
             'wrong_user' => 'Hanya pembuat post yang diperbolehkan untuk menyunting post.',
         ],
     ],
@@ -18,7 +18,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'telah dihapus',
-        'none_found' => 'Tidak ada diskusi yang memenuhi kriteria pencarian.',
+        'none_found' => 'Tidak ada topik diskusi yang sesuai dengan kriteria pencarian.',
         'title' => 'Laman Diskusi Beatmap',
 
         'form' => [
@@ -73,18 +73,18 @@ return [
     ],
 
     'review' => [
-        'block_count' => ':used / :max blok telah dipergunakan',
+        'block_count' => ':used / :max blok telah digunakan',
         'go_to_parent' => 'Lihat Kajian',
         'go_to_child' => 'Lihat Topik Diskusi',
         'validation' => [
             'block_too_large' => 'masing-masing poin yang dikaji terbatas pada :limit karakter',
-            'external_references' => 'kajian ini mengandung satu atau lebih poin yang mengacu pada isu yang tidak berasal dari beatmap ini',
+            'external_references' => 'kajian mengandung poin yang merujuk pada isu yang tidak berasal dari kajian ini',
             'invalid_block_type' => 'tipe blok tidak valid',
             'invalid_document' => 'kajian tidak valid',
             'invalid_discussion_type' => 'tipe diskusi tidak valid',
-            'minimum_issues' => 'kajian harus tersusun atas setidaknya :count isu|kajian harus tersusun atas setidaknya :count isu',
+            'minimum_issues' => 'kajian harus mengandung setidaknya :count isu|kajian harus mengandung setidaknya :count isu',
             'missing_text' => 'blok tidak mengandung teks',
-            'too_many_blocks' => 'kajian hanya dapat tersusun sepanjang maksimal :count paragraf/isu|kajian hanya dapat tersusun sepanjang maksimal :count paragraf/isu',
+            'too_many_blocks' => 'kajian hanya dapat mengandung maksimal :count paragraf/isu|kajian hanya dapat mengandung maksimal :count paragraf/isu',
         ],
     ],
 
