@@ -257,7 +257,7 @@ return [
         'featured_artists' => '공식 아티스트',
         'follows' => '구독한 비트맵 제작자',
         'recommended' => '권장 난이도',
-        'spotlights' => '',
+        'spotlights' => '스포트라이트 비트맵',
     ],
     'mode' => [
         'all' => '전체',

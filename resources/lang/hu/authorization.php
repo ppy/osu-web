@@ -75,7 +75,7 @@ return [
 
     'comment' => [
         'store' => [
-            'disabled' => '',
+            'disabled' => 'A hozzászólások le vannak tiltva',
         ],
         'update' => [
             'deleted' => "Törölt posztot nem lehet szerkeszteni.",

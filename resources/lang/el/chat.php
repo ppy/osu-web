@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'loading_users' => '',
     'talking_in' => 'μιλάτε στο: :channel',
     'talking_with' => 'μιλάτε με: :name',
     'title_compact' => 'συνομιλία',
