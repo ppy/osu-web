@@ -75,7 +75,7 @@ return [
 
     'comment' => [
         'store' => [
-            'disabled' => '',
+            'disabled' => '留言已停用',
         ],
         'update' => [
             'deleted' => "無法編輯已刪除的回覆。",

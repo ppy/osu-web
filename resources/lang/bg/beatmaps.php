@@ -257,7 +257,7 @@ return [
         'featured_artists' => 'Представени автори',
         'follows' => 'Абонирани създатели',
         'recommended' => 'Препоръчана трудност',
-        'spotlights' => '',
+        'spotlights' => 'Под прожекторите',
     ],
     'mode' => [
         'all' => 'Всички',

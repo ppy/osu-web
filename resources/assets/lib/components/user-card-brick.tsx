@@ -10,10 +10,8 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import UserCardTypeContext from 'user-card-type-context';
 import { classWithModifiers, Modifiers } from 'utils/css';
-import { ViewMode } from './user-card';
 
 interface Props {
-  mode: ViewMode;
   modifiers?: Modifiers;
   user: UserJson;
 }
@@ -21,10 +19,6 @@ interface Props {
 @observer
 export default class UserCardBrick extends React.Component<Props> {
   static readonly contextType = UserCardTypeContext;
-
-  static defaultProps = {
-    mode: 'brick',
-  };
 
   declare context: React.ContextType<typeof UserCardTypeContext>;
 
@@ -51,7 +45,6 @@ export default class UserCardBrick extends React.Component<Props> {
     const blockClass = classWithModifiers(
       'user-card-brick',
       this.props.modifiers,
-      this.props.mode,
       this.friendModifier,
     );
 

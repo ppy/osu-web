@@ -26,8 +26,8 @@ return [
         ],
 
         'beatmapsets' => [
-            'show' => '',
-            'discussions' => '',
+            'show' => 'thông tin',
+            'discussions' => 'thảo luận',
         ],
 
         'changelog' => [

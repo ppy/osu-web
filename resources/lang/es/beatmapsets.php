@@ -16,7 +16,7 @@ return [
     ],
 
     'download' => [
-        'limit_exceeded' => 'Reduzca la velocidad, juegue más.',
+        'limit_exceeded' => 'Más despacio, juegue un poco.',
     ],
 
     'featured_artist_badge' => [
@@ -216,6 +216,6 @@ return [
     ],
 
     'spotlight_badge' => [
-        'label' => '',
+        'label' => 'Destacado',
     ],
 ];

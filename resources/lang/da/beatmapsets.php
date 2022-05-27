@@ -12,7 +12,7 @@ return [
     ],
 
     'cover' => [
-        'deleted' => '',
+        'deleted' => 'Slettet beatmap',
     ],
 
     'download' => [
@@ -20,7 +20,7 @@ return [
     ],
 
     'featured_artist_badge' => [
-        'label' => '',
+        'label' => 'Udvalgte kunstner',
     ],
 
     'index' => [

@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'loading_users' => '',
     'talking_in' => 'чат в :channel',
     'talking_with' => 'чат з :name',
     'title_compact' => 'чат',

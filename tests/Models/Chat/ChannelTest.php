@@ -41,7 +41,7 @@ class ChannelTest extends TestCase
         $channel = $this->createChannel([$user], 'public');
 
         $this->assertSame(1, $channel->users()->count());
-        $this->assertEmpty($channel->visibleUsers());
+        $this->assertEmpty($channel->visibleUsers($user));
     }
 
     /**

@@ -96,7 +96,7 @@ return [
         ],
 
         'hype' => [
-            'action' => 'Hypeia este mapa se gostaste de o jogar para ajudá-lo a progredir ao estado <strong>Classificado</strong>.',
+            'action' => 'Hypeia este mapa se gostaste de jogá-lo para o ajudar a progredir ao estado <strong>Classificado</strong>.',
 
             'current' => [
                 '_' => 'Este mapa está atualmente :status.',
@@ -104,7 +104,7 @@ return [
                 'status' => [
                     'pending' => 'pendente',
                     'qualified' => 'qualificado',
-                    'wip' => 'trabalho em progresso',
+                    'wip' => 'trabalho em curso',
                 ],
             ],
 
@@ -209,13 +209,13 @@ return [
             'approved' => 'Aprovado',
             'loved' => 'Adorado',
             'qualified' => 'Qualificado',
-            'wip' => 'Trabalho em progresso',
+            'wip' => 'Trabalho em curso',
             'pending' => 'Pendente',
             'graveyard' => 'Cemitério',
         ],
     ],
 
     'spotlight_badge' => [
-        'label' => '',
+        'label' => 'Em destaque',
     ],
 ];
