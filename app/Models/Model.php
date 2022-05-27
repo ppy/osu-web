@@ -6,11 +6,13 @@
 namespace App\Models;
 
 use App\Exceptions\ModelNotSavedException;
+use App\Libraries\MorphMap;
 use App\Libraries\Transactions\AfterCommit;
 use App\Libraries\Transactions\AfterRollback;
 use App\Libraries\TransactionStateManager;
 use App\Scopes\MacroableModelScope;
 use Exception;
+use Illuminate\Database\ClassMorphViolationException;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model as BaseModel;
 
@@ -46,6 +48,19 @@ abstract class Model extends BaseModel
         ];
 
         return array_merge($this->macros ?? [], $baseMacros);
+    }
+
+    public function getMorphClass()
+    {
+        $className = static::class;
+
+        $ret = MorphMap::getType($className);
+
+        if ($ret !== null) {
+            return $ret;
+        }
+
+        throw new ClassMorphViolationException($this);
     }
 
     /**
