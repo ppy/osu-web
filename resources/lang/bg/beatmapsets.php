@@ -12,7 +12,7 @@ return [
     ],
 
     'cover' => [
-        'deleted' => '',
+        'deleted' => 'Изтрит бийтмап',
     ],
 
     'download' => [
@@ -125,7 +125,7 @@ return [
             'language' => 'Език',
             'no_scores' => 'Информацията все още се обработва...',
             'nsfw' => 'Explicit съдържание',
-            'offset' => '',
+            'offset' => 'Онлайн offset',
             'points-of-failure' => 'Връхни точки на провал',
             'source' => 'Източник',
             'storyboard' => 'Този бийтмап съдържа анимирана история',
@@ -197,7 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Брой кръгове',
             'count_sliders' => 'Брой плъзгачи',
-            'offset' => '',
+            'offset' => 'Онлайн offset :offset',
             'user-rating' => 'Потребителски рейтинг',
             'rating-spread' => 'Разпределение на рейтинг',
             'nominations' => 'Номинации',
@@ -216,6 +216,6 @@ return [
     ],
 
     'spotlight_badge' => [
-        'label' => '',
+        'label' => 'Препоръчан',
     ],
 ];

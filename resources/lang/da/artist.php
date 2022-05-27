@@ -22,7 +22,7 @@ return [
     ],
 
     'links' => [
-        'beatmaps' => '',
+        'beatmaps' => 'osu! Beatmaps',
         'osu' => 'osu! profil',
         'site' => 'Officiel Hjemmeside',
     ],
@@ -30,8 +30,8 @@ return [
     'songs' => [
         '_' => 'Sange',
         'count' => ':count_delimited sang|:count_delimited sange',
-        'original' => '',
-        'original_badge' => '',
+        'original' => 'osu! original',
+        'original_badge' => 'ORIGINAL',
     ],
 
     'tracklist' => [
@@ -46,14 +46,14 @@ return [
             '_' => '',
 
             'form' => [
-                'advanced' => '',
-                'album' => '',
-                'artist' => '',
+                'advanced' => 'Avanceret søgning',
+                'album' => 'Album',
+                'artist' => 'Kunstner',
                 'bpm_gte' => '',
                 'bpm_lte' => '',
                 'empty' => '',
-                'genre' => '',
-                'genre_all' => '',
+                'genre' => 'Genre',
+                'genre_all' => 'Alle',
                 'length_gte' => '',
                 'length_lte' => '',
             ],

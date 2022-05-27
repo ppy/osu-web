@@ -7,10 +7,10 @@ return [
     'comment' => [
         'empty' => '',
         'page_title' => '',
-        'title' => '',
+        'title' => 'kommentar',
 
         'table' => [
-            'latest_comment_empty' => '',
+            'latest_comment_empty' => 'ingen kommentarer',
             'latest_comment_value' => '',
         ],
     ],
@@ -27,12 +27,12 @@ return [
         'empty' => '',
         'followers' => '',
         'page_title' => '',
-        'title' => '',
+        'title' => 'mapper',
         'to_0' => '',
-        'to_1' => '',
+        'to_1' => 'give mig besked, når denne bruger uploader et nyt beatmap',
     ],
 
     'modding' => [
-        'title' => '',
+        'title' => 'beatmap diskussion',
     ],
 ];
