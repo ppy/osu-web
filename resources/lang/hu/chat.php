@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'loading_users' => '',
     'talking_in' => ':channel-ben beszélés',
     'talking_with' => ':name-el beszélés',
     'title_compact' => 'csevegés',
@@ -16,17 +17,17 @@ return [
     'channels' => [
         'list' => [
             'title' => [
-                'ANNOUNCE' => '',
-                'GROUP' => '',
-                'PM' => '',
-                'PUBLIC' => '',
+                'ANNOUNCE' => 'Közlemények',
+                'GROUP' => 'Csoportok',
+                'PM' => 'Közvetlen üzenetek',
+                'PUBLIC' => 'Csatornák',
             ],
         ],
     ],
 
     'not_found' => [
-        'message' => '',
-        'title' => '',
+        'message' => 'Itt nincs semmi, lehet, hogy elhagytad a csatornát, vagy nem létezik...',
+        'title' => 'csatorna nem található',
     ],
 
     'input' => [

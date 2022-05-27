@@ -20,7 +20,7 @@ return [
             'exhausted' => 'Olet saavuttanut suosittelurajan tälle päivälle, yritä huomenna uudelleen.',
             'incorrect_state' => 'Virhe toimintoa suorittaessa, kokeile sivun päivittämistä.',
             'owner' => "Omaa beatmappia ei voi suositella.",
-            'set_metadata' => '',
+            'set_metadata' => 'Sinun täytyy määrittää tyylilaji ja kieli ennen ehdolle asettamista.',
         ],
         'resolve' => [
             'not_owner' => 'Vain aiheen aloittaja sekä beatmapin omistaja voivat ratkaista keskustelun.',
@@ -41,13 +41,13 @@ return [
     'beatmap_discussion_post' => [
         'destroy' => [
             'not_owner' => 'Voit poistaa vaan omia viestejä.',
-            'resolved' => '',
+            'resolved' => 'Et voi poistaa ratkaistun keskustelun viestiä.',
             'system_generated' => 'Automaattisesti luotua viestiä ei voi poistaa.',
         ],
 
         'edit' => [
             'not_owner' => 'Vain lähettäjä voi muokata viestiä.',
-            'resolved' => '',
+            'resolved' => 'Et voi muokata ratkaistun keskustelun viestiä.',
             'system_generated' => 'Automaattisesti luotua viestiä ei voi muokata.',
         ],
 
@@ -58,7 +58,7 @@ return [
 
     'beatmapset' => [
         'metadata' => [
-            'nominated' => '',
+            'nominated' => 'Et voi muuttaa ehdolle asetetun kartan metatietoja. Ota yhteyttä BN- tai NAT-jäseneen, jos luulet sen olevan virheellinen.',
         ],
     ],
 
@@ -68,14 +68,14 @@ return [
         'friends_only' => 'Käyttäjä on estänyt viestit henkilöiltä, jotka eivät ole hänen kaverilistassaan.',
         'moderated' => 'Tätä kanavaa moderoidaan.',
         'no_access' => 'Sinulla ei ole oikeuksia tälle kanavalle.',
-        'receive_friends_only' => '',
+        'receive_friends_only' => 'Käyttäjä ei välttämättä pysty vastaamaan, koska hyväksyt viestejä vain ystävälistallasi olevilta henkilöiltä.',
         'restricted' => 'Et voi lähettää viestejä mykistettynä, rajoitettuna tai bännättynä.',
         'silenced' => 'Et voi lähettää viestejä mykistettynä, rajoitettuna tai bännättynä.',
     ],
 
     'comment' => [
         'store' => [
-            'disabled' => '',
+            'disabled' => 'Kommentit ovat poistettu käytöstä',
         ],
         'update' => [
             'deleted' => "Poistettuja viestejä ei voi mukata.",
@@ -162,7 +162,7 @@ return [
                 'not_owner' => 'Vain omistaja voi muuttaa kansikuvaa.',
             ],
             'store' => [
-                'forum_not_allowed' => '',
+                'forum_not_allowed' => 'Tämä foorumi ei hyväksy aiheen kansikuvia.',
             ],
         ],
 
@@ -173,8 +173,8 @@ return [
 
     'score' => [
         'pin' => [
-            'not_owner' => '',
-            'too_many' => '',
+            'not_owner' => 'Vain tuloksen omistaja voi kiinnittää tuloksen.',
+            'too_many' => 'Kiinnitit liian monta tulosta.',
         ],
     ],
 

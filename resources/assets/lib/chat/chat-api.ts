@@ -32,7 +32,13 @@ export function ack(since: number, lastHistoryId?: number) {
 }
 
 export function getChannel(channelId: number) {
-  return $.get(route('chat.channels.show', { channel: channelId })) as JQuery.jqXHR<GetChannelResponse>;
+  const request = $.get(route('chat.channels.show', { channel: channelId })) as JQuery.jqXHR<GetChannelResponse>;
+
+  return request.then(action((response) => {
+    core.dataStore.userStore.updateMany(response.users);
+
+    return response.channel;
+  }));
 }
 
 export function getMessages(channelId: number, params?: { until?: number }) {
