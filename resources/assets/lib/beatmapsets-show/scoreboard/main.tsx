@@ -31,7 +31,7 @@ export default class Main extends React.Component<Props> {
   @observable private controller: Controller;
 
   private get data() {
-    return this.controller.state.data;
+    return this.controller.data;
   }
 
   @computed
@@ -78,7 +78,7 @@ export default class Main extends React.Component<Props> {
         }
 
         <div className={classWithModifiers('beatmapset-scoreboard__main', {
-          loading: this.controller.state.loadingState === 'loading',
+          loading: this.controller.loadingState === 'loading',
         })}>
           {this.renderMain()}
         </div>
@@ -115,13 +115,13 @@ export default class Main extends React.Component<Props> {
   }
 
   private renderMain() {
-    switch (this.controller.state.loadingState) {
+    switch (this.controller.loadingState) {
       case null:
         if (this.data.scores.length > 0) {
           return this.renderScores();
         }
 
-        return this.renderEmptyMessage(this.controller.state.currentType);
+        return this.renderEmptyMessage(this.controller.currentType);
 
       case 'error':
         return this.renderErrorMessage();
@@ -136,7 +136,7 @@ export default class Main extends React.Component<Props> {
         return this.renderSupporterOnlyMessage();
 
       default:
-        switchNever(this.controller.state.loadingState);
+        switchNever(this.controller.loadingState);
         throw new Error('unsupported loading state');
     }
   }
