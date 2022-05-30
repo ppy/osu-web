@@ -1,52 +1,61 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import ShowMoreLink from 'components/show-more-link'
-import core from 'osu-core-singleton'
-import * as React from 'react'
-import { div } from 'react-dom-factories'
+import ShowMoreLink from 'components/show-more-link';
+import { throttle } from 'lodash';
+import core from 'osu-core-singleton';
+import * as React from 'react';
 
-el = React.createElement
+interface Props {
+  error: any;
+  loading: boolean;
+  more: boolean;
+}
 
-export class Paginator extends React.PureComponent
-  constructor: (props) ->
-    super props
+const autoPagerTriggerDistance = 3000;
 
-    @throttledAutoPagerOnScroll = _.throttle(@autoPagerOnScroll, 500)
-    @autoPagerTriggerDistance = 3000
-    @lineRef = React.createRef()
+export class Paginator extends React.PureComponent<Props> {
+  private lineRef = React.createRef<HTMLDivElement>();
+  private throttledAutoPagerOnScroll = throttle(() => this.autoPagerOnScroll(), 500);
 
+  componentDidMount() {
+    setTimeout(this.throttledAutoPagerOnScroll, 0);
+    $(window).on('scroll', this.throttledAutoPagerOnScroll);
+  }
 
-  componentDidMount: =>
-    Timeout.set 0, @throttledAutoPagerOnScroll
-    $(window).on 'scroll', @throttledAutoPagerOnScroll
+  componentWillUnmount() {
+    $(window).off('scroll', this.throttledAutoPagerOnScroll);
+    this.throttledAutoPagerOnScroll.cancel();
+  }
 
+  render() {
+    return (
+      <>
+        <div ref={this.lineRef} />
+        <ShowMoreLink
+          callback={this.showMore}
+          hasMore={this.props.more}
+          loading={this.props.loading}
+          modifiers={['beatmapsets', 't-ddd']}
+        />
+      </>
+    );
+  }
 
-  componentWillUnmount: =>
-    $(window).off 'scroll', @throttledAutoPagerOnScroll
-    @throttledAutoPagerOnScroll.cancel()
+  private autoPagerOnScroll() {
+    if (this.props.error != null || !this.props.more || this.props.loading || this.lineRef.current == null) {
+      return;
+    }
 
+    const currentTarget = this.lineRef.current.getBoundingClientRect().top;
+    const target = document.documentElement.clientHeight + autoPagerTriggerDistance;
 
-  render: =>
-    el React.Fragment, null,
-      div ref: @lineRef
-      el ShowMoreLink,
-        loading: @props.loading
-        callback: @showMore
-        hasMore: @props.more
-        modifiers: ['beatmapsets', 't-ddd']
+    if (currentTarget > target) return;
 
+    this.showMore();
+  }
 
-  autoPagerOnScroll: =>
-    return if @props.error? || !@props.more || @props.loading || !@lineRef.current?
-
-    currentTarget = @lineRef.current.getBoundingClientRect().top
-    target = document.documentElement.clientHeight + @autoPagerTriggerDistance
-
-    return if currentTarget > target
-
-    @showMore()
-
-
-  showMore: (e) ->
-    core.beatmapsetSearchController.loadMore()
+  private readonly showMore = () => {
+    core.beatmapsetSearchController.loadMore();
+  };
+}
