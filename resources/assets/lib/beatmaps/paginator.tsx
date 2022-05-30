@@ -3,20 +3,24 @@
 
 import ShowMoreLink from 'components/show-more-link';
 import { throttle } from 'lodash';
+import { computed } from 'mobx';
+import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 
-interface Props {
-  error: any;
-  loading: boolean;
-  more: boolean;
-}
+type Props = Record<string, never>;
 
 const autoPagerTriggerDistance = 3000;
 
-export class Paginator extends React.PureComponent<Props> {
+@observer
+export class Paginator extends React.Component<Props> {
   private lineRef = React.createRef<HTMLDivElement>();
   private throttledAutoPagerOnScroll = throttle(() => this.autoPagerOnScroll(), 500);
+
+  @computed
+  private get controller() {
+    return core.beatmapsetSearchController;
+  }
 
   componentDidMount() {
     setTimeout(this.throttledAutoPagerOnScroll, 0);
@@ -34,8 +38,8 @@ export class Paginator extends React.PureComponent<Props> {
         <div ref={this.lineRef} />
         <ShowMoreLink
           callback={this.showMore}
-          hasMore={this.props.more}
-          loading={this.props.loading}
+          hasMore={this.controller.hasMore}
+          loading={this.controller.isPaging}
           modifiers={['beatmapsets', 't-ddd']}
         />
       </>
@@ -43,7 +47,7 @@ export class Paginator extends React.PureComponent<Props> {
   }
 
   private autoPagerOnScroll() {
-    if (this.props.error != null || !this.props.more || this.props.loading || this.lineRef.current == null) {
+    if (this.controller.error != null || !this.controller.hasMore || this.controller.isPaging || this.lineRef.current == null) {
       return;
     }
 
@@ -56,6 +60,6 @@ export class Paginator extends React.PureComponent<Props> {
   }
 
   private readonly showMore = () => {
-    core.beatmapsetSearchController.loadMore();
+    this.controller.loadMore();
   };
 }
