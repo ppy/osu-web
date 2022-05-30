@@ -10,6 +10,10 @@ import { classWithModifiers } from 'utils/css';
 
 type Props = Record<string, never>;
 
+// order the sorters appear in.
+const sortNames = ['title', 'artist', 'difficulty', 'updated', 'ranked', 'rating', 'plays', 'favourites', 'relevance', 'nominations'] as const;
+type Sort = typeof sortNames[number];
+
 @observer
 export class SearchSort extends React.Component<Props> {
   @computed
@@ -20,23 +24,17 @@ export class SearchSort extends React.Component<Props> {
   @computed
   get fields() {
     const visible = {
-      /* eslint-disable sort-keys */
-      title: true,
       artist: true,
       difficulty: true,
-      updated: false,
+      favourites: true,
+      nominations: this.filters.status === 'pending',
+      plays: true,
       ranked: false,
       rating: true,
-      plays: true,
-      favourites: true,
-      relevance: false,
-      nominations: false,
-      /* eslint-enable sort-keys */
+      relevance: isEmpty(this.filters.query),
+      title: true,
+      updated: false,
     };
-
-    if (isEmpty(this.filters.query)) {
-      visible.relevance = true;
-    }
 
     switch (this.filters.status) {
       case 'graveyard':
@@ -54,12 +52,8 @@ export class SearchSort extends React.Component<Props> {
         visible.ranked = true;
     }
 
-    if (this.filters.status === 'pending') {
-      visible.nominations = true;
-    }
-
-    const list = [];
-    for (const key of Object.keys(visible)) {
+    const list: Sort[] = [];
+    for (const key of sortNames) {
       if (visible[key]) {
         list.push(key);
       }
@@ -79,7 +73,7 @@ export class SearchSort extends React.Component<Props> {
     );
   }
 
-  private readonly renderField = (field: string) => {
+  private readonly renderField = (field: Sort) => {
     const active = this.filters.searchSort.field === field;
 
     return (
