@@ -113,7 +113,6 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-typescript": "^5.0.2",
     "karma-webpack": "3.0.0",
-    "mobx-react-devtools": "^6.0.3",
-    "vue-template-compiler": "^2.5.21"
+    "mobx-react-devtools": "^6.0.3"
   }
 }
