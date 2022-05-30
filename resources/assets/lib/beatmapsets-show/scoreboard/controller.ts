@@ -40,7 +40,6 @@ export default class Controller {
   private disposers = new Set<(() => void) | undefined>();
   private xhr: JQuery.jqXHR<BeatmapScoresJson> | null = null;
 
-  @computed
   get beatmap() {
     return this.getBeatmap();
   }
