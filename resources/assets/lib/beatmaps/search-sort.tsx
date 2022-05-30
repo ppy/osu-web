@@ -1,76 +1,112 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import { Observer } from 'mobx-react'
-import core from 'osu-core-singleton'
-import * as React from 'react'
-import { div, a, i, span } from 'react-dom-factories'
-el = React.createElement
+import { isEmpty } from 'lodash';
+import { computed } from 'mobx';
+import { observer } from 'mobx-react';
+import core from 'osu-core-singleton';
+import * as React from 'react';
+import { classWithModifiers } from 'utils/css';
 
-export class SearchSort extends React.Component
-  render: =>
-    el Observer, null, () =>
-      div className: 'sort sort--beatmapsets',
-        div className: 'sort__items',
-          span className: 'sort__item sort__item--title', osu.trans('sort._')
-          for field in @fields()
-            selected = @selected(field)
+type Props = Record<string, never>;
 
-            a
-              key: field
-              href: '#'
-              className: "sort__item sort__item--button #{'sort__item--active' if selected}"
-              onClick: @select
-              'data-field': field
-              osu.trans "beatmaps.listing.search.sorting.#{field}"
-              span
-                className: 'sort__item-arrow'
-                i className: "fas fa-caret-#{if @props.filters.searchSort.order == 'asc' then 'up' else 'down'}"
+@observer
+export class SearchSort extends React.Component<Props> {
+  @computed
+  get filters() {
+    return core.beatmapsetSearchController.filters;
+  }
 
+  @computed
+  get fields() {
+    const visible = {
+      /* eslint-disable sort-keys */
+      title: true,
+      artist: true,
+      difficulty: true,
+      updated: false,
+      ranked: false,
+      rating: true,
+      plays: true,
+      favourites: true,
+      relevance: false,
+      nominations: false,
+      /* eslint-enable sort-keys */
+    };
 
-  fields: =>
-    fields =
-      title: true
-      artist: true
-      difficulty: true
-      updated: false
-      ranked: false
-      rating: true
-      plays: true
-      favourites: true
-      relevance: false
-      nominations: false
+    if (isEmpty(this.filters.query)) {
+      visible.relevance = true;
+    }
 
-    if !_.isEmpty(@props.filters.query)
-      fields.relevance = true
+    switch (this.filters.status) {
+      case 'graveyard':
+      case 'pending':
+      case 'wip':
+        visible.updated = true;
+        break;
+      case 'any':
+      case 'favourites':
+      case 'mine':
+        visible.updated = true;
+        visible.ranked = true;
+        break;
+      default:
+        visible.ranked = true;
+    }
 
-    if @props.filters.status in ['graveyard', 'pending', 'wip']
-      fields.updated = true
-    else if @props.filters.status in ['any', 'favourites', 'mine']
-      fields.updated = true
-      fields.ranked = true
-    else
-      fields.ranked = true
+    if (this.filters.status === 'pending') {
+      visible.nominations = true;
+    }
 
-    if @props.filters.status == 'pending'
-      fields.nominations = true
+    const list = [];
+    for (const key of Object.keys(visible)) {
+      if (visible[key]) {
+        list.push(key);
+      }
+    }
 
+    return list;
+  }
 
-    field for own field, enabled of fields when enabled
+  render() {
+    return (
+      <div className='sort sort--beatmapsets'>
+        <div className='sort__items'>
+          <span className='sort__item sort__item--title'>{osu.trans('sort._')}</span>
+          {this.fields.map(this.renderField)}
+        </div>
+      </div>
+    );
+  }
 
+  private readonly renderField = (field: string) => {
+    const active = this.filters.searchSort.field === field;
 
-  select: (e) =>
-    e.preventDefault()
-    field = e.currentTarget.dataset.field
-    order = @props.filters.searchSort.order
+    return (
+      <a
+        key={field}
+        className={classWithModifiers('sort__item', 'button', { active })}
+        data-field={field}
+        href='#'
+        onClick={this.select}
+      >
+        {osu.trans(`beatmaps.listing.search.sorting.${field}`)}
+        <span className='sort__item-arrow'>
+          <i className={`fas fa-caret-${this.filters.searchSort.order === 'asc' ? 'up' : 'down'}`} />
+        </span>
+      </a>
+    );
+  };
 
-    if @selected(field)
-      order = if order == 'asc' then 'desc' else 'asc'
-    else
-      order = 'desc'
+  private readonly select = (e: React.SyntheticEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const field = e.currentTarget.dataset.field;
+    let order = this.filters.searchSort.order;
 
-    core.beatmapsetSearchController.updateFilters sort: "#{field}_#{order}"
+    order = this.filters.searchSort.field === field && order === 'desc'
+      ? 'asc'
+      : 'desc';
 
-
-  selected: (field) =>
-    @props.filters.searchSort.field == field
+    core.beatmapsetSearchController.updateFilters({ sort: `${field}_${order}` });
+  };
+}
