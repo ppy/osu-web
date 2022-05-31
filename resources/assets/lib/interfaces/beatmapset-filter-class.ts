@@ -4,10 +4,11 @@
 import { BeatmapsetSearchParams, FilterKey } from 'beatmapset-search-filters';
 
 export default interface BeatmapsetFilterClass {
+  defaults: Record<string, string | null>;
   expand: ['genre', 'language', 'extra', 'rank', 'played'];
   fillDefaults(filters: Partial<Record<string, any>>): BeatmapsetSearchParams;
   filtersFromUrl(url: string): Partial<BeatmapsetSearchParams>;
-  getDefault(filters: Partial<BeatmapsetSearchParams>, key: string): string;
+  getDefault(filters: Partial<BeatmapsetSearchParams>, key: string): string | number | null;
   queryParamsFromFilters(filters: Partial<BeatmapsetSearchParams>): Partial<Record<string, any>>;
   supporterRequired(filters: Partial<BeatmapsetSearchParams>): FilterKey[];
 }

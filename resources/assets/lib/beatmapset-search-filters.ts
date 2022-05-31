@@ -95,7 +95,7 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
   }
 
   /**
-   * Returns a copy of the values in the filter.
+   * Returns a cached copy of the values in the filter.
    */
   @computed
   private get values(): BeatmapsetSearchParams {

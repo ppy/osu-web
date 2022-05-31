@@ -1,79 +1,123 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import core from 'osu-core-singleton'
-import * as React from 'react'
-import { div, a, span } from 'react-dom-factories'
-import { classWithModifiers } from 'utils/css'
-import { updateQueryString } from 'utils/url'
-import { formatNumber } from 'utils/html'
-el = React.createElement
-controller = core.beatmapsetSearchController
+import { BeatmapsetSearchParams, FilterKey } from 'beatmapset-search-filters';
+import { computed, makeObservable } from 'mobx';
+import { observer } from 'mobx-react';
+import core from 'osu-core-singleton';
+import * as React from 'react';
+import { classWithModifiers } from 'utils/css';
+import { formatNumber } from 'utils/html';
+import { updateQueryString } from 'utils/url';
 
-export class SearchFilter extends React.PureComponent
-  render: =>
-    @cache = {}
+interface FilterOption {
+  id: string | number | null;
+  name: string;
+}
 
-    div className: 'beatmapsets-search-filter',
-      if @props.title?
-        span className: 'beatmapsets-search-filter__header', @props.title
+interface Props {
+  multiselect: boolean;
+  name: FilterKey;
+  options: FilterOption[];
+  recommendedDifficulty?: number;
+  title?: string;
+}
 
-      div className: 'beatmapsets-search-filter__items',
-        for option, i in @props.options
-          cssClasses = classWithModifiers 'beatmapsets-search-filter__item',
-            active: @selected(option.id)
-            'featured-artists': option.id == 'featured_artists'
+@observer
+export class SearchFilter extends React.PureComponent<Props> {
+  get controller() {
+    return core.beatmapsetSearchController;
+  }
 
-          text = option.name
-          if @props.name == 'general' && option.id == 'recommended' && @props.recommendedDifficulty?
-            text += " (#{formatNumber(@props.recommendedDifficulty, 2)})"
+  @computed
+  get currentSelection() {
+    if (this.props.multiselect) {
+      const selected = String(this.controller.filters.selectedValue(this.props.name) ?? '');
+      return selected.split('.').filter((s) => this.optionKeys.includes(s));
+    }
 
-          a
-            key: i
-            href: @href(option)
-            className: cssClasses
-            'data-filter-value': option.id
-            onClick: @select
-            text
+    return [this.controller.filters.selectedValue(this.props.name)];
+  }
 
+  @computed
+  get optionKeys() {
+    return this.props.options.map((option) => option.id);
+  }
 
-  cast: (value) =>
-    BeatmapsetFilter.castFromString[@props.name]?(value) ? value ? null
+  constructor(props: Props) {
+    super(props);
+    makeObservable(this);
+  }
 
+  render() {
+    return (
+      <div className='beatmapsets-search-filter'>
+        {this.props.title != null && <span className='beatmapsets-search-filter__header'>{this.props.title}</span>}
+        <div className='beatmapsets-search-filter__items'>
+          {this.props.options.map(this.renderOption)}
+        </div>
 
-  href: ({ id }) =>
-    updatedFilter = {}
-    updatedFilter[@props.name] = @newSelection(id)
-    filters = _.assign {}, @props.filters.values, updatedFilter
+      </div>
+    );
+  }
 
-    updateQueryString null, BeatmapsetFilter.queryParamsFromFilters(filters)
+  private href(id: string | number | null) {
+    const filters = Object.assign({}, this.controller.filters);
+    filters[this.props.name] = this.newSelection(id);
 
+    return updateQueryString(null, BeatmapsetFilter.queryParamsFromFilters(filters));
+  }
 
-  select: (e) =>
-    e.preventDefault()
-    controller.updateFilters "#{@props.name}": @newSelection(e.target.dataset.filterValue) ? null
+  private isSelected(key: string | number | null) {
+    return this.currentSelection.includes(key);
+  }
 
+  // TODO: rename
+  private newSelection(key: string | number | null) {
+    if (this.props.multiselect) {
+      if (this.isSelected(key)) {
+        return this.currentSelection.filter((x) => x !== key).join('.');
+      } else {
+        return this.currentSelection.concat(key).join('.');
+      }
+    } else {
+      if (this.isSelected(key)) {
+        return BeatmapsetFilter.defaults[key];
+      } else {
+        return key;
+      }
+    }
+  }
 
-  # TODO: rename
-  newSelection: (id) =>
-    i = @cast(id)
-    if @props.multiselect
-      _(@currentSelection())[if @selected(i) then 'without' else 'concat'](i).sort().join('.')
-    else
-      if @selected(i) then BeatmapsetFilter.defaults[id] else i
+  private readonly renderOption = (option: FilterOption) => {
+    const cssClasses = classWithModifiers('beatmapsets-search-filter__item', {
+      active: this.isSelected(String(option.id)),
+      'featured-artists': option.id === 'featured_artists',
+    });
 
+    let text = option.name;
+    if (this.props.name === 'general' && option.id === 'recommended' && this.props.recommendedDifficulty != null) {
+      text += ` (${formatNumber(this.props.recommendedDifficulty, 2)})`;
+    }
+    // FIXME: do an actual navigation
+    return (
+      <a
+        key={option.id}
+        className={cssClasses}
+        data-filter-value={option.id}
+        href={this.href(option.id)}
+        onClick={this.select}
+      >
+        {text}
+      </a>
+    );
+  };
 
-  selected: (i) =>
-    i in @currentSelection()
+  private readonly select = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const params: Partial<BeatmapsetSearchParams> = {};
+    params[this.props.name] = this.newSelection(e.currentTarget.dataset.filterValue);
 
-
-  currentSelection: =>
-    @cache.currentSelection ?=
-      if @props.multiselect
-        _(@props.selected ? '')
-          .split('.')
-          .filter (s) =>
-            s in _.map(@props.options, 'id')
-          .value()
-      else
-        [@props.selected]
+    this.controller.updateFilters(params);
+  };
+}
