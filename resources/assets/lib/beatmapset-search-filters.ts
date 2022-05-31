@@ -42,6 +42,7 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
 
   @computed
   get displaySort() {
+    // FIXME: should not return null.
     return this.selectedValue('sort');
   }
 
@@ -54,17 +55,18 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
 
   @computed
   get searchSort() {
-    const [field, order] = this.displaySort.split('_');
+    const [field, order] = (this.displaySort ?? '').split('_');
     return { field, order };
   }
 
   selectedValue(key: FilterKey) {
     const value = this[key];
     if (value == null) {
-      return BeatmapsetFilter.getDefault(this.values, key);
+      const defaultValue = BeatmapsetFilter.getDefault(this.values, key);
+      return typeof defaultValue === 'number' ? String(defaultValue) : defaultValue;
     }
 
-    return value;
+    return typeof value === 'number' ? String(value) : value;
   }
 
   toKeyString() {

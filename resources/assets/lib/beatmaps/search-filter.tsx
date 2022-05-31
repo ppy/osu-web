@@ -32,16 +32,26 @@ export class SearchFilter extends React.PureComponent<Props> {
   @computed
   get currentSelection() {
     if (this.props.multiselect) {
-      const selected = String(this.controller.filters.selectedValue(this.props.name) ?? '');
+      // multiselects don't have nulls
+      const selected = this.controller.filters.selectedValue(this.props.name) ?? '';
       return selected.split('.').filter((s) => this.optionKeys.includes(s));
+    } else {
+      return [this.controller.filters.selectedValue(this.props.name)];
     }
+  }
 
-    return [this.controller.filters.selectedValue(this.props.name)];
+  @computed
+  get options() {
+    // normalize option keys
+    return this.props.options.map((option) => ({
+      id: typeof option.id === 'number' ? String(option.id) : option.id,
+      name: option.name,
+    }));
   }
 
   @computed
   get optionKeys() {
-    return this.props.options.map((option) => option.id);
+    return this.options.map((option) => option.id);
   }
 
   constructor(props: Props) {
@@ -54,26 +64,26 @@ export class SearchFilter extends React.PureComponent<Props> {
       <div className='beatmapsets-search-filter'>
         {this.props.title != null && <span className='beatmapsets-search-filter__header'>{this.props.title}</span>}
         <div className='beatmapsets-search-filter__items'>
-          {this.props.options.map(this.renderOption)}
+          {this.options.map(this.renderOption)}
         </div>
 
       </div>
     );
   }
 
-  private href(id: string | number | null) {
+  private href(id: string | null) {
     const filters = Object.assign({}, this.controller.filters);
     filters[this.props.name] = this.newSelection(id);
 
     return updateQueryString(null, BeatmapsetFilter.queryParamsFromFilters(filters));
   }
 
-  private isSelected(key: string | number | null) {
+  private isSelected(key: string | null) {
     return this.currentSelection.includes(key);
   }
 
   // TODO: rename
-  private newSelection(key: string | number | null) {
+  private newSelection(key: string | null) {
     if (this.props.multiselect) {
       if (this.isSelected(key)) {
         return this.currentSelection.filter((x) => x !== key).join('.');
@@ -82,16 +92,16 @@ export class SearchFilter extends React.PureComponent<Props> {
       }
     } else {
       if (this.isSelected(key)) {
-        return BeatmapsetFilter.defaults[key];
+        return BeatmapsetFilter.defaults[key ?? ''];
       } else {
         return key;
       }
     }
   }
 
-  private readonly renderOption = (option: FilterOption) => {
+  private readonly renderOption = (option: { id: string | null; name: string }) => {
     const cssClasses = classWithModifiers('beatmapsets-search-filter__item', {
-      active: this.isSelected(String(option.id)),
+      active: this.isSelected(option.id),
       'featured-artists': option.id === 'featured_artists',
     });
 
@@ -116,7 +126,7 @@ export class SearchFilter extends React.PureComponent<Props> {
   private readonly select = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     const params: Partial<BeatmapsetSearchParams> = {};
-    params[this.props.name] = this.newSelection(e.currentTarget.dataset.filterValue);
+    params[this.props.name] = this.newSelection(e.currentTarget.dataset.filterValue ?? null);
 
     this.controller.updateFilters(params);
   };
