@@ -3,7 +3,6 @@
 
 import ShowMoreLink from 'components/show-more-link';
 import { throttle } from 'lodash';
-import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -15,7 +14,6 @@ export class Paginator extends React.Component<Record<string, never>> {
   private readonly lineRef = React.createRef<HTMLDivElement>();
   private readonly throttledAutoPagerOnScroll = throttle(() => this.autoPagerOnScroll(), 500);
 
-  @computed
   private get controller() {
     return core.beatmapsetSearchController;
   }
