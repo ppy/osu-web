@@ -9,6 +9,10 @@ export function normaliseUsername(username: string) {
   return username.trim().toLowerCase();
 }
 
+export function usernameSortAscending(x: UserJson | User , y: UserJson | User) {
+  return x.username.localeCompare(y.username);
+}
+
 export default class User {
   @observable avatarUrl = '/images/layout/avatar-guest.png'; // TODO: move to a global config store?
   @observable countryCode = 'XX';
@@ -63,7 +67,6 @@ export default class User {
     this.avatarUrl = json.avatar_url;
     this.countryCode = json.country_code;
     this.defaultGroup = json.default_group;
-    this.groups = json.groups;
     this.isActive = json.is_active;
     this.isBot = json.is_bot;
     this.isOnline = json.is_online;
@@ -71,6 +74,10 @@ export default class User {
     this.pmFriendsOnly = json.pm_friends_only;
     this.profileColour= json.profile_colour ?? '';
     this.username = json.username;
+
+    if (json.groups != null) {
+      this.groups = json.groups;
+    }
   }
 }
 

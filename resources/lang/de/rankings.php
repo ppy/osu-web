@@ -18,7 +18,7 @@ return [
     ],
 
     'type' => [
-        'charts' => 'charts',
+        'charts' => 'spotlights',
         'country' => 'länder',
         'multiplayer' => 'mehrspieler',
         'performance' => 'performance',
