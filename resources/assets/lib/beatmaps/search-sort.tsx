@@ -8,14 +8,12 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 
-type Props = Record<string, never>;
-
 // order the sorters appear in.
 const sortNames = ['title', 'artist', 'difficulty', 'updated', 'ranked', 'rating', 'plays', 'favourites', 'relevance', 'nominations'] as const;
 type Sort = typeof sortNames[number];
 
 @observer
-export class SearchSort extends React.Component<Props> {
+export class SearchSort extends React.Component<Record<string, never>> {
   @computed
   get filters() {
     return core.beatmapsetSearchController.filters;
