@@ -238,7 +238,7 @@ class BeatmapsetsControllerTest extends TestCase
     /**
      * @dataProvider beatmapsetStatesDataProvider
      */
-    public function testBeatmapsetUpdateMetadataAsProjectLoved($state)
+    public function testBeatmapsetUpdateMetadataAsProjectLoved(string $state): void
     {
         $owner = User::factory()->create();
         $beatmapset = Beatmapset::factory()->create([
