@@ -14,8 +14,8 @@ const autoPagerTriggerDistance = 3000;
 
 @observer
 export class Paginator extends React.Component<Props> {
-  private lineRef = React.createRef<HTMLDivElement>();
-  private throttledAutoPagerOnScroll = throttle(() => this.autoPagerOnScroll(), 500);
+  private readonly lineRef = React.createRef<HTMLDivElement>();
+  private readonly throttledAutoPagerOnScroll = throttle(() => this.autoPagerOnScroll(), 500);
 
   @computed
   private get controller() {
