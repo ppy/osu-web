@@ -122,7 +122,7 @@ class Score extends Model
         return $score;
     }
 
-    public function getMode()
+    public function getMode(): string
     {
         return Beatmap::modeStr($this->ruleset_id);
     }
