@@ -7,7 +7,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Score\Best\Model as ScoreBest;
 use App\Transformers\ScoreTransformer;
-use App\Transformers\Solo\ScoreTransformer as SoloScoreTransformer;
 use App\Transformers\UserCompactTransformer;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
@@ -72,9 +71,7 @@ class ScoresController extends Controller
             return "user.{$include}";
         }, UserCompactTransformer::CARD_INCLUDES);
 
-        $transformer = is_api_request() ? new ScoreTransformer() : new SoloScoreTransformer();
-
-        $scoreJson = json_item($score, $transformer, array_merge([
+        $scoreJson = json_item($score, new ScoreTransformer(), array_merge([
             'beatmap.max_combo',
             'beatmapset',
             'rank_global',

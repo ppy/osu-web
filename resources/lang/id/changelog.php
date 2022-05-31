@@ -35,6 +35,6 @@ return [
         'heading' => 'Apakah Anda menyukai pembaruan ini?',
         'text_1' => 'Dukung osu! agar dapat terus berkembang dan :link sekarang juga!',
         'text_1_link' => 'jadilah seorang osu!supporter',
-        'text_2' => 'Di samping mempercepat pengembangan, dengan menjadi seorang osu!supporter Anda juga akan mendapatkan berbagai fitur tambahan dan opsi personalisasi lainnya!',
+        'text_2' => 'Di samping mempercepat pengembangan, Anda juga akan memperoleh berbagai fitur tambahan dan opsi personalisasi lainnya!',
     ],
 ];

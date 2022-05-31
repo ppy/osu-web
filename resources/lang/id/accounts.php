@@ -5,12 +5,12 @@
 
 return [
     'edit' => [
-        'title_compact' => 'pengaturan',
+        'title_compact' => 'pengaturan akun',
         'username' => 'nama pengguna',
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => 'Pastikan avatar Anda tunduk pada :link yang berlaku.<br/>Dengan kata lain, avatar Anda harus <strong>cocok untuk segala usia</strong> tanpa mengandung unsur apapun yang tidak dibenarkan seperti cacian, hinaan, atau konten yang bersifat sugestif.',
+            'rules' => 'Pastikan avatar Anda tunduk pada :link yang berlaku.<br/>Dengan kata lain, avatar Anda harus <strong>cocok untuk segala usia</strong> tanpa mengandung unsur apapun yang tidak dibenarkan seperti cacian, hinaan, atau hal yang bersifat sugestif.',
             'rules_link' => 'peraturan komunitas',
         ],
 

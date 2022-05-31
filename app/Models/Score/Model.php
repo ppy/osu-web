@@ -23,14 +23,13 @@ abstract class Model extends BaseModel
 
     public $timestamps = false;
 
-    protected $primaryKey = 'score_id';
-
     protected $casts = [
         'pass' => 'bool',
         'perfect' => 'bool',
         'replay' => 'bool',
     ];
     protected $dates = ['date'];
+    protected $primaryKey = 'score_id';
 
     public static function getClass($modeInt)
     {
@@ -48,11 +47,6 @@ abstract class Model extends BaseModel
         }
 
         return get_class_namespace(static::class).'\\'.studly_case($mode);
-    }
-
-    public static function getMode(): string
-    {
-        return snake_case(get_class_basename(static::class));
     }
 
     public function scopeDefault($query)
@@ -118,6 +112,11 @@ abstract class Model extends BaseModel
         return $this->belongsTo("App\\Models\\Score\\Best\\{$basename}", 'high_score_id', 'score_id');
     }
 
+    public function getMode(): string
+    {
+        return snake_case(get_class_basename(static::class));
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -125,7 +124,7 @@ abstract class Model extends BaseModel
 
     public function url()
     {
-        return route('scores.show', ['mode' => static::getMode(), 'score' => $this->getKey()]);
+        return route('scores.show', ['mode' => $this->getMode(), 'score' => $this->getKey()]);
     }
 
     public function getDataAttribute()
@@ -136,7 +135,7 @@ abstract class Model extends BaseModel
             'miss' => $this->countmiss,
             'great' => $this->count300,
         ];
-        $ruleset = static::getMode();
+        $ruleset = $this->getMode();
         switch ($ruleset) {
             case 'osu':
                 $statistics['ok'] = $this->count100;

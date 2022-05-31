@@ -6,17 +6,14 @@
 namespace App\Models\Score\Best;
 
 use App\Libraries\ReplayFile;
+use App\Libraries\Score\UserRankCache;
 use App\Models\Beatmap;
-use App\Models\BeatmapModeStats;
 use App\Models\Country;
 use App\Models\ReplayViewCount;
 use App\Models\Score\Model as BaseModel;
 use App\Models\Traits;
 use App\Models\User;
-use Datadog;
 use DB;
-use Exception;
-use GuzzleHttp\Client;
 
 /**
  * @property User $user
@@ -55,7 +52,7 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
     {
         $instance = new static();
         $table = $instance->getTable();
-        $modeId = Beatmap::MODES[static::getMode()];
+        $modeId = Beatmap::MODES[$instance->getMode()];
 
         $instance->getConnection()->insert(
             "INSERT INTO score_process_queue (score_id, mode, status) SELECT score_id, {$modeId}, 1 FROM {$table} WHERE user_id = {$user->getKey()}"
@@ -124,7 +121,12 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
         }
 
         if ($options['cached'] ?? true) {
-            $rank = $this->userRankCached($options);
+            $rank = UserRankCache::fetch(
+                $options,
+                $this->beatmap_id,
+                Beatmap::modeInt($this->getMode()),
+                $this->score,
+            );
 
             if ($rank !== null && $rank > 50) {
                 return $rank;
@@ -149,62 +151,6 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
         $countQuery = DB::raw('DISTINCT user_id');
 
         return 1 + $query->visibleUsers()->default()->count($countQuery);
-    }
-
-    public function userRankCached($options)
-    {
-        $ddPrefix = config('datadog-helper.prefix_web').'.user_rank_cached_lookup';
-
-        $server = config('osu.scores.rank_cache.server_url');
-
-        if ($server === null || !empty($options['mods']) || ($options['type'] ?? 'global') !== 'global') {
-            Datadog::increment("{$ddPrefix}.miss", 1, ['reason' => 'unsupported_mode']);
-
-            return;
-        }
-
-        $modeInt = Beatmap::modeInt($this->getMode());
-        $stats = BeatmapModeStats::where([
-            'beatmap_id' => $this->beatmap_id,
-            'mode' => $modeInt,
-        ])->first();
-
-        if ($stats === null) {
-            Datadog::increment("{$ddPrefix}.miss", 1, ['reason' => 'missing_stats']);
-
-            return;
-        }
-
-        if ($stats->unique_users < config('osu.scores.rank_cache.min_users')) {
-            Datadog::increment("{$ddPrefix}.miss", 1, ['reason' => 'not_enough_unique_users']);
-
-            return;
-        }
-
-        try {
-            $response = (new Client(['base_uri' => $server]))
-                ->request('GET', 'rankLookup', [
-                    'connect_timeout' => 1,
-                    'timeout' => config('osu.scores.rank_cache.timeout'),
-
-                    'query' => [
-                        'beatmapId' => $this->beatmap_id,
-                        'rulesetId' => $modeInt,
-                        'score' => $this->score,
-                    ],
-                ])
-                ->getBody()
-                ->getContents();
-        } catch (Exception $e) {
-            log_error($e);
-            Datadog::increment("{$ddPrefix}.miss", 1, ['reason' => 'fetch_failure']);
-
-            return;
-        }
-
-        Datadog::increment("{$ddPrefix}.hit", 1);
-
-        return 1 + $response;
     }
 
     public function macroUserBest()
@@ -380,7 +326,7 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
             $statsColumn = static::RANK_TO_STATS_COLUMN_MAPPING[$this->rank] ?? null;
 
             if ($statsColumn !== null && $this->isPersonalBest()) {
-                $userStats = $this->user?->statistics($this->gameModeString());
+                $userStats = $this->user?->statistics($this->getMode());
 
                 if ($userStats !== null) {
                     $userStats->decrement($statsColumn);

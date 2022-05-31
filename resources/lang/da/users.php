@@ -128,7 +128,7 @@ return [
 
         'options' => [
             'cheating' => 'Uærligt spil / Snyd',
-            'multiple_accounts' => '',
+            'multiple_accounts' => 'Bruger flere konti',
             'insults' => 'Fornærmede mig / andre',
             'spam' => 'Spamming',
             'unwanted_content' => 'Sender links med upassende indhold',

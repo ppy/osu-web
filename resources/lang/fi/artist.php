@@ -30,7 +30,7 @@ return [
     'songs' => [
         '_' => 'Kappaleet',
         'count' => ':count kappale|:count kappaletta',
-        'original' => '',
+        'original' => 'osu! originaali',
         'original_badge' => 'ALKUPERÄINEN',
     ],
 
@@ -43,19 +43,19 @@ return [
 
     'tracks' => [
         'index' => [
-            '_' => '',
+            '_' => 'kappalehaku',
 
             'form' => [
-                'advanced' => '',
+                'advanced' => 'Laajennettu haku',
                 'album' => 'Albumi',
                 'artist' => 'Esittäjä',
-                'bpm_gte' => '',
-                'bpm_lte' => '',
-                'empty' => '',
+                'bpm_gte' => 'BPM Minimi',
+                'bpm_lte' => 'BPM Maksimi',
+                'empty' => 'Hakukriteerejä vastaavia kappaleita ei löytynyt.',
                 'genre' => 'Tyylilaji',
                 'genre_all' => 'Kaikki',
-                'length_gte' => '',
-                'length_lte' => '',
+                'length_gte' => 'Pituuden Minimi',
+                'length_lte' => 'Pituuden Maksimi',
             ],
         ],
     ],

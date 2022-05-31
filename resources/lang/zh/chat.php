@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'loading_users' => '',
     'talking_in' => '在 :channel 中聊天',
     'talking_with' => '与 :name 聊天',
     'title_compact' => '聊天',
