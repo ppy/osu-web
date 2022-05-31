@@ -8,12 +8,10 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 
-type Props = Record<string, never>;
-
 const autoPagerTriggerDistance = 3000;
 
 @observer
-export class Paginator extends React.Component<Props> {
+export class Paginator extends React.Component<Record<string, never>> {
   private readonly lineRef = React.createRef<HTMLDivElement>();
   private readonly throttledAutoPagerOnScroll = throttle(() => this.autoPagerOnScroll(), 500);
 
