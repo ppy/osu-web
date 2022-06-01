@@ -45,7 +45,7 @@ class window.BeatmapsetFilter
 
       continue if !value? || value.length == 0
 
-      value = @castFromString[key](value) if @castFromString[key]
+      value = if value? then String(value) else value
       filters[key] = value
 
     filters
