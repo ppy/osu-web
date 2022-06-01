@@ -1,6 +1,8 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { charToKey, keyNames, keyToChar } from 'beatmapset-search-filters'
+
 parseBool = (string) ->
   switch string
     when 'false' then false
@@ -12,8 +14,6 @@ parseInt10 = (string) ->
 
   if _.isFinite(int) then int else null
 
-
-import { charToKey, keyToChar } from 'beatmapset-search-filters'
 
 class window.BeatmapsetFilter
   @castFromString:
@@ -56,7 +56,7 @@ class window.BeatmapsetFilter
   @fillDefaults: (filters) =>
     ret = {}
 
-    for key in @keys
+    for key in keyNames
       ret[key] = filters[key] ? @getDefault(filters, key)
 
     ret
@@ -86,21 +86,6 @@ class window.BeatmapsetFilter
 
     ret
 
-
-  # TODO: look at combining with the one in beatmapset-search-filter.ts
-  @keys: [
-    'general'
-    'extra'
-    'genre'
-    'language'
-    'mode'
-    'nsfw'
-    'played'
-    'query'
-    'rank'
-    'sort'
-    'status'
-  ]
 
   # For UI purposes; server-side has its own check.
   @supporterRequired: (filters) ->

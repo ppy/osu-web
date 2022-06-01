@@ -20,7 +20,7 @@ export const charToKey = {
 
 export const keyToChar = invert(charToKey);
 
-const keyNames = ['extra', 'general', 'genre', 'language', 'mode', 'nsfw', 'played', 'query', 'rank', 'sort', 'status'] as const;
+export const keyNames = ['extra', 'general', 'genre', 'language', 'mode', 'nsfw', 'played', 'query', 'rank', 'sort', 'status'] as const;
 
 export type BeatmapsetSearchParams = {
   [key in FilterKey]: filterValueType
