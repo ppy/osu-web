@@ -13,6 +13,8 @@ parseInt10 = (string) ->
   if _.isFinite(int) then int else null
 
 
+import { charToKey, keyToChar } from 'beatmapset-search-filters'
+
 class window.BeatmapsetFilter
   @castFromString:
     genre: parseInt10
@@ -21,26 +23,12 @@ class window.BeatmapsetFilter
     nsfw: parseBool
 
 
-  @charToKey:
-    c: 'general'
-    e: 'extra'
-    g: 'genre'
-    l: 'language'
-    m: 'mode'
-    nsfw: 'nsfw'
-    played: 'played'
-    q: 'query'
-    r: 'rank'
-    s: 'status'
-    sort: 'sort'
-
-
   @filtersFromUrl: (url) ->
     params = new URL(url).searchParams
 
     filters = {}
 
-    for own char, key of @charToKey
+    for own char, key of charToKey
       value = params.get(char)
 
       continue if !value? || value.length == 0
@@ -49,10 +37,6 @@ class window.BeatmapsetFilter
       filters[key] = value
 
     filters
-
-
-  @keyToChar: ->
-    @_keyToChar ?= _.invert @charToKey
 
 
   @defaults:
@@ -123,7 +107,7 @@ class window.BeatmapsetFilter
 
     for own key, value of filters
       if !value? || @getDefault(filters, key) != value
-        charParams[@keyToChar()[key]] = value
+        charParams[keyToChar[key]] = value
 
     charParams
 

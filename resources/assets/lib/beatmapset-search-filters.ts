@@ -1,7 +1,24 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { invert } from 'lodash';
 import { action, computed, intercept, makeObservable, observable } from 'mobx';
+
+export const charToKey = {
+  c: 'general',
+  e: 'extra',
+  g: 'genre',
+  l: 'language',
+  m: 'mode',
+  nsfw: 'nsfw',
+  played: 'played',
+  q: 'query',
+  r: 'rank',
+  s: 'status',
+  sort: 'sort',
+};
+
+export const keyToChar = invert(charToKey);
 
 const keyNames = ['extra', 'general', 'genre', 'language', 'mode', 'nsfw', 'played', 'query', 'rank', 'sort', 'status'] as const;
 
