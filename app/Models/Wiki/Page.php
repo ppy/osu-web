@@ -295,6 +295,12 @@ class Page implements WikiObject
         return $this->page['header']['outdated'] ?? false;
     }
 
+    public function isOutdatedTranslation(): bool
+    {
+        return $this->isTranslation()
+            && ($this->page['header']['outdated_translation'] ?? false);
+    }
+
     public function isStub(): bool
     {
         return $this->page['header']['stub'] ?? false;
