@@ -3,6 +3,19 @@
 
 import { invert } from 'lodash';
 import { action, computed, intercept, makeObservable, observable } from 'mobx';
+import core from 'osu-core-singleton';
+
+const defaults = {
+  extra: '',
+  general: '',
+  genre: null,
+  language: null,
+  mode: null,
+  played: 'any',
+  query: '',
+  rank: '',
+  status: 'leaderboard',
+};
 
 export const charToKey: Record<string, FilterKey> = {
   c: 'general',
@@ -49,6 +62,25 @@ export function filtersFromUrl(url: string) {
   return filters;
 }
 
+function getDefault(filters: Partial<BeatmapsetSearchParams>, key: string) {
+  if (Object.keys(defaults).includes(key)) return defaults[key] as string | null;
+
+  switch (key) {
+    case 'nsfw':
+      return String(core.userPreferences.get('beatmapset_show_nsfw'));
+    case 'sort':
+      if (filters.query?.trim().length ?? 0 > 0) {
+        return 'relevance_desc';
+      } else if (['pending', 'wip', 'graveyard', 'mine'].includes(filters.status ?? '')) {
+        return 'updated_desc';
+      } else {
+        return 'ranked_desc';
+      }
+  }
+
+  return null;
+}
+
 
 export type BeatmapsetSearchParams = {
   [key in FilterKey]: filterValueType
@@ -62,7 +94,7 @@ export function queryParamsFromFilters(filters: Partial<BeatmapsetSearchParams>)
 
   // undefineds should be treated as not specified
   for (const [key, value] of Object.entries(filters)) {
-    if (value === null || BeatmapsetFilter.getDefault(filters, key) !== value) {
+    if (value === null || getDefault(filters, key) !== value) {
       charParams[keyToChar[key]] = value;
     }
   }
@@ -118,7 +150,7 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
   selectedValue(key: FilterKey) {
     const value = this[key];
     if (value == null) {
-      const defaultValue = BeatmapsetFilter.getDefault(this.values, key);
+      const defaultValue = getDefault(this.values, key);
       return typeof defaultValue === 'number' ? String(defaultValue) : osu.presence(defaultValue);
     }
 
