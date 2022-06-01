@@ -82,7 +82,7 @@ export class BeatmapsetSearchController {
 
   @computed
   get supporterRequiredFilterText() {
-    const filters = BeatmapsetFilter.supporterRequired(this.filters);
+    const filters = Object.keys(this.filters).filter((key) => ['played', 'rank'].includes(key) && this.filters[key] != null  );
     const trans = map(filters, (name) => osu.trans(`beatmaps.listing.search.filters.${name}`));
 
     return osu.transArray(trans);

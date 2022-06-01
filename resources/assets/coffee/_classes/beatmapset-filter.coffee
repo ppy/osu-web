@@ -49,9 +49,3 @@ class window.BeatmapsetFilter
             'updated_desc'
           else
             'ranked_desc'
-
-
-  # For UI purposes; server-side has its own check.
-  @supporterRequired: (filters) ->
-    _.reject ['played', 'rank'], (name) =>
-      _.isEmpty(filters[name]) || filters[name] == @getDefault(filters, name)

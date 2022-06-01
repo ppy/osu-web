@@ -6,5 +6,4 @@ import { BeatmapsetSearchParams, FilterKey } from 'beatmapset-search-filters';
 export default interface BeatmapsetFilterClass {
   defaults: Record<string, string | null>;
   getDefault(filters: Partial<BeatmapsetSearchParams>, key: string): string | number | null;
-  supporterRequired(filters: Partial<BeatmapsetSearchParams>): FilterKey[];
 }
