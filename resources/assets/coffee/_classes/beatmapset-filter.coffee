@@ -122,7 +122,7 @@ class window.BeatmapsetFilter
     charParams = {}
 
     for own key, value of filters
-      if value? && @getDefault(filters, key) != value
+      if !value? || @getDefault(filters, key) != value
         charParams[@keyToChar()[key]] = value
 
     charParams
