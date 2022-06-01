@@ -21,6 +21,17 @@ interface GetMessagesResponse {
   users: UserJson[];
 }
 
+interface NewAnnoucementRequestJson {
+  channel: {
+    description: string;
+    name: string;
+  };
+  message: string;
+  target_ids: number[];
+  type: 'ANNOUNCE';
+  uuid: string;
+}
+
 interface NewConversationJson {
   channel: ChannelJson;
   message: MessageJson;
@@ -29,6 +40,10 @@ interface NewConversationJson {
 
 export function ack(since: number, lastHistoryId?: number) {
   return $.post(route('chat.ack'), { history_since: lastHistoryId, since }) as JQuery.jqXHR<AckResponseJson>;
+}
+
+export function createAnnoucement(json: NewAnnoucementRequestJson) {
+  return $.post(route('chat.channels.store'), json) as JQuery.jqXHR<ChannelJson>;
 }
 
 export function getChannel(channelId: number) {

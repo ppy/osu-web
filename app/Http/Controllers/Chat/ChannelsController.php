@@ -258,6 +258,7 @@ class ChannelsController extends Controller
             'target_id:int',
             'target_ids:int[]',
             'type:string',
+            'uuid',
         ], ['null_missing' => true]);
 
         $sender = auth()->user();
