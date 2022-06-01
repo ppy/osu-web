@@ -3,7 +3,7 @@
 
 import { BeatmapsetSearch, SearchResponse } from 'beatmaps/beatmapset-search';
 import ResultSet from 'beatmaps/result-set';
-import { BeatmapsetSearchFilters, FilterKey } from 'beatmapset-search-filters';
+import { BeatmapsetSearchFilters, FilterKey, filtersFromUrl } from 'beatmapset-search-filters';
 import { route } from 'laroute';
 import { debounce, intersection, map } from 'lodash';
 import { action, computed, IObjectDidChange, Lambda, makeObservable, observable, observe, runInAction } from 'mobx';
@@ -178,7 +178,6 @@ export class BeatmapsetSearchController {
   @action
   private restoreStateFromUrl() {
     const url = currentUrl().href;
-    const filtersFromUrl = BeatmapsetFilter.filtersFromUrl(url);
 
     if (this.filtersObserver != null) {
       this.filtersObserver();
@@ -186,6 +185,6 @@ export class BeatmapsetSearchController {
     this.filters = new BeatmapsetSearchFilters(url);
     this.filtersObserver = observe(this.filters, this.filterChangedHandler);
 
-    this.isExpanded = intersection(Object.keys(filtersFromUrl), expandFilters).length > 0;
+    this.isExpanded = intersection(Object.keys(filtersFromUrl(url)), expandFilters).length > 0;
   }
 }

@@ -4,7 +4,7 @@
 import { invert } from 'lodash';
 import { action, computed, intercept, makeObservable, observable } from 'mobx';
 
-export const charToKey = {
+export const charToKey: Record<string, FilterKey> = {
   c: 'general',
   e: 'extra',
   g: 'genre',
@@ -31,6 +31,22 @@ function fillDefaults(filters: Partial<BeatmapsetSearchParams>) {
   }
 
   return ret as BeatmapsetSearchParams;
+}
+
+export function filtersFromUrl(url: string) {
+  const params = new URL(url).searchParams;
+
+  const filters: Partial<BeatmapsetSearchFilters> = {};
+
+  for (const [char, key] of Object.entries(charToKey)) {
+    const value = params.get(char);
+
+    if (value == null || value.length === 0) continue;
+
+    filters[key] = String(value); // TODO: handle boolean value
+  }
+
+  return filters;
 }
 
 
@@ -68,7 +84,7 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
   @observable status: filterValueType = null;
 
   constructor(url: string) {
-    const filters = BeatmapsetFilter.filtersFromUrl(url);
+    const filters = filtersFromUrl(url);
     for (const key of keyNames) {
       this[key] = filters[key] ?? null;
     }

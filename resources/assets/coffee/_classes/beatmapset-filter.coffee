@@ -23,22 +23,6 @@ class window.BeatmapsetFilter
     nsfw: parseBool
 
 
-  @filtersFromUrl: (url) ->
-    params = new URL(url).searchParams
-
-    filters = {}
-
-    for own char, key of charToKey
-      value = params.get(char)
-
-      continue if !value? || value.length == 0
-
-      value = if value? then String(value) else value
-      filters[key] = value
-
-    filters
-
-
   @defaults:
     general: ''
     extra: ''
