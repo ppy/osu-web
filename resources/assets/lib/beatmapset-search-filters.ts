@@ -63,10 +63,10 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
     const value = this[key];
     if (value == null) {
       const defaultValue = BeatmapsetFilter.getDefault(this.values, key);
-      return typeof defaultValue === 'number' ? String(defaultValue) : defaultValue;
+      return typeof defaultValue === 'number' ? String(defaultValue) : osu.presence(defaultValue);
     }
 
-    return typeof value === 'number' ? String(value) : value;
+    return typeof value === 'number' ? String(value) : osu.presence(value);
   }
 
   toKeyString() {

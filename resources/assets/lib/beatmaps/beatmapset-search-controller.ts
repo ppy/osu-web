@@ -3,7 +3,7 @@
 
 import { BeatmapsetSearch, SearchResponse } from 'beatmaps/beatmapset-search';
 import ResultSet from 'beatmaps/result-set';
-import { BeatmapsetSearchFilters, BeatmapsetSearchParams } from 'beatmapset-search-filters';
+import { BeatmapsetSearchFilters, FilterKey } from 'beatmapset-search-filters';
 import { route } from 'laroute';
 import { debounce, intersection, map } from 'lodash';
 import { action, computed, IObjectDidChange, Lambda, makeObservable, observable, observe, runInAction } from 'mobx';
@@ -91,6 +91,16 @@ export class BeatmapsetSearchController {
     this.beatmapsetSearch.cancel();
   }
 
+  getFilters(key: FilterKey) {
+    const value = this.filters.selectedValue(key);
+    if (value == null) return null;
+
+    const selected = String(value ?? '');
+    // TODO: filter valid values (props.options)?
+    // .filter((s) => this.optionKeys.includes(s))
+    return selected.split('.');
+  }
+
   initialize(data: SearchResponse) {
     this.restoreStateFromUrl();
     this.beatmapsetSearch.initialize(this.filters, data);
@@ -140,11 +150,6 @@ export class BeatmapsetSearchController {
       this.searchStatus = { error, from, restore, state: 'completed' };
       this.currentResultSet = this.beatmapsetSearch.getResultSet(this.filters);
     });
-  }
-
-  @action
-  updateFilters(newFilters: Partial<BeatmapsetSearchParams>) {
-    this.filters.update(newFilters);
   }
 
   private filterChangedHandler = (change: IObjectDidChange<BeatmapsetSearchFilters>) => {

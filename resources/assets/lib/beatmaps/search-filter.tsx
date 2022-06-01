@@ -1,8 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapsetSearchParams, FilterKey } from 'beatmapset-search-filters';
-import { computed, makeObservable } from 'mobx';
+import { FilterKey } from 'beatmapset-search-filters';
+import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -31,13 +31,7 @@ export class SearchFilter extends React.PureComponent<Props> {
 
   @computed
   get currentSelection() {
-    if (this.props.multiselect) {
-      // multiselects don't have nulls
-      const selected = this.controller.filters.selectedValue(this.props.name) ?? '';
-      return selected.split('.').filter((s) => this.optionKeys.includes(s));
-    } else {
-      return [this.controller.filters.selectedValue(this.props.name)];
-    }
+    return new Set<string | null>(this.controller.getFilters(this.props.name));
   }
 
   @computed
@@ -79,24 +73,22 @@ export class SearchFilter extends React.PureComponent<Props> {
   }
 
   private isSelected(key: string | null) {
-    return this.currentSelection.includes(key);
+    if (key == null && this.currentSelection.size === 0) return true;
+
+    return this.currentSelection.has(key);
   }
 
   // TODO: rename
   private newSelection(key: string | null) {
-    if (this.props.multiselect) {
-      if (this.isSelected(key)) {
-        return this.currentSelection.filter((x) => x !== key).join('.');
-      } else {
-        return this.currentSelection.concat(key).join('.');
-      }
+    const newSet = this.props.multiselect ? new Set(this.currentSelection) : new Set<string | null>();
+    if (this.isSelected(key)) {
+      newSet.delete(key);
     } else {
-      if (this.isSelected(key)) {
-        return BeatmapsetFilter.defaults[key ?? ''];
-      } else {
-        return key;
-      }
+      newSet.add(key);
     }
+
+    const value = [...newSet.values()].filter((x) => x != null).join('.');
+    return value.length === 0 ? null : value;
   }
 
   private readonly renderOption = (option: { id: string | null; name: string }) => {
@@ -123,11 +115,12 @@ export class SearchFilter extends React.PureComponent<Props> {
     );
   };
 
+  @action
   private readonly select = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    const params: Partial<BeatmapsetSearchParams> = {};
-    params[this.props.name] = this.newSelection(e.currentTarget.dataset.filterValue ?? null);
+    const key = e.currentTarget.dataset.filterValue ?? null;
+    const value = this.newSelection(key);
 
-    this.controller.updateFilters(params);
+    this.controller.filters.update({ [this.props.name]: value });
   };
 }
