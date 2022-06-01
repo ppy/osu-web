@@ -51,9 +51,6 @@ class window.BeatmapsetFilter
     status: 'leaderboard'
 
 
-  @expand: ['genre', 'language', 'extra', 'rank', 'played']
-
-
   @getDefault: (filters, key) =>
     return @defaults[key] if @defaults.hasOwnProperty(key)
 

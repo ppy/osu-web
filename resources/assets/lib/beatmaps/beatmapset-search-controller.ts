@@ -10,6 +10,9 @@ import { action, computed, IObjectDidChange, Lambda, makeObservable, observable,
 import core from 'osu-core-singleton';
 import { currentUrl } from 'utils/turbolinks';
 
+
+const expandFilters: FilterKey[] = ['genre', 'language', 'extra', 'rank', 'played'];
+
 export interface SearchStatus {
   error?: any;
   from: number;
@@ -183,6 +186,6 @@ export class BeatmapsetSearchController {
     this.filters = new BeatmapsetSearchFilters(url);
     this.filtersObserver = observe(this.filters, this.filterChangedHandler);
 
-    this.isExpanded = intersection(Object.keys(filtersFromUrl), BeatmapsetFilter.expand).length > 0;
+    this.isExpanded = intersection(Object.keys(filtersFromUrl), expandFilters).length > 0;
   }
 }
