@@ -53,14 +53,6 @@ class window.BeatmapsetFilter
 
   @expand: ['genre', 'language', 'extra', 'rank', 'played']
 
-  @fillDefaults: (filters) =>
-    ret = {}
-
-    for key in keyNames
-      ret[key] = filters[key] ? @getDefault(filters, key)
-
-    ret
-
 
   @getDefault: (filters, key) =>
     return @defaults[key] if @defaults.hasOwnProperty(key)
@@ -76,15 +68,6 @@ class window.BeatmapsetFilter
             'updated_desc'
           else
             'ranked_desc'
-
-
-  @getDefaults: (filters) =>
-    ret = {}
-
-    for key in @keys
-      ret[key] = @getDefault(filters, key)
-
-    ret
 
 
   # For UI purposes; server-side has its own check.

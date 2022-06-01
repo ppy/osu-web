@@ -22,6 +22,18 @@ export const keyToChar = invert(charToKey);
 
 export const keyNames = ['extra', 'general', 'genre', 'language', 'mode', 'nsfw', 'played', 'query', 'rank', 'sort', 'status'] as const;
 
+// TODO: remove
+function fillDefaults(filters: Partial<BeatmapsetSearchParams>) {
+  const ret: Partial<BeatmapsetSearchParams> = {};
+
+  for (const key of keyNames) {
+    ret[key] = filters[key] ?? BeatmapsetFilter.getDefault(filters, key);
+  }
+
+  return ret as BeatmapsetSearchParams;
+}
+
+
 export type BeatmapsetSearchParams = {
   [key in FilterKey]: filterValueType
 };
@@ -100,7 +112,7 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
   toKeyString() {
     const values = this.values;
 
-    const normalized = BeatmapsetFilter.fillDefaults(values);
+    const normalized = fillDefaults(values);
     const parts = [];
     for (const key of keyNames) {
       parts.push(`${key}=${normalized[key]}`);
