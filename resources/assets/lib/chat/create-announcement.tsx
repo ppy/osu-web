@@ -69,7 +69,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
           </InputContainer>
           <InputContainer for='chat-form-users' labelKey='chat.form.labels.users' model={this.model} modifiers='chat' name='users'>
             <div className='chat-form__users'>
-              <UserCardBrick modifiers='fit' user={core.currentUserOrFail} />
+              <UserCardBrick user={core.currentUserOrFail} />
               {this.renderValidUsers()}
               <input
                 className='chat-form__input chat-form__input--users'
@@ -162,7 +162,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
 
   private renderValidUsers() {
     return [...this.model.validUsers.values()].map((user) => (
-      <UserCardBrick key={user.id} modifiers='fit' onRemoveClick={this.handleRemoveUser} user={user} />
+      <UserCardBrick key={user.id} onRemoveClick={this.handleRemoveUser} user={user} />
     ));
   }
 }
