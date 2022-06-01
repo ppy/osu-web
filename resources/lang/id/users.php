@@ -51,15 +51,15 @@ return [
 
     'disabled' => [
         'title' => 'Uh-oh! Sepertinya akun Anda telah dinonaktifkan.',
-        'warning' => "Apabila Anda telah melakukan suatu pelanggaran yang berdampak langsung terhadap status akun Anda, akun Anda akan dikondisikan di dalam masa hukuman percobaan selama satu bulan di mana selama satu bulan ini kami tidak akan menggubris segala laporan dan permintaan yang masuk terkait dengan akun Anda. Setelah masa hukuman ini berakhir, Anda baru akan kemudian dapat mengontak kami apabila Anda ingin kembali bermain dengan akun Anda. Mohon diperhatikan bahwa membuat akun baru di kala akun utama Anda sedang dibatasi <strong>akan menambah masa hukuman Anda</strong>, dan <strong>masa hukuman ini akan senantiasa bertambah panjang dengan setiap akun baru yang Anda coba untuk buat</strong>. Kami harap Anda dapat memetik pelajaran dari kasus ini dan tidak akan melakukan pelanggaran lagi ke depannya!",
+        'warning' => "Apabila Anda telah melanggar peraturan, akun Anda akan ditempatkan pada masa percobaan selama satu bulan di mana dalam rentang waktu ini kami tidak akan menanggapi segala permintaan yang terkait dengan akun Anda. Setelah masa percobaan ini berakhir, Anda baru akan dapat menghubungi kami untuk mengembalikan akun Anda. Mohon diperhatikan bahwa membuat akun baru <strong>hanya akan menambah masa hukuman Anda</strong>, dan <strong>masa hukuman Anda akan bertambah panjang untuk setiap akun baru yang Anda buat</strong>. Kami harap Anda dapat belajar dari kesalahan Anda!",
 
         'if_mistake' => [
-            '_' => 'Apabila Anda merasa hal ini merupakan sebuah kesalahpahaman, Anda dianjurkan untuk mengontak kami sesegera mungkin (melalui :email atau tombol "?" yang tersedia pada pojok kanan bawah halaman ini). Mohon diperhatikan bahwa segala keputusan yang kami ambil terkait dengan akun Anda selalu berdasar pada data-data konkrit yang kami punya dan senantiasa diambil dengan penuh keyakinan. Selain itu, kami juga berhak untuk tidak menindaklanjuti laporan Anda lebih lanjut apabila kami merasa Anda dengan sengaja berbohong kepada kami dalam aduan yang Anda ajukan.',
+            '_' => 'Apabila Anda merasa hal ini merupakan sebuah kesalahpahaman, Anda dianjurkan untuk mengontak kami (baik itu melalui :email atau tombol "?" yang terletak pada pojok kanan bawah laman ini) sesegera mungkin. Mohon diperhatikan bahwa segala keputusan yang kami ambil selalu berdasar pada data yang konkrit dan diambil dengan penuh keyakinan. Di samping itu, kami juga berhak untuk tidak menindaklanjuti aduan Anda lebih lanjut apabila kami merasa Anda dengan sengaja telah berbohong kepada kami.',
             'email' => 'email',
         ],
 
         'reasons' => [
-            'compromised' => 'Akun Anda terindikasi telah disalahgunakan oleh pihak-pihak yang tidak bertanggung jawab. Akun Anda akan dinonaktifkan untuk sementara waktu hingga identitas pengguna akun telah terkonfirmasi.',
+            'compromised' => 'Akun Anda terindikasi telah disalahgunakan oleh pihak lain. Akun Anda akan dinonaktifkan untuk sementara waktu hingga identitas pengguna akun telah terkonfirmasi.',
             'opening' => 'Ada sejumlah alasan yang dapat menyebabkan akun Anda dinonaktifkan:',
 
             'tos' => [
@@ -209,7 +209,7 @@ return [
                     'title' => 'Beatmap Graveyard',
                 ],
                 'guest' => [
-                    'title' => 'Beatmap Dengan Kontribusi Guest Difficulty',
+                    'title' => 'Beatmap dengan Kontribusi Guest Difficulty',
                 ],
                 'loved' => [
                     'title' => 'Beatmap Loved',

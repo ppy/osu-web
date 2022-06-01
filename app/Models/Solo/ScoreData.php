@@ -66,7 +66,13 @@ class ScoreData implements Castable, JsonSerializable
         {
             public function get($model, $key, $value, $attributes)
             {
-                return new ScoreData(json_decode($value, true));
+                $dataJson = json_decode($value, true);
+                $dataJson['beatmap_id'] ??= $attributes['beatmap_id'];
+                $dataJson['ended_at'] ??= $attributes['created_at'];
+                $dataJson['ruleset_id'] ??= $attributes['ruleset_id'];
+                $dataJson['user_id'] ??= $attributes['user_id'];
+
+                return new ScoreData($dataJson);
             }
 
             public function set($model, $key, $value, $attributes)

@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => 'Que tal jogar um pouco de osu! em vez disso?',
+    'play_more' => 'Que tal jogar osu! como alternativa?',
     'require_login' => 'Por favor inicia sessão para proceder.',
     'require_verification' => 'Por favor verifica para proceder.',
     'restricted' => "Não é possível fazeres isso enquanto estiveres restrito.",
@@ -75,7 +75,7 @@ return [
 
     'comment' => [
         'store' => [
-            'disabled' => '',
+            'disabled' => 'Os comentários estão desativados',
         ],
         'update' => [
             'deleted' => "Não é possível editares uma publicação apagada.",
@@ -183,7 +183,7 @@ return [
             'edit' => [
                 'locked' => 'A página de utilizador está bloqueada.',
                 'not_owner' => 'Só é possível editar a própria página de utilizador.',
-                'require_supporter_tag' => 'Uma etiqueta osu!supporter é necessária.',
+                'require_supporter_tag' => 'É preciso uma etiqueta osu!supporter.',
             ],
         ],
     ],

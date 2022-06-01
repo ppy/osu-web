@@ -194,16 +194,15 @@ class ChannelsController extends Controller
     public function show($channelId)
     {
         $channel = Channel::where('channel_id', $channelId)->firstOrFail();
+        $user = auth()->user();
 
         priv_check('ChatChannelRead', $channel)->ensureCan();
 
-        $showAllUsers = $channel->isAnnouncement() ? priv_check('ChatAnnounce')->can() : true;
-
         return [
-            'channel' => json_item($channel, ChannelTransformer::forUser(auth()->user()), ChannelTransformer::LISTING_INCLUDES),
+            'channel' => json_item($channel, ChannelTransformer::forUser($user), ChannelTransformer::LISTING_INCLUDES),
             // TODO: probably going to need a better way to list/fetch/update users on larger channels without sending user on every message.
             'users' => json_collection(
-                $channel->visibleUsers($showAllUsers)->loadMissing(UserCompactTransformer::CARD_INCLUDES_PRELOAD),
+                $channel->visibleUsers($user)->loadMissing(UserCompactTransformer::CARD_INCLUDES_PRELOAD),
                 new UserCompactTransformer(),
                 UserCompactTransformer::CARD_INCLUDES
             ),

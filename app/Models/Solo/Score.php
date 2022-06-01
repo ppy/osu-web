@@ -62,6 +62,11 @@ class Score extends Model
         return $this->belongsTo(Beatmap::class, 'beatmap_id');
     }
 
+    public function performance()
+    {
+        return $this->hasOne(ScorePerformance::class, 'score_id');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -117,7 +122,7 @@ class Score extends Model
         return $score;
     }
 
-    public function getMode()
+    public function getMode(): string
     {
         return Beatmap::modeStr($this->ruleset_id);
     }
