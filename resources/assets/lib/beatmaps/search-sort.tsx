@@ -15,13 +15,12 @@ type Sort = typeof sortNames[number];
 
 @observer
 export class SearchSort extends React.Component<Props> {
-  @computed
-  get filters() {
+  private get filters() {
     return core.beatmapsetSearchController.filters;
   }
 
   @computed
-  get fields() {
+  private get fields() {
     const visible = {
       artist: true,
       difficulty: true,
@@ -51,14 +50,7 @@ export class SearchSort extends React.Component<Props> {
         visible.ranked = true;
     }
 
-    const list: Sort[] = [];
-    for (const key of sortNames) {
-      if (visible[key]) {
-        list.push(key);
-      }
-    }
-
-    return list;
+    return sortNames.filter((key) => visible[key]);
   }
 
   constructor(props: Props) {
@@ -100,9 +92,7 @@ export class SearchSort extends React.Component<Props> {
   private readonly select = (e: React.SyntheticEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     const field = e.currentTarget.dataset.field;
-    let order = this.filters.searchSort.order;
-
-    order = this.filters.searchSort.field === field && order === 'desc'
+    const order = this.filters.searchSort.field === field && this.filters.searchSort.order === 'desc'
       ? 'asc'
       : 'desc';
 
