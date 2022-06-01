@@ -9,6 +9,5 @@ export default interface BeatmapsetFilterClass {
   fillDefaults(filters: Partial<Record<string, any>>): BeatmapsetSearchParams;
   filtersFromUrl(url: string): Partial<BeatmapsetSearchParams>;
   getDefault(filters: Partial<BeatmapsetSearchParams>, key: string): string | number | null;
-  queryParamsFromFilters(filters: Partial<BeatmapsetSearchParams>): Partial<Record<string, any>>;
   supporterRequired(filters: Partial<BeatmapsetSearchParams>): FilterKey[];
 }

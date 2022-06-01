@@ -102,16 +102,6 @@ class window.BeatmapsetFilter
     'status'
   ]
 
-  @queryParamsFromFilters: (filters) ->
-    charParams = {}
-
-    for own key, value of filters
-      if !value? || @getDefault(filters, key) != value
-        charParams[keyToChar[key]] = value
-
-    charParams
-
-
   # For UI purposes; server-side has its own check.
   @supporterRequired: (filters) ->
     _.reject ['played', 'rank'], (name) =>

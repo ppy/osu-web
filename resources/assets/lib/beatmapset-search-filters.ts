@@ -29,6 +29,19 @@ export type BeatmapsetSearchParams = {
 export type FilterKey = (typeof keyNames)[number];
 type filterValueType = string | null;
 
+export function queryParamsFromFilters(filters: Partial<BeatmapsetSearchParams>) {
+  const charParams: Record<string, filterValueType> = {};
+
+  // undefineds should be treated as not specified
+  for (const [key, value] of Object.entries(filters)) {
+    if (value === null || BeatmapsetFilter.getDefault(filters, key) !== value) {
+      charParams[keyToChar[key]] = value;
+    }
+  }
+
+  return charParams;
+}
+
 export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
   @observable extra: filterValueType = null;
   @observable general: filterValueType = null;
@@ -65,9 +78,7 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
 
   @computed
   get queryParams() {
-    const values = this.values;
-
-    return BeatmapsetFilter.queryParamsFromFilters(values);
+    return queryParamsFromFilters(this.values);
   }
 
   @computed
