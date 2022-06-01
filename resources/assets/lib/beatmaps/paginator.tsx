@@ -36,7 +36,7 @@ export class Paginator extends React.Component<Record<string, never>> {
           callback={this.showMore}
           hasMore={this.controller.hasMore}
           loading={this.controller.isPaging}
-          modifiers={['beatmapsets', 't-ddd']}
+          modifiers='beatmapsets'
         />
       </>
     );
