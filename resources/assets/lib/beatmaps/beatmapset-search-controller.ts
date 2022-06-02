@@ -50,7 +50,6 @@ export class BeatmapsetSearchController {
     return [...this.currentResultSet.beatmapsetIds];
   }
 
-  @computed
   get error() {
     return this.searchStatus.error;
   }
