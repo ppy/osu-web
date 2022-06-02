@@ -122,7 +122,7 @@ export class SearchPanel extends React.Component
     if @inputRef.current.value != query
       @inputRef.current.value = query
 
-    controller.updateFilters { query }
+    controller.filters.update 'query', query
 
 
   renderFilter: ({ multiselect = false, name, options, showTitle = true }) =>

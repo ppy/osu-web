@@ -116,8 +116,7 @@ export class SearchFilter extends React.PureComponent<Props> {
   private readonly select = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     const key = e.currentTarget.dataset.filterValue ?? null;
-    const value = this.newSelection(key);
 
-    this.controller.filters.update({ [this.props.name]: value });
+    this.controller.filters.update(this.props.name, this.newSelection(key));
   };
 }

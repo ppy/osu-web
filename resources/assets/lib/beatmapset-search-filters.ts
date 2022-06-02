@@ -24,6 +24,8 @@ export const keyToChar = invert(charToKey);
 
 export const keyNames = ['extra', 'general', 'genre', 'language', 'mode', 'nsfw', 'played', 'query', 'rank', 'sort', 'status'] as const;
 
+const changesResetSorts: FilterKey[] = ['query', 'status'];
+
 export function filtersFromUrl(url: string) {
   const params = new URL(url).searchParams;
 
@@ -149,18 +151,14 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
   }
 
   @action
-  update(newFilters: Partial<BeatmapsetSearchParams>) {
-    if (newFilters.query !== undefined && newFilters.query !== this.query
-      || newFilters.status !== undefined && newFilters.status !== this.status) {
+  update(key: FilterKey, value: filterValueType) {
+    const oldValue = this[key];
+    if (value === oldValue) return;
+    if (changesResetSorts.includes(key)) {
       this.sort = null;
     }
 
-    for (const key of keyNames) {
-      const value = newFilters[key];
-      if (value !== undefined) {
-        this[key] = value;
-      }
-    }
+    this[key] = value;
   }
 
   private normalizedValues() {
