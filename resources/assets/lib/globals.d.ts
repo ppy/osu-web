@@ -25,7 +25,6 @@ declare const tooltipDefault: TooltipDefault;
 declare const osu: OsuCommon;
 
 // external (to typescript) classes
-declare const BeatmapsetFilter: import('interfaces/beatmapset-filter-class').default;
 declare const BeatmapDiscussionHelper: BeatmapDiscussionHelperClass;
 declare const Lang: LangClass;
 declare const fallbackLocale: string;
