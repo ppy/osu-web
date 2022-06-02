@@ -31,7 +31,10 @@ export class SearchFilter extends React.PureComponent<Props> {
 
   @computed
   get currentSelection() {
-    return new Set<string | null>(this.controller.getFilters(this.props.name));
+    const optionKeys = this.options.map((option) => option.id);
+
+    const filters = this.controller.getFilters(this.props.name)?.filter((option) => optionKeys.includes(option));
+    return new Set<string | null>(filters);
   }
 
   @computed

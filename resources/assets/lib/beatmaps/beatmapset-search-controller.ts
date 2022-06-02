@@ -93,12 +93,8 @@ export class BeatmapsetSearchController {
 
   getFilters(key: FilterKey) {
     const value = this.filters.selectedValue(key);
-    if (value == null) return null;
 
-    const selected = String(value ?? '');
-    // TODO: filter valid values (props.options)?
-    // .filter((s) => this.optionKeys.includes(s))
-    return selected.split('.');
+    return value != null ? value.split('.') : value;
   }
 
   initialize(data: SearchResponse) {
