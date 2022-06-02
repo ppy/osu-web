@@ -37,19 +37,19 @@ describe('BeatmapsetSearchFilters', () => {
     });
 
     it('should reset sort when query changes', () => {
-      subject.update({ query: 'foo' });
+      subject.update('query', 'foo' );
 
       expect(subject.sort).toBeNull();
     });
 
     it('should reset sort when status changes', () => {
-      subject.update({ status: 'foo' });
+      subject.update('status', 'foo' );
 
       expect(subject.sort).toBeNull();
     });
 
     it('should not reset sort if status nor query changes', () => {
-      subject.update({ genre: 'bar', mode: 'osu' });
+      subject.update('genre', 'bar');
 
       expect(subject.sort).toBe('title_desc');
     });
