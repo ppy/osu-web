@@ -88,8 +88,7 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
 
     for (const key of keyNames) {
       const value = this[key];
-      // undefineds should be treated as not specified
-      if (value === null || this.getDefault(key) !== value) {
+      if (value == null || this.getDefault(key) !== value) {
         charParams[keyToChar[key]] = value;
       }
     }
