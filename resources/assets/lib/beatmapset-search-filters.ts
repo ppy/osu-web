@@ -4,18 +4,7 @@
 import { invert } from 'lodash';
 import { action, computed, intercept, makeObservable, observable } from 'mobx';
 import core from 'osu-core-singleton';
-
-const defaults = {
-  extra: '',
-  general: '',
-  genre: null,
-  language: null,
-  mode: null,
-  played: 'any',
-  query: '',
-  rank: '',
-  status: 'leaderboard',
-};
+import { updateQueryString } from 'utils/url';
 
 export const charToKey: Record<string, FilterKey> = {
   c: 'general',
@@ -35,17 +24,6 @@ export const keyToChar = invert(charToKey);
 
 export const keyNames = ['extra', 'general', 'genre', 'language', 'mode', 'nsfw', 'played', 'query', 'rank', 'sort', 'status'] as const;
 
-// TODO: remove
-function fillDefaults(filters: Partial<BeatmapsetSearchParams>) {
-  const ret: Partial<BeatmapsetSearchParams> = {};
-
-  for (const key of keyNames) {
-    ret[key] = filters[key] ?? BeatmapsetFilter.getDefault(filters, key);
-  }
-
-  return ret as BeatmapsetSearchParams;
-}
-
 export function filtersFromUrl(url: string) {
   const params = new URL(url).searchParams;
 
@@ -62,26 +40,6 @@ export function filtersFromUrl(url: string) {
   return filters;
 }
 
-function getDefault(filters: Partial<BeatmapsetSearchParams>, key: string) {
-  if (Object.keys(defaults).includes(key)) return defaults[key] as string | null;
-
-  switch (key) {
-    case 'nsfw':
-      return String(core.userPreferences.get('beatmapset_show_nsfw'));
-    case 'sort':
-      if (filters.query?.trim().length ?? 0 > 0) {
-        return 'relevance_desc';
-      } else if (['pending', 'wip', 'graveyard', 'mine'].includes(filters.status ?? '')) {
-        return 'updated_desc';
-      } else {
-        return 'ranked_desc';
-      }
-  }
-
-  return null;
-}
-
-
 export type BeatmapsetSearchParams = {
   [key in FilterKey]: filterValueType
 };
@@ -89,18 +47,6 @@ export type BeatmapsetSearchParams = {
 export type FilterKey = (typeof keyNames)[number];
 type filterValueType = string | null;
 
-export function queryParamsFromFilters(filters: Partial<BeatmapsetSearchParams>) {
-  const charParams: Record<string, filterValueType> = {};
-
-  // undefineds should be treated as not specified
-  for (const [key, value] of Object.entries(filters)) {
-    if (value === null || getDefault(filters, key) !== value) {
-      charParams[keyToChar[key]] = value;
-    }
-  }
-
-  return charParams;
-}
 
 export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
   @observable extra: filterValueType = null;
@@ -138,7 +84,16 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
 
   @computed
   get queryParams() {
-    return queryParamsFromFilters(this.values);
+    const charParams: Record<string, filterValueType> = {};
+
+    // undefineds should be treated as not specified
+    for (const [key, value] of Object.entries(this.values)) {
+      if (value === null || this.getDefault(key) !== value) {
+        charParams[keyToChar[key]] = value;
+      }
+    }
+
+    return charParams;
   }
 
   @computed
@@ -147,10 +102,36 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
     return { field, order };
   }
 
+  getDefault(key: FilterKey) {
+    switch (key) {
+      case 'nsfw':
+        return String(core.userPreferences.get('beatmapset_show_nsfw'));
+      case 'played':
+        return 'any';
+      case 'status':
+        return 'leaderboard';
+      case 'sort':
+        if (this.query?.trim().length ?? 0 > 0) {
+          return 'relevance_desc';
+        } else if (['pending', 'wip', 'graveyard', 'mine'].includes(this.status ?? '')) {
+          return 'updated_desc';
+        } else {
+          return 'ranked_desc';
+        }
+      default:
+        return null;
+    }
+  }
+
+  href(key: FilterKey, value: string | null) {
+    const params = { [keyToChar[key]]: value };
+    return updateQueryString(null, params);
+  }
+
   selectedValue(key: FilterKey) {
     const value = this[key];
     if (value == null) {
-      const defaultValue = getDefault(this.values, key);
+      const defaultValue = this.getDefault(key);
       return typeof defaultValue === 'number' ? String(defaultValue) : osu.presence(defaultValue);
     }
 
@@ -158,9 +139,7 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
   }
 
   toKeyString() {
-    const values = this.values;
-
-    const normalized = fillDefaults(values);
+    const normalized = this.normalizedValues();
     const parts = [];
     for (const key of keyNames) {
       parts.push(`${key}=${normalized[key]}`);
@@ -182,6 +161,16 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
         this[key] = value;
       }
     }
+  }
+
+  private normalizedValues() {
+    const ret: Partial<BeatmapsetSearchParams> = {};
+
+    for (const key of keyNames) {
+      ret[key] = this[key] ?? this.getDefault(key);
+    }
+
+    return ret as BeatmapsetSearchParams;
   }
 
   /**
