@@ -25,6 +25,7 @@ export const keyToChar = invert(charToKey);
 export const keyNames = ['extra', 'general', 'genre', 'language', 'mode', 'nsfw', 'played', 'query', 'rank', 'sort', 'status'] as const;
 
 const changesResetSorts: FilterKey[] = ['query', 'status'];
+const filtersRequireSupporter: FilterKey[] = ['played', 'rank'];
 
 export function filtersFromUrl(url: string) {
   const params = new URL(url).searchParams;
@@ -63,21 +64,6 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
   @observable sort: filterValueType = null;
   @observable status: filterValueType = null;
 
-  constructor(url: string) {
-    const filters = filtersFromUrl(url);
-    for (const key of keyNames) {
-      this[key] = filters[key] ?? null;
-    }
-
-    makeObservable(this);
-
-    intercept(this, 'query', (change) => {
-      change.newValue = osu.presence((change.newValue as filterValueType)?.trim());
-
-      return change;
-    });
-  }
-
   @computed
   get displaySort() {
     // FIXME: should not return null.
@@ -102,6 +88,26 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
   get searchSort() {
     const [field, order] = (this.displaySort ?? '').split('_');
     return { field, order };
+  }
+
+  @computed
+  get supporterRequired() {
+    return keyNames.filter((key) => this[key] != null && filtersRequireSupporter.includes(key));
+  }
+
+  constructor(url: string) {
+    const filters = filtersFromUrl(url);
+    for (const key of keyNames) {
+      this[key] = filters[key] ?? null;
+    }
+
+    makeObservable(this);
+
+    intercept(this, 'query', (change) => {
+      change.newValue = osu.presence((change.newValue as filterValueType)?.trim());
+
+      return change;
+    });
   }
 
   getDefault(key: FilterKey) {
@@ -141,10 +147,10 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
   }
 
   toKeyString() {
-    const normalized = this.normalizedValues();
     const parts = [];
     for (const key of keyNames) {
-      parts.push(`${key}=${normalized[key]}`);
+      const value = this[key] ?? this.getDefault(key);
+      parts.push(`${key}=${value}`);
     }
 
     return parts.join('&');
@@ -159,23 +165,5 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
     }
 
     this[key] = value;
-  }
-
-  private normalizedValues() {
-    const ret: Partial<BeatmapsetSearchParams> = {};
-
-    for (const key of keyNames) {
-      ret[key] = this[key] ?? this.getDefault(key);
-    }
-
-    return ret as BeatmapsetSearchParams;
-  }
-
-  /**
-   * Returns a cached copy of the values in the filter.
-   */
-  @computed
-  private get values(): BeatmapsetSearchParams {
-    return Object.assign({}, this);
   }
 }

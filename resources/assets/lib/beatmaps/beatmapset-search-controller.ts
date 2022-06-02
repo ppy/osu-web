@@ -5,7 +5,7 @@ import { BeatmapsetSearch, SearchResponse } from 'beatmaps/beatmapset-search';
 import ResultSet from 'beatmaps/result-set';
 import { BeatmapsetSearchFilters, FilterKey, filtersFromUrl } from 'beatmapset-search-filters';
 import { route } from 'laroute';
-import { debounce, intersection, map } from 'lodash';
+import { debounce, intersection } from 'lodash';
 import { action, computed, IObjectDidChange, Lambda, makeObservable, observable, observe, runInAction } from 'mobx';
 import core from 'osu-core-singleton';
 import { currentUrl } from 'utils/turbolinks';
@@ -72,7 +72,7 @@ export class BeatmapsetSearchController {
 
   @computed
   get isSupporterMissing() {
-    return !(core.currentUser?.is_supporter ?? false) && BeatmapsetFilter.supporterRequired(this.filters).length > 0;
+    return !(core.currentUser?.is_supporter ?? false) && this.filters.supporterRequired.length > 0;
   }
 
   @computed
@@ -82,9 +82,7 @@ export class BeatmapsetSearchController {
 
   @computed
   get supporterRequiredFilterText() {
-    const filters = Object.keys(this.filters).filter((key) => ['played', 'rank'].includes(key) && this.filters[key] != null  );
-    const trans = map(filters, (name) => osu.trans(`beatmaps.listing.search.filters.${name}`));
-
+    const trans = this.filters.supporterRequired.map((name) => osu.trans(`beatmaps.listing.search.filters.${name}`));
     return osu.transArray(trans);
   }
 

@@ -8,7 +8,6 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
-import { updateQueryString } from 'utils/url';
 
 interface FilterOption {
   id: string | number | null;
