@@ -37,7 +37,7 @@ export function filtersFromUrl(url: string) {
 
     if (value == null || value.length === 0) continue;
 
-    filters[key] = String(value); // TODO: handle boolean value
+    filters[key] = value;
   }
 
   return filters;
@@ -137,13 +137,7 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
   }
 
   selectedValue(key: FilterKey) {
-    const value = this[key];
-    if (value == null) {
-      const defaultValue = this.getDefault(key);
-      return typeof defaultValue === 'number' ? String(defaultValue) : osu.presence(defaultValue);
-    }
-
-    return typeof value === 'number' ? String(value) : osu.presence(value);
+    return String(this[key] ?? this.getDefault(key));
   }
 
   toKeyString() {
