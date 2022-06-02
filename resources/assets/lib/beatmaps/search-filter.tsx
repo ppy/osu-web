@@ -55,7 +55,6 @@ export class SearchFilter extends React.PureComponent<Props> {
         <div className='beatmapsets-search-filter__items'>
           {this.options.map(this.renderOption)}
         </div>
-
       </div>
     );
   }

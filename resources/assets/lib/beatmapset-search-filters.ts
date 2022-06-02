@@ -132,18 +132,17 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
   }
 
   href(key: FilterKey, value: string | null) {
-    const params = { [keyToChar[key]]: value };
-    return updateQueryString(null, params);
+    return updateQueryString(null, { [keyToChar[key]]: value });
   }
 
   selectedValue(key: FilterKey) {
-    return String(this[key] ?? this.getDefault(key));
+    return this[key] ?? this.getDefault(key);
   }
 
   toKeyString() {
     const parts = [];
     for (const key of keyNames) {
-      const value = this[key] ?? this.getDefault(key);
+      const value = this.selectedValue(key);
       parts.push(`${key}=${value}`);
     }
 
