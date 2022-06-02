@@ -10,7 +10,8 @@ import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 
 interface FilterOption {
-  id: string | number | null;
+  // FIXME: normalize values earlier?
+  id: string | number | boolean | null;
   name: string;
 }
 
@@ -37,14 +38,9 @@ export class SearchFilter extends React.PureComponent<Props> {
   get options() {
     // normalize option keys
     return this.props.options.map((option) => ({
-      id: typeof option.id === 'number' ? String(option.id) : option.id,
+      id: option.id == null ? null : String(option.id),
       name: option.name,
     }));
-  }
-
-  @computed
-  get optionKeys() {
-    return this.options.map((option) => option.id);
   }
 
   constructor(props: Props) {
