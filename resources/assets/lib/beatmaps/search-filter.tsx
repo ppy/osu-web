@@ -25,12 +25,12 @@ interface Props {
 
 @observer
 export class SearchFilter extends React.PureComponent<Props> {
-  get controller() {
+  private get controller() {
     return core.beatmapsetSearchController;
   }
 
   @computed
-  get currentSelection() {
+  private get currentSelection() {
     const optionKeys = this.options.map((option) => option.id);
 
     const filters = this.controller.getFilters(this.props.name)?.filter((option) => optionKeys.includes(option));
@@ -38,7 +38,7 @@ export class SearchFilter extends React.PureComponent<Props> {
   }
 
   @computed
-  get options() {
+  private get options() {
     // normalize option keys
     return this.props.options.map((option) => ({
       id: option.id == null ? null : String(option.id),
