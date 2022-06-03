@@ -112,6 +112,12 @@ abstract class Model extends BaseModel
         return $this->belongsTo("App\\Models\\Score\\Best\\{$basename}", 'high_score_id', 'score_id');
     }
 
+    public function performance()
+    {
+        // Fake relationship for when included as part of polymorph together with Solo\Score
+        return $this->beatmap()->none();
+    }
+
     public function getMode(): string
     {
         return snake_case(get_class_basename(static::class));

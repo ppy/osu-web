@@ -34,6 +34,9 @@ class Score extends Model implements Traits\ReportableInterface
 
     const PROCESSING_QUEUE = 'osu-queue:score-statistics';
 
+    public ?int $position = null;
+    public ?float $weight = null;
+
     protected $table = 'solo_scores';
     protected $casts = [
         'data' => ScoreData::class,
@@ -82,6 +85,20 @@ class Score extends Model implements Traits\ReportableInterface
                 'data' => json_encode($scoreJson),
             ],
         ]));
+    }
+
+    public function scopeForRuleset(Builder $query, string $ruleset): Builder
+    {
+        return $query->where('ruleset_id', Beatmap::MODES[$ruleset]);
+    }
+
+    public function scopeIncludeFails(Builder $query, bool $includeFails): Builder
+    {
+        if (!$includeFails) {
+            $query->where('data->passed', true);
+        }
+
+        return $query;
     }
 
     public function beatmap()
@@ -193,6 +210,17 @@ class Score extends Model implements Traits\ReportableInterface
     public function userRank(): ?int
     {
         return UserRankCache::fetch([], $this->beatmap_id, $this->ruleset_id, $this->data->totalScore);
+    }
+
+    public function weightedPp(): ?float
+    {
+        if ($this->weight === null) {
+            return null;
+        }
+
+        $pp = $this->performance?->pp;
+
+        return $pp === null ? null : $this->weight * $pp;
     }
 
     protected function newReportableExtraParams(): array

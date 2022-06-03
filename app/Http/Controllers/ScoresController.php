@@ -5,6 +5,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\Score\UserRank;
+use App\Libraries\Search\ScoreSearchParams;
 use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\Solo\Score as SoloScore;
 use App\Transformers\ScoreTransformer;
@@ -117,14 +119,12 @@ class ScoresController extends Controller
             }
         }
 
-        $score = ScoreBest
-            ::getClass($params['rulesetId'])
-            ::where([
-                'beatmap_id' => $params['beatmapId'],
-                'hidden' => false,
-                'score' => $params['score'],
-            ])->firstOrFail();
+        $rank = UserRank::getRank(ScoreSearchParams::fromArray([
+            'beatmap_ids' => [$params['beatmapId']],
+            'ruleset_id' => $params['rulesetId'],
+            'before_total_score' => $params['score'],
+        ]));
 
-        return response()->json($score->userRank(['cached' => false]) - 1);
+        return response()->json(($rank ?? 1) - 1);
     }
 }

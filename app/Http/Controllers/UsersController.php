@@ -18,6 +18,7 @@ use App\Models\BeatmapDiscussion;
 use App\Models\Country;
 use App\Models\IpBan;
 use App\Models\Log;
+use App\Models\Solo\Score as SoloScore;
 use App\Models\User;
 use App\Models\UserAccountHistory;
 use App\Models\UserNotFound;
@@ -724,9 +725,8 @@ class UsersController extends Controller
                 case 'scoresFirsts':
                     $transformer = new ScoreTransformer();
                     $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
-                    $query = $user->scoresFirst($options['mode'], true)
-                        ->visibleUsers()
-                        ->reorderBy('score_id', 'desc')
+                    $query = SoloScore::whereIn('id', $user->beatmapLeaders(Beatmap::MODES[$options['mode']])->select('score_id'))
+                        ->reorderBy('id', 'desc')
                         ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
                     break;
                 case 'scoresPinned':
@@ -743,9 +743,11 @@ class UsersController extends Controller
                 case 'scoresRecent':
                     $transformer = new ScoreTransformer();
                     $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
-                    $query = $user->scores($options['mode'], true)
+                    $query = $user->soloScores()
+                        ->forRuleset($options['mode'])
                         ->includeFails($options['includeFails'] ?? false)
-                        ->with([...ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD, 'best']);
+                        ->reorderBy('id', 'desc')
+                        ->with([...ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD]);
                     break;
             }
 

@@ -247,7 +247,7 @@ return [
                 ],
                 'recent_plays' => [
                     'accuracy' => 'accuracy: :percentage',
-                    'title' => 'Recent Plays (24h)',
+                    'title' => 'Recent Plays',
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Replays Watched History',

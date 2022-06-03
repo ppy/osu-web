@@ -364,7 +364,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeScoresFirstCount(User $user)
     {
-        return $this->primitive($user->scoresFirst($this->mode, true)->visibleUsers()->count());
+        return $this->primitive($user->beatmapLeaders()->where('ruleset_id', Beatmap::MODES[$this->mode])->count());
     }
 
     public function includeScoresPinnedCount(User $user)
@@ -374,7 +374,14 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeScoresRecentCount(User $user)
     {
-        return $this->primitive($user->scores($this->mode, true)->includeFails(false)->count());
+        return $this->primitive(
+            $user->soloScores()
+                ->forRuleset($this->mode)
+                ->select('id')
+                ->limit(100)
+                ->get()
+                ->count()
+        );
     }
 
     public function includeStatistics(User $user)

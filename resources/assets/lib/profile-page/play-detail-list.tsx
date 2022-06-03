@@ -31,7 +31,7 @@ const sectionMaps = {
     translationKey: 'top_ranks.pinned',
   },
   scoresRecent: {
-    countKey: 'scores_recent_count',
+    countKey: null,
     translationKey: 'historical.recent_plays',
   },
 } as const;
@@ -114,7 +114,7 @@ export default class PlayDetailList extends React.Component<Props> {
     return (
       <>
         <ProfilePageExtraSectionTitle
-          count={this.props.controller.state.user[sectionMap.countKey]}
+          count={sectionMap.countKey == null ? null : this.props.controller.state.user[sectionMap.countKey]}
           titleKey={`users.show.extra.${sectionMap.translationKey}.title`}
         />
 

@@ -276,22 +276,6 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
         return true;
     }
 
-    public function isPersonalBest(): bool
-    {
-        return !static
-            ::where([
-                'user_id' => $this->user_id,
-                'beatmap_id' => $this->beatmap_id,
-            ])->where(function ($q) {
-                return $q
-                    ->where('score', '>', $this->score)
-                    ->orWhere(function ($qq) {
-                        return $qq->where('score', $this->score)
-                            ->where($this->getKeyName(), '<', $this->getKey());
-                    });
-            })->exists();
-    }
-
     public function replayViewCount()
     {
         $class = ReplayViewCount::class.'\\'.get_class_basename(static::class);
@@ -315,38 +299,12 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
     public function delete()
     {
         $result = $this->getConnection()->transaction(function () {
-            $statsColumn = static::RANK_TO_STATS_COLUMN_MAPPING[$this->rank] ?? null;
-
-            if ($statsColumn !== null && $this->isPersonalBest()) {
-                $userStats = $this->user?->statistics($this->getMode());
-
-                if ($userStats !== null) {
-                    $userStats->decrement($statsColumn);
-
-                    $nextBest = static::where([
-                        'beatmap_id' => $this->beatmap_id,
-                        'user_id' => $this->user_id,
-                    ])->where($this->getKeyName(), '<>', $this->getKey())
-                    ->orderBy('score', 'DESC')
-                    ->orderBy($this->getKeyName(), 'ASC')
-                    ->first();
-
-                    if ($nextBest !== null) {
-                        $nextBestStatsColumn = static::RANK_TO_STATS_COLUMN_MAPPING[$nextBest->rank] ?? null;
-
-                        if ($nextBestStatsColumn !== null) {
-                            $userStats->increment($nextBestStatsColumn);
-                        }
-                    }
-                }
-            }
-
             $this->replayViewCount?->delete();
 
             return parent::delete();
         });
 
-        optional($this->replayFile())->delete();
+        $this->replayFile()?->delete();
 
         return $result;
     }

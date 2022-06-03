@@ -21,6 +21,7 @@ class ScoreSearchParams extends SearchParams
     {
         $params = new static();
         $params->beatmapIds = $rawParams['beatmap_ids'] ?? null;
+        $params->excludeConverts = $rawParams['exclude_converts'] ?? $params->excludeConverts;
         $params->excludeMods = $rawParams['exclude_mods'] ?? null;
         $params->mods = $rawParams['mods'] ?? null;
         $params->rulesetId = $rawParams['ruleset_id'] ?? null;
@@ -41,6 +42,7 @@ class ScoreSearchParams extends SearchParams
     public ?array $beatmapIds = null;
     public ?Score $beforeScore = null;
     public ?int $beforeTotalScore = null;
+    public bool $excludeConverts = false;
     public ?array $excludeMods = null;
     public ?array $mods = null;
     public ?int $rulesetId = null;
@@ -82,6 +84,12 @@ class ScoreSearchParams extends SearchParams
             case 'score_desc':
                 $this->sorts = [
                     new Sort('total_score', 'desc'),
+                    new Sort('id', 'asc'),
+                ];
+                break;
+            case 'pp_desc':
+                $this->sorts = [
+                    new Sort('pp', 'desc'),
                     new Sort('id', 'asc'),
                 ];
                 break;

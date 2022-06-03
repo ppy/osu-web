@@ -24,6 +24,7 @@ class ScoreTransformer extends TransformerAbstract
     const USER_PROFILE_INCLUDES_PRELOAD = [
         'beatmap',
         'beatmap.beatmapset',
+        'performance',
         'user',
     ];
 

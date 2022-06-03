@@ -49,6 +49,10 @@ class ScoreSearch extends RecordSearch
             $query->mustNot(['terms' => ['mods' => $this->params->excludeMods]]);
         }
 
+        if ($this->params->excludeConverts) {
+            $query->filter(['term' => ['convert' => false]]);
+        }
+
         $this->addModsFilter($query);
 
         switch ($this->params->getType()) {
@@ -93,7 +97,7 @@ class ScoreSearch extends RecordSearch
             }
         }
 
-        throw new Exception("Indexable and indexed score counts still don't match. Queue runner is probably either having problem, not running, or too slow");
+        throw new Exception("Indexable ({$count}) and indexed ({$indexedCount}) score counts still don't match. Queue runner is probably either having problem, not running, or too slow");
     }
 
     public function queueForIndex(?array $schemas = null, array $ids): void

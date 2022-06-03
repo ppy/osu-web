@@ -63,7 +63,6 @@ class RemoveBeatmapsetBestScores implements ShouldQueue
                 ::with('user')
                 ->whereIn('beatmap_id', $beatmapIds)
                 ->where('score_id', '<=', $this->maxScoreIds[$mode] ?? 0)
-                ->orderBy('score', 'ASC')
                 ->limit(1000);
             $scores = $query->get();
 

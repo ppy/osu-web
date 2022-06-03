@@ -14,15 +14,17 @@ use App\Models\Country;
 use App\Models\Genre;
 use App\Models\Group;
 use App\Models\Language;
-use App\Models\Solo\Score as SoloScore;
+use App\Models\Solo\Score;
 use App\Models\User;
 use App\Models\UserGroup;
 use App\Models\UserGroupEvent;
 use App\Models\UserRelation;
-use Artisan;
 use Tests\TestCase;
 
-class BeatmapsControllerSoloScoresTest extends TestCase
+/**
+ * @group EsSoloScores
+ */
+class BeatmapsControllerScoresTest extends TestCase
 {
     protected $connectionsToTransact = [];
 
@@ -41,12 +43,12 @@ class BeatmapsControllerSoloScoresTest extends TestCase
         $countryAcronym = static::$user->country_acronym;
 
         static::$scores = [
-            'user' => SoloScore::factory()->withData(['total_score' => 1100])->create([
+            'user' => Score::factory()->withData(['total_score' => 1100])->create([
                 'beatmap_id' => static::$beatmap,
                 'preserve' => true,
                 'user_id' => static::$user,
             ]),
-            'userMods' => SoloScore::factory()->withData([
+            'userMods' => Score::factory()->withData([
                 'total_score' => 1050,
                 'mods' => static::defaultMods(['DT', 'HD']),
             ])->create([
@@ -54,7 +56,7 @@ class BeatmapsControllerSoloScoresTest extends TestCase
                 'preserve' => true,
                 'user_id' => static::$user,
             ]),
-            'userModsNC' => SoloScore::factory()->withData([
+            'userModsNC' => Score::factory()->withData([
                 'total_score' => 1050,
                 'mods' => static::defaultMods(['NC']),
             ])->create([
@@ -62,7 +64,7 @@ class BeatmapsControllerSoloScoresTest extends TestCase
                 'preserve' => true,
                 'user_id' => static::$user,
             ]),
-            'otherUserModsNCPFHigherScore' => SoloScore::factory()->withData([
+            'otherUserModsNCPFHigherScore' => Score::factory()->withData([
                 'total_score' => 1010,
                 'mods' => static::defaultMods(['NC', 'PF']),
             ])->create([
@@ -70,7 +72,7 @@ class BeatmapsControllerSoloScoresTest extends TestCase
                 'preserve' => true,
                 'user_id' => static::$otherUser,
             ]),
-            'userModsLowerScore' => SoloScore::factory()->withData([
+            'userModsLowerScore' => Score::factory()->withData([
                 'total_score' => 1000,
                 'mods' => static::defaultMods(['DT', 'HD']),
             ])->create([
@@ -78,13 +80,13 @@ class BeatmapsControllerSoloScoresTest extends TestCase
                 'preserve' => true,
                 'user_id' => static::$user,
             ]),
-            'friend' => SoloScore::factory()->withData(['total_score' => 1000])->create([
+            'friend' => Score::factory()->withData(['total_score' => 1000])->create([
                 'beatmap_id' => static::$beatmap,
                 'preserve' => true,
                 'user_id' => User::factory()->state(['country_acronym' => Country::factory()]),
             ]),
             // With preference mods
-            'otherUser' => SoloScore::factory()->withData([
+            'otherUser' => Score::factory()->withData([
                 'total_score' => 1000,
                 'mods' => static::defaultMods(['PF']),
             ])->create([
@@ -92,7 +94,7 @@ class BeatmapsControllerSoloScoresTest extends TestCase
                 'preserve' => true,
                 'user_id' => static::$otherUser,
             ]),
-            'otherUserMods' => SoloScore::factory()->withData([
+            'otherUserMods' => Score::factory()->withData([
                 'total_score' => 1000,
                 'mods' => static::defaultMods(['HD', 'PF', 'NC']),
             ])->create([
@@ -100,7 +102,7 @@ class BeatmapsControllerSoloScoresTest extends TestCase
                 'preserve' => true,
                 'user_id' => static::$otherUser,
             ]),
-            'otherUserModsExtraNonPreferences' => SoloScore::factory()->withData([
+            'otherUserModsExtraNonPreferences' => Score::factory()->withData([
                 'total_score' => 1000,
                 'mods' => static::defaultMods(['DT', 'HD', 'HR']),
             ])->create([
@@ -108,7 +110,7 @@ class BeatmapsControllerSoloScoresTest extends TestCase
                 'preserve' => true,
                 'user_id' => static::$otherUser,
             ]),
-            'otherUserModsUnrelated' => SoloScore::factory()->withData([
+            'otherUserModsUnrelated' => Score::factory()->withData([
                 'total_score' => 1000,
                 'mods' => static::defaultMods(['FL']),
             ])->create([
@@ -117,24 +119,24 @@ class BeatmapsControllerSoloScoresTest extends TestCase
                 'user_id' => static::$otherUser,
             ]),
             // Same total score but achieved later so it should come up after earlier score
-            'otherUser2Later' => SoloScore::factory()->withData(['total_score' => 1000])->create([
+            'otherUser2Later' => Score::factory()->withData(['total_score' => 1000])->create([
                 'beatmap_id' => static::$beatmap,
                 'preserve' => true,
                 'user_id' => User::factory()->state(['country_acronym' => Country::factory()]),
             ]),
-            'otherUser3SameCountry' => SoloScore::factory()->withData(['total_score' => 1000])->create([
+            'otherUser3SameCountry' => Score::factory()->withData(['total_score' => 1000])->create([
                 'beatmap_id' => static::$beatmap,
                 'preserve' => true,
                 'user_id' => User::factory()->state(['country_acronym' => $countryAcronym]),
             ]),
             // Non-preserved score should be filtered out
-            'nonPreserved' => SoloScore::factory()->create([
+            'nonPreserved' => Score::factory()->create([
                 'beatmap_id' => static::$beatmap,
                 'preserve' => false,
                 'user_id' => User::factory()->state(['country_acronym' => Country::factory()]),
             ]),
             // Unrelated score
-            'unrelated' => SoloScore::factory()->create([
+            'unrelated' => Score::factory()->create([
                 'user_id' => User::factory()->state(['country_acronym' => Country::factory()]),
             ]),
         ];
@@ -145,11 +147,7 @@ class BeatmapsControllerSoloScoresTest extends TestCase
             'zebra_id' => static::$scores['friend']->user_id,
         ]);
 
-        Artisan::call('es:index-scores:queue', [
-            '--all' => true,
-            '--no-interaction' => true,
-        ]);
-        (new ScoreSearch())->indexWait();
+        static::reindexScores();
     }
 
     public static function tearDownAfterClass(): void
@@ -161,7 +159,7 @@ class BeatmapsControllerSoloScoresTest extends TestCase
         Genre::truncate();
         Group::truncate();
         Language::truncate();
-        SoloScore::truncate();
+        Score::truncate();
         User::truncate();
         UserGroup::truncate();
         UserGroupEvent::truncate();
@@ -182,7 +180,6 @@ class BeatmapsControllerSoloScoresTest extends TestCase
 
     /**
      * @dataProvider dataProviderForTestQuery
-     * @group EsSoloScores
      */
     public function testQuery(array $scoreKeys, array $params)
     {

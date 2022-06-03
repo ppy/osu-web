@@ -9,9 +9,11 @@ use App\Exceptions\InvariantException;
 use App\Jobs\Notifications\BeatmapOwnerChange;
 use App\Libraries\BeatmapDifficultyAttributes;
 use App\Libraries\Score\BeatmapScores;
+use App\Libraries\Score\UserRank;
+use App\Libraries\Search\ScoreSearch;
+use App\Libraries\Search\ScoreSearchParams;
 use App\Models\Beatmap;
 use App\Models\BeatmapsetEvent;
-use App\Models\Score\Best\Model as BestModel;
 use App\Transformers\BeatmapTransformer;
 use App\Transformers\ScoreTransformer;
 
@@ -267,55 +269,34 @@ class BeatmapsController extends Controller
      */
     public function scores($id)
     {
+        return $this->beatmapScores($id, null);
+    }
+
+    public function updateOwner($id)
+    {
         $beatmap = Beatmap::findOrFail($id);
-        if ($beatmap->approved <= 0) {
-            return ['scores' => []];
-        }
-
-        $params = get_params(request()->all(), null, [
-            'mode:string',
-            'mods:string[]',
-            'type:string',
-        ]);
-
-        $mode = presence($params['mode'] ?? null, $beatmap->mode);
-        $mods = array_values(array_filter($params['mods'] ?? []));
-        $type = presence($params['type'] ?? null, 'global');
         $currentUser = auth()->user();
 
-        if ($type !== 'global' || !empty($mods)) {
-            if ($currentUser === null || !$currentUser->isSupporter()) {
-                throw new InvariantException(osu_trans('errors.supporter_only'));
-            }
+        priv_check('BeatmapUpdateOwner', $beatmap->beatmapset)->ensureCan();
+
+        $newUserId = get_int(request('beatmap.user_id'));
+
+        $beatmap->getConnection()->transaction(function () use ($beatmap, $currentUser, $newUserId) {
+            $beatmap->setOwner($newUserId);
+
+            BeatmapsetEvent::log(BeatmapsetEvent::BEATMAP_OWNER_CHANGE, $currentUser, $beatmap->beatmapset, [
+                'beatmap_id' => $beatmap->getKey(),
+                'beatmap_version' => $beatmap->version,
+                'new_user_id' => $beatmap->user_id,
+                'new_user_username' => $beatmap->user->username,
+            ])->saveOrExplode();
+        });
+
+        if ($beatmap->user_id !== $currentUser->getKey()) {
+            (new BeatmapOwnerChange($beatmap, $currentUser))->dispatch();
         }
 
-        $query = static::baseScoreQuery($beatmap, $mode, $mods, $type);
-
-        if ($currentUser !== null) {
-            // own score shouldn't be filtered by visibleUsers()
-            $userScore = (clone $query)->where('user_id', $currentUser->user_id)->first();
-        }
-
-        $scoreTransformer = new ScoreTransformer();
-
-        $results = [
-            'scores' => json_collection(
-                $query->visibleUsers()->forListing(),
-                $scoreTransformer,
-                static::DEFAULT_SCORE_INCLUDES
-            ),
-        ];
-
-        if (isset($userScore)) {
-            $results['user_score'] = [
-                'position' => $userScore->userRank(compact('type', 'mods')),
-                'score' => json_item($userScore, $scoreTransformer, static::DEFAULT_SCORE_INCLUDES),
-            ];
-            // TODO: remove this old camelCased json field
-            $results['userScore'] = $results['user_score'];
-        }
-
-        return $results;
+        return $beatmap->beatmapset->defaultDiscussionJson();
     }
 
     /**
@@ -338,6 +319,102 @@ class BeatmapsController extends Controller
      * @queryParam type Beatmap score ranking type // TODO.
      */
     public function soloScores($id)
+    {
+        return $this->beatmapScores($id, ScoreTransformer::TYPE_SOLO);
+    }
+
+    /**
+     * Get a User Beatmap score
+     *
+     * Return a [User](#user)'s score on a Beatmap
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Returns [BeatmapUserScore](#beatmapuserscore)
+     *
+     * The position returned depends on the requested mode and mods.
+     *
+     * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
+     * @urlParam user integer required Id of the [User](#user).
+     *
+     * @queryParam mode The [GameMode](#gamemode) to get scores for.
+     * @queryParam mods An array of matching Mods, or none // TODO.
+     */
+    public function userScore($beatmapId, $userId)
+    {
+        $beatmap = Beatmap::scoreable()->findOrFail($beatmapId);
+
+        $params = get_params(request()->all(), null, [
+            'mode:string',
+            'mods:string[]',
+        ]);
+
+        $mode = presence($params['mode'] ?? null, $beatmap->mode);
+        $mods = array_values(array_filter($params['mods'] ?? []));
+
+        $baseParams = ScoreSearchParams::fromArray([
+            'beatmap_ids' => [$beatmap->getKey()],
+            'limit' => 1,
+            'mods' => $mods,
+            'ruleset_id' => Beatmap::MODES[$mode],
+            'sort' => 'score_desc',
+            'user_id' => (int) $userId,
+        ]);
+        $score = (new ScoreSearch($baseParams))->records()->first();
+        abort_if($score === null, 404);
+
+        $rankParams = clone $baseParams;
+        $rankParams->beforeScore = $score;
+        $rankParams->userId = null;
+        $rank = UserRank::getRank($rankParams);
+
+        return [
+            'position' => $rank,
+            'score' => json_item(
+                $score,
+                new ScoreTransformer(),
+                ['beatmap', ...static::DEFAULT_SCORE_INCLUDES]
+            ),
+        ];
+    }
+
+    /**
+     * Get a User Beatmap scores
+     *
+     * Return a [User](#user)'s scores on a Beatmap
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Field  | Type
+     * ------ | ----
+     * scores | [Score](#score)[]
+     *
+     * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
+     * @urlParam user integer required Id of the [User](#user).
+     *
+     * @queryParam mode The [GameMode](#gamemode) to get scores for. Defaults to beatmap mode
+     */
+    public function userScoreAll($beatmapId, $userId)
+    {
+        $beatmap = Beatmap::scoreable()->findOrFail($beatmapId);
+        $mode = presence(get_string(request('mode'))) ?? $beatmap->mode;
+        $params = ScoreSearchParams::fromArray([
+            'beatmap_ids' => [$beatmap->getKey()],
+            'user_id' => (int) $userId,
+            'ruleset_id' => Beatmap::MODES[$mode],
+        ]);
+        $scores = (new ScoreSearch($params))->records();
+
+        return [
+            'scores' => json_collection($scores, new ScoreTransformer()),
+        ];
+    }
+
+    private function beatmapScores(string $id, ?string $scoreTransformerType): array
     {
         $beatmap = Beatmap::findOrFail($id);
         if ($beatmap->approved <= 0) {
@@ -376,7 +453,7 @@ class BeatmapsController extends Controller
         ]);
         $scores = $esFetch->all()->loadMissing(['beatmap', 'performance', 'user.country', 'user.userProfileCustomization']);
         $userScore = $esFetch->userBest();
-        $scoreTransformer = new ScoreTransformer(ScoreTransformer::TYPE_SOLO);
+        $scoreTransformer = new ScoreTransformer($scoreTransformerType);
 
         $results = [
             'scores' => json_collection(
@@ -396,127 +473,5 @@ class BeatmapsController extends Controller
         }
 
         return $results;
-    }
-
-    public function updateOwner($id)
-    {
-        $beatmap = Beatmap::findOrFail($id);
-        $currentUser = auth()->user();
-
-        priv_check('BeatmapUpdateOwner', $beatmap->beatmapset)->ensureCan();
-
-        $newUserId = get_int(request('beatmap.user_id'));
-
-        $beatmap->getConnection()->transaction(function () use ($beatmap, $currentUser, $newUserId) {
-            $beatmap->setOwner($newUserId);
-
-            BeatmapsetEvent::log(BeatmapsetEvent::BEATMAP_OWNER_CHANGE, $currentUser, $beatmap->beatmapset, [
-                'beatmap_id' => $beatmap->getKey(),
-                'beatmap_version' => $beatmap->version,
-                'new_user_id' => $beatmap->user_id,
-                'new_user_username' => $beatmap->user->username,
-            ])->saveOrExplode();
-        });
-
-        if ($beatmap->user_id !== $currentUser->getKey()) {
-            (new BeatmapOwnerChange($beatmap, $currentUser))->dispatch();
-        }
-
-        return $beatmap->beatmapset->defaultDiscussionJson();
-    }
-
-    /**
-     * Get a User Beatmap score
-     *
-     * Return a [User](#user)'s score on a Beatmap
-     *
-     * ---
-     *
-     * ### Response Format
-     *
-     * Returns [BeatmapUserScore](#beatmapuserscore)
-     *
-     * The position returned depends on the requested mode and mods.
-     *
-     * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
-     * @urlParam user integer required Id of the [User](#user).
-     *
-     * @queryParam mode The [GameMode](#gamemode) to get scores for.
-     * @queryParam mods An array of matching Mods, or none // TODO.
-     */
-    public function userScore($beatmapId, $userId)
-    {
-        $beatmap = Beatmap::scoreable()->findOrFail($beatmapId);
-
-        $params = get_params(request()->all(), null, [
-            'mode:string',
-            'mods:string[]',
-        ]);
-
-        $mode = presence($params['mode'] ?? null, $beatmap->mode);
-        $mods = array_values(array_filter($params['mods'] ?? []));
-
-        $score = static::baseScoreQuery($beatmap, $mode, $mods)
-            ->visibleUsers()
-            ->where('user_id', $userId)
-            ->firstOrFail();
-
-        return [
-            'position' => $score->userRank(compact('mods')),
-            'score' => json_item(
-                $score,
-                new ScoreTransformer(),
-                ['beatmap', ...static::DEFAULT_SCORE_INCLUDES]
-            ),
-        ];
-    }
-
-    /**
-     * Get a User Beatmap scores
-     *
-     * Return a [User](#user)'s scores on a Beatmap
-     *
-     * ---
-     *
-     * ### Response Format
-     *
-     * Field  | Type
-     * ------ | ----
-     * scores | [Score](#score)[]
-     *
-     * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
-     * @urlParam user integer required Id of the [User](#user).
-     *
-     * @queryParam mode The [GameMode](#gamemode) to get scores for. Defaults to beatmap mode
-     */
-    public function userScoreAll($beatmapId, $userId)
-    {
-        $beatmap = Beatmap::scoreable()->findOrFail($beatmapId);
-        $mode = presence(get_string(request('mode'))) ?? $beatmap->mode;
-        $scores = BestModel::getClassByString($mode)
-            ::default()
-            ->where([
-                'beatmap_id' => $beatmap->getKey(),
-                'user_id' => $userId,
-            ])->get();
-
-        return [
-            'scores' => json_collection($scores, new ScoreTransformer()),
-        ];
-    }
-
-    private static function baseScoreQuery(Beatmap $beatmap, $mode, $mods, $type = null)
-    {
-        $query = BestModel::getClassByString($mode)
-            ::default()
-            ->where('beatmap_id', $beatmap->getKey())
-            ->with(['beatmap', 'user.country', 'user.userProfileCustomization'])
-            ->withMods($mods);
-
-        if ($type !== null) {
-            $query->withType($type, ['user' => auth()->user()]);
-        }
-
-        return $query;
     }
 }

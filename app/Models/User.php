@@ -1223,6 +1223,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->hasMany(Score\Taiko::class)->default();
     }
 
+    public function beatmapLeaders()
+    {
+        return $this->hasMany(BeatmapLeader::class);
+    }
+
     public function scores(string $mode, bool $returnQuery = false)
     {
         if (!Beatmap::isModeValid($mode)) {
@@ -1294,6 +1299,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         $relation = 'scoresBest'.studly_case($mode);
 
         return $returnQuery ? $this->$relation() : $this->$relation;
+    }
+
+    public function soloScores()
+    {
+        return $this->hasMany(Solo\Score::class);
     }
 
     public function topicWatches()
