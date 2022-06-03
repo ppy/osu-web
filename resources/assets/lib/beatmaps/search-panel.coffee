@@ -127,13 +127,10 @@ export class SearchPanel extends React.Component
 
   renderFilter: ({ multiselect = false, name, options, showTitle = true }) =>
     el SearchFilter,
-      filters: controller.filters
       name: name
       title: osu.trans("beatmaps.listing.search.filters.#{name}") if showTitle
       options: options
       multiselect: multiselect
-      recommendedDifficulty: controller.recommendedDifficulty
-      selected: controller.filters.selectedValue(name)
 
 
   renderGuest: =>

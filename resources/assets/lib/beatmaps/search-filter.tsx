@@ -8,18 +8,12 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
-
-interface FilterOption {
-  // FIXME: normalize values earlier?
-  id: string | number | boolean | null;
-  name: string;
-}
+import { FilterOption } from './available-filters';
 
 interface Props {
   multiselect: boolean;
   name: FilterKey;
   options: FilterOption[];
-  recommendedDifficulty?: number;
   title?: string;
 }
 
@@ -92,8 +86,8 @@ export class SearchFilter extends React.PureComponent<Props> {
     });
 
     let text = option.name;
-    if (this.props.name === 'general' && option.id === 'recommended' && this.props.recommendedDifficulty != null) {
-      text += ` (${formatNumber(this.props.recommendedDifficulty, 2)})`;
+    if (this.props.name === 'general' && option.id === 'recommended' && this.controller.recommendedDifficulty != null) {
+      text += ` (${formatNumber(this.controller.recommendedDifficulty, 2)})`;
     }
     // FIXME: do an actual navigation
     return (
