@@ -29,7 +29,7 @@ export class BeatmapsetSearchController {
   // the list that gets displayed while new searches are loading.
   @observable currentResultSet = new ResultSet();
   @observable filters!: BeatmapsetSearchFilters;
-  @observable isExpanded!: boolean;
+  @observable isExpanded = false;
 
   @observable searchStatus: SearchStatus = {
     error: null,

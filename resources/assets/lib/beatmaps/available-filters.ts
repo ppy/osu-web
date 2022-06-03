@@ -12,6 +12,7 @@ export default interface AvailableFilters {
   genres: FilterOption[];
   languages: FilterOption[];
   modes: FilterOption[];
+  nsfw: FilterOption[];
   played: FilterOption[];
   ranks: FilterOption[];
   statuses: FilterOption[];
