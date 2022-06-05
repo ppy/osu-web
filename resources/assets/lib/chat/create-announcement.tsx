@@ -29,7 +29,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
 
   @computed
   private get model() {
-    return core.dataStore.chatState.createAnnoucement;
+    return core.dataStore.chatState.createAnnouncement;
   }
 
   constructor(props: Props) {

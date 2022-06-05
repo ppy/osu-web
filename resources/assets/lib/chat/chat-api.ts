@@ -21,7 +21,7 @@ interface GetMessagesResponse {
   users: UserJson[];
 }
 
-interface NewAnnoucementRequestJson {
+interface NewAnnouncementRequestJson {
   channel: {
     description: string;
     name: string;
@@ -42,7 +42,7 @@ export function ack(since: number, lastHistoryId?: number) {
   return $.post(route('chat.ack'), { history_since: lastHistoryId, since }) as JQuery.jqXHR<AckResponseJson>;
 }
 
-export function createAnnoucement(json: NewAnnoucementRequestJson) {
+export function createAnnouncement(json: NewAnnouncementRequestJson) {
   return $.post(route('chat.channels.store'), json) as JQuery.jqXHR<ChannelJson>;
 }
 
