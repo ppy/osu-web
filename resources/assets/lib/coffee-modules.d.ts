@@ -24,7 +24,7 @@ declare module 'components/comments-manager' {
     commentableId?: number;
     commentableType?: string;
     component: any;
-    componentProps: any;
+    componentProps?: any;
   }
 
   class CommentsManager extends React.PureComponent<Props> {}

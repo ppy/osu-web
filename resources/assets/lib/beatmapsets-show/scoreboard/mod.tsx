@@ -2,19 +2,24 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import Mod from 'components/mod';
+import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import Controller from './controller';
 
 interface Props {
-  enabled: boolean;
+  controller: Controller;
   mod: string;
 }
 
-export default class ScoreboardMod extends React.PureComponent<Props> {
+@observer
+export default class ScoreboardMod extends React.Component<Props> {
   render() {
     return (
       <button
-        className={classWithModifiers('beatmap-scoreboard-mod', { enabled: this.props.enabled })}
+        className={classWithModifiers('beatmap-scoreboard-mod', {
+          enabled: this.props.controller.enabledMods.has(this.props.mod),
+        })}
         onClick={this.onClick}
         type='button'
       >
@@ -24,6 +29,6 @@ export default class ScoreboardMod extends React.PureComponent<Props> {
   }
 
   private onClick = () => {
-    $.publish('beatmapset:scoreboard:set', { enabledMod: this.props.mod });
+    this.props.controller.setCurrent({ toggleMod: this.props.mod });
   };
 }
