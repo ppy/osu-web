@@ -75,7 +75,7 @@ return [
 
     'comment' => [
         'store' => [
-            'disabled' => '',
+            'disabled' => 'Komentar dinonaktifkan',
         ],
         'update' => [
             'deleted' => "Tidak dapat menyunting post yang telah dihapus.",

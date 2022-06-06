@@ -75,7 +75,7 @@ return [
 
     'comment' => [
         'store' => [
-            'disabled' => '',
+            'disabled' => 'Kommentare sind deaktiviert',
         ],
         'update' => [
             'deleted' => "Der gelöschte Beitrag kann nicht bearbeitet werden.",

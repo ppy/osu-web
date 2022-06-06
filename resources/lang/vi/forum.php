@@ -140,7 +140,7 @@ return [
             'data' => [
                 'add_tag' => 'đã thêm nhãn ":tag"',
                 'announcement' => 'chủ đề được ghim và đánh dấu là thông báo',
-                'edit_topic' => '',
+                'edit_topic' => 'tới :title',
                 'fork' => 'từ :topic',
                 'pin' => 'chủ đề được ghim',
                 'post_operation' => 'đăng bởi :username',
@@ -149,7 +149,7 @@ return [
                 'unpin' => 'chủ đề được bỏ ghim',
             ],
 
-            'no_results' => '',
+            'no_results' => 'không tìm thấy log...',
 
             'operations' => [
                 'delete_post' => 'Bài đăng đã xoá',
@@ -161,7 +161,7 @@ return [
                 'lock' => 'Chủ đề bị khóa',
                 'merge' => '',
                 'move' => '',
-                'pin' => '',
+                'pin' => 'Chủ đề được ghim',
                 'post_edited' => '',
                 'restore_post' => '',
                 'restore_topic' => '',

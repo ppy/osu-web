@@ -52,7 +52,7 @@ return [
         'actions' => [
             'destroy' => 'Slet opslag',
             'edit' => 'Rediger opslag',
-            'report' => '',
+            'report' => 'Anmeld opslag',
             'restore' => 'Gendan opslag',
         ],
 
@@ -79,8 +79,8 @@ return [
         'confirm_restore' => 'Gendan opslag?',
         'deleted' => 'slettede emne',
         'go_to_latest' => 'vis det seneste opslag',
-        'has_replied' => '',
-        'in_forum' => '',
+        'has_replied' => 'Du har besvaret dette emne',
+        'in_forum' => 'i :forum',
         'latest_post' => ':when af :user',
         'latest_reply_by' => 'seneste svar af :user',
         'new_topic' => 'Nyt emne',

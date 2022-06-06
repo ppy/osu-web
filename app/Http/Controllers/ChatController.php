@@ -45,6 +45,9 @@ class ChatController extends Controller
         }
 
         $json = [
+            'current_user_attributes' => [
+                'can_chat_announce' => priv_check('ChatAnnounce')->can(),
+            ],
             'last_message_id' => optional(Message::last())->getKey(),
             'presence' => (new UserChannelList($user))->get(),
         ];

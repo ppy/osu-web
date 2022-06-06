@@ -1424,7 +1424,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function uncachedMappingFollowerCount()
     {
-        return Follow::where('notifiable_id', $this->user_id)
+        return Follow::whereMorphedTo('notifiable', $this)
             ->where('subtype', 'mapping')
             ->count();
     }
