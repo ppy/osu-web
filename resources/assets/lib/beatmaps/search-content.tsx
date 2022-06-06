@@ -70,7 +70,6 @@ export class SearchContent extends React.Component<Props> {
 
   render() {
     const beatmapsetIds = this.controller.currentBeatmapsetIds;
-    const supporterRequiredFilterText = this.controller.supporterRequiredFilterText
     const listCssClasses = classWithModifiers('beatmapsets', { dimmed: this.controller.isBusy });
 
     return (
@@ -100,31 +99,13 @@ export class SearchContent extends React.Component<Props> {
               </div>
             )}
             <div className='beatmapsets__content js-audio--group'>
-              {this.controller.isSupporterMissing ? (
-                <div className='beatmapsets__empty'>
-                  <Img2x
-                    alt={osu.trans('beatmaps.listing.search.supporter_filter', { filters: supporterRequiredFilterText })}
-                    src='/images/layout/beatmaps/supporter-required.png'
-                    title={osu.trans('beatmaps.listing.search.supporter_filter', { filters: supporterRequiredFilterText })}
-                  />
-                  {renderLinkToSupporterTag(supporterRequiredFilterText)}
-                </div>
-              ) : beatmapsetIds.length > 0 ? (
+              {this.controller.isSupporterMissing ? this.renderSupporterRequired() : beatmapsetIds.length > 0 ? (
                 <BeatmapList
                   itemBuffer={5}
                   itemHeight={this.virtualListMeta.itemHeight}
                   items={chunk(beatmapsetIds, this.virtualListMeta.numberOfColumns)}
                 />
-              ) : (
-                <div className='beatmapsets__empty'>
-                  <Img2x
-                    alt={osu.trans('beatmaps.listing.search.not-found')}
-                    src='/images/layout/beatmaps/not-found.png'
-                    title={osu.trans('beatmaps.listing.search.not-found')}
-                  />
-                  {osu.trans('beatmaps.listing.search.not-found-quote')}
-                </div>
-              )}
+              ) : this.renderEmptyList()}
             </div>
             {!this.controller.isSupporterMissing && (
               <div className='beatmapsets__paginator'>
@@ -134,6 +115,33 @@ export class SearchContent extends React.Component<Props> {
           </div>
         </div>
       </>
-    )
+    );
+  }
+
+  private renderEmptyList() {
+    return (
+      <div className='beatmapsets__empty'>
+        <Img2x
+          alt={osu.trans('beatmaps.listing.search.not-found')}
+          src='/images/layout/beatmaps/not-found.png'
+          title={osu.trans('beatmaps.listing.search.not-found')}
+        />
+        {osu.trans('beatmaps.listing.search.not-found-quote')}
+      </div>
+    );
+  }
+
+  private renderSupporterRequired() {
+    const supporterRequiredFilterText = this.controller.supporterRequiredFilterText;
+    return (
+      <div className='beatmapsets__empty'>
+        <Img2x
+          alt={osu.trans('beatmaps.listing.search.supporter_filter', { filters: supporterRequiredFilterText })}
+          src='/images/layout/beatmaps/supporter-required.png'
+          title={osu.trans('beatmaps.listing.search.supporter_filter', { filters: supporterRequiredFilterText })}
+        />
+        {renderLinkToSupporterTag(supporterRequiredFilterText)}
+      </div>
+    );
   }
 }
