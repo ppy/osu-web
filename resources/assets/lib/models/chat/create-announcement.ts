@@ -16,7 +16,7 @@ interface LocalStorageProps extends Record<InputKey, string> {
 const inputKeys = ['description', 'message', 'name', 'users'] as const;
 type InputKey = typeof inputKeys[number];
 
-const localStorageKey = 'createAnnoucement';
+const localStorageKey = 'createAnnouncement';
 
 export function isInputKey(key: string): key is InputKey {
   return (inputKeys as Readonly<string[]>).includes(key);
