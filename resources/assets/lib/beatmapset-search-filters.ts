@@ -111,7 +111,7 @@ export class BeatmapsetSearchFilters {
       case 'status':
         return 'leaderboard';
       case 'sort':
-        if (this.query?.trim().length ?? 0 > 0) {
+        if (osu.present(this.query)) {
           return 'relevance_desc';
         } else if (['pending', 'wip', 'graveyard', 'mine'].includes(this.status ?? '')) {
           return 'updated_desc';
