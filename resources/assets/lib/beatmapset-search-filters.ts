@@ -21,8 +21,9 @@ export const charToKey: Record<string, FilterKey> = {
 };
 
 export const keyToChar = invert(charToKey);
-
 export const keyNames = ['extra', 'general', 'genre', 'language', 'mode', 'nsfw', 'played', 'query', 'rank', 'sort', 'status'] as const;
+export type FilterKey = (typeof keyNames)[number];
+type FilterValueType = string | null;
 
 const changesResetSorts: FilterKey[] = ['query', 'status'];
 const filtersRequireSupporter: FilterKey[] = ['played', 'rank'];
@@ -43,26 +44,18 @@ export function filtersFromUrl(url: string) {
   return filters;
 }
 
-export type BeatmapsetSearchParams = {
-  [key in FilterKey]: filterValueType
-};
-
-export type FilterKey = (typeof keyNames)[number];
-type filterValueType = string | null;
-
-
-export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
-  @observable extra: filterValueType = null;
-  @observable general: filterValueType = null;
-  @observable genre: filterValueType = null;
-  @observable language: filterValueType = null;
-  @observable mode: filterValueType = null;
-  @observable nsfw: filterValueType = null;
-  @observable played: filterValueType = null;
-  @observable query: filterValueType = null;
-  @observable rank: filterValueType = null;
-  @observable sort: filterValueType = null;
-  @observable status: filterValueType = null;
+export class BeatmapsetSearchFilters {
+  @observable extra: FilterValueType = null;
+  @observable general: FilterValueType = null;
+  @observable genre: FilterValueType = null;
+  @observable language: FilterValueType = null;
+  @observable mode: FilterValueType = null;
+  @observable nsfw: FilterValueType = null;
+  @observable played: FilterValueType = null;
+  @observable query: FilterValueType = null;
+  @observable rank: FilterValueType = null;
+  @observable sort: FilterValueType = null;
+  @observable status: FilterValueType = null;
 
   @computed
   get displaySort() {
@@ -72,7 +65,7 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
 
   @computed
   get queryParams() {
-    const charParams: Record<string, filterValueType> = {};
+    const charParams: Record<string, FilterValueType> = {};
 
     for (const key of keyNames) {
       const value = this[key];
@@ -103,7 +96,7 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
     makeObservable(this);
 
     intercept(this, 'query', (change) => {
-      change.newValue = osu.presence((change.newValue as filterValueType)?.trim());
+      change.newValue = osu.presence((change.newValue as FilterValueType)?.trim());
 
       return change;
     });
@@ -144,7 +137,7 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
   }
 
   @action
-  update(key: FilterKey, value: filterValueType) {
+  update(key: FilterKey, value: FilterValueType) {
     const oldValue = this[key];
     if (value === oldValue) return;
     if (changesResetSorts.includes(key)) {
