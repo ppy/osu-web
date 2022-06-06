@@ -76,9 +76,8 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
 
     for (const key of keyNames) {
       const value = this[key];
-      if (value == null || this.getDefault(key) !== value) {
-        charParams[keyToChar[key]] = value;
-      }
+
+      charParams[keyToChar[key]] = value === this.getDefault(key) ? null : value;
     }
 
     return charParams;
@@ -126,13 +125,14 @@ export class BeatmapsetSearchFilters implements BeatmapsetSearchParams {
         } else {
           return 'ranked_desc';
         }
-      default:
-        return null;
     }
+
+    return null;
   }
 
   href(key: FilterKey, value: string | null) {
-    return updateQueryString(null, { [keyToChar[key]]: value });
+    const actualValue = value === this.getDefault(key) ? null : value;
+    return updateQueryString(null, { ...this.queryParams, [keyToChar[key]]: actualValue });
   }
 
   selectedValue(key: FilterKey) {
