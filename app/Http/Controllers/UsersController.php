@@ -454,7 +454,26 @@ class UsersController extends Controller
      */
     public function me($mode = null)
     {
-        return static::show(auth()->user()->user_id, $mode);
+        $user = auth()->user();
+        $currentMode = $mode ?? $user->playmode;
+
+        if (!Beatmap::isModeValid($currentMode)) {
+            abort(404);
+        }
+
+        $userIncludes = [
+            ...$this->showUserIncludes(),
+            ...array_map(
+                fn (string $ruleset) => "statistics_rulesets.{$ruleset}",
+                array_keys(Beatmap::MODES),
+            ),
+        ];
+
+        return json_item(
+            $user,
+            (new UserTransformer())->setMode($currentMode),
+            $userIncludes
+        );
     }
 
     /**
@@ -517,40 +536,7 @@ class UsersController extends Controller
             abort(404);
         }
 
-        $userIncludes = [
-            ...UserTransformer::PROFILE_HEADER_INCLUDES,
-            'account_history',
-            'beatmap_playcounts_count',
-            'favourite_beatmapset_count',
-            'graveyard_beatmapset_count',
-            'guest_beatmapset_count',
-            'loved_beatmapset_count',
-            'monthly_playcounts',
-            'page',
-            'pending_beatmapset_count',
-            'rankHistory',
-            'rank_history',
-            'ranked_beatmapset_count',
-            'replays_watched_counts',
-            'scores_best_count',
-            'scores_first_count',
-            'scores_pinned_count',
-            'scores_recent_count',
-            'statistics',
-            'statistics.country_rank',
-            'statistics.rank',
-            'statistics.variants',
-            'user_achievements',
-
-            // TODO: deprecated
-            'ranked_and_approved_beatmapset_count',
-            'unranked_beatmapset_count',
-        ];
-
-        if (priv_check('UserSilenceShowExtendedInfo')->can() && !is_api_request()) {
-            $userIncludes[] = 'account_history.actor';
-            $userIncludes[] = 'account_history.supporting_url';
-        }
+        $userIncludes = $this->showUserIncludes();
 
         $userArray = json_item(
             $user,
@@ -773,5 +759,45 @@ class UsersController extends Controller
         } catch (ElasticsearchException $e) {
             return ['error' => search_error_message($e)];
         }
+    }
+
+    private function showUserIncludes()
+    {
+        $userIncludes = [
+            ...UserTransformer::PROFILE_HEADER_INCLUDES,
+            'account_history',
+            'beatmap_playcounts_count',
+            'favourite_beatmapset_count',
+            'graveyard_beatmapset_count',
+            'guest_beatmapset_count',
+            'loved_beatmapset_count',
+            'monthly_playcounts',
+            'page',
+            'pending_beatmapset_count',
+            'rankHistory',
+            'rank_history',
+            'ranked_beatmapset_count',
+            'replays_watched_counts',
+            'scores_best_count',
+            'scores_first_count',
+            'scores_pinned_count',
+            'scores_recent_count',
+            'statistics',
+            'statistics.country_rank',
+            'statistics.rank',
+            'statistics.variants',
+            'user_achievements',
+
+            // TODO: deprecated
+            'ranked_and_approved_beatmapset_count',
+            'unranked_beatmapset_count',
+        ];
+
+        if (priv_check('UserSilenceShowExtendedInfo')->can() && !is_api_request()) {
+            $userIncludes[] = 'account_history.actor';
+            $userIncludes[] = 'account_history.supporting_url';
+        }
+
+        return $userIncludes;
     }
 }
