@@ -448,6 +448,8 @@ class UsersController extends Controller
      *
      * See [Get User](#get-user).
      *
+     * Additionally, `statistics_fruits`, `statistics_mania`, `statistics_osu`, and `statistics_taiko` are also included.
+     *
      * @urlParam mode string [GameMode](#gamemode). User default mode will be used if not specified. Example: osu
      *
      * @response "See User object section"
