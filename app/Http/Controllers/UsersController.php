@@ -250,7 +250,7 @@ class UsersController extends Controller
      *
      * Field | Type                          | Description
      * ----- | ----------------------------- | -----------
-     * users | [UserCompact](#usercompact)[] | Includes: country, cover, groups, statistics_fruits, statistics_mania, statistics_osu, statistics_taiko.
+     * users | [UserCompact](#usercompact)[] | Includes: country, cover, groups, statistics_rulesets.
      *
      * @queryParam ids[] User id to be returned. Specify once for each user id requested. Up to 50 users can be requested at once. Example: 1
      *
@@ -448,7 +448,7 @@ class UsersController extends Controller
      *
      * See [Get User](#get-user).
      *
-     * Additionally, `statistics_fruits`, `statistics_mania`, `statistics_osu`, and `statistics_taiko` are also included.
+     * Additionally, `statistics_rulesets` is included, containing statistics for all rulesets.
      *
      * @urlParam mode string [GameMode](#gamemode). User default mode will be used if not specified. Example: osu
      *
