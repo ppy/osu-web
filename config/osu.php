@@ -207,7 +207,7 @@ return [
             'twitter' => '/wiki/Twitter',
         ],
         'user' => [
-            'recover' => '/p/forgot-email',
+            'recover' => '/wiki/Help_centre/Account#sign-in',
             'rules' => '/wiki/Osu!:Rules',
         ],
         'rankings' => [

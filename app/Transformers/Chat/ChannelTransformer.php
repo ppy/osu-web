@@ -49,6 +49,7 @@ class ChannelTransformer extends TransformerAbstract
             'moderated' => $channel->moderated,
             'name' => $channel->displayNameFor($this->user),
             'type' => $channel->type,
+            'uuid' => $channel->uuid,
         ];
     }
 
@@ -101,5 +102,10 @@ class ChannelTransformer extends TransformerAbstract
         }
 
         return $this->primitive([]);
+    }
+
+    public function includeUuid(Channel $channel)
+    {
+        return $this->primitive($channel->uuid);
     }
 }
