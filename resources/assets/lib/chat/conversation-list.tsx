@@ -6,6 +6,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import ConversationListItem from './conversation-list-item';
+import CreateAnnouncementButton from './create-announcement-button';
 
 function renderChannels(type: SupportedChannelType) {
   const channels = core.dataStore.channelStore.groupedChannels[type];
@@ -18,6 +19,7 @@ function renderChannels(type: SupportedChannelType) {
       </div>
       {channels.map((channel) => <ConversationListItem key={channel.channelId} channel={channel} />)}
       <div className='chat-conversation-list-separator' />
+      {type === 'ANNOUNCE' && <CreateAnnouncementButton />}
     </React.Fragment>
   );
 }

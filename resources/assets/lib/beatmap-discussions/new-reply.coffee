@@ -9,6 +9,7 @@ import * as React from 'react'
 import TextareaAutosize from 'react-autosize-textarea'
 import { button, div, form, input, label, span, i } from 'react-dom-factories'
 import { createClickCallback } from 'utils/html'
+import { InputEventType, makeTextAreaHandler } from 'utils/input-handler'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { MessageLengthCounter } from './message-length-counter'
 
@@ -27,7 +28,7 @@ export class NewReply extends React.PureComponent
 
     @box = React.createRef()
     @throttledPost = _.throttle @post, 1000
-    @handleKeyDown = InputHandler.textarea @handleKeyDownCallback
+    @handleKeyDown = makeTextAreaHandler @handleKeyDownCallback
     storedMessage = @storedMessage()
 
     @state =
@@ -150,9 +151,9 @@ export class NewReply extends React.PureComponent
 
   handleKeyDownCallback: (type, event) =>
     switch type
-      when InputHandler.CANCEL
+      when InputEventType.Cancel
         @setState editing: false
-      when InputHandler.SUBMIT
+      when InputEventType.Submit
         @throttledPost(event)
 
 

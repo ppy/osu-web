@@ -18,7 +18,7 @@ export default class ScoreboardTab extends React.Component<Props> {
     return (
       <div
         className={classWithModifiers('page-tabs__tab', {
-          active: this.props.controller.state.currentScoreboardType === this.props.type,
+          active: this.props.controller.currentType === this.props.type,
         })}
         onClick={this.onClick}
       >
@@ -28,6 +28,6 @@ export default class ScoreboardTab extends React.Component<Props> {
   }
 
   private readonly onClick = () => {
-    this.props.controller.setCurrentScoreboard({ scoreboardType: this.props.type });
+    this.props.controller.setCurrent({ type: this.props.type });
   };
 }

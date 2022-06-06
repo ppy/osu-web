@@ -95,13 +95,21 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
 
     public static function syncAll()
     {
-        $entries = OsuWiki::fetch('news');
+        $baseEntries = OsuWiki::getTree(null, false)['tree'];
+        foreach ($baseEntries as $entry) {
+            if ($entry['path'] === 'news') {
+                $rootHash = $entry['sha'];
+                break;
+            }
+        }
+        // Something is terribly wrong if $rootHash is unset.
+        $entries = OsuWiki::getTree($rootHash, false)['tree'];
 
         $latestSlugs = [];
 
         foreach ($entries as $entry) {
-            if (($entry['type'] ?? null) === 'file' && ends_with($entry['name'], '.md')) {
-                $slug = substr($entry['name'], 0, -3);
+            if (($entry['type'] ?? null) === 'blob' && substr($entry['path'], -3) === '.md') {
+                $slug = substr($entry['path'], 0, -3);
                 $hash = $entry['sha'];
 
                 $latestSlugs[$slug] = $hash;
@@ -110,7 +118,7 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
 
         foreach (static::all() as $post) {
             if (array_key_exists($post->slug, $latestSlugs)) {
-                if ($latestSlugs[$post->slug] !== $post->hash) {
+                if ($post->published_at === null || $latestSlugs[$post->slug] !== $post->hash) {
                     $post->sync(true);
                 }
 

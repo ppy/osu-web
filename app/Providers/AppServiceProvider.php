@@ -9,6 +9,7 @@ use App\Hashing\OsuHashManager;
 use App\Libraries\AssetsManifest;
 use App\Libraries\BroadcastsPendingForTests;
 use App\Libraries\ChatFilters;
+use App\Libraries\CleanHTML;
 use App\Libraries\Groups;
 use App\Libraries\MorphMap;
 use App\Libraries\OsuAuthorize;
@@ -33,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
         'OsuAuthorize' => OsuAuthorize::class,
         'assets-manifest' => AssetsManifest::class,
         'chat-filters' => ChatFilters::class,
+        'clean-html' => CleanHTML::class,
         'groups' => Groups::class,
         'route-section' => RouteSection::class,
         'score-pins' => ScorePins::class,
@@ -45,7 +47,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Relation::morphMap(array_flip(MorphMap::MAP));
+        Relation::morphMap(MorphMap::flippedMap());
 
         Validator::extend('mixture', function ($attribute, $value, $parameters, $validator) {
             return preg_match('/[\d]/', $value) === 1 && preg_match('/[^\d\s]/', $value) === 1;

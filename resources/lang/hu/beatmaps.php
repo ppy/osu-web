@@ -211,7 +211,7 @@ return [
         'reset_confirm' => [
             'disqualify' => 'Biztos vagy benne? Ezzel kizárod a beatmap-et a kvalifikálásból és alaphelyzetbe áll a nominálás.',
             'nomination_reset' => 'Biztos vagy ebben? Egy új probléma posztolása alaphelyzetbe állítja a nominálási folyamatot.',
-            'problem_warning' => '',
+            'problem_warning' => 'Biztos, hogy jelenteni fogja a hibát ezen a beatmap-en? Ez figyelmezteti a Beatmap nominálókat.',
         ],
     ],
 
@@ -257,7 +257,7 @@ return [
         'featured_artists' => 'Kiemelt előadók',
         'follows' => 'Követett készítők',
         'recommended' => 'Ajánlott nehézség',
-        'spotlights' => '',
+        'spotlights' => 'Reflektorfényezett beatmapek',
     ],
     'mode' => [
         'all' => 'Összes',

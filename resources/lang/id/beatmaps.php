@@ -247,7 +247,7 @@ return [
                 'nominations' => 'Jumlah Nominasi',
             ],
             'supporter_filter_quote' => [
-                '_' => 'Penyaringan dengan :filters memerlukan :link aktif',
+                '_' => 'Penyaringan berdasarkan :filters memerlukan :link yang aktif',
                 'link_text' => 'osu!supporter tag',
             ],
         ],
@@ -257,7 +257,7 @@ return [
         'featured_artists' => 'Featured artist',
         'follows' => 'Mapper yang diikuti',
         'recommended' => 'Rentang kesulitan yang disarankan',
-        'spotlights' => '',
+        'spotlights' => 'Beatmap yang di-spotlight',
     ],
     'mode' => [
         'all' => 'Semua',
