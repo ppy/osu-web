@@ -10,18 +10,20 @@ import CreateAnnouncementButton from './create-announcement-button';
 
 function renderChannels(type: SupportedChannelType) {
   const channels = core.dataStore.channelStore.groupedChannels[type];
-  if (channels.length === 0) return null;
+  if (channels.length > 0 || type === 'ANNOUNCE' && core.dataStore.chatState.canChatAnnounce) {
+    return (
+      <React.Fragment key={type}>
+        <div className='chat-conversation-list__header'>
+          {osu.trans(`chat.channels.list.title.${type}`)}
+        </div>
+        {channels.map((channel) => <ConversationListItem key={channel.channelId} channel={channel} />)}
+        <div className='chat-conversation-list-separator' />
+        {type === 'ANNOUNCE' && <CreateAnnouncementButton />}
+      </React.Fragment>
+    );
+  }
 
-  return (
-    <React.Fragment key={type}>
-      <div className='chat-conversation-list__header'>
-        {osu.trans(`chat.channels.list.title.${type}`)}
-      </div>
-      {channels.map((channel) => <ConversationListItem key={channel.channelId} channel={channel} />)}
-      <div className='chat-conversation-list-separator' />
-      {type === 'ANNOUNCE' && <CreateAnnouncementButton />}
-    </React.Fragment>
-  );
+  return null;
 }
 
 export default observer(() => (
