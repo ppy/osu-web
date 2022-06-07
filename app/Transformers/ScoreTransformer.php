@@ -78,6 +78,8 @@ class ScoreTransformer extends TransformerAbstract
                 $pp = $best->pp;
                 $replay = $best->replay;
             }
+        } elseif ($score instanceof SoloScore) {
+            $pp = $score->performance?->pp;
         }
 
         return array_merge($score->data->jsonSerialize(), [
@@ -86,6 +88,7 @@ class ScoreTransformer extends TransformerAbstract
             'legacy_perfect' => $legacyPerfect ?? null,
             'pp' => $pp ?? null,
             'replay' => $replay ?? false,
+            'type' => $score->getMorphClass(),
         ]);
     }
 
@@ -139,7 +142,7 @@ class ScoreTransformer extends TransformerAbstract
         ];
     }
 
-    public function includeBeatmap(LegacyMatch\Score|ScoreModel $score)
+    public function includeBeatmap(LegacyMatch\Score|ScoreModel|SoloScore $score)
     {
         $beatmap = $score->beatmap;
 
@@ -151,7 +154,7 @@ class ScoreTransformer extends TransformerAbstract
         return $this->item($beatmap, new BeatmapTransformer());
     }
 
-    public function includeBeatmapset(LegacyMatch\Score|ScoreModel $score)
+    public function includeBeatmapset(LegacyMatch\Score|ScoreModel|SoloScore $score)
     {
         return $this->item($score->beatmap->beatmapset, new BeatmapsetCompactTransformer());
     }
@@ -175,12 +178,12 @@ class ScoreTransformer extends TransformerAbstract
         return $this->primitive($score->userRank(['type' => 'country']));
     }
 
-    public function includeRankGlobal(ScoreModel $score)
+    public function includeRankGlobal(ScoreModel|SoloScore $score)
     {
         return $this->primitive($score->userRank([]));
     }
 
-    public function includeUser(LegacyMatch\Score|ScoreModel $score)
+    public function includeUser(LegacyMatch\Score|ScoreModel|SoloScore $score)
     {
         return $this->item(
             $score->user ?? new DeletedUser(['user_id' => $score->user_id]),
