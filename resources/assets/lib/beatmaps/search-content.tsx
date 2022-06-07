@@ -5,6 +5,7 @@ import BeatmapsetCardSizeSelector from 'beatmaps/beatmapset-card-size-selector';
 import VirtualListMeta from 'beatmaps/virtual-list-meta';
 import BeatmapsetPanel, { beatmapsetCardSizes } from 'components/beatmapset-panel';
 import Img2x from 'components/img2x';
+import StringWithComponent from 'components/string-with-component';
 import { route } from 'laroute';
 import { chunk } from 'lodash';
 import { observer } from 'mobx-react';
@@ -56,12 +57,17 @@ const EmptyList = () => (
 
 function renderLinkToSupporterTag(filterText: string) {
   const url = route('store.products.show', { product: 'supporter-tag' });
-  const link = `<a href="${url}">${osu.trans('beatmaps.listing.search.supporter_filter_quote.link_text')}</a>`;
 
   return (
-    <p dangerouslySetInnerHTML={{
-      __html: osu.trans('beatmaps.listing.search.supporter_filter_quote._', { filters: filterText, link }),
-    }}/>
+    <p>
+      <StringWithComponent
+        mappings={{
+          filters: filterText,
+          link: <a href={url}>{osu.trans('beatmaps.listing.search.supporter_filter_quote.link_text')}</a>,
+        }}
+        pattern={osu.trans('beatmaps.listing.search.supporter_filter_quote._')}
+      />
+    </p>
   );
 }
 
