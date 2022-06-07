@@ -43,6 +43,17 @@ const ListRender = ({ virtual }: VirtualProps<number[]>) => (
 
 const BeatmapList = VirtualList<number[]>()(ListRender);
 
+const EmptyList = () => (
+  <div className='beatmapsets__empty'>
+    <Img2x
+      alt={osu.trans('beatmaps.listing.search.not-found')}
+      src='/images/layout/beatmaps/not-found.png'
+      title={osu.trans('beatmaps.listing.search.not-found')}
+    />
+    {osu.trans('beatmaps.listing.search.not-found-quote')}
+  </div>
+);
+
 function renderLinkToSupporterTag(filterText: string) {
   const url = route('store.products.show', { product: 'supporter-tag' });
   const link = `<a href="${url}">${osu.trans('beatmaps.listing.search.supporter_filter_quote.link_text')}</a>`;
@@ -58,19 +69,22 @@ function renderLinkToSupporterTag(filterText: string) {
 export class SearchContent extends React.Component<Props> {
   private readonly virtualListMeta = new VirtualListMeta();
 
+  private get beatmapsetIds() {
+    return this.controller.currentBeatmapsetIds;
+  }
+
   private get controller() {
     return core.beatmapsetSearchController;
   }
 
   render() {
-    const beatmapsetIds = this.controller.currentBeatmapsetIds;
     const listCssClasses = classWithModifiers('beatmapsets', { dimmed: this.controller.isBusy });
 
     return (
       <>
         <SearchPanel
           availableFilters={this.props.availableFilters}
-          firstBeatmapset={core.dataStore.beatmapsetStore.get(beatmapsetIds[0])}
+          firstBeatmapset={core.dataStore.beatmapsetStore.get(this.beatmapsetIds[0])}
           innerRef={this.props.backToTopAnchor}
         />
         <div className='js-sticky-header' />
@@ -93,13 +107,7 @@ export class SearchContent extends React.Component<Props> {
               </div>
             )}
             <div className='beatmapsets__content js-audio--group'>
-              {this.controller.isSupporterMissing ? this.renderSupporterRequired() : beatmapsetIds.length > 0 ? (
-                <BeatmapList
-                  itemBuffer={5}
-                  itemHeight={this.virtualListMeta.itemHeight}
-                  items={chunk(beatmapsetIds, this.virtualListMeta.numberOfColumns)}
-                />
-              ) : this.renderEmptyList()}
+              {this.controller.isSupporterMissing ? this.renderSupporterRequired() : this.renderList() }
             </div>
             {!this.controller.isSupporterMissing && (
               <div className='beatmapsets__paginator'>
@@ -112,17 +120,14 @@ export class SearchContent extends React.Component<Props> {
     );
   }
 
-  private renderEmptyList() {
-    return (
-      <div className='beatmapsets__empty'>
-        <Img2x
-          alt={osu.trans('beatmaps.listing.search.not-found')}
-          src='/images/layout/beatmaps/not-found.png'
-          title={osu.trans('beatmaps.listing.search.not-found')}
-        />
-        {osu.trans('beatmaps.listing.search.not-found-quote')}
-      </div>
-    );
+  private renderList() {
+    return this.beatmapsetIds.length > 0 ? (
+      <BeatmapList
+        itemBuffer={5}
+        itemHeight={this.virtualListMeta.itemHeight}
+        items={chunk(this.beatmapsetIds, this.virtualListMeta.numberOfColumns)}
+      />
+    ) : <EmptyList />;
   }
 
   private renderSupporterRequired() {
