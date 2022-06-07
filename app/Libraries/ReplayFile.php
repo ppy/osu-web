@@ -20,7 +20,7 @@ class ReplayFile
     public function __construct($score)
     {
         $this->filename = $score->getKey();
-        $mode = $score->gameModeString();
+        $mode = $score->getMode();
         $this->diskName = 'replays.'.$mode.'.'.config('osu.score_replays.storage');
         $this->score = $score;
     }

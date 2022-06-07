@@ -27,7 +27,7 @@ interface Props {
   score: SoloScoreJsonForBeatmap;
 }
 
-export default class ScoreTop extends React.PureComponent<Props> {
+export default class TopCard extends React.PureComponent<Props> {
   render() {
     const ruleset = rulesetName(this.props.score.ruleset_id);
     const avatar = <UserAvatar user={this.props.score.user} />;

@@ -16,14 +16,14 @@ return [
     'username' => 'Brugernavn',
 
     'artist_tracks' => [
-        'album' => '',
-        'artist' => '',
-        'bpm' => '',
-        'genre' => '',
-        'length' => '',
-        'relevance' => '',
-        'title' => '',
-        'update' => '',
+        'album' => 'Album',
+        'artist' => 'Kunstner',
+        'bpm' => 'BPM',
+        'genre' => 'Genre',
+        'length' => 'Længde',
+        'relevance' => 'Relevans',
+        'title' => 'Titel',
+        'update' => 'Opdater',
     ],
 
     'forum_posts' => [

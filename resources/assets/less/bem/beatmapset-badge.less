@@ -12,12 +12,21 @@
   white-space: nowrap;
   .link-plain();
 
+  --colour: hsl(var(--hsl-c1));
+  --colour-hover: var(--colour);
+  color: var(--colour);
+
+  .link-hover({
+    color: var(--colour-hover);
+  });
+
   &--featured-artist {
-    color: hsl(var(--hsl-blue-1));
+    --colour: hsl(var(--hsl-blue-2));
+    --colour-hover: hsl(var(--hsl-blue-1));
   }
 
   &--nsfw {
-    color: hsl(var(--hsl-orange-2));
+    --colour: hsl(var(--hsl-orange-2));
   }
 
   &--panel {
@@ -25,10 +34,7 @@
   }
 
   &--spotlight {
-    color: hsl(var(--hsl-pink-1));
-
-    .link-hover({
-      color: hsl(var(--hsl-pink-2));
-    });
+    --colour: hsl(var(--hsl-green-2));
+    --colour-hover: hsl(var(--hsl-green-1));
   }
 }

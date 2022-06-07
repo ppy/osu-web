@@ -19,7 +19,7 @@ use App\Traits\Memoizes;
 use App\Traits\Validatable;
 use Carbon\Carbon;
 use ChaseConey\LaravelDatadogHelper\Datadog;
-use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
 use LaravelRedis as Redis;
 
@@ -40,6 +40,8 @@ class Channel extends Model
     use Memoizes, Validatable;
 
     const CHAT_ACTIVITY_TIMEOUT = 60; // in seconds.
+
+    public ?string $uuid = null;
 
     protected $primaryKey = 'channel_id';
 
@@ -72,7 +74,7 @@ class Channel extends Model
      * @param array $rawParams
      * @return Channel
      */
-    public static function createAnnouncement(Collection $users, array $rawParams): self
+    public static function createAnnouncement(Collection $users, array $rawParams, ?string $uuid = null): self
     {
         $params = get_params($rawParams, null, [
             'description:string',
@@ -83,8 +85,9 @@ class Channel extends Model
         $params['type'] = static::TYPES['announce'];
 
         $channel = new static($params);
-        $channel->getConnection()->transaction(function () use ($channel, $users) {
+        $channel->getConnection()->transaction(function () use ($channel, $users, $uuid) {
             $channel->saveOrExplode();
+            $channel->uuid = $uuid;
             $userChannels = $channel->userChannels()->createMany($users->map(fn ($user) => ['user_id' => $user->getKey()]));
             foreach ($userChannels as $userChannel) {
                 // preset to avoid extra queries during permission check.
@@ -264,7 +267,7 @@ class Channel extends Model
         });
     }
 
-    public function users()
+    public function users(): Collection
     {
         return $this->memoize(__FUNCTION__, function () {
             if ($this->isPM() && isset($this->pmUsers)) {
@@ -276,13 +279,13 @@ class Channel extends Model
         });
     }
 
-    public function visibleUsers()
+    public function visibleUsers(?User $user)
     {
-        if ($this->isPM()) {
+        if ($this->isPM() || $this->isAnnouncement() && priv_check_user($user, 'ChatAnnounce', $this)->can()) {
             return $this->users();
         }
 
-        return collect();
+        return new Collection();
     }
 
     public function scopePublic($query)
@@ -535,7 +538,7 @@ class Channel extends Model
 
     public function setPmUsers(array $users)
     {
-        $this->pmUsers = collect($users);
+        $this->pmUsers = new Collection($users);
     }
 
     public function setUserChannel(UserChannel $userChannel)

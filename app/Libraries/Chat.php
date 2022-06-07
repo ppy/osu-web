@@ -37,6 +37,7 @@ class Chat
             'channel:array',
             'message:string',
             'target_ids:int[]',
+            'uuid',
         ], ['null_missing' => true]);
 
         if (!isset($params['target_ids'])) {
@@ -55,7 +56,7 @@ class Chat
         $users = $users->push($sender)->uniqueStrict('user_id');
 
         $channel = (new Channel())->getConnection()->transaction(function () use ($sender, $params, $users) {
-            $channel = Channel::createAnnouncement($users, $params['channel']);
+            $channel = Channel::createAnnouncement($users, $params['channel'], $params['uuid']);
             static::sendMessage($sender, $channel, $params['message'], false);
 
             return $channel;

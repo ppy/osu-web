@@ -22,7 +22,7 @@ return [
             '401-verification' => 'kontobekræftelse',
             '405' => 'mangler',
             '422' => 'ugyldig anmodning',
-            '429' => '',
+            '429' => 'for mange anmodninger',
             '500' => 'mm, noget gik galt',
             '503' => 'vedligeholdelse',
         ],
@@ -30,7 +30,7 @@ return [
     'forum' => [
         '_' => 'forum',
         'topic_logs_controller' => [
-            'index' => '',
+            'index' => 'emne logs',
         ],
         'topic_watches_controller' => [
             'index' => 'instrumentbræt',
@@ -42,7 +42,7 @@ return [
             'verify_link' => 'kontobekræftelse',
         ],
         'artist_tracks_controller' => [
-            '_' => '',
+            '_' => 'udvalgte kunstnere',
         ],
         'artists_controller' => [
             '_' => 'udvalgte kunstnere',
@@ -83,7 +83,7 @@ return [
             '_' => 'konkurrencer',
         ],
         'follows_controller' => [
-            'index' => '',
+            'index' => 'instrumentbræt',
         ],
         'friends_controller' => [
             'index' => 'instrumentbræt',
@@ -120,7 +120,7 @@ return [
             '_' => 'rangering',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => 'præstation',
         ],
         'store_controller' => [
             '_' => 'butik',

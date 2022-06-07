@@ -137,6 +137,31 @@ function hideEffect(this: JQuery<HTMLElement>) {
   $(this).fadeTo(110, 0);
 }
 
+function onRemoveUserCard(_event: unknown, element: HTMLElement | null) {
+  if (element == null) return;
+
+  const qtipId = element.dataset.hasqtip;
+  if (qtipId == null) return;
+
+  const tooltipElement = document.getElementById(`qtip-${qtipId}`);
+  if (tooltipElement == null) return;
+
+  const qtip = $(tooltipElement).qtip('api');
+  if (qtip != null) {
+    const container = tooltipElement.querySelector('.js-react--user-card-tooltip');
+    if (container != null) {
+      unmountComponentAtNode(container);
+    }
+
+    // queue after React unmount.
+    setTimeout(() => {
+      // tooltip element doesn't get removed sometimes without immediate = true.
+      qtip.destroy(true);
+      delete element._tooltip;
+    }, 0);
+  }
+}
+
 function shouldShow(event: JQuery.Event, api: any) {
   if (tooltipWithActiveMenu != null || core.windowSize.isMobile) {
     return event.preventDefault();
@@ -155,6 +180,7 @@ export function startListening() {
   $(document).on('mouseenter', '.js-react--user-card-tooltip', onMouseEnter);
   $(document).on('mouseleave', '.js-react--user-card-tooltip', onMouseLeave);
   $(document).on('turbolinks:before-cache', onBeforeCache);
+  $.subscribe('user-card:remove.tooltip', onRemoveUserCard);
 }
 
 /**

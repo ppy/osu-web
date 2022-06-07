@@ -14,12 +14,14 @@ export type SoloScoreStatisticsAttribute =
   | 'great'
   | 'ignore_hit'
   | 'ignore_miss'
+  | 'large_bonus'
   | 'large_tick_hit'
   | 'large_tick_miss'
   | 'meh'
   | 'miss'
   | 'ok'
   | 'perfect'
+  | 'small_bonus'
   | 'small_tick_hit'
   | 'small_tick_miss';
 

@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller as BaseController;
 use App\Libraries\Multiplayer\Mod;
 use App\Models\Solo\Score;
 use App\Models\Solo\ScoreToken;
+use App\Transformers\ScoreTransformer;
 use DB;
 
 class ScoresController extends BaseController
@@ -60,6 +61,6 @@ class ScoresController extends BaseController
             return $score;
         });
 
-        return json_item($score, 'Solo\Score');
+        return json_item($score, new ScoreTransformer(ScoreTransformer::TYPE_SOLO));
     }
 }
