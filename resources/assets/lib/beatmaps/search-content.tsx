@@ -10,28 +10,19 @@ import { chunk } from 'lodash';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import VirtualList from 'react-virtual-list';
+import VirtualList, { VirtualProps } from 'react-virtual-list';
 import { classWithModifiers } from 'utils/css';
 import AvailableFilters from './available-filters';
 import { Paginator } from './paginator';
 import { SearchPanel } from './search-panel';
 import { SearchSort } from './search-sort';
 
-// Don't care about the typing of virtual, we're going to replace it.
-interface ListRenderProps {
-  itemHeight: number;
-  virtual: {
-    items: number[][];
-    style: React.CSSProperties;
-  };
-}
-
 interface Props {
   availableFilters: AvailableFilters;
   backToTopAnchor: React.RefObject<HTMLDivElement>;
 }
 
-const ListRender = ({ virtual }: ListRenderProps) => (
+const ListRender = ({ virtual }: VirtualProps<number[]>) => (
   <div style={virtual.style}>
     <div className='beatmapsets__items'>
       {virtual.items.map((row) => (
@@ -50,7 +41,7 @@ const ListRender = ({ virtual }: ListRenderProps) => (
   </div>
 );
 
-const BeatmapList = VirtualList()(ListRender);
+const BeatmapList = VirtualList<number[]>()(ListRender);
 
 function renderLinkToSupporterTag(filterText: string) {
   const url = route('store.products.show', { product: 'supporter-tag' });
