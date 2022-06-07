@@ -5,6 +5,7 @@
   @_top: sort;
   @_item-margin: 5px;
 
+  --item-hover-bg: hsl(var(--hsl-b3));
   padding: 0;
   display: flex;
   font-size: @font-size--normal;
@@ -25,6 +26,10 @@
     margin-top: 10px;
   }
 
+  &--page-extra {
+    --item-hover-bg: hsl(var(--hsl-b2));
+  }
+
   &--user-list {
     padding: 0;
   }
@@ -41,7 +46,7 @@
       .link-white();
 
       &:hover {
-        background-color: @osu-colour-b3;
+        background-color: var(--item-hover-bg);
       };
     }
 
@@ -51,7 +56,7 @@
 
     // overrides --button
     &--active {
-      background-color: @osu-colour-b3;
+      background-color: var(--item-hover-bg);
       color: @osu-colour-l1;
       font-weight: 600;
     }

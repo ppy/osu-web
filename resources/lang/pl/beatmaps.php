@@ -257,7 +257,7 @@ return [
         'featured_artists' => 'Wyróżnieni artyści',
         'follows' => 'Obserwowani twórcy',
         'recommended' => 'Polecany poziom trudności',
-        'spotlights' => '',
+        'spotlights' => 'Wyróżnione beatmapy',
     ],
     'mode' => [
         'all' => 'Wszyscy',

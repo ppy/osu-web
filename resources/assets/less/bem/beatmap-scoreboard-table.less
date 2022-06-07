@@ -11,8 +11,8 @@
 
   --default-color: #fff;
   --perfect-color: hsl(@beatmap-score--hsl-perfect);
-  --row-background-color: @osu-colour-b5;
-  --row-background-color-highlight: @osu-colour-b3;
+  --row-background-color: hsl(var(--hsl-b4));
+  --row-background-color-highlight: hsl(var(--hsl-b2));
   --zero-color: fade(#fff, 40%);
 
   margin-right: -@handle;
@@ -92,7 +92,7 @@
 
   &__body-row {
     &:nth-child(odd) {
-      --row-background-color: @osu-colour-b4;
+      --row-background-color: hsl(var(--hsl-b3));
     }
 
     &:hover,

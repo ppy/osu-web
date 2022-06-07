@@ -12,7 +12,7 @@ return [
     ],
 
     'cover' => [
-        'deleted' => '',
+        'deleted' => 'Beatmap törölve',
     ],
 
     'download' => [
@@ -125,7 +125,7 @@ return [
             'language' => 'Nyelv',
             'no_scores' => 'Az adatok még számítás alatt...',
             'nsfw' => 'Felnőtt tartalom',
-            'offset' => '',
+            'offset' => 'Online eltolás',
             'points-of-failure' => 'Kibukási Alkalmak',
             'source' => 'Forrás',
             'storyboard' => 'Ez a beatmap storyboard-ot tartalmaz',
@@ -148,7 +148,7 @@ return [
         'scoreboard' => [
             'achieved' => 'elérve: :when',
             'country' => 'Országos Ranglista',
-            'error' => '',
+            'error' => 'Ranglista betöltése sikertelen',
             'friend' => 'Baráti Ranglista',
             'global' => 'Globális Ranglista',
             'supporter-link' => 'Kattints <a href=":link">ide</a>,hogy megtekinthesd azt a sok jó funkciót amit kaphatsz!',
@@ -160,7 +160,7 @@ return [
                 'combo' => 'Legmagasabb kombó',
                 'miss' => 'Miss',
                 'mods' => 'Modok',
-                'pin' => '',
+                'pin' => 'Rögzítés',
                 'player' => 'Játékos',
                 'pp' => '',
                 'rank' => 'Rang',
@@ -181,8 +181,8 @@ return [
                 'own' => 'A legjobbad',
             ],
             'supporter_link' => [
-                '_' => '',
-                'here' => '',
+                '_' => 'Kattints :here, hogy megtekinthesd azt a sok jó funkciót amit kaphatsz!',
+                'here' => 'ide',
             ],
         ],
 
@@ -197,7 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Körök Száma',
             'count_sliders' => 'Sliderek Száma',
-            'offset' => '',
+            'offset' => 'Online eltolás :offset',
             'user-rating' => 'Felhasználói Értékelés',
             'rating-spread' => 'Értékelési Szórás',
             'nominations' => 'Nominálások',
@@ -216,6 +216,6 @@ return [
     ],
 
     'spotlight_badge' => [
-        'label' => '',
+        'label' => 'Reflektorfény',
     ],
 ];

@@ -5,8 +5,6 @@ import BeatmapsetCover from 'components/beatmapset-cover';
 import BeatmapsetMapping from 'components/beatmapset-mapping';
 import BigButton from 'components/big-button';
 import UserListPopup, { createTooltip } from 'components/user-list-popup';
-import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
-import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
 import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
@@ -14,11 +12,13 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { getArtist, getTitle } from 'utils/beatmap-helper';
+import { toggleFavourite } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { beatmapDownloadDirect, wikiUrl } from 'utils/url';
 import BeatmapPicker from './beatmap-picker';
 import BeatmapsetMenu from './beatmapset-menu';
+import Controller from './controller';
 import Stats from './stats';
 
 const favouritesToShow = 50;
@@ -31,32 +31,31 @@ interface DownloadButtonOptions {
 }
 
 interface Props {
-  beatmaps: Map<GameMode, BeatmapsetJsonForShow['beatmaps']>;
-  beatmapset: BeatmapsetJsonForShow;
-  currentBeatmap: BeatmapsetJsonForShow['beatmaps'][number];
-  favcount: number;
-  hasFavourited: boolean;
-  hoveredBeatmap: BeatmapsetJsonForShow['beatmaps'][number];
+  controller: Controller;
 }
 
 @observer
 export default class Header extends React.Component<Props> {
+  private get controller() {
+    return this.props.controller;
+  }
+
   @computed
   private get favouritePopup() {
     return renderToStaticMarkup(
-      <UserListPopup count={this.props.favcount} users={this.filteredFavourites} />,
+      <UserListPopup count={this.controller.beatmapset.favourite_count} users={this.filteredFavourites} />,
     );
   }
 
   @computed
   private get filteredFavourites() {
-    let ret = this.props.beatmapset.recent_favourites;
+    let ret = this.controller.beatmapset.recent_favourites;
 
     const user = core.currentUser;
     if (user != null) {
       ret = ret.filter((f) => f.id !== user.id);
 
-      if (this.props.hasFavourited) {
+      if (this.controller.beatmapset.has_favourited) {
         ret.unshift(user);
       }
     }
@@ -65,8 +64,8 @@ export default class Header extends React.Component<Props> {
   }
 
   private get hasAvailabilityInfo() {
-    return this.props.beatmapset.availability.download_disabled
-      || this.props.beatmapset.availability.more_information != null;
+    return this.controller.beatmapset.availability.download_disabled
+      || this.controller.beatmapset.availability.more_information != null;
   }
 
   constructor(props: Props) {
@@ -76,7 +75,7 @@ export default class Header extends React.Component<Props> {
   }
 
   render() {
-    const favouriteButton = this.props.hasFavourited
+    const favouriteButton = this.controller.beatmapset.has_favourited
       ? {
         action: 'unfavourite',
         icon: 'fas fa-heart',
@@ -90,7 +89,7 @@ export default class Header extends React.Component<Props> {
         <div className='beatmapset-header__content'>
           <div className='beatmapset-header__cover'>
             <BeatmapsetCover
-              beatmapset={this.props.beatmapset}
+              beatmapset={this.controller.beatmapset}
               forceShowVisual // check already covered by parent component
               modifiers='full'
               size='cover'
@@ -99,40 +98,37 @@ export default class Header extends React.Component<Props> {
 
           <div className='beatmapset-header__box beatmapset-header__box--main'>
             <div className='beatmapset-header__beatmap-picker-box'>
-              <BeatmapPicker
-                beatmaps={this.props.beatmaps.get(this.props.currentBeatmap.mode) ?? []}
-                currentBeatmap={this.props.currentBeatmap}
-              />
+              <BeatmapPicker controller={this.controller}/ >
 
               <span className='beatmapset-header__diff-name'>
-                {this.props.hoveredBeatmap == null ? this.props.currentBeatmap.version : this.props.hoveredBeatmap.version}
+                {this.controller.hoveredBeatmap?.version ?? this.controller.currentBeatmap.version}
               </span>
 
-              {this.props.hoveredBeatmap != null &&
+              {this.controller.hoveredBeatmap != null &&
                 <span className='beatmapset-header__star-difficulty'>
                   {osu.trans('beatmapsets.show.stats.stars')}
                   {' '}
-                  {formatNumber(this.props.hoveredBeatmap.difficulty_rating, 2)}
+                  {formatNumber(this.controller.hoveredBeatmap.difficulty_rating, 2)}
                 </span>
               }
 
               <div>
                 <span className='beatmapset-header__value' title={osu.trans('beatmapsets.show.stats.playcount')}>
                   <span className='beatmapset-header__value-icon'><span className='fas fa-play-circle' /></span>
-                  <span className='beatmapset-header__value-name'>{formatNumber(this.props.beatmapset.play_count)}</span>
+                  <span className='beatmapset-header__value-name'>{formatNumber(this.controller.beatmapset.play_count)}</span>
                 </span>
 
-                {this.props.beatmapset.status === 'pending' &&
+                {this.controller.beatmapset.status === 'pending' &&
                   <span className='beatmapset-header__value' title={osu.trans('beatmapsets.show.stats.nominations')}>
                     <span className='beatmapset-header__value-icon'><span className='fas fa-thumbs-up' /></span>
                     <span className='beatmapset-header__value-name'>
-                      {formatNumber(this.props.beatmapset.nominations_summary.current)}
+                      {formatNumber(this.controller.beatmapset.nominations_summary.current)}
                     </span>
                   </span>
                 }
 
                 <span
-                  className={classWithModifiers('beatmapset-header__value', { 'has-favourites': this.props.favcount > 0 })}
+                  className={classWithModifiers('beatmapset-header__value', { 'has-favourites': this.controller.beatmapset.favourite_count > 0 })}
                   onMouseOver={this.onEnterFavouriteIcon}
                   onTouchStart={this.onEnterFavouriteIcon}
                 >
@@ -140,7 +136,7 @@ export default class Header extends React.Component<Props> {
                     <span className='fas fa-heart' />
                   </span>
                   <span className='beatmapset-header__value-name'>
-                    {formatNumber(this.props.favcount)}
+                    {formatNumber(this.controller.beatmapset.favourite_count)}
                   </span>
                 </span>
               </div>
@@ -149,14 +145,14 @@ export default class Header extends React.Component<Props> {
             <span className='beatmapset-header__details-text beatmapset-header__details-text--title'>
               <a
                 className='beatmapset-header__details-text-link'
-                href={route('beatmapsets.index', { q: getTitle(this.props.beatmapset) })}
+                href={route('beatmapsets.index', { q: getTitle(this.controller.beatmapset) })}
               >
-                {getTitle(this.props.beatmapset)}
+                {getTitle(this.controller.beatmapset)}
               </a>
-              {this.props.beatmapset.nsfw &&
+              {this.controller.beatmapset.nsfw &&
                 <span className='beatmapset-badge beatmapset-badge--nsfw'>{osu.trans('beatmapsets.nsfw_badge.label')}</span>
               }
-              {this.props.beatmapset.spotlight &&
+              {this.controller.beatmapset.spotlight &&
                 <a
                   className='beatmapset-badge beatmapset-badge--spotlight'
                   href={wikiUrl('Beatmap_Spotlights')}
@@ -169,21 +165,21 @@ export default class Header extends React.Component<Props> {
             <span className='beatmapset-header__details-text beatmapset-header__details-text--artist'>
               <a
                 className='beatmapset-header__details-text-link'
-                href={route('beatmapsets.index', { q: getArtist(this.props.beatmapset) })}
+                href={route('beatmapsets.index', { q: getArtist(this.controller.beatmapset) })}
               >
-                {getArtist(this.props.beatmapset)}
+                {getArtist(this.controller.beatmapset)}
               </a>
-              {this.props.beatmapset.track_id != null &&
+              {this.controller.beatmapset.track_id != null &&
                 <a
                   className='beatmapset-badge beatmapset-badge--featured-artist'
-                  href={route('tracks.show', { track: this.props.beatmapset.track_id })}
+                  href={route('tracks.show', { track: this.controller.beatmapset.track_id })}
                 >
                   {osu.trans('beatmapsets.featured_artist_badge.label')}
                 </a>
               }
             </span>
 
-            <BeatmapsetMapping beatmapset={this.props.beatmapset} />
+            <BeatmapsetMapping beatmapset={this.controller.beatmapset} />
 
             {this.renderAvailabilityInfo()}
 
@@ -202,10 +198,10 @@ export default class Header extends React.Component<Props> {
               {this.renderDownloadButtons()}
               {this.renderLoginButton()}
 
-              {!this.props.beatmapset.is_scoreable && core.currentUser != null && core.currentUser.id !== this.props.beatmapset.user_id &&
+              {!this.controller.beatmapset.is_scoreable && core.currentUser != null && core.currentUser.id !== this.controller.beatmapset.user_id &&
                 <div className='beatmapset-header__more'>
                   <div className='btn-circle btn-circle--page-toggle btn-circle--page-toggle-detail'>
-                    <BeatmapsetMenu beatmapset={this.props.beatmapset} />
+                    <BeatmapsetMenu beatmapset={this.controller.beatmapset} />
                   </div>
                 </div>
               }
@@ -215,10 +211,7 @@ export default class Header extends React.Component<Props> {
           <div className='beatmapset-header__box beatmapset-header__box--stats'>
             {this.renderStatusBar()}
 
-            <Stats
-              beatmap={this.props.currentBeatmap}
-              beatmapset={this.props.beatmapset}
-            />
+            <Stats controller={this.controller} />
           </div>
         </div>
       </div>
@@ -243,7 +236,7 @@ export default class Header extends React.Component<Props> {
   }
 
   private readonly onClickFavourite = () => {
-    $.publish('beatmapset:favourite:toggle');
+    toggleFavourite(this.controller.beatmapset);
   };
 
   @action
@@ -268,10 +261,10 @@ export default class Header extends React.Component<Props> {
     let label: string;
     let href: string | null;
 
-    if (this.props.beatmapset.availability.download_disabled) {
+    if (this.controller.beatmapset.availability.download_disabled) {
       label = osu.trans('beatmapsets.availability.disabled');
     } else {
-      if (this.props.beatmapset.availability.more_information === 'rule_violation') {
+      if (this.controller.beatmapset.availability.more_information === 'rule_violation') {
         label = osu.trans('beatmapsets.availability.rule_violation');
         href = `${wikiUrl('Rules')}#beatmap-submission-rules`;
       } else {
@@ -279,7 +272,7 @@ export default class Header extends React.Component<Props> {
       }
     }
 
-    href ??= this.props.beatmapset.availability.more_information;
+    href ??= this.controller.beatmapset.availability.more_information;
 
     return (
       <div className='beatmapset-header__availability-info'>
@@ -297,29 +290,29 @@ export default class Header extends React.Component<Props> {
   }
 
   private renderDownloadButtons() {
-    if (core.currentUser == null || (this.props.beatmapset.availability?.download_disabled ?? false)) return;
+    if (core.currentUser == null || (this.controller.beatmapset.availability?.download_disabled ?? false)) return;
 
     return (
       <>
-        {this.props.beatmapset.video ? (
+        {this.controller.beatmapset.video ? (
           <>
             {this.downloadButton({
               bottomTextKey: 'video',
-              href: route('beatmapsets.download', { beatmapset: this.props.beatmapset.id }),
+              href: route('beatmapsets.download', { beatmapset: this.controller.beatmapset.id }),
             })}
 
             {this.downloadButton({
               bottomTextKey: 'no-video',
-              href: route('beatmapsets.download', { beatmapset: this.props.beatmapset.id, noVideo: 1 }),
+              href: route('beatmapsets.download', { beatmapset: this.controller.beatmapset.id, noVideo: 1 }),
             })}
           </>
         ) : (this.downloadButton({
-          href: route('beatmapsets.download', { beatmapset: this.props.beatmapset.id }),
+          href: route('beatmapsets.download', { beatmapset: this.controller.beatmapset.id }),
         }))}
 
         {this.downloadButton({
           href: core.currentUser.is_supporter
-            ? beatmapDownloadDirect(this.props.currentBeatmap.id)
+            ? beatmapDownloadDirect(this.controller.currentBeatmap.id)
             : route('support-the-game'),
           topTextKey: 'direct',
         })}
@@ -346,7 +339,7 @@ export default class Header extends React.Component<Props> {
   private renderStatusBar() {
     return (
       <div className='beatmapset-header__status'>
-        {this.props.beatmapset.storyboard &&
+        {this.controller.beatmapset.storyboard &&
           <div
             className='beatmapset-status beatmapset-status--show-icon'
             title={osu.trans('beatmapsets.show.info.storyboard')}
@@ -355,7 +348,7 @@ export default class Header extends React.Component<Props> {
           </div>
         }
         <div className='beatmapset-status beatmapset-status--show'>
-          {osu.trans(`beatmapsets.show.status.${this.props.currentBeatmap.status}`)}
+          {osu.trans(`beatmapsets.show.status.${this.controller.currentBeatmap.status}`)}
         </div>
       </div>
     );

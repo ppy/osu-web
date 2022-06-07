@@ -12,34 +12,51 @@ import { supportedChannelTypes } from 'interfaces/chat/channel-json';
 import { clamp, maxBy } from 'lodash';
 import { action, autorun, computed, makeObservable, observable, observe, runInAction } from 'mobx';
 import Channel from 'models/chat/channel';
+import CreateAnnouncement from 'models/chat/create-announcement';
 import ChannelStore from 'stores/channel-store';
+import { onError } from 'utils/ajax';
 import { setBrowserTitle } from 'utils/html';
 import { updateQueryString } from 'utils/url';
 import ChannelJoinEvent from './channel-join-event';
 import ChannelPartEvent from './channel-part-event';
-import { getUpdates } from './chat-api';
+import { createAnnouncement, getUpdates } from './chat-api';
 import MainView from './main-view';
 import PingService from './ping-service';
 
+type ChannelId = number | 'create' | null;
+
 @dispatchListener
 export default class ChatStateStore implements DispatchListener {
+  @observable canChatAnnounce = false;
+  @observable createAnnouncement = new CreateAnnouncement();
   @observable isReady = false;
   skipRefresh = false;
   @observable viewsMounted = new Set<MainView>();
   @observable private isConnected = false;
   private lastHistoryId: number | null = null;
   private pingService: PingService;
-  @observable private selected: number | null = null;
+  @observable private selected: ChannelId = null;
   private selectedIndex = 0;
+  @observable private waitJoinChannelUuid: string | null = null;
 
   @computed
   get isChatMounted() {
     return this.viewsMounted.size > 0;
   }
 
+  // Should not join/create another channel if still waiting for a pending request.
+  @computed
+  get isJoiningChannel() {
+    return this.waitJoinChannelUuid != null;
+  }
+
   @computed
   get selectedChannel() {
-    return this.selected != null ? this.channelStore.get(this.selected) : null;
+    return this.selected == null || this.selected === 'create' ? null : this.channelStore.get(this.selected);
+  }
+
+  get showingCreateAnnouncement() {
+    return this.selected === 'create';
   }
 
   @computed
@@ -79,7 +96,7 @@ export default class ChatStateStore implements DispatchListener {
 
         runInAction(() => {
           // TODO: use selectChannel?
-          if (this.selected != null) {
+          if (typeof this.selected === 'number') {
             this.channelStore.loadChannel(this.selected);
           }
 
@@ -103,9 +120,27 @@ export default class ChatStateStore implements DispatchListener {
     }
   }
 
+  // TODO: This will support the other types of joining channels in the future
+  // Only up to one join/create channel operation should be allowed to be running at any time.
+  // For consistency, the operation is considered complete when the websocket message arrives, not when the request completes.
   @action
-  selectChannel(channelId: number | null, mode: 'advanceHistory' | 'replaceHistory' | null = 'advanceHistory') {
-    // TODO: enfore location url even if channel doesn't change;
+  joinChannel() {
+    if (!this.createAnnouncement.isValid || this.isJoiningChannel) return;
+
+    const json = this.createAnnouncement.toJson();
+    this.waitJoinChannelUuid = json.uuid;
+    // TODO: when adding more channel types to join, remember to add separate busy spinner states for them.
+
+    createAnnouncement(json)
+      .fail(action((xhr: JQueryXHR) => {
+        onError(xhr);
+        this.waitJoinChannelUuid = null;
+      }));
+  }
+
+  @action
+  selectChannel(channelId: ChannelId, mode: 'advanceHistory' | 'replaceHistory' | null = 'advanceHistory') {
+    // TODO: enforce location url even if channel doesn't change;
     // noticeable when navigating via ?sendto= on existing channel.
     if (this.selected === channelId) return;
 
@@ -115,6 +150,17 @@ export default class ChatStateStore implements DispatchListener {
     }
 
     this.selected = channelId;
+
+    if (channelId === 'create') {
+      if (mode != null) {
+        Turbolinks.controller[mode](updateQueryString(null, {
+          channel_id: null,
+          sendto: null,
+        }, 'create'));
+      }
+
+      return;
+    }
 
     if (channelId == null) return;
 
@@ -135,7 +181,7 @@ export default class ChatStateStore implements DispatchListener {
         ? { channel_id: null, sendto: channel.pmTarget?.toString() }
         : { channel_id: channel.channelId.toString(), sendto: null };
 
-      Turbolinks.controller[mode](updateQueryString(null, params));
+      Turbolinks.controller[mode](updateQueryString(null, params, ''));
     }
     setBrowserTitle(`${channel.name} · ${osu.trans('page_title.main.chat_controller._')}`);
   }
@@ -146,7 +192,6 @@ export default class ChatStateStore implements DispatchListener {
 
     this.selectChannel(this.channelList[0].channelId, null);
     // Remove channel_id from location on selectFirst();
-    // also handles the case when history goes back to a channel that was removed.
     Turbolinks.controller.replaceHistory(updateQueryString(null, {
       channel_id: null,
       sendto: null,
@@ -168,6 +213,14 @@ export default class ChatStateStore implements DispatchListener {
   @action
   private handleChatChannelJoinEvent(event: ChannelJoinEvent) {
     this.channelStore.update(event.json);
+
+    if (this.waitJoinChannelUuid != null && this.waitJoinChannelUuid === event.json.uuid) {
+      this.selectChannel(event.json.channel_id);
+      this.waitJoinChannelUuid = null;
+      if (event.json.type === 'ANNOUNCE') {
+        this.createAnnouncement.clear();
+      }
+    }
   }
 
   @action
@@ -188,7 +241,7 @@ export default class ChatStateStore implements DispatchListener {
 
     // FIXME: friend list update isn't propagated to other tabs without a full refresh, yet.
     const channel = this.channelStore.groupedChannels.PM.find((value) => value.pmTarget === event.userId);
-    channel?.refresh();
+    channel?.loadMetadata();
   }
 
   @action
@@ -205,6 +258,8 @@ export default class ChatStateStore implements DispatchListener {
    * Keeps the current channel in focus, unless deleted, then focus on next channel.
    */
   private refocusSelectedChannel() {
+    if (this.showingCreateAnnouncement) return;
+
     if (this.selectedChannel != null) {
       this.selectChannel(this.selectedChannel.channelId);
     } else {

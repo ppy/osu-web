@@ -35,13 +35,35 @@ class ChannelTest extends TestCase
         Queue::assertPushed(ChannelAnnouncement::class);
     }
 
+    public function testAnnouncementSendToRestrictedUsers()
+    {
+        Queue::fake();
+
+        $sender = User::factory()->withGroup('announce')->create();
+        $user = User::factory()->create();
+        $channel = $this->createChannel([$sender, $user], 'announce');
+
+        $user->update(['user_warnings' => 1]);
+        $channel = $channel->fresh();
+
+        // ChatMessageEvent uses activeUserIds to broadcast.
+        $this->assertContains($user->getKey(), $channel->activeUserIds());
+
+        $channel->receiveMessage($sender, 'message');
+
+        Queue::assertPushed(
+            ChannelAnnouncement::class,
+            fn (ChannelAnnouncement $job) => in_array($user->getKey(), $job->getReceiverIds(), true)
+        );
+    }
+
     public function testPublicChannelDoesNotShowUsers()
     {
         $user = User::factory()->create();
         $channel = $this->createChannel([$user], 'public');
 
         $this->assertSame(1, $channel->users()->count());
-        $this->assertEmpty($channel->visibleUsers());
+        $this->assertEmpty($channel->visibleUsers($user));
     }
 
     /**

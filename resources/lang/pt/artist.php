@@ -13,8 +13,8 @@ return [
 
     'beatmaps' => [
         '_' => 'Beatmaps',
-        'download' => 'Transferir o padrão do beatmap',
-        'download-na' => 'O padrão do beatmap ainda não está disponível',
+        'download' => 'Transferir o modelo do beatmap',
+        'download-na' => 'O modelo do beatmap ainda não está disponível',
     ],
 
     'index' => [

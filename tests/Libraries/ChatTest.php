@@ -38,7 +38,7 @@ class ChatTest extends TestCase
         $channel = Chat::createAnnouncement($sender, [
             'channel' => [
                 'description' => 'best',
-                'name' => 'annoucements',
+                'name' => 'announcements',
             ],
             'message' => 'test',
             'target_ids' => $users->pluck('user_id')->toArray(),
@@ -47,6 +47,23 @@ class ChatTest extends TestCase
         if ($isAllowed) {
             $this->assertTrue($channel->fresh()->exists());
         }
+    }
+
+    public function testCreateAnnouncementIncludesSender()
+    {
+        $sender = User::factory()->withGroup('announce')->create()->markSessionVerified();
+        $user = User::factory()->create();
+
+        $channel = Chat::createAnnouncement($sender, [
+            'channel' => [
+                'description' => 'best',
+                'name' => 'announcements',
+            ],
+            'message' => 'test',
+            'target_ids' => [$user->getKey()],
+        ]);
+
+        $this->assertTrue($channel->fresh()->users()->contains('user_id', $sender->getKey()));
     }
 
     /**

@@ -10,6 +10,7 @@ use App\Models\Chat\Channel;
 use App\Models\Chat\UserChannel;
 use App\Models\User;
 use App\Transformers\Chat\ChannelTransformer;
+use App\Transformers\UserCompactTransformer;
 use Auth;
 
 /**
@@ -193,13 +194,18 @@ class ChannelsController extends Controller
     public function show($channelId)
     {
         $channel = Channel::where('channel_id', $channelId)->firstOrFail();
+        $user = auth()->user();
 
         priv_check('ChatChannelRead', $channel)->ensureCan();
 
         return [
-            'channel' => json_item($channel, ChannelTransformer::forUser(auth()->user()), ChannelTransformer::LISTING_INCLUDES),
+            'channel' => json_item($channel, ChannelTransformer::forUser($user), ChannelTransformer::LISTING_INCLUDES),
             // TODO: probably going to need a better way to list/fetch/update users on larger channels without sending user on every message.
-            'users' => json_collection($channel->visibleUsers(), 'UserCompact'),
+            'users' => json_collection(
+                $channel->visibleUsers($user)->loadMissing(UserCompactTransformer::CARD_INCLUDES_PRELOAD),
+                new UserCompactTransformer(),
+                UserCompactTransformer::CARD_INCLUDES
+            ),
         ];
     }
 
@@ -252,6 +258,7 @@ class ChannelsController extends Controller
             'target_id:int',
             'target_ids:int[]',
             'type:string',
+            'uuid',
         ], ['null_missing' => true]);
 
         $sender = auth()->user();
