@@ -31,16 +31,19 @@ interface Props {
   backToTopAnchor: React.RefObject<HTMLDivElement>;
 }
 
-const ListRender = ({ virtual, itemHeight }: ListRenderProps) => (
+const ListRender = ({ virtual }: ListRenderProps) => (
   <div style={virtual.style}>
     <div className='beatmapsets__items'>
       {virtual.items.map((row) => (
         <div key={row.join('-')} className='beatmapsets__items-row'>
-          {row.map((beatmapsetId) => (
-            <div key={beatmapsetId} className='beatmapsets__item'>
-              <BeatmapsetPanel beatmapset={core.dataStore.beatmapsetStore.get(beatmapsetId)} />
-            </div>
-          ))}
+          {row.map((beatmapsetId) => {
+            const beatmapset = core.dataStore.beatmapsetStore.get(beatmapsetId);
+            return (
+              <div key={beatmapsetId} className='beatmapsets__item'>
+                {beatmapset != null && <BeatmapsetPanel beatmapset={beatmapset} />}
+              </div>
+            );
+          })}
         </div>
       ))}
     </div>
