@@ -47,7 +47,7 @@ export class CommentEditor extends React.PureComponent
     canComment = @canComment()
 
     placeholder =
-      if mode == 'new' && !canComment
+      if mode in ['new', 'reply'] && !canComment
         @props.commentableMeta.current_user_attributes?.can_new_comment_reason ? osu.trans('authorization.comment.store.disabled')
       else
         osu.trans("comments.placeholder.#{mode}")
@@ -117,7 +117,7 @@ export class CommentEditor extends React.PureComponent
   canComment: =>
     return false if !core.currentUser?
 
-    if @mode() == 'new'
+    if @mode() in ['new', 'reply']
       @props.commentableMeta.current_user_attributes? && !@props.commentableMeta.current_user_attributes?.can_new_comment_reason?
     else
       true
