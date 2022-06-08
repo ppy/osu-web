@@ -454,12 +454,9 @@ class Channel extends Model
                 $userChannel->markAsRead($message->message_id);
             }
 
-            if ($this->isPM()) {
-                if ($this->unhide()) {
-                    // assume a join event has to be sent if any channels need to need to be unhidden.
-                    (new ChatChannelEvent($this, $this->pmTargetFor($sender), 'join'))->broadcast();
-                }
+            $this->unhide($sender);
 
+            if ($this->isPM()) {
                 (new ChannelMessage($message, $sender))->dispatch();
             } elseif ($this->isAnnouncement()) {
                 (new ChannelAnnouncement($message, $sender))->dispatch();
@@ -511,7 +508,7 @@ class Channel extends Model
             return;
         }
 
-        if ($this->isPM()) {
+        if ($this->isPM() || $this->isAnnouncement()) {
             $userChannel->update(['hidden' => true]);
         } else {
             $userChannel->delete();
@@ -555,18 +552,30 @@ class Channel extends Model
         return 'chat.channel';
     }
 
-    private function unhide()
+    /**
+     * Unhides UserChannels as necessary when receiving messages.
+     *
+     * @param User $sender sender of the message to the Channel.
+     * @return void
+     */
+    private function unhide(User $sender)
     {
-        if (!$this->isPM()) {
+        if (!($this->isPM() || $this->isAnnouncement())) {
             return;
         }
 
-        return UserChannel::where([
+        $users = $this->users()->where('user_id', '<>', $sender->getKey());
+
+        UserChannel::where([
             'channel_id' => $this->channel_id,
             'hidden' => true,
         ])->update([
             'hidden' => false,
         ]);
+
+        foreach ($users as $user) {
+            (new ChatChannelEvent($this, $user, 'join'))->broadcast();
+        }
     }
 
     private function userChannelFor(User $user)
