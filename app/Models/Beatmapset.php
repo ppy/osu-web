@@ -922,6 +922,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return config('osu.beatmapset.required_hype');
     }
 
+    public function commentLocked(): bool
+    {
+        return $this->comment_locked || $this->downloadLimited();
+    }
+
     public function commentableTitle()
     {
         return $this->title;

@@ -1163,15 +1163,13 @@ class OsuAuthorize
      * @return string
      * @throws AuthorizationCheckException
      */
-    public function checkCommentStore(?User $user, Comment $comment): string
+    public function checkCommentStore(?User $user, Commentable $commentable): string
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
         $this->ensureHasPlayed($user);
 
-        $commentable = $comment->commentable;
-
-        if ($commentable instanceof Beatmapset && $commentable->downloadLimited()) {
+        if ($commentable->commentLocked()) {
             return 'comment.store.disabled';
         }
 

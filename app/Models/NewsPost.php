@@ -200,6 +200,11 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
         return $this->page['author'];
     }
 
+    public function commentLocked(): bool
+    {
+        return false;
+    }
+
     public function commentableTitle()
     {
         return $this->title();
