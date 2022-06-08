@@ -454,7 +454,7 @@ class Channel extends Model
                 $userChannel->markAsRead($message->message_id);
             }
 
-            $this->unhide($sender);
+            $this->unhide();
 
             if ($this->isPM()) {
                 (new ChannelMessage($message, $sender))->dispatch();
@@ -555,23 +555,19 @@ class Channel extends Model
     /**
      * Unhides UserChannels as necessary when receiving messages.
      *
-     * @param User $sender sender of the message to the Channel.
      * @return void
      */
-    private function unhide(User $sender)
+    private function unhide()
     {
         if (!($this->isPM() || $this->isAnnouncement())) {
             return;
         }
 
-        $users = $this->users()->where('user_id', '<>', $sender->getKey());
+        $params = ['channel_id' => $this->channel_id, 'hidden' => true];
 
-        UserChannel::where([
-            'channel_id' => $this->channel_id,
-            'hidden' => true,
-        ])->update([
-            'hidden' => false,
-        ]);
+        $users = User::whereIn('user_id', UserChannel::where($params)->select('user_id'))->get();
+
+        UserChannel::where($params)->update(['hidden' => false]);
 
         foreach ($users as $user) {
             (new ChatChannelEvent($this, $user, 'join'))->broadcast();
