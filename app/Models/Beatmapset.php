@@ -111,6 +111,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     protected $casts = [
         'active' => 'boolean',
+        'comment_locked' => 'boolean',
         'discussion_enabled' => 'boolean',
         'discussion_locked' => 'boolean',
         'download_disabled' => 'boolean',
