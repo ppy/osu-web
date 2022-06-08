@@ -369,7 +369,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeScoresPinnedCount(User $user)
     {
-        return $this->primitive($user->scorePins()->forMode($this->mode)->withVisibleScore()->count());
+        return $this->primitive($user->scorePins()->forRuleset($this->mode)->withVisibleScore()->count());
     }
 
     public function includeScoresRecentCount(User $user)

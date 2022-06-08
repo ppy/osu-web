@@ -6,6 +6,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Score\Best\Model as ScoreBest;
+use App\Models\Solo\Score as SoloScore;
 use App\Transformers\ScoreTransformer;
 use App\Transformers\UserCompactTransformer;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
@@ -33,7 +34,7 @@ class ScoresController extends Controller
             ->firstOrFail();
 
         if (!is_api_request() && !from_app_url()) {
-            return ujs_redirect(route('scores.show', ['score' => $score->getKey(), 'mode' => $mode]));
+            return ujs_redirect(route('scores.show-legacy', ['score' => $score->getKey(), 'mode' => $mode]));
         }
 
         $replayFile = $score->replayFile();
@@ -60,12 +61,14 @@ class ScoresController extends Controller
         }, $filename, ['Content-Type' => 'application/x-osu-replay']);
     }
 
-    public function show($mode, $id)
+    public function show($modeOrId, $legacyId = null)
     {
-        $score = ScoreBest::getClassByString($mode)
-            ::whereHas('beatmap.beatmapset')
-            ->visibleUsers()
-            ->findOrFail($id);
+        $score = $legacyId === null
+            ? SoloScore::whereHas('beatmap.beatmapset')->findOrFail($modeOrId)
+            : ScoreBest::getClassByString($modeOrId)
+                ::whereHas('beatmap.beatmapset')
+                ->visibleUsers()
+                ->findOrFail($legacyId);
 
         $userIncludes = array_map(function ($include) {
             return "user.{$include}";

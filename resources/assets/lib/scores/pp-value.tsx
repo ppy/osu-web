@@ -11,7 +11,9 @@ interface Props {
 }
 
 export default function PpValue(props: Props) {
-  if (props.score.best_id == null) {
+  const isBestScore = props.score.best_id != null || (props.score.type === 'solo_score' && props.score.pp != null);
+
+  if (!isBestScore) {
     return (
       <span title={osu.trans('scores.status.non_best')}>
         -

@@ -734,7 +734,7 @@ class UsersController extends Controller
                     $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
                     $query = $user
                         ->scorePins()
-                        ->forMode($options['mode'])
+                        ->forRuleset($options['mode'])
                         ->withVisibleScore()
                         ->with(array_map(fn ($include) => "score.{$include}", ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD))
                         ->reorderBy('display_order', 'asc');

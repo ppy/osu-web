@@ -1838,22 +1838,22 @@ class OsuAuthorize
 
     /**
      * @param User|null $user
-     * @param \App\Models\Score\Best\Model|null $user
+     * @param \App\Models\Score\Best\Model $score
      * @return string
      * @throws AuthorizationCheckException
      */
-    public function checkScorePin(?User $user, ScoreBest $best): string
+    public function checkScorePin(?User $user, ScoreBest $score): string
     {
         $prefix = 'score.pin.';
 
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if ($best->user_id !== $user->getKey()) {
+        if ($score->user_id !== $user->getKey()) {
             return $prefix.'not_owner';
         }
 
-        $pinned = $user->scorePins()->forMode($best)->withVisibleScore()->count();
+        $pinned = $user->scorePins()->forRuleset($score->getMode())->withVisibleScore()->count();
 
         if ($pinned >= $user->maxScorePins()) {
             return $prefix.'too_many';
