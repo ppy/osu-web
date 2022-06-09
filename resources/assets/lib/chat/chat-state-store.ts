@@ -144,7 +144,9 @@ export default class ChatStateStore implements DispatchListener {
     // noticeable when navigating via ?sendto= on existing channel.
     if (this.selected === channelId) return;
 
-    // mark the channel being switched away from as read.
+    // Mark the channel being switched away from as read.
+    // Marking as read is done here to avoid constantly sending mark-as-read requests
+    // while receiving messages when autoScroll is enabled on the channel.
     this.selectedChannel?.sendMarkAsRead();
 
     this.selected = channelId;
