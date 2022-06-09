@@ -167,7 +167,7 @@ export default class Channel {
   @action
   addSendingMessage(message: Message) {
     this.messagesMap.set(message.messageId, message);
-    this.markAsRead();
+    this.moveMarkAsReadMarker();
   }
 
   @action
@@ -234,7 +234,7 @@ export default class Channel {
   }
 
   @action
-  markAsRead() {
+  moveMarkAsReadMarker() {
     this.setLastReadId(this.lastMessageId);
   }
 

@@ -147,7 +147,7 @@ export default class ChannelStore implements DispatchListener {
       return;
     }
 
-    channel.markAsRead();
+    channel.moveMarkAsReadMarker();
 
     const currentTimeout = window.setTimeout(action(() => {
       // allow next debounce to be queued again
