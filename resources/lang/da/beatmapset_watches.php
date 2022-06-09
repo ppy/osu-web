@@ -10,7 +10,7 @@ return [
 
         'counts' => [
             'total' => '',
-            'unread' => '',
+            'unread' => 'Beatmaps med ny aktivitet',
         ],
 
         'table' => [

@@ -41,6 +41,8 @@ class Channel extends Model
 
     const CHAT_ACTIVITY_TIMEOUT = 60; // in seconds.
 
+    public ?string $uuid = null;
+
     protected $primaryKey = 'channel_id';
 
     protected $casts = [
@@ -72,7 +74,7 @@ class Channel extends Model
      * @param array $rawParams
      * @return Channel
      */
-    public static function createAnnouncement(Collection $users, array $rawParams): self
+    public static function createAnnouncement(Collection $users, array $rawParams, ?string $uuid = null): self
     {
         $params = get_params($rawParams, null, [
             'description:string',
@@ -83,8 +85,9 @@ class Channel extends Model
         $params['type'] = static::TYPES['announce'];
 
         $channel = new static($params);
-        $channel->getConnection()->transaction(function () use ($channel, $users) {
+        $channel->getConnection()->transaction(function () use ($channel, $users, $uuid) {
             $channel->saveOrExplode();
+            $channel->uuid = $uuid;
             $userChannels = $channel->userChannels()->createMany($users->map(fn ($user) => ['user_id' => $user->getKey()]));
             foreach ($userChannels as $userChannel) {
                 // preset to avoid extra queries during permission check.

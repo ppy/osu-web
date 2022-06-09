@@ -52,7 +52,7 @@ return [
     ],
 
     'store_payment_completed' => [
-        'prepare_shipping' => 'Recebemos o teu pagamento e estamos a processar o teu pedido para ser enviado. Poderá demorar alguns dias da nossa parte para o enviá-lo, dependendo da quantidade de pedidos. Podes seguir o progresso do teu pedido aqui, incluindo os detalhes de seguimento onde disponível:',
+        'prepare_shipping' => 'Recebemos o teu pagamento e estamos a processar o teu pedido para ser enviado. Poderá demorar alguns dias da nossa parte para enviá-lo, dependendo da quantidade de pedidos. Podes seguir o progresso do teu pedido aqui, incluindo os detalhes de seguimento onde disponível:',
         'processing' => 'Recebemos o teu pagamento e estamos a processar o teu pedido para ser enviado. Podes seguir o progresso da tua encomenda aqui:',
         'questions' => "Se tiveres alguma questão, não hesites em responder a este email.",
         'shipping' => 'Envio',
@@ -81,7 +81,7 @@ return [
         'main' => 'A tua conta está suspeita de ter sido comprometida, possui uma atividade recente suspeita ou uma palavra-passe MUITO fraca. Como resultado, precisamos que definas uma nova passe. Assegura-te de escolher uma palavra-passe SEGURA por favor.',
         'perform_reset' => 'Podes efetuar o reinício a partir de :url',
         'reason' => 'Motivo:',
-        'subject' => 'Uma reativação da conta osu! é necessária',
+        'subject' => 'Reativação da conta osu! necessária',
     ],
 
     'user_notification_digest' => [

@@ -433,7 +433,7 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => '',
+        'title' => 'Bạn đang bị Im lặng.',
         'message' => 'Một vài hành động có thể sẽ không thực hiện được.',
     ],
 

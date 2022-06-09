@@ -15,7 +15,6 @@ use App\Models\BeatmapsetEvent;
 use App\Models\Score\Best\Model as BestModel;
 use App\Transformers\BeatmapTransformer;
 use App\Transformers\ScoreTransformer;
-use App\Transformers\Solo\ScoreTransformer as SoloScoreTransformer;
 
 /**
  * @group Beatmaps
@@ -299,7 +298,8 @@ class BeatmapsController extends Controller
                 $userScore = (clone $query)->where('user_id', $currentUser->user_id)->first();
             }
 
-            $scoreTransformer = $this->getScoreTransformer();
+            $scoreTransformer = new ScoreTransformer();
+
             $results = [
                 'scores' => json_collection(
                     $query->visibleUsers()->forListing(),
@@ -309,11 +309,12 @@ class BeatmapsController extends Controller
             ];
 
             if (isset($userScore)) {
-                // TODO: this should be moved to user_score
-                $results['userScore'] = [
+                $results['user_score'] = [
                     'position' => $userScore->userRank(compact('type', 'mods')),
                     'score' => json_item($userScore, $scoreTransformer, static::DEFAULT_SCORE_INCLUDES),
                 ];
+                // TODO: remove this old camelCased json field
+                $results['userScore'] = $results['user_score'];
             }
 
             return $results;
@@ -390,7 +391,7 @@ class BeatmapsController extends Controller
                 'position' => $score->userRank(compact('mods')),
                 'score' => json_item(
                     $score,
-                    $this->getScoreTransformer(),
+                    new ScoreTransformer(),
                     ['beatmap', ...static::DEFAULT_SCORE_INCLUDES]
                 ),
             ];
@@ -429,7 +430,7 @@ class BeatmapsController extends Controller
             ])->get();
 
         return [
-            'scores' => json_collection($scores, $this->getScoreTransformer()),
+            'scores' => json_collection($scores, new ScoreTransformer()),
         ];
     }
 
@@ -446,10 +447,5 @@ class BeatmapsController extends Controller
         }
 
         return $query;
-    }
-
-    private function getScoreTransformer()
-    {
-        return is_api_request() ? new ScoreTransformer() : new SoloScoreTransformer();
     }
 }

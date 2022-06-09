@@ -6,6 +6,7 @@ import StringWithComponent from 'components/string-with-component';
 import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
 import { route } from 'laroute';
 import { times } from 'lodash';
+import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
@@ -14,10 +15,19 @@ import { formatNumber } from 'utils/html';
 const bn = 'beatmapset-hype';
 
 interface Props {
-  beatmapset: BeatmapsetJsonForShow & { hype: NonNullable<BeatmapsetJsonForShow['hype']> };
+  beatmapset: BeatmapsetJsonForShow;
 }
 
-export default class Hype extends React.PureComponent<Props> {
+@observer
+export default class Hype extends React.Component<Props> {
+  private get hype() {
+    if (this.props.beatmapset.hype == null) {
+      throw new Error('beatmapset is missing hype data');
+    }
+
+    return this.props.beatmapset.hype;
+  }
+
   private get hypeUrl() {
     return `${route('beatmapsets.discussion', {
       beatmap: '-',
@@ -85,19 +95,19 @@ export default class Hype extends React.PureComponent<Props> {
               {osu.trans('beatmaps.hype.section_title')}
             </span>
             <span>
-              {formatNumber(this.props.beatmapset.hype.current)}
+              {formatNumber(this.hype.current)}
               {' / '}
-              {formatNumber(this.props.beatmapset.hype.required)}
+              {formatNumber(this.hype.required)}
             </span>
           </div>
 
           <div className={`${bn}__lights`}>
-            {times(this.props.beatmapset.hype.required).map((i) => (
+            {times(this.hype.required).map((i) => (
               <div
                 key={i}
                 className={classWithModifiers('bar', [
                   'beatmapset-hype',
-                  i < this.props.beatmapset.hype.current ? 'beatmapset-on' : 'beatmapset-off',
+                  i < this.hype.current ? 'beatmapset-on' : 'beatmapset-off',
                 ])}
               />
             ))}

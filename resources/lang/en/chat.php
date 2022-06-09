@@ -15,6 +15,7 @@ return [
     ],
 
     'channels' => [
+        'create' => 'create announcement',
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Announcements',
@@ -25,12 +26,25 @@ return [
         ],
     ],
 
+    'form' => [
+        'title' => [
+            'announcement' => 'Create New Announcement',
+        ],
+
+        'labels' => [
+            'description' => 'description',
+            'name' => 'room name',
+            'users' => 'players to add',
+        ],
+    ],
+
     'not_found' => [
         'message' => 'There\'s nothing here, maybe you left the channel or it doesn\'t exist...',
         'title' => 'channel not found',
     ],
 
     'input' => [
+        'create' => 'Create',
         'disabled' => 'unable to send message...',
         'disconnected' => 'Disconnected',
         'placeholder' => 'type message...',

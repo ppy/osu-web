@@ -3,6 +3,7 @@
 
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
+import { observer } from 'mobx-react';
 import * as React from 'react';
 import { formatDuration, formatNumber } from 'utils/html';
 
@@ -16,7 +17,8 @@ interface Props {
   beatmapset: BeatmapsetJson;
 }
 
-export default class BeatmapBasicStats extends React.PureComponent<Props> {
+@observer
+export default class BeatmapBasicStats extends React.Component<Props> {
   render() {
     return (
       <div className={bn}>

@@ -5,15 +5,16 @@ import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
 import GenreJson from 'interfaces/genre-json';
 import LanguageJson from 'interfaces/language-json';
 import { route } from 'laroute';
-import { action, makeObservable, observable } from 'mobx';
+import { action, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
 import { parseJson } from 'utils/json';
 import { getInt } from 'utils/math';
+import Controller from './controller';
 
 interface Props {
-  beatmapset: BeatmapsetJsonForShow;
+  controller: Controller;
   onClose: () => void;
 }
 
@@ -35,17 +36,28 @@ export default class MetadataEditor extends React.Component<Props> {
   @observable private offset: string;
   @observable private xhr: JQuery.jqXHR<BeatmapsetJsonForShow> | null = null;
 
+  private get controller() {
+    return this.props.controller;
+  }
+
   private get canEditOffset() {
-    return this.props.beatmapset.current_user_attributes.can_edit_offset;
+    return this.controller.beatmapset.current_user_attributes.can_edit_offset;
   }
 
   constructor(props: Props) {
     super(props);
 
-    this.genreId = this.props.beatmapset.genre.id ?? 0;
-    this.languageId = this.props.beatmapset.language.id ?? 0;
-    this.nsfw = this.props.beatmapset.nsfw ?? false;
-    this.offset = this.props.beatmapset.offset.toString();
+    const initialState = runInAction(() => ({
+      genreId: this.controller.beatmapset.genre.id ?? 0,
+      languageId: this.controller.beatmapset.language.id ?? 0,
+      nsfw: this.controller.beatmapset.nsfw ?? false,
+      offset: this.controller.beatmapset.offset.toString(),
+    }));
+
+    this.genreId = initialState.genreId;
+    this.languageId = initialState.languageId;
+    this.nsfw = initialState.nsfw;
+    this.offset = initialState.offset;
 
     makeObservable(this);
   }
@@ -166,7 +178,7 @@ export default class MetadataEditor extends React.Component<Props> {
 
   @action
   private readonly save = () => {
-    this.xhr = $.ajax(route('beatmapsets.update', { beatmapset: this.props.beatmapset.id }), {
+    this.xhr = $.ajax(route('beatmapsets.update', { beatmapset: this.controller.beatmapset.id }), {
       data: { beatmapset: {
         genre_id: this.genreId,
         language_id: this.languageId,
@@ -177,10 +189,11 @@ export default class MetadataEditor extends React.Component<Props> {
     });
     this.xhr.fail(onError).always(action(() => {
       this.xhr = null;
-    })).done((beatmapset) => {
-      $.publish('beatmapset:set', { beatmapset });
-      this.props.onClose();
-    });
+    }))
+      .done((beatmapset) => runInAction(() => {
+        this.controller.state.beatmapset = beatmapset;
+        this.props.onClose();
+      }));
   };
 
   @action

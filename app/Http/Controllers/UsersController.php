@@ -23,7 +23,6 @@ use App\Models\UserAccountHistory;
 use App\Models\UserNotFound;
 use App\Transformers\CurrentUserTransformer;
 use App\Transformers\ScoreTransformer;
-use App\Transformers\Solo\ScoreTransformer as SoloScoreTransformer;
 use App\Transformers\UserCompactTransformer;
 use App\Transformers\UserTransformer;
 use Auth;
@@ -251,7 +250,7 @@ class UsersController extends Controller
      *
      * Field | Type                          | Description
      * ----- | ----------------------------- | -----------
-     * users | [UserCompact](#usercompact)[] | Includes: country, cover, groups, statistics_fruits, statistics_mania, statistics_osu, statistics_taiko.
+     * users | [UserCompact](#usercompact)[] | Includes: country, cover, groups, statistics_rulesets.
      *
      * @queryParam ids[] User id to be returned. Specify once for each user id requested. Up to 50 users can be requested at once. Example: 1
      *
@@ -449,13 +448,34 @@ class UsersController extends Controller
      *
      * See [Get User](#get-user).
      *
+     * Additionally, `statistics_rulesets` is included, containing statistics for all rulesets.
+     *
      * @urlParam mode string [GameMode](#gamemode). User default mode will be used if not specified. Example: osu
      *
      * @response "See User object section"
      */
     public function me($mode = null)
     {
-        return static::show(auth()->user()->user_id, $mode);
+        $user = auth()->user();
+        $currentMode = $mode ?? $user->playmode;
+
+        if (!Beatmap::isModeValid($currentMode)) {
+            abort(404);
+        }
+
+        $userIncludes = [
+            ...$this->showUserIncludes(),
+            ...array_map(
+                fn (string $ruleset) => "statistics_rulesets.{$ruleset}",
+                array_keys(Beatmap::MODES),
+            ),
+        ];
+
+        return json_item(
+            $user,
+            (new UserTransformer())->setMode($currentMode),
+            $userIncludes
+        );
     }
 
     /**
@@ -518,40 +538,7 @@ class UsersController extends Controller
             abort(404);
         }
 
-        $userIncludes = [
-            ...UserTransformer::PROFILE_HEADER_INCLUDES,
-            'account_history',
-            'beatmap_playcounts_count',
-            'favourite_beatmapset_count',
-            'graveyard_beatmapset_count',
-            'guest_beatmapset_count',
-            'loved_beatmapset_count',
-            'monthly_playcounts',
-            'page',
-            'pending_beatmapset_count',
-            'rankHistory',
-            'rank_history',
-            'ranked_beatmapset_count',
-            'replays_watched_counts',
-            'scores_best_count',
-            'scores_first_count',
-            'scores_pinned_count',
-            'scores_recent_count',
-            'statistics',
-            'statistics.country_rank',
-            'statistics.rank',
-            'statistics.variants',
-            'user_achievements',
-
-            // TODO: deprecated
-            'ranked_and_approved_beatmapset_count',
-            'unranked_beatmapset_count',
-        ];
-
-        if (priv_check('UserSilenceShowExtendedInfo')->can() && !is_api_request()) {
-            $userIncludes[] = 'account_history.actor';
-            $userIncludes[] = 'account_history.supporting_url';
-        }
+        $userIncludes = $this->showUserIncludes();
 
         $userArray = json_item(
             $user,
@@ -730,12 +717,12 @@ class UsersController extends Controller
 
                 // Score
                 case 'scoresBest':
-                    $transformer = $this->getScoreTransformer();
+                    $transformer = new ScoreTransformer();
                     $includes = [...ScoreTransformer::USER_PROFILE_INCLUDES, 'weight'];
                     $collection = $user->beatmapBestScores($options['mode'], $perPage, $offset, ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
                     break;
                 case 'scoresFirsts':
-                    $transformer = $this->getScoreTransformer();
+                    $transformer = new ScoreTransformer();
                     $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
                     $query = $user->scoresFirst($options['mode'], true)
                         ->visibleUsers()
@@ -743,18 +730,18 @@ class UsersController extends Controller
                         ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
                     break;
                 case 'scoresPinned':
-                    $transformer = $this->getScoreTransformer();
+                    $transformer = new ScoreTransformer();
                     $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
                     $query = $user
                         ->scorePins()
-                        ->forMode($options['mode'])
+                        ->forRuleset($options['mode'])
                         ->withVisibleScore()
                         ->with(array_map(fn ($include) => "score.{$include}", ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD))
                         ->reorderBy('display_order', 'asc');
                     $collectionFn = fn ($pins) => $pins->map->score;
                     break;
                 case 'scoresRecent':
-                    $transformer = $this->getScoreTransformer();
+                    $transformer = new ScoreTransformer();
                     $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
                     $query = $user->scores($options['mode'], true)
                         ->includeFails($options['includeFails'] ?? false)
@@ -776,8 +763,43 @@ class UsersController extends Controller
         }
     }
 
-    private function getScoreTransformer()
+    private function showUserIncludes()
     {
-        return is_api_request() ? new ScoreTransformer() : new SoloScoreTransformer();
+        $userIncludes = [
+            ...UserTransformer::PROFILE_HEADER_INCLUDES,
+            'account_history',
+            'beatmap_playcounts_count',
+            'favourite_beatmapset_count',
+            'graveyard_beatmapset_count',
+            'guest_beatmapset_count',
+            'loved_beatmapset_count',
+            'monthly_playcounts',
+            'page',
+            'pending_beatmapset_count',
+            'rankHistory',
+            'rank_history',
+            'ranked_beatmapset_count',
+            'replays_watched_counts',
+            'scores_best_count',
+            'scores_first_count',
+            'scores_pinned_count',
+            'scores_recent_count',
+            'statistics',
+            'statistics.country_rank',
+            'statistics.rank',
+            'statistics.variants',
+            'user_achievements',
+
+            // TODO: deprecated
+            'ranked_and_approved_beatmapset_count',
+            'unranked_beatmapset_count',
+        ];
+
+        if (priv_check('UserSilenceShowExtendedInfo')->can() && !is_api_request()) {
+            $userIncludes[] = 'account_history.actor';
+            $userIncludes[] = 'account_history.supporting_url';
+        }
+
+        return $userIncludes;
     }
 }

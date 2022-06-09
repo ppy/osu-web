@@ -16,15 +16,17 @@
     </div>
 @endif
 
+@if ($page->isOutdatedTranslation())
+    <div class="wiki-notice">
+        {!! osu_trans('wiki.show.translation.outdated', [
+            'default' => '<a href="'.e(wiki_url($page->path, config('app.fallback_locale'))).'">'.e(osu_trans('wiki.show.translation.default')).'</a>',
+        ]) !!}
+    </div>
+@endif
+
 @if ($page->isOutdated())
     <div class="wiki-notice">
-        @if ($page->isTranslation())
-            {!! osu_trans('wiki.show.translation.outdated', [
-                'default' => '<a href="'.e(wiki_url($page->path, config('app.fallback_locale'))).'">'.e(osu_trans('wiki.show.translation.default')).'</a>',
-            ]) !!}
-        @else
-            {{ osu_trans('wiki.show.incomplete_or_outdated') }}
-        @endif
+        {{ osu_trans('wiki.show.incomplete_or_outdated') }}
     </div>
 @elseif ($page->needsCleanup())
     <div class="wiki-notice">
