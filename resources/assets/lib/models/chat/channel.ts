@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { markAsRead as apiMarkAsRead, getChannel, getMessages } from 'chat/chat-api';
+import { markAsRead, getChannel, getMessages } from 'chat/chat-api';
 import ChannelJson, { ChannelType, SupportedChannelType, supportedTypeLookup } from 'interfaces/chat/channel-json';
 import MessageJson from 'interfaces/chat/message-json';
 import { minBy, sortBy } from 'lodash';
@@ -32,7 +32,8 @@ export default class Channel {
   };
   @observable userIds: number[] = [];
 
-  private markingAsReadTimeout?: number;
+  private markAsReadLastSent = 0;
+  private markAsReadTimeout: number | null = null;
   @observable private messagesMap = new Map<number | string, Message>();
   private serverLastMessageId?: number;
   @observable private usersLoaded = false;
@@ -111,11 +112,6 @@ export default class Channel {
     }
 
     return this.userIds.find((userId: number) => userId !== core.currentUserOrFail.id);
-  }
-
-  @computed
-  get shouldMarkAsRead() {
-    return this.isUnread && this.uiState.autoScroll;
   }
 
   @computed
@@ -235,33 +231,6 @@ export default class Channel {
   }
 
   @action
-  markAsRead() {
-    if (!this.shouldMarkAsRead || this.markingAsReadTimeout != null) {
-      return;
-    }
-
-    this.moveMarkAsReadMarker();
-
-    const currentTimeout = window.setTimeout(action(() => {
-      // allow next debounce to be queued again
-      if (this.markingAsReadTimeout === currentTimeout) {
-        this.markingAsReadTimeout = undefined;
-      }
-
-      // TODO: need to mark again in case the marker has moved?
-
-      // We don't need to send mark-as-read for our own messages, as the cursor is automatically bumped forward server-side when sending messages.
-      if (this.lastMessage?.sender.id === core.currentUser?.id) {
-        return;
-      }
-
-      apiMarkAsRead(this.channelId, this.lastMessageId);
-    }), 1000);
-
-    this.markingAsReadTimeout = currentTimeout;
-  }
-
-  @action
   moveMarkAsReadMarker() {
     this.setLastReadId(this.lastMessageId);
   }
@@ -273,6 +242,25 @@ export default class Channel {
         this.messagesMap.delete(message.messageId);
       }
     }
+  }
+
+  @action
+  sendMarkAsRead() {
+    const lastReadId = this.lastReadId ?? 0;
+    if (this.markAsReadLastSent >= lastReadId || this.markAsReadTimeout != null) return;
+
+    // TODO: check if can just replace with debounce?
+    const currentTimeout = window.setTimeout(action(() => {
+      // allow next debounce to be queued again
+      if (this.markAsReadTimeout === currentTimeout) {
+        this.markAsReadTimeout = null;
+      }
+
+      this.markAsReadLastSent = lastReadId;
+      markAsRead(this.channelId, lastReadId);
+    }), 1000);
+
+    this.markAsReadTimeout = currentTimeout;
   }
 
   @action
@@ -293,6 +281,7 @@ export default class Channel {
     if (json.current_user_attributes != null) {
       this.canMessageError = json.current_user_attributes.can_message_error;
       this.setLastReadId(json.current_user_attributes.last_read_id);
+      this.markAsReadLastSent = json.current_user_attributes.last_read_id;
     }
   }
 
