@@ -272,8 +272,7 @@ export default class ConversationView extends React.Component<Props> {
   };
 
   private maybeMarkAsRead() {
-    if (this.currentChannel == null) return;
-    core.dataStore.channelStore.markAsRead(this.currentChannel.channelId);
+    this.currentChannel?.markAsRead();
   }
 
   private renderCannotSendMessage() {

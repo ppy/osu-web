@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { getChannel, getMessages } from 'chat/chat-api';
+import { markAsRead as apiMarkAsRead, getChannel, getMessages } from 'chat/chat-api';
 import ChannelJson, { ChannelType, SupportedChannelType, supportedTypeLookup } from 'interfaces/chat/channel-json';
 import MessageJson from 'interfaces/chat/message-json';
 import { minBy, sortBy } from 'lodash';
@@ -32,6 +32,7 @@ export default class Channel {
   };
   @observable userIds: number[] = [];
 
+  private markingAsReadTimeout?: number;
   @observable private messagesMap = new Map<number | string, Message>();
   private serverLastMessageId?: number;
   @observable private usersLoaded = false;
@@ -231,6 +232,33 @@ export default class Channel {
         this.usersLoaded = true;
       });
     });
+  }
+
+  @action
+  markAsRead() {
+    if (!this.shouldMarkAsRead || this.markingAsReadTimeout != null) {
+      return;
+    }
+
+    this.moveMarkAsReadMarker();
+
+    const currentTimeout = window.setTimeout(action(() => {
+      // allow next debounce to be queued again
+      if (this.markingAsReadTimeout === currentTimeout) {
+        this.markingAsReadTimeout = undefined;
+      }
+
+      // TODO: need to mark again in case the marker has moved?
+
+      // We don't need to send mark-as-read for our own messages, as the cursor is automatically bumped forward server-side when sending messages.
+      if (this.lastMessage?.sender.id === core.currentUser?.id) {
+        return;
+      }
+
+      apiMarkAsRead(this.channelId, this.lastMessageId);
+    }), 1000);
+
+    this.markingAsReadTimeout = currentTimeout;
   }
 
   @action

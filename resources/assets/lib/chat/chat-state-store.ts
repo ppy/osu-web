@@ -145,9 +145,7 @@ export default class ChatStateStore implements DispatchListener {
     if (this.selected === channelId) return;
 
     // mark the channel being switched away from as read.
-    if (this.selectedChannel != null) {
-      this.channelStore.markAsRead(this.selectedChannel.channelId);
-    }
+    this.selectedChannel?.markAsRead();
 
     this.selected = channelId;
 
