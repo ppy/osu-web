@@ -113,6 +113,11 @@ export default class Channel {
   }
 
   @computed
+  get shouldMarkAsRead() {
+    return this.isUnread && this.uiState.autoScroll;
+  }
+
+  @computed
   get supportedType() {
     return supportedTypeLookup.has(this.type) ? this.type as SupportedChannelType : null;
   }
