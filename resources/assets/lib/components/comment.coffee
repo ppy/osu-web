@@ -181,7 +181,7 @@ export class Comment extends React.PureComponent
               @renderDeletedBy()
               @renderRepliesText()
 
-            @renderReplyBox()
+            @renderReplyBox(meta)
 
         if @props.comment.repliesCount > 0
           div
@@ -317,11 +317,12 @@ export class Comment extends React.PureComponent
           span className: "fas #{if @state.expandReplies then 'fa-angle-up' else 'fa-angle-down'}"
 
 
-  renderReplyBox: =>
+  renderReplyBox: (commentableMeta) =>
     if @state.showNewReply
       div className: 'comment__reply-box',
         el CommentEditor,
           close: @closeNewReply
+          commentableMeta: commentableMeta
           modifiers: @props.modifiers
           onPosted: @handleReplyPosted
           parent: @props.comment
