@@ -37,8 +37,7 @@ export class Comments extends React.PureComponent
 
         div className: 'comments__new',
           el CommentEditor,
-            commentableType: @props.commentableType
-            commentableId: @props.commentableId
+            commentableMeta: @props.commentableMeta
             focus: false
             modifiers: @props.modifiers
 

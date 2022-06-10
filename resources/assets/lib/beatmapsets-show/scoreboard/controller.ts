@@ -150,8 +150,8 @@ export default class Controller {
     this.xhr.done((data) => runInAction(() => {
       this.allData[dataKey] = data;
       this.xhrState = null;
-    })).fail(action(() => {
-      this.xhrState = 'error';
+    })).fail((_xhr, status) => runInAction(() => {
+      this.xhrState = status === 'abort' ? null : 'error';
     }));
   };
 
