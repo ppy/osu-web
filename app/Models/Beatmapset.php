@@ -111,6 +111,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     protected $casts = [
         'active' => 'boolean',
+        'comment_locked' => 'boolean',
         'discussion_enabled' => 'boolean',
         'discussion_locked' => 'boolean',
         'download_disabled' => 'boolean',
@@ -920,6 +921,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     public function requiredHype()
     {
         return config('osu.beatmapset.required_hype');
+    }
+
+    public function commentLocked(): bool
+    {
+        return $this->comment_locked || $this->downloadLimited();
     }
 
     public function commentableTitle()
