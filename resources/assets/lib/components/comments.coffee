@@ -56,8 +56,7 @@ export class Comments extends React.PureComponent
             el DeletedCommentsCount, { comments, modifiers: 'top' }
 
             el CommentShowMore,
-              commentableType: @props.commentableType
-              commentableId: @props.commentableId
+              commentableMeta: @props.commentableMeta
               comments: comments
               total: uiState.comments.topLevelCount
               sort: uiState.comments.currentSort
