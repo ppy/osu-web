@@ -79,7 +79,8 @@ class UserFactory extends Factory
         return $this->state(['osu_subscriber' => true, 'osu_subscriptionexpiry' => now()->addMonthNoOverflow(1)]);
     }
 
-    public function tournamentBanned() {
+    public function tournamentBanned()
+    {
         return $this->has(UserAccountHistory::factory()->tournamentBan(), 'accountHistories');
     }
 
