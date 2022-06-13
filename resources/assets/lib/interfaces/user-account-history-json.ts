@@ -8,7 +8,7 @@ export default interface UserAccountHistoryJson {
   description: string;
   id: number;
   length: number;
-  pernament: boolean;
+  permanent: boolean;
   supporting_url?: string;
   timestamp: string;
   type: 'note' | 'restriction' | 'silence' | 'tournament_ban';
