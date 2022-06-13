@@ -16,11 +16,11 @@ Run build with `--pull --no-cache` parameters to ensure latest image and package
 
 ## Configuration files
 
-There are three main configuration files which should be mounted to the container:
+There are three main configuration files which can be mounted to the container:
 
 - `/app/.env`: environment file. Can also be done by passing them as environment variables
-- `/app/storage/oauth-private.key`: OAuth private key. Required
-- `/app/storage/oauth-public.key`: OAuth public key for the private key above. Required
+- `/app/storage/oauth-private.key`: OAuth private key. Alternatively can be set using environment variable `PASSPORT_PRIVATE_KEY`
+- `/app/storage/oauth-public.key`: OAuth public key for the private key above. Similarly can be an environment variable `PASSPORT_PUBLIC_KEY`
 
 Note that as the actual process is run as non-root user, the files must be world-readable.
 

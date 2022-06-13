@@ -29,7 +29,9 @@ export function urlGroup(item: Notification) {
     case 'beatmapset':
       return route('beatmapsets.discussion', { beatmapset: item.objectId });
     case 'channel':
-      return item.details.channel_id != null ? route('chat.index', { channel_id: item.details.channelId }) : route('chat.index', { sendto: item.sourceUserId });
+      return item.details.channelId != null
+        ? route('chat.index', { channel_id: item.details.channelId })
+        : route('chat.index', { sendto: item.sourceUserId });
     case 'forum_topic':
       return route('forum.topics.show', { start: 'unread', topic: item.objectId });
   }
