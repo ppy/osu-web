@@ -32,6 +32,7 @@ class UserAccountHistory extends Model
         'note' => 0,
         'restriction' => 1,
         'silence' => 2,
+        'tournament_ban' => 3,
     ];
 
     public static function addNote($user, $message, $actor = null)
@@ -68,12 +69,12 @@ class UserAccountHistory extends Model
 
     public function scopeBans($query)
     {
-        return $query->where('ban_status', '<>', static::TYPES['note'])->orderBy('timestamp', 'desc');
+        return $query->whereIn('ban_status', [static::TYPES['restriction'], static::TYPES['silence']])->orderBy('timestamp', 'desc');
     }
 
     public function scopeDefault($query)
     {
-        return $query->where('ban_status', static::TYPES['silence']);
+        return $query->whereIn('ban_status', [static::TYPES['silence'], static::TYPES['tournament_ban']]);
     }
 
     public function scopeRecent($query)

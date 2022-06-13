@@ -24,7 +24,7 @@ interface ColumnProps {
 }
 
 const ColumnAction = ({ history }: ColumnProps) => (
-  <div className={`${bn}__action ${bn}__action--${history.type}`}>
+  <div className={`${bn}__action ${bn}__action--${history.type.replace(/_/g, '-')}`}>
     {osu.trans(`users.show.extra.account_standing.recent_infringements.actions.${history.type}`)}
   </div>
 );
