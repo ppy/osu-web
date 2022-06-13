@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapJson from 'interfaces/beatmap-json';
+import { ensureGameMode } from 'interfaces/game-mode';
 import { getInt } from './math';
 import { currentUrl } from './turbolinks';
 
@@ -10,7 +11,7 @@ export function parse(hash: string) {
 
   return {
     beatmapId: getInt(id),
-    playmode: osu.presence(mode),
+    playmode: ensureGameMode(mode),
   };
 }
 

@@ -13,10 +13,9 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import PpValue from 'scores/pp-value';
-import { rulesetName } from 'utils/beatmap-helper';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
-import { hasMenu, isPerfectCombo, modeAttributesMap } from 'utils/score-helper';
+import { hasMenu, isPerfectCombo, modeAttributesMap, scoreUrl } from 'utils/score-helper';
 
 const bn = 'beatmap-scoreboard-table';
 
@@ -52,7 +51,7 @@ interface Props {
 export default class ScoreboardTableRow extends React.Component<Props> {
   @computed
   get scoreUrl() {
-    return route('scores.show', { mode: rulesetName(this.props.score.ruleset_id), score: this.props.score.best_id });
+    return scoreUrl(this.props.score);
   }
 
   constructor(props: Props) {

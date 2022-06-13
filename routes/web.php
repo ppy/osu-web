@@ -102,8 +102,9 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::group(['prefix' => 'scores/{mode}', 'as' => 'scores.'], function () {
         Route::get('{score}/download', 'ScoresController@download')->name('download');
-        Route::get('{score}', 'ScoresController@show')->name('show');
+        Route::get('{score}', 'ScoresController@show')->name('show-legacy');
     });
+    Route::resource('scores', 'ScoresController', ['only' => ['show']]);
 
     Route::delete('score-pins', 'ScorePinsController@destroy')->name('score-pins.destroy');
     Route::put('score-pins', 'ScorePinsController@reorder')->name('score-pins.reorder');
@@ -182,7 +183,8 @@ Route::group(['middleware' => ['web']], function () {
                 Route::delete('{channel}/users/{user}', 'ChannelsController@part')->name('part');
                 Route::put('{channel}/mark-as-read/{message}', 'ChannelsController@markAsRead')->name('mark-as-read');
             });
-            Route::apiResource('channels', 'ChannelsController', ['only' => ['index', 'show']]);
+            Route::apiResource('channels', 'ChannelsController', ['only' => ['index', 'show', 'store']]);
+            Route::apiResource('users', 'UsersController', ['only' => ['index']]);
         });
         Route::resource('chat', 'ChatController', ['only' => ['index']]);
     });
@@ -288,7 +290,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('users/{user}/posts', 'UsersController@posts')->name('users.posts');
     Route::get('users/{user}/{mode?}', 'UsersController@show')->name('users.show');
-    Route::resource('users', 'UsersController', ['only' => 'store']);
+    Route::resource('users', 'UsersController', ['only' => ['index', 'store']]);
 
     Route::get('wiki/{locale}/Sitemap', 'WikiController@sitemap')->name('wiki.sitemap');
     Route::get('wiki/images/{path}', 'WikiController@image')->name('wiki.image')->where('path', '.+');

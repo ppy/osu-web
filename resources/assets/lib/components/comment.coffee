@@ -95,26 +95,25 @@ export class Comment extends React.PureComponent
       # being clipped instead of just single lone line (or worse no more lines because of rounding up).
       longContent = @state.lines? && @state.lines.count >= CLIP_LINES + 2
 
-      modifiers = @props.modifiers?[..] ? []
-      modifiers.push 'top' if @props.depth == 0
+      blockClass = classWithModifiers 'comment', @props.modifiers, top: @props.depth == 0
 
-      mainModifiers = []
-      mainModifiers.push 'deleted' if @props.comment.isDeleted
-      mainModifiers.push 'clip' if @state.clipped && longContent
+      mainClass = classWithModifiers 'comment__main',
+        deleted: @props.comment.isDeleted
+        clip: @state.clipped && longContent
 
-      repliesClass = 'comment__replies'
-      repliesClass += ' comment__replies--indented' if @props.depth < MAX_DEPTH
-      repliesClass += ' comment__replies--hidden' if !@state.expandReplies
+      repliesClass = classWithModifiers 'comment__replies',
+        indented: @props.depth < MAX_DEPTH
+        hidden: !@state.expandReplies
 
       div
-        className: classWithModifiers 'comment', modifiers
+        className: blockClass
 
         @renderRepliesToggle()
         @renderCommentableMeta(meta)
         @renderToolbar()
 
         div
-          className: classWithModifiers('comment__main', mainModifiers)
+          className: mainClass
           style:
             '--line-height': if @state.lines? then "#{@state.lines.lineHeight}px" else undefined
             '--clip-lines': CLIP_LINES
@@ -182,7 +181,7 @@ export class Comment extends React.PureComponent
               @renderDeletedBy()
               @renderRepliesText()
 
-            @renderReplyBox()
+            @renderReplyBox(meta)
 
         if @props.comment.repliesCount > 0
           div
@@ -318,11 +317,12 @@ export class Comment extends React.PureComponent
           span className: "fas #{if @state.expandReplies then 'fa-angle-up' else 'fa-angle-down'}"
 
 
-  renderReplyBox: =>
+  renderReplyBox: (commentableMeta) =>
     if @state.showNewReply
       div className: 'comment__reply-box',
         el CommentEditor,
           close: @closeNewReply
+          commentableMeta: commentableMeta
           modifiers: @props.modifiers
           onPosted: @handleReplyPosted
           parent: @props.comment

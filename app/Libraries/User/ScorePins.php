@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace App\Libraries\User;
 
+use App\Libraries\MorphMap;
 use App\Models\Beatmap;
 use App\Models\Score;
 use App\Models\ScorePin;
@@ -40,8 +41,7 @@ class ScorePins
     public function reset(): void
     {
         foreach (Beatmap::MODES as $mode => $modeInt) {
-            $class = Score\Best\Model::getClassByString($mode);
-            $type = (new $class())->getMorphClass();
+            $type = MorphMap::getType(Score\Best\Model::getClassByString($mode));
             request()->attributes->remove(static::REQUEST_ATTRIBUTE_KEY_PREFIX.$type);
         }
     }

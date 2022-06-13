@@ -42,7 +42,7 @@ jobs:
           build-args: |
             "APP_URL=https://osu.ppy.sh"
             "DOCS_URL=https://osu.ppy.sh/docs/"
-            "GIT_SHA=${{ github.ref_name }}"
+            "GIT_SHA=osu-web@${{ github.ref_name }}"
           context: .
           file: ./Dockerfile.deployment
           platforms: linux/amd64
@@ -59,4 +59,4 @@ jobs:
           SENTRY_URL: https://sentry.ppy.sh/
         with:
           environment: production
-          version: ${{ github.ref }}
+          version: osu-web@${{ github.ref_name }}

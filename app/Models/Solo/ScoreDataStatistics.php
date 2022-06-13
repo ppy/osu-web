@@ -15,12 +15,14 @@ class ScoreDataStatistics implements JsonSerializable
     public int $great;
     public int $ignoreHit;
     public int $ignoreMiss;
+    public int $largeBonus;
     public int $largeTickHit;
     public int $largeTickMiss;
     public int $meh;
     public int $miss;
     public int $ok;
     public int $perfect;
+    public int $smallBonus;
     public int $smallTickHit;
     public int $smallTickMiss;
 
@@ -44,12 +46,14 @@ class ScoreDataStatistics implements JsonSerializable
                 'great',
                 'ignoreHit',
                 'ignoreMiss',
+                'largeBonus',
                 'largeTickHit',
                 'largeTickMiss',
                 'meh',
                 'miss',
                 'ok',
                 'perfect',
+                'smallBonus',
                 'smallTickHit',
                 'smallTickMiss',
             ];

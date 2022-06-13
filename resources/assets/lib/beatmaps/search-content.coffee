@@ -100,10 +100,7 @@ export class SearchContent extends React.Component
 
             if !controller.isSupporterMissing
               div className: 'beatmapsets__paginator',
-                el Paginator,
-                  error: controller.error
-                  loading: controller.isPaging
-                  more: controller.hasMore
+                el Paginator
 
 
 renderLinkToSupporterTag = (filterText) ->

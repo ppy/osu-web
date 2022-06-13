@@ -75,7 +75,7 @@ return [
 
     'comment' => [
         'store' => [
-            'disabled' => '',
+            'disabled' => 'Bình luận bị tắt',
         ],
         'update' => [
             'deleted' => "Không thể chỉnh sửa bài đăng đã bị xóa.",

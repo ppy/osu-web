@@ -1,38 +1,42 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import MetadataEditor from 'beatmapsets-show/metadata-editor';
 import BbcodeEditor, { OnChangeProps } from 'components/bbcode-editor';
 import { Modal } from 'components/modal';
 import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
 import { route } from 'laroute';
 import { round, sum } from 'lodash';
-import { action, computed, makeObservable, observable } from 'mobx';
+import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { onErrorWithClick } from 'utils/ajax';
 import { formatNumber } from 'utils/html';
+import Controller from './controller';
+import MetadataEditor from './metadata-editor';
 
 interface Props {
-  beatmap: BeatmapsetJsonForShow['beatmaps'][number];
-  beatmapset: BeatmapsetJsonForShow;
+  controller: Controller;
 }
 
 @observer
 export default class Info extends React.Component<Props> {
-  @observable private isBusy = false;
   @observable private isEditingDescription = false;
   @observable private isEditingMetadata = false;
+  @observable private saveDescriptionXhr: JQuery.jqXHR<BeatmapsetJsonForShow> | null = null;
+
+  private get controller() {
+    return this.props.controller;
+  }
 
   @computed
   private get failData() {
-    if (this.props.beatmap.failtimes.exit.length !== this.props.beatmap.failtimes.fail.length) {
+    if (this.controller.currentBeatmap.failtimes.exit.length !== this.controller.currentBeatmap.failtimes.fail.length) {
       throw new Error('invalid failtimes data (different length)');
     }
 
-    const fails = this.props.beatmap.failtimes.exit.map((exitValue, i) => [
+    const fails = this.controller.currentBeatmap.failtimes.exit.map((exitValue, i) => [
       exitValue,
-      this.props.beatmap.failtimes.fail[i],
+      this.controller.currentBeatmap.failtimes.fail[i],
     ]);
 
     return {
@@ -42,11 +46,11 @@ export default class Info extends React.Component<Props> {
   }
 
   private get withEditDescription() {
-    return this.props.beatmapset.description.bbcode != null;
+    return this.controller.beatmapset.description.bbcode != null;
   }
 
   private get withEditMetadata() {
-    return this.props.beatmapset.current_user_attributes?.can_edit_metadata ?? false;
+    return this.controller.beatmapset.current_user_attributes?.can_edit_metadata ?? false;
   }
 
   constructor(props: Props) {
@@ -55,8 +59,12 @@ export default class Info extends React.Component<Props> {
     makeObservable(this);
   }
 
+  componentWillUnmount() {
+    this.saveDescriptionXhr?.abort();
+  }
+
   render() {
-    const tags = this.props.beatmapset.tags
+    const tags = this.controller.beatmapset.tags
       .split(' ')
       .filter(osu.present)
       .slice(0, 21);
@@ -73,11 +81,11 @@ export default class Info extends React.Component<Props> {
           <Modal onClose={this.handleCloseDescriptionEditor} visible>
             <div className='osu-page'>
               <BbcodeEditor
-                key={this.props.beatmapset.id /* ensure component is reset if beatmapset changes */}
-                disabled={this.isBusy}
+                key={this.controller.beatmapset.id /* ensure component is reset if beatmapset changes */}
+                disabled={this.saveDescriptionXhr != null}
                 modifiers='beatmapset-description-editor'
                 onChange={this.handleEditorChange}
-                rawValue={this.props.beatmapset.description.bbcode ?? ''}
+                rawValue={this.controller.beatmapset.description.bbcode ?? ''}
               />
             </div>
           </Modal>
@@ -85,7 +93,7 @@ export default class Info extends React.Component<Props> {
 
         {this.isEditingMetadata &&
           <Modal onClose={this.handleCloseMetadataEditor} visible>
-            <MetadataEditor beatmapset={this.props.beatmapset} onClose={this.handleCloseMetadataEditor} />
+            <MetadataEditor controller={this.props.controller} onClose={this.handleCloseMetadataEditor} />
           </Modal>
         }
 
@@ -100,7 +108,7 @@ export default class Info extends React.Component<Props> {
             <div
               className='beatmapset-info__description'
               dangerouslySetInnerHTML={{
-                __html: this.props.beatmapset.description.description ?? '',
+                __html: this.controller.beatmapset.description.description ?? '',
               }}
             />
           </div>
@@ -109,16 +117,16 @@ export default class Info extends React.Component<Props> {
         <div className='beatmapset-info__box beatmapset-info__box--meta'>
           {this.withEditMetadata && this.renderEditMetadataButton()}
 
-          {osu.present(this.props.beatmapset.source) &&
+          {osu.present(this.controller.beatmapset.source) &&
             <>
               <h3 className='beatmapset-info__header'>
                 {osu.trans('beatmapsets.show.info.source')}
               </h3>
               <a
                 className='beatmapset-info__link'
-                href={route('beatmapsets.index', { q: this.props.beatmapset.source })}
+                href={route('beatmapsets.index', { q: this.controller.beatmapset.source })}
               >
-                {this.props.beatmapset.source}
+                {this.controller.beatmapset.source}
               </a>
             </>
           }
@@ -130,9 +138,9 @@ export default class Info extends React.Component<Props> {
               </h3>
               <a
                 className='beatmapset-info__link'
-                href={route('beatmapsets.index', { g: this.props.beatmapset.genre.id })}
+                href={route('beatmapsets.index', { g: this.controller.beatmapset.genre.id })}
               >
-                {this.props.beatmapset.genre.name}
+                {this.controller.beatmapset.genre.name}
               </a>
             </div>
 
@@ -142,9 +150,9 @@ export default class Info extends React.Component<Props> {
               </h3>
               <a
                 className='beatmapset-info__link'
-                href={route('beatmapsets.index', { l: this.props.beatmapset.language.id })}
+                href={route('beatmapsets.index', { l: this.controller.beatmapset.language.id })}
               >
-                {this.props.beatmapset.language.name}
+                {this.controller.beatmapset.language.name}
               </a>
             </div>
           </div>
@@ -270,7 +278,7 @@ export default class Info extends React.Component<Props> {
   }
 
   private renderPlaycountInfo() {
-    if (this.props.beatmap.playcount === 0) {
+    if (this.controller.currentBeatmap.playcount === 0) {
       return (
         <div className='beatmap-success-rate'>
           <div className='beatmap-success-rate__empty'>
@@ -280,7 +288,7 @@ export default class Info extends React.Component<Props> {
       );
     }
 
-    const percentage = round((this.props.beatmap.passcount / this.props.beatmap.playcount) * 100, 1);
+    const percentage = round((this.controller.currentBeatmap.passcount / this.controller.currentBeatmap.playcount) * 100, 1);
 
     return (
       <div className='beatmap-success-rate'>
@@ -303,7 +311,7 @@ export default class Info extends React.Component<Props> {
           style={{
             marginLeft: `${percentage}%`,
           }}
-          title={`${formatNumber(this.props.beatmap.passcount)} / ${formatNumber(this.props.beatmap.playcount)}`}
+          title={`${formatNumber(this.controller.currentBeatmap.passcount)} / ${formatNumber(this.controller.currentBeatmap.playcount)}`}
         >
           {`${percentage}%`}
         </div>
@@ -321,20 +329,20 @@ export default class Info extends React.Component<Props> {
 
   @action
   private saveDescription({ event, value }: OnChangeProps) {
-    this.isBusy = true;
+    if (this.saveDescriptionXhr != null) return;
 
-    $.ajax(route('beatmapsets.update', { beatmapset: this.props.beatmapset.id }), {
-      data: {
-        description: value,
-      },
+    this.saveDescriptionXhr = $.ajax(route('beatmapsets.update', { beatmapset: this.controller.beatmapset.id }), {
+      data: { description: value },
       method: 'PATCH',
-    }).done(action((beatmapset: BeatmapsetJsonForShow) => {
+    });
+
+    this.saveDescriptionXhr.done((beatmapset) => runInAction(() => {
       this.isEditingDescription = false;
-      $.publish('beatmapset:set', { beatmapset });
+      this.controller.state.beatmapset = beatmapset;
     })).fail(
       onErrorWithClick(event?.target),
     ).always(action(() => {
-      this.isBusy = false;
+      this.saveDescriptionXhr = null;
     }));
   }
 }

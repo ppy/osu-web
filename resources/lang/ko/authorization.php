@@ -75,7 +75,7 @@ return [
 
     'comment' => [
         'store' => [
-            'disabled' => '',
+            'disabled' => '댓글이 비활성화되었습니다',
         ],
         'update' => [
             'deleted' => "삭제된 게시물을 수정 할 수 없습니다.",
