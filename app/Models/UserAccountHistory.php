@@ -13,6 +13,7 @@ use Carbon\Carbon;
  * @property int|null $ban_status
  * @property int|null $banner_id
  * @property int $period
+ * @property bool $pernament
  * @property string|null $reason
  * @property string|null $supporting_url
  * @property \Carbon\Carbon|null $timestamp
@@ -25,6 +26,7 @@ class UserAccountHistory extends Model
     protected $table = 'osu_user_banhistory';
     protected $primaryKey = 'ban_id';
 
+    protected $casts = ['pernament' => 'boolean'];
     protected $dates = ['timestamp'];
     public $timestamps = false;
 
@@ -81,6 +83,7 @@ class UserAccountHistory extends Model
     {
         return $query
             ->where('timestamp', '>', Carbon::now()->subDays(config('osu.user.ban_persist_days')))
+            ->orWhere('pernament', true)
             ->orderBy('timestamp', 'desc');
     }
 
