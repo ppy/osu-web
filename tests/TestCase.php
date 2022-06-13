@@ -172,7 +172,7 @@ class TestCase extends BaseTestCase
         static $privateKey;
 
         if ($privateKey === null) {
-            $privateKey = file_get_contents(Passport::keyPath('oauth-private.key'));
+            $privateKey = config('passport.private_key') ?? file_get_contents(Passport::keyPath('oauth-private.key'));
         }
 
         $encryptedToken = JWT::encode([
