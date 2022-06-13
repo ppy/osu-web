@@ -12,8 +12,9 @@ import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import VirtualList, { VirtualProps } from 'react-virtual-list';
+// import VirtualList, { VirtualProps } from 'react-virtual-list';
 import { classWithModifiers } from 'utils/css';
+import VirtualList, { VirtualProps } from 'virtual-list/virtual-list';
 import AvailableFilters from './available-filters';
 import { Paginator } from './paginator';
 import { SearchPanel } from './search-panel';
@@ -24,8 +25,8 @@ interface Props {
   backToTopAnchor: React.RefObject<HTMLDivElement>;
 }
 
-const ListRender = ({ virtual }: VirtualProps<number[]>) => (
-  <div style={virtual.style}>
+const ListRender = ({ innerRef, virtual }: VirtualProps<number[]>) => (
+  <div ref={innerRef} style={virtual.style}>
     <div className='beatmapsets__items'>
       {virtual.items.map((row) => (
         <div key={row.join('-')} className='beatmapsets__items-row'>
