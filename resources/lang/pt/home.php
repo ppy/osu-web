@@ -22,7 +22,7 @@ return [
         'advanced_link' => 'Pesquisa avançada',
         'button' => 'Pesquisar',
         'empty_result' => 'Nada encontrado!',
-        'keyword_required' => 'Uma palavra-chave de pesquisa é necessária',
+        'keyword_required' => 'É necessária uma palavra-chave de pesquisa',
         'placeholder' => 'escreve para procurar',
         'title' => 'Procurar',
 

@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BigButton from 'components/big-button';
+import InputContainer from 'components/input-container';
 import { isEqual } from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
@@ -104,34 +105,24 @@ export default class SearchForm extends React.Component<Props> {
           </h3>
 
           <div className='artist-track-search-form__advanced'>
-            <label className='artist-track-search-form__input-group artist-track-search-form__input-group--2'>
-              <div className='artist-track-search-form__label'>
-                {osu.trans('artist.tracks.index.form.artist')}
-              </div>
+            <InputContainer labelKey='artist.tracks.index.form.artist' modifiers='2'>
               <input
                 className='artist-track-search-form__input'
                 name='artist'
                 onChange={this.handleChangeString}
                 value={this.params.artist ?? ''}
               />
-            </label>
-
-            <label className='artist-track-search-form__input-group artist-track-search-form__input-group--2'>
-              <div className='artist-track-search-form__label'>
-                {osu.trans('artist.tracks.index.form.album')}
-              </div>
+            </InputContainer>
+            <InputContainer labelKey='artist.tracks.index.form.album' modifiers='2'>
               <input
                 className='artist-track-search-form__input'
                 name='album'
                 onChange={this.handleChangeString}
                 value={this.params.album ?? ''}
               />
-            </label>
+            </InputContainer>
 
-            <label className='artist-track-search-form__input-group'>
-              <div className='artist-track-search-form__label'>
-                {osu.trans('artist.tracks.index.form.bpm_gte')}
-              </div>
+            <InputContainer labelKey='artist.tracks.index.form.bpm_gte'>
               <input
                 className='artist-track-search-form__input'
                 data-param='bpm'
@@ -140,12 +131,9 @@ export default class SearchForm extends React.Component<Props> {
                 type='number'
                 value={this.params.bpm?.gte ?? ''}
               />
-            </label>
+            </InputContainer>
 
-            <label className='artist-track-search-form__input-group'>
-              <div className='artist-track-search-form__label'>
-                {osu.trans('artist.tracks.index.form.bpm_lte')}
-              </div>
+            <InputContainer labelKey='artist.tracks.index.form.bpm_lte'>
               <input
                 className='artist-track-search-form__input'
                 data-param='bpm'
@@ -154,12 +142,9 @@ export default class SearchForm extends React.Component<Props> {
                 type='number'
                 value={this.params.bpm?.lte ?? ''}
               />
-            </label>
+            </InputContainer>
 
-            <label className='artist-track-search-form__input-group'>
-              <div className='artist-track-search-form__label'>
-                {osu.trans('artist.tracks.index.form.length_gte')}
-              </div>
+            <InputContainer labelKey='artist.tracks.index.form.length_gte'>
               <input
                 className='artist-track-search-form__input'
                 data-param='length'
@@ -168,12 +153,9 @@ export default class SearchForm extends React.Component<Props> {
                 pattern={lengthRegexp}
                 value={this.params.length?.gte ?? ''}
               />
-            </label>
+            </InputContainer>
 
-            <label className='artist-track-search-form__input-group'>
-              <div className='artist-track-search-form__label'>
-                {osu.trans('artist.tracks.index.form.length_lte')}
-              </div>
+            <InputContainer labelKey='artist.tracks.index.form.length_lte'>
               <input
                 className='artist-track-search-form__input'
                 data-param='length'
@@ -182,17 +164,14 @@ export default class SearchForm extends React.Component<Props> {
                 pattern={lengthRegexp}
                 value={this.params.length?.lte ?? ''}
               />
-            </label>
+            </InputContainer>
 
-            <div className={classWithModifiers('artist-track-search-form__input-group', '4', 'genre')}>
-              <div className='artist-track-search-form__label'>
-                {osu.trans('artist.tracks.index.form.genre')}
-              </div>
+            <InputContainer labelKey='artist.tracks.index.form.genre' modifiers={['4', 'genre']}>
               <div className='artist-track-search-form__genres'>
                 {this.renderGenreLink(osu.trans('artist.tracks.index.form.genre_all'), null)}
                 {this.props.availableGenres.map((genre) => this.renderGenreLink(genre, genre))}
               </div>
-            </div>
+            </InputContainer>
           </div>
         </div>
         <div className='artist-track-search-form__content artist-track-search-form__content--buttons'>

@@ -414,7 +414,7 @@ return [
         'stats' => [
             'hit_accuracy' => 'Precisão de acertos',
             'level' => 'Nível :level',
-            'level_progress' => 'Progresso para o próximo nível',
+            'level_progress' => 'Progresso ao próximo nível',
             'maximum_combo' => 'Combo máximo',
             'medals' => 'Medalhas',
             'play_count' => 'Número de partidas',

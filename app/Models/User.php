@@ -15,6 +15,7 @@ use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\Session\Store as SessionStore;
 use App\Libraries\Transactions\AfterCommit;
 use App\Libraries\User\DatadogLoginAttempt;
+use App\Libraries\User\ProfileBeatmapset;
 use App\Libraries\UsernameValidation;
 use App\Models\Forum\TopicWatch;
 use App\Models\OAuth\Client;
@@ -1424,7 +1425,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function uncachedMappingFollowerCount()
     {
-        return Follow::where('notifiable_id', $this->user_id)
+        return Follow::whereMorphedTo('notifiable', $this)
             ->where('subtype', 'mapping')
             ->count();
     }
@@ -2050,6 +2051,12 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             ->whereHas('beatmaps', fn ($q) => $q->where('user_id', $this->getKey()))
             ->active()
             ->with('beatmaps');
+    }
+
+    public function profileBeatmapsetCountByGroupedStatus(string $status)
+    {
+        return $this->memoize(__FUNCTION__, fn () =>
+            ProfileBeatmapset::countByGroupedStatus($this))[$status] ?? 0;
     }
 
     public function isSessionVerified()

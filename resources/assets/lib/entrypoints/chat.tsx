@@ -9,9 +9,12 @@ import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { parseJsonNullable } from 'utils/json';
-import { currentUrlParams } from 'utils/turbolinks';
+import { currentUrl, currentUrlParams } from 'utils/turbolinks';
 
 interface ChatInitialJson {
+  current_user_attributes: {
+    can_chat_announce: boolean;
+  };
   last_message_id: number | null;
   presence: ChannelJson[];
   send_to?: SendToJson;
@@ -32,23 +35,11 @@ function getParamValue(urlParams: URLSearchParams, key: string) {
  * @returns The initial Channel; null, if requested initial Channel doesn't exist;
  * undefined, if no initial Channel was requested.
  */
-function getInitialChannel() {
+function getInitialChannel(sendTo?: SendToJson) {
   const dataStore = core.dataStore;
-  const initial = parseJsonNullable<ChatInitialJson>('json-chat-initial', true);
-
-  if (initial != null) {
-    if (Array.isArray(initial.presence)) {
-      // initial population of channel/presence data
-      dataStore.channelStore.updateMany(initial.presence);
-      dataStore.chatState.skipRefresh = true;
-    }
-
-    dataStore.channelStore.lastReceivedMessageId = initial.last_message_id ?? 0;
-  }
 
   const urlParams = currentUrlParams();
   const sendToParam = getParamValue(urlParams, 'sendto');
-  const sendTo = initial?.send_to;
 
   if (sendTo != null) {
     const target = dataStore.userStore.update(sendTo.target); // pre-populate userStore with target
@@ -73,12 +64,29 @@ function getInitialChannel() {
 }
 
 core.reactTurbolinks.register('chat', action(() => {
-  const channel = getInitialChannel();
+  const initial = parseJsonNullable<ChatInitialJson>('json-chat-initial', true);
 
-  if (channel === undefined) {
-    core.dataStore.chatState.selectFirst();
+  if (initial != null) {
+    if (Array.isArray(initial.presence)) {
+      // initial population of channel/presence data
+      core.dataStore.channelStore.updateMany(initial.presence);
+      core.dataStore.chatState.skipRefresh = true;
+      core.dataStore.chatState.canChatAnnounce = initial.current_user_attributes.can_chat_announce;
+    }
+
+    core.dataStore.channelStore.lastReceivedMessageId = initial.last_message_id ?? 0;
+  }
+
+  if (currentUrl().hash === '#create') {
+    core.dataStore.chatState.selectChannel('create', 'replaceHistory');
   } else {
-    core.dataStore.chatState.selectChannel(channel?.channelId ?? null, 'replaceHistory');
+    const channel = getInitialChannel(initial?.send_to);
+
+    if (channel === undefined) {
+      core.dataStore.chatState.selectFirst();
+    } else {
+      core.dataStore.chatState.selectChannel(channel?.channelId ?? null, 'replaceHistory');
+    }
   }
 
   return <MainView />;

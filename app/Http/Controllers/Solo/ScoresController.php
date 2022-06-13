@@ -19,35 +19,6 @@ class ScoresController extends BaseController
         $this->middleware('auth');
     }
 
-    public function show($modeOrId, $legacyId = null)
-    {
-        $legacyScore = $legacyId !== null;
-
-        $score = $legacyScore
-            ? ScoreBest::getClassByString($modeOrId)
-                ::whereHas('beatmap.beatmapset')
-                ->visibleUsers()
-                ->findOrFail($legacyId)
-            : SoloScore::whereHas('beatmap.beatmapset')->findOrFail($modeOrId);
-
-        $userIncludes = array_map(
-            fn ($include) => "user.{$include}",
-            UserCompactTransformer::CARD_INCLUDES,
-        );
-
-        $scoreJson = json_item($score, new ScoreTransformer(), array_merge([
-            'beatmap.max_combo',
-            'beatmapset',
-            'rank_global',
-        ], $userIncludes));
-
-        if (is_json_request()) {
-            return $scoreJson;
-        }
-
-        return ext_view('scores.show', compact('score', 'scoreJson'));
-    }
-
     public function store($beatmapId, $tokenId)
     {
         $score = DB::transaction(function () use ($beatmapId, $tokenId) {

@@ -24,4 +24,5 @@ export default interface ChannelJson {
   name: string;
   type: ChannelType;
   users?: number[];
+  uuid?: string | null;
 }

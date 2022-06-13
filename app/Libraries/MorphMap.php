@@ -35,11 +35,11 @@ class MorphMap
         Score\Best\Mania::class => 'score_best_mania',
         Score\Best\Osu::class => 'score_best_osu',
         Score\Best\Taiko::class => 'score_best_taiko',
-        Solo\Score::class => 'solo_score',
         Score\Fruits::class => 'score_fruits',
         Score\Mania::class => 'score_mania',
         Score\Osu::class => 'score_osu',
         Score\Taiko::class => 'score_taiko',
+        Solo\Score::class => 'solo_score',
         User::class => 'user',
     ];
 

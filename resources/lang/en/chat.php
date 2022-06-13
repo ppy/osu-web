@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'loading_users' => 'loading users...',
     'talking_in' => 'talking in :channel',
     'talking_with' => 'talking with :name',
     'title_compact' => 'chat',
@@ -14,6 +15,7 @@ return [
     ],
 
     'channels' => [
+        'create' => 'create announcement',
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Announcements',
@@ -24,12 +26,25 @@ return [
         ],
     ],
 
+    'form' => [
+        'title' => [
+            'announcement' => 'Create New Announcement',
+        ],
+
+        'labels' => [
+            'description' => 'description',
+            'name' => 'room name',
+            'users' => 'players to add',
+        ],
+    ],
+
     'not_found' => [
         'message' => 'There\'s nothing here, maybe you left the channel or it doesn\'t exist...',
         'title' => 'channel not found',
     ],
 
     'input' => [
+        'create' => 'Create',
         'disabled' => 'unable to send message...',
         'disconnected' => 'Disconnected',
         'placeholder' => 'type message...',

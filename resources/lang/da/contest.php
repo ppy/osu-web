@@ -29,7 +29,7 @@ return [
         ],
 
         'progress' => [
-            '_' => '',
+            '_' => ':used / :max stemmer brugt',
         ],
     ],
     'entry' => [
@@ -56,7 +56,7 @@ return [
     ],
     'dates' => [
         'ended' => 'Sluttede den :date',
-        'ended_no_date' => '',
+        'ended_no_date' => 'Afsluttet',
 
         'starts' => [
             '_' => 'Starter den :date',

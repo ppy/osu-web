@@ -55,7 +55,11 @@ if [ -z "${OSU_SKIP_ASSET_BUILD:-}" ]; then
   fi
 
   command -v yarn || npm install -g yarn
-  yarn
+  if [ -z "${OSU_INSTALL_DEV:-}" ]; then
+    yarn --prod --ignore-optional --frozen-lockfile
+  else
+    yarn
+  fi
   yarn run production
 else
   echo "OSU_SKIP_ASSET_BUILD set, skipping javascript asset build."

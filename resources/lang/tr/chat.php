@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'loading_users' => '',
     'talking_in' => ':channel kanalında konuşuyorsunuz',
     'talking_with' => ':name ile konuşuyorsunuz',
     'title_compact' => 'sohbet',
@@ -16,17 +17,17 @@ return [
     'channels' => [
         'list' => [
             'title' => [
-                'ANNOUNCE' => '',
-                'GROUP' => '',
-                'PM' => '',
-                'PUBLIC' => '',
+                'ANNOUNCE' => 'Duyurular',
+                'GROUP' => 'Gruplar',
+                'PM' => 'Direkt mesajlar',
+                'PUBLIC' => 'Kanallar',
             ],
         ],
     ],
 
     'not_found' => [
-        'message' => '',
-        'title' => '',
+        'message' => 'Burada bir şey yok, belki de kanaldan çıkmışsındır ya da öyle bir kanal yoktur...',
+        'title' => 'kanal bulunamadı',
     ],
 
     'input' => [

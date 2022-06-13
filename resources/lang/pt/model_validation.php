@@ -93,7 +93,7 @@ return [
             'grace_period_expired' => 'Não é possível editar uma sondagem depois de mais de :limit horas',
             'hiding_results_forever' => 'Não é possível esconder os resultados duma sondagem que nunca irá terminar.',
             'invalid_max_options' => 'As opções por cada utilizador não podem exceder o número de opções disponíveis.',
-            'minimum_one_selection' => 'Um mínimo de uma opção é necessária por utilizador.',
+            'minimum_one_selection' => 'É necessária pelo menos uma opção por cada utilizador.',
             'minimum_two_options' => 'São necessárias pelo menos duas opções.',
             'too_many_options' => 'Número máximo de opções permitidas excedido.',
 
