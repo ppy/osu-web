@@ -52,7 +52,7 @@ const ColumnDescription = ({ history }: ColumnProps) => (
 );
 
 const ColumnLength = ({ history }: ColumnProps) => {
-  if (history.type === 'restriction' || history.pernament == true) {
+  if (history.type === 'restriction' || history.pernament === true) {
     return (
       <div className={`${bn}__action ${bn}__action--restriction`}>
         {osu.trans('users.show.extra.account_standing.recent_infringements.length_permanent')}
