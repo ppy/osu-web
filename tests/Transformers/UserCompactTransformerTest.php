@@ -30,20 +30,20 @@ class UserCompactTransformerTest extends TestCase
     public function testGroupPermissionsUserSilenceShowExtendedInfo(?string $groupIdentifier)
     {
         $viewer = User::factory()->withGroup($groupIdentifier)->create();
-        $user = User::factory()->restricted()->silenced()->withNote()->create();
+        $user = User::factory()->restricted()->silenced()->tournamentBanned()->withNote()->create();
 
-        $this->assertSame(3, $user->accountHistories()->count());
+        $this->assertSame(4, $user->accountHistories()->count());
 
         $this->actAsScopedUser($viewer);
 
         $json = json_item($user, 'UserCompact', ['account_history.actor', 'account_history.supporting_url']);
 
         $accountHistories = array_get($json, 'account_history');
-        $silences = array_filter($accountHistories, function ($item) {
-            return $item['type'] === 'silence';
+        $publicInfringements = array_filter($accountHistories, function ($item) {
+            return $item['type'] === 'silence' || $item['type'] === 'tournament_ban';
         });
-        $this->assertCount(1, $accountHistories);
-        $this->assertSame($accountHistories, $silences);
+        $this->assertCount(2, $accountHistories);
+        $this->assertSame($accountHistories, $publicInfringements);
     }
 
     /**
