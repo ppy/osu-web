@@ -122,7 +122,13 @@ class CommentBundle
             $result['total'] = $this->commentsQuery()->count();
         }
 
-        $commentables = $comments->pluck('commentable')->uniqueStrict('commentable_identifier')->concat([null]);
+        $commentables = $comments->pluck('commentable');
+        // Always include initial commentable in so it can be used for attributes
+        // check even when there's no comment on it.
+        if ($this->commentable !== null) {
+            $commentables[] = $this->commentable;
+        }
+        $commentables = $commentables->uniqueStrict('commentable_identifier')->concat([null]);
         $result['commentable_meta'] = json_collection($commentables, 'CommentableMeta');
 
         return $result;
