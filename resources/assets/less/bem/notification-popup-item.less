@@ -52,6 +52,7 @@
     width: 60px;
     flex: none;
     position: relative;
+    pointer-events: none;
 
     .@{_top}--compact & {
       border-radius: @border-radius-large;
@@ -82,11 +83,16 @@
     }
   }
 
+  &__link {
+    .full-size();
+  }
+
   &__main {
     border-radius: 0 @border-radius-large @border-radius-large 0;
     flex: 1;
     display: flex;
     min-width: 0;
+    pointer-events: none;
   }
 
   &__row {
@@ -100,6 +106,7 @@
 
     &--expand {
       margin-top: 10px;
+      pointer-events: initial;
     }
 
     &--message {

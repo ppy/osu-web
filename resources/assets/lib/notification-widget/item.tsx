@@ -9,7 +9,6 @@ import NotificationDeleteButton from 'notifications/notification-delete-button';
 import NotificationReadButton from 'notifications/notification-read-button';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
-import { isClickable } from 'utils/html';
 
 interface Props {
   canMarkAsRead?: boolean;
@@ -38,7 +37,8 @@ export default class Item extends React.Component<Props> {
 
   render() {
     return (
-      <div className={this.blockClass()} onClick={this.handleContainerClick}>
+      <div className={this.blockClass()}>
+        <a className='notification-popup-item__link' href={this.props.url} onClick={this.props.markRead} />
         {this.renderCover()}
         <div className='notification-popup-item__main'>
           <div className='notification-popup-item__content'>
@@ -61,16 +61,8 @@ export default class Item extends React.Component<Props> {
       modifiers.push('read');
     }
 
-    return `clickable-row ${classWithModifiers('notification-popup-item', modifiers)}`;
+    return classWithModifiers('notification-popup-item', modifiers);
   }
-
-  private handleContainerClick = (event: React.SyntheticEvent) => {
-    if (isClickable(event.target)) return;
-
-    if (this.props.markRead != null) {
-      this.props.markRead();
-    }
-  };
 
   private renderCategory() {
     if (!this.props.withCategory) {
@@ -153,13 +145,9 @@ export default class Item extends React.Component<Props> {
 
   private renderMessage() {
     return (
-      <a
-        className='notification-popup-item__row notification-popup-item__row--message clickable-row-link'
-        href={this.props.url}
-        onClick={this.props.markRead}
-      >
+      <div className='notification-popup-item__row notification-popup-item__row--message'>
         {this.props.message}
-      </a>
+      </div>
     );
   }
 
