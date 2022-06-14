@@ -23,6 +23,7 @@ import UserLoginObserver from 'core/user/user-login-observer';
 import UserModel from 'core/user/user-model';
 import UserPreferences from 'core/user/user-preferences';
 import UserVerification from 'core/user/user-verification';
+import PinnedNoticesScrollPadding from 'core/wiki/pinned-notices-scroll-padding';
 import ReferenceLinkTooltip from 'core/wiki/reference-link-tooltip';
 import WindowFocusObserver from 'core/window-focus-observer';
 import WindowSize from 'core/window-size';
@@ -50,6 +51,7 @@ export default class OsuCore {
   notificationsWorker: NotificationsWorker;
   readonly osuAudio: OsuAudio;
   readonly osuLayzr = new OsuLayzr();
+  readonly pinnedNoticesScrollPadding = new PinnedNoticesScrollPadding();
   readonly reactTurbolinks: ReactTurbolinks;
   readonly referenceLinkTooltip = new ReferenceLinkTooltip();
   readonly scorePins = new ScorePins();

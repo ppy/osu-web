@@ -8,7 +8,7 @@
     </div>
 @endif
 
-<div class="wiki-notice__pinned-container">
+<div class="wiki-notice__pinned-container js-wiki-pinned-notices">
     @if ($page->isLegalTranslation())
         <div class="wiki-notice wiki-notice--important">
             {!! osu_trans('wiki.show.translation.legal', [
