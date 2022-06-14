@@ -508,7 +508,7 @@ class Channel extends Model
             return;
         }
 
-        if ($this->isPM() || $this->isAnnouncement()) {
+        if ($this->isHideable()) {
             $userChannel->update(['hidden' => true]);
         } else {
             $userChannel->delete();
@@ -552,6 +552,11 @@ class Channel extends Model
         return 'chat.channel';
     }
 
+    private function isHideable()
+    {
+        return $this->isPM() || $this->isAnnouncement();
+    }
+
     /**
      * Unhides UserChannels as necessary when receiving messages.
      *
@@ -559,7 +564,7 @@ class Channel extends Model
      */
     private function unhide()
     {
-        if (!($this->isPM() || $this->isAnnouncement())) {
+        if (!$this->isHideable()) {
             return;
         }
 
