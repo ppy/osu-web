@@ -27,15 +27,7 @@
   }
 
   &__pinned-container {
+    .sticky-below-navbar();
     background-color: hsl(var(--hsl-b5));
-    position: sticky;
-    --navbar-height: @navbar-height;
-    // 1px overlap with navbar to prevent possible gap in some cases.
-    // Reference: https://bugs.chromium.org/p/chromium/issues/detail?id=1261852
-    top: calc(var(--navbar-height) - 1px);
-
-    @media @desktop {
-      --navbar-height: @nav2-height--pinned;
-    }
   }
 }
