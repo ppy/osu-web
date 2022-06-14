@@ -54,11 +54,6 @@ jobs:
     name: Tests
     runs-on: ubuntu-latest
     services:
-      beatmap-difficulty-lookup-cache:
-        image: pppy/osu-beatmap-difficulty-lookup-cache
-        ports:
-          - 5000:80
-
       db:
         image: mysql:8.0
         ports:
@@ -78,6 +73,11 @@ jobs:
         image: elasticsearch:7.17.4
         ports:
           - 9200:9200
+
+      osu-beatmap-difficulty-lookup-cache:
+        image: pppy/osu-beatmap-difficulty-lookup-cache
+        ports:
+          - 5000:80
 
       osu-notification-server:
         env:
