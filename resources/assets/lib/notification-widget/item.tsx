@@ -36,8 +36,14 @@ export default class Item extends React.Component<Props> {
   }
 
   render() {
+    const modifiers = mergeModifiers(
+      this.props.modifiers,
+      this.props.item.category,
+      { read: this.props.item.isRead && !this.props.canMarkAsRead },
+    );
+
     return (
-      <div className={this.blockClass()}>
+      <div className={classWithModifiers('notification-popup-item', modifiers)}>
         <a className='notification-popup-item__link' href={this.props.url} onClick={this.props.markRead} />
         {this.renderCover()}
         <div className='notification-popup-item__main'>
@@ -53,16 +59,6 @@ export default class Item extends React.Component<Props> {
         {this.renderUnreadStripe()}
       </div>
     );
-  }
-
-  private blockClass() {
-    const modifiers = mergeModifiers(
-      this.props.modifiers,
-      this.props.item.category,
-      { read: this.props.item.isRead && !this.props.canMarkAsRead },
-    );
-
-    return classWithModifiers('notification-popup-item', modifiers);
   }
 
   private renderCategory() {
