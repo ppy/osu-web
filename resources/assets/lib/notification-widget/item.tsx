@@ -8,7 +8,7 @@ import { NotificationContext } from 'notifications-context';
 import NotificationDeleteButton from 'notifications/notification-delete-button';
 import NotificationReadButton from 'notifications/notification-read-button';
 import * as React from 'react';
-import { classWithModifiers } from 'utils/css';
+import { classWithModifiers, mergeModifiers } from 'utils/css';
 
 interface Props {
   canMarkAsRead?: boolean;
@@ -56,10 +56,11 @@ export default class Item extends React.Component<Props> {
   }
 
   private blockClass() {
-    const modifiers = [...this.props.modifiers, this.props.item.category];
-    if (this.props.item.isRead && !this.props.canMarkAsRead) {
-      modifiers.push('read');
-    }
+    const modifiers = mergeModifiers(
+      this.props.modifiers,
+      this.props.item.category,
+      { read: this.props.item.isRead && !this.props.canMarkAsRead },
+    );
 
     return classWithModifiers('notification-popup-item', modifiers);
   }
