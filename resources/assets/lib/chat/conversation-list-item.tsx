@@ -44,6 +44,10 @@ export default class ConversationListItem extends React.Component<Props> {
   }
 
   private part = () => {
+    if (this.props.channel.type === 'ANNOUNCE' && !confirm(osu.trans('chat.channels.confirm_part'))){
+      return;
+    }
+
     core.dataStore.channelStore.partChannel(this.props.channel.channelId);
   };
 
