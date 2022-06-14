@@ -6,12 +6,12 @@
 
   display: flex;
   width: 100%;
-  background-color: @osu-colour-b3;
+  background-color: hsl(var(--hsl-b3));
   border-radius: @border-radius-large;
   position: relative;
 
   &:hover {
-    background-color: @osu-colour-b1;
+    background-color: hsl(var(--hsl-b1));
   }
 
   &--compact {
@@ -20,15 +20,15 @@
     width: calc(100% - $margin-left);
 
     &:hover {
-      background-color: @osu-colour-b4;
+      background-color: hsl(var(--hsl-b4));
     }
   }
 
   &--group {
-    background-color: @osu-colour-b3;
+    background-color: hsl(var(--hsl-b3));
 
     &:hover {
-      background-color: @osu-colour-b2;
+      background-color: hsl(var(--hsl-b2));
     }
   }
 
@@ -48,7 +48,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: @osu-colour-b2;
+    background-color: hsl(var(--hsl-b2));
     width: 60px;
     flex: none;
     position: relative;
@@ -117,14 +117,14 @@
 
     &--time {
       font-size: @font-size--small;
-      color: @osu-colour-f1;
+      color: hsl(var(--hsl-f1));
     }
 
     .@{_top}:hover & {
       .show-more-link {
-         background-color: @osu-colour-b1;
+         background-color: hsl(var(--hsl-b1));
          &:hover {
-           background-color: @osu-colour-b3;
+           background-color: hsl(var(--hsl-b3));
          }
       }
     }
@@ -135,6 +135,6 @@
     width: @border-radius-large;
     height: 100%;
     border-radius: @border-radius-large 0 0 @border-radius-large;
-    box-shadow: inset 2px 0 @osu-colour-h1;
+    box-shadow: inset 2px 0 hsl(var(--hsl-h1));
   }
 }
