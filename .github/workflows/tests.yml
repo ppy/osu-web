@@ -48,6 +48,14 @@ jobs:
           -e MYSQL_ALLOW_EMPTY_PASSWORD=1
           --entrypoint sh mysql:8.0 -c "exec docker-entrypoint.sh mysqld --default-authentication-plugin=mysql_native_password"
 
+      elasticsearch:
+        env:
+          action.auto_create_index: "false"
+          discovery.type: single-node
+        image: elasticsearch:7.17.4
+        ports:
+          - 9200:9200
+
       redis:
         image: redis
         ports:
@@ -80,20 +88,6 @@ jobs:
           path: ${{ steps.composercache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
-
-      # Settings for elasticsearch
-      # https://github.com/elastic/elastic-github-actions/tree/master/elasticsearch#usage
-      - name: Configure sysctl limits
-        run: |
-          sudo swapoff -a
-          sudo sysctl -w vm.swappiness=1
-          sudo sysctl -w fs.file-max=262144
-          sudo sysctl -w vm.max_map_count=262144
-
-      - name: Start Elasticsearch
-        uses: elastic/elastic-github-actions/elasticsearch@master
-        with:
-          stack-version: 6.8.13
 
       - run: mysql -u root -h 127.0.0.1 < ./docker/development/db_setup.sql
 
