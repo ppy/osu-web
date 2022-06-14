@@ -49,8 +49,7 @@ export class CommentsManager extends React.PureComponent
   render: =>
     el Observer, null, () =>
       componentProps = _.assign {}, @props.componentProps
-      componentProps.commentableId = @props.commentableId
-      componentProps.commentableType = @props.commentableType
+      componentProps.commentableMeta = core.dataStore.commentableMetaStore.get @props.commentableType, @props.commentableId
       componentProps.user = @props.user
 
       el @props.component, componentProps
