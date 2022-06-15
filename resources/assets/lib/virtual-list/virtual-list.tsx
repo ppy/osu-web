@@ -21,12 +21,10 @@ export interface Props<T> {
 }
 
 export interface VirtualProps<T> {
-  innerRef: React.RefObject<HTMLDivElement>;
   itemHeight: number;
 
   virtual: {
     items: T[];
-    style: Pick<React.CSSProperties, 'boxSizing' | 'height' | 'paddingTop'>;
   };
 }
 
@@ -39,11 +37,9 @@ class VirtualList<T> extends React.Component<Props<T>> {
   private _isMounted = false;
 
   private container: Window | HTMLElement;
-  private domNode = React.createRef<HTMLDivElement>();
-
   @observable private firstItemIndex = 0;
   @observable private lastItemIndex = -1;
-
+  private ref = React.createRef<HTMLDivElement>();
   private throttledRefreshState = throttle(() => this.refreshState(), 10);
 
   constructor(props: Props<T>) {
@@ -79,30 +75,30 @@ class VirtualList<T> extends React.Component<Props<T>> {
   render() {
     const visibleItems = this.lastItemIndex > -1 ? this.props.items.slice(this.firstItemIndex, this.lastItemIndex + 1) : [];
 
-    // style
-    const height = this.props.items.length * this.props.itemHeight;
-    const paddingTop = this.firstItemIndex * this.props.itemHeight;
+    const style = {
+      boxSizing: 'border-box' as React.CSSProperties['boxSizing'],
+      height: this.props.items.length * this.props.itemHeight,
+      paddingTop: this.firstItemIndex * this.props.itemHeight,
+    };
 
     const virtual = {
       items: visibleItems,
-      style: {
-        boxSizing: 'border-box' as React.CSSProperties['boxSizing'],
-        height,
-        paddingTop,
-      },
     };
 
-    return this.props.children({
-      ...this.props,
-      innerRef: this.domNode,
-      virtual,
-    });
+    return (
+      <div ref={this.ref} style={style}>
+        {this.props.children({
+          ...this.props,
+          virtual,
+        })}
+      </div>
+    );
   }
 
   @action
   setStateIfNeeded(items: T[], itemHeight: number, itemBuffer: number) {
     // get first and lastItemIndex
-    const state = getVisibleItemBounds(this.domNode.current, this.container, items, itemHeight, itemBuffer);
+    const state = getVisibleItemBounds(this.ref.current, this.container, items, itemHeight, itemBuffer);
 
     if (state == null) return;
 

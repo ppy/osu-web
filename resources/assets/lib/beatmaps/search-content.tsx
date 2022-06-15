@@ -25,22 +25,20 @@ interface Props {
   backToTopAnchor: React.RefObject<HTMLDivElement>;
 }
 
-const ListRender = ({ innerRef, virtual }: VirtualProps<number[]>) => (
-  <div ref={innerRef} style={virtual.style}>
-    <div className='beatmapsets__items'>
-      {virtual.items.map((row) => (
-        <div key={row.join('-')} className='beatmapsets__items-row'>
-          {row.map((beatmapsetId) => {
-            const beatmapset = core.dataStore.beatmapsetStore.get(beatmapsetId);
-            return (
-              <div key={beatmapsetId} className='beatmapsets__item'>
-                {beatmapset != null && <BeatmapsetPanel beatmapset={beatmapset} />}
-              </div>
-            );
-          })}
-        </div>
-      ))}
-    </div>
+const ListRender = ({ virtual }: VirtualProps<number[]>) => (
+  <div className='beatmapsets__items'>
+    {virtual.items.map((row) => (
+      <div key={row.join('-')} className='beatmapsets__items-row'>
+        {row.map((beatmapsetId) => {
+          const beatmapset = core.dataStore.beatmapsetStore.get(beatmapsetId);
+          return (
+            <div key={beatmapsetId} className='beatmapsets__item'>
+              {beatmapset != null && <BeatmapsetPanel beatmapset={beatmapset} />}
+            </div>
+          );
+        })}
+      </div>
+    ))}
   </div>
 );
 
