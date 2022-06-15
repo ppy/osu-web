@@ -58,7 +58,7 @@ function getVisibleItemBounds(element: HTMLElement | null, container: Window | H
 
   // visible item indexes
   const firstItemIndex = Math.max(0, Math.floor(listViewTop / itemHeight) - itemBuffer);
-  const lastItemIndex = Math.min(length, Math.ceil(listViewBottom / itemHeight) + itemBuffer) - 1;
+  const lastItemIndex = Math.min(length, Math.ceil(listViewBottom / itemHeight) + itemBuffer);
 
   return {
     firstItemIndex,
@@ -83,7 +83,7 @@ export default class VirtualList<T> extends React.Component<Props<T>> {
   };
 
   @observable private firstItemIndex = 0;
-  @observable private lastItemIndex = -1;
+  @observable private lastItemIndex = 0;
   private readonly ref = React.createRef<HTMLDivElement>();
   private readonly scrollContainer = window; // we only care about window for now.
   private readonly throttledRefreshState = throttle(() => this.refreshState(), 10);
@@ -118,7 +118,7 @@ export default class VirtualList<T> extends React.Component<Props<T>> {
   }
 
   render() {
-    const visibleItems = this.lastItemIndex > -1 ? this.props.items.slice(this.firstItemIndex, this.lastItemIndex + 1) : [];
+    const visibleItems = this.lastItemIndex > 0 ? this.props.items.slice(this.firstItemIndex, this.lastItemIndex) : [];
 
     const style = {
       boxSizing: 'border-box' as React.CSSProperties['boxSizing'],
@@ -146,7 +146,7 @@ export default class VirtualList<T> extends React.Component<Props<T>> {
 
     if (state == null) return;
 
-    if (state.firstItemIndex > state.lastItemIndex) return;
+    if (state.firstItemIndex >= state.lastItemIndex) return;
 
     if (state.firstItemIndex !== this.firstItemIndex) {
       this.firstItemIndex = state.firstItemIndex;
