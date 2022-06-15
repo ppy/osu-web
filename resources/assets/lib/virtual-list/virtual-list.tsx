@@ -29,16 +29,11 @@ export interface VirtualProps<T> {
 }
 
 function getElementTop(element: Window | HTMLElement): number {
-  if ('scrollY' in element && element.scrollY) return element.scrollY;
+  // window
+  if ('scrollY' in element) return element.scrollY;
 
-  if ('document' in element && element.document) {
-    if (element.document.documentElement && element.document.documentElement.scrollTop) return element.document.documentElement.scrollTop;
-    if (element.document.body && element.document.body.scrollTop) return element.document.body.scrollTop;
-
-    return 0;
-  }
-
-  return 'scrollY' in element ? element.scrollY : element.scrollTop;
+  // not window
+  return element.scrollTop;
 }
 
 function getVisibleItemBounds<T>(element: HTMLElement | null, container: Window | HTMLElement, items: T[], itemHeight: number, itemBuffer: number) {
@@ -51,15 +46,15 @@ function getVisibleItemBounds<T>(element: HTMLElement | null, container: Window 
 
   if (viewHeight === 0) return;
 
-  const viewTop = getElementTop(container); // top y-coordinate of viewport inside container
-  const viewBottom = viewTop + viewHeight;
+  const scrollTop = getElementTop(container); // top of the scroll container
+  const scrollBottom = scrollTop + viewHeight;
 
-  const listTop = topFromWindow(element) - topFromWindow(container); // top y-coordinate of container inside window
+  const listTop = topFromWindow(element) - topFromWindow(container); // top of the list inside the scroll container
   const listHeight = itemHeight * items.length;
 
-  // visible list inside view
-  const listViewTop =  Math.max(0, viewTop - listTop); // top y-coordinate of list that is visible inside view
-  const listViewBottom = Math.max(0, Math.min(listHeight, viewBottom - listTop)); // bottom y-coordinate of list that is visible inside view
+  // visible portion of the list
+  const listViewTop = Math.max(0, scrollTop - listTop);
+  const listViewBottom = Math.max(0, Math.min(listHeight, scrollBottom - listTop));
 
   // visible item indexes
   const firstItemIndex = Math.max(0, Math.floor(listViewTop / itemHeight) - itemBuffer);
