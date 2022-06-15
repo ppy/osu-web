@@ -36,9 +36,9 @@ function getElementTop(element: Window | HTMLElement): number {
   return element.scrollTop;
 }
 
-function getVisibleItemBounds<T>(element: HTMLElement | null, container: Window | HTMLElement, items: T[], itemHeight: number, itemBuffer: number) {
+function getVisibleItemBounds(element: HTMLElement | null, container: Window | HTMLElement, length: number, itemHeight: number, itemBuffer: number) {
   // early return if we can't calculate
-  if (items.length === 0) return;
+  if (length === 0) return;
 
   // what the user can see
   // how many pixels are visible
@@ -50,7 +50,7 @@ function getVisibleItemBounds<T>(element: HTMLElement | null, container: Window 
   const scrollBottom = scrollTop + viewHeight;
 
   const listTop = topFromWindow(element) - topFromWindow(container); // top of the list inside the scroll container
-  const listHeight = itemHeight * items.length;
+  const listHeight = itemHeight * length;
 
   // visible portion of the list
   const listViewTop = Math.max(0, scrollTop - listTop);
@@ -58,7 +58,7 @@ function getVisibleItemBounds<T>(element: HTMLElement | null, container: Window 
 
   // visible item indexes
   const firstItemIndex = Math.max(0, Math.floor(listViewTop / itemHeight) - itemBuffer);
-  const lastItemIndex = Math.min(items.length, Math.ceil(listViewBottom / itemHeight) + itemBuffer) - 1;
+  const lastItemIndex = Math.min(length, Math.ceil(listViewBottom / itemHeight) + itemBuffer) - 1;
 
   return {
     firstItemIndex,
@@ -142,7 +142,7 @@ export default class VirtualList<T> extends React.Component<Props<T>> {
 
   @action
   private refreshState = () => {
-    const state = getVisibleItemBounds(this.ref.current, this.scrollContainer, this.props.items, this.props.itemHeight, this.props.itemBuffer);
+    const state = getVisibleItemBounds(this.ref.current, this.scrollContainer, this.props.items.length, this.props.itemHeight, this.props.itemBuffer);
 
     if (state == null) return;
 
