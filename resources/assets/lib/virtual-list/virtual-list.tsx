@@ -28,6 +28,59 @@ export interface VirtualProps<T> {
   };
 }
 
+function getElementTop(element: Window | HTMLElement): number {
+  if ('scrollY' in element && element.scrollY) return element.scrollY;
+
+  if ('document' in element && element.document) {
+    if (element.document.documentElement && element.document.documentElement.scrollTop) return element.document.documentElement.scrollTop;
+    if (element.document.body && element.document.body.scrollTop) return element.document.body.scrollTop;
+
+    return 0;
+  }
+
+  return 'scrollY' in element ? element.scrollY : element.scrollTop;
+}
+
+function getVisibleItemBounds<T>(element: HTMLElement | null, container: Window | HTMLElement, items: T[], itemHeight: number, itemBuffer: number) {
+  // early return if we can't calculate
+  if (items.length === 0) return;
+
+  // what the user can see
+  // how many pixels are visible
+  const viewHeight: number = 'innerHeight' in container ? container.innerHeight : container.clientHeight;
+
+  if (viewHeight === 0) return;
+
+  const viewTop = getElementTop(container); // top y-coordinate of viewport inside container
+  const viewBottom = viewTop + viewHeight;
+
+  const listTop = topFromWindow(element) - topFromWindow(container); // top y-coordinate of container inside window
+  const listHeight = itemHeight * items.length;
+
+  // visible list inside view
+  const listViewTop =  Math.max(0, viewTop - listTop); // top y-coordinate of list that is visible inside view
+  const listViewBottom = Math.max(0, Math.min(listHeight, viewBottom - listTop)); // bottom y-coordinate of list that is visible inside view
+
+  // visible item indexes
+  const firstItemIndex = Math.max(0, Math.floor(listViewTop / itemHeight) - itemBuffer);
+  const lastItemIndex = Math.min(items.length, Math.ceil(listViewBottom / itemHeight) + itemBuffer) - 1;
+
+  return {
+    firstItemIndex,
+    lastItemIndex,
+  };
+}
+
+function topFromWindow(element: Window | HTMLElement | Element | null): number {
+  if (element == null) return 0;
+
+  const offsetTop = 'offsetTop' in element ? element.offsetTop : 0;
+  const offsetParent = 'offsetParent' in element ? element.offsetParent : null;
+
+  return offsetTop + topFromWindow(offsetParent);
+}
+
+
 @observer
 export default class VirtualList<T> extends React.Component<Props<T>> {
   static readonly defaultProps = {
@@ -118,56 +171,4 @@ export default class VirtualList<T> extends React.Component<Props<T>> {
 
     this.setStateIfNeeded(items, itemHeight, itemBuffer);
   };
-}
-
-function getVisibleItemBounds<T>(element: HTMLElement | null, container: Window | HTMLElement, items: T[], itemHeight: number, itemBuffer: number) {
-  // early return if we can't calculate
-  if (items.length === 0) return;
-
-  // what the user can see
-  // how many pixels are visible
-  const viewHeight: number = 'innerHeight' in container ? container.innerHeight : container.clientHeight;
-
-  if (viewHeight === 0) return;
-
-  const viewTop = getElementTop(container); // top y-coordinate of viewport inside container
-  const viewBottom = viewTop + viewHeight;
-
-  const listTop = topFromWindow(element) - topFromWindow(container); // top y-coordinate of container inside window
-  const listHeight = itemHeight * items.length;
-
-  // visible list inside view
-  const listViewTop =  Math.max(0, viewTop - listTop); // top y-coordinate of list that is visible inside view
-  const listViewBottom = Math.max(0, Math.min(listHeight, viewBottom - listTop)); // bottom y-coordinate of list that is visible inside view
-
-  // visible item indexes
-  const firstItemIndex = Math.max(0, Math.floor(listViewTop / itemHeight) - itemBuffer);
-  const lastItemIndex = Math.min(items.length, Math.ceil(listViewBottom / itemHeight) + itemBuffer) - 1;
-
-  return {
-    firstItemIndex,
-    lastItemIndex,
-  };
-}
-
-function getElementTop(element: Window | HTMLElement): number {
-  if ('scrollY' in element && element.scrollY) return element.scrollY;
-
-  if ('document' in element && element.document) {
-    if (element.document.documentElement && element.document.documentElement.scrollTop) return element.document.documentElement.scrollTop;
-    if (element.document.body && element.document.body.scrollTop) return element.document.body.scrollTop;
-
-    return 0;
-  }
-
-  return 'scrollY' in element ? element.scrollY : element.scrollTop;
-}
-
-function topFromWindow(element: Window | HTMLElement | Element | null): number {
-  if (element == null) return 0;
-
-  const offsetTop = 'offsetTop' in element ? element.offsetTop : 0;
-  const offsetParent = 'offsetParent' in element ? element.offsetParent : null;
-
-  return offsetTop + topFromWindow(offsetParent);
 }
