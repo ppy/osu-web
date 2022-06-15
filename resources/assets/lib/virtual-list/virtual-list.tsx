@@ -29,24 +29,21 @@ export interface VirtualProps<T> {
 }
 
 @observer
-class VirtualList<T> extends React.Component<Props<T>> {
+export default class VirtualList<T> extends React.Component<Props<T>> {
   static readonly defaultProps = {
     itemBuffer: 0,
   };
 
   private _isMounted = false;
 
-  private container: Window | HTMLElement;
   @observable private firstItemIndex = 0;
   @observable private lastItemIndex = -1;
-  private ref = React.createRef<HTMLDivElement>();
-  private throttledRefreshState = throttle(() => this.refreshState(), 10);
+  private readonly ref = React.createRef<HTMLDivElement>();
+  private readonly scrollContainer = window; // we only care about window for now.
+  private readonly throttledRefreshState = throttle(() => this.refreshState(), 10);
 
   constructor(props: Props<T>) {
     super(props);
-
-    // we only care about window for now.
-    this.container = window;
 
     if (this.props.initialState != null) {
       this.firstItemIndex = this.props.initialState.firstItemIndex;
@@ -61,15 +58,15 @@ class VirtualList<T> extends React.Component<Props<T>> {
   componentDidMount() {
     this.refreshState();
 
-    this.container.addEventListener('scroll', this.throttledRefreshState);
-    this.container.addEventListener('resize', this.throttledRefreshState);
+    this.scrollContainer.addEventListener('scroll', this.throttledRefreshState);
+    this.scrollContainer.addEventListener('resize', this.throttledRefreshState);
   }
 
   componentWillUnmount() {
     this._isMounted = false;
 
-    this.container.removeEventListener('scroll', this.throttledRefreshState);
-    this.container.removeEventListener('resize', this.throttledRefreshState);
+    this.scrollContainer.removeEventListener('scroll', this.throttledRefreshState);
+    this.scrollContainer.removeEventListener('resize', this.throttledRefreshState);
   }
 
   render() {
@@ -98,7 +95,7 @@ class VirtualList<T> extends React.Component<Props<T>> {
   @action
   setStateIfNeeded(items: T[], itemHeight: number, itemBuffer: number) {
     // get first and lastItemIndex
-    const state = getVisibleItemBounds(this.ref.current, this.container, items, itemHeight, itemBuffer);
+    const state = getVisibleItemBounds(this.ref.current, this.scrollContainer, items, itemHeight, itemBuffer);
 
     if (state == null) return;
 
@@ -125,13 +122,13 @@ class VirtualList<T> extends React.Component<Props<T>> {
 
 function getVisibleItemBounds<T>(element: HTMLElement | null, container: Window | HTMLElement, items: T[], itemHeight: number, itemBuffer: number) {
   // early return if we can't calculate
-  if (items.length === 0) return undefined;
+  if (items.length === 0) return;
 
   // what the user can see
   // how many pixels are visible
-  const viewHeight: number = container.innerHeight ?? container.clientHeight;
+  const viewHeight: number = 'innerHeight' in container ? container.innerHeight : container.clientHeight;
 
-  if (!viewHeight) return undefined;
+  if (viewHeight === 0) return;
 
   const viewTop = getElementTop(container); // top y-coordinate of viewport inside container
   const viewBottom = viewTop + viewHeight;
@@ -163,10 +160,10 @@ function getElementTop(element: Window | HTMLElement): number {
     return 0;
   }
 
-  return element.scrollY ?? element.scrollTop ?? 0;
+  return 'scrollY' in element ? element.scrollY : element.scrollTop;
 }
 
-function topFromWindow(element: Window | HTMLElement | null): number {
+function topFromWindow(element: Window | HTMLElement | Element | null): number {
   if (element == null) return 0;
 
   const offsetTop = 'offsetTop' in element ? element.offsetTop : 0;
@@ -174,5 +171,3 @@ function topFromWindow(element: Window | HTMLElement | null): number {
 
   return offsetTop + topFromWindow(offsetParent);
 }
-
-export default VirtualList;
