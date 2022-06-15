@@ -25,9 +25,9 @@ interface Props {
   backToTopAnchor: React.RefObject<HTMLDivElement>;
 }
 
-const ListRender = ({ virtual }: VirtualProps<number[]>) => (
+const ListRender = ({ items }: VirtualProps<number[]>) => (
   <div className='beatmapsets__items'>
-    {virtual.items.map((row) => (
+    {items.map((row) => (
       <div key={row.join('-')} className='beatmapsets__items-row'>
         {row.map((beatmapsetId) => {
           const beatmapset = core.dataStore.beatmapsetStore.get(beatmapsetId);

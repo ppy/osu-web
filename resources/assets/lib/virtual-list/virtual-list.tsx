@@ -21,11 +21,7 @@ export interface Props<T> {
 }
 
 export interface VirtualProps<T> {
-  itemHeight: number;
-
-  virtual: {
-    items: T[];
-  };
+  items: T[];
 }
 
 function getElementTop(element: Window | HTMLElement): number {
@@ -118,7 +114,7 @@ export default class VirtualList<T> extends React.Component<Props<T>> {
   }
 
   render() {
-    const visibleItems = this.lastItemIndex > 0 ? this.props.items.slice(this.firstItemIndex, this.lastItemIndex) : [];
+    const items = this.lastItemIndex > 0 ? this.props.items.slice(this.firstItemIndex, this.lastItemIndex) : [];
 
     const style = {
       boxSizing: 'border-box' as React.CSSProperties['boxSizing'],
@@ -126,16 +122,9 @@ export default class VirtualList<T> extends React.Component<Props<T>> {
       paddingTop: this.firstItemIndex * this.props.itemHeight,
     };
 
-    const virtual = {
-      items: visibleItems,
-    };
-
     return (
       <div ref={this.ref} style={style}>
-        {this.props.children({
-          ...this.props,
-          virtual,
-        })}
+        {this.props.children({ items })}
       </div>
     );
   }
