@@ -82,8 +82,6 @@ export default class VirtualList<T> extends React.Component<Props<T>> {
     itemBuffer: 0,
   };
 
-  private _isMounted = false;
-
   @observable private firstItemIndex = 0;
   @observable private lastItemIndex = -1;
   private readonly ref = React.createRef<HTMLDivElement>();
@@ -98,8 +96,6 @@ export default class VirtualList<T> extends React.Component<Props<T>> {
       this.lastItemIndex = this.props.initialState.lastItemIndex;
     }
 
-    this._isMounted = true;
-
     makeObservable(this);
   }
 
@@ -111,8 +107,6 @@ export default class VirtualList<T> extends React.Component<Props<T>> {
   }
 
   componentWillUnmount() {
-    this._isMounted = false;
-
     this.scrollContainer.removeEventListener('scroll', this.throttledRefreshState);
     this.scrollContainer.removeEventListener('resize', this.throttledRefreshState);
   }
@@ -160,8 +154,6 @@ export default class VirtualList<T> extends React.Component<Props<T>> {
 
   @action
   private refreshState = () => {
-    if (!this._isMounted) return;
-
     const { itemHeight, items, itemBuffer } = this.props;
 
     this.setStateIfNeeded(items, itemHeight, itemBuffer);
