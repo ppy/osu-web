@@ -5,8 +5,8 @@
 // using typescript and mobx with other unnecessary parts removed.
 
 import { throttle } from 'lodash';
-import { action, makeObservable, observable } from 'mobx';
-import { observer } from 'mobx-react';
+import { action, makeObservable, observable, reaction } from 'mobx';
+import { disposeOnUnmount, observer } from 'mobx-react';
 import * as React from 'react';
 
 export interface Props<T> {
@@ -96,11 +96,17 @@ export default class VirtualList<T> extends React.Component<Props<T>> {
       this.lastItemIndex = this.props.initialState.lastItemIndex;
     }
 
+    disposeOnUnmount(
+      this,
+      // ensure new items are rendered when loaded.
+      reaction(() => this.props.items, this.throttledRefreshState),
+    );
+
     makeObservable(this);
   }
 
   componentDidMount() {
-    this.refreshState();
+    this.throttledRefreshState();
 
     this.scrollContainer.addEventListener('scroll', this.throttledRefreshState);
     this.scrollContainer.addEventListener('resize', this.throttledRefreshState);
@@ -135,9 +141,8 @@ export default class VirtualList<T> extends React.Component<Props<T>> {
   }
 
   @action
-  setStateIfNeeded(items: T[], itemHeight: number, itemBuffer: number) {
-    // get first and lastItemIndex
-    const state = getVisibleItemBounds(this.ref.current, this.scrollContainer, items, itemHeight, itemBuffer);
+  private refreshState = () => {
+    const state = getVisibleItemBounds(this.ref.current, this.scrollContainer, this.props.items, this.props.itemHeight, this.props.itemBuffer);
 
     if (state == null) return;
 
@@ -150,12 +155,5 @@ export default class VirtualList<T> extends React.Component<Props<T>> {
     if (state.lastItemIndex !== this.lastItemIndex) {
       this.lastItemIndex = state.lastItemIndex;
     }
-  }
-
-  @action
-  private refreshState = () => {
-    const { itemHeight, items, itemBuffer } = this.props;
-
-    this.setStateIfNeeded(items, itemHeight, itemBuffer);
   };
 }
