@@ -10,21 +10,19 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 
 export interface Props<T> {
+  children: (props: VirtualProps<T>) => React.ReactNode;
+  initialState?: {
+    firstItemIndex: number;
+    lastItemIndex: number;
+  };
   itemBuffer: number;
   itemHeight: number;
   items: T[];
 }
 
-interface Options {
-  initialState?: {
-    firstItemIndex: number;
-    lastItemIndex: number;
-  };
-}
-
 export interface VirtualProps<T> {
   innerRef: React.RefObject<HTMLDivElement>;
-  itemHeight?: number;
+  itemHeight: number;
 
   virtual: {
     items: T[];
@@ -32,102 +30,102 @@ export interface VirtualProps<T> {
   };
 }
 
-const VirtualList = <T,>(options?: Options) => (InnerComponent: React.ComponentType<VirtualProps<T>>) => observer(
-  class vlist extends React.Component<Props<T>> {
-    static readonly defaultProps = {
-      itemBuffer: 0,
+@observer
+class VirtualList<T> extends React.Component<Props<T>> {
+  static readonly defaultProps = {
+    itemBuffer: 0,
+  };
+
+  private _isMounted = false;
+
+  private container: Window | HTMLElement;
+  private domNode = React.createRef<HTMLDivElement>();
+
+  @observable private firstItemIndex = 0;
+  @observable private lastItemIndex = -1;
+
+  private throttledRefreshState = throttle(() => this.refreshState(), 10);
+
+  constructor(props: Props<T>) {
+    super(props);
+
+    // we only care about window for now.
+    this.container = window;
+
+    if (this.props.initialState != null) {
+      this.firstItemIndex = this.props.initialState.firstItemIndex;
+      this.lastItemIndex = this.props.initialState.lastItemIndex;
+    }
+
+    this._isMounted = true;
+
+    makeObservable(this);
+  }
+
+  componentDidMount() {
+    this.refreshState();
+
+    this.container.addEventListener('scroll', this.throttledRefreshState);
+    this.container.addEventListener('resize', this.throttledRefreshState);
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+
+    this.container.removeEventListener('scroll', this.throttledRefreshState);
+    this.container.removeEventListener('resize', this.throttledRefreshState);
+  }
+
+  render() {
+    const visibleItems = this.lastItemIndex > -1 ? this.props.items.slice(this.firstItemIndex, this.lastItemIndex + 1) : [];
+
+    // style
+    const height = this.props.items.length * this.props.itemHeight;
+    const paddingTop = this.firstItemIndex * this.props.itemHeight;
+
+    const virtual = {
+      items: visibleItems,
+      style: {
+        boxSizing: 'border-box' as React.CSSProperties['boxSizing'],
+        height,
+        paddingTop,
+      },
     };
 
-    private _isMounted = false;
+    return this.props.children({
+      ...this.props,
+      innerRef: this.domNode,
+      virtual,
+    });
+  }
 
-    private container: Window | HTMLElement;
-    private domNode = React.createRef<HTMLDivElement>();
+  @action
+  setStateIfNeeded(items: T[], itemHeight: number, itemBuffer: number) {
+    // get first and lastItemIndex
+    const state = getVisibleItemBounds(this.domNode.current, this.container, items, itemHeight, itemBuffer);
 
-    private firstItemIndex = 0;
-    private lastItemIndex = -1;
+    if (state == null) return;
 
-    private throttledRefreshState = throttle(() => this.refreshState(), 10);
+    if (state.firstItemIndex > state.lastItemIndex) return;
 
-    constructor(props: Props<T>) {
-      super(props);
-
-      // we only care about window for now.
-      this.container = window;
-
-      if (options?.initialState != null) {
-        this.firstItemIndex = options.initialState.firstItemIndex;
-        this.lastItemIndex = options.initialState.lastItemIndex;
-      }
-
-      this._isMounted = true;
-
-      makeObservable(this, {
-        firstItemIndex: observable,
-        lastItemIndex: observable,
-        refreshState: action,
-        setStateIfNeeded: action,
-      });
+    if (state.firstItemIndex !== this.firstItemIndex) {
+      this.firstItemIndex = state.firstItemIndex;
     }
 
-    componentDidMount() {
-      this.refreshState();
-
-      this.container.addEventListener('scroll', this.throttledRefreshState);
-      this.container.addEventListener('resize', this.throttledRefreshState);
+    if (state.lastItemIndex !== this.lastItemIndex) {
+      this.lastItemIndex = state.lastItemIndex;
     }
+  }
 
-    componentWillUnmount() {
-      this._isMounted = false;
+  @action
+  private refreshState = () => {
+    if (!this._isMounted) return;
 
-      this.container.removeEventListener('scroll', this.throttledRefreshState);
-      this.container.removeEventListener('resize', this.throttledRefreshState);
-    }
+    const { itemHeight, items, itemBuffer } = this.props;
 
-    render() {
-      const visibleItems = this.lastItemIndex > -1 ? this.props.items.slice(this.firstItemIndex, this.lastItemIndex + 1) : [];
-
-      // style
-      const height = this.props.items.length * this.props.itemHeight;
-      const paddingTop = this.firstItemIndex * this.props.itemHeight;
-
-      const virtual = {
-        items: visibleItems,
-        style: {
-          boxSizing: 'border-box' as React.CSSProperties['boxSizing'],
-          height,
-          paddingTop,
-        },
-      };
-
-      return <InnerComponent innerRef={this.domNode} {...this.props} virtual={virtual} />;
-    }
-
-    setStateIfNeeded(items: T[], itemHeight: number, itemBuffer: number) {
-      // get first and lastItemIndex
-      const state = getVisibleItemBounds(this.domNode.current, this.container, items, itemHeight, itemBuffer);
-
-      if (state == null) return;
-
-      if (state.firstItemIndex > state.lastItemIndex) return;
-
-      if (state.firstItemIndex !== this.firstItemIndex) {
-        this.firstItemIndex = state.firstItemIndex;
-      }
-
-      if (state.lastItemIndex !== this.lastItemIndex) {
-        this.lastItemIndex = state.lastItemIndex;
-      }
-    }
-
-    private refreshState = () => {
-      if (!this._isMounted) return;
-
-      const { itemHeight, items, itemBuffer } = this.props;
-
-      this.setStateIfNeeded(items, itemHeight, itemBuffer);
-    };
-  },
-);
+    this.setStateIfNeeded(items, itemHeight, itemBuffer);
+  };
+}
 
 function getVisibleItemBounds<T>(element: HTMLElement | null, container: Window | HTMLElement, items: T[], itemHeight: number, itemBuffer: number) {
   // early return if we can't calculate

@@ -44,8 +44,6 @@ const ListRender = ({ innerRef, virtual }: VirtualProps<number[]>) => (
   </div>
 );
 
-const BeatmapList = VirtualList<number[]>()(ListRender);
-
 const EmptyList = () => (
   <div className='beatmapsets__empty'>
     <Img2x
@@ -124,11 +122,13 @@ export class SearchContent extends React.Component<Props> {
 
   private renderList() {
     return this.beatmapsetIds.length > 0 ? (
-      <BeatmapList
+      <VirtualList
         itemBuffer={5}
         itemHeight={this.virtualListMeta.itemHeight}
         items={this.chunkedItems}
-      />
+      >
+        {ListRender}
+      </VirtualList>
     ) : <EmptyList />;
   }
 
