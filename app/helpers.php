@@ -1191,7 +1191,7 @@ function i18n_date($datetime, $format = IntlDateFormatter::LONG, $pattern = null
 
 function i18n_number_format($number, $style = null, $pattern = null, $precision = null, $locale = null)
 {
-    $formatter = NumberFormatter::create(
+    $formatter = new NumberFormatter(
         $locale ?? App::getLocale(),
         $style ?? NumberFormatter::DEFAULT_STYLE,
         $pattern
