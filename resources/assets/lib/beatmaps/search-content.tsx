@@ -55,22 +55,6 @@ const EmptyList = () => (
   </div>
 );
 
-function renderLinkToSupporterTag(filterText: string) {
-  const url = route('store.products.show', { product: 'supporter-tag' });
-
-  return (
-    <p>
-      <StringWithComponent
-        mappings={{
-          filters: filterText,
-          link: <a href={url}>{osu.trans('beatmaps.listing.search.supporter_filter_quote.link_text')}</a>,
-        }}
-        pattern={osu.trans('beatmaps.listing.search.supporter_filter_quote._')}
-      />
-    </p>
-  );
-}
-
 @observer
 export class SearchContent extends React.Component<Props> {
   private readonly virtualListMeta = new VirtualListMeta();
@@ -137,15 +121,26 @@ export class SearchContent extends React.Component<Props> {
   }
 
   private renderSupporterRequired() {
-    const supporterRequiredFilterText = this.controller.supporterRequiredFilterText;
+    const filters = this.controller.supporterRequiredFilterText;
+    const link = (
+      <a href={route('store.products.show', { product: 'supporter-tag' })}>
+        {osu.trans('beatmaps.listing.search.supporter_filter_quote.link_text')}
+      </a>
+    );
+
     return (
       <div className='beatmapsets__empty'>
         <Img2x
-          alt={osu.trans('beatmaps.listing.search.supporter_filter', { filters: supporterRequiredFilterText })}
+          alt={osu.trans('beatmaps.listing.search.supporter_filter', { filters })}
           src='/images/layout/beatmaps/supporter-required.png'
-          title={osu.trans('beatmaps.listing.search.supporter_filter', { filters: supporterRequiredFilterText })}
+          title={osu.trans('beatmaps.listing.search.supporter_filter', { filters })}
         />
-        {renderLinkToSupporterTag(supporterRequiredFilterText)}
+        <p>
+          <StringWithComponent
+            mappings={{ filters, link }}
+            pattern={osu.trans('beatmaps.listing.search.supporter_filter_quote._')}
+          />
+        </p>
       </div>
     );
   }
