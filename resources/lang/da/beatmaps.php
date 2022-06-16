@@ -105,13 +105,13 @@ return [
                 'unlink' => 'Fjern link',
                 'unsaved' => 'Ikke gemt',
                 'timestamp' => [
-                    'all-diff' => '',
-                    'diff' => '',
+                    'all-diff' => 'Indlæg på "Alle sværhedsgrader" kan ikke tidsstemples.',
+                    'diff' => 'Hvis denne :type starter med et tidsstempel, vil den blive vist under tidslinje.',
                 ],
             ],
             'insert-block' => [
                 'paragraph' => 'indsæt afsnit',
-                'praise' => '',
+                'praise' => 'indsæt praise',
                 'problem' => 'indsæt problem',
                 'suggestion' => 'indsæt forslag',
             ],
@@ -184,7 +184,7 @@ return [
         'disqualify' => 'Diskvalificér',
         'incorrect_state' => 'Der opstod en fejl da vi prøvede at udføre handlingen, prøv at genindlæse siden.',
         'love' => 'Elsk',
-        'love_choose' => '',
+        'love_choose' => 'Vælg sværhedsgrad for elskede',
         'love_confirm' => 'Elsk dette beatmap?',
         'nominate' => 'Nominér',
         'nominate_confirm' => 'Nominér dette beatmap?',
@@ -198,8 +198,8 @@ return [
         'unresolved_issues' => 'Der er stadig uløste problemer der skal tages fat på først.',
 
         'rank_estimate' => [
-            '_' => '',
-            'queue' => '',
+            '_' => 'Dette kort anslås at være rangeret :date , hvis ingen problemer findes. Det er #:position i :queue.',
+            'queue' => 'rangering kø',
             'soon' => 'snart',
         ],
 
@@ -211,7 +211,7 @@ return [
         'reset_confirm' => [
             'disqualify' => 'Er du sikker? Dette vil fjerne beatmappet fra de kvalificerede beatmaps og vil nulstille nominations-processen.',
             'nomination_reset' => 'Er du sikker? At slå et nyt problem op nulstiller nominations-processen.',
-            'problem_warning' => '',
+            'problem_warning' => 'Er du sikker på at du vil rapportere problem på dette beatmap? Dette vil advare Beatmap Nominatorer.',
         ],
     ],
 
@@ -229,7 +229,7 @@ return [
                 'genre' => 'Genre',
                 'language' => 'Sprog',
                 'mode' => 'Mode',
-                'nsfw' => '',
+                'nsfw' => 'Eksplicit Indhold',
                 'played' => 'Allerede spillet',
                 'rank' => 'Rank Opnået',
                 'status' => 'Kategorier',
@@ -254,11 +254,11 @@ return [
     ],
     'general' => [
         'converts' => 'Inkluder konvertert beatmeaps',
-        'featured_artists' => '',
+        'featured_artists' => 'Udvalgte kunstnere',
         'follows' => 'Subscribed mappers
 ',
         'recommended' => 'Rekommenderat sværhedsgrad',
-        'spotlights' => '',
+        'spotlights' => 'Spotlightet beatmaps',
     ],
     'mode' => [
         'all' => 'Alle',
@@ -277,7 +277,7 @@ return [
         'loved' => 'Elsket',
         'mine' => 'Mine Maps',
         'pending' => 'Afventende & WIP',
-        'wip' => '',
+        'wip' => 'WIP',
         'qualified' => 'Kvalificeret',
         'ranked' => 'Ranked',
     ],
@@ -325,7 +325,7 @@ return [
         'V2' => '',
     ],
     'language' => [
-        'any' => '',
+        'any' => 'Alle',
         'english' => 'Engelsk',
         'chinese' => 'Kinesisk',
         'french' => 'Fransk',
@@ -343,8 +343,8 @@ return [
     ],
 
     'nsfw' => [
-        'exclude' => '',
-        'include' => '',
+        'exclude' => 'Skjul',
+        'include' => 'Vis',
     ],
 
     'played' => [

@@ -15,6 +15,7 @@ return [
     ],
 
     'channels' => [
+        'create' => '',
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Anunțuri',
@@ -25,12 +26,25 @@ return [
         ],
     ],
 
+    'form' => [
+        'title' => [
+            'announcement' => '',
+        ],
+
+        'labels' => [
+            'description' => '',
+            'name' => '',
+            'users' => '',
+        ],
+    ],
+
     'not_found' => [
         'message' => 'Nu este nimic aici. Poate ai părăsit canalul sau acesta nu există...',
         'title' => 'canalul nu a fost găsit',
     ],
 
     'input' => [
+        'create' => '',
         'disabled' => 'mesajul nu a putut fi trimis...',
         'disconnected' => 'Deconectat',
         'placeholder' => 'scrie un mesaj...',

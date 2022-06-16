@@ -12,7 +12,7 @@ return [
     ],
 
     'cover' => [
-        'deleted' => '',
+        'deleted' => 'Deleted na beatmap',
     ],
 
     'download' => [
@@ -40,7 +40,7 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => 'Kailangan mong pumili ng kahit isang playmode na i-nonominate sa hybrid na mga beatmap.',
+        'hybrid_requires_modes' => 'Ang isang hybrid na beatmap ay kinailangan na ikaw ay pumili ng kahit isang playmode upang makanominate.',
         'incorrect_mode' => 'Wala kang pahintulot na mag-nominate para sa mode :mode',
         'full_bn_required' => 'Kailangan mong maging full nominator para maisagawa ang qualifying nomination na ito.',
         'too_many' => 'Nabuo na ang pangangailangan sa nominasyon.',
@@ -125,7 +125,7 @@ return [
             'language' => 'Wika',
             'no_scores' => 'Kinakalkula pa ang mga datos...',
             'nsfw' => 'Maselang nilalaman',
-            'offset' => '',
+            'offset' => 'Ang online offset',
             'points-of-failure' => 'Mga punto ng pagkabigo',
             'source' => 'Pinagmulan',
             'storyboard' => 'Ang beatmap na ito ay may storyboard',
@@ -197,7 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Bilang ng Bilog',
             'count_sliders' => 'Bilang ng Slider',
-            'offset' => '',
+            'offset' => 'Ang online offset: :offset',
             'user-rating' => 'Rating ng mga User',
             'rating-spread' => 'Pagkakalatag ng Rating',
             'nominations' => 'Mga Nominasyon',
@@ -216,6 +216,6 @@ return [
     ],
 
     'spotlight_badge' => [
-        'label' => '',
+        'label' => 'Ang Spotlight',
     ],
 ];

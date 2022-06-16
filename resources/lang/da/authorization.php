@@ -173,8 +173,8 @@ return [
 
     'score' => [
         'pin' => [
-            'not_owner' => '',
-            'too_many' => '',
+            'not_owner' => 'Kun score ejer kan pin score.',
+            'too_many' => 'Fastgjort for mange score.',
         ],
     ],
 

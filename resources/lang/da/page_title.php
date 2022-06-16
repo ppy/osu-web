@@ -138,12 +138,12 @@ return [
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            '_' => '',
+            '_' => 'rangering',
         ],
     ],
     'passport' => [
         'authorization_controller' => [
-            '_' => '',
+            '_' => 'godkend app',
         ],
     ],
     'store' => [
@@ -154,7 +154,7 @@ return [
             '_' => 'modder info',
         ],
         'multiplayer_controller' => [
-            '_' => '',
+            '_' => 'multiplayer historik',
         ],
     ],
 ];

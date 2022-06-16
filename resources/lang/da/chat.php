@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'loading_users' => '',
+    'loading_users' => 'indlæser brugere...',
     'talking_in' => 'taler i :channel',
     'talking_with' => 'taler med:name',
     'title_compact' => 'chat',
@@ -15,25 +15,39 @@ return [
     ],
 
     'channels' => [
+        'create' => '',
         'list' => [
             'title' => [
-                'ANNOUNCE' => '',
-                'GROUP' => '',
-                'PM' => '',
-                'PUBLIC' => '',
+                'ANNOUNCE' => 'Service-meddelelse',
+                'GROUP' => 'Grupper',
+                'PM' => 'Direkte beskeder',
+                'PUBLIC' => 'Kanaler',
             ],
         ],
     ],
 
+    'form' => [
+        'title' => [
+            'announcement' => '',
+        ],
+
+        'labels' => [
+            'description' => '',
+            'name' => '',
+            'users' => '',
+        ],
+    ],
+
     'not_found' => [
-        'message' => '',
-        'title' => '',
+        'message' => 'Der er intet her, måske du forlod kanalen, eller det eksisterer ikke...',
+        'title' => 'kanal ikke fundet',
     ],
 
     'input' => [
+        'create' => '',
         'disabled' => 'kunne ikke sende besked...',
-        'disconnected' => '',
-        'placeholder' => 'skriv Besked...',
+        'disconnected' => 'Afbrudt',
+        'placeholder' => 'skriv besked...',
         'send' => 'Send',
     ],
 

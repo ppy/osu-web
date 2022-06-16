@@ -257,7 +257,7 @@ return [
         'featured_artists' => 'Artistas em destaque',
         'follows' => 'Mappers inscritos',
         'recommended' => 'Dificuldade recomendada',
-        'spotlights' => '',
+        'spotlights' => 'Beatmaps destacados',
     ],
     'mode' => [
         'all' => 'Todos',
