@@ -24,34 +24,7 @@ export interface RenderProps<T> {
   items: T[];
 }
 
-function getVisibleItemBounds(element: HTMLElement | null, container: Window | HTMLElement, length: number, itemHeight: number, itemBuffer: number, scrollTop: number) {
-  // early return if we can't calculate
-  if (length === 0) return;
-
-  // what the user can see
-  // how many pixels are visible
-  const viewHeight: number = 'innerHeight' in container ? container.innerHeight : container.clientHeight;
-
-  if (viewHeight === 0) return;
-
-  const scrollBottom = scrollTop + viewHeight;
-
-  const listTop = topFromWindow(element) - topFromWindow(container); // top of the list inside the scroll container
-  const listHeight = itemHeight * length;
-
-  // visible portion of the list
-  const listViewTop = Math.max(0, scrollTop - listTop);
-  const listViewBottom = Math.max(0, Math.min(listHeight, scrollBottom - listTop));
-
-  // visible item indexes
-  const firstItemIndex = Math.max(0, Math.floor(listViewTop / itemHeight) - itemBuffer);
-  const lastItemIndex = Math.min(length, Math.ceil(listViewBottom / itemHeight) + itemBuffer);
-
-  return {
-    firstItemIndex,
-    lastItemIndex,
-  };
-}
+const emptyItemBounds = { firstItemIndex: 0, lastItemIndex: 0 };
 
 function topFromWindow(element: Window | HTMLElement | Element | null): number {
   if (element == null) return 0;
@@ -71,19 +44,34 @@ export default class VirtualList<T> extends React.Component<Props<T>> {
 
   private readonly ref = React.createRef<HTMLDivElement>();
   private readonly scrollContainer = window; // we only care about window for now.
-  @observable private scrollY = 0;
+  @observable private scrollTop = 0;
   private readonly throttledSetScroll = throttle(() => this.setScroll(), 10);
 
   @computed
   private get visibleItemBounds() {
-    return getVisibleItemBounds(
-      this.ref.current,
-      this.scrollContainer,
-      this.props.items.length,
-      this.props.itemHeight,
-      this.props.itemBuffer,
-      this.scrollY,
-    ) ?? { firstItemIndex: 0, lastItemIndex: 0 };
+    const length = this.props.items.length;
+    const viewHeight = this.scrollContainer.innerHeight;
+
+    if (length === 0 || viewHeight === 0) return emptyItemBounds;
+
+    const { itemBuffer, itemHeight } = this.props;
+    const scrollBottom = this.scrollTop + viewHeight;
+
+    const listTop = topFromWindow(this.ref.current) - topFromWindow(this.scrollContainer); // top of the list inside the scroll container
+    const listHeight = itemHeight * length;
+
+    // visible portion of the list
+    const listViewTop = Math.max(0, this.scrollTop - listTop);
+    const listViewBottom = Math.max(0, Math.min(listHeight, scrollBottom - listTop));
+
+    // visible item indexes
+    const firstItemIndex = Math.max(0, Math.floor(listViewTop / itemHeight) - itemBuffer);
+    const lastItemIndex = Math.min(length, Math.ceil(listViewBottom / itemHeight) + itemBuffer);
+
+    return {
+      firstItemIndex,
+      lastItemIndex,
+    };
   }
 
   constructor(props: Props<T>) {
@@ -119,6 +107,6 @@ export default class VirtualList<T> extends React.Component<Props<T>> {
 
   @action
   private setScroll = () => {
-    this.scrollY = this.scrollContainer.scrollY;
+    this.scrollTop = this.scrollContainer.scrollY;
   };
 }
