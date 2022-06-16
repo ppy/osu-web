@@ -27,7 +27,7 @@ return [
     'client' => [
         'id' => 'ID Klien',
         'name' => 'Nama Aplikasi',
-        'redirect' => 'Application Callback URL',
+        'redirect' => 'URL Callback Aplikasi',
         'reset' => 'Atur ulang client secret',
         'reset_failed' => 'Pengaturan ulang client secret gagal',
         'secret' => 'Client Secret',

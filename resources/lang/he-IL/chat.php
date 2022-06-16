@@ -15,6 +15,7 @@ return [
     ],
 
     'channels' => [
+        'create' => '',
         'list' => [
             'title' => [
                 'ANNOUNCE' => '',
@@ -25,12 +26,25 @@ return [
         ],
     ],
 
+    'form' => [
+        'title' => [
+            'announcement' => '',
+        ],
+
+        'labels' => [
+            'description' => '',
+            'name' => '',
+            'users' => '',
+        ],
+    ],
+
     'not_found' => [
         'message' => '',
         'title' => '',
     ],
 
     'input' => [
+        'create' => '',
         'disabled' => 'אין אפשרות לשלוח את ההודעה...',
         'disconnected' => '',
         'placeholder' => 'הקלד הודעה...',

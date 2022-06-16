@@ -55,7 +55,6 @@ use Illuminate\Database\QueryException;
  * @property \Illuminate\Database\Eloquent\Collection $defaultBeatmaps Beatmap
  * @property \Carbon\Carbon|null $deleted_at
  * @property string|null $difficulty_names
- * @property bool $discussion_enabled
  * @property bool $discussion_locked
  * @property string $displaytitle
  * @property bool $download_disabled
@@ -111,7 +110,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     protected $casts = [
         'active' => 'boolean',
-        'discussion_enabled' => 'boolean',
+        'comment_locked' => 'boolean',
         'discussion_locked' => 'boolean',
         'download_disabled' => 'boolean',
         'epilepsy' => 'boolean',
@@ -920,6 +919,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     public function requiredHype()
     {
         return config('osu.beatmapset.required_hype');
+    }
+
+    public function commentLocked(): bool
+    {
+        return $this->comment_locked || $this->downloadLimited();
     }
 
     public function commentableTitle()

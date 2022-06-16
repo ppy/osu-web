@@ -69,7 +69,7 @@ class ScoresControllerTest extends TestCase
                 'GET',
                 route('scores.download', $this->params())
             )
-            ->assertRedirect(route('scores.show', $this->params()));
+            ->assertRedirect(route('scores.show-legacy', $this->params()));
 
         $this
             ->actingAs($this->user)
@@ -78,7 +78,7 @@ class ScoresControllerTest extends TestCase
                 'GET',
                 route('scores.download', $this->params())
             )
-            ->assertRedirect(route('scores.show', $this->params()));
+            ->assertRedirect(route('scores.show-legacy', $this->params()));
     }
 
     public function testDownloadInvalidMode()

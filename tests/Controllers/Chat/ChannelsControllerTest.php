@@ -44,7 +44,7 @@ class ChannelsControllerTest extends TestCase
     //endregion
 
     //region POST /chat/channels - Create and join channel
-    public function testChannelStoreAnnoucement()
+    public function testChannelStoreAnnouncement()
     {
         $sender = User::factory()->withGroup('announce')->create();
         $users = User::factory()->count(2)->create();
@@ -56,7 +56,7 @@ class ChannelsControllerTest extends TestCase
                     'description' => 'really',
                     'name' => 'important stuff',
                 ],
-                'message' => 'annoucements!!!',
+                'message' => 'announcements!!!',
                 'target_ids' => $users->pluck('user_id')->toArray(),
                 'type' => Channel::TYPES['announce'],
             ])

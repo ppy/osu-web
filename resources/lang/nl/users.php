@@ -209,7 +209,7 @@ return [
                     'title' => 'Beatmaps in het kerkhof',
                 ],
                 'guest' => [
-                    'title' => '',
+                    'title' => 'Beatmaps met gastdeelname',
                 ],
                 'loved' => [
                     'title' => 'Loved Beatmaps',

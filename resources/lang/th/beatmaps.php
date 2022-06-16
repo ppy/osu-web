@@ -211,7 +211,7 @@ return [
         'reset_confirm' => [
             'disqualify' => 'คุณแน่ใจใช่หรือไม่? ที่จะลบบีทแมพออกและรีเซ็ตความคืบหน้า',
             'nomination_reset' => 'คุณแน่ใจหรือ? ในการโพสต์ปัญหาใหม่จะรีเซ็ตการเสนอชื่อ',
-            'problem_warning' => '',
+            'problem_warning' => 'คุณแน่ใจที่จะรายงานปัญหาบน Beatmap นี้หรือไม่ รายงานนี้จะถูกแจ้งเตือนไปยัง Beatmap Nominators',
         ],
     ],
 
@@ -254,7 +254,7 @@ return [
     ],
     'general' => [
         'converts' => 'รวมแมพคอนเวิรต์ด้วย',
-        'featured_artists' => '',
+        'featured_artists' => 'ศิลปินโดดเด่น',
         'follows' => 'ติดตามผู้ทำแมพ',
         'recommended' => 'ระดับความยากที่แนะนำ',
         'spotlights' => '',
@@ -276,7 +276,7 @@ return [
         'loved' => 'Loved',
         'mine' => 'แมพของฉัน',
         'pending' => 'รอดำเนินการ & WIP',
-        'wip' => '',
+        'wip' => 'WIP',
         'qualified' => 'Qualified',
         'ranked' => 'จัดอันดับแล้ว',
     ],

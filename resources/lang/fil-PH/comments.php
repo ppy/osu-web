@@ -19,7 +19,7 @@ return [
         'beatmapset' => 'Beatmap',
         'build' => 'Listahan ng Pagbabago',
         'news_post' => 'Balita',
-        '_deleted' => 'Tinanggal na item',
+        '_deleted' => 'Tinanggal na Aytem',
     ],
 
     'editor' => [

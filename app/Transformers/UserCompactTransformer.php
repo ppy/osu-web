@@ -229,7 +229,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeGraveyardBeatmapsetCount(User $user)
     {
-        return $this->primitive($user->profileBeatmapsetsGraveyard()->count());
+        return $this->primitive($user->profileBeatmapsetCountByGroupedStatus('graveyard'));
     }
 
     public function includeGroups(User $user)
@@ -289,7 +289,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeLovedBeatmapsetCount(User $user)
     {
-        return $this->primitive($user->profileBeatmapsetsLoved()->count());
+        return $this->primitive($user->profileBeatmapsetCountByGroupedStatus('loved'));
     }
 
     public function includeMappingFollowerCount(User $user)
@@ -319,7 +319,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includePendingBeatmapsetCount(User $user)
     {
-        return $this->primitive($user->profileBeatmapsetsPending()->count());
+        return $this->primitive($user->profileBeatmapsetCountByGroupedStatus('pending'));
     }
 
     public function includePreviousUsernames(User $user)
@@ -346,7 +346,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeRankedBeatmapsetCount(User $user)
     {
-        return $this->primitive($user->profileBeatmapsetsRanked()->count());
+        return $this->primitive($user->profileBeatmapsetCountByGroupedStatus('ranked'));
     }
 
     public function includeReplaysWatchedCounts(User $user)
@@ -369,7 +369,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeScoresPinnedCount(User $user)
     {
-        return $this->primitive($user->scorePins()->forMode($this->mode)->withVisibleScore()->count());
+        return $this->primitive($user->scorePins()->forRuleset($this->mode)->withVisibleScore()->count());
     }
 
     public function includeScoresRecentCount(User $user)

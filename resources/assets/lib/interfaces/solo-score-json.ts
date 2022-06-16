@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import GameMode from './game-mode';
 import Rank from './rank';
 import { ScoreJsonAvailableIncludes, ScoreJsonDefaultIncludes } from './score-json';
 
@@ -14,12 +15,14 @@ export type SoloScoreStatisticsAttribute =
   | 'great'
   | 'ignore_hit'
   | 'ignore_miss'
+  | 'large_bonus'
   | 'large_tick_hit'
   | 'large_tick_miss'
   | 'meh'
   | 'miss'
   | 'ok'
   | 'perfect'
+  | 'small_bonus'
   | 'small_tick_hit'
   | 'small_tick_miss';
 
@@ -41,6 +44,7 @@ interface SoloScoreJsonDefaultAttributes {
   started_at: string | null;
   statistics: Partial<Record<SoloScoreStatisticsAttribute, number>>;
   total_score: number;
+  type: 'solo_score' | `score_best_${GameMode}` | `score_${GameMode}`;
   user_id: number;
 }
 
