@@ -65,7 +65,6 @@ export class SearchPanel extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
 
-    // id is to trigger warnings if duplicate portals get added.
     this.breadcrumbsPortal.id = 'search-panel-breadcrumbs-portal';
     this.contentPortal.id = 'search-panel-content-portal';
 
