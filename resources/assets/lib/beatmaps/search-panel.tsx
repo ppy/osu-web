@@ -27,12 +27,6 @@ function mountPortal(portal: HTMLElement, root?: Element | null) {
   root?.appendChild(portal);
 }
 
-function unmountPortal(portal: HTMLElement, root?: Element | null) {
-  if (portal.offsetParent != null) {
-    root?.removeChild(portal);
-  }
-}
-
 interface FilterProps {
   multiselect?: boolean;
   name: FilterKey;
@@ -86,8 +80,8 @@ export class SearchPanel extends React.Component<Props> {
 
   componentWillUnmount() {
     $(document).off('sticky-header:sticking', this.setHeaderPinned);
-    unmountPortal(this.breadcrumbsPortal, this.breadcrumbsElement);
-    unmountPortal(this.contentPortal, this.contentElement);
+    this.breadcrumbsPortal.remove();
+    this.contentPortal.remove();
   }
 
   render() {
