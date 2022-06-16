@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'loading_users' => '',
+    'loading_users' => '加载用户中...',
     'talking_in' => '在 :channel 中聊天',
     'talking_with' => '与 :name 聊天',
     'title_compact' => '聊天',
@@ -15,6 +15,7 @@ return [
     ],
 
     'channels' => [
+        'create' => '',
         'list' => [
             'title' => [
                 'ANNOUNCE' => '通知',
@@ -25,12 +26,25 @@ return [
         ],
     ],
 
+    'form' => [
+        'title' => [
+            'announcement' => '',
+        ],
+
+        'labels' => [
+            'description' => '',
+            'name' => '',
+            'users' => '',
+        ],
+    ],
+
     'not_found' => [
         'message' => '这里没有任何内容，或许你离开了频道或者它并不存在...',
         'title' => '未找到频道',
     ],
 
     'input' => [
+        'create' => '',
         'disabled' => '无法发送消息……',
         'disconnected' => '连接中断',
         'placeholder' => '输入消息……',

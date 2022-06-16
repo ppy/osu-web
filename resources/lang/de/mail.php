@@ -15,14 +15,14 @@ return [
         'closing' => 'Grüße,',
         'hello' => 'Hi :user,',
         'report' => 'Bitte antworte SOFORT auf diese E-Mail, wenn Du diese Änderung nicht angefordert hast.',
-        'ignore' => 'Falls Du diese E-Mail nicht angefordert hast, kannst Du sie sicher ignorieren.',
+        'ignore' => 'Falls du dies nicht angefordert hast, kannst du diese E-Mail gefahrlos ignorieren.',
     ],
 
     'donation_thanks' => [
         'benefit_more' => 'Mit der Zeit werden noch mehr neue Unterstützervorteile auftauchen!',
         'feedback' => "Wenn Du Fragen oder Anregungen hast, zögere nicht, auf diese Mail zu antworten; Ich melde mich so schnell wie möglich bei Dir!",
         'keep_free' => 'Es ist Menschen wie Dir zu verdanken, dass osu! in der Lage ist, das Spiel und die Community ohne Werbung oder erzwungene Zahlungen am Laufen zu halten.',
-        'keep_running' => 'Deine Unterstützung hält osu! für ungefähr :minutes am laufen! Das klingt nicht viel, aber es summiert sich alles :).',
+        'keep_running' => 'Deine Unterstützung hält osu! für ungefähr :minutes am laufen! Das klingt nicht nach viel, aber es kommt einiges zusammen :).',
         'subject' => 'Danke, osu! <3 dich',
         'translation' => 'Es folgt eine vom Benutzer bereitgestellte Übersetzung zu Informationszwecken:',
 

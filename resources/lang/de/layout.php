@@ -51,7 +51,7 @@ return [
 
         'users' => [
             'modding' => 'modding',
-            'playlists' => 'wiedergabelisten',
+            'playlists' => 'playlists',
             'realtime' => 'multiplayer',
             'show' => 'info',
         ],

@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'loading_users' => '',
+    'loading_users' => 'učitavanje korisnika...',
     'talking_in' => 'razgovaranje u :channel',
     'talking_with' => 'razgovaranje sa :name',
     'title_compact' => 'razgovor',
@@ -15,6 +15,7 @@ return [
     ],
 
     'channels' => [
+        'create' => '',
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Obaveštenja',
@@ -25,12 +26,25 @@ return [
         ],
     ],
 
+    'form' => [
+        'title' => [
+            'announcement' => '',
+        ],
+
+        'labels' => [
+            'description' => '',
+            'name' => '',
+            'users' => '',
+        ],
+    ],
+
     'not_found' => [
         'message' => 'Ovdje nema ničega, možda si napustio kanal ili ne postoji...',
         'title' => 'kanal nije pronađen',
     ],
 
     'input' => [
+        'create' => '',
         'disabled' => 'nije moguće poslati poruku...',
         'disconnected' => 'Odspojeno',
         'placeholder' => 'upišite poruku...',
