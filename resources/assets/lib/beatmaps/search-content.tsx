@@ -8,6 +8,7 @@ import Img2x from 'components/img2x';
 import StringWithComponent from 'components/string-with-component';
 import { route } from 'laroute';
 import { chunk } from 'lodash';
+import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -63,8 +64,18 @@ export class SearchContent extends React.Component<Props> {
     return this.controller.currentBeatmapsetIds;
   }
 
+  @computed
+  private get chunkedItems() {
+    return chunk(this.beatmapsetIds, this.virtualListMeta.numberOfColumns);
+  }
+
   private get controller() {
     return core.beatmapsetSearchController;
+  }
+
+  constructor(props: Props) {
+    super(props);
+    makeObservable(this);
   }
 
   render() {
@@ -115,7 +126,7 @@ export class SearchContent extends React.Component<Props> {
       <BeatmapList
         itemBuffer={5}
         itemHeight={this.virtualListMeta.itemHeight}
-        items={chunk(this.beatmapsetIds, this.virtualListMeta.numberOfColumns)}
+        items={this.chunkedItems}
       />
     ) : <EmptyList />;
   }
