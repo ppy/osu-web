@@ -70,7 +70,7 @@ jobs:
         env:
           action.auto_create_index: "false"
           discovery.type: single-node
-        image: elasticsearch:7.17.4
+        image: elasticsearch:6.8.23
         ports:
           - 9200:9200
 
