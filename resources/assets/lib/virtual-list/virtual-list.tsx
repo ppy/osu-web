@@ -137,12 +137,7 @@ export default class VirtualList<T> extends React.Component<Props<T>> {
 
     if (state.firstItemIndex >= state.lastItemIndex) return;
 
-    if (state.firstItemIndex !== this.firstItemIndex) {
-      this.firstItemIndex = state.firstItemIndex;
-    }
-
-    if (state.lastItemIndex !== this.lastItemIndex) {
-      this.lastItemIndex = state.lastItemIndex;
-    }
+    this.firstItemIndex = state.firstItemIndex;
+    this.lastItemIndex = state.lastItemIndex;
   };
 }
