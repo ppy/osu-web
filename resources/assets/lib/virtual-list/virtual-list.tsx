@@ -10,7 +10,7 @@ import { disposeOnUnmount, observer } from 'mobx-react';
 import * as React from 'react';
 
 export interface Props<T> {
-  children: (props: VirtualProps<T>) => React.ReactNode;
+  children: (props: RenderProps<T>) => React.ReactNode;
   initialState?: {
     firstItemIndex: number;
     lastItemIndex: number;
@@ -20,7 +20,7 @@ export interface Props<T> {
   items: T[];
 }
 
-export interface VirtualProps<T> {
+export interface RenderProps<T> {
   items: T[];
 }
 

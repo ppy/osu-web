@@ -12,9 +12,8 @@ import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-// import VirtualList, { VirtualProps } from 'react-virtual-list';
 import { classWithModifiers } from 'utils/css';
-import VirtualList, { VirtualProps } from 'virtual-list/virtual-list';
+import VirtualList, { RenderProps } from 'virtual-list/virtual-list';
 import AvailableFilters from './available-filters';
 import { Paginator } from './paginator';
 import { SearchPanel } from './search-panel';
@@ -25,7 +24,7 @@ interface Props {
   backToTopAnchor: React.RefObject<HTMLDivElement>;
 }
 
-const ListRender = ({ items }: VirtualProps<number[]>) => (
+const BeatmapList = ({ items }: RenderProps<number[]>) => (
   <div className='beatmapsets__items'>
     {items.map((row) => (
       <div key={row.join('-')} className='beatmapsets__items-row'>
@@ -125,7 +124,7 @@ export class SearchContent extends React.Component<Props> {
         itemHeight={this.virtualListMeta.itemHeight}
         items={this.chunkedItems}
       >
-        {ListRender}
+        {BeatmapList}
       </VirtualList>
     ) : <EmptyList />;
   }
