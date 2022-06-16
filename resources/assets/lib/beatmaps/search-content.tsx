@@ -24,6 +24,9 @@ interface Props {
   backToTopAnchor: React.RefObject<HTMLDivElement>;
 }
 
+// Rendered as a vertical list of flexbox rows instead of css grid as it repaints faster.
+// With CSS grid, every item has to be re-layout and re-painted when the virtual window is updated.
+// The current method only has to paint new rows and shift the layout of the other rows.
 const BeatmapList = ({ items }: RenderProps<number[]>) => (
   <div className='beatmapsets__items'>
     {items.map((row) => (
