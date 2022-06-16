@@ -5,8 +5,8 @@
 // using typescript and mobx with other unnecessary parts removed.
 
 import { throttle } from 'lodash';
-import { action, makeObservable, observable, reaction } from 'mobx';
-import { disposeOnUnmount, observer } from 'mobx-react';
+import { action, computed, makeObservable, observable } from 'mobx';
+import { observer } from 'mobx-react';
 import * as React from 'react';
 
 export interface Props<T> {
@@ -24,15 +24,7 @@ export interface RenderProps<T> {
   items: T[];
 }
 
-function getElementTop(element: Window | HTMLElement): number {
-  // window
-  if ('scrollY' in element) return element.scrollY;
-
-  // not window
-  return element.scrollTop;
-}
-
-function getVisibleItemBounds(element: HTMLElement | null, container: Window | HTMLElement, length: number, itemHeight: number, itemBuffer: number) {
+function getVisibleItemBounds(element: HTMLElement | null, container: Window | HTMLElement, length: number, itemHeight: number, itemBuffer: number, scrollTop: number) {
   // early return if we can't calculate
   if (length === 0) return;
 
@@ -42,7 +34,6 @@ function getVisibleItemBounds(element: HTMLElement | null, container: Window | H
 
   if (viewHeight === 0) return;
 
-  const scrollTop = getElementTop(container); // top of the scroll container
   const scrollBottom = scrollTop + viewHeight;
 
   const listTop = topFromWindow(element) - topFromWindow(container); // top of the list inside the scroll container
@@ -78,48 +69,45 @@ export default class VirtualList<T> extends React.Component<Props<T>> {
     itemBuffer: 0,
   };
 
-  @observable private firstItemIndex = 0;
-  @observable private lastItemIndex = 0;
   private readonly ref = React.createRef<HTMLDivElement>();
   private readonly scrollContainer = window; // we only care about window for now.
-  private readonly throttledRefreshState = throttle(() => this.refreshState(), 10);
+  @observable private scrollY = 0;
+  private readonly throttledSetScroll = throttle(() => this.setScroll(), 10);
+
+  @computed
+  private get visibleItemBounds() {
+    return getVisibleItemBounds(
+      this.ref.current,
+      this.scrollContainer,
+      this.props.items.length,
+      this.props.itemHeight,
+      this.props.itemBuffer,
+      this.scrollY,
+    ) ?? { firstItemIndex: 0, lastItemIndex: 0 };
+  }
 
   constructor(props: Props<T>) {
     super(props);
-
-    if (this.props.initialState != null) {
-      this.firstItemIndex = this.props.initialState.firstItemIndex;
-      this.lastItemIndex = this.props.initialState.lastItemIndex;
-    }
-
-    disposeOnUnmount(
-      this,
-      // ensure new items are rendered when loaded.
-      reaction(() => this.props.items, this.throttledRefreshState),
-    );
 
     makeObservable(this);
   }
 
   componentDidMount() {
-    this.throttledRefreshState();
-
-    this.scrollContainer.addEventListener('scroll', this.throttledRefreshState);
-    this.scrollContainer.addEventListener('resize', this.throttledRefreshState);
+    this.scrollContainer.addEventListener('scroll', this.throttledSetScroll);
   }
 
   componentWillUnmount() {
-    this.scrollContainer.removeEventListener('scroll', this.throttledRefreshState);
-    this.scrollContainer.removeEventListener('resize', this.throttledRefreshState);
+    this.scrollContainer.removeEventListener('scroll', this.throttledSetScroll);
   }
 
   render() {
-    const items = this.lastItemIndex > 0 ? this.props.items.slice(this.firstItemIndex, this.lastItemIndex) : [];
+    const visibleItemBounds = this.visibleItemBounds;
+    const items = visibleItemBounds.lastItemIndex > 0 ? this.props.items.slice(visibleItemBounds.firstItemIndex, visibleItemBounds.lastItemIndex) : [];
 
     const style = {
       boxSizing: 'border-box' as React.CSSProperties['boxSizing'],
       height: this.props.items.length * this.props.itemHeight,
-      paddingTop: this.firstItemIndex * this.props.itemHeight,
+      paddingTop: visibleItemBounds.firstItemIndex * this.props.itemHeight,
     };
 
     return (
@@ -130,14 +118,7 @@ export default class VirtualList<T> extends React.Component<Props<T>> {
   }
 
   @action
-  private refreshState = () => {
-    const state = getVisibleItemBounds(this.ref.current, this.scrollContainer, this.props.items.length, this.props.itemHeight, this.props.itemBuffer);
-
-    if (state == null) return;
-
-    if (state.firstItemIndex >= state.lastItemIndex) return;
-
-    this.firstItemIndex = state.firstItemIndex;
-    this.lastItemIndex = state.lastItemIndex;
+  private setScroll = () => {
+    this.scrollY = this.scrollContainer.scrollY;
   };
 }
