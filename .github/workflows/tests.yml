@@ -70,6 +70,9 @@ jobs:
         env:
           action.auto_create_index: "false"
           discovery.type: single-node
+          # Bundled by 6.8.x image and doesn't work when auto_create_index is disabled.
+          # Doesn't seem to exist in 7.x anymore (or they fixed the index creation process).
+          xpack.watcher.enabled: "false"
         image: elasticsearch:6.8.23
         ports:
           - 9200:9200
