@@ -257,7 +257,7 @@ return [
         'featured_artists' => 'Istaknuti umjetnici',
         'follows' => 'Pretplaćeni mapperi',
         'recommended' => 'Preporučena težina ',
-        'spotlights' => '',
+        'spotlights' => 'Spotlightirane beatmape',
     ],
     'mode' => [
         'all' => 'Svi',

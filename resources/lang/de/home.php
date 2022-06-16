@@ -112,7 +112,7 @@ return [
         'title' => 'dashboard',
         'news' => [
             'title' => 'News',
-            'error' => 'News konnten nicht geladen werden. Versuche, die Seite neu zu laden...?',
+            'error' => 'News konnten nicht geladen werden. Versuche, die Seite neu zu laden?...',
         ],
         'header' => [
             'stats' => [

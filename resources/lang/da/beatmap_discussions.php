@@ -60,7 +60,7 @@ return [
 
     'owner_editor' => [
         'button' => 'Sværhedsgrad Ejer',
-        'reset_confirm' => '',
+        'reset_confirm' => 'Nulstil ejeren for denne sværhedsgrad?',
         'user' => 'Ejer',
         'version' => 'Sværhedsgrad',
     ],
@@ -73,12 +73,12 @@ return [
     ],
 
     'review' => [
-        'block_count' => '',
+        'block_count' => ':used / :max blokke brugt',
         'go_to_parent' => 'Vis Anmeldelses-opslag',
         'go_to_child' => 'Vis Diskussion',
         'validation' => [
-            'block_too_large' => '',
-            'external_references' => '',
+            'block_too_large' => 'hver blok må kun indeholde op til :limit tegn',
+            'external_references' => 'anmeldelse indholder referencer til problemer som ikke hører til denne anmeldelse',
             'invalid_block_type' => 'ugyldig block type',
             'invalid_document' => 'ugyldig vurdering',
             'invalid_discussion_type' => 'ugyldig diskussionstype',

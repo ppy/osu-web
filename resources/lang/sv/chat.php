@@ -15,6 +15,7 @@ return [
     ],
 
     'channels' => [
+        'create' => '',
         'list' => [
             'title' => [
                 'ANNOUNCE' => '',
@@ -25,12 +26,25 @@ return [
         ],
     ],
 
+    'form' => [
+        'title' => [
+            'announcement' => '',
+        ],
+
+        'labels' => [
+            'description' => '',
+            'name' => '',
+            'users' => '',
+        ],
+    ],
+
     'not_found' => [
         'message' => '',
         'title' => '',
     ],
 
     'input' => [
+        'create' => '',
         'disabled' => 'kan inte skicka meddelande...',
         'disconnected' => '',
         'placeholder' => 'skriv ett meddelande...',

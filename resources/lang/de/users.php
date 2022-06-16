@@ -83,7 +83,7 @@ return [
     'login' => [
         '_' => 'Login',
         'button' => 'Einloggen',
-        'button_posting' => 'Einloggen...',
+        'button_posting' => 'Logge ein...',
         'email_login_disabled' => 'Das Anmelden per E-Mail ist derzeit deaktiviert. Bitte benutze stattdessen Deinen Benutzernamen.',
         'failed' => 'Falscher Login',
         'forgot' => 'Passwort vergessen?',
@@ -309,7 +309,7 @@ return [
                 'title' => 'Medaillen',
             ],
             'playlists' => [
-                'title' => 'Wiedergabelisten-Spiele',
+                'title' => 'Playlist-Spiele',
             ],
             'posts' => [
                 'title' => 'Beiträge',
@@ -337,9 +337,9 @@ return [
                 ],
                 'pin' => [
                     'to_0' => 'Ablösen',
-                    'to_0_done' => 'Abgelöster Score',
-                    'to_1' => 'Anheften',
-                    'to_1_done' => 'Angepinnter Score',
+                    'to_0_done' => 'Score abgelöst',
+                    'to_1' => 'Anpinnen',
+                    'to_1_done' => 'Score angepinnt',
                 ],
                 'pinned' => [
                     'title' => 'Angepinnte Scores',
@@ -425,7 +425,7 @@ return [
             'total_hits' => 'Anzahl Treffer',
             'total_score' => 'Gesamtpunktzahl',
             // modding stats
-            'graveyard_beatmapset_count' => 'Begrabende Beatmaps',
+            'graveyard_beatmapset_count' => 'Begrabene Beatmaps',
             'loved_beatmapset_count' => 'Loved Beatmaps',
             'pending_beatmapset_count' => 'Ausstehende Beatmaps',
             'ranked_beatmapset_count' => 'Ranked & Approved Beatmaps',
