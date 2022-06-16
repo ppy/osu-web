@@ -85,7 +85,7 @@ export class SearchPanel extends React.Component<Props> {
   }
 
   componentWillUnmount() {
-    $(document).on('sticky-header:sticking', this.setHeaderPinned);
+    $(document).off('sticky-header:sticking', this.setHeaderPinned);
     unmountPortal(this.breadcrumbsPortal, this.breadcrumbsElement);
     unmountPortal(this.contentPortal, this.contentElement);
   }
