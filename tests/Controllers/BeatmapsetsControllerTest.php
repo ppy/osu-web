@@ -236,6 +236,48 @@ class BeatmapsetsControllerTest extends TestCase
     }
 
     /**
+     * @dataProvider beatmapsetStatesDataProvider
+     */
+    public function testBeatmapsetUpdateMetadataAsProjectLoved(string $state): void
+    {
+        $owner = User::factory()->create();
+        $beatmapset = Beatmapset::factory()->create([
+            'approved' => Beatmapset::STATES[$state],
+            'user_id' => $owner,
+        ]);
+        $newGenre = Genre::factory()->create();
+        $newLanguage = Language::factory()->create();
+
+        if (in_array($state, ['graveyard', 'loved'], true)) {
+            $countChange = 2;
+            $status = 200;
+            $resultGenreId = $newGenre->getKey();
+            $resultLanguageId = $newLanguage->getKey();
+        } else {
+            $countChange = 0;
+            $status = 403;
+            $resultGenreId = $beatmapset->genre_id;
+            $resultLanguageId = $beatmapset->language_id;
+        }
+        $this->expectCountChange(fn () => BeatmapsetEvent::count(), $countChange);
+
+        $user = User::factory()->withGroup('loved')->create();
+
+        $this->actingAsVerified($user)
+            ->put(route('beatmapsets.update', ['beatmapset' => $beatmapset->getKey()]), [
+                'beatmapset' => [
+                    'genre_id' => $newGenre->getKey(),
+                    'language_id' => $newLanguage->getKey(),
+                ],
+            ])->assertStatus($status);
+
+        $beatmapset->refresh();
+
+        $this->assertSame($resultGenreId, $beatmapset->genre_id);
+        $this->assertSame($resultLanguageId, $beatmapset->language_id);
+    }
+
+    /**
      * @dataProvider dataProviderForTestBeatmapsetUpdateOffset
      */
     public function testBeatmapsetUpdateOffset(string $userGroupOrOwner, bool $ok): void

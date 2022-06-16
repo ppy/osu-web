@@ -18,7 +18,7 @@ import PpValue from 'scores/pp-value';
 import { rulesetName, shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
-import { isPerfectCombo, modeAttributesMap } from 'utils/score-helper';
+import { isPerfectCombo, modeAttributesMap, scoreUrl } from 'utils/score-helper';
 
 interface Props {
   beatmap: BeatmapJson;
@@ -27,7 +27,7 @@ interface Props {
   score: SoloScoreJsonForBeatmap;
 }
 
-export default class ScoreTop extends React.PureComponent<Props> {
+export default class TopCard extends React.PureComponent<Props> {
   render() {
     const ruleset = rulesetName(this.props.score.ruleset_id);
     const avatar = <UserAvatar user={this.props.score.user} />;
@@ -36,10 +36,7 @@ export default class ScoreTop extends React.PureComponent<Props> {
       <div className={classWithModifiers('beatmap-score-top', this.props.modifiers)}>
         <a
           className='beatmap-score-top__link-container'
-          href={route('scores.show', {
-            mode: ruleset,
-            score: this.props.score.best_id,
-          })}
+          href={scoreUrl(this.props.score)}
         />
 
         <div className='beatmap-score-top__section'>

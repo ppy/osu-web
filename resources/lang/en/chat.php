@@ -15,7 +15,7 @@ return [
     ],
 
     'channels' => [
-        'create' => 'create annoucement',
+        'create' => 'create announcement',
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Announcements',

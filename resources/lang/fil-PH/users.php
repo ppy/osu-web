@@ -209,7 +209,7 @@ return [
                     'title' => 'Mga Inilibing na Beatmap',
                 ],
                 'guest' => [
-                    'title' => '',
+                    'title' => 'Guest Participation na mga Beatmap',
                 ],
                 'loved' => [
                     'title' => 'Mga Minamahal na Beatmap',

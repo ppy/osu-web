@@ -6,6 +6,7 @@
 namespace App\Models\Solo;
 
 use App\Libraries\ModsHelper;
+use App\Libraries\Score\UserRankCache;
 use App\Models\Beatmap;
 use App\Models\Model;
 use App\Models\Score as LegacyScore;
@@ -125,5 +126,10 @@ class Score extends Model
     public function getMode(): string
     {
         return Beatmap::modeStr($this->ruleset_id);
+    }
+
+    public function userRank(): ?int
+    {
+        return UserRankCache::fetch([], $this->beatmap_id, $this->ruleset_id, $this->data->totalScore);
     }
 }

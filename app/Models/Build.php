@@ -182,6 +182,11 @@ class Build extends Model implements Commentable
         }
     }
 
+    public function commentLocked(): bool
+    {
+        return false;
+    }
+
     public function commentableTitle()
     {
         if ($this->stream_id === null || $this->updateStream === null) {

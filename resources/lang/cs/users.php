@@ -93,7 +93,7 @@ return [
         'password' => 'Heslo',
         'register' => "Nemáš osu! účet? Vytvoř si ho",
         'remember' => 'Pamatovat si tento počítač',
-        'title' => 'Pro pokračování se prosím přihlašte',
+        'title' => 'Pro pokračování se prosím přihlaste',
         'username' => 'Uživatelské jméno',
 
         'beta' => [

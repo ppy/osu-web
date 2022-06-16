@@ -29,7 +29,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
 
   @computed
   private get model() {
-    return core.dataStore.chatState.createAnnoucement;
+    return core.dataStore.chatState.createAnnouncement;
   }
 
   constructor(props: Props) {
@@ -53,6 +53,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
             <input
               className='chat-form__input'
               defaultValue={this.model.inputs.name}
+              maxLength={50}
               name='name'
               onBlur={this.handleBlur}
               onChange={this.handleInput}
@@ -62,6 +63,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
             <input
               className='chat-form__input'
               defaultValue={this.model.inputs.description}
+              maxLength={255}
               name='description'
               onBlur={this.handleBlur}
               onChange={this.handleInput}
@@ -89,6 +91,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
               autoComplete='off'
               className='chat-form__input chat-form__input--box'
               defaultValue={this.model.inputs.message}
+              maxLength={1024}
               name='message'
               onBlur={this.handleBlur}
               onChange={this.handleInput}

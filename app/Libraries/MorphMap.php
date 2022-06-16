@@ -15,6 +15,7 @@ use App\Models\Forum;
 use App\Models\LegacyMatch;
 use App\Models\NewsPost;
 use App\Models\Score;
+use App\Models\Solo;
 use App\Models\User;
 
 class MorphMap
@@ -38,6 +39,7 @@ class MorphMap
         Score\Mania::class => 'score_mania',
         Score\Osu::class => 'score_osu',
         Score\Taiko::class => 'score_taiko',
+        Solo\Score::class => 'solo_score',
         User::class => 'user',
     ];
 

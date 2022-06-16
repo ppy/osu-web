@@ -8,20 +8,43 @@ env:
   APP_URL: http://localhost:8000
   CACHE_DRIVER: redis
   CACHE_DRIVER_LOCAL: array
+  DB_HOST: 127.0.0.1
   DB_USERNAME: root
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  NOTIFICATION_ENDPOINT: ws://127.0.0.1:3000
-  NOTIFICATION_SERVER_LISTEN_PORT: 3000
+  NOTIFICATION_ENDPOINT: ws://127.0.0.1:2345
+  NOTIFICATION_REDIS_HOST: 127.0.0.1
   OSU_INSTALL_DEV: 1
   OSU_USE_SYSTEM_COMPOSER: 1
   PAYMENT_SANDBOX: true
+  PASSPORT_PRIVATE_KEY: |+
+    -----BEGIN PRIVATE KEY-----
+    MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAMevwZweM2xj5GFv
+    FY0lzE4b/IQEIBO0NkMBcv1E2zQD7l4cGEft//ksZrP2l5y0l+FCL/2178bt+gZg
+    oXalVTrjQYhtP1B3yngpu+N7O75JT+xabMLEsCEnsuFyInfTl+kUGciqX8fIdELx
+    9Tgx5nwFkNqhE5Yo3fkhRjnjMaHhAgMBAAECgYEAsIrFvFXDFwAVyMKiJiEVyLTb
+    gof3KBR6qLDeTeaTeiBDnPZvzSAw38YOourPzd6oLKIMtd0lORXqp7rE5ZV0jEOo
+    QhDuahbMwfTeDOihhTTyc0ZxtY4WlVuV3lbNLZYSKXwpNU/Dud9mWyqSnS5+QcrF
+    c/Z6mxpVS6cxBFxrAaUCQQD0LHfl9R3aZbRPpDRX61eOi2wT96dZVi0IV+Yq4qqJ
+    L/ZDxCpTBx5xMvVqmET7Q69KULzUfajHOgkW3h+JA8vTAkEA0VuwDMcF6N4TGrpE
+    7rwLdFrXVopDCf1IT+y0spf52RUe7dGsUPz+Ed1oQ55S+ZPjAiHIF/EDGhtGkhbc
+    h5fO+wJATVe0ltOgpCgpCD0UE3FJZ66ECoMcsDCazRTCpHzt1cyqbea6HViY7PRe
+    Rmh7GTfkU17loU04Y/rfHC45wPXB3wJARE7dHx4kwHkM1LCn4xj5x8oH7pWIEA9S
+    87jwsEDD5V9tyvyZc4dIQn3yEfXrbsEg1UY+aglaEL+LhAjvhVIz1wJBANGE8xeu
+    qLUIE7/3nfacXiK/v02qKlW6++LrvSzgAOLsYyqfYpfmKffSdkTxFIZ8wUjufuOT
+    DPxkn/u5C+BuAqQ=
+    -----END PRIVATE KEY-----
+  PASSPORT_PUBLIC_KEY: |+
+    -----BEGIN PUBLIC KEY-----
+    MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDHr8GcHjNsY+RhbxWNJcxOG/yE
+    BCATtDZDAXL9RNs0A+5eHBhH7f/5LGaz9pectJfhQi/9te/G7foGYKF2pVU640GI
+    bT9Qd8p4Kbvjezu+SU/sWmzCxLAhJ7LhciJ305fpFBnIql/HyHRC8fU4MeZ8BZDa
+    oROWKN35IUY54zGh4QIDAQAB
+    -----END PUBLIC KEY-----
+  REDIS_HOST: 127.0.0.1
   SESSION_DRIVER: redis
   SHOPIFY_DOMAIN: notarealdomainortld
   SHOPIFY_STOREFRONT_TOKEN: notreal
   SLACK_ENDPOINT: https://myconan.net/null/
-  REDIS_HOST: 127.0.0.1
-  NOTIFICATION_REDIS_HOST: 127.0.0.1
-  DB_HOST: 127.0.0.1
 
 jobs:
   tests:
@@ -31,11 +54,6 @@ jobs:
     name: Tests
     runs-on: ubuntu-latest
     services:
-      beatmap_difficulty_lookup_cache:
-        image: pppy/osu-beatmap-difficulty-lookup-cache
-        ports:
-          - 5000:80
-
       db:
         image: mysql:8.0
         ports:
@@ -47,6 +65,35 @@ jobs:
           --health-retries=5
           -e MYSQL_ALLOW_EMPTY_PASSWORD=1
           --entrypoint sh mysql:8.0 -c "exec docker-entrypoint.sh mysqld --default-authentication-plugin=mysql_native_password"
+
+      elasticsearch:
+        env:
+          action.auto_create_index: "false"
+          discovery.type: single-node
+          # Bundled by 6.8.x image and doesn't work when auto_create_index is disabled.
+          # Doesn't seem to exist in 7.x anymore (or they fixed the index creation process).
+          xpack.watcher.enabled: "false"
+        image: elasticsearch:6.8.23
+        ports:
+          - 9200:9200
+
+      osu-beatmap-difficulty-lookup-cache:
+        image: pppy/osu-beatmap-difficulty-lookup-cache
+        ports:
+          - 5000:80
+
+      osu-notification-server:
+        env:
+          APP_KEY: ${{ env.APP_KEY }}
+          DB_HOST: db
+          DB_USERNAME: ${{ env.DB_USERNAME }}
+          NOTIFICATION_REDIS_HOST: redis
+          NOTIFICATION_SERVER_LISTEN_HOST: 0.0.0.0
+          PASSPORT_PUBLIC_KEY: ${{ env.PASSPORT_PUBLIC_KEY }}
+          REDIS_HOST: redis
+        image: pppy/osu-notification-server
+        ports:
+          - 2345:2345
 
       redis:
         image: redis
@@ -80,20 +127,6 @@ jobs:
           path: ${{ steps.composercache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
-
-      # Settings for elasticsearch
-      # https://github.com/elastic/elastic-github-actions/tree/master/elasticsearch#usage
-      - name: Configure sysctl limits
-        run: |
-          sudo swapoff -a
-          sudo sysctl -w vm.swappiness=1
-          sudo sysctl -w fs.file-max=262144
-          sudo sysctl -w vm.max_map_count=262144
-
-      - name: Start Elasticsearch
-        uses: elastic/elastic-github-actions/elasticsearch@master
-        with:
-          stack-version: 6.8.13
 
       - run: mysql -u root -h 127.0.0.1 < ./docker/development/db_setup.sql
 

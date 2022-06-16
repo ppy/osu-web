@@ -354,11 +354,11 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Нарушения',
-                'bad_standing' => "с аккаунтом <strong>:username</strong> не всё хорошо :(",
+                'bad_standing' => "С аккаунтом <strong>:username</strong> не всё хорошо :(",
                 'remaining_silence' => ':username сможет говорить снова через :duration.',
 
                 'recent_infringements' => [
-                    'title' => 'Недавние нарушения',
+                    'title' => 'Недавние',
                     'date' => 'Дата',
                     'action' => 'действие',
                     'length' => 'продолжительность',
@@ -367,8 +367,8 @@ return [
                     'actor' => ':username',
 
                     'actions' => [
-                        'restriction' => 'Рестриктед',
-                        'silence' => 'Сайленс',
+                        'restriction' => 'Бан',
+                        'silence' => 'Заглушение',
                         'note' => 'Заметка',
                     ],
                 ],
