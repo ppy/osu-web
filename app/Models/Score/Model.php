@@ -6,7 +6,7 @@
 namespace App\Models\Score;
 
 use App\Exceptions\ClassNotFoundException;
-use App\Libraries\ModsHelper;
+use App\Libraries\Mods;
 use App\Models\Beatmap;
 use App\Models\Model as BaseModel;
 use App\Models\Solo\ScoreData;
@@ -80,8 +80,8 @@ abstract class Model extends BaseModel
     public function scopeWithMods($query, $modsArray)
     {
         return $query->where(function ($q) use ($modsArray) {
-            $bitset = ModsHelper::toBitset($modsArray);
-            $preferenceMask = ~ModsHelper::PREFERENCE_MODS_BITSET;
+            $bitset = app('mods')->idsToBitset($modsArray);
+            $preferenceMask = ~Mods::LEGACY_PREFERENCE_MODS_BITSET;
 
             if (in_array('NM', $modsArray, true)) {
                 $q->orWhereRaw('enabled_mods & ? = 0', [$preferenceMask]);
@@ -95,7 +95,7 @@ abstract class Model extends BaseModel
 
     public function scopeWithoutMods($query, $modsArray)
     {
-        $bitset = ModsHelper::toBitset($modsArray);
+        $bitset = app('mods')->idsToBitset($modsArray);
 
         return $query->whereRaw('enabled_mods & ? = 0', $bitset);
     }
