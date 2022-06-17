@@ -36,11 +36,9 @@ interface Comment {
 }
 
 interface BeatmapDiscussionHelperClass {
-  format(text: string, options?: any): string;
   formatTimestamp(value: number | null): string | undefined;
   nearbyDiscussions(discussions: BeatmapsetDiscussionJson[], timestamp: number): BeatmapsetDiscussionJson[];
   parseTimestamp(value?: string): number | null;
-  previewMessage(value: string): string;
   TIMESTAMP_REGEX: RegExp;
   url(options: any, useCurrent?: boolean): string;
   urlParse(urlString: string, discussions?: BeatmapsetDiscussionJson[] | null, options?: any): {
