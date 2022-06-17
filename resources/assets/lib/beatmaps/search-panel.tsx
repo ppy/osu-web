@@ -156,7 +156,6 @@ export class SearchPanel extends React.Component<Props> {
           <input
             ref={this.pinnedInputRef}
             className='beatmapsets-search__input js-beatmapsets-search-input'
-            // defaultValue={this.controller.filters.query ?? ''}
             name='search'
             onChange={this.onChange}
             placeholder={osu.trans('beatmaps.listing.search.prompt')}
@@ -188,7 +187,6 @@ export class SearchPanel extends React.Component<Props> {
           <input
             ref={this.inputRef}
             className='beatmapsets-search__input js-beatmapsets-search-input'
-            // defaultValue={this.controller.filters.query ?? ''}
             name='search'
             onChange={this.onChange}
             placeholder={osu.trans('beatmaps.listing.search.prompt')}
