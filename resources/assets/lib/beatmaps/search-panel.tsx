@@ -188,7 +188,6 @@ export class SearchPanel extends React.Component<Props> {
             name='search'
             onChange={this.onChange}
             placeholder={osu.trans('beatmaps.listing.search.prompt')}
-            type='textbox'
             value={this.query}
           />
           <div className='beatmapsets-search__icon'>
