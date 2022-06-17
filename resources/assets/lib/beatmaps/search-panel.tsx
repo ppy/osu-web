@@ -21,9 +21,7 @@ interface Props {
 
 function mountPortal(portal: HTMLElement, root?: Element | null) {
   // clean up any existing element when navigating backwards.
-  const existingElement = window.newBody?.querySelector(`#${portal.id}`);
-  existingElement?.remove();
-
+  window.newBody?.querySelector(`#${portal.id}`)?.remove();
   root?.appendChild(portal);
 }
 
@@ -85,13 +83,13 @@ export class SearchPanel extends React.Component<Props> {
 
   render() {
     return (
-      <div>
+      <>
         {this.breadcrumbsElement != null && createPortal(this.renderBreadcrumbs(), this.breadcrumbsPortal)}
         {this.contentElement != null && createPortal(this.renderStickyContent(), this.contentPortal)}
         <div className='osu-page osu-page--beatmapsets-search-header'>
           {this.controller.advancedSearch ? this.renderUser() : this.renderGuest()}
         </div>
-      </div>
+      </>
     );
   }
 
