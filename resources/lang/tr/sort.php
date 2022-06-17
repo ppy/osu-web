@@ -18,7 +18,7 @@ return [
     'artist_tracks' => [
         'album' => 'Albüm',
         'artist' => 'Sanatçı',
-        'bpm' => '',
+        'bpm' => 'BPM',
         'genre' => 'Tür',
         'length' => 'Uzunluk',
         'relevance' => 'Alaka Düzeyi',

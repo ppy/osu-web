@@ -15,6 +15,7 @@ return [
     ],
 
     'channels' => [
+        'create' => '',
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Comunicados',
@@ -25,12 +26,25 @@ return [
         ],
     ],
 
+    'form' => [
+        'title' => [
+            'announcement' => '',
+        ],
+
+        'labels' => [
+            'description' => '',
+            'name' => '',
+            'users' => '',
+        ],
+    ],
+
     'not_found' => [
         'message' => 'Não há nada aqui, talvez tenhas saído do canal ou ele não existe...',
         'title' => 'canal não escontrado',
     ],
 
     'input' => [
+        'create' => '',
         'disabled' => 'incapacitado de enviar mensagem...',
         'disconnected' => 'Desligado',
         'placeholder' => 'escrever mensagem...',

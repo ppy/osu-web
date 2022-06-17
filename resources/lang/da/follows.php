@@ -5,30 +5,30 @@
 
 return [
     'comment' => [
-        'empty' => '',
-        'page_title' => '',
+        'empty' => 'Ingen kommentarer overvåget.',
+        'page_title' => 'kommentere overvågningsliste',
         'title' => 'kommentar',
 
         'table' => [
             'latest_comment_empty' => 'ingen kommentarer',
-            'latest_comment_value' => '',
+            'latest_comment_value' => ':time af :username',
         ],
     ],
 
     'forum_topic' => [
-        'title' => '',
+        'title' => 'forum emne',
     ],
 
     'index' => [
-        'title_compact' => '',
+        'title_compact' => 'overvågningsliste',
     ],
 
     'mapping' => [
-        'empty' => '',
-        'followers' => '',
-        'page_title' => '',
+        'empty' => 'Ingen mappers overvåget.',
+        'followers' => 'mapping abonnenter',
+        'page_title' => 'mapper overvågningsliste',
         'title' => 'mapper',
-        'to_0' => '',
+        'to_0' => 'stop med at give mig besked, når denne bruger uploader et nyt beatmap',
         'to_1' => 'give mig besked, når denne bruger uploader et nyt beatmap',
     ],
 

@@ -4,9 +4,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'loading_users' => '',
-    'talking_in' => 'praten in :channel',
-    'talking_with' => 'aan het praten met :name',
+    'loading_users' => 'gebruikers laden...',
+    'talking_in' => 'je praat in :channel',
+    'talking_with' => 'je praat met :name',
     'title_compact' => 'chat',
 
     'cannot_send' => [
@@ -15,13 +15,26 @@ return [
     ],
 
     'channels' => [
+        'create' => '',
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Aankondigingen',
                 'GROUP' => 'Groepen',
-                'PM' => 'Privé Berichten',
+                'PM' => 'Privéberichten',
                 'PUBLIC' => 'Kanalen',
             ],
+        ],
+    ],
+
+    'form' => [
+        'title' => [
+            'announcement' => '',
+        ],
+
+        'labels' => [
+            'description' => '',
+            'name' => '',
+            'users' => '',
         ],
     ],
 
@@ -31,6 +44,7 @@ return [
     ],
 
     'input' => [
+        'create' => '',
         'disabled' => 'niet in staat om bericht te verzenden...',
         'disconnected' => 'Verbinding verbroken',
         'placeholder' => 'stuur een bericht...',

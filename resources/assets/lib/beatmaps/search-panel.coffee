@@ -122,18 +122,15 @@ export class SearchPanel extends React.Component
     if @inputRef.current.value != query
       @inputRef.current.value = query
 
-    controller.updateFilters { query }
+    controller.filters.update 'query', query
 
 
   renderFilter: ({ multiselect = false, name, options, showTitle = true }) =>
     el SearchFilter,
-      filters: controller.filters
       name: name
       title: osu.trans("beatmaps.listing.search.filters.#{name}") if showTitle
       options: options
       multiselect: multiselect
-      recommendedDifficulty: controller.recommendedDifficulty
-      selected: controller.filters.selectedValue(name)
 
 
   renderGuest: =>

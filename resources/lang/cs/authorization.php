@@ -5,7 +5,7 @@
 
 return [
     'play_more' => 'Co si místo toho zahrát osu!?',
-    'require_login' => 'Pro pokračování se prosím přihlašte.',
+    'require_login' => 'Pro pokračování se prosím přihlaste.',
     'require_verification' => 'Prosím ověřte se pro pokračování.',
     'restricted' => "Toto nelze provést, když jste omezeni.",
     'silenced' => "Toto nelze provést, když jste umlčeni.",
@@ -145,7 +145,7 @@ return [
                 'voted' => 'Změna hlasu není povolena.',
 
                 'user' => [
-                    'require_login' => 'Pro hlasování se prosím přihlašte.',
+                    'require_login' => 'Pro hlasování se prosím přihlaste.',
                     'restricted' => "Nelze hlasovat, když jste omezeni.",
                     'silenced' => "Nelze hlasovat, když jste umlčeni.",
                 ],

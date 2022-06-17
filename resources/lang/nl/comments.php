@@ -9,7 +9,7 @@ return [
     'deleted_by_system' => 'systeem',
     'deleted_count' => ':count_delimited verwijderde opmerking|:count_delimited verwijderde opmerkingen',
     'edited' => 'gewijzigd :timeago door :user',
-    'pinned' => 'vast gezet',
+    'pinned' => 'vastgezet',
     'empty' => 'Nog geen reacties.',
     'load_replies' => 'antwoorden laden',
     'replies_count' => ':count_delimited antwoord|:count_delimited antwoorden',
