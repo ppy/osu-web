@@ -10,7 +10,6 @@ import { openBeatmapEditor, linkHtml } from 'utils/url'
 class window.BeatmapDiscussionHelper
   @DEFAULT_BEATMAP_ID: '-'
   @DEFAULT_FILTER: 'total'
-  @MAX_MESSAGE_PREVIEW_LENGTH: 100
   @MAX_LENGTH_TIMELINE: 750
   @TIMESTAMP_REGEX: /\b(((\d{2,}):([0-5]\d)[:.](\d{3}))(\s\((?:\d+[,|])*\d+\))?)/
 
@@ -82,16 +81,6 @@ class window.BeatmapDiscussionHelper
     shownDiscussions = nearby.d0 ? nearby.d100 ? nearby.d1000 ? nearby.other ? []
 
     _.sortBy shownDiscussions, 'timestamp'
-
-
-  @previewMessage = (message) =>
-    if message.length > @MAX_MESSAGE_PREVIEW_LENGTH
-      _.chain(message)
-      .truncate length: @MAX_MESSAGE_PREVIEW_LENGTH
-      .escape()
-      .value()
-    else
-      format message, newlines: false
 
 
   @stateFromDiscussion: (discussion) =>

@@ -12,7 +12,7 @@ import { UserLink } from 'components/user-link'
 import { route } from 'laroute'
 import * as React from 'react'
 import { a, div, i, span } from 'react-dom-factories'
-import { format } from 'utils/beatmapset-discussion-helper'
+import { format, previewMessage } from 'utils/beatmapset-discussion-helper'
 import { nominationsCount } from 'utils/beatmapset-helper'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { pageChange } from 'utils/page-change'
@@ -252,7 +252,7 @@ export class Nominations extends React.PureComponent
         "##{discussion.id}"
 
       message = span dangerouslySetInnerHTML:
-        __html: BeatmapDiscussionHelper.previewMessage(discussion.posts[0].message)
+        __html: previewMessage(discussion.posts[0].message)
     else
       link = "##{event.comment.beatmap_discussion_id}"
       message = osu.trans('beatmaps.nominations.reset_message_deleted')

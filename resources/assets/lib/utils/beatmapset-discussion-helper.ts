@@ -6,7 +6,7 @@ import mapperGroup from 'beatmap-discussions/mapper-group';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
-import { escape } from 'lodash';
+import { escape, truncate } from 'lodash';
 import { currentUrl } from 'utils/turbolinks';
 import { linkHtml, openBeatmapEditor, urlRegex } from 'utils/url';
 import { classWithModifiers, Modifiers } from './css';
@@ -33,6 +33,7 @@ interface PropsFromHrefValue {
 
 const lineBreakRegex = /(?:<br>){2,}/g;
 const timestampRegex = /\b((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\)|\b))/g;
+const maxMessagePreviewLength = 100;
 
 export function badgeGroup({ beatmapset, currentBeatmap, discussion, user }: BadgeGroupParams) {
   if (user == null) {
@@ -88,6 +89,14 @@ export function linkTimestamp(text: string, classNames: string[] = []) {
       linkHtml(openBeatmapEditor(`${m}:${s}:${ms}${range ?? ''}`), timestamp, { classNames })
     ),
   );
+}
+
+export function previewMessage(message: string) {
+  if (message.length > maxMessagePreviewLength) {
+    return escape(truncate(message, { length: maxMessagePreviewLength }));
+  }
+
+  return format(message, { newlines: false });
 }
 
 export function propsFromHref(href: string) {

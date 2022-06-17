@@ -9,7 +9,7 @@ import { route } from 'laroute';
 import { escape, kebabCase } from 'lodash';
 import { deletedUser } from 'models/user';
 import * as React from 'react';
-import { format } from 'utils/beatmapset-discussion-helper';
+import { format, previewMessage } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { linkHtml } from 'utils/url';
@@ -122,7 +122,7 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
       } else {
         const firstPostMessage = this.firstPost?.message;
         url = BeatmapDiscussionHelper.url({ discussion: this.discussion });
-        text = firstPostMessage != null ? BeatmapDiscussionHelper.previewMessage(firstPostMessage) : '[no preview]';
+        text = firstPostMessage != null ? previewMessage(firstPostMessage) : '[no preview]';
 
         const discussionUser = this.props.users[this.discussion.user_id];
 
