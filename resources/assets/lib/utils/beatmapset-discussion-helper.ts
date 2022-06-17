@@ -6,14 +6,21 @@ import mapperGroup from 'beatmap-discussions/mapper-group';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
+import { escape } from 'lodash';
 import { currentUrl } from 'utils/turbolinks';
 import { linkHtml, openBeatmapEditor, urlRegex } from 'utils/url';
+import { classWithModifiers, Modifiers } from './css';
 
 interface BadgeGroupParams {
   beatmapset: BeatmapsetJson;
   currentBeatmap: BeatmapJson;
   discussion: BeatmapsetDiscussionJson;
   user?: UserJson;
+}
+
+interface FormatOptions {
+  modifiers?: Modifiers;
+  newlines?: boolean;
 }
 
 interface PropsFromHrefValue {
@@ -49,6 +56,27 @@ export function discussionLinkify(text: string) {
     return linkHtml(url, displayUrl, { props, unescape: true });
   });
 }
+
+export function format(text: string, options: FormatOptions = {}) {
+  text = linkTimestamp(discussionLinkify(escape(text).trim()), ['beatmap-discussion-timestamp-decoration']);
+
+  if (options.newlines ?? true) {
+    // replace newlines with <br>
+    // - trim trailing spaces
+    // - then join with <br>
+    // - limit to 2 consecutive <br>s
+    text = text
+      .split('\n')
+      .map((x) => x.trim())
+      .join('<br>')
+      .replace(/(?:<br>){2,}/g, '<br><br>');
+  }
+
+  const blockClass = classWithModifiers('beatmapset-discussion-message', options.modifiers);
+
+  return `<div class='${blockClass}'>${text}</div>`;
+}
+
 
 export function linkTimestamp(text: string, classNames: string[] = []) {
   return text.replace(

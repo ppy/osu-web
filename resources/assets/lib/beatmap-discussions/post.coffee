@@ -16,7 +16,7 @@ import { deletedUser } from 'models/user'
 import * as React from 'react'
 import TextareaAutosize from 'react-autosize-textarea'
 import { a, button, div, span } from 'react-dom-factories'
-import { badgeGroup } from 'utils/beatmapset-discussion-helper'
+import { badgeGroup, format } from 'utils/beatmapset-discussion-helper'
 import { classWithModifiers } from 'utils/css'
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler'
 import { MessageLengthCounter } from './message-length-counter'
@@ -181,7 +181,7 @@ export class Post extends React.PureComponent
           className: "#{bn}__message"
           ref: @messageBodyRef
           dangerouslySetInnerHTML:
-            __html: BeatmapDiscussionHelper.format @props.post.message
+            __html: format @props.post.message
 
       div className: "#{bn}__info-container",
         span

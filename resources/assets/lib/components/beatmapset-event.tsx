@@ -9,6 +9,7 @@ import { route } from 'laroute';
 import { escape, kebabCase } from 'lodash';
 import { deletedUser } from 'models/user';
 import * as React from 'react';
+import { format } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { linkHtml } from 'utils/url';
@@ -133,12 +134,12 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
       discussionLink = linkHtml(url, `#${this.discussionId}`, { classNames: ['js-beatmap-discussion--jump'] });
     } else {
       if (typeof this.props.event.comment === 'string') {
-        text = BeatmapDiscussionHelper.format(this.props.event.comment, { newlines: false });
+        text = format(this.props.event.comment, { newlines: false });
       }
     }
 
     if (this.props.event.type === 'discussion_lock' || this.props.event.type === 'remove_from_loved') {
-      text = BeatmapDiscussionHelper.format(this.props.event.comment.reason, { newlines: false });
+      text = format(this.props.event.comment.reason, { newlines: false });
     }
 
     if (this.props.event.user_id != null) {

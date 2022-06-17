@@ -2,7 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute'
-import { discussionLinkify, linkTimestamp } from 'utils/beatmapset-discussion-helper'
+import { format } from 'utils/beatmapset-discussion-helper'
 import { currentUrl } from 'utils/turbolinks'
 import { getInt } from 'utils/math'
 import { openBeatmapEditor, linkHtml } from 'utils/url'
@@ -42,30 +42,6 @@ class window.BeatmapDiscussionHelper
           'general'
       else
         'generalAll'
-
-
-  @format: (text, options = {}) =>
-    blockName = 'beatmapset-discussion-message'
-    text = _.escape text
-    text = text.trim()
-    text = discussionLinkify text
-    text = linkTimestamp text, ['beatmap-discussion-timestamp-decoration']
-
-    if options.newlines ? true
-      # replace newlines with <br>
-      # - trim trailing spaces
-      # - then join with <br>
-      # - limit to 2 consecutive <br>s
-      text = text
-        .split '\n'
-        .map (x) -> x.trim()
-        .join '<br>'
-        .replace /(?:<br>){2,}/g, '<br><br>'
-
-    blockClass = blockName
-    blockClass += " #{blockName}--#{modifier}" for modifier in options.modifiers ? []
-
-    "<div class='#{blockClass}'>#{text}</div>"
 
 
   @formatTimestamp: (value) =>
@@ -115,7 +91,7 @@ class window.BeatmapDiscussionHelper
       .escape()
       .value()
     else
-      @format message, newlines: false
+      format message, newlines: false
 
 
   @stateFromDiscussion: (discussion) =>
