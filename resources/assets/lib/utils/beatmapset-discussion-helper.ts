@@ -31,6 +31,9 @@ interface PropsFromHrefValue {
   target?: '_blank';
 }
 
+const lineBreakRegex = /(?:<br>){2,}/g;
+const timestampRegex = /\b((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\)|\b))/g;
+
 export function badgeGroup({ beatmapset, currentBeatmap, discussion, user }: BadgeGroupParams) {
   if (user == null) {
     return null;
@@ -69,7 +72,7 @@ export function format(text: string, options: FormatOptions = {}) {
       .split('\n')
       .map((x) => x.trim())
       .join('<br>')
-      .replace(/(?:<br>){2,}/g, '<br><br>');
+      .replace(lineBreakRegex, '<br><br>');
   }
 
   const blockClass = classWithModifiers('beatmapset-discussion-message', options.modifiers);
@@ -80,7 +83,7 @@ export function format(text: string, options: FormatOptions = {}) {
 
 export function linkTimestamp(text: string, classNames: string[] = []) {
   return text.replace(
-    /\b((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\)|\b))/g,
+    timestampRegex,
     (_match, timestamp: string, m: string, s: string, ms: string, range?: string) => (
       linkHtml(openBeatmapEditor(`${m}:${s}:${ms}${range ?? ''}`), timestamp, { classNames })
     ),
