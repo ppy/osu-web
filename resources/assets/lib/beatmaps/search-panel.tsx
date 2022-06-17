@@ -15,7 +15,7 @@ import { SearchFilter } from './search-filter';
 
 interface Props {
   availableFilters: AvailableFilters;
-  firstBeatmapset: BeatmapsetJson;
+  firstBeatmapset?: BeatmapsetJson;
   innerRef: React.RefObject<HTMLDivElement>;
 }
 

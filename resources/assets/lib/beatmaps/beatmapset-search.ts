@@ -8,13 +8,13 @@ import ResultSet from 'beatmaps/result-set';
 import SearchResults from 'beatmaps/search-results';
 import { BeatmapsetSearchFilters } from 'beatmapset-search-filters';
 import DispatchListener from 'dispatch-listener';
-import BeatmapsetJson from 'interfaces/beatmapset-json';
+import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import { route } from 'laroute';
 import { action, makeObservable, observable, runInAction } from 'mobx';
 import { BeatmapsetStore } from 'stores/beatmapset-store';
 
 export interface SearchResponse {
-  beatmapsets: BeatmapsetJson[];
+  beatmapsets: BeatmapsetExtendedJson[];
   cursor_string: string | null;
   error?: string;
   recommended_difficulty: number;
