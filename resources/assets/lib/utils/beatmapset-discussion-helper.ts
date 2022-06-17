@@ -32,7 +32,7 @@ interface PropsFromHrefValue {
 }
 
 const lineBreakRegex = /(?:<br>){2,}/g;
-const timestampRegex = /\b((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\)|\b))/g;
+const linkTimestampRegex = /\b((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\)|\b))/g;
 const maxMessagePreviewLength = 100;
 
 export function badgeGroup({ beatmapset, currentBeatmap, discussion, user }: BadgeGroupParams) {
@@ -84,7 +84,7 @@ export function format(text: string, options: FormatOptions = {}) {
 
 export function linkTimestamp(text: string, classNames: string[] = []) {
   return text.replace(
-    timestampRegex,
+    linkTimestampRegex,
     (_match, timestamp: string, m: string, s: string, ms: string, range?: string) => (
       linkHtml(openBeatmapEditor(`${m}:${s}:${ms}${range ?? ''}`), timestamp, { classNames })
     ),
