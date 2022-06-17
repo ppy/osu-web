@@ -32,8 +32,8 @@ return [
     ],
 
     'guest_button' => [
-        'new' => 'Přihlašte se pro možnost komentovat',
-        'reply' => 'Přihlašte se pro možnost odpovídat',
+        'new' => 'Přihlaste se pro možnost komentovat',
+        'reply' => 'Přihlaste se pro možnost odpovídat',
     ],
 
     'index' => [

@@ -5,7 +5,7 @@
 
 return [
     'index' => [
-        'description' => 'Paket-paket beatmap yang tersusun atas satu tema tertentu.',
+        'description' => 'Paket beatmap yang tersusun atas satu tema tertentu.',
         'nav_title' => 'daftar',
         'title' => 'Paket Beatmap',
 
@@ -13,7 +13,7 @@ return [
             'important' => 'BACA INI SEBELUM MENGUNDUH',
             'install_instruction' => 'Petunjuk Pemasangan: Setelah paket beatmap selesai diunduh, ekstrak berkas. rar yang Anda peroleh ke dalam folder Songs yang terdapat pada direktori osu! Anda.',
             'note' => [
-                '_' => 'Kami menyarankan Anda untuk :scary karena pada umumnya beatmap-beatmap keluaran terdahulu memiliki kualitas yang jauh lebih rendah dibanding beatmap-beatmap modern.',
+                '_' => 'Kami menyarankan Anda untuk :scary karena pada umumnya beatmap keluaran terdahulu memiliki kualitas yang jauh lebih rendah dibanding beatmap modern.',
                 'scary' => 'mengunduh paket beatmap mulai dari yang paling baru hingga yang paling awal',
             ],
         ],

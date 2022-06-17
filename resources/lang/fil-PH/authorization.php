@@ -75,7 +75,7 @@ return [
 
     'comment' => [
         'store' => [
-            'disabled' => '',
+            'disabled' => 'Ang mga comment ay naka-disable',
         ],
         'update' => [
             'deleted' => "Hindi maaaring i-edit ang mga tinanggal na post.",

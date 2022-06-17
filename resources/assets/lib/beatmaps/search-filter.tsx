@@ -18,7 +18,7 @@ interface Props {
 }
 
 @observer
-export class SearchFilter extends React.PureComponent<Props> {
+export class SearchFilter extends React.Component<Props> {
   private get controller() {
     return core.beatmapsetSearchController;
   }

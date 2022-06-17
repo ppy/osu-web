@@ -78,7 +78,7 @@ return [
 
             'login_required' => [
                 'bottom' => 'pro přístup k dalším funkcím',
-                'top' => 'Přihlašte se',
+                'top' => 'Přihlaste se',
             ],
         ],
 

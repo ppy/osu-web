@@ -5,6 +5,7 @@ import BigButton from './big-button'
 import { Spinner } from './spinner'
 import UserAvatar from './user-avatar'
 import { route } from 'laroute'
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import TextareaAutosize from 'react-autosize-textarea'
 import { button, div, span } from 'react-dom-factories'
@@ -42,11 +43,19 @@ export class CommentEditor extends React.PureComponent
 
 
   render: =>
-    blockClass = classWithModifiers bn, @props.modifiers
-    blockClass += " #{bn}--fancy" if @mode() == 'new'
+    mode = @mode()
+    canComment = @canComment()
+
+    placeholder =
+      if mode in ['new', 'reply'] && !canComment
+        @props.commentableMeta.current_user_attributes?.can_new_comment_reason ? osu.trans('authorization.comment.store.disabled')
+      else
+        osu.trans("comments.placeholder.#{mode}")
+
+    blockClass = classWithModifiers bn, @props.modifiers, fancy: mode == 'new'
 
     div className: blockClass,
-      if @mode() == 'new'
+      if mode == 'new'
         div className: "#{bn}__avatar",
           el UserAvatar, user: currentUser, modifiers: ['full-circle']
 
@@ -54,15 +63,16 @@ export class CommentEditor extends React.PureComponent
         className: "#{bn}__message"
         ref: @textarea
         value: @state.message
-        placeholder: osu.trans("comments.placeholder.#{@mode()}")
+        placeholder: placeholder
         onChange: @onChange
         onKeyDown: @handleKeyDown
-        disabled: !currentUser.id? || @state.posting
+        disabled: !canComment || @state.posting
       div
         className: "#{bn}__footer"
         div className: "#{bn}__footer-item #{bn}__footer-item--notice hidden-xs",
-          osu.trans 'comments.editor.textarea_hint._',
-            action: osu.trans("comments.editor.textarea_hint.#{@mode()}")
+          if canComment
+            osu.trans 'comments.editor.textarea_hint._',
+              action: osu.trans("comments.editor.textarea_hint.#{mode}")
 
         if @props.close?
           div className: "#{bn}__footer-item",
@@ -92,7 +102,7 @@ export class CommentEditor extends React.PureComponent
             el BigButton,
               extraClasses: ['js-user-link']
               modifiers: 'comment-editor'
-              text: osu.trans("comments.guest_button.#{@mode()}")
+              text: osu.trans("comments.guest_button.#{mode}")
 
 
   buttonText: =>
@@ -103,6 +113,15 @@ export class CommentEditor extends React.PureComponent
         when 'new' then 'post'
 
     osu.trans("common.buttons.#{key}")
+
+
+  canComment: =>
+    return false if !core.currentUser?
+
+    if @mode() in ['new', 'reply']
+      @props.commentableMeta.current_user_attributes? && !@props.commentableMeta.current_user_attributes?.can_new_comment_reason?
+    else
+      true
 
 
   close: =>
@@ -151,8 +170,8 @@ export class CommentEditor extends React.PureComponent
       when 'reply', 'new'
         url = route 'comments.store'
         method = 'POST'
-        data.comment.commentable_type = @props.commentableType
-        data.comment.commentable_id = @props.commentableId
+        data.comment.commentable_type = @props.commentableMeta.type
+        data.comment.commentable_id = @props.commentableMeta.id
         data.comment.parent_id = @props.parent?.id
 
         onDone = (data) =>

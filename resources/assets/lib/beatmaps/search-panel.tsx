@@ -4,7 +4,7 @@
 import { FilterKey } from 'beatmapset-search-filters';
 import BeatmapsetCover from 'components/beatmapset-cover';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
-import { action, computed, makeObservable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -21,16 +21,8 @@ interface Props {
 
 function mountPortal(portal: HTMLElement, root?: Element | null) {
   // clean up any existing element when navigating backwards.
-  const existingElement = window.newBody?.querySelector(`#${portal.id}`);
-  existingElement?.remove();
-
+  window.newBody?.querySelector(`#${portal.id}`)?.remove();
   root?.appendChild(portal);
-}
-
-function unmountPortal(portal: HTMLElement, root?: Element | null) {
-  if (portal.offsetParent != null) {
-    root?.removeChild(portal);
-  }
 }
 
 interface FilterProps {
@@ -62,6 +54,7 @@ export class SearchPanel extends React.Component<Props> {
   private readonly contentPortal = document.createElement('div');
   private readonly inputRef = React.createRef<HTMLInputElement>();
   private readonly pinnedInputRef = React.createRef<HTMLInputElement>();
+  @observable private query = this.controller.filters.query ?? '';
 
   @computed
   private get controller() {
@@ -71,7 +64,6 @@ export class SearchPanel extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
 
-    // id is to trigger warnings if duplicate portals get added.
     this.breadcrumbsPortal.id = 'search-panel-breadcrumbs-portal';
     this.contentPortal.id = 'search-panel-content-portal';
 
@@ -85,20 +77,20 @@ export class SearchPanel extends React.Component<Props> {
   }
 
   componentWillUnmount() {
-    $(document).on('sticky-header:sticking', this.setHeaderPinned);
-    unmountPortal(this.breadcrumbsPortal, this.breadcrumbsElement);
-    unmountPortal(this.contentPortal, this.contentElement);
+    $(document).off('sticky-header:sticking', this.setHeaderPinned);
+    this.breadcrumbsPortal.remove();
+    this.contentPortal.remove();
   }
 
   render() {
     return (
-      <div>
+      <>
         {this.breadcrumbsElement != null && createPortal(this.renderBreadcrumbs(), this.breadcrumbsPortal)}
         {this.contentElement != null && createPortal(this.renderStickyContent(), this.contentPortal)}
         <div className='osu-page osu-page--beatmapsets-search-header'>
           {this.controller.advancedSearch ? this.renderUser() : this.renderGuest()}
         </div>
-      </div>
+      </>
     );
   }
 
@@ -108,18 +100,10 @@ export class SearchPanel extends React.Component<Props> {
     this.controller.isExpanded = true;
   };
 
+  @action
   private readonly onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const query = event.currentTarget.value;
-
-    if (this.pinnedInputRef.current != null && this.pinnedInputRef.current.value !== query) {
-      this.pinnedInputRef.current.value = query;
-    }
-
-    if (this.inputRef.current != null && this.inputRef.current.value !== query) {
-      this.inputRef.current.value = query;
-    }
-
-    this.controller.filters.update('query', query);
+    this.query = event.currentTarget.value;
+    this.controller.filters.update('query', this.query);
   };
 
   private renderBreadcrumbs() {
@@ -153,7 +137,6 @@ export class SearchPanel extends React.Component<Props> {
             className='beatmapsets-search__input'
             disabled
             placeholder={osu.trans('beatmaps.listing.search.login_required')}
-            type='textbox'
           />
           <div className='beatmapsets-search__icon'>
             <i className='fas fa-search' />
@@ -172,11 +155,10 @@ export class SearchPanel extends React.Component<Props> {
           <input
             ref={this.pinnedInputRef}
             className='beatmapsets-search__input js-beatmapsets-search-input'
-            defaultValue={this.controller.filters.query ?? ''}
             name='search'
             onChange={this.onChange}
             placeholder={osu.trans('beatmaps.listing.search.prompt')}
-            type='textbox'
+            value={this.query}
           />
           <div className='beatmapsets-search__icon'>
             <i className='fas fa-search' />
@@ -203,11 +185,10 @@ export class SearchPanel extends React.Component<Props> {
           <input
             ref={this.inputRef}
             className='beatmapsets-search__input js-beatmapsets-search-input'
-            defaultValue={this.controller.filters.query ?? ''}
             name='search'
             onChange={this.onChange}
             placeholder={osu.trans('beatmaps.listing.search.prompt')}
-            type='textbox'
+            value={this.query}
           />
           <div className='beatmapsets-search__icon'>
             <i className='fas fa-search' />

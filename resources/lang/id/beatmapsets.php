@@ -8,7 +8,7 @@ return [
         'disabled' => 'Beatmap saat ini tidak tersedia untuk diunduh.',
         'parts-removed' => 'Beberapa bagian dari beatmap ini telah dihapus atas permintaan pembuat lagu atau pihak ketiga pemegang hak cipta.',
         'more-info' => 'Lihat di sini untuk informasi lebih lanjut.',
-        'rule_violation' => 'Sebagian aset yang terkandung dalam berkas beatmap ini telah dihapus karena telah dinilai tidak sesuai dengan syarat dan ketentuan yang berlaku di osu!.',
+        'rule_violation' => 'Sebagian aset yang terkandung dalam berkas beatmap ini telah dihapus karena dinilai tidak sesuai dengan kaidah penggunaan konten yang berlaku di osu!.',
     ],
 
     'cover' => [
@@ -92,7 +92,7 @@ return [
         ],
 
         'favourites' => [
-            'limit_reached' => 'Anda telah memiliki terlalu banyak beatmap yang Anda favoritkan! Mohon hapus beberapa sebelum melanjutkan.',
+            'limit_reached' => 'Anda memiliki terlalu banyak beatmap yang telah Anda favoritkan! Mohon hapus beberapa beatmap dari daftar favorit Anda sebelum melanjutkan.',
         ],
 
         'hype' => [

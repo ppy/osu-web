@@ -6,8 +6,8 @@
 return [
     'empty' => [
         '_' => '',
-        'playlists' => '',
-        'realtime' => '',
+        'playlists' => 'oynama listesi',
+        'realtime' => 'çok oyunculu',
     ],
 
     'room' => [

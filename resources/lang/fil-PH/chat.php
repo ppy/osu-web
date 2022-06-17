@@ -4,24 +4,37 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'loading_users' => '',
-    'talking_in' => 'nakikipagusap sa :channel',
+    'loading_users' => 'naglo-load ng mga user...',
+    'talking_in' => 'nakikipag-usap sa :channel',
     'talking_with' => 'kausap si :name',
     'title_compact' => 'chat',
 
     'cannot_send' => [
-        'channel' => 'Hindi ka makakapadala ng mensahe sa tsanel na ito ngayon. Ito ay maaaring dahil sa alinman sa mga sumusunod na dahilan:',
+        'channel' => 'Hindi ka makakapag-mensahe sa channel na ito sa oras na ito.',
         'user' => 'Hindi ka makakapadala ng mensahe sa taong ito ngayon. Ito ay maaaring dahil sa alinman sa mga sumusunod na dahilan:',
     ],
 
     'channels' => [
+        'create' => '',
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Mga Anunsyo',
                 'GROUP' => 'Mga grupo',
-                'PM' => 'Direktang mensahe',
-                'PUBLIC' => 'Channels',
+                'PM' => 'Mga direktang mensahe',
+                'PUBLIC' => 'Mga Channel',
             ],
+        ],
+    ],
+
+    'form' => [
+        'title' => [
+            'announcement' => '',
+        ],
+
+        'labels' => [
+            'description' => '',
+            'name' => '',
+            'users' => '',
         ],
     ],
 
@@ -31,15 +44,16 @@ return [
     ],
 
     'input' => [
+        'create' => '',
         'disabled' => 'hindi maipadala ang mensahe...',
         'disconnected' => 'Disconnected',
-        'placeholder' => 'gumawa ng mensahe...',
+        'placeholder' => 'mag-type ng mensahe...',
         'send' => 'Ipadala',
     ],
 
     'no-conversations' => [
-        'howto' => "Simulan ang pakikipag-usap galing sa isang user profile o kaya naman sa isang popup sa usercard.",
-        'lazer' => 'Ang mga tsanel na pwedeng salihan sa <a href=":link">osu!lazer</a> ay makikita din dito.',
-        'title' => 'wala pang usapan',
+        'howto' => "Simulan ang pakikipag-usap mula sa profile ng isang user o sa isang popup ng usercard.",
+        'lazer' => 'Ang mga public channel na sinalihan mo sa <a href=":link">osu!lazer</a> ay makikita din dito.',
+        'title' => 'wala pang mga usapan',
     ],
 ];

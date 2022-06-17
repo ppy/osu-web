@@ -73,7 +73,7 @@ return [
             'nomination_reset' => 'Adaylığı Sıfırla',
             'praise' => 'Övgü',
             'problem' => 'Sorun',
-            'problem_warning' => '',
+            'problem_warning' => 'Sorun bildir',
             'review' => 'İnceleme',
             'suggestion' => 'Öneri',
         ],
@@ -211,7 +211,7 @@ return [
         'reset_confirm' => [
             'disqualify' => 'Emin misiniz? Bu, beatmapin nitelikli olmasını önleyecek ve aday gösterme sürecini sıfırlayacak.',
             'nomination_reset' => 'Emin misin? Yeni bir sorun bildirmek aday gösterme sürecini sıfırlayacaktır.',
-            'problem_warning' => '',
+            'problem_warning' => 'Bu beatmap\'teki sorunu bildireceğinizden emin misiniz? Bu, Beatmap adaylarını uyaracaktır.',
         ],
     ],
 
@@ -257,7 +257,7 @@ return [
         'featured_artists' => 'Featured artist\'ler',
         'follows' => 'Abone olunan mapperlar',
         'recommended' => 'Önerilen zorluk seviyesi',
-        'spotlights' => '',
+        'spotlights' => 'Öne çıkan beatmap\'ler',
     ],
     'mode' => [
         'all' => 'Hepsi',

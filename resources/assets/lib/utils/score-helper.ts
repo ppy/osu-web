@@ -3,7 +3,9 @@
 
 import GameMode from 'interfaces/game-mode';
 import SoloScoreJson, { SoloScoreStatisticsAttribute } from 'interfaces/solo-score-json';
+import { route } from 'laroute';
 import core from 'osu-core-singleton';
+import { rulesetName } from './beatmap-helper';
 
 export function canBeReported(score: SoloScoreJson): score is SoloScoreJson & Required<Pick<SoloScoreJson, 'best_id' | 'user'>> {
   return score.best_id != null
@@ -22,8 +24,8 @@ export function hasReplay(score: SoloScoreJson) {
   return score.replay != null && score.replay;
 }
 
-export function hasShow(score: SoloScoreJson): score is SoloScoreJson & Required<Pick<SoloScoreJson, 'best_id'>> {
-  return score.best_id != null;
+export function hasShow(score: SoloScoreJson) {
+  return score.best_id != null || score.type === 'solo_score';
 }
 
 export function isPerfectCombo(score: SoloScoreJson) {
@@ -72,3 +74,18 @@ export const modeAttributesMap: Record<GameMode, AttributeData[]> = {
     { attribute: 'miss', label: labelMiss },
   ],
 };
+
+export function scoreUrl(score: SoloScoreJson) {
+  if (score.type === 'solo_score') {
+    return route('scores.show', { score: score.id });
+  }
+
+  if (score.best_id != null) {
+    return route('scores.show-legacy', {
+      mode: rulesetName(score.ruleset_id),
+      score: score.best_id,
+    });
+  }
+
+  throw new Error('score json doesn\'t have url');
+}

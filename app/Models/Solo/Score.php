@@ -5,7 +5,7 @@
 
 namespace App\Models\Solo;
 
-use App\Libraries\ModsHelper;
+use App\Libraries\Score\UserRankCache;
 use App\Models\Beatmap;
 use App\Models\Model;
 use App\Models\Score as LegacyScore;
@@ -82,7 +82,7 @@ class Score extends Model
             'beatmap_id' => $this->beatmap_id,
             'beatmapset_id' => $this->beatmap?->beatmapset_id ?? 0,
             'countmiss' => $statistics->miss,
-            'enabled_mods' => ModsHelper::toBitset(array_column($data->mods, 'acronym')),
+            'enabled_mods' => app('mods')->idsToBitset(array_column($data->mods, 'acronym')),
             'maxcombo' => $data->maxCombo,
             'pass' => $data->passed,
             'perfect' => $data->passed && $statistics->miss + $statistics->largeTickMiss === 0,
@@ -125,5 +125,10 @@ class Score extends Model
     public function getMode(): string
     {
         return Beatmap::modeStr($this->ruleset_id);
+    }
+
+    public function userRank(): ?int
+    {
+        return UserRankCache::fetch([], $this->beatmap_id, $this->ruleset_id, $this->data->totalScore);
     }
 }
