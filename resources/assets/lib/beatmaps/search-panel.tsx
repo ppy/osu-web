@@ -137,7 +137,6 @@ export class SearchPanel extends React.Component<Props> {
             className='beatmapsets-search__input'
             disabled
             placeholder={osu.trans('beatmaps.listing.search.login_required')}
-            type='textbox'
           />
           <div className='beatmapsets-search__icon'>
             <i className='fas fa-search' />
@@ -159,7 +158,6 @@ export class SearchPanel extends React.Component<Props> {
             name='search'
             onChange={this.onChange}
             placeholder={osu.trans('beatmaps.listing.search.prompt')}
-            type='textbox'
             value={this.query}
           />
           <div className='beatmapsets-search__icon'>
@@ -190,7 +188,6 @@ export class SearchPanel extends React.Component<Props> {
             name='search'
             onChange={this.onChange}
             placeholder={osu.trans('beatmaps.listing.search.prompt')}
-            type='textbox'
             value={this.query}
           />
           <div className='beatmapsets-search__icon'>
