@@ -7,7 +7,7 @@ import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
 import { currentUrl } from 'utils/turbolinks';
-import { linkHtml, urlRegex } from 'utils/url';
+import { linkHtml, openBeatmapEditor, urlRegex } from 'utils/url';
 
 interface BadgeGroupParams {
   beatmapset: BeatmapsetJson;
@@ -48,6 +48,15 @@ export function discussionLinkify(text: string) {
     const displayUrl = typeof children === 'string' ? children : url;
     return linkHtml(url, displayUrl, { props, unescape: true });
   });
+}
+
+export function linkTimestamp(text: string, classNames: string[] = []) {
+  return text.replace(
+    /\b((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\)|\b))/g,
+    (_match, timestamp: string, m: string, s: string, ms: string, range?: string) => (
+      linkHtml(openBeatmapEditor(`${m}:${s}:${ms}${range ?? ''}`), timestamp, { classNames })
+    ),
+  );
 }
 
 export function propsFromHref(href: string) {
