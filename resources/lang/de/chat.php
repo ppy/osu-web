@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'loading_users' => '',
+    'loading_users' => 'lade Benutzer...',
     'talking_in' => 'sprechen in :channel',
     'talking_with' => 'im gespräch mit :name',
     'title_compact' => 'chat',
@@ -15,6 +15,7 @@ return [
     ],
 
     'channels' => [
+        'create' => '',
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Ankündigungen',
@@ -25,12 +26,25 @@ return [
         ],
     ],
 
+    'form' => [
+        'title' => [
+            'announcement' => '',
+        ],
+
+        'labels' => [
+            'description' => '',
+            'name' => '',
+            'users' => '',
+        ],
+    ],
+
     'not_found' => [
-        'message' => 'Hier gibt es nichts, vielleicht hast du den Channel verlassen oder er existiert nicht...',
-        'title' => 'Channel nicht gefunden',
+        'message' => 'Hier gibt es nichts, vielleicht hast du den Kanal verlassen oder er existiert nicht...',
+        'title' => 'Kanal nicht gefunden',
     ],
 
     'input' => [
+        'create' => '',
         'disabled' => 'Nachricht konnte nicht gesendet werden...',
         'disconnected' => 'Verbindung getrennt',
         'placeholder' => 'Nachricht verfassen...',

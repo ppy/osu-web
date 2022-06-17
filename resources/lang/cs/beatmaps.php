@@ -26,7 +26,7 @@ return [
         'message_type_select' => 'Vybrat typ komentáře',
         'reply_notice' => 'Stiskni enter pro odpověď.',
         'reply_placeholder' => 'Napiš svou odpověď sem',
-        'require-login' => 'Pro psaní odpovědí nebo přidávání příspěvků se prosím přihlaš',
+        'require-login' => 'Pro psaní odpovědí nebo přidávání příspěvků se prosím přihlas',
         'resolved' => 'Vyřešeno',
         'restore' => 'obnovit',
         'show_deleted' => 'Zobrazit smazané',

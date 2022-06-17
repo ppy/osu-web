@@ -6,7 +6,7 @@
 return [
     'discussion-votes' => [
         'update' => [
-            'error' => 'Gagal memperbarui pilihan',
+            'error' => 'Gagal memperbarui suara',
         ],
     ],
 
@@ -39,7 +39,7 @@ return [
 
         'empty' => [
             'empty' => 'Belum ada diskusi!',
-            'hidden' => 'Tidak ada diskusi yang cocok dengan filter yang dipilih.',
+            'hidden' => 'Tidak ada topik diskusi yang sesuai dengan filter yang dipilih.',
         ],
 
         'lock' => [

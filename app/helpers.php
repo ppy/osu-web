@@ -1474,6 +1474,7 @@ function get_param_value($input, $type)
             return get_int($input);
         case 'file':
             return get_file($input);
+        case 'number':
         case 'float':
             return get_float($input);
         case 'length':

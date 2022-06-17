@@ -38,7 +38,7 @@ class ChatTest extends TestCase
         $channel = Chat::createAnnouncement($sender, [
             'channel' => [
                 'description' => 'best',
-                'name' => 'annoucements',
+                'name' => 'announcements',
             ],
             'message' => 'test',
             'target_ids' => $users->pluck('user_id')->toArray(),
@@ -57,7 +57,7 @@ class ChatTest extends TestCase
         $channel = Chat::createAnnouncement($sender, [
             'channel' => [
                 'description' => 'best',
-                'name' => 'annoucements',
+                'name' => 'announcements',
             ],
             'message' => 'test',
             'target_ids' => [$user->getKey()],

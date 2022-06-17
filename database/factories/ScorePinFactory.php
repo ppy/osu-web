@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Models\Beatmap;
 use App\Models\Score\Best\Model as ScoreBestModel;
 use App\Models\ScorePin;
 use App\Models\User;
@@ -26,7 +27,9 @@ class ScorePinFactory extends Factory
     public function withScore(ScoreBestModel $best): self
     {
         return $this
-            ->state(['user_id' => $best->user])
-            ->for($best, 'score');
+            ->state([
+                'ruleset_id' => Beatmap::MODES[$best->getMode()],
+                'user_id' => $best->user,
+            ])->for($best, 'score');
     }
 }

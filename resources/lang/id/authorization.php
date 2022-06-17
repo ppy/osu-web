@@ -6,7 +6,7 @@
 return [
     'play_more' => 'Mengapa Anda tidak mencoba untuk bermain osu! terlebih dahulu?',
     'require_login' => 'Silakan masuk untuk melanjutkan.',
-    'require_verification' => 'Silakan verifikasi untuk melanjutkan.',
+    'require_verification' => 'Silakan verifikasi diri Anda untuk melanjutkan.',
     'restricted' => "Tidak dapat melakukan hal itu saat dibatasi.",
     'silenced' => "Tidak dapat melakukan hal itu saat dibungkam.",
     'unauthorized' => 'Akses ditolak.',
@@ -113,7 +113,7 @@ return [
             ],
 
             'store' => [
-                'play_more' => 'Anda harus memainkan beberapa beatmap dahulu sebelum Anda dapat memposting di forum! Jika Anda memiliki permasalahan yang terkait dengan permainan, silakan kunjungi forum Help & Support.',
+                'play_more' => 'Anda harus terlebih dahulu bermain sebelum Anda dapat membuat post di forum! Apabila Anda mengalami masalah saat bermain, silakan kunjungi forum Help & Support.',
                 'too_many_help_posts' => "Anda harus lebih banyak bermain sebelum Anda dapat membuat postingan tambahan. Apabila Anda masih membutuhkan bantuan lebih lanjut, silakan kirim email ke support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],

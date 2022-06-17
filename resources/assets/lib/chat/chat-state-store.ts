@@ -19,7 +19,7 @@ import { setBrowserTitle } from 'utils/html';
 import { updateQueryString } from 'utils/url';
 import ChannelJoinEvent from './channel-join-event';
 import ChannelPartEvent from './channel-part-event';
-import { createAnnoucement, getUpdates } from './chat-api';
+import { createAnnouncement, getUpdates } from './chat-api';
 import MainView from './main-view';
 import PingService from './ping-service';
 
@@ -28,7 +28,7 @@ type ChannelId = number | 'create' | null;
 @dispatchListener
 export default class ChatStateStore implements DispatchListener {
   @observable canChatAnnounce = false;
-  @observable createAnnoucement = new CreateAnnouncement();
+  @observable createAnnouncement = new CreateAnnouncement();
   @observable isReady = false;
   skipRefresh = false;
   @observable viewsMounted = new Set<MainView>();
@@ -125,13 +125,13 @@ export default class ChatStateStore implements DispatchListener {
   // For consistency, the operation is considered complete when the websocket message arrives, not when the request completes.
   @action
   joinChannel() {
-    if (!this.createAnnoucement.isValid || this.isJoiningChannel) return;
+    if (!this.createAnnouncement.isValid || this.isJoiningChannel) return;
 
-    const json = this.createAnnoucement.toJson();
+    const json = this.createAnnouncement.toJson();
     this.waitJoinChannelUuid = json.uuid;
     // TODO: when adding more channel types to join, remember to add separate busy spinner states for them.
 
-    createAnnoucement(json)
+    createAnnouncement(json)
       .fail(action((xhr: JQueryXHR) => {
         onError(xhr);
         this.waitJoinChannelUuid = null;
@@ -218,7 +218,7 @@ export default class ChatStateStore implements DispatchListener {
       this.selectChannel(event.json.channel_id);
       this.waitJoinChannelUuid = null;
       if (event.json.type === 'ANNOUNCE') {
-        this.createAnnoucement.clear();
+        this.createAnnouncement.clear();
       }
     }
   }

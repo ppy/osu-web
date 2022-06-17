@@ -15,13 +15,26 @@ return [
     ],
 
     'channels' => [
+        'create' => '',
         'list' => [
             'title' => [
-                'ANNOUNCE' => '',
-                'GROUP' => '',
+                'ANNOUNCE' => 'ประกาศ',
+                'GROUP' => 'กลุ่ม',
                 'PM' => '',
                 'PUBLIC' => '',
             ],
+        ],
+    ],
+
+    'form' => [
+        'title' => [
+            'announcement' => '',
+        ],
+
+        'labels' => [
+            'description' => '',
+            'name' => '',
+            'users' => '',
         ],
     ],
 
@@ -31,6 +44,7 @@ return [
     ],
 
     'input' => [
+        'create' => '',
         'disabled' => 'ไม่สามารถส่งข้อความได้...',
         'disconnected' => '',
         'placeholder' => 'พิมพ์ข้อความ...',

@@ -26,7 +26,7 @@ export default class ConversationListItem extends React.Component<Props> {
           ? <div className={`${baseClassName}__unread-indicator`} />
           : null}
 
-        {/* FIXME: temporarily don't show part button for annoucement channels to prevent accidentally leaving */}
+        {/* FIXME: temporarily don't show part button for announcement channels to prevent accidentally leaving */}
         {this.props.channel.type !== 'ANNOUNCE' && (
           <button className={`${baseClassName}__close-button`} onClick={this.part}>
             <i className='fas fa-times' />

@@ -5,7 +5,7 @@ import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
 import * as React from 'react'
 import { button, div, h2, span } from 'react-dom-factories'
-import { classWithModifiers } from 'utils/css'
+import { classWithModifiers, mergeModifiers } from 'utils/css'
 import { formatNumber } from 'utils/html'
 import { Comment } from './comment'
 import { CommentEditor } from './comment-editor'
@@ -37,8 +37,7 @@ export class Comments extends React.PureComponent
 
         div className: 'comments__new',
           el CommentEditor,
-            commentableType: @props.commentableType
-            commentableId: @props.commentableId
+            commentableMeta: @props.commentableMeta
             focus: false
             modifiers: @props.modifiers
 
@@ -54,15 +53,14 @@ export class Comments extends React.PureComponent
           div className: "comments__items #{if uiState.comments.loadingSort? then 'comments__items--loading' else ''}",
             @renderComments comments, false
 
-            el DeletedCommentsCount, { comments, modifiers: ['top'] }
+            el DeletedCommentsCount, { comments, modifiers: 'top' }
 
             el CommentShowMore,
-              commentableType: @props.commentableType
-              commentableId: @props.commentableId
+              commentableMeta: @props.commentableMeta
               comments: comments
               total: uiState.comments.topLevelCount
               sort: uiState.comments.currentSort
-              modifiers: _.concat 'top', @props.modifiers
+              modifiers: mergeModifiers 'top', @props.modifiers
         else
           div
             className: 'comments__items comments__items--empty'

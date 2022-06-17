@@ -12,7 +12,7 @@ return [
     ],
 
     'cover' => [
-        'deleted' => '',
+        'deleted' => 'Silinmiş beatmap',
     ],
 
     'download' => [
@@ -125,7 +125,7 @@ return [
             'language' => 'Dil',
             'no_scores' => 'Veriler hala hesaplanıyor...',
             'nsfw' => 'Müstehcen içerik',
-            'offset' => '',
+            'offset' => 'Çevrimiçi ofset',
             'points-of-failure' => 'Başarısız Olunan Kısımlar',
             'source' => 'Kaynak',
             'storyboard' => 'Bu beatmap storyboard içeriyor',
@@ -181,8 +181,8 @@ return [
                 'own' => 'En İyi Skorun',
             ],
             'supporter_link' => [
-                '_' => '',
-                'here' => '',
+                '_' => 'Aldığınız tüm süslü özellikleri görmek için :here tıklayın!',
+                'here' => 'burada',
             ],
         ],
 
@@ -197,7 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Daire Sayısı',
             'count_sliders' => 'Slider Sayısı',
-            'offset' => '',
+            'offset' => 'Çevrimiçi ofset: :offset',
             'user-rating' => 'Kullanıcı Reytingi',
             'rating-spread' => 'Reyting Dağılımı',
             'nominations' => 'Adaylıklar',

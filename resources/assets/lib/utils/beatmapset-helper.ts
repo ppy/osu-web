@@ -4,7 +4,7 @@
 import BeatmapsetJson, { BeatmapsetNominationsInterface } from 'interfaces/beatmapset-json';
 import { route } from 'laroute';
 import { sum } from 'lodash';
-import { action } from 'mobx';
+import { action, runInAction } from 'mobx';
 import core from 'osu-core-singleton';
 import { error } from 'utils/ajax';
 
@@ -25,7 +25,9 @@ export function showVisual(beatmapset: BeatmapsetJson) {
 }
 
 export const toggleFavourite = action((beatmapset: BeatmapsetJson) => {
-  const retryCallback = () => toggleFavourite(beatmapset);
+  const retryCallback = () => {
+    toggleFavourite(beatmapset);
+  };
 
   if (core.userLogin.showIfGuest(retryCallback)) return;
 
@@ -35,18 +37,22 @@ export const toggleFavourite = action((beatmapset: BeatmapsetJson) => {
   beatmapset.has_favourited = add;
   beatmapset.favourite_count += add ? 1 : -1;
 
-  void $.ajax(route('beatmapsets.favourites.store', { beatmapset: beatmapset.id }), {
+  const ret = $.ajax(route('beatmapsets.favourites.store', { beatmapset: beatmapset.id }), {
     data: {
       action: add ? 'favourite' : 'unfavourite',
     },
     method: 'POST',
-  }).fail(action((xhr: JQuery.jqXHR, status: string) => {
+  }) as JQuery.jqXHR<FavouriteResponse>;
+
+  ret.fail((xhr, status) => runInAction(() => {
     // undo faked change
     beatmapset.has_favourited = !add;
     beatmapset.favourite_count += add ? -1 : 1;
 
     error(xhr, status, retryCallback);
-  })).done(action((data: FavouriteResponse) => {
+  })).done((data) => runInAction(() => {
     beatmapset.favourite_count = data.favourite_count;
   }));
+
+  return ret;
 });

@@ -95,7 +95,7 @@ class BeatmapsetsController extends Controller
         $returnJson = Request::input('format') === 'json';
         $requestLastUpdated = get_int(Request::input('last_updated'));
 
-        $beatmapset = Beatmapset::where('discussion_enabled', true)->findOrFail($id);
+        $beatmapset = Beatmapset::findOrFail($id);
 
         if ($returnJson) {
             $lastDiscussionUpdate = $beatmapset->lastDiscussionTime();
@@ -130,7 +130,7 @@ class BeatmapsetsController extends Controller
     {
         priv_check('BeatmapsetDiscussionLock')->ensureCan();
 
-        $beatmapset = Beatmapset::where('discussion_enabled', true)->findOrFail($id);
+        $beatmapset = Beatmapset::findOrFail($id);
         $beatmapset->discussionUnlock(Auth::user(), request('reason'));
 
         return $beatmapset->defaultDiscussionJson();
@@ -140,7 +140,7 @@ class BeatmapsetsController extends Controller
     {
         priv_check('BeatmapsetDiscussionLock')->ensureCan();
 
-        $beatmapset = Beatmapset::where('discussion_enabled', true)->findOrFail($id);
+        $beatmapset = Beatmapset::findOrFail($id);
         $beatmapset->discussionLock(Auth::user(), request('reason'));
 
         return $beatmapset->defaultDiscussionJson();

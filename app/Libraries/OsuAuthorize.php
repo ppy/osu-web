@@ -822,7 +822,11 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($user->isProjectLoved() && $beatmapset->isLoved()) {
+        static $lovedEditable = [
+            Beatmapset::STATES['graveyard'],
+            Beatmapset::STATES['loved'],
+        ];
+        if ($user->isProjectLoved() && in_array($beatmapset->approved, $lovedEditable, true)) {
             return 'ok';
         }
 
@@ -831,16 +835,15 @@ class OsuAuthorize
             Beatmapset::STATES['pending'],
             Beatmapset::STATES['qualified'],
         ];
+        if ($user->isBNG() && in_array($beatmapset->approved, $bnEditable, true)) {
+            return 'ok';
+        }
+
         static $ownerEditable = [
             Beatmapset::STATES['graveyard'],
             Beatmapset::STATES['wip'],
             Beatmapset::STATES['pending'],
         ];
-
-        if ($user->isBNG() && in_array($beatmapset->approved, $bnEditable, true)) {
-            return 'ok';
-        }
-
         if ($user->getKey() !== $beatmapset->user_id || !in_array($beatmapset->approved, $ownerEditable, true)) {
             return 'unauthorized';
         }
@@ -1163,15 +1166,13 @@ class OsuAuthorize
      * @return string
      * @throws AuthorizationCheckException
      */
-    public function checkCommentStore(?User $user, Comment $comment): string
+    public function checkCommentStore(?User $user, Commentable $commentable): string
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
         $this->ensureHasPlayed($user);
 
-        $commentable = $comment->commentable;
-
-        if ($commentable instanceof Beatmapset && $commentable->downloadLimited()) {
+        if ($commentable->commentLocked()) {
             return 'comment.store.disabled';
         }
 
@@ -1838,22 +1839,22 @@ class OsuAuthorize
 
     /**
      * @param User|null $user
-     * @param \App\Models\Score\Best\Model|null $user
+     * @param \App\Models\Score\Best\Model $score
      * @return string
      * @throws AuthorizationCheckException
      */
-    public function checkScorePin(?User $user, ScoreBest $best): string
+    public function checkScorePin(?User $user, ScoreBest $score): string
     {
         $prefix = 'score.pin.';
 
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if ($best->user_id !== $user->getKey()) {
+        if ($score->user_id !== $user->getKey()) {
             return $prefix.'not_owner';
         }
 
-        $pinned = $user->scorePins()->forMode($best)->withVisibleScore()->count();
+        $pinned = $user->scorePins()->forRuleset($score->getMode())->withVisibleScore()->count();
 
         if ($pinned >= $user->maxScorePins()) {
             return $prefix.'too_many';

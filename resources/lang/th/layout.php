@@ -26,8 +26,8 @@ return [
         ],
 
         'beatmapsets' => [
-            'show' => '',
-            'discussions' => '',
+            'show' => 'ข้อมูล',
+            'discussions' => 'การสนทนา',
         ],
 
         'changelog' => [
