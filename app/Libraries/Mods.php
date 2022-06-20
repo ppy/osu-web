@@ -96,7 +96,8 @@ class Mods
 
         return array_reduce(
             $ids,
-            fn (int $carry, string $id) => $carry | $this->idToBitsetMap[$id],
+            // This ignores mods which don't have bitset
+            fn (int $carry, string $id) => $carry | ($this->idToBitsetMap[$id] ?? 0),
             0,
         );
     }
