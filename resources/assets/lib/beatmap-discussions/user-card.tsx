@@ -1,52 +1,76 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import UserAvatar from 'components/user-avatar'
-import UserGroupBadge from 'components/user-group-badge'
-import { route } from 'laroute'
-import { a, div, i, span } from 'react-dom-factories'
-import { classWithModifiers } from 'utils/css'
+import UserAvatar from 'components/user-avatar';
+import UserGroupBadge from 'components/user-group-badge';
+import UserGroupJson from 'interfaces/user-group-json';
+import UserJson from 'interfaces/user-json';
+import { route } from 'laroute';
+import * as React from 'react';
 
-el = React.createElement
-bn = 'beatmap-discussion-user-card'
+const bn = 'beatmap-discussion-user-card';
 
-export class UserCard extends React.PureComponent
-  render: =>
-    additionalClasses = @props.additionalClasses ? []
-    hideStripe = @props.hideStripe ? false
-    linkComponent = if @props.user.is_deleted then span else a
+interface Props {
+  group: UserGroupJson;
+  hideStripe: boolean;
+  user: UserJson;
+}
 
-    div
-      className: classWithModifiers(bn, additionalClasses)
-      style: osu.groupColour(@props.group)
+export class UserCard extends React.PureComponent<Props> {
+  static readonly defaultProps = {
+    hideStripe: false,
+  };
 
-      div className: "#{bn}__avatar",
-        linkComponent
-          className: "#{bn}__user-link"
-          href: route('users.show', user: @props.user.id)
-          el UserAvatar, user: @props.user, modifiers: ['full-rounded']
-      div
-        className: "#{bn}__user"
-        div
-          className: "#{bn}__user-row"
-          linkComponent
-            className: "#{bn}__user-link"
-            href: route('users.show', user: @props.user.id)
-            span
-              className: "#{bn}__user-text u-ellipsis-overflow"
-              @props.user.username
+  render() {
+    return (
+      <div className={bn} style={osu.groupColour(this.props.group)}>
+        <div className={`${bn}__avatar`}>
+          {this.props.user.is_deleted ? (
+            <span className={`${bn}__user-link`}>
+              <UserAvatar modifiers='full-rounded' user={this.props.user} />
+            </span>
+          ) : (
+            <a
+              className={`${bn}__user-link`}
+              href={route('users.show', { user: this.props.user.id })}
+            >
+              <UserAvatar modifiers='full-rounded' user={this.props.user} />
+            </a>
+          )}
+        </div>
 
-          if !@props.user.is_bot && !@props.user.is_deleted
-            a
-              className: "#{bn}__user-modding-history-link"
-              href: route('users.modding.index', user: @props.user.id)
-              title: osu.trans('beatmap_discussion_posts.item.modding_history_link')
-              i className: 'fas fa-align-left'
+        <div className={`${bn}__user`}>
+          <div className={`${bn}__user-row`}>
+            {this.props.user.is_deleted ? (
+              <span className={`${bn}__user-text u-ellipsis-overflow`}>
+                {this.props.user.username}
+              </span>
+            ) : (
+              <a
+                className={`${bn}__user-link`}
+                href={route('users.show', { user: this.props.user.id })}
+              >
+                {this.props.user.username}
+              </a>
+            )}
+            {!this.props.user.is_bot && !this.props.user.is_deleted && (
+              <a
+                className={`${bn}__user-modding-history-link`}
+                href={route('users.modding.index', { user: this.props.user.id })}
+                title={osu.trans('beatmap_discussion_posts.item.modding_history_link')}
+              >
+                <i className='fas fa-align-left' />
+              </a>
+            )}
+          </div>
 
-        div
-          className: "#{bn}__user-badge"
-          el UserGroupBadge, group: @props.group
+          <div className={`${bn}__user-badge`}>
+            <UserGroupBadge group={this.props.group} />
+          </div>
+        </div>
 
-      if (!hideStripe)
-        div
-          className: "#{bn}__user-stripe"
+        {!this.props.hideStripe && <div className={`${bn}__user-stripe`} />}
+      </div>
+    );
+  }
+}
