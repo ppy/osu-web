@@ -78,7 +78,7 @@ export default class Editor extends React.Component<Props, State> {
   scrollContainerRef: React.RefObject<HTMLDivElement>;
   slateEditor: ReactEditor;
   toolbarRef: React.RefObject<EditorToolbar>;
-  private xhr?: JQueryXHR;
+  private xhr?: JQueryXHR | null;
 
   constructor(props: Props) {
     super(props);
@@ -146,9 +146,7 @@ export default class Editor extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
-    if (this.xhr) {
-      this.xhr.abort();
-    }
+    this.xhr?.abort();
   }
 
   decorateTimestamps = (entry: NodeEntry) => {
@@ -235,6 +233,8 @@ export default class Editor extends React.Component<Props, State> {
   };
 
   post = () => {
+    if (this.xhr != null) return;
+
     if (this.showConfirmationIfRequired()) {
       this.setState({ posting: true }, () => {
         this.xhr = $.ajax(route('beatmapsets.discussion.review', { beatmapset: this.props.beatmapset.id }), {
@@ -246,7 +246,10 @@ export default class Editor extends React.Component<Props, State> {
             this.resetInput();
           })
           .fail(onError)
-          .always(() => this.setState({ posting: false }));
+          .always(() => {
+            this.xhr = null;
+            this.setState({ posting: false });
+          });
       });
     }
   };
