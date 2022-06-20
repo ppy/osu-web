@@ -11,10 +11,6 @@ import * as React from 'react';
 
 export interface Props<T> {
   children: (props: RenderProps<T>) => React.ReactNode;
-  initialState?: {
-    firstItemIndex: number;
-    lastItemIndex: number;
-  };
   itemBuffer: number;
   itemHeight: number;
   items: T[];
