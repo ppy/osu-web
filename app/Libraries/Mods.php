@@ -96,7 +96,7 @@ class Mods
 
         return array_reduce(
             $ids,
-            fn (int $carry, string $id) => $carry | $this->idToBitsetMap[$id],
+            fn (int $carry, string $id) => $carry | ($this->idToBitsetMap[$id] ?? 0),
             0,
         );
     }
