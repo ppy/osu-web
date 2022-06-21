@@ -50,10 +50,9 @@ class ChatController extends Controller
                 ];
             }
         } elseif ($params['channel_id'] !== null) {
+            // This is only for rejoining / unhiding channels the user is already in.
             $channel = Channel::find($params['channel_id']);
-            if ($channel?->isHideable() ?? false) {
-                $channel->addUser($user);
-            }
+            $channel?->unhide($user);
         }
 
         $json = [

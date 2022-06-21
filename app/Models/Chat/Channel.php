@@ -552,23 +552,21 @@ class Channel extends Model
         $this->preloadedUserChannels[$userChannel->user_id] = $userChannel;
     }
 
-    public function validationErrorsTranslationPrefix()
-    {
-        return 'chat.channel';
-    }
-
     /**
      * Unhides UserChannels as necessary when receiving messages.
      *
      * @return void
      */
-    private function unhide()
+    public function unhide(?User $user = null)
     {
         if (!$this->isHideable()) {
             return;
         }
 
         $params = ['channel_id' => $this->channel_id, 'hidden' => true];
+        if ($user !== null) {
+            $params['user_id'] = $user->getKey();
+        }
 
         $users = User::whereIn('user_id', UserChannel::where($params)->select('user_id'))->get();
 
@@ -577,6 +575,11 @@ class Channel extends Model
         foreach ($users as $user) {
             (new ChatChannelEvent($this, $user, 'join'))->broadcast(true);
         }
+    }
+
+    public function validationErrorsTranslationPrefix()
+    {
+        return 'chat.channel';
     }
 
     private function userChannelFor(User $user)
