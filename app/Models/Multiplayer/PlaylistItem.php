@@ -145,7 +145,7 @@ class PlaylistItem extends Model
         $modsHelper->assertValidExclusivity($this->ruleset_id, $requiredModIds, $allowedModIds);
 
         foreach ($allowedModIds as $allowedModId) {
-            $modMeta = $modsHelper->mods[$this->ruleset][$allowedModId];
+            $modMeta = $modsHelper->mods[$this->ruleset_id][$allowedModId];
 
             if (!$modMeta['ValidForMultiplayer'] || !$modMeta['ValidForMultiplayerAsFreeMod']) {
                 throw new InvariantException("mod cannot be set as allowed: {$allowedModId}");
@@ -153,7 +153,7 @@ class PlaylistItem extends Model
         }
 
         foreach ($requiredModIds as $requiredModId) {
-            $modMeta = $modsHelper->mods[$this->ruleset][$requiredModId];
+            $modMeta = $modsHelper->mods[$this->ruleset_id][$requiredModId];
 
             if (!$modMeta['ValidForMultiplayer']) {
                 throw new InvariantException("mod cannot be set as required: {$requiredModId}");

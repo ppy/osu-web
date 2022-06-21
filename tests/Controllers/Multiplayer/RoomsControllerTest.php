@@ -331,7 +331,19 @@ class RoomsControllerTest extends TestCase
             'name' => 'test room '.rand(),
             'playlist' => [
                 [
+                    'allowed_mods' => [
+                        [
+                            'acronym' => 'PF',
+                            'settings' => [],
+                        ],
+                    ],
                     'beatmap_id' => $beatmap->getKey(),
+                    'required_mods' => [
+                        [
+                            'acronym' => 'DT',
+                            'settings' => [],
+                        ],
+                    ],
                     'ruleset_id' => $beatmap->playmode,
                 ],
             ],
