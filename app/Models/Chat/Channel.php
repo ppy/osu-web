@@ -575,6 +575,8 @@ class Channel extends Model
             foreach ($users as $user) {
                 (new ChatChannelEvent($this, $user, 'join'))->broadcast(true);
             }
+
+            Datadog::increment('chat.channel.join', 1, ['type' => $this->type], $users->count());
         }
     }
 
