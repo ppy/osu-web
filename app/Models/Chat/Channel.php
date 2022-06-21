@@ -568,7 +568,8 @@ class Channel extends Model
             $params['user_id'] = $user->getKey();
         }
 
-        $users = User::whereIn('user_id', UserChannel::where($params)->select('user_id'))->get();
+        // using only subquery causes the test to fail
+        $users = User::whereIn('user_id', UserChannel::where($params)->select('user_id')->pluck('user_id'))->get();
         if (!$users->isEmpty()) {
             UserChannel::where($params)->update(['hidden' => false]);
 
