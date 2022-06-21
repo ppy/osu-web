@@ -569,11 +569,12 @@ class Channel extends Model
         }
 
         $users = User::whereIn('user_id', UserChannel::where($params)->select('user_id'))->get();
+        if (!$users->isEmpty()) {
+            UserChannel::where($params)->update(['hidden' => false]);
 
-        UserChannel::where($params)->update(['hidden' => false]);
-
-        foreach ($users as $user) {
-            (new ChatChannelEvent($this, $user, 'join'))->broadcast(true);
+            foreach ($users as $user) {
+                (new ChatChannelEvent($this, $user, 'join'))->broadcast(true);
+            }
         }
     }
 
