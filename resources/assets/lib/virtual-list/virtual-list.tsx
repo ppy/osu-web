@@ -88,8 +88,8 @@ export default class VirtualList<T> extends React.Component<Props<T>> {
     const visibleItemBounds = this.visibleItemBounds;
     const items = visibleItemBounds.lastItemIndex > 0 ? this.props.items.slice(visibleItemBounds.firstItemIndex, visibleItemBounds.lastItemIndex) : [];
 
-    const style = {
-      boxSizing: 'border-box' as React.CSSProperties['boxSizing'],
+    const style: React.CSSProperties = {
+      boxSizing: 'border-box',
       height: this.props.items.length * this.props.itemHeight,
       paddingTop: visibleItemBounds.firstItemIndex * this.props.itemHeight,
     };
