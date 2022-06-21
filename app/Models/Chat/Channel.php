@@ -274,7 +274,7 @@ class Channel extends Model
                 return $this->pmUsers;
             }
 
-            // This isn't a has-many-through because the relationship is cross-database.
+            // This isn't a has-many-through because the User and UserChannel are in different databases.
             return User::whereIn('user_id', $this->userIds())->get();
         });
     }
