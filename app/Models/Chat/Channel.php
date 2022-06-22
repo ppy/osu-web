@@ -462,7 +462,7 @@ class Channel extends Model
                 (new ChannelAnnouncement($message, $sender))->dispatch();
             }
 
-            $message->getConnection()->transaction(fn () => MessageTask::dispatch($message));
+            MessageTask::dispatch($message);
         });
 
         Datadog::increment('chat.channel.send', 1, ['target' => $this->type]);
