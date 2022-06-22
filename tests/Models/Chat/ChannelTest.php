@@ -190,28 +190,6 @@ class ChannelTest extends TestCase
         Event::assertNotDispatched(ChatChannelEvent::class);
     }
 
-    public function testHiddenChannelReceiveMessage()
-    {
-        Event::fake();
-
-        $user = User::factory()->withGroup('announce')->create();
-        $otherUsers = User::factory()->count(2)->create();
-        $channel = $this->createChannel([$user, ...$otherUsers], 'announce');
-        $channel->userChannels()->whereIn('user_id', $otherUsers->pluck('user_id'))->update(['hidden' => true]);
-
-        // Don't care about the ones from createChannel.
-        app(BroadcastsPendingForTests::class)->reset();
-
-        $channel->receiveMessage($user, 'test');
-
-        $broadcastsPending = app(BroadcastsPendingForTests::class)->dispatched(
-            ChatChannelEvent::class,
-            fn (ChatChannelEvent $event) => $event->action === 'join' && $otherUsers->find($event->user)
-        );
-        $this->assertSame($otherUsers->count(), count($broadcastsPending));
-        Event::assertNotDispatched(ChatChannelEvent::class);
-    }
-
     public function testPmChannelIcon()
     {
         Storage::fake('local-avatar');
