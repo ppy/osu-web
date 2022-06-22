@@ -83,6 +83,10 @@ class Chat
 
             if ($newChannel) {
                 $channel = Channel::createPM($target, $sender);
+            } else {
+                // FIXME: update ChatChannelRead priv check to account for hidden PM and annoucement channels.
+                // The user is added here to later priv checks can pass.
+                $channel->addUser($sender);
             }
 
             $ret = static::sendMessage($sender, $channel, $message, $isAction, $uuid);
