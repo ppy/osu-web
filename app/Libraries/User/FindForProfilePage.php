@@ -28,7 +28,7 @@ class FindForProfilePage
         if (($assertCanonicalId ?? !is_json_request()) && (string) $user->getKey() !== (string) $id) {
             $redirectTarget = route(
                 $request->route()->getName(),
-                array_merge($request->query(), $request->route()->parameters(), compact('user'))
+                array_merge($request->query(), $request->route()->parameters(), ['user' => $user, 'key' => null])
             );
 
             throw new UserProfilePageLookupException(fn () => ujs_redirect($redirectTarget));
