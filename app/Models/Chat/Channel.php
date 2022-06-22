@@ -562,21 +562,15 @@ class Channel extends Model
             return;
         }
 
-        $params = ['channel_id' => $this->channel_id, 'hidden' => true];
-        if ($user !== null) {
-            $params['user_id'] = $user->getKey();
-        }
+        $count = UserChannel::where([
+            'channel_id' => $this->channel_id,
+            'hidden' => true,
+        ])->update([
+            'hidden' => false,
+        ]);
 
-        // using only subquery causes the test to fail
-        $users = User::whereIn('user_id', UserChannel::where($params)->select('user_id')->pluck('user_id'))->get();
-        if (!$users->isEmpty()) {
-            UserChannel::where($params)->update(['hidden' => false]);
-
-            foreach ($users as $user) {
-                (new ChatChannelEvent($this, $user, 'join'))->broadcast(true);
-            }
-
-            Datadog::increment('chat.channel.join', 1, ['type' => $this->type], $users->count());
+        if ($count > 0) {
+            Datadog::increment('chat.channel.join', 1, ['type' => $this->type], 0);
         }
     }
 
