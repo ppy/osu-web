@@ -10,14 +10,14 @@ use Symfony\Component\Console\Input\InputOption;
 
 abstract class SilentEnabledCommand extends Command
 {
-    public function info($string)
+    public function info($string, $verbosity = null)
     {
         if (!$this->option('silent')) {
             parent::info($string);
         }
     }
 
-    public function comment($string)
+    public function comment($string, $verbosity = null)
     {
         if (!$this->option('silent')) {
             parent::comment($string);
