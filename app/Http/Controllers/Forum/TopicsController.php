@@ -311,7 +311,9 @@ class TopicsController extends Controller
             abort(404);
         }
 
-        if ($topic->forum === null) {
+        // TODO: firstPost is sometimes null when created by legacy process.
+        // Create an endpoint so the post is properly created in a transaction.
+        if ($topic->forum === null || $topic->firstPost === null) {
             abort(404);
         }
 
