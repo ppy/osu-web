@@ -83,8 +83,6 @@ class Chat
 
             if ($newChannel) {
                 $channel = Channel::createPM($target, $sender);
-            } else {
-                $channel->addUser($sender);
             }
 
             $ret = static::sendMessage($sender, $channel, $message, $isAction, $uuid);

@@ -6,7 +6,7 @@ import { ChatNewConversationAdded } from 'actions/chat-new-conversation-added';
 import ChatUpdateSilences from 'actions/chat-update-silences';
 import DispatcherAction from 'actions/dispatcher-action';
 import { dispatch, dispatchListener } from 'app-dispatcher';
-import { markAsRead as apiMarkAsRead, newConversation, partChannel as apiPartChannel, sendMessage } from 'chat/chat-api';
+import { getChannel, markAsRead as apiMarkAsRead, newConversation, partChannel as apiPartChannel, sendMessage } from 'chat/chat-api';
 import MessageNewEvent from 'chat/message-new-event';
 import DispatchListener from 'dispatch-listener';
 import ChannelJson, { filterSupportedChannelTypes, SupportedChannelType, supportedChannelTypes } from 'interfaces/chat/channel-json';
@@ -232,12 +232,16 @@ export default class ChannelStore implements DispatchListener {
   }
 
   @action
-  private handleChatMessageNewEvent(event: MessageNewEvent) {
+  private async handleChatMessageNewEvent(event: MessageNewEvent) {
     for (const message of event.json.messages) {
       const channel = this.channels.get(message.channel_id);
-      if (channel == null) continue;
 
-      channel.addMessage(message);
+      if (channel != null) {
+        channel.addMessage(message);
+      } else if ((event.json.type === 'PM' || event.json.type === 'ANNOUNCE')) {
+        const json = await getChannel(message.channel_id);
+        this.update(json);
+      }
     }
 
     this.updateLastReceivedMessageId(event.json.messages);

@@ -95,6 +95,7 @@ class Channel extends Model
                 $userChannel->channel->setUserChannel($userChannel);
             }
 
+            // TODO: only the sender needs this now.
             foreach ($users as $user) {
                 (new ChatChannelEvent($channel, $user, 'join'))->broadcast(true);
             }
@@ -455,11 +456,7 @@ class Channel extends Model
             }
 
             if ($this->isPM()) {
-                if ($this->unhide()) {
-                    // assume a join event has to be sent if any channels need to need to be unhidden.
-                    (new ChatChannelEvent($this, $this->pmTargetFor($sender), 'join'))->broadcast();
-                }
-
+                $this->unhide();
                 (new ChannelMessage($message, $sender))->dispatch();
             } elseif ($this->isAnnouncement()) {
                 (new ChannelAnnouncement($message, $sender))->dispatch();
@@ -477,11 +474,9 @@ class Channel extends Model
     {
         $userChannel = $this->userChannelFor($user);
 
-        if ($userChannel) {
-            // already in channel, just broadcast event.
+        if ($userChannel !== null) {
+            // No check for sending join event, assumming non-hideable channels don't get hidden.
             if (!$userChannel->isHidden()) {
-                (new ChatChannelEvent($this, $user, 'join'))->broadcast(true);
-
                 return;
             }
 
