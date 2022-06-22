@@ -27,7 +27,6 @@ export class NewDiscussion extends React.PureComponent
 
     @disposers = new Set
     @inputBox = React.createRef()
-    @throttledPost = _.throttle @post, 1000
     @handleKeyDown = makeTextAreaHandler @handleKeyDownCallback
 
     @state =
@@ -56,7 +55,6 @@ export class NewDiscussion extends React.PureComponent
   componentWillUnmount: =>
     $(window).off 'resize', @setTop
     @postXhr?.abort()
-    @throttledPost.cancel()
     @disposers.forEach (disposer) => disposer?()
 
 
@@ -267,7 +265,7 @@ export class NewDiscussion extends React.PureComponent
 
 
   post: (e) =>
-    return unless @validPost()
+    return if !@validPost() || @postXhr?
 
     type = e.currentTarget.dataset.type
 
@@ -280,7 +278,6 @@ export class NewDiscussion extends React.PureComponent
     if type == 'hype'
       return unless confirm(osu.trans('beatmaps.hype.confirm', n: @props.beatmapset.current_user_attributes.remaining_hype))
 
-    @postXhr?.abort()
     showLoadingOverlay()
     @setState posting: type
 
@@ -309,6 +306,7 @@ export class NewDiscussion extends React.PureComponent
 
     .always =>
       hideLoadingOverlay()
+      @postXhr = null
       @setState posting: null
 
 

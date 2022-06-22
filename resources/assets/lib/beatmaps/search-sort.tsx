@@ -96,6 +96,6 @@ export class SearchSort extends React.Component<Props> {
       ? 'asc'
       : 'desc';
 
-    core.beatmapsetSearchController.updateFilters({ sort: `${field}_${order}` });
+    core.beatmapsetSearchController.filters.update('sort', `${field}_${order}`);
   };
 }

@@ -5,7 +5,6 @@
 
 namespace App\Models\Solo;
 
-use App\Libraries\ModsHelper;
 use App\Libraries\Score\UserRankCache;
 use App\Models\Beatmap;
 use App\Models\Model;
@@ -83,7 +82,7 @@ class Score extends Model
             'beatmap_id' => $this->beatmap_id,
             'beatmapset_id' => $this->beatmap?->beatmapset_id ?? 0,
             'countmiss' => $statistics->miss,
-            'enabled_mods' => ModsHelper::toBitset(array_column($data->mods, 'acronym')),
+            'enabled_mods' => app('mods')->idsToBitset(array_column($data->mods, 'acronym')),
             'maxcombo' => $data->maxCombo,
             'pass' => $data->passed,
             'perfect' => $data->passed && $statistics->miss + $statistics->largeTickMiss === 0,

@@ -8,8 +8,6 @@ namespace App\Http\Controllers;
 use App\Exceptions\ScoreRetrievalException;
 use App\Jobs\Notifications\BeatmapOwnerChange;
 use App\Libraries\BeatmapDifficultyAttributes;
-use App\Libraries\ModsHelper;
-use App\Libraries\Multiplayer\Mod;
 use App\Models\Beatmap;
 use App\Models\BeatmapsetEvent;
 use App\Models\Score\Best\Model as BestModel;
@@ -90,14 +88,14 @@ class BeatmapsController extends Controller
 
         if (isset($params['mods'])) {
             if (is_numeric($params['mods'])) {
-                $params['mods'] = ModsHelper::toArray((int) $params['mods']);
+                $params['mods'] = app('mods')->bitsetToIds((int) $params['mods']);
             }
             if (is_array($params['mods'])) {
                 if (count($params['mods']) > 0 && is_string(array_first($params['mods']))) {
                     $params['mods'] = array_map(fn ($m) => ['acronym' => $m], $params['mods']);
                 }
 
-                $mods = Mod::parseInputArray($params['mods'], $rulesetId);
+                $mods = app('mods')->parseInputArray($rulesetId, $params['mods']);
             } else {
                 abort(422, 'invalid mods specified');
             }

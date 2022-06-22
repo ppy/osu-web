@@ -23,7 +23,7 @@ interface Props {
 @observer
 export class Main extends React.Component<Props> {
   readonly backToTop = React.createRef<BackToTop>();
-  readonly backToTopAnchor = React.createRef<HTMLElement>();
+  readonly backToTopAnchor = React.createRef<HTMLDivElement>();
 
   private readonly eventId = `beatmapsets-index-${nextVal()}`;
 
