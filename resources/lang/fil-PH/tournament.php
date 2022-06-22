@@ -5,7 +5,7 @@
 
 return [
     'index' => [
-        'none_running' => 'Walang gumaganap na torneo ngayon, tingnan mo muli mamaya!',
+        'none_running' => 'Walang mga torneo na tumatakbo sa ngayon, pakibalik sa ibang pagkakataon!',
         'registration_period' => 'Pagpaparehistro: :start hanggang :end',
 
         'header' => [
@@ -45,7 +45,7 @@ return [
             'before_registration' => 'Hindi pa nagsimula ang pagpaparehistro para sa torneong ito.',
             'ended' => 'Natapos na ang torneong ito. Tingang ang information page para sa mga resulta.',
             'registration_closed' => 'Natapos na ang pagpaparehistro para sa torneong ito. Tingang ang information page para sa mga pagbabago.',
-            'running' => 'Gumaganap pa ang itong torneo. Tingnan ang information page para sa karagdagang mga detalye.',
+            'running' => 'Ang paligsahan na ito ay kasalukuyang nagpoprogreso. Tingnan ang pahina ng impormasyon para sa higit pang mga detalye.',
         ],
     ],
     'tournament_period' => ':start hanggang :end',

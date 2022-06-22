@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'loading_users' => '',
+    'loading_users' => '正在載入使用者... ',
     'talking_in' => '在 :channel 聊天',
     'talking_with' => '與 :name 聊天',
     'title_compact' => '聊天',
@@ -15,6 +15,7 @@ return [
     ],
 
     'channels' => [
+        'create' => '',
         'list' => [
             'title' => [
                 'ANNOUNCE' => '公告',
@@ -25,12 +26,25 @@ return [
         ],
     ],
 
+    'form' => [
+        'title' => [
+            'announcement' => '',
+        ],
+
+        'labels' => [
+            'description' => '',
+            'name' => '',
+            'users' => '',
+        ],
+    ],
+
     'not_found' => [
         'message' => '沒有東西耶。大概是你離開頻道，或者是這個頻道消失了⋯⋯',
         'title' => '找不到頻道',
     ],
 
     'input' => [
+        'create' => '',
         'disabled' => '無法傳送訊息...',
         'disconnected' => '連線已中斷',
         'placeholder' => '輸入訊息...',

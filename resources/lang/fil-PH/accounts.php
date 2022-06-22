@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => 'Mangyaring tiyakin na ang iyong avatar ay sumusunod sa: :link.<br/>Nangangahulugan ito na dapat <strong>angkop ito sa lahat ng edad</strong>. i.e. walang kahubaran, kabastusan o nilalaman na nagpapahiwatig ng kalaswaan.',
+            'rules' => 'Pakitiyak na ang iyong avatar ay sumusunod sa :link.<br/>Nangangahulugan ito na dapat ay <strong>angkop para sa lahat ng edad</strong>. i.e. walang kahubaran, kabastusan, o nagpapahiwatig na nilalaman.',
             'rules_link' => 'ang patakaran ng komunidad
 	
 ',
@@ -50,10 +50,10 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'tumanggap ng mga abiso sa mga bagong problema sa mga kwalipikadong beatmaps sa mga sumusunod na mode',
-        'beatmapset_disqualify' => 'tumanggap ng mga abiso kung kailan ang mga beatmap sa mga sumusnod na mode ay nadiskwalipika',
-        'comment_reply' => 'tumanggap nga mga abiso na tumutugon sa iyong mga komento',
-        'title' => 'Mga abiso',
+        'beatmapset_discussion_qualified_problem' => 'tumanggap ng mga notipikasyon sa mga bagong problema sa mga kwalipikadong beatmap sa mga sumusunod na mode',
+        'beatmapset_disqualify' => 'tumanggap ng mga notipikasyon kung kailan ang mga beatmap sa mga sumusunod na mode ay na diskwalipika',
+        'comment_reply' => 'tumanggap ng mga notipikasyon para sa mga tugon sa iyong mga komento',
+        'title' => 'Mga notipikasyon',
         'topic_auto_subscribe' => 'awtomatikong paganahin ang mga notipikasyon sa nilikha mong mga bagong paksa sa forum',
 
         'options' => [

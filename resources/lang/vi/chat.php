@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'loading_users' => '',
+    'loading_users' => 'đang chờ người dùng...',
     'talking_in' => 'đang trò chuyện ở :channel',
     'talking_with' => 'đang trò chuyện với :name',
     'title_compact' => 'chat',
@@ -15,6 +15,7 @@ return [
     ],
 
     'channels' => [
+        'create' => '',
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Thông báo',
@@ -25,12 +26,25 @@ return [
         ],
     ],
 
+    'form' => [
+        'title' => [
+            'announcement' => '',
+        ],
+
+        'labels' => [
+            'description' => '',
+            'name' => '',
+            'users' => '',
+        ],
+    ],
+
     'not_found' => [
         'message' => 'Không có gì ở đây, có lẽ bạn đã thoát kênh hoặc kênh không tồn tại...',
         'title' => 'không tìm thấy kênh',
     ],
 
     'input' => [
+        'create' => '',
         'disabled' => 'không thể gửi tin nhắn...',
         'disconnected' => 'Đã ngắt kết nối',
         'placeholder' => 'soạn tin nhắn...',

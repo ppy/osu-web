@@ -6,7 +6,7 @@
 return [
     'missing_route' => 'Ungültige URL oder falsche Anforderungsmethode.',
     'no_restricted_access' => 'Diese Aktion steht nicht zur Verfügung, während der Account eingeschränkt ist.',
-    'supporter_only' => 'Für dieses Feature muss man Supporter sein.',
+    'supporter_only' => 'Du musst ein osu!supporter sein, um dieses Feature zu nutzen.',
     'unknown' => 'Unbekannter Fehler aufgetreten.',
 
     'codes' => [

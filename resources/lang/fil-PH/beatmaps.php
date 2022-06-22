@@ -257,7 +257,7 @@ return [
         'featured_artists' => 'Featured artists',
         'follows' => 'Mga naka-subscribe na mappers',
         'recommended' => 'Nirerekomenda na difficulty',
-        'spotlights' => '',
+        'spotlights' => 'Spotlighted na mga beatmap',
     ],
     'mode' => [
         'all' => 'Lahat',

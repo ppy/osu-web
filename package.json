@@ -74,7 +74,6 @@
     "react-dom-factories": "^1.0.0",
     "react-markdown": "^4.2.2",
     "react-transition-group": "^4.4.2",
-    "react-virtual-list": "^2.3.0",
     "remark-parse": "^7.0.1",
     "shopify-buy": "^2.6.1",
     "slate": "^0.58.4",

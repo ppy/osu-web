@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'loading_users' => '',
+    'loading_users' => 'завантаження користувачів...',
     'talking_in' => 'чат в :channel',
     'talking_with' => 'чат з :name',
     'title_compact' => 'чат',
@@ -15,6 +15,7 @@ return [
     ],
 
     'channels' => [
+        'create' => '',
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Анонси',
@@ -25,12 +26,25 @@ return [
         ],
     ],
 
+    'form' => [
+        'title' => [
+            'announcement' => '',
+        ],
+
+        'labels' => [
+            'description' => '',
+            'name' => '',
+            'users' => '',
+        ],
+    ],
+
     'not_found' => [
         'message' => 'Тут нічого немає, можливо ви покинули канал або його не існує...',
         'title' => 'канал не знайдено',
     ],
 
     'input' => [
+        'create' => '',
         'disabled' => 'неможливо надіслати повідомлення...',
         'disconnected' => 'Розʼєднано',
         'placeholder' => 'введіть текст повідомлення...',

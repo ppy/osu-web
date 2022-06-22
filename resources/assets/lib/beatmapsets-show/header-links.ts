@@ -12,9 +12,7 @@ type LinkMode = typeof linkModes[number];
 function url(mode: LinkMode, beatmapset: BeatmapsetExtendedJson) {
   switch (mode) {
     case 'discussions':
-      return beatmapset.discussion_enabled
-        ? route('beatmapsets.discussion', { beatmapset: beatmapset.id })
-        : (beatmapset.legacy_thread_url ?? '#');
+      return route('beatmapsets.discussion', { beatmapset: beatmapset.id });
     case 'show':
       if (beatmapset == null) {
         throw new Error("can't make show url without beatmapset");

@@ -39,6 +39,7 @@ class ChatMessageEvent extends BroadcastableEventBase implements ShouldBroadcast
     {
         return [
             'messages' => json_collection([$this->message], new MessageTransformer()),
+            'type' => $this->message->channel->type,
             'users' => json_collection([$this->message->sender], new UserCompactTransformer()),
         ];
     }

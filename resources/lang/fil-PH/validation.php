@@ -4,6 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'mixture' => ':attribute ay kulang ng numero or letra',
+    'mixture' => ':attribute ay nakulangan ng numero or letra',
     'required' => ':attribute ay kinakailangan',
 ];

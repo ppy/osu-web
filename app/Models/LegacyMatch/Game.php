@@ -5,7 +5,6 @@
 
 namespace App\Models\LegacyMatch;
 
-use App\Libraries\ModsHelper;
 use App\Models\Beatmap;
 
 /**
@@ -76,11 +75,7 @@ class Game extends Model
 
     public function getModsAttribute($value)
     {
-        if (empty($this->_mods)) {
-            $this->_mods = ModsHelper::toArray($value);
-        }
-
-        return $this->_mods;
+        return $this->_mods ??= app('mods')->bitsetToIds($value);
     }
 
     public function getModeAttribute()
