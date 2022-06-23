@@ -399,6 +399,7 @@ export default class Editor extends React.Component<Props, State> {
       }
     }
 
+    // FIXME: should use Tranforms to delete content instead of triggering onChange.
     Transforms.deselect(this.slateEditor);
     this.onChange(emptyDocTemplate);
   };
