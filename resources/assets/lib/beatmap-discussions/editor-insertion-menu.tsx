@@ -154,7 +154,7 @@ export class EditorInsertionMenu extends React.Component<Props> {
   };
 
   private insertBlock = (event: React.MouseEvent<HTMLElement>) => {
-    const ed: ReactEditor = this.context;
+    const ed = this.context;
     const slateNodeElement = this.hoveredBlock?.lastChild;
     const type = event.currentTarget.dataset.discussionType;
     const beatmapId = this.props.currentBeatmap?.id;
