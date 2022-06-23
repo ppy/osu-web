@@ -78,14 +78,16 @@ export default class Editor extends React.Component<Props, State> {
   insertMenuRef: React.RefObject<EditorInsertionMenu>;
   localStorageKey: string;
   scrollContainerRef: React.RefObject<HTMLDivElement>;
-  slateEditor: ReactEditor;
+  slateEditor: SlateEditor;
   toolbarRef: React.RefObject<EditorToolbar>;
   private xhr?: JQueryXHR | null;
 
   constructor(props: Props) {
     super(props);
 
-    this.slateEditor = this.withNormalization(withHistory(withReact(createEditor())));
+    // Slate editor typing is weird
+    // https://docs.slatejs.org/concepts/12-typescript#defining-editor-element-and-text-types
+    this.slateEditor = this.withNormalization(withReact(withHistory(createEditor())));
     this.scrollContainerRef = React.createRef();
     this.toolbarRef = React.createRef();
     this.insertMenuRef = React.createRef();
@@ -446,7 +448,7 @@ export default class Editor extends React.Component<Props, State> {
     this.cache.draftEmbeds = this.state.value.filter((block) => block.type === 'embed' && !block.discussion_id);
   };
 
-  withNormalization = (editor: ReactEditor) => {
+  withNormalization = (editor: SlateEditor) => {
     const { insertData, normalizeNode } = editor;
 
     editor.insertData = (data) => {
