@@ -10,7 +10,7 @@ import { route } from 'laroute';
 import * as _ from 'lodash';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { createEditor, Element as SlateElement, Node as SlateNode, NodeEntry, Range, Text, Transforms } from 'slate';
+import { createEditor, Editor as SlateEditor, Element as SlateElement, Node as SlateNode, NodeEntry, Range, Text, Transforms } from 'slate';
 import { withHistory } from 'slate-history';
 import { Editable, ReactEditor, RenderElementProps, RenderLeafProps, Slate, withReact } from 'slate-react';
 import { onError } from 'utils/ajax';
@@ -182,8 +182,10 @@ export default class Editor extends React.Component<Props, State> {
   );
 
   onChange = (value: SlateElement[]) => {
-    // prevent document from becoming empty (and invalid) - ideally this would be handled in `withNormalization`, but that isn't run on every change
+    // Prevent document from becoming empty (and invalid) - ideally this would be handled in `withNormalization`, but that isn't run on every change
+    // This is a final resort and should be avoided; anything that triggers this needs to be fixed!
     if (value.length === 0) {
+      console.error('value is empty in Editor.onChange');
       value = this.emptyDocTemplate;
     }
 
@@ -227,6 +229,11 @@ export default class Editor extends React.Component<Props, State> {
     } else if (isHotkey('delete', event) || isHotkey('backspace', event)) {
       if (insideEmptyNode(this.slateEditor)) {
         event.preventDefault();
+        if (this.slateEditor.children.length === 1) {
+          // Insert a blank paragraph to prevent Slate's cursor from going OOB and other weird things.
+          Transforms.insertNodes(this.slateEditor, { children: [{ text: '' }], type: 'paragraph' }, { at: SlateEditor.start(this.slateEditor, []) });
+        }
+
         Transforms.removeNodes(this.slateEditor);
       }
     }
