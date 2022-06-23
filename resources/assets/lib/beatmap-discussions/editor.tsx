@@ -352,7 +352,8 @@ export default class Editor extends React.Component<Props, State> {
     let el;
 
     switch (props.element.type) {
-      case 'embed':
+      case 'embed': {
+        const { element, ...otherProps } = props; // spreading ..props doesn't use the narrower type.
         el = (
           <EditorDiscussionComponent
             beatmaps={this.sortedBeatmaps()}
@@ -360,12 +361,13 @@ export default class Editor extends React.Component<Props, State> {
             currentBeatmap={this.props.currentBeatmap}
             discussions={this.props.discussions}
             editMode={this.props.editMode}
+            element={element}
             readOnly={this.state.posting}
-            {...props}
+            {...otherProps}
           />
         );
         break;
-
+      }
       default:
         el = props.children;
     }

@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { EmbedElement } from 'editor';
 import { BeatmapReviewDiscussionType } from 'interfaces/beatmap-discussion-review';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
@@ -31,6 +32,7 @@ interface Props extends RenderElementProps {
   discussionId?: number;
   discussions: Partial<Record<number, BeatmapsetDiscussionJson>>;
   editMode?: boolean;
+  element: EmbedElement;
   readOnly?: boolean;
 }
 
