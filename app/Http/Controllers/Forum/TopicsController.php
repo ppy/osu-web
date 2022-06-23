@@ -385,19 +385,20 @@ class TopicsController extends Controller
             'user.userGroups',
         ]);
 
+        $navigatingBackwards = $cursorHelper->getSortName() === 'id_desc';
+        if ($navigatingBackwards) {
+            $posts = $posts->reverse();
+        }
+
         $navUrls = [
-            'next' => static::nextUrl($topic, $cursorHelper->getSortName(), $nextCursor, $showDeleted),
+            'next' => static::nextUrl($topic, 'id_asc', $nextCursor, $showDeleted),
             'previous' => static::nextUrl(
                 $topic,
-                $cursorHelper->getSortName() === 'id_desc' ? 'id_asc' : 'id_desc',
+                'id_desc',
                 $cursorHelper->next([$posts->first()]),
                 $showDeleted
             ),
         ];
-
-        if ($cursorHelper->getSortName() === 'id_desc') {
-            $posts = $posts->reverse();
-        }
 
         $firstShownPostId = $posts->first()->getKey();
         // position of the first post, incremented in the view
@@ -407,7 +408,7 @@ class TopicsController extends Controller
         if ($skipLayout) {
             return [
                 'content' => view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'))->render(),
-                'next_url' => $navUrls['next'],
+                'next_url' => $navigatingBackwards ? $navUrls['previous'] : $navUrls['next'],
             ];
         }
 
