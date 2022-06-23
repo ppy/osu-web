@@ -63,6 +63,9 @@ interface TimestampRange extends Range {
   timestamp: string;
 }
 
+const emptyParagraph = Object.freeze({ children: [{ text: '' }], type: 'paragraph' });
+const emptyDocTemplate = [emptyParagraph];
+
 export default class Editor extends React.Component<Props, State> {
   static contextType = ReviewEditorConfigContext;
   static defaultProps = {
@@ -72,7 +75,6 @@ export default class Editor extends React.Component<Props, State> {
   bn = 'beatmap-discussion-editor';
   cache: CacheInterface = {};
   declare context: React.ContextType<typeof ReviewEditorConfigContext>;
-  emptyDocTemplate = [{ children: [{ text: '' }], type: 'paragraph' }];
   insertMenuRef: React.RefObject<EditorInsertionMenu>;
   localStorageKey: string;
   scrollContainerRef: React.RefObject<HTMLDivElement>;
@@ -89,7 +91,7 @@ export default class Editor extends React.Component<Props, State> {
     this.insertMenuRef = React.createRef();
     this.localStorageKey = `newDiscussion-${this.props.beatmapset.id}`;
 
-    let initialValue: SlateElement[] = this.emptyDocTemplate;
+    let initialValue: SlateElement[] = emptyDocTemplate;
 
     if (props.editMode) {
       initialValue = this.valueFromProps();
@@ -186,7 +188,7 @@ export default class Editor extends React.Component<Props, State> {
     // This is a final resort and should be avoided; anything that triggers this needs to be fixed!
     if (value.length === 0) {
       console.error('value is empty in Editor.onChange');
-      value = this.emptyDocTemplate;
+      value = emptyDocTemplate;
     }
 
     if (!this.props.editMode) {
@@ -231,7 +233,7 @@ export default class Editor extends React.Component<Props, State> {
         event.preventDefault();
         if (this.slateEditor.children.length === 1) {
           // Insert a blank paragraph to prevent Slate's cursor from going OOB and other weird things.
-          Transforms.insertNodes(this.slateEditor, { children: [{ text: '' }], type: 'paragraph' }, { at: SlateEditor.start(this.slateEditor, []) });
+          Transforms.insertNodes(this.slateEditor, emptyParagraph, { at: SlateEditor.start(this.slateEditor, []) });
         }
 
         Transforms.removeNodes(this.slateEditor);
@@ -398,7 +400,7 @@ export default class Editor extends React.Component<Props, State> {
     }
 
     Transforms.deselect(this.slateEditor);
-    this.onChange(this.emptyDocTemplate);
+    this.onChange(emptyDocTemplate);
   };
 
   serialize = () => serializeSlateDocument(this.state.value);
