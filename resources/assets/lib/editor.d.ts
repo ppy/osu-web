@@ -7,7 +7,7 @@ import { HistoryEditor } from 'slate-history';
 import { ReactEditor } from 'slate-react';
 
 interface EmbedElement extends BaseElement {
-  beatmapId: number;
+  beatmapId?: number | null;
   discussionId?: number;
   discussionType: BeatmapReviewDiscussionType;
   timestamp?: string;
