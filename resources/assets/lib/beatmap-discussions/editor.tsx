@@ -7,7 +7,7 @@ import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import isHotkey from 'is-hotkey';
 import { route } from 'laroute';
-import * as _ from 'lodash';
+import { filter } from 'lodash';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { createEditor, Editor as SlateEditor, Element as SlateElement, Node as SlateNode, NodeEntry, Range, Text, Transforms } from 'slate';
@@ -439,7 +439,7 @@ export default class Editor extends React.Component<Props, State> {
   sortedBeatmaps = () => {
     if (this.cache.sortedBeatmaps == null) {
       // filter to only include beatmaps from the current discussion's beatmapset (for the modding profile page)
-      const beatmaps = _.filter(this.props.beatmaps, this.isCurrentBeatmap);
+      const beatmaps = filter(this.props.beatmaps, this.isCurrentBeatmap);
       this.cache.sortedBeatmaps = sortWithMode(beatmaps);
     }
 
