@@ -6,7 +6,7 @@ import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import { filter } from 'lodash';
 import * as React from 'react';
-import { Element as SlateElement, Transforms } from 'slate';
+import { Transforms } from 'slate';
 import { RenderElementProps } from 'slate-react';
 import { ReactEditor } from 'slate-react';
 import { classWithModifiers } from 'utils/css';
@@ -193,7 +193,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     });
   };
 
-  nearbyIndicator = (drafts: SlateElement[]) => {
+  nearbyIndicator = (drafts: EmbedElement[]) => {
     if (this.timestamp() == null || this.discussionType() === 'praise') {
       return;
     }

@@ -3,6 +3,7 @@
 
 import { CircularProgress } from 'components/circular-progress';
 import { Spinner } from 'components/spinner';
+import { EmbedElement } from 'editor';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import isHotkey from 'is-hotkey';
@@ -35,7 +36,7 @@ import { ReviewEditorConfigContext } from './review-editor-config-context';
 import { SlateContext } from './slate-context';
 
 interface CacheInterface {
-  draftEmbeds?: SlateElement[];
+  draftEmbeds?: EmbedElement[];
   sortedBeatmaps?: BeatmapExtendedJson[];
 }
 
@@ -65,6 +66,10 @@ interface TimestampRange extends Range {
 
 const emptyParagraph = Object.freeze({ children: [{ text: '' }], type: 'paragraph' });
 const emptyDocTemplate = [emptyParagraph];
+
+function isDraftEmbed(block: SlateElement): block is EmbedElement {
+  return block.type === 'embed' && block.discussionId == null;
+}
 
 export default class Editor extends React.Component<Props, State> {
   static contextType = ReviewEditorConfigContext;
@@ -447,7 +452,7 @@ export default class Editor extends React.Component<Props, State> {
   };
 
   updateDrafts = () => {
-    this.cache.draftEmbeds = this.state.value.filter((block) => block.type === 'embed' && !block.discussion_id);
+    this.cache.draftEmbeds = this.state.value.filter(isDraftEmbed);
   };
 
   withNormalization = (editor: SlateEditor) => {
