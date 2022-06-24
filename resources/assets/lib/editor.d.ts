@@ -20,10 +20,16 @@ interface ParagraphElement extends BaseElement {
 
 type CustomEditor = BaseEditor & ReactEditor & HistoryEditor;
 type CustomElement = EmbedElement | ParagraphElement;
+interface CustomText {
+  bold?: boolean;
+  italic?: boolean;
+  text: string;
+}
 
 declare module 'slate' {
   interface CustomTypes {
     Editor: CustomEditor;
     Element: CustomElement;
+    Text: CustomText;
   }
 }

@@ -2,14 +2,29 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as markdown from 'remark-parse';
-import { Node as SlateNode } from 'slate';
+import { Element, Text } from 'slate';
 import * as unified from 'unified';
-import type { Node as UnistNode } from 'unist';
+import type { Parent, Node as UnistNode } from 'unist';
 import { BeatmapDiscussionReview, PersistedDocumentIssueEmbed } from '../interfaces/beatmap-discussion-review';
 import { disableTokenizersPlugin } from './disable-tokenizers-plugin';
 
 interface ParsedDocumentNode extends UnistNode {
-  children: SlateNode[];
+  children: UnistNode[];
+  // position: we don't care about position
+  type: 'root';
+}
+
+interface TextNode extends UnistNode {
+  type: 'text';
+  value: string;
+}
+
+function isParentNode(node: UnistNode): node is Parent {
+  return Array.isArray(node.children);
+}
+
+function isText(node: UnistNode): node is TextNode {
+  return node.type === 'text';
 }
 
 export function parseFromJson(json: string, discussions: Partial<Record<number, BeatmapsetDiscussionJson>>) {
@@ -31,7 +46,7 @@ export function parseFromJson(json: string, discussions: Partial<Record<number, 
         allowedInlines: ['emphasis', 'strong'],
       });
 
-  const doc: ParsedDocumentNode[] = [];
+  const doc: Element[] = [];
   srcDoc.forEach((block) => {
     switch (block.type) {
       // paragraph
@@ -96,40 +111,28 @@ export function parseFromJson(json: string, discussions: Partial<Record<number, 
 //   becomes:
 // paragraph -> text (with bold and italic properties set)
 //
-function squash(items: SlateNode[], currentMarks?: {bold: boolean; italic: boolean}) {
-  let flat: SlateNode[] = [];
+function squash(items: (UnistNode | Parent)[], currentMarks?: { bold: boolean; italic: boolean }) {
+  let flat: Text[] = [];
   const marks = currentMarks ?? {
     bold: false,
     italic: false,
   };
 
-  if (!items) {
-    return [{text: ''}];
-  }
-
-  items.forEach((item: SlateNode) => {
+  items.forEach((item) => {
     const newMarks = {
       bold: marks.bold || item.type === 'strong',
       italic: marks.italic || item.type === 'emphasis',
     };
 
-    if (Array.isArray(item.children)) {
+    if (isParentNode(item)) {
       flat = flat.concat(squash(item.children, newMarks));
-    } else {
-      const newItem: SlateNode = {
-        text: (item.value as string) || '',
-      };
-
-      if (newMarks.bold) {
-        newItem.bold = true;
-      }
-
-      if (newMarks.italic) {
-        newItem.italic = true;
-      }
-      flat.push(newItem);
+    } else if (isText(item)) {
+      flat.push({
+        bold: newMarks.bold,
+        italic: newMarks.italic,
+        text: item.value,
+      });
     }
-
   });
 
   return flat;
