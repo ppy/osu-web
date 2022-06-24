@@ -5,7 +5,7 @@ import * as markdown from 'remark-parse';
 import { Element, Text } from 'slate';
 import * as unified from 'unified';
 import type { Parent, Node as UnistNode } from 'unist';
-import { BeatmapDiscussionReview, PersistedDocumentIssueEmbed } from '../interfaces/beatmap-discussion-review';
+import { BeatmapDiscussionReview, isBeatmapReviewDiscussionType, PersistedDocumentIssueEmbed } from '../interfaces/beatmap-discussion-review';
 import { disableTokenizersPlugin } from './disable-tokenizers-plugin';
 
 interface ParsedDocumentNode extends UnistNode {
@@ -31,7 +31,7 @@ export function parseFromJson(json: string, discussions: Partial<Record<number, 
   let srcDoc: BeatmapDiscussionReview;
 
   try {
-    srcDoc = JSON.parse(json);
+    srcDoc = JSON.parse(json) as BeatmapDiscussionReview;
   } catch {
     console.error('error parsing srcDoc');
 
@@ -82,10 +82,16 @@ export function parseFromJson(json: string, discussions: Partial<Record<number, 
           console.error('unknown/external discussion referenced', existingEmbedBlock.discussion_id);
           break;
         }
+
+        if (!isBeatmapReviewDiscussionType(discussion.message_type)) {
+          console.error('unsupported embed type', discussion.message_type);
+          break;
+        }
+
         doc.push({
           beatmapId: discussion.beatmap_id,
           children: [{
-            text: (discussion.starting_post || discussion.posts[0]).message,
+            text: (discussion.starting_post ?? discussion.posts[0]).message,
           }],
           discussionId: discussion.id,
           discussionType: discussion.message_type,
