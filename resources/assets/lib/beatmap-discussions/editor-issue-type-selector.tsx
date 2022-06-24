@@ -2,10 +2,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { DiscussionType, discussionTypeIcons } from 'beatmap-discussions/discussion-type';
+import { EmbedElement } from 'editor';
 import { BeatmapReviewDiscussionType } from 'interfaces/beatmap-discussion-review';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import * as React from 'react';
-import { Element, Transforms } from 'slate';
+import { Transforms } from 'slate';
 import { ReactEditor } from 'slate-react';
 import IconDropdownMenu, { MenuItem } from './icon-dropdown-menu';
 import { SlateContext } from './slate-context';
@@ -15,7 +16,7 @@ const selectableTypes: DiscussionType[] = ['praise', 'problem', 'suggestion'];
 interface Props {
   beatmaps: BeatmapExtendedJson[];
   disabled: boolean;
-  element: Element;
+  element: EmbedElement;
 }
 
 export default class EditorIssueTypeSelector extends React.Component<Props> {
@@ -34,7 +35,7 @@ export default class EditorIssueTypeSelector extends React.Component<Props> {
         disabled={this.props.disabled}
         menuOptions={menuOptions}
         onSelect={this.select}
-        selected={this.props.element.discussionType as BeatmapReviewDiscussionType}
+        selected={this.props.element.discussionType}
       />
     );
   }
