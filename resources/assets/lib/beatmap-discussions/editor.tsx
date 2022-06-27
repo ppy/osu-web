@@ -57,7 +57,7 @@ interface Props {
 interface State {
   blockCount: number;
   posting: boolean;
-  value: SlateElement[];
+  value: SlateElement[]; // TODO: remove from state? or use slateEditor.children?
 }
 
 interface TimestampRange extends Range {
@@ -85,6 +85,7 @@ export default class Editor extends React.Component<Props, State> {
   scrollContainerRef: React.RefObject<HTMLDivElement>;
   slateEditor: SlateEditor;
   toolbarRef: React.RefObject<EditorToolbar>;
+  private readonly initialValue: SlateElement[] = emptyDocTemplate;
   private xhr?: JQueryXHR | null;
 
   constructor(props: Props) {
@@ -98,16 +99,14 @@ export default class Editor extends React.Component<Props, State> {
     this.insertMenuRef = React.createRef();
     this.localStorageKey = `newDiscussion-${this.props.beatmapset.id}`;
 
-    let initialValue: SlateElement[] = emptyDocTemplate;
-
     if (props.editMode) {
-      initialValue = this.valueFromProps();
+      this.initialValue = this.valueFromProps();
     } else {
       const saved = localStorage.getItem(this.localStorageKey);
 
       if (saved != null) {
         try {
-          initialValue = JSON.parse(saved) as SlateElement[];
+          this.initialValue = JSON.parse(saved) as SlateElement[];
         } catch (error) {
           console.error('invalid json in localStorage, ignoring');
           localStorage.removeItem(this.localStorageKey);
@@ -116,9 +115,9 @@ export default class Editor extends React.Component<Props, State> {
     }
 
     this.state = {
-      blockCount: blockCount(initialValue),
+      blockCount: blockCount(this.initialValue),
       posting: false,
-      value: initialValue,
+      value: this.initialValue,
     };
   }
 
@@ -191,8 +190,8 @@ export default class Editor extends React.Component<Props, State> {
   );
 
   onChange = (value: SlateElement[]) => {
-    // Prevent document from becoming empty (and invalid) - ideally this would be handled in `withNormalization`, but that isn't run on every change
-    // This is a final resort and should be avoided; anything that triggers this needs to be fixed!
+    // Anything that triggers this needs to be fixed!
+    // Slate.value is only used for initial value.
     if (value.length === 0) {
       console.error('value is empty in Editor.onChange');
       value = emptyDocTemplate;
@@ -238,12 +237,13 @@ export default class Editor extends React.Component<Props, State> {
     } else if (isHotkey('delete', event) || isHotkey('backspace', event)) {
       if (insideEmptyNode(this.slateEditor)) {
         event.preventDefault();
-        if (this.slateEditor.children.length === 1) {
-          // Insert a blank paragraph to prevent Slate's cursor from going OOB and other weird things.
-          Transforms.insertNodes(this.slateEditor, emptyParagraph, { at: SlateEditor.start(this.slateEditor, []) });
-        }
 
         Transforms.removeNodes(this.slateEditor);
+
+        // Slate editor must never be empty - empty editor makes no sense when initialized with default value.
+        if (this.slateEditor.children.length === 0) {
+          this.resetEditorValue();
+        }
       }
     }
   };
@@ -287,7 +287,7 @@ export default class Editor extends React.Component<Props, State> {
             <Slate
               editor={this.slateEditor}
               onChange={this.onChange}
-              value={this.state.value}
+              value={this.initialValue}
             >
               <div ref={this.scrollContainerRef} className={`${editorClass}__input-area`}>
                 <EditorToolbar ref={this.toolbarRef} />
@@ -408,14 +408,7 @@ export default class Editor extends React.Component<Props, State> {
       }
     }
 
-    Transforms.delete(this.slateEditor, {
-      at: {
-        anchor: SlateEditor.start(this.slateEditor, []),
-        focus: SlateEditor.end(this.slateEditor, []),
-      },
-      hanging: true,
-      voids: true,
-    });
+    this.resetEditorValue();
   };
 
   serialize = () => serializeSlateDocument(this.state.value);
@@ -503,6 +496,13 @@ export default class Editor extends React.Component<Props, State> {
 
     return editor;
   };
+
+  // "correct" way to reset slate to initial value
+  // https://docs.slatejs.org/walkthroughs/06-saving-to-a-database
+  private resetEditorValue() {
+    this.slateEditor.children = emptyDocTemplate;
+    this.slateEditor.onChange();
+  }
 
   private valueFromProps() {
     if (!this.props.editing || this.props.document == null || this.props.discussions == null) {
