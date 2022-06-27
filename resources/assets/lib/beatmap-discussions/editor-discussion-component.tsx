@@ -157,20 +157,23 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
 
   nearbyDiscussions = () => {
     const timestamp = this.timestamp();
-    if (timestamp == null) {
+    const beatmapId = this.selectedBeatmap();
+    if (timestamp == null || beatmapId == null) {
       return [];
     }
 
-    if (!this.cache.nearbyDiscussions || this.cache.nearbyDiscussions.timestamp !== timestamp || (this.cache.nearbyDiscussions.beatmap_id !== this.selectedBeatmap())) {
+    if (this.cache.nearbyDiscussions == null
+      || this.cache.nearbyDiscussions.timestamp !== timestamp
+      || this.cache.nearbyDiscussions.beatmap_id !== beatmapId) {
       const relevantDiscussions = filter(this.props.discussions, this.isRelevantDiscussion);
       this.cache.nearbyDiscussions = {
-        beatmap_id: this.selectedBeatmap(),
+        beatmap_id: beatmapId,
         discussions: BeatmapDiscussionHelper.nearbyDiscussions(relevantDiscussions, timestamp),
         timestamp,
       };
     }
 
-    return this.cache.nearbyDiscussions?.discussions;
+    return this.cache.nearbyDiscussions.discussions;
   };
 
   nearbyDraftEmbeds = (drafts: EmbedElement[]) => {
@@ -199,7 +202,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     }
 
     const nearbyDiscussions = this.editable() ? this.nearbyDiscussions() : [];
-    const nearbyUnsaved = this.nearbyDraftEmbeds(drafts) || [];
+    const nearbyUnsaved = this.nearbyDraftEmbeds(drafts) ?? [];
 
     if (nearbyDiscussions.length > 0 || nearbyUnsaved.length > 1) {
       const timestamps =
