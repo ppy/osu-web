@@ -6,6 +6,13 @@ import { BaseEditor } from 'slate';
 import { HistoryEditor } from 'slate-history';
 import { ReactEditor } from 'slate-react';
 
+interface CustomText {
+  bold?: boolean;
+  italic?: boolean;
+  text: string;
+  timestamp?: string; // added by decorateTimestamp
+}
+
 interface EmbedElement {
   beatmapId?: number | null;
   children: CustomText[];
@@ -23,12 +30,6 @@ interface ParagraphElement {
 
 type CustomEditor = BaseEditor & ReactEditor & HistoryEditor;
 type CustomElement = EmbedElement | ParagraphElement;
-interface CustomText {
-  bold?: boolean;
-  italic?: boolean;
-  text: string;
-}
-
 declare module 'slate' {
   interface CustomTypes {
     Editor: CustomEditor;

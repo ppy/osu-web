@@ -479,7 +479,7 @@ export default class Editor extends React.Component<Props, State> {
           }
 
           // clear formatting from content within embeds
-          if (child.bold || child.italic) {
+          if (Text.isText(child) && (child.bold || child.italic)) {
             Transforms.unsetNodes(
               editor,
               ['bold', 'italic'],
@@ -490,7 +490,7 @@ export default class Editor extends React.Component<Props, State> {
           }
 
           if (node.beatmapId != null) {
-            const beatmap = typeof node.beatmapId === 'number' ? this.props.beatmaps[node.beatmapId] : undefined;
+            const beatmap = this.props.beatmaps[node.beatmapId];
             if (beatmap == null || beatmap.deleted_at != null) {
               Transforms.setNodes(editor, { beatmapId: undefined }, { at: path });
             }
