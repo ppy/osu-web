@@ -11,6 +11,7 @@ interface EmbedElement {
   children: CustomText[];
   discussionId?: number;
   discussionType: BeatmapReviewDiscussionType;
+  // TODO: timestamp should imply/require beatmapId
   timestamp?: string;
   type: 'embed';
 }
