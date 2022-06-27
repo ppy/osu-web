@@ -2,19 +2,21 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapReviewDiscussionType } from 'interfaces/beatmap-discussion-review';
-import { BaseEditor, BaseElement } from 'slate';
+import { BaseEditor } from 'slate';
 import { HistoryEditor } from 'slate-history';
 import { ReactEditor } from 'slate-react';
 
-interface EmbedElement extends BaseElement {
+interface EmbedElement {
   beatmapId?: number | null;
+  children: CustomText[];
   discussionId?: number;
   discussionType: BeatmapReviewDiscussionType;
   timestamp?: string;
   type: 'embed';
 }
 
-interface ParagraphElement extends BaseElement {
+interface ParagraphElement {
+  children: CustomText[];
   type: 'paragraph';
 }
 

@@ -59,8 +59,8 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     const path = this.path();
     let purgeCache = false;
 
-    if (this.props.element.beatmapId) {
-      const content = this.props.element.children[0].text as string;
+    if (this.props.element.type === 'embed' && this.props.element.beatmapId != null) {
+      const content = this.props.element.children[0].text;
       const matches = BeatmapDiscussionHelper.TIMESTAMP_REGEX.exec(content);
       let timestamp: string | undefined;
 
