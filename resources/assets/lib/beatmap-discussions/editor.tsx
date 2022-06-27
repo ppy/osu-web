@@ -107,7 +107,7 @@ export default class Editor extends React.Component<Props, State> {
 
       if (saved != null) {
         try {
-          initialValue = JSON.parse(saved);
+          initialValue = JSON.parse(saved) as SlateElement[];
         } catch (error) {
           console.error('invalid json in localStorage, ignoring');
           localStorage.removeItem(this.localStorageKey);
