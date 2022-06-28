@@ -160,8 +160,8 @@ return [
                 'user_beatmapset_new_compact' => 'Nowa beatmapa: „:title”',
                 'user_beatmapset_new_group' => 'Nowe beatmapy od użytkownika :username',
 
-                'user_beatmapset_revive' => '',
-                'user_beatmapset_revive_compact' => '',
+                'user_beatmapset_revive' => 'Beatmapa „:title” została ożywiona przez użytkownika :username',
+                'user_beatmapset_revive_compact' => 'Beatmapa „:title” została ożywiona',
             ],
         ],
 
