@@ -22,7 +22,7 @@ export interface OffsetPaginatorJson<T> {
   pagination: OffsetPaginationJson;
 }
 
-export const apiShowMore = action(<T extends unknown>(json: OffsetPaginatorJson<T>, routeName: string, baseRouteParams: RouteParams): JQuery.jqXHR<T[]> => {
+export const apiShowMore = action(<T>(json: OffsetPaginatorJson<T>, routeName: string, baseRouteParams: RouteParams): JQuery.jqXHR<T[]> => {
   json.pagination.loading = true;
 
   let limit = baseRouteParams.limit;
@@ -46,7 +46,7 @@ export const apiShowMore = action(<T extends unknown>(json: OffsetPaginatorJson<
 
 export const apiShowMoreRecentlyReceivedKudosu = (json: OffsetPaginatorJson<KudosuHistoryJson>, userId: number): JQuery.jqXHR<KudosuHistoryJson[]> => apiShowMore(json, 'users.kudosu', { user: userId });
 
-export const appendItems = action(<T extends unknown>(json: OffsetPaginatorJson<T>, newItems: typeof json.items, fetchLimit: number) => {
+export const appendItems = action(<T>(json: OffsetPaginatorJson<T>, newItems: typeof json.items, fetchLimit: number) => {
   if (!Array.isArray(newItems)) {
     if (itemsLength(json.items) === 0) {
       json.items = newItems;

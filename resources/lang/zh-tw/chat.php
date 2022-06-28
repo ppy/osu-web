@@ -15,7 +15,7 @@ return [
     ],
 
     'channels' => [
-        'create' => '',
+        'create' => '建立公告',
         'list' => [
             'title' => [
                 'ANNOUNCE' => '公告',
@@ -28,12 +28,12 @@ return [
 
     'form' => [
         'title' => [
-            'announcement' => '',
+            'announcement' => '建立新公告',
         ],
 
         'labels' => [
-            'description' => '',
-            'name' => '',
+            'description' => '詳情',
+            'name' => '房間名稱',
             'users' => '',
         ],
     ],
@@ -44,7 +44,7 @@ return [
     ],
 
     'input' => [
-        'create' => '',
+        'create' => '建立',
         'disabled' => '無法傳送訊息...',
         'disconnected' => '連線已中斷',
         'placeholder' => '輸入訊息...',

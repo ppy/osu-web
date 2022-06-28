@@ -22,9 +22,9 @@ return [
         'benefit_more' => 'Mit der Zeit werden noch mehr neue Unterstützervorteile auftauchen!',
         'feedback' => "Wenn Du Fragen oder Anregungen hast, zögere nicht, auf diese Mail zu antworten; Ich melde mich so schnell wie möglich bei Dir!",
         'keep_free' => 'Es ist Menschen wie Dir zu verdanken, dass osu! in der Lage ist, das Spiel und die Community ohne Werbung oder erzwungene Zahlungen am Laufen zu halten.',
-        'keep_running' => 'Deine Unterstützung hält osu! für ungefähr :minutes am laufen! Das klingt nicht nach viel, aber es kommt einiges zusammen :).',
+        'keep_running' => 'Deine Unterstützung hält osu! für ungefähr :minutes am Laufen! Das klingt nicht nach viel, aber es kommt einiges zusammen :).',
         'subject' => 'Danke, osu! <3 dich',
-        'translation' => 'Es folgt eine vom Benutzer bereitgestellte Übersetzung zu Informationszwecken:',
+        'translation' => 'Es folgt eine von der Community bereitgestellte Übersetzung zu Informationszwecken:',
 
         'benefit' => [
             'gift' => 'Deine Geschenkempfänger haben nun Zugriff auf osu!direct und viele andere Unterstützervorteile.',
