@@ -15,7 +15,7 @@ return [
     ],
 
     'channels' => [
-        'create' => '',
+        'create' => 'opret annoncering',
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Service-meddelelse',
@@ -28,13 +28,13 @@ return [
 
     'form' => [
         'title' => [
-            'announcement' => '',
+            'announcement' => 'Opret ny annoncering',
         ],
 
         'labels' => [
-            'description' => '',
-            'name' => '',
-            'users' => '',
+            'description' => 'beskrivelse',
+            'name' => 'navn på rum',
+            'users' => 'spillere at tilføje',
         ],
     ],
 
@@ -44,7 +44,7 @@ return [
     ],
 
     'input' => [
-        'create' => '',
+        'create' => 'Opret',
         'disabled' => 'kunne ikke sende besked...',
         'disconnected' => 'Afbrudt',
         'placeholder' => 'skriv besked...',

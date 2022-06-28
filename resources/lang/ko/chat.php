@@ -15,7 +15,7 @@ return [
     ],
 
     'channels' => [
-        'create' => '',
+        'create' => '공자사항 작성',
         'list' => [
             'title' => [
                 'ANNOUNCE' => '공지',
@@ -28,13 +28,13 @@ return [
 
     'form' => [
         'title' => [
-            'announcement' => '',
+            'announcement' => '새 공지사항 작성',
         ],
 
         'labels' => [
-            'description' => '',
-            'name' => '',
-            'users' => '',
+            'description' => '설명',
+            'name' => '방 이름',
+            'users' => '추가할 플레이어',
         ],
     ],
 
@@ -44,7 +44,7 @@ return [
     ],
 
     'input' => [
-        'create' => '',
+        'create' => '만들기',
         'disabled' => '메시지를 보낼 수 없습니다...',
         'disconnected' => '연결 끊김',
         'placeholder' => '메시지를 입력하세요...',
