@@ -15,7 +15,7 @@ return [
     ],
 
     'channels' => [
-        'create' => '',
+        'create' => '创建公告',
         'list' => [
             'title' => [
                 'ANNOUNCE' => '通知',
@@ -28,13 +28,13 @@ return [
 
     'form' => [
         'title' => [
-            'announcement' => '',
+            'announcement' => '创建新公告',
         ],
 
         'labels' => [
-            'description' => '',
-            'name' => '',
-            'users' => '',
+            'description' => '介绍',
+            'name' => '房间名',
+            'users' => '要添加的玩家',
         ],
     ],
 
@@ -44,7 +44,7 @@ return [
     ],
 
     'input' => [
-        'create' => '',
+        'create' => '创建',
         'disabled' => '无法发送消息……',
         'disconnected' => '连接中断',
         'placeholder' => '输入消息……',
