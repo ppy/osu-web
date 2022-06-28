@@ -95,6 +95,7 @@ module.exports = {
         '@typescript-eslint/no-invalid-this': 'error',
         '@typescript-eslint/no-parameter-properties': 'off',
         '@typescript-eslint/no-shadow': ['error', { hoist: 'all' }],
+        '@typescript-eslint/no-unsafe-argument': 'warn',
         '@typescript-eslint/no-unsafe-assignment': 'warn',
         '@typescript-eslint/no-unsafe-call': 'warn',
         '@typescript-eslint/no-unsafe-member-access': 'warn',
