@@ -26,7 +26,7 @@ return [
         'message_type_select' => 'Piliin ang tipo ng komento',
         'reply_notice' => 'Pindutin ang Enter para magreply.',
         'reply_placeholder' => 'I-type ang mensahe dito',
-        'require-login' => 'Mag sign in para makapagpaskil o makasagot',
+        'require-login' => 'Paki-sign-in upang mag-post o tumugon',
         'resolved' => 'Nalutas',
         'restore' => 'ibalik',
         'show_deleted' => 'Ipakita ang tinanggal',
@@ -254,7 +254,7 @@ return [
     ],
     'general' => [
         'converts' => 'Kasamang converted beatmaps',
-        'featured_artists' => 'Featured artists',
+        'featured_artists' => 'Mga tampok na artista',
         'follows' => 'Mga naka-subscribe na mappers',
         'recommended' => 'Nirerekomenda na difficulty',
         'spotlights' => 'Spotlighted na mga beatmap',
