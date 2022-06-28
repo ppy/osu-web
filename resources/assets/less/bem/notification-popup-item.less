@@ -87,6 +87,7 @@
   }
 
   &__main {
+    position: relative;
     border-radius: 0 @border-radius-large @border-radius-large 0;
     flex: 1;
     display: flex;
@@ -116,6 +117,7 @@
     }
 
     &--time {
+      pointer-events: initial;
       font-size: @font-size--small;
       color: hsl(var(--hsl-f1));
     }
