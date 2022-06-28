@@ -15,7 +15,7 @@ return [
     ],
 
     'channels' => [
-        'create' => '',
+        'create' => 'tạo thông báo ',
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Thông báo',
@@ -28,13 +28,13 @@ return [
 
     'form' => [
         'title' => [
-            'announcement' => '',
+            'announcement' => 'Tạo Thông Báo Mới',
         ],
 
         'labels' => [
-            'description' => '',
-            'name' => '',
-            'users' => '',
+            'description' => 'mô tả',
+            'name' => 'tên phòng',
+            'users' => 'người chơi để thêm',
         ],
     ],
 
@@ -44,7 +44,7 @@ return [
     ],
 
     'input' => [
-        'create' => '',
+        'create' => 'Tạo',
         'disabled' => 'không thể gửi tin nhắn...',
         'disconnected' => 'Đã ngắt kết nối',
         'placeholder' => 'soạn tin nhắn...',

@@ -58,7 +58,7 @@ return [
 
         'options' => [
             '_' => 'mga opsyon sa pagpapaalam',
-            'beatmap_owner_change' => 'difficulty na gawa ng ibang manlalaro',
+            'beatmap_owner_change' => 'guest na difficulty',
             'beatmapset:modding' => 'pagmo-mod ng beatmap',
             'channel_message' => 'mga pribadong mensahe',
             'comment_new' => 'mga bagong komento',
@@ -93,7 +93,7 @@ return [
         'keyboard' => 'keyboard',
         'mouse' => 'mouse',
         'tablet' => 'tablet',
-        'title' => 'Istilo ng paglalaro',
+        'title' => 'Mga istilo ng paglalaro',
         'touch' => 'touch',
     ],
 
@@ -106,7 +106,7 @@ return [
     'security' => [
         'current_session' => 'kasalukuyan',
         'end_session' => 'Tapusin ang sesyon',
-        'end_session_confirmation' => 'Agad na tatapusin nito ang iyong sesyon sa naturang aparato. Sigurado ka ba?',
+        'end_session_confirmation' => 'Agad nitong tatapusin ang iyong sesyon sa device na iyon. Sigurado ka ba?',
         'last_active' => 'Huling aktibo:',
         'title' => 'Seguridad',
         'web_sessions' => 'mga sesyon sa web',
@@ -121,11 +121,11 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => 'Maaari mo nang i-sara ang tab/window na ito',
+        'text' => 'Maaari mong isara ang tab/window na ito ngayon',
         'title' => 'Nakumpleto ang beripikasyon',
     ],
 
     'verification_invalid' => [
-        'title' => 'Hindi wasto o nag-expire na link sa pag-verify',
+        'title' => 'Hindi wasto o na-expire na link ng pagpapatunay',
     ],
 ];
