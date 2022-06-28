@@ -101,7 +101,7 @@ function onMouseLeave() {
   inCard = false;
 }
 
-function onMouseOver(event: JQuery.TriggeredEvent<unknown, unknown, HTMLElement, unknown>) {
+function onMouseOver(event: JQuery.TriggeredEvent<Document, unknown, HTMLElement, HTMLElement>) {
   if (tooltipWithActiveMenu != null) return;
   if (core.windowSize.isMobile) return;
 
