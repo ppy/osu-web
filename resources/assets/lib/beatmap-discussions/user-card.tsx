@@ -42,15 +42,16 @@ export class UserCard extends React.PureComponent<Props> {
         <div className={`${bn}__user`}>
           <div className={`${bn}__user-row`}>
             {this.props.user.is_deleted ? (
-              <span className={`${bn}__user-text u-ellipsis-overflow`}>
-                {this.props.user.username}
+              <span className={`${bn}__user-link`}>
+                {this.renderUsername()}
               </span>
+
             ) : (
               <a
                 className={`${bn}__user-link`}
                 href={route('users.show', { user: this.props.user.id })}
               >
-                {this.props.user.username}
+                {this.renderUsername()}
               </a>
             )}
             {!this.props.user.is_bot && !this.props.user.is_deleted && (
@@ -71,6 +72,14 @@ export class UserCard extends React.PureComponent<Props> {
 
         {!this.props.hideStripe && <div className={`${bn}__user-stripe`} />}
       </div>
+    );
+  }
+
+  private renderUsername() {
+    return (
+      <span className={`${bn}__user-text u-ellipsis-overflow`}>
+        {this.props.user.username}
+      </span>
     );
   }
 }
