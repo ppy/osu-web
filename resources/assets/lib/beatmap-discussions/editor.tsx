@@ -121,7 +121,7 @@ export default class Editor extends React.Component<Props, State> {
     };
   }
 
-  blockWrapper = (children: JSX.Element) => (
+  blockWrapper = (children: React.ReactNode) => (
     <div className={`${this.bn}__block`}>
       {children}
     </div>
@@ -354,7 +354,7 @@ export default class Editor extends React.Component<Props, State> {
   );
 
   renderElement = (props: RenderElementProps) => {
-    let el;
+    let el: React.ReactNode;
 
     switch (props.element.type) {
       case 'embed': {
@@ -374,7 +374,7 @@ export default class Editor extends React.Component<Props, State> {
         break;
       }
       default:
-        el = props.children;
+        el = props.children as React.ReactNode;
     }
 
     return this.blockWrapper(el);
