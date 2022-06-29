@@ -1,22 +1,27 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import * as React from 'react'
-import { div } from 'react-dom-factories'
+import * as React from 'react';
+import { classWithModifiers } from 'utils/css';
 
-bn = 'beatmap-discussion-message-length-counter'
+interface Props {
+  isTimeline: boolean;
+  message: string;
+}
 
-export MessageLengthCounter = ({message, isTimeline}) ->
-  return null if !isTimeline
+export function MessageLengthCounter({ message, isTimeline }: Props) {
+  if (!isTimeline) return null;
 
-  maxLength = BeatmapDiscussionHelper.MAX_LENGTH_TIMELINE
+  const maxLength = BeatmapDiscussionHelper.MAX_LENGTH_TIMELINE;
 
-  counterClass = bn
-  if message.length > maxLength
-    counterClass += " #{bn}--over"
-  else if message.length > (maxLength * 0.95)
-    counterClass += " #{bn}--almost-over"
+  const modifiers = {
+    'almost-over': message.length > maxLength * 0.95,
+    over: message.length > 750,
+  };
 
-  div
-    className: counterClass
-    "#{message.length} / #{maxLength}"
+  return (
+    <div className={classWithModifiers('beatmap-discussion-message-length-counter', modifiers)}>
+      {`${message.length} / ${maxLength}`}
+    </div>
+  );
+}
