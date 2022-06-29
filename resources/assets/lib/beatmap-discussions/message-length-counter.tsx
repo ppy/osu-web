@@ -16,7 +16,7 @@ export default function MessageLengthCounter({ message, isTimeline }: Props) {
 
   const modifiers = {
     'almost-over': message.length > maxLength * 0.95,
-    over: message.length > 750,
+    over: message.length > maxLength,
   };
 
   return (
