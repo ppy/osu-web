@@ -238,7 +238,7 @@ export default class ChannelStore implements DispatchListener {
 
       if (channel != null) {
         channel.addMessage(message);
-      } else if ((event.json.type === 'PM' || event.json.type === 'ANNOUNCE')) {
+      } else if (event.json.type === 'PM' || event.json.type === 'ANNOUNCE') {
         const json = await getChannel(message.channel_id);
         this.update(json);
       }
