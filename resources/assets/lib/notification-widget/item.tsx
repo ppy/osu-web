@@ -123,7 +123,7 @@ export default class Item extends React.Component<Props> {
       return null;
     }
 
-    return <div className='notification-popup-item__row notification-popup-item__row--expand'>{this.props.expandButton}</div>;
+    return <div className='notification-popup-item__row notification-popup-item__row--expand u-hover'>{this.props.expandButton}</div>;
   }
 
   private renderMarkAsReadButton() {
@@ -154,7 +154,10 @@ export default class Item extends React.Component<Props> {
     }
 
     return (
-      <a className='notification-popup-item__row notification-popup-item__row--time' href={this.props.url}>
+      <a
+        className='notification-popup-item__row notification-popup-item__row--time u-hover'
+        href={this.props.url}
+      >
         <TimeWithTooltip dateTime={this.props.item.createdAtJson} relative />
       </a>
     );
