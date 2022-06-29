@@ -14,13 +14,15 @@ export default function MessageLengthCounter({ message, isTimeline }: Props) {
 
   const maxLength = BeatmapDiscussionHelper.MAX_LENGTH_TIMELINE;
 
-  const modifiers = {
-    'almost-over': message.length > maxLength * 0.95,
-    over: message.length > maxLength,
-  };
+  let modifier = null;
+  if (message.length > maxLength) {
+    modifier = 'over';
+  } else if (message.length > maxLength * 0.95) {
+    modifier = 'almost-over';
+  }
 
   return (
-    <div className={classWithModifiers('beatmap-discussion-message-length-counter', modifiers)}>
+    <div className={classWithModifiers('beatmap-discussion-message-length-counter', modifier)}>
       {`${message.length} / ${maxLength}`}
     </div>
   );
