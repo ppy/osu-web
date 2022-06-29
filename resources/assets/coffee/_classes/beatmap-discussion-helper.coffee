@@ -2,10 +2,8 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute'
-import { format } from 'utils/beatmapset-discussion-helper'
 import { currentUrl } from 'utils/turbolinks'
 import { getInt } from 'utils/math'
-import { openBeatmapEditor, linkHtml } from 'utils/url'
 
 class window.BeatmapDiscussionHelper
   @DEFAULT_BEATMAP_ID: '-'
