@@ -38,7 +38,6 @@ interface Comment {
 interface BeatmapDiscussionHelperClass {
   format(text: string, options?: any): string;
   formatTimestamp(value: number | null): string | undefined;
-  MAX_LENGTH_TIMELINE: number;
   nearbyDiscussions(discussions: BeatmapsetDiscussionJson[], timestamp: number): BeatmapsetDiscussionJson[];
   parseTimestamp(value?: string): number | null;
   previewMessage(value: string): string;

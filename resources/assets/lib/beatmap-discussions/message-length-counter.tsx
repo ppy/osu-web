@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as React from 'react';
+import { maxLengthTimeline } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 
 interface Props {
@@ -12,18 +13,16 @@ interface Props {
 export default function MessageLengthCounter({ message, isTimeline }: Props) {
   if (!isTimeline) return null;
 
-  const maxLength = BeatmapDiscussionHelper.MAX_LENGTH_TIMELINE;
-
   let modifier = null;
-  if (message.length > maxLength) {
+  if (message.length > maxLengthTimeline) {
     modifier = 'over';
-  } else if (message.length > maxLength * 0.95) {
+  } else if (message.length > maxLengthTimeline * 0.95) {
     modifier = 'almost-over';
   }
 
   return (
     <div className={classWithModifiers('beatmap-discussion-message-length-counter', modifier)}>
-      {`${message.length} / ${maxLength}`}
+      {`${message.length} / ${maxLengthTimeline}`}
     </div>
   );
 }
