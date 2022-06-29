@@ -9,7 +9,7 @@ interface Props {
   message: string;
 }
 
-export function MessageLengthCounter({ message, isTimeline }: Props) {
+export default function MessageLengthCounter({ message, isTimeline }: Props) {
   if (!isTimeline) return null;
 
   const maxLength = BeatmapDiscussionHelper.MAX_LENGTH_TIMELINE;
