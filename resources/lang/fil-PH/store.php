@@ -14,7 +14,7 @@ return [
 
         'errors_no_checkout' => [
             'line_1' => 'Naku, may mga problema sa iyong cart na pumipigil sa pag-checkout!',
-            'line_2' => 'Tanggalin o i-update ang mga bagay na nasa itaas upang magpatuloy.',
+            'line_2' => 'Mag-alis o mag-update ng mga aytem sa itaas para maipagpatuloy.',
         ],
 
         'empty' => [
@@ -105,8 +105,8 @@ return [
         'name' => 'Pangalan',
 
         'stock' => [
-            'out' => 'Naubos na ang bagay na ito. Tingnan mo muli mamaya!',
-            'out_with_alternative' => 'Sa kasamaang palad ang item na ito ay wala sa stock. Gamitin ang dropdown upang pumili ng ibang uri o suriin muli sa ibang pagkakataon!',
+            'out' => 'Kasalukuyang wala nang stock ang aytem na ito. Suriin muli sa ibang pagkakataon!',
+            'out_with_alternative' => 'Sa kasamaang palad ang aytem na ito ay wala nang stock. Gamitin ang dropdown upang pumili ng ibang uri o suriin muli sa ibang pagkakataon!',
         ],
 
         'add_to_cart' => 'Idagdag sa kart',

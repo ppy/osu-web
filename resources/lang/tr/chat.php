@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'loading_users' => '',
+    'loading_users' => 'kullanıcılar yükleniyor...',
     'talking_in' => ':channel kanalında konuşuyorsunuz',
     'talking_with' => ':name ile konuşuyorsunuz',
     'title_compact' => 'sohbet',
@@ -15,6 +15,7 @@ return [
     ],
 
     'channels' => [
+        'create' => '',
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Duyurular',
@@ -25,12 +26,25 @@ return [
         ],
     ],
 
+    'form' => [
+        'title' => [
+            'announcement' => '',
+        ],
+
+        'labels' => [
+            'description' => '',
+            'name' => '',
+            'users' => '',
+        ],
+    ],
+
     'not_found' => [
         'message' => 'Burada bir şey yok, belki de kanaldan çıkmışsındır ya da öyle bir kanal yoktur...',
         'title' => 'kanal bulunamadı',
     ],
 
     'input' => [
+        'create' => '',
         'disabled' => 'mesaj gönderilemiyor...',
         'disconnected' => 'Bağlantı kesildi',
         'placeholder' => 'mesaj yaz...',

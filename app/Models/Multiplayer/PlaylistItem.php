@@ -6,7 +6,6 @@
 namespace App\Models\Multiplayer;
 
 use App\Exceptions\InvariantException;
-use App\Libraries\Multiplayer\Mod;
 use App\Libraries\Multiplayer\Ruleset;
 use App\Models\Beatmap;
 use App\Models\Model;
@@ -66,14 +65,15 @@ class PlaylistItem extends Model
 
         $obj->max_attempts = get_int($json['max_attempts'] ?? null);
 
-        $obj->allowed_mods = Mod::parseInputArray(
+        $modsHelper = app('mods');
+        $obj->allowed_mods = $modsHelper->parseInputArray(
+            $obj->ruleset_id,
             $json['allowed_mods'] ?? [],
-            $obj->ruleset_id
         );
 
-        $obj->required_mods = Mod::parseInputArray(
+        $obj->required_mods = $modsHelper->parseInputArray(
+            $obj->ruleset_id,
             $json['required_mods'] ?? [],
-            $obj->ruleset_id
         );
 
         $obj->owner_id = $owner->getKey();
@@ -139,9 +139,26 @@ class PlaylistItem extends Model
             throw new InvariantException('mod cannot be listed as both allowed and required: '.implode(', ', $dupeMods));
         }
 
-        Mod::validateSelection($allowedModIds, $this->ruleset_id);
-        Mod::validateSelection($requiredModIds, $this->ruleset_id);
-        Mod::assertValidExclusivity($requiredModIds, $allowedModIds, $this->ruleset_id);
+        $modsHelper = app('mods');
+        $modsHelper->validateSelection($this->ruleset_id, $allowedModIds);
+        $modsHelper->validateSelection($this->ruleset_id, $requiredModIds);
+        $modsHelper->assertValidExclusivity($this->ruleset_id, $requiredModIds, $allowedModIds);
+
+        foreach ($allowedModIds as $allowedModId) {
+            $modMeta = $modsHelper->mods[$this->ruleset_id][$allowedModId];
+
+            if (!$modMeta['ValidForMultiplayer'] || !$modMeta['ValidForMultiplayerAsFreeMod']) {
+                throw new InvariantException("mod cannot be set as allowed: {$allowedModId}");
+            }
+        }
+
+        foreach ($requiredModIds as $requiredModId) {
+            $modMeta = $modsHelper->mods[$this->ruleset_id][$requiredModId];
+
+            if (!$modMeta['ValidForMultiplayer']) {
+                throw new InvariantException("mod cannot be set as required: {$requiredModId}");
+            }
+        }
     }
 
     public function save(array $options = [])

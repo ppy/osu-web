@@ -39,8 +39,8 @@ return [
                 'beatmapset_discussion_lock_compact' => 'Diskussion er låst',
                 'beatmapset_discussion_post_new' => ':username har indsendt en ny besked i ":title" beatmap diskussion.',
                 'beatmapset_discussion_post_new_empty' => 'Nyt opslag på ":title" af :username',
-                'beatmapset_discussion_post_new_compact' => 'Nyt oplsag af :username: ":content"',
-                'beatmapset_discussion_post_new_compact_empty' => 'Nyt oplsag af :username',
+                'beatmapset_discussion_post_new_compact' => 'Nyt opslag af :username: ":content"',
+                'beatmapset_discussion_post_new_compact_empty' => 'Nyt opslag af :username',
                 'beatmapset_discussion_review_new' => 'Ny anmeldelse på ":title" af :username indeholder problemer: :problems, forslag: :suggestions, rose: :praises',
                 'beatmapset_discussion_review_new_compact' => 'Ny anmeldelse af :username indeholder problemer: :problems, forslag: :suggestions, rose: :praises',
                 'beatmapset_discussion_unlock' => 'Diskussion på ":title" er blevet åbnet',
@@ -78,8 +78,8 @@ return [
 
                 'comment_new' => ':username kommenterede ":content" på ":title"',
                 'comment_new_compact' => ':username kommenterede ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username kommenterede ":content" på ":title"',
+                'comment_reply_compact' => ':username kommenterede ":content"',
             ],
         ],
 
@@ -87,12 +87,12 @@ return [
             '_' => 'Chat',
 
             'announcement' => [
-                '_' => '',
+                '_' => 'Ny meddelelse',
 
                 'announce' => [
-                    'channel_announcement' => '',
-                    'channel_announcement_compact' => '',
-                    'channel_announcement_group' => '',
+                    'channel_announcement' => ':username siger ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Meddelelse fra :username',
                 ],
             ],
 
@@ -115,8 +115,8 @@ return [
 
                 'comment_new' => ':username kommenterede ":content" på ":title"',
                 'comment_new_compact' => ':username kommenterede ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username kommenterede ":content" på ":title"',
+                'comment_reply_compact' => ':username kommenterede ":content"',
             ],
         ],
 
@@ -128,8 +128,8 @@ return [
 
                 'comment_new' => ':username kommenterede ":content" på ":title"',
                 'comment_new_compact' => ':username kommenterede ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username kommenterede ":content" på ":title"',
+                'comment_reply_compact' => ':username kommenterede ":content"',
             ],
         ],
 
@@ -156,12 +156,12 @@ return [
             'user_beatmapset_new' => [
                 '_' => 'Nyt beatmap',
 
-                'user_beatmapset_new' => '',
-                'user_beatmapset_new_compact' => '',
-                'user_beatmapset_new_group' => '',
+                'user_beatmapset_new' => 'Nyt beatmap ":title" af :username',
+                'user_beatmapset_new_compact' => 'Nyt beatmap ":title"',
+                'user_beatmapset_new_group' => 'Nyt beatmap af :username',
 
-                'user_beatmapset_revive' => '',
-                'user_beatmapset_revive_compact' => '',
+                'user_beatmapset_revive' => 'Beatmap ":title" blev genoplivet af :username',
+                'user_beatmapset_revive_compact' => 'Beatmap ":title" blev genoplivet',
             ],
         ],
 
@@ -172,7 +172,7 @@ return [
                 '_' => 'Ny medalje',
                 'user_achievement_unlock' => 'Optjent ":title"!',
                 'user_achievement_unlock_compact' => 'Opnået ":title"!',
-                'user_achievement_unlock_group' => '',
+                'user_achievement_unlock_group' => 'Medaljer låst op!',
             ],
         ],
     ],
@@ -180,49 +180,49 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => '',
+                'beatmap_owner_change' => 'Du er nu gæst på beatmap ":title"',
             ],
 
             'beatmapset_discussion' => [
-                'beatmapset_discussion_lock' => '',
-                'beatmapset_discussion_post_new' => '',
-                'beatmapset_discussion_unlock' => '',
+                'beatmapset_discussion_lock' => 'Diskussionen ":title" er blevet låst',
+                'beatmapset_discussion_post_new' => 'Diskussionen ":title" har nye opdateringer',
+                'beatmapset_discussion_unlock' => 'Diskussionen ":title" er blevet åbnet',
             ],
 
             'beatmapset_problem' => [
-                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem' => 'Der blev rapporteret et nyt problem på ":title"',
             ],
 
             'beatmapset_state' => [
-                'beatmapset_disqualify' => '',
-                'beatmapset_love' => '',
-                'beatmapset_nominate' => '',
-                'beatmapset_qualify' => '',
-                'beatmapset_rank' => '',
-                'beatmapset_remove_from_loved' => '',
-                'beatmapset_reset_nominations' => '',
+                'beatmapset_disqualify' => '":title" er blevet diskvalificeret',
+                'beatmapset_love' => '":title" blev ophøjet til elsket',
+                'beatmapset_nominate' => '":title" er blevet nomineret',
+                'beatmapset_qualify' => '":title" har optjent nok nomineringer og er gået ind i ranking ventelisten',
+                'beatmapset_rank' => '":title" er blevet ranked',
+                'beatmapset_remove_from_loved' => '":title" blev fjernet fra Elskede',
+                'beatmapset_reset_nominations' => 'Nominering af ":title" blev nulstillet',
             ],
 
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Beatmap ":title" har nye kommentarer',
             ],
         ],
 
         'channel' => [
             'channel' => [
-                'pm' => '',
+                'pm' => 'Du har modtaget en ny besked fra :username',
             ],
         ],
 
         'build' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Ændringsoversigt ":title" har nye kommentarer',
             ],
         ],
 
         'news_post' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Nyheder ":title" har nye kommentarer',
             ],
         ],
 

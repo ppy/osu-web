@@ -129,9 +129,7 @@ class BeatmapDiscussionsController extends Controller
 
     public function review($beatmapsetId)
     {
-        $beatmapset = Beatmapset
-            ::where('discussion_enabled', true)
-            ->findOrFail($beatmapsetId);
+        $beatmapset = Beatmapset::findOrFail($beatmapsetId);
 
         priv_check('BeatmapsetDiscussionReviewStore', $beatmapset)->ensureCan();
 

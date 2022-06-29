@@ -139,7 +139,7 @@ return [
 
         'status-messages' => [
             'approved' => 'Diese Beatmap wurde am :date approved!',
-            'graveyard' => "Diese Beatmap wurde seit dem :date nicht mehr aktualisiert und wurde wahrscheinlich vom Ersteller aufgegeben...",
+            'graveyard' => "Diese Beatmap wurde seit dem :date nicht mehr aktualisiert und deshalb begraben...",
             'loved' => 'Diese Beatmap wurde am :date loved!',
             'ranked' => 'Diese Beatmap wurde am :date ranked!',
             'wip' => 'Anmerkung: Diese Beatmap ist vom Ersteller als \'Work-In-Progress\' gekennzeichnet',
@@ -211,7 +211,7 @@ return [
         'reset_confirm' => [
             'disqualify' => 'Bist du sicher? Dadurch wird die Beatmap aus der Qualifizierung entfernt und der Nominierungsprozess zurückgesetzt.',
             'nomination_reset' => 'Bist du dir sicher? Der Nominierungsprozess wird durch das neue Problem zurückgesetzt.',
-            'problem_warning' => 'Bist du sicher, dass du ein Problem in dieser Beatmap melden möchtest? Dies wird die Beatmap-Nominatoren alarmieren.',
+            'problem_warning' => 'Bist du sicher, dass du ein Problem in dieser Beatmap melden möchtest? Dies wird die Beatmap Nominators alarmieren.',
         ],
     ],
 

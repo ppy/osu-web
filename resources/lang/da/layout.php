@@ -145,7 +145,7 @@ return [
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => 'Grænsen er overskredet',
             'description' => '',
         ],
         '500' => [

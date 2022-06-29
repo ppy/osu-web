@@ -27,7 +27,6 @@ export class NewReply extends React.PureComponent
     super props
 
     @box = React.createRef()
-    @throttledPost = _.throttle @post, 1000
     @handleKeyDown = makeTextAreaHandler @handleKeyDownCallback
     storedMessage = @storedMessage()
 
@@ -46,7 +45,6 @@ export class NewReply extends React.PureComponent
 
 
   componentWillUnmount: =>
-    @throttledPost.cancel()
     @postXhr?.abort()
 
 
@@ -131,7 +129,7 @@ export class NewReply extends React.PureComponent
         text: osu.trans("common.buttons.#{action}")
         props:
           'data-action': action
-          onClick: @throttledPost
+          onClick: @post
 
 
   canReopen: =>
@@ -154,7 +152,7 @@ export class NewReply extends React.PureComponent
       when InputEventType.Cancel
         @setState editing: false
       when InputEventType.Submit
-        @throttledPost(event)
+        @post(event)
 
 
   isTimeline: =>
@@ -170,10 +168,8 @@ export class NewReply extends React.PureComponent
 
 
   post: (event) =>
-    return if !@validPost()
+    return if !@validPost() || @postXhr?
     showLoadingOverlay()
-
-    @postXhr?.abort()
 
     # in case the event came from input box, do 'reply'.
     action = event.currentTarget.dataset.action ? 'reply'
@@ -209,6 +205,7 @@ export class NewReply extends React.PureComponent
 
     .always =>
       hideLoadingOverlay()
+      @postXhr = null
       @setState posting: null
 
 

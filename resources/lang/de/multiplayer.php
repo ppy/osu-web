@@ -6,7 +6,7 @@
 return [
     'empty' => [
         '_' => 'Noch keine osu!(lazer) :type_group -spiele gespielt!',
-        'playlists' => 'Wiedergabelisten',
+        'playlists' => 'playlist',
         'realtime' => 'Mehrspieler',
     ],
 

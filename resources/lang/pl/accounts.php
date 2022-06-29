@@ -89,7 +89,7 @@ return [
 
     'playstyles' => [
         'keyboard' => 'klawiatura',
-        'mouse' => 'myszka',
+        'mouse' => 'mysz',
         'tablet' => 'tablet',
         'title' => 'Style gry',
         'touch' => 'ekran dotykowy',

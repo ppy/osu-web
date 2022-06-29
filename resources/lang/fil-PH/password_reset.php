@@ -12,11 +12,11 @@ return [
     ],
 
     'error' => [
-        'contact_support' => 'Pakikontak ang support para mabawi ang account.',
+        'contact_support' => 'Pakikontak ang support upang mabawi ang account.',
         'expired' => 'Na-expire na ang verification code.',
         'invalid' => 'Hindi inaasahang error sa verification code.',
-        'is_privileged' => 'Kontakin si peppy lulz.',
-        'missing_key' => 'Kailangan.',
+        'is_privileged' => 'Pakikontak ng isang high level na admin upang mabawi ang account.',
+        'missing_key' => 'Kinakailangan.',
         'too_many_tries' => 'Masyadong maraming nabigong tangka.',
         'user_not_found' => 'Hindi umiiral ang hiniling na user.',
         'wrong_key' => 'Maling kodigo.',
