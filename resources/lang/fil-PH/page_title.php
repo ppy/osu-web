@@ -42,10 +42,10 @@ return [
             'verify_link' => 'beripikasyon ng account',
         ],
         'artist_tracks_controller' => [
-            '_' => 'featured artists',
+            '_' => 'mga tampok na artista',
         ],
         'artists_controller' => [
-            '_' => 'featured artists',
+            '_' => 'mga tampok na artista',
         ],
         'beatmap_discussion_posts_controller' => [
             '_' => 'beatmap discussion posts',

@@ -12,7 +12,7 @@ return [
     ],
 
     'cover' => [
-        'deleted' => 'Deleted na beatmap',
+        'deleted' => 'Tinanggal na beatmap',
     ],
 
     'download' => [
@@ -20,7 +20,7 @@ return [
     ],
 
     'featured_artist_badge' => [
-        'label' => 'Featured artist',
+        'label' => 'Itinatampok na artista',
     ],
 
     'index' => [
@@ -125,7 +125,7 @@ return [
             'language' => 'Wika',
             'no_scores' => 'Kinakalkula pa ang mga datos...',
             'nsfw' => 'Maselang nilalaman',
-            'offset' => 'Ang online offset',
+            'offset' => 'Online na offset',
             'points-of-failure' => 'Mga punto ng pagkabigo',
             'source' => 'Pinagmulan',
             'storyboard' => 'Ang beatmap na ito ay may storyboard',
@@ -197,7 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Bilang ng Bilog',
             'count_sliders' => 'Bilang ng Slider',
-            'offset' => 'Ang online offset: :offset',
+            'offset' => 'Online na offset: :offset',
             'user-rating' => 'Rating ng mga User',
             'rating-spread' => 'Pagkakalatag ng Rating',
             'nominations' => 'Mga Nominasyon',

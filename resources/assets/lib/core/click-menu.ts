@@ -93,7 +93,7 @@ export default class ClickMenu {
     }
   };
 
-  toggle = (e: JQuery.ClickEvent) => {
+  toggle = (e: JQuery.ClickEvent<Document, unknown, HTMLElement, HTMLElement>) => {
     const menu = e.currentTarget;
     const tree = this.tree();
 
@@ -134,11 +134,11 @@ export default class ClickMenu {
     return tree;
   };
 
-  private onDocumentMousedown = (e: JQuery.MouseDownEvent) => {
+  private onDocumentMousedown = (e: JQuery.MouseDownEvent<Document, unknown, Document, HTMLElement | Document>) => {
     this.documentMouseEventTarget = e.button === 0 ? e.target : null;
   };
 
-  private onDocumentMouseup = (e: JQuery.MouseUpEvent) => {
+  private onDocumentMouseup = (e: JQuery.MouseUpEvent<Document, unknown, Document, HTMLElement | Document>) => {
     if (this.documentMouseEventTarget !== e.target) return;
     if (e.button !== 0) return;
     if (isModalShowing()) return;

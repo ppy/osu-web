@@ -34,6 +34,7 @@ interface PropsFromHrefValue {
 const lineBreakRegex = /(?:<br>){2,}/g;
 const linkTimestampRegex = /\b((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\)|\b))/g;
 const maxMessagePreviewLength = 100;
+export const maxLengthTimeline = 750;
 
 export function badgeGroup({ beatmapset, currentBeatmap, discussion, user }: BadgeGroupParams) {
   if (user == null) {

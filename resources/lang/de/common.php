@@ -81,7 +81,7 @@ return [
         'star_priority' => ':count_delimited Sternpriorität|:count_delimited Sternprioritäten',
         'update' => ':count_delimited Update|:count_delimited Updates',
         'view' => ':count_delimited Aufruf|:count_delimited Aufrufe',
-        'years' => ':count jahr|:count jahre',
+        'years' => ':count_delimited Jahr|:count_delimited Jahre',
     ],
 
     'countdown' => [

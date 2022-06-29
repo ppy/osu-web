@@ -5,7 +5,7 @@
 
 return [
     'title_compact' => 'mga kaibigan',
-    'too_many' => 'Naabot na ang limit ng dami ng kaibigan',
+    'too_many' => 'Ang limitasyon ng pagkakaibigan ay naabot na',
 
     'buttons' => [
         'add' => 'magdagdag ng kaibigan',

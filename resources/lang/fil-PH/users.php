@@ -87,7 +87,7 @@ return [
         'email_login_disabled' => 'Ang pag sign in gamit ng email ay disabled muna. Gamitin muna ang iyong username.',
         'failed' => 'Maling sign in',
         'forgot' => 'Nakalimutan mo ang password mo?',
-        'info' => 'Mag-sign in upang makapagpatuloy',
+        'info' => 'Paki-sign-in upang makapagpatuloy',
         'invalid_captcha' => 'Madaming palyang tangka sa pag login. Tapusin muna ang captcha at ulitin muli. (I refresh pag hindi makita ang captcha)',
         'locked_ip' => 'Locked ang iyong IP address. Magantay ng ilang minuto.',
         'password' => 'Password',

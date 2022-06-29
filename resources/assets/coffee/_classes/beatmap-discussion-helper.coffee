@@ -2,13 +2,13 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute'
+import { maxLengthTimeline } from 'utils/beatmapset-discussion-helper'
 import { currentUrl } from 'utils/turbolinks'
 import { getInt } from 'utils/math'
 
 class window.BeatmapDiscussionHelper
   @DEFAULT_BEATMAP_ID: '-'
   @DEFAULT_FILTER: 'total'
-  @MAX_LENGTH_TIMELINE: 750
   @TIMESTAMP_REGEX: /\b(((\d{2,}):([0-5]\d)[:.](\d{3}))(\s\((?:\d+[,|])*\d+\))?)/
 
   @MODES = new Set(['events', 'general', 'generalAll', 'timeline', 'reviews'])
@@ -209,6 +209,6 @@ class window.BeatmapDiscussionHelper
     return false unless message?.length > 0
 
     if isTimeline
-      message.length <= @MAX_LENGTH_TIMELINE
+      message.length <= maxLengthTimeline
     else
       true

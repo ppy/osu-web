@@ -19,7 +19,7 @@ import { a, button, div, span } from 'react-dom-factories'
 import { badgeGroup, format } from 'utils/beatmapset-discussion-helper'
 import { classWithModifiers } from 'utils/css'
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler'
-import { MessageLengthCounter } from './message-length-counter'
+import MessageLengthCounter from './message-length-counter'
 import { UserCard } from './user-card'
 
 el = React.createElement

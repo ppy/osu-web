@@ -41,17 +41,6 @@ declare module 'components/modal' {
   }
 }
 
-declare module 'beatmaps/search-content' {
-  import AvailableFilters from 'beatmaps/available-filters';
-
-  interface Props {
-    availableFilters: AvailableFilters;
-    backToTopAnchor: React.RefObject<HTMLElement>;
-  }
-
-  class SearchContent extends React.PureComponent<Props> {}
-}
-
 declare module 'components/report-form' {
   interface ReportFormProps {
     completed: boolean;
