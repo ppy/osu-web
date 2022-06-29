@@ -154,9 +154,9 @@ export default class Item extends React.Component<Props> {
     }
 
     return (
-      <div className='notification-popup-item__row notification-popup-item__row--time'>
+      <a className='notification-popup-item__row notification-popup-item__row--time' href={this.props.url}>
         <TimeWithTooltip dateTime={this.props.item.createdAtJson} relative />
-      </div>
+      </a>
     );
   }
 

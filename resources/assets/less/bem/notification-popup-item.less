@@ -117,6 +117,11 @@
     }
 
     &--time {
+      .link-plain();
+      .link-hover({
+        color: hsl(var(--hsl-f1));
+      });
+
       pointer-events: initial;
       font-size: @font-size--small;
       color: hsl(var(--hsl-f1));
