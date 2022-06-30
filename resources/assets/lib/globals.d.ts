@@ -49,12 +49,20 @@ declare module 'legacy-modules' {
   }
 }
 
+// #region Extensions to global object types
+interface JQueryStatic {
+  publish: (eventName: string, data?: any) => void;
+  subscribe: (eventName: string, handler: (...params: any[]) => void) => void;
+  unsubscribe: (eventName: string, handler?: unknown) => void;
+}
+
 interface Window {
   newBody?: HTMLElement;
   newUrl?: URL | Location | null;
 }
+// #endregion
 
-// interfaces for using process.env
+// #region interfaces for using process.env
 interface Process {
   env: ProcessEnv;
 }
@@ -64,8 +72,9 @@ interface ProcessEnv {
 }
 
 declare const process: Process;
+// #endregion
 
-// TODO: Turbolinks 5.3 is Typescript, so this should be updated then.
+// TODO: Turbolinks 5.3 is Typescript, so this should be updated then...or it could be never released.
 declare const Turbolinks: import('turbolinks').default;
 
 // our helpers
@@ -76,21 +85,3 @@ declare const osu: import('legacy-modules').OsuCommon;
 declare const BeatmapDiscussionHelper: import('legacy-modules').BeatmapDiscussionHelperClass;
 declare const fallbackLocale: string;
 declare const currentLocale: string;
-
-// Global object types
-interface Comment {
-  id: number;
-}
-
-interface JQueryStatic {
-  publish: (eventName: string, data?: any) => void;
-  subscribe: (eventName: string, handler: (...params: any[]) => void) => void;
-  unsubscribe: (eventName: string, handler?: unknown) => void;
-}
-
-interface ChangelogBuild {
-  update_stream: {
-    name: string;
-  };
-  version: string;
-}
