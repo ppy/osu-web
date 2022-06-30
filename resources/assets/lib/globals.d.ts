@@ -74,7 +74,6 @@ declare const osu: import('legacy-modules').OsuCommon;
 
 // external (to typescript) classes
 declare const BeatmapDiscussionHelper: import('legacy-modules').BeatmapDiscussionHelperClass;
-declare const Lang: LangClass;
 declare const fallbackLocale: string;
 declare const currentLocale: string;
 
