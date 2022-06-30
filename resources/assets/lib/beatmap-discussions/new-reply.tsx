@@ -41,7 +41,7 @@ const actionIcons = {
 
 export class NewReply extends React.PureComponent<Props> {
   state: Readonly<State> = {
-    editing: this.storedMessage !== '',
+    editing: !osu.present(this.storedMessage),
     message: this.storedMessage,
     posting: null,
   };
@@ -53,7 +53,6 @@ export class NewReply extends React.PureComponent<Props> {
   private get canReopen() {
     return this.props.discussion.can_be_resolved && this.props.discussion.current_user_attributes.can_reopen;
   }
-
 
   private get canResolve() {
     return this.props.discussion.can_be_resolved && this.props.discussion.current_user_attributes.can_resolve;
@@ -97,94 +96,6 @@ export class NewReply extends React.PureComponent<Props> {
     return this.state.editing ? this.renderBox() : this.renderPlaceholder();
   }
 
-  renderBox() {
-    return (
-      <div className={`${bn} ${bn}--reply ${bn}--new-reply`}>
-        {this.renderCancelButton()}
-        <div className={`${bn}__content`}>
-          <div className={`${bn}__avatar`}>
-            <UserAvatar modifiers='full-rounded' user={this.props.currentUser} />
-          </div>
-          <div className={`${bn}__message-container`}>
-            <TextareaAutosize
-              ref={this.box}
-              className={`${bn}__message ${bn}__message--editor`}
-              disabled={this.state.posting != null}
-              onChange={this.setMessage}
-              onKeyDown={this.handleKeyDown}
-              placeholder={osu.trans('beatmaps.discussions.reply_placeholder')}
-              value={this.state.message}
-            />
-          </div>
-        </div>
-
-        <div className={`${bn}__footer ${bn}__footer--notice`}>
-          {osu.trans('beatmaps.discussions.reply_notice')}
-          <MessageLengthCounter isTimeline={this.isTimeline} message={this.state.message} />
-        </div>
-
-        <div className={`${bn}__footer`}>
-          <div className={`${bn}__actions`}>
-            <div className={`${bn}__actions-group`}>
-              {this.canResolve && !this.props.discussion.resolved && this.renderReplyButton('reply_resolve')}
-
-              {this.canReopen && this.props.discussion.resolved && this.renderReplyButton('reply_reopen')}
-
-              {this.renderReplyButton('reply')}
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  renderCancelButton() {
-    return (
-      <button
-        className={`${bn}__action ${bn}__action--cancel`}
-        disabled={this.state.posting != null}
-        onClick={this.onCancelClick}
-      >
-        <i className='fas fa-times' />
-      </button>
-    );
-  }
-
-  renderPlaceholder() {
-    const [text, icon, disabled] = this.props.currentUser.id != null
-      ? [osu.trans('beatmap_discussions.reply.open.user'), 'fas fa-reply', this.props.currentUser.is_silenced]
-      : [osu.trans('beatmap_discussions.reply.open.guest'), 'fas fa-sign-in-alt', false];
-
-    return (
-      <div className={`${bn} ${bn}--reply ${bn}--new-reply ${bn}--new-reply-placeholder`}>
-        <BigButton
-          disabled={disabled}
-          icon={icon}
-          modifiers='beatmap-discussion-reply-open'
-          props={{ onClick: this.editStart }}
-          text={text}
-        />
-      </div>
-    );
-  }
-
-  renderReplyButton(action: keyof typeof actionIcons) {
-    return (
-      <div className={`${bn}__action`}>
-        <BigButton
-          disabled={!this.validPost || this.state.posting != null}
-          icon={actionIcons[action]}
-          isBusy={this.state.posting === action}
-          props={{
-            'data-action': action,
-            onClick: this.post,
-          }}
-          text={osu.trans(`common.buttons.${action}`)}
-        />
-      </div>
-    );
-  }
-
   private editStart = () => {
     if (core.userLogin.showIfGuest(this.editStart)) return;
     this.setState({ editing: true }, () => this.box.current?.focus());
@@ -202,7 +113,7 @@ export class NewReply extends React.PureComponent<Props> {
   };
 
   private onCancelClick = () => {
-    if (this.state.message !== '' && !confirm(osu.trans('common.confirmation_unsaved'))) return;
+    if (osu.present(this.state.message) && !confirm(osu.trans('common.confirmation_unsaved'))) return;
 
     this.setState({
       editing: false,
@@ -260,12 +171,100 @@ export class NewReply extends React.PureComponent<Props> {
       }) ;
   };
 
+  private renderBox() {
+    return (
+      <div className={`${bn} ${bn}--reply ${bn}--new-reply`}>
+        {this.renderCancelButton()}
+        <div className={`${bn}__content`}>
+          <div className={`${bn}__avatar`}>
+            <UserAvatar modifiers='full-rounded' user={this.props.currentUser} />
+          </div>
+          <div className={`${bn}__message-container`}>
+            <TextareaAutosize
+              ref={this.box}
+              className={`${bn}__message ${bn}__message--editor`}
+              disabled={this.state.posting != null}
+              onChange={this.setMessage}
+              onKeyDown={this.handleKeyDown}
+              placeholder={osu.trans('beatmaps.discussions.reply_placeholder')}
+              value={this.state.message}
+            />
+          </div>
+        </div>
+
+        <div className={`${bn}__footer ${bn}__footer--notice`}>
+          {osu.trans('beatmaps.discussions.reply_notice')}
+          <MessageLengthCounter isTimeline={this.isTimeline} message={this.state.message} />
+        </div>
+
+        <div className={`${bn}__footer`}>
+          <div className={`${bn}__actions`}>
+            <div className={`${bn}__actions-group`}>
+              {this.canResolve && !this.props.discussion.resolved && this.renderReplyButton('reply_resolve')}
+
+              {this.canReopen && this.props.discussion.resolved && this.renderReplyButton('reply_reopen')}
+
+              {this.renderReplyButton('reply')}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  private renderCancelButton() {
+    return (
+      <button
+        className={`${bn}__action ${bn}__action--cancel`}
+        disabled={this.state.posting != null}
+        onClick={this.onCancelClick}
+      >
+        <i className='fas fa-times' />
+      </button>
+    );
+  }
+
+  private renderPlaceholder() {
+    const [text, icon, disabled] = this.props.currentUser.id != null
+      ? [osu.trans('beatmap_discussions.reply.open.user'), 'fas fa-reply', this.props.currentUser.is_silenced]
+      : [osu.trans('beatmap_discussions.reply.open.guest'), 'fas fa-sign-in-alt', false];
+
+    return (
+      <div className={`${bn} ${bn}--reply ${bn}--new-reply ${bn}--new-reply-placeholder`}>
+        <BigButton
+          disabled={disabled}
+          icon={icon}
+          modifiers='beatmap-discussion-reply-open'
+          props={{ onClick: this.editStart }}
+          text={text}
+        />
+      </div>
+    );
+  }
+
+  private renderReplyButton(action: keyof typeof actionIcons) {
+    return (
+      <div className={`${bn}__action`}>
+        <BigButton
+          disabled={!this.validPost || this.state.posting != null}
+          icon={actionIcons[action]}
+          isBusy={this.state.posting === action}
+          props={{
+            'data-action': action,
+            onClick: this.post,
+          }}
+          text={osu.trans(`common.buttons.${action}`)}
+        />
+      </div>
+    );
+  }
+
   private setMessage = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     this.setState({ message: e.target.value });
   };
 
   private storeMessage() {
-    if (this.state.message === '') {
+    if (!osu.present(this.state.message)) {
       localStorage.removeItem(this.storageKey);
     } else {
       localStorage.setItem(this.storageKey, this.state.message);
