@@ -158,7 +158,7 @@
                     class="nav-click-popup js-click-menu js-react--notification-widget"
                     data-click-menu-id="nav2-chat-notification-widget"
                     data-visibility="hidden"
-                    data-notification-widget="{{ json_encode(['extraClasses' => 'js-nav2--centered-popup', 'only' => 'channel']) }}"
+                    data-notification-widget="{{ json_encode(['extraClasses' => 'js-nav2--centered-popup hidden', 'only' => 'channel']) }}"
                     data-turbolinks-permanent
                     id="notification-widget-chat"
                 ></div>
@@ -182,7 +182,7 @@
                     class="nav-click-popup js-click-menu js-react--notification-widget"
                     data-click-menu-id="nav2-notification-widget"
                     data-visibility="hidden"
-                    data-notification-widget="{{ json_encode(['extraClasses' => 'js-nav2--centered-popup', 'excludes' => ['channel']]) }}"
+                    data-notification-widget="{{ json_encode(['extraClasses' => 'js-nav2--centered-popup hidden', 'excludes' => ['channel']]) }}"
                     data-turbolinks-permanent
                     id="notification-widget"
                 ></div>
