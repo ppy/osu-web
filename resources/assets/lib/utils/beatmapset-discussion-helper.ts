@@ -4,6 +4,7 @@
 import guestGroup from 'beatmap-discussions/guest-group';
 import mapperGroup from 'beatmap-discussions/mapper-group';
 import BeatmapJson from 'interfaces/beatmap-json';
+import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
 import { currentUrl } from 'utils/turbolinks';
