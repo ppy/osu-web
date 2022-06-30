@@ -85,6 +85,14 @@ abstract class Search extends HasSearch implements Queryable
         return $this->count;
     }
 
+    public function deleteAll(): void
+    {
+        $this->client()->deleteByQuery([
+            'index' => $this->index,
+            'body' => ['query' => ['match_all' => (object) []]],
+        ]);
+    }
+
     public function fail($error = null)
     {
         $this->error = $error; // for the message.
