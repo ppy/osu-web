@@ -46,7 +46,7 @@ export class NewReply extends React.PureComponent<Props> {
   };
 
   private readonly box = React.createRef<HTMLTextAreaElement>();
-  private readonly handleKeyDown = makeTextAreaHandler(this.handleKeyDownCallback);
+  private readonly handleKeyDown;
   private postXhr: JQuery.jqXHR | null = null;
 
   private get canReopen() {
@@ -72,6 +72,11 @@ export class NewReply extends React.PureComponent<Props> {
 
   private get validPost() {
     return validMessageLength(this.state.message, this.isTimeline);
+  }
+
+  constructor(props: Props) {
+    super(props);
+    this.handleKeyDown = makeTextAreaHandler(this.handleKeyDownCallback);
   }
 
   componentDidUpdate(prevProps: Readonly<Props>) {
