@@ -209,7 +209,7 @@ export class NewReply extends React.PureComponent<Props> {
     });
   };
 
-  private post = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+  private post = (event: React.SyntheticEvent<HTMLElement>) => {
     if (!this.validPost || this.postXhr != null) return;
     showLoadingOverlay();
 
