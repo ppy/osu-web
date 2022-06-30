@@ -105,7 +105,7 @@ return [
         'name' => 'Nama',
 
         'stock' => [
-            'out' => 'Stok barang ini saat ini sedang tidak tersedia. Silahkan periksa kembali nanti!',
+            'out' => 'Stok barang saat ini sedang tidak tersedia. Silakan periksa kembali nanti!',
             'out_with_alternative' => 'Sayangnya stok untuk barang ini habis. Gunakan menu dropdown untuk memilih jenis yang lain atau silahkan periksa kembali nanti!',
         ],
 

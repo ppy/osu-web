@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => 'Wat dacht je anders van osu! ?',
+    'play_more' => 'Misschien eerst wat osu! spelen?',
     'require_login' => 'Log in om verder te gaan.',
     'require_verification' => 'Gelieve te verifiëren om verder te gaan.',
     'restricted' => "Je kan dit niet doen terwijl je restricted bent.",
@@ -75,7 +75,7 @@ return [
 
     'comment' => [
         'store' => [
-            'disabled' => '',
+            'disabled' => 'Reacties zijn uitgeschakeld',
         ],
         'update' => [
             'deleted' => "Je kunt geen verwijderde berichten bewerken.",

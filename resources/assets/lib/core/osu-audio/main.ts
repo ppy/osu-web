@@ -223,7 +223,7 @@ export default class Main {
     this.reattachPagePlayer(newPlayers);
   };
 
-  private onClickPlay = (e: JQuery.ClickEvent) => {
+  private onClickPlay = (e: JQuery.ClickEvent<Document, unknown, HTMLElement, HTMLElement>) => {
     e.preventDefault();
 
     const pagePlayer = this.findPlayer(e.currentTarget);

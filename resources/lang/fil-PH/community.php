@@ -20,7 +20,7 @@ return [
             ],
             'infra' => [
                 'title' => 'Server Infrastructure',
-                'description' => 'Ang mga nakakalap na pondo ay napupunta sa servers para magpatakbo ng website, serbisyo para sa multiplayer, online multiplayers at iba pa.',
+                'description' => 'Ang mga kontribusyon ay napupunta sa mga server para sa pagpapatakbo ng website, mga serbisyo ng multiplayer, mga online na leaderboard, etc.',
             ],
             'featured-artists' => [
                 'title' => 'Mga Tampok na Artista',
@@ -33,7 +33,7 @@ return [
             ],
             'tournaments' => [
                 'title' => 'Mga Opisyal na Torneo',
-                'description' => 'Makatulong sa pagpondo ng (at ng mga papremyo para sa) mga opisyal na mga palaro ng osu! World Cup.',
+                'description' => 'Tulungang pondohan ang pagpapatakbo ng (at ang mga premyo para sa) opisyal na mga paligsahan ng osu! World Cup.',
                 'link_text' => 'Sumiyasat ng mga paligsahan &raquo;',
             ],
             'bounty-program' => [

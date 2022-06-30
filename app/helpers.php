@@ -1191,14 +1191,20 @@ function i18n_date($datetime, $format = IntlDateFormatter::LONG, $pattern = null
 
 function i18n_number_format($number, $style = null, $pattern = null, $precision = null, $locale = null)
 {
-    $formatter = NumberFormatter::create(
-        $locale ?? App::getLocale(),
-        $style ?? NumberFormatter::DEFAULT_STYLE,
-        $pattern
-    );
+    if ($style === null && $pattern === null && $precision === null) {
+        static $formatters = [];
+        $locale ??= App::getLocale();
+        $formatter = $formatters[$locale] ??= new NumberFormatter($locale, NumberFormatter::DEFAULT_STYLE);
+    } else {
+        $formatter = new NumberFormatter(
+            $locale ?? App::getLocale(),
+            $style ?? NumberFormatter::DEFAULT_STYLE,
+            $pattern
+        );
 
-    if ($precision !== null) {
-        $formatter->setAttribute(NumberFormatter::FRACTION_DIGITS, $precision);
+        if ($precision !== null) {
+            $formatter->setAttribute(NumberFormatter::FRACTION_DIGITS, $precision);
+        }
     }
 
     return $formatter->format($number);
@@ -1474,6 +1480,7 @@ function get_param_value($input, $type)
             return get_int($input);
         case 'file':
             return get_file($input);
+        case 'number':
         case 'float':
             return get_float($input);
         case 'length':
