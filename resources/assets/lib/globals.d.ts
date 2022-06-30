@@ -85,26 +85,6 @@ interface ChangelogBuild {
   version: string;
 }
 
-// TODO: incomplete
-interface BeatmapsetDiscussionJson {
-  beatmap_id: number | null;
-  beatmapset_id: number;
-  deleted_at: string | null;
-  id: number;
-  message_type: import('beatmap-discussions/discussion-type').DiscussionType;
-  parent_id: number | null;
-  posts: BeatmapsetDiscussionPostJson[];
-  resolved: boolean;
-  starting_post: BeatmapsetDiscussionPostJson;
-  timestamp: number | null;
-  user_id: number;
-}
-
-// TODO: incomplete
-interface BeatmapsetDiscussionPostJson {
-  message: string;
-}
-
 interface TooltipDefault {
   remove: (el: HTMLElement) => void;
 }
