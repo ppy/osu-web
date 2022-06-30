@@ -5,7 +5,8 @@ import BigButton from 'components/big-button';
 import UserAvatar from 'components/user-avatar';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
-import BeatmapsetJson, { BeatmapsetWithDiscussionsJson } from 'interfaces/beatmapset-json';
+import { BeatmapsetDiscussionPostStoreResponseJson } from 'interfaces/beatmapset-discussion-post-responses';
+import BeatmapsetJson from 'interfaces/beatmapset-json';
 import CurrentUserJson from 'interfaces/current-user-json';
 import { route } from 'laroute';
 import core from 'osu-core-singleton';
@@ -18,13 +19,6 @@ import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import MessageLengthCounter from './message-length-counter';
 
 const bn = 'beatmap-discussion-post';
-
-// TODO: needs to be one class
-interface Response {
-  beatmap_discussion_id: number;
-  beatmap_discussion_post_ids: number[];
-  beatmapset: BeatmapsetWithDiscussionsJson;
-}
 
 interface Props {
   beatmapset: BeatmapsetJson;
@@ -54,7 +48,7 @@ export class NewReply extends React.PureComponent<Props> {
 
   private readonly box = React.createRef<HTMLTextAreaElement>();
   private readonly handleKeyDown;
-  private postXhr: JQuery.jqXHR<Response> | null = null;
+  private postXhr: JQuery.jqXHR<BeatmapsetDiscussionPostStoreResponseJson> | null = null;
 
   private get canReopen() {
     return this.props.discussion.can_be_resolved && this.props.discussion.current_user_attributes.can_reopen;

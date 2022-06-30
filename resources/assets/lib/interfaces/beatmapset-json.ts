@@ -106,4 +106,5 @@ interface BeatmapsetJsonDefaultAttributes {
 type BeatmapsetJson = BeatmapsetJsonDefaultAttributes & Partial<BeatmapsetJsonAvailableIncludes>;
 export default BeatmapsetJson;
 
-export type BeatmapsetWithDiscussionsJson = BeatmapsetJson & Required<Pick<BeatmapsetJson, 'beatmaps' | 'current_user_attributes' | 'discussions' | 'events' | 'nominations' | 'related_users'>>;
+type DiscussionsRequiredAttributes = 'beatmaps' | 'current_user_attributes' | 'discussions' | 'events' | 'nominations' | 'related_users';
+export type BeatmapsetWithDiscussionsJson = BeatmapsetJson & Required<Pick<BeatmapsetJson, DiscussionsRequiredAttributes>>;
