@@ -17,12 +17,12 @@ import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import MessageLengthCounter from './message-length-counter';
 
-const bn = 'beatmap-discussion-post'
+const bn = 'beatmap-discussion-post';
 
 interface Props {
-  currentUser: CurrentUserJson;
   beatmapset: BeatmapsetJson;
   currentBeatmap: BeatmapJson;
+  currentUser: CurrentUserJson;
   discussion: BeatmapsetDiscussionJson & Required<Pick<BeatmapsetDiscussionJson, 'current_user_attributes'>>;
 }
 
@@ -33,10 +33,10 @@ interface State {
 }
 
 const actionIcons = {
-  reply_resolve: 'fas fa-check',
-  reply_reopen: 'fas fa-exclamation-circle',
   reply: 'fas fa-reply',
-}
+  reply_reopen: 'fas fa-exclamation-circle',
+  reply_resolve: 'fas fa-check',
+};
 
 export class NewReply extends React.PureComponent<Props> {
   state: Readonly<State> = {
@@ -82,10 +82,10 @@ export class NewReply extends React.PureComponent<Props> {
   componentDidUpdate(prevProps: Readonly<Props>) {
     if (prevProps.discussion.id !== this.props.discussion.id) {
       this.setState({ message: this.storedMessage });
-      return
+      return;
     }
 
-    this.storeMessage()
+    this.storeMessage();
   }
 
   componentWillUnmount() {
@@ -96,48 +96,30 @@ export class NewReply extends React.PureComponent<Props> {
     return this.state.editing ? this.renderBox() : this.renderPlaceholder();
   }
 
-  renderPlaceholder() {
-    const [text, icon, disabled] = this.props.currentUser.id != null
-      ? [osu.trans('beatmap_discussions.reply.open.user'), 'fas fa-reply', this.props.currentUser.is_silenced]
-      : [osu.trans('beatmap_discussions.reply.open.guest'), 'fas fa-sign-in-alt', false]
-
-    return (
-      <div className={`${bn} ${bn}--reply ${bn}--new-reply ${bn}--new-reply-placeholder`}>
-        <BigButton
-          disabled={disabled}
-          icon={icon}
-          modifiers='beatmap-discussion-reply-open'
-          props={{ onClick: {this.editStart} }}
-          text={text}
-        />
-      </div>
-    )
-  }
-
   renderBox() {
     return (
       <div className={`${bn} ${bn}--reply ${bn}--new-reply`}>
         {this.renderCancelButton()}
         <div className={`${bn}__content`}>
           <div className={`${bn}__avatar`}>
-            <UserAvatar user={this.props.currentUser} modifiers='full-rounded' />
+            <UserAvatar modifiers='full-rounded' user={this.props.currentUser} />
           </div>
           <div className={`${bn}__message-container`}>
             <TextareaAutosize
               ref={this.box}
-              disabled={this.state.posting != null}
               className={`${bn}__message ${bn}__message--editor`}
-              value={this.state.message}
+              disabled={this.state.posting != null}
               onChange={this.setMessage}
               onKeyDown={this.handleKeyDown}
               placeholder={osu.trans('beatmaps.discussions.reply_placeholder')}
+              value={this.state.message}
             />
           </div>
         </div>
 
         <div className={`${bn}__footer ${bn}__footer--notice`}>
           {osu.trans('beatmaps.discussions.reply_notice')}
-          <MessageLengthCounter message={this.state.message} isTimeline={this.isTimeline} />
+          <MessageLengthCounter isTimeline={this.isTimeline} message={this.state.message} />
         </div>
 
         <div className={`${bn}__footer`}>
@@ -152,7 +134,7 @@ export class NewReply extends React.PureComponent<Props> {
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   renderCancelButton() {
@@ -167,11 +149,29 @@ export class NewReply extends React.PureComponent<Props> {
     );
   }
 
+  renderPlaceholder() {
+    const [text, icon, disabled] = this.props.currentUser.id != null
+      ? [osu.trans('beatmap_discussions.reply.open.user'), 'fas fa-reply', this.props.currentUser.is_silenced]
+      : [osu.trans('beatmap_discussions.reply.open.guest'), 'fas fa-sign-in-alt', false];
+
+    return (
+      <div className={`${bn} ${bn}--reply ${bn}--new-reply ${bn}--new-reply-placeholder`}>
+        <BigButton
+          disabled={disabled}
+          icon={icon}
+          modifiers='beatmap-discussion-reply-open'
+          props={{ onClick: this.editStart }}
+          text={text}
+        />
+      </div>
+    );
+  }
+
   renderReplyButton(action: keyof typeof actionIcons) {
     return (
       <div className={`${bn}__action`}>
         <BigButton
-          disabled={!this.validPost() || this.state.posting != null}
+          disabled={!this.validPost || this.state.posting != null}
           icon={actionIcons[action]}
           isBusy={this.state.posting === action}
           props={{
@@ -192,33 +192,25 @@ export class NewReply extends React.PureComponent<Props> {
   private handleKeyDownCallback = (type: InputEventType | null, event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     switch (type) {
       case InputEventType.Cancel:
-        this.setState({ editing: false })
+        this.setState({ editing: false });
         break;
       case InputEventType.Submit:
-        this.post(event)
+        this.post(event);
         break;
     }
   };
 
   private onCancelClick = () => {
-    if (this.state.message != '' && !confirm(osu.trans('common.confirmation_unsaved'))) return;
+    if (this.state.message !== '' && !confirm(osu.trans('common.confirmation_unsaved'))) return;
 
     this.setState({
       editing: false,
       message: '',
-    })
+    });
   };
 
-  private storeMessage() {
-    if (this.state.message === '') {
-      localStorage.removeItem(this.storageKey);
-    } else {
-      localStorage.setItem(this.storageKey, this.state.message)
-    }
-  }
-
-  private post = (event :React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (!this.validPost || this.postXhr != null) return
+  private post = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (!this.validPost || this.postXhr != null) return;
     showLoadingOverlay();
 
     // in case the event came from input box, do 'reply'.
@@ -238,34 +230,42 @@ export class NewReply extends React.PureComponent<Props> {
     }
 
     const data = {
-      beatmap_discussion_id: this.props.discussion.id,
       beatmap_discussion: dataBeatmapDiscussion,
+      beatmap_discussion_id: this.props.discussion.id,
       beatmap_discussion_post: {
         message: this.state.message,
-      }
+      },
     };
 
     this.postXhr = $.ajax(route('beatmapsets.discussions.posts.store'), {
       data,
       method: 'POST',
     })
-    .done((data) => {
-      this.setState({
-        editing: false,
-        message: '',
+      .done((data) => {
+        this.setState({
+          editing: false,
+          message: '',
+        });
+        $.publish('beatmapDiscussionPost:markRead', { id: data.beatmap_discussion_post_ids });
+        $.publish('beatmapsetDiscussions:update', { beatmapset: data.beatmapset });
+      })
+      .fail(onError)
+      .always(() => {
+        hideLoadingOverlay();
+        this.postXhr = null;
+        this.setState({ posting: null });
       });
-      $.publish('beatmapDiscussionPost:markRead', { id: data.beatmap_discussion_post_ids });
-      $.publish('beatmapsetDiscussions:update', { beatmapset: data.beatmapset });
-    })
-    .fail(onError)
-    .always(() => {
-      hideLoadingOverlay()
-      this.postXhr = null;
-      this.setState({ posting: null });
-    });
   };
 
   private setMessage = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     this.setState({ message: e.target.value });
   };
+
+  private storeMessage() {
+    if (this.state.message === '') {
+      localStorage.removeItem(this.storageKey);
+    } else {
+      localStorage.setItem(this.storageKey, this.state.message);
+    }
+  }
 }
