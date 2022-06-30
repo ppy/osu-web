@@ -12,6 +12,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
 import { onError } from 'utils/ajax';
+import { validMessageLength } from 'utils/beatmapset-discussion-helper';
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import MessageLengthCounter from './message-length-counter';
@@ -22,7 +23,7 @@ interface Props {
   currentUser: CurrentUserJson;
   beatmapset: BeatmapsetJson;
   currentBeatmap: BeatmapJson;
-  discussion: BeatmapsetDiscussionJson;
+  discussion: BeatmapsetDiscussionJson & Required<Pick<BeatmapsetDiscussionJson, 'current_user_attributes'>>;
 }
 
 interface State {
@@ -70,7 +71,7 @@ export class NewReply extends React.PureComponent<Props> {
   }
 
   private get validPost() {
-    return BeatmapDiscussionHelper.validMessageLength(this.state.message, this.isTimeline);
+    return validMessageLength(this.state.message, this.isTimeline);
   }
 
   componentDidUpdate(prevProps: Readonly<Props>) {
