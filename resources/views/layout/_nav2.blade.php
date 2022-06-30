@@ -142,17 +142,18 @@
 
         @if (Auth::user() !== null)
             <div class="nav2__col">
-                <button
+                <a
                     class="nav-button nav-button--stadium js-click-menu js-react--chat-icon"
                     data-click-menu-target="nav2-chat-notification-widget"
                     data-turbolinks-permanent
                     id="notification-widget-chat-icon"
+                    href="{{ route('chat.index') }}"
                 >
                     <span class="notification-icon">
                         <i class="fas fa-comment-alt"></i>
                         <span class="notification-icon__count">...</span>
                     </span>
-                </button>
+                </a>
                 <div
                     class="nav-click-popup js-click-menu js-react--notification-widget"
                     data-click-menu-id="nav2-chat-notification-widget"
@@ -165,17 +166,18 @@
             </div>
 
             <div class="nav2__col">
-                <button
+                <a
                     class="nav-button nav-button--stadium js-click-menu js-react--main-notification-icon"
                     data-click-menu-target="nav2-notification-widget"
                     data-turbolinks-permanent
                     id="notification-widget-icon"
+                    href="{{ route('notifications.index') }}"
                 >
                     <span class="notification-icon">
                         <i class="fas fa-inbox"></i>
                         <span class="notification-icon__count">...</span>
                     </span>
-                </button>
+                </a>
                 <div
                     class="nav-click-popup js-click-menu js-react--notification-widget"
                     data-click-menu-id="nav2-notification-widget"
