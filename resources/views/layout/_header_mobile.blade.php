@@ -90,12 +90,13 @@
                         </span>
                     </a>
 
-                    <a class="mobile-menu-tab js-click-menu js-react--main-notification-icon"
+                    <a
+                        class="mobile-menu-tab js-click-menu js-react--main-notification-icon"
                         data-click-menu-target="mobile-notification"
                         data-turbolinks-permanent
                         data-type='mobile'
                         id="notification-widget-icon-mobile"
-                       href="{{ route('notifications.index') }}"
+                        href="{{ route('notifications.index') }}"
                     >
                         <span class="notification-icon notification-icon--mobile">
                             <i class="fas fa-inbox"></i>
