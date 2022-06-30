@@ -7,7 +7,7 @@ declare module 'legacy-modules' {
   type BeatmapsetDiscussionJson = import('interfaces/beatmapset-discussion-json').default;
   type GroupJson = import('interfaces/group-json').default;
 
-  export interface BeatmapDiscussionHelperClass {
+  interface BeatmapDiscussionHelperClass {
     format(text: string, options?: any): string;
     formatTimestamp(value: number | null): string | undefined;
     nearbyDiscussions(discussions: BeatmapsetDiscussionJson[], timestamp: number): BeatmapsetDiscussionJson[];
@@ -26,7 +26,7 @@ declare module 'legacy-modules' {
     };
   }
 
-  export interface OsuCommon {
+  interface OsuCommon {
     formatBytes: (bytes: number, decimals?: number) => string;
     groupColour: (group?: GroupJson) => React.CSSProperties;
     navigate: (url: string, keepScroll?: boolean, action?: Partial<Record<string, unknown>>) => void;
@@ -44,7 +44,7 @@ declare module 'legacy-modules' {
     xhrErrorMessage: (xhr: JQuery.jqXHR) => string;
   }
 
-  export interface TooltipDefault {
+  interface TooltipDefault {
     remove: (el: HTMLElement) => void;
   }
 }
