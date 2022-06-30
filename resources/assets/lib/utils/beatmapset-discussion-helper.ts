@@ -92,7 +92,7 @@ export function propsFromHref(href: string) {
   return props;
 }
 
-export function validMessageLength(message: string | undefined | null, isTimeline: boolean) {
+export function validMessageLength(message?: string | null, isTimeline = false) {
   if (!message?.length) return false;
 
   return isTimeline ? message.length <= maxLengthTimeline : true;
