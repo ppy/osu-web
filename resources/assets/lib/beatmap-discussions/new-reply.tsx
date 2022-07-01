@@ -39,7 +39,7 @@ const actionIcons = {
   reply_resolve: 'fas fa-check',
 };
 
-export class NewReply extends React.PureComponent<Props> {
+export class NewReply extends React.PureComponent<Props, State> {
   state: Readonly<State> = {
     editing: osu.present(this.storedMessage),
     message: this.storedMessage,
