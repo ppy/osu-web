@@ -13,7 +13,7 @@ $defaults = [
     ],
     'connectionPool' => [SimpleConnectionPool::class],
 ];
-$parseHosts = fn ($envName) => explode(' ', env($envName, 'localhost:9200'));
+$parseHosts = fn ($envName) => explode(' ', presence(env($envName)) ?? 'localhost:9200');
 
 return [
     'connections' => [
