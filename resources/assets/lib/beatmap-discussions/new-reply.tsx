@@ -168,7 +168,7 @@ export class NewReply extends React.PureComponent<Props, State> {
         hideLoadingOverlay();
         this.postXhr = null;
         this.setState({ posting: null });
-      }) ;
+      });
   };
 
   private renderBox() {
