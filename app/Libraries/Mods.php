@@ -88,6 +88,17 @@ class Mods
         }
     }
 
+    public function checkAllModsMeta(int $rulesetId, array $mods, callable $check, callable $failItemCallback): void
+    {
+        foreach ($mods as $mod) {
+            $modMeta = $this->mods[$rulesetId][$mod];
+
+            if (!$check($modMeta)) {
+                $failItemCallback($mod);
+            }
+        }
+    }
+
     public function idsToBitset($ids): int
     {
         if (!is_array($ids)) {
