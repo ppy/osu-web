@@ -96,7 +96,7 @@ export class NewReply extends React.PureComponent<Props, State> {
     return this.state.editing ? this.renderBox() : this.renderPlaceholder();
   }
 
-  private editStart = () => {
+  private readonly editStart = () => {
     if (core.userLogin.showIfGuest(this.editStart)) return;
     this.setState({ editing: true }, () => this.box.current?.focus());
   };
@@ -112,7 +112,7 @@ export class NewReply extends React.PureComponent<Props, State> {
     }
   };
 
-  private onCancelClick = () => {
+  private readonly onCancelClick = () => {
     if (osu.present(this.state.message) && !confirm(osu.trans('common.confirmation_unsaved'))) return;
 
     this.setState({
@@ -121,7 +121,7 @@ export class NewReply extends React.PureComponent<Props, State> {
     });
   };
 
-  private post = (event: React.SyntheticEvent<HTMLElement>) => {
+  private readonly post = (event: React.SyntheticEvent<HTMLElement>) => {
     if (!this.validPost || this.postXhr != null) return;
     showLoadingOverlay();
 
@@ -259,7 +259,7 @@ export class NewReply extends React.PureComponent<Props, State> {
     );
   }
 
-  private setMessage = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  private readonly setMessage = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     this.setState({ message: e.target.value });
   };
 
