@@ -54,7 +54,7 @@ class FindForProfilePage
                 $isSelf = $id === $user->username;
                 break;
             default:
-                $isSelf = $id === $userId || $id === $user->username;
+                $isSelf = $id === $userId || (!ctype_digit($user->username) && $id === $user->username);
         }
 
         return $isSelf ? $user : null;
