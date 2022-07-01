@@ -41,7 +41,7 @@ const actionIcons = {
 
 export class NewReply extends React.PureComponent<Props> {
   state: Readonly<State> = {
-    editing: !osu.present(this.storedMessage),
+    editing: osu.present(this.storedMessage),
     message: this.storedMessage,
     posting: null,
   };
