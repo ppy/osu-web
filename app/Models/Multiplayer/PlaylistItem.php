@@ -144,19 +144,21 @@ class PlaylistItem extends Model
         $modsHelper->validateSelection($this->ruleset_id, $requiredModIds);
         $modsHelper->assertValidExclusivity($this->ruleset_id, $requiredModIds, $allowedModIds);
 
-        foreach ($allowedModIds as $allowedModId) {
-            $modMeta = $modsHelper->mods[$this->ruleset_id][$allowedModId];
+        if ($this->room->isRealtime()) {
+            foreach ($allowedModIds as $allowedModId) {
+                $modMeta = $modsHelper->mods[$this->ruleset_id][$allowedModId];
 
-            if (!$modMeta['ValidForMultiplayer'] || !$modMeta['ValidForMultiplayerAsFreeMod']) {
-                throw new InvariantException("mod cannot be set as allowed: {$allowedModId}");
+                if (!$modMeta['ValidForMultiplayer'] || !$modMeta['ValidForMultiplayerAsFreeMod']) {
+                    throw new InvariantException("mod cannot be set as allowed: {$allowedModId}");
+                }
             }
-        }
 
-        foreach ($requiredModIds as $requiredModId) {
-            $modMeta = $modsHelper->mods[$this->ruleset_id][$requiredModId];
+            foreach ($requiredModIds as $requiredModId) {
+                $modMeta = $modsHelper->mods[$this->ruleset_id][$requiredModId];
 
-            if (!$modMeta['ValidForMultiplayer']) {
-                throw new InvariantException("mod cannot be set as required: {$requiredModId}");
+                if (!$modMeta['ValidForMultiplayer']) {
+                    throw new InvariantException("mod cannot be set as required: {$requiredModId}");
+                }
             }
         }
     }

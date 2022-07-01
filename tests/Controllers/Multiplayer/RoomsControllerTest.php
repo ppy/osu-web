@@ -44,6 +44,62 @@ class RoomsControllerTest extends TestCase
         $this->assertSame($playlistItemsCountInitial + 1, PlaylistItem::count());
     }
 
+    /**
+     * @dataProvider dataProviderForTestStoreWithInvalidRealtimeAllowedMods
+     */
+    public function testStoreWithInvalidRealtimeAllowedMods(string $type, bool $ok): void
+    {
+        $token = Token::factory()->create(['scopes' => ['*']]);
+
+        $this->expectCountChange(fn () => Room::count(), $ok ? 1 : 0);
+        $this->expectCountChange(fn () => PlaylistItem::count(), $ok ? 1 : 0);
+
+        $params = array_merge($this->createBasicStoreParams(), [
+            'ends_at' => now()->addHour(),
+            'type' => $type,
+        ]);
+        $params['playlist'][0]['required_mods'] = [];
+        $params['playlist'][0]['allowed_mods'] = [['acronym' => 'DT', 'settings' => []]];
+
+        $response = $this
+            ->actingWithToken($token)
+            ->post(route('api.rooms.store'), $params)
+            ->assertStatus($ok ? 200 : 422);
+
+        if (!$ok) {
+            $responseJson = json_decode($response->getContent(), true);
+            $this->assertSame('mod cannot be set as allowed: DT', $responseJson['error']);
+        }
+    }
+
+    /**
+     * @dataProvider dataProviderForTestStoreWithInvalidRealtimeMods
+     */
+    public function testStoreWithInvalidRealtimeMods(string $type, bool $ok): void
+    {
+        $token = Token::factory()->create(['scopes' => ['*']]);
+
+        $this->expectCountChange(fn () => Room::count(), $ok ? 1 : 0);
+        $this->expectCountChange(fn () => PlaylistItem::count(), $ok ? 1 : 0);
+
+        $params = array_merge($this->createBasicStoreParams(), [
+            'ends_at' => now()->addHour(),
+            'type' => $type,
+        ]);
+        $params['playlist'][0]['allowed_mods'] = [];
+        $params['playlist'][0]['required_mods'] = [['acronym' => 'AS', 'settings' => []]];
+
+        $response = $this
+            ->actingWithToken($token)
+            ->post(route('api.rooms.store'), $params)
+            ->assertStatus($ok ? 200 : 422);
+
+        if (!$ok) {
+            $responseJson = json_decode($response->getContent(), true);
+            $this->assertSame('mod cannot be set as required: AS', $responseJson['error']);
+        }
+    }
+
     public function testStoreWithPassword()
     {
         $token = Token::factory()->create(['scopes' => ['*']]);
@@ -316,6 +372,22 @@ class RoomsControllerTest extends TestCase
             ->assertSuccessful();
 
         $this->assertSame($initialUserChannelCount + 1, UserChannel::count());
+    }
+
+    public function dataProviderForTestStoreWithInvalidRealtimeAllowedMods(): array
+    {
+        return [
+            [array_rand_val(Room::REALTIME_TYPES), false],
+            [Room::PLAYLIST_TYPE, true],
+        ];
+    }
+
+    public function dataProviderForTestStoreWithInvalidRealtimeMods(): array
+    {
+        return [
+            [array_rand_val(Room::REALTIME_TYPES), false],
+            [Room::PLAYLIST_TYPE, true],
+        ];
     }
 
     /**
