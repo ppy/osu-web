@@ -110,7 +110,8 @@ class RoomsControllerTest extends TestCase
         $this->expectCountChange(fn () => Room::count(), $ok ? 1 : 0);
         $this->expectCountChange(fn () => PlaylistItem::count(), $ok ? 1 : 0);
 
-        $params = array_merge($this->createBasicStoreParams(), [
+        // explicit ruleset required because AS isn't available for all modes
+        $params = array_merge($this->createBasicStoreParams('osu'), [
             'ends_at' => now()->addHour(),
             'type' => $type,
         ]);
@@ -434,10 +435,14 @@ class RoomsControllerTest extends TestCase
      * If making playlist, add `ends_at`.
      * If making realtime, add `type`.
      */
-    private function createBasicStoreParams()
+    private function createBasicStoreParams($ruleset = null)
     {
         $beatmapset = Beatmapset::factory()->create();
-        $beatmap = Beatmap::factory()->create(['beatmapset_id' => $beatmapset]);
+        $beatmapParams = ['beatmapset_id' => $beatmapset];
+        if ($ruleset !== null) {
+            $beatmapParams['playmode'] = Beatmap::MODES[$ruleset];
+        }
+        $beatmap = Beatmap::factory()->create($beatmapParams);
 
         return [
             'name' => 'test room '.rand(),
