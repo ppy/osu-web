@@ -11,10 +11,28 @@ use App\Models\BeatmapFailtimes;
 class BeatmapCompactTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
+        'accuracy',
+        'ar',
         'beatmapset',
+        'bpm',
         'checksum',
+        'convert',
+        'count_circles',
+        'count_sliders',
+        'count_spinners',
+        'cs',
+        'deleted_at',
+        'drain',
         'failtimes',
+        'hit_length',
+        'is_scoreable',
+        'last_updated',
         'max_combo',
+        'mode_int',
+        'passcount',
+        'playcount',
+        'ranked',
+        'url',
     ];
 
     protected $beatmapsetTransformer = BeatmapsetCompactTransformer::class;
@@ -33,6 +51,21 @@ class BeatmapCompactTransformer extends TransformerAbstract
         ];
     }
 
+    public function includeAccuracy(Beatmap $beatmap)
+    {
+        return $this->primitive($beatmap->diff_overall);
+    }
+
+    public function includeAr(Beatmap $beatmap)
+    {
+        return $this->primitive($beatmap->diff_approach);
+    }
+
+    public function includeBpm(Beatmap $beatmap)
+    {
+        return $this->primitive($beatmap->bpm);
+    }
+
     public function includeBeatmapset(Beatmap $beatmap)
     {
         $beatmapset = $beatmap->beatmapset;
@@ -45,6 +78,42 @@ class BeatmapCompactTransformer extends TransformerAbstract
     public function includeChecksum(Beatmap $beatmap)
     {
         return $this->primitive($beatmap->checksum);
+    }
+
+
+    public function includeConvert(Beatmap $beatmap)
+    {
+        return $this->primitive($beatmap->convert);
+    }
+
+    public function includeCountCircles(Beatmap $beatmap)
+    {
+        return $this->primitive($beatmap->countNormal);
+    }
+
+    public function includeCountSliders(Beatmap $beatmap)
+    {
+        return $this->primitive($beatmap->countSlider);
+    }
+
+    public function includeCountSpinners(Beatmap $beatmap)
+    {
+        return $this->primitive($beatmap->countSpinner);
+    }
+
+    public function includeCs(Beatmap $beatmap)
+    {
+        return $this->primitive($beatmap->diff_size);
+    }
+
+    public function includeDeletedAt(Beatmap $beatmap)
+    {
+        return $this->primitive($beatmap->deleted_at);
+    }
+
+    public function includeDrain(Beatmap $beatmap)
+    {
+        return $this->primitive($beatmap->diff_drain);
     }
 
     public function includeFailtimes(Beatmap $beatmap)
@@ -66,8 +135,47 @@ class BeatmapCompactTransformer extends TransformerAbstract
         return $this->primitive($result);
     }
 
+    public function includeHitLength(Beatmap $beatmap)
+    {
+        return $this->primitive($beatmap->hit_length);
+    }
+
+    public function includeIsScoreable(Beatmap $beatmap)
+    {
+        return $this->primitive($beatmap->isScoreable());
+    }
+
+    public function includeLastUpdated(Beatmap $beatmap)
+    {
+        return $this->primitive(json_time($beatmap->last_update));
+    }
     public function includeMaxCombo(Beatmap $beatmap)
     {
         return $this->primitive($beatmap->maxCombo());
+    }
+
+    public function includeModeInt(Beatmap $beatmap)
+    {
+        return $this->primitive($beatmap->playmode);
+    }
+
+    public function includePasscount(Beatmap $beatmap)
+    {
+        return $this->primitive($beatmap->passcount);
+    }
+
+    public function includePlaycount(Beatmap $beatmap)
+    {
+        return $this->primitive($beatmap->playcount);
+    }
+
+    public function includeRanked(Beatmap $beatmap)
+    {
+        return $this->primitive($beatmap->approved);
+    }
+
+    public function includeUrl(Beatmap $beatmap)
+    {
+        return $this->primitive(route('beatmaps.show', ['beatmap' => $beatmap->beatmap_id]));
     }
 }
