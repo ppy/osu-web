@@ -18,19 +18,33 @@ use League\Fractal;
 class BeatmapsetCompactTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
+        'availability',
         'beatmaps',
+        'bpm',
+        'can_be_hyped',
         'converts',
         'current_user_attributes',
         'description',
+        'discussion_enabled', // TODO: deprecated 2022-06-08
+        'discussion_locked',
         'discussions',
         'events',
         'genre',
         'has_favourited',
+        'is_scoreable',
         'language',
+        'last_updated',
+        'legacy_thread_url',
         'nominations',
+        'nominations_summary',
+        'ranked',
+        'ranked_date',
         'ratings',
         'recent_favourites',
         'related_users',
+        'storyboard',
+        'submitted_date',
+        'tags',
         'user',
     ];
 
@@ -69,11 +83,29 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         ];
     }
 
+    public function includeAvailability(Beatmapset $beatmapset)
+    {
+        return $this->primitive([
+            'download_disabled' => $beatmapset->download_disabled,
+            'more_information' => $beatmapset->download_disabled_url,
+        ]);
+    }
+
     public function includeBeatmaps(Beatmapset $beatmapset, Fractal\ParamBag $params)
     {
         $rel = $params->get('with_trashed') ? 'allBeatmaps' : 'beatmaps';
 
         return $this->collection($beatmapset->$rel, new $this->beatmapTransformer());
+    }
+
+    public function includeBpm(Beatmapset $beatmapset)
+    {
+        return $this->primitive($beatmapset->bpm);
+    }
+
+    public function includeCanBeHyped(Beatmapset $beatmapset)
+    {
+        return $this->primitive($beatmapset->canBeHyped());
     }
 
     public function includeConverts(Beatmapset $beatmapset)
@@ -133,6 +165,16 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         return $this->item($beatmapset, new BeatmapsetDescriptionTransformer());
     }
 
+    public function includeDiscussionEnabled(Beatmapset $beatmapset)
+    {
+        return $this->primitive(true);
+    }
+
+    public function includeDiscussionLocked(Beatmapset $beatmapset)
+    {
+        return $this->primitive($beatmapset->discussion_locked);
+    }
+
     public function includeDiscussions(Beatmapset $beatmapset)
     {
         return $this->collection(
@@ -154,6 +196,11 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         return $this->primitive(auth()->user()->hasFavourited($beatmapset));
     }
 
+    public function includeIsScoreable(Beatmapset $beatmapset)
+    {
+        return $this->primitive($beatmapset->isScoreable());
+    }
+
     public function includeGenre(Beatmapset $beatmapset)
     {
         return $this->item($beatmapset->genre, new GenreTransformer());
@@ -162,6 +209,20 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
     public function includeLanguage(Beatmapset $beatmapset)
     {
         return $this->item($beatmapset->language, new LanguageTransformer());
+    }
+
+    public function includeLastUpdated(Beatmapset $beatmapset)
+    {
+        return $this->primitive(json_time($beatmapset->last_update));
+    }
+
+    public function includeLegacyThreadUrl(Beatmapset $beatmapset)
+    {
+        return $this->primitive(
+            $beatmapset->thread_id !== 0
+            ? route('forum.topics.show', $beatmapset->thread_id)
+            : null
+        );
     }
 
     public function includeNominations(Beatmapset $beatmapset)
@@ -192,12 +253,19 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         return $this->primitive($result);
     }
 
-    public function includeUser(Beatmapset $beatmapset)
+    public function includeNominationsSummary(Beatmapset $beatmapset)
     {
-        return $this->item(
-            $beatmapset->user ?? (new DeletedUser()),
-            new UserCompactTransformer()
-        );
+        return $this->primitive($beatmapset->nominationsSummaryMeta());
+    }
+
+    public function includeRanked(Beatmapset $beatmapset)
+    {
+        return $this->primitive($beatmapset->approved);
+    }
+
+    public function includeRankedDate(Beatmapset $beatmapset)
+    {
+        return $this->primitive(json_time($beatmapset->approved_date));
     }
 
     public function includeRatings(Beatmapset $beatmapset)
@@ -251,5 +319,28 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         $users = User::with('userGroups')->whereIn('user_id', $userIds)->get();
 
         return $this->collection($users, new UserCompactTransformer());
+    }
+
+    public function includeStoryboard(Beatmapset $beatmapset)
+    {
+        return $this->primitive($beatmapset->storyboard);
+    }
+
+    public function includeSubmittedDate(Beatmapset $beatmapset)
+    {
+        return $this->primitive(json_time($beatmapset->submit_date));
+    }
+
+    public function includeTags(Beatmapset $beatmapset)
+    {
+        return $this->primitive($beatmapset->tags);
+    }
+
+    public function includeUser(Beatmapset $beatmapset)
+    {
+        return $this->item(
+            $beatmapset->user ?? (new DeletedUser()),
+            new UserCompactTransformer()
+        );
     }
 }
