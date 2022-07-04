@@ -1,40 +1,53 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { DiscussionType, discussionTypeIcons } from 'beatmap-discussions/discussion-type'
-import BigButton from 'components/big-button'
-import StringWithComponent from 'components/string-with-component'
-import TimeWithTooltip from 'components/time-with-tooltip'
-import UserAvatar from 'components/user-avatar'
-import { route } from 'laroute'
-import core from 'osu-core-singleton'
-import * as React from 'react'
-import TextareaAutosize from 'react-autosize-textarea'
-import { nominationsCount } from 'utils/beatmapset-helper'
-import { validMessageLength } from 'utils/beatmapset-discussion-helper'
-import { InputEventType, makeTextAreaHandler } from 'utils/input-handler'
-import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
-import { linkHtml } from 'utils/url'
-import MessageLengthCounter from './message-length-counter'
-import BeatmapsetJson from 'interfaces/beatmapset-json'
-import BeatmapJson from 'interfaces/beatmap-json'
-import CurrentUserJson from 'interfaces/current-user-json'
-import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json'
-import { BeatmapsetDiscussionPostStoreResponseJson } from 'interfaces/beatmapset-discussion-post-responses'
-import { onError } from 'utils/ajax'
-import { classWithModifiers } from 'utils/css'
+import { DiscussionType, discussionTypeIcons } from 'beatmap-discussions/discussion-type';
+import BigButton from 'components/big-button';
+import StringWithComponent from 'components/string-with-component';
+import TimeWithTooltip from 'components/time-with-tooltip';
+import UserAvatar from 'components/user-avatar';
+import { route } from 'laroute';
+import core from 'osu-core-singleton';
+import * as React from 'react';
+import TextareaAutosize from 'react-autosize-textarea';
+import { nominationsCount } from 'utils/beatmapset-helper';
+import { validMessageLength } from 'utils/beatmapset-discussion-helper';
+import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
+import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
+import { linkHtml } from 'utils/url';
+import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
+import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
+import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
+import { BeatmapsetDiscussionPostStoreResponseJson } from 'interfaces/beatmapset-discussion-post-responses';
+import CurrentUserJson from 'interfaces/current-user-json';
+import { onError } from 'utils/ajax';
+import { classWithModifiers } from 'utils/css';
+import MessageLengthCounter from './message-length-counter';
 
-const bn = 'beatmap-discussion-new'
+const bn = 'beatmap-discussion-new';
+
+type Mode = 'events' | 'general' | 'generalAll' | 'timeline' | 'reviews';
+
+type Discussion = BeatmapsetDiscussionJson & Required<Pick<BeatmapsetDiscussionJson, 'current_user_attributes'>>;
+
+interface DiscussionsCache {
+    beatmap: BeatmapExtendedJson;
+    discussions: Discussion[];
+    timestamp: string;
+}
 
 interface Props {
-  beatmapset: BeatmapsetJson;
-  currentBeatmap: BeatmapJson;
+  autoFocus: boolean;
+  beatmapset: BeatmapsetExtendedJson;
+  currentBeatmap: BeatmapExtendedJson;
   currentUser: CurrentUserJson;
   discussion: BeatmapsetDiscussionJson & Required<Pick<BeatmapsetDiscussionJson, 'current_user_attributes'>>;
+  mode: Mode;
+  pinned: boolean;
 }
 
 interface State {
-  cssTop: number | null;
+  cssTop?: number;
   message: string;
   timestampConfirmed: boolean;
   posting: string | null;
@@ -42,15 +55,15 @@ interface State {
 
 export class NewDiscussion extends React.PureComponent<Props, State> {
   state: Readonly<State> = {
-    cssTop: null,
     message: this.storedMessage,
     timestampConfirmed: false,
     posting: null,
   };
 
-  private readonly disposers = new Set<(() => void | undefined)>();
-  private readonly inputBox = new React.createRef<HTMLTextAreaElement>();
+  private readonly disposers = new Set<((() => void) | undefined)>();
   private readonly handleKeyDown;
+  private readonly inputBox = React.createRef<HTMLTextAreaElement>();
+  private nearbyDiscussionsCache: DiscussionsCache | null = null;
   private postXhr: JQuery.jqXHR<BeatmapsetDiscussionPostStoreResponseJson> | null = null;
 
   private get canPost() {
@@ -130,7 +143,7 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
     );
   }
 
-  private cssTop(sticky) {
+  private cssTop(sticky: boolean) {
     if (!sticky || this.props.stickTo?.current == null) return;
     return core.stickyHeader.headerHeight + this.props.stickTo.current.getBoundingClientRect().height;
 
@@ -227,12 +240,12 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
   }
 
   private problemType() {
-    const canDisqualify = currentUser.is_admin || currentUser.is_moderator || currentUser.is_full_bn;
+    const canDisqualify = core.currentUser?.is_admin || core.currentUser?.is_moderator || core.currentUser?.is_full_bn;
     const willDisqualify = this.props.beatmapset.status === 'qualified';
 
     if (canDisqualify && willDisqualify) return 'disqualify';
 
-    const canReset = currentUser.is_admin || currentUser.is_nat || currentUser.is_bng;
+    const canReset = core.currentUser?.is_admin || core.currentUser?.is_nat || core.currentUser?.is_bng;
     const currentNominations = nominationsCount(this.props.beatmapset.nominations, 'current');
     const willReset = this.props.beatmapset.status === 'pending' && currentNominations > 0
 
