@@ -11,7 +11,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
 import { nominationsCount } from 'utils/beatmapset-helper';
-import { validMessageLength } from 'utils/beatmapset-discussion-helper';
+import { canModeratePosts, validMessageLength } from 'utils/beatmapset-discussion-helper';
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import { linkHtml } from 'utils/url';
@@ -69,7 +69,7 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
   private get canPost() {
     return !this.props.currentUser.is_silenced
       && (!this.props.beatmapset.discussion_locked
-        || BeatmapDiscussionHelper.canModeratePosts(this.props.currentUser))
+        || canModeratePosts(this.props.currentUser))
       && (this.props.currentBeatmap.deleted_at == null || this.props.mode == 'generalAll');
   }
 
@@ -264,7 +264,7 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
         this.props.currentUser.id === this.props.beatmapset.user_id
           || (this.props.currentUser.id === this.props.currentBeatmap.user_id && this.props.mode in ['general', 'timeline'])
           || this.props.currentUser.is_bng
-          || BeatmapDiscussionHelper.canModeratePosts(this.props.currentUser)
+          || canModeratePosts(this.props.currentUser)
 
     const buttonCssClasses = classWithModifiers('btn-circle', { activated: this.props.pinned });
 

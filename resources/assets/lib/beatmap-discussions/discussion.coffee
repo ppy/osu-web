@@ -6,7 +6,7 @@ import { route } from 'laroute'
 import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { button, div, i, span, a } from 'react-dom-factories'
-import { badgeGroup } from 'utils/beatmapset-discussion-helper'
+import { canModeratePosts, badgeGroup } from 'utils/beatmapset-discussion-helper'
 import { classWithModifiers } from 'utils/css'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { discussionTypeIcons } from './discussion-type'
@@ -225,7 +225,7 @@ export class Discussion extends React.PureComponent
 
 
   canBeRepliedTo: =>
-    (!@props.beatmapset.discussion_locked || BeatmapDiscussionHelper.canModeratePosts(@props.currentUser)) &&
+    (!@props.beatmapset.discussion_locked || canModeratePosts(@props.currentUser)) &&
     (!@props.discussion.beatmap_id? || !@props.currentBeatmap.deleted_at?)
 
 
@@ -234,7 +234,7 @@ export class Discussion extends React.PureComponent
 
     elementName = if post.system then SystemPost else Post
 
-    canModeratePosts = BeatmapDiscussionHelper.canModeratePosts(@props.currentUser)
+    canModeratePosts = canModeratePosts(@props.currentUser)
     canBeEdited = @isOwner(post) && post.id > @resolvedSystemPostId() && !@props.beatmapset.discussion_locked
     canBeDeleted =
       if type == 'discussion'
