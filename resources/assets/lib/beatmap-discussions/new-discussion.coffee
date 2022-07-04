@@ -12,7 +12,7 @@ import * as React from 'react'
 import TextareaAutosize from 'react-autosize-textarea'
 import { button, div, input, label, p, i, span } from 'react-dom-factories'
 import { nominationsCount } from 'utils/beatmapset-helper'
-import { validMessageLength } from 'utils/beatmapset-discussion-helper'
+import { canModeratePosts, validMessageLength } from 'utils/beatmapset-discussion-helper'
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { linkHtml } from 'utils/url'
@@ -85,7 +85,7 @@ export class NewDiscussion extends React.PureComponent
       @props.currentUser.id == @props.beatmapset.user_id ||
       (@props.currentUser.id == @props.currentBeatmap.user_id && @props.mode in ['general', 'timeline']) ||
       @props.currentUser.is_bng ||
-      BeatmapDiscussionHelper.canModeratePosts(@props.currentUser)
+      canModeratePosts(@props.currentUser)
 
     buttonCssClasses = 'btn-circle'
     buttonCssClasses += ' btn-circle--activated' if @props.pinned
@@ -217,7 +217,7 @@ export class NewDiscussion extends React.PureComponent
 
   canPost: =>
     !@props.currentUser.is_silenced &&
-    (!@props.beatmapset.discussion_locked || BeatmapDiscussionHelper.canModeratePosts(@props.currentUser)) &&
+    (!@props.beatmapset.discussion_locked || canModeratePosts(@props.currentUser)) &&
     (!@props.currentBeatmap.deleted_at? || @props.mode == 'generalAll')
 
 
