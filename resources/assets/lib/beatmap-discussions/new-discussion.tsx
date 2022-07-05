@@ -6,22 +6,22 @@ import BigButton from 'components/big-button';
 import StringWithComponent from 'components/string-with-component';
 import TimeWithTooltip from 'components/time-with-tooltip';
 import UserAvatar from 'components/user-avatar';
+import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
+import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
+import { BeatmapsetDiscussionPostStoreResponseJson } from 'interfaces/beatmapset-discussion-post-responses';
+import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
+import CurrentUserJson from 'interfaces/current-user-json';
 import { route } from 'laroute';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
-import { nominationsCount } from 'utils/beatmapset-helper';
+import { onError } from 'utils/ajax';
 import { canModeratePosts, validMessageLength } from 'utils/beatmapset-discussion-helper';
+import { nominationsCount } from 'utils/beatmapset-helper';
+import { classWithModifiers } from 'utils/css';
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import { linkHtml } from 'utils/url';
-import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
-import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
-import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
-import { BeatmapsetDiscussionPostStoreResponseJson } from 'interfaces/beatmapset-discussion-post-responses';
-import CurrentUserJson from 'interfaces/current-user-json';
-import { onError } from 'utils/ajax';
-import { classWithModifiers } from 'utils/css';
 import MessageLengthCounter from './message-length-counter';
 
 const bn = 'beatmap-discussion-new';
@@ -54,15 +54,15 @@ interface Props {
 interface State {
   cssTop?: number;
   message: string;
-  timestampConfirmed: boolean;
   posting: string | null;
+  timestampConfirmed: boolean;
 }
 
 export class NewDiscussion extends React.PureComponent<Props, State> {
   state: Readonly<State> = {
     message: this.storedMessage,
-    timestampConfirmed: false,
     posting: null,
+    timestampConfirmed: false,
   };
 
   private readonly disposers = new Set<((() => void) | undefined)>();
@@ -76,7 +76,7 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
     return !this.props.currentUser.is_silenced
       && (!this.props.beatmapset.discussion_locked
         || canModeratePosts(this.props.currentUser))
-      && (this.props.currentBeatmap.deleted_at == null || this.props.mode == 'generalAll');
+      && (this.props.currentBeatmap.deleted_at == null || this.props.mode === 'generalAll');
   }
 
   private get isTimeline() {
@@ -95,14 +95,14 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
     if (!validMessageLength(this.state.message, this.isTimeline)) return false;
 
     if (this.isTimeline) {
-      this.timestamp() != null && (this.nearbyDiscussions().length == 0 || this.state.timestampConfirmed);
+      return this.timestamp() != null && (this.nearbyDiscussions().length === 0 || this.state.timestampConfirmed);
     }
 
     return true;
   }
 
   constructor(props: Props) {
-    super(props)
+    super(props);
     this.handleKeyDown = makeTextAreaHandler(this.handleKeyDownCallback);
   }
 
@@ -126,11 +126,11 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
   componentWillUnmount() {
     $(window).off('resize', this.setTop);
     this.postXhr?.abort();
-    this.disposers.forEach((disposer) => disposer?.())
+    this.disposers.forEach((disposer) => disposer?.());
   }
 
   render() {
-    const cssClasses = classWithModifiers('beatmap-discussion-new-float', { pinned: this.props.pinned })
+    const cssClasses = classWithModifiers('beatmap-discussion-new-float', { pinned: this.props.pinned });
 
     return (
       <div
@@ -160,9 +160,7 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
     if (type === InputEventType.Cancel) {
       this.setSticky(false);
     }
-  }
-
-  private readonly onFocus = () => this.setSticky(true);
+  };
 
   private messagePlaceholder() {
     if (this.canPost) {
@@ -170,32 +168,34 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
     }
 
     if (this.props.currentUser.is_silenced) {
-      return osu.trans('beatmaps.discussions.message_placeholder_silenced')
+      return osu.trans('beatmaps.discussions.message_placeholder_silenced');
     } else if (this.props.beatmapset.discussion_locked) {
-      return osu.trans('beatmaps.discussions.message_placeholder_locked')
+      return osu.trans('beatmaps.discussions.message_placeholder_locked');
     } else {
-      return osu.trans('beatmaps.discussions.message_placeholder_deleted_beatmap')
+      return osu.trans('beatmaps.discussions.message_placeholder_deleted_beatmap');
     }
   }
 
   private nearbyDiscussions() {
     if (this.timestamp() == null) return [];
 
-    if (this.nearbyDiscussionsCache == null || (this.nearbyDiscussionsCache.beatmap != this.props.currentBeatmap || this.nearbyDiscussionsCache.timestamp != this.timestamp())) {
+    if (this.nearbyDiscussionsCache == null || (this.nearbyDiscussionsCache.beatmap !== this.props.currentBeatmap || this.nearbyDiscussionsCache.timestamp != this.timestamp())) {
       this.nearbyDiscussionsCache = {
         beatmap: this.props.currentBeatmap,
         discussions: BeatmapDiscussionHelper.nearbyDiscussions(this.props.currentDiscussions.timelineAllUsers, this.timestamp()),
         timestamp: this.timestamp(),
-      }
+      };
     }
 
-    return this.nearbyDiscussionsCache.discussions;
+    return this.nearbyDiscussionsCache?.discussions ?? [];
   }
+
+  private readonly onFocus = () => this.setSticky(true);
 
   private readonly post = (e: React.SyntheticEvent<HTMLElement>) => {
     if (!this.validPost || this.postXhr != null) return;
 
-    const type = e.currentTarget.dataset.type
+    const type = e.currentTarget.dataset.type;
 
     if (type === 'problem') {
       const problemType = this.problemType();
@@ -208,19 +208,19 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
       if (!confirm(osu.trans('beatmaps.hype.confirm', { n: this.props.beatmapset.current_user_attributes.remaining_hype }))) return;
     }
 
-    showLoadingOverlay()
+    showLoadingOverlay();
     this.setState({ posting: type });
 
     const data = {
-      beatmapset_id: this.props.currentBeatmap.beatmapset_id,
       beatmap_discussion: {
         beatmap_id: this.props.mode === 'generalAll' ? undefined : this.props.currentBeatmap.id,
-        timestamp: this.timestamp(),
         message_type: type,
+        timestamp: this.timestamp(),
       },
       beatmap_discussion_post: {
-        message: this.state.message
-      }
+        message: this.state.message,
+      },
+      beatmapset_id: this.props.currentBeatmap.beatmapset_id,
     };
 
     this.postXhr = $.ajax(route('beatmapsets.discussions.posts.store'), {
@@ -239,11 +239,11 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
       })
       .fail(onError)
       .always(() => {
-        hideLoadingOverlay()
+        hideLoadingOverlay();
         this.postXhr = null;
         this.setState({ posting: null });
       });
-  }
+  };
 
   private problemType() {
     const canDisqualify = core.currentUser?.is_admin || core.currentUser?.is_moderator || core.currentUser?.is_full_bn;
@@ -253,7 +253,7 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
 
     const canReset = core.currentUser?.is_admin || core.currentUser?.is_nat || core.currentUser?.is_bng;
     const currentNominations = nominationsCount(this.props.beatmapset.nominations, 'current');
-    const willReset = this.props.beatmapset.status === 'pending' && currentNominations > 0
+    const willReset = this.props.beatmapset.status === 'pending' && currentNominations > 0;
 
     if (canReset && willReset) return 'nomination_reset';
     if (willDisqualify) return 'problem_warning';
@@ -266,11 +266,11 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
       && this.props.beatmapset.can_be_hyped
       && this.props.mode == 'generalAll';
 
-      const canPostNote =
+    const canPostNote =
         this.props.currentUser.id === this.props.beatmapset.user_id
           || (this.props.currentUser.id === this.props.currentBeatmap.user_id && this.props.mode in ['general', 'timeline'])
           || this.props.currentUser.is_bng
-          || canModeratePosts(this.props.currentUser)
+          || canModeratePosts(this.props.currentUser);
 
     const buttonCssClasses = classWithModifiers('btn-circle', { activated: this.props.pinned });
 
@@ -294,27 +294,27 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
           </div>
           <div className={`${bn}__content`}>
             <div className={`${bn}__avatar`}>
-              <UserAvatar user={this.props.currentUser} modifiers='full-rounded' />
+              <UserAvatar modifiers='full-rounded' user={this.props.currentUser} />
             </div>
             <div className={`${bn}__message`} id='new'>
               {this.props.currentUser?.id != null ? (
                 <>
                   <TextareaAutosize
                     key='input'
+                    ref={this.inputBox}
                     className={`${bn}__message-area js-hype--input`}
                     disabled={this.state.posting != null || !this.canPost}
-                    value={this.canPost ? this.state.message : ''}
                     onChange={this.setMessage}
-                    onKeyDown={this.handleKeyDown}
                     onFocus={this.onFocus}
-                    ref={this.inputBox}
+                    onKeyDown={this.handleKeyDown}
                     placeholder={this.messagePlaceholder()}
+                    value={this.canPost ? this.state.message : ''}
                   />
 
                   <MessageLengthCounter
                     key='counter'
-                    message={this.state.message}
                     isTimeline={this.isTimeline}
+                    message={this.state.message}
                   />
                 </>
               ) : osu.trans('beatmaps.discussions.require-login')}
@@ -325,7 +325,7 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
             <div
               className={`${bn}__footer-content js-hype--explanation js-flash-border`}
               style={{
-                opacity: this.props.mode !== 'timeline' && !(this.props.mode === 'generalAll' && this.props.beatmapset.can_be_hyped) ? '0' : undefined
+                opacity: this.props.mode !== 'timeline' && !(this.props.mode === 'generalAll' && this.props.beatmapset.can_be_hyped) ? '0' : undefined,
               }}
             >
               <div key='label' className={`${bn}__timestamp-col ${bn}__timestamp-col--label`}>
@@ -352,10 +352,10 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
     );
   }
 
-  private renderTimestamp() {
-    if (this.props.mode !== 'timeline') return null;
-
-    return this.timestamp() != null ? BeatmapDiscussionHelper.formatTimestamp(this.timestamp()) : osu.trans('beatmaps.discussions.new.timestamp_missing')
+  private renderGuest() {
+    if (!(this.props.mode === 'generalAll' && this.props.beatmapset.can_be_hyped)) return null;
+    if (this.props.currentUser?.id != null) return null;
+    return osu.trans('beatmaps.hype.explanation_guest');
   }
 
   private renderHype() {
@@ -374,7 +374,7 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
             {this.props.beatmapset.current_user_attributes.new_hype_time != null && (
               <StringWithComponent
                 mappings={{
-                  new_time: <TimeWithTooltip dateTime={this.props.beatmapset.current_user_attributes.new_hype_time} relative />
+                  new_time: <TimeWithTooltip dateTime={this.props.beatmapset.current_user_attributes.new_hype_time} relative />,
                 }}
                 pattern={` ${osu.trans('beatmaps.hype.new_time')}`}
               />
@@ -390,9 +390,9 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
     const currentTimestamp = BeatmapDiscussionHelper.formatTimestamp(this.timestamp());
     const timestamps = this.nearbyDiscussions().map((discussion) => (
       linkHtml(
-        BeatmapDiscussionHelper.url({ discussion: discussion }),
+        BeatmapDiscussionHelper.url({ discussion }),
         BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp),
-        { classNames: ['js-beatmap-discussion--jump'] }
+        { classNames: ['js-beatmap-discussion--jump'] },
       )
     ));
 
@@ -406,17 +406,17 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
             __html: osu.trans('beatmap_discussions.nearby_posts.notice', {
               existing_timestamps: timestampsString,
               timestamp: currentTimestamp,
-            })
+            }),
           }}
         />
 
         <label className={`${bn}__notice-checkbox`}>
           <div className={'osu-switch-v2'}>
             <input
-              className={'osu-switch-v2__input'}
-              type='checkbox'
               checked={this.state.timestampConfirmed}
+              className={'osu-switch-v2__input'}
               onChange={this.toggleTimestampConfirmation}
+              type='checkbox'
             />
             <span className={'osu-switch-v2__content'} />
           </div>
@@ -426,13 +426,13 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
     );
   }
 
-  private renderGuest() {
-    if (!(this.props.mode === 'generalAll' && this.props.beatmapset.can_be_hyped)) return null;
-    if (this.props.currentUser?.id != null) return null;
-    return osu.trans('beatmaps.hype.explanation_guest');
+  private renderTimestamp() {
+    if (this.props.mode !== 'timeline') return null;
+
+    return this.timestamp() != null ? BeatmapDiscussionHelper.formatTimestamp(this.timestamp()) : osu.trans('beatmaps.discussions.new.timestamp_missing');
   }
 
-private readonly setMessage = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  private readonly setMessage = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     this.setState({ message: e.target.value });
   };
 
@@ -443,7 +443,7 @@ private readonly setMessage = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
   };
 
   private readonly setTop = () => {
-    this.setState({ cssTop: this.cssTop(this.props.pinned) })
+    this.setState({ cssTop: this.cssTop(this.props.pinned) });
   };
 
   private storeMessage() {
@@ -466,12 +466,12 @@ private readonly setMessage = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         key={type}
         disabled={!this.validPost || this.state.posting != null || !this.canPost}
         icon={discussionTypeIcons[type]}
-        isBusy={this.state.posting == type}
+        isBusy={this.state.posting === type}
         modifiers={'beatmap-discussion-new'}
-        text={osu.trans(`beatmaps.discussions.message_type.${typeText}`)}
         props={props}
+        text={osu.trans(`beatmaps.discussions.message_type.${typeText}`)}
       />
-    )
+    );
   }
 
   private timestamp() {
@@ -484,7 +484,7 @@ private readonly setMessage = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (this.timestampCache == null) {
       this.timestampCache = {
         message: this.state.message,
-        timestamp: BeatmapDiscussionHelper.parseTimestamp(this.state.message);
+        timestamp: BeatmapDiscussionHelper.parseTimestamp(this.state.message),
       };
     }
 
@@ -496,6 +496,6 @@ private readonly setMessage = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
   };
 
   private readonly toggleTimestampConfirmation = () => {
-    this.setState({ timestampConfirmed: !this.state.timestampConfirmed })
+    this.setState({ timestampConfirmed: !this.state.timestampConfirmed });
   };
 }
