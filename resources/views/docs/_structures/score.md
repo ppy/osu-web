@@ -1,6 +1,6 @@
 ## Score
 
-The following is the format returned when API v2 version header is below 20220705.
+The following is the format returned when API v2 version header is 20220704 or lower.
 
 Field                 | Type    | Description
 --------------------- | ------- | -----------
