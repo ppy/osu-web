@@ -38,7 +38,7 @@ class TransactionStateManager
     public function commit()
     {
         if ($this->isCompleted()) {
-            foreach ($this->states as $name => $state) {
+            foreach ($this->states as $_name => $state) {
                 $state->commit();
             }
         }
@@ -52,7 +52,7 @@ class TransactionStateManager
     public function rollback()
     {
         if ($this->isCompleted()) {
-            foreach ($this->states as $name => $state) {
+            foreach ($this->states as $_name => $state) {
                 $state->rollback();
             }
         }
