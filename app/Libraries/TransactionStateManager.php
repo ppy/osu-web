@@ -9,12 +9,11 @@ use Illuminate\Database\ConnectionInterface;
 
 class TransactionStateManager
 {
-    private $states = [];
+    private array $states;
 
     public function __construct()
     {
-        // for handling cases outside of transactions.
-        $this->states[''] = new TransactionState(null);
+        $this->resetStates();
     }
 
     public function isCompleted()
@@ -37,6 +36,7 @@ class TransactionStateManager
             foreach ($this->states as $name => $state) {
                 $state->commit();
             }
+            $this->resetStates();
         }
     }
 
@@ -51,6 +51,7 @@ class TransactionStateManager
             foreach ($this->states as $name => $state) {
                 $state->rollback();
             }
+            $this->resetStates();
         }
     }
 
@@ -59,5 +60,11 @@ class TransactionStateManager
         if (!isset($this->states[$name])) {
             $this->states[$name] = $item;
         }
+    }
+
+    private function resetStates(): void
+    {
+        // for handling cases outside of transactions.
+        $this->states = ['' => new TransactionState(null)];
     }
 }
