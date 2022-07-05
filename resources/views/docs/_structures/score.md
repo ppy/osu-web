@@ -1,5 +1,7 @@
 ## Score
 
+The following is the format returned when API v2 version header is below 20220705.
+
 Field                 | Type    | Description
 --------------------- | ------- | -----------
 id                    |         | |
