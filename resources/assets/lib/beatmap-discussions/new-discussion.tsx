@@ -524,7 +524,6 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
         disabled={!this.validPost || this.state.posting != null || !this.canPost}
         icon={discussionTypeIcons[type]}
         isBusy={this.state.posting === type}
-        modifiers='beatmap-discussion-new'
         props={props}
         text={osu.trans(`beatmaps.discussions.message_type.${typeText}`)}
       />
