@@ -19,9 +19,13 @@ class TransactionStateManager
 
     public function isCompleted()
     {
-        return array_reduce(array_values($this->states), function ($completed, $state) {
-            return $completed && $state->isCompleted();
-        }, true);
+        foreach ($this->states as $_name => $state) {
+            if (!$state->isCompleted()) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public function begin(ConnectionInterface $connection)
