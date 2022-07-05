@@ -31,9 +31,14 @@ type Mode = 'events' | 'general' | 'generalAll' | 'timeline' | 'reviews';
 type Discussion = BeatmapsetDiscussionJson & Required<Pick<BeatmapsetDiscussionJson, 'current_user_attributes'>>;
 
 interface DiscussionsCache {
-    beatmap: BeatmapExtendedJson;
-    discussions: Discussion[];
-    timestamp: string;
+  beatmap: BeatmapExtendedJson;
+  discussions: Discussion[];
+  timestamp: string;
+}
+
+interface TimestampCache {
+  message: string;
+  timestamp: number | null;
 }
 
 interface Props {
@@ -65,6 +70,7 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
   private readonly inputBox = React.createRef<HTMLTextAreaElement>();
   private nearbyDiscussionsCache: DiscussionsCache | null = null;
   private postXhr: JQuery.jqXHR<BeatmapsetDiscussionPostStoreResponseJson> | null = null;
+  private timestampCache: TimestampCache | null = null;
 
   private get canPost() {
     return !this.props.currentUser.is_silenced
