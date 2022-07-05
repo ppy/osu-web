@@ -161,6 +161,14 @@ abstract class Search extends HasSearch implements Queryable
     }
 
     /**
+     * Allow documents to be immediately searchable (mainly for testing).
+     */
+    public function refresh(): void
+    {
+        $this->client()->indices()->refresh(['index' => $this->index]);
+    }
+
+    /**
      * @return SearchResponse
      */
     public function response(): SearchResponse

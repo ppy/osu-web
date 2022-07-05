@@ -20,7 +20,7 @@ class UserSearchTest extends TestCase
         $searchUser2->esIndexDocument();
         $user3 = User::factory()->create(['username' => 'aaaaaa']);
         $user3->esIndexDocument();
-        sleep(1);
+        (new UserSearch())->refresh();
 
         $params = new UserSearchParams();
         $params->queryString = $searchUser1->username;
