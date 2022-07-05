@@ -379,22 +379,8 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
           </div>
 
           <div className={`${bn}__footer`}>
-            <div
-              className={`${bn}__footer-content js-hype--explanation js-flash-border`}
-              style={{
-                opacity: this.props.mode !== 'timeline' && !(this.props.mode === 'generalAll' && this.props.beatmapset.can_be_hyped) ? '0' : undefined,
-              }}
-            >
-              <div key='label' className={`${bn}__timestamp-col ${bn}__timestamp-col--label`}>
-                {/* # mode == 'generalAll' */}
-                {this.props.mode === 'timeline' ? osu.trans('beatmaps.discussions.new.timestamp') : osu.trans('beatmaps.hype.title')}
-              </div>
-              <div key='timestamp' className={`${bn}__timestamp-col`}>
-                {this.renderTimestamp()}
-                {this.renderHype()}
-                {this.renderGuest()}
-              </div>
-            </div>
+            {this.renderTimestamp()}
+            {this.renderHype()}
             <div className={`${bn}__footer-content ${bn}__footer-content--right`}>
               {canHype && this.submitButton('hype')}
               {canPostNote && this.submitButton('mapper_note')}
@@ -417,28 +403,35 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
 
   private renderHype() {
     if (!(this.props.mode === 'generalAll' && this.props.beatmapset.can_be_hyped)) return null;
-    if (this.props.currentUser?.id == null) return null;
+    if (this.props.currentUser?.id == null) {
+      return this.renderGuest();
+    }
 
     return (
-      <>
-        {this.props.beatmapset.current_user_attributes.can_hype ? osu.trans('beatmaps.hype.explanation') : this.props.beatmapset.current_user_attributes.can_hype_reason}
-        {(this.props.beatmapset.current_user_attributes.can_hype || this.props.beatmapset.current_user_attributes.remaining_hype <= 0) && (
-          <>
-            <StringWithComponent
-              mappings={{ remaining: this.props.beatmapset.current_user_attributes.remaining_hype }}
-              pattern={` ${osu.trans('beatmaps.hype.remaining')}`}
-            />
-            {this.props.beatmapset.current_user_attributes.new_hype_time != null && (
+      <div className={`${bn}__footer-content js-hype--explanation js-flash-border`}>
+        <div className={`${bn}__timestamp-col ${bn}__timestamp-col--label`}>
+          {osu.trans('beatmaps.hype.title')}
+        </div>
+        <div className={`${bn}__timestamp-col`}>
+          {this.props.beatmapset.current_user_attributes.can_hype ? osu.trans('beatmaps.hype.explanation') : this.props.beatmapset.current_user_attributes.can_hype_reason}
+          {(this.props.beatmapset.current_user_attributes.can_hype || this.props.beatmapset.current_user_attributes.remaining_hype <= 0) && (
+            <>
               <StringWithComponent
-                mappings={{
-                  new_time: <TimeWithTooltip dateTime={this.props.beatmapset.current_user_attributes.new_hype_time} relative />,
-                }}
-                pattern={` ${osu.trans('beatmaps.hype.new_time')}`}
+                mappings={{ remaining: this.props.beatmapset.current_user_attributes.remaining_hype }}
+                pattern={` ${osu.trans('beatmaps.hype.remaining')}`}
               />
-            )}
-          </>
-        )}
-      </>
+              {this.props.beatmapset.current_user_attributes.new_hype_time != null && (
+                <StringWithComponent
+                  mappings={{
+                    new_time: <TimeWithTooltip dateTime={this.props.beatmapset.current_user_attributes.new_hype_time} relative />,
+                  }}
+                  pattern={` ${osu.trans('beatmaps.hype.new_time')}`}
+                />
+              )}
+            </>
+          )}
+        </div>
+      </div>
     );
   }
 
@@ -486,7 +479,18 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
   private renderTimestamp() {
     if (this.props.mode !== 'timeline') return null;
 
-    return this.timestamp != null ? BeatmapDiscussionHelper.formatTimestamp(this.timestamp) : osu.trans('beatmaps.discussions.new.timestamp_missing');
+    const timestamp = BeatmapDiscussionHelper.formatTimestamp(this.timestamp) ?? osu.trans('beatmaps.discussions.new.timestamp_missing');
+
+    return (
+      <div className={`${bn}__footer-content`}>
+        <div className={`${bn}__timestamp-col ${bn}__timestamp-col--label`}>
+          {osu.trans('beatmaps.discussions.new.timestamp')}
+        </div>
+        <div className={`${bn}__timestamp-col`}>
+          {timestamp}
+        </div>
+      </div>
+    );
   }
 
   private readonly setMessage = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
