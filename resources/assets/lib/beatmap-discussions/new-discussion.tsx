@@ -235,6 +235,7 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
     if (!this.validPost || this.postXhr != null) return;
 
     const type = e.currentTarget.dataset.type;
+    if (type == null) return;
 
     if (type === 'problem') {
       const problemType = this.problemType();
@@ -430,7 +431,7 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
     const timestamps = this.nearbyDiscussions().map((discussion) => (
       linkHtml(
         BeatmapDiscussionHelper.url({ discussion }),
-        BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp),
+        BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp) ?? '',
         { classNames: ['js-beatmap-discussion--jump'] },
       )
     ));
@@ -459,7 +460,7 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
             />
             <span className={'osu-switch-v2__content'} />
           </div>
-          osu.trans('beatmap_discussions.nearby_posts.confirm')
+          {osu.trans('beatmap_discussions.nearby_posts.confirm')}
         </label>
       </div>
     );
