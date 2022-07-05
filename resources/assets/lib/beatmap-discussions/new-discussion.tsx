@@ -234,7 +234,7 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
           message: '',
           timestampConfirmed: false,
         });
-        $.publish('beatmapDiscussionPost:markRead', { id: json.beatmap_discussion_post_id });
+        $.publish('beatmapDiscussionPost:markRead', { id: json.beatmap_discussion_post_ids });
         $.publish('beatmapsetDiscussions:update', { beatmapset: json.beatmapset });
       })
       .fail(onError)
