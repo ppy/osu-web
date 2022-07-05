@@ -5,17 +5,17 @@
 
 namespace App\Jobs;
 
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
 
 class EsIndexDocument implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable;
 
-    protected $model;
+    private array $modelMeta;
 
     /**
      * Create a new job instance.
@@ -24,7 +24,10 @@ class EsIndexDocument implements ShouldQueue
      */
     public function __construct($model)
     {
-        $this->model = $model;
+        $this->modelMeta = [
+            'class' => get_class($model),
+            'id' => $model->getKey(),
+        ];
     }
 
     /**
@@ -32,8 +35,28 @@ class EsIndexDocument implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function handle(): void
     {
-        $this->model->esIndexDocument();
+        $id = $this->modelMeta['id'];
+
+        if (!is_scalar($id)) {
+            log_error(new Exception("can't index models with unsupported primary key: ".json_encode($id)));
+
+            return;
+        }
+
+        $class = $this->modelMeta['class'];
+        $model = $class::find($id);
+
+        if ($model !== null) {
+            $model->esIndexDocument();
+
+            return;
+        }
+
+        $model = new $class();
+        $keyName = $model->getKeyName();
+        $model->setAttribute($keyName, $id);
+        $model->esDeleteDocument();
     }
 }
