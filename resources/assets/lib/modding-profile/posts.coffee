@@ -20,7 +20,7 @@ export class Posts extends React.Component
         else
           [
             for post in @props.posts
-              canModeratePosts = canModeratePosts(currentUser)
+              canModerate = canModeratePosts(currentUser)
 
               discussionClasses = 'beatmap-discussion beatmap-discussion--preview beatmap-discussion--modding-profile'
 
@@ -61,8 +61,8 @@ export class Posts extends React.Component
                       # FIXME: These permissions are more restrictive than the correct ones in discussion
                       # because they don't have the right data to check.
                       canBeEdited: currentUser.is_admin
-                      canBeDeleted: canModeratePosts
-                      canBeRestored: canModeratePosts
+                      canBeDeleted: canModerate
+                      canBeRestored: canModerate
                       currentUser: currentUser
             a
               key: 'show-more'
