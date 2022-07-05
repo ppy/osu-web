@@ -37,7 +37,7 @@ class AfterCommitTest extends TestCase
         $this->assertSame(0, $model->afterCommitCount);
     }
 
-    public function testModelAfterCommitOutsideTransaction()
+    public function testModelAfterCommitAfterTransaction()
     {
         DB::beginTransaction();
         DB::commit();
