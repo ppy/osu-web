@@ -145,26 +145,8 @@ class PlaylistItem extends Model
         $modsHelper->assertValidExclusivity($this->ruleset_id, $requiredModIds, $allowedModIds);
 
         $isRealtimeRoom = $this->room->isRealtime();
-
-        $allowedCheckFn = $isRealtimeRoom
-            ? fn (array $modMeta): bool => $modMeta['ValidForMultiplayerAsFreeMod']
-            : fn (array $modMeta): bool => $modMeta['UserPlayable'];
-        $modsHelper->checkAllModsMeta(
-            $this->ruleset_id,
-            $allowedModIds,
-            $allowedCheckFn,
-            fn ($mod) => throw new InvariantException("mod cannot be set as allowed: {$mod}"),
-        );
-
-        $requiredCheckFn = $isRealtimeRoom
-            ? fn (array $modMeta): bool => $modMeta['ValidForMultiplayer']
-            : fn (array $modMeta): bool => $modMeta['UserPlayable'];
-        $modsHelper->checkAllModsMeta(
-            $this->ruleset_id,
-            $requiredModIds,
-            $requiredCheckFn,
-            fn ($mod) => throw new InvariantException("mod cannot be set as required: {$mod}"),
-        );
+        $modsHelper->assertValidForMultiplayer($this->ruleset_id, $allowedModIds, $isRealtimeRoom, false);
+        $modsHelper->assertValidForMultiplayer($this->ruleset_id, $requiredModIds, $isRealtimeRoom, true);
     }
 
     public function save(array $options = [])

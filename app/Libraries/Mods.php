@@ -88,13 +88,20 @@ class Mods
         }
     }
 
-    public function checkAllModsMeta(int $rulesetId, array $mods, callable $check, callable $failItemCallback): void
+    public function assertValidForMultiplayer(int $rulesetId, array $ids, bool $isRealtime, bool $isRequired): void
     {
-        foreach ($mods as $mod) {
-            $modMeta = $this->mods[$rulesetId][$mod];
+        if ($isRealtime) {
+            $attr = $isRequired ? 'ValidForMultiplayer' : 'ValidForMultiplayerAsFreeMod';
+        } else {
+            $attr = 'UserPlayable';
+        }
 
-            if (!$check($modMeta)) {
-                $failItemCallback($mod);
+        foreach ($ids as $id) {
+            $mod = $this->mods[$rulesetId][$id];
+
+            if (!$mod[$attr]) {
+                $messageType = $isRequired ? 'required' : 'allowed';
+                throw new InvariantException("mod cannot be set as {$messageType}: {$id}");
             }
         }
     }
