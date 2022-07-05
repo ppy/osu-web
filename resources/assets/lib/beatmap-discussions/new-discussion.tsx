@@ -343,8 +343,8 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
                 onClick={this.toggleSticky}
                 title={osu.trans(`beatmaps.discussions.new.${this.props.pinned ? 'unpin' : 'pin'}`)}
               >
-                <span className={'btn-circle__content'}>
-                  <i className={'fas fa-thumbtack'} />
+                <span className='btn-circle__content'>
+                  <i className='fas fa-thumbtack' />
                 </span>
               </span>
             </span>
@@ -468,14 +468,14 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
         />
 
         <label className={`${bn}__notice-checkbox`}>
-          <div className={'osu-switch-v2'}>
+          <div className='osu-switch-v2'>
             <input
               checked={this.state.timestampConfirmed}
-              className={'osu-switch-v2__input'}
+              className='osu-switch-v2__input'
               onChange={this.toggleTimestampConfirmation}
               type='checkbox'
             />
-            <span className={'osu-switch-v2__content'} />
+            <span className='osu-switch-v2__content' />
           </div>
           {osu.trans('beatmap_discussions.nearby_posts.confirm')}
         </label>
@@ -524,7 +524,7 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
         disabled={!this.validPost || this.state.posting != null || !this.canPost}
         icon={discussionTypeIcons[type]}
         isBusy={this.state.posting === type}
-        modifiers={'beatmap-discussion-new'}
+        modifiers='beatmap-discussion-new'
         props={props}
         text={osu.trans(`beatmaps.discussions.message_type.${typeText}`)}
       />
