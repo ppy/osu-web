@@ -121,6 +121,21 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
     return this.props.mode === 'timeline';
   }
 
+  private get nearbyDiscussions() {
+    const timestamp = this.timestamp;
+    if (timestamp == null) return [];
+
+    if (this.nearbyDiscussionsCache == null || (this.nearbyDiscussionsCache.beatmap !== this.props.currentBeatmap || this.nearbyDiscussionsCache.timestamp !== this.timestamp)) {
+      this.nearbyDiscussionsCache = {
+        beatmap: this.props.currentBeatmap,
+        discussions: BeatmapDiscussionHelper.nearbyDiscussions(this.props.currentDiscussions.timelineAllUsers, timestamp),
+        timestamp: this.timestamp,
+      };
+    }
+
+    return this.nearbyDiscussionsCache?.discussions ?? [];
+  }
+
   private get storageKey() {
     return `beatmapset-discussion:store:${this.props.beatmapset.id}:message`;
   }
@@ -129,11 +144,28 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
     return localStorage.getItem(this.storageKey) ?? '';
   }
 
+  private get timestamp() {
+    if (this.props.mode !== 'timeline') return null;
+
+    if (this.timestampCache?.message !== this.state.message) {
+      this.timestampCache = null;
+    }
+
+    if (this.timestampCache == null) {
+      this.timestampCache = {
+        message: this.state.message,
+        timestamp: BeatmapDiscussionHelper.parseTimestamp(this.state.message),
+      };
+    }
+
+    return this.timestampCache.timestamp;
+  }
+
   private get validPost() {
     if (!validMessageLength(this.state.message, this.isTimeline)) return false;
 
     if (this.isTimeline) {
-      return this.timestamp() != null && (this.nearbyDiscussions().length === 0 || this.state.timestampConfirmed);
+      return this.timestamp != null && (this.nearbyDiscussions.length === 0 || this.state.timestampConfirmed);
     }
 
     return true;
@@ -214,21 +246,6 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
     }
   }
 
-  private nearbyDiscussions() {
-    const timestamp = this.timestamp();
-    if (timestamp == null) return [];
-
-    if (this.nearbyDiscussionsCache == null || (this.nearbyDiscussionsCache.beatmap !== this.props.currentBeatmap || this.nearbyDiscussionsCache.timestamp !== this.timestamp())) {
-      this.nearbyDiscussionsCache = {
-        beatmap: this.props.currentBeatmap,
-        discussions: BeatmapDiscussionHelper.nearbyDiscussions(this.props.currentDiscussions.timelineAllUsers, timestamp),
-        timestamp: this.timestamp(),
-      };
-    }
-
-    return this.nearbyDiscussionsCache?.discussions ?? [];
-  }
-
   private readonly onFocus = () => this.setSticky(true);
 
   private readonly post = (e: React.SyntheticEvent<HTMLElement>) => {
@@ -255,7 +272,7 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
       beatmap_discussion: {
         beatmap_id: this.props.mode === 'generalAll' ? undefined : this.props.currentBeatmap.id,
         message_type: type,
-        timestamp: this.timestamp(),
+        timestamp: this.timestamp,
       },
       beatmap_discussion_post: {
         message: this.state.message,
@@ -426,9 +443,9 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
   }
 
   private renderNearbyTimestamps() {
-    if (!this.nearbyDiscussions()?.length) return;
-    const currentTimestamp = BeatmapDiscussionHelper.formatTimestamp(this.timestamp());
-    const timestamps = this.nearbyDiscussions().map((discussion) => (
+    if (this.nearbyDiscussions.length === 0) return;
+    const currentTimestamp = BeatmapDiscussionHelper.formatTimestamp(this.timestamp);
+    const timestamps = this.nearbyDiscussions.map((discussion) => (
       linkHtml(
         BeatmapDiscussionHelper.url({ discussion }),
         BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp) ?? '',
@@ -469,7 +486,7 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
   private renderTimestamp() {
     if (this.props.mode !== 'timeline') return null;
 
-    return this.timestamp() != null ? BeatmapDiscussionHelper.formatTimestamp(this.timestamp()) : osu.trans('beatmaps.discussions.new.timestamp_missing');
+    return this.timestamp != null ? BeatmapDiscussionHelper.formatTimestamp(this.timestamp) : osu.trans('beatmaps.discussions.new.timestamp_missing');
   }
 
   private readonly setMessage = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -512,23 +529,6 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
         text={osu.trans(`beatmaps.discussions.message_type.${typeText}`)}
       />
     );
-  }
-
-  private timestamp() {
-    if (this.props.mode !== 'timeline') return null;
-
-    if (this.timestampCache?.message !== this.state.message) {
-      this.timestampCache = null;
-    }
-
-    if (this.timestampCache == null) {
-      this.timestampCache = {
-        message: this.state.message,
-        timestamp: BeatmapDiscussionHelper.parseTimestamp(this.state.message),
-      };
-    }
-
-    return this.timestampCache.timestamp;
   }
 
   private readonly toggleSticky = () => {
