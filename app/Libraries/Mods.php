@@ -90,6 +90,8 @@ class Mods
 
     public function assertValidForMultiplayer(int $rulesetId, array $ids, bool $isRealtime, bool $isRequired): void
     {
+        $this->validateSelection($rulesetId, $ids);
+
         if ($isRealtime) {
             $attr = $isRequired ? 'ValidForMultiplayer' : 'ValidForMultiplayerAsFreeMod';
         } else {

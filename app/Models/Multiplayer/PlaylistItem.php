@@ -139,14 +139,12 @@ class PlaylistItem extends Model
             throw new InvariantException('mod cannot be listed as both allowed and required: '.implode(', ', $dupeMods));
         }
 
-        $modsHelper = app('mods');
-        $modsHelper->validateSelection($this->ruleset_id, $allowedModIds);
-        $modsHelper->validateSelection($this->ruleset_id, $requiredModIds);
-        $modsHelper->assertValidExclusivity($this->ruleset_id, $requiredModIds, $allowedModIds);
-
         $isRealtimeRoom = $this->room->isRealtime();
+        $modsHelper = app('mods');
         $modsHelper->assertValidForMultiplayer($this->ruleset_id, $allowedModIds, $isRealtimeRoom, false);
         $modsHelper->assertValidForMultiplayer($this->ruleset_id, $requiredModIds, $isRealtimeRoom, true);
+        $modsHelper->assertValidExclusivity($this->ruleset_id, $requiredModIds, $allowedModIds);
+
     }
 
     public function save(array $options = [])
