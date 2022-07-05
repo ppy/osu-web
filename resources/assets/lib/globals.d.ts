@@ -10,7 +10,7 @@ declare module 'legacy-modules' {
   interface BeatmapDiscussionHelperClass {
     format(text: string, options?: any): string;
     formatTimestamp(value: number | null): string | undefined;
-    nearbyDiscussions(discussions: BeatmapsetDiscussionJson[], timestamp: number): BeatmapsetDiscussionJson[];
+    nearbyDiscussions<T extends BeatmapsetDiscussionJson>(discussions: T[], timestamp: number): T[];
     parseTimestamp(value?: string): number | null;
     previewMessage(value: string): string;
     TIMESTAMP_REGEX: RegExp;

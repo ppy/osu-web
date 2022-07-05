@@ -10,7 +10,9 @@ import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import { BeatmapsetDiscussionPostStoreResponseJson } from 'interfaces/beatmapset-discussion-post-responses';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
+import { BeatmapsetWithDiscussionsJson } from 'interfaces/beatmapset-json';
 import CurrentUserJson from 'interfaces/current-user-json';
+import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -26,14 +28,43 @@ import MessageLengthCounter from './message-length-counter';
 
 const bn = 'beatmap-discussion-new';
 
+type Discussion = BeatmapsetDiscussionJson & Required<Pick<BeatmapsetDiscussionJson, 'current_user_attributes'>>;
 type Mode = 'events' | 'general' | 'generalAll' | 'timeline' | 'reviews';
 
-type Discussion = BeatmapsetDiscussionJson & Required<Pick<BeatmapsetDiscussionJson, 'current_user_attributes'>>;
+// TODO: move to store/context
+interface CurrentDiscussions {
+  byFilter: {
+    deleted: DiscussionByFilter;
+    hype: DiscussionByFilter;
+    mapperNotes: DiscussionByFilter;
+    mine: DiscussionByFilter;
+    pending: DiscussionByFilter;
+    praises: DiscussionByFilter;
+    resolved: DiscussionByFilter;
+    total: DiscussionByFilter;
+  };
+  countsByBeatmap: Record<number, number>;
+  countsByPlaymode: Record<GameMode, number>;
+  general: Discussion[];
+  generalAll: Discussion[];
+  reviews: Discussion[];
+  timeline: Discussion[];
+  timelineAllUsers: Discussion[];
+  totalHype: number;
+  unresolvedIssues: number;
+}
+
+interface DiscussionByFilter {
+  general: Record<number, Discussion>;
+  generalAll: Record<number, Discussion>;
+  reviews: Record<number, Discussion>;
+  timeline: Record<number, Discussion>;
+}
 
 interface DiscussionsCache {
   beatmap: BeatmapExtendedJson;
   discussions: Discussion[];
-  timestamp: string;
+  timestamp: number | null;
 }
 
 interface TimestampCache {
@@ -43,12 +74,15 @@ interface TimestampCache {
 
 interface Props {
   autoFocus: boolean;
-  beatmapset: BeatmapsetExtendedJson;
+  beatmapset: BeatmapsetExtendedJson & BeatmapsetWithDiscussionsJson;
   currentBeatmap: BeatmapExtendedJson;
+  currentDiscussions: CurrentDiscussions;
   currentUser: CurrentUserJson;
-  discussion: BeatmapsetDiscussionJson & Required<Pick<BeatmapsetDiscussionJson, 'current_user_attributes'>>;
+  innerRef: React.RefObject<HTMLDivElement>;
   mode: Mode;
   pinned: boolean;
+  setPinned?: (flag: boolean) => void;
+  stickTo: React.RefObject<HTMLElement>;
 }
 
 interface State {
@@ -59,6 +93,10 @@ interface State {
 }
 
 export class NewDiscussion extends React.PureComponent<Props, State> {
+  static readonly defaultProps = {
+    pinned: false,
+  };
+
   state: Readonly<State> = {
     message: this.storedMessage,
     posting: null,
@@ -155,7 +193,7 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
 
   }
 
-  private handleKeyDownCallback = (type: InputEventType | null, event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+  private handleKeyDownCallback = (type: InputEventType | null) => {
     // Ignores SUBMIT, requiring shift-enter to add new line.
     if (type === InputEventType.Cancel) {
       this.setSticky(false);
@@ -177,12 +215,13 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
   }
 
   private nearbyDiscussions() {
-    if (this.timestamp() == null) return [];
+    const timestamp = this.timestamp();
+    if (timestamp == null) return [];
 
-    if (this.nearbyDiscussionsCache == null || (this.nearbyDiscussionsCache.beatmap !== this.props.currentBeatmap || this.nearbyDiscussionsCache.timestamp != this.timestamp())) {
+    if (this.nearbyDiscussionsCache == null || (this.nearbyDiscussionsCache.beatmap !== this.props.currentBeatmap || this.nearbyDiscussionsCache.timestamp !== this.timestamp())) {
       this.nearbyDiscussionsCache = {
         beatmap: this.props.currentBeatmap,
-        discussions: BeatmapDiscussionHelper.nearbyDiscussions(this.props.currentDiscussions.timelineAllUsers, this.timestamp()),
+        discussions: BeatmapDiscussionHelper.nearbyDiscussions(this.props.currentDiscussions.timelineAllUsers, timestamp),
         timestamp: this.timestamp(),
       };
     }
@@ -264,7 +303,7 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
   private renderBox() {
     const canHype = this.props.beatmapset.current_user_attributes?.can_hype
       && this.props.beatmapset.can_be_hyped
-      && this.props.mode == 'generalAll';
+      && this.props.mode === 'generalAll';
 
     const canPostNote =
         this.props.currentUser.id === this.props.beatmapset.user_id
@@ -475,7 +514,7 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
   }
 
   private timestamp() {
-    if (this.props.mode !== 'timeline') return;
+    if (this.props.mode !== 'timeline') return null;
 
     if (this.timestampCache?.message !== this.state.message) {
       this.timestampCache = null;
