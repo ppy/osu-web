@@ -60,8 +60,6 @@ class TransactionStateManager
 
     private function push(string $name, $item)
     {
-        if (!isset($this->states[$name])) {
-            $this->states[$name] = $item;
-        }
+        $this->states[$name] ??= $item;
     }
 }
