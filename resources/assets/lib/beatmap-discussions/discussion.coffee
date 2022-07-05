@@ -234,13 +234,13 @@ export class Discussion extends React.PureComponent
 
     elementName = if post.system then SystemPost else Post
 
-    canModeratePosts = canModeratePosts(@props.currentUser)
+    canModerate = canModeratePosts(@props.currentUser)
     canBeEdited = @isOwner(post) && post.id > @resolvedSystemPostId() && !@props.beatmapset.discussion_locked
     canBeDeleted =
       if type == 'discussion'
         @props.discussion.current_user_attributes?.can_destroy
       else
-        canModeratePosts || canBeEdited
+        canModerate || canBeEdited
 
     el elementName,
       key: post.id
@@ -255,7 +255,7 @@ export class Discussion extends React.PureComponent
       lastEditor: @props.users[post.last_editor_id] ? @props.users[null] if post.last_editor_id?
       canBeEdited: @props.currentUser.is_admin || canBeEdited
       canBeDeleted: canBeDeleted
-      canBeRestored: canModeratePosts
+      canBeRestored: canModerate
       currentUser: @props.currentUser
 
 

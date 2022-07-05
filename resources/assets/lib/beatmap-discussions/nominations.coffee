@@ -456,9 +456,9 @@ export class Nominations extends React.PureComponent
 
 
   discussionLockButton: =>
-    canModeratePost = canModeratePosts(@props.currentUser)
+    canModerate = canModeratePosts(@props.currentUser)
 
-    return null unless canModeratePost
+    return null unless canModerate
 
     if @props.beatmapset.discussion_locked
       action = 'unlock'
