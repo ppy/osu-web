@@ -95,8 +95,7 @@ class RoomsControllerTest extends TestCase
             ->assertStatus($ok ? 200 : 422);
 
         if (!$ok) {
-            $responseJson = json_decode($response->getContent(), true);
-            $this->assertSame('mod cannot be set as allowed: DT', $responseJson['error']);
+            $response->assertJson(['error' => 'mod cannot be set as allowed: DT']);
         }
     }
 
@@ -124,8 +123,7 @@ class RoomsControllerTest extends TestCase
             ->assertStatus($ok ? 200 : 422);
 
         if (!$ok) {
-            $responseJson = json_decode($response->getContent(), true);
-            $this->assertSame('mod cannot be set as required: AS', $responseJson['error']);
+            $response->assertJson(['error' => 'mod cannot be set as required: AS']);
         }
     }
 
