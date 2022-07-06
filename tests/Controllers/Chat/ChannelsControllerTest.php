@@ -402,7 +402,6 @@ class ChannelsControllerTest extends TestCase
         $this->privateChannel = Channel::factory()->type('private')->create();
         $this->pmChannel = Channel::factory()->type('pm')->create();
         $this->publicMessage = Message::factory()->create(['channel_id' => $this->publicChannel->channel_id]);
-        $this->tourneyChannel = Channel::factory()->type('tourney')->create();
     }
 
     private function getAssertableChannelList(User $user): AssertableJsonString

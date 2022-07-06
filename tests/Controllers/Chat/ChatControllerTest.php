@@ -7,21 +7,16 @@ declare(strict_types=1);
 
 namespace Tests\Controllers\Chat;
 
-use App\Libraries\UserChannelList;
 use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
 use App\Models\OAuth\Client;
 use App\Models\User;
 use App\Models\UserRelation;
 use Faker;
-use Illuminate\Testing\AssertableJsonString;
 use Tests\TestCase;
 
 class ChatControllerTest extends TestCase
 {
-    // Need to disable transactions for these tests otherwise the cross-database queries being used fail.
-    protected $connectionsToTransact = [];
-
     protected static $faker;
 
     private User $anotherUser;
@@ -372,23 +367,6 @@ class ChatControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-
-        $trx = [];
-        $db = $this->app->make('db');
-        foreach (array_keys(config('database.connections')) as $name) {
-            $connection = $db->connection($name);
-
-            // connections with different names but to the same database share the same pdo connection.
-            $id = $connection->select('SELECT CONNECTION_ID() as connection_id')[0]->connection_id;
-            // Avoid setting isolation level or starting transaction more than once on a pdo connection.
-            if (!in_array($id, $trx, true)) {
-                $trx[] = $id;
-
-                // allow uncommitted changes be visible across connections.
-                $connection->statement('SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED');
-                $connection->beginTransaction();
-            }
-        }
 
         $this->user = User::factory()->withPlays()->create();
         $this->anotherUser = User::factory()->create();
