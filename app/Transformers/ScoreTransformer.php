@@ -46,7 +46,7 @@ class ScoreTransformer extends TransformerAbstract
 
     public function __construct(?string $type = null)
     {
-        $type ??= is_api_request()
+        $type ??= is_api_request() && api_version() < 20220705
             ? static::TYPE_LEGACY
             : static::TYPE_SOLO;
 

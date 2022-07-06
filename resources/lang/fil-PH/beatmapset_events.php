@@ -30,7 +30,7 @@ return [
         'nomination_reset' => 'Nag-trigger ng nomination reset ang bagong isyu :discussion (:text).',
         'nomination_reset_received' => 'Ang nominasyon ni :user ay ni-reset ni :source_user (:text)',
         'nomination_reset_received_profile' => 'Ang nominasyon ay ni-reset ni :user (:text)',
-        'offset_edit' => 'Ang online offset ay binago mula :old sa :new.',
+        'offset_edit' => 'Ang online na offset ay binago mula :old sa :new.',
         'qualify' => 'Ang beatmap ay umabot na ng kinakailangang bilang ng nominasyon at naging kwalipikado.',
         'rank' => 'Nakaranggo.',
         'remove_from_loved' => 'Tinanggal sa Loved ni :user. (:text)',

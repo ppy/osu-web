@@ -23,7 +23,7 @@ return [
 
     'links' => [
         'beatmaps' => '',
-        'osu' => 'osu!のプロフィール',
+        'osu' => 'osu! プロフィール',
         'site' => '公式ウェブサイト',
     ],
 
