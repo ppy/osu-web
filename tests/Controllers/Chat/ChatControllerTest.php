@@ -7,12 +7,14 @@ declare(strict_types=1);
 
 namespace Tests\Controllers\Chat;
 
+use App\Libraries\UserChannelList;
 use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
 use App\Models\OAuth\Client;
 use App\Models\User;
 use App\Models\UserRelation;
 use Faker;
+use Illuminate\Testing\AssertableJsonString;
 use Tests\TestCase;
 
 class ChatControllerTest extends TestCase
@@ -279,10 +281,8 @@ class ChatControllerTest extends TestCase
         ]))
             ->assertSuccessful();
 
-        $this->actAsScopedUser($this->user, ['*']);
-        $this->json('GET', route('api.chat.presence'))
-            ->assertStatus(200)
-            ->assertJsonFragment(['channel_id' => $publicChannel->channel_id]);
+        $this->getAssertableChannelList($this->user)
+            ->assertFragment(['channel_id' => $publicChannel->channel_id]);
     }
 
     public function testChatPresenceHidesBlocked() // success
@@ -305,21 +305,20 @@ class ChatControllerTest extends TestCase
         ]);
 
         // ensure conversation with $this->anotherUser isn't visible
-        $this->json('GET', route('api.chat.presence'))
-            ->assertStatus(200)
-            ->assertJsonMissing(['users' => [
+        $this->getAssertableChannelList($this->user)
+            ->assertMissing(['users' => [
                 $this->user->user_id,
                 $this->anotherUser->user_id,
             ]]);
 
         // unblock $this->anotherUser
         $block->delete();
+        $this->user->refresh();
+        app('OsuAuthorize')->resetCache();
 
         // ensure conversation with $this->anotherUser is visible again
-        $this->actAsScopedUser($this->user, ['*']);
-        $this->json('GET', route('api.chat.presence'))
-            ->assertStatus(200)
-            ->assertJsonFragment(['users' => [
+        $this->getAssertableChannelList($this->user)
+            ->assertFragment(['users' => [
                 $this->user->user_id,
                 $this->anotherUser->user_id,
             ]]);
@@ -342,9 +341,8 @@ class ChatControllerTest extends TestCase
         $this->anotherUser->update(['user_warnings' => 1]);
 
         // ensure conversation with $this->anotherUser isn't visible
-        $this->json('GET', route('api.chat.presence'))
-            ->assertStatus(200)
-            ->assertJsonMissing(['users' => [
+        $this->getAssertableChannelList($this->user)
+            ->assertMissing(['users' => [
                 $this->user->user_id,
                 $this->anotherUser->user_id,
             ]]);
@@ -353,9 +351,8 @@ class ChatControllerTest extends TestCase
         $this->anotherUser->update(['user_warnings' => 0]);
 
         // ensure conversation with $this->anotherUser is visible again
-        $this->json('GET', route('api.chat.presence'))
-            ->assertStatus(200)
-            ->assertJsonFragment(['users' => [
+        $this->getAssertableChannelList($this->user)
+            ->assertFragment(['users' => [
                 $this->user->user_id,
                 $this->anotherUser->user_id,
             ]]);
@@ -385,9 +382,8 @@ class ChatControllerTest extends TestCase
             ->assertStatus(204);
 
         // ensure conversation with $this->anotherUser isn't visible
-        $this->json('GET', route('api.chat.presence'))
-            ->assertStatus(200)
-            ->assertJsonMissing(['users' => [
+        $this->getAssertableChannelList($this->user)
+            ->assertMissing(['users' => [
                 $this->user->user_id,
                 $this->anotherUser->user_id,
             ]]);
@@ -403,9 +399,8 @@ class ChatControllerTest extends TestCase
         )->assertStatus(200);
 
         // ensure conversation with $this->anotherUser is visible again
-        $this->json('GET', route('api.chat.presence'))
-            ->assertStatus(200)
-            ->assertJsonFragment(['users' => [
+        $this->getAssertableChannelList($this->user)
+            ->assertFragment(['users' => [
                 $this->user->user_id,
                 $this->anotherUser->user_id,
             ]]);
@@ -540,5 +535,10 @@ class ChatControllerTest extends TestCase
 
         $this->user = User::factory()->withPlays()->create();
         $this->anotherUser = User::factory()->create();
+    }
+
+    private function getAssertableChannelList(User $user): AssertableJsonString
+    {
+        return new AssertableJsonString((new UserChannelList($user))->get());
     }
 }
