@@ -24,6 +24,8 @@ interface PropsFromHrefValue {
   target?: '_blank';
 }
 
+export const maxLengthTimeline = 750;
+
 export function badgeGroup({ beatmapset, currentBeatmap, discussion, user }: BadgeGroupParams) {
   if (user == null) {
     return null;

@@ -209,7 +209,7 @@ return [
                     'title' => '已拋棄的圖譜',
                 ],
                 'guest' => [
-                    'title' => '',
+                    'title' => '客串圖譜',
                 ],
                 'loved' => [
                     'title' => '喜歡的圖譜',

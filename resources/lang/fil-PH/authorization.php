@@ -4,73 +4,73 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => 'Paano kung maglaro nalang ng osu?',
+    'play_more' => 'Paano kung maglaro ng ilang osu! sa halip?',
     'require_login' => 'Paki-sign-in para tumuloy.',
-    'require_verification' => 'Paki-beripika para tumuloy.',
-    'restricted' => "Hindi pwedeng gawin habang naka-restricted.",
-    'silenced' => "Hindi pwedeng gawin habang naka-silenced.",
-    'unauthorized' => 'Hindi tinangap ang iyong pag-access.',
+    'require_verification' => 'Paki-verify para tumuloy.',
+    'restricted' => "Hindi magagawa iyon habang pinaghihigpitan.",
+    'silenced' => "Hindi magagawa iyon habang naka-silenced.",
+    'unauthorized' => 'Ang pag-access ay tinanggihan.',
 
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => 'Bawal ibalik ang hyping.',
-            'has_reply' => 'Hindi pwede tanggalin ang talakayan na may kasamang mga sagot',
+            'is_hype' => 'Hindi ma-undo ang hyping.',
+            'has_reply' => 'Hindi matanggal ang talakayan na may mga tugon',
         ],
         'nominate' => [
             'exhausted' => 'Naabot mo na ang iyong limitasyon sa paghahalal ngayong araw na ito, subukan mo ulit bukas.',
             'incorrect_state' => 'Hindi maitupad ang aksyon na ito, subukang i-refresh ang pahina.',
             'owner' => "Hindi pwedeng hirangin ang sariling beatmap.",
-            'set_metadata' => 'Kailangan mong itakda ang genre at wika bago i-nominate.',
+            'set_metadata' => 'Dapat mong itakda ang genre at wika bago magnomina.',
         ],
         'resolve' => [
-            'not_owner' => 'Ang nagsimula ng thread at ang may-ari ng beatmap lamang ang pwedeng lumutas ng talakayan.',
+            'not_owner' => 'Tanging ang thread starter at may-ari ng beatmap lang ang makakapagresolba ng talakayan.',
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Tanging ang may-ari ng beatmap o nominator/miyembro ng grupong QAT ang maaaring mag-lagay ng mapper tala.',
+            'mapper_note_wrong_user' => 'Tanging ang may-ari ng beatmap o nominator/miyembro ng grupong NAT ang maaaring mag-post ng mga tala ng mapper.',
         ],
 
         'vote' => [
-            'bot' => "Hindi maaaring bumoto sa talakayan na gawa ng bot",
-            'limit_exceeded' => 'Maghintay nang sandali bago magsumite ng higit pang mga boto',
-            'owner' => "Hindi pwedeng magboto sa sariling talakayan.",
-            'wrong_beatmapset_state' => 'Pwede lang magboto sa mga talakayan ng mga pending beatmap.',
+            'bot' => "Hindi makaboto sa talakayang ginawa ng bot",
+            'limit_exceeded' => 'Pakihintay ng ilang sandali bago magsumite ng higit pang mga boto',
+            'owner' => "Hindi makaboto sa sariling talakayan.",
+            'wrong_beatmapset_state' => 'Maaari lamang bumoto sa mga talakayan tungkol sa mga pending na beatmap.',
         ],
     ],
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => 'Ikaw lamang ang makaka-delete ng iyong posts.',
-            'resolved' => 'Hindi mo maaring ma-delete ang post na na-resolbang diskusyon.',
-            'system_generated' => 'Mga awtomatikong poste na nagawa na ay hindi na maaring tanggalin.',
+            'not_owner' => 'Ikaw lang ang makapagtanggal ng sarili mong mga post.',
+            'resolved' => 'Hindi mo maaaring tanggalin ang isang post ng isang naresolbang talakayan.',
+            'system_generated' => 'Ang awtomatikong post na nabuo ay hindi maaaring tanggalin.',
         ],
 
         'edit' => [
-            'not_owner' => 'Ang poster lamang ang pwedeng mag-edit ng post.',
-            'resolved' => 'Hindi mo maaring ma-edit ang post na na-resolbang diskusyon.',
-            'system_generated' => 'Awtomatikong Pinagagana kapag post ay hindi maaaring i-edit.',
+            'not_owner' => 'Ang poster lang ang makakapag-edit ng post.',
+            'resolved' => 'Hindi mo maaaring i-edit ang isang post ng naresolbang talakayan.',
+            'system_generated' => 'Ang awtomatikong post na nabuo ay hindi maaaring i-edit.',
         ],
 
         'store' => [
-            'beatmapset_locked' => 'Ang beatmap na ito ay sarado na para sa diskusyon.',
+            'beatmapset_locked' => 'Naka-lock ang beatmap na ito para sa talakayan.',
         ],
     ],
 
     'beatmapset' => [
         'metadata' => [
-            'nominated' => 'Hindi mo maaaring baguhin ang metadata ng nominadong na mapa. Makipag-ugnay sa mga miyembro ng BN o NAT kung sa tingin mo ay hindi siya naka-ayos mabuti.',
+            'nominated' => 'Hindi maaaring baguhin ang metadata ng isang nominadong beatmap. Makipag-ugnayan sa isang miyembro ng BN o NAT kung sa palagay mo ay mali ang pagkakatakda nito.',
         ],
     ],
 
     'chat' => [
-        'annnonce_only' => 'Ang channel na ito ay para sa pang-annunsyo lamang.',
-        'blocked' => 'Hindi maaaring i-message ang user na naka-block ka o na-block mo.',
-        'friends_only' => 'Ang user na ito ay nagbo-block ng mga messages mula sa mga user na hindi parte ng kanyang friend list.',
-        'moderated' => 'Kasalukuyang naka-moderate ang channel na ito.',
+        'annnonce_only' => 'Ang channel na ito ay para sa mga anunsyo lamang.',
+        'blocked' => 'Hindi makapag-mensahe sa isang user na humaharang sa iyo o hinarang mo.',
+        'friends_only' => 'Hinaharang ng user ang mga mensahe mula sa mga taong wala sa listahan ng kanilang mga kaibigan.',
+        'moderated' => 'Ang channel na ito ay kasalukuyang naka-moderate.',
         'no_access' => 'Wala kang access sa channel na iyon.',
-        'receive_friends_only' => 'Ang usre na ito ay hindi maari makapag-reply dahil ikaw ay tumatanggap lamang ng mga mensahe galing sa mga taong nasa friends list mo.',
-        'restricted' => 'Hindi ka maaaring maka-send ng mga mensahe habang naka-silence, restricted o banned.',
-        'silenced' => 'Hindi ka maaaring maka-send ng mga mensahe habang naka-silence, restricted o banned.',
+        'receive_friends_only' => 'Ang user ay maaaring hindi makatugon dahil tumatanggap ka lang ng mga mensahe mula sa mga tao sa listahan ng iyong mga kaibigan.',
+        'restricted' => 'Hindi ka maaaring magpadala ng mga mensahe habang pinatahimik, pinaghihigpitan o pinagbawalan.',
+        'silenced' => 'Hindi ka maaaring magpadala ng mga mensahe habang pinatahimik, pinaghihigpitan o pinagbawalan.',
     ],
 
     'comment' => [
@@ -78,16 +78,16 @@ return [
             'disabled' => 'Ang mga comment ay naka-disable',
         ],
         'update' => [
-            'deleted' => "Hindi maaaring i-edit ang mga tinanggal na post.",
+            'deleted' => "Hindi ma-edit ang natanggal na post.",
         ],
     ],
 
     'contest' => [
-        'voting_over' => 'Hindi mo maaaring baguhin ang iyong boto kapag natapos na ang panahon ng pagboto para sa paligsahang ito.',
+        'voting_over' => 'Hindi mo maaaring baguhin ang iyong boto pagkatapos ng panahon ng pagboto para sa paligsahang ito ay natapos na.',
 
         'entry' => [
-            'limit_reached' => 'Naabot mo na ang iyong limitasyon sa pagsumite para sa paligsahan na ito',
-            'over' => 'Salamat sa iyong pagsumite! Ang pagsusumite ay nagsara na para sa paligsahan na ito at ang botohan ay magsisimula na.',
+            'limit_reached' => 'Naabot mo na ang limitasyon sa pagpasok para sa paligsahang ito',
+            'over' => 'Salamat sa iyong mga entry! Ang mga pagsusumite ay sarado na para sa paligsahang ito at ang pagboto ay magbukas sa lalong madaling panahon.',
         ],
     ],
 
@@ -98,92 +98,92 @@ return [
 
         'post' => [
             'delete' => [
-                'only_last_post' => 'Ang huling post lamang ang pwedeng tanggalin.',
-                'locked' => 'Hindi pwedeng tanggalin ang post ng isang naka-lock na paksa.',
-                'no_forum_access' => 'Access sa hiniling na forum ay kinakailangan.',
-                'not_owner' => 'Ang poster lamang ang pwedeng magtanggal ng post.',
+                'only_last_post' => 'Ang huling post lang ang maaaring tanggalin.',
+                'locked' => 'Hindi matanggal ang post ng isang naka-lock na paksa.',
+                'no_forum_access' => 'Ang pag-access sa hiniling na forum ay kinakailangan.',
+                'not_owner' => 'Tanging poster lang ang makakapagtanggal sa post.',
             ],
 
             'edit' => [
-                'deleted' => 'Hindi pwedeng mag-edit ang tinanggal na post.',
-                'locked' => 'Naka-lock ang post na ito sa pag-e-edit.',
-                'no_forum_access' => 'Ang poster lamang ang pwedeng mag-edit ang post na ito.',
-                'not_owner' => 'Ang poster lamang ang pwedeng mag-edit ng post.',
-                'topic_locked' => 'Hindi pwedeng i-edit ang post ng isang naka-lock na paksa.',
+                'deleted' => 'Hindi ma-edit ang natangal na post.',
+                'locked' => 'Ang post ay naka-lock mula sa pag-edit.',
+                'no_forum_access' => 'Ang pag-access sa hiniling na forum ay kinakailangan.',
+                'not_owner' => 'Ang poster lang ang makakapag-edit ng post.',
+                'topic_locked' => 'Hindi ma-edit ang post ng isang naka-lock na paksa.',
             ],
 
             'store' => [
-                'play_more' => 'Pakisubukang maglaro muna bago mag-post sa mga forum! Kung ikaw ay may problema sa paglalaro, pwede mong i-post sa Help and Support na forum.',
-                'too_many_help_posts' => "Kailangan mo pang maglaro bago ka makagawa ng karagdagang mga post. Kung meron pa kayong problema sa paglalaro, mag-email sa support@ppy.sh", // FIXME: unhardcode email address.
+                'play_more' => 'Pakisubukang maglaro bago mag-post sa mga forum! Kung mayroon kang problema sa paglalaro, pakipost sa Help and Support forum.',
+                'too_many_help_posts' => "Kailangan mo pang laruin ang laro bago ka makagawa ng mga karagdagang post. Kung nahihirapan ka pa rin sa paglalaro, mag-email sa support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Paki-edit ang huli mong post sa halip na mag-post muli.',
-                'locked' => 'Hindi pwedeng sumagot sa isang naka-lock na thread.',
-                'no_forum_access' => 'Access sa hiniling na forum ay kinakailangan.',
-                'no_permission' => 'Walang pahintulot para sumagot.',
+                'double_post' => 'Paki-edit ng iyong huling post sa halip na mag-post muli.',
+                'locked' => 'Hindi makatugon sa isang naka-lock na thread.',
+                'no_forum_access' => 'Ang pag-access sa hiniling na forum ay kinakailangan.',
+                'no_permission' => 'Walang pahintulot na tumugon.',
 
                 'user' => [
-                    'require_login' => 'Mangyaring mag-sign in sa sumagot.',
-                    'restricted' => "Hindi pwedeng sumagot habang naka-restricted.",
-                    'silenced' => "Hindi pwedeng sumagot habang naka-silenced.",
+                    'require_login' => 'Paki-sign-in upang upang tumugon.',
+                    'restricted' => "Hindi makatugon habang pinaghihigpitan.",
+                    'silenced' => "Hindi makatugon habang pinatahimik.",
                 ],
             ],
 
             'store' => [
-                'no_forum_access' => 'Access sa hiniling na forum ay kinakailangan.',
-                'no_permission' => 'Walang pahintulot upang gumawa ng bagong paksa.',
-                'forum_closed' => 'Nakasarado ang forum at hindi pwedeng mag-post.',
+                'no_forum_access' => 'Ang pag-access sa hiniling na forum ay kinakailangan.',
+                'no_permission' => 'Walang pahintulot na gumawa ng bagong paksa.',
+                'forum_closed' => 'Ang forum ay sarado at hindi mai-post.',
             ],
 
             'vote' => [
-                'no_forum_access' => 'Access sa hiniling na forum ay kinakailangan.',
-                'over' => 'Tapos ang botohan at ay hindi na maaaring bumoto.',
-                'play_more' => 'Kailangan mong maglaro pa ng marami bago ka maka-boto sa forum.',
-                'voted' => 'Hindi pwedeng pumalit ng boto.',
+                'no_forum_access' => 'Ang pag-access sa hiniling na forum ay kinakailangan.',
+                'over' => 'Ang botohan ay tapos na at hindi na maaaring pagbotohan.',
+                'play_more' => 'Kailangan mo pang maglaro ng higit pa bago bumoto sa forum.',
+                'voted' => 'Ang pagpapalit ng boto ay hindi pinapayagan.',
 
                 'user' => [
-                    'require_login' => 'Mangyaring mag-sign in sa sumagot.',
-                    'restricted' => "Hindi pwedeng bumoto habang naka-restricted.",
-                    'silenced' => "Hindi pwedeng bumoto habang naka-silence.",
+                    'require_login' => 'Paki-sign-in upang bumoto.',
+                    'restricted' => "Hindi makaboto habang pinaghihigpitan.",
+                    'silenced' => "Hindi makaboto habang pinatahimik.",
                 ],
             ],
 
             'watch' => [
-                'no_forum_access' => 'Access sa hiniling na forum ay kinakailangan.',
+                'no_forum_access' => 'Ang pag-access sa hiniling na forum ay kinakailangan.',
             ],
         ],
 
         'topic_cover' => [
             'edit' => [
-                'uneditable' => 'Maling cover ang naka-specify.',
-                'not_owner' => 'Ang may-ari lamang ang maaaring mag edit ng cover.',
+                'uneditable' => 'Hindi wastong cover ang natukoy.',
+                'not_owner' => 'Tanging ang may-ari lang ang makakapag-edit ng cover.',
             ],
             'store' => [
-                'forum_not_allowed' => 'Ang pagpupulong na ito ay hindi nagtatanggap ng panakip na paksa.',
+                'forum_not_allowed' => 'Ang forum na ito ay hindi tumatanggap ng mga cover ng paksa.',
             ],
         ],
 
         'view' => [
-            'admin_only' => 'Ang admin lamang ang pwedeng tumingin ng forum na ito.',
+            'admin_only' => 'Tanging admin lamang ang makakatingin sa forum na ito.',
         ],
     ],
 
     'score' => [
         'pin' => [
-            'not_owner' => 'Ang may-ari ng score lang ang maaari mag-pin ng score.',
-            'too_many' => 'Masyadong madaming naka-pin na scores.',
+            'not_owner' => 'Tanging ang may-ari ng iskor ang maaaring mag-pin ng iskor.',
+            'too_many' => 'Nag-pin ng masyadong maraming mga iskor.',
         ],
     ],
 
     'user' => [
         'page' => [
             'edit' => [
-                'locked' => 'Naka-lock ang user page.',
-                'not_owner' => 'Pwede lang i-edit ang sariling user page.',
-                'require_supporter_tag' => 'Kailangan ng osu!supporter tag.',
+                'locked' => 'Naka-lock ang pahina ng user.',
+                'not_owner' => 'Maaari lamang i-edit ang sariling pahina ng user.',
+                'require_supporter_tag' => 'osu!supporter tag ay kinakailangan.',
             ],
         ],
     ],

@@ -7,10 +7,6 @@ import { currentUrl } from 'utils/turbolinks'
 window.osu =
   isIos: /iPad|iPhone|iPod/.test(navigator.platform)
 
-  currentUserIsFriendsWith: (user_id) ->
-    _.find currentUser.friends, target_id: user_id
-
-
   groupColour: (group) ->
     '--group-colour': group?.colour ? 'initial'
 
