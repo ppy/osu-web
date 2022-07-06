@@ -21,6 +21,13 @@ class ChannelsControllerTest extends TestCase
 {
     protected static $faker;
 
+    private User $user;
+    private User $anotherUser;
+    private Channel $pmChannel;
+    private Channel $privateChannel;
+    private Channel $publicChannel;
+    private Message $publicMessage;
+
     public static function setUpBeforeClass(): void
     {
         self::$faker = Faker\Factory::create();

@@ -24,6 +24,9 @@ class ChatControllerTest extends TestCase
 
     protected static $faker;
 
+    private User $anotherUser;
+    private User $user;
+
     public static function setUpBeforeClass(): void
     {
         self::$faker = Faker\Factory::create();
