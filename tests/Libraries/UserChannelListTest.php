@@ -29,15 +29,15 @@ class UserChannelListTest extends TestCase
             ->where('0.channel_id', $channel->getKey());
     }
 
-    public function testChannelHidden() // success
+    public function testChannelHidden()
     {
         $message = Chat::sendPrivateMessage($this->user, $this->target, 'message', false);
         $channel = $message->channel;
 
         $channel->removeUser($this->user);
-        $channel->refresh();
         $this->resetCache();
 
+        // TODO: future update will make this not empty.
         $this->assertEmpty((new UserChannelList($this->user))->get());
 
         $channel->addUser($this->user);
