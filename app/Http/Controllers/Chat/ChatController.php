@@ -139,15 +139,6 @@ class ChatController extends Controller
         ];
     }
 
-    // TODO: I don't think anything actually calls this?
-    /**
-     * @group Undocumented
-     */
-    public function presence()
-    {
-        return (new UserChannelList(auth()->user()))->get();
-    }
-
     /**
      * Get Updates
      *
@@ -286,7 +277,7 @@ class ChatController extends Controller
 
         // messages need presence
         if ($includeMessages || $includePresence) {
-            $presence = $this->presence();
+            $presence = (new UserChannelList(auth()->user()))->get();
         }
 
         if ($includeMessages) {

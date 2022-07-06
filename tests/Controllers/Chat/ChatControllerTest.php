@@ -263,12 +263,6 @@ class ChatControllerTest extends TestCase
     //endregion
 
     //region GET /chat/presence - Get Presence
-    public function testChatPresenceWhenGuest() // fail
-    {
-        $this->json('GET', route('api.chat.presence'))
-            ->assertStatus(401);
-    }
-
     public function testChatPresence() // success
     {
         $publicChannel = Channel::factory()->type('public')->create();
