@@ -4,7 +4,8 @@
 import guestGroup from 'beatmap-discussions/guest-group';
 import mapperGroup from 'beatmap-discussions/mapper-group';
 import BeatmapJson from 'interfaces/beatmap-json';
-import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
+import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForBundle, BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
+import BeatmapsetDiscussionPostJson from 'interfaces/beatmapset-discussion-post-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
 import { currentUrl } from 'utils/turbolinks';
@@ -90,4 +91,13 @@ export function propsFromHref(href: string) {
   }
 
   return props;
+}
+
+// Workaround for the discussion starting_post typing mess until the response gets refactored and normalized.
+export function startingPost(discussion: BeatmapsetDiscussionJsonForBundle | BeatmapsetDiscussionJsonForShow): BeatmapsetDiscussionPostJson {
+  if (!('posts' in discussion)) {
+    return discussion.starting_post;
+  }
+
+  return discussion.posts[0];
 }
