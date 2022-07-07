@@ -40,9 +40,7 @@ interface BeatmapsetDiscussionDefaultAttributes {
   last_post_at: string;
   message_type: DiscussionType;
   parent_id: number | null;
-  posts: BeatmapsetDiscussionPostJson[];
   resolved: boolean;
-  starting_post: BeatmapsetDiscussionPostJson;
   timestamp: number | null;
   updated_at: string;
   user_id: number;
