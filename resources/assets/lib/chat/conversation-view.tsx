@@ -104,7 +104,7 @@ export default class ConversationView extends React.Component<Props> {
         // mark as read when regaining focus and at the bottom to the channel.
         if (value && this.currentChannel?.uiState.autoScroll) {
           this.currentChannel.moveMarkAsReadMarker();
-          this.currentChannel.sendMarkAsRead();
+          this.currentChannel.throttledSendMarkAsRead();
         }
       }),
     );
