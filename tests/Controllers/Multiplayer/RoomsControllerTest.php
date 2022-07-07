@@ -44,6 +44,89 @@ class RoomsControllerTest extends TestCase
         $this->assertSame($playlistItemsCountInitial + 1, PlaylistItem::count());
     }
 
+    /**
+     * @dataProvider dataProviderForTestStoreWithInvalidPlayableMods
+     */
+    public function testStoreWithInvalidPlayableMods(string $type, string $modType): void
+    {
+        $token = Token::factory()->create(['scopes' => ['*']]);
+
+        $this->expectCountChange(fn () => Room::count(), 0);
+        $this->expectCountChange(fn () => PlaylistItem::count(), 0);
+
+        $params = array_merge($this->createBasicStoreParams(), [
+            'ends_at' => now()->addHour(),
+            'type' => $type,
+        ]);
+
+        $params['playlist'][0]['allowed_mods'] = [];
+        $params['playlist'][0]['required_mods'] = [];
+        $params['playlist'][0]["${modType}_mods"][] = ['acronym' => 'AT', 'settings' => []];
+
+        $response = $this
+            ->actingWithToken($token)
+            ->post(route('api.rooms.store'), $params)
+            ->assertStatus(422);
+
+        $responseJson = json_decode($response->getContent(), true);
+        $this->assertSame("mod cannot be set as {$modType}: AT", $responseJson['error']);
+    }
+
+    /**
+     * @dataProvider dataProviderForTestStoreWithInvalidRealtimeAllowedMods
+     */
+    public function testStoreWithInvalidRealtimeAllowedMods(string $type, bool $ok): void
+    {
+        $token = Token::factory()->create(['scopes' => ['*']]);
+
+        $this->expectCountChange(fn () => Room::count(), $ok ? 1 : 0);
+        $this->expectCountChange(fn () => PlaylistItem::count(), $ok ? 1 : 0);
+
+        $params = array_merge($this->createBasicStoreParams(), [
+            'ends_at' => now()->addHour(),
+            'type' => $type,
+        ]);
+        $params['playlist'][0]['required_mods'] = [];
+        $params['playlist'][0]['allowed_mods'] = [['acronym' => 'DT', 'settings' => []]];
+
+        $response = $this
+            ->actingWithToken($token)
+            ->post(route('api.rooms.store'), $params)
+            ->assertStatus($ok ? 200 : 422);
+
+        if (!$ok) {
+            $response->assertJson(['error' => 'mod cannot be set as allowed: DT']);
+        }
+    }
+
+    /**
+     * @dataProvider dataProviderForTestStoreWithInvalidRealtimeMods
+     */
+    public function testStoreWithInvalidRealtimeMods(string $type, bool $ok): void
+    {
+        $token = Token::factory()->create(['scopes' => ['*']]);
+
+        $this->expectCountChange(fn () => Room::count(), $ok ? 1 : 0);
+        $this->expectCountChange(fn () => PlaylistItem::count(), $ok ? 1 : 0);
+
+        // explicit ruleset required because AS isn't available for all modes
+        $params = array_merge($this->createBasicStoreParams('osu'), [
+            'ends_at' => now()->addHour(),
+            'type' => $type,
+        ]);
+        $params['playlist'][0]['allowed_mods'] = [];
+        $params['playlist'][0]['required_mods'] = [['acronym' => 'AS', 'settings' => []]];
+
+        $response = $this
+            ->actingWithToken($token)
+            ->post(route('api.rooms.store'), $params)
+            ->assertStatus($ok ? 200 : 422);
+
+        if (!$ok) {
+            $response->assertJson(['error' => 'mod cannot be set as required: AS']);
+        }
+    }
+
     public function testStoreWithPassword()
     {
         $token = Token::factory()->create(['scopes' => ['*']]);
@@ -318,14 +401,46 @@ class RoomsControllerTest extends TestCase
         $this->assertSame($initialUserChannelCount + 1, UserChannel::count());
     }
 
+    public function dataProviderForTestStoreWithInvalidPlayableMods(): array
+    {
+        $ret = [];
+        foreach ([array_rand_val(Room::REALTIME_TYPES), Room::PLAYLIST_TYPE] as $type) {
+            foreach (['allowed', 'required'] as $modType) {
+                $ret[] = [$type, $modType];
+            }
+        }
+
+        return $ret;
+    }
+
+    public function dataProviderForTestStoreWithInvalidRealtimeAllowedMods(): array
+    {
+        return [
+            [array_rand_val(Room::REALTIME_TYPES), false],
+            [Room::PLAYLIST_TYPE, true],
+        ];
+    }
+
+    public function dataProviderForTestStoreWithInvalidRealtimeMods(): array
+    {
+        return [
+            [array_rand_val(Room::REALTIME_TYPES), false],
+            [Room::PLAYLIST_TYPE, true],
+        ];
+    }
+
     /**
      * If making playlist, add `ends_at`.
      * If making realtime, add `type`.
      */
-    private function createBasicStoreParams()
+    private function createBasicStoreParams($ruleset = null)
     {
         $beatmapset = Beatmapset::factory()->create();
-        $beatmap = Beatmap::factory()->create(['beatmapset_id' => $beatmapset]);
+        $beatmapParams = ['beatmapset_id' => $beatmapset];
+        if ($ruleset !== null) {
+            $beatmapParams['playmode'] = Beatmap::MODES[$ruleset];
+        }
+        $beatmap = Beatmap::factory()->create($beatmapParams);
 
         return [
             'name' => 'test room '.rand(),

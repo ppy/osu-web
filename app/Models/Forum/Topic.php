@@ -5,7 +5,7 @@
 
 namespace App\Models\Forum;
 
-use App\Jobs\EsIndexDocument;
+use App\Jobs\EsDocument;
 use App\Jobs\UpdateUserForumCache;
 use App\Jobs\UpdateUserForumTopicFollows;
 use App\Libraries\BBCodeForDB;
@@ -826,7 +826,7 @@ class Topic extends Model implements AfterCommit
     public function afterCommit()
     {
         if ($this->exists && $this->firstPost !== null) {
-            dispatch(new EsIndexDocument($this->firstPost));
+            dispatch(new EsDocument($this->firstPost));
         }
     }
 
@@ -839,7 +839,7 @@ class Topic extends Model implements AfterCommit
             ->select(['poster_id', 'post_id'])
             ->each(function ($post) {
                 dispatch(new UpdateUserForumCache($post->poster_id));
-                dispatch(new EsIndexDocument($post));
+                dispatch(new EsDocument($post));
             });
 
         dispatch(new UpdateUserForumTopicFollows($this));

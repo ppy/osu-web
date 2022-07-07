@@ -4,7 +4,7 @@
 import { discussionTypeIcons } from 'beatmap-discussions/discussion-type';
 import { BeatmapIcon } from 'components/beatmap-icon';
 import * as React from 'react';
-import { format } from 'utils/beatmapset-discussion-helper';
+import { format, startingPost } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { BeatmapsContext } from './beatmaps-context';
 import { DiscussionsContext } from './discussions-context';
@@ -104,7 +104,7 @@ export const ReviewPostEmbed = ({ data }: Props) => {
         </div>
         <div className={`${bn}__stripe`} />
         <div className={`${bn}__message-container`}>
-          <div className={`${bn}__body`} dangerouslySetInnerHTML={{ __html: format((discussion.starting_post || discussion.posts[0]).message) }} />
+          <div className={`${bn}__body`} dangerouslySetInnerHTML={{ __html: format(startingPost(discussion).message) }} />
         </div>
         {parentLink()}
       </div>

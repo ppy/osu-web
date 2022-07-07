@@ -22,6 +22,8 @@ return [
 
     'avatar' => [
         'cache_purge_prefix' => env('AVATAR_CACHE_PURGE_PREFIX'),
+        'cache_purge_method' => env('AVATAR_CACHE_PURGE_METHOD'),
+        'cache_purge_authorization_key' => env('AVATAR_CACHE_PURGE_AUTHORIZATION_KEY'),
         'default' => env('DEFAULT_AVATAR', env('APP_URL', 'http://localhost').'/images/layout/avatar-guest.png'),
         'storage' => env('AVATAR_STORAGE', 'local-avatar'),
     ],
