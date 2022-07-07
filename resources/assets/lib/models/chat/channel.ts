@@ -280,8 +280,11 @@ export default class Channel {
 
     if (json.current_user_attributes != null) {
       this.canMessageError = json.current_user_attributes.can_message_error;
-      this.setLastReadId(json.current_user_attributes.last_read_id);
-      this.markAsReadLastSent = json.current_user_attributes.last_read_id;
+      const lastReadId = json.current_user_attributes.last_read_id ?? 0;
+      this.setLastReadId(lastReadId);
+      if (lastReadId > this.markAsReadLastSent) {
+        this.markAsReadLastSent = lastReadId;
+      }
     }
   }
 
