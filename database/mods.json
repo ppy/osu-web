@@ -362,10 +362,6 @@
             "Type": "boolean"
           },
           {
-            "Name": "fixed_follow_circle_hit_area",
-            "Type": "boolean"
-          },
-          {
             "Name": "always_play_tail_sample",
             "Type": "boolean"
           }

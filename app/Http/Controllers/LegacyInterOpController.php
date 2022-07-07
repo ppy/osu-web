@@ -6,7 +6,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\Handler as ExceptionHandler;
-use App\Jobs\EsIndexDocument;
+use App\Jobs\EsDocument;
 use App\Jobs\Notifications\ForumTopicReply;
 use App\Jobs\Notifications\UserAchievementUnlock;
 use App\Jobs\RegenerateBeatmapsetCover;
@@ -67,7 +67,7 @@ class LegacyInterOpController extends Controller
             $this->dispatch($job);
         }
 
-        dispatch(new EsIndexDocument($beatmapset));
+        dispatch(new EsDocument($beatmapset));
 
         return response(null, 204);
     }
@@ -340,7 +340,7 @@ class LegacyInterOpController extends Controller
     {
         $user = User::findOrFail($id);
 
-        dispatch(new EsIndexDocument($user));
+        dispatch(new EsDocument($user));
 
         foreach (Beatmap::MODES as $modeStr => $modeId) {
             $class = Best\Model::getClassByString($modeStr);

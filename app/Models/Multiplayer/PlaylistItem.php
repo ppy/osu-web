@@ -139,26 +139,11 @@ class PlaylistItem extends Model
             throw new InvariantException('mod cannot be listed as both allowed and required: '.implode(', ', $dupeMods));
         }
 
+        $isRealtimeRoom = $this->room->isRealtime();
         $modsHelper = app('mods');
-        $modsHelper->validateSelection($this->ruleset_id, $allowedModIds);
-        $modsHelper->validateSelection($this->ruleset_id, $requiredModIds);
+        $modsHelper->assertValidForMultiplayer($this->ruleset_id, $allowedModIds, $isRealtimeRoom, false);
+        $modsHelper->assertValidForMultiplayer($this->ruleset_id, $requiredModIds, $isRealtimeRoom, true);
         $modsHelper->assertValidExclusivity($this->ruleset_id, $requiredModIds, $allowedModIds);
-
-        foreach ($allowedModIds as $allowedModId) {
-            $modMeta = $modsHelper->mods[$this->ruleset_id][$allowedModId];
-
-            if (!$modMeta['ValidForMultiplayer'] || !$modMeta['ValidForMultiplayerAsFreeMod']) {
-                throw new InvariantException("mod cannot be set as allowed: {$allowedModId}");
-            }
-        }
-
-        foreach ($requiredModIds as $requiredModId) {
-            $modMeta = $modsHelper->mods[$this->ruleset_id][$requiredModId];
-
-            if (!$modMeta['ValidForMultiplayer']) {
-                throw new InvariantException("mod cannot be set as required: {$requiredModId}");
-            }
-        }
     }
 
     public function save(array $options = [])

@@ -52,7 +52,18 @@ trait UserAvatar
 
         if (present(config('osu.avatar.cache_purge_prefix'))) {
             try {
-                file_get_contents(config('osu.avatar.cache_purge_prefix').$this->user_id.'?'.time());
+                $ctx = [
+                    'http' => [
+                        'method' => config('osu.avatar.cache_purge_method') ?? 'GET',
+                        'header' => present(config('osu.avatar.cache_purge_authorization_key'))
+                            ? 'Authorization: '.config('osu.avatar.cache_purge_authorization_key')
+                            : null,
+                    ],
+                ];
+                $prefix = config('osu.avatar.cache_purge_prefix');
+                $suffix = $ctx['http']['method'] === 'GET' ? '?'.time() : ''; // Bypass CloudFlare cache if using GET
+                $url = $prefix.$this->user_id.$suffix;
+                file_get_contents($url, false, stream_context_create($ctx));
             } catch (ErrorException $e) {
                 // ignores 404 errors, throws everything else
                 if (!ends_with($e->getMessage(), "404 Not Found\r\n")) {

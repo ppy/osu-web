@@ -1,10 +1,12 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { BeatmapsetDiscussionJsonForBundle, BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
 import * as markdown from 'remark-parse';
 import { Element, Text } from 'slate';
 import * as unified from 'unified';
 import type { Parent, Node as UnistNode } from 'unist';
+import { startingPost } from 'utils/beatmapset-discussion-helper';
 import { BeatmapDiscussionReview, isBeatmapReviewDiscussionType, PersistedDocumentIssueEmbed } from '../interfaces/beatmap-discussion-review';
 import { disableTokenizersPlugin } from './disable-tokenizers-plugin';
 
@@ -27,7 +29,7 @@ function isText(node: UnistNode): node is TextNode {
   return node.type === 'text';
 }
 
-export function parseFromJson(json: string, discussions: Partial<Record<number, BeatmapsetDiscussionJson>>) {
+export function parseFromJson(json: string, discussions: Partial<Record<number, BeatmapsetDiscussionJsonForBundle | BeatmapsetDiscussionJsonForShow>>) {
   let srcDoc: BeatmapDiscussionReview;
 
   try {
@@ -91,7 +93,7 @@ export function parseFromJson(json: string, discussions: Partial<Record<number, 
         doc.push({
           beatmapId: discussion.beatmap_id,
           children: [{
-            text: (discussion.starting_post ?? discussion.posts[0]).message,
+            text: startingPost(discussion).message,
           }],
           discussionId: discussion.id,
           discussionType: discussion.message_type,
