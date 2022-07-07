@@ -18,7 +18,7 @@ return [
     'artist_tracks' => [
         'album' => 'Альбом',
         'artist' => 'Артыст',
-        'bpm' => 'УУХ (bpm)',
+        'bpm' => 'BPM',
         'genre' => 'Жанр',
         'length' => 'Даўжыня',
         'relevance' => 'Актуальнасць',

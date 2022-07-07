@@ -173,7 +173,7 @@ return [
                 'country' => 'Niemand in deinem Land hat einen Rang auf dieser Beatmap!',
                 'friend' => 'Keiner deiner Freunde hat einen Rang auf dieser Beatmap!',
                 'global' => 'Noch niemand auf der Rangliste. Wie wärs?',
-                'loading' => 'Lade Ränge...',
+                'loading' => 'Lade Scores...',
                 'unranked' => 'Unranked Beatmap.',
             ],
             'score' => [

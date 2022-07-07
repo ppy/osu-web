@@ -13,12 +13,12 @@ return [
     'room' => [
         'hosted_by' => 'ejet af :user',
         'invalid_password' => 'Ugyldig adgangskode til rummet',
-        'map_count' => '',
-        'player_count' => '',
+        'map_count' => ':count_delimited map|:count_delimited maps',
+        'player_count' => ':count_delimited spillere|:count_delimited spillere',
         'time_left' => ':time tilbage',
 
         'errors' => [
-            'duration_too_long' => '',
+            'duration_too_long' => 'Varigheden er for lang.',
         ],
 
         'status' => [

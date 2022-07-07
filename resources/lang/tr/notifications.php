@@ -87,12 +87,12 @@ return [
             '_' => 'Sohbet',
 
             'announcement' => [
-                '_' => '',
+                '_' => 'Yeni duyuru',
 
                 'announce' => [
-                    'channel_announcement' => '',
-                    'channel_announcement_compact' => '',
-                    'channel_announcement_group' => '',
+                    'channel_announcement' => ':username ":title" diyor',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => ':username Tarafından duyuru',
                 ],
             ],
 

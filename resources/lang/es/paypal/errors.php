@@ -4,10 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'instrument_declined' => 'El método de pago seleccionado fue rechazado por Paypal.',
+    'instrument_declined' => 'El método de pago seleccionado fue rechazado por PayPal.',
     'invalid_resource_id' => 'No se encontró ninguna información de pago.',
     'invalid_token' => 'Hubo un error al completar su pago.',
     'old_format' => 'El enlace de pago ha caducado, inténtelo de nuevo.',
     'resource_not_found' => 'No se encontró ninguna información de pago.',
-    'unknown' => "El pago fue rechazado por un motivo desconocido.",
+    'unknown' => "El pago fue rechazado, pero no sabemos por qué.",
 ];

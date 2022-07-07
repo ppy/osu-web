@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'loading_users' => '',
+    'loading_users' => 'chargement des utilisateurs...',
     'talking_in' => 'parle dans :channel',
     'talking_with' => 'parle avec :name',
     'title_compact' => 'tchat',
@@ -15,6 +15,7 @@ return [
     ],
 
     'channels' => [
+        'create' => 'créer une annonce',
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Annonces',
@@ -25,12 +26,25 @@ return [
         ],
     ],
 
+    'form' => [
+        'title' => [
+            'announcement' => 'Créer une Nouvelle Annonce',
+        ],
+
+        'labels' => [
+            'description' => 'description',
+            'name' => 'nom du salon',
+            'users' => 'joueurs à ajouter',
+        ],
+    ],
+
     'not_found' => [
         'message' => 'Il n\'y a rien ici, vous avez peut-être quitté le canal ou alors il n\'existe pas...',
         'title' => 'canal introuvable',
     ],
 
     'input' => [
+        'create' => 'Créer',
         'disabled' => 'impossible d’envoyer le message...',
         'disconnected' => 'Déconnecté',
         'placeholder' => 'saisissez le message...',

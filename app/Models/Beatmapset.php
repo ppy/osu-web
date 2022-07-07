@@ -8,7 +8,7 @@ namespace App\Models;
 use App\Exceptions\BeatmapProcessorException;
 use App\Exceptions\InvariantException;
 use App\Jobs\CheckBeatmapsetCovers;
-use App\Jobs\EsIndexDocument;
+use App\Jobs\EsDocument;
 use App\Jobs\Notifications\BeatmapsetDiscussionLock;
 use App\Jobs\Notifications\BeatmapsetDiscussionUnlock;
 use App\Jobs\Notifications\BeatmapsetDisqualify;
@@ -55,7 +55,6 @@ use Illuminate\Database\QueryException;
  * @property \Illuminate\Database\Eloquent\Collection $defaultBeatmaps Beatmap
  * @property \Carbon\Carbon|null $deleted_at
  * @property string|null $difficulty_names
- * @property bool $discussion_enabled
  * @property bool $discussion_locked
  * @property string $displaytitle
  * @property bool $download_disabled
@@ -112,7 +111,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     protected $casts = [
         'active' => 'boolean',
         'comment_locked' => 'boolean',
-        'discussion_enabled' => 'boolean',
         'discussion_locked' => 'boolean',
         'download_disabled' => 'boolean',
         'epilepsy' => 'boolean',
@@ -1366,7 +1364,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function afterCommit()
     {
-        dispatch(new EsIndexDocument($this));
+        dispatch(new EsDocument($this));
     }
 
     public function notificationCover()

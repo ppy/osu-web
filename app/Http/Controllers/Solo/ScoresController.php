@@ -6,7 +6,6 @@
 namespace App\Http\Controllers\Solo;
 
 use App\Http\Controllers\Controller as BaseController;
-use App\Libraries\Multiplayer\Mod;
 use App\Models\Solo\Score;
 use App\Models\Solo\ScoreToken;
 use App\Transformers\ScoreTransformer;
@@ -44,7 +43,7 @@ class ScoresController extends BaseController
                     'beatmap_id' => $scoreToken->beatmap_id,
                     'build_id' => $scoreToken->build_id,
                     'ended_at' => json_time(now()),
-                    'mods' => Mod::parseInputArray($params['mods'] ?? [], $scoreToken->ruleset_id),
+                    'mods' => app('mods')->parseInputArray($scoreToken->ruleset_id, $params['mods'] ?? []),
                     'ruleset_id' => $scoreToken->ruleset_id,
                     'started_at' => $scoreToken->created_at,
                     'user_id' => $scoreToken->user_id,

@@ -22,7 +22,6 @@ class BeatmapsetFactory extends Factory
         return [
             'artist' => fn () => $this->faker->name(),
             'title' => fn () => substr($this->faker->sentence(rand(0, 5)), 0, 80),
-            'discussion_enabled' => true,
             'source' => fn () => $this->faker->domainWord(),
             'tags' => fn () => $this->faker->domainWord(),
             'bpm' => rand(100, 200),
@@ -54,11 +53,6 @@ class BeatmapsetFactory extends Factory
     public function inactive()
     {
         return $this->state(['active' => 0]);
-    }
-
-    public function noDiscussion()
-    {
-        return $this->state(['discussion_enabled' => false]);
     }
 
     public function owner(?User $user = null)

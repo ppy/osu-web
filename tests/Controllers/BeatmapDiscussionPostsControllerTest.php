@@ -32,27 +32,6 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
             ->assertStatus(404);
     }
 
-    public function testPostStoreNewDiscussionRequestBeatmapsetDiscussionDisabled()
-    {
-        $beatmapset = Beatmapset::factory()->noDiscussion()->has(Beatmap::factory())->create();
-
-        $currentDiscussions = BeatmapDiscussion::count();
-        $currentDiscussionPosts = BeatmapDiscussionPost::count();
-
-        $this
-            ->actingAsVerified($this->user)
-            ->post(route('beatmapsets.discussions.posts.store'), [
-                'beatmapset_id' => $beatmapset->getKey(),
-                'beatmap_discussion_post' => [
-                    'message' => 'Hello',
-                ],
-            ])
-            ->assertStatus(404);
-
-        $this->assertSame($currentDiscussions, BeatmapDiscussion::count());
-        $this->assertSame($currentDiscussionPosts, BeatmapDiscussionPost::count());
-    }
-
     public function testPostUpdate()
     {
         $beatmapDiscussionPost = BeatmapDiscussionPost::factory()->create([
