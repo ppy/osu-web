@@ -11,6 +11,10 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
+/**
+ * TODO: This job has been replaced with EsDocument.
+ * It's left around temporarily so existing job can finish processing.
+ */
 class EsIndexDocument implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
