@@ -8,7 +8,7 @@ namespace App\Models;
 use App\Exceptions\ChangeUsernameException;
 use App\Exceptions\InvariantException;
 use App\Exceptions\ModelNotSavedException;
-use App\Jobs\EsIndexDocument;
+use App\Jobs\EsDocument;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\ChangeUsername;
 use App\Libraries\Elasticsearch\Indexable;
@@ -2225,7 +2225,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function afterCommit()
     {
-        dispatch(new EsIndexDocument($this));
+        dispatch(new EsDocument($this));
     }
 
     protected function newReportableExtraParams(): array
