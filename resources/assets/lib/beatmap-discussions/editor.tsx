@@ -4,6 +4,7 @@
 import { CircularProgress } from 'components/circular-progress';
 import { Spinner } from 'components/spinner';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
+import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForBundle, BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import isHotkey from 'is-hotkey';
 import { route } from 'laroute';
@@ -45,7 +46,7 @@ interface Props {
   currentBeatmap: BeatmapExtendedJson;
   currentDiscussions: BeatmapsetDiscussionJson[];
   discussion?: BeatmapsetDiscussionJson;
-  discussions: Partial<Record<number, BeatmapsetDiscussionJson>>;
+  discussions: Partial<Record<number, BeatmapsetDiscussionJsonForBundle | BeatmapsetDiscussionJsonForShow>>; // passed in via context at parent
   document?: string;
   editing: boolean;
   editMode?: boolean;

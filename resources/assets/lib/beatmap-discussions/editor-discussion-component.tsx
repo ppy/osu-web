@@ -3,6 +3,7 @@
 
 import { BeatmapReviewDiscussionType } from 'interfaces/beatmap-discussion-review';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
+import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import * as _ from 'lodash';
 import * as React from 'react';
