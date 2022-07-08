@@ -31,7 +31,6 @@ class AddAllowPerformanceToOsuBuilds extends Migration
     {
         Schema::table('osu_builds', function (Blueprint $table) {
             $table->dropColumn('allow_performance');
-            $table->dropIndex('allow_performance');
         });
     }
 }
