@@ -71,26 +71,6 @@ class ChannelTest extends TestCase
         $this->assertCount(2, $users);
     }
 
-    public function testGetPMChannelName()
-    {
-        $user1 = User::factory()->create();
-        $user2 = User::factory()->create();
-
-        $this->assertSame(
-            Channel::getPMChannelName($user1, $user2),
-            Channel::getPMChannelName($user2, $user1)
-        );
-    }
-
-    public function testPublicChannelDoesNotShowUsers()
-    {
-        $user = User::factory()->create();
-        $channel = $this->createChannel([$user], 'public');
-
-        $this->assertSame(1, $channel->users()->count());
-        $this->assertEmpty($channel->visibleUsers($user));
-    }
-
     /**
      * @dataProvider channelWithBlockedUserVisibilityDataProvider
      */
@@ -215,6 +195,17 @@ class ChannelTest extends TestCase
         Event::assertNotDispatched(ChatChannelEvent::class);
     }
 
+    public function testGetPMChannelName()
+    {
+        $user1 = User::factory()->create();
+        $user2 = User::factory()->create();
+
+        $this->assertSame(
+            Channel::getPMChannelName($user1, $user2),
+            Channel::getPMChannelName($user2, $user1)
+        );
+    }
+
     public function testPmChannelIcon()
     {
         Storage::fake('local-avatar');
@@ -242,6 +233,15 @@ class ChannelTest extends TestCase
         $channel = $this->createChannel([$user, $otherUser], 'pm');
         $this->assertSame($otherUser->username, $channel->displayNameFor($user));
         $this->assertSame($user->username, $channel->displayNameFor($otherUser));
+    }
+
+    public function testPublicChannelDoesNotShowUsers()
+    {
+        $user = User::factory()->create();
+        $channel = $this->createChannel([$user], 'public');
+
+        $this->assertSame(1, $channel->users()->count());
+        $this->assertEmpty($channel->visibleUsers($user));
     }
 
     public function channelCanMessageModeratedChannelDataProvider()
