@@ -154,5 +154,5 @@ jobs:
       # if they actually do what they're expected to do.
       - name: Migration rollback test
         run: |
-          php artisan migrate:rollback 2>&1 | tee rollback.log || true
+          php artisan migrate:reset 2>&1 | tee rollback.log || true
           grep -Fq 'no rolling back from this migration =)' rollback.log
