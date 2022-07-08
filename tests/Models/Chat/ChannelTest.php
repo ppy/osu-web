@@ -72,6 +72,23 @@ class ChannelTest extends TestCase
     }
 
     /**
+     * For testing the factory creates the channel in the expected form.
+     */
+    public function testCreatePMWithFactory()
+    {
+        $channel1 = Channel::factory()->type('pm')->create();
+        $users = $channel1->users();
+
+        // multiple PM channels can be created; existing channel check is handled by sendPrivateMessage;
+        // createPM is typically not called directly.
+        $channel2 = Channel::createPM(...$users);
+
+        $this->assertCount(2, $users);
+        $this->assertSame($channel2->name, $channel1->name);
+        $this->assertEquals($channel2->users(), $users);
+    }
+
+    /**
      * @dataProvider channelWithBlockedUserVisibilityDataProvider
      */
     public function testChannelWithBlockedUserVisibility(?string $otherUserGroup, bool $expectVisible)
@@ -295,17 +312,11 @@ class ChannelTest extends TestCase
 
     private function createChannel(array $users, string $type, bool $moderated = false): Channel
     {
-        $channel = Channel::factory()->type($type);
+        $channel = Channel::factory()->type($type, $users);
         if ($moderated) {
             $channel = $channel->moderated();
         }
 
-        $channel = $channel->create();
-
-        foreach ($users as $user) {
-            $channel->addUser($user);
-        }
-
-        return $channel;
+        return $channel->create();
     }
 }
