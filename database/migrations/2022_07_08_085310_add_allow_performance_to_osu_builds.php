@@ -17,7 +17,7 @@ class AddAllowPerformanceToOsuBuilds extends Migration
     public function up()
     {
         Schema::table('osu_builds', function (Blueprint $table) {
-            $table->boolean('allow_performance')->default(false);
+            $table->boolean('allow_performance')->default(false)->after('allow_bancho');
             $table->index('allow_performance');
         });
     }
