@@ -18,6 +18,7 @@ class AddAllowPerformanceToOsuBuilds extends Migration
     {
         Schema::table('osu_builds', function (Blueprint $table) {
             $table->boolean('allow_performance')->default(false);
+            $table->index('allow_performance');
         });
     }
 
@@ -30,6 +31,7 @@ class AddAllowPerformanceToOsuBuilds extends Migration
     {
         Schema::table('osu_builds', function (Blueprint $table) {
             $table->dropColumn('allow_performance');
+            $table->dropIndex('allow_performance');
         });
     }
 }
