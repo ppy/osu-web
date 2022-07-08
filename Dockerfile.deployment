@@ -55,6 +55,8 @@ ARG APP_URL
 ARG DOCS_URL
 RUN yarn production
 
+RUN php artisan scribe:generate
+
 RUN rm -rf node_modules
 
 ARG GIT_SHA
