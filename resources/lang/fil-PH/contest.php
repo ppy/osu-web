@@ -14,7 +14,7 @@ return [
     ],
 
     'voting' => [
-        'login_required' => 'Mag-sign In para bumoto.',
+        'login_required' => 'Paki-sign-in upang bumoto.',
         'over' => 'Ang pagboboto sa paligsahan na ito ay tapos na',
         'show_voted_only' => 'Ipakita ang mga binoto',
 
@@ -34,7 +34,7 @@ return [
     ],
     'entry' => [
         '_' => 'entrada',
-        'login_required' => 'Paki-sign-in para sumali sa paligsahan.',
+        'login_required' => 'Paki-sign-in upang makapasok sa paligsahan.',
         'silenced_or_restricted' => 'Hindi ka pwedeng sumali sa mga paligsahan habang naka-restricted o naka-silenced ka.',
         'preparation' => 'Hinahanda pa namin ang pagligsahang ito. Mangyaring maghintay nang matiyaga!',
         'drop_here' => 'Ihulog ang iyong entrada dito',

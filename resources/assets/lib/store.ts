@@ -14,10 +14,12 @@ declare global {
   }
 }
 
+type ClickEvent = JQuery.ClickEvent<Document, unknown, HTMLElement, HTMLElement>;
+
 export class Store {
   private constructor() {
-    $(document).on('click', '.js-store-checkout', this.beginCheckout.bind(this));
-    $(document).on('click', '.js-store-resume-checkout', this.resumeCheckout.bind(this));
+    $(document).on('click', '.js-store-checkout', (event: ClickEvent) => void this.beginCheckout(event));
+    $(document).on('click', '.js-store-resume-checkout', (event: ClickEvent) => this.resumeCheckout(event));
 
     $(document).on('turbolinks:load', () => {
       $('.js-store-checkout').prop('disabled', false);
@@ -30,10 +32,10 @@ export class Store {
     sharedContext.Store = sharedContext.Store || new Store();
   }
 
-  async beginCheckout(event: Event) {
+  async beginCheckout(event: ClickEvent) {
     if (event.target == null) return;
 
-    const dataset = (event.target as HTMLElement).dataset;
+    const dataset = event.target.dataset;
     const orderId = dataset.orderId;
     const shouldShopify = dataset.shopify === '1';
     if (orderId == null) {
@@ -82,10 +84,10 @@ export class Store {
     window.location.href = checkout.webUrl;
   }
 
-  resumeCheckout(event: Event) {
+  resumeCheckout(event: ClickEvent) {
     if (event.target == null) return;
 
-    const target = event.target as HTMLElement;
+    const target = event.target;
     const { provider, providerReference, status } = target.dataset;
 
     if (provider === 'shopify' && status !== 'cancelled') {

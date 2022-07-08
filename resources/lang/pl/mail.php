@@ -15,7 +15,7 @@ return [
         'closing' => 'Z wyrazami szacunku,',
         'hello' => 'Witaj, :user!',
         'report' => 'Odpowiedz na ten e-mail NATYCHMIAST, jeżeli to działanie nie zostało wykonane przez Ciebie.',
-        'ignore' => 'Jeżeli nie spytałeś o to, możesz bezpiecznie ignorować ten email.',
+        'ignore' => 'Jeśli to nie Ty o to poprosiłeś(aś), zignoruj tę wiadomość.',
     ],
 
     'donation_thanks' => [

@@ -6,7 +6,7 @@
 return [
     'error' => [
         'chat' => [
-            'empty' => 'Hindi maaaring magpadala ng mensaheng walang laman.',
+            'empty' => 'Hindi makapagpadala ng blangkong mensahe.',
             'limit_exceeded' => 'Masyadong mabilis ang iyong pagpapadala ng mensahe, maghintay lamang ng kaunti bago muling subukan.',
             'too_long' => 'Masyadong mahaba ang pinapadala mong mensahe.',
         ],
@@ -14,20 +14,20 @@ return [
 
     'scopes' => [
         'bot' => 'Gumanap bilang isang chat bot.',
-        'identify' => 'Tukuyin ka at basahin ang iyong publikong profile.',
+        'identify' => 'Tukuyin ka at basahin ang iyong pampublikong profile.',
 
         'chat' => [
-            'write' => 'Magpadala ng mga mensahe sa ngalan mo.',
+            'write' => 'Magpadala ng mga mensahe sa iyong ngalan.',
         ],
 
         'forum' => [
-            'write' => 'Gumawa at i-edit ang mga forum topics at posts sa ngalan mo.',
+            'write' => 'Gumuwa at mag-edit ng mga paksa at mga post ng forum sa iyong ngalan.',
         ],
 
         'friends' => [
             'read' => 'Tignan kung sino ang iyong mga sinusundan.',
         ],
 
-        'public' => 'Basahin ang mga pampublkikong datos sa ngalan mo.',
+        'public' => 'Magbasa ng pampublikong data sa iyong ngalan.',
     ],
 ];

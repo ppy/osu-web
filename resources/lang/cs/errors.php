@@ -10,7 +10,7 @@ return [
     'unknown' => 'Vyskytla se neznámá chyba.',
 
     'codes' => [
-        'http-401' => 'Pro pokračování se prosím přihlaš.',
+        'http-401' => 'Pro pokračování se prosím přihlas.',
         'http-403' => 'Přístup odepřen.',
         'http-404' => 'Nenalezeno.',
         'http-429' => 'Příliš mnoho pokusů. Zkus to znovu později.',

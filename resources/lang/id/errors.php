@@ -10,7 +10,7 @@ return [
     'unknown' => 'Terdapat masalah yang tidak diketahui.',
 
     'codes' => [
-        'http-401' => 'Mohon masuk untuk melanjutkan.',
+        'http-401' => 'Silakan masuk untuk melanjutkan.',
         'http-403' => 'Akses ditolak.',
         'http-404' => 'Tidak ditemukan.',
         'http-429' => 'Terlalu banyak percobaan. Silakan coba lagi nanti.',

@@ -327,7 +327,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
   };
 
   @action
-  private onDocumentClick = (e: JQuery.ClickEvent) => {
+  private onDocumentClick = (e: JQuery.ClickEvent<Document, unknown, Document, Document | HTMLElement>) => {
     // only for shrinking
     if (!this.mobileExpanded) return;
     // clicking on anything on the panel itself is handled by the relevant element

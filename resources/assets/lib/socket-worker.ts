@@ -124,7 +124,7 @@ export default class SocketWorker {
     this.connectionStatus = 'disconnected';
   }
 
-  private handleNewEvent = (event: MessageEvent) => {
+  private handleNewEvent = (event: MessageEvent<string>) => {
     const eventData = this.parseMessageEvent(event);
     if (eventData == null) return;
 
@@ -138,7 +138,7 @@ export default class SocketWorker {
     }
   };
 
-  private parseMessageEvent(event: MessageEvent) {
+  private parseMessageEvent(event: MessageEvent<string>) {
     try {
       const json = JSON.parse(event.data) as unknown;
       if (isSocketEventData(json)) {
