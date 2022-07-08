@@ -206,6 +206,19 @@ class ChannelTest extends TestCase
         );
     }
 
+    public function testLeaveChannel()
+    {
+        // TODO: other types
+        $users = User::factory()->count(2)->create();
+        $channel = Channel::createPM($users[0], $users[1]);
+        $channel->refresh();
+
+        $channel->removeUser($users[0]);
+        $channel->refresh();
+
+        $this->assertContains($users[0], $channel->users());
+    }
+
     public function testPmChannelIcon()
     {
         Storage::fake('local-avatar');
