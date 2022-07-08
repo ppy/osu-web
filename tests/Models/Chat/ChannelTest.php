@@ -28,7 +28,7 @@ class ChannelTest extends TestCase
 
         $user = User::factory()->withGroup('announce')->create();
         $otherUser = User::factory()->create();
-        $channel = $this->createChannel([$user, $otherUser], 'announce');
+        $channel = Channel::factory()->type('announce', [$user, $otherUser])->create();
 
         $channel->receiveMessage($user, 'test');
 
@@ -41,7 +41,7 @@ class ChannelTest extends TestCase
 
         $sender = User::factory()->withGroup('announce')->create();
         $user = User::factory()->create();
-        $channel = $this->createChannel([$sender, $user], 'announce');
+        $channel = Channel::factory()->type('announce', [$sender, $user])->create();
 
         $user->update(['user_warnings' => 1]);
         $channel = $channel->fresh();
@@ -95,7 +95,7 @@ class ChannelTest extends TestCase
     {
         $user = User::factory()->create();
         $otherUser = User::factory()->withGroup($otherUserGroup)->create();
-        $channel = $this->createChannel([$user, $otherUser], 'pm');
+        $channel = Channel::factory()->type('pm', [$user, $otherUser])->create();
 
         UserRelation::create([
             'user_id' => $user->getKey(),
@@ -113,7 +113,7 @@ class ChannelTest extends TestCase
     {
         $user = User::factory()->withGroup($group)->create();
         $otherUser = User::factory()->create();
-        $channel = $this->createChannel([$user, $otherUser], 'pm', true);
+        $channel = Channel::factory()->type('pm', [$user, $otherUser])->moderated()->create();
 
         $this->assertSame($canMessage, $channel->checkCanMessage($user)->can());
     }
@@ -124,7 +124,7 @@ class ChannelTest extends TestCase
     public function testChannelCanMessageModeratedPublicChannel(?string $group, bool $canMessage)
     {
         $user = User::factory()->withGroup($group)->create();
-        $channel = $this->createChannel([$user], 'public', true);
+        $channel = Channel::factory()->type('public', [$user])->moderated()->create();
 
         $this->assertSame($canMessage, $channel->checkCanMessage($user)->can());
     }
@@ -136,7 +136,7 @@ class ChannelTest extends TestCase
     {
         $user = User::factory()->withGroup($group)->create();
         $otherUser = User::factory()->create();
-        $channel = $this->createChannel([$user, $otherUser], 'pm');
+        $channel = Channel::factory()->type('pm', [$user, $otherUser])->create();
 
         UserRelation::create([
             'user_id' => $user->getKey(),
@@ -161,7 +161,7 @@ class ChannelTest extends TestCase
     {
         $user = User::factory()->withGroup($group)->create();
         $otherUser = User::factory()->create();
-        $channel = $this->createChannel([$user, $otherUser], 'pm');
+        $channel = Channel::factory()->type('pm', [$user, $otherUser])->create();
 
         UserRelation::create([
             'user_id' => $otherUser->getKey(),
@@ -186,7 +186,7 @@ class ChannelTest extends TestCase
     {
         $user = User::factory()->withGroup($group)->create();
         $otherUser = User::factory()->create(['pm_friends_only' => true]);
-        $channel = $this->createChannel([$user, $otherUser], 'pm');
+        $channel = Channel::factory()->type('pm', [$user, $otherUser])->create();
 
         app('OsuAuthorize')->resetCache();
 
@@ -227,13 +227,13 @@ class ChannelTest extends TestCase
     {
         // TODO: other types
         $users = User::factory()->count(2)->create();
-        $channel = Channel::createPM($users[0], $users[1]);
+        $channel = Channel::factory()->type('pm', [...$users])->create();
         $channel->refresh();
 
         $channel->removeUser($users[0]);
         $channel->refresh();
 
-        $this->assertContains($users[0], $channel->users());
+        $this->assertContains($users[0]->getKey(), $channel->userIds());
     }
 
     public function testPmChannelIcon()
@@ -250,7 +250,7 @@ class ChannelTest extends TestCase
         $user->setAvatar($testFile);
         $otherUser->setAvatar($testFile);
 
-        $channel = $this->createChannel([$user, $otherUser], 'pm');
+        $channel = Channel::factory()->type('pm', [$user, $otherUser])->create();
         $this->assertSame($otherUser->user_avatar, $channel->displayIconFor($user));
         $this->assertSame($user->user_avatar, $channel->displayIconFor($otherUser));
     }
@@ -260,7 +260,7 @@ class ChannelTest extends TestCase
         $user = User::factory()->create();
         $otherUser = User::factory()->create();
 
-        $channel = $this->createChannel([$user, $otherUser], 'pm');
+        $channel = Channel::factory()->type('pm', [$user, $otherUser])->create();
         $this->assertSame($otherUser->username, $channel->displayNameFor($user));
         $this->assertSame($user->username, $channel->displayNameFor($otherUser));
     }
@@ -268,7 +268,7 @@ class ChannelTest extends TestCase
     public function testPublicChannelDoesNotShowUsers()
     {
         $user = User::factory()->create();
-        $channel = $this->createChannel([$user], 'public');
+        $channel = Channel::factory()->type('public', [$user])->create();
 
         $this->assertSame(1, $channel->users()->count());
         $this->assertEmpty($channel->visibleUsers($user));
@@ -308,15 +308,5 @@ class ChannelTest extends TestCase
             ['gmt', true],
             ['nat', true],
         ];
-    }
-
-    private function createChannel(array $users, string $type, bool $moderated = false): Channel
-    {
-        $channel = Channel::factory()->type($type, $users);
-        if ($moderated) {
-            $channel = $channel->moderated();
-        }
-
-        return $channel->create();
     }
 }
