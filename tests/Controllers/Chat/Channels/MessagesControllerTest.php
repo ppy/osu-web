@@ -19,6 +19,14 @@ class MessagesControllerTest extends TestCase
 {
     protected static $faker;
 
+    private User $anotherUser;
+    private Channel $privateChannel;
+    private Channel $publicChannel;
+    private User $restrictedUser;
+    private User $silencedUser;
+    private Channel $tourneyChannel;
+    private User $user;
+
     public static function setUpBeforeClass(): void
     {
         self::$faker = Faker\Factory::create();
@@ -115,14 +123,16 @@ class MessagesControllerTest extends TestCase
     //region GET /chat/channels/[channel_id]/messages - Get Channel Messages (pm)
     public function testChannelShowPMWhenGuest() // fail
     {
-        $this->json('GET', route('api.chat.channels.messages.index', ['channel' => $this->pmChannel->channel_id]))
+        $pmChannel = Channel::factory()->type('pm')->create();
+        $this->json('GET', route('api.chat.channels.messages.index', ['channel' => $pmChannel->channel_id]))
             ->assertStatus(401);
     }
 
     public function testChannelShowPMWhenNotJoined() // fail
     {
+        $pmChannel = Channel::factory()->type('pm')->create();
         $this->actAsScopedUser($this->user, ['*']);
-        $this->json('GET', route('api.chat.channels.messages.index', ['channel' => $this->pmChannel->channel_id]))
+        $this->json('GET', route('api.chat.channels.messages.index', ['channel' => $pmChannel->channel_id]))
             ->assertStatus(404);
     }
 
@@ -359,7 +369,6 @@ class MessagesControllerTest extends TestCase
         $this->silencedUser = User::factory()->silenced()->create();
         $this->publicChannel = Channel::factory()->type('public')->create();
         $this->privateChannel = Channel::factory()->type('private')->create();
-        $this->pmChannel = Channel::factory()->type('pm')->create();
         $this->tourneyChannel = Channel::factory()->tourney()->create();
     }
 }
