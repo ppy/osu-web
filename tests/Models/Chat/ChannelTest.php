@@ -57,6 +57,31 @@ class ChannelTest extends TestCase
         );
     }
 
+    public function testCreatePM()
+    {
+        $user1 = User::factory()->create();
+        $user2 = User::factory()->create();
+
+        $channel = Channel::createPM($user1, $user2);
+        $channel->refresh();
+
+        $users = $channel->users();
+        $this->assertContains($user1, $users);
+        $this->assertContains($user2, $users);
+        $this->assertCount(2, $users);
+    }
+
+    public function testGetPMChannelName()
+    {
+        $user1 = User::factory()->create();
+        $user2 = User::factory()->create();
+
+        $this->assertSame(
+            Channel::getPMChannelName($user1, $user2),
+            Channel::getPMChannelName($user2, $user1)
+        );
+    }
+
     public function testPublicChannelDoesNotShowUsers()
     {
         $user = User::factory()->create();
