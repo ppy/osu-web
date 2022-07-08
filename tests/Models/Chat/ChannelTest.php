@@ -223,17 +223,23 @@ class ChannelTest extends TestCase
         );
     }
 
-    public function testLeaveChannel()
+    /**
+     * @dataProvider leaveChannelDataProvider
+     */
+    public function testLeaveChannel(string $type, bool $inChannel)
     {
-        // TODO: other types
         $users = User::factory()->count(2)->create();
-        $channel = Channel::factory()->type('pm', [...$users])->create();
+        $channel = Channel::factory()->type($type, [...$users])->create();
         $channel->refresh();
 
         $channel->removeUser($users[0]);
         $channel->refresh();
 
-        $this->assertContains($users[0]->getKey(), $channel->userIds());
+        if ($inChannel) {
+            $this->assertContains($users[0]->getKey(), $channel->userIds());
+        } else {
+            $this->assertNotContains($users[0]->getKey(), $channel->userIds());
+        }
     }
 
     public function testPmChannelIcon()
@@ -307,6 +313,15 @@ class ChannelTest extends TestCase
             ['bot', true],
             ['gmt', true],
             ['nat', true],
+        ];
+    }
+
+    public function leaveChannelDataProvider()
+    {
+        return [
+            ['announce', false], // will need to be updated later.
+            ['pm', true],
+            ['public', false],
         ];
     }
 }
