@@ -84,9 +84,9 @@ return [
 
         'details_date' => [
             'approved' => 'مقبولة :timeago',
-            'loved' => 'loved :timeago',
+            'loved' => 'محبوبة :timeago',
             'qualified' => 'مؤهل timeago:',
-            'ranked' => 'ranked :timeago',
+            'ranked' => 'مقيّمة :timeago',
             'submitted' => 'مُقدَمَة :timeago',
             'updated' => 'آخر تحديث :timeago',
         ],
@@ -96,7 +96,7 @@ return [
         ],
 
         'hype' => [
-            'action' => 'اَشِد هذه الخريطة ان احببت لعبها لمساعدتها لاِحتلال حالة <strong>Ranked</strong>.',
+            'action' => 'اَشِد هذه الخريطة ان احببت لعبها لمساعدتها لاِحتلال حالة <strong>مقيّمة</strong>.',
 
             'current' => [
                 '_' => 'هذه الخريطة حاليا :status.',
@@ -162,7 +162,7 @@ return [
                 'mods' => 'المودات',
                 'pin' => 'ثبّت',
                 'player' => 'اللاعب',
-                'pp' => '',
+                'pp' => 'نقاط الاداء',
                 'rank' => 'المرتبه',
                 'score' => 'المجموع',
                 'score_total' => 'مجموع النقاط',
@@ -174,7 +174,7 @@ return [
                 'friend' => 'لا احد من اصدقائك حصل على نتيجة بهذه الخريطة بعد!',
                 'global' => 'لا نتيجة بعد. ربما عليك الحصول على واحدة؟',
                 'loading' => 'جارِ تحميل النتائج...',
-                'unranked' => 'خريطة ليست Ranked.',
+                'unranked' => 'خريطة ليست مقيّمة.',
             ],
             'score' => [
                 'first' => 'في المقدمة',
@@ -205,9 +205,9 @@ return [
         ],
 
         'status' => [
-            'ranked' => 'Ranked',
+            'ranked' => 'مقيّمة',
             'approved' => 'مقبولة',
-            'loved' => 'Loved',
+            'loved' => 'محبوبة',
             'qualified' => 'مؤهلة',
             'wip' => 'جارية',
             'pending' => 'معلقة',

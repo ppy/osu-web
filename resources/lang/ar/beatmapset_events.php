@@ -24,7 +24,7 @@ return [
         'kudosu_lost' => 'المناقشة :discussion بواسطة :user خسرت اصواتاََ وتم حذف كودوسو.',
         'kudosu_recalculate' => 'المناقشة :discussion حصلت على اعادة حساب الكودوسو.',
         'language_edit' => 'تم تغيير اللغة من :old الى :new.',
-        'love' => 'Loved بواسطة :user.',
+        'love' => 'محبوبة بواسطة :user.',
         'nominate' => 'رُشحت بواسطة :user.',
         'nominate_modes' => 'تم ترشيحها بواسطة :user (:modes).',
         'nomination_reset' => 'اثارت المشكلة :discussion (:text) اِعادة تعيين الترشيح.',
@@ -32,8 +32,8 @@ return [
         'nomination_reset_received_profile' => 'تمت إعادة تعيين الترشيح بواسطة :user (:text)',
         'offset_edit' => 'تم تغيير الإزاحة عبر الإنترنت من :old إلى :new.',
         'qualify' => 'هذه الخريطة وصلت إلى العدد المطلوب من الترشيحات وتأهلت.',
-        'rank' => 'Ranked.',
-        'remove_from_loved' => 'تمت إزالتها من "Loved" من قِبَل :user. (:text)',
+        'rank' => 'مقيّمة.',
+        'remove_from_loved' => 'تمت إزالتها من "محبوبة" من قِبَل :user. (:text)',
 
         'nsfw_toggle' => [
             'to_0' => 'تصيف "محتوى حساس" مَلغي',
@@ -81,6 +81,6 @@ return [
         'offset_edit' => 'تعديل الإزاحة',
         'qualify' => 'المؤهل',
         'rank' => 'الترتيب',
-        'remove_from_loved' => 'اِزالة من "Loved"',
+        'remove_from_loved' => 'اِزالة من "محبوبة"',
     ],
 ];

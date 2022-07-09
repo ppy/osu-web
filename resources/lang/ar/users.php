@@ -212,13 +212,13 @@ return [
                     'title' => 'خرائط من مشاركات الضيف',
                 ],
                 'loved' => [
-                    'title' => 'خرائط Loved',
+                    'title' => 'خرائط محبوبة',
                 ],
                 'pending' => [
                     'title' => 'الخرائط المعلقة',
                 ],
                 'ranked' => [
-                    'title' => 'الخرائط الـ Ranked',
+                    'title' => 'الخرائط المقيّمة',
                 ],
             ],
             'discussions' => [
@@ -323,8 +323,8 @@ return [
                 'title' => 'ألـ ألعاب الجماعية',
             ],
             'top_ranks' => [
-                'download_replay' => 'تحميل الـ Replay',
-                'not_ranked' => 'فقط الخرائط الـ Ranked تعطي نقاط خبرة',
+                'download_replay' => 'تحميل الاعادة',
+                'not_ranked' => 'فقط الخرائط المقيّمة تعطي نقاط خبرة',
                 'pp_weight' => 'موزون :percentage',
                 'view_details' => 'عرض التفاصيل',
                 'title' => 'النتائج',
@@ -419,16 +419,16 @@ return [
             'medals' => 'الاوسمة',
             'play_count' => 'مرات اللعب',
             'play_time' => 'وقت اللعب الإجمالي',
-            'ranked_score' => 'عدد نقاط الـ Ranked',
-            'replays_watched_by_others' => 'الـ Replays التي شاهدها الأخرون',
+            'ranked_score' => 'عدد النقاط المقيّمة',
+            'replays_watched_by_others' => 'الإعادات التي شاهدها الأخرون',
             'score_ranks' => 'ترتيب النقاط',
             'total_hits' => 'مجموع التصويبات',
             'total_score' => 'مجموع النقاط',
             // modding stats
             'graveyard_beatmapset_count' => 'الخرائط المقبورة',
-            'loved_beatmapset_count' => 'خرائط Loved',
+            'loved_beatmapset_count' => 'خرائط المحبوبة',
             'pending_beatmapset_count' => 'الخرائط المعلقة',
-            'ranked_beatmapset_count' => 'الخرائط الـ Ranked',
+            'ranked_beatmapset_count' => 'الخرائط المقيّمة',
         ],
     ],
 

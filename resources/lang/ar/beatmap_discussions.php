@@ -35,7 +35,7 @@ return [
                 'disqualified' => 'رفض تأهيلها',
                 'never_qualified' => 'لم تؤهل ابداََ',
                 'qualified' => 'تأهلت',
-                'ranked' => 'Ranked',
+                'ranked' => 'مقيّمة',
             ],
 
             'user' => [
