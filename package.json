@@ -64,7 +64,7 @@
     "mini-css-extract-plugin": "^1.6.0",
     "mobx": "^6.3.3",
     "mobx-react": "^7.2.0",
-    "moment": "^2.29.2",
+    "moment": "^2.29.4",
     "photoswipe": "^4.1.1",
     "postcss-loader": "^3.0.0",
     "qtip2": "https://github.com/notbakaneko/qTip2.git#cd5f038667d2b23a44f4274c46de01834d704ce6",
@@ -85,7 +85,7 @@
     "ts-loader": "6.0.4",
     "tsconfig-paths-webpack-plugin": "^3.2.0",
     "turbolinks": "^5.1.1",
-    "typescript": "^4.4.2",
+    "typescript": "^4.7.4",
     "unified": "^8.4.2",
     "unist-util-visit": "^2.0.1",
     "watchpack": "^1.6.0",
@@ -95,8 +95,8 @@
     "yargs": "^12.0.5"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.31.0",
-    "@typescript-eslint/parser": "^4.31.0",
+    "@typescript-eslint/eslint-plugin": "^5.29.0",
+    "@typescript-eslint/parser": "^5.29.0",
     "deasync": "^0.1.26",
     "eslint": "^7.15.0",
     "eslint-plugin-import": "^2.22.1",

@@ -37,7 +37,11 @@ use LaravelRedis as Redis;
  */
 class Channel extends Model
 {
-    use Memoizes, Validatable;
+    use Memoizes {
+        Memoizes::resetMemoized as origResetMemoized;
+    }
+
+    use Validatable;
 
     const CHAT_ACTIVITY_TIMEOUT = 60; // in seconds.
 
@@ -117,7 +121,7 @@ class Channel extends Model
         ]);
     }
 
-    public static function createPM($user1, $user2)
+    public static function createPM(User $user1, User $user2)
     {
         $channel = new static([
             'name' => static::getPMChannelName($user1, $user2),
@@ -135,7 +139,7 @@ class Channel extends Model
         return $channel;
     }
 
-    public static function findPM($user1, $user2)
+    public static function findPM(User $user1, User $user2)
     {
         $channelName = static::getPMChannelName($user1, $user2);
 
@@ -157,7 +161,7 @@ class Channel extends Model
      *
      * @return string
      */
-    public static function getPMChannelName($user1, $user2)
+    public static function getPMChannelName(User $user1, User $user2)
     {
         $userIds = [$user1->getKey(), $user2->getKey()];
         sort($userIds);
@@ -496,21 +500,23 @@ class Channel extends Model
 
     public function removeUser(User $user)
     {
-        $userChannel = UserChannel::where([
-            'channel_id' => $this->channel_id,
-            'user_id' => $user->user_id,
-            'hidden' => false,
-        ])->first();
+        $userChannel = $this->userChannelFor($user);
 
-        if (!$userChannel) {
+        if ($userChannel === null) {
             return;
         }
 
         if ($this->isPM()) {
+            if ($userChannel->isHidden()) {
+                return;
+            }
+
             $userChannel->update(['hidden' => true]);
         } else {
             $userChannel->delete();
         }
+
+        $this->resetMemoized();
 
         (new ChatChannelEvent($this, $user, 'part'))->broadcast(true);
 
@@ -519,11 +525,7 @@ class Channel extends Model
 
     public function hasUser(User $user)
     {
-        return UserChannel::where([
-            'channel_id' => $this->channel_id,
-            'user_id' => $user->user_id,
-            'hidden' => false,
-        ])->exists();
+        return $this->userChannelFor($user) !== null;
     }
 
     public function save(array $options = [])
@@ -550,6 +552,14 @@ class Channel extends Model
         return 'chat.channel';
     }
 
+    protected function resetMemoized(): void
+    {
+        $this->origResetMemoized();
+        // simpler to reset preloads since its use-cases are more specific,
+        // rather than trying to juggle them to ensure userChannelFor returns as expected.
+        $this->preloadedUserChannels = [];
+    }
+
     private function unhide()
     {
         if (!$this->isPM()) {
@@ -564,7 +574,7 @@ class Channel extends Model
         ]);
     }
 
-    private function userChannelFor(User $user)
+    private function userChannelFor(User $user): ?UserChannel
     {
         $userId = $user->getKey();
 

@@ -15,7 +15,7 @@ return [
     ],
 
     'channels' => [
-        'create' => '',
+        'create' => 'créer une annonce',
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Annonces',
@@ -28,13 +28,13 @@ return [
 
     'form' => [
         'title' => [
-            'announcement' => '',
+            'announcement' => 'Créer une Nouvelle Annonce',
         ],
 
         'labels' => [
-            'description' => '',
-            'name' => '',
-            'users' => '',
+            'description' => 'description',
+            'name' => 'nom du salon',
+            'users' => 'joueurs à ajouter',
         ],
     ],
 
@@ -44,7 +44,7 @@ return [
     ],
 
     'input' => [
-        'create' => '',
+        'create' => 'Créer',
         'disabled' => 'impossible d’envoyer le message...',
         'disconnected' => 'Déconnecté',
         'placeholder' => 'saisissez le message...',

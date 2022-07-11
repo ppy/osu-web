@@ -5,6 +5,7 @@
 
 namespace Tests\Browser;
 
+use App\Models\BeatmapPack;
 use App\Models\Chat\Channel;
 use App\Models\Chat\UserChannel;
 use App\Models\Country;
@@ -91,7 +92,7 @@ class SanityTest extends DuskTestCase
             'beatmapset_id' => self::$scaffolding['beatmapset'],
             'beatmap_id' => self::$scaffolding['beatmap'],
         ]);
-        self::$scaffolding['pack'] = factory(\App\Models\BeatmapPack::class)->create();
+        self::$scaffolding['pack'] = BeatmapPack::factory()->create();
 
         // factories for /community/contests/*
         self::$scaffolding['contest'] = factory(\App\Models\Contest::class)->states('entry')->create();

@@ -4,16 +4,25 @@
 import guestGroup from 'beatmap-discussions/guest-group';
 import mapperGroup from 'beatmap-discussions/mapper-group';
 import BeatmapJson from 'interfaces/beatmap-json';
+import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForBundle, BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
+import BeatmapsetDiscussionPostJson from 'interfaces/beatmapset-discussion-post-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
+import { escape, truncate } from 'lodash';
 import { currentUrl } from 'utils/turbolinks';
-import { linkHtml, urlRegex } from 'utils/url';
+import { linkHtml, openBeatmapEditor, urlRegex } from 'utils/url';
+import { classWithModifiers, Modifiers } from './css';
 
 interface BadgeGroupParams {
   beatmapset: BeatmapsetJson;
   currentBeatmap: BeatmapJson;
   discussion: BeatmapsetDiscussionJson;
   user?: UserJson;
+}
+
+interface FormatOptions {
+  modifiers?: Modifiers;
+  newlines?: boolean;
 }
 
 interface PropsFromHrefValue {
@@ -23,6 +32,11 @@ interface PropsFromHrefValue {
   rel: 'nofollow noreferrer';
   target?: '_blank';
 }
+
+const lineBreakRegex = /(?:<br>){2,}/g;
+const linkTimestampRegex = /\b((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\)|\b))/g;
+const maxMessagePreviewLength = 100;
+export const maxLengthTimeline = 750;
 
 export function badgeGroup({ beatmapset, currentBeatmap, discussion, user }: BadgeGroupParams) {
   if (user == null) {
@@ -40,7 +54,7 @@ export function badgeGroup({ beatmapset, currentBeatmap, discussion, user }: Bad
   return user.groups?.[0];
 }
 
-export function discussionLinkify(text: string) {
+function discussionLinkify(text: string) {
   // text should be pre-escaped.
   return text.replace(urlRegex, (match, url: string) => {
     const { children, ...props } = propsFromHref(url);
@@ -48,6 +62,44 @@ export function discussionLinkify(text: string) {
     const displayUrl = typeof children === 'string' ? children : url;
     return linkHtml(url, displayUrl, { props, unescape: true });
   });
+}
+
+export function format(text: string, options: FormatOptions = {}) {
+  text = linkTimestamp(discussionLinkify(escape(text).trim()), ['beatmap-discussion-timestamp-decoration']);
+
+  if (options.newlines ?? true) {
+    // replace newlines with <br>
+    // - trim trailing spaces
+    // - then join with <br>
+    // - limit to 2 consecutive <br>s
+    text = text
+      .split('\n')
+      .map((x) => x.trim())
+      .join('<br>')
+      .replace(lineBreakRegex, '<br><br>');
+  }
+
+  const blockClass = classWithModifiers('beatmapset-discussion-message', options.modifiers);
+
+  return `<div class='${blockClass}'>${text}</div>`;
+}
+
+
+export function linkTimestamp(text: string, classNames: string[] = []) {
+  return text.replace(
+    linkTimestampRegex,
+    (_match, timestamp: string, m: string, s: string, ms: string, range?: string) => (
+      linkHtml(openBeatmapEditor(`${m}:${s}:${ms}${range ?? ''}`), timestamp, { classNames })
+    ),
+  );
+}
+
+export function previewMessage(message: string) {
+  if (message.length > maxMessagePreviewLength) {
+    return escape(truncate(message, { length: maxMessagePreviewLength }));
+  }
+
+  return format(message, { newlines: false });
 }
 
 export function propsFromHref(href: string) {
@@ -87,4 +139,13 @@ export function propsFromHref(href: string) {
   }
 
   return props;
+}
+
+// Workaround for the discussion starting_post typing mess until the response gets refactored and normalized.
+export function startingPost(discussion: BeatmapsetDiscussionJsonForBundle | BeatmapsetDiscussionJsonForShow): BeatmapsetDiscussionPostJson {
+  if (!('posts' in discussion)) {
+    return discussion.starting_post;
+  }
+
+  return discussion.posts[0];
 }

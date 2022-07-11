@@ -11,7 +11,7 @@ import { button, div, form, input, label, span, i } from 'react-dom-factories'
 import { createClickCallback } from 'utils/html'
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
-import { MessageLengthCounter } from './message-length-counter'
+import MessageLengthCounter from './message-length-counter'
 
 el = React.createElement
 

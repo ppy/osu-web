@@ -2,16 +2,13 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute'
-import { discussionLinkify } from 'utils/beatmapset-discussion-helper'
+import { maxLengthTimeline } from 'utils/beatmapset-discussion-helper'
 import { currentUrl } from 'utils/turbolinks'
 import { getInt } from 'utils/math'
-import { openBeatmapEditor, linkHtml } from 'utils/url'
 
 class window.BeatmapDiscussionHelper
   @DEFAULT_BEATMAP_ID: '-'
   @DEFAULT_FILTER: 'total'
-  @MAX_MESSAGE_PREVIEW_LENGTH: 100
-  @MAX_LENGTH_TIMELINE: 750
   @TIMESTAMP_REGEX: /\b(((\d{2,}):([0-5]\d)[:.](\d{3}))(\s\((?:\d+[,|])*\d+\))?)/
 
   @MODES = new Set(['events', 'general', 'generalAll', 'timeline', 'reviews'])
@@ -44,30 +41,6 @@ class window.BeatmapDiscussionHelper
         'generalAll'
 
 
-  @format: (text, options = {}) =>
-    blockName = 'beatmapset-discussion-message'
-    text = _.escape text
-    text = text.trim()
-    text = discussionLinkify text
-    text = @linkTimestamp text, ['beatmap-discussion-timestamp-decoration']
-
-    if options.newlines ? true
-      # replace newlines with <br>
-      # - trim trailing spaces
-      # - then join with <br>
-      # - limit to 2 consecutive <br>s
-      text = text
-        .split '\n'
-        .map (x) -> x.trim()
-        .join '<br>'
-        .replace /(?:<br>){2,}/g, '<br><br>'
-
-    blockClass = blockName
-    blockClass += " #{blockName}--#{modifier}" for modifier in options.modifiers ? []
-
-    "<div class='#{blockClass}'>#{text}</div>"
-
-
   @formatTimestamp: (value) =>
     return unless value?
 
@@ -77,12 +50,6 @@ class window.BeatmapDiscussionHelper
     m = Math.floor(value / 1000 / 60)
 
     "#{_.padStart m, 2, 0}:#{_.padStart s, 2, 0}.#{_.padStart ms, 3, 0}"
-
-
-  @linkTimestamp: (text, classNames = []) =>
-    text
-      .replace /\b((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\)|\b))/g, (_match, text, m, s, ms, range) =>
-        linkHtml(openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text, classNames: classNames)
 
 
   @nearbyDiscussions: (discussions, timestamp) =>
@@ -112,16 +79,6 @@ class window.BeatmapDiscussionHelper
     shownDiscussions = nearby.d0 ? nearby.d100 ? nearby.d1000 ? nearby.other ? []
 
     _.sortBy shownDiscussions, 'timestamp'
-
-
-  @previewMessage = (message) =>
-    if message.length > @MAX_MESSAGE_PREVIEW_LENGTH
-      _.chain(message)
-      .truncate length: @MAX_MESSAGE_PREVIEW_LENGTH
-      .escape()
-      .value()
-    else
-      @format message, newlines: false
 
 
   @stateFromDiscussion: (discussion) =>
@@ -252,6 +209,6 @@ class window.BeatmapDiscussionHelper
     return false unless message?.length > 0
 
     if isTimeline
-      message.length <= @MAX_LENGTH_TIMELINE
+      message.length <= maxLengthTimeline
     else
       true

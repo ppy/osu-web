@@ -211,7 +211,7 @@ return [
         'reset_confirm' => [
             'disqualify' => 'Czy na pewno chcesz to zrobić? Ta czynność odbierze tej beatmapie status zakwalifikowanej i zresetuje proces nominacji.',
             'nomination_reset' => 'Na pewno? Zgłoszenie nowego problemu zresetuje proces nominacji.',
-            'problem_warning' => 'Czy na pewno chcesz zgłosić problem z tą beatmapą? Nominatorzy beatmap zostaną o tym powiadomieni.',
+            'problem_warning' => 'Czy na pewno chcesz zgłosić problem z tą beatmapą? Powiadomi to nominatorów beatmap.',
         ],
     ],
 

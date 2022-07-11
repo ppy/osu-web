@@ -15,7 +15,7 @@ import { nominationsCount } from 'utils/beatmapset-helper'
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { linkHtml } from 'utils/url'
-import { MessageLengthCounter } from './message-length-counter'
+import MessageLengthCounter from './message-length-counter'
 
 el = React.createElement
 
