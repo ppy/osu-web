@@ -229,16 +229,19 @@ class ChannelTest extends TestCase
     public function testLeaveChannel(string $type, bool $inChannel)
     {
         $users = User::factory()->count(2)->create();
+        $user = $users[0];
         $channel = Channel::factory()->type($type, [...$users])->create();
         $channel->refresh();
 
-        $channel->removeUser($users[0]);
+        $channel->removeUser($user);
         $channel->refresh();
 
         if ($inChannel) {
-            $this->assertContains($users[0]->getKey(), $channel->userIds());
+            $this->assertContains($user->getKey(), $channel->userIds());
+            $this->assertTrue($channel->hasUser($user));
         } else {
-            $this->assertNotContains($users[0]->getKey(), $channel->userIds());
+            $this->assertNotContains($user->getKey(), $channel->userIds());
+            $this->assertFalse($channel->hasUser($user));
         }
     }
 
