@@ -331,11 +331,8 @@ INTRO
             \Knuckles\Scribe\Extracting\Strategies\BodyParameters\GetFromBodyParamTag::class,
         ],
         'responses' => [
-            \Knuckles\Scribe\Extracting\Strategies\Responses\UseTransformerTags::class,
             \Knuckles\Scribe\Extracting\Strategies\Responses\UseResponseTag::class,
             \Knuckles\Scribe\Extracting\Strategies\Responses\UseResponseFileTag::class,
-            \Knuckles\Scribe\Extracting\Strategies\Responses\UseApiResourceTags::class,
-            \Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls::class,
         ],
         'responseFields' => [
             \Knuckles\Scribe\Extracting\Strategies\ResponseFields\GetFromResponseFieldTag::class,
