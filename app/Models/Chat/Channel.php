@@ -501,17 +501,17 @@ class Channel extends Model
 
     public function removeUser(User $user)
     {
-        $userChannel = UserChannel::where([
-            'channel_id' => $this->channel_id,
-            'user_id' => $user->user_id,
-            'hidden' => false,
-        ])->first();
+        $userChannel = $this->userChannelFor($user);
 
-        if (!$userChannel) {
+        if ($userChannel === null) {
             return;
         }
 
         if ($this->isPM()) {
+            if ($userChannel->isHidden()) {
+                return;
+            }
+
             $userChannel->update(['hidden' => true]);
         } else {
             $userChannel->delete();
@@ -526,10 +526,7 @@ class Channel extends Model
 
     public function hasUser(User $user)
     {
-        return UserChannel::where([
-            'channel_id' => $this->channel_id,
-            'user_id' => $user->user_id,
-        ])->exists();
+        return $this->userChannelFor($user) !== null;
     }
 
     public function save(array $options = [])
@@ -570,7 +567,7 @@ class Channel extends Model
         ]);
     }
 
-    private function userChannelFor(User $user)
+    private function userChannelFor(User $user): ?UserChannel
     {
         $userId = $user->getKey();
 
