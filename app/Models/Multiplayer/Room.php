@@ -402,9 +402,7 @@ class Room extends Model
 
     public function join(User $user)
     {
-        if (!$this->channel->hasUser($user)) {
-            $this->channel->addUser($user);
-        }
+        $this->channel->addUser($user);
     }
 
     public function participants(): HasMany
