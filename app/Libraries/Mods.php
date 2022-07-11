@@ -88,6 +88,26 @@ class Mods
         }
     }
 
+    public function assertValidForMultiplayer(int $rulesetId, array $ids, bool $isRealtime, bool $isRequired): void
+    {
+        $this->validateSelection($rulesetId, $ids);
+
+        if ($isRealtime) {
+            $attr = $isRequired ? 'ValidForMultiplayer' : 'ValidForMultiplayerAsFreeMod';
+        } else {
+            $attr = 'UserPlayable';
+        }
+
+        foreach ($ids as $id) {
+            $mod = $this->mods[$rulesetId][$id];
+
+            if (!$mod[$attr]) {
+                $messageType = $isRequired ? 'required' : 'allowed';
+                throw new InvariantException("mod cannot be set as {$messageType}: {$id}");
+            }
+        }
+    }
+
     public function idsToBitset($ids): int
     {
         if (!is_array($ids)) {
