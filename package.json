@@ -64,7 +64,7 @@
     "mini-css-extract-plugin": "^1.6.0",
     "mobx": "^6.3.3",
     "mobx-react": "^7.2.0",
-    "moment": "^2.29.2",
+    "moment": "^2.29.4",
     "photoswipe": "^4.1.1",
     "postcss-loader": "^3.0.0",
     "qtip2": "https://github.com/notbakaneko/qTip2.git#cd5f038667d2b23a44f4274c46de01834d704ce6",

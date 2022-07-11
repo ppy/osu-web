@@ -6,7 +6,7 @@
 namespace App\Models\Forum;
 
 use App\Exceptions\ModelNotSavedException;
-use App\Jobs\EsIndexDocument;
+use App\Jobs\EsDocument;
 use App\Jobs\MarkNotificationsRead;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\BBCodeFromDB;
@@ -417,7 +417,7 @@ class Post extends Model implements AfterCommit, Indexable, Traits\ReportableInt
     public function afterCommit()
     {
         if ($this->exists) {
-            dispatch(new EsIndexDocument($this));
+            dispatch(new EsDocument($this));
         }
     }
 

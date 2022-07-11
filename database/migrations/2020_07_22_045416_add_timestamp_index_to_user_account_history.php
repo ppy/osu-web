@@ -28,7 +28,7 @@ class AddTimestampIndexToUserAccountHistory extends Migration
      */
     public function down()
     {
-        Schema::table('user_account_history', function (Blueprint $table) {
+        Schema::table('osu_user_banhistory', function (Blueprint $table) {
             $table->dropIndex(['timestamp']);
         });
     }

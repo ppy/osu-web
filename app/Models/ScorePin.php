@@ -26,6 +26,7 @@ class ScorePin extends Model
         MorphMap::MAP[ScoreBest\Mania::class],
         MorphMap::MAP[ScoreBest\Osu::class],
         MorphMap::MAP[ScoreBest\Taiko::class],
+        MorphMap::MAP[Solo\Score::class],
     ];
 
     public static function isValidType(string|null $type): bool
