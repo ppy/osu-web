@@ -49,6 +49,12 @@ const channelSorts = {
   PUBLIC: alphabeticalSort,
 };
 
+const hideableChannelTypes: Set<SupportedChannelType | undefined | null> = new Set(['ANNOUNCE', 'PM']);
+// 1 minute; cleanup runs every minute, removes entries older than 1 minute,
+// non-hideable channel messages are ignored for up to 2 minutes after leaving unless
+// an event that resets it is received.
+const ignoreInterval = 60000;
+
 @dispatchListener
 export default class ChannelStore implements DispatchListener {
   @observable channels = observable.map<number, Channel>();
@@ -78,6 +84,7 @@ export default class ChannelStore implements DispatchListener {
 
   constructor() {
     makeObservable(this);
+    window.setInterval(() => this.cleanupIgnoredChannels(), ignoreInterval);
   }
 
   @action
@@ -176,6 +183,10 @@ export default class ChannelStore implements DispatchListener {
       apiPartChannel(channelId, core.currentUserOrFail.id);
     }
 
+    if (!hideableChannelTypes.has(this.get(channelId)?.supportedType)) {
+      this.ignoredChannels.set(channelId, new Date());
+    }
+
     this.channels.delete(channelId);
   }
 
@@ -190,6 +201,7 @@ export default class ChannelStore implements DispatchListener {
     }
 
     channel.updateWithJson(json);
+    this.ignoredChannels.delete(channelId);
     return channel;
   }
 
@@ -230,6 +242,15 @@ export default class ChannelStore implements DispatchListener {
 
     if (updateJson.silences != null) {
       dispatch(new ChatUpdateSilences(updateJson.silences));
+    }
+  }
+
+  private cleanupIgnoredChannels() {
+    const now = new Date();
+    for (const [channelId, addedDate] of this.ignoredChannels) {
+      if ((now.getTime() - addedDate.getTime()) > ignoreInterval) {
+        this.ignoredChannels.delete(channelId);
+      }
     }
   }
 
