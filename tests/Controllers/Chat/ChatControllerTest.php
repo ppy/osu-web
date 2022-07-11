@@ -17,10 +17,10 @@ use Tests\TestCase;
 
 class ChatControllerTest extends TestCase
 {
-    // Need to disable transactions for these tests otherwise the cross-database queries being used fail.
-    protected $connectionsToTransact = [];
-
     protected static $faker;
+
+    private User $anotherUser;
+    private User $user;
 
     public static function setUpBeforeClass(): void
     {
@@ -260,159 +260,6 @@ class ChatControllerTest extends TestCase
 
     //endregion
 
-    //region GET /chat/presence - Get Presence
-    public function testChatPresenceWhenGuest() // fail
-    {
-        $this->json('GET', route('api.chat.presence'))
-            ->assertStatus(401);
-    }
-
-    public function testChatPresence() // success
-    {
-        $publicChannel = Channel::factory()->type('public')->create();
-
-        // join the channel
-        $this->actAsScopedUser($this->user, ['*']);
-        $this->json('PUT', route('api.chat.channels.join', [
-            'channel' => $publicChannel->channel_id,
-            'user' => $this->user->user_id,
-        ]))
-            ->assertSuccessful();
-
-        $this->actAsScopedUser($this->user, ['*']);
-        $this->json('GET', route('api.chat.presence'))
-            ->assertStatus(200)
-            ->assertJsonFragment(['channel_id' => $publicChannel->channel_id]);
-    }
-
-    public function testChatPresenceHidesBlocked() // success
-    {
-        // start conversation with $this->anotherUser
-        $this->actAsScopedUser($this->user, ['*']);
-        $this->json(
-            'POST',
-            route('api.chat.new'),
-            [
-                'target_id' => $this->anotherUser->user_id,
-                'message' => self::$faker->sentence(),
-            ]
-        )->assertStatus(200);
-
-        // block $this->anotherUser
-        $block = factory(UserRelation::class)->states('block')->create([
-            'user_id' => $this->user->user_id,
-            'zebra_id' => $this->anotherUser->user_id,
-        ]);
-
-        // ensure conversation with $this->anotherUser isn't visible
-        $this->json('GET', route('api.chat.presence'))
-            ->assertStatus(200)
-            ->assertJsonMissing(['users' => [
-                $this->user->user_id,
-                $this->anotherUser->user_id,
-            ]]);
-
-        // unblock $this->anotherUser
-        $block->delete();
-
-        // ensure conversation with $this->anotherUser is visible again
-        $this->actAsScopedUser($this->user, ['*']);
-        $this->json('GET', route('api.chat.presence'))
-            ->assertStatus(200)
-            ->assertJsonFragment(['users' => [
-                $this->user->user_id,
-                $this->anotherUser->user_id,
-            ]]);
-    }
-
-    public function testChatPresenceHidesRestricted() // success
-    {
-        // start conversation with $this->anotherUser
-        $this->actAsScopedUser($this->user, ['*']);
-        $this->json(
-            'POST',
-            route('api.chat.new'),
-            [
-                'target_id' => $this->anotherUser->user_id,
-                'message' => self::$faker->sentence(),
-            ]
-        )->assertStatus(200);
-
-        // restrict $this->anotherUser
-        $this->anotherUser->update(['user_warnings' => 1]);
-
-        // ensure conversation with $this->anotherUser isn't visible
-        $this->json('GET', route('api.chat.presence'))
-            ->assertStatus(200)
-            ->assertJsonMissing(['users' => [
-                $this->user->user_id,
-                $this->anotherUser->user_id,
-            ]]);
-
-        // unrestrict $this->anotherUser
-        $this->anotherUser->update(['user_warnings' => 0]);
-
-        // ensure conversation with $this->anotherUser is visible again
-        $this->json('GET', route('api.chat.presence'))
-            ->assertStatus(200)
-            ->assertJsonFragment(['users' => [
-                $this->user->user_id,
-                $this->anotherUser->user_id,
-            ]]);
-    }
-
-    public function testChatPresenceHidesHidden() // success
-    {
-        // start conversation with $this->anotherUser
-        $this->actAsScopedUser($this->user, ['*']);
-        $response = $this->json(
-            'POST',
-            route('api.chat.new'),
-            [
-                'target_id' => $this->anotherUser->user_id,
-                'message' => self::$faker->sentence(),
-            ]
-        )->assertStatus(200);
-
-        $presenceData = $response->decodeResponseJson();
-        $channelId = $presenceData['new_channel_id'];
-
-        // leave PM with $this->anotherUser
-        $this->json('DELETE', route('api.chat.channels.part', [
-            'channel' => $channelId,
-            'user' => $this->user->user_id,
-        ]))
-            ->assertStatus(204);
-
-        // ensure conversation with $this->anotherUser isn't visible
-        $this->json('GET', route('api.chat.presence'))
-            ->assertStatus(200)
-            ->assertJsonMissing(['users' => [
-                $this->user->user_id,
-                $this->anotherUser->user_id,
-            ]]);
-
-        // reopen PM with $this->anotherUser
-        $this->json(
-            'POST',
-            route('api.chat.new'),
-            [
-                'target_id' => $this->anotherUser->user_id,
-                'message' => self::$faker->sentence(),
-            ]
-        )->assertStatus(200);
-
-        // ensure conversation with $this->anotherUser is visible again
-        $this->json('GET', route('api.chat.presence'))
-            ->assertStatus(200)
-            ->assertJsonFragment(['users' => [
-                $this->user->user_id,
-                $this->anotherUser->user_id,
-            ]]);
-    }
-
-    //endregion
-
     //region GET /chat/updates?since=[message_id] - Get Updates
     public function testChatUpdatesWhenGuest() // fail
     {
@@ -520,23 +367,6 @@ class ChatControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-
-        $trx = [];
-        $db = $this->app->make('db');
-        foreach (array_keys(config('database.connections')) as $name) {
-            $connection = $db->connection($name);
-
-            // connections with different names but to the same database share the same pdo connection.
-            $id = $connection->select('SELECT CONNECTION_ID() as connection_id')[0]->connection_id;
-            // Avoid setting isolation level or starting transaction more than once on a pdo connection.
-            if (!in_array($id, $trx, true)) {
-                $trx[] = $id;
-
-                // allow uncommitted changes be visible across connections.
-                $connection->statement('SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED');
-                $connection->beginTransaction();
-            }
-        }
 
         $this->user = User::factory()->withPlays()->create();
         $this->anotherUser = User::factory()->create();
