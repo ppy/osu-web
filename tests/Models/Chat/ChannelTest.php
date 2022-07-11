@@ -280,6 +280,25 @@ class ChannelTest extends TestCase
         $this->assertEmpty($channel->visibleUsers($user));
     }
 
+    // test add/removeUser resets any memoized values
+    public function testResetMemoized()
+    {
+        $user = User::factory()->create();
+        $channel = Channel::factory()->create();
+
+        $channel->addUser($user); // removeUser doesn't trigger resetMemoized if the user isn't in the channel.
+        $memoized = $this->invokeProperty($channel, 'memoized');
+        $this->assertEmpty($memoized); // addUser calls resetMemoized at the end so it should be empty.
+
+        $this->invokeMethod($channel, 'userChannelFor', [$user]);
+        $memoized = $this->invokeProperty($channel, 'memoized');
+        $this->assertNotEmpty($memoized);
+
+        $channel->removeUser($user);
+        $memoized = $this->invokeProperty($channel, 'memoized');
+        $this->assertEmpty($memoized);
+    }
+
     public function channelCanMessageModeratedChannelDataProvider()
     {
         return [

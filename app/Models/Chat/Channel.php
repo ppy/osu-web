@@ -37,7 +37,11 @@ use LaravelRedis as Redis;
  */
 class Channel extends Model
 {
-    use Memoizes, Validatable;
+    use Memoizes {
+        Memoizes::resetMemoized as origResetMemoized;
+    }
+
+    use Validatable;
 
     const CHAT_ACTIVITY_TIMEOUT = 60; // in seconds.
 
@@ -551,6 +555,14 @@ class Channel extends Model
     public function validationErrorsTranslationPrefix()
     {
         return 'chat.channel';
+    }
+
+    protected function resetMemoized(): void
+    {
+        $this->origResetMemoized();
+        // simpler to reset preloads since its use-cases are more specific,
+        // rather than trying to juggle them to ensure userChannelFor returns as expected.
+        $this->preloadedUserChannels = [];
     }
 
     private function unhide()
