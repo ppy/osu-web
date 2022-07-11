@@ -54,6 +54,8 @@ export default class ChannelStore implements DispatchListener {
   @observable channels = observable.map<number, Channel>();
   lastReceivedMessageId = 0;
 
+  // list of channels to temporarily ignore incoming messages from because we just left them.
+  private ignoredChannels = new Map<number, Date>();
   private markingAsRead: Partial<Record<number, number>> = {};
 
   @computed
@@ -238,7 +240,7 @@ export default class ChannelStore implements DispatchListener {
 
       if (channel != null) {
         channel.addMessage(message);
-      } else if (event.json.type === 'PM' || event.json.type === 'ANNOUNCE') {
+      } else if (!this.ignoredChannels.has(message.channel_id)) {
         const json = await getChannel(message.channel_id);
         this.update(json);
       }
