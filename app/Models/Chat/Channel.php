@@ -529,7 +529,6 @@ class Channel extends Model
         return UserChannel::where([
             'channel_id' => $this->channel_id,
             'user_id' => $user->user_id,
-            'hidden' => false,
         ])->exists();
     }
 
