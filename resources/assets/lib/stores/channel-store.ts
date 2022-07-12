@@ -9,7 +9,7 @@ import { dispatch, dispatchListener } from 'app-dispatcher';
 import { getChannel, markAsRead as apiMarkAsRead, newConversation, partChannel as apiPartChannel, sendMessage } from 'chat/chat-api';
 import MessageNewEvent from 'chat/message-new-event';
 import DispatchListener from 'dispatch-listener';
-import ChannelJson, { filterSupportedChannelTypes, SupportedChannelType, supportedChannelTypes } from 'interfaces/chat/channel-json';
+import ChannelJson, { ChannelType, filterSupportedChannelTypes, SupportedChannelType, supportedChannelTypes } from 'interfaces/chat/channel-json';
 import ChatUpdatesJson from 'interfaces/chat/chat-updates-json';
 import MessageJson from 'interfaces/chat/message-json';
 import { groupBy, maxBy } from 'lodash';
@@ -49,19 +49,13 @@ const channelSorts = {
   PUBLIC: alphabeticalSort,
 };
 
-const hideableChannelTypes: Set<SupportedChannelType | undefined | null> = new Set(['ANNOUNCE', 'PM']);
-// 1 minute; cleanup runs every minute, removes entries older than 1 minute,
-// non-hideable channel messages are ignored for up to 2 minutes after leaving unless
-// an event that resets it is received.
-const ignoreInterval = 60000;
+const hideableChannelTypes: Set<ChannelType> = new Set(['ANNOUNCE', 'PM']);
 
 @dispatchListener
 export default class ChannelStore implements DispatchListener {
   @observable channels = observable.map<number, Channel>();
   lastReceivedMessageId = 0;
 
-  // list of channels to temporarily ignore incoming messages from because we just left them.
-  private ignoredChannels = new Map<number, Date>();
   private markingAsRead: Partial<Record<number, number>> = {};
 
   @computed
@@ -84,7 +78,6 @@ export default class ChannelStore implements DispatchListener {
 
   constructor() {
     makeObservable(this);
-    window.setInterval(() => this.cleanupIgnoredChannels(), ignoreInterval);
   }
 
   @action
@@ -183,10 +176,6 @@ export default class ChannelStore implements DispatchListener {
       apiPartChannel(channelId, core.currentUserOrFail.id);
     }
 
-    if (!hideableChannelTypes.has(this.get(channelId)?.supportedType)) {
-      this.ignoredChannels.set(channelId, new Date());
-    }
-
     this.channels.delete(channelId);
   }
 
@@ -201,7 +190,6 @@ export default class ChannelStore implements DispatchListener {
     }
 
     channel.updateWithJson(json);
-    this.ignoredChannels.delete(channelId);
     return channel;
   }
 
@@ -245,15 +233,6 @@ export default class ChannelStore implements DispatchListener {
     }
   }
 
-  private cleanupIgnoredChannels() {
-    const now = new Date();
-    for (const [channelId, addedDate] of this.ignoredChannels) {
-      if ((now.getTime() - addedDate.getTime()) > ignoreInterval) {
-        this.ignoredChannels.delete(channelId);
-      }
-    }
-  }
-
   @action
   private async handleChatMessageNewEvent(event: MessageNewEvent) {
     for (const message of event.json.messages) {
@@ -261,7 +240,7 @@ export default class ChannelStore implements DispatchListener {
 
       if (channel != null) {
         channel.addMessage(message);
-      } else if (!this.ignoredChannels.has(message.channel_id)) {
+      } else if (hideableChannelTypes.has(event.json.type)) {
         const json = await getChannel(message.channel_id);
         this.update(json);
       }
