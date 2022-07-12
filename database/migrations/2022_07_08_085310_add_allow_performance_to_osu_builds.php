@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTrackIdToBeatmapsets extends Migration
+class AddAllowPerformanceToOsuBuilds extends Migration
 {
     /**
      * Run the migrations.
@@ -16,9 +16,9 @@ class AddTrackIdToBeatmapsets extends Migration
      */
     public function up()
     {
-        Schema::table('osu_beatmapsets', function (Blueprint $table) {
-            $table->integer('track_id')->unsigned()->nullable();
-            $table->index('track_id');
+        Schema::table('osu_builds', function (Blueprint $table) {
+            $table->boolean('allow_performance')->default(false)->after('allow_bancho');
+            $table->index('allow_performance');
         });
     }
 
@@ -29,8 +29,8 @@ class AddTrackIdToBeatmapsets extends Migration
      */
     public function down()
     {
-        Schema::table('osu_beatmapsets', function (Blueprint $table) {
-            $table->dropColumn('track_id');
+        Schema::table('osu_builds', function (Blueprint $table) {
+            $table->dropColumn('allow_performance');
         });
     }
 }

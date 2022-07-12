@@ -517,6 +517,8 @@ class Channel extends Model
             $userChannel->delete();
         }
 
+        $this->resetMemoized();
+
         (new ChatChannelEvent($this, $user, 'part'))->broadcast(true);
 
         Datadog::increment('chat.channel.part', 1, ['type' => $this->type]);
