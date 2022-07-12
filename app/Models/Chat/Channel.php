@@ -316,6 +316,11 @@ class Channel extends Model
         return $this->type === static::TYPES['announce'];
     }
 
+    public function isHideable()
+    {
+        return $this->isPM() || $this->isAnnouncement();
+    }
+
     public function isMultiplayer()
     {
         return $this->type === static::TYPES['multiplayer'];
@@ -515,7 +520,7 @@ class Channel extends Model
             return;
         }
 
-        if ($this->isPM()) {
+        if ($this->isHideable()) {
             if ($userChannel->isHidden()) {
                 return;
             }
@@ -571,7 +576,7 @@ class Channel extends Model
 
     private function unhide()
     {
-        if (!$this->isPM()) {
+        if (!$this->isHideable()) {
             return;
         }
 

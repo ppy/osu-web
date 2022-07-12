@@ -341,7 +341,7 @@ class ChannelTest extends TestCase
     public function leaveChannelDataProvider()
     {
         return [
-            ['announce', false], // will need to be updated later.
+            ['announce', true],
             ['pm', true],
             ['public', false],
         ];
