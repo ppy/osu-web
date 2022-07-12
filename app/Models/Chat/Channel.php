@@ -19,6 +19,7 @@ use App\Traits\Memoizes;
 use App\Traits\Validatable;
 use Carbon\Carbon;
 use ChaseConey\LaravelDatadogHelper\Datadog;
+use DB;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
 use LaravelRedis as Redis;
@@ -129,11 +130,14 @@ class Channel extends Model
             'description' => '', // description is not nullable
         ]);
 
-        $channel->getConnection()->transaction(function () use ($channel, $user1, $user2) {
+        $connection = $channel->getConnection();
+        $connection->transaction(function () use ($channel, $connection, $user1, $user2) {
             $channel->saveOrExplode();
             $channel->addUser($user1);
             $channel->addUser($user2);
             $channel->setPmUsers([$user1, $user2]);
+
+            $connection->afterCommit(fn () => Datadog::increment('chat.channel.create', 1, ['type' => $channel->type]));
         });
 
         return $channel;

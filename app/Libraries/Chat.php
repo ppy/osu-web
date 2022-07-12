@@ -10,6 +10,7 @@ use App\Exceptions\InvariantException;
 use App\Models\Chat\Channel;
 use App\Models\User;
 use ChaseConey\LaravelDatadogHelper\Datadog;
+use DB;
 use LaravelRedis as Redis;
 
 class Chat
@@ -79,23 +80,13 @@ class Chat
         return (new Channel())->getConnection()->transaction(function () use ($sender, $target, $message, $isAction, $uuid) {
             $channel = Channel::findPM($target, $sender);
 
-            $newChannel = $channel === null;
-
-            if ($newChannel) {
+            if ($channel === null) {
                 $channel = Channel::createPM($target, $sender);
             } else {
-                // FIXME: update ChatChannelRead priv check to account for hidden PM and annoucement channels.
-                // The user is added here to later priv checks can pass.
                 $channel->addUser($sender);
             }
 
-            $ret = static::sendMessage($sender, $channel, $message, $isAction, $uuid);
-
-            if ($newChannel) {
-                Datadog::increment('chat.channel.create', 1, ['type' => $channel->type]);
-            }
-
-            return $ret;
+            return static::sendMessage($sender, $channel, $message, $isAction, $uuid);
         });
     }
 
