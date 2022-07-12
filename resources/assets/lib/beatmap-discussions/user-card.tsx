@@ -77,7 +77,7 @@ export class UserCard extends React.PureComponent<Props> {
 
   private renderUsername() {
     return (
-      <span className={`${bn}__user-text u-ellipsis-overflow`}>
+      <span className='u-ellipsis-overflow'>
         {this.props.user.username}
       </span>
     );
