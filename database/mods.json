@@ -488,8 +488,7 @@
           "AT",
           "CN",
           "AP",
-          "MG",
-          "RP"
+          "MG"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
