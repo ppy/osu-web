@@ -19,7 +19,6 @@ use App\Traits\Memoizes;
 use App\Traits\Validatable;
 use Carbon\Carbon;
 use ChaseConey\LaravelDatadogHelper\Datadog;
-use DB;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
 use LaravelRedis as Redis;
