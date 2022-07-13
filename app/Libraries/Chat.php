@@ -10,7 +10,6 @@ use App\Exceptions\InvariantException;
 use App\Models\Chat\Channel;
 use App\Models\User;
 use ChaseConey\LaravelDatadogHelper\Datadog;
-use DB;
 use LaravelRedis as Redis;
 
 class Chat
@@ -82,8 +81,6 @@ class Chat
 
             if ($channel === null) {
                 $channel = Channel::createPM($target, $sender);
-            } else {
-                $channel->addUser($sender);
             }
 
             return static::sendMessage($sender, $channel, $message, $isAction, $uuid);
