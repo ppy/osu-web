@@ -386,6 +386,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
                 Route::get('scores/users/{user}', 'BeatmapsController@userScore');
                 Route::get('scores/users/{user}/all', 'BeatmapsController@userScoreAll');
                 Route::get('scores', 'BeatmapsController@scores')->name('scores');
+                Route::get('solo-scores', 'BeatmapsController@soloScores')->name('solo-scores');
 
                 Route::group(['as' => 'solo.', 'prefix' => 'solo'], function () {
                     Route::group(['namespace' => 'Solo'], function () {

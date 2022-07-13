@@ -8,6 +8,7 @@ namespace App\Http\Controllers;
 use App\Exceptions\ScoreRetrievalException;
 use App\Jobs\Notifications\BeatmapOwnerChange;
 use App\Libraries\BeatmapDifficultyAttributes;
+use App\Libraries\Score\BeatmapScores;
 use App\Models\Beatmap;
 use App\Models\BeatmapsetEvent;
 use App\Models\Score\Best\Model as BestModel;
@@ -309,6 +310,84 @@ class BeatmapsController extends Controller
             if (isset($userScore)) {
                 $results['user_score'] = [
                     'position' => $userScore->userRank(compact('type', 'mods')),
+                    'score' => json_item($userScore, $scoreTransformer, static::DEFAULT_SCORE_INCLUDES),
+                ];
+                // TODO: remove this old camelCased json field
+                $results['userScore'] = $results['user_score'];
+            }
+
+            return $results;
+        } catch (ScoreRetrievalException $ex) {
+            return error_popup($ex->getMessage());
+        }
+    }
+
+    /**
+     * Get Beatmap scores (temp)
+     *
+     * Returns the top scores for a beatmap from newer client.
+     *
+     * This is a temporary endpoint.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Returns [BeatmapScores](#beatmapscores). `Score` object inside includes `user` and the included `user` includes `country` and `cover`.
+     *
+     * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
+     *
+     * @queryParam mode The [GameMode](#gamemode) to get scores for.
+     * @queryParam mods An array of matching Mods, or none // TODO.
+     * @queryParam type Beatmap score ranking type // TODO.
+     */
+    public function soloScores($id)
+    {
+        $beatmap = Beatmap::findOrFail($id);
+        if ($beatmap->approved <= 0) {
+            return ['scores' => []];
+        }
+
+        $params = get_params(request()->all(), null, [
+            'mode:string',
+            'mods:string[]',
+            'type:string',
+        ]);
+
+        $ruleset = presence($params['mode'] ?? null, $beatmap->mode);
+        $mods = array_values(array_filter($params['mods'] ?? []));
+        $type = presence($params['type'] ?? null, 'global');
+        $currentUser = auth()->user();
+
+        try {
+            if ($type !== 'global' || !empty($mods)) {
+                if ($currentUser === null || !$currentUser->isSupporter()) {
+                    throw new ScoreRetrievalException(osu_trans('errors.supporter_only'));
+                }
+            }
+
+            $esFetch = new BeatmapScores([
+                'beatmap_ids' => [$beatmap->getKey()],
+                'mods' => $mods,
+                'ruleset_id' => Beatmap::MODES[$ruleset],
+                'type' => $type,
+                'user' => $currentUser,
+            ]);
+            $scores = $esFetch->all()->loadMissing(['beatmap', 'performance', 'user.country', 'user.userProfileCustomization']);
+            $userScore = $esFetch->userBest();
+            $scoreTransformer = new ScoreTransformer();
+
+            $results = [
+                'scores' => json_collection(
+                    $scores,
+                    $scoreTransformer,
+                    static::DEFAULT_SCORE_INCLUDES
+                ),
+            ];
+
+            if (isset($userScore)) {
+                $results['user_score'] = [
+                    'position' => $esFetch->rank($userScore),
                     'score' => json_item($userScore, $scoreTransformer, static::DEFAULT_SCORE_INCLUDES),
                 ];
                 // TODO: remove this old camelCased json field

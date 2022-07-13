@@ -42,6 +42,13 @@ abstract class Search extends HasSearch implements Queryable
         $this->index = $index;
     }
 
+    public function assertNoError(): void
+    {
+        if ($this->error !== null) {
+            throw $this->error;
+        }
+    }
+
     // for paginator
     abstract public function data();
 
