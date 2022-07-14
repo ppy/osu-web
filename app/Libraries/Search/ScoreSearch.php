@@ -11,7 +11,7 @@ use App\Models\Solo\Score;
 
 class ScoreSearch extends RecordSearch
 {
-    public $connectionName = 'scores';
+    public $connectionName = 'solo_scores';
 
     protected $source = false;
 
