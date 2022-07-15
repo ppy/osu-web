@@ -375,7 +375,7 @@ class BeatmapsController extends Controller
             ]);
             $scores = $esFetch->all()->loadMissing(['beatmap', 'performance', 'user.country', 'user.userProfileCustomization']);
             $userScore = $esFetch->userBest();
-            $scoreTransformer = new ScoreTransformer();
+            $scoreTransformer = new ScoreTransformer(ScoreTransformer::TYPE_SOLO);
 
             $results = [
                 'scores' => json_collection(
