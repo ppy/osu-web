@@ -30,7 +30,7 @@ return [
         'nomination_reset' => '新しい問題 :discussion (:text)によりノミネートがリセットされました。',
         'nomination_reset_received' => ':user によるノミネーションが :source_user (:text) によってリセットされました',
         'nomination_reset_received_profile' => 'ノミネーションが :user (:text) によってリセットされました',
-        'offset_edit' => '',
+        'offset_edit' => 'オンラインオフセットが :old から :new に変更されました。',
         'qualify' => 'このビートマップは既に必要なノミネーション数に達しており、Qualifiedされています。',
         'rank' => 'Rankedされました。',
         'remove_from_loved' => ':userによってLovedから削除されました。(:text)',

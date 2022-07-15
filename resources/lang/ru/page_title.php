@@ -48,7 +48,7 @@ return [
             '_' => 'избранные исполнители',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => 'посты в обсуждениях карт',
+            '_' => 'публикации в обсуждениях карт',
         ],
         'beatmap_discussions_controller' => [
             '_' => 'обсуждения карты',

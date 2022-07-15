@@ -15,7 +15,7 @@ return [
     ],
 
     'channels' => [
-        'create' => '',
+        'create' => 'създаване на оповестяване',
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Известия',
@@ -28,13 +28,13 @@ return [
 
     'form' => [
         'title' => [
-            'announcement' => '',
+            'announcement' => 'Създаване на ново оповестяване',
         ],
 
         'labels' => [
-            'description' => '',
-            'name' => '',
-            'users' => '',
+            'description' => 'описание',
+            'name' => 'име на стая',
+            'users' => 'добавяне на играчи',
         ],
     ],
 
@@ -44,7 +44,7 @@ return [
     ],
 
     'input' => [
-        'create' => '',
+        'create' => 'Създаване',
         'disabled' => 'неуспешно изпратено съобщение...',
         'disconnected' => 'Връзката е прекъсната',
         'placeholder' => 'напиши своето съобщение...',
