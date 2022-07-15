@@ -6,7 +6,7 @@ import { ChatNewConversationAdded } from 'actions/chat-new-conversation-added';
 import ChatUpdateSilences from 'actions/chat-update-silences';
 import DispatcherAction from 'actions/dispatcher-action';
 import { dispatch, dispatchListener } from 'app-dispatcher';
-import { markAsRead as apiMarkAsRead, newConversation, partChannel as apiPartChannel, sendMessage } from 'chat/chat-api';
+import { newConversation, partChannel as apiPartChannel, sendMessage } from 'chat/chat-api';
 import MessageNewEvent from 'chat/message-new-event';
 import DispatchListener from 'dispatch-listener';
 import ChannelJson, { filterSupportedChannelTypes, SupportedChannelType, supportedChannelTypes } from 'interfaces/chat/channel-json';
@@ -53,8 +53,6 @@ const channelSorts = {
 export default class ChannelStore implements DispatchListener {
   @observable channels = observable.map<number, Channel>();
   lastReceivedMessageId = 0;
-
-  private markingAsRead: Partial<Record<number, number>> = {};
 
   @computed
   get groupedChannels() {
@@ -133,39 +131,6 @@ export default class ChannelStore implements DispatchListener {
   @action
   loadChannelEarlierMessages(channelId: number) {
     this.get(channelId)?.loadEarlierMessages();
-  }
-
-  @action
-  markAsRead(channelId: number) {
-    const channel = this.get(channelId);
-
-    if (channel == null || !channel.isUnread || !channel.uiState.autoScroll) {
-      return;
-    }
-
-    if (this.markingAsRead[channelId] != null) {
-      return;
-    }
-
-    channel.markAsRead();
-
-    const currentTimeout = window.setTimeout(action(() => {
-      // allow next debounce to be queued again
-      if (this.markingAsRead[channelId] === currentTimeout) {
-        delete this.markingAsRead[channelId];
-      }
-
-      // TODO: need to mark again in case the marker has moved?
-
-      // We don't need to send mark-as-read for our own messages, as the cursor is automatically bumped forward server-side when sending messages.
-      if (channel.lastMessage?.sender.id === core.currentUser?.id) {
-        return;
-      }
-
-      apiMarkAsRead(channel.channelId, channel.lastMessageId);
-    }), 1000);
-
-    this.markingAsRead[channelId] = currentTimeout;
   }
 
   @action

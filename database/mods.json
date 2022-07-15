@@ -443,7 +443,8 @@
           "RX",
           "AP",
           "SO",
-          "MG"
+          "MG",
+          "RP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": false,
@@ -508,7 +509,8 @@
           "CN",
           "RX",
           "SO",
-          "MG"
+          "MG",
+          "RP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -540,7 +542,8 @@
         "Settings": [],
         "IncompatibleMods": [
           "WG",
-          "MG"
+          "MG",
+          "RP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -555,7 +558,8 @@
         "Settings": [],
         "IncompatibleMods": [
           "TR",
-          "MG"
+          "MG",
+          "RP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -819,7 +823,32 @@
           "RX",
           "AP",
           "TR",
-          "WG"
+          "WG",
+          "RP"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "RP",
+        "Name": "Repel",
+        "Description": "Hit objects run away!",
+        "Type": "Fun",
+        "Settings": [
+          {
+            "Name": "repulsion_strength",
+            "Type": "number"
+          }
+        ],
+        "IncompatibleMods": [
+          "AT",
+          "CN",
+          "AP",
+          "TR",
+          "WG",
+          "MG"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
