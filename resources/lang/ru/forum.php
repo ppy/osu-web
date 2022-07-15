@@ -63,7 +63,7 @@ return [
         ],
 
         'info' => [
-            'post_count' => ':count_delimited пост|:count_delimited поста|:count_delimited постов',
+            'post_count' => ':count_delimited публикация|:count_delimited публикации|:count_delimited публикаций',
             'topic_starter' => 'Автор темы',
         ],
     ],

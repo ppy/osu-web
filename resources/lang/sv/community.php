@@ -7,7 +7,7 @@ return [
     'support' => [
         'convinced' => [
             'title' => 'Jag är övertygad! :D',
-            'support' => 'stödja osu!',
+            'support' => 'stötta osu!',
             'gift' => 'eller ge supporter till en annan spelare i present',
             'instructions' => 'klicka på hjärtat för att gå till osu!store',
         ],
@@ -37,7 +37,7 @@ return [
                 'link_text' => 'Utforska turneringar &raquo;',
             ],
             'bounty-program' => [
-                'title' => 'Program för öppen källkod',
+                'title' => 'Bounty-program för öppen källkod',
                 'description' => 'Stöd de bidragsgivare som har gett sin tid och ansträngning för att hjälpa till att göra osu! bättre.',
                 'link_text' => 'Läs mer &raquo;',
             ],
@@ -61,7 +61,7 @@ return [
 
             'mod_filtering' => [
                 'title' => 'Filtrera efter mods',
-                'description' => 'Associera bara med människor som spelar HDHR? Inga problem!',
+                'description' => 'Associerar du dig bara med människor som spelar HDHR? Inga problem!',
             ],
 
             'auto_downloads' => [

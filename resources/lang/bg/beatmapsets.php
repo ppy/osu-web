@@ -201,7 +201,7 @@ return [
             'user-rating' => 'Потребителски рейтинг',
             'rating-spread' => 'Разпределение на рейтинг',
             'nominations' => 'Номинации',
-            'playcount' => 'Брой игри',
+            'playcount' => 'Изигран',
         ],
 
         'status' => [

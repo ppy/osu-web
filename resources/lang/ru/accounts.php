@@ -62,7 +62,7 @@ return [
             'comment_new' => 'новые комментарии',
             'forum_topic_reply' => 'ответы на форуме',
             'mail' => 'почта',
-            'mapping' => 'замапанные карты',
+            'mapping' => 'созданные карты',
             'push' => 'пуши',
             'user_achievement_unlock' => 'новые медали',
         ],

@@ -9,7 +9,7 @@ return [
         'beatmap_owner_change' => 'Владелец сложности :beatmap изменен на :new_user.',
         'discussion_delete' => 'Модератор удалил отзыв :discussion.',
         'discussion_lock' => 'Обсуждение для этой карты было отключено. (:text)',
-        'discussion_post_delete' => 'Модератор удалил пост к отзыву :discussion.',
+        'discussion_post_delete' => 'Модератор удалил публикацию к отзыву: :discussion.',
         'discussion_post_restore' => 'Модератор восстановил публикацию в отзыве :discussion.',
         'discussion_restore' => 'Модератор восстановил отзыв :discussion.',
         'discussion_unlock' => 'Обсуждение для этой карты было включено.',

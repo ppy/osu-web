@@ -18,7 +18,7 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Anda telah mencapai batas nominasi Anda untuk hari ini, silakan coba lagi besok.',
-            'incorrect_state' => 'Terjadi kesalahan saat memproses perintah, silakan muat ulang laman.',
+            'incorrect_state' => 'Terjadi kesalahan pada saat melangsungkan tindakan. Silakan muat ulang laman.',
             'owner' => "Tidak dapat menominasikan beatmap buatan sendiri.",
             'set_metadata' => 'Anda harus terlebih dahulu mengatur aliran dan bahasa sebelum beatmap ini dapat dinominasikan.',
         ],
@@ -48,11 +48,11 @@ return [
         'edit' => [
             'not_owner' => 'Hanya pemilik topik yang diperbolehkan untuk menyunting kiriman.',
             'resolved' => 'Anda tidak dapat menyunting postingan pada topik diskusi yang telah terjawab.',
-            'system_generated' => 'Kiriman yang dihasilkan secara otomatis tidak dapat disunting.',
+            'system_generated' => 'Post yang dihasilkan secara otomatis tidak dapat disunting.',
         ],
 
         'store' => [
-            'beatmapset_locked' => 'Beatmap ini dikunci untuk diskusi.',
+            'beatmapset_locked' => 'Diskusi pada beatmap ini telah dikunci.',
         ],
     ],
 
