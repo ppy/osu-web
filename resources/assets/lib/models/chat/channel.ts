@@ -1,10 +1,10 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { getChannel, getMessages } from 'chat/chat-api';
+import { markAsRead, getChannel, getMessages } from 'chat/chat-api';
 import ChannelJson, { ChannelType, SupportedChannelType, supportedTypeLookup } from 'interfaces/chat/channel-json';
 import MessageJson from 'interfaces/chat/message-json';
-import { minBy, sortBy } from 'lodash';
+import { minBy, sortBy, throttle } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import User, { usernameSortAscending } from 'models/user';
 import core from 'osu-core-singleton';
@@ -25,6 +25,7 @@ export default class Channel {
   @observable name = '';
   needsRefresh = true;
   @observable newPmChannel = false;
+  readonly throttledSendMarkAsRead = throttle(() => this.sendMarkAsRead(), 1000);
   @observable type: ChannelType = 'TEMPORARY'; // TODO: look at making this support channels only
   @observable uiState = {
     autoScroll: true,
@@ -32,6 +33,7 @@ export default class Channel {
   };
   @observable userIds: number[] = [];
 
+  private markAsReadLastSent = 0;
   @observable private messagesMap = new Map<number | string, Message>();
   private serverLastMessageId?: number;
   @observable private usersLoaded = false;
@@ -162,7 +164,7 @@ export default class Channel {
   @action
   addSendingMessage(message: Message) {
     this.messagesMap.set(message.messageId, message);
-    this.markAsRead();
+    this.moveMarkAsReadMarker();
   }
 
   @action
@@ -229,7 +231,7 @@ export default class Channel {
   }
 
   @action
-  markAsRead() {
+  moveMarkAsReadMarker() {
     this.setLastReadId(this.lastMessageId);
   }
 
@@ -259,7 +261,11 @@ export default class Channel {
 
     if (json.current_user_attributes != null) {
       this.canMessageError = json.current_user_attributes.can_message_error;
-      this.setLastReadId(json.current_user_attributes.last_read_id);
+      const lastReadId = json.current_user_attributes.last_read_id ?? 0;
+      this.setLastReadId(lastReadId);
+      if (lastReadId > this.markAsReadLastSent) {
+        this.markAsReadLastSent = lastReadId;
+      }
     }
   }
 
@@ -309,6 +315,15 @@ export default class Channel {
 
     message.persist(json);
     this.messagesMap.set(message.messageId, message);
+  }
+
+  @action
+  private sendMarkAsRead() {
+    const lastReadId = this.lastReadId ?? 0;
+    if (this.markAsReadLastSent >= lastReadId) return;
+
+    this.markAsReadLastSent = lastReadId;
+    markAsRead(this.channelId, lastReadId);
   }
 
   @action

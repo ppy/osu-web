@@ -101,8 +101,10 @@ export default class ConversationView extends React.Component<Props> {
     disposeOnUnmount(
       this,
       reaction(() => core.windowFocusObserver.hasFocus, (value) => {
-        if (value) {
-          this.maybeMarkAsRead();
+        // mark as read when regaining focus and at the bottom to the channel.
+        if (value && this.currentChannel?.uiState.autoScroll) {
+          this.currentChannel.moveMarkAsReadMarker();
+          this.currentChannel.throttledSendMarkAsRead();
         }
       }),
     );
@@ -264,17 +266,16 @@ export default class ConversationView extends React.Component<Props> {
 
     this.currentChannel.uiState.autoScroll = chatView.scrollTop + chatView.clientHeight >= chatView.scrollHeight;
     this.currentChannel.uiState.scrollY = chatView.scrollTop;
+    // keep marker at the end when autoScrolling but only if window has focus.
+    if (this.currentChannel.uiState.autoScroll && core.windowFocusObserver.hasFocus) {
+      this.currentChannel.moveMarkAsReadMarker();
+    }
   };
 
   private loadEarlierMessages = () => {
     if (this.currentChannel == null) return;
     core.dataStore.channelStore.loadChannelEarlierMessages(this.currentChannel.channelId);
   };
-
-  private maybeMarkAsRead() {
-    if (this.currentChannel == null) return;
-    core.dataStore.channelStore.markAsRead(this.currentChannel.channelId);
-  }
 
   private renderCannotSendMessage() {
     if (this.currentChannel == null) {
