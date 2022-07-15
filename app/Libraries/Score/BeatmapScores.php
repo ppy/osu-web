@@ -57,11 +57,11 @@ class BeatmapScores
 
     public function rank(?SoloScore $score): ?int
     {
-        if ($score === null && $totalScore === null) {
+        if ($score === null) {
             return null;
         }
 
-        if ($score !== null && isset($this->result)) {
+        if (isset($this->result)) {
             $userId = $score->user_id;
             if (isset($this->result[$userId])) {
                 $rank = 0;
