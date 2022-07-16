@@ -160,8 +160,8 @@ return [
             'count' => ':count_delimited kommentar|:count_delimited kommentarer',
         ],
         'cover' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Dölj omslagsbild',
+            'to_1' => 'Visa omslagsbild',
         ],
         'edit' => [
             'cover' => [
@@ -209,7 +209,7 @@ return [
                     'title' => 'Beatmaps på kyrkogården',
                 ],
                 'guest' => [
-                    'title' => '',
+                    'title' => 'Gästdeltagande Beatmaps',
                 ],
                 'loved' => [
                     'title' => 'Älskade beatmaps',
@@ -309,7 +309,7 @@ return [
                 'title' => 'Medaljer',
             ],
             'playlists' => [
-                'title' => '',
+                'title' => 'Spelspellista',
             ],
             'posts' => [
                 'title' => 'Inlägg',
@@ -320,7 +320,7 @@ return [
                 'title' => 'Senaste',
             ],
             'realtime' => [
-                'title' => '',
+                'title' => 'Multiplayerspel',
             ],
             'top_ranks' => [
                 'download_replay' => 'Ladda ner Repris',
@@ -337,12 +337,12 @@ return [
                 ],
                 'pin' => [
                     'to_0' => 'Lossa',
-                    'to_0_done' => '',
+                    'to_0_done' => 'Ej fäst resultat',
                     'to_1' => 'Fäst',
-                    'to_1_done' => '',
+                    'to_1_done' => 'Fäst resultat',
                 ],
                 'pinned' => [
-                    'title' => '',
+                    'title' => 'Fästa resultat',
                 ],
             ],
             'votes' => [
@@ -403,7 +403,7 @@ return [
         ],
         'post_count' => [
             '_' => 'Bidragit med :link',
-            'count' => ':count foruminlägg|:count foruminlägg',
+            'count' => ':count_delimited foruminlägg|:count_delimited foruminlägg',
         ],
         'rank' => [
             'country' => 'Nationell rankning för :mode',
@@ -415,11 +415,11 @@ return [
             'hit_accuracy' => 'Träffsäkerhet',
             'level' => 'Nivå :level',
             'level_progress' => 'Framsteg till nästa nivå',
-            'maximum_combo' => 'Maximal Kombo',
+            'maximum_combo' => 'Högsta kombo',
             'medals' => 'Medaljer',
             'play_count' => 'Antal gånger spelat',
             'play_time' => 'Total speltid',
-            'ranked_score' => 'Rankad Poäng',
+            'ranked_score' => 'Rankad poäng',
             'replays_watched_by_others' => 'Repriser sedda av andra',
             'score_ranks' => 'Poängranker',
             'total_hits' => 'Totala träffar',

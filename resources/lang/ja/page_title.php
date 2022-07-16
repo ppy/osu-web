@@ -30,7 +30,7 @@ return [
     'forum' => [
         '_' => 'フォーラム',
         'topic_logs_controller' => [
-            'index' => '',
+            'index' => 'トピックログ',
         ],
         'topic_watches_controller' => [
             'index' => 'ダッシュボード',
@@ -42,7 +42,7 @@ return [
             'verify_link' => 'アカウント認証',
         ],
         'artist_tracks_controller' => [
-            '_' => '',
+            '_' => '注目アーティスト',
         ],
         'artists_controller' => [
             '_' => '注目アーティスト',

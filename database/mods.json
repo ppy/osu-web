@@ -419,6 +419,24 @@
         "Type": "Conversion",
         "Settings": [],
         "IncompatibleMods": [
+          "SG",
+          "AT",
+          "CN",
+          "RX"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "SG",
+        "Name": "Single Tap",
+        "Description": "You must only use one key!",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [
+          "AL",
           "AT",
           "CN",
           "RX"
@@ -439,6 +457,7 @@
           "SD",
           "PF",
           "AL",
+          "SG",
           "CN",
           "RX",
           "AP",
@@ -462,6 +481,7 @@
           "SD",
           "PF",
           "AL",
+          "SG",
           "AT",
           "CN",
           "RX",
@@ -485,6 +505,7 @@
           "SD",
           "PF",
           "AL",
+          "SG",
           "AT",
           "CN",
           "AP",
@@ -2610,3 +2631,4 @@
     ]
   }
 ]
+

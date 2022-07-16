@@ -11,7 +11,7 @@ return [
 
     'beatmapset_discussion_post' => [
         'button' => 'Пожаловаться',
-        'title' => 'Пожаловаться на пост :username?',
+        'title' => 'Пожаловаться на публикацию :username?',
     ],
 
     'comment' => [
@@ -21,7 +21,7 @@ return [
 
     'forum_post' => [
         'button' => 'Пожаловаться',
-        'title' => 'Пожаловаться на пост :username?',
+        'title' => 'Пожаловаться на публикацию :username?',
     ],
 
     'scores' => [

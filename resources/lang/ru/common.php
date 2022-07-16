@@ -76,7 +76,7 @@ return [
         'months' => ':count месяц|:count месяца|:count месяцев',
         'notifications' => ':count_delimited уведомление|:count_delimited уведомления|:count_delimited уведомлений',
         'plus_others' => '+ :count_delimited другой!|+ :count_delimited других!',
-        'post' => ':count_delimited пост|:count_delimited поста|:count_delimited постов',
+        'post' => ':count_delimited публикация|:count_delimited публикации|:count_delimited публикаций',
         'second_short_unit' => 'сек',
         'star_priority' => ':count_delimited приоритет|:count_delimited приоритета|:count_delimited приоритетов',
         'update' => ':count_delimited обновление|:count_delimited обновления',
