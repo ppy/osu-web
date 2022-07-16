@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\InvariantException;
 use App\Exceptions\ScoreRetrievalException;
 use App\Jobs\Notifications\BeatmapOwnerChange;
 use App\Libraries\BeatmapDifficultyAttributes;
@@ -349,14 +350,20 @@ class BeatmapsController extends Controller
         }
 
         $params = get_params(request()->all(), null, [
-            'mode:string',
+            'mode',
             'mods:string[]',
             'type:string',
-        ]);
+        ], ['null_missing' => true]);
 
-        $ruleset = presence($params['mode'] ?? null, $beatmap->mode);
+        if ($params['mode'] !== null) {
+            $rulesetId = Beatmap::MODES[$params['mode']] ?? null;
+            if ($rulesetId === null) {
+                throw new InvariantException('invalid mode specified');
+            }
+        }
+        $rulesetId ??= $beatmap->playmode;
         $mods = array_values(array_filter($params['mods'] ?? []));
-        $type = presence($params['type'] ?? null, 'global');
+        $type = presence($params['type'], 'global');
         $currentUser = auth()->user();
 
         try {
@@ -369,13 +376,13 @@ class BeatmapsController extends Controller
             $esFetch = new BeatmapScores([
                 'beatmap_ids' => [$beatmap->getKey()],
                 'mods' => $mods,
-                'ruleset_id' => Beatmap::MODES[$ruleset],
+                'ruleset_id' => $rulesetId,
                 'type' => $type,
                 'user' => $currentUser,
             ]);
             $scores = $esFetch->all()->loadMissing(['beatmap', 'performance', 'user.country', 'user.userProfileCustomization']);
             $userScore = $esFetch->userBest();
-            $scoreTransformer = new ScoreTransformer();
+            $scoreTransformer = new ScoreTransformer(ScoreTransformer::TYPE_SOLO);
 
             $results = [
                 'scores' => json_collection(

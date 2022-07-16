@@ -8,6 +8,7 @@ namespace App\Libraries\Search;
 use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\RecordSearch;
 use App\Models\Solo\Score;
+use Ds\Set;
 
 class ScoreSearch extends RecordSearch
 {
@@ -44,7 +45,7 @@ class ScoreSearch extends RecordSearch
         $mods = $this->params->mods;
         if ($mods !== null && count($mods) > 0) {
             $modsHelper = app('mods');
-            $allMods = new Set(array_keys($modsHelper->mods[$this->rulesetId]));
+            $allMods = new Set(array_keys($modsHelper->mods[$this->params->rulesetId]));
             $allMods->remove('PF', 'SD', 'MR');
 
             if (in_array('NM', $mods, true)) {
