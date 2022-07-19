@@ -33,7 +33,7 @@ return [
                 '_' => 'Status Beatmap',
                 'all' => 'Semua',
                 'disqualified' => 'Disqualified',
-                'never_qualified' => 'Tidak pernah Qualified',
+                'never_qualified' => 'Belum Pernah Qualified',
                 'qualified' => 'Qualified',
                 'ranked' => 'Ranked',
             ],

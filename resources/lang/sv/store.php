@@ -13,7 +13,7 @@ return [
         'total' => 'totalt',
 
         'errors_no_checkout' => [
-            'line_1' => 'Oj då, det är problem med din varukorg som hindrar en utcheckning!',
+            'line_1' => 'Oj då, det är problem med din varukorg som förhindrar en utcheckning!',
             'line_2' => 'Ta bort eller uppdatera produkterna ovan för att fortsätta.',
         ],
 
@@ -76,7 +76,7 @@ return [
 
         'item' => [
             'display_name' => [
-                'supporter_tag' => ':name för :username (:duration)',
+                'supporter_tag' => ':name till :username (:duration)',
             ],
             'quantity' => 'Antal',
         ],

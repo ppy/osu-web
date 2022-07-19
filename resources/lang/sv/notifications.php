@@ -87,12 +87,12 @@ return [
             '_' => 'Chatt',
 
             'announcement' => [
-                '_' => '',
+                '_' => 'Nytt meddelande',
 
                 'announce' => [
-                    'channel_announcement' => '',
-                    'channel_announcement_compact' => '',
-                    'channel_announcement_group' => '',
+                    'channel_announcement' => ':username säger ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Meddelande från :username',
                 ],
             ],
 
@@ -160,8 +160,8 @@ return [
                 'user_beatmapset_new_compact' => 'Ny beatmap ":title"',
                 'user_beatmapset_new_group' => 'Nya beatmaps av :username',
 
-                'user_beatmapset_revive' => '',
-                'user_beatmapset_revive_compact' => '',
+                'user_beatmapset_revive' => 'Beatmap ":title" återupplivad av :username',
+                'user_beatmapset_revive_compact' => 'Beatmap ":title" återupplivad',
             ],
         ],
 

@@ -116,7 +116,7 @@ class Channel extends Model
         ]);
     }
 
-    public static function createPM($user1, $user2)
+    public static function createPM(User $user1, User $user2)
     {
         $channel = new static([
             'name' => static::getPMChannelName($user1, $user2),
@@ -134,7 +134,7 @@ class Channel extends Model
         return $channel;
     }
 
-    public static function findPM($user1, $user2)
+    public static function findPM(User $user1, User $user2)
     {
         $channelName = static::getPMChannelName($user1, $user2);
 
@@ -156,7 +156,7 @@ class Channel extends Model
      *
      * @return string
      */
-    public static function getPMChannelName($user1, $user2)
+    public static function getPMChannelName(User $user1, User $user2)
     {
         $userIds = [$user1->getKey(), $user2->getKey()];
         sort($userIds);

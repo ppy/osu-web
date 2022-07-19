@@ -73,7 +73,7 @@ return [
             'nomination_reset' => 'ノミネーションをリセット',
             'praise' => '称賛',
             'problem' => '問題',
-            'problem_warning' => '',
+            'problem_warning' => '問題を報告する',
             'review' => 'レビュー',
             'suggestion' => '提案',
         ],
