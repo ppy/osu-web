@@ -55,12 +55,8 @@ class BeatmapScores
         return new Collection(array_values($this->result));
     }
 
-    public function rank(?SoloScore $score): ?int
+    public function rank(SoloScore $score): int
     {
-        if ($score === null) {
-            return null;
-        }
-
         if (isset($this->result)) {
             $userId = $score->user_id;
             if (isset($this->result[$userId])) {
