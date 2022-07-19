@@ -5,15 +5,16 @@
 
 namespace App\Libraries\Score;
 
+use App\Exceptions\InvariantException;
 use App\Libraries\Search\ScoreSearch;
 use App\Libraries\Search\ScoreSearchParams;
 
 class UserRank
 {
-    public static function getRank(ScoreSearchParams $params): ?int
+    public static function getRank(ScoreSearchParams $params): int
     {
         if ($params->beforeTotalScore === null && $params->beforeScore === null) {
-            return null;
+            throw new InvariantException('beforeScore or beforeTotalScore must be specified');
         }
 
         $search = new ScoreSearch($params);
