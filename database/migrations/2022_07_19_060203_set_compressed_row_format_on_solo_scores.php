@@ -4,8 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 
 class SetCompressedRowFormatOnSoloScores extends Migration
 {
