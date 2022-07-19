@@ -148,7 +148,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Werd lid op :date',
         'lastvisit' => 'Laatst gezien op :date',
-        'lastvisit_online' => 'Momenteel online',
+        'lastvisit_online' => 'Nu online',
         'missingtext' => 'Je hebt misschien een typfout gemaakt! (of de gebruiker is verbannen)',
         'origin_country' => 'Uit :country',
         'previous_usernames' => 'vroeger bekend als',
@@ -158,6 +158,10 @@ return [
         'comments_count' => [
             '_' => 'Heeft :link gepost',
             'count' => ':count_delimited reactie|:count_delimited reacties',
+        ],
+        'cover' => [
+            'to_0' => 'Omslagfoto verbergen',
+            'to_1' => 'Omslagfoto tonen',
         ],
         'edit' => [
             'cover' => [
@@ -203,6 +207,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Beatmaps in het kerkhof',
+                ],
+                'guest' => [
+                    'title' => 'Beatmaps met gastdeelname',
                 ],
                 'loved' => [
                     'title' => 'Loved Beatmaps',

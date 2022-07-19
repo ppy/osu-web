@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'loading_users' => '',
     'talking_in' => 'در حال گفت و گو در کانال :channel',
     'talking_with' => 'در حال گفت و گو با :name',
     'title_compact' => 'چت',
@@ -13,7 +14,37 @@ return [
         'user' => 'شما در حال حاضر نمی توانید به این کاربر پیام بدهید.',
     ],
 
+    'channels' => [
+        'create' => '',
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => '',
+                'GROUP' => '',
+                'PM' => '',
+                'PUBLIC' => '',
+            ],
+        ],
+    ],
+
+    'form' => [
+        'title' => [
+            'announcement' => '',
+        ],
+
+        'labels' => [
+            'description' => '',
+            'name' => '',
+            'users' => '',
+        ],
+    ],
+
+    'not_found' => [
+        'message' => '',
+        'title' => '',
+    ],
+
     'input' => [
+        'create' => '',
         'disabled' => 'امکان ارسال پیام وجود ندارد...',
         'disconnected' => 'اتصال قطع شد',
         'placeholder' => 'پیامی بنویسید...',

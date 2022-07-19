@@ -4,6 +4,7 @@
 import UserStatisticsJson from 'interfaces/user-statistics-json';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { formatNumber } from 'utils/html';
 
 // sorted by display order
 const entryKeys = [
@@ -31,10 +32,10 @@ export default class Stats extends React.PureComponent<Props> {
     const val = this.props.stats[key];
 
     if (key === 'hit_accuracy') {
-      return `${osu.formatNumber(val, 2)}%`;
+      return `${formatNumber(val, 2)}%`;
     }
 
-    return osu.formatNumber(val);
+    return formatNumber(val);
   }
 
   private readonly renderEntry = (key: EntryKey) => (

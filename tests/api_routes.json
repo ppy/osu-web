@@ -64,6 +64,22 @@
         ]
     },
     {
+        "uri": "api/v2/beatmaps/{beatmap}/solo-scores",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\BeatmapsController@soloScores",
+        "middlewares": [
+            "throttle:1200,1,api:",
+            "require-scopes",
+            "require-scopes:public"
+        ],
+        "scopes": [
+            "public"
+        ]
+    },
+    {
         "uri": "api/v2/beatmaps/{beatmap}/solo/scores",
         "methods": [
             "POST"
@@ -910,6 +926,20 @@
         ]
     },
     {
+        "uri": "api/v2/me/download-quota-check",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\HomeController@downloadQuotaCheck",
+        "middlewares": [
+            "throttle:1200,1,api:",
+            "require-scopes",
+            "auth"
+        ],
+        "scopes": []
+    },
+    {
         "uri": "api/v2/me/{mode?}",
         "methods": [
             "GET",
@@ -925,20 +955,6 @@
         "scopes": [
             "identify"
         ]
-    },
-    {
-        "uri": "api/v2/me/download-quota-check",
-        "methods": [
-            "GET",
-            "HEAD"
-        ],
-        "controller": "App\\Http\\Controllers\\HomeController@downloadQuotaCheck",
-        "middlewares": [
-            "throttle:1200,1,api:",
-            "require-scopes",
-            "auth"
-        ],
-        "scopes": []
     },
     {
         "uri": "api/v2/oauth/tokens/current",

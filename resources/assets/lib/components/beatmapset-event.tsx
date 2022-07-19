@@ -1,14 +1,18 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import BeatmapsetCover from 'components/beatmapset-cover';
 import TimeWithTooltip from 'components/time-with-tooltip';
+import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { escape, kebabCase } from 'lodash';
 import { deletedUser } from 'models/user';
 import * as React from 'react';
+import { format, previewMessage } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
+import { formatNumber } from 'utils/html';
 import { linkHtml } from 'utils/url';
 
 export type EventViewMode = 'discussions' | 'profile' | 'list';
@@ -68,8 +72,6 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
   }
 
   renderProfileVersion() {
-    const cover = this.props.event.beatmapset?.covers?.list;
-
     let discussionLink: string | undefined;
     if (this.beatmapsetId != null) {
       discussionLink = route('beatmapsets.discussion', { beatmapset: this.beatmapsetId });
@@ -82,12 +84,10 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
       <div className='beatmapset-event'>
         {discussionLink != null ? (
           <a href={discussionLink}>
-            <img className='beatmapset-cover' src={cover} />
+            <BeatmapsetCover beatmapset={this.props.event.beatmapset} size='list' />
           </a>
         ) : (
-          // TODO: this text barely fits and should be replaced with an icon
-          // instead of a translation that overflows.
-          <span className='beatmapset-cover'>beatmap deleted</span>
+          <BeatmapsetCover isDeleted />
         )}
         <div
           className={classWithModifiers('beatmapset-event__icon', ['beatmapset-activities'])}
@@ -123,7 +123,7 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
       } else {
         const firstPostMessage = this.firstPost?.message;
         url = BeatmapDiscussionHelper.url({ discussion: this.discussion });
-        text = firstPostMessage != null ? BeatmapDiscussionHelper.previewMessage(firstPostMessage) : '[no preview]';
+        text = firstPostMessage != null ? previewMessage(firstPostMessage) : '[no preview]';
 
         const discussionUser = this.props.users[this.discussion.user_id];
 
@@ -135,12 +135,12 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
       discussionLink = linkHtml(url, `#${this.discussionId}`, { classNames: ['js-beatmap-discussion--jump'] });
     } else {
       if (typeof this.props.event.comment === 'string') {
-        text = BeatmapDiscussionHelper.format(this.props.event.comment, { newlines: false });
+        text = format(this.props.event.comment, { newlines: false });
       }
     }
 
     if (this.props.event.type === 'discussion_lock' || this.props.event.type === 'remove_from_loved') {
-      text = BeatmapDiscussionHelper.format(this.props.event.comment.reason, { newlines: false });
+      text = format(this.props.event.comment.reason, { newlines: false });
     }
 
     if (this.props.event.user_id != null) {
@@ -203,7 +203,12 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
         } else {
           params.source_user = linkHtml(route('users.show', { user: data.source_user_id }), data.source_user_username);
         }
+        break;
       }
+      case 'offset_edit':
+        params.new = formatNumber(this.props.event.comment.new);
+        params.old = formatNumber(this.props.event.comment.old);
+        break;
     }
 
     const key = `beatmapset_events.event.${eventType}`;

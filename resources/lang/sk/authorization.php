@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => '',
+    'play_more' => 'Čo si tak namiesto toho zahrať osu!?',
     'require_login' => 'Prosím, prihláste sa, aby ste mohli pokračovať.',
     'require_verification' => 'Prosím overte pre pokračovanie.',
     'restricted' => "Toto nemôžete robiť, kým ste umlčaný.",
@@ -31,7 +31,7 @@ return [
         ],
 
         'vote' => [
-            'bot' => "",
+            'bot' => "Nemožno hlasovať pre diskusiu vytvorenú botom",
             'limit_exceeded' => 'Počkaj chvíľku pred ďalším hlasovaním',
             'owner' => "Nemôžete hlasovať vo vlastnej diskusii.",
             'wrong_beatmapset_state' => 'Hlasovať môžete iba v diskusii očakávaných beatmáp.',
@@ -58,7 +58,7 @@ return [
 
     'beatmapset' => [
         'metadata' => [
-            'nominated' => '',
+            'nominated' => 'Nemôžete zmeniť metadáta nominovanej mapy. Kontaktujte člena BN alebo NAT, ak si myslíte, že to je nastavené nesprávne.',
         ],
     ],
 
@@ -74,6 +74,9 @@ return [
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => '',
+        ],
         'update' => [
             'deleted' => "Nemôžeš upraviť zmazaný príspevok.",
         ],

@@ -25,6 +25,11 @@ return [
             'index' => 'daftar',
         ],
 
+        'beatmapsets' => [
+            'show' => 'info',
+            'discussions' => 'diskusi',
+        ],
+
         'changelog' => [
             'index' => 'daftar',
         ],

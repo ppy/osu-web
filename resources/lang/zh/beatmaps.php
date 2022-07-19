@@ -73,7 +73,7 @@ return [
             'nomination_reset' => '取消提名',
             'praise' => '赞',
             'problem' => '问题',
-            'problem_warning' => '',
+            'problem_warning' => '报告问题',
             'review' => '审核',
             'suggestion' => '建议',
         ],
@@ -211,7 +211,7 @@ return [
         'reset_confirm' => [
             'disqualify' => '你确定吗？这将 DQ 该谱面并重置提名。',
             'nomination_reset' => '你确定吗？提出新的问题会重置提名。',
-            'problem_warning' => '',
+            'problem_warning' => '确定要报告这张谱面上的问题？将向谱面的提名者发出提醒。',
         ],
     ],
 
@@ -257,6 +257,7 @@ return [
         'featured_artists' => '精选艺术家',
         'follows' => '已关注谱师',
         'recommended' => '推荐难度',
+        'spotlights' => '聚光灯谱面',
     ],
     'mode' => [
         'all' => '全部',
@@ -275,7 +276,7 @@ return [
         'loved' => 'Loved',
         'mine' => '我的谱面',
         'pending' => 'Pending',
-        'wip' => '',
+        'wip' => '制作中',
         'qualified' => 'Qualified',
         'ranked' => 'Ranked',
     ],

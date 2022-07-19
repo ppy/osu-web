@@ -159,6 +159,10 @@ return [
             '_' => '',
             'count' => '',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Zmeniť pozadie profilu',
@@ -203,6 +207,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Pochované Beatmapy',
+                ],
+                'guest' => [
+                    'title' => '',
                 ],
                 'loved' => [
                     'title' => 'Obľúbené Beatmapy',

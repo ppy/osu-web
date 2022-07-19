@@ -25,7 +25,7 @@ use Ds\Set;
  * @property User $user
  * @property int|null $user_id
  */
-class BeatmapDiscussionPost extends Model
+class BeatmapDiscussionPost extends Model implements Traits\ReportableInterface
 {
     use Traits\Reportable, Validatable;
 
@@ -100,7 +100,8 @@ class BeatmapDiscussionPost extends Model
         $params['with_deleted'] = get_bool($rawParams['with_deleted'] ?? null) ?? false;
 
         if (!$params['with_deleted']) {
-            $query->visible();
+            // $query->visible() may be slow for listing; calls visibleBeatmapDiscussion which calls more scopes...
+            $query->withoutTrashed();
         }
 
         // TODO: normalize with main beatmapset discussion behaviour (needs React-side fixing)

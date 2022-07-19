@@ -159,6 +159,10 @@ return [
             '_' => '',
             'count' => '',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Mainīt Profila Pārklāju',
@@ -203,6 +207,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Kapā Metamās Bītmapes',
+                ],
+                'guest' => [
+                    'title' => '',
                 ],
                 'loved' => [
                     'title' => 'Mīļākās Bītmapes',

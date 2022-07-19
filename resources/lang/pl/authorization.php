@@ -74,6 +74,9 @@ return [
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => 'Komentarze są wyłączone',
+        ],
         'update' => [
             'deleted' => "Nie możesz edytować usuniętego posta.",
         ],

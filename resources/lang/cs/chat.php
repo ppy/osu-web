@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'loading_users' => 'načítání uživatelů...',
     'talking_in' => 'píšete do :channel',
     'talking_with' => 'píšete si s :name',
     'title_compact' => 'chat',
@@ -13,7 +14,37 @@ return [
         'user' => 'Nemůžeme poslat vaši zprávu tomuhle uživateli. Tohle může být zapříčiněno jakýmkoliv z těchto důvodů:',
     ],
 
+    'channels' => [
+        'create' => '',
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => 'Oznámení',
+                'GROUP' => 'Skupiny',
+                'PM' => 'Přímé zprávy',
+                'PUBLIC' => 'Kanály',
+            ],
+        ],
+    ],
+
+    'form' => [
+        'title' => [
+            'announcement' => '',
+        ],
+
+        'labels' => [
+            'description' => '',
+            'name' => '',
+            'users' => '',
+        ],
+    ],
+
+    'not_found' => [
+        'message' => 'Nic tady není, možná jsi tento kanál opustil nebo neexistuje...',
+        'title' => 'kanál nenalezen',
+    ],
+
     'input' => [
+        'create' => '',
         'disabled' => 'nejsme schopni odeslat tuto zprávu...',
         'disconnected' => 'Odpojeno',
         'placeholder' => 'napište zprávu...',

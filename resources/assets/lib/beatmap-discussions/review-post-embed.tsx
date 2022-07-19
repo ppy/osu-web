@@ -4,6 +4,7 @@
 import { discussionTypeIcons } from 'beatmap-discussions/discussion-type';
 import { BeatmapIcon } from 'components/beatmap-icon';
 import * as React from 'react';
+import { format, startingPost } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { BeatmapsContext } from './beatmaps-context';
 import { DiscussionsContext } from './discussions-context';
@@ -87,7 +88,7 @@ export const ReviewPostEmbed = ({ data }: Props) => {
       <div className={`${bn}__content`}>
         <div className={`${bn}__selectors`}>
           <div className='icon-dropdown-menu icon-dropdown-menu--disabled'>
-            {beatmap != null && <BeatmapIcon beatmap={beatmap} />}
+            {beatmap != null && <BeatmapIcon beatmap={beatmap} withTooltip />}
             {!discussion.beatmap_id &&
               <i className='fas fa-fw fa-star-of-life' title={osu.trans('beatmaps.discussions.mode.scopes.generalAll')} />
             }
@@ -103,7 +104,7 @@ export const ReviewPostEmbed = ({ data }: Props) => {
         </div>
         <div className={`${bn}__stripe`} />
         <div className={`${bn}__message-container`}>
-          <div className={`${bn}__body`} dangerouslySetInnerHTML={{ __html: BeatmapDiscussionHelper.format((discussion.starting_post || discussion.posts[0]).message) }} />
+          <div className={`${bn}__body`} dangerouslySetInnerHTML={{ __html: format(startingPost(discussion).message) }} />
         </div>
         {parentLink()}
       </div>

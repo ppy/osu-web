@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'loading_users' => '',
     'talking_in' => '',
     'talking_with' => '',
     'title_compact' => '',
@@ -13,7 +14,37 @@ return [
         'user' => '',
     ],
 
+    'channels' => [
+        'create' => '',
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => '',
+                'GROUP' => '',
+                'PM' => '',
+                'PUBLIC' => '',
+            ],
+        ],
+    ],
+
+    'form' => [
+        'title' => [
+            'announcement' => '',
+        ],
+
+        'labels' => [
+            'description' => '',
+            'name' => '',
+            'users' => '',
+        ],
+    ],
+
+    'not_found' => [
+        'message' => '',
+        'title' => '',
+    ],
+
     'input' => [
+        'create' => '',
         'disabled' => '',
         'disconnected' => '',
         'placeholder' => '',

@@ -25,6 +25,11 @@ return [
             'index' => 'listagem',
         ],
 
+        'beatmapsets' => [
+            'show' => 'informação',
+            'discussions' => 'discussão',
+        ],
+
         'changelog' => [
             'index' => 'listagem',
         ],
@@ -46,7 +51,7 @@ return [
 
         'users' => [
             'modding' => 'modding',
-            'playlists' => '',
+            'playlists' => 'playlists',
             'realtime' => 'multijogador',
             'show' => 'informação',
         ],

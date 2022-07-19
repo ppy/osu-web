@@ -87,7 +87,7 @@ return [
         'email_login_disabled' => 'Ang pag sign in gamit ng email ay disabled muna. Gamitin muna ang iyong username.',
         'failed' => 'Maling sign in',
         'forgot' => 'Nakalimutan mo ang password mo?',
-        'info' => 'Mag-sign in upang makapagpatuloy',
+        'info' => 'Paki-sign-in upang makapagpatuloy',
         'invalid_captcha' => 'Madaming palyang tangka sa pag login. Tapusin muna ang captcha at ulitin muli. (I refresh pag hindi makita ang captcha)',
         'locked_ip' => 'Locked ang iyong IP address. Magantay ng ilang minuto.',
         'password' => 'Password',
@@ -159,6 +159,10 @@ return [
             '_' => 'Nag-post sa :link',
             'count' => ':count_delimited na komento|:count_delimited na mga komento',
         ],
+        'cover' => [
+            'to_0' => 'Itago ang cover',
+            'to_1' => 'Ipakita ang cover',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Palitan ang cover',
@@ -203,6 +207,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Mga Inilibing na Beatmap',
+                ],
+                'guest' => [
+                    'title' => 'Guest Participation na mga Beatmap',
                 ],
                 'loved' => [
                     'title' => 'Mga Minamahal na Beatmap',

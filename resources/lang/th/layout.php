@@ -25,6 +25,11 @@ return [
             'index' => 'รายการ',
         ],
 
+        'beatmapsets' => [
+            'show' => 'ข้อมูล',
+            'discussions' => 'การสนทนา',
+        ],
+
         'changelog' => [
             'index' => 'รายการ',
         ],

@@ -5,6 +5,7 @@
 
 namespace Tests\Browser;
 
+use App\Models\BeatmapPack;
 use App\Models\Chat\Channel;
 use App\Models\Chat\UserChannel;
 use App\Models\Country;
@@ -91,7 +92,7 @@ class SanityTest extends DuskTestCase
             'beatmapset_id' => self::$scaffolding['beatmapset'],
             'beatmap_id' => self::$scaffolding['beatmap'],
         ]);
-        self::$scaffolding['pack'] = factory(\App\Models\BeatmapPack::class)->create();
+        self::$scaffolding['pack'] = BeatmapPack::factory()->create();
 
         // factories for /community/contests/*
         self::$scaffolding['contest'] = factory(\App\Models\Contest::class)->states('entry')->create();
@@ -427,7 +428,7 @@ class SanityTest extends DuskTestCase
 
     private function checkAdminPermission(Browser $browser, LaravelRoute $route)
     {
-        $adminRestricted = ['forum.topics.logs.index'];
+        $adminRestricted = ['chat.users.index', 'forum.topics.logs.index'];
 
         if (starts_with($route->uri, 'admin') || in_array($route->getName(), $adminRestricted, true)) {
             // TODO: retry and check page as admin? (will affect subsequent tests though, so figure out how to deal with that..)

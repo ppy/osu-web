@@ -25,6 +25,11 @@ return [
             'index' => 'lista',
         ],
 
+        'beatmapsets' => [
+            'show' => 'informacje',
+            'discussions' => 'dyskusja',
+        ],
+
         'changelog' => [
             'index' => 'lista',
         ],

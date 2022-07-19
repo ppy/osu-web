@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import BeatmapsetDiscussionJson from './beatmapset-discussion-json';
 import BeatmapsetJson from './beatmapset-json';
 import GameMode from './game-mode';
 
@@ -207,6 +208,14 @@ interface NsfwToggleEvent extends BaseBeatmapsetEvent {
   type: 'nsfw_toggle';
 }
 
+interface OffsetEditEvent extends BaseBeatmapsetEvent {
+  comment: {
+    new: number;
+    old: number;
+  };
+  type: 'offset_edit';
+}
+
 interface BeatmapOwnerChangeEvent extends BaseBeatmapsetEvent {
   comment: {
     beatmap_id: number;
@@ -250,6 +259,7 @@ type BeatmapsetEventJson =
   | GenreEditEvent
   | LanguageEditEvent
   | NsfwToggleEvent
+  | OffsetEditEvent
 
   | BeatmapOwnerChangeEvent;
 

@@ -156,8 +156,12 @@ return [
         'title' => "Profil de :username",
 
         'comments_count' => [
-            '_' => 'Publié :link',
+            '_' => 'A publié :link',
             'count' => ':count_delimited commentaire|:count_delimited commentaires',
+        ],
+        'cover' => [
+            'to_0' => 'Cacher la bannière',
+            'to_1' => 'Afficher la bannière',
         ],
         'edit' => [
             'cover' => [
@@ -203,6 +207,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Beatmaps dans le cimetière',
+                ],
+                'guest' => [
+                    'title' => 'Participation aux beatmaps',
                 ],
                 'loved' => [
                     'title' => 'Beatmaps loved',

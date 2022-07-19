@@ -7,17 +7,19 @@ declare(strict_types=1);
 
 namespace App\Libraries\User;
 
+use App\Libraries\MorphMap;
 use App\Models\Beatmap;
 use App\Models\Score;
 use App\Models\ScorePin;
+use App\Models\Solo;
 
 class ScorePins
 {
     const REQUEST_ATTRIBUTE_KEY_PREFIX = 'current_user_score_pins:';
 
-    public function isPinned(Score\Best\Model $best): bool
+    public function isPinned(Score\Best\Model|Solo\Score $score): bool
     {
-        $type = $best->getMorphClass();
+        $type = $score->getMorphClass();
         $key = static::REQUEST_ATTRIBUTE_KEY_PREFIX.$type;
         $pins = request()->attributes->get($key);
 
@@ -34,15 +36,19 @@ class ScorePins
             request()->attributes->set($key, $pins);
         }
 
-        return isset($pins[$best->getKey()]);
+        return isset($pins[$score->getKey()]);
     }
 
     public function reset(): void
     {
-        foreach (Beatmap::MODES as $mode => $modeInt) {
-            $class = Score\Best\Model::getClassByString($mode);
-            $type = (new $class())->getMorphClass();
-            request()->attributes->remove(static::REQUEST_ATTRIBUTE_KEY_PREFIX.$type);
+        $prefix = static::REQUEST_ATTRIBUTE_KEY_PREFIX;
+        $attributes = request()->attributes;
+
+        $attributes->remove($prefix.MorphMap::getType(Solo\Score::class));
+
+        foreach (Beatmap::MODES as $ruleset => $rulesetId) {
+            $type = MorphMap::getType(Score\Best\Model::getClassByString($ruleset));
+            $attributes->remove("{$prefix}{$type}");
         }
     }
 }

@@ -33,12 +33,11 @@ export class Main extends React.PureComponent
     @checkNewTimeoutDefault = 10000
     @checkNewTimeoutMax = 60000
     @cache = {}
+    @disposers = new Set
     @timeouts = {}
     @xhr = {}
     @state = JSON.parse(props.container.dataset.beatmapsetDiscussionState ? null)
     @restoredState = @state?
-    # FIXME: update url handler to recognize this instead
-    @focusNewDiscussion = currentUrl().hash == '#new'
 
     if @restoredState
       @state.readPostIds = new Set(@state.readPostIdsArray)
@@ -60,9 +59,12 @@ export class Main extends React.PureComponent
     @state.currentFilter = query.filter
     @state.currentBeatmapId = query.beatmapId if query.beatmapId?
     @state.selectedUserId = query.user
+    # FIXME: update url handler to recognize this instead
+    @focusNewDiscussion = currentUrl().hash == '#new'
 
 
   componentDidMount: =>
+    @focusNewDiscussion = false
     $.subscribe "playmode:set.#{@eventId}", @setCurrentPlaymode
 
     $.subscribe "beatmapsetDiscussions:update.#{@eventId}", @update
@@ -74,13 +76,10 @@ export class Main extends React.PureComponent
     $(document).on "click.#{@eventId}", '.js-beatmap-discussion--jump', @jumpToClick
     $(document).on "turbolinks:before-cache.#{@eventId}", @saveStateToContainer
 
-    @jumpToDiscussionByHash() if !@restoredState
+    if !@restoredState
+      @disposers.add core.reactTurbolinks.runAfterPageLoad(@jumpToDiscussionByHash)
+
     @timeouts.checkNew = Timeout.set @checkNewTimeoutDefault, @checkNew
-
-
-  componentWillUpdate: =>
-    @cache = {}
-    @focusNewDiscussion = false
 
 
   componentDidUpdate: (_prevProps, prevState) =>
@@ -99,9 +98,12 @@ export class Main extends React.PureComponent
 
     Timeout.clear(timeout) for _name, timeout of @timeouts
     xhr?.abort() for _name, xhr of @xhr
+    @disposers.forEach (disposer) => disposer?()
 
 
   render: =>
+    @cache = {}
+
     el React.Fragment, null,
       el Header,
         beatmaps: @groupedBeatmaps()

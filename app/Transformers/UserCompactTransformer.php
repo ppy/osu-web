@@ -58,6 +58,7 @@ class UserCompactTransformer extends TransformerAbstract
         'friends',
         'graveyard_beatmapset_count',
         'groups',
+        'guest_beatmapset_count',
         'is_admin',
         'is_bng',
         'is_full_bn',
@@ -119,7 +120,7 @@ class UserCompactTransformer extends TransformerAbstract
             'id' => $user->user_id,
             'is_active' => $user->isActive(),
             'is_bot' => $user->isBot(),
-            'is_deleted' => $user->isDeleted(),
+            'is_deleted' => $user->trashed(),
             'is_online' => $user->isOnline(),
             'is_supporter' => $user->isSupporter(),
             'last_visit' => json_time($user->displayed_last_visit),
@@ -228,12 +229,17 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeGraveyardBeatmapsetCount(User $user)
     {
-        return $this->primitive($user->profileBeatmapsetsGraveyard()->count());
+        return $this->primitive($user->profileBeatmapsetCountByGroupedStatus('graveyard'));
     }
 
     public function includeGroups(User $user)
     {
         return $this->collection($user->userGroupsForBadges(), new UserGroupTransformer());
+    }
+
+    public function includeGuestBeatmapsetCount(User $user)
+    {
+        return $this->primitive($user->profileBeatmapsetsGuest()->count());
     }
 
     public function includeIsAdmin(User $user)
@@ -283,7 +289,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeLovedBeatmapsetCount(User $user)
     {
-        return $this->primitive($user->profileBeatmapsetsLoved()->count());
+        return $this->primitive($user->profileBeatmapsetCountByGroupedStatus('loved'));
     }
 
     public function includeMappingFollowerCount(User $user)
@@ -313,7 +319,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includePendingBeatmapsetCount(User $user)
     {
-        return $this->primitive($user->profileBeatmapsetsPending()->count());
+        return $this->primitive($user->profileBeatmapsetCountByGroupedStatus('pending'));
     }
 
     public function includePreviousUsernames(User $user)
@@ -340,7 +346,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeRankedBeatmapsetCount(User $user)
     {
-        return $this->primitive($user->profileBeatmapsetsRanked()->count());
+        return $this->primitive($user->profileBeatmapsetCountByGroupedStatus('ranked'));
     }
 
     public function includeReplaysWatchedCounts(User $user)
@@ -363,7 +369,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeScoresPinnedCount(User $user)
     {
-        return $this->primitive($user->scorePins()->forMode($this->mode)->withVisibleScore()->count());
+        return $this->primitive($user->scorePins()->forRuleset($this->mode)->withVisibleScore()->count());
     }
 
     public function includeScoresRecentCount(User $user)

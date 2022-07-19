@@ -10,6 +10,6 @@ return [
         'reverting_username_mismatch' => '',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => 'Không đủ tiền để tặng osu!supporter tag (:actual > :expected)',
+        'insufficient_paid' => 'Khoản ủng hộ đối với nhãn osu!supporter đang ít hơn yêu cầu (:actual > :expected)',
     ],
 ];

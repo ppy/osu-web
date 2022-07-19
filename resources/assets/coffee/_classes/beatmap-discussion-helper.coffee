@@ -2,16 +2,13 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute'
-import { discussionLinkify } from 'utils/beatmapset-discussion-helper'
+import { maxLengthTimeline } from 'utils/beatmapset-discussion-helper'
 import { currentUrl } from 'utils/turbolinks'
-import { openBeatmapEditor, linkHtml } from 'utils/url'
+import { getInt } from 'utils/math'
 
 class window.BeatmapDiscussionHelper
   @DEFAULT_BEATMAP_ID: '-'
-  @DEFAULT_MODE: 'timeline'
   @DEFAULT_FILTER: 'total'
-  @MAX_MESSAGE_PREVIEW_LENGTH: 100
-  @MAX_LENGTH_TIMELINE: 750
   @TIMESTAMP_REGEX: /\b(((\d{2,}):([0-5]\d)[:.](\d{3}))(\s\((?:\d+[,|])*\d+\))?)/
 
   @MODES = new Set(['events', 'general', 'generalAll', 'timeline', 'reviews'])
@@ -22,6 +19,13 @@ class window.BeatmapDiscussionHelper
     user ?= currentUser
 
     user.is_admin || user.is_moderator
+
+
+  @defaultMode: (beatmapId) =>
+    if beatmapId? && beatmapId != @DEFAULT_BEATMAP_ID
+      'timeline'
+    else
+      'generalAll'
 
 
   @discussionMode: (discussion) ->
@@ -37,30 +41,6 @@ class window.BeatmapDiscussionHelper
         'generalAll'
 
 
-  @format: (text, options = {}) =>
-    blockName = 'beatmapset-discussion-message'
-    text = _.escape text
-    text = text.trim()
-    text = discussionLinkify text
-    text = @linkTimestamp text, ['beatmap-discussion-timestamp-decoration']
-
-    if options.newlines ? true
-      # replace newlines with <br>
-      # - trim trailing spaces
-      # - then join with <br>
-      # - limit to 2 consecutive <br>s
-      text = text
-        .split '\n'
-        .map (x) -> x.trim()
-        .join '<br>'
-        .replace /(?:<br>){2,}/g, '<br><br>'
-
-    blockClass = blockName
-    blockClass += " #{blockName}--#{modifier}" for modifier in options.modifiers ? []
-
-    "<div class='#{blockClass}'>#{text}</div>"
-
-
   @formatTimestamp: (value) =>
     return unless value?
 
@@ -70,12 +50,6 @@ class window.BeatmapDiscussionHelper
     m = Math.floor(value / 1000 / 60)
 
     "#{_.padStart m, 2, 0}:#{_.padStart s, 2, 0}.#{_.padStart ms, 3, 0}"
-
-
-  @linkTimestamp: (text, classNames = []) =>
-    text
-      .replace /\b((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\)|\b))/g, (_match, text, m, s, ms, range) =>
-        linkHtml(openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text, classNames: classNames)
 
 
   @nearbyDiscussions: (discussions, timestamp) =>
@@ -107,16 +81,6 @@ class window.BeatmapDiscussionHelper
     _.sortBy shownDiscussions, 'timestamp'
 
 
-  @previewMessage = (message) =>
-    if message.length > @MAX_MESSAGE_PREVIEW_LENGTH
-      _.chain(message)
-      .truncate length: @MAX_MESSAGE_PREVIEW_LENGTH
-      .escape()
-      .value()
-    else
-      @format message, newlines: false
-
-
   @stateFromDiscussion: (discussion) =>
     return {} if !discussion?
 
@@ -132,7 +96,7 @@ class window.BeatmapDiscussionHelper
     timestampRe = message.match @TIMESTAMP_REGEX
 
     if timestampRe?
-      timestamp = timestampRe.slice(1).map (x) => parseInt x, 10
+      timestamp = timestampRe.slice(1).map getInt
 
       # this isn't all that smart
       (timestamp[2] * 60 + timestamp[3]) * 1000 + timestamp[4]
@@ -150,6 +114,7 @@ class window.BeatmapDiscussionHelper
       discussions # for validating discussionId and getting relevant params
       discussion
       post
+      postId
       user
     } = if useCurrent then _.assign(@urlParse(), options) else options
 
@@ -160,13 +125,14 @@ class window.BeatmapDiscussionHelper
       beatmapId = beatmap.id
 
     params.beatmapset = beatmapsetId
-    params.mode = mode ? @DEFAULT_MODE
 
     params.beatmap =
-      if !beatmapId? || params.mode in ['events', 'generalAll', 'reviews']
+      if !beatmapId? || mode in ['events', 'generalAll', 'reviews']
         @DEFAULT_BEATMAP_ID
       else
         beatmapId
+
+    params.mode = mode ? @defaultMode(beatmapId)
 
     if filter? && filter != @DEFAULT_FILTER && params.mode != 'events'
       params.filter = filter
@@ -187,7 +153,9 @@ class window.BeatmapDiscussionHelper
     url = new URL(route('beatmapsets.discussion', params))
     if discussionId?
       url.hash = "/#{discussionId}"
-      url.hash += "/#{post.id}" if post?
+
+      postId = post.id if post?
+      url.hash += "/#{postId}" if postId?
 
 
     if user?
@@ -207,21 +175,21 @@ class window.BeatmapDiscussionHelper
 
     return if pathBeatmapsets != 'beatmapsets' || pathDiscussions != 'discussion'
 
-    beatmapsetId = parseInt(beatmapsetId, 10)
-    beatmapId = parseInt(beatmapId, 10)
+    beatmapsetId = getInt(beatmapsetId)
+    beatmapId = getInt(beatmapId)
 
     ret =
-      beatmapsetId: if isFinite(beatmapsetId) then beatmapsetId
-      beatmapId: if isFinite(beatmapId) then beatmapId
+      beatmapsetId: beatmapsetId
+      beatmapId: beatmapId
       # empty path segments are ''
-      mode: if @MODES.has(mode) then mode else @DEFAULT_MODE
+      mode: if @MODES.has(mode) then mode else @defaultMode(beatmapId)
       filter: if @FILTERS.has(filter) then filter else @DEFAULT_FILTER
-      user: parseInt(url.searchParams.get('user'), 10) if url.searchParams.get('user')?
+      user: getInt(url.searchParams.get('user')) if url.searchParams.get('user')?
 
     if url.hash[1] == '/'
-      [discussionId, postId] = url.hash[2..].split('/').map((id) -> parseInt(id, 10))
+      [discussionId, postId] = url.hash[2..].split('/').map(getInt)
 
-      if isFinite(discussionId)
+      if discussionId?
         if discussions?
           discussion = _.find discussions, id: discussionId
 
@@ -232,7 +200,7 @@ class window.BeatmapDiscussionHelper
         else if options.forceDiscussionId
           ret.discussionId = discussionId
 
-    ret.postId = postId if ret.discussionId? && isFinite(postId)
+    ret.postId = postId if ret.discussionId? && postId?
 
     ret
 
@@ -241,6 +209,6 @@ class window.BeatmapDiscussionHelper
     return false unless message?.length > 0
 
     if isTimeline
-      message.length <= @MAX_LENGTH_TIMELINE
+      message.length <= maxLengthTimeline
     else
       true

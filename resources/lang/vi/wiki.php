@@ -5,7 +5,7 @@
 
 return [
     'show' => [
-        'fallback_translation' => 'Trang yêu cầu chưa được dịch sang ngôn ngữ đã chọn (:language). Đang hiển thị phiên bản tiếng Anh.',
+        'fallback_translation' => 'Trang được yêu cầu hiện chưa được dịch sang ngôn ngữ đã chọn (:language). Đang hiển thị phiên bản tiếng Anh.',
         'incomplete_or_outdated' => 'Nội dung trên trang này chưa hoàn chỉnh hoặc đã cũ. Nếu bạn có thể giúp, vui lòng cân nhắc cập nhật văn bản này!',
         'missing' => 'Không thể tìm thấy trang ":keyword".',
         'missing_title' => 'Không Tìm Thấy',

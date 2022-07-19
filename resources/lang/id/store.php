@@ -7,7 +7,7 @@ return [
     'cart' => [
         'checkout' => 'Checkout',
         'info' => ':count_delimited barang dalam keranjang ($:subtotal)|:count_delimited barang dalam keranjang ($:subtotal)',
-        'more_goodies' => 'Saya ingin melihat produk-produk lainnya sebelum merampungkan pesanan',
+        'more_goodies' => 'Saya ingin melihat produk lainnya sebelum merampungkan pesanan',
         'shipping_fees' => 'biaya pengiriman',
         'title' => 'Keranjang Belanja',
         'total' => 'total',
@@ -49,15 +49,15 @@ return [
     'discount' => 'hemat :percent%',
 
     'invoice' => [
-        'echeck_delay' => 'Karena Anda melakukan pembayaran via eCheck, mohon izinkan setidaknya 10 hari tambahan untuk masuk melalui PayPal!',
-        'title_compact' => 'invoice',
+        'echeck_delay' => 'Berhubung pembayaran Anda berupa eCheck, mohon tunggu hingga setidaknya 10 hari agar pembayaran Anda dapat diproses oleh PayPal!',
+        'title_compact' => 'faktur',
 
         'status' => [
             'processing' => [
                 'title' => 'Pembayaran Anda belum terkonfirmasi!',
                 'line_1' => 'Apabila Anda sebelumnya benar-benar telah membayar sesuai dengan jumlah yang tertagih, ada kemungkinan sistem kami masih memproses dan mengonfirmasi pembayaran Anda tersebut. Mohon tunggu beberapa menit dan muat ulang halaman ini!',
                 'line_2' => [
-                    '_' => 'Jika Anda mengalami masalah saat melakukan pembayaran, :link',
+                    '_' => 'Apabila Anda mengalami masalah dalam proses checkout, :link',
                     'link_text' => 'klik di sini untuk melanjutkan transaksi Anda',
                 ],
             ],
@@ -68,7 +68,7 @@ return [
         'cancel' => 'Batalkan Pesanan',
         'cancel_confirm' => 'Pesanan ini akan secara otomatis dibatalkan dan segala biaya yang telah Anda keluarkan tidak akan kami terima. Apakah Anda yakin?',
         'cancel_not_allowed' => 'Pesanan ini tidak dapat dibatalkan pada saat ini.',
-        'invoice' => 'Lihat Invoice',
+        'invoice' => 'Lihat Faktur',
         'no_orders' => 'Tidak ada pesanan yang tercatat.',
         'paid_on' => 'Pemesanan dilangsungkan pada :date',
         'resume' => 'Lanjutkan Proses Checkout',
@@ -105,7 +105,7 @@ return [
         'name' => 'Nama',
 
         'stock' => [
-            'out' => 'Stok barang ini saat ini sedang tidak tersedia. Silahkan periksa kembali nanti!',
+            'out' => 'Stok barang saat ini sedang tidak tersedia. Silakan periksa kembali nanti!',
             'out_with_alternative' => 'Sayangnya stok untuk barang ini habis. Gunakan menu dropdown untuk memilih jenis yang lain atau silahkan periksa kembali nanti!',
         ],
 
@@ -121,7 +121,7 @@ return [
     'supporter_tag' => [
         'gift' => 'hadiahkan ke pengguna lain',
         'require_login' => [
-            '_' => 'Anda harus :link untuk menerima osu!supporter tag!',
+            '_' => 'Anda harus :link untuk dapat menerima osu!supporter tag!',
             'link_text' => 'masuk',
         ],
     ],

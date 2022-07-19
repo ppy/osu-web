@@ -27,7 +27,7 @@ return [
     'client' => [
         'id' => 'ID Klien',
         'name' => 'Nama Aplikasi',
-        'redirect' => 'Application Callback URL',
+        'redirect' => 'URL Callback Aplikasi',
         'reset' => 'Atur ulang client secret',
         'reset_failed' => 'Pengaturan ulang client secret gagal',
         'secret' => 'Client Secret',
@@ -49,8 +49,8 @@ return [
 
     'own_clients' => [
         'confirm_delete' => 'Apakah Anda yakin untuk menghapus klien ini?',
-        'confirm_reset' => 'Apakah Anda yakin untuk mengatur ulang client secret? Tindakan ini akan menganulir izin akses token-token yang telah diotorisir sebelumnya.',
-        'new' => 'Buat Aplikasi OAuth Baru',
+        'confirm_reset' => 'Apakah Anda yakin untuk mengatur ulang client secret? Tindakan ini akan menganulir izin akses seluruh token yang telah diotorisir sebelumnya.',
+        'new' => 'Buat Izin Aplikasi Baru',
         'none' => 'Tidak Ada Klien',
 
         'revoked' => [

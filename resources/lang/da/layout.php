@@ -25,6 +25,11 @@ return [
             'index' => 'katalog',
         ],
 
+        'beatmapsets' => [
+            'show' => 'info',
+            'discussions' => 'diskussion',
+        ],
+
         'changelog' => [
             'index' => 'katalog',
         ],
@@ -46,8 +51,8 @@ return [
 
         'users' => [
             'modding' => 'modding',
-            'playlists' => '',
-            'realtime' => '',
+            'playlists' => 'playlister',
+            'realtime' => 'multiplayer',
             'show' => 'info',
         ],
     ],
@@ -140,7 +145,7 @@ return [
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => 'Grænsen er overskredet',
             'description' => '',
         ],
         '500' => [

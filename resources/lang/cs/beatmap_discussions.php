@@ -102,6 +102,6 @@ return [
 
     'user_filter' => [
         'everyone' => 'Všichni',
-        'label' => 'Filtrovat podle uživatele',
+        'label' => 'Filtrovat dle uživatele',
     ],
 ];

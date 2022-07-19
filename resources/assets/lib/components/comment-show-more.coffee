@@ -65,8 +65,8 @@ export class CommentShowMore extends React.PureComponent
     @setState loading: true
 
     params =
-      commentable_type: @props.parent?.commentable_type ? @props.commentableType
-      commentable_id: @props.parent?.commentable_id ? @props.commentableId
+      commentable_type: @props.parent?.commentableType ? @props.commentableMeta.type
+      commentable_id: @props.parent?.commentableId ? @props.commentableMeta.id
       parent_id: @props.parent?.id ? 0
       sort: uiState.comments.currentSort
 

@@ -73,7 +73,7 @@ return [
             'nomination_reset' => '',
             'praise' => '',
             'problem' => '',
-            'problem_warning' => '',
+            'problem_warning' => 'گزارش مشکل',
             'review' => '',
             'suggestion' => '',
         ],
@@ -211,7 +211,7 @@ return [
         'reset_confirm' => [
             'disqualify' => '',
             'nomination_reset' => '',
-            'problem_warning' => '',
+            'problem_warning' => 'آیا مطمئنید که میخواهید یک ایراد در بیت مپ را گزارش کنید؟ این برای نامزد کننده های بیت مپ یک هشدار ارسال می کند.',
         ],
     ],
 
@@ -257,6 +257,7 @@ return [
         'featured_artists' => '',
         'follows' => '',
         'recommended' => '',
+        'spotlights' => '',
     ],
     'mode' => [
         'all' => '',
@@ -275,7 +276,7 @@ return [
         'loved' => '',
         'mine' => '',
         'pending' => '',
-        'wip' => '',
+        'wip' => 'در حال کار',
         'qualified' => '',
         'ranked' => '',
     ],

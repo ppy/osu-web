@@ -12,37 +12,51 @@ import { supportedChannelTypes } from 'interfaces/chat/channel-json';
 import { clamp, maxBy } from 'lodash';
 import { action, autorun, computed, makeObservable, observable, observe, runInAction } from 'mobx';
 import Channel from 'models/chat/channel';
+import CreateAnnouncement from 'models/chat/create-announcement';
 import ChannelStore from 'stores/channel-store';
+import { onError } from 'utils/ajax';
+import { setBrowserTitle } from 'utils/html';
+import { updateQueryString } from 'utils/url';
 import ChannelJoinEvent from './channel-join-event';
 import ChannelPartEvent from './channel-part-event';
-import { getUpdates } from './chat-api';
+import { createAnnouncement, getUpdates } from './chat-api';
+import MainView from './main-view';
 import PingService from './ping-service';
+
+type ChannelId = number | 'create' | null;
 
 @dispatchListener
 export default class ChatStateStore implements DispatchListener {
-  @observable isChatMounted = false;
+  @observable canChatAnnounce = false;
+  @observable createAnnouncement = new CreateAnnouncement();
   @observable isReady = false;
-  @observable selectedBoxed = observable.box(0);
   skipRefresh = false;
+  @observable viewsMounted = new Set<MainView>();
   @observable private isConnected = false;
   private lastHistoryId: number | null = null;
   private pingService: PingService;
+  @observable private selected: ChannelId = null;
   private selectedIndex = 0;
+  @observable private waitJoinChannelUuid: string | null = null;
 
   @computed
-  get selected() {
-    return this.selectedBoxed.get();
+  get isChatMounted() {
+    return this.viewsMounted.size > 0;
   }
 
-  // This setter should be considered private.
-  // Use selectChannel to change channel.
-  set selected(value: number) {
-    this.selectedBoxed.set(value);
+  // Should not join/create another channel if still waiting for a pending request.
+  @computed
+  get isJoiningChannel() {
+    return this.waitJoinChannelUuid != null;
   }
 
   @computed
   get selectedChannel() {
-    return this.channelStore.get(this.selected);
+    return this.selected == null || this.selected === 'create' ? null : this.channelStore.get(this.selected);
+  }
+
+  get showingCreateAnnouncement() {
+    return this.selected === 'create';
   }
 
   @computed
@@ -81,7 +95,11 @@ export default class ChatStateStore implements DispatchListener {
         }
 
         runInAction(() => {
-          this.channelStore.loadChannel(this.selected);
+          // TODO: use selectChannel?
+          if (typeof this.selected === 'number') {
+            this.channelStore.loadChannel(this.selected);
+          }
+
           this.isReady = true;
         });
       }
@@ -102,33 +120,82 @@ export default class ChatStateStore implements DispatchListener {
     }
   }
 
+  // TODO: This will support the other types of joining channels in the future
+  // Only up to one join/create channel operation should be allowed to be running at any time.
+  // For consistency, the operation is considered complete when the websocket message arrives, not when the request completes.
   @action
-  selectChannel(channelId: number) {
+  joinChannel() {
+    if (!this.createAnnouncement.isValid || this.isJoiningChannel) return;
+
+    const json = this.createAnnouncement.toJson();
+    this.waitJoinChannelUuid = json.uuid;
+    // TODO: when adding more channel types to join, remember to add separate busy spinner states for them.
+
+    createAnnouncement(json)
+      .fail(action((xhr: JQueryXHR) => {
+        onError(xhr);
+        this.waitJoinChannelUuid = null;
+      }));
+  }
+
+  @action
+  selectChannel(channelId: ChannelId, mode: 'advanceHistory' | 'replaceHistory' | null = 'advanceHistory') {
+    // TODO: enforce location url even if channel doesn't change;
+    // noticeable when navigating via ?sendto= on existing channel.
     if (this.selected === channelId) return;
 
-    // mark the channel being switched away from as read.
-    if (this.selectedChannel != null) {
-      this.channelStore.markAsRead(this.selectedChannel.channelId);
+    // Mark the channel being switched away from as read.
+    // Marking as read is done here to avoid constantly sending mark-as-read requests
+    // while receiving messages when autoScroll is enabled on the channel.
+    this.selectedChannel?.throttledSendMarkAsRead();
+
+    this.selected = channelId;
+
+    if (channelId === 'create') {
+      if (mode != null) {
+        Turbolinks.controller[mode](updateQueryString(null, {
+          channel_id: null,
+          sendto: null,
+        }, 'create'));
+      }
+
+      return;
     }
 
+    if (channelId == null) return;
+
     const channel = this.channelStore.get(channelId);
+
     if (channel == null) {
       console.error(`Trying to switch to non-existent channel ${channelId}`);
       return;
     }
 
-    this.selected = channelId;
     this.selectedIndex = this.channelList.indexOf(channel);
 
     // TODO: should this be here or have something else figure out if channel needs to be loaded?
     this.channelStore.loadChannel(channelId);
+
+    if (mode != null) {
+      const params = channel.newPmChannel
+        ? { channel_id: null, sendto: channel.pmTarget?.toString() }
+        : { channel_id: channel.channelId.toString(), sendto: null };
+
+      Turbolinks.controller[mode](updateQueryString(null, params, ''));
+    }
+    setBrowserTitle(`${channel.name} · ${osu.trans('page_title.main.chat_controller._')}`);
   }
 
   @action
   selectFirst() {
     if (this.channelList.length === 0) return;
 
-    this.selectChannel(this.channelList[0].channelId);
+    this.selectChannel(this.channelList[0].channelId, null);
+    // Remove channel_id from location on selectFirst();
+    Turbolinks.controller.replaceHistory(updateQueryString(null, {
+      channel_id: null,
+      sendto: null,
+    }));
   }
 
   @action
@@ -145,7 +212,15 @@ export default class ChatStateStore implements DispatchListener {
 
   @action
   private handleChatChannelJoinEvent(event: ChannelJoinEvent) {
-    this.channelStore.getOrCreate(event.json.channel_id).updateWithJson(event.json);
+    this.channelStore.update(event.json);
+
+    if (this.waitJoinChannelUuid != null && this.waitJoinChannelUuid === event.json.uuid) {
+      this.selectChannel(event.json.channel_id);
+      this.waitJoinChannelUuid = null;
+      if (event.json.type === 'ANNOUNCE') {
+        this.createAnnouncement.clear();
+      }
+    }
   }
 
   @action
@@ -166,7 +241,7 @@ export default class ChatStateStore implements DispatchListener {
 
     // FIXME: friend list update isn't propagated to other tabs without a full refresh, yet.
     const channel = this.channelStore.groupedChannels.PM.find((value) => value.pmTarget === event.userId);
-    channel?.refresh();
+    channel?.loadMetadata();
   }
 
   @action
@@ -183,6 +258,8 @@ export default class ChatStateStore implements DispatchListener {
    * Keeps the current channel in focus, unless deleted, then focus on next channel.
    */
   private refocusSelectedChannel() {
+    if (this.showingCreateAnnouncement) return;
+
     if (this.selectedChannel != null) {
       this.selectChannel(this.selectedChannel.channelId);
     } else {
@@ -202,7 +279,7 @@ export default class ChatStateStore implements DispatchListener {
         this.lastHistoryId = newHistoryId;
       }
 
-      this.channelStore.updateWithJson(json);
+      this.channelStore.updateWithChatUpdates(json);
     });
   }
 }

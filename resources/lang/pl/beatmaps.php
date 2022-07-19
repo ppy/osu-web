@@ -73,7 +73,7 @@ return [
             'nomination_reset' => 'Zresetuj nominację',
             'praise' => 'Pochwała',
             'problem' => 'Problem',
-            'problem_warning' => '',
+            'problem_warning' => 'Zgłoś problem',
             'review' => 'Recenzja',
             'suggestion' => 'Sugestia',
         ],
@@ -211,7 +211,7 @@ return [
         'reset_confirm' => [
             'disqualify' => 'Czy na pewno chcesz to zrobić? Ta czynność odbierze tej beatmapie status zakwalifikowanej i zresetuje proces nominacji.',
             'nomination_reset' => 'Na pewno? Zgłoszenie nowego problemu zresetuje proces nominacji.',
-            'problem_warning' => '',
+            'problem_warning' => 'Czy na pewno chcesz zgłosić problem z tą beatmapą? Powiadomi to nominatorów beatmap.',
         ],
     ],
 
@@ -257,6 +257,7 @@ return [
         'featured_artists' => 'Wyróżnieni artyści',
         'follows' => 'Obserwowani twórcy',
         'recommended' => 'Polecany poziom trudności',
+        'spotlights' => 'Wyróżnione beatmapy',
     ],
     'mode' => [
         'all' => 'Wszyscy',
@@ -275,7 +276,7 @@ return [
         'loved' => 'Ulubione społeczności',
         'mine' => 'Moje beatmapy',
         'pending' => 'Oczekujące',
-        'wip' => '',
+        'wip' => 'Obecnie rozwijane',
         'qualified' => 'Zakwalifikowane',
         'ranked' => 'Rankingowe',
     ],

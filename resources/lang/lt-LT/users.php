@@ -159,6 +159,10 @@ return [
             '_' => '',
             'count' => '',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Keisti profilio viršelį',
@@ -203,6 +207,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Išmesti Beatmapai',
+                ],
+                'guest' => [
+                    'title' => '',
                 ],
                 'loved' => [
                     'title' => '',

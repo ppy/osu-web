@@ -39,7 +39,7 @@ return [
         'play_count' => 'مرات اللعب',
         'performance' => 'الأداء',
         'total_score' => 'مجموع النقاط',
-        'ranked_score' => 'نقاط الترتيب',
+        'ranked_score' => 'نتيجة Ranked',
         'average_score' => 'متوسط النقاط',
         'average_performance' => 'متوسط الاداء.',
         'ss' => '',

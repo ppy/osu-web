@@ -14,7 +14,7 @@
         'linksBreadcrumb' => true,
         'theme' => 'help',
     ]])
-        @slot('navAppend')
+        @slot('linksAppend')
             @include('wiki._actions')
         @endslot
     @endcomponent

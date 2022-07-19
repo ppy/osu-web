@@ -13,7 +13,7 @@ return [
         ],
 
         'item' => [
-            'registered' => '已注册玩家',
+            'registered' => '已报名选手',
         ],
 
         'state' => [

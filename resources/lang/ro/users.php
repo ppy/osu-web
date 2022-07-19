@@ -159,6 +159,10 @@ return [
             '_' => '',
             'count' => '',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Schimbă coperta de profil',
@@ -203,6 +207,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Beatmaps îngropate',
+                ],
+                'guest' => [
+                    'title' => '',
                 ],
                 'loved' => [
                     'title' => 'Beatmaps iubite',

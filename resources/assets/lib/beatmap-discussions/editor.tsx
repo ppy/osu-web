@@ -4,6 +4,7 @@
 import { CircularProgress } from 'components/circular-progress';
 import { Spinner } from 'components/spinner';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
+import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForBundle, BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import isHotkey from 'is-hotkey';
 import { route } from 'laroute';
@@ -13,6 +14,7 @@ import * as React from 'react';
 import { createEditor, Element as SlateElement, Node as SlateNode, NodeEntry, Range, Text, Transforms } from 'slate';
 import { withHistory } from 'slate-history';
 import { Editable, ReactEditor, RenderElementProps, RenderLeafProps, Slate, withReact } from 'slate-react';
+import { onError } from 'utils/ajax';
 import { sortWithMode } from 'utils/beatmap-helper';
 import { nominationsCount } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
@@ -44,7 +46,7 @@ interface Props {
   currentBeatmap: BeatmapExtendedJson;
   currentDiscussions: BeatmapsetDiscussionJson[];
   discussion?: BeatmapsetDiscussionJson;
-  discussions: Partial<Record<number, BeatmapsetDiscussionJson>>;
+  discussions: Partial<Record<number, BeatmapsetDiscussionJsonForBundle | BeatmapsetDiscussionJsonForShow>>; // passed in via context at parent
   document?: string;
   editing: boolean;
   editMode?: boolean;
@@ -77,7 +79,7 @@ export default class Editor extends React.Component<Props, State> {
   scrollContainerRef: React.RefObject<HTMLDivElement>;
   slateEditor: ReactEditor;
   toolbarRef: React.RefObject<EditorToolbar>;
-  private xhr?: JQueryXHR;
+  private xhr?: JQueryXHR | null;
 
   constructor(props: Props) {
     super(props);
@@ -145,13 +147,7 @@ export default class Editor extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
-    if (this.xhr) {
-      this.xhr.abort();
-    }
-  }
-
-  componentWillUpdate(): void {
-    this.cache = {};
+    this.xhr?.abort();
   }
 
   decorateTimestamps = (entry: NodeEntry) => {
@@ -238,6 +234,8 @@ export default class Editor extends React.Component<Props, State> {
   };
 
   post = () => {
+    if (this.xhr != null) return;
+
     if (this.showConfirmationIfRequired()) {
       this.setState({ posting: true }, () => {
         this.xhr = $.ajax(route('beatmapsets.discussion.review', { beatmapset: this.props.beatmapset.id }), {
@@ -248,13 +246,17 @@ export default class Editor extends React.Component<Props, State> {
             $.publish('beatmapsetDiscussions:update', { beatmapset: data });
             this.resetInput();
           })
-          .fail(osu.ajaxError)
-          .always(() => this.setState({ posting: false }));
+          .fail(onError)
+          .always(() => {
+            this.xhr = null;
+            this.setState({ posting: false });
+          });
       });
     }
   };
 
   render(): React.ReactNode {
+    this.cache = {};
     const editorClass = 'beatmap-discussion-editor';
     const modifiers = this.props.editMode ? ['edit-mode'] : [];
     if (this.state.posting) {

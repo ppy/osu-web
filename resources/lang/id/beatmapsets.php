@@ -8,11 +8,15 @@ return [
         'disabled' => 'Beatmap saat ini tidak tersedia untuk diunduh.',
         'parts-removed' => 'Beberapa bagian dari beatmap ini telah dihapus atas permintaan pembuat lagu atau pihak ketiga pemegang hak cipta.',
         'more-info' => 'Lihat di sini untuk informasi lebih lanjut.',
-        'rule_violation' => 'Sebagian aset yang terkandung dalam berkas beatmap ini telah dihapus setelah tim kami memutuskan bahwa aset-aset yang bersangkutan tidak layak untuk osu!.',
+        'rule_violation' => 'Sebagian aset yang terkandung dalam berkas beatmap ini telah dihapus karena dinilai tidak sesuai dengan kaidah penggunaan konten yang berlaku di osu!.',
+    ],
+
+    'cover' => [
+        'deleted' => 'Beatmap yang telah dihapus',
     ],
 
     'download' => [
-        'limit_exceeded' => 'Jangan terlalu bernafsu dalam mengunduh. Harap mainkan beatmap-beatmap yang telah Anda miliki terlebih dahulu.',
+        'limit_exceeded' => 'Jangan terlalu bernafsu dalam mengunduh. Mainkan beatmap yang telah Anda miliki terlebih dahulu.',
     ],
 
     'featured_artist_badge' => [
@@ -36,7 +40,7 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => 'Pada beatmapset hybrid, Anda harus memilih satu mode permainan yang akan Anda nominasikan.',
+        'hybrid_requires_modes' => 'Pada beatmap hybrid, Anda harus memilih setidaknya satu mode permainan untuk dinominasikan.',
         'incorrect_mode' => 'Anda tidak memiliki hak untuk memberikan nominasi pada mode permainan: :mode',
         'full_bn_required' => 'Anda harus berstatus sebagai nominator penuh (full nominator) untuk dapat menominasikan beatmap ini.',
         'too_many' => 'Persyaratan nominasi telah terpenuhi.',
@@ -45,7 +49,7 @@ return [
             'confirmation' => 'Apakah Anda yakin untuk menominasikan beatmap ini?',
             'header' => 'Nominasikan Beatmap',
             'hybrid_warning' => 'catatan: Anda hanya dapat memberikan satu nominasi, sehingga pastikan Anda memberikan nominasi pada mode permainan yang memang Anda kehendaki',
-            'which_modes' => 'Mode permainan apa yang hendak Anda nominasikan?',
+            'which_modes' => 'Mode permainan mana yang hendak Anda nominasikan?',
         ],
     ],
 
@@ -88,7 +92,7 @@ return [
         ],
 
         'favourites' => [
-            'limit_reached' => 'Anda telah memiliki terlalu banyak beatmap yang Anda favoritkan! Mohon hapus beberapa sebelum melanjutkan.',
+            'limit_reached' => 'Anda memiliki terlalu banyak beatmap yang telah Anda favoritkan! Mohon hapus beberapa beatmap dari daftar favorit Anda sebelum melanjutkan.',
         ],
 
         'hype' => [
@@ -105,11 +109,11 @@ return [
             ],
 
             'disqualify' => [
-                '_' => 'Jika Anda menemukan masalah pada beatmap ini, mohon diskualifikasi beatmap yang bersangkutan melalui :link.',
+                '_' => 'Apabila Anda menemukan suatu masalah pada beatmap ini, mohon diskualifikasi beatmap yang bersangkutan melalui :link.',
             ],
 
             'report' => [
-                '_' => 'Jika Anda menemukan masalah pada beatmap ini, mohon laporkan kepada tim kami melalui :link.',
+                '_' => 'Apabila Anda menemukan suatu masalah pada beatmap ini, mohon laporkan kepada tim kami melalui :link.',
                 'button' => 'Laporkan Masalah',
                 'link' => 'tautan ini',
             ],
@@ -121,6 +125,7 @@ return [
             'language' => 'Bahasa',
             'no_scores' => 'Data sedang diproses...',
             'nsfw' => 'Konten eksplisit',
+            'offset' => 'Offset online',
             'points-of-failure' => 'Titik-Titik Kegagalan',
             'source' => 'Sumber',
             'storyboard' => 'Beatmap ini menyertakan storyboard',
@@ -143,7 +148,7 @@ return [
         'scoreboard' => [
             'achieved' => 'diraih pada :when',
             'country' => 'Peringkat Negara',
-            'error' => '',
+            'error' => 'Gagal memuat peringkat',
             'friend' => 'Peringkat Teman',
             'global' => 'Peringkat Global',
             'supporter-link' => 'Klik <a href=":link">di sini</a> untuk melihat seluruh fitur menarik yang akan Anda dapatkan!',
@@ -183,7 +188,7 @@ return [
 
         'stats' => [
             'cs' => 'Circle Size',
-            'cs-mania' => 'Key Amount',
+            'cs-mania' => 'Jumlah Key',
             'drain' => 'HP Drain',
             'accuracy' => 'Accuracy',
             'ar' => 'Approach Rate',
@@ -192,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Jumlah Circle',
             'count_sliders' => 'Jumlah Slider',
+            'offset' => 'Offset online: :offset',
             'user-rating' => 'Nilai Pengguna',
             'rating-spread' => 'Persebaran Nilai Pengguna',
             'nominations' => 'Nominasi',
@@ -207,5 +213,9 @@ return [
             'pending' => 'Pending',
             'graveyard' => 'Graveyard',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => 'Spotlight',
     ],
 ];

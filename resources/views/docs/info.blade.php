@@ -25,6 +25,12 @@ For a full list of changes, see the
 
 ## Breaking Changes
 
+### 2022-07-06
+- `chat/presence` endpoint has been deprecated, it will be removed in the near future.
+
+### 2022-06-08
+- `discussion_enabled` in Beatmapset(#beatmapset) is deprecated. All beatmapsets now have it enabled.
+
 ### 2021-10-28
 - `beatmap` in [Get Beatmap scores](#get-beatmap-scores) `scores` array item is removed (it's never been documented in the first place).
 

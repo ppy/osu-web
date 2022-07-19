@@ -5,7 +5,8 @@ import AchievementJson from 'interfaces/achievement-json';
 import CurrentUserJson from 'interfaces/current-user-json';
 import GameMode from 'interfaces/game-mode';
 import ExtrasJson from 'interfaces/profile-page/extras-json';
-import ScoreJson, { ScoreCurrentUserPinJson } from 'interfaces/score-json';
+import { ScoreCurrentUserPinJson } from 'interfaces/score-json';
+import SoloScoreJson, { isSoloScoreJsonForUser } from 'interfaces/solo-score-json';
 import UserCoverJson from 'interfaces/user-cover-json';
 import { ProfileExtraPage, profileExtraPages } from 'interfaces/user-extended-json';
 import { route } from 'laroute';
@@ -22,6 +23,7 @@ import { ProfilePageSection, profilePageSections, ProfilePageUserJson } from './
 const sectionToUrlType = {
   favouriteBeatmapsets: 'favourite',
   graveyardBeatmapsets: 'graveyard',
+  guestBeatmapsets: 'guest',
   lovedBeatmapsets: 'loved',
   pendingBeatmapsets: 'pending',
   rankedBeatmapsets: 'ranked',
@@ -102,6 +104,7 @@ export default class Controller {
           beatmapPlaycounts: {},
           favouriteBeatmapsets: {},
           graveyardBeatmapsets: {},
+          guestBeatmapsets: {},
           lovedBeatmapsets: {},
           pendingBeatmapsets: {},
           rankedBeatmapsets: {},
@@ -127,9 +130,10 @@ export default class Controller {
     this.scoresNotice = initialData.scores_notice;
     this.displayCoverUrl = this.state.user.cover.url;
 
-    $.subscribe('score:pin', this.onScorePinUpdate);
-
     makeObservable(this);
+
+    $.subscribe('score:pin', this.onScorePinUpdate);
+    $(document).on('turbolinks:before-cache', this.saveState);
   }
 
   @action
@@ -279,6 +283,7 @@ export default class Controller {
 
       case 'favouriteBeatmapsets':
       case 'graveyardBeatmapsets':
+      case 'guestBeatmapsets':
       case 'lovedBeatmapsets':
       case 'pendingBeatmapsets':
       case 'rankedBeatmapsets':
@@ -327,6 +332,8 @@ export default class Controller {
     Object.values(this.xhr).forEach((xhr) => xhr?.abort());
     this.debouncedSetDisplayCoverUrl.cancel();
     $.unsubscribe('score:pin', this.onScorePinUpdate);
+    $(document).off('turbolinks:before-cache', this.saveState);
+    this.saveState();
   }
 
   paginatorJson<T extends ProfilePageSection>(section: T) {
@@ -347,22 +354,28 @@ export default class Controller {
     this.displayCoverUrl = url ?? this.state.user.cover.url;
   }
 
-  private readonly onScorePinUpdate = (event: unknown, isPinned: boolean, score: ScoreJson) => {
+  @action
+  private readonly onScorePinUpdate = (event: unknown, isPinned: boolean, score: SoloScoreJson) => {
+    // make sure the typing is correct
+    if (!isSoloScoreJsonForUser(score)) {
+      return;
+    }
+
     const scorePinData = score.current_user_attributes.pin;
 
     if (scorePinData == null) {
       throw new Error('score is missing pin data');
     }
 
-    score = jsonClone(score);
-    score.id = scorePinData.score_id;
+    const newScore = jsonClone(score);
+    newScore.id = scorePinData.score_id;
 
-    const arrayIndex = this.state.extras.scoresPinned.findIndex((s) => s.id === score.id);
+    const arrayIndex = this.state.extras.scoresPinned.findIndex((s) => s.id === newScore.id);
     this.state.user.scores_pinned_count += isPinned ? 1 : -1;
 
     if (isPinned) {
       if (arrayIndex === -1) {
-        this.state.extras.scoresPinned.unshift(score);
+        this.state.extras.scoresPinned.unshift(newScore);
       }
     } else {
       if (arrayIndex !== -1) {

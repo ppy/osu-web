@@ -83,7 +83,7 @@ return [
     'login' => [
         '_' => 'Login',
         'button' => 'Einloggen',
-        'button_posting' => 'Einloggen...',
+        'button_posting' => 'Logge ein...',
         'email_login_disabled' => 'Das Anmelden per E-Mail ist derzeit deaktiviert. Bitte benutze stattdessen Deinen Benutzernamen.',
         'failed' => 'Falscher Login',
         'forgot' => 'Passwort vergessen?',
@@ -159,6 +159,10 @@ return [
             '_' => ':link abgegeben',
             'count' => ':count_delimited Kommentar|:count_delimited Kommentare',
         ],
+        'cover' => [
+            'to_0' => 'Cover verbergen',
+            'to_1' => 'Cover anzeigen',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Profilbanner ändern',
@@ -203,6 +207,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Begrabene Beatmaps',
+                ],
+                'guest' => [
+                    'title' => 'Als Gast beigetragene Beatmaps',
                 ],
                 'loved' => [
                     'title' => 'Loved Beatmaps',
@@ -302,7 +309,7 @@ return [
                 'title' => 'Medaillen',
             ],
             'playlists' => [
-                'title' => '',
+                'title' => 'Playlist-Spiele',
             ],
             'posts' => [
                 'title' => 'Beiträge',
@@ -313,7 +320,7 @@ return [
                 'title' => 'Neulich',
             ],
             'realtime' => [
-                'title' => '',
+                'title' => 'Mehrspieler-Spiele',
             ],
             'top_ranks' => [
                 'download_replay' => 'Replay herunterladen',
@@ -329,13 +336,13 @@ return [
                     'title' => 'Erster Platz',
                 ],
                 'pin' => [
-                    'to_0' => '',
-                    'to_0_done' => '',
-                    'to_1' => '',
-                    'to_1_done' => '',
+                    'to_0' => 'Ablösen',
+                    'to_0_done' => 'Score abgelöst',
+                    'to_1' => 'Anpinnen',
+                    'to_1_done' => 'Score angepinnt',
                 ],
                 'pinned' => [
-                    'title' => '',
+                    'title' => 'Angepinnte Scores',
                 ],
             ],
             'votes' => [
@@ -418,7 +425,7 @@ return [
             'total_hits' => 'Anzahl Treffer',
             'total_score' => 'Gesamtpunktzahl',
             // modding stats
-            'graveyard_beatmapset_count' => 'Begrabende Beatmaps',
+            'graveyard_beatmapset_count' => 'Begrabene Beatmaps',
             'loved_beatmapset_count' => 'Loved Beatmaps',
             'pending_beatmapset_count' => 'Ausstehende Beatmaps',
             'ranked_beatmapset_count' => 'Ranked & Approved Beatmaps',

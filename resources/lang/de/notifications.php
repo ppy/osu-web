@@ -87,12 +87,12 @@ return [
             '_' => 'Chat',
 
             'announcement' => [
-                '_' => '',
+                '_' => 'Neue Ankündigung',
 
                 'announce' => [
-                    'channel_announcement' => '',
-                    'channel_announcement_compact' => '',
-                    'channel_announcement_group' => '',
+                    'channel_announcement' => ':username sagt ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Ankündigung von :username',
                 ],
             ],
 
@@ -108,7 +108,7 @@ return [
         ],
 
         'build' => [
-            '_' => 'Änderungsprotokoll',
+            '_' => 'Changelog',
 
             'comment' => [
                 '_' => 'Neuer Kommentar',

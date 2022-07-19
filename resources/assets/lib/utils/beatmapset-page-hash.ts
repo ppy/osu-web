@@ -2,25 +2,16 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapJson from 'interfaces/beatmap-json';
-
-function getInt(num: unknown) {
-  let ret: number | undefined;
-
-  if (typeof num === 'number') {
-    ret = num;
-  } else if (typeof num === 'string') {
-    ret = parseInt(num, 10);
-  }
-
-  if (Number.isFinite(ret)) return ret;
-}
+import { ensureGameMode } from 'interfaces/game-mode';
+import { getInt } from './math';
+import { currentUrl } from './turbolinks';
 
 export function parse(hash: string) {
   const [mode, id] = hash.slice(1).split('/');
 
   return {
     beatmapId: getInt(id),
-    playmode: osu.presence(mode),
+    playmode: ensureGameMode(mode),
   };
 }
 
@@ -34,4 +25,13 @@ export function generate({ beatmap, mode }: { beatmap?: BeatmapJson; mode?: stri
   }
 
   return '';
+}
+
+export function setHash(newHash: string) {
+  const currUrl = currentUrl().href;
+  const newUrl = `${currUrl.replace(/#.*/, '')}${newHash}`;
+
+  if (newUrl === currUrl) return;
+
+  history.replaceState(history.state, '', newUrl);
 }

@@ -8,13 +8,14 @@ namespace App\Models;
 use App\Exceptions\ChangeUsernameException;
 use App\Exceptions\InvariantException;
 use App\Exceptions\ModelNotSavedException;
-use App\Jobs\EsIndexDocument;
+use App\Jobs\EsDocument;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\ChangeUsername;
 use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\Session\Store as SessionStore;
 use App\Libraries\Transactions\AfterCommit;
 use App\Libraries\User\DatadogLoginAttempt;
+use App\Libraries\User\ProfileBeatmapset;
 use App\Libraries\UsernameValidation;
 use App\Models\Forum\TopicWatch;
 use App\Models\OAuth\Client;
@@ -171,7 +172,7 @@ use Request;
  * @property string|null $username_previous
  * @property int|null $userpage_post_id
  */
-class User extends Model implements AfterCommit, AuthenticatableContract, HasLocalePreference, Indexable
+class User extends Model implements AfterCommit, AuthenticatableContract, HasLocalePreference, Indexable, Traits\ReportableInterface
 {
     use Authenticatable, HasApiTokens, Memoizes, Traits\Es\UserSearch, Traits\Reportable, Traits\UserAvatar, Traits\UserScoreable, Traits\UserStore, Validatable;
 
@@ -944,11 +945,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->user_type === 1;
     }
 
-    public function isDeleted()
-    {
-        return starts_with($this->username, 'DeletedUser_');
-    }
-
     public function isOld()
     {
         return preg_match('/_old(_\d+)?$/', $this->username) === 1;
@@ -972,6 +968,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
                 $lastBan->period !== 0 &&
                 $lastBan->endTime()->isFuture();
         });
+    }
+
+    public function trashed()
+    {
+        return starts_with($this->username, 'DeletedUser_');
     }
 
     /**
@@ -1424,7 +1425,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function uncachedMappingFollowerCount()
     {
-        return Follow::where('notifiable_id', $this->user_id)
+        return Follow::whereMorphedTo('notifiable', $this)
             ->where('subtype', 'mapping')
             ->count();
     }
@@ -2043,6 +2044,21 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             ->with('beatmaps');
     }
 
+    public function profileBeatmapsetsGuest()
+    {
+        return Beatmapset::withStates(['approved', 'loved', 'qualified', 'ranked'])
+            ->where('user_id', '<>', $this->getKey())
+            ->whereHas('beatmaps', fn ($q) => $q->where('user_id', $this->getKey()))
+            ->active()
+            ->with('beatmaps');
+    }
+
+    public function profileBeatmapsetCountByGroupedStatus(string $status)
+    {
+        return $this->memoize(__FUNCTION__, fn () =>
+            ProfileBeatmapset::countByGroupedStatus($this))[$status] ?? 0;
+    }
+
     public function isSessionVerified()
     {
         return $this->isSessionVerified;
@@ -2209,7 +2225,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function afterCommit()
     {
-        dispatch(new EsIndexDocument($this));
+        dispatch(new EsDocument($this));
     }
 
     protected function newReportableExtraParams(): array

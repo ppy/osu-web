@@ -4,7 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'talking_in' => 'keskustellaan :channel:ssa',
+    'loading_users' => '',
+    'talking_in' => 'keskustellaan kanavalla :channel',
     'talking_with' => 'keskustelu :name:n kanssa',
     'title_compact' => 'viestit',
 
@@ -13,9 +14,39 @@ return [
         'user' => 'Et voi lähettää tälle käyttäjälle viestejä, koska',
     ],
 
+    'channels' => [
+        'create' => '',
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => 'Tiedotukset',
+                'GROUP' => 'Ryhmät',
+                'PM' => 'Yksityisviestit',
+                'PUBLIC' => 'Kanavat',
+            ],
+        ],
+    ],
+
+    'form' => [
+        'title' => [
+            'announcement' => '',
+        ],
+
+        'labels' => [
+            'description' => '',
+            'name' => '',
+            'users' => '',
+        ],
+    ],
+
+    'not_found' => [
+        'message' => '',
+        'title' => 'kanavaa ei löydetty',
+    ],
+
     'input' => [
+        'create' => '',
         'disabled' => 'viestiä ei voida lähettää...',
-        'disconnected' => '',
+        'disconnected' => 'Yhteys katkaistu',
         'placeholder' => 'kirjoita viesti...',
         'send' => 'Lähetä',
     ],

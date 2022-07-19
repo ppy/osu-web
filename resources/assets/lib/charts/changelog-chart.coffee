@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { fadeIn, fadeOut } from 'utils/fade'
+import { formatNumber } from 'utils/html'
 import { parseJson } from 'utils/json'
 
 export default class ChangelogChart
@@ -168,7 +169,7 @@ export default class ChangelogChart
     @tooltipName
       .attr 'class', "changelog-chart__text changelog-chart__text--name changelog-chart__text--#{labelModifier}"
       .text currentLabel
-    @tooltipUserCount.text osu.formatNumber(@data[dataRow][pos].data[currentLabel].user_count)
+    @tooltipUserCount.text formatNumber(@data[dataRow][pos].data[currentLabel].user_count)
     @tooltipDate.text @data[dataRow][pos].data.date_formatted
 
     tooltipWidth = @tooltip.node().getBoundingClientRect().width

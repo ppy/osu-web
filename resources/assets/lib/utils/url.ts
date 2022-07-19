@@ -1,8 +1,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import ChangelogBuild from 'interfaces/changelog-build';
 import { route } from 'laroute';
-import { startsWith } from 'lodash';
+import { startsWith, unescape } from 'lodash';
 import { TurbolinksLocation } from 'turbolinks';
 import { currentUrl } from 'utils/turbolinks';
 
@@ -112,7 +113,7 @@ export function linkify(text: string, newWindow = false) {
   return text.replace(urlRegex, `<a href="$1" rel="nofollow noreferrer"${newWindow ? ' target="_blank"' : ''}>$2</a>`);
 }
 
-export function updateQueryString(url: string | null, params: Record<string, string | null | undefined>) {
+export function updateQueryString(url: string | null, params: Record<string, string | null | undefined>, hash?: string) {
   const docUrl = currentUrl();
   const urlObj = new URL(url ?? docUrl.href, docUrl.origin);
 
@@ -122,6 +123,10 @@ export function updateQueryString(url: string | null, params: Record<string, str
     } else {
       urlObj.searchParams.delete(key);
     }
+  }
+
+  if (hash != null) {
+    urlObj.hash = hash;
   }
 
   return urlObj.href;

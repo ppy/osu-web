@@ -87,12 +87,12 @@ return [
             '_' => 'Sohbet',
 
             'announcement' => [
-                '_' => '',
+                '_' => 'Yeni duyuru',
 
                 'announce' => [
-                    'channel_announcement' => '',
-                    'channel_announcement_compact' => '',
-                    'channel_announcement_group' => '',
+                    'channel_announcement' => ':username ":title" diyor',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => ':username Tarafından duyuru',
                 ],
             ],
 
@@ -160,8 +160,8 @@ return [
                 'user_beatmapset_new_compact' => 'Yeni beatmap ":title"',
                 'user_beatmapset_new_group' => ' :username tarafından yapılmış yeni beatmapler',
 
-                'user_beatmapset_revive' => '',
-                'user_beatmapset_revive_compact' => '',
+                'user_beatmapset_revive' => '":title" isimli Beatmap :username tarafından hayata geri döndürüdü',
+                'user_beatmapset_revive_compact' => '":title" isim Beatmap hayata geri döndürüldü',
             ],
         ],
 

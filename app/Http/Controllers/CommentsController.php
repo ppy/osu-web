@@ -192,8 +192,9 @@ class CommentsController extends Controller
         $params['user_id'] = optional($user)->getKey();
 
         $comment = new Comment($params);
+        $comment->setCommentable();
 
-        priv_check('CommentStore', $comment)->ensureCan();
+        priv_check('CommentStore', $comment->commentable)->ensureCan();
 
         try {
             $comment->saveOrExplode();

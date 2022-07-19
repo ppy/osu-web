@@ -3,10 +3,10 @@
 
 import { route } from 'laroute';
 import core from 'osu-core-singleton';
-import Shopify from 'shopify-buy';
 import { toShopifyVariantGid } from 'shopify-gid';
 import { createClickCallback } from 'utils/html';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
+import client from './shopify-client';
 
 declare global {
   interface Window {
@@ -14,19 +14,12 @@ declare global {
   }
 }
 
-// process.env.$ has to be static as it is injected by webpack at compile time.
-const options = {
-  domain: process.env.SHOPIFY_DOMAIN,
-  storefrontAccessToken: process.env.SHOPIFY_STOREFRONT_TOKEN,
-};
-
-const client = Shopify.buildClient(options);
+type ClickEvent = JQuery.ClickEvent<Document, unknown, HTMLElement, HTMLElement>;
 
 export class Store {
-
   private constructor() {
-    $(document).on('click', '.js-store-checkout', this.beginCheckout.bind(this));
-    $(document).on('click', '.js-store-resume-checkout', this.resumeCheckout.bind(this));
+    $(document).on('click', '.js-store-checkout', (event: ClickEvent) => void this.beginCheckout(event));
+    $(document).on('click', '.js-store-resume-checkout', (event: ClickEvent) => this.resumeCheckout(event));
 
     $(document).on('turbolinks:load', () => {
       $('.js-store-checkout').prop('disabled', false);
@@ -39,10 +32,10 @@ export class Store {
     sharedContext.Store = sharedContext.Store || new Store();
   }
 
-  async beginCheckout(event: Event) {
+  async beginCheckout(event: ClickEvent) {
     if (event.target == null) return;
 
-    const dataset = (event.target as HTMLElement).dataset;
+    const dataset = event.target.dataset;
     const orderId = dataset.orderId;
     const shouldShopify = dataset.shopify === '1';
     if (orderId == null) {
@@ -71,7 +64,7 @@ export class Store {
     try {
       // create shopify checkout.
       // error returned will be a JSON string in error.message
-      checkout = await client.checkout.create({
+      checkout = await client().checkout.create({
         customAttributes: [{ key: 'orderId', value: orderId }],
         lineItems: this.collectShopifyItems(),
       });
@@ -91,10 +84,10 @@ export class Store {
     window.location.href = checkout.webUrl;
   }
 
-  resumeCheckout(event: Event) {
+  resumeCheckout(event: ClickEvent) {
     if (event.target == null) return;
 
-    const target = event.target as HTMLElement;
+    const target = event.target;
     const { provider, providerReference, status } = target.dataset;
 
     if (provider === 'shopify' && status !== 'cancelled') {
@@ -112,7 +105,7 @@ export class Store {
     showLoadingOverlay();
     showLoadingOverlay.flush();
 
-    const checkout = await client.checkout.fetch(checkoutId);
+    const checkout = await client().checkout.fetch(checkoutId);
     if (checkout != null) {
       window.location.href = checkout.webUrl;
     } else {

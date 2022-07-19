@@ -4,16 +4,47 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'loading_users' => 'ładowanie użytkowników...',
     'talking_in' => 'rozmowa na kanale :channel',
     'talking_with' => 'rozmowa z użytkownikiem :name',
     'title_compact' => 'czat',
 
     'cannot_send' => [
-        'channel' => 'Nie możesz wysłać wiadomości na ten kanał.',
-        'user' => 'Nie możesz wysłać wiadomości do tego użytkownika.',
+        'channel' => 'W tej chwili nie możesz wysyłać wiadomości na ten kanał.',
+        'user' => 'W tej chwili nie możesz wysyłać wiadomości do tego użytkownika.',
+    ],
+
+    'channels' => [
+        'create' => 'utwórz ogłoszenie',
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => 'Ogłoszenia',
+                'GROUP' => 'Grupy',
+                'PM' => 'Wiadomości prywatne',
+                'PUBLIC' => 'Kanały',
+            ],
+        ],
+    ],
+
+    'form' => [
+        'title' => [
+            'announcement' => 'Utwórz nowe ogłoszenie',
+        ],
+
+        'labels' => [
+            'description' => 'opis',
+            'name' => 'nazwa',
+            'users' => 'odbiorcy',
+        ],
+    ],
+
+    'not_found' => [
+        'message' => 'Nic tu nie ma, być może taki kanał nie istnieje lub do niego nie należysz...',
+        'title' => 'nie znaleziono kanału',
     ],
 
     'input' => [
+        'create' => 'Utwórz',
         'disabled' => 'nie udało się wysłać wiadomości...',
         'disconnected' => 'Rozłączono',
         'placeholder' => 'napisz wiadomość...',

@@ -102,8 +102,9 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::group(['prefix' => 'scores/{mode}', 'as' => 'scores.'], function () {
         Route::get('{score}/download', 'ScoresController@download')->name('download');
-        Route::get('{score}', 'ScoresController@show')->name('show');
+        Route::get('{score}', 'ScoresController@show')->name('show-legacy');
     });
+    Route::resource('scores', 'ScoresController', ['only' => ['show']]);
 
     Route::delete('score-pins', 'ScorePinsController@destroy')->name('score-pins.destroy');
     Route::put('score-pins', 'ScorePinsController@reorder')->name('score-pins.reorder');
@@ -182,7 +183,8 @@ Route::group(['middleware' => ['web']], function () {
                 Route::delete('{channel}/users/{user}', 'ChannelsController@part')->name('part');
                 Route::put('{channel}/mark-as-read/{message}', 'ChannelsController@markAsRead')->name('mark-as-read');
             });
-            Route::apiResource('channels', 'ChannelsController', ['only' => ['index', 'show']]);
+            Route::apiResource('channels', 'ChannelsController', ['only' => ['index', 'show', 'store']]);
+            Route::apiResource('users', 'UsersController', ['only' => ['index']]);
         });
         Route::resource('chat', 'ChatController', ['only' => ['index']]);
     });
@@ -288,7 +290,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('users/{user}/posts', 'UsersController@posts')->name('users.posts');
     Route::get('users/{user}/{mode?}', 'UsersController@show')->name('users.show');
-    Route::resource('users', 'UsersController', ['only' => 'store']);
+    Route::resource('users', 'UsersController', ['only' => ['index', 'store']]);
 
     Route::get('wiki/{locale}/Sitemap', 'WikiController@sitemap')->name('wiki.sitemap');
     Route::get('wiki/images/{path}', 'WikiController@image')->name('wiki.image')->where('path', '.+');
@@ -384,6 +386,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
                 Route::get('scores/users/{user}', 'BeatmapsController@userScore');
                 Route::get('scores/users/{user}/all', 'BeatmapsController@userScoreAll');
                 Route::get('scores', 'BeatmapsController@scores')->name('scores');
+                Route::get('solo-scores', 'BeatmapsController@soloScores')->name('solo-scores');
 
                 Route::group(['as' => 'solo.', 'prefix' => 'solo'], function () {
                     Route::group(['namespace' => 'Solo'], function () {
@@ -478,10 +481,10 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         //  GET /api/v2/friends
         Route::resource('friends', 'FriendsController', ['only' => ['index']]);
 
+        //  GET /api/v2/me/download-quota-check
+        Route::get('me/download-quota-check', 'HomeController@downloadQuotaCheck')->name('download-quota-check');
         //  GET /api/v2/me
         Route::get('me/{mode?}', 'UsersController@me')->name('me');
-        //  GET /api/v2/me/download-quota-check
-        Route::get('me/download-quota-check', 'HomeController@downloadQuotaCheck');
 
         Route::delete('oauth/tokens/current', 'OAuth\TokensController@destroyCurrent')->name('oauth.tokens.current');
 

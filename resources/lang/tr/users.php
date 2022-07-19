@@ -159,6 +159,10 @@ return [
             '_' => ':link gönderdi',
             'count' => ':count_delimited yorum|:count_delimited yorum',
         ],
+        'cover' => [
+            'to_0' => 'Kapağı gizle',
+            'to_1' => 'Kapağı göster',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Kapak Fotoğrafını Değiştir',
@@ -203,6 +207,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Mezarlıktaki Beatmapler',
+                ],
+                'guest' => [
+                    'title' => 'Beatmap\'e misafir olarak katıl',
                 ],
                 'loved' => [
                     'title' => 'Sevilen Beatmapler',
@@ -302,7 +309,7 @@ return [
                 'title' => 'Madalyalar',
             ],
             'playlists' => [
-                'title' => '',
+                'title' => 'Oynama listesi Oyunları',
             ],
             'posts' => [
                 'title' => 'Gönderiler',
@@ -313,7 +320,7 @@ return [
                 'title' => 'Son',
             ],
             'realtime' => [
-                'title' => '',
+                'title' => 'Çok Oyunculu Oyunlar',
             ],
             'top_ranks' => [
                 'download_replay' => 'Tekrarı İndir',
@@ -329,13 +336,13 @@ return [
                     'title' => 'Birincilikler',
                 ],
                 'pin' => [
-                    'to_0' => '',
-                    'to_0_done' => '',
-                    'to_1' => '',
-                    'to_1_done' => '',
+                    'to_0' => 'Sabitlemeyi kaldır',
+                    'to_0_done' => 'Skoru sabitlemeyi kaldır',
+                    'to_1' => 'Sabitle',
+                    'to_1_done' => 'Sabitlenmiş skor',
                 ],
                 'pinned' => [
-                    'title' => '',
+                    'title' => 'Sabitlenmiş skorlar',
                 ],
             ],
             'votes' => [

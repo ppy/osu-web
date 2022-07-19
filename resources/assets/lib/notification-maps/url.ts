@@ -29,7 +29,9 @@ export function urlGroup(item: Notification) {
     case 'beatmapset':
       return route('beatmapsets.discussion', { beatmapset: item.objectId });
     case 'channel':
-      return item.details.channel_id != null ? route('chat.index', { channel_id: item.details.channelId }) : route('chat.index', { sendto: item.sourceUserId });
+      return item.details.channelId != null
+        ? route('chat.index', { channel_id: item.details.channelId })
+        : route('chat.index', { sendto: item.sourceUserId });
     case 'forum_topic':
       return route('forum.topics.show', { start: 'unread', topic: item.objectId });
   }
@@ -57,6 +59,7 @@ export function urlSingular(item: Notification) {
         beatmapId: item.details.beatmapId,
         beatmapsetId: item.objectId,
         discussionId: item.details.discussionId,
+        postId: item.details.postId,
       });
     case 'beatmapset_rank':
       return route('beatmapsets.show', { beatmapset: item.objectId });

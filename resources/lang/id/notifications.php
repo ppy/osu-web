@@ -6,7 +6,7 @@
 return [
     'all_read' => 'Seluruh notifikasi telah dibaca!',
     'delete' => 'Hapus :type',
-    'loading' => 'Memuat notifikasi-notifikasi yang belum dibaca...',
+    'loading' => 'Memuat notifikasi yang belum dibaca...',
     'mark_read' => 'Hapus :type',
     'none' => 'Tidak ada notifikasi',
     'see_all' => 'Lihat riwayat notifikasi',

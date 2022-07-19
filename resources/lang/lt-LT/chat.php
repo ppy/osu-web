@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'loading_users' => '',
     'talking_in' => 'pokalbis :channel',
     'talking_with' => 'pokalbis su :name',
     'title_compact' => 'pokalbis',
@@ -13,7 +14,37 @@ return [
         'user' => 'Šiuo metu tu negali rašyti šiam žaidėjui. Taip galėjo nutikti dėl kažkurios iš šių priežasčių:',
     ],
 
+    'channels' => [
+        'create' => '',
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => '',
+                'GROUP' => '',
+                'PM' => '',
+                'PUBLIC' => '',
+            ],
+        ],
+    ],
+
+    'form' => [
+        'title' => [
+            'announcement' => '',
+        ],
+
+        'labels' => [
+            'description' => '',
+            'name' => '',
+            'users' => '',
+        ],
+    ],
+
+    'not_found' => [
+        'message' => '',
+        'title' => '',
+    ],
+
     'input' => [
+        'create' => '',
         'disabled' => 'žinutės išsiųsti nepavyko...',
         'disconnected' => '',
         'placeholder' => 'rašyk čia...',

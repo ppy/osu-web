@@ -16,10 +16,10 @@ return [
     'voting' => [
         'login_required' => 'Silakan masuk untuk memberikan suara.',
         'over' => 'Pemungutan suara untuk kontes ini telah berakhir',
-        'show_voted_only' => 'Tampilkan yang Anda pilih',
+        'show_voted_only' => 'Tampilkan pilihan',
 
         'best_of' => [
-            'none_played' => "Tampaknya Anda belum pernah memainkan beatmap yang diikutsertakan dalam kontes ini!",
+            'none_played' => "Sepertinya Anda belum pernah memainkan beatmap manapun yang terdaftar pada kontes ini!",
         ],
 
         'button' => [
@@ -40,11 +40,11 @@ return [
         'drop_here' => 'Letakkan entri Anda di sini',
         'download' => 'Unduh .osz',
         'wrong_type' => [
-            'art' => 'Kontes ini hanya menerima berkas-berkas dengan ekstensi .jpg dan .png.',
-            'beatmap' => 'Kontes ini hanya menerima berkas-berkas dengan ekstensi .osu.',
-            'music' => 'Kontes ini hanya menerima berkas-berkas dengan ekstensi .mp3.',
+            'art' => 'Kontes ini hanya menerima berkas dengan ekstensi .jpg dan .png.',
+            'beatmap' => 'Kontes ini hanya menerima berkas dengan ekstensi .osu.',
+            'music' => 'Kontes ini hanya menerima berkas dengan ekstensi .mp3.',
         ],
-        'too_big' => 'Berkas entri yang hendak didaftarkan untuk kontes ini tidak boleh melebihi batas ukuran maksimal :limit.',
+        'too_big' => 'Berkas yang diikutsertakan untuk kontes ini tidak boleh melebihi batas ukuran :limit.',
     ],
     'beatmaps' => [
         'download' => 'Unduh Entri',

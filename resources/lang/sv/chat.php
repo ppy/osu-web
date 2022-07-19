@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'loading_users' => 'laddar användare...',
     'talking_in' => 'pratar i :channel',
     'talking_with' => 'pratar med :name',
     'title_compact' => 'chatt',
@@ -13,9 +14,39 @@ return [
         'user' => 'Du kan inte skicka ett meddelande till denna användare just nu. Detta kan bero på någon av följande skäl:',
     ],
 
+    'channels' => [
+        'create' => 'skapa meddelande',
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => 'Meddelanden',
+                'GROUP' => 'Grupper',
+                'PM' => 'Direktmeddelanden',
+                'PUBLIC' => 'Kanaler',
+            ],
+        ],
+    ],
+
+    'form' => [
+        'title' => [
+            'announcement' => 'Skapa nytt meddelande',
+        ],
+
+        'labels' => [
+            'description' => 'beskrivning',
+            'name' => 'rumsnamn',
+            'users' => 'spelare att lägga till',
+        ],
+    ],
+
+    'not_found' => [
+        'message' => 'Det finns inget här, du kanske lämnade kanalen eller så finns den inte...',
+        'title' => 'kanalen hittades ej',
+    ],
+
     'input' => [
+        'create' => 'Skapa',
         'disabled' => 'kan inte skicka meddelande...',
-        'disconnected' => '',
+        'disconnected' => 'Frånkopplad',
         'placeholder' => 'skriv ett meddelande...',
         'send' => 'Skicka',
     ],

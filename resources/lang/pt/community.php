@@ -9,14 +9,14 @@ return [
             'title' => 'Estou convencido! :D',
             'support' => 'ajuda o osu!',
             'gift' => 'ou dá apoio a outros jogadores',
-            'instructions' => 'clica no botão do coração para proceder à osu!store',
+            'instructions' => 'clica no botão do coração para procederes à osu!store',
         ],
         'why-support' => [
             'title' => 'Porque é que deveria apoiar o osu!? Para onde vai o dinheiro?',
 
             'team' => [
                 'title' => 'Apoiar a equipa',
-                'description' => 'Uma pequena equipa desenvolve e executa o osu!. O teu apoio ajuda-os a, tu sabes... viver.',
+                'description' => 'Uma pequena equipa desenvolve e sustenta o osu! O teu apoio ajuda-os a, tu sabes... viver.',
             ],
             'infra' => [
                 'title' => 'Infraestrutura do servidor',
@@ -33,12 +33,12 @@ return [
             ],
             'tournaments' => [
                 'title' => 'Torneios oficiais',
-                'description' => 'Ajuda a financiar o funcionamento dos (e os prémios para os) torneios oficiais do Campeonato do Mundo osu!.',
+                'description' => 'Ajuda a financiar o funcionamento dos torneios oficiais (e os seus prémios) do Campeonato do Mundo osu!',
                 'link_text' => 'Explorar torneios &raquo;',
             ],
             'bounty-program' => [
                 'title' => 'Programa de reputação de código-aberto',
-                'description' => 'Apoia os colaboradores da comunidade que deram o seu tempo e esforço para ajudar a tornar o osu! melhor.',
+                'description' => 'Apoia os contribuintes da comunidade que abdicaram do seu tempo e esforçaram-se para ajudar a tornar o osu! melhor.',
                 'link_text' => 'Descobre mais &raquo;',
             ],
         ],
@@ -46,7 +46,7 @@ return [
             'title' => 'Fixe! Que benefícios é que recebo?',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'Ganha acesso fácil e rápido para procurar e descarregar beatmaps sem teres de sair do jogo.',
+                'description' => 'Ganha acesso rápido e fácil ao procurares e descarregares beatmaps sem teres de sair do jogo.',
             ],
 
             'friend_ranking' => [
@@ -56,7 +56,7 @@ return [
 
             'country_ranking' => [
                 'title' => 'Classificação nacional',
-                'description' => 'Conquista o teu país antes de conquistar o mundo.',
+                'description' => 'Conquista o teu país antes de conquistares o mundo.',
             ],
 
             'mod_filtering' => [
@@ -86,7 +86,7 @@ return [
 
             'beatmap_filters' => [
                 'title' => 'Filtros de beatmap',
-                'description' => 'Filtrar pesquisas de beatmaps por mapas jogados e não jogados e classificação obtida (se houver alguma).',
+                'description' => 'Filtra buscas de beatmaps por mapas jogados e não jogados ou por classificação obtida.',
             ],
 
             'yellow_fellow' => [
@@ -96,7 +96,7 @@ return [
 
             'speedy_downloads' => [
                 'title' => 'Downloads velozes',
-                'description' => 'Mais restrições de downloads brandos, especialmente ao usar o osu!direct.',
+                'description' => 'Menor restrição à velocidade de download, especialmente ao usar o osu!direct.',
             ],
 
             'change_username' => [
@@ -133,14 +133,14 @@ return [
             ],
             'friend_filtering' => [
                 'title' => 'Tabela de classificações de amigos',
-                'description' => 'Compete com os teus amigos e vê como te classificas contra eles!*<br/><br/><small>* ainda não está disponível no novo site, embreve(tm)</small>',
+                'description' => 'Compete com os teus amigos e vê como te classificas contra eles!',
             ],
 
         ],
         'supporter_status' => [
             'contribution' => 'Obrigado pelo teu apoio até agora! Contribuíste para um total de :dollars sobre compras de :tags etiquetas!',
             'gifted' => ":giftedTags das tuas compras de etiquetas foram oferecidas (por um total de :giftedDollars oferecidos), que generoso!",
-            'not_yet' => "Ainda não tens uma etiqueta osu!supporter :(",
+            'not_yet' => "Tu nunca tiveste uma etiqueta osu!supporter :(",
             'valid_until' => 'A tua etiqueta osu!supporter atual é válida até :date!',
             'was_valid_until' => 'A tua etiqueta osu!supporter era válida até :date.',
         ],

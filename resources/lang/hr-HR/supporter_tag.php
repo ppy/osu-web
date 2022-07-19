@@ -7,7 +7,7 @@ return [
     'months' => 'mjeseci',
 
     'user_search' => [
-        'searching' => '',
-        'not_found' => "",
+        'searching' => 'pretraživanje...',
+        'not_found' => "Ovaj korisnik ne postoji",
     ],
 ];

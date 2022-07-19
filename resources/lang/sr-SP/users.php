@@ -159,6 +159,10 @@ return [
             '_' => '',
             'count' => '',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => '',
@@ -202,6 +206,9 @@ return [
                     'title' => '',
                 ],
                 'graveyard' => [
+                    'title' => '',
+                ],
+                'guest' => [
                     'title' => '',
                 ],
                 'loved' => [

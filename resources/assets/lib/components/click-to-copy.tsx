@@ -19,53 +19,39 @@ export default class ClickToCopy extends React.Component<Props> {
     valueAsUrl: false,
   };
 
-  // TODO: figure out if possible to use the qtip typescript types
-  api: any;
-  timer?: number;
-  title: string|null = null;
+  private readonly linkRef = React.createRef<HTMLAnchorElement>();
+  private timer?: number;
+  private readonly titles = {
+    default: osu.trans('common.buttons.click_to_copy'),
+    onClick: osu.trans('common.buttons.click_to_copy_copied'),
+  } as const;
 
-  click = (e: React.MouseEvent) => {
-    e.preventDefault();
-
-    const el = e.currentTarget as HTMLElement;
-
-    if (this.api == null) {
-      this.api = $(el).qtip('api');
+  private get api() {
+    if (this.linkRef.current != null) {
+      return $(this.linkRef.current).qtip('api');
     }
+  }
 
-    // copy url to clipboard
-    clipboard.writeText(this.props.value);
-
-    // change tooltip text to provide feedback
-    this.api.set('content.text', osu.trans('common.buttons.click_to_copy_copied'));
-
-    // set timer to reset tooltip text
+  componentWillUnmount() {
     window.clearTimeout(this.timer);
-    this.timer = window.setTimeout(this.restoreTooltipText, 1000);
-
-    if (this.title == null) {
-      this.title = el.getAttribute('title') || el.dataset.origTitle || null;
-    }
-  };
-
-  componentWillMount() {
-    this.restoreTooltipText();
   }
 
   render() {
     if (!this.props.value) {
-      return <span/>;
+      return <span />;
     }
 
     return (
       <a
+        ref={this.linkRef}
         className={bn}
         data-tooltip-hide-events='mouseleave'
         data-tooltip-pin-position
         data-tooltip-position='bottom center'
         href={this.props.valueAsUrl ? this.props.value : '#'}
-        onClick={this.click}
-        title={osu.trans('common.buttons.click_to_copy')}
+        onClick={this.onClick}
+        onMouseLeave={this.onMouseLeave}
+        title={this.titles.default}
       >
         {this.props.label || this.props.value}
         {this.props.showIcon && <i className={`fas fa-paste ${bn}__icon`}/>}
@@ -73,13 +59,38 @@ export default class ClickToCopy extends React.Component<Props> {
     );
   }
 
-  restoreTooltipText = () => {
-    if (this.title != null) {
-      this.api.hide();
+  private readonly onClick = (e: React.MouseEvent) => {
+    e.preventDefault();
 
-      window.setTimeout(() => {
-        this.api.set('content.text', this.title);
-      }, 100);
-    }
+    // copy url to clipboard
+    clipboard.writeText(this.props.value);
+
+    const api = this.api;
+
+    if (api == null) return;
+
+    // change tooltip text to provide feedback
+    api.set('content.text', this.titles.onClick);
+
+    // set timer to reset tooltip text
+    window.clearTimeout(this.timer);
+    this.timer = window.setTimeout(this.resetTooltip, 1000);
+  };
+
+  private readonly onMouseLeave = () => {
+    window.clearTimeout(this.timer);
+    this.resetTooltip();
+  };
+
+  private readonly resetTooltip = () => {
+    const api = this.api;
+
+    if (api == null) return;
+
+    api.hide();
+    // add delay for reverting title content otherwise it'll flash when fading out.
+    this.timer = window.setTimeout(() => {
+      api.set('content.text', this.titles.default);
+    }, 100);
   };
 }

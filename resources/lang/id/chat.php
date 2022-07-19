@@ -4,7 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'talking_in' => 'Anda sedang mengobrol di kanal :channel',
+    'loading_users' => 'memuat pengguna...',
+    'talking_in' => 'berbicara di :channel',
     'talking_with' => 'berbicara dengan :name',
     'title_compact' => 'chat',
 
@@ -13,7 +14,37 @@ return [
         'user' => 'Anda sedang tidak dapat mengirimkan pesan kepada pengguna ini.',
     ],
 
+    'channels' => [
+        'create' => 'buat pengumuman',
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => 'Pengumuman',
+                'GROUP' => 'Grup',
+                'PM' => 'Pesan pribadi',
+                'PUBLIC' => 'Kanal chat',
+            ],
+        ],
+    ],
+
+    'form' => [
+        'title' => [
+            'announcement' => 'Buat Pengumuman Baru',
+        ],
+
+        'labels' => [
+            'description' => 'keterangan',
+            'name' => 'nama ruangan',
+            'users' => 'pemain yang akan ditambahkan',
+        ],
+    ],
+
+    'not_found' => [
+        'message' => 'Tidak ada apa-apa di sini. Mungkin Anda telah meninggalkan kanal ini atau kanal yang hendak Anda tuju tidak ada...',
+        'title' => 'kanal percakapan tidak ditemukan',
+    ],
+
     'input' => [
+        'create' => 'Buat',
         'disabled' => 'gagal mengirim pesan...',
         'disconnected' => 'Terputus',
         'placeholder' => 'ketik pesan...',
@@ -21,7 +52,7 @@ return [
     ],
 
     'no-conversations' => [
-        'howto' => "Mulailah suatu percakapan dengan meng-klik tombol yang tersedia pada halaman profil atau kartu pop-up pengguna.",
+        'howto' => "Mulailah percakapan baru melalui tombol yang tertera pada laman profil atau kartu pop-up pengguna.",
         'lazer' => 'Kanal chat publik yang Anda buka melalui <a href=":link">osu!lazer</a> juga akan terlihat di sini.',
         'title' => 'belum ada percakapan',
     ],

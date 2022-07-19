@@ -10,8 +10,8 @@ return [
 
     'array_and' => [
         'words_connector' => '，',
-        'two_words_connector' => '和',
-        'last_word_connector' => '和',
+        'two_words_connector' => ' 和 ',
+        'last_word_connector' => ' 和 ',
     ],
 
     'badges' => [
@@ -44,7 +44,7 @@ return [
         'reply_resolve' => '回复并标记为已解决',
         'reset' => '重置',
         'restore' => '恢复',
-        'retry' => '',
+        'retry' => '重试',
         'save' => '保存',
         'saving' => '保存中……',
         'search' => '搜索',

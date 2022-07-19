@@ -159,6 +159,10 @@ return [
             '_' => ':link posztolva',
             'count' => ':count_delimited komment|:count_delimited komment',
         ],
+        'cover' => [
+            'to_0' => 'Lefedés',
+            'to_1' => 'Felfedés',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Profil Borító Változtatása',
@@ -203,6 +207,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Eltemetett beatmapek',
+                ],
+                'guest' => [
+                    'title' => 'Vendég részvételi beatmapek',
                 ],
                 'loved' => [
                     'title' => 'Szeretett beatmapek',
@@ -302,7 +309,7 @@ return [
                 'title' => 'Medálok',
             ],
             'playlists' => [
-                'title' => '',
+                'title' => 'Lejátszási listás játékok',
             ],
             'posts' => [
                 'title' => 'Bejegyzések',
@@ -313,7 +320,7 @@ return [
                 'title' => 'Legutóbbi',
             ],
             'realtime' => [
-                'title' => '',
+                'title' => 'Többjátékos játékok',
             ],
             'top_ranks' => [
                 'download_replay' => 'Replay letöltése',
@@ -329,13 +336,13 @@ return [
                     'title' => 'Első Helyezéses Eredmények',
                 ],
                 'pin' => [
-                    'to_0' => '',
-                    'to_0_done' => '',
-                    'to_1' => '',
-                    'to_1_done' => '',
+                    'to_0' => 'Rögzítés feloldása',
+                    'to_0_done' => 'Nem rögzített eredmény',
+                    'to_1' => 'Rögzítés',
+                    'to_1_done' => 'Rögzített eredmény',
                 ],
                 'pinned' => [
-                    'title' => '',
+                    'title' => 'Rögzített eredmények',
                 ],
             ],
             'votes' => [

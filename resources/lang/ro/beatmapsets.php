@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => '',
     ],
@@ -121,6 +125,7 @@ return [
             'language' => 'Limbă',
             'no_scores' => 'Încă se calculează datele...',
             'nsfw' => 'Conținut explicit',
+            'offset' => '',
             'points-of-failure' => 'Puncte de eșec',
             'source' => 'Sursă',
             'storyboard' => '',
@@ -192,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Numărul de cercuri',
             'count_sliders' => 'Numărul de glisări',
+            'offset' => '',
             'user-rating' => 'Evaluarea jucătorului',
             'rating-spread' => 'Clasament grafic',
             'nominations' => 'Nominalizări',
@@ -207,5 +213,9 @@ return [
             'pending' => 'În Așteptare',
             'graveyard' => 'Cimitir',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

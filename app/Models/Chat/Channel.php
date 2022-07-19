@@ -19,7 +19,7 @@ use App\Traits\Memoizes;
 use App\Traits\Validatable;
 use Carbon\Carbon;
 use ChaseConey\LaravelDatadogHelper\Datadog;
-use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
 use LaravelRedis as Redis;
 
@@ -40,6 +40,8 @@ class Channel extends Model
     use Memoizes, Validatable;
 
     const CHAT_ACTIVITY_TIMEOUT = 60; // in seconds.
+
+    public ?string $uuid = null;
 
     protected $primaryKey = 'channel_id';
 
@@ -72,7 +74,7 @@ class Channel extends Model
      * @param array $rawParams
      * @return Channel
      */
-    public static function createAnnouncement(Collection $users, array $rawParams): self
+    public static function createAnnouncement(Collection $users, array $rawParams, ?string $uuid = null): self
     {
         $params = get_params($rawParams, null, [
             'description:string',
@@ -83,8 +85,9 @@ class Channel extends Model
         $params['type'] = static::TYPES['announce'];
 
         $channel = new static($params);
-        $channel->getConnection()->transaction(function () use ($channel, $users) {
+        $channel->getConnection()->transaction(function () use ($channel, $users, $uuid) {
             $channel->saveOrExplode();
+            $channel->uuid = $uuid;
             $userChannels = $channel->userChannels()->createMany($users->map(fn ($user) => ['user_id' => $user->getKey()]));
             foreach ($userChannels as $userChannel) {
                 // preset to avoid extra queries during permission check.
@@ -113,7 +116,7 @@ class Channel extends Model
         ]);
     }
 
-    public static function createPM($user1, $user2)
+    public static function createPM(User $user1, User $user2)
     {
         $channel = new static([
             'name' => static::getPMChannelName($user1, $user2),
@@ -131,7 +134,7 @@ class Channel extends Model
         return $channel;
     }
 
-    public static function findPM($user1, $user2)
+    public static function findPM(User $user1, User $user2)
     {
         $channelName = static::getPMChannelName($user1, $user2);
 
@@ -153,7 +156,7 @@ class Channel extends Model
      *
      * @return string
      */
-    public static function getPMChannelName($user1, $user2)
+    public static function getPMChannelName(User $user1, User $user2)
     {
         $userIds = [$user1->getKey(), $user2->getKey()];
         sort($userIds);
@@ -264,7 +267,7 @@ class Channel extends Model
         });
     }
 
-    public function users()
+    public function users(): Collection
     {
         return $this->memoize(__FUNCTION__, function () {
             if ($this->isPM() && isset($this->pmUsers)) {
@@ -276,13 +279,13 @@ class Channel extends Model
         });
     }
 
-    public function visibleUsers()
+    public function visibleUsers(?User $user)
     {
-        if ($this->isPM()) {
+        if ($this->isPM() || $this->isAnnouncement() && priv_check_user($user, 'ChatAnnounce', $this)->can()) {
             return $this->users();
         }
 
-        return collect();
+        return new Collection();
     }
 
     public function scopePublic($query)
@@ -514,6 +517,8 @@ class Channel extends Model
             $userChannel->delete();
         }
 
+        $this->resetMemoized();
+
         (new ChatChannelEvent($this, $user, 'part'))->broadcast(true);
 
         Datadog::increment('chat.channel.part', 1, ['type' => $this->type]);
@@ -535,7 +540,7 @@ class Channel extends Model
 
     public function setPmUsers(array $users)
     {
-        $this->pmUsers = collect($users);
+        $this->pmUsers = new Collection($users);
     }
 
     public function setUserChannel(UserChannel $userChannel)

@@ -8,6 +8,7 @@ namespace Database\Factories;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
+use App\Models\BeatmapsetNomination;
 use App\Models\Genre;
 use App\Models\Language;
 use App\Models\User;
@@ -21,7 +22,6 @@ class BeatmapsetFactory extends Factory
         return [
             'artist' => fn () => $this->faker->name(),
             'title' => fn () => substr($this->faker->sentence(rand(0, 5)), 0, 80),
-            'discussion_enabled' => true,
             'source' => fn () => $this->faker->domainWord(),
             'tags' => fn () => $this->faker->domainWord(),
             'bpm' => rand(100, 200),
@@ -33,6 +33,7 @@ class BeatmapsetFactory extends Factory
             'submit_date' => fn () => $this->faker->dateTime(),
             'thread_id' => 0,
             'user_id' => 0, // follow db default if no user specified; this is for other factories that depend on user_id.
+            'offset' => fn () => $this->faker->randomDigit(),
 
             // depends on approved
             'approved_date' => fn (array $attr) => $attr['approved'] > 0 ? now() : null,
@@ -52,11 +53,6 @@ class BeatmapsetFactory extends Factory
     public function inactive()
     {
         return $this->state(['active' => 0]);
-    }
-
-    public function noDiscussion()
-    {
-        return $this->state(['discussion_enabled' => false]);
     }
 
     public function owner(?User $user = null)
@@ -91,5 +87,15 @@ class BeatmapsetFactory extends Factory
             ->has(BeatmapDiscussion::factory()->general()->state(fn (array $attr, Beatmapset $set) => [
                 'user_id' => $set->user_id,
             ]));
+    }
+
+    public function withNominations()
+    {
+        $count = config('osu.beatmapset.required_nominations');
+
+        return $this
+            ->has(BeatmapsetNomination::factory()
+                ->count($count)
+                ->state(['user_id' => User::factory()->withGroup('bng', array_keys(Beatmap::MODES))]));
     }
 }

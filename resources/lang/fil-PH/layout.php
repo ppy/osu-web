@@ -25,6 +25,11 @@ return [
             'index' => 'listahan',
         ],
 
+        'beatmapsets' => [
+            'show' => 'info',
+            'discussions' => 'talakayan',
+        ],
+
         'changelog' => [
             'index' => 'listahan',
         ],

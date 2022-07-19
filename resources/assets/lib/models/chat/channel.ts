@@ -1,12 +1,12 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { getChannel, getMessages } from 'chat/chat-api';
+import { markAsRead, getChannel, getMessages } from 'chat/chat-api';
 import ChannelJson, { ChannelType, SupportedChannelType, supportedTypeLookup } from 'interfaces/chat/channel-json';
 import MessageJson from 'interfaces/chat/message-json';
-import { minBy, sortBy } from 'lodash';
+import { minBy, sortBy, throttle } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
-import User from 'models/user';
+import User, { usernameSortAscending } from 'models/user';
 import core from 'osu-core-singleton';
 import Message from './message';
 
@@ -25,15 +25,28 @@ export default class Channel {
   @observable name = '';
   needsRefresh = true;
   @observable newPmChannel = false;
+  readonly throttledSendMarkAsRead = throttle(() => this.sendMarkAsRead(), 1000);
   @observable type: ChannelType = 'TEMPORARY'; // TODO: look at making this support channels only
   @observable uiState = {
     autoScroll: true,
     scrollY: 0,
   };
-  @observable users: number[] = [];
+  @observable userIds: number[] = [];
 
+  private markAsReadLastSent = 0;
   @observable private messagesMap = new Map<number | string, Message>();
   private serverLastMessageId?: number;
+  @observable private usersLoaded = false;
+
+  @computed
+  get announcementUsers() {
+    return this.usersLoaded
+      ? this.userIds
+        .map((userId) => core.dataStore.userStore.get(userId))
+        .filter((u): u is User => u != null)
+        .sort(usernameSortAscending)
+      : null;
+  }
 
   @computed
   get canMessage() {
@@ -98,7 +111,7 @@ export default class Channel {
       return;
     }
 
-    return this.users.find((userId: number) => userId !== core.currentUserOrFail.id);
+    return this.userIds.find((userId: number) => userId !== core.currentUserOrFail.id);
   }
 
   @computed
@@ -118,7 +131,7 @@ export default class Channel {
     channel.type = 'PM';
     channel.name = target.username;
     channel.icon = target.avatarUrl;
-    channel.users = [core.currentUserOrFail.id, target.id];
+    channel.userIds = [core.currentUserOrFail.id, target.id];
 
     return channel;
   }
@@ -151,7 +164,7 @@ export default class Channel {
   @action
   addSendingMessage(message: Message) {
     this.messagesMap.set(message.messageId, message);
-    this.markAsRead();
+    this.moveMarkAsReadMarker();
   }
 
   @action
@@ -170,7 +183,11 @@ export default class Channel {
     // nothing to load
     if (this.newPmChannel) return;
 
-    this.refreshMessages();
+    if (this.type === 'ANNOUNCE' && !this.usersLoaded) {
+      this.loadMetadata();
+    }
+
+    this.loadRecentMessages();
   }
 
   @action
@@ -204,15 +221,18 @@ export default class Channel {
   }
 
   @action
-  markAsRead() {
-    this.setLastReadId(this.lastMessageId);
+  loadMetadata() {
+    getChannel(this.channelId).done((json) => {
+      runInAction(() => {
+        this.updateWithJson(json);
+        this.usersLoaded = true;
+      });
+    });
   }
 
   @action
-  refresh() {
-    getChannel(this.channelId).done((response) => {
-      this.updateWithJson(response.channel);
-    });
+  moveMarkAsReadMarker() {
+    this.setLastReadId(this.lastMessageId);
   }
 
   @action
@@ -235,28 +255,22 @@ export default class Channel {
     this.description = json.description;
     this.type = json.type;
     this.icon = json.icon ?? Channel.defaultIcon;
-    this.users = json.users ?? this.users;
+    this.userIds = json.users ?? this.userIds;
 
     this.serverLastMessageId = json.last_message_id;
 
     if (json.current_user_attributes != null) {
       this.canMessageError = json.current_user_attributes.can_message_error;
-      this.setLastReadId(json.current_user_attributes.last_read_id);
+      const lastReadId = json.current_user_attributes.last_read_id ?? 0;
+      this.setLastReadId(lastReadId);
+      if (lastReadId > this.markAsReadLastSent) {
+        this.markAsReadLastSent = lastReadId;
+      }
     }
   }
 
   @action
-  private persistMessage(message: Message, json: MessageJson) {
-    if (json.uuid != null) {
-      this.messagesMap.delete(json.uuid);
-    }
-
-    message.persist(json);
-    this.messagesMap.set(message.messageId, message);
-  }
-
-  @action
-  private async refreshMessages() {
+  private async loadRecentMessages() {
     if (!this.needsRefresh || this.loadingMessages) return;
 
     this.loadingMessages = true;
@@ -291,6 +305,25 @@ export default class Channel {
     } catch {
       runInAction(() => this.loadingMessages = false);
     }
+  }
+
+  @action
+  private persistMessage(message: Message, json: MessageJson) {
+    if (json.uuid != null) {
+      this.messagesMap.delete(json.uuid);
+    }
+
+    message.persist(json);
+    this.messagesMap.set(message.messageId, message);
+  }
+
+  @action
+  private sendMarkAsRead() {
+    const lastReadId = this.lastReadId ?? 0;
+    if (this.markAsReadLastSent >= lastReadId) return;
+
+    this.markAsReadLastSent = lastReadId;
+    markAsRead(this.channelId, lastReadId);
   }
 
   @action

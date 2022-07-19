@@ -8,7 +8,7 @@ namespace App\Models;
 use App\Exceptions\BeatmapProcessorException;
 use App\Exceptions\InvariantException;
 use App\Jobs\CheckBeatmapsetCovers;
-use App\Jobs\EsIndexDocument;
+use App\Jobs\EsDocument;
 use App\Jobs\Notifications\BeatmapsetDiscussionLock;
 use App\Jobs\Notifications\BeatmapsetDiscussionUnlock;
 use App\Jobs\Notifications\BeatmapsetDisqualify;
@@ -55,7 +55,6 @@ use Illuminate\Database\QueryException;
  * @property \Illuminate\Database\Eloquent\Collection $defaultBeatmaps Beatmap
  * @property \Carbon\Carbon|null $deleted_at
  * @property string|null $difficulty_names
- * @property bool $discussion_enabled
  * @property bool $discussion_locked
  * @property string $displaytitle
  * @property bool $download_disabled
@@ -83,6 +82,7 @@ use Illuminate\Database\QueryException;
  * @property \Carbon\Carbon|null $queued_at
  * @property float $rating
  * @property string $source
+ * @property bool $spotlight
  * @property int $star_priority
  * @property bool $storyboard
  * @property \Carbon\Carbon|null $submit_date
@@ -100,7 +100,7 @@ use Illuminate\Database\QueryException;
  * @property bool $video
  * @property \Illuminate\Database\Eloquent\Collection $watches BeatmapsetWatch
  */
-class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
+class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, Traits\ReportableInterface
 {
     use Memoizes, SoftDeletes, Traits\CommentableDefaults, Traits\Es\BeatmapsetSearch, Traits\Reportable, Validatable;
 
@@ -110,13 +110,14 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
     protected $casts = [
         'active' => 'boolean',
+        'comment_locked' => 'boolean',
+        'discussion_locked' => 'boolean',
         'download_disabled' => 'boolean',
         'epilepsy' => 'boolean',
         'nsfw' => 'boolean',
+        'spotlight' => 'boolean',
         'storyboard' => 'boolean',
         'video' => 'boolean',
-        'discussion_enabled' => 'boolean',
-        'discussion_locked' => 'boolean',
     ];
 
     protected $dates = [
@@ -155,24 +156,18 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
     public static function coverSizes()
     {
-        $shapes = ['cover', 'card', 'list', 'slimcover'];
-        $scales = ['', '@2x'];
+        static $sizes;
 
-        $sizes = [];
-        foreach ($shapes as $shape) {
-            foreach ($scales as $scale) {
-                $sizes[] = "$shape$scale";
+        if ($sizes === null) {
+            $sizes = [];
+            foreach (['cover', 'card', 'list', 'slimcover'] as $shape) {
+                foreach (['', '@2x'] as $scale) {
+                    $sizes[] = "{$shape}{$scale}";
+                }
             }
         }
 
         return $sizes;
-    }
-
-    public static function isValidCoverSize($coverSize)
-    {
-        $validSizes = array_merge(['raw', 'fullsize'], self::coverSizes());
-
-        return in_array($coverSize, $validSizes, true);
     }
 
     public static function popular()
@@ -382,8 +377,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     public function allCoverURLs()
     {
         $urls = [];
+        $timestamp = $this->defaultCoverTimestamp();
         foreach (self::coverSizes() as $size) {
-            $urls[$size] = $this->coverURL($size);
+            $urls[$size] = $this->coverURL($size, $timestamp);
         }
 
         return $urls;
@@ -391,16 +387,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
     public function coverURL($coverSize = 'cover', $customTimestamp = null)
     {
-        if (!self::isValidCoverSize($coverSize)) {
-            return false;
-        }
-
-        $timestamp = 0;
-        if ($customTimestamp) {
-            $timestamp = $customTimestamp;
-        } elseif ($this->cover_updated_at) {
-            $timestamp = $this->cover_updated_at->format('U');
-        }
+        $timestamp = $customTimestamp ?? $this->defaultCoverTimestamp();
 
         return $this->storage()->url($this->coverPath()."{$coverSize}.jpg?{$timestamp}");
     }
@@ -413,6 +400,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     public function storeCover($target_filename, $source_path)
     {
         $this->storage()->put($this->coverPath().$target_filename, file_get_contents($source_path));
+    }
+
+    public function downloadLimited()
+    {
+        return $this->download_disabled || $this->download_disabled_url !== null;
     }
 
     public function previewURL()
@@ -610,7 +602,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
             throw new InvariantException('invalid state');
         }
 
-        $this->getConnection()->transaction(function () use ($event, $notificationClass, $discussion, $user) {
+        $this->getConnection()->transaction(function () use ($discussion, $event, $notificationClass, $user) {
             $nominators = User::whereIn('user_id', $this->beatmapsetNominations()->current()->select('user_id'))->get();
 
             BeatmapsetEvent::log($event, $user, $discussion, ['nominator_ids' => $nominators->pluck('user_id')])->saveOrExplode();
@@ -927,6 +919,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     public function requiredHype()
     {
         return config('osu.beatmapset.required_hype');
+    }
+
+    public function commentLocked(): bool
+    {
+        return $this->comment_locked || $this->downloadLimited();
     }
 
     public function commentableTitle()
@@ -1367,7 +1364,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
     public function afterCommit()
     {
-        dispatch(new EsIndexDocument($this));
+        dispatch(new EsDocument($this));
     }
 
     public function notificationCover()
@@ -1420,5 +1417,10 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         static::addGlobalScope('active', function ($builder) {
             $builder->active();
         });
+    }
+
+    private function defaultCoverTimestamp(): string
+    {
+        return $this->cover_updated_at?->format('U') ?? '0';
     }
 }

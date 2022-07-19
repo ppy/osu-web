@@ -26,7 +26,7 @@ return [
         'message_type_select' => 'Piliin ang tipo ng komento',
         'reply_notice' => 'Pindutin ang Enter para magreply.',
         'reply_placeholder' => 'I-type ang mensahe dito',
-        'require-login' => 'Mag sign in para makapagpaskil o makasagot',
+        'require-login' => 'Paki-sign-in upang mag-post o tumugon',
         'resolved' => 'Nalutas',
         'restore' => 'ibalik',
         'show_deleted' => 'Ipakita ang tinanggal',
@@ -73,7 +73,7 @@ return [
             'nomination_reset' => 'I-reset ang nominasyon',
             'praise' => 'Puri',
             'problem' => 'Problema',
-            'problem_warning' => '',
+            'problem_warning' => 'Mag-report ng problema',
             'review' => 'Rebyu',
             'suggestion' => 'Suhestyon',
         ],
@@ -211,7 +211,7 @@ return [
         'reset_confirm' => [
             'disqualify' => 'Sigurado ka ba? Tatanggalin nito ang beatmap mula sa pagkaka-qualified at mare-reset ang proseso ng nomination.',
             'nomination_reset' => 'Sigurado ka ba? Ang pagpopost ng bagong problema ay magsisimula muli ng proseso ng nominasyon.',
-            'problem_warning' => '',
+            'problem_warning' => 'Sigurado ka ba na i-report ang isyu ng beatmap na ito? Ma-alerto ang mga Beatmap Nominators dito.',
         ],
     ],
 
@@ -254,9 +254,10 @@ return [
     ],
     'general' => [
         'converts' => 'Kasamang converted beatmaps',
-        'featured_artists' => 'Featured artists',
+        'featured_artists' => 'Mga tampok na artista',
         'follows' => 'Mga naka-subscribe na mappers',
         'recommended' => 'Nirerekomenda na difficulty',
+        'spotlights' => 'Spotlighted na mga beatmap',
     ],
     'mode' => [
         'all' => 'Lahat',
@@ -275,7 +276,7 @@ return [
         'loved' => 'Loved',
         'mine' => 'Aking mga Mapa',
         'pending' => 'Pending & WIP',
-        'wip' => '',
+        'wip' => 'WIP',
         'qualified' => 'Qualified',
         'ranked' => 'Nakaranggo',
     ],

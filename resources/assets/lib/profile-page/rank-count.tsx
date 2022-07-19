@@ -4,6 +4,7 @@
 import UserStatisticsJson, { Grade, grades } from 'interfaces/user-statistics-json';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { formatNumber } from 'utils/html';
 
 interface Props {
   stats: UserStatisticsJson;
@@ -23,7 +24,7 @@ export default function RankCount({ stats }: Props) {
       {grades.map((grade) => (
         <div key={grade}>
           <div className={classWithModifiers('score-rank', ranks[grade], 'profile-page')} />
-          {osu.formatNumber(stats.grade_counts[grade])}
+          {formatNumber(stats.grade_counts[grade])}
         </div>
       ))}
     </div>

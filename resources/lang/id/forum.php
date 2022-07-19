@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'pinned_topics' => 'Topik-Topik yang Disematkan',
+    'pinned_topics' => 'Topik yang Disematkan',
     'slogan' => "Bermain sendiri itu berbahaya.",
     'subforums' => 'Subforum',
     'title' => 'Forum',
@@ -37,9 +37,9 @@ return [
     ],
 
     'mark_as_read' => [
-        'forum' => 'Tandai forum ini sebagai telah terbaca',
-        'forums' => 'Tandai forum-forum ini sebagai telah terbaca',
-        'busy' => 'Menandai sebagai telah terbaca...',
+        'forum' => 'Tandai forum ini sebagai telah dibaca',
+        'forums' => 'Tandai forum-forum ini sebagai telah dibaca',
+        'busy' => 'Menandai sebagai telah dibaca...',
     ],
 
     'post' => [
@@ -206,7 +206,7 @@ return [
     ],
 
     'topics' => [
-        '_' => 'Topik',
+        '_' => 'Daftar Topik',
 
         'actions' => [
             'login_reply' => 'Masuk untuk Membalas',
@@ -325,7 +325,7 @@ return [
         ],
 
         'show' => [
-            'deleted-posts' => 'Post yang Dihapus',
+            'deleted-posts' => 'Postingan yang Dihapus',
             'total_posts' => 'Jumlah Post',
 
             'feature_vote' => [
@@ -333,7 +333,7 @@ return [
                 'do' => 'Promosikan permintaan ini',
 
                 'info' => [
-                    '_' => 'Ini adalah sebuah :feature_request. Fitur-fitur yang diajukan dapat di-vote lebih lanjut oleh :supporters.',
+                    '_' => 'Ini adalah sebuah :feature_request. Fitur yang diajukan dapat di-vote lebih lanjut oleh :supporters.',
                     'feature_request' => 'permintaan fitur',
                     'supporters' => 'para supporter',
                 ],
@@ -341,7 +341,7 @@ return [
                 'user' => [
                     'count' => '{0} tidak ada suara|{1} :count_delimited suara|[2,*] :count_delimited suara',
                     'current' => 'Anda memiliki :votes tersisa.',
-                    'not_enough' => "Anda tidak memiliki cukup hak suara untuk dapat mempromosikan gagasan ini lebih jauh.",
+                    'not_enough' => "Anda tidak memiliki hak suara yang tersisa",
                 ],
             ],
 

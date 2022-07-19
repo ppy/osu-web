@@ -5,6 +5,7 @@ import { route } from 'laroute'
 import * as React from 'react'
 import { div, span, a, i } from 'react-dom-factories'
 import { classWithModifiers } from 'utils/css'
+import { formatNumber } from 'utils/html'
 import { Voter } from './voter'
 
 el = React.createElement
@@ -98,4 +99,4 @@ export class ArtEntry extends React.Component
               osu.transChoice 'contest.vote.count', @props.entry.results.votes
             if not isNaN(votePercentage)
               span className: "#{bn}__result-votes #{bn}__result-votes--percentage",
-                " (#{osu.formatNumber(votePercentage)}%)"
+                " (#{formatNumber(votePercentage)}%)"

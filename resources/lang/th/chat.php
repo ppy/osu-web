@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'loading_users' => '',
     'talking_in' => 'กำลังสนทนาใน :channel',
     'talking_with' => 'กำลังสนทนากับ :name',
     'title_compact' => 'ห้องสนทนา',
@@ -13,7 +14,37 @@ return [
         'user' => 'คุณไม่สามารถส่งข้อความหาคนนี้ได้ในเวลานี้ อาจเนื่องมาจากสาเหตุต่อไปนี้',
     ],
 
+    'channels' => [
+        'create' => '',
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => 'ประกาศ',
+                'GROUP' => 'กลุ่ม',
+                'PM' => '',
+                'PUBLIC' => '',
+            ],
+        ],
+    ],
+
+    'form' => [
+        'title' => [
+            'announcement' => '',
+        ],
+
+        'labels' => [
+            'description' => '',
+            'name' => '',
+            'users' => '',
+        ],
+    ],
+
+    'not_found' => [
+        'message' => '',
+        'title' => '',
+    ],
+
     'input' => [
+        'create' => '',
         'disabled' => 'ไม่สามารถส่งข้อความได้...',
         'disconnected' => '',
         'placeholder' => 'พิมพ์ข้อความ...',

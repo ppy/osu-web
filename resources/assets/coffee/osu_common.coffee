@@ -1,27 +1,14 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { formatNumber } from 'utils/html'
 import { currentUrl } from 'utils/turbolinks'
 
 window.osu =
   isIos: /iPad|iPhone|iPod/.test(navigator.platform)
 
-  currentUserIsFriendsWith: (user_id) ->
-    _.find currentUser.friends, target_id: user_id
-
-
   groupColour: (group) ->
     '--group-colour': group?.colour ? 'initial'
-
-
-  setHash: (newHash) ->
-    currUrl = currentUrl().href
-    newUrl = currUrl.replace /#.*/, ''
-    newUrl += newHash
-
-    return if newUrl == currUrl
-
-    history.replaceState history.state, null, newUrl
 
 
   ajaxError: (xhr) ->
@@ -34,19 +21,6 @@ window.osu =
   emitAjaxError: (element = document.body) =>
     (xhr, status, error) =>
       $(element).trigger 'ajax:error', [xhr, status, error]
-
-
-  isInputElement: (el) ->
-    el.tagName in ['INPUT', 'SELECT', 'TEXTAREA'] || el.isContentEditable
-
-
-  isClickable: (el) ->
-    if osu.isInputElement(el) || el.tagName in ['A', 'BUTTON']
-      true
-    else if el.parentNode
-      osu.isClickable el.parentNode
-    else
-      false
 
 
   # mobile safari zooms in on focus of input boxes with font-size < 16px, this works around that
@@ -67,19 +41,7 @@ window.osu =
     return "#{bytes} B" if (bytes < k)
 
     i = Math.floor(Math.log(bytes) / Math.log(k))
-    "#{osu.formatNumber(bytes / Math.pow(k, i), decimals)} #{suffixes[i]}"
-
-
-  formatNumber: (number, precision, options, locale) ->
-    return null unless number?
-
-    options ?= {}
-
-    if precision?
-      options.minimumFractionDigits = precision
-      options.maximumFractionDigits = precision
-
-    number.toLocaleString locale ? currentLocale, options
+    "#{formatNumber(bytes / Math.pow(k, i), decimals)} #{suffixes[i]}"
 
 
   reloadPage: (keepScroll = true) ->
@@ -181,7 +143,7 @@ window.osu =
     if !isFallbackLocale && !osu.transExists(key, locale)
       return osu.transChoice(key, count, replacements, fallbackLocale)
 
-    replacements.count_delimited = osu.formatNumber(count, null, null, locale)
+    replacements.count_delimited = formatNumber(count, null, null, locale)
     translated = Lang.choice(key, count, replacements, locale)
 
     if !isFallbackLocale && !translated?

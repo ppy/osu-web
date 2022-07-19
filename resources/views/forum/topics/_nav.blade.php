@@ -166,7 +166,7 @@
             </button>
 
             <a
-                href="{{ route('forum.topics.show', ['topic' => $topic, 'end' => $topic->topic_last_post_id]) }}#forum-post-{{ $topic->topic_last_post_id }}"
+                href="{{ route('forum.posts.show', ['post' => $topic->topic_last_post_id]) }}"
                 class="js-forum-posts-seek--jump btn-circle btn-circle--topic-nav"
                 data-jump-target="last"
                 data-tooltip-float="fixed"

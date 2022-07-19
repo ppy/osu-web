@@ -15,7 +15,7 @@ return [
         'closing' => 'Saygılarımızla,',
         'hello' => 'Selam :user,',
         'report' => 'Eğer böyle bir değişiklik talep etmediyseniz lütfen DERHAL bu e-postayı yanıtlayın.',
-        'ignore' => '',
+        'ignore' => 'Eğer bunu isteyen siz değilseniz, bu mesajı görmezden gelebilirsiniz.',
     ],
 
     'donation_thanks' => [

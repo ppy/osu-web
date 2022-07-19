@@ -12,9 +12,10 @@ import * as React from 'react'
 import TextareaAutosize from 'react-autosize-textarea'
 import { button, div, input, label, p, i, span } from 'react-dom-factories'
 import { nominationsCount } from 'utils/beatmapset-helper'
+import { InputEventType, makeTextAreaHandler } from 'utils/input-handler'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { linkHtml } from 'utils/url'
-import { MessageLengthCounter } from './message-length-counter'
+import MessageLengthCounter from './message-length-counter'
 
 el = React.createElement
 
@@ -24,14 +25,13 @@ export class NewDiscussion extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @disposers = new Set
     @inputBox = React.createRef()
-    @throttledPost = _.throttle @post, 1000
-    @handleKeyDown = InputHandler.textarea @handleKeyDownCallback
+    @handleKeyDown = makeTextAreaHandler @handleKeyDownCallback
 
-    # FIXME: should save state on navigation?
     @state =
       cssTop: null
-      message: ''
+      message: @storedMessage()
       timestampConfirmed: false
       posting: null
 
@@ -39,13 +39,23 @@ export class NewDiscussion extends React.PureComponent
   componentDidMount: =>
     @setTop()
     $(window).on 'resize', @setTop
-    @inputBox.current?.focus() if @props.autoFocus
+
+    if @props.autoFocus
+      @disposers.add(core.reactTurbolinks.runAfterPageLoad => @inputBox.current?.focus())
+
+
+  componentDidUpdate: (prevProps) =>
+    if prevProps.beatmapset.id != @props.beatmapset.id
+      @setState message: @storedMessage()
+      return
+
+    @storeMessage()
 
 
   componentWillUnmount: =>
     $(window).off 'resize', @setTop
     @postXhr?.abort()
-    @throttledPost.cancel()
+    @disposers.forEach (disposer) => disposer?()
 
 
   render: =>
@@ -218,7 +228,7 @@ export class NewDiscussion extends React.PureComponent
   handleKeyDownCallback: (type, event) =>
     # Ignores SUBMIT, requiring shift-enter to add new line.
     switch type
-      when InputHandler.CANCEL
+      when InputEventType.Cancel
         @setSticky(false)
 
 
@@ -255,7 +265,7 @@ export class NewDiscussion extends React.PureComponent
 
 
   post: (e) =>
-    return unless @validPost()
+    return if !@validPost() || @postXhr?
 
     type = e.currentTarget.dataset.type
 
@@ -268,7 +278,6 @@ export class NewDiscussion extends React.PureComponent
     if type == 'hype'
       return unless confirm(osu.trans('beatmaps.hype.confirm', n: @props.beatmapset.current_user_attributes.remaining_hype))
 
-    @postXhr?.abort()
     showLoadingOverlay()
     @setState posting: type
 
@@ -297,6 +306,7 @@ export class NewDiscussion extends React.PureComponent
 
     .always =>
       hideLoadingOverlay()
+      @postXhr = null
       @setState posting: null
 
 
@@ -332,6 +342,21 @@ export class NewDiscussion extends React.PureComponent
   setTop: =>
     @setState
       cssTop: @cssTop(@props.pinned)
+
+
+  storageKey: =>
+    "beatmapset-discussion:store:#{@props.beatmapset.id}:message"
+
+
+  storeMessage: =>
+    if @state.message == ''
+      localStorage.removeItem @storageKey()
+    else
+      localStorage.setItem @storageKey(), @state.message
+
+
+  storedMessage: =>
+    localStorage.getItem(@storageKey()) ? ''
 
 
   submitButton: (type, extraProps) =>

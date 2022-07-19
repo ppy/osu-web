@@ -28,20 +28,64 @@ class ChannelTest extends TestCase
 
         $user = User::factory()->withGroup('announce')->create();
         $otherUser = User::factory()->create();
-        $channel = $this->createChannel([$user, $otherUser], 'announce');
+        $channel = Channel::factory()->type('announce', [$user, $otherUser])->create();
 
         $channel->receiveMessage($user, 'test');
 
         Queue::assertPushed(ChannelAnnouncement::class);
     }
 
-    public function testPublicChannelDoesNotShowUsers()
+    public function testAnnouncementSendToRestrictedUsers()
     {
-        $user = User::factory()->create();
-        $channel = $this->createChannel([$user], 'public');
+        Queue::fake();
 
-        $this->assertSame(1, $channel->users()->count());
-        $this->assertEmpty($channel->visibleUsers());
+        $sender = User::factory()->withGroup('announce')->create();
+        $user = User::factory()->create();
+        $channel = Channel::factory()->type('announce', [$sender, $user])->create();
+
+        $user->update(['user_warnings' => 1]);
+        $channel = $channel->fresh();
+
+        // ChatMessageEvent uses activeUserIds to broadcast.
+        $this->assertContains($user->getKey(), $channel->activeUserIds());
+
+        $channel->receiveMessage($sender, 'message');
+
+        Queue::assertPushed(
+            ChannelAnnouncement::class,
+            fn (ChannelAnnouncement $job) => in_array($user->getKey(), $job->getReceiverIds(), true)
+        );
+    }
+
+    public function testCreatePM()
+    {
+        $user1 = User::factory()->create();
+        $user2 = User::factory()->create();
+
+        $channel = Channel::createPM($user1, $user2);
+        $channel->refresh();
+
+        $users = $channel->users();
+        $this->assertContains($user1, $users);
+        $this->assertContains($user2, $users);
+        $this->assertCount(2, $users);
+    }
+
+    /**
+     * For testing the factory creates the channel in the expected form.
+     */
+    public function testCreatePMWithFactory()
+    {
+        $channel1 = Channel::factory()->type('pm')->create();
+        $users = $channel1->users();
+
+        // multiple PM channels can be created; existing channel check is handled by sendPrivateMessage;
+        // createPM is typically not called directly.
+        $channel2 = Channel::createPM(...$users);
+
+        $this->assertCount(2, $users);
+        $this->assertSame($channel2->name, $channel1->name);
+        $this->assertEquals($channel2->users(), $users);
     }
 
     /**
@@ -51,7 +95,7 @@ class ChannelTest extends TestCase
     {
         $user = User::factory()->create();
         $otherUser = User::factory()->withGroup($otherUserGroup)->create();
-        $channel = $this->createChannel([$user, $otherUser], 'pm');
+        $channel = Channel::factory()->type('pm', [$user, $otherUser])->create();
 
         UserRelation::create([
             'user_id' => $user->getKey(),
@@ -69,7 +113,7 @@ class ChannelTest extends TestCase
     {
         $user = User::factory()->withGroup($group)->create();
         $otherUser = User::factory()->create();
-        $channel = $this->createChannel([$user, $otherUser], 'pm', true);
+        $channel = Channel::factory()->type('pm', [$user, $otherUser])->moderated()->create();
 
         $this->assertSame($canMessage, $channel->checkCanMessage($user)->can());
     }
@@ -80,7 +124,7 @@ class ChannelTest extends TestCase
     public function testChannelCanMessageModeratedPublicChannel(?string $group, bool $canMessage)
     {
         $user = User::factory()->withGroup($group)->create();
-        $channel = $this->createChannel([$user], 'public', true);
+        $channel = Channel::factory()->type('public', [$user])->moderated()->create();
 
         $this->assertSame($canMessage, $channel->checkCanMessage($user)->can());
     }
@@ -92,7 +136,7 @@ class ChannelTest extends TestCase
     {
         $user = User::factory()->withGroup($group)->create();
         $otherUser = User::factory()->create();
-        $channel = $this->createChannel([$user, $otherUser], 'pm');
+        $channel = Channel::factory()->type('pm', [$user, $otherUser])->create();
 
         UserRelation::create([
             'user_id' => $user->getKey(),
@@ -117,7 +161,7 @@ class ChannelTest extends TestCase
     {
         $user = User::factory()->withGroup($group)->create();
         $otherUser = User::factory()->create();
-        $channel = $this->createChannel([$user, $otherUser], 'pm');
+        $channel = Channel::factory()->type('pm', [$user, $otherUser])->create();
 
         UserRelation::create([
             'user_id' => $otherUser->getKey(),
@@ -142,7 +186,7 @@ class ChannelTest extends TestCase
     {
         $user = User::factory()->withGroup($group)->create();
         $otherUser = User::factory()->create(['pm_friends_only' => true]);
-        $channel = $this->createChannel([$user, $otherUser], 'pm');
+        $channel = Channel::factory()->type('pm', [$user, $otherUser])->create();
 
         app('OsuAuthorize')->resetCache();
 
@@ -168,6 +212,36 @@ class ChannelTest extends TestCase
         Event::assertNotDispatched(ChatChannelEvent::class);
     }
 
+    public function testGetPMChannelName()
+    {
+        $user1 = User::factory()->create();
+        $user2 = User::factory()->create();
+
+        $this->assertSame(
+            Channel::getPMChannelName($user1, $user2),
+            Channel::getPMChannelName($user2, $user1)
+        );
+    }
+
+    /**
+     * @dataProvider leaveChannelDataProvider
+     */
+    public function testLeaveChannel(string $type, bool $inChannel)
+    {
+        $users = User::factory()->count(2)->create();
+        $channel = Channel::factory()->type($type, [...$users])->create();
+        $channel->refresh();
+
+        $channel->removeUser($users[0]);
+        $channel->refresh();
+
+        if ($inChannel) {
+            $this->assertContains($users[0]->getKey(), $channel->userIds());
+        } else {
+            $this->assertNotContains($users[0]->getKey(), $channel->userIds());
+        }
+    }
+
     public function testPmChannelIcon()
     {
         Storage::fake('local-avatar');
@@ -182,7 +256,7 @@ class ChannelTest extends TestCase
         $user->setAvatar($testFile);
         $otherUser->setAvatar($testFile);
 
-        $channel = $this->createChannel([$user, $otherUser], 'pm');
+        $channel = Channel::factory()->type('pm', [$user, $otherUser])->create();
         $this->assertSame($otherUser->user_avatar, $channel->displayIconFor($user));
         $this->assertSame($user->user_avatar, $channel->displayIconFor($otherUser));
     }
@@ -192,9 +266,18 @@ class ChannelTest extends TestCase
         $user = User::factory()->create();
         $otherUser = User::factory()->create();
 
-        $channel = $this->createChannel([$user, $otherUser], 'pm');
+        $channel = Channel::factory()->type('pm', [$user, $otherUser])->create();
         $this->assertSame($otherUser->username, $channel->displayNameFor($user));
         $this->assertSame($user->username, $channel->displayNameFor($otherUser));
+    }
+
+    public function testPublicChannelDoesNotShowUsers()
+    {
+        $user = User::factory()->create();
+        $channel = Channel::factory()->type('public', [$user])->create();
+
+        $this->assertSame(1, $channel->users()->count());
+        $this->assertEmpty($channel->visibleUsers($user));
     }
 
     public function channelCanMessageModeratedChannelDataProvider()
@@ -233,19 +316,12 @@ class ChannelTest extends TestCase
         ];
     }
 
-    private function createChannel(array $users, string $type, bool $moderated = false): Channel
+    public function leaveChannelDataProvider()
     {
-        $channel = Channel::factory()->type($type);
-        if ($moderated) {
-            $channel = $channel->moderated();
-        }
-
-        $channel = $channel->create();
-
-        foreach ($users as $user) {
-            $channel->addUser($user);
-        }
-
-        return $channel;
+        return [
+            ['announce', false], // will need to be updated later.
+            ['pm', true],
+            ['public', false],
+        ];
     }
 }

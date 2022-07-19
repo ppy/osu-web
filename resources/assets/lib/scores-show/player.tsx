@@ -2,12 +2,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import Mod from 'components/mod';
-import ScoreJson from 'interfaces/score-json';
+import { SoloScoreJsonForShow } from 'interfaces/solo-score-json';
 import * as moment from 'moment';
 import * as React from 'react';
+import { formatNumber } from 'utils/html';
 
 interface Props {
-  score: ScoreJson;
+  score: SoloScoreJsonForShow;
 }
 
 export default function Player(props: Props) {
@@ -15,13 +16,13 @@ export default function Player(props: Props) {
     <div className='score-player'>
       <div className='score-player__row score-player__row--score'>
         <div className='score-player__score'>
-          {osu.formatNumber(props.score.score)}
+          {formatNumber(props.score.total_score)}
         </div>
 
         <div className='score-player__mods'>
           {props.score.mods.map((mod) => (
-            <div key={mod} className='score-player__mod'>
-              <Mod mod={mod} />
+            <div key={mod.acronym} className='score-player__mod'>
+              <Mod mod={mod.acronym} />
             </div>
           ))}
         </div>
@@ -38,7 +39,7 @@ export default function Player(props: Props) {
           {osu.trans('scores.show.player.submitted_on')}
         </span>
         <strong>
-          {moment(props.score.created_at).format('LLL')}
+          {moment(props.score.ended_at).format('LLL')}
         </strong>
       </div>
 
@@ -47,7 +48,7 @@ export default function Player(props: Props) {
           {osu.trans('scores.show.player.rank.global')}
         </div>
         <div className='score-player__rank score-player__rank--value'>
-          {props.score.rank_global == null ? '-' : `#${osu.formatNumber(props.score.rank_global)}`}
+          {props.score.rank_global == null ? '-' : `#${formatNumber(props.score.rank_global)}`}
         </div>
       </div>
     </div>

@@ -9,8 +9,9 @@ import * as React from 'react'
 import TextareaAutosize from 'react-autosize-textarea'
 import { button, div, form, input, label, span, i } from 'react-dom-factories'
 import { createClickCallback } from 'utils/html'
+import { InputEventType, makeTextAreaHandler } from 'utils/input-handler'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
-import { MessageLengthCounter } from './message-length-counter'
+import MessageLengthCounter from './message-length-counter'
 
 el = React.createElement
 
@@ -26,17 +27,24 @@ export class NewReply extends React.PureComponent
     super props
 
     @box = React.createRef()
-    @throttledPost = _.throttle @post, 1000
-    @handleKeyDown = InputHandler.textarea @handleKeyDownCallback
+    @handleKeyDown = makeTextAreaHandler @handleKeyDownCallback
+    storedMessage = @storedMessage()
 
     @state =
-      editing: false
-      message: ''
+      editing: storedMessage != ''
+      message: storedMessage
       posting: null
 
 
+  componentDidUpdate: (prevProps) =>
+    if prevProps.discussion.id != @props.discussion.id
+      @setState message: @storedMessage()
+      return
+
+    @storeMessage()
+
+
   componentWillUnmount: =>
-    @throttledPost.cancel()
     @postXhr?.abort()
 
 
@@ -90,7 +98,7 @@ export class NewReply extends React.PureComponent
     button
       className: "#{bn}__action #{bn}__action--cancel"
       disabled: @state.posting?
-      onClick: => @setState editing: false
+      onClick: @onCancelClick
       i className: 'fas fa-times'
 
 
@@ -121,7 +129,7 @@ export class NewReply extends React.PureComponent
         text: osu.trans("common.buttons.#{action}")
         props:
           'data-action': action
-          onClick: @throttledPost
+          onClick: @post
 
 
   canReopen: =>
@@ -141,21 +149,27 @@ export class NewReply extends React.PureComponent
 
   handleKeyDownCallback: (type, event) =>
     switch type
-      when InputHandler.CANCEL
+      when InputEventType.Cancel
         @setState editing: false
-      when InputHandler.SUBMIT
-        @throttledPost(event)
+      when InputEventType.Submit
+        @post(event)
 
 
   isTimeline: =>
     @props.discussion.timestamp?
 
 
-  post: (event) =>
-    return if !@validPost()
-    showLoadingOverlay()
+  onCancelClick: =>
+    return if @state.message != '' && !confirm(osu.trans('common.confirmation_unsaved'))
 
-    @postXhr?.abort()
+    @setState
+      editing: false
+      message: ''
+
+
+  post: (event) =>
+    return if !@validPost() || @postXhr?
+    showLoadingOverlay()
 
     # in case the event came from input box, do 'reply'.
     action = event.currentTarget.dataset.action ? 'reply'
@@ -191,11 +205,27 @@ export class NewReply extends React.PureComponent
 
     .always =>
       hideLoadingOverlay()
+      @postXhr = null
       @setState posting: null
 
 
   setMessage: (e) =>
     @setState message: e.target.value
+
+
+  storageKey: =>
+    "beatmapset-discussion:reply:#{@props.discussion.id}:message"
+
+
+  storeMessage: =>
+    if @state.message == ''
+      localStorage.removeItem @storageKey()
+    else
+      localStorage.setItem @storageKey(), @state.message
+
+
+  storedMessage: =>
+    localStorage.getItem(@storageKey()) ? ''
 
 
   validPost: =>

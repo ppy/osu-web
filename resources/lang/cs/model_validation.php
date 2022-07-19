@@ -11,7 +11,7 @@ return [
     'wrong_confirmation' => 'Potvrzení se neshoduje.',
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => 'Časová sekvence je specifikována, ale chybí beatmapa.',
+        'beatmap_missing' => 'Časová značka je specifikována, ale chybí obtížnost beatmapy.',
         'beatmapset_no_hype' => "Tato beatmapa nemůže být nadchnutá.",
         'hype_requires_null_beatmap' => 'Nadšení musí být provedeno v General (všech obtížností).',
         'invalid_beatmap_id' => 'Byla zadaná neplatná obtížnost.',
@@ -29,12 +29,12 @@ return [
             'hyped' => 'Tuto beatmapu již si nadchnul.',
             'limit_exceeded' => 'Využil jsi všechny svoje nadšení.',
             'not_hypeable' => 'Tato beatmapa nemůže být nadchnutá',
-            'owner' => 'Nemůžeš nadchnout svojí beatmapu.',
+            'owner' => 'Nemůžeš podpořit svoji vlastní beatmapu.',
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => 'Upřesněná sekvence času přesahuje délku beatmapy.',
-            'negative' => "Časová sekvence nemůže být záporná.",
+            'exceeds_beatmapset_length' => 'Uvedená časová značka přesahuje délku beatmapy.',
+            'negative' => "Časová značka nemůže být záporná.",
         ],
     ],
 
@@ -73,8 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Mazání metadat beatmapy není povoleno.',
             'beatmapset_post_no_edit' => 'Editace metadat beatmapy není povoleno.',
-            'first_post_no_delete' => '',
-            'missing_topic' => '',
+            'first_post_no_delete' => 'Počáteční pozici nelze odstranit',
+            'missing_topic' => 'Příspěvku chybí téma',
             'only_quote' => 'Tvoje odpověď obsahuje jenom citát.',
 
             'attributes' => [
@@ -91,7 +91,7 @@ return [
         'topic_poll' => [
             'duplicate_options' => 'Duplikované možnosti nejsou povoleny.',
             'grace_period_expired' => 'Nemůžete upravovat hlasování po více jak :limit hodinách',
-            'hiding_results_forever' => '',
+            'hiding_results_forever' => 'Nelze skrýt výsledky ankety, která nikdy neskončí.',
             'invalid_max_options' => 'Možnost jednoho uživatele by neměla přesáhnout hodnotu povolených možností.',
             'minimum_one_selection' => 'Minimálně jedna možnost na uživatele je vyžadována.',
             'minimum_two_options' => 'Jsou vyžadovány alespoň dvě možnosti.',
@@ -110,11 +110,11 @@ return [
 
     'oauth' => [
         'client' => [
-            'too_many' => '',
+            'too_many' => 'Byl překročen limit povolených možností.',
             'url' => 'Zadejte prosím platnou adresu URL.',
 
             'attributes' => [
-                'name' => '',
+                'name' => 'Název aplikace',
                 'redirect' => '',
             ],
         ],
@@ -127,7 +127,7 @@ return [
         'invalid_country' => 'Stát není v databázi.',
         'invalid_discord' => 'Discord uživatelské jmeno je neplatné.',
         'invalid_email' => "Vypadá to na neplatnou e-mailovou adresu.",
-        'invalid_twitter' => '',
+        'invalid_twitter' => 'Twitter uživatelské jméno je neplatné.',
         'too_short' => 'Nové heslo je příliš krátké.',
         'unknown_duplicate' => 'Uživatelské jméno nebo e-mailová adresa je již použita.',
         'username_available_in' => 'Toto uživatelské jméno bude k dispozici za :duration.',
@@ -155,15 +155,15 @@ return [
         'change_username' => [
             'restricted' => 'Nemůžeš si změnit své uživatelské jméno, když jsi omezený.',
             'supporter_required' => [
-                '_' => 'Musíš mít :link na změnu jména!',
-                'link_text' => 'podpořit osu! nákupem supporter tagu!',
+                '_' => 'Musíš :link pro změnu jména!',
+                'link_text' => 'podpořit osu!',
             ],
             'username_is_same' => 'Tohle je tvoje uživatelské jméno, hlupáku!',
         ],
     ],
 
     'user_report' => [
-        'no_ranked_beatmapset' => '',
+        'no_ranked_beatmapset' => 'Hodnocené beatmapy nemohou být nahlášeny',
         'reason_not_valid' => '',
         'self' => "Nemůžete nahlásit sám sebe!",
     ],

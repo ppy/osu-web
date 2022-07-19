@@ -5,7 +5,7 @@
 
 return [
     'missing_route' => 'Ongeldige Url of onjuiste aanvraagmethode.',
-    'no_restricted_access' => 'Je mag dit niet doen terwijl je account de restricted status heeft.',
+    'no_restricted_access' => 'Je mag dit niet doen terwijl je account beperkt is.',
     'supporter_only' => 'Je moet een supporter zijn om dit te gebruiken.',
     'unknown' => 'Een onbekende fout trad op.',
 

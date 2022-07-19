@@ -28,6 +28,6 @@ return [
             'read' => 'Melihat siapa saja yang Anda ikuti.',
         ],
 
-        'public' => 'Membaca data-data yang bersifat publik atas nama akun Anda.',
+        'public' => 'Membaca data yang bersifat publik atas nama akun Anda.',
     ],
 ];

@@ -140,13 +140,13 @@ return [
             'data' => [
                 'add_tag' => 'เพิ่มแท็ก ":tag" แล้ว',
                 'announcement' => '',
-                'edit_topic' => '',
-                'fork' => '',
-                'pin' => '',
+                'edit_topic' => 'ถึง :title',
+                'fork' => 'จาก :topic',
+                'pin' => 'หัวข้อที่ปักหมุดไว้',
                 'post_operation' => 'โพสต์โดย :username',
                 'remove_tag' => 'ลบแท็ก ":tag" แล้ว',
                 'source_forum_operation' => 'จาก :forum',
-                'unpin' => '',
+                'unpin' => 'หัวข้อที่ไม่ปักหมุดไว้',
             ],
 
             'no_results' => '',
