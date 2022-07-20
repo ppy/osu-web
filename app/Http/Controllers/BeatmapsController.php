@@ -6,7 +6,6 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\InvariantException;
-use App\Exceptions\ScoreRetrievalException;
 use App\Jobs\Notifications\BeatmapOwnerChange;
 use App\Libraries\BeatmapDifficultyAttributes;
 use App\Libraries\Score\BeatmapScores;
@@ -284,43 +283,39 @@ class BeatmapsController extends Controller
         $type = presence($params['type'] ?? null, 'global');
         $currentUser = auth()->user();
 
-        try {
-            if ($type !== 'global' || !empty($mods)) {
-                if ($currentUser === null || !$currentUser->isSupporter()) {
-                    throw new ScoreRetrievalException(osu_trans('errors.supporter_only'));
-                }
+        if ($type !== 'global' || !empty($mods)) {
+            if ($currentUser === null || !$currentUser->isSupporter()) {
+                throw new InvariantException(osu_trans('errors.supporter_only'));
             }
-
-            $query = static::baseScoreQuery($beatmap, $mode, $mods, $type);
-
-            if ($currentUser !== null) {
-                // own score shouldn't be filtered by visibleUsers()
-                $userScore = (clone $query)->where('user_id', $currentUser->user_id)->first();
-            }
-
-            $scoreTransformer = new ScoreTransformer();
-
-            $results = [
-                'scores' => json_collection(
-                    $query->visibleUsers()->forListing(),
-                    $scoreTransformer,
-                    static::DEFAULT_SCORE_INCLUDES
-                ),
-            ];
-
-            if (isset($userScore)) {
-                $results['user_score'] = [
-                    'position' => $userScore->userRank(compact('type', 'mods')),
-                    'score' => json_item($userScore, $scoreTransformer, static::DEFAULT_SCORE_INCLUDES),
-                ];
-                // TODO: remove this old camelCased json field
-                $results['userScore'] = $results['user_score'];
-            }
-
-            return $results;
-        } catch (ScoreRetrievalException $ex) {
-            return error_popup($ex->getMessage());
         }
+
+        $query = static::baseScoreQuery($beatmap, $mode, $mods, $type);
+
+        if ($currentUser !== null) {
+            // own score shouldn't be filtered by visibleUsers()
+            $userScore = (clone $query)->where('user_id', $currentUser->user_id)->first();
+        }
+
+        $scoreTransformer = new ScoreTransformer();
+
+        $results = [
+            'scores' => json_collection(
+                $query->visibleUsers()->forListing(),
+                $scoreTransformer,
+                static::DEFAULT_SCORE_INCLUDES
+            ),
+        ];
+
+        if (isset($userScore)) {
+            $results['user_score'] = [
+                'position' => $userScore->userRank(compact('type', 'mods')),
+                'score' => json_item($userScore, $scoreTransformer, static::DEFAULT_SCORE_INCLUDES),
+            ];
+            // TODO: remove this old camelCased json field
+            $results['userScore'] = $results['user_score'];
+        }
+
+        return $results;
     }
 
     /**
@@ -366,45 +361,41 @@ class BeatmapsController extends Controller
         $type = presence($params['type'], 'global');
         $currentUser = auth()->user();
 
-        try {
-            if ($type !== 'global' || !empty($mods)) {
-                if ($currentUser === null || !$currentUser->isSupporter()) {
-                    throw new ScoreRetrievalException(osu_trans('errors.supporter_only'));
-                }
+        if ($type !== 'global' || !empty($mods)) {
+            if ($currentUser === null || !$currentUser->isSupporter()) {
+                throw new InvariantException(osu_trans('errors.supporter_only'));
             }
-
-            $esFetch = new BeatmapScores([
-                'beatmap_ids' => [$beatmap->getKey()],
-                'mods' => $mods,
-                'ruleset_id' => $rulesetId,
-                'type' => $type,
-                'user' => $currentUser,
-            ]);
-            $scores = $esFetch->all()->loadMissing(['beatmap', 'performance', 'user.country', 'user.userProfileCustomization']);
-            $userScore = $esFetch->userBest();
-            $scoreTransformer = new ScoreTransformer(ScoreTransformer::TYPE_SOLO);
-
-            $results = [
-                'scores' => json_collection(
-                    $scores,
-                    $scoreTransformer,
-                    static::DEFAULT_SCORE_INCLUDES
-                ),
-            ];
-
-            if (isset($userScore)) {
-                $results['user_score'] = [
-                    'position' => $esFetch->rank($userScore),
-                    'score' => json_item($userScore, $scoreTransformer, static::DEFAULT_SCORE_INCLUDES),
-                ];
-                // TODO: remove this old camelCased json field
-                $results['userScore'] = $results['user_score'];
-            }
-
-            return $results;
-        } catch (ScoreRetrievalException $ex) {
-            return error_popup($ex->getMessage());
         }
+
+        $esFetch = new BeatmapScores([
+            'beatmap_ids' => [$beatmap->getKey()],
+            'mods' => $mods,
+            'ruleset_id' => $rulesetId,
+            'type' => $type,
+            'user' => $currentUser,
+        ]);
+        $scores = $esFetch->all()->loadMissing(['beatmap', 'performance', 'user.country', 'user.userProfileCustomization']);
+        $userScore = $esFetch->userBest();
+        $scoreTransformer = new ScoreTransformer(ScoreTransformer::TYPE_SOLO);
+
+        $results = [
+            'scores' => json_collection(
+                $scores,
+                $scoreTransformer,
+                static::DEFAULT_SCORE_INCLUDES
+            ),
+        ];
+
+        if (isset($userScore)) {
+            $results['user_score'] = [
+                'position' => $esFetch->rank($userScore),
+                'score' => json_item($userScore, $scoreTransformer, static::DEFAULT_SCORE_INCLUDES),
+            ];
+            // TODO: remove this old camelCased json field
+            $results['userScore'] = $results['user_score'];
+        }
+
+        return $results;
     }
 
     public function updateOwner($id)
@@ -465,23 +456,19 @@ class BeatmapsController extends Controller
         $mode = presence($params['mode'] ?? null, $beatmap->mode);
         $mods = array_values(array_filter($params['mods'] ?? []));
 
-        try {
-            $score = static::baseScoreQuery($beatmap, $mode, $mods)
-                ->visibleUsers()
-                ->where('user_id', $userId)
-                ->firstOrFail();
+        $score = static::baseScoreQuery($beatmap, $mode, $mods)
+            ->visibleUsers()
+            ->where('user_id', $userId)
+            ->firstOrFail();
 
-            return [
-                'position' => $score->userRank(compact('mods')),
-                'score' => json_item(
-                    $score,
-                    new ScoreTransformer(),
-                    ['beatmap', ...static::DEFAULT_SCORE_INCLUDES]
-                ),
-            ];
-        } catch (ScoreRetrievalException $ex) {
-            return error_popup($ex->getMessage());
-        }
+        return [
+            'position' => $score->userRank(compact('mods')),
+            'score' => json_item(
+                $score,
+                new ScoreTransformer(),
+                ['beatmap', ...static::DEFAULT_SCORE_INCLUDES]
+            ),
+        ];
     }
 
     /**
