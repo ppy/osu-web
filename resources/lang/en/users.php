@@ -37,10 +37,10 @@ return [
         'comment_text' => 'This comment is hidden.',
         'blocked_count' => 'blocked users (:count)',
         'hide_profile' => 'Hide profile',
-        'hide_comment' => 'Hide comment',
+        'hide_comment' => 'hide',
         'not_blocked' => 'That user is not blocked.',
         'show_profile' => 'Show profile',
-        'show_comment' => 'Show comment',
+        'show_comment' => 'show',
         'too_many' => 'Block limit reached.',
         'button' => [
             'block' => 'Block',

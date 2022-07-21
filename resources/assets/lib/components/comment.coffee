@@ -20,7 +20,6 @@ import StringWithComponent from './string-with-component'
 import TimeWithTooltip from './time-with-tooltip'
 import UserAvatar from './user-avatar'
 import { UserLink } from './user-link'
-import { isBlocked } from 'utils/user-helper';
 
 el = React.createElement
 
@@ -45,6 +44,10 @@ export class Comment extends React.PureComponent
     else
       makePreviewElement.innerHTML = comment.messageHtml
       _.truncate makePreviewElement.textContent, length: 100
+
+  
+  isBlocked = (user) ->
+    return core.currentUserModel.blocks.has(user.id)
 
 
   constructor: (props) ->
@@ -94,6 +97,10 @@ export class Comment extends React.PureComponent
       parent = store.comments.get(@props.comment.parentId)
       user = @userFor(@props.comment)
       meta = commentableMetaStore.get(@props.comment.commentableType, @props.comment.commentableId)
+      @isBlocked = isBlocked(user)
+
+      if !@props.comment.isDeleted && @isBlocked && !@state.forceShow
+        return @renderBlocked()
 
       # Only clip if there are at least CLIP_LINES + 2 lines to ensure there are enough contents
       # being clipped instead of just single lone line (or worse no more lines because of rounding up).
@@ -104,7 +111,6 @@ export class Comment extends React.PureComponent
       mainClass = classWithModifiers 'comment__main',
         deleted: @props.comment.isDeleted
         clip: @state.clipped && longContent
-        # blocked: isBlocked(user) && !@state.forceShow
 
       repliesClass = classWithModifiers 'comment__replies',
         indented: @props.depth < MAX_DEPTH
@@ -157,13 +163,6 @@ export class Comment extends React.PureComponent
                   message: @props.comment.message
                   modifiers: @props.modifiers
                   close: @closeEdit
-            else if isBlocked(user) && !@state.forceShow
-                el React.Fragment, null,
-                  div
-                    className: 'comment__message osu-md osu-md--comment'
-                    el 'p',
-                      className: 'osu-md__paragraph',
-                      osu.trans('users.blocks.comment_text')
             else if @props.comment.messageHtml?
               el React.Fragment, null,
                 div
@@ -191,7 +190,7 @@ export class Comment extends React.PureComponent
               @renderReport()
               @renderEditedBy()
               @renderDeletedBy()
-              @renderForceShowButton()
+              @renderForceShow()
               @renderRepliesText()
 
             @renderReplyBox(meta)
@@ -210,6 +209,26 @@ export class Comment extends React.PureComponent
               modifiers: @props.modifiers
               label: osu.trans('comments.load_replies') if @children.length == 0
               ref: @loadMoreRef
+
+  
+  renderBlocked: =>
+    blockClass = classWithModifiers 'comment', @props.modifiers, top: @props.depth == 0
+    mainClass = classWithModifiers 'comment__main', 'deleted'
+
+    div className: blockClass,
+      div className: mainClass,
+        span 
+          className: if @props.depth > 0 then 'comment__avatar' else ''
+          style:
+            height: 'auto'
+
+        div className: 'comment__container',
+          div className: 'comment__main blocked comment__message osu-md osu-md--comment',
+            el 'p',
+              className: 'osu-md__paragraph',
+              osu.trans('users.blocks.comment_text') 
+              ' '
+              @renderForceShowButton()
 
 
   renderComment: (comment) =>
@@ -383,11 +402,7 @@ export class Comment extends React.PureComponent
 
 
   renderUserAvatar: (user) =>
-    if isBlocked(user) && !@state.forceShow
-      span
-        className: 'comment__avatar'
-        el UserAvatar, user: { avatar_url: null }, modifiers: ['full-circle']
-    else if user.id?
+    if user.id?
       a
         className: 'comment__avatar js-usercard'
         'data-user-id': user.id
@@ -400,11 +415,7 @@ export class Comment extends React.PureComponent
 
 
   renderUsername: (user) =>
-    if isBlocked(user) && !@state.forceShow
-      span
-        className: 'comment__row-item'
-        osu.trans('users.blocks.blocked_user')
-    else if user.id?
+    if user.id?
       a
         'data-user-id': user.id
         href: route('users.show', user: user.id)
@@ -476,14 +487,19 @@ export class Comment extends React.PureComponent
               span className: if core.userPreferences.get('comments_show_deleted') then 'fas fa-check-square' else 'far fa-square'
             osu.trans('common.buttons.show_deleted')
 
+  
   renderForceShowButton: =>
-    if isBlocked(@userFor(@props.comment))
+    button
+      type: 'button'
+      className: 'comment__action'
+      onClick: @toggleForceShow
+      if !@state.forceShow then osu.trans('users.blocks.show_comment') else osu.trans('users.blocks.hide_comment')
+
+
+  renderForceShow: =>
+    if !@props.comment.isDeleted && @isBlocked
       div className: 'comment__row-item',
-        button
-          type: 'button'
-          className: 'comment__action'
-          onClick: @toggleForceShow
-          if !@state.forceShow then osu.trans('users.blocks.show_comment') else osu.trans('users.blocks.hide_comment')
+        @renderForceShowButton()
 
   hasVoted: =>
     store.userVotes.has(@props.comment.id)
@@ -552,7 +568,7 @@ export class Comment extends React.PureComponent
     component props,
       span className: 'fas fa-reply'
       ' '
-      if !isBlocked(parentUser) then parentUser.username else osu.trans('users.blocks.blocked_user')
+      parentUser.username
 
 
   userFor: (comment) =>
@@ -622,6 +638,7 @@ export class Comment extends React.PureComponent
 
   toggleClip: =>
     @setState clipped: !@state.clipped
+
 
   toggleForceShow: =>
     @setState forceShow: !@state.forceShow
