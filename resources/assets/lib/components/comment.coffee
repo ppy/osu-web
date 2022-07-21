@@ -501,6 +501,7 @@ export class Comment extends React.PureComponent
       div className: 'comment__row-item',
         @renderForceShowButton()
 
+
   hasVoted: =>
     store.userVotes.has(@props.comment.id)
 
