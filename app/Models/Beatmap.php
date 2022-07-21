@@ -6,7 +6,6 @@
 namespace App\Models;
 
 use App\Exceptions\InvariantException;
-use App\Exceptions\ScoreRetrievalException;
 use DB;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -328,11 +327,11 @@ class Beatmap extends Model
         $mode ?? ($mode = $this->mode);
 
         if (!static::isModeValid($mode)) {
-            throw new ScoreRetrievalException(osu_trans('errors.beatmaps.invalid_mode'));
+            throw new InvariantException(osu_trans('errors.beatmaps.invalid_mode'));
         }
 
         if ($this->mode !== 'osu' && $this->mode !== $mode) {
-            throw new ScoreRetrievalException(osu_trans('errors.beatmaps.standard_converts_only'));
+            throw new InvariantException(osu_trans('errors.beatmaps.standard_converts_only'));
         }
 
         $mode = studly_case($mode);
