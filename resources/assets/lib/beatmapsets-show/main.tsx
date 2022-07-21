@@ -26,6 +26,7 @@ interface Props {
 export default class Main extends React.Component<Props> {
   @observable private controller: Controller;
   private disposers = new Set<(() => void) | undefined>();
+  private ref = React.createRef<HTMLDivElement>();
 
   @computed
   private get headerLinksAppend() {
@@ -72,7 +73,7 @@ export default class Main extends React.Component<Props> {
 
   render() {
     return (
-      <div className='osu-layout osu-layout--full'>
+      <div ref={this.ref} className='osu-layout osu-layout--full'>
         {this.renderPageHeader()}
         {this.controller.state.showingNsfwWarning
           ? <NsfwWarning onClose={this.onCloseNsfwWarning} />
@@ -144,6 +145,7 @@ export default class Main extends React.Component<Props> {
   }
 
   private readonly setHash = () => {
+    if (!window.newBody?.contains(this.ref.current)) return;
     setHash(generate({ beatmap: this.controller.currentBeatmap }));
   };
 }
