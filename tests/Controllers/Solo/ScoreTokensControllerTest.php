@@ -93,11 +93,11 @@ class ScoreTokensControllerTest extends TestCase
     public function dataProviderForTestStore(): array
     {
         return [
-            'deleted beatmap' => ['deleted', 404],
-            'deleted beatmapset' => ['deletedBeatmapset', 404],
-            'inactive beatmap' => ['inactive', 404],
-            'ok' => ['ranked', 200],
-            'pending beatmap' => ['wip', 200],
+            ['deleted', 404],
+            ['deletedBeatmapset', 404],
+            ['inactive', 404],
+            ['ranked', 200],
+            ['wip', 200],
         ];
     }
 
