@@ -399,7 +399,7 @@ class Channel extends Model
         }
 
         $maxLength = $this->isAnnouncement() ? static::ANNOUNCE_MESSAGE_LENGTH_LIMIT : config('osu.chat.message_length_limit');
-        if (mb_strlen($content, 'UTF-8') >= $maxLength) {
+        if (mb_strlen($content, 'UTF-8') > $maxLength) {
             throw new API\ChatMessageTooLongException(osu_trans('api.error.chat.too_long'));
         }
 
