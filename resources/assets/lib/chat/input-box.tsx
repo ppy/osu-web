@@ -104,7 +104,7 @@ export default class InputBox extends React.Component<Props> {
           className={classWithModifiers('chat-input__box', { disabled: this.inputDisabled })}
           disabled={this.inputDisabled}
           maxLength={maxLength}
-          maxRows={3}
+          maxRows={channel?.type === 'ANNOUNCE' ? 10 : 3}
           name='textbox'
           onChange={this.handleChange}
           onKeyDown={this.checkIfEnterPressed}
