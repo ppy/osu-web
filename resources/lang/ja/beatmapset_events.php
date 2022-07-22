@@ -78,7 +78,7 @@ return [
         'nomination_reset' => 'ノミネーションのリセット',
         'nomination_reset_received' => 'ノミネーションリセットを受信しました',
         'nsfw_toggle' => '露骨マーク',
-        'offset_edit' => '',
+        'offset_edit' => 'オフセットが編集されました。',
         'qualify' => 'Qualification',
         'rank' => 'ランキング',
         'remove_from_loved' => 'Loved削除',

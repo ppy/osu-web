@@ -257,7 +257,7 @@ return [
         'featured_artists' => 'Nghệ sĩ nổi bật',
         'follows' => 'Mapper đã đăng ký',
         'recommended' => 'Độ khó đề nghị',
-        'spotlights' => '',
+        'spotlights' => 'Beatmap tiêu điểm',
     ],
     'mode' => [
         'all' => 'Tất cả',
