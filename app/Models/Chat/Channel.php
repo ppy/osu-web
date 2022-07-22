@@ -39,6 +39,7 @@ class Channel extends Model
 {
     use Memoizes, Validatable;
 
+    const ANNOUNCE_MESSAGE_LENGTH_LIMIT = 1024; // limited by column length
     const CHAT_ACTIVITY_TIMEOUT = 60; // in seconds.
 
     public ?string $uuid = null;
@@ -397,7 +398,8 @@ class Channel extends Model
             throw new API\ChatMessageEmptyException(osu_trans('api.error.chat.empty'));
         }
 
-        if (!$this->isAnnouncement() && mb_strlen($content, 'UTF-8') >= config('osu.chat.message_length_limit')) {
+        $maxLength = $this->isAnnouncement() ? static::ANNOUNCE_MESSAGE_LENGTH_LIMIT : config('osu.chat.message_length_limit');
+        if (mb_strlen($content, 'UTF-8') >= $maxLength) {
             throw new API\ChatMessageTooLongException(osu_trans('api.error.chat.too_long'));
         }
 
