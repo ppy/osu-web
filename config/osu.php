@@ -95,6 +95,7 @@ return [
         'user_agent' => env('CLIENT_USER_AGENT', 'osu!'),
     ],
     'elasticsearch' => [
+        'compatibility' => get_bool(env('ES_COMPATIBILITY')) ?? false,
         'prefix' => env('ES_INDEX_PREFIX'),
         'search_timeout' => env('ES_SEARCH_TIMEOUT', '5s'),
     ],

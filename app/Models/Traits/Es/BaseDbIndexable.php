@@ -51,12 +51,17 @@ trait BaseDbIndexable
             $actions = Es::generateBulkActions($models);
 
             if ($actions !== []) {
-                $result = Es::getClient()->bulk([
+                $descriptor = [
                     'index' => $options['index'] ?? static::esIndexName(),
-                    // 'type' => '_doc',
                     'body' => $actions,
                     'client' => ['timeout' => 0],
-                ]);
+                ];
+
+                if (Es::isCompatibilityMode()) {
+                    $descriptor['type'] = '_doc';
+                }
+
+                $result = Es::getClient()->bulk($descriptor);
 
                 $count += count($result['items']);
             }

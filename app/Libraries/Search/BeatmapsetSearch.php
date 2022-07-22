@@ -6,6 +6,7 @@
 namespace App\Libraries\Search;
 
 use App\Libraries\Elasticsearch\BoolQuery;
+use App\Libraries\Elasticsearch\Es;
 use App\Libraries\Elasticsearch\FunctionScore;
 use App\Libraries\Elasticsearch\QueryHelper;
 use App\Libraries\Elasticsearch\RecordSearch;
@@ -122,18 +123,23 @@ class BeatmapsetSearch extends RecordSearch
     private function addBlacklistFilter($query)
     {
         static $fields = ['artist', 'source', 'tags'];
+        $params = [
+            'index' => config('osu.elasticsearch.prefix').'blacklist',
+            'id' => 'beatmapsets',
+            // can be changed to per-field blacklist as different fields should probably have different restrictions.
+            'path' => 'keywords',
+        ];
+
+        if (Es::isCompatibilityMode()) {
+            $params['type'] = '_doc';
+        }
+
         $bool = new BoolQuery();
 
         foreach ($fields as $field) {
             $bool->mustNot([
                 'terms' => [
-                    $field => [
-                        'index' => config('osu.elasticsearch.prefix').'blacklist',
-                        // 'type' => '_doc',
-                        'id' => 'beatmapsets',
-                        // can be changed to per-field blacklist as different fields should probably have different restrictions.
-                        'path' => 'keywords',
-                    ],
+                    $field => $params,
                 ],
             ]);
         }

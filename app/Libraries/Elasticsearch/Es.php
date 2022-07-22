@@ -42,4 +42,9 @@ class Es
 
         return $clients[$name] ??= ClientBuilder::fromConfig(config("elasticsearch.connections.${name}"));
     }
+
+    public static function isCompatibilityMode(): bool
+    {
+        return config('osu.elasticsearch.compatibility');
+    }
 }
