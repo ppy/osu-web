@@ -15,7 +15,7 @@ return [
     ],
 
     'channels' => [
-        'create' => '',
+        'create' => 'vytvořit oznámení',
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Oznámení',
@@ -28,13 +28,13 @@ return [
 
     'form' => [
         'title' => [
-            'announcement' => '',
+            'announcement' => 'Vytvořit nové oznámení',
         ],
 
         'labels' => [
-            'description' => '',
-            'name' => '',
-            'users' => '',
+            'description' => 'popis',
+            'name' => 'název místnosti',
+            'users' => 'hráči k přidání',
         ],
     ],
 
@@ -44,7 +44,7 @@ return [
     ],
 
     'input' => [
-        'create' => '',
+        'create' => 'Vytvořit',
         'disabled' => 'nejsme schopni odeslat tuto zprávu...',
         'disconnected' => 'Odpojeno',
         'placeholder' => 'napište zprávu...',
