@@ -18,7 +18,7 @@ trait BaseIndexable
     {
         // TODO: allow overriding of certain settings (shards, replicas, etc)?
         $params = [
-            'include_type_name' => 'true',
+            // 'include_type_name' => 'true',
             'index' => $name ?? static::esIndexName(),
             'body' => static::esSchemaConfig(),
         ];
@@ -28,7 +28,7 @@ trait BaseIndexable
 
     public static function esMappings()
     {
-        return static::esSchemaConfig()['mappings']['_doc']['properties'];
+        return static::esSchemaConfig()['mappings']['properties'];
     }
 
     public static function esSchemaConfig()

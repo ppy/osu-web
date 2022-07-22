@@ -129,7 +129,7 @@ class BeatmapsetSearch extends RecordSearch
                 'terms' => [
                     $field => [
                         'index' => config('osu.elasticsearch.prefix').'blacklist',
-                        'type' => '_doc',
+                        // 'type' => '_doc',
                         'id' => 'beatmapsets',
                         // can be changed to per-field blacklist as different fields should probably have different restrictions.
                         'path' => 'keywords',
