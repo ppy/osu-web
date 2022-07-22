@@ -8,7 +8,7 @@ import { trim } from 'lodash';
 import { action, autorun, computed, makeObservable, reaction } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import { isModalShowing } from 'modal-helper';
-import Message from 'models/chat/message';
+import Message, { maxLength } from 'models/chat/message';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
@@ -103,6 +103,7 @@ export default class InputBox extends React.Component<Props> {
           autoComplete='off'
           className={classWithModifiers('chat-input__box', { disabled: this.inputDisabled })}
           disabled={this.inputDisabled}
+          maxLength={maxLength}
           maxRows={3}
           name='textbox'
           onChange={this.handleChange}
