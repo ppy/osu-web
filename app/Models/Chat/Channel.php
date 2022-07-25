@@ -89,7 +89,8 @@ class Channel extends Model
         $params['type'] = static::TYPES['announce'];
 
         $channel = new static($params);
-        $channel->getConnection()->transaction(function () use ($channel, $users, $uuid) {
+        $connection = $channel->getConnection();
+        $connection->transaction(function () use ($channel, $connection, $users, $uuid) {
             $channel->saveOrExplode();
             $channel->uuid = $uuid;
             $userChannels = $channel->userChannels()->createMany($users->map(fn ($user) => ['user_id' => $user->getKey()]));
@@ -102,6 +103,8 @@ class Channel extends Model
             foreach ($users as $user) {
                 (new ChatChannelEvent($channel, $user, 'join'))->broadcast(true);
             }
+
+            $connection->afterCommit(fn () => Datadog::increment('chat.channel.create', 1, ['type' => $channel->type]));
         });
 
         return $channel;

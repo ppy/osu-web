@@ -62,8 +62,6 @@ class Chat
             return $channel;
         });
 
-        Datadog::increment('chat.channel.create', 1, ['type' => $channel->type]);
-
         return $channel;
     }
 
