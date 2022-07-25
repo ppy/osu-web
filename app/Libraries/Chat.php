@@ -9,7 +9,6 @@ use App\Exceptions\API;
 use App\Exceptions\InvariantException;
 use App\Models\Chat\Channel;
 use App\Models\User;
-use ChaseConey\LaravelDatadogHelper\Datadog;
 use LaravelRedis as Redis;
 
 class Chat
