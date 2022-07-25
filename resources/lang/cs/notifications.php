@@ -87,12 +87,12 @@ return [
             '_' => 'Chat',
 
             'announcement' => [
-                '_' => '',
+                '_' => 'Nové oznámení',
 
                 'announce' => [
-                    'channel_announcement' => '',
-                    'channel_announcement_compact' => '',
-                    'channel_announcement_group' => '',
+                    'channel_announcement' => ':username říká ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Oznámení od :username',
                 ],
             ],
 
@@ -115,8 +115,8 @@ return [
 
                 'comment_new' => ':username okomentoval ":content" v ":title"',
                 'comment_new_compact' => ':username okomentoval ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username odpověděl ":content" na ":title"',
+                'comment_reply_compact' => ':username odpověděl ":content"',
             ],
         ],
 
@@ -128,8 +128,8 @@ return [
 
                 'comment_new' => ':username odpověděl ":content" v ":title"',
                 'comment_new_compact' => ':username okomentoval ":content"',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_reply' => ':username odpověděl ":content" na ":title"',
+                'comment_reply_compact' => ':username odpověděl ":content"',
             ],
         ],
 
@@ -154,14 +154,14 @@ return [
 
         'user' => [
             'user_beatmapset_new' => [
-                '_' => '',
+                '_' => 'Nová beatmapa',
 
-                'user_beatmapset_new' => '',
-                'user_beatmapset_new_compact' => '',
-                'user_beatmapset_new_group' => '',
+                'user_beatmapset_new' => 'Nová beatmapa ":title" od :username',
+                'user_beatmapset_new_compact' => 'Nová beatmapa ":title"',
+                'user_beatmapset_new_group' => 'Nové beatmapy od :username',
 
-                'user_beatmapset_revive' => '',
-                'user_beatmapset_revive_compact' => '',
+                'user_beatmapset_revive' => 'Beatmapa ":title" oživena uživatelem :username',
+                'user_beatmapset_revive_compact' => 'Beatmapa ":title" oživena',
             ],
         ],
 
@@ -172,7 +172,7 @@ return [
                 '_' => 'Nová medaile',
                 'user_achievement_unlock' => 'Odemčeno ":title"\'!',
                 'user_achievement_unlock_compact' => 'Odemčeno ":title"\'!',
-                'user_achievement_unlock_group' => '',
+                'user_achievement_unlock_group' => 'Medaile odemčeny!',
             ],
         ],
     ],
@@ -180,27 +180,27 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => '',
+                'beatmap_owner_change' => 'Nyní hostujete beatmapu ":title"',
             ],
 
             'beatmapset_discussion' => [
-                'beatmapset_discussion_lock' => '',
-                'beatmapset_discussion_post_new' => '',
-                'beatmapset_discussion_unlock' => '',
+                'beatmapset_discussion_lock' => 'Diskuze ":title" byla uzamčena',
+                'beatmapset_discussion_post_new' => 'Diskuse o ":title" má nové aktualizace',
+                'beatmapset_discussion_unlock' => 'Diskuse o ":title" byla odemčena',
             ],
 
             'beatmapset_problem' => [
-                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem' => 'Byl nahlášen nový problém na ":title"',
             ],
 
             'beatmapset_state' => [
-                'beatmapset_disqualify' => '',
-                'beatmapset_love' => '',
-                'beatmapset_nominate' => '',
-                'beatmapset_qualify' => '',
+                'beatmapset_disqualify' => '":title" byla diskvalifikována',
+                'beatmapset_love' => '":title" byla povýšena na milované',
+                'beatmapset_nominate' => '":title" byla nominována',
+                'beatmapset_qualify' => '":title" získala dostatek nominací a vstoupila do fronty hodnocení',
                 'beatmapset_rank' => '":title" byla hodnocena',
-                'beatmapset_remove_from_loved' => '',
-                'beatmapset_reset_nominations' => '',
+                'beatmapset_remove_from_loved' => '":title" byla odebrána z milovaných',
+                'beatmapset_reset_nominations' => 'Nominace ":title" byla obnovena',
             ],
 
             'comment' => [

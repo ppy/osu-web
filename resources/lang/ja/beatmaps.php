@@ -211,7 +211,7 @@ return [
         'reset_confirm' => [
             'disqualify' => '本当によろしいですか？これによりビートマップがQualifiedから外され、ノミネーション審査がリセットされます。',
             'nomination_reset' => '本当によろしいですか？新しい問題を投稿するとノミネーション審査中ではなくなります。',
-            'problem_warning' => '',
+            'problem_warning' => 'このビートマップを報告してもよろしいですか？報告するとビートマップノミネーターに通知が行きます。',
         ],
     ],
 
@@ -257,7 +257,7 @@ return [
         'featured_artists' => '注目アーティスト',
         'follows' => 'サブスクライブ中のマッパー',
         'recommended' => '推奨難易度',
-        'spotlights' => '',
+        'spotlights' => 'スポットライト',
     ],
     'mode' => [
         'all' => '全て',
@@ -276,7 +276,7 @@ return [
         'loved' => 'Loved',
         'mine' => 'マイマップ',
         'pending' => 'Pending & WIP',
-        'wip' => '',
+        'wip' => 'WIP',
         'qualified' => 'Qualified',
         'ranked' => 'Ranked',
     ],
