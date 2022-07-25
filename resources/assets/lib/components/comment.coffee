@@ -5,7 +5,7 @@ import { route } from 'laroute'
 import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
 import * as React from 'react'
-import { a, button, div, span, textarea } from 'react-dom-factories'
+import { a, button, div, span, textarea, p } from 'react-dom-factories'
 import { classWithModifiers } from 'utils/css'
 import { estimateMinLines } from 'utils/estimate-min-lines'
 import { createClickCallback, formatNumberSuffixed } from 'utils/html'
@@ -45,7 +45,7 @@ export class Comment extends React.PureComponent
       makePreviewElement.innerHTML = comment.messageHtml
       _.truncate makePreviewElement.textContent, length: 100
 
-  
+
   isBlocked = (user) ->
     return core.currentUserModel.blocks.has(user.id)
 
@@ -99,9 +99,6 @@ export class Comment extends React.PureComponent
       meta = commentableMetaStore.get(@props.comment.commentableType, @props.comment.commentableId)
       @isBlocked = isBlocked(user)
 
-      if !@props.comment.isDeleted && @isBlocked && !@state.forceShow
-        return @renderBlocked()
-
       # Only clip if there are at least CLIP_LINES + 2 lines to ensure there are enough contents
       # being clipped instead of just single lone line (or worse no more lines because of rounding up).
       longContent = @state.lines? && @state.lines.count >= CLIP_LINES + 2
@@ -109,12 +106,15 @@ export class Comment extends React.PureComponent
       blockClass = classWithModifiers 'comment', @props.modifiers, top: @props.depth == 0
 
       mainClass = classWithModifiers 'comment__main',
-        deleted: @props.comment.isDeleted
+        deleted: @props.comment.isDeleted || @isBlocked
         clip: @state.clipped && longContent
 
       repliesClass = classWithModifiers 'comment__replies',
         indented: @props.depth < MAX_DEPTH
         hidden: !@state.expandReplies
+
+      if !@props.comment.isDeleted && @isBlocked && !@state.forceShow
+        return @renderBlocked(blockClass, mainClass)
 
       div
         className: blockClass
@@ -210,23 +210,19 @@ export class Comment extends React.PureComponent
               label: osu.trans('comments.load_replies') if @children.length == 0
               ref: @loadMoreRef
 
-  
-  renderBlocked: =>
-    blockClass = classWithModifiers 'comment', @props.modifiers, top: @props.depth == 0
-    mainClass = classWithModifiers 'comment__main', 'deleted'
 
+  renderBlocked: (blockClass, mainClass) =>
     div className: blockClass,
       div className: mainClass,
-        span 
+        span
           className: if @props.depth > 0 then 'comment__avatar' else ''
           style:
             height: 'auto'
 
         div className: 'comment__container',
-          div className: 'comment__main blocked comment__message osu-md osu-md--comment',
-            el 'p',
-              className: 'osu-md__paragraph',
-              osu.trans('users.blocks.comment_text') 
+          div className: 'comment__message',
+            p className: 'osu-md osu-md--comment osu-md__paragraph',
+              osu.trans('users.blocks.comment_text')
               ' '
               @renderForceShowButton()
 
@@ -487,7 +483,7 @@ export class Comment extends React.PureComponent
               span className: if core.userPreferences.get('comments_show_deleted') then 'fas fa-check-square' else 'far fa-square'
             osu.trans('common.buttons.show_deleted')
 
-  
+
   renderForceShowButton: =>
     button
       type: 'button'
