@@ -79,7 +79,9 @@ class ScoreSearch extends RecordSearch
         }
 
         $modsHelper = app('mods');
-        $allMods = new Set(array_keys($modsHelper->mods[$this->params->rulesetId]));
+        $allMods = $this->params->rulesetId === null
+            ? $modsHelper->allIds
+            : new Set(array_keys($modsHelper->mods[$this->params->rulesetId]));
         $allMods->remove('PF', 'SD', 'MR');
 
         $allSearchMods = [];
