@@ -48,6 +48,7 @@ class Mods
 
     const LEGACY_PREFERENCE_MODS_BITSET = 0b01000000000000000100001000100000; // SD, NC, PF, MR
 
+    public Set $allIds;
     public array $idToBitsetMap;
     public Set $difficultyReductionIds;
     public array $mods = [];
@@ -56,6 +57,7 @@ class Mods
     {
         $this->idToBitsetMap = array_flip(static::LEGACY_BITSET);
         $this->difficultyReductionIds = new Set();
+        $this->allIds = new Set();
 
         $metadata = json_decode(file_get_contents(database_path('mods.json')), true);
 
@@ -84,6 +86,27 @@ class Mods
                 if ($mod['Type'] === 'DifficultyReduction') {
                     $this->difficultyReductionIds->add($id);
                 }
+                $this->allIds->add($id);
+            }
+        }
+    }
+
+    public function assertValidForMultiplayer(int $rulesetId, array $ids, bool $isRealtime, bool $isRequired): void
+    {
+        $this->validateSelection($rulesetId, $ids);
+
+        if ($isRealtime) {
+            $attr = $isRequired ? 'ValidForMultiplayer' : 'ValidForMultiplayerAsFreeMod';
+        } else {
+            $attr = 'UserPlayable';
+        }
+
+        foreach ($ids as $id) {
+            $mod = $this->mods[$rulesetId][$id];
+
+            if (!$mod[$attr]) {
+                $messageType = $isRequired ? 'required' : 'allowed';
+                throw new InvariantException("mod cannot be set as {$messageType}: {$id}");
             }
         }
     }

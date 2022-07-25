@@ -17,7 +17,7 @@ class BeatmapPackTest extends TestCase
     public function testUserCompletionData()
     {
         $beatmapset = Beatmapset::factory()->create();
-        $pack = factory(BeatmapPack::class)->create(['playmode' => null]);
+        $pack = BeatmapPack::factory()->create(['playmode' => null]);
         $pack->items()->create(['beatmapset_id' => $beatmapset->getKey()]);
         $scoreBest = ScoreBest\Taiko::factory()->create();
         $scoreBest->beatmap->update(['beatmapset_id' => $beatmapset->getKey()]);
@@ -46,7 +46,7 @@ class BeatmapPackTest extends TestCase
     public function testUserCompletionDataEmptyUser()
     {
         $beatmapset = Beatmapset::factory()->create();
-        $pack = factory(BeatmapPack::class)->create(['playmode' => null]);
+        $pack = BeatmapPack::factory()->create(['playmode' => null]);
         $pack->items()->create(['beatmapset_id' => $beatmapset->getKey()]);
         $scoreBest = ScoreBest\Taiko::factory()->create();
         $scoreBest->beatmap->update(['beatmapset_id' => $beatmapset->getKey()]);
@@ -74,7 +74,7 @@ class BeatmapPackTest extends TestCase
     public function testUserCompletionDataConverts()
     {
         $beatmapset = Beatmapset::factory()->create();
-        $pack = factory(BeatmapPack::class)->create(['playmode' => null]);
+        $pack = BeatmapPack::factory()->create(['playmode' => null]);
         $pack->items()->create(['beatmapset_id' => $beatmapset->getKey()]);
         $scoreBest = ScoreBest\Taiko::factory()->create();
         $scoreBest->beatmap->update([

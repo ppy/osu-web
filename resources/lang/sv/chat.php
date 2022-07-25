@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'loading_users' => '',
+    'loading_users' => 'laddar användare...',
     'talking_in' => 'pratar i :channel',
     'talking_with' => 'pratar med :name',
     'title_compact' => 'chatt',
@@ -15,38 +15,38 @@ return [
     ],
 
     'channels' => [
-        'create' => '',
+        'create' => 'skapa meddelande',
         'list' => [
             'title' => [
-                'ANNOUNCE' => '',
-                'GROUP' => '',
-                'PM' => '',
-                'PUBLIC' => '',
+                'ANNOUNCE' => 'Meddelanden',
+                'GROUP' => 'Grupper',
+                'PM' => 'Direktmeddelanden',
+                'PUBLIC' => 'Kanaler',
             ],
         ],
     ],
 
     'form' => [
         'title' => [
-            'announcement' => '',
+            'announcement' => 'Skapa nytt meddelande',
         ],
 
         'labels' => [
-            'description' => '',
-            'name' => '',
-            'users' => '',
+            'description' => 'beskrivning',
+            'name' => 'rumsnamn',
+            'users' => 'spelare att lägga till',
         ],
     ],
 
     'not_found' => [
-        'message' => '',
-        'title' => '',
+        'message' => 'Det finns inget här, du kanske lämnade kanalen eller så finns den inte...',
+        'title' => 'kanalen hittades ej',
     ],
 
     'input' => [
-        'create' => '',
+        'create' => 'Skapa',
         'disabled' => 'kan inte skicka meddelande...',
-        'disconnected' => '',
+        'disconnected' => 'Frånkopplad',
         'placeholder' => 'skriv ett meddelande...',
         'send' => 'Skicka',
     ],

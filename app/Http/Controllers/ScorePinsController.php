@@ -6,9 +6,9 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\RenumberUserScorePins;
+use App\Libraries\MorphMap;
 use App\Models\Beatmap;
 use App\Models\ScorePin;
-use Illuminate\Database\Eloquent\Relations\Relation;
 
 class ScorePinsController extends Controller
 {
@@ -75,7 +75,7 @@ class ScorePinsController extends Controller
 
         abort_if(!ScorePin::isValidType($params['score_type']), 422, 'invalid score_type');
 
-        $score = Relation::getMorphedModel($params['score_type'])::find($params['score_id']);
+        $score = MorphMap::getClass($params['score_type'])::find($params['score_id']);
 
         abort_if($score === null, 422, "specified score couldn't be found");
 

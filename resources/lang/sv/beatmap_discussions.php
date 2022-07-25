@@ -19,14 +19,14 @@ return [
     'index' => [
         'deleted_beatmap' => 'raderad',
         'none_found' => 'Inga diskussioner som matchar det sökkriteriet hittades.',
-        'title' => 'Beatmap diskussioner',
+        'title' => 'Beatmapdiskussioner',
 
         'form' => [
             '_' => 'Sök',
             'deleted' => 'Inkludera raderade diskussioner',
             'mode' => 'Beatmapläge',
             'only_unresolved' => 'Visa bara olösta diskussioner',
-            'types' => 'Typ av meddelande',
+            'types' => 'Meddelandetyper',
             'username' => 'Användarnamn',
 
             'beatmapset_status' => [

@@ -15,7 +15,7 @@ return [
     ],
 
     'channels' => [
-        'create' => '',
+        'create' => 'duyuru oluştur',
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Duyurular',
@@ -28,13 +28,13 @@ return [
 
     'form' => [
         'title' => [
-            'announcement' => '',
+            'announcement' => 'Yeni Duyuru Oluştur',
         ],
 
         'labels' => [
-            'description' => '',
-            'name' => '',
-            'users' => '',
+            'description' => 'açıklama',
+            'name' => 'oda adı',
+            'users' => 'eklenecek oyuncular',
         ],
     ],
 
@@ -44,7 +44,7 @@ return [
     ],
 
     'input' => [
-        'create' => '',
+        'create' => 'Oluştur',
         'disabled' => 'mesaj gönderilemiyor...',
         'disconnected' => 'Bağlantı kesildi',
         'placeholder' => 'mesaj yaz...',

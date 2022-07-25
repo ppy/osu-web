@@ -40,9 +40,7 @@ interface BeatmapsetDiscussionDefaultAttributes {
   last_post_at: string;
   message_type: DiscussionType;
   parent_id: number | null;
-  posts: BeatmapsetDiscussionPostJson[];
   resolved: boolean;
-  starting_post: BeatmapsetDiscussionPostJson;
   timestamp: number | null;
   updated_at: string;
   user_id: number;
@@ -50,3 +48,20 @@ interface BeatmapsetDiscussionDefaultAttributes {
 
 type BeatmapsetDiscussionJson = BeatmapsetDiscussionDefaultAttributes & Partial<BeatmapsetDiscussionAvailableIncludes>;
 export default BeatmapsetDiscussionJson;
+
+// bundle versions; beatmap is only on modding history events version
+export type BeatmapsetDiscussionJsonForBundle =
+Omit<BeatmapsetDiscussionJson, 'posts'> // bundle explicitly does not include posts; need this for type discrimination.
+& Required<Pick<BeatmapsetDiscussionJson,
+'beatmapset'
+| 'current_user_attributes'
+| 'starting_post'
+>>;
+
+// discussions page version
+export type BeatmapsetDiscussionJsonForShow =
+BeatmapsetDiscussionJson & Required<Pick<BeatmapsetDiscussionJson,
+'current_user_attributes'
+| 'posts'
+| 'votes'
+>>;
