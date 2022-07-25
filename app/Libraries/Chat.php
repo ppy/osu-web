@@ -75,11 +75,7 @@ class Chat
         priv_check_user($sender, 'ChatPmStart', $target)->ensureCan();
 
         return (new Channel())->getConnection()->transaction(function () use ($sender, $target, $message, $isAction, $uuid) {
-            $channel = Channel::findPM($target, $sender);
-
-            if ($channel === null) {
-                $channel = Channel::createPM($target, $sender);
-            }
+            $channel = Channel::findPM($target, $sender) ?? Channel::createPM($target, $sender);
 
             return static::sendMessage($sender, $channel, $message, $isAction, $uuid);
         });
