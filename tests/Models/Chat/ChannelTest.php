@@ -229,16 +229,19 @@ class ChannelTest extends TestCase
     public function testLeaveChannel(string $type, bool $inChannel)
     {
         $users = User::factory()->count(2)->create();
+        $user = $users[0];
         $channel = Channel::factory()->type($type, [...$users])->create();
         $channel->refresh();
 
-        $channel->removeUser($users[0]);
+        $channel->removeUser($user);
         $channel->refresh();
 
         if ($inChannel) {
-            $this->assertContains($users[0]->getKey(), $channel->userIds());
+            $this->assertContains($user->getKey(), $channel->userIds());
+            $this->assertTrue($channel->hasUser($user));
         } else {
-            $this->assertNotContains($users[0]->getKey(), $channel->userIds());
+            $this->assertNotContains($user->getKey(), $channel->userIds());
+            $this->assertFalse($channel->hasUser($user));
         }
     }
 
@@ -280,6 +283,25 @@ class ChannelTest extends TestCase
         $this->assertEmpty($channel->visibleUsers($user));
     }
 
+    // test add/removeUser resets any memoized values
+    public function testResetMemoized()
+    {
+        $user = User::factory()->create();
+        $channel = Channel::factory()->create();
+
+        $channel->addUser($user); // removeUser doesn't trigger resetMemoized if the user isn't in the channel.
+        $memoized = $this->invokeProperty($channel, 'memoized');
+        $this->assertEmpty($memoized); // addUser calls resetMemoized at the end so it should be empty.
+
+        $this->invokeMethod($channel, 'userChannelFor', [$user]);
+        $memoized = $this->invokeProperty($channel, 'memoized');
+        $this->assertNotEmpty($memoized);
+
+        $channel->removeUser($user);
+        $memoized = $this->invokeProperty($channel, 'memoized');
+        $this->assertEmpty($memoized);
+    }
+
     public function channelCanMessageModeratedChannelDataProvider()
     {
         return [
@@ -319,7 +341,7 @@ class ChannelTest extends TestCase
     public function leaveChannelDataProvider()
     {
         return [
-            ['announce', false], // will need to be updated later.
+            ['announce', true],
             ['pm', true],
             ['public', false],
         ];
