@@ -15,6 +15,9 @@
   --row-background-color-highlight: hsl(var(--hsl-b2));
   --zero-color: fade(#fff, 40%);
 
+  // Safari performance on __popup-menu is very bad, otherwise.
+  .own-layer();
+
   margin-right: -@handle;
   overflow-x: auto;
 
