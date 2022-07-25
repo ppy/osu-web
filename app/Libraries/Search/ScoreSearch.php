@@ -42,32 +42,7 @@ class ScoreSearch extends RecordSearch
             $query->mustNot(['terms' => ['mods' => $this->params->excludeMods]]);
         }
 
-        $mods = $this->params->mods;
-        if ($mods !== null && count($mods) > 0) {
-            $modsHelper = app('mods');
-            $allMods = new Set(array_keys($modsHelper->mods[$this->params->rulesetId]));
-            $allMods->remove('PF', 'SD', 'MR');
-
-            if (in_array('NM', $mods, true)) {
-                $mods = [];
-            }
-
-            $allSearchMods = [];
-            foreach ($mods as $mod) {
-                $searchMods = [$mod];
-                $impliedBy = array_search_null($mod, $modsHelper::IMPLIED_MODS);
-                if ($impliedBy !== null) {
-                    $searchMods[] = $impliedBy;
-                }
-                $query->filter(['terms' => ['mods' => $searchMods]]);
-                $allSearchMods = [...$allSearchMods, ...$searchMods];
-            }
-
-            $excludedMods = array_values(array_diff($allMods->toArray(), $allSearchMods));
-            if (count($excludedMods) > 0) {
-                $query->mustNot(['terms' => ['mods' => $excludedMods]]);
-            }
-        }
+        $this->addModsFilter($query);
 
         switch ($this->params->getType()) {
             case 'country':
@@ -94,5 +69,53 @@ class ScoreSearch extends RecordSearch
         }
 
         return $query;
+    }
+
+    private function addModsFilter(BoolQuery $query): void
+    {
+        $mods = $this->params->mods;
+        if ($mods === null || count($mods) === 0) {
+            return;
+        }
+
+        $modsHelper = app('mods');
+        $allMods = $this->params->rulesetId === null
+            ? $modsHelper->allIds
+            : new Set(array_keys($modsHelper->mods[$this->params->rulesetId]));
+        $allMods->remove('PF', 'SD', 'MR');
+
+        $allSearchMods = [];
+        foreach ($mods as $mod) {
+            if ($mod === 'NM') {
+                $noModSubQuery ??= (new BoolQuery())->mustNot(['terms' => ['mods' => $allMods->toArray()]]);
+                continue;
+            }
+            $modsSubQuery ??= new BoolQuery();
+            $searchMods = [$mod];
+            $impliedBy = array_search_null($mod, $modsHelper::IMPLIED_MODS);
+            if ($impliedBy !== null) {
+                $searchMods[] = $impliedBy;
+            }
+            $modsSubQuery->filter(['terms' => ['mods' => $searchMods]]);
+            $allSearchMods = [...$allSearchMods, ...$searchMods];
+        }
+
+        if (isset($modsSubQuery)) {
+            $excludedMods = array_values(array_diff($allMods->toArray(), $allSearchMods));
+            if (count($excludedMods) > 0) {
+                $modsSubQuery->mustNot(['terms' => ['mods' => $excludedMods]]);
+            }
+        }
+
+        foreach ([$noModSubQuery ?? null, $modsSubQuery ?? null] as $subQuery) {
+            if ($subQuery !== null) {
+                $shouldSubQueries ??= (new BoolQuery())->shouldMatch(1);
+                $shouldSubQueries->should($subQuery);
+            }
+        }
+
+        if (isset($shouldSubQueries)) {
+            $query->must($shouldSubQueries);
+        }
     }
 }

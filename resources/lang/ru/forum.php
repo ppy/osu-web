@@ -52,7 +52,7 @@ return [
         'actions' => [
             'destroy' => 'Удалить ответ',
             'edit' => 'Редактировать ответ',
-            'report' => 'Пожаловаться на запись',
+            'report' => 'Пожаловаться на пост',
             'restore' => 'Восстановить ответ',
         ],
 
@@ -63,7 +63,7 @@ return [
         ],
 
         'info' => [
-            'post_count' => ':count_delimited публикация|:count_delimited публикации|:count_delimited публикаций',
+            'post_count' => ':count_delimited пост|:count_delimited поста|:count_delimited постов',
             'topic_starter' => 'Автор темы',
         ],
     ],
