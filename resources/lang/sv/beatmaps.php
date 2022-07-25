@@ -55,22 +55,22 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'Detta inlägg kommer att gå till allmän beatmapset diskussion. För att modifiera denna beatmap, starta meddelande med tidsstämpel (t.ex. 00:12:345).',
+            'in_general' => 'Detta inlägg kommer att läggas upp i den allmäna beatmapset-diskussionen. För att modda denna beatmap, starta ditt meddelande med tidsstämpel (t.ex. 00:12:345).',
             'in_timeline' => 'För att modda flera tidsstämplar, lägg upp flera inlägg (ett inlägg för varje tidsstämpel).',
         ],
 
         'message_placeholder' => [
-            'general' => 'Skriv här för att posta till General (:version)',
-            'generalAll' => 'Skriv här för att posta till General (Alla svårighetsgrader)',
+            'general' => 'Skriv här för att posta till allmänt (:version)',
+            'generalAll' => 'Skriv här för att posta till allmänt (alla svårighetsgrader)',
             'review' => 'Skriv här för att posta en recension',
-            'timeline' => 'Skriv här för att posta till Tidslinjen (:version)',
+            'timeline' => 'Skriv här för att posta till tidslinjen (:version)',
         ],
 
         'message_type' => [
             'disqualify' => 'Diskvalificera',
             'hype' => 'Hype!',
             'mapper_note' => 'Anteckning',
-            'nomination_reset' => 'Återställ Nominering',
+            'nomination_reset' => 'Återställ nominering',
             'praise' => 'Beröm',
             'problem' => 'Problem',
             'problem_warning' => 'Rapportera problem',
@@ -106,7 +106,7 @@ return [
                 'unsaved' => 'Ej sparad',
                 'timestamp' => [
                     'all-diff' => 'Inlägg med "Alla svårighetsgrader" kan inte tidsstämplas.',
-                    'diff' => 'Om denna :type börjar med en tidsstämpel, visas den under Tidslinje.',
+                    'diff' => 'Om denna :type börjar med en tidsstämpel, visas den under tidslinje.',
                 ],
             ],
             'insert-block' => [
@@ -130,8 +130,8 @@ return [
         'stats' => [
             'deleted' => 'Raderad',
             'mapper_notes' => 'Anteckningar',
-            'mine' => 'Min',
-            'pending' => 'Avvaktar',
+            'mine' => 'Mina',
+            'pending' => 'Väntande',
             'praises' => 'Beröm',
             'resolved' => 'Löst',
             'total' => 'Alla',
@@ -139,8 +139,8 @@ return [
 
         'status-messages' => [
             'approved' => 'Denna beatmap blev godkänd :date!',
-            'graveyard' => "Denna beatmap har inte blivit uppdaterad sen :date och har mest troligast blivit övergiven av skaparen...",
-            'loved' => 'Denna beatmap blev tillagd i älskad :date!',
+            'graveyard' => "Denna beatmap har inte blivit uppdaterad sedan :date och har hamnat på kyrkogården...",
+            'loved' => 'Denna beatmap blev tillagd som älskad :date!',
             'ranked' => 'Denna beatmap blev rankad :date!',
             'wip' => 'Notera: Denna beatmap är markerad som pågående arbete av skaparen.',
         ],
@@ -158,7 +158,7 @@ return [
     ],
 
     'hype' => [
-        'button' => 'Hype Beatmap!',
+        'button' => 'Hype beatmap!',
         'button_done' => 'Redan hypad!',
         'confirm' => "Är du säker? Detta kommer att använda en av dina återstående :n hypes och kan inte tas tillbaka.",
         'explanation' => 'Hypa denna beatmap för att göra den mer synlig för nominering och rankning!',
@@ -171,7 +171,7 @@ return [
     ],
 
     'feedback' => [
-        'button' => 'Lämna Feedback',
+        'button' => 'Lämna feedback',
     ],
 
     'nominations' => [
@@ -183,9 +183,9 @@ return [
         'disqualified_no_reason' => 'ingen anledning specificerad',
         'disqualify' => 'Diskvalificera',
         'incorrect_state' => 'Ett fel uppstod, pröva att uppdatera sidan.',
-        'love' => 'Kärlek',
+        'love' => 'Älska',
         'love_choose' => 'Välj svårighetsgrad för älskad',
-        'love_confirm' => 'Älskar du denna beatmap?',
+        'love_confirm' => 'Älska denna beatmap?',
         'nominate' => 'Nominera',
         'nominate_confirm' => 'Nominera denna beatmap?',
         'nominated_by' => 'nominerad av :users',
@@ -198,7 +198,7 @@ return [
         'unresolved_issues' => 'Det finns fortfarande olösta problem som måste tas hand om först.',
 
         'rank_estimate' => [
-            '_' => 'Denna map uppskattas vara rankad den :date, så länge inga fel uppstår. Den är #:position i kön :queue.',
+            '_' => 'Denna beatmap uppskattas vara rankad :date, så länge inga fel uppstår. Den är #:position i :queue.',
             'queue' => 'rankkö',
             'soon' => 'snart',
         ],
@@ -211,7 +211,7 @@ return [
         'reset_confirm' => [
             'disqualify' => 'Är du säker? Detta kommer att ta bort beatmap från kvalificering och återställa nomineringsprocessen.',
             'nomination_reset' => 'Är du säker? Lägga upp ett nytt problem kommer återställa nomineringar.',
-            'problem_warning' => '',
+            'problem_warning' => 'Är du säker på att rapportera problem på denna beatmap? Detta kommer att meddela Beatmap Nominatorerna.',
         ],
     ],
 
@@ -219,19 +219,19 @@ return [
         'search' => [
             'prompt' => 'skriv in nyckelord...',
             'login_required' => 'Logga in för att söka.',
-            'options' => 'Mer Sök Alternativ',
-            'supporter_filter' => 'Filtrering av :filters kräver en aktiv osu!supporter tagg',
+            'options' => 'Fler sökalternativ',
+            'supporter_filter' => 'Filtrering av :filters kräver en aktiv osu!supporter-tagg',
             'not-found' => 'inga resultat',
-            'not-found-quote' => '... nope, ingenting hittades.',
+            'not-found-quote' => '... näpp, ingenting hittades.',
             'filters' => [
-                'extra' => 'extra',
+                'extra' => 'Extra',
                 'general' => 'Allmänt',
                 'genre' => 'Genre',
                 'language' => 'Språk',
                 'mode' => 'Läge',
                 'nsfw' => 'Explicit innehåll',
                 'played' => 'Spelade',
-                'rank' => 'Rank Uppnådd',
+                'rank' => 'Rank uppnådd',
                 'status' => 'Kategorier',
             ],
             'sorting' => [
@@ -248,7 +248,7 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => 'Filtrering av :filters kräver en aktiv :link',
-                'link_text' => 'osu!supporter tagg',
+                'link_text' => 'osu!supporter-tagg',
             ],
         ],
     ],
@@ -257,7 +257,7 @@ return [
         'featured_artists' => 'Utvalda artister',
         'follows' => 'Prenumererade mappare',
         'recommended' => 'Rekommenderad svårighetsgrad',
-        'spotlights' => '',
+        'spotlights' => 'Beatmaps i rampljuset',
     ],
     'mode' => [
         'all' => 'Alla',
@@ -269,14 +269,14 @@ return [
     ],
     'status' => [
         'any' => 'Alla',
-        'approved' => 'Godkänd',
+        'approved' => 'Godkända',
         'favourites' => 'Favoriter',
         'graveyard' => 'Kyrkogård',
         'leaderboard' => 'Har topplista',
-        'loved' => 'Älskad',
-        'mine' => 'Mina Maps',
-        'pending' => 'Pågående & WIP',
-        'wip' => '',
+        'loved' => 'Älskade',
+        'mine' => 'Mina beatmaps',
+        'pending' => 'Väntande',
+        'wip' => 'WIP',
         'qualified' => 'Kvalificerad',
         'ranked' => 'Rankad',
     ],
@@ -287,7 +287,7 @@ return [
         'anime' => 'Anime',
         'rock' => 'Rock',
         'pop' => 'Pop',
-        'other' => 'Annan',
+        'other' => 'Annat',
         'novelty' => 'Novelty',
         'hip-hop' => 'Hiphop',
         'electronic' => 'Elektroniskt',

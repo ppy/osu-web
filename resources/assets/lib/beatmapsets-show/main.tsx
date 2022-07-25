@@ -6,7 +6,7 @@ import { CommentsManager } from 'components/comments-manager';
 import HeaderV4 from 'components/header-v4';
 import PlaymodeTabs from 'components/playmode-tabs';
 import GameMode, { gameModes } from 'interfaces/game-mode';
-import { action, autorun, computed, makeObservable, observable } from 'mobx';
+import { action, autorun, computed, IReactionDisposer, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { generate, setHash } from 'utils/beatmapset-page-hash';
@@ -25,7 +25,7 @@ interface Props {
 @observer
 export default class Main extends React.Component<Props> {
   @observable private controller: Controller;
-  private disposers = new Set<(() => void) | undefined>();
+  private setHashDisposer?: IReactionDisposer;
 
   @computed
   private get headerLinksAppend() {
@@ -62,11 +62,12 @@ export default class Main extends React.Component<Props> {
   }
 
   componentDidMount() {
-    this.disposers.add(autorun(this.setHash));
+    this.setHashDisposer = autorun(this.setHash);
+    $(document).one('turbolinks:before-cache', () => this.setHashDisposer?.());
   }
 
   componentWillUnmount() {
-    this.disposers.forEach((disposer) => disposer?.());
+    this.setHashDisposer?.();
     this.controller.destroy();
   }
 

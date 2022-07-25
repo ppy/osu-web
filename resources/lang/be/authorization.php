@@ -75,7 +75,7 @@ return [
 
     'comment' => [
         'store' => [
-            'disabled' => '',
+            'disabled' => 'Каментарыі адключаныя',
         ],
         'update' => [
             'deleted' => "Нельга рэдагаваць выдалены допіс.",

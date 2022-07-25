@@ -16,14 +16,14 @@ return [
     'username' => 'ユーザー名',
 
     'artist_tracks' => [
-        'album' => '',
-        'artist' => '',
-        'bpm' => '',
-        'genre' => '',
-        'length' => '',
-        'relevance' => '',
-        'title' => '',
-        'update' => '',
+        'album' => 'アルバム',
+        'artist' => 'アーティスト',
+        'bpm' => 'BPM',
+        'genre' => 'ジャンル',
+        'length' => '長さ',
+        'relevance' => '関連',
+        'title' => '曲名',
+        'update' => '更新',
     ],
 
     'forum_posts' => [

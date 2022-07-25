@@ -29,7 +29,7 @@ return [
     ],
     'search' => [
         'default' => 'Kunde inte få några resultat, försök igen senare.',
-        'invalid_cursor_exception' => '',
+        'invalid_cursor_exception' => 'Ogiltig markörparameter angiven.',
         'operation_timeout_exception' => 'Sökfunktionen är för närvarande mer upptagen än vanligt, försök igen senare.',
     ],
 ];
