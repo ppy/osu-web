@@ -119,8 +119,12 @@ class Mods
 
         return array_reduce(
             $ids,
-            // This ignores mods which don't have bitset
-            fn (int $carry, string $id) => $carry | ($this->idToBitsetMap[$id] ?? 0),
+            // - ignores mods which don't have bitset
+            // - includes implied mods (as that's how it's stored in db)
+            fn (int $carry, string $id) =>
+                $carry
+                | ($this->idToBitsetMap[$id] ?? 0)
+                | ($this->idToBitsetMap[static::IMPLIED_MODS[$id] ?? null] ?? 0),
             0,
         );
     }
