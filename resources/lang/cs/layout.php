@@ -26,7 +26,7 @@ return [
         ],
 
         'beatmapsets' => [
-            'show' => '',
+            'show' => 'info',
             'discussions' => 'diskuze',
         ],
 

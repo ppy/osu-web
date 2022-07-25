@@ -69,6 +69,8 @@ class Kernel extends ConsoleKernel
 
         Commands\ChatExpireAck::class,
         Commands\ChatChannelSetLastMessageId::class,
+
+        Commands\BeatmapLeadersRefresh::class,
     ];
 
     /**

@@ -173,8 +173,8 @@ return [
 
     'score' => [
         'pin' => [
-            'not_owner' => '',
-            'too_many' => '',
+            'not_owner' => 'スコアの所有者のみがピン留めできます。',
+            'too_many' => 'ピン留めの数が多すぎます。',
         ],
     ],
 
