@@ -48,16 +48,16 @@ class Mods
 
     const LEGACY_PREFERENCE_MODS_BITSET = 0b01000000000000000100001000100000; // SD, NC, PF, MR
 
+    public Set $allIds;
     public array $idToBitsetMap;
     public Set $difficultyReductionIds;
     public array $mods = [];
-
-    private array $allModIds;
 
     public function __construct()
     {
         $this->idToBitsetMap = array_flip(static::LEGACY_BITSET);
         $this->difficultyReductionIds = new Set();
+        $this->allIds = new Set();
 
         $metadata = json_decode(file_get_contents(database_path('mods.json')), true);
 
@@ -86,13 +86,9 @@ class Mods
                 if ($mod['Type'] === 'DifficultyReduction') {
                     $this->difficultyReductionIds->add($id);
                 }
+                $this->allIds->add($id);
             }
         }
-    }
-
-    public function allModIds()
-    {
-        return $this->allModIds ??= array_merge(...array_map('array_keys', array_values($this->mods)));
     }
 
     public function assertValidForMultiplayer(int $rulesetId, array $ids, bool $isRealtime, bool $isRequired): void
