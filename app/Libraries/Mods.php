@@ -52,6 +52,8 @@ class Mods
     public Set $difficultyReductionIds;
     public array $mods = [];
 
+    private array $allModIds;
+
     public function __construct()
     {
         $this->idToBitsetMap = array_flip(static::LEGACY_BITSET);
@@ -86,6 +88,11 @@ class Mods
                 }
             }
         }
+    }
+
+    public function allModIds()
+    {
+        return $this->allModIds ??= array_merge(...array_map('array_keys', array_values($this->mods)));
     }
 
     public function assertValidForMultiplayer(int $rulesetId, array $ids, bool $isRealtime, bool $isRequired): void
