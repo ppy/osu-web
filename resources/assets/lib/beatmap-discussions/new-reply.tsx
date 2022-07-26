@@ -75,9 +75,9 @@ export class NewReply extends React.Component<Props> {
 
   constructor(props: Props) {
     super(props);
-    this.handleKeyDown = makeTextAreaHandler(this.handleKeyDownCallback);
-
     makeObservable(this);
+
+    this.handleKeyDown = makeTextAreaHandler(this.handleKeyDownCallback);
   }
 
   componentDidUpdate(prevProps: Readonly<Props>) {
@@ -107,17 +107,16 @@ export class NewReply extends React.Component<Props> {
     this.editing = true;
   };
 
+  @action
   private handleKeyDownCallback: TextAreaCallback = (type, event) => {
-    runInAction(() => {
-      switch (type) {
-        case InputEventType.Cancel:
-          this.editing = false;
-          break;
-        case InputEventType.Submit:
-          this.post(event);
-          break;
-      }
-    });
+    switch (type) {
+      case InputEventType.Cancel:
+        this.editing = false;
+        break;
+      case InputEventType.Submit:
+        this.post(event);
+        break;
+    }
   };
 
   @action
