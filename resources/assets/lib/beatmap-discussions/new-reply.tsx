@@ -108,7 +108,7 @@ export class NewReply extends React.Component<Props> {
   };
 
   @action
-  private handleKeyDownCallback: TextAreaCallback = (type, event) => {
+  private readonly handleKeyDownCallback: TextAreaCallback = (type, event) => {
     switch (type) {
       case InputEventType.Cancel:
         this.editing = false;
@@ -152,14 +152,12 @@ export class NewReply extends React.Component<Props> {
     });
 
     this.postXhr
-      .done((json) => {
-        runInAction(() => {
-          this.editing = false;
-          this.message = '';
-          $.publish('beatmapDiscussionPost:markRead', { id: json.beatmap_discussion_post_ids });
-          $.publish('beatmapsetDiscussions:update', { beatmapset: json.beatmapset });
-        });
-      })
+      .done((json) => runInAction(() => {
+        this.editing = false;
+        this.message = '';
+        $.publish('beatmapDiscussionPost:markRead', { id: json.beatmap_discussion_post_ids });
+        $.publish('beatmapsetDiscussions:update', { beatmapset: json.beatmapset });
+      }))
       .fail(onError)
       .always(action(() => {
         hideLoadingOverlay();
