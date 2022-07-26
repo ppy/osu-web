@@ -51,6 +51,7 @@ class BeatmapLeadersRefresh extends Command
                 }
             }
         });
+        $bar->finish();
         $this->line('');
     }
 }
