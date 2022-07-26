@@ -153,5 +153,5 @@ export function startingPost(discussion: BeatmapsetDiscussionJsonForBundle | Bea
 export function validMessageLength(message?: string | null, isTimeline = false) {
   if (!message?.length) return false;
 
-  return isTimeline ? message.length <= maxLengthTimeline : true;
+  return !isTimeline || message.length <= maxLengthTimeline;
 }
