@@ -9,7 +9,9 @@ export enum InputEventType {
   Submit = 'submit',
 }
 
-export function makeTextAreaHandler(callback: (type: InputEventType | null, event: KeyboardEvent<HTMLTextAreaElement>) => void) {
+export type TextAreaCallback = (type: InputEventType | null, event: KeyboardEvent<HTMLTextAreaElement>) => void;
+
+export function makeTextAreaHandler(callback: TextAreaCallback) {
   return (event: KeyboardEvent<HTMLTextAreaElement>) => {
     let type: InputEventType | null = null;
 

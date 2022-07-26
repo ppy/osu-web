@@ -14,7 +14,7 @@ import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
 import { onError } from 'utils/ajax';
 import { validMessageLength } from 'utils/beatmapset-discussion-helper';
-import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
+import { InputEventType, makeTextAreaHandler, TextAreaCallback } from 'utils/input-handler';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import MessageLengthCounter from './message-length-counter';
 
@@ -107,7 +107,7 @@ export class NewReply extends React.PureComponent<Props, State> {
     this.setState({ editing: true }, () => this.box.current?.focus());
   };
 
-  private handleKeyDownCallback = (type: InputEventType | null, event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+  private handleKeyDownCallback: TextAreaCallback = (type, event) => {
     switch (type) {
       case InputEventType.Cancel:
         this.setState({ editing: false });
