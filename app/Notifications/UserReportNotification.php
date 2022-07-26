@@ -17,6 +17,8 @@ class UserReportNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
+    const CONTENT_MAX_LENGTH = 1000;
+
     const HTTP_OPTIONS = [
         RequestOptions::CONNECT_TIMEOUT => 5,
         RequestOptions::TIMEOUT => 5,
@@ -50,7 +52,7 @@ class UserReportNotification extends Notification implements ShouldQueue
 
                 $attachment
                     ->color('warning')
-                    ->content($notifiable->comments)
+                    ->content(truncate($notifiable->comments), static::CONTENT_MAX_LENGTH)
                     ->fields([
                         'Reporter' => "<{$this->reporter->url()}|{$this->reporter->username}>",
                         'Reported' => $reportedText,
