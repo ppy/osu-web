@@ -39,6 +39,12 @@ const actionIcons = {
   reply_resolve: 'fas fa-check',
 };
 
+const actionResolveLookup = {
+  reply_reopen: false,
+  reply_resolve: true,
+} as Record<string, boolean | undefined>;
+
+
 export class NewReply extends React.PureComponent<Props, State> {
   state: Readonly<State> = {
     editing: osu.present(this.storedMessage),
@@ -129,20 +135,10 @@ export class NewReply extends React.PureComponent<Props, State> {
     const action = event.currentTarget.dataset.action ?? 'reply';
     this.setState({ posting: action });
 
-    // Only add resolved flag to beatmap_discussion if there was an
-    // explicit change (resolve/reopen).
-    const dataBeatmapDiscussion: { resolved?: boolean } = {};
-    switch (action) {
-      case 'reply_resolve':
-        dataBeatmapDiscussion.resolved = true;
-        break;
-      case 'reply_reopen':
-        dataBeatmapDiscussion.resolved = false;
-        break;
-    }
-
     const data = {
-      beatmap_discussion: dataBeatmapDiscussion,
+      // Only add resolved flag to beatmap_discussion if there was an
+      // explicit change (resolve/reopen); undefined is not sent.
+      beatmap_discussion: { resolved: actionResolveLookup[action] },
       beatmap_discussion_id: this.props.discussion.id,
       beatmap_discussion_post: {
         message: this.state.message,
