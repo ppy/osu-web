@@ -80,7 +80,7 @@ module.exports = {
                 'protected-instance-method',
                 'private-instance-method',
               ],
-              order: 'alphabetically',
+              order: 'alphabetically-case-insensitive',
             },
           },
         ],
