@@ -52,7 +52,7 @@ class UserReportNotification extends Notification implements ShouldQueue
 
                 $attachment
                     ->color('warning')
-                    ->content(truncate($notifiable->comments), static::CONTENT_MAX_LENGTH)
+                    ->content(truncate($notifiable->comments, static::CONTENT_MAX_LENGTH))
                     ->fields([
                         'Reporter' => "<{$this->reporter->url()}|{$this->reporter->username}>",
                         'Reported' => $reportedText,
