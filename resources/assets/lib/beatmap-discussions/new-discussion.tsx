@@ -14,6 +14,8 @@ import { BeatmapsetWithDiscussionsJson } from 'interfaces/beatmapset-json';
 import CurrentUserJson from 'interfaces/current-user-json';
 import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
+import { action, computed, makeObservable, observable, runInAction } from 'mobx';
+import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
@@ -85,36 +87,34 @@ interface Props {
   stickTo: React.RefObject<HTMLElement>;
 }
 
-interface State {
-  cssTop?: number;
-  message: string;
-  posting: string | null;
-  timestampConfirmed: boolean;
-}
-
-export class NewDiscussion extends React.PureComponent<Props, State> {
+@observer
+export class NewDiscussion extends React.Component<Props> {
   static readonly defaultProps = {
     pinned: false,
-  };
-
-  state: Readonly<State> = {
-    message: this.storedMessage,
-    posting: null,
-    timestampConfirmed: false,
   };
 
   private readonly disposers = new Set<((() => void) | undefined)>();
   private readonly handleKeyDown;
   private readonly inputBox = React.createRef<HTMLTextAreaElement>();
+  @observable private message = this.storedMessage;
   private nearbyDiscussionsCache: DiscussionsCache | null = null;
+  @observable private posting: string | null = null;
   private postXhr: JQuery.jqXHR<BeatmapsetDiscussionPostStoreResponseJson> | null = null;
+  @observable private sticky = this.props.pinned;
   private timestampCache: TimestampCache | null = null;
+  @observable private timestampConfirmed = false;
 
   private get canPost() {
     return !this.props.currentUser.is_silenced
       && (!this.props.beatmapset.discussion_locked
         || canModeratePosts(this.props.currentUser))
       && (this.props.currentBeatmap.deleted_at == null || this.props.mode === 'generalAll');
+  }
+
+  @computed
+  private get cssTop() {
+    if (!this.sticky || this.props.stickTo?.current == null) return;
+    return core.stickyHeader.headerHeight + this.props.stickTo.current.getBoundingClientRect().height;
   }
 
   private get isTimeline() {
@@ -147,14 +147,14 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
   private get timestamp() {
     if (this.props.mode !== 'timeline') return null;
 
-    if (this.timestampCache?.message !== this.state.message) {
+    if (this.timestampCache?.message !== this.message) {
       this.timestampCache = null;
     }
 
     if (this.timestampCache == null) {
       this.timestampCache = {
-        message: this.state.message,
-        timestamp: BeatmapDiscussionHelper.parseTimestamp(this.state.message),
+        message: this.message,
+        timestamp: BeatmapDiscussionHelper.parseTimestamp(this.message),
       };
     }
 
@@ -162,10 +162,10 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
   }
 
   private get validPost() {
-    if (!validMessageLength(this.state.message, this.isTimeline)) return false;
+    if (!validMessageLength(this.message, this.isTimeline)) return false;
 
     if (this.isTimeline) {
-      return this.timestamp != null && (this.nearbyDiscussions.length === 0 || this.state.timestampConfirmed);
+      return this.timestamp != null && (this.nearbyDiscussions.length === 0 || this.timestampConfirmed);
     }
 
     return true;
@@ -173,13 +173,11 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
 
   constructor(props: Props) {
     super(props);
+    makeObservable(this);
     this.handleKeyDown = makeTextAreaHandler(this.handleKeyDownCallback);
   }
 
   componentDidMount() {
-    this.setTop();
-    $(window).on('resize', this.setTop);
-
     if (this.props.autoFocus) {
       this.disposers.add(core.reactTurbolinks.runAfterPageLoad(() => this.inputBox.current?.focus()));
     }
@@ -187,14 +185,13 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
 
   componentDidUpdate(prevProps: Readonly<Props>) {
     if (prevProps.beatmapset.id !== this.props.beatmapset.id) {
-      this.setState({ message: this.storedMessage });
+      this.message = this.storedMessage;
       return;
     }
     this.storeMessage();
   }
 
   componentWillUnmount() {
-    $(window).off('resize', this.setTop);
     this.postXhr?.abort();
     this.disposers.forEach((disposer) => disposer?.());
   }
@@ -205,7 +202,7 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
     return (
       <div
         className={cssClasses}
-        style={{ top: this.state.cssTop }}
+        style={{ top: this.cssTop }}
       >
         <div className='beatmap-discussion-new-float__floatable'>
           <div
@@ -219,13 +216,7 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
     );
   }
 
-  private cssTop(sticky: boolean) {
-    if (!sticky || this.props.stickTo?.current == null) return;
-    return core.stickyHeader.headerHeight + this.props.stickTo.current.getBoundingClientRect().height;
-
-  }
-
-  private handleKeyDownCallback = (type: InputEventType | null) => {
+  private readonly handleKeyDownCallback = (type: InputEventType | null) => {
     // Ignores SUBMIT, requiring shift-enter to add new line.
     if (type === InputEventType.Cancel) {
       this.setSticky(false);
@@ -248,6 +239,7 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
 
   private readonly onFocus = () => this.setSticky(true);
 
+  @action
   private readonly post = (e: React.SyntheticEvent<HTMLElement>) => {
     if (!this.validPost || this.postXhr != null) return;
 
@@ -266,7 +258,7 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
     }
 
     showLoadingOverlay();
-    this.setState({ posting: type });
+    this.posting = type;
 
     const data = {
       beatmap_discussion: {
@@ -275,7 +267,7 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
         timestamp: this.timestamp,
       },
       beatmap_discussion_post: {
-        message: this.state.message,
+        message: this.message,
       },
       beatmapset_id: this.props.currentBeatmap.beatmapset_id,
     };
@@ -286,20 +278,18 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
     });
 
     this.postXhr
-      .done((json) => {
-        this.setState({
-          message: '',
-          timestampConfirmed: false,
-        });
+      .done((json) => runInAction(() => {
+        this.message = '';
+        this.timestampConfirmed = false;
         $.publish('beatmapDiscussionPost:markRead', { id: json.beatmap_discussion_post_ids });
         $.publish('beatmapsetDiscussions:update', { beatmapset: json.beatmapset });
-      })
+      }))
       .fail(onError)
-      .always(() => {
+      .always(action(() => {
         hideLoadingOverlay();
         this.postXhr = null;
-        this.setState({ posting: null });
-      });
+        this.posting = null;
+      }));
   };
 
   private problemType() {
@@ -360,18 +350,18 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
                     key='input'
                     ref={this.inputBox}
                     className={`${bn}__message-area js-hype--input`}
-                    disabled={this.state.posting != null || !this.canPost}
+                    disabled={this.posting != null || !this.canPost}
                     onChange={this.setMessage}
                     onFocus={this.onFocus}
                     onKeyDown={this.handleKeyDown}
                     placeholder={this.messagePlaceholder()}
-                    value={this.canPost ? this.state.message : ''}
+                    value={this.canPost ? this.message : ''}
                   />
 
                   <MessageLengthCounter
                     key='counter'
                     isTimeline={this.isTimeline}
-                    message={this.state.message}
+                    message={this.message}
                   />
                 </>
               ) : osu.trans('beatmaps.discussions.require-login')}
@@ -463,7 +453,7 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
         <label className={`${bn}__notice-checkbox`}>
           <div className='osu-switch-v2'>
             <input
-              checked={this.state.timestampConfirmed}
+              checked={this.timestampConfirmed}
               className='osu-switch-v2__input'
               onChange={this.toggleTimestampConfirmation}
               type='checkbox'
@@ -493,25 +483,23 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
     );
   }
 
+  @action
   private readonly setMessage = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    this.setState({ message: e.target.value });
+    this.message = e.target.value;
   };
 
   // TODO: to whoever refactors this - this 'sticky' behaviour was ported to new-review.tsx, so remember to refactor that too
+  @action
   private readonly setSticky = (sticky = true) => {
-    this.setState({ cssTop: this.cssTop(sticky) });
+    this.sticky = sticky;
     this.props.setPinned?.(sticky);
   };
 
-  private readonly setTop = () => {
-    this.setState({ cssTop: this.cssTop(this.props.pinned) });
-  };
-
   private storeMessage() {
-    if (!osu.present(this.state.message)) {
+    if (!osu.present(this.message)) {
       localStorage.removeItem(this.storageKey);
     } else {
-      localStorage.setItem(this.storageKey, this.state.message);
+      localStorage.setItem(this.storageKey, this.message);
     }
   }
 
@@ -525,9 +513,9 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
     return (
       <BigButton
         key={type}
-        disabled={!this.validPost || this.state.posting != null || !this.canPost}
+        disabled={!this.validPost || this.posting != null || !this.canPost}
         icon={discussionTypeIcons[type]}
-        isBusy={this.state.posting === type}
+        isBusy={this.posting === type}
         props={props}
         text={osu.trans(`beatmaps.discussions.message_type.${typeText}`)}
       />
@@ -538,7 +526,8 @@ export class NewDiscussion extends React.PureComponent<Props, State> {
     this.setSticky(!this.props.pinned);
   };
 
+  @action
   private readonly toggleTimestampConfirmation = () => {
-    this.setState({ timestampConfirmed: !this.state.timestampConfirmed });
+    this.timestampConfirmed = !this.timestampConfirmed;
   };
 }
