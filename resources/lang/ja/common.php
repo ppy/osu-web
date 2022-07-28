@@ -21,7 +21,7 @@ return [
     'buttons' => [
         'admin' => '管理者',
         'authorise' => '承認',
-        'authorising' => '承認...',
+        'authorising' => '承認中...',
         'back_to_previous' => '直前の状態に戻す',
         'back_to_top' => 'トップに戻る',
         'cancel' => 'キャンセル',
@@ -44,7 +44,7 @@ return [
         'reply_resolve' => '返信して解決',
         'reset' => 'リセット',
         'restore' => '復元',
-        'retry' => '',
+        'retry' => 'リトライ',
         'save' => '保存',
         'saving' => '保存中・・・',
         'search' => '検索',

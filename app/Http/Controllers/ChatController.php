@@ -31,7 +31,7 @@ class ChatController extends Controller
         $user = auth()->user();
         Chat::ack($user);
 
-        // rejoin any existing channel first, otherwise it'll be missing from the preload later.
+        // rejoin any existing channel first, so it will be in the user channel list.
         $targetUser = User::lookup(get_int(request('sendto')), 'id');
         if ($targetUser !== null) {
             $channel = Channel::findPM($targetUser, $user);

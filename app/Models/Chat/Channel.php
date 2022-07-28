@@ -43,6 +43,7 @@ class Channel extends Model
 
     use Validatable;
 
+    const ANNOUNCE_MESSAGE_LENGTH_LIMIT = 1024; // limited by column length
     const CHAT_ACTIVITY_TIMEOUT = 60; // in seconds.
 
     public ?string $uuid = null;
@@ -89,7 +90,8 @@ class Channel extends Model
         $params['type'] = static::TYPES['announce'];
 
         $channel = new static($params);
-        $channel->getConnection()->transaction(function () use ($channel, $users, $uuid) {
+        $connection = $channel->getConnection();
+        $connection->transaction(function () use ($channel, $connection, $users, $uuid) {
             $channel->saveOrExplode();
             $channel->uuid = $uuid;
             $userChannels = $channel->userChannels()->createMany($users->map(fn ($user) => ['user_id' => $user->getKey()]));
@@ -103,6 +105,8 @@ class Channel extends Model
             foreach ($users as $user) {
                 (new ChatChannelEvent($channel, $user, 'join'))->broadcast(true);
             }
+
+            $connection->afterCommit(fn () => Datadog::increment('chat.channel.create', 1, ['type' => $channel->type]));
         });
 
         return $channel;
@@ -410,7 +414,8 @@ class Channel extends Model
             throw new API\ChatMessageEmptyException(osu_trans('api.error.chat.empty'));
         }
 
-        if (!$this->isAnnouncement() && mb_strlen($content, 'UTF-8') >= config('osu.chat.message_length_limit')) {
+        $maxLength = $this->isAnnouncement() ? static::ANNOUNCE_MESSAGE_LENGTH_LIMIT : config('osu.chat.message_length_limit');
+        if (mb_strlen($content, 'UTF-8') > $maxLength) {
             throw new API\ChatMessageTooLongException(osu_trans('api.error.chat.too_long'));
         }
 

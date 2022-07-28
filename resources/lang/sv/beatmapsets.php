@@ -12,7 +12,7 @@ return [
     ],
 
     'cover' => [
-        'deleted' => '',
+        'deleted' => 'Raderad beatmap',
     ],
 
     'download' => [
@@ -125,7 +125,7 @@ return [
             'language' => 'Språk',
             'no_scores' => 'Data beräknas...',
             'nsfw' => 'Explicit innehåll',
-            'offset' => '',
+            'offset' => 'Online-förskjutning',
             'points-of-failure' => 'Punkter av Misslyckande',
             'source' => 'Källa',
             'storyboard' => 'Denna beatmap innehåller storyboard',
@@ -148,7 +148,7 @@ return [
         'scoreboard' => [
             'achieved' => 'uppnått :when',
             'country' => 'Nationell rankning',
-            'error' => '',
+            'error' => 'Det gick inte att ladda ranking',
             'friend' => 'Rankning bland vänner',
             'global' => 'Global rankning',
             'supporter-link' => 'Klicka <a href=":link">här</a> för att se alla fina funktioner du kommer få!',
@@ -160,7 +160,7 @@ return [
                 'combo' => 'Högsta kombo',
                 'miss' => 'Missar',
                 'mods' => 'Tillägg',
-                'pin' => '',
+                'pin' => 'Fäst',
                 'player' => 'Spelare',
                 'pp' => '',
                 'rank' => 'Rank',
@@ -181,8 +181,8 @@ return [
                 'own' => 'Ditt bästa',
             ],
             'supporter_link' => [
-                '_' => '',
-                'here' => '',
+                '_' => 'Klicka :here för att se alla fina förmåner som du får!',
+                'here' => 'här',
             ],
         ],
 
@@ -197,7 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Cirkelantal',
             'count_sliders' => 'Sliderantal',
-            'offset' => '',
+            'offset' => 'Online-förskjutning: :offset',
             'user-rating' => 'Användarbetyg',
             'rating-spread' => 'Betygsspridning',
             'nominations' => 'Nomineringar',
@@ -216,6 +216,6 @@ return [
     ],
 
     'spotlight_badge' => [
-        'label' => '',
+        'label' => 'I rampljuset',
     ],
 ];

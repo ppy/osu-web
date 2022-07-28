@@ -5,9 +5,9 @@
 
 return [
     'empty' => [
-        '_' => '',
+        '_' => 'Henüz bir osu!(lazer) :type_group oynamamış!',
         'playlists' => 'oynama listesi',
-        'realtime' => 'çok oyunculu',
+        'realtime' => 'çok oyunculu oyunu',
     ],
 
     'room' => [
@@ -18,7 +18,7 @@ return [
         'time_left' => 'kalan süre: :time',
 
         'errors' => [
-            'duration_too_long' => '',
+            'duration_too_long' => 'Süresi aşırı uzun.',
         ],
 
         'status' => [

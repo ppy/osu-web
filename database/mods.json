@@ -419,6 +419,24 @@
         "Type": "Conversion",
         "Settings": [],
         "IncompatibleMods": [
+          "SG",
+          "AT",
+          "CN",
+          "RX"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "SG",
+        "Name": "Single Tap",
+        "Description": "You must only use one key!",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [
+          "AL",
           "AT",
           "CN",
           "RX"
@@ -439,11 +457,13 @@
           "SD",
           "PF",
           "AL",
+          "SG",
           "CN",
           "RX",
           "AP",
           "SO",
-          "MG"
+          "MG",
+          "RP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": false,
@@ -461,6 +481,7 @@
           "SD",
           "PF",
           "AL",
+          "SG",
           "AT",
           "CN",
           "RX",
@@ -484,6 +505,7 @@
           "SD",
           "PF",
           "AL",
+          "SG",
           "AT",
           "CN",
           "AP",
@@ -508,7 +530,8 @@
           "CN",
           "RX",
           "SO",
-          "MG"
+          "MG",
+          "RP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -540,7 +563,8 @@
         "Settings": [],
         "IncompatibleMods": [
           "WG",
-          "MG"
+          "MG",
+          "RP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -555,7 +579,8 @@
         "Settings": [],
         "IncompatibleMods": [
           "TR",
-          "MG"
+          "MG",
+          "RP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -819,7 +844,32 @@
           "RX",
           "AP",
           "TR",
-          "WG"
+          "WG",
+          "RP"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "RP",
+        "Name": "Repel",
+        "Description": "Hit objects run away!",
+        "Type": "Fun",
+        "Settings": [
+          {
+            "Name": "repulsion_strength",
+            "Type": "number"
+          }
+        ],
+        "IncompatibleMods": [
+          "AT",
+          "CN",
+          "AP",
+          "TR",
+          "WG",
+          "MG"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -2581,3 +2631,4 @@
     ]
   }
 ]
+

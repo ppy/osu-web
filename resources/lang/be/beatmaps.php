@@ -257,7 +257,7 @@ return [
         'featured_artists' => 'Ліцэнзаваныя мастакі',
         'follows' => 'Падпісаныя маперы',
         'recommended' => 'Рэкамендавана цяжкасць',
-        'spotlights' => '',
+        'spotlights' => 'Карты з чартаў',
     ],
     'mode' => [
         'all' => 'Усе',
