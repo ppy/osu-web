@@ -69,11 +69,6 @@ interface DiscussionsCache {
   timestamp: number | null;
 }
 
-interface TimestampCache {
-  message: string;
-  timestamp: number | null;
-}
-
 interface Props {
   autoFocus: boolean;
   beatmapset: BeatmapsetExtendedJson & BeatmapsetWithDiscussionsJson;
@@ -101,7 +96,6 @@ export class NewDiscussion extends React.Component<Props> {
   @observable private posting: string | null = null;
   private postXhr: JQuery.jqXHR<BeatmapsetDiscussionPostStoreResponseJson> | null = null;
   @observable private sticky = this.props.pinned;
-  private timestampCache: TimestampCache | null = null;
   @observable private timestampConfirmed = false;
 
   private get canPost() {
@@ -144,21 +138,11 @@ export class NewDiscussion extends React.Component<Props> {
     return localStorage.getItem(this.storageKey) ?? '';
   }
 
+  @computed
   private get timestamp() {
-    if (this.props.mode !== 'timeline') return null;
-
-    if (this.timestampCache?.message !== this.message) {
-      this.timestampCache = null;
-    }
-
-    if (this.timestampCache == null) {
-      this.timestampCache = {
-        message: this.message,
-        timestamp: BeatmapDiscussionHelper.parseTimestamp(this.message),
-      };
-    }
-
-    return this.timestampCache.timestamp;
+    return this.props.mode === 'timeline'
+      ? BeatmapDiscussionHelper.parseTimestamp(this.message)
+      : null;
   }
 
   private get validPost() {
