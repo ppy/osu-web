@@ -4,14 +4,15 @@
 --}}
 @php
     $user = auth()->user();
+    $value = $user->$field;
 @endphp
 <div class="account-edit-entry js-account-edit js-form-error js-form-error--field" data-account-edit-auto-submit="1" data-skip-ajax-error-popup="1">
     <input
         class="account-edit-entry__input js-account-edit__input"
         name="user[{{ $field }}]"
-        data-last-value="{{ $user->$field }}"
+        data-last-value="{{ $value }}"
         maxlength="{{ $user::MAX_FIELD_LENGTHS[$field] }}"
-        value="{{ $user->$field }}"
+        value="{{ $value }}"
         @if ($user->isSilenced())
             disabled
         @endif
