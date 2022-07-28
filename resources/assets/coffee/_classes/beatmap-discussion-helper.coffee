@@ -203,12 +203,3 @@ class window.BeatmapDiscussionHelper
     ret.postId = postId if ret.discussionId? && postId?
 
     ret
-
-
-  @validMessageLength: (message, isTimeline) =>
-    return false unless message?.length > 0
-
-    if isTimeline
-      message.length <= maxLengthTimeline
-    else
-      true
