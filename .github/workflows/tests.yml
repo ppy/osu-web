@@ -149,3 +149,10 @@ jobs:
 
       - name: Run Dusk
         run: ./bin/run_dusk.sh
+
+      # this only tests that the rollback functions are valid and doesn't check
+      # if they actually do what they're expected to do.
+      - name: Migration rollback test
+        run: |
+          php artisan migrate:reset | tee rollback.log
+          grep -Fq 'no rolling back from this migration =)' rollback.log

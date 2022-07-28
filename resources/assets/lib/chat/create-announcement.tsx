@@ -9,6 +9,7 @@ import UserJson from 'interfaces/user-json';
 import { action, computed, makeObservable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import { isInputKey } from 'models/chat/create-announcement';
+import { maxLength } from 'models/chat/message';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 
@@ -91,7 +92,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
               autoComplete='off'
               className='chat-form__input chat-form__input--box'
               defaultValue={this.model.inputs.message}
-              maxLength={1024}
+              maxLength={maxLength}
               name='message'
               onBlur={this.handleBlur}
               onChange={this.handleInput}

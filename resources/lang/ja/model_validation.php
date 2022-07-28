@@ -164,7 +164,7 @@ return [
     ],
 
     'user_report' => [
-        'no_ranked_beatmapset' => '',
+        'no_ranked_beatmapset' => 'ランク付けされたビートマップは報告できません。',
         'reason_not_valid' => ':reason はこのテレポートタイプでは無効です。',
         'self' => "自分自身を報告することはできません！",
     ],

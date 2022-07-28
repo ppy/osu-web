@@ -13,7 +13,7 @@ return [
 
     'beatmaps' => [
         '_' => 'Beatmaps',
-        'download' => 'Ladda ner Beatmapmall',
+        'download' => 'Ladda ner beatmapmall',
         'download-na' => 'Beatmapmallen är inte tillgänglig ännu',
     ],
 
@@ -22,7 +22,7 @@ return [
     ],
 
     'links' => [
-        'beatmaps' => 'osu! beatmaps',
+        'beatmaps' => 'osu!-beatmaps',
         'osu' => 'osu! profil',
         'site' => 'Officiell hemsida',
     ],

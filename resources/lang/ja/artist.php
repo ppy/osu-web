@@ -22,7 +22,7 @@ return [
     ],
 
     'links' => [
-        'beatmaps' => '',
+        'beatmaps' => 'osu!ビートマップ',
         'osu' => 'osu! プロフィール',
         'site' => '公式ウェブサイト',
     ],
@@ -30,8 +30,8 @@ return [
     'songs' => [
         '_' => '楽曲一覧',
         'count' => ':count_delimited 曲',
-        'original' => '',
-        'original_badge' => '',
+        'original' => 'osu!オリジナル',
+        'original_badge' => 'オリジナル',
     ],
 
     'tracklist' => [
@@ -43,19 +43,19 @@ return [
 
     'tracks' => [
         'index' => [
-            '_' => '',
+            '_' => 'トラック検索',
 
             'form' => [
-                'advanced' => '',
-                'album' => '',
-                'artist' => '',
-                'bpm_gte' => '',
-                'bpm_lte' => '',
-                'empty' => '',
-                'genre' => '',
-                'genre_all' => '',
-                'length_gte' => '',
-                'length_lte' => '',
+                'advanced' => '高度な検索',
+                'album' => 'アルバム',
+                'artist' => 'アーティスト',
+                'bpm_gte' => '最低BPM',
+                'bpm_lte' => '最高BPM',
+                'empty' => '条件に当てはまるトラックが見つかりませんでした。',
+                'genre' => 'ジャンル',
+                'genre_all' => '全て',
+                'length_gte' => '最低の再生時間',
+                'length_lte' => '最高の再生時間',
             ],
         ],
     ],

@@ -16,7 +16,7 @@ export default interface ChannelJson {
   current_user_attributes?: {
     can_message: boolean;
     can_message_error: string | null;
-    last_read_id: number;
+    last_read_id: number | null;
   };
   description?: string;
   icon?: string;

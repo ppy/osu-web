@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => '',
+    'invalid' => 'Zadaná neplatná :attribute.',
     'not_negative' => ':attribute nesmí být záporný.',
     'required' => ':attribute je vyžadován.',
     'too_long' => ':attribute přesáhl maximální délku - může mít maximálně :limit znaků.',
@@ -24,7 +24,7 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "",
+            'discussion_locked' => "Tato beatmapa je v současnosti uzamčena v diskuzi a nelze ji nadchnout",
             'guest' => 'Musíš být přihlášek k nadšení.',
             'hyped' => 'Tuto beatmapu již si nadchnul.',
             'limit_exceeded' => 'Využil jsi všechny svoje nadšení.',
@@ -57,7 +57,7 @@ return [
     ],
 
     'follow' => [
-        'invalid' => '',
+        'invalid' => 'Zadaná neplatná :attribute.',
     ],
 
     'forum' => [
@@ -78,7 +78,7 @@ return [
             'only_quote' => 'Tvoje odpověď obsahuje jenom citát.',
 
             'attributes' => [
-                'post_text' => '',
+                'post_text' => 'Tělo příspěvku',
             ],
         ],
 
@@ -115,7 +115,7 @@ return [
 
             'attributes' => [
                 'name' => 'Název aplikace',
-                'redirect' => '',
+                'redirect' => 'URL zpětného volání aplikace',
             ],
         ],
     ],
@@ -123,7 +123,7 @@ return [
     'user' => [
         'contains_username' => 'Heslo nesmí obsahovat uživatelské jméno.',
         'email_already_used' => 'E-mailová adresa už byla použita.',
-        'email_not_allowed' => '',
+        'email_not_allowed' => 'E-mailová adresa není povolena.',
         'invalid_country' => 'Stát není v databázi.',
         'invalid_discord' => 'Discord uživatelské jmeno je neplatné.',
         'invalid_email' => "Vypadá to na neplatnou e-mailovou adresu.",
@@ -164,7 +164,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Hodnocené beatmapy nemohou být nahlášeny',
-        'reason_not_valid' => '',
+        'reason_not_valid' => ':reason není platný pro tento typ nahlášení.',
         'self' => "Nemůžete nahlásit sám sebe!",
     ],
 

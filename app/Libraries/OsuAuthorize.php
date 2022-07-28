@@ -26,6 +26,7 @@ use App\Models\LegacyMatch\LegacyMatch;
 use App\Models\Multiplayer\Room;
 use App\Models\OAuth\Client;
 use App\Models\Score\Best\Model as ScoreBest;
+use App\Models\Solo;
 use App\Models\Traits\ReportableInterface;
 use App\Models\User;
 use App\Models\UserContestEntry;
@@ -1843,7 +1844,7 @@ class OsuAuthorize
      * @return string
      * @throws AuthorizationCheckException
      */
-    public function checkScorePin(?User $user, ScoreBest $score): string
+    public function checkScorePin(?User $user, ScoreBest|Solo\Score $score): string
     {
         $prefix = 'score.pin.';
 
