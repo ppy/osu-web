@@ -7,9 +7,11 @@ namespace App\Console\Commands;
 
 use App\Libraries\Search\ScoreSearch;
 use App\Models\Solo\Score;
+use Ds\Set;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Collection;
 use LaravelRedis;
+use Symfony\Component\Console\Helper\ProgressBar;
 
 class EsIndexScoresQueue extends Command
 {
@@ -31,6 +33,10 @@ class EsIndexScoresQueue extends Command
      */
     protected $description = 'Queue scores to be indexed into Elasticsearch.';
 
+    private ProgressBar $bar;
+    private ?string $schema;
+    private int $total;
+
     /**
      * Execute the console command.
      *
@@ -42,57 +48,83 @@ class EsIndexScoresQueue extends Command
             return $this->info('User aborted');
         }
 
-        $schema = presence($this->option('schema')) ?? presence(env('schema'));
+        $this->schema = presence($this->option('schema')) ?? presence(env('schema'));
 
-        if ($schema === null) {
+        if ($this->schema === null) {
             return $this->error('Index schema must be specified');
         }
 
         $query = Score::select('id');
+        $ids = new Set();
+        $pushQuery = false;
 
-        $validIds = false;
         if ($this->option('all')) {
-            $validIds = true;
+            $pushQuery = true;
         } else {
-            $ids = array_filter(array_map('get_int', explode(',', get_string($this->option('ids')) ?? '')), 'present');
-            if (count($ids) > 0) {
-                $query->orWhereIn('id', $ids);
-                $validIds = true;
-            }
+            $ids->add(...$this->parseOptionIds());
 
             $from = get_int($this->option('from'));
             if ($from !== null) {
                 $query->orWhere('id', '>', $from);
-                $validIds = true;
+                $pushQuery = true;
             }
         }
 
-        if (!$validIds) {
+        if (!$pushQuery && $ids->count() === 0) {
             return $this->error('One of the id parameters must be specified');
         }
 
         $startTimeNs = hrtime(true);
-        $total = 0;
 
-        $bar = $this->output->createProgressBar();
-        $bar->start();
+        $this->bar = $this->output->createProgressBar();
+        $this->bar->start();
+        $this->total = 0;
 
-        $queue = "osu-queue:score-index-{$schema}";
-        $query->chunkById(100, function (Collection $scores) use ($bar, $queue, $total): void {
-            LaravelRedis::lpush($queue, ...array_map(
-                fn (Score $score): string => json_encode(['ScoreId' => $score->getKey()]),
-                $scores->all(),
-            ));
-            $count = $scores->count();
-            $bar->advance($count);
-            $total += $count;
-        });
+        $this->queueIds($ids->toArray());
+
+        if ($pushQuery) {
+            $query->chunkById(100, function (Collection $scores): void {
+                $this->queueIds(array_map(fn (Score $score): int => $score->getKey(), $scores->all()));
+            });
+        }
 
         (new ScoreSearch())->refresh();
 
-        $bar->finish();
+        $this->bar->finish();
         $this->line('');
         $totalTime = (int) ((hrtime(true) - $startTimeNs) / 1000000000);
         $this->info("Indexing completed in {$totalTime}s");
+    }
+
+    private function parseOptionIds(): Set
+    {
+        $ret = new Set();
+
+        foreach (explode(',', get_string($this->option('ids')) ?? '') as $idString) {
+            $id = get_int($idString);
+
+            if ($id !== null) {
+                $ret->add($id);
+            }
+        }
+
+        return $ret;
+    }
+
+    private function queueIds(array $ids): void
+    {
+        $count = count($ids);
+
+        if ($count === 0) {
+            return;
+        }
+
+        LaravelRedis::lpush("osu-queue:score-index-{$this->schema}", ...array_map(
+            fn (int $id): string => json_encode(['ScoreId' => $id]),
+            $ids,
+        ));
+
+        $this->bar->advance($count);
+        $this->total += $count;
     }
 }
