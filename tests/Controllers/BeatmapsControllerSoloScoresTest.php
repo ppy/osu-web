@@ -62,14 +62,6 @@ class BeatmapsControllerSoloScoresTest extends TestCase
                 'preserve' => true,
                 'user_id' => static::$user,
             ]),
-            'userModsLowerScore' => SoloScore::factory()->withData([
-                'total_score' => 1000,
-                'mods' => static::defaultMods(['DT', 'HD']),
-            ])->create([
-                'beatmap_id' => static::$beatmap,
-                'preserve' => true,
-                'user_id' => static::$user,
-            ]),
             'otherUserModsNCPFHigherScore' => SoloScore::factory()->withData([
                 'total_score' => 1010,
                 'mods' => static::defaultMods(['NC', 'PF']),
@@ -77,6 +69,14 @@ class BeatmapsControllerSoloScoresTest extends TestCase
                 'beatmap_id' => static::$beatmap,
                 'preserve' => true,
                 'user_id' => static::$otherUser,
+            ]),
+            'userModsLowerScore' => SoloScore::factory()->withData([
+                'total_score' => 1000,
+                'mods' => static::defaultMods(['DT', 'HD']),
+            ])->create([
+                'beatmap_id' => static::$beatmap,
+                'preserve' => true,
+                'user_id' => static::$user,
             ]),
             'friend' => SoloScore::factory()->withData(['total_score' => 1000])->create([
                 'beatmap_id' => static::$beatmap,
