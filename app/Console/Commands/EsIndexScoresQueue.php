@@ -93,7 +93,7 @@ class EsIndexScoresQueue extends Command
         $this->bar->finish();
         $this->line('');
         $totalTime = (int) ((hrtime(true) - $startTimeNs) / 1000000000);
-        $this->info("Indexing completed in {$totalTime}s");
+        $this->info("Queued {$this->total} scores in {$totalTime}s");
     }
 
     private function parseOptionIds(): Set
