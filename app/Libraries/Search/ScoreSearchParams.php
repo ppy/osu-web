@@ -86,7 +86,7 @@ class ScoreSearchParams extends SearchParams
                 ];
                 break;
             case null:
-                $this->sort = null;
+                $this->sorts = [];
                 break;
         }
     }
