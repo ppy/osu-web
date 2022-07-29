@@ -12,6 +12,9 @@ use Tests\TestCase;
 
 class UserSearchTest extends TestCase
 {
+    /**
+     * @group EsDefault
+     */
     public function testQueryString()
     {
         $searchUser1 = User::factory()->create(['username' => 'hello']);
