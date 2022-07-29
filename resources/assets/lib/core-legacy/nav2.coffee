@@ -51,8 +51,9 @@ export default class Nav2
     if tree.indexOf('mobile-menu') == -1
       if previousTree.indexOf('mobile-menu') != -1
         blackoutHide()
-        Timeout.set 0, => $(@clickMenu.menu('mobile-menu')).finish().slideUp(150)
+        Timeout.set 0, => $(@clickMenu.menu('mobile-menu')).finish().slideUp(150, => document.body.classList.remove('js-nav2--active'))
     else
+      document.body.classList.add('js-nav2--active')
       blackoutShow()
 
 

@@ -54,6 +54,7 @@ class ForumTopicCoversCleanup extends Command
             }
         });
 
+        $progress->finish();
         $this->line('');
         $this->info("Done. Deleted {$deleted} cover(s).");
     }

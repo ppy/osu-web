@@ -149,3 +149,9 @@ export function startingPost(discussion: BeatmapsetDiscussionJsonForBundle | Bea
 
   return discussion.posts[0];
 }
+
+export function validMessageLength(message?: string | null, isTimeline = false) {
+  if (!message?.length) return false;
+
+  return !isTimeline || message.length <= maxLengthTimeline;
+}
