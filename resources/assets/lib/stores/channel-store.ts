@@ -243,8 +243,14 @@ export default class ChannelStore implements DispatchListener {
       if (channel != null) {
         channel.addMessage(message);
       } else if (!this.ignoredChannels.has(message.channel_id)) {
-        const json = await getChannel(message.channel_id);
-        this.update(json);
+        try {
+          const json = await getChannel(message.channel_id);
+          this.update(json);
+        } catch (error) {
+          // FIXME: this seems like the wrong place to tigger an error popup.
+          // FIXME: error is typed as any
+          onError(error);
+        }
       }
     }
 
