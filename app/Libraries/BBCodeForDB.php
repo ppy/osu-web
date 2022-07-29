@@ -20,10 +20,16 @@ class BBCodeForDB
 
     public function extraEscapes($text)
     {
-        return str_replace(
-            ['[', ']', '.', ':', "\n"],
-            ['&#91;', '&#93;', '&#46;', '&#58;', '&#10;'],
-            $text
+        return strtr(
+            $text,
+            [
+                '[' => '&#91;',
+                ']' => '&#93;',
+                '.' => '&#46;',
+                ':' => '&#58;',
+                "\n" => '&#10;',
+                '@' => '&#64;',
+            ],
         );
     }
 
