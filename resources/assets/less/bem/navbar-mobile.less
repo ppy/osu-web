@@ -6,16 +6,12 @@
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: @z-index--nav-bar;
+  z-index: var(--z-index--nav-bar-mobile);
   color: #fff;
   display: flex;
   align-items: center;
   height: @navbar-height;
   padding: 0 10px;
-
-  .js-nav2--active & {
-    z-index: @z-index--nav-bar-mobile-active;
-  }
 
   &__brand {
     padding: 0 10px;
