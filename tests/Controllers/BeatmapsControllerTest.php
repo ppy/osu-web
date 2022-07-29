@@ -23,6 +23,9 @@ class BeatmapsControllerTest extends TestCase
     private $user;
     private $beatmap;
 
+    /**
+     * @group BeatmapDifficultyLookupCacheServer
+     */
     public function testAttributes(): void
     {
         $beatmap = $this->createExistingOsuBeatmap();
