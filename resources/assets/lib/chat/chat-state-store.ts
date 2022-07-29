@@ -79,9 +79,12 @@ export default class ChatStateStore implements DispatchListener {
     autorun(() => {
       if (this.isReady && this.isChatMounted) {
         this.pingService.start();
+        // note: should dispatch an event but only ChannelStore makes use of it.
+        channelStore.chatStarted();
         dispatch(new SocketMessageSendAction({ event: 'chat.start' }));
       } else {
         this.pingService.stop();
+        channelStore.chatStopped();
         dispatch(new SocketMessageSendAction({ event: 'chat.end' }));
       }
     });

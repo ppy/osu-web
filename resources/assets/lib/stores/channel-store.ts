@@ -59,6 +59,7 @@ export default class ChannelStore implements DispatchListener {
   @observable channels = observable.map<number, Channel>();
   lastReceivedMessageId = 0;
 
+  private cleanupTimer?: number;
   // list of channels to temporarily ignore incoming messages from because we just left them.
   private ignoredChannels = new Map<number, Date>();
 
@@ -82,7 +83,6 @@ export default class ChannelStore implements DispatchListener {
 
   constructor() {
     makeObservable(this);
-    window.setInterval(() => this.cleanupIgnoredChannels(), ignoreInterval);
   }
 
   @action
@@ -92,6 +92,15 @@ export default class ChannelStore implements DispatchListener {
     channel.addMessages([Message.fromJson(message)]);
 
     return channel;
+  }
+
+  chatStarted() {
+    this.chatStopped();
+    this.cleanupTimer = window.setInterval(() => this.cleanupIgnoredChannels(), ignoreInterval);
+  }
+
+  chatStopped() {
+    window.clearInterval(this.cleanupTimer);
   }
 
   findPM(userId: number): Channel | null {
@@ -175,6 +184,8 @@ export default class ChannelStore implements DispatchListener {
 
   @action
   updateMany(data: ChannelJson[]) {
+    this.ignoredChannels.clear();
+
     filterSupportedChannelTypes(data).forEach((json) => {
       this.update(json);
     });
@@ -214,6 +225,8 @@ export default class ChannelStore implements DispatchListener {
   }
 
   private cleanupIgnoredChannels() {
+    if (this.ignoredChannels.size === 0) return;
+
     const now = new Date();
     for (const [channelId, addedDate] of this.ignoredChannels) {
       if ((now.getTime() - addedDate.getTime()) > ignoreInterval) {
