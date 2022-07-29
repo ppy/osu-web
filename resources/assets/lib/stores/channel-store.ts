@@ -152,19 +152,20 @@ export default class ChannelStore implements DispatchListener {
   }
 
   @action
-  partChannel(channelId: number, remote = true) {
-    if (channelId > 0 && remote) {
+  partChannel(channelId: number, sync = true) {
+    const channel = this.get(channelId);
+    if (channel == null) return;
+
+    // channelId <= 0 are local only channels
+    if (channelId > 0 && sync) {
       apiPartChannel(channelId, core.currentUserOrFail.id);
     }
 
-    const channel = this.get(channelId);
-    if (channel != null) {
-      if (!channel.isHideable) {
-        this.ignoredChannels.set(channelId, new Date());
-      }
-
-      this.channels.delete(channelId);
+    if (!channel.isHideable) {
+      this.ignoredChannels.set(channelId, new Date());
     }
+
+    this.channels.delete(channelId);
   }
 
   @action
