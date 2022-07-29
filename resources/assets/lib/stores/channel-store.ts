@@ -49,19 +49,13 @@ const channelSorts = {
   PUBLIC: alphabeticalSort,
 };
 
-// 1 minute; cleanup runs every minute, removes entries older than 1 minute,
-// non-hideable channel messages are ignored for up to 2 minutes after leaving unless
-// an event that resets it is received.
-const ignoreInterval = 60000;
-
 @dispatchListener
 export default class ChannelStore implements DispatchListener {
   @observable channels = observable.map<number, Channel>();
   lastReceivedMessageId = 0;
 
-  private cleanupTimer?: number;
   // list of channels to temporarily ignore incoming messages from because we just left them.
-  private ignoredChannels = new Map<number, Date>();
+  private ignoredChannels = new Set<number>();
 
   @computed
   get groupedChannels() {
@@ -92,15 +86,6 @@ export default class ChannelStore implements DispatchListener {
     channel.addMessages([Message.fromJson(message)]);
 
     return channel;
-  }
-
-  chatStarted() {
-    this.chatStopped();
-    this.cleanupTimer = window.setInterval(() => this.cleanupIgnoredChannels(), ignoreInterval);
-  }
-
-  chatStopped() {
-    window.clearInterval(this.cleanupTimer);
   }
 
   findPM(userId: number): Channel | null {
@@ -156,13 +141,17 @@ export default class ChannelStore implements DispatchListener {
     const channel = this.get(channelId);
     if (channel == null) return;
 
-    // channelId <= 0 are local only channels
+    // channelId <= 0 are local only channels, no need to make an api call.
     if (channelId > 0 && sync) {
-      apiPartChannel(channelId, core.currentUserOrFail.id);
-    }
+      // tabs parting channel via received chat.channel.part message shouldn't need to ignore channels
+      // since the order of events in that case should match the backend's...in theory.
+      if (!channel.isHideable) {
+        this.ignoredChannels.add(channelId);
+      }
 
-    if (!channel.isHideable) {
-      this.ignoredChannels.set(channelId, new Date());
+      apiPartChannel(channelId, core.currentUserOrFail.id)
+        // unignore even on failure, could be failed to leave or success but timeout.
+        .always(() => this.ignoredChannels.delete(channelId));
     }
 
     this.channels.delete(channelId);
@@ -222,17 +211,6 @@ export default class ChannelStore implements DispatchListener {
 
     if (updateJson.silences != null) {
       dispatch(new ChatUpdateSilences(updateJson.silences));
-    }
-  }
-
-  private cleanupIgnoredChannels() {
-    if (this.ignoredChannels.size === 0) return;
-
-    const now = new Date();
-    for (const [channelId, addedDate] of this.ignoredChannels) {
-      if ((now.getTime() - addedDate.getTime()) > ignoreInterval) {
-        this.ignoredChannels.delete(channelId);
-      }
     }
   }
 
