@@ -9,7 +9,7 @@ import { dispatch, dispatchListener } from 'app-dispatcher';
 import { getChannel, newConversation, partChannel as apiPartChannel, sendMessage } from 'chat/chat-api';
 import MessageNewEvent from 'chat/message-new-event';
 import DispatchListener from 'dispatch-listener';
-import ChannelJson, { ChannelType, filterSupportedChannelTypes, SupportedChannelType, supportedChannelTypes } from 'interfaces/chat/channel-json';
+import ChannelJson, { filterSupportedChannelTypes, SupportedChannelType, supportedChannelTypes } from 'interfaces/chat/channel-json';
 import ChatUpdatesJson from 'interfaces/chat/chat-updates-json';
 import MessageJson from 'interfaces/chat/message-json';
 import { groupBy, maxBy } from 'lodash';
@@ -49,7 +49,6 @@ const channelSorts = {
   PUBLIC: alphabeticalSort,
 };
 
-const hideableChannelTypes: Set<ChannelType> = new Set(['ANNOUNCE', 'PM']);
 // 1 minute; cleanup runs every minute, removes entries older than 1 minute,
 // non-hideable channel messages are ignored for up to 2 minutes after leaving unless
 // an event that resets it is received.
@@ -151,7 +150,7 @@ export default class ChannelStore implements DispatchListener {
 
     const channel = this.get(channelId);
     if (channel != null) {
-      if (!hideableChannelTypes.has(channel.type)) {
+      if (!channel.isHideable) {
         this.ignoredChannels.set(channelId, new Date());
       }
 
