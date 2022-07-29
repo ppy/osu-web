@@ -9,7 +9,7 @@ import * as React from 'react'
 import { button, div, i, span, textarea } from 'react-dom-factories'
 
 bn = 'report-form'
-maxLength = 4000
+maxLength = 2000
 
 export class ReportForm extends PureComponent
   constructor: (props) ->
