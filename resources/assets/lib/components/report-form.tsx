@@ -8,6 +8,7 @@ import * as _ from 'lodash';
 import * as React from 'react';
 
 const bn = 'report-form';
+const maxLength = 2000;
 
 interface Props {
   completed: boolean;
@@ -113,6 +114,7 @@ export class ReportForm extends React.PureComponent<Props, State> {
         <div className={`${bn}__row`}>
           <textarea
             className={`${bn}__textarea`}
+            maxLength={maxLength}
             onChange={this.handleCommentsChange}
             placeholder={osu.trans('users.report.placeholder')}
             value={this.state.comments}
