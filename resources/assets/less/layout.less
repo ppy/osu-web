@@ -63,6 +63,11 @@ body {
   overflow-y: scroll;
   // fix tooltip positioning on edge when combined with overflow-y scroll above
   position: static;
+
+  --z-index--nav-bar-mobile: @z-index--nav-bar;
+  &.js-nav2--active {
+    --z-index--nav-bar-mobile: @z-index--nav-bar-mobile-active;
+  }
 }
 
 .content {

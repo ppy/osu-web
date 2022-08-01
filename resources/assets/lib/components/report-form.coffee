@@ -9,6 +9,7 @@ import * as React from 'react'
 import { button, div, i, span, textarea } from 'react-dom-factories'
 
 bn = 'report-form'
+maxLength = 2000
 
 export class ReportForm extends PureComponent
   constructor: (props) ->
@@ -98,6 +99,7 @@ export class ReportForm extends PureComponent
         className: "#{bn}__row"
         textarea
           className: "#{bn}__textarea"
+          maxLength: maxLength
           onChange: @handleCommentsChange
           placeholder: osu.trans 'users.report.placeholder'
           value: @state.comments
