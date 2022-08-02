@@ -10,6 +10,7 @@ env:
   CACHE_DRIVER_LOCAL: array
   DB_HOST: 127.0.0.1
   DB_USERNAME: root
+  ES_SOLO_SCORES_HOST: http://localhost:9201
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   NOTIFICATION_ENDPOINT: ws://127.0.0.1:2345
   NOTIFICATION_REDIS_HOST: 127.0.0.1
@@ -45,6 +46,8 @@ env:
   SHOPIFY_DOMAIN: notarealdomainortld
   SHOPIFY_STOREFRONT_TOKEN: notreal
   SLACK_ENDPOINT: https://myconan.net/null/
+  # make sure to match the one specified for osu-elastic-indexer
+  schema: test
 
 jobs:
   tests:
@@ -77,10 +80,32 @@ jobs:
         ports:
           - 9200:9200
 
+      elasticsearch-score:
+        env:
+          action.auto_create_index: "false"
+          discovery.type: single-node
+        image: elasticsearch:7.17.5
+        ports:
+          - 9201:9200
+
+      redis:
+        image: redis
+        ports:
+          - 6379:6379
+
       osu-beatmap-difficulty-lookup-cache:
         image: pppy/osu-beatmap-difficulty-lookup-cache
         ports:
           - 5000:80
+
+      osu-elastic-indexer:
+        image: pppy/osu-elastic-indexer
+        options: >-
+          -e DB_CONNECTION_STRING=Server=db;Database=osu;Uid=root
+          -e ES_HOST=http://elasticsearch-score:9200
+          -e REDIS_HOST=redis
+          -e schema=test
+          --entrypoint sh pppy/osu-elastic-indexer -c "exec dotnet osu.ElasticIndexer.dll queue"
 
       osu-notification-server:
         env:
@@ -94,11 +119,6 @@ jobs:
         image: pppy/osu-notification-server
         ports:
           - 2345:2345
-
-      redis:
-        image: redis
-        ports:
-          - 6379:6379
 
     steps:
       - name: Checkout
@@ -137,6 +157,7 @@ jobs:
           php artisan es:create-search-blacklist
           php artisan es:index-documents --yes
           php artisan es:index-wiki --create-only --yes
+          php artisan es:index-scores:set-schema
 
       - name: Generate docs
         run: php artisan scribe:generate
