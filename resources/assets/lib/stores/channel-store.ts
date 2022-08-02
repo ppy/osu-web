@@ -224,7 +224,7 @@ export default class ChannelStore implements DispatchListener {
       } else if (!this.ignoredChannels.has(message.channel_id)) {
         getChannel(message.channel_id)
           .done((json) => this.update(json))
-          // FIXME: this seems like the wrong place to tigger an error popup.
+          // FIXME: this seems like the wrong place to trigger an error popup.
           .catch(onError);
       }
     }
@@ -264,7 +264,7 @@ export default class ChannelStore implements DispatchListener {
       }
     } catch (error) {
       channel.afterSendMesssage(message, null);
-      // FIXME: this seems like the wrong place to tigger an error popup.
+      // FIXME: this seems like the wrong place to trigger an error popup.
       // FIXME: error is typed as any
       onError(error);
     }
