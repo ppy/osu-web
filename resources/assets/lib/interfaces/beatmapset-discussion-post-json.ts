@@ -14,10 +14,15 @@ interface BeatmapsetDiscussionPostDefaultAttributes {
   deleted_by_id?: number;
   id: number;
   last_editor_id?: number;
-  message: string;
+  message: string | SystemPostMessage;
   system: boolean;
   updated_at: string;
   user_id: number;
+}
+
+export interface SystemPostMessage {
+  type: string;
+  value: boolean;
 }
 
 type BeatmapsetDiscussionPostJson = BeatmapsetDiscussionPostDefaultAttributes & Partial<BeatmapsetDiscussionPostAvailableIncludes>;
