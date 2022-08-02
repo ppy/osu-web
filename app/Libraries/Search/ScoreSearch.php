@@ -9,6 +9,8 @@ use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\RecordSearch;
 use App\Models\Solo\Score;
 use Ds\Set;
+use Illuminate\Database\Eloquent\Collection;
+use LaravelRedis;
 
 class ScoreSearch extends RecordSearch
 {
@@ -23,6 +25,22 @@ class ScoreSearch extends RecordSearch
             $params ?? new ScoreSearchParams(),
             Score::class
         );
+    }
+
+    public function indexAll(string $schema): void
+    {
+        $queue = "osu-queue:score-index-{$schema}";
+        $this->recordType::select('id')->chunkById(100, function (Collection $scores) use ($queue): void {
+            LaravelRedis::lpush($queue, ...array_map(
+                fn (Score $score): string => json_encode(['ScoreId' => $score->getKey()]),
+                $scores->all(),
+            ));
+        });
+    }
+
+    public function setSchema(string $schema): void
+    {
+        LaravelRedis::set('osu-queue:score-index:'.config('osu.elasticsearch.prefix').'schema', $schema);
     }
 
     public function getQuery(): BoolQuery
