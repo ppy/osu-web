@@ -215,17 +215,20 @@ export default class ChannelStore implements DispatchListener {
   }
 
   @action
-  private handleChatMessageNewEvent(event: MessageNewEvent) {
+  private async handleChatMessageNewEvent(event: MessageNewEvent) {
     for (const message of event.json.messages) {
       const channel = this.channels.get(message.channel_id);
 
       if (channel != null) {
         channel.addMessage(message);
       } else if (!this.ignoredChannels.has(message.channel_id)) {
-        getChannel(message.channel_id)
-          .done((json) => this.update(json))
+        try {
+          const json = await getChannel(message.channel_id);
+          this.update(json);
+        } catch (error) {
           // FIXME: this seems like the wrong place to trigger an error popup.
-          .catch(onError);
+          if (error.status !== 404) onError(error);
+        }
       }
     }
 
