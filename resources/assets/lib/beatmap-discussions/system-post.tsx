@@ -7,7 +7,6 @@ import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
-import { linkHtml } from 'utils/url';
 
 interface Props {
   post: BeatmapsetDiscussionPostJson;
@@ -27,11 +26,12 @@ export default function SystemPost({ post, user }: Props) {
       <div className='beatmap-discussion-system-post__content'>
         <StringWithComponent
           mappings={{
-            user: linkHtml(
-              route('users.show', { user: user.id }),
-              user.username,
-              { classNames: ['beatmap-discussion-system-post__user'] },
-            ),
+            user: <a
+              className='beatmap-discussion-system-post__user'
+              href={route('users.show', { user: user.id })}
+            >
+              {user.username}
+            </a>,
           }}
           pattern={osu.trans(`beatmap_discussions.system.resolved.${post.message.value}`)}
         />
