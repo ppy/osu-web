@@ -17,7 +17,7 @@ import { action, computed, makeObservable, observable, runInAction } from 'mobx'
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
-import { onError } from 'utils/ajax';
+import { isJqXHR, onError } from 'utils/ajax';
 
 function alphabeticalSort(a: Channel, b: Channel) {
   return a.name.localeCompare(b.name);
@@ -226,8 +226,11 @@ export default class ChannelStore implements DispatchListener {
           const json = await getChannel(message.channel_id);
           this.update(json);
         } catch (error) {
+          if (!isJqXHR(error)) throw error;
           // FIXME: this seems like the wrong place to trigger an error popup.
-          if (error.status !== 404) onError(error);
+          if (error.status !== 404) {
+            onError(error);
+          }
         }
       }
     }
@@ -268,7 +271,7 @@ export default class ChannelStore implements DispatchListener {
     } catch (error) {
       channel.afterSendMesssage(message, null);
       // FIXME: this seems like the wrong place to trigger an error popup.
-      // FIXME: error is typed as any
+      if (!isJqXHR(error)) throw error;
       onError(error);
     }
   }
