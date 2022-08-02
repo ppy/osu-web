@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import StringWithComponent from 'components/string-with-component';
 import BeatmapsetDiscussionPostJson from 'interfaces/beatmapset-discussion-post-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
@@ -15,21 +16,24 @@ interface Props {
 
 const bn = 'beatmap-discussion-system-post';
 
-export default function SystemPost(props: Props) {
-  if (!props.post.system) return null;
-  if (props.post.message.type !== 'resolved') return null;
+export default function SystemPost({ post, user }: Props) {
+  if (!post.system) return null;
+  if (post.message.type !== 'resolved') return null;
 
-  const message = osu.trans(`beatmap_discussions.system.resolved.${props.post.message.value}`, {
-    user: linkHtml(route('users.show', { user: props.user.id }), props.user.username, { classNames: [`${bn}__user`] }),
-  });
-
-  const className = classWithModifiers(bn, props.post.message.type, {
-    deleted: props.post.deleted_at != null,
+  const className = classWithModifiers(bn, post.message.type, {
+    deleted: post.deleted_at != null,
   });
 
   return (
     <div className={className}>
-      <div dangerouslySetInnerHTML={{ __html: message }} className={`${bn}__content`} />
+      <div className={`${bn}__content`}>
+        <StringWithComponent
+          mappings={{
+            user: linkHtml(route('users.show', { user: user.id }), user.username, { classNames: [`${bn}__user`] }),
+          }}
+          pattern={osu.trans(`beatmap_discussions.system.resolved.${post.message.value}`)}
+        />
+      </div>
     </div>
   );
 }
