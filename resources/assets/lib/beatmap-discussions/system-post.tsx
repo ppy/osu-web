@@ -19,7 +19,7 @@ function isSystemPostMessage(message: string | SystemPostMessage): message is Sy
   return typeof message === 'object' && 'type' in message && 'value' in message;
 }
 
-export function SystemPost(props: Props) {
+export default function SystemPost(props: Props) {
   if (!isSystemPostMessage(props.post.message)) return null;
   if (props.post.message.type !== 'resolved') return null;
 
