@@ -572,12 +572,20 @@ class Channel extends Model
             return;
         }
 
-        $count = UserChannel::where([
-            'channel_id' => $this->channel_id,
-            'hidden' => true,
-        ])->update([
-            'hidden' => false,
-        ]);
+        if ($user === null) {
+            $count = UserChannel::where([
+                'channel_id' => $this->channel_id,
+                'hidden' => true,
+            ])->update([
+                'hidden' => false,
+            ]);
+        } else {
+            $userChannel = $this->userChannelFor($user);
+            $count = $userChannel !== null && $userChannel->isHidden() ? 1 : 0;
+            if ($count === 1) {
+                $userChannel->update(['hidden' => false]);
+            }
+        }
 
         if ($count > 0) {
             Datadog::increment('chat.channel.join', 1, ['type' => $this->type], 0);
@@ -597,7 +605,7 @@ class Channel extends Model
         $this->preloadedUserChannels = [];
     }
 
-    private function userChannelFor(User $user)
+    private function userChannelFor(User $user): ?UserChannel
     {
         $userId = $user->getKey();
 
