@@ -23,6 +23,7 @@ export default class ConversationListItem extends React.Component<Props> {
   }
 
   componentDidMount() {
+    // if the current channel is selected on mount, it's probably on page load, so centre it.
     this.ensureSelectedInView('center');
   }
 
