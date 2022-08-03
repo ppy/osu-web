@@ -9,6 +9,15 @@ import * as React from 'react';
 
 const bn = 'report-form';
 const maxLength = 2000;
+const availableOptions = [
+  { id: 'Cheating', text: osu.trans('users.report.options.cheating') },
+  { id: 'MultipleAccounts', text: osu.trans('users.report.options.multiple_accounts') },
+  { id: 'Insults', text: osu.trans('users.report.options.insults') },
+  { id: 'Spam', text: osu.trans('users.report.options.spam') },
+  { id: 'UnwantedContent', text: osu.trans('users.report.options.unwanted_content') },
+  { id: 'Nonsense', text: osu.trans('users.report.options.nonsense') },
+  { id: 'Other', text: osu.trans('users.report.options.other') },
+];
 
 interface Props {
   completed: boolean;
@@ -17,7 +26,7 @@ interface Props {
   onSubmit: ({comments}: {comments: string}) => void;
   title: string;
   visible: boolean;
-  visibleOptions?: string[];
+  visibleOptions: string[];
 }
 
 interface ReportOption {
@@ -31,22 +40,14 @@ interface State {
 }
 
 export class ReportForm extends React.PureComponent<Props, State> {
-  options = [
-    { id: 'Cheating', text: osu.trans('users.report.options.cheating') },
-    { id: 'MultipleAccounts', text: osu.trans('users.report.options.multiple_accounts') },
-    { id: 'Insults', text: osu.trans('users.report.options.insults') },
-    { id: 'Spam', text: osu.trans('users.report.options.spam') },
-    { id: 'UnwantedContent', text: osu.trans('users.report.options.unwanted_content') },
-    { id: 'Nonsense', text: osu.trans('users.report.options.nonsense') },
-    { id: 'Other', text: osu.trans('users.report.options.other') },
-  ];
+  static defaultProps = {
+    visibleOptions: availableOptions.map((option) => option.id),
+  };
+
+  options = intersectionWith(availableOptions, this.props.visibleOptions, (left, right) => left.id === right);
 
   constructor(props: Props) {
     super(props);
-
-    if (props.visibleOptions) {
-      this.options = intersectionWith(this.options, props.visibleOptions, (left, right) => left.id === right);
-    }
 
     this.state = {
       comments: '',
