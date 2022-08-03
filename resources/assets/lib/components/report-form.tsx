@@ -143,7 +143,7 @@ export class ReportForm extends React.PureComponent<Props, State> {
     );
   }
 
-  private readonly sendReport = (_e: React.MouseEvent<HTMLButtonElement>) => {
+  private readonly sendReport = () => {
     const data = {
       comments: this.state.comments,
       reason: this.state.selectedReason.id,
