@@ -53,20 +53,7 @@ class ScoresControllerTest extends TestCase
     public function testStoreCompleted()
     {
         $scoreToken = ScoreToken::factory()->create();
-        // TODO: create factory
-        $score = Score::createFromJsonOrExplode([
-            'accuracy' => 1,
-            'beatmap_id' => $scoreToken->beatmap->getKey(),
-            'ended_at' => now(),
-            'max_combo' => 10,
-            'mods' => [],
-            'passed' => true,
-            'rank' => 'A',
-            'ruleset_id' => $scoreToken->beatmap->playmode,
-            'statistics' => ['Good' => 1],
-            'total_score' => 10,
-            'user_id' => $scoreToken->user->getKey(),
-        ]);
+        $score = Score::factory()->create(['beatmap_id' => $scoreToken->beatmap_id]);
         $scoreToken->update(['score_id' => $score->getKey()]);
 
         $this->expectCountChange(fn () => Score::count(), 0);
