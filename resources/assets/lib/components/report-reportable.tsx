@@ -109,7 +109,8 @@ export class ReportReportable extends React.PureComponent<Props, State> {
             disabled={this.state.disabled}
             onClose={this.onFormClose}
             onSubmit={this.onSubmit}
-            title={osu.trans(`report.${groupKey}.title`, { username: `<strong>${user.username}</strong>` })}
+            title={osu.trans(`report.${groupKey}.title`)}
+            titleUsernameMapping={<strong>{user.username}</strong>}
             visible
             visibleOptions={availableOptions[groupKey]}
           />

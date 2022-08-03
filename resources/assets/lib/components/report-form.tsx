@@ -5,6 +5,7 @@ import { Modal } from 'components/modal';
 import { SelectOptions } from 'components/select-options';
 import { intersectionWith } from 'lodash';
 import * as React from 'react';
+import StringWithComponent from './string-with-component';
 
 const bn = 'report-form';
 const maxLength = 2000;
@@ -24,6 +25,7 @@ interface Props {
   onClose: () => void;
   onSubmit: ({comments}: {comments: string}) => void;
   title: string;
+  titleUsernameMapping: React.ReactNode;
   visible: boolean;
   visibleOptions: string[];
 }
@@ -77,7 +79,14 @@ export class ReportForm extends React.PureComponent<Props, State> {
               <i className='fas fa-exclamation-triangle' />
             </div>
 
-            <div className={`${bn}__row ${bn}__row--title`} dangerouslySetInnerHTML={{ __html: `<span>${title}</span>`}} />
+            <div className={`${bn}__row ${bn}__row--title`}>
+              <span>
+                <StringWithComponent
+                  mappings={{ username: this.props.titleUsernameMapping }}
+                  pattern={title}
+                />
+              </span>
+            </div>
           </div>
 
           {this.renderFormContent()}
