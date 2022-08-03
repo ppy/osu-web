@@ -37,8 +37,13 @@ use LaravelRedis as Redis;
  */
 class Channel extends Model
 {
-    use Memoizes, Validatable;
+    use Memoizes {
+        Memoizes::resetMemoized as origResetMemoized;
+    }
 
+    use Validatable;
+
+    const ANNOUNCE_MESSAGE_LENGTH_LIMIT = 1024; // limited by column length
     const CHAT_ACTIVITY_TIMEOUT = 60; // in seconds.
 
     public ?string $uuid = null;
@@ -85,7 +90,8 @@ class Channel extends Model
         $params['type'] = static::TYPES['announce'];
 
         $channel = new static($params);
-        $channel->getConnection()->transaction(function () use ($channel, $users, $uuid) {
+        $connection = $channel->getConnection();
+        $connection->transaction(function () use ($channel, $connection, $users, $uuid) {
             $channel->saveOrExplode();
             $channel->uuid = $uuid;
             $userChannels = $channel->userChannels()->createMany($users->map(fn ($user) => ['user_id' => $user->getKey()]));
@@ -99,6 +105,8 @@ class Channel extends Model
             foreach ($users as $user) {
                 (new ChatChannelEvent($channel, $user, 'join'))->broadcast(true);
             }
+
+            $connection->afterCommit(fn () => Datadog::increment('chat.channel.create', 1, ['type' => $channel->type]));
         });
 
         return $channel;
@@ -117,7 +125,7 @@ class Channel extends Model
         ]);
     }
 
-    public static function createPM($user1, $user2)
+    public static function createPM(User $user1, User $user2)
     {
         $channel = new static([
             'name' => static::getPMChannelName($user1, $user2),
@@ -125,17 +133,20 @@ class Channel extends Model
             'description' => '', // description is not nullable
         ]);
 
-        $channel->getConnection()->transaction(function () use ($channel, $user1, $user2) {
+        $connection = $channel->getConnection();
+        $connection->transaction(function () use ($channel, $connection, $user1, $user2) {
             $channel->saveOrExplode();
             $channel->addUser($user1);
             $channel->addUser($user2);
             $channel->setPmUsers([$user1, $user2]);
+
+            $connection->afterCommit(fn () => Datadog::increment('chat.channel.create', 1, ['type' => $channel->type]));
         });
 
         return $channel;
     }
 
-    public static function findPM($user1, $user2)
+    public static function findPM(User $user1, User $user2)
     {
         $channelName = static::getPMChannelName($user1, $user2);
 
@@ -157,7 +168,7 @@ class Channel extends Model
      *
      * @return string
      */
-    public static function getPMChannelName($user1, $user2)
+    public static function getPMChannelName(User $user1, User $user2)
     {
         $userIds = [$user1->getKey(), $user2->getKey()];
         sort($userIds);
@@ -403,7 +414,8 @@ class Channel extends Model
             throw new API\ChatMessageEmptyException(osu_trans('api.error.chat.empty'));
         }
 
-        if (!$this->isAnnouncement() && mb_strlen($content, 'UTF-8') >= config('osu.chat.message_length_limit')) {
+        $maxLength = $this->isAnnouncement() ? static::ANNOUNCE_MESSAGE_LENGTH_LIMIT : config('osu.chat.message_length_limit');
+        if (mb_strlen($content, 'UTF-8') > $maxLength) {
             throw new API\ChatMessageTooLongException(osu_trans('api.error.chat.too_long'));
         }
 
@@ -502,21 +514,23 @@ class Channel extends Model
 
     public function removeUser(User $user)
     {
-        $userChannel = UserChannel::where([
-            'channel_id' => $this->channel_id,
-            'user_id' => $user->user_id,
-            'hidden' => false,
-        ])->first();
+        $userChannel = $this->userChannelFor($user);
 
-        if (!$userChannel) {
+        if ($userChannel === null) {
             return;
         }
 
         if ($this->isHideable()) {
+            if ($userChannel->isHidden()) {
+                return;
+            }
+
             $userChannel->update(['hidden' => true]);
         } else {
             $userChannel->delete();
         }
+
+        $this->resetMemoized();
 
         (new ChatChannelEvent($this, $user, 'part'))->broadcast(true);
 
@@ -525,11 +539,7 @@ class Channel extends Model
 
     public function hasUser(User $user)
     {
-        return UserChannel::where([
-            'channel_id' => $this->channel_id,
-            'user_id' => $user->user_id,
-            'hidden' => false,
-        ])->exists();
+        return $this->userChannelFor($user) !== null;
     }
 
     public function save(array $options = [])
@@ -577,6 +587,14 @@ class Channel extends Model
     public function validationErrorsTranslationPrefix()
     {
         return 'chat.channel';
+    }
+
+    protected function resetMemoized(): void
+    {
+        $this->origResetMemoized();
+        // simpler to reset preloads since its use-cases are more specific,
+        // rather than trying to juggle them to ensure userChannelFor returns as expected.
+        $this->preloadedUserChannels = [];
     }
 
     private function userChannelFor(User $user)

@@ -160,8 +160,8 @@ return [
             'count' => ':count_delimited コメント',
         ],
         'cover' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'カバー画像を隠す',
+            'to_1' => 'カバー画像を表示',
         ],
         'edit' => [
             'cover' => [
@@ -209,7 +209,7 @@ return [
                     'title' => 'Graveyardのビートマップ',
                 ],
                 'guest' => [
-                    'title' => '',
+                    'title' => 'ゲスト難易度のビートマップ',
                 ],
                 'loved' => [
                     'title' => 'Lovedされたビートマップ',
@@ -309,7 +309,7 @@ return [
                 'title' => 'メダル',
             ],
             'playlists' => [
-                'title' => '',
+                'title' => 'プレイリスト',
             ],
             'posts' => [
                 'title' => '投稿',
@@ -320,7 +320,7 @@ return [
                 'title' => '最近のアクティビティ',
             ],
             'realtime' => [
-                'title' => '',
+                'title' => 'マルチプレイ',
             ],
             'top_ranks' => [
                 'download_replay' => 'リプレイをダウンロード',
@@ -336,13 +336,13 @@ return [
                     'title' => '1位の記録',
                 ],
                 'pin' => [
-                    'to_0' => '',
-                    'to_0_done' => '',
-                    'to_1' => '',
-                    'to_1_done' => '',
+                    'to_0' => 'ピン留め解除',
+                    'to_0_done' => 'スコアのピン留めを解除しました',
+                    'to_1' => 'ピン留め',
+                    'to_1_done' => 'スコアをピン留めしました',
                 ],
                 'pinned' => [
-                    'title' => '',
+                    'title' => 'ピン留めされたスコア',
                 ],
             ],
             'votes' => [

@@ -7,17 +7,26 @@ declare(strict_types=1);
 
 namespace Tests\Controllers\Chat;
 
+use App\Libraries\UserChannelList;
 use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
 use App\Models\Multiplayer\Score;
 use App\Models\User;
 use Faker;
+use Illuminate\Testing\AssertableJsonString;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
 class ChannelsControllerTest extends TestCase
 {
     protected static $faker;
+
+    private User $user;
+    private User $anotherUser;
+    private Channel $pmChannel;
+    private Channel $privateChannel;
+    private Channel $publicChannel;
+    private Message $publicMessage;
 
     public static function setUpBeforeClass(): void
     {
@@ -101,7 +110,8 @@ class ChannelsControllerTest extends TestCase
         $channel->removeUser($this->user);
 
         // sanity check
-        $this->assertFalse($channel->hasUser($this->user));
+        $this->getAssertableChannelList($this->user)
+            ->assertMissing(['channel_id' => $channel->getKey()]);
 
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('POST', route('api.chat.channels.store'), [
@@ -129,9 +139,8 @@ class ChannelsControllerTest extends TestCase
 
         $this->actAsScopedUser($this->user, ['*']);
 
-        $this->json('GET', route('api.chat.presence'))
-            ->assertStatus(200)
-            ->assertJsonMissing(['channel_id' => $channel->getKey()]);
+        $this->getAssertableChannelList($this->user)
+            ->assertMissing(['channel_id' => $channel->getKey()]);
 
         // join channel
         $request = $this->json('PUT', route('api.chat.channels.join', [
@@ -143,9 +152,8 @@ class ChannelsControllerTest extends TestCase
             $request->assertJsonFragment(['channel_id' => $channel->getKey()]);
 
             // ensure now in channel
-            $this->json('GET', route('api.chat.presence'))
-                ->assertStatus(200)
-                ->assertJsonFragment(['channel_id' => $channel->getKey()]);
+            $this->getAssertableChannelList($this->user)
+                ->assertFragment(['channel_id' => $channel->getKey()]);
         }
     }
 
@@ -251,11 +259,9 @@ class ChannelsControllerTest extends TestCase
         )
             ->assertStatus(204);
 
-        $this->actAsScopedUser($this->user, ['*']);
-        $this->json('GET', route('api.chat.presence'))
-            ->assertStatus(200)
-            ->assertJsonPath('0.current_user_attributes.last_read_id', $this->publicMessage->message_id)
-            ->assertJsonFragment([
+        $this->getAssertableChannelList($this->user)
+            ->assertPath('0.current_user_attributes.last_read_id', $this->publicMessage->message_id)
+            ->assertFragment([
                 'channel_id' => $this->publicChannel->channel_id,
                 'last_read_id' => $this->publicMessage->message_id,
             ]);
@@ -282,11 +288,9 @@ class ChannelsControllerTest extends TestCase
         )
             ->assertStatus(204);
 
-        $this->actAsScopedUser($this->user, ['*']);
-        $this->json('GET', route('api.chat.presence'))
-            ->assertStatus(200)
-            ->assertJsonPath('0.current_user_attributes.last_read_id', $newerPublicMessage->message_id)
-            ->assertJsonFragment([
+        $this->getAssertableChannelList($this->user)
+            ->assertPath('0.current_user_attributes.last_read_id', $newerPublicMessage->message_id)
+            ->assertFragment([
                 'channel_id' => $this->publicChannel->channel_id,
                 'last_read_id' => $newerPublicMessage->message_id,
             ]);
@@ -302,11 +306,9 @@ class ChannelsControllerTest extends TestCase
         )
             ->assertStatus(204);
 
-        $this->actAsScopedUser($this->user, ['*']);
-        $this->json('GET', route('api.chat.presence'))
-            ->assertStatus(200)
-            ->assertJsonPath('0.current_user_attributes.last_read_id', $newerPublicMessage->message_id)
-            ->assertJsonFragment([
+        $this->getAssertableChannelList($this->user)
+            ->assertPath('0.current_user_attributes.last_read_id', $newerPublicMessage->message_id)
+            ->assertFragment([
                 'channel_id' => $this->publicChannel->channel_id,
                 'last_read_id' => $newerPublicMessage->message_id,
             ]);
@@ -314,6 +316,7 @@ class ChannelsControllerTest extends TestCase
 
     //endregion
 
+    //region DELETE /chat/channels/[channel_id]/users/[user_id] - Leave Channel
     /**
      * @dataProvider dataProvider
      */
@@ -326,9 +329,8 @@ class ChannelsControllerTest extends TestCase
         $this->actAsScopedUser($this->user, ['*']);
 
         // ensure in channel
-        $this->json('GET', route('api.chat.presence'))
-            ->assertStatus(200)
-            ->assertJsonFragment(['channel_id' => $channel->getKey()]);
+        $this->getAssertableChannelList($this->user)
+            ->assertFragment(['channel_id' => $channel->getKey()]);
 
         // leave channel
         $this->json('DELETE', route('api.chat.channels.part', [
@@ -337,16 +339,14 @@ class ChannelsControllerTest extends TestCase
         ]))
             ->assertStatus($status);
 
+        $channelList = $this->getAssertableChannelList($this->user);
+
         if ($success) {
             // ensure no longer in channel
-            $this->json('GET', route('api.chat.presence'))
-                ->assertStatus(200)
-                ->assertJsonMissing(['channel_id' => $channel->getKey()]);
+            $channelList->assertMissing(['channel_id' => $channel->getKey()]);
         } else {
             // ensure still in channel
-            $this->json('GET', route('api.chat.presence'))
-                ->assertStatus(200)
-                ->assertJsonFragment(['channel_id' => $channel->getKey()]);
+            $channelList->assertFragment(['channel_id' => $channel->getKey()]);
         }
     }
 
@@ -361,9 +361,8 @@ class ChannelsControllerTest extends TestCase
         $this->actAsScopedUser($this->user, ['*']);
 
         // ensure not in channel
-        $this->json('GET', route('api.chat.presence'))
-            ->assertStatus(200)
-            ->assertJsonMissing(['channel_id' => $channel->getKey()]);
+        $this->getAssertableChannelList($this->user)
+            ->assertMissing(['channel_id' => $channel->getKey()]);
 
         // leave channel
         $this->json('DELETE', route('api.chat.channels.part', [
@@ -373,7 +372,6 @@ class ChannelsControllerTest extends TestCase
             ->assertStatus($status);
     }
 
-    //region DELETE /chat/channels/[channel_id]/users/[user_id] - Leave Channel
     public function testChannelLeavePublicWhenGuest() // fail
     {
         $this->json('DELETE', route('api.chat.channels.part', [
@@ -404,6 +402,10 @@ class ChannelsControllerTest extends TestCase
         $this->privateChannel = Channel::factory()->type('private')->create();
         $this->pmChannel = Channel::factory()->type('pm')->create();
         $this->publicMessage = Message::factory()->create(['channel_id' => $this->publicChannel->channel_id]);
-        $this->tourneyChannel = Channel::factory()->type('tourney')->create();
+    }
+
+    private function getAssertableChannelList(User $user): AssertableJsonString
+    {
+        return new AssertableJsonString((new UserChannelList($user))->get());
     }
 }

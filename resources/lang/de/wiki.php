@@ -22,7 +22,7 @@ return [
 
         'translation' => [
             'legal' => 'Diese Übersetzung wird nur aus Gründen der Bequemlichkeit zur Verfügung gestellt. Das Original (:default) ist die einzige rechtlich bindende Version dieses Textes.',
-            'outdated' => 'Diese Seite enthält eine veraltete Übersetzung des ursprünglichen Inhalts. Bitte schaue dir :default für genauere Informationen an (und überlege die Übersetzung zu aktualisieren, wenn du die Möglichkeit dazu hast)!',
+            'outdated' => 'Diese Seite enthält eine veraltete Übersetzung des ursprünglichen Inhalts. Bitte schaue dir die :default für genauere Informationen an (und überlege die Übersetzung zu aktualisieren, wenn du die Möglichkeit dazu hast)!',
 
             'default' => 'Englische Version',
         ],

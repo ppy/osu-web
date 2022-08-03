@@ -450,7 +450,7 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => '方块视图',
+        'brick' => '方块检视',
         'card' => '卡片检视',
         'list' => '列表检视',
     ],

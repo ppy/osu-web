@@ -7,7 +7,7 @@ return [
     'instrument_declined' => 'Ang napiling paraan ng pagbabayad ay hindi tinanggap ng Paypal.',
     'invalid_resource_id' => 'Walang nakitang pamamaraan ng pagbayad.',
     'invalid_token' => 'Nagkaroon ng error sa pagkumpleto ng iyong pagbabayad.',
-    'old_format' => 'Ang payment link ay nag-expire na, pakisubukan muli.',
+    'old_format' => 'Ang link sa pagbabayad ay nag-expire na, pakisubukan muli sa ibang pagkakataon.',
     'resource_not_found' => 'Walang nakitang pamamaraan ng pagbayad.',
     'unknown' => "Ang pagbabayad ay tinanggihan, ngunit hindi kami sigurado kung bakit.",
 ];

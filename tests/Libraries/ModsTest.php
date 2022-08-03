@@ -44,12 +44,13 @@ class ModsTest extends TestCase
 
     public function testParseInputArrayWithSettings()
     {
-        $input = [['acronym' => 'WU', 'settings' => ['initial_rate' => '1']]];
+        $input = [['acronym' => 'WU', 'settings' => ['initial_rate' => '1', 'adjust_pitch' => false]]];
         $parsed = app('mods')->parseInputArray(Ruleset::OSU, $input);
 
         $this->assertSame(1, count($parsed));
-        $this->assertSame(1, count((array) $parsed[0]->settings));
+        $this->assertSame(2, count((array) $parsed[0]->settings));
         $this->assertSame(1.0, $parsed[0]->settings->initial_rate);
+        $this->assertSame(false, $parsed[0]->settings->adjust_pitch);
         $this->assertSame('WU', $parsed[0]->acronym);
     }
 

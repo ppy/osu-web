@@ -12,7 +12,7 @@ return [
     ],
 
     'cover' => [
-        'deleted' => '',
+        'deleted' => '削除されたビートマップ',
     ],
 
     'download' => [

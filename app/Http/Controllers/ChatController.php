@@ -36,7 +36,7 @@ class ChatController extends Controller
             'sendto:int',
         ], ['null_missing' => true]);
 
-        // rejoin any existing channel first, otherwise it'll be missing from the preload later.
+        // rejoin any existing channel first, so it will be in the user channel list.
         if ($params['sendto'] !== null) {
             $targetUser = User::lookup($params['sendto'], 'id');
             if ($targetUser !== null) {
