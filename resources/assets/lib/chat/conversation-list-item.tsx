@@ -59,7 +59,9 @@ export default class ConversationListItem extends React.Component<Props> {
 
   private ensureSelectedInView(block: ScrollLogicalPosition) {
     if (this.selected) {
-      this.ref.current?.scrollIntoView({ block, inline: 'nearest' });
+      setTimeout(() => {
+        this.ref.current?.scrollIntoView({ block, inline: 'nearest' });
+      }, 0);
     }
   }
 
