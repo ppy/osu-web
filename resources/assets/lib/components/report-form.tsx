@@ -4,7 +4,7 @@
 import { Modal } from 'components/modal';
 import { SelectOptions } from 'components/select-options';
 import { isEmpty } from 'lodash';
-import * as _ from 'lodash';
+import { intersectionWith } from 'lodash';
 import * as React from 'react';
 
 const bn = 'report-form';
@@ -45,7 +45,7 @@ export class ReportForm extends React.PureComponent<Props, State> {
     super(props);
 
     if (props.visibleOptions) {
-      this.options = _.intersectionWith(this.options, props.visibleOptions, (left, right) => left.id === right);
+      this.options = intersectionWith(this.options, props.visibleOptions, (left, right) => left.id === right);
     }
 
     this.state = {
