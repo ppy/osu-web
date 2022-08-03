@@ -19,10 +19,8 @@ class ScoresControllerTest extends TestCase
         $scoreToken = ScoreToken::factory()->create();
         $legacyScoreClass = LegacyScore\Model::getClass($scoreToken->beatmap->playmode);
 
-        $initialScoreCount = Score::count();
-        $initialScoreTokenCount = ScoreToken::count();
-        $initialLegacyScoreCount = $legacyScoreClass::count();
-
+        $this->expectCountChange(fn () => Score::count(), 1);
+        $this->expectCountChange(fn () => $legacyScoreClass::count(), 1);
         $this->expectCountChange(fn () => $this->processingQueueCount(), 1);
 
         $this->actAsScopedUser($scoreToken->user, ['*']);
@@ -47,9 +45,6 @@ class ScoresControllerTest extends TestCase
         )->assertSuccessful()
         ->assertJsonFragment(['build_id' => $scoreToken->build_id]);
 
-        $this->assertSame($initialLegacyScoreCount + 1, $legacyScoreClass::count());
-        $this->assertSame($initialScoreCount + 1, Score::count());
-
         $score = $scoreToken->fresh()->score;
         $this->assertNotNull($score);
         $this->assertSame(1, count($score->data->mods));
@@ -73,8 +68,8 @@ class ScoresControllerTest extends TestCase
             'user_id' => $scoreToken->user->getKey(),
         ]);
         $scoreToken->update(['score_id' => $score->getKey()]);
-        $initialScoreCount = Score::count();
 
+        $this->expectCountChange(fn () => Score::count(), 0);
         $this->expectCountChange(fn () => $this->processingQueueCount(), 0);
 
         $this->actAsScopedUser($scoreToken->user, ['*']);
@@ -96,13 +91,13 @@ class ScoresControllerTest extends TestCase
         )->assertStatus(200);
 
         $this->assertSame($score->getKey(), $scoreToken->fresh()->score_id);
-        $this->assertSame($initialScoreCount, Score::count());
     }
 
     public function testStoreMissingData()
     {
         $scoreToken = ScoreToken::factory()->create();
-        $initialScoreCount = Score::count();
+
+        $this->expectCountChange(fn () => Score::count(), 0);
 
         $this->actAsScopedUser($scoreToken->user, ['*']);
 
@@ -116,15 +111,13 @@ class ScoresControllerTest extends TestCase
                 'rank' => 'A',
             ]
         )->assertStatus(422);
-
-        $this->assertSame($initialScoreCount, Score::count());
     }
 
     public function testStoreWrongUser()
     {
         $otherUser = User::factory()->create();
         $scoreToken = ScoreToken::factory()->create();
-        $initialScoreCount = Score::count();
+        $this->expectCountChange(fn () => Score::count(), 0);
 
         $this->actAsScopedUser($otherUser, ['*']);
 
@@ -143,8 +136,6 @@ class ScoresControllerTest extends TestCase
                 'total_score' => 10,
             ]
         )->assertStatus(404);
-
-        $this->assertSame($initialScoreCount, Score::count());
     }
 
     public function tearDown(): void
