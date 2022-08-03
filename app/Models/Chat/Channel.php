@@ -588,7 +588,7 @@ class Channel extends Model
         }
 
         if ($count > 0) {
-            Datadog::increment('chat.channel.join', 1, ['type' => $this->type], 0);
+            Datadog::increment('chat.channel.join', 1, ['type' => $this->type], $count);
         }
     }
 
