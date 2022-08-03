@@ -3,7 +3,6 @@
 
 import { Modal } from 'components/modal';
 import { SelectOptions } from 'components/select-options';
-import { isEmpty } from 'lodash';
 import { intersectionWith } from 'lodash';
 import * as React from 'react';
 
@@ -88,27 +87,24 @@ export class ReportForm extends React.PureComponent<Props, State> {
   }
 
   private renderFormContent() {
-    const reasonElements = isEmpty(this.options) ? null :
-      (
-        <>
-          <div className={`${bn}__row`}>
-            {osu.trans('users.report.reason')}
-          </div>
-          <div className={`${bn}__row`}>
-            <SelectOptions
-              blackout={false}
-              bn={`${bn}-select-options`}
-              onChange={this.handleReasonChange}
-              options={this.options}
-              selected={this.state.selectedReason}
-            />
-          </div>
-        </>
-      );
-
     return (
       <div>
-        {reasonElements}
+        {this.options.length !== 0 && (
+          <>
+            <div className={`${bn}__row`}>
+              {osu.trans('users.report.reason')}
+            </div>
+            <div className={`${bn}__row`}>
+              <SelectOptions
+                blackout={false}
+                bn={`${bn}-select-options`}
+                onChange={this.handleReasonChange}
+                options={this.options}
+                selected={this.state.selectedReason}
+              />
+            </div>
+          </>
+        )}
         <div className={`${bn}__row`}>
           {osu.trans('users.report.comments')}
         </div>
