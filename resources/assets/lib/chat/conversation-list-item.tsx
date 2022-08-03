@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import UserAvatar from 'components/user-avatar';
+import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
@@ -14,15 +15,27 @@ interface Props {
 
 @observer
 export default class ConversationListItem extends React.Component<Props> {
+  private readonly ref = React.createRef<HTMLDivElement>();
+
+  @computed
+  get selected() {
+    return this.props.channel.channelId === core.dataStore.chatState.selectedChannel?.channelId;
+  }
+
+  componentDidMount() {
+    this.ensureSelectedInView('center');
+  }
+
+  componentDidUpdate() {
+    this.ensureSelectedInView('nearest');
+  }
+
   render(): React.ReactNode {
-    const uiState = core.dataStore.chatState;
     const baseClassName = 'chat-conversation-list-item';
 
-    const selected = this.props.channel.channelId === uiState.selectedChannel?.channelId;
-
     return (
-      <div className={classWithModifiers(baseClassName, { selected })}>
-        {this.props.channel.isUnread && !selected
+      <div ref={this.ref} className={classWithModifiers(baseClassName, { selected: this.selected })}>
+        {this.props.channel.isUnread && !this.selected
           ? <div className={`${baseClassName}__unread-indicator`} />
           : null}
 
@@ -43,7 +56,13 @@ export default class ConversationListItem extends React.Component<Props> {
     );
   }
 
-  private part = () => {
+  private ensureSelectedInView(block: ScrollLogicalPosition) {
+    if (this.selected) {
+      this.ref.current?.scrollIntoView({ block, inline: 'nearest' });
+    }
+  }
+
+  private readonly part = () => {
     if (this.props.channel.type === 'ANNOUNCE' && !confirm(osu.trans('chat.channels.confirm_part'))){
       return;
     }
@@ -51,7 +70,7 @@ export default class ConversationListItem extends React.Component<Props> {
     core.dataStore.channelStore.partChannel(this.props.channel.channelId);
   };
 
-  private switch = () => {
+  private readonly switch = () => {
     core.dataStore.chatState.selectChannel(this.props.channel.channelId);
   };
 }
