@@ -4,6 +4,8 @@
 import { Modal } from 'components/modal';
 import { SelectOptions } from 'components/select-options';
 import { intersectionWith } from 'lodash';
+import { action, makeObservable, observable } from 'mobx';
+import { observer } from 'mobx-react';
 import * as React from 'react';
 import StringWithComponent from './string-with-component';
 
@@ -35,37 +37,34 @@ interface ReportOption {
   text: string;
 }
 
-interface State {
-  comments: string;
-  selectedReason: ReportOption;
-}
-
-export class ReportForm extends React.PureComponent<Props, State> {
+@observer
+export class ReportForm extends React.Component<Props> {
   static readonly defaultProps = {
     visibleOptions: availableOptions.map((option) => option.id),
   };
 
+  @observable private comments = '';
   private readonly options = intersectionWith(availableOptions, this.props.visibleOptions, (left, right) => left.id === right);
+  @observable private selectedReason = this.options[0];
 
   constructor(props: Props) {
     super(props);
 
-    this.state = {
-      comments: '',
-      selectedReason: this.options[0],
-    };
+    makeObservable(this);
   }
 
   render() {
     return this.props.visible ? this.renderForm() : null;
   }
 
+  @action
   private readonly handleCommentsChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    this.setState({ comments: e.target.value });
+    this.comments = e.target.value;
   };
 
+  @action
   private readonly handleReasonChange = (option: ReportOption) => {
-    this.setState({ selectedReason: option });
+    this.selectedReason = option;
   };
 
   private renderForm() {
@@ -109,7 +108,7 @@ export class ReportForm extends React.PureComponent<Props, State> {
                 bn={`${bn}-select-options`}
                 onChange={this.handleReasonChange}
                 options={this.options}
-                selected={this.state.selectedReason}
+                selected={this.selectedReason}
               />
             </div>
           </>
@@ -123,13 +122,13 @@ export class ReportForm extends React.PureComponent<Props, State> {
             maxLength={maxLength}
             onChange={this.handleCommentsChange}
             placeholder={osu.trans('users.report.placeholder')}
-            value={this.state.comments}
+            value={this.comments}
           />
         </div>
         <div className={`${bn}__row ${bn}__row--buttons`}>
           <button
             className={`${bn}__button ${bn}__button--report`}
-            disabled={this.props.disabled || this.state.comments.length === 0}
+            disabled={this.props.disabled || this.comments.length === 0}
             onClick={this.sendReport}
             type='button'
           >
@@ -148,10 +147,11 @@ export class ReportForm extends React.PureComponent<Props, State> {
     );
   }
 
+  @action
   private readonly sendReport = () => {
     const data = {
-      comments: this.state.comments,
-      reason: this.state.selectedReason.id,
+      comments: this.comments,
+      reason: this.selectedReason.id,
     };
 
     this.props.onSubmit(data);
