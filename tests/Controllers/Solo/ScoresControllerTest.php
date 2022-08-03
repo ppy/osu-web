@@ -9,6 +9,7 @@ use App\Models\Score as LegacyScore;
 use App\Models\Solo\Score;
 use App\Models\Solo\ScoreToken;
 use App\Models\User;
+use LaravelRedis;
 use Tests\TestCase;
 
 class ScoresControllerTest extends TestCase
@@ -21,6 +22,8 @@ class ScoresControllerTest extends TestCase
         $initialScoreCount = Score::count();
         $initialScoreTokenCount = ScoreToken::count();
         $initialLegacyScoreCount = $legacyScoreClass::count();
+
+        $this->expectCountChange(fn () => $this->processingQueueCount(), 1);
 
         $this->actAsScopedUser($scoreToken->user, ['*']);
 
@@ -71,6 +74,8 @@ class ScoresControllerTest extends TestCase
         ]);
         $scoreToken->update(['score_id' => $score->getKey()]);
         $initialScoreCount = Score::count();
+
+        $this->expectCountChange(fn () => $this->processingQueueCount(), 0);
 
         $this->actAsScopedUser($scoreToken->user, ['*']);
 
@@ -140,5 +145,18 @@ class ScoresControllerTest extends TestCase
         )->assertStatus(404);
 
         $this->assertSame($initialScoreCount, Score::count());
+    }
+
+    public function tearDown(): void
+    {
+        parent::tearDown();
+
+        $this->refreshApplication();
+        LaravelRedis::del(Score::PROCESSING_QUEUE);
+    }
+
+    private function processingQueueCount(): int
+    {
+        return LaravelRedis::llen(Score::PROCESSING_QUEUE);
     }
 }

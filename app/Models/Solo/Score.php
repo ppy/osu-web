@@ -10,7 +10,9 @@ use App\Models\Beatmap;
 use App\Models\Model;
 use App\Models\Score as LegacyScore;
 use App\Models\User;
+use App\Transformers\ScoreTransformer;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use LaravelRedis;
 
 /**
  * @property int $beatmap_id
@@ -27,6 +29,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Score extends Model
 {
     use SoftDeletes;
+
+    const PROCESSING_QUEUE = 'osu-queue:score-statistics';
 
     protected $table = 'solo_scores';
     protected $casts = [
@@ -125,6 +129,32 @@ class Score extends Model
     public function getMode(): string
     {
         return Beatmap::modeStr($this->ruleset_id);
+    }
+
+    /**
+     * Queue the item for score processing
+     *
+     * @param array $dataJson Pre-generated json of the score so the transformer doesn't need to be redundantly run
+     * @param bool $force By default only newly created scores are queued. Pass true to force queuing the score
+     */
+    public function queueForProcessing(?array $dataJson = null, bool $force = false): void
+    {
+        if (!$force && !$this->wasRecentlyCreated) {
+            return;
+        }
+
+        $dataJson ??= json_item($this, new ScoreTransformer(ScoreTransformer::TYPE_SOLO));
+
+        LaravelRedis::lpush(static::PROCESSING_QUEUE, json_encode([
+            'ProcessHistory' => null,
+            'Score' => [
+                'beatmap_id' => $dataJson['beatmap_id'],
+                'data' => json_encode($dataJson),
+                'id' => $dataJson['id'],
+                'user_id' => $dataJson['user_id'],
+            ],
+            'TotalRetries' => 0,
+        ]));
     }
 
     public function userRank(): ?int
