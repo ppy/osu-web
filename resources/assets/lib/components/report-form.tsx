@@ -40,11 +40,11 @@ interface State {
 }
 
 export class ReportForm extends React.PureComponent<Props, State> {
-  static defaultProps = {
+  static readonly defaultProps = {
     visibleOptions: availableOptions.map((option) => option.id),
   };
 
-  options = intersectionWith(availableOptions, this.props.visibleOptions, (left, right) => left.id === right);
+  private readonly options = intersectionWith(availableOptions, this.props.visibleOptions, (left, right) => left.id === right);
 
   constructor(props: Props) {
     super(props);
@@ -59,11 +59,11 @@ export class ReportForm extends React.PureComponent<Props, State> {
     return this.props.visible ? this.renderForm() : null;
   }
 
-  private handleCommentsChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  private readonly handleCommentsChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     this.setState({ comments: e.target.value });
   };
 
-  private handleReasonChange = (option: ReportOption) => {
+  private readonly handleReasonChange = (option: ReportOption) => {
     this.setState({ selectedReason: option });
   };
 
@@ -143,7 +143,7 @@ export class ReportForm extends React.PureComponent<Props, State> {
     );
   }
 
-  private sendReport = (_e: React.MouseEvent<HTMLButtonElement>) => {
+  private readonly sendReport = (_e: React.MouseEvent<HTMLButtonElement>) => {
     const data = {
       comments: this.state.comments,
       reason: this.state.selectedReason.id,
