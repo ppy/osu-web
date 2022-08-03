@@ -149,7 +149,8 @@
           "SD",
           "AT",
           "CN",
-          "RX"
+          "RX",
+          "AP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -419,6 +420,24 @@
         "Type": "Conversion",
         "Settings": [],
         "IncompatibleMods": [
+          "SG",
+          "AT",
+          "CN",
+          "RX"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "SG",
+        "Name": "Single Tap",
+        "Description": "You must only use one key!",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [
+          "AL",
           "AT",
           "CN",
           "RX"
@@ -439,11 +458,14 @@
           "SD",
           "PF",
           "AL",
+          "SG",
           "CN",
           "RX",
           "AP",
           "SO",
-          "MG"
+          "MG",
+          "RP",
+          "AS"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": false,
@@ -461,12 +483,15 @@
           "SD",
           "PF",
           "AL",
+          "SG",
           "AT",
           "CN",
           "RX",
           "AP",
           "SO",
-          "MG"
+          "MG",
+          "RP",
+          "AS"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": false,
@@ -484,6 +509,7 @@
           "SD",
           "PF",
           "AL",
+          "SG",
           "AT",
           "CN",
           "AP",
@@ -508,7 +534,8 @@
           "CN",
           "RX",
           "SO",
-          "MG"
+          "MG",
+          "RP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -540,7 +567,8 @@
         "Settings": [],
         "IncompatibleMods": [
           "WG",
-          "MG"
+          "MG",
+          "RP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -552,10 +580,16 @@
         "Name": "Wiggle",
         "Description": "They just won't stay still...",
         "Type": "Fun",
-        "Settings": [],
+        "Settings": [
+          {
+            "Name": "strength",
+            "Type": "number"
+          }
+        ],
         "IncompatibleMods": [
           "TR",
-          "MG"
+          "MG",
+          "RP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -819,7 +853,32 @@
           "RX",
           "AP",
           "TR",
-          "WG"
+          "WG",
+          "RP"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "RP",
+        "Name": "Repel",
+        "Description": "Hit objects run away!",
+        "Type": "Fun",
+        "Settings": [
+          {
+            "Name": "repulsion_strength",
+            "Type": "number"
+          }
+        ],
+        "IncompatibleMods": [
+          "AT",
+          "CN",
+          "AP",
+          "TR",
+          "WG",
+          "MG"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -846,6 +905,8 @@
           "DC",
           "DT",
           "NC",
+          "AT",
+          "CN",
           "WU",
           "WD"
         ],
@@ -1187,7 +1248,8 @@
           "SD",
           "PF",
           "CN",
-          "RX"
+          "RX",
+          "AS"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": false,
@@ -1206,7 +1268,8 @@
           "PF",
           "AT",
           "CN",
-          "RX"
+          "RX",
+          "AS"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": false,
@@ -1344,6 +1407,8 @@
           "DC",
           "DT",
           "NC",
+          "AT",
+          "CN",
           "WU",
           "WD"
         ],
@@ -2432,7 +2497,8 @@
           "NF",
           "SD",
           "PF",
-          "CN"
+          "CN",
+          "AS"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": false,
@@ -2450,7 +2516,8 @@
           "SD",
           "PF",
           "AT",
-          "CN"
+          "CN",
+          "AS"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": false,
@@ -2570,6 +2637,8 @@
           "DC",
           "DT",
           "NC",
+          "AT",
+          "CN",
           "WU",
           "WD"
         ],

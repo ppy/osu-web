@@ -68,13 +68,13 @@ return [
         'beatmapsets_controller' => [
             'discussion' => '',
             'index' => 'seznam beatmap',
-            'show' => '',
+            'show' => 'info o beatmapě',
         ],
         'changelog_controller' => [
             '_' => 'seznam změn',
         ],
         'chat_controller' => [
-            '_' => '',
+            '_' => 'chat',
         ],
         'comments_controller' => [
             '_' => 'komentáře',
@@ -96,7 +96,7 @@ return [
             'index' => 'nástěnka',
             'search' => 'hledat',
             'support_the_game' => 'podpoř hru',
-            'testflight' => '',
+            'testflight' => 'testflight',
         ],
         'legal_controller' => [
             '_' => 'informace',
@@ -105,7 +105,7 @@ return [
             '_' => 'živá vysílání',
         ],
         'matches_controller' => [
-            '_' => '',
+            '_' => 'zápasy',
         ],
         'news_controller' => [
             '_' => 'novinky',
@@ -151,10 +151,10 @@ return [
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => '',
+            '_' => 'modder info',
         ],
         'multiplayer_controller' => [
-            '_' => '',
+            '_' => 'historie her více hráčů',
         ],
     ],
 ];

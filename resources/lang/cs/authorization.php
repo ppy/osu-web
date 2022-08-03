@@ -75,7 +75,7 @@ return [
 
     'comment' => [
         'store' => [
-            'disabled' => '',
+            'disabled' => 'Komentáře jsou vypnuty',
         ],
         'update' => [
             'deleted' => "Nemůžete editovat již odstraněný příspěvek.",

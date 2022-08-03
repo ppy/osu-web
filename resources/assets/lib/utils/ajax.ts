@@ -4,6 +4,8 @@
 import core from 'osu-core-singleton';
 import { createClickCallback } from 'utils/html';
 
+const jqXHRProperties = ['status', 'statusText', 'readyState', 'responseText'];
+
 export const error = (xhr: JQuery.jqXHR, status: string, callback?: () => void) => {
   if (status === 'abort') return;
   if (core.userLogin.showOnError(xhr, callback)) return;
@@ -15,6 +17,12 @@ export const error = (xhr: JQuery.jqXHR, status: string, callback?: () => void) 
 export const fileuploadFailCallback = (event: unknown, data: JQueryFileUploadDone) => {
   error(data.jqXHR, data.textStatus, () => data.submit?.());
 };
+
+export function isJqXHR(obj: unknown): obj is JQuery.jqXHR {
+  return typeof obj === 'object'
+    && obj != null
+    && jqXHRProperties.every((value) => value in obj);
+}
 
 export const onError = (xhr: JQuery.jqXHR) => error(xhr, xhr.statusText);
 

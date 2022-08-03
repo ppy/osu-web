@@ -30,7 +30,7 @@ return [
     'forum' => [
         '_' => 'forum',
         'topic_logs_controller' => [
-            'index' => '',
+            'index' => 'ämneslogg',
         ],
         'topic_watches_controller' => [
             'index' => 'kontrollpanel',
@@ -42,7 +42,7 @@ return [
             'verify_link' => 'kontobekräftelse',
         ],
         'artist_tracks_controller' => [
-            '_' => '',
+            '_' => 'utvalda artister',
         ],
         'artists_controller' => [
             '_' => 'utvalda artister',
@@ -129,7 +129,7 @@ return [
             '_' => 'turneringar',
         ],
         'users_controller' => [
-            '_' => 'spelar information',
+            '_' => 'spelarinformation',
             'disabled' => 'notera',
         ],
         'wiki_controller' => [

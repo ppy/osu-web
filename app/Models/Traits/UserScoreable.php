@@ -49,9 +49,7 @@ trait UserScoreable
             ]);
 
         $response = $search->response();
-        if ($search->getError() !== null) {
-            throw $search->getError();
-        }
+        $search->assertNoError();
 
         return $response;
     }

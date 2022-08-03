@@ -30,7 +30,7 @@ return [
         'nomination_reset' => 'Nytt problem :discussion (:text) utlöste en nomineringsåterställning.',
         'nomination_reset_received' => 'Nominering av :user återställdes av :source_user (:text)',
         'nomination_reset_received_profile' => 'Nominering återställdes av :user (:text)',
-        'offset_edit' => '',
+        'offset_edit' => 'Online-förskjutning ändrades från :old till :new.',
         'qualify' => 'Denna beatmap har uppnått det nödvändiga antalet nomineringar och har blivit kvalificerad.',
         'rank' => 'Rankad.',
         'remove_from_loved' => 'Borttagen från Älskad av :user. (:text)',
@@ -42,7 +42,7 @@ return [
     ],
 
     'index' => [
-        'title' => 'Beatmapset händelser',
+        'title' => 'Beatmapset-händelser',
 
         'form' => [
             'period' => 'Period',
@@ -78,7 +78,7 @@ return [
         'nomination_reset' => 'Återställning av nominering',
         'nomination_reset_received' => 'Nomineringsåterställning mottagen',
         'nsfw_toggle' => 'Explicit markering',
-        'offset_edit' => '',
+        'offset_edit' => 'Redigera förskjutning',
         'qualify' => 'Kvalifikation',
         'rank' => 'Rankning',
         'remove_from_loved' => 'Älskad borttagning',

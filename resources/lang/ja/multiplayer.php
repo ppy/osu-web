@@ -5,9 +5,9 @@
 
 return [
     'empty' => [
-        '_' => '',
-        'playlists' => '',
-        'realtime' => '',
+        '_' => 'osu!(lazer)の:type_groupゲームはまだプレイされていません。',
+        'playlists' => 'プレイリスト',
+        'realtime' => 'マルチプレイヤー',
     ],
 
     'room' => [
@@ -18,7 +18,7 @@ return [
         'time_left' => '残り :time',
 
         'errors' => [
-            'duration_too_long' => '',
+            'duration_too_long' => '時間が長すぎます。',
         ],
 
         'status' => [

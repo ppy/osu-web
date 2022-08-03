@@ -35,6 +35,7 @@ class UserReport extends Model
     use RoutesNotifications, Validatable;
 
     const BEATMAPSET_TYPE_REASONS = ['UnwantedContent', 'Other'];
+    const MAX_LENGTH = 2000;
     const POST_TYPE_REASONS = ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'];
     const SCORE_TYPE_REASONS = ['Cheating', 'MultipleAccounts', 'Other'];
 
@@ -126,6 +127,14 @@ class UserReport extends Model
             $this->validationErrors()->add(
                 'reason',
                 '.no_ranked_beatmapset'
+            );
+        }
+
+        if (mb_strlen($this->comments) > static::MAX_LENGTH) {
+            $this->validationErrors()->add(
+                'comments',
+                'too_long',
+                ['limit' => static::MAX_LENGTH]
             );
         }
 
