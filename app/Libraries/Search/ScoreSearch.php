@@ -9,6 +9,8 @@ use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\RecordSearch;
 use App\Models\Solo\Score;
 use Ds\Set;
+use Exception;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use LaravelRedis;
 
@@ -87,6 +89,27 @@ class ScoreSearch extends RecordSearch
         }
 
         return $query;
+    }
+
+    public function indexWait(float $maxWaitSecond = 5): void
+    {
+        $count = Score
+            ::where('preserve', true)
+            ->whereHas('user', fn (Builder $q): Builder => $q->default())
+            ->count();
+        $loopWait = 500000; // 0.5s in microsecond
+        $loops = (int) ceil($maxWaitSecond * 1000000.0 / $loopWait);
+
+        for ($i = 0; $i < $loops; $i++) {
+            usleep($loopWait);
+            $this->refresh();
+            $indexedCount = $this->client()->count(['index' => $this->index])['count'];
+            if ($indexedCount === $count) {
+                return;
+            }
+        }
+
+        throw new Exception("Indexable and indexed score counts still don't match. Queue runner is probably either having problem, not running, or too slow");
     }
 
     private function addModsFilter(BoolQuery $query): void
