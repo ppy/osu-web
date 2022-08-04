@@ -10,6 +10,7 @@ use App\Models\Beatmap;
 use App\Models\Model;
 use App\Models\Score as LegacyScore;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -70,6 +71,17 @@ class Score extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    /**
+     * This should match the one used in osu-elastic-indexer.
+     * TODO: decide what to do with `deleted_at` column.
+     */
+    public function scopeIndexable(Builder $query): Builder
+    {
+        return $this
+            ->where('preserve', true)
+            ->whereHas('user', fn (Builder $q): Builder => $q->default());
     }
 
     public function createLegacyEntryOrExplode()

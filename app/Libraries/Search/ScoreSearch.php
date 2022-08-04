@@ -10,7 +10,6 @@ use App\Libraries\Elasticsearch\RecordSearch;
 use App\Models\Solo\Score;
 use Ds\Set;
 use Exception;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use LaravelRedis;
 
@@ -93,10 +92,7 @@ class ScoreSearch extends RecordSearch
 
     public function indexWait(float $maxWaitSecond = 5): void
     {
-        $count = Score
-            ::where('preserve', true)
-            ->whereHas('user', fn (Builder $q): Builder => $q->default())
-            ->count();
+        $count = Score::indexable()->count();
         $loopWait = 500000; // 0.5s in microsecond
         $loops = (int) ceil($maxWaitSecond * 1000000.0 / $loopWait);
 
