@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import UserAvatar from 'components/user-avatar';
-import { computed } from 'mobx';
+import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
@@ -21,6 +21,13 @@ export default class ConversationListItem extends React.Component<Props> {
   get selected() {
     return this.props.channel.channelId === core.dataStore.chatState.selectedChannel?.channelId;
   }
+
+  constructor(props: Props) {
+    super(props);
+
+    makeObservable(this);
+  }
+
 
   componentDidMount() {
     // if the current channel is selected on mount, it's probably on page load, so centre it.
