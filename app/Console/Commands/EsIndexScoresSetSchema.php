@@ -5,8 +5,8 @@
 
 namespace App\Console\Commands;
 
+use App\Libraries\Search\ScoreSearch;
 use Illuminate\Console\Command;
-use LaravelRedis;
 
 class EsIndexScoresSetSchema extends Command
 {
@@ -38,7 +38,8 @@ class EsIndexScoresSetSchema extends Command
             return $this->error('Index schema must be specified');
         }
 
-        LaravelRedis::set('osu-queue:score-index:'.config('osu.elasticsearch.prefix').'schema', $schema);
+        (new ScoreSearch())->setSchema($schema);
+
         $this->info("Set score index schema version to {$schema}");
     }
 }
