@@ -27,6 +27,11 @@ class ScoreSearch extends RecordSearch
         );
     }
 
+    public function getSchema(): ?string
+    {
+        return presence(LaravelRedis::get($this->schemaKey()));
+    }
+
     public function indexAll(string $schema): void
     {
         $queue = "osu-queue:score-index-{$schema}";
@@ -40,7 +45,7 @@ class ScoreSearch extends RecordSearch
 
     public function setSchema(string $schema): void
     {
-        LaravelRedis::set('osu-queue:score-index:'.config('osu.elasticsearch.prefix').'schema', $schema);
+        LaravelRedis::set($this->schemaKey(), $schema);
     }
 
     public function getQuery(): BoolQuery
@@ -135,5 +140,10 @@ class ScoreSearch extends RecordSearch
         if (isset($shouldSubQueries)) {
             $query->must($shouldSubQueries);
         }
+    }
+
+    private function schemaKey(): string
+    {
+        return 'osu-queue:score-index:'.config('osu.elasticsearch.prefix').'schema';
     }
 }

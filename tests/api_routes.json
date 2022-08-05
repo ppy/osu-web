@@ -880,19 +880,6 @@
         ]
     },
     {
-        "uri": "api/v2/beatmapsets/{beatmapset}/download",
-        "methods": [
-            "GET",
-            "HEAD"
-        ],
-        "controller": "App\\Http\\Controllers\\BeatmapsetsController@download",
-        "middlewares": [
-            "throttle:1200,1,api:",
-            "require-scopes"
-        ],
-        "scopes": []
-    },
-    {
         "uri": "api/v2/beatmapsets/{beatmapset}",
         "methods": [
             "GET",
@@ -1174,6 +1161,18 @@
         "controller": "App\\Http\\Controllers\\WikiController@show",
         "middlewares": [
             "throttle:1200,1,api:",
+            "require-scopes"
+        ],
+        "scopes": []
+    },
+    {
+        "uri": "api/v2/beatmapsets/{beatmapset}/download",
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "controller": "App\\Http\\Controllers\\BeatmapsetsController@download",
+        "middlewares": [
             "require-scopes"
         ],
         "scopes": []
