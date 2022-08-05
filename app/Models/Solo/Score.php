@@ -134,7 +134,7 @@ class Score extends Model
     /**
      * Queue the item for score processing
      *
-     * @param array $dataJson Pre-generated json of the score so the transformer doesn't need to be redundantly generated
+     * @param array $dataJson Pre-generated json of the score so it doesn't need to be redundantly generated
      * @param bool $force By default only newly created scores are queued. Pass true to force queuing the score
      */
     public function queueForProcessing(?array $dataJson = null, bool $force = false): void
