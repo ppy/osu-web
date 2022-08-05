@@ -10,7 +10,6 @@ use App\Models\Beatmap;
 use App\Models\Model;
 use App\Models\Score as LegacyScore;
 use App\Models\User;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property int $beatmap_id
@@ -26,8 +25,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Score extends Model
 {
-    use SoftDeletes;
-
     protected $table = 'solo_scores';
     protected $casts = [
         'preserve' => 'boolean',
