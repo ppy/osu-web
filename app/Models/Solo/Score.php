@@ -146,14 +146,12 @@ class Score extends Model
         $dataJson ??= json_item($this, new ScoreTransformer(ScoreTransformer::TYPE_SOLO));
 
         LaravelRedis::lpush(static::PROCESSING_QUEUE, json_encode([
-            'ProcessHistory' => null,
             'Score' => [
                 'beatmap_id' => $dataJson['beatmap_id'],
                 'data' => json_encode($dataJson),
                 'id' => $dataJson['id'],
                 'user_id' => $dataJson['user_id'],
             ],
-            'TotalRetries' => 0,
         ]));
     }
 
