@@ -63,7 +63,7 @@ class Score extends Model
      *
      * @param array $scoreJson JSON of the score generated using ScoreTransformer of type Solo
      */
-    public static function queueForProcessing(array $scoreJson = null): void
+    public static function queueForProcessing(array $scoreJson): void
     {
         LaravelRedis::lpush(static::PROCESSING_QUEUE, json_encode([
             'Score' => [
