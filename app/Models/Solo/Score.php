@@ -92,7 +92,6 @@ class Score extends Model
 
     /**
      * This should match the one used in osu-elastic-indexer.
-     * TODO: decide what to do with `deleted_at` column.
      */
     public function scopeIndexable(Builder $query): Builder
     {
