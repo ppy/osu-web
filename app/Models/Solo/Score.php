@@ -11,6 +11,7 @@ use App\Models\Model;
 use App\Models\Score as LegacyScore;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
+use LaravelRedis;
 
 /**
  * @property int $beatmap_id
@@ -26,6 +27,8 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Score extends Model
 {
+    const PROCESSING_QUEUE = 'osu-queue:score-statistics';
+
     protected $table = 'solo_scores';
     protected $casts = [
         'preserve' => 'boolean',
@@ -53,6 +56,23 @@ class Score extends Model
         $score->saveOrExplode();
 
         return $score;
+    }
+
+    /**
+     * Queue the item for score processing
+     *
+     * @param array $scoreJson JSON of the score generated using ScoreTransformer of type Solo
+     */
+    public static function queueForProcessing(array $scoreJson): void
+    {
+        LaravelRedis::lpush(static::PROCESSING_QUEUE, json_encode([
+            'Score' => [
+                'beatmap_id' => $scoreJson['beatmap_id'],
+                'data' => json_encode($scoreJson),
+                'id' => $scoreJson['id'],
+                'user_id' => $scoreJson['user_id'],
+            ],
+        ]));
     }
 
     public function beatmap()
