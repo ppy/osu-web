@@ -286,7 +286,7 @@ class Channel extends Model
                 return $this->pmUsers;
             }
 
-            // This isn't a has-many-through because the relationship is cross-database.
+            // This isn't a has-many-through because the User and UserChannel are in different databases.
             return User::whereIn('user_id', $this->userIds())->get();
         });
     }
@@ -472,8 +472,9 @@ class Channel extends Model
                 $userChannel->markAsRead($message->message_id);
             }
 
+            $this->unhide();
+
             if ($this->isPM()) {
-                $this->unhide();
                 (new ChannelMessage($message, $sender))->dispatch();
             } elseif ($this->isAnnouncement()) {
                 (new ChannelAnnouncement($message, $sender))->dispatch();
@@ -560,6 +561,35 @@ class Channel extends Model
         $this->preloadedUserChannels[$userChannel->user_id] = $userChannel;
     }
 
+    /**
+     * Unhides UserChannels as necessary when receiving messages.
+     *
+     * @return void
+     */
+    public function unhide(?User $user = null)
+    {
+        if (!$this->isHideable()) {
+            return;
+        }
+
+        $params = [
+            'channel_id' => $this->channel_id,
+            'hidden' => true,
+        ];
+
+        if ($user !== null) {
+            $params['user_id'] = $user->getKey();
+        }
+
+        $count = UserChannel::where($params)->update([
+            'hidden' => false,
+        ]);
+
+        if ($count > 0) {
+            Datadog::increment('chat.channel.join', 1, ['type' => $this->type], $count);
+        }
+    }
+
     public function validationErrorsTranslationPrefix()
     {
         return 'chat.channel';
@@ -571,20 +601,6 @@ class Channel extends Model
         // simpler to reset preloads since its use-cases are more specific,
         // rather than trying to juggle them to ensure userChannelFor returns as expected.
         $this->preloadedUserChannels = [];
-    }
-
-    private function unhide()
-    {
-        if (!$this->isHideable()) {
-            return;
-        }
-
-        return UserChannel::where([
-            'channel_id' => $this->channel_id,
-            'hidden' => true,
-        ])->update([
-            'hidden' => false,
-        ]);
     }
 
     private function userChannelFor(User $user): ?UserChannel
