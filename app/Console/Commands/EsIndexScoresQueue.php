@@ -24,7 +24,7 @@ class EsIndexScoresQueue extends Command
         {--ids= : Queue specified comma-separated list of score ids}
         {--from= : Queue all the scores after (but not including) the specified id}
         {--a|all : Queue all the scores in the database}
-        {--schema= : Index schema to queue the scores to (can also be specified using environment variable "schema")}';
+        {--schema= : Index schema to queue the scores to (can also be specified using environment variable "schema"). Will use version set in redis if not specified}';
 
     /**
      * The console command description.
@@ -48,7 +48,9 @@ class EsIndexScoresQueue extends Command
             return $this->info('User aborted');
         }
 
-        $this->schema = presence($this->option('schema')) ?? presence(env('schema'));
+        $this->schema = presence($this->option('schema'))
+            ?? presence(env('schema'))
+            ?? (new ScoreSearch())->getSchema();
 
         if ($this->schema === null) {
             return $this->error('Index schema must be specified');
