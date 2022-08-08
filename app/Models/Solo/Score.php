@@ -10,7 +10,8 @@ use App\Models\Beatmap;
 use App\Models\Model;
 use App\Models\Score as LegacyScore;
 use App\Models\User;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Builder;
+use LaravelRedis;
 
 /**
  * @property int $beatmap_id
@@ -26,7 +27,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Score extends Model
 {
-    use SoftDeletes;
+    const PROCESSING_QUEUE = 'osu-queue:score-statistics';
 
     protected $table = 'solo_scores';
     protected $casts = [
@@ -57,6 +58,23 @@ class Score extends Model
         return $score;
     }
 
+    /**
+     * Queue the item for score processing
+     *
+     * @param array $scoreJson JSON of the score generated using ScoreTransformer of type Solo
+     */
+    public static function queueForProcessing(array $scoreJson): void
+    {
+        LaravelRedis::lpush(static::PROCESSING_QUEUE, json_encode([
+            'Score' => [
+                'beatmap_id' => $scoreJson['beatmap_id'],
+                'data' => json_encode($scoreJson),
+                'id' => $scoreJson['id'],
+                'user_id' => $scoreJson['user_id'],
+            ],
+        ]));
+    }
+
     public function beatmap()
     {
         return $this->belongsTo(Beatmap::class, 'beatmap_id');
@@ -70,6 +88,16 @@ class Score extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    /**
+     * This should match the one used in osu-elastic-indexer.
+     */
+    public function scopeIndexable(Builder $query): Builder
+    {
+        return $this
+            ->where('preserve', true)
+            ->whereHas('user', fn (Builder $q): Builder => $q->default());
     }
 
     public function createLegacyEntryOrExplode()

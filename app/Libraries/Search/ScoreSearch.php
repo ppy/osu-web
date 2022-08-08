@@ -9,6 +9,7 @@ use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\RecordSearch;
 use App\Models\Solo\Score;
 use Ds\Set;
+use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use LaravelRedis;
 
@@ -27,6 +28,11 @@ class ScoreSearch extends RecordSearch
         );
     }
 
+    public function getSchema(): ?string
+    {
+        return presence(LaravelRedis::get($this->schemaKey()));
+    }
+
     public function indexAll(string $schema): void
     {
         $queue = "osu-queue:score-index-{$schema}";
@@ -40,7 +46,7 @@ class ScoreSearch extends RecordSearch
 
     public function setSchema(string $schema): void
     {
-        LaravelRedis::set('osu-queue:score-index:'.config('osu.elasticsearch.prefix').'schema', $schema);
+        LaravelRedis::set($this->schemaKey(), $schema);
     }
 
     public function getQuery(): BoolQuery
@@ -89,6 +95,24 @@ class ScoreSearch extends RecordSearch
         return $query;
     }
 
+    public function indexWait(float $maxWaitSecond = 5): void
+    {
+        $count = Score::indexable()->count();
+        $loopWait = 500000; // 0.5s in microsecond
+        $loops = (int) ceil($maxWaitSecond * 1000000.0 / $loopWait);
+
+        for ($i = 0; $i < $loops; $i++) {
+            usleep($loopWait);
+            $this->refresh();
+            $indexedCount = $this->client()->count(['index' => $this->index])['count'];
+            if ($indexedCount === $count) {
+                return;
+            }
+        }
+
+        throw new Exception("Indexable and indexed score counts still don't match. Queue runner is probably either having problem, not running, or too slow");
+    }
+
     private function addModsFilter(BoolQuery $query): void
     {
         $mods = $this->params->mods;
@@ -135,5 +159,10 @@ class ScoreSearch extends RecordSearch
         if (isset($shouldSubQueries)) {
             $query->must($shouldSubQueries);
         }
+    }
+
+    private function schemaKey(): string
+    {
+        return 'osu-queue:score-index:'.config('osu.elasticsearch.prefix').'schema';
     }
 }
