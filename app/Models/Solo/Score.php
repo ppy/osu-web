@@ -10,7 +10,6 @@ use App\Models\Beatmap;
 use App\Models\Model;
 use App\Models\Score as LegacyScore;
 use App\Models\User;
-use App\Transformers\ScoreTransformer;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use LaravelRedis;
 
@@ -59,6 +58,23 @@ class Score extends Model
         $score->saveOrExplode();
 
         return $score;
+    }
+
+    /**
+     * Queue the item for score processing
+     *
+     * @param array $scoreJson JSON of the score generated using ScoreTransformer of type Solo
+     */
+    public static function queueForProcessing(array $scoreJson = null): void
+    {
+        LaravelRedis::lpush(static::PROCESSING_QUEUE, json_encode([
+            'Score' => [
+                'beatmap_id' => $scoreJson['beatmap_id'],
+                'data' => json_encode($scoreJson),
+                'id' => $scoreJson['id'],
+                'user_id' => $scoreJson['user_id'],
+            ],
+        ]));
     }
 
     public function beatmap()
@@ -129,30 +145,6 @@ class Score extends Model
     public function getMode(): string
     {
         return Beatmap::modeStr($this->ruleset_id);
-    }
-
-    /**
-     * Queue the item for score processing
-     *
-     * @param array $dataJson Pre-generated json of the score so it doesn't need to be redundantly generated
-     * @param bool $force By default only newly created scores are queued. Pass true to force queuing the score
-     */
-    public function queueForProcessing(?array $dataJson = null, bool $force = false): void
-    {
-        if (!$force && !$this->wasRecentlyCreated) {
-            return;
-        }
-
-        $dataJson ??= json_item($this, new ScoreTransformer(ScoreTransformer::TYPE_SOLO));
-
-        LaravelRedis::lpush(static::PROCESSING_QUEUE, json_encode([
-            'Score' => [
-                'beatmap_id' => $dataJson['beatmap_id'],
-                'data' => json_encode($dataJson),
-                'id' => $dataJson['id'],
-                'user_id' => $dataJson['user_id'],
-            ],
-        ]));
     }
 
     public function userRank(): ?int
