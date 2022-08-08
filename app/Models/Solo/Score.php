@@ -9,6 +9,7 @@ use App\Libraries\Score\UserRankCache;
 use App\Models\Beatmap;
 use App\Models\Model;
 use App\Models\Score as LegacyScore;
+use App\Models\Traits;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use LaravelRedis;
@@ -25,8 +26,10 @@ use LaravelRedis;
  * @property User $user
  * @property int $user_id
  */
-class Score extends Model
+class Score extends Model implements Traits\ReportableInterface
 {
+    use Traits\Reportable;
+
     const PROCESSING_QUEUE = 'osu-queue:score-statistics';
 
     protected $table = 'solo_scores';
@@ -155,8 +158,21 @@ class Score extends Model
         return Beatmap::modeStr($this->ruleset_id);
     }
 
+    public function trashed(): bool
+    {
+        return false;
+    }
+
     public function userRank(): ?int
     {
         return UserRankCache::fetch([], $this->beatmap_id, $this->ruleset_id, $this->data->totalScore);
+    }
+
+    protected function newReportableExtraParams(): array
+    {
+        return [
+            'reason' => 'Cheating',
+            'user_id' => $this->user_id,
+        ];
     }
 }
