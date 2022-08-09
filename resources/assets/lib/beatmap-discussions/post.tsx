@@ -67,6 +67,11 @@ export class Post extends React.Component<Props> {
   }
 
   @computed
+  private get deleteModel() {
+    return this.props.type === 'reply' ? this.props.post : this.props.discussion;
+  }
+
+  @computed
   private get isReview() {
     return this.props.discussion.message_type === 'review' && this.props.type === 'discussion';
   }
@@ -124,6 +129,14 @@ export class Post extends React.Component<Props> {
     );
   }
 
+  private deleteHref(op: 'destroy' | 'restore') {
+    const [controller, key] = this.props.type === 'reply'
+      ? ['beatmapsets.discussions.posts', 'post']
+      : ['beatmapsets.discussions', 'discussion'];
+
+    return route(`${controller}.${op}`, { [key]: this.deleteModel.id });
+  }
+
   @action
   private readonly editCancel = () => {
     this.editing = false;
@@ -162,12 +175,11 @@ export class Post extends React.Component<Props> {
     this.canSave = validMessageLength(this.message, this.isTimeline);
   };
 
-
-  private renderDeletedBy(model: BeatmapsetDiscussionJson | BeatmapsetDiscussionPostJson) {
-    if (model.deleted_at == null) return null;
+  private renderDeletedBy() {
+    if (this.deleteModel.deleted_at == null) return null;
     const user = (
-      model.deleted_by_id != null
-        ? this.props.users[model.deleted_by_id]
+      this.deleteModel.deleted_by_id != null
+        ? this.props.users[this.deleteModel.deleted_by_id]
         : null
     ) ?? deletedUser;
 
@@ -175,7 +187,7 @@ export class Post extends React.Component<Props> {
       <span className={classWithModifiers(`${bn}__info`, 'edited')}>
         <StringWithComponent
           mappings={{
-            delete_time: <TimeWithTooltip dateTime={model.deleted_at} relative />,
+            delete_time: <TimeWithTooltip dateTime={this.deleteModel.deleted_at} relative />,
             editor: (
               <UserLink
                 className={`${bn}__info-user`}
@@ -184,6 +196,22 @@ export class Post extends React.Component<Props> {
             ),
           }}
           pattern={osu.trans('beatmaps.discussions.deleted')}
+        />
+      </span>
+    );
+  }
+
+  private renderEdited() {
+    if (this.props.lastEditor == null || this.props.post.updated_at === this.props.post.created_at) return null;
+
+    return (
+      <span className={classWithModifiers(`${bn}__info`, 'edited')}>
+        <StringWithComponent
+          mappings={{
+            editor: <UserLink className={`${bn}__info-user`} user={this.props.lastEditor} />,
+            update_time: <TimeWithTooltip dateTime={this.props.post.updated_at} relative />,
+          }}
+          pattern={osu.trans('beatmaps.discussions.edited')}
         />
       </span>
     );
@@ -290,10 +318,6 @@ export class Post extends React.Component<Props> {
   private renderMessageViewer() {
     if (this.props.post.system) return;
 
-    const [controller, key, deleteModel] = this.props.type === 'reply'
-      ? ['beatmapsets.discussions.posts', 'post', this.props.post]
-      : ['beatmapsets.discussions', 'discussion', this.props.discussion];
-
     return (
       <div className={`${bn}__message-container`}>
         {this.isReview ? (
@@ -315,19 +339,8 @@ export class Post extends React.Component<Props> {
           <span className={`${bn}__info`}>
             <TimeWithTooltip dateTime={this.props.post.created_at} relative />
           </span>
-          {this.renderDeletedBy(deleteModel)}
-
-          {this.props.post.updated_at !== this.props.post.created_at && this.props.lastEditor != null && (
-            <span className={classWithModifiers(`${bn}__info`, 'edited')}>
-              <StringWithComponent
-                mappings={{
-                  editor: <UserLink className={`${bn}__info-user`} user={this.props.lastEditor} />,
-                  update_time: <TimeWithTooltip dateTime={this.props.post.updated_at} relative />,
-                }}
-                pattern={osu.trans('beatmaps.discussions.edited')}
-              />
-            </span>
-          )}
+          {this.renderDeletedBy()}
+          {this.renderEdited()}
 
           {this.props.type === 'discussion' && this.props.discussion.kudosu_denied && (
             <span className={classWithModifiers(`${bn}__info`, 'edited')}>
@@ -335,63 +348,72 @@ export class Post extends React.Component<Props> {
             </span>
           )}
         </div>
-        <div className={`${bn}__actions`}>
-          <div className={`${bn}__actions-group`}>
-            <span className={`${bn}__action ${bn}__action--button`}>
-              <ClickToCopy
-                label={osu.trans('common.buttons.permalink')}
-                value={BeatmapDiscussionHelper.url({ discussion: this.props.discussion, post: this.props.type === 'reply' ? this.props.post : undefined })}
-                valueAsUrl
-              />
-            </span>
-            {this.props.canBeEdited && (
-              <button
-                className={`${bn}__action ${bn}__action--button`}
-                onClick={this.editStart}
-              >
-                {osu.trans('beatmaps.discussions.edit')}
-              </button>
-            )}
 
-            {deleteModel.deleted_at == null && this.props.canBeDeleted && (
-              <a
-                className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
-                data-confirm={osu.trans('common.confirmation')}
-                data-method='DELETE'
-                data-remote
-                href={route(`${controller}.destroy`, { [key]: deleteModel.id })}
-              >
-                {osu.trans('beatmaps.discussions.delete')}
-              </a>
-            )}
+        {this.renderMessageViewerActions()}
+      </div>
+    );
+  }
 
-            {deleteModel.deleted_at != null && this.props.canBeRestored && (
-              <a
-                className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
-                data-confirm={osu.trans('common.confirmation')}
-                data-method='POST'
-                data-remote
-                href={route(`${controller}.restore`, { [key]: deleteModel.id })}
-              >
-                {osu.trans('beatmaps.discussions.restore')}
-              </a>
-            )}
 
-            {this.props.type === 'discussion' && this.props.discussion.current_user_attributes?.can_moderate_kudosu && this.renderKudosu()}
+  private renderMessageViewerActions() {
+    return (
+      <div className={`${bn}__actions`}>
+        <div className={`${bn}__actions-group`}>
+          <span className={`${bn}__action ${bn}__action--button`}>
+            <ClickToCopy
+              label={osu.trans('common.buttons.permalink')}
+              value={BeatmapDiscussionHelper.url({ discussion: this.props.discussion, post: this.props.type === 'reply' ? this.props.post : null })}
+              valueAsUrl
+            />
+          </span>
+          {this.props.canBeEdited && (
+            <button
+              className={`${bn}__action ${bn}__action--button`}
+              onClick={this.editStart}
+            >
+              {osu.trans('beatmaps.discussions.edit')}
+            </button>
+          )}
 
-            {this.canReport && (
-              <ReportReportable
-                className={`${bn}__action ${bn}__action--button`}
-                reportableId={this.props.post.id.toString()}
-                reportableType='beatmapset_discussion_post'
-                user={this.props.user}
-              />
-            )}
-          </div>
+          {this.deleteModel.deleted_at == null && this.props.canBeDeleted && (
+            <a
+              className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
+              data-confirm={osu.trans('common.confirmation')}
+              data-method='DELETE'
+              data-remote
+              href={this.deleteHref('destroy')}
+            >
+              {osu.trans('beatmaps.discussions.delete')}
+            </a>
+          )}
+
+          {this.deleteModel.deleted_at != null && this.props.canBeRestored && (
+            <a
+              className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
+              data-confirm={osu.trans('common.confirmation')}
+              data-method='POST'
+              data-remote
+              href={this.deleteHref('restore')}
+            >
+              {osu.trans('beatmaps.discussions.restore')}
+            </a>
+          )}
+
+          {this.renderKudosu()}
+
+          {this.canReport && (
+            <ReportReportable
+              className={`${bn}__action ${bn}__action--button`}
+              reportableId={this.props.post.id.toString()}
+              reportableType='beatmapset_discussion_post'
+              user={this.props.user}
+            />
+          )}
         </div>
       </div>
     );
   }
+
 
   @action
   private readonly updatePost = () => {
