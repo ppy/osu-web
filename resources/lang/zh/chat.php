@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => '',
         'create' => '创建公告',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => '通知',

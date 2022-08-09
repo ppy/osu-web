@@ -16,7 +16,7 @@ return [
     ],
 
     'download' => [
-        'limit_exceeded' => 'Притормози, поиграй больше.',
+        'limit_exceeded' => 'Меньше качай и больше играй.',
     ],
 
     'featured_artist_badge' => [
@@ -126,7 +126,7 @@ return [
             'no_scores' => 'Данные всё ещё обрабатываются...',
             'nsfw' => 'Откровенное содержание',
             'offset' => 'Сдвиг карты после ранка',
-            'points-of-failure' => 'Шкала провалов',
+            'points-of-failure' => 'Диаграмма провалов',
             'source' => 'Источник',
             'storyboard' => 'Эта карта содержит сториборд',
             'success-rate' => 'Процент успешных прохождений',
@@ -199,7 +199,7 @@ return [
             'count_sliders' => 'Количество слайдеров',
             'offset' => 'Значение сдвига: :offset',
             'user-rating' => 'Оценки пользователей',
-            'rating-spread' => 'Шкала оценок',
+            'rating-spread' => 'Распределение оценок',
             'nominations' => 'Номинации',
             'playcount' => 'Количество игр',
         ],

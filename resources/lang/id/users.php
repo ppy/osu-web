@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Anda telah memblokir pengguna ini.',
+        'comment_text' => '',
         'blocked_count' => 'pengguna yang diblokir (:count)',
         'hide_profile' => 'Sembunyikan profil',
+        'hide_comment' => '',
         'not_blocked' => 'Pengguna ini tidak diblokir.',
         'show_profile' => 'Tampilkan profil',
+        'show_comment' => '',
         'too_many' => 'Batas pemblokiran tercapai.',
         'button' => [
             'block' => 'Blokir',

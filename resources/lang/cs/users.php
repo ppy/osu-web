@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Uživatel byl zablokován.',
+        'comment_text' => '',
         'blocked_count' => 'blokovaných uživatelů (:count)',
         'hide_profile' => 'Skrýt profil',
+        'hide_comment' => '',
         'not_blocked' => 'Tento uživatel není blokován.',
         'show_profile' => 'Zobrazit profil',
+        'show_comment' => '',
         'too_many' => 'Byl dosažen limit blockovaných uživatelů.',
         'button' => [
             'block' => 'Blokovat',

@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => '',
         'create' => 'создать объявление',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Объявления',

@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'このユーザーをブロックしています',
+        'comment_text' => '',
         'blocked_count' => 'ブロックしたユーザー(:count)',
         'hide_profile' => 'プロフィールを隠す',
+        'hide_comment' => '',
         'not_blocked' => 'このユーザーはブロックされていません。',
         'show_profile' => 'プロフィールを表示',
+        'show_comment' => '',
         'too_many' => 'ブロックできる上限に達しました。',
         'button' => [
             'block' => 'ブロック',

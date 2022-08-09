@@ -217,7 +217,7 @@ return [
 
     'listing' => [
         'search' => [
-            'prompt' => 'въведи ключови думи...',
+            'prompt' => 'въведете ключови думи...',
             'login_required' => 'Моля, влез в профила си, за търсене.',
             'options' => 'Повече опции за търсене',
             'supporter_filter' => 'Подреждане по :filters изисква активен osu!supporter',

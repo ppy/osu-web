@@ -5,67 +5,67 @@
 
 return [
     'header' => [
-        'small' => '',
-        'large' => '',
+        'small' => 'Natječi se na više načina od klikanja krugova.',
+        'large' => 'Natjecanja zajednice',
     ],
 
     'index' => [
-        'nav_title' => '',
+        'nav_title' => 'popis',
     ],
 
     'voting' => [
-        'login_required' => '',
-        'over' => '',
-        'show_voted_only' => '',
+        'login_required' => 'Molimo, prijavi se za glasanje.',
+        'over' => 'Glasanje za ovo natjecanje je završeno',
+        'show_voted_only' => 'Prikaži glasano',
 
         'best_of' => [
-            'none_played' => "",
+            'none_played' => "Čini se da nisi igrao/la nijednu beatmapu koja se kvalificira za ovo natjecanje!",
         ],
 
         'button' => [
             'add' => 'Glasaj',
-            'remove' => '',
-            'used_up' => '',
+            'remove' => 'Ukloni glas',
+            'used_up' => 'Potrošio/la si sve svoje glasove',
         ],
 
         'progress' => [
-            '_' => '',
+            '_' => ':used / :max glasova iskorišteno',
         ],
     ],
     'entry' => [
-        '_' => '',
-        'login_required' => '',
-        'silenced_or_restricted' => '',
-        'preparation' => '',
-        'drop_here' => '',
-        'download' => '',
+        '_' => 'prijava',
+        'login_required' => 'Prijavi se za sudjelovanje u natjecanju.',
+        'silenced_or_restricted' => 'Ne možeš sudjelovati u natjecanjima dok si ograničen ili utišan/a.',
+        'preparation' => 'Trenutno pripremamo ovaj natječaj. Molimo te da strpljivo pričekaš!',
+        'drop_here' => 'Ispusti svou prijavu ovdje',
+        'download' => 'Preuzmi .osz',
         'wrong_type' => [
-            'art' => '',
-            'beatmap' => '',
-            'music' => '',
+            'art' => 'Za ovo natjecanje prihvaćaju se samo .jpg i .png datoteke.',
+            'beatmap' => 'Za ovo natjecanje prihvaćaju se samo .osu datoteke.',
+            'music' => 'Za ovo natjecanje prihvaćaju se samo .mp3 datoteke.',
         ],
-        'too_big' => '',
+        'too_big' => 'Prijave za ovo natjecanje mogu biti samo do :limit.',
     ],
     'beatmaps' => [
-        'download' => '',
+        'download' => 'Preuzmi prijavu',
     ],
     'vote' => [
         'list' => 'glasovi',
-        'count' => '',
-        'points' => '',
+        'count' => ':count_delimited glas|:count_delimited glasova',
+        'points' => ':count_delimited poen|:count_delimited poena',
     ],
     'dates' => [
-        'ended' => '',
+        'ended' => 'Završilo :date',
         'ended_no_date' => 'Završeno',
 
         'starts' => [
-            '_' => '',
+            '_' => 'Počinje :date',
             'soon' => 'uskoro™',
         ],
     ],
     'states' => [
-        'entry' => '',
-        'voting' => '',
-        'results' => '',
+        'entry' => 'Prijave otvorene',
+        'voting' => 'Glasanje započelo',
+        'results' => 'Rezultati izašli',
     ],
 ];
