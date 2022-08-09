@@ -53,8 +53,8 @@ export class PlayDetailMenu extends React.Component<Props> {
           <ReportReportable
             baseKey='scores'
             className='simple-menu__item'
-            reportableId={score.best_id?.toString() ?? ''}
-            reportableType={`score_best_${ruleset}`}
+            reportableId={(score.best_id ?? score.id).toString()}
+            reportableType={score.best_id == null ? score.type : `score_best_${ruleset}`}
             user={score.user}
           />
         )}
