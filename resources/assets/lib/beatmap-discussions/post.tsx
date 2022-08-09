@@ -18,7 +18,7 @@ import BeatmapsetJson, { BeatmapsetWithDiscussionsJson } from 'interfaces/beatma
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { isEqual } from 'lodash';
-import { action, autorun, makeObservable, observable, runInAction } from 'mobx';
+import { action, autorun, computed, makeObservable, observable, runInAction } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import { deletedUser } from 'models/user';
 import core from 'osu-core-singleton';
@@ -61,6 +61,30 @@ export class Post extends React.Component<Props> {
   private readonly textareaRef = React.createRef<HTMLTextAreaElement>();
   private xhr?: JQuery.jqXHR;
 
+  @computed
+  private get canReport() {
+    return core.currentUser != null && this.props.post.user_id !== core.currentUser.id;
+  }
+
+  @computed
+  private get isReview() {
+    return this.props.discussion.message_type === 'review' && this.props.type === 'discussion';
+  }
+
+  @computed
+  private get isTimeline() {
+    return this.props.discussion.timestamp != null;
+  }
+
+  @computed
+  private get validPost() {
+    if (this.isReview) {
+      return this.reviewEditor.current?.canSave ?? false;
+    } else {
+      return validMessageLength(this.message, this.isTimeline);
+    }
+  }
+
   constructor(props: Props) {
     super(props);
     makeObservable(this);
@@ -77,7 +101,6 @@ export class Post extends React.Component<Props> {
   componentWillUnmount() {
     this.xhr?.abort();
   }
-
 
   render() {
     const topClasses = classWithModifiers(bn, this.props.type, {
@@ -111,10 +134,6 @@ export class Post extends React.Component<Props> {
     );
   }
 
-  private canReport() {
-    return core.currentUser != null && this.props.post.user_id !== core.currentUser.id;
-  }
-
   @action
   private readonly editCancel = () => {
     this.editing = false;
@@ -142,14 +161,6 @@ export class Post extends React.Component<Props> {
     $.publish('beatmapDiscussionPost:markRead', { id: this.props.post.id });
   };
 
-  private isReview() {
-    return this.props.discussion.message_type === 'review' && this.props.type === 'discussion';
-  }
-
-  private isTimeline() {
-    return this.props.discussion.timestamp != null;
-  }
-
   private messageEditor() {
     if (this.props.post.system) return;
     if (!this.props.canBeEdited) return;
@@ -159,7 +170,7 @@ export class Post extends React.Component<Props> {
 
     return (
       <div className={`${bn}__message-container`}>
-        {this.isReview() ? (
+        {this.isReview ? (
           <DiscussionsContext.Consumer>
             {(discussions) => (
               <BeatmapsContext.Consumer>
@@ -191,7 +202,7 @@ export class Post extends React.Component<Props> {
               style={{ minHeight: this.editorMinHeight }}
               value={this.message ?? ''}
             />
-            <MessageLengthCounter isTimeline={this.isTimeline()} message={this.message ?? ''} />
+            <MessageLengthCounter isTimeline={this.isTimeline} message={this.message ?? ''} />
           </>
         )}
         <div className={`${bn}__actions`}>
@@ -232,7 +243,7 @@ export class Post extends React.Component<Props> {
 
     return (
       <div className={`${bn}__message-container`}>
-        {this.isReview() ? (
+        {this.isReview ? (
           <div className={`${bn}__message`}>
             <ReviewPost
               message={this.props.post.message}
@@ -315,7 +326,7 @@ export class Post extends React.Component<Props> {
 
             {this.props.type === 'discussion' && this.props.discussion.current_user_attributes?.can_moderate_kudosu && this.renderKudosu()}
 
-            {this.canReport() && (
+            {this.canReport && (
               <ReportReportable
                 className={`${bn}__action ${bn}__action--button`}
                 reportableId={this.props.post.id.toString()}
@@ -393,7 +404,7 @@ export class Post extends React.Component<Props> {
 
   @action
   private readonly updateCanSave = () => {
-    this.canSave = this.validPost();
+    this.canSave = this.validPost;
   };
 
   @action
@@ -401,7 +412,7 @@ export class Post extends React.Component<Props> {
     if (this.posting || this.props.post.system) return;
     let messageContent = this.message;
 
-    if (this.isReview()) {
+    if (this.isReview) {
       if (this.reviewEditor.current == null) {
         console.error('reviewEditor is missing!');
         return;
@@ -442,12 +453,4 @@ export class Post extends React.Component<Props> {
       .fail(onError)
       .always(action(() => this.posting = false));
   };
-
-  private validPost() {
-    if (this.isReview()) {
-      return this.reviewEditor.current?.canSave ?? false;
-    } else {
-      return validMessageLength(this.message, this.isTimeline());
-    }
-  }
 }
