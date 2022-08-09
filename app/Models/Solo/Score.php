@@ -68,10 +68,12 @@ class Score extends Model
         LaravelRedis::lpush(static::PROCESSING_QUEUE, json_encode([
             'Score' => [
                 'beatmap_id' => $scoreJson['beatmap_id'],
-                'data' => json_encode($scoreJson),
                 'id' => $scoreJson['id'],
                 'ruleset_id' => $scoreJson['ruleset_id'],
                 'user_id' => $scoreJson['user_id'],
+                // TODO: processor is currently order dependent and requires
+                // this to be located at the end
+                'data' => json_encode($scoreJson),
             ],
         ]));
     }
