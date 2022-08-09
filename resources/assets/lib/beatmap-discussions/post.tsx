@@ -184,7 +184,7 @@ export default class Post extends React.Component<Props> {
     ) ?? deletedUser;
 
     return (
-      <span className={`${bn}__info ${bn}__info--edited`}>
+      <span className={`${bn}__info`}>
         <StringWithComponent
           mappings={{
             delete_time: <TimeWithTooltip dateTime={this.deleteModel.deleted_at} relative />,
@@ -205,7 +205,7 @@ export default class Post extends React.Component<Props> {
     if (this.props.lastEditor == null || this.props.post.updated_at === this.props.post.created_at) return null;
 
     return (
-      <span className={`${bn}__info ${bn}__info--edited`}>
+      <span className={`${bn}__info`}>
         <StringWithComponent
           mappings={{
             editor: <UserLink className={`${bn}__info-user`} user={this.props.lastEditor} />,
@@ -343,7 +343,7 @@ export default class Post extends React.Component<Props> {
           {this.renderEdited()}
 
           {this.props.type === 'discussion' && this.props.discussion.kudosu_denied && (
-            <span className={`${bn}__info ${bn}__info--edited`}>
+            <span className={`${bn}__info`}>
               {osu.trans('beatmaps.discussions.kudosu_denied')}
             </span>
           )}
