@@ -154,10 +154,6 @@ export class Post extends React.PureComponent<Props, State> {
     $.publish('beatmapDiscussionPost:markRead', { id: this.props.post.id });
   };
 
-  private isOwner() {
-    return this.props.post.user_id === this.props.beatmapset.user_id;
-  }
-
   private isReview() {
     return this.props.discussion.message_type === 'review' && this.props.type === 'discussion';
   }
