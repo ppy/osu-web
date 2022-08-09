@@ -44,7 +44,6 @@ interface Props {
   beatmaps: Partial<Record<number, BeatmapExtendedJson>>;
   beatmapset: BeatmapsetJson;
   currentBeatmap: BeatmapExtendedJson;
-  currentDiscussions: BeatmapsetDiscussionJson[];
   discussion?: BeatmapsetDiscussionJson;
   discussions: Partial<Record<number, BeatmapsetDiscussionJsonForBundle | BeatmapsetDiscussionJsonForShow>>; // passed in via context at parent
   document?: string;
