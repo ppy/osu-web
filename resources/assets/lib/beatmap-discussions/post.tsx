@@ -18,8 +18,8 @@ import BeatmapsetJson, { BeatmapsetWithDiscussionsJson } from 'interfaces/beatma
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { isEqual, throttle } from 'lodash';
-import { makeObservable, observable } from 'mobx';
-import { observer } from 'mobx-react';
+import { action, autorun, makeObservable, observable, runInAction } from 'mobx';
+import { disposeOnUnmount, observer } from 'mobx-react';
 import { deletedUser } from 'models/user';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -53,11 +53,10 @@ export class Post extends React.Component<Props> {
   @observable private canSave = true;
   @observable private editing = false;
   @observable private editorMinHeight = '0';
-  @observable private message: string | null = null;
-  @observable private posting = false;
-
   private readonly handleKeyDown;
+  @observable private message: string | null = null;
   private readonly messageBodyRef = React.createRef<HTMLDivElement>();
+  @observable private posting = false;
   private readonly reviewEditor = React.createRef<Editor>();
   private readonly textareaRef = React.createRef<HTMLTextAreaElement>();
   private readonly throttledUpdatePost = throttle(() => this.updatePost(), 1000);
@@ -68,6 +67,12 @@ export class Post extends React.Component<Props> {
     makeObservable(this);
 
     this.handleKeyDown = makeTextAreaHandler(this.handleKeyDownCallback);
+
+    disposeOnUnmount(this, autorun(() => {
+      if (this.editing) {
+        setTimeout(() => this.textareaRef.current?.focus(), 0);
+      }
+    }));
   }
 
   componentWillUnmount() {
@@ -120,22 +125,21 @@ export class Post extends React.Component<Props> {
     return core.currentUser != null && this.props.post.user_id !== core.currentUser.id;
   }
 
+  @action
   private readonly editCancel = () => {
-    this.setState({ editing: false });
+    this.editing = false;
   };
 
+  @action
   private readonly editStart = () => {
     if (this.props.post.system) return;
 
-    const editorMinHeight = this.messageBodyRef.current != null
+    this.editorMinHeight = this.messageBodyRef.current != null
       ? `${this.messageBodyRef.current.getBoundingClientRect().height + 50}px`
       : '0';
 
-    return this.setState({
-      editing: true,
-      editorMinHeight,
-      message: this.props.post.message,
-    }, () => (this.textareaRef.current != null ? this.textareaRef.current.focus() : undefined));
+    this.editing = true;
+    this.message = this.props.post.message;
   };
 
   private readonly handleKeyDownCallback = (type: InputEventType) => {
@@ -391,14 +395,18 @@ export class Post extends React.Component<Props> {
     return null;
   }
 
+  @action
   private readonly setMessage = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    this.setState({ message: e.target.value }, () => this.updateCanSave());
+    this.message = e.target.value;
+    this.updateCanSave();
   };
 
+  @action
   private readonly updateCanSave = () => {
-    this.setState({ canSave: this.validPost() });
+    this.canSave = this.validPost();
   };
 
+  @action
   private updatePost() {
     if (this.props.post.system) return;
     let messageContent = this.message;
@@ -412,37 +420,40 @@ export class Post extends React.Component<Props> {
       messageContent = this.reviewEditor.current.serialize();
 
       if (isEqual(JSON.parse(this.props.post.message), JSON.parse(messageContent))) {
-        this.setState({ editing: false });
+        this.editing = false;
         return;
       }
 
       if (!this.reviewEditor.current.showConfirmationIfRequired()) return;
 
-      this.setState({ message: messageContent });
+      this.message = messageContent;
     }
 
     if (messageContent === this.props.post.message) {
-      this.setState({ editing: false });
+      this.editing = false;
       return;
     }
 
-    this.setState({ posting: true });
+    this.posting = true;
 
     if (this.xhr.updatePost != null) {
       this.xhr.updatePost.abort();
     }
-    return this.xhr.updatePost = $.ajax(route('beatmapsets.discussions.posts.update', { post: this.props.post.id }), {
+
+    this.xhr.updatePost = $.ajax(route('beatmapsets.discussions.posts.update', { post: this.props.post.id }), {
       data: {
         beatmap_discussion_post: {
           message: messageContent,
         },
       },
       method: 'PUT',
-    }).done((data: BeatmapsetWithDiscussionsJson) => {
-      this.setState({ editing: false });
-      return $.publish('beatmapsetDiscussions:update', { beatmapset: data });
-    }).fail(onError)
-      .always(() => this.setState({ posting: false }));
+    })
+      .done(runInAction(() => (beatmapset: BeatmapsetWithDiscussionsJson) => {
+        this.editing = false;
+        $.publish('beatmapsetDiscussions:update', { beatmapset });
+      }))
+      .fail(onError)
+      .always(action(() => this.posting = false));
   }
 
   private validPost() {
