@@ -18,6 +18,8 @@ import BeatmapsetJson, { BeatmapsetWithDiscussionsJson } from 'interfaces/beatma
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { isEqual, throttle } from 'lodash';
+import { makeObservable, observable } from 'mobx';
+import { observer } from 'mobx-react';
 import { deletedUser } from 'models/user';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -46,22 +48,13 @@ interface Props {
   users: Partial<Record<number, UserJson>>;
 }
 
-interface State {
-  canSave: boolean;
-  editing: boolean;
-  editorMinHeight: string;
-  message: string | null;
-  posting: boolean;
-}
-
-export class Post extends React.PureComponent<Props, State> {
-  state: Readonly<State> = {
-    canSave: true,
-    editing: false,
-    editorMinHeight: '0',
-    message: null,
-    posting: false,
-  };
+@observer
+export class Post extends React.Component<Props> {
+  @observable private canSave = true;
+  @observable private editing = false;
+  @observable private editorMinHeight = '0';
+  @observable private message: string | null = null;
+  @observable private posting = false;
 
   private readonly handleKeyDown;
   private readonly messageBodyRef = React.createRef<HTMLDivElement>();
@@ -72,6 +65,7 @@ export class Post extends React.PureComponent<Props, State> {
 
   constructor(props: Props) {
     super(props);
+    makeObservable(this);
 
     this.handleKeyDown = makeTextAreaHandler(this.handleKeyDownCallback);
   }
@@ -93,7 +87,7 @@ export class Post extends React.PureComponent<Props, State> {
   render() {
     const topClasses = classWithModifiers(bn, this.props.type, {
       deleted: this.props.post.deleted_at != null,
-      editing: this.state.editing,
+      editing: this.editing,
       unread: !this.props.read && this.props.type !== 'discussion',
     });
 
@@ -116,7 +110,7 @@ export class Post extends React.PureComponent<Props, State> {
               user={this.props.user}
             />
           )}
-          {this.state.editing ? this.messageEditor() : this.messageViewer()}
+          {this.editing ? this.messageEditor() : this.messageViewer()}
         </div>
       </div>
     );
@@ -165,7 +159,7 @@ export class Post extends React.PureComponent<Props, State> {
   private messageEditor() {
     if (this.props.post.system) return;
     if (!this.props.canBeEdited) return;
-    const canPost = !this.state.posting && this.state.canSave;
+    const canPost = !this.posting && this.canSave;
 
     const document = this.props.post.message;
 
@@ -185,7 +179,7 @@ export class Post extends React.PureComponent<Props, State> {
                     discussions={discussions}
                     document={document}
                     editMode
-                    editing={this.state.editing}
+                    editing={this.editing}
                     onChange={this.updateCanSave}
                   />
                 )}
@@ -197,13 +191,13 @@ export class Post extends React.PureComponent<Props, State> {
             <TextareaAutosize
               ref={this.textareaRef}
               className={`${bn}__message ${bn}__message--editor`}
-              disabled={this.state.posting}
+              disabled={this.posting}
               onChange={this.setMessage}
               onKeyDown={this.handleKeyDown}
-              style={{ minHeight: this.state.editorMinHeight }}
-              value={this.state.message ?? ''}
+              style={{ minHeight: this.editorMinHeight }}
+              value={this.message ?? ''}
             />
-            <MessageLengthCounter isTimeline={this.isTimeline()} message={this.state.message ?? ''} />
+            <MessageLengthCounter isTimeline={this.isTimeline()} message={this.message ?? ''} />
           </>
         )}
         <div className={`${bn}__actions`}>
@@ -211,7 +205,7 @@ export class Post extends React.PureComponent<Props, State> {
             <div className={`${bn}__actions-group`}>
               <div className={`${bn}__action`}>
                 <BigButton
-                  disabled={this.state.posting}
+                  disabled={this.posting}
                   props={{ onClick: this.editCancel }}
                   text={osu.trans('common.buttons.cancel')}
                 />
@@ -219,7 +213,7 @@ export class Post extends React.PureComponent<Props, State> {
             </div>
             <div className={`${bn}__action`}>
               <BigButton
-                disabled={this.state.posting}
+                disabled={this.posting}
                 props={{ onClick: this.editCancel }}
                 text={osu.trans('common.buttons.cancel')}
               />
@@ -407,7 +401,7 @@ export class Post extends React.PureComponent<Props, State> {
 
   private updatePost() {
     if (this.props.post.system) return;
-    let messageContent = this.state.message;
+    let messageContent = this.message;
 
     if (this.isReview()) {
       if (this.reviewEditor.current == null) {
@@ -455,7 +449,7 @@ export class Post extends React.PureComponent<Props, State> {
     if (this.isReview()) {
       return this.reviewEditor.current?.canSave ?? false;
     } else {
-      return validMessageLength(this.state.message, this.isTimeline());
+      return validMessageLength(this.message, this.isTimeline());
     }
   }
 }
