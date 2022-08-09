@@ -277,16 +277,11 @@ export class Post extends React.Component<Props> {
             </div>
             <div className={`${bn}__action`}>
               <BigButton
-                disabled={this.posting}
-                props={{ onClick: this.editCancel }}
-                text={osu.trans('common.buttons.cancel')}
+                disabled={!canPost}
+                props={{ onClick: this.updatePost }}
+                text={osu.trans('common.buttons.save')}
               />
             </div>
-            <BigButton
-              disabled={!canPost}
-              props={{ onClick: this.updatePost }}
-              text={osu.trans('common.buttons.save')}
-            />
           </div>
         </div>
       </div>
