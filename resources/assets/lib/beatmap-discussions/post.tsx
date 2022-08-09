@@ -17,7 +17,7 @@ import BeatmapsetDiscussionPostJson from 'interfaces/beatmapset-discussion-post-
 import BeatmapsetJson, { BeatmapsetWithDiscussionsJson } from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import { isEqual, throttle } from 'lodash';
+import { isEqual } from 'lodash';
 import { action, autorun, makeObservable, observable, runInAction } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import { deletedUser } from 'models/user';
@@ -59,7 +59,6 @@ export class Post extends React.Component<Props> {
   @observable private posting = false;
   private readonly reviewEditor = React.createRef<Editor>();
   private readonly textareaRef = React.createRef<HTMLTextAreaElement>();
-  private readonly throttledUpdatePost = throttle(() => this.updatePost(), 1000);
   private xhr?: JQuery.jqXHR;
 
   constructor(props: Props) {
@@ -76,8 +75,6 @@ export class Post extends React.Component<Props> {
   }
 
   componentWillUnmount() {
-    this.throttledUpdatePost.cancel();
-
     this.xhr?.abort();
   }
 
@@ -137,7 +134,7 @@ export class Post extends React.Component<Props> {
 
   private readonly handleKeyDownCallback = (type: InputEventType) => {
     if (type === InputEventType.Submit) {
-      this.throttledUpdatePost();
+      this.updatePost();
     }
   };
 
@@ -217,7 +214,7 @@ export class Post extends React.Component<Props> {
             </div>
             <BigButton
               disabled={!canPost}
-              props={{ onClick: void this.throttledUpdatePost }}
+              props={{ onClick: this.updatePost }}
               text={osu.trans('common.buttons.save')}
             />
           </div>
@@ -400,8 +397,8 @@ export class Post extends React.Component<Props> {
   };
 
   @action
-  private updatePost() {
-    if (this.props.post.system) return;
+  private readonly updatePost = () => {
+    if (this.posting || this.props.post.system) return;
     let messageContent = this.message;
 
     if (this.isReview()) {
@@ -444,7 +441,7 @@ export class Post extends React.Component<Props> {
       }))
       .fail(onError)
       .always(action(() => this.posting = false));
-  }
+  };
 
   private validPost() {
     if (this.isReview()) {
