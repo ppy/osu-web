@@ -49,7 +49,7 @@ interface Props {
 }
 
 @observer
-export class Post extends React.Component<Props> {
+export default class Post extends React.Component<Props> {
   @observable private canSave = true; // this isn't computed because Editor's onChange doesn't provide anything to react to.
   @observable private editing = false;
   @observable private editorMinHeight = '0';

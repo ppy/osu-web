@@ -11,7 +11,7 @@ import { classWithModifiers } from 'utils/css'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { discussionTypeIcons } from './discussion-type'
 import { NewReply } from './new-reply'
-import { Post } from './post'
+import Post from './post'
 import SystemPost from './system-post'
 import { UserCard } from './user-card'
 
