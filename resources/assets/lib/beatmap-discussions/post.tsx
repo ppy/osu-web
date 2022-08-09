@@ -119,7 +119,7 @@ export class Post extends React.Component<Props> {
               user={this.props.user}
             />
           )}
-          {this.editing ? this.messageEditor() : this.messageViewer()}
+          {this.editing ? this.renderMessageEditor() : this.renderMessageViewer()}
         </div>
       </div>
     );
@@ -163,7 +163,64 @@ export class Post extends React.Component<Props> {
     this.canSave = validMessageLength(this.message, this.isTimeline);
   };
 
-  private messageEditor() {
+
+  private renderDeletedBy(model: BeatmapsetDiscussionJson | BeatmapsetDiscussionPostJson) {
+    if (model.deleted_at == null) return null;
+    const user = (
+      model.deleted_by_id != null
+        ? this.props.users[model.deleted_by_id]
+        : null
+    ) ?? deletedUser;
+
+    return (
+      <span className={classWithModifiers(`${bn}__info`, 'edited')}>
+        <StringWithComponent
+          mappings={{
+            delete_time: <TimeWithTooltip dateTime={model.deleted_at} relative />,
+            editor: (
+              <UserLink
+                className={`${bn}__info-user`}
+                user={user}
+              />
+            ),
+          }}
+          pattern={osu.trans('beatmaps.discussions.deleted')}
+        />
+      </span>
+    );
+  }
+
+  private renderKudosu() {
+    if (this.props.discussion.can_grant_kudosu) {
+      return (
+        <a
+          className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
+          data-confirm={osu.trans('common.confirmation')}
+          data-method='POST'
+          data-remote
+          href={route('beatmapsets.discussions.deny-kudosu', { discussion: this.props.discussion.id })}
+        >
+          {osu.trans('beatmaps.discussions.deny_kudosu')}
+        </a>
+      );
+    } else if (this.props.discussion.kudosu_denied) {
+      return (
+        <a
+          className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
+          data-confirm={osu.trans('common.confirmation')}
+          data-method='POST'
+          data-remote
+          href={route('beatmapsets.discussions.allow-kudosu', { discussion: this.props.discussion.id })}
+        >
+          {osu.trans('beatmaps.discussions.allow_kudosu')}
+        </a>
+      );
+    }
+
+    return null;
+  }
+
+  private renderMessageEditor() {
     if (this.props.post.system) return;
     if (!this.props.canBeEdited) return;
     const canPost = !this.posting && this.canSave;
@@ -236,7 +293,7 @@ export class Post extends React.Component<Props> {
     );
   }
 
-  private messageViewer() {
+  private renderMessageViewer() {
     if (this.props.post.system) return;
 
     const [controller, key, deleteModel] = this.props.type === 'reply'
@@ -340,62 +397,6 @@ export class Post extends React.Component<Props> {
         </div>
       </div>
     );
-  }
-
-  private renderDeletedBy(model: BeatmapsetDiscussionJson | BeatmapsetDiscussionPostJson) {
-    if (model.deleted_at == null) return null;
-    const user = (
-      model.deleted_by_id != null
-        ? this.props.users[model.deleted_by_id]
-        : null
-    ) ?? deletedUser;
-
-    return (
-      <span className={classWithModifiers(`${bn}__info`, 'edited')}>
-        <StringWithComponent
-          mappings={{
-            delete_time: <TimeWithTooltip dateTime={model.deleted_at} relative />,
-            editor: (
-              <UserLink
-                className={`${bn}__info-user`}
-                user={user}
-              />
-            ),
-          }}
-          pattern={osu.trans('beatmaps.discussions.deleted')}
-        />
-      </span>
-    );
-  }
-
-  private renderKudosu() {
-    if (this.props.discussion.can_grant_kudosu) {
-      return (
-        <a
-          className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
-          data-confirm={osu.trans('common.confirmation')}
-          data-method='POST'
-          data-remote
-          href={route('beatmapsets.discussions.deny-kudosu', { discussion: this.props.discussion.id })}
-        >
-          {osu.trans('beatmaps.discussions.deny_kudosu')}
-        </a>
-      );
-    } else if (this.props.discussion.kudosu_denied) {
-      return (
-        <a
-          className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
-          data-confirm={osu.trans('common.confirmation')}
-          data-method='POST'
-          data-remote
-          href={route('beatmapsets.discussions.allow-kudosu', { discussion: this.props.discussion.id })}
-        >
-          {osu.trans('beatmaps.discussions.allow_kudosu')}
-        </a>
-      );
-    }
-
-    return null;
   }
 
   @action
