@@ -11,10 +11,10 @@ import { ReportReportable } from 'components/report-reportable';
 import StringWithComponent from 'components/string-with-component';
 import TimeWithTooltip from 'components/time-with-tooltip';
 import { UserLink } from 'components/user-link';
-import BeatmapJson from 'interfaces/beatmap-json';
+import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetDiscussionPostJson from 'interfaces/beatmapset-discussion-post-json';
-import BeatmapsetJson from 'interfaces/beatmapset-json';
+import BeatmapsetJson, { BeatmapsetWithDiscussionsJson } from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { isEqual, throttle } from 'lodash';
@@ -22,27 +22,28 @@ import { deletedUser } from 'models/user';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
+import { onError } from 'utils/ajax';
 import { badgeGroup, format, validMessageLength } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
 import MessageLengthCounter from './message-length-counter';
 import { UserCard } from './user-card';
 
-const el = React.createElement;
-
 const bn = 'beatmap-discussion-post';
 
 interface Props {
-  beatmap: BeatmapJson;
+  beatmap: BeatmapExtendedJson;
   beatmapset: BeatmapsetJson;
+  canBeDeleted: boolean;
   canBeEdited: boolean;
+  canBeRestored: boolean;
   discussion: BeatmapsetDiscussionJson;
   lastEditor: UserJson;
   post: BeatmapsetDiscussionPostJson;
   read: boolean;
   type: string;
   user: UserJson;
-  users: Record<number, UserJson>;
+  users: Partial<Record<number, UserJson>>;
 }
 
 interface State {
@@ -183,6 +184,7 @@ export class Post extends React.PureComponent<Props, State> {
                     ref={this.reviewEditor}
                     beatmaps={beatmaps}
                     beatmapset={this.props.beatmapset}
+                    currentBeatmap={this.props.beatmap}
                     discussion={this.props.discussion}
                     discussions={discussions}
                     document={document}
@@ -265,22 +267,7 @@ export class Post extends React.PureComponent<Props, State> {
           <span className={`${bn}__info`}>
             <TimeWithTooltip dateTime={this.props.post.created_at} relative />
           </span>
-          {deleteModel.deleted_at != null && (
-            <span className={classWithModifiers(`${bn}__info`, 'edited')}>
-              <StringWithComponent
-                mappings={{
-                  delete_time: <TimeWithTooltip dateTime={deleteModel.deleted_at} relative />,
-                  editor: (
-                    <UserLink
-                      className={`${bn}__info-user`}
-                      user={this.props.users[deleteModel.deleted_by_id] != null ? this.props.users[deleteModel.deleted_by_id] : deletedUser}
-                    />
-                  ),
-                }}
-                pattern={osu.trans('beatmaps.discussions.deleted')}
-              />
-            </span>
-          )}
+          {this.renderDeletedBy(deleteModel)}
 
           {this.props.post.updated_at !== this.props.post.created_at && this.props.lastEditor != null && (
             <span className={classWithModifiers(`${bn}__info`, 'edited')}>
@@ -342,7 +329,7 @@ export class Post extends React.PureComponent<Props, State> {
               </a>
             )}
 
-            {this.props.type === 'discussion' && this.props.discussion.current_user_attributes?.can_moderate_kudosu && this.renderThing()}
+            {this.props.type === 'discussion' && this.props.discussion.current_user_attributes?.can_moderate_kudosu && this.renderKudosu()}
 
             {this.canReport() && (
               <ReportReportable
@@ -358,7 +345,33 @@ export class Post extends React.PureComponent<Props, State> {
     );
   }
 
-  private renderThing() {
+  private renderDeletedBy(model: BeatmapsetDiscussionJson | BeatmapsetDiscussionPostJson) {
+    if (model.deleted_at == null) return null;
+    const user = (
+      model.deleted_by_id != null
+        ? this.props.users[model.deleted_by_id]
+        : null
+    ) ?? deletedUser;
+
+    return (
+      <span className={classWithModifiers(`${bn}__info`, 'edited')}>
+        <StringWithComponent
+          mappings={{
+            delete_time: <TimeWithTooltip dateTime={model.deleted_at} relative />,
+            editor: (
+              <UserLink
+                className={`${bn}__info-user`}
+                user={user}
+              />
+            ),
+          }}
+          pattern={osu.trans('beatmaps.discussions.deleted')}
+        />
+      </span>
+    );
+  }
+
+  private renderKudosu() {
     if (this.props.discussion.can_grant_kudosu) {
       return (
         <a
@@ -435,10 +448,10 @@ export class Post extends React.PureComponent<Props, State> {
         },
       },
       method: 'PUT',
-    }).done((data: any) => {
+    }).done((data: BeatmapsetWithDiscussionsJson) => {
       this.setState({ editing: false });
       return $.publish('beatmapsetDiscussions:update', { beatmapset: data });
-    }).fail(osu.ajaxError)
+    }).fail(onError)
       .always(() => this.setState({ posting: false }));
   }
 

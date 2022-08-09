@@ -26,7 +26,7 @@ declare module 'legacy-modules' {
 
   interface OsuCommon {
     formatBytes: (bytes: number, decimals?: number) => string;
-    groupColour: (group?: GroupJson) => React.CSSProperties;
+    groupColour: (group?: GroupJson | null) => React.CSSProperties;
     navigate: (url: string, keepScroll?: boolean, action?: Partial<Record<string, unknown>>) => void;
     popup: (message: string, type: string) => void;
     presence: (str?: string | null) => string | null;
