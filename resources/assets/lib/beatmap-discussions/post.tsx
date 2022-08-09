@@ -454,7 +454,7 @@ export default class Post extends React.Component<Props> {
       },
       method: 'PUT',
     })
-      .done(runInAction(() => (beatmapset: BeatmapsetWithDiscussionsJson) => {
+      .done((beatmapset: BeatmapsetWithDiscussionsJson) => runInAction(() => {
         this.editing = false;
         $.publish('beatmapsetDiscussions:update', { beatmapset });
       }))
