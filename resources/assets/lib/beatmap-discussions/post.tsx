@@ -60,7 +60,7 @@ export class Post extends React.Component<Props> {
   private readonly reviewEditor = React.createRef<Editor>();
   private readonly textareaRef = React.createRef<HTMLTextAreaElement>();
   private readonly throttledUpdatePost = throttle(() => this.updatePost(), 1000);
-  private readonly xhr: Record<string, JQuery.jqXHR> = {};
+  private xhr?: JQuery.jqXHR;
 
   constructor(props: Props) {
     super(props);
@@ -78,14 +78,7 @@ export class Post extends React.Component<Props> {
   componentWillUnmount() {
     this.throttledUpdatePost.cancel();
 
-    return (() => {
-      const result = [];
-      for (const _id of Object.keys(this.xhr || {})) {
-        const xhr = this.xhr[_id];
-        result.push((xhr != null ? xhr.abort() : undefined));
-      }
-      return result;
-    })();
+    this.xhr?.abort();
   }
 
 
@@ -436,11 +429,8 @@ export class Post extends React.Component<Props> {
 
     this.posting = true;
 
-    if (this.xhr.updatePost != null) {
-      this.xhr.updatePost.abort();
-    }
-
-    this.xhr.updatePost = $.ajax(route('beatmapsets.discussions.posts.update', { post: this.props.post.id }), {
+    this.xhr?.abort();
+    this.xhr = $.ajax(route('beatmapsets.discussions.posts.update', { post: this.props.post.id }), {
       data: {
         beatmap_discussion_post: {
           message: messageContent,
