@@ -102,7 +102,6 @@ export class Post extends React.Component<Props> {
 
     return (
       <div
-        key={`${this.props.type}-${this.props.post.id}`}
         className={`${topClasses} js-beatmap-discussion-jump`}
         data-post-id={this.props.post.id}
         onClick={this.handleMarkRead}
