@@ -70,6 +70,7 @@ class Score extends Model
                 'beatmap_id' => $scoreJson['beatmap_id'],
                 'data' => json_encode($scoreJson),
                 'id' => $scoreJson['id'],
+                'ruleset_id' => $scoreJson['ruleset_id'],
                 'user_id' => $scoreJson['user_id'],
             ],
         ]));
