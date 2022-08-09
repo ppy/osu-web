@@ -50,7 +50,7 @@ interface Props {
 
 @observer
 export class Post extends React.Component<Props> {
-  @observable private canSave = true;
+  @observable private canSave = true; // this isn't computed because Editor's onChange doesn't provide anything to react to.
   @observable private editing = false;
   @observable private editorMinHeight = '0';
   private readonly handleKeyDown;
@@ -74,15 +74,6 @@ export class Post extends React.Component<Props> {
   @computed
   private get isTimeline() {
     return this.props.discussion.timestamp != null;
-  }
-
-  @computed
-  private get validPost() {
-    if (this.isReview) {
-      return this.reviewEditor.current?.canSave ?? false;
-    } else {
-      return validMessageLength(this.message, this.isTimeline);
-    }
   }
 
   constructor(props: Props) {
@@ -151,6 +142,11 @@ export class Post extends React.Component<Props> {
     this.message = this.props.post.message;
   };
 
+  @action
+  private readonly handleEditorChange = () => {
+    this.canSave = this.reviewEditor.current?.canSave ?? false;
+  };
+
   private readonly handleKeyDownCallback = (type: InputEventType) => {
     if (type === InputEventType.Submit) {
       this.updatePost();
@@ -159,6 +155,12 @@ export class Post extends React.Component<Props> {
 
   private readonly handleMarkRead = () => {
     $.publish('beatmapDiscussionPost:markRead', { id: this.props.post.id });
+  };
+
+  @action
+  private readonly handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    this.message = e.target.value;
+    this.canSave = validMessageLength(this.message, this.isTimeline);
   };
 
   private messageEditor() {
@@ -185,7 +187,7 @@ export class Post extends React.Component<Props> {
                     document={document}
                     editMode
                     editing={this.editing}
-                    onChange={this.updateCanSave}
+                    onChange={this.handleEditorChange}
                   />
                 )}
               </BeatmapsContext.Consumer>
@@ -197,7 +199,7 @@ export class Post extends React.Component<Props> {
               ref={this.textareaRef}
               className={`${bn}__message ${bn}__message--editor`}
               disabled={this.posting}
-              onChange={this.setMessage}
+              onChange={this.handleTextareaChange}
               onKeyDown={this.handleKeyDown}
               style={{ minHeight: this.editorMinHeight }}
               value={this.message}
@@ -395,17 +397,6 @@ export class Post extends React.Component<Props> {
 
     return null;
   }
-
-  @action
-  private readonly setMessage = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    this.message = e.target.value;
-    this.updateCanSave();
-  };
-
-  @action
-  private readonly updateCanSave = () => {
-    this.canSave = this.validPost;
-  };
 
   @action
   private readonly updatePost = () => {
