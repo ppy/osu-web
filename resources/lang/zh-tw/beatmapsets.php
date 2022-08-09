@@ -92,17 +92,17 @@ return [
         ],
 
         'favourites' => [
-            'limit_reached' => '您收藏的圖譜已達上限，請取消一張再試。',
+            'limit_reached' => '您收藏的圖譜已達上限，請取消收藏一些再試。',
         ],
 
         'hype' => [
             'action' => '如果你喜歡這張圖譜，請推薦它來幫助它進展至<strong>進榜</strong>狀態。',
 
             'current' => [
-                '_' => '此地圖目前是 :status 的。',
+                '_' => '此圖譜目前為 :status。',
 
                 'status' => [
-                    'pending' => '待處理',
+                    'pending' => '等待中',
                     'qualified' => '已提名',
                     'wip' => '製作中',
                 ],
@@ -149,8 +149,8 @@ return [
             'achieved' => '在 :when 達成',
             'country' => '國內排行榜',
             'error' => '無法載入排行榜',
-            'friend' => '好友排行榜',
-            'global' => '世界排行榜',
+            'friend' => '好友排名',
+            'global' => '世界排名',
             'supporter-link' => '點擊 <a href=":link">這裡</a> 來查看你可以得到的精彩功能！',
             'supporter-only' => '你需要成為贊助者才能查看國內與好友排名！',
             'title' => '排行榜',
@@ -174,7 +174,7 @@ return [
                 'friend' => '您的好友尚未上傳成績！',
                 'global' => '沒有任何玩家上傳過成績，來挑戰嗎？',
                 'loading' => '加載分數中...',
-                'unranked' => '未進榜圖譜',
+                'unranked' => 'Unranked 譜面',
             ],
             'score' => [
                 'first' => '領先者',

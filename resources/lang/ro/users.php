@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Ai blocat acest utilizator.',
+        'comment_text' => '',
         'blocked_count' => 'utilizatori blocați (:count)',
         'hide_profile' => 'ascunde profilul',
+        'hide_comment' => '',
         'not_blocked' => 'Acest utilizator nu este blocat.',
         'show_profile' => 'arată profilul',
+        'show_comment' => '',
         'too_many' => 'A fost atinsă limita de blocare.',
         'button' => [
             'block' => 'blochează',
@@ -54,7 +57,7 @@ return [
         'warning' => "În cazul în care ați încălcat o regulă, vă rugăm să notați că în general este o perioadă de răcire de o lună în care vom considera orice cerere de amnesty. După această perioadă, simtete liber să ne contactezi dacă o găsești necesar. Vă rugăm să notați că după creearea unui cont nou ați avut unul dezactivat va rezulta într-un <strong>extesie în acestă răcire de o lună</strong>. Vă rugăm să notați și că pentru <strong>orice cont creat, încalci regulile în continuare</strong>. Vă recomandăm puternic să nu faceți asta!",
 
         'if_mistake' => [
-            '_' => 'Dacă credeți că a fost o greșeală, ești bine venit să ne contactezi (prin :email sau să dați click pe "?" din colțul-drept-jos de pe această pagină). Vă rugăm notați că suntem foarte convinși cu acțiunile noastre, care sunt bazate pe date concrete. Rezervăm dreptul să vă respingem dacă simțim că sunteți dezonest.',
+            '_' => 'Dacă credeți că a fost o greșeală, ești bine venit să ne contactezi (prin :email sau faceți clic pe "?" din colțul din drepta-jos de pe această pagină). Vă rugăm rețineți că suntem foarte siguri pe acțiunile noastre, care sunt bazate pe date concrete. Ne rezervăm dreptul de a vă respinge dacă considerăm că sunteți dezonest.',
             'email' => 'email',
         ],
 
@@ -71,7 +74,7 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => '',
+        'by_game_mode' => 'Membrii după modul de joc',
     ],
 
     'force_reactivation' => [
@@ -127,8 +130,8 @@ return [
         ],
 
         'options' => [
-            'cheating' => 'Cheating',
-            'multiple_accounts' => '',
+            'cheating' => 'Trișat',
+            'multiple_accounts' => 'Utilizarea mai multor conturi',
             'insults' => 'M-a insultat pe mine / pe alții',
             'spam' => 'Spam',
             'unwanted_content' => 'Partajarea unui conținut nepotrivit',
@@ -146,9 +149,9 @@ return [
         'first_members' => 'Aici încă de la început',
         'is_developer' => 'dezvoltator osu!',
         'is_supporter' => 'suporter osu!',
-        'joined_at' => 'Încris :date',
+        'joined_at' => 'Înscris în :date',
         'lastvisit' => 'Văzut ultima dată :date',
-        'lastvisit_online' => 'Momentat online',
+        'lastvisit_online' => 'Momentan online',
         'missingtext' => 'S-ar putea să fi făcut o greșeală de scriere! (sau este posibil ca utilizatorul să fi fost restricționat)',
         'origin_country' => 'Din :country',
         'previous_usernames' => 'cunoscut anterior ca',
@@ -156,12 +159,12 @@ return [
         'title' => "Profilul lui :username",
 
         'comments_count' => [
-            '_' => '',
-            'count' => '',
+            '_' => 'A postat :link',
+            'count' => ':count_delimited comentariu|:count_delimited comentarii|:count_delimited de comentarii',
         ],
         'cover' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Ascunde fundal',
+            'to_1' => 'Arată fundal',
         ],
         'edit' => [
             'cover' => [
@@ -178,7 +181,7 @@ return [
 
                     'restriction_info' => [
                         '_' => 'Încărcare disponibilă pentru :link doar',
-                        'link' => 'osu!suporteri',
+                        'link' => 'suporteri osu!',
                     ],
                 ],
             ],
@@ -200,25 +203,25 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'de :artist',
-                'title' => 'Beatmaps',
+                'title' => 'Beatmap-uri',
 
                 'favourite' => [
                     'title' => 'Beatmap-uri favorite',
                 ],
                 'graveyard' => [
-                    'title' => 'Beatmaps îngropate',
+                    'title' => 'Beatmap-uri inactive',
                 ],
                 'guest' => [
-                    'title' => '',
+                    'title' => 'Beatmap-uri cu participare ca oaspete',
                 ],
                 'loved' => [
-                    'title' => 'Beatmaps iubite',
+                    'title' => 'Beatmap-uri iubite',
                 ],
                 'pending' => [
-                    'title' => 'Beatmaps în așteptare',
+                    'title' => 'Beatmap-uri în așteptare',
                 ],
                 'ranked' => [
-                    'title' => 'Beatmaps clasate & aprobate',
+                    'title' => 'Beatmap-uri clasate & aprobate',
                 ],
             ],
             'discussions' => [
@@ -235,12 +238,12 @@ return [
                 'title' => 'Istoric',
 
                 'monthly_playcounts' => [
-                    'title' => 'Istoricul jocurilor',
-                    'count_label' => 'Jocuri',
+                    'title' => 'Istoric Încercări',
+                    'count_label' => 'Încercări',
                 ],
                 'most_played' => [
                     'count' => 'jucat de',
-                    'title' => 'Cele mai jucate beatmaps',
+                    'title' => 'Cele mai jucate beatmap-uri',
                 ],
                 'recent_plays' => [
                     'accuracy' => 'precizie: :percentage',
@@ -296,7 +299,7 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => 'Bazat pe cât de multă contribuție acest utilizator a făcut la moderarea beatmap-ului. Vezi :link pentru mai multe informații.',
+                    '_' => 'Bazat pe cât de mult a contribuit utilizatorul la moderarea unui beatmap. Vezi :link pentru mai multe informații.',
                     'link' => 'această pagină',
                 ],
             ],
@@ -309,7 +312,7 @@ return [
                 'title' => 'Medalii',
             ],
             'playlists' => [
-                'title' => '',
+                'title' => 'Playlist Jocuri',
             ],
             'posts' => [
                 'title' => 'Postări',
@@ -320,11 +323,11 @@ return [
                 'title' => 'Recent',
             ],
             'realtime' => [
-                'title' => '',
+                'title' => 'Meciuri multiplayer',
             ],
             'top_ranks' => [
                 'download_replay' => 'Descarcă replay-ul',
-                'not_ranked' => 'Numai beatmaps clasate acordă pp.',
+                'not_ranked' => 'Numai beatmap-uri clasate acordă pp',
                 'pp_weight' => 'ponderat :percentage',
                 'view_details' => 'Vezi detalii',
                 'title' => 'Clasamente',
@@ -336,13 +339,13 @@ return [
                     'title' => 'Primele locuri',
                 ],
                 'pin' => [
-                    'to_0' => '',
-                    'to_0_done' => '',
-                    'to_1' => '',
-                    'to_1_done' => '',
+                    'to_0' => 'Defixează',
+                    'to_0_done' => 'Scor defixat',
+                    'to_1' => 'Fixează',
+                    'to_1_done' => 'Scor fixat',
                 ],
                 'pinned' => [
-                    'title' => '',
+                    'title' => 'Scoruri fixate',
                 ],
             ],
             'votes' => [
@@ -350,7 +353,7 @@ return [
                 'received' => 'Voturi Primite (ultimele 3 luni)',
                 'title' => 'Voturi',
                 'title_longer' => 'Voturi recente',
-                'vote_count' => ':count_delimited vot|:count_delimited voturi',
+                'vote_count' => 'un vot|:count_delimited voturi|:count_delimited de voturi',
             ],
             'account_standing' => [
                 'title' => 'Starea contului',
@@ -368,7 +371,7 @@ return [
 
                     'actions' => [
                         'restriction' => 'Interdicție',
-                        'silence' => 'Amuțire',
+                        'silence' => 'Mut',
                         'note' => 'Notă',
                     ],
                 ],
@@ -378,7 +381,7 @@ return [
         'info' => [
             'discord' => '',
             'interests' => 'Interese',
-            'location' => 'Locația curentă',
+            'location' => 'Locația actuală',
             'occupation' => 'Ocupație',
             'twitter' => '',
             'website' => 'Site web',
@@ -403,7 +406,7 @@ return [
         ],
         'post_count' => [
             '_' => 'A contribuit la :link',
-            'count' => ':count postare pe forum|:count posări pe forum',
+            'count' => 'o postare pe forum|:count_delimited postări pe forum|:count_delimited de postări pe forum',
         ],
         'rank' => [
             'country' => 'Clasament pe țară pentru :mode',
@@ -425,15 +428,15 @@ return [
             'total_hits' => 'Număr de clicuri',
             'total_score' => 'Scor total',
             // modding stats
-            'graveyard_beatmapset_count' => 'Beatmap-uri Îngropate',
-            'loved_beatmapset_count' => 'Beatmap-uri iubite',
+            'graveyard_beatmapset_count' => 'Beatmap-uri Inactive',
+            'loved_beatmapset_count' => 'Beatmap-uri Iubite',
             'pending_beatmapset_count' => 'Beatmap-uri în așteptare',
             'ranked_beatmapset_count' => 'Beatmap-uri Clasate & Aprobate',
         ],
     ],
 
     'silenced_banner' => [
-        'title' => '',
+        'title' => 'Ești momentan mut.',
         'message' => 'Unele acțiuni pot fi indisponibile.',
     ],
 

@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Jūs esiet nobloķējis šo lietotāju.',
+        'comment_text' => '',
         'blocked_count' => 'bloķētie lietotāji (:count)',
         'hide_profile' => 'Slēpt profilu',
+        'hide_comment' => '',
         'not_blocked' => 'Šis lietotājs nav bloķēts.',
         'show_profile' => 'Rādīt profilu',
+        'show_comment' => '',
         'too_many' => 'Ir sasniegts bloķēsanas limits.',
         'button' => [
             'block' => 'Bloķēt',

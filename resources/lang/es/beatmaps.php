@@ -275,7 +275,7 @@ return [
         'leaderboard' => 'Tiene tablas de clasificación',
         'loved' => 'Amados',
         'mine' => 'Mis mapas',
-        'pending' => 'Pendiente y trabajo en progreso',
+        'pending' => 'Pendiente',
         'wip' => 'WIP',
         'qualified' => 'Calificados',
         'ranked' => 'Clasificados',

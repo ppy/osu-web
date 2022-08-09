@@ -13,7 +13,7 @@ return [
         'info' => [
             'check_spam' => "如果找不到電子郵件，請檢查垃圾郵件箱。",
             'recover' => "如果您無法登入電子郵件或忘記電子郵件, 請點選 :link。",
-            'recover_link' => '電子郵件復原點擊此處',
+            'recover_link' => '電郵地址復原點擊此處',
             'reissue' => '也可以 :reissue_link 或者 :logout_link.',
             'reissue_link' => '重發驗證碼',
             'logout_link' => '登出',
@@ -23,7 +23,7 @@ return [
     'errors' => [
         'expired' => '該驗證碼已經過期，新驗證碼已經重新發送。',
         'incorrect_key' => '驗證碼錯誤。',
-        'retries_exceeded' => '驗證碼連續輸入錯誤超過次數，新驗證碼已經重新發送。',
+        'retries_exceeded' => '驗證碼錯誤次數超過限制次數，新驗證碼已經重新發送。',
         'reissued' => '新驗證碼已經重新發送。',
         'unknown' => '發生了未知的錯誤，新驗證碼已經重新發送。',
     ],

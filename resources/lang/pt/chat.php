@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => '',
         'create' => 'criar notícia',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Notícias',

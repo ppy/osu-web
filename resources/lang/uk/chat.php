@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => '',
         'create' => 'створити оголошення',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Анонси',

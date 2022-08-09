@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Na-block mo na ang user na ito.',
+        'comment_text' => '',
         'blocked_count' => 'mga na-block na user (:count)',
         'hide_profile' => 'Itago ang profile',
+        'hide_comment' => '',
         'not_blocked' => 'Hindi naka-block ang user na ito.',
         'show_profile' => 'Ipakita ang profile',
+        'show_comment' => '',
         'too_many' => 'Naabot na ang limit ng pag-block.',
         'button' => [
             'block' => 'Harangan',

@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Ви заблокували цього користувача.',
+        'comment_text' => '',
         'blocked_count' => 'заблоковані користувачі (:count)',
         'hide_profile' => 'Приховати профіль',
+        'hide_comment' => '',
         'not_blocked' => 'Користувач не заблокований.',
         'show_profile' => 'Показати профіль',
+        'show_comment' => '',
         'too_many' => 'Ліміт блокування досягнуто.',
         'button' => [
             'block' => 'Заблокувати',

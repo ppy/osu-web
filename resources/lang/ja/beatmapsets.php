@@ -125,7 +125,7 @@ return [
             'language' => '言語',
             'no_scores' => 'データはまだ計算中です・・・',
             'nsfw' => '過激な表現を含むコンテンツ',
-            'offset' => '',
+            'offset' => 'オンラインオフセット',
             'points-of-failure' => '失敗地点',
             'source' => 'ソース',
             'storyboard' => 'このビートマップにはストーリーボードが含まれています',
@@ -148,7 +148,7 @@ return [
         'scoreboard' => [
             'achieved' => '達成日 :when',
             'country' => '国別ランキング',
-            'error' => '',
+            'error' => 'ランキングの読み込みに失敗しました',
             'friend' => 'フレンドランキング',
             'global' => '世界ランキング',
             'supporter-link' => '<a href=":link">ここ</a>をクリックする事でosu!サポーターの詳細が見れます。',
@@ -160,7 +160,7 @@ return [
                 'combo' => '最大コンボ',
                 'miss' => 'ミス',
                 'mods' => 'Mods',
-                'pin' => '',
+                'pin' => 'ピン留め',
                 'player' => 'プレイヤー',
                 'pp' => '',
                 'rank' => '順位',
@@ -181,8 +181,8 @@ return [
                 'own' => 'あなたのベスト',
             ],
             'supporter_link' => [
-                '_' => '',
-                'here' => '',
+                '_' => 'osu!サポーターの詳細を見るには:hereしてください。',
+                'here' => 'こちらをクリック',
             ],
         ],
 
@@ -197,7 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'サークルの数',
             'count_sliders' => 'スライダーの数',
-            'offset' => '',
+            'offset' => 'オフセット :offset',
             'user-rating' => 'ユーザーの評価',
             'rating-spread' => '評価分布',
             'nominations' => 'ノミネーション',
@@ -216,6 +216,6 @@ return [
     ],
 
     'spotlight_badge' => [
-        'label' => '',
+        'label' => 'スポットライト',
     ],
 ];

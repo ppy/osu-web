@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Du hast diesen Benutzer geblockt.',
+        'comment_text' => '',
         'blocked_count' => 'geblockte benutzer (:count)',
         'hide_profile' => 'Profil verbergen',
+        'hide_comment' => '',
         'not_blocked' => 'Dieser Benutzer ist nicht geblockt.',
         'show_profile' => 'Profil anzeigen',
+        'show_comment' => '',
         'too_many' => 'Block-Limit erreicht.',
         'button' => [
             'block' => 'Blocken',

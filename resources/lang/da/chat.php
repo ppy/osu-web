@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => '',
         'create' => 'opret annoncering',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Service-meddelelse',

@@ -204,7 +204,7 @@ return [
             ],
 
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Beatmapa ":title" má nové komentáře',
             ],
         ],
 
@@ -216,19 +216,19 @@ return [
 
         'build' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Seznam změn ":title" má nové komentáře',
             ],
         ],
 
         'news_post' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Novinky ":title" mají nové komentáře',
             ],
         ],
 
         'forum_topic' => [
             'forum_topic_reply' => [
-                'forum_topic_reply' => '',
+                'forum_topic_reply' => 'Nové odpovědi v ":title"',
             ],
         ],
 
