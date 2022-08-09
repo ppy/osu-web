@@ -54,7 +54,7 @@ export class Post extends React.Component<Props> {
   @observable private editing = false;
   @observable private editorMinHeight = '0';
   private readonly handleKeyDown;
-  @observable private message: string | null = null;
+  @observable private message = '';
   private readonly messageBodyRef = React.createRef<HTMLDivElement>();
   @observable private posting = false;
   private readonly reviewEditor = React.createRef<Editor>();
@@ -200,9 +200,9 @@ export class Post extends React.Component<Props> {
               onChange={this.setMessage}
               onKeyDown={this.handleKeyDown}
               style={{ minHeight: this.editorMinHeight }}
-              value={this.message ?? ''}
+              value={this.message}
             />
-            <MessageLengthCounter isTimeline={this.isTimeline} message={this.message ?? ''} />
+            <MessageLengthCounter isTimeline={this.isTimeline} message={this.message} />
           </>
         )}
         <div className={`${bn}__actions`}>
