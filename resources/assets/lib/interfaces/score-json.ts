@@ -60,6 +60,7 @@ interface ScoreJsonDefaultAttributes {
   replay: boolean;
   score: number;
   statistics: Record<ScoreStatisticsAttribute, number>;
+  type: 'solo_score' | `score_best_${GameMode}` | `score_${GameMode}`;
   user_id: number;
 }
 
