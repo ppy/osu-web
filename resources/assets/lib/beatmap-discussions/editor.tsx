@@ -77,8 +77,11 @@ export default class Editor extends React.Component<Props, State> {
   scrollContainerRef: React.RefObject<HTMLDivElement>;
   slateEditor: ReactEditor;
   toolbarRef: React.RefObject<EditorToolbar>;
-  private editMode = this.props.document != null;
   private xhr?: JQueryXHR | null;
+
+  private get editMode() {
+    return this.props.document != null;
+  }
 
   constructor(props: Props) {
     super(props);
@@ -136,7 +139,6 @@ export default class Editor extends React.Component<Props, State> {
 
   componentDidUpdate(prevProps: Readonly<Props>): void {
     if (this.props.document !== prevProps.document) {
-      this.editMode = this.props.document != null;
       const newValue = this.valueFromProps();
 
       this.setState({
