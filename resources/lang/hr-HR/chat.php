@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => '',
         'create' => 'napravi obavijest',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Obaveštenja',

@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => '',
         'create' => 'lumikha ng anunsyo',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Mga Anunsyo',

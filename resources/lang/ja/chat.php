@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => '',
         'create' => 'お知らせを作成',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'お知らせ',

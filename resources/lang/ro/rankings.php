@@ -18,7 +18,7 @@ return [
     ],
 
     'type' => [
-        'charts' => 'În lumina reflectoarelor',
+        'charts' => 'promovări',
         'country' => 'pe țară',
         'multiplayer' => 'multiplayer',
         'performance' => 'performanță',
@@ -27,7 +27,7 @@ return [
 
     'spotlight' => [
         'end_date' => 'Data încheierii',
-        'map_count' => 'Număr de mape',
+        'map_count' => 'Număr de Beatmap-uri',
         'participants' => 'Participanți',
         'start_date' => 'Data începerii',
     ],

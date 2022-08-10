@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => '',
         'create' => 'duyuru oluştur',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Duyurular',

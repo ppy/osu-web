@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => '',
         'create' => '建立公告',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => '公告',
@@ -34,7 +36,7 @@ return [
         'labels' => [
             'description' => '詳情',
             'name' => '房間名稱',
-            'users' => '',
+            'users' => '要新增的玩家',
         ],
     ],
 

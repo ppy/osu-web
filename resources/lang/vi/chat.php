@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => '',
         'create' => 'tạo thông báo ',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Thông báo',

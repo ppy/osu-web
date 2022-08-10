@@ -15,7 +15,7 @@ return [
     ],
     'error' => [
         'error' => [
-            '400' => '',
+            '400' => 'neplatný požadavek',
             '404' => 'chybějící',
             '403' => 'zakázano',
             '401' => 'neoprávněný',
@@ -30,7 +30,7 @@ return [
     'forum' => [
         '_' => 'fórum',
         'topic_logs_controller' => [
-            'index' => '',
+            'index' => 'záznamy téma',
         ],
         'topic_watches_controller' => [
             'index' => 'nástěnka',
@@ -48,25 +48,25 @@ return [
             '_' => 'featured artists',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => '',
+            '_' => 'příspěvky diskuze o beatmapě',
         ],
         'beatmap_discussions_controller' => [
-            '_' => '',
+            '_' => 'diskuze o beatmapě',
         ],
         'beatmap_packs_controller' => [
             '_' => 'balíčky beatmap',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => '',
+            '_' => 'diskuzní hlasy beatmapy',
         ],
         'beatmapset_events_controller' => [
-            '_' => '',
+            '_' => 'historie beatmap',
         ],
         'beatmapset_watches_controller' => [
             'index' => 'nástěnka',
         ],
         'beatmapsets_controller' => [
-            'discussion' => '',
+            'discussion' => 'diskuze o beatmapě',
             'index' => 'seznam beatmap',
             'show' => 'info o beatmapě',
         ],

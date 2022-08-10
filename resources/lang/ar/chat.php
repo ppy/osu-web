@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => '',
         'create' => 'إنشاء إعلان',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'الإعلانات',

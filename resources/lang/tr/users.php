@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Bu kullanıcıyı engelledin.',
+        'comment_text' => '',
         'blocked_count' => 'engellenen kullanıcılar (:count)',
         'hide_profile' => 'profili gizle',
+        'hide_comment' => '',
         'not_blocked' => 'Bu kullanıcı engellenmemiş.',
         'show_profile' => 'profili göster',
+        'show_comment' => '',
         'too_many' => 'Engelleme sınırına ulaşıldı.',
         'button' => [
             'block' => 'engelle',
