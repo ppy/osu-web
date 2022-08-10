@@ -418,7 +418,6 @@ export default class Post extends React.Component<Props> {
   @action
   private readonly updatePost = () => {
     if (this.posting || this.props.post.system) return;
-    let messageContent = this.message;
 
     if (this.isReview) {
       if (this.reviewEditor.current == null) {
@@ -426,7 +425,7 @@ export default class Post extends React.Component<Props> {
         return;
       }
 
-      messageContent = this.reviewEditor.current.serialize();
+      const messageContent = this.reviewEditor.current.serialize();
 
       if (isEqual(JSON.parse(this.props.post.message), JSON.parse(messageContent))) {
         this.editing = false;
@@ -438,7 +437,7 @@ export default class Post extends React.Component<Props> {
       this.message = messageContent;
     }
 
-    if (messageContent === this.props.post.message) {
+    if (this.message === this.props.post.message) {
       this.editing = false;
       return;
     }
@@ -449,7 +448,7 @@ export default class Post extends React.Component<Props> {
     this.xhr = $.ajax(route('beatmapsets.discussions.posts.update', { post: this.props.post.id }), {
       data: {
         beatmap_discussion_post: {
-          message: messageContent,
+          message: this.message,
         },
       },
       method: 'PUT',
