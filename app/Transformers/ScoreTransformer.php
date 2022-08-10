@@ -92,7 +92,7 @@ class ScoreTransformer extends TransformerAbstract
         ]);
     }
 
-    public function transformLegacy(LegacyMatch\Score|ScoreModel $score)
+    public function transformLegacy(LegacyMatch\Score|ScoreModel|SoloScore $score)
     {
         if ($score instanceof ScoreModel) {
             // this `best` relation is also used by `current_user_attributes` include.
@@ -105,6 +105,13 @@ class ScoreTransformer extends TransformerAbstract
                 $pp = $best->pp;
                 $replay = $best->replay ?? false;
             }
+        } elseif ($score instanceof SoloScore) {
+            $soloScore = $score;
+            $score = $soloScore->makeLegacyEntry();
+            $score->score_id = $soloScore->getKey();
+            $createdAt = $soloScore->created_at;
+            $type = $soloScore->getMorphClass();
+            $pp = $soloScore->performance?->pp;
         } else {
             // LegacyMatch\Score
             $createdAt = $score->game->start_time;
@@ -138,6 +145,7 @@ class ScoreTransformer extends TransformerAbstract
             'replay' => $replay ?? false,
             'score' => $score->score,
             'statistics' => $statistics,
+            'type' => $type ?? $score->getMorphClass(),
             'user_id' => $score->user_id,
         ];
     }

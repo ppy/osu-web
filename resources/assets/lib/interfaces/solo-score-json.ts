@@ -44,7 +44,6 @@ interface SoloScoreJsonDefaultAttributes {
   started_at: string | null;
   statistics: Partial<Record<SoloScoreStatisticsAttribute, number>>;
   total_score: number;
-  type: 'solo_score' | `score_best_${GameMode}` | `score_${GameMode}`;
   user_id: number;
 }
 
