@@ -269,7 +269,6 @@ export default class Post extends React.Component<Props> {
                     discussion={this.props.discussion}
                     discussions={discussions}
                     document={document}
-                    editMode
                     editing={this.editing}
                     onChange={this.handleEditorChange}
                   />
