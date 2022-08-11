@@ -10,7 +10,6 @@ use App\Models\Solo\Score;
 use Ds\Set;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Collection;
-use LaravelRedis;
 use Symfony\Component\Console\Helper\ProgressBar;
 
 class EsIndexScoresQueue extends Command
@@ -24,7 +23,7 @@ class EsIndexScoresQueue extends Command
         {--ids= : Queue specified comma-separated list of score ids}
         {--from= : Queue all the scores after (but not including) the specified id}
         {--a|all : Queue all the scores in the database}
-        {--schema= : Index schema to queue the scores to (can also be specified using environment variable "schema"). Will use version set in redis if not specified}';
+        {--schema= : Index schema to queue the scores to. Will use active schemas set in redis if not specified}';
 
     /**
      * The console command description.
@@ -34,7 +33,8 @@ class EsIndexScoresQueue extends Command
     protected $description = 'Queue scores to be indexed into Elasticsearch.';
 
     private ProgressBar $bar;
-    private ?string $schema;
+    private array $schemas;
+    private ScoreSearch $search;
     private int $total;
 
     /**
@@ -48,12 +48,16 @@ class EsIndexScoresQueue extends Command
             return $this->info('User aborted');
         }
 
-        $this->schema = presence($this->option('schema'))
-            ?? presence(env('schema'))
-            ?? (new ScoreSearch())->getSchema();
+        $schema = presence($this->option('schema'));
 
-        if ($this->schema === null) {
-            return $this->error('Index schema must be specified');
+        if ($schema === null) {
+            $this->schemas = $this->score->getActiveSchemas();
+
+            if (count($schemas) === 0) {
+                return $this->error('Index schema is not specified and there is no active schemas');
+            }
+        } else {
+            $this->schemas = [$schema];
         }
 
         $query = Score::select('id');
@@ -115,17 +119,9 @@ class EsIndexScoresQueue extends Command
 
     private function queueIds(array $ids): void
     {
+        $this->search->queueForIndex($this->schemas, $ids);
+
         $count = count($ids);
-
-        if ($count === 0) {
-            return;
-        }
-
-        LaravelRedis::lpush("osu-queue:score-index-{$this->schema}", ...array_map(
-            fn (int $id): string => json_encode(['ScoreId' => $id]),
-            $ids,
-        ));
-
         $this->bar->setProgress(array_last($ids) ?? 0);
         $this->total += $count;
     }
