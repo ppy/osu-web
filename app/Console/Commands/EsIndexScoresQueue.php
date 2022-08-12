@@ -44,6 +44,8 @@ class EsIndexScoresQueue extends Command
      */
     public function handle()
     {
+        $this->search = new ScoreSearch();
+
         if (!$this->confirm('This will queue scores for indexing, continue?', true)) {
             return $this->info('User aborted');
         }
@@ -51,9 +53,9 @@ class EsIndexScoresQueue extends Command
         $schema = presence($this->option('schema'));
 
         if ($schema === null) {
-            $this->schemas = $this->score->getActiveSchemas();
+            $this->schemas = $this->search->getActiveSchemas();
 
-            if (count($schemas) === 0) {
+            if (count($this->schemas) === 0) {
                 return $this->error('Index schema is not specified and there is no active schemas');
             }
         } else {
