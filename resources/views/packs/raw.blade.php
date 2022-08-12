@@ -6,7 +6,7 @@
 
 <div class="beatmap-pack-description">
     @if(Auth::check())
-        <a href="{{ $pack->url }}"
+        <a href="{{ $pack->url }}" target="_blank"
             class="beatmap-pack-download__link">{{ osu_trans('beatmappacks.show.download') }}</a>
     @else
         {!! require_login('beatmappacks.require_login._', 'beatmappacks.require_login.link_text') !!}
