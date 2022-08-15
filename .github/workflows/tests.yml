@@ -46,8 +46,6 @@ env:
   SHOPIFY_DOMAIN: notarealdomainortld
   SHOPIFY_STOREFRONT_TOKEN: notreal
   SLACK_ENDPOINT: https://myconan.net/null/
-  # make sure to match the one specified for osu-elastic-indexer
-  schema: test
 
 jobs:
   tests:
@@ -100,6 +98,7 @@ jobs:
 
       osu-elastic-indexer:
         image: pppy/osu-elastic-indexer
+        # make sure the schema specified here and the one in set-schema command match
         options: >-
           -e DB_CONNECTION_STRING=Server=db;Database=osu;Uid=root
           -e ES_HOST=http://elasticsearch-score:9200
@@ -157,7 +156,7 @@ jobs:
           php artisan es:create-search-blacklist
           php artisan es:index-documents --yes
           php artisan es:index-wiki --create-only --yes
-          php artisan es:index-scores:set-schema
+          php artisan es:index-scores:set-schema --schema test
 
       - name: Generate docs
         run: php artisan scribe:generate

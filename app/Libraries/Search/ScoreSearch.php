@@ -10,7 +10,6 @@ use App\Libraries\Elasticsearch\RecordSearch;
 use App\Models\Solo\Score;
 use Ds\Set;
 use Exception;
-use Illuminate\Database\Eloquent\Collection;
 use LaravelRedis;
 
 class ScoreSearch extends RecordSearch
@@ -28,25 +27,9 @@ class ScoreSearch extends RecordSearch
         );
     }
 
-    public function getSchema(): ?string
+    public function getActiveSchemas(): array
     {
-        return presence(LaravelRedis::get($this->schemaKey()));
-    }
-
-    public function indexAll(string $schema): void
-    {
-        $queue = "osu-queue:score-index-{$schema}";
-        $this->recordType::select('id')->chunkById(100, function (Collection $scores) use ($queue): void {
-            LaravelRedis::lpush($queue, ...array_map(
-                fn (Score $score): string => json_encode(['ScoreId' => $score->getKey()]),
-                $scores->all(),
-            ));
-        });
-    }
-
-    public function setSchema(string $schema): void
-    {
-        LaravelRedis::set($this->schemaKey(), $schema);
+        return LaravelRedis::smembers('osu-queue:score-index:'.config('osu.elasticsearch.prefix').'active-schemas');
     }
 
     public function getQuery(): BoolQuery
@@ -113,6 +96,29 @@ class ScoreSearch extends RecordSearch
         throw new Exception("Indexable and indexed score counts still don't match. Queue runner is probably either having problem, not running, or too slow");
     }
 
+    public function queueForIndex(?array $schemas = null, array $ids): void
+    {
+        $count = count($ids);
+
+        if ($count === 0) {
+            return;
+        }
+
+        $schemas ??= $this->getActiveSchemas();
+
+        foreach ($schemas as $schema) {
+            LaravelRedis::lpush("osu-queue:score-index-{$schema}", ...array_map(
+                fn (int $id): string => json_encode(['ScoreId' => $id]),
+                $ids,
+            ));
+        }
+    }
+
+    public function setSchema(string $schema): void
+    {
+        LaravelRedis::set('osu-queue:score-index:'.config('osu.elasticsearch.prefix').'schema', $schema);
+    }
+
     private function addModsFilter(BoolQuery $query): void
     {
         $mods = $this->params->mods;
@@ -159,10 +165,5 @@ class ScoreSearch extends RecordSearch
         if (isset($shouldSubQueries)) {
             $query->must($shouldSubQueries);
         }
-    }
-
-    private function schemaKey(): string
-    {
-        return 'osu-queue:score-index:'.config('osu.elasticsearch.prefix').'schema';
     }
 }
