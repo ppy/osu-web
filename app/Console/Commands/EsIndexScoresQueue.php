@@ -126,7 +126,7 @@ class EsIndexScoresQueue extends Command
             $ids,
         ));
 
-        $this->bar->advance($count);
+        $this->bar->setProgress(array_last($ids) ?? 0);
         $this->total += $count;
     }
 }
