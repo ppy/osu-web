@@ -96,7 +96,7 @@ class EsIndexScoresQueue extends Command
             });
         }
 
-        (new ScoreSearch())->refresh();
+        $this->search->refresh();
 
         $this->bar->finish();
         $this->line('');
