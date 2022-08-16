@@ -173,6 +173,23 @@ class ForumTopicsControllerTest extends TestCase
             ->assertStatus(200);
     }
 
+    public function testShowMissingFirstPost()
+    {
+        $forum = factory(Forum\Forum::class)->states('child')->create();
+        $topic = factory(Forum\Topic::class)->create([
+            'forum_id' => $forum->forum_id,
+        ]);
+        $post = factory(Forum\Post::class)->create([
+            'forum_id' => $forum->forum_id,
+            'topic_id' => $topic->topic_id,
+        ]);
+        $topic->update(['topic_first_post_id' => 0]);
+
+        $this
+            ->get(route('forum.topics.show', $topic->topic_id))
+            ->assertStatus(404);
+    }
+
     public function testShowNoMorePosts()
     {
         $forum = factory(Forum\Forum::class)->states('child')->create();
@@ -183,6 +200,8 @@ class ForumTopicsControllerTest extends TestCase
             'forum_id' => $forum->forum_id,
             'topic_id' => $topic->topic_id,
         ]);
+        // TODO: make this part of post factory callback
+        $topic->refreshCache();
 
         $this
             ->get(route('forum.topics.show', [
@@ -201,6 +220,8 @@ class ForumTopicsControllerTest extends TestCase
             'forum_id' => $forum->forum_id,
             'topic_id' => $topic->topic_id,
         ]);
+        // TODO: make this part of post factory callback
+        $topic->refreshCache();
 
         $this
             ->get(route('forum.topics.show', [

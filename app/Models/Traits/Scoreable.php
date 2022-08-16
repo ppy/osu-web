@@ -5,8 +5,6 @@
 
 namespace App\Models\Traits;
 
-use App\Libraries\ModsHelper;
-
 trait Scoreable
 {
     protected $_enabledMods = null;
@@ -20,11 +18,7 @@ trait Scoreable
 
     public function getEnabledModsAttribute($value)
     {
-        if ($this->_enabledMods === null) {
-            $this->_enabledMods = ModsHelper::toArray($value);
-        }
-
-        return $this->_enabledMods;
+        return $this->_enabledMods ??= app('mods')->bitsetToIds($value);
     }
 
     public function totalHits()

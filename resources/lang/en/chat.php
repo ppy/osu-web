@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => 'Do you want to hide this channel? You will still receive messages from this channel.',
         'create' => 'create announcement',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Announcements',

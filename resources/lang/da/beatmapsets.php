@@ -8,7 +8,7 @@ return [
         'disabled' => 'Dette beatmap er i øjeblikket ikke tilgængeligt for download.',
         'parts-removed' => 'Dele af dette beatmap er blevet fjernet efter anmodning fra skaberen eller en tredjeparts-rettighedsholder.',
         'more-info' => 'Klik her for mere information.',
-        'rule_violation' => '',
+        'rule_violation' => 'Nogle aktiver på dette kort er blevet fjernet efter at være blevet bedømt som ikke egnet til brug i osu!.',
     ],
 
     'cover' => [
@@ -16,7 +16,7 @@ return [
     ],
 
     'download' => [
-        'limit_exceeded' => '',
+        'limit_exceeded' => 'Sæt farten ned, spil mere.',
     ],
 
     'featured_artist_badge' => [
@@ -40,8 +40,8 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => '',
-        'incorrect_mode' => '',
+        'hybrid_requires_modes' => 'Et hybrid beatmap kræver at du vælger mindst en spilletilstand at nominere til.',
+        'incorrect_mode' => 'Du har ikke tilladelse til at nominere for tilstand: :mode',
         'full_bn_required' => 'Du skal være en fuld nominator for at kunne udføre denne kvalificerende nominering.',
         'too_many' => 'Nomineringskravet er allerede opfyldt.',
 
@@ -54,16 +54,16 @@ return [
     ],
 
     'nsfw_badge' => [
-        'label' => '',
+        'label' => 'Eksplicit',
     ],
 
     'show' => [
         'discussion' => 'Diskussion',
 
         'details' => [
-            'by_artist' => '',
+            'by_artist' => 'af :artist',
             'favourite' => 'Markér dette beatmapset som favorit',
-            'favourite_login' => '',
+            'favourite_login' => 'Log ind for at favorisere dette beatmap',
             'logged-out' => 'Du skal være logget ind for at kunne downloade beatmaps!',
             'mapped_by' => 'mappet af :mapper',
             'unfavourite' => 'Fjern dette beatmapset fra dine favoritter',
@@ -124,31 +124,31 @@ return [
             'genre' => 'Genre',
             'language' => 'Sprog',
             'no_scores' => 'Data er stadig ved at blive beregnet...',
-            'nsfw' => '',
-            'offset' => '',
+            'nsfw' => 'Eksplicit indhold',
+            'offset' => 'Online forskydning',
             'points-of-failure' => 'Fejl-steder',
             'source' => 'Kilde',
             'storyboard' => 'Dette beatmap indeholder storyboard',
             'success-rate' => 'Succesrate',
             'tags' => 'Tags',
-            'video' => '',
+            'video' => 'Dette beatmap indeholder video',
         ],
 
         'nsfw_warning' => [
-            'details' => '',
-            'title' => '',
+            'details' => 'Dette beatmap indeholder eksplicit, offensivt eller forstyrrende indhold. Vil du se det alligevel?',
+            'title' => 'Eksplicit Indhold',
 
             'buttons' => [
-                'disable' => '',
-                'listing' => '',
-                'show' => '',
+                'disable' => 'Slå advarsler fra',
+                'listing' => 'Beatmap katalog',
+                'show' => 'Vis',
             ],
         ],
 
         'scoreboard' => [
             'achieved' => 'opnået :when',
             'country' => 'Lande Rang',
-            'error' => '',
+            'error' => 'Kunne ikke indlæse rangering',
             'friend' => 'Rang blandt Venner',
             'global' => 'Global Rang',
             'supporter-link' => 'Klik <a href=":link">here</a> for at se alle de fede fordele du kan få!',
@@ -160,7 +160,7 @@ return [
                 'combo' => 'Maks Combo',
                 'miss' => 'Miss',
                 'mods' => 'Mods',
-                'pin' => '',
+                'pin' => 'Fastgør',
                 'player' => 'Spiller',
                 'pp' => '',
                 'rank' => 'Rang',
@@ -181,8 +181,8 @@ return [
                 'own' => 'Dit Bedste',
             ],
             'supporter_link' => [
-                '_' => '',
-                'here' => '',
+                '_' => 'Kilk :here for at se alle de fede funktioner du kan få!',
+                'here' => 'her',
             ],
         ],
 
@@ -197,7 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Antal Cirkler',
             'count_sliders' => 'Antal Sliders',
-            'offset' => '',
+            'offset' => 'Online forskydning: :offset',
             'user-rating' => 'Brugerbedømmelse',
             'rating-spread' => 'Ratings-distribution',
             'nominations' => 'Nomineringer',
@@ -216,6 +216,6 @@ return [
     ],
 
     'spotlight_badge' => [
-        'label' => '',
+        'label' => 'Spotlight',
     ],
 ];

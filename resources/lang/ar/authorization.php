@@ -75,7 +75,7 @@ return [
 
     'comment' => [
         'store' => [
-            'disabled' => '',
+            'disabled' => 'تم تعطيل التعليقات',
         ],
         'update' => [
             'deleted' => "لا يمكن تعديل مشاركة محذوفة.",

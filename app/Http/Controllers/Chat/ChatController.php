@@ -139,8 +139,9 @@ class ChatController extends Controller
         ];
     }
 
-    // TODO: I don't think anything actually calls this?
+    // TODO: move the listing to channels.index
     /**
+     * @deprecated
      * @group Undocumented
      */
     public function presence()
@@ -286,7 +287,7 @@ class ChatController extends Controller
 
         // messages need presence
         if ($includeMessages || $includePresence) {
-            $presence = $this->presence();
+            $presence = (new UserChannelList(auth()->user()))->get();
         }
 
         if ($includeMessages) {

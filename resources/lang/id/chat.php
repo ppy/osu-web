@@ -4,8 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'loading_users' => '',
-    'talking_in' => 'Anda sedang mengobrol di kanal :channel',
+    'loading_users' => 'memuat pengguna...',
+    'talking_in' => 'berbicara di :channel',
     'talking_with' => 'berbicara dengan :name',
     'title_compact' => 'chat',
 
@@ -15,6 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => '',
+        'create' => 'buat pengumuman',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Pengumuman',
@@ -25,12 +28,25 @@ return [
         ],
     ],
 
+    'form' => [
+        'title' => [
+            'announcement' => 'Buat Pengumuman Baru',
+        ],
+
+        'labels' => [
+            'description' => 'keterangan',
+            'name' => 'nama ruangan',
+            'users' => 'pemain yang akan ditambahkan',
+        ],
+    ],
+
     'not_found' => [
         'message' => 'Tidak ada apa-apa di sini. Mungkin Anda telah meninggalkan kanal ini atau kanal yang hendak Anda tuju tidak ada...',
         'title' => 'kanal percakapan tidak ditemukan',
     ],
 
     'input' => [
+        'create' => 'Buat',
         'disabled' => 'gagal mengirim pesan...',
         'disconnected' => 'Terputus',
         'placeholder' => 'ketik pesan...',

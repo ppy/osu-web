@@ -45,7 +45,9 @@ else
   echo "OSU_SKIP_DB_MIGRATION set, skipping DB migration."
 fi
 
-php artisan passport:keys
+if [ -z "${PASSPORT_PUBLIC_KEY:-}" ]; then
+  php artisan passport:keys
+fi
 
 # e.g. OSU_SKIP_ASSET_BUILD=1 ./build.sh to bypass building javascript assets
 if [ -z "${OSU_SKIP_ASSET_BUILD:-}" ]; then

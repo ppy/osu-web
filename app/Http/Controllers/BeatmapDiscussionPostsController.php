@@ -125,7 +125,7 @@ class BeatmapDiscussionPostsController extends Controller
 
             $beatmapset = $discussion->beatmapset;
         } elseif ($beatmapsetId !== null) {
-            $beatmapset = Beatmapset::where('discussion_enabled', true)->findOrFail($beatmapsetId);
+            $beatmapset = Beatmapset::findOrFail($beatmapsetId);
             $discussionParams = get_params($request, 'beatmap_discussion', [
                 'beatmap_id:int',
                 'message_type',

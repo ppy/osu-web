@@ -8,7 +8,7 @@ return [
         'disabled' => 'Beatmap saat ini tidak tersedia untuk diunduh.',
         'parts-removed' => 'Beberapa bagian dari beatmap ini telah dihapus atas permintaan pembuat lagu atau pihak ketiga pemegang hak cipta.',
         'more-info' => 'Lihat di sini untuk informasi lebih lanjut.',
-        'rule_violation' => 'Sebagian aset yang terkandung dalam berkas beatmap ini telah dihapus karena telah dinilai tidak sesuai dengan syarat dan ketentuan yang berlaku di osu!.',
+        'rule_violation' => 'Sebagian aset yang terkandung dalam berkas beatmap ini telah dihapus karena dinilai tidak sesuai dengan kaidah penggunaan konten yang berlaku di osu!.',
     ],
 
     'cover' => [
@@ -40,7 +40,7 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => 'Pada beatmapset hybrid, Anda harus memilih satu mode permainan yang akan Anda nominasikan.',
+        'hybrid_requires_modes' => 'Pada beatmap hybrid, Anda harus memilih setidaknya satu mode permainan untuk dinominasikan.',
         'incorrect_mode' => 'Anda tidak memiliki hak untuk memberikan nominasi pada mode permainan: :mode',
         'full_bn_required' => 'Anda harus berstatus sebagai nominator penuh (full nominator) untuk dapat menominasikan beatmap ini.',
         'too_many' => 'Persyaratan nominasi telah terpenuhi.',
@@ -92,7 +92,7 @@ return [
         ],
 
         'favourites' => [
-            'limit_reached' => 'Anda telah memiliki terlalu banyak beatmap yang Anda favoritkan! Mohon hapus beberapa sebelum melanjutkan.',
+            'limit_reached' => 'Anda memiliki terlalu banyak beatmap yang telah Anda favoritkan! Mohon hapus beberapa beatmap dari daftar favorit Anda sebelum melanjutkan.',
         ],
 
         'hype' => [

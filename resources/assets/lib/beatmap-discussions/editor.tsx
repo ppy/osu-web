@@ -4,6 +4,7 @@
 import { CircularProgress } from 'components/circular-progress';
 import { Spinner } from 'components/spinner';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
+import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForBundle, BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import isHotkey from 'is-hotkey';
 import { route } from 'laroute';
@@ -45,7 +46,7 @@ interface Props {
   currentBeatmap: BeatmapExtendedJson;
   currentDiscussions: BeatmapsetDiscussionJson[];
   discussion?: BeatmapsetDiscussionJson;
-  discussions: Partial<Record<number, BeatmapsetDiscussionJson>>;
+  discussions: Partial<Record<number, BeatmapsetDiscussionJsonForBundle | BeatmapsetDiscussionJsonForShow>>; // passed in via context at parent
   document?: string;
   editing: boolean;
   editMode?: boolean;
@@ -78,7 +79,7 @@ export default class Editor extends React.Component<Props, State> {
   scrollContainerRef: React.RefObject<HTMLDivElement>;
   slateEditor: ReactEditor;
   toolbarRef: React.RefObject<EditorToolbar>;
-  private xhr?: JQueryXHR;
+  private xhr?: JQueryXHR | null;
 
   constructor(props: Props) {
     super(props);
@@ -146,9 +147,7 @@ export default class Editor extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
-    if (this.xhr) {
-      this.xhr.abort();
-    }
+    this.xhr?.abort();
   }
 
   decorateTimestamps = (entry: NodeEntry) => {
@@ -235,6 +234,8 @@ export default class Editor extends React.Component<Props, State> {
   };
 
   post = () => {
+    if (this.xhr != null) return;
+
     if (this.showConfirmationIfRequired()) {
       this.setState({ posting: true }, () => {
         this.xhr = $.ajax(route('beatmapsets.discussion.review', { beatmapset: this.props.beatmapset.id }), {
@@ -246,7 +247,10 @@ export default class Editor extends React.Component<Props, State> {
             this.resetInput();
           })
           .fail(onError)
-          .always(() => this.setState({ posting: false }));
+          .always(() => {
+            this.xhr = null;
+            this.setState({ posting: false });
+          });
       });
     }
   };

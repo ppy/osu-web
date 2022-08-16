@@ -20,10 +20,16 @@ class BBCodeForDB
 
     public function extraEscapes($text)
     {
-        return str_replace(
-            ['[', ']', '.', ':', "\n"],
-            ['&#91;', '&#93;', '&#46;', '&#58;', '&#10;'],
-            $text
+        return strtr(
+            $text,
+            [
+                '[' => '&#91;',
+                ']' => '&#93;',
+                '.' => '&#46;',
+                ':' => '&#58;',
+                "\n" => '&#10;',
+                '@' => '&#64;',
+            ],
         );
     }
 
@@ -99,14 +105,15 @@ class BBCodeForDB
     public function parseEmail($text)
     {
         $emailPattern = '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z-]+';
-        $text = preg_replace(
+
+        $text = preg_replace_callback(
             "#\[email\]({$emailPattern})\[/email\]#",
-            "[email:{$this->uid}]\\1[/email:{$this->uid}]",
+            fn (array $m): string => "[email:{$this->uid}]{$this->extraEscapes($m[1])}[/email:{$this->uid}]",
             $text
         );
-        $text = preg_replace(
+        $text = preg_replace_callback(
             "#\[email=({$emailPattern})\](.+?)\[/email\]#",
-            "[email=\\1:{$this->uid}]\\2[/email:{$this->uid}]",
+            fn (array $m): string => "[email={$this->extraEscapes($m[1])}:{$this->uid}]{$this->extraEscapes($m[2])}[/email:{$this->uid}]",
             $text
         );
 

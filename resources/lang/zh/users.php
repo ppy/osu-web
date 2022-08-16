@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => '你已经屏蔽此用户。',
+        'comment_text' => '',
         'blocked_count' => '被屏蔽的用户 (:count)',
         'hide_profile' => '隐藏用户资料',
+        'hide_comment' => '',
         'not_blocked' => '此用户未被屏蔽。',
         'show_profile' => '显示用户资料',
+        'show_comment' => '',
         'too_many' => '屏蔽用户数量达到最大限制。',
         'button' => [
             'block' => '屏蔽',
@@ -450,7 +453,7 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => '方块视图',
+        'brick' => '方块检视',
         'card' => '卡片检视',
         'list' => '列表检视',
     ],

@@ -15,6 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => '',
+        'create' => '',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Tiedotukset',
@@ -25,12 +28,25 @@ return [
         ],
     ],
 
+    'form' => [
+        'title' => [
+            'announcement' => '',
+        ],
+
+        'labels' => [
+            'description' => '',
+            'name' => '',
+            'users' => '',
+        ],
+    ],
+
     'not_found' => [
         'message' => '',
         'title' => 'kanavaa ei löydetty',
     ],
 
     'input' => [
+        'create' => '',
         'disabled' => 'viestiä ei voida lähettää...',
         'disconnected' => 'Yhteys katkaistu',
         'placeholder' => 'kirjoita viesti...',

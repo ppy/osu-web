@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'loading_users' => '',
+    'loading_users' => '유저 불러오는 중...',
     'talking_in' => ':channel에서 대화 중',
     'talking_with' => ':name님과 대화 중',
     'title_compact' => '채팅',
@@ -15,6 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => '',
+        'create' => '공자사항 작성',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => '공지',
@@ -25,12 +28,25 @@ return [
         ],
     ],
 
+    'form' => [
+        'title' => [
+            'announcement' => '새 공지사항 작성',
+        ],
+
+        'labels' => [
+            'description' => '설명',
+            'name' => '방 이름',
+            'users' => '추가할 플레이어',
+        ],
+    ],
+
     'not_found' => [
         'message' => '여긴 아무것도 없어요, 사용자가 채널을 나갔거나 존재하지 않습니다...',
         'title' => '채널을 찾을 수 없습니다.',
     ],
 
     'input' => [
+        'create' => '만들기',
         'disabled' => '메시지를 보낼 수 없습니다...',
         'disconnected' => '연결 끊김',
         'placeholder' => '메시지를 입력하세요...',

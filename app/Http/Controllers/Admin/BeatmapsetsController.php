@@ -8,7 +8,6 @@ namespace App\Http\Controllers\Admin;
 use App\Jobs\RegenerateBeatmapsetCover;
 use App\Jobs\RemoveBeatmapsetCover;
 use App\Models\Beatmapset;
-use Request;
 
 class BeatmapsetsController extends Controller
 {
@@ -44,15 +43,5 @@ class BeatmapsetsController extends Controller
         $beatmapset = Beatmapset::findOrFail($id);
 
         return ext_view('admin.beatmapsets.show', compact('beatmapset'));
-    }
-
-    public function update($id)
-    {
-        $params = get_params(Request::input(), 'beatmapset', ['discussion_enabled:bool']);
-
-        $beatmapset = Beatmapset::findOrFail($id);
-        $beatmapset->update($params);
-
-        return ujs_redirect(route('admin.beatmapsets.show', $beatmapset));
     }
 }

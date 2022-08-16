@@ -14,13 +14,6 @@ return [
         ],
         'show' => [
             'covers' => '',
-            'discussion' => [
-                '_' => '',
-                'activate' => '',
-                'activate_confirm' => '',
-                'active' => '',
-                'inactive' => '',
-            ],
         ],
     ],
 

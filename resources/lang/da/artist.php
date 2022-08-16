@@ -43,19 +43,19 @@ return [
 
     'tracks' => [
         'index' => [
-            '_' => '',
+            '_' => 'spor søgning',
 
             'form' => [
                 'advanced' => 'Avanceret søgning',
                 'album' => 'Album',
                 'artist' => 'Kunstner',
-                'bpm_gte' => '',
-                'bpm_lte' => '',
-                'empty' => '',
+                'bpm_gte' => 'Minimum BPM',
+                'bpm_lte' => 'Maksimum BPM',
+                'empty' => 'Ingen spor som matcher søgekriterier blev fundet.',
                 'genre' => 'Genre',
                 'genre_all' => 'Alle',
-                'length_gte' => '',
-                'length_lte' => '',
+                'length_gte' => 'Minimum Længde',
+                'length_lte' => 'Maksimum Længde',
             ],
         ],
     ],

@@ -12,10 +12,11 @@ import * as React from 'react'
 import TextareaAutosize from 'react-autosize-textarea'
 import { button, div, input, label, p, i, span } from 'react-dom-factories'
 import { nominationsCount } from 'utils/beatmapset-helper'
+import { validMessageLength } from 'utils/beatmapset-discussion-helper'
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { linkHtml } from 'utils/url'
-import { MessageLengthCounter } from './message-length-counter'
+import MessageLengthCounter from './message-length-counter'
 
 el = React.createElement
 
@@ -27,7 +28,6 @@ export class NewDiscussion extends React.PureComponent
 
     @disposers = new Set
     @inputBox = React.createRef()
-    @throttledPost = _.throttle @post, 1000
     @handleKeyDown = makeTextAreaHandler @handleKeyDownCallback
 
     @state =
@@ -56,7 +56,6 @@ export class NewDiscussion extends React.PureComponent
   componentWillUnmount: =>
     $(window).off 'resize', @setTop
     @postXhr?.abort()
-    @throttledPost.cancel()
     @disposers.forEach (disposer) => disposer?()
 
 
@@ -267,7 +266,7 @@ export class NewDiscussion extends React.PureComponent
 
 
   post: (e) =>
-    return unless @validPost()
+    return if !@validPost() || @postXhr?
 
     type = e.currentTarget.dataset.type
 
@@ -280,7 +279,6 @@ export class NewDiscussion extends React.PureComponent
     if type == 'hype'
       return unless confirm(osu.trans('beatmaps.hype.confirm', n: @props.beatmapset.current_user_attributes.remaining_hype))
 
-    @postXhr?.abort()
     showLoadingOverlay()
     @setState posting: type
 
@@ -309,6 +307,7 @@ export class NewDiscussion extends React.PureComponent
 
     .always =>
       hideLoadingOverlay()
+      @postXhr = null
       @setState posting: null
 
 
@@ -400,7 +399,7 @@ export class NewDiscussion extends React.PureComponent
 
 
   validPost: =>
-    return false if !BeatmapDiscussionHelper.validMessageLength(@state.message, @isTimeline())
+    return false if !validMessageLength(@state.message, @isTimeline())
 
     if @isTimeline()
       @timestamp()? && (@nearbyDiscussions().length == 0 || @state.timestampConfirmed)

@@ -26,8 +26,8 @@ return [
         ],
 
         'beatmapsets' => [
-            'show' => '',
-            'discussions' => '',
+            'show' => 'info',
+            'discussions' => 'diskussion',
         ],
 
         'changelog' => [
@@ -51,8 +51,8 @@ return [
 
         'users' => [
             'modding' => 'modding',
-            'playlists' => '',
-            'realtime' => '',
+            'playlists' => 'spellistor',
+            'realtime' => 'multiplayer',
             'show' => 'info',
         ],
     ],
@@ -78,7 +78,7 @@ return [
             'getAbuse' => 'rapportera missbruk',
             'getFaq' => 'faq',
             'getRules' => 'regler',
-            'getSupport' => 'nej, på riktigt, jag behöver hjälp!',
+            'getSupport' => 'hjälpcenter',
         ],
         'home' => [
             '_' => 'hem',

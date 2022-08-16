@@ -15,13 +15,28 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => '',
+        'create' => '',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => '',
-                'GROUP' => '',
+                'GROUP' => 'Grupper',
                 'PM' => '',
-                'PUBLIC' => '',
+                'PUBLIC' => 'Kanaler',
             ],
+        ],
+    ],
+
+    'form' => [
+        'title' => [
+            'announcement' => '',
+        ],
+
+        'labels' => [
+            'description' => 'beskrivelse',
+            'name' => '',
+            'users' => '',
         ],
     ],
 
@@ -31,6 +46,7 @@ return [
     ],
 
     'input' => [
+        'create' => 'Opprett',
         'disabled' => 'kan ikke sende melding...',
         'disconnected' => '',
         'placeholder' => 'skriv melding...',
