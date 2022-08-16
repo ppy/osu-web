@@ -16,7 +16,7 @@ class EsIndexScoresSetSchema extends Command
      * @var string
      */
     protected $signature = 'es:index-scores:set-schema
-        {--schema= : Schema version to be set (can also be specified using environment variable "schema")}';
+        {--schema= : Schema version to be set}';
 
     /**
      * The console command description.
@@ -32,7 +32,7 @@ class EsIndexScoresSetSchema extends Command
      */
     public function handle()
     {
-        $schema = presence($this->option('schema')) ?? presence(env('schema'));
+        $schema = presence($this->option('schema'));
 
         if ($schema === null) {
             return $this->error('Index schema must be specified');
