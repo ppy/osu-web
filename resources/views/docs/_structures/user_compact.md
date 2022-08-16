@@ -90,6 +90,7 @@ Field       | Type      | Description
 description | string?   | |
 id          | number    | |
 length      | number    | In seconds.
+permanent   | boolean   | |
 timestamp   | Timestamp | |
 type        | string    | `note`, `restriction`, or `silence`.
 
