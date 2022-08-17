@@ -33,14 +33,14 @@ class ThrottleRequests extends ThrottleRequestsBase
         return parent::handle($request, $next, $maxAttempts, $decayMinutes, $prefix);
     }
 
-    public function increment(string $prefix = '')
+    public function increment(int $cost = 1, string $prefix = '')
     {
         $limits = request()->attributes->get('_limits')?->get($prefix);
         if ($limits === null) {
             return;
         }
 
-        $this->limiter->hit($limits['key'], $limits['decayMinutes'] * 60);
+        $this->limiter->hit($limits['key'], $limits['decayMinutes'] * 60, $cost);
     }
 
     protected function resolveRequestSignature($request)

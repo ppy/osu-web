@@ -16,9 +16,11 @@ use App\Libraries\MorphMap;
 use App\Libraries\OsuAuthorize;
 use App\Libraries\OsuCookieJar;
 use App\Libraries\OsuMessageSelector;
+use App\Libraries\RateLimiter;
 use App\Libraries\RouteSection;
 use App\Libraries\User\ScorePins;
 use Datadog;
+use Illuminate\Cache\RateLimiter as CacheRateLimiter;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Queue\Events\JobProcessed;
 use Illuminate\Support\ServiceProvider;
@@ -112,6 +114,14 @@ class AppServiceProvider extends ServiceProvider
                 $config['secure'],
                 $config['same_site'] ?? null
             );
+        });
+
+        // override existing RateLimiter with ours.
+        // FIXME: this still causes the overridden RateLimiter to be constructed first.
+        $this->app->extend(CacheRateLimiter::class, function ($_a, $app) {
+            return new RateLimiter($app->make('cache')->driver(
+                $app['config']->get('cache.limiter')
+            ));
         });
 
         // pre-bind to avoid SwooleHttpTaskDispatcher and fallback when not running in a swoole context.
