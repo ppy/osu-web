@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => '',
         'create' => 'ankündigung erstellen',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Ankündigungen',

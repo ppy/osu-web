@@ -5,15 +5,15 @@
 
 return [
     'index' => [
-        'description' => 'Colecțiile pre-ambalate de beatmaps sunt bazate în jurul unei teme comune.',
+        'description' => 'Colecțiile preambalate de beatmap-uri sunt bazate în jurul unei teme comune.',
         'nav_title' => 'listare',
-        'title' => 'Pachete beatmap',
+        'title' => 'Pachete Beatmap',
 
         'blurb' => [
             'important' => 'CITEȘTE ASTA ÎNAINTE DE A DESCĂRCA',
-            'install_instruction' => '',
+            'install_instruction' => 'Instalare: Odată ce un pachet a fost descărcat, extrageți conținutul pachetului în folderul Songs al jocului și osu! va face restul.',
             'note' => [
-                '_' => 'De asemenea, reține că este foarte recomandat să :scary, din moment ce cele mai vechi mape sunt mult mai scăzute calitativ decât cele mai noi.',
+                '_' => 'De asemenea, reține că este foarte recomandat să :scary, din moment ce beatmap-urile vechi sunt mult mai scăzute calitativ decât cele mai noi.',
                 'scary' => 'descarci pachetele de la cele mai noi la cele mai vechi',
             ],
         ],
@@ -26,14 +26,14 @@ return [
             'not_cleared' => 'neeliminat',
         ],
         'no_diff_reduction' => [
-            '_' => '',
-            'link' => '',
+            '_' => ':link nu poate fi folosit pentru a şterge acest pachet.',
+            'link' => 'Mod-uri pentru reducere a dificultății',
         ],
     ],
 
     'mode' => [
         'artist' => 'Artist/Album',
-        'chart' => 'În lumina reflectoarelor',
+        'chart' => 'Promovări',
         'standard' => 'Standard',
         'theme' => 'Temă',
     ],

@@ -24,7 +24,7 @@ interface ColumnProps {
 }
 
 const ColumnAction = ({ history }: ColumnProps) => (
-  <div className={`${bn}__action ${bn}__action--${history.type}`}>
+  <div className={`${bn}__action ${bn}__action--${history.type.replace(/_/g, '-')}`}>
     {osu.trans(`users.show.extra.account_standing.recent_infringements.actions.${history.type}`)}
   </div>
 );
@@ -52,7 +52,7 @@ const ColumnDescription = ({ history }: ColumnProps) => (
 );
 
 const ColumnLength = ({ history }: ColumnProps) => {
-  if (history.type === 'restriction') {
+  if (history.type === 'restriction' || history.permanent) {
     return (
       <div className={`${bn}__action ${bn}__action--restriction`}>
         {osu.trans('users.show.extra.account_standing.recent_infringements.length_permanent')}

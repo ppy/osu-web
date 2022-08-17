@@ -30,19 +30,19 @@ return [
     'forum' => [
         '_' => 'forum',
         'topic_logs_controller' => [
-            'index' => '',
+            'index' => 'istoric subiect',
         ],
         'topic_watches_controller' => [
-            'index' => 'tablou de bord',
+            'index' => 'tablou de comenzi',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'tablou de bord',
+            'edit' => 'tablou de comenzi',
             'verify_link' => 'verificare cont',
         ],
         'artist_tracks_controller' => [
-            '_' => '',
+            '_' => 'artiști oficiali',
         ],
         'artists_controller' => [
             '_' => 'featured artists',
@@ -54,24 +54,24 @@ return [
             '_' => 'discuții beatmap',
         ],
         'beatmap_packs_controller' => [
-            '_' => 'pachete beatmap',
+            '_' => 'pachete beatmap-uri',
         ],
         'beatmapset_discussion_votes_controller' => [
             '_' => 'voturi la discuția beatmap',
         ],
         'beatmapset_events_controller' => [
-            '_' => 'istoria beatmap',
+            '_' => 'istoric beatmap',
         ],
         'beatmapset_watches_controller' => [
-            'index' => 'tablou de bord',
+            'index' => 'tablou de comenzi',
         ],
         'beatmapsets_controller' => [
             'discussion' => 'discuție beatmap',
-            'index' => 'listarea beatmap',
-            'show' => 'beatmap info',
+            'index' => 'lista beatmap-uri',
+            'show' => 'info beatmap',
         ],
         'changelog_controller' => [
-            '_' => 'log de schimbare',
+            '_' => 'istoric schimbări',
         ],
         'chat_controller' => [
             '_' => 'chat',
@@ -83,17 +83,17 @@ return [
             '_' => 'concursuri',
         ],
         'follows_controller' => [
-            'index' => '',
+            'index' => 'tablou de comenzi',
         ],
         'friends_controller' => [
-            'index' => 'tablou de bord',
+            'index' => 'tablou de comenzi',
         ],
         'groups_controller' => [
             'show' => 'grupuri',
         ],
         'home_controller' => [
             'get_download' => 'descarcă',
-            'index' => 'tablou de bord',
+            'index' => 'tablou de comenzi',
             'search' => 'caută',
             'support_the_game' => 'sprijină jocul',
             'testflight' => 'test de zbor',
@@ -102,7 +102,7 @@ return [
             '_' => 'informație',
         ],
         'livestreams_controller' => [
-            '_' => 'transmisiuni în direct',
+            '_' => 'fluxuri live',
         ],
         'matches_controller' => [
             '_' => 'potriviri',
@@ -143,7 +143,7 @@ return [
     ],
     'passport' => [
         'authorization_controller' => [
-            '_' => '',
+            '_' => 'autorizați aplicația',
         ],
     ],
     'store' => [
@@ -154,7 +154,7 @@ return [
             '_' => 'info modder',
         ],
         'multiplayer_controller' => [
-            '_' => '',
+            '_' => 'istoric multiplayer',
         ],
     ],
 ];

@@ -122,14 +122,14 @@ return [
 
     'user' => [
         'contains_username' => '密碼不能包含使用者名稱。',
-        'email_already_used' => '郵箱已被使用。',
-        'email_not_allowed' => '電子郵件地址不允許。',
+        'email_already_used' => '電郵地址已被使用。',
+        'email_not_allowed' => '電郵地址不允許。',
         'invalid_country' => '國家未被數據庫收錄。',
         'invalid_discord' => 'Discord 用户名無效。',
-        'invalid_email' => "無效的郵箱地址。",
+        'invalid_email' => "無效的電郵地址。",
         'invalid_twitter' => 'Twitter帳戶名無效',
         'too_short' => '新密碼太短。',
-        'unknown_duplicate' => '用戶名或郵箱已被使用。',
+        'unknown_duplicate' => '用戶名或電郵地址已被使用。',
         'username_available_in' => '該用戶名將在 :duration 後可用。',
         'username_available_soon' => '該用戶名即將可用！',
         'username_invalid_characters' => '用戶名中包含非法字符。',
@@ -142,13 +142,13 @@ return [
         'username_too_long' => '用戶名太長。',
         'weak' => '弱密碼。',
         'wrong_current_password' => '密碼不正確.',
-        'wrong_email_confirmation' => '重複新郵箱與新郵箱不一致。',
+        'wrong_email_confirmation' => '新電郵地址不一致。',
         'wrong_password_confirmation' => '重複新密碼與新密碼不一致。',
         'too_long' => '超出長度限制——最多為 :limit 個字符。',
 
         'attributes' => [
             'username' => '使用者名稱',
-            'user_email' => '電子郵件地址',
+            'user_email' => '電郵地址',
             'password' => '密碼',
         ],
 

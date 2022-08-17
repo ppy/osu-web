@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Du har blokeret denne bruger.',
+        'comment_text' => '',
         'blocked_count' => 'blokerede brugere (:count)',
         'hide_profile' => 'Skjul profil',
+        'hide_comment' => '',
         'not_blocked' => 'Denne bruger er ikke blokeret.',
         'show_profile' => 'Vis profil',
+        'show_comment' => '',
         'too_many' => 'Blokeringsgrænsen er nået.',
         'button' => [
             'block' => 'Bloker',

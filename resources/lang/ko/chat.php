@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => '',
         'create' => '공자사항 작성',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => '공지',
