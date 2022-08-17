@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
-        'create' => '',
+        'confirm_part' => '',
+        'create' => 'napravi obavijest',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Obaveštenja',
@@ -28,13 +30,13 @@ return [
 
     'form' => [
         'title' => [
-            'announcement' => '',
+            'announcement' => 'Napravi novu obavijest',
         ],
 
         'labels' => [
-            'description' => '',
-            'name' => '',
-            'users' => '',
+            'description' => 'opis',
+            'name' => 'ime sobe',
+            'users' => 'igrači za dodavanje',
         ],
     ],
 
@@ -44,7 +46,7 @@ return [
     ],
 
     'input' => [
-        'create' => '',
+        'create' => 'Stvori',
         'disabled' => 'nije moguće poslati poruku...',
         'disconnected' => 'Odspojeno',
         'placeholder' => 'upišite poruku...',

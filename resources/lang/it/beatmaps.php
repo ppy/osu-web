@@ -162,7 +162,7 @@ return [
         'button_done' => 'Hype già messo!',
         'confirm' => "Sei sicuro? Questo utilizzerà uno dei tuoi :n hype rimanenti e non può essere annullato.",
         'explanation' => 'Metti hype a questa beatmap per renderla più visibile per la nomina e il ranking!',
-        'explanation_guest' => 'Effettua l\'accesso e metti hype a questa beatmap per renderla più visibile per la nomina e il raking!',
+        'explanation_guest' => 'Effettua l\'accesso e metti hype a questa beatmap per renderla più visibile per la nomina e la classificazione!',
         'new_time' => "Riceverai un altro hype :new_time.",
         'remaining' => 'Hai ancora :remaining hype rimanenti.',
         'required_text' => 'Hype: :current/:required',
@@ -199,7 +199,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'È stimato che questa mappa verrà classificata in data :date se non vengono trovati problemi. È in posizione #:position nella :queue.',
-            'queue' => 'coda di ranking',
+            'queue' => 'coda per la classifica',
             'soon' => 'molto vicina',
         ],
 

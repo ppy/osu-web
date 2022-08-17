@@ -4,14 +4,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'all_read' => '',
+    'all_read' => 'Sve obavijesti pročitane!',
     'delete' => 'Izbriši :type',
     'loading' => 'Učitavanje nepročitanih notifikacija...',
     'mark_read' => 'Očisti :type',
     'none' => 'Nema notifikacija',
     'see_all' => 'pogledaj sve notifikacije',
     'see_channel' => 'idi u chat',
-    'verifying' => '',
+    'verifying' => 'Molimo potvrdi sesiju za pregled obavijesti',
 
     'filters' => [
         '_' => 'svi',
@@ -19,7 +19,7 @@ return [
         'beatmapset' => 'beatmape',
         'forum_topic' => 'forum',
         'news_post' => 'vijesti',
-        'build' => '',
+        'build' => 'gradnje',
         'channel' => 'chat',
     ],
 
@@ -28,18 +28,18 @@ return [
             '_' => 'Beatmapa',
 
             'beatmap_owner_change' => [
-                '_' => '',
-                'beatmap_owner_change' => '',
-                'beatmap_owner_change_compact' => '',
+                '_' => 'Gostova težina',
+                'beatmap_owner_change' => 'Sada si vlasnik/ca težine ":beatmap" za beatmapu ":title"',
+                'beatmap_owner_change_compact' => 'Sada si vlasnik/ca težine ":beatmap" ',
             ],
 
             'beatmapset_discussion' => [
                 '_' => 'Rasprava o beatmapama',
                 'beatmapset_discussion_lock' => 'Rasprava na ":title" je zaključana',
                 'beatmapset_discussion_lock_compact' => 'Rasprava je bila zaključana',
-                'beatmapset_discussion_post_new' => '',
-                'beatmapset_discussion_post_new_empty' => '',
-                'beatmapset_discussion_post_new_compact' => '',
+                'beatmapset_discussion_post_new' => 'Nova objava na ":title" od :username: ":content"',
+                'beatmapset_discussion_post_new_empty' => 'Nova objava na ":title" od :username',
+                'beatmapset_discussion_post_new_compact' => 'Nova objava od :username: ":content"',
                 'beatmapset_discussion_post_new_compact_empty' => 'Nova objava od :username',
                 'beatmapset_discussion_review_new' => 'Nova recenzija na ":title" od :username koji sardži probleme: :problems, sugestije: :suggestions, pohvale: :praises',
                 'beatmapset_discussion_review_new_compact' => 'Nova recenzija od :username koji sardži probleme: :problems, sugestije: :suggestions, pohvale: :praises',
@@ -77,46 +77,46 @@ return [
                 '_' => 'Novi komentar',
 
                 'comment_new' => ':username je komentirao ":content" na ":title"',
-                'comment_new_compact' => '',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_new_compact' => ':username je komentirao/la ":content"',
+                'comment_reply' => ':username je odgovorio/la ":content" na ":title"',
+                'comment_reply_compact' => ':username je odgovorio/la ":content"',
             ],
         ],
 
         'channel' => [
-            '_' => '',
+            '_' => 'Razgovor',
 
             'announcement' => [
-                '_' => '',
+                '_' => 'Nova obavijest',
 
                 'announce' => [
-                    'channel_announcement' => '',
-                    'channel_announcement_compact' => '',
-                    'channel_announcement_group' => '',
+                    'channel_announcement' => ':username kaže ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Obavijest od :username',
                 ],
             ],
 
             'channel' => [
-                '_' => '',
+                '_' => 'Nova poruka',
 
                 'pm' => [
-                    'channel_message' => '',
+                    'channel_message' => ':username kaže ":title"',
                     'channel_message_compact' => ':title',
-                    'channel_message_group' => '',
+                    'channel_message_group' => 'od :username',
                 ],
             ],
         ],
 
         'build' => [
-            '_' => '',
+            '_' => 'Popis promjena',
 
             'comment' => [
-                '_' => '',
+                '_' => 'Novi komentar',
 
-                'comment_new' => '',
-                'comment_new_compact' => '',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_new' => ':username je komentirao ":content" na ":title"',
+                'comment_new_compact' => ':username je komentirao/la ":content"',
+                'comment_reply' => ':username je odgovorio/la ":content" na ":title"',
+                'comment_reply_compact' => ':username je odgovorio/la ":content"',
             ],
         ],
 
@@ -124,44 +124,44 @@ return [
             '_' => 'Vijesti',
 
             'comment' => [
-                '_' => '',
+                '_' => 'Novi komentar',
 
-                'comment_new' => '',
-                'comment_new_compact' => '',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_new' => ':username je komentirao ":content" na ":title"',
+                'comment_new_compact' => ':username je komentirao/la ":content"',
+                'comment_reply' => ':username je odgovorio/la ":content" na ":title"',
+                'comment_reply_compact' => ':username je odgovorio/la ":content"',
             ],
         ],
 
         'forum_topic' => [
-            '_' => '',
+            '_' => 'Tema foruma',
 
             'forum_topic_reply' => [
-                '_' => '',
-                'forum_topic_reply' => '',
-                'forum_topic_reply_compact' => '',
+                '_' => 'Novi odgovor na forumu',
+                'forum_topic_reply' => ':username je odgovorio/la na ":title"',
+                'forum_topic_reply_compact' => ':username je odgovorio/la',
             ],
         ],
 
         'legacy_pm' => [
-            '_' => '',
+            '_' => 'Legacy Forum PM',
 
             'legacy_pm' => [
                 '_' => '',
-                'legacy_pm' => '',
+                'legacy_pm' => ':count_delimited nepročitana poruka|:count_delimited nepročitane poruke',
             ],
         ],
 
         'user' => [
             'user_beatmapset_new' => [
-                '_' => '',
+                '_' => 'Nova beatmapa',
 
-                'user_beatmapset_new' => '',
-                'user_beatmapset_new_compact' => '',
-                'user_beatmapset_new_group' => '',
+                'user_beatmapset_new' => 'Nova beatmapa ":title" od :username',
+                'user_beatmapset_new_compact' => 'Nova beatmapa ":title"',
+                'user_beatmapset_new_group' => 'Nove beatmape od :username',
 
-                'user_beatmapset_revive' => '',
-                'user_beatmapset_revive_compact' => '',
+                'user_beatmapset_revive' => 'Beatmapa ":title" oživljena od :username',
+                'user_beatmapset_revive_compact' => 'Beatmapa ":title" oživljena',
             ],
         ],
 
@@ -169,10 +169,10 @@ return [
             '_' => 'Medalje',
 
             'user_achievement_unlock' => [
-                '_' => '',
-                'user_achievement_unlock' => '',
-                'user_achievement_unlock_compact' => '',
-                'user_achievement_unlock_group' => '',
+                '_' => 'Nova medalja',
+                'user_achievement_unlock' => 'Otključan ":title"!',
+                'user_achievement_unlock_compact' => 'Otključan ":title"!',
+                'user_achievement_unlock_group' => 'Otključane medalje!',
             ],
         ],
     ],
@@ -180,12 +180,12 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => '',
+                'beatmap_owner_change' => 'Sada si gost beatmape ":title"',
             ],
 
             'beatmapset_discussion' => [
-                'beatmapset_discussion_lock' => '',
-                'beatmapset_discussion_post_new' => '',
+                'beatmapset_discussion_lock' => 'Rasprava na ":title" je zaključana',
+                'beatmapset_discussion_post_new' => 'Rasprava na ":title" ima novih ažuriranja',
                 'beatmapset_discussion_unlock' => 'Rasprava na ":title" je otključana',
             ],
 

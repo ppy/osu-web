@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
-        'create' => '',
+        'confirm_part' => '',
+        'create' => 'стварыць аб\'яву',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Аб\'явы',
@@ -28,13 +30,13 @@ return [
 
     'form' => [
         'title' => [
-            'announcement' => '',
+            'announcement' => 'Стварыць новую аб\'яву',
         ],
 
         'labels' => [
-            'description' => '',
-            'name' => '',
-            'users' => '',
+            'description' => 'апісанне',
+            'name' => 'назва пакоя',
+            'users' => 'дабаўляемых гульцоў',
         ],
     ],
 
@@ -44,7 +46,7 @@ return [
     ],
 
     'input' => [
-        'create' => '',
+        'create' => 'Стварыць',
         'disabled' => 'не атрымалася адправіць паведамленне...',
         'disconnected' => 'Адключаны',
         'placeholder' => 'пішыце паведамленне...',

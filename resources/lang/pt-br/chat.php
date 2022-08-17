@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
-        'create' => '',
+        'confirm_part' => '',
+        'create' => 'criar anúncio',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Comunicados',
@@ -28,13 +30,13 @@ return [
 
     'form' => [
         'title' => [
-            'announcement' => '',
+            'announcement' => 'Criar Novo Anúncio',
         ],
 
         'labels' => [
-            'description' => '',
-            'name' => '',
-            'users' => '',
+            'description' => 'descrição',
+            'name' => 'nome da sala',
+            'users' => 'jogadores para adicionar',
         ],
     ],
 
@@ -44,7 +46,7 @@ return [
     ],
 
     'input' => [
-        'create' => '',
+        'create' => 'Criar',
         'disabled' => 'incapaz de enviar mensagem...',
         'disconnected' => 'Desconectado',
         'placeholder' => 'escrever uma mensagem...',

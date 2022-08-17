@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
-        'create' => '',
+        'confirm_part' => '',
+        'create' => 'создать объявление',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Объявления',
@@ -28,13 +30,13 @@ return [
 
     'form' => [
         'title' => [
-            'announcement' => '',
+            'announcement' => 'Создать новое объявление',
         ],
 
         'labels' => [
-            'description' => '',
-            'name' => '',
-            'users' => '',
+            'description' => 'описание',
+            'name' => 'имя комнаты',
+            'users' => 'добавляемых игроков',
         ],
     ],
 
@@ -44,7 +46,7 @@ return [
     ],
 
     'input' => [
-        'create' => '',
+        'create' => 'Создать',
         'disabled' => 'нельзя отправить сообщение...',
         'disconnected' => 'Отключен',
         'placeholder' => 'введите сообщение...',

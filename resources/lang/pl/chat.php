@@ -10,12 +10,14 @@ return [
     'title_compact' => 'czat',
 
     'cannot_send' => [
-        'channel' => 'Nie możesz wysłać wiadomości na ten kanał.',
-        'user' => 'Nie możesz wysłać wiadomości do tego użytkownika.',
+        'channel' => 'W tej chwili nie możesz wysyłać wiadomości na ten kanał.',
+        'user' => 'W tej chwili nie możesz wysyłać wiadomości do tego użytkownika.',
     ],
 
     'channels' => [
-        'create' => '',
+        'confirm_part' => '',
+        'create' => 'utwórz ogłoszenie',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Ogłoszenia',
@@ -28,23 +30,23 @@ return [
 
     'form' => [
         'title' => [
-            'announcement' => '',
+            'announcement' => 'Utwórz nowe ogłoszenie',
         ],
 
         'labels' => [
-            'description' => '',
-            'name' => '',
-            'users' => '',
+            'description' => 'opis',
+            'name' => 'nazwa',
+            'users' => 'odbiorcy',
         ],
     ],
 
     'not_found' => [
-        'message' => 'Nic tu nie ma, być może opuściłeś kanał lub nie istnieje...',
+        'message' => 'Nic tu nie ma, być może taki kanał nie istnieje lub do niego nie należysz...',
         'title' => 'nie znaleziono kanału',
     ],
 
     'input' => [
-        'create' => '',
+        'create' => 'Utwórz',
         'disabled' => 'nie udało się wysłać wiadomości...',
         'disconnected' => 'Rozłączono',
         'placeholder' => 'napisz wiadomość...',

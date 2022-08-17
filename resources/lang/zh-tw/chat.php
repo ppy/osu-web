@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
-        'create' => '',
+        'confirm_part' => '',
+        'create' => '建立公告',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => '公告',
@@ -28,13 +30,13 @@ return [
 
     'form' => [
         'title' => [
-            'announcement' => '',
+            'announcement' => '建立新公告',
         ],
 
         'labels' => [
-            'description' => '',
-            'name' => '',
-            'users' => '',
+            'description' => '詳情',
+            'name' => '房間名稱',
+            'users' => '要新增的玩家',
         ],
     ],
 
@@ -44,7 +46,7 @@ return [
     ],
 
     'input' => [
-        'create' => '',
+        'create' => '建立',
         'disabled' => '無法傳送訊息...',
         'disconnected' => '連線已中斷',
         'placeholder' => '輸入訊息...',

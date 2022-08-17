@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
-        'create' => '',
+        'confirm_part' => '',
+        'create' => 'lumikha ng anunsyo',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Mga Anunsyo',
@@ -28,13 +30,13 @@ return [
 
     'form' => [
         'title' => [
-            'announcement' => '',
+            'announcement' => 'Lumikha ng Bagong Anunsyo',
         ],
 
         'labels' => [
-            'description' => '',
-            'name' => '',
-            'users' => '',
+            'description' => 'deskripsyon',
+            'name' => 'pangalan ng room',
+            'users' => 'mga manlalaro na idadagdag',
         ],
     ],
 
@@ -44,7 +46,7 @@ return [
     ],
 
     'input' => [
-        'create' => '',
+        'create' => 'Lumikha',
         'disabled' => 'hindi maipadala ang mensahe...',
         'disconnected' => 'Disconnected',
         'placeholder' => 'mag-type ng mensahe...',

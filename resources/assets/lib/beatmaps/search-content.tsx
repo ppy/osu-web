@@ -12,8 +12,8 @@ import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import VirtualList, { VirtualProps } from 'react-virtual-list';
 import { classWithModifiers } from 'utils/css';
+import VirtualList, { RenderProps } from 'virtual-list/virtual-list';
 import AvailableFilters from './available-filters';
 import { Paginator } from './paginator';
 import { SearchPanel } from './search-panel';
@@ -24,26 +24,25 @@ interface Props {
   backToTopAnchor: React.RefObject<HTMLDivElement>;
 }
 
-const ListRender = ({ virtual }: VirtualProps<number[]>) => (
-  <div style={virtual.style}>
-    <div className='beatmapsets__items'>
-      {virtual.items.map((row) => (
-        <div key={row.join('-')} className='beatmapsets__items-row'>
-          {row.map((beatmapsetId) => {
-            const beatmapset = core.dataStore.beatmapsetStore.get(beatmapsetId);
-            return (
-              <div key={beatmapsetId} className='beatmapsets__item'>
-                {beatmapset != null && <BeatmapsetPanel beatmapset={beatmapset} />}
-              </div>
-            );
-          })}
-        </div>
-      ))}
-    </div>
+// Rendered as a vertical list of flexbox rows instead of css grid as it repaints faster.
+// With CSS grid, every item has to be re-layout and re-painted when the virtual window is updated.
+// The current method only has to paint new rows and shift the layout of the other rows.
+const BeatmapList = ({ items }: RenderProps<number[]>) => (
+  <div className='beatmapsets__items'>
+    {items.map((row) => (
+      <div key={row.join('-')} className='beatmapsets__items-row'>
+        {row.map((beatmapsetId) => {
+          const beatmapset = core.dataStore.beatmapsetStore.get(beatmapsetId);
+          return (
+            <div key={beatmapsetId} className='beatmapsets__item'>
+              {beatmapset != null && <BeatmapsetPanel beatmapset={beatmapset} />}
+            </div>
+          );
+        })}
+      </div>
+    ))}
   </div>
 );
-
-const BeatmapList = VirtualList<number[]>()(ListRender);
 
 const EmptyList = () => (
   <div className='beatmapsets__empty'>
@@ -123,11 +122,13 @@ export class SearchContent extends React.Component<Props> {
 
   private renderList() {
     return this.beatmapsetIds.length > 0 ? (
-      <BeatmapList
+      <VirtualList
         itemBuffer={5}
         itemHeight={this.virtualListMeta.itemHeight}
         items={this.chunkedItems}
-      />
+      >
+        {BeatmapList}
+      </VirtualList>
     ) : <EmptyList />;
   }
 

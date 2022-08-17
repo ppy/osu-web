@@ -129,7 +129,7 @@ return [
         'buttons' => [
             'download' => 'Preuzmi osu!',
             'support' => 'Podrži osu!',
-            'store' => '',
+            'store' => 'osu!trgovina',
         ],
     ],
 ];

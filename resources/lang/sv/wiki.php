@@ -5,7 +5,7 @@
 
 return [
     'show' => [
-        'fallback_translation' => 'Den begärda sidan är inte översatt till det valda språket (:language). Visar den Engelska versionen.',
+        'fallback_translation' => 'Den begärda sidan är inte översatt till det valda språket (:language). Visar den engelska versionen.',
         'incomplete_or_outdated' => 'Innehållet på denna sidan är ofullständigt eller föråldrat. Om du har möjligheten att hjälpa till, vänligen överväg att uppdatera artikeln!',
         'missing' => 'Begärd sida kunde ej hittas.',
         'missing_title' => 'Hittades inte',

@@ -60,7 +60,7 @@ return [
             'beatmapset:modding' => '',
             'channel_message' => 'ιδιωτικά μηνύματα',
             'comment_new' => 'νέα σχόλια',
-            'forum_topic_reply' => '',
+            'forum_topic_reply' => 'απάντηση θέματος',
             'mail' => 'mail',
             'mapping' => '',
             'push' => 'push',
@@ -81,7 +81,7 @@ return [
 
         'beatmapset_download' => [
             '_' => '',
-            'all' => '',
+            'all' => 'με βίντεο εάν είναι διαθέσιμο',
             'direct' => 'άνοιγμα με osu!direct',
             'no_video' => 'χωρίς βίντεο',
         ],

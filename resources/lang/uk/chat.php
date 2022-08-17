@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
-        'create' => '',
+        'confirm_part' => '',
+        'create' => 'створити оголошення',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Анонси',
@@ -28,13 +30,13 @@ return [
 
     'form' => [
         'title' => [
-            'announcement' => '',
+            'announcement' => 'Створити Нове Оголошення',
         ],
 
         'labels' => [
-            'description' => '',
-            'name' => '',
-            'users' => '',
+            'description' => 'опис',
+            'name' => 'назва кімнати',
+            'users' => 'додавання гравців',
         ],
     ],
 
@@ -44,7 +46,7 @@ return [
     ],
 
     'input' => [
-        'create' => '',
+        'create' => 'Створити',
         'disabled' => 'неможливо надіслати повідомлення...',
         'disconnected' => 'Розʼєднано',
         'placeholder' => 'введіть текст повідомлення...',

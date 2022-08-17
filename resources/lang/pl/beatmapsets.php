@@ -125,7 +125,7 @@ return [
             'language' => 'Język',
             'no_scores' => 'Dane są nadal ładowane...',
             'nsfw' => 'Treść dla pełnoletnich',
-            'offset' => '',
+            'offset' => 'Opóźnienie',
             'points-of-failure' => 'Wykres porażek',
             'source' => 'Źródło',
             'storyboard' => 'Ta beatmapa zawiera scenorys',
@@ -181,7 +181,7 @@ return [
                 'own' => 'Twój wynik',
             ],
             'supporter_link' => [
-                '_' => 'Kliknij :here, aby zobaczyć, jakie jeszcze funkcje otrzymasz w zamian za zakup statusu donatora!',
+                '_' => 'Kliknij :here, aby zobaczyć, jakie jeszcze funkcje otrzymasz!',
                 'here' => 'tutaj',
             ],
         ],
@@ -197,7 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Liczba kółek',
             'count_sliders' => 'Liczba sliderów',
-            'offset' => '',
+            'offset' => 'Opóźnienie: :offset',
             'user-rating' => 'Oceny użytkowników',
             'rating-spread' => 'Wykres ocen',
             'nominations' => 'Nominacje',
@@ -216,6 +216,6 @@ return [
     ],
 
     'spotlight_badge' => [
-        'label' => '',
+        'label' => 'Wyróżniona',
     ],
 ];

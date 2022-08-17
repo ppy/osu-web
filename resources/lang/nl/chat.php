@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
-        'create' => '',
+        'confirm_part' => '',
+        'create' => 'aankondiging maken',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Aankondigingen',
@@ -28,11 +30,11 @@ return [
 
     'form' => [
         'title' => [
-            'announcement' => '',
+            'announcement' => 'Nieuwe Aankondiging Maken',
         ],
 
         'labels' => [
-            'description' => '',
+            'description' => 'beschrijving',
             'name' => '',
             'users' => '',
         ],
@@ -44,7 +46,7 @@ return [
     ],
 
     'input' => [
-        'create' => '',
+        'create' => 'Aanmaken',
         'disabled' => 'niet in staat om bericht te verzenden...',
         'disconnected' => 'Verbinding verbroken',
         'placeholder' => 'stuur een bericht...',

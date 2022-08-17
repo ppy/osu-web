@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
-        'create' => '',
+        'confirm_part' => '',
+        'create' => 'إنشاء إعلان',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'الإعلانات',
@@ -28,13 +30,13 @@ return [
 
     'form' => [
         'title' => [
-            'announcement' => '',
+            'announcement' => 'إنشاء إعلان جديد',
         ],
 
         'labels' => [
-            'description' => '',
-            'name' => '',
-            'users' => '',
+            'description' => 'الوصف',
+            'name' => 'اسم الغرفة',
+            'users' => 'لاعبين للإضافة',
         ],
     ],
 
@@ -44,7 +46,7 @@ return [
     ],
 
     'input' => [
-        'create' => '',
+        'create' => 'إنشاء',
         'disabled' => 'غير قادر على إرسال الرسالة...',
         'disconnected' => 'تم قطع الاتصال',
         'placeholder' => 'اكتب الرسالة...',

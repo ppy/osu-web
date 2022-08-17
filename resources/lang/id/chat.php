@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
-        'create' => '',
+        'confirm_part' => '',
+        'create' => 'buat pengumuman',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Pengumuman',
@@ -28,13 +30,13 @@ return [
 
     'form' => [
         'title' => [
-            'announcement' => '',
+            'announcement' => 'Buat Pengumuman Baru',
         ],
 
         'labels' => [
-            'description' => '',
-            'name' => '',
-            'users' => '',
+            'description' => 'keterangan',
+            'name' => 'nama ruangan',
+            'users' => 'pemain yang akan ditambahkan',
         ],
     ],
 
@@ -44,7 +46,7 @@ return [
     ],
 
     'input' => [
-        'create' => '',
+        'create' => 'Buat',
         'disabled' => 'gagal mengirim pesan...',
         'disconnected' => 'Terputus',
         'placeholder' => 'ketik pesan...',

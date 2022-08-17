@@ -6,7 +6,7 @@ import { ChatNewConversationAdded } from 'actions/chat-new-conversation-added';
 import ChatUpdateSilences from 'actions/chat-update-silences';
 import DispatcherAction from 'actions/dispatcher-action';
 import { dispatch, dispatchListener } from 'app-dispatcher';
-import { markAsRead as apiMarkAsRead, newConversation, partChannel as apiPartChannel, sendMessage } from 'chat/chat-api';
+import { getChannel, newConversation, partChannel as apiPartChannel, sendMessage } from 'chat/chat-api';
 import MessageNewEvent from 'chat/message-new-event';
 import DispatchListener from 'dispatch-listener';
 import ChannelJson, { filterSupportedChannelTypes, SupportedChannelType, supportedChannelTypes } from 'interfaces/chat/channel-json';
@@ -17,7 +17,7 @@ import { action, computed, makeObservable, observable, runInAction } from 'mobx'
 import Channel from 'models/chat/channel';
 import Message from 'models/chat/message';
 import core from 'osu-core-singleton';
-import { onError } from 'utils/ajax';
+import { isJqXHR, onError } from 'utils/ajax';
 
 function alphabeticalSort(a: Channel, b: Channel) {
   return a.name.localeCompare(b.name);
@@ -54,7 +54,8 @@ export default class ChannelStore implements DispatchListener {
   @observable channels = observable.map<number, Channel>();
   lastReceivedMessageId = 0;
 
-  private markingAsRead: Partial<Record<number, number>> = {};
+  // list of channels to temporarily ignore incoming messages from because we just left them.
+  private ignoredChannels = new Set<number>();
 
   @computed
   get groupedChannels() {
@@ -136,42 +137,21 @@ export default class ChannelStore implements DispatchListener {
   }
 
   @action
-  markAsRead(channelId: number) {
+  partChannel(channelId: number, sync = true) {
     const channel = this.get(channelId);
+    if (channel == null) return;
 
-    if (channel == null || !channel.isUnread || !channel.uiState.autoScroll) {
-      return;
-    }
-
-    if (this.markingAsRead[channelId] != null) {
-      return;
-    }
-
-    channel.markAsRead();
-
-    const currentTimeout = window.setTimeout(action(() => {
-      // allow next debounce to be queued again
-      if (this.markingAsRead[channelId] === currentTimeout) {
-        delete this.markingAsRead[channelId];
+    // channelId <= 0 are local only channels, no need to make an api call.
+    if (channelId > 0 && sync) {
+      // tabs parting channel via received chat.channel.part message shouldn't need to ignore channels
+      // since the order of events in that case should match the backend's...in theory.
+      if (!channel.isHideable) {
+        this.ignoredChannels.add(channelId);
       }
 
-      // TODO: need to mark again in case the marker has moved?
-
-      // We don't need to send mark-as-read for our own messages, as the cursor is automatically bumped forward server-side when sending messages.
-      if (channel.lastMessage?.sender.id === core.currentUser?.id) {
-        return;
-      }
-
-      apiMarkAsRead(channel.channelId, channel.lastMessageId);
-    }), 1000);
-
-    this.markingAsRead[channelId] = currentTimeout;
-  }
-
-  @action
-  partChannel(channelId: number, remote = true) {
-    if (channelId > 0 && remote) {
-      apiPartChannel(channelId, core.currentUserOrFail.id);
+      apiPartChannel(channelId, core.currentUserOrFail.id)
+        // unignore even on failure, could be failed to leave or success but timeout.
+        .always(() => this.ignoredChannels.delete(channelId));
     }
 
     this.channels.delete(channelId);
@@ -188,11 +168,14 @@ export default class ChannelStore implements DispatchListener {
     }
 
     channel.updateWithJson(json);
+    this.ignoredChannels.delete(channelId);
     return channel;
   }
 
   @action
   updateMany(data: ChannelJson[]) {
+    this.ignoredChannels.clear();
+
     filterSupportedChannelTypes(data).forEach((json) => {
       this.update(json);
     });
@@ -232,12 +215,24 @@ export default class ChannelStore implements DispatchListener {
   }
 
   @action
-  private handleChatMessageNewEvent(event: MessageNewEvent) {
+  private async handleChatMessageNewEvent(event: MessageNewEvent) {
     for (const message of event.json.messages) {
       const channel = this.channels.get(message.channel_id);
-      if (channel == null) continue;
 
-      channel.addMessage(message);
+      if (channel != null) {
+        channel.addMessage(message);
+      } else if (!this.ignoredChannels.has(message.channel_id)) {
+        try {
+          const json = await getChannel(message.channel_id);
+          this.update(json);
+        } catch (error) {
+          if (!isJqXHR(error)) throw error;
+          // FIXME: this seems like the wrong place to trigger an error popup.
+          if (error.status !== 404) {
+            onError(error);
+          }
+        }
+      }
     }
 
     this.updateLastReceivedMessageId(event.json.messages);
@@ -275,8 +270,8 @@ export default class ChannelStore implements DispatchListener {
       }
     } catch (error) {
       channel.afterSendMesssage(message, null);
-      // FIXME: this seems like the wrong place to tigger an error popup.
-      // FIXME: error is typed as any
+      // FIXME: this seems like the wrong place to trigger an error popup.
+      if (!isJqXHR(error)) throw error;
       onError(error);
     }
   }

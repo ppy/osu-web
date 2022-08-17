@@ -101,7 +101,7 @@ function onMouseLeave() {
   inCard = false;
 }
 
-function onMouseOver(event: JQuery.TriggeredEvent<unknown, unknown, HTMLElement, unknown>) {
+function onMouseOver(event: JQuery.TriggeredEvent<Document, unknown, HTMLElement, HTMLElement>) {
   if (tooltipWithActiveMenu != null) return;
   if (core.windowSize.isMobile) return;
 
@@ -119,8 +119,12 @@ function onMouseOver(event: JQuery.TriggeredEvent<unknown, unknown, HTMLElement,
     // wrong userId, destroy current tooltip
     const qtip = $(el).qtip('api');
     if (qtip != null) {
-      if (qtip.tooltip != null) {
-        unmountComponentAtNode(qtip.tooltip.find('.js-react--user-card-tooltip')[0]);
+      const tooltipElement = qtip.tooltip as HTMLElement | undefined;
+      if (tooltipElement != null) {
+        const container = tooltipElement.querySelector('.js-react--user-card-tooltip');
+        if (container != null) {
+          unmountComponentAtNode(container);
+        }
       }
 
       qtip.destroy();

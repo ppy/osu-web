@@ -13,7 +13,7 @@ return [
     ],
 
     'scopes' => [
-        'bot' => '',
+        'bot' => 'Fungere som en chattbot.',
         'identify' => 'Identifiser deg selv og les din offentlige profil.',
 
         'chat' => [
@@ -21,7 +21,7 @@ return [
         ],
 
         'forum' => [
-            'write' => '',
+            'write' => 'Opprett og rediger forumemner og innlegg på dine vegne.',
         ],
 
         'friends' => [

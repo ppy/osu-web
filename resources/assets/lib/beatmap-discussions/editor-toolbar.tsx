@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { Portal } from 'components/portal';
-import * as _ from 'lodash';
+import { throttle } from 'lodash';
 import * as React from 'react';
 import { Editor, Node, Range } from 'slate';
 import { ReactEditor } from 'slate-react';
@@ -19,7 +19,7 @@ export class EditorToolbar extends React.Component {
   scrollContainer: HTMLElement | undefined;
   private readonly eventId = `editor-toolbar-${nextVal()}`;
   private scrollTimer: number | undefined;
-  private readonly throttledUpdate = _.throttle(this.updatePosition.bind(this), 100);
+  private readonly throttledUpdate = throttle(() => this.updatePosition(), 100);
 
   componentDidMount() {
     $(window).on(`scroll.${this.eventId}`, this.throttledUpdate);

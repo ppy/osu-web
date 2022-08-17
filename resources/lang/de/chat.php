@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
-        'create' => '',
+        'confirm_part' => '',
+        'create' => 'ankündigung erstellen',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Ankündigungen',
@@ -28,13 +30,13 @@ return [
 
     'form' => [
         'title' => [
-            'announcement' => '',
+            'announcement' => 'Erstelle neue Ankündigung',
         ],
 
         'labels' => [
-            'description' => '',
-            'name' => '',
-            'users' => '',
+            'description' => 'beschreibung',
+            'name' => 'raumname',
+            'users' => 'spieler zum hinzufügen',
         ],
     ],
 
@@ -44,7 +46,7 @@ return [
     ],
 
     'input' => [
-        'create' => '',
+        'create' => 'Erstellen',
         'disabled' => 'Nachricht konnte nicht gesendet werden...',
         'disconnected' => 'Verbindung getrennt',
         'placeholder' => 'Nachricht verfassen...',

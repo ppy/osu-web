@@ -319,27 +319,24 @@ function cursor_from_params($params): ?array
 
 function datadog_timing(callable $callable, $stat, array $tag = null)
 {
-    $withClockwork = app('clockwork.support')->isEnabled();
+    $startTime = microtime(true);
 
-    if ($withClockwork) {
+    $result = $callable();
+
+    $endTime = microtime(true);
+
+    if (app('clockwork.support')->isEnabled()) {
         // spaces used so clockwork doesn't run across the whole screen.
         $description = $stat
                        .' '.($tag['type'] ?? null)
                        .' '.($tag['index'] ?? null);
 
-        clock()->event($description)->start();
+        $clockworkEvent = clock()->event($description);
+        $clockworkEvent->start = $startTime;
+        $clockworkEvent->end = $endTime;
     }
 
-    $start = microtime(true);
-
-    $result = $callable();
-
-    if ($withClockwork) {
-        clock()->event($description)->end();
-    }
-
-    $duration = microtime(true) - $start;
-    Datadog::microtiming($stat, $duration, 1, $tag);
+    Datadog::microtiming($stat, $endTime - $startTime, 1, $tag);
 
     return $result;
 }
@@ -1191,14 +1188,20 @@ function i18n_date($datetime, $format = IntlDateFormatter::LONG, $pattern = null
 
 function i18n_number_format($number, $style = null, $pattern = null, $precision = null, $locale = null)
 {
-    $formatter = NumberFormatter::create(
-        $locale ?? App::getLocale(),
-        $style ?? NumberFormatter::DEFAULT_STYLE,
-        $pattern
-    );
+    if ($style === null && $pattern === null && $precision === null) {
+        static $formatters = [];
+        $locale ??= App::getLocale();
+        $formatter = $formatters[$locale] ??= new NumberFormatter($locale, NumberFormatter::DEFAULT_STYLE);
+    } else {
+        $formatter = new NumberFormatter(
+            $locale ?? App::getLocale(),
+            $style ?? NumberFormatter::DEFAULT_STYLE,
+            $pattern
+        );
 
-    if ($precision !== null) {
-        $formatter->setAttribute(NumberFormatter::FRACTION_DIGITS, $precision);
+        if ($precision !== null) {
+            $formatter->setAttribute(NumberFormatter::FRACTION_DIGITS, $precision);
+        }
     }
 
     return $formatter->format($number);
@@ -1469,6 +1472,7 @@ function get_param_value($input, $type)
         case 'array':
             return get_arr($input);
         case 'bool':
+        case 'boolean':
             return get_bool($input);
         case 'int':
             return get_int($input);

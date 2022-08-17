@@ -57,8 +57,8 @@ export default function Buttons(props: Props) {
                     baseKey='scores'
                     className='simple-menu__item'
                     onFormClose={dismiss}
-                    reportableId={props.score.best_id?.toString() ?? ''}
-                    reportableType={`score_best_${ruleset}`}
+                    reportableId={(props.score.best_id ?? props.score.id).toString()}
+                    reportableType={props.score.best_id == null ? props.score.type : `score_best_${ruleset}`}
                     user={props.score.user}
                   />
                 }

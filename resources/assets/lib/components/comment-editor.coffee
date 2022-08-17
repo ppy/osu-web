@@ -22,7 +22,6 @@ export class CommentEditor extends React.PureComponent
     super props
 
     @textarea = React.createRef()
-    @throttledPost = _.throttle @post, 1000
 
     @handleKeyDown = makeTextAreaHandler @handleKeyDownCallback
 
@@ -38,7 +37,6 @@ export class CommentEditor extends React.PureComponent
 
 
   componentWillUnmount: =>
-    @throttledPost.cancel()
     @xhr?.abort()
 
 
@@ -90,7 +88,7 @@ export class CommentEditor extends React.PureComponent
               isBusy: @state.posting
               modifiers: 'comment-editor'
               props:
-                onClick: @throttledPost
+                onClick: @post
               text:
                 top:
                   if @state.posting
@@ -139,7 +137,7 @@ export class CommentEditor extends React.PureComponent
       when InputEventType.Cancel
         @close()
       when InputEventType.Submit
-        @throttledPost()
+        @post()
 
 
   isValid: =>
@@ -160,6 +158,7 @@ export class CommentEditor extends React.PureComponent
 
 
   post: =>
+    return if @xhr?
     return @props.close?() if @mode() == 'edit' && @state.message == @props.message
 
     @setState posting: true
@@ -192,3 +191,5 @@ export class CommentEditor extends React.PureComponent
       @props.onPosted?(@mode())
       @props.close?()
     .fail onErrorWithCallback(@post)
+    .always =>
+      @xhr = null
