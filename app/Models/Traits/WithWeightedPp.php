@@ -11,12 +11,14 @@ trait WithWeightedPp
 
     public function weightedPp(): ?float
     {
-        if ($this->weight === null) {
-            return null;
+        if ($this->weight !== null) {
+            $pp = $this->pp;
+
+            if ($pp !== null) {
+                return $this->weight * $pp;
+            }
         }
 
-        $pp = $this->pp;
-
-        return $pp === null ? null : $this->weight * $pp;
+        return null;
     }
 }
