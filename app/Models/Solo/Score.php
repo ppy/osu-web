@@ -28,7 +28,7 @@ use LaravelRedis;
  */
 class Score extends Model implements Traits\ReportableInterface
 {
-    use Traits\Reportable;
+    use Traits\Reportable, Traits\WithWeightedPp;
 
     const PROCESSING_QUEUE = 'osu-queue:score-statistics';
 
@@ -108,6 +108,11 @@ class Score extends Model implements Traits\ReportableInterface
             ->whereHas('user', fn (Builder $q): Builder => $q->default());
     }
 
+    public function getPpAttribute(): ?float
+    {
+        return $this->performance?->pp;
+    }
+
     public function createLegacyEntryOrExplode()
     {
         $score = $this->makeLegacyEntry();
@@ -178,17 +183,6 @@ class Score extends Model implements Traits\ReportableInterface
     public function userRank(): ?int
     {
         return UserRankCache::fetch([], $this->beatmap_id, $this->ruleset_id, $this->data->totalScore);
-    }
-
-    public function weightedPp(): ?float
-    {
-        if ($this->weight === null) {
-            return null;
-        }
-
-        $pp = $this->performance?->pp;
-
-        return $pp === null ? null : $this->weight * $pp;
     }
 
     protected function newReportableExtraParams(): array
