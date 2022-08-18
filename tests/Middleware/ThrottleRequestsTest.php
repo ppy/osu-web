@@ -8,7 +8,10 @@ declare(strict_types=1);
 namespace Tests\Middleware;
 
 use App\Http\Middleware\RequestCost;
+use App\Models\OAuth\Token;
+use App\Models\User;
 use Closure;
+use LaravelRedis;
 use Route;
 use Tests\TestCase;
 
@@ -16,28 +19,31 @@ class ThrottleRequestsTest extends TestCase
 {
     const LIMIT = 60;
 
+    protected Token $token;
+
     /**
      * @dataProvider throttleDataProvider
      */
     public function testThrottle(array $middlewares, int $remaining, ?Closure $action = null)
     {
-        Route::get('test-throttle', $action)->middleware($middlewares);
+        $action ??= (fn () => []);
 
-        $this->get('test-throttle')
+        Route::get('api/test-throttle', $action)->middleware(['api', 'require-scopes'])->middleware($middlewares);
+
+        $this->getJson('api/test-throttle')
             ->assertHeader('X-Ratelimit-Limit', static::LIMIT)
             ->assertHeader('X-Ratelimit-Remaining', $remaining);
     }
 
     public function testThrottleMultipleRequests()
     {
-        Route::get('test-throttle')->middleware('throttle:60,10');
+        Route::get('api/test-throttle', fn () => [])->middleware(['api', 'require-scopes'])->middleware('throttle:60,10');
 
-        $this->get('test-throttle');
-        $this->get('test-throttle')
+        $this->getJson('api/test-throttle');
+        $this->getJson('api/test-throttle')
             ->assertHeader('X-Ratelimit-Limit', static::LIMIT)
             ->assertHeader('X-Ratelimit-Remaining', 58);
     }
-
 
     public function throttleDataProvider()
     {
@@ -48,5 +54,25 @@ class ThrottleRequestsTest extends TestCase
             'setCost' => [['throttle:60,10'], 58, fn () => RequestCost::setCost(2)],
             'setCost overrides default' => [['throttle:60,10', 'request-cost:5'], 58, fn () => RequestCost::setCost(2)],
         ];
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        // Using token so we can get the key name and remove the keys from redis on cleanup.
+        $this->token = $this->createToken(User::factory()->create(), ['*']);
+        $this->actingWithToken($this->token);
+    }
+
+    protected function tearDown(): void
+    {
+        if (config('cache.default') === 'redis') {
+            $key = sha1($this->token->getKey());
+            LaravelRedis::del($key);
+            LaravelRedis::del("{$key}:timer");
+        }
+
+        parent::tearDown();
     }
 }
