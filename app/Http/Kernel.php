@@ -67,7 +67,10 @@ class Kernel extends HttpKernel
     {
         parent::__construct($app, $router);
 
-        $this->appendToMiddlewarePriority(Middleware\RequestCost::class);
-        $this->appendToMiddlewarePriority(Middleware\ThrottleRequests::class);
+        // using prepend to add the middlewares before auth
+        // prepend priority still adds them after $middlewareGroups
+        $this->prependToMiddlewarePriority(Middleware\RequireScopes::class);
+        $this->prependToMiddlewarePriority(Middleware\ThrottleRequests::class);
+        $this->prependToMiddlewarePriority(Middleware\RequestCost::class);
     }
 }
