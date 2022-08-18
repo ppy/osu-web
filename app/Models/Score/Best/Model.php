@@ -22,7 +22,6 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
 {
     use Traits\Reportable, Traits\WithDbCursorHelper;
 
-    public $position = null;
     public ?float $weight = null;
 
     protected $macros = [

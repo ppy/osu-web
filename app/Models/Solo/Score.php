@@ -32,7 +32,6 @@ class Score extends Model implements Traits\ReportableInterface
 
     const PROCESSING_QUEUE = 'osu-queue:score-statistics';
 
-    public ?int $position = null;
     public ?float $weight = null;
 
     protected $table = 'solo_scores';
