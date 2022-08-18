@@ -32,6 +32,9 @@ class Score extends Model implements Traits\ReportableInterface
 
     const PROCESSING_QUEUE = 'osu-queue:score-statistics';
 
+    public ?int $position = null;
+    public ?float $weight = null;
+
     protected $table = 'solo_scores';
     protected $casts = [
         'preserve' => 'boolean',
@@ -176,6 +179,17 @@ class Score extends Model implements Traits\ReportableInterface
     public function userRank(): ?int
     {
         return UserRankCache::fetch([], $this->beatmap_id, $this->ruleset_id, $this->data->totalScore);
+    }
+
+    public function weightedPp(): ?float
+    {
+        if ($this->weight === null) {
+            return null;
+        }
+
+        $pp = $this->performance?->pp;
+
+        return $pp === null ? null : $this->weight * $pp;
     }
 
     protected function newReportableExtraParams(): array
