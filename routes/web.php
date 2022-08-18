@@ -101,9 +101,14 @@ Route::group(['middleware' => ['web']], function () {
     Route::put('beatmapsets/{beatmapset}/nominate', 'BeatmapsetsController@nominate')->name('beatmapsets.nominate');
     Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['destroy', 'index', 'show', 'update']]);
 
-    Route::group(['prefix' => 'scores/{mode}', 'as' => 'scores.'], function () {
+    Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
+        // make sure it's matched before {mode}/{score}
         Route::get('{score}/download', 'ScoresController@download')->name('download');
-        Route::get('{score}', 'ScoresController@show')->name('show-legacy');
+
+        Route::group(['prefix' => '{mode}'], function () {
+            Route::get('{score}/download', 'ScoresController@download')->name('download-legacy');
+            Route::get('{score}', 'ScoresController@show')->name('show-legacy');
+        });
     });
     Route::resource('scores', 'ScoresController', ['only' => ['show']]);
 
