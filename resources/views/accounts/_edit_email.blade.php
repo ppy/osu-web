@@ -26,7 +26,7 @@
                 >
 
                 <div class="account-edit-entry__label">
-                    {{ osu_trans('accounts.edit.password.current') }}
+                    {{ osu_trans('accounts.edit.email.current') }}
                 </div>
 
                 <div class="account-edit-entry__error js-form-error--error"></div>
