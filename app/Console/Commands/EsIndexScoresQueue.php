@@ -123,8 +123,7 @@ class EsIndexScoresQueue extends Command
     {
         $this->search->queueForIndex($this->schemas, $ids);
 
-        $count = count($ids);
         $this->bar->setProgress(array_last($ids) ?? 0);
-        $this->total += $count;
+        $this->total += count($ids);
     }
 }
