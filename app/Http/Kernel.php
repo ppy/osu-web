@@ -6,7 +6,9 @@
 namespace App\Http;
 
 use Fideloper\Proxy\TrustProxies;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Illuminate\Routing\Router;
 
 class Kernel extends HttpKernel
 {
@@ -56,7 +58,16 @@ class Kernel extends HttpKernel
         'check-user-restricted' => Middleware\CheckUserRestricted::class,
         'guest' => Middleware\RedirectIfAuthenticated::class,
         'require-scopes' => Middleware\RequireScopes::class,
+        'request-cost' => Middleware\RequestCost::class,
         'throttle' => Middleware\ThrottleRequests::class,
         'verify-user' => Middleware\VerifyUser::class,
     ];
+
+    public function __construct(Application $app, Router $router)
+    {
+        parent::__construct($app, $router);
+
+        $this->appendToMiddlewarePriority(Middleware\RequestCost::class);
+        $this->appendToMiddlewarePriority(Middleware\ThrottleRequests::class);
+    }
 }

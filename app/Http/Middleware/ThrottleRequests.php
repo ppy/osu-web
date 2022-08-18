@@ -6,7 +6,6 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Ds\Map;
 use Illuminate\Routing\Middleware\ThrottleRequests as ThrottleRequestsBase;
 
 class ThrottleRequests extends ThrottleRequestsBase
@@ -16,31 +15,30 @@ class ThrottleRequests extends ThrottleRequestsBase
         return 'throttle:'.config("osu.api.throttle.{$group}").':';
     }
 
-    public function handle($request, Closure $next, $maxAttempts = 60, $decayMinutes = 1, $prefix = '')
+    protected function handleRequest($request, Closure $next, array $limits)
     {
-        /** @var ?Map $existingLimits */
-        $existingLimits = $request->attributes->get('_limits');
-        if ($existingLimits === null) {
-            $existingLimits = new Map();
-            $request->attributes->set('_limits', $existingLimits);
+        foreach ($limits as $limit) {
+            if ($this->limiter->tooManyAttempts($limit->key, $limit->maxAttempts)) {
+                throw $this->buildException($request, $limit->key, $limit->maxAttempts, $limit->responseCallback);
+            }
         }
 
-        $existingLimits->put($prefix, [
-            'decayMinutes' => $decayMinutes,
-            'key' => $prefix.$this->resolveRequestSignature($request),
-        ]);
+        $response = $next($request);
 
-        return parent::handle($request, $next, $maxAttempts, $decayMinutes, $prefix);
-    }
+        // Should still run even if the controller action throws.
+        $cost = RequestCost::getCost($request);
 
-    public function increment(int $cost = 1, string $prefix = '')
-    {
-        $limits = request()->attributes->get('_limits')?->get($prefix);
-        if ($limits === null) {
-            return;
+        foreach ($limits as $limit) {
+            $this->limiter->hit($limit->key, $limit->decayMinutes * 60, $cost);
+
+            $response = $this->addHeaders(
+                $response,
+                $limit->maxAttempts,
+                $this->calculateRemainingAttempts($limit->key, $limit->maxAttempts)
+            );
         }
 
-        $this->limiter->hit($limits['key'], $limits['decayMinutes'] * 60, $cost);
+        return $response;
     }
 
     protected function resolveRequestSignature($request)
