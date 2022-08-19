@@ -33,13 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Uživatel byl zablokován.',
-        'comment_text' => '',
+        'comment_text' => 'Tento komentář je skrytý.',
         'blocked_count' => 'blokovaných uživatelů (:count)',
         'hide_profile' => 'Skrýt profil',
-        'hide_comment' => '',
+        'hide_comment' => 'skrýt',
         'not_blocked' => 'Tento uživatel není blokován.',
         'show_profile' => 'Zobrazit profil',
-        'show_comment' => '',
+        'show_comment' => 'zobrazit',
         'too_many' => 'Byl dosažen limit blockovaných uživatelů.',
         'button' => [
             'block' => 'Blokovat',
@@ -372,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Ban',
                         'silence' => 'Ztlumení',
+                        'tournament_ban' => '',
                         'note' => 'Poznámka',
                     ],
                 ],
@@ -406,7 +407,7 @@ return [
         ],
         'post_count' => [
             '_' => 'Přispěl :link',
-            'count' => ':count_delimited příspěvkem na fóru|:count_delimited příspěvky na fóru',
+            'count' => ':count_delimited příspěvkem na fóru|:count_delimited příspěvky na fóru|:count_delimited příspěvky na fóru',
         ],
         'rank' => [
             'country' => 'Státní pozice pro :mode',

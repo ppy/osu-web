@@ -15,7 +15,7 @@ return [
     ],
 
     'channels' => [
-        'confirm_part' => '',
+        'confirm_part' => 'Dorești să ascunzi acest canal? Vei primi în continuare mesaje de pe acest canal.',
         'create' => 'creează anunţ',
 
         'list' => [

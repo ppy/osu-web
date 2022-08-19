@@ -372,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Zabrana',
                         'silence' => 'Utišanje',
+                        'tournament_ban' => '',
                         'note' => 'Bilješka',
                     ],
                 ],

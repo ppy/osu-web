@@ -33,13 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Du hast diesen Benutzer geblockt.',
-        'comment_text' => '',
+        'comment_text' => 'Dieser Kommentar ist ausgeblendet.',
         'blocked_count' => 'geblockte benutzer (:count)',
         'hide_profile' => 'Profil verbergen',
-        'hide_comment' => '',
+        'hide_comment' => 'ausblenden',
         'not_blocked' => 'Dieser Benutzer ist nicht geblockt.',
         'show_profile' => 'Profil anzeigen',
-        'show_comment' => '',
+        'show_comment' => 'anzeigen',
         'too_many' => 'Block-Limit erreicht.',
         'button' => [
             'block' => 'Blocken',
@@ -372,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Bann',
                         'silence' => 'Silence',
+                        'tournament_ban' => '',
                         'note' => 'Warnung',
                     ],
                 ],
