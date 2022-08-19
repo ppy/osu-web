@@ -5,11 +5,16 @@
 
 namespace App\Libraries;
 
+use App\Http\Middleware\RequireScopes;
+use Closure;
+use Ds\Set;
 use Route;
 
 class RouteScopesHelper
 {
     public $routes;
+
+    private static $requireScopesPrefix = RequireScopes::class.':';
 
     public static function keyForMethods(array $methods)
     {
@@ -32,16 +37,16 @@ class RouteScopesHelper
             }
 
             // add missing middleware if necessary; exact order might be wrong.
-            $newString = "require-scopes:{$scopesString}";
-            $index = array_search('require-scopes', $middlewares, true);
+            $newString = static::$requireScopesPrefix.$scopesString;
+            $index = array_search(RequireScopes::class, $middlewares, true);
             if ($index === false) {
-                $middlewares[] = 'require-scopes';
+                $middlewares[] = RequireScopes::class;
             }
 
             $exists = false;
             foreach ($middlewares as &$middleware) {
                 // replace existing value if it exists
-                if (starts_with($middleware, 'require-scopes:')) {
+                if (starts_with($middleware, static::$requireScopesPrefix)) {
                     $middleware = $newString;
                     $exists = true;
                 }
@@ -82,7 +87,9 @@ class RouteScopesHelper
     public function loadRoutes()
     {
         $this->routes = [];
+        $apiGroup = new Set(Route::getMiddlewareGroups()['api']);
 
+        /** @var \Illuminate\Routing\Route $route */
         foreach (Route::getRoutes() as $route) {
             if (!starts_with($route->uri, 'api/')) {
                 continue;
@@ -93,17 +100,19 @@ class RouteScopesHelper
             app()->instance('request', $request); // set current request so is_api_request can work.
 
             $uri = $route->uri;
-            // TODO: switch to Route::gatherRouteMiddleware($route) to resolve groups and filter out the ones we don't care about.
-            $middlewares = array_values(array_filter($route->gatherMiddleware(), function ($middleware) {
-                // only consider the named middleware.
-                return is_string($middleware) && $middleware !== 'api';
+
+            // filter out closures and global middleware.
+            $middlewares = array_values(array_filter(Route::gatherRouteMiddleware($route), function ($middleware) use ($apiGroup) {
+                return !($middleware instanceof Closure) && !$apiGroup->contains($middleware);
             }));
             $controller = $route->action['controller'] ?? null;
+
+            // extract scopes
             $scopes = [];
 
             foreach ($middlewares as $middleware) {
-                if (is_string($middleware) && starts_with($middleware, 'require-scopes:')) {
-                    $scopes = array_merge($scopes, explode(',', substr($middleware, strlen('require-scopes:'))));
+                if (is_string($middleware) && starts_with($middleware, static::$requireScopesPrefix)) {
+                    $scopes = array_merge($scopes, explode(',', substr($middleware, strlen(static::$requireScopesPrefix))));
                 }
             }
 
