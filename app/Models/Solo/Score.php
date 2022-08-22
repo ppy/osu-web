@@ -34,8 +34,9 @@ class Score extends Model implements Traits\ReportableInterface
 
     protected $table = 'solo_scores';
     protected $casts = [
-        'preserve' => 'boolean',
         'data' => ScoreData::class,
+        'has_replay' => 'boolean',
+        'preserve' => 'boolean',
     ];
 
     public static function createFromJsonOrExplode(array $params)
@@ -118,6 +119,15 @@ class Score extends Model implements Traits\ReportableInterface
     public function getMode(): string
     {
         return Beatmap::modeStr($this->ruleset_id);
+    }
+
+    public function legacyScore(): ?LegacyScore\Best\Model
+    {
+        $id = $this->data->legacyScoreId;
+
+        return $id === null
+            ? null
+            : LegacyScore\Best\Model::getClass($this->ruleset_id)::find($id);
     }
 
     public function makeLegacyEntry(): LegacyScore\Model
