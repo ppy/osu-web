@@ -15,7 +15,7 @@ return [
     ],
 
     'channels' => [
-        'confirm_part' => '',
+        'confirm_part' => 'Gusto mo bang itago ang channel na ito? Ikaw ay makakatanggap pa rin ng mga mensahe mula sa channel na ito.',
         'create' => 'lumikha ng anunsyo',
 
         'list' => [

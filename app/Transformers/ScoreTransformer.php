@@ -79,7 +79,8 @@ class ScoreTransformer extends TransformerAbstract
                 $replay = $best->replay;
             }
         } elseif ($score instanceof SoloScore) {
-            $pp = $score->performance?->pp;
+            $pp = $score->pp;
+            $replay = $score->has_replay;
         }
 
         return array_merge($score->data->jsonSerialize(), [

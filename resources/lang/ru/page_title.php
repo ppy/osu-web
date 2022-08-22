@@ -38,7 +38,7 @@ return [
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'главная страница',
+            'edit' => 'настройки',
             'verify_link' => 'верификация аккаунта',
         ],
         'artist_tracks_controller' => [
@@ -86,7 +86,7 @@ return [
             'index' => 'главная страница',
         ],
         'friends_controller' => [
-            'index' => 'главная страница',
+            'index' => 'друзья',
         ],
         'groups_controller' => [
             'show' => 'группы',

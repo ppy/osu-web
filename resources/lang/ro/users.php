@@ -33,13 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Ai blocat acest utilizator.',
-        'comment_text' => '',
+        'comment_text' => 'Acest comentariu este ascuns.',
         'blocked_count' => 'utilizatori blocați (:count)',
         'hide_profile' => 'ascunde profilul',
-        'hide_comment' => '',
+        'hide_comment' => 'ascunde',
         'not_blocked' => 'Acest utilizator nu este blocat.',
         'show_profile' => 'arată profilul',
-        'show_comment' => '',
+        'show_comment' => 'arată',
         'too_many' => 'A fost atinsă limita de blocare.',
         'button' => [
             'block' => 'blochează',
@@ -194,7 +194,7 @@ return [
 
         'extra' => [
             'none' => 'niciunul',
-            'unranked' => 'Nu există jocuri recente',
+            'unranked' => 'Nu există încercări recente',
 
             'achievements' => [
                 'achieved-on' => 'Realizat pe :date',
@@ -247,7 +247,7 @@ return [
                 ],
                 'recent_plays' => [
                     'accuracy' => 'precizie: :percentage',
-                    'title' => 'Jocuri recente (24 de ore)',
+                    'title' => 'Încercări Recente (24 de ore)',
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Istoricul reluărilor vizionate',
@@ -326,7 +326,7 @@ return [
                 'title' => 'Meciuri multiplayer',
             ],
             'top_ranks' => [
-                'download_replay' => 'Descarcă replay-ul',
+                'download_replay' => 'Descarcă reluarea',
                 'not_ranked' => 'Numai beatmap-uri clasate acordă pp',
                 'pp_weight' => 'ponderat :percentage',
                 'view_details' => 'Vezi detalii',
@@ -372,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Interdicție',
                         'silence' => 'Mut',
+                        'tournament_ban' => '',
                         'note' => 'Notă',
                     ],
                 ],
@@ -418,14 +419,14 @@ return [
             'hit_accuracy' => 'Precizie',
             'level' => 'Nivelul :level',
             'level_progress' => 'Progres până la nivelul următor',
-            'maximum_combo' => 'Combo maxim',
+            'maximum_combo' => 'Combo Maxim',
             'medals' => 'Medalii',
-            'play_count' => 'Număr de jocuri',
+            'play_count' => 'Număr de Încercări',
             'play_time' => 'Timpul total de joc',
-            'ranked_score' => 'Scor clasat',
-            'replays_watched_by_others' => 'Istoria reluărilor vizionate de alții',
+            'ranked_score' => 'Scor Clasat',
+            'replays_watched_by_others' => 'Reluări Vizionate de Alții',
             'score_ranks' => 'Clasament de scoruri',
-            'total_hits' => 'Număr de clicuri',
+            'total_hits' => 'Număr de Clicuri',
             'total_score' => 'Scor total',
             // modding stats
             'graveyard_beatmapset_count' => 'Beatmap-uri Inactive',

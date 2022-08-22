@@ -18,7 +18,7 @@ return [
     'artist_tracks' => [
         'album' => 'อัลบั้ม',
         'artist' => 'ศิลปิน',
-        'bpm' => '',
+        'bpm' => 'BPM',
         'genre' => '',
         'length' => 'ความยาว',
         'relevance' => '',
