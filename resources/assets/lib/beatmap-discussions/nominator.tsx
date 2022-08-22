@@ -4,7 +4,7 @@
 import BigButton from 'components/big-button';
 import { Modal } from 'components/modal';
 import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
-import BeatmapsetJson from 'interfaces/beatmapset-json';
+import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import GameMode from 'interfaces/game-mode';
 import UserExtendedJson from 'interfaces/user-extended-json';
 import UserJson from 'interfaces/user-json';
@@ -15,7 +15,7 @@ import { onError } from 'utils/ajax';
 import { classWithModifiers } from 'utils/css';
 
 interface Props {
-  beatmapset: BeatmapsetJson;
+  beatmapset: BeatmapsetExtendedJson;
   currentHype: number;
   currentUser: UserExtendedJson;
   unresolvedIssues: number;
@@ -268,7 +268,7 @@ export class Nominator extends React.PureComponent<Props, State> {
 
     return (userId != null && (
       userId === this.props.beatmapset.user_id
-      || (this.props.beatmapset.beatmaps ?? []).some((beatmap) => userId === beatmap.user_id)
+      || (this.props.beatmapset.beatmaps ?? []).some((beatmap) => beatmap.deleted_at == null && userId === beatmap.user_id)
     ));
   };
 

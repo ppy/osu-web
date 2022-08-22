@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Ви заблокували цього користувача.',
+        'comment_text' => 'Цей коментар сховано.',
         'blocked_count' => 'заблоковані користувачі (:count)',
         'hide_profile' => 'Приховати профіль',
+        'hide_comment' => 'сховати',
         'not_blocked' => 'Користувач не заблокований.',
         'show_profile' => 'Показати профіль',
+        'show_comment' => 'показати',
         'too_many' => 'Ліміт блокування досягнуто.',
         'button' => [
             'block' => 'Заблокувати',
@@ -369,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Заблокувати',
                         'silence' => 'Заглушений',
+                        'tournament_ban' => '',
                         'note' => 'Замітка',
                     ],
                 ],

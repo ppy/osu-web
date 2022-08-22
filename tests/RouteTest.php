@@ -37,7 +37,7 @@ class RouteTest extends TestCase
      */
     public function testChangelogRoutes()
     {
-        $this->assertGetRoutes(['/home/download']);
+        $this->assertGetRoutes(['/home/changelog']);
     }
 
     /**

@@ -9,6 +9,7 @@ use App\Models\Score as LegacyScore;
 use App\Models\Solo\Score;
 use App\Models\Solo\ScoreToken;
 use App\Models\User;
+use LaravelRedis;
 use Tests\TestCase;
 
 class ScoresControllerTest extends TestCase
@@ -18,9 +19,9 @@ class ScoresControllerTest extends TestCase
         $scoreToken = ScoreToken::factory()->create();
         $legacyScoreClass = LegacyScore\Model::getClass($scoreToken->beatmap->playmode);
 
-        $initialScoreCount = Score::count();
-        $initialScoreTokenCount = ScoreToken::count();
-        $initialLegacyScoreCount = $legacyScoreClass::count();
+        $this->expectCountChange(fn () => Score::count(), 1);
+        $this->expectCountChange(fn () => $legacyScoreClass::count(), 1);
+        $this->expectCountChange(fn () => $this->processingQueueCount(), 1);
 
         $this->actAsScopedUser($scoreToken->user, ['*']);
 
@@ -44,9 +45,6 @@ class ScoresControllerTest extends TestCase
         )->assertSuccessful()
         ->assertJsonFragment(['build_id' => $scoreToken->build_id]);
 
-        $this->assertSame($initialLegacyScoreCount + 1, $legacyScoreClass::count());
-        $this->assertSame($initialScoreCount + 1, Score::count());
-
         $score = $scoreToken->fresh()->score;
         $this->assertNotNull($score);
         $this->assertSame(1, count($score->data->mods));
@@ -55,22 +53,11 @@ class ScoresControllerTest extends TestCase
     public function testStoreCompleted()
     {
         $scoreToken = ScoreToken::factory()->create();
-        // TODO: create factory
-        $score = Score::createFromJsonOrExplode([
-            'accuracy' => 1,
-            'beatmap_id' => $scoreToken->beatmap->getKey(),
-            'ended_at' => now(),
-            'max_combo' => 10,
-            'mods' => [],
-            'passed' => true,
-            'rank' => 'A',
-            'ruleset_id' => $scoreToken->beatmap->playmode,
-            'statistics' => ['Good' => 1],
-            'total_score' => 10,
-            'user_id' => $scoreToken->user->getKey(),
-        ]);
+        $score = Score::factory()->create(['beatmap_id' => $scoreToken->beatmap_id]);
         $scoreToken->update(['score_id' => $score->getKey()]);
-        $initialScoreCount = Score::count();
+
+        $this->expectCountChange(fn () => Score::count(), 0);
+        $this->expectCountChange(fn () => $this->processingQueueCount(), 0);
 
         $this->actAsScopedUser($scoreToken->user, ['*']);
 
@@ -91,13 +78,13 @@ class ScoresControllerTest extends TestCase
         )->assertStatus(200);
 
         $this->assertSame($score->getKey(), $scoreToken->fresh()->score_id);
-        $this->assertSame($initialScoreCount, Score::count());
     }
 
     public function testStoreMissingData()
     {
         $scoreToken = ScoreToken::factory()->create();
-        $initialScoreCount = Score::count();
+
+        $this->expectCountChange(fn () => Score::count(), 0);
 
         $this->actAsScopedUser($scoreToken->user, ['*']);
 
@@ -111,15 +98,13 @@ class ScoresControllerTest extends TestCase
                 'rank' => 'A',
             ]
         )->assertStatus(422);
-
-        $this->assertSame($initialScoreCount, Score::count());
     }
 
     public function testStoreWrongUser()
     {
         $otherUser = User::factory()->create();
         $scoreToken = ScoreToken::factory()->create();
-        $initialScoreCount = Score::count();
+        $this->expectCountChange(fn () => Score::count(), 0);
 
         $this->actAsScopedUser($otherUser, ['*']);
 
@@ -138,7 +123,18 @@ class ScoresControllerTest extends TestCase
                 'total_score' => 10,
             ]
         )->assertStatus(404);
+    }
 
-        $this->assertSame($initialScoreCount, Score::count());
+    public function tearDown(): void
+    {
+        parent::tearDown();
+
+        $this->refreshApplication();
+        LaravelRedis::del(Score::PROCESSING_QUEUE);
+    }
+
+    private function processingQueueCount(): int
+    {
+        return LaravelRedis::llen(Score::PROCESSING_QUEUE);
     }
 }

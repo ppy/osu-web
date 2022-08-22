@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => 'Queres ocultar este canal? Ainda vais receber mensagens deste canal.',
         'create' => 'criar notícia',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Notícias',

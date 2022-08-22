@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => 'Vill du dölja denna kanal? Du kommer fortfarande ta emot meddelanden från denna kanal.',
         'create' => 'skapa meddelande',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Meddelanden',

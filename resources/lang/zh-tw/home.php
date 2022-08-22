@@ -42,7 +42,7 @@ return [
 
             'label' => [
                 'forum' => '在論壇中搜尋',
-                'forum_children' => '包含小主題',
+                'forum_children' => '包括小主題',
                 'topic_id' => '主題 #',
                 'username' => '作者',
             ],

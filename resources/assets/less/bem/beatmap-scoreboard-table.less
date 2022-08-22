@@ -10,6 +10,7 @@
   @row-height: 1.8em;
 
   --default-color: #fff;
+  --padding-h: 4px;
   --perfect-color: hsl(@beatmap-score--hsl-perfect);
   --row-background-color: hsl(var(--hsl-b4));
   --row-background-color-highlight: hsl(var(--hsl-b2));
@@ -35,7 +36,7 @@
     font-size: 10px;
     font-weight: 700;
     text-transform: uppercase;
-    padding-bottom: 5px;
+    padding: 0 var(--padding-h) 5px;
     color: @osu-colour-f1;
 
     // in order of columns
@@ -72,7 +73,6 @@
       max-width: 55px;
       min-width: 30px;
       white-space: nowrap;
-      padding-right: 5px;
     }
 
     &--hitstat-count_miss {
@@ -154,13 +154,13 @@
     height: @row-height;
     align-items: center;
     color: var(--default-color);
+    padding: 0 var(--padding-h);
 
     &--grade {
       justify-content: center;
     }
 
     &--mods {
-      padding-left: 5px;
       padding-right: 10px;
     }
 
@@ -174,8 +174,6 @@
     }
 
     &--score {
-      padding-right: 10px;
-
       .@{_top}__body-row--first & {
         font-weight: 700;
       }

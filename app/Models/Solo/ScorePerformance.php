@@ -14,6 +14,7 @@ use App\Models\Model;
 class ScorePerformance extends Model
 {
     public $incrementing = false;
+    public $timestamps = false;
 
     protected $primaryKey = 'score_id';
     protected $table = 'solo_scores_performance';

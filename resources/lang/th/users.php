@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'คุณได้บล็อกผู้ใช้รายนี้แล้ว',
+        'comment_text' => 'ความคิดเห็นนี้ถูกซ่อนไว้',
         'blocked_count' => 'บล็อกผู้ใช้งาน (:count)',
         'hide_profile' => 'ซ่อนโปรไฟล์',
+        'hide_comment' => 'ซ่อน',
         'not_blocked' => 'ผู้ใช้นี้ไม่ได้ถูกบล็อก',
         'show_profile' => 'แสดงโปรไฟล์',
+        'show_comment' => 'แสดง',
         'too_many' => 'จำนวนการบล็อกถึงขีดจำกัดแล้ว',
         'button' => [
             'block' => 'บล็อก',
@@ -370,6 +373,7 @@ return [
                     'actions' => [
                         'restriction' => 'แบน',
                         'silence' => 'ถูกใบ้',
+                        'tournament_ban' => '',
                         'note' => 'หมายเหตุ',
                     ],
                 ],

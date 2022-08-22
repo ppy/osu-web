@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => 'このチャンネルを隠したいです？まだこのチャンネルからメッセージが送れられています。',
         'create' => 'お知らせを作成',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'お知らせ',

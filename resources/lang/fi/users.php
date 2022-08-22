@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Olet estänyt tämän käyttäjän.',
+        'comment_text' => '',
         'blocked_count' => 'Estetyt käyttäjät (:count)',
         'hide_profile' => 'piilota profiili',
+        'hide_comment' => '',
         'not_blocked' => 'Tämä käyttäjä ei ole estetty.',
         'show_profile' => 'näytä profiili',
+        'show_comment' => '',
         'too_many' => 'Estoraja saavutettu.',
         'button' => [
             'block' => 'estä',
@@ -369,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Porttikielto',
                         'silence' => 'Mykistys',
+                        'tournament_ban' => '',
                         'note' => 'Muistutus',
                     ],
                 ],

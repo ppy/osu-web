@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => 'Möchtest du diesen Kanal ausblenden? Du erhältst weiterhin Nachrichten aus diesem Kanal.',
         'create' => 'ankündigung erstellen',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Ankündigungen',

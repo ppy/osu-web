@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Blokkoltad ezt a felhasználót.',
+        'comment_text' => '',
         'blocked_count' => '(:count) blokkolt felhasználók',
         'hide_profile' => 'profil elrejtése',
+        'hide_comment' => '',
         'not_blocked' => 'Ez a felhasználó nincs blokkolva.',
         'show_profile' => 'profil megjelenítése',
+        'show_comment' => '',
         'too_many' => 'Blokkolási limit elérve.',
         'button' => [
             'block' => 'tiltás',
@@ -369,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Kitiltás',
                         'silence' => 'Némítás',
+                        'tournament_ban' => '',
                         'note' => 'Megjegyzés',
                     ],
                 ],

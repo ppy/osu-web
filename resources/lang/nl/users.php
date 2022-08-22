@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'U hebt deze gebruiker geblokkeerd.',
+        'comment_text' => '',
         'blocked_count' => 'geblokkeerde gebruikers (:count)',
         'hide_profile' => 'profiel verbergen',
+        'hide_comment' => '',
         'not_blocked' => 'Deze gebruiker is niet geblokkeerd.',
         'show_profile' => 'profiel weergeven',
+        'show_comment' => '',
         'too_many' => 'Blok limiet bereikt.',
         'button' => [
             'block' => 'blokkeren',
@@ -369,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Ban',
                         'silence' => 'Silence',
+                        'tournament_ban' => '',
                         'note' => 'Opmerking',
                     ],
                 ],

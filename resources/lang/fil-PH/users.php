@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Na-block mo na ang user na ito.',
+        'comment_text' => 'Ang komentong ito ay nakatago.',
         'blocked_count' => 'mga na-block na user (:count)',
         'hide_profile' => 'Itago ang profile',
+        'hide_comment' => 'itago',
         'not_blocked' => 'Hindi naka-block ang user na ito.',
         'show_profile' => 'Ipakita ang profile',
+        'show_comment' => 'ipakita',
         'too_many' => 'Naabot na ang limit ng pag-block.',
         'button' => [
             'block' => 'Harangan',
@@ -369,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'I-ban',
                         'silence' => 'Pagpapatahimik',
+                        'tournament_ban' => '',
                         'note' => 'Tala',
                     ],
                 ],

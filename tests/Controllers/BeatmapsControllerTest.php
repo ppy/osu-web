@@ -23,6 +23,9 @@ class BeatmapsControllerTest extends TestCase
     private $user;
     private $beatmap;
 
+    /**
+     * @group BeatmapDifficultyLookupCacheServer
+     */
     public function testAttributes(): void
     {
         $beatmap = $this->createExistingOsuBeatmap();
@@ -328,6 +331,70 @@ class BeatmapsControllerTest extends TestCase
         $this->user->update(['osu_subscriber' => true]);
         $resp = $this->actingAs($this->user)
             ->json('GET', route('beatmaps.scores', ['beatmap' => $this->beatmap, 'mods' => ['DT', 'HD']]))
+            ->assertSuccessful();
+
+        $this->assertSameScoresFromResponse($scores, $resp);
+    }
+
+    public function testScoresModsWithImpliedFilter()
+    {
+        $modsHelper = app('mods');
+        $scoreClass = ScoreBest::getClass($this->beatmap->playmode);
+        $scores = [
+            $scoreClass::factory()->create([
+                'beatmap_id' => $this->beatmap,
+                'enabled_mods' => $modsHelper->idsToBitset(['DT', 'NC']),
+                'score' => 1500,
+            ]),
+            // Score with preference mods is included
+            $scoreClass::factory()->create([
+                'beatmap_id' => $this->beatmap,
+                'enabled_mods' => $modsHelper->idsToBitset(['DT', 'NC', 'PF']),
+                'score' => 1100,
+                'user_id' => $this->user,
+            ]),
+        ];
+        // No mod is filtered out
+        $scoreClass::factory()->create([
+            'beatmap_id' => $this->beatmap,
+            'enabled_mods' => 0,
+        ]);
+
+        $this->user->update(['osu_subscriber' => true]);
+        $resp = $this->actingAs($this->user)
+            ->json('GET', route('beatmaps.scores', ['beatmap' => $this->beatmap, 'mods' => ['NC']]))
+            ->assertSuccessful();
+
+        $this->assertSameScoresFromResponse($scores, $resp);
+    }
+
+    public function testScoresModsWithNomodsFilter()
+    {
+        $modsHelper = app('mods');
+        $scoreClass = ScoreBest::getClass($this->beatmap->playmode);
+        $scores = [
+            $scoreClass::factory()->create([
+                'beatmap_id' => $this->beatmap,
+                'enabled_mods' => $modsHelper->idsToBitset(['DT', 'NC']),
+                'score' => 1500,
+            ]),
+            $scoreClass::factory()->create([
+                'beatmap_id' => $this->beatmap,
+                'enabled_mods' => 0,
+                'score' => 1100,
+                'user_id' => $this->user,
+            ]),
+        ];
+        // With unrelated mod
+        $scoreClass::factory()->create([
+            'beatmap_id' => $this->beatmap,
+            'enabled_mods' => $modsHelper->idsToBitset(['DT', 'NC', 'HD']),
+            'score' => 1500,
+        ]);
+
+        $this->user->update(['osu_subscriber' => true]);
+        $resp = $this->actingAs($this->user)
+            ->json('GET', route('beatmaps.scores', ['beatmap' => $this->beatmap, 'mods' => ['DT', 'NC', 'NM']]))
             ->assertSuccessful();
 
         $this->assertSameScoresFromResponse($scores, $resp);

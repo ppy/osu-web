@@ -10,6 +10,8 @@ import User, { usernameSortAscending } from 'models/user';
 import core from 'osu-core-singleton';
 import Message from './message';
 
+const hideableChannelTypes: Set<ChannelType> = new Set(['ANNOUNCE', 'PM']);
+
 export default class Channel {
   private static readonly defaultIcon = '/images/layout/chat/channel-default.png'; // TODO: update with channel-specific icons?
 
@@ -66,6 +68,10 @@ export default class Channel {
   @computed
   get isDisplayable() {
     return this.name.length > 0 && this.icon != null;
+  }
+
+  get isHideable() {
+    return hideableChannelTypes.has(this.type);
   }
 
   @computed
