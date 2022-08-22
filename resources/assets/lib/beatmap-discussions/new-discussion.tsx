@@ -158,12 +158,9 @@ export class NewDiscussion extends React.Component<Props> {
 
   private get validPost() {
     if (!validMessageLength(this.message, this.isTimeline)) return false;
+    if (!this.isTimeline) return true;
 
-    if (this.isTimeline) {
-      return this.timestamp != null && (this.nearbyDiscussions.length === 0 || this.timestampConfirmed);
-    }
-
-    return true;
+    return this.timestamp != null && (this.nearbyDiscussions.length === 0 || this.timestampConfirmed);
   }
 
   constructor(props: Props) {
