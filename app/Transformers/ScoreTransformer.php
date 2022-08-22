@@ -200,9 +200,9 @@ class ScoreTransformer extends TransformerAbstract
         );
     }
 
-    public function includeWeight(LegacyMatch\Score|ScoreModel $score)
+    public function includeWeight(LegacyMatch\Score|ScoreModel|SoloScore $score)
     {
-        if ($score instanceof ScoreBest && $score->weight !== null) {
+        if (($score instanceof ScoreBest || $score instanceof SoloScore) && $score->weight !== null) {
             return $this->primitive([
                 'percentage' => $score->weight * 100,
                 'pp' => $score->weightedPp(),
