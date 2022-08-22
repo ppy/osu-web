@@ -156,13 +156,6 @@ export class NewDiscussion extends React.Component<Props> {
       : null;
   }
 
-  private get validPost() {
-    if (!validMessageLength(this.message, this.isTimeline)) return false;
-    if (!this.isTimeline) return true;
-
-    return this.timestamp != null && (this.nearbyDiscussions.length === 0 || this.timestampConfirmed);
-  }
-
   constructor(props: Props) {
     super(props);
     makeObservable(this);
@@ -484,7 +477,7 @@ export class NewDiscussion extends React.Component<Props> {
 
     return (
       <BigButton
-        disabled={!this.validPost || this.posting != null || !this.canPost}
+        disabled={!this.validPost(type) || this.posting != null || !this.canPost}
         icon={discussionTypeIcons[type]}
         isBusy={this.posting === type}
         props={{
@@ -504,4 +497,15 @@ export class NewDiscussion extends React.Component<Props> {
   private readonly toggleTimestampConfirmation = () => {
     this.timestampConfirmed = !this.timestampConfirmed;
   };
+
+  private validPost(type: DiscussionType) {
+    if (!validMessageLength(this.message, this.isTimeline)) return false;
+    if (!this.isTimeline) return true;
+
+    return this.timestamp != null
+      && (type === 'mapper_note'
+        || type === 'praise'
+        || this.nearbyDiscussions.length === 0
+        || this.timestampConfirmed);
+  }
 }
