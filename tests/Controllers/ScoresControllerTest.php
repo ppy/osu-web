@@ -5,7 +5,9 @@
 
 namespace Tests\Controllers;
 
+use App\Models\Beatmap;
 use App\Models\Score\Best\Osu;
+use App\Models\Solo\Score as SoloScore;
 use App\Models\User;
 use Illuminate\Filesystem\Filesystem;
 use Storage;
@@ -23,7 +25,26 @@ class ScoresControllerTest extends TestCase
             ->withHeaders(['HTTP_REFERER' => config('app.url').'/'])
             ->json(
                 'GET',
-                route('scores.download', $this->params())
+                route('scores.download-legacy', $this->params())
+            )
+            ->assertSuccessful();
+    }
+
+    public function testDownloadSoloScore()
+    {
+        $soloScore = SoloScore::factory()
+            ->withData(['legacy_score_id' => $this->score->getKey()])
+            ->create([
+                'ruleset_id' => Beatmap::MODES[$this->score->getMode()],
+                'has_replay' => true,
+            ]);
+
+        $this
+            ->actingAs($this->user)
+            ->withHeaders(['HTTP_REFERER' => config('app.url').'/'])
+            ->json(
+                'GET',
+                route('scores.download', $soloScore)
             )
             ->assertSuccessful();
     }
@@ -35,7 +56,7 @@ class ScoresControllerTest extends TestCase
         $this
             ->actingAs($this->user)
             ->withHeaders(['HTTP_REFERER' => config('app.url').'/'])
-            ->get(route('scores.download', $this->params()))
+            ->get(route('scores.download-legacy', $this->params()))
             ->assertSuccessful();
     }
 
@@ -46,7 +67,7 @@ class ScoresControllerTest extends TestCase
         $this
             ->actingAs($this->user)
             ->withHeaders(['HTTP_REFERER' => config('app.url').'/'])
-            ->get(route('scores.download', $this->params()))
+            ->get(route('scores.download-legacy', $this->params()))
             ->assertStatus(422);
     }
 
@@ -57,7 +78,7 @@ class ScoresControllerTest extends TestCase
         $this
             ->actingAs($this->user)
             ->withHeaders(['HTTP_REFERER' => config('app.url').'/'])
-            ->get(route('scores.download', $this->params()))
+            ->get(route('scores.download-legacy', $this->params()))
             ->assertStatus(422);
     }
 
@@ -67,7 +88,7 @@ class ScoresControllerTest extends TestCase
             ->actingAs($this->user)
             ->json(
                 'GET',
-                route('scores.download', $this->params())
+                route('scores.download-legacy', $this->params())
             )
             ->assertRedirect(route('scores.show-legacy', $this->params()));
 
@@ -76,7 +97,7 @@ class ScoresControllerTest extends TestCase
             ->withHeaders(['HTTP_REFERER' => rtrim(config('app.url'), '/').'.example.com'])
             ->json(
                 'GET',
-                route('scores.download', $this->params())
+                route('scores.download-legacy', $this->params())
             )
             ->assertRedirect(route('scores.show-legacy', $this->params()));
     }
@@ -87,9 +108,9 @@ class ScoresControllerTest extends TestCase
             ->actingAs($this->user)
             ->json(
                 'GET',
-                route('scores.download', ['mode' => 'nope', 'score' => $this->score->getKey()])
+                route('scores.download-legacy', ['mode' => 'nope', 'score' => $this->score->getKey()])
             )
-            ->assertStatus(404);
+            ->assertStatus(302);
     }
 
     protected function setUp(): void
