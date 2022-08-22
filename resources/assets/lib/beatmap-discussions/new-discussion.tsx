@@ -78,16 +78,12 @@ interface Props {
   innerRef: React.RefObject<HTMLDivElement>;
   mode: Mode;
   pinned: boolean;
-  setPinned?: (flag: boolean) => void;
+  setPinned: (flag: boolean) => void;
   stickTo: React.RefObject<HTMLElement>;
 }
 
 @observer
 export class NewDiscussion extends React.Component<Props> {
-  static readonly defaultProps = {
-    pinned: false,
-  };
-
   private readonly disposers = new Set<((() => void) | undefined)>();
   private readonly handleKeyDown;
   private readonly inputBox = React.createRef<HTMLTextAreaElement>();
@@ -476,7 +472,7 @@ export class NewDiscussion extends React.Component<Props> {
   @action
   private readonly setSticky = (sticky = true) => {
     this.sticky = sticky;
-    this.props.setPinned?.(sticky);
+    this.props.setPinned(sticky);
   };
 
   private storeMessage() {
