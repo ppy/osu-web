@@ -3,6 +3,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use App\Libraries\Search\ScoreSearch;
@@ -20,10 +22,12 @@ class EsIndexScoresQueue extends Command
      * @var string
      */
     protected $signature = 'es:index-scores:queue
-        {--ids= : Queue specified comma-separated list of score ids}
-        {--from= : Queue all the scores after (but not including) the specified id}
         {--a|all : Queue all the scores in the database}
-        {--schema= : Index schema to queue the scores to. Will use active schemas set in redis if not specified}';
+        {--from= : Queue all the scores after (but not including) the specified id}
+        {--ids= : Queue specified comma-separated list of score ids}
+        {--schema= : Index schema to queue the scores to. Will use active schemas set in redis if not specified}
+        {--user= : Filter scores by user id (ignored for ids parameter)}
+    ';
 
     /**
      * The console command description.
@@ -63,6 +67,10 @@ class EsIndexScoresQueue extends Command
         }
 
         $query = Score::select('id');
+        $userId = get_int($this->option('user'));
+        if ($userId !== null) {
+            $query->where('user_id', $userId);
+        }
         $ids = new Set();
         $pushQuery = false;
 
