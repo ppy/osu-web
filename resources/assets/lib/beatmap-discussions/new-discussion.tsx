@@ -11,7 +11,6 @@ import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import { BeatmapsetDiscussionPostStoreResponseJson } from 'interfaces/beatmapset-discussion-post-responses';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import { BeatmapsetWithDiscussionsJson } from 'interfaces/beatmapset-json';
-import CurrentUserJson from 'interfaces/current-user-json';
 import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
@@ -74,7 +73,6 @@ interface Props {
   beatmapset: BeatmapsetExtendedJson & BeatmapsetWithDiscussionsJson;
   currentBeatmap: BeatmapExtendedJson;
   currentDiscussions: CurrentDiscussions;
-  currentUser: CurrentUserJson;
   innerRef: React.RefObject<HTMLDivElement>;
   mode: Mode;
   pinned: boolean;
@@ -95,9 +93,10 @@ export class NewDiscussion extends React.Component<Props> {
   @observable private timestampConfirmed = false;
 
   private get canPost() {
-    return !this.props.currentUser.is_silenced
-      && (!this.props.beatmapset.discussion_locked
-        || canModeratePosts(this.props.currentUser))
+    if (core.currentUser == null) return false;
+
+    return !core.currentUser.is_silenced
+      && (!this.props.beatmapset.discussion_locked || canModeratePosts())
       && (this.props.currentBeatmap.deleted_at == null || this.props.mode === 'generalAll');
   }
 
@@ -132,6 +131,22 @@ export class NewDiscussion extends React.Component<Props> {
 
   private get storedMessage() {
     return localStorage.getItem(this.storageKey) ?? '';
+  }
+
+  private get textareaPlaceholder() {
+    if (core.currentUser == null) return;
+
+    if (this.canPost) {
+      return osu.trans(`beatmaps.discussions.message_placeholder.${this.props.mode}`, { version: this.props.currentBeatmap.version });
+    }
+
+    if (core.currentUser.is_silenced) {
+      return osu.trans('beatmaps.discussions.message_placeholder_silenced');
+    } else if (this.props.beatmapset.discussion_locked) {
+      return osu.trans('beatmaps.discussions.message_placeholder_locked');
+    } else {
+      return osu.trans('beatmaps.discussions.message_placeholder_deleted_beatmap');
+    }
   }
 
   @computed
@@ -203,20 +218,6 @@ export class NewDiscussion extends React.Component<Props> {
       this.setSticky(false);
     }
   };
-
-  private messagePlaceholder() {
-    if (this.canPost) {
-      return osu.trans(`beatmaps.discussions.message_placeholder.${this.props.mode}`, { version: this.props.currentBeatmap.version });
-    }
-
-    if (this.props.currentUser.is_silenced) {
-      return osu.trans('beatmaps.discussions.message_placeholder_silenced');
-    } else if (this.props.beatmapset.discussion_locked) {
-      return osu.trans('beatmaps.discussions.message_placeholder_locked');
-    } else {
-      return osu.trans('beatmaps.discussions.message_placeholder_deleted_beatmap');
-    }
-  }
 
   private readonly onFocus = () => this.setSticky(true);
 
@@ -294,11 +295,11 @@ export class NewDiscussion extends React.Component<Props> {
       && this.props.beatmapset.can_be_hyped
       && this.props.mode === 'generalAll';
 
-    const canPostNote =
-        this.props.currentUser.id === this.props.beatmapset.user_id
-          || (this.props.currentUser.id === this.props.currentBeatmap.user_id && this.props.mode in ['general', 'timeline'])
-          || this.props.currentUser.is_bng
-          || canModeratePosts(this.props.currentUser);
+    const canPostNote = core.currentUser != null
+        && (core.currentUser.id === this.props.beatmapset.user_id
+          || (core.currentUser.id === this.props.currentBeatmap.user_id && this.props.mode in ['general', 'timeline'])
+          || core.currentUser.is_bng
+          || canModeratePosts());
 
     const buttonCssClasses = classWithModifiers('btn-circle', { activated: this.props.pinned });
 
@@ -322,30 +323,10 @@ export class NewDiscussion extends React.Component<Props> {
           </div>
           <div className={`${bn}__content`}>
             <div className={`${bn}__avatar`}>
-              <UserAvatar modifiers='full-rounded' user={this.props.currentUser} />
+              <UserAvatar modifiers='full-rounded' user={core.currentUser} />
             </div>
             <div className={`${bn}__message`} id='new'>
-              {this.props.currentUser?.id != null ? (
-                <>
-                  <TextareaAutosize
-                    key='input'
-                    ref={this.inputBox}
-                    className={`${bn}__message-area js-hype--input`}
-                    disabled={this.posting != null || !this.canPost}
-                    onChange={this.setMessage}
-                    onFocus={this.onFocus}
-                    onKeyDown={this.handleKeyDown}
-                    placeholder={this.messagePlaceholder()}
-                    value={this.canPost ? this.message : ''}
-                  />
-
-                  <MessageLengthCounter
-                    key='counter'
-                    isTimeline={this.isTimeline}
-                    message={this.message}
-                  />
-                </>
-              ) : osu.trans('beatmaps.discussions.require-login')}
+              {this.renderTextarea()}
             </div>
           </div>
 
@@ -368,13 +349,13 @@ export class NewDiscussion extends React.Component<Props> {
 
   private renderGuest() {
     if (!(this.props.mode === 'generalAll' && this.props.beatmapset.can_be_hyped)) return null;
-    if (this.props.currentUser?.id != null) return null;
+    if (core.currentUser != null) return null;
     return osu.trans('beatmaps.hype.explanation_guest');
   }
 
   private renderHype() {
     if (!(this.props.mode === 'generalAll' && this.props.beatmapset.can_be_hyped)) return null;
-    if (this.props.currentUser?.id == null) {
+    if (core.currentUser == null) {
       return this.renderGuest();
     }
 
@@ -444,6 +425,30 @@ export class NewDiscussion extends React.Component<Props> {
           {osu.trans('beatmap_discussions.nearby_posts.confirm')}
         </label>
       </div>
+    );
+  }
+
+  private renderTextarea() {
+    if (core.currentUser == null) return osu.trans('beatmaps.discussions.require-login');
+
+    return (
+      <>
+        <TextareaAutosize
+          ref={this.inputBox}
+          className={`${bn}__message-area js-hype--input`}
+          disabled={this.posting != null || !this.canPost}
+          onChange={this.setMessage}
+          onFocus={this.onFocus}
+          onKeyDown={this.handleKeyDown}
+          placeholder={this.textareaPlaceholder}
+          value={this.canPost ? this.message : ''}
+        />
+
+        <MessageLengthCounter
+          isTimeline={this.isTimeline}
+          message={this.message}
+        />
+      </>
     );
   }
 
