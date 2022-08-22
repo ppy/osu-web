@@ -372,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => '',
                         'silence' => 'Užtildytas',
+                        'tournament_ban' => '',
                         'note' => 'Pastabos',
                     ],
                 ],

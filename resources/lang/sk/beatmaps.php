@@ -73,7 +73,7 @@ return [
             'nomination_reset' => 'Obnoviť Nomináciu',
             'praise' => 'Pochvala',
             'problem' => 'Problém',
-            'problem_warning' => '',
+            'problem_warning' => 'Nahlásiť problém',
             'review' => 'Recenzia',
             'suggestion' => 'Návrh',
         ],
@@ -293,8 +293,8 @@ return [
         'electronic' => 'Elektronické',
         'metal' => '',
         'classical' => '',
-        'folk' => '',
-        'jazz' => '',
+        'folk' => 'Folk',
+        'jazz' => 'Jazz',
     ],
     'mods' => [
         '4K' => '',
@@ -323,7 +323,7 @@ return [
         'V2' => '',
     ],
     'language' => [
-        'any' => '',
+        'any' => 'Akýkoľvek',
         'english' => 'Anglické',
         'chinese' => 'Čínske',
         'french' => 'Francúzske',

@@ -291,7 +291,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('users/{user}/posts', 'UsersController@posts')->name('users.posts');
     Route::get('users/{user}/{mode?}', 'UsersController@show')->name('users.show');
-    Route::resource('users', 'UsersController', ['only' => ['index', 'store']]);
+    Route::resource('users', 'UsersController', ['only' => ['store']]);
 
     Route::get('wiki/{locale}/Sitemap', 'WikiController@sitemap')->name('wiki.sitemap');
     Route::get('wiki/images/{path}', 'WikiController@image')->name('wiki.image')->where('path', '.+');

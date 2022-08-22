@@ -25,7 +25,7 @@
         <div class="{{$bn}}__user-row">
             @if (isset($user))
                 <a class="{{$bn}}__user-link" href="{{route('users.show', $user)}}">
-                    <span class="{{$bn}}__user-text u-ellipsis-overflow">{{$user->username}}</span>
+                    <span class="u-ellipsis-overflow">{{$user->username}}</span>
                 </a>
                 @if (!$user->isBot())
                     <a class="{{$bn}}__user-modding-history-link" href="{{route('users.modding.index', $user)}}" title="{{osu_trans('beatmap_discussion_posts.item.modding_history_link')}}">
@@ -34,7 +34,7 @@
                 @endif
             @else
                 <span class="{{$bn}}__user-link">
-                    <span class="{{$bn}}__user-text u-ellipsis-overflow">{{ osu_trans('users.deleted') }}</span>
+                    <span class="u-ellipsis-overflow">{{ osu_trans('users.deleted') }}</span>
                 </span>
             @endif
         </div>

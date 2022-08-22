@@ -193,7 +193,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Setări',
-            'follows' => 'Pagini abonate',
+            'follows' => 'Pagini Abonate',
             'friends' => 'Prieteni',
             'logout' => 'Deconectare',
             'profile' => 'Profilul Meu',
