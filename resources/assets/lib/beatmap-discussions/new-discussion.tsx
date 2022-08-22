@@ -484,10 +484,6 @@ export class NewDiscussion extends React.Component<Props> {
 
   private submitButton(type: DiscussionType) {
     const typeText = type === 'problem' ? this.problemType() : type;
-    const props = {
-      'data-type': type,
-      onClick: this.post,
-    };
 
     return (
       <BigButton
@@ -495,7 +491,10 @@ export class NewDiscussion extends React.Component<Props> {
         disabled={!this.validPost || this.posting != null || !this.canPost}
         icon={discussionTypeIcons[type]}
         isBusy={this.posting === type}
-        props={props}
+        props={{
+          'data-type': type,
+          onClick: this.post,
+        }}
         text={osu.trans(`beatmaps.discussions.message_type.${typeText}`)}
       />
     );
