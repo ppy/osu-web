@@ -487,7 +487,6 @@ export class NewDiscussion extends React.Component<Props> {
 
     return (
       <BigButton
-        key={type}
         disabled={!this.validPost || this.posting != null || !this.canPost}
         icon={discussionTypeIcons[type]}
         isBusy={this.posting === type}
