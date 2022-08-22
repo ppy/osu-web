@@ -62,7 +62,7 @@ export function canModeratePosts(user?: UserJson) {
   return user.is_admin || user.is_moderator;
 }
 
-export function discussionLinkify(text: string) {
+function discussionLinkify(text: string) {
   // text should be pre-escaped.
   return text.replace(urlRegex, (match, url: string) => {
     const { children, ...props } = propsFromHref(url);
