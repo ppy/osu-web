@@ -7,7 +7,6 @@ import { intersectionWith } from 'lodash';
 import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import StringWithComponent from './string-with-component';
 
 const bn = 'report-form';
 const maxLength = 2000;
@@ -26,8 +25,7 @@ interface Props {
   disabled: boolean;
   onClose: () => void;
   onSubmit: ({comments}: {comments: string}) => void;
-  title: string;
-  titleUsernameMapping: React.ReactNode;
+  title: React.ReactNode;
   visible: boolean;
   visibleOptions: string[];
 }
@@ -80,10 +78,7 @@ export class ReportForm extends React.Component<Props> {
 
             <div className={`${bn}__row ${bn}__row--title`}>
               <span>
-                <StringWithComponent
-                  mappings={{ username: this.props.titleUsernameMapping }}
-                  pattern={title}
-                />
+                {title}
               </span>
             </div>
           </div>
