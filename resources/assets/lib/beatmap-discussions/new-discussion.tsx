@@ -88,6 +88,7 @@ export class NewDiscussion extends React.Component<Props> {
   private readonly handleKeyDown;
   private readonly inputBox = React.createRef<HTMLTextAreaElement>();
   @observable private message = this.storedMessage;
+  @observable private mounted = false;
   private nearbyDiscussionsCache: DiscussionsCache | null = null;
   @observable private posting: string | null = null;
   private postXhr: JQuery.jqXHR<BeatmapsetDiscussionPostStoreResponseJson> | null = null;
@@ -103,7 +104,7 @@ export class NewDiscussion extends React.Component<Props> {
 
   @computed
   private get cssTop() {
-    if (!this.sticky || this.props.stickTo?.current == null) return;
+    if (!this.mounted || !this.sticky || this.props.stickTo?.current == null) return;
     return core.stickyHeader.headerHeight + this.props.stickTo.current.getBoundingClientRect().height;
   }
 
@@ -158,6 +159,7 @@ export class NewDiscussion extends React.Component<Props> {
   }
 
   componentDidMount() {
+    this.disposers.add(core.reactTurbolinks.runAfterPageLoad(() => this.mounted = true));
     if (this.props.autoFocus) {
       this.disposers.add(core.reactTurbolinks.runAfterPageLoad(() => this.inputBox.current?.focus()));
     }
