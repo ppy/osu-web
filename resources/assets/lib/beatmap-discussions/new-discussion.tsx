@@ -92,7 +92,6 @@ export class NewDiscussion extends React.Component<Props> {
   private nearbyDiscussionsCache: DiscussionsCache | null = null;
   @observable private posting: string | null = null;
   private postXhr: JQuery.jqXHR<BeatmapsetDiscussionPostStoreResponseJson> | null = null;
-  @observable private sticky = this.props.pinned;
   @observable private timestampConfirmed = false;
 
   private get canPost() {
@@ -104,7 +103,7 @@ export class NewDiscussion extends React.Component<Props> {
 
   @computed
   private get cssTop() {
-    if (!this.mounted || !this.sticky || this.props.stickTo?.current == null) return;
+    if (!this.mounted || !this.props.pinned || this.props.stickTo?.current == null) return;
     return core.stickyHeader.headerHeight + this.props.stickTo.current.getBoundingClientRect().height;
   }
 
@@ -470,10 +469,8 @@ export class NewDiscussion extends React.Component<Props> {
     this.message = e.target.value;
   };
 
-  // TODO: to whoever refactors this - this 'sticky' behaviour was ported to new-review.tsx, so remember to refactor that too
   @action
   private readonly setSticky = (sticky = true) => {
-    this.sticky = sticky;
     this.props.setPinned(sticky);
   };
 
