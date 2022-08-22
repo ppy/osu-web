@@ -374,6 +374,7 @@ return [
                     'actions' => [
                         'restriction' => 'השעיה',
                         'silence' => 'השתקה',
+                        'tournament_ban' => '',
                         'note' => 'הערה',
                     ],
                 ],

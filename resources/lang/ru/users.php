@@ -33,13 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Вы заблокировали этого пользователя.',
-        'comment_text' => '',
+        'comment_text' => 'Этот комментарий скрыт.',
         'blocked_count' => 'чёрный список (:count)',
         'hide_profile' => 'Скрыть профиль',
-        'hide_comment' => '',
+        'hide_comment' => 'скрыть',
         'not_blocked' => 'Этот пользователь не заблокирован.',
         'show_profile' => 'Показать профиль',
-        'show_comment' => '',
+        'show_comment' => 'показать',
         'too_many' => 'Достигнут лимит количества заблокированных.',
         'button' => [
             'block' => 'Заблокировать',
@@ -372,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Бан',
                         'silence' => 'Заглушение',
+                        'tournament_ban' => '',
                         'note' => 'Заметка',
                     ],
                 ],
