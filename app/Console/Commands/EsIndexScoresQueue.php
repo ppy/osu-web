@@ -72,7 +72,7 @@ class EsIndexScoresQueue extends Command
             $this->schemas = [$schema];
         }
 
-        if (!$this->confirm('This will queue scores for indexing, continue?', true)) {
+        if (!$this->confirm('This will queue scores for indexing to schema '.implode(', ', $this->schemas).', continue?', true)) {
             return $this->info('User aborted');
         }
 
