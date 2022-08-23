@@ -81,7 +81,7 @@ class EsIndexScoresQueue extends Command
 
             $from = get_int($this->option('from'));
             if ($from !== null) {
-                $query->orWhere('id', '>', $from);
+                $query->where('id', '>', $from);
                 $pushQuery = true;
             }
         }

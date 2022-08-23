@@ -37,7 +37,11 @@ class EsIndexScoresQueueTest extends TestCase
     {
         static::clearQueue();
         Score::factory()->count(10)->create();
-        Score::limit(5)->update(['user_id' => static::TARGETED_USER_ID]);
+        $scores = Score::orderBy('id')->get()->all();
+        foreach ([$scores[0], $scores[1], $scores[2], $scores[9]] as $score) {
+            $score->update(['user_id' => static::TARGETED_USER_ID]);
+        }
+
         $this->expectCountChange(fn () => static::queueSize(), $change);
         Artisan::call(
             'es:index-scores:queue',
@@ -52,13 +56,19 @@ class EsIndexScoresQueueTest extends TestCase
     {
         return [
             [['--all' => true], 10],
-            [['--all' => true, '--user' => static::TARGETED_USER_ID], 5],
             [function (): array {
                 $ids = Score::inRandomOrder()->limit(3)->pluck('id')->all();
 
                 return ['--ids' => implode(',', $ids)];
             }, 3],
             [fn (): array => ['--from' => Score::max('id') - 1], 1],
+            [['--all' => true, '--user' => static::TARGETED_USER_ID], 4],
+            [fn (): array => [
+                '--user' => static::TARGETED_USER_ID,
+                // get id of second last score to cover last two scores
+                // but only one is expected to be queued due to user filter
+                '--from' => Score::orderBy('id', 'DESC')->limit(2)->get()->all()[1]->getKey() - 1,
+            ], 1],
         ];
     }
 }
