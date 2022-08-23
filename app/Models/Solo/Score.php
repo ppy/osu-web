@@ -3,6 +3,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace App\Models\Solo;
 
 use App\Libraries\Score\UserRankCache;
@@ -28,7 +30,7 @@ use LaravelRedis;
  */
 class Score extends Model implements Traits\ReportableInterface
 {
-    use Traits\Reportable;
+    use Traits\Reportable, Traits\WithWeightedPp;
 
     const PROCESSING_QUEUE = 'osu-queue:score-statistics';
 
@@ -105,6 +107,11 @@ class Score extends Model implements Traits\ReportableInterface
         return $this
             ->where('preserve', true)
             ->whereHas('user', fn (Builder $q): Builder => $q->default());
+    }
+
+    public function getPpAttribute(): ?float
+    {
+        return $this->performance?->pp;
     }
 
     public function createLegacyEntryOrExplode()
