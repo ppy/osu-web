@@ -146,8 +146,10 @@ class EsIndexScoresQueue extends Command
     private function parseOptionIds(): Set
     {
         $ret = new Set();
+        $ids = $this->option('ids');
+        $ids = is_array($ids) ? $ids : explode(',', get_string($ids) ?? '');
 
-        foreach (explode(',', get_string($this->option('ids')) ?? '') as $idString) {
+        foreach ($ids as $idString) {
             $id = get_int($idString);
 
             if ($id !== null) {

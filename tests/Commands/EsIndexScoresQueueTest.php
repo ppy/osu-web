@@ -74,6 +74,7 @@ class EsIndexScoresQueueTest extends TestCase
             [['--ids' => ''], false],
             [['--ids' => ','], false],
             [['--ids' => '1,2'], true],
+            [['--ids' => [1,2]], true],
             [['--all' => true, '--from' => 0], false],
             [['--all' => true, '--ids' => 0], false],
             [['--from' => 0, '--ids' => 0], false],
