@@ -13,7 +13,6 @@ use Tests\TestCase;
 class EsIndexScoresQueueTest extends TestCase
 {
     const SCHEMA = 'test_queue_command';
-    const TARGETED_USER_ID = 0;
 
     private static function clearQueue(): void
     {
@@ -80,12 +79,13 @@ class EsIndexScoresQueueTest extends TestCase
 
     public function dataProviderForTestQueueScores(): array
     {
-        $setUp = function () {
+        $userId = 0;
+        $setUp = function () use ($userId) {
             static::clearQueue();
             Score::factory()->count(10)->create();
             $scores = Score::orderBy('id')->get()->all();
             foreach ([$scores[0], $scores[1], $scores[2], $scores[9]] as $score) {
-                $score->update(['user_id' => static::TARGETED_USER_ID]);
+                $score->update(['user_id' => $userId]);
             }
         };
 
@@ -95,9 +95,9 @@ class EsIndexScoresQueueTest extends TestCase
                 '--ids' => Score::inRandomOrder()->limit(3)->pluck('id')->join(','),
             ], 3],
             [$setUp, fn (): array => ['--from' => Score::max('id') - 1], 1],
-            [$setUp, ['--all' => true, '--user' => static::TARGETED_USER_ID], 4],
+            [$setUp, ['--all' => true, '--user' => $userId], 4],
             [$setUp, fn (): array => [
-                '--user' => static::TARGETED_USER_ID,
+                '--user' => $userId,
                 // get id of second last score to cover last two scores
                 // but only one is expected to be queued due to user filter
                 '--from' => Score::orderBy('id', 'DESC')->limit(2)->get()->all()[1]->getKey() - 1,
