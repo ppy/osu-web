@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
+use App\Exceptions\InvariantException;
 use App\Libraries\Search\ScoreSearch;
 use App\Models\Solo\Score;
 use Ds\Set;
@@ -38,9 +39,11 @@ class EsIndexScoresQueue extends Command
     protected $description = 'Queue scores to be indexed into Elasticsearch.';
 
     private ProgressBar $bar;
+    private array $ids;
     private array $schemas;
     private ScoreSearch $search;
     private int $total;
+    private Builder $query;
 
     /**
      * Execute the console command.
@@ -51,8 +54,10 @@ class EsIndexScoresQueue extends Command
     {
         $this->search = new ScoreSearch();
 
-        if (!$this->confirm('This will queue scores for indexing, continue?', true)) {
-            return $this->info('User aborted');
+        try {
+            $this->parseOptions();
+        } catch (InvariantException $e) {
+            return $this->error($e->getMessage());
         }
 
         $schema = presence($this->option('schema'));
@@ -67,36 +72,8 @@ class EsIndexScoresQueue extends Command
             $this->schemas = [$schema];
         }
 
-        $query = Score::select('id');
-        $userId = get_int($this->option('user'));
-        if ($userId !== null) {
-            $query->where('user_id', $userId);
-        }
-
-        $hasQuery = false;
-
-        if ($this->option('all')) {
-            $hasQuery = true;
-        } else {
-            $query->where(function (Builder $q) use (&$hasQuery): Builder {
-                $ids = $this->parseOptionIds();
-                if ($ids->count() > 0) {
-                    $q->whereKey($ids->toArray());
-                    $hasQuery = true;
-                }
-
-                $from = get_int($this->option('from'));
-                if ($from !== null) {
-                    $q->orWhere('id', '>', $from);
-                    $hasQuery = true;
-                }
-
-                return $q;
-            });
-        }
-
-        if (!$hasQuery) {
-            return $this->error('One of the id parameters must be specified');
+        if (!$this->confirm('This will queue scores for indexing, continue?', true)) {
+            return $this->info('User aborted');
         }
 
         $startTimeNs = hrtime(true);
@@ -105,9 +82,15 @@ class EsIndexScoresQueue extends Command
         $this->bar->start();
         $this->total = 0;
 
-        $query->chunkById(100, function (Collection $scores): void {
-            $this->queueIds(array_map(fn (Score $score): int => $score->getKey(), $scores->all()));
-        });
+        if (isset($this->ids)) {
+            $this->queueIds($this->ids);
+        }
+
+        if (isset($this->query)) {
+            $this->query->chunkById(100, function (Collection $scores): void {
+                $this->queueIds(array_map(fn (Score $score): int => $score->getKey(), $scores->all()));
+            });
+        }
 
         $this->search->refresh();
 
@@ -115,6 +98,48 @@ class EsIndexScoresQueue extends Command
         $this->line('');
         $totalTime = (int) ((hrtime(true) - $startTimeNs) / 1000000000);
         $this->info("Queued {$this->total} scores in {$totalTime}s");
+    }
+
+    private function parseOptions(): void
+    {
+        $query = Score::select('id');
+        $userId = get_int($this->option('user'));
+        if ($userId !== null) {
+            $query->where('user_id', $userId);
+        }
+
+        $doneParsing = false;
+
+        $ids = $this->parseOptionIds();
+        if ($ids->count() > 0) {
+            $doneParsing = true;
+            if ($userId === null) {
+                $this->ids = $ids->toArray();
+            } else {
+                $this->query = $query->whereKey($ids->toArray());
+            }
+        }
+
+        $from = get_int($this->option('from'));
+        if ($from !== null) {
+            if ($doneParsing) {
+                throw new InvariantException('only one of the id parameters may be specified');
+            }
+            $doneParsing = true;
+            $this->query = $query->where('id', '>', $from);
+        }
+
+        if ($this->option('all')) {
+            if ($doneParsing) {
+                throw new InvariantException('only one of the id parameters may be specified');
+            }
+            $doneParsing = true;
+            $this->query = $query;
+        }
+
+        if (!$doneParsing) {
+            throw new InvariantException('id parameter must be specified');
+        }
     }
 
     private function parseOptionIds(): Set
