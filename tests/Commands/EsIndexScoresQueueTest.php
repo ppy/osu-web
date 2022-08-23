@@ -56,11 +56,9 @@ class EsIndexScoresQueueTest extends TestCase
     {
         return [
             [['--all' => true], 10],
-            [function (): array {
-                $ids = Score::inRandomOrder()->limit(3)->pluck('id')->all();
-
-                return ['--ids' => implode(',', $ids)];
-            }, 3],
+            [fn (): array => [
+                '--ids' => Score::inRandomOrder()->limit(3)->pluck('id')->join(','),
+            ], 3],
             [fn (): array => ['--from' => Score::max('id') - 1], 1],
             [['--all' => true, '--user' => static::TARGETED_USER_ID], 4],
             [fn (): array => [
