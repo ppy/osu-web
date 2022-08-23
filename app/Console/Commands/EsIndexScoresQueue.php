@@ -11,6 +11,7 @@ use App\Libraries\Search\ScoreSearch;
 use App\Models\Solo\Score;
 use Ds\Set;
 use Illuminate\Console\Command;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Symfony\Component\Console\Helper\ProgressBar;
 
@@ -26,7 +27,7 @@ class EsIndexScoresQueue extends Command
         {--from= : Queue all the scores after (but not including) the specified id}
         {--ids= : Queue specified comma-separated list of score ids}
         {--schema= : Index schema to queue the scores to. Will use active schemas set in redis if not specified}
-        {--user= : Filter scores by user id (ignored for ids parameter)}
+        {--user= : Filter scores by user id}
     ';
 
     /**
@@ -71,22 +72,30 @@ class EsIndexScoresQueue extends Command
         if ($userId !== null) {
             $query->where('user_id', $userId);
         }
-        $ids = new Set();
-        $pushQuery = false;
+
+        $hasQuery = false;
 
         if ($this->option('all')) {
-            $pushQuery = true;
+            $hasQuery = true;
         } else {
-            $ids->add(...$this->parseOptionIds());
+            $query->where(function (Builder $q) use (&$hasQuery): Builder {
+                $ids = $this->parseOptionIds();
+                if ($ids->count() > 0) {
+                    $q->whereKey($ids->toArray());
+                    $hasQuery = true;
+                }
 
-            $from = get_int($this->option('from'));
-            if ($from !== null) {
-                $query->where('id', '>', $from);
-                $pushQuery = true;
-            }
+                $from = get_int($this->option('from'));
+                if ($from !== null) {
+                    $q->orWhere('id', '>', $from);
+                    $hasQuery = true;
+                }
+
+                return $q;
+            });
         }
 
-        if (!$pushQuery && $ids->count() === 0) {
+        if (!$hasQuery) {
             return $this->error('One of the id parameters must be specified');
         }
 
@@ -96,13 +105,9 @@ class EsIndexScoresQueue extends Command
         $this->bar->start();
         $this->total = 0;
 
-        $this->queueIds($ids->toArray());
-
-        if ($pushQuery) {
-            $query->chunkById(100, function (Collection $scores): void {
-                $this->queueIds(array_map(fn (Score $score): int => $score->getKey(), $scores->all()));
-            });
-        }
+        $query->chunkById(100, function (Collection $scores): void {
+            $this->queueIds(array_map(fn (Score $score): int => $score->getKey(), $scores->all()));
+        });
 
         $this->search->refresh();
 
