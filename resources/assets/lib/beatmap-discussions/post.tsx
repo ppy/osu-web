@@ -40,7 +40,7 @@ interface Props {
   canBeEdited: boolean;
   canBeRestored: boolean;
   discussion: BeatmapsetDiscussionJson;
-  lastEditor: UserJson;
+  lastEditor?: UserJson;
   post: BeatmapsetDiscussionPostJson;
   read: boolean;
   type: string;
