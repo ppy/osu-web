@@ -31,6 +31,19 @@ class EsIndexScoresQueueTest extends TestCase
     }
 
     /**
+     * @dataProvider dataProviderForTestParameterValidity
+     */
+    public function testParameterValidity(array $params, bool $isValid)
+    {
+        $command = $this->artisan('es:index-scores:queue', array_merge($params, ['--schema' => static::SCHEMA]));
+
+        if ($isValid) {
+            $command->expectsQuestion('This will queue scores for indexing to schema '.static::SCHEMA.', continue?', 'yes');
+        }
+        $command->assertExitCode($isValid ? 0 : 1);
+    }
+
+    /**
      * @dataProvider dataProviderForTestQueueScores
      */
     public function testQueueScores(array|callable $params, int $change): void
@@ -50,6 +63,23 @@ class EsIndexScoresQueueTest extends TestCase
                 '--schema' => static::SCHEMA,
             ]),
         );
+    }
+
+    public function dataProviderForTestParameterValidity(): array
+    {
+        return [
+            [['--all' => true], true],
+            [['--from' => 0], true],
+            [['--ids' => 0], true],
+            [['--ids' => ''], false],
+            [['--ids' => ','], false],
+            [['--ids' => '1,2'], true],
+            [['--all' => true, '--from' => 0], false],
+            [['--all' => true, '--ids' => 0], false],
+            [['--from' => 0, '--ids' => 0], false],
+            [['--user' => 0, '--all' => true], true],
+            [['--user' => 0, '--all' => true, '--from' => 0], false],
+        ];
     }
 
     public function dataProviderForTestQueueScores(): array

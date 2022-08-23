@@ -57,7 +57,9 @@ class EsIndexScoresQueue extends Command
         try {
             $this->parseOptions();
         } catch (InvariantException $e) {
-            return $this->error($e->getMessage());
+            $this->error($e->getMessage());
+
+            return 1;
         }
 
         $schema = presence($this->option('schema'));
@@ -66,7 +68,9 @@ class EsIndexScoresQueue extends Command
             $this->schemas = $this->search->getActiveSchemas();
 
             if (count($this->schemas) === 0) {
-                return $this->error('Index schema is not specified and there is no active schemas');
+                $this->error('Index schema is not specified and there is no active schemas');
+
+                return 1;
             }
         } else {
             $this->schemas = [$schema];
