@@ -10,14 +10,14 @@ interface UserForAvatarJson {
 
 interface Props {
   modifiers?: Modifiers;
-  user: UserForAvatarJson;
+  user?: UserForAvatarJson;
 }
 
 export default function UserAvatar(props: Props) {
   return (
     <span
       className={`${classWithModifiers('avatar', props.modifiers)} avatar--guest`}
-      style={{ backgroundImage: osu.urlPresence(props.user.avatar_url) }}
+      style={{ backgroundImage: osu.urlPresence(props.user?.avatar_url) }}
     />
   );
 }
