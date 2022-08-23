@@ -46,14 +46,9 @@ class EsIndexScoresQueueTest extends TestCase
     /**
      * @dataProvider dataProviderForTestQueueScores
      */
-    public function testQueueScores(array|callable $params, int $change): void
+    public function testQueueScores(callable $setUp, array|callable $params, int $change): void
     {
-        static::clearQueue();
-        Score::factory()->count(10)->create();
-        $scores = Score::orderBy('id')->get()->all();
-        foreach ([$scores[0], $scores[1], $scores[2], $scores[9]] as $score) {
-            $score->update(['user_id' => static::TARGETED_USER_ID]);
-        }
+        $setUp();
 
         $this->expectCountChange(fn () => static::queueSize(), $change);
         Artisan::call(
@@ -85,14 +80,23 @@ class EsIndexScoresQueueTest extends TestCase
 
     public function dataProviderForTestQueueScores(): array
     {
+        $setUp = function () {
+            static::clearQueue();
+            Score::factory()->count(10)->create();
+            $scores = Score::orderBy('id')->get()->all();
+            foreach ([$scores[0], $scores[1], $scores[2], $scores[9]] as $score) {
+                $score->update(['user_id' => static::TARGETED_USER_ID]);
+            }
+        };
+
         return [
-            [['--all' => true], 10],
-            [fn (): array => [
+            [$setUp, ['--all' => true], 10],
+            [$setUp, fn (): array => [
                 '--ids' => Score::inRandomOrder()->limit(3)->pluck('id')->join(','),
             ], 3],
-            [fn (): array => ['--from' => Score::max('id') - 1], 1],
-            [['--all' => true, '--user' => static::TARGETED_USER_ID], 4],
-            [fn (): array => [
+            [$setUp, fn (): array => ['--from' => Score::max('id') - 1], 1],
+            [$setUp, ['--all' => true, '--user' => static::TARGETED_USER_ID], 4],
+            [$setUp, fn (): array => [
                 '--user' => static::TARGETED_USER_ID,
                 // get id of second last score to cover last two scores
                 // but only one is expected to be queued due to user filter
