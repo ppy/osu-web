@@ -62,20 +62,6 @@ class EsIndexScoresQueue extends Command
             return 1;
         }
 
-        $schema = presence($this->option('schema'));
-
-        if ($schema === null) {
-            $this->schemas = $this->search->getActiveSchemas();
-
-            if (count($this->schemas) === 0) {
-                $this->error('Index schema is not specified and there is no active schemas');
-
-                return 1;
-            }
-        } else {
-            $this->schemas = [$schema];
-        }
-
         if (!$this->confirm('This will queue scores for indexing to schema '.implode(', ', $this->schemas).', continue?', true)) {
             return $this->info('User aborted');
         }
@@ -112,11 +98,11 @@ class EsIndexScoresQueue extends Command
             $query->where('user_id', $userId);
         }
 
-        $doneParsing = false;
+        $doneParsingId = false;
 
         $ids = $this->parseOptionIds();
         if ($ids->count() > 0) {
-            $doneParsing = true;
+            $doneParsingId = true;
             if ($userId === null) {
                 $this->ids = $ids->toArray();
             } else {
@@ -126,23 +112,34 @@ class EsIndexScoresQueue extends Command
 
         $from = get_int($this->option('from'));
         if ($from !== null) {
-            if ($doneParsing) {
+            if ($doneParsingId) {
                 throw new InvariantException('only one of the id parameters may be specified');
             }
-            $doneParsing = true;
+            $doneParsingId = true;
             $this->query = $query->where('id', '>', $from);
         }
 
         if ($this->option('all')) {
-            if ($doneParsing) {
+            if ($doneParsingId) {
                 throw new InvariantException('only one of the id parameters may be specified');
             }
-            $doneParsing = true;
+            $doneParsingId = true;
             $this->query = $query;
         }
 
-        if (!$doneParsing) {
+        if (!$doneParsingId) {
             throw new InvariantException('id parameter must be specified');
+        }
+
+        $schema = presence($this->option('schema'));
+        if ($schema === null) {
+            $this->schemas = $this->search->getActiveSchemas();
+
+            if (count($this->schemas) === 0) {
+                throw new InvariantException('Index schema is not specified and there is no active schemas');
+            }
+        } else {
+            $this->schemas = [$schema];
         }
     }
 
