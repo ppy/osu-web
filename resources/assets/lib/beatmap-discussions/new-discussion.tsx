@@ -163,7 +163,7 @@ export class NewDiscussion extends React.Component<Props> {
   }
 
   componentDidMount() {
-    this.disposers.add(core.reactTurbolinks.runAfterPageLoad(() => this.mounted = true));
+    this.disposers.add(core.reactTurbolinks.runAfterPageLoad(action(() => this.mounted = true)));
     if (this.props.autoFocus) {
       this.disposers.add(core.reactTurbolinks.runAfterPageLoad(() => this.inputBox.current?.focus()));
     }
