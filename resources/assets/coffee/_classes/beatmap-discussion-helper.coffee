@@ -2,23 +2,15 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute'
-import { maxLengthTimeline } from 'utils/beatmapset-discussion-helper'
+import { defaultBeatmapId, defaultMode, maxLengthTimeline } from 'utils/beatmapset-discussion-helper'
 import { currentUrl } from 'utils/turbolinks'
 import { getInt } from 'utils/math'
 
 class window.BeatmapDiscussionHelper
-  @DEFAULT_BEATMAP_ID: '-'
   @DEFAULT_FILTER: 'total'
 
   @MODES = new Set(['events', 'general', 'generalAll', 'timeline', 'reviews'])
   @FILTERS = new Set(['deleted', 'hype', 'mapperNotes', 'mine', 'pending', 'praises', 'resolved', 'total'])
-
-
-  @defaultMode: (beatmapId) =>
-    if beatmapId? && beatmapId != @DEFAULT_BEATMAP_ID
-      'timeline'
-    else
-      'generalAll'
 
 
   @discussionMode: (discussion) ->
@@ -79,7 +71,7 @@ class window.BeatmapDiscussionHelper
 
     discussionId: discussion.id
     beatmapsetId: discussion.beatmapset_id
-    beatmapId: discussion.beatmap_id ? @DEFAULT_BEATMAP_ID
+    beatmapId: discussion.beatmap_id ? defaultBeatmapId
     mode: @discussionMode(discussion)
 
 
@@ -109,11 +101,11 @@ class window.BeatmapDiscussionHelper
 
     params.beatmap =
       if !beatmapId? || mode in ['events', 'generalAll', 'reviews']
-        @DEFAULT_BEATMAP_ID
+        defaultBeatmapId
       else
         beatmapId
 
-    params.mode = mode ? @defaultMode(beatmapId)
+    params.mode = mode ? defaultMode(beatmapId)
 
     if filter? && filter != @DEFAULT_FILTER && params.mode != 'events'
       params.filter = filter
@@ -163,7 +155,7 @@ class window.BeatmapDiscussionHelper
       beatmapsetId: beatmapsetId
       beatmapId: beatmapId
       # empty path segments are ''
-      mode: if @MODES.has(mode) then mode else @defaultMode(beatmapId)
+      mode: if @MODES.has(mode) then mode else defaultMode(beatmapId)
       filter: if @FILTERS.has(filter) then filter else @DEFAULT_FILTER
       user: getInt(url.searchParams.get('user')) if url.searchParams.get('user')?
 
