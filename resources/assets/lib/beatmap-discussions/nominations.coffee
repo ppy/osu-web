@@ -201,19 +201,20 @@ export class Nominations extends React.PureComponent
 
 
   focusHypeInput: =>
-    hypeMessage = $('.js-hype--explanation')
-    flashClass = 'js-flash-border--on'
-
     # switch to generalAll tab, set current filter to praises
     $.publish 'beatmapsetDiscussions:update',
       mode: 'generalAll'
       filter: 'praises'
 
-    @focusNewDiscussion ->
-      # flash border of hype description to emphasize input is required
-      $(hypeMessage).addClass(flashClass)
-      @hypeFocusTimeout = Timeout.set 1000, ->
-        $(hypeMessage).removeClass(flashClass)
+    hypeMessage = '.js-hype--explanation'
+    flashClass = 'js-flash-border--on'
+
+    @hypeFocusTimeout = Timeout.set 0, =>
+      @focusNewDiscussion =>
+        # flash border of hype description to emphasize input is required
+        $(hypeMessage).addClass(flashClass)
+        @hypeFocusTimeout = Timeout.set 1000, =>
+          $(hypeMessage).removeClass(flashClass)
 
 
   focusNewDiscussion: (callback) ->
