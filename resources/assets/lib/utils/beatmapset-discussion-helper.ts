@@ -190,6 +190,15 @@ export function startingPost(discussion: BeatmapsetDiscussionJsonForBundle | Bea
   return discussion.posts[0];
 }
 
+export function stateFromDiscussion(discussion: BeatmapsetDiscussionJson) {
+  return {
+    beatmapId: discussion.beatmap_id ?? defaultBeatmapId,
+    beatmapsetId: discussion.beatmapset_id,
+    discussionId: discussion.id,
+    mode: discussionMode(discussion),
+  };
+}
+
 export function validMessageLength(message?: string | null, isTimeline = false) {
   if (!message?.length) return false;
 

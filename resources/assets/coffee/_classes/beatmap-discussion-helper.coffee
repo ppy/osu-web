@@ -2,7 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute'
-import { defaultBeatmapId, defaultMode, discussionMode, maxLengthTimeline } from 'utils/beatmapset-discussion-helper'
+import { defaultBeatmapId, defaultMode, maxLengthTimeline, stateFromDiscussion } from 'utils/beatmapset-discussion-helper'
 import { currentUrl } from 'utils/turbolinks'
 import { getInt } from 'utils/math'
 
@@ -53,15 +53,6 @@ class window.BeatmapDiscussionHelper
     _.sortBy shownDiscussions, 'timestamp'
 
 
-  @stateFromDiscussion: (discussion) =>
-    return {} if !discussion?
-
-    discussionId: discussion.id
-    beatmapsetId: discussion.beatmapset_id
-    beatmapId: discussion.beatmap_id ? defaultBeatmapId
-    mode: discussionMode(discussion)
-
-
   # Don't forget to update BeatmapDiscussionsController@show when changing this.
   @url: (options = {}, useCurrent = false) =>
     {
@@ -105,7 +96,7 @@ class window.BeatmapDiscussionHelper
         discussion = _.find discussions, id: discussionId
 
       if discussion?
-        discussionState = @stateFromDiscussion(discussion) if discussion?
+        discussionState = stateFromDiscussion(discussion) if discussion?
         params.beatmapset = discussionState.beatmapsetId
         params.beatmap = discussionState.beatmapId
         params.mode = discussionState.mode
@@ -154,7 +145,7 @@ class window.BeatmapDiscussionHelper
           discussion = _.find discussions, id: discussionId
 
           if discussion?
-            _.assign ret, @stateFromDiscussion(discussion)
+            _.assign ret, stateFromDiscussion(discussion)
 
             return ret if discussion.posts?[0]?.id == postId
         else if options.forceDiscussionId
