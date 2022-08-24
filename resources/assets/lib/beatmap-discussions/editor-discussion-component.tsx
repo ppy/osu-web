@@ -10,6 +10,7 @@ import * as React from 'react';
 import { Element as SlateElement, Path, Transforms } from 'slate';
 import { RenderElementProps } from 'slate-react';
 import { ReactEditor } from 'slate-react';
+import { parseTimestamp, timestampRegex } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { linkHtml } from 'utils/url';
 import { DraftsContext } from './drafts-context';
@@ -61,7 +62,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
 
     if (this.props.element.beatmapId) {
       const content = this.props.element.children[0].text as string;
-      const matches = BeatmapDiscussionHelper.TIMESTAMP_REGEX.exec(content);
+      const matches = timestampRegex.exec(content);
       let timestamp: string | undefined;
 
       // only extract timestamp if it occurs at the start of the issue
@@ -184,7 +185,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
         return false;
       }
 
-      const ts = BeatmapDiscussionHelper.parseTimestamp(embed.timestamp as string);
+      const ts = parseTimestamp(embed.timestamp as string);
       if (ts == null) {
         return false;
       }
@@ -341,5 +342,5 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
 
   selectedBeatmap = () => this.props.element.beatmapId as number;
 
-  timestamp = () => BeatmapDiscussionHelper.parseTimestamp(this.props.element.timestamp as string | undefined);
+  timestamp = () => parseTimestamp(this.props.element.timestamp as string | undefined);
 }

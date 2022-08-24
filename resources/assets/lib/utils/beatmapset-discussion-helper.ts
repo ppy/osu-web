@@ -8,11 +8,12 @@ import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForBundle, Beatmapset
 import BeatmapsetDiscussionPostJson from 'interfaces/beatmapset-discussion-post-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
-import core from 'osu-core-singleton';
 import { escape, truncate } from 'lodash';
+import core from 'osu-core-singleton';
 import { currentUrl } from 'utils/turbolinks';
 import { linkHtml, openBeatmapEditor, urlRegex } from 'utils/url';
 import { classWithModifiers, Modifiers } from './css';
+import { getInt } from './math';
 
 interface BadgeGroupParams {
   beatmapset: BeatmapsetJson;
@@ -36,6 +37,7 @@ interface PropsFromHrefValue {
 
 const lineBreakRegex = /(?:<br>){2,}/g;
 const linkTimestampRegex = /\b((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\)|\b))/g;
+export const timestampRegex = /\b(((\d{2,}):([0-5]\d)[:.](\d{3}))(\s\((?:\d+[,|])*\d+\))?)/;
 const maxMessagePreviewLength = 100;
 export const maxLengthTimeline = 750;
 
@@ -101,6 +103,20 @@ export function linkTimestamp(text: string, classNames: string[] = []) {
     ),
   );
 }
+
+export function parseTimestamp(message?: string | null) {
+  if (message == null) return null;
+
+  const matches = message.match(timestampRegex);
+
+  if (matches == null) return null;
+
+  const timestamp = matches.slice(1).map((match) => getInt(match) ?? 0);
+
+  // this isn't all that smart
+  return (timestamp[2] * 60 + timestamp[3]) * 1000 + timestamp[4];
+}
+
 
 export function previewMessage(message: string) {
   if (message.length > maxMessagePreviewLength) {

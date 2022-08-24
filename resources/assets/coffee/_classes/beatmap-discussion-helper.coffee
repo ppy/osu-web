@@ -9,7 +9,6 @@ import { getInt } from 'utils/math'
 class window.BeatmapDiscussionHelper
   @DEFAULT_BEATMAP_ID: '-'
   @DEFAULT_FILTER: 'total'
-  @TIMESTAMP_REGEX: /\b(((\d{2,}):([0-5]\d)[:.](\d{3}))(\s\((?:\d+[,|])*\d+\))?)/
 
   @MODES = new Set(['events', 'general', 'generalAll', 'timeline', 'reviews'])
   @FILTERS = new Set(['deleted', 'hype', 'mapperNotes', 'mine', 'pending', 'praises', 'resolved', 'total'])
@@ -82,18 +81,6 @@ class window.BeatmapDiscussionHelper
     beatmapsetId: discussion.beatmapset_id
     beatmapId: discussion.beatmap_id ? @DEFAULT_BEATMAP_ID
     mode: @discussionMode(discussion)
-
-
-  @parseTimestamp: (message) =>
-    return null if !message?
-
-    timestampRe = message.match @TIMESTAMP_REGEX
-
-    if timestampRe?
-      timestamp = timestampRe.slice(1).map getInt
-
-      # this isn't all that smart
-      (timestamp[2] * 60 + timestamp[3]) * 1000 + timestamp[4]
 
 
   # Don't forget to update BeatmapDiscussionsController@show when changing this.

@@ -12,7 +12,7 @@ import * as React from 'react'
 import TextareaAutosize from 'react-autosize-textarea'
 import { button, div, input, label, p, i, span } from 'react-dom-factories'
 import { nominationsCount } from 'utils/beatmapset-helper'
-import { canModeratePosts, validMessageLength } from 'utils/beatmapset-discussion-helper'
+import { canModeratePosts, parseTimestamp, validMessageLength } from 'utils/beatmapset-discussion-helper'
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { linkHtml } from 'utils/url'
@@ -385,7 +385,7 @@ export class NewDiscussion extends React.PureComponent
     if !@timestampCache?
       @timestampCache =
         message: @state.message
-        timestamp: BeatmapDiscussionHelper.parseTimestamp(@state.message)
+        timestamp: parseTimestamp(@state.message)
 
     @timestampCache.timestamp
 
