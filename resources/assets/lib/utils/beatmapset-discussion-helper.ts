@@ -8,7 +8,7 @@ import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForBundle, Beatmapset
 import BeatmapsetDiscussionPostJson from 'interfaces/beatmapset-discussion-post-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
-import { escape, truncate } from 'lodash';
+import { escape, padStart, truncate } from 'lodash';
 import core from 'osu-core-singleton';
 import { currentUrl } from 'utils/turbolinks';
 import { linkHtml, openBeatmapEditor, urlRegex } from 'utils/url';
@@ -110,6 +110,16 @@ export function format(text: string, options: FormatOptions = {}) {
   return `<div class='${blockClass}'>${text}</div>`;
 }
 
+export function formatTimestamp(value: number | null) {
+  if (value == null) return;
+
+  const ms = value % 1000;
+  const s = Math.floor(value / 1000) % 60;
+  // remaining duration goes here even if it's over an hour
+  const m = Math.floor(value / 1000 / 60);
+
+  return `${padStart(m.toString(), 2, '0')}:${padStart(s.toString(), 2, '0')}.${padStart(ms.toString(), 3, '0')}`;
+}
 
 export function linkTimestamp(text: string, classNames: string[] = []) {
   return text.replace(

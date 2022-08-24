@@ -12,7 +12,7 @@ import * as React from 'react'
 import TextareaAutosize from 'react-autosize-textarea'
 import { button, div, input, label, p, i, span } from 'react-dom-factories'
 import { nominationsCount } from 'utils/beatmapset-helper'
-import { canModeratePosts, parseTimestamp, validMessageLength } from 'utils/beatmapset-discussion-helper'
+import { canModeratePosts, formatTimestamp, parseTimestamp, validMessageLength } from 'utils/beatmapset-discussion-helper'
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { linkHtml } from 'utils/url'
@@ -150,7 +150,7 @@ export class NewDiscussion extends React.PureComponent
               className: "#{bn}__timestamp-col"
               if @props.mode == 'timeline'
                 if @timestamp()?
-                  BeatmapDiscussionHelper.formatTimestamp @timestamp()
+                  formatTimestamp @timestamp()
                 else
                   osu.trans 'beatmaps.discussions.new.timestamp_missing'
               else if @props.beatmapset.can_be_hyped # mode == 'generalAll'
@@ -187,11 +187,11 @@ export class NewDiscussion extends React.PureComponent
             @submitButton 'problem'
 
         if @nearbyDiscussions().length > 0
-          currentTimestamp = BeatmapDiscussionHelper.formatTimestamp @timestamp()
+          currentTimestamp = formatTimestamp @timestamp()
           timestamps =
             for discussion in @nearbyDiscussions()
               linkHtml BeatmapDiscussionHelper.url(discussion: discussion),
-                BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp)
+                formatTimestamp(discussion.timestamp)
                 classNames: ['js-beatmap-discussion--jump']
           timestampsString = osu.transArray(timestamps)
 
