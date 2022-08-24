@@ -23,7 +23,7 @@ type BeatmapsetDiscussionMessagePostJson = BeatmapsetDiscussionPostDefaultAttrib
   system: false;
 };
 
-type BeatmapsetDiscussionSystemPostJson = BeatmapsetDiscussionPostDefaultAttributes & {
+export type BeatmapsetDiscussionSystemPostJson = BeatmapsetDiscussionPostDefaultAttributes & {
   message: {
     type: string;
     value: boolean;
