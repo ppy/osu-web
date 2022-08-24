@@ -80,6 +80,16 @@ function discussionLinkify(text: string) {
   });
 }
 
+export function discussionMode(discussion: BeatmapsetDiscussionJson) {
+  return discussion.message_type === 'review'
+    ? 'reviews'
+    : discussion.beatmap_id != null
+      ? discussion.timestamp != null
+        ? 'timeline'
+        : 'general'
+      : 'generalAll';
+}
+
 export function format(text: string, options: FormatOptions = {}) {
   text = linkTimestamp(discussionLinkify(escape(text).trim()), ['beatmap-discussion-timestamp-decoration']);
 

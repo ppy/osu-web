@@ -2,7 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute'
-import { defaultBeatmapId, defaultMode, maxLengthTimeline } from 'utils/beatmapset-discussion-helper'
+import { defaultBeatmapId, defaultMode, discussionMode, maxLengthTimeline } from 'utils/beatmapset-discussion-helper'
 import { currentUrl } from 'utils/turbolinks'
 import { getInt } from 'utils/math'
 
@@ -11,19 +11,6 @@ class window.BeatmapDiscussionHelper
 
   @MODES = new Set(['events', 'general', 'generalAll', 'timeline', 'reviews'])
   @FILTERS = new Set(['deleted', 'hype', 'mapperNotes', 'mine', 'pending', 'praises', 'resolved', 'total'])
-
-
-  @discussionMode: (discussion) ->
-    if discussion.message_type == 'review'
-      'reviews'
-    else
-      if discussion.beatmap_id?
-        if discussion.timestamp?
-          'timeline'
-        else
-          'general'
-      else
-        'generalAll'
 
 
   @formatTimestamp: (value) =>
@@ -72,7 +59,7 @@ class window.BeatmapDiscussionHelper
     discussionId: discussion.id
     beatmapsetId: discussion.beatmapset_id
     beatmapId: discussion.beatmap_id ? defaultBeatmapId
-    mode: @discussionMode(discussion)
+    mode: discussionMode(discussion)
 
 
   # Don't forget to update BeatmapDiscussionsController@show when changing this.
