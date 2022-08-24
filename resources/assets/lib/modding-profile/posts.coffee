@@ -5,6 +5,7 @@ import BeatmapsetCover from 'components/beatmapset-cover'
 import { route } from 'laroute'
 import * as React from 'react'
 import { div, h2, a, img, span } from 'react-dom-factories'
+import { canModeratePosts } from 'utils/beatmapset-discussion-helper'
 import { Post } from "../beatmap-discussions/post"
 
 el = React.createElement
@@ -19,7 +20,7 @@ export class Posts extends React.Component
         else
           [
             for post in @props.posts
-              canModeratePosts = BeatmapDiscussionHelper.canModeratePosts(currentUser)
+              canModerate = canModeratePosts(currentUser)
 
               discussionClasses = 'beatmap-discussion beatmap-discussion--preview beatmap-discussion--modding-profile'
 
@@ -60,8 +61,8 @@ export class Posts extends React.Component
                       # FIXME: These permissions are more restrictive than the correct ones in discussion
                       # because they don't have the right data to check.
                       canBeEdited: currentUser.is_admin
-                      canBeDeleted: canModeratePosts
-                      canBeRestored: canModeratePosts
+                      canBeDeleted: canModerate
+                      canBeRestored: canModerate
                       currentUser: currentUser
             a
               key: 'show-more'

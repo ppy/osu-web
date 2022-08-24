@@ -12,7 +12,7 @@ import { UserLink } from 'components/user-link'
 import { route } from 'laroute'
 import * as React from 'react'
 import { a, div, i, span } from 'react-dom-factories'
-import { format, previewMessage } from 'utils/beatmapset-discussion-helper'
+import { canModeratePosts, format, previewMessage } from 'utils/beatmapset-discussion-helper'
 import { nominationsCount } from 'utils/beatmapset-helper'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { pageChange } from 'utils/page-change'
@@ -456,9 +456,9 @@ export class Nominations extends React.PureComponent
 
 
   discussionLockButton: =>
-    canModeratePost = BeatmapDiscussionHelper.canModeratePosts(@props.currentUser)
+    canModerate = canModeratePosts(@props.currentUser)
 
-    return null unless canModeratePost
+    return null unless canModerate
 
     if @props.beatmapset.discussion_locked
       action = 'unlock'

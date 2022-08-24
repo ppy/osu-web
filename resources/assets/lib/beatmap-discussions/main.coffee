@@ -53,6 +53,8 @@ export class Main extends React.PureComponent
 
       @state = {beatmapset, currentUser, readPostIds, reviewsConfig, showDeleted}
 
+    @state.pinnedNewDiscussion ?= false
+
     # Current url takes priority over saved state.
     query = @queryFromLocation(@state.beatmapset.discussions)
     @state.currentMode = query.mode
