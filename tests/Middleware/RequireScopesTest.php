@@ -3,13 +3,14 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-namespace Tests;
+namespace Tests\Middleware;
 
 use App\Http\Middleware\RequireScopes;
 use App\Models\User;
 use Illuminate\Routing\Route;
 use Laravel\Passport\Exceptions\MissingScopeException;
 use Request;
+use Tests\TestCase;
 
 class RequireScopesTest extends TestCase
 {
