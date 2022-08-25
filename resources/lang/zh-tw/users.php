@@ -33,13 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => '您已經封鎖這位使用者。',
-        'comment_text' => '',
+        'comment_text' => '這則留言已被隱藏。',
         'blocked_count' => '被封鎖的使用者 (:count)',
         'hide_profile' => '隱藏用戶資料',
-        'hide_comment' => '',
+        'hide_comment' => '隱藏',
         'not_blocked' => '這位使用者未被封鎖。',
         'show_profile' => '顯示用戶資料',
-        'show_comment' => '',
+        'show_comment' => '顯示',
         'too_many' => '已達到封鎖上限。',
         'button' => [
             'block' => '封鎖',
@@ -372,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => '封鎖',
                         'silence' => '禁言',
+                        'tournament_ban' => '',
                         'note' => '備註',
                     ],
                 ],

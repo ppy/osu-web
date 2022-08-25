@@ -109,7 +109,7 @@ return [
             'out_with_alternative' => 'Lamentablemente, este artículo esta agotado. ¡Usa el menú desplegable para elegir un tipo diferente o vuelve más tarde!',
         ],
 
-        'add_to_cart' => 'Añadir al carrito',
+        'add_to_cart' => 'Agregar al carrito',
         'notify' => '¡Notificarme cuando esté disponible!',
 
         'notification_success' => 'serás notificado cuando tengamos más existencias. Haz clic :link para cancelar',

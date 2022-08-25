@@ -372,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Porttikielto',
                         'silence' => 'Mykistys',
+                        'tournament_ban' => '',
                         'note' => 'Muistutus',
                     ],
                 ],

@@ -33,13 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Bạn đã chặn người dùng này.',
-        'comment_text' => '',
+        'comment_text' => 'Bình luận này bị ẩn.',
         'blocked_count' => 'người dùng đã bị chặn (:count)',
         'hide_profile' => 'Ẩn trang cá nhân',
-        'hide_comment' => '',
+        'hide_comment' => 'ẩn',
         'not_blocked' => 'Người dùng này chưa bị chặn.',
         'show_profile' => 'Hiển thị trang cá nhân',
-        'show_comment' => '',
+        'show_comment' => 'hiện',
         'too_many' => 'Đã đạt giới hạn số người bị chặn.',
         'button' => [
             'block' => 'Chặn',
@@ -372,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Ban',
                         'silence' => 'Im lặng',
+                        'tournament_ban' => '',
                         'note' => 'Ghi chú',
                     ],
                 ],

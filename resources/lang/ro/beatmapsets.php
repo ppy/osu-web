@@ -157,7 +157,7 @@ return [
 
             'headers' => [
                 'accuracy' => 'Precizie',
-                'combo' => 'Combo maxim',
+                'combo' => 'Combo Maxim',
                 'miss' => 'Ratări',
                 'mods' => 'Moduri',
                 'pin' => 'Fixează',

@@ -33,13 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Вие блокирахте този потребител.',
-        'comment_text' => '',
+        'comment_text' => 'Този коментар е скрит.',
         'blocked_count' => 'блокирани потребители (:count)',
         'hide_profile' => 'Скрий профил',
-        'hide_comment' => '',
+        'hide_comment' => 'скрий',
         'not_blocked' => 'Този потребител не е блокиран.',
         'show_profile' => 'Покажи профил',
-        'show_comment' => '',
+        'show_comment' => 'покажи',
         'too_many' => 'Достигнат е лимита за блокиране.',
         'button' => [
             'block' => 'Блокиране',
@@ -372,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Бан',
                         'silence' => 'Заглушен',
+                        'tournament_ban' => '',
                         'note' => 'Бележка',
                     ],
                 ],

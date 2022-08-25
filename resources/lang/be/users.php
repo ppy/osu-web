@@ -372,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Заблакіраваць',
                         'silence' => 'Зацішаны',
+                        'tournament_ban' => '',
                         'note' => 'Нататка',
                     ],
                 ],

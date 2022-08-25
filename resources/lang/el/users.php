@@ -372,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Αποκλεισμός',
                         'silence' => 'Σίγαση',
+                        'tournament_ban' => '',
                         'note' => 'Σημείωση',
                     ],
                 ],
