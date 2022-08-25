@@ -118,7 +118,7 @@ class BBCodeFromDB
             "<a rel='nofollow' href='mailto:\\1'>\\1</a>",
             $text
         );
-        $text = preg_replace("#\[email=(.+?):{$this->uid}\]#", "<a rel='nofollow' href='mailto:\\1'>", $text);
+        $text = preg_replace("#\[email=([^\]]+):{$this->uid}\]#", "<a rel='nofollow' href='mailto:\\1'>", $text);
         $text = str_replace("[/email:{$this->uid}]", '</a>', $text);
 
         return $text;
@@ -275,7 +275,7 @@ class BBCodeFromDB
     public function parseUrl($text)
     {
         $text = preg_replace("#\[url:{$this->uid}\](.+?)\[/url:{$this->uid}\]#", "<a rel='nofollow' href='\\1'>\\1</a>", $text);
-        $text = preg_replace("#\[url=(.+?):{$this->uid}\]#", "<a rel='nofollow' href='\\1'>", $text);
+        $text = preg_replace("#\[url=([^\]]+):{$this->uid}\]#", "<a rel='nofollow' href='\\1'>", $text);
         $text = str_replace("[/url:{$this->uid}]", '</a>', $text);
 
         return $text;

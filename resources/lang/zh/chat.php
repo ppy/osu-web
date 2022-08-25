@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => '您想要隐藏此频道吗？您仍然会收到来自此频道的消息。',
         'create' => '创建公告',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => '通知',

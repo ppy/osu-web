@@ -9,7 +9,7 @@ use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\RecordSearch;
 use App\Models\Solo\Score;
 use Ds\Set;
-use Illuminate\Database\Eloquent\Collection;
+use Exception;
 use LaravelRedis;
 
 class ScoreSearch extends RecordSearch
@@ -27,20 +27,9 @@ class ScoreSearch extends RecordSearch
         );
     }
 
-    public function indexAll(string $schema): void
+    public function getActiveSchemas(): array
     {
-        $queue = "osu-queue:score-index-{$schema}";
-        $this->recordType::select('id')->chunkById(100, function (Collection $scores) use ($queue): void {
-            LaravelRedis::lpush($queue, ...array_map(
-                fn (Score $score): string => json_encode(['ScoreId' => $score->getKey()]),
-                $scores->all(),
-            ));
-        });
-    }
-
-    public function setSchema(string $schema): void
-    {
-        LaravelRedis::set('osu-queue:score-index:'.config('osu.elasticsearch.prefix').'schema', $schema);
+        return LaravelRedis::smembers('osu-queue:score-index:'.config('osu.elasticsearch.prefix').'active-schemas');
     }
 
     public function getQuery(): BoolQuery
@@ -87,6 +76,47 @@ class ScoreSearch extends RecordSearch
         }
 
         return $query;
+    }
+
+    public function indexWait(float $maxWaitSecond = 5): void
+    {
+        $count = Score::indexable()->count();
+        $loopWait = 500000; // 0.5s in microsecond
+        $loops = (int) ceil($maxWaitSecond * 1000000.0 / $loopWait);
+
+        for ($i = 0; $i < $loops; $i++) {
+            usleep($loopWait);
+            $this->refresh();
+            $indexedCount = $this->client()->count(['index' => $this->index])['count'];
+            if ($indexedCount === $count) {
+                return;
+            }
+        }
+
+        throw new Exception("Indexable and indexed score counts still don't match. Queue runner is probably either having problem, not running, or too slow");
+    }
+
+    public function queueForIndex(?array $schemas = null, array $ids): void
+    {
+        $count = count($ids);
+
+        if ($count === 0) {
+            return;
+        }
+
+        $schemas ??= $this->getActiveSchemas();
+
+        foreach ($schemas as $schema) {
+            LaravelRedis::lpush("osu-queue:score-index-{$schema}", ...array_map(
+                fn (int $id): string => json_encode(['ScoreId' => $id]),
+                $ids,
+            ));
+        }
+    }
+
+    public function setSchema(string $schema): void
+    {
+        LaravelRedis::set('osu-queue:score-index:'.config('osu.elasticsearch.prefix').'schema', $schema);
     }
 
     private function addModsFilter(BoolQuery $query): void

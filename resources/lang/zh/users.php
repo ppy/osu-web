@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => '你已经屏蔽此用户。',
+        'comment_text' => '此评论已隐藏。',
         'blocked_count' => '被屏蔽的用户 (:count)',
         'hide_profile' => '隐藏用户资料',
+        'hide_comment' => '隐藏',
         'not_blocked' => '此用户未被屏蔽。',
         'show_profile' => '显示用户资料',
+        'show_comment' => '展开',
         'too_many' => '屏蔽用户数量达到最大限制。',
         'button' => [
             'block' => '屏蔽',
@@ -369,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => '封禁',
                         'silence' => '禁言',
+                        'tournament_ban' => '',
                         'note' => '注释',
                     ],
                 ],

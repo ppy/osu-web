@@ -15,18 +15,23 @@
     padding: 2px 10px;
 
     &--note {
-      background-color: @blue;
+      background-color: hsl(var(--hsl-blue-1));
       color: #000;
     }
 
     &--restriction {
-      background-color: @red;
+      background-color: hsl(var(--hsl-red-3));
       color: #fff;
     }
 
     &--silence {
-      background-color: @yellow;
+      background-color: hsl(var(--hsl-orange-2));
       color: #000;
+    }
+
+    &--tournament-ban {
+      background-color: hsl(var(--hsl-red-3));
+      color: #fff;
     }
   }
 
@@ -46,7 +51,7 @@
     vertical-align: baseline;
 
     &--action {
-      width: 115px;
+      width: 140px;
     }
 
     &--date {

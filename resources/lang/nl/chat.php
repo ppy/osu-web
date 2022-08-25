@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => '',
         'create' => 'aankondiging maken',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Aankondigingen',

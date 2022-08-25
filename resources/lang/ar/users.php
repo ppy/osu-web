@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'لقد قمت بحظر هذا المستخدم.',
+        'comment_text' => '',
         'blocked_count' => 'المستخدمون المحظورون (:count)',
         'hide_profile' => 'إخفاء الملف الشخصي',
+        'hide_comment' => '',
         'not_blocked' => 'هذا المستخدم ليس محظوراََ.',
         'show_profile' => 'عرض الملف الشخصي',
+        'show_comment' => '',
         'too_many' => 'تم الوصول للحد الأقصى للحظر.',
         'button' => [
             'block' => 'حظر',
@@ -369,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'حظر',
                         'silence' => 'سكون',
+                        'tournament_ban' => '',
                         'note' => 'ملاحظة',
                     ],
                 ],

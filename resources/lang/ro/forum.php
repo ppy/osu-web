@@ -6,21 +6,21 @@
 return [
     'pinned_topics' => 'Subiecte fixate',
     'slogan' => "este periculos să te joci singur.",
-    'subforums' => 'Subforumuri',
-    'title' => 'Forumuri osu!',
+    'subforums' => 'Subforum-uri',
+    'title' => 'Forum-uri osu!',
 
     'covers' => [
-        'edit' => 'Editează coperta',
+        'edit' => 'Editează fundalul',
 
         'create' => [
-            '_' => 'Setează imaginea de copertă',
-            'button' => 'Încarcă imaginea',
-            'info' => 'Dimensiunea imaginii de copertă ar trebui să fie la :dimensions. Poți, de asemenea, să plasezi imaginea aici pentru a o încărca.',
+            '_' => 'Setează imaginea de fundal',
+            'button' => 'Încarcă fundal',
+            'info' => 'Dimensiunea imaginii de fundal ar trebui să fie la :dimensions. Poți, de asemenea, să plasezi imaginea aici pentru a o încărca.',
         ],
 
         'destroy' => [
-            '_' => 'Elimină imaginea de copertă',
-            'confirm' => 'Ești sigur că vrei să elimini imaginea de copertă?',
+            '_' => 'Elimină imaginea de fundal',
+            'confirm' => 'Ești sigur că vrei să elimini imaginea de fundal?',
         ],
     ],
 
@@ -37,15 +37,15 @@ return [
     ],
 
     'mark_as_read' => [
-        'forum' => 'Marchează forumul ca citit',
-        'forums' => 'Marchează forumurile ca citite',
+        'forum' => 'Marchează forum-ul ca citit',
+        'forums' => 'Marchează forum-urile ca citite',
         'busy' => 'Se marchează ca citit...',
     ],
 
     'post' => [
         'confirm_destroy' => 'Sigur dorești să ștergi postarea?',
         'confirm_restore' => 'Sigur dorești să restaurezi postarea?',
-        'edited' => 'Editat ultima dată de către :user :when, editat de :count ori în total.',
+        'edited' => 'Editat ultima dată de către :user :when, editat o dată în total.|Editat ultima dată de către :user :when, editat de :count_delimited ori în total.',
         'posted_at' => 'postat :when',
         'posted_by' => 'postat de :username',
 
@@ -63,8 +63,8 @@ return [
         ],
 
         'info' => [
-            'post_count' => ':count_delimited postare|:count_delimited postări',
-            'topic_starter' => 'Începător de topic',
+            'post_count' => 'o postare|:count_delimited postări|:count_delimited de postări',
+            'topic_starter' => 'Început de Subiect',
         ],
     ],
 
@@ -75,11 +75,11 @@ return [
     ],
 
     'topic' => [
-        'confirm_destroy' => 'Sigur dorești să ștergi postarea?',
-        'confirm_restore' => 'Sigur dorești să restaurezi postarea?',
+        'confirm_destroy' => 'Sigur dorești să ștergi subiectul?',
+        'confirm_restore' => 'Sigur dorești să restaurezi subiectul?',
         'deleted' => 'subiect șters',
         'go_to_latest' => 'vezi cea mai recentă postare',
-        'has_replied' => 'Ai răspuns în acest topic',
+        'has_replied' => 'Ai răspuns în acest subiect',
         'in_forum' => 'in :forum',
         'latest_post' => ':when de :user',
         'latest_reply_by' => 'ultima replică de :user',
@@ -109,18 +109,18 @@ return [
 
                 'new_topic' => [
                     '_' => "Acest subiect a fost inactiv pentru o vreme. Dacă nu ai un motiv specific pentru a posta aici, te rugăm să :create în schimb.",
-                    'create' => 'crează un subiect nou',
+                    'create' => 'creează un subiect nou',
                 ],
             ],
 
             'placeholder' => [
                 'body' => 'Introdu conținutul postării aici',
-                'title' => 'Apasă aici pentru a stabili un titlu',
+                'title' => 'Faceți clic aici pentru a stabili un titlu',
             ],
         ],
 
         'jump' => [
-            'enter' => 'click pentru a introduce numărul postării',
+            'enter' => 'faceți clic pentru a introduce numărul postării',
             'first' => 'mergi la prima postare',
             'last' => 'mergi la ultima postare',
             'next' => 'sari peste 10 postări',
@@ -128,8 +128,8 @@ return [
         ],
 
         'logs' => [
-            '_' => 'Jurnal subiecte',
-            'button' => 'Răsfoiți jurnal cu subiecte',
+            '_' => 'Istoric subiecte',
+            'button' => 'Navigați istoricul subiectului',
 
             'columns' => [
                 'action' => 'Acțiune ',
@@ -138,38 +138,38 @@ return [
             ],
 
             'data' => [
-                'add_tag' => 'adăugat eticheta ":tag"',
+                'add_tag' => 'adăugat tag-ul ":tag"',
                 'announcement' => 'subiect fixat şi marcat ca anunţ',
                 'edit_topic' => 'către :title',
                 'fork' => 'din :topic',
                 'pin' => 'subiect fixat',
                 'post_operation' => 'postat de :username',
-                'remove_tag' => 'eliminat eticheta ":tag"',
+                'remove_tag' => 'eliminat tag-ul ":tag"',
                 'source_forum_operation' => 'din :forum',
                 'unpin' => 'subiect nefixat ',
             ],
 
-            'no_results' => 'niciun jurnal găsit...',
+            'no_results' => 'niciun istoric găsit...',
 
             'operations' => [
                 'delete_post' => 'Postare ștearsă',
                 'delete_topic' => 'Subiect șters ',
-                'edit_topic' => 'Subiectul titlului a fost modificat',
+                'edit_topic' => 'Titlul subiectului a fost modificat',
                 'edit_poll' => 'Sondaj subiect modificat',
                 'fork' => 'Subiect copiat',
-                'issue_tag' => 'Etichetă publicată ',
-                'lock' => 'Subiect închis ',
+                'issue_tag' => 'Tag adăugat',
+                'lock' => 'Subiect blocat',
                 'merge' => 'Postări unite în acest subiect',
                 'move' => 'Subiect mutat',
                 'pin' => 'Subiect fixat',
-                'post_edited' => 'Postare editată ',
-                'restore_post' => 'Postare restaurată ',
-                'restore_topic' => 'Subiect restaurat ',
+                'post_edited' => 'Postare editată',
+                'restore_post' => 'Postare restaurată',
+                'restore_topic' => 'Subiect restaurat',
                 'split_destination' => 'Mesaje separate mutate',
-                'split_source' => 'Separă postările ',
-                'topic_type' => 'Setează tipul subiectului ',
+                'split_source' => 'Separă postările',
+                'topic_type' => 'Setează tipul subiectului',
                 'topic_type_changed' => 'Tipul subiectului a fost modificat',
-                'unlock' => 'Subiect deschis',
+                'unlock' => 'Subiect deblocat',
                 'unpin' => 'Subiect nefixat',
                 'user_lock' => 'Subiect propriu închis',
                 'user_unlock' => 'Subiect propriu deschis',
@@ -184,16 +184,16 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => 'abonamente',
+            'title_compact' => 'abonamente subiecte forum',
 
             'box' => [
-                'total' => 'Subiecte la care te-ai abonat',
+                'total' => 'Subiecte abonate',
                 'unread' => 'Subiecte cu răspunsuri noi',
             ],
 
             'info' => [
-                'total' => 'Tu ești abonat la :total subiecte.',
-                'unread' => 'Tu ai :unread răspunsuri necitite la subiectele la care te-ai abonat.',
+                'total' => 'Te-ai abonat la :total subiecte.',
+                'unread' => 'Aveți :unread răspunsuri necitite la subiecte abonate.',
             ],
         ],
 
@@ -296,10 +296,10 @@ return [
         'lock' => [
             'is_locked' => 'Acest subiect este închis și nu se pot adăuga răspunsuri',
             'to_0' => 'Deblochează subiectul',
-            'to_0_confirm' => 'Deblochează topicul?',
+            'to_0_confirm' => 'Deblochează subiectul?',
             'to_0_done' => 'Subiectul a fost deblocat',
             'to_1' => 'Blochează subiectul',
-            'to_1_confirm' => 'Blochează topicul?',
+            'to_1_confirm' => 'Blochează subiectul?',
             'to_1_done' => 'Subiectul a fost blocat',
         ],
 
@@ -308,14 +308,14 @@ return [
         ],
 
         'moderate_pin' => [
-            'to_0' => 'Anulează fixarea subiectului',
-            'to_0_confirm' => 'Nu mai fixa topicul?',
+            'to_0' => 'Defixează subiectului',
+            'to_0_confirm' => 'Defixezi subiectul?',
             'to_0_done' => 'Subiectul nu mai este fixat',
             'to_1' => 'Fixează subiectul',
-            'to_1_confirm' => 'Fixează topicul?',
+            'to_1_confirm' => 'Fixează subiectul?',
             'to_1_done' => 'Subiectul a fost fixat',
             'to_2' => 'Fixează subiectul și marchează-l ca un anunț',
-            'to_2_confirm' => 'Fixează topicul și marchează-l ca anunț?',
+            'to_2_confirm' => 'Fixează subiectul și marchează-l ca un anunț?',
             'to_2_done' => 'Subiectul a fost fixat și marcat ca un anunț',
         ],
 
@@ -329,17 +329,17 @@ return [
             'total_posts' => 'Total postări',
 
             'feature_vote' => [
-                'current' => 'Prioritate curentă: +:count',
+                'current' => 'Prioritate actuală: +:count',
                 'do' => 'Promovează această cerere',
 
                 'info' => [
                     '_' => 'Aceasta este o :feature_request. Cererile pot fi votate de către :supporters.',
-                    'feature_request' => 'cerere de avantaje',
+                    'feature_request' => 'solicitare funcție',
                     'supporters' => 'suporteri',
                 ],
 
                 'user' => [
-                    'count' => '{0} niciun vot|{1} :count vot|[2,*] :count voturi',
+                    'count' => '{0} niciun vot|{1} un vot|[2,19] :count_delimited voturi|[20,*] :count_delimited de voturi',
                     'current' => 'Tu ai :votes rămase.',
                     'not_enough' => "Tu nu mai ai niciun vot rămas",
                 ],
@@ -370,8 +370,8 @@ return [
             'to_not_watching' => 'Nu este marcat',
             'to_watching' => 'Marchează',
             'to_watching_mail' => 'Marchează cu notificare',
-            'tooltip_mail_disable' => 'Notificările sunt activate. Click pentru a le dezactiva',
-            'tooltip_mail_enable' => 'Notificările sunt dezactivate. Click pentru a le activa',
+            'tooltip_mail_disable' => 'Notificările sunt activate. Faceți clic pentru a le dezactiva',
+            'tooltip_mail_enable' => 'Notificările sunt dezactivate. Faceți clic pentru a le activa',
         ],
     ],
 ];

@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => '¿Desea ocultar este canal? Seguirá recibiendo mensajes de este canal.',
         'create' => 'crear anuncio',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Anuncios',
@@ -34,7 +36,7 @@ return [
         'labels' => [
             'description' => 'descripción',
             'name' => 'nombre de sala',
-            'users' => 'jugadores a añadir',
+            'users' => 'jugadores a agregar',
         ],
     ],
 

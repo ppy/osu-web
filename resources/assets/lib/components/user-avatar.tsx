@@ -5,19 +5,20 @@ import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
 
 interface UserForAvatarJson {
+  // TODO: make non-optional; existing coffeescript passes {} for guest user.
   avatar_url?: string | null;
 }
 
 interface Props {
   modifiers?: Modifiers;
-  user: UserForAvatarJson;
+  user?: UserForAvatarJson;
 }
 
 export default function UserAvatar(props: Props) {
   return (
     <span
       className={`${classWithModifiers('avatar', props.modifiers)} avatar--guest`}
-      style={{ backgroundImage: osu.urlPresence(props.user.avatar_url) }}
+      style={{ backgroundImage: osu.urlPresence(props.user?.avatar_url) }}
     />
   );
 }

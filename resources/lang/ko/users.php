@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => '해당 유저를 차단했습니다.',
+        'comment_text' => '이 댓글은 숨겨진 상태입니다.',
         'blocked_count' => '차단된 유저 (:count)',
         'hide_profile' => '프로필 숨기기',
+        'hide_comment' => '숨기기',
         'not_blocked' => '해당 유저는 차단되어있지 않습니다.',
         'show_profile' => '프로필 표시',
+        'show_comment' => '보기',
         'too_many' => '차단 한계치에 도달했습니다.',
         'button' => [
             'block' => '차단',
@@ -369,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Ban',
                         'silence' => '침묵',
+                        'tournament_ban' => '',
                         'note' => '알림',
                     ],
                 ],

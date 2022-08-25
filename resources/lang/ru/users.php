@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Вы заблокировали этого пользователя.',
+        'comment_text' => 'Этот комментарий скрыт.',
         'blocked_count' => 'чёрный список (:count)',
         'hide_profile' => 'Скрыть профиль',
+        'hide_comment' => 'скрыть',
         'not_blocked' => 'Этот пользователь не заблокирован.',
         'show_profile' => 'Показать профиль',
+        'show_comment' => 'показать',
         'too_many' => 'Достигнут лимит количества заблокированных.',
         'button' => [
             'block' => 'Заблокировать',
@@ -247,8 +250,8 @@ return [
                     'title' => 'Последние игры (за сутки)',
                 ],
                 'replays_watched_counts' => [
-                    'title' => 'История просмотров реплеев',
-                    'count_label' => 'Просмотрено реплеев',
+                    'title' => 'История просмотров записей игр',
+                    'count_label' => 'Просмотрено записей',
                 ],
             ],
             'kudosu' => [
@@ -323,7 +326,7 @@ return [
                 'title' => 'Игры в мультиплеере',
             ],
             'top_ranks' => [
-                'download_replay' => 'Скачать повтор',
+                'download_replay' => 'Скачать запись',
                 'not_ranked' => 'Очки производительности выдаются только за прохождение рейтинговых карт.',
                 'pp_weight' => 'засчитано: :percentage pp',
                 'view_details' => 'Подробнее',
@@ -369,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Бан',
                         'silence' => 'Заглушение',
+                        'tournament_ban' => '',
                         'note' => 'Заметка',
                     ],
                 ],
@@ -420,7 +424,7 @@ return [
             'play_count' => 'Количество игр',
             'play_time' => 'Времени в игре',
             'ranked_score' => 'Рейтинговые очки',
-            'replays_watched_by_others' => 'Реплеев просмотрено другими',
+            'replays_watched_by_others' => 'Просмотров записей игр другими',
             'score_ranks' => 'Рейтинг по очкам',
             'total_hits' => 'Всего попаданий',
             'total_score' => 'Всего очков',

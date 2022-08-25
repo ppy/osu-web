@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Jūs užblokavote šį vartotoją.',
+        'comment_text' => '',
         'blocked_count' => 'blokuoti vartotojai (:count)',
         'hide_profile' => 'slėpti profilį',
+        'hide_comment' => '',
         'not_blocked' => 'Šis vartotojas nėra užblokuotas.',
         'show_profile' => 'rodyti profilį',
+        'show_comment' => '',
         'too_many' => 'Pasiektas blokavimų limitas.',
         'button' => [
             'block' => 'užblokuoti',
@@ -369,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => '',
                         'silence' => 'Užtildytas',
+                        'tournament_ban' => '',
                         'note' => 'Pastabos',
                     ],
                 ],

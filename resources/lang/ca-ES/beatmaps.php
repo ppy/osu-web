@@ -1,0 +1,379 @@
+<?php
+
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+return [
+    'discussion-votes' => [
+        'update' => [
+            'error' => 'Error en actualitzar el vot',
+        ],
+    ],
+
+    'discussions' => [
+        'allow_kudosu' => 'permetre kudosu',
+        'beatmap_information' => 'Pàgina del mapa',
+        'delete' => 'eliminar',
+        'deleted' => 'Eliminat per :editor :delete_time.',
+        'deny_kudosu' => 'negar kudosu',
+        'edit' => 'editar',
+        'edited' => 'Última edició per :editor :update_time.',
+        'guest' => 'Dificultat de convidat per :user',
+        'kudosu_denied' => 'Negat d\'obtenir kudosu.',
+        'message_placeholder_deleted_beatmap' => 'Aquesta dificultat ha estat eliminada, per la qual cosa ja no es pot discutir.',
+        'message_placeholder_locked' => 'La discussió per a aquest mapa ha estat desactivada.',
+        'message_placeholder_silenced' => "No podeu publicar una discussió mentre estigui silenciat.",
+        'message_type_select' => 'Seleccionar tipus de comentari',
+        'reply_notice' => 'Premeu enter per respondre.',
+        'reply_placeholder' => 'Escriviu la vostra resposta aquí',
+        'require-login' => 'Inicia sessió per publicar o respondre',
+        'resolved' => 'Resolt',
+        'restore' => 'restaurar',
+        'show_deleted' => 'Mostrar eliminats',
+        'title' => 'Discussions',
+
+        'collapse' => [
+            'all-collapse' => 'Contreure tot',
+            'all-expand' => 'Expandir-ho tot',
+        ],
+
+        'empty' => [
+            'empty' => 'Encara no hi ha discussions!',
+            'hidden' => 'Cap discussió no coincideix amb el filtre seleccionat.',
+        ],
+
+        'lock' => [
+            'button' => [
+                'lock' => 'Bloquejar discussió',
+                'unlock' => 'Desbloquejar discussió',
+            ],
+
+            'prompt' => [
+                'lock' => 'Motiu del bloqueig',
+                'unlock' => 'Esteu segur que voleu desbloquejar-la?',
+            ],
+        ],
+
+        'message_hint' => [
+            'in_general' => 'Aquest post anirà a la discussió general de mapes. Per moddejar aquest mapa, comença un missatge amb una marca de temps (exemple: 00:12:345).',
+            'in_timeline' => 'Per moddejar diverses marques de temps, publiqueu diverses vegades (un missatge per marca de temps).',
+        ],
+
+        'message_placeholder' => [
+            'general' => 'Escriviu aquí per publicar a General (:version)',
+            'generalAll' => 'Escriviu aquí per publicar a General (Totes les dificultats)',
+            'review' => 'Escriviu aquí per publicar una revisió',
+            'timeline' => 'Escriviu aquí per publicar a la Línia de temps (:version)',
+        ],
+
+        'message_type' => [
+            'disqualify' => 'Desqualificació',
+            'hype' => 'Hype!',
+            'mapper_note' => 'Nota',
+            'nomination_reset' => 'Restableix la nominació',
+            'praise' => 'Elogi',
+            'problem' => 'Problema',
+            'problem_warning' => 'Informar d\'un problema',
+            'review' => 'Revisió',
+            'suggestion' => 'Suggeriment',
+        ],
+
+        'mode' => [
+            'events' => 'Historial',
+            'general' => 'General :scope',
+            'reviews' => 'Revisions',
+            'timeline' => 'Línia de temps',
+            'scopes' => [
+                'general' => 'Aquesta dificultat',
+                'generalAll' => 'Totes les dificultats',
+            ],
+        ],
+
+        'new' => [
+            'pin' => 'Fixar',
+            'timestamp' => 'Marca de temps',
+            'timestamp_missing' => 'Fes servir Ctrl+C en el mode d\'edició i enganxa el teu missatge per afegir una marca de temps!',
+            'title' => 'Nova discussió',
+            'unpin' => 'No fixis',
+        ],
+
+        'review' => [
+            'new' => 'Nova revisió',
+            'embed' => [
+                'delete' => 'Eliminar',
+                'missing' => '[DISCUSIÓ ELIMINADA]',
+                'unlink' => 'Desvincular',
+                'unsaved' => 'Sense desar',
+                'timestamp' => [
+                    'all-diff' => 'Les publicacions a "Totes les dificultats" no poden tenir marques de temps.',
+                    'diff' => 'Si el comentari de :type comença amb una marca de temps, es mostrarà a la Línia de temps.',
+                ],
+            ],
+            'insert-block' => [
+                'paragraph' => 'inserir paràgraf',
+                'praise' => 'inserir elogi',
+                'problem' => 'inserir problema',
+                'suggestion' => 'inserir suggeriment',
+            ],
+        ],
+
+        'show' => [
+            'title' => ':title mapejat per :mapper',
+        ],
+
+        'sort' => [
+            'created_at' => 'Data de creació',
+            'timeline' => 'Línia de temps',
+            'updated_at' => 'Última actualització',
+        ],
+
+        'stats' => [
+            'deleted' => 'Eliminat',
+            'mapper_notes' => 'Notes',
+            'mine' => 'Meu',
+            'pending' => 'Pendent',
+            'praises' => 'Elogis',
+            'resolved' => 'Resolt',
+            'total' => 'Tot',
+        ],
+
+        'status-messages' => [
+            'approved' => 'Aquest mapa va ser aprovat el :date!',
+            'graveyard' => "Aquest mapa no ha estat actualitzat des del :date pel que va ser abandonat...",
+            'loved' => 'Aquest mapa va ser agregat a Estimats el :date!',
+            'ranked' => 'Aquest mapa va ser classificat el :date!',
+            'wip' => 'Nota: el creador ha marcat aquest mapa de ritmes com a treball en curs.',
+        ],
+
+        'votes' => [
+            'none' => [
+                'down' => 'Encara no hi ha vots negatius',
+                'up' => 'Encara no hi ha vots positius',
+            ],
+            'latest' => [
+                'down' => 'Últims vots negatius',
+                'up' => 'Últims vots positius',
+            ],
+        ],
+    ],
+
+    'hype' => [
+        'button' => 'Hipejar aquest mapa!',
+        'button_done' => 'Hypejat!',
+        'confirm' => "Segur? Això farà servir un dels seus :n hype restants i no es pot desfer.",
+        'explanation' => 'Hypeja aquest mapa per fer-lo més visible per a la nominació i la classificació!',
+        'explanation_guest' => 'Inicia sessió i hypeja aquest mapa per fer-lo més visible per a la nominació i la classificació!',
+        'new_time' => "Obtindràs un altre hype :new_time.",
+        'remaining' => 'Et queden :remaining hypes.',
+        'required_text' => 'Hype: :current/:required',
+        'section_title' => 'Tren de hype',
+        'title' => 'Hype',
+    ],
+
+    'feedback' => [
+        'button' => 'Deixar un comentari',
+    ],
+
+    'nominations' => [
+        'delete' => 'Eliminar',
+        'delete_own_confirm' => 'Segur? El mapa serà eliminat i seràs redirigit de tornada al teu perfil.',
+        'delete_other_confirm' => 'Segur? El mapa serà eliminat i seràs redirigit de tornada al perfil dusuari.',
+        'disqualification_prompt' => 'Motiu de la desqualificació?',
+        'disqualified_at' => 'Desqualificat :time_ago (:reason).',
+        'disqualified_no_reason' => 'no s\'ha especificat cap raó',
+        'disqualify' => 'Desqualificar',
+        'incorrect_state' => 'Error en realitzar aquesta acció, intenteu actualitzar la pàgina.',
+        'love' => 'Estimar',
+        'love_choose' => 'Trieu la dificultat per a l\'estimat',
+        'love_confirm' => 'Estimar aquest mapa?',
+        'nominate' => 'Nominar',
+        'nominate_confirm' => 'Nominar aquest mapa?',
+        'nominated_by' => 'nominat per :users',
+        'not_enough_hype' => "No hi ha prou hype.",
+        'remove_from_loved' => 'Eliminar de Estimats',
+        'remove_from_loved_prompt' => 'Motiu per remoure d\'Estimats:',
+        'required_text' => 'Nominacions: :current/:required',
+        'reset_message_deleted' => 'eliminat',
+        'title' => 'Estat de nominació',
+        'unresolved_issues' => 'Encara hi ha problemes sense resoldre que primer s\'han de resoldre.',
+
+        'rank_estimate' => [
+            '_' => '',
+            'queue' => '',
+            'soon' => 'aviat',
+        ],
+
+        'reset_at' => [
+            'nomination_reset' => '',
+            'disqualify' => '',
+        ],
+
+        'reset_confirm' => [
+            'disqualify' => '',
+            'nomination_reset' => '',
+            'problem_warning' => '',
+        ],
+    ],
+
+    'listing' => [
+        'search' => [
+            'prompt' => '',
+            'login_required' => 'Inicieu la sessió per cercar.',
+            'options' => '',
+            'supporter_filter' => '',
+            'not-found' => '',
+            'not-found-quote' => '',
+            'filters' => [
+                'extra' => 'Extra',
+                'general' => 'General',
+                'genre' => 'Gènere',
+                'language' => 'Llengua',
+                'mode' => '',
+                'nsfw' => '',
+                'played' => '',
+                'rank' => '',
+                'status' => '',
+            ],
+            'sorting' => [
+                'title' => '',
+                'artist' => '',
+                'difficulty' => '',
+                'favourites' => '',
+                'updated' => '',
+                'ranked' => '',
+                'rating' => '',
+                'plays' => '',
+                'relevance' => '',
+                'nominations' => '',
+            ],
+            'supporter_filter_quote' => [
+                '_' => '',
+                'link_text' => '',
+            ],
+        ],
+    ],
+    'general' => [
+        'converts' => '',
+        'featured_artists' => '',
+        'follows' => '',
+        'recommended' => '',
+        'spotlights' => '',
+    ],
+    'mode' => [
+        'all' => '',
+        'any' => '',
+        'osu' => '',
+        'taiko' => '',
+        'fruits' => '',
+        'mania' => '',
+    ],
+    'status' => [
+        'any' => '',
+        'approved' => '',
+        'favourites' => '',
+        'graveyard' => '',
+        'leaderboard' => '',
+        'loved' => '',
+        'mine' => '',
+        'pending' => '',
+        'wip' => '',
+        'qualified' => '',
+        'ranked' => '',
+    ],
+    'genre' => [
+        'any' => '',
+        'unspecified' => '',
+        'video-game' => '',
+        'anime' => '',
+        'rock' => '',
+        'pop' => '',
+        'other' => '',
+        'novelty' => '',
+        'hip-hop' => '',
+        'electronic' => '',
+        'metal' => '',
+        'classical' => '',
+        'folk' => '',
+        'jazz' => '',
+    ],
+    'mods' => [
+        '4K' => '',
+        '5K' => '',
+        '6K' => '',
+        '7K' => '',
+        '8K' => '',
+        '9K' => '',
+        'AP' => '',
+        'DT' => '',
+        'EZ' => '',
+        'FI' => '',
+        'FL' => '',
+        'HD' => '',
+        'HR' => '',
+        'HT' => '',
+        'MR' => '',
+        'NC' => '',
+        'NF' => '',
+        'NM' => '',
+        'PF' => '',
+        'RX' => '',
+        'SD' => '',
+        'SO' => '',
+        'TD' => '',
+        'V2' => '',
+    ],
+    'language' => [
+        'any' => '',
+        'english' => '',
+        'chinese' => '',
+        'french' => '',
+        'german' => '',
+        'italian' => '',
+        'japanese' => '',
+        'korean' => '',
+        'spanish' => '',
+        'swedish' => '',
+        'russian' => '',
+        'polish' => '',
+        'instrumental' => '',
+        'other' => '',
+        'unspecified' => '',
+    ],
+
+    'nsfw' => [
+        'exclude' => '',
+        'include' => '',
+    ],
+
+    'played' => [
+        'any' => '',
+        'played' => '',
+        'unplayed' => '',
+    ],
+    'extra' => [
+        'video' => '',
+        'storyboard' => '',
+    ],
+    'rank' => [
+        'any' => '',
+        'XH' => '',
+        'X' => '',
+        'SH' => '',
+        'S' => '',
+        'A' => '',
+        'B' => '',
+        'C' => '',
+        'D' => '',
+    ],
+    'panel' => [
+        'playcount' => '',
+        'favourites' => '',
+    ],
+    'variant' => [
+        'mania' => [
+            '4k' => '',
+            '7k' => '',
+            'all' => '',
+        ],
+    ],
+];

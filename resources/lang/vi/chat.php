@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => 'Bạn có muốn ẩn kênh này không? Bạn vẫn sẽ nhận được tin nhắn từ kênh này.',
         'create' => 'tạo thông báo ',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Thông báo',

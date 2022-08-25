@@ -38,4 +38,9 @@ class UserAccountHistoryFactory extends Factory
     {
         return $this->state(['ban_status' => 2]);
     }
+
+    public function tournamentBan()
+    {
+        return $this->state(['ban_status' => 3]);
+    }
 }

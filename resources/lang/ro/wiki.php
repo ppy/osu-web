@@ -10,9 +10,9 @@ return [
         'missing' => 'Pagina solicitată ":keyword" nu a putut fi găsită.',
         'missing_title' => 'Nu a fost găsit',
         'missing_translation' => 'Pagina solicitată nu a putut fi găsită pentru limba selectată momentan.',
-        'needs_cleanup_or_rewrite' => 'Această pagine nu întâlnește standardele osu! wiki și nevoile trebuie să curățată sau rescrisă. Dacă ești capabil să ajuți, vă rugăm considerați să actualizați articolul!',
+        'needs_cleanup_or_rewrite' => 'Această pagină nu îndeplinește standardele wiki-ului osu! și trebuie curățată sau rescrisă. Daca puteți ajuta, vă rugăm să luați în considerare actualizarea articolului!',
         'search' => 'Căută pagini existente pentru :link.',
-        'stub' => '',
+        'stub' => 'Acest articol este incomplet și momentan așteaptă pentru extinderea de către cineva.',
         'toc' => 'Conținut',
 
         'edit' => [
