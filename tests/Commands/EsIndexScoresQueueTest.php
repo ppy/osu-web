@@ -62,6 +62,7 @@ class EsIndexScoresQueueTest extends TestCase
     public function dataProviderForTestParameterValidity(): array
     {
         return [
+            [[], false],
             [['--all' => true], true],
             [['--from' => 0], true],
             [['--ids' => 0], true],
@@ -72,6 +73,7 @@ class EsIndexScoresQueueTest extends TestCase
             [['--all' => true, '--from' => 0], false],
             [['--all' => true, '--ids' => 0], false],
             [['--from' => 0, '--ids' => 0], false],
+            [['--user' => 0], false],
             [['--user' => 0, '--all' => true], true],
             [['--user' => 0, '--all' => true, '--from' => 0], false],
         ];

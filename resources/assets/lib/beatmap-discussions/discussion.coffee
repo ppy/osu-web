@@ -6,13 +6,13 @@ import { route } from 'laroute'
 import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { button, div, i, span, a } from 'react-dom-factories'
-import { badgeGroup } from 'utils/beatmapset-discussion-helper'
+import { canModeratePosts, badgeGroup } from 'utils/beatmapset-discussion-helper'
 import { classWithModifiers } from 'utils/css'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { discussionTypeIcons } from './discussion-type'
 import { NewReply } from './new-reply'
 import { Post } from './post'
-import { SystemPost } from './system-post'
+import SystemPost from './system-post'
 import { UserCard } from './user-card'
 
 el = React.createElement
@@ -225,7 +225,7 @@ export class Discussion extends React.PureComponent
 
 
   canBeRepliedTo: =>
-    (!@props.beatmapset.discussion_locked || BeatmapDiscussionHelper.canModeratePosts(@props.currentUser)) &&
+    (!@props.beatmapset.discussion_locked || canModeratePosts(@props.currentUser)) &&
     (!@props.discussion.beatmap_id? || !@props.currentBeatmap.deleted_at?)
 
 
@@ -234,13 +234,13 @@ export class Discussion extends React.PureComponent
 
     elementName = if post.system then SystemPost else Post
 
-    canModeratePosts = BeatmapDiscussionHelper.canModeratePosts(@props.currentUser)
+    canModerate = canModeratePosts(@props.currentUser)
     canBeEdited = @isOwner(post) && post.id > @resolvedSystemPostId() && !@props.beatmapset.discussion_locked
     canBeDeleted =
       if type == 'discussion'
         @props.discussion.current_user_attributes?.can_destroy
       else
-        canModeratePosts || canBeEdited
+        canModerate || canBeEdited
 
     el elementName,
       key: post.id
@@ -255,7 +255,7 @@ export class Discussion extends React.PureComponent
       lastEditor: @props.users[post.last_editor_id] ? @props.users[null] if post.last_editor_id?
       canBeEdited: @props.currentUser.is_admin || canBeEdited
       canBeDeleted: canBeDeleted
-      canBeRestored: canModeratePosts
+      canBeRestored: canModerate
       currentUser: @props.currentUser
 
 
