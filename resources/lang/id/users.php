@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Anda telah memblokir pengguna ini.',
+        'comment_text' => 'Komentar ini disembunyikan.',
         'blocked_count' => 'pengguna yang diblokir (:count)',
         'hide_profile' => 'Sembunyikan profil',
+        'hide_comment' => 'sembunyikan',
         'not_blocked' => 'Pengguna ini tidak diblokir.',
         'show_profile' => 'Tampilkan profil',
+        'show_comment' => 'tampilkan',
         'too_many' => 'Batas pemblokiran tercapai.',
         'button' => [
             'block' => 'Blokir',
@@ -369,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Ban',
                         'silence' => 'Silence',
+                        'tournament_ban' => '',
                         'note' => 'Catatan',
                     ],
                 ],

@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'このユーザーをブロックしています',
+        'comment_text' => 'このコメントは隠されています。',
         'blocked_count' => 'ブロックしたユーザー(:count)',
         'hide_profile' => 'プロフィールを隠す',
+        'hide_comment' => '隠す',
         'not_blocked' => 'このユーザーはブロックされていません。',
         'show_profile' => 'プロフィールを表示',
+        'show_comment' => '表示',
         'too_many' => 'ブロックできる上限に達しました。',
         'button' => [
             'block' => 'ブロック',
@@ -369,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'BAN',
                         'silence' => 'サイレンス',
+                        'tournament_ban' => '',
                         'note' => 'メモ',
                     ],
                 ],

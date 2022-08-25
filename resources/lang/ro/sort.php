@@ -16,14 +16,14 @@ return [
     'username' => 'Nume de utilizator',
 
     'artist_tracks' => [
-        'album' => '',
-        'artist' => '',
-        'bpm' => '',
-        'genre' => '',
-        'length' => '',
-        'relevance' => '',
-        'title' => '',
-        'update' => '',
+        'album' => 'Album',
+        'artist' => 'Artist',
+        'bpm' => 'BPM',
+        'genre' => 'Gen',
+        'length' => 'Durată',
+        'relevance' => 'Relevanţă',
+        'title' => 'Titlu',
+        'update' => 'Actualizare',
     ],
 
     'forum_posts' => [

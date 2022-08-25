@@ -133,6 +133,7 @@ export default class Controller {
     const beatmap = this.beatmap;
 
     if (!forceReload && !this.data.blank) {
+      this.xhrState = null;
       return;
     }
 

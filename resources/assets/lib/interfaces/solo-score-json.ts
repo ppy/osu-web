@@ -34,6 +34,7 @@ interface SoloScoreJsonDefaultAttributes {
   ended_at: string;
   id: number;
   legacy_perfect: boolean | null;
+  legacy_score_id: number | null;
   max_combo: number;
   mods: Mod[];
   passed: boolean;

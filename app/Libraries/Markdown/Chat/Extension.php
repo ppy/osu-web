@@ -46,6 +46,8 @@ final class Extension implements ConfigurableExtensionInterface
             ->addInlineParser(new Parser\Inline\BacktickParser(),    150)
             ->addInlineParser(new Parser\Inline\EscapableParser(),    80)
             ->addInlineParser(new Parser\Inline\AutolinkParser(),     50)
+            ->addInlineParser(new Parser\Inline\CloseBracketParser(), 30)
+            ->addInlineParser(new Parser\Inline\OpenBracketParser(),  20)
 
             ->addRenderer(Node\Block\BlockQuote::class,    new Renderer\Block\BlockQuoteRenderer(),    0)
             ->addRenderer(CoreNode\Block\Document::class,  new CoreRenderer\Block\DocumentRenderer(),  0)

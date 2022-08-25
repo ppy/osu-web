@@ -75,7 +75,7 @@ return [
 
     'comment' => [
         'store' => [
-            'disabled' => '',
+            'disabled' => 'Komentari su onemogućeni',
         ],
         'update' => [
             'deleted' => "Ne možeš urediti izbrisanu objavu.",

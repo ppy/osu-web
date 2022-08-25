@@ -3,6 +3,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace Tests\Models\Solo;
 
 use App\Models\Solo\Score;
@@ -140,5 +142,32 @@ class ScoreTest extends TestCase
         ]]);
 
         $this->assertTrue($score->data->mods[0] instanceof stdClass, 'mods entry should be of type stdClass');
+    }
+
+    public function testWeightedPp(): void
+    {
+        $pp = 10;
+        $weight = 0.5;
+        $score = Score::factory()->create();
+        $score->performance()->create(['pp' => $pp]);
+        $score->weight = $weight;
+
+        $this->assertSame($score->weightedPp(), $pp * $weight);
+    }
+
+    public function testWeightedPpWithoutPerformance(): void
+    {
+        $score = Score::factory()->create();
+        $score->weight = 0.5;
+
+        $this->assertNull($score->weightedPp());
+    }
+
+    public function testWeightedPpWithoutWeight(): void
+    {
+        $score = Score::factory()->create();
+        $score->performance()->create(['pp' => 10]);
+
+        $this->assertNull($score->weightedPp());
     }
 }

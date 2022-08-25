@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => '',
         'create' => 'közlemény készítése',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Közlemények',

@@ -6,6 +6,7 @@ import { route } from 'laroute';
 import { Dictionary } from 'lodash';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
+import StringWithComponent from './string-with-component';
 
 type ReactButton = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
 type ReactButtonWithoutRef = Pick<ReactButton, Exclude<keyof ReactButton, 'ref'>>;
@@ -109,7 +110,10 @@ export class ReportReportable extends React.PureComponent<Props, State> {
             disabled={this.state.disabled}
             onClose={this.onFormClose}
             onSubmit={this.onSubmit}
-            title={osu.trans(`report.${groupKey}.title`, { username: `<strong>${user.username}</strong>` })}
+            title={<StringWithComponent
+              mappings={{ username: <strong>{user.username}</strong> }}
+              pattern={osu.trans(`report.${groupKey}.title`)}
+            />}
             visible
             visibleOptions={availableOptions[groupKey]}
           />

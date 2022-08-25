@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Bu kullanıcıyı engelledin.',
+        'comment_text' => 'Bu yorum gizlenmiş.',
         'blocked_count' => 'engellenen kullanıcılar (:count)',
         'hide_profile' => 'profili gizle',
+        'hide_comment' => 'gizle',
         'not_blocked' => 'Bu kullanıcı engellenmemiş.',
         'show_profile' => 'profili göster',
+        'show_comment' => 'göster',
         'too_many' => 'Engelleme sınırına ulaşıldı.',
         'button' => [
             'block' => 'engelle',
@@ -369,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Ban',
                         'silence' => 'Susturma',
+                        'tournament_ban' => '',
                         'note' => 'Not',
                     ],
                 ],

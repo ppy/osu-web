@@ -4,51 +4,51 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'deleted' => '',
-    'deleted_by' => '',
-    'deleted_by_system' => '',
-    'deleted_count' => '',
-    'edited' => '',
-    'pinned' => '',
-    'empty' => '',
-    'load_replies' => '',
-    'replies_count' => '',
-    'title' => '',
+    'deleted' => 'izbrisano',
+    'deleted_by' => 'izbrisano :timeago od :user',
+    'deleted_by_system' => 'sustav',
+    'deleted_count' => ':count_delimited izbrisan komentar|:count_delimited izbrisanih komentara',
+    'edited' => 'uređeno :timeago od :user',
+    'pinned' => 'prikvačeno',
+    'empty' => 'Još nema komentara.',
+    'load_replies' => 'učitaj odgovore',
+    'replies_count' => ':count_delimited odgovor|:count_delimited odgovora',
+    'title' => 'Komentari',
 
     'commentable_name' => [
-        'beatmapset' => '',
-        'build' => '',
+        'beatmapset' => 'Beatmapa',
+        'build' => 'Popis promjena',
         'news_post' => 'Vijesti',
-        '_deleted' => '',
+        '_deleted' => 'Izbrisana stavka',
     ],
 
     'editor' => [
         'textarea_hint' => [
-            '_' => '',
+            '_' => 'Pritisni enter za :action. Koristi shift+enter za novu liniju.',
             'edit' => 'spremi',
-            'new' => '',
-            'reply' => '',
+            'new' => 'objavu',
+            'reply' => 'odgovor',
         ],
     ],
 
     'guest_button' => [
-        'new' => '',
-        'reply' => '',
+        'new' => 'Prijavi se da komentiraš',
+        'reply' => 'Prijavi se da odgovoriš',
     ],
 
     'index' => [
-        'nav_comments' => '',
-        'nav_title' => '',
-        'no_comments' => '',
+        'nav_comments' => 'komentari',
+        'nav_title' => 'popis',
+        'no_comments' => 'nema pronađenih komentara...',
     ],
 
     'placeholder' => [
-        'edit' => '',
-        'new' => '',
-        'reply' => '',
+        'edit' => 'Ovdje uredi komentar',
+        'new' => 'Ovdje upiši novi komentar',
+        'reply' => 'Upiši svoj odgovor ovdje',
     ],
 
     'show' => [
-        'nav_title' => '',
+        'nav_title' => 'komentari',
     ],
 ];

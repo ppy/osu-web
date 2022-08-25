@@ -7,8 +7,8 @@ import { route } from 'laroute';
 import core from 'osu-core-singleton';
 import { rulesetName } from './beatmap-helper';
 
-export function canBeReported(score: SoloScoreJson): score is SoloScoreJson & Required<Pick<SoloScoreJson, 'best_id' | 'user'>> {
-  return score.best_id != null
+export function canBeReported(score: SoloScoreJson): score is SoloScoreJson & Required<Pick<SoloScoreJson, 'user'>> {
+  return (score.best_id != null || score.type === 'solo_score')
     && score.user != null
     && !score.user.is_deleted
     && core.currentUser != null
@@ -74,6 +74,21 @@ export const modeAttributesMap: Record<GameMode, AttributeData[]> = {
     { attribute: 'miss', label: labelMiss },
   ],
 };
+
+export function scoreDownloadUrl(score: SoloScoreJson) {
+  if (score.type === 'solo_score') {
+    return route('scores.download', { score: score.id });
+  }
+
+  if (score.best_id != null) {
+    return route('scores.download-legacy', {
+      mode: rulesetName(score.ruleset_id),
+      score: score.best_id,
+    });
+  }
+
+  throw new Error('score json doesn\'t have download url');
+}
 
 export function scoreUrl(score: SoloScoreJson) {
   if (score.type === 'solo_score') {

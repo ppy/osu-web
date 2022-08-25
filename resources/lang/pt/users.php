@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Tu bloqueaste este utilizador.',
+        'comment_text' => 'Este comentário está oculto.',
         'blocked_count' => 'utilizadores bloqueados (:count)',
         'hide_profile' => 'Ocultar perfil',
+        'hide_comment' => 'ocultar',
         'not_blocked' => 'Esse utilizador não está bloqueado.',
         'show_profile' => 'Mostrar perfil',
+        'show_comment' => 'mostrar',
         'too_many' => 'Limite de bloqueios atingido.',
         'button' => [
             'block' => 'Bloquear',
@@ -369,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Banido',
                         'silence' => 'Silenciado',
+                        'tournament_ban' => '',
                         'note' => 'Notificado',
                     ],
                 ],

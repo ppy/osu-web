@@ -3,14 +3,18 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace App\Models\Solo;
 
 use App\Libraries\Score\UserRankCache;
 use App\Models\Beatmap;
 use App\Models\Model;
 use App\Models\Score as LegacyScore;
+use App\Models\Traits;
 use App\Models\User;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Builder;
+use LaravelRedis;
 
 /**
  * @property int $beatmap_id
@@ -24,14 +28,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property User $user
  * @property int $user_id
  */
-class Score extends Model
+class Score extends Model implements Traits\ReportableInterface
 {
-    use SoftDeletes;
+    use Traits\Reportable, Traits\WithWeightedPp;
+
+    const PROCESSING_QUEUE = 'osu-queue:score-statistics';
 
     protected $table = 'solo_scores';
     protected $casts = [
-        'preserve' => 'boolean',
         'data' => ScoreData::class,
+        'has_replay' => 'boolean',
+        'preserve' => 'boolean',
     ];
 
     public static function createFromJsonOrExplode(array $params)
@@ -57,6 +64,26 @@ class Score extends Model
         return $score;
     }
 
+    /**
+     * Queue the item for score processing
+     *
+     * @param array $scoreJson JSON of the score generated using ScoreTransformer of type Solo
+     */
+    public static function queueForProcessing(array $scoreJson): void
+    {
+        LaravelRedis::lpush(static::PROCESSING_QUEUE, json_encode([
+            'Score' => [
+                'beatmap_id' => $scoreJson['beatmap_id'],
+                'id' => $scoreJson['id'],
+                'ruleset_id' => $scoreJson['ruleset_id'],
+                'user_id' => $scoreJson['user_id'],
+                // TODO: processor is currently order dependent and requires
+                // this to be located at the end
+                'data' => json_encode($scoreJson),
+            ],
+        ]));
+    }
+
     public function beatmap()
     {
         return $this->belongsTo(Beatmap::class, 'beatmap_id');
@@ -72,7 +99,45 @@ class Score extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    /**
+     * This should match the one used in osu-elastic-indexer.
+     */
+    public function scopeIndexable(Builder $query): Builder
+    {
+        return $this
+            ->where('preserve', true)
+            ->whereHas('user', fn (Builder $q): Builder => $q->default());
+    }
+
+    public function getPpAttribute(): ?float
+    {
+        return $this->performance?->pp;
+    }
+
     public function createLegacyEntryOrExplode()
+    {
+        $score = $this->makeLegacyEntry();
+
+        $score->saveOrExplode();
+
+        return $score;
+    }
+
+    public function getMode(): string
+    {
+        return Beatmap::modeStr($this->ruleset_id);
+    }
+
+    public function legacyScore(): ?LegacyScore\Best\Model
+    {
+        $id = $this->data->legacyScoreId;
+
+        return $id === null
+            ? null
+            : LegacyScore\Best\Model::getClass($this->ruleset_id)::find($id);
+    }
+
+    public function makeLegacyEntry(): LegacyScore\Model
     {
         $data = $this->data;
         $statistics = $data->statistics;
@@ -117,18 +182,24 @@ class Score extends Model
                 break;
         }
 
-        $score->saveOrExplode();
-
         return $score;
     }
 
-    public function getMode(): string
+    public function trashed(): bool
     {
-        return Beatmap::modeStr($this->ruleset_id);
+        return false;
     }
 
     public function userRank(): ?int
     {
         return UserRankCache::fetch([], $this->beatmap_id, $this->ruleset_id, $this->data->totalScore);
+    }
+
+    protected function newReportableExtraParams(): array
+    {
+        return [
+            'reason' => 'Cheating',
+            'user_id' => $this->user_id,
+        ];
     }
 }

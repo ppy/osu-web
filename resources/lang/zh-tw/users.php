@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => '您已經封鎖這位使用者。',
+        'comment_text' => '這則留言已被隱藏。',
         'blocked_count' => '被封鎖的使用者 (:count)',
         'hide_profile' => '隱藏用戶資料',
+        'hide_comment' => '隱藏',
         'not_blocked' => '這位使用者未被封鎖。',
         'show_profile' => '顯示用戶資料',
+        'show_comment' => '顯示',
         'too_many' => '已達到封鎖上限。',
         'button' => [
             'block' => '封鎖',
@@ -54,8 +57,8 @@ return [
         'warning' => "若你沒有遵守規則，我們原則上在一個月的期限以內不會考慮解禁您的帳號。在此之後，您如有需要，可以隨時聯絡我們。請注意，在一個帳號被封禁後創建新帳號會<strong>使您的封禁期限被延長</strong>。而且<strong>每當您創建一個新帳號，您都是在更嚴重地破壞規則</strong>。我們強烈建議您不要誤入歧途。",
 
         'if_mistake' => [
-            '_' => '如果您認為這是一個錯誤，歡迎您與我們聯繫（通過 :email 或點擊本頁右下角的"？"）。請注意一點，我們始終對於我們的作為充滿信心，因為它基於非常可靠的資料證據。我們保留了無視您的請求的權利，如果我們認為您是故意不誠實。',
-            'email' => '電子郵件',
+            '_' => '如果您認為這是一個錯誤，歡迎您與我們聯繫（通過 :email 或點擊本頁右下角的"？"）。請注意：我們對於我們的作為充滿信心，因為它是基於非常可靠的資料證據。如果我們認為您是故意不誠實，我們有可能無視您的請求。',
+            'email' => '電郵',
         ],
 
         'reasons' => [
@@ -84,11 +87,11 @@ return [
         '_' => '登入',
         'button' => '登入',
         'button_posting' => '登入中...',
-        'email_login_disabled' => '目前沒辦法使用Email登入了，請使用使用者名稱登入。',
+        'email_login_disabled' => '目前沒辦法使用電郵登入，請使用使用者名稱登入。',
         'failed' => '登入失敗',
         'forgot' => '忘記密碼？',
         'info' => '請先登入以繼續',
-        'invalid_captcha' => '登入失敗的次數過多，請完成Captcha挑戰後再試。 (如果看不見Captcha請重新載入頁面)',
+        'invalid_captcha' => '登入失敗的次數過多，請完成 Captcha 挑戰後再試。（如果看不見 Captcha 請重新載入頁面）',
         'locked_ip' => '您的 IP 位址已被鎖定。請稍候幾分鐘。',
         'password' => '密碼',
         'register' => "沒有 osu! 帳號嗎？現在就註冊一個吧！",
@@ -369,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => '封鎖',
                         'silence' => '禁言',
+                        'tournament_ban' => '',
                         'note' => '備註',
                     ],
                 ],

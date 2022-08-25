@@ -106,7 +106,7 @@ export default class NewReview extends React.Component<Props, State> {
     );
   }
 
-  // TODO: to whoever refactors this - this 'sticky' behaviour was ported from new-discussion.coffee, so remember to refactor that too
+  // TODO: remove sticky when converting to mobx, like in new-discussion.
   setSticky = (sticky = true) => {
     this.setState({
       cssTop: this.cssTop(sticky),

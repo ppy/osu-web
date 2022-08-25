@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => '',
         'create' => 'стварыць аб\'яву',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Аб\'явы',

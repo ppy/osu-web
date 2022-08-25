@@ -11,7 +11,7 @@ return [
 
         'blurb' => [
             'important' => 'LES DETTE FØR NEDLASTING',
-            'install_instruction' => '',
+            'install_instruction' => 'Installasjon: Når en pakke er lastet ned, pakk ut innholdet i pakken til osu! Sang mappen og osu! vil gjøre resten.',
             'note' => [
                 '_' => 'Legg også merke til at det er sterkt anbefalt å :scary, ettersom de eldste mappene er av mye lavere kvalitet enn de fleste nye maps.',
                 'scary' => 'laste ned de nye pakkene først',
@@ -26,8 +26,8 @@ return [
             'not_cleared' => 'ikke fullført',
         ],
         'no_diff_reduction' => [
-            '_' => '',
-            'link' => '',
+            '_' => ':link må ikke brukes til å fjerne denne pakken.',
+            'link' => 'Vanskelighetsgrad reduksjon av modifikasjoner',
         ],
     ],
 
