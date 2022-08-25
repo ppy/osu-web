@@ -7,6 +7,7 @@ import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { switchNever } from 'utils/switch-never';
 
 interface Props {
   post: BeatmapsetDiscussionSystemPostJson;
@@ -14,6 +15,8 @@ interface Props {
 }
 
 export default function SystemPost({ post, user }: Props) {
+  if (post.message.type !== 'resolve') switchNever(post.message.type);
+
   const className = classWithModifiers('beatmap-discussion-system-post', post.message.type, {
     deleted: post.deleted_at != null,
   });
