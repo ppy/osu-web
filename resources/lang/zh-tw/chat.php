@@ -15,7 +15,7 @@ return [
     ],
 
     'channels' => [
-        'confirm_part' => '',
+        'confirm_part' => '您是否要隱藏本頻道？您仍然會收到這個頻道的訊息。',
         'create' => '建立公告',
 
         'list' => [

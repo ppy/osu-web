@@ -15,7 +15,7 @@ return [
     'authorized_clients' => [
         'confirm_revoke' => 'Êtes-vous sûr de vouloir révoquer les permissions de ce client ?',
         'scopes_title' => 'Cette application peut :',
-        'owned_by' => 'Créer par :user',
+        'owned_by' => 'Créé par :user',
         'none' => 'Aucun client',
 
         'revoked' => [

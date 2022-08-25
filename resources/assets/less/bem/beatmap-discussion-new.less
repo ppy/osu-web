@@ -38,10 +38,11 @@
     margin: 5px 0;
     display: flex;
     flex: none;
+    min-height: 2em; // prevent squashing when wrapping.
     .default-border-radius();
 
     &--right {
-      margin: 0 0 5px;
+      gap: 5px;
       justify-content: flex-end;
       flex: 1 0 auto;
       flex-wrap: wrap;
@@ -121,15 +122,13 @@
 
   &__timestamp-col {
     .default-text-shadow();
-    padding: 10px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
     font-size: @font-size--small-2;
     color: #fff;
     background-color: @osu-colour-b3;
     border-radius: 0 @border-radius-base @border-radius-base 0;
-
-    @media @mobile {
-      flex-grow: 1;
-    }
 
     &--label {
       background-color: @osu-colour-b6;
