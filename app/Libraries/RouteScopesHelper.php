@@ -102,9 +102,10 @@ class RouteScopesHelper
             $uri = $route->uri;
 
             // filter out closures and global middleware.
-            $middlewares = array_values(array_filter(Route::gatherRouteMiddleware($route), function ($middleware) use ($apiGroup) {
-                return !($middleware instanceof Closure) && !$apiGroup->contains($middleware);
-            }));
+            $middlewares = array_values(array_filter(
+                Route::gatherRouteMiddleware($route),
+                fn ($middleware) => !($middleware instanceof Closure) && !$apiGroup->contains($middleware)
+            ));
             $controller = $route->action['controller'] ?? null;
 
             // extract scopes
