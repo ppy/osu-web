@@ -15,9 +15,7 @@ interface Props {
 
 export default function SystemPost({ post, user }: Props) {
   if (!post.system) return null;
-  if (post.message.type !== 'resolved') {
-    console.error(`unknown type: ${post.message.type}`);
-  }
+  if (post.message.type !== 'resolved') return null;
 
   const className = classWithModifiers('beatmap-discussion-system-post', post.message.type, {
     deleted: post.deleted_at != null,
@@ -26,19 +24,17 @@ export default function SystemPost({ post, user }: Props) {
   return (
     <div className={className}>
       <div className='beatmap-discussion-system-post__content'>
-        {post.message.type === 'resolved' && (
-          <StringWithComponent
-            mappings={{
-              user: <a
-                className='beatmap-discussion-system-post__user'
-                href={route('users.show', { user: user.id })}
-              >
-                {user.username}
-              </a>,
-            }}
-            pattern={osu.trans(`beatmap_discussions.system.resolved.${post.message.value}`)}
-          />
-        )}
+        <StringWithComponent
+          mappings={{
+            user: <a
+              className='beatmap-discussion-system-post__user'
+              href={route('users.show', { user: user.id })}
+            >
+              {user.username}
+            </a>,
+          }}
+          pattern={osu.trans(`beatmap_discussions.system.resolved.${post.message.value}`)}
+        />
       </div>
     </div>
   );
