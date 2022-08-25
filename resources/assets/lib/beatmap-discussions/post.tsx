@@ -144,8 +144,6 @@ export default class Post extends React.Component<Props> {
 
   @action
   private readonly editStart = () => {
-    if (this.props.post.system) return;
-
     this.editorMinHeight = this.messageBodyRef.current != null
       ? `${this.messageBodyRef.current.getBoundingClientRect().height + 50}px`
       : '0';
@@ -248,7 +246,6 @@ export default class Post extends React.Component<Props> {
   }
 
   private renderMessageEditor() {
-    if (this.props.post.system) return;
     if (!this.props.canBeEdited) return;
     const canPost = !this.posting && this.canSave;
 
@@ -315,8 +312,6 @@ export default class Post extends React.Component<Props> {
   }
 
   private renderMessageViewer() {
-    if (this.props.post.system) return;
-
     return (
       <div className={`${bn}__message-container`}>
         {this.isReview ? (
@@ -416,7 +411,7 @@ export default class Post extends React.Component<Props> {
 
   @action
   private readonly updatePost = () => {
-    if (this.posting || this.props.post.system) return;
+    if (this.posting) return;
 
     if (this.isReview) {
       if (this.reviewEditor.current == null) {
