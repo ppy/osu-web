@@ -23,44 +23,6 @@ class RouteScopesHelper
         return implode('|', $methods);
     }
 
-    // fills in any missing require-scopes:
-    public function fillMissingMiddlewares()
-    {
-        // pass by reference so middlewares value can be reassigned.
-        foreach ($this->routes as &$route) {
-            $scopes = $route['scopes'];
-            $middlewares = $route['middlewares'];
-
-            $scopesString = presence(implode(',', $scopes));
-            if ($scopesString === null) {
-                continue;
-            }
-
-            // add missing middleware if necessary; exact order might be wrong.
-            $newString = static::$requireScopesPrefix.$scopesString;
-            $index = array_search(RequireScopes::class, $middlewares, true);
-            if ($index === false) {
-                $middlewares[] = RequireScopes::class;
-            }
-
-            $exists = false;
-            foreach ($middlewares as &$middleware) {
-                // replace existing value if it exists
-                if (starts_with($middleware, static::$requireScopesPrefix)) {
-                    $middleware = $newString;
-                    $exists = true;
-                }
-            }
-
-            // otherwise insert new value after require-scopes if possible.
-            if (!$exists) {
-                array_splice($middlewares, $index ? $index + 1 : count($middlewares), 0, $newString);
-            }
-
-            $route['middlewares'] = $middlewares;
-        }
-    }
-
     public function fromCsv(string $filename)
     {
         $csv = array_map('str_getcsv', file($filename));
@@ -123,6 +85,49 @@ class RouteScopesHelper
             sort($methods);
 
             $this->routes[] = compact('uri', 'methods', 'controller', 'middlewares', 'scopes');
+        }
+    }
+
+    /**
+     * Fills in the middleware portion of an exported route based on the expected scopes declared on it.
+     *
+     * This is a convenience allowing a routes file to be exported with the
+     * full list of expected middleware from a list where only the scopes were updated.
+     */
+    public function normalizeMiddlewaresWithScopes()
+    {
+        // pass by reference so middlewares value can be reassigned.
+        foreach ($this->routes as &$route) {
+            $scopes = $route['scopes'];
+            $middlewares = $route['middlewares'];
+
+            $scopesString = presence(implode(',', $scopes));
+            if ($scopesString === null) {
+                continue;
+            }
+
+            // add missing middleware if necessary; exact order might be wrong.
+            $newString = static::$requireScopesPrefix.$scopesString;
+            $index = array_search(RequireScopes::class, $middlewares, true);
+            if ($index === false) {
+                $middlewares[] = RequireScopes::class;
+            }
+
+            $exists = false;
+            foreach ($middlewares as &$middleware) {
+                // replace existing value if it exists
+                if (starts_with($middleware, static::$requireScopesPrefix)) {
+                    $middleware = $newString;
+                    $exists = true;
+                }
+            }
+
+            // otherwise insert new value after require-scopes if possible.
+            if (!$exists) {
+                array_splice($middlewares, $index ? $index + 1 : count($middlewares), 0, $newString);
+            }
+
+            $route['middlewares'] = $middlewares;
         }
     }
 

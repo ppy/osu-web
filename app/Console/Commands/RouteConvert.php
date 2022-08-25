@@ -66,7 +66,7 @@ class RouteConvert extends Command
     protected function write()
     {
         $written = false;
-        $this->routeScopesHelper->fillMissingMiddlewares();
+        $this->routeScopesHelper->normalizeMiddlewaresWithScopes();
 
         if ($filename = $this->options['to-csv']) {
             $this->routeScopesHelper->toCsv($filename);
