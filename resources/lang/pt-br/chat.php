@@ -15,7 +15,7 @@ return [
     ],
 
     'channels' => [
-        'confirm_part' => '',
+        'confirm_part' => 'Você quer esconder este canal? Você ainda receberá mensagens dele.',
         'create' => 'criar anúncio',
 
         'list' => [

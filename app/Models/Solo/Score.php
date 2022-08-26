@@ -3,6 +3,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace App\Models\Solo;
 
 use App\Libraries\Score\UserRankCache;
@@ -28,14 +30,15 @@ use LaravelRedis;
  */
 class Score extends Model implements Traits\ReportableInterface
 {
-    use Traits\Reportable;
+    use Traits\Reportable, Traits\WithWeightedPp;
 
     const PROCESSING_QUEUE = 'osu-queue:score-statistics';
 
     protected $table = 'solo_scores';
     protected $casts = [
-        'preserve' => 'boolean',
         'data' => ScoreData::class,
+        'has_replay' => 'boolean',
+        'preserve' => 'boolean',
     ];
 
     public static function createFromJsonOrExplode(array $params)
@@ -106,6 +109,11 @@ class Score extends Model implements Traits\ReportableInterface
             ->whereHas('user', fn (Builder $q): Builder => $q->default());
     }
 
+    public function getPpAttribute(): ?float
+    {
+        return $this->performance?->pp;
+    }
+
     public function createLegacyEntryOrExplode()
     {
         $score = $this->makeLegacyEntry();
@@ -118,6 +126,15 @@ class Score extends Model implements Traits\ReportableInterface
     public function getMode(): string
     {
         return Beatmap::modeStr($this->ruleset_id);
+    }
+
+    public function legacyScore(): ?LegacyScore\Best\Model
+    {
+        $id = $this->data->legacyScoreId;
+
+        return $id === null
+            ? null
+            : LegacyScore\Best\Model::getClass($this->ruleset_id)::find($id);
     }
 
     public function makeLegacyEntry(): LegacyScore\Model

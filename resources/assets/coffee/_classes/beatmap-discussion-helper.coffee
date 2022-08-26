@@ -15,12 +15,6 @@ class window.BeatmapDiscussionHelper
   @FILTERS = new Set(['deleted', 'hype', 'mapperNotes', 'mine', 'pending', 'praises', 'resolved', 'total'])
 
 
-  @canModeratePosts: (user) =>
-    user ?= currentUser
-
-    user.is_admin || user.is_moderator
-
-
   @defaultMode: (beatmapId) =>
     if beatmapId? && beatmapId != @DEFAULT_BEATMAP_ID
       'timeline'

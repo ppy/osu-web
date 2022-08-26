@@ -372,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Utestengelse',
                         'silence' => 'Forstummet',
+                        'tournament_ban' => '',
                         'note' => 'Merknad',
                     ],
                 ],

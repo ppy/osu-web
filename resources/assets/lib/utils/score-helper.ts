@@ -75,6 +75,21 @@ export const modeAttributesMap: Record<GameMode, AttributeData[]> = {
   ],
 };
 
+export function scoreDownloadUrl(score: SoloScoreJson) {
+  if (score.type === 'solo_score') {
+    return route('scores.download', { score: score.id });
+  }
+
+  if (score.best_id != null) {
+    return route('scores.download-legacy', {
+      mode: rulesetName(score.ruleset_id),
+      score: score.best_id,
+    });
+  }
+
+  throw new Error('score json doesn\'t have download url');
+}
+
 export function scoreUrl(score: SoloScoreJson) {
   if (score.type === 'solo_score') {
     return route('scores.show', { score: score.id });
