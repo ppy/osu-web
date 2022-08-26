@@ -12,8 +12,8 @@ import * as React from 'react';
 import { blackoutToggle } from 'utils/blackout';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
-import { nextVal } from 'utils/seq';
 import { isClickable } from 'utils/html';
+import { nextVal } from 'utils/seq';
 
 interface Props {
   beatmaps: BeatmapExtendedJson[];
