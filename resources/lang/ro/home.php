@@ -7,13 +7,13 @@ return [
     'landing' => [
         'download' => 'Descarcă acum',
         'online' => '<strong>:players</strong> momentan online în <strong>:games</strong> jocuri',
-        'peak' => 'Maxim, :count utilizatori online',
-        'players' => '<strong>:count</strong> jucători înregistrați',
+        'peak' => 'Maxim, :count de utilizatori online',
+        'players' => '<strong>:count</strong> de jucători înregistrați',
         'title' => 'bine ai venit',
         'see_more_news' => 'vezi mai multe noutăți',
 
         'slogan' => [
-            'main' => 'cel mai bun joc de ritm free-to-win',
+            'main' => 'cel mai cel joc de ritm free-to-win',
             'sub' => 'ritmul este doar la un clic distanță',
         ],
     ],
@@ -27,22 +27,22 @@ return [
         'title' => 'Caută',
 
         'beatmapset' => [
-            'login_required' => 'Conectați-vă pentru a căuta beatmaps',
+            'login_required' => 'Conectați-vă pentru a căuta beatmap-uri',
             'more' => ':count mai multe rezultate de căutare pentru acest beatmap',
             'more_simple' => 'Vezi mai multe rezultate de căutare pentru acest beatmap',
-            'title' => 'Beatmaps',
+            'title' => 'Beatmap-uri',
         ],
 
         'forum_post' => [
-            'all' => 'Toate forumurile',
+            'all' => 'Toate forum-urile',
             'link' => 'Caută pe forum',
-            'login_required' => 'Conectați-vă pentru a căuta forumul',
+            'login_required' => 'Conectați-vă pentru a căuta forum-ul',
             'more_simple' => 'Vezi mai multe rezultate de căutare pe forum',
             'title' => 'Forum',
 
             'label' => [
-                'forum' => 'căutare în forumuri',
-                'forum_children' => 'include subforumuri',
+                'forum' => 'căutare în forum-uri',
+                'forum_children' => 'include subforum-uri',
                 'topic_id' => 'subiect #',
                 'username' => 'autor',
             ],
@@ -76,9 +76,9 @@ return [
         'action' => 'Descarcă osu!',
 
         'help' => [
-            '_' => 'dacă ai o problemă la pornirea jocului pentru înregistrarea contului, :help_forum_link sau :support_button.',
-            'help_forum_link' => 'verifică forumul de ajutor',
-            'support_button' => 'contactează asistență',
+            '_' => 'dacă ai o problemă la pornirea jocului sau la înregistrarea contului, :help_forum_link sau :support_button.',
+            'help_forum_link' => 'verifică forum-ul de ajutor',
+            'support_button' => 'contactează suportul tehnic',
         ],
 
         'os' => [
@@ -86,22 +86,22 @@ return [
             'macos' => 'pentru macOS',
             'linux' => 'pentru Linux',
         ],
-        'mirror' => 'mirror',
+        'mirror' => 'sursă alternativă',
         'macos-fallback' => 'utilizatori macOS',
         'steps' => [
             'register' => [
-                'title' => 'obține un cont',
-                'description' => 'urmează instrucțiunile când începi jocul pentru a te conecta sau pentru a-ți crea un cont nou',
+                'title' => 'creează un cont',
+                'description' => 'urmează instrucțiunile când deschizi jocul pentru a te conecta sau pentru a-ți crea un cont nou',
             ],
             'download' => [
                 'title' => 'descarcă jocul',
-                'description' => 'dă clic pe butonul de mai sus pentru a descărca programul de instalare, apoi rulează-l!',
+                'description' => 'dă clic pe butonul de mai sus pentru a descărca installer-ul, apoi rulează-l!',
             ],
             'beatmaps' => [
-                'title' => 'obține beatmaps',
+                'title' => 'obține beatmap-uri',
                 'description' => [
-                    '_' => ':browse vasta bibliotecă de beatmaps create de utilizatori și începe să joci!',
-                    'browse' => 'răsfoiește',
+                    '_' => ':browse vasta colecție de beatmap-uri create de utilizatori și începe să joci!',
+                    'browse' => 'navigați',
                 ],
             ],
         ],
@@ -109,27 +109,27 @@ return [
     ],
 
     'user' => [
-        'title' => 'tablou de bord',
+        'title' => 'tablou de comenzi',
         'news' => [
-            'title' => 'Știri',
-            'error' => 'Eroare la încărcarea știrilor, încearcă să reîmrospătezi pagina?...',
+            'title' => 'Noutăți',
+            'error' => 'Eroare la încărcarea noutăților, încearcă să reîmprospătezi pagina?...',
         ],
         'header' => [
             'stats' => [
-                'friends' => 'Prieteni online',
+                'friends' => 'Prieteni Online',
                 'games' => 'Jocuri',
                 'online' => 'Utilizatori online',
             ],
         ],
         'beatmaps' => [
-            'new' => 'Noi beatmaps clasate',
-            'popular' => 'Beatmaps populare',
+            'new' => 'Beatmap-uri Clasate Noi',
+            'popular' => 'Beatmap-uri Populare',
             'by_user' => 'de :user',
         ],
         'buttons' => [
             'download' => 'Descarcă osu!',
             'support' => 'Sprijină osu!',
-            'store' => 'magazinul osu!',
+            'store' => 'Magazinul osu!',
         ],
     ],
 ];

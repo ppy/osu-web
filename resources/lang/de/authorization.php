@@ -68,14 +68,14 @@ return [
         'friends_only' => 'Der Benutzer blockiert alle Nachrichten von Personen, die nicht auf seiner Freundesliste sind.',
         'moderated' => 'Dieser Kanal wird derzeit moderiert.',
         'no_access' => 'Du hast kein Zugriff auf diesen Kanal.',
-        'receive_friends_only' => 'Der Benutzer kann möglicherweise nicht antworten, da Sie nur Nachrichten von Personen auf Ihrer Freundesliste akzeptieren.',
+        'receive_friends_only' => 'Der Benutzer kann möglicherweise nicht antworten, da du nur Nachrichten von Personen auf deiner Freundesliste akzeptierst.',
         'restricted' => 'Du kannst keine Nachrichten senden, während du stummgeschaltet, eingeschränkt oder gebannt bist.',
         'silenced' => 'Du kannst keine Nachrichten senden, während du stummgeschaltet, eingeschränkt oder gebannt bist.',
     ],
 
     'comment' => [
         'store' => [
-            'disabled' => '',
+            'disabled' => 'Kommentare sind deaktiviert',
         ],
         'update' => [
             'deleted' => "Der gelöschte Beitrag kann nicht bearbeitet werden.",

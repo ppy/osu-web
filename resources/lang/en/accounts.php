@@ -15,7 +15,6 @@ return [
         ],
 
         'email' => [
-            'current' => 'current email',
             'new' => 'new email',
             'new_confirmation' => 'email confirmation',
             'title' => 'Email',

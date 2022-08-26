@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'loading_users' => 'загрузка карыстальнікаў...',
     'talking_in' => 'размаўляе ў :channel',
     'talking_with' => 'размаўляе з :name',
     'title_compact' => 'чат',
@@ -14,6 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => '',
+        'create' => 'стварыць аб\'яву',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Аб\'явы',
@@ -24,12 +28,25 @@ return [
         ],
     ],
 
+    'form' => [
+        'title' => [
+            'announcement' => 'Стварыць новую аб\'яву',
+        ],
+
+        'labels' => [
+            'description' => 'апісанне',
+            'name' => 'назва пакоя',
+            'users' => 'дабаўляемых гульцоў',
+        ],
+    ],
+
     'not_found' => [
         'message' => 'Тут нічога няма, мусіць вы выйшлі з канала або ён не існуе...',
         'title' => 'канал не знойдзены',
     ],
 
     'input' => [
+        'create' => 'Стварыць',
         'disabled' => 'не атрымалася адправіць паведамленне...',
         'disconnected' => 'Адключаны',
         'placeholder' => 'пішыце паведамленне...',

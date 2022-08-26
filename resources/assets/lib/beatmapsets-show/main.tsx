@@ -6,7 +6,7 @@ import { CommentsManager } from 'components/comments-manager';
 import HeaderV4 from 'components/header-v4';
 import PlaymodeTabs from 'components/playmode-tabs';
 import GameMode, { gameModes } from 'interfaces/game-mode';
-import { action, autorun, computed, makeObservable, observable } from 'mobx';
+import { action, autorun, computed, IReactionDisposer, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { generate, setHash } from 'utils/beatmapset-page-hash';
@@ -28,7 +28,7 @@ interface Props {
 @observer
 export default class Main extends React.Component<Props> {
   @observable private controller: Controller;
-  private disposers = new Set<(() => void) | undefined>();
+  private setHashDisposer?: IReactionDisposer;
 
   @computed
   private get headerLinksAppend() {
@@ -65,11 +65,12 @@ export default class Main extends React.Component<Props> {
   }
 
   componentDidMount() {
-    this.disposers.add(autorun(this.setHash));
+    this.setHashDisposer = autorun(this.setHash);
+    $(document).one('turbolinks:before-cache', () => this.setHashDisposer?.());
   }
 
   componentWillUnmount() {
-    this.disposers.forEach((disposer) => disposer?.());
+    this.setHashDisposer?.();
     this.controller.destroy();
   }
 
@@ -106,29 +107,34 @@ export default class Main extends React.Component<Props> {
           <Info controller={this.controller} />
           <Toolbar controller={this.controller} />
           <Description controller={this.controller} />
-        </div>
 
-        {this.controller.beatmapset.can_be_hyped &&
-          <div className='osu-page osu-page--generic-compact'>
-            <Hype beatmapset={this.controller.beatmapset} />
+          <div className='user-profile-pages user-profile-pages--no-tabs'>
+            {this.controller.beatmapset.can_be_hyped &&
+              <div className='page-extra page-extra--compact'>
+                <Hype beatmapset={this.controller.beatmapset} />
+              </div>
+            }
+
+            {this.controller.currentBeatmap.is_scoreable &&
+              <div className='page-extra'>
+                <ScoreboardMain
+                  beatmap={this.controller.currentBeatmap}
+                  container={this.props.container}
+                />
+              </div>
+            }
+
+            <div className='page-extra page-extra--compact'>
+              <CommentsManager
+                commentableId={this.controller.beatmapset.id}
+                commentableType='beatmapset'
+                component={Comments}
+                componentProps={{
+                  modifiers: 'page-extra',
+                }}
+              />
+            </div>
           </div>
-        }
-
-        {this.controller.currentBeatmap.is_scoreable &&
-          <div className='osu-page osu-page--generic'>
-            <ScoreboardMain
-              beatmap={this.controller.currentBeatmap}
-              container={this.props.container}
-            />
-          </div>
-        }
-
-        <div className='osu-page osu-page--generic-compact'>
-          <CommentsManager
-            commentableId={this.controller.beatmapset.id}
-            commentableType='beatmapset'
-            component={Comments}
-          />
         </div>
       </>
     );

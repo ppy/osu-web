@@ -29,7 +29,7 @@ return [
     ],
     'search' => [
         'default' => '結果の取得に失敗しました。もう一度お試しください。',
-        'invalid_cursor_exception' => '',
+        'invalid_cursor_exception' => '無効なカーソルパラメータが指定されました。',
         'operation_timeout_exception' => '検索機能が平時より混み合っています。もう一度お試しください。',
     ],
 ];

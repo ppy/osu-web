@@ -55,7 +55,7 @@ class Room extends Model
 
     const DEFAULT_SORT = 'created';
 
-    const CATEGORIES = ['normal', 'spotlight'];
+    const CATEGORIES = ['normal', 'spotlight', 'featured_artist'];
     const TYPE_GROUPS = [
         'playlists' => [self::PLAYLIST_TYPE],
         'realtime' => self::REALTIME_TYPES,
@@ -402,9 +402,7 @@ class Room extends Model
 
     public function join(User $user)
     {
-        if (!$this->channel->hasUser($user)) {
-            $this->channel->addUser($user);
-        }
+        $this->channel->addUser($user);
     }
 
     public function participants(): HasMany

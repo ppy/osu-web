@@ -35,18 +35,20 @@ class UserReport extends Model
     use RoutesNotifications, Validatable;
 
     const BEATMAPSET_TYPE_REASONS = ['UnwantedContent', 'Other'];
+    const MAX_LENGTH = 2000;
     const POST_TYPE_REASONS = ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'];
     const SCORE_TYPE_REASONS = ['Cheating', 'MultipleAccounts', 'Other'];
 
     const ALLOWED_REASONS = [
-        MorphMap::MAP[Beatmapset::class] => self::BEATMAPSET_TYPE_REASONS,
         MorphMap::MAP[BeatmapDiscussionPost::class] => self::POST_TYPE_REASONS,
+        MorphMap::MAP[Beatmapset::class] => self::BEATMAPSET_TYPE_REASONS,
         MorphMap::MAP[Best\Fruits::class] => self::SCORE_TYPE_REASONS,
         MorphMap::MAP[Best\Mania::class] => self::SCORE_TYPE_REASONS,
         MorphMap::MAP[Best\Osu::class] => self::SCORE_TYPE_REASONS,
         MorphMap::MAP[Best\Taiko::class] => self::SCORE_TYPE_REASONS,
         MorphMap::MAP[Comment::class] => self::POST_TYPE_REASONS,
         MorphMap::MAP[Forum\Post::class] => self::POST_TYPE_REASONS,
+        MorphMap::MAP[Solo\Score::class] => self::SCORE_TYPE_REASONS,
     ];
 
     const CREATED_AT = 'timestamp';
@@ -70,10 +72,14 @@ class UserReport extends Model
 
     public function routeNotificationForSlack(?Notification $_notification): ?string
     {
+        $reason = $this->reason;
+        $reportableModel = $this->reportable()->getModel();
+
         if (
-            $this->reason === 'Cheating'
-            || $this->reason === 'MultipleAccounts'
-            || $this->reportable()->getModel() instanceof BestModel
+            $reason === 'Cheating'
+            || $reason === 'MultipleAccounts'
+            || $reportableModel instanceof BestModel
+            || $reportableModel instanceof Solo\Score
         ) {
             return config('osu.user_report_notification.endpoint_cheating');
         } else {
@@ -126,6 +132,14 @@ class UserReport extends Model
             $this->validationErrors()->add(
                 'reason',
                 '.no_ranked_beatmapset'
+            );
+        }
+
+        if (mb_strlen($this->comments) > static::MAX_LENGTH) {
+            $this->validationErrors()->add(
+                'comments',
+                'too_long',
+                ['limit' => static::MAX_LENGTH]
             );
         }
 

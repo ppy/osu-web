@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Έχετε μπλοκάρει αυτόν τον χρήστη.',
+        'comment_text' => '',
         'blocked_count' => 'μπλοκαρισμένοι χρήστες (:count)',
         'hide_profile' => 'απόκρυψη προφίλ',
+        'hide_comment' => '',
         'not_blocked' => 'Αυτός ο χρήστης δεν είναι μπλοκαρισμένος.',
         'show_profile' => 'εμφάνιση προφίλ',
+        'show_comment' => '',
         'too_many' => 'Φτάσατε το όριο μπλοκαρισμάτων.',
         'button' => [
             'block' => 'μπλοκάρισμα',
@@ -369,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Αποκλεισμός',
                         'silence' => 'Σίγαση',
+                        'tournament_ban' => '',
                         'note' => 'Σημείωση',
                     ],
                 ],

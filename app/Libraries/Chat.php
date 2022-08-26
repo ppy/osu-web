@@ -9,7 +9,6 @@ use App\Exceptions\API;
 use App\Exceptions\InvariantException;
 use App\Models\Chat\Channel;
 use App\Models\User;
-use ChaseConey\LaravelDatadogHelper\Datadog;
 use LaravelRedis as Redis;
 
 class Chat
@@ -37,6 +36,7 @@ class Chat
             'channel:array',
             'message:string',
             'target_ids:int[]',
+            'uuid',
         ], ['null_missing' => true]);
 
         if (!isset($params['target_ids'])) {
@@ -55,13 +55,11 @@ class Chat
         $users = $users->push($sender)->uniqueStrict('user_id');
 
         $channel = (new Channel())->getConnection()->transaction(function () use ($sender, $params, $users) {
-            $channel = Channel::createAnnouncement($users, $params['channel']);
+            $channel = Channel::createAnnouncement($users, $params['channel'], $params['uuid']);
             static::sendMessage($sender, $channel, $params['message'], false);
 
             return $channel;
         });
-
-        Datadog::increment('chat.channel.create', 1, ['type' => $channel->type]);
 
         return $channel;
     }
@@ -76,23 +74,9 @@ class Chat
         priv_check_user($sender, 'ChatPmStart', $target)->ensureCan();
 
         return (new Channel())->getConnection()->transaction(function () use ($sender, $target, $message, $isAction, $uuid) {
-            $channel = Channel::findPM($target, $sender);
+            $channel = Channel::findPM($target, $sender) ?? Channel::createPM($target, $sender);
 
-            $newChannel = $channel === null;
-
-            if ($newChannel) {
-                $channel = Channel::createPM($target, $sender);
-            } else {
-                $channel->addUser($sender);
-            }
-
-            $ret = static::sendMessage($sender, $channel, $message, $isAction, $uuid);
-
-            if ($newChannel) {
-                Datadog::increment('chat.channel.create', 1, ['type' => $channel->type]);
-            }
-
-            return $ret;
+            return static::sendMessage($sender, $channel, $message, $isAction, $uuid);
         });
     }
 

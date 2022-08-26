@@ -6,7 +6,7 @@
 return [
     'discussion-votes' => [
         'update' => [
-            'error' => 'Gagal memperbarui pilihan',
+            'error' => 'Gagal memperbarui suara',
         ],
     ],
 
@@ -39,7 +39,7 @@ return [
 
         'empty' => [
             'empty' => 'Belum ada diskusi!',
-            'hidden' => 'Tidak ada diskusi yang cocok dengan filter yang dipilih.',
+            'hidden' => 'Tidak ada topik diskusi yang sesuai dengan filter yang dipilih.',
         ],
 
         'lock' => [
@@ -247,7 +247,7 @@ return [
                 'nominations' => 'Jumlah Nominasi',
             ],
             'supporter_filter_quote' => [
-                '_' => 'Penyaringan dengan :filters memerlukan :link aktif',
+                '_' => 'Penyaringan berdasarkan :filters memerlukan :link yang aktif',
                 'link_text' => 'osu!supporter tag',
             ],
         ],
@@ -257,7 +257,7 @@ return [
         'featured_artists' => 'Featured artist',
         'follows' => 'Mapper yang diikuti',
         'recommended' => 'Rentang kesulitan yang disarankan',
-        'spotlights' => '',
+        'spotlights' => 'Beatmap yang di-spotlight',
     ],
     'mode' => [
         'all' => 'Semua',

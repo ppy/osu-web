@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'loading_users' => 'جار تحميل المستخدمين...',
     'talking_in' => 'يتحدث في :channel',
     'talking_with' => 'يتحدث مع :name',
     'title_compact' => 'محادثة',
@@ -14,6 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => '',
+        'create' => 'إنشاء إعلان',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'الإعلانات',
@@ -24,12 +28,25 @@ return [
         ],
     ],
 
+    'form' => [
+        'title' => [
+            'announcement' => 'إنشاء إعلان جديد',
+        ],
+
+        'labels' => [
+            'description' => 'الوصف',
+            'name' => 'اسم الغرفة',
+            'users' => 'لاعبين للإضافة',
+        ],
+    ],
+
     'not_found' => [
         'message' => 'لا يوجد شيء هنا، ربما تركت القناة أو أنها غير موجودة...',
         'title' => 'القناة غير موجودة',
     ],
 
     'input' => [
+        'create' => 'إنشاء',
         'disabled' => 'غير قادر على إرسال الرسالة...',
         'disconnected' => 'تم قطع الاتصال',
         'placeholder' => 'اكتب الرسالة...',

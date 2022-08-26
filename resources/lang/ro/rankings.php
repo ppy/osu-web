@@ -18,7 +18,7 @@ return [
     ],
 
     'type' => [
-        'charts' => 'În lumina reflectoarelor',
+        'charts' => 'promovări',
         'country' => 'pe țară',
         'multiplayer' => 'multiplayer',
         'performance' => 'performanță',
@@ -27,7 +27,7 @@ return [
 
     'spotlight' => [
         'end_date' => 'Data încheierii',
-        'map_count' => 'Număr de mape',
+        'map_count' => 'Număr de Beatmap-uri',
         'participants' => 'Participanți',
         'start_date' => 'Data începerii',
     ],
@@ -36,10 +36,10 @@ return [
         'accuracy' => 'Precizie',
         'active_users' => 'Utilizatori activi',
         'country' => 'Țară',
-        'play_count' => 'Număr de jocuri',
+        'play_count' => 'Număr de Încercări',
         'performance' => 'Performanță',
         'total_score' => 'Scor total',
-        'ranked_score' => 'Scor clasat',
+        'ranked_score' => 'Scor Clasat',
         'average_score' => 'Scor mediu',
         'average_performance' => 'Performanța medie',
         'ss' => '',

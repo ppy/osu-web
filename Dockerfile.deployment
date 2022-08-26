@@ -41,7 +41,7 @@ COPY composer.json composer.lock ./
 RUN composer install --no-autoloader --no-dev
 
 COPY package.json yarn.lock ./
-RUN yarnpkg
+RUN yarn --prod --ignore-optional --frozen-lockfile
 
 RUN rm -f /var/log/nginx/access.log /var/log/nginx/error.log && \
     ln -s /dev/stdout /var/log/nginx/access.log && \
@@ -53,7 +53,9 @@ RUN composer dump-autoload
 
 ARG APP_URL
 ARG DOCS_URL
-RUN yarnpkg production
+RUN yarn production
+
+RUN php artisan scribe:generate
 
 RUN rm -rf node_modules
 
@@ -69,4 +71,4 @@ EXPOSE 8000
 EXPOSE 8080
 
 ENTRYPOINT ["/app/docker/deployment/entrypoint.sh"]
-CMD ["php"]
+CMD ["octane"]

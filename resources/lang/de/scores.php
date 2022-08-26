@@ -24,6 +24,6 @@ return [
 
     'status' => [
         'non_best' => 'Nur persönliche Bestwerte geben pp',
-        'processing' => 'Dieser Wert wird noch berechnet und in Kürze angezeigt',
+        'processing' => 'Dieser Score wird noch berechnet und in Kürze angezeigt',
     ],
 ];

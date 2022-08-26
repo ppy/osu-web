@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'loading_users' => 'завантаження користувачів...',
     'talking_in' => 'чат в :channel',
     'talking_with' => 'чат з :name',
     'title_compact' => 'чат',
@@ -14,6 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => 'Ви хочете сховати цей канал? Ви все ще будете отримувати з нього повідомлення.',
+        'create' => 'створити оголошення',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Анонси',
@@ -24,12 +28,25 @@ return [
         ],
     ],
 
+    'form' => [
+        'title' => [
+            'announcement' => 'Створити Нове Оголошення',
+        ],
+
+        'labels' => [
+            'description' => 'опис',
+            'name' => 'назва кімнати',
+            'users' => 'додавання гравців',
+        ],
+    ],
+
     'not_found' => [
         'message' => 'Тут нічого немає, можливо ви покинули канал або його не існує...',
         'title' => 'канал не знайдено',
     ],
 
     'input' => [
+        'create' => 'Створити',
         'disabled' => 'неможливо надіслати повідомлення...',
         'disconnected' => 'Розʼєднано',
         'placeholder' => 'введіть текст повідомлення...',

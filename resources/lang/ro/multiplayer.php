@@ -13,8 +13,8 @@ return [
     'room' => [
         'hosted_by' => 'început de :user',
         'invalid_password' => 'Parolă invalidă',
-        'map_count' => ':count_delimited mapă|:count_delimited mape',
-        'player_count' => ':count_delimited jucător|:count_delimited jucători ',
+        'map_count' => 'un beatmap|:count_delimited beatmap-uri|:count_delimited de beatmap-uri',
+        'player_count' => 'un jucător|:count_delimited jucători|:count_delimited de jucători ',
         'time_left' => ':time rămas',
 
         'errors' => [

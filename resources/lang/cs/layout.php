@@ -26,8 +26,8 @@ return [
         ],
 
         'beatmapsets' => [
-            'show' => '',
-            'discussions' => '',
+            'show' => 'info',
+            'discussions' => 'diskuze',
         ],
 
         'changelog' => [
@@ -174,7 +174,7 @@ return [
         'login' => [
             'forgot' => "Zapomněl jsem své údaje",
             'password' => 'heslo',
-            'title' => 'Pro pokračování se přihlašte',
+            'title' => 'Pro pokračování se přihlaste',
             'username' => 'uživatelské jméno',
 
             'error' => [

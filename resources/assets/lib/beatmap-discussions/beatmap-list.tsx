@@ -13,6 +13,7 @@ import { blackoutToggle } from 'utils/blackout';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { nextVal } from 'utils/seq';
+import { isClickable } from 'utils/html';
 
 interface Props {
   beatmaps: BeatmapExtendedJson[];
@@ -131,7 +132,7 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
 
   private onDocumentClick = (e: JQuery.ClickEvent) => {
     if (e.button !== 0) return;
-    if (osu.isClickable(e.target)) return;
+    if (isClickable(e.target)) return;
     if (
       this.selectorRef.current != null
       && e.originalEvent != null
@@ -143,7 +144,7 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
 
   private selectBeatmap = (e: React.MouseEvent<HTMLElement>) => {
     if (e.button !== 0) return;
-    if (osu.isClickable(e.target)) return;
+    if (isClickable(e.target)) return;
 
     const beatmapId = parseInt(e.currentTarget.dataset.id ?? '', 10);
     this.props.onSelectBeatmap(beatmapId);
@@ -161,7 +162,7 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
 
   private toggleSelector = (e: React.MouseEvent<HTMLElement>) => {
     if (e.button !== 0) return;
-    if (osu.isClickable(e.target)) return;
+    if (isClickable(e.target)) return;
 
     this.setSelector(!this.state.showingSelector);
   };

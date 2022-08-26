@@ -28,7 +28,7 @@ return [
             '_' => 'Beatmap',
 
             'beatmap_owner_change' => [
-                '_' => 'Difficulty na gawa ng ibang manlalaro',
+                '_' => 'Guest na difficulty',
                 'beatmap_owner_change' => 'Ikaw na ngayon ang may-ari ng difficulty na ":beatmap" para sa ":title"',
                 'beatmap_owner_change_compact' => 'Ikaw na ang may-ari ng difficulty na :beatmap',
             ],
@@ -52,13 +52,13 @@ return [
                 'beatmapset_discussion_qualified_problem' => 'Ini-ulat ni :username sa ":title": ":content"',
                 'beatmapset_discussion_qualified_problem_empty' => 'Ini-ulat ni :username sa ":title"',
                 'beatmapset_discussion_qualified_problem_compact' => 'Ini-ulat ni :username : ":content"',
-                'beatmapset_discussion_qualified_problem_compact_empty' => 'Ni-report ni :username',
+                'beatmapset_discussion_qualified_problem_compact_empty' => 'Ini-ulat ni :username',
             ],
 
             'beatmapset_state' => [
                 '_' => 'Nagbago ang kalagayan ng beatmap',
                 'beatmapset_disqualify' => '":title" ay na-disqualify',
-                'beatmapset_disqualify_compact' => 'Ang beatmap ay hindi kwalipikado',
+                'beatmapset_disqualify_compact' => 'Ang Beatmap ay nadiskwalipika',
                 'beatmapset_love' => 'Ang ":title" ay na-promote sa loved',
                 'beatmapset_love_compact' => 'Ang beatmap ay na-promote sa loved',
                 'beatmapset_nominate' => '":title" ay na-nominate',

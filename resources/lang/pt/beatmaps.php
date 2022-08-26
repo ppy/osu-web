@@ -143,7 +143,7 @@ return [
             'graveyard' => "Este beatmap não tem sido atualizado desde :date e muito provavelmente foi abandonado pelo criador...",
             'loved' => 'Este beatmap foi adicionado a adorado em :date!',
             'ranked' => 'Este beatmap foi classificado em :date!',
-            'wip' => 'Nota: Este beatmap está marcado como um trabalho em progresso pelo criador.',
+            'wip' => 'Nota: este beatmap está marcado como um trabalho em andamento pelo criador.',
         ],
 
         'votes' => [
@@ -258,7 +258,7 @@ return [
         'featured_artists' => 'Artistas destacados',
         'follows' => 'Mapeadores subscritos',
         'recommended' => 'Dificuldade recomendada',
-        'spotlights' => '',
+        'spotlights' => 'Beatmaps em destaque',
     ],
     'mode' => [
         'all' => 'Todos',
@@ -276,8 +276,8 @@ return [
         'leaderboard' => 'Possui uma tabela de classificações',
         'loved' => 'Adorados',
         'mine' => 'Os meus mapas',
-        'pending' => 'Pendente e Trabalho em progresso',
-        'wip' => 'Trabalho em progresso',
+        'pending' => 'Pendente',
+        'wip' => 'Trabalho em curso',
         'qualified' => 'Qualificados',
         'ranked' => 'Classificados',
     ],

@@ -3,6 +3,7 @@
 
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
+import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
 import core from 'osu-core-singleton';
@@ -108,7 +109,7 @@ export default class NewReview extends React.Component<Props, State> {
     );
   }
 
-  // TODO: to whoever refactors this - this 'sticky' behaviour was ported from new-discussion.coffee, so remember to refactor that too
+  // TODO: remove sticky when converting to mobx, like in new-discussion.
   setSticky = (sticky = true) => {
     this.setState({
       cssTop: this.cssTop(sticky),

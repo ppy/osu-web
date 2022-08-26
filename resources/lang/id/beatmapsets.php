@@ -8,7 +8,7 @@ return [
         'disabled' => 'Beatmap saat ini tidak tersedia untuk diunduh.',
         'parts-removed' => 'Beberapa bagian dari beatmap ini telah dihapus atas permintaan pembuat lagu atau pihak ketiga pemegang hak cipta.',
         'more-info' => 'Lihat di sini untuk informasi lebih lanjut.',
-        'rule_violation' => 'Sebagian aset yang terkandung dalam berkas beatmap ini telah dihapus setelah tim kami memutuskan bahwa aset-aset yang bersangkutan tidak layak untuk osu!.',
+        'rule_violation' => 'Sebagian aset yang terkandung dalam berkas beatmap ini telah dihapus karena dinilai tidak sesuai dengan kaidah penggunaan konten yang berlaku di osu!.',
     ],
 
     'cover' => [
@@ -40,7 +40,7 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => 'Pada beatmapset hybrid, Anda harus memilih satu mode permainan yang akan Anda nominasikan.',
+        'hybrid_requires_modes' => 'Pada beatmap hybrid, Anda harus memilih setidaknya satu mode permainan untuk dinominasikan.',
         'incorrect_mode' => 'Anda tidak memiliki hak untuk memberikan nominasi pada mode permainan: :mode',
         'full_bn_required' => 'Anda harus berstatus sebagai nominator penuh (full nominator) untuk dapat menominasikan beatmap ini.',
         'too_many' => 'Persyaratan nominasi telah terpenuhi.',
@@ -49,7 +49,7 @@ return [
             'confirmation' => 'Apakah Anda yakin untuk menominasikan beatmap ini?',
             'header' => 'Nominasikan Beatmap',
             'hybrid_warning' => 'catatan: Anda hanya dapat memberikan satu nominasi, sehingga pastikan Anda memberikan nominasi pada mode permainan yang memang Anda kehendaki',
-            'which_modes' => 'Mode permainan apa yang hendak Anda nominasikan?',
+            'which_modes' => 'Mode permainan mana yang hendak Anda nominasikan?',
         ],
     ],
 
@@ -92,7 +92,7 @@ return [
         ],
 
         'favourites' => [
-            'limit_reached' => 'Anda telah memiliki terlalu banyak beatmap yang Anda favoritkan! Mohon hapus beberapa sebelum melanjutkan.',
+            'limit_reached' => 'Anda memiliki terlalu banyak beatmap yang telah Anda favoritkan! Mohon hapus beberapa beatmap dari daftar favorit Anda sebelum melanjutkan.',
         ],
 
         'hype' => [
@@ -109,11 +109,11 @@ return [
             ],
 
             'disqualify' => [
-                '_' => 'Jika Anda menemukan masalah pada beatmap ini, mohon diskualifikasi beatmap yang bersangkutan melalui :link.',
+                '_' => 'Apabila Anda menemukan suatu masalah pada beatmap ini, mohon diskualifikasi beatmap yang bersangkutan melalui :link.',
             ],
 
             'report' => [
-                '_' => 'Jika Anda menemukan masalah pada beatmap ini, mohon laporkan kepada tim kami melalui :link.',
+                '_' => 'Apabila Anda menemukan suatu masalah pada beatmap ini, mohon laporkan kepada tim kami melalui :link.',
                 'button' => 'Laporkan Masalah',
                 'link' => 'tautan ini',
             ],
@@ -216,6 +216,6 @@ return [
     ],
 
     'spotlight_badge' => [
-        'label' => '',
+        'label' => 'Spotlight',
     ],
 ];

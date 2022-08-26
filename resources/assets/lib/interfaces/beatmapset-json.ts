@@ -3,6 +3,7 @@
 
 import BeatmapExtendedJson from './beatmap-extended-json';
 import BeatmapJson from './beatmap-json';
+import BeatmapsetDiscussionJson from './beatmapset-discussion-json';
 import BeatmapsetEventJson from './beatmapset-event-json';
 import BeatmapsetNominationJson from './beatmapset-nomination-json';
 import GameMode from './game-mode';
@@ -65,7 +66,7 @@ interface BeatmapsetJsonAvailableIncludes {
   converts: BeatmapExtendedJson[];
   current_user_attributes: CurrentUserAttributes;
   description: BeatmapsetDescription;
-  discussions: unknown;
+  discussions: BeatmapsetDiscussionJson[];
   events: BeatmapsetEventJson[];
   genre: GenreJson;
   has_favourited: boolean;
@@ -107,3 +108,6 @@ interface BeatmapsetJsonDefaultAttributes {
 
 type BeatmapsetJson = BeatmapsetJsonDefaultAttributes & Partial<BeatmapsetJsonAvailableIncludes>;
 export default BeatmapsetJson;
+
+type DiscussionsRequiredAttributes = 'beatmaps' | 'current_user_attributes' | 'discussions' | 'events' | 'nominations' | 'related_users';
+export type BeatmapsetWithDiscussionsJson = BeatmapsetJson & Required<Pick<BeatmapsetJson, DiscussionsRequiredAttributes>>;

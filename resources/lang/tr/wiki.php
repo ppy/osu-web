@@ -5,7 +5,7 @@
 
 return [
     'show' => [
-        'fallback_translation' => 'İstenen sayfa, istenilen dile (:language) henüz çevrilmedi. İngilizce sürümü gösteriliyor.',
+        'fallback_translation' => 'İstenilen sayfa, seçilen dile (:language) henüz çevrilmedi. İngilizce sürümü gösteriliyor.',
         'incomplete_or_outdated' => 'Bu sayfadaki içerik tamamlanmamış veya güncel değil. Eğer yardım edebilecekseniz, lütfen makaleyi güncellemeyi bir düşünün!',
         'missing' => 'İstenilen ":keyword" sayfası bulunamadı.',
         'missing_title' => 'Bulunamadı',

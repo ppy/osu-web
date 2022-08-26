@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'loading_users' => '',
     'talking_in' => 'píšete do :channel',
     'talking_with' => 'píšete si s :name',
     'title_compact' => 'chat',
@@ -14,13 +15,28 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => '',
+        'create' => '',
+
         'list' => [
             'title' => [
-                'ANNOUNCE' => '',
-                'GROUP' => '',
-                'PM' => '',
-                'PUBLIC' => '',
+                'ANNOUNCE' => 'Oznámenia',
+                'GROUP' => 'Skupiny',
+                'PM' => 'Priame správy',
+                'PUBLIC' => 'Kanály',
             ],
+        ],
+    ],
+
+    'form' => [
+        'title' => [
+            'announcement' => '',
+        ],
+
+        'labels' => [
+            'description' => 'popis',
+            'name' => 'názov miestnosti',
+            'users' => '',
         ],
     ],
 
@@ -30,6 +46,7 @@ return [
     ],
 
     'input' => [
+        'create' => 'Vytvoriť',
         'disabled' => 'nedá sa poslať správa...',
         'disconnected' => '',
         'placeholder' => 'napíšte správu...',

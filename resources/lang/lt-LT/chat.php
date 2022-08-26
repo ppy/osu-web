@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'loading_users' => '',
     'talking_in' => 'pokalbis :channel',
     'talking_with' => 'pokalbis su :name',
     'title_compact' => 'pokalbis',
@@ -14,6 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => '',
+        'create' => '',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => '',
@@ -24,12 +28,25 @@ return [
         ],
     ],
 
+    'form' => [
+        'title' => [
+            'announcement' => '',
+        ],
+
+        'labels' => [
+            'description' => '',
+            'name' => '',
+            'users' => '',
+        ],
+    ],
+
     'not_found' => [
         'message' => '',
         'title' => '',
     ],
 
     'input' => [
+        'create' => '',
         'disabled' => 'žinutės išsiųsti nepavyko...',
         'disconnected' => '',
         'placeholder' => 'rašyk čia...',

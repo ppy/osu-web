@@ -31,20 +31,34 @@ class ChatController extends Controller
         $user = auth()->user();
         Chat::ack($user);
 
-        // rejoin any existing channel first, otherwise it'll be missing from the preload later.
-        $targetUser = User::lookup(get_int(request('sendto')), 'id');
-        if ($targetUser !== null) {
-            $channel = Channel::findPM($targetUser, $user);
-            $channel?->addUser($user);
+        $params = get_params(request()->all(), null, [
+            'channel_id:int',
+            'sendto:int',
+        ], ['null_missing' => true]);
 
-            $sendToJson = [
-                'can_message_error' => ($channel?->checkCanMessage($user) ?? priv_check('ChatPmStart', $targetUser))->message(),
-                'channel_id' => $channel?->getKey(),
-                'target' => json_item($targetUser, 'UserCompact'),
-            ];
+        // rejoin any existing channel first, so it will be in the user channel list.
+        if ($params['sendto'] !== null) {
+            $targetUser = User::lookup($params['sendto'], 'id');
+            if ($targetUser !== null) {
+                $channel = Channel::findPM($targetUser, $user);
+                $channel?->addUser($user);
+
+                $sendToJson = [
+                    'can_message_error' => ($channel?->checkCanMessage($user) ?? priv_check('ChatPmStart', $targetUser))->message(),
+                    'channel_id' => $channel?->getKey(),
+                    'target' => json_item($targetUser, 'UserCompact'),
+                ];
+            }
+        } elseif ($params['channel_id'] !== null) {
+            // This is only for rejoining / unhiding channels the user is already in.
+            $channel = Channel::find($params['channel_id']);
+            $channel?->unhide($user);
         }
 
         $json = [
+            'current_user_attributes' => [
+                'can_chat_announce' => priv_check('ChatAnnounce')->can(),
+            ],
             'last_message_id' => optional(Message::last())->getKey(),
             'presence' => (new UserChannelList($user))->get(),
         ];

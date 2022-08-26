@@ -101,7 +101,7 @@ function onMouseLeave() {
   inCard = false;
 }
 
-function onMouseOver(event: JQuery.TriggeredEvent<unknown, unknown, HTMLElement, unknown>) {
+function onMouseOver(event: JQuery.TriggeredEvent<Document, unknown, HTMLElement, HTMLElement>) {
   if (tooltipWithActiveMenu != null) return;
   if (core.windowSize.isMobile) return;
 
@@ -119,8 +119,12 @@ function onMouseOver(event: JQuery.TriggeredEvent<unknown, unknown, HTMLElement,
     // wrong userId, destroy current tooltip
     const qtip = $(el).qtip('api');
     if (qtip != null) {
-      if (qtip.tooltip != null) {
-        unmountComponentAtNode(qtip.tooltip.find('.js-react--user-card-tooltip')[0]);
+      const tooltipElement = qtip.tooltip as HTMLElement | undefined;
+      if (tooltipElement != null) {
+        const container = tooltipElement.querySelector('.js-react--user-card-tooltip');
+        if (container != null) {
+          unmountComponentAtNode(container);
+        }
       }
 
       qtip.destroy();
@@ -135,6 +139,31 @@ function showEffect(this: JQuery<HTMLElement>) {
 
 function hideEffect(this: JQuery<HTMLElement>) {
   $(this).fadeTo(110, 0);
+}
+
+function onRemoveUserCard(_event: unknown, element: HTMLElement | null) {
+  if (element == null) return;
+
+  const qtipId = element.dataset.hasqtip;
+  if (qtipId == null) return;
+
+  const tooltipElement = document.getElementById(`qtip-${qtipId}`);
+  if (tooltipElement == null) return;
+
+  const qtip = $(tooltipElement).qtip('api');
+  if (qtip != null) {
+    const container = tooltipElement.querySelector('.js-react--user-card-tooltip');
+    if (container != null) {
+      unmountComponentAtNode(container);
+    }
+
+    // queue after React unmount.
+    setTimeout(() => {
+      // tooltip element doesn't get removed sometimes without immediate = true.
+      qtip.destroy(true);
+      delete element._tooltip;
+    }, 0);
+  }
 }
 
 function shouldShow(event: JQuery.Event, api: any) {
@@ -155,6 +184,7 @@ export function startListening() {
   $(document).on('mouseenter', '.js-react--user-card-tooltip', onMouseEnter);
   $(document).on('mouseleave', '.js-react--user-card-tooltip', onMouseLeave);
   $(document).on('turbolinks:before-cache', onBeforeCache);
+  $.subscribe('user-card:remove.tooltip', onRemoveUserCard);
 }
 
 /**

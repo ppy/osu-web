@@ -6,8 +6,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Score\Best\Model as ScoreBest;
+use App\Models\Solo\Score as SoloScore;
 use App\Transformers\ScoreTransformer;
-use App\Transformers\Solo\ScoreTransformer as SoloScoreTransformer;
 use App\Transformers\UserCompactTransformer;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
@@ -25,16 +25,32 @@ class ScoresController extends Controller
         $this->middleware('require-scopes:public');
     }
 
-    public function download($mode, $id)
+    public function download($rulesetOrSoloId, $id = null)
     {
-        // don't limit downloading replays of restricted users for review purpose
-        $score = ScoreBest::getClassByString($mode)
-            ::where('score_id', $id)
-            ->where('replay', true)
-            ->firstOrFail();
+        $shouldRedirect = !is_api_request() && !from_app_url();
+        if ($id === null) {
+            if ($shouldRedirect) {
+                return ujs_redirect(route('scores.show', ['score' => $rulesetOrSoloId]));
+            }
+            $soloScore = SoloScore::where('has_replay', true)->findOrFail($rulesetOrSoloId);
 
-        if (!is_api_request() && !from_app_url()) {
-            return ujs_redirect(route('scores.show', ['score' => $score->getKey(), 'mode' => $mode]));
+            $score = $soloScore->legacyScore();
+
+            if ($score === null) {
+                abort(404);
+            }
+
+            $ruleset = $score->getMode();
+        } else {
+            if ($shouldRedirect) {
+                return ujs_redirect(route('scores.show-legacy', ['score' => $id, 'mode' => $rulesetOrSoloId]));
+            }
+            $ruleset = $rulesetOrSoloId;
+            // don't limit downloading replays of restricted users for review purpose
+            $score = ScoreBest::getClassByString($ruleset)
+                ::where('score_id', $id)
+                ->where('replay', true)
+                ->firstOrFail();
         }
 
         $replayFile = $score->replayFile();
@@ -43,7 +59,7 @@ class ScoresController extends Controller
         }
 
         try {
-            $filename = "replay-{$mode}_{$score->beatmap_id}_{$score->getKey()}.osr";
+            $filename = "replay-{$ruleset}_{$score->beatmap_id}_{$score->getKey()}.osr";
             $body = $replayFile->get();
         } catch (FileNotFoundException $e) {
             // missing from storage.
@@ -61,20 +77,20 @@ class ScoresController extends Controller
         }, $filename, ['Content-Type' => 'application/x-osu-replay']);
     }
 
-    public function show($mode, $id)
+    public function show($rulesetOrSoloId, $legacyId = null)
     {
-        $score = ScoreBest::getClassByString($mode)
-            ::whereHas('beatmap.beatmapset')
-            ->visibleUsers()
-            ->findOrFail($id);
+        $score = $legacyId === null
+            ? SoloScore::whereHas('beatmap.beatmapset')->findOrFail($rulesetOrSoloId)
+            : ScoreBest::getClassByString($rulesetOrSoloId)
+                ::whereHas('beatmap.beatmapset')
+                ->visibleUsers()
+                ->findOrFail($legacyId);
 
         $userIncludes = array_map(function ($include) {
             return "user.{$include}";
         }, UserCompactTransformer::CARD_INCLUDES);
 
-        $transformer = is_api_request() ? new ScoreTransformer() : new SoloScoreTransformer();
-
-        $scoreJson = json_item($score, $transformer, array_merge([
+        $scoreJson = json_item($score, new ScoreTransformer(), array_merge([
             'beatmap.max_combo',
             'beatmapset',
             'rank_global',

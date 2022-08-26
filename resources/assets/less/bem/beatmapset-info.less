@@ -5,11 +5,6 @@
   .default-gutter-v2();
   font-size: @font-size--normal;
 
-  &__diff-icon {
-    .center-content();
-    font-size: 20px; // icon size
-  }
-
   &__diff-detail {
     display: flex;
     align-items: baseline;
@@ -20,6 +15,11 @@
     @media @mobile {
       display: none;
     }
+  }
+
+  &__diff-icon {
+    .center-content();
+    font-size: 20px; // icon size
   }
 
   &__diff-mapper {

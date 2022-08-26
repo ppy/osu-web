@@ -4,6 +4,7 @@
 import { discussionTypeIcons } from 'beatmap-discussions/discussion-type';
 import { BeatmapIcon } from 'components/beatmap-icon';
 import * as React from 'react';
+import { format, startingPost } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { BeatmapsContext } from './beatmaps-context';
 import { DiscussionsContext } from './discussions-context';
@@ -27,6 +28,12 @@ export const ReviewPostEmbed = ({ data }: Props) => {
         <div className={`${bn}__missing`}>{osu.trans('beatmaps.discussions.review.embed.missing')}</div>
       </div>
     );
+  }
+
+  const post = startingPost(discussion);
+  if (post.system) {
+    console.error('embed should not have system starting post', discussion.id);
+    return null;
   }
 
   const beatmap = discussion.beatmap_id == null ? undefined : beatmaps[discussion.beatmap_id];
@@ -103,7 +110,7 @@ export const ReviewPostEmbed = ({ data }: Props) => {
         </div>
         <div className={`${bn}__stripe`} />
         <div className={`${bn}__message-container`}>
-          <div className={`${bn}__body`} dangerouslySetInnerHTML={{ __html: BeatmapDiscussionHelper.format((discussion.starting_post || discussion.posts[0]).message) }} />
+          <div className={`${bn}__body`} dangerouslySetInnerHTML={{ __html: format(post.message) }} />
         </div>
         {parentLink()}
       </div>

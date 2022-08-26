@@ -5,11 +5,13 @@ import ShowMoreLink from 'components/show-more-link';
 import { Spinner } from 'components/spinner';
 import StringWithComponent from 'components/string-with-component';
 import UserAvatar from 'components/user-avatar';
+import UserCardBrick from 'components/user-card-brick';
 import { route } from 'laroute';
 import { each, isEmpty, last, throttle } from 'lodash';
 import { action, computed, makeObservable, reaction } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import Message from 'models/chat/message';
+import { deletedUser } from 'models/user';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -99,8 +101,10 @@ export default class ConversationView extends React.Component<Props> {
     disposeOnUnmount(
       this,
       reaction(() => core.windowFocusObserver.hasFocus, (value) => {
-        if (value) {
-          this.maybeMarkAsRead();
+        // mark as read when regaining focus and at the bottom to the channel.
+        if (value && this.currentChannel?.uiState.autoScroll) {
+          this.currentChannel.moveMarkAsReadMarker();
+          this.currentChannel.throttledSendMarkAsRead();
         }
       }),
     );
@@ -192,6 +196,7 @@ export default class ConversationView extends React.Component<Props> {
         <div className='chat-conversation__new-chat-avatar'>
           <UserAvatar user={{ avatar_url: channel.icon }} />
         </div>
+        {this.renderUsers()}
         <div className='chat-conversation__chat-label'>
           {channel.pmTarget != null ? (
             <StringWithComponent
@@ -236,6 +241,24 @@ export default class ConversationView extends React.Component<Props> {
     );
   }
 
+  renderUsers() {
+    if (this.currentChannel?.type !== 'ANNOUNCE') return null;
+
+    return (
+      <div className={classWithModifiers('chat-conversation__users', { loading: this.currentChannel.announcementUsers == null })}>
+        {this.currentChannel.announcementUsers == null ? (
+          <>
+            <Spinner modifiers='self-center' /><span>{osu.trans('chat.loading_users')}</span>
+          </>
+        ) : (
+          this.currentChannel.announcementUsers.map((user) => (
+            <UserCardBrick key={user?.id} user={(user ?? deletedUser).toJson()} />
+          ))
+        )}
+      </div>
+    );
+  }
+
   @action
   private handleOnScroll = () => {
     const chatView = this.chatViewRef.current;
@@ -243,17 +266,16 @@ export default class ConversationView extends React.Component<Props> {
 
     this.currentChannel.uiState.autoScroll = chatView.scrollTop + chatView.clientHeight >= chatView.scrollHeight;
     this.currentChannel.uiState.scrollY = chatView.scrollTop;
+    // keep marker at the end when autoScrolling but only if window has focus.
+    if (this.currentChannel.uiState.autoScroll && core.windowFocusObserver.hasFocus) {
+      this.currentChannel.moveMarkAsReadMarker();
+    }
   };
 
   private loadEarlierMessages = () => {
     if (this.currentChannel == null) return;
     core.dataStore.channelStore.loadChannelEarlierMessages(this.currentChannel.channelId);
   };
-
-  private maybeMarkAsRead() {
-    if (this.currentChannel == null) return;
-    core.dataStore.channelStore.markAsRead(this.currentChannel.channelId);
-  }
 
   private renderCannotSendMessage() {
     if (this.currentChannel == null) {

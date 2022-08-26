@@ -10,7 +10,7 @@ return [
     ],
 
     'index' => [
-        'nav_title' => 'listare',
+        'nav_title' => 'listă',
     ],
 
     'voting' => [
@@ -29,14 +29,14 @@ return [
         ],
 
         'progress' => [
-            '_' => '',
+            '_' => ':used / :max voturi folosite',
         ],
     ],
     'entry' => [
         '_' => 'intrare',
         'login_required' => 'Te rugăm să te conectezi pentru a intra în concurs.',
-        'silenced_or_restricted' => 'Nu poți participa la concursuri în timp ce ești restricționat sau amuțit.',
-        'preparation' => 'Pregătim acest concurs în prezent. Te rugăm să aștepți cu răbdare!',
+        'silenced_or_restricted' => 'Nu poți participa la concursuri în timp ce ești restricționat sau mut.',
+        'preparation' => 'Încă pregătim acest concurs. Te rugăm să aștepți cu răbdare!',
         'drop_here' => 'Trage intrarea ta aici',
         'download' => 'Descarcă .osz',
         'wrong_type' => [
@@ -51,8 +51,8 @@ return [
     ],
     'vote' => [
         'list' => 'voturi',
-        'count' => ':count vot|:count voturi|:count de voturi',
-        'points' => ':count punct|:count puncte|:count de puncte',
+        'count' => 'un vot|:count_delimited voturi|:count_delimited de voturi',
+        'points' => 'un punct|:count_delimited puncte|:count_delimited de puncte',
     ],
     'dates' => [
         'ended' => 'S-a terminat pe :date',
@@ -60,7 +60,7 @@ return [
 
         'starts' => [
             '_' => 'Începe pe :date',
-            'soon' => 'curând™',
+            'soon' => 'în curând™',
         ],
     ],
     'states' => [

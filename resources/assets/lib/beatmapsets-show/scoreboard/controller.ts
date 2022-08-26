@@ -23,65 +23,75 @@ interface UserScore {
 }
 
 interface BeatmapScoresJson {
+  blank?: true;
   scores: SoloScoreJsonForBeatmap[];
   user_score?: UserScore;
 }
 
-interface State {
+interface StoredState {
+  allData: Record<string, BeatmapScoresJson>;
   currentType: ScoreboardType;
-  data: BeatmapScoresJson;
   enabledMods: string[];
-  loadingState: ScoreLoadingState;
 }
 
 export default class Controller {
-  @observable state: State;
-  private dataCache: Record<string, State['data']> = {};
+  @observable currentType: ScoreboardType = 'global';
+  @observable enabledMods = new Set<string>();
+
+  @observable private allData: Record<string, BeatmapScoresJson> = {};
   private disposers = new Set<(() => void) | undefined>();
   private xhr: JQuery.jqXHR<BeatmapScoresJson> | null = null;
+  @observable private xhrState: 'error' | 'loading' | null = null;
 
-  @computed
   get beatmap() {
     return this.getBeatmap();
   }
 
   @computed
-  get enabledMods() {
-    return new Set(this.state.enabledMods);
+  get currentDataKey() {
+    const beatmap = this.beatmap;
+
+    return `${beatmap.id}-${beatmap.mode}-${[...this.enabledMods].sort().join(':')}-${this.currentType}`;
+  }
+
+  @computed
+  get data() {
+    return this.allData[this.currentDataKey] ?? { blank: true, scores: [] };
+  }
+
+  @computed
+  get loadingState(): ScoreLoadingState {
+    if (!this.beatmap.is_scoreable) {
+      return 'unranked';
+    }
+
+    if (!core.currentUser?.is_supporter && (this.currentType !== 'global' || this.enabledMods.size > 0)) {
+      return 'supporter_only';
+    }
+
+    return this.xhrState;
   }
 
   constructor(private container: HTMLElement, private getBeatmap: () => BeatmapExtendedJson) {
-    let state: State | null = null;
+    let storedState: StoredState | null = null;
     try {
-      state = JSON.parse(this.container.dataset.scoreboardState ?? 'null') as (State | null);
+      storedState = JSON.parse(this.container.dataset.scoreboardState ?? 'null') as (StoredState | null);
     } catch {
       // Do nothing if failed parsing.
     }
 
-    const reset = state == null;
-    let reload = false;
-
-    if (state != null && state.loadingState === 'loading') {
-      state.loadingState = null;
-      reload = true;
+    if (storedState != null) {
+      this.currentType = storedState.currentType;
+      this.allData = storedState.allData;
+      this.enabledMods = new Set(storedState.enabledMods);
     }
-
-    this.state = state ?? {
-      currentType: 'global',
-      data: { scores: [] },
-      enabledMods: [],
-      loadingState: null,
-    };
 
     makeObservable(this);
 
-    $(document).on('turbolinks:before-cache', this.saveState);
+    $(document).on('turbolinks:before-cache', this.storeState);
 
-    if (reset) {
-      this.setCurrent({ resetMods: true, type: 'global' });
-    } else if (reload) {
-      this.setCurrent({});
-    }
+    // fetch score data if needed
+    this.setCurrent({});
 
     this.disposers.add(reaction(
       () => `${this.beatmap.mode}:${this.beatmap.id}`,
@@ -92,8 +102,8 @@ export default class Controller {
   destroy() {
     this.xhr?.abort();
     this.disposers.forEach((d) => d?.());
-    this.saveState();
-    $(document).off('turbolinks:before-cache', this.saveState);
+    this.storeState();
+    $(document).off('turbolinks:before-cache', this.storeState);
   }
 
   @action
@@ -105,63 +115,54 @@ export default class Controller {
     this.xhr?.abort();
 
     if (resetMods) {
-      this.state.enabledMods = [];
+      this.enabledMods.clear();
     } else {
       if (toggleMod != null) {
-        const currentEnabledModIndex = this.state.enabledMods.indexOf(toggleMod);
-
-        if (currentEnabledModIndex === -1) {
-          this.state.enabledMods.push(toggleMod);
+        if (this.enabledMods.has(toggleMod)) {
+          this.enabledMods.delete(toggleMod);
         } else {
-          this.state.enabledMods.splice(currentEnabledModIndex, 1);
+          this.enabledMods.add(toggleMod);
         }
       }
     }
 
     if (options.type != null) {
-      this.state.currentType = options.type;
+      this.currentType = options.type;
     }
 
     const beatmap = this.beatmap;
 
-    if (!beatmap.is_scoreable) {
-      this.state.loadingState = 'unranked';
+    if (!forceReload && !this.data.blank) {
+      this.xhrState = null;
       return;
     }
 
-    if (!core.currentUser?.is_supporter && (this.state.currentType !== 'global' || this.state.enabledMods.length > 0)) {
-      this.state.loadingState = 'supporter_only';
-      return;
-    }
-
-    const cacheKey = `${beatmap.id}-${beatmap.mode}-${this.state.enabledMods.sort().join(':')}-${this.state.currentType}`;
-
-    const cachedScores = this.dataCache[cacheKey];
-    if (!forceReload && cachedScores != null) {
-      this.state.data = cachedScores;
-      return;
-    }
-
-    this.state.loadingState = 'loading';
-
+    this.xhrState = 'loading';
+    const dataKey = this.currentDataKey;
     this.xhr = $.ajax(route('beatmaps.scores', { beatmap: beatmap.id }), {
       data: {
         mode: beatmap.mode,
-        mods: this.state.enabledMods,
-        type: this.state.currentType,
+        mods: [...this.enabledMods],
+        type: this.currentType,
       },
       dataType: 'JSON',
       method: 'GET',
     });
     this.xhr.done((data) => runInAction(() => {
-      this.dataCache[cacheKey] = this.state.data = data;
-      this.state.loadingState = null;
-    })).fail(action(() => {
-      this.state.loadingState = 'error';
+      this.allData[dataKey] = data;
+      this.xhrState = null;
+    })).fail((_xhr, status) => runInAction(() => {
+      this.xhrState = status === 'abort' ? null : 'error';
     }));
   };
 
-  private readonly saveState = () => {
-    this.container.dataset.scoreboardState = JSON.stringify(this.state);
+  private readonly storeState = () => {
+    const state: StoredState = {
+      allData: this.allData,
+      currentType: this.currentType,
+      enabledMods: [...this.enabledMods],
+    };
+
+    this.container.dataset.scoreboardState = JSON.stringify(state);
   };
 }

@@ -12,7 +12,7 @@ return [
     ],
 
     'cover' => [
-        'deleted' => '',
+        'deleted' => 'Vymazaná beatmapa',
     ],
 
     'download' => [
@@ -78,7 +78,7 @@ return [
 
             'login_required' => [
                 'bottom' => 'pro přístup k dalším funkcím',
-                'top' => 'Přihlašte se',
+                'top' => 'Přihlaste se',
             ],
         ],
 
@@ -216,6 +216,6 @@ return [
     ],
 
     'spotlight_badge' => [
-        'label' => '',
+        'label' => 'Zvýraznění',
     ],
 ];

@@ -27,6 +27,7 @@
   --slice-clip: rect(0em, 1em, 1em, 0.5em);
   --circle-border-colour: hsl(var(--hsl-h1));
   --label-colour: hsl(var(--hsl-h1));
+  --label-display: block;
 
   &--warn {
     --circle-border-colour: hsl(var(--hsl-orange-2));
@@ -52,7 +53,7 @@
     pointer-events: none;
     background-color: transparent;
     --circle-center-fill: transparent;
-    --label-colour: transparent;
+    --label-display: none;
     --circle-transform: rotate(calc(var(--progress) * 1turn));
 
     [data-audio-over50="1"] & {
@@ -86,6 +87,7 @@
     text-align: center;
     white-space: nowrap;
     color: var(--label-colour);
+    display: var(--label-display);
   }
 
 

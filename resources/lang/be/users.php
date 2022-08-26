@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Вы заблакавалі гэтага карыстальніка.',
+        'comment_text' => '',
         'blocked_count' => 'заблакаваныя карыстальнікі (:count)',
         'hide_profile' => 'схаваць профіль',
+        'hide_comment' => '',
         'not_blocked' => 'Гэты карыстальнік не заблакаваны.',
         'show_profile' => 'паказаць профіль',
+        'show_comment' => '',
         'too_many' => 'Дасягнуты ліміт блакавання.',
         'button' => [
             'block' => 'заблакаваць',
@@ -369,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Заблакіраваць',
                         'silence' => 'Зацішаны',
+                        'tournament_ban' => '',
                         'note' => 'Нататка',
                     ],
                 ],

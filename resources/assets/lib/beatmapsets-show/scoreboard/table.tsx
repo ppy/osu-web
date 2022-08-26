@@ -84,12 +84,12 @@ export default class Table extends React.Component<Props> {
               </tr>
             </thead>
             <tbody className={`${bn}__body`}>
-              {this.props.controller.state.data.scores.map((score, index) => (
+              {this.props.controller.data.scores.map((score, index) => (
                 <KeyContext.Provider key={index} value={index}>
                   <TableRow
                     activated={this.activeKey === index}
                     beatmap={this.props.controller.beatmap}
-                    highlightFriends={this.props.controller.state.currentType !== 'friend'}
+                    highlightFriends={this.props.controller.currentType !== 'friend'}
                     index={index}
                     score={score}
                     showPp={this.showPp}

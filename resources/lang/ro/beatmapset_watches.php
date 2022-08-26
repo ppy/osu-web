@@ -5,17 +5,17 @@
 
 return [
     'index' => [
-        'description' => 'Acestea sunt discuțiile beatmap pe care le urmărești. O să fii notificat atunci când apar noi postări sau actualizări.',
-        'title_compact' => 'jurnalul modificărilor',
+        'description' => 'Acestea sunt discuțiile beatmap pe care le urmărești. Vei fi notificat atunci când apar noi postări sau actualizări.',
+        'title_compact' => 'abonamente discuții beatmap-uri',
 
         'counts' => [
-            'total' => '',
-            'unread' => 'Beatmaps cu activitate nouă',
+            'total' => 'Beatmap-uri vizionate',
+            'unread' => 'Beatmap-uri cu activitate nouă',
         ],
 
         'table' => [
             'empty' => 'Nicio discuție beatmap urmărită.',
-            'last_update' => '',
+            'last_update' => 'Ultima actualizare',
             'open_issues' => 'Probleme deschise',
             'state' => 'Stare',
             'title' => 'Titlu',

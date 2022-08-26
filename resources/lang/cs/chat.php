@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'loading_users' => 'načítání uživatelů...',
     'talking_in' => 'píšete do :channel',
     'talking_with' => 'píšete si s :name',
     'title_compact' => 'chat',
@@ -14,6 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => 'Chceš skrýt tento kanál? Stále budeš dostávat zprávy z tohoto kanálu.',
+        'create' => 'vytvořit oznámení',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Oznámení',
@@ -24,12 +28,25 @@ return [
         ],
     ],
 
+    'form' => [
+        'title' => [
+            'announcement' => 'Vytvořit nové oznámení',
+        ],
+
+        'labels' => [
+            'description' => 'popis',
+            'name' => 'název místnosti',
+            'users' => 'hráči k přidání',
+        ],
+    ],
+
     'not_found' => [
         'message' => 'Nic tady není, možná jsi tento kanál opustil nebo neexistuje...',
         'title' => 'kanál nenalezen',
     ],
 
     'input' => [
+        'create' => 'Vytvořit',
         'disabled' => 'nejsme schopni odeslat tuto zprávu...',
         'disconnected' => 'Odpojeno',
         'placeholder' => 'napište zprávu...',

@@ -10,8 +10,12 @@ namespace Tests\Controllers;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
+use App\Models\Country;
+use App\Models\Score\Best\Model as ScoreBest;
 use App\Models\User;
+use App\Models\UserRelation;
 use Illuminate\Testing\Fluent\AssertableJson;
+use Illuminate\Testing\TestResponse;
 use Tests\TestCase;
 
 class BeatmapsControllerTest extends TestCase
@@ -19,6 +23,9 @@ class BeatmapsControllerTest extends TestCase
     private $user;
     private $beatmap;
 
+    /**
+     * @group BeatmapDifficultyLookupCacheServer
+     */
     public function testAttributes(): void
     {
         $beatmap = $this->createExistingOsuBeatmap();
@@ -141,7 +148,7 @@ class BeatmapsControllerTest extends TestCase
      * user tries to access the non-general (country or friend ranking)
      * scoreboards.
      */
-    public function testNonGeneralScoreboardLoggedOut()
+    public function testScoresNonGeneralLoggedOut()
     {
         $this->json('GET', route('beatmaps.scores', $this->beatmap), [
             'type' => 'country',
@@ -153,7 +160,7 @@ class BeatmapsControllerTest extends TestCase
      * Checks whether an error is thrown when an user without supporter
      * tries to access supporter-only scoreboards.
      */
-    public function testNonGeneralScoreboardSupporter()
+    public function testScoresNonGeneralSupporter()
     {
         $this->actingAs($this->user)
             ->json('GET', route('beatmaps.scores', $this->beatmap), [
@@ -168,6 +175,261 @@ class BeatmapsControllerTest extends TestCase
             ->json('GET', route('beatmaps.scores', $this->beatmap), [
                 'type' => 'country',
             ])->assertStatus(200);
+    }
+
+    public function testScores()
+    {
+        $scoreClass = ScoreBest::getClass($this->beatmap->playmode);
+        $scores = [
+            $scoreClass::factory()->create([
+                'beatmap_id' => $this->beatmap,
+                'score' => 1100,
+                'user_id' => $this->user,
+            ]),
+            $scoreClass::factory()->create([
+                'beatmap_id' => $this->beatmap,
+                'score' => 1000,
+            ]),
+            // Same total score but achieved later so it should come up after earlier score
+            $scoreClass::factory()->create([
+                'beatmap_id' => $this->beatmap,
+                'score' => 1000,
+            ]),
+        ];
+        // Hidden score should be filtered out
+        $scoreClass::factory()->create([
+            'beatmap_id' => $this->beatmap,
+            'hidden' => true,
+            'score' => 800,
+        ]);
+        // Another score from scores[0] user (should be filtered out)
+        $scoreClass::factory()->create([
+            'beatmap_id' => $this->beatmap,
+            'score' => 800,
+            'user_id' => $this->user,
+        ]);
+        // Unrelated score
+        ScoreBest::getClassByString(array_rand(Beatmap::MODES))::factory()->create();
+
+        $resp = $this->actingAs($this->user)
+            ->json('GET', route('beatmaps.scores', $this->beatmap))
+            ->assertSuccessful();
+
+        $this->assertSameScoresFromResponse($scores, $resp);
+    }
+
+    public function testScoresByCountry()
+    {
+        $countryAcronym = $this->user->country_acronym;
+        $scoreClass = ScoreBest::getClass($this->beatmap->playmode);
+        $scores = [
+            $scoreClass::factory()->create([
+                'beatmap_id' => $this->beatmap,
+                'country_acronym' => $countryAcronym,
+                'score' => 1100,
+                'user_id' => $this->user,
+            ]),
+            $scoreClass::factory()->create([
+                'beatmap_id' => $this->beatmap,
+                'score' => 1000,
+                'country_acronym' => $countryAcronym,
+                'user_id' => User::factory()->state(['country_acronym' => $countryAcronym]),
+            ]),
+        ];
+        $otherCountry = Country::factory()->create();
+        $otherCountryAcronym = $otherCountry->acronym;
+        $scoreClass::factory()->create([
+            'beatmap_id' => $this->beatmap,
+            'country_acronym' => $otherCountryAcronym,
+            'user_id' => User::factory()->state(['country_acronym' => $otherCountryAcronym]),
+        ]);
+
+        $this->user->update(['osu_subscriber' => true]);
+        $resp = $this->actingAs($this->user)
+            ->json('GET', route('beatmaps.scores', ['beatmap' => $this->beatmap, 'type' => 'country']))
+            ->assertSuccessful();
+
+        $this->assertSameScoresFromResponse($scores, $resp);
+    }
+
+    public function testScoresByFriend()
+    {
+        $friend = User::factory()->create();
+        $scoreClass = ScoreBest::getClass($this->beatmap->playmode);
+        $scores = [
+            $scoreClass::factory()->create([
+                'beatmap_id' => $this->beatmap,
+                'score' => 1100,
+                'user_id' => $friend,
+            ]),
+            // Own score is included
+            $scoreClass::factory()->create([
+                'beatmap_id' => $this->beatmap,
+                'score' => 1000,
+                'user_id' => $this->user,
+            ]),
+        ];
+        UserRelation::create([
+            'friend' => true,
+            'user_id' => $this->user->getKey(),
+            'zebra_id' => $friend->getKey(),
+        ]);
+        // Non-friend score is filtered out
+        $scoreClass::factory()->create([
+            'beatmap_id' => $this->beatmap,
+        ]);
+
+        $this->user->update(['osu_subscriber' => true]);
+        $resp = $this->actingAs($this->user)
+            ->json('GET', route('beatmaps.scores', ['beatmap' => $this->beatmap, 'type' => 'friend']))
+            ->assertSuccessful();
+
+        $this->assertSameScoresFromResponse($scores, $resp);
+    }
+
+    public function testScoresModsFilter()
+    {
+        $modsHelper = app('mods');
+        $scoreClass = ScoreBest::getClass($this->beatmap->playmode);
+        $scores = [
+            $scoreClass::factory()->create([
+                'beatmap_id' => $this->beatmap,
+                'enabled_mods' => $modsHelper->idsToBitset(['DT', 'HD']),
+                'score' => 1500,
+            ]),
+            // Score with preference mods is included
+            $scoreClass::factory()->create([
+                'beatmap_id' => $this->beatmap,
+                'enabled_mods' => $modsHelper->idsToBitset(['DT', 'HD', 'NC', 'PF']),
+                'score' => 1100,
+                'user_id' => $this->user,
+            ]),
+        ];
+        // No mod is filtered out
+        $scoreClass::factory()->create([
+            'beatmap_id' => $this->beatmap,
+            'enabled_mods' => 0,
+        ]);
+        // Unrelated mod is filtered out
+        $scoreClass::factory()->create([
+            'beatmap_id' => $this->beatmap,
+            'enabled_mods' => $modsHelper->idsToBitset(['FL']),
+        ]);
+        // Extra non-preference mod is filtered out
+        $scoreClass::factory()->create([
+            'beatmap_id' => $this->beatmap,
+            'enabled_mods' => $modsHelper->idsToBitset(['DT', 'HD', 'HR']),
+        ]);
+        // From same user but lower score is filtered out
+        $scoreClass::factory()->create([
+            'beatmap_id' => $this->beatmap,
+            'enabled_mods' => $modsHelper->idsToBitset(['DT', 'HD']),
+            'score' => 1000,
+            'user_id' => $this->user,
+        ]);
+
+        $this->user->update(['osu_subscriber' => true]);
+        $resp = $this->actingAs($this->user)
+            ->json('GET', route('beatmaps.scores', ['beatmap' => $this->beatmap, 'mods' => ['DT', 'HD']]))
+            ->assertSuccessful();
+
+        $this->assertSameScoresFromResponse($scores, $resp);
+    }
+
+    public function testScoresModsWithImpliedFilter()
+    {
+        $modsHelper = app('mods');
+        $scoreClass = ScoreBest::getClass($this->beatmap->playmode);
+        $scores = [
+            $scoreClass::factory()->create([
+                'beatmap_id' => $this->beatmap,
+                'enabled_mods' => $modsHelper->idsToBitset(['DT', 'NC']),
+                'score' => 1500,
+            ]),
+            // Score with preference mods is included
+            $scoreClass::factory()->create([
+                'beatmap_id' => $this->beatmap,
+                'enabled_mods' => $modsHelper->idsToBitset(['DT', 'NC', 'PF']),
+                'score' => 1100,
+                'user_id' => $this->user,
+            ]),
+        ];
+        // No mod is filtered out
+        $scoreClass::factory()->create([
+            'beatmap_id' => $this->beatmap,
+            'enabled_mods' => 0,
+        ]);
+
+        $this->user->update(['osu_subscriber' => true]);
+        $resp = $this->actingAs($this->user)
+            ->json('GET', route('beatmaps.scores', ['beatmap' => $this->beatmap, 'mods' => ['NC']]))
+            ->assertSuccessful();
+
+        $this->assertSameScoresFromResponse($scores, $resp);
+    }
+
+    public function testScoresModsWithNomodsFilter()
+    {
+        $modsHelper = app('mods');
+        $scoreClass = ScoreBest::getClass($this->beatmap->playmode);
+        $scores = [
+            $scoreClass::factory()->create([
+                'beatmap_id' => $this->beatmap,
+                'enabled_mods' => $modsHelper->idsToBitset(['DT', 'NC']),
+                'score' => 1500,
+            ]),
+            $scoreClass::factory()->create([
+                'beatmap_id' => $this->beatmap,
+                'enabled_mods' => 0,
+                'score' => 1100,
+                'user_id' => $this->user,
+            ]),
+        ];
+        // With unrelated mod
+        $scoreClass::factory()->create([
+            'beatmap_id' => $this->beatmap,
+            'enabled_mods' => $modsHelper->idsToBitset(['DT', 'NC', 'HD']),
+            'score' => 1500,
+        ]);
+
+        $this->user->update(['osu_subscriber' => true]);
+        $resp = $this->actingAs($this->user)
+            ->json('GET', route('beatmaps.scores', ['beatmap' => $this->beatmap, 'mods' => ['DT', 'NC', 'NM']]))
+            ->assertSuccessful();
+
+        $this->assertSameScoresFromResponse($scores, $resp);
+    }
+
+    public function testScoresNomodsFilter()
+    {
+        $modsHelper = app('mods');
+        $scoreClass = ScoreBest::getClass($this->beatmap->playmode);
+        $scores = [
+            $scoreClass::factory()->create([
+                'beatmap_id' => $this->beatmap,
+                'score' => 1500,
+                'enabled_mods' => 0,
+            ]),
+            // Preference mod is included
+            $scoreClass::factory()->create([
+                'beatmap_id' => $this->beatmap,
+                'score' => 1100,
+                'user_id' => $this->user,
+                'enabled_mods' => $modsHelper->idsToBitset(['PF']),
+            ]),
+        ];
+        // Non-preference mod is filtered out
+        $scoreClass::factory()->create([
+            'beatmap_id' => $this->beatmap,
+            'enabled_mods' => $modsHelper->idsToBitset(['DT']),
+        ]);
+
+        $this->user->update(['osu_subscriber' => true]);
+        $resp = $this->actingAs($this->user)
+            ->json('GET', route('beatmaps.scores', ['beatmap' => $this->beatmap, 'mods' => ['NM']]))
+            ->assertSuccessful();
+
+        $this->assertSameScoresFromResponse($scores, $resp);
     }
 
     public function testShowForApi()
@@ -357,6 +619,15 @@ class BeatmapsControllerTest extends TestCase
 
         $this->user = User::factory()->create();
         $this->beatmap = Beatmap::factory()->qualified()->create();
+    }
+
+    private function assertSameScoresFromResponse(array $scores, TestResponse $response): void
+    {
+        $json = json_decode($response->getContent(), true);
+        $this->assertSame(count($scores), count($json['scores']));
+        foreach ($json['scores'] as $i => $jsonScore) {
+            $this->assertSame($scores[$i]->getKey(), $jsonScore['id']);
+        }
     }
 
     private function createExistingFruitsBeatmap()

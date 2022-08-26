@@ -16,19 +16,21 @@ class CurrentUserAttributesTransformer extends TransformerAbstract
 {
     public function transform(LegacyMatch\Score|ScoreModel|SoloScore $score): array
     {
-        $best = $score instanceof ScoreModel ? $score->best : null;
+        $pinnable = $score instanceof ScoreModel
+            ? $score->best
+            : ($score instanceof SoloScore ? $score : null);
 
         return [
-            'pin' => $best !== null && $this->isOwnScore($best)
+            'pin' => $pinnable !== null && $this->isOwnScore($pinnable)
                 ? [
-                    'is_pinned' => app('score-pins')->isPinned($best),
-                    'score_id' => $best->getKey(),
-                    'score_type' => $best->getMorphClass(),
+                    'is_pinned' => app('score-pins')->isPinned($pinnable),
+                    'score_id' => $pinnable->getKey(),
+                    'score_type' => $pinnable->getMorphClass(),
                 ] : null,
         ];
     }
 
-    private function isOwnScore(LegacyMatch\Score|ScoreModel $score): bool
+    private function isOwnScore(LegacyMatch\Score|ScoreModel|SoloScore $score): bool
     {
         return $score->user_id === auth()->user()?->getKey();
     }

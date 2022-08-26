@@ -87,12 +87,12 @@ return [
             '_' => 'チャット',
 
             'announcement' => [
-                '_' => '',
+                '_' => '新しいお知らせ',
 
                 'announce' => [
-                    'channel_announcement' => '',
-                    'channel_announcement_compact' => '',
-                    'channel_announcement_group' => '',
+                    'channel_announcement' => ':usernameが":title"で発言',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => ':username からのお知らせ',
                 ],
             ],
 
@@ -160,8 +160,8 @@ return [
                 'user_beatmapset_new_compact' => '新しいビートマップ「:title」',
                 'user_beatmapset_new_group' => ':username の新しいビートマップ',
 
-                'user_beatmapset_revive' => '',
-                'user_beatmapset_revive_compact' => '',
+                'user_beatmapset_revive' => '":title"が :usernameによって復活しました',
+                'user_beatmapset_revive_compact' => '":title"が復活しました',
             ],
         ],
 

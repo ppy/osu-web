@@ -10,11 +10,10 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import UserCardTypeContext from 'user-card-type-context';
 import { classWithModifiers, Modifiers } from 'utils/css';
-import { ViewMode } from './user-card';
 
 interface Props {
-  mode: ViewMode;
   modifiers?: Modifiers;
+  onRemoveClick?: (user: UserJson) => void;
   user: UserJson;
 }
 
@@ -22,11 +21,9 @@ interface Props {
 export default class UserCardBrick extends React.Component<Props> {
   static readonly contextType = UserCardTypeContext;
 
-  static defaultProps = {
-    mode: 'brick',
-  };
-
   declare context: React.ContextType<typeof UserCardTypeContext>;
+
+  private ref = React.createRef<HTMLDivElement>();
 
   @computed
   private get friendModifier() {
@@ -47,11 +44,14 @@ export default class UserCardBrick extends React.Component<Props> {
     makeObservable(this);
   }
 
+  componentWillUnmount() {
+    $.publish('user-card:remove', this.ref.current);
+  }
+
   render() {
     const blockClass = classWithModifiers(
       'user-card-brick',
       this.props.modifiers,
-      this.props.mode,
       this.friendModifier,
     );
 
@@ -60,21 +60,31 @@ export default class UserCardBrick extends React.Component<Props> {
       : undefined;
 
     return (
-      <a
-        className={`js-usercard ${blockClass}`}
-        data-user-id={this.props.user.id}
-        href={route('users.show', { user: this.props.user.id })}
-      >
-        <div
-          className='user-card-brick__group-bar'
-          style={osu.groupColour(group)}
-          title={group?.name}
-        />
+      <div ref={this.ref} className={`js-usercard ${blockClass}`} data-user-id={this.props.user.id}>
+        <a
+          className='user-card-brick__link'
+          href={route('users.show', { user: this.props.user.id })}
+        >
+          <div
+            className='user-card-brick__group-bar'
+            style={osu.groupColour(group)}
+            title={group?.name}
+          />
 
-        <div className='user-card-brick__username u-ellipsis-overflow'>
-          {this.props.user.username}
-        </div>
-      </a>
+          <div className='user-card-brick__username u-ellipsis-overflow'>
+            {this.props.user.username}
+          </div>
+        </a>
+        {this.props.onRemoveClick != null && (
+          <button className='user-card-brick__remove' onClick={this.handleRemoveClick}>
+            <span className='fas fa-times' />
+          </button>
+        )}
+      </div>
     );
   }
+
+  private handleRemoveClick = () => {
+    this.props.onRemoveClick?.(this.props.user);
+  };
 }

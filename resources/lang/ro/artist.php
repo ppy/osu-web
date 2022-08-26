@@ -4,33 +4,33 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'page_description' => 'Featured artists în osu!',
-    'title' => 'Featured Artists',
+    'page_description' => 'Artiști oficiali în osu!',
+    'title' => 'Artiști Oficiali',
 
     'admin' => [
-        'hidden' => 'ARTISTUL ESTE ASCUNS',
+        'hidden' => 'ARTISTUL ESTE ASCUNS DEOCAMDATĂ',
     ],
 
     'beatmaps' => [
         '_' => 'Beatmap-uri',
-        'download' => 'Descarcă Model Beatmap',
-        'download-na' => 'Modelul Beatmap-ului nu este încă disponibil',
+        'download' => 'Descarcă Șablonul pentru Beatmap',
+        'download-na' => 'Șablonul pentru Beatmap nu este încă disponibil',
     ],
 
     'index' => [
-        'description' => 'Artiștii Recomandați sunt artiștii care muncesc în colaborare cu noi pentru a aduce muzică nouă și originală în osu!. Acești artiști și selecția lor a fost făcută manual de către echipa osu! ca fiind un speciale și potrivit pentru crearea de beatmap-uri. Unii dintre acești artiști recomandați, de asemenea, au creat exclusiv piese noi pentru a le folosi in osu!.<br><br>Toate piesele din această categorie sunt asigurate ca fișiere prestabilite .osz și sunt licențiate în mod oficial pentru a fi utilizate în osu! și în conținut legat de osu!',
+        'description' => 'Artiștii oficiali sunt artiștii care muncesc în colaborare cu noi pentru a aduce muzică nouă și originală în osu!. Acești artiști și lista lor de melodii au fost selecționate manual de către echipa osu! fiind speciale și potrivite pentru crearea de beatmap-uri. Unii dintre acești artiști oficiali, de asemenea, au creat melodii exclusive noi pentru a le folosi in osu!.<br><br>Toate melodiile din această categorie au asigurate fișiere .osz cu timing prestabilit și sunt licențiate în mod oficial pentru a fi utilizate în osu! și în conținut legat de osu!.',
     ],
 
     'links' => [
         'beatmaps' => 'Beatmap-uri osu!',
-        'osu' => 'profilul osu!',
+        'osu' => 'Profilul osu!',
         'site' => 'Site-ul oficial',
     ],
 
     'songs' => [
         '_' => 'Melodii',
-        'count' => ':count melodie|:count melodii',
-        'original' => 'osu! original',
+        'count' => 'o melodie|:count_delimited melodii|:count_delimited de melodii',
+        'original' => 'original osu!',
         'original_badge' => 'ORIGINAL',
     ],
 
@@ -43,18 +43,18 @@ return [
 
     'tracks' => [
         'index' => [
-            '_' => 'Căutare cântece',
+            '_' => 'căutare melodii',
 
             'form' => [
-                'advanced' => 'Căutare avansată ',
+                'advanced' => 'Căutare Avansată',
                 'album' => 'Album',
                 'artist' => 'Artist',
                 'bpm_gte' => 'BPM Minim',
                 'bpm_lte' => 'BPM Maxim',
-                'empty' => 'Nu au fost găsite cântece potrivite cu criteriile de căutare.',
+                'empty' => 'Nu au fost găsite melodii potrivite pentru criteriile de căutare.',
                 'genre' => 'Gen',
                 'genre_all' => 'Toate',
-                'length_gte' => 'Lungime minimă ',
+                'length_gte' => 'Lungime Minimă',
                 'length_lte' => 'Lungime maximă',
             ],
         ],

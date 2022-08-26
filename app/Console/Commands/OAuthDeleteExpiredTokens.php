@@ -107,6 +107,6 @@ class OAuthDeleteExpiredTokens extends Command
 
         $progress->finish();
         $this->line('');
-        $this->line("Deleted {$deleted} expired auth codes.");
+        $this->line("Deleted {$deleted} expired client grant tokens.");
     }
 }

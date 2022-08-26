@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => 'Mangyaring tiyakin na ang iyong avatar ay sumusunod sa: :link.<br/>Nangangahulugan ito na dapat <strong>angkop ito sa lahat ng edad</strong>. i.e. walang kahubaran, kabastusan o nilalaman na nagpapahiwatig ng kalaswaan.',
+            'rules' => 'Pakitiyak na ang iyong avatar ay sumusunod sa :link.<br/>Nangangahulugan ito na dapat ay <strong>angkop para sa lahat ng edad</strong>. i.e. walang kahubaran, kabastusan, o nagpapahiwatig na nilalaman.',
             'rules_link' => 'ang patakaran ng komunidad
 	
 ',
@@ -50,15 +50,15 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'tumanggap ng mga abiso sa mga bagong problema sa mga kwalipikadong beatmaps sa mga sumusunod na mode',
-        'beatmapset_disqualify' => 'tumanggap ng mga abiso kung kailan ang mga beatmap sa mga sumusnod na mode ay nadiskwalipika',
-        'comment_reply' => 'tumanggap nga mga abiso na tumutugon sa iyong mga komento',
-        'title' => 'Mga abiso',
+        'beatmapset_discussion_qualified_problem' => 'tumanggap ng mga notipikasyon sa mga bagong problema sa mga kwalipikadong beatmap sa mga sumusunod na mode',
+        'beatmapset_disqualify' => 'tumanggap ng mga notipikasyon kung kailan ang mga beatmap sa mga sumusunod na mode ay na diskwalipika',
+        'comment_reply' => 'tumanggap ng mga notipikasyon para sa mga tugon sa iyong mga komento',
+        'title' => 'Mga notipikasyon',
         'topic_auto_subscribe' => 'awtomatikong paganahin ang mga notipikasyon sa nilikha mong mga bagong paksa sa forum',
 
         'options' => [
             '_' => 'mga opsyon sa pagpapaalam',
-            'beatmap_owner_change' => 'difficulty na gawa ng ibang manlalaro',
+            'beatmap_owner_change' => 'guest na difficulty',
             'beatmapset:modding' => 'pagmo-mod ng beatmap',
             'channel_message' => 'mga pribadong mensahe',
             'comment_new' => 'mga bagong komento',
@@ -93,7 +93,7 @@ return [
         'keyboard' => 'keyboard',
         'mouse' => 'mouse',
         'tablet' => 'tablet',
-        'title' => 'Istilo ng paglalaro',
+        'title' => 'Mga istilo ng paglalaro',
         'touch' => 'touch',
     ],
 
@@ -106,7 +106,7 @@ return [
     'security' => [
         'current_session' => 'kasalukuyan',
         'end_session' => 'Tapusin ang sesyon',
-        'end_session_confirmation' => 'Agad na tatapusin nito ang iyong sesyon sa naturang aparato. Sigurado ka ba?',
+        'end_session_confirmation' => 'Agad nitong tatapusin ang iyong sesyon sa device na iyon. Sigurado ka ba?',
         'last_active' => 'Huling aktibo:',
         'title' => 'Seguridad',
         'web_sessions' => 'mga sesyon sa web',
@@ -121,11 +121,11 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => 'Maaari mo nang i-sara ang tab/window na ito',
+        'text' => 'Maaari mong isara ang tab/window na ito ngayon',
         'title' => 'Nakumpleto ang beripikasyon',
     ],
 
     'verification_invalid' => [
-        'title' => 'Hindi wasto o nag-expire na link sa pag-verify',
+        'title' => 'Hindi wasto o na-expire na link ng pagpapatunay',
     ],
 ];

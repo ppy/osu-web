@@ -5,6 +5,7 @@ import BigButton from './big-button'
 import { Spinner } from './spinner'
 import UserAvatar from './user-avatar'
 import { route } from 'laroute'
+import core from 'osu-core-singleton'
 import * as React from 'react'
 import TextareaAutosize from 'react-autosize-textarea'
 import { button, div, span } from 'react-dom-factories'
@@ -21,7 +22,6 @@ export class CommentEditor extends React.PureComponent
     super props
 
     @textarea = React.createRef()
-    @throttledPost = _.throttle @post, 1000
 
     @handleKeyDown = makeTextAreaHandler @handleKeyDownCallback
 
@@ -37,16 +37,23 @@ export class CommentEditor extends React.PureComponent
 
 
   componentWillUnmount: =>
-    @throttledPost.cancel()
     @xhr?.abort()
 
 
   render: =>
-    blockClass = classWithModifiers bn, @props.modifiers
-    blockClass += " #{bn}--fancy" if @mode() == 'new'
+    mode = @mode()
+    canComment = @canComment()
+
+    placeholder =
+      if mode in ['new', 'reply'] && !canComment
+        @props.commentableMeta.current_user_attributes?.can_new_comment_reason ? osu.trans('authorization.comment.store.disabled')
+      else
+        osu.trans("comments.placeholder.#{mode}")
+
+    blockClass = classWithModifiers bn, @props.modifiers, fancy: mode == 'new'
 
     div className: blockClass,
-      if @mode() == 'new'
+      if mode == 'new'
         div className: "#{bn}__avatar",
           el UserAvatar, user: currentUser, modifiers: ['full-circle']
 
@@ -54,15 +61,16 @@ export class CommentEditor extends React.PureComponent
         className: "#{bn}__message"
         ref: @textarea
         value: @state.message
-        placeholder: osu.trans("comments.placeholder.#{@mode()}")
+        placeholder: placeholder
         onChange: @onChange
         onKeyDown: @handleKeyDown
-        disabled: !currentUser.id? || @state.posting
+        disabled: !canComment || @state.posting
       div
         className: "#{bn}__footer"
         div className: "#{bn}__footer-item #{bn}__footer-item--notice hidden-xs",
-          osu.trans 'comments.editor.textarea_hint._',
-            action: osu.trans("comments.editor.textarea_hint.#{@mode()}")
+          if canComment
+            osu.trans 'comments.editor.textarea_hint._',
+              action: osu.trans("comments.editor.textarea_hint.#{mode}")
 
         if @props.close?
           div className: "#{bn}__footer-item",
@@ -80,7 +88,7 @@ export class CommentEditor extends React.PureComponent
               isBusy: @state.posting
               modifiers: 'comment-editor'
               props:
-                onClick: @throttledPost
+                onClick: @post
               text:
                 top:
                   if @state.posting
@@ -92,7 +100,7 @@ export class CommentEditor extends React.PureComponent
             el BigButton,
               extraClasses: ['js-user-link']
               modifiers: 'comment-editor'
-              text: osu.trans("comments.guest_button.#{@mode()}")
+              text: osu.trans("comments.guest_button.#{mode}")
 
 
   buttonText: =>
@@ -103,6 +111,15 @@ export class CommentEditor extends React.PureComponent
         when 'new' then 'post'
 
     osu.trans("common.buttons.#{key}")
+
+
+  canComment: =>
+    return false if !core.currentUser?
+
+    if @mode() in ['new', 'reply']
+      @props.commentableMeta.current_user_attributes? && !@props.commentableMeta.current_user_attributes?.can_new_comment_reason?
+    else
+      true
 
 
   close: =>
@@ -120,7 +137,7 @@ export class CommentEditor extends React.PureComponent
       when InputEventType.Cancel
         @close()
       when InputEventType.Submit
-        @throttledPost()
+        @post()
 
 
   isValid: =>
@@ -141,6 +158,7 @@ export class CommentEditor extends React.PureComponent
 
 
   post: =>
+    return if @xhr?
     return @props.close?() if @mode() == 'edit' && @state.message == @props.message
 
     @setState posting: true
@@ -151,8 +169,8 @@ export class CommentEditor extends React.PureComponent
       when 'reply', 'new'
         url = route 'comments.store'
         method = 'POST'
-        data.comment.commentable_type = @props.commentableType
-        data.comment.commentable_id = @props.commentableId
+        data.comment.commentable_type = @props.commentableMeta.type
+        data.comment.commentable_id = @props.commentableMeta.id
         data.comment.parent_id = @props.parent?.id
 
         onDone = (data) =>
@@ -173,3 +191,5 @@ export class CommentEditor extends React.PureComponent
       @props.onPosted?(@mode())
       @props.close?()
     .fail onErrorWithCallback(@post)
+    .always =>
+      @xhr = null

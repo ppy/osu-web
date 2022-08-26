@@ -19,6 +19,14 @@ class MessagesControllerTest extends TestCase
 {
     protected static $faker;
 
+    private User $anotherUser;
+    private Channel $privateChannel;
+    private Channel $publicChannel;
+    private User $restrictedUser;
+    private User $silencedUser;
+    private Channel $tourneyChannel;
+    private User $user;
+
     public static function setUpBeforeClass(): void
     {
         self::$faker = Faker\Factory::create();
@@ -115,29 +123,22 @@ class MessagesControllerTest extends TestCase
     //region GET /chat/channels/[channel_id]/messages - Get Channel Messages (pm)
     public function testChannelShowPMWhenGuest() // fail
     {
-        $this->json('GET', route('api.chat.channels.messages.index', ['channel' => $this->pmChannel->channel_id]))
+        $pmChannel = Channel::factory()->type('pm')->create();
+        $this->json('GET', route('api.chat.channels.messages.index', ['channel' => $pmChannel->channel_id]))
             ->assertStatus(401);
     }
 
     public function testChannelShowPMWhenNotJoined() // fail
     {
+        $pmChannel = Channel::factory()->type('pm')->create();
         $this->actAsScopedUser($this->user, ['*']);
-        $this->json('GET', route('api.chat.channels.messages.index', ['channel' => $this->pmChannel->channel_id]))
+        $this->json('GET', route('api.chat.channels.messages.index', ['channel' => $pmChannel->channel_id]))
             ->assertStatus(404);
     }
 
     public function testChannelShowPMWhenTargetRestricted() // fail
     {
-        $pmChannel = Channel::factory()->type('pm')->create();
-
-        UserChannel::factory()->create([
-            'user_id' => $this->user->user_id,
-            'channel_id' => $pmChannel->channel_id,
-        ]);
-        UserChannel::factory()->create([
-            'user_id' => $this->restrictedUser->user_id,
-            'channel_id' => $pmChannel->channel_id,
-        ]);
+        $pmChannel = Channel::factory()->type('pm', [$this->user, $this->restrictedUser])->create();
 
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('GET', route('api.chat.channels.messages.index', ['channel' => $pmChannel->channel_id]))
@@ -146,11 +147,7 @@ class MessagesControllerTest extends TestCase
 
     public function testChannelShowPM() // success
     {
-        $pmChannel = Channel::factory()->type('pm')->create();
-        UserChannel::factory()->create([
-            'user_id' => $this->user->user_id,
-            'channel_id' => $pmChannel->channel_id,
-        ]);
+        $pmChannel = Channel::factory()->type('pm', [$this->user, $this->anotherUser])->create();
 
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('GET', route('api.chat.channels.messages.index', ['channel' => $pmChannel->channel_id]))
@@ -235,15 +232,7 @@ class MessagesControllerTest extends TestCase
 
     public function testChannelSendWhenBlocking() // fail
     {
-        $pmChannel = Channel::factory()->type('pm')->create();
-        UserChannel::factory()->create([
-            'user_id' => $this->user->user_id,
-            'channel_id' => $pmChannel->channel_id,
-        ]);
-        UserChannel::factory()->create([
-            'user_id' => $this->anotherUser->user_id,
-            'channel_id' => $pmChannel->channel_id,
-        ]);
+        $pmChannel = Channel::factory()->type('pm', [$this->user, $this->anotherUser])->create();
         factory(UserRelation::class)->states('block')->create([
             'user_id' => $this->user->user_id,
             'zebra_id' => $this->anotherUser->user_id,
@@ -260,15 +249,7 @@ class MessagesControllerTest extends TestCase
 
     public function testChannelSendWhenBlocked() // fail
     {
-        $pmChannel = Channel::factory()->type('pm')->create();
-        UserChannel::factory()->create([
-            'user_id' => $this->user->user_id,
-            'channel_id' => $pmChannel->channel_id,
-        ]);
-        UserChannel::factory()->create([
-            'user_id' => $this->anotherUser->user_id,
-            'channel_id' => $pmChannel->channel_id,
-        ]);
+        $pmChannel = Channel::factory()->type('pm', [$this->user, $this->anotherUser])->create();
         factory(UserRelation::class)->states('block')->create([
             'user_id' => $this->anotherUser->user_id,
             'zebra_id' => $this->user->user_id,
@@ -285,16 +266,7 @@ class MessagesControllerTest extends TestCase
 
     public function testChannelSendWhenRestrictedToPM() // fail
     {
-        $pmChannel = Channel::factory()->type('pm')->create();
-
-        UserChannel::factory()->create([
-            'user_id' => $this->restrictedUser->user_id,
-            'channel_id' => $pmChannel->channel_id,
-        ]);
-        UserChannel::factory()->create([
-            'user_id' => $this->anotherUser->user_id,
-            'channel_id' => $pmChannel->channel_id,
-        ]);
+        $pmChannel = Channel::factory()->type('pm', [$this->restrictedUser, $this->anotherUser])->create();
 
         $this->actAsScopedUser($this->restrictedUser, ['*']);
         $this->json(
@@ -324,16 +296,7 @@ class MessagesControllerTest extends TestCase
 
     public function testChannelSendWhenTargetRestricted() // fail
     {
-        $pmChannel = Channel::factory()->type('pm')->create();
-
-        UserChannel::factory()->create([
-            'user_id' => $this->user->user_id,
-            'channel_id' => $pmChannel->channel_id,
-        ]);
-        UserChannel::factory()->create([
-            'user_id' => $this->restrictedUser->user_id,
-            'channel_id' => $pmChannel->channel_id,
-        ]);
+        $pmChannel = Channel::factory()->type('pm', [$this->user, $this->restrictedUser])->create();
 
         $this->actAsScopedUser($this->user, ['*']);
         $this->json(
@@ -366,16 +329,7 @@ class MessagesControllerTest extends TestCase
 
     public function testChannelSendWhenSilencedToPM() // fail
     {
-        $pmChannel = Channel::factory()->type('pm')->create();
-
-        UserChannel::factory()->create([
-            'user_id' => $this->silencedUser->user_id,
-            'channel_id' => $pmChannel->channel_id,
-        ]);
-        UserChannel::factory()->create([
-            'user_id' => $this->anotherUser->user_id,
-            'channel_id' => $pmChannel->channel_id,
-        ]);
+        $pmChannel = Channel::factory()->type('pm', [$this->silencedUser, $this->anotherUser])->create();
 
         $this->actAsScopedUser($this->silencedUser, ['*']);
         $this->json(
@@ -415,7 +369,6 @@ class MessagesControllerTest extends TestCase
         $this->silencedUser = User::factory()->silenced()->create();
         $this->publicChannel = Channel::factory()->type('public')->create();
         $this->privateChannel = Channel::factory()->type('private')->create();
-        $this->pmChannel = Channel::factory()->type('pm')->create();
         $this->tourneyChannel = Channel::factory()->tourney()->create();
     }
 }

@@ -216,6 +216,6 @@ return [
     ],
 
     'spotlight_badge' => [
-        'label' => '',
+        'label' => '스포트라이트',
     ],
 ];

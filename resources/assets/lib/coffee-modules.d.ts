@@ -41,31 +41,6 @@ declare module 'components/modal' {
   }
 }
 
-declare module 'beatmaps/search-content' {
-  import AvailableFilters from 'beatmaps/available-filters';
-
-  interface Props {
-    availableFilters: AvailableFilters;
-    backToTopAnchor: React.RefObject<HTMLElement>;
-  }
-
-  class SearchContent extends React.PureComponent<Props> {}
-}
-
-declare module 'components/report-form' {
-  interface ReportFormProps {
-    completed: boolean;
-    disabled: boolean;
-    onClose: () => void;
-    onSubmit: ({comments}: {comments: string}) => void;
-    title: string;
-    visible: boolean;
-    visibleOptions?: string[];
-  }
-
-  class ReportForm extends React.PureComponent<ReportFormProps, any> {}
-}
-
 declare module 'components/select-options' {
   interface Option<T = string> {
     id: T | null;
@@ -80,10 +55,11 @@ declare module 'components/select-options' {
   }
 
   interface Props<T> {
+    blackout?: boolean;
     bn?: string;
     onChange: (option: Option<T>) => void;
     options: Option<T>[];
-    renderOption: (props: OptionRenderProps<T>) => React.ReactNode;
+    renderOption?: (props: OptionRenderProps<T>) => React.ReactNode;
     selected: Option<T>;
   }
 

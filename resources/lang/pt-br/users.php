@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Você bloqueou este usuário.',
+        'comment_text' => 'Este comentário está oculto.',
         'blocked_count' => 'usuários bloqueados: (:count)',
         'hide_profile' => 'Ocultar perfil',
+        'hide_comment' => 'ocultar',
         'not_blocked' => 'Este usuário não está bloqueado.',
         'show_profile' => 'Exibir perfil',
+        'show_comment' => 'exibir',
         'too_many' => 'Limite de bloqueios atingido.',
         'button' => [
             'block' => 'Bloquear',
@@ -209,7 +212,7 @@ return [
                     'title' => 'Beatmaps no Cemitério',
                 ],
                 'guest' => [
-                    'title' => '',
+                    'title' => 'Beatmaps de Participação de Visitantes',
                 ],
                 'loved' => [
                     'title' => 'Beatmaps Loved',
@@ -369,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Banimento',
                         'silence' => 'Silenciamento',
+                        'tournament_ban' => '',
                         'note' => 'Nota',
                     ],
                 ],

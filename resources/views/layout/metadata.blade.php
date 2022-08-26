@@ -2,11 +2,14 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-<link rel="apple-touch-icon" sizes="180x180" href="{{ config('app.url') }}/apple-touch-icon.png">
-<link rel="icon" sizes="32x32" href="{{ config('app.url') }}/favicon-32x32.png">
-<link rel="icon" sizes="16x16" href="{{ config('app.url') }}/favicon-16x16.png">
-<link rel="manifest" href="{{ config('app.url') }}/site.webmanifest">
-<link rel="mask-icon" href="{{ config('app.url') }}/safari-pinned-tab.svg" color="#e2609a">
+@php
+    $appUrl = config('app.url');
+@endphp
+<link rel="apple-touch-icon" sizes="180x180" href="{{ $appUrl }}/images/favicon/apple-touch-icon.png">
+<link rel="icon" sizes="32x32" href="{{ $appUrl }}/images/favicon/favicon-32x32.png">
+<link rel="icon" sizes="16x16" href="{{ $appUrl }}/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="{{ $appUrl }}/site.webmanifest">
+<link rel="mask-icon" href="{{ $appUrl }}/images/favicon/safari-pinned-tab.svg" color="#e2609a">
 <meta name="msapplication-TileColor" content="#603cba">
 <meta name="theme-color" content="hsl({{ $currentHue }}, 10%, 40%)"> {{-- @osu-colour-b1 --}}
 
@@ -98,7 +101,7 @@
                 /^\/loaders\//i
             ],
             release: {!! json_encode(config('osu.git-sha')) !!},
-            whitelistUrls: [/^{!! preg_quote(config('app.url'), '/') !!}\/.*\.js(?:\?.*)?$/],
+            whitelistUrls: [/^{!! preg_quote($appUrl, '/') !!}\/.*\.js(?:\?.*)?$/],
         });
     </script>
 @endif

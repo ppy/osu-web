@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'شما این کاربر را مسدود کرده اید.',
+        'comment_text' => '',
         'blocked_count' => 'کاربران مسدود شده (:count)',
         'hide_profile' => 'مخفی کردن پروفایل',
+        'hide_comment' => '',
         'not_blocked' => 'آن کاربر مسدود نشده است.',
         'show_profile' => 'نمایش نمایه',
+        'show_comment' => '',
         'too_many' => 'به حد نهایی محدودیت مسدودیت ها رسیدید.',
         'button' => [
             'block' => 'مسدود کردن',
@@ -369,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'مسدود',
                         'silence' => 'ساکت کردن',
+                        'tournament_ban' => '',
                         'note' => 'یادداشت',
                     ],
                 ],

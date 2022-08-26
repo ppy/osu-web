@@ -6,7 +6,7 @@
 return [
     'comment' => [
         'empty' => 'Nu sunt comentarii urmărite.',
-        'page_title' => 'comentarii vizionate',
+        'page_title' => 'abonamente comentarii',
         'title' => 'comentariu',
 
         'table' => [
@@ -20,15 +20,15 @@ return [
     ],
 
     'index' => [
-        'title_compact' => 'pagini urmărite ',
+        'title_compact' => 'abonamente pagini',
     ],
 
     'mapping' => [
         'empty' => 'Niciun creator de beatmap-uri urmărit.',
         'followers' => 'abonați creatori de beatmap-uri ',
-        'page_title' => 'listă creatori de beatmap-uri urmăriți ',
+        'page_title' => 'abonamente creatori beatmap-uri',
         'title' => 'creator de beatmap-uri ',
-        'to_0' => 'nu mă mai notifica atunci când acest utilizator încarcă un beatmap nou',
+        'to_0' => 'nu mă mai notifica când acest utilizator încarcă un beatmap nou',
         'to_1' => 'notifică-mă când acest utilizator încarcă un beatmap nou',
     ],
 

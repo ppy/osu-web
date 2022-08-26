@@ -72,7 +72,7 @@ return [
 
     'user_email_updated' => [
         'changed_to' => 'Email ini merupakan bukti konfirmasi bahwa alamat email yang terhubung dengan akun osu! Anda telah diubah menjadi ":email".',
-        'check' => 'Harap pastikan bahwa Anda menerima email ini di alamat email yang baru agar Anda tidak kehilangan akses menuju akun osu! Anda di masa yang akan datang.',
+        'check' => 'Harap pastikan bahwa Anda menerima email ini di alamat email yang baru agar ke depannya Anda tidak kehilangan akses menuju akun osu! Anda.',
         'sent' => 'Demi alasan keamanan, email ini telah dikirim ke alamat email baru dan lama milik Anda.',
         'subject' => 'Konfirmasi perubahan email osu!',
     ],
@@ -99,7 +99,7 @@ return [
         'code' => 'Kode verifikasi Anda adalah:',
         'code_hint' => 'Anda dapat memasukkan kode tersebut baik dengan atau tanpa spasi.',
         'link' => 'Di samping itu, Anda juga dapat mengunjungi tautan di bawah ini untuk menyelesaikan proses verifikasi:',
-        'report' => 'Apabila Anda tidak merasa melakukan sesuatu yang membutuhkan kode verifikasi dari kami, harap SEGERA BALAS email ini karena akun Anda mungkin sedang berada dalam bahaya.',
+        'report' => 'Apabila Anda tidak merasa meminta kode verifikasi dari kami, harap SEGERA BALAS email ini karena akun Anda mungkin sedang berada dalam bahaya.',
         'subject' => 'Verifikasi akun osu!',
 
         'action_from' => [

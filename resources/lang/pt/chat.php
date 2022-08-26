@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'loading_users' => 'a carregar utilizadores...',
     'talking_in' => 'a falar em :channel',
     'talking_with' => 'a falar com :name',
     'title_compact' => 'chat',
@@ -14,13 +15,28 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => 'Queres ocultar este canal? Ainda vais receber mensagens deste canal.',
+        'create' => 'criar notícia',
+
         'list' => [
             'title' => [
-                'ANNOUNCE' => 'Comunicados',
+                'ANNOUNCE' => 'Notícias',
                 'GROUP' => 'Grupos',
                 'PM' => 'Mensagens diretas',
                 'PUBLIC' => 'Canais',
             ],
+        ],
+    ],
+
+    'form' => [
+        'title' => [
+            'announcement' => 'Criar nova notícia',
+        ],
+
+        'labels' => [
+            'description' => 'descrição',
+            'name' => 'nome da sala',
+            'users' => 'jogadores a adicionar',
         ],
     ],
 
@@ -30,6 +46,7 @@ return [
     ],
 
     'input' => [
+        'create' => 'Criar',
         'disabled' => 'incapacitado de enviar mensagem...',
         'disconnected' => 'Desligado',
         'placeholder' => 'escrever mensagem...',

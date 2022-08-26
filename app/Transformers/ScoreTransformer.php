@@ -17,6 +17,9 @@ use League\Fractal\Resource\Item;
 
 class ScoreTransformer extends TransformerAbstract
 {
+    const TYPE_LEGACY = 'legacy';
+    const TYPE_SOLO = 'solo';
+
     const USER_PROFILE_INCLUDES = ['beatmap', 'beatmapset', 'user'];
     const USER_PROFILE_INCLUDES_PRELOAD = [
         'beatmap',
@@ -39,25 +42,83 @@ class ScoreTransformer extends TransformerAbstract
         'current_user_attributes',
     ];
 
-    public function transform(LegacyMatch\Score|ScoreModel $score)
+    private string $transformFunction;
+
+    public function __construct(?string $type = null)
+    {
+        $type ??= is_api_request() && api_version() < 20220705
+            ? static::TYPE_LEGACY
+            : static::TYPE_SOLO;
+
+        switch ($type) {
+            case static::TYPE_LEGACY:
+                $this->transformFunction = 'transformLegacy';
+                break;
+            case static::TYPE_SOLO:
+                $this->transformFunction = 'transformSolo';
+                break;
+        }
+    }
+
+    public function transform(LegacyMatch\Score|ScoreModel|SoloScore $score)
+    {
+        $fn = $this->transformFunction;
+
+        return $this->$fn($score);
+    }
+
+    public function transformSolo(ScoreModel|SoloScore $score)
+    {
+        if ($score instanceof ScoreModel) {
+            $legacyPerfect = $score->perfect;
+            $best = $score->best;
+
+            if ($best !== null) {
+                $bestId = $best->getKey();
+                $pp = $best->pp;
+                $replay = $best->replay;
+            }
+        } elseif ($score instanceof SoloScore) {
+            $pp = $score->pp;
+            $replay = $score->has_replay;
+        }
+
+        return array_merge($score->data->jsonSerialize(), [
+            'best_id' => $bestId ?? null,
+            'id' => $score->getKey(),
+            'legacy_perfect' => $legacyPerfect ?? null,
+            'pp' => $pp ?? null,
+            'replay' => $replay ?? false,
+            'type' => $score->getMorphClass(),
+        ]);
+    }
+
+    public function transformLegacy(LegacyMatch\Score|ScoreModel|SoloScore $score)
     {
         if ($score instanceof ScoreModel) {
             // this `best` relation is also used by `current_user_attributes` include.
             $best = $score->best;
 
             $createdAt = $score->date;
-            $mode = $score->getMode();
 
             if ($best !== null) {
                 $bestId = $best->getKey();
                 $pp = $best->pp;
                 $replay = $best->replay ?? false;
             }
+        } elseif ($score instanceof SoloScore) {
+            $soloScore = $score;
+            $score = $soloScore->makeLegacyEntry();
+            $score->score_id = $soloScore->getKey();
+            $createdAt = $soloScore->created_at;
+            $type = $soloScore->getMorphClass();
+            $pp = $soloScore->performance?->pp;
         } else {
             // LegacyMatch\Score
             $createdAt = $score->game->start_time;
-            $mode = $score->gameModeString();
         }
+
+        $mode = $score->getMode();
 
         $statistics = [
             'count_100' => $score->count100,
@@ -85,11 +146,12 @@ class ScoreTransformer extends TransformerAbstract
             'replay' => $replay ?? false,
             'score' => $score->score,
             'statistics' => $statistics,
+            'type' => $type ?? $score->getMorphClass(),
             'user_id' => $score->user_id,
         ];
     }
 
-    public function includeBeatmap(LegacyMatch\Score|ScoreModel $score)
+    public function includeBeatmap(LegacyMatch\Score|ScoreModel|SoloScore $score)
     {
         $beatmap = $score->beatmap;
 
@@ -101,7 +163,7 @@ class ScoreTransformer extends TransformerAbstract
         return $this->item($beatmap, new BeatmapTransformer());
     }
 
-    public function includeBeatmapset(LegacyMatch\Score|ScoreModel $score)
+    public function includeBeatmapset(LegacyMatch\Score|ScoreModel|SoloScore $score)
     {
         return $this->item($score->beatmap->beatmapset, new BeatmapsetCompactTransformer());
     }
@@ -125,12 +187,12 @@ class ScoreTransformer extends TransformerAbstract
         return $this->primitive($score->userRank(['type' => 'country']));
     }
 
-    public function includeRankGlobal(ScoreModel $score)
+    public function includeRankGlobal(ScoreModel|SoloScore $score)
     {
         return $this->primitive($score->userRank([]));
     }
 
-    public function includeUser(LegacyMatch\Score|ScoreModel $score)
+    public function includeUser(LegacyMatch\Score|ScoreModel|SoloScore $score)
     {
         return $this->item(
             $score->user ?? new DeletedUser(['user_id' => $score->user_id]),
@@ -138,9 +200,9 @@ class ScoreTransformer extends TransformerAbstract
         );
     }
 
-    public function includeWeight(LegacyMatch\Score|ScoreModel $score)
+    public function includeWeight(LegacyMatch\Score|ScoreModel|SoloScore $score)
     {
-        if ($score instanceof ScoreBest && $score->weight !== null) {
+        if (($score instanceof ScoreBest || $score instanceof SoloScore) && $score->weight !== null) {
             return $this->primitive([
                 'percentage' => $score->weight * 100,
                 'pp' => $score->weightedPp(),
