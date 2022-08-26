@@ -10,6 +10,7 @@ namespace App\Libraries;
 use App\Http\Middleware\RequireScopes;
 use Closure;
 use Ds\Set;
+use Illuminate\Contracts\Http\Kernel as HttpKernelContract;
 use Route;
 
 class RouteScopesHelper
@@ -50,6 +51,10 @@ class RouteScopesHelper
 
     public function loadRoutes()
     {
+        // Force the http kernel singleton to boot if it hasn't.
+        // This ensures the router has the middleware groups loaded.
+        app(HttpKernelContract::class);
+
         $this->routes = [];
         $apiGroup = new Set(Route::getMiddlewareGroups()['api']);
 
