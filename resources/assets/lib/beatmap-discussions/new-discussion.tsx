@@ -356,15 +356,12 @@ export class NewDiscussion extends React.Component<Props> {
                     pattern={` ${osu.trans('beatmaps.hype.remaining')}`}
                   />
                   {this.props.beatmapset.current_user_attributes.new_hype_time != null && (
-                    <>
-                      {' '}
-                      <StringWithComponent
-                        mappings={{
-                          new_time: <TimeWithTooltip dateTime={this.props.beatmapset.current_user_attributes.new_hype_time} relative />,
-                        }}
-                        pattern={` ${osu.trans('beatmaps.hype.new_time')}`}
-                      />
-                    </>
+                    <StringWithComponent
+                      mappings={{
+                        new_time: <TimeWithTooltip dateTime={this.props.beatmapset.current_user_attributes.new_hype_time} relative />,
+                      }}
+                      pattern={` ${osu.trans('beatmaps.hype.new_time')}`}
+                    />
                   )}
                 </>
               )}
