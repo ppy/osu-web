@@ -347,7 +347,7 @@ export class NewDiscussion extends React.Component<Props> {
         </div>
         <div className={`${bn}__timestamp-col`}>
           {core.currentUser != null ? (
-            <>
+            <span>
               {this.props.beatmapset.current_user_attributes.can_hype ? osu.trans('beatmaps.hype.explanation') : this.props.beatmapset.current_user_attributes.can_hype_reason}
               {(this.props.beatmapset.current_user_attributes.can_hype || this.props.beatmapset.current_user_attributes.remaining_hype <= 0) && (
                 <>
@@ -356,16 +356,19 @@ export class NewDiscussion extends React.Component<Props> {
                     pattern={` ${osu.trans('beatmaps.hype.remaining')}`}
                   />
                   {this.props.beatmapset.current_user_attributes.new_hype_time != null && (
-                    <StringWithComponent
-                      mappings={{
-                        new_time: <TimeWithTooltip dateTime={this.props.beatmapset.current_user_attributes.new_hype_time} relative />,
-                      }}
-                      pattern={` ${osu.trans('beatmaps.hype.new_time')}`}
-                    />
+                    <>
+                      {' '}
+                      <StringWithComponent
+                        mappings={{
+                          new_time: <TimeWithTooltip dateTime={this.props.beatmapset.current_user_attributes.new_hype_time} relative />,
+                        }}
+                        pattern={` ${osu.trans('beatmaps.hype.new_time')}`}
+                      />
+                    </>
                   )}
                 </>
               )}
-            </>
+            </span>
           ) : osu.trans('beatmaps.hype.explanation_guest')}
         </div>
       </div>
