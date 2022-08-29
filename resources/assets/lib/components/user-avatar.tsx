@@ -5,6 +5,7 @@ import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
 
 interface UserForAvatarJson {
+  // TODO: make non-optional; existing coffeescript passes {} for guest user.
   avatar_url?: string | null;
 }
 

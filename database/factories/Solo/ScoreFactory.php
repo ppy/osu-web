@@ -52,7 +52,7 @@ class ScoreFactory extends Factory
                 'rank' => fn (): string => array_rand_val(['A', 'S', 'B', 'SH', 'XH', 'X']),
                 'ruleset_id' => $attr['ruleset_id'],
                 'started_at' => fn (): DateTime => now()->subSeconds(600),
-                'total_score' => fn (): int => $this->faker->randomNumber(1, 1000000),
+                'total_score' => fn (): int => $this->faker->randomNumber(7),
                 'user_id' => $attr['user_id'],
             ], $overrides ?? []),
         );

@@ -18,6 +18,7 @@ class ScoreDataStatistics implements JsonSerializable
     public int $largeBonus;
     public int $largeTickHit;
     public int $largeTickMiss;
+    public int $legacyComboIncrease;
     public int $meh;
     public int $miss;
     public int $ok;
@@ -49,6 +50,7 @@ class ScoreDataStatistics implements JsonSerializable
                 'largeBonus',
                 'largeTickHit',
                 'largeTickMiss',
+                'legacyComboIncrease',
                 'meh',
                 'miss',
                 'ok',

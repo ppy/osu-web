@@ -9,6 +9,7 @@ import BeatmapsetDiscussionPostJson from 'interfaces/beatmapset-discussion-post-
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
 import { escape, truncate } from 'lodash';
+import core from 'osu-core-singleton';
 import { currentUrl } from 'utils/turbolinks';
 import { linkHtml, openBeatmapEditor, urlRegex } from 'utils/url';
 import { classWithModifiers, Modifiers } from './css';
@@ -52,6 +53,13 @@ export function badgeGroup({ beatmapset, currentBeatmap, discussion, user }: Bad
   }
 
   return user.groups?.[0];
+}
+
+export function canModeratePosts(user?: UserJson) {
+  user ??= core.currentUser;
+  if (user == null) return false;
+
+  return user.is_admin || user.is_moderator;
 }
 
 function discussionLinkify(text: string) {
