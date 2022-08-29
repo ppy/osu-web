@@ -46,6 +46,23 @@
     }
   }
 
+  &__footer-column {
+    .default-text-shadow();
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    font-size: @font-size--small-2;
+    color: #fff;
+    background-color: @osu-colour-b3;
+    border-radius: 0 @border-radius-base @border-radius-base 0;
+
+    &--label {
+      background-color: @osu-colour-b6;
+      border-radius: @border-radius-base 0 0 @border-radius-base;
+      flex-grow: 0;
+    }
+  }
+
   &__login-required {
     .content-font();
     color: @osu-colour-f1;
@@ -115,23 +132,6 @@
     margin: 5px 0 0;
     text-transform: initial;
     font-weight: initial;
-  }
-
-  &__timestamp-col {
-    .default-text-shadow();
-    display: flex;
-    align-items: center;
-    padding: 0 10px;
-    font-size: @font-size--small-2;
-    color: #fff;
-    background-color: @osu-colour-b3;
-    border-radius: 0 @border-radius-base @border-radius-base 0;
-
-    &--label {
-      background-color: @osu-colour-b6;
-      border-radius: @border-radius-base 0 0 @border-radius-base;
-      flex-grow: 0;
-    }
   }
 
   &__type {

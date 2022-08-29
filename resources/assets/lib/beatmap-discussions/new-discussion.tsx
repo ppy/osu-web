@@ -342,10 +342,10 @@ export class NewDiscussion extends React.Component<Props> {
 
     return (
       <div className={`${bn}__footer-content js-hype--explanation js-flash-border`}>
-        <div className={`${bn}__timestamp-col ${bn}__timestamp-col--label`}>
+        <div className={`${bn}__footer-column ${bn}__footer-column--label`}>
           {osu.trans('beatmaps.hype.title')}
         </div>
-        <div className={`${bn}__timestamp-col`}>
+        <div className={`${bn}__footer-column`}>
           {core.currentUser != null ? (
             <span>
               {this.props.beatmapset.current_user_attributes.can_hype ? osu.trans('beatmaps.hype.explanation') : this.props.beatmapset.current_user_attributes.can_hype_reason}
@@ -447,10 +447,10 @@ export class NewDiscussion extends React.Component<Props> {
 
     return (
       <div className={`${bn}__footer-content`}>
-        <div className={`${bn}__timestamp-col ${bn}__timestamp-col--label`}>
+        <div className={`${bn}__footer-column ${bn}__footer-column--label`}>
           {osu.trans('beatmaps.discussions.new.timestamp')}
         </div>
-        <div className={`${bn}__timestamp-col`}>
+        <div className={`${bn}__footer-column`}>
           {timestamp}
         </div>
       </div>
