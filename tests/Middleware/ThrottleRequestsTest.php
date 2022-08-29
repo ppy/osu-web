@@ -68,7 +68,7 @@ class ThrottleRequestsTest extends TestCase
     protected function tearDown(): void
     {
         if (config('cache.default') === 'redis') {
-            $key = sha1($this->token->getKey());
+            $key = config('cache.prefix').':'.sha1($this->token->getKey());
             LaravelRedis::del($key);
             LaravelRedis::del("{$key}:timer");
         }
