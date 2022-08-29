@@ -17,15 +17,15 @@ class RequestCost
         return $request->attributes->get('request_cost', 1);
     }
 
-    public static function setCost(int $cost)
+    public static function setCost(int $cost, ?Request $request = null)
     {
         // max(1, ) is a convenience for callers that use count()
-        request()->attributes->set('request_cost', max(1, $cost));
+        ($request ?? request())->attributes->set('request_cost', max(1, $cost));
     }
 
     public function handle(Request $request, Closure $next, int $cost = 1)
     {
-        $request->attributes->set('request_cost', $cost);
+        static::setCost($cost, $request);
 
         return $next($request);
     }
