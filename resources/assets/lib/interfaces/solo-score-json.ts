@@ -18,6 +18,7 @@ export type SoloScoreStatisticsAttribute =
   | 'large_bonus'
   | 'large_tick_hit'
   | 'large_tick_miss'
+  | 'legacy_combo_increase'
   | 'meh'
   | 'miss'
   | 'ok'
@@ -36,6 +37,7 @@ interface SoloScoreJsonDefaultAttributes {
   legacy_perfect: boolean | null;
   legacy_score_id: number | null;
   max_combo: number;
+  maximum_statistics: Partial<Record<SoloScoreStatisticsAttribute, number>>;
   mods: Mod[];
   passed: boolean;
   pp: number | null;
