@@ -7,7 +7,6 @@ import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import { BeatmapsetDiscussionPostStoreResponseJson } from 'interfaces/beatmapset-discussion-post-responses';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
-import CurrentUserJson from 'interfaces/current-user-json';
 import { route } from 'laroute';
 import { action, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
@@ -25,7 +24,6 @@ const bn = 'beatmap-discussion-post';
 interface Props {
   beatmapset: BeatmapsetJson;
   currentBeatmap: BeatmapJson;
-  currentUser: CurrentUserJson;
   discussion: BeatmapsetDiscussionJson & Required<Pick<BeatmapsetDiscussionJson, 'current_user_attributes'>>;
 }
 
@@ -172,7 +170,7 @@ export class NewReply extends React.Component<Props> {
         {this.renderCancelButton()}
         <div className={`${bn}__content`}>
           <div className={`${bn}__avatar`}>
-            <UserAvatar modifiers='full-rounded' user={this.props.currentUser} />
+            <UserAvatar modifiers='full-rounded' user={core.currentUser} />
           </div>
           <div className={`${bn}__message-container`}>
             <TextareaAutosize
@@ -220,8 +218,8 @@ export class NewReply extends React.Component<Props> {
   }
 
   private renderPlaceholder() {
-    const [text, icon, disabled] = this.props.currentUser.id != null
-      ? [osu.trans('beatmap_discussions.reply.open.user'), 'fas fa-reply', this.props.currentUser.is_silenced]
+    const [text, icon, disabled] = core.currentUser != null
+      ? [osu.trans('beatmap_discussions.reply.open.user'), 'fas fa-reply', core.currentUser.is_silenced]
       : [osu.trans('beatmap_discussions.reply.open.guest'), 'fas fa-sign-in-alt', false];
 
     return (
