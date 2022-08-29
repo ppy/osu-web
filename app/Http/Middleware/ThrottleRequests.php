@@ -5,11 +5,17 @@
 
 namespace App\Http\Middleware;
 
+use App\Libraries\RateLimiter;
 use Closure;
 use Illuminate\Routing\Middleware\ThrottleRequests as ThrottleRequestsBase;
 
 class ThrottleRequests extends ThrottleRequestsBase
 {
+    public function __construct(RateLimiter $limiter)
+    {
+        parent::__construct($limiter);
+    }
+
     public static function getApiThrottle($group = 'global')
     {
         return 'throttle:'.config("osu.api.throttle.{$group}").':';
