@@ -50,7 +50,7 @@ class ThrottleRequestsTest extends TestCase
         return [
             'throttle' => [['throttle:60,10'], 59],
             'request-cost specified' => [['request-cost:5', 'throttle:60,10'], 55],
-            'request-cost runs before throttle' => [['throttle:60,10', 'request-cost:5'], 55],
+            'request-cost after throttle order does not matter' => [['throttle:60,10', 'request-cost:5'], 55],
             'setCost' => [['throttle:60,10'], 58, fn () => RequestCost::setCost(2)],
             'setCost overrides default' => [['throttle:60,10', 'request-cost:5'], 58, fn () => RequestCost::setCost(2)],
         ];
