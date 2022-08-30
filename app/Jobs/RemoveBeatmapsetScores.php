@@ -53,11 +53,16 @@ class RemoveBeatmapsetScores implements ShouldQueue
         $this->scoreSearch = new ScoreSearch();
         $this->schemas = $this->scoreSearch->getActiveSchemas();
 
-        Score::with('performance')->whereIn('beatmap_id', Beatmap::where('beatmapset_id', $this->beatmapsetId)->select('beatmap_id'))->where('id', '<=', $this->maxScoreId)->chunkById(1000, function (Collection $scores): void {
-            foreach ($scores as $score) {
-                $this->deleteScore($score);
-            }
-        });
+        $beatmapIdsQuery = Beatmap::where('beatmapset_id', $this->beatmapsetId)->select('beatmap_id');
+        Score
+            ::with('performance')
+            ->whereIn('beatmap_id', $beatmapIdsQuery)
+            ->where('id', '<=', $this->maxScoreId)
+            ->chunkById(1000, function (Collection $scores): void {
+                foreach ($scores as $score) {
+                    $this->deleteScore($score);
+                }
+            });
     }
 
     private function deleteScore(Score $score): void
