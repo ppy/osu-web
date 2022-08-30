@@ -70,8 +70,8 @@ class RemoveBeatmapsetScores implements ShouldQueue
     {
         DB::transaction(function () use ($score): void {
             $this->resetUserRankStatsFor($score);
-            $score->delete();
             $score->performance?->delete();
+            $score->delete();
         });
         $this->scoreSearch->queueForIndex($this->schemas, [$score->getKey()]);
     }
