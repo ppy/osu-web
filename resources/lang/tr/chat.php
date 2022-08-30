@@ -15,7 +15,7 @@ return [
     ],
 
     'channels' => [
-        'confirm_part' => '',
+        'confirm_part' => 'Bu kanalı gizlemek istiyor musunuz? Bu kanaldan mesaj almaya devam edeceksiniz.',
         'create' => 'duyuru oluştur',
 
         'list' => [

@@ -372,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'مسدود',
                         'silence' => 'ساکت کردن',
+                        'tournament_ban' => '',
                         'note' => 'یادداشت',
                     ],
                 ],

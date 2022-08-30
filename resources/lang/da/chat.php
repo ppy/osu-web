@@ -15,7 +15,7 @@ return [
     ],
 
     'channels' => [
-        'confirm_part' => '',
+        'confirm_part' => 'Vil du skjule denne kanal? Du vil stadig modtage beskeder fra denne kanal.',
         'create' => 'opret annoncering',
 
         'list' => [
