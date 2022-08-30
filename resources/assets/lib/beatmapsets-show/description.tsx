@@ -15,7 +15,7 @@ interface Props {
 }
 
 @observer
-export default class Description extends React.PureComponent<Props> {
+export default class Description extends React.Component<Props> {
   @observable private isEditing = false;
   @observable private xhr: JQuery.jqXHR<BeatmapsetJsonForShow> | null = null;
 
