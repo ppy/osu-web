@@ -2,32 +2,28 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .beatmapset-toolbar {
-  --border-size: 7px;
   .default-gutter-v2();
   padding-top: 10px;
   padding-bottom: $padding-top;
 
-  background-color: hsl(var(--hsl-b3));
-  border-top: var(--border-size) solid hsl(var(--hsl-b4));
-  height: calc(50px + var(--border-size));
-  display: flex;
-  align-items: center;
-  gap: 10px;
   position: relative;
+  background-color: hsl(var(--hsl-b3));
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
 
-  @media @mobile {
-    flex-direction: column;
-    align-items: flex-start;
-    height: auto;
+  @media @desktop {
+    flex-direction: row;
+    align-items: center;
   }
 
   &__buttons {
     display: flex;
     gap: 5px;
+    flex-wrap: wrap;
 
-    @media @mobile {
-      display: flex;
-      flex-wrap: wrap;
+    @media @desktop {
+      flex: none;
     }
   }
 
