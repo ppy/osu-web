@@ -5,8 +5,9 @@
   color: white;
   display: flex;
   flex-direction: column;
-  padding: 0 20px;
+  padding: 0 var(--inner-gutter); // should come from page-extra
   font-size: @font-size--normal;
+  gap: 10px;
 
   @media @desktop {
     flex-direction: row;
@@ -19,7 +20,6 @@
 
     @media @desktop {
       flex: 1;
-      margin: 0 10px;
     }
 
     &--float {
