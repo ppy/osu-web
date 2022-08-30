@@ -14,6 +14,7 @@ use App\Models\Beatmapset;
 use App\Models\Score\Best\Model as ScoreBestModel;
 use App\Models\Solo\Score;
 use App\Models\UserStatistics;
+use DB;
 use Ds\Set;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -67,9 +68,11 @@ class RemoveBeatmapsetScores implements ShouldQueue
 
     private function deleteScore(Score $score): void
     {
-        $this->resetUserRankStatsFor($score);
-        $score->delete();
-        $score->performance?->delete();
+        DB::transaction(function () use ($score): void {
+            $this->resetUserRankStatsFor($score);
+            $score->delete();
+            $score->performance?->delete();
+        });
         $this->scoreSearch->queueForIndex($this->schemas, [$score->getKey()]);
     }
 
