@@ -56,10 +56,9 @@ export default class Post extends React.Component<Props> {
   private readonly handleTextareaKeyDown;
   @observable private message = '';
   private readonly messageBodyRef = React.createRef<HTMLDivElement>();
-  @observable private posting = false;
   private readonly reviewEditorRef = React.createRef<Editor>();
   private readonly textareaRef = React.createRef<HTMLTextAreaElement>();
-  private xhr?: JQuery.jqXHR;
+  @observable private xhr: JQuery.jqXHR<BeatmapsetWithDiscussionsJson> | null = null;
 
   @computed
   private get canReport() {
@@ -69,6 +68,11 @@ export default class Post extends React.Component<Props> {
   @computed
   private get deleteModel() {
     return this.props.type === 'reply' ? this.props.post : this.props.discussion;
+  }
+
+  @computed
+  private get isPosting() {
+    return this.xhr != null;
   }
 
   @computed
@@ -231,7 +235,7 @@ export default class Post extends React.Component<Props> {
 
   private renderMessageEditor() {
     if (!this.props.canBeEdited) return;
-    const canPost = !this.posting && this.canSave;
+    const canPost = !this.isPosting && this.canSave;
 
     const document = this.props.post.message;
 
@@ -262,7 +266,7 @@ export default class Post extends React.Component<Props> {
             <TextareaAutosize
               ref={this.textareaRef}
               className={`${bn}__message ${bn}__message--editor`}
-              disabled={this.posting}
+              disabled={this.isPosting}
               onChange={this.handleTextareaChange}
               onKeyDown={this.handleTextareaKeyDown}
               style={{ minHeight: this.textareaMinHeight }}
@@ -276,7 +280,7 @@ export default class Post extends React.Component<Props> {
             <div className={`${bn}__actions-group`}>
               <div className={`${bn}__action`}>
                 <BigButton
-                  disabled={this.posting}
+                  disabled={this.isPosting}
                   props={{ onClick: this.editCancel }}
                   text={osu.trans('common.buttons.cancel')}
                 />
@@ -399,7 +403,7 @@ export default class Post extends React.Component<Props> {
 
   @action
   private readonly updatePost = () => {
-    if (this.posting) return;
+    if (this.isPosting) return;
 
     if (this.isReview) {
       if (this.reviewEditorRef.current == null) {
@@ -424,9 +428,6 @@ export default class Post extends React.Component<Props> {
       return;
     }
 
-    this.posting = true;
-
-    this.xhr?.abort();
     this.xhr = $.ajax(route('beatmapsets.discussions.posts.update', { post: this.props.post.id }), {
       data: {
         beatmap_discussion_post: {
@@ -434,12 +435,11 @@ export default class Post extends React.Component<Props> {
         },
       },
       method: 'PUT',
-    })
-      .done((beatmapset: BeatmapsetWithDiscussionsJson) => runInAction(() => {
+    }).done((beatmapset) => runInAction(() => {
         this.editing = false;
         $.publish('beatmapsetDiscussions:update', { beatmapset });
       }))
       .fail(onError)
-      .always(action(() => this.posting = false));
+      .always(action(() => this.xhr = null));
   };
 }
