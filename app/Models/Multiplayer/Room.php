@@ -72,6 +72,7 @@ class Room extends Model
 
     protected $casts = [
         'password' => PresentString::class,
+        'auto_skip' => 'boolean',
     ];
     protected $table = 'multiplayer_rooms';
     protected $dates = ['starts_at', 'ends_at'];
