@@ -52,13 +52,13 @@ interface Props {
 export default class Post extends React.Component<Props> {
   @observable private canSave = true; // this isn't computed because Editor's onChange doesn't provide anything to react to.
   @observable private editing = false;
-  @observable private textareaMinHeight = '0';
   private readonly handleTextareaKeyDown;
   @observable private message = '';
   private readonly messageBodyRef = React.createRef<HTMLDivElement>();
   private readonly reviewEditorRef = React.createRef<Editor>();
+  @observable private textareaMinHeight = '0';
   private readonly textareaRef = React.createRef<HTMLTextAreaElement>();
-  @observable private xhr: JQuery.jqXHR<BeatmapsetWithDiscussionsJson> | null = null;
+  private xhr: JQuery.jqXHR<BeatmapsetWithDiscussionsJson> | null = null;
 
   @computed
   private get canReport() {
@@ -383,8 +383,8 @@ export default class Post extends React.Component<Props> {
 
           {this.props.type === 'discussion' && this.props.discussion.current_user_attributes?.can_moderate_kudosu && (
             this.props.discussion.can_grant_kudosu
-            ? this.renderKudosuAction('deny')
-            : this.props.discussion.kudosu_denied && this.renderKudosuAction('allow')
+              ? this.renderKudosuAction('deny')
+              : this.props.discussion.kudosu_denied && this.renderKudosuAction('allow')
           )}
 
           {this.canReport && (
@@ -436,9 +436,9 @@ export default class Post extends React.Component<Props> {
       },
       method: 'PUT',
     }).done((beatmapset) => runInAction(() => {
-        this.editing = false;
-        $.publish('beatmapsetDiscussions:update', { beatmapset });
-      }))
+      this.editing = false;
+      $.publish('beatmapsetDiscussions:update', { beatmapset });
+    }))
       .fail(onError)
       .always(action(() => this.xhr = null));
   };
