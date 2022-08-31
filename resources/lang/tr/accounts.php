@@ -15,7 +15,6 @@ return [
         ],
 
         'email' => [
-            'current' => 'mevcut e-posta',
             'new' => 'yeni e-posta',
             'new_confirmation' => 'e-posta onayı',
             'title' => 'E-posta',

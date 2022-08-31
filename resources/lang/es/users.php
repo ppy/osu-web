@@ -372,7 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Restringir',
                         'silence' => 'Silenciado',
-                        'tournament_ban' => '',
+                        'tournament_ban' => 'Prohibición de torneo',
                         'note' => 'Nota',
                     ],
                 ],

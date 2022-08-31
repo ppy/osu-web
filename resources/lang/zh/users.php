@@ -372,7 +372,7 @@ return [
                     'actions' => [
                         'restriction' => '封禁',
                         'silence' => '禁言',
-                        'tournament_ban' => '',
+                        'tournament_ban' => '锦标赛封禁',
                         'note' => '注释',
                     ],
                 ],

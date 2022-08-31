@@ -210,7 +210,7 @@ return [
 
         'channel' => [
             'channel' => [
-                'pm' => 'Anda mendapatkan pesan baru dari :username',
+                'pm' => 'Anda menerima pesan baru dari :username',
             ],
         ],
 

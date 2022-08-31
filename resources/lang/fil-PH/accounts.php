@@ -17,7 +17,6 @@ return [
         ],
 
         'email' => [
-            'current' => 'kasalukuyang e-mail',
             'new' => 'bagong email',
             'new_confirmation' => 'ikumpirma ang email',
             'title' => 'Email',
