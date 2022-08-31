@@ -472,7 +472,7 @@ class Room extends Model
             'type' => $params['type'],
             'queue_mode' => $params['queue_mode'],
             'auto_start_duration' => $params['auto_start_duration'],
-            'auto_skip' => $params['auto_skip'],
+            'auto_skip' => $params['auto_skip'] ?? false,
             'user_id' => $host->getKey(),
         ]);
 
