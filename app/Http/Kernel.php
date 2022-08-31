@@ -6,9 +6,7 @@
 namespace App\Http;
 
 use Fideloper\Proxy\TrustProxies;
-use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
-use Illuminate\Routing\Router;
 
 class Kernel extends HttpKernel
 {
@@ -62,15 +60,4 @@ class Kernel extends HttpKernel
         'throttle' => Middleware\ThrottleRequests::class,
         'verify-user' => Middleware\VerifyUser::class,
     ];
-
-    public function __construct(Application $app, Router $router)
-    {
-        parent::__construct($app, $router);
-
-        // using prepend to add the middlewares before auth
-        // prepend priority still adds them after $middlewareGroups
-        $this->prependToMiddlewarePriority(Middleware\RequireScopes::class);
-        $this->prependToMiddlewarePriority(Middleware\ThrottleRequests::class);
-        $this->prependToMiddlewarePriority(Middleware\RequestCost::class);
-    }
 }

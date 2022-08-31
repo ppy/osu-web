@@ -20,10 +20,10 @@ return [
 
         'list' => [
             'title' => [
-                'ANNOUNCE' => '',
-                'GROUP' => '',
-                'PM' => '',
-                'PUBLIC' => '',
+                'ANNOUNCE' => 'Oznámenia',
+                'GROUP' => 'Skupiny',
+                'PM' => 'Priame správy',
+                'PUBLIC' => 'Kanály',
             ],
         ],
     ],
@@ -34,8 +34,8 @@ return [
         ],
 
         'labels' => [
-            'description' => '',
-            'name' => '',
+            'description' => 'popis',
+            'name' => 'názov miestnosti',
             'users' => '',
         ],
     ],
@@ -46,7 +46,7 @@ return [
     ],
 
     'input' => [
-        'create' => '',
+        'create' => 'Vytvoriť',
         'disabled' => 'nedá sa poslať správa...',
         'disconnected' => '',
         'placeholder' => 'napíšte správu...',

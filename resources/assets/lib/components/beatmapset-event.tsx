@@ -43,7 +43,8 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
   }
 
   private get firstPost() {
-    return this.discussion?.starting_post ?? this.discussion?.posts?.[0];
+    const post = this.discussion?.starting_post ?? this.discussion?.posts?.[0];
+    return post?.system ? null : post;
   }
 
   render() {

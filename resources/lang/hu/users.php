@@ -372,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Kitiltás',
                         'silence' => 'Némítás',
+                        'tournament_ban' => '',
                         'note' => 'Megjegyzés',
                     ],
                 ],
