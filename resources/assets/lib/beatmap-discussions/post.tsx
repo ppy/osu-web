@@ -52,12 +52,12 @@ interface Props {
 export default class Post extends React.Component<Props> {
   @observable private canSave = true; // this isn't computed because Editor's onChange doesn't provide anything to react to.
   @observable private editing = false;
-  @observable private editorMinHeight = '0';
-  private readonly handleKeyDown;
+  @observable private textareaMinHeight = '0';
+  private readonly handleTextareaKeyDown;
   @observable private message = '';
   private readonly messageBodyRef = React.createRef<HTMLDivElement>();
   @observable private posting = false;
-  private readonly reviewEditor = React.createRef<Editor>();
+  private readonly reviewEditorRef = React.createRef<Editor>();
   private readonly textareaRef = React.createRef<HTMLTextAreaElement>();
   private xhr?: JQuery.jqXHR;
 
@@ -85,7 +85,7 @@ export default class Post extends React.Component<Props> {
     super(props);
     makeObservable(this);
 
-    this.handleKeyDown = makeTextAreaHandler(this.handleKeyDownCallback);
+    this.handleTextareaKeyDown = makeTextAreaHandler(this.handleKeyDownCallback);
 
     disposeOnUnmount(this, autorun(() => {
       if (this.editing) {
@@ -144,7 +144,7 @@ export default class Post extends React.Component<Props> {
 
   @action
   private readonly editStart = () => {
-    this.editorMinHeight = this.messageBodyRef.current != null
+    this.textareaMinHeight = this.messageBodyRef.current != null
       ? `${this.messageBodyRef.current.getBoundingClientRect().height + 50}px`
       : '0';
 
@@ -154,7 +154,7 @@ export default class Post extends React.Component<Props> {
 
   @action
   private readonly handleEditorChange = () => {
-    this.canSave = this.reviewEditor.current?.canSave ?? false;
+    this.canSave = this.reviewEditorRef.current?.canSave ?? false;
   };
 
   private readonly handleKeyDownCallback = (type: InputEventType) => {
@@ -259,7 +259,7 @@ export default class Post extends React.Component<Props> {
               <BeatmapsContext.Consumer>
                 {(beatmaps) => (
                   <Editor
-                    ref={this.reviewEditor}
+                    ref={this.reviewEditorRef}
                     beatmaps={beatmaps}
                     beatmapset={this.props.beatmapset}
                     currentBeatmap={this.props.beatmap}
@@ -280,8 +280,8 @@ export default class Post extends React.Component<Props> {
               className={`${bn}__message ${bn}__message--editor`}
               disabled={this.posting}
               onChange={this.handleTextareaChange}
-              onKeyDown={this.handleKeyDown}
-              style={{ minHeight: this.editorMinHeight }}
+              onKeyDown={this.handleTextareaKeyDown}
+              style={{ minHeight: this.textareaMinHeight }}
               value={this.message}
             />
             <MessageLengthCounter isTimeline={this.isTimeline} message={this.message} />
@@ -414,19 +414,19 @@ export default class Post extends React.Component<Props> {
     if (this.posting) return;
 
     if (this.isReview) {
-      if (this.reviewEditor.current == null) {
+      if (this.reviewEditorRef.current == null) {
         console.error('reviewEditor is missing!');
         return;
       }
 
-      const messageContent = this.reviewEditor.current.serialize();
+      const messageContent = this.reviewEditorRef.current.serialize();
 
       if (isEqual(JSON.parse(this.props.post.message), JSON.parse(messageContent))) {
         this.editing = false;
         return;
       }
 
-      if (!this.reviewEditor.current.showConfirmationIfRequired()) return;
+      if (!this.reviewEditorRef.current.showConfirmationIfRequired()) return;
 
       this.message = messageContent;
     }
