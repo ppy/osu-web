@@ -30,6 +30,12 @@ export const ReviewPostEmbed = ({ data }: Props) => {
     );
   }
 
+  const post = startingPost(discussion);
+  if (post.system) {
+    console.error('embed should not have system starting post', discussion.id);
+    return null;
+  }
+
   const beatmap = discussion.beatmap_id == null ? undefined : beatmaps[discussion.beatmap_id];
 
   const additionalClasses = ['lighter'];
@@ -104,7 +110,7 @@ export const ReviewPostEmbed = ({ data }: Props) => {
         </div>
         <div className={`${bn}__stripe`} />
         <div className={`${bn}__message-container`}>
-          <div className={`${bn}__body`} dangerouslySetInnerHTML={{ __html: format(startingPost(discussion).message) }} />
+          <div className={`${bn}__body`} dangerouslySetInnerHTML={{ __html: format(post.message) }} />
         </div>
         {parentLink()}
       </div>

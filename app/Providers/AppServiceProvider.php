@@ -16,6 +16,7 @@ use App\Libraries\MorphMap;
 use App\Libraries\OsuAuthorize;
 use App\Libraries\OsuCookieJar;
 use App\Libraries\OsuMessageSelector;
+use App\Libraries\RateLimiter;
 use App\Libraries\RouteSection;
 use App\Libraries\User\ScorePins;
 use Datadog;
@@ -112,6 +113,12 @@ class AppServiceProvider extends ServiceProvider
                 $config['secure'],
                 $config['same_site'] ?? null
             );
+        });
+
+        $this->app->singleton(RateLimiter::class, function ($app) {
+            return new RateLimiter($app->make('cache')->driver(
+                $app['config']->get('cache.limiter')
+            ));
         });
 
         // pre-bind to avoid SwooleHttpTaskDispatcher and fallback when not running in a swoole context.

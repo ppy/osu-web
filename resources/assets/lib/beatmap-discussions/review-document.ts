@@ -69,10 +69,17 @@ export function parseFromJson(json: string, discussions: Partial<Record<number, 
           console.error('unknown/external discussion referenced', existingEmbedBlock.discussion_id);
           break;
         }
+
+        const post = startingPost(discussion);
+        if (post.system) {
+          console.error('embed should not have system starting post', existingEmbedBlock.discussion_id);
+          break;
+        }
+
         doc.push({
           beatmapId: discussion.beatmap_id,
           children: [{
-            text: startingPost(discussion).message,
+            text: post.message,
           }],
           discussionId: discussion.id,
           discussionType: discussion.message_type,

@@ -8,7 +8,7 @@ declare module 'legacy-modules' {
   type GroupJson = import('interfaces/group-json').default;
 
   interface BeatmapDiscussionHelperClass {
-    nearbyDiscussions(discussions: BeatmapsetDiscussionJson[], timestamp: number): BeatmapsetDiscussionJson[];
+    nearbyDiscussions<T extends BeatmapsetDiscussionJson>(discussions: T[], timestamp: number): T[];
     url(options: any, useCurrent?: boolean): string;
     urlParse(urlString: string, discussions?: BeatmapsetDiscussionJson[] | null, options?: any): {
       beatmapId?: number;
