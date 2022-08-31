@@ -215,36 +215,18 @@ export default class Post extends React.Component<Props> {
     );
   }
 
-  private renderKudosu() {
-    if (this.props.type === 'discussion' && this.props.discussion.current_user_attributes?.can_moderate_kudosu) {
-      if (this.props.discussion.can_grant_kudosu) {
-        return (
-          <a
-            className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
-            data-confirm={osu.trans('common.confirmation')}
-            data-method='POST'
-            data-remote
-            href={route('beatmapsets.discussions.deny-kudosu', { discussion: this.props.discussion.id })}
-          >
-            {osu.trans('beatmaps.discussions.deny_kudosu')}
-          </a>
-        );
-      } else if (this.props.discussion.kudosu_denied) {
-        return (
-          <a
-            className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
-            data-confirm={osu.trans('common.confirmation')}
-            data-method='POST'
-            data-remote
-            href={route('beatmapsets.discussions.allow-kudosu', { discussion: this.props.discussion.id })}
-          >
-            {osu.trans('beatmaps.discussions.allow_kudosu')}
-          </a>
-        );
-      }
-    }
-
-    return null;
+  private renderKudosuAction(op: 'allow' | 'deny') {
+    return (
+      <a
+        className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
+        data-confirm={osu.trans('common.confirmation')}
+        data-method='POST'
+        data-remote
+        href={route(`beatmapsets.discussions.${op}-kudosu`, { discussion: this.props.discussion.id })}
+      >
+        {osu.trans(`beatmaps.discussions.${op}_kudosu`)}
+      </a>
+    );
   }
 
   private renderMessageEditor() {
@@ -395,7 +377,11 @@ export default class Post extends React.Component<Props> {
             </a>
           )}
 
-          {this.renderKudosu()}
+          {this.props.type === 'discussion' && this.props.discussion.current_user_attributes?.can_moderate_kudosu && (
+            this.props.discussion.can_grant_kudosu
+            ? this.renderKudosuAction('deny')
+            : this.props.discussion.kudosu_denied && this.renderKudosuAction('allow')
+          )}
 
           {this.canReport && (
             <ReportReportable
