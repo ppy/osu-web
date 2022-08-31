@@ -6,6 +6,7 @@ import { SoloScoreJsonForShow } from 'interfaces/solo-score-json';
 import * as moment from 'moment';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
+import { totalScore } from 'utils/score-helper';
 
 interface Props {
   score: SoloScoreJsonForShow;
@@ -16,7 +17,7 @@ export default function Player(props: Props) {
     <div className='score-player'>
       <div className='score-player__row score-player__row--score'>
         <div className='score-player__score'>
-          {formatNumber(props.score.total_score)}
+          {formatNumber(totalScore(props.score))}
         </div>
 
         <div className='score-player__mods'>

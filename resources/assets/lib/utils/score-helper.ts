@@ -104,3 +104,7 @@ export function scoreUrl(score: SoloScoreJson) {
 
   throw new Error('score json doesn\'t have url');
 }
+
+export function totalScore(score: SoloScoreJson) {
+  return score.legacy_total_score ?? score.total_score;
+}
