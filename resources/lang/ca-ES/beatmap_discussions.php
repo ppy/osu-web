@@ -31,7 +31,7 @@ return [
 
             'beatmapset_status' => [
                 '_' => 'Estat del mapa',
-                'all' => 'Tot',
+                'all' => 'Tots',
                 'disqualified' => 'Desqualificat',
                 'never_qualified' => 'No qualificat',
                 'qualified' => 'Qualificat',
@@ -97,7 +97,7 @@ return [
 
     'timestamp_display' => [
         'general' => 'general',
-        'general_all' => 'general (tot)',
+        'general_all' => 'general (tots)',
     ],
 
     'user_filter' => [

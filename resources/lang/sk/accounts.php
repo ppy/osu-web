@@ -15,7 +15,6 @@ return [
         ],
 
         'email' => [
-            'current' => 'aktuálny email',
             'new' => 'nový email',
             'new_confirmation' => 'potvrdenie emailu',
             'title' => 'Email',
