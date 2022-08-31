@@ -58,7 +58,7 @@ export default class Post extends React.Component<Props> {
   private readonly reviewEditorRef = React.createRef<Editor>();
   @observable private textareaMinHeight = '0';
   private readonly textareaRef = React.createRef<HTMLTextAreaElement>();
-  private xhr: JQuery.jqXHR<BeatmapsetWithDiscussionsJson> | null = null;
+  @observable private xhr: JQuery.jqXHR<BeatmapsetWithDiscussionsJson> | null = null;
 
   @computed
   private get canReport() {
