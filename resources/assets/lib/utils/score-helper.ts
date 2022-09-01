@@ -28,16 +28,34 @@ export function hasShow(score: SoloScoreJson) {
   return score.best_id != null || score.type === 'solo_score';
 }
 
+const comboHitAttributes = [
+  'good',
+  'great',
+  'large_tick_hit',
+  'legacy_combo_increase',
+  'meh',
+  'ok',
+  'perfect',
+] as const;
+
 export function isPerfectCombo(score: SoloScoreJson) {
-  // TODO: Check against beatmap max_combo instead.
-  //       It's currently done this way because the beatmap data is sometimes
-  //       missing max_combo attribute for the score's mods combination.
-  return score.legacy_perfect ?? (
-    ([
+  if (score.legacy_perfect != null) {
+    return score.legacy_perfect;
+  }
+
+  if (rulesetName(score.ruleset_id) === 'mania') {
+    return ([
       'miss',
       'large_tick_miss',
-    ] as const).every((attr) => score.statistics[attr] == null || score.statistics[attr] === 0)
+    ] as const).every((attr) => score.statistics[attr] == null || score.statistics[attr] === 0);
+  }
+
+  const maxAchievableCombo = comboHitAttributes.reduce(
+    (acc, attr) => acc + (score.maximum_statistics[attr] ?? 0),
+    0,
   );
+
+  return maxAchievableCombo !== 0 && score.max_combo === maxAchievableCombo;
 }
 
 interface AttributeData {
@@ -103,4 +121,8 @@ export function scoreUrl(score: SoloScoreJson) {
   }
 
   throw new Error('score json doesn\'t have url');
+}
+
+export function totalScore(score: SoloScoreJson) {
+  return score.legacy_total_score ?? score.total_score;
 }

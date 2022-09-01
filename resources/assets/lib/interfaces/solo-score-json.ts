@@ -27,17 +27,16 @@ export type SoloScoreStatisticsAttribute =
   | 'small_tick_hit'
   | 'small_tick_miss';
 
-interface SoloScoreJsonDefaultAttributes {
+type SoloScoreJsonDefaultAttributes = {
   accuracy: number;
   beatmap_id: number;
   best_id: number | null;
   build_id: number | null;
   ended_at: string;
   id: number;
-  legacy_perfect: boolean | null;
   legacy_score_id: number | null;
+  legacy_total_score: number | null;
   max_combo: number;
-  maximum_statistics: Partial<Record<SoloScoreStatisticsAttribute, number>>;
   mods: Mod[];
   passed: boolean;
   pp: number | null;
@@ -49,7 +48,13 @@ interface SoloScoreJsonDefaultAttributes {
   total_score: number;
   type: 'solo_score' | `score_best_${GameMode}` | `score_${GameMode}`;
   user_id: number;
-}
+} & (
+  { legacy_perfect: boolean } |
+  {
+    legacy_perfect: null;
+    maximum_statistics: Partial<Record<SoloScoreStatisticsAttribute, number>>;
+  }
+);
 
 type SoloScoreJson = SoloScoreJsonDefaultAttributes & ScoreJsonDefaultIncludes & Partial<ScoreJsonAvailableIncludes>;
 

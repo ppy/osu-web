@@ -18,7 +18,7 @@ import PpValue from 'scores/pp-value';
 import { rulesetName, shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
-import { isPerfectCombo, modeAttributesMap, scoreUrl } from 'utils/score-helper';
+import { isPerfectCombo, modeAttributesMap, scoreUrl, totalScore } from 'utils/score-helper';
 
 interface Props {
   beatmap: BeatmapJson;
@@ -111,7 +111,7 @@ export default class TopCard extends React.PureComponent<Props> {
                   {osu.trans('beatmapsets.show.scoreboard.headers.score_total')}
                 </div>
                 <div className='beatmap-score-top__stat-value beatmap-score-top__stat-value--score'>
-                  {formatNumber(this.props.score.total_score)}
+                  {formatNumber(totalScore(this.props.score))}
                 </div>
               </div>
             </div>
