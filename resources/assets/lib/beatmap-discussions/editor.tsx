@@ -44,12 +44,10 @@ interface Props {
   beatmaps: Partial<Record<number, BeatmapExtendedJson>>;
   beatmapset: BeatmapsetJson;
   currentBeatmap: BeatmapExtendedJson;
-  currentDiscussions: BeatmapsetDiscussionJson[];
   discussion?: BeatmapsetDiscussionJson;
   discussions: Partial<Record<number, BeatmapsetDiscussionJsonForBundle | BeatmapsetDiscussionJsonForShow>>; // passed in via context at parent
   document?: string;
   editing: boolean;
-  editMode?: boolean;
   onChange?: () => void;
   onFocus?: () => void;
 }
@@ -81,6 +79,10 @@ export default class Editor extends React.Component<Props, State> {
   toolbarRef: React.RefObject<EditorToolbar>;
   private xhr?: JQueryXHR | null;
 
+  private get editMode() {
+    return this.props.document != null;
+  }
+
   constructor(props: Props) {
     super(props);
 
@@ -92,7 +94,7 @@ export default class Editor extends React.Component<Props, State> {
 
     let initialValue: SlateElement[] = this.emptyDocTemplate;
 
-    if (props.editMode) {
+    if (this.editMode) {
       initialValue = this.valueFromProps();
     } else {
       const saved = localStorage.getItem(this.localStorageKey);
@@ -188,7 +190,7 @@ export default class Editor extends React.Component<Props, State> {
       value = this.emptyDocTemplate;
     }
 
-    if (!this.props.editMode) {
+    if (!this.editMode) {
       const content = JSON.stringify(value);
 
       if (slateDocumentIsEmpty(value)) {
@@ -258,7 +260,7 @@ export default class Editor extends React.Component<Props, State> {
   render(): React.ReactNode {
     this.cache = {};
     const editorClass = 'beatmap-discussion-editor';
-    const modifiers = this.props.editMode ? ['edit-mode'] : [];
+    const modifiers = this.editMode ? ['edit-mode'] : [];
     if (this.state.posting) {
       modifiers.push('readonly');
     }
@@ -288,12 +290,12 @@ export default class Editor extends React.Component<Props, State> {
                   />
                 </DraftsContext.Provider>
               </div>
-              {this.props.editMode &&
+              {this.editMode &&
                 <div className={`${editorClass}__inner-block-count`}>
                   {this.renderBlockCount('lighter')}
                 </div>
               }
-              {!this.props.editMode &&
+              {!this.editMode &&
                 <div className={`${editorClass}__button-bar`}>
                   <button
                     className='btn-osu-big btn-osu-big--forum-secondary'
@@ -349,7 +351,7 @@ export default class Editor extends React.Component<Props, State> {
             beatmapset={this.props.beatmapset}
             currentBeatmap={this.props.currentBeatmap}
             discussions={this.props.discussions}
-            editMode={this.props.editMode}
+            editMode={this.editMode}
             readOnly={this.state.posting}
             {...props}
           />
