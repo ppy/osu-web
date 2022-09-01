@@ -36,6 +36,7 @@ interface SoloScoreJsonDefaultAttributes {
   id: number;
   legacy_perfect: boolean | null;
   legacy_score_id: number | null;
+  legacy_total_score: number | null;
   max_combo: number;
   maximum_statistics: Partial<Record<SoloScoreStatisticsAttribute, number>>;
   mods: Mod[];
