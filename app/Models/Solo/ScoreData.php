@@ -21,6 +21,7 @@ class ScoreData implements Castable, JsonSerializable
     public ?int $buildId;
     public Carbon $endedAt;
     public ?int $legacyScoreId;
+    public ?int $legacyTotalScore;
     public int $maxCombo;
     public ScoreDataStatistics $maximumStatistics;
     public array $mods;
@@ -51,6 +52,7 @@ class ScoreData implements Castable, JsonSerializable
         $this->buildId = $data['build_id'] ?? null;
         $this->endedAt = parse_time_to_carbon($data['ended_at']);
         $this->legacyScoreId = $data['legacy_score_id'] ?? null;
+        $this->legacyTotalScore = $data['legacy_total_score'] ?? null;
         $this->maxCombo = $data['max_combo'] ?? 0;
         $this->maximumStatistics = new ScoreDataStatistics($data['maximum_statistics'] ?? []);
         // TODO: create a proper Mod object
@@ -115,6 +117,7 @@ class ScoreData implements Castable, JsonSerializable
             'build_id' => $this->buildId,
             'ended_at' => json_time($this->endedAt),
             'legacy_score_id' => $this->legacyScoreId,
+            'legacy_total_score' => $this->legacyTotalScore,
             'max_combo' => $this->maxCombo,
             'maximum_statistics' => $this->maximumStatistics,
             'mods' => $this->mods,

@@ -15,7 +15,6 @@ return [
         ],
 
         'email' => [
-            'current' => 'τρέχον email',
             'new' => 'νέο email',
             'new_confirmation' => 'επιβεβαίωση email',
             'title' => 'Email',

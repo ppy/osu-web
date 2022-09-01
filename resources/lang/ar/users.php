@@ -33,13 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'لقد قمت بحظر هذا المستخدم.',
-        'comment_text' => '',
+        'comment_text' => 'هذا التعليق مخفي.',
         'blocked_count' => 'المستخدمون المحظورون (:count)',
         'hide_profile' => 'إخفاء الملف الشخصي',
-        'hide_comment' => '',
+        'hide_comment' => 'إخفاء',
         'not_blocked' => 'هذا المستخدم ليس محظوراََ.',
         'show_profile' => 'عرض الملف الشخصي',
-        'show_comment' => '',
+        'show_comment' => 'إظهار',
         'too_many' => 'تم الوصول للحد الأقصى للحظر.',
         'button' => [
             'block' => 'حظر',
@@ -372,7 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'حظر',
                         'silence' => 'سكون',
-                        'tournament_ban' => '',
+                        'tournament_ban' => 'حظر البطولات',
                         'note' => 'ملاحظة',
                     ],
                 ],

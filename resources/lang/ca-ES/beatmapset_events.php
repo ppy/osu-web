@@ -15,7 +15,7 @@ return [
         'discussion_unlock' => '',
         'disqualify' => '',
         'disqualify_legacy' => '',
-        'genre_edit' => '',
+        'genre_edit' => 'El gènere ha canviat de :old a :new.',
         'issue_reopen' => '',
         'issue_resolve' => '',
         'kudosu_allow' => '',
@@ -53,7 +53,7 @@ return [
     'item' => [
         'content' => '',
         'discussion_deleted' => '',
-        'type' => '',
+        'type' => 'Tipus',
     ],
 
     'type' => [

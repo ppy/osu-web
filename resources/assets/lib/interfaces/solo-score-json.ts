@@ -35,6 +35,7 @@ type SoloScoreJsonDefaultAttributes = {
   ended_at: string;
   id: number;
   legacy_score_id: number | null;
+  legacy_total_score: number | null;
   max_combo: number;
   mods: Mod[];
   passed: boolean;

@@ -372,7 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'I-ban',
                         'silence' => 'Pagpapatahimik',
-                        'tournament_ban' => '',
+                        'tournament_ban' => 'Pangtorneong pagbabawal',
                         'note' => 'Tala',
                     ],
                 ],

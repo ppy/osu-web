@@ -15,7 +15,6 @@ return [
         ],
 
         'email' => [
-            'current' => '현재 이메일 주소',
             'new' => '새 이메일 주소',
             'new_confirmation' => '이메일 주소 확인',
             'title' => '이메일',

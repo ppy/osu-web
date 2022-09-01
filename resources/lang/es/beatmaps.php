@@ -292,7 +292,7 @@ return [
         'hip-hop' => 'hip hop',
         'electronic' => 'electrónica',
         'metal' => 'metal',
-        'classical' => 'clásica',
+        'classical' => 'Clásica',
         'folk' => 'folk',
         'jazz' => 'jazz',
     ],
