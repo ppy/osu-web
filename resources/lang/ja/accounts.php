@@ -15,7 +15,6 @@ return [
         ],
 
         'email' => [
-            'current' => '現在のメールアドレス',
             'new' => '新しいメールアドレス',
             'new_confirmation' => '新しいメールアドレス（再入力）',
             'title' => 'メールアドレス',

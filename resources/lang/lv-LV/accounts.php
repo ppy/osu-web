@@ -15,7 +15,6 @@ return [
         ],
 
         'email' => [
-            'current' => 'pašreizējais e-pasts',
             'new' => 'jauns e-pasts',
             'new_confirmation' => 'e-pasta apstiprinājums',
             'title' => 'E-pasta adrese',

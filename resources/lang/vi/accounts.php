@@ -15,7 +15,6 @@ return [
         ],
 
         'email' => [
-            'current' => 'email hiện tại',
             'new' => 'email mới',
             'new_confirmation' => 'xác nhận email',
             'title' => 'Email',
