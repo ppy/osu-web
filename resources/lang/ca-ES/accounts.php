@@ -15,7 +15,6 @@ return [
         ],
 
         'email' => [
-            'current' => 'adreça electrònica actual',
             'new' => 'nou correu electrònic',
             'new_confirmation' => 'confirmació de correu electrònic',
             'title' => 'Correu electrònic',

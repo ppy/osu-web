@@ -15,7 +15,6 @@ return [
         ],
 
         'email' => [
-            'current' => 'jelenlegi e-mail cím',
             'new' => 'új e-mail cím',
             'new_confirmation' => 'e-mail cím megerősítése',
             'title' => 'E-Mail',

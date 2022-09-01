@@ -15,7 +15,6 @@ return [
         ],
 
         'email' => [
-            'current' => 'nykyinen sähköpostiosoite',
             'new' => 'uusi sähköpostiosoite',
             'new_confirmation' => 'sähköpostivahvistus',
             'title' => 'Sähköposti',
