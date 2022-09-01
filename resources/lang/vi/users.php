@@ -372,7 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Ban',
                         'silence' => 'Im lặng',
-                        'tournament_ban' => '',
+                        'tournament_ban' => 'Cấm thi đấu',
                         'note' => 'Ghi chú',
                     ],
                 ],

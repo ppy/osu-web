@@ -38,6 +38,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $user_id
  * @property string $type
  * @property string $queue_mode
+ * @property bool $auto_skip
  */
 class Room extends Model
 {
@@ -71,6 +72,7 @@ class Room extends Model
 
     protected $casts = [
         'password' => PresentString::class,
+        'auto_skip' => 'boolean',
     ];
     protected $table = 'multiplayer_rooms';
     protected $dates = ['starts_at', 'ends_at'];
@@ -461,6 +463,7 @@ class Room extends Model
             'type',
             'queue_mode',
             'auto_start_duration:int',
+            'auto_skip:bool',
         ], ['null_missing' => true]);
 
         $this->fill([
@@ -470,6 +473,7 @@ class Room extends Model
             'type' => $params['type'],
             'queue_mode' => $params['queue_mode'],
             'auto_start_duration' => $params['auto_start_duration'],
+            'auto_skip' => $params['auto_skip'] ?? false,
             'user_id' => $host->getKey(),
         ]);
 
