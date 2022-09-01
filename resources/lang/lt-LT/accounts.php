@@ -15,7 +15,6 @@ return [
         ],
 
         'email' => [
-            'current' => 'dabartinis el. paštas',
             'new' => 'naujas el. paštas',
             'new_confirmation' => 'el. pašto patvirtinimas',
             'title' => 'El. Paštas',

@@ -8,6 +8,8 @@ namespace App\Http\Controllers;
 use App\Exceptions\ModelNotSavedException;
 use App\Exceptions\UserProfilePageLookupException;
 use App\Exceptions\ValidationException;
+use App\Http\Middleware\RequestCost;
+use App\Libraries\RateLimiter;
 use App\Libraries\Search\ForumSearch;
 use App\Libraries\Search\ForumSearchRequestParams;
 use App\Libraries\User\FindForProfilePage;
@@ -27,7 +29,6 @@ use App\Transformers\UserCompactTransformer;
 use App\Transformers\UserTransformer;
 use Auth;
 use Elasticsearch\Common\Exceptions\ElasticsearchException;
-use Illuminate\Cache\RateLimiter;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Request;
 use Sentry\State\Scope;
@@ -56,6 +57,7 @@ class UsersController extends Controller
         $this->middleware('require-scopes:identify', ['only' => ['me']]);
         $this->middleware('require-scopes:public', ['only' => [
             'beatmapsets',
+            'index',
             'kudosu',
             'recentActivity',
             'scores',
@@ -274,6 +276,7 @@ class UsersController extends Controller
         $includes = UserCompactTransformer::CARD_INCLUDES;
 
         if (isset($params['ids'])) {
+            RequestCost::setCost(count($params['ids']));
             $preload = UserCompactTransformer::CARD_INCLUDES_PRELOAD;
 
             foreach (Beatmap::MODES as $modeStr => $modeInt) {
