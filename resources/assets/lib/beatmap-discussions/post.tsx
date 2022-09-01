@@ -89,7 +89,7 @@ export default class Post extends React.Component<Props> {
     super(props);
     makeObservable(this);
 
-    this.handleTextareaKeyDown = makeTextAreaHandler(this.handleKeyDownCallback);
+    this.handleTextareaKeyDown = makeTextAreaHandler(this.handleTextareaKeyDownCallback);
 
     disposeOnUnmount(this, autorun(() => {
       if (this.editing) {
@@ -161,12 +161,6 @@ export default class Post extends React.Component<Props> {
     this.canSave = this.reviewEditorRef.current?.canSave ?? false;
   };
 
-  private readonly handleKeyDownCallback = (type: InputEventType) => {
-    if (type === InputEventType.Submit) {
-      this.updatePost();
-    }
-  };
-
   private readonly handleMarkRead = () => {
     $.publish('beatmapDiscussionPost:markRead', { id: this.props.post.id });
   };
@@ -175,6 +169,12 @@ export default class Post extends React.Component<Props> {
   private readonly handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     this.message = e.target.value;
     this.canSave = validMessageLength(this.message, this.isTimeline);
+  };
+
+  private readonly handleTextareaKeyDownCallback = (type: InputEventType) => {
+    if (type === InputEventType.Submit) {
+      this.updatePost();
+    }
   };
 
   private renderDeletedBy() {
