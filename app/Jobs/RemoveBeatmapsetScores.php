@@ -8,17 +8,18 @@ declare(strict_types=1);
 namespace App\Jobs;
 
 use App\Libraries\Search\ScoreSearch;
-use App\Libraries\Search\ScoreSearchParams;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Score\Best\Model as ScoreBestModel;
 use App\Models\Solo\Score;
+use App\Models\Solo\ScorePerformance;
 use App\Models\UserStatistics;
 use DB;
-use Ds\Set;
+use Ds\Map;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Database\Eloquent\Collection;
+use LaravelRedis;
 
 class RemoveBeatmapsetScores implements ShouldQueue
 {
@@ -28,7 +29,7 @@ class RemoveBeatmapsetScores implements ShouldQueue
 
     private int $beatmapsetId;
     private int $maxScoreId;
-    private Set $resetUserRankStats;
+    private Map $userBestScores;
     private array $schemas;
     private ScoreSearch $scoreSearch;
 
@@ -41,6 +42,7 @@ class RemoveBeatmapsetScores implements ShouldQueue
     {
         $this->beatmapsetId = $beatmapset->getKey();
         $this->maxScoreId = Score::max('id') ?? 0;
+        $this->userBestScoresStoreKey = config('cache.prefix').':'.$this->beatmapsetId.':'.$this->maxScoreId;
     }
 
     /**
@@ -50,7 +52,7 @@ class RemoveBeatmapsetScores implements ShouldQueue
      */
     public function handle()
     {
-        $this->resetUserRankStats = new Set();
+        $this->restoreUserBestScores();
         $this->scoreSearch = new ScoreSearch();
         $this->schemas = $this->scoreSearch->getActiveSchemas();
 
@@ -59,57 +61,98 @@ class RemoveBeatmapsetScores implements ShouldQueue
             ::with('performance')
             ->whereIn('beatmap_id', $beatmapIdsQuery)
             ->where('id', '<=', $this->maxScoreId)
-            ->chunkById(1000, function (Collection $scores): void {
-                foreach ($scores as $score) {
-                    $this->deleteScore($score);
-                }
-            });
+            ->chunkById(1000, fn ($scores) => $this->deleteScores($scores));
+        $this->updateAllUserStatistics();
     }
 
-    private function deleteScore(Score $score): void
+    private function deleteScores(Collection $scores): void
     {
-        DB::transaction(function () use ($score): void {
-            $this->resetUserRankStatsFor($score);
-            $score->performance?->delete();
-            $score->delete();
+        $ids = [];
+        foreach ($scores as $score) {
+            $this->updateUserBestScore($score);
+            $ids[] = $score->getKey();
+        }
+
+        $scoresQuery = Score::whereKey($ids);
+        // Queue delete ahead of time in case process is stopped right after
+        // db delete is committed. It's fine queuing deleted score ahead of
+        // time as best score check doesn't use index.
+        // Set the flag first so indexer will correctly delete it.
+        $scoresQuery->update(['preserve' => false]);
+        $this->scoreSearch->queueForIndex($this->schemas, $ids);
+        DB::transaction(function () use ($ids, $scoresQuery): void {
+            ScorePerformance::whereKey($ids)->delete();
+            $scoresQuery->delete();
         });
-        $this->scoreSearch->queueForIndex($this->schemas, [$score->getKey()]);
     }
 
-    private function resetUserRankStatsFor(Score $score): void
+    private function restoreUserBestScores(): void
     {
+        $this->userBestScores = new Map(array_map(
+            fn ($value) => json_decode($value, true),
+            LaravelRedis::hgetall($this->userBestScoresStoreKey),
+        ));
+    }
+
+    private function updateAllUserStatistics()
+    {
+        foreach ($this->userBestScores as $key => $scoreArray) {
+            // delete ahead of time as - from user perspective - it's better
+            // to have extra count than decrementing it twice.
+            LaravelRedis::hdel($this->userBestScoresStoreKey, $key);
+
+            $this->updateUserStatistics($scoreArray);
+        }
+    }
+
+    private function updateUserBestScore(Score $score): void
+    {
+        // TODO: add legacy score check
+        if (!$score->preserve) {
+            return;
+        }
+
         $beatmapId = $score->beatmap_id;
         $rulesetId = $score->ruleset_id;
         $userId = $score->user_id;
-        $resetStatsKey = "{$userId}:{$beatmapId}:{$rulesetId}";
+        $listKey = "{$userId}:{$beatmapId}:{$rulesetId}";
 
-        if ($this->resetUserRankStats->contains($resetStatsKey)) {
+        $current = $this->userBestScores->get($listKey, null);
+
+        $newData = $score->data;
+        $newId = $score->getKey();
+
+        if (
+            $current !== null && (
+            $current['total_score'] > $newData->totalScore ||
+            ($current['total_score'] === $newData->totalScore && $current['id'] < $newId))
+        ) {
             return;
         }
 
-        $this->resetUserRankStats->add($resetStatsKey);
-
-        $userBest = (new ScoreSearch(ScoreSearchParams::fromArray([
-            'beatmap_ids' => [$beatmapId],
-            'limit' => 1,
-            'ruleset_id' => $rulesetId,
-            'sort' => 'score_desc',
+        $new = [
+            'id' => $newId,
+            'rank' => $newData->rank,
+            'ruleset' => $score->getMode(),
+            'total_score' => $newData->totalScore,
             'user_id' => $userId,
-        ])))->records()[0] ?? null;
+        ];
+        $this->userBestScores->put($listKey, $new);
+        LaravelRedis::hset($this->userBestScoresStoreKey, $listKey, json_encode($new));
+    }
 
-        if ($userBest === null) {
-            return;
-        }
+    private function updateUserStatistics(array $scoreArray): void
+    {
 
-        $statsColumn = ScoreBestModel::RANK_TO_STATS_COLUMN_MAPPING[$userBest->data->rank] ?? null;
+        $statsColumn = ScoreBestModel::RANK_TO_STATS_COLUMN_MAPPING[$scoreArray['rank']] ?? null;
 
         if ($statsColumn === null) {
             return;
         }
 
         UserStatistics\Model
-            ::getClass($userBest->getMode())
-            ::whereKey($userId)
+            ::getClass($scoreArray['ruleset'])
+            ::whereKey($scoreArray['user_id'])
             ->update([$statsColumn => db_unsigned_increment($statsColumn, -1)]);
     }
 }
