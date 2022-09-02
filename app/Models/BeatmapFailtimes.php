@@ -121,10 +121,9 @@ class BeatmapFailtimes extends Model
     {
         $data = [];
 
+        $attributes = $this->getAttributes();
         for ($i = 1; $i <= 100; $i++) {
-            $column = 'p'.strval($i);
-
-            $data[] = intval($this->$column);
+            $data[] = $attributes["p{$i}"] ?? 0;
         }
 
         return $data;
