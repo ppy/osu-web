@@ -103,7 +103,7 @@ jobs:
           -e DB_CONNECTION_STRING=Server=db;Database=osu;Uid=root
           -e ES_HOST=http://elasticsearch-score:9200
           -e REDIS_HOST=redis
-          -e schema=test
+          -e SCHEMA=test
           --entrypoint sh pppy/osu-elastic-indexer -c "exec dotnet osu.ElasticIndexer.dll queue"
 
       osu-notification-server:

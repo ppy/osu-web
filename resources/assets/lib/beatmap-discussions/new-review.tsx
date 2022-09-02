@@ -3,7 +3,6 @@
 
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
-import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
 import core from 'osu-core-singleton';
@@ -15,7 +14,6 @@ interface Props {
   beatmaps: BeatmapExtendedJson[];
   beatmapset: BeatmapsetJson;
   currentBeatmap: BeatmapExtendedJson;
-  currentDiscussions: BeatmapsetDiscussionJson[];
   currentUser: UserJson;
   pinned?: boolean;
   setPinned?: (sticky: boolean) => void;
@@ -92,7 +90,6 @@ export default class NewReview extends React.Component<Props, State> {
                           beatmaps={this.props.beatmaps}
                           beatmapset={this.props.beatmapset}
                           currentBeatmap={this.props.currentBeatmap}
-                          currentDiscussions={this.props.currentDiscussions}
                           discussions={discussions}
                           onFocus={this.onFocus}
                         />)
