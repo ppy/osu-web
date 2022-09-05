@@ -12,6 +12,7 @@ use App\Models\Beatmap;
 use App\Models\BeatmapMirror;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetNomination;
+use App\Models\BssProcessQueue;
 use App\Models\Genre;
 use App\Models\Language;
 use App\Models\Notification;
@@ -144,19 +145,17 @@ class BeatmapsetTest extends TestCase
         $beatmap->scoresBest()->create([
             'user_id' => $otherUser->getKey(),
         ]);
-        $scores = $beatmapset->beatmaps()->first()->scoresBest()->count();
-
-        $notifications = Notification::count();
 
         $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
+
+        $this->expectCountChange(fn () => BssProcessQueue::count(), 1);
+        $this->expectCountChange(fn () => UserNotification::count(), 1);
+        $this->expectCountChange(fn () => Notification::count(), 1);
+        $this->expectCountChange(fn () => $beatmap->scoresBest()->count(), -1);
 
         $beatmapset->rank();
 
         $this->assertTrue($beatmapset->fresh()->isRanked());
-        $this->assertSame($notifications + 1, UserNotification::count());
-        $this->assertSame($notifications + 1, Notification::count());
-        $this->assertNotSame(0, $scores);
-        $this->assertSame(0, $beatmap->scoresBest()->count());
     }
 
     public function testRankFromWrongState()
