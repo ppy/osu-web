@@ -12,7 +12,6 @@ use App\Models\Beatmap;
 use App\Models\BeatmapMirror;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetNomination;
-use App\Models\BssProcessQueue;
 use App\Models\Genre;
 use App\Models\Language;
 use App\Models\Notification;
@@ -148,7 +147,7 @@ class BeatmapsetTest extends TestCase
 
         $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
 
-        $this->expectCountChange(fn () => BssProcessQueue::count(), 1);
+        $this->expectCountChange(fn () => $beatmapset->bssProcessQueues()->count(), 1);
         $this->expectCountChange(fn () => UserNotification::count(), 1);
         $this->expectCountChange(fn () => Notification::count(), 1);
         $this->expectCountChange(fn () => $beatmap->scoresBest()->count(), -1);
