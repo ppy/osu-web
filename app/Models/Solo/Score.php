@@ -142,6 +142,11 @@ class Score extends Model implements Traits\ReportableInterface
         return Beatmap::modeStr($this->ruleset_id);
     }
 
+    public function isLegacy(): bool
+    {
+        return $this->data->buildId === null;
+    }
+
     public function legacyScore(): ?LegacyScore\Best\Model
     {
         $id = $this->data->legacyScoreId;

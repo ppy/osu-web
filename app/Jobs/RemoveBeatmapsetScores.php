@@ -106,8 +106,7 @@ class RemoveBeatmapsetScores implements ShouldQueue
 
     private function updateUserBestScore(Score $score): void
     {
-        // TODO: add legacy score check
-        if (!$score->preserve) {
+        if (!$score->preserve || !$score->isLegacy()) {
             return;
         }
 
