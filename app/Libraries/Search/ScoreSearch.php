@@ -53,6 +53,10 @@ class ScoreSearch extends RecordSearch
             $query->filter(['term' => ['convert' => false]]);
         }
 
+        if ($this->params->isLegacy !== null) {
+            $query->filter(['term' => ['is_legacy' => $this->params->isLegacy]]);
+        }
+
         $this->addModsFilter($query);
 
         switch ($this->params->getType()) {

@@ -251,7 +251,7 @@ class BeatmapsController extends Controller
     }
 
     /**
-     * Get Beatmap scores
+     * Get Beatmap scores (legacy)
      *
      * Returns the top scores for a beatmap
      *
@@ -269,7 +269,7 @@ class BeatmapsController extends Controller
      */
     public function scores($id)
     {
-        return $this->beatmapScores($id, null);
+        return $this->beatmapScores($id, null, true);
     }
 
     public function updateOwner($id)
@@ -300,7 +300,7 @@ class BeatmapsController extends Controller
     }
 
     /**
-     * Get Beatmap scores (temp)
+     * Get Beatmap scores (non-legacy)
      *
      * Returns the top scores for a beatmap from newer client.
      *
@@ -320,7 +320,7 @@ class BeatmapsController extends Controller
      */
     public function soloScores($id)
     {
-        return $this->beatmapScores($id, ScoreTransformer::TYPE_SOLO);
+        return $this->beatmapScores($id, ScoreTransformer::TYPE_SOLO, false);
     }
 
     /**
@@ -414,7 +414,7 @@ class BeatmapsController extends Controller
         ];
     }
 
-    private function beatmapScores(string $id, ?string $scoreTransformerType): array
+    private function beatmapScores(string $id, ?string $scoreTransformerType, bool $isLegacy): array
     {
         $beatmap = Beatmap::findOrFail($id);
         if ($beatmap->approved <= 0) {
@@ -446,6 +446,7 @@ class BeatmapsController extends Controller
 
         $esFetch = new BeatmapScores([
             'beatmap_ids' => [$beatmap->getKey()],
+            'is_legacy' => $isLegacy,
             'mods' => $mods,
             'ruleset_id' => $rulesetId,
             'type' => $type,

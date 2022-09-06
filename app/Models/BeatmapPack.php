@@ -88,6 +88,7 @@ class BeatmapPack extends Model
             $params = [
                 'beatmap_ids' => array_keys($beatmapsetIdsByBeatmapId),
                 'exclude_converts' => $this->playmode === null,
+                'is_legacy' => true,
                 'limit' => 0,
                 'ruleset_id' => $this->playmode,
                 'user_id' => $userId,
