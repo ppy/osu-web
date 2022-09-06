@@ -98,7 +98,6 @@ class BeatmapPack extends Model
             }
 
             static $aggName = 'by_beatmap';
-            static $subAggScore = 'scores';
 
             $search = new ScoreSearch(ScoreSearchParams::fromArray($params));
             $search->size(0);
@@ -108,7 +107,7 @@ class BeatmapPack extends Model
                     'size' => max(1, count($params['beatmap_ids'])),
                 ],
                 'aggs' => [
-                    $subAggScore => [
+                    'scores' => [
                         'top_hits' => [
                             'size' => 1,
                         ],
@@ -117,11 +116,10 @@ class BeatmapPack extends Model
             ]]);
             $response = $search->response();
             $search->assertNoError();
-            $scoreIds = array_map(
-                fn (array $hit): string => $hit[$subAggScore]['hits']['hits'][0]['_id'],
+            $completedBeatmapIds = array_map(
+                fn (array $hit): int => (int) $hit['key'],
                 $response->aggregations($aggName)['buckets'],
             );
-            $completedBeatmapIds = Solo\Score::whereKey($scoreIds)->pluck('beatmap_id')->all();
             $completedBeatmapsetIds = (new Set(array_map(
                 fn (int $beatmapId): int => $beatmapsetIdsByBeatmapId[$beatmapId],
                 $completedBeatmapIds,
