@@ -272,6 +272,30 @@ class BeatmapsController extends Controller
         return $this->beatmapScores($id, null, true);
     }
 
+    /**
+     * Get Beatmap scores (non-legacy)
+     *
+     * Returns the top scores for a beatmap from newer client.
+     *
+     * This is a temporary endpoint.
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Returns [BeatmapScores](#beatmapscores). `Score` object inside includes `user` and the included `user` includes `country` and `cover`.
+     *
+     * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
+     *
+     * @queryParam mode The [GameMode](#gamemode) to get scores for.
+     * @queryParam mods An array of matching Mods, or none // TODO.
+     * @queryParam type Beatmap score ranking type // TODO.
+     */
+    public function soloScores($id)
+    {
+        return $this->beatmapScores($id, ScoreTransformer::TYPE_SOLO, false);
+    }
+
     public function updateOwner($id)
     {
         $beatmap = Beatmap::findOrFail($id);
@@ -297,30 +321,6 @@ class BeatmapsController extends Controller
         }
 
         return $beatmap->beatmapset->defaultDiscussionJson();
-    }
-
-    /**
-     * Get Beatmap scores (non-legacy)
-     *
-     * Returns the top scores for a beatmap from newer client.
-     *
-     * This is a temporary endpoint.
-     *
-     * ---
-     *
-     * ### Response Format
-     *
-     * Returns [BeatmapScores](#beatmapscores). `Score` object inside includes `user` and the included `user` includes `country` and `cover`.
-     *
-     * @urlParam beatmap integer required Id of the [Beatmap](#beatmap).
-     *
-     * @queryParam mode The [GameMode](#gamemode) to get scores for.
-     * @queryParam mods An array of matching Mods, or none // TODO.
-     * @queryParam type Beatmap score ranking type // TODO.
-     */
-    public function soloScores($id)
-    {
-        return $this->beatmapScores($id, ScoreTransformer::TYPE_SOLO, false);
     }
 
     /**
