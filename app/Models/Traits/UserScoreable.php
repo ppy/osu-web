@@ -19,10 +19,11 @@ trait UserScoreable
     public function aggregatedScoresBest(string $mode, int $size): array
     {
         return (new FetchDedupedScores('beatmap_id', ScoreSearchParams::fromArray([
-            'ruleset_id' => Beatmap::MODES[$mode],
-            'user_id' => $this->getKey(),
-            'sort' => 'pp_desc',
+            'is_legacy' => true,
             'limit' => $size,
+            'ruleset_id' => Beatmap::MODES[$mode],
+            'sort' => 'pp_desc',
+            'user_id' => $this->getKey(),
         ])))->all();
     }
 
