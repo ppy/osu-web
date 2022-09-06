@@ -8,7 +8,6 @@ declare(strict_types=1);
 namespace App\Models\Solo;
 
 use App\Models\Model;
-use App\Models\User;
 
 /**
  * @property int $ruleset_id
