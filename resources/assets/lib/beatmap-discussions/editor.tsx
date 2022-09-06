@@ -12,9 +12,11 @@ import { route } from 'laroute';
 import { filter } from 'lodash';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import scrollIntoView from 'scroll-into-view-if-needed';
 import { createEditor, Editor as SlateEditor, Element as SlateElement, Node as SlateNode, NodeEntry, Range, Text, Transforms } from 'slate';
 import { withHistory } from 'slate-history';
 import { Editable, ReactEditor, RenderElementProps, RenderLeafProps, Slate, withReact } from 'slate-react';
+import { DOMRange } from 'slate-react/dist/utils/dom';
 import { onError } from 'utils/ajax';
 import { sortWithMode } from 'utils/beatmap-helper';
 import { nominationsCount } from 'utils/beatmapset-helper';
@@ -301,6 +303,7 @@ export default class Editor extends React.Component<Props, State> {
                     readOnly={this.state.posting}
                     renderElement={this.renderElement}
                     renderLeaf={this.renderLeaf}
+                    scrollSelectionIntoView={this.scrollSelectionIntoView}
                   />
                 </DraftsContext.Provider>
               </div>
@@ -410,6 +413,26 @@ export default class Editor extends React.Component<Props, State> {
     }
 
     this.resetEditorValue();
+  };
+
+  // overrides slate Editable's defaultScrollSelectionIntoView with a boundary to stop body from scrolling on input.
+  // https://github.com/ianstormtaylor/slate/blob/ca9e2147c17cc22bb24c098651c12da60d44d8b9/packages/slate-react/src/components/editable.tsx#L1170
+  scrollSelectionIntoView = (editor: ReactEditor, domRange: DOMRange) => {
+    if (!editor.selection
+      || (editor.selection && Range.isCollapsed(editor.selection))
+    ) {
+      const leafEl = domRange.startContainer.parentElement;
+      if (leafEl != null) {
+        leafEl.getBoundingClientRect = () => domRange.getBoundingClientRect();
+        scrollIntoView(leafEl, {
+          boundary: this.scrollContainerRef.current,
+          scrollMode: 'if-needed',
+        });
+
+        // @ts-expect-error an unorthodox delete D:
+        delete leafEl.getBoundingClientRect;
+      }
+    }
   };
 
   serialize = () => serializeSlateDocument(this.state.value);
