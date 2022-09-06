@@ -316,7 +316,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
                 contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
               >
                 <span title={canEdit ? timestampTooltip : ''}>
-                  {this.selectedBeatmap() != null ? this.props.element.timestamp : osu.trans('beatmap_discussions.timestamp_display.general')}
+                  {this.props.element.timestamp ?? osu.trans('beatmap_discussions.timestamp_display.general')}
                 </span>
               </div>
               {unsavedIndicator}
