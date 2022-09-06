@@ -11,16 +11,9 @@ use App\Models\Model;
 use App\Models\User;
 
 /**
- * @property int $beatmap_id
- * @property \Carbon\Carbon|null $created_at
- * @property \stdClass $data
- * @property \Carbon\Carbon|null $deleted_at
- * @property int $id
- * @property bool $preserve
  * @property int $ruleset_id
- * @property \Carbon\Carbon|null $updated_at
- * @property User $user
- * @property int $user_id
+ * @property int $old_score_id
+ * @property int $score_id
  */
 class ScoreLegacyIdMap extends Model
 {
