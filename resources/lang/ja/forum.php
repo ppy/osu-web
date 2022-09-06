@@ -128,17 +128,17 @@ return [
         ],
 
         'logs' => [
-            '_' => '',
-            'button' => '',
+            '_' => 'トピックログ',
+            'button' => 'トピックログを見る',
 
             'columns' => [
-                'action' => '',
-                'date' => '',
-                'user' => '',
+                'action' => 'アクション',
+                'date' => 'デート',
+                'user' => 'ユーザー',
             ],
 
             'data' => [
-                'add_tag' => '',
+                'add_tag' => '「:tag」タグを追加しました',
                 'announcement' => '',
                 'edit_topic' => '',
                 'fork' => '',
@@ -167,12 +167,12 @@ return [
                 'restore_topic' => '',
                 'split_destination' => '',
                 'split_source' => '',
-                'topic_type' => '',
+                'topic_type' => 'トピックのタイプを見る',
                 'topic_type_changed' => '',
-                'unlock' => '',
-                'unpin' => '',
-                'user_lock' => '',
-                'user_unlock' => '',
+                'unlock' => 'トピックのロックを解除する',
+                'unpin' => 'トピックのピンを外す',
+                'user_lock' => '自分のスレッドをロック',
+                'user_unlock' => '自分のスレッドをアンロック',
             ],
         ],
 

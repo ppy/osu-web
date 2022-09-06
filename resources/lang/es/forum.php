@@ -234,7 +234,7 @@ return [
                 'max_options' => 'Opciones por usuario',
                 'max_options_info' => 'Este es el número de opciones que un usuario puede seleccionar al votar.',
                 'options' => 'Opciones',
-                'options_info' => 'Escriba cada opción en una nueva línea. Puede añadir hasta 10 opciones.',
+                'options_info' => 'Escriba cada opción en una nueva línea. Puede introducir hasta 10 opciones.',
                 'title' => 'Pregunta',
                 'vote_change' => 'Permitir volver a votar.',
                 'vote_change_info' => 'Si está activado, los usuarios podrán cambiar su voto.',

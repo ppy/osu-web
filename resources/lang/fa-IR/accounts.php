@@ -15,7 +15,6 @@ return [
         ],
 
         'email' => [
-            'current' => 'ایمیل فعلی',
             'new' => 'ایمیل جدید',
             'new_confirmation' => 'تایید ایمیل',
             'title' => 'ایمیل',

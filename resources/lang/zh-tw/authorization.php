@@ -141,7 +141,7 @@ return [
             'vote' => [
                 'no_forum_access' => '沒有權限，無法進入該討論區。',
                 'over' => '投票已結束！',
-                'play_more' => '你需要在論壇上投票之前多玩一些。',
+                'play_more' => '你需要多玩一些才可以在論壇上投票。',
                 'voted' => '不允許修改投票。',
 
                 'user' => [
@@ -183,7 +183,7 @@ return [
             'edit' => [
                 'locked' => '個人頁面被鎖定。',
                 'not_owner' => '只能編輯自己的個人頁面。',
-                'require_supporter_tag' => '需要成為osu!贊助者。',
+                'require_supporter_tag' => '需要成為 osu! 贊助者。',
             ],
         ],
     ],

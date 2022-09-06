@@ -101,9 +101,14 @@ Route::group(['middleware' => ['web']], function () {
     Route::put('beatmapsets/{beatmapset}/nominate', 'BeatmapsetsController@nominate')->name('beatmapsets.nominate');
     Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['destroy', 'index', 'show', 'update']]);
 
-    Route::group(['prefix' => 'scores/{mode}', 'as' => 'scores.'], function () {
+    Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
+        // make sure it's matched before {mode}/{score}
         Route::get('{score}/download', 'ScoresController@download')->name('download');
-        Route::get('{score}', 'ScoresController@show')->name('show-legacy');
+
+        Route::group(['prefix' => '{mode}'], function () {
+            Route::get('{score}/download', 'ScoresController@download')->name('download-legacy');
+            Route::get('{score}', 'ScoresController@show')->name('show-legacy');
+        });
     });
     Route::resource('scores', 'ScoresController', ['only' => ['show']]);
 
@@ -291,7 +296,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('users/{user}/posts', 'UsersController@posts')->name('users.posts');
     Route::get('users/{user}/{mode?}', 'UsersController@show')->name('users.show');
-    Route::resource('users', 'UsersController', ['only' => ['index', 'store']]);
+    Route::resource('users', 'UsersController', ['only' => ['store']]);
 
     Route::get('wiki/{locale}/Sitemap', 'WikiController@sitemap')->name('wiki.sitemap');
     Route::get('wiki/images/{path}', 'WikiController@image')->name('wiki.image')->where('path', '.+');
@@ -473,7 +478,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         //   GET /api/v2/beatmapsets/search/:filters
         Route::get('beatmapsets/search/{filters?}', 'BeatmapsetsController@search');
         //   GET /api/v2/beatmapsets/lookup
-        Route::get('beatmapsets/lookup', 'API\BeatmapsetsController@lookup');
+        Route::get('beatmapsets/lookup', 'BeatmapsetsController@lookup');
         //   GET /api/v2/beatmapsets/:beatmapset_id
         Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['show']]);
 

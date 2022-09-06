@@ -15,7 +15,6 @@ return [
         ],
 
         'email' => [
-            'current' => 'nuvarande e-postadress',
             'new' => 'ny e-postadress',
             'new_confirmation' => 'e-postbekräftelse',
             'title' => 'E-postadress',

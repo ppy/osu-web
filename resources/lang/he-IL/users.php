@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'חסמת משתמש זה.',
+        'comment_text' => '',
         'blocked_count' => 'משתמשים חסומים (:count)',
         'hide_profile' => 'הסתר פרופיל',
+        'hide_comment' => '',
         'not_blocked' => 'משתמש זה אינו חסום.',
         'show_profile' => 'הצג פרופיל',
+        'show_comment' => '',
         'too_many' => 'הגעת למגבלת החסימות.',
         'button' => [
             'block' => 'חסום',
@@ -371,6 +374,7 @@ return [
                     'actions' => [
                         'restriction' => 'השעיה',
                         'silence' => 'השתקה',
+                        'tournament_ban' => '',
                         'note' => 'הערה',
                     ],
                 ],

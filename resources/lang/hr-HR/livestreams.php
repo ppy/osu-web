@@ -5,14 +5,14 @@
 
 return [
     'promote' => [
-        'pin' => '',
-        'unpin' => "",
+        'pin' => 'Jesi li siguran/na da želiš promovirati ovo strujanje uživo?',
+        'unpin' => "Jesi li siguran/na da želiš ukloniti promociju ovog strujanja uživo?",
     ],
 
     'top-headers' => [
-        'headline' => '',
-        'description' => '',
+        'headline' => 'Strujanja Uživo',
+        'description' => 'Podaci se dohvaćaju s twitch.tv svakih pet minuta na temelju popisa imenika. Slobodno započmi strujanje i dođi na popis! Za više informacija o tome kako se postaviti, pogledaj :link.',
 
-        'link' => '',
+        'link' => 'wiki stranicu o strujanju uživo',
     ],
 ];

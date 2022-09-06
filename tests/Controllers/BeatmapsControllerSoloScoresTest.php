@@ -149,8 +149,7 @@ class BeatmapsControllerSoloScoresTest extends TestCase
             '--all' => true,
             '--no-interaction' => true,
         ]);
-        sleep(3);
-        (new ScoreSearch())->refresh();
+        (new ScoreSearch())->indexWait();
     }
 
     public static function tearDownAfterClass(): void

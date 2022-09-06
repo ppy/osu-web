@@ -3,12 +3,11 @@
 
 import ScorePin from 'components/score-pin';
 import SoloScoreJson from 'interfaces/solo-score-json';
-import { route } from 'laroute';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { rulesetName } from 'utils/beatmap-helper';
-import { canBeReported, hasReplay, hasShow, scoreUrl } from 'utils/score-helper';
+import { canBeReported, hasReplay, hasShow, scoreDownloadUrl, scoreUrl } from 'utils/score-helper';
 import { PopupMenuPersistent } from './popup-menu-persistent';
 import { ReportReportable } from './report-reportable';
 
@@ -42,7 +41,7 @@ export class PlayDetailMenu extends React.Component<Props> {
           <a
             className='simple-menu__item js-login-required--click'
             data-turbolinks={false}
-            href={route('scores.download', { mode: ruleset, score: score.best_id })}
+            href={scoreDownloadUrl(score)}
             onClick={dismiss}
           >
             {osu.trans('users.show.extra.top_ranks.download_replay')}
@@ -53,8 +52,8 @@ export class PlayDetailMenu extends React.Component<Props> {
           <ReportReportable
             baseKey='scores'
             className='simple-menu__item'
-            reportableId={score.best_id?.toString() ?? ''}
-            reportableType={`score_best_${ruleset}`}
+            reportableId={(score.best_id ?? score.id).toString()}
+            reportableType={score.best_id == null ? score.type : `score_best_${ruleset}`}
             user={score.user}
           />
         )}

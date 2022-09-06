@@ -8,28 +8,28 @@ return [
         'disabled' => 'Acest beatmap nu poate fi descărcat momentan.',
         'parts-removed' => 'Unele porțiuni din acest beatmap au fost eliminate la cererea creatorului sau al unui deținător de drepturi de autor.',
         'more-info' => 'Vezi aici pentru mai multe informații.',
-        'rule_violation' => '',
+        'rule_violation' => 'Unele elemente din această hartă au fost șterse după ce au fost considerate ca fiind improprii pentru a fi utilizate în osu!.',
     ],
 
     'cover' => [
-        'deleted' => '',
+        'deleted' => 'Beatmap șters',
     ],
 
     'download' => [
-        'limit_exceeded' => '',
+        'limit_exceeded' => 'Descarcă mai puțin, joacă mai mult.',
     ],
 
     'featured_artist_badge' => [
-        'label' => '',
+        'label' => 'Artist oficial',
     ],
 
     'index' => [
-        'title' => 'Listarea beatmapurilor',
-        'guest_title' => 'Beatmaps',
+        'title' => 'Lista Beatmap-uri',
+        'guest_title' => 'Beatmap-uri',
     ],
 
     'panel' => [
-        'empty' => '',
+        'empty' => 'niciun beatmap',
 
         'download' => [
             'all' => 'descarcă',
@@ -40,40 +40,40 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => '',
-        'incorrect_mode' => '',
-        'full_bn_required' => 'Trebuie să fi un nominator să participi în această nominare calificată.',
-        'too_many' => '',
+        'hybrid_requires_modes' => 'Un beatmap hibrid îți cere să selectezi cel puțin un mod de joc pentru care să nominalizezi.',
+        'incorrect_mode' => 'Nu ai permisiunea de a nominaliza pentru modul :mode',
+        'full_bn_required' => 'Trebuie să fii un nominalizator complet pentru a nominaliza spre calificare.',
+        'too_many' => 'Cerința de nominalizare este deja îndeplinită.',
 
         'dialog' => [
             'confirmation' => 'Ești sigur că vrei să nominalizezi acest Beatmap?',
-            'header' => '',
-            'hybrid_warning' => '',
-            'which_modes' => '',
+            'header' => 'Nominalizează acest beatmap',
+            'hybrid_warning' => 'observație: poți nominaliza o singură dată, așa că te rugăm să te asiguri că nominalizezi pentru toate modurile de joc pentru care intenționezi să nominalizezi',
+            'which_modes' => 'Nominalizare pentru care moduri?',
         ],
     ],
 
     'nsfw_badge' => [
-        'label' => 'Explicit',
+        'label' => 'Obscen',
     ],
 
     'show' => [
         'discussion' => 'Discuție',
 
         'details' => [
-            'by_artist' => '',
-            'favourite' => 'Adaugă acest beatmapset la favorite',
-            'favourite_login' => '',
+            'by_artist' => 'de :artist',
+            'favourite' => 'Adaugă acest beatmap la favorite',
+            'favourite_login' => 'Autentifică-te pentru a adăuga acest beatmap la preferate',
             'logged-out' => 'Trebuie să te autentifici înainte de a descărca vreun beatmap!',
-            'mapped_by' => 'mapat de :mapper',
+            'mapped_by' => 'creat de :mapper',
             'unfavourite' => 'Elimină acest beatmapset de la favorite',
-            'updated_timeago' => 'ultima dată actualizat :timeago',
+            'updated_timeago' => 'ultima actualizare :timeago',
 
             'download' => [
                 '_' => 'Descarcă',
                 'direct' => '',
-                'no-video' => 'fără videoclip',
-                'video' => 'cu videoclip',
+                'no-video' => 'fără video',
+                'video' => 'cu video',
             ],
 
             'login_required' => [
@@ -88,11 +88,11 @@ return [
             'qualified' => 'calificat :timeago',
             'ranked' => 'clasat :timeago',
             'submitted' => 'postat :timeago',
-            'updated' => 'ultima dată actualizat :timeago',
+            'updated' => 'ultima actualizare :timeago',
         ],
 
         'favourites' => [
-            'limit_reached' => 'Ai prea multe beatmaps favorite! Te rugăm să mai elimini câteva înainte de a încerca din nou.',
+            'limit_reached' => 'Ai prea multe beatmap-uri favorite! Te rugăm să mai elimini câteva înainte de a încerca din nou.',
         ],
 
         'hype' => [
@@ -109,12 +109,12 @@ return [
             ],
 
             'disqualify' => [
-                '_' => 'Dacă găsești o problemă cu acest beatmap, vă rugăm descalificați-o :link.',
+                '_' => 'Dacă găsiți o problemă cu acest beatmap, vă rugăm descalificați-l :link.',
             ],
 
             'report' => [
-                '_' => 'Dacă găsești o problemă cu acest beatmap, vă rugăm raportați-o :link ca să alertați echipa.',
-                'button' => 'Raportează problemă',
+                '_' => 'Dacă găsiți o problemă cu acest beatmap, vă rugăm raportați-o :link ca să alertați echipa.',
+                'button' => 'Raportează Problemă',
                 'link' => 'aici',
             ],
         ],
@@ -124,23 +124,23 @@ return [
             'genre' => 'Gen',
             'language' => 'Limbă',
             'no_scores' => 'Încă se calculează datele...',
-            'nsfw' => 'Conținut explicit',
-            'offset' => '',
+            'nsfw' => 'Conținut obscen',
+            'offset' => 'Offset online',
             'points-of-failure' => 'Puncte de eșec',
             'source' => 'Sursă',
-            'storyboard' => '',
+            'storyboard' => 'Acest beatmap conține un storyboard',
             'success-rate' => 'Rata de succes',
             'tags' => 'Tag-uri',
-            'video' => '',
+            'video' => 'Acest beatmap conține un video',
         ],
 
         'nsfw_warning' => [
-            'details' => 'Acest beatmap conține conținut explicit, ofensiv sau deranjant. Doriți să-l vedeți oricum?',
-            'title' => 'Conținut explicit',
+            'details' => 'Acest beatmap conține conținut obscen, ofensiv sau deranjant. Doriți să-l vedeți oricum?',
+            'title' => 'Conținut obscen',
 
             'buttons' => [
                 'disable' => 'Dezactivează avertisment',
-                'listing' => '',
+                'listing' => 'Lista beatmap-uri',
                 'show' => 'Arată',
             ],
         ],
@@ -148,30 +148,30 @@ return [
         'scoreboard' => [
             'achieved' => 'realizat :when',
             'country' => 'Clasament pe țară',
-            'error' => '',
+            'error' => 'Încărcarea clasamentului a eșuat',
             'friend' => 'Clasamentul prietenilor',
             'global' => 'Clasament global',
-            'supporter-link' => 'Click <a href=":link">aici</a> pentru a vedea toate avantajele pe care le poți obține!',
+            'supporter-link' => 'Faceți clic <a href=":link">aici</a> pentru a vedea toate avantajele pe care le poți obține!',
             'supporter-only' => 'Trebuie să fii un suporter pentru a accesa clasamentul prietenilor și pe țară!',
             'title' => 'Tabela de scor',
 
             'headers' => [
                 'accuracy' => 'Precizie',
-                'combo' => 'Combo maxim',
+                'combo' => 'Combo Maxim',
                 'miss' => 'Ratări',
                 'mods' => 'Moduri',
-                'pin' => '',
+                'pin' => 'Fixează',
                 'player' => 'Jucător',
                 'pp' => '',
-                'rank' => 'Rang',
+                'rank' => 'Clasament',
                 'score' => 'Scor',
                 'score_total' => 'Scor total',
                 'time' => 'Timp',
             ],
 
             'no_scores' => [
-                'country' => 'Nimeni din țara ta nu a stabilit un scor pe această mapă încă!',
-                'friend' => 'Nimeni din prietenii tăi nu a stabilit un scor pe această mapă încă!',
+                'country' => 'Nimeni din țara ta nu a stabilit un scor pe acest beatmap încă!',
+                'friend' => 'Nimeni din prietenii tăi nu a stabilit un scor pe acest beatmap încă!',
                 'global' => 'Niciun scor încă. Poate ar trebui să încerci să obții câteva?',
                 'loading' => 'Se încarcă scorurile...',
                 'unranked' => 'Beatmap neclasificat.',
@@ -181,27 +181,28 @@ return [
                 'own' => 'Cel mai bun',
             ],
             'supporter_link' => [
-                '_' => '',
-                'here' => '',
+                '_' => 'Apasă :here pentru a vedea toate avantajele pe care le poți obține!',
+                'here' => 'aici',
             ],
         ],
 
         'stats' => [
-            'cs' => 'Dimensiunea cercului',
-            'cs-mania' => 'Numărul de taste',
-            'drain' => 'Scurgere HP',
+            'cs' => 'Mărime Cerc',
+            'cs-mania' => 'Număr Taste',
+            'drain' => '
+Viață',
             'accuracy' => 'Precizie',
-            'ar' => 'Viteza de apropiere',
-            'stars' => 'Dificultatea de stele',
-            'total_length' => 'Durată',
+            'ar' => 'Viteză Apropiere',
+            'stars' => 'Dificultate (★)',
+            'total_length' => 'Durată (Durată efectivă: :hit_length)',
             'bpm' => 'BPM',
-            'count_circles' => 'Numărul de cercuri',
-            'count_sliders' => 'Numărul de glisări',
-            'offset' => '',
-            'user-rating' => 'Evaluarea jucătorului',
-            'rating-spread' => 'Clasament grafic',
+            'count_circles' => 'Număr Cercuri',
+            'count_sliders' => 'Număr Slidere',
+            'offset' => 'Offset online: :offset',
+            'user-rating' => 'Rating Utilizatori',
+            'rating-spread' => 'Grafic Rating-uri',
             'nominations' => 'Nominalizări',
-            'playcount' => 'Numărul de jocuri',
+            'playcount' => 'Număr încercări',
         ],
 
         'status' => [
@@ -211,11 +212,11 @@ return [
             'qualified' => 'Calificat',
             'wip' => 'WIP',
             'pending' => 'În Așteptare',
-            'graveyard' => 'Cimitir',
+            'graveyard' => 'Inactiv',
         ],
     ],
 
     'spotlight_badge' => [
-        'label' => '',
+        'label' => 'Promovat',
     ],
 ];

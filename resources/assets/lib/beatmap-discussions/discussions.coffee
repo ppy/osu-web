@@ -4,6 +4,7 @@
 import { IconExpand } from 'components/icon-expand'
 import * as React from 'react'
 import { a, button, div, i, p, span } from 'react-dom-factories'
+import { canModeratePosts } from 'utils/beatmapset-discussion-helper'
 import { jsonClone } from 'utils/json'
 import { nextVal } from 'utils/seq'
 import { Discussion } from './discussion'
@@ -128,7 +129,7 @@ export class Discussions extends React.PureComponent
 
 
   renderShowDeletedToggle: =>
-    return null unless BeatmapDiscussionHelper.canModeratePosts(@props.currentUser)
+    return null unless canModeratePosts(@props.currentUser)
 
     button
       type: 'button'

@@ -92,7 +92,7 @@ return [
 
                 'announce' => [
                     'channel_announcement' => '',
-                    'channel_announcement_compact' => '',
+                    'channel_announcement_compact' => ':title',
                     'channel_announcement_group' => '',
                 ],
             ],

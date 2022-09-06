@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => 'Chceš skrýt tento kanál? Stále budeš dostávat zprávy z tohoto kanálu.',
         'create' => 'vytvořit oznámení',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Oznámení',

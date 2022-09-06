@@ -12,7 +12,7 @@ import { UserLink } from 'components/user-link'
 import { route } from 'laroute'
 import * as React from 'react'
 import { a, div, i, span } from 'react-dom-factories'
-import { format, previewMessage } from 'utils/beatmapset-discussion-helper'
+import { canModeratePosts, format, previewMessage } from 'utils/beatmapset-discussion-helper'
 import { nominationsCount } from 'utils/beatmapset-helper'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { pageChange } from 'utils/page-change'
@@ -201,19 +201,20 @@ export class Nominations extends React.PureComponent
 
 
   focusHypeInput: =>
-    hypeMessage = $('.js-hype--explanation')
-    flashClass = 'js-flash-border--on'
-
     # switch to generalAll tab, set current filter to praises
     $.publish 'beatmapsetDiscussions:update',
       mode: 'generalAll'
       filter: 'praises'
 
-    @focusNewDiscussion ->
-      # flash border of hype description to emphasize input is required
-      $(hypeMessage).addClass(flashClass)
-      @hypeFocusTimeout = Timeout.set 1000, ->
-        $(hypeMessage).removeClass(flashClass)
+    hypeMessage = '.js-hype--explanation'
+    flashClass = 'js-flash-border--on'
+
+    @hypeFocusTimeout = Timeout.set 0, =>
+      @focusNewDiscussion =>
+        # flash border of hype description to emphasize input is required
+        $(hypeMessage).addClass(flashClass)
+        @hypeFocusTimeout = Timeout.set 1000, =>
+          $(hypeMessage).removeClass(flashClass)
 
 
   focusNewDiscussion: (callback) ->
@@ -456,9 +457,9 @@ export class Nominations extends React.PureComponent
 
 
   discussionLockButton: =>
-    canModeratePost = BeatmapDiscussionHelper.canModeratePosts(@props.currentUser)
+    canModerate = canModeratePosts(@props.currentUser)
 
-    return null unless canModeratePost
+    return null unless canModerate
 
     if @props.beatmapset.discussion_locked
       action = 'unlock'

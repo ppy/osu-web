@@ -4,18 +4,20 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'loading_users' => '',
+    'loading_users' => 'se incarcă utilizatorii...',
     'talking_in' => 'vorbești în :channel',
     'talking_with' => 'vorbești cu :name',
     'title_compact' => 'chat',
 
     'cannot_send' => [
-        'channel' => 'Nu poți trimite mesaje în acest canal chiar acum.',
-        'user' => 'Nu poți trimite mesaje acestui utilizator în acest moment.',
+        'channel' => 'Nu poți trimite mesaje în acest canal momentan.',
+        'user' => 'Nu poți trimite mesaje acestui utilizator momentan.',
     ],
 
     'channels' => [
-        'create' => '',
+        'confirm_part' => 'Dorești să ascunzi acest canal? Vei primi în continuare mesaje de pe acest canal.',
+        'create' => 'creează anunţ',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Anunțuri',
@@ -28,23 +30,23 @@ return [
 
     'form' => [
         'title' => [
-            'announcement' => '',
+            'announcement' => 'Creați Anunț Nou',
         ],
 
         'labels' => [
-            'description' => '',
-            'name' => '',
-            'users' => '',
+            'description' => 'descriere',
+            'name' => 'numele camerei',
+            'users' => 'jucători de adăugat',
         ],
     ],
 
     'not_found' => [
-        'message' => 'Nu este nimic aici. Poate ai părăsit canalul sau acesta nu există...',
+        'message' => 'Nu este nimic aici. Poate ai părăsit canalul sau nu există...',
         'title' => 'canalul nu a fost găsit',
     ],
 
     'input' => [
-        'create' => '',
+        'create' => 'Creează',
         'disabled' => 'mesajul nu a putut fi trimis...',
         'disconnected' => 'Deconectat',
         'placeholder' => 'scrie un mesaj...',
@@ -53,7 +55,7 @@ return [
 
     'no-conversations' => [
         'howto' => "Începe conversații din profilul unui utilizator sau din fereastra unui utilizator.",
-        'lazer' => 'Canalele publice în care te alături prin <a href=":link">osu!lazer</a> vor fi vizibile aici.',
+        'lazer' => 'Canalele publice cărora li te alături prin <a href=":link">osu!lazer</a> vor fi vizibile aici.',
         'title' => 'nu sunt conversații încă',
     ],
 ];

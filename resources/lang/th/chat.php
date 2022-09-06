@@ -15,36 +15,38 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => 'คุณต้องการที่จะซ่อนช่องนี้หรือไม่ คุณจะยังคงได้รับข้อความจากช่องนี้',
         'create' => '',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'ประกาศ',
                 'GROUP' => 'กลุ่ม',
                 'PM' => '',
-                'PUBLIC' => '',
+                'PUBLIC' => 'ช่อง',
             ],
         ],
     ],
 
     'form' => [
         'title' => [
-            'announcement' => '',
+            'announcement' => 'สร้างประกาศใหม่',
         ],
 
         'labels' => [
-            'description' => '',
-            'name' => '',
+            'description' => 'รายละเอียด',
+            'name' => 'ชื่อห้อง',
             'users' => '',
         ],
     ],
 
     'not_found' => [
         'message' => '',
-        'title' => '',
+        'title' => 'ไม่พบช่อง',
     ],
 
     'input' => [
-        'create' => '',
+        'create' => 'สร้าง',
         'disabled' => 'ไม่สามารถส่งข้อความได้...',
         'disconnected' => '',
         'placeholder' => 'พิมพ์ข้อความ...',

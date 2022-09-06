@@ -21,6 +21,7 @@ class MessageTask
 
     public static function dispatch(Message $message)
     {
+        // TODO: how to test Octane tasks?
         DB::afterCommit(fn () => Octane::tasks()->dispatch([new static($message)]));
     }
 

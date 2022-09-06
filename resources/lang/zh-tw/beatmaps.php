@@ -162,7 +162,7 @@ return [
         'button_done' => '已經推薦！',
         'confirm' => "你確定嗎？這將會使用你剩下的 :n 次推薦次數並且無法撤銷。",
         'explanation' => '推薦這張圖譜讓它更容易被提名和進榜 ！',
-        'explanation_guest' => '登入並推薦這張圖譜讓它更容易被提名和進榜 ！',
+        'explanation_guest' => '登錄並推薦這張譜面讓它更容易被提名然後 ranked ！',
         'new_time' => "你將在 :new_time 後獲得新的推薦次數。",
         'remaining' => '你還可以推薦 :remaining 次。',
         'required_text' => '推薦進度： :current/:required',
@@ -180,8 +180,8 @@ return [
         'delete_other_confirm' => '你確定嗎？這個圖譜將被刪除，刪除後你將重新導向到他的個人資料頁面。',
         'disqualification_prompt' => 'Disqualified 的理由？',
         'disqualified_at' => '於 :time_ago 被 Disqualified（:reason）。',
-        'disqualified_no_reason' => '沒有任何原因',
-        'disqualify' => 'Disqualify',
+        'disqualified_no_reason' => '沒有指定原因',
+        'disqualify' => '取消提名',
         'incorrect_state' => '操作發生錯誤，請重新載入頁面。',
         'love' => '喜歡',
         'love_choose' => '選擇 Loved 圖譜的難度',
@@ -204,13 +204,13 @@ return [
         ],
 
         'reset_at' => [
-            'nomination_reset' => '提名於 :time_ago 被新問題 :discussion 重置。',
+            'nomination_reset' => '提名進度於 :time_ago 被新問題 :discussion 重置。',
             'disqualify' => ':time_ago  :user 因新问题 :discussion (:message) 而被 DQ.',
         ],
 
         'reset_confirm' => [
             'disqualify' => '你確定嗎？這個會移除圖譜從進榜和重設提名進度。',
-            'nomination_reset' => '你確定嗎？提出新的問題會重置提名。',
+            'nomination_reset' => '你確定嗎？提出新的問題會重置提名進度。',
             'problem_warning' => '您確定要回報本圖譜的問題嗎？這問題將通知圖譜管理團隊。',
         ],
     ],
