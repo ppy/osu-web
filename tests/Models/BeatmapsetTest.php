@@ -134,11 +134,11 @@ class BeatmapsetTest extends TestCase
 
     public function testRank()
     {
-        $otherUser = User::factory()->create();
-
         $beatmapset = $this->createBeatmapset([
             'approved' => Beatmapset::STATES['qualified'],
         ]);
+
+        $otherUser = User::factory()->create();
 
         $beatmap = $beatmapset->beatmaps()->first();
         $beatmap->scoresBest()->create([
@@ -163,17 +163,24 @@ class BeatmapsetTest extends TestCase
             'approved' => Beatmapset::STATES['pending'],
         ]);
 
-        $notifications = Notification::count();
-
         $otherUser = User::factory()->create();
+
+        $beatmap = $beatmapset->beatmaps()->first();
+        $beatmap->scoresBest()->create([
+            'user_id' => $otherUser->getKey(),
+        ]);
+
         $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
+
+        $this->expectCountChange(fn () => $beatmapset->bssProcessQueues()->count(), 0);
+        $this->expectCountChange(fn () => UserNotification::count(), 0);
+        $this->expectCountChange(fn () => Notification::count(), 0);
+        $this->expectCountChange(fn () => $beatmap->scoresBest()->count(), 0);
 
         $res = $beatmapset->rank();
 
         $this->assertFalse($res);
         $this->assertFalse($beatmapset->fresh()->isRanked());
-        $this->assertSame($notifications, UserNotification::count());
-        $this->assertSame($notifications, Notification::count());
     }
 
     public function testGlobalScopeActive()
