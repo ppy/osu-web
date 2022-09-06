@@ -142,7 +142,6 @@ class RemoveBeatmapsetScores implements ShouldQueue
 
     private function updateUserStatistics(array $scoreArray): void
     {
-
         $statsColumn = ScoreBestModel::RANK_TO_STATS_COLUMN_MAPPING[$scoreArray['rank']] ?? null;
 
         if ($statsColumn === null) {
