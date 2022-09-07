@@ -63,12 +63,16 @@ class Contest extends Model
         return $this->hasMany(ContestVote::class);
     }
 
-    public function assertVoteRequirement(User $user): void
+    public function assertVoteRequirement(?User $user): void
     {
         $requirement = $this->getExtraOptions()['requirement'] ?? null;
 
         if ($requirement === null) {
             return;
+        }
+
+        if ($user === null) {
+            throw new InvariantException(osu_trans('authorization.require_login'));
         }
 
         switch ($requirement['name']) {
