@@ -23,7 +23,7 @@ class ContestTest extends TestCase
     /**
      * @dataProvider dataProviderForTestAssertVoteRequirementPlaylistBeatmapsets
      */
-    public function testAssertVoteRequirementPlaylistBeatmapsets(bool $played, bool $passed, ?bool $mustPass, bool $canVote): void
+    public function testAssertVoteRequirementPlaylistBeatmapsets(bool $loggedIn, bool $played, bool $passed, ?bool $mustPass, bool $canVote): void
     {
         $beatmapsets = Beatmapset::factory()->count(5)->create();
         $beatmaps = [];
@@ -60,9 +60,9 @@ class ContestTest extends TestCase
             $this->expectException(InvariantException::class);
         }
 
-        $user = User::factory()->create();
+        $user = $loggedIn ? User::factory()->create() : null;
 
-        if ($played) {
+        if ($loggedIn && $played) {
             $userId = $user->getKey();
             $endedAt = now();
             foreach ($beatmapsets as $beatmapset) {
@@ -101,17 +101,20 @@ class ContestTest extends TestCase
     {
         return [
             // when passing is required
-            [true, true, true, true],
-            [true, false, true, false],
-            [false, false, true, false],
+            [true, true, true, true, true],
+            [true, true, false, true, false],
+            [true, false, false, true, false],
+            [false, false, false, true, false],
             // when passing is not specified (default required)
-            [true, true, null, true],
-            [true, false, null, false],
-            [false, false, null, false],
+            [true, true, true, null, true],
+            [true, true, false, null, false],
+            [true, false, false, null, false],
+            [false, false, false, null, false],
             // when passing is not required
-            [true, true, false, true],
-            [true, false, false, true],
-            [false, false, false, false],
+            [true, true, true, false, true],
+            [true, true, false, false, true],
+            [true, false, false, false, false],
+            [false, false, false, false, false],
         ];
     }
 }
