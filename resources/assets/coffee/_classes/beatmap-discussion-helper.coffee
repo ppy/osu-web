@@ -12,36 +12,6 @@ class window.BeatmapDiscussionHelper
   @MODES = new Set(['events', 'general', 'generalAll', 'timeline', 'reviews'])
   @FILTERS = new Set(['deleted', 'hype', 'mapperNotes', 'mine', 'pending', 'praises', 'resolved', 'total'])
 
-
-  @nearbyDiscussions: (discussions, timestamp) =>
-    return [] if !timestamp?
-
-    nearby = {}
-
-    for discussion in discussions
-      continue if not discussion.timestamp or discussion.message_type not in ['suggestion', 'problem']
-
-      distance = Math.abs(discussion.timestamp - timestamp)
-
-      continue if distance > 5000
-
-      if discussion.user_id == currentUser.id
-        continue if moment(discussion.updated_at).diff(moment(), 'hour') > -24
-
-      category = switch
-        when distance == 0 then 'd0'
-        when distance < 100 then 'd100'
-        when distance < 1000 then 'd1000'
-        else 'other'
-
-      nearby[category] ?= []
-      nearby[category].push discussion
-
-    shownDiscussions = nearby.d0 ? nearby.d100 ? nearby.d1000 ? nearby.other ? []
-
-    _.sortBy shownDiscussions, 'timestamp'
-
-
   # Don't forget to update BeatmapDiscussionsController@show when changing this.
   @url: (options = {}, useCurrent = false) =>
     {

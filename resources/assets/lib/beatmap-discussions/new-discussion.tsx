@@ -19,7 +19,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
 import { onError } from 'utils/ajax';
-import { canModeratePosts, formatTimestamp, parseTimestamp, validMessageLength } from 'utils/beatmapset-discussion-helper';
+import { canModeratePosts, formatTimestamp, nearbyDiscussions, parseTimestamp, validMessageLength } from 'utils/beatmapset-discussion-helper';
 import { nominationsCount } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
@@ -117,7 +117,7 @@ export class NewDiscussion extends React.Component<Props> {
     if (this.nearbyDiscussionsCache == null || (this.nearbyDiscussionsCache.beatmap !== this.props.currentBeatmap || this.nearbyDiscussionsCache.timestamp !== this.timestamp)) {
       this.nearbyDiscussionsCache = {
         beatmap: this.props.currentBeatmap,
-        discussions: BeatmapDiscussionHelper.nearbyDiscussions(this.props.currentDiscussions.timelineAllUsers, timestamp),
+        discussions: nearbyDiscussions(this.props.currentDiscussions.timelineAllUsers, timestamp),
         timestamp: this.timestamp,
       };
     }

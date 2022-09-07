@@ -8,7 +8,7 @@ import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForBundle, Beatmapset
 import BeatmapsetDiscussionPostJson from 'interfaces/beatmapset-discussion-post-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
-import { escape, padStart, truncate } from 'lodash';
+import { escape, padStart, sortBy, truncate } from 'lodash';
 import core from 'osu-core-singleton';
 import { currentUrl } from 'utils/turbolinks';
 import { linkHtml, openBeatmapEditor, urlRegex } from 'utils/url';
@@ -42,6 +42,9 @@ const linkTimestampRegex = /\b((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\)|\b))/g;
 export const timestampRegex = /\b(((\d{2,}):([0-5]\d)[:.](\d{3}))(\s\((?:\d+[,|])*\d+\))?)/;
 const maxMessagePreviewLength = 100;
 export const maxLengthTimeline = 750;
+
+type NearbyDiscussionsCategory = 'd0' | 'd100' | 'd1000' | 'other';
+const nearbyDiscussionsMessageTypes = new Set(['suggestion', 'problem']);
 
 export function badgeGroup({ beatmapset, currentBeatmap, discussion, user }: BadgeGroupParams) {
   if (user == null) {
@@ -128,6 +131,42 @@ export function linkTimestamp(text: string, classNames: string[] = []) {
       linkHtml(openBeatmapEditor(`${m}:${s}:${ms}${range ?? ''}`), timestamp, { classNames })
     ),
   );
+}
+
+export function nearbyDiscussions<T extends BeatmapsetDiscussionJson>(discussions: T[], timestamp: number) {
+  const nearby: Partial<Record<NearbyDiscussionsCategory, T[]>> = {};
+
+  for (const discussion of discussions) {
+    if (discussion.timestamp == null || !nearbyDiscussionsMessageTypes.has(discussion.message_type)) {
+      continue;
+    }
+
+    const distance = Math.abs(discussion.timestamp - timestamp);
+    const category = nearbyDiscussionsDistanceToCategory(distance);
+
+    if (category != null) {
+      nearby[category] ??= [];
+      nearby[category]?.push(discussion);
+    }
+  }
+
+  const shownDiscussions = nearby.d0 ?? nearby.d100 ?? nearby.d1000 ?? nearby.other ?? [];
+
+  return sortBy(shownDiscussions, 'timestamp');
+}
+
+function nearbyDiscussionsDistanceToCategory(distance: number): NearbyDiscussionsCategory | null {
+  if (distance > 5000) {
+    return null;
+  } else if (distance === 0) {
+    return 'd0';
+  } else if (distance < 100) {
+    return 'd100';
+  } else if (distance < 1000) {
+    return 'd1000';
+  } else {
+    return 'other';
+  }
 }
 
 export function parseTimestamp(message?: string | null) {

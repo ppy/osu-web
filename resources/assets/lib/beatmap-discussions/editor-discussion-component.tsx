@@ -10,7 +10,7 @@ import * as React from 'react';
 import { Element as SlateElement, Path, Transforms } from 'slate';
 import { RenderElementProps } from 'slate-react';
 import { ReactEditor } from 'slate-react';
-import { formatTimestamp, parseTimestamp, timestampRegex } from 'utils/beatmapset-discussion-helper';
+import { formatTimestamp, nearbyDiscussions, parseTimestamp, timestampRegex } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { linkHtml } from 'utils/url';
 import { DraftsContext } from './drafts-context';
@@ -166,7 +166,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
       const relevantDiscussions = _.filter(this.props.discussions, this.isRelevantDiscussion);
       this.cache.nearbyDiscussions = {
         beatmap_id: this.selectedBeatmap(),
-        discussions: BeatmapDiscussionHelper.nearbyDiscussions(relevantDiscussions, timestamp),
+        discussions: nearbyDiscussions(relevantDiscussions, timestamp),
         timestamp,
       };
     }
