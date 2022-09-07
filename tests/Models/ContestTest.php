@@ -9,6 +9,7 @@ namespace Tests\Models;
 
 use App\Exceptions\InvariantException;
 use App\Models\Beatmap;
+use App\Models\Beatmapset;
 use App\Models\Contest;
 use App\Models\ContestEntry;
 use App\Models\Multiplayer\PlaylistItem;
@@ -24,16 +25,23 @@ class ContestTest extends TestCase
      */
     public function testAssertVoteRequirementPlaylistBeatmapsets(bool $played, bool $passed, ?bool $mustPass, bool $canVote): void
     {
-        $beatmaps = Beatmap::factory()->count(5)->create();
+        $beatmapsets = Beatmapset::factory()->count(5)->create();
+        $beatmaps = [];
+        foreach ($beatmapsets as $beatmapset) {
+            $beatmapsetId = $beatmapset->getKey();
+            for ($i = 0; $i < 2; $i++) {
+                $beatmaps[] = Beatmap::factory()->create(['beatmapset_id' => $beatmapsetId]);
+            }
+        }
         // extra beatmap
         Beatmap::factory()->create();
 
         $rooms = factory(Room::class, 2)->create();
-        foreach ($rooms as $room) {
-            foreach ($beatmaps as $beatmap) {
+        foreach ($rooms as $i => $room) {
+            foreach ($beatmapsets as $beatmapset) {
                 $playlistItems[] = factory(PlaylistItem::class)->create([
                     'room_id' => $room->getKey(),
-                    'beatmap_id' => $beatmap->getKey(),
+                    'beatmap_id' => $beatmapset->beatmaps[$i]->getKey(),
                 ]);
             }
         }
@@ -56,9 +64,12 @@ class ContestTest extends TestCase
 
         if ($played) {
             $userId = $user->getKey();
-            foreach ($beatmaps as $beatmap) {
+            foreach ($beatmapsets as $beatmapset) {
                 $room = array_rand_val($rooms);
-                $playlistItem = $room->playlist()->firstWhere(['beatmap_id' => $beatmap->getKey()]);
+                $playlistItem = $room
+                    ->playlist()
+                    ->whereIn('beatmap_id', array_column($beatmapset->beatmaps->all(), 'beatmap_id'))
+                    ->first();
                 factory(MultiplayerScore::class)->create([
                     'passed' => $passed,
                     'playlist_item_id' => $playlistItem->getKey(),
