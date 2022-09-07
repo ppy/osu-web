@@ -195,16 +195,16 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
   };
 
   nearbyIndicator = (drafts: SlateElement[]) => {
-    if (this.timestamp() == null || this.discussionType() === 'praise') {
+    if (!this.editable() ||  this.timestamp() == null || this.discussionType() === 'praise') {
       return;
     }
 
-    const nearbyDiscussions = this.editable() ? this.nearbyDiscussions() : [];
+    const discussions = this.nearbyDiscussions();
     const nearbyUnsaved = this.nearbyDraftEmbeds(drafts) || [];
 
-    if (nearbyDiscussions.length > 0 || nearbyUnsaved.length > 1) {
+    if (discussions.length > 0 || nearbyUnsaved.length > 1) {
       const timestamps =
-        nearbyDiscussions.map((discussion) => {
+        discussions.map((discussion) => {
           const timestamp = formatTimestamp(discussion.timestamp);
           if (timestamp == null) {
             return;
