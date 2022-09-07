@@ -78,7 +78,10 @@ class Contest extends Model
                 $mustPass = $requirement['must_pass'] ?? true;
                 $beatmapIdsQuery = Multiplayer\PlaylistItem::whereIn('room_id', $roomIds)->select('beatmap_id');
                 $requiredBeatmapsetCount = Beatmap::whereIn('beatmap_id', $beatmapIdsQuery)->distinct('beatmapset_id')->count();
-                $playedBeatmapIdsQuery = Multiplayer\Score::whereIn('room_id', $roomIds)->select('beatmap_id');
+                $playedBeatmapIdsQuery = Multiplayer\Score
+                    ::whereIn('room_id', $roomIds)
+                    ->where(['user_id' => $user->getKey()])
+                    ->select('beatmap_id');
                 if ($mustPass) {
                     $playedBeatmapIdsQuery->where('passed', true);
                 }
