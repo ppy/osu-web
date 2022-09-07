@@ -81,6 +81,7 @@ class Contest extends Model
                 $playedBeatmapIdsQuery = Multiplayer\Score
                     ::whereIn('room_id', $roomIds)
                     ->where(['user_id' => $user->getKey()])
+                    ->completed()
                     ->select('beatmap_id');
                 if ($mustPass) {
                     $playedBeatmapIdsQuery->where('passed', true);

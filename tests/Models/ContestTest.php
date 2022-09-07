@@ -64,6 +64,7 @@ class ContestTest extends TestCase
 
         if ($played) {
             $userId = $user->getKey();
+            $endedAt = now();
             foreach ($beatmapsets as $beatmapset) {
                 $room = array_rand_val($rooms);
                 $playlistItem = $room
@@ -71,6 +72,7 @@ class ContestTest extends TestCase
                     ->whereIn('beatmap_id', array_column($beatmapset->beatmaps->all(), 'beatmap_id'))
                     ->first();
                 factory(MultiplayerScore::class)->create([
+                    'ended_at' => $endedAt,
                     'passed' => $passed,
                     'playlist_item_id' => $playlistItem->getKey(),
                     'user_id' => $userId,
