@@ -33,7 +33,7 @@ return [
 
     'blocks' => [
         'banner_text' => 'このユーザーをブロックしています',
-        'comment_text' => 'このコメントは隠されています。',
+        'comment_text' => 'このコメントは非表示になっています。',
         'blocked_count' => 'ブロックしたユーザー(:count)',
         'hide_profile' => 'プロフィールを隠す',
         'hide_comment' => '隠す',
@@ -131,7 +131,7 @@ return [
 
         'options' => [
             'cheating' => 'チート',
-            'multiple_accounts' => '複数のアカウントを管理する',
+            'multiple_accounts' => '複数のアカウントを管理している',
             'insults' => 'あなた/他の人への侮辱',
             'spam' => 'スパム',
             'unwanted_content' => '不適切なコンテンツへのリンク',
@@ -329,7 +329,7 @@ return [
                 'download_replay' => 'リプレイをダウンロード',
                 'not_ranked' => 'Rankedビートマップのみがppを与えます。',
                 'pp_weight' => '割合 :percentage',
-                'view_details' => '詳細の表示',
+                'view_details' => '詳細を表示',
                 'title' => 'ランク',
 
                 'best' => [
@@ -372,7 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'BAN',
                         'silence' => 'サイレンス',
-                        'tournament_ban' => '',
+                        'tournament_ban' => 'トーナメントBAN',
                         'note' => 'メモ',
                     ],
                 ],
@@ -438,7 +438,7 @@ return [
 
     'silenced_banner' => [
         'title' => 'あなたは現在サイレンス中です。',
-        'message' => 'いくつかのアクションが利用できない可能性があります。',
+        'message' => 'いくつかの機能が利用できない可能性があります。',
     ],
 
     'status' => [
@@ -454,7 +454,7 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => 'ブリックビュー',
+        'brick' => '簡易表示',
         'card' => 'カードビュー',
         'list' => '一覧表示',
     ],

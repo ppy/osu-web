@@ -15,7 +15,6 @@ return [
         ],
 
         'email' => [
-            'current' => 'trenutna e-pošta',
             'new' => 'nova e-pošta',
             'new_confirmation' => 'potrditev e-pošte',
             'title' => 'E-pošta',

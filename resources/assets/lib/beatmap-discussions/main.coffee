@@ -149,7 +149,6 @@ export class Main extends React.PureComponent
                   beatmapset: @state.beatmapset
                   beatmaps: @beatmaps()
                   currentBeatmap: @currentBeatmap()
-                  currentDiscussions: @currentDiscussions()
                   currentUser: @state.currentUser
                   pinned: @state.pinnedNewDiscussion
                   setPinned: @setPinnedNewDiscussion

@@ -15,7 +15,7 @@ return [
     ],
 
     'channels' => [
-        'confirm_part' => '',
+        'confirm_part' => 'Szeretné elrejteni ezt a csatornát? Továbbra is kapni fogsz üzeneteket erről a csatornáról.',
         'create' => 'közlemény készítése',
 
         'list' => [

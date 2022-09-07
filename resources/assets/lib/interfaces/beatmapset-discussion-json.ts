@@ -35,6 +35,7 @@ interface BeatmapsetDiscussionDefaultAttributes {
   can_grant_kudosu: boolean;
   created_at: string;
   deleted_at: string | null;
+  deleted_by_id: number | null;
   id: number;
   kudosu_denied: boolean;
   last_post_at: string;

@@ -293,6 +293,10 @@
           {
             "Name": "seed",
             "Type": "number"
+          },
+          {
+            "Name": "metronome",
+            "Type": "boolean"
           }
         ],
         "IncompatibleMods": [

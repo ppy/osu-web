@@ -6,7 +6,7 @@ import { route } from 'laroute'
 import * as React from 'react'
 import { div, h2, a, img, span } from 'react-dom-factories'
 import { canModeratePosts } from 'utils/beatmapset-discussion-helper'
-import { Post } from "../beatmap-discussions/post"
+import Post from "../beatmap-discussions/post"
 
 el = React.createElement
 
