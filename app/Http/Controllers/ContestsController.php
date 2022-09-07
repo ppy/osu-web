@@ -43,11 +43,13 @@ class ContestsController extends Controller
         }
 
         if ($contest->isVotingStarted()) {
-            // TODO: add support for $contests requirement instead of at parent
-            try {
-                $contest->assertVoteRequirement($user);
-            } catch (InvariantException $e) {
-                $noVoteReason = $e->getMessage();
+            if ($contest->isVotingOpen()) {
+                // TODO: add support for $contests requirement instead of at parent
+                try {
+                    $contest->assertVoteRequirement($user);
+                } catch (InvariantException $e) {
+                    $noVoteReason = $e->getMessage();
+                }
             }
 
             return ext_view('contests.voting', [
