@@ -19,7 +19,7 @@ class ModelTest extends TestCase
 
     public function testDelete()
     {
-        $class = Model::getClassByString(static::getRandomMode());
+        $class = Model::getClass(static::getRandomMode());
         $score = $class::factory()->create();
 
         $initialCount = $class::count();
@@ -32,7 +32,7 @@ class ModelTest extends TestCase
     public function testDeleteAlsoDecrementUserRankCount()
     {
         $mode = static::getRandomMode();
-        $class = Model::getClassByString($mode);
+        $class = Model::getClass($mode);
         $score = $class::factory()->create(['rank' => 'X']);
         $statsClass = UserStatistics\Model::getClass($mode);
         $stats = factory($statsClass)->create([
@@ -50,7 +50,7 @@ class ModelTest extends TestCase
     public function testDeleteNonPersonalBestKeepUserRankCount()
     {
         $mode = static::getRandomMode();
-        $class = Model::getClassByString($mode);
+        $class = Model::getClass($mode);
         $bestScore = $class::factory()->create(['rank' => 'X']);
         $score = $class::factory()->create([
             'beatmap_id' => $bestScore->beatmap_id,
@@ -77,7 +77,7 @@ class ModelTest extends TestCase
     public function testDeletePersonalBestUpdateUserRankCountWhenThereIsOtherScore()
     {
         $mode = static::getRandomMode();
-        $class = Model::getClassByString($mode);
+        $class = Model::getClass($mode);
         $bestScore = $class::factory()->create(['rank' => 'X']);
         $score = $class::factory()->create([
             'beatmap_id' => $bestScore->beatmap_id,

@@ -56,7 +56,7 @@ class Spotlight extends Model
      */
     public function scores(string $mode)
     {
-        $clazz = ScoreBest\Model::getClass(Beatmap::MODES[$mode]);
+        $clazz = ScoreBest\Model::getClass($mode);
         $model = new $clazz();
         $model->setTable($this->bestScoresTableName($mode));
         $model->setConnection('mysql-charts');

@@ -12,11 +12,11 @@ use Tests\TestCase;
 
 class ModelTest extends TestCase
 {
-    public function testGetClassByString()
+    public function testGetClass()
     {
         $modes = array_keys(Beatmap::MODES);
         foreach ($modes as $mode) {
-            $class = Model::getClassByString($mode);
+            $class = Model::getClass($mode);
             $this->assertInstanceOf(Model::class, new $class());
         }
     }
@@ -24,10 +24,10 @@ class ModelTest extends TestCase
     /**
      * @dataProvider modes
      */
-    public function testGetClassByStringThrowsExceptionIfModeDoesNotExist($mode)
+    public function testGetClassThrowsExceptionIfModeDoesNotExist($mode)
     {
         $this->expectException(ClassNotFoundException::class);
-        Model::getClassByString($mode);
+        Model::getClass($mode);
     }
 
     public function modes()
