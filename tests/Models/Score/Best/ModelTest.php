@@ -12,14 +12,14 @@ use Tests\TestCase;
 
 class ModelTest extends TestCase
 {
-    private static function getRandomMode(): string
+    private static function getRandomRuleset(): string
     {
         return array_rand(Beatmap::MODES);
     }
 
     public function testDelete()
     {
-        $class = Model::getClass(static::getRandomMode());
+        $class = Model::getClass(static::getRandomRuleset());
         $score = $class::factory()->create();
 
         $initialCount = $class::count();
@@ -31,10 +31,10 @@ class ModelTest extends TestCase
 
     public function testDeleteAlsoDecrementUserRankCount()
     {
-        $mode = static::getRandomMode();
-        $class = Model::getClass($mode);
+        $ruleset = static::getRandomRuleset();
+        $class = Model::getClass($ruleset);
         $score = $class::factory()->create(['rank' => 'X']);
-        $statsClass = UserStatistics\Model::getClass($mode);
+        $statsClass = UserStatistics\Model::getClass($ruleset);
         $stats = factory($statsClass)->create([
             'user_id' => $score->user_id,
             'x_rank_count' => 10,
@@ -49,8 +49,8 @@ class ModelTest extends TestCase
 
     public function testDeleteNonPersonalBestKeepUserRankCount()
     {
-        $mode = static::getRandomMode();
-        $class = Model::getClass($mode);
+        $ruleset = static::getRandomRuleset();
+        $class = Model::getClass($ruleset);
         $bestScore = $class::factory()->create(['rank' => 'X']);
         $score = $class::factory()->create([
             'beatmap_id' => $bestScore->beatmap_id,
@@ -58,7 +58,7 @@ class ModelTest extends TestCase
             'score' => $bestScore->score - 10,
             'user_id' => $bestScore->user_id,
         ]);
-        $statsClass = UserStatistics\Model::getClass($mode);
+        $statsClass = UserStatistics\Model::getClass($ruleset);
         $stats = factory($statsClass)->create([
             'a_rank_count' => 10,
             'user_id' => $score->user_id,
@@ -76,8 +76,8 @@ class ModelTest extends TestCase
 
     public function testDeletePersonalBestUpdateUserRankCountWhenThereIsOtherScore()
     {
-        $mode = static::getRandomMode();
-        $class = Model::getClass($mode);
+        $ruleset = static::getRandomRuleset();
+        $class = Model::getClass($ruleset);
         $bestScore = $class::factory()->create(['rank' => 'X']);
         $score = $class::factory()->create([
             'beatmap_id' => $bestScore->beatmap_id,
@@ -85,7 +85,7 @@ class ModelTest extends TestCase
             'score' => $bestScore->score - 10,
             'user_id' => $bestScore->user_id,
         ]);
-        $statsClass = UserStatistics\Model::getClass($mode);
+        $statsClass = UserStatistics\Model::getClass($ruleset);
         $stats = factory($statsClass)->create([
             'a_rank_count' => 10,
             'user_id' => $score->user_id,
