@@ -16,19 +16,18 @@ export function parse(hash: string) {
 }
 
 export function generate({ beatmap, ruleset }: { beatmap?: BeatmapJson; ruleset?: GameMode }) {
-  ruleset ??= beatmap?.mode;
+  let hash = '';
 
+  ruleset ??= beatmap?.mode;
   if (ruleset != null) {
-    let hash = `#${ruleset}`;
+    hash += `#${ruleset}`;
 
     if (beatmap != null) {
       hash += `/${beatmap.id}`;
     }
-
-    return hash;
   }
 
-  return '';
+  return hash;
 }
 
 export function setHash(newHash: string) {
