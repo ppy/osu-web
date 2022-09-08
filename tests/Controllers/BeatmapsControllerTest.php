@@ -221,7 +221,7 @@ class BeatmapsControllerTest extends TestCase
     public function testScoresByCountry()
     {
         $countryAcronym = $this->user->country_acronym;
-        $scoreClass = ScoreBest::getClassRulesetId($this->beatmap->playmode);
+        $scoreClass = ScoreBest::getClassByRulesetId($this->beatmap->playmode);
         $scores = [
             $scoreClass::factory()->create([
                 'beatmap_id' => $this->beatmap,
