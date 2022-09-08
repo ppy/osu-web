@@ -16,12 +16,16 @@ export function parse(hash: string) {
 }
 
 export function generate({ beatmap, mode }: { beatmap?: BeatmapJson; mode?: string }) {
-  if (beatmap != null) {
-    return `#${beatmap.mode}/${beatmap.id}`;
-  }
+  mode ??= beatmap?.mode;
 
   if (mode != null) {
-    return `#${mode}`;
+    let hash = `#${mode}`;
+
+    if (beatmap != null) {
+      hash += `/${beatmap.id}`;
+    }
+
+    return hash;
   }
 
   return '';
