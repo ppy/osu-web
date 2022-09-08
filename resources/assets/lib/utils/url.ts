@@ -54,7 +54,7 @@ export function beatmapsetDownloadDirect(id: string | number): string {
 
 export function beatmapUrl(beatmap: BeatmapJson, ruleset?: GameMode) {
   return route('beatmapsets.show', { beatmapset: beatmap.beatmapset_id })
-    + generate({ beatmap, mode: ruleset });
+    + generate({ beatmap, ruleset });
 }
 
 export function changelogBuild(build: ChangelogBuild): string {
