@@ -4,8 +4,9 @@
 const { spawnSync } = require('child_process');
 const path = require('path');
 const Watchpack = require('watchpack');
-const spawnOptions = { stdio: 'inherit' };
 const modNamesGenerator = require('./resources/assets/lib/cli/mod-names-generator');
+
+const spawnOptions = { stdio: 'inherit' };
 
 const modsFile = path.resolve(__dirname, 'database/mods.json');
 const routesFile = path.resolve(__dirname, 'routes/web.php');
