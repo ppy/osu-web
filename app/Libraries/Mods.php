@@ -172,6 +172,18 @@ class Mods
         return $set->toArray();
     }
 
+    public function exportNames(): array
+    {
+        $modNames = [];
+        foreach ($this->mods as $mods) {
+            foreach ($mods as $mod) {
+                $modNames[$mod['Acronym']] = $mod['Name'];
+            }
+        }
+
+        return $modNames;
+    }
+
     public function filterSettings(int $rulesetId, string $id, $settings): object
     {
         if ($settings === null || !is_array($settings)) {
