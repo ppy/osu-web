@@ -39,6 +39,10 @@ class UpgradeLegacyScoreidsToBigint extends Migration
         Schema::table('osu_user_reports', function (Blueprint $table) {
             $table->bigInteger("score_id")->unsigned()->default(0)->change();
         });
+
+        Schema::table('solo_scores_legacy_id_map', function (Blueprint $table) {
+            $table->bigInteger("old_score_id")->unsigned()->change();
+        });
     }
 
     /**
@@ -78,6 +82,10 @@ class UpgradeLegacyScoreidsToBigint extends Migration
 
         Schema::table('osu_user_reports', function (Blueprint $table) {
             $table->integer('score_id')->unsigned()->default(0)->change();
+        });
+
+        Schema::table('solo_scores_legacy_id_map', function (Blueprint $table) {
+            $table->integer("old_score_id")->unsigned()->change();
         });
     }
 }
