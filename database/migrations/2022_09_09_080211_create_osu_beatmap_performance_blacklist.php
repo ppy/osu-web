@@ -19,6 +19,7 @@ class CreateOsuBeatmapPerformanceBlacklist extends Migration
         Schema::create('osu_beatmap_performance_blacklist', function (Blueprint $table) {
             $table->integer('beatmap_id')->unsigned();
             $table->tinyInteger('mode')->unsigned();
+            $table->primary(['beatmap_id', 'mode']);
         });
     }
 
