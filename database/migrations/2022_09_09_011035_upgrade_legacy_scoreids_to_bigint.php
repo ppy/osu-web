@@ -20,28 +20,28 @@ class UpgradeLegacyScoreidsToBigint extends Migration
     {
         foreach (static::MODE_SUFFIXES as $modeSuffix) {
             Schema::table("osu_leaders{$modeSuffix}", function (Blueprint $table) {
-                $table->bigInteger("score_id")->unsigned()->nullable(false)->change();
+                $table->bigInteger('score_id')->unsigned()->nullable(false)->change();
             });
 
             Schema::table("osu_replays{$modeSuffix}", function (Blueprint $table) {
-                $table->bigInteger("score_id")->unsigned()->default(0)->change();
+                $table->bigInteger('score_id')->unsigned()->default(0)->change();
             });
 
             Schema::table("osu_scores{$modeSuffix}_high", function (Blueprint $table) {
-                $table->bigIncrements("score_id")->change();
+                $table->bigIncrements('score_id')->change();
             });
 
             Schema::table("osu_scores{$modeSuffix}", function (Blueprint $table) {
-                $table->bigIncrements("score_id")->change();
+                $table->bigIncrements('score_id')->change();
             });
         }
 
         Schema::table('osu_user_reports', function (Blueprint $table) {
-            $table->bigInteger("score_id")->unsigned()->default(0)->change();
+            $table->bigInteger('score_id')->unsigned()->default(0)->change();
         });
 
         Schema::table('solo_scores_legacy_id_map', function (Blueprint $table) {
-            $table->bigInteger("old_score_id")->unsigned()->change();
+            $table->bigInteger('old_score_id')->unsigned()->change();
         });
     }
 
@@ -58,26 +58,26 @@ class UpgradeLegacyScoreidsToBigint extends Migration
             });
 
             Schema::table("osu_replays{$modeSuffix}", function (Blueprint $table) {
-                $table->integer("score_id")->unsigned()->default(0)->change();
+                $table->integer('score_id')->unsigned()->default(0)->change();
             });
 
             Schema::table("osu_scores{$modeSuffix}_high", function (Blueprint $table) {
-                $table->increments("score_id")->change();
+                $table->increments('score_id')->change();
             });
         }
 
         // osu_scores remains as BIGINT
 
-        Schema::table("osu_scores_fruits", function (Blueprint $table) {
-            $table->increments("score_id")->change();
+        Schema::table('osu_scores_fruits', function (Blueprint $table) {
+            $table->increments('score_id')->change();
         });
 
-        Schema::table("osu_scores_taiko", function (Blueprint $table) {
-            $table->increments("score_id")->change();
+        Schema::table('osu_scores_taiko', function (Blueprint $table) {
+            $table->increments('score_id')->change();
         });
 
-        Schema::table("osu_scores_mania", function (Blueprint $table) {
-            $table->increments("score_id")->change();
+        Schema::table('osu_scores_mania', function (Blueprint $table) {
+            $table->increments('score_id')->change();
         });
 
         Schema::table('osu_user_reports', function (Blueprint $table) {
@@ -85,7 +85,7 @@ class UpgradeLegacyScoreidsToBigint extends Migration
         });
 
         Schema::table('solo_scores_legacy_id_map', function (Blueprint $table) {
-            $table->integer("old_score_id")->unsigned()->change();
+            $table->integer('old_score_id')->unsigned()->change();
         });
     }
 }
