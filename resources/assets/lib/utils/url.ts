@@ -1,11 +1,14 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import BeatmapJson from 'interfaces/beatmap-json';
 import ChangelogBuild from 'interfaces/changelog-build';
+import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
 import { startsWith, unescape } from 'lodash';
 import { TurbolinksLocation } from 'turbolinks';
-import { currentUrl } from 'utils/turbolinks';
+import { generate } from './beatmapset-page-hash';
+import { currentUrl } from './turbolinks';
 
 const internalUrls = [
   'admin',
@@ -47,6 +50,11 @@ export function beatmapDownloadDirect(id: string | number): string {
 
 export function beatmapsetDownloadDirect(id: string | number): string {
   return `osu://s/${id}`;
+}
+
+export function beatmapUrl(beatmap: BeatmapJson, ruleset?: GameMode) {
+  return route('beatmapsets.show', { beatmapset: beatmap.beatmapset_id })
+    + generate({ beatmap, ruleset });
 }
 
 export function changelogBuild(build: ChangelogBuild): string {
