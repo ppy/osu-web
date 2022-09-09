@@ -12,6 +12,7 @@ x-env: &x-env
   NOTIFICATION_REDIS_HOST: redis
   REDIS_HOST: redis
   SESSION_DRIVER: redis
+  SCHEMA: "${SCHEMA:-1}"
 
 x-web: &x-web
   build:
@@ -110,6 +111,18 @@ services:
       - .:/app
     ports:
       - "${NGINX_PORT:-8080}:80"
+
+  score-indexer:
+    image: pppy/osu-elastic-indexer
+    command: ["queue", "--force-version", "--wait"]
+    depends_on:
+      - db
+      - elasticsearch
+      - redis
+    environment:
+      <<: *x-env
+      ES_HOST: http://elasticsearch:9200
+      DB_CONNECTION_STRING: Server=db;Database=osu;Uid=osuweb;
 
 volumes:
   database:
