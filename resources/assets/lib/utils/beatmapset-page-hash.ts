@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapJson from 'interfaces/beatmap-json';
-import { ensureGameMode } from 'interfaces/game-mode';
+import GameMode, { ensureGameMode } from 'interfaces/game-mode';
 import { getInt } from './math';
 import { currentUrl } from './turbolinks';
 
@@ -15,16 +15,19 @@ export function parse(hash: string) {
   };
 }
 
-export function generate({ beatmap, mode }: { beatmap?: BeatmapJson; mode?: string }) {
-  if (beatmap != null) {
-    return `#${beatmap.mode}/${beatmap.id}`;
+export function generate({ beatmap, ruleset }: { beatmap?: BeatmapJson; ruleset?: GameMode }) {
+  let hash = '';
+
+  ruleset ??= beatmap?.mode;
+  if (ruleset != null) {
+    hash += `#${ruleset}`;
+
+    if (beatmap != null) {
+      hash += `/${beatmap.id}`;
+    }
   }
 
-  if (mode != null) {
-    return `#${mode}`;
-  }
-
-  return '';
+  return hash;
 }
 
 export function setHash(newHash: string) {
