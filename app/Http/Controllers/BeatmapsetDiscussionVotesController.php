@@ -8,7 +8,7 @@ namespace App\Http\Controllers;
 use App\Libraries\BeatmapsetDiscussionVotesBundle;
 
 /**
- @group Beatmapset Discussions
+ * @group Beatmapset Discussions
  */
 class BeatmapsetDiscussionVotesController extends Controller
 {
