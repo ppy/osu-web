@@ -4,10 +4,11 @@ x-env: &x-env
   BEATMAPS_DIFFICULTY_CACHE_SERVER_URL: http://beatmap-difficulty-lookup-cache:5000
   BROADCAST_DRIVER: redis
   CACHE_DRIVER: redis
+  DB_CONNECTION_STRING: Server=db;Database=osu;Uid=osuweb;
   DB_HOST: db
-  ES_HOST: elasticsearch:9200
-  ES_SCORES_HOST: elasticsearch:9200
-  ES_SOLO_SCORES_HOST: elasticsearch:9200
+  ES_HOST: http://elasticsearch:9200
+  ES_SCORES_HOST: http://elasticsearch:9200
+  ES_SOLO_SCORES_HOST: http://elasticsearch:9200
   GITHUB_TOKEN: "${GITHUB_TOKEN}"
   NOTIFICATION_REDIS_HOST: redis
   REDIS_HOST: redis
@@ -121,8 +122,6 @@ services:
       - redis
     environment:
       <<: *x-env
-      ES_HOST: http://elasticsearch:9200
-      DB_CONNECTION_STRING: Server=db;Database=osu;Uid=osuweb;
 
 volumes:
   database:
