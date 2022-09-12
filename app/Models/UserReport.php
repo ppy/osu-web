@@ -23,9 +23,7 @@ use Illuminate\Notifications\RoutesNotifications;
  * @property mixed|null $reportable_type
  * @property User $reporter
  * @property int $reporter_id
- * @property mixed $score
  * @property int $score_id
- * @property mixed $score_type
  * @property \Carbon\Carbon $timestamp
  * @property User $user
  * @property int $user_id
@@ -87,19 +85,9 @@ class UserReport extends Model
         }
     }
 
-    public function score()
-    {
-        return $this->morphTo();
-    }
-
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function getScoreTypeAttribute()
-    {
-        return BestModel::getClass($this->mode);
     }
 
     public function isValid()
