@@ -31,6 +31,12 @@ return [
         'progress' => [
             '_' => ':used / :max voturi folosite',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => '',
+            ],
+        ],
     ],
     'entry' => [
         '_' => 'intrare',

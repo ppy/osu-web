@@ -31,6 +31,12 @@ return [
         'progress' => [
             '_' => ':max개 중 :used개의 투표권 사용됨',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => '',
+            ],
+        ],
     ],
     'entry' => [
         '_' => '참가',

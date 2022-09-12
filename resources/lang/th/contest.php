@@ -31,6 +31,12 @@ return [
         'progress' => [
             '_' => 'โหวตแล้ว :used / :max',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => '',
+            ],
+        ],
     ],
     'entry' => [
         '_' => 'รายการ',

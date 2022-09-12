@@ -45,7 +45,7 @@ return [
             '_' => 'artiști oficiali',
         ],
         'artists_controller' => [
-            '_' => 'featured artists',
+            '_' => 'artiști oficiali',
         ],
         'beatmap_discussion_posts_controller' => [
             '_' => 'discuție postări beatmap',

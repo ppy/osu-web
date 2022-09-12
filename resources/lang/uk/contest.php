@@ -31,6 +31,12 @@ return [
         'progress' => [
             '_' => ':used / :max голосів використано',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => '',
+            ],
+        ],
     ],
     'entry' => [
         '_' => 'реєстрація',

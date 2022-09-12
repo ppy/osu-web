@@ -47,7 +47,7 @@ return [
 
         'dialog' => [
             'confirmation' => 'Ești sigur că vrei să nominalizezi acest Beatmap?',
-            'header' => 'Nominalizează acest beatmap',
+            'header' => 'Nominalizează acest Beatmap',
             'hybrid_warning' => 'observație: poți nominaliza o singură dată, așa că te rugăm să te asiguri că nominalizezi pentru toate modurile de joc pentru care intenționezi să nominalizezi',
             'which_modes' => 'Nominalizare pentru care moduri?',
         ],
@@ -165,7 +165,7 @@ return [
                 'pp' => '',
                 'rank' => 'Clasament',
                 'score' => 'Scor',
-                'score_total' => 'Scor total',
+                'score_total' => 'Scor Total',
                 'time' => 'Timp',
             ],
 
