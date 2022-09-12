@@ -763,7 +763,7 @@ class UsersController extends Controller
                         ->forRuleset($options['mode'])
                         ->includeFails($options['includeFails'] ?? false)
                         ->reorderBy('id', 'desc')
-                        ->with([...ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD]);
+                        ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
                     break;
             }
 
