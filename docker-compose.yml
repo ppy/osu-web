@@ -13,7 +13,6 @@ x-env: &x-env
   NOTIFICATION_REDIS_HOST: redis
   REDIS_HOST: redis
   SESSION_DRIVER: redis
-  SCHEMA: "${SCHEMA:-1}"
 
 x-web: &x-web
   build:
@@ -122,6 +121,7 @@ services:
       - redis
     environment:
       <<: *x-env
+      SCHEMA: "${SCHEMA:-1}"
 
 volumes:
   database:
