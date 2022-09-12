@@ -195,7 +195,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
   };
 
   nearbyIndicator = (drafts: SlateElement[]) => {
-    if (!this.editable() ||  this.timestamp() == null || this.discussionType() === 'praise') {
+    if (!this.editable() || this.timestamp() == null || this.discussionType() === 'praise') {
       return;
     }
 
