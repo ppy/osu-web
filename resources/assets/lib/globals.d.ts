@@ -2,7 +2,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 declare module 'mod-names.json' {
-  export default Partial<Record<string, string>>;
+  const modNames: Partial<Record<string, string>>;
+
+  export default modNames;
 }
 
 // Scoping to prevent global type import pollution.
