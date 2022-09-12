@@ -125,9 +125,7 @@ abstract class Model extends BaseModel
 
     public function scopeReorderBy($query, $field, $order)
     {
-        $query->getQuery()->orders = null;
-
-        return $query->orderBy($field, $order);
+        return $query->unorder()->orderBy($field, $order);
     }
 
     public function scopeOrderByField($query, $field, $ids)
@@ -148,6 +146,13 @@ abstract class Model extends BaseModel
     public function scopeNone($query)
     {
         $query->whereRaw('false');
+    }
+
+    public function scopeUnorder($query)
+    {
+        $query->getQuery()->orders = null;
+
+        return $query;
     }
 
     public function scopeWithPresent($query, $column)

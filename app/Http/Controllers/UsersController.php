@@ -730,10 +730,8 @@ class UsersController extends Controller
                 case 'scoresFirsts':
                     $transformer = new ScoreTransformer();
                     $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
-                    $userFirstsQuery = LegacyBeatmapLeaderModel
-                        ::getClassByRuleset($options['mode'])
-                        ::where('user_id', $user->getKey())
-                        ->select('score_id');
+                    $scoreQuery = $user->scoresFirst($options['mode'], true)->unorder();
+                    $userFirstsQuery = $scoreQuery->select($scoreQuery->qualifyColumn('score_id'));
                     $soloMappingQuery = ScoreLegacyIdMap
                         ::where('ruleset_id', Beatmap::MODES[$options['mode']])
                         ->whereIn('old_score_id', $userFirstsQuery)
