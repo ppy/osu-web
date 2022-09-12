@@ -9,6 +9,7 @@ import BeatmapsetDiscussionPostJson from 'interfaces/beatmapset-discussion-post-
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
 import { escape, padStart, sortBy, truncate } from 'lodash';
+import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import { currentUrl } from 'utils/turbolinks';
 import { linkHtml, openBeatmapEditor, urlRegex } from 'utils/url';
@@ -137,7 +138,10 @@ export function nearbyDiscussions<T extends BeatmapsetDiscussionJson>(discussion
   const nearby: Partial<Record<NearbyDiscussionsCategory, T[]>> = {};
 
   for (const discussion of discussions) {
-    if (discussion.timestamp == null || !nearbyDiscussionsMessageTypes.has(discussion.message_type)) {
+    if (discussion.timestamp == null
+      || !nearbyDiscussionsMessageTypes.has(discussion.message_type)
+      || (discussion.user_id === core.currentUserOrFail.id && moment(discussion.updated_at).diff(moment(), 'hour') > -24)
+    ) {
       continue;
     }
 

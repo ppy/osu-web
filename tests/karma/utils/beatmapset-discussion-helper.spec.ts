@@ -2,7 +2,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapsetDiscussionJson } from 'legacy-modules';
-import { discussionMode, maxLengthTimeline, validMessageLength } from 'utils/beatmapset-discussion-helper';
+import User from 'models/user';
+import * as moment from 'moment';
+import { discussionMode, maxLengthTimeline, nearbyDiscussions, validMessageLength } from 'utils/beatmapset-discussion-helper';
 
 const template: BeatmapsetDiscussionJson = Object.freeze({
   beatmap_id: 1,
@@ -20,6 +22,24 @@ const template: BeatmapsetDiscussionJson = Object.freeze({
   timestamp: 1,
   updated_at: '',
   user_id: 1,
+});
+
+const currentUser = new User(1);
+currentUser.updateWithJson({
+  avatar_url: '',
+  country_code: '',
+  cover: { custom_url: null, id: null, url: null },
+  default_group: '',
+  id: 1,
+  is_active: true,
+  is_bot: false,
+  is_deleted: false,
+  is_online: true,
+  is_supporter: true,
+  last_visit: null,
+  pm_friends_only: false,
+  profile_colour: null,
+  username: 'foo',
 });
 
 describe('utils/beatmapset-discussion-helper', () => {
@@ -55,6 +75,39 @@ describe('utils/beatmapset-discussion-helper', () => {
     cases.forEach((test) => {
       it(test.description, () => {
         expect(discussionMode(test.json)).toBe(test.expected);
+      });
+    });
+  });
+
+  describe('.nearbyDiscussions', () => {
+    describe('discussion by the same user', () => {
+      const cases = [
+        {
+          description: 'less than 24 hours ago should be ignored',
+          discussions: [Object.assign({}, template, { updated_at: moment().toISOString() })],
+          expectEmpty: true,
+        },
+        {
+          description: 'at least than 24 hours ago should be included',
+          discussions: [Object.assign({}, template, { updated_at: moment().add(-24, 'hours').toISOString() })],
+          expectEmpty: false,
+        },
+      ];
+
+      // FIXME: need a better way of setting user in osu-core for tests.
+      beforeAll(() => {
+        $.publish('user:update', currentUser);
+      });
+
+      afterAll(() => {
+        $.publish('user:update', {});
+      });
+
+      cases.forEach((test) => {
+        it(test.description, () => {
+          const result = nearbyDiscussions(test.discussions, 1);
+          expect(result.length).toBe(test.expectEmpty ? 0 : 1);
+        });
       });
     });
   });
