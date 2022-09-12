@@ -734,9 +734,8 @@ class UsersController extends Controller
                         ::getClassByRuleset($options['mode'])
                         ::where('user_id', $user->getKey())
                         ->select('score_id');
-                    $rulesetId = Beatmap::MODES[$options['mode']];
                     $soloMappingQuery = ScoreLegacyIdMap
-                        ::where('ruleset_id', $rulesetId)
+                        ::where('ruleset_id', Beatmap::MODES[$options['mode']])
                         ->whereIn('old_score_id', $userFirstsQuery)
                         ->select('score_id');
                     $query = SoloScore
