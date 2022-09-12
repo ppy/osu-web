@@ -741,6 +741,7 @@ class UsersController extends Controller
                         ->select('score_id');
                     $query = SoloScore
                         ::whereIn('id', $soloMappingQuery)
+                        ->default()
                         ->reorderBy('id', 'desc')
                         ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
                     break;
@@ -759,6 +760,7 @@ class UsersController extends Controller
                     $transformer = new ScoreTransformer();
                     $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
                     $query = $user->soloScores()
+                        ->default()
                         ->forRuleset($options['mode'])
                         ->includeFails($options['includeFails'] ?? false)
                         ->reorderBy('id', 'desc')
