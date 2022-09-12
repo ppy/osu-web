@@ -388,7 +388,7 @@ class BeatmapsetSearch extends RecordSearch
         $select = $rank === null ? 'beatmap_id' : ['beatmap_id', 'score', 'rank'];
 
         foreach ($this->getSelectedModes() as $mode) {
-            $newQuery = Score\Best\Model::getClass($mode)
+            $newQuery = Score\Best\Model::getClassByRulesetId($mode)
                 ::forUser($this->params->user)
                 ->select($select);
 
