@@ -364,7 +364,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     public function includeScoresFirstCount(User $user)
     {
-        return $this->primitive($user->beatmapLeaders()->where('ruleset_id', Beatmap::MODES[$this->mode])->count());
+        return $this->primitive($user->scoresFirst($this->mode, true)->visibleUsers()->count());
     }
 
     public function includeScoresPinnedCount(User $user)
