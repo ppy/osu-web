@@ -32,7 +32,7 @@ class RemoveBeatmapsetBestScores implements ShouldQueue
         $this->beatmapset = $beatmapset;
 
         foreach (Beatmap::MODES as $mode => $_modeInt) {
-            $this->maxScoreIds[$mode] = Model::getClassByString($mode)::max('score_id');
+            $this->maxScoreIds[$mode] = Model::getClass($mode)::max('score_id');
         }
     }
 
@@ -57,7 +57,7 @@ class RemoveBeatmapsetBestScores implements ShouldQueue
                 'client' => ['ignore' => 404],
             ]);
 
-            $class = Model::getClassByString($mode);
+            $class = Model::getClass($mode);
             // Just delete until no more matching rows.
             $query = $class
                 ::with('user')

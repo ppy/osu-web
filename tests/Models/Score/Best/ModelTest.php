@@ -11,14 +11,14 @@ use Tests\TestCase;
 
 class ModelTest extends TestCase
 {
-    private static function getRandomMode(): string
+    private static function getRandomRuleset(): string
     {
         return array_rand(Beatmap::MODES);
     }
 
     public function testDelete()
     {
-        $class = Model::getClassByString(static::getRandomMode());
+        $class = Model::getClass(static::getRandomRuleset());
         $score = $class::factory()->create();
 
         $initialCount = $class::count();

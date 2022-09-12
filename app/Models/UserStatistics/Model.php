@@ -103,7 +103,7 @@ abstract class Model extends BaseModel
 
     public static function recalculateRankedScoreForUser(User $user)
     {
-        $bestClass = Best\Model::getClassByString(static::getMode());
+        $bestClass = Best\Model::getClass(static::getMode());
 
         $instance = new static();
         $statsTable = $instance->getTable();

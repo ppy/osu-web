@@ -158,14 +158,14 @@ class Score extends Model implements Traits\ReportableInterface
 
         return $id === null
             ? null
-            : LegacyScore\Best\Model::getClass($this->ruleset_id)::find($id);
+            : LegacyScore\Best\Model::getClass($this->getMode())::find($id);
     }
 
     public function makeLegacyEntry(): LegacyScore\Model
     {
         $data = $this->data;
         $statistics = $data->statistics;
-        $scoreClass = LegacyScore\Model::getClass($this->ruleset_id);
+        $scoreClass = LegacyScore\Model::getClass($this->getMode());
 
         $score = new $scoreClass([
             'beatmap_id' => $this->beatmap_id,

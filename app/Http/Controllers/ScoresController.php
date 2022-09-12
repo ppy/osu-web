@@ -49,7 +49,7 @@ class ScoresController extends Controller
             }
             $ruleset = $rulesetOrSoloId;
             // don't limit downloading replays of restricted users for review purpose
-            $score = ScoreBest::getClassByString($ruleset)
+            $score = ScoreBest::getClass($ruleset)
                 ::where('score_id', $id)
                 ->where('replay', true)
                 ->firstOrFail();
@@ -83,7 +83,7 @@ class ScoresController extends Controller
     {
         $score = $legacyId === null
             ? SoloScore::whereHas('beatmap.beatmapset')->findOrFail($rulesetOrSoloId)
-            : ScoreBest::getClassByString($rulesetOrSoloId)
+            : ScoreBest::getClass($rulesetOrSoloId)
                 ::whereHas('beatmap.beatmapset')
                 ->visibleUsers()
                 ->findOrFail($legacyId);
