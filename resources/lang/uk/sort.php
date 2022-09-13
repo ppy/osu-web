@@ -4,15 +4,15 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    '_' => 'Сортувати за',
+    '_' => 'Сортувати',
 
     'all' => 'Усі',
     'friends' => 'Друзі',
-    'last_visit' => 'Останні дії',
-    'new' => 'Свіжістю',
-    'old' => 'Старістю',
+    'last_visit' => 'Нещодавно активні',
+    'new' => 'Нещодавні',
+    'old' => 'Старі',
     'rank' => 'Ранг',
-    'top' => 'Популярністю',
+    'top' => 'Популярні',
     'username' => 'Ім\'я користувача',
 
     'artist_tracks' => [
@@ -32,8 +32,8 @@ return [
     ],
 
     'forum_topics' => [
-        'feature_votes' => 'Кількістю голосів',
-        'new' => 'Останьою відповідю',
+        'feature_votes' => 'Кількість голосів',
+        'new' => 'Остання відповідь',
     ],
 
     'users' => [
