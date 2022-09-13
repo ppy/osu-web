@@ -24,7 +24,7 @@ class NewsController extends Controller
      *   <a href="#newspost">NewsPost</a> collections queried by year will also include posts published in November and December of the previous year if the current date is the same year and before April.
      * </aside>
      *
-     * @queryParam format               string  Valid values: `atom`, `rss`, `null`.                         No-example
+     * @queryParam format               string  Valid values: `atom`, `rss`, or unset for json response.     No-example
      * @queryParam limit                integer Maximum number of posts (12 default, 1 minimum, 21 maximum). No-example
      * @queryParam year                 integer Year to return posts from (defaults to current year).        No-example
      * @queryParam cursor[id]           integer [Cursor](#cursor) for pagination.                            No-example
@@ -135,7 +135,9 @@ class NewsController extends Controller
      * Returns a [NewsPost](#newspost) with `content` and `navigation` included.
      *
      * @urlParam news string required News post slug or ID. Example: 2021-04-27-results-a-labour-of-love
+     *
      * @queryParam key string Unset to query by slug, or `id` to query by ID. No-example
+     *
      * @response {
      *   "id": 943,
      *   "author": "pishifat",
