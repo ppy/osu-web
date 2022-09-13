@@ -11,7 +11,7 @@ return [
 
     'cannot_send' => [
         'channel' => 'Vous ne pouvez pas envoyer de messages dans ce canal pour le moment. Cela peut être dû à une des raisons suivantes :',
-        'user' => 'Vous ne pouvez pas envoyer de messages à cet utilisateur pour le moment. Cela peut être dû à une des raisons suivantes :',
+        'user' => 'Vous ne pouvez pas envoyer de messages à cet utilisateur pour le moment.',
     ],
 
     'channels' => [
@@ -47,7 +47,7 @@ return [
 
     'input' => [
         'create' => 'Créer',
-        'disabled' => 'impossible d’envoyer le message...',
+        'disabled' => 'impossible d\'envoyer un message...',
         'disconnected' => 'Déconnecté',
         'placeholder' => 'saisissez le message...',
         'send' => 'Envoyer',

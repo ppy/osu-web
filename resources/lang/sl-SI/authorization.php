@@ -4,9 +4,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => '',
+    'play_more' => 'Kaj raje meniš na igranje osu! igre?',
     'require_login' => 'Za nadaljevanje se morate prijaviti.',
-    'require_verification' => '',
+    'require_verification' => 'Preden nadaljuješ, se verificiraj.',
     'restricted' => "Tega ni mogoče izvesti, ker ste omejeni.",
     'silenced' => "Tega ni mogoče izvesti, ker ste utišani.",
     'unauthorized' => 'Dostop zavrnjen.',
@@ -20,18 +20,18 @@ return [
             'exhausted' => 'Dosegli ste svojo dnevno omejitev nominacij. Prosimo, poskusite zopet jutri.',
             'incorrect_state' => 'Pri izvajanju tega dejanja je prišlo do napake. Poskusite osvežiti stran.',
             'owner' => "Ne morete nominirati lastnega beatmapa.",
-            'set_metadata' => '',
+            'set_metadata' => 'Nastavitev žanra in jezika je potrebna pred nominacijo.',
         ],
         'resolve' => [
             'not_owner' => 'Samo stvaritelj teme in lastnik beatmapa lahko skleneta razpravo.',
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => '',
+            'mapper_note_wrong_user' => 'Samo lastnik beatmape ali član nominator/NAT skupine lahko objavi avtorjeve zapiske.',
         ],
 
         'vote' => [
-            'bot' => "",
+            'bot' => "Glasovanje na razpravo, ki jo je kreiral robot, ni možno",
             'limit_exceeded' => 'Prosimo, počakajte nekaj časa, preden glasujete naprej',
             'owner' => "Ne morete glasovati na lastni razpravi.",
             'wrong_beatmapset_state' => 'Glasuje se lahko samo na razpravah nepotrjenih beatmapov.',
@@ -40,45 +40,45 @@ return [
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => '',
-            'resolved' => '',
-            'system_generated' => '',
+            'not_owner' => 'Odstraniš lahko le svoje objave.',
+            'resolved' => 'Objavo, ki je bila rešena, ni možno odstraniti.',
+            'system_generated' => 'Avtomatsko generirane objave ni možno odstraniti.',
         ],
 
         'edit' => [
             'not_owner' => 'Samo avtor lahko ureja objavo.',
-            'resolved' => '',
+            'resolved' => 'Objavo, ki je bila rešena, ni možno urejati.',
             'system_generated' => 'Samodejno generirane objave ni mogoče urejati.',
         ],
 
         'store' => [
-            'beatmapset_locked' => '',
+            'beatmapset_locked' => 'Ta beatmapa je zaklenjena za razpravo.',
         ],
     ],
 
     'beatmapset' => [
         'metadata' => [
-            'nominated' => '',
+            'nominated' => 'Urejanje metadata nominirane beatmape ni mogoče. Kontaktiraj člana BN ali NAT če misliš, da je ta narobe nastavljen.',
         ],
     ],
 
     'chat' => [
-        'annnonce_only' => '',
-        'blocked' => '',
-        'friends_only' => '',
-        'moderated' => '',
-        'no_access' => '',
-        'receive_friends_only' => '',
-        'restricted' => '',
-        'silenced' => '',
+        'annnonce_only' => 'Ta kanal je namenjen za obvestila.',
+        'blocked' => 'Ni možno klepetati z igralcem, ki te je blokiral ali si ga ti blokiral.',
+        'friends_only' => 'Igralec ima blokirana sporočila od drugih, ki niso na njegovem seznamu prijateljev.',
+        'moderated' => 'Ta kanal je trenutno moderiran.',
+        'no_access' => 'Nimaš dostopa do tega kanala.',
+        'receive_friends_only' => 'Igralec morda ne bo mogel odgovoriti, ker lahko sprejemaš le sporočila od igralcev s seznama prijateljev.',
+        'restricted' => 'Ne moreš pošiljati sporočila medtem, ko si utišan, omejen ali suspendiran.',
+        'silenced' => 'Ne moreš pošiljati sporočila medtem, ko si utišan, omejen ali suspendiran.',
     ],
 
     'comment' => [
         'store' => [
-            'disabled' => '',
+            'disabled' => 'Komentarji so onemogočeni',
         ],
         'update' => [
-            'deleted' => "",
+            'deleted' => "Izbrisane objave ni možno urejati.",
         ],
     ],
 
@@ -86,14 +86,14 @@ return [
         'voting_over' => 'Ne morete spremeniti glasu, potem ko se je glasovanje za to tekmovanje končalo.',
 
         'entry' => [
-            'limit_reached' => '',
-            'over' => '',
+            'limit_reached' => 'Dosegel si vstopno omejitev za to tekmovanje',
+            'over' => 'Hvala za sodelovanje! Prostor za objave se je zaprl za to tekmovanje in glasovanje se bo kmalu pričelo.',
         ],
     ],
 
     'forum' => [
         'moderate' => [
-            'no_permission' => '',
+            'no_permission' => 'Nimaš dovoljenja za moderiranje tega foruma.',
         ],
 
         'post' => [
@@ -120,7 +120,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => '',
+                'double_post' => 'Uredi zadnjo objavo namesto kreiranja nove objave.',
                 'locked' => 'Ni možno odgovoriti v zaklenjeni temi.',
                 'no_forum_access' => 'Zahtevan je dostop do željenega foruma.',
                 'no_permission' => 'Ni dovoljenja za odgovarjanje.',
@@ -141,7 +141,7 @@ return [
             'vote' => [
                 'no_forum_access' => 'Zahtevan je dostop do željenega foruma.',
                 'over' => 'Glasovanje je končano, zato na njem ni več mogoče glasovati.',
-                'play_more' => '',
+                'play_more' => 'Potrebno je več igranja, preden lahko glasuješ na forumu.',
                 'voted' => 'Spreminjanje glasu ni dovoljeno.',
 
                 'user' => [
@@ -162,7 +162,7 @@ return [
                 'not_owner' => 'Samo lastnik lahko ureja naslovnico.',
             ],
             'store' => [
-                'forum_not_allowed' => '',
+                'forum_not_allowed' => 'Ta forum ne sprejema ozadij za teme.',
             ],
         ],
 
@@ -173,8 +173,8 @@ return [
 
     'score' => [
         'pin' => [
-            'not_owner' => '',
-            'too_many' => '',
+            'not_owner' => 'Samo lastnik rezultata lahko pripne rezultat.',
+            'too_many' => 'Pripeto je preveč rezultatov.',
         ],
     ],
 
@@ -183,7 +183,7 @@ return [
             'edit' => [
                 'locked' => 'Uporabniška stran je zaklenjena.',
                 'not_owner' => 'Možno je urejati le lastno uporabniško stran.',
-                'require_supporter_tag' => '',
+                'require_supporter_tag' => 'Potrebna je osu!supporter značka.',
             ],
         ],
     ],

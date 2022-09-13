@@ -18,7 +18,7 @@ return [
     ],
 
     'type' => [
-        'charts' => '聚光灯',
+        'charts' => '高光',
         'country' => '国家或地区',
         'multiplayer' => '多人游戏',
         'performance' => '表现',

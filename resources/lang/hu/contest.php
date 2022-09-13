@@ -31,6 +31,12 @@ return [
         'progress' => [
             '_' => ':used / :max szavazás használva',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => '',
+            ],
+        ],
     ],
     'entry' => [
         '_' => 'jelentkezés',

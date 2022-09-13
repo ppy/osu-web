@@ -6,12 +6,12 @@
 return [
     'index' => [
         'description' => 'Zapakirane zbirke beatmapov na skupno temo.',
-        'nav_title' => '',
+        'nav_title' => 'seznam',
         'title' => 'Paketi beatmapov',
 
         'blurb' => [
             'important' => 'PREBERITE TO, PREDEN PRENESETE',
-            'install_instruction' => '',
+            'install_instruction' => 'Namestitev: Ko je paket prenesen, ekstrahiraj vsebino paketa v osu! Songs mapo in osu! bo storil vse ostalo potrebno.',
             'note' => [
                 '_' => 'Pomnite, da je zelo priporočljivo, da :scary, saj so starejši mapi veliko manj kvalitetni kot najnovejši.',
                 'scary' => 'prenesete najprej najnovejše pakete',
@@ -26,8 +26,8 @@ return [
             'not_cleared' => 'neopravljeno',
         ],
         'no_diff_reduction' => [
-            '_' => '',
-            'link' => '',
+            '_' => ':link se ne sme uporabiti za opravljanje tega paketa.',
+            'link' => 'Modifikatorji za znižanje težavnosti',
         ],
     ],
 

@@ -31,6 +31,12 @@ return [
         'progress' => [
             '_' => ':used / :max выкарыстаных галасоў',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => '',
+            ],
+        ],
     ],
     'entry' => [
         '_' => 'удзельнікі конкурсу',
