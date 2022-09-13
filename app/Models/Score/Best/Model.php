@@ -184,13 +184,7 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
     public function macroAccurateRankCounts()
     {
         return function ($query) {
-            $newQuery = clone $query;
-            // FIXME: mysql 5.6 compat
-            // FIXME: figure out what exactly the above is. Also it's probably
-            // still a good idea to remove the order anyway.
-            $newQuery->unorder();
-
-            $scores = $newQuery
+            $scores = (clone $query)
                 ->select(['user_id', 'beatmap_id', 'score', 'rank'])
                 ->get();
 
