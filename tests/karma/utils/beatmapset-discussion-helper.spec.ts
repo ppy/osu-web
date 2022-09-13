@@ -13,6 +13,7 @@ const template: BeatmapsetDiscussionJson = Object.freeze({
   can_grant_kudosu: true,
   created_at: '',
   deleted_at: null,
+  deleted_by_id: null,
   id: 1,
   kudosu_denied: false,
   last_post_at: '',
