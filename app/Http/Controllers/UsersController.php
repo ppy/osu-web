@@ -19,7 +19,6 @@ use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\Country;
 use App\Models\IpBan;
-use App\Models\LegacyBeatmapLeader\Model as LegacyBeatmapLeaderModel;
 use App\Models\Log;
 use App\Models\Solo\Score as SoloScore;
 use App\Models\Solo\ScoreLegacyIdMap;
