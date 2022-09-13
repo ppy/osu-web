@@ -20,25 +20,29 @@ class NewsController extends Controller
      *
      * ---
      *
-     * ### Response Format
-     *
-     * Field                     | Type                    | Notes
-     * --------------------------|-------------------------|------
-     * cursor                    | [Cursor](#cursor)       | |
-     * news_posts                | [NewsPost](#newspost)[] | Includes `preview`.
-     * news_sidebar.current_year | number                  | Year of the first post's publish time, or current year if no posts returned.
-     * news_sidebar.news_posts   | [NewsPost](#newspost)[] | All posts published during `current_year`.
-     * news_sidebar.years        | number[]                | All years during which posts have been published.
-     * search.limit              | number                  | Clamped limit input.
-     * search.sort               | string                  | Always `published_desc`.
-     *
      * <aside class="notice">
      *   <a href="#newspost">NewsPost</a> collections queried by year will also include posts published in November and December of the previous year if the current date is the same year and before April.
      * </aside>
      *
-     * @queryParam limit integer Maximum number of posts (12 default, 1 minimum, 21 maximum). No-example
-     * @queryParam year integer Year to return posts from. No-example
-     * @queryParam cursor [Cursor](#cursor) for pagination. No-example
+     * @queryParam format               string  Valid values: `atom`, `rss`, `null`.                         No-example
+     * @queryParam limit                integer Maximum number of posts (12 default, 1 minimum, 21 maximum). No-example
+     * @queryParam year                 integer Year to return posts from (defaults to current year).        No-example
+     * @queryParam cursor[id]           integer [Cursor](#cursor) for pagination.                            No-example
+     * @queryParam cursor[published_at] string  ISO 8601 string.                                             No-example
+     *
+     * @responseField cursor                    object    [Cursor](#cursor) or `null` type.
+     * @responseField cursor.id                 integer   News post id.
+     * @responseField cursor.published_at       string    ISO 8601 string with 6 decimal fraction digits.
+     * @responseField news_posts                object[]  [NewsPost](#newspost)[] type. Note: includes `preview`.
+     * @responseField news_sidebar              object    Array of all posts that have been published for the given year.
+     * @responseField news_sidebar.current_year integer   Year of the first post's publish time, or current year if no posts returned
+     * @responseField news_sidebar.news_posts   object[]  [NewsPost](#newspost)[] type. All posts published during `current_year`.
+     * @responseField news_sidebar.years        integer[] All years during which posts have been published.
+     * @responseField search                    object    Parameters that were used for lookup.
+     * @responseField search.limit              integer   Clamped limit input.
+     * @responseField search.sort               string    Always `published_desc`.
+     * @responseField search.year               integer   Search year or `null`.
+     *
      * @response {
      *   "news_posts": [
      *     {
