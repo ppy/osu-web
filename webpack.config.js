@@ -4,8 +4,11 @@
 const { spawnSync } = require('child_process');
 const path = require('path');
 const Watchpack = require('watchpack');
+const modNamesGenerator = require('./resources/assets/lib/cli/mod-names-generator');
+
 const spawnOptions = { stdio: 'inherit' };
 
+const modsFile = path.resolve(__dirname, 'database/mods.json');
 const routesFile = path.resolve(__dirname, 'routes/web.php');
 const langDir = path.resolve(__dirname, 'resources/lang');
 
@@ -15,8 +18,13 @@ let resolved = false;
 
 const watches = [
   {
+    callback: modNamesGenerator,
+    path: modsFile,
+    type: 'file',
+  },
+  {
     callback: () => {
-      spawnSync('php', ['artisan', 'ziggy:generate', 'resources/assets/js/ziggy.js'], spawnOptions);
+      spawnSync('php', ['artisan', 'ziggy:generate', 'resources/assets/build/ziggy.js'], spawnOptions);
     },
     path: routesFile,
     type: 'file',
