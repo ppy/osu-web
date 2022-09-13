@@ -5,26 +5,27 @@
 
 return [
     'empty' => [
-        '_' => '',
-        'playlists' => '',
-        'realtime' => '',
+        '_' => 'Нема osu!(lazer) :type_group игара још увек!',
+        'playlists' => 'плејлисте',
+        'realtime' => 'мултиплејер',
     ],
 
     'room' => [
-        'hosted_by' => '',
-        'invalid_password' => '',
-        'map_count' => '',
-        'player_count' => '',
-        'time_left' => '',
+        'hosted_by' => 'хост је :user',
+        'invalid_password' => 'Неисправна лозинка',
+        'map_count' => ':count_delimited мапа|:count_delimited мапе
+',
+        'player_count' => ':count_delimited мапа|:count_delimited мапе',
+        'time_left' => ':time је преостало',
 
         'errors' => [
-            'duration_too_long' => '',
+            'duration_too_long' => 'Трајање је предугачко.',
         ],
 
         'status' => [
-            'active' => '',
-            'ended' => '',
-            'soon' => '',
+            'active' => 'активна',
+            'ended' => 'завршена',
+            'soon' => 'завршава се ускоро',
         ],
     ],
 ];

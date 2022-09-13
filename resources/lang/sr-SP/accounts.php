@@ -55,13 +55,13 @@ return [
 
         'options' => [
             '_' => 'метода слања',
-            'beatmap_owner_change' => '',
+            'beatmap_owner_change' => 'гостова тежина',
             'beatmapset:modding' => 'модовање мапа',
             'channel_message' => 'приватне чет поруке',
             'comment_new' => 'нови коментари',
             'forum_topic_reply' => 'одговор на тему',
             'mail' => 'пошта',
-            'mapping' => '',
+            'mapping' => 'креатор мапе',
             'push' => 'push',
             'user_achievement_unlock' => 'корисничка медаља откључана',
         ],
@@ -74,7 +74,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '',
+        'beatmapset_show_nsfw' => 'сакриј упозорења за експлицитан садржај у мапама',
         'beatmapset_title_show_original' => 'покажи метаподатке ове мапе на оригиналном језику',
         'title' => 'Опције',
 

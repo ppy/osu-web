@@ -5,32 +5,32 @@
 
 return [
     'beatmapset' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Пријавите',
+        'title' => 'Пријавите мапу корисника :username?',
     ],
 
     'beatmapset_discussion_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Пријавите',
+        'title' => 'Пријавите објаву корисника :username?',
     ],
 
     'comment' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Пријавите',
+        'title' => 'Пријавите коментар корисника :username?',
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Пријавите',
+        'title' => 'Пријавите објаву корисника :username?',
     ],
 
     'scores' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Пријавите Резултат',
+        'title' => 'Пријавите резултат корисника :username?',
     ],
 
     'user' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Пријавите',
+        'title' => 'Пријавите корисника :username?',
     ],
 ];

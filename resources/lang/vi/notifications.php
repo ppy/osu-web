@@ -242,6 +242,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username đã tạo beatmap mới',
+                'user_beatmapset_revive' => '',
             ],
         ],
     ],

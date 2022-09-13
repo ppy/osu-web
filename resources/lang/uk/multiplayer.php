@@ -5,15 +5,15 @@
 
 return [
     'empty' => [
-        '_' => 'Наразі ще не зіграна в osu!(lazer) :type_group ні одна гра!',
-        'playlists' => 'плейліст',
-        'realtime' => 'мультиплеєр',
+        '_' => 'Наразі в :type_group osu!(lazer) не зіграно ні однієї гри!',
+        'playlists' => 'плейлістах',
+        'realtime' => 'мультиплеєрі',
     ],
 
     'room' => [
         'hosted_by' => 'власник: :user',
         'invalid_password' => 'Невірний пароль кімнати',
-        'map_count' => ':count_delimited мапа|:count_delimited карт',
+        'map_count' => ':count_delimited мапа|:count_delimited мап',
         'player_count' => ':count_delimited гравець|:count_delimited гравців',
         'time_left' => ':time залишилось',
 

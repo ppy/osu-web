@@ -31,6 +31,12 @@ return [
         'progress' => [
             '_' => ':used \ :max اصوات مستخدمة',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => '',
+            ],
+        ],
     ],
     'entry' => [
         '_' => 'مشاركة',
