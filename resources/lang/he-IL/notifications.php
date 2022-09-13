@@ -240,6 +240,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username יצר מפות חדשות',
+                'user_beatmapset_revive' => '',
             ],
         ],
     ],

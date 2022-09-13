@@ -31,6 +31,12 @@ return [
         'progress' => [
             '_' => '',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => '',
+            ],
+        ],
     ],
     'entry' => [
         '_' => 'vstup',

@@ -18,24 +18,24 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'izbrisano',
-        'none_found' => '',
+        'none_found' => 'Nobena razprava ni bila najdena kljub željenim iskalnim kriterijem.',
         'title' => 'Razprave o beatmapih',
 
         'form' => [
-            '_' => '',
+            '_' => 'Išči',
             'deleted' => 'Vključi izbrisane razprave',
-            'mode' => '',
-            'only_unresolved' => '',
-            'types' => '',
-            'username' => '',
+            'mode' => 'Igralni način beatmape',
+            'only_unresolved' => 'Prikaži le nerešene razprave',
+            'types' => 'Vrste sporočil',
+            'username' => 'Uporabniško ime',
 
             'beatmapset_status' => [
-                '_' => '',
-                'all' => '',
-                'disqualified' => '',
-                'never_qualified' => '',
-                'qualified' => '',
-                'ranked' => '',
+                '_' => 'Stanje beatmape',
+                'all' => 'Vse',
+                'disqualified' => 'Diskvalificirano',
+                'never_qualified' => 'Nikoli kvalificirano',
+                'qualified' => 'Kvalificirano',
+                'ranked' => 'Ranked',
             ],
 
             'user' => [
@@ -55,14 +55,14 @@ return [
     'nearby_posts' => [
         'confirm' => 'Nobena objava ne obravnava mojih skrbi',
         'notice' => 'Okrog :timestamp je bilo objavljenih nekaj objav (:existing_timestamps). Prosimo, preverite jih, preden nekaj objavite sami.',
-        'unsaved' => '',
+        'unsaved' => ':count v tem pregledu',
     ],
 
     'owner_editor' => [
-        'button' => '',
-        'reset_confirm' => '',
-        'user' => '',
-        'version' => '',
+        'button' => 'Lastnik težavnosti',
+        'reset_confirm' => 'Ponastavitev lastnika trenutne težavnosti?',
+        'user' => 'Lastnik',
+        'version' => 'Težavnost',
     ],
 
     'reply' => [
@@ -73,18 +73,18 @@ return [
     ],
 
     'review' => [
-        'block_count' => '',
-        'go_to_parent' => '',
-        'go_to_child' => '',
+        'block_count' => ':used / :max uporabljenih blokov',
+        'go_to_parent' => 'Ogled Pregledne objave',
+        'go_to_child' => 'Ogled razprave',
         'validation' => [
-            'block_too_large' => '',
-            'external_references' => '',
-            'invalid_block_type' => '',
-            'invalid_document' => '',
-            'invalid_discussion_type' => '',
-            'minimum_issues' => '',
-            'missing_text' => '',
-            'too_many_blocks' => '',
+            'block_too_large' => 'vsak blok lahko vsebuje do :limit znakov',
+            'external_references' => 'pregled vsebuje reference k težavam, ki ne spadajo v ta pregled',
+            'invalid_block_type' => 'napačna lokacija bloka',
+            'invalid_document' => 'napačen pregled',
+            'invalid_discussion_type' => 'napačen tip razprave',
+            'minimum_issues' => 'pregled mora vsebovati minimalno :count težavo|pregled mora vsebovati minimalno :count težav',
+            'missing_text' => 'v bloku manjka besedilo',
+            'too_many_blocks' => 'pregledi lahko vsebujejo le :count odstavek/težavo|pregledi lahko vsebujejo do :count odstavkov/težav',
         ],
     ],
 
@@ -96,8 +96,8 @@ return [
     ],
 
     'timestamp_display' => [
-        'general' => '',
-        'general_all' => '',
+        'general' => 'splošno',
+        'general_all' => 'splošno (vse)',
     ],
 
     'user_filter' => [
