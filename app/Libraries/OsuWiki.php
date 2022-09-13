@@ -95,7 +95,7 @@ class OsuWiki
                 ];
             }
         } elseif (starts_with($path, 'news/')) {
-            preg_match('/^(?:news\/)(.*)\.(.{2,})$/', $path, $matches);
+            preg_match('/^(?:news\/)(?:\d{4}\/)?(.*)\.(.{2,})$/', $path, $matches);
 
             return [
                 'type' => 'news_post',
