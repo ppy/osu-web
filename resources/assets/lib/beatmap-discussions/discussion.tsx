@@ -10,6 +10,8 @@ import CurrentUserJson from 'interfaces/current-user-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { findLast, kebabCase } from 'lodash';
+import { computed, makeObservable } from 'mobx';
+import { observer } from 'mobx-react';
 import { deletedUser } from 'models/user';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -46,11 +48,16 @@ interface Props {
   visible: boolean;
 }
 
-export class Discussion extends React.PureComponent<Props> {
+@observer
+export class Discussion extends React.Component<Props> {
   private lastResolvedState = false;
-  private _resolvedSystemPostId: number | null = null;
   private readonly tooltips: Partial<Record<VoteType, unknown>> = {};
   private voteXhr: JQuery.jqXHR | null = null;
+
+  constructor(props: Props) {
+    super(props);
+    makeObservable(this);
+  }
 
   private get canDownvote() {
     return core.currentUser != null && (core.currentUser.is_admin || core.currentUser.is_moderator || core.currentUser.is_bng);
@@ -61,15 +68,11 @@ export class Discussion extends React.PureComponent<Props> {
       && (this.props.discussion.beatmap_id == null || this.props.currentBeatmap.deleted_at == null);
   }
 
+  @computed
   private get resolvedSystemPostId() {
-    if (this._resolvedSystemPostId == null) {
-      const systemPost = findLast(this.props.discussion.posts, (post) => post != null && post.system && post.message.type === 'resolve');
-      this._resolvedSystemPostId = systemPost?.id ?? -1;
-    }
-
-    return this._resolvedSystemPostId;
+    const systemPost = findLast(this.props.discussion.posts, (post) => post != null && post.system && post.message.type === 'resolve');
+    return systemPost?.id ?? -1;
   }
-
 
   componentDidUpdate() {
     // for own type, tooltip of @tooltips
@@ -88,7 +91,6 @@ export class Discussion extends React.PureComponent<Props> {
     const lineClasses = classWithModifiers(`${bn}__line`, { resolved: this.props.discussion.resolved});
 
     this.lastResolvedState = false;
-    this._resolvedSystemPostId = null;
 
     const user = this.props.users[this.props.discussion.user_id] ?? deletedUser.toJson();
     const group = badgeGroup({
