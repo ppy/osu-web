@@ -193,7 +193,6 @@ export class Discussion extends React.PureComponent<Props> {
   private renderTimestamp() {
     return (
       <div className='beatmap-discussion-timestamp'>
-
         {this.props.discussion.timestamp != null && this.props.isTimelineVisible && <div className="beatmap-discussion-timestamp__point" />}
         <div className="beatmap-discussion-timestamp__icons-container">
           <div className="beatmap-discussion-timestamp__icons">
