@@ -23,6 +23,7 @@ const internalUrls = [
   'groups',
   'legal',
   'multiplayer',
+  'news',
   'notifications',
   'oauth',
   'rankings',
