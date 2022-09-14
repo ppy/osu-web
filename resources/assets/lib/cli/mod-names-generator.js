@@ -17,7 +17,9 @@ function modNamesGenerator() {
     }
   }
 
-  fs.writeFileSync(`${root}/resources/assets/build/mod-names.json`, JSON.stringify(modNames));
+  const outDir = `${root}/resources/assets/build`;
+  fs.mkdirSync(outDir, { recursive: true });
+  fs.writeFileSync(`${outDir}/mod-names.json`, JSON.stringify(modNames));
 }
 
 module.exports = modNamesGenerator;
