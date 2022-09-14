@@ -117,7 +117,7 @@ export class Discussion extends React.Component<Props> {
       <div
         className={`${topClasses} js-beatmap-discussion-jump`}
         data-id={this.props.discussion.id}
-        onClick={this.emitSetHighlight}
+        onClick={this.handleSetHighlight}
       >
         <div className={`${bn}__timestamp hidden-xs`}>
           {this.renderTimestamp()}
@@ -145,8 +145,28 @@ export class Discussion extends React.Component<Props> {
     );
   }
 
+  private getTooltipContent(type: VoteType) {
+    const count = this.props.discussion.votes[type];
+    const title = count < 1
+      ? trans(`beatmaps.discussions.votes.none.${type}`)
+      : `${trans(`beatmaps.discussions.votes.latest.${type}`)}:`;
+
+    const users = this.props.discussion.votes.voters[type].map((id) => this.props.users[id] ?? {});
+
+    return renderToStaticMarkup(<UserListPopup count={count} title={title} users={users} />);
+  }
+
+  private readonly handleCollapseClick = () => {
+    $.publish('beatmapset-discussions:collapse', { discussionId: this.props.discussion.id });
+  };
+
+  private readonly handleSetHighlight = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.defaultPrevented) return;
+    $.publish('beatmapset-discussions:highlight', { discussionId: this.props.discussion.id });
+  };
+
   @action
-  private readonly doVote = (e: React.MouseEvent<HTMLButtonElement>) => {
+  private readonly handleVoteClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (this.voteXhr != null) return;
 
     showLoadingOverlay();
@@ -169,22 +189,6 @@ export class Discussion extends React.Component<Props> {
         this.voteXhr = null;
       }));
   };
-
-  private readonly emitSetHighlight = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.defaultPrevented) return;
-    $.publish('beatmapset-discussions:highlight', { discussionId: this.props.discussion.id });
-  };
-
-  private getTooltipContent(type: VoteType) {
-    const count = this.props.discussion.votes[type];
-    const title = count < 1
-      ? trans(`beatmaps.discussions.votes.none.${type}`)
-      : `${trans(`beatmaps.discussions.votes.latest.${type}`)}:`;
-
-    const users = this.props.discussion.votes.voters[type].map((id) => this.props.users[id] ?? {});
-
-    return renderToStaticMarkup(<UserListPopup count={count} title={title} users={users} />);
-  }
 
   private isOwner(object: { user_id: number }) {
     return core.currentUser != null && core.currentUser.id === object.user_id;
@@ -277,7 +281,7 @@ export class Discussion extends React.Component<Props> {
         ))}
         <button
           className={`${bn}__action ${bn}__action--with-line`}
-          onClick={this.toggleCollapse}
+          onClick={this.handleCollapseClick}
         >
           <div
             className={classWithModifiers('beatmap-discussion-expand', { expanded: !this.props.collapsed })}
@@ -345,7 +349,7 @@ export class Discussion extends React.Component<Props> {
         className={classWithModifiers('beatmap-discussion-vote', type, { inactive: score !== 0 })}
         data-score={score}
         disabled={this.voteXhr != null || cannotVote}
-        onClick={this.doVote}
+        onClick={this.handleVoteClick}
       >
         <i className={`fas fa-${icon}`} />
         <span className='beatmap-discussion-vote__count'>{this.props.discussion.votes[type]}</span>,
@@ -360,9 +364,5 @@ export class Discussion extends React.Component<Props> {
     this.tooltips[type] ??= createTooltip(target, 'top center', this.getTooltipContent(type));
 
     return this.tooltips[type];
-  };
-
-  private readonly toggleCollapse = () => {
-    $.publish('beatmapset-discussions:collapse', { discussionId: this.props.discussion.id });
   };
 }
