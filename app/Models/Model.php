@@ -106,7 +106,7 @@ abstract class Model extends BaseModel
     {
         return function ($baseQuery) {
             $query = clone $baseQuery;
-            $query->getQuery()->orders = null;
+            $query->unorder();
             $query->getQuery()->offset = null;
             $query->limit(null);
 

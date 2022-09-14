@@ -63,7 +63,7 @@ return [
             'mail' => 'пошта',
             'mapping' => 'маппер карти',
             'push' => 'push',
-            'user_achievement_unlock' => 'користувацька медаль розблокована',
+            'user_achievement_unlock' => 'отримано нове досягнення',
         ],
     ],
 
@@ -103,7 +103,7 @@ return [
     'security' => [
         'current_session' => 'поточна',
         'end_session' => 'Завершити сесію ',
-        'end_session_confirmation' => 'Це негайно завершить вашу сесію на цьому пристрої. Ви впевнені?',
+        'end_session_confirmation' => 'Сесія на цьому пристрої буде негайно завершена. Ви впевнені?',
         'last_active' => 'Остання активність:',
         'title' => 'Безпека',
         'web_sessions' => 'веб-сеанси',

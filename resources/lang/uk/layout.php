@@ -193,7 +193,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Налаштування',
-            'follows' => 'Список перегляду',
+            'follows' => 'Перелік підписок',
             'friends' => 'Друзі',
             'logout' => 'Вийти',
             'profile' => 'Мій профіль',

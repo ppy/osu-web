@@ -4,12 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'title_compact' => '',
-    'too_many' => '',
+    'title_compact' => 'пријатељи',
+    'too_many' => 'Ограничење листе пријатеља је достигнуто',
 
     'buttons' => [
-        'add' => '',
-        'disabled' => '',
-        'remove' => '',
+        'add' => 'додајте пријатеља',
+        'disabled' => 'пратиоци',
+        'remove' => 'уклони пријатеља',
     ],
 ];

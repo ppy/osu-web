@@ -5,7 +5,7 @@
 
 return [
     'edit' => [
-        'title_compact' => 'ajustes',
+        'title_compact' => 'configuración de la cuenta',
         'username' => 'nombre de usuario',
 
         'avatar' => [

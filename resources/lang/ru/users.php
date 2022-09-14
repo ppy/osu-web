@@ -150,7 +150,7 @@ return [
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Дата регистрации: :date',
-        'lastvisit' => 'Был(-а) в сети :date',
+        'lastvisit' => 'Был в сети :date',
         'lastvisit_online' => 'Сейчас в сети',
         'missingtext' => 'Возможно, вы сделали опечатку! (или игрок заблокирован)',
         'origin_country' => 'Проживает в :country',

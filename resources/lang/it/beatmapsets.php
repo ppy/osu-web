@@ -152,7 +152,7 @@ return [
             'friend' => 'Classifica Amici',
             'global' => 'Classifica Globale',
             'supporter-link' => 'Clicca <a href=":link">qui</a> per vedere tutte le fantastiche funzionalità che otterrai!',
-            'supporter-only' => 'Devi essere un osu!supporter per vedere la classifica amici, nazionale, o con mod specifiche!',
+            'supporter-only' => 'Devi essere un osu!supporter per vedere la classifica nazionale, degli amici, o con mod specifiche!',
             'title' => 'Classifica',
 
             'headers' => [

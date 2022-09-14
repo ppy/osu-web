@@ -5,7 +5,7 @@
 
 return [
     'match' => [
-        'beatmap-deleted' => 'видалена карта',
+        'beatmap-deleted' => 'видалена мапа',
         'difference' => 'з різницею в :difference очок',
         'failed' => 'ПРОГРАШ',
         'header' => 'Багатокористувацька гра',
