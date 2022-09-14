@@ -173,7 +173,6 @@ export class Discussion extends React.PureComponent<Props> {
           <NewReply
             beatmapset={this.props.beatmapset}
             currentBeatmap={this.props.currentBeatmap}
-            currentUser={this.props.currentUser}
             discussion={this.props.discussion}
           />
         )}
@@ -246,7 +245,6 @@ export class Discussion extends React.PureComponent<Props> {
         canBeDeleted={canBeDeleted}
         canBeEdited={this.props.currentUser.is_admin || canBeEdited}
         canBeRestored={canModerate}
-        currentUser={this.props.currentUser}
         discussion={this.props.discussion}
         lastEditor={post.last_editor_id != null ? this.props.users[post.last_editor_id] ?? deletedUser.toJson() : undefined}
         post={post}
