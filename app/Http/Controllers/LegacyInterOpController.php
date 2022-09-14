@@ -26,6 +26,7 @@ use App\Models\Score\Best;
 use App\Models\User;
 use App\Models\UserStatistics;
 use App\Transformers\Chat\MessageTransformer;
+use Artisan;
 use Datadog;
 use Ds\Set;
 use Exception;
@@ -343,9 +344,14 @@ class LegacyInterOpController extends Controller
         dispatch(new EsDocument($user));
 
         foreach (Beatmap::MODES as $modeStr => $modeId) {
-            $class = Best\Model::getClassByString($modeStr);
+            $class = Best\Model::getClass($modeStr);
             $class::queueIndexingForUser($user);
         }
+        Artisan::queue('es:index-scores:queue', [
+            '--all' => true,
+            '--no-interaction' => true,
+            '--user' => $user->getKey(),
+        ]);
 
         return response(null, 204);
     }

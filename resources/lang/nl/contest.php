@@ -31,6 +31,12 @@ return [
         'progress' => [
             '_' => ':used / :max stemmen',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => '',
+            ],
+        ],
     ],
     'entry' => [
         '_' => 'inzending',

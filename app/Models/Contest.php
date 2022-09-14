@@ -5,11 +5,13 @@
 
 namespace App\Models;
 
+use App\Exceptions\InvariantException;
 use App\Traits\Memoizes;
 use App\Transformers\ContestEntryTransformer;
 use App\Transformers\ContestTransformer;
 use App\Transformers\UserContestEntryTransformer;
 use Cache;
+use Exception;
 
 /**
  * @property \Carbon\Carbon|null $created_at
@@ -59,6 +61,44 @@ class Contest extends Model
     public function votes()
     {
         return $this->hasMany(ContestVote::class);
+    }
+
+    public function assertVoteRequirement(?User $user): void
+    {
+        $requirement = $this->getExtraOptions()['requirement'] ?? null;
+
+        if ($requirement === null) {
+            return;
+        }
+
+        if ($user === null) {
+            throw new InvariantException(osu_trans('authorization.require_login'));
+        }
+
+        switch ($requirement['name']) {
+            // requires playing (and optionally passing) all the beatmapsets in the specified room ids
+            case 'playlist_beatmapsets':
+                $roomIds = $requirement['room_ids'];
+                $mustPass = $requirement['must_pass'] ?? true;
+                $beatmapIdsQuery = Multiplayer\PlaylistItem::whereIn('room_id', $roomIds)->select('beatmap_id');
+                $requiredBeatmapsetCount = Beatmap::whereIn('beatmap_id', $beatmapIdsQuery)->distinct('beatmapset_id')->count();
+                $playedBeatmapIdsQuery = Multiplayer\Score
+                    ::whereIn('room_id', $roomIds)
+                    ->where(['user_id' => $user->getKey()])
+                    ->completed()
+                    ->select('beatmap_id');
+                if ($mustPass) {
+                    $playedBeatmapIdsQuery->where('passed', true);
+                }
+                $playedBeatmapsetCount = Beatmap::whereIn('beatmap_id', $playedBeatmapIdsQuery)->distinct('beatmapset_id')->count();
+
+                if ($playedBeatmapsetCount !== $requiredBeatmapsetCount) {
+                    throw new InvariantException(osu_trans('contest.voting.requirement.playlist_beatmapsets.incomplete_play'));
+                }
+                break;
+            default:
+                throw new Exception('unknown requirement');
+        }
     }
 
     public function isBestOf(): bool
@@ -187,6 +227,7 @@ class Contest extends Model
         if ($vote->exists()) {
             $vote->delete();
         } else {
+            $this->assertVoteRequirement($user);
             // there's probably a race-condition here, but abusing this just results in the user diluting their vote... so *shrug*
             if ($this->votes()->where('user_id', $user->user_id)->count() < $this->max_votes) {
                 $this->votes()->create(['user_id' => $user->user_id, 'contest_entry_id' => $entry->id]);

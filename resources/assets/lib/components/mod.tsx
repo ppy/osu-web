@@ -3,6 +3,7 @@
 
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { modName } from 'utils/score-helper';
 
 interface Props {
   mod: string;
@@ -12,7 +13,7 @@ export default function Mod({ mod }: Props) {
   return (
     <div
       className={classWithModifiers('mod', mod)}
-      title={osu.trans(`beatmaps.mods.${mod}`)}
+      title={modName(mod)}
     />
   );
 }

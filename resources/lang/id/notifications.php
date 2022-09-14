@@ -240,6 +240,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username telah mengunggah beatmap baru',
+                'user_beatmapset_revive' => '',
             ],
         ],
     ],
