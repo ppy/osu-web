@@ -76,7 +76,6 @@ export class Discussion extends React.Component<Props> {
 
   componentDidUpdate() {
     for (const type of voteTypes) {
-      console.log(this.tooltips[type]);
       this.tooltips[type]?.qtip('api').set('content.text', this.getTooltipContent(type));
     }
   }
@@ -162,6 +161,34 @@ export class Discussion extends React.Component<Props> {
       .always(hideLoadingOverlay);
   };
 
+  private readonly emitSetHighlight = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.defaultPrevented) return;
+    $.publish('beatmapset-discussions:highlight', { discussionId: this.props.discussion.id });
+  };
+
+  private getTooltipContent(type: VoteType) {
+    const count = this.props.discussion.votes[type];
+    const title = count < 1
+      ? trans(`beatmaps.discussions.votes.none.${type}`)
+      : `${trans(`beatmaps.discussions.votes.latest.${type}`)}:`;
+
+    const users = this.props.discussion.votes.voters[type].map((id) => this.props.users[id] ?? {});
+
+    return renderToStaticMarkup(<UserListPopup count={count} title={title} users={users} />);
+  }
+
+  private isOwner(object: { user_id: number }) {
+    return core.currentUser != null && core.currentUser.id === object.user_id;
+  }
+
+  private isRead(post: BeatmapsetDiscussionPostJson) {
+    return this.props.readPostIds?.has(post.id) || this.isOwner(post) || this.props.preview;
+  }
+
+  private isVisible(object: BeatmapsetDiscussionJson | BeatmapsetDiscussionPostJson) {
+    return object != null && (this.props.showDeleted || object.deleted_at == null);
+  }
+
   private postFooter() {
     let cssClasses = `${bn}__expanded`;
     if (this.props.collapsed) {
@@ -180,49 +207,6 @@ export class Discussion extends React.Component<Props> {
             discussion={this.props.discussion}
           />
         )}
-      </div>
-    );
-  }
-
-  private readonly renderReply = (post: BeatmapsetDiscussionPostJson) => {
-    if (!this.isVisible(post)) return null;
-    if (post.system && post.message.type === 'resolve') {
-      if (this.lastResolvedState === post.message.value) return null;
-      this.lastResolvedState = post.message.value;
-    }
-
-    return this.renderPost(post, 'reply');
-  };
-
-  private renderTimestamp() {
-    return (
-      <div className='beatmap-discussion-timestamp'>
-        {this.props.discussion.timestamp != null && this.props.isTimelineVisible && <div className="beatmap-discussion-timestamp__point" />}
-        <div className="beatmap-discussion-timestamp__icons-container">
-          <div className="beatmap-discussion-timestamp__icons">
-            <div className="beatmap-discussion-timestamp__icon">
-              <span className={classWithModifiers('beatmap-discussion-message-type', kebabCase(this.props.discussion.message_type))}>
-                <i
-                  className={discussionTypeIcons[this.props.discussion.message_type]}
-                  title={trans(`beatmaps.discussions.message_type.${this.props.discussion.message_type}`)}
-                />
-              </span>
-              {this.props.discussion.resolved && (
-                <div className="beatmap-discussion-timestamp__icon beatmap-discussion-timestamp__icon--resolved">
-                  <i
-                    className='far fa-check-circle'
-                    title={trans('beatmaps.discussions.resolved')}
-                  />
-                </div>
-              )}
-            </div>
-          </div>
-          {this.props.discussion.timestamp != null && (
-            <div className="beatmap-discussion-timestamp__text">
-              {formatTimestamp(this.props.discussion.timestamp)}
-            </div>
-          )}
-        </div>
       </div>
     );
   }
@@ -296,6 +280,49 @@ export class Discussion extends React.Component<Props> {
     );
   }
 
+  private readonly renderReply = (post: BeatmapsetDiscussionPostJson) => {
+    if (!this.isVisible(post)) return null;
+    if (post.system && post.message.type === 'resolve') {
+      if (this.lastResolvedState === post.message.value) return null;
+      this.lastResolvedState = post.message.value;
+    }
+
+    return this.renderPost(post, 'reply');
+  };
+
+  private renderTimestamp() {
+    return (
+      <div className='beatmap-discussion-timestamp'>
+        {this.props.discussion.timestamp != null && this.props.isTimelineVisible && <div className="beatmap-discussion-timestamp__point" />}
+        <div className="beatmap-discussion-timestamp__icons-container">
+          <div className="beatmap-discussion-timestamp__icons">
+            <div className="beatmap-discussion-timestamp__icon">
+              <span className={classWithModifiers('beatmap-discussion-message-type', kebabCase(this.props.discussion.message_type))}>
+                <i
+                  className={discussionTypeIcons[this.props.discussion.message_type]}
+                  title={trans(`beatmaps.discussions.message_type.${this.props.discussion.message_type}`)}
+                />
+              </span>
+              {this.props.discussion.resolved && (
+                <div className="beatmap-discussion-timestamp__icon beatmap-discussion-timestamp__icon--resolved">
+                  <i
+                    className='far fa-check-circle'
+                    title={trans('beatmaps.discussions.resolved')}
+                  />
+                </div>
+              )}
+            </div>
+          </div>
+          {this.props.discussion.timestamp != null && (
+            <div className="beatmap-discussion-timestamp__text">
+              {formatTimestamp(this.props.discussion.timestamp)}
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
+
   private renderVote(type: VoteType) {
     const [baseScore, icon] = type === 'up' ? [1, 'thumbs-up'] : [-1, 'thumbs-down'];
     const currentVote = this.props.discussion.current_user_attributes?.vote_score;
@@ -317,23 +344,6 @@ export class Discussion extends React.Component<Props> {
     );
   }
 
-  private readonly emitSetHighlight = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.defaultPrevented) return;
-    $.publish('beatmapset-discussions:highlight', { discussionId: this.props.discussion.id });
-  };
-
-  private isOwner(object: { user_id: number }) {
-    return core.currentUser != null && core.currentUser.id === object.user_id;
-  }
-
-  private isRead(post: BeatmapsetDiscussionPostJson) {
-    return this.props.readPostIds?.has(post.id) || this.isOwner(post) || this.props.preview;
-  }
-
-  private isVisible(object: BeatmapsetDiscussionJson | BeatmapsetDiscussionPostJson) {
-    return object != null && (this.props.showDeleted || object.deleted_at == null);
-  }
-
   private readonly showVoters = (event: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
     const target = event.currentTarget;
     const type = target.dataset.type as VoteType;
@@ -346,15 +356,4 @@ export class Discussion extends React.Component<Props> {
   private readonly toggleCollapse = () => {
     $.publish('beatmapset-discussions:collapse', { discussionId: this.props.discussion.id });
   };
-
-  private getTooltipContent(type: VoteType) {
-    const count = this.props.discussion.votes[type];
-    const title = count < 1
-      ? trans(`beatmaps.discussions.votes.none.${type}`)
-      : `${trans(`beatmaps.discussions.votes.latest.${type}`)}:`;
-
-    const users = this.props.discussion.votes.voters[type].map((id) => this.props.users[id] ?? {});
-
-    return renderToStaticMarkup(<UserListPopup count={count} title={title} users={users} />);
-  }
 }
