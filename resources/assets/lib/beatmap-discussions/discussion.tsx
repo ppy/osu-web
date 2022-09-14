@@ -227,14 +227,19 @@ export class Discussion extends React.PureComponent<Props> {
 
   private renderPost(post: BeatmapsetDiscussionPostJson, type: 'discussion' | 'reply') {
     if (post.id == null) return null;
-    const ElementName = post.system ? SystemPost : Post;
     const canModerate = canModeratePosts(this.props.currentUser);
     const canBeEdited = this.isOwner(post) && post.id > this.resolvedSystemPostId && !this.props.beatmapset.discussion_locked;
     const canBeDeleted = type === 'discussion' ? this.props.discussion.current_user_attributes?.can_destroy : canModerate || canBeEdited;
     const user = this.props.users[post.user_id] ?? deletedUser.toJson();
 
+    if (post.system) {
+      return (
+        <SystemPost key={post.id} post={post} user={user} />
+      );
+    }
+
     return (
-      <ElementName
+      <Post
         key={post.id}
         beatmap={this.props.currentBeatmap}
         beatmapset={this.props.beatmapset}
