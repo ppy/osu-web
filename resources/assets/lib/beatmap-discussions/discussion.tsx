@@ -75,8 +75,10 @@ export class Discussion extends React.Component<Props> {
   }
 
   componentDidUpdate() {
-    // for own type, tooltip of @tooltips
-    //   tooltip.qtip('api')?.set('content.text', @getTooltipContent(type))
+    for (const type of voteTypes) {
+      console.log(this.tooltips[type]);
+      this.tooltips[type]?.qtip('api').set('content.text', this.getTooltipContent(type));
+    }
   }
 
   componentWillUnmount() {
