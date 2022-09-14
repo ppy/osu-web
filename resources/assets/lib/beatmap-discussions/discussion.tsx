@@ -53,7 +53,7 @@ export class Discussion extends React.PureComponent<Props> {
   private voteXhr: JQuery.jqXHR | null = null;
 
   private get canDownvote() {
-    return core.currentUser != null && (core.currentUser.is_admin || core.currentUser.is_moderator || core.currentUser.is_bng)
+    return core.currentUser != null && (core.currentUser.is_admin || core.currentUser.is_moderator || core.currentUser.is_bng);
   }
 
   private get canBeRepliedTo() {
@@ -88,7 +88,7 @@ export class Discussion extends React.PureComponent<Props> {
     const lineClasses = classWithModifiers(`${bn}__line`, { resolved: this.props.discussion.resolved});
 
     this.lastResolvedState = false;
-    this._resolvedSystemPostId = null
+    this._resolvedSystemPostId = null;
 
     const user = this.props.users[this.props.discussion.user_id] ?? deletedUser.toJson();
     const group = badgeGroup({
@@ -99,7 +99,7 @@ export class Discussion extends React.PureComponent<Props> {
     });
 
     const topClasses = classWithModifiers(bn, {
-      deleted: this.props.discussion.deleted_at !=  null,
+      deleted: this.props.discussion.deleted_at != null,
       highlighted: this.props.highlighted,
       'horizontal-desktop': this.props.discussion.message_type !== 'review',
       preview: this.props.preview,
@@ -350,7 +350,7 @@ export class Discussion extends React.PureComponent<Props> {
       ? trans(`beatmaps.discussions.votes.none.${type}`)
       : `${trans(`beatmaps.discussions.votes.latest.${type}`)}:`;
 
-    const users = this.props.discussion.votes['voters'][type].map((id) => this.props.users[id] ?? {});
+    const users = this.props.discussion.votes.voters[type].map((id) => this.props.users[id] ?? {});
 
     return renderToStaticMarkup(<UserListPopup count={count} title={title} users={users} />);
   }
