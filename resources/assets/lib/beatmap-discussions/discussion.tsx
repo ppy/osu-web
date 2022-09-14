@@ -59,10 +59,12 @@ export class Discussion extends React.Component<Props> {
     makeObservable(this);
   }
 
+  @computed
   private get canDownvote() {
     return core.currentUser != null && (core.currentUser.is_admin || core.currentUser.is_moderator || core.currentUser.is_bng);
   }
 
+  @computed
   private get canBeRepliedTo() {
     return (!this.props.beatmapset.discussion_locked || canModeratePosts())
       && (this.props.discussion.beatmap_id == null || this.props.currentBeatmap.deleted_at == null);
