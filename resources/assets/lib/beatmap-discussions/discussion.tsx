@@ -10,7 +10,7 @@ import CurrentUserJson from 'interfaces/current-user-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { findLast, kebabCase } from 'lodash';
-import { computed, makeObservable } from 'mobx';
+import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import { deletedUser } from 'models/user';
 import core from 'osu-core-singleton';
@@ -52,7 +52,7 @@ interface Props {
 export class Discussion extends React.Component<Props> {
   private lastResolvedState = false;
   private readonly tooltips: Partial<Record<VoteType, unknown>> = {};
-  private voteXhr: JQuery.jqXHR | null = null;
+  @observable private voteXhr: JQuery.jqXHR<BeatmapsetDiscussionJsonForShow> | null = null;
 
   constructor(props: Props) {
     super(props);
@@ -145,10 +145,11 @@ export class Discussion extends React.Component<Props> {
     );
   }
 
+  @action
   private readonly doVote = (e: React.MouseEvent<HTMLButtonElement>) => {
-    showLoadingOverlay();
+    if (this.voteXhr != null) return;
 
-    this.voteXhr?.abort();
+    showLoadingOverlay();
 
     this.voteXhr = $.ajax(route('beatmapsets.discussions.vote', { discussion: this.props.discussion.id }), {
       data: {
@@ -157,10 +158,16 @@ export class Discussion extends React.Component<Props> {
         },
       },
       method: 'PUT',
-    }).done((data: BeatmapsetExtendedJson) => {
-      $.publish('beatmapsetDiscussions:update', { beatmapset: data });
-    }).fail(onError)
-      .always(hideLoadingOverlay);
+    });
+
+    this.voteXhr
+      .done((data) => runInAction(() => {
+        $.publish('beatmapsetDiscussions:update', { beatmapset: data });
+      })).fail(onError)
+      .always(action(() => {
+        hideLoadingOverlay();
+        this.voteXhr = null;
+      }));
   };
 
   private readonly emitSetHighlight = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -331,13 +338,13 @@ export class Discussion extends React.Component<Props> {
     const score = currentVote === baseScore ? 0 : baseScore;
 
     const user = this.props.users[this.props.discussion.user_id];
-    const disabled = this.isOwner(this.props.discussion) || (user?.is_bot ?? false) || (type === 'down' && !this.canDownvote) || !this.canBeRepliedTo;
+    const cannotVote = this.isOwner(this.props.discussion) || (user?.is_bot ?? false) || (type === 'down' && !this.canDownvote) || !this.canBeRepliedTo;
 
     return (
       <button
-        className={classWithModifiers('beatmap-discussion-vote', type, { inactive: score === 0 })}
+        className={classWithModifiers('beatmap-discussion-vote', type, { inactive: score !== 0 })}
         data-score={score}
-        disabled={disabled}
+        disabled={this.voteXhr != null || cannotVote}
         onClick={this.doVote}
       >
         <i className={`fas fa-${icon}`} />
