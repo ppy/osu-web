@@ -17,7 +17,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { onError } from 'utils/ajax';
-import { badgeGroup, canModeratePosts, formatTimestamp } from 'utils/beatmapset-discussion-helper';
+import { badgeGroup, canModeratePosts, formatTimestamp, startingPost } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers, groupColour } from 'utils/css';
 import { trans } from 'utils/lang';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
@@ -88,7 +88,8 @@ export class Discussion extends React.Component<Props> {
 
   render() {
     if (!this.isVisible(this.props.discussion)) return null;
-    const firstPost = this.props.discussion.starting_post ?? this.props.discussion.posts?.[0];
+    const firstPost = startingPost(this.props.discussion);
+    // TODO: check if possible to have null post...
     if (firstPost == null) return null;
 
     const lineClasses = classWithModifiers(`${bn}__line`, { resolved: this.props.discussion.resolved});
