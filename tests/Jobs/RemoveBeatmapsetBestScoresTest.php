@@ -33,7 +33,7 @@ class RemoveBeatmapsetBestScoresTest extends TestCase
 
         $this->expectCountChange(fn () => array_reduce(
             array_keys(Beatmap::MODES),
-            fn (int $carry, string $ruleset) => $carry + BestModel::getClassByString($ruleset)::count(),
+            fn (int $carry, string $ruleset) => $carry + BestModel::getClass($ruleset)::count(),
             0,
         ), count($scores) * -1);
 
@@ -43,7 +43,7 @@ class RemoveBeatmapsetBestScoresTest extends TestCase
     private function createScore(Beatmapset $beatmapset): BestModel
     {
         $beatmap = array_rand_val($beatmapset->beatmaps);
-        $class = BestModel::getClassByString(array_rand(Beatmap::MODES));
+        $class = BestModel::getClass(array_rand(Beatmap::MODES));
 
         return $class::factory()->create(['beatmap_id' => $beatmap]);
     }
