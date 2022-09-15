@@ -43,7 +43,6 @@ interface Props {
   readPostIds?: Set<number>;
   showDeleted: boolean;
   users: Partial<Record<number | string, UserJson>>;
-  visible: boolean;
 }
 
 @observer
