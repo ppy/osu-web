@@ -38,6 +38,9 @@ interface Props {
   highlighted: boolean;
   isTimelineVisible: boolean;
   parentDiscussion?: BeatmapsetDiscussionJson & Required<Pick<BeatmapsetDiscussionJson, 'current_user_attributes'>>;
+  // preview = true is for rendering the non-discussion version;
+  // still need this flag instead of just relying on type discrimination
+  // due to updates getting merged into the big discussions blob at the root.
   preview: boolean;
   readPostIds?: Set<number>;
   showDeleted: boolean;
@@ -118,9 +121,7 @@ export class Discussion extends React.Component<Props> {
             <div className={`${bn}__top-message`}>
               {this.renderPost(firstPost, 'discussion')}
             </div>
-            <div className={`${bn}__top-actions`}>
-              {!this.props.preview && this.renderPostButtons()}
-            </div>
+            {!this.props.preview && this.renderPostButtons()}
           </div>
           {!this.props.preview && this.postFooter()}
           <div className={lineClasses} />
@@ -209,31 +210,33 @@ export class Discussion extends React.Component<Props> {
     const user = this.props.users[this.props.discussion.user_id];
 
     return (
-      <div className={`${bn}__actions`}>
-        {this.props.parentDiscussion != null && (
-          <a
-            className={`${bn}__link-to-parent js-beatmap-discussion--jump`}
-            href={BeatmapDiscussionHelper.url({ discussion: this.props.parentDiscussion })}
-            title={trans('beatmap_discussions.review.go_to_parent')}
+      <div className={`${bn}__top-actions`}>
+        <div className={`${bn}__actions`}>
+          {this.props.parentDiscussion != null && (
+            <a
+              className={`${bn}__link-to-parent js-beatmap-discussion--jump`}
+              href={BeatmapDiscussionHelper.url({ discussion: this.props.parentDiscussion })}
+              title={trans('beatmap_discussions.review.go_to_parent')}
+            >
+              <i className='fas fa-tasks' />
+            </a>
+          )}
+          {isShowVersion(this.props.discussion) && <DiscussionVoteButtons
+            cannotVote={this.isOwner(this.props.discussion) || (user?.is_bot ?? false) || !this.canBeRepliedTo}
+            discussion={this.props.discussion}
+            users={this.props.users}
+          />}
+          <button
+            className={`${bn}__action ${bn}__action--with-line`}
+            onClick={this.handleCollapseClick}
           >
-            <i className='fas fa-tasks' />
-          </a>
-        )}
-        {isShowVersion(this.props.discussion) && <DiscussionVoteButtons
-          cannotVote={this.isOwner(this.props.discussion) || (user?.is_bot ?? false) || !this.canBeRepliedTo}
-          discussion={this.props.discussion}
-          users={this.props.users}
-        />}
-        <button
-          className={`${bn}__action ${bn}__action--with-line`}
-          onClick={this.handleCollapseClick}
-        >
-          <div
-            className={classWithModifiers('beatmap-discussion-expand', { expanded: !this.props.collapsed })}
-          >
-            <i className='fas fa-chevron-down' />
-          </div>
-        </button>
+            <div
+              className={classWithModifiers('beatmap-discussion-expand', { expanded: !this.props.collapsed })}
+            >
+              <i className='fas fa-chevron-down' />
+            </div>
+          </button>
+        </div>
       </div>
     );
   }
