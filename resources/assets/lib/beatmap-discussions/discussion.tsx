@@ -1,27 +1,23 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import UserListPopup, { createTooltip } from 'components/user-list-popup';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
-import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
+import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForBundle, BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetDiscussionPostJson from 'interfaces/beatmapset-discussion-post-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import CurrentUserJson from 'interfaces/current-user-json';
 import UserJson from 'interfaces/user-json';
-import { route } from 'laroute';
 import { findLast, kebabCase } from 'lodash';
-import { action, computed, makeObservable, observable, runInAction } from 'mobx';
+import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import { deletedUser } from 'models/user';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { renderToStaticMarkup } from 'react-dom/server';
-import { onError } from 'utils/ajax';
 import { badgeGroup, canModeratePosts, formatTimestamp, startingPost } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers, groupColour } from 'utils/css';
 import { trans } from 'utils/lang';
-import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import { discussionTypeIcons } from './discussion-type';
+import DiscussionVoteButtons from './discussion-vote-buttons';
 import { NewReply } from './new-reply';
 import Post from './post';
 import SystemPost from './system-post';
@@ -29,15 +25,16 @@ import { UserCard } from './user-card';
 
 const bn = 'beatmap-discussion';
 
-const voteTypes = ['up', 'down'] as const;
-type VoteType = typeof voteTypes[number];
+function isShowVersion(discussion: BeatmapsetDiscussionJsonForBundle | BeatmapsetDiscussionJsonForShow): discussion is BeatmapsetDiscussionJsonForShow {
+  return 'posts' in discussion;
+}
 
 interface Props {
   beatmapset: BeatmapsetExtendedJson;
   collapsed: boolean;
   currentBeatmap: BeatmapExtendedJson;
   currentUser: CurrentUserJson;
-  discussion: BeatmapsetDiscussionJsonForShow & Required<Pick<BeatmapsetDiscussionJson, 'current_user_attributes'>>;
+  discussion: BeatmapsetDiscussionJsonForShow | BeatmapsetDiscussionJsonForBundle;
   highlighted: boolean;
   isTimelineVisible: boolean;
   parentDiscussion?: BeatmapsetDiscussionJson & Required<Pick<BeatmapsetDiscussionJson, 'current_user_attributes'>>;
@@ -51,17 +48,10 @@ interface Props {
 @observer
 export class Discussion extends React.Component<Props> {
   private lastResolvedState = false;
-  private readonly tooltips: Partial<Record<VoteType, unknown>> = {};
-  @observable private voteXhr: JQuery.jqXHR<BeatmapsetDiscussionJsonForShow> | null = null;
 
   constructor(props: Props) {
     super(props);
     makeObservable(this);
-  }
-
-  @computed
-  private get canDownvote() {
-    return core.currentUser != null && (core.currentUser.is_admin || core.currentUser.is_moderator || core.currentUser.is_bng);
   }
 
   @computed
@@ -72,18 +62,11 @@ export class Discussion extends React.Component<Props> {
 
   @computed
   private get resolvedSystemPostId() {
+    // TODO: handling resolved status in bundles....?
+    if (!isShowVersion(this.props.discussion)) return -1;
+
     const systemPost = findLast(this.props.discussion.posts, (post) => post != null && post.system && post.message.type === 'resolve');
     return systemPost?.id ?? -1;
-  }
-
-  componentDidUpdate() {
-    for (const type of voteTypes) {
-      this.tooltips[type]?.qtip('api').set('content.text', this.getTooltipContent(type));
-    }
-  }
-
-  componentWillUnmount() {
-    this.voteXhr?.abort();
   }
 
   render() {
@@ -92,7 +75,7 @@ export class Discussion extends React.Component<Props> {
     // TODO: check if possible to have null post...
     if (firstPost == null) return null;
 
-    const lineClasses = classWithModifiers(`${bn}__line`, { resolved: this.props.discussion.resolved});
+    const lineClasses = classWithModifiers(`${bn}__line`, { resolved: this.props.discussion.resolved });
 
     this.lastResolvedState = false;
 
@@ -146,17 +129,6 @@ export class Discussion extends React.Component<Props> {
     );
   }
 
-  private getTooltipContent(type: VoteType) {
-    const count = this.props.discussion.votes[type];
-    const title = count < 1
-      ? trans(`beatmaps.discussions.votes.none.${type}`)
-      : `${trans(`beatmaps.discussions.votes.latest.${type}`)}:`;
-
-    const users = this.props.discussion.votes.voters[type].map((id) => this.props.users[id] ?? {});
-
-    return renderToStaticMarkup(<UserListPopup count={count} title={title} users={users} />);
-  }
-
   private readonly handleCollapseClick = () => {
     $.publish('beatmapset-discussions:collapse', { discussionId: this.props.discussion.id });
   };
@@ -164,31 +136,6 @@ export class Discussion extends React.Component<Props> {
   private readonly handleSetHighlight = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.defaultPrevented) return;
     $.publish('beatmapset-discussions:highlight', { discussionId: this.props.discussion.id });
-  };
-
-  @action
-  private readonly handleVoteClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (this.voteXhr != null) return;
-
-    showLoadingOverlay();
-
-    this.voteXhr = $.ajax(route('beatmapsets.discussions.vote', { discussion: this.props.discussion.id }), {
-      data: {
-        beatmap_discussion_vote: {
-          score: e.currentTarget.dataset.score,
-        },
-      },
-      method: 'PUT',
-    });
-
-    this.voteXhr
-      .done((data) => runInAction(() => {
-        $.publish('beatmapsetDiscussions:update', { beatmapset: data });
-      })).fail(onError)
-      .always(action(() => {
-        hideLoadingOverlay();
-        this.voteXhr = null;
-      }));
   };
 
   private isOwner(object: { user_id: number }) {
@@ -204,6 +151,8 @@ export class Discussion extends React.Component<Props> {
   }
 
   private postFooter() {
+    if (!isShowVersion(this.props.discussion)) return null;
+
     let cssClasses = `${bn}__expanded`;
     if (this.props.collapsed) {
       cssClasses += ' hidden';
@@ -212,7 +161,7 @@ export class Discussion extends React.Component<Props> {
     return (
       <div className={cssClasses}>
         <div className={`${bn}__replies`}>
-          {this.props.discussion.posts?.slice(1).map(this.renderReply)}
+          {this.props.discussion.posts.slice(1).map(this.renderReply)}
         </div>
         {this.canBeRepliedTo && (
           <NewReply
@@ -257,6 +206,8 @@ export class Discussion extends React.Component<Props> {
   }
 
   private renderPostButtons() {
+    const user = this.props.users[this.props.discussion.user_id];
+
     return (
       <div className={`${bn}__actions`}>
         {this.props.parentDiscussion != null && (
@@ -268,17 +219,11 @@ export class Discussion extends React.Component<Props> {
             <i className='fas fa-tasks' />
           </a>
         )}
-        {voteTypes.map((type) => (
-          <div
-            key={type}
-            className={`${bn}__action`}
-            data-type={type}
-            onMouseOver={this.showVoters}
-            onTouchStart={this.showVoters}
-          >
-            {this.renderVote(type)}
-          </div>
-        ))}
+        {isShowVersion(this.props.discussion) && <DiscussionVoteButtons
+          cannotVote={this.isOwner(this.props.discussion) || (user?.is_bot ?? false) || !this.canBeRepliedTo}
+          discussion={this.props.discussion}
+          users={this.props.users}
+        />}
         <button
           className={`${bn}__action ${bn}__action--with-line`}
           onClick={this.handleCollapseClick}
@@ -335,34 +280,4 @@ export class Discussion extends React.Component<Props> {
       </div>
     );
   }
-
-  private renderVote(type: VoteType) {
-    const [baseScore, icon] = type === 'up' ? [1, 'thumbs-up'] : [-1, 'thumbs-down'];
-    const currentVote = this.props.discussion.current_user_attributes?.vote_score;
-    const score = currentVote === baseScore ? 0 : baseScore;
-
-    const user = this.props.users[this.props.discussion.user_id];
-    const cannotVote = this.isOwner(this.props.discussion) || (user?.is_bot ?? false) || (type === 'down' && !this.canDownvote) || !this.canBeRepliedTo;
-
-    return (
-      <button
-        className={classWithModifiers('beatmap-discussion-vote', type, { inactive: score !== 0 })}
-        data-score={score}
-        disabled={this.voteXhr != null || cannotVote}
-        onClick={this.handleVoteClick}
-      >
-        <i className={`fas fa-${icon}`} />
-        <span className='beatmap-discussion-vote__count'>{this.props.discussion.votes[type]}</span>,
-      </button>
-    );
-  }
-
-  private readonly showVoters = (event: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
-    const target = event.currentTarget;
-    const type = target.dataset.type as VoteType;
-
-    this.tooltips[type] ??= createTooltip(target, 'top center', this.getTooltipContent(type));
-
-    return this.tooltips[type];
-  };
 }
