@@ -7,7 +7,8 @@ declare(strict_types=1);
 
 namespace App\Models\Solo;
 
-use App\Libraries\Score\UserRankCache;
+use App\Libraries\Score\UserRank;
+use App\Libraries\Search\ScoreSearchParams;
 use App\Models\Beatmap;
 use App\Models\Model;
 use App\Models\Score as LegacyScore;
@@ -128,6 +129,11 @@ class Score extends Model implements Traits\ReportableInterface
         return Beatmap::modeStr($this->ruleset_id);
     }
 
+    public function isLegacy(): bool
+    {
+        return $this->data->buildId === null;
+    }
+
     public function legacyScore(): ?LegacyScore\Best\Model
     {
         $id = $this->data->legacyScoreId;
@@ -190,9 +196,14 @@ class Score extends Model implements Traits\ReportableInterface
         return false;
     }
 
-    public function userRank(): ?int
+    public function userRank(): int
     {
-        return UserRankCache::fetch([], $this->beatmap_id, $this->ruleset_id, $this->data->totalScore);
+        return UserRank::getRank(ScoreSearchParams::fromArray([
+            'beatmap_ids' => [$this->beatmap_id],
+            'before_score' => $this,
+            'is_legacy' => $this->isLegacy(),
+            'ruleset_id' => $this->ruleset_id,
+        ]));
     }
 
     protected function newReportableExtraParams(): array
