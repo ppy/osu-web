@@ -10,6 +10,7 @@ use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\BeatmapDiscussionVote;
+use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\User;
 use App\Traits\Memoizes;
@@ -106,10 +107,15 @@ class ModdingHistoryEventsBundle
                     'Beatmap'
                 );
 
+                $array['beatmapsets'] = json_collection(
+                    $this->getBeatmapsets(),
+                    'Beatmapset'
+                );
+
                 $array['discussions'] = json_collection(
                     $this->getDiscussions(),
                     'BeatmapDiscussion',
-                    ['starting_post', 'beatmap', 'beatmapset', 'current_user_attributes']
+                    ['starting_post', 'current_user_attributes']
                 );
 
                 $array['posts'] = json_collection(
@@ -168,12 +174,26 @@ class ModdingHistoryEventsBundle
                 return collect();
             }
 
+            $beatmapsetId = $this->getBeatmapsets()
+                ->pluck('beatmapset_id');
+
+            return Beatmap::whereIn('beatmapset_id', $beatmapsetId)->get();
+        });
+    }
+
+    private function getBeatmapsets()
+    {
+        return $this->memoize(__FUNCTION__, function () {
+            if (!$this->withExtras) {
+                return collect();
+            }
+
             $beatmapsetId = $this->getDiscussions()
                 ->pluck('beatmapset_id')
                 ->unique()
                 ->toArray();
 
-            return Beatmap::whereIn('beatmapset_id', $beatmapsetId)->get();
+            return Beatmapset::whereIn('beatmapset_id', $beatmapsetId)->get();
         });
     }
 
