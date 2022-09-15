@@ -121,7 +121,7 @@ export default class DiscussionVoteButtons extends React.Component<Props> {
         onClick={this.handleClick}
       >
         <i className={`fas fa-${icon}`} />
-        <span className='beatmap-discussion-vote__count'>{this.props.discussion.votes[type]}</span>,
+        <span className='beatmap-discussion-vote__count'>{this.props.discussion.votes[type]}</span>
       </button>
     );
   }
