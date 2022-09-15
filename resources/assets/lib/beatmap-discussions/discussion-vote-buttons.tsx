@@ -15,8 +15,6 @@ import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 
-const bn = 'beatmap-discussion';
-
 const voteTypes = ['up', 'down'] as const;
 type VoteType = typeof voteTypes[number];
 
@@ -55,7 +53,6 @@ export default class DiscussionVoteButtons extends React.Component<Props> {
     return voteTypes.map((type) => (
       <div
         key={type}
-        className={`${bn}__action`}
         data-type={type}
         onMouseOver={this.handleHover}
         onTouchStart={this.handleHover}
