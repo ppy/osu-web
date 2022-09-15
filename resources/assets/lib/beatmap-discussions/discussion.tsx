@@ -198,7 +198,6 @@ export class Discussion extends React.Component<Props> {
         canBeEdited={canBeEdited}
         canBeRestored={canModerate}
         discussion={this.props.discussion}
-        lastEditor={post.last_editor_id != null ? this.props.users[post.last_editor_id] ?? deletedUser.toJson() : undefined}
         post={post}
         read={this.isRead(post)}
         type={type}

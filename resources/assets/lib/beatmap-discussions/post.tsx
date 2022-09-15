@@ -41,7 +41,6 @@ interface Props {
   canBeEdited: boolean;
   canBeRestored: boolean;
   discussion: BeatmapsetDiscussionJson;
-  lastEditor?: UserJson;
   post: BeatmapsetDiscussionMessagePostJson;
   read: boolean;
   type: string;
@@ -205,13 +204,18 @@ export default class Post extends React.Component<Props> {
   }
 
   private renderEdited() {
-    if (this.props.lastEditor == null || this.props.post.updated_at === this.props.post.created_at) return null;
+    if (this.props.post.last_editor_id == null
+      || this.props.post.updated_at === this.props.post.created_at) {
+      return null;
+    }
+
+    const lastEditor = this.props.users[this.props.post.last_editor_id] ?? deletedUser.toJson();
 
     return (
       <span className={`${bn}__info`}>
         <StringWithComponent
           mappings={{
-            editor: <UserLink className={`${bn}__info-user`} user={this.props.lastEditor} />,
+            editor: <UserLink className={`${bn}__info-user`} user={lastEditor} />,
             update_time: <TimeWithTooltip dateTime={this.props.post.updated_at} relative />,
           }}
           pattern={trans('beatmaps.discussions.edited')}
