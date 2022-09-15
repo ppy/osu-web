@@ -5,7 +5,6 @@ import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForBundle, BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetDiscussionPostJson from 'interfaces/beatmapset-discussion-post-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
-import CurrentUserJson from 'interfaces/current-user-json';
 import UserJson from 'interfaces/user-json';
 import { findLast, kebabCase } from 'lodash';
 import { computed, makeObservable } from 'mobx';
@@ -33,7 +32,6 @@ interface Props {
   beatmapset: BeatmapsetExtendedJson;
   collapsed: boolean;
   currentBeatmap: BeatmapExtendedJson;
-  currentUser: CurrentUserJson;
   discussion: BeatmapsetDiscussionJsonForShow | BeatmapsetDiscussionJsonForBundle;
   highlighted: boolean;
   isTimelineVisible: boolean;
@@ -61,6 +59,11 @@ export class Discussion extends React.Component<Props> {
   private get canBeRepliedTo() {
     return (!this.props.beatmapset.discussion_locked || canModeratePosts())
       && (this.props.discussion.beatmap_id == null || this.props.currentBeatmap.deleted_at == null);
+  }
+
+  @computed
+  private get isAdmin() {
+    return core.currentUser?.is_admin ?? false;
   }
 
   @computed
@@ -176,8 +179,8 @@ export class Discussion extends React.Component<Props> {
   }
 
   private renderPost(post: BeatmapsetDiscussionPostJson, type: 'discussion' | 'reply') {
-    const canModerate = canModeratePosts(this.props.currentUser);
-    const canBeEdited = this.isOwner(post) && post.id > this.resolvedSystemPostId && !this.props.beatmapset.discussion_locked;
+    const canModerate = canModeratePosts();
+    const canBeEdited = this.isAdmin || this.isOwner(post) && post.id > this.resolvedSystemPostId && !this.props.beatmapset.discussion_locked;
     const canBeDeleted = type === 'discussion' ? this.props.discussion.current_user_attributes?.can_destroy : canModerate || canBeEdited;
     const user = this.props.users[post.user_id] ?? deletedUser.toJson();
 
@@ -193,7 +196,7 @@ export class Discussion extends React.Component<Props> {
         beatmap={this.props.currentBeatmap}
         beatmapset={this.props.beatmapset}
         canBeDeleted={canBeDeleted}
-        canBeEdited={this.props.currentUser.is_admin || canBeEdited}
+        canBeEdited={canBeEdited}
         canBeRestored={canModerate}
         discussion={this.props.discussion}
         lastEditor={post.last_editor_id != null ? this.props.users[post.last_editor_id] ?? deletedUser.toJson() : undefined}
