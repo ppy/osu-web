@@ -25,7 +25,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
 import { onError } from 'utils/ajax';
-import { badgeGroup, format, validMessageLength } from 'utils/beatmapset-discussion-helper';
+import { badgeGroup, canModeratePosts, format, validMessageLength } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
 import { trans } from 'utils/lang';
@@ -37,12 +37,10 @@ const bn = 'beatmap-discussion-post';
 interface Props {
   beatmap: BeatmapExtendedJson;
   beatmapset: BeatmapsetJson;
-  canBeDeleted: boolean;
-  canBeEdited: boolean;
-  canBeRestored: boolean;
   discussion: BeatmapsetDiscussionJson;
   post: BeatmapsetDiscussionMessagePostJson;
   read: boolean;
+  resolvedSystemPostId: number;
   type: string;
   user: UserJson;
   users: Partial<Record<number, UserJson>>;
@@ -61,6 +59,11 @@ export default class Post extends React.Component<Props> {
   @observable private xhr: JQuery.jqXHR<BeatmapsetWithDiscussionsJson> | null = null;
 
   @computed
+  private get canEdit() {
+    return this.isAdmin || this.isOwn && this.props.post.id > this.props.resolvedSystemPostId && !(this.props.beatmapset?.discussion_locked ?? false);
+  }
+
+  @computed
   private get canReport() {
     return core.currentUser != null && this.props.post.user_id !== core.currentUser.id;
   }
@@ -68,6 +71,16 @@ export default class Post extends React.Component<Props> {
   @computed
   private get deleteModel() {
     return this.props.type === 'reply' ? this.props.post : this.props.discussion;
+  }
+
+  @computed
+  private get isAdmin() {
+    return core.currentUser?.is_admin ?? false;
+  }
+
+  @computed
+  private get isOwn() {
+    return core.currentUser != null && core.currentUser.id === this.props.post.user_id;
   }
 
   @computed
@@ -239,7 +252,7 @@ export default class Post extends React.Component<Props> {
   }
 
   private renderMessageEditor() {
-    if (!this.props.canBeEdited) return;
+    if (!this.canEdit) return;
     const canPost = !this.isPosting && this.canSave;
 
     const document = this.props.post.message;
@@ -343,6 +356,9 @@ export default class Post extends React.Component<Props> {
 
 
   private renderMessageViewerActions() {
+    const canModerate = canModeratePosts();
+    const canDeleted = this.props.type === 'discussion' ? this.props.discussion.current_user_attributes?.can_destroy : canModerate || this.canEdit;
+
     return (
       <div className={`${bn}__actions`}>
         <div className={`${bn}__actions-group`}>
@@ -353,7 +369,7 @@ export default class Post extends React.Component<Props> {
               valueAsUrl
             />
           </span>
-          {this.props.canBeEdited && (
+          {this.canEdit && (
             <button
               className={`${bn}__action ${bn}__action--button`}
               onClick={this.editStart}
@@ -362,7 +378,7 @@ export default class Post extends React.Component<Props> {
             </button>
           )}
 
-          {this.deleteModel.deleted_at == null && this.props.canBeDeleted && (
+          {this.deleteModel.deleted_at == null && canDeleted && (
             <a
               className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
               data-confirm={trans('common.confirmation')}
@@ -374,7 +390,7 @@ export default class Post extends React.Component<Props> {
             </a>
           )}
 
-          {this.deleteModel.deleted_at != null && this.props.canBeRestored && (
+          {this.deleteModel.deleted_at != null && canModerate && (
             <a
               className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
               data-confirm={trans('common.confirmation')}

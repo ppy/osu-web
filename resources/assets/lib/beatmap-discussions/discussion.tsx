@@ -61,11 +61,6 @@ export class Discussion extends React.Component<Props> {
   }
 
   @computed
-  private get isAdmin() {
-    return core.currentUser?.is_admin ?? false;
-  }
-
-  @computed
   private get resolvedSystemPostId() {
     // TODO: handling resolved status in bundles....?
     if (!isShowVersion(this.props.discussion)) return -1;
@@ -178,9 +173,6 @@ export class Discussion extends React.Component<Props> {
   }
 
   private renderPost(post: BeatmapsetDiscussionPostJson, type: 'discussion' | 'reply') {
-    const canModerate = canModeratePosts();
-    const canBeEdited = this.isAdmin || this.isOwner(post) && post.id > this.resolvedSystemPostId && !this.props.beatmapset.discussion_locked;
-    const canBeDeleted = type === 'discussion' ? this.props.discussion.current_user_attributes?.can_destroy : canModerate || canBeEdited;
     const user = this.props.users[post.user_id] ?? deletedUser.toJson();
 
     if (post.system) {
@@ -194,12 +186,10 @@ export class Discussion extends React.Component<Props> {
         key={post.id}
         beatmap={this.props.currentBeatmap}
         beatmapset={this.props.beatmapset}
-        canBeDeleted={canBeDeleted}
-        canBeEdited={canBeEdited}
-        canBeRestored={canModerate}
         discussion={this.props.discussion}
         post={post}
         read={this.isRead(post)}
+        resolvedSystemPostId={this.resolvedSystemPostId}
         type={type}
         user={user}
         users={this.props.users}
