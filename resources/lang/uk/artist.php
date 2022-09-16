@@ -29,7 +29,7 @@ return [
 
     'songs' => [
         '_' => 'Пісні',
-        'count' => ':count_delimited пісня|:count_delimited пісні',
+        'count' => ':count_delimited пісня|:count_delimited пісні|:count_delimited пісень',
         'original' => 'виключно для osu! ',
         'original_badge' => 'ОРИГІНАЛ',
     ],

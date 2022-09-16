@@ -31,6 +31,12 @@ return [
         'progress' => [
             '_' => ':used / :max използвани гласа',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => '',
+            ],
+        ],
     ],
     'entry' => [
         '_' => 'запис',

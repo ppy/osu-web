@@ -10,21 +10,27 @@
     @if ($contestMeta->voting_ends_at !== null && $contestMeta->voting_ends_at->isPast())
         <div class='contest__voting-notice'>{{osu_trans('contest.voting.over')}}</div>
     @endif
-    @if (count($contests) === 1)
-        @include('contests._voting-entrylist', ['contest' => $contests->first()])
-    @else
-        <div class='contest__accordion' id='contests-accordion'>
-            @foreach ($contests as $contest)
-                <div class='panel contest__group'>
-                    <a href="#{{$contest->id}}" class='contest__group-heading' data-toggle='collapse' data-parent='#contests-accordion' aria-expanded='false'>
-                        <span>{!! $contest->name !!}</span>
-                        <i class="contest__section-toggle fas fa-fw fa-chevron-down"></i>
-                    </a>
-                    <div class='contest__multi-panel collapse' id="{{$contest->id}}">
-                        @include('contests._voting-entrylist')
+    @if ($noVoteReason === null)
+        @if (count($contests) === 1)
+            @include('contests._voting-entrylist', ['contest' => $contests->first()])
+        @else
+            <div class='contest__accordion' id='contests-accordion'>
+                @foreach ($contests as $contest)
+                    <div class='panel contest__group'>
+                        <a href="#{{$contest->id}}" class='contest__group-heading' data-toggle='collapse' data-parent='#contests-accordion' aria-expanded='false'>
+                            <span>{!! $contest->name !!}</span>
+                            <i class="contest__section-toggle fas fa-fw fa-chevron-down"></i>
+                        </a>
+                        <div class='contest__multi-panel collapse' id="{{$contest->id}}">
+                            @include('contests._voting-entrylist')
+                        </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
+        @endif
+    @else
+        <div class='contest__voting-notice'>
+            {{ $noVoteReason }}
         </div>
     @endif
 @endsection

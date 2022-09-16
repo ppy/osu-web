@@ -31,6 +31,12 @@ return [
         'progress' => [
             '_' => ':used / :max oy kullanıldı',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => '',
+            ],
+        ],
     ],
     'entry' => [
         '_' => 'girdi',

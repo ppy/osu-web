@@ -5,6 +5,7 @@
 
 namespace App\Transformers;
 
+use App\Models\BeatmapDiscussion;
 use App\Models\KudosuHistory;
 
 class KudosuHistoryTransformer extends TransformerAbstract
@@ -26,13 +27,16 @@ class KudosuHistoryTransformer extends TransformerAbstract
 
             $model = 'forum_post';
             $action = $kudosuHistory->action;
-        } elseif ($kudosuHistory->kudosuable !== null) {
+        } elseif (($kudosuable = $kudosuHistory->kudosuable) !== null) {
             $post = [
-                'url' => $kudosuHistory->kudosuable->url(),
-                'title' => $kudosuHistory->kudosuable->title(),
+                'url' => $kudosuable->url(),
+                'title' => $kudosuable->title(),
             ];
 
-            $model = get_model_basename($kudosuHistory->kudosuable);
+            $model = $kudosuable instanceof BeatmapDiscussion
+                // Old name, used at least in translation file.
+                ? 'beatmap_discussion'
+                : $kudosuable->getMorphClass();
             $action = $kudosuHistory->details['event'].'.'.$kudosuHistory->action;
         } else {
             $post = [
