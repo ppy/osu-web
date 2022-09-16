@@ -75,7 +75,7 @@ return [
         ],
         'help' => [
             '_' => 'ayuda',
-            'getAbuse' => 'notificar abuso',
+            'getAbuse' => 'reportar abuso',
             'getFaq' => 'preguntas frecuentes',
             'getRules' => 'reglas',
             'getSupport' => 'no, en serio, ¡necesito ayuda!',
@@ -106,7 +106,7 @@ return [
             'faq' => 'Preguntas frecuentes',
             'forum' => 'Foros de la comunidad',
             'livestreams' => 'Transmisiones en vivo',
-            'report' => 'Informar de un problema',
+            'report' => 'Reportar de un problema',
             'wiki' => 'Wiki',
         ],
         'legal' => [

@@ -240,6 +240,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':usernameがビートマップを作成しました',
+                'user_beatmapset_revive' => '',
             ],
         ],
     ],

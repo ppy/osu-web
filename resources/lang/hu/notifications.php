@@ -241,6 +241,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username új beatmapeket hozott létre',
+                'user_beatmapset_revive' => '',
             ],
         ],
     ],

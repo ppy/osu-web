@@ -240,6 +240,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username 建立了新圖譜',
+                'user_beatmapset_revive' => '',
             ],
         ],
     ],

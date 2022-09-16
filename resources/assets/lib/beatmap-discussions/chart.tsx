@@ -3,6 +3,7 @@
 
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import * as React from 'react';
+import { formatTimestamp } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 
 interface Props {
@@ -44,7 +45,7 @@ export default function Chart(props: Props) {
           style={{
             left: `${100 * relativeTimestamp}%`,
           }}
-          title={BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp)}
+          title={formatTimestamp(discussion.timestamp)}
         />
       ));
     });

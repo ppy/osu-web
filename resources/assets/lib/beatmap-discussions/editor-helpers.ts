@@ -7,6 +7,7 @@ import {
   DocumentIssueEmbed,
 } from 'interfaces/beatmap-discussion-review';
 import { Editor, Element as SlateElement, Node as SlateNode, Range as SlateRange, Text, Transforms } from 'slate';
+import { parseTimestamp } from 'utils/beatmapset-discussion-helper';
 
 export const blockCount = (input: SlateElement[]) => input.length;
 
@@ -69,7 +70,7 @@ function serializeEmbed(node: EmbedElement): DocumentIssueEmbed {
       beatmap_id: node.beatmapId ?? null,
       discussion_type: node.discussionType,
       text: node.children[0].text,
-      timestamp: node.timestamp ? BeatmapDiscussionHelper.parseTimestamp(node.timestamp) : null,
+      timestamp: node.timestamp ? parseTimestamp(node.timestamp) : null,
       type: 'embed',
     };
   }

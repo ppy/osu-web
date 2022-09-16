@@ -19,6 +19,7 @@ import { Editable, ReactEditor, RenderElementProps, RenderLeafProps, Slate, with
 import { DOMRange } from 'slate-react/dist/utils/dom';
 import { onError } from 'utils/ajax';
 import { sortWithMode } from 'utils/beatmap-helper';
+import { timestampRegex } from 'utils/beatmapset-discussion-helper';
 import { nominationsCount } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { DraftsContext } from './drafts-context';
@@ -170,7 +171,7 @@ export default class Editor extends React.Component<Props, State> {
       return ranges;
     }
 
-    const regex = RegExp(BeatmapDiscussionHelper.TIMESTAMP_REGEX, 'g');
+    const regex = RegExp(timestampRegex, 'g');
     let match;
 
     while ((match = regex.exec(node.text)) !== null) {

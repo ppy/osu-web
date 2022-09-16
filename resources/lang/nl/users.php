@@ -33,13 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'U hebt deze gebruiker geblokkeerd.',
-        'comment_text' => '',
+        'comment_text' => 'Deze reactie is verdekt.',
         'blocked_count' => 'geblokkeerde gebruikers (:count)',
         'hide_profile' => 'profiel verbergen',
-        'hide_comment' => '',
+        'hide_comment' => 'verbergen',
         'not_blocked' => 'Deze gebruiker is niet geblokkeerd.',
         'show_profile' => 'profiel weergeven',
-        'show_comment' => '',
+        'show_comment' => 'tonen',
         'too_many' => 'Blok limiet bereikt.',
         'button' => [
             'block' => 'blokkeren',
