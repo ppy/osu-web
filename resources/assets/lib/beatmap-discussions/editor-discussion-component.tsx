@@ -6,8 +6,7 @@ import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import * as _ from 'lodash';
-import { action, makeObservable } from 'mobx';
-import { observer } from 'mobx-react';
+import { Observer } from 'mobx-react';
 import * as React from 'react';
 import { Element as SlateElement, Path, Transforms } from 'slate';
 import { RenderElementProps } from 'slate-react';
@@ -38,7 +37,6 @@ interface Props extends RenderElementProps {
   readOnly?: boolean;
 }
 
-@observer
 export default class EditorDiscussionComponent extends React.Component<Props> {
   static contextType = SlateContext;
 
@@ -47,11 +45,6 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
   declare context: React.ContextType<typeof SlateContext>;
   tooltipContent = React.createRef<HTMLScriptElement>();
   tooltipEl?: HTMLElement;
-
-  constructor(props: Props) {
-    super(props);
-    makeObservable(this);
-  }
 
   componentDidMount = () => {
     // reset timestamp to null on clone
@@ -202,10 +195,9 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     });
   };
 
-  @action
   nearbyIndicator = (drafts: SlateElement[]) => {
     if (!this.editable() || this.timestamp() == null || this.discussionType() === 'praise') {
-      return;
+      return null;
     }
 
     const discussions = this.nearbyDiscussions();
@@ -257,6 +249,8 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
         </div>
       );
     }
+
+    return null;
   };
 
   path = (): Path => ReactEditor.findPath(this.context, this.props.element);
@@ -291,8 +285,11 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
         </button>
       );
 
-    const nearbyIndicator =
-      <DraftsContext.Consumer>{this.nearbyIndicator}</DraftsContext.Consumer>;
+    const nearbyIndicator = (
+      <DraftsContext.Consumer>
+        {(drafts: SlateElement[]) => <Observer>{() => this.nearbyIndicator(drafts)}</Observer>}
+      </DraftsContext.Consumer>
+    );
 
     const unsavedIndicator =
       this.props.editMode && canEdit ?
