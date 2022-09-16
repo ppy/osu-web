@@ -97,6 +97,8 @@ class ScoreEsIndexTest extends TestCase
 
     public static function tearDownAfterClass(): void
     {
+        parent::tearDownAfterClass();
+
         (new static())->refreshApplication();
         Beatmap::truncate();
         Beatmapset::truncate();
