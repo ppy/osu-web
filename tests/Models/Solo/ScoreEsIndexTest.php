@@ -9,10 +9,16 @@ namespace Tests\Models\Solo;
 
 use App\Libraries\Search\ScoreSearch;
 use App\Models\Beatmap;
+use App\Models\Beatmapset;
 use App\Models\Country;
+use App\Models\Genre;
 use App\Models\Group;
+use App\Models\Language;
 use App\Models\Solo\Score;
 use App\Models\User;
+use App\Models\UserGroup;
+use App\Models\UserGroupEvent;
+use App\Models\UserRelation;
 use Tests\TestCase;
 
 /**
