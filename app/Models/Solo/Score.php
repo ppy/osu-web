@@ -196,14 +196,15 @@ class Score extends Model implements Traits\ReportableInterface
         return false;
     }
 
-    public function userRank(): int
+    public function userRank(?array $params = null): int
     {
-        return UserRank::getRank(ScoreSearchParams::fromArray([
+        return UserRank::getRank(ScoreSearchParams::fromArray(array_merge($params ?? [], [
             'beatmap_ids' => [$this->beatmap_id],
             'before_score' => $this,
             'is_legacy' => $this->isLegacy(),
             'ruleset_id' => $this->ruleset_id,
-        ]));
+            'user' => $this->user,
+        ])));
     }
 
     protected function newReportableExtraParams(): array

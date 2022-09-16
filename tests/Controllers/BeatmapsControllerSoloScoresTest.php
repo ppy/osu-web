@@ -204,6 +204,13 @@ class BeatmapsControllerSoloScoresTest extends TestCase
         }
     }
 
+    public function testUserRank()
+    {
+        $this->actingAs(static::$otherUser)
+            ->json('GET', route('beatmaps.solo-scores', static::$beatmap), $params)
+            ->assertJsonPath('user_score.position', 2);
+    }
+
     public function dataProviderForTestQuery(): array
     {
         return [
