@@ -182,12 +182,12 @@ class ScoreTransformer extends TransformerAbstract
         ]);
     }
 
-    public function includeRankCountry(ScoreModel|SoloScore $score)
+    public function includeRankCountry(ScoreBest|SoloScore $score)
     {
         return $this->primitive($score->userRank(['type' => 'country']));
     }
 
-    public function includeRankGlobal(ScoreModel|SoloScore $score)
+    public function includeRankGlobal(ScoreBest|SoloScore $score)
     {
         return $this->primitive($score->userRank([]));
     }
