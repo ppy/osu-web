@@ -16,12 +16,10 @@ trait BaseIndexable
 
     public static function esCreateIndex(string $name = null)
     {
-        $schema = static::esSchemaConfig();
-
         // TODO: allow overriding of certain settings (shards, replicas, etc)?
         $params = [
             'index' => $name ?? static::esIndexName(),
-            'body' => $schema,
+            'body' => static::esSchemaConfig(),
         ];
 
         return Es::getClient()->indices()->create($params);
