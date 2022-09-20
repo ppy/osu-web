@@ -17,22 +17,12 @@ trait BaseIndexable
     public static function esCreateIndex(string $name = null)
     {
         $schema = static::esSchemaConfig();
-        // wrap with _doc type if compatibility is enabled.
-        if (Es::isCompatibilityMode()) {
-            $mappings = $schema['mappings'];
-            unset($schema['mappings']);
-            $schema['mappings']['_doc'] = $mappings;
-        }
 
         // TODO: allow overriding of certain settings (shards, replicas, etc)?
         $params = [
             'index' => $name ?? static::esIndexName(),
             'body' => $schema,
         ];
-
-        if (Es::isCompatibilityMode()) {
-            $params['include_type_name'] = true;
-        }
 
         return Es::getClient()->indices()->create($params);
     }

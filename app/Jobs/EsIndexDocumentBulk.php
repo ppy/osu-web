@@ -39,18 +39,12 @@ class EsIndexDocumentBulk implements ShouldQueue
             $models = $this->className::esIndexingQuery()->whereIn($dummy->getKeyName(), $chunk)->get();
             $actions = Es::generateBulkActions($models);
             if (!empty($actions)) {
-                $descriptor = [
+                // TODO: handling response would be nice =)
+                Es::getClient()->bulk([
                     'index' => $this->className::esIndexName(),
                     'body' => $actions,
                     'client' => ['timeout' => 0],
-                ];
-
-                if (Es::isCompatibilityMode()) {
-                    $descriptor['type'] = '_doc';
-                }
-
-                // TODO: handling response would be nice =)
-                Es::getClient()->bulk($descriptor);
+                ]);
             }
         }
     }

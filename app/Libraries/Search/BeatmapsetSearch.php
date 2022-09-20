@@ -130,10 +130,6 @@ class BeatmapsetSearch extends RecordSearch
             'path' => 'keywords',
         ];
 
-        if (Es::isCompatibilityMode()) {
-            $params['type'] = '_doc';
-        }
-
         $bool = new BoolQuery();
 
         foreach ($fields as $field) {
