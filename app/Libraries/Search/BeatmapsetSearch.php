@@ -6,7 +6,6 @@
 namespace App\Libraries\Search;
 
 use App\Libraries\Elasticsearch\BoolQuery;
-use App\Libraries\Elasticsearch\Es;
 use App\Libraries\Elasticsearch\FunctionScore;
 use App\Libraries\Elasticsearch\QueryHelper;
 use App\Libraries\Elasticsearch\RecordSearch;
