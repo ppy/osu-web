@@ -41,6 +41,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::group(['as' => 'beatmaps.', 'prefix' => '{beatmap}'], function () {
             Route::get('scores/users/{user}', 'BeatmapsController@userScore');
             Route::get('scores', 'BeatmapsController@scores')->name('scores');
+            Route::get('solo-scores', 'BeatmapsController@soloScores')->name('solo-scores');
             Route::put('update-owner', 'BeatmapsController@updateOwner')->name('update-owner');
         });
     });
@@ -100,9 +101,14 @@ Route::group(['middleware' => ['web']], function () {
     Route::put('beatmapsets/{beatmapset}/nominate', 'BeatmapsetsController@nominate')->name('beatmapsets.nominate');
     Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['destroy', 'index', 'show', 'update']]);
 
-    Route::group(['prefix' => 'scores/{mode}', 'as' => 'scores.'], function () {
+    Route::group(['prefix' => 'scores', 'as' => 'scores.'], function () {
+        // make sure it's matched before {mode}/{score}
         Route::get('{score}/download', 'ScoresController@download')->name('download');
-        Route::get('{score}', 'ScoresController@show')->name('show-legacy');
+
+        Route::group(['prefix' => '{mode}'], function () {
+            Route::get('{score}/download', 'ScoresController@download')->name('download-legacy');
+            Route::get('{score}', 'ScoresController@show')->name('show-legacy');
+        });
     });
     Route::resource('scores', 'ScoresController', ['only' => ['show']]);
 
@@ -251,6 +257,8 @@ Route::group(['middleware' => ['web']], function () {
         Route::resource('rooms', 'RoomsController', ['only' => ['show']]);
     });
 
+    Route::get('news/{tumblrId}', 'NewsController@redirect');
+
     Route::group(['as' => 'oauth.', 'prefix' => 'oauth', 'namespace' => 'OAuth'], function () {
         Route::resource('authorized-clients', 'AuthorizedClientsController', ['only' => ['destroy']]);
         Route::resource('clients', 'ClientsController', ['except' => ['create', 'edit', 'show']]);
@@ -290,7 +298,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('users/{user}/posts', 'UsersController@posts')->name('users.posts');
     Route::get('users/{user}/{mode?}', 'UsersController@show')->name('users.show');
-    Route::resource('users', 'UsersController', ['only' => ['index', 'store']]);
+    Route::resource('users', 'UsersController', ['only' => ['store']]);
 
     Route::get('wiki/{locale}/Sitemap', 'WikiController@sitemap')->name('wiki.sitemap');
     Route::get('wiki/images/{path}', 'WikiController@image')->name('wiki.image')->where('path', '.+');
@@ -377,6 +385,7 @@ Route::group(['middleware' => ['web']], function () {
 
 // API
 // require-scopes is not in the api group at the moment to reduce the number of things that need immediate fixing.
+// There's also a different group which skips throttle middleware.
 Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', ThrottleRequests::getApiThrottle(), 'require-scopes']], function () {
     Route::group(['prefix' => 'v2'], function () {
         Route::group(['as' => 'beatmaps.', 'prefix' => 'beatmaps'], function () {
@@ -471,9 +480,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         //   GET /api/v2/beatmapsets/search/:filters
         Route::get('beatmapsets/search/{filters?}', 'BeatmapsetsController@search');
         //   GET /api/v2/beatmapsets/lookup
-        Route::get('beatmapsets/lookup', 'API\BeatmapsetsController@lookup');
-        //   GET /api/v2/beatmapsets/:beatmapset/download
-        Route::get('beatmapsets/{beatmapset}/download', 'BeatmapsetsController@download');
+        Route::get('beatmapsets/lookup', 'BeatmapsetsController@lookup');
         //   GET /api/v2/beatmapsets/:beatmapset_id
         Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['show']]);
 
@@ -516,6 +523,12 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
 
         Route::get('wiki/{locale}/{path}', 'WikiController@show')->name('wiki.show')->where('path', '.+');
     });
+});
+
+// Duplicate of the other api group but without throttle.
+Route::group(['as' => 'api.', 'prefix' => 'api/v2', 'middleware' => ['api', 'require-scopes']], function () {
+    //   GET /api/v2/beatmapsets/:beatmapset/download
+    Route::get('beatmapsets/{beatmapset}/download', 'BeatmapsetsController@download');
 });
 
 // Callbacks for legacy systems to interact with

@@ -5,9 +5,9 @@
 
 return [
     'all_read' => 'Все уведомления прочитаны!',
-    'delete' => 'Очистить :type',
+    'delete' => 'Очистить',
     'loading' => 'Загрузка непрочитанных уведомлений...',
-    'mark_read' => 'Очистить :type',
+    'mark_read' => 'Прочитать',
     'none' => 'Уведомлений нет',
     'see_all' => 'см. все уведомления',
     'see_channel' => 'перейти в чат',
@@ -38,9 +38,9 @@ return [
                 'beatmapset_discussion_lock' => 'Карта ":title" заблокирована для обсуждений.',
                 'beatmapset_discussion_lock_compact' => 'Обсуждение было заблокировано',
                 'beatmapset_discussion_post_new' => ':username опубликовал новое сообщение в обсуждениях карты ":title".',
-                'beatmapset_discussion_post_new_empty' => 'Новая публикация в «:title» от :username',
-                'beatmapset_discussion_post_new_compact' => 'Новая публикация от :username: «:content»',
-                'beatmapset_discussion_post_new_compact_empty' => 'Новая публикация от :username',
+                'beatmapset_discussion_post_new_empty' => 'Новый пост в ":title" от :username',
+                'beatmapset_discussion_post_new_compact' => 'Новый пост от :username: ":content"',
+                'beatmapset_discussion_post_new_compact_empty' => 'Новый пост от :username',
                 'beatmapset_discussion_review_new' => 'Новый отзыв на ":title" от :username, содержащий проблемы: :problems, предложения: :suggestions, похвалы: :praises',
                 'beatmapset_discussion_review_new_compact' => 'Новый отзыв от :username, содержащий проблемы: :problems, предложения: :suggestions, похвалы: :praises',
                 'beatmapset_discussion_unlock' => 'Карта ":title" разблокирована для обсуждений.',
@@ -240,6 +240,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username создал новую карту',
+                'user_beatmapset_revive' => '',
             ],
         ],
     ],

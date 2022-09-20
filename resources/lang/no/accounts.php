@@ -15,7 +15,6 @@ return [
         ],
 
         'email' => [
-            'current' => 'nåværende e-post',
             'new' => 'ny e-post',
             'new_confirmation' => 'bekreft e-post',
             'title' => 'E-post',
@@ -62,7 +61,7 @@ return [
             'comment_new' => 'nye kommentar',
             'forum_topic_reply' => 'emne svar',
             'mail' => 'e-post',
-            'mapping' => '',
+            'mapping' => 'beatmap mapper',
             'push' => 'trykk',
             'user_achievement_unlock' => 'brukerens medalje ulåst',
         ],

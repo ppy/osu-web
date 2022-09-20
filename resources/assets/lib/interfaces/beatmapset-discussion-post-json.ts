@@ -14,11 +14,24 @@ interface BeatmapsetDiscussionPostDefaultAttributes {
   deleted_by_id?: number;
   id: number;
   last_editor_id?: number;
-  message: string;
-  system: boolean;
   updated_at: string;
   user_id: number;
 }
 
-type BeatmapsetDiscussionPostJson = BeatmapsetDiscussionPostDefaultAttributes & Partial<BeatmapsetDiscussionPostAvailableIncludes>;
+type BeatmapsetDiscussionPostBase = BeatmapsetDiscussionPostDefaultAttributes & Partial<BeatmapsetDiscussionPostAvailableIncludes>;
+
+export type BeatmapsetDiscussionMessagePostJson = BeatmapsetDiscussionPostBase & {
+  message: string;
+  system: false;
+};
+
+export type BeatmapsetDiscussionSystemPostJson = BeatmapsetDiscussionPostBase & {
+  message: {
+    type: 'resolve';
+    value: boolean;
+  };
+  system: true;
+};
+
+type BeatmapsetDiscussionPostJson = BeatmapsetDiscussionMessagePostJson | BeatmapsetDiscussionSystemPostJson;
 export default BeatmapsetDiscussionPostJson;

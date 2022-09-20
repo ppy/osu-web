@@ -40,6 +40,7 @@ class RoomTransformer extends TransformerAbstract
             'active' => $room->ends_at === null || Carbon::now()->between($room->starts_at, $room->ends_at),
             'has_password' => $room->password !== null,
             'queue_mode' => $room->queue_mode,
+            'auto_skip' => $room->auto_skip,
         ];
     }
 

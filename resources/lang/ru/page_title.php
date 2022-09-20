@@ -38,7 +38,7 @@ return [
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'главная страница',
+            'edit' => 'настройки',
             'verify_link' => 'верификация аккаунта',
         ],
         'artist_tracks_controller' => [
@@ -48,7 +48,7 @@ return [
             '_' => 'избранные исполнители',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => 'публикации в обсуждениях карт',
+            '_' => 'посты в обсуждениях карт',
         ],
         'beatmap_discussions_controller' => [
             '_' => 'обсуждения карты',
@@ -83,10 +83,10 @@ return [
             '_' => 'конкурсы',
         ],
         'follows_controller' => [
-            'index' => 'главная страница',
+            'index' => 'настройки',
         ],
         'friends_controller' => [
-            'index' => 'главная страница',
+            'index' => 'друзья',
         ],
         'groups_controller' => [
             'show' => 'группы',

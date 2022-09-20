@@ -222,6 +222,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return $this->hasMany(BeatmapDiscussion::class);
     }
 
+    public function bssProcessQueues()
+    {
+        return $this->hasMany(BssProcessQueue::class);
+    }
+
     public function recentFavourites($limit = 50)
     {
         $favourites = FavouriteBeatmapset::where('beatmapset_id', $this->beatmapset_id)
@@ -826,6 +831,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             $this->update(['play_count' => 0]);
             $this->beatmaps()->update(['playcount' => 0, 'passcount' => 0]);
             $this->setApproved('ranked', null);
+            $this->bssProcessQueues()->create();
 
             // global event
             Event::generate('beatmapsetApprove', ['beatmapset' => $this]);

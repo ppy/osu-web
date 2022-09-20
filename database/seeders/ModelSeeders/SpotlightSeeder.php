@@ -83,12 +83,12 @@ class SpotlightSeeder extends Seeder
             // users
             $users = User::orderByRaw('RAND()')->limit(1000)->get();
 
-            foreach (Beatmap::MODES as $mode => $v) {
+            foreach (Beatmap::MODES as $ruleset => $rulesetId) {
                 // beatmaps
-                $beatmaps = Beatmap::where('playmode', $v)->orderByRaw('RAND()')->limit(rand(4, 10))->get();
+                $beatmaps = Beatmap::where('playmode', $rulesetId)->orderByRaw('RAND()')->limit(rand(4, 10))->get();
                 $beatmapsetIds = array_unique($beatmaps->pluck('beatmapset_id')->toArray());
 
-                DB::connection('mysql-charts')->table($spotlight->beatmapsetsTableName($mode))->insert(
+                DB::connection('mysql-charts')->table($spotlight->beatmapsetsTableName($ruleset))->insert(
                     array_map(function ($id) {
                         return ['beatmapset_id' => $id];
                     }, $beatmapsetIds)
@@ -96,13 +96,13 @@ class SpotlightSeeder extends Seeder
 
                 foreach ($users as $user) {
                     // user_stats
-                    $stats = factory(UserStatisticsModel::getClass($mode))->make(['user_id' => $user->user_id]);
-                    $stats->setTable($spotlight->userStatsTableName($mode));
+                    $stats = factory(UserStatisticsModel::getClass($ruleset))->make(['user_id' => $user->user_id]);
+                    $stats->setTable($spotlight->userStatsTableName($ruleset));
 
                     $stats->save();
 
                     // scores
-                    $scoresClass = ScoresBestModel::getClass($v);
+                    $scoresClass = ScoresBestModel::getClass($ruleset);
                     $possible_ranks = ['A', 'S', 'B', 'SH', 'XH', 'X'];
 
                     foreach ($beatmaps as $beatmap) {
@@ -124,7 +124,7 @@ class SpotlightSeeder extends Seeder
                         ]);
 
                         $score->setConnection('mysql-charts');
-                        $score->setTable($spotlight->bestScoresTableName($mode));
+                        $score->setTable($spotlight->bestScoresTableName($ruleset));
                         $score->save();
                     }
                 }

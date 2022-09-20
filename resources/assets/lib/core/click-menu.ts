@@ -98,7 +98,6 @@ export default class ClickMenu {
     const tree = this.tree();
 
     e.preventDefault();
-    e.stopPropagation();
 
     const target = menu.dataset.clickMenuTarget;
     let next = target;

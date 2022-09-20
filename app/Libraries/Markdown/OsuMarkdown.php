@@ -91,6 +91,8 @@ class OsuMarkdown
                 'html_input' => 'allow',
             ],
             'osu_extension' => [
+                'attributes_allowed' => ['flag', 'id'],
+                'custom_container_inline' => true,
                 'fix_wiki_url' => true,
                 'generate_toc' => true,
                 'record_first_image' => true,

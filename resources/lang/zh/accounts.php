@@ -15,7 +15,6 @@ return [
         ],
 
         'email' => [
-            'current' => '当前邮箱地址',
             'new' => '新邮箱地址',
             'new_confirmation' => '确认新邮箱地址',
             'title' => '邮箱',
@@ -69,7 +68,7 @@ return [
     ],
 
     'oauth' => [
-        'authorized_clients' => '已授权的第三应用',
+        'authorized_clients' => '已授权的第三方',
         'own_clients' => '拥有的客户端',
         'title' => '开放授权',
     ],

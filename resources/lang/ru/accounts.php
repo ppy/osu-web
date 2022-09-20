@@ -15,7 +15,6 @@ return [
         ],
 
         'email' => [
-            'current' => 'текущая почта',
             'new' => 'новая почта',
             'new_confirmation' => 'повторите почту',
             'title' => 'Смена почты',
@@ -62,7 +61,7 @@ return [
             'comment_new' => 'новые комментарии',
             'forum_topic_reply' => 'ответы на форуме',
             'mail' => 'почта',
-            'mapping' => 'созданные карты',
+            'mapping' => 'маппер',
             'push' => 'пуши',
             'user_achievement_unlock' => 'новые медали',
         ],

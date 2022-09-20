@@ -11,11 +11,13 @@ return [
 
     'cannot_send' => [
         'channel' => 'Vous ne pouvez pas envoyer de messages dans ce canal pour le moment. Cela peut être dû à une des raisons suivantes :',
-        'user' => 'Vous ne pouvez pas envoyer de messages à cet utilisateur pour le moment. Cela peut être dû à une des raisons suivantes :',
+        'user' => 'Vous ne pouvez pas envoyer de messages à cet utilisateur pour le moment.',
     ],
 
     'channels' => [
+        'confirm_part' => 'Voulez-vous masquer ce canal ? Vous recevrez toujours des messages de ce canal.',
         'create' => 'créer une annonce',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Annonces',
@@ -45,7 +47,7 @@ return [
 
     'input' => [
         'create' => 'Créer',
-        'disabled' => 'impossible d’envoyer le message...',
+        'disabled' => 'impossible d\'envoyer un message...',
         'disconnected' => 'Déconnecté',
         'placeholder' => 'saisissez le message...',
         'send' => 'Envoyer',

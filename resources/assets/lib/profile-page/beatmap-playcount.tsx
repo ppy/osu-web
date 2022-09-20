@@ -6,10 +6,10 @@ import StringWithComponent from 'components/string-with-component';
 import { UserLink } from 'components/user-link';
 import BeatmapPlaycountJson from 'interfaces/beatmap-playcount-json';
 import GameMode from 'interfaces/game-mode';
-import { route } from 'laroute';
 import * as React from 'react';
 import { getArtist, getTitle } from 'utils/beatmap-helper';
 import { formatNumber } from 'utils/html';
+import { beatmapUrl } from 'utils/url';
 
 const bn = 'beatmap-playcount';
 
@@ -27,11 +27,11 @@ export default class BeatmapPlaycount extends React.PureComponent<Props> {
       throw new Error('playcount JSON is missing beatmap or beatmapset include');
     }
 
-    const beatmapUrl = route('beatmaps.show', { beatmap: beatmap.id, mode: this.props.currentMode });
+    const url = beatmapUrl(beatmap, this.props.currentMode);
 
     return (
       <div className={bn}>
-        <a className={`${bn}__cover`} href={beatmapUrl}>
+        <a className={`${bn}__cover`} href={url}>
           <BeatmapsetCover beatmapset={beatmapset} modifiers='full' size='list' />
           <div className={`${bn}__cover-count`}>
             {this.renderPlaycountText()}
@@ -40,7 +40,7 @@ export default class BeatmapPlaycount extends React.PureComponent<Props> {
         <div className={`${bn}__detail`}>
           <div className={`${bn}__info`}>
             <div className={`${bn}__info-row u-ellipsis-overflow`}>
-              <a className={`${bn}__title`} href={beatmapUrl}>
+              <a className={`${bn}__title`} href={url}>
                 {`${getTitle(beatmapset)} [${beatmap.version}] `}
                 <span className={`${bn}__title-artist`}>
                   {osu.trans('users.show.extra.beatmaps.by_artist', { artist: getArtist(beatmapset) })}

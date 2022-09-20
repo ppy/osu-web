@@ -9,6 +9,8 @@ use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\RecordSearch;
 use App\Models\Solo\Score;
 use Ds\Set;
+use Exception;
+use LaravelRedis;
 
 class ScoreSearch extends RecordSearch
 {
@@ -23,6 +25,11 @@ class ScoreSearch extends RecordSearch
             $params ?? new ScoreSearchParams(),
             Score::class
         );
+    }
+
+    public function getActiveSchemas(): array
+    {
+        return LaravelRedis::smembers('osu-queue:score-index:'.config('osu.elasticsearch.prefix').'active-schemas');
     }
 
     public function getQuery(): BoolQuery
@@ -42,32 +49,7 @@ class ScoreSearch extends RecordSearch
             $query->mustNot(['terms' => ['mods' => $this->params->excludeMods]]);
         }
 
-        $mods = $this->params->mods;
-        if ($mods !== null && count($mods) > 0) {
-            $modsHelper = app('mods');
-            $allMods = new Set(array_keys($modsHelper->mods[$this->params->rulesetId]));
-            $allMods->remove('PF', 'SD', 'MR');
-
-            if (in_array('NM', $mods, true)) {
-                $mods = [];
-            }
-
-            $allSearchMods = [];
-            foreach ($mods as $mod) {
-                $searchMods = [$mod];
-                $impliedBy = array_search_null($mod, $modsHelper::IMPLIED_MODS);
-                if ($impliedBy !== null) {
-                    $searchMods[] = $impliedBy;
-                }
-                $query->filter(['terms' => ['mods' => $searchMods]]);
-                $allSearchMods = [...$allSearchMods, ...$searchMods];
-            }
-
-            $excludedMods = array_values(array_diff($allMods->toArray(), $allSearchMods));
-            if (count($excludedMods) > 0) {
-                $query->mustNot(['terms' => ['mods' => $excludedMods]]);
-            }
-        }
+        $this->addModsFilter($query);
 
         switch ($this->params->getType()) {
             case 'country':
@@ -94,5 +76,94 @@ class ScoreSearch extends RecordSearch
         }
 
         return $query;
+    }
+
+    public function indexWait(float $maxWaitSecond = 5): void
+    {
+        $count = Score::indexable()->count();
+        $loopWait = 500000; // 0.5s in microsecond
+        $loops = (int) ceil($maxWaitSecond * 1000000.0 / $loopWait);
+
+        for ($i = 0; $i < $loops; $i++) {
+            usleep($loopWait);
+            $this->refresh();
+            $indexedCount = $this->client()->count(['index' => $this->index])['count'];
+            if ($indexedCount === $count) {
+                return;
+            }
+        }
+
+        throw new Exception("Indexable and indexed score counts still don't match. Queue runner is probably either having problem, not running, or too slow");
+    }
+
+    public function queueForIndex(?array $schemas = null, array $ids): void
+    {
+        $count = count($ids);
+
+        if ($count === 0) {
+            return;
+        }
+
+        $schemas ??= $this->getActiveSchemas();
+
+        foreach ($schemas as $schema) {
+            LaravelRedis::lpush("osu-queue:score-index-{$schema}", ...array_map(
+                fn (int $id): string => json_encode(['ScoreId' => $id]),
+                $ids,
+            ));
+        }
+    }
+
+    public function setSchema(string $schema): void
+    {
+        LaravelRedis::set('osu-queue:score-index:'.config('osu.elasticsearch.prefix').'schema', $schema);
+    }
+
+    private function addModsFilter(BoolQuery $query): void
+    {
+        $mods = $this->params->mods;
+        if ($mods === null || count($mods) === 0) {
+            return;
+        }
+
+        $modsHelper = app('mods');
+        $allMods = $this->params->rulesetId === null
+            ? $modsHelper->allIds
+            : new Set(array_keys($modsHelper->mods[$this->params->rulesetId]));
+        $allMods->remove('PF', 'SD', 'MR');
+
+        $allSearchMods = [];
+        foreach ($mods as $mod) {
+            if ($mod === 'NM') {
+                $noModSubQuery ??= (new BoolQuery())->mustNot(['terms' => ['mods' => $allMods->toArray()]]);
+                continue;
+            }
+            $modsSubQuery ??= new BoolQuery();
+            $searchMods = [$mod];
+            $impliedBy = array_search_null($mod, $modsHelper::IMPLIED_MODS);
+            if ($impliedBy !== null) {
+                $searchMods[] = $impliedBy;
+            }
+            $modsSubQuery->filter(['terms' => ['mods' => $searchMods]]);
+            $allSearchMods = [...$allSearchMods, ...$searchMods];
+        }
+
+        if (isset($modsSubQuery)) {
+            $excludedMods = array_values(array_diff($allMods->toArray(), $allSearchMods));
+            if (count($excludedMods) > 0) {
+                $modsSubQuery->mustNot(['terms' => ['mods' => $excludedMods]]);
+            }
+        }
+
+        foreach ([$noModSubQuery ?? null, $modsSubQuery ?? null] as $subQuery) {
+            if ($subQuery !== null) {
+                $shouldSubQueries ??= (new BoolQuery())->shouldMatch(1);
+                $shouldSubQueries->should($subQuery);
+            }
+        }
+
+        if (isset($shouldSubQueries)) {
+            $query->must($shouldSubQueries);
+        }
     }
 }

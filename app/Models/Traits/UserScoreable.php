@@ -85,7 +85,7 @@ trait UserScoreable
     public function beatmapBestScores(string $mode, int $limit, int $offset = 0, $with = [])
     {
         $ids = array_slice($this->beatmapBestScoreIds($mode), $offset, $limit);
-        $clazz = Best\Model::getClassByString($mode);
+        $clazz = Best\Model::getClass($mode);
 
         $results = $clazz::whereIn('score_id', $ids)->orderByField('score_id', $ids)->with($with)->get();
 
@@ -93,7 +93,6 @@ trait UserScoreable
         // also preload the user relation
         $position = $offset;
         foreach ($results as $result) {
-            $result->position = $position;
             $result->weight = pow(0.95, $position);
             $result->setRelation('user', $this);
             $position++;

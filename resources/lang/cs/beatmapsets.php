@@ -12,7 +12,7 @@ return [
     ],
 
     'cover' => [
-        'deleted' => '',
+        'deleted' => 'Vymazaná beatmapa',
     ],
 
     'download' => [
@@ -96,7 +96,7 @@ return [
         ],
 
         'hype' => [
-            'action' => 'Podpoř tuto mapu, pokud sis užili její hraní, a pomoz jí postoupit do <strong>Hodnoceného</strong> stavu.',
+            'action' => 'Podpoř tuto mapu, pokud sis užili její hraní, a pomoz jí postoupit do <strong>Schváleného</strong> stavu.',
 
             'current' => [
                 '_' => 'Tato mapa je právě :status.',
@@ -152,7 +152,7 @@ return [
             'friend' => 'Žebříček přátel',
             'global' => 'Celosvětové žebříčky',
             'supporter-link' => 'Klikněte <a href=":link">zde</a> pro zobrazení všech výhod, které dostanete!',
-            'supporter-only' => 'Pro zobrazení státních a žebříčků přátel potřebujete funkci Supportera!',
+            'supporter-only' => 'Pro zobrazení národních žebříčků a žebříčků přátel potřebujete funkci Supportera!',
             'title' => 'Tabulka výsledků',
 
             'headers' => [
@@ -174,7 +174,7 @@ return [
                 'friend' => 'Nikdo z vašich přátel na této mapě zatím žádné skóre nenahrál!',
                 'global' => 'Zatím žádné skóre. Možná by ses o to měl pokusit!',
                 'loading' => 'Načítání skóre...',
-                'unranked' => 'Nehodnocená beatmapa.',
+                'unranked' => 'Neschválená beatmapa.',
             ],
             'score' => [
                 'first' => 'V čele',
@@ -205,7 +205,7 @@ return [
         ],
 
         'status' => [
-            'ranked' => 'Hodnocené',
+            'ranked' => 'Schválené',
             'approved' => 'Schválené',
             'loved' => 'Oblíbené',
             'qualified' => 'Kvalifikované',
@@ -216,6 +216,6 @@ return [
     ],
 
     'spotlight_badge' => [
-        'label' => '',
+        'label' => 'Zvýraznění',
     ],
 ];

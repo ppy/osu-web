@@ -319,27 +319,24 @@ function cursor_from_params($params): ?array
 
 function datadog_timing(callable $callable, $stat, array $tag = null)
 {
-    $withClockwork = app('clockwork.support')->isEnabled();
+    $startTime = microtime(true);
 
-    if ($withClockwork) {
+    $result = $callable();
+
+    $endTime = microtime(true);
+
+    if (app('clockwork.support')->isEnabled()) {
         // spaces used so clockwork doesn't run across the whole screen.
         $description = $stat
                        .' '.($tag['type'] ?? null)
                        .' '.($tag['index'] ?? null);
 
-        clock()->event($description)->start();
+        $clockworkEvent = clock()->event($description);
+        $clockworkEvent->start = $startTime;
+        $clockworkEvent->end = $endTime;
     }
 
-    $start = microtime(true);
-
-    $result = $callable();
-
-    if ($withClockwork) {
-        clock()->event($description)->end();
-    }
-
-    $duration = microtime(true) - $start;
-    Datadog::microtiming($stat, $duration, 1, $tag);
+    Datadog::microtiming($stat, $endTime - $startTime, 1, $tag);
 
     return $result;
 }
@@ -1420,15 +1417,6 @@ function get_class_basename($className)
 function get_class_namespace($className)
 {
     return substr($className, 0, strrpos($className, '\\'));
-}
-
-function get_model_basename($model)
-{
-    if (!is_string($model)) {
-        $model = get_class($model);
-    }
-
-    return str_replace('\\', '', snake_case(substr($model, strlen('App\\Models\\'))));
 }
 
 function ci_file_search($fileName)

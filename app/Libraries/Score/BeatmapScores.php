@@ -27,30 +27,7 @@ class BeatmapScores
 
     public function all(): Collection
     {
-        $limit = $this->baseParams->size;
-        $params = clone $this->baseParams;
-        $params->size = $limit + 50;
-        $search = new ScoreSearch($params);
-
-        $nextCursor = null;
-        $hasNext = true;
-        $this->result = [];
-
-        while ($hasNext) {
-            if ($nextCursor !== null) {
-                $search->searchAfter(array_values($nextCursor));
-            }
-            $search->response();
-            $search->assertNoError();
-
-            $this->append($search->records()->all());
-
-            if (count($this->result) >= $limit) {
-                break;
-            }
-            $nextCursor = $search->getSortCursor();
-            $hasNext = $nextCursor !== null;
-        }
+        $this->result = (new FetchDedupedScores('user_id', clone $this->baseParams))->all();
 
         return new Collection(array_values($this->result));
     }
@@ -90,29 +67,13 @@ class BeatmapScores
         }
 
         $params = clone $this->baseParams;
-        $params->limit = 1;
+        $params->size = 1;
         $params->userId = $userId;
-        $params->setSort(null);
         $search = new ScoreSearch($params);
 
         $search->response();
         $search->assertNoError();
 
         return $search->records()[0] ?? null;
-    }
-
-    private function append(array $newScores): void
-    {
-        foreach ($newScores as $score) {
-            $userId = $score->user_id;
-
-            if (!isset($this->result[$userId])) {
-                $this->result[$userId] = $score;
-
-                if (count($this->result) >= $this->baseParams->size) {
-                    return;
-                }
-            }
-        }
     }
 }

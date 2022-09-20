@@ -10,12 +10,11 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => '',
-            'rules_link' => '',
+            'rules' => 'Prosimo, da naj se tvoj avatar drži :link.<br/>To pomeni, da mora biti <strong>primerno za vse starosti</strong>. t.j. Nič golote, kletvic ali druge neželene vsebine.',
+            'rules_link' => 'pravila skupnosti',
         ],
 
         'email' => [
-            'current' => 'trenutna e-pošta',
             'new' => 'nova e-pošta',
             'new_confirmation' => 'potrditev e-pošte',
             'title' => 'E-pošta',
@@ -48,42 +47,42 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => '',
-        'beatmapset_disqualify' => '',
-        'comment_reply' => '',
-        'title' => '',
-        'topic_auto_subscribe' => '',
+        'beatmapset_discussion_qualified_problem' => 'prejmi obvestila o novih težavah na kvalificiranih beatmapah pri naslednjih modifikatorjih',
+        'beatmapset_disqualify' => 'prejmi obvestila ko so beatmape pri naslednjih modifikatorjih diskvalificirane',
+        'comment_reply' => 'prejmi obvestila, ko nekdo odgovori na tvoj komentar',
+        'title' => 'Obvestila',
+        'topic_auto_subscribe' => 'avtomatsko omogoči obvestila o novih temah na forumu v tvoji lasti',
 
         'options' => [
-            '_' => '',
-            'beatmap_owner_change' => '',
-            'beatmapset:modding' => '',
-            'channel_message' => '',
-            'comment_new' => '',
-            'forum_topic_reply' => '',
-            'mail' => '',
-            'mapping' => '',
-            'push' => '',
-            'user_achievement_unlock' => '',
+            '_' => 'možnosti pošiljanja',
+            'beatmap_owner_change' => 'težavnost za goste',
+            'beatmapset:modding' => 'modificiranje beatmape',
+            'channel_message' => 'zasebna sporočila',
+            'comment_new' => 'novi komentarji',
+            'forum_topic_reply' => 'odgovor na temo',
+            'mail' => 'e-pošta',
+            'mapping' => 'ustvarjalec beatmap',
+            'push' => 'potisno',
+            'user_achievement_unlock' => 'uporabniška medalja odklenjena',
         ],
     ],
 
     'oauth' => [
-        'authorized_clients' => '',
-        'own_clients' => '',
-        'title' => '',
+        'authorized_clients' => 'pooblaščene stranke',
+        'own_clients' => 'zasebne stranke',
+        'title' => 'OAuth',
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '',
-        'beatmapset_title_show_original' => '',
-        'title' => '',
+        'beatmapset_show_nsfw' => 'skrij opozorila za eksplicitno vsebino v beatmapah',
+        'beatmapset_title_show_original' => 'prikaži metadata beatmape v originalnem jeziku',
+        'title' => 'Možnosti',
 
         'beatmapset_download' => [
-            '_' => '',
-            'all' => '',
-            'direct' => '',
-            'no_video' => '',
+            '_' => 'privzeti tip prenosa beatmape',
+            'all' => 'z videoposnetkom',
+            'direct' => 'odpri v osu!direct',
+            'no_video' => 'brez videoposnetka',
         ],
     ],
 
@@ -97,17 +96,17 @@ return [
 
     'privacy' => [
         'friends_only' => 'blokiranje zasebnih sporočil ljudi, ki niso na vašem seznamu prijateljev',
-        'hide_online' => '',
+        'hide_online' => 'skrij svojo prisotnost',
         'title' => 'Zasebnost',
     ],
 
     'security' => [
-        'current_session' => '',
-        'end_session' => '',
-        'end_session_confirmation' => '',
-        'last_active' => '',
-        'title' => '',
-        'web_sessions' => '',
+        'current_session' => 'trenutno',
+        'end_session' => 'Končaj sejo',
+        'end_session_confirmation' => 'Dejanje bo nemudoma končalo sejo na tej napravi. Si prepričan?',
+        'last_active' => 'Zadnje aktiven:',
+        'title' => 'Varnost',
+        'web_sessions' => 'spletne seje',
     ],
 
     'update_email' => [
@@ -119,11 +118,11 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => '',
-        'title' => '',
+        'text' => 'Zdaj lahko zapreš ta zavihek/okno',
+        'title' => 'Verifikacija je bila uspešna',
     ],
 
     'verification_invalid' => [
-        'title' => '',
+        'title' => 'Napačna ali potekla verifikacijska povezava',
     ],
 ];

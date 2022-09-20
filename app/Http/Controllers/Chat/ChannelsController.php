@@ -196,7 +196,9 @@ class ChannelsController extends Controller
         $channel = Channel::where('channel_id', $channelId)->firstOrFail();
         $user = auth()->user();
 
-        priv_check('ChatChannelRead', $channel)->ensureCan();
+        if (!$channel->hasUser($user)) {
+            abort(404);
+        }
 
         return [
             'channel' => json_item($channel, ChannelTransformer::forUser($user), ChannelTransformer::LISTING_INCLUDES),

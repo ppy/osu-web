@@ -20,10 +20,7 @@ use DB;
  */
 abstract class Model extends BaseModel implements Traits\ReportableInterface
 {
-    use Traits\Reportable, Traits\WithDbCursorHelper;
-
-    public $position = null;
-    public ?float $weight = null;
+    use Traits\Reportable, Traits\WithDbCursorHelper, Traits\WithWeightedPp;
 
     protected $macros = [
         'accurateRankCounts',
@@ -66,11 +63,6 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
         }
 
         return null;
-    }
-
-    public function weightedPp(): ?float
-    {
-        return $this->weight === null ? null : $this->weight * $this->pp;
     }
 
     public function macroForListing()
@@ -192,11 +184,7 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
     public function macroAccurateRankCounts()
     {
         return function ($query) {
-            $newQuery = clone $query;
-            // FIXME: mysql 5.6 compat
-            $newQuery->getQuery()->orders = null;
-
-            $scores = $newQuery
+            $scores = (clone $query)
                 ->select(['user_id', 'beatmap_id', 'score', 'rank'])
                 ->get();
 

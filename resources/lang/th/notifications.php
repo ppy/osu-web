@@ -87,12 +87,12 @@ return [
             '_' => 'ห้องสนทนา',
 
             'announcement' => [
-                '_' => '',
+                '_' => 'ประกาศใหม่',
 
                 'announce' => [
                     'channel_announcement' => '',
                     'channel_announcement_compact' => '',
-                    'channel_announcement_group' => '',
+                    'channel_announcement_group' => 'ประกาศจาก :username',
                 ],
             ],
 
@@ -240,6 +240,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username ได้สร้างบีทแมพใหม่',
+                'user_beatmapset_revive' => '',
             ],
         ],
     ],

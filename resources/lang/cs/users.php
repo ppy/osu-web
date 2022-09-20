@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Uživatel byl zablokován.',
+        'comment_text' => 'Tento komentář je skrytý.',
         'blocked_count' => 'blokovaných uživatelů (:count)',
         'hide_profile' => 'Skrýt profil',
+        'hide_comment' => 'skrýt',
         'not_blocked' => 'Tento uživatel není blokován.',
         'show_profile' => 'Zobrazit profil',
+        'show_comment' => 'zobrazit',
         'too_many' => 'Byl dosažen limit blockovaných uživatelů.',
         'button' => [
             'block' => 'Blokovat',
@@ -51,15 +54,15 @@ return [
 
     'disabled' => [
         'title' => 'Ale ne! Vypadá to, že váš účet byl zablokován.',
-        'warning' => "",
+        'warning' => "V případě porušení pravidla, Vezměte prosím na vědomí, že obecně existuje lhůta jednoho měsíce, během níž nebudeme zvažovat žádné žádosti o amnestii. Po tomto období nás můžete kontaktovat, pokud to považujete za nezbytné. Vezměte prosím v potaz, že vytvořením nových účtů poté, co budete mít jeden deaktivovaný, dojde k <strong>prodloužení jedno měsíčné lhůty</strong>. Vezměte prosím na vědomí, že pro <strong>každý účet, který vytváříte, dále porušujete pravidla</strong>. Velmi doporučujeme, abyste se touto cestou neubírali!",
 
         'if_mistake' => [
-            '_' => '',
+            '_' => 'Pokud se domníváte, že se jedná o chybu, můžete nás kontaktovat (přes :email nebo kliknutím na "?" v pravém dolním rohu této stránky). Vezměte prosím na vědomí, že jsme vždy plně přesvědčeni o našich akcích, protože jsou založeny na velmi spolehlivých údajích. Vyhrazujeme si právo ignorovat váš požadavek, pokud se domníváme, že jste úmyslně nepoctivý.',
             'email' => 'e-mail',
         ],
 
         'reasons' => [
-            'compromised' => '',
+            'compromised' => 'Váš účet byl považován za kompromizovaný. Může být dočasně deaktivován, dokud nebude potvrzena jeho identita.',
             'opening' => 'Je řada důvodů, které mohou vést k tomu, že váš účet bude vypnut:',
 
             'tos' => [
@@ -84,7 +87,7 @@ return [
         '_' => 'Přihlásit se',
         'button' => 'Přihlásit se',
         'button_posting' => 'Probíhá přihlášení...',
-        'email_login_disabled' => '',
+        'email_login_disabled' => 'Přihlašování e-mailem je momentálně zakázáno. Použijte prosím uživatelské jméno.',
         'failed' => 'Nesprávné přihlášení',
         'forgot' => 'Zapoměl jsi heslo?',
         'info' => 'Prosím přihlaste se pro pokračování',
@@ -177,8 +180,8 @@ return [
                     'unsupported_format' => 'Nepodporovaný formát.',
 
                     'restriction_info' => [
-                        '_' => '',
-                        'link' => '',
+                        '_' => 'Nahrávání je dostupné pouze pro :link',
+                        'link' => 'osu!supporters',
                     ],
                 ],
             ],
@@ -209,7 +212,7 @@ return [
                     'title' => 'Pohřbené Beatmapy',
                 ],
                 'guest' => [
-                    'title' => '',
+                    'title' => 'Beatmapy účasti hosta',
                 ],
                 'loved' => [
                     'title' => 'Oblíbené Beatmapy',
@@ -309,7 +312,7 @@ return [
                 'title' => 'Medaile',
             ],
             'playlists' => [
-                'title' => '',
+                'title' => 'Hry playlistu',
             ],
             'posts' => [
                 'title' => 'Příspěvky',
@@ -320,13 +323,13 @@ return [
                 'title' => 'Nedávné',
             ],
             'realtime' => [
-                'title' => '',
+                'title' => 'Hry pro více hráčů',
             ],
             'top_ranks' => [
                 'download_replay' => 'Stáhnout záznam',
                 'not_ranked' => 'Pouze hodnocené mapy vydávají pp.',
                 'pp_weight' => 'váženo na :percentage',
-                'view_details' => '',
+                'view_details' => 'Zobrazit detaily',
                 'title' => 'Umístění',
 
                 'best' => [
@@ -336,13 +339,13 @@ return [
                     'title' => 'Umístění na prvním místě',
                 ],
                 'pin' => [
-                    'to_0' => '',
-                    'to_0_done' => '',
-                    'to_1' => '',
-                    'to_1_done' => '',
+                    'to_0' => 'Odepnout',
+                    'to_0_done' => 'Skóre odepnuto',
+                    'to_1' => 'Připnout',
+                    'to_1_done' => 'Připnuté skóre',
                 ],
                 'pinned' => [
-                    'title' => '',
+                    'title' => 'Připnuté skóre',
                 ],
             ],
             'votes' => [
@@ -369,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Ban',
                         'silence' => 'Ztlumení',
+                        'tournament_ban' => 'Zákaz na turnaje',
                         'note' => 'Poznámka',
                     ],
                 ],
@@ -397,13 +401,13 @@ return [
             'placeholder' => 'Zde napiš obsah stánky',
 
             'restriction_info' => [
-                '_' => '',
+                '_' => 'Pro odemknutí této funkce musíte být :link.',
                 'link' => 'osu!supporter',
             ],
         ],
         'post_count' => [
             '_' => 'Přispěl :link',
-            'count' => ':count_delimited příspěvkem na fóru|:count_delimited příspěvky na fóru',
+            'count' => ':count_delimited příspěvkem na fóru|:count_delimited příspěvky na fóru|:count_delimited příspěvky na fóru',
         ],
         'rank' => [
             'country' => 'Státní pozice pro :mode',

@@ -143,7 +143,7 @@ return [
     ],
     'passport' => [
         'authorization_controller' => [
-            '_' => '',
+            '_' => 'アプリを認証',
         ],
     ],
     'store' => [

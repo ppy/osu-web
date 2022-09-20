@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => 'Czy na pewno chcesz ukryć ten kanał? Wciąż będziesz otrzymywać z niego wiadomości.',
         'create' => 'utwórz ogłoszenie',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Ogłoszenia',

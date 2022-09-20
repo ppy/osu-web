@@ -15,7 +15,9 @@ return [
     ],
 
     'channels' => [
+        'confirm_part' => 'Wil je dit kanaal verbergen? Je ontvangt nog steeds berichten van dit kanaal.',
         'create' => 'aankondiging maken',
+
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'Aankondigingen',
@@ -33,8 +35,8 @@ return [
 
         'labels' => [
             'description' => 'beschrijving',
-            'name' => '',
-            'users' => '',
+            'name' => 'kamer naam',
+            'users' => 'spelers om toevoegen',
         ],
     ],
 

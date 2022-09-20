@@ -40,7 +40,7 @@ return [
 
     'beatmapset_discussion_post' => [
         'discussion_locked' => 'Обсуждение закрыто.',
-        'first_post' => 'Невозможно удалить первую публикацию.',
+        'first_post' => 'Невозможно удалить первый пост.',
 
         'attributes' => [
             'message' => 'Сообщение',
@@ -73,8 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Нельзя удалить метаданные карты.',
             'beatmapset_post_no_edit' => 'Нельзя изменить метаданные карты.',
-            'first_post_no_delete' => 'Невозможно удалить первую публикацию',
-            'missing_topic' => 'В публикации отсутствует тема',
+            'first_post_no_delete' => 'Невозможно удалить первый пост',
+            'missing_topic' => 'Отсутствует тема поста',
             'only_quote' => 'Ваш ответ содержит только цитату.',
 
             'attributes' => [
@@ -126,7 +126,7 @@ return [
         'email_not_allowed' => 'Недопустимый адрес электронной почты.',
         'invalid_country' => 'Вашей страны нет в базе данных.',
         'invalid_discord' => 'Неверное имя пользователя Discord.',
-        'invalid_email' => "Это не похоже на адрес электронной почты.",
+        'invalid_email' => "Кажется, эта почта недействительна.",
         'invalid_twitter' => 'Неверное имя пользователя Twitter.',
         'too_short' => 'Новый пароль слишком короткий.',
         'unknown_duplicate' => 'Имя пользователя или почта уже занята.',

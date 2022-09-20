@@ -149,7 +149,8 @@
           "SD",
           "AT",
           "CN",
-          "RX"
+          "RX",
+          "AP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -292,6 +293,10 @@
           {
             "Name": "seed",
             "Type": "number"
+          },
+          {
+            "Name": "metronome",
+            "Type": "boolean"
           }
         ],
         "IncompatibleMods": [
@@ -463,7 +468,8 @@
           "AP",
           "SO",
           "MG",
-          "RP"
+          "RP",
+          "AS"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": false,
@@ -487,7 +493,9 @@
           "RX",
           "AP",
           "SO",
-          "MG"
+          "MG",
+          "RP",
+          "AS"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": false,
@@ -576,7 +584,12 @@
         "Name": "Wiggle",
         "Description": "They just won't stay still...",
         "Type": "Fun",
-        "Settings": [],
+        "Settings": [
+          {
+            "Name": "strength",
+            "Type": "number"
+          }
+        ],
         "IncompatibleMods": [
           "TR",
           "MG",
@@ -896,6 +909,8 @@
           "DC",
           "DT",
           "NC",
+          "AT",
+          "CN",
           "WU",
           "WD"
         ],
@@ -1237,7 +1252,8 @@
           "SD",
           "PF",
           "CN",
-          "RX"
+          "RX",
+          "AS"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": false,
@@ -1256,7 +1272,8 @@
           "PF",
           "AT",
           "CN",
-          "RX"
+          "RX",
+          "AS"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": false,
@@ -1394,6 +1411,8 @@
           "DC",
           "DT",
           "NC",
+          "AT",
+          "CN",
           "WU",
           "WD"
         ],
@@ -2482,7 +2501,8 @@
           "NF",
           "SD",
           "PF",
-          "CN"
+          "CN",
+          "AS"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": false,
@@ -2500,7 +2520,8 @@
           "SD",
           "PF",
           "AT",
-          "CN"
+          "CN",
+          "AS"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": false,
@@ -2620,6 +2641,8 @@
           "DC",
           "DT",
           "NC",
+          "AT",
+          "CN",
           "WU",
           "WD"
         ],
@@ -2631,4 +2654,3 @@
     ]
   }
 ]
-
