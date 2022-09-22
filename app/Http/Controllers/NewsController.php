@@ -123,6 +123,13 @@ class NewsController extends Controller
         }
     }
 
+    public function redirect($tumblrId)
+    {
+        $post = NewsPost::where('tumblr_id', $tumblrId)->firstOrFail();
+
+        return ujs_redirect(route('news.show', $post->slug));
+    }
+
     /**
      * Get News Post
      *

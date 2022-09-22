@@ -31,6 +31,12 @@ return [
         'progress' => [
             '_' => 'Použito :used / :max hlasů',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => '',
+            ],
+        ],
     ],
     'entry' => [
         '_' => 'vstup',

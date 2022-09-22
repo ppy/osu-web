@@ -80,7 +80,7 @@ return [
         'nsfw_toggle' => 'Explicitní označení',
         'offset_edit' => 'Offset úprava',
         'qualify' => 'Kvalifikace',
-        'rank' => 'Hodnocení',
+        'rank' => 'Schválené',
         'remove_from_loved' => 'Odstranění z Loved',
     ],
 ];

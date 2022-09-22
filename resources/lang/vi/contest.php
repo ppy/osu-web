@@ -31,6 +31,12 @@ return [
         'progress' => [
             '_' => ':used / :max người dùng bình chọn',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => '',
+            ],
+        ],
     ],
     'entry' => [
         '_' => 'bài dự thi',

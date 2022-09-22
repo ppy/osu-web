@@ -6,7 +6,7 @@ import { route } from 'laroute'
 import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { button, div, i, span, a } from 'react-dom-factories'
-import { canModeratePosts, badgeGroup } from 'utils/beatmapset-discussion-helper'
+import { badgeGroup, canModeratePosts, formatTimestamp } from 'utils/beatmapset-discussion-helper'
 import { classWithModifiers } from 'utils/css'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { discussionTypeIcons } from './discussion-type'
@@ -288,7 +288,7 @@ export class Discussion extends React.PureComponent
                 title: osu.trans 'beatmaps.discussions.resolved'
 
         div className: "#{tbn}__text",
-          BeatmapDiscussionHelper.formatTimestamp @props.discussion.timestamp
+          formatTimestamp @props.discussion.timestamp
 
 
   toggleCollapse: =>

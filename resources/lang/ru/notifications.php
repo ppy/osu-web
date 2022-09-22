@@ -240,6 +240,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username создал новую карту',
+                'user_beatmapset_revive' => '',
             ],
         ],
     ],

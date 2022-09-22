@@ -257,6 +257,8 @@ Route::group(['middleware' => ['web']], function () {
         Route::resource('rooms', 'RoomsController', ['only' => ['show']]);
     });
 
+    Route::get('news/{tumblrId}', 'NewsController@redirect');
+
     Route::group(['as' => 'oauth.', 'prefix' => 'oauth', 'namespace' => 'OAuth'], function () {
         Route::resource('authorized-clients', 'AuthorizedClientsController', ['only' => ['destroy']]);
         Route::resource('clients', 'ClientsController', ['except' => ['create', 'edit', 'show']]);

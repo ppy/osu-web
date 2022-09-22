@@ -344,7 +344,7 @@ class LegacyInterOpController extends Controller
         dispatch(new EsDocument($user));
 
         foreach (Beatmap::MODES as $modeStr => $modeId) {
-            $class = Best\Model::getClassByString($modeStr);
+            $class = Best\Model::getClass($modeStr);
             $class::queueIndexingForUser($user);
         }
         Artisan::queue('es:index-scores:queue', [

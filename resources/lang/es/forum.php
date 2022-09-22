@@ -52,7 +52,7 @@ return [
         'actions' => [
             'destroy' => 'Eliminar publicación',
             'edit' => 'Editar publicación',
-            'report' => 'Denunciar publicación',
+            'report' => 'Reportar publicación',
             'restore' => 'Restaurar publicación',
         ],
 

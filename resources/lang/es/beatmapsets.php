@@ -113,7 +113,7 @@ return [
             ],
 
             'report' => [
-                '_' => 'Si encuentra un problema con este mapa, por favor, informe de ello :link para alertar al equipo.',
+                '_' => 'Si encuentras un problema con este mapa, por favor repórtalo :link para alertar al equipo.',
                 'button' => 'Informar un problema',
                 'link' => 'aquí',
             ],

@@ -89,7 +89,7 @@ export default class ScoreboardTableRow extends React.Component<Props> {
           {`${formatNumber(score.accuracy * 100, 2)}%`}
         </TdLink>
 
-        <td className={`${bn}__cell`}>
+        <td className={`${bn}__cell u-own-layer`}>
           {score.user.country_code != null &&
             <a
               className={`${bn}__cell-content`}
