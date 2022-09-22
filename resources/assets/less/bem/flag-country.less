@@ -3,7 +3,7 @@
 
 .flag-country {
   --height: 1em;
-  --width-height-ratio: calc(100 / 75);
+  --width-height-ratio: calc(100 / 72); // Original flag svg ratio; using a different ratio turns the flag into a blurry mess on Chrome.
 
   height: var(--height);
   width: calc(var(--height) * var(--width-height-ratio));
