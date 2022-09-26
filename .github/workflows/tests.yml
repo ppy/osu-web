@@ -13,7 +13,7 @@ env:
   CACHE_DRIVER_LOCAL: array
   DB_HOST: 127.0.0.1
   DB_USERNAME: root
-  ES_SOLO_SCORES_HOST: http://localhost:9201
+  ES_SOLO_SCORES_HOST: http://localhost:9200
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   NOTIFICATION_ENDPOINT: ws://127.0.0.1:2345
   NOTIFICATION_REDIS_HOST: 127.0.0.1
@@ -74,20 +74,9 @@ jobs:
         env:
           action.auto_create_index: "false"
           discovery.type: single-node
-          # Bundled by 6.8.x image and doesn't work when auto_create_index is disabled.
-          # Doesn't seem to exist in 7.x anymore (or they fixed the index creation process).
-          xpack.watcher.enabled: "false"
-        image: elasticsearch:6.8.23
+        image: elasticsearch:7.17.6
         ports:
           - 9200:9200
-
-      elasticsearch-score:
-        env:
-          action.auto_create_index: "false"
-          discovery.type: single-node
-        image: elasticsearch:7.17.5
-        ports:
-          - 9201:9200
 
       redis:
         image: redis
@@ -101,13 +90,12 @@ jobs:
 
       osu-elastic-indexer:
         image: pppy/osu-elastic-indexer
-        # make sure the schema specified here and the one in set-schema command match
         options: >-
           -e DB_CONNECTION_STRING=Server=db;Database=osu;Uid=root
-          -e ES_HOST=http://elasticsearch-score:9200
+          -e ES_HOST=http://elasticsearch:9200
           -e REDIS_HOST=redis
           -e SCHEMA=test
-          --entrypoint sh pppy/osu-elastic-indexer -c "exec dotnet osu.ElasticIndexer.dll queue"
+          --entrypoint sh pppy/osu-elastic-indexer -c "exec dotnet osu.ElasticIndexer.dll queue --force-version --wait"
 
       osu-notification-server:
         env:
@@ -159,7 +147,6 @@ jobs:
           php artisan es:create-search-blacklist
           php artisan es:index-documents --yes
           php artisan es:index-wiki --create-only --yes
-          php artisan es:index-scores:set-schema --schema test
 
       - name: Generate docs
         run: php artisan scribe:generate
