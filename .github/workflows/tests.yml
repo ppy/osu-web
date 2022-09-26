@@ -90,7 +90,6 @@ jobs:
 
       osu-elastic-indexer:
         image: pppy/osu-elastic-indexer
-        # make sure the schema specified here and the one in set-schema command match
         options: >-
           -e DB_CONNECTION_STRING=Server=db;Database=osu;Uid=root
           -e ES_HOST=http://elasticsearch:9200
