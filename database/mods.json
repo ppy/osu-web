@@ -386,6 +386,10 @@
         "Type": "Conversion",
         "Settings": [
           {
+            "Name": "angle_sharpness",
+            "Type": "number"
+          },
+          {
             "Name": "seed",
             "Type": "number"
           }
