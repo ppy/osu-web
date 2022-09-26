@@ -74,6 +74,7 @@ class UserCompactTransformer extends TransformerAbstract
         'page',
         'pending_beatmapset_count',
         'previous_usernames',
+        'rank_history',
         'ranked_beatmapset_count',
         'replays_watched_counts',
         'scores_best_count',
@@ -86,14 +87,6 @@ class UserCompactTransformer extends TransformerAbstract
         'unread_pm_count',
         'user_achievements',
         'user_preferences',
-        // TODO: should be changed to rank_history
-        // TODO: should be alphabetically ordered but lazer relies on being after statistics. can revert to alphabetical after 2020-05-01
-        'rankHistory',
-        'rank_history',
-
-        // TODO: deprecated
-        'ranked_and_approved_beatmapset_count',
-        'unranked_beatmapset_count',
     ];
 
     protected $permissions = [
@@ -339,11 +332,6 @@ class UserCompactTransformer extends TransformerAbstract
             : $this->item($rankHistoryData, new RankHistoryTransformer());
     }
 
-    public function includeRankedAndApprovedBeatmapsetCount(User $user)
-    {
-        return $this->includeRankedBeatmapsetCount($user);
-    }
-
     public function includeRankedBeatmapsetCount(User $user)
     {
         return $this->primitive($user->profileBeatmapsetCountByGroupedStatus('ranked'));
@@ -392,11 +380,6 @@ class UserCompactTransformer extends TransformerAbstract
     public function includeSupportLevel(User $user)
     {
         return $this->primitive($user->supportLevel());
-    }
-
-    public function includeUnrankedBeatmapsetCount(User $user)
-    {
-        return $this->includePendingBeatmapsetCount($user);
     }
 
     public function includeUnreadPmCount(User $user)
