@@ -3,25 +3,20 @@
 
 import GameMode from 'interfaces/game-mode';
 import SoloScoreJson, { SoloScoreStatisticsAttribute } from 'interfaces/solo-score-json';
-import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import modNames from 'mod-names.json';
 import core from 'osu-core-singleton';
 import { rulesetName } from './beatmap-helper';
 
-export function canBeReported(score: SoloScoreJson, user?: UserJson) {
-  user ??= score.user;
-
+export function canBeReported(score: SoloScoreJson) {
   return (score.best_id != null || score.type === 'solo_score')
-    && user != null
-    && !user.is_deleted
     && core.currentUser != null
     && score.user_id !== core.currentUser.id;
 }
 
 // TODO: move to application state repository thingy later
-export function hasMenu(score: SoloScoreJson, user?: UserJson) {
-  return canBeReported(score, user) || hasReplay(score) || hasShow(score) || core.scorePins.canBePinned(score);
+export function hasMenu(score: SoloScoreJson) {
+  return canBeReported(score) || hasReplay(score) || hasShow(score) || core.scorePins.canBePinned(score);
 }
 
 export function hasReplay(score: SoloScoreJson) {

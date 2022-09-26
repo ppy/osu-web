@@ -14,14 +14,13 @@ import { ReportReportable } from './report-reportable';
 
 interface Props {
   score: SoloScoreJson;
-  user?: UserJson;
+  user: UserJson;
 }
 
 @observer
 export class PlayDetailMenu extends React.Component<Props> {
   render() {
-    const { score } = this.props;
-    const user = this.props.user ?? score.user;
+    const { score, user } = this.props;
     const ruleset = rulesetName(score.ruleset_id);
 
     const children = (dismiss: () => void) => (
@@ -51,7 +50,7 @@ export class PlayDetailMenu extends React.Component<Props> {
           </a>
         )}
 
-        {user != null && canBeReported(score, user) && (
+        {canBeReported(score) && (
           <ReportReportable
             baseKey='scores'
             className='simple-menu__item'
