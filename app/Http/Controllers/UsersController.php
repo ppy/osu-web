@@ -723,6 +723,7 @@ class UsersController extends Controller
                     $transformer = new ScoreTransformer();
                     $includes = [...ScoreTransformer::USER_PROFILE_INCLUDES, 'weight'];
                     $collection = $user->beatmapBestScores($options['mode'], $perPage, $offset, ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
+                    $userRelationColumn = 'user';
                     break;
                 case 'scoresFirsts':
                     $transformer = new ScoreTransformer();
@@ -731,6 +732,7 @@ class UsersController extends Controller
                         ->visibleUsers()
                         ->reorderBy('score_id', 'desc')
                         ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
+                    $userRelationColumn = 'user';
                     break;
                 case 'scoresPinned':
                     $transformer = new ScoreTransformer();
@@ -742,6 +744,7 @@ class UsersController extends Controller
                         ->with(array_map(fn ($include) => "score.{$include}", ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD))
                         ->reorderBy('display_order', 'asc');
                     $collectionFn = fn ($pins) => $pins->map->score;
+                    $userRelationColumn = 'user';
                     break;
                 case 'scoresRecent':
                     $transformer = new ScoreTransformer();
@@ -749,6 +752,7 @@ class UsersController extends Controller
                     $query = $user->scores($options['mode'], true)
                         ->includeFails($options['includeFails'] ?? false)
                         ->with([...ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD, 'best']);
+                    $userRelationColumn = 'user';
                     break;
             }
 
@@ -757,6 +761,12 @@ class UsersController extends Controller
 
                 if (isset($collectionFn)) {
                     $collection = $collectionFn($collection);
+                }
+            }
+
+            if (isset($userRelationColumn)) {
+                foreach ($collection as $item) {
+                    $item->setRelation($userRelationColumn, $user);
                 }
             }
 
