@@ -25,6 +25,9 @@ For a full list of changes, see the
 
 ## Breaking Changes
 
+### 2022-09-27
+- `user` include in [Get User Scores](#get-user-scores) response has been deprecated, it will be removed in the near future.
+
 ### 2022-07-06
 - `chat/presence` endpoint has been deprecated, it will be removed in the near future.
 
