@@ -130,7 +130,7 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
           </div>
 
           <div className={`${bn}__more`}>
-            {hasMenu(score) && <PlayDetailMenu score={score} user={user} />}
+            {hasMenu(score, user) && <PlayDetailMenu score={score} user={user} />}
           </div>
         </div>
       </div>
