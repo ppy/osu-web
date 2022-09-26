@@ -53,7 +53,6 @@ trait BaseDbIndexable
             if ($actions !== []) {
                 $result = Es::getClient()->bulk([
                     'index' => $options['index'] ?? static::esIndexName(),
-                    'type' => '_doc',
                     'body' => $actions,
                     'client' => ['timeout' => 0],
                 ]);
