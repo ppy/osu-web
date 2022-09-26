@@ -91,7 +91,7 @@ services:
 
   elasticsearch:
     # Version must be kept up to date with library defined in: composer.json
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.16.2
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.6
     volumes:
       - elasticsearch:/usr/share/elasticsearch/data
     environment:

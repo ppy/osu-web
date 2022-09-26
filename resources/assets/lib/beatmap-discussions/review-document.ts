@@ -6,7 +6,7 @@ import * as markdown from 'remark-parse';
 import { Node as SlateNode } from 'slate';
 import * as unified from 'unified';
 import type { Node as UnistNode } from 'unist';
-import { startingPost } from 'utils/beatmapset-discussion-helper';
+import { formatTimestamp, startingPost } from 'utils/beatmapset-discussion-helper';
 import { BeatmapDiscussionReview, PersistedDocumentIssueEmbed } from '../interfaces/beatmap-discussion-review';
 import { disableTokenizersPlugin } from './disable-tokenizers-plugin';
 
@@ -83,7 +83,7 @@ export function parseFromJson(json: string, discussions: Partial<Record<number, 
           }],
           discussionId: discussion.id,
           discussionType: discussion.message_type,
-          timestamp: BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp),
+          timestamp: formatTimestamp(discussion.timestamp),
           type: 'embed',
         });
         break;
