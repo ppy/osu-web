@@ -466,19 +466,17 @@ class UsersController extends Controller
             abort(404);
         }
 
-        $userIncludes = [
-            ...$this->showUserIncludes(),
-            ...array_map(
-                fn (string $ruleset) => "statistics_rulesets.{$ruleset}",
-                array_keys(Beatmap::MODES),
-            ),
-        ];
-
-        return json_item(
+        return $this->fillDeprecatedDuplicateFields(json_item(
             $user,
             (new UserTransformer())->setMode($currentMode),
-            $userIncludes
-        );
+            [
+                ...$this->showUserIncludes(),
+                ...array_map(
+                    fn (string $ruleset) => "statistics_rulesets.{$ruleset}",
+                    array_keys(Beatmap::MODES),
+                ),
+            ],
+        ));
     }
 
     /**
@@ -541,13 +539,11 @@ class UsersController extends Controller
             abort(404);
         }
 
-        $userIncludes = $this->showUserIncludes();
-
-        $userArray = json_item(
+        $userArray = $this->fillDeprecatedDuplicateFields(json_item(
             $user,
             (new UserTransformer())->setMode($currentMode),
-            $userIncludes
-        );
+            $this->showUserIncludes(),
+        ));
 
         if (is_api_request()) {
             return $userArray;
@@ -789,7 +785,6 @@ class UsersController extends Controller
             'monthly_playcounts',
             'page',
             'pending_beatmapset_count',
-            'rankHistory',
             'rank_history',
             'ranked_beatmapset_count',
             'replays_watched_counts',
@@ -802,10 +797,6 @@ class UsersController extends Controller
             'statistics.rank',
             'statistics.variants',
             'user_achievements',
-
-            // TODO: deprecated
-            'ranked_and_approved_beatmapset_count',
-            'unranked_beatmapset_count',
         ];
 
         if (priv_check('UserSilenceShowExtendedInfo')->can() && !is_api_request()) {
@@ -814,5 +805,22 @@ class UsersController extends Controller
         }
 
         return $userIncludes;
+    }
+
+    private function fillDeprecatedDuplicateFields(array $userJson): array
+    {
+        static $map = [
+            'rankHistory' => 'rank_history',
+            'ranked_and_approved_beatmapset_count' => 'ranked_beatmapset_count',
+            'unranked_beatmapset_count' => 'pending_beatmapset_count',
+        ];
+
+        foreach ($map as $legacyKey => $key) {
+            if (array_key_exists($key, $userJson)) {
+                $userJson[$legacyKey] = $userJson[$key];
+            }
+        }
+
+        return $userJson;
     }
 }
