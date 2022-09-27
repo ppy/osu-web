@@ -200,15 +200,9 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
 
     public static function failed($exception)
     {
-        return new static([
-            'hits' => [
-                'hits' => [],
-                'total' => [
-                    'relation' => 'eq',
-                    'value' => 0,
-                ],
-            ],
-            'exception' => $exception,
-        ]);
+        $ret = static::empty();
+        $ret->raw['exception'] = $exception;
+
+        return $ret;
     }
 }
