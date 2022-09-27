@@ -17,6 +17,10 @@ function modNamesGenerator() {
     }
   }
 
+  // extra for mod icons
+  modNames.V2 = 'Score V2';
+  modNames.NM = 'No Mod';
+
   const outDir = `${root}/resources/assets/build`;
   fs.mkdirSync(outDir, { recursive: true });
   fs.writeFileSync(`${outDir}/mod-names.json`, JSON.stringify(modNames));
