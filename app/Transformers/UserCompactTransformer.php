@@ -74,7 +74,6 @@ class UserCompactTransformer extends TransformerAbstract
         'page',
         'pending_beatmapset_count',
         'previous_usernames',
-        'rank_history',
         'ranked_beatmapset_count',
         'replays_watched_counts',
         'scores_best_count',
@@ -87,6 +86,9 @@ class UserCompactTransformer extends TransformerAbstract
         'unread_pm_count',
         'user_achievements',
         'user_preferences',
+
+        // TODO: should be alphabetically ordered but lazer relies on being after statistics.
+        'rank_history',
     ];
 
     protected $permissions = [
