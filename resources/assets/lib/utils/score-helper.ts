@@ -95,10 +95,6 @@ export const modeAttributesMap: Record<GameMode, AttributeData[]> = {
 };
 
 export function modName(acronym: string): string {
-  if (acronym === 'V2') {
-    return 'Score V2';
-  }
-
   return modNames[acronym] ?? 'unknown';
 }
 

@@ -466,19 +466,17 @@ class UsersController extends Controller
             abort(404);
         }
 
-        $userIncludes = [
-            ...$this->showUserIncludes(),
-            ...array_map(
-                fn (string $ruleset) => "statistics_rulesets.{$ruleset}",
-                array_keys(Beatmap::MODES),
-            ),
-        ];
-
-        return json_item(
+        return $this->fillDeprecatedDuplicateFields(json_item(
             $user,
             (new UserTransformer())->setMode($currentMode),
-            $userIncludes
-        );
+            [
+                ...$this->showUserIncludes(),
+                ...array_map(
+                    fn (string $ruleset) => "statistics_rulesets.{$ruleset}",
+                    array_keys(Beatmap::MODES),
+                ),
+            ],
+        ));
     }
 
     /**
@@ -541,13 +539,11 @@ class UsersController extends Controller
             abort(404);
         }
 
-        $userIncludes = $this->showUserIncludes();
-
-        $userArray = json_item(
+        $userArray = $this->fillDeprecatedDuplicateFields(json_item(
             $user,
             (new UserTransformer())->setMode($currentMode),
-            $userIncludes
-        );
+            $this->showUserIncludes(),
+        ));
 
         if (is_api_request()) {
             return $userArray;
@@ -723,6 +719,7 @@ class UsersController extends Controller
                     $transformer = new ScoreTransformer();
                     $includes = [...ScoreTransformer::USER_PROFILE_INCLUDES, 'weight'];
                     $collection = $user->beatmapBestScores($options['mode'], $perPage, $offset, ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
+                    $userRelationColumn = 'user';
                     break;
                 case 'scoresFirsts':
                     $transformer = new ScoreTransformer();
@@ -731,6 +728,7 @@ class UsersController extends Controller
                         ->visibleUsers()
                         ->reorderBy('score_id', 'desc')
                         ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
+                    $userRelationColumn = 'user';
                     break;
                 case 'scoresPinned':
                     $transformer = new ScoreTransformer();
@@ -742,6 +740,7 @@ class UsersController extends Controller
                         ->with(array_map(fn ($include) => "score.{$include}", ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD))
                         ->reorderBy('display_order', 'asc');
                     $collectionFn = fn ($pins) => $pins->map->score;
+                    $userRelationColumn = 'user';
                     break;
                 case 'scoresRecent':
                     $transformer = new ScoreTransformer();
@@ -749,6 +748,7 @@ class UsersController extends Controller
                     $query = $user->scores($options['mode'], true)
                         ->includeFails($options['includeFails'] ?? false)
                         ->with([...ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD, 'best']);
+                    $userRelationColumn = 'user';
                     break;
             }
 
@@ -757,6 +757,12 @@ class UsersController extends Controller
 
                 if (isset($collectionFn)) {
                     $collection = $collectionFn($collection);
+                }
+            }
+
+            if (isset($userRelationColumn)) {
+                foreach ($collection as $item) {
+                    $item->setRelation($userRelationColumn, $user);
                 }
             }
 
@@ -779,7 +785,6 @@ class UsersController extends Controller
             'monthly_playcounts',
             'page',
             'pending_beatmapset_count',
-            'rankHistory',
             'rank_history',
             'ranked_beatmapset_count',
             'replays_watched_counts',
@@ -792,10 +797,6 @@ class UsersController extends Controller
             'statistics.rank',
             'statistics.variants',
             'user_achievements',
-
-            // TODO: deprecated
-            'ranked_and_approved_beatmapset_count',
-            'unranked_beatmapset_count',
         ];
 
         if (priv_check('UserSilenceShowExtendedInfo')->can() && !is_api_request()) {
@@ -804,5 +805,22 @@ class UsersController extends Controller
         }
 
         return $userIncludes;
+    }
+
+    private function fillDeprecatedDuplicateFields(array $userJson): array
+    {
+        static $map = [
+            'rankHistory' => 'rank_history',
+            'ranked_and_approved_beatmapset_count' => 'ranked_beatmapset_count',
+            'unranked_beatmapset_count' => 'pending_beatmapset_count',
+        ];
+
+        foreach ($map as $legacyKey => $key) {
+            if (array_key_exists($key, $userJson)) {
+                $userJson[$legacyKey] = $userJson[$key];
+            }
+        }
+
+        return $userJson;
     }
 }

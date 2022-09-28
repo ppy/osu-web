@@ -19,7 +19,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
 import { onError } from 'utils/ajax';
-import { canModeratePosts, validMessageLength } from 'utils/beatmapset-discussion-helper';
+import { canModeratePosts, formatTimestamp, nearbyDiscussions, parseTimestamp, validMessageLength } from 'utils/beatmapset-discussion-helper';
 import { nominationsCount } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
@@ -117,7 +117,7 @@ export class NewDiscussion extends React.Component<Props> {
     if (this.nearbyDiscussionsCache == null || (this.nearbyDiscussionsCache.beatmap !== this.props.currentBeatmap || this.nearbyDiscussionsCache.timestamp !== this.timestamp)) {
       this.nearbyDiscussionsCache = {
         beatmap: this.props.currentBeatmap,
-        discussions: BeatmapDiscussionHelper.nearbyDiscussions(this.props.currentDiscussions.timelineAllUsers, timestamp),
+        discussions: nearbyDiscussions(this.props.currentDiscussions.timelineAllUsers, timestamp),
         timestamp: this.timestamp,
       };
     }
@@ -152,7 +152,7 @@ export class NewDiscussion extends React.Component<Props> {
   @computed
   private get timestamp() {
     return this.props.mode === 'timeline'
-      ? BeatmapDiscussionHelper.parseTimestamp(this.message)
+      ? parseTimestamp(this.message)
       : null;
   }
 
@@ -374,11 +374,11 @@ export class NewDiscussion extends React.Component<Props> {
 
   private renderNearbyTimestamps() {
     if (this.nearbyDiscussions.length === 0) return;
-    const currentTimestamp = BeatmapDiscussionHelper.formatTimestamp(this.timestamp);
+    const currentTimestamp = formatTimestamp(this.timestamp);
     const timestamps = this.nearbyDiscussions.map((discussion) => (
       linkHtml(
         BeatmapDiscussionHelper.url({ discussion }),
-        BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp) ?? '',
+        formatTimestamp(discussion.timestamp) ?? '',
         { classNames: ['js-beatmap-discussion--jump'] },
       )
     ));
@@ -440,7 +440,7 @@ export class NewDiscussion extends React.Component<Props> {
   private renderTimestamp() {
     if (this.props.mode !== 'timeline') return null;
 
-    const timestamp = BeatmapDiscussionHelper.formatTimestamp(this.timestamp) ?? osu.trans('beatmaps.discussions.new.timestamp_missing');
+    const timestamp = formatTimestamp(this.timestamp) ?? osu.trans('beatmaps.discussions.new.timestamp_missing');
 
     return (
       <div className={`${bn}__footer-content`}>

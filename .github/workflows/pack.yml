@@ -65,7 +65,13 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v2
-      # production deploy is handled manually, only releasing to Sentry
+      -
+        name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.KUBERNETES_CONFIG_REPO_ACCESS_TOKEN }}
+          repository: ppy/osu-kubernetes-config
+          event-type: osu-web-deploy
       -
         name: Create Sentry release
         uses: getsentry/action-release@v1
@@ -94,7 +100,7 @@ jobs:
           token: ${{ secrets.KUBERNETES_CONFIG_REPO_ACCESS_TOKEN }}
           repository: ppy/osu-kubernetes-config
           event-type: dev-ppy-sh-deploy
-          client-payload: '{"tag": "${{ github.sha }}"}'
+          client-payload: '{ "values": { "image": { "tag": "${{ github.sha }}" } } }'
       -
         name: Create Sentry release
         uses: getsentry/action-release@v1
