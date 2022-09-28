@@ -9,6 +9,7 @@ import { Main } from 'modding-profile/main'
 core.reactTurbolinks.register 'modding-profile', (container) ->
   createElement Main,
     beatmaps: parseJson('json-beatmaps')
+    beatmapsets: parseJson('json-beatmapsets')
     container: container
     discussions: parseJson('json-discussions')
     events: parseJson('json-events')
