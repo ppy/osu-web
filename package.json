@@ -24,7 +24,7 @@
     "@types/jquery.scrollto": "^1.4.29",
     "@types/jqueryui": "^1.12.16",
     "@types/js-cookie": "^2.2.6",
-    "@types/lodash": "^4.14.151",
+    "@types/lodash": "^4.14.185",
     "@types/react": "^17.0.40",
     "@types/react-dom": "^17.0.13",
     "@types/react-transition-group": "^4.4.4",
