@@ -211,7 +211,7 @@ return [
         'reset_confirm' => [
             'disqualify' => '¿Está seguro? Esto eliminará el mapa de la calificación y restablecerá el proceso de nominación.',
             'nomination_reset' => '¿Está seguro? Publicar un nuevo problema restablecerá el proceso de nominación.',
-            'problem_warning' => '¿Seguro que desea informar de un problema en este mapa? Esto alertará a los Beatmap Nominators.',
+            'problem_warning' => '¿Seguro que desea reportar de un problema en este mapa? Esto alertará a los Beatmap Nominators.',
         ],
     ],
 
@@ -282,7 +282,7 @@ return [
     ],
     'genre' => [
         'any' => 'Cualquier',
-        'unspecified' => 'no especificado',
+        'unspecified' => 'No especificado',
         'video-game' => 'videojuego',
         'anime' => 'anime',
         'rock' => 'rock',

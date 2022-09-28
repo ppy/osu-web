@@ -185,7 +185,7 @@ return [
 
         'register' => [
             'download' => '下载',
-            'info' => '立刻下载 osu! 并且注册帐号吧！',
+            'info' => '立刻下载 osu! 并且注册账号吧！',
             'title' => "没有账号？",
         ],
     ],

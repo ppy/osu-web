@@ -5,25 +5,26 @@
 
 return [
     'show' => [
-        'title' => '',
+        'title' => ':username у :title [:version]',
 
         'beatmap' => [
-            'by' => '',
+            'by' => 'од уметника :artist
+',
         ],
 
         'player' => [
-            'by' => '',
-            'submitted_on' => '',
+            'by' => 'Одиграно од стране',
+            'submitted_on' => 'Предато на',
 
             'rank' => [
-                'country' => '',
-                'global' => '',
+                'country' => 'Државни Ранг',
+                'global' => 'Глобални ранг',
             ],
         ],
     ],
 
     'status' => [
-        'non_best' => '',
-        'processing' => '',
+        'non_best' => 'Само персонални додељују pp',
+        'processing' => 'Овај резултат се и даље рачуна и биће приказан ускоро',
     ],
 ];

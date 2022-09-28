@@ -19,6 +19,7 @@ use App\Jobs\Notifications\BeatmapsetRank;
 use App\Jobs\Notifications\BeatmapsetRemoveFromLoved;
 use App\Jobs\Notifications\BeatmapsetResetNominations;
 use App\Jobs\RemoveBeatmapsetBestScores;
+use App\Jobs\RemoveBeatmapsetSoloScores;
 use App\Libraries\BBCodeFromDB;
 use App\Libraries\Commentable;
 use App\Libraries\Elasticsearch\Indexable;
@@ -561,6 +562,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
         if ($this->isScoreable() !== $oldScoreable || $this->isRanked()) {
             dispatch(new RemoveBeatmapsetBestScores($this));
+            dispatch(new RemoveBeatmapsetSoloScores($this));
         }
 
         if ($this->isScoreable() !== $oldScoreable) {

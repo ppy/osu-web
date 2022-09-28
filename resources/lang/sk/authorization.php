@@ -63,19 +63,19 @@ return [
     ],
 
     'chat' => [
-        'annnonce_only' => '',
+        'annnonce_only' => 'Tento kanál je iba pre oznamy.',
         'blocked' => 'Nie je možné poslať správu používateľovi, ktorý blokuje teba, alebo ty blokuješ jeho.',
         'friends_only' => 'Používateľ blokuje správy od ľudí, ktorí nie sú na ich ich liste priateľstva.',
         'moderated' => 'Kanál je momentálne moderovaný.',
         'no_access' => 'Nemáte prístup k tomuto kanálu.',
-        'receive_friends_only' => '',
+        'receive_friends_only' => 'Používateľ nemusí byť schopný odpovedať, keďže prijímate iba správy od ľudí vo Vašom zozname priateľov.',
         'restricted' => 'Nemôžete posielať správy, keď ste umlčaný, obmedzený alebo zabanovaný.',
-        'silenced' => '',
+        'silenced' => 'Nemôžete posielať správy, keď ste umlčaný, obmedzený alebo zabanovaný.',
     ],
 
     'comment' => [
         'store' => [
-            'disabled' => '',
+            'disabled' => 'Komentáre sú vypnuté',
         ],
         'update' => [
             'deleted' => "Nemôžeš upraviť zmazaný príspevok.",
