@@ -83,7 +83,7 @@ return [
             '_' => 'конкурсы',
         ],
         'follows_controller' => [
-            'index' => 'главная страница',
+            'index' => 'настройки',
         ],
         'friends_controller' => [
             'index' => 'друзья',

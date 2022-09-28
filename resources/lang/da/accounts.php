@@ -15,7 +15,6 @@ return [
         ],
 
         'email' => [
-            'current' => 'nuværende email-adresse',
             'new' => 'ny email',
             'new_confirmation' => 'email bekræftelse',
             'title' => 'Email',

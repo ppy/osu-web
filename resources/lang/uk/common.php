@@ -79,7 +79,7 @@ return [
         'post' => ':count_delimited пост|:count_delimited постів',
         'second_short_unit' => 'сек',
         'star_priority' => ':count_delimited пріоритет|:count_delimited пріоритета|:count_delimited пріоритетів',
-        'update' => ':count_delimited оновлення|:count_delimited оновлень',
+        'update' => ':count_delimited оновлення|:count_delimited оновлення|:count_delimited оновлень',
         'view' => ':count_delimited перегляд|:count_delimited переглядів',
         'years' => ':count_delimited рік|:count_delimited роки|:count_delimited років',
     ],

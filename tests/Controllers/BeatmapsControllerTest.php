@@ -179,7 +179,7 @@ class BeatmapsControllerTest extends TestCase
 
     public function testScores()
     {
-        $scoreClass = ScoreBest::getClass($this->beatmap->playmode);
+        $scoreClass = ScoreBest::getClassByRulesetId($this->beatmap->playmode);
         $scores = [
             $scoreClass::factory()->create([
                 'beatmap_id' => $this->beatmap,
@@ -209,7 +209,7 @@ class BeatmapsControllerTest extends TestCase
             'user_id' => $this->user,
         ]);
         // Unrelated score
-        ScoreBest::getClassByString(array_rand(Beatmap::MODES))::factory()->create();
+        ScoreBest::getClass(array_rand(Beatmap::MODES))::factory()->create();
 
         $resp = $this->actingAs($this->user)
             ->json('GET', route('beatmaps.scores', $this->beatmap))
@@ -221,7 +221,7 @@ class BeatmapsControllerTest extends TestCase
     public function testScoresByCountry()
     {
         $countryAcronym = $this->user->country_acronym;
-        $scoreClass = ScoreBest::getClass($this->beatmap->playmode);
+        $scoreClass = ScoreBest::getClassByRulesetId($this->beatmap->playmode);
         $scores = [
             $scoreClass::factory()->create([
                 'beatmap_id' => $this->beatmap,
@@ -255,7 +255,7 @@ class BeatmapsControllerTest extends TestCase
     public function testScoresByFriend()
     {
         $friend = User::factory()->create();
-        $scoreClass = ScoreBest::getClass($this->beatmap->playmode);
+        $scoreClass = ScoreBest::getClassByRulesetId($this->beatmap->playmode);
         $scores = [
             $scoreClass::factory()->create([
                 'beatmap_id' => $this->beatmap,
@@ -290,7 +290,7 @@ class BeatmapsControllerTest extends TestCase
     public function testScoresModsFilter()
     {
         $modsHelper = app('mods');
-        $scoreClass = ScoreBest::getClass($this->beatmap->playmode);
+        $scoreClass = ScoreBest::getClassByRulesetId($this->beatmap->playmode);
         $scores = [
             $scoreClass::factory()->create([
                 'beatmap_id' => $this->beatmap,
@@ -339,7 +339,7 @@ class BeatmapsControllerTest extends TestCase
     public function testScoresModsWithImpliedFilter()
     {
         $modsHelper = app('mods');
-        $scoreClass = ScoreBest::getClass($this->beatmap->playmode);
+        $scoreClass = ScoreBest::getClassByRulesetId($this->beatmap->playmode);
         $scores = [
             $scoreClass::factory()->create([
                 'beatmap_id' => $this->beatmap,
@@ -371,7 +371,7 @@ class BeatmapsControllerTest extends TestCase
     public function testScoresModsWithNomodsFilter()
     {
         $modsHelper = app('mods');
-        $scoreClass = ScoreBest::getClass($this->beatmap->playmode);
+        $scoreClass = ScoreBest::getClassByRulesetId($this->beatmap->playmode);
         $scores = [
             $scoreClass::factory()->create([
                 'beatmap_id' => $this->beatmap,
@@ -403,7 +403,7 @@ class BeatmapsControllerTest extends TestCase
     public function testScoresNomodsFilter()
     {
         $modsHelper = app('mods');
-        $scoreClass = ScoreBest::getClass($this->beatmap->playmode);
+        $scoreClass = ScoreBest::getClassByRulesetId($this->beatmap->playmode);
         $scores = [
             $scoreClass::factory()->create([
                 'beatmap_id' => $this->beatmap,

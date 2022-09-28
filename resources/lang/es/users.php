@@ -117,15 +117,15 @@ return [
     ],
     'logout_confirm' => '¿Seguro que desea cerrar la sesión? :(',
     'report' => [
-        'button_text' => 'Denunciar',
-        'comments' => 'Comentarios adicionales',
+        'button_text' => 'Reportar',
+        'comments' => 'Comentarios',
         'placeholder' => 'Por favor, proporcione cualquier información que crea que pueda ser útil.',
         'reason' => 'Motivo',
-        'thanks' => '¡Gracias por su informe!',
-        'title' => '¿Denunciar a :username?',
+        'thanks' => '¡Gracias por reportar!',
+        'title' => '¿Reportar a :username?',
 
         'actions' => [
-            'send' => 'Enviar denuncia',
+            'send' => 'Enviar reporte',
             'cancel' => 'Cancelar',
         ],
 
@@ -372,7 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Restringir',
                         'silence' => 'Silenciado',
-                        'tournament_ban' => '',
+                        'tournament_ban' => 'Prohibición de torneo',
                         'note' => 'Nota',
                     ],
                 ],

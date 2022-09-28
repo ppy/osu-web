@@ -11,6 +11,7 @@ use App\Libraries\BeatmapsetDiscussion\Review;
 use App\Libraries\CommentBundle;
 use App\Libraries\Search\BeatmapsetSearchCached;
 use App\Libraries\Search\BeatmapsetSearchRequestParams;
+use App\Models\Beatmap;
 use App\Models\BeatmapDownload;
 use App\Models\BeatmapMirror;
 use App\Models\Beatmapset;
@@ -30,7 +31,7 @@ class BeatmapsetsController extends Controller
     {
         parent::__construct();
 
-        $this->middleware('require-scopes:public', ['only' => ['search', 'show']]);
+        $this->middleware('require-scopes:public', ['only' => ['lookup', 'search', 'show']]);
     }
 
     public function destroy($id)
@@ -49,6 +50,19 @@ class BeatmapsetsController extends Controller
         $filters = BeatmapsetSearchRequestParams::getAvailableFilters();
 
         return ext_view('beatmapsets.index', compact('filters', 'beatmaps'));
+    }
+
+    public function lookup()
+    {
+        $beatmapId = get_int(request('beatmap_id'));
+
+        if ($beatmapId === null) {
+            abort(404);
+        }
+
+        $beatmap = Beatmap::findOrFail($beatmapId);
+
+        return $this->show($beatmap->beatmapset_id);
     }
 
     public function show($id)

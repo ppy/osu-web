@@ -210,7 +210,7 @@ return [
 
         'channel' => [
             'channel' => [
-                'pm' => 'Anda mendapatkan pesan baru dari :username',
+                'pm' => 'Anda menerima pesan baru dari :username',
             ],
         ],
 
@@ -240,6 +240,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username telah mengunggah beatmap baru',
+                'user_beatmapset_revive' => '',
             ],
         ],
     ],

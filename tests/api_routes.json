@@ -869,7 +869,7 @@
             "GET",
             "HEAD"
         ],
-        "controller": "App\\Http\\Controllers\\API\\BeatmapsetsController@lookup",
+        "controller": "App\\Http\\Controllers\\BeatmapsetsController@lookup",
         "middlewares": [
             "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
             "App\\Http\\Middleware\\RequireScopes",

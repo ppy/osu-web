@@ -240,6 +240,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => 'Si :username ay gumawa ng mga bagong beatmap',
+                'user_beatmapset_revive' => '',
             ],
         ],
     ],

@@ -8,9 +8,11 @@ namespace App\Libraries;
 use App\Libraries\BeatmapsetDiscussion\Review;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
+use App\Models\Beatmapset;
 use App\Models\User;
 use App\Traits\Memoizes;
 use App\Transformers\BeatmapDiscussionTransformer;
+use App\Transformers\BeatmapsetTransformer;
 use App\Transformers\BeatmapTransformer;
 use App\Transformers\UserCompactTransformer;
 use Illuminate\Pagination\Paginator;
@@ -35,12 +37,11 @@ class BeatmapsetDiscussionsBundle extends BeatmapsetDiscussionsBundleBase
 
     public function toArray()
     {
-        // TODO: beatmapset nested include should be removed (should be moved to side load);
-        // currently left here as some components assume beatmapset is always nested.
-        static $discussionIncludes = ['starting_post', 'beatmapset', 'current_user_attributes'];
+        static $discussionIncludes = ['starting_post', 'current_user_attributes'];
 
         return array_merge([
             'beatmaps' => json_collection($this->getBeatmaps(), new BeatmapTransformer()),
+            'beatmapsets' => json_collection($this->getBeatmapsets(), new BeatmapsetTransformer()),
             'discussions' => json_collection($this->getDiscussions(), new BeatmapDiscussionTransformer(), $discussionIncludes),
             'included_discussions' => json_collection($this->getRelatedDiscussions(), new BeatmapDiscussionTransformer(), $discussionIncludes),
             'reviews_config' => Review::config(),
@@ -52,9 +53,19 @@ class BeatmapsetDiscussionsBundle extends BeatmapsetDiscussionsBundleBase
     {
         return $this->memoize(__FUNCTION__, function () {
             // using all beatmaps of the beatmapsets for the beatmap selector when editing.
+            $beatmapsetIds = $this->getBeatmapsets()->pluck('beatmapset_id');
+
+            return Beatmap::withTrashed()->whereIn('beatmapset_id', $beatmapsetIds)->get();
+        });
+    }
+
+    private function getBeatmapsets()
+    {
+        return $this->memoize(__FUNCTION__, function () {
             $beatmapsetIds = $this->getDiscussions()->pluck('beatmapset_id')->unique()->values();
 
-            return Beatmap::withTrashed()->whereIn('beatmapset_id', $beatmapsetIds)->with('beatmapset')->get();
+            // BeatmapDiscussion::beatmapset() includes trashed.
+            return Beatmapset::withTrashed()->whereIn('beatmapset_id', $beatmapsetIds)->get();
         });
     }
 

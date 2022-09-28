@@ -5,7 +5,7 @@
 
 return [
     'edit' => [
-        'title_compact' => 'ajustes',
+        'title_compact' => 'configuración de la cuenta',
         'username' => 'nombre de usuario',
 
         'avatar' => [
@@ -15,7 +15,6 @@ return [
         ],
 
         'email' => [
-            'current' => 'correo electrónico actual',
             'new' => 'nuevo correo electrónico',
             'new_confirmation' => 'confirmar correo electrónico',
             'title' => 'Correo electrónico',

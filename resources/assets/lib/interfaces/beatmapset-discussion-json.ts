@@ -35,6 +35,7 @@ interface BeatmapsetDiscussionDefaultAttributes {
   can_grant_kudosu: boolean;
   created_at: string;
   deleted_at: string | null;
+  deleted_by_id: number | null;
   id: number;
   kudosu_denied: boolean;
   last_post_at: string;
@@ -53,8 +54,7 @@ export default BeatmapsetDiscussionJson;
 export type BeatmapsetDiscussionJsonForBundle =
 Omit<BeatmapsetDiscussionJson, 'posts'> // bundle explicitly does not include posts; need this for type discrimination.
 & Required<Pick<BeatmapsetDiscussionJson,
-'beatmapset'
-| 'current_user_attributes'
+'current_user_attributes'
 | 'starting_post'
 >>;
 

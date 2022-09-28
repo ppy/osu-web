@@ -17,7 +17,7 @@ class ScoresControllerTest extends TestCase
     public function testStore()
     {
         $scoreToken = ScoreToken::factory()->create();
-        $legacyScoreClass = LegacyScore\Model::getClass($scoreToken->beatmap->playmode);
+        $legacyScoreClass = LegacyScore\Model::getClassByRulesetId($scoreToken->beatmap->playmode);
 
         $this->expectCountChange(fn () => Score::count(), 1);
         $this->expectCountChange(fn () => $legacyScoreClass::count(), 1);

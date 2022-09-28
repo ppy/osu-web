@@ -1,6 +1,12 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare module 'mod-names.json' {
+  const modNames: Partial<Record<string, string>>;
+
+  export default modNames;
+}
+
 // Scoping to prevent global type import pollution.
 // There interfaces are only used in this file.
 declare module 'legacy-modules' {
@@ -8,10 +14,6 @@ declare module 'legacy-modules' {
   type GroupJson = import('interfaces/group-json').default;
 
   interface BeatmapDiscussionHelperClass {
-    formatTimestamp(value: number | null): string | undefined;
-    nearbyDiscussions<T extends BeatmapsetDiscussionJson>(discussions: T[], timestamp: number): T[];
-    parseTimestamp(value?: string): number | null;
-    TIMESTAMP_REGEX: RegExp;
     url(options: any, useCurrent?: boolean): string;
     urlParse(urlString: string, discussions?: BeatmapsetDiscussionJson[] | null, options?: any): {
       beatmapId?: number;
@@ -26,7 +28,7 @@ declare module 'legacy-modules' {
 
   interface OsuCommon {
     formatBytes: (bytes: number, decimals?: number) => string;
-    groupColour: (group?: GroupJson) => React.CSSProperties;
+    groupColour: (group?: GroupJson | null) => React.CSSProperties;
     navigate: (url: string, keepScroll?: boolean, action?: Partial<Record<string, unknown>>) => void;
     popup: (message: string, type: string) => void;
     presence: (str?: string | null) => string | null;

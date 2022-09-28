@@ -11,7 +11,7 @@ import * as React from 'react';
 const bn = 'beatmap-discussion-user-card';
 
 interface Props {
-  group: UserGroupJson;
+  group?: UserGroupJson | null;
   hideStripe: boolean;
   user: UserJson;
 }

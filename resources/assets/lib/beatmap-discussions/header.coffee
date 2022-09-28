@@ -95,12 +95,14 @@ export class Header extends React.PureComponent
             modifiers: 'full'
             size: 'cover'
 
-        a
+        div
           className: "#{bn}__title-container"
-          href: route('beatmapsets.show', beatmapset: @props.beatmapset.id)
           h1
             className: "#{bn}__title"
-            getTitle(@props.beatmapset)
+            a
+              href: route('beatmapsets.show', beatmapset: @props.beatmapset.id)
+              className: 'link link--white link--no-underline'
+              getTitle(@props.beatmapset)
             if @props.beatmapset.nsfw
               span className: 'beatmapset-badge beatmapset-badge--nsfw', osu.trans('beatmapsets.nsfw_badge.label')
             if @props.beatmapset.spotlight

@@ -20,7 +20,7 @@ return [
     'type' => [
         'charts' => 'по чартам',
         'country' => 'по странам',
-        'multiplayer' => 'мультиплеер',
+        'multiplayer' => 'в мультиплеере',
         'performance' => 'по производительности',
         'score' => 'по очкам',
     ],

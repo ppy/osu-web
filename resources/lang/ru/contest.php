@@ -31,6 +31,12 @@ return [
         'progress' => [
             '_' => ':used / :max голосов использовано',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => '',
+            ],
+        ],
     ],
     'entry' => [
         '_' => 'заявка',

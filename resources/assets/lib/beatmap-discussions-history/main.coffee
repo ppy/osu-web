@@ -3,6 +3,7 @@
 
 import { Discussion } from 'beatmap-discussions/discussion'
 import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
+import { BeatmapsetsContext } from 'beatmap-discussions/beatmapsets-context'
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
 import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-config-context'
 import BeatmapsetCover from 'components/beatmapset-cover'
@@ -23,6 +24,7 @@ export class Main extends React.PureComponent
 
     if !@restoredState
       @state =
+        beatmapsets: props.beatmapsets
         discussions: props.discussions
         users: props.users
         relatedBeatmaps: props.relatedBeatmaps
@@ -71,7 +73,7 @@ export class Main extends React.PureComponent
 
       users.push(newUser)
 
-    @cache.users = @cache.discussions = @cache.beatmaps = @state.relatedDiscussions = null
+    @cache.users = @cache.discussions = @cache.beatmaps = @cache.beatmapsets = @state.relatedDiscussions = null
     @setState
       discussions: _.reverse(_.sortBy(discussions, (d) -> Date.parse(d.starting_post.created_at)))
       users: users
@@ -89,9 +91,11 @@ export class Main extends React.PureComponent
 
 
   beatmaps: =>
-    return @cache.beatmaps if @cache.beatmaps?
+    @cache.beatmaps ?= _.keyBy(this.props.relatedBeatmaps, 'id')
 
-    @cache.beatmaps = _.keyBy(this.props.relatedBeatmaps, 'id')
+
+  beatmapsets: =>
+    @cache.beatmapsets ?= _.keyBy(this.props.beatmapsets, 'id')
 
 
   saveStateToContainer: =>
@@ -99,36 +103,40 @@ export class Main extends React.PureComponent
 
 
   render: =>
+    beatmaps = @beatmaps()
+    beatmapsets = @beatmapsets()
+
     el ReviewEditorConfigContext.Provider, value: @props.reviewsConfig,
       el DiscussionsContext.Provider, value: @discussions(),
-        el BeatmapsContext.Provider, value: @beatmaps(),
-          div className: 'modding-profile-list modding-profile-list--index',
-            if @props.discussions.length == 0
-              div className: 'modding-profile-list__empty', osu.trans('beatmap_discussions.index.none_found')
-            else
-              for discussion in @props.discussions when discussion?
-                div
-                  className: 'modding-profile-list__row'
-                  key: discussion.id,
+        el BeatmapsetsContext.Provider, value: beatmapsets,
+          el BeatmapsContext.Provider, value: beatmaps,
+            div className: 'modding-profile-list modding-profile-list--index',
+              if @props.discussions.length == 0
+                div className: 'modding-profile-list__empty', osu.trans('beatmap_discussions.index.none_found')
+              else
+                for discussion in @props.discussions when discussion?
+                  div
+                    className: 'modding-profile-list__row'
+                    key: discussion.id,
 
-                  a
-                    className: 'modding-profile-list__thumbnail'
-                    href: BeatmapDiscussionHelper.url(discussion: discussion),
+                    a
+                      className: 'modding-profile-list__thumbnail'
+                      href: BeatmapDiscussionHelper.url(discussion: discussion),
 
-                    el BeatmapsetCover,
-                      beatmapset: discussion.beatmapset
-                      size: 'list'
+                      el BeatmapsetCover,
+                        beatmapset: beatmapsets[discussion.beatmapset_id]
+                        size: 'list'
 
-                  el Discussion,
-                    discussion: discussion
-                    users: @users()
-                    currentBeatmap: @beatmaps()[discussion.beatmap_id]
-                    currentUser: currentUser
-                    beatmapset: discussion.beatmapset
-                    isTimelineVisible: false
-                    visible: false
-                    showDeleted: true
-                    preview: true
+                    el Discussion,
+                      discussion: discussion
+                      users: @users()
+                      currentBeatmap: beatmaps[discussion.beatmap_id]
+                      currentUser: currentUser
+                      beatmapset: beatmapsets[discussion.beatmapset_id]
+                      isTimelineVisible: false
+                      visible: false
+                      showDeleted: true
+                      preview: true
 
 
   users: =>

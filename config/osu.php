@@ -180,8 +180,8 @@ return [
     'store' => [
         'notice' => presence(str_replace('\n', "\n", env('STORE_NOTICE'))),
     ],
-    'twitch_client_id' => env('TWITCH_CLIENT_ID'),
-    'twitch_client_secret' => env('TWITCH_CLIENT_SECRET'),
+    'twitch_client_id' => presence(env('TWITCH_CLIENT_ID')),
+    'twitch_client_secret' => presence(env('TWITCH_CLIENT_SECRET')),
     'tournament_banner' => [
         'current' => [
             'id' => get_int(env('TOURNAMENT_BANNER_CURRENT_ID')),

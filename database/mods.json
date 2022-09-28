@@ -293,6 +293,10 @@
           {
             "Name": "seed",
             "Type": "number"
+          },
+          {
+            "Name": "metronome",
+            "Type": "boolean"
           }
         ],
         "IncompatibleMods": [
@@ -381,6 +385,10 @@
         "Description": "It never gets boring!",
         "Type": "Conversion",
         "Settings": [
+          {
+            "Name": "angle_sharpness",
+            "Type": "number"
+          },
           {
             "Name": "seed",
             "Type": "number"

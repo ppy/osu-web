@@ -372,7 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Ban',
                         'silence' => '침묵',
-                        'tournament_ban' => '',
+                        'tournament_ban' => '토너먼트 차단',
                         'note' => '알림',
                     ],
                 ],
