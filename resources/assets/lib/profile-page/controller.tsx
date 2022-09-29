@@ -9,7 +9,7 @@ import ErrorJson from 'interfaces/error-json';
 import EventJson from 'interfaces/event-json';
 import GameMode from 'interfaces/game-mode';
 import KudosuHistoryJson from 'interfaces/kudosu-history-json';
-import ExtrasJson, { ExtraPageJson } from 'interfaces/profile-page/extras-json';
+import { ExtraPageJson, ExtraPageJsonWithoutCount } from 'interfaces/profile-page/extras-json';
 import { ScoreCurrentUserPinJson } from 'interfaces/score-json';
 import SoloScoreJson, { isSoloScoreJsonForUser, SoloScoreJsonForUser } from 'interfaces/solo-score-json';
 import UserCoverJson from 'interfaces/user-cover-json';
@@ -90,11 +90,10 @@ interface InitialData {
   achievements: AchievementJson[];
   beatmaps: BeatmapsetsJson;
   current_mode: GameMode;
-  extras: ExtrasJson;
   historical: HistoricalJson;
-  kudosu: KudosuHistoryJson[];
+  kudosu: { items: KudosuHistoryJson[] };
   per_page: Record<ProfilePageSection, number>;
-  recent_activity: EventJson[];
+  recent_activity: { items: EventJson[] };
   scores_notice: string | null;
   top_ranks: TopScoresJson;
   user: ProfilePageUserJson;
@@ -113,11 +112,9 @@ interface State {
   beatmapsets: BeatmapsetsJson;
   currentPage: Page;
   editingUserPage: boolean;
-  extras: ExtrasJson;
   historical: HistoricalJson;
-  kudosu: KudosuHistoryJson[];
-  pagination: PaginationData;
-  recentActivity: EventJson[];
+  kudosu: ExtraPageJsonWithoutCount<KudosuHistoryJson[]>;
+  recentActivity: ExtraPageJsonWithoutCount<EventJson[]>;
   scores: TopScoresJson;
   user: ProfilePageUserJson;
 }
@@ -155,26 +152,29 @@ export default class Controller {
     this.hasSavedState = savedStateJson != null;
 
     if (savedStateJson == null) {
+      const kudosuItems = initialData.kudosu.items;
+      const recentActivityItems = initialData.recent_activity.items;
+
       this.state = {
         beatmapsets: initialData.beatmaps,
         currentPage: 'main',
         editingUserPage: false,
-        extras: initialData.extras,
         historical: initialData.historical,
-        kudosu: initialData.kudosu,
-        pagination: {
-          recentActivity: {},
-          recentlyReceivedKudosu: {},
+        kudosu: {
+          items: kudosuItems,
+          pagination: {
+            hasMore: hasMoreCheck(initialData.per_page.recentlyReceivedKudosu, kudosuItems),
+          },
         },
-        recentActivity: initialData.recent_activity,
+        recentActivity: {
+          items: recentActivityItems,
+          pagination: {
+            hasMore: hasMoreCheck(initialData.per_page.recentActivity, recentActivityItems),
+          },
+        },
         scores: initialData.top_ranks,
         user: initialData.user,
       };
-
-      // TODO: move out of extras
-      for (const section of ['recentActivity', 'recentlyReceivedKudosu'] as const) {
-        this.state.pagination[section].hasMore = hasMoreCheck(initialData.per_page[section], this.state.extras[section]);
-      }
     } else {
       this.state = JSON.parse(savedStateJson) as State;
     }

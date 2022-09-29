@@ -20,7 +20,7 @@ export default class RecentActivity extends React.Component<ExtraPageProps> {
     return (
       <div className='page-extra'>
         <ExtraHeader name={this.props.name} withEdit={this.props.controller.withEdit} />
-        {this.props.controller.state.recentActivity.length > 0 ? this.renderEntries() : this.renderEmpty()}
+        {this.props.controller.state.recentActivity.items.length > 0 ? this.renderEntries() : this.renderEmpty()}
       </div>
     );
   }
@@ -36,10 +36,10 @@ export default class RecentActivity extends React.Component<ExtraPageProps> {
   private renderEntries() {
     return (
       <ul className='profile-extra-entries'>
-        {this.props.controller.state.extras.recentActivity.map(this.renderEntry)}
+        {this.props.controller.state.recentActivity.items.map(this.renderEntry)}
         <li className='profile-extra-entries__item'>
           <ShowMoreLink
-            {...this.props.controller.state.pagination.recentActivity}
+            {...this.props.controller.state.recentActivity.pagination}
             callback={this.onShowMore}
             modifiers='profile-page'
           />

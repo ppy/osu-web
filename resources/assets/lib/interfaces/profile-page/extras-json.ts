@@ -15,3 +15,8 @@ export interface ExtraPageJson<T> {
   items: T;
   pagination: OffsetPaginationJson;
 }
+
+export interface ExtraPageJsonWithoutCount<T> {
+  items: T;
+  pagination: OffsetPaginationJson;
+}

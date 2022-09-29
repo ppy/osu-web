@@ -179,7 +179,7 @@ class UsersController extends Controller
 
             case 'kudosu':
                 return [
-                    'kudosu' => $this->getExtra($this->user, 'recentlyReceivedKudosu', [], static::PER_PAGE['recentlyReceivedKudosu']),
+                    'items' => $this->getExtra($this->user, 'recentlyReceivedKudosu', [], static::PER_PAGE['recentlyReceivedKudosu']),
                 ];
 
             case 'historical':
@@ -198,7 +198,7 @@ class UsersController extends Controller
 
             case 'recent_activity':
                 return [
-                    'recent_activity' => $this->getExtra($this->user, 'recentActivity', [], static::PER_PAGE['recentActivity']),
+                    'items' => $this->getExtra($this->user, 'recentActivity', [], static::PER_PAGE['recentActivity']),
                 ];
 
             case 'top_ranks':
@@ -665,7 +665,6 @@ class UsersController extends Controller
             $initialData = [
                 'achievements' => $achievements,
                 'current_mode' => $currentMode,
-                'extras' => [],
                 'per_page' => static::PER_PAGE,
                 'scores_notice' => config('osu.user.profile_scores_notice'),
                 'user' => $userArray,
