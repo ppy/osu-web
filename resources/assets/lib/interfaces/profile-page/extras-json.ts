@@ -7,6 +7,7 @@ import ErrorJson from 'interfaces/error-json';
 import EventJson from 'interfaces/event-json';
 import KudosuHistoryJson from 'interfaces/kudosu-history-json';
 import { SoloScoreJsonForUser } from 'interfaces/solo-score-json';
+import { OffsetPaginationJson } from 'utils/offset-paginator';
 
 export default interface ExtrasJson {
   beatmapPlaycounts: BeatmapPlaycountJson[];
@@ -22,4 +23,10 @@ export default interface ExtrasJson {
   scoresFirsts: SoloScoreJsonForUser[];
   scoresPinned: SoloScoreJsonForUser[];
   scoresRecent: SoloScoreJsonForUser[];
+}
+
+export interface ExtraPageJson<T> {
+  count: number;
+  items: T;
+  pagination?: OffsetPaginationJson;
 }
