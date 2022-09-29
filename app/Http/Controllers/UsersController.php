@@ -26,6 +26,8 @@ use App\Models\UserNotFound;
 use App\Transformers\CurrentUserTransformer;
 use App\Transformers\ScoreTransformer;
 use App\Transformers\UserCompactTransformer;
+use App\Transformers\UserMonthlyPlaycountTransformer;
+use App\Transformers\UserReplaysWatchedCountTransformer;
 use App\Transformers\UserTransformer;
 use Auth;
 use Elasticsearch\Common\Exceptions\ElasticsearchException;
@@ -38,6 +40,9 @@ use Sentry\State\Scope;
  */
 class UsersController extends Controller
 {
+    // more limited list of UserProfileCustomization::SECTIONS for now.
+    const LAZY_EXTRA_PAGES = ['beatmaps', 'kudosu', 'recent_activity', 'top_ranks', 'historical'];
+
     protected $maxResults = 100;
 
     public function __construct()
@@ -69,7 +74,7 @@ class UsersController extends Controller
 
             return $next($request);
         }, [
-            'only' => ['scores', 'beatmapsets', 'kudosu', 'recentActivity'],
+            'only' => ['extraPages', 'scores', 'beatmapsets', 'kudosu', 'recentActivity',],
         ]);
 
         return parent::__construct();
@@ -116,6 +121,86 @@ class UsersController extends Controller
         $user = User::lookup($username, 'username') ?? UserNotFound::instance();
 
         return json_item($user, 'UserCompact', ['cover', 'country']);
+    }
+
+    public function extraPages($_id, $page)
+    {
+        if (!in_array($page, static::LAZY_EXTRA_PAGES, true)) {
+            abort(404);
+        }
+
+        // TODO: counts basically duplicated from UserCompactTransformer
+        switch ($page) {
+            case 'beatmaps':
+                return [
+                    'favourite' => [
+                        'count' => $this->user->profileBeatmapsetsFavourite()->count(),
+                        'items' => $this->getExtra($this->user, 'favouriteBeatmapsets'),
+                    ],
+                    'graveyard' => [
+                        'count' => $this->user->profileBeatmapsetCountByGroupedStatus('graveyard'),
+                        'items' => $this->getExtra($this->user, 'graveyardBeatmapsets'),
+                    ],
+                    'guest' => [
+                        'count' => $this->user->profileBeatmapsetsGuest()->count(),
+                        'items' => $this->getExtra($this->user, 'guestBeatmapsets'),
+                    ],
+                    'loved' => [
+                        'count' => $this->user->profileBeatmapsetCountByGroupedStatus('loved'),
+                        'items' => $this->getExtra($this->user, 'lovedBeatmapsets'),
+                    ],
+                    'ranked' => [
+                        'count' => $this->user->profileBeatmapsetCountByGroupedStatus('ranked'),
+                        'items' => $this->getExtra($this->user, 'rankedBeatmapsets'),
+                    ],
+                    'pending' => [
+                        'count' => $this->user->profileBeatmapsetCountByGroupedStatus('pending'),
+                        'items' => $this->getExtra($this->user, 'pendingBeatmapsets'),
+                    ],
+                ];
+
+            case 'kudosu':
+                return [
+                    'kudosu' => $this->getExtra($this->user, 'recentlyReceivedKudosu'),
+                ];
+
+            case 'historical':
+                return [
+                    'beatmap_playcounts' => [
+                        'count' => $this->user->beatmapPlaycounts()->count(),
+                        'items' => $this->getExtra($this->user, 'beatmapPlaycounts'),
+                    ],
+                    'monthly_playcounts' => json_collection($this->user->monthlyPlaycounts, new UserMonthlyPlaycountTransformer()),
+                    'recent' => [
+                        'count' => $this->user->scores($this->mode, true)->includeFails(false)->count(),
+                        'items' => $this->getExtra($this->user, 'scoresRecent', ['mode' => $this->mode]),
+                    ],
+                    'replays_watched_counts' => json_collection($this->user->replaysWatchedCounts, new UserReplaysWatchedCountTransformer()),
+                ];
+
+            case 'recent_activity':
+                return [
+                    'recent_activity' => $this->getExtra($this->user, 'recentActivity', [], $this->perPage, $this->offset),
+                ];
+
+            case 'top_ranks':
+                $options = ['mode' => $this->mode];
+
+                return [
+                    'best' => [
+                        'count' => count($this->user->beatmapBestScoreIds($this->mode)),
+                        'items' => $this->getExtra($this->user, 'scoresBest', $options),
+                    ],
+                    'firsts' => [
+                        'count' => $this->user->scoresFirst($this->mode, true)->visibleUsers()->count(),
+                        'items' => $this->getExtra($this->user, 'scoresFirsts', $options),
+                    ],
+                    'pinned' => [
+                        'count' => $this->user->scorePins()->forRuleset($this->mode)->withVisibleScore()->count(),
+                        'items' => $this->getExtra($this->user, 'scoresPinned', $options),
+                    ],
+                ];
+        }
     }
 
     public function store()
@@ -592,6 +677,13 @@ class UsersController extends Controller
                 'user' => $userArray,
             ];
 
+            // moved data
+            // TODO: lazy load
+            $this->parsePaginationParams();
+            foreach (static::LAZY_EXTRA_PAGES as $page) {
+                $initialData[$page] = $this->extraPages($id, $page);
+            }
+
             return ext_view('users.show', compact('initialData', 'user'));
         }
     }
@@ -645,7 +737,7 @@ class UsersController extends Controller
         return clamp(get_int(request('limit')) ?? 5, 1, 100);
     }
 
-    private function getExtra($user, $page, $options, $perPage = 10, $offset = 0)
+    private function getExtra($user, $page, $options = [], int $perPage = 10, int $offset = 0)
     {
         try {
             // Grouped by $transformer and sorted alphabetically ($transformer and then $page).
