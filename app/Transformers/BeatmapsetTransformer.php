@@ -25,7 +25,7 @@ class BeatmapsetTransformer extends BeatmapsetCompactTransformer
 
         return array_merge($result, [
             'availability' => [
-                'download_disabled' => $attrs['download_disabled'] ?? null,
+                'download_disabled' => (bool) ($attrs['download_disabled'] ?? null),
                 'more_information' => $attrs['download_disabled_url'] ?? null,
             ],
             'bpm' => $attrs['bpm'] ?? null,
