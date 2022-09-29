@@ -191,7 +191,7 @@ class Beatmap extends Model
     public function getVersionAttribute($value)
     {
         if ($this->mode === 'mania') {
-            $keys = $this->getDiffSizeAttribute($this->attributes['diff_size']);
+            $keys = $this->getDiffSizeAttribute($this->attributes['diff_size'] ?? null);
 
             if (strpos($value, "{$keys}k") === false && strpos($value, "{$keys}K") === false) {
                 return "[{$keys}K] {$value}";
