@@ -372,12 +372,12 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function isLoveable()
     {
-        return $this->approved <= 0;
+        return ($this->attributes['approved'] ?? 0) <= 0;
     }
 
     public function isScoreable()
     {
-        return $this->approved > 0;
+        return ($this->attributes['approved'] ?? 0) > 0;
     }
 
     public function allCoverURLs()
@@ -400,7 +400,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function coverPath()
     {
-        return "beatmaps/{$this->beatmapset_id}/covers/";
+        $id = $this->attributes['beatmapset_id'] ?? 0;
+
+        return "beatmaps/{$id}/covers/";
     }
 
     public function storeCover($target_filename, $source_path)
@@ -941,7 +943,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function canBeHyped()
     {
-        return in_array($this->approved, static::HYPEABLE_STATES, true);
+        return in_array($this->attributes['approved'] ?? null, static::HYPEABLE_STATES, true);
     }
 
     public function validateHypeBy($user)
@@ -1314,7 +1316,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function getArtistUnicodeAttribute($value)
     {
-        return $value ?? $this->artist;
+        return $value ?? $this->attributes['artist'] ?? null;
     }
 
     public function getDisplayArtist(?User $user)
@@ -1350,7 +1352,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function getTitleUnicodeAttribute($value)
     {
-        return $value ?? $this->title;
+        return $value ?? $this->attributes['title'] ?? null;
     }
 
     public function freshHype()
@@ -1429,6 +1431,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     private function defaultCoverTimestamp(): string
     {
-        return $this->cover_updated_at?->format('U') ?? '0';
+        return parse_time_to_carbon($this->attributes['cover_updated_at'] ?? null)?->format('U') ?? '0';
     }
 }

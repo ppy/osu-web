@@ -20,25 +20,27 @@ class BeatmapTransformer extends BeatmapCompactTransformer
     {
         $result = parent::transform($beatmap);
 
+        $attrs = $beatmap->getAttributes();
+
         return array_merge($result, [
-            'accuracy' => $beatmap->diff_overall,
-            'ar' => $beatmap->diff_approach,
-            'bpm' => $beatmap->bpm,
+            'accuracy' => $attrs['diff_overall'] ?? null,
+            'ar' => $attrs['diff_approach'] ?? null,
+            'bpm' => $attrs['bpm'] ?? null,
             'convert' => $beatmap->convert,
-            'count_circles' => $beatmap->countNormal,
-            'count_sliders' => $beatmap->countSlider,
-            'count_spinners' => $beatmap->countSpinner,
-            'cs' => $beatmap->diff_size,
-            'deleted_at' => $beatmap->deleted_at,
-            'drain' => $beatmap->diff_drain,
-            'hit_length' => $beatmap->hit_length,
+            'count_circles' => $attrs['countNormal'] ?? null,
+            'count_sliders' => $attrs['countSlider'] ?? null,
+            'count_spinners' => $attrs['countSpinner'] ?? null,
+            'cs' => $beatmap->getDiffSizeAttribute($attrs['diff_size'] ?? null),
+            'deleted_at' => json_time_from_db_timestamp($attrs['deleted_at'] ?? null),
+            'drain' => $attrs['diff_drain'] ?? null,
+            'hit_length' => $attrs['hit_length'] ?? null,
             'is_scoreable' => $beatmap->isScoreable(),
-            'last_updated' => json_time($beatmap->last_update),
-            'mode_int' => $beatmap->playmode,
-            'passcount' => $beatmap->passcount,
-            'playcount' => $beatmap->playcount,
-            'ranked' => $beatmap->approved,
-            'url' => route('beatmaps.show', ['beatmap' => $beatmap->beatmap_id]),
+            'last_updated' => json_time_from_db_timestamp($attrs['last_update'] ?? null),
+            'mode_int' => $attrs['playmode'] ?? null,
+            'passcount' => $attrs['passcount'] ?? null,
+            'playcount' => $attrs['playcount'] ?? null,
+            'ranked' => $attrs['approved'] ?? null,
+            'url' => route('beatmaps.show', ['beatmap' => $attrs['beatmap_id'] ?? null]),
         ]);
     }
 }
