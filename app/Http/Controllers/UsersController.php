@@ -180,7 +180,7 @@ class UsersController extends Controller
 
             case 'recent_activity':
                 return [
-                    'recent_activity' => $this->getExtra($this->user, 'recentActivity', [], $this->perPage, $this->offset),
+                    'recent_activity' => $this->getExtra($this->user, 'recentActivity', []),
                 ];
 
             case 'top_ranks':

@@ -15,12 +15,12 @@ import ExtraPageProps from './extra-page-props';
 import parseEvent from './parse-event';
 
 @observer
-export default class RecentActivity extends React.PureComponent<ExtraPageProps> {
+export default class RecentActivity extends React.Component<ExtraPageProps> {
   render() {
     return (
       <div className='page-extra'>
         <ExtraHeader name={this.props.name} withEdit={this.props.controller.withEdit} />
-        {this.props.controller.state.extras.recentActivity.length > 0 ? this.renderEntries() : this.renderEmpty()}
+        {this.props.controller.state.recentActivity.length > 0 ? this.renderEntries() : this.renderEmpty()}
       </div>
     );
   }

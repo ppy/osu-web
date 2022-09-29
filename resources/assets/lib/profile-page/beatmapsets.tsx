@@ -11,39 +11,33 @@ import ExtraPageProps, { BeatmapsetSection } from './extra-page-props';
 
 const sectionKeys = [
   {
-    countKey: 'favourite_beatmapset_count',
     key: 'favouriteBeatmapsets',
     translationKey: 'favourite',
   },
   {
-    countKey: 'ranked_beatmapset_count',
     key: 'rankedBeatmapsets',
     translationKey: 'ranked',
   },
   {
-    countKey: 'loved_beatmapset_count',
     key: 'lovedBeatmapsets',
     translationKey: 'loved',
   },
   {
-    countKey: 'guest_beatmapset_count',
     key: 'guestBeatmapsets',
     translationKey: 'guest',
   },
   {
-    countKey: 'pending_beatmapset_count',
     key: 'pendingBeatmapsets',
     translationKey: 'pending',
   },
   {
-    countKey: 'graveyard_beatmapset_count',
     key: 'graveyardBeatmapsets',
     translationKey: 'graveyard',
   },
 ] as const;
 
 @observer
-export default class Beatmapsets extends React.PureComponent<ExtraPageProps> {
+export default class Beatmapsets extends React.Component<ExtraPageProps> {
   render() {
     return (
       <div className='page-extra'>
@@ -58,12 +52,13 @@ export default class Beatmapsets extends React.PureComponent<ExtraPageProps> {
   };
 
   private readonly renderBeatmapsets = (section: typeof sectionKeys[number]) => {
-    const count = this.props.controller.state.user[section.countKey];
-    const beatmapsets = this.props.controller.state.extras[section.key];
-    const pagination = this.props.controller.state.pagination[section.key];
+    const state = this.props.controller.state.beatmapsets;
+    const count = state[section.translationKey].count;
+    const beatmapsets = state[section.translationKey].items;
+    const pagination = state[section.translationKey].pagination;
 
     return (
-      <React.Fragment key={section.key}>
+      <React.Fragment key={section.translationKey}>
         <ProfilePageExtraSectionTitle
           count={count}
           titleKey={`users.show.extra.beatmaps.${section.translationKey}.title`}

@@ -2,13 +2,20 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import AchievementJson from 'interfaces/achievement-json';
+import BeatmapPlaycountJson from 'interfaces/beatmap-playcount-json';
+import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import CurrentUserJson from 'interfaces/current-user-json';
+import ErrorJson from 'interfaces/error-json';
+import EventJson from 'interfaces/event-json';
 import GameMode from 'interfaces/game-mode';
-import ExtrasJson from 'interfaces/profile-page/extras-json';
+import KudosuHistoryJson from 'interfaces/kudosu-history-json';
+import ExtrasJson, { ExtraPageJson } from 'interfaces/profile-page/extras-json';
 import { ScoreCurrentUserPinJson } from 'interfaces/score-json';
-import SoloScoreJson, { isSoloScoreJsonForUser } from 'interfaces/solo-score-json';
+import SoloScoreJson, { isSoloScoreJsonForUser, SoloScoreJsonForUser } from 'interfaces/solo-score-json';
 import UserCoverJson from 'interfaces/user-cover-json';
 import { ProfileExtraPage, profileExtraPages } from 'interfaces/user-extended-json';
+import UserMonthlyPlaycountJson from 'interfaces/user-monthly-playcount-json';
+import UserReplaysWatchedCountJson from 'interfaces/user-replays-watched-count-json';
 import { route } from 'laroute';
 import { debounce, keyBy, pullAt } from 'lodash';
 import { action, makeObservable, observable } from 'mobx';
@@ -18,7 +25,7 @@ import { jsonClone } from 'utils/json';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import { apiShowMore, apiShowMoreRecentlyReceivedKudosu, hasMoreCheck, OffsetPaginationJson } from 'utils/offset-paginator';
 import { switchNever } from 'utils/switch-never';
-import { ProfilePageSection, profilePageSections, ProfilePageUserJson } from './extra-page-props';
+import { ProfilePageSection, ProfilePageUserJson } from './extra-page-props';
 
 const sectionToUrlType = {
   favouriteBeatmapsets: 'favourite',
@@ -31,9 +38,29 @@ const sectionToUrlType = {
   scoresFirsts: 'firsts',
   scoresPinned: 'pinned',
   scoresRecent: 'recent',
-};
+} as const;
 
-export type PaginationData = Record<ProfilePageSection, OffsetPaginationJson>;
+const beatmapsetSections = [
+  'favouriteBeatmapsets',
+  'guestBeatmapsets',
+  'rankedBeatmapsets',
+  'lovedBeatmapsets',
+  'pendingBeatmapsets',
+  'graveyardBeatmapsets',
+] as const;
+type BeatmapsetSection = typeof beatmapsetSections[number];
+
+// sorted by display order in the page
+const topScoreSections = ['scoresPinned', 'scoresBest', 'scoresFirsts'] as const;
+type TopScoreSection = typeof topScoreSections[number];
+
+const historicalSections = ['beatmapPlaycounts', 'scoresRecent'] as const;
+type HistoricalSection = typeof historicalSections[number];
+
+type LazyLoadedSection = TopScoreSection | BeatmapsetSection | HistoricalSection;
+type InitialProfilePageSection = Exclude<ProfilePageSection, LazyLoadedSection>;
+
+export type PaginationData = Record<InitialProfilePageSection, OffsetPaginationJson>;
 
 export function validPage(page: unknown) {
   if (typeof page === 'string' && (page === 'main' || profileExtraPages.includes(page as ProfileExtraPage))) {
@@ -43,12 +70,33 @@ export function validPage(page: unknown) {
   return null;
 }
 
+interface BeatmapsetsJson {
+  favourite: ExtraPageJson<BeatmapsetExtendedJson[]>;
+  graveyard: ExtraPageJson<BeatmapsetExtendedJson[]>;
+  guest: ExtraPageJson<BeatmapsetExtendedJson[]>;
+  loved: ExtraPageJson<BeatmapsetExtendedJson[]>;
+  pending: ExtraPageJson<BeatmapsetExtendedJson[]>;
+  ranked: ExtraPageJson<BeatmapsetExtendedJson[]>;
+}
+
+interface HistoricalJson {
+  beatmap_playcounts: ExtraPageJson<BeatmapPlaycountJson[]>;
+  monthly_playcounts: UserMonthlyPlaycountJson[];
+  recent: ExtraPageJson<SoloScoreJsonForUser[]>;
+  replays_watched_counts: UserReplaysWatchedCountJson[];
+}
+
 interface InitialData {
   achievements: AchievementJson[];
+  beatmaps: BeatmapsetsJson;
   current_mode: GameMode;
   extras: ExtrasJson;
+  historical: HistoricalJson;
+  kudosu: KudosuHistoryJson[];
   per_page: Record<ProfilePageSection, number>;
+  recent_activity: EventJson[];
   scores_notice: string | null;
+  top_ranks: TopScoresJson;
   user: ProfilePageUserJson;
 }
 
@@ -62,11 +110,22 @@ interface ScorePinReorderParams {
 }
 
 interface State {
+  beatmapsets: BeatmapsetsJson;
   currentPage: Page;
   editingUserPage: boolean;
   extras: ExtrasJson;
+  historical: HistoricalJson;
+  kudosu: KudosuHistoryJson[];
   pagination: PaginationData;
+  recentActivity: EventJson[];
+  scores: TopScoresJson;
   user: ProfilePageUserJson;
+}
+
+interface TopScoresJson {
+  best: ExtraPageJson<SoloScoreJsonForUser[] | ErrorJson>;
+  firsts: ExtraPageJson<SoloScoreJsonForUser[]>;
+  pinned: ExtraPageJson<SoloScoreJsonForUser[]>;
 }
 
 export default class Controller {
@@ -97,28 +156,23 @@ export default class Controller {
 
     if (savedStateJson == null) {
       this.state = {
+        beatmapsets: initialData.beatmaps,
         currentPage: 'main',
         editingUserPage: false,
         extras: initialData.extras,
+        historical: initialData.historical,
+        kudosu: initialData.kudosu,
         pagination: {
-          beatmapPlaycounts: {},
-          favouriteBeatmapsets: {},
-          graveyardBeatmapsets: {},
-          guestBeatmapsets: {},
-          lovedBeatmapsets: {},
-          pendingBeatmapsets: {},
-          rankedBeatmapsets: {},
           recentActivity: {},
           recentlyReceivedKudosu: {},
-          scoresBest: {},
-          scoresFirsts: {},
-          scoresPinned: {},
-          scoresRecent: {},
         },
+        recentActivity: initialData.recent_activity,
+        scores: initialData.top_ranks,
         user: initialData.user,
       };
 
-      for (const section of profilePageSections) {
+      // TODO: move out of extras
+      for (const section of ['recentActivity', 'recentlyReceivedKudosu'] as const) {
         this.state.pagination[section].hasMore = hasMoreCheck(initialData.per_page[section], this.state.extras[section]);
       }
     } else {
@@ -138,8 +192,8 @@ export default class Controller {
 
   @action
   apiReorderScorePin(currentIndex: number, newIndex: number) {
-    const origItems = this.state.extras.scoresPinned.slice();
-    const items = this.state.extras.scoresPinned;
+    const origItems = this.state.scores.pinned.items.slice();
+    const items = this.state.scores.pinned.items;
     const adjacentScoreId = items[newIndex]?.id;
     if (adjacentScoreId == null) {
       throw new Error('invalid newIndex specified');
@@ -176,7 +230,7 @@ export default class Controller {
       method: 'PUT',
     }).fail(action((xhr: JQuery.jqXHR, status: string) => {
       error(xhr, status);
-      this.state.extras.scoresPinned = origItems;
+      this.state.scores.pinned.items = origItems;
     })).always(hideLoadingOverlay);
   }
 
@@ -273,26 +327,35 @@ export default class Controller {
     const baseParams = { user: this.state.user.id };
 
     switch (section) {
-      case 'beatmapPlaycounts':
+      case 'beatmapPlaycounts': {
+        const json = this.state.historical.beatmap_playcounts;
+
         this.xhr[section] = apiShowMore(
-          this.paginatorJson(section),
+          json,
           'users.beatmapsets',
           { ...baseParams, type: 'most_played' },
         );
+
         break;
+      }
 
       case 'favouriteBeatmapsets':
       case 'graveyardBeatmapsets':
       case 'guestBeatmapsets':
       case 'lovedBeatmapsets':
       case 'pendingBeatmapsets':
-      case 'rankedBeatmapsets':
+      case 'rankedBeatmapsets': {
+        const type = sectionToUrlType[section];
+        const json = this.state.beatmapsets[type];
+
         this.xhr[section] = apiShowMore(
-          this.paginatorJson(section),
+          json,
           'users.beatmapsets',
           { ...baseParams, type: sectionToUrlType[section] },
         );
+
         break;
+      }
 
       case 'recentActivity':
         this.xhr[section] = apiShowMore(
@@ -312,13 +375,18 @@ export default class Controller {
       case 'scoresBest':
       case 'scoresFirsts':
       case 'scoresPinned':
-      case 'scoresRecent':
+      case 'scoresRecent': {
+        const type = sectionToUrlType[section];
+        const json = type === 'recent' ? this.state.historical.recent : this.state.scores[type];
+
         this.xhr[section] = apiShowMore(
-          this.paginatorJson(section),
+          json,
           'users.scores',
-          { ...baseParams, mode: this.currentMode, type: sectionToUrlType[section] },
+          { ...baseParams, mode: this.currentMode, type },
         );
+
         break;
+      }
 
       default:
         switchNever(section);
@@ -336,7 +404,7 @@ export default class Controller {
     this.saveState();
   }
 
-  paginatorJson<T extends ProfilePageSection>(section: T) {
+  paginatorJson<T extends InitialProfilePageSection>(section: T) {
     return {
       items: this.state.extras[section],
       pagination: this.state.pagination[section],
@@ -370,16 +438,16 @@ export default class Controller {
     const newScore = jsonClone(score);
     newScore.id = scorePinData.score_id;
 
-    const arrayIndex = this.state.extras.scoresPinned.findIndex((s) => s.id === newScore.id);
-    this.state.user.scores_pinned_count += isPinned ? 1 : -1;
+    const arrayIndex = this.state.scores.pinned.items.findIndex((s) => s.id === newScore.id);
+    this.state.scores.pinned.count += isPinned ? 1 : -1;
 
     if (isPinned) {
       if (arrayIndex === -1) {
-        this.state.extras.scoresPinned.unshift(newScore);
+        this.state.scores.pinned.items.unshift(newScore);
       }
     } else {
       if (arrayIndex !== -1) {
-        pullAt(this.state.extras.scoresPinned, arrayIndex);
+        pullAt(this.state.scores.pinned.items, arrayIndex);
       }
     }
 
