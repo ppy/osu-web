@@ -74,7 +74,7 @@ class UsersController extends Controller
 
             return $next($request);
         }, [
-            'only' => ['extraPages', 'scores', 'beatmapsets', 'kudosu', 'recentActivity',],
+            'only' => ['extraPages', 'scores', 'beatmapsets', 'kudosu', 'recentActivity'],
         ]);
 
         return parent::__construct();
@@ -662,16 +662,10 @@ class UsersController extends Controller
 
             $extras = [];
 
-            foreach ($perPage as $page => $n) {
-                // Fetch perPage + 1 so the frontend can tell if there are more items
-                // by comparing items count and perPage number.
-                $extras[$page] = $this->getExtra($user, $page, ['mode' => $currentMode], $n + 1);
-            }
-
             $initialData = [
                 'achievements' => $achievements,
                 'current_mode' => $currentMode,
-                'extras' => $extras,
+                'extras' => [],
                 'per_page' => $perPage,
                 'scores_notice' => config('osu.user.profile_scores_notice'),
                 'user' => $userArray,
@@ -866,30 +860,44 @@ class UsersController extends Controller
 
     private function showUserIncludes()
     {
-        $userIncludes = [
-            ...UserTransformer::PROFILE_HEADER_INCLUDES,
-            'account_history',
+        static $apiIncludes = [
+            // historical
             'beatmap_playcounts_count',
+            'monthly_playcounts',
+            'replays_watched_counts',
+            'scores_recent_count',
+
+            // beatmapsets
             'favourite_beatmapset_count',
             'graveyard_beatmapset_count',
             'guest_beatmapset_count',
             'loved_beatmapset_count',
-            'monthly_playcounts',
-            'page',
             'pending_beatmapset_count',
-            'rank_history',
             'ranked_beatmapset_count',
-            'replays_watched_counts',
+
+            // top scores
             'scores_best_count',
             'scores_first_count',
             'scores_pinned_count',
-            'scores_recent_count',
+        ];
+
+        $userIncludes = [
+            ...UserTransformer::PROFILE_HEADER_INCLUDES,
+            'account_history',
+            'page',
+            'pending_beatmapset_count',
+            'rank_history',
             'statistics',
             'statistics.country_rank',
             'statistics.rank',
             'statistics.variants',
             'user_achievements',
         ];
+
+        if (is_api_request()) {
+            // TODO: deprecate
+            $userIncludes = array_merge($userIncludes, $apiIncludes);
+        }
 
         if (priv_check('UserSilenceShowExtendedInfo')->can() && !is_api_request()) {
             $userIncludes[] = 'account_history.actor';
