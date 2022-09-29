@@ -428,6 +428,19 @@ function json_time(?DateTime $time): ?string
     return $time === null ? null : $time->format(DateTime::ATOM);
 }
 
+function json_time_from_db_timestamp(?string $time): ?string
+{
+    if ($time === null) {
+        return null;
+    }
+
+    // From: "2020-10-10 10:10:10"
+    // To: "2020-10-10T10:10:10Z"
+    $time[10] = 'T';
+
+    return "{$time}Z";
+}
+
 function log_error($exception)
 {
     Log::error($exception);

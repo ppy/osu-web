@@ -43,29 +43,31 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
 
     public function transform(Beatmapset $beatmapset)
     {
+        $attrs = $beatmapset->getAttributes();
+
         return [
-            'artist' => $beatmapset->artist,
-            'artist_unicode' => $beatmapset->artist_unicode,
+            'artist' => $attrs['artist'] ?? null,
+            'artist_unicode' => $beatmapset->getArtistUnicodeAttribute($attrs['artist_unicode'] ?? null),
             'covers' => $beatmapset->allCoverURLs(),
-            'creator' => $beatmapset->creator,
-            'favourite_count' => $beatmapset->favourite_count,
+            'creator' => $attrs['creator'] ?? null,
+            'favourite_count' => $attrs['favourite_count'] ?? null,
             'hype' => $beatmapset->canBeHyped() ? [
-                'current' => $beatmapset->hype,
+                'current' => $attrs['hype'] ?? null,
                 'required' => $beatmapset->requiredHype(),
             ] : null,
-            'id' => $beatmapset->beatmapset_id,
-            'nsfw' => $beatmapset->nsfw,
-            'offset' => $beatmapset->offset,
-            'play_count' => $beatmapset->play_count,
+            'id' => $attrs['beatmapset_id'] ?? null,
+            'nsfw' => $attrs['nsfw'] ?? null,
+            'offset' => $attrs['offset'] ?? null,
+            'play_count' => $attrs['play_count'] ?? null,
             'preview_url' => $beatmapset->previewURL(),
-            'source' => $beatmapset->source,
-            'spotlight' => $beatmapset->spotlight,
+            'source' => $attrs['source'] ?? null,
+            'spotlight' => $attrs['spotlight'] ?? null,
             'status' => $beatmapset->status(),
-            'title' => $beatmapset->title,
-            'title_unicode' => $beatmapset->title_unicode,
-            'track_id' => $beatmapset->track_id,
-            'user_id' => $beatmapset->user_id,
-            'video' => $beatmapset->video,
+            'title' => $attrs['title'] ?? null,
+            'title_unicode' => $beatmapset->getTitleUnicodeAttribute($attrs['title_unicode'] ?? null),
+            'track_id' => $attrs['track_id'] ?? null,
+            'user_id' => $attrs['user_id'] ?? null,
+            'video' => (bool) ($attrs['video'] ?? false),
         ];
     }
 
