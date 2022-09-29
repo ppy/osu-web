@@ -175,6 +175,28 @@ export default class Controller {
         scores: initialData.top_ranks,
         user: initialData.user,
       };
+
+      // fill in initial pagination data.
+      for (const key of Object.keys(this.state.beatmapsets) as (keyof BeatmapsetsJson)[]) {
+        const value = this.state.beatmapsets[key];
+        value.pagination = {
+          hasMore: value.count > value.items.length,
+        };
+      }
+
+      for (const key of ['beatmap_playcounts', 'recent'] as const) {
+        const value = this.state.historical[key];
+        value.pagination = {
+          hasMore: value.count > value.items.length,
+        };
+      }
+
+      for (const key of Object.keys(this.state.scores) as (keyof TopScoresJson)[]) {
+        const value = this.state.scores[key];
+        value.pagination = {
+          hasMore: Array.isArray(value.items) ? value.count > value.items.length : false,
+        };
+      }
     } else {
       this.state = JSON.parse(savedStateJson) as State;
     }
@@ -359,7 +381,7 @@ export default class Controller {
 
       case 'recentActivity':
         this.xhr[section] = apiShowMore(
-          this.paginatorJson(section),
+          this.state.recentActivity,
           'users.recent-activity',
           baseParams,
         );
@@ -367,7 +389,7 @@ export default class Controller {
 
       case 'recentlyReceivedKudosu':
         this.xhr[section] = apiShowMoreRecentlyReceivedKudosu(
-          this.paginatorJson(section),
+          this.state.kudosu,
           baseParams.user,
         );
         break;
@@ -402,13 +424,6 @@ export default class Controller {
     $.unsubscribe('score:pin', this.onScorePinUpdate);
     $(document).off('turbolinks:before-cache', this.saveState);
     this.saveState();
-  }
-
-  paginatorJson<T extends InitialProfilePageSection>(section: T) {
-    return {
-      items: this.state.extras[section],
-      pagination: this.state.pagination[section],
-    };
   }
 
   @action
