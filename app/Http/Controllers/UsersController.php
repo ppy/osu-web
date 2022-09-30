@@ -40,6 +40,9 @@ use Sentry\State\Scope;
  */
 class UsersController extends Controller
 {
+    // more limited list of UserProfileCustomization::SECTIONS for now.
+    const LAZY_EXTRA_PAGES = ['beatmaps', 'kudosu', 'recent_activity', 'top_ranks', 'historical'];
+
     const PER_PAGE = [
         'scoresBest' => 5,
         'scoresFirsts' => 5,
@@ -57,9 +60,6 @@ class UsersController extends Controller
         'recentActivity' => 5,
         'recentlyReceivedKudosu' => 5,
     ];
-
-    // more limited list of UserProfileCustomization::SECTIONS for now.
-    const LAZY_EXTRA_PAGES = ['beatmaps', 'kudosu', 'recent_activity', 'top_ranks', 'historical'];
 
     protected $maxResults = 100;
 
@@ -143,10 +143,6 @@ class UsersController extends Controller
 
     public function extraPages($_id, $page)
     {
-        if (!in_array($page, static::LAZY_EXTRA_PAGES, true)) {
-            abort(404);
-        }
-
         // TODO: counts basically duplicated from UserCompactTransformer
         switch ($page) {
             case 'beatmaps':
@@ -177,11 +173,6 @@ class UsersController extends Controller
                     ],
                 ];
 
-            case 'kudosu':
-                return [
-                    'items' => $this->getExtra($this->user, 'recentlyReceivedKudosu', [], static::PER_PAGE['recentlyReceivedKudosu'] + 1),
-                ];
-
             case 'historical':
                 return [
                     'beatmap_playcounts' => [
@@ -194,6 +185,11 @@ class UsersController extends Controller
                         'items' => $this->getExtra($this->user, 'scoresRecent', ['mode' => $this->mode], static::PER_PAGE['scoresRecent']),
                     ],
                     'replays_watched_counts' => json_collection($this->user->replaysWatchedCounts, new UserReplaysWatchedCountTransformer()),
+                ];
+
+            case 'kudosu':
+                return [
+                    'items' => $this->getExtra($this->user, 'recentlyReceivedKudosu', [], static::PER_PAGE['recentlyReceivedKudosu'] + 1),
                 ];
 
             case 'recent_activity':
@@ -218,6 +214,9 @@ class UsersController extends Controller
                         'items' => $this->getExtra($this->user, 'scoresPinned', $options, static::PER_PAGE['scoresPinned']),
                     ],
                 ];
+
+            default:
+                abort(404);
         }
     }
 
