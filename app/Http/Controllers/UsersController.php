@@ -146,72 +146,51 @@ class UsersController extends Controller
         switch ($page) {
             case 'beatmaps':
                 return [
-                    'favourite' => [
-                        'count' => $this->user->profileBeatmapsetsFavourite()->count(),
-                        'items' => $this->getExtra($this->user, 'favouriteBeatmapsets', [], static::PER_PAGE['favouriteBeatmapsets']),
-                    ],
-                    'graveyard' => [
-                        'count' => $this->user->profileBeatmapsetCountByGroupedStatus('graveyard'),
-                        'items' => $this->getExtra($this->user, 'graveyardBeatmapsets', [], static::PER_PAGE['graveyardBeatmapsets']),
-                    ],
-                    'guest' => [
-                        'count' => $this->user->profileBeatmapsetsGuest()->count(),
-                        'items' => $this->getExtra($this->user, 'guestBeatmapsets', [], static::PER_PAGE['guestBeatmapsets']),
-                    ],
-                    'loved' => [
-                        'count' => $this->user->profileBeatmapsetCountByGroupedStatus('loved'),
-                        'items' => $this->getExtra($this->user, 'lovedBeatmapsets', [], static::PER_PAGE['lovedBeatmapsets']),
-                    ],
-                    'ranked' => [
-                        'count' => $this->user->profileBeatmapsetCountByGroupedStatus('ranked'),
-                        'items' => $this->getExtra($this->user, 'rankedBeatmapsets', [], static::PER_PAGE['rankedBeatmapsets']),
-                    ],
-                    'pending' => [
-                        'count' => $this->user->profileBeatmapsetCountByGroupedStatus('pending'),
-                        'items' => $this->getExtra($this->user, 'pendingBeatmapsets', [], static::PER_PAGE['pendingBeatmapsets']),
-                    ],
+                    'favourite' => $this->getExtraSection('favouriteBeatmapsets', $this->user->profileBeatmapsetsFavourite()->count()),
+                    'graveyard' => $this->getExtraSection('graveyardBeatmapsets', $this->user->profileBeatmapsetCountByGroupedStatus('graveyard')),
+                    'guest' => $this->getExtraSection('guestBeatmapsets', $this->user->profileBeatmapsetsGuest()->count()),
+                    'loved' => $this->getExtraSection('lovedBeatmapsets', $this->user->profileBeatmapsetCountByGroupedStatus('loved')),
+                    'ranked' => $this->getExtraSection('rankedBeatmapsets', $this->user->profileBeatmapsetCountByGroupedStatus('ranked')),
+                    'pending' => $this->getExtraSection('pendingBeatmapsets', $this->user->profileBeatmapsetCountByGroupedStatus('pending')),
                 ];
 
             case 'historical':
                 return [
-                    'beatmap_playcounts' => [
-                        'count' => $this->user->beatmapPlaycounts()->count(),
-                        'items' => $this->getExtra($this->user, 'beatmapPlaycounts', [], static::PER_PAGE['beatmapPlaycounts']),
-                    ],
+                    'beatmap_playcounts' => $this->getExtraSection('beatmapPlaycounts', $this->user->beatmapPlaycounts()->count()),
                     'monthly_playcounts' => json_collection($this->user->monthlyPlaycounts, new UserMonthlyPlaycountTransformer()),
-                    'recent' => [
-                        'count' => $this->user->scores($this->mode, true)->includeFails(false)->count(),
-                        'items' => $this->getExtra($this->user, 'scoresRecent', ['mode' => $this->mode], static::PER_PAGE['scoresRecent']),
-                    ],
+                    'recent' => $this->getExtraSection(
+                        'scoresRecent',
+                        $this->user->scores($this->mode, true)->includeFails(false)->count(),
+                        ['mode' => $this->mode]
+                    ),
                     'replays_watched_counts' => json_collection($this->user->replaysWatchedCounts, new UserReplaysWatchedCountTransformer()),
                 ];
 
             case 'kudosu':
-                return [
-                    'items' => $this->getExtra($this->user, 'recentlyReceivedKudosu', [], static::PER_PAGE['recentlyReceivedKudosu'] + 1),
-                ];
+                return $this->getExtraSection('recentlyReceivedKudosu');
 
             case 'recent_activity':
-                return [
-                    'items' => $this->getExtra($this->user, 'recentActivity', [], static::PER_PAGE['recentActivity'] + 1),
-                ];
+                return $this->getExtraSection('recentActivity');
 
             case 'top_ranks':
                 $options = ['mode' => $this->mode];
 
                 return [
-                    'best' => [
-                        'count' => count($this->user->beatmapBestScoreIds($this->mode)),
-                        'items' => $this->getExtra($this->user, 'scoresBest', $options, static::PER_PAGE['scoresBest']),
-                    ],
-                    'firsts' => [
-                        'count' => $this->user->scoresFirst($this->mode, true)->visibleUsers()->count(),
-                        'items' => $this->getExtra($this->user, 'scoresFirsts', $options, static::PER_PAGE['scoresFirsts']),
-                    ],
-                    'pinned' => [
-                        'count' => $this->user->scorePins()->forRuleset($this->mode)->withVisibleScore()->count(),
-                        'items' => $this->getExtra($this->user, 'scoresPinned', $options, static::PER_PAGE['scoresPinned']),
-                    ],
+                    'best' => $this->getExtraSection(
+                        'scoresBest',
+                        count($this->user->beatmapBestScoreIds($this->mode)),
+                        $options
+                    ),
+                    'firsts' => $this->getExtraSection(
+                        'scoresFirsts',
+                        $this->user->scoresFirst($this->mode, true)->visibleUsers()->count(),
+                        $options
+                    ),
+                    'pinned' => $this->getExtraSection(
+                        'scoresPinned',
+                        $this->user->scorePins()->forRuleset($this->mode)->withVisibleScore()->count(),
+                        $options
+                    ),
                 ];
 
             default:
@@ -849,6 +828,22 @@ class UsersController extends Controller
         }
 
         return json_collection($collection, $transformer, $includes ?? []);
+    }
+
+    private function getExtraSection(string $section, ?int $count = null, array $options = [])
+    {
+        $response = [];
+
+        if ($count !== null) {
+            $response['count'] = $count;
+        } else {
+            $fetchSize = static::PER_PAGE[$section] + 1;
+            $response['per_page'] = static::PER_PAGE[$section];
+        }
+
+        $response['items'] = $this->getExtra($this->user, $section, $options, $fetchSize ?? static::PER_PAGE[$section]);
+
+        return $response;
     }
 
     private function showUserIncludes()
