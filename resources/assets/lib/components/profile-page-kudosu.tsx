@@ -5,11 +5,11 @@ import KudosuHistoryJson from 'interfaces/kudosu-history-json';
 import { action, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import ExtraHeader from 'profile-page/extra-header';
-import getPage from 'profile-page/extra-page';
+import getPage, { PageSectionWithoutCountJson } from 'profile-page/extra-page';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
 import { parseJsonNullable, storeJson } from 'utils/json';
-import { apiShowMoreRecentlyReceivedKudosu, hasMoreCheck, OffsetPaginatorJson } from 'utils/offset-paginator';
+import { apiShowMoreRecentlyReceivedKudosu, OffsetPaginatorJson } from 'utils/offset-paginator';
 import { wikiUrl } from 'utils/url';
 import LazyLoad from './lazy-load';
 import ShowMoreLink from './show-more-link';
@@ -59,16 +59,12 @@ interface Props {
   withEdit: boolean;
 }
 
-interface Response {
-  items: KudosuHistoryJson[];
-}
-
 @observer
 export default class ProfilePageKudosu extends React.Component<Props> {
   @observable
   private kudosu?: OffsetPaginatorJson<KudosuHistoryJson>;
   private showMoreXhr?: JQuery.jqXHR<KudosuHistoryJson[]>;
-  private xhr?: JQuery.jqXHR<Response>;
+  private xhr?: JQuery.jqXHR<PageSectionWithoutCountJson<KudosuHistoryJson>>;
 
   constructor(props: Props) {
     super(props);
@@ -121,12 +117,7 @@ export default class ProfilePageKudosu extends React.Component<Props> {
     this.xhr = getPage({ id: this.props.userId }, 'kudosu');
 
     this.xhr.done((json) => runInAction(() => {
-      const items = json.items;
-      const hasMore = hasMoreCheck(5, items);
-      this.kudosu = {
-        items,
-        pagination: { hasMore },
-      };
+      this.kudosu = json;
     }));
 
     return this.xhr;

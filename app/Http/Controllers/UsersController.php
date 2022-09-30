@@ -143,6 +143,7 @@ class UsersController extends Controller
     public function extraPages($_id, $page)
     {
         // TODO: counts basically duplicated from UserCompactTransformer
+        // TOOD: switch to cursor pagination?
         switch ($page) {
             case 'beatmaps':
                 return [

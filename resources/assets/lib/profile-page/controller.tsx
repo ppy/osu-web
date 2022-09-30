@@ -8,7 +8,6 @@ import CurrentUserJson from 'interfaces/current-user-json';
 import EventJson from 'interfaces/event-json';
 import GameMode from 'interfaces/game-mode';
 import KudosuHistoryJson from 'interfaces/kudosu-history-json';
-import { PageSectionJson, PageSectionWithoutCountJson } from 'interfaces/profile-page/extras-json';
 import { ScoreCurrentUserPinJson } from 'interfaces/score-json';
 import SoloScoreJson, { isSoloScoreJsonForUser, SoloScoreJsonForUser } from 'interfaces/solo-score-json';
 import UserCoverJson from 'interfaces/user-cover-json';
@@ -24,7 +23,7 @@ import { jsonClone } from 'utils/json';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import { apiShowMore } from 'utils/offset-paginator';
 import { switchNever } from 'utils/switch-never';
-import getPage from './extra-page';
+import getPage, { PageSectionJson, PageSectionWithoutCountJson } from './extra-page';
 import { ProfilePageSection, ProfilePageUserJson } from './extra-page-props';
 
 const sectionToUrlType = {
