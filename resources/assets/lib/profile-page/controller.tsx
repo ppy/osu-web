@@ -5,7 +5,6 @@ import AchievementJson from 'interfaces/achievement-json';
 import BeatmapPlaycountJson from 'interfaces/beatmap-playcount-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import CurrentUserJson from 'interfaces/current-user-json';
-import ErrorJson from 'interfaces/error-json';
 import EventJson from 'interfaces/event-json';
 import GameMode from 'interfaces/game-mode';
 import KudosuHistoryJson from 'interfaces/kudosu-history-json';
@@ -120,7 +119,7 @@ interface State {
 }
 
 interface TopScoresJson {
-  best: ExtraPageJson<SoloScoreJsonForUser[] | ErrorJson>;
+  best: ExtraPageJson<SoloScoreJsonForUser[]>;
   firsts: ExtraPageJson<SoloScoreJsonForUser[]>;
   pinned: ExtraPageJson<SoloScoreJsonForUser[]>;
 }
@@ -194,7 +193,7 @@ export default class Controller {
       for (const key of Object.keys(this.state.scores) as (keyof TopScoresJson)[]) {
         const value = this.state.scores[key];
         value.pagination = {
-          hasMore: Array.isArray(value.items) ? value.count > value.items.length : false,
+          hasMore: value.count > value.items.length,
         };
       }
     } else {

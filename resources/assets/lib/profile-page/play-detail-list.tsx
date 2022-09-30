@@ -66,8 +66,6 @@ export default class PlayDetailList extends React.Component<Props> {
 
   @computed
   private get uniqueItems() {
-    if (!Array.isArray(this.scores.items)) return [];
-
     const ret = new Map<number, SoloScoreJsonForUser>();
     this.scores.items.forEach((item) => ret.set(item.id, item));
 
@@ -109,10 +107,6 @@ export default class PlayDetailList extends React.Component<Props> {
   }
 
   render() {
-    if (!Array.isArray(this.scores.items)) {
-      return <p>{this.scores.items.error}</p>;
-    }
-
     const showPpWeight = 'showPpWeight' in this.sectionMap && this.sectionMap.showPpWeight;
 
     return (
