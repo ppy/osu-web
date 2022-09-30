@@ -12,11 +12,12 @@ export default interface ExtrasJson {
 
 export interface ExtraPageJson<T> {
   count: number;
-  items: T;
+  items: T[];
   pagination: OffsetPaginationJson;
 }
 
+// TODO: basically OffsetPaginatorJson now
 export interface ExtraPageJsonWithoutCount<T> {
-  items: T;
+  items: T[];
   pagination: OffsetPaginationJson;
 }

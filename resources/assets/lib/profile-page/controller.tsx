@@ -70,18 +70,18 @@ export function validPage(page: unknown) {
 }
 
 interface BeatmapsetsJson {
-  favourite: ExtraPageJson<BeatmapsetExtendedJson[]>;
-  graveyard: ExtraPageJson<BeatmapsetExtendedJson[]>;
-  guest: ExtraPageJson<BeatmapsetExtendedJson[]>;
-  loved: ExtraPageJson<BeatmapsetExtendedJson[]>;
-  pending: ExtraPageJson<BeatmapsetExtendedJson[]>;
-  ranked: ExtraPageJson<BeatmapsetExtendedJson[]>;
+  favourite: ExtraPageJson<BeatmapsetExtendedJson>;
+  graveyard: ExtraPageJson<BeatmapsetExtendedJson>;
+  guest: ExtraPageJson<BeatmapsetExtendedJson>;
+  loved: ExtraPageJson<BeatmapsetExtendedJson>;
+  pending: ExtraPageJson<BeatmapsetExtendedJson>;
+  ranked: ExtraPageJson<BeatmapsetExtendedJson>;
 }
 
 interface HistoricalJson {
-  beatmap_playcounts: ExtraPageJson<BeatmapPlaycountJson[]>;
+  beatmap_playcounts: ExtraPageJson<BeatmapPlaycountJson>;
   monthly_playcounts: UserMonthlyPlaycountJson[];
-  recent: ExtraPageJson<SoloScoreJsonForUser[]>;
+  recent: ExtraPageJson<SoloScoreJsonForUser>;
   replays_watched_counts: UserReplaysWatchedCountJson[];
 }
 
@@ -112,16 +112,16 @@ interface State {
   currentPage: Page;
   editingUserPage: boolean;
   historical: HistoricalJson;
-  kudosu: ExtraPageJsonWithoutCount<KudosuHistoryJson[]>;
-  recentActivity: ExtraPageJsonWithoutCount<EventJson[]>;
+  kudosu: ExtraPageJsonWithoutCount<KudosuHistoryJson>;
+  recentActivity: ExtraPageJsonWithoutCount<EventJson>;
   scores: TopScoresJson;
   user: ProfilePageUserJson;
 }
 
 interface TopScoresJson {
-  best: ExtraPageJson<SoloScoreJsonForUser[]>;
-  firsts: ExtraPageJson<SoloScoreJsonForUser[]>;
-  pinned: ExtraPageJson<SoloScoreJsonForUser[]>;
+  best: ExtraPageJson<SoloScoreJsonForUser>;
+  firsts: ExtraPageJson<SoloScoreJsonForUser>;
+  pinned: ExtraPageJson<SoloScoreJsonForUser>;
 }
 
 export default class Controller {
