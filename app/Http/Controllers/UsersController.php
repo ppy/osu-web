@@ -179,7 +179,7 @@ class UsersController extends Controller
 
             case 'kudosu':
                 return [
-                    'items' => $this->getExtra($this->user, 'recentlyReceivedKudosu', [], static::PER_PAGE['recentlyReceivedKudosu']),
+                    'items' => $this->getExtra($this->user, 'recentlyReceivedKudosu', [], static::PER_PAGE['recentlyReceivedKudosu'] + 1),
                 ];
 
             case 'historical':
@@ -198,7 +198,7 @@ class UsersController extends Controller
 
             case 'recent_activity':
                 return [
-                    'items' => $this->getExtra($this->user, 'recentActivity', [], static::PER_PAGE['recentActivity']),
+                    'items' => $this->getExtra($this->user, 'recentActivity', [], static::PER_PAGE['recentActivity'] + 1),
                 ];
 
             case 'top_ranks':
