@@ -30,7 +30,6 @@ use App\Transformers\UserMonthlyPlaycountTransformer;
 use App\Transformers\UserReplaysWatchedCountTransformer;
 use App\Transformers\UserTransformer;
 use Auth;
-use Elasticsearch\Common\Exceptions\ElasticsearchException;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Request;
 use Sentry\State\Scope;
@@ -731,129 +730,125 @@ class UsersController extends Controller
 
     private function getExtra($user, $page, array $options, int $perPage = 10, int $offset = 0)
     {
-        try {
-            // Grouped by $transformer and sorted alphabetically ($transformer and then $page).
-            switch ($page) {
-                // BeatmapPlaycount
-                case 'beatmapPlaycounts':
-                    $transformer = 'BeatmapPlaycount';
-                    $query = $user->beatmapPlaycounts()
-                        ->with('beatmap', 'beatmap.beatmapset')
-                        ->whereHas('beatmap.beatmapset')
-                        ->orderBy('playcount', 'desc')
-                        ->orderBy('beatmap_id', 'desc'); // for consistent sorting
-                    break;
+        // Grouped by $transformer and sorted alphabetically ($transformer and then $page).
+        switch ($page) {
+            // BeatmapPlaycount
+            case 'beatmapPlaycounts':
+                $transformer = 'BeatmapPlaycount';
+                $query = $user->beatmapPlaycounts()
+                    ->with('beatmap', 'beatmap.beatmapset')
+                    ->whereHas('beatmap.beatmapset')
+                    ->orderBy('playcount', 'desc')
+                    ->orderBy('beatmap_id', 'desc'); // for consistent sorting
+                break;
 
-                // Beatmapset
-                case 'favouriteBeatmapsets':
-                    $transformer = 'Beatmapset';
-                    $includes = ['beatmaps'];
-                    $query = $user->profileBeatmapsetsFavourite();
-                    break;
-                case 'graveyardBeatmapsets':
-                    $transformer = 'Beatmapset';
-                    $includes = ['beatmaps'];
-                    $query = $user->profileBeatmapsetsGraveyard()
-                        ->orderBy('last_update', 'desc');
-                    break;
-                case 'guestBeatmapsets':
-                    $transformer = 'Beatmapset';
-                    $includes = ['beatmaps'];
-                    $query = $user->profileBeatmapsetsGuest()
-                        ->orderBy('approved_date', 'desc');
-                    break;
-                case 'lovedBeatmapsets':
-                    $transformer = 'Beatmapset';
-                    $includes = ['beatmaps'];
-                    $query = $user->profileBeatmapsetsLoved()
-                        ->orderBy('approved_date', 'desc');
-                    break;
-                case 'rankedBeatmapsets':
-                    $transformer = 'Beatmapset';
-                    $includes = ['beatmaps'];
-                    $query = $user->profileBeatmapsetsRanked()
-                        ->orderBy('approved_date', 'desc');
-                    break;
-                case 'pendingBeatmapsets':
-                    $transformer = 'Beatmapset';
-                    $includes = ['beatmaps'];
-                    $query = $user->profileBeatmapsetsPending()
-                        ->orderBy('last_update', 'desc');
-                    break;
+            // Beatmapset
+            case 'favouriteBeatmapsets':
+                $transformer = 'Beatmapset';
+                $includes = ['beatmaps'];
+                $query = $user->profileBeatmapsetsFavourite();
+                break;
+            case 'graveyardBeatmapsets':
+                $transformer = 'Beatmapset';
+                $includes = ['beatmaps'];
+                $query = $user->profileBeatmapsetsGraveyard()
+                    ->orderBy('last_update', 'desc');
+                break;
+            case 'guestBeatmapsets':
+                $transformer = 'Beatmapset';
+                $includes = ['beatmaps'];
+                $query = $user->profileBeatmapsetsGuest()
+                    ->orderBy('approved_date', 'desc');
+                break;
+            case 'lovedBeatmapsets':
+                $transformer = 'Beatmapset';
+                $includes = ['beatmaps'];
+                $query = $user->profileBeatmapsetsLoved()
+                    ->orderBy('approved_date', 'desc');
+                break;
+            case 'rankedBeatmapsets':
+                $transformer = 'Beatmapset';
+                $includes = ['beatmaps'];
+                $query = $user->profileBeatmapsetsRanked()
+                    ->orderBy('approved_date', 'desc');
+                break;
+            case 'pendingBeatmapsets':
+                $transformer = 'Beatmapset';
+                $includes = ['beatmaps'];
+                $query = $user->profileBeatmapsetsPending()
+                    ->orderBy('last_update', 'desc');
+                break;
 
-                // Event
-                case 'recentActivity':
-                    $transformer = 'Event';
-                    $query = $user->events()->recent();
-                    break;
+            // Event
+            case 'recentActivity':
+                $transformer = 'Event';
+                $query = $user->events()->recent();
+                break;
 
-                // KudosuHistory
-                case 'recentlyReceivedKudosu':
-                    $transformer = 'KudosuHistory';
-                    $query = $user->receivedKudosu()
-                        ->with('post', 'post.topic', 'giver')
-                        ->with(['kudosuable' => function (MorphTo $morphTo) {
-                            $morphTo->morphWith([BeatmapDiscussion::class => ['beatmap', 'beatmapset']]);
-                        }])
-                        ->orderBy('exchange_id', 'desc');
-                    break;
+            // KudosuHistory
+            case 'recentlyReceivedKudosu':
+                $transformer = 'KudosuHistory';
+                $query = $user->receivedKudosu()
+                    ->with('post', 'post.topic', 'giver')
+                    ->with(['kudosuable' => function (MorphTo $morphTo) {
+                        $morphTo->morphWith([BeatmapDiscussion::class => ['beatmap', 'beatmapset']]);
+                    }])
+                    ->orderBy('exchange_id', 'desc');
+                break;
 
-                // Score
-                case 'scoresBest':
-                    $transformer = new ScoreTransformer();
-                    $includes = [...ScoreTransformer::USER_PROFILE_INCLUDES, 'weight'];
-                    $collection = $user->beatmapBestScores($options['mode'], $perPage, $offset, ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
-                    $userRelationColumn = 'user';
-                    break;
-                case 'scoresFirsts':
-                    $transformer = new ScoreTransformer();
-                    $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
-                    $query = $user->scoresFirst($options['mode'], true)
-                        ->visibleUsers()
-                        ->reorderBy('score_id', 'desc')
-                        ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
-                    $userRelationColumn = 'user';
-                    break;
-                case 'scoresPinned':
-                    $transformer = new ScoreTransformer();
-                    $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
-                    $query = $user
-                        ->scorePins()
-                        ->forRuleset($options['mode'])
-                        ->withVisibleScore()
-                        ->with(array_map(fn ($include) => "score.{$include}", ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD))
-                        ->reorderBy('display_order', 'asc');
-                    $collectionFn = fn ($pins) => $pins->map->score;
-                    $userRelationColumn = 'user';
-                    break;
-                case 'scoresRecent':
-                    $transformer = new ScoreTransformer();
-                    $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
-                    $query = $user->scores($options['mode'], true)
-                        ->includeFails($options['includeFails'] ?? false)
-                        ->with([...ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD, 'best']);
-                    $userRelationColumn = 'user';
-                    break;
-            }
-
-            if (!isset($collection)) {
-                $collection = $query->limit($perPage)->offset($offset)->get();
-
-                if (isset($collectionFn)) {
-                    $collection = $collectionFn($collection);
-                }
-            }
-
-            if (isset($userRelationColumn)) {
-                foreach ($collection as $item) {
-                    $item->setRelation($userRelationColumn, $user);
-                }
-            }
-
-            return json_collection($collection, $transformer, $includes ?? []);
-        } catch (ElasticsearchException $e) {
-            return ['error' => search_error_message($e)];
+            // Score
+            case 'scoresBest':
+                $transformer = new ScoreTransformer();
+                $includes = [...ScoreTransformer::USER_PROFILE_INCLUDES, 'weight'];
+                $collection = $user->beatmapBestScores($options['mode'], $perPage, $offset, ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
+                $userRelationColumn = 'user';
+                break;
+            case 'scoresFirsts':
+                $transformer = new ScoreTransformer();
+                $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
+                $query = $user->scoresFirst($options['mode'], true)
+                    ->visibleUsers()
+                    ->reorderBy('score_id', 'desc')
+                    ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
+                $userRelationColumn = 'user';
+                break;
+            case 'scoresPinned':
+                $transformer = new ScoreTransformer();
+                $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
+                $query = $user
+                    ->scorePins()
+                    ->forRuleset($options['mode'])
+                    ->withVisibleScore()
+                    ->with(array_map(fn ($include) => "score.{$include}", ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD))
+                    ->reorderBy('display_order', 'asc');
+                $collectionFn = fn ($pins) => $pins->map->score;
+                $userRelationColumn = 'user';
+                break;
+            case 'scoresRecent':
+                $transformer = new ScoreTransformer();
+                $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
+                $query = $user->scores($options['mode'], true)
+                    ->includeFails($options['includeFails'] ?? false)
+                    ->with([...ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD, 'best']);
+                $userRelationColumn = 'user';
+                break;
         }
+
+        if (!isset($collection)) {
+            $collection = $query->limit($perPage)->offset($offset)->get();
+
+            if (isset($collectionFn)) {
+                $collection = $collectionFn($collection);
+            }
+        }
+
+        if (isset($userRelationColumn)) {
+            foreach ($collection as $item) {
+                $item->setRelation($userRelationColumn, $user);
+            }
+        }
+
+        return json_collection($collection, $transformer, $includes ?? []);
     }
 
     private function showUserIncludes()
