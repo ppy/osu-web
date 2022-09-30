@@ -64,13 +64,8 @@ export function validPage(page: unknown) {
 
 interface InitialData {
   achievements: AchievementJson[];
-  beatmaps: BeatmapsetsJson;
   current_mode: GameMode;
-  historical: HistoricalJson;
-  kudosu: PageSectionWithoutCountJson<KudosuHistoryJson>;
-  recent_activity: PageSectionWithoutCountJson<EventJson>;
   scores_notice: string | null;
-  top_ranks: TopScoresJson;
   user: ProfilePageUserJson;
 }
 
