@@ -43,7 +43,7 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
 
   render() {
     if (!this.loaded) {
-      return <div ref={this.ref}><Spinner /></div>;
+      return <div ref={this.ref} className='lazy-load'><Spinner /></div>;
     }
 
     return this.props.children;
