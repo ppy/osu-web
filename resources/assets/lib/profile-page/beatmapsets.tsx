@@ -11,28 +11,28 @@ import ExtraPageProps, { BeatmapsetSection } from './extra-page-props';
 
 const sectionKeys = [
   {
-    key: 'favouriteBeatmapsets',
-    translationKey: 'favourite',
+    key: 'favourite',
+    urlType: 'favouriteBeatmapsets',
   },
   {
-    key: 'rankedBeatmapsets',
-    translationKey: 'ranked',
+    key: 'ranked',
+    urlType: 'rankedBeatmapsets',
   },
   {
-    key: 'lovedBeatmapsets',
-    translationKey: 'loved',
+    key: 'loved',
+    urlType: 'lovedBeatmapsets',
   },
   {
-    key: 'guestBeatmapsets',
-    translationKey: 'guest',
+    key: 'guest',
+    urlType: 'guestBeatmapsets',
   },
   {
-    key: 'pendingBeatmapsets',
-    translationKey: 'pending',
+    key: 'pending',
+    urlType: 'pendingBeatmapsets',
   },
   {
-    key: 'graveyardBeatmapsets',
-    translationKey: 'graveyard',
+    key: 'graveyard',
+    urlType: 'graveyardBeatmapsets',
   },
 ] as const;
 
@@ -53,15 +53,15 @@ export default class Beatmapsets extends React.Component<ExtraPageProps> {
 
   private readonly renderBeatmapsets = (section: typeof sectionKeys[number]) => {
     const state = this.props.controller.state.beatmapsets;
-    const count = state[section.translationKey].count;
-    const beatmapsets = state[section.translationKey].items;
-    const pagination = state[section.translationKey].pagination;
+    const count = state[section.key].count;
+    const beatmapsets = state[section.key].items;
+    const pagination = state[section.key].pagination;
 
     return (
-      <React.Fragment key={section.translationKey}>
+      <React.Fragment key={section.key}>
         <ProfilePageExtraSectionTitle
           count={count}
-          titleKey={`users.show.extra.beatmaps.${section.translationKey}.title`}
+          titleKey={`users.show.extra.beatmaps.${section.key}.title`}
         />
 
         {beatmapsets.length > 0 && (
@@ -79,7 +79,7 @@ export default class Beatmapsets extends React.Component<ExtraPageProps> {
               <ShowMoreLink
                 {...pagination}
                 callback={this.onShowMore}
-                data={section.key}
+                data={section.urlType}
                 modifiers='profile-page'
               />
             </div>
