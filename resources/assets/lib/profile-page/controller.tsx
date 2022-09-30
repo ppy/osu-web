@@ -17,13 +17,14 @@ import UserMonthlyPlaycountJson from 'interfaces/user-monthly-playcount-json';
 import UserReplaysWatchedCountJson from 'interfaces/user-replays-watched-count-json';
 import { route } from 'laroute';
 import { debounce, keyBy, pullAt } from 'lodash';
-import { action, makeObservable, observable } from 'mobx';
+import { action, makeObservable, observable, runInAction } from 'mobx';
 import core from 'osu-core-singleton';
 import { error, onErrorWithCallback } from 'utils/ajax';
 import { jsonClone } from 'utils/json';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import { apiShowMore, apiShowMoreRecentlyReceivedKudosu } from 'utils/offset-paginator';
 import { switchNever } from 'utils/switch-never';
+import getPage from './extra-page';
 import { ProfilePageSection, ProfilePageUserJson } from './extra-page-props';
 
 const sectionToUrlType = {
@@ -83,13 +84,13 @@ interface ScorePinReorderParams {
 }
 
 interface State {
-  beatmapsets: BeatmapsetsJson;
+  beatmapsets?: BeatmapsetsJson;
   currentPage: Page;
   editingUserPage: boolean;
-  historical: HistoricalJson;
-  kudosu: PageSectionWithoutCountJson<KudosuHistoryJson>;
-  recentActivity: PageSectionWithoutCountJson<EventJson>;
-  topScores: TopScoresJson;
+  historical?: HistoricalJson;
+  kudosu?: PageSectionWithoutCountJson<KudosuHistoryJson>;
+  recentActivity?: PageSectionWithoutCountJson<EventJson>;
+  topScores?: TopScoresJson;
   user: ProfilePageUserJson;
 }
 
@@ -121,13 +122,8 @@ export default class Controller {
 
     if (savedStateJson == null) {
       this.state = {
-        beatmapsets: initialData.beatmaps,
         currentPage: 'main',
         editingUserPage: false,
-        historical: initialData.historical,
-        kudosu: initialData.kudosu,
-        recentActivity: initialData.recent_activity,
-        topScores: initialData.top_ranks,
         user: initialData.user,
       };
     } else {
@@ -147,6 +143,8 @@ export default class Controller {
 
   @action
   apiReorderScorePin(currentIndex: number, newIndex: number) {
+    if (this.state.topScores == null) return;
+
     const origItems = this.state.topScores.pinned.items.slice();
     const items = this.state.topScores.pinned.items;
     const adjacentScoreId = items[newIndex]?.id;
@@ -185,7 +183,9 @@ export default class Controller {
       method: 'PUT',
     }).fail(action((xhr: JQuery.jqXHR, status: string) => {
       error(xhr, status);
-      this.state.topScores.pinned.items = origItems;
+      if (this.state.topScores != null) {
+        this.state.topScores.pinned.items = origItems;
+      }
     })).always(hideLoadingOverlay);
   }
 
@@ -283,13 +283,15 @@ export default class Controller {
 
     switch (section) {
       case 'beatmapPlaycounts': {
-        const json = this.state.historical.beatmap_playcounts;
+        if (this.state.historical != null) {
+          const json = this.state.historical.beatmap_playcounts;
 
-        this.xhr[section] = apiShowMore(
-          json,
-          'users.beatmapsets',
-          { ...baseParams, type: 'most_played' },
-        );
+          this.xhr[section] = apiShowMore(
+            json,
+            'users.beatmapsets',
+            { ...baseParams, type: 'most_played' },
+          );
+        }
 
         break;
       }
@@ -300,31 +302,39 @@ export default class Controller {
       case 'lovedBeatmapsets':
       case 'pendingBeatmapsets':
       case 'rankedBeatmapsets': {
-        const type = sectionToUrlType[section];
-        const json = this.state.beatmapsets[type];
+        if (this.state.beatmapsets != null) {
+          const type = sectionToUrlType[section];
+          const json = this.state.beatmapsets[type];
 
-        this.xhr[section] = apiShowMore(
-          json,
-          'users.beatmapsets',
-          { ...baseParams, type: sectionToUrlType[section] },
-        );
+          this.xhr[section] = apiShowMore(
+            json,
+            'users.beatmapsets',
+            { ...baseParams, type: sectionToUrlType[section] },
+          );
+        }
 
         break;
       }
 
       case 'recentActivity':
-        this.xhr[section] = apiShowMore(
-          this.state.recentActivity,
-          'users.recent-activity',
-          baseParams,
-        );
+        if (this.state.recentActivity != null) {
+          this.xhr[section] = apiShowMore(
+            this.state.recentActivity,
+            'users.recent-activity',
+            baseParams,
+          );
+        }
+
         break;
 
       case 'recentlyReceivedKudosu':
-        this.xhr[section] = apiShowMoreRecentlyReceivedKudosu(
-          this.state.kudosu,
-          baseParams.user,
-        );
+        if (this.state.kudosu != null) {
+          this.xhr[section] = apiShowMoreRecentlyReceivedKudosu(
+            this.state.kudosu,
+            baseParams.user,
+          );
+        }
+
         break;
 
       case 'scoresBest':
@@ -332,13 +342,15 @@ export default class Controller {
       case 'scoresPinned':
       case 'scoresRecent': {
         const type = sectionToUrlType[section];
-        const json = type === 'recent' ? this.state.historical.recent : this.state.topScores[type];
+        const json = type === 'recent' ? this.state.historical?.recent : this.state.topScores?.[type];
 
-        this.xhr[section] = apiShowMore(
-          json,
-          'users.scores',
-          { ...baseParams, mode: this.currentMode, type },
-        );
+        if (json != null) {
+          this.xhr[section] = apiShowMore(
+            json,
+            'users.scores',
+            { ...baseParams, mode: this.currentMode, type },
+          );
+        }
 
         break;
       }
@@ -360,6 +372,54 @@ export default class Controller {
   }
 
   @action
+  getBeatmapsets() {
+    if (this.state.beatmapsets != null) return Promise.resolve();
+    const xhr = getPage(this.state.user, 'beatmaps') as JQuery.jqXHR<BeatmapsetsJson>;
+
+    xhr.done((json) => runInAction(() => {
+      this.state.beatmapsets = json;
+    }));
+
+    return xhr;
+  }
+
+  @action
+  getHistorical() {
+    if (this.state.historical != null) return Promise.resolve();
+    const xhr = getPage(this.state.user, 'historical') as JQuery.jqXHR<HistoricalJson>;
+
+    xhr.done((json) => runInAction(() => {
+      this.state.historical = json;
+    }));
+
+    return xhr;
+  }
+
+  @action
+  getRecentActivity() {
+    if (this.state.topScores != null) return Promise.resolve();
+    const xhr = getPage(this.state.user, 'recent_activity') as JQuery.jqXHR<PageSectionWithoutCountJson<EventJson>>;
+
+    xhr.done((json) => runInAction(() => {
+      this.state.recentActivity = json;
+    }));
+
+    return xhr;
+  }
+
+  @action
+  getTopScores() {
+    if (this.state.topScores != null) return Promise.resolve();
+    const xhr = getPage(this.state.user, 'top_ranks') as JQuery.jqXHR<TopScoresJson>;
+
+    xhr.done((json) => runInAction(() => {
+      this.state.topScores = json;
+    }));
+
+    return xhr;
+  }
+
+  @action
   setCover(cover: UserCoverJson) {
     core.currentUserOrFail.cover = this.state.user.cover = cover;
     this.setDisplayCoverUrl(null);
@@ -372,6 +432,7 @@ export default class Controller {
 
   @action
   private readonly onScorePinUpdate = (event: unknown, isPinned: boolean, score: SoloScoreJson) => {
+    if (this.state.topScores == null) return;
     // make sure the typing is correct
     if (!isSoloScoreJsonForUser(score)) {
       return;

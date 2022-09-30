@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsetPanel from 'components/beatmapset-panel';
+import LazyLoad from 'components/lazy-load';
 import ProfilePageExtraSectionTitle from 'components/profile-page-extra-section-title';
 import ShowMoreLink from 'components/show-more-link';
 import { observer } from 'mobx-react';
@@ -42,10 +43,14 @@ export default class Beatmapsets extends React.Component<ExtraPageProps> {
     return (
       <div className='page-extra'>
         <ExtraHeader name={this.props.name} withEdit={this.props.controller.withEdit} />
-        {sectionKeys.map(this.renderBeatmapsets)}
+        <LazyLoad onLoad={this.handleOnLoad}>
+          {sectionKeys.map(this.renderBeatmapsets)}
+        </LazyLoad>
       </div>
     );
   }
+
+  private readonly handleOnLoad = () => this.props.controller.getBeatmapsets();
 
   private readonly onShowMore = (section: BeatmapsetSection) => {
     this.props.controller.apiShowMore(section);
@@ -53,6 +58,8 @@ export default class Beatmapsets extends React.Component<ExtraPageProps> {
 
   private readonly renderBeatmapsets = (section: typeof sectionKeys[number]) => {
     const state = this.props.controller.state.beatmapsets;
+    if (state == null) return;
+
     const count = state[section.key].count;
     const beatmapsets = state[section.key].items;
     const pagination = state[section.key].pagination;

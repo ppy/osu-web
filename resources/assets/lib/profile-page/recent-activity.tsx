@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import LazyLoad from 'components/lazy-load';
 import ShowMoreLink from 'components/show-more-link';
 import StringWithComponent from 'components/string-with-component';
 import TimeWithTooltip from 'components/time-with-tooltip';
@@ -20,10 +21,14 @@ export default class RecentActivity extends React.Component<ExtraPageProps> {
     return (
       <div className='page-extra'>
         <ExtraHeader name={this.props.name} withEdit={this.props.controller.withEdit} />
-        {this.props.controller.state.recentActivity.items.length > 0 ? this.renderEntries() : this.renderEmpty()}
+        <LazyLoad onLoad={this.handleOnLoad}>
+          {(this.props.controller.state.recentActivity?.items.length ?? 0) > 0 ? this.renderEntries() : this.renderEmpty()}
+        </LazyLoad>
       </div>
     );
   }
+
+  private readonly handleOnLoad = () => this.props.controller.getRecentActivity();
 
   private readonly onShowMore = () => {
     this.props.controller.apiShowMore('recentActivity');
@@ -34,6 +39,8 @@ export default class RecentActivity extends React.Component<ExtraPageProps> {
   }
 
   private renderEntries() {
+    if (this.props.controller.state.recentActivity == null) return null;
+
     return (
       <ul className='profile-extra-entries'>
         {this.props.controller.state.recentActivity.items.map(this.renderEntry)}

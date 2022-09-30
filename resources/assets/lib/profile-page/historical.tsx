@@ -2,11 +2,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import LineChart, { makeOptionsDate } from 'charts/line-chart';
+import LazyLoad from 'components/lazy-load';
 import ProfilePageExtraSectionTitle from 'components/profile-page-extra-section-title';
 import ShowMoreLink from 'components/show-more-link';
 import { curveLinear } from 'd3';
 import { escape, sortBy, times } from 'lodash';
-import { autorun, computed, makeObservable } from 'mobx';
+import { action, autorun, computed, makeObservable } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
@@ -95,12 +96,12 @@ export default class Historical extends React.Component<ExtraPageProps> {
 
   @computed
   private get monthlyPlaycountsData() {
-    return convertUserDataForChart(this.historical.monthly_playcounts);
+    return convertUserDataForChart(this.historical?.monthly_playcounts ?? []);
   }
 
   @computed
   private get replaysWatchedCountsData() {
-    return convertUserDataForChart(this.historical.replays_watched_counts);
+    return convertUserDataForChart(this.historical?.replays_watched_counts ?? []);
   }
 
   constructor(props: ExtraPageProps) {
@@ -124,6 +125,28 @@ export default class Historical extends React.Component<ExtraPageProps> {
       <div className='page-extra'>
         <ExtraHeader name={this.props.name} withEdit={this.props.controller.withEdit} />
 
+        <LazyLoad onLoad={this.handleOnLoad}>
+          {this.renderHistorical()}
+        </LazyLoad>
+      </div>
+    );
+  }
+
+  private readonly handleOnLoad = () => this.props.controller.getHistorical();
+
+  private hasSection(attribute: ChartSection) {
+    return this.historical != null && this.historical[attribute].length > 0;
+  }
+
+  private readonly onShowMore = (section: HistoricalSection) => {
+    this.props.controller.apiShowMore(section);
+  };
+
+  private renderHistorical() {
+    if (this.historical == null) return;
+
+    return (
+      <>
         {this.hasSection('monthly_playcounts') &&
           <>
             <ProfilePageExtraSectionTitle titleKey='users.show.extra.historical.monthly_playcounts.title' />
@@ -168,17 +191,9 @@ export default class Historical extends React.Component<ExtraPageProps> {
             </div>
           </>
         }
-      </div>
+      </>
     );
   }
-
-  private hasSection(attribute: ChartSection) {
-    return this.historical[attribute].length > 0;
-  }
-
-  private readonly onShowMore = (section: HistoricalSection) => {
-    this.props.controller.apiShowMore(section);
-  };
 
   private readonly resizeCharts = () => {
     Object.values(this.charts).forEach((chart) => {
@@ -189,47 +204,50 @@ export default class Historical extends React.Component<ExtraPageProps> {
   private readonly updateChart = (attribute: ChartSection) => {
     if (!this.hasSection(attribute)) return;
 
-    const area = this.chartRefs[attribute].current;
+    // Need to wait for the ref to be set after the lazy load.
+    setTimeout(action(() => {
+      const area = this.chartRefs[attribute].current;
 
-    if (area == null) {
-      throw new Error("chart can't be updated before the component is mounted");
-    }
+      if (area == null) {
+        throw new Error("chart can't be updated before the component is mounted");
+      }
 
-    let data: ChartData[];
-    switch (attribute) {
-      case 'monthly_playcounts':
-        data = this.monthlyPlaycountsData;
-        break;
-      case 'replays_watched_counts':
-        data = this.replaysWatchedCountsData;
-        break;
-      default:
-        switchNever(attribute);
-        throw new Error('unsupported chart section');
-    }
+      let data: ChartData[];
+      switch (attribute) {
+        case 'monthly_playcounts':
+          data = this.monthlyPlaycountsData;
+          break;
+        case 'replays_watched_counts':
+          data = this.replaysWatchedCountsData;
+          break;
+        default:
+          switchNever(attribute);
+          throw new Error('unsupported chart section');
+      }
 
-    let chart = this.charts[attribute];
-    if (chart == null) {
-      const options = makeOptionsDate({
-        circleLine: true,
-        curve: curveLinear,
-        formatX: (d: Date) => moment.utc(d).format(osu.trans('common.datetime.year_month_short.moment')),
-        formatY: (d: number) => formatNumber(d),
-        infoBoxFormatX: (d: Date) => moment.utc(d).format(osu.trans('common.datetime.year_month.moment')),
-        infoBoxFormatY: (d: number) => `<strong>${osu.trans(`users.show.extra.historical.${attribute}.count_label`)}</strong> ${escape(formatNumber(d))}`,
-        marginRight: 60, // more spacing for x axis label
-        modifiers: 'profile-page',
-      });
+      let chart = this.charts[attribute];
+      if (chart == null) {
+        const options = makeOptionsDate({
+          circleLine: true,
+          curve: curveLinear,
+          formatX: (d: Date) => moment.utc(d).format(osu.trans('common.datetime.year_month_short.moment')),
+          formatY: (d: number) => formatNumber(d),
+          infoBoxFormatX: (d: Date) => moment.utc(d).format(osu.trans('common.datetime.year_month.moment')),
+          infoBoxFormatY: (d: number) => `<strong>${osu.trans(`users.show.extra.historical.${attribute}.count_label`)}</strong> ${escape(formatNumber(d))}`,
+          marginRight: 60, // more spacing for x axis label
+          modifiers: 'profile-page',
+        });
 
-      chart = this.charts[attribute] = new LineChart(area, options);
-    }
+        chart = this.charts[attribute] = new LineChart(area, options);
+      }
 
-    const definedChart = chart;
+      const definedChart = chart;
 
-    this.disposers.add(core.reactTurbolinks.runAfterPageLoad(() => {
-      updateTicks(definedChart, data);
-      definedChart.loadData(data);
-    }));
+      this.disposers.add(core.reactTurbolinks.runAfterPageLoad(() => {
+        updateTicks(definedChart, data);
+        definedChart.loadData(data);
+      }));
+    }), 0);
   };
 
   private readonly updateCharts = () => {
