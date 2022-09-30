@@ -6,6 +6,6 @@ import UserJson from 'interfaces/user-json';
 
 import { route } from 'laroute';
 
-export default function getPage(user: Pick<UserJson, 'id'>, page: ProfileExtraPage) {
-  return $.ajax(route('users.extra-page', { page, user: user.id }));
+export default function getPage<T>(user: Pick<UserJson, 'id'>, page: ProfileExtraPage) {
+  return $.ajax(route('users.extra-page', { page, user: user.id })) as JQuery.jqXHR<T>;
 }

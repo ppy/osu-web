@@ -368,7 +368,7 @@ export default class Controller {
   @action
   getBeatmapsets() {
     if (this.state.beatmapsets != null) return Promise.resolve();
-    const xhr = getPage(this.state.user, 'beatmaps') as JQuery.jqXHR<BeatmapsetsJson>;
+    const xhr = getPage<BeatmapsetsJson>(this.state.user, 'beatmaps');
 
     xhr.done((json) => runInAction(() => {
       this.state.beatmapsets = json;
@@ -380,7 +380,7 @@ export default class Controller {
   @action
   getHistorical() {
     if (this.state.historical != null) return Promise.resolve();
-    const xhr = getPage(this.state.user, 'historical') as JQuery.jqXHR<HistoricalJson>;
+    const xhr = getPage<HistoricalJson>(this.state.user, 'historical');
 
     xhr.done((json) => runInAction(() => {
       this.state.historical = json;
@@ -392,7 +392,7 @@ export default class Controller {
   @action
   getRecentActivity() {
     if (this.state.topScores != null) return Promise.resolve();
-    const xhr = getPage(this.state.user, 'recent_activity') as JQuery.jqXHR<PageSectionWithoutCountJson<EventJson>>;
+    const xhr = getPage<PageSectionWithoutCountJson<EventJson>>(this.state.user, 'recent_activity');
 
     xhr.done((json) => runInAction(() => {
       this.state.recentActivity = json;
@@ -404,7 +404,7 @@ export default class Controller {
   @action
   getTopScores() {
     if (this.state.topScores != null) return Promise.resolve();
-    const xhr = getPage(this.state.user, 'top_ranks') as JQuery.jqXHR<TopScoresJson>;
+    const xhr = getPage<TopScoresJson>(this.state.user, 'top_ranks');
 
     xhr.done((json) => runInAction(() => {
       this.state.topScores = json;
