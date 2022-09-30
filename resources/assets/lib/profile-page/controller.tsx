@@ -22,7 +22,7 @@ import core from 'osu-core-singleton';
 import { error, onErrorWithCallback } from 'utils/ajax';
 import { jsonClone } from 'utils/json';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
-import { apiShowMore, apiShowMoreRecentlyReceivedKudosu } from 'utils/offset-paginator';
+import { apiShowMore } from 'utils/offset-paginator';
 import { switchNever } from 'utils/switch-never';
 import getPage from './extra-page';
 import { ProfilePageSection, ProfilePageUserJson } from './extra-page-props';
@@ -328,13 +328,7 @@ export default class Controller {
         break;
 
       case 'recentlyReceivedKudosu':
-        if (this.state.kudosu != null) {
-          this.xhr[section] = apiShowMoreRecentlyReceivedKudosu(
-            this.state.kudosu,
-            baseParams.user,
-          );
-        }
-
+        // do nothing
         break;
 
       case 'scoresBest':

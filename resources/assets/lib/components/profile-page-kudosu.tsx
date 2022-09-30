@@ -2,19 +2,22 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import KudosuHistoryJson from 'interfaces/kudosu-history-json';
-import { makeObservable, observable, runInAction } from 'mobx';
+import { action, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import ExtraHeader from 'profile-page/extra-header';
 import getPage from 'profile-page/extra-page';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
-import { hasMoreCheck, OffsetPaginatorJson } from 'utils/offset-paginator';
+import { parseJsonNullable, storeJson } from 'utils/json';
+import { apiShowMoreRecentlyReceivedKudosu, hasMoreCheck, OffsetPaginatorJson } from 'utils/offset-paginator';
 import { wikiUrl } from 'utils/url';
 import LazyLoad from './lazy-load';
 import ShowMoreLink from './show-more-link';
 import StringWithComponent from './string-with-component';
 import TimeWithTooltip from './time-with-tooltip';
 import ValueDisplay from './value-display';
+
+const jsonId = 'kudosu';
 
 function Entry({ kudosu }: { kudosu: KudosuHistoryJson }) {
   const textMappings = {
@@ -51,7 +54,6 @@ function Entry({ kudosu }: { kudosu: KudosuHistoryJson }) {
 interface Props {
   kudosu?: OffsetPaginatorJson<KudosuHistoryJson>;
   name: string;
-  onShowMore: () => void;
   total: number;
   userId: number;
   withEdit: boolean;
@@ -65,15 +67,20 @@ interface Response {
 export default class ProfilePageKudosu extends React.Component<Props> {
   @observable
   private kudosu?: OffsetPaginatorJson<KudosuHistoryJson>;
-
+  private showMoreXhr?: JQuery.jqXHR<KudosuHistoryJson[]>;
   private xhr?: JQuery.jqXHR<Response>;
 
   constructor(props: Props) {
     super(props);
 
-    this.kudosu = props.kudosu;
+    this.kudosu = parseJsonNullable(jsonId) ?? props.kudosu;
 
     makeObservable(this);
+  }
+
+  componentWillUnmount(){
+    this.xhr?.abort();
+    this.showMoreXhr?.abort();
   }
 
   render() {
@@ -108,7 +115,9 @@ export default class ProfilePageKudosu extends React.Component<Props> {
     );
   }
 
+  @action
   private readonly handleOnLoad = () => {
+    if (this.kudosu != null) return Promise.resolve();
     this.xhr = getPage({ id: this.props.userId }, 'kudosu');
 
     this.xhr.done((json) => runInAction(() => {
@@ -121,6 +130,13 @@ export default class ProfilePageKudosu extends React.Component<Props> {
     }));
 
     return this.xhr;
+  };
+
+  @action
+  private readonly handleShowMore = () => {
+    if (this.kudosu == null) return;
+
+    this.showMoreXhr = apiShowMoreRecentlyReceivedKudosu(this.kudosu, this.props.userId).done(this.saveState);
   };
 
   private renderEntries() {
@@ -136,16 +152,20 @@ export default class ProfilePageKudosu extends React.Component<Props> {
 
     return (
       <ul className='profile-extra-entries profile-extra-entries--kudosu'>
-        {Array.isArray(this.kudosu.items) && this.kudosu.items.map((kudosu) => <Entry key={kudosu.id} kudosu={kudosu} />)}
+        {this.kudosu.items.map((kudosu) => <Entry key={kudosu.id} kudosu={kudosu} />)}
 
         <li className='profile-extra-entries__item'>
           <ShowMoreLink
             {...this.kudosu.pagination}
-            callback={this.props.onShowMore}
+            callback={this.handleShowMore}
             modifiers='profile-page'
           />
         </li>
       </ul>
     );
   }
+
+  private readonly saveState = () => {
+    storeJson(jsonId, this.kudosu);
+  };
 }
