@@ -39,28 +39,45 @@ const sectionToUrlType = {
   scoresRecent: 'recent',
 } as const;
 
-export function validPage(page: unknown) {
-  if (typeof page === 'string' && (page === 'main' || profileExtraPages.includes(page as ProfileExtraPage))) {
-    return page as Page;
-  }
+type PageSectionLazyLoadJson<T> = Omit<PageSectionJson<T>, 'pagination'>;
 
-  return null;
-}
-
-interface BeatmapsetsJson {
-  favourite: PageSectionJson<BeatmapsetExtendedJson>;
-  graveyard: PageSectionJson<BeatmapsetExtendedJson>;
-  guest: PageSectionJson<BeatmapsetExtendedJson>;
-  loved: PageSectionJson<BeatmapsetExtendedJson>;
-  pending: PageSectionJson<BeatmapsetExtendedJson>;
-  ranked: PageSectionJson<BeatmapsetExtendedJson>;
-}
+// #region lazy loaded extra pages
+const beatmapsetsExtraPageKeys = ['favourite', 'graveyard', 'guest', 'loved', 'pending', 'ranked'] as const;
+type BeatmapsetsJson = Record<typeof beatmapsetsExtraPageKeys[number], PageSectionJson<BeatmapsetExtendedJson>>;
+type BeatmapsetsLazyLoadResponse = Record<typeof beatmapsetsExtraPageKeys[number], PageSectionLazyLoadJson<BeatmapsetExtendedJson>>;
 
 interface HistoricalJson {
   beatmap_playcounts: PageSectionJson<BeatmapPlaycountJson>;
   monthly_playcounts: UserMonthlyPlaycountJson[];
   recent: PageSectionJson<SoloScoreJsonForUser>;
   replays_watched_counts: UserReplaysWatchedCountJson[];
+}
+
+interface HistoricalLazyLoadResponse {
+  beatmap_playcounts: PageSectionLazyLoadJson<BeatmapPlaycountJson>;
+  monthly_playcounts: UserMonthlyPlaycountJson[];
+  recent: PageSectionLazyLoadJson<SoloScoreJsonForUser>;
+  replays_watched_counts: UserReplaysWatchedCountJson[];
+}
+
+const topScoresKeys = ['best', 'firsts', 'pinned'] as const;
+type TopScoresJson = Record<typeof topScoresKeys[number], PageSectionJson<SoloScoreJsonForUser>>;
+type TopScoresLazyLoadResponse = Record<typeof topScoresKeys[number], PageSectionLazyLoadJson<SoloScoreJsonForUser>>;
+// #endregion
+
+function convertLazyLoadJson<T>(json: PageSectionLazyLoadJson<T>): PageSectionJson<T> {
+  return {
+    ...json,
+    pagination: { hasMore: json.count > json.items.length },
+  };
+}
+
+export function validPage(page: unknown) {
+  if (typeof page === 'string' && (page === 'main' || profileExtraPages.includes(page as ProfileExtraPage))) {
+    return page as Page;
+  }
+
+  return null;
 }
 
 interface InitialData {
@@ -99,12 +116,6 @@ interface State {
   recentActivity: PageSectionWithoutCountJson<EventJson>;
   topsScores: TopScoresJson;
   user: ProfilePageUserJson;
-}
-
-interface TopScoresJson {
-  best: PageSectionJson<SoloScoreJsonForUser>;
-  firsts: PageSectionJson<SoloScoreJsonForUser>;
-  pinned: PageSectionJson<SoloScoreJsonForUser>;
 }
 
 export default class Controller {
