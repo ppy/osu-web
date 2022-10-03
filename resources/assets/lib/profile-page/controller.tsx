@@ -40,6 +40,9 @@ const sectionToUrlType = {
 } as const;
 
 type PageSectionLazyLoadJson<T> = Omit<PageSectionJson<T>, 'pagination'>;
+type PageSectionWithoutCountLazyLoadJson<T> = Omit<PageSectionWithoutCountJson<T>, 'pagination'> & {
+  per_page: number;
+};
 
 // #region lazy loaded extra pages
 const beatmapsetsExtraPageKeys = ['favourite', 'graveyard', 'guest', 'loved', 'pending', 'ranked'] as const;
@@ -82,19 +85,13 @@ export function validPage(page: unknown) {
 
 interface InitialData {
   achievements: AchievementJson[];
-  beatmaps: BeatmapsetsJson;
+  beatmaps: BeatmapsetsLazyLoadResponse;
   current_mode: GameMode;
-  historical: HistoricalJson;
-  kudosu: {
-    items: KudosuHistoryJson[];
-    per_page: number;
-  };
-  recent_activity: {
-    items: EventJson[];
-    per_page: number;
-  };
+  historical: HistoricalLazyLoadResponse;
+  kudosu: PageSectionWithoutCountLazyLoadJson<KudosuHistoryJson>;
+  recent_activity: PageSectionWithoutCountLazyLoadJson<EventJson>;
   scores_notice: string | null;
-  top_ranks: TopScoresJson;
+  top_ranks: TopScoresLazyLoadResponse;
   user: ProfilePageUserJson;
 }
 
@@ -149,10 +146,21 @@ export default class Controller {
       const recentActivityItems = initialData.recent_activity.items;
 
       this.state = {
-        beatmapsets: initialData.beatmaps,
+        beatmapsets: {
+          favourite: convertLazyLoadJson(initialData.beatmaps.favourite),
+          graveyard: convertLazyLoadJson(initialData.beatmaps.graveyard),
+          guest: convertLazyLoadJson(initialData.beatmaps.guest),
+          loved: convertLazyLoadJson(initialData.beatmaps.loved),
+          pending: convertLazyLoadJson(initialData.beatmaps.pending),
+          ranked: convertLazyLoadJson(initialData.beatmaps.ranked),
+        },
         currentPage: 'main',
         editingUserPage: false,
-        historical: initialData.historical,
+        historical: {
+          ...initialData.historical,
+          beatmap_playcounts: convertLazyLoadJson(initialData.historical.beatmap_playcounts),
+          recent: convertLazyLoadJson(initialData.historical.recent),
+        },
         kudosu: {
           items: kudosuItems,
           pagination: {
@@ -165,31 +173,13 @@ export default class Controller {
             hasMore: hasMoreCheck(initialData.recent_activity.per_page, recentActivityItems),
           },
         },
-        topsScores: initialData.top_ranks,
+        topsScores: {
+          best: convertLazyLoadJson(initialData.top_ranks.best),
+          firsts: convertLazyLoadJson(initialData.top_ranks.firsts),
+          pinned: convertLazyLoadJson(initialData.top_ranks.pinned),
+        },
         user: initialData.user,
       };
-
-      // fill in initial pagination data.
-      for (const key of Object.keys(this.state.beatmapsets) as (keyof BeatmapsetsJson)[]) {
-        const value = this.state.beatmapsets[key];
-        value.pagination = {
-          hasMore: value.count > value.items.length,
-        };
-      }
-
-      for (const key of ['beatmap_playcounts', 'recent'] as const) {
-        const value = this.state.historical[key];
-        value.pagination = {
-          hasMore: value.count > value.items.length,
-        };
-      }
-
-      for (const key of Object.keys(this.state.topsScores) as (keyof TopScoresJson)[]) {
-        const value = this.state.topsScores[key];
-        value.pagination = {
-          hasMore: value.count > value.items.length,
-        };
-      }
     } else {
       this.state = JSON.parse(savedStateJson) as State;
     }
