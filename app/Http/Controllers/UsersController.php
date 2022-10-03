@@ -642,7 +642,6 @@ class UsersController extends Controller
             $initialData = [
                 'achievements' => $achievements,
                 'current_mode' => $currentMode,
-                'per_page' => static::PER_PAGE,
                 'scores_notice' => config('osu.user.profile_scores_notice'),
                 'user' => $userArray,
             ];
@@ -832,6 +831,7 @@ class UsersController extends Controller
 
     private function getExtraSection(string $section, ?int $count = null, array $options = [])
     {
+        // TODO: move pagination check here instead of js-side (and replace with cursor).
         $response = [];
 
         if ($count !== null) {

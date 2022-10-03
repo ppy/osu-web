@@ -90,9 +90,14 @@ interface InitialData {
   beatmaps: BeatmapsetsJson;
   current_mode: GameMode;
   historical: HistoricalJson;
-  kudosu: { items: KudosuHistoryJson[] };
-  per_page: Record<ProfilePageSection, number>;
-  recent_activity: { items: EventJson[] };
+  kudosu: {
+    items: KudosuHistoryJson[];
+    per_page: number;
+  };
+  recent_activity: {
+    items: EventJson[];
+    per_page: number;
+  };
   scores_notice: string | null;
   top_ranks: TopScoresJson;
   user: ProfilePageUserJson;
@@ -162,13 +167,13 @@ export default class Controller {
         kudosu: {
           items: kudosuItems,
           pagination: {
-            hasMore: hasMoreCheck(initialData.per_page.recentlyReceivedKudosu, kudosuItems),
+            hasMore: hasMoreCheck(initialData.kudosu.per_page, kudosuItems),
           },
         },
         recentActivity: {
           items: recentActivityItems,
           pagination: {
-            hasMore: hasMoreCheck(initialData.per_page.recentActivity, recentActivityItems),
+            hasMore: hasMoreCheck(initialData.recent_activity.per_page, recentActivityItems),
           },
         },
         scores: initialData.top_ranks,
