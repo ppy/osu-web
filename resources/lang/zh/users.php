@@ -312,7 +312,7 @@ return [
                 'title' => '成就',
             ],
             'playlists' => [
-                'title' => '歌单游戏',
+                'title' => '课题模式游戏',
             ],
             'posts' => [
                 'title' => '回复',

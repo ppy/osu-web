@@ -100,7 +100,7 @@ return [
         'username' => 'Nama Pengguna',
 
         'beta' => [
-            'main' => 'Akses beta saat ini hanya tersedia bagi para pengguna tertentu.',
+            'main' => 'Akses beta saat ini hanya tersedia bagi para pengguna dengan hak khusus.',
             'small' => '(para pemilik osu!supporter akan segera masuk)',
         ],
     ],

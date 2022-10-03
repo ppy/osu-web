@@ -24,7 +24,7 @@ return [
         'kudosu_lost' => 'Відгук в :discussion від :user втратило голоси і присуджені кудосу були вилучені.',
         'kudosu_recalculate' => 'Кудосу за відгук в :discussion були перераховані.',
         'language_edit' => 'Мова змінена з :old на :new.',
-        'love' => 'Додано :user в улюблене',
+        'love' => 'Номіновано в улюблене :user.',
         'nominate' => 'Номіновано :user.',
         'nominate_modes' => 'Номіновано :user (:modes).',
         'nomination_reset' => 'Через нову проблему в :discussion (:text) статус номінації було скинуто.',
@@ -32,8 +32,8 @@ return [
         'nomination_reset_received_profile' => 'Номінація була скинута :user (:text) ',
         'offset_edit' => 'Онлайн офсет змінився з :old на :new',
         'qualify' => 'Ця мапа отримала достатню кількість номінацій й була кваліфікована.',
-        'rank' => 'Рейтинговий.',
-        'remove_from_loved' => 'Видалено з категорії Loved користувачем :user. (:text)',
+        'rank' => 'Мапа отримала статус Рейтингової.',
+        'remove_from_loved' => 'Вилучено з категорії Улюблених користувачем :user. (:text)',
 
         'nsfw_toggle' => [
             'to_0' => 'Видалена позначка непристойного вмісту',
@@ -65,7 +65,7 @@ return [
         'discussion_restore' => 'Відновлення дискусії',
         'disqualify' => 'Дискваліфікація',
         'genre_edit' => 'Зміна жанру',
-        'issue_reopen' => 'Відновлення обговорення',
+        'issue_reopen' => 'Відновлення дискусії',
         'issue_resolve' => 'Вирішення дискусії',
         'kudosu_allow' => 'Ліміт кудосу',
         'kudosu_deny' => 'Відмова в кудосу',

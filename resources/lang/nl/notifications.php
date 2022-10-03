@@ -242,7 +242,7 @@ Beatmap ":title" vernieuwd',
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username heeft nieuwe beatmaps aangemaakt',
-                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive' => ':username heeft beatmaps vernieuwd',
             ],
         ],
     ],

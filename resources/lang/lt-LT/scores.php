@@ -24,6 +24,7 @@ return [
 
     'status' => [
         'non_best' => 'Tik jūsų didžiausi taškai duoda pp',
+        'non_passing' => '',
         'processing' => '',
     ],
 ];

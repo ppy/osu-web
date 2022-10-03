@@ -34,7 +34,7 @@ return [
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => '',
+                'incomplete_play' => 'Трябва да изиграете всички бийтмапове от посочения плейлист преди да гласувате',
             ],
         ],
     ],

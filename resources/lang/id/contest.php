@@ -34,7 +34,7 @@ return [
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => '',
+                'incomplete_play' => 'Anda harus terlebih dahulu memainkan seluruh beatmap yang terdapat pada playlist untuk dapat memberikan suara',
             ],
         ],
     ],

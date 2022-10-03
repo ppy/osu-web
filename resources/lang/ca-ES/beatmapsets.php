@@ -25,17 +25,17 @@ return [
 
     'index' => [
         'title' => '',
-        'guest_title' => '',
+        'guest_title' => 'Beatmaps',
     ],
 
     'panel' => [
-        'empty' => '',
+        'empty' => 'sense beatmaps',
 
         'download' => [
-            'all' => '',
-            'video' => '',
-            'no_video' => '',
-            'direct' => '',
+            'all' => 'descarregar',
+            'video' => 'descarregar amb vídeo',
+            'no_video' => 'descarregar sense vídeo',
+            'direct' => 'obrir en osu!direct',
         ],
     ],
 
@@ -47,21 +47,21 @@ return [
 
         'dialog' => [
             'confirmation' => '',
-            'header' => '',
+            'header' => 'Nominar beatmap',
             'hybrid_warning' => '',
             'which_modes' => '',
         ],
     ],
 
     'nsfw_badge' => [
-        'label' => '',
+        'label' => 'Explícit',
     ],
 
     'show' => [
-        'discussion' => '',
+        'discussion' => 'Discussió',
 
         'details' => [
-            'by_artist' => '',
+            'by_artist' => 'per :artist',
             'favourite' => '',
             'favourite_login' => '',
             'logged-out' => '',
@@ -70,25 +70,25 @@ return [
             'updated_timeago' => '',
 
             'download' => [
-                '_' => '',
+                '_' => 'Descarregar',
                 'direct' => '',
-                'no-video' => '',
-                'video' => '',
+                'no-video' => 'sense vídeo',
+                'video' => 'amb vídeo',
             ],
 
             'login_required' => [
-                'bottom' => '',
-                'top' => '',
+                'bottom' => 'per accedir a més característiques',
+                'top' => 'Inicia sessió',
             ],
         ],
 
         'details_date' => [
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'ranked' => '',
-            'submitted' => '',
-            'updated' => '',
+            'approved' => 'aprovat :timeago',
+            'loved' => 'estimat :timeago',
+            'qualified' => 'qualificat :timeago',
+            'ranked' => 'classificat :timeago',
+            'submitted' => 'enviat: :timeago',
+            'updated' => 'darrera actualització: :timeago',
         ],
 
         'favourites' => [
@@ -102,8 +102,8 @@ return [
                 '_' => '',
 
                 'status' => [
-                    'pending' => '',
-                    'qualified' => '',
+                    'pending' => 'pendent',
+                    'qualified' => 'qualificat',
                     'wip' => 'treball en curs',
                 ],
             ],
@@ -115,65 +115,65 @@ return [
             'report' => [
                 '_' => '',
                 'button' => '',
-                'link' => '',
+                'link' => 'aquí',
             ],
         ],
 
         'info' => [
-            'description' => '',
-            'genre' => '',
-            'language' => '',
+            'description' => 'Descripció',
+            'genre' => 'Gènere',
+            'language' => 'Idioma',
             'no_scores' => '',
-            'nsfw' => '',
+            'nsfw' => 'Contingut explícit',
             'offset' => '',
             'points-of-failure' => '',
-            'source' => '',
+            'source' => 'Font',
             'storyboard' => '',
             'success-rate' => '',
-            'tags' => '',
-            'video' => '',
+            'tags' => 'Etiquetes',
+            'video' => 'Aquest beatmap conté vídeo',
         ],
 
         'nsfw_warning' => [
             'details' => '',
-            'title' => '',
+            'title' => 'Contingut explícit',
 
             'buttons' => [
                 'disable' => '',
-                'listing' => '',
-                'show' => '',
+                'listing' => 'Llistat de beatmaps',
+                'show' => 'Mostrar',
             ],
         ],
 
         'scoreboard' => [
             'achieved' => '',
-            'country' => '',
-            'error' => '',
-            'friend' => '',
+            'country' => 'Classificació nacional',
+            'error' => 'Error en carregar les classificacions',
+            'friend' => 'Classificació entre amics',
             'global' => '',
             'supporter-link' => '',
             'supporter-only' => '',
-            'title' => '',
+            'title' => 'Tauler de puntuació',
 
             'headers' => [
-                'accuracy' => '',
-                'combo' => '',
-                'miss' => '',
-                'mods' => '',
-                'pin' => '',
-                'player' => '',
+                'accuracy' => 'Precisió',
+                'combo' => 'Max Combo',
+                'miss' => 'Miss',
+                'mods' => 'Mods',
+                'pin' => 'Fixar',
+                'player' => 'Jugador',
                 'pp' => '',
-                'rank' => '',
-                'score' => '',
-                'score_total' => '',
-                'time' => '',
+                'rank' => 'Classificació',
+                'score' => 'Puntuació',
+                'score_total' => 'Puntuació total',
+                'time' => 'Temps',
             ],
 
             'no_scores' => [
-                'country' => '',
-                'friend' => '',
+                'country' => 'Ningú del vostre país encara no ha marcat cap puntuació en aquest mapa!',
+                'friend' => 'Cap dels teus amics encara no ha marcat cap puntuació en aquest mapa!',
                 'global' => '',
-                'loading' => '',
+                'loading' => 'Carregant puntuacions...',
                 'unranked' => '',
             ],
             'score' => [
@@ -182,40 +182,40 @@ return [
             ],
             'supporter_link' => [
                 '_' => '',
-                'here' => '',
+                'here' => 'aquí',
             ],
         ],
 
         'stats' => [
-            'cs' => '',
-            'cs-mania' => '',
-            'drain' => '',
-            'accuracy' => '',
+            'cs' => 'Mida del cercle',
+            'cs-mania' => 'Comte de tecles',
+            'drain' => 'Drenat d\'HP',
+            'accuracy' => 'Precisió',
             'ar' => '',
             'stars' => 'Estrelles de dificultat',
             'total_length' => '',
-            'bpm' => '',
-            'count_circles' => '',
-            'count_sliders' => '',
+            'bpm' => 'BPM',
+            'count_circles' => 'Nombre de cercles',
+            'count_sliders' => 'Nombre de lliscants',
             'offset' => '',
             'user-rating' => 'Valoració dels usuaris',
             'rating-spread' => '',
-            'nominations' => '',
-            'playcount' => '',
+            'nominations' => 'Nominacions',
+            'playcount' => 'Recompte de jocs',
         ],
 
         'status' => [
-            'ranked' => '',
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
+            'ranked' => 'Classificat',
+            'approved' => 'Aprovat',
+            'loved' => 'Estimat',
+            'qualified' => 'Qualificat',
             'wip' => 'WIP',
-            'pending' => '',
-            'graveyard' => '',
+            'pending' => 'Pendent',
+            'graveyard' => 'Abandonat',
         ],
     ],
 
     'spotlight_badge' => [
-        'label' => '',
+        'label' => 'Destacat',
     ],
 ];
