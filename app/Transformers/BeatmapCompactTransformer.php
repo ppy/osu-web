@@ -25,13 +25,13 @@ class BeatmapCompactTransformer extends TransformerAbstract
 
         return [
             'beatmapset_id' => $attrs['beatmapset_id'] ?? null,
-            'difficulty_rating' => $beatmap->getDifficultyRatingAttribute($attrs['difficultyrating'] ?? null),
+            'difficulty_rating' => $beatmap->getDifficultyRatingAttribute(),
             'id' => $attrs['beatmap_id'] ?? null,
             'mode' => $beatmap->getModeAttribute(),
             'status' => $beatmap->status(),
             'total_length' => $attrs['total_length'] ?? null,
             'user_id' => $attrs['user_id'] ?? null,
-            'version' => $beatmap->getVersionAttribute($attrs['version'] ?? null),
+            'version' => $beatmap->getVersionAttribute(),
         ];
     }
 
