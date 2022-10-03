@@ -96,26 +96,26 @@ return [
     'footer' => [
         'general' => [
             '_' => '',
-            'home' => '',
-            'changelog-index' => '',
-            'beatmaps' => '',
-            'download' => '',
+            'home' => 'Casa',
+            'changelog-index' => 'Registre de canvis',
+            'beatmaps' => 'Llistat de beatmaps',
+            'download' => 'Descarregar osu!',
         ],
         'help' => [
-            '_' => '',
-            'faq' => '',
-            'forum' => '',
-            'livestreams' => '',
+            '_' => 'Ajuda i comunitat',
+            'faq' => 'Preguntes freqüents',
+            'forum' => 'Fòrums de la comunitat',
+            'livestreams' => 'Transmissions en directe',
             'report' => '',
-            'wiki' => '',
+            'wiki' => 'Wiki',
         ],
         'legal' => [
-            '_' => '',
-            'copyright' => '',
-            'privacy' => '',
-            'server_status' => '',
-            'source_code' => '',
-            'terms' => '',
+            '_' => 'Estat legal',
+            'copyright' => 'Drets d\'autor (DMCA)',
+            'privacy' => 'Privacitat',
+            'server_status' => 'Estat del servidor',
+            'source_code' => 'Codi font',
+            'terms' => 'Termes',
         ],
     ],
 
@@ -125,7 +125,7 @@ return [
             'description' => '',
         ],
         '404' => [
-            'error' => '',
+            'error' => 'Falta la pàgina',
             'description' => "",
         ],
         '403' => [
@@ -149,7 +149,7 @@ return [
             'description' => '',
         ],
         '500' => [
-            'error' => '',
+            'error' => 'Oh no! Alguna cosa s\'ha trencat! ;_;',
             'description' => "",
         ],
         'fatal' => [
@@ -173,8 +173,8 @@ return [
 
         'login' => [
             'forgot' => "",
-            'password' => '',
-            'title' => '',
+            'password' => 'contrasenya',
+            'title' => 'Inicia sessió per continuar',
             'username' => '',
 
             'error' => [

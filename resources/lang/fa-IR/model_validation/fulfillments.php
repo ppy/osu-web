@@ -10,6 +10,6 @@ return [
         'reverting_username_mismatch' => '',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => '',
+        'insufficient_paid' => 'مقدار اهدا شده کمتر از مقدار مورد نیاز برای هدیه دادن نشان حامی osu! است (:actual > :expected)',
     ],
 ];

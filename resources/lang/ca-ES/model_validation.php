@@ -91,7 +91,7 @@ return [
         'topic_poll' => [
             'duplicate_options' => '',
             'grace_period_expired' => '',
-            'hiding_results_forever' => '',
+            'hiding_results_forever' => 'No es poden amagar els resultats d\'una enquesta que mai no finalitza.',
             'invalid_max_options' => '',
             'minimum_one_selection' => '',
             'minimum_two_options' => '',
@@ -147,9 +147,9 @@ return [
         'too_long' => '',
 
         'attributes' => [
-            'username' => '',
-            'user_email' => '',
-            'password' => '',
+            'username' => 'Nom d\'usuari',
+            'user_email' => 'Correu electrònic',
+            'password' => 'Contrasenya',
         ],
 
         'change_username' => [
@@ -171,8 +171,8 @@ return [
     'store' => [
         'order_item' => [
             'attributes' => [
-                'quantity' => '',
-                'cost' => '',
+                'quantity' => 'Quantitat',
+                'cost' => 'Preu',
             ],
         ],
     ],

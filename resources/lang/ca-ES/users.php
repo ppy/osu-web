@@ -35,8 +35,8 @@ return [
         'banner_text' => '',
         'comment_text' => '',
         'blocked_count' => '',
-        'hide_profile' => '',
-        'hide_comment' => '',
+        'hide_profile' => 'Oculta el perfil',
+        'hide_comment' => 'ocultar',
         'not_blocked' => '',
         'show_profile' => '',
         'show_comment' => '',
@@ -163,7 +163,7 @@ return [
             'count' => '',
         ],
         'cover' => [
-            'to_0' => '',
+            'to_0' => 'Ocultar portada',
             'to_1' => '',
         ],
         'edit' => [
