@@ -51,7 +51,7 @@ export default class PlayDetailList extends React.Component<Props> {
 
   @computed
   private get scores() {
-    return this.sectionMap.key === 'recent' ? this.props.controller.state.historical.recent : this.props.controller.state.scores[this.sectionMap.key];
+    return this.sectionMap.key === 'recent' ? this.props.controller.state.historical.recent : this.props.controller.state.topsScores[this.sectionMap.key];
   }
 
   @computed

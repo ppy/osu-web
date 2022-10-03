@@ -119,7 +119,7 @@ interface State {
   historical: HistoricalJson;
   kudosu: PageSectionWithoutCountJson<KudosuHistoryJson>;
   recentActivity: PageSectionWithoutCountJson<EventJson>;
-  scores: TopScoresJson;
+  topsScores: TopScoresJson;
   user: ProfilePageUserJson;
 }
 
@@ -176,7 +176,7 @@ export default class Controller {
             hasMore: hasMoreCheck(initialData.recent_activity.per_page, recentActivityItems),
           },
         },
-        scores: initialData.top_ranks,
+        topsScores: initialData.top_ranks,
         user: initialData.user,
       };
 
@@ -195,8 +195,8 @@ export default class Controller {
         };
       }
 
-      for (const key of Object.keys(this.state.scores) as (keyof TopScoresJson)[]) {
-        const value = this.state.scores[key];
+      for (const key of Object.keys(this.state.topsScores) as (keyof TopScoresJson)[]) {
+        const value = this.state.topsScores[key];
         value.pagination = {
           hasMore: value.count > value.items.length,
         };
@@ -218,8 +218,8 @@ export default class Controller {
 
   @action
   apiReorderScorePin(currentIndex: number, newIndex: number) {
-    const origItems = this.state.scores.pinned.items.slice();
-    const items = this.state.scores.pinned.items;
+    const origItems = this.state.topsScores.pinned.items.slice();
+    const items = this.state.topsScores.pinned.items;
     const adjacentScoreId = items[newIndex]?.id;
     if (adjacentScoreId == null) {
       throw new Error('invalid newIndex specified');
@@ -256,7 +256,7 @@ export default class Controller {
       method: 'PUT',
     }).fail(action((xhr: JQuery.jqXHR, status: string) => {
       error(xhr, status);
-      this.state.scores.pinned.items = origItems;
+      this.state.topsScores.pinned.items = origItems;
     })).always(hideLoadingOverlay);
   }
 
@@ -403,7 +403,7 @@ export default class Controller {
       case 'scoresPinned':
       case 'scoresRecent': {
         const type = sectionToUrlType[section];
-        const json = type === 'recent' ? this.state.historical.recent : this.state.scores[type];
+        const json = type === 'recent' ? this.state.historical.recent : this.state.topsScores[type];
 
         this.xhr[section] = apiShowMore(
           json,
@@ -457,16 +457,16 @@ export default class Controller {
     const newScore = jsonClone(score);
     newScore.id = scorePinData.score_id;
 
-    const arrayIndex = this.state.scores.pinned.items.findIndex((s) => s.id === newScore.id);
-    this.state.scores.pinned.count += isPinned ? 1 : -1;
+    const arrayIndex = this.state.topsScores.pinned.items.findIndex((s) => s.id === newScore.id);
+    this.state.topsScores.pinned.count += isPinned ? 1 : -1;
 
     if (isPinned) {
       if (arrayIndex === -1) {
-        this.state.scores.pinned.items.unshift(newScore);
+        this.state.topsScores.pinned.items.unshift(newScore);
       }
     } else {
       if (arrayIndex !== -1) {
-        pullAt(this.state.scores.pinned.items, arrayIndex);
+        pullAt(this.state.topsScores.pinned.items, arrayIndex);
       }
     }
 
