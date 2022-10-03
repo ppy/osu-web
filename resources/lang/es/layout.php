@@ -106,7 +106,7 @@ return [
             'faq' => 'Preguntas frecuentes',
             'forum' => 'Foros de la comunidad',
             'livestreams' => 'Transmisiones en vivo',
-            'report' => 'Reportar de un problema',
+            'report' => 'Reportar un problema',
             'wiki' => 'Wiki',
         ],
         'legal' => [

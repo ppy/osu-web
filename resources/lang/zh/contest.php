@@ -16,7 +16,7 @@ return [
     'voting' => [
         'login_required' => '请登录后再投票.',
         'over' => '这场评选的投票已经结束',
-        'show_voted_only' => '显示投票',
+        'show_voted_only' => '仅显示已投票的',
 
         'best_of' => [
             'none_played' => "没有符合此次评选条件的谱面！",
@@ -34,7 +34,7 @@ return [
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => '',
+                'incomplete_play' => '必须完成指定课题中的所有谱面后才能投票',
             ],
         ],
     ],

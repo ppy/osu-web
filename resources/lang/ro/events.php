@@ -8,7 +8,7 @@ return [
     'beatmap_playcount' => ':beatmap a fost jucat o dată!|:beatmap a fost jucat :count dăți!|:beatmap a fost jucat de :count de dăți!',
     'beatmapset_approve' => ':beatmapset făcut de <strong>:user</strong> a fost :approval!',
     'beatmapset_delete' => ':beatmapset a fost șters.',
-    'beatmapset_revive' => ':beatmapset a fost trezit din somnul etern de către <strong>:user</strong>.',
+    'beatmapset_revive' => ':beatmapset a fost reînviat din somnul etern de către <strong>:user</strong>.',
     'beatmapset_update' => '<strong><em>:user</em></strong> a actualizat beatmap-ul "<em>:beatmapset</em>"',
     'beatmapset_upload' => '<strong><em>:user</em></strong> a postat un beatmap nou ":beatmapset"',
     'empty' => "Acest utilizator nu a realizat nimic notabil în ultimul timp!",

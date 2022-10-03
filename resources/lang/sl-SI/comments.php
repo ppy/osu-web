@@ -4,51 +4,51 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'deleted' => '',
-    'deleted_by' => '',
-    'deleted_by_system' => '',
-    'deleted_count' => '',
-    'edited' => '',
-    'pinned' => '',
-    'empty' => '',
-    'load_replies' => '',
-    'replies_count' => '',
-    'title' => '',
+    'deleted' => 'odstranjeno',
+    'deleted_by' => 'odstranjeno :timeago s strani :user',
+    'deleted_by_system' => 'sistem',
+    'deleted_count' => ':count_delimited odstranjen komentar|:count_delimited odstranjenih komentarjev',
+    'edited' => 'urejeno :timeago s strani :user',
+    'pinned' => 'pripeto',
+    'empty' => 'Ni še komentarjev.',
+    'load_replies' => 'naloži odgovore',
+    'replies_count' => ':count_delimited odgovor|:count_delimited odgovorov',
+    'title' => 'Komentarji',
 
     'commentable_name' => [
-        'beatmapset' => '',
-        'build' => '',
-        'news_post' => '',
-        '_deleted' => '',
+        'beatmapset' => 'Beatmap',
+        'build' => 'Dnevnik sprememb',
+        'news_post' => 'Novice',
+        '_deleted' => 'Izbrisan element',
     ],
 
     'editor' => [
         'textarea_hint' => [
-            '_' => '',
-            'edit' => '',
-            'new' => '',
-            'reply' => '',
+            '_' => 'Pritisni tukaj za :action. Uporabi shift+enter za novo vrstico.',
+            'edit' => 'shranitev',
+            'new' => 'objavo',
+            'reply' => 'odgovor',
         ],
     ],
 
     'guest_button' => [
-        'new' => '',
-        'reply' => '',
+        'new' => 'Vpiši se za komentiranje',
+        'reply' => 'Vpiši se, da lahko odgovoriš',
     ],
 
     'index' => [
-        'nav_comments' => '',
-        'nav_title' => '',
-        'no_comments' => '',
+        'nav_comments' => 'komentarji',
+        'nav_title' => 'seznam',
+        'no_comments' => 'ni najdenih komentarjev...',
     ],
 
     'placeholder' => [
-        'edit' => '',
-        'new' => '',
-        'reply' => '',
+        'edit' => 'Uredi komentar tukaj',
+        'new' => 'Napiši nov komentar tukaj',
+        'reply' => 'Napiši nov odziv tukaj',
     ],
 
     'show' => [
-        'nav_title' => '',
+        'nav_title' => 'komentarji',
     ],
 ];

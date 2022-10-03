@@ -127,7 +127,7 @@ return [
         'count_50' => '50',
         'count_geki' => '',
         'count_katu' => '200',
-        'count_miss' => 'Miss',
+        'count_miss' => 'ミス',
     ],
 
     'scoreboard_time' => [

@@ -4,37 +4,38 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'generic' => '',
+    'generic' => 'Исравке грешака и мања побољшања',
 
     'build' => [
-        'title' => '',
+        'title' => 'промене у верзији :version',
     ],
 
     'builds' => [
-        'users_online' => '',
+        'users_online' => ':count_delimited корисник онлајн |:count_delimited корисника онлајн',
     ],
 
     'entry' => [
-        'by' => '',
+        'by' => 'од корисника :user
+',
     ],
 
     'index' => [
         'page_title' => [
-            '_' => '',
-            '_from' => '',
-            '_from_to' => '',
-            '_stream' => '',
-            '_stream_from' => '',
-            '_stream_from_to' => '',
-            '_stream_to' => '',
-            '_to' => '',
+            '_' => 'дневник промена',
+            '_from' => 'промене од :from',
+            '_from_to' => 'промене између :from и :to',
+            '_stream' => 'промене у :stream',
+            '_stream_from' => 'промене у :stream од :from',
+            '_stream_from_to' => 'промене између :stream између :from и :to',
+            '_stream_to' => 'промене у :stream до :to',
+            '_to' => 'промене до :to',
         ],
     ],
 
     'support' => [
-        'heading' => '',
-        'text_1' => '',
-        'text_1_link' => '',
-        'text_2' => '',
+        'heading' => 'Волите овo aжурирање?',
+        'text_1' => 'Подржите даљњи развој osu!-а и :link данас!',
+        'text_1_link' => 'постаните osu!supporter',
+        'text_2' => 'Не само да ћете подржати убрзање развоја, већ ћете и добити додатне карактеристике и подешавања!',
     ],
 ];
