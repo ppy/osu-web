@@ -7,7 +7,7 @@ return [
     'deleted' => 'удалено',
     'deleted_by' => 'удалено :user :timeago',
     'deleted_by_system' => 'системой',
-    'deleted_count' => ':count_delimited комментарий удален|:count_delimited комментариев удалено',
+    'deleted_count' => ':count_delimited комментарий удалён|:count_delimited комментария удалено|:count_delimited комментариев удалено',
     'edited' => ':user отредактировал :timeago',
     'pinned' => 'закреплён',
     'empty' => 'Нет комментариев.',

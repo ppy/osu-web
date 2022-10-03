@@ -16,14 +16,14 @@ return [
         'table' => [
             'empty' => '',
             'last_update' => '',
-            'open_issues' => '',
-            'state' => '',
-            'title' => '',
+            'open_issues' => 'Problemes oberts',
+            'state' => 'Estat',
+            'title' => 'Títol',
         ],
     ],
 
     'status' => [
-        'read' => '',
-        'unread' => '',
+        'read' => 'Llegit',
+        'unread' => 'No llegit',
     ],
 ];

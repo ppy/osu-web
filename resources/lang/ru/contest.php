@@ -34,7 +34,7 @@ return [
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => '',
+                'incomplete_play' => 'Необходимо сыграть все карты из плейлиста перед голосованием',
             ],
         ],
     ],
@@ -42,7 +42,7 @@ return [
         '_' => 'заявка',
         'login_required' => 'Войдите, чтобы участвовать в этом конкурсе.',
         'silenced_or_restricted' => 'Вы не можете участвовать в конкурсе пока ваши права ограничены.',
-        'preparation' => 'В настоящее время мы готовим этот конкурс! Пожалуйста, потерпи немного.',
+        'preparation' => 'В настоящее время мы готовимся к этому конкурсу! Пожалуйста, немного потерпите.',
         'drop_here' => 'Оставь свою заявку здесь',
         'download' => 'Скачать .osz',
         'wrong_type' => [
@@ -57,8 +57,8 @@ return [
     ],
     'vote' => [
         'list' => 'голосов',
-        'count' => ':count голос|:count голоса|:count голосов',
-        'points' => ':count очко|:count очка|:count очков',
+        'count' => ':count_delimited голос|:count_delimited голоса|:count_delimited голосов',
+        'points' => ':count_delimited очко|:count_delimited очка|:count_delimited очков',
     ],
     'dates' => [
         'ended' => 'Окончен :date',

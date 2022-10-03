@@ -117,7 +117,7 @@ return [
     ],
     'logout_confirm' => 'Вы точно хотите выйти? :(',
     'report' => [
-        'button_text' => 'пожаловаться',
+        'button_text' => 'Пожаловаться',
         'comments' => 'Дополнительные комментарии',
         'placeholder' => 'Пожалуйста, представьте всю информацию, которую вы считаете нужной.',
         'reason' => 'Причина',
@@ -327,7 +327,7 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Скачать запись',
-                'not_ranked' => 'Очки производительности выдаются только за прохождение рейтинговых карт.',
+                'not_ranked' => 'Очки производительности выдаются только за прохождение рейтинговых карт',
                 'pp_weight' => 'засчитано: :percentage pp',
                 'view_details' => 'Подробнее',
                 'title' => 'Рейтинги',
@@ -357,7 +357,7 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Нарушения',
-                'bad_standing' => "С аккаунтом <strong>:username</strong> не всё хорошо :(",
+                'bad_standing' => "С аккаунтом :username не всё хорошо :(",
                 'remaining_silence' => ':username сможет говорить снова через :duration.',
 
                 'recent_infringements' => [

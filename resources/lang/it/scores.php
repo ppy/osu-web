@@ -24,6 +24,7 @@ return [
 
     'status' => [
         'non_best' => 'Solo i punteggi migliori conferiscono pp',
+        'non_passing' => '',
         'processing' => 'Questo punteggio dev\'essere ancora calcolato e verrà mostrato presto',
     ],
 ];
