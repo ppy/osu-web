@@ -160,8 +160,7 @@ class UsersController extends Controller
                     'monthly_playcounts' => json_collection($this->user->monthlyPlaycounts, new UserMonthlyPlaycountTransformer()),
                     'recent' => $this->getExtraSection(
                         'scoresRecent',
-                        $this->user->scores($this->mode, true)->includeFails(false)->count(),
-                        ['mode' => $this->mode]
+                        $this->user->scores($this->mode, true)->includeFails(false)->count()
                     ),
                     'replays_watched_counts' => json_collection($this->user->replaysWatchedCounts, new UserReplaysWatchedCountTransformer()),
                 ];
@@ -173,23 +172,18 @@ class UsersController extends Controller
                 return $this->getExtraSection('recentActivity');
 
             case 'top_ranks':
-                $options = ['mode' => $this->mode];
-
                 return [
                     'best' => $this->getExtraSection(
                         'scoresBest',
-                        count($this->user->beatmapBestScoreIds($this->mode)),
-                        $options
+                        count($this->user->beatmapBestScoreIds($this->mode))
                     ),
                     'firsts' => $this->getExtraSection(
                         'scoresFirsts',
-                        $this->user->scoresFirst($this->mode, true)->visibleUsers()->count(),
-                        $options
+                        $this->user->scoresFirst($this->mode, true)->visibleUsers()->count()
                     ),
                     'pinned' => $this->getExtraSection(
                         'scoresPinned',
-                        $this->user->scorePins()->forRuleset($this->mode)->withVisibleScore()->count(),
-                        $options
+                        $this->user->scorePins()->forRuleset($this->mode)->withVisibleScore()->count()
                     ),
                 ];
 
@@ -318,7 +312,7 @@ class UsersController extends Controller
         // Override per page restriction in parsePaginationParams to allow infinite paging
         $perPage = $this->sanitizedLimitParam();
 
-        return $this->getExtra($this->user, $page, [], $perPage, $this->offset);
+        return $this->getExtra($page, [], $perPage, $this->offset);
     }
 
     /**
@@ -419,7 +413,7 @@ class UsersController extends Controller
      */
     public function kudosu($_userId)
     {
-        return $this->getExtra($this->user, 'recentlyReceivedKudosu', [], $this->perPage, $this->offset);
+        return $this->getExtra('recentlyReceivedKudosu', [], $this->perPage, $this->offset);
     }
 
     /**
@@ -451,7 +445,7 @@ class UsersController extends Controller
      */
     public function recentActivity($_userId)
     {
-        return $this->getExtra($this->user, 'recentActivity', [], $this->perPage, $this->offset);
+        return $this->getExtra('recentActivity', [], $this->perPage, $this->offset);
     }
 
     /**
@@ -511,11 +505,10 @@ class UsersController extends Controller
         }
 
         $options = [
-            'mode' => $this->mode,
             'includeFails' => get_bool(request('include_fails')) ?? false,
         ];
 
-        $json = $this->getExtra($this->user, $page, $options, $perPage, $this->offset);
+        $json = $this->getExtra($page, $options, $perPage, $this->offset);
 
         return response($json, is_null($json['error'] ?? null) ? 200 : 504);
     }
@@ -706,14 +699,14 @@ class UsersController extends Controller
         return clamp(get_int(request('limit')) ?? 5, 1, 100);
     }
 
-    private function getExtra($user, $page, array $options, int $perPage = 10, int $offset = 0)
+    private function getExtra($page, array $options, int $perPage = 10, int $offset = 0)
     {
         // Grouped by $transformer and sorted alphabetically ($transformer and then $page).
         switch ($page) {
             // BeatmapPlaycount
             case 'beatmapPlaycounts':
                 $transformer = 'BeatmapPlaycount';
-                $query = $user->beatmapPlaycounts()
+                $query = $this->user->beatmapPlaycounts()
                     ->with('beatmap', 'beatmap.beatmapset')
                     ->whereHas('beatmap.beatmapset')
                     ->orderBy('playcount', 'desc')
@@ -724,49 +717,49 @@ class UsersController extends Controller
             case 'favouriteBeatmapsets':
                 $transformer = 'Beatmapset';
                 $includes = ['beatmaps'];
-                $query = $user->profileBeatmapsetsFavourite();
+                $query = $this->user->profileBeatmapsetsFavourite();
                 break;
             case 'graveyardBeatmapsets':
                 $transformer = 'Beatmapset';
                 $includes = ['beatmaps'];
-                $query = $user->profileBeatmapsetsGraveyard()
+                $query = $this->user->profileBeatmapsetsGraveyard()
                     ->orderBy('last_update', 'desc');
                 break;
             case 'guestBeatmapsets':
                 $transformer = 'Beatmapset';
                 $includes = ['beatmaps'];
-                $query = $user->profileBeatmapsetsGuest()
+                $query = $this->user->profileBeatmapsetsGuest()
                     ->orderBy('approved_date', 'desc');
                 break;
             case 'lovedBeatmapsets':
                 $transformer = 'Beatmapset';
                 $includes = ['beatmaps'];
-                $query = $user->profileBeatmapsetsLoved()
+                $query = $this->user->profileBeatmapsetsLoved()
                     ->orderBy('approved_date', 'desc');
                 break;
             case 'rankedBeatmapsets':
                 $transformer = 'Beatmapset';
                 $includes = ['beatmaps'];
-                $query = $user->profileBeatmapsetsRanked()
+                $query = $this->user->profileBeatmapsetsRanked()
                     ->orderBy('approved_date', 'desc');
                 break;
             case 'pendingBeatmapsets':
                 $transformer = 'Beatmapset';
                 $includes = ['beatmaps'];
-                $query = $user->profileBeatmapsetsPending()
+                $query = $this->user->profileBeatmapsetsPending()
                     ->orderBy('last_update', 'desc');
                 break;
 
             // Event
             case 'recentActivity':
                 $transformer = 'Event';
-                $query = $user->events()->recent();
+                $query = $this->user->events()->recent();
                 break;
 
             // KudosuHistory
             case 'recentlyReceivedKudosu':
                 $transformer = 'KudosuHistory';
-                $query = $user->receivedKudosu()
+                $query = $this->user->receivedKudosu()
                     ->with('post', 'post.topic', 'giver')
                     ->with(['kudosuable' => function (MorphTo $morphTo) {
                         $morphTo->morphWith([BeatmapDiscussion::class => ['beatmap', 'beatmapset']]);
@@ -778,13 +771,13 @@ class UsersController extends Controller
             case 'scoresBest':
                 $transformer = new ScoreTransformer();
                 $includes = [...ScoreTransformer::USER_PROFILE_INCLUDES, 'weight'];
-                $collection = $user->beatmapBestScores($options['mode'], $perPage, $offset, ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
+                $collection = $this->user->beatmapBestScores($this->mode, $perPage, $offset, ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
                 $userRelationColumn = 'user';
                 break;
             case 'scoresFirsts':
                 $transformer = new ScoreTransformer();
                 $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
-                $query = $user->scoresFirst($options['mode'], true)
+                $query = $this->user->scoresFirst($this->mode, true)
                     ->visibleUsers()
                     ->reorderBy('score_id', 'desc')
                     ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
@@ -793,9 +786,9 @@ class UsersController extends Controller
             case 'scoresPinned':
                 $transformer = new ScoreTransformer();
                 $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
-                $query = $user
+                $query = $this->user
                     ->scorePins()
-                    ->forRuleset($options['mode'])
+                    ->forRuleset($this->mode)
                     ->withVisibleScore()
                     ->with(array_map(fn ($include) => "score.{$include}", ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD))
                     ->reorderBy('display_order', 'asc');
@@ -805,7 +798,7 @@ class UsersController extends Controller
             case 'scoresRecent':
                 $transformer = new ScoreTransformer();
                 $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
-                $query = $user->scores($options['mode'], true)
+                $query = $this->user->scores($this->mode, true)
                     ->includeFails($options['includeFails'] ?? false)
                     ->with([...ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD, 'best']);
                 $userRelationColumn = 'user';
@@ -822,14 +815,14 @@ class UsersController extends Controller
 
         if (isset($userRelationColumn)) {
             foreach ($collection as $item) {
-                $item->setRelation($userRelationColumn, $user);
+                $item->setRelation($userRelationColumn, $this->user);
             }
         }
 
         return json_collection($collection, $transformer, $includes ?? []);
     }
 
-    private function getExtraSection(string $section, ?int $count = null, array $options = [])
+    private function getExtraSection(string $section, ?int $count = null)
     {
         // TODO: move pagination check here instead of js-side (and replace with cursor).
         $response = [];
@@ -841,7 +834,7 @@ class UsersController extends Controller
             $response['per_page'] = static::PER_PAGE[$section];
         }
 
-        $response['items'] = $this->getExtra($this->user, $section, $options, $fetchSize ?? static::PER_PAGE[$section]);
+        $response['items'] = $this->getExtra($section, [], $fetchSize ?? static::PER_PAGE[$section]);
 
         return $response;
     }
