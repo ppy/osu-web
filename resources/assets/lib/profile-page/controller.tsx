@@ -22,7 +22,7 @@ import core from 'osu-core-singleton';
 import { error, onErrorWithCallback } from 'utils/ajax';
 import { jsonClone } from 'utils/json';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
-import { apiShowMore, apiShowMoreRecentlyReceivedKudosu, hasMoreCheck, OffsetPaginationJson } from 'utils/offset-paginator';
+import { apiShowMore, apiShowMoreRecentlyReceivedKudosu, hasMoreCheck } from 'utils/offset-paginator';
 import { switchNever } from 'utils/switch-never';
 import { ProfilePageSection, ProfilePageUserJson } from './extra-page-props';
 
@@ -38,28 +38,6 @@ const sectionToUrlType = {
   scoresPinned: 'pinned',
   scoresRecent: 'recent',
 } as const;
-
-const beatmapsetSections = [
-  'favouriteBeatmapsets',
-  'guestBeatmapsets',
-  'rankedBeatmapsets',
-  'lovedBeatmapsets',
-  'pendingBeatmapsets',
-  'graveyardBeatmapsets',
-] as const;
-type BeatmapsetSection = typeof beatmapsetSections[number];
-
-// sorted by display order in the page
-const topScoreSections = ['scoresPinned', 'scoresBest', 'scoresFirsts'] as const;
-type TopScoreSection = typeof topScoreSections[number];
-
-const historicalSections = ['beatmapPlaycounts', 'scoresRecent'] as const;
-type HistoricalSection = typeof historicalSections[number];
-
-type LazyLoadedSection = TopScoreSection | BeatmapsetSection | HistoricalSection;
-type InitialProfilePageSection = Exclude<ProfilePageSection, LazyLoadedSection>;
-
-export type PaginationData = Record<InitialProfilePageSection, OffsetPaginationJson>;
 
 export function validPage(page: unknown) {
   if (typeof page === 'string' && (page === 'main' || profileExtraPages.includes(page as ProfileExtraPage))) {
