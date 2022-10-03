@@ -43,31 +43,29 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
 
     public function transform(Beatmapset $beatmapset)
     {
-        $attrs = $beatmapset->getAttributes();
-
         return [
-            'artist' => $attrs['artist'] ?? null,
+            'artist' => $beatmapset->getAttr('artist'),
             'artist_unicode' => $beatmapset->getArtistUnicodeAttribute(),
             'covers' => $beatmapset->allCoverURLs(),
-            'creator' => $attrs['creator'] ?? null,
-            'favourite_count' => $attrs['favourite_count'] ?? null,
+            'creator' => $beatmapset->getAttr('creator'),
+            'favourite_count' => $beatmapset->getAttr('favourite_count'),
             'hype' => $beatmapset->canBeHyped() ? [
-                'current' => $attrs['hype'] ?? null,
+                'current' => $beatmapset->getAttr('hype'),
                 'required' => $beatmapset->requiredHype(),
             ] : null,
-            'id' => $attrs['beatmapset_id'] ?? null,
-            'nsfw' => (bool) ($attrs['nsfw'] ?? false),
-            'offset' => $attrs['offset'] ?? null,
-            'play_count' => $attrs['play_count'] ?? null,
+            'id' => $beatmapset->getAttr('beatmapset_id'),
+            'nsfw' => (bool) $beatmapset->getAttr('nsfw'),
+            'offset' => $beatmapset->getAttr('offset'),
+            'play_count' => $beatmapset->getAttr('play_count'),
             'preview_url' => $beatmapset->previewURL(),
-            'source' => $attrs['source'] ?? null,
-            'spotlight' => (bool) ($attrs['spotlight'] ?? null),
+            'source' => $beatmapset->getAttr('source'),
+            'spotlight' => (bool) $beatmapset->getAttr('spotlight'),
             'status' => $beatmapset->status(),
-            'title' => $attrs['title'] ?? null,
+            'title' => $beatmapset->getAttr('title'),
             'title_unicode' => $beatmapset->getTitleUnicodeAttribute(),
-            'track_id' => $attrs['track_id'] ?? null,
-            'user_id' => $attrs['user_id'] ?? null,
-            'video' => (bool) ($attrs['video'] ?? false),
+            'track_id' => $beatmapset->getAttr('track_id'),
+            'user_id' => $beatmapset->getAttr('user_id'),
+            'video' => (bool) $beatmapset->getAttr('video'),
         ];
     }
 

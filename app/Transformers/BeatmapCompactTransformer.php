@@ -21,16 +21,14 @@ class BeatmapCompactTransformer extends TransformerAbstract
 
     public function transform(Beatmap $beatmap)
     {
-        $attrs = $beatmap->getAttributes();
-
         return [
-            'beatmapset_id' => $attrs['beatmapset_id'] ?? null,
+            'beatmapset_id' => $beatmap->getAttr('beatmapset_id'),
             'difficulty_rating' => $beatmap->getDifficultyRatingAttribute(),
-            'id' => $attrs['beatmap_id'] ?? null,
+            'id' => $beatmap->getKey(),
             'mode' => $beatmap->getModeAttribute(),
             'status' => $beatmap->status(),
-            'total_length' => $attrs['total_length'] ?? null,
-            'user_id' => $attrs['user_id'] ?? null,
+            'total_length' => $beatmap->getAttr('total_length'),
+            'user_id' => $beatmap->getAttr('user_id'),
             'version' => $beatmap->getVersionAttribute(),
         ];
     }

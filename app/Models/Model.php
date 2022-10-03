@@ -30,6 +30,11 @@ abstract class Model extends BaseModel
         static::addGlobalScope(new MacroableModelScope());
     }
 
+    public function getAttr(string $key)
+    {
+        return $this->attributes[$key] ?? null;
+    }
+
     public function getForeignKey()
     {
         if ($this->primaryKey === null || $this->primaryKey === 'id') {
@@ -41,7 +46,7 @@ abstract class Model extends BaseModel
 
     public function getKey()
     {
-        return $this->attributes[$this->primaryKey] ?? null;
+        return $this->getAttr($this->primaryKey);
     }
 
     public function getMacros()

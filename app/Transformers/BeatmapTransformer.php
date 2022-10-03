@@ -18,29 +18,25 @@ class BeatmapTransformer extends BeatmapCompactTransformer
 
     public function transform(Beatmap $beatmap)
     {
-        $result = parent::transform($beatmap);
-
-        $attrs = $beatmap->getAttributes();
-
-        return array_merge($result, [
-            'accuracy' => $attrs['diff_overall'] ?? null,
-            'ar' => $attrs['diff_approach'] ?? null,
-            'bpm' => $attrs['bpm'] ?? null,
+        return array_merge(parent::transform($beatmap), [
+            'accuracy' => $beatmap->getAttr('diff_overall'),
+            'ar' => $beatmap->getAttr('diff_approach'),
+            'bpm' => $beatmap->getAttr('bpm'),
             'convert' => $beatmap->convert,
-            'count_circles' => $attrs['countNormal'] ?? null,
-            'count_sliders' => $attrs['countSlider'] ?? null,
-            'count_spinners' => $attrs['countSpinner'] ?? null,
+            'count_circles' => $beatmap->getAttr('countNormal'),
+            'count_sliders' => $beatmap->getAttr('countSlider'),
+            'count_spinners' => $beatmap->getAttr('countSpinner'),
             'cs' => $beatmap->getDiffSizeAttribute(),
-            'deleted_at' => json_time_from_db_timestamp($attrs['deleted_at'] ?? null),
-            'drain' => $attrs['diff_drain'] ?? null,
-            'hit_length' => $attrs['hit_length'] ?? null,
+            'deleted_at' => json_time_from_db_timestamp($beatmap->getAttr('deleted_at')),
+            'drain' => $beatmap->getAttr('diff_drain'),
+            'hit_length' => $beatmap->getAttr('hit_length'),
             'is_scoreable' => $beatmap->isScoreable(),
-            'last_updated' => json_time_from_db_timestamp($attrs['last_update'] ?? null),
-            'mode_int' => $attrs['playmode'] ?? null,
-            'passcount' => $attrs['passcount'] ?? null,
-            'playcount' => $attrs['playcount'] ?? null,
-            'ranked' => $attrs['approved'] ?? null,
-            'url' => route('beatmaps.show', ['beatmap' => $attrs['beatmap_id'] ?? null]),
+            'last_updated' => json_time_from_db_timestamp($beatmap->getAttr('last_update')),
+            'mode_int' => $beatmap->getAttr('playmode'),
+            'passcount' => $beatmap->getAttr('passcount'),
+            'playcount' => $beatmap->getAttr('playcount'),
+            'ranked' => $beatmap->getAttr('approved'),
+            'url' => route('beatmaps.show', ['beatmap' => $beatmap->getKey()]),
         ]);
     }
 }
