@@ -89,7 +89,7 @@ interface State {
   historical: HistoricalJson;
   kudosu: PageSectionWithoutCountJson<KudosuHistoryJson>;
   recentActivity: PageSectionWithoutCountJson<EventJson>;
-  topsScores: TopScoresJson;
+  topScores: TopScoresJson;
   user: ProfilePageUserJson;
 }
 
@@ -127,7 +127,7 @@ export default class Controller {
         historical: initialData.historical,
         kudosu: initialData.kudosu,
         recentActivity: initialData.recent_activity,
-        topsScores: initialData.top_ranks,
+        topScores: initialData.top_ranks,
         user: initialData.user,
       };
     } else {
@@ -147,8 +147,8 @@ export default class Controller {
 
   @action
   apiReorderScorePin(currentIndex: number, newIndex: number) {
-    const origItems = this.state.topsScores.pinned.items.slice();
-    const items = this.state.topsScores.pinned.items;
+    const origItems = this.state.topScores.pinned.items.slice();
+    const items = this.state.topScores.pinned.items;
     const adjacentScoreId = items[newIndex]?.id;
     if (adjacentScoreId == null) {
       throw new Error('invalid newIndex specified');
@@ -185,7 +185,7 @@ export default class Controller {
       method: 'PUT',
     }).fail(action((xhr: JQuery.jqXHR, status: string) => {
       error(xhr, status);
-      this.state.topsScores.pinned.items = origItems;
+      this.state.topScores.pinned.items = origItems;
     })).always(hideLoadingOverlay);
   }
 
@@ -332,7 +332,7 @@ export default class Controller {
       case 'scoresPinned':
       case 'scoresRecent': {
         const type = sectionToUrlType[section];
-        const json = type === 'recent' ? this.state.historical.recent : this.state.topsScores[type];
+        const json = type === 'recent' ? this.state.historical.recent : this.state.topScores[type];
 
         this.xhr[section] = apiShowMore(
           json,
@@ -386,16 +386,16 @@ export default class Controller {
     const newScore = jsonClone(score);
     newScore.id = scorePinData.score_id;
 
-    const arrayIndex = this.state.topsScores.pinned.items.findIndex((s) => s.id === newScore.id);
-    this.state.topsScores.pinned.count += isPinned ? 1 : -1;
+    const arrayIndex = this.state.topScores.pinned.items.findIndex((s) => s.id === newScore.id);
+    this.state.topScores.pinned.count += isPinned ? 1 : -1;
 
     if (isPinned) {
       if (arrayIndex === -1) {
-        this.state.topsScores.pinned.items.unshift(newScore);
+        this.state.topScores.pinned.items.unshift(newScore);
       }
     } else {
       if (arrayIndex !== -1) {
-        pullAt(this.state.topsScores.pinned.items, arrayIndex);
+        pullAt(this.state.topScores.pinned.items, arrayIndex);
       }
     }
 
