@@ -8,7 +8,6 @@ import * as React from 'react';
 
 interface Props {
   onLoad: () => PromiseLike<unknown>;
-  placeholder?: React.ReactNode;
 }
 
 @observer
