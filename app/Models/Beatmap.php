@@ -132,7 +132,7 @@ class Beatmap extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function getDifficultyratingAttribute($value)
+    public function getDifficultyratingAttribute()
     {
         if ($this->convert) {
             $value = (
@@ -141,6 +141,8 @@ class Beatmap extends Model
                     : $this->baseDifficultyRatings()
             )->firstWhere('mode', $this->attributes['playmode'] ?? null)
             ?->diff_unified ?? 0;
+        } else {
+            $value = $this->attributes['difficultyrating'] ?? null;
         }
 
         return round($value, 2);
@@ -151,7 +153,7 @@ class Beatmap extends Model
         return static::modeStr($this->attributes['playmode'] ?? null);
     }
 
-    public function getDiffSizeAttribute($value)
+    public function getDiffSizeAttribute()
     {
         /*
          * Matches client implementation.
@@ -161,6 +163,7 @@ class Beatmap extends Model
          * - (rounding) https://msdn.microsoft.com/en-us/library/wyk4d9cy(v=vs.110).aspx
          */
         $attrs = $this->attributes;
+        $value = $attrs['diff_size'] ?? null;
         if (($attrs['playmode'] ?? null) === static::MODES['mania']) {
             $roundedValue = (int) round($value, 0, PHP_ROUND_HALF_EVEN);
 
@@ -188,8 +191,9 @@ class Beatmap extends Model
         return $value;
     }
 
-    public function getVersionAttribute($value)
+    public function getVersionAttribute()
     {
+        $value = $this->attributes['version'] ?? null;
         if ($this->mode === 'mania') {
             $keys = $this->getDiffSizeAttribute($this->attributes['diff_size'] ?? null);
 

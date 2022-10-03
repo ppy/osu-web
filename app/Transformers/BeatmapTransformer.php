@@ -30,7 +30,7 @@ class BeatmapTransformer extends BeatmapCompactTransformer
             'count_circles' => $attrs['countNormal'] ?? null,
             'count_sliders' => $attrs['countSlider'] ?? null,
             'count_spinners' => $attrs['countSpinner'] ?? null,
-            'cs' => $beatmap->getDiffSizeAttribute($attrs['diff_size'] ?? null),
+            'cs' => $beatmap->getDiffSizeAttribute(),
             'deleted_at' => json_time_from_db_timestamp($attrs['deleted_at'] ?? null),
             'drain' => $attrs['diff_drain'] ?? null,
             'hit_length' => $attrs['hit_length'] ?? null,

@@ -47,7 +47,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
 
         return [
             'artist' => $attrs['artist'] ?? null,
-            'artist_unicode' => $beatmapset->getArtistUnicodeAttribute($attrs['artist_unicode'] ?? null),
+            'artist_unicode' => $beatmapset->getArtistUnicodeAttribute(),
             'covers' => $beatmapset->allCoverURLs(),
             'creator' => $attrs['creator'] ?? null,
             'favourite_count' => $attrs['favourite_count'] ?? null,
@@ -64,7 +64,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
             'spotlight' => (bool) ($attrs['spotlight'] ?? null),
             'status' => $beatmapset->status(),
             'title' => $attrs['title'] ?? null,
-            'title_unicode' => $beatmapset->getTitleUnicodeAttribute($attrs['title_unicode'] ?? null),
+            'title_unicode' => $beatmapset->getTitleUnicodeAttribute(),
             'track_id' => $attrs['track_id'] ?? null,
             'user_id' => $attrs['user_id'] ?? null,
             'video' => (bool) ($attrs['video'] ?? false),
