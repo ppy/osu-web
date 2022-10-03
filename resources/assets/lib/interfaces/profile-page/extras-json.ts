@@ -10,12 +10,12 @@ export default interface ExtrasJson {
   recentlyReceivedKudosu: KudosuHistoryJson[];
 }
 
-export interface PageSection<T> extends PageSectionWithoutCount<T> {
+export interface PageSectionJson<T> extends PageSectionWithoutCountJson<T> {
   count: number;
 }
 
 // TODO: basically OffsetPaginatorJson now
-export interface PageSectionWithoutCount<T> {
+export interface PageSectionWithoutCountJson<T> {
   items: T[];
   pagination: OffsetPaginationJson;
 }
