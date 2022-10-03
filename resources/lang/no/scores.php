@@ -24,6 +24,7 @@ return [
 
     'status' => [
         'non_best' => '',
+        'non_passing' => '',
         'processing' => '',
     ],
 ];

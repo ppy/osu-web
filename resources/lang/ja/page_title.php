@@ -48,7 +48,7 @@ return [
             '_' => '注目アーティスト',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => 'ビートマップディスカッション投稿',
+            '_' => 'ビートマップディスカッションの投稿',
         ],
         'beatmap_discussions_controller' => [
             '_' => 'ビートマップディスカッション',
@@ -57,7 +57,7 @@ return [
             '_' => 'ビートマップパック',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => 'ビートマップディスカッション投票',
+            '_' => 'ビートマップディスカッションの投票',
         ],
         'beatmapset_events_controller' => [
             '_' => 'ビートマップ履歴',

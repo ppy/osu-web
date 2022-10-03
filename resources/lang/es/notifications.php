@@ -190,7 +190,7 @@ return [
             ],
 
             'beatmapset_problem' => [
-                'beatmapset_discussion_qualified_problem' => 'Se reportó de un nuevo problema en ":title"',
+                'beatmapset_discussion_qualified_problem' => 'Se reportó un nuevo problema en ":title"',
             ],
 
             'beatmapset_state' => [
@@ -240,7 +240,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username ha creado nuevos mapas',
-                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive' => ':username ha revivido mapas',
             ],
         ],
     ],

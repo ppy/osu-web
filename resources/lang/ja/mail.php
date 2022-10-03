@@ -93,7 +93,7 @@ return [
     ],
 
     'user_password_updated' => [
-        'confirmation' => 'これはosu! パスワードが変更されたことを確認するだけです。',
+        'confirmation' => 'これはosu!のパスワードが変更されたことを示すお知らせです。',
         'subject' => 'パスワード変更の確認',
     ],
 

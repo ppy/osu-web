@@ -4,58 +4,58 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'cancel' => '',
+    'cancel' => 'Откажите',
 
     'authorise' => [
-        'request' => '',
-        'scopes_title' => '',
-        'title' => '',
+        'request' => 'захтева дозволу да приступи Вашем налогу.',
+        'scopes_title' => 'Ова апликација ће моћи да:',
+        'title' => 'Захтев за ауторизацију',
     ],
 
     'authorized_clients' => [
-        'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
-        'none' => '',
+        'confirm_revoke' => 'Да ли сте сигурни да желите да уклоните дозволе овом клијенту?',
+        'scopes_title' => 'Ова апликација може да:',
+        'owned_by' => 'Власник је :user',
+        'none' => 'Нема клијента',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Опозови Приступ',
+            'true' => 'Приступ опозван',
         ],
     ],
 
     'client' => [
-        'id' => '',
-        'name' => '',
-        'redirect' => '',
-        'reset' => '',
-        'reset_failed' => '',
-        'secret' => '',
+        'id' => 'ИД клијента',
+        'name' => 'Име Апликације',
+        'redirect' => 'Callback URL апликације',
+        'reset' => 'Ресетуј тајну клијента',
+        'reset_failed' => 'Неуспешан покушај ресетовања тајне клијента',
+        'secret' => 'Тајна клијента',
 
         'secret_visible' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Покажи тајну клијента',
+            'true' => 'Сакријте тајну клијента',
         ],
     ],
 
     'new_client' => [
-        'header' => '',
-        'register' => '',
+        'header' => 'Региструјте нову OAuth апликацију',
+        'register' => 'Региструјте апликацију',
         'terms_of_use' => [
-            '_' => '',
-            'link' => '',
+            '_' => 'Коришћењем API слажете се за :link.',
+            'link' => 'Услови коришћења',
         ],
     ],
 
     'own_clients' => [
-        'confirm_delete' => '',
-        'confirm_reset' => '',
-        'new' => '',
-        'none' => '',
+        'confirm_delete' => 'Да ли сте сигурни да желите обрисати клијента?',
+        'confirm_reset' => 'Да ли сте сигурни да желите да ресетујете тајну клијента? Ово ће опозвати све тренутне токене.',
+        'new' => 'Нова OAuth апликација',
+        'none' => 'Нема клијента',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Обришите',
+            'true' => 'Обрисано',
         ],
     ],
 ];

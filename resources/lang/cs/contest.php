@@ -34,7 +34,7 @@ return [
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => '',
+                'incomplete_play' => 'Musíte nejdříve zahrát všechny beatmapy v daném playlistu než budete moci hlasovat',
             ],
         ],
     ],
