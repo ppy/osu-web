@@ -824,17 +824,23 @@ class UsersController extends Controller
 
     private function getExtraSection(string $section, ?int $count = null)
     {
-        // TODO: move pagination check here instead of js-side (and replace with cursor).
-        $response = [];
+        // TODO: replace with cursor.
+        $items = $this->getExtra($section, [], static::PER_PAGE[$section] + 1);
+        $hasMore = count($items) > static::PER_PAGE[$section];
+        if ($hasMore) {
+            array_pop($items);
+        }
+
+        $response = [
+            'items' => $items,
+            'pagination' => [
+                'hasMore' => $hasMore,
+            ],
+        ];
 
         if ($count !== null) {
             $response['count'] = $count;
-        } else {
-            $fetchSize = static::PER_PAGE[$section] + 1;
-            $response['per_page'] = static::PER_PAGE[$section];
         }
-
-        $response['items'] = $this->getExtra($section, [], $fetchSize ?? static::PER_PAGE[$section]);
 
         return $response;
     }

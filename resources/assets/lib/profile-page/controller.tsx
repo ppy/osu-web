@@ -22,7 +22,7 @@ import core from 'osu-core-singleton';
 import { error, onErrorWithCallback } from 'utils/ajax';
 import { jsonClone } from 'utils/json';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
-import { apiShowMore, apiShowMoreRecentlyReceivedKudosu, hasMoreCheck } from 'utils/offset-paginator';
+import { apiShowMore, apiShowMoreRecentlyReceivedKudosu } from 'utils/offset-paginator';
 import { switchNever } from 'utils/switch-never';
 import { ProfilePageSection, ProfilePageUserJson } from './extra-page-props';
 
@@ -39,15 +39,9 @@ const sectionToUrlType = {
   scoresRecent: 'recent',
 } as const;
 
-type PageSectionLazyLoadJson<T> = Omit<PageSectionJson<T>, 'pagination'>;
-type PageSectionWithoutCountLazyLoadJson<T> = Omit<PageSectionWithoutCountJson<T>, 'pagination'> & {
-  per_page: number;
-};
-
 // #region lazy loaded extra pages
 const beatmapsetsExtraPageKeys = ['favourite', 'graveyard', 'guest', 'loved', 'pending', 'ranked'] as const;
 type BeatmapsetsJson = Record<typeof beatmapsetsExtraPageKeys[number], PageSectionJson<BeatmapsetExtendedJson>>;
-type BeatmapsetsLazyLoadResponse = Record<typeof beatmapsetsExtraPageKeys[number], PageSectionLazyLoadJson<BeatmapsetExtendedJson>>;
 
 interface HistoricalJson {
   beatmap_playcounts: PageSectionJson<BeatmapPlaycountJson>;
@@ -55,25 +49,9 @@ interface HistoricalJson {
   recent: PageSectionJson<SoloScoreJsonForUser>;
   replays_watched_counts: UserReplaysWatchedCountJson[];
 }
-
-interface HistoricalLazyLoadResponse {
-  beatmap_playcounts: PageSectionLazyLoadJson<BeatmapPlaycountJson>;
-  monthly_playcounts: UserMonthlyPlaycountJson[];
-  recent: PageSectionLazyLoadJson<SoloScoreJsonForUser>;
-  replays_watched_counts: UserReplaysWatchedCountJson[];
-}
-
 const topScoresKeys = ['best', 'firsts', 'pinned'] as const;
 type TopScoresJson = Record<typeof topScoresKeys[number], PageSectionJson<SoloScoreJsonForUser>>;
-type TopScoresLazyLoadResponse = Record<typeof topScoresKeys[number], PageSectionLazyLoadJson<SoloScoreJsonForUser>>;
 // #endregion
-
-function convertLazyLoadJson<T>(json: PageSectionLazyLoadJson<T>): PageSectionJson<T> {
-  return {
-    ...json,
-    pagination: { hasMore: json.count > json.items.length },
-  };
-}
 
 export function validPage(page: unknown) {
   if (typeof page === 'string' && (page === 'main' || profileExtraPages.includes(page as ProfileExtraPage))) {
@@ -85,13 +63,13 @@ export function validPage(page: unknown) {
 
 interface InitialData {
   achievements: AchievementJson[];
-  beatmaps: BeatmapsetsLazyLoadResponse;
+  beatmaps: BeatmapsetsJson;
   current_mode: GameMode;
-  historical: HistoricalLazyLoadResponse;
-  kudosu: PageSectionWithoutCountLazyLoadJson<KudosuHistoryJson>;
-  recent_activity: PageSectionWithoutCountLazyLoadJson<EventJson>;
+  historical: HistoricalJson;
+  kudosu: PageSectionWithoutCountJson<KudosuHistoryJson>;
+  recent_activity: PageSectionWithoutCountJson<EventJson>;
   scores_notice: string | null;
-  top_ranks: TopScoresLazyLoadResponse;
+  top_ranks: TopScoresJson;
   user: ProfilePageUserJson;
 }
 
@@ -142,42 +120,14 @@ export default class Controller {
     this.hasSavedState = savedStateJson != null;
 
     if (savedStateJson == null) {
-      const kudosuItems = initialData.kudosu.items;
-      const recentActivityItems = initialData.recent_activity.items;
-
       this.state = {
-        beatmapsets: {
-          favourite: convertLazyLoadJson(initialData.beatmaps.favourite),
-          graveyard: convertLazyLoadJson(initialData.beatmaps.graveyard),
-          guest: convertLazyLoadJson(initialData.beatmaps.guest),
-          loved: convertLazyLoadJson(initialData.beatmaps.loved),
-          pending: convertLazyLoadJson(initialData.beatmaps.pending),
-          ranked: convertLazyLoadJson(initialData.beatmaps.ranked),
-        },
+        beatmapsets: initialData.beatmaps,
         currentPage: 'main',
         editingUserPage: false,
-        historical: {
-          ...initialData.historical,
-          beatmap_playcounts: convertLazyLoadJson(initialData.historical.beatmap_playcounts),
-          recent: convertLazyLoadJson(initialData.historical.recent),
-        },
-        kudosu: {
-          items: kudosuItems,
-          pagination: {
-            hasMore: hasMoreCheck(initialData.kudosu.per_page, kudosuItems),
-          },
-        },
-        recentActivity: {
-          items: recentActivityItems,
-          pagination: {
-            hasMore: hasMoreCheck(initialData.recent_activity.per_page, recentActivityItems),
-          },
-        },
-        topsScores: {
-          best: convertLazyLoadJson(initialData.top_ranks.best),
-          firsts: convertLazyLoadJson(initialData.top_ranks.firsts),
-          pinned: convertLazyLoadJson(initialData.top_ranks.pinned),
-        },
+        historical: initialData.historical,
+        kudosu: initialData.kudosu,
+        recentActivity: initialData.recent_activity,
+        topsScores: initialData.top_ranks,
         user: initialData.user,
       };
     } else {
