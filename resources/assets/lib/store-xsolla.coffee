@@ -22,8 +22,6 @@ export class StoreXsolla
     new Promise (resolve, reject) ->
       $.post route('payments.xsolla.token'), { orderNumber }
       .done (data) ->
-        # Make sure laroute hasn't trolled us.
-        return reject(message: 'wrong token length') unless data.access_token?.length == 32
         resolve(data)
       .fail (xhr) ->
         reject(xhr: xhr)
