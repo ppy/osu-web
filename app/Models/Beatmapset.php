@@ -50,6 +50,7 @@ use Illuminate\Database\QueryException;
  * @property mixed|null $body_hash
  * @property float $bpm
  * @property string $commentable_identifier
+ * @property bool $genre
  * @property Comment $comments
  * @property \Carbon\Carbon|null $cover_updated_at
  * @property string $creator
