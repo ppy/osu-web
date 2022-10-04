@@ -983,6 +983,8 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             'commentable_identifier' => $this->getCommentableIdentifierAttribute(),
             'title_unicode' => $this->getTitleUnicode(),
 
+            'beatmapDiscussions',
+            'bssProcessQueues',
             'allBeatmaps',
             'approver',
             'beatmaps',
