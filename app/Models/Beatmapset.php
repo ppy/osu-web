@@ -938,6 +938,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             'header_hash',
             'hype',
             'language_id',
+            'laravel_through_key', // added by hasOneThrough relation in BeatmapDiscussionPost
             'nominations',
             'offset',
             'osz2_hash',
