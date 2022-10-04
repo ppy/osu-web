@@ -95,7 +95,7 @@ class Beatmap extends Model
         return $lookupMap[$int] ?? null;
     }
 
-    public function scopeBaseDifficultyRatings()
+    public function baseDifficultyRatings()
     {
         return $this->difficulty()->where('mods', 0);
     }
@@ -249,6 +249,7 @@ class Beatmap extends Model
             'mode' => $this->getMode(),
             'version' => $this->getVersion(),
 
+            'baseDifficultyRatings',
             'baseMaxCombo',
             'beatmapDiscussions',
             'beatmapset',
