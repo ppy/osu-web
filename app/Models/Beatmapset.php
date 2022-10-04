@@ -987,6 +987,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             'approver',
             'beatmaps',
             'beatmapsetNominations',
+            'comments'
             'defaultBeatmaps',
             'events',
             'favourites',
