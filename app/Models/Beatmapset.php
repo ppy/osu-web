@@ -49,8 +49,8 @@ use Illuminate\Database\QueryException;
  * @property \Illuminate\Database\Eloquent\Collection $beatmapsetNominations BeatmapsetNomination
  * @property mixed|null $body_hash
  * @property float $bpm
+ * @property bool $comment_locked
  * @property string $commentable_identifier
- * @property bool $genre
  * @property Comment $comments
  * @property \Carbon\Carbon|null $cover_updated_at
  * @property string $creator
