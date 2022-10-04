@@ -60,8 +60,6 @@ class Beatmap extends Model
     protected $dates = ['last_update'];
     public $timestamps = false;
 
-    protected $hidden = ['checksum', 'filename', 'orphaned'];
-
     const MODES = [
         'osu' => 0,
         'taiko' => 1,
@@ -130,79 +128,6 @@ class Beatmap extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function getDifficultyratingAttribute()
-    {
-        if ($this->convert) {
-            $value = (
-                $this->relationLoaded('baseDifficultyRatings')
-                    ? $this->baseDifficultyRatings
-                    : $this->baseDifficultyRatings()
-            )->firstWhere('mode', $this->attributes['playmode'] ?? null)
-            ?->diff_unified ?? 0;
-        } else {
-            $value = $this->attributes['difficultyrating'] ?? null;
-        }
-
-        return round($value, 2);
-    }
-
-    public function getModeAttribute()
-    {
-        return static::modeStr($this->attributes['playmode'] ?? null);
-    }
-
-    public function getDiffSizeAttribute()
-    {
-        /*
-         * Matches client implementation.
-         * all round()s here use PHP_ROUND_HALF_EVEN to match C# default Math.Round.
-         * References:
-         * - (implementation) https://github.com/ppy/osu/blob/6bbc23c831cd73bf126b31edb0bb4fa729f947d1/osu.Game.Rulesets.Mania/Beatmaps/ManiaBeatmapConverter.cs#L40
-         * - (rounding) https://msdn.microsoft.com/en-us/library/wyk4d9cy(v=vs.110).aspx
-         */
-        $attrs = $this->attributes;
-        $value = $attrs['diff_size'] ?? null;
-        if (($attrs['playmode'] ?? null) === static::MODES['mania']) {
-            $roundedValue = (int) round($value, 0, PHP_ROUND_HALF_EVEN);
-
-            if ($this->convert) {
-                $sliderOrSpinner = ($attrs['countSlider'] ?? 0) + ($attrs['countSpinner'] ?? 0);
-                $total = max(1, $sliderOrSpinner + ($attrs['countNormal'] ?? 0));
-                $percentSliderOrSpinner = $sliderOrSpinner / $total;
-
-                $accuracy = (int) round($attrs['diff_overall'] ?? 0, 0, PHP_ROUND_HALF_EVEN);
-
-                if ($percentSliderOrSpinner < 0.2) {
-                    return 7;
-                } elseif ($percentSliderOrSpinner < 0.3 || $roundedValue >= 5) {
-                    return $accuracy > 5 ? 7 : 6;
-                } elseif ($percentSliderOrSpinner > 0.6) {
-                    return $accuracy > 4 ? 5 : 4;
-                } else {
-                    return clamp($accuracy + 1, 4, 7);
-                }
-            } else {
-                return max(1, $roundedValue);
-            }
-        }
-
-        return $value;
-    }
-
-    public function getVersionAttribute()
-    {
-        $value = $this->attributes['version'] ?? null;
-        if ($this->mode === 'mania') {
-            $keys = $this->getDiffSizeAttribute();
-
-            if (strpos($value, "{$keys}k") === false && strpos($value, "{$keys}K") === false) {
-                return "[{$keys}K] {$value}";
-            }
-        }
-
-        return $value;
     }
 
     public function scopeDefault($query)
@@ -278,8 +203,7 @@ class Beatmap extends Model
 
     public function isScoreable()
     {
-        return isset($this->attributes['approved'])
-            && $this->attributes['approved'] > 0;
+        return $this->approved > 0;
     }
 
     public function canBeConverted()
@@ -287,10 +211,62 @@ class Beatmap extends Model
         return $this->playmode === static::MODES['osu'];
     }
 
+    public function getAttribute($key)
+    {
+        return match ($key) {
+            'approved',
+            'beatmap_id',
+            'beatmapset_id',
+            'bpm',
+            'checksum',
+            'countNormal',
+            'countSlider',
+            'countSpinner',
+            'countTotal',
+            'diff_approach',
+            'diff_drain',
+            'diff_overall',
+            'filename',
+            'hit_length',
+            'passcount',
+            'playcount',
+            'playmode',
+            'score_version',
+            'total_length',
+            'user_id',
+            'youtube_preview' => $this->getRawAttribute($key),
+
+            'orphaned' => (bool) $this->getRawAttribute($key),
+
+            'deleted_at',
+            'last_update' => $this->getTimeFast($key),
+
+            'deleted_at_json',
+            'last_update_json' => $this->getJsonTimeFast($key),
+
+            'diff_size' => $this->getDiffSize(),
+            'difficultyrating' => $this->getDifficultyrating(),
+            'mode' => $this->getMode(),
+            'version' => $this->getVersion(),
+
+            'baseMaxCombo',
+            'beatmapDiscussions',
+            'beatmapset',
+            'difficulty',
+            'difficultyAttribs',
+            'failtimes',
+            'scoresBestFruits',
+            'scoresBestMania',
+            'scoresBestOsu',
+            'scoresBestTaiko',
+            'user' => $this->getRelationValue($key),
+        };
+    }
+
     public function maxCombo()
     {
-        if (!$this->convert && array_key_exists('max_combo', $this->getAttributes())) {
-            return $this->max_combo;
+        if (!$this->convert && array_key_exists('max_combo', $this->attributes)) {
+            return $this->attributes['max_combo'];
         }
 
         if ($this->relationLoaded('baseMaxCombo')) {
@@ -303,7 +279,7 @@ class Beatmap extends Model
                 ->first();
         }
 
-        return optional($maxCombo)->value;
+        return $maxCombo?->value;
     }
 
     public function setOwner($newUserId)
@@ -325,7 +301,65 @@ class Beatmap extends Model
 
     public function status()
     {
-        return array_search($this->attributes['approved'] ?? null, Beatmapset::STATES, true);
+        return array_search($this->approved, Beatmapset::STATES, true);
+    }
+
+    private function getDifficultyrating()
+    {
+        if ($this->convert) {
+            $value = (
+                $this->relationLoaded('baseDifficultyRatings')
+                    ? $this->baseDifficultyRatings
+                    : $this->baseDifficultyRatings()
+            )->firstWhere('mode', $this->playmode)
+            ?->diff_unified ?? 0;
+        } else {
+            $value = $this->getRawAttribute('difficultyrating');
+        }
+
+        return round($value, 2);
+    }
+
+    private function getDiffSize()
+    {
+        /*
+         * Matches client implementation.
+         * all round()s here use PHP_ROUND_HALF_EVEN to match C# default Math.Round.
+         * References:
+         * - (implementation) https://github.com/ppy/osu/blob/6bbc23c831cd73bf126b31edb0bb4fa729f947d1/osu.Game.Rulesets.Mania/Beatmaps/ManiaBeatmapConverter.cs#L40
+         * - (rounding) https://msdn.microsoft.com/en-us/library/wyk4d9cy(v=vs.110).aspx
+         */
+        $value = $this->getRawAttribute('diff_size');
+        if ($this->playmode === static::MODES['mania']) {
+            $roundedValue = (int) round($value, 0, PHP_ROUND_HALF_EVEN);
+
+            if ($this->convert) {
+                $sliderOrSpinner = ($this->countSlider ?? 0) + ($this->countSpinner ?? 0);
+                $total = max(1, $sliderOrSpinner + ($this->countNormal ?? 0));
+                $percentSliderOrSpinner = $sliderOrSpinner / $total;
+
+                $accuracy = (int) round($this->diff_overall ?? 0, 0, PHP_ROUND_HALF_EVEN);
+
+                if ($percentSliderOrSpinner < 0.2) {
+                    return 7;
+                } elseif ($percentSliderOrSpinner < 0.3 || $roundedValue >= 5) {
+                    return $accuracy > 5 ? 7 : 6;
+                } elseif ($percentSliderOrSpinner > 0.6) {
+                    return $accuracy > 4 ? 5 : 4;
+                } else {
+                    return clamp($accuracy + 1, 4, 7);
+                }
+            } else {
+                return max(1, $roundedValue);
+            }
+        }
+
+        return $value;
+    }
+
+    private function getMode()
+    {
+        return static::modeStr($this->playmode);
     }
 
     private function getScores($modelPath, $mode)
@@ -343,5 +377,19 @@ class Beatmap extends Model
         $mode = studly_case($mode);
 
         return $this->hasMany("{$modelPath}\\{$mode}");
+    }
+
+    private function getVersion()
+    {
+        $value = $this->getRawAttribute('version');
+        if ($this->mode === 'mania') {
+            $keys = $this->getDiffSize();
+
+            if (strpos($value, "{$keys}k") === false && strpos($value, "{$keys}K") === false) {
+                return "[{$keys}K] {$value}";
+            }
+        }
+
+        return $value;
     }
 }

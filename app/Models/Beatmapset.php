@@ -132,17 +132,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     ];
 
     public $timestamps = false;
-    protected $hidden = [
-        'header_hash',
-        'body_hash',
-        'download_disabled',
-        'download_disabled_url',
-        'displaytitle',
-        'approvedby_id',
-        'difficulty_names',
-        'thread_icon_date',
-        'thread_id',
-    ];
 
     const STATES = [
         'graveyard' => -2,
@@ -372,12 +361,12 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function isLoveable()
     {
-        return ($this->attributes['approved'] ?? 0) <= 0;
+        return $this->approved <= 0;
     }
 
     public function isScoreable()
     {
-        return ($this->attributes['approved'] ?? 0) > 0;
+        return $this->approved > 0;
     }
 
     public function allCoverURLs()
@@ -400,7 +389,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function coverPath()
     {
-        $id = $this->attributes['beatmapset_id'] ?? 0;
+        $id = $this->getKey() ?? 0;
 
         return "beatmaps/{$id}/covers/";
     }
@@ -926,6 +915,90 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return $this->belongsTo(Language::class, 'language_id');
     }
 
+    public function getAttribute($key)
+    {
+        return match ($key) {
+            'approved',
+            'approvedby_id',
+            'artist',
+            'beatmapset_id',
+            'body_hash',
+            'bpm',
+            'creator',
+            'difficulty_names',
+            'discussion_enabled',
+            'displaytitle',
+            'download_disabled_url',
+            'favourite_count',
+            'filename',
+            'filesize',
+            'filesize_novideo',
+            'genre_id',
+            'header_hash',
+            'hype',
+            'language_id',
+            'nominations',
+            'offset',
+            'osz2_hash',
+            'play_count',
+            'previous_queue_duration',
+            'rating',
+            'source',
+            'star_priority',
+            'storyboard_hash',
+            'tags',
+            'thread_id',
+            'title',
+            'track_id',
+            'user_id',
+            'versions_available' => $this->getRawAttribute($key),
+
+            'approved_date',
+            'cover_updated_at',
+            'deleted_at',
+            'last_update',
+            'queued_at',
+            'submit_date',
+            'thread_icon_date' => $this->getTimeFast($key),
+
+            'approved_date_json',
+            'cover_updated_at_json',
+            'deleted_at_json',
+            'last_update_json',
+            'queued_at_json',
+            'submit_date_json',
+            'thread_icon_date_json' => $this->getJsonTimeFast($key),
+
+            'active',
+            'comment_locked',
+            'discussion_locked',
+            'download_disabled',
+            'epilepsy',
+            'nsfw',
+            'spotlight',
+            'storyboard',
+            'video' => (bool) $this->getRawAttribute($key),
+
+            'artist_unicode' => $this->getArtistUnicode(),
+            'title_unicode' => $this->getTitleUnicode(),
+
+            'allBeatmaps',
+            'approver',
+            'beatmaps',
+            'beatmapsetNominations',
+            'defaultBeatmaps',
+            'events',
+            'favourites',
+            'genre',
+            'language',
+            'topic',
+            'track',
+            'user',
+            'userRatings',
+            'watches' => $this->getRelationValue($key),
+        };
+    }
+
     public function requiredHype()
     {
         return config('osu.beatmapset.required_hype');
@@ -943,7 +1016,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function canBeHyped()
     {
-        return in_array($this->attributes['approved'] ?? null, static::HYPEABLE_STATES, true);
+        return in_array($this->approved, static::HYPEABLE_STATES, true);
     }
 
     public function validateHypeBy($user)
@@ -1314,11 +1387,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return new BBCodeFromDB($description, $post->bbcode_uid, $options);
     }
 
-    public function getArtistUnicodeAttribute()
-    {
-        return $this->attributes['artist_unicode'] ?? $this->attributes['artist'] ?? null;
-    }
-
     public function getDisplayArtist(?User $user)
     {
         $profileCustomization = $user->userProfileCustomization ?? new UserProfileCustomization();
@@ -1348,11 +1416,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         }
 
         return Forum\Post::find($topic->topic_first_post_id);
-    }
-
-    public function getTitleUnicodeAttribute()
-    {
-        return $this->attributes['title_unicode'] ?? $this->attributes['title'] ?? null;
     }
 
     public function freshHype()
@@ -1431,6 +1494,16 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     private function defaultCoverTimestamp(): string
     {
-        return parse_time_to_carbon($this->attributes['cover_updated_at'] ?? null)?->format('U') ?? '0';
+        return $this->cover_updated_at?->format('U') ?? '0';
+    }
+
+    private function getArtistUnicode()
+    {
+        return $this->getRawAttribute('artist_unicode') ?? $this->artist;
+    }
+
+    private function getTitleUnicode()
+    {
+        return $this->getRawAttribute('title_unicode') ?? $this->title;
     }
 }
