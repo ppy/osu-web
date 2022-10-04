@@ -980,6 +980,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             'video' => (bool) $this->getRawAttribute($key),
 
             'artist_unicode' => $this->getArtistUnicode(),
+            'commentable_identifier' => $this->getCommentableIdentifierAttribute(),
             'title_unicode' => $this->getTitleUnicode(),
 
             'allBeatmaps',
