@@ -48,10 +48,10 @@ return [
 
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'nhận thông báo về vấn đề mới ở các beatmap đủ tiêu chuẩn của chế độ này',
-        'beatmapset_disqualify' => 'nhận thông báo khi beatmap ở các chế độ sau bị disqualified',
+        'beatmapset_disqualify' => 'nhận thông báo khi beatmap ở các chế độ sau bị từ chối',
         'comment_reply' => 'nhận thông báo khi có phản hồi đến bình luận của bạn',
         'title' => 'Thông báo',
-        'topic_auto_subscribe' => 'tự động nhận thông báo cho các topic bạn tạo trong forum',
+        'topic_auto_subscribe' => 'tự động nhận thông báo cho các chủ đề bạn tạo trong forum',
 
         'options' => [
             '_' => 'phương thức giao hàng',
@@ -62,8 +62,8 @@ return [
             'forum_topic_reply' => 'trả lời chủ đề',
             'mail' => 'thư',
             'mapping' => 'người tạo beatmap',
-            'push' => 'push',
-            'user_achievement_unlock' => 'mở khoá huy chương',
+            'push' => 'đẩy',
+            'user_achievement_unlock' => 'đã mở khoá huy chương',
         ],
     ],
 
@@ -89,14 +89,14 @@ return [
     'playstyles' => [
         'keyboard' => 'bàn phím',
         'mouse' => 'chuột',
-        'tablet' => 'tablet',
+        'tablet' => 'bảng vẽ',
         'title' => 'Lối Chơi',
         'touch' => 'cảm ứng',
     ],
 
     'privacy' => [
         'friends_only' => 'chặn tin nhắn từ những người không có trong danh sách bạn bè của bạn',
-        'hide_online' => 'Ẩn sự xuất hiện của bạn khi bạn online',
+        'hide_online' => 'ẩn trạng thái của bạn khi bạn online',
         'title' => 'Quyền Riêng Tư',
     ],
 

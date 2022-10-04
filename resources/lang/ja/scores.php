@@ -23,7 +23,8 @@ return [
     ],
 
     'status' => [
-        'non_best' => '個人ベストスコア賞のみpp',
+        'non_best' => '個人のベストスコアのみppを与えます。',
+        'non_passing' => '',
         'processing' => 'このスコアはまだ計算中です。すぐに表示されます。',
     ],
 ];

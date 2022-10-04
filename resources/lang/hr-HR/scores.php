@@ -24,6 +24,7 @@ return [
 
     'status' => [
         'non_best' => 'Samo najbolji osobni rezultati nagrađuju pp',
+        'non_passing' => '',
         'processing' => 'Ovaj rezultat se još uvijek izračunava i uskoro će biti prikazan',
     ],
 ];

@@ -34,7 +34,7 @@ return [
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => '',
+                'incomplete_play' => 'Moet alle beatmaps spelen in de opgegeven afspeellijsten voor stemmen',
             ],
         ],
     ],

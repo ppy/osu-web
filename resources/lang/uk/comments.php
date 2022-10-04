@@ -16,7 +16,7 @@ return [
     'title' => 'Коментарі',
 
     'commentable_name' => [
-        'beatmapset' => 'Карти',
+        'beatmapset' => 'Бітмапа',
         'build' => 'Список змін',
         'news_post' => 'Новини',
         '_deleted' => 'Видалений елемент',

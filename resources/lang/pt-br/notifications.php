@@ -240,7 +240,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username criou novos beatmaps',
-                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive' => ':username reativou beatmaps',
             ],
         ],
     ],

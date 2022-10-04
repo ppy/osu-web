@@ -24,6 +24,7 @@ return [
 
     'status' => [
         'non_best' => 'Endast personbästa poäng ger pp',
+        'non_passing' => '',
         'processing' => 'Poängsiffran räknas ännu ut och kommer snart att visas',
     ],
 ];

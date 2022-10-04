@@ -88,7 +88,7 @@ return [
         'post_reply' => '',
         'reply_box_placeholder' => '',
         'reply_title_prefix' => '',
-        'started_by' => '',
+        'started_by' => 'per :user',
         'started_by_verbose' => '',
 
         'actions' => [
@@ -101,7 +101,7 @@ return [
             'preview' => '',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
-            'preview_hide' => '',
+            'preview_hide' => 'Escriure',
             'submit' => '',
 
             'necropost' => [
@@ -132,15 +132,15 @@ return [
             'button' => '',
 
             'columns' => [
-                'action' => '',
-                'date' => '',
-                'user' => '',
+                'action' => 'Acció',
+                'date' => 'Data',
+                'user' => 'Usuari',
             ],
 
             'data' => [
-                'add_tag' => '',
+                'add_tag' => 'etiqueta ":tag" agregada',
                 'announcement' => '',
-                'edit_topic' => '',
+                'edit_topic' => 'a :title',
                 'fork' => '',
                 'pin' => '',
                 'post_operation' => '',
@@ -226,8 +226,8 @@ return [
             ],
 
             'poll' => [
-                'hide_results' => '',
-                'hide_results_info' => '',
+                'hide_results' => 'Amaga els resultats de l\'enquesta.',
+                'hide_results_info' => 'Només es mostraran després que finalitzi l\'enquesta.',
                 'length' => '',
                 'length_days_suffix' => '',
                 'length_info' => '',
@@ -321,7 +321,7 @@ return [
 
         'moderate_toggle_deleted' => [
             'show' => '',
-            'hide' => '',
+            'hide' => 'Ocultar publicacions eliminades',
         ],
 
         'show' => [

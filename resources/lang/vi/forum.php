@@ -162,7 +162,7 @@ return [
                 'merge' => '',
                 'move' => '',
                 'pin' => 'Chủ đề được ghim',
-                'post_edited' => '',
+                'post_edited' => 'Bài  viết  đã  được  chỉnh sửa',
                 'restore_post' => '',
                 'restore_topic' => '',
                 'split_destination' => '',

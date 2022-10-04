@@ -13,7 +13,7 @@ return [
 
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => 'Ni možno zmanjšati pričakovanja.',
+            'is_hype' => 'Ni možno razveljaviti hypanja.',
             'has_reply' => 'Ni možno izbrisati razprave z odgovori',
         ],
         'nominate' => [

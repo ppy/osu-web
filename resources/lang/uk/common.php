@@ -15,7 +15,7 @@ return [
     ],
 
     'badges' => [
-        'new' => 'НОВІ',
+        'new' => 'НОВИЙ',
     ],
 
     'buttons' => [
@@ -66,21 +66,21 @@ return [
     ],
 
     'count' => [
-        'badges' => ':count_delimited значок|:count_delimited значків',
-        'days' => ':count_delimited день|:count_delimited днів',
-        'hour_short_unit' => 'г',
-        'hours' => ':count_delimited годин',
+        'badges' => ':count_delimited значок|:count_delimited значки|:count_delimited значків',
+        'days' => ':count_delimited день|:count_delimited дні|:count_delimited днів',
+        'hour_short_unit' => 'год|год|год',
+        'hours' => ':count_delimited годна|:count_delimited годни|:count_delimited годин',
         'item' => ':count_delimited одиниця|:count_delimited одиниці|:count_delimited одиниць',
-        'minute_short_unit' => 'хв',
-        'minutes' => ':count_delimited хвилина|:count_delimited хвилин|:count_delimited хвилини',
+        'minute_short_unit' => 'хв|хв|хв',
+        'minutes' => ':count_delimited хвилина|:count_delimited хвилини|:count_delimited хвилин',
         'months' => ':count_delimited місяць|:count_delimited місяці|:count_delimited місяців',
-        'notifications' => ':count_delimited сповіщення|:count_delimited сповіщень',
+        'notifications' => ':count_delimited сповіщення|:count_delimited сповіщення|:count_delimited сповіщень',
         'plus_others' => '+ :count_delimited інший!|+ :count_delimited інших!',
-        'post' => ':count_delimited пост|:count_delimited постів',
+        'post' => ':count_delimited пост|:count_delimited пости|:count_delimited постів',
         'second_short_unit' => 'сек',
         'star_priority' => ':count_delimited пріоритет|:count_delimited пріоритета|:count_delimited пріоритетів',
         'update' => ':count_delimited оновлення|:count_delimited оновлення|:count_delimited оновлень',
-        'view' => ':count_delimited перегляд|:count_delimited переглядів',
+        'view' => ':count_delimited перегляд|:count_delimited перегляди|:count_delimited переглядів',
         'years' => ':count_delimited рік|:count_delimited роки|:count_delimited років',
     ],
 
@@ -146,8 +146,8 @@ return [
     ],
 
     'time' => [
-        'days_ago' => ':count_delimited днів назад|:count_delimited день назад',
-        'hours_ago' => ':count_delimited годин назад',
+        'days_ago' => ':count_delimited день тому|:count_delimited дні тому|:count_delimited днів тому',
+        'hours_ago' => ':count_delimited годину тому|:count_delimited години тому|:count_delimited годин тому',
         'now' => 'зараз',
         'remaining' => 'Залишилося часу',
     ],

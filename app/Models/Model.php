@@ -39,6 +39,11 @@ abstract class Model extends BaseModel
         return $this->primaryKey;
     }
 
+    public function getKey()
+    {
+        return $this->attributes[$this->primaryKey] ?? null;
+    }
+
     public function getMacros()
     {
         static $baseMacros = [

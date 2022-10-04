@@ -34,7 +34,7 @@ return [
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => '',
+                'incomplete_play' => 'Doit jouer toutes les beatmaps dans les playlists spécifiées avant de voter',
             ],
         ],
     ],

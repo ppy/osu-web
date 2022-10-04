@@ -34,7 +34,7 @@ return [
 
         'secret_visible' => [
             'false' => 'Mostra secret de client',
-            'true' => 'Oculta secret de client',
+            'true' => 'Amaga el secret de client',
         ],
     ],
 

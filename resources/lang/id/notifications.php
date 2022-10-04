@@ -59,7 +59,7 @@ return [
                 '_' => 'Perubahan status beatmap',
                 'beatmapset_disqualify' => 'Beatmap ":title" telah didiskualifikasi',
                 'beatmapset_disqualify_compact' => 'Beatmap telah didiskualifikasi',
-                'beatmapset_love' => 'Beatmap ":title" telah diberikan status loved oleh :username.',
+                'beatmapset_love' => 'Beatmap ":title" telah diberikan status loved',
                 'beatmapset_love_compact' => 'Status beatmap dipromosikan menjadi loved',
                 'beatmapset_nominate' => '":title" telah mendapatkan nominasi',
                 'beatmapset_nominate_compact' => 'Beatmap telah mendapatkan nominasi',
@@ -170,7 +170,7 @@ return [
 
             'user_achievement_unlock' => [
                 '_' => 'Medali baru',
-                'user_achievement_unlock' => '":title" Terbuka!',
+                'user_achievement_unlock' => '":title" terbuka!',
                 'user_achievement_unlock_compact' => 'Anda berhasil mendapatkan medali ":title"!',
                 'user_achievement_unlock_group' => 'Medali terbuka!',
             ],
@@ -240,7 +240,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username telah mengunggah beatmap baru',
-                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive' => ':username memiliki beatmap yang dipulihkan dari Graveyard',
             ],
         ],
     ],

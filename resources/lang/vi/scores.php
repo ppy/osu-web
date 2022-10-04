@@ -24,6 +24,7 @@ return [
 
     'status' => [
         'non_best' => 'Chỉ điểm cá nhân tốt nhất thưởng pp',
+        'non_passing' => '',
         'processing' => 'Điểm vẫn đang được tính toán và sẽ được hiển thị sớm',
     ],
 ];

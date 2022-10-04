@@ -5,18 +5,18 @@
 
 return [
     'comment' => [
-        'empty' => '',
-        'page_title' => '',
-        'title' => '',
+        'empty' => 'Nobenih gledanih komentarjev.',
+        'page_title' => 'opazovani komentarji',
+        'title' => 'komentar',
 
         'table' => [
-            'latest_comment_empty' => '',
-            'latest_comment_value' => '',
+            'latest_comment_empty' => 'ni komentarjev',
+            'latest_comment_value' => ':time od :username',
         ],
     ],
 
     'forum_topic' => [
-        'title' => '',
+        'title' => 'tema foruma',
     ],
 
     'index' => [
@@ -24,15 +24,15 @@ return [
     ],
 
     'mapping' => [
-        'empty' => '',
-        'followers' => '',
+        'empty' => 'Nobenih gledanih mapperjev.',
+        'followers' => 'mapperjevi naročniki',
         'page_title' => '',
-        'title' => '',
-        'to_0' => '',
-        'to_1' => '',
+        'title' => 'mapper',
+        'to_0' => 'ne obveščaj me, ko ta igralec objavi novo beatmapo',
+        'to_1' => 'obveščaj me, ko ta igralec objavi novo beatmapo',
     ],
 
     'modding' => [
-        'title' => '',
+        'title' => 'beatmap razprava',
     ],
 ];
