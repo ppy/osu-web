@@ -11,7 +11,7 @@ class LayoutCache
 
     public function getBeatmapsetFilters()
     {
-        $key = 'beatmapset_filters:'.app()->getLocale();
+        $key = __FUNCTION__.':'.app()->getLocale();
 
         return $this->cache[$key] ??= view('beatmapsets._filters')->render();
     }
