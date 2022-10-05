@@ -88,7 +88,7 @@
         </div>
 
         <div class="nav2__col">
-            {!! app('layout-cache')->getLocalesDesktop($currentLocaleMeta) !!}
+            {!! app('layout-cache')->getLocalesDesktop() !!}
         </div>
 
         @if (Auth::user() !== null)
