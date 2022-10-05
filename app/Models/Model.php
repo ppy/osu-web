@@ -11,6 +11,7 @@ use App\Libraries\Transactions\AfterCommit;
 use App\Libraries\Transactions\AfterRollback;
 use App\Libraries\TransactionStateManager;
 use App\Scopes\MacroableModelScope;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\ClassMorphViolationException;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -41,7 +42,7 @@ abstract class Model extends BaseModel
 
     public function getKey()
     {
-        return $this->attributes[$this->primaryKey] ?? null;
+        return $this->getRawAttribute($this->primaryKey);
     }
 
     public function getMacros()
@@ -66,6 +67,11 @@ abstract class Model extends BaseModel
         }
 
         throw new ClassMorphViolationException($this);
+    }
+
+    public function getRawAttribute(string $key)
+    {
+        return $this->attributes[$key] ?? null;
     }
 
     /**
@@ -206,6 +212,41 @@ abstract class Model extends BaseModel
     public function tableName(bool $includeDbPrefix = false)
     {
         return ($includeDbPrefix ? $this->dbName().'.' : '').$this->getTable();
+    }
+
+    /**
+     * Fast Time Attribute Getter (kind of)
+     *
+     * This is only usable for models with default dateFormat (`Y-m-d H:i:s`).
+     */
+    protected function getTimeFast(string $key): ?Carbon
+    {
+        $value = $this->getRawAttribute($key);
+
+        return $value === null
+            ? null
+            : Carbon::createFromFormat('Y-m-d H:i:s', $value);
+    }
+
+    /**
+     * Fast Time Attribute to Json Transformer
+     *
+     * Key must be suffixed with `_json`.
+     * This is only usable for models with default dateFormat (`Y-m-d H:i:s`).
+     */
+    protected function getJsonTimeFast(string $key): ?string
+    {
+        $value = $this->getRawAttribute(substr($key, 0, -5));
+
+        if ($value === null) {
+            return null;
+        }
+
+        // From: "2020-10-10 10:10:10"
+        // To: "2020-10-10T10:10:10Z"
+        $value[10] = 'T';
+
+        return "{$value}Z";
     }
 
     // Allows save/update/delete to work with composite primary keys.

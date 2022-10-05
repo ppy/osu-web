@@ -43,31 +43,29 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
 
     public function transform(Beatmapset $beatmapset)
     {
-        $attrs = $beatmapset->getAttributes();
-
         return [
-            'artist' => $attrs['artist'] ?? null,
-            'artist_unicode' => $beatmapset->getArtistUnicodeAttribute(),
+            'artist' => $beatmapset->artist,
+            'artist_unicode' => $beatmapset->artist_unicode,
             'covers' => $beatmapset->allCoverURLs(),
-            'creator' => $attrs['creator'] ?? null,
-            'favourite_count' => $attrs['favourite_count'] ?? null,
+            'creator' => $beatmapset->creator,
+            'favourite_count' => $beatmapset->favourite_count,
             'hype' => $beatmapset->canBeHyped() ? [
-                'current' => $attrs['hype'] ?? null,
+                'current' => $beatmapset->hype,
                 'required' => $beatmapset->requiredHype(),
             ] : null,
-            'id' => $attrs['beatmapset_id'] ?? null,
-            'nsfw' => (bool) ($attrs['nsfw'] ?? false),
-            'offset' => $attrs['offset'] ?? null,
-            'play_count' => $attrs['play_count'] ?? null,
+            'id' => $beatmapset->beatmapset_id,
+            'nsfw' => $beatmapset->nsfw,
+            'offset' => $beatmapset->offset,
+            'play_count' => $beatmapset->play_count,
             'preview_url' => $beatmapset->previewURL(),
-            'source' => $attrs['source'] ?? null,
-            'spotlight' => (bool) ($attrs['spotlight'] ?? null),
+            'source' => $beatmapset->source,
+            'spotlight' => $beatmapset->spotlight,
             'status' => $beatmapset->status(),
-            'title' => $attrs['title'] ?? null,
-            'title_unicode' => $beatmapset->getTitleUnicodeAttribute(),
-            'track_id' => $attrs['track_id'] ?? null,
-            'user_id' => $attrs['user_id'] ?? null,
-            'video' => (bool) ($attrs['video'] ?? false),
+            'title' => $beatmapset->title,
+            'title_unicode' => $beatmapset->title_unicode,
+            'track_id' => $beatmapset->track_id,
+            'user_id' => $beatmapset->user_id,
+            'video' => $beatmapset->video,
         ];
     }
 
