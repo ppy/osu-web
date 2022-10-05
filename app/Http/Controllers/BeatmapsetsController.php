@@ -54,7 +54,6 @@ class BeatmapsetsController extends Controller
         return ext_view('beatmapsets.index', [
             'beatmapsets' => $beatmapsets,
             'canAdvancedSearch' => $canAdvancedSearch,
-            'filters' => BeatmapsetSearchRequestParams::getAvailableFilters(),
         ]);
     }
 

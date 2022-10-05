@@ -28,9 +28,7 @@
 @section("script")
   @parent
 
-  <script id="json-filters" type="application/json">
-    {!! json_encode($filters) !!}
-  </script>
+  {!! app('layout-cache')->getBeatmapsetFilters() !!}
 
   <script id="json-beatmaps" type="application/json">
     {!! json_encode($beatmapsets) !!}
