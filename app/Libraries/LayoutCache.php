@@ -17,4 +17,28 @@ class LayoutCache
 
         return $this->cache[$key] ??= view('beatmapsets._filters')->render();
     }
+
+    public function getLocalesDesktop(): string
+    {
+        $currentLocaleMeta = current_locale_meta();
+        $key = __FUNCTION__.':'.$currentLocaleMeta->name();
+
+        return $this->cache[$key] ??= view('layout.nav2._locales', compact('currentLocaleMeta'))->render();
+    }
+
+    public function getLocalesLanding(): string
+    {
+        $currentLocaleMeta = current_locale_meta();
+        $key = __FUNCTION__.':'.$currentLocaleMeta->name();
+
+        return $this->cache[$key] ??= view('home._landing_locales', compact('currentLocaleMeta'))->render();
+    }
+
+    public function getLocalesMobile(): string
+    {
+        $currentLocaleMeta = current_locale_meta();
+        $key = __FUNCTION__.':'.$currentLocaleMeta->name();
+
+        return $this->cache[$key] ??= view('layout.header_mobile._locales', compact('currentLocaleMeta'))->render();
+    }
 }
