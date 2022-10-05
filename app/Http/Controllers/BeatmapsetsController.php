@@ -47,9 +47,7 @@ class BeatmapsetsController extends Controller
     {
         $beatmaps = $this->getSearchResponse()['content'];
 
-        $filters = BeatmapsetSearchRequestParams::getAvailableFilters();
-
-        return ext_view('beatmapsets.index', compact('filters', 'beatmaps'));
+        return ext_view('beatmapsets.index', compact('beatmaps'));
     }
 
     public function lookup()
