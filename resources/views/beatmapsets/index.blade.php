@@ -2,9 +2,6 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-@php
-    $canAdvancedSearch = priv_check('BeatmapsetAdvancedSearch')->can();
-@endphp
 @extends('master', [
   'pageDescription' => osu_trans('beatmapsets.index.title'),
 ])
@@ -36,7 +33,7 @@
   </script>
 
   <script id="json-beatmaps" type="application/json">
-    {!! json_encode($beatmaps) !!}
+    {!! json_encode($beatmapsets) !!}
   </script>
 
   @include('layout._react_js', ['src' => 'js/beatmaps.js'])
