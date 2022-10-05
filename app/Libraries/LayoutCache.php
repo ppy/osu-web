@@ -20,25 +20,31 @@ class LayoutCache
 
     public function getLocalesDesktop(): string
     {
-        $currentLocaleMeta = current_locale_meta();
-        $key = __FUNCTION__.':'.$currentLocaleMeta->name();
+        $currentLocale = app()->getLocale();
+        $key = __FUNCTION__.':'.$currentLocale;
 
-        return $this->cache[$key] ??= view('layout.nav2._locales', compact('currentLocaleMeta'))->render();
+        return $this->cache[$key] ??= view('layout.nav2._locales', [
+            'currentLocaleMeta' => locale_meta($currentLocale),
+        ])->render();
     }
 
     public function getLocalesLanding(): string
     {
-        $currentLocaleMeta = current_locale_meta();
-        $key = __FUNCTION__.':'.$currentLocaleMeta->name();
+        $currentLocale = app()->getLocale();
+        $key = __FUNCTION__.':'.$currentLocale;
 
-        return $this->cache[$key] ??= view('home._landing_locales', compact('currentLocaleMeta'))->render();
+        return $this->cache[$key] ??= view('home._landing_locales', [
+            'currentLocaleMeta' => locale_meta($currentLocale),
+        ])->render();
     }
 
     public function getLocalesMobile(): string
     {
-        $currentLocaleMeta = current_locale_meta();
-        $key = __FUNCTION__.':'.$currentLocaleMeta->name();
+        $currentLocale = app()->getLocale();
+        $key = __FUNCTION__.':'.$currentLocale;
 
-        return $this->cache[$key] ??= view('layout.header_mobile._locales', compact('currentLocaleMeta'))->render();
+        return $this->cache[$key] ??= view('layout.header_mobile._locales', [
+            'currentLocaleMeta' => locale_meta($currentLocale),
+        ])->render();
     }
 }
