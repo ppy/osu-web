@@ -7,6 +7,7 @@ import StringWithComponent from 'components/string-with-component';
 import TimeWithTooltip from 'components/time-with-tooltip';
 import EventJson from 'interfaces/event-json';
 import { snakeCase } from 'lodash';
+import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import ExtraHeader from 'profile-page/extra-header';
 import * as React from 'react';
@@ -17,12 +18,23 @@ import parseEvent from './parse-event';
 
 @observer
 export default class RecentActivity extends React.Component<ExtraPageProps> {
+  @computed
+  private get count() {
+    return this.props.controller.state.recentActivity?.items.length ?? 0;
+  }
+
+  constructor(props: ExtraPageProps) {
+    super(props);
+
+    makeObservable(this);
+  }
+
   render() {
     return (
       <div className='page-extra'>
         <ExtraHeader name={this.props.name} withEdit={this.props.controller.withEdit} />
         <LazyLoad onLoad={this.handleOnLoad}>
-          {(this.props.controller.state.recentActivity?.items.length ?? 0) > 0 ? this.renderEntries() : this.renderEmpty()}
+          {this.count > 0 ? this.renderEntries() : this.renderEmpty()}
         </LazyLoad>
       </div>
     );
