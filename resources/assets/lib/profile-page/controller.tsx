@@ -385,7 +385,7 @@ export default class Controller {
 
   @action
   getRecentActivity() {
-    if (this.state.topScores != null) return Promise.resolve();
+    if (this.state.recentActivity != null) return Promise.resolve();
     const xhr = getPage<PageSectionWithoutCountJson<EventJson>>(this.state.user, 'recent_activity');
 
     xhr.done((json) => runInAction(() => {
