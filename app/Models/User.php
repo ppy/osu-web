@@ -759,7 +759,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'user_topic_show_days',
             'user_topic_sortby_dir',
             'user_topic_sortby_type',
-            'user_twitter',
             'user_type',
             'user_unread_privmsg',
             'user_warnings',
