@@ -52,7 +52,7 @@ class ReplayFile
 
     public function getVersion()
     {
-        return optional($this->score->replayViewCount)->version ?? static::DEFAULT_VERSION;
+        return $this->score->replayViewCount?->version ?? static::DEFAULT_VERSION;
     }
 
     /**
