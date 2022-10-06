@@ -54,10 +54,10 @@ use Request;
  * @property \Illuminate\Database\Eloquent\Collection $channels Chat\Channel
  * @property \Illuminate\Database\Eloquent\Collection $clients UserClient
  * @property Country $country
- * @property string $country_acronym
- * @property mixed $current_password
- * @property mixed $displayed_last_visit
- * @property string|null $email
+ * @property string|null $country_acronym
+ * @property-write string|null $current_password
+ * @property-read \Carbon\Carbon|null $displayed_last_visit
+ * @property-read string|null $email
  * @property \Illuminate\Database\Eloquent\Collection $events Event
  * @property \Illuminate\Database\Eloquent\Collection $favourites FavouriteBeatmapset
  * @property \Illuminate\Database\Eloquent\Collection $forumPosts Forum\Post
@@ -65,7 +65,7 @@ use Request;
  * @property \Illuminate\Database\Eloquent\Collection $githubUsers GithubUser
  * @property \Illuminate\Database\Eloquent\Collection $givenKudosu KudosuHistory
  * @property int $group_id
- * @property mixed $hide_presence
+ * @property bool $hide_presence
  * @property \Illuminate\Database\Eloquent\Collection $monthlyPlaycounts UserMonthlyPlaycount
  * @property \Illuminate\Database\Eloquent\Collection $oauthClients Client
  * @property int $osu_featurevotes
@@ -73,15 +73,15 @@ use Request;
  * @property int $osu_kudosdenied
  * @property int $osu_kudostotal
  * @property float $osu_mapperrank
- * @property int $osu_playmode
- * @property int $osu_playstyle
+ * @property string|null $osu_playmode
+ * @property string[]|null $osu_playstyle
  * @property bool $osu_subscriber
  * @property \Carbon\Carbon|null $osu_subscriptionexpiry
  * @property int $osu_testversion
- * @property mixed $password
- * @property mixed $password_confirmation
- * @property mixed $playmode
- * @property mixed $pm_friends_only
+ * @property-write string|null $password
+ * @property-write string|null $password_confirmation
+ * @property-read string|null $playmode
+ * @property bool $pm_friends_only
  * @property \Illuminate\Database\Eloquent\Collection $profileBanners ProfileBanner
  * @property Rank $rank
  * @property \Illuminate\Database\Eloquent\Collection $rankHistories RankHistory
@@ -89,7 +89,7 @@ use Request;
  * @property \Illuminate\Database\Eloquent\Collection $relations UserRelation
  * @property string|null $remember_token
  * @property \Illuminate\Database\Eloquent\Collection $replaysWatchedCounts UserReplaysWatchedCount
- * @property UserReport $reportedIn
+ * @property \Illuminate\Database\Eloquent\Collection $reportedIn UserReport
  * @property \Illuminate\Database\Eloquent\Collection $reportsMade UserReport
  * @property \Illuminate\Database\Eloquent\Collection $storeAddresses Store\Address
  * @property \Illuminate\Database\Eloquent\Collection $supporterTagPurchases UserDonation
@@ -113,7 +113,7 @@ use Request;
  * @property mixed $user_discord
  * @property int $user_dst
  * @property string|null $user_email
- * @property mixed $user_email_confirmation
+ * @property-write string|null $user_email_confirmation
  * @property int $user_emailtime
  * @property string $user_from
  * @property int $user_full_folder
@@ -128,10 +128,10 @@ use Request;
  * @property int $user_last_privmsg
  * @property int $user_last_search
  * @property int $user_last_warning
- * @property int $user_lastmark
+ * @property \Carbon\Carbon|null $user_lastmark
  * @property string $user_lastpage
- * @property int $user_lastpost_time
- * @property int $user_lastvisit
+ * @property \Carbon\Carbon|null $user_lastpost_time
+ * @property \Carbon\Carbon|null $user_lastvisit
  * @property int $user_login_attempts
  * @property int $user_message_rules
  * @property string $user_msnm
@@ -145,14 +145,14 @@ use Request;
  * @property int $user_passchg
  * @property string $user_password
  * @property int|null $user_perm_from
- * @property mixed|null $user_permissions
+ * @property string|null $user_permissions
  * @property int $user_post_show_days
  * @property string $user_post_sortby_dir
  * @property string $user_post_sortby_type
  * @property int $user_posts
  * @property int|null $user_rank
  * @property \Carbon\Carbon $user_regdate
- * @property mixed $user_sig
+ * @property string $user_sig
  * @property string $user_sig_bbcode_bitfield
  * @property string $user_sig_bbcode_uid
  * @property int $user_style
