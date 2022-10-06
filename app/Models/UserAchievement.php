@@ -29,4 +29,19 @@ class UserAchievement extends Model
     {
         return $this->belongsTo(Achievement::class, 'achievement_id');
     }
+
+    public function getAttribute($key)
+    {
+        return match ($key) {
+            'achievement_id',
+            'user_id' => $this->getRawAttribute($key),
+
+            'date' => $this->getTimeFast($key),
+
+            'date_json' => $this->getJsonTimeFast($key),
+
+            'achievement',
+            'user' => $this->getRelationValue($key),
+        };
+    }
 }
