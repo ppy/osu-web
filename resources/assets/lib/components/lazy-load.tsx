@@ -5,7 +5,7 @@ import { Spinner } from 'components/spinner';
 import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import { nextVal } from 'utils/seq';
+import { classWithModifiers } from 'utils/css';
 
 interface Props {
   onLoad: () => PromiseLike<unknown>;
@@ -67,14 +67,18 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
   }
 
   render() {
-    if (!this.loaded) {
-      return <div ref={this.ref} className='lazy-load'><Spinner /></div>;
-    }
+    return (
+      <div ref={this.ref} className={classWithModifiers('lazy-load', { loading: !this.loaded })}>
+        {this.loaded ? this.renderLoaded() : <Spinner />}
+      </div>
+    );
+  }
 
+  renderLoaded() {
     this.beforeRenderedScrollY = window.scrollY;
     this.beforeRenderedBounds = this.ref.current?.getBoundingClientRect();
 
-    return <div ref={this.ref}>{this.props.children}</div>;
+    return this.props.children;
   }
 
   @action
