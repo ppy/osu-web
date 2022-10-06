@@ -89,7 +89,6 @@ use Request;
  * @property-read \Illuminate\Database\Eloquent\Collection $relations UserRelation
  * @property string|null $remember_token
  * @property-read \Illuminate\Database\Eloquent\Collection $replaysWatchedCounts UserReplaysWatchedCount
- * @property-read \Illuminate\Database\Eloquent\Collection $reportedIn UserReport
  * @property-read \Illuminate\Database\Eloquent\Collection $reportsMade UserReport
  * @property-read \Illuminate\Database\Eloquent\Collection $storeAddresses Store\Address
  * @property-read \Illuminate\Database\Eloquent\Collection $supporterTagPurchases UserDonation
