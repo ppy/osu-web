@@ -797,6 +797,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'country_acronym' => presence($this->getRawAttribute($key)),
             'email' => $this->user_email,
             'hide_presence' => !$this->user_allow_viewonline,
+            'id' => $this->getKey(), // used by clockwork
             'name' => null, // used by mailer
             'pm_friends_only' => !$this->user_allow_pm,
             'user_discord' => $this->user_jabber,
