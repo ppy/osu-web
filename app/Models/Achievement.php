@@ -54,7 +54,7 @@ class Achievement extends Model
             'progression',
             'quest_instructions',
             'quest_ordering',
-            'slug',
+            'slug' => $this->getRawAttribute($key),
 
             'enabled' => (bool) $this->getRawAttribute($key),
 
