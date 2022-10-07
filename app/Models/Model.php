@@ -69,7 +69,7 @@ abstract class Model extends BaseModel
         throw new ClassMorphViolationException($this);
     }
 
-    public function getRawAttribute(string $key)
+    public function getRawAttribute(?string $key)
     {
         return $this->attributes[$key] ?? null;
     }
