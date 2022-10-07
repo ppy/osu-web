@@ -15,20 +15,7 @@ trait UserAvatar
 
     public function avatarStorage()
     {
-        if ($this->avatarStorage === null) {
-            $this->avatarStorage = new StorageWithUrl(config('osu.avatar.storage'));
-        }
-
-        return $this->avatarStorage;
-    }
-
-    public function getUserAvatarAttribute($value)
-    {
-        if (!present($value)) {
-            return config('osu.avatar.default');
-        }
-
-        return $this->avatarStorage()->url(str_replace('_', '?', $value));
+        return $this->avatarStorage ??= new StorageWithUrl(config('osu.avatar.storage'));
     }
 
     public function setUserAvatarAttribute($value)
@@ -73,5 +60,14 @@ trait UserAvatar
         }
 
         return $this->update(['user_avatar' => $entry ?? null]);
+    }
+
+    protected function getUserAvatar()
+    {
+        $value = presence($this->getRawAttribute('user_avatar'));
+
+        return $value === null
+            ? config('osu.avatar.default')
+            : $this->avatarStorage()->url(str_replace('_', '?', $value));
     }
 }
