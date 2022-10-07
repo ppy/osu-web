@@ -17,6 +17,7 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
   private beforeRenderedBounds?: DOMRect;
   private beforeRenderedScrollY = 0;
 
+  private hasUpdated = false;
   @observable private loaded = false;
   private readonly observer: IntersectionObserver;
   private readonly ref = React.createRef<HTMLDivElement>();
@@ -41,7 +42,8 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
   }
 
   componentDidUpdate() {
-    if (!this.loaded) return;
+    if (this.hasUpdated || !this.loaded) return;
+
     const element = this.ref.current;
     if (element == null || this.beforeRenderedBounds == null) {
       return;
@@ -60,6 +62,8 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
         window.scrollTo(window.scrollX, window.scrollY + offset);
       }
     }
+
+    this.hasUpdated = true;
   }
 
   componentWillUnmount() {
