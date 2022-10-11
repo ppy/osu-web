@@ -4,10 +4,10 @@
 import { Spinner } from 'components/spinner';
 import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
-import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { bottomPageDistance } from 'utils/html';
+import LazyLoadContext from './lazy-load-context';
 
 interface Props {
   onLoad: () => PromiseLike<unknown>;
@@ -15,6 +15,9 @@ interface Props {
 
 @observer
 export default class LazyLoad extends React.Component<React.PropsWithChildren<Props>> {
+  static readonly contextType = LazyLoadContext;
+  declare context: React.ContextType<typeof LazyLoadContext>;
+
   // saved positions before lazy loaded element is rendered.
   private beforeRenderedBounds?: DOMRect;
   private distanceFromBottom = 0;
@@ -53,6 +56,11 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
 
     this.hasUpdated = true;
 
+    // skip scroll update if context callback has handled it.
+    if (this.context.name != null && this.context.onWillUpdateScroll?.(this.context.name)) {
+      return;
+    }
+
     // below the visible bounds, ignore.
     if (this.beforeRenderedBounds.top > window.innerHeight) return;
 
@@ -64,7 +72,7 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
       return;
     // maintain distance from bottom
     // TODO: try and sync this to the "page" cutoff?
-    } else if (this.beforeRenderedBounds.bottom < core.visibleOffset) {
+    } else if (this.beforeRenderedBounds.bottom < this.context.offsetTop) {
       window.scrollTo(window.scrollX, maxScrollY - this.distanceFromBottom);
     }
   }

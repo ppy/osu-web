@@ -1,10 +1,11 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import LazyLoadContext from 'components/lazy-load-context';
 import UserProfileContainer from 'components/user-profile-container';
 import { ProfileExtraPage } from 'interfaces/user-extended-json';
 import { pull, last } from 'lodash';
-import { action, computed, makeObservable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -49,10 +50,12 @@ export default class Main extends React.Component<Props> {
     recent_activity: React.createRef(),
     top_ranks: React.createRef(),
   };
+  private jumpTo: ProfileExtraPage | null = null;
   private readonly pages = React.createRef<HTMLDivElement>();
   private scrolling = false;
   private readonly tabs = React.createRef<HTMLDivElement>();
   private readonly timeouts: Partial<Record<'draggingTab' | 'modeScroll' | 'initialPageJump', number>> = {};
+  @observable private visibleOffset = 0;
 
   @computed
   private get displayExtraTabs() {
@@ -100,7 +103,9 @@ export default class Main extends React.Component<Props> {
 
   componentDidMount() {
     core.reactTurbolinks.runAfterPageLoad(() => {
-      core.visibleOffset = this.pagesOffset.getBoundingClientRect().bottom;
+      const bounds = this.pagesOffset.getBoundingClientRect();
+      this.visibleOffset = bounds.bottom;
+      this.pages.current?.style.setProperty('--scroll-margin-top', `${bounds.height}px`);
     });
 
     $(window).on(`scroll.${this.eventId}`, this.pageScan);
@@ -154,7 +159,6 @@ export default class Main extends React.Component<Props> {
   }
 
   componentWillUnmount() {
-    core.visibleOffset = 0;
     $(window).off(`.${this.eventId}`);
 
     [this.pages, this.tabs].forEach((sortable) => {
@@ -203,14 +207,15 @@ export default class Main extends React.Component<Props> {
 
           <div ref={this.pages} className={classWithModifiers('user-profile-pages', { 'no-tabs': !this.displayExtraTabs })}>
             {this.displayedExtraPages.map((name) => (
-              <div
-                key={name}
-                ref={this.extraPages[name]}
-                className={`js-switchable-mode-page--scrollspy js-switchable-mode-page--page ${this.isSortablePage(name) ? 'js-sortable--page' : ''}`}
-                data-page-id={name}
-              >
-                {this.extraPage(name)}
-              </div>
+              <LazyLoadContext.Provider key={name} value={{ name, offsetTop: this.visibleOffset, onWillUpdateScroll: this.handleLazyLoadWillUpdateScroll }}>
+                <div
+                  ref={this.extraPages[name]}
+                  className={`user-profile-pages__page js-switchable-mode-page--scrollspy js-switchable-mode-page--page ${this.isSortablePage(name) ? 'js-sortable--page' : ''}`}
+                  data-page-id={name}
+                >
+                  {this.extraPage(name)}
+                </div>
+              </LazyLoadContext.Provider>
             ))}
           </div>
         </div>
@@ -256,6 +261,17 @@ export default class Main extends React.Component<Props> {
     }
   };
 
+  private readonly handleLazyLoadWillUpdateScroll = (name: string) => {
+    if (this.jumpTo === name) {
+      // TODO: use scrollIntoView({ behavior: 'smooth' }) for pageJump instead of setting scroll position.
+      this.extraPages[name].current?.scrollIntoView();
+      this.jumpTo = null;
+      return true;
+    }
+
+    return false;
+  };
+
   private isSortablePage(page: ProfileExtraPage) {
     return this.controller.state.user.profile_order.includes(page);
   }
@@ -281,6 +297,8 @@ export default class Main extends React.Component<Props> {
 
       if (target == null) return;
 
+      this.jumpTo = page;
+
       // count for the tabs height; assume pageJump always causes the header to be pinned
       // otherwise the calculation needs another phase and gets a bit messy.
       offsetTop = window.scrollY + target.getBoundingClientRect().top - this.pagesOffset.getBoundingClientRect().height;
@@ -300,7 +318,7 @@ export default class Main extends React.Component<Props> {
 
   @action
   private readonly pageScan = () => {
-    core.visibleOffset = this.pagesOffset.getBoundingClientRect().bottom;
+    this.visibleOffset = this.pagesOffset.getBoundingClientRect().bottom;
 
     if (this.scrolling) return;
 

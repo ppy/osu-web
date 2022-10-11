@@ -19,4 +19,9 @@
   &--no-tabs {
     --vertical-gutter-top-desktop: var(--vertical-gutter);
   }
+
+  &__page {
+    // set in js after page switcher height is measured.
+    scroll-margin-top: var(--scroll-margin-top, 0);
+  }
 }
