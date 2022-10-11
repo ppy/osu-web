@@ -84,13 +84,7 @@ export default class Main extends React.Component<Props> {
   }
 
   private get pagesOffset() {
-    const elem = document.querySelector('.js-switchable-mode-page--scrollspy-offset');
-
-    if (elem == null) {
-      throw new Error('page offset reference is missing');
-    }
-
-    return elem;
+    return document.querySelector('.js-switchable-mode-page--scrollspy-offset');
   }
 
   constructor(props: Props) {
@@ -102,11 +96,13 @@ export default class Main extends React.Component<Props> {
   }
 
   componentDidMount() {
-    core.reactTurbolinks.runAfterPageLoad(() => {
-      const bounds = this.pagesOffset.getBoundingClientRect();
-      this.visibleOffset = bounds.bottom;
-      this.pages.current?.style.setProperty('--scroll-margin-top', `${bounds.height}px`);
-    });
+    core.reactTurbolinks.runAfterPageLoad(action(() => {
+      if (this.pagesOffset != null) {
+        const bounds = this.pagesOffset.getBoundingClientRect();
+        this.visibleOffset = bounds.bottom;
+        this.pages.current?.style.setProperty('--scroll-margin-top', `${bounds.height}px`);
+      }
+    }));
 
     $(window).on(`scroll.${this.eventId}`, this.pageScan);
 
@@ -285,7 +281,7 @@ export default class Main extends React.Component<Props> {
 
   @action
   private readonly pageJump = (page: Page | null, refocusing = false) => {
-    if (page === null) return;
+    if (page === null || this.pagesOffset == null) return;
 
     let offsetTop: number;
 
@@ -330,6 +326,8 @@ export default class Main extends React.Component<Props> {
 
   @action
   private readonly pageScan = () => {
+    if (this.pagesOffset == null) return;
+
     this.visibleOffset = this.pagesOffset.getBoundingClientRect().bottom;
 
     if (this.scrolling) return;
