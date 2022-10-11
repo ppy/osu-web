@@ -99,6 +99,10 @@ export default class Main extends React.Component<Props> {
   }
 
   componentDidMount() {
+    core.reactTurbolinks.runAfterPageLoad(() => {
+      core.visibleOffset = this.pagesOffset.getBoundingClientRect().bottom;
+    });
+
     $(window).on(`scroll.${this.eventId}`, this.pageScan);
 
     if (this.pages.current != null) {
@@ -150,6 +154,7 @@ export default class Main extends React.Component<Props> {
   }
 
   componentWillUnmount() {
+    core.visibleOffset = 0;
     $(window).off(`.${this.eventId}`);
 
     [this.pages, this.tabs].forEach((sortable) => {
@@ -295,6 +300,8 @@ export default class Main extends React.Component<Props> {
 
   @action
   private readonly pageScan = () => {
+    core.visibleOffset = this.pagesOffset.getBoundingClientRect().bottom;
+
     if (this.scrolling) return;
 
     const pages = this.pageElements;

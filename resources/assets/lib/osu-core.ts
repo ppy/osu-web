@@ -61,6 +61,7 @@ export default class OsuCore {
   userLoginObserver: UserLoginObserver;
   readonly userPreferences = new UserPreferences();
   readonly userVerification = new UserVerification();
+  visibleOffset = 0; // store the visible viewport offset somewhere (to account for sticky/fixed headers, etc)
   windowFocusObserver: WindowFocusObserver;
   readonly windowSize = new WindowSize();
 

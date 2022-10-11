@@ -4,8 +4,10 @@
 import { Spinner } from 'components/spinner';
 import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { bottomPageDistance } from 'utils/html';
 
 interface Props {
   onLoad: () => PromiseLike<unknown>;
@@ -15,7 +17,7 @@ interface Props {
 export default class LazyLoad extends React.Component<React.PropsWithChildren<Props>> {
   // saved positions before lazy loaded element is rendered.
   private beforeRenderedBounds?: DOMRect;
-  private beforeRenderedScrollY = 0;
+  private distanceFromBottom = 0;
 
   private hasUpdated = false;
   @observable private loaded = false;
@@ -49,21 +51,22 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
       return;
     }
 
-    // Math.floor the scroll values because the value types aren't consistent between browsers...or themselves.
-    const bounds = element.getBoundingClientRect();
-    const scrollShift = Math.floor(window.scrollY - this.beforeRenderedScrollY);
-
-    // FIXME: account for sticky headers reducing the visible portion
-    // Adjust scroll position if scrolled past loaded element.
-    if (this.beforeRenderedBounds.bottom < 0) {
-      const offset = Math.max(0, Math.floor(bounds.height - this.beforeRenderedBounds.height));
-      // May have already been adjusted by the browser.
-      if (scrollShift !== offset) {
-        window.scrollTo(window.scrollX, window.scrollY + offset);
-      }
-    }
-
     this.hasUpdated = true;
+
+    // below the visible bounds, ignore.
+    if (this.beforeRenderedBounds.top > window.innerHeight) return;
+
+    const maxScrollY = document.body.scrollHeight - window.innerHeight;
+
+    // if at bottom, try keep it at the bottom
+    if (this.distanceFromBottom === 0) {
+      window.scrollTo(window.scrollX, maxScrollY);
+      return;
+    // maintain distance from bottom
+    // TODO: try and sync this to the "page" cutoff?
+    } else if (this.beforeRenderedBounds.bottom < core.visibleOffset) {
+      window.scrollTo(window.scrollX, maxScrollY - this.distanceFromBottom);
+    }
   }
 
   componentWillUnmount() {
@@ -79,8 +82,8 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
   }
 
   renderLoaded() {
-    this.beforeRenderedScrollY = window.scrollY;
     this.beforeRenderedBounds = this.ref.current?.getBoundingClientRect();
+    this.distanceFromBottom = bottomPageDistance();
 
     return this.props.children;
   }
