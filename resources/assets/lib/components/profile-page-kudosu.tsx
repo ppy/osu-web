@@ -118,6 +118,7 @@ export default class ProfilePageKudosu extends React.Component<Props> {
 
     this.xhr.done((json) => runInAction(() => {
       this.kudosu = json;
+      this.saveState();
     }));
 
     return this.xhr;
