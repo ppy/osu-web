@@ -264,8 +264,7 @@ export default class Main extends React.Component<Props> {
   private readonly handleLazyLoadWillUpdateScroll = (name: string) => {
     if (this.jumpTo === name) {
       // TODO: use scrollIntoView({ behavior: 'smooth' }) for pageJump instead of setting scroll position.
-      this.extraPages[name].current?.scrollIntoView();
-      this.jumpTo = null;
+      this.pageJump(name, true);
       return true;
     }
 
@@ -285,7 +284,7 @@ export default class Main extends React.Component<Props> {
   };
 
   @action
-  private readonly pageJump = (page: Page | null) => {
+  private readonly pageJump = (page: Page | null, refocusing = false) => {
     if (page === null) return;
 
     let offsetTop: number;
@@ -297,6 +296,9 @@ export default class Main extends React.Component<Props> {
 
       if (target == null) return;
 
+      // FIXME: need to unset on scroll or after jump.
+      // it's currently not unset because Chrome changes the scroll position when an offscreen element changes size
+      // causing this marker to be unset too early.
       this.jumpTo = page;
 
       // count for the tabs height; assume pageJump always causes the header to be pinned
@@ -308,7 +310,17 @@ export default class Main extends React.Component<Props> {
     // The result will be wrong when target page is too short anyway.
     this.scrolling = true;
 
-    $(window).stop().scrollTo(core.stickyHeader.scrollOffset(offsetTop), 500, {
+    let scrollTo = core.stickyHeader.scrollOffset(offsetTop);
+    // Never scroll to bottom unless last element
+    // Repositioning the scroll also triggers pageScan causing issues with the bottomPage() assumption.
+    const scrollLimit = document.body.scrollHeight - window.innerHeight - 1;
+    if (page !== last(this.displayedExtraPages)) {
+      scrollTo = Math.min(scrollTo, scrollLimit);
+    }
+
+    const duration = refocusing ? 0 : 500;
+
+    $(window).stop().scrollTo(scrollTo, duration, {
       onAfter: action(() => {
         this.controller.currentPage = page;
         this.scrolling = false;
