@@ -109,9 +109,32 @@ class Score extends Model implements Traits\ReportableInterface
             ->whereHas('user', fn (Builder $q): Builder => $q->default());
     }
 
-    public function getPpAttribute(): ?float
+    public function getAttribute($key)
     {
-        return $this->performance?->pp;
+        return match ($key) {
+            'beatmap_id',
+            'id',
+            'ruleset_id',
+            'user_id' => $this->getRawAttribute($key),
+
+            'data' => $this->getClassCastableAttributeValue($key, $this->getRawAttribute($key)),
+
+            'has_replay',
+            'preserve' => (bool) $this->getRawAttribute($key),
+
+            'created_at',
+            'updated_at' => $this->getTimeFast($key),
+
+            'created_at_json',
+            'updated_at_json' => $this->getJsonTimeFast($key),
+
+            'pp' => $this->performance?->pp,
+
+            'beatmap',
+            'performance',
+            'reportedIn',
+            'user' => $this->getRelationValue($key),
+        };
     }
 
     public function createLegacyEntryOrExplode()

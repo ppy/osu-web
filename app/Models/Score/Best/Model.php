@@ -83,7 +83,7 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
             'date_json' => $this->getJsonTimeFast($key),
 
             'best' => $this,
-            'data' => $this->getDataAttribute(),
+            'data' => $this->getData(),
             'enabled_mods' => $this->getEnabledModsAttribute($this->getRawAttribute('enabled_mods')),
             'pass' => true,
 
