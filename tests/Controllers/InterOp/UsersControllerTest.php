@@ -41,6 +41,32 @@ class UsersControllerTest extends TestCase
         );
     }
 
+    public function testAchievementDuplicate()
+    {
+        $achievementName = 'Test Achievement';
+        $username = 'username1';
+        $user = User::factory()->create(['username' => $username]);
+        $achievement = Achievement::factory()->create(['name' => $achievementName]);
+        $user->userAchievements()->create([
+            'achievement_id' => $achievement->getKey(),
+        ]);
+
+        $this->expectCountChange(fn () => $user->userAchievements()->count(), 0);
+        $this->expectCountChange(fn () => $user->userNotifications()->count(), 0);
+        $this->expectCountChange(fn () => $user->events()->count(), 0);
+
+        $url = route('interop.users.achievement', [
+            'achievement' => $achievement->getKey(),
+            'timestamp' => time(),
+            'user' => $user->getKey(),
+        ]);
+
+        $this
+            ->withInterOpHeader($url)
+            ->post($url)
+            ->assertStatus(422);
+    }
+
     public function testStore()
     {
         $previousCount = User::count();

@@ -13,6 +13,7 @@ use App\Models\Achievement;
 use App\Models\Event;
 use App\Models\User;
 use App\Transformers\CurrentUserTransformer;
+use Exception;
 
 class UsersController extends Controller
 {
