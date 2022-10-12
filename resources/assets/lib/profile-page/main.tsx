@@ -53,7 +53,6 @@ export default class Main extends React.Component<Props> {
   };
   private jumpTo: Page | null = null;
   private readonly pages = React.createRef<HTMLDivElement>();
-  private pageScanDisabled = false;
   private skipUnsetJumpTo = false;
   private readonly tabs = React.createRef<HTMLDivElement>();
   private readonly timeouts: Partial<Record<'draggingTab' | 'initialPageJump', number>> = {};
@@ -306,7 +305,7 @@ export default class Main extends React.Component<Props> {
 
   @action
   private readonly pageScan = () => {
-    if (this.pageScanDisabled || this.pagesOffset == null) return;
+    if (this.pagesOffset == null) return;
 
     const pages = this.pageElements;
     if (pages.length === 0) return;
