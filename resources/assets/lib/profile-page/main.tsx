@@ -150,13 +150,14 @@ export default class Main extends React.Component<Props> {
       ? null
       : validPage(currentUrl().hash.slice(1));
 
+    this.jumpTo = page;
+
     this.disposers.add(core.reactTurbolinks.runAfterPageLoad(() => {
       if (page == null) {
         this.pageScan();
       } else {
         // The scroll is a bit off on Firefox if not using timeout.
         this.timeouts.initialPageJump = window.setTimeout(() => {
-          this.jumpTo = page;
           this.pageScrollIntoView(page);
         });
       }
