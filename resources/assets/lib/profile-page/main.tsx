@@ -359,8 +359,9 @@ export default class Main extends React.Component<Props> {
         this.debouncedUnsetJumpTo.cancel();
         this.skipUnsetJumpTo = false;
       });
-
     }
+
+    this.pageScan();
   };
 
   // Unset jumpTo if user scrolled or used page tabs.
