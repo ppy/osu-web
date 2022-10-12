@@ -6,6 +6,7 @@ import { createContext } from 'react';
 export interface Props {
   name?: string;
   offsetTop: number; // store the visible viewport offset somewhere (to account for sticky/fixed headers, etc)
+  onWillRenderAfterLoad?: (key: string) => void;
   onWillUpdateScroll?: (key: string) => boolean;
 }
 

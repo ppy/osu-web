@@ -4,14 +4,14 @@
 import LazyLoadContext from 'components/lazy-load-context';
 import UserProfileContainer from 'components/user-profile-container';
 import { ProfileExtraPage } from 'interfaces/user-extended-json';
-import { pull, last } from 'lodash';
+import { pull, last, debounce, first, throttle } from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { error } from 'utils/ajax';
 import { classWithModifiers } from 'utils/css';
-import { bottomPage, htmlElementOrNull } from 'utils/html';
+import { bottomPage } from 'utils/html';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import { pageChange } from 'utils/page-change';
 import { nextVal } from 'utils/seq';
@@ -37,6 +37,7 @@ interface Props {
 @observer
 export default class Main extends React.Component<Props> {
   private readonly controller: Controller;
+  private readonly debouncedUnsetJumpTo = debounce(() => this.unsetJumpTo(), 50);
   private readonly disposers = new Set<(() => void) | undefined>();
   private draggingTab = false;
   private readonly eventId = `users-show-${nextVal()}`;
@@ -50,11 +51,12 @@ export default class Main extends React.Component<Props> {
     recent_activity: React.createRef(),
     top_ranks: React.createRef(),
   };
-  private jumpTo: ProfileExtraPage | null = null;
+  private jumpTo: Page | null = null;
   private readonly pages = React.createRef<HTMLDivElement>();
-  private scrolling = false;
+  private pageScanDisabled = false;
+  private skipUnsetJumpTo = false;
   private readonly tabs = React.createRef<HTMLDivElement>();
-  private readonly timeouts: Partial<Record<'draggingTab' | 'modeScroll' | 'initialPageJump', number>> = {};
+  private readonly timeouts: Partial<Record<'draggingTab' | 'initialPageJump', number>> = {};
   @observable private visibleOffset = 0;
 
   @computed
@@ -80,11 +82,11 @@ export default class Main extends React.Component<Props> {
   }
 
   private get pageElements() {
-    return document.querySelectorAll('.js-switchable-mode-page--scrollspy');
+    return document.querySelectorAll<HTMLElement>('.js-switchable-mode-page--scrollspy');
   }
 
   private get pagesOffset() {
-    return document.querySelector('.js-switchable-mode-page--scrollspy-offset');
+    return document.querySelector<HTMLElement>('.js-switchable-mode-page--scrollspy-offset');
   }
 
   constructor(props: Props) {
@@ -104,7 +106,10 @@ export default class Main extends React.Component<Props> {
       }
     }));
 
-    $(window).on(`scroll.${this.eventId}`, this.pageScan);
+    const scrollEventId = `scroll.${this.eventId}`;
+    // pageScan does not need to run at 144 fps...
+    $(window).on(scrollEventId, throttle(() => this.pageScan(), 20));
+    $(window).on(scrollEventId, this.debouncedUnsetJumpTo);
 
     if (this.pages.current != null) {
       $(this.pages.current).sortable({
@@ -140,6 +145,7 @@ export default class Main extends React.Component<Props> {
 
     pageChange();
 
+    // TODO: need to restore position when navigating back (lazy loaded component doesn't render full size immediately)
     const page = this.controller.hasSavedState
       ? null
       : validPage(currentUrl().hash.slice(1));
@@ -149,13 +155,18 @@ export default class Main extends React.Component<Props> {
         this.pageScan();
       } else {
         // The scroll is a bit off on Firefox if not using timeout.
-        this.timeouts.initialPageJump = window.setTimeout(() => this.pageJump(page));
+        this.timeouts.initialPageJump = window.setTimeout(() => {
+          this.jumpTo = page;
+          this.pageScrollIntoView(page);
+        });
       }
     }));
   }
 
   componentWillUnmount() {
     $(window).off(`.${this.eventId}`);
+
+    this.debouncedUnsetJumpTo.cancel();
 
     [this.pages, this.tabs].forEach((sortable) => {
       if (sortable.current != null) {
@@ -203,7 +214,7 @@ export default class Main extends React.Component<Props> {
 
           <div ref={this.pages} className={classWithModifiers('user-profile-pages', { 'no-tabs': !this.displayExtraTabs })}>
             {this.displayedExtraPages.map((name) => (
-              <LazyLoadContext.Provider key={name} value={{ name, offsetTop: this.visibleOffset, onWillUpdateScroll: this.handleLazyLoadWillUpdateScroll }}>
+              <LazyLoadContext.Provider key={name} value={{ name, offsetTop: this.visibleOffset, onWillRenderAfterLoad: this.handleLazyLoadRenderAfterLoad, onWillUpdateScroll: this.handleLazyLoadWillUpdateScroll }}>
                 <div
                   ref={this.extraPages[name]}
                   className={`user-profile-pages__page js-switchable-mode-page--scrollspy js-switchable-mode-page--page ${this.isSortablePage(name) ? 'js-sortable--page' : ''}`}
@@ -257,10 +268,15 @@ export default class Main extends React.Component<Props> {
     }
   };
 
-  private readonly handleLazyLoadWillUpdateScroll = (name: string) => {
-    if (this.jumpTo === name) {
-      // TODO: use scrollIntoView({ behavior: 'smooth' }) for pageJump instead of setting scroll position.
-      this.pageJump(name, true);
+  // ignore any scroll shifts during render (basically, ignore Chrome).
+  private readonly handleLazyLoadRenderAfterLoad = () => {
+    this.skipUnsetJumpTo = true;
+    this.debouncedUnsetJumpTo.cancel();
+  };
+
+  private readonly handleLazyLoadWillUpdateScroll = () => {
+    if (this.jumpTo != null) {
+      this.pageScrollIntoView(this.jumpTo);
       return true;
     }
 
@@ -280,86 +296,82 @@ export default class Main extends React.Component<Props> {
   };
 
   @action
-  private readonly pageJump = (page: Page | null, refocusing = false) => {
+  private readonly pageJump = (page: Page | null) => {
     if (page === null || this.pagesOffset == null) return;
 
-    let offsetTop: number;
+    this.jumpTo = page;
 
-    if (page === 'main') {
-      offsetTop = 0;
-    } else {
-      const target = this.extraPages[page].current;
-
-      if (target == null) return;
-
-      // FIXME: need to unset on scroll or after jump.
-      // it's currently not unset because Chrome changes the scroll position when an offscreen element changes size
-      // causing this marker to be unset too early.
-      this.jumpTo = page;
-
-      // count for the tabs height; assume pageJump always causes the header to be pinned
-      // otherwise the calculation needs another phase and gets a bit messy.
-      offsetTop = window.scrollY + target.getBoundingClientRect().top - this.pagesOffset.getBoundingClientRect().height;
-    }
-
-    // Don't bother scanning the current position.
-    // The result will be wrong when target page is too short anyway.
-    this.scrolling = true;
-
-    let scrollTo = core.stickyHeader.scrollOffset(offsetTop);
-    // Never scroll to bottom unless last element
-    // Repositioning the scroll also triggers pageScan causing issues with the bottomPage() assumption.
-    const scrollLimit = document.body.scrollHeight - window.innerHeight - 1;
-    if (page !== last(this.displayedExtraPages)) {
-      scrollTo = Math.min(scrollTo, scrollLimit);
-    }
-
-    const duration = refocusing ? 0 : 500;
-
-    $(window).stop().scrollTo(scrollTo, duration, {
-      onAfter: action(() => {
-        this.controller.currentPage = page;
-        this.scrolling = false;
-      }),
-    });
+    this.pageScrollIntoView(this.jumpTo, true);
   };
 
   @action
   private readonly pageScan = () => {
-    if (this.pagesOffset == null) return;
+    if (this.pageScanDisabled || this.pagesOffset == null) return;
+
+    const pages = this.pageElements;
+    if (pages.length === 0) return;
 
     this.visibleOffset = this.pagesOffset.getBoundingClientRect().bottom;
 
-    if (this.scrolling) return;
+    const matching = new Set<Page>();
 
-    const pages = this.pageElements;
+    for (const page of pages) {
+      const pageDims = page.getBoundingClientRect();
+      const pageBottom = pageDims.bottom - Math.min(pageDims.height * 0.75, 200);
 
-    if (pages.length === 0) return;
-
-    let page: HTMLElement | null = null;
-
-    if (bottomPage()) {
-      page = htmlElementOrNull(last(pages));
-    } else {
-      const anchorHeight = this.pagesOffset.getBoundingClientRect().height;
-
-      for (const p of pages) {
-        page = htmlElementOrNull(p);
-
-        if (page == null) {
-          throw new Error('page element is somehow not an HTMLElement');
-        }
-
-        const pageDims = page.getBoundingClientRect();
-        const pageBottom = pageDims.bottom - Math.min(pageDims.height * 0.75, 200);
-
-        if (pageBottom > anchorHeight) break;
+      if (pageBottom > this.visibleOffset && pageDims.top < window.innerHeight) {
+        matching.add(page.dataset.pageId as ProfileExtraPage);
       }
     }
 
-    if (page != null) {
-      this.controller.currentPage = page.dataset.pageId as ProfileExtraPage;
+    let preferred: Page | null = null;
+
+    // prefer using the page being navigated to if its element is in view.
+    if (this.jumpTo != null && matching.has(this.jumpTo)) {
+      preferred = this.jumpTo;
     }
+
+    const pageIds = [...matching.values()];
+
+    if (preferred == null) {
+      preferred = (bottomPage() ? last(pageIds) : first(pageIds)) ?? null;
+    }
+
+    if (preferred != null) {
+      this.controller.currentPage = preferred;
+    }
+  };
+
+  private readonly pageScrollIntoView = (page: Page, smooth = false) => {
+    const target = page === 'main' ? document.body : this.extraPages[page].current;
+    if (target == null) return;
+
+    // smooth scroll when using navigation bar.
+    if (smooth) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      // do extra magic to preserve focus of element.
+      // disable unsetting the page to jump to.
+      this.skipUnsetJumpTo = true;
+      target.scrollIntoView();
+      setTimeout(() => {
+        // cancel any pending event caused by scrollIntoView();
+        // setTimeout is needed because scrollIntoView() doesn't fire the scroll event immediately.
+        this.debouncedUnsetJumpTo.cancel();
+        this.skipUnsetJumpTo = false;
+      });
+
+    }
+  };
+
+  // Unset jumpTo if user scrolled or used page tabs.
+  // Don't unset if scroll was caused by layout shifts.
+  // There isn't currently a way to tell if a scroll event is user initiated or not.
+  // The current css spec also doesn't support callback after scroll finishes animating so we're using
+  // this kind of hack to guess what needs to be done.
+  private readonly unsetJumpTo = () => {
+    if (this.skipUnsetJumpTo) return;
+    this.jumpTo = null;
   };
 
   private readonly updateOrder = (event: Event) => {
@@ -386,6 +398,5 @@ export default class Main extends React.Component<Props> {
         hideLoadingOverlay();
         this.pageScan();
       });
-
   };
 }

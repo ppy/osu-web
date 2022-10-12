@@ -93,13 +93,17 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
     this.beforeRenderedBounds = this.ref.current?.getBoundingClientRect();
     this.distanceFromBottom = bottomPageDistance();
 
+    if (!this.hasUpdated && this.context.name != null) {
+      this.context.onWillRenderAfterLoad?.(this.context.name);
+    }
+
     return this.props.children;
   }
 
   @action
   private load() {
     this.observer.disconnect();
-    // TODO: wait until scrolling stops to have a predictable position.
+    // TODO: wait until scrolling stops to have a predictable position?
     this.props.onLoad().then(action(() => this.loaded = true));
   }
 }
