@@ -176,7 +176,6 @@ export default class Main extends React.Component<Props> {
 
     Object.values(this.timeouts).forEach((timeout) => window.clearTimeout(timeout));
 
-    $(window).stop();
     this.controller.destroy();
     this.disposers.forEach((disposer) => disposer?.());
   }
