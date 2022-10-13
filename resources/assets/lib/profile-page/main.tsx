@@ -309,11 +309,16 @@ export default class Main extends React.Component<Props> {
     const matching = new Set<Page>();
 
     for (const page of pages) {
+      const pageId = page.dataset.pageId as ProfileExtraPage;
       const pageDims = page.getBoundingClientRect();
+      if (pageId === this.jumpTo && pageDims.top < this.visibleOffset) {
+        this.jumpTo = null;
+      }
+
       const pageBottom = pageDims.bottom - Math.min(pageDims.height * 0.75, 200);
 
       if (pageBottom > this.visibleOffset && pageDims.top < window.innerHeight) {
-        matching.add(page.dataset.pageId as ProfileExtraPage);
+        matching.add(pageId);
       }
     }
 
