@@ -4,7 +4,7 @@
 import LazyLoadContext from 'components/lazy-load-context';
 import UserProfileContainer from 'components/user-profile-container';
 import { ProfileExtraPage } from 'interfaces/user-extended-json';
-import { pull, last, debounce, first, throttle } from 'lodash';
+import { pull, last, first, throttle } from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
@@ -37,7 +37,6 @@ interface Props {
 @observer
 export default class Main extends React.Component<Props> {
   private readonly controller: Controller;
-  private readonly debouncedUnsetJumpTo = debounce(() => this.unsetJumpTo(), 50);
   private readonly disposers = new Set<(() => void) | undefined>();
   private draggingTab = false;
   private readonly eventId = `users-show-${nextVal()}`;
@@ -52,8 +51,8 @@ export default class Main extends React.Component<Props> {
     top_ranks: React.createRef(),
   };
   private jumpTo: Page | null = null;
+  private lastScroll = 0;
   private readonly pages = React.createRef<HTMLDivElement>();
-  private skipUnsetJumpTo = false;
   private readonly tabs = React.createRef<HTMLDivElement>();
   private readonly timeouts: Partial<Record<'draggingTab' | 'initialPageJump', number>> = {};
   @observable private visibleOffset = 0;
@@ -106,9 +105,9 @@ export default class Main extends React.Component<Props> {
     }));
 
     const scrollEventId = `scroll.${this.eventId}`;
+    $(window).on(scrollEventId, this.setLastScroll);
     // pageScan does not need to run at 144 fps...
     $(window).on(scrollEventId, throttle(() => this.pageScan(), 20));
-    $(window).on(scrollEventId, this.debouncedUnsetJumpTo);
 
     if (this.pages.current != null) {
       $(this.pages.current).sortable({
@@ -166,8 +165,6 @@ export default class Main extends React.Component<Props> {
   componentWillUnmount() {
     $(window).off(`.${this.eventId}`);
 
-    this.debouncedUnsetJumpTo.cancel();
-
     [this.pages, this.tabs].forEach((sortable) => {
       if (sortable.current != null) {
         $(sortable.current).sortable('destroy');
@@ -213,7 +210,7 @@ export default class Main extends React.Component<Props> {
 
           <div ref={this.pages} className={classWithModifiers('user-profile-pages', { 'no-tabs': !this.displayExtraTabs })}>
             {this.displayedExtraPages.map((name) => (
-              <LazyLoadContext.Provider key={name} value={{ name, offsetTop: this.visibleOffset, onWillRenderAfterLoad: this.handleLazyLoadRenderAfterLoad, onWillUpdateScroll: this.handleLazyLoadWillUpdateScroll }}>
+              <LazyLoadContext.Provider key={name} value={{ name, offsetTop: this.visibleOffset, onWillUpdateScroll: this.handleLazyLoadWillUpdateScroll }}>
                 <div
                   ref={this.extraPages[name]}
                   className={`user-profile-pages__page js-switchable-mode-page--scrollspy js-switchable-mode-page--page ${this.isSortablePage(name) ? 'js-sortable--page' : ''}`}
@@ -267,19 +264,13 @@ export default class Main extends React.Component<Props> {
     }
   };
 
-  // ignore any scroll shifts during render (basically, ignore Chrome).
-  private readonly handleLazyLoadRenderAfterLoad = () => {
-    this.skipUnsetJumpTo = true;
-    this.debouncedUnsetJumpTo.cancel();
-  };
-
-  private readonly handleLazyLoadWillUpdateScroll = () => {
-    if (this.jumpTo != null) {
+  private readonly handleLazyLoadWillUpdateScroll = (name: ProfileExtraPage) => {
+    // Scroll lazy loaded part into view in case it was taller than the visible area.
+    // This should only be an issue at page bottom.
+    if (bottomPage() && this.jumpTo === name) {
       this.pageScrollIntoView(this.jumpTo);
-      return true;
+      this.jumpTo = null;
     }
-
-    return false;
   };
 
   private isSortablePage(page: ProfileExtraPage) {
@@ -324,16 +315,14 @@ export default class Main extends React.Component<Props> {
     }
 
     let preferred: Page | null = null;
-
-    // prefer using the page being navigated to if its element is in view.
-    if (this.jumpTo != null && matching.has(this.jumpTo)) {
-      preferred = this.jumpTo;
-    }
-
     const pageIds = [...matching.values()];
 
-    if (preferred == null) {
-      preferred = (bottomPage() ? last(pageIds) : first(pageIds)) ?? null;
+    // special case for bottom of page if there are multiple pages visible.
+    if (bottomPage()) {
+      // prefer using the page being navigated to if its element is in view.
+      preferred = this.jumpTo != null && matching.has(this.jumpTo) ? this.jumpTo : last(pageIds) ?? null;
+    } else {
+      preferred = first(pageIds) ?? null;
     }
 
     if (preferred != null) {
@@ -349,29 +338,19 @@ export default class Main extends React.Component<Props> {
     if (smooth) {
       target.scrollIntoView({ behavior: 'smooth' });
     } else {
-      // do extra magic to preserve focus of element.
-      // disable unsetting the page to jump to.
-      this.skipUnsetJumpTo = true;
       target.scrollIntoView();
-      setTimeout(() => {
-        // cancel any pending event caused by scrollIntoView();
-        // setTimeout is needed because scrollIntoView() doesn't fire the scroll event immediately.
-        this.debouncedUnsetJumpTo.cancel();
-        this.skipUnsetJumpTo = false;
-      });
     }
 
     this.pageScan();
   };
 
-  // Unset jumpTo if user scrolled or used page tabs.
-  // Don't unset if scroll was caused by layout shifts.
-  // There isn't currently a way to tell if a scroll event is user initiated or not.
-  // The current css spec also doesn't support callback after scroll finishes animating so we're using
-  // this kind of hack to guess what needs to be done.
-  private readonly unsetJumpTo = () => {
-    if (this.skipUnsetJumpTo) return;
-    this.jumpTo = null;
+  private readonly setLastScroll = () => {
+    // unset if we're clrealy scrolling away from the bottom.
+    // layout shifts from lazy sections can cause the page to grow taller or scroll downwards, but not up.
+    if (window.scrollY < this.lastScroll) {
+      this.jumpTo = null;
+    }
+    this.lastScroll = window.scrollY;
   };
 
   private readonly updateOrder = (event: Event) => {

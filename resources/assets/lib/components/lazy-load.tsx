@@ -56,24 +56,23 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
 
     this.hasUpdated = true;
 
-    // skip scroll update if context callback has handled it.
-    if (this.context.name != null && this.context.onWillUpdateScroll?.(this.context.name)) {
-      return;
-    }
-
     // below the visible bounds, ignore.
     if (this.beforeRenderedBounds.top > window.innerHeight) return;
 
     const maxScrollY = document.body.scrollHeight - window.innerHeight;
 
-    // if at bottom, try keep it at the bottom
+    // TODO: try and sync this to the "page" cutoff? (profile page active page changes before it reaches the tab)
+    // Try to maintain distance from bottom or keep at bottom at already there.
+    // This is simpler than working out size changes since we only care about the page getting taller.
     if (this.distanceFromBottom === 0) {
       window.scrollTo(window.scrollX, maxScrollY);
-      return;
-    // maintain distance from bottom
-    // TODO: try and sync this to the "page" cutoff?
     } else if (this.beforeRenderedBounds.bottom < this.context.offsetTop) {
       window.scrollTo(window.scrollX, maxScrollY - this.distanceFromBottom);
+    }
+
+    // for containers that need to do extra updates.
+    if (this.context.name != null) {
+      this.context.onWillUpdateScroll?.(this.context.name);
     }
   }
 
@@ -90,12 +89,10 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
   }
 
   renderLoaded() {
+    // use the dimensions from before child nodes are rendered because Chrome performs a layout shift
+    // after render and before componentDidUpdate(); Safari doesn't
     this.beforeRenderedBounds = this.ref.current?.getBoundingClientRect();
     this.distanceFromBottom = bottomPageDistance();
-
-    if (!this.hasUpdated && this.context.name != null) {
-      this.context.onWillRenderAfterLoad?.(this.context.name);
-    }
 
     return this.props.children;
   }
