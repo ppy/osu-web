@@ -136,6 +136,47 @@ class Comment extends Model implements Traits\ReportableInterface
         $this->attributes['commentable_type'] = $value;
     }
 
+    public function getAttribute($key)
+    {
+        return match ($key) {
+            'commentable_id',
+            'commentable_type',
+            'deleted_by_id',
+            'disqus_id',
+            'disqus_parent_id',
+            'disqus_thread_id',
+            'edited_by_id',
+            'id',
+            'message',
+            'parent_id',
+            'replies_count_cache',
+            'user_id',
+            'votes_count_cache' => $this->getRawAttribute($key),
+
+            'created_at',
+            'deleted_at',
+            'edited_at',
+            'updated_at' => $this->getTimeFast($key),
+
+            'created_at_json',
+            'deleted_at_json',
+            'edited_at_json',
+            'updated_at_json' => $this->getJsonTimeFast($key),
+
+            'pinned' => (bool) $this->getRawAttribute($key),
+
+            'disqus_user_data' => $this->getDisqusUserData(),
+
+            'commentable',
+            'editor',
+            'parent',
+            'replies',
+            'reportedIn',
+            'user',
+            'votes' => $this->getRelationValue($key),
+        };
+    }
+
     public function setCommentable()
     {
         if ($this->parent_id === null || $this->parent === null) {
@@ -250,5 +291,12 @@ class Comment extends Model implements Traits\ReportableInterface
             'reason' => 'Spam',
             'user_id' => $this->user_id,
         ];
+    }
+
+    private function getDisqusUserData(): ?array
+    {
+        $value = $this->getRawAttribute('disqus_user_data');
+
+        return $value === null ? null : json_decode($value, true);
     }
 }
