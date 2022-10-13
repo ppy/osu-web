@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import KudosuHistoryJson from 'interfaces/kudosu-history-json';
-import { action, makeObservable, observable, runInAction } from 'mobx';
+import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import ExtraHeader from 'profile-page/extra-header';
 import getPage, { PageSectionWithoutCountJson } from 'profile-page/extra-page';
@@ -66,6 +66,11 @@ export default class ProfilePageKudosu extends React.Component<Props> {
   private showMoreXhr?: JQuery.jqXHR<KudosuHistoryJson[]>;
   private xhr?: JQuery.jqXHR<PageSectionWithoutCountJson<KudosuHistoryJson>>;
 
+  @computed
+  private get hasData() {
+    return this.kudosu != null;
+  }
+
   constructor(props: Props) {
     super(props);
 
@@ -84,7 +89,7 @@ export default class ProfilePageKudosu extends React.Component<Props> {
       <div className='page-extra'>
         <ExtraHeader name={this.props.name} withEdit={this.props.withEdit} />
 
-        <LazyLoad onLoad={this.handleOnLoad} >
+        <LazyLoad hasData={this.hasData} onLoad={this.handleOnLoad} >
           <div className='kudosu-box'>
             <ValueDisplay
               description={(

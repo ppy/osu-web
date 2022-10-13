@@ -7,7 +7,7 @@ import ProfilePageExtraSectionTitle from 'components/profile-page-extra-section-
 import ShowMoreLink from 'components/show-more-link';
 import { curveLinear } from 'd3';
 import { escape, sortBy, times } from 'lodash';
-import { action, autorun, computed, makeObservable } from 'mobx';
+import { autorun, computed, makeObservable, observable } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
@@ -82,7 +82,7 @@ function updateTicks(chart: LineChart<Date>, data: ChartData[]) {
 
 @observer
 export default class Historical extends React.Component<ExtraPageProps> {
-  private readonly chartRefs = {
+  @observable private readonly chartRefs = {
     monthly_playcounts: React.createRef<HTMLDivElement>(),
     replays_watched_counts: React.createRef<HTMLDivElement>(),
   };
@@ -92,6 +92,11 @@ export default class Historical extends React.Component<ExtraPageProps> {
   @computed
   private get historical() {
     return this.props.controller.state.historical;
+  }
+
+  @computed
+  private get hasData() {
+    return this.historical != null;
   }
 
   @computed
@@ -125,7 +130,7 @@ export default class Historical extends React.Component<ExtraPageProps> {
       <div className='page-extra'>
         <ExtraHeader name={this.props.name} withEdit={this.props.controller.withEdit} />
 
-        <LazyLoad onLoad={this.handleOnLoad}>
+        <LazyLoad hasData={this.hasData} onLoad={this.handleOnLoad}>
           {this.renderHistorical()}
         </LazyLoad>
       </div>
@@ -204,50 +209,47 @@ export default class Historical extends React.Component<ExtraPageProps> {
   private readonly updateChart = (attribute: ChartSection) => {
     if (!this.hasSection(attribute)) return;
 
-    // Need to wait for the ref to be set after the lazy load.
-    setTimeout(action(() => {
-      const area = this.chartRefs[attribute].current;
+    const area = this.chartRefs[attribute].current;
 
-      if (area == null) {
-        throw new Error("chart can't be updated before the component is mounted");
-      }
+    if (area == null) {
+      return;
+    }
 
-      let data: ChartData[];
-      switch (attribute) {
-        case 'monthly_playcounts':
-          data = this.monthlyPlaycountsData;
-          break;
-        case 'replays_watched_counts':
-          data = this.replaysWatchedCountsData;
-          break;
-        default:
-          switchNever(attribute);
-          throw new Error('unsupported chart section');
-      }
+    let data: ChartData[];
+    switch (attribute) {
+      case 'monthly_playcounts':
+        data = this.monthlyPlaycountsData;
+        break;
+      case 'replays_watched_counts':
+        data = this.replaysWatchedCountsData;
+        break;
+      default:
+        switchNever(attribute);
+        throw new Error('unsupported chart section');
+    }
 
-      let chart = this.charts[attribute];
-      if (chart == null) {
-        const options = makeOptionsDate({
-          circleLine: true,
-          curve: curveLinear,
-          formatX: (d: Date) => moment.utc(d).format(osu.trans('common.datetime.year_month_short.moment')),
-          formatY: (d: number) => formatNumber(d),
-          infoBoxFormatX: (d: Date) => moment.utc(d).format(osu.trans('common.datetime.year_month.moment')),
-          infoBoxFormatY: (d: number) => `<strong>${osu.trans(`users.show.extra.historical.${attribute}.count_label`)}</strong> ${escape(formatNumber(d))}`,
-          marginRight: 60, // more spacing for x axis label
-          modifiers: 'profile-page',
-        });
+    let chart = this.charts[attribute];
+    if (chart == null) {
+      const options = makeOptionsDate({
+        circleLine: true,
+        curve: curveLinear,
+        formatX: (d: Date) => moment.utc(d).format(osu.trans('common.datetime.year_month_short.moment')),
+        formatY: (d: number) => formatNumber(d),
+        infoBoxFormatX: (d: Date) => moment.utc(d).format(osu.trans('common.datetime.year_month.moment')),
+        infoBoxFormatY: (d: number) => `<strong>${osu.trans(`users.show.extra.historical.${attribute}.count_label`)}</strong> ${escape(formatNumber(d))}`,
+        marginRight: 60, // more spacing for x axis label
+        modifiers: 'profile-page',
+      });
 
-        chart = this.charts[attribute] = new LineChart(area, options);
-      }
+      chart = this.charts[attribute] = new LineChart(area, options);
+    }
 
-      const definedChart = chart;
+    const definedChart = chart;
 
-      this.disposers.add(core.reactTurbolinks.runAfterPageLoad(() => {
-        updateTicks(definedChart, data);
-        definedChart.loadData(data);
-      }));
-    }), 0);
+    this.disposers.add(core.reactTurbolinks.runAfterPageLoad(() => {
+      updateTicks(definedChart, data);
+      definedChart.loadData(data);
+    }));
   };
 
   private readonly updateCharts = () => {

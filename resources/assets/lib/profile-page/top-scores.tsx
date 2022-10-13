@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import LazyLoad from 'components/lazy-load';
+import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import ExtraHeader from 'profile-page/extra-header';
 import * as React from 'react';
@@ -10,6 +11,11 @@ import PlayDetailList from './play-detail-list';
 
 @observer
 export default class TopScores extends React.Component<ExtraPageProps> {
+  @computed
+  private get hasData() {
+    return this.props.controller.state.beatmapsets != null;
+  }
+
   render() {
     return (
       <div className='page-extra'>
@@ -26,7 +32,7 @@ export default class TopScores extends React.Component<ExtraPageProps> {
           </div>
         )}
 
-        <LazyLoad onLoad={this.handleLazyLoad}>
+        <LazyLoad hasData={this.hasData} onLoad={this.handleLazyLoad}>
           {topScoreSections.map((section) => (
             <PlayDetailList key={section} controller={this.props.controller} section={section} />
           ))}

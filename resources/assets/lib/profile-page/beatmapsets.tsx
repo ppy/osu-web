@@ -5,6 +5,7 @@ import BeatmapsetPanel from 'components/beatmapset-panel';
 import LazyLoad from 'components/lazy-load';
 import ProfilePageExtraSectionTitle from 'components/profile-page-extra-section-title';
 import ShowMoreLink from 'components/show-more-link';
+import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import ExtraHeader from './extra-header';
@@ -39,11 +40,16 @@ const sectionKeys = [
 
 @observer
 export default class Beatmapsets extends React.Component<ExtraPageProps> {
+  @computed
+  private get hasData() {
+    return this.props.controller.state.beatmapsets != null;
+  }
+
   render() {
     return (
       <div className='page-extra'>
         <ExtraHeader name={this.props.name} withEdit={this.props.controller.withEdit} />
-        <LazyLoad onLoad={this.handleOnLoad}>
+        <LazyLoad hasData={this.hasData} onLoad={this.handleOnLoad}>
           {sectionKeys.map(this.renderBeatmapsets)}
         </LazyLoad>
       </div>

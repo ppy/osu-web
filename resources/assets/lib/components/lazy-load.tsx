@@ -10,6 +10,7 @@ import { bottomPageDistance } from 'utils/html';
 import LazyLoadContext from './lazy-load-context';
 
 interface Props {
+  hasData?: boolean;
   onLoad: () => PromiseLike<unknown>;
 }
 
@@ -22,20 +23,22 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
   private beforeRenderedBounds?: DOMRect;
   private distanceFromBottom = 0;
 
+  @observable private hasData = this.props.hasData ?? false;
   private hasUpdated = false;
-  @observable private loaded = false;
-  private readonly observer: IntersectionObserver;
+  private readonly observer?: IntersectionObserver;
   private readonly ref = React.createRef<HTMLDivElement>();
 
 
   constructor(props: React.PropsWithChildren<Props>) {
     super(props);
 
-    this.observer = new IntersectionObserver((entries) => {
-      if (entries.some((entry) => entry.isIntersecting)) {
-        this.load();
-      }
-    });
+    if (!this.hasData) {
+      this.observer = new IntersectionObserver((entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          this.load();
+        }
+      });
+    }
 
     makeObservable(this);
   }
@@ -43,11 +46,11 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
   componentDidMount() {
     if (this.ref.current == null) return;
 
-    this.observer.observe(this.ref.current);
+    this.observer?.observe(this.ref.current);
   }
 
   componentDidUpdate() {
-    if (this.hasUpdated || !this.loaded) return;
+    if (this.hasUpdated || !this.hasData) return;
 
     const element = this.ref.current;
     if (element == null || this.beforeRenderedBounds == null) {
@@ -77,13 +80,13 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
   }
 
   componentWillUnmount() {
-    this.observer.disconnect();
+    this.observer?.disconnect();
   }
 
   render() {
     return (
-      <div ref={this.ref} className={classWithModifiers('lazy-load', { loading: !this.loaded })}>
-        {this.loaded ? this.renderLoaded() : <Spinner />}
+      <div ref={this.ref} className={classWithModifiers('lazy-load', { loading: !this.hasData })}>
+        {this.hasData ? this.renderLoaded() : <Spinner />}
       </div>
     );
   }
@@ -99,8 +102,7 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
 
   @action
   private load() {
-    this.observer.disconnect();
-    // TODO: wait until scrolling stops to have a predictable position?
-    this.props.onLoad().then(action(() => this.loaded = true));
+    this.observer?.disconnect();
+    this.props.onLoad().then(action(() => this.hasData = true));
   }
 }

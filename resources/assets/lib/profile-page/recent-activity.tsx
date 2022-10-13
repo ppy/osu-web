@@ -23,6 +23,11 @@ export default class RecentActivity extends React.Component<ExtraPageProps> {
     return this.props.controller.state.recentActivity?.items.length ?? 0;
   }
 
+  @computed
+  private get hasData() {
+    return this.props.controller.state.recentActivity != null;
+  }
+
   constructor(props: ExtraPageProps) {
     super(props);
 
@@ -33,7 +38,7 @@ export default class RecentActivity extends React.Component<ExtraPageProps> {
     return (
       <div className='page-extra'>
         <ExtraHeader name={this.props.name} withEdit={this.props.controller.withEdit} />
-        <LazyLoad onLoad={this.handleOnLoad}>
+        <LazyLoad hasData={this.hasData} onLoad={this.handleOnLoad}>
           {this.count > 0 ? this.renderEntries() : this.renderEmpty()}
         </LazyLoad>
       </div>
