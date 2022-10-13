@@ -264,12 +264,15 @@ export default class Main extends React.Component<Props> {
     }
   };
 
-  private readonly handleLazyLoadWillUpdateScroll = (name: ProfileExtraPage) => {
+  private readonly handleLazyLoadWillUpdateScroll = (name: ProfileExtraPage, bounds: DOMRect) => {
     // Scroll lazy loaded part into view in case it was taller than the visible area.
     // This should only be an issue at page bottom.
     if (bottomPage() && this.jumpTo === name) {
-      this.pageScrollIntoView(this.jumpTo);
-      this.jumpTo = null;
+      if (bounds.top < this.visibleOffset) {
+        this.jumpTo = null;
+      }
+
+      this.pageScrollIntoView(name);
     }
   };
 

@@ -72,7 +72,7 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
 
     // for containers that need to do extra updates.
     if (this.context.name != null) {
-      this.context.onWillUpdateScroll?.(this.context.name);
+      this.context.onWillUpdateScroll?.(this.context.name, element.getBoundingClientRect());
     }
   }
 
