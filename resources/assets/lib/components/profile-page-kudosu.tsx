@@ -61,8 +61,7 @@ interface Props {
 
 @observer
 export default class ProfilePageKudosu extends React.Component<Props> {
-  @observable
-  private kudosu?: OffsetPaginatorJson<KudosuHistoryJson>;
+  @observable private kudosu?: OffsetPaginatorJson<KudosuHistoryJson>;
   private showMoreXhr?: JQuery.jqXHR<KudosuHistoryJson[]>;
   private xhr?: JQuery.jqXHR<PageSectionWithoutCountJson<KudosuHistoryJson>>;
 
