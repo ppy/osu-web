@@ -50,12 +50,12 @@ export default class Main extends React.Component<Props> {
     recent_activity: React.createRef(),
     top_ranks: React.createRef(),
   };
+  @observable private extraTabsBottom = 0;
   private jumpTo: Page | null = null;
   private lastScroll = 0;
   private readonly pages = React.createRef<HTMLDivElement>();
   private readonly tabs = React.createRef<HTMLDivElement>();
   private readonly timeouts: Partial<Record<'draggingTab' | 'initialPageJump', number>> = {};
-  @observable private visibleOffset = 0;
 
   @computed
   private get displayExtraTabs() {
@@ -99,7 +99,7 @@ export default class Main extends React.Component<Props> {
     core.reactTurbolinks.runAfterPageLoad(action(() => {
       if (this.pagesOffset != null) {
         const bounds = this.pagesOffset.getBoundingClientRect();
-        this.visibleOffset = bounds.bottom;
+        this.extraTabsBottom = bounds.bottom;
         this.pages.current?.style.setProperty('--scroll-margin-top', `${bounds.height}px`);
       }
     }));
@@ -210,7 +210,7 @@ export default class Main extends React.Component<Props> {
 
           <div ref={this.pages} className={classWithModifiers('user-profile-pages', { 'no-tabs': !this.displayExtraTabs })}>
             {this.displayedExtraPages.map((name) => (
-              <LazyLoadContext.Provider key={name} value={{ name, offsetTop: this.visibleOffset, onWillUpdateScroll: this.handleLazyLoadWillUpdateScroll }}>
+              <LazyLoadContext.Provider key={name} value={{ name, offsetTop: this.extraTabsBottom, onWillUpdateScroll: this.handleLazyLoadWillUpdateScroll }}>
                 <div
                   ref={this.extraPages[name]}
                   className={`user-profile-pages__page js-switchable-mode-page--scrollspy js-switchable-mode-page--page ${this.isSortablePage(name) ? 'js-sortable--page' : ''}`}
@@ -268,7 +268,7 @@ export default class Main extends React.Component<Props> {
     // Scroll lazy loaded part into view in case it was taller than the visible area.
     // This should only be an issue at page bottom.
     if (bottomPage() && this.jumpTo === name) {
-      if (bounds.top < this.visibleOffset) {
+      if (bounds.top < this.extraTabsBottom) {
         this.jumpTo = null;
       }
 
@@ -304,33 +304,35 @@ export default class Main extends React.Component<Props> {
     const pages = this.pageElements;
     if (pages.length === 0) return;
 
-    this.visibleOffset = this.pagesOffset.getBoundingClientRect().bottom;
+    this.extraTabsBottom = this.pagesOffset.getBoundingClientRect().bottom;
 
     const matching = new Set<Page>();
 
     for (const page of pages) {
-      const pageId = page.dataset.pageId as ProfileExtraPage;
+      const pageId = page.dataset.pageId as Page;
       const pageDims = page.getBoundingClientRect();
-      if (pageId === this.jumpTo && pageDims.top < this.visibleOffset) {
+      if (pageId === this.jumpTo && pageDims.top < this.extraTabsBottom) {
         this.jumpTo = null;
       }
 
       const pageBottom = pageDims.bottom - Math.min(pageDims.height * 0.75, 200);
+      const match = pageId === 'main'
+        ? pageBottom > 0
+        : pageBottom > this.extraTabsBottom && pageDims.top < window.innerHeight;
 
-      if (pageBottom > this.visibleOffset && pageDims.top < window.innerHeight) {
+      if (match) {
         matching.add(pageId);
       }
     }
 
-    let preferred: Page | null = null;
+    let preferred: Page | undefined;
     const pageIds = [...matching.values()];
-
     // special case for bottom of page if there are multiple pages visible.
     if (bottomPage()) {
       // prefer using the page being navigated to if its element is in view.
-      preferred = this.jumpTo != null && matching.has(this.jumpTo) ? this.jumpTo : last(pageIds) ?? null;
+      preferred = this.jumpTo != null && matching.has(this.jumpTo) ? this.jumpTo : last(pageIds);
     } else {
-      preferred = first(pageIds) ?? null;
+      preferred = first(pageIds);
     }
 
     if (preferred != null) {
