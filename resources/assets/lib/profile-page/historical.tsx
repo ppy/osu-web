@@ -120,7 +120,7 @@ export default class Historical extends React.Component<ExtraPageProps> {
             <ProfilePageExtraSectionTitle titleKey='users.show.extra.historical.monthly_playcounts.title' />
 
             <div className='page-extra__chart'>
-              <Chart data={this.monthlyPlaycountsData} labelY={`${osu.trans('users.show.extra.historical.monthly_playcounts.count_label')}`}/>
+              <Chart data={this.monthlyPlaycountsData} labelY={`${osu.trans('users.show.extra.historical.monthly_playcounts.count_label')}`} />
             </div>
           </>
         }
@@ -155,7 +155,7 @@ export default class Historical extends React.Component<ExtraPageProps> {
             <ProfilePageExtraSectionTitle titleKey='users.show.extra.historical.replays_watched_counts.title' />
 
             <div className='page-extra__chart'>
-              <Chart data={this.replaysWatchedCountsData} labelY={`${osu.trans('users.show.extra.historical.replays_watched_counts.count_label')}`}/>
+              <Chart data={this.replaysWatchedCountsData} labelY={`${osu.trans('users.show.extra.historical.replays_watched_counts.count_label')}`} />
             </div>
           </>
         }
