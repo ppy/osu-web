@@ -17,7 +17,7 @@ import StringWithComponent from './string-with-component';
 import TimeWithTooltip from './time-with-tooltip';
 import ValueDisplay from './value-display';
 
-const jsonId = 'kudosu';
+const jsonId = 'json-kudosu';
 
 function Entry({ kudosu }: { kudosu: KudosuHistoryJson }) {
   const textMappings = {
