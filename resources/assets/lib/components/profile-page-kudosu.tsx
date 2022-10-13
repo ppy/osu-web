@@ -117,7 +117,6 @@ export default class ProfilePageKudosu extends React.Component<Props> {
 
   @action
   private readonly handleOnLoad = () => {
-    if (this.kudosu != null) return Promise.resolve();
     this.xhr = getPage({ id: this.props.userId }, 'kudosu');
 
     this.xhr.done((json) => runInAction(() => {

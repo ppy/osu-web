@@ -10,8 +10,10 @@ import { bottomPageDistance } from 'utils/html';
 import LazyLoadContext from './lazy-load-context';
 
 interface Props {
+  // For allowing lazy loading to be completely skipped if data is alrealy available.
+  // Immediately resolving a Promise in onLoad still renders a spinner.
   hasData?: boolean;
-  onLoad: () => PromiseLike<unknown>;
+  onLoad: () => JQuery.jqXHR<unknown>;
 }
 
 @observer
