@@ -65,6 +65,18 @@ class ContestEntriesController extends Controller
             abort(413);
         }
 
+        if ($contest->type === 'art') {
+            if (empty(Request::file('entry')->getContent())) {
+                abort(400);
+            }
+
+            [$width, $height] = getimagesizefromstring(Request::file('entry')->getContent());
+
+            if ($contest->getForcedWidth() !== $width || $contest->getForcedHeight() !== $height) {
+                abort(400);
+            }
+        }
+
         UserContestEntry::upload(
             Request::file('entry'),
             $user,
