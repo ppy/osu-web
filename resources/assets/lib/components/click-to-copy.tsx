@@ -54,7 +54,7 @@ export default class ClickToCopy extends React.Component<Props> {
         title={this.titles.default}
       >
         {this.props.label || this.props.value}
-        {this.props.showIcon && <i className={`fas fa-paste ${bn}__icon`}/>}
+        {this.props.showIcon && <i className={`fas fa-paste ${bn}__icon`} />}
       </a>
     );
   }

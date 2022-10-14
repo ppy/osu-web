@@ -997,6 +997,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             'favourites',
             'genre',
             'language',
+            'reportedIn',
             'topic',
             'track',
             'user',
