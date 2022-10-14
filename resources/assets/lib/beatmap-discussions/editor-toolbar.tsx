@@ -60,7 +60,7 @@ export class EditorToolbar extends React.Component {
         >
           <EditorToolbarButton format='bold' />
           <EditorToolbarButton format='italic' />
-          <div className={`${bn}__popup-tail`}/>
+          <div className={`${bn}__popup-tail`} />
         </div>
       </Portal>
     );

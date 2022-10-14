@@ -28,7 +28,7 @@ export default class MessageItem extends React.Component<Props> {
           }
           {this.props.message.errored &&
             <div className='chat-message-item__status chat-message-item__status--errored'>
-              <i className='fas fa-times'/>
+              <i className='fas fa-times' />
             </div>
           }
         </div>

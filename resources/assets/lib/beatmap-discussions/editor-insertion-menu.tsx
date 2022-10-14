@@ -242,7 +242,7 @@ export class EditorInsertionMenu extends React.Component<Props> {
         title={osu.trans(`beatmaps.discussions.review.insert-block.${type}`)}
         type='button'
       >
-        <i className={icon}/>
+        <i className={icon} />
       </button>
     );
   };
