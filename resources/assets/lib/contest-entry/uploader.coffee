@@ -78,6 +78,15 @@ export class Uploader extends React.Component
           osu.popup osu.trans('contest.entry.too_big', limit: osu.formatBytes(maxSize, 0)), 'danger'
           return
 
+        if @props.contest.type == 'art'
+          image = await @convertFileToImage file
+
+          if image.width != @props.contest.forced_width || image.height != @props.contest.forced_height
+            osu.popup osu.trans('contest.entry.wrong_dimensions',
+              width: @props.contest.forced_width,
+              height: @props.contest.forced_height), 'danger'
+            return
+
         data.submit()
 
       submit: ->
@@ -94,6 +103,16 @@ export class Uploader extends React.Component
     @$uploadButton()
       .fileupload 'destroy'
       .remove()
+
+  convertFileToImage: (file) =>
+    new Promise (resolve, reject) ->
+      image = new Image()
+      reader = new FileReader()
+      reader.onload = () -> image.src = reader.result
+      reader.onerror = (error) -> reject(error)
+      image.onload = () -> resolve(image)
+      reader.readAsDataURL(file)
+
 
   render: =>
     div
