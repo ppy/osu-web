@@ -34,19 +34,20 @@ class Score extends Model
         getEnabledModsAttribute as private _getEnabledMods;
     }
 
-    protected $casts = [
-        'pass' => 'bool',
-    ];
-    protected $table = 'game_scores';
-    protected $primaryKeys = ['game_id', 'slot'];
-    protected $hidden = ['frame', 'game_id'];
-    public $timestamps = false;
-
     const TEAMS = [
         0 => 'none',
         1 => 'blue',
         2 => 'red',
     ];
+
+    public $timestamps = false;
+
+    protected $casts = [
+        'pass' => 'bool',
+    ];
+    protected $primaryKey = ':composite';
+    protected $primaryKeys = ['game_id', 'slot'];
+    protected $table = 'game_scores';
 
     public function game()
     {

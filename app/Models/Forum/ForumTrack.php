@@ -12,11 +12,12 @@ namespace App\Models\Forum;
  */
 class ForumTrack extends Model
 {
-    protected $table = 'phpbb_forums_track';
-
+    public $incrementing = false;
     public $timestamps = false;
-    protected $dates = ['mark_time'];
-    protected $dateFormat = 'U';
 
+    protected $dateFormat = 'U';
+    protected $dates = ['mark_time'];
+    protected $primaryKey = ':composite';
     protected $primaryKeys = ['forum_id', 'user_id'];
+    protected $table = 'phpbb_forums_track';
 }
