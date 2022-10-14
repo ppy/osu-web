@@ -9,7 +9,7 @@ namespace App\Models;
  * @property Beatmap $beatmap
  * @property int $beatmap_id
  * @property float $diff_unified
- * @property \Carbon\Carbon $last_updated
+ * @property \Carbon\Carbon $last_update
  * @property int $mode
  * @property int $mods
  */
@@ -18,7 +18,7 @@ class BeatmapDifficulty extends Model
     public $incrementing = false;
     public $timestamps = false;
 
-    protected $dates = ['last_updated'];
+    protected $dates = ['last_update'];
     protected $primaryKey = ':composite';
     protected $primaryKeys = ['beatmap_id', 'mode', 'mods'];
     protected $table = 'osu_beatmap_difficulty';
