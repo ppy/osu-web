@@ -4,7 +4,7 @@
 import LazyLoadContext from 'components/lazy-load-context';
 import UserProfileContainer from 'components/user-profile-container';
 import { ProfileExtraPage } from 'interfaces/user-extended-json';
-import { pull, last, first, throttle } from 'lodash';
+import { pull, last, first, throttle, debounce } from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
@@ -99,13 +99,14 @@ export default class Main extends React.Component<Props> {
     core.reactTurbolinks.runAfterPageLoad(action(() => {
       if (this.pagesOffset != null) {
         const bounds = this.pagesOffset.getBoundingClientRect();
-        this.extraTabsBottom = bounds.bottom;
+        this.extraTabsBottom = 50 + bounds.height; // TODO: can't use bottom because the position moves
         this.pages.current?.style.setProperty('--scroll-margin-top', `${bounds.height}px`);
       }
     }));
 
     const scrollEventId = `scroll.${this.eventId}`;
     $(window).on(scrollEventId, this.setLastScroll);
+    $(window).on(scrollEventId, debounce(action(() => core.scrolling = false), 100));
     // pageScan does not need to run at 144 fps...
     $(window).on(scrollEventId, throttle(() => this.pageScan(), 20));
 
@@ -143,22 +144,16 @@ export default class Main extends React.Component<Props> {
 
     pageChange();
 
-    // TODO: need to restore position when navigating back (lazy loaded component doesn't render full size immediately)
-    const page = this.controller.hasSavedState
+    // force position to reset on refresh to avoid browser setting scroll position at the bottom on reload.
+    // ...except Chrome sets it anyway sometimes.
+    const page = (this.controller.hasSavedState
       ? null
-      : validPage(currentUrl().hash.slice(1));
-
+      : validPage(currentUrl().hash.slice(1))
+    ) ?? 'main';
     this.jumpTo = page;
 
     this.disposers.add(core.reactTurbolinks.runAfterPageLoad(() => {
-      if (page == null) {
-        this.pageScan();
-      } else {
-        // The scroll is a bit off on Firefox if not using timeout.
-        this.timeouts.initialPageJump = window.setTimeout(() => {
-          this.pageScrollIntoView(page);
-        });
-      }
+      this.pageScrollIntoView(page);
     }));
   }
 
@@ -210,7 +205,7 @@ export default class Main extends React.Component<Props> {
 
           <div ref={this.pages} className={classWithModifiers('user-profile-pages', { 'no-tabs': !this.displayExtraTabs })}>
             {this.displayedExtraPages.map((name) => (
-              <LazyLoadContext.Provider key={name} value={{ name, offsetTop: this.extraTabsBottom, onWillUpdateScroll: this.handleLazyLoadWillUpdateScroll }}>
+              <LazyLoadContext.Provider key={name} value={{ name, offsetTop: this.extraTabsBottom, onWillUpdateScroll: this.handleLazyLoadWillUpdateScroll, ref: this.extraPages[name] }}>
                 <div
                   ref={this.extraPages[name]}
                   className={`user-profile-pages__page js-switchable-mode-page--scrollspy js-switchable-mode-page--page ${this.isSortablePage(name) ? 'js-sortable--page' : ''}`}
@@ -264,16 +259,17 @@ export default class Main extends React.Component<Props> {
     }
   };
 
-  private readonly handleLazyLoadWillUpdateScroll = (name: ProfileExtraPage, bounds: DOMRect) => {
-    // Scroll lazy loaded part into view in case it was taller than the visible area.
-    // This should only be an issue at page bottom.
-    if (bottomPage() && this.jumpTo === name) {
-      if (bounds.top < this.extraTabsBottom) {
-        this.jumpTo = null;
-      }
+  @action
+  private readonly handleLazyLoadWillUpdateScroll = (name: ProfileExtraPage) => {
+    const float = last(this.displayedExtraPages) !== name;
+    const focus = this.jumpTo === name;
+    const ref = this.extraPages[name];
 
-      this.pageScrollIntoView(name);
+    if (focus) {
+      this.jumpTo = null;
     }
+
+    return { float, focus, ref };
   };
 
   private isSortablePage(page: ProfileExtraPage) {
@@ -294,7 +290,7 @@ export default class Main extends React.Component<Props> {
 
     this.jumpTo = page;
 
-    this.pageScrollIntoView(this.jumpTo, true);
+    this.pageScrollIntoView(page, true);
   };
 
   @action
@@ -304,16 +300,11 @@ export default class Main extends React.Component<Props> {
     const pages = this.pageElements;
     if (pages.length === 0) return;
 
-    this.extraTabsBottom = this.pagesOffset.getBoundingClientRect().bottom;
-
     const matching = new Set<Page>();
 
     for (const page of pages) {
       const pageId = page.dataset.pageId as Page;
       const pageDims = page.getBoundingClientRect();
-      if (pageId === this.jumpTo && pageDims.top < this.extraTabsBottom) {
-        this.jumpTo = null;
-      }
 
       const pageBottom = pageDims.bottom - Math.min(pageDims.height * 0.75, 200);
       const match = pageId === 'main'
@@ -329,10 +320,10 @@ export default class Main extends React.Component<Props> {
     const pageIds = [...matching.values()];
     // special case for bottom of page if there are multiple pages visible.
     if (bottomPage()) {
-      // prefer using the page being navigated to if its element is in view.
-      preferred = this.jumpTo != null && matching.has(this.jumpTo) ? this.jumpTo : last(pageIds);
+      preferred = last(pageIds);
     } else {
-      preferred = first(pageIds);
+      // prefer using the page being navigated to if its element is in view.
+      preferred = this.jumpTo != null && matching.has(this.jumpTo) ? this.jumpTo : first(pageIds);
     }
 
     if (preferred != null) {
@@ -340,21 +331,31 @@ export default class Main extends React.Component<Props> {
     }
   };
 
+  @action
   private readonly pageScrollIntoView = (page: Page, smooth = false) => {
     const target = page === 'main' ? document.body : this.extraPages[page].current;
     if (target == null) return;
 
-    // smooth scroll when using navigation bar.
-    if (smooth) {
-      target.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      target.scrollIntoView();
+    const pageId = target.dataset.pageId as Page;
+    let maxScrollY = document.body.scrollHeight - window.innerHeight;
+    if (pageId !== last(this.displayedExtraPages)) {
+      maxScrollY -= 1;
     }
 
-    this.pageScan();
+    const scrollTo = Math.min(maxScrollY, window.scrollY + target.getBoundingClientRect().top - this.extraTabsBottom);
+
+    // smooth scroll when using navigation bar.
+    this.jumpTo = page;
+    if (smooth) {
+      window.scrollTo({ behavior: 'smooth', top: scrollTo });
+    } else {
+      window.scrollTo({ top: scrollTo });
+    }
   };
 
+  @action
   private readonly setLastScroll = () => {
+    core.scrolling = true;
     // unset if we're clrealy scrolling away from the bottom.
     // layout shifts from lazy sections can cause the page to grow taller or scroll downwards, but not up.
     if (window.scrollY < this.lastScroll) {

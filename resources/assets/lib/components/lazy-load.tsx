@@ -2,12 +2,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { Spinner } from 'components/spinner';
-import { action, makeObservable, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { bottomPageDistance } from 'utils/html';
-import LazyLoadContext from './lazy-load-context';
+import LazyLoadContext, { ReturnValue } from './lazy-load-context';
 
 interface Props {
   // For allowing lazy loading to be completely skipped if data is alrealy available.
@@ -27,20 +28,34 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
 
   @observable private hasData = this.props.hasData ?? false;
   private hasUpdated = false;
-  private readonly observer?: IntersectionObserver;
+  @observable private isVisible;
+  private readonly observerData?: IntersectionObserver;
+  private readonly observerVisibility?: IntersectionObserver;
   private readonly ref = React.createRef<HTMLDivElement>();
 
+  @computed
+  private get ready() {
+    return this.hasUpdated || this.isVisible && this.hasData && !core.scrolling;
+  }
 
   constructor(props: React.PropsWithChildren<Props>) {
     super(props);
 
+    this.isVisible = this.hasData;
+
     if (!this.hasData) {
-      this.observer = new IntersectionObserver((entries) => {
+      this.observerData = new IntersectionObserver((entries) => {
         if (entries.some((entry) => entry.isIntersecting)) {
           this.load();
         }
       }, {
-        rootMargin: '400px',
+        rootMargin: '400px 0px 400px 0px',
+      });
+
+      this.observerVisibility = new IntersectionObserver(action((entries) => {
+        this.isVisible = entries.some((entry) => entry.isIntersecting);
+      }), {
+        rootMargin: '-90px 0px 0px 0px',
       });
     }
 
@@ -50,7 +65,8 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
   componentDidMount() {
     if (this.ref.current == null) return;
 
-    this.observer?.observe(this.ref.current);
+    this.observerData?.observe(this.ref.current);
+    this.observerVisibility?.observe(this.ref.current);
   }
 
   componentDidUpdate() {
@@ -63,34 +79,51 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
 
     this.hasUpdated = true;
 
+    this.observerVisibility?.disconnect();
+
     // below the visible bounds, ignore.
     if (this.beforeRenderedBounds.top > window.innerHeight) return;
 
-    const maxScrollY = document.body.scrollHeight - window.innerHeight;
-
-    // TODO: try and sync this to the "page" cutoff? (profile page active page changes before it reaches the tab)
-    // Try to maintain distance from bottom or keep at bottom at already there.
-    // This is simpler than working out size changes since we only care about the page getting taller.
-    if (this.distanceFromBottom === 0) {
-      window.scrollTo(window.scrollX, maxScrollY);
-    } else if (this.beforeRenderedBounds.bottom < this.context.offsetTop) {
-      window.scrollTo(window.scrollX, maxScrollY - this.distanceFromBottom);
+    // for containers that need will trigger their own scroll;
+    // multiple scrolls in the same callback / update turns out to be not so great.
+    // TODO: accumulate updates after render and flush at once?
+    let options: ReturnValue = { float: false, focus: false };
+    if (this.context.name != null && this.context.onWillUpdateScroll != null) {
+      options = this.context.onWillUpdateScroll(this.context.name);
     }
 
-    // for containers that need to do extra updates.
-    if (this.context.name != null) {
-      this.context.onWillUpdateScroll?.(this.context.name, element.getBoundingClientRect());
+    let maxScrollY = document.body.scrollHeight - window.innerHeight;
+
+    if (options.float) {
+      maxScrollY -= 1;
     }
+
+    let scrollTo = window.scrollY;
+
+    if (options.focus && options.ref?.current != null) {
+      scrollTo = window.scrollY + options.ref.current.getBoundingClientRect().top - this.context.offsetTop;
+    } else if (this.beforeRenderedBounds.bottom < this.context.offsetTop // above the visible area
+      || this.beforeRenderedBounds.bottom > this.context.offsetTop // bottom visible but top not
+        && this.beforeRenderedBounds.top < this.context.offsetTop) {
+      scrollTo = maxScrollY - this.distanceFromBottom;
+    } else if (this.context.ref?.current != null // new size goes off the top of visible area, happens at the bottom of page.
+      && this.beforeRenderedBounds.top > this.context.offsetTop
+      && this.context.ref.current.getBoundingClientRect().top < this.context.offsetTop) {
+      scrollTo = window.scrollY + this.context.ref.current.getBoundingClientRect().top - this.context.offsetTop;
+    }
+
+    window.scrollTo({ top: Math.min(maxScrollY, scrollTo) });
   }
 
   componentWillUnmount() {
-    this.observer?.disconnect();
+    this.observerData?.disconnect();
+    this.observerVisibility?.disconnect();
   }
 
   render() {
     return (
-      <div ref={this.ref} className={classWithModifiers('lazy-load', { loading: !this.hasData })}>
-        {this.hasData ? this.renderLoaded() : <Spinner />}
+      <div ref={this.ref} className={classWithModifiers('lazy-load', { loading: !this.ready })}>
+        {this.ready ? this.renderLoaded() : <Spinner />}
       </div>
     );
   }
@@ -106,7 +139,7 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
 
   @action
   private load() {
-    this.observer?.disconnect();
+    this.observerData?.disconnect();
     this.props.onLoad().then(action(() => this.hasData = true));
   }
 }

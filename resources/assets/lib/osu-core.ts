@@ -53,6 +53,7 @@ export default class OsuCore {
   readonly reactTurbolinks: ReactTurbolinks;
   readonly referenceLinkTooltip = new ReferenceLinkTooltip();
   readonly scorePins = new ScorePins();
+  @observable scrolling = false;
   socketWorker: SocketWorker;
   readonly stickyHeader = new StickyHeader();
   readonly timeago = new Timeago();
