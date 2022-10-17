@@ -39,6 +39,8 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
         if (entries.some((entry) => entry.isIntersecting)) {
           this.load();
         }
+      }, {
+        rootMargin: '400px',
       });
     }
 

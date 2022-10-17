@@ -7,6 +7,8 @@
     align-items: center;
     justify-content: center;
     // TODO: need better min-height for different sections?
-    min-height: 50px;
+    // most extra pages will be larger than this unless they have less than the default number of items.
+    // TODO: define min-height for the extra page itself instead of just the lazy-load part.
+    min-height: 150px; // excludes the non-lazy-loaded part (e.g. headers)
   }
 }
