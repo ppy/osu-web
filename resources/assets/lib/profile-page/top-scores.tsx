@@ -13,7 +13,7 @@ import PlayDetailList from './play-detail-list';
 export default class TopScores extends React.Component<ExtraPageProps> {
   @computed
   private get hasData() {
-    return this.props.controller.state.beatmapsets != null;
+    return this.props.controller.state.lazy.top_ranks != null;
   }
 
   render() {
@@ -41,5 +41,5 @@ export default class TopScores extends React.Component<ExtraPageProps> {
     );
   }
 
-  private readonly handleLazyLoad = () => this.props.controller.getTopScores();
+  private readonly handleLazyLoad = () => this.props.controller.get('top_ranks');
 }

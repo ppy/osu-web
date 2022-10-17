@@ -42,7 +42,7 @@ const sectionKeys = [
 export default class Beatmapsets extends React.Component<ExtraPageProps> {
   @computed
   private get hasData() {
-    return this.props.controller.state.beatmapsets != null;
+    return this.props.controller.state.lazy.beatmaps != null;
   }
 
   render() {
@@ -56,14 +56,14 @@ export default class Beatmapsets extends React.Component<ExtraPageProps> {
     );
   }
 
-  private readonly handleOnLoad = () => this.props.controller.getBeatmapsets();
+  private readonly handleOnLoad = () => this.props.controller.get('beatmaps');
 
   private readonly onShowMore = (section: BeatmapsetSection) => {
     this.props.controller.apiShowMore(section);
   };
 
   private readonly renderBeatmapsets = (section: typeof sectionKeys[number]) => {
-    const state = this.props.controller.state.beatmapsets;
+    const state = this.props.controller.state.lazy.beatmaps;
     if (state == null) return;
 
     const count = state[section.key].count;

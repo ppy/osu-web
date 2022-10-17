@@ -63,23 +63,23 @@ function dataPadder(padded: ChartData[], entry: ChartData) {
 @observer
 export default class Historical extends React.Component<ExtraPageProps> {
   @computed
-  private get historical() {
-    return this.props.controller.state.historical;
+  private get data() {
+    return this.props.controller.state.lazy.historical;
   }
 
   @computed
   private get hasData() {
-    return this.historical != null;
+    return this.data != null;
   }
 
   @computed
   private get monthlyPlaycountsData() {
-    return convertUserDataForChart(this.historical?.monthly_playcounts ?? []);
+    return convertUserDataForChart(this.data?.monthly_playcounts ?? []);
   }
 
   @computed
   private get replaysWatchedCountsData() {
-    return convertUserDataForChart(this.historical?.replays_watched_counts ?? []);
+    return convertUserDataForChart(this.data?.replays_watched_counts ?? []);
   }
 
   constructor(props: ExtraPageProps) {
@@ -100,10 +100,10 @@ export default class Historical extends React.Component<ExtraPageProps> {
     );
   }
 
-  private readonly handleOnLoad = () => this.props.controller.getHistorical();
+  private readonly handleOnLoad = () => this.props.controller.get('historical');
 
   private hasSection(attribute: ChartSection) {
-    return this.historical != null && this.historical[attribute].length > 0;
+    return this.data != null && this.data[attribute].length > 0;
   }
 
   private readonly onShowMore = (section: HistoricalSection) => {
@@ -111,7 +111,7 @@ export default class Historical extends React.Component<ExtraPageProps> {
   };
 
   private renderHistorical() {
-    if (this.historical == null) return;
+    if (this.data == null) return;
 
     return (
       <>
@@ -126,13 +126,13 @@ export default class Historical extends React.Component<ExtraPageProps> {
         }
 
         <ProfilePageExtraSectionTitle
-          count={this.historical.beatmap_playcounts.count}
+          count={this.data.beatmap_playcounts.count}
           titleKey='users.show.extra.historical.most_played.title'
         />
 
-        {this.historical.beatmap_playcounts.count > 0 &&
+        {this.data.beatmap_playcounts.count > 0 &&
           <>
-            {this.historical.beatmap_playcounts.items.map((playcount) => (
+            {this.data.beatmap_playcounts.items.map((playcount) => (
               <BeatmapPlaycount
                 key={playcount.beatmap_id}
                 currentMode={this.props.controller.currentMode}
@@ -140,7 +140,7 @@ export default class Historical extends React.Component<ExtraPageProps> {
               />
             ))}
             <ShowMoreLink
-              {...this.historical.beatmap_playcounts.pagination}
+              {...this.data.beatmap_playcounts.pagination}
               callback={this.onShowMore}
               data={'beatmapPlaycounts' as const}
               modifiers='profile-page'

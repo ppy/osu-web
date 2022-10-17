@@ -20,12 +20,16 @@ import parseEvent from './parse-event';
 export default class RecentActivity extends React.Component<ExtraPageProps> {
   @computed
   private get count() {
-    return this.props.controller.state.recentActivity?.items.length ?? 0;
+    return this.data?.items.length ?? 0;
+  }
+
+  private get data() {
+    return this.props.controller.state.lazy.recent_activity;
   }
 
   @computed
   private get hasData() {
-    return this.props.controller.state.recentActivity != null;
+    return this.data != null;
   }
 
   constructor(props: ExtraPageProps) {
@@ -45,7 +49,7 @@ export default class RecentActivity extends React.Component<ExtraPageProps> {
     );
   }
 
-  private readonly handleOnLoad = () => this.props.controller.getRecentActivity();
+  private readonly handleOnLoad = () => this.props.controller.get('recent_activity');
 
   private readonly onShowMore = () => {
     this.props.controller.apiShowMore('recentActivity');
@@ -56,14 +60,14 @@ export default class RecentActivity extends React.Component<ExtraPageProps> {
   }
 
   private renderEntries() {
-    if (this.props.controller.state.recentActivity == null) return null;
+    if (this.data == null) return null;
 
     return (
       <ul className='profile-extra-entries'>
-        {this.props.controller.state.recentActivity.items.map(this.renderEntry)}
+        {this.data.items.map(this.renderEntry)}
         <li className='profile-extra-entries__item'>
           <ShowMoreLink
-            {...this.props.controller.state.recentActivity.pagination}
+            {...this.data.pagination}
             callback={this.onShowMore}
             modifiers='profile-page'
           />

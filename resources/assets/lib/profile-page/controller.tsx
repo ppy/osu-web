@@ -68,6 +68,14 @@ interface InitialData {
   user: ProfilePageUserJson;
 }
 
+interface LazyPages {
+  beatmaps: BeatmapsetsJson;
+  historical: HistoricalJson;
+  kudosu: PageSectionWithoutCountJson<KudosuHistoryJson>;
+  recent_activity: PageSectionWithoutCountJson<EventJson>;
+  top_ranks: TopScoresJson;
+}
+
 export type Page = ProfileExtraPage | 'main';
 
 interface ScorePinReorderParams {
@@ -78,13 +86,9 @@ interface ScorePinReorderParams {
 }
 
 interface State {
-  beatmapsets?: BeatmapsetsJson;
   currentPage: Page;
   editingUserPage: boolean;
-  historical?: HistoricalJson;
-  kudosu?: PageSectionWithoutCountJson<KudosuHistoryJson>;
-  recentActivity?: PageSectionWithoutCountJson<EventJson>;
-  topScores?: TopScoresJson;
+  lazy: Partial<LazyPages>;
   user: ProfilePageUserJson;
 }
 
@@ -118,6 +122,7 @@ export default class Controller {
       this.state = {
         currentPage: 'main',
         editingUserPage: false,
+        lazy: {},
         user: initialData.user,
       };
     } else {
@@ -137,10 +142,10 @@ export default class Controller {
 
   @action
   apiReorderScorePin(currentIndex: number, newIndex: number) {
-    if (this.state.topScores == null) return;
+    if (this.state.lazy.top_ranks == null) return;
 
-    const origItems = this.state.topScores.pinned.items.slice();
-    const items = this.state.topScores.pinned.items;
+    const origItems = this.state.lazy.top_ranks.pinned.items.slice();
+    const items = this.state.lazy.top_ranks.pinned.items;
     const adjacentScoreId = items[newIndex]?.id;
     if (adjacentScoreId == null) {
       throw new Error('invalid newIndex specified');
@@ -177,8 +182,8 @@ export default class Controller {
       method: 'PUT',
     }).fail(action((xhr: JQuery.jqXHR, status: string) => {
       error(xhr, status);
-      if (this.state.topScores != null) {
-        this.state.topScores.pinned.items = origItems;
+      if (this.state.lazy.top_ranks != null) {
+        this.state.lazy.top_ranks.pinned.items = origItems;
       }
     })).always(hideLoadingOverlay);
   }
@@ -277,8 +282,8 @@ export default class Controller {
 
     switch (section) {
       case 'beatmapPlaycounts': {
-        if (this.state.historical != null) {
-          const json = this.state.historical.beatmap_playcounts;
+        if (this.state.lazy.historical != null) {
+          const json = this.state.lazy.historical.beatmap_playcounts;
 
           this.xhr[section] = apiShowMore(
             json,
@@ -296,9 +301,9 @@ export default class Controller {
       case 'lovedBeatmapsets':
       case 'pendingBeatmapsets':
       case 'rankedBeatmapsets': {
-        if (this.state.beatmapsets != null) {
+        if (this.state.lazy.beatmaps != null) {
           const type = sectionToUrlType[section];
-          const json = this.state.beatmapsets[type];
+          const json = this.state.lazy.beatmaps[type];
 
           this.xhr[section] = apiShowMore(
             json,
@@ -311,9 +316,9 @@ export default class Controller {
       }
 
       case 'recentActivity':
-        if (this.state.recentActivity != null) {
+        if (this.state.lazy.recent_activity != null) {
           this.xhr[section] = apiShowMore(
-            this.state.recentActivity,
+            this.state.lazy.recent_activity,
             'users.recent-activity',
             baseParams,
           );
@@ -330,7 +335,7 @@ export default class Controller {
       case 'scoresPinned':
       case 'scoresRecent': {
         const type = sectionToUrlType[section];
-        const json = type === 'recent' ? this.state.historical?.recent : this.state.topScores?.[type];
+        const json = type === 'recent' ? this.state.lazy.historical?.recent : this.state.lazy.top_ranks?.[type];
 
         if (json != null) {
           this.xhr[section] = apiShowMore(
@@ -360,45 +365,13 @@ export default class Controller {
   }
 
   @action
-  getBeatmapsets() {
-    const xhr = getPage<BeatmapsetsJson>(this.state.user, 'beatmaps');
+  get<T extends keyof LazyPages>(page: T) {
+    const xhr = getPage<LazyPages[T]>(this.state.user, page)
+      .done((json) => runInAction(() => {
+        this.state.lazy[page] = json;
+      }));
 
-    xhr.done((json) => runInAction(() => {
-      this.state.beatmapsets = json;
-    }));
-
-    return xhr;
-  }
-
-  @action
-  getHistorical() {
-    const xhr = getPage<HistoricalJson>(this.state.user, 'historical');
-
-    xhr.done((json) => runInAction(() => {
-      this.state.historical = json;
-    }));
-
-    return xhr;
-  }
-
-  @action
-  getRecentActivity() {
-    const xhr = getPage<PageSectionWithoutCountJson<EventJson>>(this.state.user, 'recent_activity');
-
-    xhr.done((json) => runInAction(() => {
-      this.state.recentActivity = json;
-    }));
-
-    return xhr;
-  }
-
-  @action
-  getTopScores() {
-    const xhr = getPage<TopScoresJson>(this.state.user, 'top_ranks');
-
-    xhr.done((json) => runInAction(() => {
-      this.state.topScores = json;
-    }));
+    this.xhr[page] = xhr;
 
     return xhr;
   }
@@ -416,7 +389,7 @@ export default class Controller {
 
   @action
   private readonly onScorePinUpdate = (event: unknown, isPinned: boolean, score: SoloScoreJson) => {
-    if (this.state.topScores == null) return;
+    if (this.state.lazy.top_ranks == null) return;
     // make sure the typing is correct
     if (!isSoloScoreJsonForUser(score)) {
       return;
@@ -431,16 +404,16 @@ export default class Controller {
     const newScore = jsonClone(score);
     newScore.id = scorePinData.score_id;
 
-    const arrayIndex = this.state.topScores.pinned.items.findIndex((s) => s.id === newScore.id);
-    this.state.topScores.pinned.count += isPinned ? 1 : -1;
+    const arrayIndex = this.state.lazy.top_ranks.pinned.items.findIndex((s) => s.id === newScore.id);
+    this.state.lazy.top_ranks.pinned.count += isPinned ? 1 : -1;
 
     if (isPinned) {
       if (arrayIndex === -1) {
-        this.state.topScores.pinned.items.unshift(newScore);
+        this.state.lazy.top_ranks.pinned.items.unshift(newScore);
       }
     } else {
       if (arrayIndex !== -1) {
-        pullAt(this.state.topScores.pinned.items, arrayIndex);
+        pullAt(this.state.lazy.top_ranks.pinned.items, arrayIndex);
       }
     }
 
