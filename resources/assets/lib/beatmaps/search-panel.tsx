@@ -200,7 +200,7 @@ export class SearchPanel extends React.Component<Props> {
         <Filter name='nsfw' options={filters.nsfw} />
         <a className='beatmapsets-search__expand-link' href='#' onClick={this.expand}>
           <div>{osu.trans('beatmaps.listing.search.options')}</div>
-          <div><i className='fas fa-angle-down'/></div>
+          <div><i className='fas fa-angle-down' /></div>
         </a>
         <div className='beatmapsets-search__advanced'>
           <Filter name='genre' options={filters.genres} />

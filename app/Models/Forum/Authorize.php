@@ -16,9 +16,12 @@ namespace App\Models\Forum;
  */
 class Authorize extends Model
 {
-    protected $table = 'phpbb_acl_groups';
+    public $incrementing = false;
     public $timestamps = false;
+
+    protected $primaryKey = ':composite';
     protected $primaryKeys = ['group_id', 'forum_id', 'auth_option_id', 'auth_role_id', 'auth_setting'];
+    protected $table = 'phpbb_acl_groups';
 
     public static function aclCheck($user, $authOption, $forum)
     {

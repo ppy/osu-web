@@ -16,12 +16,15 @@ namespace App\Models;
  */
 class UserGroup extends Model
 {
-    protected $table = 'phpbb_user_group';
     public $timestamps = false;
-    protected $primaryKeys = ['user_id', 'group_id'];
+    public $incrementing = false;
+
     protected $casts = [
         'user_pending' => 'boolean',
     ];
+    protected $primaryKey = ':composite';
+    protected $primaryKeys = ['user_id', 'group_id'];
+    protected $table = 'phpbb_user_group';
 
     public function group()
     {

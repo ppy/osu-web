@@ -19,28 +19,24 @@ class BeatmapsetTransformer extends BeatmapsetCompactTransformer
 
     public function transform(Beatmapset $beatmapset)
     {
-        $result = parent::transform($beatmapset);
-
-        $attrs = $beatmapset->getAttributes();
-
-        return array_merge($result, [
+        return array_merge(parent::transform($beatmapset), [
             'availability' => [
-                'download_disabled' => (bool) ($attrs['download_disabled'] ?? null),
-                'more_information' => $attrs['download_disabled_url'] ?? null,
+                'download_disabled' => $beatmapset->download_disabled,
+                'more_information' => $beatmapset->download_disabled_url,
             ],
-            'bpm' => $attrs['bpm'] ?? null,
+            'bpm' => $beatmapset->bpm,
             'can_be_hyped' => $beatmapset->canBeHyped(),
             'discussion_enabled' => true, // TODO: deprecated 2022-06-08
-            'discussion_locked' => (bool) ($attrs['discussion_locked'] ?? false),
+            'discussion_locked' => $beatmapset->discussion_locked,
             'is_scoreable' => $beatmapset->isScoreable(),
-            'last_updated' => json_time_from_db_timestamp($attrs['last_update'] ?? null),
-            'legacy_thread_url' => ($attrs['thread_id'] ?? 0) !== 0 ? route('forum.topics.show', $attrs['thread_id']) : null,
+            'last_updated' => $beatmapset->last_update_json,
+            'legacy_thread_url' => ($beatmapset->thread_id ?? 0) !== 0 ? route('forum.topics.show', ['topic' => $beatmapset->thread_id]) : null,
             'nominations_summary' => $beatmapset->nominationsSummaryMeta(),
-            'ranked' => $attrs['approved'] ?? null,
-            'ranked_date' => json_time_from_db_timestamp($attrs['approved_date'] ?? null),
-            'storyboard' => (bool) ($attrs['storyboard'] ?? false),
-            'submitted_date' => json_time_from_db_timestamp($attrs['submit_date'] ?? null),
-            'tags' => $attrs['tags'] ?? null,
+            'ranked' => $beatmapset->approved,
+            'ranked_date' => $beatmapset->approved_date_json,
+            'storyboard' => $beatmapset->storyboard,
+            'submitted_date' => $beatmapset->submit_date_json,
+            'tags' => $beatmapset->tags,
         ]);
     }
 }

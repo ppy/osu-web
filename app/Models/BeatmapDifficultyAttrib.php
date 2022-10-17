@@ -17,10 +17,12 @@ class BeatmapDifficultyAttrib extends Model
     const NO_MODS = 0;
     const MAX_COMBO = 9;
 
-    protected $table = 'osu_beatmap_difficulty_attribs';
-    protected $primaryKey = null;
-
+    public $incrementing = false;
     public $timestamps = false;
+
+    protected $primaryKey = ':composite';
+    protected $primaryKeys = ['beatmap_id', 'mode', 'mods', 'attrib_id'];
+    protected $table = 'osu_beatmap_difficulty_attribs';
 
     public function scopeMode($query, $mode)
     {

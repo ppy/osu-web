@@ -87,7 +87,7 @@ export class WikiSearch extends React.Component {
             value={this.controller.displayText}
           />
           <button className='wiki-search__button' onClick={this.handleSearch}>
-            <i className='fa fa-search'/>
+            <i className='fa fa-search' />
           </button>
         </div>
         {this.renderSuggestions()}

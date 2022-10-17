@@ -73,7 +73,7 @@ export default class DetailBar extends React.Component<Props> {
                 className='bar bar--user-profile'
                 title={osu.trans('users.show.stats.level_progress')}
               >
-                <div className='bar__fill' style={{ width: `${this.props.user.statistics.level.progress}%` }}/>
+                <div className='bar__fill' style={{ width: `${this.props.user.statistics.level.progress}%` }} />
                 <div className='bar__text'>{`${this.props.user.statistics.level.progress}%`}</div>
               </div>
             </div>
