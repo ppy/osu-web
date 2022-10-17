@@ -7,8 +7,8 @@ return [
     'deleted' => '"کاربر حذف شده"',
 
     'beatmapset_activities' => [
-        'title' => "",
-        'title_compact' => '',
+        'title' => "سایقه بازخورد ارائه دادن :user",
+        'title_compact' => 'بازخورد ارائه دادن',
 
         'discussions' => [
             'title_recent' => 'گفت و گو های اخیرا آغاز شده',
@@ -33,13 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'شما این کاربر را مسدود کرده اید.',
-        'comment_text' => '',
+        'comment_text' => 'این نظر پنهان است.',
         'blocked_count' => 'کاربران مسدود شده (:count)',
         'hide_profile' => 'مخفی کردن پروفایل',
-        'hide_comment' => '',
+        'hide_comment' => 'پنهان کردن',
         'not_blocked' => 'آن کاربر مسدود نشده است.',
         'show_profile' => 'نمایش نمایه',
-        'show_comment' => '',
+        'show_comment' => 'نمایش دادن',
         'too_many' => 'به حد نهایی محدودیت مسدودیت ها رسیدید.',
         'button' => [
             'block' => 'مسدود کردن',
@@ -74,7 +74,7 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => '',
+        'by_game_mode' => 'اعضا بر اساس حالت بازی',
     ],
 
     'force_reactivation' => [
@@ -144,7 +144,7 @@ return [
         'message' => 'هنگامی که حساب شما محدود شده است، نمیتوانید با بازیکنان دیگر تعامل داشته باشید و امتیاز های شما فقط برای خودتان قابل مشاهده خواهد بود. این معمولا حاصل یک فرایند خودکار است و معمولا در عرض کمتر از 24 ساعت برداشته میشود. اگر درخواست تجدید نظر در محدودیت حسابتان دارید، <a href="mailto:accounts@ppy.sh"> با پشتیبانی تماس بگیرید </a>.',
     ],
     'show' => [
-        'age' => '',
+        'age' => ':age سال',
         'change_avatar' => 'آواتار خود را عوض کنید!',
         'first_members' => 'از آغاز اینحاست',
         'is_developer' => 'توسعه دهنده osu!',
@@ -163,8 +163,8 @@ return [
             'count' => ':count_delimited نظر|:count_delimited نظرات',
         ],
         'cover' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'مخفی کردن پوشش',
+            'to_1' => 'نمایش دادن پوشش',
         ],
         'edit' => [
             'cover' => [
@@ -212,7 +212,7 @@ return [
                     'title' => 'بیت مپ های فراموش شده',
                 ],
                 'guest' => [
-                    'title' => '',
+                    'title' => 'بیت مپ های با مشارکت مهمان',
                 ],
                 'loved' => [
                     'title' => 'بیت مپ های "دوست داشته شده"',
@@ -265,42 +265,42 @@ return [
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => '',
+                            'give' => ':amount دریافت شد بابت عدم لغو بازبینی پست :post',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => '',
+                            'reset' => 'حذف :amount بخاطر بازبینی کردن پست :post',
                         ],
 
                         'delete' => [
-                            'reset' => '',
+                            'reset' => ':amount از دست رفت بخاطر حذف کردن بازبینی پست :post',
                         ],
 
                         'restore' => [
-                            'give' => '',
+                            'give' => ':amount دریافت شد بخاطر بازگرداندن بازبینی پست :post',
                         ],
 
                         'vote' => [
-                            'give' => '',
-                            'reset' => '',
+                            'give' => ':amount دریافت شد بخاطر کسب آراء در بازبینی پست :post',
+                            'reset' => ':amount کم شد بخاطر از دست دادن آراء در بازبینی پست :post',
                         ],
 
                         'recalculate' => [
-                            'give' => '',
-                            'reset' => '',
+                            'give' => ':amount دریافت شد بخاطر محاسبه مجدد آراء در بازبینی پست :post',
+                            'reset' => ':amount کم شد بخاطر محاسبه مجدد آراء در بازبینی پست :post',
                         ],
                     ],
 
                     'forum_post' => [
-                        'give' => '',
-                        'reset' => '',
-                        'revoke' => '',
+                        'give' => ':amount دریافت شد از :giver برای یک پست در :post',
+                        'reset' => 'میزان کودوسو مجدداً تنظیم شد توسط :giver برای پست :post',
+                        'revoke' => 'کودوسو رد شد توسط :giver برای پست :post',
                     ],
                 ],
 
                 'total_info' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'بر اساس میزان مشارکت ایجاد شده توسط کاربر برای بازبینی بیت مپ است. برای اطلاعات بیشتر به :link سر بزنید.',
+                    'link' => 'این صفحه',
                 ],
             ],
             'me' => [
@@ -312,7 +312,7 @@ return [
                 'title' => 'مدال ها',
             ],
             'playlists' => [
-                'title' => '',
+                'title' => 'بازی های لیست پخش',
             ],
             'posts' => [
                 'title' => 'پست ها',
@@ -323,7 +323,7 @@ return [
                 'title' => 'اخیر',
             ],
             'realtime' => [
-                'title' => '',
+                'title' => 'بازی های چندنفره',
             ],
             'top_ranks' => [
                 'download_replay' => 'دانلود بازپخش',
@@ -339,13 +339,13 @@ return [
                     'title' => 'مقام های اول',
                 ],
                 'pin' => [
-                    'to_0' => '',
-                    'to_0_done' => '',
-                    'to_1' => '',
-                    'to_1_done' => '',
+                    'to_0' => 'برداشتن سنجاق',
+                    'to_0_done' => 'سنجاق امتیاز برداشته شد',
+                    'to_1' => 'سنجاق کردن',
+                    'to_1_done' => 'امتیاز سنجاق شد',
                 ],
                 'pinned' => [
-                    'title' => '',
+                    'title' => 'امتیاز ها سنجاق شد',
                 ],
             ],
             'votes' => [
@@ -353,26 +353,26 @@ return [
                 'received' => 'رای دریافت کرده (3 ماه اخیر)',
                 'title' => 'رأی ها',
                 'title_longer' => 'رای های اخیر',
-                'vote_count' => '',
+                'vote_count' => ':count_delimited رأی|:count_delimited آراء',
             ],
             'account_standing' => [
-                'title' => '',
+                'title' => 'وضعیت حساب',
                 'bad_standing' => "حساب کاربری <strong>:username</strong> وضعیت خوبی نداره :(",
                 'remaining_silence' => '<strong>:username</strong> میتونه دوباره در :duration حرف بزنه.',
 
                 'recent_infringements' => [
-                    'title' => '',
-                    'date' => '',
-                    'action' => '',
-                    'length' => '',
-                    'length_permanent' => '',
-                    'description' => '',
-                    'actor' => '',
+                    'title' => 'تخلفات اخیر',
+                    'date' => 'تاریخ',
+                    'action' => 'اقدام انجام شده',
+                    'length' => 'مدت',
+                    'length_permanent' => 'دائمی',
+                    'description' => 'توضیحات',
+                    'actor' => 'توسط :username',
 
                     'actions' => [
                         'restriction' => 'مسدود',
                         'silence' => 'ساکت کردن',
-                        'tournament_ban' => '',
+                        'tournament_ban' => 'ممنوعیت در مسابقات',
                         'note' => 'یادداشت',
                     ],
                 ],
@@ -425,7 +425,7 @@ return [
             'play_time' => 'مجموع زمان بازی ها',
             'ranked_score' => 'امتیاز رتبه بندی شده',
             'replays_watched_by_others' => 'بازپخش های تماشا شده توسط بقیه',
-            'score_ranks' => '',
+            'score_ranks' => 'رتبه های امتیاز',
             'total_hits' => 'مجموع ضربه ها',
             'total_score' => 'مجموع امتیاز ها',
             // modding stats

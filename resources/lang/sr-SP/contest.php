@@ -5,73 +5,73 @@
 
 return [
     'header' => [
-        'small' => '',
-        'large' => '',
+        'small' => 'Такмичите се на више начина уместо само кликтања кружића.',
+        'large' => 'Такмичења заједнице',
     ],
 
     'index' => [
-        'nav_title' => '',
+        'nav_title' => 'листинг',
     ],
 
     'voting' => [
-        'login_required' => '',
-        'over' => '',
-        'show_voted_only' => '',
+        'login_required' => 'Молимо Вас да се пријавите како би сте гласали.',
+        'over' => 'Гласање за ово такмичење се завршило',
+        'show_voted_only' => 'Покажите гласове',
 
         'best_of' => [
-            'none_played' => "",
+            'none_played' => "Не изгледа као да сте играли мапе које се квалификују за ово такмичење!",
         ],
 
         'button' => [
-            'add' => '',
-            'remove' => '',
-            'used_up' => '',
+            'add' => 'Гласајте',
+            'remove' => 'Уклониte глас',
+            'used_up' => 'Искористили сте све Ваше гласове',
         ],
 
         'progress' => [
-            '_' => '',
+            '_' => ':used/ :max гласове искоришћено',
         ],
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => '',
+                'incomplete_play' => 'Морате одиграти све мапе у плејлисти пре гласања',
             ],
         ],
     ],
     'entry' => [
-        '_' => '',
-        'login_required' => '',
-        'silenced_or_restricted' => '',
-        'preparation' => '',
-        'drop_here' => '',
-        'download' => '',
+        '_' => 'пријава',
+        'login_required' => 'Молимо Вас да се пријавите да би сте гласали.',
+        'silenced_or_restricted' => 'Не можете се пријавити за такмичења док сте рестриктовани или мутирани.',
+        'preparation' => 'Тренутно припремамо ово такмичење. Молимо Вас да будете стрпљиви!',
+        'drop_here' => 'Превуците овде вашу пријаву',
+        'download' => 'Преузмите .osz',
         'wrong_type' => [
-            'art' => '',
-            'beatmap' => '',
-            'music' => '',
+            'art' => 'Само .jpg и .png су дозвољени за ово такмичење.',
+            'beatmap' => 'Само .osu фајлови су дозвољени за ово такмичење.',
+            'music' => 'Само .mp3 фајлови су дозвољени за ово такмичење.',
         ],
-        'too_big' => '',
+        'too_big' => 'Број пријава за ово такмичење може бити до :limit.',
     ],
     'beatmaps' => [
-        'download' => '',
+        'download' => 'Преузмите пријаву',
     ],
     'vote' => [
-        'list' => '',
-        'count' => '',
-        'points' => '',
+        'list' => 'гласови',
+        'count' => ':count_delimited глас|:count_delimited гласова',
+        'points' => ':count_delimited поен|:count_delimited поени',
     ],
     'dates' => [
-        'ended' => '',
-        'ended_no_date' => '',
+        'ended' => 'Завршено :date',
+        'ended_no_date' => 'Завршено',
 
         'starts' => [
-            '_' => '',
-            'soon' => '',
+            '_' => 'Почиње :date',
+            'soon' => 'ускоро™',
         ],
     ],
     'states' => [
-        'entry' => '',
-        'voting' => '',
-        'results' => '',
+        'entry' => 'Пријаве су отворене',
+        'voting' => 'Гласање је почело',
+        'results' => 'Резултати су изашли',
     ],
 ];

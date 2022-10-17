@@ -190,19 +190,19 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
         return new static([
             'hits' => [
                 'hits' => [],
-                'total' => 0,
+                'total' => [
+                    'relation' => 'eq',
+                    'value' => 0,
+                ],
             ],
         ]);
     }
 
     public static function failed($exception)
     {
-        return new static([
-            'hits' => [
-                'hits' => [],
-                'total' => 0,
-            ],
-            'exception' => $exception,
-        ]);
+        $ret = static::empty();
+        $ret->raw['exception'] = $exception;
+
+        return $ret;
     }
 }

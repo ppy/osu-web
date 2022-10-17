@@ -146,6 +146,7 @@ class BeatmapsController extends Controller
                     'beatmapset.userRatings' => fn ($q) => $q->select('beatmapset_id', 'rating'),
                     'failtimes',
                 ])->withMaxCombo()
+                ->orderBy('beatmap_id')
                 ->get();
         }
 

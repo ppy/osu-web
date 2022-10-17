@@ -8,6 +8,7 @@ import {
 } from 'interfaces/beatmap-discussion-review';
 import { Editor, Element as SlateElement, Node as SlateNode, Range as SlateRange, Text, Transforms } from 'slate';
 import { ReactEditor } from 'slate-react';
+import { parseTimestamp } from 'utils/beatmapset-discussion-helper';
 
 export const blockCount = (input: SlateElement[]) => input.length;
 
@@ -63,7 +64,7 @@ function serializeEmbed(node: SlateElement): DocumentIssueEmbed {
       beatmap_id: node.beatmapId as number,
       discussion_type: node.discussionType as BeatmapReviewDiscussionType,
       text: node.children[0].text as string,
-      timestamp: node.timestamp ? BeatmapDiscussionHelper.parseTimestamp(node.timestamp as string) : null,
+      timestamp: node.timestamp ? parseTimestamp(node.timestamp as string) : null,
       type: 'embed',
     };
   }

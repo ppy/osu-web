@@ -6,7 +6,7 @@ import { observer } from 'mobx-react';
 import ExtraHeader from 'profile-page/extra-header';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
-import { OffsetPaginatorJson, itemsLength } from 'utils/offset-paginator';
+import { OffsetPaginatorJson } from 'utils/offset-paginator';
 import { wikiUrl } from 'utils/url';
 import ShowMoreLink from './show-more-link';
 import StringWithComponent from './string-with-component';
@@ -87,7 +87,7 @@ export default class ProfilePageKudosu extends React.Component<Props> {
   }
 
   private renderEntries() {
-    if (itemsLength(this.props.kudosu.items) === 0) {
+    if (this.props.kudosu.items.length === 0) {
       return (
         <div className='profile-extra-entries profile-extra-entries--kudosu'>
           {osu.trans('users.show.extra.kudosu.entry.empty')}

@@ -19,6 +19,7 @@ use App\Jobs\Notifications\BeatmapsetRank;
 use App\Jobs\Notifications\BeatmapsetRemoveFromLoved;
 use App\Jobs\Notifications\BeatmapsetResetNominations;
 use App\Jobs\RemoveBeatmapsetBestScores;
+use App\Jobs\RemoveBeatmapsetSoloScores;
 use App\Libraries\BBCodeFromDB;
 use App\Libraries\Commentable;
 use App\Libraries\Elasticsearch\Indexable;
@@ -48,6 +49,7 @@ use Illuminate\Database\QueryException;
  * @property \Illuminate\Database\Eloquent\Collection $beatmapsetNominations BeatmapsetNomination
  * @property mixed|null $body_hash
  * @property float $bpm
+ * @property bool $comment_locked
  * @property string $commentable_identifier
  * @property Comment $comments
  * @property \Carbon\Carbon|null $cover_updated_at
@@ -131,17 +133,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     ];
 
     public $timestamps = false;
-    protected $hidden = [
-        'header_hash',
-        'body_hash',
-        'download_disabled',
-        'download_disabled_url',
-        'displaytitle',
-        'approvedby_id',
-        'difficulty_names',
-        'thread_icon_date',
-        'thread_id',
-    ];
 
     const STATES = [
         'graveyard' => -2,
@@ -399,7 +390,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function coverPath()
     {
-        return "beatmaps/{$this->beatmapset_id}/covers/";
+        $id = $this->getKey() ?? 0;
+
+        return "beatmaps/{$id}/covers/";
     }
 
     public function storeCover($target_filename, $source_path)
@@ -561,6 +554,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
         if ($this->isScoreable() !== $oldScoreable || $this->isRanked()) {
             dispatch(new RemoveBeatmapsetBestScores($this));
+            dispatch(new RemoveBeatmapsetSoloScores($this));
         }
 
         if ($this->isScoreable() !== $oldScoreable) {
@@ -920,6 +914,96 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     public function language()
     {
         return $this->belongsTo(Language::class, 'language_id');
+    }
+
+    public function getAttribute($key)
+    {
+        return match ($key) {
+            'approved',
+            'approvedby_id',
+            'artist',
+            'beatmapset_id',
+            'body_hash',
+            'bpm',
+            'creator',
+            'difficulty_names',
+            'discussion_enabled',
+            'displaytitle',
+            'download_disabled_url',
+            'favourite_count',
+            'filename',
+            'filesize',
+            'filesize_novideo',
+            'genre_id',
+            'header_hash',
+            'hype',
+            'language_id',
+            'laravel_through_key', // added by hasOneThrough relation in BeatmapDiscussionPost
+            'nominations',
+            'offset',
+            'osz2_hash',
+            'play_count',
+            'previous_queue_duration',
+            'rating',
+            'source',
+            'star_priority',
+            'storyboard_hash',
+            'tags',
+            'thread_id',
+            'title',
+            'track_id',
+            'user_id',
+            'versions_available' => $this->getRawAttribute($key),
+
+            'approved_date',
+            'cover_updated_at',
+            'deleted_at',
+            'last_update',
+            'queued_at',
+            'submit_date',
+            'thread_icon_date' => $this->getTimeFast($key),
+
+            'approved_date_json',
+            'cover_updated_at_json',
+            'deleted_at_json',
+            'last_update_json',
+            'queued_at_json',
+            'submit_date_json',
+            'thread_icon_date_json' => $this->getJsonTimeFast($key),
+
+            'active',
+            'comment_locked',
+            'discussion_locked',
+            'download_disabled',
+            'epilepsy',
+            'nsfw',
+            'spotlight',
+            'storyboard',
+            'video' => (bool) $this->getRawAttribute($key),
+
+            'artist_unicode' => $this->getArtistUnicode(),
+            'commentable_identifier' => $this->getCommentableIdentifierAttribute(),
+            'title_unicode' => $this->getTitleUnicode(),
+
+            'allBeatmaps',
+            'approver',
+            'beatmapDiscussions',
+            'beatmaps',
+            'beatmapsetNominations',
+            'bssProcessQueues',
+            'comments',
+            'defaultBeatmaps',
+            'events',
+            'favourites',
+            'genre',
+            'language',
+            'reportedIn',
+            'topic',
+            'track',
+            'user',
+            'userRatings',
+            'watches' => $this->getRelationValue($key),
+        };
     }
 
     public function requiredHype()
@@ -1310,11 +1394,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return new BBCodeFromDB($description, $post->bbcode_uid, $options);
     }
 
-    public function getArtistUnicodeAttribute($value)
-    {
-        return $value ?? $this->artist;
-    }
-
     public function getDisplayArtist(?User $user)
     {
         $profileCustomization = $user->userProfileCustomization ?? new UserProfileCustomization();
@@ -1344,11 +1423,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         }
 
         return Forum\Post::find($topic->topic_first_post_id);
-    }
-
-    public function getTitleUnicodeAttribute($value)
-    {
-        return $value ?? $this->title;
     }
 
     public function freshHype()
@@ -1428,5 +1502,15 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     private function defaultCoverTimestamp(): string
     {
         return $this->cover_updated_at?->format('U') ?? '0';
+    }
+
+    private function getArtistUnicode()
+    {
+        return $this->getRawAttribute('artist_unicode') ?? $this->artist;
+    }
+
+    private function getTitleUnicode()
+    {
+        return $this->getRawAttribute('title_unicode') ?? $this->title;
     }
 }

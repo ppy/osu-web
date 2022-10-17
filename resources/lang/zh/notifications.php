@@ -243,7 +243,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username 创建了一张新谱面',
-                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive' => ':username 恢复了一张谱面',
             ],
         ],
     ],

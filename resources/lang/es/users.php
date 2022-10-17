@@ -118,7 +118,7 @@ return [
     'logout_confirm' => '¿Seguro que desea cerrar la sesión? :(',
     'report' => [
         'button_text' => 'Reportar',
-        'comments' => 'Comentarios',
+        'comments' => 'Comentarios adicionales',
         'placeholder' => 'Por favor, proporcione cualquier información que crea que pueda ser útil.',
         'reason' => 'Motivo',
         'thanks' => '¡Gracias por reportar!',
@@ -221,7 +221,7 @@ return [
                     'title' => 'Mapas Pendientes',
                 ],
                 'ranked' => [
-                    'title' => 'Mapas Clasificados y Aprobados',
+                    'title' => 'Mapas Clasificados',
                 ],
             ],
             'discussions' => [
@@ -372,7 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Restringir',
                         'silence' => 'Silenciado',
-                        'tournament_ban' => 'Prohibición de torneo',
+                        'tournament_ban' => 'Excluído de torneos',
                         'note' => 'Nota',
                     ],
                 ],
@@ -432,7 +432,7 @@ return [
             'graveyard_beatmapset_count' => 'Mapas Abandonados',
             'loved_beatmapset_count' => 'Mapas Amados',
             'pending_beatmapset_count' => 'Mapas Pendientes',
-            'ranked_beatmapset_count' => 'Mapas Clasificados y Aprobados',
+            'ranked_beatmapset_count' => 'Mapas Clasificados',
         ],
     ],
 

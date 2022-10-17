@@ -4,7 +4,7 @@
 import { discussionTypeIcons } from 'beatmap-discussions/discussion-type';
 import { BeatmapIcon } from 'components/beatmap-icon';
 import * as React from 'react';
-import { format, startingPost } from 'utils/beatmapset-discussion-helper';
+import { format, formatTimestamp, startingPost } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { BeatmapsContext } from './beatmaps-context';
 import { DiscussionsContext } from './discussions-context';
@@ -65,7 +65,7 @@ export const ReviewPostEmbed = ({ data }: Props) => {
     <div className={`${bn}__timestamp-text`}>
       {
         discussion.timestamp !== null
-          ? BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp)
+          ? formatTimestamp(discussion.timestamp)
           : osu.trans('beatmap_discussions.timestamp_display.general')
       }
     </div>

@@ -41,9 +41,9 @@ export class ReviewPost extends React.Component<Props> {
         renderers={{
           link: this.linkRenderer,
           paragraph: (props) => (<div className='beatmap-discussion-review-post__block'>
-            <div className='beatmapset-discussion-message' {...props}/>
+            <div className='beatmapset-discussion-message' {...props} />
           </div>),
-          timestamp: (props) => <a className='beatmap-discussion-timestamp-decoration' {...props}/>,
+          timestamp: (props) => <a className='beatmap-discussion-timestamp-decoration' {...props} />,
         }}
         source={source}
         unwrapDisallowed
@@ -86,6 +86,6 @@ export class ReviewPost extends React.Component<Props> {
   private linkRenderer = (props: Readonly<ReactMarkdown.ReactMarkdownProps> & { href: string }) => {
     const extraProps = propsFromHref(props.href);
 
-    return <a {...props} {...extraProps}/>;
+    return <a {...props} {...extraProps} />;
   };
 }

@@ -183,8 +183,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     protected $dateFormat = 'U';
     public $timestamps = false;
 
-    protected $visible = ['user_id', 'username', 'username_clean', 'user_rank', 'osu_playstyle', 'user_colour'];
-
     protected $attributes = [
         'user_allow_pm' => true,
     ];
@@ -601,44 +599,14 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         });
     }
 
-    public function getCountryAcronymAttribute($value)
-    {
-        return presence($value);
-    }
-
-    public function getEmailAttribute()
-    {
-        return $this->user_email;
-    }
-
-    public function getUserFromAttribute($value)
-    {
-        return presence(html_entity_decode_better($value));
-    }
-
     public function setUserFromAttribute($value)
     {
         $this->attributes['user_from'] = e(unzalgo($value));
     }
 
-    public function getUserInterestsAttribute($value)
-    {
-        return presence(html_entity_decode_better($value));
-    }
-
     public function setUserInterestsAttribute($value)
     {
         $this->attributes['user_interests'] = e(unzalgo($value));
-    }
-
-    public function getUserLangAttribute($value)
-    {
-        return get_valid_locale($value);
-    }
-
-    public function getUserOccAttribute($value)
-    {
-        return presence(html_entity_decode_better($value));
     }
 
     public function setUserOccAttribute($value)
@@ -651,19 +619,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         $bbcode = new BBCodeForDB($value);
         $this->attributes['user_sig'] = $bbcode->generate();
         $this->attributes['user_sig_bbcode_uid'] = $bbcode->uid;
-    }
-
-    public function getUserWebsiteAttribute($value)
-    {
-        $value = trim($value);
-
-        if (present($value)) {
-            if (starts_with($value, ['http://', 'https://'])) {
-                return $value;
-            }
-
-            return "https://{$value}";
-        }
     }
 
     public function setUserWebsiteAttribute($value)
@@ -694,19 +649,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         $this->attributes['osu_playstyle'] = $styles;
     }
 
-    public function getPmFriendsOnlyAttribute()
-    {
-        return !$this->user_allow_pm;
-    }
-
     public function setPmFriendsOnlyAttribute($value)
     {
         $this->user_allow_pm = !$value;
-    }
-
-    public function getHidePresenceAttribute()
-    {
-        return !$this->user_allow_viewonline;
     }
 
     public function setHidePresenceAttribute($value)
@@ -718,11 +663,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     {
         $this->attributes['username'] = $value;
         $this->username_clean = static::cleanUsername($value);
-    }
-
-    public function getDisplayedLastVisitAttribute()
-    {
-        return $this->hide_presence ? null : $this->user_lastvisit;
     }
 
     public function isLoginBlocked()
@@ -740,45 +680,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->userProfileCustomization ? $this->userProfileCustomization->cover()->url() : null;
     }
 
-    public function getUserTwitterAttribute($value)
-    {
-        return presence(ltrim($value, '@'));
-    }
-
     public function setUserTwitterAttribute($value)
     {
         $this->attributes['user_twitter'] = ltrim($value, '@');
-    }
-
-    public function getUserDiscordAttribute($value)
-    {
-        return presence($this->user_jabber);
-    }
-
-    public function getOsuPlaystyleAttribute($value)
-    {
-        $value = (int) $value;
-
-        $styles = [];
-
-        foreach (self::PLAYSTYLES as $type => $bit) {
-            if (($value & $bit) !== 0) {
-                $styles[] = $type;
-            }
-        }
-
-        if (empty($styles)) {
-            return;
-        }
-
-        return $styles;
-    }
-
-    public function getUserColourAttribute($value)
-    {
-        if (present($value)) {
-            return "#{$value}";
-        }
     }
 
     public function setUserDiscordAttribute($value)
@@ -792,22 +696,189 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         $this->attributes['user_colour'] = ltrim($value, '#');
     }
 
-    public function getOsuSubscriptionexpiryAttribute($value)
-    {
-        if (present($value)) {
-            return Carbon::parse($value);
-        }
-    }
-
     public function setOsuSubscriptionexpiryAttribute($value)
     {
-        // strip time component
-        $this->attributes['osu_subscriptionexpiry'] = optional($value)->startOfDay();
+        $this->attributes['osu_subscriptionexpiry'] = $value?->format('Y-m-d');
     }
 
-    public function getUserRankAttribute($value)
+    public function getAttribute($key)
     {
-        return $value === 0 ? null : $value;
+        return match ($key) {
+            'group_id',
+            'osu_featurevotes',
+            'osu_kudosavailable',
+            'osu_kudosdenied',
+            'osu_kudostotal',
+            'osu_mapperrank',
+            'osu_playmode',
+            'osu_testversion',
+            'remember_token',
+            'user_actkey',
+            'user_allow_massemail',
+            'user_allow_viewemail',
+            'user_avatar_height',
+            'user_avatar_type',
+            'user_avatar_width',
+            'user_birthday',
+            'user_dateformat',
+            'user_dst',
+            'user_email',
+            'user_emailtime',
+            'user_full_folder',
+            'user_id',
+            'user_inactive_reason',
+            'user_inactive_time',
+            'user_ip',
+            'user_last_confirm_key',
+            'user_last_privmsg',
+            'user_last_search',
+            'user_last_warning',
+            'user_lastfm',
+            'user_lastfm_session',
+            'user_lastpage',
+            'user_login_attempts',
+            'user_message_rules',
+            'user_msnm',
+            'user_new_privmsg',
+            'user_newpasswd',
+            'user_notify_pm',
+            'user_notify_type',
+            'user_options',
+            'user_passchg',
+            'user_password',
+            'user_perm_from',
+            'user_permissions',
+            'user_post_show_days',
+            'user_post_sortby_dir',
+            'user_post_sortby_type',
+            'user_posts',
+            'user_sig',
+            'user_sig_bbcode_bitfield',
+            'user_sig_bbcode_uid',
+            'user_style',
+            'user_topic_show_days',
+            'user_topic_sortby_dir',
+            'user_topic_sortby_type',
+            'user_type',
+            'user_unread_privmsg',
+            'user_warnings',
+            'username',
+            'username_clean',
+            'username_previous',
+            'userpage_post_id' => $this->getRawAttribute($key),
+
+            // boolean
+            'osu_subscriber',
+            'user_allow_pm',
+            'user_allow_viewonline',
+            'user_notify' => (bool) $this->getRawAttribute($key),
+
+            // float
+            'user_timezone' => (float) $this->getRawAttribute($key),
+
+            // datetime
+            'user_lastmark',
+            'user_lastpost_time',
+            'user_lastvisit',
+            'user_regdate' => Carbon::createFromTimestamp($this->getRawAttribute($key)),
+
+            // custom cast
+            'displayed_last_visit' => $this->getDisplayedLastVisit(),
+            'osu_playstyle' => $this->getOsuPlaystyle(),
+            'osu_subscriptionexpiry' => $this->getOsuSubscriptionexpiry(),
+            'playmode' => $this->getPlaymode(),
+            'user_avatar' => $this->getUserAvatar(),
+            'user_colour' => $this->getUserColour(),
+            'user_rank' => $this->getUserRank(),
+            'user_website' => $this->getUserWebsite(),
+
+            // one-liner cast
+            'country_acronym' => presence($this->getRawAttribute($key)),
+            'email' => $this->user_email,
+            'hide_presence' => !$this->user_allow_viewonline,
+            'id' => $this->getKey(), // used by clockwork
+            'name' => null, // used by mailer
+            'pm_friends_only' => !$this->user_allow_pm,
+            'user_discord' => $this->user_jabber,
+            'user_from' => presence(html_entity_decode_better($this->getRawAttribute($key))),
+            'user_interests' => presence(html_entity_decode_better($this->getRawAttribute($key))),
+            'user_jabber' => presence($this->getRawAttribute($key)),
+            'user_lang' => get_valid_locale($this->getRawAttribute($key)),
+            'user_occ' => presence(html_entity_decode_better($this->getRawAttribute($key))),
+            'user_twitter' => presence(ltrim($this->getRawAttribute($key), '@')),
+
+            // relations
+            'accountHistories',
+            'apiKey',
+            'badges',
+            'beatmapDiscussionVotes',
+            'beatmapDiscussions',
+            'beatmapPlaycounts',
+            'beatmaps',
+            'beatmapsetNominations',
+            'beatmapsetNominationsToday',
+            'beatmapsetRatings',
+            'beatmapsetWatches',
+            'beatmapsets',
+            'blocks',
+            'changelogs',
+            'channels',
+            'clients',
+            'comments',
+            'country',
+            'events',
+            'favourites',
+            'follows',
+            'forumPosts',
+            'friends',
+            'githubUsers',
+            'givenKudosu',
+            'monthlyPlaycounts',
+            'notificationOptions',
+            'oauthClients',
+            'orders',
+            'pivot', // laravel built-in relation when using belongsToMany
+            'profileBanners',
+            'profileBeatmapsetsGraveyard',
+            'profileBeatmapsetsLoved',
+            'profileBeatmapsetsPending',
+            'profileBeatmapsetsRanked',
+            'rank',
+            'rankHistories',
+            'receivedKudosu',
+            'relations',
+            'replaysWatchedCounts',
+            'reportedIn',
+            'reportsMade',
+            'scorePins',
+            'scoresBestFruits',
+            'scoresBestMania',
+            'scoresBestOsu',
+            'scoresBestTaiko',
+            'scoresFirstFruits',
+            'scoresFirstMania',
+            'scoresFirstOsu',
+            'scoresFirstTaiko',
+            'scoresFruits',
+            'scoresMania',
+            'scoresOsu',
+            'scoresTaiko',
+            'statisticsFruits',
+            'statisticsMania',
+            'statisticsOsu',
+            'statisticsTaiko',
+            'storeAddresses',
+            'supporterTagPurchases',
+            'supporterTags',
+            'topicWatches',
+            'userAchievements',
+            'userGroups',
+            'userNotifications',
+            'userPage',
+            'userProfileCustomization',
+            'usernameChangeHistory',
+            'usernameChangeHistoryPublic' => $this->getRelationValue($key),
+        };
     }
 
     /*
@@ -901,7 +972,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function hasSupported()
     {
-        return $this->osu_subscriptionexpiry !== null;
+        return $this->getRawAttribute('osu_subscriptionexpiry') !== null;
     }
 
     public function isSupporter()
@@ -1059,11 +1130,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function replaysWatchedCounts()
     {
         return $this->hasMany(UserReplaysWatchedCount::class);
-    }
-
-    public function reportedIn()
-    {
-        return $this->morphMany(UserReport::class, 'reportable');
     }
 
     public function reportsMade()
@@ -1511,11 +1577,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->hasMany(Client::class);
     }
 
-    public function getPlaymodeAttribute($value)
-    {
-        return Beatmap::modeStr($this->osu_playmode);
-    }
-
     public function setPlaymodeAttribute($value)
     {
         $this->osu_playmode = Beatmap::modeInt($value);
@@ -1658,17 +1719,17 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function title(): ?string
     {
-        return optional($this->rank)->rank_title;
+        return $this->rank?->rank_title;
     }
 
     public function titleUrl(): ?string
     {
-        return optional($this->rank)->url;
+        return $this->rank?->url;
     }
 
     public function hasProfile()
     {
-        return $this->user_id !== null
+        return $this->getKey() !== null
             && $this->group_id !== app('groups')->byIdentifier('no_profile')->getKey();
     }
 
@@ -2234,5 +2295,69 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'reason' => 'Cheating',
             'user_id' => $this->getKey(),
         ];
+    }
+
+    private function getDisplayedLastVisit()
+    {
+        return $this->hide_presence ? null : $this->user_lastvisit;
+    }
+
+    private function getOsuSubscriptionexpiry()
+    {
+        $value = $this->getRawAttribute('osu_subscriptionexpiry');
+
+        return $value === null
+            ? null
+            : Carbon::createFromFormat('Y-m-d H:i:s', "{$value} 00:00:00");
+    }
+
+    private function getOsuPlaystyle()
+    {
+        $value = $this->getRawAttribute('osu_playstyle');
+
+        $styles = [];
+        foreach (self::PLAYSTYLES as $type => $bit) {
+            if (($value & $bit) !== 0) {
+                $styles[] = $type;
+            }
+        }
+
+        return empty($styles) ? null : $styles;
+    }
+
+    private function getPlaymode()
+    {
+        return Beatmap::modeStr($this->osu_playmode);
+    }
+
+    private function getUserColour()
+    {
+        $value = presence($this->getRawAttribute('user_colour'));
+
+        return $value === null
+            ? null
+            : "#{$value}";
+    }
+
+    private function getUserRank()
+    {
+        $value = $this->getRawAttribute('user_rank');
+
+        return $value === 0 ? null : $value;
+    }
+
+    private function getUserWebsite()
+    {
+        $value = presence(trim($this->getRawAttribute('user_website')));
+
+        if ($value === null) {
+            return null;
+        }
+
+        if (starts_with($value, ['http://', 'https://'])) {
+            return $value;
+        }
+
+        return "https://{$value}";
     }
 }

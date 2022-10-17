@@ -51,7 +51,7 @@ return [
 
         'users' => [
             'modding' => '摸图',
-            'playlists' => '歌单',
+            'playlists' => '课题',
             'realtime' => '多人游戏',
             'show' => '信息',
         ],

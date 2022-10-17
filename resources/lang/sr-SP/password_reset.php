@@ -5,41 +5,41 @@
 
 return [
     'button' => [
-        'cancel' => '',
-        'resend' => '',
-        'set' => '',
-        'start' => '',
+        'cancel' => 'Откажите',
+        'resend' => 'Поново пошаљи верификациони е-маил',
+        'set' => 'Постави лозинку',
+        'start' => 'Започни',
     ],
 
     'error' => [
-        'contact_support' => '',
-        'expired' => '',
-        'invalid' => '',
-        'is_privileged' => '',
-        'missing_key' => '',
-        'too_many_tries' => '',
-        'user_not_found' => '',
-        'wrong_key' => '',
+        'contact_support' => 'Молимо Вас да контактирате подршку да би сте повратили налог.',
+        'expired' => 'Верификациони код је истекао.',
+        'invalid' => 'Неочекивана грешка у верификационом коду.',
+        'is_privileged' => 'Молимо вас да контактирате админа да би сте повратили налог.',
+        'missing_key' => 'Обавезно.',
+        'too_many_tries' => 'Превише неуспелих покушаја уноса.',
+        'user_not_found' => 'Овај корисник не постоји.',
+        'wrong_key' => 'Неисправан код.',
     ],
 
     'notice' => [
-        'sent' => '',
-        'saved' => '',
+        'sent' => 'Потражите код за верификацију у Вашем имејлу.',
+        'saved' => 'Нова лозинка је сачувана!',
     ],
 
     'started' => [
-        'password' => '',
-        'password_confirmation' => '',
-        'title' => '',
-        'verification_key' => '',
+        'password' => 'Нова лозинка',
+        'password_confirmation' => 'Потврда лозинке',
+        'title' => 'Ресетовање шифре за налог <strong>:username</strong>.',
+        'verification_key' => 'Верификациони кôд',
     ],
 
     'starting' => [
-        'username' => '',
+        'username' => 'Унесите адресу е-поште или корисничко име',
 
         'support' => [
-            '_' => '',
-            'button' => '',
+            '_' => 'Треба Вам додатна помоћ? Ступите у контакт преко нашег :button.',
+            'button' => 'систем за подршку',
         ],
     ],
 ];

@@ -24,6 +24,7 @@ return [
 
     'status' => [
         'non_best' => 'Ang laro na may pinakamataas na iskor lamang ang bibigyan ng pp',
+        'non_passing' => '',
         'processing' => 'Ang iskor ay pinoproseso pa lamang at maipapakita sa mas madaling panahon',
     ],
 ];
