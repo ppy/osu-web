@@ -63,23 +63,19 @@ export default class Beatmapsets extends React.Component<ExtraPageProps> {
   };
 
   private readonly renderBeatmapsets = (section: typeof sectionKeys[number]) => {
-    const state = this.props.controller.state.lazy.beatmaps;
+    const state = this.props.controller.state.lazy.beatmaps?.[section.key];
     if (state == null) return;
-
-    const count = state[section.key].count;
-    const beatmapsets = state[section.key].items;
-    const pagination = state[section.key].pagination;
 
     return (
       <React.Fragment key={section.key}>
         <ProfilePageExtraSectionTitle
-          count={count}
+          count={state.count}
           titleKey={`users.show.extra.beatmaps.${section.key}.title`}
         />
 
-        {beatmapsets.length > 0 && (
+        {state.items.length > 0 && (
           <div className='osu-layout__col-container osu-layout__col-container--with-gutter js-audio--group'>
-            {beatmapsets.map((beatmapset) => (
+            {state.items.map((beatmapset) => (
               <div
                 key={beatmapset.id}
                 className='osu-layout__col osu-layout__col--sm-6'
@@ -90,7 +86,7 @@ export default class Beatmapsets extends React.Component<ExtraPageProps> {
 
             <div className='osu-layout__col'>
               <ShowMoreLink
-                {...pagination}
+                {...state.pagination}
                 callback={this.onShowMore}
                 data={section.urlType}
                 modifiers='profile-page'
