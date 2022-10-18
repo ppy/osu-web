@@ -873,6 +873,7 @@ class UsersController extends Controller
             'account_history',
             'page',
             'pending_beatmapset_count',
+            'rank_highest',
             'rank_history',
             'statistics',
             'statistics.country_rank',
