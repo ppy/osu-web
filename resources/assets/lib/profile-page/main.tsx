@@ -106,7 +106,7 @@ export default class Main extends React.Component<Props> {
 
     const scrollEventId = `scroll.${this.eventId}`;
     $(window).on(scrollEventId, this.setLastScroll);
-    $(window).on(scrollEventId, debounce(action(() => core.scrolling = false), 100));
+    $(window).on(scrollEventId, debounce(action(() => core.scrolling = false), 50));
     // pageScan does not need to run at 144 fps...
     $(window).on(scrollEventId, throttle(() => this.pageScan(), 20));
 
