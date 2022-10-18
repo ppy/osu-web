@@ -4,18 +4,17 @@
 import { createContext, RefObject } from 'react';
 
 export interface Props {
-  name?: string;
+  getOptions: (key: string) => ReturnValue;
+  name: string;
   offsetTop: number; // store the visible viewport offset somewhere (to account for sticky/fixed headers, etc)
-  onWillUpdateScroll?: (key: string) => ReturnValue;
-  ref?: RefObject<HTMLElement>;
+  ref: RefObject<HTMLElement>;
 }
 
-export interface ReturnValue {
-  float: boolean;
+interface ReturnValue {
   focus: boolean;
-  ref?: RefObject<HTMLElement>;
+  unbottom: boolean;
 }
 
-const LazyLoadContext = createContext<Props>({ offsetTop: 0 });
+const LazyLoadContext = createContext<Props | null>(null);
 
 export default LazyLoadContext;

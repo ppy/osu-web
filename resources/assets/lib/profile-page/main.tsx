@@ -106,7 +106,8 @@ export default class Main extends React.Component<Props> {
 
     const scrollEventId = `scroll.${this.eventId}`;
     $(window).on(scrollEventId, this.setLastScroll);
-    $(window).on(scrollEventId, debounce(action(() => core.scrolling = false), 50));
+    // debounce can't be too low otherwise it'll trigger on Firefox smooth scroll when it deellerates at the end
+    $(window).on(scrollEventId, debounce(action(() => core.scrolling = false), 100));
     // pageScan does not need to run at 144 fps...
     $(window).on(scrollEventId, throttle(() => this.pageScan(), 20));
 
@@ -205,7 +206,7 @@ export default class Main extends React.Component<Props> {
 
           <div ref={this.pages} className={classWithModifiers('user-profile-pages', { 'no-tabs': !this.displayExtraTabs })}>
             {this.displayedExtraPages.map((name) => (
-              <LazyLoadContext.Provider key={name} value={{ name, offsetTop: this.extraTabsBottom, onWillUpdateScroll: this.handleLazyLoadWillUpdateScroll, ref: this.extraPages[name] }}>
+              <LazyLoadContext.Provider key={name} value={{ getOptions: this.handleLazyLoadGetOptions, name, offsetTop: this.extraTabsBottom, ref: this.extraPages[name] }}>
                 <div
                   ref={this.extraPages[name]}
                   className={`user-profile-pages__page js-switchable-mode-page--scrollspy js-switchable-mode-page--page ${this.isSortablePage(name) ? 'js-sortable--page' : ''}`}
@@ -260,16 +261,15 @@ export default class Main extends React.Component<Props> {
   };
 
   @action
-  private readonly handleLazyLoadWillUpdateScroll = (name: ProfileExtraPage) => {
-    const float = last(this.displayedExtraPages) !== name;
+  private readonly handleLazyLoadGetOptions = (name: ProfileExtraPage) => {
+    const unbottom = last(this.displayedExtraPages) !== name;
     const focus = this.jumpTo === name;
-    const ref = this.extraPages[name];
 
     if (focus) {
       this.jumpTo = null;
     }
 
-    return { float, focus, ref };
+    return { focus, unbottom };
   };
 
   private isSortablePage(page: ProfileExtraPage) {
@@ -342,8 +342,7 @@ export default class Main extends React.Component<Props> {
       maxScrollY -= 1;
     }
 
-    const scrollTo = Math.min(maxScrollY, window.scrollY + target.getBoundingClientRect().top - this.extraTabsBottom);
-
+    const scrollTo = Math.floor(Math.min(maxScrollY, window.scrollY + target.getBoundingClientRect().top - this.extraTabsBottom));
     // smooth scroll when using navigation bar.
     this.jumpTo = page;
     if (smooth) {

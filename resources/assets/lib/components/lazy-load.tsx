@@ -8,7 +8,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { bottomPageDistance } from 'utils/html';
-import LazyLoadContext, { ReturnValue } from './lazy-load-context';
+import LazyLoadContext from './lazy-load-context';
 
 interface Props {
   // For allowing lazy loading to be completely skipped if data is alrealy available.
@@ -61,7 +61,11 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
   componentDidUpdate() {
     if (this.hasUpdated || !this.hasData) return;
 
-    const element = this.ref.current;
+    if (this.context == null) {
+      throw new Error('LazyLoadContext is required.');
+    }
+
+    const element = this.context.ref.current;
     if (element == null || this.beforeRenderedBounds == null) {
       return;
     }
@@ -71,35 +75,31 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
     // below the visible bounds, ignore.
     if (this.beforeRenderedBounds.top > window.innerHeight) return;
 
-    // for containers that need will trigger their own scroll;
+    // for containers that need extra magic to handle scrolling and offsets;
     // multiple scrolls in the same callback / update turns out to be not so great.
-    // TODO: accumulate updates after render and flush at once?
-    let options: ReturnValue = { float: false, focus: false };
-    if (this.context.name != null && this.context.onWillUpdateScroll != null) {
-      options = this.context.onWillUpdateScroll(this.context.name);
-    }
+    const options = this.context.getOptions(this.context.name);
 
     let maxScrollY = document.body.scrollHeight - window.innerHeight;
 
-    if (options.float) {
+    if (options.unbottom) {
       maxScrollY -= 1;
     }
 
     let scrollTo = window.scrollY;
+    const bounds = element.getBoundingClientRect();
 
-    if (options.focus && options.ref?.current != null) {
-      scrollTo = window.scrollY + options.ref.current.getBoundingClientRect().top - this.context.offsetTop;
+    if (options.focus) {
+      scrollTo = window.scrollY + bounds.top - this.context.offsetTop;
     } else if (this.beforeRenderedBounds.bottom < this.context.offsetTop // above the visible area
       || this.beforeRenderedBounds.bottom > this.context.offsetTop // bottom visible but top not
         && this.beforeRenderedBounds.top < this.context.offsetTop) {
       scrollTo = maxScrollY - this.distanceFromBottom;
-    } else if (this.context.ref?.current != null // new size goes off the top of visible area, happens at the bottom of page.
-      && this.beforeRenderedBounds.top > this.context.offsetTop
-      && this.context.ref.current.getBoundingClientRect().top < this.context.offsetTop) {
-      scrollTo = window.scrollY + this.context.ref.current.getBoundingClientRect().top - this.context.offsetTop;
+    } else if (this.beforeRenderedBounds.top > this.context.offsetTop // new size goes off the top of visible area, happens at the bottom of page.
+      && bounds.top < this.context.offsetTop) {
+      scrollTo = window.scrollY + bounds.top - this.context.offsetTop;
     }
 
-    window.scrollTo({ top: Math.min(maxScrollY, scrollTo) });
+    window.scrollTo({ top: Math.floor(Math.min(maxScrollY, scrollTo)) });
   }
 
   componentWillUnmount() {
@@ -115,9 +115,12 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
   }
 
   renderLoaded() {
+    if (this.context == null) {
+      throw new Error('LazyLoadContext is required.');
+    }
     // use the dimensions from before child nodes are rendered because Chrome performs a layout shift
     // after render and before componentDidUpdate(); Safari doesn't
-    this.beforeRenderedBounds = this.ref.current?.getBoundingClientRect();
+    this.beforeRenderedBounds = this.context.ref.current?.getBoundingClientRect();
     this.distanceFromBottom = bottomPageDistance();
 
     return this.props.children;
