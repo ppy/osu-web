@@ -28,34 +28,24 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
 
   @observable private hasData = this.props.hasData ?? false;
   private hasUpdated = false;
-  @observable private isVisible;
-  private readonly observerData?: IntersectionObserver;
-  private readonly observerVisibility?: IntersectionObserver;
+  private readonly observer?: IntersectionObserver;
   private readonly ref = React.createRef<HTMLDivElement>();
 
   @computed
   private get ready() {
-    return this.hasUpdated || this.isVisible && this.hasData && !core.scrolling;
+    return this.hasUpdated || this.hasData && !core.scrolling;
   }
 
   constructor(props: React.PropsWithChildren<Props>) {
     super(props);
 
-    this.isVisible = this.hasData;
-
     if (!this.hasData) {
-      this.observerData = new IntersectionObserver((entries) => {
+      this.observer = new IntersectionObserver((entries) => {
         if (entries.some((entry) => entry.isIntersecting)) {
           this.load();
         }
       }, {
         rootMargin: '400px 0px 400px 0px',
-      });
-
-      this.observerVisibility = new IntersectionObserver(action((entries) => {
-        this.isVisible = entries.some((entry) => entry.isIntersecting);
-      }), {
-        rootMargin: '-90px 0px 0px 0px',
       });
     }
 
@@ -65,8 +55,7 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
   componentDidMount() {
     if (this.ref.current == null) return;
 
-    this.observerData?.observe(this.ref.current);
-    this.observerVisibility?.observe(this.ref.current);
+    this.observer?.observe(this.ref.current);
   }
 
   componentDidUpdate() {
@@ -78,8 +67,6 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
     }
 
     this.hasUpdated = true;
-
-    this.observerVisibility?.disconnect();
 
     // below the visible bounds, ignore.
     if (this.beforeRenderedBounds.top > window.innerHeight) return;
@@ -116,8 +103,7 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
   }
 
   componentWillUnmount() {
-    this.observerData?.disconnect();
-    this.observerVisibility?.disconnect();
+    this.observer?.disconnect();
   }
 
   render() {
@@ -139,7 +125,7 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
 
   @action
   private load() {
-    this.observerData?.disconnect();
+    this.observer?.disconnect();
     this.props.onLoad().then(action(() => this.hasData = true));
   }
 }
