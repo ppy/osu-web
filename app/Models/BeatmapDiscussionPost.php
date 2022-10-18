@@ -261,6 +261,7 @@ class BeatmapDiscussionPost extends Model implements Traits\ReportableInterface
                 return true;
             });
         } catch (ModelNotSavedException $_e) {
+            $this->exists = false;
             $this->validationErrors()->merge($this->beatmapDiscussion->validationErrors());
 
             return false;
