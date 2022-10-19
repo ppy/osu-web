@@ -24,6 +24,7 @@ return [
 
     'status' => [
         'non_best' => 'Enkel je beste score op een beatmap levert pp op',
+        'non_passing' => '',
         'processing' => 'Deze score wordt nog berekend en zal zo dadelijk getoond worden',
     ],
 ];

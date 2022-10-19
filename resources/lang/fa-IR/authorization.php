@@ -75,7 +75,7 @@ return [
 
     'comment' => [
         'store' => [
-            'disabled' => '',
+            'disabled' => 'نظرات غیرفعال است',
         ],
         'update' => [
             'deleted' => "نمیتوان پست پاک شده را ویرایش کرد.",

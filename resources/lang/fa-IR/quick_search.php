@@ -5,17 +5,17 @@
 
 return [
     'mode' => [
-        'beatmapset' => '',
-        'forum_post' => '',
-        'other' => '',
-        'user' => '',
-        'wiki_page' => '',
+        'beatmapset' => 'بیت مپ',
+        'forum_post' => 'انجمن',
+        'other' => 'دیگر',
+        'user' => 'بازیکن',
+        'wiki_page' => 'ویکی',
     ],
 
     'result' => [
-        'empty' => '',
-        'empty_for' => '',
-        'more' => '',
-        'title' => '',
+        'empty' => 'بدون نتیجه',
+        'empty_for' => 'نتیجه ای برای :modes وجود نداشت',
+        'more' => 'نتایج جستجو :mode بیشتر',
+        'title' => 'نتایج جستجو :mode',
     ],
 ];

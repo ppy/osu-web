@@ -12,7 +12,7 @@ return [
     'codes' => [
         'http-401' => '',
         'http-403' => '',
-        'http-404' => '',
+        'http-404' => 'No s\'ha trobat.',
         'http-429' => '',
     ],
     'account' => [

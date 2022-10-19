@@ -56,6 +56,44 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
         );
     }
 
+    public function getAttribute($key)
+    {
+        return match ($key) {
+            'beatmap_id',
+            'count100',
+            'count300',
+            'count50',
+            'countgeki',
+            'countkatu',
+            'countmiss',
+            'country_acronym',
+            'maxcombo',
+            'pp',
+            'rank',
+            'score',
+            'score_id',
+            'user_id' => $this->getRawAttribute($key),
+
+            'hidden',
+            'perfect',
+            'replay' => (bool) $this->getRawAttribute($key),
+
+            'date' => $this->getTimeFast($key),
+
+            'date_json' => $this->getJsonTimeFast($key),
+
+            'best' => $this,
+            'data' => $this->getDataAttribute(),
+            'enabled_mods' => $this->getEnabledModsAttribute($this->getRawAttribute('enabled_mods')),
+            'pass' => true,
+
+            'beatmap',
+            'replayViewCount',
+            'reportedIn',
+            'user' => $this->getRelationValue($key),
+        };
+    }
+
     public function replayFile(): ?ReplayFile
     {
         if ($this->replay) {
@@ -184,11 +222,7 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
     public function macroAccurateRankCounts()
     {
         return function ($query) {
-            $newQuery = clone $query;
-            // FIXME: mysql 5.6 compat
-            $newQuery->getQuery()->orders = null;
-
-            $scores = $newQuery
+            $scores = (clone $query)
                 ->select(['user_id', 'beatmap_id', 'score', 'rank'])
                 ->get();
 
@@ -271,11 +305,6 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
         return $query;
     }
 
-    public function getPassAttribute(): bool
-    {
-        return true;
-    }
-
     public function isPersonalBest(): bool
     {
         return !static
@@ -301,7 +330,7 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
 
     public function trashed()
     {
-        return (bool) $this->getAttributes()['hidden'];
+        return $this->getAttribute('hidden');
     }
 
     public function user()
@@ -346,14 +375,9 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
             return parent::delete();
         });
 
-        optional($this->replayFile())->delete();
+        $this->replayFile()?->delete();
 
         return $result;
-    }
-
-    public function getBestAttribute()
-    {
-        return $this;
     }
 
     protected function newReportableExtraParams(): array

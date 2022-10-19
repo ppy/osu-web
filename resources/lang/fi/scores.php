@@ -24,6 +24,7 @@ return [
 
     'status' => [
         'non_best' => 'Vain parhaat henkilökohtaiset tulokset saa pp',
+        'non_passing' => '',
         'processing' => 'Pisteitä lasketaan ja ne näytetään pian',
     ],
 ];

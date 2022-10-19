@@ -31,6 +31,12 @@ return [
         'progress' => [
             '_' => ':used / :max stemmen',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => 'Moet alle beatmaps spelen in de opgegeven afspeellijsten voor stemmen',
+            ],
+        ],
     ],
     'entry' => [
         '_' => 'inzending',

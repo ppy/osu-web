@@ -47,7 +47,7 @@ class ScorePins
         $attributes->remove($prefix.MorphMap::getType(Solo\Score::class));
 
         foreach (Beatmap::MODES as $ruleset => $rulesetId) {
-            $type = MorphMap::getType(Score\Best\Model::getClassByString($ruleset));
+            $type = MorphMap::getType(Score\Best\Model::getClass($ruleset));
             $attributes->remove("{$prefix}{$type}");
         }
     }

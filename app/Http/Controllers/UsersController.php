@@ -26,9 +26,10 @@ use App\Models\UserNotFound;
 use App\Transformers\CurrentUserTransformer;
 use App\Transformers\ScoreTransformer;
 use App\Transformers\UserCompactTransformer;
+use App\Transformers\UserMonthlyPlaycountTransformer;
+use App\Transformers\UserReplaysWatchedCountTransformer;
 use App\Transformers\UserTransformer;
 use Auth;
-use Elasticsearch\Common\Exceptions\ElasticsearchException;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Request;
 use Sentry\State\Scope;
@@ -38,6 +39,27 @@ use Sentry\State\Scope;
  */
 class UsersController extends Controller
 {
+    // more limited list of UserProfileCustomization::SECTIONS for now.
+    const LAZY_EXTRA_PAGES = ['beatmaps', 'kudosu', 'recent_activity', 'top_ranks', 'historical'];
+
+    const PER_PAGE = [
+        'scoresBest' => 5,
+        'scoresFirsts' => 5,
+        'scoresPinned' => 5,
+        'scoresRecent' => 5,
+
+        'beatmapPlaycounts' => 5,
+        'favouriteBeatmapsets' => 6,
+        'graveyardBeatmapsets' => 2,
+        'guestBeatmapsets' => 6,
+        'lovedBeatmapsets' => 6,
+        'pendingBeatmapsets' => 6,
+        'rankedBeatmapsets' => 6,
+
+        'recentActivity' => 5,
+        'recentlyReceivedKudosu' => 5,
+    ];
+
     protected $maxResults = 100;
 
     public function __construct()
@@ -69,7 +91,7 @@ class UsersController extends Controller
 
             return $next($request);
         }, [
-            'only' => ['scores', 'beatmapsets', 'kudosu', 'recentActivity'],
+            'only' => ['extraPages', 'scores', 'beatmapsets', 'kudosu', 'recentActivity'],
         ]);
 
         return parent::__construct();
@@ -116,6 +138,58 @@ class UsersController extends Controller
         $user = User::lookup($username, 'username') ?? UserNotFound::instance();
 
         return json_item($user, 'UserCompact', ['cover', 'country']);
+    }
+
+    public function extraPages($_id, $page)
+    {
+        // TODO: counts basically duplicated from UserCompactTransformer
+        switch ($page) {
+            case 'beatmaps':
+                return [
+                    'favourite' => $this->getExtraSection('favouriteBeatmapsets', $this->user->profileBeatmapsetsFavourite()->count()),
+                    'graveyard' => $this->getExtraSection('graveyardBeatmapsets', $this->user->profileBeatmapsetCountByGroupedStatus('graveyard')),
+                    'guest' => $this->getExtraSection('guestBeatmapsets', $this->user->profileBeatmapsetsGuest()->count()),
+                    'loved' => $this->getExtraSection('lovedBeatmapsets', $this->user->profileBeatmapsetCountByGroupedStatus('loved')),
+                    'ranked' => $this->getExtraSection('rankedBeatmapsets', $this->user->profileBeatmapsetCountByGroupedStatus('ranked')),
+                    'pending' => $this->getExtraSection('pendingBeatmapsets', $this->user->profileBeatmapsetCountByGroupedStatus('pending')),
+                ];
+
+            case 'historical':
+                return [
+                    'beatmap_playcounts' => $this->getExtraSection('beatmapPlaycounts', $this->user->beatmapPlaycounts()->count()),
+                    'monthly_playcounts' => json_collection($this->user->monthlyPlaycounts, new UserMonthlyPlaycountTransformer()),
+                    'recent' => $this->getExtraSection(
+                        'scoresRecent',
+                        $this->user->scores($this->mode, true)->includeFails(false)->count()
+                    ),
+                    'replays_watched_counts' => json_collection($this->user->replaysWatchedCounts, new UserReplaysWatchedCountTransformer()),
+                ];
+
+            case 'kudosu':
+                return $this->getExtraSection('recentlyReceivedKudosu');
+
+            case 'recent_activity':
+                return $this->getExtraSection('recentActivity');
+
+            case 'top_ranks':
+                return [
+                    'best' => $this->getExtraSection(
+                        'scoresBest',
+                        count($this->user->beatmapBestScoreIds($this->mode))
+                    ),
+                    'firsts' => $this->getExtraSection(
+                        'scoresFirsts',
+                        $this->user->scoresFirst($this->mode, true)->visibleUsers()->count()
+                    ),
+                    'pinned' => $this->getExtraSection(
+                        'scoresPinned',
+                        $this->user->scorePins()->forRuleset($this->mode)->withVisibleScore()->count()
+                    ),
+                ];
+
+            default:
+                abort(404);
+        }
     }
 
     public function store()
@@ -238,7 +312,7 @@ class UsersController extends Controller
         // Override per page restriction in parsePaginationParams to allow infinite paging
         $perPage = $this->sanitizedLimitParam();
 
-        return $this->getExtra($this->user, $page, [], $perPage, $this->offset);
+        return $this->getExtra($page, [], $perPage, $this->offset);
     }
 
     /**
@@ -339,7 +413,7 @@ class UsersController extends Controller
      */
     public function kudosu($_userId)
     {
-        return $this->getExtra($this->user, 'recentlyReceivedKudosu', [], $this->perPage, $this->offset);
+        return $this->getExtra('recentlyReceivedKudosu', [], $this->perPage, $this->offset);
     }
 
     /**
@@ -371,7 +445,7 @@ class UsersController extends Controller
      */
     public function recentActivity($_userId)
     {
-        return $this->getExtra($this->user, 'recentActivity', [], $this->perPage, $this->offset);
+        return $this->getExtra('recentActivity', [], $this->perPage, $this->offset);
     }
 
     /**
@@ -431,11 +505,10 @@ class UsersController extends Controller
         }
 
         $options = [
-            'mode' => $this->mode,
             'includeFails' => get_bool(request('include_fails')) ?? false,
         ];
 
-        $json = $this->getExtra($this->user, $page, $options, $perPage, $this->offset);
+        $json = $this->getExtra($page, $options, $perPage, $this->offset);
 
         return response($json, is_null($json['error'] ?? null) ? 200 : 504);
     }
@@ -466,19 +539,17 @@ class UsersController extends Controller
             abort(404);
         }
 
-        $userIncludes = [
-            ...$this->showUserIncludes(),
-            ...array_map(
-                fn (string $ruleset) => "statistics_rulesets.{$ruleset}",
-                array_keys(Beatmap::MODES),
-            ),
-        ];
-
-        return json_item(
+        return $this->fillDeprecatedDuplicateFields(json_item(
             $user,
             (new UserTransformer())->setMode($currentMode),
-            $userIncludes
-        );
+            [
+                ...$this->showUserIncludes(),
+                ...array_map(
+                    fn (string $ruleset) => "statistics_rulesets.{$ruleset}",
+                    array_keys(Beatmap::MODES),
+                ),
+            ],
+        ));
     }
 
     /**
@@ -541,13 +612,11 @@ class UsersController extends Controller
             abort(404);
         }
 
-        $userIncludes = $this->showUserIncludes();
-
-        $userArray = json_item(
+        $userArray = $this->fillDeprecatedDuplicateFields(json_item(
             $user,
             (new UserTransformer())->setMode($currentMode),
-            $userIncludes
-        );
+            $this->showUserIncludes(),
+        ));
 
         if (is_api_request()) {
             return $userArray;
@@ -561,40 +630,21 @@ class UsersController extends Controller
                 'Achievement'
             );
 
-            $perPage = [
-                'scoresBest' => 5,
-                'scoresFirsts' => 5,
-                'scoresPinned' => 5,
-                'scoresRecent' => 5,
-
-                'beatmapPlaycounts' => 5,
-                'favouriteBeatmapsets' => 6,
-                'graveyardBeatmapsets' => 2,
-                'guestBeatmapsets' => 6,
-                'lovedBeatmapsets' => 6,
-                'pendingBeatmapsets' => 6,
-                'rankedBeatmapsets' => 6,
-
-                'recentActivity' => 5,
-                'recentlyReceivedKudosu' => 5,
-            ];
-
             $extras = [];
-
-            foreach ($perPage as $page => $n) {
-                // Fetch perPage + 1 so the frontend can tell if there are more items
-                // by comparing items count and perPage number.
-                $extras[$page] = $this->getExtra($user, $page, ['mode' => $currentMode], $n + 1);
-            }
 
             $initialData = [
                 'achievements' => $achievements,
                 'current_mode' => $currentMode,
-                'extras' => $extras,
-                'per_page' => $perPage,
                 'scores_notice' => config('osu.user.profile_scores_notice'),
                 'user' => $userArray,
             ];
+
+            // moved data
+            // TODO: lazy load
+            $this->parsePaginationParams();
+            foreach (static::LAZY_EXTRA_PAGES as $page) {
+                $initialData[$page] = $this->extraPages($id, $page);
+            }
 
             return ext_view('users.show', compact('initialData', 'user'));
         }
@@ -649,154 +699,192 @@ class UsersController extends Controller
         return clamp(get_int(request('limit')) ?? 5, 1, 100);
     }
 
-    private function getExtra($user, $page, $options, $perPage = 10, $offset = 0)
+    private function getExtra($page, array $options, int $perPage = 10, int $offset = 0)
     {
-        try {
-            // Grouped by $transformer and sorted alphabetically ($transformer and then $page).
-            switch ($page) {
-                // BeatmapPlaycount
-                case 'beatmapPlaycounts':
-                    $transformer = 'BeatmapPlaycount';
-                    $query = $user->beatmapPlaycounts()
-                        ->with('beatmap', 'beatmap.beatmapset')
-                        ->whereHas('beatmap.beatmapset')
-                        ->orderBy('playcount', 'desc')
-                        ->orderBy('beatmap_id', 'desc'); // for consistent sorting
-                    break;
+        // Grouped by $transformer and sorted alphabetically ($transformer and then $page).
+        switch ($page) {
+            // BeatmapPlaycount
+            case 'beatmapPlaycounts':
+                $transformer = 'BeatmapPlaycount';
+                $query = $this->user->beatmapPlaycounts()
+                    ->with('beatmap', 'beatmap.beatmapset')
+                    ->whereHas('beatmap.beatmapset')
+                    ->orderBy('playcount', 'desc')
+                    ->orderBy('beatmap_id', 'desc'); // for consistent sorting
+                break;
 
-                // Beatmapset
-                case 'favouriteBeatmapsets':
-                    $transformer = 'Beatmapset';
-                    $includes = ['beatmaps'];
-                    $query = $user->profileBeatmapsetsFavourite();
-                    break;
-                case 'graveyardBeatmapsets':
-                    $transformer = 'Beatmapset';
-                    $includes = ['beatmaps'];
-                    $query = $user->profileBeatmapsetsGraveyard()
-                        ->orderBy('last_update', 'desc');
-                    break;
-                case 'guestBeatmapsets':
-                    $transformer = 'Beatmapset';
-                    $includes = ['beatmaps'];
-                    $query = $user->profileBeatmapsetsGuest()
-                        ->orderBy('approved_date', 'desc');
-                    break;
-                case 'lovedBeatmapsets':
-                    $transformer = 'Beatmapset';
-                    $includes = ['beatmaps'];
-                    $query = $user->profileBeatmapsetsLoved()
-                        ->orderBy('approved_date', 'desc');
-                    break;
-                case 'rankedBeatmapsets':
-                    $transformer = 'Beatmapset';
-                    $includes = ['beatmaps'];
-                    $query = $user->profileBeatmapsetsRanked()
-                        ->orderBy('approved_date', 'desc');
-                    break;
-                case 'pendingBeatmapsets':
-                    $transformer = 'Beatmapset';
-                    $includes = ['beatmaps'];
-                    $query = $user->profileBeatmapsetsPending()
-                        ->orderBy('last_update', 'desc');
-                    break;
+            // Beatmapset
+            case 'favouriteBeatmapsets':
+                $transformer = 'Beatmapset';
+                $includes = ['beatmaps'];
+                $query = $this->user->profileBeatmapsetsFavourite();
+                break;
+            case 'graveyardBeatmapsets':
+                $transformer = 'Beatmapset';
+                $includes = ['beatmaps'];
+                $query = $this->user->profileBeatmapsetsGraveyard()
+                    ->orderBy('last_update', 'desc');
+                break;
+            case 'guestBeatmapsets':
+                $transformer = 'Beatmapset';
+                $includes = ['beatmaps'];
+                $query = $this->user->profileBeatmapsetsGuest()
+                    ->orderBy('approved_date', 'desc');
+                break;
+            case 'lovedBeatmapsets':
+                $transformer = 'Beatmapset';
+                $includes = ['beatmaps'];
+                $query = $this->user->profileBeatmapsetsLoved()
+                    ->orderBy('approved_date', 'desc');
+                break;
+            case 'rankedBeatmapsets':
+                $transformer = 'Beatmapset';
+                $includes = ['beatmaps'];
+                $query = $this->user->profileBeatmapsetsRanked()
+                    ->orderBy('approved_date', 'desc');
+                break;
+            case 'pendingBeatmapsets':
+                $transformer = 'Beatmapset';
+                $includes = ['beatmaps'];
+                $query = $this->user->profileBeatmapsetsPending()
+                    ->orderBy('last_update', 'desc');
+                break;
 
-                // Event
-                case 'recentActivity':
-                    $transformer = 'Event';
-                    $query = $user->events()->recent();
-                    break;
+            // Event
+            case 'recentActivity':
+                $transformer = 'Event';
+                $query = $this->user->events()->recent();
+                break;
 
-                // KudosuHistory
-                case 'recentlyReceivedKudosu':
-                    $transformer = 'KudosuHistory';
-                    $query = $user->receivedKudosu()
-                        ->with('post', 'post.topic', 'giver')
-                        ->with(['kudosuable' => function (MorphTo $morphTo) {
-                            $morphTo->morphWith([BeatmapDiscussion::class => ['beatmap', 'beatmapset']]);
-                        }])
-                        ->orderBy('exchange_id', 'desc');
-                    break;
+            // KudosuHistory
+            case 'recentlyReceivedKudosu':
+                $transformer = 'KudosuHistory';
+                $query = $this->user->receivedKudosu()
+                    ->with('post', 'post.topic', 'giver')
+                    ->with(['kudosuable' => function (MorphTo $morphTo) {
+                        $morphTo->morphWith([BeatmapDiscussion::class => ['beatmap', 'beatmapset']]);
+                    }])
+                    ->orderBy('exchange_id', 'desc');
+                break;
 
-                // Score
-                case 'scoresBest':
-                    $transformer = new ScoreTransformer();
-                    $includes = [...ScoreTransformer::USER_PROFILE_INCLUDES, 'weight'];
-                    $collection = $user->beatmapBestScores($options['mode'], $perPage, $offset, ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
-                    break;
-                case 'scoresFirsts':
-                    $transformer = new ScoreTransformer();
-                    $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
-                    $query = $user->scoresFirst($options['mode'], true)
-                        ->visibleUsers()
-                        ->reorderBy('score_id', 'desc')
-                        ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
-                    break;
-                case 'scoresPinned':
-                    $transformer = new ScoreTransformer();
-                    $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
-                    $query = $user
-                        ->scorePins()
-                        ->forRuleset($options['mode'])
-                        ->withVisibleScore()
-                        ->with(array_map(fn ($include) => "score.{$include}", ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD))
-                        ->reorderBy('display_order', 'asc');
-                    $collectionFn = fn ($pins) => $pins->map->score;
-                    break;
-                case 'scoresRecent':
-                    $transformer = new ScoreTransformer();
-                    $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
-                    $query = $user->scores($options['mode'], true)
-                        ->includeFails($options['includeFails'] ?? false)
-                        ->with([...ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD, 'best']);
-                    break;
-            }
-
-            if (!isset($collection)) {
-                $collection = $query->limit($perPage)->offset($offset)->get();
-
-                if (isset($collectionFn)) {
-                    $collection = $collectionFn($collection);
-                }
-            }
-
-            return json_collection($collection, $transformer, $includes ?? []);
-        } catch (ElasticsearchException $e) {
-            return ['error' => search_error_message($e)];
+            // Score
+            case 'scoresBest':
+                $transformer = new ScoreTransformer();
+                $includes = [...ScoreTransformer::USER_PROFILE_INCLUDES, 'weight'];
+                $collection = $this->user->beatmapBestScores($this->mode, $perPage, $offset, ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
+                $userRelationColumn = 'user';
+                break;
+            case 'scoresFirsts':
+                $transformer = new ScoreTransformer();
+                $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
+                $query = $this->user->scoresFirst($this->mode, true)
+                    ->visibleUsers()
+                    ->reorderBy('score_id', 'desc')
+                    ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
+                $userRelationColumn = 'user';
+                break;
+            case 'scoresPinned':
+                $transformer = new ScoreTransformer();
+                $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
+                $query = $this->user
+                    ->scorePins()
+                    ->forRuleset($this->mode)
+                    ->withVisibleScore()
+                    ->with(array_map(fn ($include) => "score.{$include}", ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD))
+                    ->reorderBy('display_order', 'asc');
+                $collectionFn = fn ($pins) => $pins->map->score;
+                $userRelationColumn = 'user';
+                break;
+            case 'scoresRecent':
+                $transformer = new ScoreTransformer();
+                $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
+                $query = $this->user->scores($this->mode, true)
+                    ->includeFails($options['includeFails'] ?? false)
+                    ->with([...ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD, 'best']);
+                $userRelationColumn = 'user';
+                break;
         }
+
+        if (!isset($collection)) {
+            $collection = $query->limit($perPage)->offset($offset)->get();
+
+            if (isset($collectionFn)) {
+                $collection = $collectionFn($collection);
+            }
+        }
+
+        if (isset($userRelationColumn)) {
+            foreach ($collection as $item) {
+                $item->setRelation($userRelationColumn, $this->user);
+            }
+        }
+
+        return json_collection($collection, $transformer, $includes ?? []);
+    }
+
+    private function getExtraSection(string $section, ?int $count = null)
+    {
+        // TODO: replace with cursor.
+        $items = $this->getExtra($section, [], static::PER_PAGE[$section] + 1);
+        $hasMore = count($items) > static::PER_PAGE[$section];
+        if ($hasMore) {
+            array_pop($items);
+        }
+
+        $response = [
+            'items' => $items,
+            'pagination' => [
+                'hasMore' => $hasMore,
+            ],
+        ];
+
+        if ($count !== null) {
+            $response['count'] = $count;
+        }
+
+        return $response;
     }
 
     private function showUserIncludes()
     {
-        $userIncludes = [
-            ...UserTransformer::PROFILE_HEADER_INCLUDES,
-            'account_history',
+        static $apiIncludes = [
+            // historical
             'beatmap_playcounts_count',
+            'monthly_playcounts',
+            'replays_watched_counts',
+            'scores_recent_count',
+
+            // beatmapsets
             'favourite_beatmapset_count',
             'graveyard_beatmapset_count',
             'guest_beatmapset_count',
             'loved_beatmapset_count',
-            'monthly_playcounts',
-            'page',
             'pending_beatmapset_count',
-            'rankHistory',
-            'rank_history',
             'ranked_beatmapset_count',
-            'replays_watched_counts',
+
+            // top scores
             'scores_best_count',
             'scores_first_count',
             'scores_pinned_count',
-            'scores_recent_count',
+        ];
+
+        $userIncludes = [
+            ...UserTransformer::PROFILE_HEADER_INCLUDES,
+            'account_history',
+            'page',
+            'pending_beatmapset_count',
+            'rank_history',
             'statistics',
             'statistics.country_rank',
             'statistics.rank',
             'statistics.variants',
             'user_achievements',
-
-            // TODO: deprecated
-            'ranked_and_approved_beatmapset_count',
-            'unranked_beatmapset_count',
         ];
+
+        if (is_api_request()) {
+            // TODO: deprecate
+            $userIncludes = array_merge($userIncludes, $apiIncludes);
+        }
 
         if (priv_check('UserSilenceShowExtendedInfo')->can() && !is_api_request()) {
             $userIncludes[] = 'account_history.actor';
@@ -804,5 +892,22 @@ class UsersController extends Controller
         }
 
         return $userIncludes;
+    }
+
+    private function fillDeprecatedDuplicateFields(array $userJson): array
+    {
+        static $map = [
+            'rankHistory' => 'rank_history',
+            'ranked_and_approved_beatmapset_count' => 'ranked_beatmapset_count',
+            'unranked_beatmapset_count' => 'pending_beatmapset_count',
+        ];
+
+        foreach ($map as $legacyKey => $key) {
+            if (array_key_exists($key, $userJson)) {
+                $userJson[$legacyKey] = $userJson[$key];
+            }
+        }
+
+        return $userJson;
     }
 }

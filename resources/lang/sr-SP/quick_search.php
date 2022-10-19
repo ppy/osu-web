@@ -5,17 +5,17 @@
 
 return [
     'mode' => [
-        'beatmapset' => '',
-        'forum_post' => '',
-        'other' => '',
-        'user' => '',
-        'wiki_page' => '',
+        'beatmapset' => 'Мапа',
+        'forum_post' => 'Форум',
+        'other' => 'Остало',
+        'user' => 'Играч',
+        'wiki_page' => 'Вики',
     ],
 
     'result' => [
-        'empty' => '',
-        'empty_for' => '',
-        'more' => '',
-        'title' => '',
+        'empty' => 'Нема резултата',
+        'empty_for' => 'Нема резултата за :modes',
+        'more' => 'Више :mode резултата претраге',
+        'title' => ':mode Резултати Претраге',
     ],
 ];

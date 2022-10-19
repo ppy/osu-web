@@ -12,6 +12,7 @@ import core from 'osu-core-singleton'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
 import * as BeatmapHelper from 'utils/beatmap-helper'
+import { stateFromDiscussion } from 'utils/beatmapset-discussion-helper'
 import { nextVal } from 'utils/seq'
 import { currentUrl } from 'utils/turbolinks'
 import { Discussions } from './discussions'
@@ -364,7 +365,7 @@ export class Main extends React.PureComponent
 
     return if !discussion?
 
-    newState = BeatmapDiscussionHelper.stateFromDiscussion(discussion)
+    newState = stateFromDiscussion(discussion)
 
     newState.filter =
       if @currentDiscussions().byFilter[@state.currentFilter][newState.mode][id]?

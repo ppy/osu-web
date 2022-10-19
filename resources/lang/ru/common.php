@@ -66,14 +66,14 @@ return [
     ],
 
     'count' => [
-        'badges' => ':count значок|:count значка|:count значков',
-        'days' => ':count день|:count дня|:count дней',
+        'badges' => ':count_delimited значок|:count_delimited значка|:count_delimited значков',
+        'days' => ':count_delimited день|:count_delimited дня|:count_delimited дней',
         'hour_short_unit' => 'ч',
-        'hours' => ':count час|:count часа|:count часов',
-        'item' => ':count единица|:count единицы|:count единиц',
+        'hours' => ':count_delimited час|:count_delimited часа|:count_delimited часов',
+        'item' => ':count_delimited единица|:count_delimited единицы|:count_delimited единиц',
         'minute_short_unit' => 'мин',
-        'minutes' => ':count минута|:count минуты|:count минут',
-        'months' => ':count месяц|:count месяца|:count месяцев',
+        'minutes' => ':count_delimited минута|:count_delimited минуты|:count_delimited минут',
+        'months' => ':count_delimited месяц|:count_delimited месяца|:count_delimited месяцев',
         'notifications' => ':count_delimited уведомление|:count_delimited уведомления|:count_delimited уведомлений',
         'plus_others' => '+ :count_delimited другой!|+ :count_delimited других!',
         'post' => ':count_delimited пост|:count_delimited поста|:count_delimited постов',
@@ -81,7 +81,7 @@ return [
         'star_priority' => ':count_delimited приоритет|:count_delimited приоритета|:count_delimited приоритетов',
         'update' => ':count_delimited обновление|:count_delimited обновления',
         'view' => ':count_delimited просмотр|:count_delimited просмотра|:count_delimited просмотров',
-        'years' => ':count год|:count года|:count лет',
+        'years' => ':count_delimited год|:count_delimited года|:count_delimited лет',
     ],
 
     'countdown' => [
@@ -146,8 +146,8 @@ return [
     ],
 
     'time' => [
-        'days_ago' => ':count день назад|:count дня назад|:count дней назад',
-        'hours_ago' => ':count час назад|:count часа назад|:count часов назад',
+        'days_ago' => ':count_delimited день назад|:count_delimited дня назад|:count_delimited дней назад',
+        'hours_ago' => ':count_delimited час назад|:count_delimited часа назад|:count_delimited часов назад',
         'now' => 'сейчас',
         'remaining' => 'Времени осталось',
     ],

@@ -299,11 +299,11 @@ export class Nominator extends React.PureComponent<Props, State> {
             type='checkbox'
             value={mode}
           />
-          <span className='osu-switch-v2__content'/>
+          <span className='osu-switch-v2__content' />
           <div
             className={classWithModifiers(`${this.bn}__label`, { disabled })}
           >
-            <i className={`fal fa-extra-mode-${mode}`}/> {osu.trans(`beatmaps.mode.${mode}`)}
+            <i className={`fal fa-extra-mode-${mode}`} /> {osu.trans(`beatmaps.mode.${mode}`)}
           </div>
         </label>
       );

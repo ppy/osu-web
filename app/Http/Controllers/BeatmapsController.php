@@ -146,6 +146,7 @@ class BeatmapsController extends Controller
                     'beatmapset.userRatings' => fn ($q) => $q->select('beatmapset_id', 'rating'),
                     'failtimes',
                 ])->withMaxCombo()
+                ->orderBy('beatmap_id')
                 ->get();
         }
 
@@ -493,7 +494,7 @@ class BeatmapsController extends Controller
     {
         $beatmap = Beatmap::scoreable()->findOrFail($beatmapId);
         $mode = presence(get_string(request('mode'))) ?? $beatmap->mode;
-        $scores = BestModel::getClassByString($mode)
+        $scores = BestModel::getClass($mode)
             ::default()
             ->where([
                 'beatmap_id' => $beatmap->getKey(),
@@ -507,7 +508,7 @@ class BeatmapsController extends Controller
 
     private static function baseScoreQuery(Beatmap $beatmap, $mode, $mods, $type = null)
     {
-        $query = BestModel::getClassByString($mode)
+        $query = BestModel::getClass($mode)
             ::default()
             ->where('beatmap_id', $beatmap->getKey())
             ->with(['beatmap', 'user.country', 'user.userProfileCustomization'])

@@ -372,7 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Bannlys',
                         'silence' => 'Tystad',
-                        'tournament_ban' => '',
+                        'tournament_ban' => 'Turneringsförbud',
                         'note' => 'Anteckning',
                     ],
                 ],

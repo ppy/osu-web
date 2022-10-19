@@ -240,6 +240,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username vytvořil nové beatmapy',
+                'user_beatmapset_revive' => ':username obnovil beatmapy',
             ],
         ],
     ],

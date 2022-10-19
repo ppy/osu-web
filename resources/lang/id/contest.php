@@ -31,6 +31,12 @@ return [
         'progress' => [
             '_' => ':used / :max suara telah dipergunakan',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => 'Anda harus terlebih dahulu memainkan seluruh beatmap yang terdapat pada playlist untuk dapat memberikan suara',
+            ],
+        ],
     ],
     'entry' => [
         '_' => 'entri',

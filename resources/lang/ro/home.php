@@ -118,7 +118,7 @@ return [
             'stats' => [
                 'friends' => 'Prieteni Online',
                 'games' => 'Jocuri',
-                'online' => 'Utilizatori online',
+                'online' => 'Utilizatori Online',
             ],
         ],
         'beatmaps' => [

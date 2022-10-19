@@ -51,7 +51,7 @@ return [
 
         'users' => [
             'modding' => '摸图',
-            'playlists' => '歌单',
+            'playlists' => '课题',
             'realtime' => '多人游戏',
             'show' => '信息',
         ],
@@ -185,7 +185,7 @@ return [
 
         'register' => [
             'download' => '下载',
-            'info' => '立刻下载 osu! 并且注册帐号吧！',
+            'info' => '立刻下载 osu! 并且注册账号吧！',
             'title' => "没有账号？",
         ],
     ],
