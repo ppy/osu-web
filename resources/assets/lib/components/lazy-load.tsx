@@ -26,6 +26,7 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
   private beforeRenderedBounds?: DOMRect;
   private distanceFromBottom = 0;
 
+  @observable private error = false;
   private hasUpdated = false;
   @observable private loaded;
   private readonly observer?: IntersectionObserver;
@@ -117,12 +118,24 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
   render() {
     return (
       <div ref={this.ref} className={classWithModifiers('lazy-load', { loading: !this.ready })}>
-        {this.ready ? this.renderLoaded() : <Spinner />}
+        {this.ready ? this.renderLoaded() : this.renderNotLoaded()}
       </div>
     );
   }
 
-  renderLoaded() {
+  @action
+  private readonly load = () => {
+    this.error = false;
+    this.observer?.disconnect();
+    this.props.onLoad()
+      .then(action(() => {
+        this.loaded = true;
+        this.error = false;
+      }))
+      .catch(action(() => this.error = true));
+  };
+
+  private renderLoaded() {
     if (!this.skipLazyLoad && this.context == null) {
       throw new Error('LazyLoadContext is missing.');
     }
@@ -134,9 +147,17 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
     return this.props.children;
   }
 
-  @action
-  private load() {
-    this.observer?.disconnect();
-    this.props.onLoad().then(action(() => this.loaded = true));
+  private renderNotLoaded() {
+    return this.error ? (
+      <div className='lazy-load__error'>
+        <p>{osu.trans('errors.load_failed')}</p>
+        <div className='lazy-load__button'>
+          <button className='btn-osu-big btn-osu-big--rounded-thin' onClick={this.load} type='button'>
+            {osu.trans('common.buttons.retry')}
+          </button>
+        </div>
+
+      </div>
+    ) : <Spinner />;
   }
 }
