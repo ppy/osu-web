@@ -4,13 +4,13 @@
 import { createContext, RefObject } from 'react';
 
 export interface Props {
-  getOptions: (key: string) => ReturnValue;
+  getOptions: (key: string) => Options;
   getRef: (key: string) => RefObject<HTMLElement> | null;
   offsetTop: number; // store the visible viewport offset somewhere (to account for sticky/fixed headers, etc)
   scrolling: boolean;
 }
 
-interface ReturnValue {
+interface Options {
   focus: boolean;
   unbottom: boolean;
 }
