@@ -93,7 +93,7 @@ export default class Historical extends React.Component<ExtraPageProps> {
       <div className='page-extra'>
         <ExtraHeader name={this.props.name} withEdit={this.props.controller.withEdit} />
 
-        <LazyLoad hasData={this.hasData} onLoad={this.handleOnLoad}>
+        <LazyLoad hasData={this.hasData} name={this.props.name} onLoad={this.handleOnLoad}>
           {this.renderHistorical()}
         </LazyLoad>
       </div>

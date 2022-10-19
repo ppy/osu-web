@@ -4,7 +4,6 @@
 import { Spinner } from 'components/spinner';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
-import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { bottomPageDistance } from 'utils/html';
@@ -14,6 +13,7 @@ interface Props {
   // For allowing lazy loading to be completely skipped if data is alrealy available.
   // Immediately resolving a Promise in onLoad still renders a spinner.
   hasData?: boolean;
+  name: string;
   onLoad: () => JQuery.jqXHR<unknown>;
 }
 
@@ -31,9 +31,13 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
   private readonly observer?: IntersectionObserver;
   private readonly ref = React.createRef<HTMLDivElement>();
 
+  private get containerRefElement() {
+    return this.context?.getRef(this.props.name)?.current;
+  }
+
   @computed
   private get ready() {
-    return this.hasUpdated || this.hasData && !core.scrolling;
+    return this.hasUpdated || this.hasData && !(this.context?.scrolling ?? false);
   }
 
   constructor(props: React.PropsWithChildren<Props>) {
@@ -65,7 +69,7 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
       throw new Error('LazyLoadContext is required.');
     }
 
-    const element = this.context.ref.current;
+    const element = this.containerRefElement;
     if (element == null || this.beforeRenderedBounds == null) {
       return;
     }
@@ -77,7 +81,7 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
 
     // for containers that need extra magic to handle scrolling and offsets;
     // multiple scrolls in the same callback / update turns out to be not so great.
-    const options = this.context.getOptions(this.context.name);
+    const options = this.context.getOptions(this.props.name);
 
     let maxScrollY = document.body.scrollHeight - window.innerHeight;
 
@@ -120,7 +124,7 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
     }
     // use the dimensions from before child nodes are rendered because Chrome performs a layout shift
     // after render and before componentDidUpdate(); Safari doesn't
-    this.beforeRenderedBounds = this.context.ref.current?.getBoundingClientRect();
+    this.beforeRenderedBounds = this.containerRefElement?.getBoundingClientRect();
     this.distanceFromBottom = bottomPageDistance();
 
     return this.props.children;

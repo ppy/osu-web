@@ -88,7 +88,7 @@ export default class ProfilePageKudosu extends React.Component<Props> {
       <div className='page-extra'>
         <ExtraHeader name={this.props.name} withEdit={this.props.withEdit} />
 
-        <LazyLoad hasData={this.hasData} onLoad={this.handleOnLoad}>
+        <LazyLoad hasData={this.hasData} name={this.props.name} onLoad={this.handleOnLoad}>
           <div className='kudosu-box'>
             <ValueDisplay
               description={(

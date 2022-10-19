@@ -32,7 +32,7 @@ export default class TopScores extends React.Component<ExtraPageProps> {
           </div>
         )}
 
-        <LazyLoad hasData={this.hasData} onLoad={this.handleLazyLoad}>
+        <LazyLoad hasData={this.hasData} name={this.props.name} onLoad={this.handleLazyLoad}>
           {topScoreSections.map((section) => (
             <PlayDetailList key={section} controller={this.props.controller} section={section} />
           ))}

@@ -42,7 +42,7 @@ export default class RecentActivity extends React.Component<ExtraPageProps> {
     return (
       <div className='page-extra'>
         <ExtraHeader name={this.props.name} withEdit={this.props.controller.withEdit} />
-        <LazyLoad hasData={this.hasData} onLoad={this.handleOnLoad}>
+        <LazyLoad hasData={this.hasData} name={this.props.name} onLoad={this.handleOnLoad}>
           {this.count > 0 ? this.renderEntries() : this.renderEmpty()}
         </LazyLoad>
       </div>

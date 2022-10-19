@@ -36,6 +36,7 @@ interface Props {
 
 @observer
 export default class Main extends React.Component<Props> {
+  @observable private readonly contextValue;
   private readonly controller: Controller;
   private readonly disposers = new Set<(() => void) | undefined>();
   private draggingTab = false;
@@ -93,6 +94,13 @@ export default class Main extends React.Component<Props> {
     this.controller = new Controller(this.props.container);
 
     makeObservable(this);
+
+    this.contextValue = {
+      getOptions: this.handleLazyLoadGetOptions,
+      getRef: this.handleLazyLoadGetRef,
+      offsetTop: this.extraTabsBottom,
+      scrolling: false,
+    };
   }
 
   componentDidMount() {
@@ -100,6 +108,7 @@ export default class Main extends React.Component<Props> {
       if (this.pagesOffset != null) {
         const bounds = this.pagesOffset.getBoundingClientRect();
         this.extraTabsBottom = 50 + bounds.height; // TODO: can't use bottom because the position moves
+        this.contextValue.offsetTop = this.extraTabsBottom;
         this.pages.current?.style.setProperty('--scroll-margin-top', `${bounds.height}px`);
       }
     }));
@@ -107,7 +116,7 @@ export default class Main extends React.Component<Props> {
     const scrollEventId = `scroll.${this.eventId}`;
     $(window).on(scrollEventId, this.setLastScroll);
     // debounce can't be too low otherwise it'll trigger on Firefox smooth scroll when it deellerates at the end
-    $(window).on(scrollEventId, debounce(action(() => core.scrolling = false), 100));
+    $(window).on(scrollEventId, debounce(action(() => this.contextValue.scrolling = false), 100));
     // pageScan does not need to run at 144 fps...
     $(window).on(scrollEventId, throttle(() => this.pageScan(), 20));
 
@@ -204,19 +213,21 @@ export default class Main extends React.Component<Props> {
             }
           </div>
 
-          <div ref={this.pages} className={classWithModifiers('user-profile-pages', { 'no-tabs': !this.displayExtraTabs })}>
-            {this.displayedExtraPages.map((name) => (
-              <LazyLoadContext.Provider key={name} value={{ getOptions: this.handleLazyLoadGetOptions, name, offsetTop: this.extraTabsBottom, ref: this.extraPages[name] }}>
+          <LazyLoadContext.Provider value={this.contextValue}>
+            <div ref={this.pages} className={classWithModifiers('user-profile-pages', { 'no-tabs': !this.displayExtraTabs })}>
+              {this.displayedExtraPages.map((name) => (
                 <div
+                  key={name}
                   ref={this.extraPages[name]}
                   className={`user-profile-pages__page js-switchable-mode-page--scrollspy js-switchable-mode-page--page ${this.isSortablePage(name) ? 'js-sortable--page' : ''}`}
                   data-page-id={name}
                 >
                   {this.extraPage(name)}
                 </div>
-              </LazyLoadContext.Provider>
-            ))}
-          </div>
+
+              ))}
+            </div>
+          </LazyLoadContext.Provider>
         </div>
       </UserProfileContainer>
     );
@@ -224,6 +235,7 @@ export default class Main extends React.Component<Props> {
 
   private readonly extraPage = (name: ProfileExtraPage) => {
     const baseProps = {
+      containerRef: this.extraPages[name],
       controller: this.controller,
       name,
     };
@@ -271,6 +283,9 @@ export default class Main extends React.Component<Props> {
 
     return { focus, unbottom };
   };
+
+  // passing extraPages with the context just causes all the refs' .current to be null
+  private readonly handleLazyLoadGetRef = (name: ProfileExtraPage) => this.extraPages[name];
 
   private isSortablePage(page: ProfileExtraPage) {
     return this.controller.state.user.profile_order.includes(page);
@@ -354,7 +369,7 @@ export default class Main extends React.Component<Props> {
 
   @action
   private readonly setLastScroll = () => {
-    core.scrolling = true;
+    this.contextValue.scrolling = true;
     // unset if we're clrealy scrolling away from the bottom.
     // layout shifts from lazy sections can cause the page to grow taller or scroll downwards, but not up.
     if (window.scrollY < this.lastScroll) {
