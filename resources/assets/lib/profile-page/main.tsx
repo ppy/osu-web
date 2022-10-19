@@ -154,17 +154,20 @@ export default class Main extends React.Component<Props> {
 
     pageChange();
 
-    // force position to reset on refresh to avoid browser setting scroll position at the bottom on reload.
+    // preserve scroll if existing saved state but force position to reset
+    // on refresh to avoid browser setting scroll position at the bottom on reload.
     // ...except Chrome sets it anyway sometimes.
-    const page = (this.controller.hasSavedState
+    // FIXME: firefox seems to restore scroll position slightly further down that it should?
+    const page = this.controller.hasSavedState
       ? null
-      : validPage(currentUrl().hash.slice(1))
-    ) ?? 'main';
+      : validPage(currentUrl().hash.slice(1)) ?? 'main';
 
     this.pageJumpingTo = page;
 
     this.disposers.add(core.reactTurbolinks.runAfterPageLoad(() => {
-      this.pageScrollIntoView(page);
+      if (page != null) {
+        this.pageScrollIntoView(page);
+      }
     }));
   }
 
