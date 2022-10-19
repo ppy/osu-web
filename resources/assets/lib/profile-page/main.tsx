@@ -5,7 +5,7 @@ import LazyLoadContext from 'components/lazy-load-context';
 import UserProfileContainer from 'components/user-profile-container';
 import { ProfileExtraPage } from 'interfaces/user-extended-json';
 import { pull, last, first, throttle, debounce } from 'lodash';
-import { action, computed, makeObservable, observable } from 'mobx';
+import { action, computed, makeObservable, observable, reaction } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -106,12 +106,11 @@ export default class Main extends React.Component<Props> {
 
   componentDidMount() {
     core.reactTurbolinks.runAfterPageLoad(action(() => {
-      if (this.pagesOffset != null) {
-        const bounds = this.pagesOffset.getBoundingClientRect();
-        // Just assume sticking position.
-        this.contextValue.offsetTop = core.stickyHeader.headerHeight + bounds.height;
-        this.pages.current?.style.setProperty('--scroll-margin-top', `${bounds.height}px`);
-      }
+      reaction(() => core.windowSize.isDesktop, (value) => {
+        this.contextValue.offsetTop = value
+          ? core.stickyHeader.headerHeight + (this.pagesOffset?.getBoundingClientRect().height ?? 0)
+          : core.stickyHeader.headerHeight;
+      }, { fireImmediately: true });
     }));
 
     const scrollEventId = `scroll.${this.eventId}`;
