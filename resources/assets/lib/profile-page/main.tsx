@@ -224,7 +224,7 @@ export default class Main extends React.Component<Props> {
                 <div
                   key={name}
                   ref={this.extraPages[name]}
-                  className={`user-profile-pages__page js-switchable-mode-page--scrollspy js-switchable-mode-page--page ${this.isSortablePage(name) ? 'js-sortable--page' : ''}`}
+                  className={`js-switchable-mode-page--scrollspy js-switchable-mode-page--page ${this.isSortablePage(name) ? 'js-sortable--page' : ''}`}
                   data-page-id={name}
                 >
                   {this.extraPage(name)}
