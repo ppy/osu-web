@@ -29,7 +29,9 @@ class CreateOsuUserPerformanceRankHighest extends Migration
             $table->primary(['user_id', 'mode']);
         });
         DB::statement('
-            ALTER TABLE `osu_user_performance_rank_highest` PARTITION BY RANGE (`mode`) (
+            ALTER TABLE `osu_user_performance_rank_highest`
+            ROW_FORMAT=DYNAMIC
+            PARTITION BY RANGE (`mode`) (
                 PARTITION p0 VALUES LESS THAN (1),
                 PARTITION p1 VALUES LESS THAN (2),
                 PARTITION p2 VALUES LESS THAN (3),
