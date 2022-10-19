@@ -270,7 +270,7 @@ class CountrySeeder extends Seeder
             ['acronym' => 'TM', 'name' => 'Turkmenistan', 'display' => 0],
             ['acronym' => 'TN', 'name' => 'Tunisia', 'display' => 1],
             ['acronym' => 'TO', 'name' => 'Tonga', 'display' => 0],
-            ['acronym' => 'TR', 'name' => 'Türkiye', 'display' => 1],
+            ['acronym' => 'TR', 'name' => 'Turkiye', 'display' => 1],
             ['acronym' => 'TT', 'name' => 'Trinidad and Tobago', 'display' => 1],
             ['acronym' => 'TV', 'name' => 'Tuvalu', 'display' => 0],
             ['acronym' => 'TW', 'name' => 'Taiwan', 'display' => 1],
