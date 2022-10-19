@@ -38,6 +38,8 @@ interface Props {
 export default class Main extends React.Component<Props> {
   @observable private readonly contextValue;
   private readonly controller: Controller;
+  // debounce can't be too low otherwise it'll trigger on Firefox smooth scroll when it deellerates at the end
+  private readonly debouncedHandleScrollingStop = debounce(() => this.handleScrollingStop(), 100);
   private readonly disposers = new Set<(() => void) | undefined>();
   private draggingTab = false;
   private readonly eventId = `users-show-${nextVal()}`;
@@ -51,9 +53,8 @@ export default class Main extends React.Component<Props> {
     recent_activity: React.createRef(),
     top_ranks: React.createRef(),
   };
-  @observable private extraTabsBottom = 0;
-  private jumpTo: Page | null = null;
   private lastScroll = 0;
+  private pageJumpingTo: Page | null = null;
   private readonly pages = React.createRef<HTMLDivElement>();
   private readonly tabs = React.createRef<HTMLDivElement>();
   private readonly timeouts: Partial<Record<'draggingTab' | 'initialPageJump', number>> = {};
@@ -98,7 +99,7 @@ export default class Main extends React.Component<Props> {
     this.contextValue = {
       getOptions: this.handleLazyLoadGetOptions,
       getRef: this.handleLazyLoadGetRef,
-      offsetTop: this.extraTabsBottom,
+      offsetTop: 0,
       scrolling: false,
     };
   }
@@ -107,16 +108,15 @@ export default class Main extends React.Component<Props> {
     core.reactTurbolinks.runAfterPageLoad(action(() => {
       if (this.pagesOffset != null) {
         const bounds = this.pagesOffset.getBoundingClientRect();
-        this.extraTabsBottom = 50 + bounds.height; // TODO: can't use bottom because the position moves
-        this.contextValue.offsetTop = this.extraTabsBottom;
+        // Just assume sticking position.
+        this.contextValue.offsetTop = core.stickyHeader.headerHeight + bounds.height;
         this.pages.current?.style.setProperty('--scroll-margin-top', `${bounds.height}px`);
       }
     }));
 
     const scrollEventId = `scroll.${this.eventId}`;
-    $(window).on(scrollEventId, this.setLastScroll);
-    // debounce can't be too low otherwise it'll trigger on Firefox smooth scroll when it deellerates at the end
-    $(window).on(scrollEventId, debounce(action(() => this.contextValue.scrolling = false), 100));
+    $(window).on(scrollEventId, this.handleScrolling);
+    $(window).on(scrollEventId, this.debouncedHandleScrollingStop);
     // pageScan does not need to run at 144 fps...
     $(window).on(scrollEventId, throttle(() => this.pageScan(), 20));
 
@@ -160,7 +160,8 @@ export default class Main extends React.Component<Props> {
       ? null
       : validPage(currentUrl().hash.slice(1))
     ) ?? 'main';
-    this.jumpTo = page;
+
+    this.pageJumpingTo = page;
 
     this.disposers.add(core.reactTurbolinks.runAfterPageLoad(() => {
       this.pageScrollIntoView(page);
@@ -168,6 +169,7 @@ export default class Main extends React.Component<Props> {
   }
 
   componentWillUnmount() {
+    this.debouncedHandleScrollingStop.cancel();
     $(window).off(`.${this.eventId}`);
 
     [this.pages, this.tabs].forEach((sortable) => {
@@ -213,6 +215,7 @@ export default class Main extends React.Component<Props> {
             }
           </div>
 
+          {/* value needs to be the same instance of an observable on each render */}
           <LazyLoadContext.Provider value={this.contextValue}>
             <div ref={this.pages} className={classWithModifiers('user-profile-pages', { 'no-tabs': !this.displayExtraTabs })}>
               {this.displayedExtraPages.map((name) => (
@@ -275,10 +278,10 @@ export default class Main extends React.Component<Props> {
   @action
   private readonly handleLazyLoadGetOptions = (name: ProfileExtraPage) => {
     const unbottom = last(this.displayedExtraPages) !== name;
-    const focus = this.jumpTo === name;
+    const focus = this.pageJumpingTo === name;
 
     if (focus) {
-      this.jumpTo = null;
+      this.pageJumpingTo = null;
     }
 
     return { focus, unbottom };
@@ -286,6 +289,21 @@ export default class Main extends React.Component<Props> {
 
   // passing extraPages with the context just causes all the refs' .current to be null
   private readonly handleLazyLoadGetRef = (name: ProfileExtraPage) => this.extraPages[name];
+
+  @action
+  private readonly handleScrolling = () => {
+    this.contextValue.scrolling = true;
+    // unset if we're clrealy scrolling away from the bottom.
+    // layout shifts from lazy sections can cause the page to grow taller or scroll downwards, but not up.
+    if (window.scrollY < this.lastScroll) {
+      this.pageJumpingTo = null;
+    }
+    this.lastScroll = window.scrollY;
+  };
+
+  @action
+  private readonly handleScrollingStop = () => this.contextValue.scrolling = false;
+
 
   private isSortablePage(page: ProfileExtraPage) {
     return this.controller.state.user.profile_order.includes(page);
@@ -303,7 +321,7 @@ export default class Main extends React.Component<Props> {
   private readonly pageJump = (page: Page | null) => {
     if (page === null || this.pagesOffset == null) return;
 
-    this.jumpTo = page;
+    this.pageJumpingTo = page;
 
     this.pageScrollIntoView(page, true);
   };
@@ -324,7 +342,7 @@ export default class Main extends React.Component<Props> {
       const pageBottom = pageDims.bottom - Math.min(pageDims.height * 0.75, 200);
       const match = pageId === 'main'
         ? pageBottom > 0
-        : pageBottom > this.extraTabsBottom && pageDims.top < window.innerHeight;
+        : pageBottom > this.contextValue.offsetTop && pageDims.top < window.innerHeight;
 
       if (match) {
         matching.add(pageId);
@@ -338,7 +356,7 @@ export default class Main extends React.Component<Props> {
       preferred = last(pageIds);
     } else {
       // prefer using the page being navigated to if its element is in view.
-      preferred = this.jumpTo != null && matching.has(this.jumpTo) ? this.jumpTo : first(pageIds);
+      preferred = this.pageJumpingTo != null && matching.has(this.pageJumpingTo) ? this.pageJumpingTo : first(pageIds);
     }
 
     if (preferred != null) {
@@ -357,25 +375,14 @@ export default class Main extends React.Component<Props> {
       maxScrollY -= 1;
     }
 
-    const scrollTo = Math.floor(Math.min(maxScrollY, window.scrollY + target.getBoundingClientRect().top - this.extraTabsBottom));
+    const scrollTo = Math.floor(Math.min(maxScrollY, window.scrollY + target.getBoundingClientRect().top - this.contextValue.offsetTop));
     // smooth scroll when using navigation bar.
-    this.jumpTo = page;
+    this.pageJumpingTo = page;
     if (smooth) {
       window.scrollTo({ behavior: 'smooth', top: scrollTo });
     } else {
       window.scrollTo({ top: scrollTo });
     }
-  };
-
-  @action
-  private readonly setLastScroll = () => {
-    this.contextValue.scrolling = true;
-    // unset if we're clrealy scrolling away from the bottom.
-    // layout shifts from lazy sections can cause the page to grow taller or scroll downwards, but not up.
-    if (window.scrollY < this.lastScroll) {
-      this.jumpTo = null;
-    }
-    this.lastScroll = window.scrollY;
   };
 
   private readonly updateOrder = (event: Event) => {
