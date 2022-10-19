@@ -26,10 +26,12 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
   private beforeRenderedBounds?: DOMRect;
   private distanceFromBottom = 0;
 
-  @observable private hasData = this.props.hasData ?? false;
   private hasUpdated = false;
+  @observable private loaded;
   private readonly observer?: IntersectionObserver;
   private readonly ref = React.createRef<HTMLDivElement>();
+  @observable private skipLazyLoad = this.props.hasData ?? false;
+
 
   private get containerRefElement() {
     return this.context?.getRef(this.props.name)?.current;
@@ -37,13 +39,15 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
 
   @computed
   private get ready() {
-    return this.hasUpdated || this.hasData && !(this.context?.scrolling ?? false);
+    return this.hasUpdated || this.skipLazyLoad || this.loaded && !(this.context?.scrolling ?? false);
   }
 
   constructor(props: React.PropsWithChildren<Props>) {
     super(props);
 
-    if (!this.hasData) {
+    this.loaded = this.skipLazyLoad;
+
+    if (!this.skipLazyLoad) {
       this.observer = new IntersectionObserver((entries) => {
         if (entries.some((entry) => entry.isIntersecting)) {
           this.load();
@@ -57,16 +61,16 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
   }
 
   componentDidMount() {
-    if (this.ref.current == null) return;
+    if (this.skipLazyLoad || this.ref.current == null) return;
 
     this.observer?.observe(this.ref.current);
   }
 
   componentDidUpdate() {
-    if (this.hasUpdated || !this.hasData) return;
+    if (this.hasUpdated || this.skipLazyLoad || !this.loaded) return;
 
     if (this.context == null) {
-      throw new Error('LazyLoadContext is required.');
+      throw new Error('LazyLoadContext is missing.');
     }
 
     const element = this.containerRefElement;
@@ -119,8 +123,8 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
   }
 
   renderLoaded() {
-    if (this.context == null) {
-      throw new Error('LazyLoadContext is required.');
+    if (!this.skipLazyLoad && this.context == null) {
+      throw new Error('LazyLoadContext is missing.');
     }
     // use the dimensions from before child nodes are rendered because Chrome performs a layout shift
     // after render and before componentDidUpdate(); Safari doesn't
@@ -133,6 +137,6 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
   @action
   private load() {
     this.observer?.disconnect();
-    this.props.onLoad().then(action(() => this.hasData = true));
+    this.props.onLoad().then(action(() => this.loaded = true));
   }
 }
