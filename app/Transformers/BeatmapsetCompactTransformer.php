@@ -168,7 +168,10 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
     public function includeMappers(Beatmapset $beatmapset)
     {
         return $this->collection(
-            $beatmapset->beatmaps->pluck('user'),
+            array_filter(
+                $beatmapset->beatmaps->pluck('user')->all(),
+                fn ($u) => $u !== null,
+            ),
             new UserCompactTransformer()
         );
     }

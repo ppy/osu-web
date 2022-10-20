@@ -24,7 +24,6 @@ use App\Transformers\BeatmapsetTransformer;
 use Auth;
 use Carbon\Carbon;
 use DB;
-use Ds\Set;
 use Request;
 
 class BeatmapsetsController extends Controller
@@ -373,10 +372,10 @@ class BeatmapsetsController extends Controller
             'language',
         ]);
 
-        $userIds = (new Set([
+        $userIds = array_values(array_unique([
             $beatmapset->user_id,
             ...$beatmapset->beatmaps->pluck('user_id'),
-        ]))->toArray();
+        ]));
         $users = User::whereIn('user_id', $userIds)->get()->keyBy('user_id');
         $beatmapset->setRelation('user', $users[$beatmapset->user_id] ?? null);
         foreach ($beatmapset->beatmaps as $beatmap) {
