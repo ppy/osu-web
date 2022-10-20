@@ -35,7 +35,8 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         'user',
     ];
 
-    public $relatedUsersType = 'discussions';
+    // TODO: switch to enum after php 8.1
+    public string $relatedUsersType = 'discussions';
 
     protected $beatmapTransformer = BeatmapCompactTransformer::class;
 
