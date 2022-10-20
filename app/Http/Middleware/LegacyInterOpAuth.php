@@ -28,7 +28,14 @@ class LegacyInterOpAuth
         $expected = hash_hmac('sha1', $fullUrl, config('osu.legacy.shared_interop_secret'));
 
         if (!present($signature) || !present($timestamp) || $diff > 300 || !hash_equals($expected, $signature)) {
-            abort(403);
+            $reason = match (true) {
+                !present($signature) => 'missing_signature',
+                !present($timestamp) => 'missing_timestamp',
+                $diff > 300 => 'expired_signature',
+                !hash_equals($expected, $signature) => 'invalid_signature',
+            };
+
+            abort(403, "{$reason} ({$fullUrl})");
         }
 
         request()->attributes->set(OsuAuthorize::REQUEST_IS_INTEROP_KEY, true);
