@@ -19,7 +19,6 @@ use App\Models\BeatmapsetEvent;
 use App\Models\BeatmapsetWatch;
 use App\Models\Genre;
 use App\Models\Language;
-use App\Models\User;
 use App\Transformers\BeatmapsetTransformer;
 use Auth;
 use Carbon\Carbon;
@@ -370,19 +369,13 @@ class BeatmapsetsController extends Controller
             'beatmaps.failtimes',
             'genre',
             'language',
+            'user',
         ]);
 
-        $userIds = array_values(array_unique([
-            $beatmapset->user_id,
-            ...$beatmapset->beatmaps->pluck('user_id'),
-        ]));
-        $users = User::whereIn('user_id', $userIds)->get()->keyBy('user_id');
-        $beatmapset->setRelation('user', $users[$beatmapset->user_id] ?? null);
-        foreach ($beatmapset->beatmaps as $beatmap) {
-            $beatmap->setRelation('user', $users[$beatmap->user_id] ?? null);
-        }
+        $transformer = new BeatmapsetTransformer();
+        $transformer->relatedUsersType = 'show';
 
-        return json_item($beatmapset, 'Beatmapset', [
+        return json_item($beatmapset, $transformer, [
             'beatmaps',
             'beatmaps.failtimes',
             'beatmaps.max_combo',
@@ -392,9 +385,9 @@ class BeatmapsetsController extends Controller
             'description',
             'genre',
             'language',
-            'mappers',
             'ratings',
             'recent_favourites',
+            'related_users',
             'user',
         ]);
     }

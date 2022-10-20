@@ -70,8 +70,8 @@ export default class Controller {
   }
 
   @computed
-  get mappersById() {
-    return keyBy(this.beatmapset.mappers, 'id');
+  get usersById() {
+    return keyBy(this.beatmapset.related_users, 'id');
   }
 
   constructor(private container: HTMLElement) {
@@ -107,7 +107,7 @@ export default class Controller {
   }
 
   mapper(beatmap: BeatmapJsonForBeatmapsetShow) {
-    return this.mappersById[beatmap.user_id] ?? deletedUser;
+    return this.usersById[beatmap.user_id] ?? deletedUser;
   }
 
   @action

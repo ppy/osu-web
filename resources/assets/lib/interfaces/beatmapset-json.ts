@@ -69,7 +69,6 @@ interface BeatmapsetJsonAvailableIncludes {
   genre: GenreJson;
   has_favourited: boolean;
   language: LanguageJson;
-  mappers: UserJson[];
   nominations: BeatmapsetNominationsInterface;
   ratings: number[];
   recent_favourites: UserJson[];
