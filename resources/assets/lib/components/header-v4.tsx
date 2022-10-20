@@ -43,7 +43,7 @@ const pageTitleMap: Record<`${'action' | 'controller' | 'namespace'}Key`, Partia
   namespaceKey: {
     'admin_forum._': 'admin._',
   },
-}
+};
 
 export default class HeaderV4 extends React.Component<Props> {
   static defaultProps = {
