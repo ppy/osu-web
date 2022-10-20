@@ -363,11 +363,11 @@ class Contest extends Model
 
     public function getForcedWidth()
     {
-        return $this->getExtraOptions()['forced_width'] ?? false;
+        return $this->getExtraOptions()['forced_width'] ?? null;
     }
 
     public function getForcedHeight()
     {
-        return $this->getExtraOptions()['forced_height'] ?? false;
+        return $this->getExtraOptions()['forced_height'] ?? null;
     }
 }
