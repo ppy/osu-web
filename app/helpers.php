@@ -847,7 +847,6 @@ function page_title()
     $namespaceKey = "{$currentRoute['namespace']}._";
     $namespaceKey = match ($namespaceKey) {
         'admin_forum._' => 'admin._',
-        'admin_store._' => 'admin._',
         default => $namespaceKey,
     };
     $keys = [
