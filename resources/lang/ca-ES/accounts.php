@@ -96,7 +96,7 @@ return [
 
     'privacy' => [
         'friends_only' => 'bloquejar els missatges privats de persones que no són a la llista d\'amics',
-        'hide_online' => 'amaga la teva presència en línia',
+        'hide_online' => 'oculta la teva presència en línia',
         'title' => 'Privadesa',
     ],
 

@@ -14,8 +14,8 @@ return [
 
     'header' => [
         'admin' => [
-            'beatmapset' => 'набор карт',
-            'beatmapset_covers' => 'обкладинки наборів карт',
+            'beatmapset' => 'набор бітмап',
+            'beatmapset_covers' => 'обкладинки наборів бітмап',
             'contest' => 'конкурс',
             'contests' => 'конкурси',
             'root' => 'панель управління',
@@ -51,7 +51,7 @@ return [
 
         'users' => [
             'modding' => 'моддинг',
-            'playlists' => 'плейлісти',
+            'playlists' => 'плейлисти',
             'realtime' => 'мультиплеєр',
             'show' => 'інформація',
         ],
@@ -67,7 +67,7 @@ return [
 
     'menu' => [
         'beatmaps' => [
-            '_' => 'біткарти',
+            '_' => 'бітмапи',
         ],
         'community' => [
             '_' => 'спільнота',
@@ -98,7 +98,7 @@ return [
             '_' => 'Загальні',
             'home' => 'Головна',
             'changelog-index' => 'Список змін',
-            'beatmaps' => 'Бібліотека карт',
+            'beatmaps' => 'Бібліотека бітмап',
             'download' => 'Завантажити osu!',
         ],
         'help' => [

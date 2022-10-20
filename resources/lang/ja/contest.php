@@ -34,7 +34,7 @@ return [
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => '',
+                'incomplete_play' => '投票前に指定されたプレイリストのすべてのビートマップをプレイする必要があります。',
             ],
         ],
     ],

@@ -69,6 +69,10 @@ class FriendsController extends Controller
             abort(404);
         }
 
+        if ($currentUser->getKey() === $targetId) {
+            abort(422);
+        }
+
         $existingRelation = $currentUser->relations()->where('zebra_id', $targetId)->first();
         $updateCount = false;
 

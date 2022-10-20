@@ -45,7 +45,7 @@ return [
         'perks' => [
             'title' => '',
             'osu_direct' => [
-                'title' => '',
+                'title' => 'osu!direct',
                 'description' => '',
             ],
 

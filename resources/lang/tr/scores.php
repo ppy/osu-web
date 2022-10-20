@@ -24,6 +24,7 @@ return [
 
     'status' => [
         'non_best' => 'Yalnızca en iyi bireysel skorlar pp kazandırır',
+        'non_passing' => '',
         'processing' => 'Bu skor halen daha hesaplanıyor ve çok yakında gösterilecek',
     ],
 ];

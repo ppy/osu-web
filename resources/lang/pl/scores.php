@@ -24,6 +24,7 @@ return [
 
     'status' => [
         'non_best' => 'Tylko twoje najlepsze wyniki przyznają pp',
+        'non_passing' => '',
         'processing' => 'Ten wynik jest nadal obliczany i zostanie wyświetlony wkrótce.',
     ],
 ];

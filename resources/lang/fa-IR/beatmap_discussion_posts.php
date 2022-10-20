@@ -5,11 +5,11 @@
 
 return [
     'index' => [
-        'title' => '',
+        'title' => 'پست های بحث بیت مپ',
     ],
 
     'item' => [
-        'content' => '',
-        'modding_history_link' => '',
+        'content' => 'محتوا',
+        'modding_history_link' => 'نمایش تاریخچه بازبینی',
     ],
 ];

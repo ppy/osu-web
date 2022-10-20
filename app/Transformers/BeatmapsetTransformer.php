@@ -19,9 +19,7 @@ class BeatmapsetTransformer extends BeatmapsetCompactTransformer
 
     public function transform(Beatmapset $beatmapset)
     {
-        $result = parent::transform($beatmapset);
-
-        return array_merge($result, [
+        return array_merge(parent::transform($beatmapset), [
             'availability' => [
                 'download_disabled' => $beatmapset->download_disabled,
                 'more_information' => $beatmapset->download_disabled_url,
@@ -31,13 +29,13 @@ class BeatmapsetTransformer extends BeatmapsetCompactTransformer
             'discussion_enabled' => true, // TODO: deprecated 2022-06-08
             'discussion_locked' => $beatmapset->discussion_locked,
             'is_scoreable' => $beatmapset->isScoreable(),
-            'last_updated' => json_time($beatmapset->last_update),
-            'legacy_thread_url' => $beatmapset->thread_id !== 0 ? route('forum.topics.show', $beatmapset->thread_id) : null,
+            'last_updated' => $beatmapset->last_update_json,
+            'legacy_thread_url' => ($beatmapset->thread_id ?? 0) !== 0 ? route('forum.topics.show', ['topic' => $beatmapset->thread_id]) : null,
             'nominations_summary' => $beatmapset->nominationsSummaryMeta(),
             'ranked' => $beatmapset->approved,
-            'ranked_date' => json_time($beatmapset->approved_date),
+            'ranked_date' => $beatmapset->approved_date_json,
             'storyboard' => $beatmapset->storyboard,
-            'submitted_date' => json_time($beatmapset->submit_date),
+            'submitted_date' => $beatmapset->submit_date_json,
             'tags' => $beatmapset->tags,
         ]);
     }

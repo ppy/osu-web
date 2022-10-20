@@ -45,11 +45,16 @@ class BeatmapsetsController extends Controller
 
     public function index()
     {
-        $beatmaps = $this->getSearchResponse()['content'];
+        $canAdvancedSearch = priv_check('BeatmapsetAdvancedSearch')->can();
+        // only cache if guest user and guest advanced search is disabled
+        $beatmapsets = !auth()->check() && !$canAdvancedSearch
+            ? cache_remember_mutexed('beatmapsets_guest', 600, [], fn () => $this->getSearchResponse([])['content'])
+            : $this->getSearchResponse()['content'];
 
-        $filters = BeatmapsetSearchRequestParams::getAvailableFilters();
-
-        return ext_view('beatmapsets.index', compact('filters', 'beatmaps'));
+        return ext_view('beatmapsets.index', [
+            'beatmapsets' => $beatmapsets,
+            'canAdvancedSearch' => $canAdvancedSearch,
+        ]);
     }
 
     public function lookup()
@@ -327,9 +332,9 @@ class BeatmapsetsController extends Controller
         return $this->showJson($beatmapset);
     }
 
-    private function getSearchResponse()
+    private function getSearchResponse(?array $params = null)
     {
-        $params = new BeatmapsetSearchRequestParams(request()->all(), Auth::user());
+        $params = new BeatmapsetSearchRequestParams($params ?? request()->all(), auth()->user());
         $search = (new BeatmapsetSearchCached($params));
 
         $records = datadog_timing(function () use ($search) {
