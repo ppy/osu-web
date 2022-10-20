@@ -21,6 +21,7 @@ class Kernel extends HttpKernel
 
     protected $middlewareGroups = [
         'api' => [
+            TrustProxies::class,
             Middleware\AuthApi::class,
             Middleware\SetLocale::class,
             Middleware\CheckUserBanStatus::class,
@@ -41,6 +42,7 @@ class Kernel extends HttpKernel
             Middleware\TurbolinksSupport::class,
         ],
         'lio' => [
+            TrustProxies::class,
             Middleware\LegacyInterOpAuth::class,
         ],
     ];

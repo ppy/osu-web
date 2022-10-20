@@ -69,7 +69,7 @@ abstract class Model extends BaseModel
         throw new ClassMorphViolationException($this);
     }
 
-    public function getRawAttribute(?string $key)
+    public function getRawAttribute(string $key)
     {
         return $this->attributes[$key] ?? null;
     }
@@ -260,9 +260,15 @@ abstract class Model extends BaseModel
             }
 
             return $query;
-        } else {
-            return parent::setKeysForSaveQuery($query);
         }
+
+        return parent::setKeysForSaveQuery($query);
+    }
+
+    // same deal with setKeysForSaveQuery but for select query
+    protected function setKeysForSelectQuery($query)
+    {
+        return $this->setKeysForSaveQuery($query);
     }
 
     private function enlistCallbacks($model, $connection)

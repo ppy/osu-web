@@ -15,12 +15,13 @@ namespace App\Models;
  */
 class BeatmapDifficulty extends Model
 {
-    protected $table = 'osu_beatmap_difficulty';
-    protected $primaryKey = null;
-
-    public $dates = ['last_updated'];
     public $incrementing = false;
     public $timestamps = false;
+
+    protected $dates = ['last_update'];
+    protected $primaryKey = ':composite';
+    protected $primaryKeys = ['beatmap_id', 'mode', 'mods'];
+    protected $table = 'osu_beatmap_difficulty';
 
     public function beatmap()
     {

@@ -1048,10 +1048,8 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     /**
      * User group to be displayed in preference over other groups.
-     *
-     * @return string
      */
-    public function defaultGroup()
+    public function defaultGroup(): Group
     {
         $groups = app('groups');
 

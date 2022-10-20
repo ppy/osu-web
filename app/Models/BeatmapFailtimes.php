@@ -113,8 +113,10 @@ namespace App\Models;
  */
 class BeatmapFailtimes extends Model
 {
+    public $incrementing = false;
     public $timestamps = false;
 
+    protected $primaryKey = ':composite';
     protected $primaryKeys = ['beatmap_id', 'type'];
     protected $table = 'osu_beatmap_failtimes';
 
