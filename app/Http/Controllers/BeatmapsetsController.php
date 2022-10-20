@@ -19,10 +19,12 @@ use App\Models\BeatmapsetEvent;
 use App\Models\BeatmapsetWatch;
 use App\Models\Genre;
 use App\Models\Language;
+use App\Models\User;
 use App\Transformers\BeatmapsetTransformer;
 use Auth;
 use Carbon\Carbon;
 use DB;
+use Ds\Set;
 use Request;
 
 class BeatmapsetsController extends Controller
@@ -367,11 +369,19 @@ class BeatmapsetsController extends Controller
             'beatmaps.baseDifficultyRatings',
             'beatmaps.baseMaxCombo',
             'beatmaps.failtimes',
-            'beatmaps.user',
             'genre',
             'language',
-            'user',
         ]);
+
+        $userIds = (new Set([
+            $beatmapset->user_id,
+            ...$beatmapset->beatmaps->pluck('user_id'),
+        ]))->toArray();
+        $users = User::whereIn('user_id', $userIds)->get()->keyBy('user_id');
+        $beatmapset->setRelation('user', $users[$beatmapset->user_id] ?? null);
+        foreach ($beatmapset->beatmaps as $beatmap) {
+            $beatmap->setRelation('user', $users[$beatmap->user_id] ?? null);
+        }
 
         return json_item($beatmapset, 'Beatmapset', [
             'beatmaps',
