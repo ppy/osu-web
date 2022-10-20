@@ -27,6 +27,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         'genre',
         'has_favourited',
         'language',
+        'mappers',
         'nominations',
         'ratings',
         'recent_favourites',
@@ -162,6 +163,14 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
     public function includeLanguage(Beatmapset $beatmapset)
     {
         return $this->item($beatmapset->language, new LanguageTransformer());
+    }
+
+    public function includeMappers(Beatmapset $beatmapset)
+    {
+        return $this->collection(
+            $beatmapset->beatmaps->pluck('user'),
+            new UserCompactTransformer()
+        );
     }
 
     public function includeNominations(Beatmapset $beatmapset)
