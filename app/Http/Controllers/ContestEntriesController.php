@@ -29,7 +29,7 @@ class ContestEntriesController extends Controller
     public function store()
     {
         if (Request::hasFile('entry') !== true) {
-            abort(422);
+            abort(422, 'No file uploaded');
         }
 
         $user = Auth::user();
@@ -59,22 +59,28 @@ class ContestEntriesController extends Controller
         }
 
         if (!in_array(strtolower($file->getClientOriginalExtension()), $allowedExtensions, true)) {
-            abort(422);
+            abort(
+                422,
+                'File for this contest must have one of the following extensions: '.implode(', ', $allowedExtensions)
+            );
         }
 
         if ($file->getSize() > $maxFilesize) {
-            abort(413);
+            abort(413, 'File exceeds max size');
         }
 
         if ($contest->type === 'art' && !is_null($contest->getForcedWidth()) && !is_null($contest->getForcedHeight())) {
             if (empty($file->getContent())) {
-                abort(422);
+                abort(422, 'File must not be empty');
             }
 
             [$width, $height] = read_image_properties_from_string($file->getContent()) ?? [null, null];
 
             if ($contest->getForcedWidth() !== $width || $contest->getForcedHeight() !== $height) {
-                abort(422);
+                abort(
+                    422,
+                    "Images for this contest must be {$contest->getForcedWidth()}x{$contest->getForcedHeight()}"
+                );
             }
         }
 
