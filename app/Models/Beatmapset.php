@@ -40,7 +40,7 @@ use Illuminate\Database\QueryException;
  * @property int $approved
  * @property \Carbon\Carbon|null $approved_date
  * @property int|null $approvedby_id
- * @property User $approver
+ * @property User|null $approver
  * @property string $artist
  * @property string $artist_unicode
  * @property \Illuminate\Database\Eloquent\Collection $beatmapDiscussions BeatmapDiscussion
@@ -1269,7 +1269,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function approver()
     {
-        return $this->belongsTo(User::class, 'user_id', 'approvedby_id');
+        return $this->belongsTo(User::class, 'approvedby_id');
     }
 
     public function topic()
