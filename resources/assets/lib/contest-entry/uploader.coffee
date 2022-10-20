@@ -78,16 +78,18 @@ export class Uploader extends React.Component
           osu.popup osu.trans('contest.entry.too_big', limit: osu.formatBytes(maxSize, 0)), 'danger'
           return
 
-        if @props.contest.type == 'art'
-          image = await @convertFileToImage file
+        if @props.contest.type != 'art' || !@props.contest.forced_width && !@props.contest.forced_height
+          data.submit()
+          return
 
-          if image.width != @props.contest.forced_width || image.height != @props.contest.forced_height
-            osu.popup osu.trans('contest.entry.wrong_dimensions',
-              width: @props.contest.forced_width,
-              height: @props.contest.forced_height), 'danger'
+        @convertFileToImage(file).then (image) =>
+          if image.width == @props.contest.forced_width && image.height == @props.contest.forced_height
+            data.submit()
             return
 
-        data.submit()
+          osu.popup osu.trans('contest.entry.wrong_dimensions',
+            width: @props.contest.forced_width,
+            height: @props.contest.forced_height), 'danger'
 
       submit: ->
         $.publish 'dragendGlobal'
