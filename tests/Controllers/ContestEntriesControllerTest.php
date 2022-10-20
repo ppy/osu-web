@@ -77,8 +77,8 @@ class ContestEntriesControllerTest extends TestCase
             'show_votes' => true,
             'type' => 'art',
             'visible' => true,
-            'voting_ends_at' => (new DateTime())->modify('+2 day'),
-            'voting_starts_at' => (new DateTime())->modify('+3 day'),
+            'voting_ends_at' => Carbon::now()->addDays(2),
+            'voting_starts_at' => Carbon::now()->addDays(3),
         ]);
     }
 }
