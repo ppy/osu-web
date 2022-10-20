@@ -20,8 +20,9 @@ class ContestEntriesControllerTest extends TestCase
 
         $this
             ->actingAsVerified($this->user)
-            ->postJson('/community/contest-entries', ['entry' => $file, 'contest_id' => $this->contest->id])
-            ->assertStatus(422);
+            ->postJson(route('contest-entries.store'), ['entry' => $file, 'contest_id' => $this->contest->id])
+            ->assertStatus(422)
+            ->assertJson(['error' => 'Files for this contest must have one of the following extensions: jpg, jpeg, png']);
     }
 
     public function testStoreEntryExceedingMaxFileSize()
@@ -32,7 +33,8 @@ class ContestEntriesControllerTest extends TestCase
         $this
             ->actingAsVerified($this->user)
             ->postJson('/community/contest-entries', ['entry' => $file, 'contest_id' => $this->contest->id])
-            ->assertStatus(413);
+            ->assertStatus(413)
+            ->assertJson(['error' => 'File exceeds max size']);
     }
 
     public function testStoreEntryWithWrongForcedDimensions()
@@ -42,8 +44,9 @@ class ContestEntriesControllerTest extends TestCase
 
         $this
             ->actingAsVerified($this->user)
-            ->postJson('/community/contest-entries', ['entry' => $file, 'contest_id' => $this->contest->id])
-            ->assertStatus(400);
+            ->postJson(route('contest-entries.store'), ['entry' => $file, 'contest_id' => $this->contest->id])
+            ->assertStatus(422)
+            ->assertJson(['error' => 'Images for this contest must be 1920x1080']);
     }
 
     public function testStoreEntryWithCorrectRequirements()
@@ -53,7 +56,7 @@ class ContestEntriesControllerTest extends TestCase
 
         $this
             ->actingAsVerified($this->user)
-            ->postJson('/community/contest-entries', ['entry' => $file, 'contest_id' => $this->contest->id])
+            ->postJson(route('contest-entries.store'), ['entry' => $file, 'contest_id' => $this->contest->id])
             ->assertStatus(200);
     }
 
