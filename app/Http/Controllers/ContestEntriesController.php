@@ -68,13 +68,13 @@ class ContestEntriesController extends Controller
 
         if ($contest->type === 'art') {
             if (empty($file->getContent())) {
-                abort(400);
+                abort(422);
             }
 
             [$width, $height] = getimagesizefromstring($file->getContent());
 
             if ($contest->getForcedWidth() !== $width || $contest->getForcedHeight() !== $height) {
-                abort(400);
+                abort(422);
             }
         }
 
