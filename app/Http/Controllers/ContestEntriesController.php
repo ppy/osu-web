@@ -66,7 +66,7 @@ class ContestEntriesController extends Controller
             abort(413);
         }
 
-        if ($contest->type === 'art') {
+        if ($contest->type === 'art' && !is_null($contest->getForcedWidth()) && !is_null($contest->getForcedHeight())) {
             if (empty($file->getContent())) {
                 abort(422);
             }
