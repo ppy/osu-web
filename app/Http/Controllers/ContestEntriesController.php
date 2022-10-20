@@ -71,7 +71,7 @@ class ContestEntriesController extends Controller
                 abort(422);
             }
 
-            [$width, $height] = getimagesizefromstring($file->getContent());
+            [$width, $height] = read_image_properties_from_string($file->getContent()) ?? [null, null];
 
             if ($contest->getForcedWidth() !== $width || $contest->getForcedHeight() !== $height) {
                 abort(422);
