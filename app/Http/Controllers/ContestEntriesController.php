@@ -34,6 +34,7 @@ class ContestEntriesController extends Controller
 
         $user = Auth::user();
         $contest = Contest::findOrFail(Request::input('contest_id'));
+        $file = Request::file('entry');
 
         priv_check('ContestEntryStore', $contest)->ensureCan();
 
@@ -57,31 +58,27 @@ class ContestEntriesController extends Controller
                 break;
         }
 
-        if (!in_array(strtolower(Request::file('entry')->getClientOriginalExtension()), $allowedExtensions, true)) {
+        if (!in_array(strtolower($file->getClientOriginalExtension()), $allowedExtensions, true)) {
             abort(422);
         }
 
-        if (Request::file('entry')->getSize() > $maxFilesize) {
+        if ($file->getSize() > $maxFilesize) {
             abort(413);
         }
 
-        if ($contest->type === 'art' && $contest->getForcedWidth() !== false && $contest->getForcedHeight() !== false) {
-            if (empty(Request::file('entry')->getContent())) {
+        if ($contest->type === 'art') {
+            if (empty($file->getContent())) {
                 abort(400);
             }
 
-            [$width, $height] = getimagesizefromstring(Request::file('entry')->getContent());
+            [$width, $height] = getimagesizefromstring($file->getContent());
 
             if ($contest->getForcedWidth() !== $width || $contest->getForcedHeight() !== $height) {
                 abort(400);
             }
         }
 
-        UserContestEntry::upload(
-            Request::file('entry'),
-            $user,
-            $contest
-        );
+        UserContestEntry::upload($file, $user, $contest);
 
         return $contest->userEntries($user);
     }
