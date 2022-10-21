@@ -27,17 +27,17 @@ class Country extends Model
 
     public $timestamps = false;
 
-    public function profileBanners()
-    {
-        return $this->hasMany(ProfileBanner::class, 'country_acronym');
-    }
-
     public function scopeForStore($query)
     {
         return $query->select('acronym', 'name', 'display')
             ->where('display', '>', 0)
             ->orderBy('display', 'desc')
             ->orderBy('name');
+    }
+
+    public function profileBanners()
+    {
+        return $this->hasMany(ProfileBanner::class, 'country_acronym');
     }
 
     public function statisticsFruits()
@@ -58,5 +58,25 @@ class Country extends Model
     public function statisticsTaiko()
     {
         return $this->hasOne(CountryStatistics::class, 'country_code')->where('mode', Beatmap::MODES['taiko']);
+    }
+
+    public function getAttribute($key)
+    {
+        return match ($key) {
+            'acronym',
+            'display',
+            'name',
+            'playcount',
+            'pp',
+            'rankedscore',
+            'shipping_rate',
+            'usercount' => $this->getRawAttribute($key),
+
+            'profileBanners',
+            'statisticsFruits',
+            'statisticsMania',
+            'statisticsOsu',
+            'statisticsTaiko' => $this->getRelationValue($key),
+        };
     }
 }

@@ -240,7 +240,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username створив нову бітмапу',
-                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive' => ':username відновив бітмапи',
             ],
         ],
     ],

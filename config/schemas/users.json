@@ -1,47 +1,45 @@
 {
   "mappings": {
-    "_doc": {
-      "dynamic": false,
-      "properties": {
-        "id": {
-          "type": "long"
-        },
-        "is_old": {
-          "type": "boolean"
-        },
-        "previous_usernames": {
-          "type": "text",
-          "analyzer": "username_lower"
-        },
-        "user_lastvisit": {
-          "type": "date",
-          "format": "strict_date_optional_time||epoch_millis||yyyy-MM-dd HH:mm:ss"
-        },
-        "user_type": {
-          "type": "short"
-        },
-        "user_warnings": {
-          "type": "short"
-        },
-        "username": {
-          "type": "text",
-          "fields": {
-            "_prefix": {
-              "type": "text",
-              "analyzer": "prefix",
-              "search_analyzer": "standard"
-            },
-            "_whitespace": {
-              "type": "text",
-              "analyzer": "whitespace"
-            },
-            "raw": {
-              "type": "keyword",
-              "normalizer": "lowercase"
-            }
+    "dynamic": false,
+    "properties": {
+      "id": {
+        "type": "long"
+      },
+      "is_old": {
+        "type": "boolean"
+      },
+      "previous_usernames": {
+        "type": "text",
+        "analyzer": "username_lower"
+      },
+      "user_lastvisit": {
+        "type": "date",
+        "format": "strict_date_optional_time||epoch_millis||yyyy-MM-dd HH:mm:ss"
+      },
+      "user_type": {
+        "type": "short"
+      },
+      "user_warnings": {
+        "type": "short"
+      },
+      "username": {
+        "type": "text",
+        "fields": {
+          "_prefix": {
+            "type": "text",
+            "analyzer": "prefix",
+            "search_analyzer": "standard"
           },
-          "analyzer": "username_lower"
-        }
+          "_whitespace": {
+            "type": "text",
+            "analyzer": "whitespace"
+          },
+          "raw": {
+            "type": "keyword",
+            "normalizer": "lowercase"
+          }
+        },
+        "analyzer": "username_lower"
       }
     }
   },
@@ -96,7 +94,7 @@
         }
       },
       "number_of_shards": "1",
-      "number_of_replicas": "1"
+      "number_of_replicas": "0"
     }
   }
 }

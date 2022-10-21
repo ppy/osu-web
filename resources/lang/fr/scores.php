@@ -24,6 +24,7 @@ return [
 
     'status' => [
         'non_best' => 'Seul vos meilleurs scores vous rapportent des pp',
+        'non_passing' => 'Seuls les scores réussis rapportent des pp',
         'processing' => 'Ce score est toujours en cours de calcul et sera affiché bientôt',
     ],
 ];

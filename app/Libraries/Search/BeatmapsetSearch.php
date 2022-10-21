@@ -122,18 +122,19 @@ class BeatmapsetSearch extends RecordSearch
     private function addBlacklistFilter($query)
     {
         static $fields = ['artist', 'source', 'tags'];
+        $params = [
+            'index' => config('osu.elasticsearch.prefix').'blacklist',
+            'id' => 'beatmapsets',
+            // can be changed to per-field blacklist as different fields should probably have different restrictions.
+            'path' => 'keywords',
+        ];
+
         $bool = new BoolQuery();
 
         foreach ($fields as $field) {
             $bool->mustNot([
                 'terms' => [
-                    $field => [
-                        'index' => config('osu.elasticsearch.prefix').'blacklist',
-                        'type' => '_doc',
-                        'id' => 'beatmapsets',
-                        // can be changed to per-field blacklist as different fields should probably have different restrictions.
-                        'path' => 'keywords',
-                    ],
+                    $field => $params,
                 ],
             ]);
         }

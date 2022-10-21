@@ -35,15 +35,15 @@ return [
 
             'beatmapset_discussion' => [
                 '_' => 'Обсуждение карты',
-                'beatmapset_discussion_lock' => 'Карта ":title" заблокирована для обсуждений.',
+                'beatmapset_discussion_lock' => 'Карта ":title" заблокирована для обсуждений',
                 'beatmapset_discussion_lock_compact' => 'Обсуждение было заблокировано',
-                'beatmapset_discussion_post_new' => ':username опубликовал новое сообщение в обсуждениях карты ":title".',
+                'beatmapset_discussion_post_new' => ':username написал новое сообщение в обсуждениях карты ":title": ":content"',
                 'beatmapset_discussion_post_new_empty' => 'Новый пост в ":title" от :username',
                 'beatmapset_discussion_post_new_compact' => 'Новый пост от :username: ":content"',
                 'beatmapset_discussion_post_new_compact_empty' => 'Новый пост от :username',
                 'beatmapset_discussion_review_new' => 'Новый отзыв на ":title" от :username, содержащий проблемы: :problems, предложения: :suggestions, похвалы: :praises',
                 'beatmapset_discussion_review_new_compact' => 'Новый отзыв от :username, содержащий проблемы: :problems, предложения: :suggestions, похвалы: :praises',
-                'beatmapset_discussion_unlock' => 'Карта ":title" разблокирована для обсуждений.',
+                'beatmapset_discussion_unlock' => 'Карта ":title" разблокирована для обсуждений',
                 'beatmapset_discussion_unlock_compact' => 'Обсуждение было разблокировано',
             ],
 
@@ -61,7 +61,7 @@ return [
                 'beatmapset_disqualify_compact' => 'Карта была дисквалифицирована',
                 'beatmapset_love' => 'Карте ":title" была присвоена категория Любимая',
                 'beatmapset_love_compact' => 'Карте была присвоена категория Любимая',
-                'beatmapset_nominate' => 'Карта ":title" была номинирована :username.',
+                'beatmapset_nominate' => 'Карта ":title" была номинирована',
                 'beatmapset_nominate_compact' => 'Карта была номинирована',
                 'beatmapset_qualify' => 'Карте ":title" было присвоено достаточно номинаций для вхождения в очередь ранка',
                 'beatmapset_qualify_compact' => 'Карта вошла очередь ранка',
@@ -138,7 +138,7 @@ return [
 
             'forum_topic_reply' => [
                 '_' => 'Новый ответ на форуме',
-                'forum_topic_reply' => ':username ответил в теме ":title".',
+                'forum_topic_reply' => ':username ответил в теме ":title"',
                 'forum_topic_reply_compact' => ':username ответил',
             ],
         ],
@@ -148,7 +148,7 @@ return [
 
             'legacy_pm' => [
                 '_' => '',
-                'legacy_pm' => ':count_delimited непрочитанное сообщение.|:count_delimited непрочитанные сообщения.',
+                'legacy_pm' => ':count_delimited непрочитанное сообщение|:count_delimited непрочитанных сообщения',
             ],
         ],
 
@@ -240,7 +240,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username создал новую карту',
-                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive' => ':username обновил карты',
             ],
         ],
     ],

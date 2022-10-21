@@ -125,7 +125,7 @@ export default class Cover extends React.Component<Props> {
       <>
         {this.props.user.is_supporter &&
           <span className='profile-info__icon profile-info__icon--supporter' title={osu.trans('users.show.is_supporter')}>
-            {times(this.props.user.support_level ?? 0, (i) => <span key={i} className='fas fa-heart'/>)}
+            {times(this.props.user.support_level ?? 0, (i) => <span key={i} className='fas fa-heart' />)}
           </span>
         }
         <UserGroupBadges groups={this.props.user.groups} modifiers='profile-page' wrapper='profile-info__icon' />

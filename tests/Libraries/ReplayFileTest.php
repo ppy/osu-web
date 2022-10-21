@@ -7,7 +7,6 @@ namespace Tests\Libraries;
 
 use App\Libraries\ReplayFile;
 use App\Models\Beatmap;
-use App\Models\ReplayViewCount;
 use App\Models\Score\Best;
 use App\Models\User;
 use Tests\TestCase;
@@ -85,13 +84,11 @@ class ReplayFileTest extends TestCase
         ]);
 
         if ($hasReplayRecord) {
-            $score->fill([
-                'replayViewCount' => ReplayViewCount\Osu::make([
-                    'score_id' => 2493013207,
-                    'play_count' => 1,
-                    'version' => $version,
-                ]),
-            ]);
+            $score->setRelation('replayViewCount', $score->replayViewCount()->make([
+                'score_id' => 2493013207,
+                'play_count' => 1,
+                'version' => $version,
+            ]));
         }
 
         return $score;

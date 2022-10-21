@@ -5,203 +5,203 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Пустите следећу песму аутоматски',
     ],
 
     'defaults' => [
-        'page_description' => '',
+        'page_description' => 'osu! - Ритам је увек удаљен за *један клик*! Са Ouendan/EBA, Taiko и оригиналним модовима, као и са тотално функционалним креатором нивоа.',
     ],
 
     'header' => [
         'admin' => [
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
-            'contest' => '',
-            'contests' => '',
-            'root' => '',
+            'beatmapset' => 'сет мапа',
+            'beatmapset_covers' => 'позадине за сет мапа',
+            'contest' => 'такмичење',
+            'contests' => 'такмичења',
+            'root' => 'конзола',
         ],
 
         'artists' => [
-            'index' => '',
+            'index' => 'листинг',
         ],
 
         'beatmapsets' => [
-            'show' => '',
-            'discussions' => '',
+            'show' => 'инфо',
+            'discussions' => 'дискусија',
         ],
 
         'changelog' => [
-            'index' => '',
+            'index' => 'листинг',
         ],
 
         'help' => [
-            'index' => '',
-            'sitemap' => '',
+            'index' => 'индекс',
+            'sitemap' => 'Sitemap',
         ],
 
         'store' => [
-            'cart' => '',
-            'orders' => '',
-            'products' => '',
+            'cart' => 'корпа',
+            'orders' => 'претходне наруџбе',
+            'products' => 'производи',
         ],
 
         'tournaments' => [
-            'index' => '',
+            'index' => 'листинг',
         ],
 
         'users' => [
-            'modding' => '',
-            'playlists' => '',
-            'realtime' => '',
-            'show' => '',
+            'modding' => 'модовање',
+            'playlists' => 'плејлисте',
+            'realtime' => 'мултиплејер',
+            'show' => 'инфо',
         ],
     ],
 
     'gallery' => [
-        'close' => '',
-        'fullscreen' => '',
-        'zoom' => '',
-        'previous' => '',
-        'next' => '',
+        'close' => 'Затвори (Esc)',
+        'fullscreen' => 'Укључите/искључите цео екран',
+        'zoom' => 'Увећај/умањи',
+        'previous' => 'Претходно (стрелица лево)',
+        'next' => 'Следеће (стрелица десно)',
     ],
 
     'menu' => [
         'beatmaps' => [
-            '_' => '',
+            '_' => 'мапе',
         ],
         'community' => [
-            '_' => '',
-            'dev' => '',
+            '_' => 'заједница',
+            'dev' => 'развој',
         ],
         'help' => [
-            '_' => '',
-            'getAbuse' => '',
-            'getFaq' => '',
-            'getRules' => '',
-            'getSupport' => '',
+            '_' => 'помоћ',
+            'getAbuse' => 'пријавите злоупотребу',
+            'getFaq' => 'faq',
+            'getRules' => 'правила',
+            'getSupport' => 'не, стварно ми треба помоћ!',
         ],
         'home' => [
-            '_' => '',
-            'team' => '',
+            '_' => 'почетна',
+            'team' => 'тим',
         ],
         'rankings' => [
-            '_' => '',
-            'kudosu' => '',
+            '_' => 'рангови',
+            'kudosu' => 'kudosu',
         ],
         'store' => [
-            '_' => '',
+            '_' => 'продавница',
         ],
     ],
 
     'footer' => [
         'general' => [
-            '_' => '',
-            'home' => '',
-            'changelog-index' => '',
-            'beatmaps' => '',
-            'download' => '',
+            '_' => 'Опште',
+            'home' => 'Почетна',
+            'changelog-index' => 'Списак измена',
+            'beatmaps' => 'Листинг мапа',
+            'download' => 'Преузмите osu!',
         ],
         'help' => [
-            '_' => '',
-            'faq' => '',
-            'forum' => '',
-            'livestreams' => '',
-            'report' => '',
-            'wiki' => '',
+            '_' => 'Помоћ и Заједница',
+            'faq' => 'Често постављана питања',
+            'forum' => 'Форуми заједнице',
+            'livestreams' => 'Streams Уживо ',
+            'report' => 'Пријавите проблем',
+            'wiki' => 'Вики',
         ],
         'legal' => [
-            '_' => '',
-            'copyright' => '',
-            'privacy' => '',
-            'server_status' => '',
-            'source_code' => '',
-            'terms' => '',
+            '_' => 'Легално и Статус',
+            'copyright' => 'Ауторска права (DMCA)',
+            'privacy' => 'Приватност',
+            'server_status' => 'Статус сервера',
+            'source_code' => 'Изворни код',
+            'terms' => 'Услови',
         ],
     ],
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => 'Невалидни параметар захтева',
             'description' => '',
         ],
         '404' => [
-            'error' => '',
-            'description' => "",
+            'error' => 'Страница не постоји',
+            'description' => "Извињавамо се, али страница коју сте тражили не постоји!",
         ],
         '403' => [
-            'error' => "",
-            'description' => '',
+            'error' => "Не би сте требали да будете овде.",
+            'description' => 'Можете пробати да се вратите назад, додуше.',
         ],
         '401' => [
-            'error' => "",
-            'description' => '',
+            'error' => "Не би сте требали да будете овде.",
+            'description' => 'Можете пробати да се вратите назад, додуше. Или можда да се улогујете.',
         ],
         '405' => [
-            'error' => '',
-            'description' => "",
+            'error' => 'Страница не постоји',
+            'description' => "Извињавамо се, али страница коју сте тражили не постоји!",
         ],
         '422' => [
-            'error' => '',
+            'error' => 'Невалидни параметар захтева',
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => 'Прешли сте лимит захтева',
             'description' => '',
         ],
         '500' => [
-            'error' => '',
-            'description' => "",
+            'error' => 'Нешто се покварило! ;_;',
+            'description' => "Ми смо аутоматски обавештени за сваку грешку.",
         ],
         'fatal' => [
-            'error' => '',
-            'description' => "",
+            'error' => 'Нешто се покварило (баш се покварило)! ;_;',
+            'description' => "Ми смо аутоматски обавештени за сваку грешку.",
         ],
         '503' => [
-            'error' => '',
-            'description' => "",
+            'error' => 'Не ради због одржавања!',
+            'description' => "Одржавање уобичајено траје негде између 5 секунди до 10 минута. Ако и даље не радимо након тога, посетите :link за више информација.",
             'link' => [
                 'text' => '',
                 'href' => '',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => "",
+        'reference' => "За сваки случај, ево га код који можете послати подршци!",
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => 'пријава / регистрација',
 
         'login' => [
-            'forgot' => "",
-            'password' => '',
-            'title' => '',
-            'username' => '',
+            'forgot' => "Заборавио/ла сам моје детаље",
+            'password' => 'лозинка',
+            'title' => 'Пријавите се да наставите',
+            'username' => 'корисничко име',
 
             'error' => [
-                'email' => "",
-                'password' => '',
+                'email' => "Корисничко име или имејл адреса не постоји",
+                'password' => 'Погрешна лозинка',
             ],
         ],
 
         'register' => [
-            'download' => '',
-            'info' => '',
-            'title' => "",
+            'download' => 'Преузмите',
+            'info' => 'Преузмите osu! да би сте направили ваш налог!',
+            'title' => "Немате налог?",
         ],
     ],
 
     'popup_user' => [
         'links' => [
-            'account-edit' => '',
-            'follows' => '',
-            'friends' => '',
-            'logout' => '',
-            'profile' => '',
+            'account-edit' => 'Подешавања',
+            'follows' => 'Листа за гледање',
+            'friends' => 'Пријатељи',
+            'logout' => 'Одјавите се',
+            'profile' => 'Мој профил',
         ],
     ],
 
     'popup_search' => [
-        'initial' => '',
-        'retry' => '',
+        'initial' => 'Куцајте за претрагу!',
+        'retry' => 'Претрага није успела. Кликните да пробате поново.',
     ],
 ];

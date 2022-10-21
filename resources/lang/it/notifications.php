@@ -240,7 +240,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username ha creato nuove beatmap',
-                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive' => ':username ha resuscitato delle beatmap',
             ],
         ],
     ],

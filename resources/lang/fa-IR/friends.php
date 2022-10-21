@@ -4,12 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'title_compact' => '',
-    'too_many' => '',
+    'title_compact' => 'دوستان',
+    'too_many' => 'به حد مجاز تعداد دوست رسیده اید',
 
     'buttons' => [
-        'add' => '',
-        'disabled' => '',
-        'remove' => '',
+        'add' => 'افزودن دوست',
+        'disabled' => 'دنبال کنندگان',
+        'remove' => 'حذف دوست',
     ],
 ];

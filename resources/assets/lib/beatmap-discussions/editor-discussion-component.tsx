@@ -6,10 +6,12 @@ import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import * as _ from 'lodash';
+import { Observer } from 'mobx-react';
 import * as React from 'react';
 import { Element as SlateElement, Path, Transforms } from 'slate';
 import { RenderElementProps } from 'slate-react';
 import { ReactEditor } from 'slate-react';
+import { formatTimestamp, nearbyDiscussions, parseTimestamp, timestampRegex } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { linkHtml } from 'utils/url';
 import { DraftsContext } from './drafts-context';
@@ -61,7 +63,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
 
     if (this.props.element.beatmapId) {
       const content = this.props.element.children[0].text as string;
-      const matches = BeatmapDiscussionHelper.TIMESTAMP_REGEX.exec(content);
+      const matches = timestampRegex.exec(content);
       let timestamp: string | undefined;
 
       // only extract timestamp if it occurs at the start of the issue
@@ -165,7 +167,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
       const relevantDiscussions = _.filter(this.props.discussions, this.isRelevantDiscussion);
       this.cache.nearbyDiscussions = {
         beatmap_id: this.selectedBeatmap(),
-        discussions: BeatmapDiscussionHelper.nearbyDiscussions(relevantDiscussions, timestamp),
+        discussions: nearbyDiscussions(relevantDiscussions, timestamp),
         timestamp,
       };
     }
@@ -184,7 +186,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
         return false;
       }
 
-      const ts = BeatmapDiscussionHelper.parseTimestamp(embed.timestamp as string);
+      const ts = parseTimestamp(embed.timestamp as string);
       if (ts == null) {
         return false;
       }
@@ -194,17 +196,17 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
   };
 
   nearbyIndicator = (drafts: SlateElement[]) => {
-    if (this.timestamp() == null || this.discussionType() === 'praise') {
-      return;
+    if (!this.editable() || this.timestamp() == null || this.discussionType() === 'praise') {
+      return null;
     }
 
-    const nearbyDiscussions = this.editable() ? this.nearbyDiscussions() : [];
+    const discussions = this.nearbyDiscussions();
     const nearbyUnsaved = this.nearbyDraftEmbeds(drafts) || [];
 
-    if (nearbyDiscussions.length > 0 || nearbyUnsaved.length > 1) {
+    if (discussions.length > 0 || nearbyUnsaved.length > 1) {
       const timestamps =
-        nearbyDiscussions.map((discussion) => {
-          const timestamp = BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp);
+        discussions.map((discussion) => {
+          const timestamp = formatTimestamp(discussion.timestamp);
           if (timestamp == null) {
             return;
           }
@@ -247,6 +249,8 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
         </div>
       );
     }
+
+    return null;
   };
 
   path = (): Path => ReactEditor.findPath(this.context, this.props.element);
@@ -281,8 +285,11 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
         </button>
       );
 
-    const nearbyIndicator =
-      <DraftsContext.Consumer>{this.nearbyIndicator}</DraftsContext.Consumer>;
+    const nearbyIndicator = (
+      <DraftsContext.Consumer>
+        {(drafts: SlateElement[]) => <Observer>{() => this.nearbyIndicator(drafts)}</Observer>}
+      </DraftsContext.Consumer>
+    );
 
     const unsavedIndicator =
       this.props.editMode && canEdit ?
@@ -341,5 +348,5 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
 
   selectedBeatmap = () => this.props.element.beatmapId as number;
 
-  timestamp = () => BeatmapDiscussionHelper.parseTimestamp(this.props.element.timestamp as string | undefined);
+  timestamp = () => parseTimestamp(this.props.element.timestamp as string | undefined);
 }

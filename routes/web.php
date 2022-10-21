@@ -278,6 +278,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::group(['as' => 'users.', 'prefix' => 'users/{user}'], function () {
         Route::get('card', 'UsersController@card')->name('card');
+        Route::get('extra-pages/{page}', 'UsersController@extraPages')->name('extra-page');
         Route::put('page', 'UsersController@updatePage')->name('page');
         Route::group(['namespace' => 'Users'], function () {
             Route::resource('{typeGroup}', 'MultiplayerController', ['only' => 'index'])->where(['typeGroup' => 'multiplayer|playlists|realtime'])->names('multiplayer');
@@ -536,7 +537,6 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
     Route::post('generate-notification', 'LegacyInterOpController@generateNotification');
     Route::post('index-beatmapset/{beatmapset}', 'LegacyInterOpController@indexBeatmapset');
     Route::post('/refresh-beatmapset-cache/{beatmapset}', 'LegacyInterOpController@refreshBeatmapsetCache');
-    Route::post('user-achievement/{user}/{achievement}/{beatmap?}', 'LegacyInterOpController@userAchievement')->name('user-achievement');
     Route::post('/user-best-scores-check/{user}', 'LegacyInterOpController@userBestScoresCheck');
     Route::post('user-send-message', 'LegacyInterOpController@userSendMessage');
     Route::post('user-batch-mark-channel-as-read', 'LegacyInterOpController@userBatchMarkChannelAsRead');
@@ -545,7 +545,6 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
     Route::post('user-index/{user}', 'LegacyInterOpController@userIndex');
     Route::post('user-recalculate-ranked-scores/{user}', 'LegacyInterOpController@userRecalculateRankedScores');
     Route::get('/news', 'LegacyInterOpController@news');
-    Route::apiResource('users', 'InterOp\UsersController', ['only' => ['store']]);
 
     Route::group(['namespace' => 'InterOp'], function () {
         Route::post('artist-tracks/reindex-all', 'ArtistTracksController@reindexAll');
@@ -563,11 +562,15 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
             Route::apiResource('bulk', 'Indexing\BulkController', ['only' => ['store']]);
         });
 
+        Route::post('user-achievement/{user}/{achievement}/{beatmap?}', 'UsersController@achievement')->name('users.achievement');
+
         Route::group(['as' => 'user-group.'], function () {
             Route::put('users/{user}/groups/{group}', 'UserGroupsController@update')->name('update');
             Route::delete('users/{user}/groups/{group}', 'UserGroupsController@destroy')->name('destroy');
             Route::post('users/{user}/groups/{group}/default', 'UserGroupsController@setDefault')->name('set-default');
         });
+
+        Route::apiResource('users', 'UsersController', ['only' => ['store']]);
     });
 });
 

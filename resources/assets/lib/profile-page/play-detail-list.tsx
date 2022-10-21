@@ -18,20 +18,20 @@ type ScoreSections = TopScoreSection | 'scoresRecent';
 
 const sectionMaps = {
   scoresBest: {
-    countKey: 'scores_best_count',
+    key: 'best',
     showPpWeight: true,
     translationKey: 'top_ranks.best',
   },
   scoresFirsts: {
-    countKey: 'scores_first_count',
+    key: 'firsts',
     translationKey: 'top_ranks.first',
   },
   scoresPinned: {
-    countKey: 'scores_pinned_count',
+    key: 'pinned',
     translationKey: 'top_ranks.pinned',
   },
   scoresRecent: {
-    countKey: 'scores_recent_count',
+    key: 'recent',
     translationKey: 'historical.recent_plays',
   },
 } as const;
@@ -50,8 +50,13 @@ export default class PlayDetailList extends React.Component<Props> {
   private readonly listRef = React.createRef<HTMLDivElement>();
 
   @computed
-  private get paginatorJson() {
-    return this.props.controller.paginatorJson(this.props.section);
+  private get scores() {
+    return this.sectionMap.key === 'recent' ? this.props.controller.state.historical.recent : this.props.controller.state.topScores[this.sectionMap.key];
+  }
+
+  @computed
+  private get sectionMap() {
+    return sectionMaps[this.props.section];
   }
 
   @computed
@@ -61,10 +66,8 @@ export default class PlayDetailList extends React.Component<Props> {
 
   @computed
   private get uniqueItems() {
-    if (!Array.isArray(this.paginatorJson.items)) return [];
-
     const ret = new Map<number, SoloScoreJsonForUser>();
-    this.paginatorJson.items.forEach((item) => ret.set(item.id, item));
+    this.scores.items.forEach((item) => ret.set(item.id, item));
 
     return [...ret.values()];
   }
@@ -104,18 +107,13 @@ export default class PlayDetailList extends React.Component<Props> {
   }
 
   render() {
-    if (!Array.isArray(this.paginatorJson.items)) {
-      return <p>{this.paginatorJson.items.error}</p>;
-    }
-
-    const sectionMap = sectionMaps[this.props.section];
-    const showPpWeight = 'showPpWeight' in sectionMap && sectionMap.showPpWeight;
+    const showPpWeight = 'showPpWeight' in this.sectionMap && this.sectionMap.showPpWeight;
 
     return (
       <>
         <ProfilePageExtraSectionTitle
-          count={this.props.controller.state.user[sectionMap.countKey]}
-          titleKey={`users.show.extra.${sectionMap.translationKey}.title`}
+          count={this.scores.count}
+          titleKey={`users.show.extra.${this.sectionMap.translationKey}.title`}
         />
 
         <ContainerContext.Provider value={this.containerContextValue}>
@@ -134,7 +132,7 @@ export default class PlayDetailList extends React.Component<Props> {
         </ContainerContext.Provider>
 
         <ShowMoreLink
-          {...this.paginatorJson.pagination}
+          {...this.scores.pagination}
           callback={this.onShowMore}
           data={this.props.section}
           modifiers='profile-page'
@@ -153,7 +151,7 @@ export default class PlayDetailList extends React.Component<Props> {
   };
 
   private onUpdatePinOrder = (event: Event, ui: JQueryUI.SortableUIParams) => {
-    if (!Array.isArray(this.paginatorJson.items)) {
+    if (!Array.isArray(this.scores.items)) {
       throw new Error('trying to update pin order with missing data');
     }
 
@@ -165,7 +163,7 @@ export default class PlayDetailList extends React.Component<Props> {
     const newOrder = $target.sortable('toArray', { attribute: 'data-score-pin' }).map((jsonString) => JSON.parse(jsonString) as ScoreCurrentUserPinJson);
 
     const reordered = JSON.parse(ui.item.attr('data-score-pin') ?? '') as ScoreCurrentUserPinJson;
-    const currentIndex = this.paginatorJson.items.findIndex((item) => item.id === reordered.score_id);
+    const currentIndex = this.scores.items.findIndex((item) => item.id === reordered.score_id);
     const newIndex = newOrder.findIndex((item) => item.score_id === reordered.score_id);
 
     if (currentIndex !== newIndex) {
