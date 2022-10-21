@@ -22,6 +22,8 @@ class ForumTopicsControllerTest extends TestCase
         $topic = Topic::factory()->withPost()->create();
         $user = User::factory()->withGroup('gmt')->create();
 
+        $this->expectCountChange(fn () => Topic::count(), -1);
+
         $this
             ->actingAsVerified($user)
             ->delete(route('forum.topics.destroy', $topic))
@@ -32,6 +34,8 @@ class ForumTopicsControllerTest extends TestCase
     {
         $user = User::factory()->create();
         $topic = Topic::factory()->withPost()->create(['topic_poster' => $user]);
+
+        $this->expectCountChange(fn () => Topic::count(), -1);
 
         $this
             ->actingAsVerified($user)
