@@ -49,7 +49,7 @@ class ForumTopicsControllerTest extends TestCase
             ->post(route('forum.topics.reply', $topic), [
                 'body' => 'This is test reply',
             ])
-            ->assertStatus(200);
+            ->assertSuccessful();
     }
 
     public function testReplyWithoutPlays(): void
@@ -93,7 +93,7 @@ class ForumTopicsControllerTest extends TestCase
 
         $this
             ->get(route('forum.topics.show', $topic))
-            ->assertStatus(200);
+            ->assertSuccessful();
     }
 
     public function testShowMissingFirstPost(): void
