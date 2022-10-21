@@ -11,13 +11,13 @@ return [
     'beatmapset_revive' => ':beatmapset відродилася з вічного сну <strong>:user</strong>.',
     'beatmapset_update' => '<strong><em>:user</em></strong> оновив мапу "<em>:beatmapset</em>"',
     'beatmapset_upload' => '<strong><em>:user</em></strong> опублікував мапу ":beatmapset"',
-    'empty' => "Цей користувач не робив нічого помітного останнім часом!",
+    'empty' => "Цей користувач не робив нічого значного останнім часом!",
     'rank' => '<strong><em>:user</em></strong> отримав #:rank місце на мапі <em>:beatmap</em> (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> втратив лідерство на мапі <em>:beatmap</em> (:mode)',
     'user_support_again' => '<strong>:user</strong> вирішив знову підтримати osu! Дякуємо за вашу підтримку!',
     'user_support_first' => '<strong>:user</strong> став osu!прихильником! Дякуємо за вашу підтримку!',
     'user_support_gift' => '<strong>:user</strong> отримав тег osu!прихильника в подарунок!',
-    'username_change' => '<strong>:previousUsername</strong> змінив свій нік на <strong><em>:user</strong></em>!',
+    'username_change' => '<strong>:previousUsername</strong> змінив своє ім\'я на <strong><em>:user</em></strong>!',
 
     'beatmapset_status' => [
         'approved' => 'схвалена',

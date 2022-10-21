@@ -31,10 +31,10 @@ class ScoreFactory extends Factory
         ];
     }
 
-    public function withData(?array $overrides = null): static
+    public function withData(array ...$overrides): static
     {
         return $this->state([
-            'data' => $this->makeData($overrides),
+            'data' => $this->makeData(array_merge(...$overrides)),
         ]);
     }
 

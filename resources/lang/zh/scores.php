@@ -24,7 +24,7 @@ return [
 
     'status' => [
         'non_best' => '只有个人最好成绩才能获取到 pp',
-        'non_passing' => '',
+        'non_passing' => '只能在通过的成绩上获取 pp',
         'processing' => '此分数仍在计算中，即将显示',
     ],
 ];

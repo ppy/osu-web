@@ -24,7 +24,7 @@ return [
 
     'status' => [
         'non_best' => 'Apenas as melhores pontuações pessoais dão pp',
-        'non_passing' => '',
+        'non_passing' => 'Apenas pontuações bem sucedidas dão pp',
         'processing' => 'Esta pontuação ainda está sendo calculada e será exibida em breve',
     ],
 ];
