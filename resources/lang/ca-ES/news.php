@@ -13,13 +13,13 @@ return [
         ],
 
         'title' => [
-            '_' => 'notícies',
-            'info' => 'portada',
+            '_' => '',
+            'info' => '',
         ],
     ],
 
     'show' => [
-        'by' => 'per :user',
+        'by' => '',
 
         'nav' => [
             'newer' => '',

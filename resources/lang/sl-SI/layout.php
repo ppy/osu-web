@@ -5,203 +5,203 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Avtomatsko predvajaj naslednjo skladbo',
     ],
 
     'defaults' => [
-        'page_description' => '',
+        'page_description' => 'osu! - Ritem je samo *klik* stran!  Z Ouendan/EBA, Taiko in originalnimi igralnimi načini kot tudi polno funkcionalen urejevalnik.',
     ],
 
     'header' => [
         'admin' => [
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
-            'contest' => '',
-            'contests' => '',
-            'root' => '',
+            'beatmapset' => 'zbirka beatmap',
+            'beatmapset_covers' => 'naslovne slike zbirk beatmap',
+            'contest' => 'tekmovanje',
+            'contests' => 'tekmovanja',
+            'root' => 'konzola',
         ],
 
         'artists' => [
-            'index' => '',
+            'index' => 'seznam',
         ],
 
         'beatmapsets' => [
-            'show' => '',
-            'discussions' => '',
+            'show' => 'info',
+            'discussions' => 'razprava',
         ],
 
         'changelog' => [
-            'index' => '',
+            'index' => 'seznam',
         ],
 
         'help' => [
-            'index' => '',
-            'sitemap' => '',
+            'index' => 'indeks',
+            'sitemap' => 'Zemljevid',
         ],
 
         'store' => [
-            'cart' => '',
-            'orders' => '',
-            'products' => '',
+            'cart' => 'košarica',
+            'orders' => 'zgodovina nakupov',
+            'products' => 'izdelki',
         ],
 
         'tournaments' => [
-            'index' => '',
+            'index' => 'seznam',
         ],
 
         'users' => [
             'modding' => '',
-            'playlists' => '',
-            'realtime' => '',
-            'show' => '',
+            'playlists' => 'seznam pesmi',
+            'realtime' => 'večigralski način',
+            'show' => 'info',
         ],
     ],
 
     'gallery' => [
-        'close' => '',
-        'fullscreen' => '',
-        'zoom' => '',
-        'previous' => '',
-        'next' => '',
+        'close' => 'Zapri (Esc)',
+        'fullscreen' => 'Preklopi na celozaslonski način',
+        'zoom' => 'Povečaj/Pomanjšaj',
+        'previous' => 'Nazaj (puščica levo)',
+        'next' => 'Naprej (puščica desno)',
     ],
 
     'menu' => [
         'beatmaps' => [
-            '_' => '',
+            '_' => 'beatmape',
         ],
         'community' => [
-            '_' => '',
-            'dev' => '',
+            '_' => 'skupnost',
+            'dev' => 'razvoj',
         ],
         'help' => [
-            '_' => '',
-            'getAbuse' => '',
-            'getFaq' => '',
-            'getRules' => '',
-            'getSupport' => '',
+            '_' => 'pomoč',
+            'getAbuse' => 'prijavi zlorabo',
+            'getFaq' => 'faq',
+            'getRules' => 'pravila',
+            'getSupport' => 'ne, resno, potrebujem pomoč!',
         ],
         'home' => [
-            '_' => '',
-            'team' => '',
+            '_' => 'domov',
+            'team' => 'ekipa',
         ],
         'rankings' => [
-            '_' => '',
-            'kudosu' => '',
+            '_' => 'uvrstitve',
+            'kudosu' => 'kudosu',
         ],
         'store' => [
-            '_' => '',
+            '_' => 'trgovina',
         ],
     ],
 
     'footer' => [
         'general' => [
-            '_' => '',
-            'home' => '',
-            'changelog-index' => '',
-            'beatmaps' => '',
-            'download' => '',
+            '_' => 'Splošno',
+            'home' => 'Domov',
+            'changelog-index' => 'Dnevnik sprememb',
+            'beatmaps' => 'Seznam beatmap',
+            'download' => 'Prenesi osu!',
         ],
         'help' => [
-            '_' => '',
-            'faq' => '',
-            'forum' => '',
-            'livestreams' => '',
-            'report' => '',
-            'wiki' => '',
+            '_' => 'Pomoč & Skupnost',
+            'faq' => 'Pogosta vprašanja',
+            'forum' => 'Forumi skupnosti',
+            'livestreams' => 'Oddajanja v živo',
+            'report' => 'Prijavi težavo',
+            'wiki' => 'Wiki',
         ],
         'legal' => [
-            '_' => '',
-            'copyright' => '',
-            'privacy' => '',
-            'server_status' => '',
-            'source_code' => '',
-            'terms' => '',
+            '_' => 'Pravno & Stanje',
+            'copyright' => 'Avtorske pravice (DMCA)',
+            'privacy' => 'Zasebnost',
+            'server_status' => 'Stanje Strežnika',
+            'source_code' => 'Izvorna Koda',
+            'terms' => 'Pogoji',
         ],
     ],
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => 'Neveljaven zahtevani parameter',
             'description' => '',
         ],
         '404' => [
-            'error' => '',
-            'description' => "",
+            'error' => 'Manjkajoča stran',
+            'description' => "Se opravičujemo, ampak željena spletna stran ni tukaj!",
         ],
         '403' => [
-            'error' => "",
-            'description' => '',
+            'error' => "Tukaj ne bi smel biti.",
+            'description' => 'Mogoče lahko poskusiš vrniti nazaj.',
         ],
         '401' => [
-            'error' => "",
-            'description' => '',
+            'error' => "Tukaj ne bi smel biti.",
+            'description' => 'Mogoče lahko poskusiš vrniti nazaj. Ali pa se vpišeš.',
         ],
         '405' => [
-            'error' => '',
-            'description' => "",
+            'error' => 'Manjkajoča stran',
+            'description' => "Se opravičujemo, ampak željena spletna stran ni tukaj!",
         ],
         '422' => [
-            'error' => '',
+            'error' => 'Neveljaven zahtevani parameter',
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => 'Omejitev prekoračena',
             'description' => '',
         ],
         '500' => [
-            'error' => '',
-            'description' => "",
+            'error' => 'O ne! Nekaj se je zalomilo! ;_;',
+            'description' => "Avtomatsko smo obveščeni ob vsaki napaki.",
         ],
         'fatal' => [
-            'error' => '',
-            'description' => "",
+            'error' => 'O ne! Nekaj se je zalomilo (hudo)! ;_;',
+            'description' => "Avtomatsko smo obveščeni ob vsaki napaki.",
         ],
         '503' => [
-            'error' => '',
-            'description' => "",
+            'error' => 'Dostop zavrnjen zaradi vzdrževanja!',
+            'description' => "Vzdrževanje ponavadi traja od 5 sekund do 10 minut. Če vzdrževanje traja dlje, obišči :link za več informacij.",
             'link' => [
                 'text' => '',
                 'href' => '',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => "",
+        'reference' => "Za vsak slučaj, tukaj je koda, ki jo lahko posreduješ podpori!",
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => 'vpiši se / registriraj se',
 
         'login' => [
-            'forgot' => "",
-            'password' => '',
-            'title' => '',
-            'username' => '',
+            'forgot' => "Pozabil sem svoje podatke",
+            'password' => 'geslo',
+            'title' => 'Vpiši se za nadaljevanje',
+            'username' => 'uporabniško ime',
 
             'error' => [
-                'email' => "",
-                'password' => '',
+                'email' => "Uporabniško ime ali e-poštni naslov ne obstaja",
+                'password' => 'Nepravilno geslo',
             ],
         ],
 
         'register' => [
-            'download' => '',
-            'info' => '',
-            'title' => "",
+            'download' => 'Prenesi',
+            'info' => 'Prenesi osu!, da lahko ustvariš svoj račun!',
+            'title' => "Še nimaš računa?",
         ],
     ],
 
     'popup_user' => [
         'links' => [
-            'account-edit' => '',
+            'account-edit' => 'Nastavitve',
             'follows' => '',
-            'friends' => '',
-            'logout' => '',
-            'profile' => '',
+            'friends' => 'Prijatelji',
+            'logout' => 'Odjavi se',
+            'profile' => 'Moj profil',
         ],
     ],
 
     'popup_search' => [
-        'initial' => '',
-        'retry' => '',
+        'initial' => 'Vpiši za iskanje!',
+        'retry' => 'Iskanje neuspešno. Klikni za ponovni poskus.',
     ],
 ];
