@@ -13,7 +13,6 @@ use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicTrack;
 use App\Models\User;
-use App\Models\UserStatistics\Osu as StatisticsOsu;
 use Tests\TestCase;
 
 class ForumTopicsControllerTest extends TestCase
@@ -35,28 +34,15 @@ class ForumTopicsControllerTest extends TestCase
     public function testReply(): void
     {
         $topic = Topic::factory()->create();
-        $user = User::factory()->create();
+        $user = User::factory()->withPlays(config('osu.forum.minimum_plays'))->create();
         Authorize::factory()->reply()->create([
             'forum_id' => $topic->forum_id,
             'group_id' => app('groups')->byIdentifier('default'),
         ]);
 
-        $initialPostCount = Post::count();
-        $initialTopicCount = Topic::count();
-
-        // fail because no plays =)
-        $this
-            ->actingAsVerified($user)
-            ->post(route('forum.topics.reply', $topic), [
-                'body' => 'This is test reply',
-            ])
-            ->assertStatus(403);
-
-        $this->assertSame($initialPostCount, Post::count());
-        $this->assertSame($initialTopicCount, Topic::count());
-
-        // add some plays so it passes
-        $this->addPlaycount($user);
+        $this->expectCountChange(fn () => Post::count(), 1);
+        $this->expectCountChange(fn () => Topic::count(), 0);
+        $this->expectCountChange(fn () => $topic->fresh()->postCount(), 1);
 
         $this
             ->actingAsVerified($user)
@@ -64,9 +50,27 @@ class ForumTopicsControllerTest extends TestCase
                 'body' => 'This is test reply',
             ])
             ->assertStatus(200);
+    }
 
-        $this->assertSame($initialPostCount + 1, Post::count());
-        $this->assertSame($initialTopicCount, Topic::count());
+    public function testReplyWithoutPlays(): void
+    {
+        $topic = Topic::factory()->create();
+        $user = User::factory()->create();
+        Authorize::factory()->reply()->create([
+            'forum_id' => $topic->forum_id,
+            'group_id' => app('groups')->byIdentifier('default'),
+        ]);
+
+        $this->expectCountChange(fn () => Post::count(), 0);
+        $this->expectCountChange(fn () => Topic::count(), 0);
+        $this->expectCountChange(fn () => $topic->fresh()->postCount(), 0);
+
+        $this
+            ->actingAsVerified($user)
+            ->post(route('forum.topics.reply', $topic), [
+                'body' => 'This is test reply',
+            ])
+            ->assertStatus(403);
     }
 
     public function testRestore(): void
@@ -150,31 +154,15 @@ class ForumTopicsControllerTest extends TestCase
     public function testStore(): void
     {
         $forum = Forum::factory()->create();
-        $user = User::factory()->create();
+        $user = User::factory()->withPlays(config('osu.forum.minimum_plays'))->create();
         Authorize::factory()->post()->create([
             'forum_id' => $forum,
             'group_id' => app('groups')->byIdentifier('default'),
         ]);
 
-        $initialPostCount = Post::count();
-        $initialTopicCount = Topic::count();
-        $initialTopicTrackCount = TopicTrack::count();
-
-        // fail because no plays =)
-        $this
-            ->actingAsVerified($user)
-            ->post(route('forum.topics.store', ['forum_id' => $forum]), [
-                'title' => 'Test post',
-                'body' => 'This is test post',
-            ])
-            ->assertStatus(403);
-
-        $this->assertSame($initialPostCount, Post::count());
-        $this->assertSame($initialTopicCount, Topic::count());
-        $this->assertSame($initialTopicTrackCount, TopicTrack::count());
-
-        // add some plays so it passes
-        $this->addPlaycount($user);
+        $this->expectCountChange(fn () => Post::count(), 1);
+        $this->expectCountChange(fn () => Topic::count(), 1);
+        $this->expectCountChange(fn () => TopicTrack::count(), 1);
 
         $this
             ->actingAsVerified($user)
@@ -186,10 +174,28 @@ class ForumTopicsControllerTest extends TestCase
                 'forum.topics.show',
                 Topic::orderBy('topic_id', 'DESC')->first(),
             ));
+    }
 
-        $this->assertSame($initialPostCount + 1, Post::count());
-        $this->assertSame($initialTopicCount + 1, Topic::count());
-        $this->assertSame($initialTopicTrackCount + 1, TopicTrack::count());
+    public function testStoreWithoutPlays(): void
+    {
+        $forum = Forum::factory()->create();
+        $user = User::factory()->create();
+        Authorize::factory()->post()->create([
+            'forum_id' => $forum,
+            'group_id' => app('groups')->byIdentifier('default'),
+        ]);
+
+        $this->expectCountChange(fn () => Post::count(), 0);
+        $this->expectCountChange(fn () => Topic::count(), 0);
+        $this->expectCountChange(fn () => TopicTrack::count(), 0);
+
+        $this
+            ->actingAsVerified($user)
+            ->post(route('forum.topics.store', ['forum_id' => $forum]), [
+                'title' => 'Test post',
+                'body' => 'This is test post',
+            ])
+            ->assertStatus(403);
     }
 
     public function testUpdateTitle(): void
@@ -229,21 +235,5 @@ class ForumTopicsControllerTest extends TestCase
             ->assertStatus(422);
 
         $this->assertSame($title, $topic->fresh()->topic_title);
-    }
-
-    private function addPlaycount(User $user, ?int $playcount = null): void
-    {
-        $playcount ??= config('osu.forum.minimum_plays');
-
-        if ($user->statisticsOsu === null) {
-            factory(StatisticsOsu::class)->create([
-                'playcount' => $playcount,
-                'user_id' => $user,
-            ]);
-        } else {
-            $user->statisticsOsu->update(['playcount' => $playcount]);
-        }
-
-        $user->refresh();
     }
 }
