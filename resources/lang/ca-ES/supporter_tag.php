@@ -4,10 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'months' => 'mesos',
+    'months' => '',
 
     'user_search' => [
-        'searching' => 'cercant...',
-        'not_found' => "Aquest usuari no existeix",
+        'searching' => '',
+        'not_found' => "",
     ],
 ];
