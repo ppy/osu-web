@@ -224,7 +224,7 @@ class ForumTopicsControllerTest extends TestCase
     {
         $user = User::factory()->create();
         $topic = Topic::factory()->withPost()->create([
-            'topic_poster' => $user->getKey(),
+            'topic_poster' => $user,
             'topic_title' => 'Initial title',
         ]);
         $newTitle = 'A different title';
@@ -244,7 +244,7 @@ class ForumTopicsControllerTest extends TestCase
     public function testUpdateTitleBlank(): void
     {
         $user = User::factory()->create();
-        $topic = Topic::factory()->withPost()->create(['topic_poster' => $user->getKey()]);
+        $topic = Topic::factory()->withPost()->create(['topic_poster' => $user]);
         $title = $topic->topic_title;
 
         $this
