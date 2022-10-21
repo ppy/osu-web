@@ -121,7 +121,7 @@ return [
     'supporter_tag' => [
         'gift' => '선물하기',
         'require_login' => [
-            '_' => '서포터 권한을 구매하려면 :link하셔야 합니다!',
+            '_' => 'osu! 서포터 태그를 구매하려면 :link하셔야 합니다!',
             'link_text' => '로그인',
         ],
     ],

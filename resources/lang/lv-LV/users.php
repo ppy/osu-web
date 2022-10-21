@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Jūs esiet nobloķējis šo lietotāju.',
+        'comment_text' => '',
         'blocked_count' => 'bloķētie lietotāji (:count)',
         'hide_profile' => 'Slēpt profilu',
+        'hide_comment' => '',
         'not_blocked' => 'Šis lietotājs nav bloķēts.',
         'show_profile' => 'Rādīt profilu',
+        'show_comment' => '',
         'too_many' => 'Ir sasniegts bloķēsanas limits.',
         'button' => [
             'block' => 'Bloķēt',
@@ -159,6 +162,10 @@ return [
             '_' => '',
             'count' => '',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Mainīt Profila Pārklāju',
@@ -203,6 +210,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Kapā Metamās Bītmapes',
+                ],
+                'guest' => [
+                    'title' => '',
                 ],
                 'loved' => [
                     'title' => 'Mīļākās Bītmapes',
@@ -362,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Bans',
                         'silence' => 'Klusums',
+                        'tournament_ban' => '',
                         'note' => 'Piezīme',
                     ],
                 ],

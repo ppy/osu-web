@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Anda telah memblokir pengguna ini.',
+        'comment_text' => 'Komentar ini disembunyikan.',
         'blocked_count' => 'pengguna yang diblokir (:count)',
         'hide_profile' => 'Sembunyikan profil',
+        'hide_comment' => 'sembunyikan',
         'not_blocked' => 'Pengguna ini tidak diblokir.',
         'show_profile' => 'Tampilkan profil',
+        'show_comment' => 'tampilkan',
         'too_many' => 'Batas pemblokiran tercapai.',
         'button' => [
             'block' => 'Blokir',
@@ -51,15 +54,15 @@ return [
 
     'disabled' => [
         'title' => 'Uh-oh! Sepertinya akun Anda telah dinonaktifkan.',
-        'warning' => "Apabila Anda telah melakukan suatu pelanggaran yang berdampak langsung terhadap status akun Anda, akun Anda akan dikondisikan di dalam masa hukuman percobaan selama satu bulan di mana selama satu bulan ini kami tidak akan menggubris segala laporan dan permintaan yang masuk terkait dengan akun Anda. Setelah masa hukuman ini berakhir, Anda baru akan kemudian dapat mengontak kami apabila Anda ingin kembali bermain dengan akun Anda. Mohon diperhatikan bahwa membuat akun baru di kala akun utama Anda sedang dibatasi <strong>akan menambah masa hukuman Anda</strong>, dan <strong>masa hukuman ini akan senantiasa bertambah panjang dengan setiap akun baru yang Anda coba untuk buat</strong>. Kami harap Anda dapat memetik pelajaran dari kasus ini dan tidak akan melakukan pelanggaran lagi ke depannya!",
+        'warning' => "Apabila Anda telah melanggar peraturan, akun Anda akan ditempatkan pada masa percobaan selama satu bulan di mana dalam rentang waktu ini kami tidak akan menanggapi segala permintaan yang terkait dengan akun Anda. Setelah masa percobaan ini berakhir, Anda baru akan dapat menghubungi kami untuk mengembalikan akun Anda. Mohon diperhatikan bahwa membuat akun baru <strong>hanya akan menambah masa hukuman Anda</strong>, dan <strong>masa hukuman Anda akan bertambah panjang untuk setiap akun baru yang Anda buat</strong>. Kami harap Anda dapat belajar dari kesalahan Anda!",
 
         'if_mistake' => [
-            '_' => 'Apabila Anda merasa hal ini merupakan sebuah kesalahpahaman, Anda dianjurkan untuk mengontak kami sesegera mungkin (melalui :email atau tombol "?" yang tersedia pada pojok kanan bawah halaman ini). Mohon diperhatikan bahwa segala keputusan yang kami ambil terkait dengan akun Anda selalu berdasar pada data-data konkrit yang kami punya dan senantiasa diambil dengan penuh keyakinan. Selain itu, kami juga berhak untuk tidak menindaklanjuti laporan Anda lebih lanjut apabila kami merasa Anda dengan sengaja berbohong kepada kami dalam aduan yang Anda ajukan.',
+            '_' => 'Apabila Anda merasa hal ini merupakan sebuah kesalahpahaman, Anda dianjurkan untuk mengontak kami (baik itu melalui :email atau tombol "?" yang terletak pada pojok kanan bawah laman ini) sesegera mungkin. Mohon diperhatikan bahwa segala keputusan yang kami ambil selalu berdasar pada data yang konkrit dan diambil dengan penuh keyakinan. Di samping itu, kami juga berhak untuk tidak menindaklanjuti aduan Anda lebih lanjut apabila kami merasa Anda dengan sengaja telah berbohong kepada kami.',
             'email' => 'email',
         ],
 
         'reasons' => [
-            'compromised' => 'Akun Anda terindikasi telah disalahgunakan oleh pihak-pihak yang tidak bertanggung jawab. Akun Anda akan dinonaktifkan untuk sementara waktu hingga identitas pengguna akun telah terkonfirmasi.',
+            'compromised' => 'Akun Anda terindikasi telah disalahgunakan oleh pihak lain. Akun Anda akan dinonaktifkan untuk sementara waktu hingga identitas pengguna akun telah terkonfirmasi.',
             'opening' => 'Ada sejumlah alasan yang dapat menyebabkan akun Anda dinonaktifkan:',
 
             'tos' => [
@@ -87,7 +90,7 @@ return [
         'email_login_disabled' => 'Anda tidak lagi dapat masuk dengan menggunakan alamat email. Silakan masuk dengan menggunakan nama pengguna.',
         'failed' => 'Gagal masuk',
         'forgot' => 'Lupa kata sandi?',
-        'info' => 'Silakan sign in untuk melanjutkan',
+        'info' => 'Silakan masuk untuk melanjutkan',
         'invalid_captcha' => 'Anda telah berulang kali gagal memasukkan kredensial pengguna yang valid. Harap selesaikan captcha berikut dan coba lagi. (Muat ulang laman ini apabila captcha tidak terlihat)',
         'locked_ip' => 'Alamat IP Anda dikunci. Mohon tunggu beberapa menit.',
         'password' => 'Kata Sandi',
@@ -97,8 +100,8 @@ return [
         'username' => 'Nama Pengguna',
 
         'beta' => [
-            'main' => 'Akses beta saat ini hanya terbuka kepada pengguna-pengguna tertentu.',
-            'small' => '(para pemilik osu!supporter akan dapat segera masuk)',
+            'main' => 'Akses beta saat ini hanya tersedia bagi para pengguna dengan hak khusus.',
+            'small' => '(para pemilik osu!supporter akan segera masuk)',
         ],
     ],
 
@@ -112,11 +115,11 @@ return [
         'username' => 'Tamu',
         'error' => 'Anda harus masuk terlebih dahulu untuk dapat melakukan tindakan ini.',
     ],
-    'logout_confirm' => 'Apa Anda yakin ingin keluar? :(',
+    'logout_confirm' => 'Apakah Anda yakin ingin keluar? :(',
     'report' => [
         'button_text' => 'Laporkan',
         'comments' => 'Komentar Tambahan',
-        'placeholder' => 'Mohon berikan informasi apa pun yang Anda yakini dapat bermanfaat.',
+        'placeholder' => 'Mohon berikan informasi apapun yang Anda yakini dapat bermanfaat.',
         'reason' => 'Alasan',
         'thanks' => 'Terima kasih atas laporan Anda!',
         'title' => 'Laporkan :username?',
@@ -138,7 +141,7 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Akun Anda telah di-restrict!',
-        'message' => 'Selama akun Anda di-restrict, Anda tidak akan dapat berinteraksi dengan para pengguna lain dan skor-skor yang telah Anda raih hanya akan dapat dilihat oleh diri Anda sendiri. Hal ini pada umumnya merupakan efek samping dari proses yang dilakukan oleh sistem secara otomatis dan akan diangkat dalam 24 jam apabila Anda memang tidak melanggar aturan apapun. Apabila Anda ingin mengajukan banding, mohon <a href="mailto:accounts@ppy.sh">hubungi layanan dukungan</a>.',
+        'message' => 'Selama akun Anda di-restrict, Anda tidak akan dapat berinteraksi dengan para pengguna lain dan skor yang telah Anda raih hanya akan dapat dilihat oleh diri Anda sendiri. Hal ini pada umumnya merupakan efek samping dari proses yang dilakukan oleh sistem kami secara otomatis dan akan diangkat dalam 24 jam apabila Anda memang tidak melanggar peraturan apapun. Apabila Anda ingin mengajukan banding, mohon <a href="mailto:accounts@ppy.sh">hubungi layanan dukungan</a>.',
     ],
     'show' => [
         'age' => ':age tahun',
@@ -158,6 +161,10 @@ return [
         'comments_count' => [
             '_' => 'Telah mengirimkan :link',
             'count' => ':count_delimited komentar|:count_delimited komentar',
+        ],
+        'cover' => [
+            'to_0' => 'Sembunyikan sampul',
+            'to_1' => 'Tampilkan sampul',
         ],
         'edit' => [
             'cover' => [
@@ -203,6 +210,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Beatmap Graveyard',
+                ],
+                'guest' => [
+                    'title' => 'Beatmap dengan Kontribusi Guest Difficulty',
                 ],
                 'loved' => [
                     'title' => 'Beatmap Loved',
@@ -352,8 +362,8 @@ return [
 
                 'recent_infringements' => [
                     'title' => 'Pelanggaran Terkini',
-                    'date' => 'tanggal',
-                    'action' => 'tindakan',
+                    'date' => 'waktu',
+                    'action' => 'tindak lanjut',
                     'length' => 'durasi',
                     'length_permanent' => 'Permanen',
                     'description' => 'keterangan',
@@ -362,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Ban',
                         'silence' => 'Silence',
+                        'tournament_ban' => 'Larangan turnamen',
                         'note' => 'Catatan',
                     ],
                 ],

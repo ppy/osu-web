@@ -52,42 +52,9 @@ class BeatmapsetEvent extends Model
     const GENRE_EDIT = 'genre_edit';
     const LANGUAGE_EDIT = 'language_edit';
     const NSFW_TOGGLE = 'nsfw_toggle';
+    const OFFSET_EDIT = 'offset_edit';
 
     const BEATMAP_OWNER_CHANGE = 'beatmap_owner_change';
-
-    public static function getBeatmapsetEventType(BeatmapDiscussion $discussion, User $user): ?string
-    {
-        if ($discussion->exists && $discussion->canBeResolved() && $discussion->isDirty('resolved')) {
-            if ($discussion->resolved) {
-                priv_check_user($user, 'BeatmapDiscussionResolve', $discussion)->ensureCan();
-
-                return static::ISSUE_RESOLVE;
-            } else {
-                priv_check_user($user, 'BeatmapDiscussionReopen', $discussion)->ensureCan();
-
-                return static::ISSUE_REOPEN;
-            }
-        }
-
-        if (($discussion->exists && !$discussion->wasRecentlyCreated) || $discussion->message_type !== 'problem') {
-            return null;
-        }
-
-        $beatmapset = $discussion->beatmapset;
-        if ($beatmapset->isQualified()) {
-            if (priv_check_user($user, 'BeatmapsetDisqualify', $beatmapset)->can()) {
-                return static::DISQUALIFY;
-            }
-        }
-
-        if ($beatmapset->isPending()) {
-            if ($beatmapset->hasNominations() && priv_check_user($user, 'BeatmapsetResetNominations', $beatmapset)->can()) {
-                return static::NOMINATION_RESET;
-            }
-        }
-
-        return null;
-    }
 
     public static function log($type, $user, $object, $extraData = [])
     {
@@ -243,6 +210,7 @@ class BeatmapsetEvent extends Model
                     static::GENRE_EDIT,
                     static::LANGUAGE_EDIT,
                     static::NSFW_TOGGLE,
+                    static::OFFSET_EDIT,
 
                     static::ISSUE_RESOLVE,
                     static::ISSUE_REOPEN,

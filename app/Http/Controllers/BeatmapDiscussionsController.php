@@ -6,7 +6,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
-use App\Libraries\BeatmapsetDiscussionReview;
+use App\Libraries\BeatmapsetDiscussion\Review;
 use App\Libraries\BeatmapsetDiscussionsBundle;
 use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
@@ -129,15 +129,13 @@ class BeatmapDiscussionsController extends Controller
 
     public function review($beatmapsetId)
     {
-        $beatmapset = Beatmapset
-            ::where('discussion_enabled', true)
-            ->findOrFail($beatmapsetId);
+        $beatmapset = Beatmapset::findOrFail($beatmapsetId);
 
         priv_check('BeatmapsetDiscussionReviewStore', $beatmapset)->ensureCan();
 
         try {
             $document = json_decode(request()->all()['document'] ?? '[]', true);
-            BeatmapsetDiscussionReview::create($beatmapset, $document, Auth::user());
+            Review::create($beatmapset, $document, Auth::user());
         } catch (\Exception $e) {
             return error_popup($e->getMessage(), 422);
         }

@@ -18,9 +18,7 @@ class BeatmapTransformer extends BeatmapCompactTransformer
 
     public function transform(Beatmap $beatmap)
     {
-        $result = parent::transform($beatmap);
-
-        return array_merge($result, [
+        return array_merge(parent::transform($beatmap), [
             'accuracy' => $beatmap->diff_overall,
             'ar' => $beatmap->diff_approach,
             'bpm' => $beatmap->bpm,
@@ -29,16 +27,16 @@ class BeatmapTransformer extends BeatmapCompactTransformer
             'count_sliders' => $beatmap->countSlider,
             'count_spinners' => $beatmap->countSpinner,
             'cs' => $beatmap->diff_size,
-            'deleted_at' => $beatmap->deleted_at,
+            'deleted_at' => $beatmap->deleted_at_json,
             'drain' => $beatmap->diff_drain,
             'hit_length' => $beatmap->hit_length,
             'is_scoreable' => $beatmap->isScoreable(),
-            'last_updated' => json_time($beatmap->last_update),
+            'last_updated' => $beatmap->last_update_json,
             'mode_int' => $beatmap->playmode,
             'passcount' => $beatmap->passcount,
             'playcount' => $beatmap->playcount,
             'ranked' => $beatmap->approved,
-            'url' => route('beatmaps.show', ['beatmap' => $beatmap->beatmap_id]),
+            'url' => route('beatmaps.show', ['beatmap' => $beatmap->getKey()]),
         ]);
     }
 }

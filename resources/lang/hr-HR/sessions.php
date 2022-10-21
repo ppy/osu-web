@@ -5,8 +5,8 @@
 
 return [
     'create' => [
-        'download' => '',
-        'label' => '',
-        'title' => '',
+        'download' => 'Klikni ovdje za preuzimanje igrice i izradu računa',
+        'label' => 'Prvo, prijavi se na svoj račun!',
+        'title' => 'Prijava na račun',
     ],
 ];

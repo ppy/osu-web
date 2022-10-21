@@ -12,17 +12,29 @@
   white-space: nowrap;
   .link-plain();
 
+  --colour: hsl(var(--hsl-c1));
+  --colour-hover: var(--colour);
+  color: var(--colour);
+
+  .link-hover({
+    color: var(--colour-hover);
+  });
+
   &--featured-artist {
-    color: hsl(var(--hsl-blue-1));
+    --colour: hsl(var(--hsl-blue-2));
+    --colour-hover: hsl(var(--hsl-blue-1));
   }
 
   &--nsfw {
-    color: hsl(var(--hsl-orange-2));
+    --colour: hsl(var(--hsl-orange-2));
   }
 
   &--panel {
-    position: relative;
-    bottom: 0.2em;
-    margin-left: auto;
+    margin-left: 5px;
+  }
+
+  &--spotlight {
+    --colour: hsl(var(--hsl-green-2));
+    --colour-hover: hsl(var(--hsl-green-1));
   }
 }

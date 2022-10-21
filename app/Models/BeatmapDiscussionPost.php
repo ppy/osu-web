@@ -25,7 +25,7 @@ use Ds\Set;
  * @property User $user
  * @property int|null $user_id
  */
-class BeatmapDiscussionPost extends Model
+class BeatmapDiscussionPost extends Model implements Traits\ReportableInterface
 {
     use Traits\Reportable, Validatable;
 
@@ -100,6 +100,7 @@ class BeatmapDiscussionPost extends Model
         $params['with_deleted'] = get_bool($rawParams['with_deleted'] ?? null) ?? false;
 
         if (!$params['with_deleted']) {
+            // $query->visible() may be slow for listing; calls visibleBeatmapDiscussion which calls more scopes...
             $query->withoutTrashed();
         }
 
@@ -245,6 +246,8 @@ class BeatmapDiscussionPost extends Model
             return false;
         }
 
+        $origExists = $this->exists;
+
         try {
             return $this->getConnection()->transaction(function () use ($options) {
                 if (!$this->exists) {
@@ -260,6 +263,7 @@ class BeatmapDiscussionPost extends Model
                 return true;
             });
         } catch (ModelNotSavedException $_e) {
+            $this->exists = $origExists;
             $this->validationErrors()->merge($this->beatmapDiscussion->validationErrors());
 
             return false;

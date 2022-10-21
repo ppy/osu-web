@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Olet estänyt tämän käyttäjän.',
+        'comment_text' => '',
         'blocked_count' => 'Estetyt käyttäjät (:count)',
         'hide_profile' => 'piilota profiili',
+        'hide_comment' => '',
         'not_blocked' => 'Tämä käyttäjä ei ole estetty.',
         'show_profile' => 'näytä profiili',
+        'show_comment' => '',
         'too_many' => 'Estoraja saavutettu.',
         'button' => [
             'block' => 'estä',
@@ -159,6 +162,10 @@ return [
             '_' => 'Julkaistu :link',
             'count' => ':count_delimited kommentti|:count_delimited kommenttia',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Muuta profiilin kansikuvaa',
@@ -203,6 +210,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Kuopatut',
+                ],
+                'guest' => [
+                    'title' => '',
                 ],
                 'loved' => [
                     'title' => 'Rakastetut beatmapit',
@@ -313,7 +323,7 @@ return [
                 'title' => 'Viimeisimmät',
             ],
             'realtime' => [
-                'title' => '',
+                'title' => 'Moninpelit',
             ],
             'top_ranks' => [
                 'download_replay' => 'Lataa Replay',
@@ -362,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Porttikielto',
                         'silence' => 'Mykistys',
+                        'tournament_ban' => '',
                         'note' => 'Muistutus',
                     ],
                 ],

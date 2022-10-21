@@ -124,19 +124,20 @@ class RankHistory extends Model
         $diffTail = $data[0] - array_last($data);
 
         $shiftData = abs($diffTail) < abs($diffHead);
+        $userStatistics = $this->user->statistics($this->mode);
 
-        if (!$shiftData) {
-            $userStatistics = $this->user->statistics($this->mode);
-
-            if ($userStatistics !== null) {
-                $currentRank = $userStatistics->globalRank();
-                $shiftData = $currentRank === $data[0];
-            }
+        if ($userStatistics !== null) {
+            $currentRank = $userStatistics->globalRank();
+            $shiftData = $shiftData || $currentRank === $data[0];
         }
 
         if ($shiftData) {
             $lastRank = array_shift($data);
             $data[] = $lastRank;
+        }
+
+        if (isset($currentRank)) {
+            $data[count($data) - 1] = $currentRank;
         }
 
         return $data;

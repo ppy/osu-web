@@ -7,8 +7,10 @@ declare(strict_types=1);
 
 namespace Database\Factories\Chat;
 
+use App\Exceptions\InvariantException;
 use App\Models\Chat\Channel;
 use App\Models\LegacyMatch\LegacyMatch;
+use App\Models\User;
 use Database\Factories\Factory;
 
 class ChannelFactory extends Factory
@@ -28,6 +30,23 @@ class ChannelFactory extends Factory
         return $this->state(['moderated' => true]);
     }
 
+    public function pm(User ...$users)
+    {
+        if (empty($users)) {
+            $users = User::factory()->count(2)->create();
+        }
+
+        if (count($users) !== 2) {
+            throw new InvariantException('Creating PM Channels requires 2 users.');
+        }
+
+        return $this->state([
+            'name' => Channel::getPMChannelName(...$users),
+            'type' => Channel::TYPES['pm'],
+            'description' => '',
+        ])->withUsers(...$users);
+    }
+
     public function tourney()
     {
         $match = factory(LegacyMatch::class)->states('tourney')->create();
@@ -38,12 +57,23 @@ class ChannelFactory extends Factory
         ]);
     }
 
-    public function type(string $type)
+    public function type(string $type, array $users = [])
     {
         if ($type === 'tourney') {
             return $this->tourney();
+        } elseif ($type === 'pm') {
+            return $this->pm(...$users);
         }
 
-        return $this->state(['type' => Channel::TYPES[$type]]);
+        return $this->state(['type' => Channel::TYPES[$type]])->withUsers(...$users);
+    }
+
+    public function withUsers(User ...$users)
+    {
+        return $this->afterCreating(function (Channel $channel) use ($users) {
+            foreach ($users as $user) {
+                $channel->addUser($user);
+            }
+        });
     }
 }

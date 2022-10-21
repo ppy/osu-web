@@ -9,8 +9,8 @@ return [
         'title_compact' => 'modding watchlist',
 
         'counts' => [
-            'total' => '',
-            'unread' => '',
+            'total' => 'Beatmaps set',
+            'unread' => 'Beatmaps med ny aktivitet',
         ],
 
         'table' => [

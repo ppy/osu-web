@@ -1,6 +1,8 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { isClickable } from 'utils/html'
+
 # Avoid triggering submit when pressing enter since both
 # submit and change will be triggered.
 # Moreover, blurring the input will trigger the 'change' event.
@@ -83,7 +85,7 @@ $(document).on 'turbolinks:load', ->
 $(document).on 'click', '.clickable-row', (e) ->
   target = e.target
 
-  return if osu.isClickable target
+  return if isClickable target
 
   row = e.currentTarget
   if row.classList.contains 'clickable-row-link'

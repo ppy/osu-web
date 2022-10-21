@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => '',
+        'comment_text' => '',
         'blocked_count' => '',
         'hide_profile' => '',
+        'hide_comment' => '',
         'not_blocked' => '',
         'show_profile' => '',
+        'show_comment' => '',
         'too_many' => '',
         'button' => [
             'block' => '',
@@ -159,6 +162,10 @@ return [
             '_' => '',
             'count' => '',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => '',
@@ -202,6 +209,9 @@ return [
                     'title' => '',
                 ],
                 'graveyard' => [
+                    'title' => '',
+                ],
+                'guest' => [
                     'title' => '',
                 ],
                 'loved' => [
@@ -362,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => '',
                         'silence' => '',
+                        'tournament_ban' => '',
                         'note' => '',
                     ],
                 ],

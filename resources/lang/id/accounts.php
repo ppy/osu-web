@@ -5,17 +5,16 @@
 
 return [
     'edit' => [
-        'title_compact' => 'pengaturan',
+        'title_compact' => 'pengaturan akun',
         'username' => 'nama pengguna',
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => 'Pastikan avatar Anda tunduk pada :link yang berlaku.<br/>Dengan kata lain, avatar Anda harus <strong>cocok untuk segala usia</strong> tanpa mengandung unsur-unsur yang tidak dibenarkan seperti cacian, hinaan, atau konten-konten yang bersifat sugestif.',
+            'rules' => 'Pastikan avatar Anda tunduk pada :link yang berlaku.<br/>Dengan kata lain, avatar Anda harus <strong>cocok untuk segala usia</strong> tanpa mengandung unsur apapun yang tidak dibenarkan seperti cacian, hinaan, atau hal yang bersifat sugestif.',
             'rules_link' => 'peraturan komunitas',
         ],
 
         'email' => [
-            'current' => 'email saat ini',
             'new' => 'email baru',
             'new_confirmation' => 'konfirmasi email',
             'title' => 'Email',
@@ -124,6 +123,6 @@ return [
     ],
 
     'verification_invalid' => [
-        'title' => 'Tautan verifikasi tidak sah atau sudah tidak berlaku',
+        'title' => 'Tautan verifikasi tidak valid atau sudah tidak berlaku',
     ],
 ];

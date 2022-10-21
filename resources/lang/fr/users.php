@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Vous avez bloqué cet utilisateur.',
+        'comment_text' => 'Ce commentaire est masqué.',
         'blocked_count' => 'utilisateurs bloqués (:count)',
         'hide_profile' => 'Masquer le profil',
+        'hide_comment' => 'masquer',
         'not_blocked' => 'Cet utilisateur n’est pas bloqué.',
         'show_profile' => 'Afficher le profil',
+        'show_comment' => 'afficher',
         'too_many' => 'Limite de blocages atteinte.',
         'button' => [
             'block' => 'Bloquer',
@@ -156,8 +159,12 @@ return [
         'title' => "Profil de :username",
 
         'comments_count' => [
-            '_' => 'Publié :link',
+            '_' => 'A publié :link',
             'count' => ':count_delimited commentaire|:count_delimited commentaires',
+        ],
+        'cover' => [
+            'to_0' => 'Cacher la bannière',
+            'to_1' => 'Afficher la bannière',
         ],
         'edit' => [
             'cover' => [
@@ -203,6 +210,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Beatmaps dans le cimetière',
+                ],
+                'guest' => [
+                    'title' => 'Participation aux beatmaps',
                 ],
                 'loved' => [
                     'title' => 'Beatmaps loved',
@@ -362,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Restriction',
                         'silence' => 'Silence',
+                        'tournament_ban' => 'Bannissement du tournoi',
                         'note' => 'Note',
                     ],
                 ],

@@ -5,7 +5,8 @@ import KudosuHistoryJson from 'interfaces/kudosu-history-json';
 import { observer } from 'mobx-react';
 import ExtraHeader from 'profile-page/extra-header';
 import * as React from 'react';
-import { OffsetPaginatorJson, itemsLength } from 'utils/offset-paginator';
+import { formatNumber } from 'utils/html';
+import { OffsetPaginatorJson } from 'utils/offset-paginator';
 import { wikiUrl } from 'utils/url';
 import ShowMoreLink from './show-more-link';
 import StringWithComponent from './string-with-component';
@@ -16,7 +17,7 @@ function Entry({ kudosu }: { kudosu: KudosuHistoryJson }) {
   const textMappings = {
     amount: (
       <strong className='profile-extra-entries__kudosu-amount'>
-        {osu.trans('users.show.extra.kudosu.entry.amount', { amount: osu.formatNumber(Math.abs(kudosu.amount)) })}
+        {osu.trans('users.show.extra.kudosu.entry.amount', { amount: formatNumber(Math.abs(kudosu.amount)) })}
       </strong>
     ),
     giver: kudosu.giver == null
@@ -76,7 +77,7 @@ export default class ProfilePageKudosu extends React.Component<Props> {
             )}
             label={osu.trans('users.show.extra.kudosu.total')}
             modifiers='kudosu'
-            value={osu.formatNumber(this.props.total)}
+            value={formatNumber(this.props.total)}
           />
         </div>
 
@@ -86,7 +87,7 @@ export default class ProfilePageKudosu extends React.Component<Props> {
   }
 
   private renderEntries() {
-    if (itemsLength(this.props.kudosu.items) === 0) {
+    if (this.props.kudosu.items.length === 0) {
       return (
         <div className='profile-extra-entries profile-extra-entries--kudosu'>
           {osu.trans('users.show.extra.kudosu.entry.empty')}

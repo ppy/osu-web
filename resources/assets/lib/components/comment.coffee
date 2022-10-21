@@ -5,7 +5,7 @@ import { route } from 'laroute'
 import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
 import * as React from 'react'
-import { a, button, div, span, textarea } from 'react-dom-factories'
+import { a, button, div, span, textarea, p } from 'react-dom-factories'
 import { classWithModifiers } from 'utils/css'
 import { estimateMinLines } from 'utils/estimate-min-lines'
 import { createClickCallback, formatNumberSuffixed } from 'utils/html'
@@ -36,12 +36,18 @@ export class Comment extends React.PureComponent
 
   makePreviewElement = document.createElement('div')
 
-  makePreview = (comment) ->
+  makePreview = (comment, user) ->
     if comment.isDeleted
       osu.trans('comments.deleted')
+    else if isBlocked(user)
+      osu.trans('users.blocks.comment_text')
     else
       makePreviewElement.innerHTML = comment.messageHtml
       _.truncate makePreviewElement.textContent, length: 100
+
+
+  isBlocked = (user) ->
+    return core.currentUserModel.blocks.has(user.id)
 
 
   constructor: (props) ->
@@ -59,8 +65,8 @@ export class Comment extends React.PureComponent
       expandReplies = @props.expandReplies
     else
       children = uiState.getOrderedCommentsByParentId(@props.comment.id)
-      # Collapse if either no children is loaded or current level doesn't add indentation.
-      expandReplies = children?.length > 0 && @props.depth < MAX_DEPTH
+      # Collapse if either no children is loaded, current level doesn't add indentation, or this comment is blocked.
+      expandReplies = children?.length > 0 && @props.depth < MAX_DEPTH && !isBlocked(@userFor(@props.comment))
 
     @state =
       clipped: true
@@ -69,6 +75,7 @@ export class Comment extends React.PureComponent
       showNewReply: false
       expandReplies: expandReplies
       lines: null
+      forceShow: false
 
 
   componentWillUnmount: =>
@@ -90,31 +97,34 @@ export class Comment extends React.PureComponent
       parent = store.comments.get(@props.comment.parentId)
       user = @userFor(@props.comment)
       meta = commentableMetaStore.get(@props.comment.commentableType, @props.comment.commentableId)
+      @isBlocked = isBlocked(user)
 
       # Only clip if there are at least CLIP_LINES + 2 lines to ensure there are enough contents
       # being clipped instead of just single lone line (or worse no more lines because of rounding up).
       longContent = @state.lines? && @state.lines.count >= CLIP_LINES + 2
 
-      modifiers = @props.modifiers?[..] ? []
-      modifiers.push 'top' if @props.depth == 0
+      blockClass = classWithModifiers 'comment', @props.modifiers, top: @props.depth == 0
 
-      mainModifiers = []
-      mainModifiers.push 'deleted' if @props.comment.isDeleted
-      mainModifiers.push 'clip' if @state.clipped && longContent
+      mainClass = classWithModifiers 'comment__main',
+        deleted: @props.comment.isDeleted || @isBlocked
+        clip: @state.clipped && longContent
 
-      repliesClass = 'comment__replies'
-      repliesClass += ' comment__replies--indented' if @props.depth < MAX_DEPTH
-      repliesClass += ' comment__replies--hidden' if !@state.expandReplies
+      repliesClass = classWithModifiers 'comment__replies',
+        indented: @props.depth < MAX_DEPTH
+        hidden: !@state.expandReplies
+
+      if !@props.comment.isDeleted && @isBlocked && !@state.forceShow
+        return @renderBlocked(blockClass, mainClass)
 
       div
-        className: classWithModifiers 'comment', modifiers
+        className: blockClass
 
         @renderRepliesToggle()
         @renderCommentableMeta(meta)
         @renderToolbar()
 
         div
-          className: classWithModifiers('comment__main', mainModifiers)
+          className: mainClass
           style:
             '--line-height': if @state.lines? then "#{@state.lines.lineHeight}px" else undefined
             '--clip-lines': CLIP_LINES
@@ -180,9 +190,10 @@ export class Comment extends React.PureComponent
               @renderReport()
               @renderEditedBy()
               @renderDeletedBy()
+              @renderForceShow()
               @renderRepliesText()
 
-            @renderReplyBox()
+            @renderReplyBox(meta)
 
         if @props.comment.repliesCount > 0
           div
@@ -198,6 +209,22 @@ export class Comment extends React.PureComponent
               modifiers: @props.modifiers
               label: osu.trans('comments.load_replies') if @children.length == 0
               ref: @loadMoreRef
+
+
+  renderBlocked: (blockClass, mainClass) =>
+    div className: blockClass,
+      div className: mainClass,
+        span
+          className: if @props.depth > 0 then 'comment__avatar' else ''
+          style:
+            height: 'auto'
+
+        div className: 'comment__container',
+          div className: 'comment__message',
+            p className: 'osu-md osu-md--comment osu-md__paragraph',
+              osu.trans('users.blocks.comment_text')
+              ' '
+              @renderForceShowButton()
 
 
   renderComment: (comment) =>
@@ -318,11 +345,12 @@ export class Comment extends React.PureComponent
           span className: "fas #{if @state.expandReplies then 'fa-angle-up' else 'fa-angle-down'}"
 
 
-  renderReplyBox: =>
+  renderReplyBox: (commentableMeta) =>
     if @state.showNewReply
       div className: 'comment__reply-box',
         el CommentEditor,
           close: @closeNewReply
+          commentableMeta: commentableMeta
           modifiers: @props.modifiers
           onPosted: @handleReplyPosted
           parent: @props.comment
@@ -456,6 +484,20 @@ export class Comment extends React.PureComponent
             osu.trans('common.buttons.show_deleted')
 
 
+  renderForceShowButton: =>
+    button
+      type: 'button'
+      className: 'comment__action'
+      onClick: @toggleForceShow
+      if !@state.forceShow then osu.trans('users.blocks.show_comment') else osu.trans('users.blocks.hide_comment')
+
+
+  renderForceShow: =>
+    if !@props.comment.isDeleted && @isBlocked
+      div className: 'comment__row-item',
+        @renderForceShowButton()
+
+
   hasVoted: =>
     store.userVotes.has(@props.comment.id)
 
@@ -510,7 +552,8 @@ export class Comment extends React.PureComponent
 
 
   parentLink: (parent) =>
-    props = title: makePreview(parent)
+    parentUser = @userFor(parent)
+    props = title: makePreview(parent, parentUser)
 
     if @props.linkParent
       component = a
@@ -522,7 +565,7 @@ export class Comment extends React.PureComponent
     component props,
       span className: 'fas fa-reply'
       ' '
-      @userFor(parent).username
+      parentUser.username
 
 
   userFor: (comment) =>
@@ -592,3 +635,7 @@ export class Comment extends React.PureComponent
 
   toggleClip: =>
     @setState clipped: !@state.clipped
+
+
+  toggleForceShow: =>
+    @setState forceShow: !@state.forceShow

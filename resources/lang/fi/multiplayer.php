@@ -5,14 +5,14 @@
 
 return [
     'empty' => [
-        '_' => '',
-        'playlists' => '',
-        'realtime' => '',
+        '_' => 'Ei vielä yhtään osu!(lazer) :type_group pelattu!',
+        'playlists' => 'soittolista',
+        'realtime' => 'moninpeli',
     ],
 
     'room' => [
         'hosted_by' => 'isännöi :user',
-        'invalid_password' => '',
+        'invalid_password' => 'Virheellinen huoneen salasana',
         'map_count' => ':count_delimited mappi|:count_delimited mappia',
         'player_count' => ':count_delimited pelaaja|:count_delimited pelaajaa',
         'time_left' => ':time jäljellä',

@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Du har blokeret denne bruger.',
+        'comment_text' => 'Denne kommentar er skjult.',
         'blocked_count' => 'blokerede brugere (:count)',
         'hide_profile' => 'Skjul profil',
+        'hide_comment' => 'skjul',
         'not_blocked' => 'Denne bruger er ikke blokeret.',
         'show_profile' => 'Vis profil',
+        'show_comment' => 'vis',
         'too_many' => 'Blokeringsgrænsen er nået.',
         'button' => [
             'block' => 'Bloker',
@@ -128,7 +131,7 @@ return [
 
         'options' => [
             'cheating' => 'Uærligt spil / Snyd',
-            'multiple_accounts' => '',
+            'multiple_accounts' => 'Bruger flere konti',
             'insults' => 'Fornærmede mig / andre',
             'spam' => 'Spamming',
             'unwanted_content' => 'Sender links med upassende indhold',
@@ -158,6 +161,10 @@ return [
         'comments_count' => [
             '_' => 'Slået op :link',
             'count' => ':count_delimited kommentar|:count_delimited kommentarer',
+        ],
+        'cover' => [
+            'to_0' => 'Skjul omslag',
+            'to_1' => 'Vis omslag',
         ],
         'edit' => [
             'cover' => [
@@ -203,6 +210,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Beatmaps på Kirkegården',
+                ],
+                'guest' => [
+                    'title' => 'Gæst Deltagelse Beatmaps',
                 ],
                 'loved' => [
                     'title' => 'Elskede beatmaps',
@@ -302,7 +312,7 @@ return [
                 'title' => 'Medaljer',
             ],
             'playlists' => [
-                'title' => '',
+                'title' => 'Spilleliste spil',
             ],
             'posts' => [
                 'title' => 'Opslag',
@@ -313,7 +323,7 @@ return [
                 'title' => 'Seneste',
             ],
             'realtime' => [
-                'title' => '',
+                'title' => 'Multiplayerspil',
             ],
             'top_ranks' => [
                 'download_replay' => 'Download Replay',
@@ -329,13 +339,13 @@ return [
                     'title' => 'Førstepladser',
                 ],
                 'pin' => [
-                    'to_0' => '',
-                    'to_0_done' => '',
-                    'to_1' => '',
-                    'to_1_done' => '',
+                    'to_0' => 'Frigør',
+                    'to_0_done' => 'Ufastgjort score',
+                    'to_1' => 'Fastgør',
+                    'to_1_done' => 'Fastgjort score',
                 ],
                 'pinned' => [
-                    'title' => '',
+                    'title' => 'Fastgjorte Scores',
                 ],
             ],
             'votes' => [
@@ -362,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Ban',
                         'silence' => 'Mute',
+                        'tournament_ban' => 'Turneringsforbud',
                         'note' => 'Noter',
                     ],
                 ],

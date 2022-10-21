@@ -44,7 +44,7 @@ return [
         'reply_resolve' => 'Odpowiedz i rozwiąż',
         'reset' => 'Zresetuj',
         'restore' => 'Przywróć',
-        'retry' => '',
+        'retry' => 'Ponów',
         'save' => 'Zapisz',
         'saving' => 'Zapisywanie...',
         'search' => 'Szukaj',
@@ -103,7 +103,7 @@ return [
 
     'device' => [
         'keyboard' => 'klawiatury',
-        'mouse' => 'myszki',
+        'mouse' => 'myszy',
         'tablet' => 'tabletu',
         'touch' => 'ekranu dotykowego',
     ],

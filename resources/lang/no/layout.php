@@ -25,6 +25,11 @@ return [
             'index' => 'liste',
         ],
 
+        'beatmapsets' => [
+            'show' => '',
+            'discussions' => '',
+        ],
+
         'changelog' => [
             'index' => 'liste',
         ],
@@ -70,7 +75,7 @@ return [
         ],
         'help' => [
             '_' => 'hjelp',
-            'getAbuse' => '',
+            'getAbuse' => 'rapporter misbruk',
             'getFaq' => 'faq',
             'getRules' => 'regler',
             'getSupport' => 'nei, virkelig, jeg trenger hjelp!',

@@ -3,16 +3,18 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace App\Models\Solo;
 
-use App\Libraries\ModsHelper;
-use App\Libraries\ScoreCheck;
+use App\Libraries\Score\UserRankCache;
 use App\Models\Beatmap;
 use App\Models\Model;
 use App\Models\Score as LegacyScore;
+use App\Models\Traits;
 use App\Models\User;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use stdClass;
+use Illuminate\Database\Eloquent\Builder;
+use LaravelRedis;
 
 /**
  * @property int $beatmap_id
@@ -26,16 +28,18 @@ use stdClass;
  * @property User $user
  * @property int $user_id
  */
-class Score extends Model
+class Score extends Model implements Traits\ReportableInterface
 {
-    use SoftDeletes;
+    use Traits\Reportable, Traits\WithWeightedPp;
+
+    const PROCESSING_QUEUE = 'osu-queue:score-statistics';
 
     protected $table = 'solo_scores';
     protected $casts = [
+        'data' => ScoreData::class,
+        'has_replay' => 'boolean',
         'preserve' => 'boolean',
     ];
-
-    private ?stdClass $currentData = null;
 
     public static function createFromJsonOrExplode(array $params)
     {
@@ -43,10 +47,10 @@ class Score extends Model
             'beatmap_id' => $params['beatmap_id'],
             'ruleset_id' => $params['ruleset_id'],
             'user_id' => $params['user_id'],
-            'data' => (object) $params,
+            'data' => $params,
         ]);
 
-        ScoreCheck::assertCompleted($score);
+        $score->data->assertCompleted();
 
         // this should potentially just be validation rather than applying this logic here, but
         // older lazer builds potentially submit incorrect details here (and we still want to
@@ -60,40 +64,34 @@ class Score extends Model
         return $score;
     }
 
-    public static function addMissingDataAttributes(stdClass $data)
+    /**
+     * Queue the item for score processing
+     *
+     * @param array $scoreJson JSON of the score generated using ScoreTransformer of type Solo
+     */
+    public static function queueForProcessing(array $scoreJson): void
     {
-        static $attributes = [
-            'accuracy' => null,
-            'beatmap_id' => null,
-            'build_id' => null,
-            'ended_at' => null,
-            'max_combo' => null,
-            'mods' => null,
-            'passed' => false,
-            'rank' => null,
-            'ruleset_id' => null,
-            'started_at' => null,
-            'statistics' => null,
-            'total_score' => null,
-            'user_id' => null,
-        ];
-
-        foreach ($attributes as $key => $default) {
-            $data->$key ??= $default;
-        }
-
-        return $data;
+        LaravelRedis::lpush(static::PROCESSING_QUEUE, json_encode([
+            'Score' => [
+                'beatmap_id' => $scoreJson['beatmap_id'],
+                'id' => $scoreJson['id'],
+                'ruleset_id' => $scoreJson['ruleset_id'],
+                'user_id' => $scoreJson['user_id'],
+                // TODO: processor is currently order dependent and requires
+                // this to be located at the end
+                'data' => json_encode($scoreJson),
+            ],
+        ]));
     }
 
-    public function getDataAttribute(?string $value)
+    public function beatmap()
     {
-        return $this->currentData ??= static::addMissingDataAttributes(json_decode($value ?? '{}'));
+        return $this->belongsTo(Beatmap::class, 'beatmap_id');
     }
 
-    public function setDataAttribute(stdClass $value)
+    public function performance()
     {
-        $this->currentData = null;
-        $this->attributes['data'] = json_encode($value);
+        return $this->hasOne(ScorePerformance::class, 'score_id');
     }
 
     public function user()
@@ -101,83 +99,107 @@ class Score extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    /**
+     * This should match the one used in osu-elastic-indexer.
+     */
+    public function scopeIndexable(Builder $query): Builder
+    {
+        return $this
+            ->where('preserve', true)
+            ->whereHas('user', fn (Builder $q): Builder => $q->default());
+    }
+
+    public function getPpAttribute(): ?float
+    {
+        return $this->performance?->pp;
+    }
+
     public function createLegacyEntryOrExplode()
     {
-        $statAttrs = [
-            'Good',
-            'Great',
-            'LargeTickHit',
-            'LargeTickMiss',
-            'Meh',
-            'Miss',
-            'Ok',
-            'Perfect',
-            'SmallTickHit',
-            'SmallTickMiss',
-        ];
-        $statistics = $this->data->statistics;
-
-        foreach ($statAttrs as $attr) {
-            $statistics->$attr = get_int($statistics->$attr ?? 0) ?? 0;
-        }
-
-        $scoreClass = LegacyScore\Model::getClass($this->ruleset_id);
-
-        $score = new $scoreClass([
-            'beatmap_id' => $this->beatmap_id,
-            'beatmapset_id' => optional($this->beatmap)->beatmapset_id ?? 0,
-            'countmiss' => $statistics->Miss,
-            'enabled_mods' => ModsHelper::toBitset(array_column($this->data->mods, 'acronym')),
-            'maxcombo' => $this->data->max_combo,
-            'pass' => $this->data->passed,
-            'perfect' => $this->data->passed && $statistics->Miss + $statistics->LargeTickMiss === 0,
-            'rank' => $this->data->rank,
-            'score' => $this->data->total_score,
-            'scorechecksum' => "\0",
-            'user_id' => $this->user_id,
-        ]);
-
-        switch (Beatmap::modeStr($this->ruleset_id)) {
-            case 'osu':
-                $score['count300'] = $statistics->Great;
-                $score['count100'] = $statistics->Ok;
-                $score['count50'] = $statistics->Meh;
-                break;
-            case 'taiko':
-                $score['count300'] = $statistics->Great;
-                $score['count100'] = $statistics->Ok;
-                break;
-            case 'fruits':
-                $score['count300'] = $statistics->Great;
-                $score['count100'] = $statistics->LargeTickHit;
-                $score['countkatu'] = $statistics->SmallTickMiss;
-                $score['count50'] = $statistics->SmallTickHit;
-                break;
-            case 'mania':
-                $score['countgeki'] = $statistics->Perfect;
-                $score['count300'] = $statistics->Great;
-                $score['countkatu'] = $statistics->Good;
-                $score['count100'] = $statistics->Ok;
-                $score['count50'] = $statistics->Meh;
-                break;
-        }
+        $score = $this->makeLegacyEntry();
 
         $score->saveOrExplode();
 
         return $score;
     }
 
-    public function refresh()
+    public function getMode(): string
     {
-        $this->currentData = null;
-
-        parent::refresh();
+        return Beatmap::modeStr($this->ruleset_id);
     }
 
-    public function save(array $options = [])
+    public function legacyScore(): ?LegacyScore\Best\Model
     {
-        $this->attributes['data'] = json_encode($this->data);
+        $id = $this->data->legacyScoreId;
 
-        return parent::save($options);
+        return $id === null
+            ? null
+            : LegacyScore\Best\Model::getClass($this->getMode())::find($id);
+    }
+
+    public function makeLegacyEntry(): LegacyScore\Model
+    {
+        $data = $this->data;
+        $statistics = $data->statistics;
+        $scoreClass = LegacyScore\Model::getClass($this->getMode());
+
+        $score = new $scoreClass([
+            'beatmap_id' => $this->beatmap_id,
+            'beatmapset_id' => $this->beatmap?->beatmapset_id ?? 0,
+            'countmiss' => $statistics->miss,
+            'enabled_mods' => app('mods')->idsToBitset(array_column($data->mods, 'acronym')),
+            'maxcombo' => $data->maxCombo,
+            'pass' => $data->passed,
+            'perfect' => $data->passed && $statistics->miss + $statistics->largeTickMiss === 0,
+            'rank' => $data->rank,
+            'score' => $data->totalScore,
+            'scorechecksum' => "\0",
+            'user_id' => $this->user_id,
+        ]);
+
+        switch (Beatmap::modeStr($this->ruleset_id)) {
+            case 'osu':
+                $score->count300 = $statistics->great;
+                $score->count100 = $statistics->ok;
+                $score->count50 = $statistics->meh;
+                break;
+            case 'taiko':
+                $score->count300 = $statistics->great;
+                $score->count100 = $statistics->ok;
+                break;
+            case 'fruits':
+                $score->count300 = $statistics->great;
+                $score->count100 = $statistics->largeTickHit;
+                $score->countkatu = $statistics->smallTickMiss;
+                $score->count50 = $statistics->smallTickHit;
+                break;
+            case 'mania':
+                $score->countgeki = $statistics->perfect;
+                $score->count300 = $statistics->great;
+                $score->countkatu = $statistics->good;
+                $score->count100 = $statistics->ok;
+                $score->count50 = $statistics->meh;
+                break;
+        }
+
+        return $score;
+    }
+
+    public function trashed(): bool
+    {
+        return false;
+    }
+
+    public function userRank(): ?int
+    {
+        return UserRankCache::fetch([], $this->beatmap_id, $this->ruleset_id, $this->data->totalScore);
+    }
+
+    protected function newReportableExtraParams(): array
+    {
+        return [
+            'reason' => 'Cheating',
+            'user_id' => $this->user_id,
+        ];
     }
 }

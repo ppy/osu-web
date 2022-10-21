@@ -25,6 +25,11 @@ return [
             'index' => 'katalog',
         ],
 
+        'beatmapsets' => [
+            'show' => 'bilgi',
+            'discussions' => 'tartışma',
+        ],
+
         'changelog' => [
             'index' => 'katalog',
         ],
@@ -46,8 +51,8 @@ return [
 
         'users' => [
             'modding' => 'modlama',
-            'playlists' => '',
-            'realtime' => '',
+            'playlists' => 'oynatma listeleri',
+            'realtime' => 'çok oyunculu',
             'show' => 'bilgi',
         ],
     ],

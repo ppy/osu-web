@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Ro ned, spill mer.',
     ],
@@ -121,6 +125,7 @@ return [
             'language' => 'Språk',
             'no_scores' => 'Data blir fortsatt kalkulert...',
             'nsfw' => 'Eksplisitt innhold',
+            'offset' => '',
             'points-of-failure' => 'Feilpunkter',
             'source' => 'Kilde',
             'storyboard' => '',
@@ -192,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Antall Sirkler',
             'count_sliders' => 'Antall Glidere',
+            'offset' => '',
             'user-rating' => 'Brukervurderinger',
             'rating-spread' => 'Vurderingsskjema',
             'nominations' => 'Nominasjoner',
@@ -207,5 +213,9 @@ return [
             'pending' => 'Avventes',
             'graveyard' => 'Gravplassert',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

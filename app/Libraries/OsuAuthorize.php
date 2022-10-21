@@ -26,6 +26,8 @@ use App\Models\LegacyMatch\LegacyMatch;
 use App\Models\Multiplayer\Room;
 use App\Models\OAuth\Client;
 use App\Models\Score\Best\Model as ScoreBest;
+use App\Models\Solo;
+use App\Models\Traits\ReportableInterface;
 use App\Models\User;
 use App\Models\UserContestEntry;
 use Carbon\Carbon;
@@ -126,13 +128,33 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if (
-            $beatmapset !== null
-            && in_array($beatmapset->status(), ['wip', 'graveyard', 'pending'], true)
-            && !$beatmapset->hasNominations()
-            && $beatmapset->user_id === $user->getKey()
-        ) {
+        if ($user->isModerator()) {
             return 'ok';
+        }
+
+        if ($beatmapset !== null) {
+            $status = $beatmapset->approved;
+
+            static $lovedModifiable = [
+                Beatmapset::STATES['graveyard'],
+                Beatmapset::STATES['loved'],
+            ];
+            if ($user->isProjectLoved() && in_array($status, $lovedModifiable, true)) {
+                return 'ok';
+            }
+
+            static $ownerModifiable = [
+                Beatmapset::STATES['wip'],
+                Beatmapset::STATES['graveyard'],
+                Beatmapset::STATES['pending'],
+            ];
+            if (
+                in_array($status, $ownerModifiable, true)
+                && !$beatmapset->hasNominations()
+                && $beatmapset->user_id === $user->getKey()
+            ) {
+                return 'ok';
+            }
         }
 
         return 'unauthorized';
@@ -328,33 +350,6 @@ class OsuAuthorize
      * @return string
      * @throws AuthorizationCheckException
      */
-    public function checkBeatmapDiscussionStore(?User $user, BeatmapDiscussion $discussion): string
-    {
-        $this->ensureLoggedIn($user);
-        $this->ensureCleanRecord($user);
-        $this->ensureHasPlayed($user);
-
-        if ($discussion->message_type === 'mapper_note') {
-            if ($discussion->managedBy($user)) {
-                return 'ok';
-            }
-
-            if ($user->isModerator() || $user->isBNG()) {
-                return 'ok';
-            }
-
-            return 'beatmap_discussion.store.mapper_note_wrong_user';
-        }
-
-        return 'ok';
-    }
-
-    /**
-     * @param User|null $user
-     * @param BeatmapDiscussion $discussion
-     * @return string
-     * @throws AuthorizationCheckException
-     */
     public function checkBeatmapDiscussionVote(?User $user, BeatmapDiscussion $discussion): string
     {
         $prefix = 'beatmap_discussion.vote.';
@@ -536,29 +531,6 @@ class OsuAuthorize
 
     /**
      * @param User|null $user
-     * @param BeatmapDiscussionPost $post
-     * @return string
-     * @throws AuthorizationCheckException
-     */
-    public function checkBeatmapDiscussionPostStore(?User $user, BeatmapDiscussionPost $post): string
-    {
-        $this->ensureLoggedIn($user);
-        $this->ensureCleanRecord($user);
-        $this->ensureHasPlayed($user);
-
-        if ($user->isModerator()) {
-            return 'ok';
-        }
-
-        if ($post->beatmapDiscussion->beatmapset->discussion_locked) {
-            return 'beatmap_discussion_post.store.beatmapset_locked';
-        }
-
-        return 'ok';
-    }
-
-    /**
-     * @param User|null $user
      * @return string
      */
     public function checkBeatmapsetAdvancedSearch(?User $user): string
@@ -589,6 +561,59 @@ class OsuAuthorize
         }
 
         return 'unauthorized';
+    }
+
+    /**
+     * @param User|null $user
+     * @param BeatmapDiscussion $discussion
+     * @return string
+     * @throws AuthorizationCheckException
+     */
+    public function checkBeatmapsetDiscussionNew(?User $user, BeatmapDiscussion $discussion): string
+    {
+        $beatmapsetDiscussionReplyPermission = $this->doCheckUser($user, 'BeatmapsetDiscussionReply', $discussion->beatmapset);
+        if (!$beatmapsetDiscussionReplyPermission->can()) {
+            return $beatmapsetDiscussionReplyPermission->rawMessage();
+        }
+
+        if ($discussion->message_type === 'mapper_note') {
+            if ($discussion->managedBy($user)) {
+                return 'ok';
+            }
+
+            if ($user->isModerator() || $user->isBNG()) {
+                return 'ok';
+            }
+
+            // TODO: key should be changed.
+            return 'beatmap_discussion.store.mapper_note_wrong_user';
+        }
+
+        return 'ok';
+    }
+
+    /**
+     * @param User|null $user
+     * @param BeatmapDiscussionPost $post
+     * @return string
+     * @throws AuthorizationCheckException
+     */
+    public function checkBeatmapsetDiscussionReply(?User $user, Beatmapset $beatmapset): string
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+        $this->ensureHasPlayed($user);
+
+        if ($user->isModerator()) {
+            return 'ok';
+        }
+
+        if ($beatmapset->discussion_locked) {
+            // TODO: key should be changed.
+            return 'beatmap_discussion_post.store.beatmapset_locked';
+        }
+
+        return 'ok';
     }
 
     /**
@@ -652,6 +677,16 @@ class OsuAuthorize
 
     /**
      * @param User|null $user
+     * @return string
+     */
+    public function checkBeatmapsetRemoveFromLoved(?User $user): string
+    {
+        // admin only (:
+        return 'unauthorized';
+    }
+
+    /**
+     * @param User|null $user
      * @param Beatmapset $beatmapset
      * @return string
      * @throws AuthorizationCheckException
@@ -705,7 +740,7 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if ($user->user_id === $beatmapset->user_id || $user->isModerator()) {
+        if ((!$beatmapset->downloadLimited() && $user->getKey() === $beatmapset->user_id) || $user->isModerator()) {
             return 'ok';
         }
 
@@ -788,7 +823,11 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($user->isProjectLoved() && $beatmapset->isLoved()) {
+        static $lovedEditable = [
+            Beatmapset::STATES['graveyard'],
+            Beatmapset::STATES['loved'],
+        ];
+        if ($user->isProjectLoved() && in_array($beatmapset->approved, $lovedEditable, true)) {
             return 'ok';
         }
 
@@ -797,16 +836,15 @@ class OsuAuthorize
             Beatmapset::STATES['pending'],
             Beatmapset::STATES['qualified'],
         ];
+        if ($user->isBNG() && in_array($beatmapset->approved, $bnEditable, true)) {
+            return 'ok';
+        }
+
         static $ownerEditable = [
             Beatmapset::STATES['graveyard'],
             Beatmapset::STATES['wip'],
             Beatmapset::STATES['pending'],
         ];
-
-        if ($user->isBNG() && in_array($beatmapset->approved, $bnEditable, true)) {
-            return 'ok';
-        }
-
         if ($user->getKey() !== $beatmapset->user_id || !in_array($beatmapset->approved, $ownerEditable, true)) {
             return 'unauthorized';
         }
@@ -830,6 +868,11 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
 
         return 'ok';
+    }
+
+    public function checkBeatmapsetOffsetEdit(): string
+    {
+        return 'unauthorized';
     }
 
     /**
@@ -1124,11 +1167,15 @@ class OsuAuthorize
      * @return string
      * @throws AuthorizationCheckException
      */
-    public function checkCommentStore(?User $user, Comment $comment): string
+    public function checkCommentStore(?User $user, Commentable $commentable): string
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
         $this->ensureHasPlayed($user);
+
+        if ($commentable->commentLocked()) {
+            return 'comment.store.disabled';
+        }
 
         return 'ok';
     }
@@ -1151,6 +1198,11 @@ class OsuAuthorize
         if ($comment->user_id === $user->getKey()) {
             if ($comment->trashed()) {
                 return 'comment.update.deleted';
+            }
+
+            $commentable = $comment->commentable;
+            if ($commentable instanceof Beatmapset && $commentable->downloadLimited()) {
+                return 'comment.store.disabled';
             }
 
             return 'ok';
@@ -1788,22 +1840,22 @@ class OsuAuthorize
 
     /**
      * @param User|null $user
-     * @param \App\Models\Score\Best\Model|null $user
+     * @param \App\Models\Score\Best\Model $score
      * @return string
      * @throws AuthorizationCheckException
      */
-    public function checkScorePin(?User $user, ScoreBest $best): string
+    public function checkScorePin(?User $user, ScoreBest|Solo\Score $score): string
     {
         $prefix = 'score.pin.';
 
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if ($best->user_id !== $user->getKey()) {
+        if ($score->user_id !== $user->getKey()) {
             return $prefix.'not_owner';
         }
 
-        $pinned = $user->scorePins()->forMode($best)->withVisibleScore()->count();
+        $pinned = $user->scorePins()->forRuleset($score->getMode())->withVisibleScore()->count();
 
         if ($pinned >= $user->maxScorePins()) {
             return $prefix.'too_many';
@@ -1847,6 +1899,18 @@ class OsuAuthorize
         }
 
         return 'ok';
+    }
+
+    public function checkUserReport(?User $user, ReportableInterface $model): string
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if (!$model->trashed()) {
+            return 'ok';
+        }
+
+        return 'unauthorized';
     }
 
     /**

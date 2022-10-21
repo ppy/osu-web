@@ -29,7 +29,13 @@ return [
         ],
 
         'progress' => [
-            '_' => '',
+            '_' => ':used / :max stemmer brugt',
+        ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => '',
+            ],
         ],
     ],
     'entry' => [
@@ -56,7 +62,7 @@ return [
     ],
     'dates' => [
         'ended' => 'Sluttede den :date',
-        'ended_no_date' => '',
+        'ended_no_date' => 'Afsluttet',
 
         'starts' => [
             '_' => 'Starter den :date',

@@ -31,6 +31,12 @@ return [
         'progress' => [
             '_' => ':used / :max の投票を使用済み',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => '投票前に指定されたプレイリストのすべてのビートマップをプレイする必要があります。',
+            ],
+        ],
     ],
     'entry' => [
         '_' => 'エントリー',

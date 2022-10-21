@@ -5,112 +5,121 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Automatski reprodukciraj sljedeću pjesmu',
     ],
 
     'defaults' => [
-        'page_description' => '',
+        'page_description' => 'osu! - Ritam je udaljen samo jedan *klik*! Sa Ouendan/EBA, Taiko i orginalnim modovima igre i  potpuno funkcionalnim level editorom. ',
     ],
 
     'header' => [
         'admin' => [
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
-            'contest' => '',
-            'contests' => '',
-            'root' => '',
+            'beatmapset' => 'set beatmapa',
+            'beatmapset_covers' => 'naslovne slike setova beatmapova',
+            'contest' => 'natjecanje',
+            'contests' => 'natjecanja',
+            'root' => 'konzola',
         ],
 
         'artists' => [
-            'index' => '',
+            'index' => 'popis',
+        ],
+
+        'beatmapsets' => [
+            'show' => 'informacije
+
+',
+            'discussions' => 'rasprava',
         ],
 
         'changelog' => [
-            'index' => '',
+            'index' => 'popis',
         ],
 
         'help' => [
-            'index' => '',
-            'sitemap' => '',
+            'index' => 'index',
+            'sitemap' => 'Mapa stranice',
         ],
 
         'store' => [
-            'cart' => '',
-            'orders' => '',
-            'products' => '',
+            'cart' => 'košarica',
+            'orders' => 'povijest narudžbi',
+            'products' => 'proizvodi',
         ],
 
         'tournaments' => [
-            'index' => '',
+            'index' => 'popis',
         ],
 
         'users' => [
-            'modding' => '',
-            'playlists' => '',
-            'realtime' => '',
-            'show' => '',
+            'modding' => 'modificiranje',
+            'playlists' => 'popisi za reprodukciju',
+            'realtime' => 'multiplayer',
+            'show' => 'informacije
+
+',
         ],
     ],
 
     'gallery' => [
-        'close' => '',
-        'fullscreen' => '',
-        'zoom' => '',
-        'previous' => '',
-        'next' => '',
+        'close' => 'Zatvori (Esc)',
+        'fullscreen' => 'Uključi/isključi cjeloekranski prikaz',
+        'zoom' => 'Povećaj/smanji prikaz',
+        'previous' => 'Prethodno (strelica lijevo)',
+        'next' => 'Sljedeće (strelica desno)',
     ],
 
     'menu' => [
         'beatmaps' => [
-            '_' => '',
+            '_' => 'beatmape',
         ],
         'community' => [
-            '_' => '',
-            'dev' => '',
+            '_' => 'zajednica',
+            'dev' => 'razvoj',
         ],
         'help' => [
             '_' => 'pomoć',
-            'getAbuse' => '',
+            'getAbuse' => 'prijavi zloupotrebu',
             'getFaq' => 'faq',
-            'getRules' => '',
-            'getSupport' => '',
+            'getRules' => 'pravila',
+            'getSupport' => 'ne, stvarno, treba mi pomoć!',
         ],
         'home' => [
             '_' => 'početna',
             'team' => 'ekipa',
         ],
         'rankings' => [
-            '_' => '',
-            'kudosu' => '',
+            '_' => 'ljestvice',
+            'kudosu' => 'kudosu',
         ],
         'store' => [
-            '_' => '',
+            '_' => 'trgovina',
         ],
     ],
 
     'footer' => [
         'general' => [
-            '_' => '',
+            '_' => 'Općenito',
             'home' => 'Početna',
-            'changelog-index' => '',
-            'beatmaps' => '',
-            'download' => '',
+            'changelog-index' => 'Popis promjena',
+            'beatmaps' => 'Popis beatmapa',
+            'download' => 'Preuzmi osu!',
         ],
         'help' => [
-            '_' => '',
-            'faq' => '',
-            'forum' => '',
-            'livestreams' => '',
-            'report' => '',
+            '_' => 'Pomoć i Zajednica',
+            'faq' => 'Često postavljana pitanja',
+            'forum' => 'Forum Zajednice',
+            'livestreams' => 'Strujanja Uživo',
+            'report' => 'Prijavi Problem',
             'wiki' => 'Wiki',
         ],
         'legal' => [
-            '_' => '',
-            'copyright' => '',
-            'privacy' => '',
-            'server_status' => '',
-            'source_code' => '',
-            'terms' => '',
+            '_' => 'Legalno i Status',
+            'copyright' => 'Autorska prava (DMCA)',
+            'privacy' => 'Privatnost',
+            'server_status' => 'Status Servera',
+            'source_code' => 'Izvorni kȏd',
+            'terms' => 'Uvjeti',
         ],
     ],
 

@@ -11,7 +11,7 @@ return [
 
         'blurb' => [
             'important' => 'İNDİRMEDEN ÖNCE OKUYUN',
-            'install_instruction' => '',
+            'install_instruction' => 'Kurulum: Bir paket indirildikten sonra, paketin içeriğini osu! Şarkılar dizinine çıkartın osu! gerisini yapacaktır.',
             'note' => [
                 '_' => 'Ayrıca :scary tavsiye edilir, zira eski haritalar en yeni haritalara kıyasla çok daha düşük kalitededir.',
                 'scary' => 'paketleri en yeniden en eskiye doğru indirmeniz',

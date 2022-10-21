@@ -29,7 +29,7 @@ return [
     ],
     'search' => [
         'default' => 'هیچ نتیجه ای نمیتوان گفت، بعدا امتحان کنید.',
-        'invalid_cursor_exception' => '',
-        'operation_timeout_exception' => 'جست و جو از حد معمول شلوغ تر است، بعدا امتحان کنید.',
+        'invalid_cursor_exception' => 'پارامتر مکان نما نامعتبر مشخص شد.',
+        'operation_timeout_exception' => 'جستجو از حد معمول شلوغ تر است، بعدا امتحان کنید.',
     ],
 ];

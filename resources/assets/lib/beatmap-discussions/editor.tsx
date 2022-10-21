@@ -4,6 +4,7 @@
 import { CircularProgress } from 'components/circular-progress';
 import { Spinner } from 'components/spinner';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
+import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForBundle, BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import isHotkey from 'is-hotkey';
 import { route } from 'laroute';
@@ -13,7 +14,9 @@ import * as React from 'react';
 import { createEditor, Element as SlateElement, Node as SlateNode, NodeEntry, Range, Text, Transforms } from 'slate';
 import { withHistory } from 'slate-history';
 import { Editable, ReactEditor, RenderElementProps, RenderLeafProps, Slate, withReact } from 'slate-react';
+import { onError } from 'utils/ajax';
 import { sortWithMode } from 'utils/beatmap-helper';
+import { timestampRegex } from 'utils/beatmapset-discussion-helper';
 import { nominationsCount } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { DraftsContext } from './drafts-context';
@@ -42,12 +45,10 @@ interface Props {
   beatmaps: Partial<Record<number, BeatmapExtendedJson>>;
   beatmapset: BeatmapsetJson;
   currentBeatmap: BeatmapExtendedJson;
-  currentDiscussions: BeatmapsetDiscussionJson[];
   discussion?: BeatmapsetDiscussionJson;
-  discussions: Partial<Record<number, BeatmapsetDiscussionJson>>;
+  discussions: Partial<Record<number, BeatmapsetDiscussionJsonForBundle | BeatmapsetDiscussionJsonForShow>>; // passed in via context at parent
   document?: string;
   editing: boolean;
-  editMode?: boolean;
   onChange?: () => void;
   onFocus?: () => void;
 }
@@ -77,7 +78,11 @@ export default class Editor extends React.Component<Props, State> {
   scrollContainerRef: React.RefObject<HTMLDivElement>;
   slateEditor: ReactEditor;
   toolbarRef: React.RefObject<EditorToolbar>;
-  private xhr?: JQueryXHR;
+  private xhr?: JQueryXHR | null;
+
+  private get editMode() {
+    return this.props.document != null;
+  }
 
   constructor(props: Props) {
     super(props);
@@ -90,7 +95,7 @@ export default class Editor extends React.Component<Props, State> {
 
     let initialValue: SlateElement[] = this.emptyDocTemplate;
 
-    if (props.editMode) {
+    if (this.editMode) {
       initialValue = this.valueFromProps();
     } else {
       const saved = localStorage.getItem(this.localStorageKey);
@@ -145,13 +150,7 @@ export default class Editor extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
-    if (this.xhr) {
-      this.xhr.abort();
-    }
-  }
-
-  componentWillUpdate(): void {
-    this.cache = {};
+    this.xhr?.abort();
   }
 
   decorateTimestamps = (entry: NodeEntry) => {
@@ -162,7 +161,7 @@ export default class Editor extends React.Component<Props, State> {
       return ranges;
     }
 
-    const regex = RegExp(BeatmapDiscussionHelper.TIMESTAMP_REGEX, 'g');
+    const regex = RegExp(timestampRegex, 'g');
     let match;
 
     while ((match = regex.exec(node.text)) !== null) {
@@ -192,7 +191,7 @@ export default class Editor extends React.Component<Props, State> {
       value = this.emptyDocTemplate;
     }
 
-    if (!this.props.editMode) {
+    if (!this.editMode) {
       const content = JSON.stringify(value);
 
       if (slateDocumentIsEmpty(value)) {
@@ -238,6 +237,8 @@ export default class Editor extends React.Component<Props, State> {
   };
 
   post = () => {
+    if (this.xhr != null) return;
+
     if (this.showConfirmationIfRequired()) {
       this.setState({ posting: true }, () => {
         this.xhr = $.ajax(route('beatmapsets.discussion.review', { beatmapset: this.props.beatmapset.id }), {
@@ -248,15 +249,19 @@ export default class Editor extends React.Component<Props, State> {
             $.publish('beatmapsetDiscussions:update', { beatmapset: data });
             this.resetInput();
           })
-          .fail(osu.ajaxError)
-          .always(() => this.setState({ posting: false }));
+          .fail(onError)
+          .always(() => {
+            this.xhr = null;
+            this.setState({ posting: false });
+          });
       });
     }
   };
 
   render(): React.ReactNode {
+    this.cache = {};
     const editorClass = 'beatmap-discussion-editor';
-    const modifiers = this.props.editMode ? ['edit-mode'] : [];
+    const modifiers = this.editMode ? ['edit-mode'] : [];
     if (this.state.posting) {
       modifiers.push('readonly');
     }
@@ -286,12 +291,12 @@ export default class Editor extends React.Component<Props, State> {
                   />
                 </DraftsContext.Provider>
               </div>
-              {this.props.editMode &&
+              {this.editMode &&
                 <div className={`${editorClass}__inner-block-count`}>
                   {this.renderBlockCount('lighter')}
                 </div>
               }
-              {!this.props.editMode &&
+              {!this.editMode &&
                 <div className={`${editorClass}__button-bar`}>
                   <button
                     className='btn-osu-big btn-osu-big--forum-secondary'
@@ -347,7 +352,7 @@ export default class Editor extends React.Component<Props, State> {
             beatmapset={this.props.beatmapset}
             currentBeatmap={this.props.currentBeatmap}
             discussions={this.props.discussions}
-            editMode={this.props.editMode}
+            editMode={this.editMode}
             readOnly={this.state.posting}
             {...props}
           />

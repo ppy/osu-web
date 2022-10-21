@@ -92,6 +92,16 @@ class ForumTopicsControllerTest extends TestCase
             ->assertStatus(200);
     }
 
+    public function testShowMissingFirstPost(): void
+    {
+        $topic = Topic::factory()->withPost()->create();
+        $topic->update(['topic_first_post_id' => 0]);
+
+        $this
+            ->get(route('forum.topics.show', $topic))
+            ->assertStatus(404);
+    }
+
     public function testShowNoMorePosts(): void
     {
         $topic = Topic::factory()->withPost()->create();

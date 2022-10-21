@@ -12,6 +12,7 @@ import { UserLink } from 'components/user-link'
 import { route } from 'laroute'
 import * as React from 'react'
 import { a, div, i, span } from 'react-dom-factories'
+import { canModeratePosts, format, previewMessage } from 'utils/beatmapset-discussion-helper'
 import { nominationsCount } from 'utils/beatmapset-helper'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { pageChange } from 'utils/page-change'
@@ -200,19 +201,20 @@ export class Nominations extends React.PureComponent
 
 
   focusHypeInput: =>
-    hypeMessage = $('.js-hype--explanation')
-    flashClass = 'js-flash-border--on'
-
     # switch to generalAll tab, set current filter to praises
     $.publish 'beatmapsetDiscussions:update',
       mode: 'generalAll'
       filter: 'praises'
 
-    @focusNewDiscussion ->
-      # flash border of hype description to emphasize input is required
-      $(hypeMessage).addClass(flashClass)
-      @hypeFocusTimeout = Timeout.set 1000, ->
-        $(hypeMessage).removeClass(flashClass)
+    hypeMessage = '.js-hype--explanation'
+    flashClass = 'js-flash-border--on'
+
+    @hypeFocusTimeout = Timeout.set 0, =>
+      @focusNewDiscussion =>
+        # flash border of hype description to emphasize input is required
+        $(hypeMessage).addClass(flashClass)
+        @hypeFocusTimeout = Timeout.set 1000, =>
+          $(hypeMessage).removeClass(flashClass)
 
 
   focusNewDiscussion: (callback) ->
@@ -251,7 +253,7 @@ export class Nominations extends React.PureComponent
         "##{discussion.id}"
 
       message = span dangerouslySetInnerHTML:
-        __html: BeatmapDiscussionHelper.previewMessage(discussion.posts[0].message)
+        __html: previewMessage(discussion.posts[0].message)
     else
       link = "##{event.comment.beatmap_discussion_id}"
       message = osu.trans('beatmaps.nominations.reset_message_deleted')
@@ -264,7 +266,7 @@ export class Nominations extends React.PureComponent
       reason =
         if event.comment?
           span dangerouslySetInnerHTML:
-            __html: BeatmapDiscussionHelper.format event.comment,
+            __html: format event.comment,
               modifiers: ['white']
               newlines: false
         else
@@ -414,7 +416,7 @@ export class Nominations extends React.PureComponent
 
     div dangerouslySetInnerHTML:
       __html: osu.trans 'beatmapset_events.event.discussion_lock',
-        text: BeatmapDiscussionHelper.format(lockEvent.comment.reason, newlines: false)
+        text: format(lockEvent.comment.reason, newlines: false)
 
 
   feedbackButton: =>
@@ -455,9 +457,9 @@ export class Nominations extends React.PureComponent
 
 
   discussionLockButton: =>
-    canModeratePost = BeatmapDiscussionHelper.canModeratePosts(@props.currentUser)
+    canModerate = canModeratePosts(@props.currentUser)
 
-    return null unless canModeratePost
+    return null unless canModerate
 
     if @props.beatmapset.discussion_locked
       action = 'unlock'

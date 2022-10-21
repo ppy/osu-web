@@ -7,6 +7,7 @@ import { route } from 'laroute';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { formatNumber } from 'utils/html';
 import Beatmapset from './beatmapset';
 import User from './user';
 import { ResultMode, Section } from './worker';
@@ -252,7 +253,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
         <div className='search-result-more__content'>
           {osu.trans(key, { mode: osu.trans(`quick_search.mode.${mode}`) })}
           <span className='search-result-more__count'>
-            {osu.formatNumber(this.count(mode))}
+            {formatNumber(this.count(mode))}
           </span>
         </div>
         <div className='search-result-more__arrow'>

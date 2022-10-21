@@ -50,15 +50,16 @@
 // header left margin (20) + logo (100) + menu left margin (10)
 @padding-big: (20px + @logo-size + 10px);
 
-@gutter-profile-page: @gutter-v2;
-@gutter-profile-page-desktop: @gutter-v2-desktop;
-@padding-profile-page: 10px;
+@gutter-beatmapset: @gutter-v2;
+@gutter-beatmapset-desktop: 40px;
 
 @md-paragraph-space: 1.5em;
 
 // ┐(ﾟ ヮﾟ)┌
 @gutter-v2: 10px;
 @gutter-v2-desktop: 50px;
+
+@gutter-small-desktop: 20px;
 
 @gutter-sidebar-desktop: 30px;
 
@@ -102,9 +103,9 @@
 @z-index--audio-player-floating: 501;
 @z-index--fixed-bar: 502;
 @z-index--user-card-tooltip: 509;
+@z-index--nav-bar: 509;
 @z-index--blackout: 510;
-// FIXME: this should be lower than blackout and increased on mobile when the menu is active
-@z-index--nav-bar: 511;
+@z-index--nav-bar-mobile-active: 511;
 @z-index--blackout-visible: 512;
 @z-index--nav-float: 999;
 // Xsolla overlay: 1000
@@ -131,6 +132,8 @@
 @beatmapset-avatar-size: 50px;
 
 @beatmapset-float-box-width: 275px;
+
+@header-title-height: 55px;
 
 // top padding + menu + page title
 @nav-avatar-size: 70px;
@@ -298,16 +301,6 @@
 @ranking-page-header-inset: 40px;
 
 @btn-circle-diameter: 30px;
-
-// difficulty colours
-@diff-easy: #4EBFFF;
-@diff-normal: #66FF91;
-@diff-hard: #F7E85D;
-@diff-insane: #FF7E68;
-@diff-expert: #FE3C71;
-@diff-expert-plus: #6662DD;
-@diff-expert-plus-light: #6662DD;
-@diff-default: #000;
 
 // store slider
 @slider-callout--arrow-height: 12px;

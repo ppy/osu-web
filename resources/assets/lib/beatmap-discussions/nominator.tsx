@@ -3,18 +3,19 @@
 
 import BigButton from 'components/big-button';
 import { Modal } from 'components/modal';
-import BeatmapsetEventJson, { isBeatmapsetNominationEvent } from 'interfaces/beatmapset-event-json';
-import BeatmapsetJson from 'interfaces/beatmapset-json';
+import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
+import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import GameMode from 'interfaces/game-mode';
 import UserExtendedJson from 'interfaces/user-extended-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as _ from 'lodash';
 import * as React from 'react';
+import { onError } from 'utils/ajax';
 import { classWithModifiers } from 'utils/css';
 
 interface Props {
-  beatmapset: BeatmapsetJson;
+  beatmapset: BeatmapsetExtendedJson;
   currentHype: number;
   currentUser: UserExtendedJson;
   unresolvedIssues: number;
@@ -62,7 +63,7 @@ export class Nominator extends React.PureComponent<Props, State> {
     };
 
     return _.some(this.nominationEvents(), (event) => {
-      if (isBeatmapsetNominationEvent(event)) {
+      if (event.type === 'nominate' && event.comment != null) {
         return event.comment.modes.includes(mode) && eventUserIsFullNominator(event, mode);
       } else {
         return eventUserIsFullNominator(event);
@@ -104,7 +105,7 @@ export class Nominator extends React.PureComponent<Props, State> {
         .done((response) => {
           $.publish('beatmapsetDiscussions:update', {beatmapset: response});
         })
-        .fail(osu.ajaxError)
+        .fail(onError)
         .always(this.hideNominationModal);
     });
   };
@@ -267,7 +268,7 @@ export class Nominator extends React.PureComponent<Props, State> {
 
     return (userId != null && (
       userId === this.props.beatmapset.user_id
-      || (this.props.beatmapset.beatmaps ?? []).some((beatmap) => userId === beatmap.user_id)
+      || (this.props.beatmapset.beatmaps ?? []).some((beatmap) => beatmap.deleted_at == null && userId === beatmap.user_id)
     ));
   };
 
@@ -298,11 +299,11 @@ export class Nominator extends React.PureComponent<Props, State> {
             type='checkbox'
             value={mode}
           />
-          <span className='osu-switch-v2__content'/>
+          <span className='osu-switch-v2__content' />
           <div
             className={classWithModifiers(`${this.bn}__label`, { disabled })}
           >
-            <i className={`fal fa-extra-mode-${mode}`}/> {osu.trans(`beatmaps.mode.${mode}`)}
+            <i className={`fal fa-extra-mode-${mode}`} /> {osu.trans(`beatmaps.mode.${mode}`)}
           </div>
         </label>
       );

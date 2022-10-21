@@ -9,25 +9,28 @@ namespace App\Transformers\Score;
 
 use App\Models\LegacyMatch;
 use App\Models\Score\Model as ScoreModel;
+use App\Models\Solo\Score as SoloScore;
 use App\Transformers\TransformerAbstract;
 
 class CurrentUserAttributesTransformer extends TransformerAbstract
 {
-    public function transform(LegacyMatch\Score|ScoreModel $score): array
+    public function transform(LegacyMatch\Score|ScoreModel|SoloScore $score): array
     {
-        $best = $score->best;
+        $pinnable = $score instanceof ScoreModel
+            ? $score->best
+            : ($score instanceof SoloScore ? $score : null);
 
         return [
-            'pin' => $best !== null && $this->isOwnScore($best)
+            'pin' => $pinnable !== null && $this->isOwnScore($pinnable)
                 ? [
-                    'is_pinned' => app('score-pins')->isPinned($best),
-                    'score_id' => $best->getKey(),
-                    'score_type' => $best->getMorphClass(),
+                    'is_pinned' => app('score-pins')->isPinned($pinnable),
+                    'score_id' => $pinnable->getKey(),
+                    'score_type' => $pinnable->getMorphClass(),
                 ] : null,
         ];
     }
 
-    private function isOwnScore(LegacyMatch\Score|ScoreModel $score): bool
+    private function isOwnScore(LegacyMatch\Score|ScoreModel|SoloScore $score): bool
     {
         return $score->user_id === auth()->user()?->getKey();
     }

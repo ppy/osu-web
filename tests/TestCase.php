@@ -5,13 +5,18 @@
 
 namespace Tests;
 
+use App\Events\NewPrivateNotificationEvent;
 use App\Http\Middleware\AuthApi;
+use App\Jobs\Notifications\BroadcastNotificationBase;
 use App\Libraries\BroadcastsPendingForTests;
+use App\Libraries\Search\ScoreSearch;
 use App\Models\Beatmapset;
 use App\Models\OAuth\Client;
 use App\Models\User;
+use Artisan;
 use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use Firebase\JWT\JWT;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Testing\Fakes\MailFake;
@@ -26,6 +31,18 @@ use ReflectionProperty;
 class TestCase extends BaseTestCase
 {
     use ArraySubsetAsserts, CreatesApplication, DatabaseTransactions;
+
+    protected static function reindexScores()
+    {
+        $search = new ScoreSearch();
+        $search->deleteAll();
+        $search->refresh();
+        Artisan::call('es:index-scores:queue', [
+            '--all' => true,
+            '--no-interaction' => true,
+        ]);
+        $search->indexWait();
+    }
 
     protected $connectionsToTransact = [
         'mysql',
@@ -169,7 +186,7 @@ class TestCase extends BaseTestCase
         static $privateKey;
 
         if ($privateKey === null) {
-            $privateKey = file_get_contents(Passport::keyPath('oauth-private.key'));
+            $privateKey = config('passport.private_key') ?? file_get_contents(Passport::keyPath('oauth-private.key'));
         }
 
         $encryptedToken = JWT::encode([
@@ -247,17 +264,9 @@ class TestCase extends BaseTestCase
         }, glob("{$path}/*{$suffix}"));
     }
 
-    protected function makeBeatmapsetDiscussionPostParams(Beatmapset $beatmapset, string $messageType)
+    protected function inReceivers(Model $model, NewPrivateNotificationEvent|BroadcastNotificationBase $obj): bool
     {
-        return [
-            'beatmapset_id' => $beatmapset->getKey(),
-            'beatmap_discussion' => [
-                'message_type' => $messageType,
-            ],
-            'beatmap_discussion_post' => [
-                'message' => 'Hello',
-            ],
-        ];
+        return in_array($model->getKey(), $obj->getReceiverIds(), true);
     }
 
     protected function invokeMethod($obj, string $name, array $params = [])
@@ -282,6 +291,19 @@ class TestCase extends BaseTestCase
         $property->setAccessible(true);
 
         $property->setValue($obj, $value);
+    }
+
+    protected function makeBeatmapsetDiscussionPostParams(Beatmapset $beatmapset, string $messageType)
+    {
+        return [
+            'beatmapset_id' => $beatmapset->getKey(),
+            'beatmap_discussion' => [
+                'message_type' => $messageType,
+            ],
+            'beatmap_discussion_post' => [
+                'message' => 'Hello',
+            ],
+        ];
     }
 
     protected function normalizeHTML($html)

@@ -11,16 +11,6 @@ import { activeKeyDidChange as contextActiveKeyDidChange, ContainerContext, KeyC
 import { TooltipContext } from 'tooltip-context';
 import { UserCard } from './user-card';
 
-declare global {
-  interface HTMLElement {
-    _tooltip?: string;
-  }
-
-  interface JQuery {
-    qtip(...args: any): any;
-  }
-}
-
 interface Props {
   container: HTMLElement;
   lookup: string;
@@ -111,11 +101,11 @@ function onMouseLeave() {
   inCard = false;
 }
 
-function onMouseOver(event: JQueryEventObject) {
+function onMouseOver(event: JQuery.TriggeredEvent<Document, unknown, HTMLElement, HTMLElement>) {
   if (tooltipWithActiveMenu != null) return;
   if (core.windowSize.isMobile) return;
 
-  const el = event.currentTarget as HTMLElement;
+  const el = event.currentTarget;
   const userId = osu.presence(el.dataset.userId);
   if (userId == null) return;
   // don't show cards for blocked users
@@ -129,8 +119,12 @@ function onMouseOver(event: JQueryEventObject) {
     // wrong userId, destroy current tooltip
     const qtip = $(el).qtip('api');
     if (qtip != null) {
-      if (qtip.tooltip != null) {
-        unmountComponentAtNode(qtip.tooltip.find('.js-react--user-card-tooltip')[0]);
+      const tooltipElement = qtip.tooltip as HTMLElement | undefined;
+      if (tooltipElement != null) {
+        const container = tooltipElement.querySelector('.js-react--user-card-tooltip');
+        if (container != null) {
+          unmountComponentAtNode(container);
+        }
       }
 
       qtip.destroy();
@@ -147,7 +141,32 @@ function hideEffect(this: JQuery<HTMLElement>) {
   $(this).fadeTo(110, 0);
 }
 
-function shouldShow(event: JQueryEventObject, api: any) {
+function onRemoveUserCard(_event: unknown, element: HTMLElement | null) {
+  if (element == null) return;
+
+  const qtipId = element.dataset.hasqtip;
+  if (qtipId == null) return;
+
+  const tooltipElement = document.getElementById(`qtip-${qtipId}`);
+  if (tooltipElement == null) return;
+
+  const qtip = $(tooltipElement).qtip('api');
+  if (qtip != null) {
+    const container = tooltipElement.querySelector('.js-react--user-card-tooltip');
+    if (container != null) {
+      unmountComponentAtNode(container);
+    }
+
+    // queue after React unmount.
+    setTimeout(() => {
+      // tooltip element doesn't get removed sometimes without immediate = true.
+      qtip.destroy(true);
+      delete element._tooltip;
+    }, 0);
+  }
+}
+
+function shouldShow(event: JQuery.Event, api: any) {
   if (tooltipWithActiveMenu != null || core.windowSize.isMobile) {
     return event.preventDefault();
   }
@@ -165,6 +184,7 @@ export function startListening() {
   $(document).on('mouseenter', '.js-react--user-card-tooltip', onMouseEnter);
   $(document).on('mouseleave', '.js-react--user-card-tooltip', onMouseLeave);
   $(document).on('turbolinks:before-cache', onBeforeCache);
+  $.subscribe('user-card:remove.tooltip', onRemoveUserCard);
 }
 
 /**
@@ -187,7 +207,7 @@ export class UserCardTooltip extends React.PureComponent<Props, State> {
       dataType: 'json',
       type: 'GET',
       url,
-    });
+    }) as JQuery.jqXHR<UserJson>;
   }
 
   render() {

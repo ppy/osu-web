@@ -12,6 +12,7 @@ import core from 'osu-core-singleton'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
 import * as BeatmapHelper from 'utils/beatmap-helper'
+import { stateFromDiscussion } from 'utils/beatmapset-discussion-helper'
 import { nextVal } from 'utils/seq'
 import { currentUrl } from 'utils/turbolinks'
 import { Discussions } from './discussions'
@@ -33,12 +34,11 @@ export class Main extends React.PureComponent
     @checkNewTimeoutDefault = 10000
     @checkNewTimeoutMax = 60000
     @cache = {}
+    @disposers = new Set
     @timeouts = {}
     @xhr = {}
     @state = JSON.parse(props.container.dataset.beatmapsetDiscussionState ? null)
     @restoredState = @state?
-    # FIXME: update url handler to recognize this instead
-    @focusNewDiscussion = currentUrl().hash == '#new'
 
     if @restoredState
       @state.readPostIds = new Set(@state.readPostIdsArray)
@@ -54,15 +54,20 @@ export class Main extends React.PureComponent
 
       @state = {beatmapset, currentUser, readPostIds, reviewsConfig, showDeleted}
 
+    @state.pinnedNewDiscussion ?= false
+
     # Current url takes priority over saved state.
     query = @queryFromLocation(@state.beatmapset.discussions)
     @state.currentMode = query.mode
     @state.currentFilter = query.filter
     @state.currentBeatmapId = query.beatmapId if query.beatmapId?
     @state.selectedUserId = query.user
+    # FIXME: update url handler to recognize this instead
+    @focusNewDiscussion = currentUrl().hash == '#new'
 
 
   componentDidMount: =>
+    @focusNewDiscussion = false
     $.subscribe "playmode:set.#{@eventId}", @setCurrentPlaymode
 
     $.subscribe "beatmapsetDiscussions:update.#{@eventId}", @update
@@ -74,13 +79,10 @@ export class Main extends React.PureComponent
     $(document).on "click.#{@eventId}", '.js-beatmap-discussion--jump', @jumpToClick
     $(document).on "turbolinks:before-cache.#{@eventId}", @saveStateToContainer
 
-    @jumpToDiscussionByHash() if !@restoredState
+    if !@restoredState
+      @disposers.add core.reactTurbolinks.runAfterPageLoad(@jumpToDiscussionByHash)
+
     @timeouts.checkNew = Timeout.set @checkNewTimeoutDefault, @checkNew
-
-
-  componentWillUpdate: =>
-    @cache = {}
-    @focusNewDiscussion = false
 
 
   componentDidUpdate: (_prevProps, prevState) =>
@@ -99,9 +101,12 @@ export class Main extends React.PureComponent
 
     Timeout.clear(timeout) for _name, timeout of @timeouts
     xhr?.abort() for _name, xhr of @xhr
+    @disposers.forEach (disposer) => disposer?()
 
 
   render: =>
+    @cache = {}
+
     el React.Fragment, null,
       el Header,
         beatmaps: @groupedBeatmaps()
@@ -144,7 +149,6 @@ export class Main extends React.PureComponent
                   beatmapset: @state.beatmapset
                   beatmaps: @beatmaps()
                   currentBeatmap: @currentBeatmap()
-                  currentDiscussions: @currentDiscussions()
                   currentUser: @state.currentUser
                   pinned: @state.pinnedNewDiscussion
                   setPinned: @setPinnedNewDiscussion
@@ -361,7 +365,7 @@ export class Main extends React.PureComponent
 
     return if !discussion?
 
-    newState = BeatmapDiscussionHelper.stateFromDiscussion(discussion)
+    newState = stateFromDiscussion(discussion)
 
     newState.filter =
       if @currentDiscussions().byFilter[@state.currentFilter][newState.mode][id]?

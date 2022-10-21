@@ -6,8 +6,9 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\RenumberUserScorePins;
+use App\Libraries\MorphMap;
+use App\Models\Beatmap;
 use App\Models\ScorePin;
-use Illuminate\Database\Eloquent\Relations\Relation;
 
 class ScorePinsController extends Controller
 {
@@ -74,7 +75,7 @@ class ScorePinsController extends Controller
 
         abort_if(!ScorePin::isValidType($params['score_type']), 422, 'invalid score_type');
 
-        $score = Relation::getMorphedModel($params['score_type'])::find($params['score_id']);
+        $score = MorphMap::getClass($params['score_type'])::find($params['score_id']);
 
         abort_if($score === null, 422, "specified score couldn't be found");
 
@@ -85,9 +86,10 @@ class ScorePinsController extends Controller
         if ($pin === null) {
             priv_check('ScorePin', $score)->ensureCan();
 
-            $currentMinDisplayOrder = $user->scorePins()->where('score_type', $score->getMorphClass())->min('display_order') ?? 2500;
+            $rulesetId = Beatmap::MODES[$score->getMode()];
+            $currentMinDisplayOrder = $user->scorePins()->where('ruleset_id', $rulesetId)->min('display_order') ?? 2500;
 
-            (new ScorePin(['display_order' => $currentMinDisplayOrder - 100]))
+            (new ScorePin(['display_order' => $currentMinDisplayOrder - 100, 'ruleset_id' => $rulesetId]))
                 ->user()->associate($user)
                 ->score()->associate($score)
                 ->saveOrExplode();

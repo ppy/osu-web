@@ -26,13 +26,6 @@
   --font-default-zh-tw: @font-default-zh-tw;
   --font-content: @font-content;
 
-  --diff-easy: @diff-easy;
-  --diff-normal: @diff-normal;
-  --diff-hard: @diff-hard;
-  --diff-insane: @diff-insane;
-  --diff-expert: @diff-expert;
-  --diff-expert-plus: @diff-expert-plus;
-
   --beatmapset-status-colour-default: var(--hsl-b3);
   --beatmapset-graveyard-bg: #000;
   --beatmapset-graveyard-colour: hsl(var(--hsl-b1));
@@ -70,6 +63,11 @@ body {
   overflow-y: scroll;
   // fix tooltip positioning on edge when combined with overflow-y scroll above
   position: static;
+
+  --z-index--nav-bar-mobile: @z-index--nav-bar;
+  &.js-nav2--active {
+    --z-index--nav-bar-mobile: @z-index--nav-bar-mobile-active;
+  }
 }
 
 .content {

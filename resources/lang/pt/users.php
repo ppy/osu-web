@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Tu bloqueaste este utilizador.',
+        'comment_text' => 'Este comentário está oculto.',
         'blocked_count' => 'utilizadores bloqueados (:count)',
         'hide_profile' => 'Ocultar perfil',
+        'hide_comment' => 'ocultar',
         'not_blocked' => 'Esse utilizador não está bloqueado.',
         'show_profile' => 'Mostrar perfil',
+        'show_comment' => 'mostrar',
         'too_many' => 'Limite de bloqueios atingido.',
         'button' => [
             'block' => 'Bloquear',
@@ -159,6 +162,10 @@ return [
             '_' => 'Publicou :link',
             'count' => ':count_delimited comentário|:count_delimited comentários',
         ],
+        'cover' => [
+            'to_0' => 'Ocultar capa',
+            'to_1' => 'Mostrar capa',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Mudar a capa do perfil',
@@ -203,6 +210,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Beatmaps no cemitério',
+                ],
+                'guest' => [
+                    'title' => 'Beatmaps onde participaram convidados',
                 ],
                 'loved' => [
                     'title' => 'Beatmaps adorados',
@@ -302,7 +312,7 @@ return [
                 'title' => 'Medalhas',
             ],
             'playlists' => [
-                'title' => '',
+                'title' => 'Playlist de partidas',
             ],
             'posts' => [
                 'title' => 'Publicações',
@@ -330,12 +340,12 @@ return [
                 ],
                 'pin' => [
                     'to_0' => 'Desafixar',
-                    'to_0_done' => '',
+                    'to_0_done' => 'Pontuação desafixada',
                     'to_1' => 'Afixar',
-                    'to_1_done' => '',
+                    'to_1_done' => 'Pontuação fixada',
                 ],
                 'pinned' => [
-                    'title' => '',
+                    'title' => 'Pontuações fixadas',
                 ],
             ],
             'votes' => [
@@ -362,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Banido',
                         'silence' => 'Silenciado',
+                        'tournament_ban' => 'Exclusão do torneio',
                         'note' => 'Notificado',
                     ],
                 ],
@@ -407,7 +418,7 @@ return [
         'stats' => [
             'hit_accuracy' => 'Precisão de acertos',
             'level' => 'Nível :level',
-            'level_progress' => 'Progresso para o próximo nível',
+            'level_progress' => 'Progresso ao próximo nível',
             'maximum_combo' => 'Combo máximo',
             'medals' => 'Medalhas',
             'play_count' => 'Número de partidas',

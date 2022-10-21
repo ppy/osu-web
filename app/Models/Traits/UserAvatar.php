@@ -15,20 +15,7 @@ trait UserAvatar
 
     public function avatarStorage()
     {
-        if ($this->avatarStorage === null) {
-            $this->avatarStorage = new StorageWithUrl(config('osu.avatar.storage'));
-        }
-
-        return $this->avatarStorage;
-    }
-
-    public function getUserAvatarAttribute($value)
-    {
-        if (!present($value)) {
-            return config('osu.avatar.default');
-        }
-
-        return $this->avatarStorage()->url(str_replace('_', '?', $value));
+        return $this->avatarStorage ??= new StorageWithUrl(config('osu.avatar.storage'));
     }
 
     public function setUserAvatarAttribute($value)
@@ -52,7 +39,18 @@ trait UserAvatar
 
         if (present(config('osu.avatar.cache_purge_prefix'))) {
             try {
-                file_get_contents(config('osu.avatar.cache_purge_prefix').$this->user_id.'?'.time());
+                $ctx = [
+                    'http' => [
+                        'method' => config('osu.avatar.cache_purge_method') ?? 'GET',
+                        'header' => present(config('osu.avatar.cache_purge_authorization_key'))
+                            ? 'Authorization: '.config('osu.avatar.cache_purge_authorization_key')
+                            : null,
+                    ],
+                ];
+                $prefix = config('osu.avatar.cache_purge_prefix');
+                $suffix = $ctx['http']['method'] === 'GET' ? '?'.time() : ''; // Bypass CloudFlare cache if using GET
+                $url = $prefix.$this->user_id.$suffix;
+                file_get_contents($url, false, stream_context_create($ctx));
             } catch (ErrorException $e) {
                 // ignores 404 errors, throws everything else
                 if (!ends_with($e->getMessage(), "404 Not Found\r\n")) {
@@ -62,5 +60,14 @@ trait UserAvatar
         }
 
         return $this->update(['user_avatar' => $entry ?? null]);
+    }
+
+    protected function getUserAvatar()
+    {
+        $value = presence($this->getRawAttribute('user_avatar'));
+
+        return $value === null
+            ? config('osu.avatar.default')
+            : $this->avatarStorage()->url(str_replace('_', '?', $value));
     }
 }

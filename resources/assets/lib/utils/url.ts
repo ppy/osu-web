@@ -1,10 +1,14 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import BeatmapJson from 'interfaces/beatmap-json';
+import ChangelogBuild from 'interfaces/changelog-build';
+import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
-import { startsWith } from 'lodash';
+import { startsWith, unescape } from 'lodash';
 import { TurbolinksLocation } from 'turbolinks';
-import { currentUrl } from 'utils/turbolinks';
+import { generate } from './beatmapset-page-hash';
+import { currentUrl } from './turbolinks';
 
 const internalUrls = [
   'admin',
@@ -19,6 +23,7 @@ const internalUrls = [
   'groups',
   'legal',
   'multiplayer',
+  'news',
   'notifications',
   'oauth',
   'rankings',
@@ -46,6 +51,11 @@ export function beatmapDownloadDirect(id: string | number): string {
 
 export function beatmapsetDownloadDirect(id: string | number): string {
   return `osu://s/${id}`;
+}
+
+export function beatmapUrl(beatmap: BeatmapJson, ruleset?: GameMode) {
+  return route('beatmapsets.show', { beatmapset: beatmap.beatmapset_id })
+    + generate({ beatmap, ruleset });
 }
 
 export function changelogBuild(build: ChangelogBuild): string {
@@ -112,7 +122,7 @@ export function linkify(text: string, newWindow = false) {
   return text.replace(urlRegex, `<a href="$1" rel="nofollow noreferrer"${newWindow ? ' target="_blank"' : ''}>$2</a>`);
 }
 
-export function updateQueryString(url: string | null, params: Record<string, string | null | undefined>) {
+export function updateQueryString(url: string | null, params: Record<string, string | null | undefined>, hash?: string) {
   const docUrl = currentUrl();
   const urlObj = new URL(url ?? docUrl.href, docUrl.origin);
 
@@ -122,6 +132,10 @@ export function updateQueryString(url: string | null, params: Record<string, str
     } else {
       urlObj.searchParams.delete(key);
     }
+  }
+
+  if (hash != null) {
+    urlObj.hash = hash;
   }
 
   return urlObj.href;

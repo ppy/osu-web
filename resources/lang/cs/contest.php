@@ -29,7 +29,13 @@ return [
         ],
 
         'progress' => [
-            '_' => '',
+            '_' => 'Použito :used / :max hlasů',
+        ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => 'Musíte nejdříve zahrát všechny beatmapy v daném playlistu než budete moci hlasovat',
+            ],
         ],
     ],
     'entry' => [

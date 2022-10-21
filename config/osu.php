@@ -22,6 +22,8 @@ return [
 
     'avatar' => [
         'cache_purge_prefix' => env('AVATAR_CACHE_PURGE_PREFIX'),
+        'cache_purge_method' => env('AVATAR_CACHE_PURGE_METHOD'),
+        'cache_purge_authorization_key' => env('AVATAR_CACHE_PURGE_AUTHORIZATION_KEY'),
         'default' => env('DEFAULT_AVATAR', env('APP_URL', 'http://localhost').'/images/layout/avatar-guest.png'),
         'storage' => env('AVATAR_STORAGE', 'local-avatar'),
     ],
@@ -34,6 +36,10 @@ return [
     'beatmaps' => [
         'max' => 50,
         'max-scores' => 50,
+
+        'difficulty_cache' => [
+            'server_url' => presence(env('BEATMAPS_DIFFICULTY_CACHE_SERVER_URL')) ?? 'http://localhost:5000',
+        ],
     ],
     'beatmap_processor' => [
         'mirrors_to_use' => array_map('intval', explode(' ', env('BM_PROCESSOR_MIRRORS', '1'))),
@@ -174,8 +180,8 @@ return [
     'store' => [
         'notice' => presence(str_replace('\n', "\n", env('STORE_NOTICE'))),
     ],
-    'twitch_client_id' => env('TWITCH_CLIENT_ID'),
-    'twitch_client_secret' => env('TWITCH_CLIENT_SECRET'),
+    'twitch_client_id' => presence(env('TWITCH_CLIENT_ID')),
+    'twitch_client_secret' => presence(env('TWITCH_CLIENT_SECRET')),
     'tournament_banner' => [
         'current' => [
             'id' => get_int(env('TOURNAMENT_BANNER_CURRENT_ID')),
@@ -203,7 +209,7 @@ return [
             'twitter' => '/wiki/Twitter',
         ],
         'user' => [
-            'recover' => '/p/forgot-email',
+            'recover' => '/wiki/Help_centre/Account#sign-in',
             'rules' => '/wiki/Osu!:Rules',
         ],
         'rankings' => [

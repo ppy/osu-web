@@ -9,17 +9,18 @@ import { snakeCase } from 'lodash';
 import { observer } from 'mobx-react';
 import ExtraHeader from 'profile-page/extra-header';
 import * as React from 'react';
+import { classWithModifiers } from 'utils/css';
 import { stripTags } from 'utils/html';
 import ExtraPageProps from './extra-page-props';
 import parseEvent from './parse-event';
 
 @observer
-export default class RecentActivity extends React.PureComponent<ExtraPageProps> {
+export default class RecentActivity extends React.Component<ExtraPageProps> {
   render() {
     return (
       <div className='page-extra'>
         <ExtraHeader name={this.props.name} withEdit={this.props.controller.withEdit} />
-        {this.props.controller.state.extras.recentActivity.length > 0 ? this.renderEntries() : this.renderEmpty()}
+        {this.props.controller.state.recentActivity.items.length > 0 ? this.renderEntries() : this.renderEmpty()}
       </div>
     );
   }
@@ -35,10 +36,10 @@ export default class RecentActivity extends React.PureComponent<ExtraPageProps> 
   private renderEntries() {
     return (
       <ul className='profile-extra-entries'>
-        {this.props.controller.state.extras.recentActivity.map(this.renderEntry)}
+        {this.props.controller.state.recentActivity.items.map(this.renderEntry)}
         <li className='profile-extra-entries__item'>
           <ShowMoreLink
-            {...this.props.controller.state.pagination.recentActivity}
+            {...this.props.controller.state.recentActivity.pagination}
             callback={this.onShowMore}
             modifiers='profile-page'
           />
@@ -48,13 +49,15 @@ export default class RecentActivity extends React.PureComponent<ExtraPageProps> 
   }
 
   private renderEntry = (event: EventJson) => {
-    const { badge, mappings } = parseEvent(event, 'recent-activity');
+    const { badge, iconModifiers, mappings } = parseEvent(event, 'recent-activity');
     if (mappings == null) return null;
 
     return (
       <li key={event.id} className='profile-extra-entries__item'>
         <div className='profile-extra-entries__detail'>
-          <div className='profile-extra-entries__icon'>
+          <div className={classWithModifiers('profile-extra-entries__icon', [
+            iconModifiers,
+          ])}>
             {badge}
           </div>
           <div className='profile-extra-entries__text'>

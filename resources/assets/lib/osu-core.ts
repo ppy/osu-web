@@ -109,7 +109,7 @@ export default class OsuCore {
     const user = userOrEmpty.id == null ? undefined : userOrEmpty;
 
     if (user != null) {
-      this.dataStore.userStore.getOrCreate(user.id, user);
+      this.dataStore.userStore.update(user);
     }
     this.socketWorker.setUserId(user?.id ?? null);
     this.currentUser = user;

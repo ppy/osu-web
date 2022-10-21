@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => '',
     ],
@@ -121,6 +125,7 @@ return [
             'language' => 'Valoda',
             'no_scores' => 'Rezultāti joprojām tiek aprēķināti...',
             'nsfw' => '',
+            'offset' => '',
             'points-of-failure' => 'Izkrišanas punkti',
             'source' => 'Avots',
             'storyboard' => '',
@@ -192,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Apļu skaits',
             'count_sliders' => 'Slīdņu skaits',
+            'offset' => '',
             'user-rating' => 'Lietotāju vērtējums',
             'rating-spread' => 'Vērtējumu izplatījums',
             'nominations' => 'Nominācijas',
@@ -207,5 +213,9 @@ return [
             'pending' => '',
             'graveyard' => '',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

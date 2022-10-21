@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'deleted' => '[被删除的用户]',
+    'deleted' => '[已删除的用户]',
 
     'beatmapset_activities' => [
         'title' => ":user 的摸图历史",
@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => '你已经屏蔽此用户。',
+        'comment_text' => '此评论已隐藏。',
         'blocked_count' => '被屏蔽的用户 (:count)',
         'hide_profile' => '隐藏用户资料',
+        'hide_comment' => '隐藏',
         'not_blocked' => '此用户未被屏蔽。',
         'show_profile' => '显示用户资料',
+        'show_comment' => '展开',
         'too_many' => '屏蔽用户数量达到最大限制。',
         'button' => [
             'block' => '屏蔽',
@@ -159,10 +162,14 @@ return [
             '_' => '发表了 :link',
             'count' => ':count_delimited 条评论',
         ],
+        'cover' => [
+            'to_0' => '隐藏封面',
+            'to_1' => '显示封面',
+        ],
         'edit' => [
             'cover' => [
-                'button' => '更换个人资料头图',
-                'defaults_info' => '在将来会有更多头图可用',
+                'button' => '更换个人资料封面',
+                'defaults_info' => '在将来会有更多封面可用',
                 'upload' => [
                     'broken_file' => '上传失败。请检查上传的图片然后重试。',
                     'button' => '上传图片',
@@ -173,7 +180,7 @@ return [
                     'unsupported_format' => '不支持的格式。',
 
                     'restriction_info' => [
-                        '_' => '自定义头图只有 :link 可用',
+                        '_' => '自定义封面只有 :link 可用',
                         'link' => 'osu! 支持者',
                     ],
                 ],
@@ -195,7 +202,7 @@ return [
                 'title' => '成就',
             ],
             'beatmaps' => [
-                'by_artist' => '曲师：:artist',
+                'by_artist' => 'by :artist',
                 'title' => '谱面',
 
                 'favourite' => [
@@ -203,6 +210,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => '已停更的谱面',
+                ],
+                'guest' => [
+                    'title' => '参与客串制作的谱面',
                 ],
                 'loved' => [
                     'title' => 'Loved 的谱面',
@@ -302,7 +312,7 @@ return [
                 'title' => '成就',
             ],
             'playlists' => [
-                'title' => '歌单游戏',
+                'title' => '课题模式游戏',
             ],
             'posts' => [
                 'title' => '回复',
@@ -362,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => '封禁',
                         'silence' => '禁言',
+                        'tournament_ban' => '锦标赛封禁',
                         'note' => '注释',
                     ],
                 ],
@@ -443,7 +454,7 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => '方块视图',
+        'brick' => '方块检视',
         'card' => '卡片检视',
         'list' => '列表检视',
     ],

@@ -42,6 +42,13 @@ abstract class Search extends HasSearch implements Queryable
         $this->index = $index;
     }
 
+    public function assertNoError(): void
+    {
+        if ($this->error !== null) {
+            throw $this->error;
+        }
+    }
+
     // for paginator
     abstract public function data();
 
@@ -83,6 +90,14 @@ abstract class Search extends HasSearch implements Queryable
         }
 
         return $this->count;
+    }
+
+    public function deleteAll(): void
+    {
+        $this->client()->deleteByQuery([
+            'index' => $this->index,
+            'body' => ['query' => ['match_all' => (object) []]],
+        ]);
     }
 
     public function fail($error = null)
@@ -150,6 +165,14 @@ abstract class Search extends HasSearch implements Queryable
     public function overLimit()
     {
         return $this->response()->total() > $this->maxResults();
+    }
+
+    /**
+     * Allow documents to be immediately searchable (mainly for testing).
+     */
+    public function refresh(): void
+    {
+        $this->client()->indices()->refresh(['index' => $this->index]);
     }
 
     /**

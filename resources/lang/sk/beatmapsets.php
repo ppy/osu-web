@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => '',
     ],
@@ -121,6 +125,7 @@ return [
             'language' => 'Jazyk',
             'no_scores' => 'Vypočítavajú sa dáta...',
             'nsfw' => '',
+            'offset' => '',
             'points-of-failure' => 'Body Neúspechu',
             'source' => 'Zdroj',
             'storyboard' => '',
@@ -192,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Počet kruhov',
             'count_sliders' => 'Počet sliderov',
+            'offset' => '',
             'user-rating' => 'Používateľské hodnotenie',
             'rating-spread' => 'Graf hodnotenia',
             'nominations' => 'Nominácie',
@@ -207,5 +213,9 @@ return [
             'pending' => 'Nevybavené',
             'graveyard' => 'Cintorín',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

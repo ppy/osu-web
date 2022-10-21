@@ -5,9 +5,9 @@
 
 return [
     'empty' => [
-        '_' => '',
-        'playlists' => '',
-        'realtime' => '',
+        '_' => 'Inga osu!(lazer) :type_group -spel spelade än!',
+        'playlists' => 'spellista',
+        'realtime' => 'flerspelarläge',
     ],
 
     'room' => [
@@ -18,7 +18,7 @@ return [
         'time_left' => ':time kvar',
 
         'errors' => [
-            'duration_too_long' => '',
+            'duration_too_long' => 'Varaktigheten är för lång.',
         ],
 
         'status' => [

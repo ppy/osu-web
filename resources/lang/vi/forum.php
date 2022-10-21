@@ -58,13 +58,13 @@ return [
 
         'create' => [
             'title' => [
-                'reply' => 'Có trả lời mới',
+                'reply' => 'Tạo trả lời mới',
             ],
         ],
 
         'info' => [
             'post_count' => ':count_delimited bài đăng|:count_delimited bài đăng',
-            'topic_starter' => 'Người tạo Bài viết',
+            'topic_starter' => 'Chủ thớt',
         ],
     ],
 
@@ -128,8 +128,8 @@ return [
         ],
 
         'logs' => [
-            '_' => '',
-            'button' => '',
+            '_' => 'Nhật kí chủ đề',
+            'button' => 'Duyệt nhật kí chủ đề',
 
             'columns' => [
                 'action' => 'Hành động',
@@ -139,30 +139,30 @@ return [
 
             'data' => [
                 'add_tag' => 'đã thêm nhãn ":tag"',
-                'announcement' => '',
-                'edit_topic' => '',
-                'fork' => '',
-                'pin' => '',
-                'post_operation' => '',
-                'remove_tag' => '',
-                'source_forum_operation' => '',
-                'unpin' => '',
+                'announcement' => 'chủ đề được ghim và đánh dấu là thông báo',
+                'edit_topic' => 'tới :title',
+                'fork' => 'từ :topic',
+                'pin' => 'chủ đề được ghim',
+                'post_operation' => 'đăng bởi :username',
+                'remove_tag' => 'gỡ thẻ ":tag"',
+                'source_forum_operation' => 'từ :forum',
+                'unpin' => 'chủ đề được bỏ ghim',
             ],
 
-            'no_results' => '',
+            'no_results' => 'không tìm thấy log...',
 
             'operations' => [
-                'delete_post' => '',
-                'delete_topic' => '',
-                'edit_topic' => '',
-                'edit_poll' => '',
-                'fork' => '',
+                'delete_post' => 'Bài đăng đã xoá',
+                'delete_topic' => 'Đã xoá chủ đề',
+                'edit_topic' => 'Tiêu đề chủ đề đã được thay đổi',
+                'edit_poll' => 'Cuộc thăm dò chủ đề đã được chỉnh sửa',
+                'fork' => 'Chủ đề đã được sao chép',
                 'issue_tag' => '',
-                'lock' => '',
+                'lock' => 'Chủ đề bị khóa',
                 'merge' => '',
                 'move' => '',
-                'pin' => '',
-                'post_edited' => '',
+                'pin' => 'Chủ đề được ghim',
+                'post_edited' => 'Bài  viết  đã  được  chỉnh sửa',
                 'restore_post' => '',
                 'restore_topic' => '',
                 'split_destination' => '',

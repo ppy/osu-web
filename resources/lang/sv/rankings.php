@@ -18,11 +18,11 @@ return [
     ],
 
     'type' => [
-        'charts' => 'I rampljuset',
-        'country' => 'Land',
+        'charts' => 'i rampljuset',
+        'country' => 'land',
         'multiplayer' => 'flerspelarläge',
         'performance' => 'prestation',
-        'score' => 'Poäng',
+        'score' => 'poäng',
     ],
 
     'spotlight' => [

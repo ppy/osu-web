@@ -3,7 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @extends('master', [
-    'bodyAdditionalClasses' => 'osu-layout__no-scroll',
+    'bodyAdditionalClasses' => 'osu-layout__no-scroll u-fancy-scrollbar',
 ])
 
 @section("content")

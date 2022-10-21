@@ -25,9 +25,6 @@ dotenv.config({ path: `.env.${env}` });
 dotenv.config();
 
 const inProduction = env === 'production' || process.argv.includes('-p');
-const paymentSandbox = !(process.env.PAYMENT_SANDBOX === '0'
-                         || process.env.PAYMENT_SANDBOX === 'false'
-                         || !process.env.PAYMENT_SANDBOX);
 
 const writeManifest = !(process.env.SKIP_MANIFEST === '1'
                         || process.env.SKIP_MANIFEST === 'true'
@@ -153,9 +150,6 @@ const plugins = [
   }),
   new webpack.DefinePlugin({
     'process.env.DOCS_URL': JSON.stringify(process.env.DOCS_URL || 'https://docs.ppy.sh'),
-    'process.env.PAYMENT_SANDBOX': JSON.stringify(paymentSandbox),
-    'process.env.SHOPIFY_DOMAIN': JSON.stringify(process.env.SHOPIFY_DOMAIN),
-    'process.env.SHOPIFY_STOREFRONT_TOKEN': JSON.stringify(process.env.SHOPIFY_STOREFRONT_TOKEN),
   }),
   new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // don't add moment locales to bundle.
   new MiniCssExtractPlugin({
@@ -165,7 +159,7 @@ const plugins = [
     patterns: [
       { from: 'resources/assets/build/locales', to: outputFilename('js/locales/[name]') },
       { from: 'node_modules/moment/locale', to: outputFilename('js/moment-locales/[name]') },
-      { from: 'node_modules/twemoji-emojis/vendor/svg/*-*.svg', to: 'images/flags/[name].[ext]' },
+      { from: 'node_modules/@discordapp/twemoji/dist/svg/*-*.svg', to: 'images/flags/[name].[ext]' },
     ],
   }),
 ];
@@ -265,11 +259,11 @@ const resolve = {
     '@fonts': path.resolve(__dirname, 'resources/assets/fonts'),
     '@images': path.resolve(__dirname, 'public/images'),
     layzr: resolvePath('node_modules/layzr.js/dist/layzr.module.js'),
-    ziggy: resolvePath('resources/assets/js/ziggy.js'),
     'ziggy-route': resolvePath('vendor/tightenco/ziggy/dist/index.es.js'),
   },
   extensions: ['*', '.js', '.coffee', '.ts', '.tsx'],
   modules: [
+    resolvePath('resources/assets/build'),
     resolvePath('resources/assets/lib'),
     resolvePath('resources/assets/coffee'),
     resolvePath('node_modules'),

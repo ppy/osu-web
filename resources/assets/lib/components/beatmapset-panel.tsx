@@ -2,8 +2,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsPopup from 'beatmapset-panel/beatmaps-popup';
+import BeatmapsetCover from 'components/beatmapset-cover';
 import { CircularProgress } from 'components/circular-progress';
-import Img2x from 'components/img2x';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import BeatmapsetJson, { BeatmapsetStatus } from 'interfaces/beatmapset-json';
@@ -18,7 +18,7 @@ import { Transition } from 'react-transition-group';
 import { getArtist, getDiffColour, getTitle, group as groupBeatmaps } from 'utils/beatmap-helper';
 import { showVisual, toggleFavourite } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
-import { formatNumberSuffixed } from 'utils/html';
+import { formatNumber, formatNumberSuffixed } from 'utils/html';
 import { beatmapsetDownloadDirect } from 'utils/url';
 import StringWithComponent from './string-with-component';
 import TimeWithTooltip from './time-with-tooltip';
@@ -67,9 +67,9 @@ const BeatmapDots = observer(({ compact, beatmaps, mode }: { beatmaps: BeatmapJs
   </div>
 ));
 
-const FeaturedArtistBadge = () => (
-  <span className='beatmapset-badge beatmapset-badge--featured-artist beatmapset-badge--panel'>
-    {osu.trans('beatmapsets.featured_artist_badge.label')}
+const BeatmapsetBadge = ({ type }: { type: string }) => (
+  <span className={`beatmapset-badge beatmapset-badge--${type} beatmapset-badge--panel`}>
+    {osu.trans(`beatmapsets.${type.replace(/-/g, '_')}_badge.label`)}
   </span>
 );
 
@@ -79,12 +79,6 @@ const MapperLink = observer(({ beatmapset }: { beatmapset: BeatmapsetJson }) => 
     user={{ id: beatmapset.user_id, username: beatmapset.creator }}
   />
 ));
-
-const NsfwBadge = () => (
-  <span className='beatmapset-badge beatmapset-badge--nsfw beatmapset-badge--panel'>
-    {osu.trans('beatmapsets.nsfw_badge.label')}
-  </span>
-);
 
 const PlayIcon = ({ icon, titleVariant }: { icon: string; titleVariant: string }) => (
   <div
@@ -131,7 +125,13 @@ export default class BeatmapsetPanel extends React.Component<Props> {
   private get displayDate() {
     const attribute = displayDateMap[this.props.beatmapset.status];
 
-    return this.props.beatmapset[attribute];
+    const ret = this.props.beatmapset[attribute];
+
+    if (ret == null) {
+      throw Error('trying to display null date');
+    }
+
+    return ret;
   }
 
   @computed
@@ -327,7 +327,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
   };
 
   @action
-  private onDocumentClick = (e: JQuery.ClickEvent) => {
+  private onDocumentClick = (e: JQuery.ClickEvent<Document, unknown, Document, Document | HTMLElement>) => {
     // only for shrinking
     if (!this.mobileExpanded) return;
     // clicking on anything on the panel itself is handled by the relevant element
@@ -385,24 +385,20 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     return (
       <a className='beatmapset-panel__cover-container' href={this.url}>
         <div className='beatmapset-panel__cover-col beatmapset-panel__cover-col--play'>
-          <div className='beatmapset-panel__cover beatmapset-panel__cover--default' />
-          {this.showVisual && (
-            <Img2x
-              className='beatmapset-panel__cover'
-              hideOnError
-              src={this.props.beatmapset.covers.list}
-            />
-          )}
+          <BeatmapsetCover
+            beatmapset={this.props.beatmapset}
+            modifiers='full'
+            size='list'
+          />
         </div>
         <div className='beatmapset-panel__cover-col beatmapset-panel__cover-col--info'>
-          <div className='beatmapset-panel__cover beatmapset-panel__cover--default' />
-          {this.showVisual && core.windowSize.isDesktop && (
-            <Img2x
-              className='beatmapset-panel__cover'
-              hideOnError
-              src={this.props.beatmapset.covers.card}
+          {core.windowSize.isDesktop &&
+            <BeatmapsetCover
+              beatmapset={this.props.beatmapset}
+              modifiers='full'
+              size='card'
             />
-          )}
+          }
         </div>
       </a>
     );
@@ -415,13 +411,22 @@ export default class BeatmapsetPanel extends React.Component<Props> {
           <a className='beatmapset-panel__main-link u-ellipsis-overflow' href={this.url}>
             {getTitle(this.props.beatmapset)}
           </a>
-          {this.props.beatmapset.nsfw && <NsfwBadge />}
+          {(this.props.beatmapset.nsfw || this.props.beatmapset.spotlight) &&
+            <div className="beatmapset-panel__badge-container">
+              {this.props.beatmapset.nsfw && <BeatmapsetBadge type='nsfw' />}
+              {this.props.beatmapset.spotlight && <BeatmapsetBadge type='spotlight' />}
+            </div>
+          }
         </div>
         <div className='beatmapset-panel__info-row beatmapset-panel__info-row--artist'>
           <a className='beatmapset-panel__main-link u-ellipsis-overflow' href={this.url}>
             {osu.trans('beatmapsets.show.details.by_artist', { artist: getArtist(this.props.beatmapset) })}
           </a>
-          {(this.props.beatmapset.track_id != null) && <FeaturedArtistBadge />}
+          {this.props.beatmapset.track_id != null &&
+            <div className="beatmapset-panel__badge-container">
+              <BeatmapsetBadge type='featured-artist' />
+            </div>
+          }
         </div>
 
         <div className='beatmapset-panel__info-row beatmapset-panel__info-row--source'>
@@ -444,8 +449,8 @@ export default class BeatmapsetPanel extends React.Component<Props> {
             <StatsItem
               icon='fas fa-bullhorn'
               title={osu.trans('beatmaps.hype.required_text', {
-                current: osu.formatNumber(this.props.beatmapset.hype.current),
-                required: osu.formatNumber(this.props.beatmapset.hype.required),
+                current: formatNumber(this.props.beatmapset.hype.current),
+                required: formatNumber(this.props.beatmapset.hype.required),
               })}
               type='hype'
               value={this.props.beatmapset.hype.current}
@@ -456,8 +461,8 @@ export default class BeatmapsetPanel extends React.Component<Props> {
             <StatsItem
               icon='fas fa-thumbs-up'
               title={osu.trans('beatmaps.nominations.required_text', {
-                current: osu.formatNumber(this.nominations.current),
-                required: osu.formatNumber(this.nominations.required),
+                current: formatNumber(this.nominations.current),
+                required: formatNumber(this.nominations.required),
               })}
               type='nominations'
               value={this.nominations.current}
@@ -466,14 +471,14 @@ export default class BeatmapsetPanel extends React.Component<Props> {
 
           <StatsItem
             icon={this.favourite.icon}
-            title={osu.trans('beatmaps.panel.favourites', { count: osu.formatNumber(this.props.beatmapset.favourite_count) })}
+            title={osu.trans('beatmaps.panel.favourites', { count: formatNumber(this.props.beatmapset.favourite_count) })}
             type='favourite-count'
             value={this.props.beatmapset.favourite_count}
           />
 
           <StatsItem
             icon='fas fa-play-circle'
-            title={osu.trans('beatmaps.panel.playcount', { count: osu.formatNumber(this.props.beatmapset.play_count) })}
+            title={osu.trans('beatmaps.panel.playcount', { count: formatNumber(this.props.beatmapset.play_count) })}
             type='play-count'
             value={this.props.beatmapset.play_count}
           />

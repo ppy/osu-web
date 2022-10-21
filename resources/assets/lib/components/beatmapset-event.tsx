@@ -1,43 +1,21 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import BeatmapsetCover from 'components/beatmapset-cover';
 import TimeWithTooltip from 'components/time-with-tooltip';
+import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
-import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { escape, kebabCase } from 'lodash';
 import { deletedUser } from 'models/user';
 import * as React from 'react';
+import { format, previewMessage } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
+import { formatNumber } from 'utils/html';
 import { linkHtml } from 'utils/url';
 
-const isBeatmapOwnerChangeEventJson = (event: BeatmapsetEventJson): event is BeatmapOwnerChangeEventJson =>
-  event.type === 'beatmap_owner_change';
-
-const isNominationResetReceivedEventJson = (event: BeatmapsetEventJson): event is NominationResetReceivedEventJson =>
-  event.type === 'nomination_reset_received';
-
 export type EventViewMode = 'discussions' | 'profile' | 'list';
-
-interface BeatmapOwnerChangeEventJson extends BeatmapsetEventJson {
-  comment: {
-    beatmap_id: number;
-    beatmap_version: string;
-    new_user_id: number;
-    new_user_username: string;
-  };
-  type: 'beatmap_owner_change';
-}
-
-interface NominationResetReceivedEventJson extends BeatmapsetEventJson {
-  comment: {
-    beatmap_discussion_id: number;
-    source_user_id: number;
-    source_user_username: string;
-  };
-  type: 'nomination_reset_received';
-}
 
 interface Props {
   discussions?: Partial<Record<string, BeatmapsetDiscussionJson>>;
@@ -53,7 +31,10 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
   }
 
   private get discussionId(): number | undefined {
-    return this.props.event.comment?.beatmap_discussion_id;
+    const comment = this.props.event.comment;
+    if (comment != null && typeof comment === 'object' && 'beatmap_discussion_id' in comment) {
+      return comment.beatmap_discussion_id;
+    }
   }
 
   // discussion page doesn't include the discussion as part of the event.
@@ -62,7 +43,8 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
   }
 
   private get firstPost() {
-    return this.discussion?.starting_post ?? this.discussion?.posts?.[0];
+    const post = this.discussion?.starting_post ?? this.discussion?.posts?.[0];
+    return post?.system ? null : post;
   }
 
   render() {
@@ -91,8 +73,6 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
   }
 
   renderProfileVersion() {
-    const cover = this.props.event.beatmapset?.covers?.list;
-
     let discussionLink: string | undefined;
     if (this.beatmapsetId != null) {
       discussionLink = route('beatmapsets.discussion', { beatmapset: this.beatmapsetId });
@@ -105,12 +85,10 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
       <div className='beatmapset-event'>
         {discussionLink != null ? (
           <a href={discussionLink}>
-            <img className='beatmapset-cover' src={cover} />
+            <BeatmapsetCover beatmapset={this.props.event.beatmapset} size='list' />
           </a>
         ) : (
-          // TODO: this text barely fits and should be replaced with an icon
-          // instead of a translation that overflows.
-          <span className='beatmapset-cover'>beatmap deleted</span>
+          <BeatmapsetCover isDeleted />
         )}
         <div
           className={classWithModifiers('beatmapset-event__icon', ['beatmapset-activities'])}
@@ -146,7 +124,7 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
       } else {
         const firstPostMessage = this.firstPost?.message;
         url = BeatmapDiscussionHelper.url({ discussion: this.discussion });
-        text = firstPostMessage != null ? BeatmapDiscussionHelper.previewMessage(firstPostMessage) : '[no preview]';
+        text = firstPostMessage != null ? previewMessage(firstPostMessage) : '[no preview]';
 
         const discussionUser = this.props.users[this.discussion.user_id];
 
@@ -157,11 +135,13 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
 
       discussionLink = linkHtml(url, `#${this.discussionId}`, { classNames: ['js-beatmap-discussion--jump'] });
     } else {
-      text = BeatmapDiscussionHelper.format(this.props.event.comment, { newlines: false });
+      if (typeof this.props.event.comment === 'string') {
+        text = format(this.props.event.comment, { newlines: false });
+      }
     }
 
     if (this.props.event.type === 'discussion_lock' || this.props.event.type === 'remove_from_loved') {
-      text = BeatmapDiscussionHelper.format(this.props.event.comment.reason, { newlines: false });
+      text = format(this.props.event.comment.reason, { newlines: false });
     }
 
     if (this.props.event.user_id != null) {
@@ -174,41 +154,62 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
       }
     }
 
-    const params = {
+    const params: Partial<Record<string, number | string>> = {
       discussion: discussionLink,
       discussion_user: discussionUserLink,
       text,
       user,
-      ...this.props.event.comment,
     };
-
-    let eventType = this.props.event.type === 'disqualify' && this.discussion == null ? 'disqualify_legacy' : this.props.event.type;
-
-    if (eventType === 'nominate' && this.props.event.comment?.modes.length > 0) {
-      eventType = 'nominate_modes';
-      const nominationModes = this.props.event.comment.modes.map((mode: GameMode) => osu.trans(`beatmaps.mode.${mode}`));
-      params.modes = osu.transArray(nominationModes);
-    }
-
-    if (eventType === 'nsfw_toggle') {
-      const newState = this.props.event.comment?.new ? 'to_1' : 'to_0';
-      eventType += `.${newState}`;
-    }
-
-    if (isBeatmapOwnerChangeEventJson(this.props.event)) {
-      const data = this.props.event.comment;
-      params.new_user = linkHtml(route('users.show', { user: data.new_user_id }), data.new_user_username);
-      params.beatmap = linkHtml(route('beatmaps.show', { beatmap: data.beatmap_id }), data.beatmap_version);
-    }
-
-    if (isNominationResetReceivedEventJson(this.props.event)) {
-      const data = this.props.event.comment;
-      if (this.props.mode === 'profile') {
-        eventType += '_profile';
-        params.user = linkHtml(route('users.show', { user: data.source_user_id }), data.source_user_username);
-      } else {
-        params.source_user = linkHtml(route('users.show', { user: data.source_user_id }), data.source_user_username);
+    if (this.props.event.comment != null && typeof this.props.event.comment === 'object') {
+      for (const [commentKey, commentValue] of Object.entries(this.props.event.comment)) {
+        if (typeof commentValue === 'number' || typeof commentValue === 'string') {
+          params[commentKey] = commentValue;
+        }
       }
+    }
+
+    let eventType: string = this.props.event.type;
+
+    switch (this.props.event.type) {
+      case 'disqualify':
+        if (typeof this.props.event.comment === 'string') {
+          eventType = 'disqualify_legacy';
+        }
+        break;
+      case 'nominate': {
+        const modes = this.props.event.comment?.modes;
+        if (modes != null && modes.length > 0) {
+          eventType = 'nominate_modes';
+          const nominationModes = modes.map((mode) => osu.trans(`beatmaps.mode.${mode}`));
+          params.modes = osu.transArray(nominationModes);
+        }
+        break;
+      }
+      case 'nsfw_toggle': {
+        const newState = this.props.event.comment?.new ? 'to_1' : 'to_0';
+        eventType += `.${newState}`;
+        break;
+      }
+      case 'beatmap_owner_change': {
+        const data = this.props.event.comment;
+        params.new_user = linkHtml(route('users.show', { user: data.new_user_id }), data.new_user_username);
+        params.beatmap = linkHtml(route('beatmaps.show', { beatmap: data.beatmap_id }), data.beatmap_version);
+        break;
+      }
+      case 'nomination_reset_received': {
+        const data = this.props.event.comment;
+        if (this.props.mode === 'profile') {
+          eventType += '_profile';
+          params.user = linkHtml(route('users.show', { user: data.source_user_id }), data.source_user_username);
+        } else {
+          params.source_user = linkHtml(route('users.show', { user: data.source_user_id }), data.source_user_username);
+        }
+        break;
+      }
+      case 'offset_edit':
+        params.new = formatNumber(this.props.event.comment.new);
+        params.old = formatNumber(this.props.event.comment.old);
+        break;
     }
 
     const key = `beatmapset_events.event.${eventType}`;

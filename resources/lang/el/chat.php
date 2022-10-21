@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'loading_users' => '',
     'talking_in' => 'μιλάτε στο: :channel',
     'talking_with' => 'μιλάτε με: :name',
     'title_compact' => 'συνομιλία',
@@ -13,7 +14,39 @@ return [
         'user' => 'Δεν μπορείτε να στείλετε μήνυμα σε αυτόν τον χρήστη αυτή τη στιγμή. Αυτό μπορεί να οφείλεται σε οποιοδήποτε από τους παρακάτω λόγους:',
     ],
 
+    'channels' => [
+        'confirm_part' => '',
+        'create' => '',
+
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => '',
+                'GROUP' => '',
+                'PM' => '',
+                'PUBLIC' => '',
+            ],
+        ],
+    ],
+
+    'form' => [
+        'title' => [
+            'announcement' => '',
+        ],
+
+        'labels' => [
+            'description' => '',
+            'name' => '',
+            'users' => '',
+        ],
+    ],
+
+    'not_found' => [
+        'message' => '',
+        'title' => '',
+    ],
+
     'input' => [
+        'create' => '',
         'disabled' => 'αδυναμία αποστολής μηνύματος...',
         'disconnected' => '',
         'placeholder' => 'εισάγετε μήνυμα...',

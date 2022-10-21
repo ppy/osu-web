@@ -30,7 +30,7 @@ return [
     'forum' => [
         '_' => 'フォーラム',
         'topic_logs_controller' => [
-            'index' => '',
+            'index' => 'トピックログ',
         ],
         'topic_watches_controller' => [
             'index' => 'ダッシュボード',
@@ -42,13 +42,13 @@ return [
             'verify_link' => 'アカウント認証',
         ],
         'artist_tracks_controller' => [
-            '_' => '',
+            '_' => '注目アーティスト',
         ],
         'artists_controller' => [
             '_' => '注目アーティスト',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => 'ビートマップディスカッション投稿',
+            '_' => 'ビートマップディスカッションの投稿',
         ],
         'beatmap_discussions_controller' => [
             '_' => 'ビートマップディスカッション',
@@ -57,7 +57,7 @@ return [
             '_' => 'ビートマップパック',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => 'ビートマップディスカッション投票',
+            '_' => 'ビートマップディスカッションの投票',
         ],
         'beatmapset_events_controller' => [
             '_' => 'ビートマップ履歴',
@@ -143,7 +143,7 @@ return [
     ],
     'passport' => [
         'authorization_controller' => [
-            '_' => '',
+            '_' => 'アプリを認証',
         ],
     ],
     'store' => [

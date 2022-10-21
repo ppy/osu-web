@@ -11,6 +11,10 @@ return [
         'rule_violation' => '',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => '',
     ],
@@ -121,6 +125,7 @@ return [
             'language' => 'Γλώσσα',
             'no_scores' => 'Τα δεδομένα ακόμα υπολογίζονται...',
             'nsfw' => '',
+            'offset' => '',
             'points-of-failure' => 'Σημεία Αποτυχίας',
             'source' => 'Προέλευση',
             'storyboard' => '',
@@ -192,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Αριθμός Κύκλων',
             'count_sliders' => 'Αριθμός Sliders',
+            'offset' => '',
             'user-rating' => 'Βαθμολόγηση Χρηστών',
             'rating-spread' => 'Εύρος Βαθμολογίας',
             'nominations' => 'Υποψηφιότητες',
@@ -207,5 +213,9 @@ return [
             'pending' => '',
             'graveyard' => '',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => '해당 유저를 차단했습니다.',
+        'comment_text' => '이 댓글은 숨겨진 상태입니다.',
         'blocked_count' => '차단된 유저 (:count)',
         'hide_profile' => '프로필 숨기기',
+        'hide_comment' => '숨기기',
         'not_blocked' => '해당 유저는 차단되어있지 않습니다.',
         'show_profile' => '프로필 표시',
+        'show_comment' => '보기',
         'too_many' => '차단 한계치에 도달했습니다.',
         'button' => [
             'block' => '차단',
@@ -145,7 +148,7 @@ return [
         'change_avatar' => '아바타를 바꾸세요!',
         'first_members' => 'osu!의 초창기부터 함께한 유저',
         'is_developer' => 'osu!developer',
-        'is_supporter' => 'osu!supporter',
+        'is_supporter' => 'osu! 서포터',
         'joined_at' => ':date에 가입',
         'lastvisit' => ':date에 마지막으로 접속',
         'lastvisit_online' => '현재 온라인',
@@ -158,6 +161,10 @@ return [
         'comments_count' => [
             '_' => ':link 작성됨',
             'count' => '댓글 :count_delimited개',
+        ],
+        'cover' => [
+            'to_0' => '커버 숨기기',
+            'to_1' => '커버 표시',
         ],
         'edit' => [
             'cover' => [
@@ -203,6 +210,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => '무덤에 간 비트맵',
+                ],
+                'guest' => [
+                    'title' => '게스트 참여 비트맵',
                 ],
                 'loved' => [
                     'title' => 'Loved 비트맵',
@@ -362,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Ban',
                         'silence' => '침묵',
+                        'tournament_ban' => '토너먼트 차단',
                         'note' => '알림',
                     ],
                 ],

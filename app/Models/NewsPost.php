@@ -95,13 +95,22 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
 
     public static function syncAll()
     {
-        $entries = OsuWiki::fetch('news');
+        $baseEntries = OsuWiki::getTree(null, false)['tree'];
+        foreach ($baseEntries as $entry) {
+            if ($entry['path'] === 'news') {
+                $rootHash = $entry['sha'];
+                break;
+            }
+        }
+        // Something is terribly wrong if $rootHash is unset.
+        $entries = OsuWiki::getTree($rootHash)['tree'];
 
         $latestSlugs = [];
 
         foreach ($entries as $entry) {
-            if (($entry['type'] ?? null) === 'file' && ends_with($entry['name'], '.md')) {
-                $slug = substr($entry['name'], 0, -3);
+            if (($entry['type'] ?? null) === 'blob' && substr($entry['path'], -3) === '.md') {
+                $trimStartPos = strpos($entry['path'], '/');
+                $slug = substr($entry['path'], $trimStartPos === false ? 0 : $trimStartPos + 1, -3);
                 $hash = $entry['sha'];
 
                 $latestSlugs[$slug] = $hash;
@@ -110,7 +119,7 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
 
         foreach (static::all() as $post) {
             if (array_key_exists($post->slug, $latestSlugs)) {
-                if ($latestSlugs[$post->slug] !== $post->hash) {
+                if ($post->published_at === null || $latestSlugs[$post->slug] !== $post->hash) {
                     $post->sync(true);
                 }
 
@@ -192,14 +201,24 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
         return $this->page['author'];
     }
 
+    public function commentLocked(): bool
+    {
+        return false;
+    }
+
     public function commentableTitle()
     {
         return $this->title();
     }
 
-    public function filename()
+    public function filename($perYearDirectory = true)
     {
-        return "{$this->slug}.md";
+        $slug = $this->slug;
+        $prefix = $perYearDirectory
+            ? substr($slug, 0, 4).'/'
+            : '';
+
+        return "{$prefix}{$slug}.md";
     }
 
     public function isVisible()
@@ -268,20 +287,23 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
             return $this;
         }
 
-        $path = "news/{$this->filename()}";
-        $pathMissingKey = "osu_wiki:not_found:{$path}";
+        $postMissingKey = "osu_wiki:not_found:{$this->slug}";
 
-        if (!$force && cache()->get($pathMissingKey) !== null) {
+        if (!$force && cache()->get($postMissingKey) !== null) {
             return $this;
         }
 
         try {
-            $file = new OsuWiki($path);
+            try {
+                $file = new OsuWiki("news/{$this->filename()}");
+            } catch (GitHubNotFoundException $e) {
+                $file = new OsuWiki("news/{$this->filename(false)}");
+            }
         } catch (GitHubNotFoundException $e) {
             if ($this->exists) {
                 $this->update(['published_at' => null]);
             } else {
-                cache()->put($pathMissingKey, 1, 300);
+                cache()->put($postMissingKey, 1, 300);
             }
 
             return $this;

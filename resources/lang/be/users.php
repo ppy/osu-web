@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Вы заблакавалі гэтага карыстальніка.',
+        'comment_text' => '',
         'blocked_count' => 'заблакаваныя карыстальнікі (:count)',
         'hide_profile' => 'схаваць профіль',
+        'hide_comment' => '',
         'not_blocked' => 'Гэты карыстальнік не заблакаваны.',
         'show_profile' => 'паказаць профіль',
+        'show_comment' => '',
         'too_many' => 'Дасягнуты ліміт блакавання.',
         'button' => [
             'block' => 'заблакаваць',
@@ -159,6 +162,10 @@ return [
             '_' => 'Апублікавана :link',
             'count' => ':count_delimited каментарый|:count_delimited каментарыі',
         ],
+        'cover' => [
+            'to_0' => 'Схаваць вокладку',
+            'to_1' => 'Паказаць вокладку',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Змяніць фон профілю',
@@ -203,6 +210,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Закінутыя бітмапы',
+                ],
+                'guest' => [
+                    'title' => 'Гасцявыя ўдзелы ў картах',
                 ],
                 'loved' => [
                     'title' => 'Любімыя бітмапы',
@@ -362,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Заблакіраваць',
                         'silence' => 'Зацішаны',
+                        'tournament_ban' => '',
                         'note' => 'Нататка',
                     ],
                 ],

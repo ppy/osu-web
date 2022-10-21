@@ -31,6 +31,12 @@ return [
         'progress' => [
             '_' => 'oddano :used z :max głosów',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => 'Musisz zagrać wszystkie beatmapy w określonych listach, by zagłosować',
+            ],
+        ],
     ],
     'entry' => [
         '_' => 'zgłoszenie',

@@ -87,12 +87,12 @@ return [
             '_' => 'Chat',
 
             'announcement' => [
-                '_' => 'Novo aviso',
+                '_' => 'Novo comunicado',
 
                 'announce' => [
                     'channel_announcement' => ':username diz ":title"',
                     'channel_announcement_compact' => ':title',
-                    'channel_announcement_group' => 'Aviso de :username',
+                    'channel_announcement_group' => 'Comunicado de :username',
                 ],
             ],
 
@@ -240,6 +240,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username criou novos beatmaps',
+                'user_beatmapset_revive' => ':username ressuscitou beatmaps',
             ],
         ],
     ],

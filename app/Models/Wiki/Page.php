@@ -207,7 +207,6 @@ class Page implements WikiObject
             'client' => ['ignore' => 404],
             'id' => $this->pagePath(),
             'index' => $options['index'] ?? static::esIndexName(),
-            'type' => '_doc',
         ]);
     }
 
@@ -223,7 +222,6 @@ class Page implements WikiObject
             'body' => $this->source,
             'id' => $this->pagePath(),
             'index' => $options['index'] ?? static::esIndexName(),
-            'type' => '_doc',
         ]);
     }
 
@@ -293,6 +291,12 @@ class Page implements WikiObject
     public function isOutdated(): bool
     {
         return $this->page['header']['outdated'] ?? false;
+    }
+
+    public function isOutdatedTranslation(): bool
+    {
+        return $this->isTranslation()
+            && ($this->page['header']['outdated_translation'] ?? false);
     }
 
     public function isStub(): bool

@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'חסמת משתמש זה.',
+        'comment_text' => '',
         'blocked_count' => 'משתמשים חסומים (:count)',
         'hide_profile' => 'הסתר פרופיל',
+        'hide_comment' => '',
         'not_blocked' => 'משתמש זה אינו חסום.',
         'show_profile' => 'הצג פרופיל',
+        'show_comment' => '',
         'too_many' => 'הגעת למגבלת החסימות.',
         'button' => [
             'block' => 'חסום',
@@ -160,6 +163,10 @@ return [
 ',
             'count' => ':count_delimited תגובה|:count_delimited תגובות',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'החלף תמונת פרופיל',
@@ -204,6 +211,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'מפות בבית הקברות',
+                ],
+                'guest' => [
+                    'title' => '',
                 ],
                 'loved' => [
                     'title' => 'מפות אהובות',
@@ -364,6 +374,7 @@ return [
                     'actions' => [
                         'restriction' => 'השעיה',
                         'silence' => 'השתקה',
+                        'tournament_ban' => '',
                         'note' => 'הערה',
                     ],
                 ],

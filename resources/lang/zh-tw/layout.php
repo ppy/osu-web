@@ -25,6 +25,11 @@ return [
             'index' => '清單',
         ],
 
+        'beatmapsets' => [
+            'show' => '資訊',
+            'discussions' => '討論',
+        ],
+
         'changelog' => [
             'index' => '列表',
         ],
@@ -173,7 +178,7 @@ return [
             'username' => '使用者名稱',
 
             'error' => [
-                'email' => "用戶名或郵箱不存在",
+                'email' => "用戶名或電郵地址不存在",
                 'password' => '密碼錯誤',
             ],
         ],

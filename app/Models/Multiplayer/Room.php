@@ -38,6 +38,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $user_id
  * @property string $type
  * @property string $queue_mode
+ * @property bool $auto_skip
  */
 class Room extends Model
 {
@@ -55,7 +56,7 @@ class Room extends Model
 
     const DEFAULT_SORT = 'created';
 
-    const CATEGORIES = ['normal', 'spotlight'];
+    const CATEGORIES = ['normal', 'spotlight', 'featured_artist'];
     const TYPE_GROUPS = [
         'playlists' => [self::PLAYLIST_TYPE],
         'realtime' => self::REALTIME_TYPES,
@@ -71,6 +72,7 @@ class Room extends Model
 
     protected $casts = [
         'password' => PresentString::class,
+        'auto_skip' => 'boolean',
     ];
     protected $table = 'multiplayer_rooms';
     protected $dates = ['starts_at', 'ends_at'];
@@ -402,9 +404,7 @@ class Room extends Model
 
     public function join(User $user)
     {
-        if (!$this->channel->hasUser($user)) {
-            $this->channel->addUser($user);
-        }
+        $this->channel->addUser($user);
     }
 
     public function participants(): HasMany
@@ -462,6 +462,8 @@ class Room extends Model
             'playlist:array',
             'type',
             'queue_mode',
+            'auto_start_duration:int',
+            'auto_skip:bool',
         ], ['null_missing' => true]);
 
         $this->fill([
@@ -470,6 +472,8 @@ class Room extends Model
             'starts_at' => now(),
             'type' => $params['type'],
             'queue_mode' => $params['queue_mode'],
+            'auto_start_duration' => $params['auto_start_duration'],
+            'auto_skip' => $params['auto_skip'] ?? false,
             'user_id' => $host->getKey(),
         ]);
 
@@ -483,12 +487,16 @@ class Room extends Model
             if (!in_array($this->queue_mode, static::REALTIME_QUEUE_MODES, true)) {
                 $this->queue_mode = static::REALTIME_DEFAULT_QUEUE_MODE;
             }
+            if ($this->auto_start_duration === null) {
+                $this->auto_start_duration = 0;
+            }
             // only for realtime rooms for now
             $this->password = $params['password'];
             $this->ends_at = now()->addSeconds(30);
         } else {
             $this->type = static::PLAYLIST_TYPE;
             $this->queue_mode = static::PLAYLIST_QUEUE_MODE;
+            $this->auto_start_duration = 0;
             if ($params['ends_at'] !== null) {
                 $this->ends_at = $params['ends_at'];
             } elseif ($params['duration'] !== null) {

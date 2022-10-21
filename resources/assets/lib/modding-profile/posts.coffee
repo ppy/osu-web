@@ -1,10 +1,12 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import BeatmapsetCover from 'components/beatmapset-cover'
 import { route } from 'laroute'
 import * as React from 'react'
 import { div, h2, a, img, span } from 'react-dom-factories'
-import { Post } from "../beatmap-discussions/post"
+import { canModeratePosts } from 'utils/beatmapset-discussion-helper'
+import Post from "../beatmap-discussions/post"
 
 el = React.createElement
 
@@ -18,7 +20,7 @@ export class Posts extends React.Component
         else
           [
             for post in @props.posts
-              canModeratePosts = BeatmapDiscussionHelper.canModeratePosts(currentUser)
+              canModerate = canModeratePosts(currentUser)
 
               discussionClasses = 'beatmap-discussion beatmap-discussion--preview beatmap-discussion--modding-profile'
 
@@ -33,7 +35,9 @@ export class Posts extends React.Component
                   className: 'modding-profile-list__thumbnail'
                   href: BeatmapDiscussionHelper.url(discussion: post.beatmap_discussion),
 
-                  img className: 'beatmapset-cover', src: post.beatmap_discussion.beatmapset.covers.list
+                  el BeatmapsetCover,
+                    beatmapset: post.beatmap_discussion.beatmapset
+                    size: 'list'
 
                 div className: "modding-profile-list__timestamp hidden-xs",
                   div className: "beatmap-discussion-timestamp",
@@ -57,8 +61,8 @@ export class Posts extends React.Component
                       # FIXME: These permissions are more restrictive than the correct ones in discussion
                       # because they don't have the right data to check.
                       canBeEdited: currentUser.is_admin
-                      canBeDeleted: canModeratePosts
-                      canBeRestored: canModeratePosts
+                      canBeDeleted: canModerate
+                      canBeRestored: canModerate
                       currentUser: currentUser
             a
               key: 'show-more'

@@ -3,20 +3,17 @@
 
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { modName } from 'utils/score-helper';
 
 interface Props {
   mod: string;
-  modifiers?: string[];
 }
 
-export default function Mod(props: Props) {
-  let blockClass = classWithModifiers('mod', props.modifiers);
-  blockClass += ` mod--${props.mod}`;
-
+export default function Mod({ mod }: Props) {
   return (
     <div
-      className={blockClass}
-      title={osu.trans(`beatmaps.mods.${props.mod}`)}
+      className={classWithModifiers('mod', mod)}
+      title={modName(mod)}
     />
   );
 }

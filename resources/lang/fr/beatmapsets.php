@@ -11,6 +11,10 @@ return [
         'rule_violation' => 'Certains éléments contenus dans cette beatmap ont été supprimés après avoir été jugés inappropriés pour osu!.',
     ],
 
+    'cover' => [
+        'deleted' => 'Beatmap supprimée',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Ralentissez, jouez plus.',
     ],
@@ -121,6 +125,7 @@ return [
             'language' => 'Langue',
             'no_scores' => 'Les données sont encore en cours de calcul...',
             'nsfw' => 'Contenu explicite',
+            'offset' => 'Décalage en ligne',
             'points-of-failure' => 'Répartition des échecs',
             'source' => 'Source',
             'storyboard' => 'Cette beatmap contient un storyboard',
@@ -143,7 +148,7 @@ return [
         'scoreboard' => [
             'achieved' => 'réalisé :when',
             'country' => 'Classement national',
-            'error' => '',
+            'error' => 'Échec du chargement du classement',
             'friend' => 'Classement des amis',
             'global' => 'Classement global',
             'supporter-link' => 'Cliquez <a href=":link">ici</a> pour connaître toutes les supers fonctions obtenues avec !',
@@ -192,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Nombre de Cercles',
             'count_sliders' => 'Nombre de Sliders',
+            'offset' => 'Décalage en ligne : :offset',
             'user-rating' => 'Évaluation des joueurs',
             'rating-spread' => 'Écart de notation',
             'nominations' => 'Nominations',
@@ -207,5 +213,9 @@ return [
             'pending' => 'En attente',
             'graveyard' => 'Cimetière',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => 'Spotlights',
     ],
 ];

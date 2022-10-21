@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'You have blocked this user.',
+        'comment_text' => 'This comment is hidden.',
         'blocked_count' => 'blocked users (:count)',
         'hide_profile' => 'Hide profile',
+        'hide_comment' => 'hide',
         'not_blocked' => 'That user is not blocked.',
         'show_profile' => 'Show profile',
+        'show_comment' => 'show',
         'too_many' => 'Block limit reached.',
         'button' => [
             'block' => 'Block',
@@ -115,7 +118,7 @@ return [
     'logout_confirm' => 'Are you sure you want to sign out? :(',
     'report' => [
         'button_text' => 'Report',
-        'comments' => 'Additional Comments',
+        'comments' => 'Comments',
         'placeholder' => 'Please provide any information you believe could be useful.',
         'reason' => 'Reason',
         'thanks' => 'Thanks for your report!',
@@ -207,6 +210,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Graveyarded Beatmaps',
+                ],
+                'guest' => [
+                    'title' => 'Guest Participation Beatmaps',
                 ],
                 'loved' => [
                     'title' => 'Loved Beatmaps',
@@ -366,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Ban',
                         'silence' => 'Silence',
+                        'tournament_ban' => 'Tournament ban',
                         'note' => 'Note',
                     ],
                 ],

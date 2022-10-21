@@ -49,6 +49,7 @@ class ChannelTransformer extends TransformerAbstract
             'moderated' => $channel->moderated,
             'name' => $channel->displayNameFor($this->user),
             'type' => $channel->type,
+            'uuid' => $channel->uuid,
         ];
     }
 
@@ -93,10 +94,18 @@ class ChannelTransformer extends TransformerAbstract
 
     public function includeUsers(Channel $channel)
     {
-        if ($channel->isPM()) {
+        if (
+            $channel->isPM()
+            || $channel->isAnnouncement() && priv_check_user($this->user, 'ChatAnnounce', $channel)->can()
+        ) {
             return $this->primitive($channel->userIds());
         }
 
         return $this->primitive([]);
+    }
+
+    public function includeUuid(Channel $channel)
+    {
+        return $this->primitive($channel->uuid);
     }
 }

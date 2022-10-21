@@ -6,6 +6,8 @@
 namespace Tests\Models;
 
 use App\Exceptions\AuthorizationException;
+use App\Jobs\Notifications\BeatmapsetDisqualify;
+use App\Jobs\Notifications\BeatmapsetResetNominations;
 use App\Models\Beatmap;
 use App\Models\BeatmapMirror;
 use App\Models\Beatmapset;
@@ -15,6 +17,7 @@ use App\Models\Language;
 use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotification;
+use Queue;
 use Tests\TestCase;
 
 class BeatmapsetTest extends TestCase
@@ -129,50 +132,33 @@ class BeatmapsetTest extends TestCase
         priv_check_user($nominator, 'BeatmapsetNominate', $beatmapset)->ensureCan();
     }
 
-    public function testRank()
+    /**
+     * @dataProvider dataProviderForTestRank
+     */
+    public function testRank(string $state, bool $success): void
     {
-        $otherUser = User::factory()->create();
-
         $beatmapset = $this->createBeatmapset([
-            'approved' => Beatmapset::STATES['qualified'],
+            'approved' => Beatmapset::STATES[$state],
         ]);
+
+        $otherUser = User::factory()->create();
 
         $beatmap = $beatmapset->beatmaps()->first();
         $beatmap->scoresBest()->create([
             'user_id' => $otherUser->getKey(),
         ]);
-        $scores = $beatmapset->beatmaps()->first()->scoresBest()->count();
-
-        $notifications = Notification::count();
 
         $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
 
-        $beatmapset->rank();
-
-        $this->assertTrue($beatmapset->fresh()->isRanked());
-        $this->assertSame($notifications + 1, UserNotification::count());
-        $this->assertSame($notifications + 1, Notification::count());
-        $this->assertNotSame(0, $scores);
-        $this->assertSame(0, $beatmap->scoresBest()->count());
-    }
-
-    public function testRankFromWrongState()
-    {
-        $beatmapset = $this->createBeatmapset([
-            'approved' => Beatmapset::STATES['pending'],
-        ]);
-
-        $notifications = Notification::count();
-
-        $otherUser = User::factory()->create();
-        $beatmapset->watches()->create(['user_id' => $otherUser->getKey()]);
+        $this->expectCountChange(fn () => $beatmapset->bssProcessQueues()->count(), $success ? 1 : 0);
+        $this->expectCountChange(fn () => UserNotification::count(), $success ? 1 : 0);
+        $this->expectCountChange(fn () => Notification::count(), $success ? 1 : 0);
+        $this->expectCountChange(fn () => $beatmap->scoresBest()->count(), $success ? -1 : 0);
 
         $res = $beatmapset->rank();
 
-        $this->assertFalse($res);
-        $this->assertFalse($beatmapset->fresh()->isRanked());
-        $this->assertSame($notifications, UserNotification::count());
-        $this->assertSame($notifications, Notification::count());
+        $this->assertSame($success, $res);
+        $this->assertSame($success, $beatmapset->fresh()->isRanked());
     }
 
     public function testGlobalScopeActive()
@@ -407,6 +393,42 @@ class BeatmapsetTest extends TestCase
     }
 
     //end region
+
+    // region disqualification
+
+    /**
+     * @dataProvider disqualifyOrResetNominationsDataProvider
+     */
+    public function testDisqualifyOrResetNominations(string $state, string $pushed)
+    {
+        $user = User::factory()->withGroup('bng')->create();
+        $beatmapset = Beatmapset::factory()->owner()->withDiscussion()->$state()->create();
+        $discussion = $beatmapset->beatmapDiscussions()->first(); // contents only needed for logging.
+
+        Queue::fake();
+
+        $beatmapset->disqualifyOrResetNominations($user, $discussion);
+
+        Queue::assertPushed($pushed);
+    }
+
+    //end region
+
+    public function disqualifyOrResetNominationsDataProvider()
+    {
+        return [
+            ['pending', BeatmapsetResetNominations::class],
+            ['qualified', BeatmapsetDisqualify::class],
+        ];
+    }
+
+    public function dataProviderForTestRank(): array
+    {
+        return [
+            ['pending', false],
+            ['qualified', true],
+        ];
+    }
 
     private function createBeatmapset($params = []): Beatmapset
     {

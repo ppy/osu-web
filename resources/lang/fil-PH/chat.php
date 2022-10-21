@@ -4,25 +4,58 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'talking_in' => 'nakikipagusap sa :channel',
+    'loading_users' => 'naglo-load ng mga user...',
+    'talking_in' => 'nakikipag-usap sa :channel',
     'talking_with' => 'kausap si :name',
     'title_compact' => 'chat',
 
     'cannot_send' => [
-        'channel' => 'Hindi ka makakapadala ng mensahe sa tsanel na ito ngayon. Ito ay maaaring dahil sa alinman sa mga sumusunod na dahilan:',
+        'channel' => 'Hindi ka makakapag-mensahe sa channel na ito sa oras na ito.',
         'user' => 'Hindi ka makakapadala ng mensahe sa taong ito ngayon. Ito ay maaaring dahil sa alinman sa mga sumusunod na dahilan:',
     ],
 
+    'channels' => [
+        'confirm_part' => 'Gusto mo bang itago ang channel na ito? Ikaw ay makakatanggap pa rin ng mga mensahe mula sa channel na ito.',
+        'create' => 'lumikha ng anunsyo',
+
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => 'Mga Anunsyo',
+                'GROUP' => 'Mga grupo',
+                'PM' => 'Mga direktang mensahe',
+                'PUBLIC' => 'Mga Channel',
+            ],
+        ],
+    ],
+
+    'form' => [
+        'title' => [
+            'announcement' => 'Lumikha ng Bagong Anunsyo',
+        ],
+
+        'labels' => [
+            'description' => 'deskripsyon',
+            'name' => 'pangalan ng room',
+            'users' => 'mga manlalaro na idadagdag',
+        ],
+    ],
+
+    'not_found' => [
+        'message' => 'Walang laman dito, maaaring umalis ka sa channel o wala ito...',
+        'title' => 'ang channel ay hindi nahanap',
+    ],
+
     'input' => [
+        'create' => 'Lumikha',
         'disabled' => 'hindi maipadala ang mensahe...',
         'disconnected' => 'Disconnected',
-        'placeholder' => 'gumawa ng mensahe...',
+        'placeholder' => 'mag-type ng mensahe...',
         'send' => 'Ipadala',
     ],
 
     'no-conversations' => [
-        'howto' => "Simulan ang pakikipag-usap galing sa isang user profile o kaya naman sa isang popup sa usercard.",
-        'lazer' => 'Ang mga tsanel na pwedeng salihan sa <a href=":link">osu!lazer</a> ay makikita din dito.',
-        'title' => 'wala pang usapan',
+        'howto' => "Simulan ang pakikipag-usap mula sa profile ng isang user o sa isang popup ng usercard.",
+        'lazer' => 'Ang mga public channel na sinalihan mo sa <a href=":link">osu!lazer</a> ay makikita din dito.',
+        'title' => 'wala pang mga usapan',
     ],
 ];

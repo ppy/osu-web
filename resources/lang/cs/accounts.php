@@ -5,7 +5,7 @@
 
 return [
     'edit' => [
-        'title_compact' => 'nastavení',
+        'title_compact' => 'nastavení účtu',
         'username' => 'uživatelské jméno',
 
         'avatar' => [
@@ -15,7 +15,6 @@ return [
         ],
 
         'email' => [
-            'current' => 'aktuální e-mail',
             'new' => 'nový e-mail',
             'new_confirmation' => 'ověření e-mailu',
             'title' => 'E-mail',

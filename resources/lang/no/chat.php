@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'loading_users' => '',
     'talking_in' => 'snakker i :channel',
     'talking_with' => 'snakker med :name',
     'title_compact' => 'chat',
@@ -13,7 +14,39 @@ return [
         'user' => 'Du kan ikke sende meldinger til denne brukeren akkurat nå. Dette kan være en av følgende grunner:',
     ],
 
+    'channels' => [
+        'confirm_part' => '',
+        'create' => '',
+
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => '',
+                'GROUP' => 'Grupper',
+                'PM' => '',
+                'PUBLIC' => 'Kanaler',
+            ],
+        ],
+    ],
+
+    'form' => [
+        'title' => [
+            'announcement' => '',
+        ],
+
+        'labels' => [
+            'description' => 'beskrivelse',
+            'name' => '',
+            'users' => '',
+        ],
+    ],
+
+    'not_found' => [
+        'message' => '',
+        'title' => '',
+    ],
+
     'input' => [
+        'create' => 'Opprett',
         'disabled' => 'kan ikke sende melding...',
         'disconnected' => '',
         'placeholder' => 'skriv melding...',

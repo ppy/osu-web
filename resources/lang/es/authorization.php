@@ -74,6 +74,9 @@ return [
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => 'Los comentarios están desactivados',
+        ],
         'update' => [
             'deleted' => "No puedes editar una publicación eliminada.",
         ],

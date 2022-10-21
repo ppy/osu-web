@@ -14,7 +14,6 @@ interface Props {
   beatmaps: BeatmapExtendedJson[];
   beatmapset: BeatmapsetJson;
   currentBeatmap: BeatmapExtendedJson;
-  currentDiscussions: BeatmapsetDiscussionJson[];
   currentUser: UserJson;
   pinned?: boolean;
   setPinned?: (sticky: boolean) => void;
@@ -91,7 +90,6 @@ export default class NewReview extends React.Component<Props, State> {
                           beatmaps={this.props.beatmaps}
                           beatmapset={this.props.beatmapset}
                           currentBeatmap={this.props.currentBeatmap}
-                          currentDiscussions={this.props.currentDiscussions}
                           discussions={discussions}
                           onFocus={this.onFocus}
                         />)
@@ -108,7 +106,7 @@ export default class NewReview extends React.Component<Props, State> {
     );
   }
 
-  // TODO: to whoever refactors this - this 'sticky' behaviour was ported from new-discussion.coffee, so remember to refactor that too
+  // TODO: remove sticky when converting to mobx, like in new-discussion.
   setSticky = (sticky = true) => {
     this.setState({
       cssTop: this.cssTop(sticky),

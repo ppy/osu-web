@@ -6,7 +6,7 @@
 namespace App\Models\Forum;
 
 use App\Exceptions\ModelNotSavedException;
-use App\Jobs\EsIndexDocument;
+use App\Jobs\EsDocument;
 use App\Jobs\MarkNotificationsRead;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\BBCodeFromDB;
@@ -57,7 +57,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $topic_id
  * @property User $user
  */
-class Post extends Model implements AfterCommit, Indexable
+class Post extends Model implements AfterCommit, Indexable, Traits\ReportableInterface
 {
     use Traits\Es\ForumPostSearch, Traits\Reportable, Traits\WithDbCursorHelper, Validatable;
     use SoftDeletes {
@@ -417,7 +417,7 @@ class Post extends Model implements AfterCommit, Indexable
     public function afterCommit()
     {
         if ($this->exists) {
-            dispatch(new EsIndexDocument($this));
+            dispatch(new EsDocument($this));
         }
     }
 

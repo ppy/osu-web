@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'このユーザーをブロックしています',
+        'comment_text' => 'このコメントは非表示になっています。',
         'blocked_count' => 'ブロックしたユーザー(:count)',
         'hide_profile' => 'プロフィールを隠す',
+        'hide_comment' => '隠す',
         'not_blocked' => 'このユーザーはブロックされていません。',
         'show_profile' => 'プロフィールを表示',
+        'show_comment' => '表示',
         'too_many' => 'ブロックできる上限に達しました。',
         'button' => [
             'block' => 'ブロック',
@@ -128,7 +131,7 @@ return [
 
         'options' => [
             'cheating' => 'チート',
-            'multiple_accounts' => '複数のアカウントを管理する',
+            'multiple_accounts' => '複数のアカウントを管理している',
             'insults' => 'あなた/他の人への侮辱',
             'spam' => 'スパム',
             'unwanted_content' => '不適切なコンテンツへのリンク',
@@ -158,6 +161,10 @@ return [
         'comments_count' => [
             '_' => '投稿 :link',
             'count' => ':count_delimited コメント',
+        ],
+        'cover' => [
+            'to_0' => 'カバー画像を隠す',
+            'to_1' => 'カバー画像を表示',
         ],
         'edit' => [
             'cover' => [
@@ -203,6 +210,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Graveyardのビートマップ',
+                ],
+                'guest' => [
+                    'title' => 'ゲスト難易度のビートマップ',
                 ],
                 'loved' => [
                     'title' => 'Lovedされたビートマップ',
@@ -302,7 +312,7 @@ return [
                 'title' => 'メダル',
             ],
             'playlists' => [
-                'title' => '',
+                'title' => 'プレイリスト',
             ],
             'posts' => [
                 'title' => '投稿',
@@ -313,13 +323,13 @@ return [
                 'title' => '最近のアクティビティ',
             ],
             'realtime' => [
-                'title' => '',
+                'title' => 'マルチプレイ',
             ],
             'top_ranks' => [
                 'download_replay' => 'リプレイをダウンロード',
                 'not_ranked' => 'Rankedビートマップのみがppを与えます。',
                 'pp_weight' => '割合 :percentage',
-                'view_details' => '詳細の表示',
+                'view_details' => '詳細を表示',
                 'title' => 'ランク',
 
                 'best' => [
@@ -329,13 +339,13 @@ return [
                     'title' => '1位の記録',
                 ],
                 'pin' => [
-                    'to_0' => '',
-                    'to_0_done' => '',
-                    'to_1' => '',
-                    'to_1_done' => '',
+                    'to_0' => 'ピン留め解除',
+                    'to_0_done' => 'スコアのピン留めを解除しました',
+                    'to_1' => 'ピン留め',
+                    'to_1_done' => 'スコアをピン留めしました',
                 ],
                 'pinned' => [
-                    'title' => '',
+                    'title' => 'ピン留めされたスコア',
                 ],
             ],
             'votes' => [
@@ -362,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'BAN',
                         'silence' => 'サイレンス',
+                        'tournament_ban' => 'トーナメントBAN',
                         'note' => 'メモ',
                     ],
                 ],
@@ -427,7 +438,7 @@ return [
 
     'silenced_banner' => [
         'title' => 'あなたは現在サイレンス中です。',
-        'message' => 'いくつかのアクションが利用できない可能性があります。',
+        'message' => 'いくつかの機能が利用できない可能性があります。',
     ],
 
     'status' => [
@@ -443,7 +454,7 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => 'ブリックビュー',
+        'brick' => '簡易表示',
         'card' => 'カードビュー',
         'list' => '一覧表示',
     ],

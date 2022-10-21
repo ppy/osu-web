@@ -8,7 +8,7 @@ import { NotificationContext } from 'notifications-context';
 import NotificationDeleteButton from 'notifications/notification-delete-button';
 import NotificationReadButton from 'notifications/notification-read-button';
 import * as React from 'react';
-import { classWithModifiers } from 'utils/css';
+import { classWithModifiers, mergeModifiers } from 'utils/css';
 
 interface Props {
   canMarkAsRead?: boolean;
@@ -36,8 +36,15 @@ export default class Item extends React.Component<Props> {
   }
 
   render() {
+    const modifiers = mergeModifiers(
+      this.props.modifiers,
+      this.props.item.category,
+      { read: this.props.item.isRead && !this.props.canMarkAsRead },
+    );
+
     return (
-      <div className={this.blockClass()} onClick={this.handleContainerClick}>
+      <div className={classWithModifiers('notification-popup-item', modifiers)}>
+        <a className='notification-popup-item__link' href={this.props.url} onClick={this.props.markRead} />
         {this.renderCover()}
         <div className='notification-popup-item__main'>
           <div className='notification-popup-item__content'>
@@ -53,23 +60,6 @@ export default class Item extends React.Component<Props> {
       </div>
     );
   }
-
-  private blockClass() {
-    const modifiers = [...this.props.modifiers, this.props.item.category];
-    if (this.props.item.isRead && !this.props.canMarkAsRead) {
-      modifiers.push('read');
-    }
-
-    return `clickable-row ${classWithModifiers('notification-popup-item', modifiers)}`;
-  }
-
-  private handleContainerClick = (event: React.SyntheticEvent) => {
-    if (osu.isClickable(event.target as HTMLElement)) return;
-
-    if (this.props.markRead != null) {
-      this.props.markRead();
-    }
-  };
 
   private renderCategory() {
     if (!this.props.withCategory) {
@@ -133,7 +123,11 @@ export default class Item extends React.Component<Props> {
       return null;
     }
 
-    return <div className='notification-popup-item__row notification-popup-item__row--expand'>{this.props.expandButton}</div>;
+    return (
+      <div className='notification-popup-item__row notification-popup-item__row--expand'>
+        {this.props.expandButton}
+      </div>
+    );
   }
 
   private renderMarkAsReadButton() {
@@ -152,13 +146,9 @@ export default class Item extends React.Component<Props> {
 
   private renderMessage() {
     return (
-      <a
-        className='notification-popup-item__row notification-popup-item__row--message clickable-row-link'
-        href={this.props.url}
-        onClick={this.props.markRead}
-      >
+      <div className='notification-popup-item__row notification-popup-item__row--message'>
         {this.props.message}
-      </a>
+      </div>
     );
   }
 
@@ -168,9 +158,12 @@ export default class Item extends React.Component<Props> {
     }
 
     return (
-      <div className='notification-popup-item__row notification-popup-item__row--time'>
+      <a
+        className='notification-popup-item__row notification-popup-item__row--time u-hover'
+        href={this.props.url}
+      >
         <TimeWithTooltip dateTime={this.props.item.createdAtJson} relative />
-      </div>
+      </a>
     );
   }
 

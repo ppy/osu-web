@@ -6,7 +6,7 @@
 return [
     'discussion-votes' => [
         'update' => [
-            'error' => 'Gagal memperbarui pilihan',
+            'error' => 'Gagal memperbarui suara',
         ],
     ],
 
@@ -39,7 +39,7 @@ return [
 
         'empty' => [
             'empty' => 'Belum ada diskusi!',
-            'hidden' => 'Tidak ada diskusi yang cocok dengan filter yang dipilih.',
+            'hidden' => 'Tidak ada topik diskusi yang sesuai dengan filter yang dipilih.',
         ],
 
         'lock' => [
@@ -73,7 +73,7 @@ return [
             'nomination_reset' => 'Anulir Nominasi',
             'praise' => 'Pujian',
             'problem' => 'Masalah',
-            'problem_warning' => '',
+            'problem_warning' => 'Laporkan Masalah',
             'review' => 'Kajian',
             'suggestion' => 'Saran',
         ],
@@ -158,9 +158,9 @@ return [
     ],
 
     'hype' => [
-        'button' => 'Hype Beatmap!',
+        'button' => 'Berikan Hype!',
         'button_done' => 'Telah di-Hype!',
-        'confirm' => "Apakah Anda yakin? Dengan ini Anda akan memberikan 1 hype kepada beatmap ini dari :n hype yang Anda miliki saat ini. Tindakan ini tidak dapat diurungkan.",
+        'confirm' => "Apakah Anda yakin? Dengan ini, Anda akan memberikan 1 hype kepada beatmap ini dari :n hype yang Anda miliki saat ini. Tindakan ini tidak dapat diurungkan.",
         'explanation' => 'Berikanlah hype Anda untuk membawa beatmap ini lebih dekat menuju Ranked!',
         'explanation_guest' => 'Masuk dan berikan hype kepada beatmap ini agar beatmap ini dapat segera dinominasikan dan di-rank!',
         'new_time' => "Anda akan mendapatkan hype tambahan :new_time.",
@@ -211,7 +211,7 @@ return [
         'reset_confirm' => [
             'disqualify' => 'Apakah Anda yakin? Tindakan ini akan melepas beatmap ini dari kategori Qualified dan mengulang proses nominasi dari awal.',
             'nomination_reset' => 'Apakah Anda yakin? Memposting masalah baru akan mengulang proses nominasi.',
-            'problem_warning' => '',
+            'problem_warning' => 'Apakah Anda yakin untuk melaporkan masalah yang terdapat pada beatmap ini? Tindakan ini akan memperingatkan seluruh anggota Beatmap Nominator.',
         ],
     ],
 
@@ -247,7 +247,7 @@ return [
                 'nominations' => 'Jumlah Nominasi',
             ],
             'supporter_filter_quote' => [
-                '_' => 'Penyaringan dengan :filters memerlukan :link aktif',
+                '_' => 'Penyaringan berdasarkan :filters memerlukan :link yang aktif',
                 'link_text' => 'osu!supporter tag',
             ],
         ],
@@ -257,6 +257,7 @@ return [
         'featured_artists' => 'Featured artist',
         'follows' => 'Mapper yang diikuti',
         'recommended' => 'Rentang kesulitan yang disarankan',
+        'spotlights' => 'Beatmap yang di-spotlight',
     ],
     'mode' => [
         'all' => 'Semua',
@@ -273,9 +274,9 @@ return [
         'graveyard' => 'Graveyard',
         'leaderboard' => 'Memiliki Leaderboard',
         'loved' => 'Loved',
-        'mine' => 'Map Milik Saya',
+        'mine' => 'Map Saya',
         'pending' => 'Pending & WIP',
-        'wip' => '',
+        'wip' => 'WIP',
         'qualified' => 'Qualified',
         'ranked' => 'Ranked',
     ],
@@ -294,32 +295,6 @@ return [
         'classical' => 'Klasik',
         'folk' => 'Folk',
         'jazz' => 'Jazz',
-    ],
-    'mods' => [
-        '4K' => '',
-        '5K' => '',
-        '6K' => '',
-        '7K' => '',
-        '8K' => '',
-        '9K' => '',
-        'AP' => '',
-        'DT' => '',
-        'EZ' => '',
-        'FI' => '',
-        'FL' => '',
-        'HD' => '',
-        'HR' => '',
-        'HT' => '',
-        'MR' => '',
-        'NC' => '',
-        'NF' => '',
-        'NM' => '',
-        'PF' => '',
-        'RX' => '',
-        'SD' => '',
-        'SO' => '',
-        'TD' => '',
-        'V2' => '',
     ],
     'language' => [
         'any' => 'Semua',

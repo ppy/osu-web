@@ -22,7 +22,7 @@ return [
     ],
 
     'links' => [
-        'beatmaps' => '',
+        'beatmaps' => 'osu! Beatmaps',
         'osu' => 'osu! profil',
         'site' => 'Offisielt nettsted',
     ],
@@ -43,19 +43,19 @@ return [
 
     'tracks' => [
         'index' => [
-            '_' => '',
+            '_' => 'sporsøk',
 
             'form' => [
-                'advanced' => '',
-                'album' => '',
-                'artist' => '',
-                'bpm_gte' => '',
-                'bpm_lte' => '',
-                'empty' => '',
-                'genre' => '',
-                'genre_all' => '',
-                'length_gte' => '',
-                'length_lte' => '',
+                'advanced' => 'Avansert Søk',
+                'album' => 'Album',
+                'artist' => 'Artist',
+                'bpm_gte' => 'Minste BPM',
+                'bpm_lte' => 'Maks BPM',
+                'empty' => 'Fant ingen spor som samsvarer med søkekriteriene.',
+                'genre' => 'Sjanger',
+                'genre_all' => 'Alle',
+                'length_gte' => 'Minste Lengde',
+                'length_lte' => 'Maks Lengde',
             ],
         ],
     ],

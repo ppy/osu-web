@@ -31,6 +31,12 @@ return [
         'progress' => [
             '_' => ':used / :max röster använda',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => 'Du måste spela alla beatmaps i de specificerade spellistorna innan du röstar',
+            ],
+        ],
     ],
     'entry' => [
         '_' => 'bidrag',

@@ -15,7 +15,6 @@ return [
         ],
 
         'email' => [
-            'current' => 'текущ имейл',
             'new' => 'нов имейл',
             'new_confirmation' => 'потвърди нов имейл',
             'title' => 'Имейл',

@@ -73,7 +73,7 @@ return [
             'nomination_reset' => 'Réinitialiser la nomination',
             'praise' => 'Compliments',
             'problem' => 'Problème',
-            'problem_warning' => '',
+            'problem_warning' => 'Signaler un problème',
             'review' => 'Review',
             'suggestion' => 'Suggestion',
         ],
@@ -118,7 +118,7 @@ return [
         ],
 
         'show' => [
-            'title' => ':title mappé par :mapper',
+            'title' => ':title mappée par :mapper',
         ],
 
         'sort' => [
@@ -211,7 +211,7 @@ return [
         'reset_confirm' => [
             'disqualify' => 'Êtes-vous sûr ? Cela va disqualifier la beatmap et réinitialiser le processus de nomination.',
             'nomination_reset' => 'Êtes-vous sûr ? Poster un nouveau problème va réinitialiser le processus de nomination.',
-            'problem_warning' => '',
+            'problem_warning' => 'Êtes-vous sûr de vouloir signaler un problème sur cette beatmap ? Ceci alertera les Beatmap Nominators.',
         ],
     ],
 
@@ -257,6 +257,7 @@ return [
         'featured_artists' => 'Featured artists',
         'follows' => 'Mappeurs suivis',
         'recommended' => 'Difficulté recommandée',
+        'spotlights' => 'Beatmaps spotlight',
     ],
     'mode' => [
         'all' => 'Tous',
@@ -275,7 +276,7 @@ return [
         'loved' => 'Loved',
         'mine' => 'Mes maps',
         'pending' => 'En attente',
-        'wip' => '',
+        'wip' => 'WIP',
         'qualified' => 'Qualifiée',
         'ranked' => 'Classée',
     ],
@@ -294,32 +295,6 @@ return [
         'classical' => 'Classique',
         'folk' => 'Folk',
         'jazz' => 'Jazz',
-    ],
-    'mods' => [
-        '4K' => '',
-        '5K' => '',
-        '6K' => '',
-        '7K' => '',
-        '8K' => '',
-        '9K' => '',
-        'AP' => '',
-        'DT' => '',
-        'EZ' => '',
-        'FI' => '',
-        'FL' => '',
-        'HD' => '',
-        'HR' => '',
-        'HT' => '',
-        'MR' => '',
-        'NC' => '',
-        'NF' => '',
-        'NM' => '',
-        'PF' => '',
-        'RX' => '',
-        'SD' => '',
-        'SO' => '',
-        'TD' => '',
-        'V2' => '',
     ],
     'language' => [
         'any' => 'Tous',

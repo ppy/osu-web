@@ -26,6 +26,7 @@ class ScorePin extends Model
         MorphMap::MAP[ScoreBest\Mania::class],
         MorphMap::MAP[ScoreBest\Osu::class],
         MorphMap::MAP[ScoreBest\Taiko::class],
+        MorphMap::MAP[Solo\Score::class],
     ];
 
     public static function isValidType(string|null $type): bool
@@ -37,21 +38,14 @@ class ScorePin extends Model
         return $lookup->contains($type);
     }
 
-    public function scopeForMode($query, string|Score\Best\Model $modeOrScore): Builder
+    public function scopeForRuleset($query, string $ruleset): Builder
     {
-        if (is_string($modeOrScore)) {
-            $class = Score\Best\Model::getClassByString($modeOrScore);
-            $instance = new $class();
-        } else {
-            $instance = $modeOrScore;
-        }
-
-        return $query->where('score_type', $instance->getMorphClass());
+        return $query->where('ruleset_id', Beatmap::MODES[$ruleset]);
     }
 
     public function scopeWithVisibleScore($query): Builder
     {
-        return $query->whereHasMorph('score', static::SCORES, fn ($q) => $q->visibleUsers());
+        return $query->whereHasMorph('score', static::SCORES);
     }
 
     public function score(): MorphTo

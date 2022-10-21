@@ -24,6 +24,7 @@ return [
 
     'status' => [
         'non_best' => 'pp 只授予個人最佳成績',
+        'non_passing' => '',
         'processing' => '成績仍在結算中，不久後就會顯示',
     ],
 ];

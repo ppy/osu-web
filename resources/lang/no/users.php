@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Du har blokkerte denne brukeren.',
+        'comment_text' => '',
         'blocked_count' => 'blokkerte brukere (:count)',
         'hide_profile' => 'Skjul profil',
+        'hide_comment' => '',
         'not_blocked' => 'Den brukeren er ikke blokkert.',
         'show_profile' => 'Vis profil',
+        'show_comment' => '',
         'too_many' => 'Maks antall blokkerte personer nådd.',
         'button' => [
             'block' => 'Blokker',
@@ -159,6 +162,10 @@ return [
             '_' => '',
             'count' => '',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Endre profilbanner',
@@ -203,6 +210,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Gravlagte Beatmaps',
+                ],
+                'guest' => [
+                    'title' => '',
                 ],
                 'loved' => [
                     'title' => 'Elskede Beatmaps',
@@ -362,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Utestengelse',
                         'silence' => 'Forstummet',
+                        'tournament_ban' => '',
                         'note' => 'Merknad',
                     ],
                 ],

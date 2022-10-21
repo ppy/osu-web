@@ -88,12 +88,12 @@ return [
             '_' => 'Csevegés',
 
             'announcement' => [
-                '_' => '',
+                '_' => 'Új bejelentés',
 
                 'announce' => [
-                    'channel_announcement' => '',
-                    'channel_announcement_compact' => '',
-                    'channel_announcement_group' => '',
+                    'channel_announcement' => ':username üzeni ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Bejelentés tőle :username',
                 ],
             ],
 
@@ -241,6 +241,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username új beatmapeket hozott létre',
+                'user_beatmapset_revive' => '',
             ],
         ],
     ],

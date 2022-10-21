@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Has bloqueado a este usuario.',
+        'comment_text' => 'Este comentario está oculto.',
         'blocked_count' => 'usuarios bloqueados (:count)',
         'hide_profile' => 'Ocultar perfil',
+        'hide_comment' => 'ocultar',
         'not_blocked' => 'Ese usuario no está bloqueado.',
         'show_profile' => 'Mostrar perfil',
+        'show_comment' => 'mostrar',
         'too_many' => 'Límite de bloqueos alcanzado.',
         'button' => [
             'block' => 'Bloquear',
@@ -114,15 +117,15 @@ return [
     ],
     'logout_confirm' => '¿Seguro que desea cerrar la sesión? :(',
     'report' => [
-        'button_text' => 'Denunciar',
+        'button_text' => 'Reportar',
         'comments' => 'Comentarios adicionales',
         'placeholder' => 'Por favor, proporcione cualquier información que crea que pueda ser útil.',
         'reason' => 'Motivo',
-        'thanks' => '¡Gracias por su informe!',
-        'title' => '¿Denunciar a :username?',
+        'thanks' => '¡Gracias por reportar!',
+        'title' => '¿Reportar a :username?',
 
         'actions' => [
-            'send' => 'Enviar denuncia',
+            'send' => 'Enviar reporte',
             'cancel' => 'Cancelar',
         ],
 
@@ -158,6 +161,10 @@ return [
         'comments_count' => [
             '_' => 'Publicó :link',
             'count' => 'un comentario|:count_delimited comentarios',
+        ],
+        'cover' => [
+            'to_0' => 'Ocultar portada',
+            'to_1' => 'Mostrar portada',
         ],
         'edit' => [
             'cover' => [
@@ -204,6 +211,9 @@ return [
                 'graveyard' => [
                     'title' => 'Mapas Abandonados',
                 ],
+                'guest' => [
+                    'title' => 'Mapas con participación de invitados',
+                ],
                 'loved' => [
                     'title' => 'Mapas Amados',
                 ],
@@ -211,7 +221,7 @@ return [
                     'title' => 'Mapas Pendientes',
                 ],
                 'ranked' => [
-                    'title' => 'Mapas Clasificados y Aprobados',
+                    'title' => 'Mapas Clasificados',
                 ],
             ],
             'discussions' => [
@@ -362,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Restringir',
                         'silence' => 'Silenciado',
+                        'tournament_ban' => 'Excluído de torneos',
                         'note' => 'Nota',
                     ],
                 ],
@@ -421,7 +432,7 @@ return [
             'graveyard_beatmapset_count' => 'Mapas Abandonados',
             'loved_beatmapset_count' => 'Mapas Amados',
             'pending_beatmapset_count' => 'Mapas Pendientes',
-            'ranked_beatmapset_count' => 'Mapas Clasificados y Aprobados',
+            'ranked_beatmapset_count' => 'Mapas Clasificados',
         ],
     ],
 

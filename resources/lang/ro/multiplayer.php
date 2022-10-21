@@ -5,26 +5,26 @@
 
 return [
     'empty' => [
-        '_' => '',
-        'playlists' => '',
-        'realtime' => '',
+        '_' => ':type_group nu au fost jucate încă!',
+        'playlists' => 'playlist',
+        'realtime' => 'multiplayer',
     ],
 
     'room' => [
-        'hosted_by' => '',
+        'hosted_by' => 'început de :user',
         'invalid_password' => 'Parolă invalidă',
-        'map_count' => '',
-        'player_count' => '',
-        'time_left' => '',
+        'map_count' => 'un beatmap|:count_delimited beatmap-uri|:count_delimited de beatmap-uri',
+        'player_count' => 'un jucător|:count_delimited jucători|:count_delimited de jucători ',
+        'time_left' => ':time rămas',
 
         'errors' => [
-            'duration_too_long' => '',
+            'duration_too_long' => 'Durata este prea lungă.',
         ],
 
         'status' => [
             'active' => 'activ',
-            'ended' => 'terminat',
-            'soon' => 'se termină în curând',
+            'ended' => 'încheiat',
+            'soon' => 'se va termină în curând',
         ],
     ],
 ];

@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Hai bloccato questo utente.',
+        'comment_text' => 'Questo commento è nascosto.',
         'blocked_count' => 'utenti bloccati (:count)',
         'hide_profile' => 'Nascondi profilo',
+        'hide_comment' => 'nascondi',
         'not_blocked' => 'Questo utente non è bloccato.',
         'show_profile' => 'Visualizza profilo',
+        'show_comment' => 'mostra',
         'too_many' => 'Limite blocchi raggiunto.',
         'button' => [
             'block' => 'Blocca',
@@ -159,6 +162,10 @@ return [
             '_' => 'Ha postato :link',
             'count' => ':count_delimited commento|:count_delimited commenti',
         ],
+        'cover' => [
+            'to_0' => 'Nascondi copertina',
+            'to_1' => 'Mostra copertina',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Cambia copertina del profilo',
@@ -203,6 +210,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Beatmap Abbandonate',
+                ],
+                'guest' => [
+                    'title' => 'Beatmap Partecipazione Ospite',
                 ],
                 'loved' => [
                     'title' => 'Beatmap Amate',
@@ -317,7 +327,7 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Scarica Replay',
-                'not_ranked' => 'Solo le mappe classificate danno pp.',
+                'not_ranked' => 'Solo le beatmap classificate conferiscono pp',
                 'pp_weight' => 'valutata :percentage',
                 'view_details' => 'Visualizza Dettagli',
                 'title' => 'Rank',
@@ -362,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Ban',
                         'silence' => 'Silenziato',
+                        'tournament_ban' => 'Ban Torneo',
                         'note' => 'Nota',
                     ],
                 ],

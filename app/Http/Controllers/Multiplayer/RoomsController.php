@@ -110,11 +110,7 @@ class RoomsController extends BaseController
             abort(403);
         }
 
-        $channel = Room::findOrFail($roomId)->channel;
-
-        if ($channel->hasUser(auth()->user())) {
-            $channel->removeUser(auth()->user());
-        }
+        Room::findOrFail($roomId)->channel->removeUser(auth()->user());
 
         return response([], 204);
     }
@@ -149,7 +145,11 @@ class RoomsController extends BaseController
             );
         }
 
-        $beatmaps = $room->playlist()->with('beatmap.beatmapset.beatmaps')->get()->pluck('beatmap');
+        $playlistItemsQuery = $room->playlist();
+        if ($room->isRealtime()) {
+            $playlistItemsQuery->whereHas('scores');
+        }
+        $beatmaps = $playlistItemsQuery->with('beatmap.beatmapset.beatmaps')->get()->pluck('beatmap');
         $beatmapsets = $beatmaps->pluck('beatmapset');
         $highScores = $room->topScores()->paginate(50);
         $spotlightRooms = Room::where('category', 'spotlight')->orderBy('id', 'DESC')->get();

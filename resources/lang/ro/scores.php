@@ -23,7 +23,8 @@ return [
     ],
 
     'status' => [
-        'non_best' => '',
+        'non_best' => 'Doar cele mai bune scoruri acordă pp',
+        'non_passing' => '',
         'processing' => 'Acest scor este încă în calculare și va fi afișat în curând',
     ],
 ];

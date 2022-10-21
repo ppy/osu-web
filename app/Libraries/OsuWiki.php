@@ -35,9 +35,9 @@ class OsuWiki
             ->pluck('path');
     }
 
-    public static function getTree()
+    public static function getTree(?string $sha = null, bool $recursive = true): array
     {
-        return Github::gitData()->trees()->show(static::user(), static::repository(), static::branch(), true);
+        return GitHub::gitData()->trees()->show(static::user(), static::repository(), $sha ?? static::branch(), $recursive);
     }
 
     public static function fetch($path)
@@ -95,12 +95,14 @@ class OsuWiki
                 ];
             }
         } elseif (starts_with($path, 'news/')) {
-            preg_match('/^(?:news\/)(.*)\.(.{2,})$/', $path, $matches);
+            $found = preg_match('/^(?:news\/)(?:\d{4}\/)?(.*)\.md$/', $path, $matches);
 
-            return [
-                'type' => 'news_post',
-                'slug' => $matches[1],
-            ];
+            if ($found > 0) {
+                return [
+                    'type' => 'news_post',
+                    'slug' => $matches[1],
+                ];
+            }
         }
     }
 

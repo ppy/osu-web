@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Ten użytkownik został zablokowany.',
+        'comment_text' => 'Ten komentarz został ukryty.',
         'blocked_count' => 'zablokowani użytkownicy (:count)',
         'hide_profile' => 'ukryj profil',
+        'hide_comment' => 'ukryj',
         'not_blocked' => 'Ten użytkownik nie jest zablokowany.',
         'show_profile' => 'pokaż profil',
+        'show_comment' => 'pokaż',
         'too_many' => 'Osiągnięto limit zablokowanych użytkowników.',
         'button' => [
             'block' => 'zablokuj',
@@ -115,7 +118,7 @@ return [
     'logout_confirm' => 'Na pewno chcesz się wylogować? :(',
     'report' => [
         'button_text' => 'Zgłoś',
-        'comments' => 'Dodatkowe informacje',
+        'comments' => 'Opis',
         'placeholder' => 'Podaj wszystkie informacje, które mogą okazać się przydatne.',
         'reason' => 'Powód',
         'thanks' => 'Dziękujemy za zgłoszenie!',
@@ -158,6 +161,10 @@ return [
         'comments_count' => [
             '_' => ':link',
             'count' => ':count_delimited komentarz|:count_delimited komentarze|:count_delimited komentarzy',
+        ],
+        'cover' => [
+            'to_0' => 'Ukryj tło',
+            'to_1' => 'Pokaż tło',
         ],
         'edit' => [
             'cover' => [
@@ -203,6 +210,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Porzucone beatmapy',
+                ],
+                'guest' => [
+                    'title' => 'Współtworzone beatmapy',
                 ],
                 'loved' => [
                     'title' => 'Ulubione beatmapy społeczności',
@@ -362,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Blokada',
                         'silence' => 'Uciszenie',
+                        'tournament_ban' => 'Blokada turniejowa',
                         'note' => 'Adnotacja',
                     ],
                 ],

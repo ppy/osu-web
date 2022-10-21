@@ -74,6 +74,9 @@ return [
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => 'I commenti sono disabilitati',
+        ],
         'update' => [
             'deleted' => "Non puoi modificare un post eliminato.",
         ],

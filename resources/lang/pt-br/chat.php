@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'loading_users' => 'carregando usuários...',
     'talking_in' => 'conversando em :channel',
     'talking_with' => 'conversando com :name',
     'title_compact' => 'chat',
@@ -13,7 +14,39 @@ return [
         'user' => 'Você não pode conversar com este usuário no momento. Isso pode ter ocorrido pelos seguintes motivos:',
     ],
 
+    'channels' => [
+        'confirm_part' => 'Você quer esconder este canal? Você ainda receberá mensagens dele.',
+        'create' => 'criar anúncio',
+
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => 'Comunicados',
+                'GROUP' => 'Grupos',
+                'PM' => 'Mensagens diretas',
+                'PUBLIC' => 'Canais',
+            ],
+        ],
+    ],
+
+    'form' => [
+        'title' => [
+            'announcement' => 'Criar Novo Anúncio',
+        ],
+
+        'labels' => [
+            'description' => 'descrição',
+            'name' => 'nome da sala',
+            'users' => 'jogadores para adicionar',
+        ],
+    ],
+
+    'not_found' => [
+        'message' => 'Não há nada aqui, talvez você tenha saído do canal ou ele não existe...',
+        'title' => 'canal não encontrado',
+    ],
+
     'input' => [
+        'create' => 'Criar',
         'disabled' => 'incapaz de enviar mensagem...',
         'disconnected' => 'Desconectado',
         'placeholder' => 'escrever uma mensagem...',

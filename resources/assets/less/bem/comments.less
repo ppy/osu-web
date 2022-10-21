@@ -6,7 +6,10 @@
   @_header-spacing: 20px;
 
   --comments-bg-hsl: var(--hsl-b5);
-  --comments-fg: @osu-colour-c1;
+  --comments-fg: hsl(var(--hsl-c1));
+  --comments-pinned-bg-hsl: var(--hsl-b4);
+  --comments-separator-bg: hsl(var(--hsl-b6));
+  --comments-toolbar-bg: hsl(var(--hsl-b4));
   display: flex;
   flex-direction: column;
   background-color: hsl(var(--comments-bg-hsl));
@@ -14,6 +17,19 @@
 
   @media @desktop {
     margin-bottom: 10px;
+  }
+
+  &--page-extra {
+    --comments-bg-hsl: var(--hsl-b4);
+    --comments-pinned-bg-hsl: var(--hsl-b3);
+    --comments-separator-bg: hsl(var(--hsl-b5));
+    --comments-toolbar-bg: hsl(var(--hsl-b3));
+    // avoid overriding rounded corner of the page
+    background-color: transparent;
+
+    @media @desktop {
+      margin-bottom: 0;
+    }
   }
 
   &__count {
@@ -43,12 +59,12 @@
       .default-gutter-v2();
       display: flex;
       justify-content: space-between;
-      background-color: @osu-colour-b4;
+      background-color: var(--comments-toolbar-bg);
     }
 
     &--pinned {
       margin-top: 20px;
-      --comments-bg-hsl: var(--hsl-b4);
+      --comments-bg-hsl: var(--comments-pinned-bg-hsl);
       background-color: hsl(var(--comments-bg-hsl));
     }
   }

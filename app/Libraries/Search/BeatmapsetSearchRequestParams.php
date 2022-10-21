@@ -17,7 +17,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 {
     const AVAILABLE_STATUSES = ['any', 'leaderboard', 'ranked', 'qualified', 'loved', 'favourites', 'pending', 'wip', 'graveyard', 'mine'];
     const AVAILABLE_EXTRAS = ['video', 'storyboard'];
-    const AVAILABLE_GENERAL = ['recommended', 'converts', 'follows', 'featured_artists'];
+    const AVAILABLE_GENERAL = ['recommended', 'converts', 'follows', 'spotlights', 'featured_artists'];
     const AVAILABLE_PLAYED = ['any', 'played', 'unplayed'];
     const AVAILABLE_RANKS = ['XH', 'X', 'SH', 'S', 'A', 'B', 'C', 'D'];
 
@@ -60,37 +60,53 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         static $validExtras = ['video', 'storyboard'];
         static $validRanks = ['A', 'B', 'C', 'D', 'S', 'SH', 'X', 'XH'];
 
+        $params = get_params($request, null, [
+            'c',
+            'e',
+            'g:int',
+            'l:int',
+            'm:int',
+            'nsfw:bool',
+            'page:int',
+            'played',
+            'q',
+            'query',
+            'r',
+            's',
+            'sort',
+        ], ['null_missing' => true]);
         $this->user = $user;
-        $this->page = get_int($request['page'] ?? null);
+        $this->page = $params['page'];
         $this->from = $this->pageAsFrom($this->page);
-        $this->requestQuery = $request['q'] ?? $request['query'] ?? null;
+        $this->requestQuery = $params['q'] ?? $params['query'];
 
-        $sort = $request['sort'] ?? null;
+        $sort = $params['sort'];
 
         if (priv_check_user($this->user, 'BeatmapsetAdvancedSearch')->can()) {
             $this->parseQuery();
-            $status = presence($request['s'] ?? null);
+            $status = $params['s'];
             $this->status = static::LEGACY_STATUS_MAP[$status] ?? $status;
 
-            $this->genre = get_int($request['g'] ?? null);
-            $this->language = get_int($request['l'] ?? null);
+            $this->genre = $params['g'];
+            $this->language = $params['l'];
             $this->extra = array_intersect(
-                explode('.', $request['e'] ?? null),
+                explode('.', $params['e'] ?? ''),
                 $validExtras
             );
 
-            $this->mode = get_int($request['m'] ?? null);
+            $this->mode = $params['m'];
             if (!in_array($this->mode, Beatmap::MODES, true)) {
                 $this->mode = null;
             }
 
-            $generals = explode('.', $request['c'] ?? null) ?? [];
+            $generals = explode('.', $params['c'] ?? '');
             $this->includeConverts = in_array('converts', $generals, true);
             $this->showFeaturedArtists = in_array('featured_artists', $generals, true);
             $this->showFollows = in_array('follows', $generals, true);
             $this->showRecommended = in_array('recommended', $generals, true);
+            $this->showSpotlights = in_array('spotlights', $generals, true);
 
-            $includeNsfw = get_bool($request['nsfw'] ?? null);
+            $includeNsfw = $params['nsfw'];
             if (!isset($includeNsfw) && $user !== null && $user->userProfileCustomization !== null) {
                 $includeNsfw = $user->userProfileCustomization->beatmapset_show_nsfw;
             }
@@ -107,11 +123,11 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 
         // Supporter-only options.
         $this->rank = array_intersect(
-            explode('.', $request['r'] ?? null),
+            explode('.', $params['r'] ?? ''),
             $validRanks
         );
 
-        $this->playedFilter = $request['played'] ?? null;
+        $this->playedFilter = $params['played'];
         if (!in_array($this->playedFilter, static::PLAYED_STATES, true)) {
             $this->playedFilter = null;
         }

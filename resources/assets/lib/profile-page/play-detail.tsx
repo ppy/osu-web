@@ -4,19 +4,20 @@
 import Mod from 'components/mod';
 import { PlayDetailMenu } from 'components/play-detail-menu';
 import TimeWithTooltip from 'components/time-with-tooltip';
-import ScoreJson from 'interfaces/score-json';
-import { route } from 'laroute';
+import { SoloScoreJsonForUser } from 'interfaces/solo-score-json';
 import * as React from 'react';
 import PpValue from 'scores/pp-value';
-import { getArtist, getTitle, shouldShowPp } from 'utils/beatmap-helper';
+import { getArtist, getTitle, rulesetName, shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
+import { formatNumber } from 'utils/html';
 import { hasMenu } from 'utils/score-helper';
+import { beatmapUrl } from 'utils/url';
 
 const bn = 'play-detail';
 
 interface Props {
   activated: boolean;
-  score: ScoreJson;
+  score: SoloScoreJsonForUser;
   showPinSortableHandle?: boolean;
   showPpWeight?: boolean;
 }
@@ -29,10 +30,6 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
   render() {
     const score = this.props.score;
     const { beatmap, beatmapset } = score;
-
-    if (beatmap == null || beatmapset == null) {
-      throw new Error('score json is missing beatmap or beatmapset details');
-    }
 
     let blockClass = classWithModifiers(
       bn,
@@ -63,7 +60,7 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
           <div className={`${bn}__detail`}>
             <a
               className={`${bn}__title u-ellipsis-overflow`}
-              href={route('beatmaps.show', { beatmap: beatmap.id, mode: score.mode })}
+              href={beatmapUrl(beatmap, rulesetName(this.props.score.ruleset_id))}
             >
               {getTitle(beatmapset)}
               {' '}
@@ -76,7 +73,7 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
                 {beatmap.version}
               </span>
               <span className={`${bn}__time`}>
-                <TimeWithTooltip dateTime={score.created_at} relative />
+                <TimeWithTooltip dateTime={score.ended_at} relative />
               </span>
             </div>
           </div>
@@ -90,11 +87,11 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
             <div className={`${bn}__score-detail-top-right`}>
               <div className={`${bn}__accuracy-and-weighted-pp`}>
                 <span className={`${bn}__accuracy`}>
-                  {osu.formatNumber(score.accuracy * 100, 2)}%
+                  {formatNumber(score.accuracy * 100, 2)}%
                 </span>
                 {scoreWeight != null && (
                   <span className={`${bn}__weighted-pp`}>
-                    {score.pp != null && `${osu.formatNumber(Math.round(scoreWeight.pp))}pp`}
+                    {score.pp != null && `${formatNumber(Math.round(scoreWeight.pp))}pp`}
                   </span>
                 )}
               </div>
@@ -102,7 +99,7 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
               {scoreWeight != null && (
                 <div className={`${bn}__pp-weight`}>
                   {osu.trans('users.show.extra.top_ranks.pp_weight', {
-                    percentage: `${osu.formatNumber(Math.round(scoreWeight.percentage))}%`,
+                    percentage: `${formatNumber(Math.round(scoreWeight.percentage))}%`,
                   })}
                 </div>
               )}
@@ -110,7 +107,7 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
           </div>
 
           <div className={`${bn}__score-detail ${bn}__score-detail--mods`}>
-            {score.mods.map((mod) => <Mod key={mod} mod={mod} />)}
+            {score.mods.map((mod) => <Mod key={mod.acronym} mod={mod.acronym} />)}
           </div>
 
           <div className={`${bn}__pp`}>
@@ -122,7 +119,7 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
             ) : (
               <span title={osu.trans('users.show.extra.top_ranks.not_ranked')}>
                 {(beatmap.status === 'loved') ? (
-                  <span className='fas fa-heart'/>
+                  <span className='fas fa-heart' />
                 ) : (
                   '-'
                 )}

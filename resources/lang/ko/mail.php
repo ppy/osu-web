@@ -15,7 +15,7 @@ return [
         'closing' => '항상 감사드리며,',
         'hello' => ':user 님, 안녕하세요.',
         'report' => '본인이 요청하신 변경사항이 아니시라면, 이 메일로 즉시 회답하시길 바랍니다.',
-        'ignore' => '',
+        'ignore' => '본인이 요청하지 않으셨다면 이 이메일을 무시하셔도 됩니다.',
     ],
 
     'donation_thanks' => [
@@ -67,7 +67,7 @@ return [
         'duration' => '선물해주신 분 덕분에 :duration 동안 osu!direct를 비롯한 다른 osu! 서포터 혜택을 누리실 수 있습니다.',
         'features' => '자세한 기능은 다음 링크를 통해 확인하실 수 있습니다:',
         'gifted' => '누군가가 당신에게 osu! 서포터 태그를 선물했습니다!',
-        'subject' => 'osu! 서포터 권한을 선물 받았습니다!',
+        'subject' => 'osu! 서포터 태그를 선물 받았습니다!',
     ],
 
     'user_email_updated' => [
