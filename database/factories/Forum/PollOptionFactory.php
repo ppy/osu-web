@@ -19,7 +19,7 @@ class PollOptionFactory extends Factory
     {
         return [
             'poll_option_text' => fn () => $this->faker->sentence(),
-            'topic_id' => Topic::factory()->poll(false),
+            'topic_id' => Topic::factory()->poll(0),
         ];
     }
 }

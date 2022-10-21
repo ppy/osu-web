@@ -32,7 +32,7 @@ class TopicFactory extends Factory
         ];
     }
 
-    public function poll(bool $createPollOptions = true): static
+    public function poll(int $optionCount = 2): static
     {
         $factory = $this->state([
             'poll_hide_results' => fn () => $this->faker->boolean(),
@@ -47,11 +47,9 @@ class TopicFactory extends Factory
             'poll_vote_change' => fn () => $this->faker->boolean(),
         ]);
 
-        if (!$createPollOptions) {
+        if ($optionCount <= 0) {
             return $factory;
         }
-
-        $optionCount = $this->faker->numberBetween(2, 10);
 
         return $factory
             ->state(['poll_max_options' => fn () => $this->faker->numberBetween(1, $optionCount)])
