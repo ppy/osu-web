@@ -8,21 +8,23 @@
     </div>
 @endif
 
-@if ($page->isLegalTranslation())
-    <div class="wiki-notice wiki-notice--important">
-        {!! osu_trans('wiki.show.translation.legal', [
-            'default' => '<a href="'.e(wiki_url($page->path, config('app.fallback_locale'))).'">'.e(osu_trans('wiki.show.translation.default')).'</a>',
-        ]) !!}
-    </div>
-@endif
+<div class="wiki-notice__pinned-container js-wiki-pinned-notices">
+    @if ($page->isLegalTranslation())
+        <div class="wiki-notice wiki-notice--important">
+            {!! osu_trans('wiki.show.translation.legal', [
+                'default' => '<a href="'.e(wiki_url($page->path, config('app.fallback_locale'))).'">'.e(osu_trans('wiki.show.translation.default')).'</a>',
+            ]) !!}
+        </div>
+    @endif
 
-@if ($page->isOutdatedTranslation())
-    <div class="wiki-notice">
-        {!! osu_trans('wiki.show.translation.outdated', [
-            'default' => '<a href="'.e(wiki_url($page->path, config('app.fallback_locale'))).'">'.e(osu_trans('wiki.show.translation.default')).'</a>',
-        ]) !!}
-    </div>
-@endif
+    @if ($page->isOutdatedTranslation())
+        <div class="wiki-notice">
+            {!! osu_trans('wiki.show.translation.outdated', [
+                'default' => '<a href="'.e(wiki_url($page->path, config('app.fallback_locale'))).'">'.e(osu_trans('wiki.show.translation.default')).'</a>',
+            ]) !!}
+        </div>
+    @endif
+</div>
 
 @if ($page->isOutdated())
     <div class="wiki-notice">
