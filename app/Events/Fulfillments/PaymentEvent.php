@@ -9,7 +9,7 @@ use App\Models\Store\Order;
 
 class PaymentEvent implements HasOrder
 {
-    public function __construct(Order $order)
+    public function __construct(private Order $order)
     {
         $this->order = $order;
     }
