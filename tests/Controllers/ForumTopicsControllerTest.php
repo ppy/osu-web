@@ -17,6 +17,28 @@ use Tests\TestCase;
 
 class ForumTopicsControllerTest extends TestCase
 {
+    public function testDestroyAsModerator(): void
+    {
+        $topic = Topic::factory()->withPost()->create();
+        $user = User::factory()->withGroup('gmt')->create();
+
+        $this
+            ->actingAsVerified($user)
+            ->delete(route('forum.topics.destroy', $topic))
+            ->assertSuccessful();
+    }
+
+    public function testDestroyAsOwner(): void
+    {
+        $user = User::factory()->create();
+        $topic = Topic::factory()->withPost()->create(['topic_poster' => $user]);
+
+        $this
+            ->actingAsVerified($user)
+            ->delete(route('forum.topics.destroy', $topic))
+            ->assertRedirect(route('forum.forums.show', $topic->forum_id));
+    }
+
     public function testPin(): void
     {
         $moderator = User::factory()->withGroup('gmt')->create();
