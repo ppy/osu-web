@@ -62,6 +62,11 @@ class UsersController extends Controller
 
     protected $maxResults = 100;
 
+    private ?string $mode = null;
+    private ?int $offset = null;
+    private ?int $perPage = null;
+    private ?User $user = null;
+
     public function __construct()
     {
         $this->middleware('guest', ['only' => 'store']);
