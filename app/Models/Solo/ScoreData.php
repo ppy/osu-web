@@ -36,12 +36,17 @@ class ScoreData implements Castable, JsonSerializable
     public function __construct(array $data)
     {
         $mods = [];
-
         foreach ($data['mods'] ?? [] as $mod) {
+            // TODO: create proper Mod object
             $mod = (array) $mod;
             if (is_array($mod) && isset($mod['acronym'])) {
-                if (isset($mod['settings'])) {
+                $settings = $mod['settings'] ?? null;
+                if (is_object($settings) && !empty((array) $settings)) {
+                    // already in expected format; do nothing
+                } elseif (is_array($settings) && !empty($settings)) {
                     $mod['settings'] = (object) $mod['settings'];
+                } else {
+                    unset($mod['settings']);
                 }
                 $mods[] = (object) $mod;
             }
@@ -55,7 +60,6 @@ class ScoreData implements Castable, JsonSerializable
         $this->legacyTotalScore = $data['legacy_total_score'] ?? null;
         $this->maxCombo = $data['max_combo'] ?? 0;
         $this->maximumStatistics = new ScoreDataStatistics($data['maximum_statistics'] ?? []);
-        // TODO: create a proper Mod object
         $this->mods = $mods;
         $this->passed = $data['passed'] ?? false;
         $this->rank = $data['rank'] ?? 'F';
