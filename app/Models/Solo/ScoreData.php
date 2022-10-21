@@ -111,7 +111,7 @@ class ScoreData implements Castable, JsonSerializable
 
     public function jsonSerialize(): array
     {
-        return [
+        $ret = [
             'accuracy' => $this->accuracy,
             'beatmap_id' => $this->beatmapId,
             'build_id' => $this->buildId,
@@ -129,5 +129,13 @@ class ScoreData implements Castable, JsonSerializable
             'total_score' => $this->totalScore,
             'user_id' => $this->userId,
         ];
+
+        foreach ($ret as $field => $value) {
+            if ($value === null) {
+                unset($ret[$field]);
+            }
+        }
+
+        return $ret;
     }
 }
