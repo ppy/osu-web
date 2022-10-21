@@ -94,12 +94,12 @@ class ForumSeeder extends Seeder
         }
 
         // Authorization
-        $defaultGroupId = app('groups')->byIdentifier('default')->getKey();
-        foreach (Forum::all() as $forum) {
+        $defaultGroup = app('groups')->byIdentifier('default');
+        foreach ($forums as $forum) {
             foreach (['post', 'postCount', 'reply'] as $optionState) {
                 Authorize::factory()->$optionState()->create([
-                    'forum_id' => $forum->getKey(),
-                    'group_id' => $defaultGroupId,
+                    'forum_id' => $forum,
+                    'group_id' => $defaultGroup,
                 ]);
             }
         }
