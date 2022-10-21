@@ -25,15 +25,12 @@ class ForumPostsControllerTest extends TestCase
 
         $this->expectCountChange(fn () => Post::count(), -1);
         $this->expectCountChange(fn () => Topic::count(), 0);
+        $this->expectCountChange(fn () => $topic->fresh()->postCount(), -1);
 
         $this
             ->actingAsVerified($user)
             ->delete(route('forum.posts.destroy', $post))
             ->assertSuccessful();
-
-        $topic->refresh();
-
-        $this->assertSame(1, $topic->postCount());
     }
 
     public function testDestroyFirstPost(): void
@@ -47,15 +44,12 @@ class ForumPostsControllerTest extends TestCase
 
         $this->expectCountChange(fn () => Post::count(), 0);
         $this->expectCountChange(fn () => Topic::count(), 0);
+        $this->expectCountChange(fn () => $topic->fresh()->postCount(), 0);
 
         $this
             ->actingAsVerified($user)
             ->delete(route('forum.posts.destroy', $post))
             ->assertStatus(422);
-
-        $topic->refresh();
-
-        $this->assertSame(1, $topic->postCount());
     }
 
     public function testDestroyNotLastPost(): void
@@ -70,15 +64,12 @@ class ForumPostsControllerTest extends TestCase
 
         $this->expectCountChange(fn () => Post::count(), 0);
         $this->expectCountChange(fn () => Topic::count(), 0);
+        $this->expectCountChange(fn () => $topic->fresh()->postCount(), 0);
 
         $this
             ->actingAsVerified($user)
             ->delete(route('forum.posts.destroy', $post))
             ->assertStatus(403);
-
-        $topic->refresh();
-
-        $this->assertSame(3, $topic->postCount());
     }
 
     public function testRestore(): void
@@ -89,14 +80,11 @@ class ForumPostsControllerTest extends TestCase
         $post->delete();
 
         $this->expectCountChange(fn () => Post::count(), 1);
+        $this->expectCountChange(fn () => $topic->fresh()->postCount(), 1);
 
         $this
             ->actingAsVerified($moderator)
             ->post(route('forum.posts.restore', $post))
             ->assertSuccessful();
-
-        $topic->refresh();
-
-        $this->assertSame(2, $topic->postCount());
     }
 }
