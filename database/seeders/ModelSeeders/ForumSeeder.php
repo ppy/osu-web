@@ -73,23 +73,31 @@ class ForumSeeder extends Seeder
                 'forum_name' => 'Other',
             ]);
 
-        // Topics and posts
+        // Users
+        $userCount = User::count();
+        if ($userCount < 10) {
+            User::factory()->count(10 - $userCount)->create();
+        }
+
+        // Forums to be populated, i.e. all open forums except "User Pages"
         $forums = Forum::where('forum_type', 1)
             ->where('forum_id', '<>', config('osu.user.user_page_forum_id'))
             ->get();
+
+        // Topics and posts
         foreach ($forums as $forum) {
             Topic::factory()
                 ->count(5)
                 ->withPost()
                 ->has(
                     Post::factory()->count(5)->state([
-                        'poster_id' => fn () => User::inRandomOrder()->first() ?? User::factory(),
+                        'poster_id' => fn () => User::inRandomOrder()->firstOrFail(),
                     ]),
                     'posts',
                 )
                 ->create([
                     'forum_id' => $forum,
-                    'topic_poster' => fn () => User::inRandomOrder()->first() ?? User::factory(),
+                    'topic_poster' => fn () => User::inRandomOrder()->firstOrFail(),
                 ]);
         }
 
