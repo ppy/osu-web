@@ -287,7 +287,7 @@ export class NewDiscussion extends React.Component<Props> {
 
     const canPostNote = core.currentUser != null
         && (core.currentUser.id === this.props.beatmapset.user_id
-          || (core.currentUser.id === this.props.currentBeatmap.user_id && this.props.mode in ['general', 'timeline'])
+          || (core.currentUser.id === this.props.currentBeatmap.user_id && ['general', 'timeline'].includes(this.props.mode))
           || core.currentUser.is_bng
           || canModeratePosts());
 
