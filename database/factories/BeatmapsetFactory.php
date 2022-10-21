@@ -9,6 +9,7 @@ use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetNomination;
+use App\Models\Forum\Topic;
 use App\Models\Genre;
 use App\Models\Language;
 use App\Models\User;
@@ -31,7 +32,7 @@ class BeatmapsetFactory extends Factory
             'genre_id' => Genre::factory(),
             'language_id' => Language::factory(),
             'submit_date' => fn () => $this->faker->dateTime(),
-            'thread_id' => 0,
+            'thread_id' => Topic::factory()->withPost(),
             'user_id' => 0, // follow db default if no user specified; this is for other factories that depend on user_id.
             'offset' => fn () => $this->faker->randomDigit(),
 
