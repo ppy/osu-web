@@ -14,11 +14,13 @@ namespace App\Models;
  */
 class UserAchievement extends Model
 {
-    protected $table = 'osu_user_achievements';
-
-    protected $primaryKeys = ['user_id', 'achievement_id'];
-    protected $dates = ['date'];
+    public $incrementing = false;
     public $timestamps = false;
+
+    protected $dates = ['date'];
+    protected $primaryKey = ':composite';
+    protected $primaryKeys = ['user_id', 'achievement_id'];
+    protected $table = 'osu_user_achievements';
 
     public function user()
     {
@@ -34,6 +36,7 @@ class UserAchievement extends Model
     {
         return match ($key) {
             'achievement_id',
+            'beatmap_id',
             'user_id' => $this->getRawAttribute($key),
 
             'date' => $this->getTimeFast($key),

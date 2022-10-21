@@ -246,6 +246,8 @@ class BeatmapDiscussionPost extends Model implements Traits\ReportableInterface
             return false;
         }
 
+        $origExists = $this->exists;
+
         try {
             return $this->getConnection()->transaction(function () use ($options) {
                 if (!$this->exists) {
@@ -261,6 +263,7 @@ class BeatmapDiscussionPost extends Model implements Traits\ReportableInterface
                 return true;
             });
         } catch (ModelNotSavedException $_e) {
+            $this->exists = $origExists;
             $this->validationErrors()->merge($this->beatmapDiscussion->validationErrors());
 
             return false;

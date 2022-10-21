@@ -13,13 +13,14 @@ namespace App\Models\Forum;
  */
 class TopicTrack extends Model
 {
-    protected $table = 'phpbb_topics_track';
-
+    public $incrementing = false;
     public $timestamps = false;
-    protected $dates = ['mark_time'];
-    protected $dateFormat = 'U';
 
+    protected $dateFormat = 'U';
+    protected $dates = ['mark_time'];
+    protected $primaryKey = ':composite';
     protected $primaryKeys = ['topic_id', 'user_id'];
+    protected $table = 'phpbb_topics_track';
 
     public static function readStatus($user, $topics)
     {

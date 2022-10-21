@@ -89,6 +89,7 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
 
             'beatmap',
             'replayViewCount',
+            'reportedIn',
             'user' => $this->getRelationValue($key),
         };
     }

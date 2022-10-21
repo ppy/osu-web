@@ -7,7 +7,7 @@ namespace App\Models;
 
 /**
  * @property int $beatmap_id
- * @property int $mode_id
+ * @property int $mode
  * @property float $ss_ratio
  * @property float $relative_playcount
  * @property int $unique_users
@@ -16,7 +16,11 @@ namespace App\Models;
  */
 class BeatmapModeStats extends Model
 {
-    protected $table = 'osu_beatmap_mode_stats';
+    public $incrementing = false;
+    public $timestamps = false;
+
     protected $dates = ['last_update'];
-    protected $primaryKeys = ['beatmap_id', 'mode_id'];
+    protected $primaryKey = ':composite';
+    protected $primaryKeys = ['beatmap_id', 'mode'];
+    protected $table = 'osu_beatmap_mode_stats';
 }

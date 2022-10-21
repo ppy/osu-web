@@ -16,12 +16,15 @@ namespace App\Models;
  */
 class UserGroup extends Model
 {
-    protected $table = 'phpbb_user_group';
     public $timestamps = false;
-    protected $primaryKeys = ['user_id', 'group_id'];
+    public $incrementing = false;
+
     protected $casts = [
         'user_pending' => 'boolean',
     ];
+    protected $primaryKey = ':composite';
+    protected $primaryKeys = ['user_id', 'group_id'];
+    protected $table = 'phpbb_user_group';
 
     public function group()
     {
@@ -33,18 +36,35 @@ class UserGroup extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function getGroupAttribute(): Group
-    {
-        return app('groups')->byIdOrFail($this->group_id);
-    }
-
-    public function getPlaymodesAttribute(?string $value): ?array
-    {
-        return $this->group->has_playmodes ? (json_decode($value) ?? []) : null;
-    }
-
     public function setPlaymodesAttribute(?array $value): void
     {
         $this->attributes['playmodes'] = $this->group->has_playmodes ? json_encode($value ?? []) : null;
+    }
+
+    public function getAttribute($key)
+    {
+        return match ($key) {
+            'group_id',
+            'user_id' => $this->getRawAttribute($key),
+
+            'group_leader',
+            'user_pending' => (bool) $this->getRawAttribute($key),
+
+            'group' => app('groups')->byIdOrFail($this->group_id),
+            'playmodes' => $this->getPlaymodes(),
+
+            'user' => $this->getRelationValue($key),
+        };
+    }
+
+    private function getPlaymodes(): ?array
+    {
+        if ($this->group->has_playmodes) {
+            $value = $this->getRawAttribute('playmodes');
+
+            return $value === null ? [] : json_decode($value, true);
+        }
+
+        return null;
     }
 }
