@@ -298,6 +298,8 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
             return $this->tryUpdateUsername(0, $newUsername, 'inactive');
         }
+
+        return null;
     }
 
     private function tryUpdateUsername(int $try, string $newUsername, string $type): UsernameChangeHistory
