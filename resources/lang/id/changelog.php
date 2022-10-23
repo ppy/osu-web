@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'generic' => 'Penumpasan bug dan berbagai penyempurnaan berskala kecil lainnya',
+    'generic' => 'Perbaikan bug dan berbagai penyempurnaan berskala kecil lainnya',
 
     'build' => [
         'title' => 'daftar perubahan pada :version',
@@ -32,7 +32,7 @@ return [
     ],
 
     'support' => [
-        'heading' => 'Apakah Anda menyukai pembaruan ini?',
+        'heading' => 'Suka dengan pembaruan ini?',
         'text_1' => 'Dukung osu! agar dapat terus berkembang dan :link sekarang juga!',
         'text_1_link' => 'jadilah seorang osu!supporter',
         'text_2' => 'Di samping mempercepat pengembangan, Anda juga akan memperoleh berbagai fitur tambahan dan opsi personalisasi lainnya!',
