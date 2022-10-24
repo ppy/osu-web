@@ -90,8 +90,6 @@ export class NewReply extends React.Component<Props> {
       this.startEditing = false;
       this.box.current?.focus();
     }
-
-    this.storeMessage();
   }
 
   componentWillUnmount() {
@@ -107,6 +105,10 @@ export class NewReply extends React.Component<Props> {
     if (core.userLogin.showIfGuest(this.editStart)) return;
     this.editing = true;
     this.startEditing = true;
+  };
+
+  private readonly handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    this.setMessage(e.target.value);
   };
 
   @action
@@ -126,7 +128,7 @@ export class NewReply extends React.Component<Props> {
     if (osu.present(this.message) && !confirm(osu.trans('common.confirmation_unsaved'))) return;
 
     this.editing = false;
-    this.message = '';
+    this.setMessage('');
   };
 
   @action
@@ -156,7 +158,7 @@ export class NewReply extends React.Component<Props> {
     this.postXhr
       .done((json) => runInAction(() => {
         this.editing = false;
-        this.message = '';
+        this.setMessage('');
         $.publish('beatmapDiscussionPost:markRead', { id: json.beatmap_discussion_post_ids });
         $.publish('beatmapsetDiscussions:update', { beatmapset: json.beatmapset });
       }))
@@ -181,7 +183,7 @@ export class NewReply extends React.Component<Props> {
               ref={this.box}
               className={`${bn}__message ${bn}__message--editor`}
               disabled={this.posting != null}
-              onChange={this.setMessage}
+              onChange={this.handleChange}
               onKeyDown={this.handleKeyDown}
               placeholder={osu.trans('beatmaps.discussions.reply_placeholder')}
               value={this.message}
@@ -257,9 +259,10 @@ export class NewReply extends React.Component<Props> {
   }
 
   @action
-  private readonly setMessage = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    this.message = e.target.value;
-  };
+  private setMessage(message: string) {
+    this.message = message;
+    this.storeMessage();
+  }
 
   private storeMessage() {
     if (!osu.present(this.message)) {
