@@ -11,7 +11,6 @@ class PaymentEvent implements HasOrder
 {
     public function __construct(public Order $order)
     {
-        $this->order = $order;
     }
 
     public function getOrder()
