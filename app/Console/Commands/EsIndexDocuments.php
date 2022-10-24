@@ -60,7 +60,8 @@ class EsIndexDocuments extends Command
 
         $continue = $this->starterMessage($oldIndices);
         if (!$continue) {
-            return $this->error('User aborted!');
+            $this->error('User aborted!');
+            return;
         }
 
         $start = time();
