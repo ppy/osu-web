@@ -5,6 +5,8 @@
 
 namespace App\Models;
 
+use App\Exceptions\InvariantException;
+
 class SupporterTag
 {
     const MIN_DONATION = 4;
@@ -23,7 +25,7 @@ class SupporterTag
     {
         if ($amount < self::MIN_DONATION) {
             $minDonation = self::MIN_DONATION; // can't interpolate const :D
-            throw new \Exception("amount must be >= {$minDonation}");
+            throw new InvariantException("amount must be >= {$minDonation}");
         }
 
         switch (true) {
