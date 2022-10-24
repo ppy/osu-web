@@ -25,7 +25,7 @@ class ChatController extends Controller
         $this->middleware('require-scopes:chat.write', ['only' => 'newConversation']);
         $this->middleware('auth');
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function ack()
