@@ -261,10 +261,7 @@ export class NewReply extends React.Component<Props> {
   @action
   private setMessage(message: string) {
     this.message = message;
-    this.storeMessage();
-  }
 
-  private storeMessage() {
     if (!osu.present(this.message)) {
       localStorage.removeItem(this.storageKey);
     } else {
