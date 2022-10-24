@@ -5,41 +5,41 @@
 
 return [
     'index' => [
-        'description' => 'Col·leccions preempaquetades de mapes basades en un tema comú.',
-        'nav_title' => 'llistat',
-        'title' => 'Paquets de mapes',
+        'description' => '',
+        'nav_title' => '',
+        'title' => '',
 
         'blurb' => [
-            'important' => 'LLEGEIX AIXÒ ABANS DE DESCARREGAR',
-            'install_instruction' => 'Instal·lació: Un cop descarregat un paquet, extraieu-ne el contingut en el vostre directori Songs d\'osu! i aquest farà la resta.',
+            'important' => '',
+            'install_instruction' => '',
             'note' => [
-                '_' => 'També tingues en compte que és molt recomanable :scary, ja que els mapes més antics són de molta menor qualitat que els mapes més recents.',
-                'scary' => 'descarregar els paquets dels més recents als més antics',
+                '_' => '',
+                'scary' => '',
             ],
         ],
     ],
 
     'show' => [
-        'download' => 'Descarregar',
+        'download' => '',
         'item' => [
-            'cleared' => 'completat',
-            'not_cleared' => 'no completat',
+            'cleared' => '',
+            'not_cleared' => '',
         ],
         'no_diff_reduction' => [
-            '_' => ':link no es poden utilitzar per completar aquest paquet.',
-            'link' => 'Els mods de reducció de dificultat',
+            '_' => '',
+            'link' => '',
         ],
     ],
 
     'mode' => [
-        'artist' => 'Artista/Àlbum',
-        'chart' => 'Destacats',
-        'standard' => 'Standard',
-        'theme' => 'Tema',
+        'artist' => '',
+        'chart' => '',
+        'standard' => '',
+        'theme' => '',
     ],
 
     'require_login' => [
-        '_' => 'Necessites tenir la :link per descarregar',
-        'link_text' => 'sessió iniciada',
+        '_' => '',
+        'link_text' => '',
     ],
 ];

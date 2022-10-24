@@ -24,7 +24,7 @@ return [
 
     'status' => [
         'non_best' => '개인 최고 점수만 pp를 얻습니다.',
-        'non_passing' => '',
+        'non_passing' => '통과한 점수만 pp를 얻습니다',
         'processing' => '이 점수는 아직 계산 중이며 곧 표시될 예정입니다.',
     ],
 ];

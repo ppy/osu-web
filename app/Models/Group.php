@@ -35,29 +35,45 @@ use App\Libraries\Transactions\AfterCommit;
  */
 class Group extends Model implements AfterCommit
 {
-    protected $table = 'phpbb_groups';
-    protected $primaryKey = 'group_id';
     public $timestamps = false;
+
     protected $casts = [
         'has_playmodes' => 'boolean',
     ];
+    protected $primaryKey = 'group_id';
+    protected $table = 'phpbb_groups';
 
-    public function getColourAttribute($value): ?string
+    public function getAttribute($key)
     {
-        if (!present($value)) {
-            return null;
-        }
+        return match ($key) {
+            'display_order',
+            'group_avatar',
+            'group_avatar_height',
+            'group_avatar_type',
+            'group_avatar_width',
+            'group_colour',
+            'group_desc_bitfield',
+            'group_desc_options',
+            'group_desc_uid',
+            'group_display',
+            'group_founder_manage',
+            'group_id',
+            'group_legend',
+            'group_message_limit',
+            'group_name',
+            'group_rank',
+            'group_receive_pm',
+            'group_sig_chars',
+            'group_type',
+            'identifier',
+            'short_name' => $this->getRawAttribute($key),
 
-        if (strlen($value) === 6 || strlen($value) === 3 && ctype_xdigit($value)) {
-            return "#{$value}";
-        }
+            'has_playmodes' => (bool) $this->getRawAttribute($key),
 
-        return $value;
-    }
+            'colour' => $this->getColour(),
 
-    public function getGroupDescAttribute($value): ?string
-    {
-        return presence($value);
+            'group_desc' => presence($this->getRawAttribute($key)),
+        };
     }
 
     public function descriptionHtml(): ?string
@@ -104,5 +120,12 @@ class Group extends Model implements AfterCommit
     public function afterCommit()
     {
         app('groups')->resetCache();
+    }
+
+    private function getColour(): ?string
+    {
+        $value = $this->getRawAttribute('colour');
+
+        return $value === null ? null : "#{$value}";
     }
 }

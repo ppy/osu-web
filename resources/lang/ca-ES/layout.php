@@ -96,26 +96,26 @@ return [
     'footer' => [
         'general' => [
             '_' => '',
-            'home' => 'Casa',
-            'changelog-index' => 'Registre de canvis',
-            'beatmaps' => 'Llistat de beatmaps',
-            'download' => 'Descarregar osu!',
+            'home' => '',
+            'changelog-index' => '',
+            'beatmaps' => '',
+            'download' => '',
         ],
         'help' => [
-            '_' => 'Ajuda i comunitat',
-            'faq' => 'Preguntes freqüents',
-            'forum' => 'Fòrums de la comunitat',
-            'livestreams' => 'Transmissions en directe',
+            '_' => '',
+            'faq' => '',
+            'forum' => '',
+            'livestreams' => '',
             'report' => '',
-            'wiki' => 'Wiki',
+            'wiki' => '',
         ],
         'legal' => [
-            '_' => 'Estat legal',
-            'copyright' => 'Drets d\'autor (DMCA)',
-            'privacy' => 'Privacitat',
-            'server_status' => 'Estat del servidor',
-            'source_code' => 'Codi font',
-            'terms' => 'Termes',
+            '_' => '',
+            'copyright' => '',
+            'privacy' => '',
+            'server_status' => '',
+            'source_code' => '',
+            'terms' => '',
         ],
     ],
 
@@ -125,7 +125,7 @@ return [
             'description' => '',
         ],
         '404' => [
-            'error' => 'Falta la pàgina',
+            'error' => '',
             'description' => "",
         ],
         '403' => [
@@ -149,7 +149,7 @@ return [
             'description' => '',
         ],
         '500' => [
-            'error' => 'Oh no! Alguna cosa s\'ha trencat! ;_;',
+            'error' => '',
             'description' => "",
         ],
         'fatal' => [
@@ -173,8 +173,8 @@ return [
 
         'login' => [
             'forgot' => "",
-            'password' => 'contrasenya',
-            'title' => 'Inicia sessió per continuar',
+            'password' => '',
+            'title' => '',
             'username' => '',
 
             'error' => [

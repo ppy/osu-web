@@ -25,7 +25,7 @@ return [
         'button' => [
             'add' => 'Abstimmen',
             'remove' => 'Stimme entfernen',
-            'used_up' => 'Du hast alle deine Votes verwendet',
+            'used_up' => 'Du hast alle deine Stimmen verwendet',
         ],
 
         'progress' => [
@@ -34,7 +34,7 @@ return [
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => 'Bevor Sie abstimmen können, müssen Sie alle Beatmaps in den angegebenen Playlists gespielt haben',
+                'incomplete_play' => 'Bevor du abstimmen kannst, musst du alle Beatmaps in den angegebenen Playlists gespielt haben',
             ],
         ],
     ],

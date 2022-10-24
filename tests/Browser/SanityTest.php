@@ -139,7 +139,7 @@ class SanityTest extends DuskTestCase
             'beatmap_id' => self::$scaffolding['beatmap'],
             'user_id' => self::$scaffolding['user'],
         ]);
-        self::$scaffolding['beatmap_discussion_post'] = BeatmapDiscussionPost::factory()->create([
+        self::$scaffolding['beatmap_discussion_post'] = BeatmapDiscussionPost::factory()->timeline()->create([
             'beatmap_discussion_id' => self::$scaffolding['beatmap_discussion'],
             'user_id' => self::$scaffolding['user'],
         ]);
