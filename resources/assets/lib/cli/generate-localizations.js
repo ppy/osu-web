@@ -8,7 +8,10 @@ const fs = require('fs');
 const path = require('path');
 const glob = require('glob');
 
-const buildPath = path.resolve(__dirname, 'resources/assets/build');
+// project root directory
+const root = path.resolve(__dirname, '../../../..');
+
+const buildPath = path.resolve(root, 'resources/assets/build');
 const localesPath = path.resolve(buildPath, 'locales');
 const messagesPath = path.resolve(buildPath, 'messages.json');
 
@@ -36,7 +39,7 @@ function getAllMesssages() {
 }
 
 function generateTranslations() {
-  spawnSync('php', ['artisan', 'lang:js', '--json', messagesPath], { stdio: 'inherit' });
+  spawnSync('php', [path.resolve(root, 'artisan'), 'lang:js', '--json', messagesPath], { stdio: 'inherit' });
 }
 
 function writeTranslations(languages) {
@@ -52,13 +55,17 @@ function writeTranslations(languages) {
   }
 }
 
-// Remove previous existing files and ensure directory exists.
-glob.sync(path.resolve(localesPath, '*.js')).forEach(fs.unlinkSync);
-fs.mkdirSync(localesPath, {recursive: true});
+function generateLocalizations() {
+  // Remove previous existing files and ensure directory exists.
+  glob.sync(path.resolve(localesPath, '*.js')).forEach(fs.unlinkSync);
+  fs.mkdirSync(localesPath, {recursive: true});
 
-generateTranslations();
-writeTranslations(extractLanguages());
+  generateTranslations();
+  writeTranslations(extractLanguages());
 
-// cleanup
-fs.unlinkSync(messagesPath);
-console.log(`Removed: ${messagesPath}`);
+  // cleanup
+  fs.unlinkSync(messagesPath);
+  console.log(`Removed: ${messagesPath}`);
+}
+
+module.exports = generateLocalizations;
