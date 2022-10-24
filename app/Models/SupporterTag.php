@@ -20,9 +20,9 @@ class SupporterTag
      *
      * @param int $amount Amount to get the duration for.
      * @return int duration in months.
-     * @throws Exception
+     * @throws App\Exceptions\InvariantException
      **/
-    public static function getDuration(int $amount)
+    public static function getDuration(int $amount): int
     {
         if ($amount < static::MIN_DONATION) {
             throw new InvariantException('amount must be >= '.static::MIN_DONATION);
