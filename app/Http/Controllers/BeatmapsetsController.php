@@ -150,7 +150,7 @@ class BeatmapsetsController extends Controller
         priv_check('BeatmapsetDiscussionLock')->ensureCan();
 
         $beatmapset = Beatmapset::findOrFail($id);
-        $beatmapset->discussionUnlock(Auth::user(), request('reason'));
+        $beatmapset->discussionUnlock(Auth::user());
 
         return $beatmapset->defaultDiscussionJson();
     }
