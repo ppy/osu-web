@@ -3,6 +3,7 @@
 
 'use strict';
 
+/* eslint no-console: "off" */
 const { spawnSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
