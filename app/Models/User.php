@@ -984,7 +984,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function isActive()
     {
-        return $this->user_lastvisit > Carbon::now()->subMonth();
+        return $this->user_lastvisit > Carbon::now()->subMonths();
     }
 
     /*

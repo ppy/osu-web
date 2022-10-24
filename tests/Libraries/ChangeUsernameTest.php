@@ -86,7 +86,7 @@ class ChangeUsernameTest extends TestCase
 
     public function testUserHasSupportedButExpired()
     {
-        $user = $this->createUser(['osu_subscriptionexpiry' => Carbon::now()->subMonth()]);
+        $user = $this->createUser(['osu_subscriptionexpiry' => Carbon::now()->subMonths()]);
 
         $errors = $user->validateChangeUsername('newusername');
 
@@ -219,7 +219,7 @@ class ChangeUsernameTest extends TestCase
             'username' => 'iamuser',
             'username_clean' => 'iamuser',
             'user_lastvisit' => Carbon::now(),
-            'osu_subscriptionexpiry' => Carbon::now()->addMonth(),
+            'osu_subscriptionexpiry' => Carbon::now()->addMonths(),
         ], $attribs));
     }
 }

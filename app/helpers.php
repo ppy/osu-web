@@ -153,7 +153,7 @@ function cache_expire_with_fallback(string $key, int $duration = 2592000)
         return;
     }
 
-    $data['expires_at'] = now()->addHour(-1);
+    $data['expires_at'] = now()->addHours(-1);
     Cache::put($fullKey, $data, $duration);
 }
 
@@ -1290,7 +1290,7 @@ function json_item($model, $transformer, $includes = null)
 
 function fast_imagesize($url)
 {
-    $result = Cache::remember("imageSize:{$url}", Carbon\Carbon::now()->addMonth(1), function () use ($url) {
+    $result = Cache::remember("imageSize:{$url}", Carbon\Carbon::now()->addMonths(1), function () use ($url) {
         $curl = curl_init($url);
         curl_setopt_array($curl, [
             CURLOPT_HTTPHEADER => [
