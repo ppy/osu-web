@@ -61,7 +61,7 @@ class UpdateWiki implements ShouldQueue
     {
         $parsed = OsuWiki::parseGithubPath($path);
 
-        switch ($parsed['type'] ?? null) {
+        switch ($parsed['type'] ?? '') {
             case 'page':
                 return Page::lookup($parsed['path'], $parsed['locale']);
             case 'image':
