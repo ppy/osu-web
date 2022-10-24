@@ -79,6 +79,7 @@ export class NewReply extends React.Component<Props> {
     this.handleKeyDown = makeTextAreaHandler(this.handleKeyDownCallback);
   }
 
+  @action
   componentDidUpdate(prevProps: Readonly<Props>) {
     if (prevProps.discussion.id !== this.props.discussion.id) {
       this.message = this.storedMessage;
