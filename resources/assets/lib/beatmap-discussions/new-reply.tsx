@@ -46,6 +46,7 @@ export class NewReply extends React.Component<Props> {
   @observable private message = this.storedMessage;
   @observable private posting: string | null = null;
   private postXhr: JQuery.jqXHR<BeatmapsetDiscussionPostStoreResponseJson> | null = null;
+  private startEditing = false;
 
   private get canReopen() {
     return this.props.discussion.can_be_resolved && this.props.discussion.current_user_attributes.can_reopen;
@@ -84,7 +85,8 @@ export class NewReply extends React.Component<Props> {
       return;
     }
 
-    if (this.editing) {
+    if (this.startEditing) {
+      this.startEditing = false;
       this.box.current?.focus();
     }
 
@@ -103,6 +105,7 @@ export class NewReply extends React.Component<Props> {
   private readonly editStart = () => {
     if (core.userLogin.showIfGuest(this.editStart)) return;
     this.editing = true;
+    this.startEditing = true;
   };
 
   @action
