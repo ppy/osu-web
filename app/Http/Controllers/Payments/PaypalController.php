@@ -31,7 +31,7 @@ class PaypalController extends Controller
         $this->middleware('check-user-restricted', ['except' => ['ipn']]);
         $this->middleware('verify-user', ['except' => ['ipn']]);
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     // When user has approved a payment at Paypal and is redirected back here.
