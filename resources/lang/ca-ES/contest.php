@@ -23,8 +23,8 @@ return [
         ],
 
         'button' => [
-            'add' => 'Vota',
-            'remove' => 'Eliminar vot',
+            'add' => '',
+            'remove' => '',
             'used_up' => '',
         ],
 
@@ -39,12 +39,12 @@ return [
         ],
     ],
     'entry' => [
-        '_' => 'entrada',
-        'login_required' => 'Si us plau, inicieu la sessió per participar al concurs.',
+        '_' => '',
+        'login_required' => '',
         'silenced_or_restricted' => '',
         'preparation' => '',
         'drop_here' => '',
-        'download' => 'Descarregar .osz',
+        'download' => '',
         'wrong_type' => [
             'art' => '',
             'beatmap' => '',
@@ -56,7 +56,7 @@ return [
         'download' => '',
     ],
     'vote' => [
-        'list' => 'vots',
+        'list' => '',
         'count' => '',
         'points' => '',
     ],
@@ -66,12 +66,12 @@ return [
 
         'starts' => [
             '_' => '',
-            'soon' => 'aviat™',
+            'soon' => '',
         ],
     ],
     'states' => [
-        'entry' => 'Entrada oberta',
-        'voting' => 'Votació iniciada',
-        'results' => 'Resultats fora',
+        'entry' => '',
+        'voting' => '',
+        'results' => '',
     ],
 ];

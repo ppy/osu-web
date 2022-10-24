@@ -40,7 +40,8 @@ class UserRecalculateRankCounts extends Command
         $continue = $this->confirm('This will recalculate and update the rank counts for user statistics, continue?');
 
         if (!$continue) {
-            return $this->error('User aborted!');
+            $this->error('User aborted!');
+            return;
         }
 
         $start = time();

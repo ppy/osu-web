@@ -143,7 +143,7 @@ return [
         ],
     ],
     'oauth' => [
-        'retain_expired_tokens_days' => abs(get_int(env('OAUTH_RETAIN_EXPIRED_TOKENS_DAYS'))) ?? 30,
+        'retain_expired_tokens_days' => abs(get_int(env('OAUTH_RETAIN_EXPIRED_TOKENS_DAYS')) ?? 30),
         'max_user_clients' => get_int(env('OAUTH_MAX_USER_CLIENTS')) ?? 1,
     ],
     'octane' => [
@@ -178,7 +178,7 @@ return [
     ],
 
     'store' => [
-        'notice' => presence(str_replace('\n', "\n", env('STORE_NOTICE'))),
+        'notice' => presence(str_replace('\n', "\n", env('STORE_NOTICE') ?? '')),
     ],
     'twitch_client_id' => presence(env('TWITCH_CLIENT_ID')),
     'twitch_client_secret' => presence(env('TWITCH_CLIENT_SECRET')),
