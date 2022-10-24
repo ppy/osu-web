@@ -9,6 +9,7 @@ use App\Exceptions\InvariantException;
 
 class SupporterTag
 {
+    const MAX_DONATION = 1 << 16; // 65k-ish
     const MIN_DONATION = 4;
     const PRODUCT_CUSTOM_CLASS = 'supporter-tag';
 
@@ -23,9 +24,12 @@ class SupporterTag
      **/
     public static function getDuration(int $amount)
     {
-        if ($amount < self::MIN_DONATION) {
-            $minDonation = self::MIN_DONATION; // can't interpolate const :D
-            throw new InvariantException("amount must be >= {$minDonation}");
+        if ($amount < static::MIN_DONATION) {
+            throw new InvariantException('amount must be >= '.static::MIN_DONATION);
+        }
+
+        if ($amount > static::MAX_DONATION) {
+            throw new InvariantException('amount must be <= '.static::MAX_DONATION);
         }
 
         switch (true) {
