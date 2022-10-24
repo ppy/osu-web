@@ -24,7 +24,7 @@ return [
 
     'status' => [
         'non_best' => 'Hanya skor-skor terbaik yang memberikan pp',
-        'non_passing' => '',
+        'non_passing' => 'Hanya skor pass yang memberikan pp',
         'processing' => 'Skor ini sedang diproses dan akan ditampilkan kemudian',
     ],
 ];

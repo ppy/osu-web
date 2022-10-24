@@ -24,7 +24,7 @@ return [
 
     'status' => [
         'non_best' => '個人のベストスコアのみppを与えます。',
-        'non_passing' => '',
+        'non_passing' => 'パスしたスコアのみppを付与',
         'processing' => 'このスコアはまだ計算中です。すぐに表示されます。',
     ],
 ];

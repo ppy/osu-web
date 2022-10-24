@@ -13,7 +13,7 @@ return [
         'title' => 'Hiển thị',
 
         'variant' => [
-            'title' => '',
+            'title' => 'Biến thể',
         ],
     ],
 

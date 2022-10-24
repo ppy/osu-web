@@ -24,7 +24,7 @@ return [
     ],
 
     'index' => [
-        'title' => 'Seznam beatpmap',
+        'title' => 'Seznam beatmap',
         'guest_title' => 'Beatmape',
     ],
 
