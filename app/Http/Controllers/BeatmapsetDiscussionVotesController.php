@@ -16,7 +16,7 @@ class BeatmapsetDiscussionVotesController extends Controller
     {
         $this->middleware('require-scopes:public');
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     /**
