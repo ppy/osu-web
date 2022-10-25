@@ -10,9 +10,8 @@ const path = require('path');
 const glob = require('glob');
 
 // project root directory
-const root = path.resolve(__dirname, '../../../..');
-
-const buildPath = path.resolve(root, 'resources/assets/build');
+const rootPath = path.resolve(__dirname, '../../../..');
+const buildPath = path.resolve(rootPath, 'resources/assets/build');
 const localesPath = path.resolve(buildPath, 'locales');
 const messagesPath = path.resolve(buildPath, 'messages.json');
 
@@ -40,7 +39,7 @@ function getAllMesssages() {
 }
 
 function generateTranslations() {
-  spawnSync('php', [path.resolve(root, 'artisan'), 'lang:js', '--json', messagesPath], { stdio: 'inherit' });
+  spawnSync('php', [path.resolve(rootPath, 'artisan'), 'lang:js', '--json', messagesPath], { stdio: 'inherit' });
 }
 
 function writeTranslations(languages) {
