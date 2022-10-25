@@ -99,12 +99,14 @@ export class Uploader extends React.Component
 
       fail: fileuploadFailCallback
 
+
   componentWillUnmount: =>
     $.unsubscribe ".#{@eventId}"
 
     @$uploadButton()
       .fileupload 'destroy'
       .remove()
+
 
   convertFileToImage: (file) =>
     new Promise (resolve, reject) ->
