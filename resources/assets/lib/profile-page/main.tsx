@@ -1,11 +1,11 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import LazyLoadContext from 'components/lazy-load-context';
+import LazyLoadContext, { Props as ContextProps, Snapshot} from 'components/lazy-load-context';
 import UserProfileContainer from 'components/user-profile-container';
 import { ProfileExtraPage } from 'interfaces/user-extended-json';
 import { pull, last, first, throttle, debounce } from 'lodash';
-import { action, computed, makeObservable, observable, reaction } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -34,11 +34,17 @@ interface Props {
   container: HTMLElement;
 }
 
+interface ScrollTo {
+  baseScrollY?: number;
+  scrollBy: number;
+  scrollToOptions?: ScrollToOptions;
+}
+
 @observer
 export default class Main extends React.Component<Props> {
-  @observable private readonly contextValue;
+  @observable private readonly contextValue: ContextProps;
   private readonly controller: Controller;
-  // debounce can't be too low otherwise it'll trigger on Firefox smooth scroll when it deellerates at the end
+  // debounce can't be too low otherwise it'll trigger on Firefox smooth scroll when it deccelerates at the end
   private readonly debouncedHandleScrollingStop = debounce(() => this.handleScrollingStop(), 100);
   private readonly disposers = new Set<(() => void) | undefined>();
   private draggingTab = false;
@@ -56,8 +62,10 @@ export default class Main extends React.Component<Props> {
   private lastScroll = 0;
   private pageJumpingTo: Page | null = null;
   private readonly pages = React.createRef<HTMLDivElement>();
+  private scrollTo: ScrollTo = { scrollBy: 0 };
   private readonly tabs = React.createRef<HTMLDivElement>();
-  private readonly timeouts: Partial<Record<'draggingTab' | 'initialPageJump', number>> = {};
+  private readonly timeouts: Partial<Record<'draggingTab' | 'initialPageJump' | 'scroll', number>> = {};
+
 
   @computed
   private get displayExtraTabs() {
@@ -89,6 +97,12 @@ export default class Main extends React.Component<Props> {
     return document.querySelector<HTMLElement>('.js-switchable-mode-page--scrollspy-offset');
   }
 
+  private get stickyHeaderOffset() {
+    return core.windowSize.isDesktop
+      ? core.stickyHeader.headerHeight + (this.pagesOffset?.getBoundingClientRect().height ?? 0)
+      : core.stickyHeader.headerHeight;
+  }
+
   constructor(props: Props) {
     super(props);
 
@@ -97,22 +111,13 @@ export default class Main extends React.Component<Props> {
     makeObservable(this);
 
     this.contextValue = {
-      getOptions: this.handleLazyLoadGetOptions,
-      getRef: this.handleLazyLoadGetRef,
-      offsetTop: 0,
+      done: this.handleLazyLoadDone,
+      getSnapshot: this.handleLazyLoadGetSnapshot,
       scrolling: false,
     };
   }
 
   componentDidMount() {
-    core.reactTurbolinks.runAfterPageLoad(action(() => {
-      reaction(() => core.windowSize.isDesktop, (value) => {
-        this.contextValue.offsetTop = value
-          ? core.stickyHeader.headerHeight + (this.pagesOffset?.getBoundingClientRect().height ?? 0)
-          : core.stickyHeader.headerHeight;
-      }, { fireImmediately: true });
-    }));
-
     const scrollEventId = `scroll.${this.eventId}`;
     $(window).on(scrollEventId, this.handleScrolling);
     $(window).on(scrollEventId, this.debouncedHandleScrollingStop);
@@ -165,7 +170,9 @@ export default class Main extends React.Component<Props> {
 
     this.disposers.add(core.reactTurbolinks.runAfterPageLoad(() => {
       if (page != null) {
-        this.pageScrollIntoView(page);
+        window.setTimeout(() => {
+          this.pageScrollIntoView(page);
+        }, 0);
       }
     }));
   }
@@ -278,19 +285,51 @@ export default class Main extends React.Component<Props> {
   };
 
   @action
-  private readonly handleLazyLoadGetOptions = (name: ProfileExtraPage) => {
-    const unbottom = last(this.displayedExtraPages) !== name;
-    const focus = this.pageJumpingTo === name;
-
-    if (focus) {
-      this.pageJumpingTo = null;
+  private readonly handleLazyLoadDone = (key: ProfileExtraPage, snapshot: Snapshot) => {
+    const element = this.extraPages[key].current;
+    if (element == null) {
+      return;
     }
 
-    return { focus, unbottom };
+    const diff = element.getBoundingClientRect().height - snapshot.bounds.height;
+
+    if (this.scrollTo.baseScrollY == null) {
+      this.scrollTo.baseScrollY = snapshot.scrollY;
+    } else {
+      // take the smaller value to ignore premature shifts
+      this.scrollTo.baseScrollY = Math.min(snapshot.scrollY, this.scrollTo.baseScrollY);
+    }
+
+    const marginTop = this.stickyHeaderOffset;
+    if (snapshot.bounds.bottom < marginTop) {
+      this.scrollTo.scrollBy += diff;
+      this.queueScroll();
+    } else if (snapshot.bounds.top < marginTop // new size goes off the top of visible area, happens at the bottom of page.
+        && snapshot.bounds.bottom > marginTop) {
+      this.scrollTo.scrollBy += diff;
+    }
+
+    // this is used to peg the page to the bottom when new sections load and a page near the bottom is supposed to be in focus
+    // otherwise the browser may shift the page up. The indexOf is to restrict it to pages that come after lazy loaded ones, otherwise
+    // non-lazy loaded sections at the end don't get pegged to the bottom.
+    if (this.pageJumpingTo != null
+      && this.pageJumpingTo !== 'main'
+      && this.displayedExtraPages.indexOf(this.pageJumpingTo) > this.displayedExtraPages.indexOf(key)) {
+      this.pageScrollIntoView(this.pageJumpingTo);
+    }
+
+    this.queueScroll();
   };
 
-  // passing extraPages with the context just causes all the refs' .current to be null
-  private readonly handleLazyLoadGetRef = (name: ProfileExtraPage) => this.extraPages[name];
+  private readonly handleLazyLoadGetSnapshot = (name: ProfileExtraPage) => {
+    const element = this.extraPages[name].current;
+    if (element == null) return;
+
+    return {
+      bounds: element.getBoundingClientRect(),
+      scrollY: window.scrollY,
+    };
+  };
 
   @action
   private readonly handleScrolling = () => {
@@ -305,7 +344,6 @@ export default class Main extends React.Component<Props> {
 
   @action
   private readonly handleScrollingStop = () => this.contextValue.scrolling = false;
-
 
   private isSortablePage(page: ProfileExtraPage) {
     return this.controller.state.user.profile_order.includes(page);
@@ -344,7 +382,7 @@ export default class Main extends React.Component<Props> {
       const pageBottom = pageDims.bottom - Math.min(pageDims.height * 0.75, 200);
       const match = pageId === 'main'
         ? pageBottom > 0
-        : pageBottom > this.contextValue.offsetTop && pageDims.top < window.innerHeight;
+        : pageBottom > this.stickyHeaderOffset && pageDims.top < window.innerHeight;
 
       if (match) {
         matching.add(pageId);
@@ -372,20 +410,39 @@ export default class Main extends React.Component<Props> {
     if (target == null) return;
 
     const pageId = target.dataset.pageId as Page;
+    // fine for the current scroll containers.
     let maxScrollY = document.body.scrollHeight - window.innerHeight;
     if (pageId !== last(this.displayedExtraPages)) {
       maxScrollY -= 1;
     }
 
-    const scrollTo = Math.floor(Math.min(maxScrollY, window.scrollY + target.getBoundingClientRect().top - this.contextValue.offsetTop));
+    const scrollTo = Math.floor(Math.min(maxScrollY, window.scrollY + target.getBoundingClientRect().top - this.stickyHeaderOffset));
     // smooth scroll when using navigation bar.
-    this.pageJumpingTo = page;
     if (smooth) {
-      window.scrollTo({ behavior: 'smooth', top: scrollTo });
+      this.scrollTo.scrollToOptions = { behavior: 'smooth', top: scrollTo };
     } else {
-      window.scrollTo({ top: scrollTo });
+      this.scrollTo.scrollToOptions = { top: scrollTo };
     }
+
+    this.queueScroll();
   };
+
+  private queueScroll() {
+    // keep delaying scroll to the end of event loop.
+    window.clearTimeout(this.timeouts.scroll);
+
+    this.timeouts.scroll = window.setTimeout(() => {
+      // it would be nice to set scrolling = true here
+      // but there'd be the issue where it doesn't get unset if it doesn't actually scroll.
+      if (this.scrollTo.scrollToOptions != null) {
+        window.scrollTo(this.scrollTo.scrollToOptions);
+      } else {
+        window.scrollTo({ top: (this.scrollTo.baseScrollY ?? 0) + this.scrollTo.scrollBy });
+      }
+
+      this.scrollTo = { scrollBy: 0 };
+    });
+  }
 
   private readonly updateOrder = (event: Event) => {
     const target = event.target;

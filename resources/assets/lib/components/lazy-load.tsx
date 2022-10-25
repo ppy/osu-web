@@ -6,8 +6,7 @@ import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
-import { bottomPageDistance } from 'utils/html';
-import LazyLoadContext from './lazy-load-context';
+import LazyLoadContext, { Snapshot } from './lazy-load-context';
 
 interface Props {
   // For allowing lazy loading to be completely skipped if data is alrealy available.
@@ -22,21 +21,12 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
   static readonly contextType = LazyLoadContext;
   declare context: React.ContextType<typeof LazyLoadContext>;
 
-  // saved positions before lazy loaded element is rendered.
-  private beforeRenderedBounds?: DOMRect;
-  private distanceFromBottom = 0;
-
   @observable private error = false;
   private hasUpdated = false;
   @observable private loaded;
   private readonly observer?: IntersectionObserver;
   private readonly ref = React.createRef<HTMLDivElement>();
   @observable private skipLazyLoad = this.props.hasData ?? false;
-
-
-  private get containerRefElement() {
-    return this.context?.getRef(this.props.name)?.current;
-  }
 
   @computed
   private get ready() {
@@ -67,52 +57,24 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
     this.observer?.observe(this.ref.current);
   }
 
-  componentDidUpdate() {
-    if (this.hasUpdated || this.skipLazyLoad || !this.loaded) return;
+  componentDidUpdate(_prevProps: unknown, _prevState: unknown, snapshot?: Snapshot) {
+    if (this.hasUpdated || this.skipLazyLoad || !this.loaded || snapshot == null) return;
 
     if (this.context == null) {
       throw new Error('LazyLoadContext is missing.');
     }
 
-    const element = this.containerRefElement;
-    if (element == null || this.beforeRenderedBounds == null) {
-      return;
-    }
-
     this.hasUpdated = true;
-
-    // below the visible bounds, ignore.
-    if (this.beforeRenderedBounds.top > window.innerHeight) return;
-
-    // for containers that need extra magic to handle scrolling and offsets;
-    // multiple scrolls in the same callback / update turns out to be not so great.
-    const options = this.context.getOptions(this.props.name);
-
-    let maxScrollY = document.body.scrollHeight - window.innerHeight;
-
-    if (options.unbottom) {
-      maxScrollY -= 1;
-    }
-
-    let scrollTo = window.scrollY;
-    const bounds = element.getBoundingClientRect();
-
-    if (options.focus) {
-      scrollTo = window.scrollY + bounds.top - this.context.offsetTop;
-    } else if (this.beforeRenderedBounds.bottom < this.context.offsetTop // above the visible area
-      || this.beforeRenderedBounds.bottom > this.context.offsetTop // bottom visible but top not
-        && this.beforeRenderedBounds.top < this.context.offsetTop) {
-      scrollTo = maxScrollY - this.distanceFromBottom;
-    } else if (this.beforeRenderedBounds.top > this.context.offsetTop // new size goes off the top of visible area, happens at the bottom of page.
-      && bounds.top < this.context.offsetTop) {
-      scrollTo = window.scrollY + bounds.top - this.context.offsetTop;
-    }
-
-    window.scrollTo({ top: Math.floor(Math.min(maxScrollY, scrollTo)) });
+    this.context.done(this.props.name, snapshot);
   }
 
   componentWillUnmount() {
     this.observer?.disconnect();
+  }
+
+  // get the bounds and scroll position before update.
+  getSnapshotBeforeUpdate() {
+    return this.context?.getSnapshot(this.props.name);
   }
 
   render() {
@@ -139,10 +101,6 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
     if (!this.skipLazyLoad && this.context == null) {
       throw new Error('LazyLoadContext is missing.');
     }
-    // use the dimensions from before child nodes are rendered because Chrome performs a layout shift
-    // after render and before componentDidUpdate(); Safari doesn't
-    this.beforeRenderedBounds = this.containerRefElement?.getBoundingClientRect();
-    this.distanceFromBottom = bottomPageDistance();
 
     return this.props.children;
   }
@@ -156,7 +114,6 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
             {osu.trans('common.buttons.retry')}
           </button>
         </div>
-
       </div>
     ) : <Spinner />;
   }

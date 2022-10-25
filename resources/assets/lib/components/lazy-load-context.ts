@@ -1,18 +1,18 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { createContext, RefObject } from 'react';
+import { createContext } from 'react';
 
 export interface Props {
-  getOptions: (key: string) => Options;
-  getRef: (key: string) => RefObject<HTMLElement> | null;
-  offsetTop: number; // store the visible viewport offset somewhere (to account for sticky/fixed headers, etc)
+  done: (key: string, snapshot: Snapshot) => void;
+  getSnapshot: (key: string) => Snapshot | undefined;
   scrolling: boolean;
 }
 
-interface Options {
-  focus: boolean;
-  unbottom: boolean;
+
+export interface Snapshot {
+  bounds: DOMRect;
+  scrollY: number;
 }
 
 const LazyLoadContext = createContext<Props | null>(null);
