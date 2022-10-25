@@ -58,7 +58,8 @@ class EsIndexWiki extends Command
 
         $continue = $this->starterMessage();
         if (!$continue) {
-            return $this->error('User aborted!');
+            $this->error('User aborted!');
+            return;
         }
 
         if (!Es::getClient()->indices()->exists(['index' => [$this->indexName]])) {

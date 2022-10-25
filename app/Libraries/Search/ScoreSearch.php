@@ -36,6 +36,9 @@ class ScoreSearch extends RecordSearch
     {
         $query = new BoolQuery();
 
+        if ($this->params->isLegacy !== null) {
+            $query->filter(['term' => ['is_legacy' => $this->params->isLegacy]]);
+        }
         if ($this->params->rulesetId !== null) {
             $query->filter(['term' => ['ruleset_id' => $this->params->rulesetId]]);
         }

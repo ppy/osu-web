@@ -57,7 +57,8 @@ class UserClient extends Model
             $client->fill(['verified' => true])->save();
         } catch (Exception $e) {
             if (is_sql_unique_exception($e)) {
-                return static::markVerified($userId, $hash);
+                static::markVerified($userId, $hash);
+                return;
             }
 
             throw $e;

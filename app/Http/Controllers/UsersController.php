@@ -94,7 +94,7 @@ class UsersController extends Controller
             'only' => ['extraPages', 'scores', 'beatmapsets', 'kudosu', 'recentActivity'],
         ]);
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function card($id)

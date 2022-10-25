@@ -41,7 +41,7 @@ class DatadogMetrics extends LaravelDatadogMiddleware
             'status_code_extra' => $request->attributes->get('status_code_extra'),
         ];
 
-        $tags = array_merge($tags, app('route-section')->getCurrent());
+        $tags = array_merge($tags, app('route-section')->getOriginal());
 
         Datadog::timing(config('datadog-helper.prefix_web').'.request_time', $duration, 1, $tags);
     }

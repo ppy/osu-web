@@ -26,6 +26,25 @@ interface RouteSection {
   section: string;
 }
 
+// sync with page_title in helpers.php
+const pageTitleMap: Record<`${'action' | 'controller' | 'namespace'}Key`, Partial<Record<string, string>>> = {
+  actionKey: {
+    'forum.topic_watches_controller.index': 'main.home_controller.index',
+    'main.account_controller.edit': 'main.home_controller.index',
+    'main.beatmapset_watches_controller.index': 'main.home_controller.index',
+    'main.follows_controller.index': 'main.home_controller.index',
+    'main.friends_controller.index': 'main.home_controller.index',
+  },
+  controllerKey: {
+    'main.artist_tracks_controller._': 'main.artists_controller._',
+    'main.store_controller._': 'store._',
+    'multiplayer.rooms_controller._': 'main.ranking_controller._',
+  },
+  namespaceKey: {
+    'admin_forum._': 'admin._',
+  },
+};
+
 export default class HeaderV4 extends React.Component<Props> {
   static defaultProps = {
     links: [],
@@ -173,10 +192,17 @@ export default class HeaderV4 extends React.Component<Props> {
   private title() {
     const routeSection = parseJson<RouteSection>('json-route-section');
 
+    let actionKey = `${routeSection.namespace}.${routeSection.controller}.${routeSection.action}`;
+    actionKey = pageTitleMap.actionKey[actionKey] ?? actionKey;
+    let controllerKey = `${routeSection.namespace}.${routeSection.controller}._`;
+    controllerKey = pageTitleMap.controllerKey[controllerKey] ?? controllerKey;
+    let namespaceKey = `${routeSection.namespace}._`;
+    namespaceKey = pageTitleMap.namespaceKey[namespaceKey] ?? namespaceKey;
+
     const keys = [
-      `page_title.${routeSection.namespace}.${routeSection.controller}.${routeSection.action}`,
-      `page_title.${routeSection.namespace}.${routeSection.controller}._`,
-      `page_title.${routeSection.namespace}._`,
+      `page_title.${actionKey}`,
+      `page_title.${controllerKey}`,
+      `page_title.${namespaceKey}`,
     ];
 
     for (const key of keys) {
