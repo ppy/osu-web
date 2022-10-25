@@ -35,7 +35,7 @@ class ContestEntriesControllerTest extends TestCase
 
         $this
             ->actingAsVerified($this->user)
-            ->postJson('/community/contest-entries', ['entry' => $file, 'contest_id' => $this->contest->id])
+            ->postJson(route('contest-entries.store'), ['entry' => $file, 'contest_id' => $this->contest->id])
             ->assertStatus(413)
             ->assertJson(['error' => 'File exceeds max size']);
     }
