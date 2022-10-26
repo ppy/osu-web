@@ -18,7 +18,7 @@ class UsernameValidationTest extends TestCase
         $existing = User::factory()->create([
             'username' => 'user1',
             'username_clean' => 'user1',
-            'user_lastvisit' => Carbon::now()->subYear(),
+            'user_lastvisit' => Carbon::now()->subYears(),
         ]);
 
         $users = UsernameValidation::usersOfUsername('user1');
