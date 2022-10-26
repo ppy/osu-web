@@ -1684,7 +1684,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
                 ->beatmapDiscussions()
                 ->withoutTrashed()
                 ->ofType('hype')
-                ->where('created_at', '>', Carbon::now()->subWeek())
+                ->where('created_at', '>', Carbon::now()->subWeeks())
                 ->count();
 
             return config('osu.beatmapset.user_weekly_hype') - $hyped;
@@ -1698,11 +1698,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
                 ->beatmapDiscussions()
                 ->withoutTrashed()
                 ->ofType('hype')
-                ->where('created_at', '>', Carbon::now()->subWeek())
+                ->where('created_at', '>', Carbon::now()->subWeeks())
                 ->orderBy('created_at')
                 ->first();
 
-            return $earliestWeeklyHype === null ? null : $earliestWeeklyHype->created_at->addWeek();
+            return $earliestWeeklyHype === null ? null : $earliestWeeklyHype->created_at->addWeeks();
         });
     }
 
