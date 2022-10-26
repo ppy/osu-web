@@ -10,7 +10,9 @@ use App\Models\Beatmapset;
 
 class ImageProcessorService
 {
-    public function __construct($endpoint = null)
+    private string $endpoint;
+
+    public function __construct(?string $endpoint = null)
     {
         $this->endpoint = $endpoint ?? config('osu.beatmap_processor.thumbnailer');
     }

@@ -17,7 +17,7 @@ class ScorePinsController extends Controller
     {
         $this->middleware('auth');
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function destroy()

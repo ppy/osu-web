@@ -50,6 +50,7 @@ return [
             'beatmap' => 'Only .osu files are accepted for this contest.',
             'music' => 'Only .mp3 files are accepted for this contest.',
         ],
+        'wrong_dimensions' => 'Entries for this contest must be :widthx:height',
         'too_big' => 'Entries for this contest can only be up to :limit.',
     ],
     'beatmaps' => [
