@@ -1200,7 +1200,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function beatmapsetNominationsToday()
     {
-        return $this->beatmapsetNominations()->where('created_at', '>', Carbon::now()->subDay())->count();
+        return $this->beatmapsetNominations()->where('created_at', '>', Carbon::now()->subDays())->count();
     }
 
     public function beatmapPlaycounts()
