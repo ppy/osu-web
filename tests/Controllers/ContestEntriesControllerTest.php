@@ -71,7 +71,7 @@ class ContestEntriesControllerTest extends TestCase
             'description_enter' => 'This is just a test!',
             'description_voting' => 'This is just a test!',
             'entry_starts_at' => Carbon::now(),
-            'entry_ends_at' => Carbon::now()->addDay(),
+            'entry_ends_at' => Carbon::now()->addDays(),
             'extra_options' => ['forced_width' => 1920, 'forced_height' => 1080],
             'header_url' => 'https://assets.ppy.sh/contests/154/header.jpg',
             'max_entries' => 1,
