@@ -38,7 +38,7 @@ class ChatController extends Controller
         ], ['null_missing' => true]);
 
         return [
-            'silences' => json_collection($this->getSilences($params['history_since'], $params['since']), new UserSilenceTransformer()),
+            'silences' => json_collection($this->getSilences($params['history_since'], $params['since'] ?? 0), new UserSilenceTransformer()),
         ];
     }
 

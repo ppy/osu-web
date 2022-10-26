@@ -59,7 +59,7 @@ class Hit implements \ArrayAccess
         $results = $this->raw['inner_hits'][$name] ?? null;
 
         if ($results) {
-            return new SearchResponse($results, $name);
+            return new SearchResponse($results);
         }
 
         return SearchResponse::empty();

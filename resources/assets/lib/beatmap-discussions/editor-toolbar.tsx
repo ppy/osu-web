@@ -4,7 +4,7 @@
 import { Portal } from 'components/portal';
 import { throttle } from 'lodash';
 import * as React from 'react';
-import { Editor, Node, Range } from 'slate';
+import { Editor, Element, Node, Range } from 'slate';
 import { ReactEditor } from 'slate-react';
 import { nextVal } from 'utils/seq';
 import { EditorToolbarButton } from './editor-toolbar-button';
@@ -15,11 +15,31 @@ const bn = 'beatmap-discussion-editor-toolbar';
 export class EditorToolbar extends React.Component {
   static contextType = SlateContext;
   declare context: React.ContextType<typeof SlateContext>;
-  ref = React.createRef<HTMLDivElement>();
-  scrollContainer: HTMLElement | undefined;
   private readonly eventId = `editor-toolbar-${nextVal()}`;
-  private scrollTimer: number | undefined;
+  private ref = React.createRef<HTMLDivElement>();
+  private scrollContainer?: HTMLElement;
+  private scrollTimer?: number;
   private readonly throttledUpdate = throttle(() => this.updatePosition(), 100);
+
+  get selectionRange() {
+    const {selection} = this.context;
+
+    if (
+      !selection ||
+      !ReactEditor.isFocused(this.context) ||
+      Range.isCollapsed(selection) ||
+      Editor.string(this.context, selection) === ''
+    ) {
+      return null;
+    }
+
+    const domSelection = window.getSelection();
+    return domSelection?.getRangeAt(0);
+  }
+
+  get visible() {
+    return this.selectionRange != null;
+  }
 
   componentDidMount() {
     $(window).on(`scroll.${this.eventId}`, this.throttledUpdate);
@@ -47,8 +67,8 @@ export class EditorToolbar extends React.Component {
     }
   }
 
-  render(): React.ReactNode {
-    if (!this.context || !this.visible()) {
+  render() {
+    if (!this.context || !this.visible) {
       return null;
     }
 
@@ -87,14 +107,15 @@ export class EditorToolbar extends React.Component {
     // we use setTimeout here as a workaround for incorrect bounds sometimes being returned for the selection range,
     // seemingly when called too soon after a scroll event
     this.scrollTimer = window.setTimeout(() => {
-      if (!this.visible()) {
+      const selectionRange = this.selectionRange;
+      if (selectionRange == null) {
         return this.hide();
       }
 
       for (const p of Editor.positions(this.context, { at: this.context.selection ?? undefined, unit: 'block' })) {
         const block = Node.parent(this.context, p.path);
 
-        if (block.type === 'embed') {
+        if (Element.isElement(block) && block.type === 'embed') {
           return this.hide();
         }
       }
@@ -102,8 +123,7 @@ export class EditorToolbar extends React.Component {
       const containerBounds = this.scrollContainer?.getBoundingClientRect();
       const containerTop = containerBounds?.top ?? 0;
       const containerBottom = containerBounds?.bottom;
-      // window.getSelection() presence is confirmed by the this.visible() check earlier
-      const selectionBounds = window.getSelection()!.getRangeAt(0).getBoundingClientRect();
+      const selectionBounds = selectionRange.getBoundingClientRect();
 
       const outsideContainer =
         selectionBounds.top < containerTop ||
@@ -117,23 +137,5 @@ export class EditorToolbar extends React.Component {
         tooltip.style.top = `${selectionBounds.top - tooltip.clientHeight - 10}px`;
       }
     }, 10);
-  }
-
-  visible(): boolean {
-    const {selection} = this.context;
-
-    if (
-      !selection ||
-      !ReactEditor.isFocused(this.context) ||
-      Range.isCollapsed(selection) ||
-      Editor.string(this.context, selection) === ''
-    ) {
-      return false;
-    }
-
-    const domSelection = window.getSelection();
-    const domRange = domSelection?.getRangeAt(0);
-
-    return domRange !== null;
   }
 }
