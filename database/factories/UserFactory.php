@@ -76,7 +76,7 @@ class UserFactory extends Factory
 
     public function supporter()
     {
-        return $this->state(['osu_subscriber' => true, 'osu_subscriptionexpiry' => now()->addMonthNoOverflow(1)]);
+        return $this->state(['osu_subscriber' => true, 'osu_subscriptionexpiry' => now()->addMonthsNoOverflow(1)]);
     }
 
     public function tournamentBanned()
