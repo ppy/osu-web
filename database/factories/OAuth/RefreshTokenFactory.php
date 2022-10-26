@@ -19,7 +19,7 @@ class RefreshTokenFactory extends Factory
     {
         return [
             'access_token_id' => Token::factory(),
-            'expires_at' => fn () => now()->addDay(),
+            'expires_at' => fn () => now()->addDays(),
             'id' => str_random(40),
             'revoked' => false,
         ];
