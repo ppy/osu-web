@@ -23,7 +23,7 @@ class BeatmapDiscussionsController extends Controller
         $this->middleware('auth', ['except' => ['index', 'show']]);
         $this->middleware('require-scopes:public', ['only' => ['index']]);
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function allowKudosu($id)

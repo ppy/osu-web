@@ -384,7 +384,7 @@ class OsuAuthorize
         // rate limit
         $recentVotesCount = $user
             ->beatmapDiscussionVotes()
-            ->where('created_at', '>', Carbon::now()->subHour())
+            ->where('created_at', '>', Carbon::now()->subHours())
             ->count();
 
         if ($recentVotesCount > 60) {

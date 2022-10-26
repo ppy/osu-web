@@ -24,7 +24,9 @@ use Sentry\State\Scope;
  */
 class Event extends Model
 {
+    public ?array $details = null;
     public $parsed = false;
+    public ?string $type = null;
 
     public $patterns = [
         'achievement' => "!^(?:<b>)+<a href='(?<userUrl>.+?)'>(?<userName>.+?)</a>(?:</b>)+ unlocked the \"<b>(?<achievementName>.+?)</b>\" achievement\!$!",
