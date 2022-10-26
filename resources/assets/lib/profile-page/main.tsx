@@ -301,11 +301,9 @@ export default class Main extends React.Component<Props> {
     }
 
     const marginTop = this.stickyHeaderOffset;
-    if (snapshot.bounds.bottom < marginTop) {
-      this.scrollTo.scrollBy += diff;
-      this.queueScroll();
-    } else if (snapshot.bounds.top < marginTop // new size goes off the top of visible area, happens at the bottom of page.
-        && snapshot.bounds.bottom > marginTop) {
+    if (snapshot.bounds.bottom < marginTop
+      // new size goes off the top of visible area, happens at the bottom of page.
+      || (snapshot.bounds.top < marginTop && snapshot.bounds.bottom > marginTop)) {
       this.scrollTo.scrollBy += diff;
     }
 
@@ -318,6 +316,7 @@ export default class Main extends React.Component<Props> {
       this.pageScrollIntoView(this.pageJumpingTo);
     }
 
+    // This is to make sure the scroll goes to the end of the run loop even if there's no new updates for the current item.
     this.queueScroll();
   };
 
