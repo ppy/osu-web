@@ -150,7 +150,7 @@ class BeatmapsetsController extends Controller
         priv_check('BeatmapsetDiscussionLock')->ensureCan();
 
         $beatmapset = Beatmapset::findOrFail($id);
-        $beatmapset->discussionUnlock(Auth::user(), request('reason'));
+        $beatmapset->discussionUnlock(Auth::user());
 
         return $beatmapset->defaultDiscussionJson();
     }
@@ -180,7 +180,7 @@ class BeatmapsetsController extends Controller
         priv_check('BeatmapsetDownload', $beatmapset)->ensureCan();
 
         $recentlyDownloaded = BeatmapDownload::where('user_id', Auth::user()->user_id)
-            ->where('timestamp', '>', Carbon::now()->subHour()->getTimestamp())
+            ->where('timestamp', '>', Carbon::now()->subHours()->getTimestamp())
             ->count();
 
         if ($recentlyDownloaded > Auth::user()->beatmapsetDownloadAllowance()) {
