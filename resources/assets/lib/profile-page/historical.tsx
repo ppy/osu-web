@@ -89,13 +89,18 @@ export default class Historical extends React.Component<ExtraPageProps> {
   private readonly disposers = new Set<(() => void) | undefined>();
 
   @computed
+  private get historical() {
+    return this.props.controller.state.historical;
+  }
+
+  @computed
   private get monthlyPlaycountsData() {
-    return convertUserDataForChart(this.props.controller.state.user.monthly_playcounts);
+    return convertUserDataForChart(this.historical.monthly_playcounts);
   }
 
   @computed
   private get replaysWatchedCountsData() {
-    return convertUserDataForChart(this.props.controller.state.user.replays_watched_counts);
+    return convertUserDataForChart(this.historical.replays_watched_counts);
   }
 
   constructor(props: ExtraPageProps) {
@@ -130,13 +135,13 @@ export default class Historical extends React.Component<ExtraPageProps> {
         }
 
         <ProfilePageExtraSectionTitle
-          count={this.props.controller.state.user.beatmap_playcounts_count}
+          count={this.historical.beatmap_playcounts.count}
           titleKey='users.show.extra.historical.most_played.title'
         />
 
-        {this.props.controller.state.extras.beatmapPlaycounts.length > 0 &&
+        {this.historical.beatmap_playcounts.count > 0 &&
           <>
-            {this.props.controller.state.extras.beatmapPlaycounts.map((playcount) => (
+            {this.historical.beatmap_playcounts.items.map((playcount) => (
               <BeatmapPlaycount
                 key={playcount.beatmap_id}
                 currentMode={this.props.controller.currentMode}
@@ -144,7 +149,7 @@ export default class Historical extends React.Component<ExtraPageProps> {
               />
             ))}
             <ShowMoreLink
-              {...this.props.controller.state.pagination.beatmapPlaycounts}
+              {...this.historical.beatmap_playcounts.pagination}
               callback={this.onShowMore}
               data={'beatmapPlaycounts' as const}
               modifiers='profile-page'
@@ -168,7 +173,7 @@ export default class Historical extends React.Component<ExtraPageProps> {
   }
 
   private hasSection(attribute: ChartSection) {
-    return this.props.controller.state.user[attribute].length > 0;
+    return this.historical[attribute].length > 0;
   }
 
   private readonly onShowMore = (section: HistoricalSection) => {

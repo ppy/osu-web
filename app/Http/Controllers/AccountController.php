@@ -59,7 +59,7 @@ class AccountController extends Controller
             'verifyLink',
         ]]);
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function avatar()

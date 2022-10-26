@@ -30,15 +30,6 @@ class Achievement extends Model
     public $timestamps = false;
     public $incrementing = false;
 
-    public function getModeAttribute($value)
-    {
-        if (!present($value)) {
-            return;
-        }
-
-        return Beatmap::modeStr((int) $value);
-    }
-
     public function scopeAchievable($query)
     {
         return $query
@@ -49,5 +40,34 @@ class Achievement extends Model
     public function iconUrl()
     {
         return config('osu.achievement.icon_prefix').e($this->slug).'.png';
+    }
+
+    public function getAttribute($key)
+    {
+        return match ($key) {
+            'achievement_id',
+            'description',
+            'grouping',
+            'image',
+            'name',
+            'ordering',
+            'progression',
+            'quest_instructions',
+            'quest_ordering',
+            'slug' => $this->getRawAttribute($key),
+
+            'enabled' => (bool) $this->getRawAttribute($key),
+
+            'mode' => $this->getMode(),
+        };
+    }
+
+    private function getMode()
+    {
+        $value = $this->getRawAttribute('mode');
+
+        return $value === null
+            ? null
+            : Beatmap::modeStr($value);
     }
 }

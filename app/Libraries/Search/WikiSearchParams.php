@@ -12,9 +12,6 @@ class WikiSearchParams extends SearchParams
     // all public because lazy.
 
     /** @var string|null */
-    public $queryString = null;
-
-    /** @var string|null */
     public $locale = null;
 
     /**

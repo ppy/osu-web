@@ -5,17 +5,17 @@
 
 return [
     'event' => [
-        'approve' => '',
+        'approve' => 'Aprovat.',
         'beatmap_owner_change' => '',
-        'discussion_delete' => '',
-        'discussion_lock' => '',
-        'discussion_post_delete' => '',
-        'discussion_post_restore' => '',
-        'discussion_restore' => '',
-        'discussion_unlock' => '',
+        'discussion_delete' => 'El moderador ha eliminat la discussió :discussion.',
+        'discussion_lock' => 'S\'ha desactivat la discussió d\'aquest beatmap. (:text)',
+        'discussion_post_delete' => 'El moderador ha eliminat la publicació de la discussió :discussion.',
+        'discussion_post_restore' => 'El moderador ha restaurat la publicació de la discussió :discussion.',
+        'discussion_restore' => 'El moderador ha restaurat la discussió :discussion.',
+        'discussion_unlock' => 'S\'ha habilitat la discussió d\'aquest beatmap.',
         'disqualify' => '',
         'disqualify_legacy' => '',
-        'genre_edit' => 'El gènere ha canviat de :old a :new.',
+        'genre_edit' => '',
         'issue_reopen' => '',
         'issue_resolve' => '',
         'kudosu_allow' => '',
@@ -53,7 +53,7 @@ return [
     'item' => [
         'content' => '',
         'discussion_deleted' => '',
-        'type' => 'Tipus',
+        'type' => '',
     ],
 
     'type' => [

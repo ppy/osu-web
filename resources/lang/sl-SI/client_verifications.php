@@ -5,14 +5,14 @@
 
 return [
     'completed' => [
-        'home' => '',
-        'logout' => '',
-        'text' => '',
-        'title' => '',
+        'home' => 'Pojdi na nadzorno ploščo',
+        'logout' => 'Odjava',
+        'text' => 'Zdaj lahko zapreš ta zavihek/okno',
+        'title' => 'osu! verifikacija v igri je bila uspešna',
     ],
 
     'create' => [
-        'confirm' => '',
-        'title' => '',
+        'confirm' => 'Klikni na tipko spodaj za avtorizacijo, da zaključiš z verifikacijo v igri.',
+        'title' => 'osu! verifikacija v igri',
     ],
 ];

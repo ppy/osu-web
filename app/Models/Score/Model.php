@@ -38,6 +38,8 @@ abstract class Model extends BaseModel
         if ($ruleset !== null) {
             return static::getClass($ruleset);
         }
+
+        return null;
     }
 
     public static function getClass(string $ruleset): string
@@ -129,7 +131,6 @@ abstract class Model extends BaseModel
 
     public function getDataAttribute()
     {
-        $attributes = $this->getAttributes();
         $mods = array_map(fn ($m) => ['acronym' => $m, 'settings' => []], $this->enabled_mods);
         $statistics = [
             'miss' => $this->countmiss,
@@ -160,7 +161,7 @@ abstract class Model extends BaseModel
         return new ScoreData([
             'accuracy' => $this->accuracy(),
             'beatmap_id' => $this->beatmap_id,
-            'ended_at' => $attributes['date'],
+            'ended_at' => $this->date,
             'max_combo' => $this->maxcombo,
             'mods' => $mods,
             'passed' => $this->pass,

@@ -98,7 +98,7 @@ export default class Header extends React.Component<Props> {
 
           <div className='beatmapset-header__box beatmapset-header__box--main'>
             <div className='beatmapset-header__beatmap-picker-box'>
-              <BeatmapPicker controller={this.controller}/ >
+              <BeatmapPicker controller={this.controller} />
 
               <span className='beatmapset-header__diff-name'>
                 {this.controller.hoveredBeatmap?.version ?? this.controller.currentBeatmap.version}

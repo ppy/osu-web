@@ -73,7 +73,7 @@ class Store extends \Illuminate\Session\Store
 
     public static function removeFullId($userId, $fullId)
     {
-        return static::removeKey($userId, config('cache.prefix').':'.$fullId);
+        static::removeKey($userId, config('cache.prefix').':'.$fullId);
     }
 
     public static function removeKey($userId, $key)

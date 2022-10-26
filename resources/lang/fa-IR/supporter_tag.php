@@ -4,10 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'months' => '',
+    'months' => 'ماه‌ها',
 
     'user_search' => [
-        'searching' => '',
-        'not_found' => "",
+        'searching' => 'درحال جستجو...',
+        'not_found' => "این کاربر وجود ندارد",
     ],
 ];

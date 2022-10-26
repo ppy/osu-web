@@ -370,6 +370,7 @@ class BeatmapsController extends Controller
 
         $esFetch = new BeatmapScores([
             'beatmap_ids' => [$beatmap->getKey()],
+            'is_legacy' => false,
             'mods' => $mods,
             'ruleset_id' => $rulesetId,
             'type' => $type,

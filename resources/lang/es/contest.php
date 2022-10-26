@@ -34,7 +34,7 @@ return [
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => '',
+                'incomplete_play' => 'Debe jugar todos los mapas en las listas de juego especificadas antes de votar',
             ],
         ],
     ],

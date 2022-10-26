@@ -9,9 +9,8 @@ use Illuminate\Http\Request;
 
 class CentiliSignature implements PaymentSignature
 {
-    public function __construct(Request $request)
+    public function __construct(private Request $request)
     {
-        $this->request = $request;
     }
 
     public function isValid()

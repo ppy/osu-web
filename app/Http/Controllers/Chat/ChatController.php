@@ -25,7 +25,7 @@ class ChatController extends Controller
         $this->middleware('require-scopes:chat.write', ['only' => 'newConversation']);
         $this->middleware('auth');
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function ack()
@@ -38,7 +38,7 @@ class ChatController extends Controller
         ], ['null_missing' => true]);
 
         return [
-            'silences' => json_collection($this->getSilences($params['history_since'], $params['since']), new UserSilenceTransformer()),
+            'silences' => json_collection($this->getSilences($params['history_since'], $params['since'] ?? 0), new UserSilenceTransformer()),
         ];
     }
 

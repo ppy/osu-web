@@ -34,7 +34,8 @@ class BuildsCreate extends Command
         $streamId = get_int($this->option('stream-id'));
 
         if ($streamId === null) {
-            return $this->error('Missing stream-id');
+            $this->error('Missing stream-id');
+            return;
         }
 
         $stream = UpdateStream::findOrFail($streamId);
@@ -42,7 +43,8 @@ class BuildsCreate extends Command
         $build = $stream->createBuild();
 
         if ($build === null) {
-            return $this->info('No build created (probably no orphan changelog entry).');
+            $this->info('No build created (probably no orphan changelog entry).');
+            return;
         }
 
         $this->info("Created build {$build->displayVersion()}");
