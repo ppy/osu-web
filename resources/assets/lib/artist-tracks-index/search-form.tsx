@@ -266,7 +266,11 @@ export default class SearchForm extends React.Component<Props> {
 
   private readonly handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    this.props.onNewSearch(this.url);
+
+    // only navigate if current search isn't the same as the new search
+    if (this.newSearch) {
+      this.props.onNewSearch(this.url);
+    }
   };
 
   private makeLink(params: ArtistTrackSearch = this.params) {

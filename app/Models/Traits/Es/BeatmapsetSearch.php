@@ -50,6 +50,10 @@ trait BeatmapsetSearch
 
         $values = [];
         foreach ($mappings as $field => $mapping) {
+            if ($field === 'beatmaps' || $field === 'difficulties') {
+                continue;
+            }
+
             $value = match ($field) {
                 'id' => $this->getKey(),
                 default => $this->$field,

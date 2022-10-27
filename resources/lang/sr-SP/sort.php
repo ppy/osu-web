@@ -4,40 +4,40 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    '_' => '',
+    '_' => 'Сортирај по',
 
-    'all' => '',
-    'friends' => '',
-    'last_visit' => '',
-    'new' => '',
-    'old' => '',
-    'rank' => '',
-    'top' => '',
-    'username' => '',
+    'all' => 'Све',
+    'friends' => 'Пријатељи',
+    'last_visit' => 'Скоро активни',
+    'new' => 'Скорашње',
+    'old' => 'Старо',
+    'rank' => 'Ранк',
+    'top' => 'Врх',
+    'username' => 'Корисничко име',
 
     'artist_tracks' => [
-        'album' => '',
-        'artist' => '',
-        'bpm' => '',
-        'genre' => '',
-        'length' => '',
-        'relevance' => '',
-        'title' => '',
-        'update' => '',
+        'album' => 'Албум',
+        'artist' => 'Извођач',
+        'bpm' => 'BPM',
+        'genre' => 'Жанр',
+        'length' => 'Дужина',
+        'relevance' => 'Релевантност',
+        'title' => 'Наслов',
+        'update' => 'Ажурирајте',
     ],
 
     'forum_posts' => [
-        'created' => '',
-        'relevance' => '',
+        'created' => 'Време качења',
+        'relevance' => 'Релевантност',
     ],
 
     'forum_topics' => [
-        'feature_votes' => '',
-        'new' => '',
+        'feature_votes' => 'Приоритет по звездицама',
+        'new' => 'Последњи одговор',
     ],
 
     'users' => [
-        'relevance' => '',
-        'username' => '',
+        'relevance' => 'Релевантност',
+        'username' => 'Име',
     ],
 ];

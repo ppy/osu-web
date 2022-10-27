@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'admin',
     ],
-    'admin_forum' => [
-        '_' => 'admin',
-    ],
-    'admin_store' => [
-        '_' => 'admin',
-    ],
     'error' => [
         'error' => [
             '400' => 'invalid request',
@@ -32,17 +26,10 @@ return [
         'topic_logs_controller' => [
             'index' => 'topic logs',
         ],
-        'topic_watches_controller' => [
-            'index' => 'dashboard',
-        ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'dashboard',
             'verify_link' => 'account verification',
-        ],
-        'artist_tracks_controller' => [
-            '_' => 'featured artists',
         ],
         'artists_controller' => [
             '_' => 'featured artists',
@@ -62,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'beatmap history',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'dashboard',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'beatmap discussion',
             'index' => 'beatmap listing',
@@ -81,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => 'contests',
-        ],
-        'follows_controller' => [
-            'index' => 'dashboard',
-        ],
-        'friends_controller' => [
-            'index' => 'dashboard',
         ],
         'groups_controller' => [
             'show' => 'groups',
@@ -122,9 +100,6 @@ return [
         'scores_controller' => [
             '_' => 'performance',
         ],
-        'store_controller' => [
-            '_' => 'store',
-        ],
         'tournaments_controller' => [
             '_' => 'tournaments',
         ],
@@ -134,11 +109,6 @@ return [
         ],
         'wiki_controller' => [
             '_' => 'wiki',
-        ],
-    ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'rankings',
         ],
     ],
     'passport' => [

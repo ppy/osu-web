@@ -14,8 +14,12 @@ use Carbon\Carbon;
  */
 class UserReplaysWatchedCount extends Model
 {
+    public $incrementing = false;
+    public $timestamps = false;
+
+    protected $primaryKey = ':composite';
+    protected $primaryKeys = ['user_id', 'year_month'];
     protected $table = 'osu_user_replayswatched';
-    protected $primaryKey = false;
 
     public function startDate()
     {

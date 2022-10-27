@@ -26,7 +26,7 @@ class FriendsController extends Controller
 
         $this->middleware('require-scopes:friends.read', ['only' => ['index']]);
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function index()
@@ -67,6 +67,10 @@ class FriendsController extends Controller
 
         if ($targetUser === null) {
             abort(404);
+        }
+
+        if ($currentUser->getKey() === $targetId) {
+            abort(422);
         }
 
         $existingRelation = $currentUser->relations()->where('zebra_id', $targetId)->first();

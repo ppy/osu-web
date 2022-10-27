@@ -8,17 +8,14 @@ namespace App\Http\Controllers;
 use App\Exceptions\Handler as ExceptionHandler;
 use App\Jobs\EsDocument;
 use App\Jobs\Notifications\ForumTopicReply;
-use App\Jobs\Notifications\UserAchievementUnlock;
 use App\Jobs\RegenerateBeatmapsetCover;
 use App\Libraries\Chat;
 use App\Libraries\UserBestScoresCheck;
-use App\Models\Achievement;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
 use App\Models\Chat\UserChannel;
-use App\Models\Event;
 use App\Models\Forum;
 use App\Models\NewsPost;
 use App\Models\Notification;
@@ -26,6 +23,7 @@ use App\Models\Score\Best;
 use App\Models\User;
 use App\Models\UserStatistics;
 use App\Transformers\Chat\MessageTransformer;
+use Artisan;
 use Datadog;
 use Ds\Set;
 use Exception;
@@ -94,31 +92,6 @@ class LegacyInterOpController extends Controller
         Beatmapset::findOrFail($id)->refreshCache();
 
         return ['success' => true];
-    }
-
-    public function userAchievement($id, $achievementId, $beatmapId = null)
-    {
-        $user = User::findOrFail($id);
-        $achievement = Achievement::findOrFail($achievementId);
-
-        try {
-            $userAchievement = $user->userAchievements()->create([
-                'achievement_id' => $achievement->getKey(),
-                'beatmap_id' => $beatmapId,
-            ]);
-        } catch (Exception $e) {
-            if (is_sql_unique_exception($e)) {
-                return error_popup('user already unlocked the specified achievement');
-            }
-
-            throw $e;
-        }
-
-        Event::generate('achievement', compact('achievement', 'user'));
-
-        (new UserAchievementUnlock($achievement, $user))->dispatch();
-
-        return $achievement->getKey();
     }
 
     /**
@@ -343,9 +316,14 @@ class LegacyInterOpController extends Controller
         dispatch(new EsDocument($user));
 
         foreach (Beatmap::MODES as $modeStr => $modeId) {
-            $class = Best\Model::getClassByString($modeStr);
+            $class = Best\Model::getClass($modeStr);
             $class::queueIndexingForUser($user);
         }
+        Artisan::queue('es:index-scores:queue', [
+            '--all' => true,
+            '--no-interaction' => true,
+            '--user' => $user->getKey(),
+        ]);
 
         return response(null, 204);
     }

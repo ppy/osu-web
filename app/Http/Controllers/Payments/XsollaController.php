@@ -28,7 +28,7 @@ class XsollaController extends Controller
         $this->middleware('check-user-restricted', ['except' => ['callback']]);
         $this->middleware('verify-user', ['except' => ['callback']]);
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function token()
@@ -80,7 +80,7 @@ class XsollaController extends Controller
                 return ['ok'];
             }
 
-            $result = $processor->run();
+            $processor->run();
         } catch (ValidationException $exception) {
             Log::error($exception->getMessage());
 
@@ -100,8 +100,6 @@ class XsollaController extends Controller
             // status code needs to be a 4xx code to make Xsolla an error to the user.
             return $this->errorResponse('Something went wrong.', 'FATAL_ERROR', 422);
         }
-
-        return $result;
     }
 
     // After user has approved payment and redirected here by xsolla

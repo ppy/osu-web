@@ -30,7 +30,7 @@ class HomeController extends Controller
 
         $this->middleware('require-scopes:public', ['only' => 'search']);
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function bbcodePreview()

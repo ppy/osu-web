@@ -31,22 +31,24 @@ abstract class Model extends BaseModel
     protected $dates = ['date'];
     protected $primaryKey = 'score_id';
 
-    public static function getClass($modeInt)
+    public static function getClassByRulesetId(int $rulesetId): ?string
     {
-        $modeStr = Beatmap::modeStr($modeInt);
+        $ruleset = Beatmap::modeStr($rulesetId);
 
-        if ($modeStr !== null) {
-            return static::getClassByString($modeStr);
+        if ($ruleset !== null) {
+            return static::getClass($ruleset);
         }
+
+        return null;
     }
 
-    public static function getClassByString(string $mode)
+    public static function getClass(string $ruleset): string
     {
-        if (!Beatmap::isModeValid($mode)) {
+        if (!Beatmap::isModeValid($ruleset)) {
             throw new ClassNotFoundException();
         }
 
-        return get_class_namespace(static::class).'\\'.studly_case($mode);
+        return get_class_namespace(static::class).'\\'.studly_case($ruleset);
     }
 
     public function scopeDefault($query)
@@ -129,7 +131,6 @@ abstract class Model extends BaseModel
 
     public function getDataAttribute()
     {
-        $attributes = $this->getAttributes();
         $mods = array_map(fn ($m) => ['acronym' => $m, 'settings' => []], $this->enabled_mods);
         $statistics = [
             'miss' => $this->countmiss,
@@ -160,7 +161,7 @@ abstract class Model extends BaseModel
         return new ScoreData([
             'accuracy' => $this->accuracy(),
             'beatmap_id' => $this->beatmap_id,
-            'ended_at' => $attributes['date'],
+            'ended_at' => $this->date,
             'max_combo' => $this->maxcombo,
             'mods' => $mods,
             'passed' => $this->pass,

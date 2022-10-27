@@ -6,7 +6,7 @@
 return [
     'countries' => [
         'all' => 'Усі',
-        'title' => 'Країна',
+        'title' => 'Країни',
     ],
 
     'filter' => [
@@ -18,16 +18,16 @@ return [
     ],
 
     'type' => [
-        'charts' => 'Чартах',
-        'country' => 'Країна',
+        'charts' => 'чарти',
+        'country' => 'країни',
         'multiplayer' => 'мультиплеєр',
-        'performance' => 'Продуктивності',
-        'score' => 'Очках',
+        'performance' => 'продуктивність',
+        'score' => 'очки',
     ],
 
     'spotlight' => [
         'end_date' => 'Дата закінчення',
-        'map_count' => 'Кількість карт',
+        'map_count' => 'Кількість мап',
         'participants' => 'Учасники',
         'start_date' => 'Дата початку',
     ],
@@ -40,8 +40,8 @@ return [
         'performance' => 'Продуктивність',
         'total_score' => 'Всього очок',
         'ranked_score' => 'Рейтингових очок',
-        'average_score' => 'Середній результат',
-        'average_performance' => 'Серед. продук.',
+        'average_score' => 'Сер. результат',
+        'average_performance' => 'Сер. продукт.',
         'ss' => '',
         's' => '',
         'a' => '',

@@ -22,9 +22,6 @@ class ForumSearchParams extends SearchParams
     /** @var bool */
     public $includeSubforums = false;
 
-    /** @var string|null */
-    public $queryString = null;
-
     /** {@inheritdoc} */
     public $size = 20;
 

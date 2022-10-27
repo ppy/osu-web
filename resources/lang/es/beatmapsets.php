@@ -113,7 +113,7 @@ return [
             ],
 
             'report' => [
-                '_' => 'Si encuentra un problema con este mapa, por favor, informe de ello :link para alertar al equipo.',
+                '_' => 'Si encuentras un problema con este mapa, por favor repórtalo :link para alertar al equipo.',
                 'button' => 'Informar un problema',
                 'link' => 'aquí',
             ],
@@ -196,7 +196,7 @@ return [
             'total_length' => 'Duración (Duración del drenaje: :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => 'Número de círculos',
-            'count_sliders' => 'Número de deslizadores',
+            'count_sliders' => 'Número de sliders',
             'offset' => 'Compensación en línea: :offset',
             'user-rating' => 'Valoración de los usuarios',
             'rating-spread' => 'Desglose de valoraciones',

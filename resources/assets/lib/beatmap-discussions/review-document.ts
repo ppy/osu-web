@@ -3,22 +3,37 @@
 
 import { BeatmapsetDiscussionJsonForBundle, BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
 import * as markdown from 'remark-parse';
-import { Node as SlateNode } from 'slate';
+import { Element, Text } from 'slate';
 import * as unified from 'unified';
-import type { Node as UnistNode } from 'unist';
-import { startingPost } from 'utils/beatmapset-discussion-helper';
-import { BeatmapDiscussionReview, PersistedDocumentIssueEmbed } from '../interfaces/beatmap-discussion-review';
+import type { Parent, Node as UnistNode } from 'unist';
+import { formatTimestamp, startingPost } from 'utils/beatmapset-discussion-helper';
+import { BeatmapDiscussionReview, isBeatmapReviewDiscussionType, PersistedDocumentIssueEmbed } from '../interfaces/beatmap-discussion-review';
 import { disableTokenizersPlugin } from './disable-tokenizers-plugin';
 
 interface ParsedDocumentNode extends UnistNode {
-  children: SlateNode[];
+  children: UnistNode[];
+  // position: we don't care about position
+  type: 'root';
+}
+
+interface TextNode extends UnistNode {
+  type: 'text';
+  value: string;
+}
+
+function isParentNode(node: UnistNode): node is Parent {
+  return Array.isArray(node.children);
+}
+
+function isText(node: UnistNode): node is TextNode {
+  return node.type === 'text';
 }
 
 export function parseFromJson(json: string, discussions: Partial<Record<number, BeatmapsetDiscussionJsonForBundle | BeatmapsetDiscussionJsonForShow>>) {
   let srcDoc: BeatmapDiscussionReview;
 
   try {
-    srcDoc = JSON.parse(json);
+    srcDoc = JSON.parse(json) as BeatmapDiscussionReview;
   } catch {
     console.error('error parsing srcDoc');
 
@@ -33,7 +48,7 @@ export function parseFromJson(json: string, discussions: Partial<Record<number, 
         allowedInlines: ['emphasis', 'strong'],
       });
 
-  const doc: ParsedDocumentNode[] = [];
+  const doc: Element[] = [];
   srcDoc.forEach((block) => {
     switch (block.type) {
       // paragraph
@@ -70,6 +85,11 @@ export function parseFromJson(json: string, discussions: Partial<Record<number, 
           break;
         }
 
+        if (!isBeatmapReviewDiscussionType(discussion.message_type)) {
+          console.error('unsupported embed type', discussion.message_type);
+          break;
+        }
+
         const post = startingPost(discussion);
         if (post.system) {
           console.error('embed should not have system starting post', existingEmbedBlock.discussion_id);
@@ -83,7 +103,7 @@ export function parseFromJson(json: string, discussions: Partial<Record<number, 
           }],
           discussionId: discussion.id,
           discussionType: discussion.message_type,
-          timestamp: BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp),
+          timestamp: formatTimestamp(discussion.timestamp),
           type: 'embed',
         });
         break;
@@ -105,40 +125,28 @@ export function parseFromJson(json: string, discussions: Partial<Record<number, 
 //   becomes:
 // paragraph -> text (with bold and italic properties set)
 //
-function squash(items: SlateNode[], currentMarks?: {bold: boolean; italic: boolean}) {
-  let flat: SlateNode[] = [];
+function squash(items: (UnistNode | Parent)[], currentMarks?: { bold: boolean; italic: boolean }) {
+  let flat: Text[] = [];
   const marks = currentMarks ?? {
     bold: false,
     italic: false,
   };
 
-  if (!items) {
-    return [{text: ''}];
-  }
-
-  items.forEach((item: SlateNode) => {
+  items.forEach((item) => {
     const newMarks = {
       bold: marks.bold || item.type === 'strong',
       italic: marks.italic || item.type === 'emphasis',
     };
 
-    if (Array.isArray(item.children)) {
+    if (isParentNode(item)) {
       flat = flat.concat(squash(item.children, newMarks));
-    } else {
-      const newItem: SlateNode = {
-        text: (item.value as string) || '',
-      };
-
-      if (newMarks.bold) {
-        newItem.bold = true;
-      }
-
-      if (newMarks.italic) {
-        newItem.italic = true;
-      }
-      flat.push(newItem);
+    } else if (isText(item)) {
+      flat.push({
+        bold: newMarks.bold,
+        italic: newMarks.italic,
+        text: item.value,
+      });
     }
-
   });
 
   return flat;

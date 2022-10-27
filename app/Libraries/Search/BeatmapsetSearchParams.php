@@ -32,7 +32,6 @@ class BeatmapsetSearchParams extends SearchParams
     public ?int $language = null;
     public ?int $mode = null;
     public ?string $playedFilter = null; // null means any state
-    public ?string $queryString = null;
     public array $rank = [];
     public ?array $ranked = null;
     public bool $showFeaturedArtists = false;

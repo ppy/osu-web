@@ -13,6 +13,9 @@ use Illuminate\Console\Command;
 
 class UserRecalculateRankCounts extends Command
 {
+    private ?int $from;
+    private ?int $until;
+
     /**
      * The name and signature of the console command.
      *
@@ -34,13 +37,14 @@ class UserRecalculateRankCounts extends Command
      */
     public function handle()
     {
-        $this->from = $this->option('from');
-        $this->until = $this->option('until');
+        $this->from = get_int($this->option('from'));
+        $this->until = get_int($this->option('until'));
 
         $continue = $this->confirm('This will recalculate and update the rank counts for user statistics, continue?');
 
         if (!$continue) {
-            return $this->error('User aborted!');
+            $this->error('User aborted!');
+            return;
         }
 
         $start = time();

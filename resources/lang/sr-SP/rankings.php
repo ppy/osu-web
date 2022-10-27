@@ -5,43 +5,43 @@
 
 return [
     'countries' => [
-        'all' => '',
-        'title' => '',
+        'all' => 'Све',
+        'title' => 'Држава',
     ],
 
     'filter' => [
-        'title' => '',
+        'title' => 'Прикажите',
 
         'variant' => [
-            'title' => '',
+            'title' => 'Варијанта',
         ],
     ],
 
     'type' => [
-        'charts' => '',
-        'country' => '',
-        'multiplayer' => '',
-        'performance' => '',
-        'score' => '',
+        'charts' => 'колекције',
+        'country' => 'држава',
+        'multiplayer' => 'мултиплејер',
+        'performance' => 'перформансе',
+        'score' => 'резултат',
     ],
 
     'spotlight' => [
-        'end_date' => '',
-        'map_count' => '',
-        'participants' => '',
-        'start_date' => '',
+        'end_date' => 'Завршни датум',
+        'map_count' => 'Број Мапа',
+        'participants' => 'Учесници',
+        'start_date' => 'Почетни Датум',
     ],
 
     'stat' => [
-        'accuracy' => '',
-        'active_users' => '',
-        'country' => '',
-        'play_count' => '',
-        'performance' => '',
-        'total_score' => '',
-        'ranked_score' => '',
-        'average_score' => '',
-        'average_performance' => '',
+        'accuracy' => 'Прецизност',
+        'active_users' => 'Активни Корисници',
+        'country' => 'Држава',
+        'play_count' => 'Број играња',
+        'performance' => 'Перформансе',
+        'total_score' => 'Укупан резултат',
+        'ranked_score' => 'Ранкован резултат',
+        'average_score' => 'Просечан резултат',
+        'average_performance' => 'Прос. Перф.',
         'ss' => '',
         's' => '',
         'a' => '',

@@ -117,8 +117,11 @@ class UserReportTest extends TestCase
         $reporter = User::factory()->create();
 
         $query = UserReport::whereMorphedTo('reportable', $reportable);
-        $this->expectCountChange(fn () => $query->count(), 1);
-        $this->expectCountChange(fn () => $reporter->reportsMade()->count(), 1);
+        $this->expectCountChange(fn () => $query->count(), 1, 'reportable query');
+        $this->expectCountChange(fn () => $reporter->fresh()->reportsMade->count(), 1, 'reportsMade accessor');
+        $this->expectCountChange(fn () => $reporter->reportsMade()->count(), 1, 'reportsMade query');
+        $this->expectCountChange(fn () => $reportable->fresh()->reportedIn->count(), 1, 'reportedIn accessor');
+        $this->expectCountChange(fn () => $reportable->reportedIn()->count(), 1, 'reportedIn query');
 
         $report = $reportable->reportBy($reporter, static::reportParams());
         if ($reportable instanceof BestModel) {

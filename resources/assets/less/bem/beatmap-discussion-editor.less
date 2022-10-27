@@ -16,6 +16,8 @@
   }
 
   &__block {
+    position: relative; // Slate's placeholder element has width: 100% directly set on it...
+
     .@{_top}--readonly & {
         &:hover .@{_top}__hover-menu {
           display: none;

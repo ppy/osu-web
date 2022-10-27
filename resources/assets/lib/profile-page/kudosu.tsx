@@ -2,28 +2,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import ProfilePageKudosu from 'components/profile-page-kudosu';
-import { computed, makeObservable } from 'mobx';
-import { observer } from 'mobx-react';
 import * as React from 'react';
 import ExtraPageProps from './extra-page-props';
 
-@observer
 export default class Kudosu extends React.Component<ExtraPageProps> {
-  @computed
-  get paginatorJson() {
-    return this.props.controller.paginatorJson('recentlyReceivedKudosu');
-  }
-
-  constructor(props: ExtraPageProps) {
-    super(props);
-
-    makeObservable(this);
-  }
-
   render() {
     return (
       <ProfilePageKudosu
-        kudosu={this.paginatorJson}
+        kudosu={this.props.controller.state.kudosu}
         name={this.props.name}
         onShowMore={this.onShowMore}
         total={this.props.controller.state.user.kudosu.total}

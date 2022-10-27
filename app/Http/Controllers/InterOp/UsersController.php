@@ -7,12 +7,41 @@ namespace App\Http\Controllers\InterOp;
 
 use App\Exceptions\ValidationException;
 use App\Http\Controllers\Controller;
+use App\Jobs\Notifications\UserAchievementUnlock;
 use App\Libraries\UserRegistration;
+use App\Models\Achievement;
+use App\Models\Event;
 use App\Models\User;
 use App\Transformers\CurrentUserTransformer;
+use Exception;
 
 class UsersController extends Controller
 {
+    public function achievement($id, $achievementId, $beatmapId = null)
+    {
+        $user = User::findOrFail($id);
+        $achievement = Achievement::findOrFail($achievementId);
+
+        try {
+            $userAchievement = $user->userAchievements()->create([
+                'achievement_id' => $achievement->getKey(),
+                'beatmap_id' => $beatmapId,
+            ]);
+        } catch (Exception $e) {
+            if (is_sql_unique_exception($e)) {
+                return error_popup('user already unlocked the specified achievement');
+            }
+
+            throw $e;
+        }
+
+        Event::generate('achievement', compact('achievement', 'user'));
+
+        (new UserAchievementUnlock($achievement, $user))->dispatch();
+
+        return $achievement->getKey();
+    }
+
     public function store()
     {
         $request = request()->all();

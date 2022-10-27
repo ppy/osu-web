@@ -1,67 +1,65 @@
 {
   "mappings": {
-    "_doc": {
-      "dynamic": false,
-      "properties": {
-        "indexed_at": {
-          "type": "date"
+    "dynamic": false,
+    "properties": {
+      "indexed_at": {
+        "type": "date"
+      },
+      "layout": {
+        "type": "keyword"
+      },
+      "locale": {
+        "fields": {
+          "keyword": {
+            "ignore_above": 256,
+            "type": "keyword"
+          }
         },
-        "layout": {
-          "type": "keyword"
+        "type": "text"
+      },
+      "page": {
+        "type": "text"
+      },
+      "page_text": {
+        "type": "text"
+      },
+      "path": {
+        "fields": {
+          "keyword": {
+            "ignore_above": 256,
+            "type": "keyword"
+          }
         },
-        "locale": {
-          "fields": {
-            "keyword": {
-              "ignore_above": 256,
-              "type": "keyword"
-            }
+        "type": "text"
+      },
+      "path_clean": {
+        "type": "text"
+      },
+      "tags": {
+        "fields": {
+          "keyword": {
+            "ignore_above": 256,
+            "type": "keyword"
+          }
+        },
+        "type": "text"
+      },
+      "title": {
+        "fields": {
+          "autocomplete": {
+            "analyzer": "autocomplete",
+            "search_analyzer": "autocomplete_search",
+            "type": "text"
           },
-          "type": "text"
+          "keyword": {
+            "ignore_above": 256,
+            "type": "keyword"
+          }
         },
-        "page": {
-          "type": "text"
-        },
-        "page_text": {
-          "type": "text"
-        },
-        "path": {
-          "fields": {
-            "keyword": {
-              "ignore_above": 256,
-              "type": "keyword"
-            }
-          },
-          "type": "text"
-        },
-        "path_clean": {
-          "type": "text"
-        },
-        "tags": {
-          "fields": {
-            "keyword": {
-              "ignore_above": 256,
-              "type": "keyword"
-            }
-          },
-          "type": "text"
-        },
-        "title": {
-          "fields": {
-            "autocomplete": {
-              "analyzer": "autocomplete",
-              "search_analyzer": "autocomplete_search",
-              "type": "text"
-            },
-            "keyword": {
-              "ignore_above": 256,
-              "type": "keyword"
-            }
-          },
-          "type": "text"
-        },
-        "version": {
-          "type": "long"
-        }
+        "type": "text"
+      },
+      "version": {
+        "type": "long"
       }
     }
   },
@@ -92,7 +90,7 @@
         }
       },
       "number_of_shards": "1",
-      "number_of_replicas": "1"
+      "number_of_replicas": "0"
     }
   }
 }

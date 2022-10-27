@@ -24,12 +24,18 @@ return [
 
         'button' => [
             'add' => 'Abstimmen',
-            'remove' => 'Vote entfernen',
-            'used_up' => 'Du hast alle deine Votes verwendet',
+            'remove' => 'Stimme entfernen',
+            'used_up' => 'Du hast alle deine Stimmen verwendet',
         ],
 
         'progress' => [
             '_' => ':used / :max Stimmen vergeben',
+        ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => 'Bevor du abstimmen kannst, musst du alle Beatmaps in den angegebenen Playlists gespielt haben',
+            ],
         ],
     ],
     'entry' => [

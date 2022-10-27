@@ -45,7 +45,7 @@ return [
     'post' => [
         'confirm_destroy' => 'Удалить ответ?',
         'confirm_restore' => 'Восстановить ответ?',
-        'edited' => 'Последний раз отредактирован :user :when, отредактирован :count раз.',
+        'edited' => 'Последний раз редактировал :user :when, всего правок: :count_delimited.',
         'posted_at' => 'написано :when',
         'posted_by' => 'опубликовано :username',
 
@@ -359,7 +359,7 @@ return [
 
                 'detail' => [
                     'end_time' => 'Опрос будет закрыт :time',
-                    'ended' => 'Опрос закончен :time',
+                    'ended' => 'Опрос завершён :time',
                     'results_hidden' => 'Результаты будут показаны после окончания опроса.',
                     'total' => 'Всего голосов: :count',
                 ],

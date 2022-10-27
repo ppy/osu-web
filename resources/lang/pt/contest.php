@@ -31,6 +31,12 @@ return [
         'progress' => [
             '_' => ':used / :max votos utilizados',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => 'Precisas de jogar todos os beatmaps nas playlists especificadas antes de votares',
+            ],
+        ],
     ],
     'entry' => [
         '_' => 'inscrição',

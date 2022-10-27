@@ -24,7 +24,7 @@ class BlocksController extends Controller
             ],
         ]);
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function store()

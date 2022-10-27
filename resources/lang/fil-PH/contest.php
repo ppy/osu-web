@@ -31,6 +31,12 @@ return [
         'progress' => [
             '_' => ':used sa :max na boto ang gamit na',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => 'Dapat laruin ang lahat ng mga beatmap sa tinukoy na mga playlist bago bumoto',
+            ],
+        ],
     ],
     'entry' => [
         '_' => 'entrada',

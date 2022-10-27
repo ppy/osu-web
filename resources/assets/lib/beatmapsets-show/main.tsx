@@ -31,15 +31,15 @@ export default class Main extends React.Component<Props> {
   private get headerLinksAppend() {
     if (this.controller.state.showingNsfwWarning) return null;
 
-    const entries = gameModes.map((mode) => {
-      const beatmaps = this.controller.beatmaps.get(mode) ?? [];
+    const entries = gameModes.map((ruleset) => {
+      const beatmaps = this.controller.beatmaps.get(ruleset) ?? [];
       const mainCount = beatmaps.filter((b) => !b.convert).length;
 
       return {
         count: mainCount > 0 ? mainCount : undefined,
         disabled: beatmaps.length === 0,
-        href: generate({ mode }),
-        mode,
+        href: generate({ ruleset }),
+        mode: ruleset,
       };
     });
 

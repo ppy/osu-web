@@ -11,6 +11,7 @@ use App\Libraries\BroadcastsPendingForTests;
 use App\Libraries\ChatFilters;
 use App\Libraries\CleanHTML;
 use App\Libraries\Groups;
+use App\Libraries\LayoutCache;
 use App\Libraries\Mods;
 use App\Libraries\MorphMap;
 use App\Libraries\OsuAuthorize;
@@ -38,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
         'chat-filters' => ChatFilters::class,
         'clean-html' => CleanHTML::class,
         'groups' => Groups::class,
+        'layout-cache' => LayoutCache::class,
         'mods' => Mods::class,
         'route-section' => RouteSection::class,
         'score-pins' => ScorePins::class,
