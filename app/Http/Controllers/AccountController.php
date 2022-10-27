@@ -178,11 +178,11 @@ class AccountController extends Controller
 
         DB::transaction(function () use ($requestParams) {
             $user = auth()->user();
-            UserNotificationOption
-                ::lockForUpdate()
-                ->where('user_id', $user->getKey())
+            $user
+                ->notificationOptions()
                 ->whereIn('name', array_keys($requestParams))
                 ->select('user_id')
+                ->lockForUpdate()
                 ->get();
             foreach ($requestParams as $key => $value) {
                 if (!UserNotificationOption::supportsNotifications($key)) {
