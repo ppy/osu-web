@@ -13,6 +13,7 @@ class TopicVote
 {
     use Validatable;
 
+    private array $params = [];
     private $topic;
     private $validated = false;
 

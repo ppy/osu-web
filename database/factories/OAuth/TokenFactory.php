@@ -20,7 +20,7 @@ class TokenFactory extends Factory
     {
         return [
             'client_id' => Client::factory(),
-            'expires_at' => fn () => now()->addDay(),
+            'expires_at' => fn () => now()->addDays(),
             'id' => str_random(40),
             'revoked' => false,
             'scopes' => ['public'],

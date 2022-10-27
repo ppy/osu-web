@@ -48,10 +48,11 @@ html, body {
 }
 
 html {
-  scroll-padding-top: @nav2-height--pinned;
+  scroll-padding-top: calc(@nav2-height--pinned + 1em);
+  scroll-padding-bottom: 1em;
 
   @media @mobile {
-    scroll-padding-top: @navbar-height;
+    scroll-padding-top: calc(@navbar-height + 1em);
   }
 }
 

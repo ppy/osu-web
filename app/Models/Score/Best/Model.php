@@ -307,18 +307,14 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
 
     public function isPersonalBest(): bool
     {
-        return !static
+        return $this->getKey() === (static
             ::where([
                 'user_id' => $this->user_id,
                 'beatmap_id' => $this->beatmap_id,
-            ])->where(function ($q) {
-                return $q
-                    ->where('score', '>', $this->score)
-                    ->orWhere(function ($qq) {
-                        return $qq->where('score', $this->score)
-                            ->where($this->getKeyName(), '<', $this->getKey());
-                    });
-            })->exists();
+            ])->default()
+            ->limit(1)
+            ->pluck('score_id')
+            ->first() ?? $this->getKey());
     }
 
     public function replayViewCount()

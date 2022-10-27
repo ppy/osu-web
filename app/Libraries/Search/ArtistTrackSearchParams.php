@@ -30,7 +30,6 @@ class ArtistTrackSearchParams extends SearchParams
     public ?string $genre;
     public bool $isDefaultSort = false;
     public ?array $length;
-    public ?string $queryString;
     public string $sortField;
     public string $sortOrder;
 

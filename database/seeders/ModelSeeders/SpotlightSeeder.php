@@ -30,7 +30,7 @@ class SpotlightSeeder extends Seeder
                 $this->seedBestOf($date);
             }
 
-            $date->addMonth(1);
+            $date->addMonths(1);
         }
 
         collect(range(1, 10))->each(function () {
