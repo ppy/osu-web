@@ -50,7 +50,7 @@ export class PlayDetailMenu extends React.Component<Props> {
           </a>
         )}
 
-        {canBeReported(score, user) && (
+        {canBeReported(score) && (
           <ReportReportable
             baseKey='scores'
             className='simple-menu__item'

@@ -17,7 +17,7 @@ interface Props {
 export default function Buttons(props: Props) {
   const visibleMenuItems = new Set<string>();
 
-  if (canBeReported(props.score, props.score.user)) {
+  if (canBeReported(props.score)) {
     visibleMenuItems.add('report');
   }
 

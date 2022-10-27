@@ -4,6 +4,7 @@
 import { ReportForm } from 'components/report-form';
 import { route } from 'laroute';
 import { Dictionary } from 'lodash';
+import { deletedUser } from 'models/user';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
 import StringWithComponent from './string-with-component';
@@ -17,7 +18,7 @@ interface Props extends ReactButtonWithoutRef {
   onFormClose: () => void;
   reportableId: string;
   reportableType: string;
-  user: { username: string };
+  user?: { username: string };
 }
 
 interface ReportData {
@@ -111,7 +112,7 @@ export class ReportReportable extends React.PureComponent<Props, State> {
             onClose={this.onFormClose}
             onSubmit={this.onSubmit}
             title={<StringWithComponent
-              mappings={{ username: <strong>{user.username}</strong> }}
+              mappings={{ username: <strong>{(user ?? deletedUser).username}</strong> }}
               pattern={osu.trans(`report.${groupKey}.title`)}
             />}
             visible
