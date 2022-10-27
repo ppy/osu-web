@@ -92,6 +92,7 @@ return [
     ],
     'client' => [
         'check_version' => get_bool(env('CLIENT_CHECK_VERSION')) ?? true,
+        'default_build_id' => get_int(env('DEFAULT_BUILD_ID')) ?? 0,
         'user_agent' => env('CLIENT_USER_AGENT', 'osu!'),
     ],
     'elasticsearch' => [
