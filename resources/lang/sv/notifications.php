@@ -240,7 +240,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username har skapat nya beatmaps',
-                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive' => ':username har återupplivat beatmaps',
             ],
         ],
     ],

@@ -34,7 +34,7 @@ return [
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => '',
+                'incomplete_play' => 'Anda harus memainkan seluruh beatmap yang tertera pada playlist yang ditentukan untuk dapat memberikan suara',
             ],
         ],
     ],
@@ -71,7 +71,7 @@ return [
     ],
     'states' => [
         'entry' => 'Menerima Entri',
-        'voting' => 'Dalam Tahapan Pemungutan Suara',
+        'voting' => 'Dalam Tahap Pemungutan Suara',
         'results' => 'Telah Berakhir',
     ],
 ];

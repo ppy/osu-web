@@ -11,6 +11,7 @@ core.reactTurbolinks.register 'beatmap-discussions-history', (container) ->
 
   # TODO: rename props to match
   createElement Main,
+    beatmapsets: bundle.beatmapsets
     discussions: bundle.discussions
     users: bundle.users
     relatedBeatmaps: bundle.beatmaps

@@ -68,6 +68,6 @@ class BeatmapsetDiscussionReviewNew extends BroadcastNotificationBase
     {
         $this->beatmapsetDiscussion->beatmapset->watches()->update(['last_notified' => $this->getTimestamp()]);
 
-        return parent::handle();
+        parent::handle();
     }
 }

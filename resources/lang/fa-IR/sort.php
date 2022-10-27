@@ -4,40 +4,40 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    '_' => '',
+    '_' => 'مرتب‌سازی بر اساس',
 
-    'all' => '',
-    'friends' => '',
-    'last_visit' => '',
-    'new' => '',
-    'old' => '',
-    'rank' => '',
-    'top' => '',
-    'username' => '',
+    'all' => 'همه',
+    'friends' => 'دوستان',
+    'last_visit' => 'فعالیت اخیر',
+    'new' => 'اخیر',
+    'old' => 'قدیمی',
+    'rank' => 'رتبه',
+    'top' => 'برتر',
+    'username' => 'نام کاربری',
 
     'artist_tracks' => [
-        'album' => '',
-        'artist' => '',
-        'bpm' => '',
-        'genre' => '',
-        'length' => '',
-        'relevance' => '',
-        'title' => '',
-        'update' => '',
+        'album' => 'آلبوم',
+        'artist' => 'هنرمند',
+        'bpm' => 'BPM',
+        'genre' => 'ژانر',
+        'length' => 'مدت',
+        'relevance' => 'مرتبط',
+        'title' => 'عنوان',
+        'update' => 'بروزرسانی',
     ],
 
     'forum_posts' => [
-        'created' => '',
-        'relevance' => '',
+        'created' => 'زمان ارسال',
+        'relevance' => 'مرتبط',
     ],
 
     'forum_topics' => [
-        'feature_votes' => '',
-        'new' => '',
+        'feature_votes' => 'اولویت ستاره',
+        'new' => 'آخرین پاسخ',
     ],
 
     'users' => [
-        'relevance' => '',
-        'username' => '',
+        'relevance' => 'مرتبط',
+        'username' => 'نام',
     ],
 ];

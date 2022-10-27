@@ -15,6 +15,7 @@ $mysqlDefaults = [
     'host' => env('DB_HOST', 'localhost'),
     'username' => env('DB_USERNAME', 'osuweb'),
     'password' => env('DB_PASSWORD', ''),
+    'port' => env('DB_PORT', '3306'),
     'charset' => 'utf8mb4',
     'collation' => 'utf8mb4_0900_ai_ci',
     'prefix' => '',

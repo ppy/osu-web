@@ -240,7 +240,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username a creat beatmap-uri noi',
-                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive' => ':username a reînviat beatmap-uri',
             ],
         ],
     ],

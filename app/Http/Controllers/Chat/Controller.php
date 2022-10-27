@@ -13,6 +13,6 @@ abstract class Controller extends BaseController
     {
         $this->middleware('auth');
 
-        return parent::__construct();
+        parent::__construct();
     }
 }

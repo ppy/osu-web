@@ -4,6 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'mixture' => ':attribute повинен містити числа і букви',
+    'mixture' => ':attribute має містити числа і букви',
     'required' => ':attribute є обов\'язковим',
 ];

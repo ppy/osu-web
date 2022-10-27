@@ -5,73 +5,73 @@
 
 return [
     'header' => [
-        'small' => '',
-        'large' => '',
+        'small' => 'Tekmuj v več načinih, ne samo v klikanju krogov.',
+        'large' => 'Skupnostna tekmovanja',
     ],
 
     'index' => [
-        'nav_title' => '',
+        'nav_title' => 'seznam',
     ],
 
     'voting' => [
-        'login_required' => '',
-        'over' => '',
-        'show_voted_only' => '',
+        'login_required' => 'Prosimo vpiši se za glasovanje.',
+        'over' => 'Glasovanje za to tekmovanje se je zaključilo',
+        'show_voted_only' => 'Prikaži glasovane',
 
         'best_of' => [
-            'none_played' => "",
+            'none_played' => "Videti je, da nisi igral še nobene beatmape, ki so kvalificirane za to tekmovanje!",
         ],
 
         'button' => [
-            'add' => '',
-            'remove' => '',
-            'used_up' => '',
+            'add' => 'Glasuj',
+            'remove' => 'Odstrani glas',
+            'used_up' => 'Uporabil si vse svoje glasove',
         ],
 
         'progress' => [
-            '_' => '',
+            '_' => ':used / :max uporabljenih glasov',
         ],
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => '',
+                'incomplete_play' => 'Igrati moraš vse beatmape iz določenih seznamov pred glasovanjem ',
             ],
         ],
     ],
     'entry' => [
         '_' => '',
-        'login_required' => '',
-        'silenced_or_restricted' => '',
-        'preparation' => '',
+        'login_required' => 'Prosimo vpiši se, da se lahko pridružiš tekmovanju.',
+        'silenced_or_restricted' => 'Ne moreš se udeležiti tekmovanj, ko si utišan ali imaš omejitev na računu.',
+        'preparation' => 'Trenutno pripravljamo to tekmovanje. Prosimo počakaj strpno!',
         'drop_here' => '',
-        'download' => '',
+        'download' => 'Prenesi .osz',
         'wrong_type' => [
-            'art' => '',
-            'beatmap' => '',
-            'music' => '',
+            'art' => 'Za to tekmovanje so sprejemljive samo .jpg in .png datoteke.',
+            'beatmap' => 'Za to tekmovanje so sprejemljive samo .osu datoteke.',
+            'music' => 'Za to tekmovanje so sprejemljive samo .mp3 datoteke.',
         ],
-        'too_big' => '',
+        'too_big' => 'Dostopov v to tekmovanje je samo do :limit.',
     ],
     'beatmaps' => [
-        'download' => '',
+        'download' => 'Prenos vpisa',
     ],
     'vote' => [
-        'list' => '',
-        'count' => '',
-        'points' => '',
+        'list' => 'glasovi',
+        'count' => ':count_delimited glas|:count_delimited glasov',
+        'points' => ':count_delimited točka|:count_delimited točk',
     ],
     'dates' => [
-        'ended' => '',
-        'ended_no_date' => '',
+        'ended' => 'Zaključeno :date',
+        'ended_no_date' => 'Zaključeno',
 
         'starts' => [
-            '_' => '',
-            'soon' => '',
+            '_' => 'Začetek :date',
+            'soon' => 'soon™',
         ],
     ],
     'states' => [
-        'entry' => '',
-        'voting' => '',
-        'results' => '',
+        'entry' => 'Vpisi odprti',
+        'voting' => 'Začetek glasovanja',
+        'results' => 'Rezultati objavljeni',
     ],
 ];

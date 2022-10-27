@@ -30,6 +30,6 @@ class StartParser implements BlockStartParserInterface
 
         $cursor->advanceToEnd();
 
-        return BlockStart::of(new Parser($className, $currentLine[0]))->at($cursor);
+        return BlockStart::of(new Parser($className))->at($cursor);
     }
 }

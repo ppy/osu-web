@@ -11,39 +11,33 @@ import ExtraPageProps, { BeatmapsetSection } from './extra-page-props';
 
 const sectionKeys = [
   {
-    countKey: 'favourite_beatmapset_count',
-    key: 'favouriteBeatmapsets',
-    translationKey: 'favourite',
+    key: 'favourite',
+    urlType: 'favouriteBeatmapsets',
   },
   {
-    countKey: 'ranked_beatmapset_count',
-    key: 'rankedBeatmapsets',
-    translationKey: 'ranked',
+    key: 'ranked',
+    urlType: 'rankedBeatmapsets',
   },
   {
-    countKey: 'loved_beatmapset_count',
-    key: 'lovedBeatmapsets',
-    translationKey: 'loved',
+    key: 'loved',
+    urlType: 'lovedBeatmapsets',
   },
   {
-    countKey: 'guest_beatmapset_count',
-    key: 'guestBeatmapsets',
-    translationKey: 'guest',
+    key: 'guest',
+    urlType: 'guestBeatmapsets',
   },
   {
-    countKey: 'pending_beatmapset_count',
-    key: 'pendingBeatmapsets',
-    translationKey: 'pending',
+    key: 'pending',
+    urlType: 'pendingBeatmapsets',
   },
   {
-    countKey: 'graveyard_beatmapset_count',
-    key: 'graveyardBeatmapsets',
-    translationKey: 'graveyard',
+    key: 'graveyard',
+    urlType: 'graveyardBeatmapsets',
   },
 ] as const;
 
 @observer
-export default class Beatmapsets extends React.PureComponent<ExtraPageProps> {
+export default class Beatmapsets extends React.Component<ExtraPageProps> {
   render() {
     return (
       <div className='page-extra'>
@@ -58,15 +52,16 @@ export default class Beatmapsets extends React.PureComponent<ExtraPageProps> {
   };
 
   private readonly renderBeatmapsets = (section: typeof sectionKeys[number]) => {
-    const count = this.props.controller.state.user[section.countKey];
-    const beatmapsets = this.props.controller.state.extras[section.key];
-    const pagination = this.props.controller.state.pagination[section.key];
+    const state = this.props.controller.state.beatmapsets;
+    const count = state[section.key].count;
+    const beatmapsets = state[section.key].items;
+    const pagination = state[section.key].pagination;
 
     return (
       <React.Fragment key={section.key}>
         <ProfilePageExtraSectionTitle
           count={count}
-          titleKey={`users.show.extra.beatmaps.${section.translationKey}.title`}
+          titleKey={`users.show.extra.beatmaps.${section.key}.title`}
         />
 
         {beatmapsets.length > 0 && (
@@ -84,7 +79,7 @@ export default class Beatmapsets extends React.PureComponent<ExtraPageProps> {
               <ShowMoreLink
                 {...pagination}
                 callback={this.onShowMore}
-                data={section.key}
+                data={section.urlType}
                 modifiers='profile-page'
               />
             </div>

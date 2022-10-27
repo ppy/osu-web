@@ -240,7 +240,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username 님이 새 비트맵을 제작했습니다',
-                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive' => ':username 님이 비트맵을 되살렸습니다',
             ],
         ],
     ],

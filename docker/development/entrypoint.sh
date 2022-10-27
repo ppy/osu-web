@@ -37,7 +37,7 @@ _job() {
 }
 
 _migrate() {
-    _rexec /app/bin/wait_for.sh db:3306 -- php /app/artisan migrate:fresh-or-run
+    _rexec /app/bin/wait_for.sh db:3306 -t 60 -- php /app/artisan migrate:fresh-or-run
 }
 
 _schedule() {

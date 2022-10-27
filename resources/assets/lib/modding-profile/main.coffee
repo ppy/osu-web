@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
+import { BeatmapsetsContext } from 'beatmap-discussions/beatmapsets-context'
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
 import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-config-context'
 import HeaderV4 from 'components/header-v4'
@@ -52,6 +53,7 @@ export class Main extends React.PureComponent
 
       @state =
         beatmaps: props.beatmaps
+        beatmapsets: props.beatmapsets
         discussions: props.discussions
         events: props.events
         user: props.user
@@ -108,9 +110,6 @@ export class Main extends React.PureComponent
         discussion = _.find discussions, id: newDiscussion.id
         discussions = _.reject discussions, id: newDiscussion.id
         newDiscussion = _.merge(discussion, newDiscussion)
-      else
-        # if this is a new discussion, it won't have beatmapset included ('cuz the parent is the beatmapset)
-        newDiscussion.beatmapset = beatmapset
 
       newDiscussion.starting_post = newDiscussion.posts[0]
       discussions.push(newDiscussion)
@@ -127,7 +126,7 @@ export class Main extends React.PureComponent
 
       users.push(newUser)
 
-    @cache.users = @cache.discussions = @cache.userDiscussions = @cache.beatmaps = null
+    @cache.users = @cache.discussions = @cache.userDiscussions = @cache.beatmaps = @cache.beatmapsets = null
     @setState
       discussions: _.reverse(_.sortBy(discussions, (d) -> Date.parse(d.starting_post.created_at)))
       posts: _.reverse(_.sortBy(posts, (p) -> Date.parse(p.created_at)))
@@ -148,57 +147,62 @@ export class Main extends React.PureComponent
     @cache.beatmaps ?= _.keyBy(this.state.beatmaps, 'id')
 
 
+  beatmapsets: =>
+    @cache.beatmapsets ?= _.keyBy(this.state.beatmapsets, 'id')
+
+
   render: =>
     profileOrder = @state.profileOrder
 
     el ReviewEditorConfigContext.Provider, value: @props.reviewsConfig,
       el DiscussionsContext.Provider, value: @discussions(),
-        el BeatmapsContext.Provider, value: @beatmaps(),
-          el UserProfileContainer,
-            user: @state.user,
-            el HeaderV4,
-              backgroundImage: @props.user.cover.url
-              links: headerLinks(@props.user, 'modding')
-              # add space for warning banner when user is blocked
-              modifiers:
-                restricted: core.currentUserModel.blocks.has(@props.user.id) || @props.user.is_restricted
-              theme: 'users'
-
-            div
-              className: 'osu-page osu-page--generic-compact'
+        el BeatmapsetsContext.Provider, value: @beatmapsets(),
+          el BeatmapsContext.Provider, value: @beatmaps(),
+            el UserProfileContainer,
+              user: @state.user,
+              el HeaderV4,
+                backgroundImage: @props.user.cover.url
+                links: headerLinks(@props.user, 'modding')
+                # add space for warning banner when user is blocked
+                modifiers:
+                  restricted: core.currentUserModel.blocks.has(@props.user.id) || @props.user.is_restricted
+                theme: 'users'
 
               div
-                className: 'js-switchable-mode-page--scrollspy js-switchable-mode-page--page'
-                'data-page-id': 'main'
-                el Cover, user: @props.user, currentMode: @props.user.playmode, coverUrl: @props.user.cover.url
-                if !@props.user.is_bot
-                  div className: 'profile-detail',
-                    el ProfileTournamentBanner, banner: @state.user.active_tournament_banner
-                    el Badges, badges: @state.user.badges
-                    el Stats, user: @props.user
+                className: 'osu-page osu-page--generic-compact'
 
-                el DetailBar, user: @props.user
-
-              div
-                className: 'hidden-xs page-extra-tabs page-extra-tabs--profile-page js-switchable-mode-page--scrollspy-offset'
                 div
-                  className: 'page-mode page-mode--profile-page-extra'
-                  ref: @tabs
-                  for m in profileOrder
-                    a
-                      className: 'page-mode__item'
-                      key: m
-                      'data-page-id': m
-                      onClick: @tabClick
-                      href: "##{m}"
-                      el ProfilePageExtraTab,
-                        page: m
-                        currentPage: @state.currentPage
+                  className: 'js-switchable-mode-page--scrollspy js-switchable-mode-page--page'
+                  'data-page-id': 'main'
+                  el Cover, user: @props.user, currentMode: @props.user.playmode, coverUrl: @props.user.cover.url
+                  if !@props.user.is_bot
+                    div className: 'profile-detail',
+                      el ProfileTournamentBanner, banner: @state.user.active_tournament_banner
+                      el Badges, badges: @state.user.badges
+                      el Stats, user: @props.user
 
-              div
-                className: 'user-profile-pages'
-                ref: @pages
-                @extraPage name for name in profileOrder
+                  el DetailBar, user: @props.user
+
+                div
+                  className: 'hidden-xs page-extra-tabs page-extra-tabs--profile-page js-switchable-mode-page--scrollspy-offset'
+                  div
+                    className: 'page-mode page-mode--profile-page-extra'
+                    ref: @tabs
+                    for m in profileOrder
+                      a
+                        className: 'page-mode__item'
+                        key: m
+                        'data-page-id': m
+                        onClick: @tabClick
+                        href: "##{m}"
+                        el ProfilePageExtraTab,
+                          page: m
+                          currentPage: @state.currentPage
+
+                div
+                  className: 'user-profile-pages'
+                  ref: @pages
+                  @extraPage name for name in profileOrder
 
 
   extraPage: (name) =>

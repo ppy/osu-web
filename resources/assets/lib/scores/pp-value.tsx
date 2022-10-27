@@ -11,29 +11,27 @@ interface Props {
 }
 
 export default function PpValue(props: Props) {
-  const isBestScore = props.score.best_id != null || (props.score.type === 'solo_score' && props.score.pp != null);
+  let title: string;
+  let content: React.ReactNode;
 
-  if (!isBestScore) {
-    return (
-      <span title={osu.trans('scores.status.non_best')}>
-        -
-      </span>
-    );
+  const isBest = props.score.best_id != null;
+  const isSolo = props.score.type === 'solo_score';
+
+  if (!isBest && !isSolo) {
+    title = osu.trans('scores.status.non_best');
+    content = '-';
+  } else if (props.score.pp == null) {
+    if (isSolo && !props.score.passed) {
+      title = osu.trans('scores.status.non_passing');
+      content = '-';
+    } else {
+      title = osu.trans('scores.status.processing');
+      content = <span className='fas fa-exclamation-triangle' />;
+    }
+  } else {
+    title = formatNumber(props.score.pp);
+    content = <>{formatNumber(Math.round(props.score.pp))}{props.suffix}</>;
   }
 
-  if (props.score.pp == null) {
-    return (
-      <span
-        className='fas fa-exclamation-triangle'
-        title={osu.trans('scores.status.processing')}
-      />
-    );
-  }
-
-  return (
-    <span title={formatNumber(props.score.pp)}>
-      {formatNumber(Math.round(props.score.pp))}
-      {props.suffix}
-    </span>
-  );
+  return <span title={title}>{content}</span>;
 }

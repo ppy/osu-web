@@ -9,7 +9,7 @@ use App\Http\Controllers\Chat\Controller as BaseController;
 use App\Libraries\Chat;
 use App\Models\Chat\Channel;
 use App\Transformers\Chat\MessageTransformer;
-use App\Transformers\UserTransformer;
+use App\Transformers\UserCompactTransformer;
 
 /**
  * @group Chat
@@ -104,7 +104,7 @@ class MessagesController extends BaseController
 
         $messages = $channel
             ->filteredMessages()
-            ->with('sender')
+            ->with(['channel', 'sender'])
             ->limit($limit);
 
         if (present($since)) {
@@ -131,7 +131,7 @@ class MessagesController extends BaseController
             'messages' => json_collection($messages, new MessageTransformer()),
             'users' => json_collection(
                 $messages->pluck('sender')->uniqueStrict('user_id')->values(),
-                new UserTransformer()
+                new UserCompactTransformer()
             ),
         ];
     }
