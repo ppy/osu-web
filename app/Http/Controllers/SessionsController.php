@@ -20,7 +20,7 @@ class SessionsController extends Controller
             'store',
         ]]);
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function store()

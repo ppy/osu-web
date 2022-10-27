@@ -28,7 +28,7 @@ class XsollaController extends Controller
         $this->middleware('check-user-restricted', ['except' => ['callback']]);
         $this->middleware('verify-user', ['except' => ['callback']]);
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function token()

@@ -18,6 +18,8 @@ class BBCodeFromDB
     public $refId;
     public $withGallery;
 
+    private array $options;
+
     public function __construct($text, $uid = '', $options = [])
     {
         $defaultOptions = [
