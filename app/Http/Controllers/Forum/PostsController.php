@@ -25,7 +25,7 @@ class PostsController extends Controller
 
         $this->middleware('require-scopes:forum.write', ['only' => ['update']]);
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function destroy($id)

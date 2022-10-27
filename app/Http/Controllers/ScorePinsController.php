@@ -9,6 +9,7 @@ use App\Jobs\RenumberUserScorePins;
 use App\Libraries\MorphMap;
 use App\Models\Beatmap;
 use App\Models\ScorePin;
+use Exception;
 
 class ScorePinsController extends Controller
 {
@@ -16,7 +17,7 @@ class ScorePinsController extends Controller
     {
         $this->middleware('auth');
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function destroy()
@@ -89,10 +90,16 @@ class ScorePinsController extends Controller
             $rulesetId = Beatmap::MODES[$score->getMode()];
             $currentMinDisplayOrder = $user->scorePins()->where('ruleset_id', $rulesetId)->min('display_order') ?? 2500;
 
-            (new ScorePin(['display_order' => $currentMinDisplayOrder - 100, 'ruleset_id' => $rulesetId]))
-                ->user()->associate($user)
-                ->score()->associate($score)
-                ->saveOrExplode();
+            try {
+                (new ScorePin(['display_order' => $currentMinDisplayOrder - 100, 'ruleset_id' => $rulesetId]))
+                    ->user()->associate($user)
+                    ->score()->associate($score)
+                    ->saveOrExplode();
+            } catch (Exception $ex) {
+                if (!is_sql_unique_exception($ex)) {
+                    throw $ex;
+                }
+            }
         }
 
         return response()->noContent();

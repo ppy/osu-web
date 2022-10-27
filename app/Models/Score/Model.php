@@ -38,6 +38,8 @@ abstract class Model extends BaseModel
         if ($ruleset !== null) {
             return static::getClass($ruleset);
         }
+
+        return null;
     }
 
     public static function getClass(string $ruleset): string

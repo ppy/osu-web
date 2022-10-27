@@ -103,7 +103,7 @@ class Handler extends ExceptionHandler
             $this->reportWithSentry($e);
         }
 
-        return parent::report($e);
+        parent::report($e);
     }
 
     /**

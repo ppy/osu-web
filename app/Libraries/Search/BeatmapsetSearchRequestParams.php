@@ -182,6 +182,8 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         if ($this->sortField !== null && $this->sortOrder !== null) {
             return "{$this->sortField}_{$this->sortOrder}";
         }
+
+        return null;
     }
 
     public function isLoginRequired(): bool

@@ -15,7 +15,7 @@ return [
     ],
 
     'entry' => [
-        'by' => 'per :user',
+        'by' => '',
     ],
 
     'index' => [

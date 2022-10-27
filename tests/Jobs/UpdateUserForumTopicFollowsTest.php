@@ -34,7 +34,7 @@ class UpdateUserForumTopicFollowsTest extends TestCase
         $zz = UserNotification::create([
             'notification_id' => $notification->getKey(),
             'user_id' => $user->getKey(),
-            'created_at' => now()->subHour(1),
+            'created_at' => now()->subHours(1),
         ]);
 
         $watchesCount = TopicWatch::count();

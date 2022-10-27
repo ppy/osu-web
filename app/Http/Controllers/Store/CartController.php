@@ -23,7 +23,7 @@ class CartController extends Controller
             ]]);
         }
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function show()

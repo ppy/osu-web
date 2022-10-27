@@ -34,7 +34,7 @@ return [
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => '必须完成指定课题中的所有谱面后才能投票',
+                'incomplete_play' => '必须完成指定歌单中的所有谱面后才能投票',
             ],
         ],
     ],

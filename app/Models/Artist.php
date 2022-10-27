@@ -66,7 +66,7 @@ class Artist extends Model
     {
         $date = parse_time_to_carbon($this->attributes['tracks_max_created_at']);
 
-        return $date !== null && $date->addMonth(1)->isFuture();
+        return $date !== null && $date->addMonths(1)->isFuture();
     }
 
     public function url()
