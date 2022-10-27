@@ -10,6 +10,7 @@ use App\Libraries\Mods;
 use App\Models\Beatmap;
 use App\Models\Model as BaseModel;
 use App\Models\Solo\ScoreData;
+use App\Models\Solo\ScorePerformance;
 use App\Models\Traits\Scoreable;
 use App\Models\User;
 
@@ -114,6 +115,11 @@ abstract class Model extends BaseModel
         return $this->belongsTo("App\\Models\\Score\\Best\\{$basename}", 'high_score_id', 'score_id');
     }
 
+    public function performance()
+    {
+        return $this->belongsTo(ScorePerformance::class, 'nonexistent');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -148,6 +154,7 @@ abstract class Model extends BaseModel
 
             'data' => $this->getData(),
             'enabled_mods' => $this->getEnabledModsAttribute($this->getRawAttribute('enabled_mods')),
+            'nonexistent' => null,
 
             'beatmap',
             'best',
