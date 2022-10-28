@@ -8,7 +8,6 @@ declare(strict_types=1);
 namespace Database\Factories\Forum;
 
 use App\Models\Forum\PollOption;
-use App\Models\Forum\Topic;
 use Database\Factories\Factory;
 
 class PollOptionFactory extends Factory
@@ -19,7 +18,7 @@ class PollOptionFactory extends Factory
     {
         return [
             'poll_option_text' => fn () => $this->faker->sentence(),
-            'topic_id' => Topic::factory()->poll(0),
+            'topic_id' => null,
         ];
     }
 }
