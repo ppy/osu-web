@@ -5,17 +5,15 @@
 
 namespace App\Libraries;
 
+use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
+use App\Models\User;
 use Carbon\Carbon;
 
 class NewForumTopic
 {
-    private $forum;
-
-    public function __construct($forum, $user)
+    public function __construct(private Forum $forum, private ?User $user)
     {
-        $this->forum = $forum;
-        $this->user = $user;
     }
 
     public function cover()

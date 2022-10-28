@@ -31,7 +31,8 @@ class MigrateFreshAllCommand extends FreshCommand
 
         $continue = $this->option('yes') || $this->confirm('continue?');
         if (!$continue) {
-            return $this->error('User aborted!');
+            $this->error('User aborted!');
+            return;
         }
 
         foreach (array_keys($connections) as $database) {

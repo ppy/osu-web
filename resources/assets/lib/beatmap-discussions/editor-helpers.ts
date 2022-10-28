@@ -1,50 +1,56 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { EmbedElement, ParagraphElement } from 'editor';
 import {
   BeatmapDiscussionReview,
-  BeatmapReviewDiscussionType,
   DocumentIssueEmbed,
 } from 'interfaces/beatmap-discussion-review';
 import { Editor, Element as SlateElement, Node as SlateNode, Range as SlateRange, Text, Transforms } from 'slate';
-import { ReactEditor } from 'slate-react';
 import { parseTimestamp } from 'utils/beatmapset-discussion-helper';
 
 export const blockCount = (input: SlateElement[]) => input.length;
 
-export const slateDocumentIsEmpty = (doc: SlateElement[]): boolean => doc.length === 0 || (
+export const slateDocumentIsEmpty = (doc: SlateElement[]) => doc.length === 0 || (
   doc.length === 1 &&
       doc[0].type === 'paragraph' &&
       doc[0].children.length === 1 &&
       doc[0].children[0].text === ''
 );
 
-export const insideEmbed = (editor: ReactEditor) => getCurrentNode(editor)?.type === 'embed';
+export const insideEmbed = (editor: Editor) => {
+  const node = getCurrentNode(editor);
+  if (node == null) return false;
 
-export const insideEmptyNode = (editor: ReactEditor) => {
-  const parent = getCurrentNode(editor);
-  if (!parent) {
-    return false;
-  }
-
-  return Editor.isEmpty(editor, parent);
+  return 'type' in node && node.type === 'embed';
 };
 
-export const isFormatActive = (editor: ReactEditor, format: string) => {
+export const insideEmptyNode = (editor: Editor) => {
+  const parent = getCurrentNode(editor);
+  if (parent == null) return false;
+
+  if ('type' in parent) {
+    return Editor.isEmpty(editor, parent);
+  }
+
+  return false;
+};
+
+export const isFormatActive = (editor: Editor, format: 'bold' | 'italic') => {
   const [match] = Editor.nodes(editor, {
-    match: (n) => n[format] === true,
+    match: (node) => Text.isText(node) && node[format] === true,
     mode: 'all',
   });
   return !!match;
 };
 
-export const getCurrentNode = (editor: ReactEditor) => {
+const getCurrentNode = (editor: Editor) => {
   if (editor.selection) {
     return SlateNode.parent(editor, SlateRange.start(editor.selection).path);
   }
 };
 
-export const toggleFormat = (editor: ReactEditor, format: string) => {
+export const toggleFormat = (editor: Editor, format: 'bold' | 'italic') => {
   Transforms.setNodes(
     editor,
     { [format]: isFormatActive(editor, format) ? null : true },
@@ -53,24 +59,24 @@ export const toggleFormat = (editor: ReactEditor, format: string) => {
 };
 
 // TODO: check typing
-function serializeEmbed(node: SlateElement): DocumentIssueEmbed {
-  if (node.discussionId) {
+function serializeEmbed(node: EmbedElement): DocumentIssueEmbed {
+  if (node.discussionId != null) {
     return {
-      discussion_id: node.discussionId as number,
+      discussion_id: node.discussionId,
       type: 'embed',
     };
   } else {
     return {
-      beatmap_id: node.beatmapId as number,
-      discussion_type: node.discussionType as BeatmapReviewDiscussionType,
-      text: node.children[0].text as string,
-      timestamp: node.timestamp ? parseTimestamp(node.timestamp as string) : null,
+      beatmap_id: node.beatmapId ?? null,
+      discussion_type: node.discussionType,
+      text: node.children[0].text,
+      timestamp: node.timestamp ? parseTimestamp(node.timestamp) : null,
       type: 'embed',
     };
   }
 }
 
-function serializeParagraph(node: SlateElement) {
+function serializeParagraph(node: ParagraphElement) {
   const childOutput: string[] = [];
   const currentMarks = {
     bold: false,
@@ -90,7 +96,7 @@ function serializeParagraph(node: SlateElement) {
       }
     }
 
-    childOutput.push((child.text as string).replace('*', '\\*'));
+    childOutput.push((child.text).replace('*', '\\*'));
   });
 
   // ensure closing of open tags

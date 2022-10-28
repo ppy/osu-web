@@ -202,7 +202,7 @@ class ModelCompositePrimaryKeysTest extends TestCase
                     'group_id' => 0,
                 ],
                 ['user_id' => 1],
-                ['group_leader', [0, 1], 2],
+                ['group_leader', [true, false], true],
             ],
             [
                 UserRelation::class,

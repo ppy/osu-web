@@ -151,7 +151,7 @@ abstract class Model extends BaseModel
             ], $attributes);
         }
 
-        return parent::__construct($attributes);
+        parent::__construct($attributes);
     }
 
     public function countryRank()

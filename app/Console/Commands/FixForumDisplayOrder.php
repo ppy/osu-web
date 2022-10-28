@@ -34,7 +34,8 @@ class FixForumDisplayOrder extends Command
         $continue = $this->confirm('Proceed?');
 
         if (!$continue) {
-            return $this->error('Aborted.');
+            $this->error('Aborted.');
+            return;
         }
 
         $this->startReorder();

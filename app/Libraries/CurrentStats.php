@@ -12,10 +12,11 @@ use Cache;
 
 class CurrentStats
 {
-    public $currentOnline;
-    public $currentGames;
-    public $graphData;
-    public $totalUsers;
+    public int $currentOnline;
+    public int $currentGames;
+    public array $graphData;
+    public int $onlineFriends;
+    public int $totalUsers;
 
     public function __construct()
     {

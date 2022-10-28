@@ -22,7 +22,7 @@ class ChannelsController extends Controller
     {
         $this->middleware('require-scopes:chat.write', ['only' => 'store']);
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     /**
