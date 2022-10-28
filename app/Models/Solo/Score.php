@@ -116,6 +116,11 @@ class Score extends Model implements Traits\ReportableInterface
             ->whereHas('user', fn (Builder $q): Builder => $q->default());
     }
 
+    public function scopeDefault(Builder $query): Builder
+    {
+        return $query->whereHas('beatmap');
+    }
+
     public function getAttribute($key)
     {
         return match ($key) {
