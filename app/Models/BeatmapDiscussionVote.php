@@ -23,13 +23,13 @@ class BeatmapDiscussionVote extends Model
 
     public static function recentlyReceivedByUser($userId, $timeframeMonths = 3)
     {
-        return static::where('beatmap_discussion_votes.created_at', '>', Carbon::now()->subMonth($timeframeMonths))
+        return static::where('beatmap_discussion_votes.created_at', '>', Carbon::now()->subMonths($timeframeMonths))
             ->join('beatmap_discussions', 'beatmap_discussion_votes.beatmap_discussion_id', 'beatmap_discussions.id')
             ->select('beatmap_discussion_votes.user_id')
             ->selectRaw('sum(beatmap_discussion_votes.score) as score')
             ->selectRaw('count(beatmap_discussion_votes.score) as count')
             ->where('beatmap_discussions.user_id', $userId)
-            ->where('beatmap_discussions.updated_at', '>', Carbon::now()->subMonth($timeframeMonths))
+            ->where('beatmap_discussions.updated_at', '>', Carbon::now()->subMonths($timeframeMonths))
             ->whereHas('user', function ($userQuery) {
                 $userQuery->default();
             })
@@ -40,13 +40,13 @@ class BeatmapDiscussionVote extends Model
 
     public static function recentlyGivenByUser($userId, $timeframeMonths = 3)
     {
-        return static::where('beatmap_discussion_votes.created_at', '>', Carbon::now()->subMonth($timeframeMonths))
+        return static::where('beatmap_discussion_votes.created_at', '>', Carbon::now()->subMonths($timeframeMonths))
             ->join('beatmap_discussions', 'beatmap_discussion_votes.beatmap_discussion_id', 'beatmap_discussions.id')
             ->select('beatmap_discussions.user_id')
             ->selectRaw('sum(beatmap_discussion_votes.score) as score')
             ->selectRaw('count(beatmap_discussion_votes.score) as count')
             ->where('beatmap_discussion_votes.user_id', $userId)
-            ->where('beatmap_discussions.updated_at', '>', Carbon::now()->subMonth($timeframeMonths))
+            ->where('beatmap_discussions.updated_at', '>', Carbon::now()->subMonths($timeframeMonths))
             ->whereHas('beatmapDiscussion.user', function ($userQuery) {
                 $userQuery->default();
             })

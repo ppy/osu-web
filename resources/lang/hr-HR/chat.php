@@ -15,7 +15,7 @@ return [
     ],
 
     'channels' => [
-        'confirm_part' => '',
+        'confirm_part' => 'Želiš li sakriti ovaj kanal? I dalje ćeš primati poruke iz ovog kanala.',
         'create' => 'napravi obavijest',
 
         'list' => [

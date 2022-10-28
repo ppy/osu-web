@@ -38,6 +38,8 @@ abstract class Model extends BaseModel
         if ($ruleset !== null) {
             return static::getClass($ruleset);
         }
+
+        return null;
     }
 
     public static function getClass(string $ruleset): string
@@ -112,14 +114,51 @@ abstract class Model extends BaseModel
         return $this->belongsTo("App\\Models\\Score\\Best\\{$basename}", 'high_score_id', 'score_id');
     }
 
-    public function getMode(): string
-    {
-        return snake_case(get_class_basename(static::class));
-    }
-
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function getAttribute($key)
+    {
+        return match ($key) {
+            'beatmap_id',
+            'beatmapset_id',
+            'count100',
+            'count300',
+            'count50',
+            'countgeki',
+            'countkatu',
+            'countmiss',
+            'high_score_id',
+            'maxcombo',
+            'rank',
+            'score',
+            'score_id',
+            'scorechecksum',
+            'user_id' => $this->getRawAttribute($key),
+
+            'hidden',
+            'pass',
+            'perfect' => (bool) $this->getRawAttribute($key),
+
+            'date' => $this->getTimeFast($key),
+
+            'date_json' => $this->getJsonTimeFast($key),
+
+            'data' => $this->getData(),
+            'enabled_mods' => $this->getEnabledModsAttribute($this->getRawAttribute('enabled_mods')),
+
+            'beatmap',
+            'best',
+            'replayViewCount',
+            'user' => $this->getRelationValue($key),
+        };
+    }
+
+    public function getMode(): string
+    {
+        return snake_case(get_class_basename(static::class));
     }
 
     public function url()
@@ -127,7 +166,7 @@ abstract class Model extends BaseModel
         return route('scores.show', ['mode' => $this->getMode(), 'score' => $this->getKey()]);
     }
 
-    public function getDataAttribute()
+    protected function getData()
     {
         $mods = array_map(fn ($m) => ['acronym' => $m, 'settings' => []], $this->enabled_mods);
         $statistics = [
@@ -159,7 +198,7 @@ abstract class Model extends BaseModel
         return new ScoreData([
             'accuracy' => $this->accuracy(),
             'beatmap_id' => $this->beatmap_id,
-            'ended_at' => $this->date,
+            'ended_at' => $this->date_json,
             'max_combo' => $this->maxcombo,
             'mods' => $mods,
             'passed' => $this->pass,

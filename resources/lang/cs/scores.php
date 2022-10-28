@@ -24,7 +24,7 @@ return [
 
     'status' => [
         'non_best' => 'Pouze osobní nejlepší skóre ocenění',
-        'non_passing' => '',
+        'non_passing' => 'pp dostávají jen schválené skóre ',
         'processing' => 'Toto skóre se stále počítá a bude brzy zobrazeno',
     ],
 ];

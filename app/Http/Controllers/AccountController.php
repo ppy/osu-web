@@ -59,7 +59,7 @@ class AccountController extends Controller
             'verifyLink',
         ]]);
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function avatar()
@@ -177,7 +177,13 @@ class AccountController extends Controller
         }
 
         DB::transaction(function () use ($requestParams) {
-            // FIXME: less queries
+            $user = auth()->user();
+            $user
+                ->notificationOptions()
+                ->whereIn('name', array_keys($requestParams))
+                ->select('user_id')
+                ->lockForUpdate()
+                ->get();
             foreach ($requestParams as $key => $value) {
                 if (!UserNotificationOption::supportsNotifications($key)) {
                     continue;
@@ -185,7 +191,7 @@ class AccountController extends Controller
 
                 $params = get_params($value, null, ['details:any']);
 
-                $option = auth()->user()->notificationOptions()->firstOrNew(['name' => $key]);
+                $option = $user->notificationOptions()->firstOrNew(['name' => $key]);
                 // TODO: show correct field error.
                 $option->fill($params)->saveOrExplode();
             }

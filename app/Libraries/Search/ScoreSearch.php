@@ -36,6 +36,9 @@ class ScoreSearch extends RecordSearch
     {
         $query = new BoolQuery();
 
+        if ($this->params->isLegacy !== null) {
+            $query->filter(['term' => ['is_legacy' => $this->params->isLegacy]]);
+        }
         if ($this->params->rulesetId !== null) {
             $query->filter(['term' => ['ruleset_id' => $this->params->rulesetId]]);
         }
@@ -60,7 +63,12 @@ class ScoreSearch extends RecordSearch
                 break;
         }
 
-        $beforeTotalScore = $this->params->beforeTotalScore ?? $this->params->beforeScore?->data->totalScore;
+        $beforeTotalScore = $this->params->beforeTotalScore;
+        if ($beforeTotalScore === null && $this->params->beforeScore !== null) {
+            $beforeTotalScore = $this->params->beforeScore->isLegacy()
+                ? $this->params->beforeScore->data->legacyTotalScore
+                : $this->params->beforeScore->data->totalScore;
+        }
         if ($beforeTotalScore !== null) {
             $scoreQuery = (new BoolQuery())->shouldMatch(1);
             $scoreQuery->should((new BoolQuery())->filter(['range' => [

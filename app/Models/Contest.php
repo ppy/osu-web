@@ -360,4 +360,14 @@ class Contest extends Model
             return $this->extra_options;
         });
     }
+
+    public function getForcedWidth()
+    {
+        return $this->getExtraOptions()['forced_width'] ?? null;
+    }
+
+    public function getForcedHeight()
+    {
+        return $this->getExtraOptions()['forced_height'] ?? null;
+    }
 }
