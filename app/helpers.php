@@ -1823,13 +1823,9 @@ function search_error_message(?Exception $e): ?string
 /**
  * Gets the path to a versioned resource.
  *
- * @param string $resource
- * @param string $manifest
- * @return HtmlString
- *
  * @throws Exception
  */
-function unmix(string $resource)
+function unmix(string $resource): HtmlString
 {
     return app('assets-manifest')->src($resource);
 }
