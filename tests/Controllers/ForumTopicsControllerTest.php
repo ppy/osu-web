@@ -17,6 +17,43 @@ use Tests\TestCase;
 
 class ForumTopicsControllerTest extends TestCase
 {
+    public function testDestroy(): void
+    {
+        $user = User::factory()->create();
+        $topic = Topic::factory()->withPost()->create(['topic_poster' => $user]);
+
+        $this->expectCountChange(fn () => Topic::count(), -1);
+
+        $this
+            ->actingAsVerified($user)
+            ->delete(route('forum.topics.destroy', $topic))
+            ->assertRedirect(route('forum.forums.show', $topic->forum_id));
+    }
+
+    public function testDestroyAsDifferentUser(): void
+    {
+        $user = User::factory()->create();
+        $topic = Topic::factory()->withPost()->create();
+
+        $this->expectCountChange(fn () => Topic::count(), 0);
+
+        $this
+            ->actingAsVerified($user)
+            ->delete(route('forum.topics.destroy', $topic))
+            ->assertStatus(403);
+    }
+
+    public function testDestroyAsGuest(): void
+    {
+        $topic = Topic::factory()->withPost()->create();
+
+        $this->expectCountChange(fn () => Topic::count(), 0);
+
+        $this
+            ->delete(route('forum.topics.destroy', $topic))
+            ->assertStatus(401);
+    }
+
     public function testDestroyAsModerator(): void
     {
         $topic = Topic::factory()->withPost()->create();
@@ -28,19 +65,6 @@ class ForumTopicsControllerTest extends TestCase
             ->actingAsVerified($user)
             ->delete(route('forum.topics.destroy', $topic))
             ->assertSuccessful();
-    }
-
-    public function testDestroyAsOwner(): void
-    {
-        $user = User::factory()->create();
-        $topic = Topic::factory()->withPost()->create(['topic_poster' => $user]);
-
-        $this->expectCountChange(fn () => Topic::count(), -1);
-
-        $this
-            ->actingAsVerified($user)
-            ->delete(route('forum.topics.destroy', $topic))
-            ->assertRedirect(route('forum.forums.show', $topic->forum_id));
     }
 
     public function testPin(): void
