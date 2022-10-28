@@ -34,7 +34,7 @@ return [
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => '',
+                'incomplete_play' => 'Phải chơi hết tất cả beatmap trong playlist cụ thể trước khi bình chọn',
             ],
         ],
     ],

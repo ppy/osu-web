@@ -6,28 +6,28 @@
 return [
     'error' => [
         'chat' => [
-            'empty' => 'No es pot enviar un missatge buit.',
-            'limit_exceeded' => 'Estàs enviant missatges massa ràpid, espera una mica i intenta-ho de nou.',
-            'too_long' => 'El missatge que intentes enviar és massa llarg.',
+            'empty' => '',
+            'limit_exceeded' => '',
+            'too_long' => '',
         ],
     ],
 
     'scopes' => [
-        'bot' => 'Actuar com un bot de xat.',
-        'identify' => 'Identifiqueu-vos i llegiu el vostre perfil públic.',
+        'bot' => '',
+        'identify' => '',
 
         'chat' => [
-            'write' => 'Enviar missatges en nom vostre.',
+            'write' => '',
         ],
 
         'forum' => [
-            'write' => 'Crear i editar temes i publicacions del fòrum en nom seu.',
+            'write' => '',
         ],
 
         'friends' => [
-            'read' => 'Veure qui segueixes.',
+            'read' => '',
         ],
 
-        'public' => 'Llegir dades públiques en nom seu.',
+        'public' => '',
     ],
 ];

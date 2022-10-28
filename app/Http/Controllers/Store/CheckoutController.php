@@ -27,7 +27,7 @@ class CheckoutController extends Controller
         }
         $this->middleware('verify-user');
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function show($id)

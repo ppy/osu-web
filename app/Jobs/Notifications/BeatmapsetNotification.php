@@ -51,6 +51,6 @@ abstract class BeatmapsetNotification extends BroadcastNotificationBase
     {
         $this->beatmapset->watches()->update(['last_notified' => $this->getTimestamp()]);
 
-        return parent::handle();
+        parent::handle();
     }
 }
