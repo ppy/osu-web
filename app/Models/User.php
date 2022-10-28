@@ -32,6 +32,7 @@ use Hash;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Translation\HasLocalePreference;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\QueryException;
 use Laravel\Passport\HasApiTokens;
 use League\OAuth2\Server\Exception\OAuthServerException;
@@ -846,6 +847,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'profileBeatmapsetsPending',
             'profileBeatmapsetsRanked',
             'rank',
+            'rankHighests',
             'rankHistories',
             'receivedKudosu',
             'relations',
@@ -1226,6 +1228,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function rank()
     {
         return $this->belongsTo(Rank::class, 'user_rank');
+    }
+
+    public function rankHighests(): HasMany
+    {
+        return $this->hasMany(RankHighest::class);
     }
 
     public function rankHistories()
