@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Database\Factories\Forum;
 
+use App\Exceptions\InvariantException;
 use App\Models\Forum\Forum;
 use App\Models\Forum\PollOption;
 use App\Models\Forum\Post;
@@ -34,25 +35,23 @@ class TopicFactory extends Factory
 
     public function poll(int $optionCount = 2): static
     {
-        $factory = $this->state([
-            'poll_hide_results' => fn () => $this->faker->boolean(),
-            'poll_length' => fn () => $this->faker->randomElement([
-                // between 1 and 7 days, or infinite length
-                $this->faker->numberBetween(86400, 604800),
-                0,
-            ]),
-            'poll_max_options' => 1,
-            'poll_start' => fn (array $attr) => $attr['topic_time'],
-            'poll_title' => fn () => $this->faker->sentence(),
-            'poll_vote_change' => fn () => $this->faker->boolean(),
-        ]);
-
-        if ($optionCount <= 0) {
-            return $factory;
+        if ($optionCount < 2 || $optionCount > 10) {
+            throw new InvariantException('Poll requires between 2 and 10 options');
         }
 
-        return $factory
-            ->state(['poll_max_options' => fn () => $this->faker->numberBetween(1, $optionCount)])
+        return $this
+            ->state([
+                'poll_hide_results' => fn () => $this->faker->boolean(),
+                'poll_length' => fn () => $this->faker->randomElement([
+                    // between 1 and 7 days, or infinite length
+                    $this->faker->numberBetween(86400, 604800),
+                    0,
+                ]),
+                'poll_max_options' => fn () => $this->faker->numberBetween(1, $optionCount),
+                'poll_start' => fn (array $attr) => $attr['topic_time'],
+                'poll_title' => fn () => $this->faker->sentence(),
+                'poll_vote_change' => fn () => $this->faker->boolean(),
+            ])
             ->has(
                 PollOption::factory()
                     ->count($optionCount)
