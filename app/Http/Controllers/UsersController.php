@@ -19,6 +19,8 @@ use App\Models\BeatmapDiscussion;
 use App\Models\Country;
 use App\Models\IpBan;
 use App\Models\Log;
+use App\Models\Solo\Score as SoloScore;
+use App\Models\Solo\ScoreLegacyIdMap;
 use App\Models\User;
 use App\Models\UserAccountHistory;
 use App\Models\UserNotFound;
@@ -793,9 +795,16 @@ class UsersController extends Controller
             case 'scoresFirsts':
                 $transformer = new ScoreTransformer();
                 $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
-                $query = $this->user->scoresFirst($this->mode, true)
-                    ->visibleUsers()
-                    ->reorderBy('score_id', 'desc')
+                $scoreQuery = $this->user->scoresFirst($this->mode, true)->unorder();
+                $userFirstsQuery = $scoreQuery->select($scoreQuery->qualifyColumn('score_id'));
+                $soloMappingQuery = ScoreLegacyIdMap
+                    ::where('ruleset_id', Beatmap::MODES[$this->mode])
+                    ->whereIn('old_score_id', $userFirstsQuery)
+                    ->select('score_id');
+                $query = SoloScore
+                    ::whereIn('id', $soloMappingQuery)
+                    ->default()
+                    ->reorderBy('id', 'desc')
                     ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
                 $userRelationColumn = 'user';
                 break;
