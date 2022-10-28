@@ -26,12 +26,6 @@ class UserChannel extends Model
 
     private ?int $lastReadIdToSet;
 
-    public function getLastReadIdAttribute($value): ?int
-    {
-        // return the value we tried to set it to, not the query expression.
-        return $value instanceof Expression ? $this->lastReadIdToSet : $value;
-    }
-
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -47,10 +41,26 @@ class UserChannel extends Model
         return $this->belongsTo(Channel::class, 'channel_id');
     }
 
+    public function getAttribute($key)
+    {
+        return match ($key) {
+            'channel_id',
+            'user_id' => $this->getRawAttribute($key),
+
+            'hidden' => (bool) $this->getRawAttribute($key),
+
+            'last_read_id' => $this->getLastReadId(),
+
+            'channel',
+            'user',
+            'userScoped' => $this->getRelationValue($key),
+        };
+    }
+
     // Laravel has own hidden property
     public function isHidden()
     {
-        return (bool) $this->getAttribute('hidden');
+        return $this->getAttribute('hidden');
     }
 
     public function markAsRead($messageId = null)
@@ -73,5 +83,13 @@ class UserChannel extends Model
                 ],
             ],
         ]));
+    }
+
+    private function getLastReadId(): ?int
+    {
+        $value = $this->getRawAttribute('last_read_id');
+
+        // return the value we tried to set it to, not the query expression.
+        return $value instanceof Expression ? $this->lastReadIdToSet : $value;
     }
 }
