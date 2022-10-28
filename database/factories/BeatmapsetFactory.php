@@ -32,7 +32,7 @@ class BeatmapsetFactory extends Factory
             'genre_id' => Genre::factory(),
             'language_id' => Language::factory(),
             'submit_date' => fn () => $this->faker->dateTime(),
-            'thread_id' => Topic::factory()->withPost(),
+            'thread_id' => 0,
             'user_id' => 0, // follow db default if no user specified; this is for other factories that depend on user_id.
             'offset' => fn () => $this->faker->randomDigit(),
 
@@ -79,6 +79,19 @@ class BeatmapsetFactory extends Factory
             'approved_date' => $approvedAt,
             'queued_at' => $approvedAt,
         ]);
+    }
+
+    public function withDescription(): static
+    {
+        // Like `$this->for(Topic::factory()->...)`, but called after making the model and creating
+        // child models so that they can be used as dependencies.
+        return $this->afterMaking(function (Beatmapset $beatmapset) {
+            $beatmapset->thread_id = Topic::factory()
+                ->state(['topic_poster' => $beatmapset->user_id])
+                ->withPost()
+                ->create()
+                ->getKey();
+        });
     }
 
     public function withDiscussion()
