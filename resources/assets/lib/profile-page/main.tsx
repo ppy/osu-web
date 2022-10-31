@@ -63,6 +63,7 @@ export default class Main extends React.Component<Props> {
     top_ranks: React.createRef(),
   };
   private readonly pages = React.createRef<HTMLDivElement>();
+  private readonly pagesOffsetRef = React.createRef<HTMLDivElement>();
   private scrollTo: ScrollTo = { scrollBy: 0 };
   private readonly tabs = React.createRef<HTMLDivElement>();
   private readonly timeouts: Partial<Record<'draggingTab' | 'initialPageJump' | 'scroll', number>> = {};
@@ -91,7 +92,7 @@ export default class Main extends React.Component<Props> {
   }
 
   private get pagesOffset() {
-    return document.querySelector<HTMLElement>('.js-switchable-mode-page--scrollspy-offset');
+    return this.pagesOffsetRef.current;
   }
 
   private get stickyHeaderOffset() {
@@ -203,7 +204,7 @@ export default class Main extends React.Component<Props> {
             <Detail controller={this.controller} />
           </div>
 
-          <div className='hidden-xs page-extra-tabs js-switchable-mode-page--scrollspy-offset'>
+          <div ref={this.pagesOffsetRef} className='hidden-xs page-extra-tabs'>
             {this.displayExtraTabs &&
               <div ref={this.tabs} className='page-mode page-mode--profile-page-extra'>
                 {this.displayedExtraPages.map((m) => (
