@@ -49,18 +49,19 @@ export default class Main extends React.Component<Props> {
   private readonly disposers = new Set<(() => void) | undefined>();
   private draggingTab = false;
   private readonly eventId = `users-show-${nextVal()}`;
-  private readonly extraPages: Record<ProfileExtraPage, React.RefObject<HTMLDivElement>> = {
+  private lastScroll = 0;
+  private pageJumpingTo: Page | null = null;
+  private readonly pageRefs: Record<Page, React.RefObject<HTMLDivElement>> = {
     account_standing: React.createRef(),
     beatmaps: React.createRef(),
     historical: React.createRef(),
     kudosu: React.createRef(),
+    main: React.createRef(),
     me: React.createRef(),
     medals: React.createRef(),
     recent_activity: React.createRef(),
     top_ranks: React.createRef(),
   };
-  private lastScroll = 0;
-  private pageJumpingTo: Page | null = null;
   private readonly pages = React.createRef<HTMLDivElement>();
   private scrollTo: ScrollTo = { scrollBy: 0 };
   private readonly tabs = React.createRef<HTMLDivElement>();
@@ -87,10 +88,6 @@ export default class Main extends React.Component<Props> {
     }
 
     return profileOrder;
-  }
-
-  private get pageElements() {
-    return document.querySelectorAll<HTMLElement>('.js-switchable-mode-page--scrollspy');
   }
 
   private get pagesOffset() {
@@ -200,7 +197,8 @@ export default class Main extends React.Component<Props> {
 
         <div className='osu-page osu-page--generic-compact'>
           <div
-            className='js-switchable-mode-page--scrollspy js-switchable-mode-page--page'
+            ref={this.pageRefs.main}
+            className='js-switchable-mode-page--page'
             data-page-id='main'
           >
             <Detail controller={this.controller} />
@@ -230,8 +228,8 @@ export default class Main extends React.Component<Props> {
               {this.displayedExtraPages.map((name) => (
                 <div
                   key={name}
-                  ref={this.extraPages[name]}
-                  className={`js-switchable-mode-page--scrollspy js-switchable-mode-page--page ${this.isSortablePage(name) ? 'js-sortable--page' : ''}`}
+                  ref={this.pageRefs[name]}
+                  className={`js-switchable-mode-page--page ${this.isSortablePage(name) ? 'js-sortable--page' : ''}`}
                   data-page-id={name}
                 >
                   {this.extraPage(name)}
@@ -247,7 +245,7 @@ export default class Main extends React.Component<Props> {
 
   private readonly extraPage = (name: ProfileExtraPage) => {
     const baseProps = {
-      containerRef: this.extraPages[name],
+      containerRef: this.pageRefs[name],
       controller: this.controller,
       name,
     };
@@ -286,7 +284,7 @@ export default class Main extends React.Component<Props> {
 
   @action
   private readonly handleLazyLoadDone = (key: ProfileExtraPage, snapshot: Snapshot) => {
-    const element = this.extraPages[key].current;
+    const element = this.pageRefs[key].current;
     if (element == null) {
       return;
     }
@@ -321,7 +319,7 @@ export default class Main extends React.Component<Props> {
   };
 
   private readonly handleLazyLoadGetSnapshot = (name: ProfileExtraPage) => {
-    const element = this.extraPages[name].current;
+    const element = this.pageRefs[name].current;
     if (element == null) return;
 
     return {
@@ -369,12 +367,12 @@ export default class Main extends React.Component<Props> {
   private readonly pageScan = () => {
     if (this.pagesOffset == null) return;
 
-    const pages = this.pageElements;
-    if (pages.length === 0) return;
-
     const matching = new Set<Page>();
 
-    for (const page of pages) {
+    for (const key of this.displayedExtraPages) {
+      const page = this.pageRefs[key].current;
+      if (page == null) continue;
+
       const pageId = page.dataset.pageId as Page;
       const pageDims = page.getBoundingClientRect();
 
@@ -405,7 +403,7 @@ export default class Main extends React.Component<Props> {
 
   @action
   private readonly pageScrollIntoView = (page: Page, smooth = false) => {
-    const target = page === 'main' ? document.body : this.extraPages[page].current;
+    const target = page === 'main' ? document.body : this.pageRefs[page].current;
     if (target == null) return;
 
     const pageId = target.dataset.pageId as Page;
