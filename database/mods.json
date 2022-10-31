@@ -791,7 +791,8 @@
           "TP",
           "SI",
           "GR",
-          "DF"
+          "DF",
+          "FR"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -922,6 +923,20 @@
         "UserPlayable": true,
         "ValidForMultiplayer": false,
         "ValidForMultiplayerAsFreeMod": false
+      },
+      {
+        "Acronym": "FR",
+        "Name": "Freeze Frame",
+        "Description": "Burn the notes into your memory.",
+        "Type": "Fun",
+        "Settings": [],
+        "IncompatibleMods": [
+          "AD"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
       },
       {
         "Acronym": "TD",
