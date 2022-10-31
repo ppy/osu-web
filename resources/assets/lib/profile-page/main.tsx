@@ -198,7 +198,6 @@ export default class Main extends React.Component<Props> {
         <div className='osu-page osu-page--generic-compact'>
           <div
             ref={this.pageRefs.main}
-            className='js-switchable-mode-page--page'
             data-page-id='main'
           >
             <Detail controller={this.controller} />
@@ -229,7 +228,7 @@ export default class Main extends React.Component<Props> {
                 <div
                   key={name}
                   ref={this.pageRefs[name]}
-                  className={`js-switchable-mode-page--page ${this.isSortablePage(name) ? 'js-sortable--page' : ''}`}
+                  className={this.isSortablePage(name) ? 'js-sortable--page' : ''}
                   data-page-id={name}
                 >
                   {this.extraPage(name)}
