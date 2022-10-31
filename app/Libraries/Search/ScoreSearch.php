@@ -49,7 +49,9 @@ class ScoreSearch extends RecordSearch
             $query->filter(['term' => ['user_id' => $this->params->userId]]);
         }
         if ($this->params->excludeMods !== null && count($this->params->excludeMods) > 0) {
-            $query->mustNot(['terms' => ['mods' => $this->params->excludeMods]]);
+            foreach ($this->params->excludeMods as $excludedMod) {
+                $query->mustNot(['term' => ['mods' => $excludedMod]]);
+            }
         }
 
         $this->addModsFilter($query);
@@ -143,7 +145,12 @@ class ScoreSearch extends RecordSearch
         $allSearchMods = [];
         foreach ($mods as $mod) {
             if ($mod === 'NM') {
-                $noModSubQuery ??= (new BoolQuery())->mustNot(['terms' => ['mods' => $allMods->toArray()]]);
+                if (!isset($noModSubQuery)) {
+                    $noModSubQuery = new BoolQuery();
+                    foreach ($allMods->toArray() as $excludedMod) {
+                        $noModSubQuery->mustNot(['term' => ['mods' => $excludedMod]]);
+                    }
+                }
                 continue;
             }
             $modsSubQuery ??= new BoolQuery();
@@ -159,7 +166,9 @@ class ScoreSearch extends RecordSearch
         if (isset($modsSubQuery)) {
             $excludedMods = array_values(array_diff($allMods->toArray(), $allSearchMods));
             if (count($excludedMods) > 0) {
-                $modsSubQuery->mustNot(['terms' => ['mods' => $excludedMods]]);
+                foreach ($excludedMods as $excludedMod) {
+                    $modsSubQuery->mustNot(['term' => ['mods' => $excludedMod]]);
+                }
             }
         }
 
