@@ -105,7 +105,7 @@ class Score extends Model implements Traits\ReportableInterface
      */
     public function scopeIndexable(Builder $query): Builder
     {
-        return $this
+        return $query
             ->where('preserve', true)
             ->whereHas('user', fn (Builder $q): Builder => $q->default());
     }
