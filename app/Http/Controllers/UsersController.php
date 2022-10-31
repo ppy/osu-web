@@ -178,7 +178,7 @@ class UsersController extends Controller
                     'monthly_playcounts' => json_collection($this->user->monthlyPlaycounts, new UserMonthlyPlaycountTransformer()),
                     'recent' => $this->getExtraSection(
                         'scoresRecent',
-                        $this->user->scores($this->mode, true)->includeFails(false)->count()
+                        $this->user->recentScoreCount($this->mode)
                     ),
                     'replays_watched_counts' => json_collection($this->user->replaysWatchedCounts, new UserReplaysWatchedCountTransformer()),
                 ];
@@ -816,9 +816,12 @@ class UsersController extends Controller
             case 'scoresRecent':
                 $transformer = new ScoreTransformer();
                 $includes = ScoreTransformer::USER_PROFILE_INCLUDES;
-                $query = $this->user->scores($this->mode, true)
+                $query = $this->user->soloScores()
+                    ->default()
+                    ->forRuleset($this->mode)
                     ->includeFails($options['includeFails'] ?? false)
-                    ->with([...ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD, 'best']);
+                    ->reorderBy('id', 'desc')
+                    ->with(ScoreTransformer::USER_PROFILE_INCLUDES_PRELOAD);
                 $userRelationColumn = 'user';
                 break;
         }
