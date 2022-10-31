@@ -3,9 +3,10 @@
 
 import { BeatmapIcon } from 'components/beatmap-icon';
 import BeatmapListItem from 'components/beatmap-list-item';
+import { EmbedElement } from 'editor';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import * as React from 'react';
-import { Node, Transforms } from 'slate';
+import { Transforms } from 'slate';
 import { ReactEditor } from 'slate-react';
 import { classWithModifiers } from 'utils/css';
 import IconDropdownMenu, { MenuItem } from './icon-dropdown-menu';
@@ -14,7 +15,7 @@ import { SlateContext } from './slate-context';
 interface Props {
   beatmaps: BeatmapExtendedJson[];
   disabled: boolean;
-  element: Node;
+  element: EmbedElement;
 }
 
 export default class EditorBeatmapSelector extends React.Component<Props> {

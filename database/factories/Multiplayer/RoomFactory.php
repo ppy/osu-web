@@ -14,14 +14,14 @@ $factory->define(Room::class, function (Faker\Generator $faker) {
         'name' => function () use ($faker) {
             return $faker->realText(20);
         },
-        'starts_at' => Carbon\Carbon::now()->subHour(1),
-        'ends_at' => Carbon\Carbon::now()->addHour(1),
+        'starts_at' => Carbon\Carbon::now()->subHours(1),
+        'ends_at' => Carbon\Carbon::now()->addHours(1),
     ];
 });
 
 $factory->state(Room::class, 'ended', function (Faker\Generator $faker) {
     return [
-        'ends_at' => Carbon\Carbon::now()->subMinute(1),
+        'ends_at' => Carbon\Carbon::now()->subMinutes(1),
     ];
 });
 

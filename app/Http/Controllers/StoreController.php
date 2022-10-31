@@ -37,7 +37,7 @@ class StoreController extends Controller
             'postUpdateAddress',
         ]]);
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function getListing()

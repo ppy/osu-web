@@ -102,7 +102,7 @@ class BeatmapsetDiscussionsBundle extends BeatmapsetDiscussionsBundleBase
         return $this->memoize(__FUNCTION__, function () {
             $discussions = $this->getDiscussions();
 
-            $allDiscussions = $discussions->merge($this->getRelatedDiscussions($discussions));
+            $allDiscussions = $discussions->merge($this->getRelatedDiscussions());
             $userIds = $allDiscussions->pluck('user_id')->merge($allDiscussions->pluck('startingPost.last_editor_id'))->unique()->values();
 
             $users = User::whereIn('user_id', $userIds)->with('userGroups');

@@ -86,7 +86,7 @@ class ChangeUsernameTest extends TestCase
 
     public function testUserHasSupportedButExpired()
     {
-        $user = $this->createUser(['osu_subscriptionexpiry' => Carbon::now()->subMonth()]);
+        $user = $this->createUser(['osu_subscriptionexpiry' => Carbon::now()->subMonths()]);
 
         $errors = $user->validateChangeUsername('newusername');
 
@@ -100,7 +100,7 @@ class ChangeUsernameTest extends TestCase
             'username' => 'newusername',
             'username_clean' => 'newusername',
             'osu_subscriptionexpiry' => null,
-            'user_lastvisit' => Carbon::now()->subYear(),
+            'user_lastvisit' => Carbon::now()->subYears(),
         ]);
 
         $user->changeUsername('newusername', 'paid');
@@ -124,13 +124,13 @@ class ChangeUsernameTest extends TestCase
             'username' => 'newusername',
             'username_clean' => 'newusername',
             'osu_subscriptionexpiry' => null,
-            'user_lastvisit' => Carbon::now()->subYear(),
+            'user_lastvisit' => Carbon::now()->subYears(),
         ]);
         $this->createUser([
             'username' => 'newusername_old',
             'username_clean' => 'newusername_old',
             'osu_subscriptionexpiry' => null,
-            'user_lastvisit' => Carbon::now()->subYear(),
+            'user_lastvisit' => Carbon::now()->subYears(),
         ]);
 
         $user->changeUsername('newusername', 'paid');
@@ -161,7 +161,7 @@ class ChangeUsernameTest extends TestCase
         $existing->usernameChangeHistory()->create([
             'username' => 'existing_now',
             'username_last' => $newUsername,
-            'timestamp' => Carbon::now()->subYear(),
+            'timestamp' => Carbon::now()->subYears(),
             'type' => 'paid',
         ]);
 
@@ -185,7 +185,7 @@ class ChangeUsernameTest extends TestCase
         $existing->usernameChangeHistory()->create([
             'username' => 'existing_now',
             'username_last' => $newUsername,
-            'timestamp' => Carbon::now()->subYear(),
+            'timestamp' => Carbon::now()->subYears(),
             'type' => 'paid',
         ]);
 
@@ -204,7 +204,7 @@ class ChangeUsernameTest extends TestCase
             'username' => 'newusername',
             'username_clean' => 'newusername',
             'osu_subscriptionexpiry' => null,
-            'user_lastvisit' => Carbon::now()->subYear(),
+            'user_lastvisit' => Carbon::now()->subYears(),
         ]);
 
         $existing->badges()->create(['image' => 'test', 'description' => 'test', 'awarded' => now()]);
@@ -219,7 +219,7 @@ class ChangeUsernameTest extends TestCase
             'username' => 'iamuser',
             'username_clean' => 'iamuser',
             'user_lastvisit' => Carbon::now(),
-            'osu_subscriptionexpiry' => Carbon::now()->addMonth(),
+            'osu_subscriptionexpiry' => Carbon::now()->addMonths(),
         ], $attribs));
     }
 }

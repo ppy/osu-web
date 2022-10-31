@@ -37,7 +37,7 @@ class RoomsControllerTest extends TestCase
             ->actingWithToken($token)
             ->post(route('api.rooms.store'), array_merge(
                 $this->createBasicStoreParams(),
-                ['ends_at' => now()->addHour()],
+                ['ends_at' => now()->addHours()],
             ))->assertSuccessful();
 
         $this->assertSame($roomsCountInitial + 1, Room::count());
@@ -55,7 +55,7 @@ class RoomsControllerTest extends TestCase
         $this->expectCountChange(fn () => PlaylistItem::count(), 0);
 
         $params = array_merge($this->createBasicStoreParams(), [
-            'ends_at' => now()->addHour(),
+            'ends_at' => now()->addHours(),
             'type' => $type,
         ]);
 
@@ -83,7 +83,7 @@ class RoomsControllerTest extends TestCase
         $this->expectCountChange(fn () => PlaylistItem::count(), $ok ? 1 : 0);
 
         $params = array_merge($this->createBasicStoreParams(), [
-            'ends_at' => now()->addHour(),
+            'ends_at' => now()->addHours(),
             'type' => $type,
         ]);
         $params['playlist'][0]['required_mods'] = [];
@@ -111,7 +111,7 @@ class RoomsControllerTest extends TestCase
 
         // explicit ruleset required because AS isn't available for all modes
         $params = array_merge($this->createBasicStoreParams('osu'), [
-            'ends_at' => now()->addHour(),
+            'ends_at' => now()->addHours(),
             'type' => $type,
         ]);
         $params['playlist'][0]['allowed_mods'] = [];
@@ -136,7 +136,7 @@ class RoomsControllerTest extends TestCase
             ->post(route('api.rooms.store'), array_merge(
                 $this->createBasicStoreParams(),
                 [
-                    'ends_at' => now()->addHour(),
+                    'ends_at' => now()->addHours(),
                     'password' => 'hunter2',
                 ],
             ))->assertSuccessful();
@@ -294,7 +294,7 @@ class RoomsControllerTest extends TestCase
             ->actingWithToken($token)
             ->post(route('api.rooms.store'), array_merge(
                 $this->createBasicStoreParams(),
-                ['ends_at' => now()->addHour()],
+                ['ends_at' => now()->addHours()],
             ))->assertStatus(422);
 
         $this->assertSame($roomsCountInitial, Room::count());
@@ -314,7 +314,7 @@ class RoomsControllerTest extends TestCase
             ->actingWithToken($token)
             ->post(route('api.rooms.store'), array_merge(
                 $this->createBasicStoreParams(),
-                ['ends_at' => now()->addHour()],
+                ['ends_at' => now()->addHours()],
             ))->assertSuccessful();
 
         $this->assertSame($roomsCountInitial + 1, Room::count());

@@ -3,13 +3,16 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace Tests\Jobs;
 
+use App\Jobs\Notifications\BroadcastNotificationBase;
 use App\Jobs\Notifications\ForumTopicReply;
 use App\Mail\UserNotificationDigest as UserNotificationDigestMail;
-use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
+use App\Models\Forum\TopicWatch;
 use App\Models\User;
 use App\Models\UserNotificationOption;
 use Event;
@@ -19,36 +22,30 @@ use Tests\TestCase;
 
 class UserNotificationDigestTest extends TestCase
 {
-    protected $sender;
-
-    public function testForumTopicReplyNotificationsShouldNotRenotify()
+    public function testForumTopicReplyNotificationsShouldNotRenotify(): void
     {
-        $this->user->notificationOptions()->create([
+        $sender = User::factory()->create();
+        $topic = Topic::factory()->create();
+        $user = User::factory()->create();
+
+        $user->notificationOptions()->create([
             'name' => UserNotificationOption::FORUM_TOPIC_REPLY,
             'details' => ['mail' => true],
         ]);
+        TopicWatch::setState($topic, $user, 'watching_mail');
 
-        $forum = factory(Forum::class)->states('parent')->create();
-        $topic = factory(Topic::class)->make();
-        $forum->topics()->save($topic);
-        $topic->refresh();
-
-        $topic->watches()->create(['mail' => true, 'user_id' => $this->user->getKey()]);
-
-        $post = factory(Post::class)->create([
-            'post_username' => $this->sender->username,
-            'poster_id' => $this->sender->getKey(),
-            'forum_id' => $forum->getKey(),
-            'topic_id' => $topic->getKey(),
+        $post = Post::factory()->create([
+            'poster_id' => $sender,
+            'topic_id' => $topic,
         ]);
 
-        $this->broadcastAndSendMail(new ForumTopicReply($post, $this->sender));
+        $this->broadcastAndSendMail(new ForumTopicReply($post, $sender));
         Mail::assertSent(UserNotificationDigestMail::class);
 
         $this->clearMailFake();
 
-        (new ForumTopicReply($post, $this->sender))->dispatch();
-        $this->broadcastAndSendMail(new ForumTopicReply($post, $this->sender));
+        (new ForumTopicReply($post, $sender))->dispatch();
+        $this->broadcastAndSendMail(new ForumTopicReply($post, $sender));
         // update shouldn't be sent
         Mail::assertNotSent(UserNotificationDigestMail::class);
     }
@@ -60,12 +57,9 @@ class UserNotificationDigestTest extends TestCase
         Queue::fake();
         Event::fake();
         Mail::fake();
-
-        $this->user = User::factory()->create();
-        $this->sender = User::factory()->create();
     }
 
-    private function broadcastAndSendMail($notification)
+    private function broadcastAndSendMail(BroadcastNotificationBase $notification): void
     {
         $notification->dispatch();
         $this->runFakeQueue();

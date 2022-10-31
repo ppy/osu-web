@@ -15,7 +15,7 @@ return [
     ],
 
     'channels' => [
-        'confirm_part' => 'Vols amagar aquest canal? Encara rebràs missatges d\'aquest canal.',
+        'confirm_part' => '',
         'create' => '',
 
         'list' => [

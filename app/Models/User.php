@@ -32,6 +32,7 @@ use Hash;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Translation\HasLocalePreference;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\QueryException;
 use Laravel\Passport\HasApiTokens;
 use League\OAuth2\Server\Exception\OAuthServerException;
@@ -298,6 +299,8 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
             return $this->tryUpdateUsername(0, $newUsername, 'inactive');
         }
+
+        return null;
     }
 
     private function tryUpdateUsername(int $try, string $newUsername, string $type): UsernameChangeHistory
@@ -844,6 +847,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'profileBeatmapsetsPending',
             'profileBeatmapsetsRanked',
             'rank',
+            'rankHighests',
             'rankHistories',
             'receivedKudosu',
             'relations',
@@ -982,7 +986,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function isActive()
     {
-        return $this->user_lastvisit > Carbon::now()->subMonth();
+        return $this->user_lastvisit > Carbon::now()->subMonths();
     }
 
     /*
@@ -1198,7 +1202,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function beatmapsetNominationsToday()
     {
-        return $this->beatmapsetNominations()->where('created_at', '>', Carbon::now()->subDay())->count();
+        return $this->beatmapsetNominations()->where('created_at', '>', Carbon::now()->subDays())->count();
     }
 
     public function beatmapPlaycounts()
@@ -1224,6 +1228,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function rank()
     {
         return $this->belongsTo(Rank::class, 'user_rank');
+    }
+
+    public function rankHighests(): HasMany
+    {
+        return $this->hasMany(RankHighest::class);
     }
 
     public function rankHistories()
@@ -1682,7 +1691,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
                 ->beatmapDiscussions()
                 ->withoutTrashed()
                 ->ofType('hype')
-                ->where('created_at', '>', Carbon::now()->subWeek())
+                ->where('created_at', '>', Carbon::now()->subWeeks())
                 ->count();
 
             return config('osu.beatmapset.user_weekly_hype') - $hyped;
@@ -1696,11 +1705,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
                 ->beatmapDiscussions()
                 ->withoutTrashed()
                 ->ofType('hype')
-                ->where('created_at', '>', Carbon::now()->subWeek())
+                ->where('created_at', '>', Carbon::now()->subWeeks())
                 ->orderBy('created_at')
                 ->first();
 
-            return $earliestWeeklyHype === null ? null : $earliestWeeklyHype->created_at->addWeek();
+            return $earliestWeeklyHype === null ? null : $earliestWeeklyHype->created_at->addWeeks();
         });
     }
 

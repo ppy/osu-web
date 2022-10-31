@@ -47,7 +47,7 @@ class ScoreTokensController extends BaseController
         try {
             $scoreToken = ScoreToken::create([
                 'beatmap_id' => $beatmap->getKey(),
-                'build_id' => $build?->getKey(),
+                'build_id' => $build?->getKey() ?? config('osu.client.default_build_id'),
                 'ruleset_id' => $params['ruleset_id'],
                 'user_id' => $user->getKey(),
             ]);

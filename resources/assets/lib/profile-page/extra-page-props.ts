@@ -31,6 +31,7 @@ type ProfilePageIncludes =
   | 'mapping_follower_count'
   | 'page'
   | 'previous_usernames'
+  | 'rank_highest'
   | 'rank_history'
   | 'statistics'
   | 'support_level'

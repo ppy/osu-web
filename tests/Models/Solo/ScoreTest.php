@@ -8,7 +8,6 @@ declare(strict_types=1);
 namespace Tests\Models\Solo;
 
 use App\Models\Solo\Score;
-use Carbon\Carbon;
 use stdClass;
 use Tests\TestCase;
 
@@ -19,7 +18,7 @@ class ScoreTest extends TestCase
         $score = Score::createFromJsonOrExplode([
             'accuracy' => 1,
             'beatmap_id' => 1,
-            'ended_at' => Carbon::now(),
+            'ended_at' => json_time(now()),
             'max_combo' => 100,
             'mods' => [],
             'passed' => true,
@@ -40,7 +39,7 @@ class ScoreTest extends TestCase
         $score = Score::createFromJsonOrExplode([
             'accuracy' => 1,
             'beatmap_id' => 1,
-            'ended_at' => Carbon::now(),
+            'ended_at' => json_time(now()),
             'max_combo' => 100,
             'mods' => [],
             'passed' => true,
@@ -65,7 +64,7 @@ class ScoreTest extends TestCase
         $score = Score::createFromJsonOrExplode([
             'accuracy' => 1,
             'beatmap_id' => 1,
-            'ended_at' => Carbon::now(),
+            'ended_at' => json_time(now()),
             'max_combo' => 100,
             'mods' => [],
             'passed' => false,
@@ -90,7 +89,7 @@ class ScoreTest extends TestCase
         $legacy = Score::createFromJsonOrExplode([
             'accuracy' => 1,
             'beatmap_id' => 1,
-            'ended_at' => Carbon::now(),
+            'ended_at' => json_time(now()),
             'max_combo' => 100,
             'mods' => [],
             'passed' => true,
@@ -113,7 +112,7 @@ class ScoreTest extends TestCase
         $legacy = Score::createFromJsonOrExplode([
             'accuracy' => 1,
             'beatmap_id' => 1,
-            'ended_at' => Carbon::now(),
+            'ended_at' => json_time(now()),
             'max_combo' => 100,
             'mods' => [],
             'passed' => true,
@@ -135,7 +134,7 @@ class ScoreTest extends TestCase
     {
         $score = new Score(['data' => [
             'beatmap_id' => 0,
-            'ended_at' => now(),
+            'ended_at' => json_time(now()),
             'mods' => [['acronym' => 'DT']],
             'ruleset_id' => 0,
             'user_id' => 0,
