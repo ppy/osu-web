@@ -101,6 +101,11 @@ class Score extends Model implements Traits\ReportableInterface
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function scopeDefault(Builder $query): Builder
+    {
+        return $query->whereHas('beatmap');
+    }
+
     /**
      * This should match the one used in osu-elastic-indexer.
      */
@@ -109,11 +114,6 @@ class Score extends Model implements Traits\ReportableInterface
         return $query
             ->where('preserve', true)
             ->whereHas('user', fn (Builder $q): Builder => $q->default());
-    }
-
-    public function scopeDefault(Builder $query): Builder
-    {
-        return $query->whereHas('beatmap');
     }
 
     public function getAttribute($key)
