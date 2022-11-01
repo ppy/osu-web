@@ -24,16 +24,20 @@ use Illuminate\Support\Str;
 use LaravelRedis as Redis;
 
 /**
- * @property string[] $allowed_groups
+ * @property int[] $allowed_groups
  * @property int $channel_id
  * @property \Carbon\Carbon $creation_time
+ * @property-read string $creation_time_json
  * @property string $description
- * @property \Illuminate\Database\Eloquent\Collection $messages Message
+ * @property-read \Illuminate\Database\Eloquent\Collection<Message> $messages
  * @property int|null $match_id
- * @property int $moderated
+ * @property bool $moderated
  * @property string $name
  * @property int|null $room_id
- * @property mixed $type
+ * @property string $type
+ * @property int|null $last_message_id
+ * @property-read \App\Models\LegacyMatch\LegacyMatch|null $multiplayerMatch
+ * @property-read \Illuminate\Database\Eloquent\Collection<UserChannel> $userChannels
  */
 class Channel extends Model
 {
