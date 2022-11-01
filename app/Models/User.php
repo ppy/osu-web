@@ -195,6 +195,9 @@ use Request;
  * @property string $username_clean
  * @property string|null $username_previous
  * @property int|null $userpage_post_id
+ * @method static \Illuminate\Database\Eloquent\Builder default()
+ * @method static \Illuminate\Database\Eloquent\Builder eagerloadForListing()
+ * @method static \Illuminate\Database\Eloquent\Builder online()
  */
 class User extends Model implements AfterCommit, AuthenticatableContract, HasLocalePreference, Indexable, Traits\ReportableInterface
 {
