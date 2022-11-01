@@ -16,7 +16,6 @@ use Illuminate\Database\Query\Expression;
  * @property int $channel_id
  * @property int|null $last_read_id
  * @property User $user
- * @property User $userScoped
  * @property int $user_id
  */
 class UserChannel extends Model
@@ -28,11 +27,6 @@ class UserChannel extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function userScoped()
-    {
-        return $this->belongsTo(User::class, 'user_id')->default();
     }
 
     public function channel()
@@ -49,8 +43,7 @@ class UserChannel extends Model
             'last_read_id' => $this->getLastReadId(),
 
             'channel',
-            'user',
-            'userScoped' => $this->getRelationValue($key),
+            'user' => $this->getRelationValue($key),
         };
     }
 
