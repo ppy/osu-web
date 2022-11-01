@@ -2124,7 +2124,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function profileBeatmapsetsNominated()
     {
         return Beatmapset::withStates(['approved', 'ranked'])
-            ::whereHas('beatmapsetNominations', fn ($q) => $q->current()->where('user_id', $this->getKey()))
+            ->whereHas('beatmapsetNominations', fn ($q) => $q->current()->where('user_id', $this->getKey()))
             ->with('beatmaps');
     }
 
