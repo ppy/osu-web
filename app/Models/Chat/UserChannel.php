@@ -14,7 +14,6 @@ use Illuminate\Database\Query\Expression;
 /**
  * @property Channel $channel
  * @property int $channel_id
- * @property bool $hidden
  * @property int|null $last_read_id
  * @property User $user
  * @property User $userScoped
@@ -47,8 +46,6 @@ class UserChannel extends Model
             'channel_id',
             'user_id' => $this->getRawAttribute($key),
 
-            'hidden' => (bool) $this->getRawAttribute($key),
-
             'last_read_id' => $this->getLastReadId(),
 
             'channel',
@@ -60,7 +57,7 @@ class UserChannel extends Model
     // Laravel has own hidden property
     public function isHidden()
     {
-        return $this->getAttribute('hidden');
+        return (bool) $this->getRawAttribute('hidden');
     }
 
     public function markAsRead($messageId = null)
