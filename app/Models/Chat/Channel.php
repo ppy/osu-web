@@ -29,14 +29,14 @@ use LaravelRedis as Redis;
  * @property \Carbon\Carbon $creation_time
  * @property-read string $creation_time_json
  * @property string $description
+ * @property int|null $last_message_id
  * @property-read \Illuminate\Database\Eloquent\Collection<Message> $messages
  * @property int|null $match_id
  * @property bool $moderated
+ * @property-read \App\Models\LegacyMatch\LegacyMatch|null $multiplayerMatch
  * @property string $name
  * @property int|null $room_id
  * @property string $type
- * @property int|null $last_message_id
- * @property-read \App\Models\LegacyMatch\LegacyMatch|null $multiplayerMatch
  * @property-read \Illuminate\Database\Eloquent\Collection<UserChannel> $userChannels
  * @method static \Illuminate\Database\Eloquent\Builder PM()
  * @method static \Illuminate\Database\Eloquent\Builder public()
