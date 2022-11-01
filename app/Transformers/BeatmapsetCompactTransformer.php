@@ -267,6 +267,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
                 break;
             case 'show':
                 $userIds->add(...$beatmapset->beatmaps->pluck('user_id'));
+                $userIds->add(...$beatmapset->beatmapsetNominations->pluck('user_id'));
                 break;
         }
 

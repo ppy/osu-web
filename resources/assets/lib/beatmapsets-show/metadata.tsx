@@ -5,9 +5,8 @@ import { Modal } from 'components/modal';
 import TimeWithTooltip from 'components/time-with-tooltip';
 import { UserLink } from 'components/user-link';
 import { route } from 'laroute';
-import { action, computed, makeObservable, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
-import { deletedUser } from 'models/user';
 import * as moment from 'moment';
 import * as React from 'react';
 import Controller from './controller';
@@ -25,11 +24,6 @@ export default class Metadata extends React.PureComponent<Props> {
     return this.props.controller.beatmapset;
   }
 
-  @computed
-  private get nominators() {
-    return this.beatmapset.beatmapset_nominations?.filter((n) => n.reset === 0).map((n) => n.user ?? deletedUser.toJson());
-  }
-
   constructor(props: Props) {
     super(props);
     makeObservable(this);
@@ -38,7 +32,7 @@ export default class Metadata extends React.PureComponent<Props> {
   render() {
     const tags = this.beatmapset.tags.split(' ');
     const canEdit = this.beatmapset.current_user_attributes?.can_edit_metadata ?? false;
-    const nominators = this.nominators;
+    const nominators = this.props.controller.nominators;
 
     return (
       <div className='beatmapset-metadata u-fancy-scrollbar'>

@@ -32,7 +32,7 @@ export default class Info extends React.Component<Props> {
             <span className='beatmapset-info__diff-mapper u-ellipsis-overflow'>
               <StringWithComponent
                 mappings={{
-                  mapper: <UserLink user={showedBeatmap.user ?? { username: '' }} />,
+                  mapper: <UserLink user={this.props.controller.mapper(showedBeatmap)} />,
                 }}
                 pattern={osu.trans('beatmapsets.show.details.mapped_by')}
               />

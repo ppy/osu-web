@@ -70,6 +70,15 @@ export default class Controller {
   }
 
   @computed
+  get nominators() {
+    return this
+      .beatmapset
+      .beatmapset_nominations
+      .filter((n) => n.reset)
+      .map((n) => this.usersById[n.user_id] ?? deletedUser);
+  }
+
+  @computed
   get usersById() {
     return keyBy(this.beatmapset.related_users, 'id');
   }

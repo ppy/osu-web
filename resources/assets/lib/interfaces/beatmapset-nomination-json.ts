@@ -13,7 +13,7 @@ interface BeatmapsetNominationJsonDefaultAttributes {
   created_at: string;
   id: number;
   modes: GameMode[];
-  reset: number;
+  reset: boolean;
   reset_user_id: number | null;
   updated_at: string | null;
   user_id: number;
