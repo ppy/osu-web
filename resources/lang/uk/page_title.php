@@ -7,15 +7,9 @@ return [
     'admin' => [
         '_' => 'адмін',
     ],
-    'admin_forum' => [
-        '_' => 'адмін',
-    ],
-    'admin_store' => [
-        '_' => 'адмін',
-    ],
     'error' => [
         'error' => [
-            '400' => 'неправильний запит',
+            '400' => 'невірний запит',
             '404' => 'не знайдено',
             '403' => 'доступ заборонено',
             '401' => 'ви не авторизовані',
@@ -32,17 +26,10 @@ return [
         'topic_logs_controller' => [
             'index' => 'журнал тем',
         ],
-        'topic_watches_controller' => [
-            'index' => 'головна',
-        ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'головна',
             'verify_link' => 'підтвердження акаунта',
-        ],
-        'artist_tracks_controller' => [
-            '_' => 'обрані виконавці',
         ],
         'artists_controller' => [
             '_' => 'обрані виконавці',
@@ -57,13 +44,10 @@ return [
             '_' => 'збірки карт',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => 'голоса в обговоренні бтікарти',
+            '_' => 'голоса в обговоренні бітмапи',
         ],
         'beatmapset_events_controller' => [
             '_' => 'історія бітмапи',
-        ],
-        'beatmapset_watches_controller' => [
-            'index' => 'головна',
         ],
         'beatmapsets_controller' => [
             'discussion' => 'обговорення бітмапи',
@@ -81,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => 'конкурси',
-        ],
-        'follows_controller' => [
-            'index' => 'головна',
-        ],
-        'friends_controller' => [
-            'index' => 'панель керування',
         ],
         'groups_controller' => [
             'show' => 'групи',
@@ -122,9 +100,6 @@ return [
         'scores_controller' => [
             '_' => 'продуктивність',
         ],
-        'store_controller' => [
-            '_' => 'крамниця',
-        ],
         'tournaments_controller' => [
             '_' => 'турніри',
         ],
@@ -134,11 +109,6 @@ return [
         ],
         'wiki_controller' => [
             '_' => 'wiki',
-        ],
-    ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'рейтинг',
         ],
     ],
     'passport' => [

@@ -61,7 +61,7 @@ export default class Detail extends React.Component<Props> {
           <div>
             <div className='profile-detail__chart-numbers'>
               <div className='profile-detail__values'>
-                <Rank stats={this.user.statistics} type='global' />
+                <Rank highest={this.user.rank_highest} stats={this.user.statistics} type='global' />
                 <Rank stats={this.user.statistics} type='country' />
               </div>
               {/* TODO: mode switcher */}

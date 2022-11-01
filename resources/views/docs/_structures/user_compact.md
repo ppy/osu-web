@@ -58,6 +58,7 @@ monthly_playcounts         | [UserMonthlyPlaycount](#usermonthlyplaycount)[]
 page                       | |
 pending_beatmapset_count   | |
 previous_usernames         | |
+rank_highest               | [RankHighest](#usercompact-rankhighest)?
 rank_history               | |
 ranked_beatmapset_count    | |
 replays_watched_counts     | |
@@ -80,6 +81,15 @@ Field         | Type        | Description
 id            | number      | |
 tournament_id | number      | |
 image         | string      | |
+
+<div id="usercompact-rankhighest" data-unique="usercompact-rankhighest"></div>
+
+### RankHighest
+
+Field      | Type
+-----------|-----
+rank       | number
+updated_at | [Timestamp](#timestamp)
 
 <div id="usercompact-useraccounthistory" data-unique="usercompact-useraccounthistory"></div>
 

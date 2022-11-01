@@ -33,13 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Blokirao/la si ovog korisnika.',
-        'comment_text' => '',
+        'comment_text' => 'Ovaj komentar je skriven.',
         'blocked_count' => 'blokirani korisnici (:count)',
         'hide_profile' => 'Sakrij profil',
-        'hide_comment' => '',
+        'hide_comment' => 'sakrij',
         'not_blocked' => 'Taj korisnik nije blokiran.',
         'show_profile' => 'Prikaži profil',
-        'show_comment' => '',
+        'show_comment' => 'prikaži',
         'too_many' => 'Dosegnuto je ograničenje blokiranja.',
         'button' => [
             'block' => 'Blokiraj',
@@ -372,7 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Zabrana',
                         'silence' => 'Utišanje',
-                        'tournament_ban' => '',
+                        'tournament_ban' => 'Zabrana turnira',
                         'note' => 'Bilješka',
                     ],
                 ],
@@ -414,6 +414,7 @@ return [
             'country_simple' => 'Rang u državi',
             'global' => 'Globalni rang za :mode',
             'global_simple' => 'Globalni rang',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Preciznost pogodaka',

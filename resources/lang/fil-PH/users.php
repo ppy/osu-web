@@ -414,6 +414,7 @@ return [
             'country_simple' => 'Pambansang Ranggo',
             'global' => 'Pandaigdigang ranggo para sa :mode',
             'global_simple' => 'Pambansang Ranggo',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Katumpakan sa Pagtama',

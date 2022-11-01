@@ -147,12 +147,12 @@ return [
 
         'scoreboard' => [
             'achieved' => '在 :when 达成',
-            'country' => '国内/区内排名',
+            'country' => '地区排名',
             'error' => '加载排名失败',
             'friend' => '好友排名',
             'global' => '全球排名',
             'supporter-link' => '点击 <a href=":link">这里</a> 来查看你得到的精彩功能！',
-            'supporter-only' => '你需要成为 osu! 支持者才能查看国内/好友排名！',
+            'supporter-only' => '你需要成为 osu! 支持者才能查看国内/好友/Mod 特定排名！',
             'title' => '排行榜',
 
             'headers' => [
@@ -170,7 +170,7 @@ return [
             ],
 
             'no_scores' => [
-                'country' => '还没有玩家上传过成绩！',
+                'country' => '您所在的国家/地区中还没有玩家上传过成绩！',
                 'friend' => '还没有好友上传成绩！',
                 'global' => '还没有玩家上传过成绩，来玩一把？',
                 'loading' => '加载分数中...',

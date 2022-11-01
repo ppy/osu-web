@@ -414,6 +414,7 @@ return [
             'country_simple' => 'Classifica Nazionale',
             'global' => 'Posto globale per :mode',
             'global_simple' => 'Classifica Globale',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisione dei Colpi',

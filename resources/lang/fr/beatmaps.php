@@ -179,7 +179,7 @@ return [
         'delete_own_confirm' => 'Êtes-vous sûr ? La beatmap sera supprimée et vous serez redirigé vers votre profil.',
         'delete_other_confirm' => 'Êtes-vous sûr ? La beatmap sera supprimée et vous serez redirigé vers le profil de l\'utilisateur.',
         'disqualification_prompt' => 'Raison de la disqualification ?',
-        'disqualified_at' => 'disqualifiée :time_ago (:reason).',
+        'disqualified_at' => 'Disqualifiée :time_ago (:reason).',
         'disqualified_no_reason' => 'aucune raison spécifiée',
         'disqualify' => 'Disqualifier',
         'incorrect_state' => 'Une erreur s\'est produite, essayez de rafraîchir la page.',
@@ -268,7 +268,7 @@ return [
         'mania' => '',
     ],
     'status' => [
-        'any' => 'Tous',
+        'any' => 'Toutes',
         'approved' => 'Approuvée',
         'favourites' => 'Favoris',
         'graveyard' => 'Cimetière',
@@ -297,7 +297,7 @@ return [
         'jazz' => 'Jazz',
     ],
     'language' => [
-        'any' => 'Tous',
+        'any' => 'Toutes',
         'english' => 'Anglais',
         'chinese' => 'Chinois',
         'french' => 'Français',
@@ -311,7 +311,7 @@ return [
         'polish' => 'Polonais',
         'instrumental' => 'Instrumentale',
         'other' => 'Autre',
-        'unspecified' => 'Non spécifié',
+        'unspecified' => 'Non spécifiée',
     ],
 
     'nsfw' => [
@@ -320,7 +320,7 @@ return [
     ],
 
     'played' => [
-        'any' => 'Tous',
+        'any' => 'Toutes',
         'played' => 'Jouée',
         'unplayed' => 'Non jouée',
     ],

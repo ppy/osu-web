@@ -414,6 +414,7 @@ return [
             'country_simple' => '国別ランキング',
             'global' => ':modeの世界ランク',
             'global_simple' => '世界ランキング',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => '精度',

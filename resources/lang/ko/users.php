@@ -414,6 +414,7 @@ return [
             'country_simple' => '국가 순위',
             'global' => ':mode 세계 순위',
             'global_simple' => '세계 순위',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => '정확도',

@@ -414,6 +414,7 @@ return [
             'country_simple' => '國內排名',
             'global' => ':mode 模式的全球排名',
             'global_simple' => '全球排名',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => '準確率',

@@ -5,7 +5,7 @@
 
 return [
     'empty' => [
-        '_' => '',
+        '_' => 'Không có game :type_group osu!(lazer) đã chơi!',
         'playlists' => 'danh sách phát',
         'realtime' => 'nhiều người chơi',
     ],

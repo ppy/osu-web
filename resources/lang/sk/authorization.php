@@ -173,8 +173,8 @@ return [
 
     'score' => [
         'pin' => [
-            'not_owner' => '',
-            'too_many' => '',
+            'not_owner' => 'Skóre môže pripnúť iba pôvodný hráč.',
+            'too_many' => 'Už bolo pripnuté maximum skóre.',
         ],
     ],
 

@@ -414,6 +414,7 @@ return [
             'country_simple' => 'Místní hodnocení',
             'global' => 'Globální pozice pro :mode',
             'global_simple' => 'Světové hodnocení',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Přesnost zásahů',

@@ -58,7 +58,7 @@ return [
 
         'if_mistake' => [
             '_' => 'Si cree que se trata de un error, puede ponerse en contacto con nosotros (por :email o haciendo clic en el "?" en la esquina inferior derecha de esta página). Tenga en cuenta que siempre confiamos plenamente en nuestras acciones, ya que se basan en datos muy sólidos. Nos reservamos el derecho de ignorar su petición si consideramos que está siendo intencionadamente deshonesto.',
-            'email' => 'correo electrónico',
+            'email' => 'correo',
         ],
 
         'reasons' => [
@@ -87,7 +87,7 @@ return [
         '_' => 'Iniciar sesión',
         'button' => 'Iniciar sesión',
         'button_posting' => 'Iniciando sesión...',
-        'email_login_disabled' => 'El inicio de sesión con correo electrónico está actualmente desactivado. Por favor, utilice el nombre de usuario en su lugar.',
+        'email_login_disabled' => 'El inicio de sesión con correo está actualmente desactivado. Use el nombre de usuario en su lugar.',
         'failed' => 'Inicio de sesión incorrecto',
         'forgot' => '¿Olvidaste tu contraseña?',
         'info' => 'Por favor, inicie sesión para continuar',
@@ -358,7 +358,7 @@ return [
             'account_standing' => [
                 'title' => 'Estado de la cuenta',
                 'bad_standing' => "La cuenta de <strong>:username</strong> no está en buen estado :(",
-                'remaining_silence' => '<strong>:username</strong> podrá hablar otra vez dentro de :duration.',
+                'remaining_silence' => ':username podrá volver a hablar dentro de :duration.',
 
                 'recent_infringements' => [
                     'title' => 'Infracciones recientes',
@@ -414,6 +414,7 @@ return [
             'country_simple' => 'Clasificación Nacional',
             'global' => 'Rank global para :mode',
             'global_simple' => 'Clasificación Global',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisión',

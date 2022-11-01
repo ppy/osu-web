@@ -322,6 +322,19 @@
         "scopes": []
     },
     {
+        "uri": "api/v2/chat/ack",
+        "methods": [
+            "POST"
+        ],
+        "controller": "App\\Http\\Controllers\\Chat\\ChatController@ack",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "Illuminate\\Auth\\Middleware\\Authenticate"
+        ],
+        "scopes": []
+    },
+    {
         "uri": "api/v2/chat/new",
         "methods": [
             "POST"

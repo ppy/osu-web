@@ -50,6 +50,7 @@ return [
             'beatmap' => '只接受 .osu 格式的文件.',
             'music' => '只接受 .mp3 格式的文件.',
         ],
+        'wrong_dimensions' => '',
         'too_big' => '參賽文件的大小不能超過 :limit.',
     ],
     'beatmaps' => [

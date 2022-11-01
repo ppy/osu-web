@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'administratorius',
     ],
-    'admin_forum' => [
-        '_' => 'administratorius',
-    ],
-    'admin_store' => [
-        '_' => '',
-    ],
     'error' => [
         'error' => [
             '400' => '',
@@ -32,17 +26,10 @@ return [
         'topic_logs_controller' => [
             'index' => '',
         ],
-        'topic_watches_controller' => [
-            'index' => '',
-        ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => '',
             'verify_link' => '',
-        ],
-        'artist_tracks_controller' => [
-            '_' => '',
         ],
         'artists_controller' => [
             '_' => '',
@@ -62,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => '',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => '',
-        ],
         'beatmapsets_controller' => [
             'discussion' => '',
             'index' => '',
@@ -81,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => 'konkursai',
-        ],
-        'follows_controller' => [
-            'index' => '',
-        ],
-        'friends_controller' => [
-            'index' => '',
         ],
         'groups_controller' => [
             'show' => 'grupės',
@@ -122,9 +100,6 @@ return [
         'scores_controller' => [
             '_' => '',
         ],
-        'store_controller' => [
-            '_' => '',
-        ],
         'tournaments_controller' => [
             '_' => 'turnyrai',
         ],
@@ -134,11 +109,6 @@ return [
         ],
         'wiki_controller' => [
             '_' => '',
-        ],
-    ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'reitingai',
         ],
     ],
     'passport' => [

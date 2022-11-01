@@ -34,7 +34,7 @@ return [
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => 'Anda harus terlebih dahulu memainkan seluruh beatmap yang terdapat pada playlist untuk dapat memberikan suara',
+                'incomplete_play' => 'Anda harus memainkan seluruh beatmap yang tertera pada playlist yang ditentukan untuk dapat memberikan suara',
             ],
         ],
     ],
@@ -50,6 +50,7 @@ return [
             'beatmap' => 'Kontes ini hanya menerima berkas dengan ekstensi .osu.',
             'music' => 'Kontes ini hanya menerima berkas dengan ekstensi .mp3.',
         ],
+        'wrong_dimensions' => '',
         'too_big' => 'Berkas yang diikutsertakan untuk kontes ini tidak boleh melebihi batas ukuran :limit.',
     ],
     'beatmaps' => [
@@ -71,7 +72,7 @@ return [
     ],
     'states' => [
         'entry' => 'Menerima Entri',
-        'voting' => 'Dalam Tahapan Pemungutan Suara',
+        'voting' => 'Dalam Tahap Pemungutan Suara',
         'results' => 'Telah Berakhir',
     ],
 ];

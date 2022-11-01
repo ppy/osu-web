@@ -3,17 +3,19 @@
 
 import { CircularProgress } from 'components/circular-progress';
 import { Spinner } from 'components/spinner';
+import { EmbedElement } from 'editor';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForBundle, BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import isHotkey from 'is-hotkey';
 import { route } from 'laroute';
-import * as _ from 'lodash';
+import { filter } from 'lodash';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { createEditor, Element as SlateElement, Node as SlateNode, NodeEntry, Range, Text, Transforms } from 'slate';
+import { createEditor, Editor as SlateEditor, Element as SlateElement, Node as SlateNode, NodeEntry, Range, Text, Transforms } from 'slate';
 import { withHistory } from 'slate-history';
 import { Editable, ReactEditor, RenderElementProps, RenderLeafProps, Slate, withReact } from 'slate-react';
+import { DOMRange } from 'slate-react/dist/utils/dom';
 import { onError } from 'utils/ajax';
 import { sortWithMode } from 'utils/beatmap-helper';
 import { timestampRegex } from 'utils/beatmapset-discussion-helper';
@@ -37,7 +39,7 @@ import { ReviewEditorConfigContext } from './review-editor-config-context';
 import { SlateContext } from './slate-context';
 
 interface CacheInterface {
-  draftEmbeds?: SlateElement[];
+  draftEmbeds?: EmbedElement[];
   sortedBeatmaps?: BeatmapExtendedJson[];
 }
 
@@ -56,11 +58,18 @@ interface Props {
 interface State {
   blockCount: number;
   posting: boolean;
-  value: SlateElement[];
+  value: SlateElement[]; // TODO: remove from state? or use slateEditor.children?
 }
 
 interface TimestampRange extends Range {
   timestamp: string;
+}
+
+const emptyParagraph = Object.freeze({ children: [{ text: '' }], type: 'paragraph' });
+const emptyDocTemplate = [emptyParagraph];
+
+function isDraftEmbed(block: SlateElement): block is EmbedElement {
+  return block.type === 'embed' && block.discussionId == null;
 }
 
 export default class Editor extends React.Component<Props, State> {
@@ -72,12 +81,12 @@ export default class Editor extends React.Component<Props, State> {
   bn = 'beatmap-discussion-editor';
   cache: CacheInterface = {};
   declare context: React.ContextType<typeof ReviewEditorConfigContext>;
-  emptyDocTemplate = [{ children: [{ text: '' }], type: 'paragraph' }];
   insertMenuRef: React.RefObject<EditorInsertionMenu>;
   localStorageKey: string;
   scrollContainerRef: React.RefObject<HTMLDivElement>;
-  slateEditor: ReactEditor;
+  slateEditor: SlateEditor;
   toolbarRef: React.RefObject<EditorToolbar>;
+  private readonly initialValue: SlateElement[] = emptyDocTemplate;
   private xhr?: JQueryXHR | null;
 
   private get editMode() {
@@ -87,22 +96,22 @@ export default class Editor extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    this.slateEditor = this.withNormalization(withHistory(withReact(createEditor())));
+    // Slate editor typing is weird
+    // https://docs.slatejs.org/concepts/12-typescript#defining-editor-element-and-text-types
+    this.slateEditor = this.withNormalization(withReact(withHistory(createEditor())));
     this.scrollContainerRef = React.createRef();
     this.toolbarRef = React.createRef();
     this.insertMenuRef = React.createRef();
     this.localStorageKey = `newDiscussion-${this.props.beatmapset.id}`;
 
-    let initialValue: SlateElement[] = this.emptyDocTemplate;
-
     if (this.editMode) {
-      initialValue = this.valueFromProps();
+      this.initialValue = this.valueFromProps();
     } else {
       const saved = localStorage.getItem(this.localStorageKey);
 
       if (saved != null) {
         try {
-          initialValue = JSON.parse(saved);
+          this.initialValue = JSON.parse(saved) as SlateElement[];
         } catch (error) {
           console.error('invalid json in localStorage, ignoring');
           localStorage.removeItem(this.localStorageKey);
@@ -111,13 +120,13 @@ export default class Editor extends React.Component<Props, State> {
     }
 
     this.state = {
-      blockCount: blockCount(initialValue),
+      blockCount: blockCount(this.initialValue),
       posting: false,
-      value: initialValue,
+      value: this.initialValue,
     };
   }
 
-  blockWrapper = (children: JSX.Element) => (
+  blockWrapper = (children: React.ReactNode) => (
     <div className={`${this.bn}__block`}>
       {children}
     </div>
@@ -186,9 +195,11 @@ export default class Editor extends React.Component<Props, State> {
   );
 
   onChange = (value: SlateElement[]) => {
-    // prevent document from becoming empty (and invalid) - ideally this would be handled in `withNormalization`, but that isn't run on every change
+    // Anything that triggers this needs to be fixed!
+    // Slate.value is only used for initial value.
     if (value.length === 0) {
-      value = this.emptyDocTemplate;
+      console.error('value is empty in Editor.onChange');
+      value = emptyDocTemplate;
     }
 
     if (!this.editMode) {
@@ -231,7 +242,13 @@ export default class Editor extends React.Component<Props, State> {
     } else if (isHotkey('delete', event) || isHotkey('backspace', event)) {
       if (insideEmptyNode(this.slateEditor)) {
         event.preventDefault();
+
         Transforms.removeNodes(this.slateEditor);
+
+        // Slate editor must never be empty - empty editor makes no sense when initialized with default value.
+        if (this.slateEditor.children.length === 0) {
+          this.resetEditorValue();
+        }
       }
     }
   };
@@ -275,7 +292,7 @@ export default class Editor extends React.Component<Props, State> {
             <Slate
               editor={this.slateEditor}
               onChange={this.onChange}
-              value={this.state.value}
+              value={this.initialValue}
             >
               <div ref={this.scrollContainerRef} className={`${editorClass}__input-area`}>
                 <EditorToolbar ref={this.toolbarRef} />
@@ -288,6 +305,7 @@ export default class Editor extends React.Component<Props, State> {
                     readOnly={this.state.posting}
                     renderElement={this.renderElement}
                     renderLeaf={this.renderLeaf}
+                    scrollSelectionIntoView={this.scrollSelectionIntoView}
                   />
                 </DraftsContext.Provider>
               </div>
@@ -342,10 +360,11 @@ export default class Editor extends React.Component<Props, State> {
   );
 
   renderElement = (props: RenderElementProps) => {
-    let el;
+    let el: React.ReactNode;
 
     switch (props.element.type) {
-      case 'embed':
+      case 'embed': {
+        const { element, ...otherProps } = props; // spreading ..props doesn't use the narrower type.
         el = (
           <EditorDiscussionComponent
             beatmaps={this.sortedBeatmaps()}
@@ -353,14 +372,15 @@ export default class Editor extends React.Component<Props, State> {
             currentBeatmap={this.props.currentBeatmap}
             discussions={this.props.discussions}
             editMode={this.editMode}
+            element={element}
             readOnly={this.state.posting}
-            {...props}
+            {...otherProps}
           />
         );
         break;
-
+      }
       default:
-        el = props.children;
+        el = props.children as React.ReactNode;
     }
 
     return this.blockWrapper(el);
@@ -394,8 +414,17 @@ export default class Editor extends React.Component<Props, State> {
       }
     }
 
-    Transforms.deselect(this.slateEditor);
-    this.onChange(this.emptyDocTemplate);
+    this.resetEditorValue();
+  };
+
+  // Overrides slate Editable's defaultScrollSelectionIntoView and always use browser's version
+  // There's something wrong with slate's range detection in the prior calling function that causes
+  // letters and numbers to be differently.
+  scrollSelectionIntoView = (editor: ReactEditor, domRange: DOMRange) => {
+    domRange.startContainer.parentElement?.scrollIntoView({
+      block: 'nearest',
+      inline: 'nearest' ,
+    });
   };
 
   serialize = () => serializeSlateDocument(this.state.value);
@@ -424,7 +453,7 @@ export default class Editor extends React.Component<Props, State> {
   sortedBeatmaps = () => {
     if (this.cache.sortedBeatmaps == null) {
       // filter to only include beatmaps from the current discussion's beatmapset (for the modding profile page)
-      const beatmaps = _.filter(this.props.beatmaps, this.isCurrentBeatmap);
+      const beatmaps = filter(this.props.beatmaps, this.isCurrentBeatmap);
       this.cache.sortedBeatmaps = sortWithMode(beatmaps);
     }
 
@@ -432,10 +461,10 @@ export default class Editor extends React.Component<Props, State> {
   };
 
   updateDrafts = () => {
-    this.cache.draftEmbeds = this.state.value.filter((block) => block.type === 'embed' && !block.discussion_id);
+    this.cache.draftEmbeds = this.state.value.filter(isDraftEmbed);
   };
 
-  withNormalization = (editor: ReactEditor) => {
+  withNormalization = (editor: SlateEditor) => {
     const { insertData, normalizeNode } = editor;
 
     editor.insertData = (data) => {
@@ -459,7 +488,7 @@ export default class Editor extends React.Component<Props, State> {
           }
 
           // clear formatting from content within embeds
-          if (child.bold || child.italic) {
+          if (Text.isText(child) && (child.bold || child.italic)) {
             Transforms.unsetNodes(
               editor,
               ['bold', 'italic'],
@@ -470,7 +499,7 @@ export default class Editor extends React.Component<Props, State> {
           }
 
           if (node.beatmapId != null) {
-            const beatmap = typeof node.beatmapId === 'number' ? this.props.beatmaps[node.beatmapId] : undefined;
+            const beatmap = this.props.beatmaps[node.beatmapId];
             if (beatmap == null || beatmap.deleted_at != null) {
               Transforms.setNodes(editor, { beatmapId: undefined }, { at: path });
             }
@@ -483,6 +512,13 @@ export default class Editor extends React.Component<Props, State> {
 
     return editor;
   };
+
+  // "correct" way to reset slate to initial value
+  // https://docs.slatejs.org/walkthroughs/06-saving-to-a-database
+  private resetEditorValue() {
+    this.slateEditor.children = emptyDocTemplate;
+    this.slateEditor.onChange();
+  }
 
   private valueFromProps() {
     if (!this.props.editing || this.props.document == null || this.props.discussions == null) {

@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'admin',
     ],
-    'admin_forum' => [
-        '_' => 'admin',
-    ],
-    'admin_store' => [
-        '_' => 'admin',
-    ],
     'error' => [
         'error' => [
             '400' => 'neplatný požadavek',
@@ -32,17 +26,10 @@ return [
         'topic_logs_controller' => [
             'index' => 'záznamy téma',
         ],
-        'topic_watches_controller' => [
-            'index' => 'nástěnka',
-        ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'nástěnka',
             'verify_link' => 'ověření účtu',
-        ],
-        'artist_tracks_controller' => [
-            '_' => 'featured artists',
         ],
         'artists_controller' => [
             '_' => 'featured artists',
@@ -62,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'historie beatmap',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'nástěnka',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'diskuze o beatmapě',
             'index' => 'seznam beatmap',
@@ -81,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => 'soutěže',
-        ],
-        'follows_controller' => [
-            'index' => 'nástěnka',
-        ],
-        'friends_controller' => [
-            'index' => 'nástěnka',
         ],
         'groups_controller' => [
             'show' => 'skupiny',
@@ -122,9 +100,6 @@ return [
         'scores_controller' => [
             '_' => 'výkon',
         ],
-        'store_controller' => [
-            '_' => 'obchod',
-        ],
         'tournaments_controller' => [
             '_' => 'turnaje',
         ],
@@ -134,11 +109,6 @@ return [
         ],
         'wiki_controller' => [
             '_' => 'wiki',
-        ],
-    ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'žebříček',
         ],
     ],
     'passport' => [

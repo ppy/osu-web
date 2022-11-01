@@ -34,7 +34,7 @@ return [
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => '必须完成指定课题中的所有谱面后才能投票',
+                'incomplete_play' => '必须完成指定歌单中的所有谱面后才能投票',
             ],
         ],
     ],
@@ -50,6 +50,7 @@ return [
             'beatmap' => '只接受 .osu 格式的文件.',
             'music' => '只接受 .mp3 格式的文件.',
         ],
+        'wrong_dimensions' => '',
         'too_big' => '参赛文件的大小不能超过 :limit.',
     ],
     'beatmaps' => [

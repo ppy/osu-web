@@ -7,7 +7,8 @@ declare(strict_types=1);
 
 namespace App\Models\Solo;
 
-use App\Libraries\Score\UserRankCache;
+use App\Libraries\Score\UserRank;
+use App\Libraries\Search\ScoreSearchParams;
 use App\Models\Beatmap;
 use App\Models\Model;
 use App\Models\Score as LegacyScore;
@@ -104,14 +105,37 @@ class Score extends Model implements Traits\ReportableInterface
      */
     public function scopeIndexable(Builder $query): Builder
     {
-        return $this
+        return $query
             ->where('preserve', true)
             ->whereHas('user', fn (Builder $q): Builder => $q->default());
     }
 
-    public function getPpAttribute(): ?float
+    public function getAttribute($key)
     {
-        return $this->performance?->pp;
+        return match ($key) {
+            'beatmap_id',
+            'id',
+            'ruleset_id',
+            'user_id' => $this->getRawAttribute($key),
+
+            'data' => $this->getClassCastableAttributeValue($key, $this->getRawAttribute($key)),
+
+            'has_replay',
+            'preserve' => (bool) $this->getRawAttribute($key),
+
+            'created_at',
+            'updated_at' => $this->getTimeFast($key),
+
+            'created_at_json',
+            'updated_at_json' => $this->getJsonTimeFast($key),
+
+            'pp' => $this->performance?->pp,
+
+            'beatmap',
+            'performance',
+            'reportedIn',
+            'user' => $this->getRelationValue($key),
+        };
     }
 
     public function createLegacyEntryOrExplode()
@@ -126,6 +150,11 @@ class Score extends Model implements Traits\ReportableInterface
     public function getMode(): string
     {
         return Beatmap::modeStr($this->ruleset_id);
+    }
+
+    public function isLegacy(): bool
+    {
+        return $this->data->buildId === null;
     }
 
     public function legacyScore(): ?LegacyScore\Best\Model
@@ -190,9 +219,15 @@ class Score extends Model implements Traits\ReportableInterface
         return false;
     }
 
-    public function userRank(): ?int
+    public function userRank(?array $params = null): int
     {
-        return UserRankCache::fetch([], $this->beatmap_id, $this->ruleset_id, $this->data->totalScore);
+        return UserRank::getRank(ScoreSearchParams::fromArray(array_merge($params ?? [], [
+            'beatmap_ids' => [$this->beatmap_id],
+            'before_score' => $this,
+            'is_legacy' => $this->isLegacy(),
+            'ruleset_id' => $this->ruleset_id,
+            'user' => $this->user,
+        ])));
     }
 
     protected function newReportableExtraParams(): array

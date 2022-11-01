@@ -125,87 +125,87 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => 'Nevažeći parametar zahtjeva',
             'description' => '',
         ],
         '404' => [
-            'error' => '',
-            'description' => "",
+            'error' => 'Stranica nedostaje',
+            'description' => "Žao nam je, ali stranica koju si tražio/la nije ovdje!",
         ],
         '403' => [
-            'error' => "",
-            'description' => '',
+            'error' => "Ne bi trebao/la biti ovdje.",
+            'description' => 'Ipak, možeš se pokušati vratiti.',
         ],
         '401' => [
-            'error' => "",
-            'description' => '',
+            'error' => "Ne bi trebao/la biti ovdje.",
+            'description' => 'Ipak, možeš se pokušati vratiti. Ili možda prijaviti.',
         ],
         '405' => [
-            'error' => '',
-            'description' => "",
+            'error' => 'Stranica nedostaje',
+            'description' => "Žao nam je, ali stranica koju si tražio/la nije ovdje!",
         ],
         '422' => [
-            'error' => '',
+            'error' => 'Nevažeći parametar zahtjeva',
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => 'Ograničenje brzine premašeno',
             'description' => '',
         ],
         '500' => [
-            'error' => '',
-            'description' => "",
+            'error' => 'O ne! Nešto se pokvarilo! ;_;',
+            'description' => "Automatski smo obaviješteni o svakoj grešci.",
         ],
         'fatal' => [
-            'error' => '',
-            'description' => "",
+            'error' => 'O ne! Nešto se (jako) pokvarilo! ;_;',
+            'description' => "Automatski smo obaviješteni o svakoj grešci.",
         ],
         '503' => [
-            'error' => '',
-            'description' => "",
+            'error' => 'Dolje zbog održavanja!',
+            'description' => "Održavanje obično traje od 5 sekundi do 10 minuta. Ako traje dulje, pogledaj :link za više informacija.",
             'link' => [
                 'text' => '',
                 'href' => '',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => "",
+        'reference' => "Za svaki slučaj, evo koda kojeg možeš dati podršci!",
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => 'prijava / registracija',
 
         'login' => [
-            'forgot' => "",
+            'forgot' => "Zaboravio/la sam svoje podatke",
             'password' => 'lozinka',
-            'title' => '',
-            'username' => '',
+            'title' => 'Prijavi se za nastavak',
+            'username' => 'korisničko ime',
 
             'error' => [
-                'email' => "",
-                'password' => '',
+                'email' => "Korisničko ime ili adresa e-pošte ne postoji",
+                'password' => 'Netočna lozinka',
             ],
         ],
 
         'register' => [
-            'download' => '',
-            'info' => '',
-            'title' => "",
+            'download' => 'Preuzmi',
+            'info' => 'Preuzmi osu! za izradu vlastitog računa!',
+            'title' => "Nemaš račun?",
         ],
     ],
 
     'popup_user' => [
         'links' => [
             'account-edit' => 'Postavke',
-            'follows' => '',
+            'follows' => 'Liste gledanja',
             'friends' => 'Prijatelji',
-            'logout' => '',
-            'profile' => '',
+            'logout' => 'Odjava',
+            'profile' => 'Moj profil',
         ],
     ],
 
     'popup_search' => [
-        'initial' => '',
-        'retry' => '',
+        'initial' => 'Unesite za pretraživanje!',
+        'retry' => 'Pretraga nije uspjela. Klikni za ponovni pokušaj.',
     ],
 ];

@@ -414,6 +414,7 @@ return [
             'country_simple' => 'Landelijke Ranking',
             'global' => 'Globale rank voor :mode',
             'global_simple' => 'Wereldwijde Ranking',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Hit Precisie',

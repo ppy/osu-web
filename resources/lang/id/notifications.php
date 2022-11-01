@@ -97,7 +97,7 @@ return [
             ],
 
             'channel' => [
-                '_' => 'Pesan Baru',
+                '_' => 'Pesan baru',
 
                 'pm' => [
                     'channel_message' => ':username mengatakan ":title"',

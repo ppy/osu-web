@@ -10,6 +10,10 @@ abstract class SearchParams
     /** @var int */
     public $from = 0;
 
+    public ?string $queryString = null;
+
+    // FIXME: some of the assignments to these variables have have the wrong type.
+
     /** @var int */
     public $size = 50;
 
