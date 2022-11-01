@@ -189,10 +189,10 @@ return [
         'stats' => [
             'cs' => 'Dimensione Cerchi',
             'cs-mania' => 'Numero di Tasti',
-            'drain' => 'Drenaggio HP',
+            'drain' => 'Perdita HP',
             'accuracy' => 'Precisione',
-            'ar' => 'Approach Rate',
-            'stars' => 'Stelle di Difficoltà',
+            'ar' => 'Velocità Approccio',
+            'stars' => 'Difficoltà',
             'total_length' => 'Durata (Lunghezza drenaggio: :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => 'Numero di Cerchi',

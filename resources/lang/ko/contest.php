@@ -50,6 +50,7 @@ return [
             'beatmap' => '이 콘테스트에서는 .osu 파일만 등록할 수 있습니다.',
             'music' => '이 콘테스트에서는 .mp3 파일만 등록할 수 있습니다.',
         ],
+        'wrong_dimensions' => '',
         'too_big' => '이 콘테스트의 최대 참가 가능한 작품 수는 :limit개 입니다.',
     ],
     'beatmaps' => [

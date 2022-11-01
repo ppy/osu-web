@@ -414,6 +414,7 @@ return [
             'country_simple' => 'Clasament pe țară',
             'global' => 'Clasament global pentru :mode',
             'global_simple' => 'Clasament global',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Precizie',

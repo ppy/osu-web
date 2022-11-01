@@ -36,6 +36,9 @@ class ScoreSearch extends RecordSearch
     {
         $query = new BoolQuery();
 
+        if ($this->params->isLegacy !== null) {
+            $query->filter(['term' => ['is_legacy' => $this->params->isLegacy]]);
+        }
         if ($this->params->rulesetId !== null) {
             $query->filter(['term' => ['ruleset_id' => $this->params->rulesetId]]);
         }
@@ -46,7 +49,9 @@ class ScoreSearch extends RecordSearch
             $query->filter(['term' => ['user_id' => $this->params->userId]]);
         }
         if ($this->params->excludeMods !== null && count($this->params->excludeMods) > 0) {
-            $query->mustNot(['terms' => ['mods' => $this->params->excludeMods]]);
+            foreach ($this->params->excludeMods as $excludedMod) {
+                $query->mustNot(['term' => ['mods' => $excludedMod]]);
+            }
         }
 
         $this->addModsFilter($query);
@@ -60,7 +65,12 @@ class ScoreSearch extends RecordSearch
                 break;
         }
 
-        $beforeTotalScore = $this->params->beforeTotalScore ?? $this->params->beforeScore?->data->totalScore;
+        $beforeTotalScore = $this->params->beforeTotalScore;
+        if ($beforeTotalScore === null && $this->params->beforeScore !== null) {
+            $beforeTotalScore = $this->params->beforeScore->isLegacy()
+                ? $this->params->beforeScore->data->legacyTotalScore
+                : $this->params->beforeScore->data->totalScore;
+        }
         if ($beforeTotalScore !== null) {
             $scoreQuery = (new BoolQuery())->shouldMatch(1);
             $scoreQuery->should((new BoolQuery())->filter(['range' => [
@@ -135,7 +145,12 @@ class ScoreSearch extends RecordSearch
         $allSearchMods = [];
         foreach ($mods as $mod) {
             if ($mod === 'NM') {
-                $noModSubQuery ??= (new BoolQuery())->mustNot(['terms' => ['mods' => $allMods->toArray()]]);
+                if (!isset($noModSubQuery)) {
+                    $noModSubQuery = new BoolQuery();
+                    foreach ($allMods->toArray() as $excludedMod) {
+                        $noModSubQuery->mustNot(['term' => ['mods' => $excludedMod]]);
+                    }
+                }
                 continue;
             }
             $modsSubQuery ??= new BoolQuery();
@@ -151,7 +166,9 @@ class ScoreSearch extends RecordSearch
         if (isset($modsSubQuery)) {
             $excludedMods = array_values(array_diff($allMods->toArray(), $allSearchMods));
             if (count($excludedMods) > 0) {
-                $modsSubQuery->mustNot(['terms' => ['mods' => $excludedMods]]);
+                foreach ($excludedMods as $excludedMod) {
+                    $modsSubQuery->mustNot(['term' => ['mods' => $excludedMod]]);
+                }
             }
         }
 

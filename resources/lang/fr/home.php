@@ -78,7 +78,7 @@ return [
         'help' => [
             '_' => 'si vous avez des problèmes pour démarrer le jeu ou pour créer un compte, :help_forum_link ou :support_button.',
             'help_forum_link' => 'consultez le forum d\'aide',
-            'support_button' => 'contacter le support',
+            'support_button' => 'contactez le support',
         ],
 
         'os' => [

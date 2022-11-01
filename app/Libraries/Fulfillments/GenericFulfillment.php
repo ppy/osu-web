@@ -33,6 +33,6 @@ class GenericFulfillment extends OrderFulfiller
 
     public function validationErrorsTranslationPrefix()
     {
-        // noop
+        return '';
     }
 }

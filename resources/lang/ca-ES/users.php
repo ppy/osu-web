@@ -35,8 +35,8 @@ return [
         'banner_text' => '',
         'comment_text' => '',
         'blocked_count' => '',
-        'hide_profile' => 'Oculta el perfil',
-        'hide_comment' => 'ocultar',
+        'hide_profile' => '',
+        'hide_comment' => '',
         'not_blocked' => '',
         'show_profile' => '',
         'show_comment' => '',
@@ -163,7 +163,7 @@ return [
             'count' => '',
         ],
         'cover' => [
-            'to_0' => 'Ocultar portada',
+            'to_0' => '',
             'to_1' => '',
         ],
         'edit' => [
@@ -414,6 +414,7 @@ return [
             'country_simple' => '',
             'global' => '',
             'global_simple' => '',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => '',

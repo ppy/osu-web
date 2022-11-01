@@ -11,7 +11,6 @@ use App\Models\Beatmap;
 use App\Models\Solo\Score;
 use App\Models\User;
 use Database\Factories\Factory;
-use DateTime;
 
 class ScoreFactory extends Factory
 {
@@ -31,10 +30,10 @@ class ScoreFactory extends Factory
         ];
     }
 
-    public function withData(?array $overrides = null): static
+    public function withData(array ...$overrides): static
     {
         return $this->state([
-            'data' => $this->makeData($overrides),
+            'data' => $this->makeData(array_merge(...$overrides)),
         ]);
     }
 
@@ -45,13 +44,13 @@ class ScoreFactory extends Factory
             array_merge([
                 'accuracy' => fn (): float => $this->faker->randomFloat(1, 0, 1),
                 'beatmap_id' => $attr['beatmap_id'],
-                'ended_at' => fn (): DateTime => now(),
+                'ended_at' => fn (): string => json_time(now()),
                 'max_combo' => fn (): int => rand(1, Beatmap::find($attr['beatmap_id'])->countNormal),
                 'mods' => [],
                 'passed' => true,
                 'rank' => fn (): string => array_rand_val(['A', 'S', 'B', 'SH', 'XH', 'X']),
                 'ruleset_id' => $attr['ruleset_id'],
-                'started_at' => fn (): DateTime => now()->subSeconds(600),
+                'started_at' => fn (): string => json_time(now()->subSeconds(600)),
                 'total_score' => fn (): int => $this->faker->randomNumber(7),
                 'user_id' => $attr['user_id'],
             ], $overrides ?? []),

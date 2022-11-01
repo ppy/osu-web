@@ -55,7 +55,7 @@ return [
             ],
 
             'country_ranking' => [
-                'title' => '国内/区内排名',
+                'title' => '地区排名',
                 'description' => '在征服世界前，先征服你所在的地方吧。',
             ],
 
@@ -116,7 +116,7 @@ return [
 
             'sort_options' => [
                 'title' => '更多排行榜',
-                'description' => '可查看国家或地区、好友、所选MOD排行榜。',
+                'description' => '可查看国家或地区、好友、所选 Mod 排行榜。',
             ],
 
             'more_favourites' => [

@@ -47,4 +47,27 @@ class ScoreToken extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function getAttribute($key)
+    {
+        return match ($key) {
+            'beatmap_id',
+            'build_id',
+            'id',
+            'ruleset_id',
+            'score_id',
+            'user_id' => $this->getRawAttribute($key),
+
+            'created_at',
+            'updated_at' => $this->getTimeFast($key),
+
+            'created_at_json',
+            'updated_at_json' => $this->getJsonTimeFast($key),
+
+            'beatmap',
+            'build',
+            'score',
+            'user' => $this->getRelationValue($key),
+        };
+    }
 }

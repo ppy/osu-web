@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'ผู้ดูแล',
     ],
-    'admin_forum' => [
-        '_' => 'ผู้ดูแล',
-    ],
-    'admin_store' => [
-        '_' => 'ผู้ดูแล',
-    ],
     'error' => [
         'error' => [
             '400' => 'คำร้องขอไม่ถูกต้อง',
@@ -32,17 +26,10 @@ return [
         'topic_logs_controller' => [
             'index' => '',
         ],
-        'topic_watches_controller' => [
-            'index' => 'หน้าหลัก',
-        ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'หน้าหลัก',
             'verify_link' => 'การยืนยันบัญชี',
-        ],
-        'artist_tracks_controller' => [
-            '_' => 'ศิลปินโดดเด่น',
         ],
         'artists_controller' => [
             '_' => 'ศิลปินที่โดดเด่น',
@@ -62,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'ประวัติ Beatmap',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'หน้าหลัก',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'การสนทนาเกี่ยวกับ Beatmap',
             'index' => 'รายการ Beatmap',
@@ -81,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => 'การแข่งขัน',
-        ],
-        'follows_controller' => [
-            'index' => 'หน้าหลัก',
-        ],
-        'friends_controller' => [
-            'index' => 'หน้าหลัก',
         ],
         'groups_controller' => [
             'show' => 'กลุ่ม',
@@ -122,9 +100,6 @@ return [
         'scores_controller' => [
             '_' => 'ค่าศักยภาพ',
         ],
-        'store_controller' => [
-            '_' => 'ร้านค้า',
-        ],
         'tournaments_controller' => [
             '_' => '
 ทัวร์นาเมนต์',
@@ -135,11 +110,6 @@ return [
         ],
         'wiki_controller' => [
             '_' => 'วิกิ',
-        ],
-    ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'การจัดอันดับ',
         ],
     ],
     'passport' => [

@@ -5,11 +5,11 @@
 
 return [
     'index' => [
-        'title' => 'Publicacions de la discussió del mapa',
+        'title' => '',
     ],
 
     'item' => [
-        'content' => 'Contingut',
-        'modding_history_link' => 'Veure historial de modding',
+        'content' => '',
+        'modding_history_link' => '',
     ],
 ];

@@ -416,6 +416,7 @@ return [
             'country_simple' => 'דירוג מדינה',
             'global' => 'דירוג עולמי ל- :mode',
             'global_simple' => 'דירוג עולמי',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'דיוק פגיעה',

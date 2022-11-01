@@ -4,7 +4,7 @@
 import { discussionTypeIcons } from 'beatmap-discussions/discussion-type';
 import { Portal } from 'components/portal';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
-import { Cancelable, throttle } from 'lodash';
+import { throttle } from 'lodash';
 import * as React from 'react';
 import { Editor as SlateEditor, Element as SlateElement, Node as SlateNode, Point, Text as SlateText, Transforms } from 'slate';
 import { ReactEditor } from 'slate-react';
@@ -26,11 +26,11 @@ export class EditorInsertionMenu extends React.Component<Props> {
   private readonly insertRef: React.RefObject<HTMLDivElement> = React.createRef();
   private mouseOver = false;
   private scrollContainer: HTMLElement | undefined;
-  private readonly throttledContainerMouseExit: (() => void) & Cancelable;
-  private readonly throttledContainerMouseMove: ((event: JQuery.MouseMoveEvent) => void) & Cancelable;
-  private readonly throttledMenuMouseEnter: (() => void) & Cancelable;
-  private readonly throttledMenuMouseExit: (() => void) & Cancelable;
-  private readonly throttledScroll: (() => void) & Cancelable;
+  private readonly throttledContainerMouseExit;
+  private readonly throttledContainerMouseMove;
+  private readonly throttledMenuMouseEnter;
+  private readonly throttledMenuMouseExit;
+  private readonly throttledScroll;
 
   constructor(props: Props) {
     super(props);
@@ -154,7 +154,7 @@ export class EditorInsertionMenu extends React.Component<Props> {
   };
 
   private insertBlock = (event: React.MouseEvent<HTMLElement>) => {
-    const ed: ReactEditor = this.context;
+    const ed = this.context;
     const slateNodeElement = this.hoveredBlock?.lastChild;
     const type = event.currentTarget.dataset.discussionType;
     const beatmapId = this.props.currentBeatmap?.id;

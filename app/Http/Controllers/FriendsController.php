@@ -26,7 +26,7 @@ class FriendsController extends Controller
 
         $this->middleware('require-scopes:friends.read', ['only' => ['index']]);
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function index()

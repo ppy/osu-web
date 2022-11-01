@@ -50,6 +50,7 @@ return [
             'beatmap' => 'Za to tekmovanje so sprejemljive samo .osu datoteke.',
             'music' => 'Za to tekmovanje so sprejemljive samo .mp3 datoteke.',
         ],
+        'wrong_dimensions' => '',
         'too_big' => 'Dostopov v to tekmovanje je samo do :limit.',
     ],
     'beatmaps' => [

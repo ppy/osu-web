@@ -414,6 +414,7 @@ return [
             'country_simple' => 'رتبه کشوری',
             'global' => 'رتبه جهانی برای :mode',
             'global_simple' => 'رتبه جهانی',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'دقت ضربات',

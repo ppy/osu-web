@@ -100,16 +100,16 @@ class BeatmapsetQueryParser
 
         if (preg_match('#^\d{4}$#', $value) === 1) {
             $startTime = Carbon::create($value, 1, 1, 0, 0, 0, 'UTC');
-            $endTimeFunction = 'addYear';
+            $endTimeFunction = 'addYears';
         } elseif (preg_match('#^(?<year>\d{4})[-./]?(?<month>\d{1,2})$#', $value, $m) === 1) {
             $startTime = Carbon::create($m['year'], $m['month'], 1, 0, 0, 0, 'UTC');
-            $endTimeFunction = 'addMonth';
+            $endTimeFunction = 'addMonths';
         } elseif (preg_match('#^(?<year>\d{4})[-./]?(?<month>\d{1,2})[-./]?(?<day>\d{1,2})$#', $value, $m) === 1) {
             $startTime = Carbon::create($m['year'], $m['month'], $m['day'], 0, 0, 0, 'UTC');
-            $endTimeFunction = 'addDay';
+            $endTimeFunction = 'addDays';
         } else {
             $startTime = parse_time_to_carbon($value);
-            $endTimeFunction = 'addSecond';
+            $endTimeFunction = 'addSeconds';
         }
 
         if (isset($startTime) && isset($endTimeFunction)) {

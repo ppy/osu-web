@@ -150,7 +150,7 @@ class BeatmapsetsController extends Controller
         priv_check('BeatmapsetDiscussionLock')->ensureCan();
 
         $beatmapset = Beatmapset::findOrFail($id);
-        $beatmapset->discussionUnlock(Auth::user(), request('reason'));
+        $beatmapset->discussionUnlock(Auth::user());
 
         return $beatmapset->defaultDiscussionJson();
     }
@@ -168,7 +168,7 @@ class BeatmapsetsController extends Controller
     public function download($id)
     {
         if (!is_api_request() && !from_app_url()) {
-            return ujs_redirect(route('beatmapsets.show', ['beatmapset' => $id]));
+            return ujs_redirect(route('beatmapsets.show', ['beatmapset' => rawurlencode($id)]));
         }
 
         $beatmapset = Beatmapset::findOrFail($id);
@@ -180,7 +180,7 @@ class BeatmapsetsController extends Controller
         priv_check('BeatmapsetDownload', $beatmapset)->ensureCan();
 
         $recentlyDownloaded = BeatmapDownload::where('user_id', Auth::user()->user_id)
-            ->where('timestamp', '>', Carbon::now()->subHour()->getTimestamp())
+            ->where('timestamp', '>', Carbon::now()->subHours()->getTimestamp())
             ->count();
 
         if ($recentlyDownloaded > Auth::user()->beatmapsetDownloadAllowance()) {
@@ -372,7 +372,10 @@ class BeatmapsetsController extends Controller
             'user',
         ]);
 
-        return json_item($beatmapset, 'Beatmapset', [
+        $transformer = new BeatmapsetTransformer();
+        $transformer->relatedUsersType = 'show';
+
+        return json_item($beatmapset, $transformer, [
             'beatmaps',
             'beatmaps.failtimes',
             'beatmaps.max_combo',
@@ -388,6 +391,7 @@ class BeatmapsetsController extends Controller
             'language',
             'ratings',
             'recent_favourites',
+            'related_users',
             'user',
         ]);
     }

@@ -310,9 +310,29 @@ class Channel extends Model
         return $query->where('type', static::TYPES['pm']);
     }
 
-    public function getAllowedGroupsAttribute($allowed_groups)
+    public function getAttribute($key)
     {
-        return $allowed_groups === null ? [] : array_map('intval', explode(',', $allowed_groups));
+        return match ($key) {
+            'channel_id',
+            'description',
+            'last_message_id',
+            'name',
+            'type' => $this->getRawAttribute($key),
+
+            'moderated' => (bool) $this->getRawAttribute($key),
+
+            'allowed_groups' => $this->getAllowedGroups(),
+            'match_id' => $this->getMatchId(),
+            'room_id' => $this->getRoomId(),
+
+            'creation_time' => $this->getTimeFast($key),
+
+            'creation_time_json' => $this->getJsonTimeFast($key),
+
+            'messages',
+            'multiplayerMatch',
+            'userChannels' => $this->getRelationValue($key),
+        };
     }
 
     public function isAnnouncement()
@@ -355,14 +375,6 @@ class Channel extends Model
         return $this->type === static::TYPES['temporary'] && starts_with($this->name, ['#mp_', '#spect_']);
     }
 
-    public function getMatchIdAttribute()
-    {
-        // TODO: add lazer mp support?
-        if ($this->isBanchoMultiplayerChat()) {
-            return intval(str_replace('#mp_', '', $this->name));
-        }
-    }
-
     public function isValid()
     {
         $this->validationErrors()->reset();
@@ -376,14 +388,6 @@ class Channel extends Model
         }
 
         return $this->validationErrors()->isEmpty();
-    }
-
-    public function getRoomIdAttribute()
-    {
-        // 9 = strlen('#lazermp_')
-        if ($this->isMultiplayer() && substr($this->name, 0, 9) === '#lazermp_') {
-            return get_int(substr($this->name, 9));
-        }
     }
 
     public function multiplayerMatch()
@@ -601,6 +605,29 @@ class Channel extends Model
         // simpler to reset preloads since its use-cases are more specific,
         // rather than trying to juggle them to ensure userChannelFor returns as expected.
         $this->preloadedUserChannels = [];
+    }
+
+    private function getAllowedGroups(): array
+    {
+        $value = $this->getRawAttribute('allowed_groups');
+
+        return $value === null ? [] : array_map('intval', explode(',', $value));
+    }
+
+    private function getMatchId()
+    {
+        // TODO: add lazer mp support?
+        if ($this->isBanchoMultiplayerChat()) {
+            return intval(str_replace('#mp_', '', $this->name));
+        }
+    }
+
+    private function getRoomId()
+    {
+        // 9 = strlen('#lazermp_')
+        if ($this->isMultiplayer() && substr($this->name, 0, 9) === '#lazermp_') {
+            return get_int(substr($this->name, 9));
+        }
     }
 
     private function userChannelFor(User $user): ?UserChannel

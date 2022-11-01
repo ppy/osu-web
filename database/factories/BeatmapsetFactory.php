@@ -9,6 +9,7 @@ use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetNomination;
+use App\Models\Forum\Topic;
 use App\Models\Genre;
 use App\Models\Language;
 use App\Models\User;
@@ -78,6 +79,19 @@ class BeatmapsetFactory extends Factory
             'approved_date' => $approvedAt,
             'queued_at' => $approvedAt,
         ]);
+    }
+
+    public function withDescription(): static
+    {
+        // Like `$this->for(Topic::factory()->...)`, but called after making the model and creating
+        // child models so that they can be used as dependencies.
+        return $this->afterMaking(function (Beatmapset $beatmapset) {
+            $beatmapset->thread_id = Topic::factory()
+                ->state(['topic_poster' => $beatmapset->user_id])
+                ->withPost()
+                ->create()
+                ->getKey();
+        });
     }
 
     public function withDiscussion()

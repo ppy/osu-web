@@ -327,7 +327,7 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => 'Скачать запись',
-                'not_ranked' => 'Очки производительности выдаются только за прохождение рейтинговых карт',
+                'not_ranked' => 'Только рейтинговые карты приносят pp',
                 'pp_weight' => 'засчитано: :percentage pp',
                 'view_details' => 'Подробнее',
                 'title' => 'Рейтинги',
@@ -414,6 +414,7 @@ return [
             'country_simple' => 'Рейтинг в стране',
             'global' => 'Глобальный рейтинг для :mode',
             'global_simple' => 'Рейтинг в мире',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Точность попаданий',
