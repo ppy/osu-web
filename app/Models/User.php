@@ -87,6 +87,10 @@ use Request;
  * @property-read string|null $playmode
  * @property bool $pm_friends_only
  * @property-read \Illuminate\Database\Eloquent\Collection<ProfileBanner> $profileBanners
+ * @property-read \Illuminate\Database\Eloquent\Collection<Beatmapset> $profileBeatmapsetsGraveyard
+ * @property-read \Illuminate\Database\Eloquent\Collection<Beatmapset> $profileBeatmapsetsLoved
+ * @property-read \Illuminate\Database\Eloquent\Collection<Beatmapset> $profileBeatmapsetsPending
+ * @property-read \Illuminate\Database\Eloquent\Collection<Beatmapset> $profileBeatmapsetsranked
  * @property-read Rank $rank
  * @property-read \Illuminate\Database\Eloquent\Collection<RankHighest> $rankHighests
  * @property-read \Illuminate\Database\Eloquent\Collection<RankHistory> $rankHistories
