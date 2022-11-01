@@ -109,11 +109,11 @@ return [
             ],
 
             'disqualify' => [
-                '_' => '',
+                '_' => 'Ak nájdete problém s touto mapou, prosím diskvalifikujte ju :link.',
             ],
 
             'report' => [
-                '_' => '',
+                '_' => 'Ak nájdete problém s touto mapou, prosím nahláste ho :link, aby ste to nahlásili týmu.',
                 'button' => 'Nahlásiť problém',
                 'link' => 'tu',
             ],

@@ -5,6 +5,7 @@
 
 namespace Tests\Commands;
 
+use App\Exceptions\InvariantException;
 use App\Models\Solo\Score;
 use Artisan;
 use LaravelRedis;
@@ -34,12 +35,15 @@ class EsIndexScoresQueueTest extends TestCase
      */
     public function testParameterValidity(array $params, bool $isValid)
     {
+        if (!$isValid) {
+            $this->expectException(InvariantException::class);
+        }
+
         $command = $this->artisan('es:index-scores:queue', array_merge($params, ['--schema' => static::SCHEMA]));
 
         if ($isValid) {
             $command->expectsQuestion('This will queue scores for indexing to schema '.static::SCHEMA.', continue?', 'yes');
         }
-        $command->assertExitCode($isValid ? 0 : 1);
     }
 
     /**

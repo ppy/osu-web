@@ -15,13 +15,13 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           cache: yarn
-          node-version: '12'
+          node-version: '16'
 
       - name: Set php version
         uses: shivammathur/setup-php@v2
@@ -48,7 +48,7 @@ jobs:
       - name: Install js dependencies
         run: yarn --frozen-lockfile
 
-      - run: yarn lint --quiet
+      - run: 'yarn lint --max-warnings 197 > /dev/null'
 
       - run: ./bin/update_licence.sh -nf
 

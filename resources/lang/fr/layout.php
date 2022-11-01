@@ -115,7 +115,7 @@ return [
             'privacy' => 'Confidentialité',
             'server_status' => 'Statut du serveur',
             'source_code' => 'Code source',
-            'terms' => 'Conditions du service',
+            'terms' => 'Conditions d\'utilisation',
         ],
     ],
 

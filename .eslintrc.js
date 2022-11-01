@@ -134,6 +134,12 @@ module.exports = {
         'react/jsx-max-props-per-line': ['error', { when: 'multiline' }],
         'react/jsx-no-bind': 'error',
         'react/jsx-sort-props': ['error', { reservedFirst: true }],
+        'react/jsx-tag-spacing': ['error', {
+          afterOpening: 'never',
+          beforeClosing: 'never',
+          beforeSelfClosing: 'always',
+          closingSlash: 'never',
+        }],
         'react/jsx-wrap-multilines': 'error',
         'react/no-deprecated': 'warn',
         'react/no-unsafe': 'off',

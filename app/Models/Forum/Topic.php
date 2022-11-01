@@ -530,7 +530,8 @@ class Topic extends Model implements AfterCommit
                 // Duplicate entry.
                 // Retry, hoping $status now contains something.
                 if (is_sql_unique_exception($ex)) {
-                    return $this->markRead($user, $markTime);
+                    $this->markRead($user, $markTime);
+                    return;
                 }
 
                 throw $ex;

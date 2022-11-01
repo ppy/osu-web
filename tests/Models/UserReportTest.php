@@ -22,18 +22,8 @@ class UserReportTest extends TestCase
 {
     private static function makeReportable(string $class): ReportableInterface
     {
-        $user = User::factory()->create();
-
-        switch ($class) {
-            case Forum\Post::class:
-                $modelFactory = factory(Forum\Post::class);
-                $userColumn = 'poster_id';
-                break;
-            default:
-                $modelFactory = $class::factory();
-                $userColumn = 'user_id';
-                break;
-        }
+        $modelFactory = $class::factory();
+        $userColumn = 'user_id';
 
         if ($class === Beatmapset::class) {
             $modelFactory = $modelFactory->pending();
@@ -47,7 +37,11 @@ class UserReportTest extends TestCase
             ]);
         }
 
-        return $modelFactory->create([$userColumn => $user->getKey()]);
+        if ($class === Forum\Post::class) {
+            $userColumn = 'poster_id';
+        }
+
+        return $modelFactory->create([$userColumn => User::factory()]);
     }
 
     private static function reportParams(array $additionalParams = []): array
@@ -117,8 +111,11 @@ class UserReportTest extends TestCase
         $reporter = User::factory()->create();
 
         $query = UserReport::whereMorphedTo('reportable', $reportable);
-        $this->expectCountChange(fn () => $query->count(), 1);
-        $this->expectCountChange(fn () => $reporter->reportsMade()->count(), 1);
+        $this->expectCountChange(fn () => $query->count(), 1, 'reportable query');
+        $this->expectCountChange(fn () => $reporter->fresh()->reportsMade->count(), 1, 'reportsMade accessor');
+        $this->expectCountChange(fn () => $reporter->reportsMade()->count(), 1, 'reportsMade query');
+        $this->expectCountChange(fn () => $reportable->fresh()->reportedIn->count(), 1, 'reportedIn accessor');
+        $this->expectCountChange(fn () => $reportable->reportedIn()->count(), 1, 'reportedIn query');
 
         $report = $reportable->reportBy($reporter, static::reportParams());
         if ($reportable instanceof BestModel) {

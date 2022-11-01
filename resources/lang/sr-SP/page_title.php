@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'aдмин',
     ],
-    'admin_forum' => [
-        '_' => 'aдмин',
-    ],
-    'admin_store' => [
-        '_' => 'aдмин',
-    ],
     'error' => [
         'error' => [
             '400' => 'неважећи захтев',
@@ -32,17 +26,10 @@ return [
         'topic_logs_controller' => [
             'index' => 'логови за теме',
         ],
-        'topic_watches_controller' => [
-            'index' => 'командна табла',
-        ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'командна табла',
             'verify_link' => 'верификација налога',
-        ],
-        'artist_tracks_controller' => [
-            '_' => 'истакнути уметници',
         ],
         'artists_controller' => [
             '_' => 'истакнути уметници',
@@ -62,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'историја мапе',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'командна табла',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'дискусија за мапу',
             'index' => 'листинг мапа',
@@ -81,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => 'такмичења',
-        ],
-        'follows_controller' => [
-            'index' => 'командна табла',
-        ],
-        'friends_controller' => [
-            'index' => 'командна табла',
         ],
         'groups_controller' => [
             'show' => 'групе',
@@ -122,9 +100,6 @@ return [
         'scores_controller' => [
             '_' => 'перформансе',
         ],
-        'store_controller' => [
-            '_' => 'продавница',
-        ],
         'tournaments_controller' => [
             '_' => 'турнири',
         ],
@@ -134,11 +109,6 @@ return [
         ],
         'wiki_controller' => [
             '_' => 'вики',
-        ],
-    ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'рангови',
         ],
     ],
     'passport' => [

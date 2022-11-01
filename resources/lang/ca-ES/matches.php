@@ -7,7 +7,7 @@ return [
     'match' => [
         'beatmap-deleted' => '',
         'difference' => '',
-        'failed' => 'FRACASSAT',
+        'failed' => '',
         'header' => '',
         'in-progress' => '',
         'in_progress_spinner_label' => '',
@@ -32,27 +32,27 @@ return [
 
         'score' => [
             'stats' => [
-                'accuracy' => 'Precisió',
-                'combo' => 'Combo',
-                'score' => 'Puntuació',
+                'accuracy' => '',
+                'combo' => '',
+                'score' => '',
             ],
         ],
 
         'team-types' => [
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
+            'head-to-head' => '',
+            'tag-coop' => '',
+            'team-vs' => '',
+            'tag-team-vs' => '',
         ],
 
         'teams' => [
             'blue' => '',
-            'red' => 'Equip Vermell',
+            'red' => '',
         ],
     ],
     'game' => [
         'scoring-type' => [
-            'score' => 'Equip Blau',
+            'score' => '',
             'accuracy' => '',
             'combo' => '',
             'scorev2' => '',

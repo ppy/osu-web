@@ -7,7 +7,7 @@ import { isFormatActive, toggleFormat } from './editor-helpers';
 import { SlateContext } from './slate-context';
 
 interface Props {
-  format: string;
+  format: 'bold' | 'italic';
 }
 
 export const EditorToolbarButton = (props: Props) => {
@@ -19,7 +19,7 @@ export const EditorToolbarButton = (props: Props) => {
 
   return (
     <button
-      className={classWithModifiers('beatmap-discussion-editor-toolbar__button', [isFormatActive(context, props.format) ? 'active' : ''])}
+      className={classWithModifiers('beatmap-discussion-editor-toolbar__button', { active: isFormatActive(context, props.format) })}
       // we use onMouseDown instead of onClick here so the popup remains visible after clicking
       onMouseDown={handleClick}
     >

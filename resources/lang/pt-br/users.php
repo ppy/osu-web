@@ -414,6 +414,7 @@ return [
             'country_simple' => 'Ranking Nacional',
             'global' => 'Ranking global de :mode',
             'global_simple' => 'Ranking Global',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisão',

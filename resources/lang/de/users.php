@@ -414,6 +414,7 @@ return [
             'country_simple' => 'Landesrangliste',
             'global' => 'Globaler Rang im Modus :mode',
             'global_simple' => 'Globale Rangliste',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Genauigkeit',

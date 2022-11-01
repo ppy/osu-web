@@ -32,6 +32,8 @@ class ContestTransformer extends TransformerAbstract
             'submitted_beatmaps' => $contest->isSubmittedBeatmaps(),
             'thumbnail_shape' => $contest->thumbnail_shape,
             'type' => $contest->type,
+            'forced_width' => $contest->getForcedWidth(),
+            'forced_height' => $contest->getForcedHeight(),
             'voting_ends_at' => json_time($contest->voting_ends_at),
         ];
     }

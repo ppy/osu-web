@@ -3,6 +3,7 @@
 
 import CountryJson from './country-json';
 import ProfileBannerJson from './profile-banner';
+import RankHighestJson from './rank-highest-json';
 import RankHistoryJson from './rank-history-json';
 import UserAccountHistoryJson from './user-account-history-json';
 import UserAchievementJson from './user-achievement-json';
@@ -50,6 +51,7 @@ interface UserJsonAvailableIncludes {
   };
   pending_beatmapset_count: number;
   previous_usernames: string[];
+  rank_highest: RankHighestJson | null;
   rank_history: RankHistoryJson | null;
   ranked_beatmapset_count: number;
   replays_watched_counts: UserReplaysWatchedCountJson[];

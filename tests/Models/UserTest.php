@@ -15,6 +15,16 @@ use Tests\TestCase;
 
 class UserTest extends TestCase
 {
+    /**
+     * @dataProvider dataProviderForAttributeTwitter
+     */
+    public function testAttributeTwitter($setValue, $getValue)
+    {
+        $user = new User(['user_twitter' => $setValue]);
+
+        $this->assertSame($getValue, $user->user_twitter);
+    }
+
     public function testEmailLoginDisabled()
     {
         config()->set('osu.user.allow_email_login', false);
@@ -77,5 +87,16 @@ class UserTest extends TestCase
         $this->assertEmpty(Store::keys($user->getKey()));
         $this->assertTrue($token->fresh()->revoked);
         $this->assertTrue($refreshToken->fresh()->revoked);
+    }
+
+    public function dataProviderForAttributeTwitter(): array
+    {
+        return [
+            ['@hello', 'hello'],
+            ['hello', 'hello'],
+            ['@', null],
+            ['', null],
+            [null, null],
+        ];
     }
 }

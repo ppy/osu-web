@@ -11,10 +11,8 @@ class ValidationErrors
 {
     private $errors = [];
 
-    public function __construct($prefix, $keyBase = 'model_validation.')
+    public function __construct(private string $prefix, private string $keyBase = 'model_validation.')
     {
-        $this->prefix = $prefix;
-        $this->keyBase = $keyBase;
     }
 
     public function add($column, $rawMessage, $params = null): self

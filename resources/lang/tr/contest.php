@@ -50,6 +50,7 @@ return [
             'beatmap' => 'Bu yarışma için sadece .osu dosyaları kabul edilir.',
             'music' => 'Bu yarışma için sadece .mp3 dosyaları kabul edilir.',
         ],
+        'wrong_dimensions' => '',
         'too_big' => 'Bu yarışma için :limit girdi gönderilebilir.',
     ],
     'beatmaps' => [
