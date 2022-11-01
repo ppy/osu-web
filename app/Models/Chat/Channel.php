@@ -38,6 +38,8 @@ use LaravelRedis as Redis;
  * @property int|null $last_message_id
  * @property-read \App\Models\LegacyMatch\LegacyMatch|null $multiplayerMatch
  * @property-read \Illuminate\Database\Eloquent\Collection<UserChannel> $userChannels
+ * @method static \Illuminate\Database\Eloquent\Builder PM()
+ * @method static \Illuminate\Database\Eloquent\Builder public()
  */
 class Channel extends Model
 {
