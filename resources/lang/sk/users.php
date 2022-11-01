@@ -414,6 +414,7 @@ return [
             'country_simple' => 'Umiestnenie v krajine',
             'global' => 'Globálna pozícia pre :mode',
             'global_simple' => 'Celkové umiestnenie',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Presnosť Zásahov',

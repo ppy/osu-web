@@ -5,8 +5,8 @@
 
 return [
     'loading_users' => 'chargement des utilisateurs...',
-    'talking_in' => 'parle dans :channel',
-    'talking_with' => 'parle avec :name',
+    'talking_in' => 'parler dans :channel',
+    'talking_with' => 'parler avec :name',
     'title_compact' => 'tchat',
 
     'cannot_send' => [
@@ -49,7 +49,7 @@ return [
         'create' => 'Créer',
         'disabled' => 'impossible d\'envoyer un message...',
         'disconnected' => 'Déconnecté',
-        'placeholder' => 'saisissez le message...',
+        'placeholder' => 'saisissez votre message...',
         'send' => 'Envoyer',
     ],
 

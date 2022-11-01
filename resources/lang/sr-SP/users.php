@@ -416,6 +416,7 @@ return [
             'country_simple' => 'Државни Ранг',
             'global' => 'Глобални ранг за :mode',
             'global_simple' => 'Глобални ранг',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Прецизност ',

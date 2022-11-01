@@ -50,6 +50,7 @@ return [
             'beatmap' => 'Csak .osu kiterjesztésű fájlok engedélyezettek erre a versenyre.',
             'music' => 'Csak .mp3 kiterjesztésű fájlok engedélyezettek erre a versenyre.',
         ],
+        'wrong_dimensions' => '',
         'too_big' => 'A jelentkezések száma erre a versenyre csak :limit lehet.',
     ],
     'beatmaps' => [

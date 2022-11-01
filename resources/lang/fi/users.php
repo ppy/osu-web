@@ -414,6 +414,7 @@ return [
             'country_simple' => 'Maakohtainen sijoitus',
             'global' => 'Maailmanlaajuinen sijoitus pelimuodossa :mode',
             'global_simple' => 'Maailmanlaajuinen sijoitus',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Tarkkuus',

@@ -50,6 +50,7 @@ return [
             'beatmap' => 'רק קבצי .osu מתקבלים לתחרות זו.',
             'music' => 'רק קבצי .mp3 מתקבלים לתחרות זו.',
         ],
+        'wrong_dimensions' => '',
         'too_big' => 'שליחות לתחרות זו יכולות להיות עד :limit.',
     ],
     'beatmaps' => [

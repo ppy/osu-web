@@ -414,6 +414,7 @@ return [
             'country_simple' => 'Държавно класиране',
             'global' => 'Световна класация за :mode',
             'global_simple' => 'Глобално класиране',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Прецизност на ударите',

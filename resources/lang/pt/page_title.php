@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'administrador',
     ],
-    'admin_forum' => [
-        '_' => 'administrador',
-    ],
-    'admin_store' => [
-        '_' => 'administrador',
-    ],
     'error' => [
         'error' => [
             '400' => 'pedido inválido',
@@ -32,17 +26,10 @@ return [
         'topic_logs_controller' => [
             'index' => 'registos do tópico',
         ],
-        'topic_watches_controller' => [
-            'index' => 'painel de controlo',
-        ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'painel de controlo',
             'verify_link' => 'verificação da conta',
-        ],
-        'artist_tracks_controller' => [
-            '_' => 'artistas destacados',
         ],
         'artists_controller' => [
             '_' => 'artistas destacados',
@@ -62,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'histórico do beatmap',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'painel de controlo',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'discussão do beatmap',
             'index' => 'listagem de beatmaps',
@@ -81,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => 'concursos',
-        ],
-        'follows_controller' => [
-            'index' => 'painel de controlo',
-        ],
-        'friends_controller' => [
-            'index' => 'painel de controlo',
         ],
         'groups_controller' => [
             'show' => 'grupos',
@@ -122,9 +100,6 @@ return [
         'scores_controller' => [
             '_' => 'desempenho',
         ],
-        'store_controller' => [
-            '_' => 'loja',
-        ],
         'tournaments_controller' => [
             '_' => 'torneios',
         ],
@@ -134,11 +109,6 @@ return [
         ],
         'wiki_controller' => [
             '_' => 'wiki',
-        ],
-    ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'classificação',
         ],
     ],
     'passport' => [

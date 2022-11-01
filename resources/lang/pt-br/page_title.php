@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'admin',
     ],
-    'admin_forum' => [
-        '_' => 'admin',
-    ],
-    'admin_store' => [
-        '_' => 'admin',
-    ],
     'error' => [
         'error' => [
             '400' => 'solicitação inválida',
@@ -32,17 +26,10 @@ return [
         'topic_logs_controller' => [
             'index' => 'logs do tópico',
         ],
-        'topic_watches_controller' => [
-            'index' => 'painel de controle',
-        ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'painel de controle',
             'verify_link' => 'verificação de conta',
-        ],
-        'artist_tracks_controller' => [
-            '_' => 'artistas em destaque',
         ],
         'artists_controller' => [
             '_' => 'artistas em destaque',
@@ -62,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'histórico do beatmap',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'painel de controle',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'discussão do beatmap',
             'index' => 'lista de beatmaps',
@@ -81,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => 'concursos',
-        ],
-        'follows_controller' => [
-            'index' => 'painel',
-        ],
-        'friends_controller' => [
-            'index' => 'painel de controle',
         ],
         'groups_controller' => [
             'show' => 'grupos',
@@ -122,9 +100,6 @@ return [
         'scores_controller' => [
             '_' => 'desempenho',
         ],
-        'store_controller' => [
-            '_' => 'loja',
-        ],
         'tournaments_controller' => [
             '_' => 'torneios',
         ],
@@ -134,11 +109,6 @@ return [
         ],
         'wiki_controller' => [
             '_' => 'wiki',
-        ],
-    ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'classificação',
         ],
     ],
     'passport' => [

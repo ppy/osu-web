@@ -414,6 +414,7 @@ return [
             'country_simple' => 'Рейтинг країни',
             'global' => 'Глобальний рейтинг для :mode',
             'global_simple' => 'Рейтинг в світі',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Точність',
