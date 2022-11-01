@@ -81,11 +81,9 @@ class Channel extends Model
     /**
      * Creates a chat broadcast Channel and associated UserChannels.
      *
-     * @param Collection $users
-     * @param array $rawParams
-     * @return Channel
+     * @param Collection<User> $users
      */
-    public static function createAnnouncement(Collection $users, array $rawParams, ?string $uuid = null): self
+    public static function createAnnouncement(Collection $users, array $rawParams, ?string $uuid = null): static
     {
         $params = get_params($rawParams, null, [
             'description:string',
@@ -168,13 +166,7 @@ class Channel extends Model
         return "chat:channel:{$channelId}";
     }
 
-    /**
-     * @param User $user1
-     * @param User $user2
-     *
-     * @return string
-     */
-    public static function getPMChannelName(User $user1, User $user2)
+    public static function getPMChannelName(User $user1, User $user2): string
     {
         $userIds = [$user1->getKey(), $user2->getKey()];
         sort($userIds);
