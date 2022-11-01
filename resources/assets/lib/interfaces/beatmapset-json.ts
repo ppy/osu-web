@@ -98,7 +98,6 @@ interface BeatmapsetJsonDefaultAttributes {
   source: string;
   spotlight: boolean;
   status: BeatmapsetStatus;
-  tags: string;
   title: string;
   title_unicode: string;
   track_id: number | null;
