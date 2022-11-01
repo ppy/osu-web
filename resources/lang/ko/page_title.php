@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => '관리',
     ],
-    'admin_forum' => [
-        '_' => '관리',
-    ],
-    'admin_store' => [
-        '_' => '관리',
-    ],
     'error' => [
         'error' => [
             '400' => '잘못된 요청',
@@ -32,17 +26,10 @@ return [
         'topic_logs_controller' => [
             'index' => '주제 로그',
         ],
-        'topic_watches_controller' => [
-            'index' => '대시보드',
-        ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => '대시보드',
             'verify_link' => '계정 인증',
-        ],
-        'artist_tracks_controller' => [
-            '_' => '공식 아티스트',
         ],
         'artists_controller' => [
             '_' => '공식 아티스트',
@@ -62,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => '비트맵 기록',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => '대시보드',
-        ],
         'beatmapsets_controller' => [
             'discussion' => '비트맵 토론',
             'index' => '비트맵 목록',
@@ -81,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => '콘테스트',
-        ],
-        'follows_controller' => [
-            'index' => '대시보드',
-        ],
-        'friends_controller' => [
-            'index' => '대시보드',
         ],
         'groups_controller' => [
             'show' => '그룹',
@@ -122,9 +100,6 @@ return [
         'scores_controller' => [
             '_' => '퍼포먼스',
         ],
-        'store_controller' => [
-            '_' => '상점',
-        ],
         'tournaments_controller' => [
             '_' => '토너먼트',
         ],
@@ -134,11 +109,6 @@ return [
         ],
         'wiki_controller' => [
             '_' => '위키',
-        ],
-    ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => '순위',
         ],
     ],
     'passport' => [

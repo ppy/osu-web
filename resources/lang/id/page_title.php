@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'admin',
     ],
-    'admin_forum' => [
-        '_' => 'admin',
-    ],
-    'admin_store' => [
-        '_' => 'admin',
-    ],
     'error' => [
         'error' => [
             '400' => 'permintaan tidak valid',
@@ -32,17 +26,10 @@ return [
         'topic_logs_controller' => [
             'index' => 'log topik',
         ],
-        'topic_watches_controller' => [
-            'index' => 'dasbor',
-        ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'dasbor',
             'verify_link' => 'verifikasi akun',
-        ],
-        'artist_tracks_controller' => [
-            '_' => 'featured artist',
         ],
         'artists_controller' => [
             '_' => 'featured artist',
@@ -62,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'riwayat beatmap',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'dasbor',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'laman diskusi beatmap',
             'index' => 'daftar beatmap',
@@ -81,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => 'kontes',
-        ],
-        'follows_controller' => [
-            'index' => 'dasbor',
-        ],
-        'friends_controller' => [
-            'index' => 'dasbor',
         ],
         'groups_controller' => [
             'show' => 'grup',
@@ -122,9 +100,6 @@ return [
         'scores_controller' => [
             '_' => 'performa',
         ],
-        'store_controller' => [
-            '_' => 'toko',
-        ],
         'tournaments_controller' => [
             '_' => 'turnamen',
         ],
@@ -134,11 +109,6 @@ return [
         ],
         'wiki_controller' => [
             '_' => 'wiki',
-        ],
-    ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'peringkat',
         ],
     ],
     'passport' => [

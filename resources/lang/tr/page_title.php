@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'yönetici',
     ],
-    'admin_forum' => [
-        '_' => 'yönetici',
-    ],
-    'admin_store' => [
-        '_' => 'yönetici',
-    ],
     'error' => [
         'error' => [
             '400' => 'geçersiz istek',
@@ -32,17 +26,10 @@ return [
         'topic_logs_controller' => [
             'index' => 'konu kayıtları',
         ],
-        'topic_watches_controller' => [
-            'index' => 'kontrol paneli',
-        ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'kontrol paneli',
             'verify_link' => 'hesap doğrulama',
-        ],
-        'artist_tracks_controller' => [
-            '_' => 'featured artist\'ler',
         ],
         'artists_controller' => [
             '_' => 'featured artist\'ler',
@@ -62,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'beatmap geçmişi',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'kontrol paneli',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'beatmap tartışma',
             'index' => 'beatmap kataloğu',
@@ -81,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => 'yarışmalar',
-        ],
-        'follows_controller' => [
-            'index' => 'kontrol paneli',
-        ],
-        'friends_controller' => [
-            'index' => 'kontrol paneli',
         ],
         'groups_controller' => [
             'show' => 'gruplar',
@@ -122,9 +100,6 @@ return [
         'scores_controller' => [
             '_' => 'performans',
         ],
-        'store_controller' => [
-            '_' => 'mağaza',
-        ],
         'tournaments_controller' => [
             '_' => 'turnuvalar',
         ],
@@ -134,11 +109,6 @@ return [
         ],
         'wiki_controller' => [
             '_' => 'wiki',
-        ],
-    ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'sıralama',
         ],
     ],
     'passport' => [

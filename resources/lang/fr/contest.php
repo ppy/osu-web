@@ -50,6 +50,7 @@ return [
             'beatmap' => 'Seuls les fichiers .osu sont acceptés pour ce concours.',
             'music' => 'Seuls les fichiers .mp3 sont acceptés pour ce concours.',
         ],
+        'wrong_dimensions' => '',
         'too_big' => 'Les entrées pour le concours sont limitées à :limit.',
     ],
     'beatmaps' => [
