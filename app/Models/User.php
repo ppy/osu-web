@@ -39,39 +39,39 @@ use League\OAuth2\Server\Exception\OAuthServerException;
 use Request;
 
 /**
- * @property-read \Illuminate\Database\Eloquent\Collection $accountHistories UserAccountHistory
+ * @property-read \Illuminate\Database\Eloquent\Collection<UserAccountHistory> $accountHistories
  * @property-read ApiKey|null $apiKey
- * @property-read \Illuminate\Database\Eloquent\Collection $badges UserBadge
- * @property-read \Illuminate\Database\Eloquent\Collection $beatmapDiscussionVotes BeatmapDiscussionVote
- * @property-read \Illuminate\Database\Eloquent\Collection $beatmapDiscussions BeatmapDiscussion
- * @property-read \Illuminate\Database\Eloquent\Collection $beatmapPlaycounts BeatmapPlaycount
- * @property-read \Illuminate\Database\Eloquent\Collection $beatmaps Beatmap
- * @property-read \Illuminate\Database\Eloquent\Collection $beatmapsetNominations BeatmapsetEvent
- * @property-read \Illuminate\Database\Eloquent\Collection $beatmapsetRatings BeatmapsetUserRating
- * @property-read \Illuminate\Database\Eloquent\Collection $beatmapsetWatches BeatmapsetWatch
- * @property-read \Illuminate\Database\Eloquent\Collection $beatmapsets Beatmapset
- * @property-read \Illuminate\Database\Eloquent\Collection $blocks static
- * @property-read \Illuminate\Database\Eloquent\Collection $changelogs Changelog
- * @property-read \Illuminate\Database\Eloquent\Collection $channels Chat\Channel
- * @property-read \Illuminate\Database\Eloquent\Collection $clients UserClient
- * @property-read \Illuminate\Database\Eloquent\Collection $comments Comment
+ * @property-read \Illuminate\Database\Eloquent\Collection<UserBadge> $badges
+ * @property-read \Illuminate\Database\Eloquent\Collection<BeatmapDiscussionVote> $beatmapDiscussionVotes
+ * @property-read \Illuminate\Database\Eloquent\Collection<BeatmapDiscussion> $beatmapDiscussions
+ * @property-read \Illuminate\Database\Eloquent\Collection<BeatmapPlaycount> $beatmapPlaycounts
+ * @property-read \Illuminate\Database\Eloquent\Collection<Beatmap> $beatmaps Beatmap
+ * @property-read \Illuminate\Database\Eloquent\Collection<BeatmapsetNomination> $beatmapsetNominations
+ * @property-read \Illuminate\Database\Eloquent\Collection<BeatmapsetUserRating> $beatmapsetRatings
+ * @property-read \Illuminate\Database\Eloquent\Collection<BeatmapsetWatch> $beatmapsetWatches
+ * @property-read \Illuminate\Database\Eloquent\Collection<Beatmapset> $beatmapsets
+ * @property-read \Illuminate\Database\Eloquent\Collection<static> $blocks
+ * @property-read \Illuminate\Database\Eloquent\Collection<Changelog> $changelogs
+ * @property-read \Illuminate\Database\Eloquent\Collection<Chat\Channel> $channels
+ * @property-read \Illuminate\Database\Eloquent\Collection<UserClient> $clients
+ * @property-read \Illuminate\Database\Eloquent\Collection<Comment> $comments
  * @property-read Country|null $country
  * @property string|null $country_acronym
  * @property-write string|null $current_password
  * @property-read \Carbon\Carbon|null $displayed_last_visit
  * @property-read string|null $email
- * @property-read \Illuminate\Database\Eloquent\Collection $events Event
- * @property-read \Illuminate\Database\Eloquent\Collection $favourites FavouriteBeatmapset
- * @property-read \Illuminate\Database\Eloquent\Collection $forumPosts Forum\Post
- * @property-read \Illuminate\Database\Eloquent\Collection $friends static
- * @property-read \Illuminate\Database\Eloquent\Collection $githubUsers GithubUser
- * @property-read \Illuminate\Database\Eloquent\Collection $givenKudosu KudosuHistory
+ * @property-read \Illuminate\Database\Eloquent\Collection<Event> $events
+ * @property-read \Illuminate\Database\Eloquent\Collection<FavouriteBeatmapset> $favourites
+ * @property-read \Illuminate\Database\Eloquent\Collection<Forum\Post> $forumPosts
+ * @property-read \Illuminate\Database\Eloquent\Collection<static> $friends
+ * @property-read \Illuminate\Database\Eloquent\Collection<GithubUser> $githubUsers
+ * @property-read \Illuminate\Database\Eloquent\Collection<KudosuHistory> $givenKudosu
  * @property int $group_id
  * @property bool $hide_presence
- * @property-read \Illuminate\Database\Eloquent\Collection $monthlyPlaycounts UserMonthlyPlaycount
- * @property-read \Illuminate\Database\Eloquent\Collection $notificationOptions UserNotificationOption
- * @property-read \Illuminate\Database\Eloquent\Collection $oauthClients Client
- * @property-read \Illuminate\Database\Eloquent\Collection $orders Order
+ * @property-read \Illuminate\Database\Eloquent\Collection<UserMonthlyPlaycount> $monthlyPlaycounts
+ * @property-read \Illuminate\Database\Eloquent\Collection<UserNotificationOption> $notificationOptions
+ * @property-read \Illuminate\Database\Eloquent\Collection<Client> $oauthClients
+ * @property-read \Illuminate\Database\Eloquent\Collection<Store\Order> $orders
  * @property int $osu_featurevotes
  * @property int $osu_kudosavailable
  * @property int $osu_kudosdenied
@@ -86,40 +86,40 @@ use Request;
  * @property-write string|null $password_confirmation
  * @property-read string|null $playmode
  * @property bool $pm_friends_only
- * @property-read \Illuminate\Database\Eloquent\Collection $profileBanners ProfileBanner
+ * @property-read \Illuminate\Database\Eloquent\Collection<ProfileBanner> $profileBanners
  * @property-read Rank $rank
- * @property-read \Illuminate\Database\Eloquent\Collection $rankHighests RankHighest
- * @property-read \Illuminate\Database\Eloquent\Collection $rankHistories RankHistory
- * @property-read \Illuminate\Database\Eloquent\Collection $receivedKudosu KudosuHistory
- * @property-read \Illuminate\Database\Eloquent\Collection $relations UserRelation
+ * @property-read \Illuminate\Database\Eloquent\Collection<RankHighest> $rankHighests
+ * @property-read \Illuminate\Database\Eloquent\Collection<RankHistory> $rankHistories
+ * @property-read \Illuminate\Database\Eloquent\Collection<KudosuHistory> $receivedKudosu
+ * @property-read \Illuminate\Database\Eloquent\Collection<UserRelation> $relations
  * @property string|null $remember_token
- * @property-read \Illuminate\Database\Eloquent\Collection $replaysWatchedCounts UserReplaysWatchedCount
- * @property-read \Illuminate\Database\Eloquent\Collection $reportsMade UserReport
- * @property-read \Illuminate\Database\Eloquent\Collection $scorePins ScorePin
- * @property-read \Illuminate\Database\Eloquent\Collection $scoresBestFruits Score\Best\Fruits
- * @property-read \Illuminate\Database\Eloquent\Collection $scoresBestMania Score\Best\Mania
- * @property-read \Illuminate\Database\Eloquent\Collection $scoresBestOsu Score\Best\Osu
- * @property-read \Illuminate\Database\Eloquent\Collection $scoresBestTaiko Score\Best\Taiko
- * @property-read \Illuminate\Database\Eloquent\Collection $scoresFirstFruits Score\Best\Fruits
- * @property-read \Illuminate\Database\Eloquent\Collection $scoresFirstMania Score\Best\Mania
- * @property-read \Illuminate\Database\Eloquent\Collection $scoresFirstOsu Score\Best\Osu
- * @property-read \Illuminate\Database\Eloquent\Collection $scoresFirstTaiko Score\Best\Taiko
- * @property-read \Illuminate\Database\Eloquent\Collection $scoresFruits Score\Fruits
- * @property-read \Illuminate\Database\Eloquent\Collection $scoresMania Score\Mania
- * @property-read \Illuminate\Database\Eloquent\Collection $scoresOsu Score\Osu
- * @property-read \Illuminate\Database\Eloquent\Collection $scoresTaiko Score\Taiko
+ * @property-read \Illuminate\Database\Eloquent\Collection<UserReplaysWatchedCount> $replaysWatchedCounts
+ * @property-read \Illuminate\Database\Eloquent\Collection<UserReport> $reportsMade
+ * @property-read \Illuminate\Database\Eloquent\Collection<ScorePin> $scorePins
+ * @property-read \Illuminate\Database\Eloquent\Collection<Score\Best\Fruits> $scoresBestFruits
+ * @property-read \Illuminate\Database\Eloquent\Collection<Score\Best\Mania> $scoresBestMania
+ * @property-read \Illuminate\Database\Eloquent\Collection<Score\Best\Osu> $scoresBestOsu
+ * @property-read \Illuminate\Database\Eloquent\Collection<Score\Best\Taiko> $scoresBestTaiko
+ * @property-read \Illuminate\Database\Eloquent\Collection<Score\Best\Fruits> $scoresFirstFruits
+ * @property-read \Illuminate\Database\Eloquent\Collection<Score\Best\Mania> $scoresFirstMania
+ * @property-read \Illuminate\Database\Eloquent\Collection<Score\Best\Osu> $scoresFirstOsu
+ * @property-read \Illuminate\Database\Eloquent\Collection<Score\Best\Taiko> $scoresFirstTaiko
+ * @property-read \Illuminate\Database\Eloquent\Collection<Score\Fruits> $scoresFruits
+ * @property-read \Illuminate\Database\Eloquent\Collection<Score\Mania> $scoresMania
+ * @property-read \Illuminate\Database\Eloquent\Collection<Score\Osu> $scoresOsu
+ * @property-read \Illuminate\Database\Eloquent\Collection<Score\Taiko> $scoresTaiko
  * @property-read UserStatistics\Fruits|null $statisticsFruits
  * @property-read UserStatistics\Mania|null $statisticsMania
  * @property-read UserStatistics\Osu|null $statisticsOsu
  * @property-read UserStatistics\Taiko|null $statisticsTaiko
- * @property-read \Illuminate\Database\Eloquent\Collection $storeAddresses Store\Address
- * @property-read \Illuminate\Database\Eloquent\Collection $supporterTagPurchases UserDonation
- * @property-read \Illuminate\Database\Eloquent\Collection $supporterTags UserDonation
- * @property-read \Illuminate\Database\Eloquent\Collection $tokens OAuth\Token
- * @property-read \Illuminate\Database\Eloquent\Collection $topicWatches Forum\TopicWatch
- * @property-read \Illuminate\Database\Eloquent\Collection $userAchievements UserAchievement
- * @property-read \Illuminate\Database\Eloquent\Collection $userGroups UserGroup
- * @property-read \Illuminate\Database\Eloquent\Collection $userNotifications UserNotification
+ * @property-read \Illuminate\Database\Eloquent\Collection<Store\Address> $storeAddresses
+ * @property-read \Illuminate\Database\Eloquent\Collection<UserDonation> $supporterTagPurchases
+ * @property-read \Illuminate\Database\Eloquent\Collection<UserDonation> $supporterTags
+ * @property-read \Illuminate\Database\Eloquent\Collection<OAuth\Token> $tokens
+ * @property-read \Illuminate\Database\Eloquent\Collection<Forum\TopicWatch> $topicWatches
+ * @property-read \Illuminate\Database\Eloquent\Collection<UserAchievement> $userAchievements
+ * @property-read \Illuminate\Database\Eloquent\Collection<UserGroup> $userGroups UserGroup
+ * @property-read \Illuminate\Database\Eloquent\Collection<UserNotification> $userNotifications
  * @property-read Forum\Post|null $userPage
  * @property-read UserProfileCustomization|null $userProfileCustomization
  * @property string $user_actkey
@@ -190,8 +190,8 @@ use Request;
  * @property int $user_warnings
  * @property string|null $user_website
  * @property string $username
- * @property-read \Illuminate\Database\Eloquent\Collection $usernameChangeHistory UsernameChangeHistory
- * @property-read \Illuminate\Database\Eloquent\Collection $usernameChangeHistoryPublic publically visible UsernameChangeHistory containing only user_id and username_last
+ * @property-read \Illuminate\Database\Eloquent\Collection<UsernameChangeHistory> $usernameChangeHistory
+ * @property-read \Illuminate\Database\Eloquent\Collection<UsernameChangeHistory> $usernameChangeHistoryPublic publically visible UsernameChangeHistory containing only user_id and username_last
  * @property string $username_clean
  * @property string|null $username_previous
  * @property int|null $userpage_post_id
