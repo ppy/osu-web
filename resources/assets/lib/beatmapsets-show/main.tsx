@@ -15,6 +15,7 @@ import Header from './header';
 import headerLinks from './header-links';
 import Hype from './hype';
 import Info from './info';
+import LovedPoll from './loved-poll';
 import NsfwWarning from './nsfw-warning';
 import ScoreboardMain from './scoreboard/main';
 
@@ -103,6 +104,8 @@ export default class Main extends React.Component<Props> {
           <Info controller={this.controller} />
 
           <div className='user-profile-pages user-profile-pages--no-tabs'>
+            <LovedPoll controller={this.controller} />
+
             {this.controller.beatmapset.can_be_hyped &&
               <div className='page-extra page-extra--compact'>
                 <Hype beatmapset={this.controller.beatmapset} />

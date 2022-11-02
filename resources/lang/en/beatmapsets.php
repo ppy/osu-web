@@ -145,6 +145,34 @@ return [
             ],
         ],
 
+        'loved_poll' => [
+            'description_header' => "Captain's description by :author",
+            'description_header_no_author' => "Captain's description",
+            'header' => 'Project Loved voting',
+
+            'info' => [
+                'excluded_beatmaps' => 'Note that the following difficulties will not be moved to the Loved category, even if this poll passes:',
+                'failed' => 'This beatmap recently failed voting in :project_loved. It will not be moved to :loved_category.',
+                'in_progress' => 'This beatmap is up for voting in :project_loved! If it receives :percent approval from the community, it will be moved to :loved_category!',
+                'passed' => 'This beatmap passed voting in :project_loved! It will be moved to :loved_category soon!',
+                'passed_and_loved' => 'This beatmap passed voting in :project_loved!',
+
+                'loved_category' => 'the Loved category',
+                'project_loved' => 'Project Loved',
+            ],
+
+            'poll' => [
+                'header' => 'Poll results',
+                'header_question' => 'Should this beatmap be Loved?',
+                'no' => 'No',
+                'no_result' => 'No: :percent',
+                'threshold' => 'Approval threshold: :percent',
+                'view_topic' => 'View forum topic',
+                'yes' => 'Yes',
+                'yes_result' => 'Yes: :percent',
+            ],
+        ],
+
         'scoreboard' => [
             'achieved' => 'achieved :when',
             'country' => 'Country Ranking',

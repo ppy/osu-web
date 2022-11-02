@@ -253,6 +253,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('legal/{locale?}/{path?}', 'LegalController@show')->name('legal');
     Route::put('legal/{locale}/{path}', 'LegalController@update');
 
+    Route::post('loved-polls/{topic}/vote', 'LovedPollsController@vote')->name('loved-polls.vote');
+
     Route::group(['prefix' => 'multiplayer', 'as' => 'multiplayer.', 'namespace' => 'Multiplayer'], function () {
         Route::resource('rooms', 'RoomsController', ['only' => ['show']]);
     });
