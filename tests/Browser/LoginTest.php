@@ -18,7 +18,7 @@ class LoginTest extends DuskTestCase
      */
     public function testLogin()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->visit('/')
@@ -41,7 +41,7 @@ class LoginTest extends DuskTestCase
      */
     public function testLogout()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->loginAs($user)

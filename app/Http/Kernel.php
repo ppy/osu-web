@@ -21,6 +21,7 @@ class Kernel extends HttpKernel
 
     protected $middlewareGroups = [
         'api' => [
+            TrustProxies::class,
             Middleware\AuthApi::class,
             Middleware\SetLocale::class,
             Middleware\CheckUserBanStatus::class,
@@ -41,6 +42,7 @@ class Kernel extends HttpKernel
             Middleware\TurbolinksSupport::class,
         ],
         'lio' => [
+            TrustProxies::class,
             Middleware\LegacyInterOpAuth::class,
         ],
     ];
@@ -56,6 +58,7 @@ class Kernel extends HttpKernel
         'check-user-restricted' => Middleware\CheckUserRestricted::class,
         'guest' => Middleware\RedirectIfAuthenticated::class,
         'require-scopes' => Middleware\RequireScopes::class,
+        'request-cost' => Middleware\RequestCost::class,
         'throttle' => Middleware\ThrottleRequests::class,
         'verify-user' => Middleware\VerifyUser::class,
     ];

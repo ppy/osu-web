@@ -4,13 +4,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => 'Depozit',
-    ],
-
     'cart' => [
         'checkout' => 'Plată',
-        'info' => ':count_delimited obiect în coș ($:subtotal)|:count_delimited obiecte în coș ($:subtotal)',
+        'info' => 'un obiect în coș ($:subtotal)|:count_delimited obiecte în coș ($:subtotal)|:count_delimited de obiecte în coș ($:subtotal)',
         'more_goodies' => 'Vreau să-mi verific bunătățile înainte de a completa comanda',
         'shipping_fees' => 'taxe de livrare',
         'title' => 'Coșul de cumpărături',
@@ -40,7 +36,7 @@ return [
         'title_compact' => 'finalizare plată',
 
         'has_pending' => [
-            '_' => 'Dacă ai plăți incomplete, apasă click pe :link pentru a le vedea.',
+            '_' => 'Aveți achiziții incomplete, faceți clic :link pentru a le vedea.',
             'link_text' => 'aici',
         ],
 
@@ -69,14 +65,14 @@ return [
     ],
 
     'order' => [
-        'cancel' => '',
-        'cancel_confirm' => '',
-        'cancel_not_allowed' => '',
+        'cancel' => 'Anulează comanda',
+        'cancel_confirm' => 'Această comandă va fi anulată și plata nu va fi acceptată pentru ea. Este posibil ca furnizorul de plăți să nu elibereze imediat niciun fond rezervat. Ești sigur?',
+        'cancel_not_allowed' => 'Aceasta comanda nu poate fi anulata in acest moment.',
         'invoice' => 'Vezi factura',
         'no_orders' => 'Nu sunt comenzi pentru vizualizare.',
         'paid_on' => 'Comandă plasată pe :date',
         'resume' => 'Reia finalizarea comenzii',
-        'shopify_expired' => '',
+        'shopify_expired' => 'Link-ul de finalizare a comenzii a expirat.',
 
         'item' => [
             'display_name' => [

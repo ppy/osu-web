@@ -86,8 +86,19 @@ return [
         'channel' => [
             '_' => 'ห้องสนทนา',
 
+            'announcement' => [
+                '_' => 'ประกาศใหม่',
+
+                'announce' => [
+                    'channel_announcement' => '',
+                    'channel_announcement_compact' => '',
+                    'channel_announcement_group' => 'ประกาศจาก :username',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'ข้อความใหม่',
+
                 'pm' => [
                     'channel_message' => ':username พูดถึง ":title"',
                     'channel_message_compact' => ':title',
@@ -148,6 +159,9 @@ return [
                 'user_beatmapset_new' => 'บีทแมพใหม่ ":title" โดย :username',
                 'user_beatmapset_new_compact' => 'บีทแมพใหม่ ":title"',
                 'user_beatmapset_new_group' => 'บีทแมพใหม่โดย :username',
+
+                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive_compact' => '',
             ],
         ],
 
@@ -226,6 +240,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username ได้สร้างบีทแมพใหม่',
+                'user_beatmapset_revive' => '',
             ],
         ],
     ],

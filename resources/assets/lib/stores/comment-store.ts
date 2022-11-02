@@ -3,13 +3,17 @@
 
 import { CommentJson } from 'interfaces/comment-json';
 import { Dictionary } from 'lodash';
-import { action, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import { Comment } from 'models/comment';
 
 export default class CommentStore {
   @observable comments = observable.map<number, Comment>();
   @observable userVotes = new Set<number>();
   private groupedByParentId: Dictionary<Comment[]> = {};
+
+  constructor() {
+    makeObservable(this);
+  }
 
   @action
   addUserVote(comment: Comment) {

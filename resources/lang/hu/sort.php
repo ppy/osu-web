@@ -15,6 +15,17 @@ return [
     'top' => 'Felső',
     'username' => 'Felhasználónév',
 
+    'artist_tracks' => [
+        'album' => 'Album',
+        'artist' => 'Előadó',
+        'bpm' => 'BPM',
+        'genre' => 'Műfaj',
+        'length' => 'Hossz',
+        'relevance' => 'Relevancia',
+        'title' => 'Cím',
+        'update' => 'Frissités',
+    ],
+
     'forum_posts' => [
         'created' => 'Közzétéve',
         'relevance' => 'Relevancia',

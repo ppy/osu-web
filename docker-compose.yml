@@ -1,11 +1,14 @@
 version: '3.4'
 
 x-env: &x-env
+  BEATMAPS_DIFFICULTY_CACHE_SERVER_URL: http://beatmap-difficulty-lookup-cache:5000
   BROADCAST_DRIVER: redis
   CACHE_DRIVER: redis
+  DB_CONNECTION_STRING: Server=db;Database=osu;Uid=osuweb;
   DB_HOST: db
-  ES_HOST: elasticsearch:9200
-  ES_SCORES_HOST: elasticsearch:9200
+  ES_HOST: http://elasticsearch:9200
+  ES_SCORES_HOST: http://elasticsearch:9200
+  ES_SOLO_SCORES_HOST: http://elasticsearch:9200
   GITHUB_TOKEN: "${GITHUB_TOKEN}"
   NOTIFICATION_REDIS_HOST: redis
   REDIS_HOST: redis
@@ -45,6 +48,9 @@ services:
     <<: *x-web
     command: ['migrate']
 
+  beatmap-difficulty-lookup-cache:
+    image: pppy/osu-beatmap-difficulty-lookup-cache
+
   notification-server:
     image: pppy/osu-notification-server
     depends_on:
@@ -68,10 +74,10 @@ services:
       <<: *x-env
 
   db:
-    image: mysql:8.0
+    image: mysql/mysql-server:8.0
     volumes:
       - database:/var/lib/mysql
-      - ./bin/db_setup.sh:/docker-entrypoint-initdb.d/db_setup.sh
+      - ./docker/development/db_setup.sql:/docker-entrypoint-initdb.d/db_setup.sql
       - ./docker/development/db_user.sql:/docker-entrypoint-initdb.d/db_user.sql
     environment:
       <<: *x-env
@@ -86,12 +92,13 @@ services:
 
   elasticsearch:
     # Version must be kept up to date with library defined in: composer.json
-    image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.8.12
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.6
     volumes:
       - elasticsearch:/usr/share/elasticsearch/data
     environment:
       action.auto_create_index: "false"
       discovery.type: single-node
+      ES_JAVA_OPTS: "-Xms512m -Xmx512m" # less OOM on default settings.
 
   nginx:
     image: nginx:latest
@@ -104,6 +111,17 @@ services:
       - .:/app
     ports:
       - "${NGINX_PORT:-8080}:80"
+
+  score-indexer:
+    image: pppy/osu-elastic-indexer
+    command: ["queue", "--force-version", "--wait"]
+    depends_on:
+      - db
+      - elasticsearch
+      - redis
+    environment:
+      <<: *x-env
+      SCHEMA: "${SCHEMA:-1}"
 
 volumes:
   database:

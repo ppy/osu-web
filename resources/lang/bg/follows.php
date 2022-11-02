@@ -5,34 +5,34 @@
 
 return [
     'comment' => [
-        'empty' => '',
-        'page_title' => '',
-        'title' => '',
+        'empty' => 'Няма следвани коментари.',
+        'page_title' => 'следвани коментари',
+        'title' => 'коментари',
 
         'table' => [
-            'latest_comment_empty' => '',
-            'latest_comment_value' => '',
+            'latest_comment_empty' => 'няма коментари',
+            'latest_comment_value' => ':time от :username',
         ],
     ],
 
     'forum_topic' => [
-        'title' => '',
+        'title' => 'форумни теми',
     ],
 
     'index' => [
-        'title_compact' => '',
+        'title_compact' => 'следвани',
     ],
 
     'mapping' => [
-        'empty' => '',
-        'followers' => '',
-        'page_title' => '',
-        'title' => '',
-        'to_0' => '',
-        'to_1' => '',
+        'empty' => 'Не следвате никой създател.',
+        'followers' => 'абонирани създатели',
+        'page_title' => 'следвани създатели',
+        'title' => 'създатели',
+        'to_0' => 'не ме уведомавай, когато потребителят качи нов бийтмап',
+        'to_1' => 'уведоми ме, когато потребителят качи нов бийтмап',
     ],
 
     'modding' => [
-        'title' => '',
+        'title' => 'бийтмап дискусии',
     ],
 ];

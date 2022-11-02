@@ -27,6 +27,9 @@ class RouteSection
             'account_controller' => [
                 '_' => 'home',
             ],
+            'artist_tracks_controller' => [
+                '_' => 'beatmaps',
+            ],
             'artists_controller' => [
                 '_' => 'beatmaps',
             ],

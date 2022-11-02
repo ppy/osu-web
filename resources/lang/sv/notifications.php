@@ -86,8 +86,19 @@ return [
         'channel' => [
             '_' => 'Chatt',
 
+            'announcement' => [
+                '_' => 'Nytt meddelande',
+
+                'announce' => [
+                    'channel_announcement' => ':username säger ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Meddelande från :username',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Nytt meddelande',
+
                 'pm' => [
                     'channel_message' => ':username säger ":title"',
                     'channel_message_compact' => ':title',
@@ -148,6 +159,9 @@ return [
                 'user_beatmapset_new' => 'Ny beatmap ":title" av :username',
                 'user_beatmapset_new_compact' => 'Ny beatmap ":title"',
                 'user_beatmapset_new_group' => 'Nya beatmaps av :username',
+
+                'user_beatmapset_revive' => 'Beatmap ":title" återupplivad av :username',
+                'user_beatmapset_revive_compact' => 'Beatmap ":title" återupplivad',
             ],
         ],
 
@@ -226,6 +240,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username har skapat nya beatmaps',
+                'user_beatmapset_revive' => ':username har återupplivat beatmaps',
             ],
         ],
     ],

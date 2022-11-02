@@ -1,42 +1,49 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { inject, observer } from 'mobx-react';
+import UserAvatar from 'components/user-avatar';
+import { computed, makeObservable } from 'mobx';
+import { observer } from 'mobx-react';
+import Channel from 'models/chat/channel';
+import core from 'osu-core-singleton';
 import * as React from 'react';
-import RootDataStore from 'stores/root-data-store';
-import UserAvatar from 'user-avatar';
+import { classWithModifiers } from 'utils/css';
 
 interface Props {
-  channelId: number;
-  dataStore?: RootDataStore;
+  channel: Channel;
 }
 
-@inject('dataStore')
 @observer
 export default class ConversationListItem extends React.Component<Props> {
-  readonly dataStore: RootDataStore = this.props.dataStore!;
+  private readonly ref = React.createRef<HTMLDivElement>();
+
+  @computed
+  get selected() {
+    return this.props.channel.channelId === core.dataStore.chatState.selectedChannel?.channelId;
+  }
+
+  constructor(props: Props) {
+    super(props);
+
+    makeObservable(this);
+  }
+
+
+  componentDidMount() {
+    // if the current channel is selected on mount, it's probably on page load, so centre it.
+    this.ensureSelectedInView('center');
+  }
+
+  componentDidUpdate() {
+    this.ensureSelectedInView('nearest');
+  }
 
   render(): React.ReactNode {
-    const uiState = this.dataStore.chatState;
-    const conversation = this.dataStore.channelStore.get(this.props.channelId);
     const baseClassName = 'chat-conversation-list-item';
 
-    if (!conversation) {
-      return;
-    }
-
-    let className = baseClassName;
-    if (this.props.channelId === uiState.selected) {
-      className += ` ${baseClassName}--selected`;
-    }
-
-    if (conversation.isUnread) {
-      className += ` ${baseClassName}--unread`;
-    }
-
     return (
-      <div className={className}>
-        {conversation.isUnread
+      <div ref={this.ref} className={classWithModifiers(baseClassName, { selected: this.selected })}>
+        {this.props.channel.isUnread && !this.selected
           ? <div className={`${baseClassName}__unread-indicator`} />
           : null}
 
@@ -46,9 +53,9 @@ export default class ConversationListItem extends React.Component<Props> {
 
         <button className={`${baseClassName}__tile`} onClick={this.switch}>
           <div className={`${baseClassName}__avatar`}>
-            <UserAvatar modifiers={['full-circle']} user={{ avatar_url: conversation.icon }} />
+            <UserAvatar modifiers='full-circle' user={{ avatar_url: this.props.channel.icon }} />
           </div>
-          <div className={`${baseClassName}__name`}>{conversation.name}</div>
+          <div className={`${baseClassName}__name u-ellipsis-overflow`}>{this.props.channel.name}</div>
           <div className={`${baseClassName}__chevron`}>
             <i className='fas fa-chevron-right' />
           </div>
@@ -57,11 +64,23 @@ export default class ConversationListItem extends React.Component<Props> {
     );
   }
 
-  private part = () => {
-    this.dataStore.channelStore.partChannel(this.props.channelId);
+  private ensureSelectedInView(block: ScrollLogicalPosition) {
+    if (this.selected) {
+      setTimeout(() => {
+        this.ref.current?.scrollIntoView({ block, inline: 'nearest' });
+      }, 0);
+    }
+  }
+
+  private readonly part = () => {
+    if (this.props.channel.type === 'ANNOUNCE' && !confirm(osu.trans('chat.channels.confirm_part'))){
+      return;
+    }
+
+    core.dataStore.channelStore.partChannel(this.props.channel.channelId);
   };
 
-  private switch = () => {
-    this.dataStore.chatState.selectChannel(this.props.channelId);
+  private readonly switch = () => {
+    core.dataStore.chatState.selectChannel(this.props.channel.channelId);
   };
 }

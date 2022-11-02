@@ -1,20 +1,33 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapIcon } from 'beatmap-icon';
-import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
+import { BeatmapIcon } from 'components/beatmap-icon';
+import { action, computed, makeObservable } from 'mobx';
+import { observer } from 'mobx-react';
 import * as React from 'react';
 import { generate as generateHash } from 'utils/beatmapset-page-hash';
 import { classWithModifiers } from 'utils/css';
+import Controller from './controller';
 
 interface Props {
-  active: boolean;
-  beatmap: BeatmapJsonExtended;
+  beatmap: Controller['currentBeatmap'];
+  controller: Controller;
 }
 
-export default class BeatmapSelection extends React.PureComponent<Props> {
+@observer
+export default class BeatmapSelection extends React.Component<Props> {
+  @computed
+  get active() {
+    return this.props.controller.currentBeatmap.id === this.props.beatmap.id;
+  }
+
+  constructor(props: Props) {
+    super(props);
+    makeObservable(this);
+  }
+
   render() {
-    const className = classWithModifiers('beatmapset-beatmap-picker__beatmap', { active: this.props.active });
+    const className = classWithModifiers('beatmapset-beatmap-picker__beatmap', { active: this.active });
 
     return (
       <a
@@ -24,7 +37,7 @@ export default class BeatmapSelection extends React.PureComponent<Props> {
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
       >
-        <BeatmapIcon beatmap={this.props.beatmap} modifier='beatmapset' showTitle={false} />
+        <BeatmapIcon beatmap={this.props.beatmap} modifiers='beatmapset' />
       </a>
     );
   }
@@ -32,16 +45,16 @@ export default class BeatmapSelection extends React.PureComponent<Props> {
   private onClick = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
-    if (this.props.active) return;
-
-    $.publish('beatmapset:beatmap:set', { beatmap: this.props.beatmap });
+    this.props.controller.setCurrentBeatmap(this.props.beatmap);
   };
 
+  @action
   private onMouseEnter = () => {
-    $.publish('beatmapset:hoveredbeatmap:set', this.props.beatmap);
+    this.props.controller.hoveredBeatmap = this.props.beatmap;
   };
 
+  @action
   private onMouseLeave = () => {
-    $.publish('beatmapset:hoveredbeatmap:set', null);
+    this.props.controller.hoveredBeatmap = null;
   };
 }

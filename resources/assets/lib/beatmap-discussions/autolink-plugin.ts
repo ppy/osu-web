@@ -3,6 +3,7 @@
 
 import { Eat } from 'remark-parse';
 import { Processor } from 'unified';
+import { urlRegex } from 'utils/url';
 
 export function autolinkPlugin(this: Processor) {
   function locator(value: string, fromIndex: number) {
@@ -10,7 +11,7 @@ export function autolinkPlugin(this: Processor) {
   }
 
   function inlineTokenizer(eat: Eat, value: string, silent?: true) {
-    const regex = new RegExp(osu.urlRegex);
+    const regex = new RegExp(urlRegex);
     const result = regex.exec(value);
 
     if (!result || result.index !== 0) {

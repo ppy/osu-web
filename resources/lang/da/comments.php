@@ -5,8 +5,8 @@
 
 return [
     'deleted' => 'slettet',
-    'deleted_by' => '',
-    'deleted_by_system' => '',
+    'deleted_by' => 'blev slettet :timeago af :user',
+    'deleted_by_system' => 'system',
     'deleted_count' => ':count_delimited slettet kommentar|:count_delimited slettede kommentarer',
     'edited' => 'redigeret :timeago af :user',
     'pinned' => 'fastgjort',
@@ -37,9 +37,9 @@ return [
     ],
 
     'index' => [
-        'nav_comments' => '',
+        'nav_comments' => 'kommentarer',
         'nav_title' => 'katalog',
-        'no_comments' => '',
+        'no_comments' => 'ingen kommentarer endnu...',
     ],
 
     'placeholder' => [

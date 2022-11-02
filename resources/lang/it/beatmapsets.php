@@ -11,8 +11,16 @@ return [
         'rule_violation' => 'Alcuni elementi contenuti in questa mappa sono stati rimossi dopo che sono stati giudicati non idonei per l\'uso in osu!.',
     ],
 
+    'cover' => [
+        'deleted' => 'Beatmap eliminata',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Rallenta, gioca di più.',
+    ],
+
+    'featured_artist_badge' => [
+        'label' => 'Artista in primo piano',
     ],
 
     'index' => [
@@ -54,11 +62,11 @@ return [
 
         'details' => [
             'by_artist' => 'di :artist',
-            'favourite' => 'Mi piace questo beatmapset',
+            'favourite' => 'Mi piace questa beatmap',
             'favourite_login' => 'Accedi per aggiungere questa beatmap ai preferiti',
             'logged-out' => 'Devi avere effettuato il login prima di scaricare qualsiasi beatmap!',
             'mapped_by' => 'mappata da :mapper',
-            'unfavourite' => 'Non mi piace questo beatmapset',
+            'unfavourite' => 'Non mi piace questa beatmap',
             'updated_timeago' => 'ultimo aggiornamento :timeago',
 
             'download' => [
@@ -117,6 +125,7 @@ return [
             'language' => 'Lingua',
             'no_scores' => 'Dati ancora in elaborazione...',
             'nsfw' => 'Contenuto esplicito',
+            'offset' => 'Offset online',
             'points-of-failure' => 'Punti di Fallimento',
             'source' => 'Sorgente',
             'storyboard' => 'Questa beatmap contiene storyboard',
@@ -139,22 +148,24 @@ return [
         'scoreboard' => [
             'achieved' => 'ottenuto :when',
             'country' => 'Classifica Nazionale',
+            'error' => 'Impossibile caricare la classifica',
             'friend' => 'Classifica Amici',
             'global' => 'Classifica Globale',
             'supporter-link' => 'Clicca <a href=":link">qui</a> per vedere tutte le fantastiche funzionalità che otterrai!',
-            'supporter-only' => 'Devi essere un osu!supporter per vedere la classifica amici, nazionale, o con mod specifiche!',
+            'supporter-only' => 'Devi essere un osu!supporter per vedere la classifica nazionale, degli amici, o con mod specifiche!',
             'title' => 'Classifica',
 
             'headers' => [
                 'accuracy' => 'Precisione',
-                'combo' => 'Max Combo',
+                'combo' => 'Combo Massima',
                 'miss' => 'Miss',
                 'mods' => 'Mod',
+                'pin' => 'Fissa',
                 'player' => 'Giocatore',
                 'pp' => '',
                 'rank' => 'Posto',
-                'score_total' => 'Punteggio Totale',
                 'score' => 'Punteggio',
+                'score_total' => 'Punteggio Totale',
                 'time' => 'Tempo',
             ],
 
@@ -169,19 +180,24 @@ return [
                 'first' => 'In testa',
                 'own' => 'Il tuo miglior punteggio',
             ],
+            'supporter_link' => [
+                '_' => 'Clicca :here per scoprire tutte le fantastiche funzionalità che ricevi!',
+                'here' => 'qui',
+            ],
         ],
 
         'stats' => [
             'cs' => 'Dimensione Cerchi',
             'cs-mania' => 'Numero di Tasti',
-            'drain' => 'Drenaggio HP',
+            'drain' => 'Perdita HP',
             'accuracy' => 'Precisione',
-            'ar' => 'Approach Rate',
-            'stars' => 'Stelle di Difficoltà',
+            'ar' => 'Velocità Approccio',
+            'stars' => 'Difficoltà',
             'total_length' => 'Durata (Lunghezza drenaggio: :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => 'Numero di Cerchi',
             'count_sliders' => 'Numero di Slider',
+            'offset' => 'Offset online: :offset',
             'user-rating' => 'Voto degli Utenti',
             'rating-spread' => 'Diffusione della Valutazione',
             'nominations' => 'Nomine',
@@ -194,8 +210,12 @@ return [
             'loved' => 'Amata',
             'qualified' => 'Qualificata',
             'wip' => 'WIP',
-            'pending' => 'In attesa',
+            'pending' => 'In Attesa',
             'graveyard' => 'Abbandonata',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => 'Spotlight',
     ],
 ];

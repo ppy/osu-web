@@ -24,6 +24,11 @@ class PollOption extends Model
     public $incrementing = false;
     public $timestamps = false;
 
+    public function getKey(): string
+    {
+        return $this->topic_id.'-'.$this->poll_option_id;
+    }
+
     // For bbcode_uid, the first post (even if the post is deleted).
     public function post()
     {

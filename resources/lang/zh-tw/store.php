@@ -4,10 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => '倉庫',
-    ],
-
     'cart' => [
         'checkout' => '結帳',
         'info' => '購物車裡有 :count_delimited 件商品（$:subtotal）|購物車裡有 :count_delimited 件商品（$:subtotal）',
@@ -59,7 +55,7 @@ return [
         'status' => [
             'processing' => [
                 'title' => '您的付款尚未被確認!',
-                'line_1' => '如果您已經付款, 我們可能還在等待收到您付款的確認。請在一兩分鐘內重新整理此頁面!',
+                'line_1' => '如果您已經付款，我們可能還在等待收到您付款的確認。請在一兩分鐘內重新載入此頁面！',
                 'line_2' => [
                     '_' => '如果您在結帳時遇到問題，請查看 :link',
                     'link_text' => '點擊這裡繼續您的結帳',

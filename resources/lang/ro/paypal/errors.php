@@ -4,10 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'instrument_declined' => 'Metoda pe plată selectată a fost respinsă de către Paypal.',
+    'instrument_declined' => 'Metoda de plată selectată a fost respinsă de către Paypal.',
     'invalid_resource_id' => 'Nu s-a găsit nicio informație de plată.',
-    'invalid_token' => '',
-    'old_format' => '',
-    'resource_not_found' => '',
+    'invalid_token' => 'A apărut o eroare la finalizarea plății tale.',
+    'old_format' => 'Link-ul pentru plată a expirat, vă rugăm să încercaţi din nou.',
+    'resource_not_found' => 'Nu s-a găsit nicio informație de plată.',
     'unknown' => "Plata a fost respinsă, dar nu suntem siguri de ce.",
 ];

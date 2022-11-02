@@ -17,7 +17,7 @@ return [
 
     'commentable_name' => [
         'beatmapset' => 'Бітмапы',
-        'build' => 'Спic змен',
+        'build' => 'Гісторыя змен',
         'news_post' => 'Навіны',
         '_deleted' => 'Выдаленая рэч',
     ],

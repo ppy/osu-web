@@ -7,15 +7,15 @@ import { dispatchListener } from 'app-dispatcher';
 import ResultSet from 'beatmaps/result-set';
 import SearchResults from 'beatmaps/search-results';
 import { BeatmapsetSearchFilters } from 'beatmapset-search-filters';
-import { BeatmapsetJson } from 'beatmapsets/beatmapset-json';
 import DispatchListener from 'dispatch-listener';
+import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import { route } from 'laroute';
-import { action, observable, runInAction } from 'mobx';
+import { action, makeObservable, observable, runInAction } from 'mobx';
 import { BeatmapsetStore } from 'stores/beatmapset-store';
 
 export interface SearchResponse {
-  beatmapsets: BeatmapsetJson[];
-  cursor: unknown;
+  beatmapsets: BeatmapsetExtendedJson[];
+  cursor_string: string | null;
   error?: string;
   recommended_difficulty: number;
   total: number;
@@ -28,7 +28,9 @@ export class BeatmapsetSearch implements DispatchListener {
 
   private xhr?: JQueryXHR;
 
-  constructor(private beatmapsetStore: BeatmapsetStore) {}
+  constructor(private beatmapsetStore: BeatmapsetStore) {
+    makeObservable(this);
+  }
 
   cancel() {
     if (this.xhr) {
@@ -104,13 +106,13 @@ export class BeatmapsetSearch implements DispatchListener {
 
     const params = filters.queryParams;
     const key = filters.toKeyString();
-    const cursor = this.getOrCreate(key).cursor;
+    const cursorString = this.getOrCreate(key).cursorString;
 
     // undefined cursor should just do a cursorless query.
     if (from > 0) {
-      if (cursor != null) {
-        params.cursor = cursor;
-      } else if (cursor === null) {
+      if (cursorString != null) {
+        params.cursor_string = cursorString;
+      } else if (cursorString === null) {
         return Promise.resolve(null);
       }
     }

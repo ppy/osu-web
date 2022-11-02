@@ -1,7 +1,0 @@
-{{{ Class Name
-
-{{{ Class Name
-
-}}}
-
-}}}

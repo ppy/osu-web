@@ -11,7 +11,7 @@ return [
     ],
 
     'builds' => [
-        'users_online' => ':count_delimited utilizator online|:count_delimited utilizatori online',
+        'users_online' => 'un utilizator online|:count_delimited utilizatori online|:count_delimited de utilizatori online',
     ],
 
     'entry' => [
@@ -20,7 +20,7 @@ return [
 
     'index' => [
         'page_title' => [
-            '_' => 'jurnalul modificărilor',
+            '_' => 'istoric modificări',
             '_from' => 'modificări din :from',
             '_from_to' => 'modificări între :from și :to',
             '_stream' => 'modificări în :stream',

@@ -11,8 +11,16 @@ return [
         'rule_violation' => 'Some assets contained within this map have been removed after being judged as not being suitable for use in osu!.',
     ],
 
+    'cover' => [
+        'deleted' => 'Deleted beatmap',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Slow down, play more.',
+    ],
+
+    'featured_artist_badge' => [
+        'label' => 'Featured artist',
     ],
 
     'index' => [
@@ -117,6 +125,7 @@ return [
             'language' => 'Language',
             'no_scores' => 'Data still being calculated...',
             'nsfw' => 'Explicit content',
+            'offset' => 'Online offset',
             'points-of-failure' => 'Points of Failure',
             'source' => 'Source',
             'storyboard' => 'This beatmap contains storyboard',
@@ -139,6 +148,7 @@ return [
         'scoreboard' => [
             'achieved' => 'achieved :when',
             'country' => 'Country Ranking',
+            'error' => 'Failed loading ranking',
             'friend' => 'Friend Ranking',
             'global' => 'Global Ranking',
             'supporter-link' => 'Click <a href=":link">here</a> to see all the fancy features that you get!',
@@ -150,11 +160,12 @@ return [
                 'combo' => 'Max Combo',
                 'miss' => 'Miss',
                 'mods' => 'Mods',
+                'pin' => 'Pin',
                 'player' => 'Player',
                 'pp' => 'pp',
                 'rank' => 'Rank',
-                'score_total' => 'Total Score',
                 'score' => 'Score',
+                'score_total' => 'Total Score',
                 'time' => 'Time',
             ],
 
@@ -169,19 +180,24 @@ return [
                 'first' => 'In the Lead',
                 'own' => 'Your Best',
             ],
+            'supporter_link' => [
+                '_' => 'Click :here to see all the fancy features that you get!',
+                'here' => 'here',
+            ],
         ],
 
         'stats' => [
             'cs' => 'Circle Size',
-            'cs-mania' => 'Key Amount',
+            'cs-mania' => 'Key Count',
             'drain' => 'HP Drain',
             'accuracy' => 'Accuracy',
             'ar' => 'Approach Rate',
-            'stars' => 'Star Difficulty',
+            'stars' => 'Star Rating',
             'total_length' => 'Length (Drain length: :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => 'Circle Count',
             'count_sliders' => 'Slider Count',
+            'offset' => 'Online offset: :offset',
             'user-rating' => 'User Rating',
             'rating-spread' => 'Rating Spread',
             'nominations' => 'Nominations',
@@ -197,5 +213,9 @@ return [
             'pending' => 'Pending',
             'graveyard' => 'Graveyard',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => 'Spotlight',
     ],
 ];

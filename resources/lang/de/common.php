@@ -44,6 +44,7 @@ return [
         'reply_resolve' => 'Antworten und lösen',
         'reset' => 'Zurücksetzen',
         'restore' => 'Wiederherstellen',
+        'retry' => 'Wiederholen',
         'save' => 'Speichern',
         'saving' => 'Speichert...',
         'search' => 'Suchen',
@@ -53,7 +54,7 @@ return [
         'show_less' => 'weniger anzeigen',
         'show_more' => 'mehr anzeigen',
         'show_more_options' => 'mehr optionen anzeigen',
-        'submit' => '',
+        'submit' => 'Speichern',
         'unpin' => 'lösen',
         'update' => 'Aktualisieren',
         'upload_image' => 'bild hochladen',
@@ -80,7 +81,7 @@ return [
         'star_priority' => ':count_delimited Sternpriorität|:count_delimited Sternprioritäten',
         'update' => ':count_delimited Update|:count_delimited Updates',
         'view' => ':count_delimited Aufruf|:count_delimited Aufrufe',
-        'years' => ':count jahr|:count jahre',
+        'years' => ':count_delimited Jahr|:count_delimited Jahre',
     ],
 
     'countdown' => [

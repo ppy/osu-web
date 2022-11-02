@@ -14,11 +14,6 @@ use PDOException;
 
 class ScoreTokensController extends BaseController
 {
-    private static function getBeatmapOrFail($beatmapId): Beatmap
-    {
-        return Beatmap::scoreable()->findOrFail($beatmapId);
-    }
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -26,17 +21,35 @@ class ScoreTokensController extends BaseController
 
     public function store($beatmapId)
     {
-        $beatmap = static::getBeatmapOrFail($beatmapId);
+        $beatmap = Beatmap::increasesStatistics()->findOrFail($beatmapId);
         $user = auth()->user();
-        $params = request()->all();
+        $rawParams = request()->all();
+        $params = get_params($rawParams, null, [
+            'beatmap_hash',
+            'ruleset_id:int',
+        ]);
 
-        ClientCheck::assert($user, $params);
+        $checks = [
+            'beatmap_hash' => fn (string $value): bool => $value === $beatmap->checksum,
+            'ruleset_id' => fn (int $value): bool => Beatmap::modeStr($value) !== null,
+        ];
+        foreach ($checks as $key => $testFn) {
+            if (!isset($params[$key])) {
+                throw new InvariantException("missing {$key}");
+            }
+            if (!$testFn($params[$key])) {
+                throw new InvariantException("invalid {$key}");
+            }
+        }
+
+        $build = ClientCheck::findBuild($user, $rawParams);
 
         try {
             $scoreToken = ScoreToken::create([
-                'user_id' => $user->getKey(),
                 'beatmap_id' => $beatmap->getKey(),
-                'ruleset_id' => get_int($params['ruleset_id'] ?? null),
+                'build_id' => $build?->getKey() ?? config('osu.client.default_build_id'),
+                'ruleset_id' => $params['ruleset_id'],
+                'user_id' => $user->getKey(),
             ]);
         } catch (PDOException $e) {
             // TODO: move this to be a validation inside Score model

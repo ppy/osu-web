@@ -6,7 +6,7 @@
 return [
     'play_more' => 'Mengapa Anda tidak mencoba untuk bermain osu! terlebih dahulu?',
     'require_login' => 'Silakan masuk untuk melanjutkan.',
-    'require_verification' => 'Silakan verifikasi untuk melanjutkan.',
+    'require_verification' => 'Silakan verifikasi diri Anda untuk melanjutkan.',
     'restricted' => "Tidak dapat melakukan hal itu saat dibatasi.",
     'silenced' => "Tidak dapat melakukan hal itu saat dibungkam.",
     'unauthorized' => 'Akses ditolak.',
@@ -18,9 +18,9 @@ return [
         ],
         'nominate' => [
             'exhausted' => 'Anda telah mencapai batas nominasi Anda untuk hari ini, silakan coba lagi besok.',
-            'incorrect_state' => 'Terjadi kesalahan saat memproses perintah, silakan muat ulang laman.',
+            'incorrect_state' => 'Terjadi kesalahan pada saat melangsungkan tindakan. Silakan muat ulang laman.',
             'owner' => "Tidak dapat menominasikan beatmap buatan sendiri.",
-            'set_metadata' => 'Anda harus terlebih dahulu mengubah pengaturan aliran dan bahasa sebelum beatmap ini dapat dinominasikan.',
+            'set_metadata' => 'Anda harus terlebih dahulu mengatur aliran dan bahasa sebelum beatmap ini dapat dinominasikan.',
         ],
         'resolve' => [
             'not_owner' => 'Hanya pemilik topik dan beatmap yang dapat menyelesaikan diskusi.',
@@ -47,12 +47,12 @@ return [
 
         'edit' => [
             'not_owner' => 'Hanya pemilik topik yang diperbolehkan untuk menyunting kiriman.',
-            'resolved' => 'Kamu tidak dapat mengubah postingan yang sudah ditutup.',
-            'system_generated' => 'Kiriman yang dihasilkan secara otomatis tidak dapat disunting.',
+            'resolved' => 'Anda tidak dapat menyunting postingan pada topik diskusi yang telah terjawab.',
+            'system_generated' => 'Post yang dihasilkan secara otomatis tidak dapat disunting.',
         ],
 
         'store' => [
-            'beatmapset_locked' => 'Beatmap ini dikunci untuk diskusi.',
+            'beatmapset_locked' => 'Diskusi pada beatmap ini telah dikunci.',
         ],
     ],
 
@@ -63,15 +63,20 @@ return [
     ],
 
     'chat' => [
-        'blocked' => 'Tidak dapat mengirim pesan kepada pengguna yang memblokir Anda atau pengguna yang Anda blokir.',
-        'friends_only' => 'Pengguna memblokir pesan dari orang yang tidak ada dalam daftar teman pengguna.',
-        'moderated' => 'Channel itu sedang dalam pengelolaan.',
-        'no_access' => 'Anda tidak memiliki akses ke channel ini.',
+        'annnonce_only' => 'Kanal ini hanya dikhususkan untuk pengumuman.',
+        'blocked' => 'Tidak dapat mengirim pesan kepada pengguna yang diblokir atau memblokir Anda.',
+        'friends_only' => 'Pengguna memblokir pesan dari orang yang tidak dalam daftar temannya.',
+        'moderated' => 'Kanal percakapan ini sedang dimoderasi.',
+        'no_access' => 'Anda tidak memiliki akses ke kanal percakapan ini.',
+        'receive_friends_only' => 'Pengguna ini tidak akan dapat membalas pesan Anda karena Anda hanya menerima pesan dari nama-nama yang tertera pada daftar teman Anda.',
         'restricted' => 'Anda tidak dapat mengirim pesan pada saat akun Anda sedang di-silence, di-restrict, atau di-ban.',
         'silenced' => 'Anda tidak dapat mengirim pesan pada saat akun Anda sedang di-silence, di-restrict, atau di-ban.',
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => 'Komentar dinonaktifkan',
+        ],
         'update' => [
             'deleted' => "Tidak dapat menyunting post yang telah dihapus.",
         ],
@@ -108,14 +113,14 @@ return [
             ],
 
             'store' => [
-                'play_more' => 'Anda harus memainkan beberapa beatmap dahulu sebelum Anda dapat memposting di forum! Jika Anda memiliki permasalahan yang terkait dengan permainan, silakan kunjungi forum Help & Support.',
-                'too_many_help_posts' => "Anda harus memainkan lebih banyak beatmap sebelum Anda dapat membuat postingan tambahan. Jika Anda masih membutuhkan bantuan lebih lanjut, silakan mengirimkan email ke support@ppy.sh", // FIXME: unhardcode email address.
+                'play_more' => 'Anda harus terlebih dahulu bermain sebelum Anda dapat membuat post di forum! Apabila Anda mengalami masalah saat bermain, silakan kunjungi forum Help & Support.',
+                'too_many_help_posts' => "Anda harus lebih banyak bermain sebelum Anda dapat membuat postingan tambahan. Apabila Anda masih membutuhkan bantuan lebih lanjut, silakan kirim email ke support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Mohon sunting postingan terakhir Anda ketimbang memposting kembali.',
+                'double_post' => 'Mohon sunting postingan terakhir Anda alih-alih membuat postingan baru.',
                 'locked' => 'Tidak dapat mengirimkan balasan pada topik yang telah dikunci.',
                 'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin Anda tuju.',
                 'no_permission' => 'Tidak memiliki izin untuk membalas.',
@@ -134,9 +139,9 @@ return [
             ],
 
             'vote' => [
-                'no_forum_access' => 'Akses ke forum yang diminta diperlukan.',
+                'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin Anda tuju.',
                 'over' => 'Polling selesai dan tidak dapat dipilih lagi.',
-                'play_more' => 'Anda harus bermain lebih banyak untuk dapat memberikan suara pada forum.',
+                'play_more' => 'Anda harus lebih banyak bermain sebelum Anda dapat memberikan suara pada forum.',
                 'voted' => 'Pengubahan suara tidak diizinkan.',
 
                 'user' => [
@@ -147,7 +152,7 @@ return [
             ],
 
             'watch' => [
-                'no_forum_access' => 'Anda tidak memiliki akses ke forum yang ingin Anda tuju.',
+                'no_forum_access' => 'Anda tidak memiliki akses ke forum yang hendak Anda tuju.',
             ],
         ],
 
@@ -163,6 +168,13 @@ return [
 
         'view' => [
             'admin_only' => 'Hanya admin yang dapat melihat forum ini.',
+        ],
+    ],
+
+    'score' => [
+        'pin' => [
+            'not_owner' => 'Hanya pemilik skor yang dapat menyematkan skor.',
+            'too_many' => 'Skor yang disematkan sudah terlalu banyak.',
         ],
     ],
 

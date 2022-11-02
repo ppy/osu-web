@@ -17,7 +17,7 @@ return [
     ],
 
     'index' => [
-        'deleted_beatmap' => '删除',
+        'deleted_beatmap' => '已删除',
         'none_found' => '找不到符合条件的讨论内容',
         'title' => '谱面讨论',
 
@@ -32,10 +32,10 @@ return [
             'beatmapset_status' => [
                 '_' => '谱面状态',
                 'all' => '所有',
-                'disqualified' => 'Disqualified',
-                'never_qualified' => '从未被Qualified',
-                'qualified' => 'Qualified',
-                'ranked' => 'Ranked',
+                'disqualified' => '不合格',
+                'never_qualified' => '从未提名为合格',
+                'qualified' => '合格',
+                'ranked' => '上架',
             ],
 
             'user' => [
@@ -61,7 +61,7 @@ return [
     'owner_editor' => [
         'button' => '难度作者',
         'reset_confirm' => '重置此难度的作者？',
-        'user' => '作者/拥有者',
+        'user' => '作者',
         'version' => '难度',
     ],
 
@@ -78,7 +78,7 @@ return [
         'go_to_child' => '查看讨论',
         'validation' => [
             'block_too_large' => '每块只能包含最多 :limit 个字符',
-            'external_references' => '审阅包含不属于此审阅的 issues 的引用',
+            'external_references' => '审阅包含不属于此审阅问题的引用',
             'invalid_block_type' => '板块类型无效',
             'invalid_document' => '审阅无效',
             'invalid_discussion_type' => '讨论类型无效',

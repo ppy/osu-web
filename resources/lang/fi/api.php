@@ -21,7 +21,7 @@ return [
         ],
 
         'forum' => [
-            'write' => '',
+            'write' => 'Luo ja muokkaa foorumin aiheita ja viestejä puolestasi.',
         ],
 
         'friends' => [

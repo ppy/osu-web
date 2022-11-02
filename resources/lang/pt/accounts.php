@@ -10,12 +10,11 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => 'Por favor assegura-te de que o teu avatar respeita :link.<br/>Isto significa que deve ser <strong>adequado para todas as idades</strong>, ou seja, sem nudez, profanidade ou conteúdo sugestivo.',
+            'rules' => 'Por favor assegura-te de que o teu avatar respeita :link.<br/>Isto significa que deve ser <strong>adequado para todas as idades</strong>, ou seja, sem nudez, profanidade ou conteúdo estimulante.',
             'rules_link' => 'as regras da comunidade',
         ],
 
         'email' => [
-            'current' => 'email atual',
             'new' => 'novo email',
             'new_confirmation' => 'confirmação do email',
             'title' => 'Email',
@@ -80,7 +79,7 @@ return [
         'title' => 'Opções',
 
         'beatmapset_download' => [
-            '_' => 'tipo de download padrão de beatmap',
+            '_' => 'tipo de download predefinido do beatmap',
             'all' => 'com vídeo, se disponível',
             'direct' => 'abrir em osu!direct',
             'no_video' => 'sem vídeo',

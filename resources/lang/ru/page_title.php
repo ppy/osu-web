@@ -7,17 +7,11 @@ return [
     'admin' => [
         '_' => 'админ',
     ],
-    'admin_forum' => [
-        '_' => 'админ',
-    ],
-    'admin_store' => [
-        '_' => 'админ',
-    ],
     'error' => [
         'error' => [
             '400' => 'неверный запрос',
             '404' => 'не найдено',
-            '403' => 'отказано в доступе',
+            '403' => 'отказано',
             '401' => 'вы не авторизованы',
             '401-verification' => 'подтверждение аккаунта',
             '405' => 'не найдено',
@@ -29,20 +23,19 @@ return [
     ],
     'forum' => [
         '_' => 'форум',
-        'topic_watches_controller' => [
-            'index' => 'инфопанель',
+        'topic_logs_controller' => [
+            'index' => 'статистика темы',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'инфопанель',
             'verify_link' => 'верификация аккаунта',
         ],
         'artists_controller' => [
             '_' => 'избранные исполнители',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => 'публикации в обсуждений карты',
+            '_' => 'посты в обсуждениях карт',
         ],
         'beatmap_discussions_controller' => [
             '_' => 'обсуждения карты',
@@ -55,10 +48,6 @@ return [
         ],
         'beatmapset_events_controller' => [
             '_' => 'история карты',
-        ],
-        'beatmapset_watches_controller' => [
-            'index' => 'главная страница
-',
         ],
         'beatmapsets_controller' => [
             'discussion' => 'обсуждение карты',
@@ -76,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => 'конкурсы',
-        ],
-        'follows_controller' => [
-            'index' => 'главная страница',
-        ],
-        'friends_controller' => [
-            'index' => 'главная страница',
         ],
         'groups_controller' => [
             'show' => 'группы',
@@ -117,9 +100,6 @@ return [
         'scores_controller' => [
             '_' => 'производительность',
         ],
-        'store_controller' => [
-            '_' => 'магазин',
-        ],
         'tournaments_controller' => [
             '_' => 'турниры',
         ],
@@ -131,9 +111,9 @@ return [
             '_' => 'вики',
         ],
     ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'рейтинг',
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'авторизация приложения',
         ],
     ],
     'store' => [

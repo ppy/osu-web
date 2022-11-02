@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'loading_users' => '',
     'talking_in' => 'กำลังสนทนาใน :channel',
     'talking_with' => 'กำลังสนทนากับ :name',
     'title_compact' => 'ห้องสนทนา',
@@ -11,22 +12,47 @@ return [
     'cannot_send' => [
         'channel' => 'คุณไม่สามารถส่งข้อความผ่านช่องทางนี้ได้ในเวลานี้ อาจเนื่องมาจากสาเหตุต่อไปนี้',
         'user' => 'คุณไม่สามารถส่งข้อความหาคนนี้ได้ในเวลานี้ อาจเนื่องมาจากสาเหตุต่อไปนี้',
-        'reasons' => [
-            'blocked' => 'คุณถูกบล็อกโดยผู้รับ',
-            'channel_moderated' => 'แชนแนลนี้ถูกจำกัดแล้ว',
-            'friends_only' => 'ผู้ใช้คนนี้จะรับข้อความจากเพื่อนของเขาเท่านั้น',
-            'not_enough_plays' => 'คุณยังเล่นเกมไม่พอ',
-            'not_verified' => 'เซสชันของคุณยังไม่ถูกยืนยัน',
-            'restricted' => 'คุณถูกจำกัดการใช้งานอยู่ในตอนนี้',
-            'silenced' => 'คุณกำลังถูกใบ้อยู่',
-            'target_restricted' => 'ผู้รับถูกจำกัดการใช้งาน',
+    ],
+
+    'channels' => [
+        'confirm_part' => 'คุณต้องการที่จะซ่อนช่องนี้หรือไม่ คุณจะยังคงได้รับข้อความจากช่องนี้',
+        'create' => '',
+
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => 'ประกาศ',
+                'GROUP' => 'กลุ่ม',
+                'PM' => '',
+                'PUBLIC' => 'ช่อง',
+            ],
         ],
     ],
+
+    'form' => [
+        'title' => [
+            'announcement' => 'สร้างประกาศใหม่',
+        ],
+
+        'labels' => [
+            'description' => 'รายละเอียด',
+            'name' => 'ชื่อห้อง',
+            'users' => '',
+        ],
+    ],
+
+    'not_found' => [
+        'message' => '',
+        'title' => 'ไม่พบช่อง',
+    ],
+
     'input' => [
+        'create' => 'สร้าง',
         'disabled' => 'ไม่สามารถส่งข้อความได้...',
+        'disconnected' => '',
         'placeholder' => 'พิมพ์ข้อความ...',
         'send' => 'ส่ง',
     ],
+
     'no-conversations' => [
         'howto' => "เริ่มต้นการสนทนาจากโปรไฟล์ผู้ใช้หรือการ์ดป๊อปอัพ",
         'lazer' => 'แชแนลสาธารณะที่คุณเข้าผ่าน <a href=":link">osu!lazer</a> จะมาแสดงที่นี่',

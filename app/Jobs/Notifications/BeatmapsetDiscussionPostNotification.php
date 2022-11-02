@@ -46,7 +46,14 @@ abstract class BeatmapsetDiscussionPostNotification extends BroadcastNotificatio
 
     public function getListeningUserIds(): array
     {
-        return $this->beatmapsetDiscussionPost->beatmapset->watches()->pluck('user_id')->all();
+        $userIds = $this->beatmapsetDiscussionPost->beatmapset->watches()->pluck('user_id');
+
+        $discussion = $this->beatmapsetDiscussionPost->beatmapDiscussion;
+        if ($discussion->canBeResolved() && $discussion->user_id !== null) {
+            $userIds->push($discussion->user_id);
+        }
+
+        return $userIds->all();
     }
 
     public function getNotifiable()
@@ -58,6 +65,6 @@ abstract class BeatmapsetDiscussionPostNotification extends BroadcastNotificatio
     {
         $this->beatmapsetDiscussionPost->beatmapset->watches()->update(['last_notified' => $this->getTimestamp()]);
 
-        return parent::handle();
+        parent::handle();
     }
 }

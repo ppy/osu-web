@@ -16,10 +16,10 @@ return [
     'voting' => [
         'login_required' => 'Silakan masuk untuk memberikan suara.',
         'over' => 'Pemungutan suara untuk kontes ini telah berakhir',
-        'show_voted_only' => 'Tampilkan yang Anda pilih',
+        'show_voted_only' => 'Tampilkan pilihan',
 
         'best_of' => [
-            'none_played' => "Tampaknya Anda belum pernah memainkan map-map yang tercatat diikutsertakan dalam kontes ini!",
+            'none_played' => "Sepertinya Anda belum pernah memainkan beatmap manapun yang terdaftar pada kontes ini!",
         ],
 
         'button' => [
@@ -31,20 +31,27 @@ return [
         'progress' => [
             '_' => ':used / :max suara telah dipergunakan',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => 'Anda harus memainkan seluruh beatmap yang tertera pada playlist yang ditentukan untuk dapat memberikan suara',
+            ],
+        ],
     ],
     'entry' => [
         '_' => 'entri',
         'login_required' => 'Silakan masuk untuk mengikuti kontes.',
         'silenced_or_restricted' => 'Anda tidak dapat mengikuti kontes ketika akun Anda sedang di-restrict atau di-silence.',
-        'preparation' => 'Kami sedang mempersiapkan kontes ini. Harap tunggu dengan sabar!',
+        'preparation' => 'Kami sedang mempersiapkan kontes ini. Harap bersabar!',
         'drop_here' => 'Letakkan entri Anda di sini',
         'download' => 'Unduh .osz',
         'wrong_type' => [
-            'art' => 'Kontes ini hanya menerima berkas-berkas dengan ekstensi .jpg dan .png.',
-            'beatmap' => 'Kontes ini hanya menerima berkas-berkas dengan ekstensi .osu.',
-            'music' => 'Kontes ini hanya menerima berkas-berkas dengan ekstensi .mp3.',
+            'art' => 'Kontes ini hanya menerima berkas dengan ekstensi .jpg dan .png.',
+            'beatmap' => 'Kontes ini hanya menerima berkas dengan ekstensi .osu.',
+            'music' => 'Kontes ini hanya menerima berkas dengan ekstensi .mp3.',
         ],
-        'too_big' => 'Berkas entri yang hendak didaftarkan untuk kontes ini tidak boleh melebihi batas ukuran maksimal :limit.',
+        'wrong_dimensions' => '',
+        'too_big' => 'Berkas yang diikutsertakan untuk kontes ini tidak boleh melebihi batas ukuran :limit.',
     ],
     'beatmaps' => [
         'download' => 'Unduh Entri',
@@ -65,7 +72,7 @@ return [
     ],
     'states' => [
         'entry' => 'Menerima Entri',
-        'voting' => 'Dalam Tahapan Pemungutan Suara',
+        'voting' => 'Dalam Tahap Pemungutan Suara',
         'results' => 'Telah Berakhir',
     ],
 ];

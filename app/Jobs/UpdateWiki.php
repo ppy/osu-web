@@ -57,21 +57,21 @@ class UpdateWiki implements ShouldQueue
         }
     }
 
-    /**
-     * @return WikiObject|null
-     */
-    private function getObject($path)
+    private function getObject(string $path): ?WikiObject
     {
         $parsed = OsuWiki::parseGithubPath($path);
 
-        if ($parsed['type'] === 'page') {
-            return Page::lookup($parsed['path'], $parsed['locale']);
-        } elseif ($parsed['type'] === 'image') {
-            return new Image($parsed['path']);
-        } elseif ($parsed['type'] === 'redirect') {
-            return new WikiRedirect();
-        } elseif ($parsed['type'] === 'news_post') {
-            return NewsPost::lookup($parsed['slug']);
+        switch ($parsed['type'] ?? '') {
+            case 'page':
+                return Page::lookup($parsed['path'], $parsed['locale']);
+            case 'image':
+                return new Image($parsed['path']);
+            case 'redirect':
+                return new WikiRedirect();
+            case 'news_post':
+                return NewsPost::lookup($parsed['slug']);
+            default:
+                return null;
         }
     }
 }

@@ -15,4 +15,20 @@
     width: 100vw;
     overflow-x: auto;
   }
+
+  &__header {
+    background-color: hsl(var(--hsl-b5));
+    color: hsl(var(--hsl-c1));
+    padding: 10px 30px;
+    font-size: @font-size--normal;
+    text-transform: uppercase;
+    position: sticky;
+    top: 0;
+    z-index: 1; // keep above items
+
+    @media @mobile {
+      // FIXME: no idea how to display on mobile...
+      display: none;
+    }
+  }
 }

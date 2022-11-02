@@ -7,8 +7,7 @@ namespace App\Models;
 
 use App\Libraries\MorphMap;
 use App\Traits\Validatable;
-use App\Traits\WithDbCursorHelper;
-use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * @property mixed $commentable
@@ -28,6 +27,7 @@ use Carbon\Carbon;
  * @property string $message
  * @property static $parent
  * @property int|null $parent_id
+ * @property bool $pinned
  * @property \Illuminate\Database\Eloquent\Collection $replies static
  * @property int $replies_count_cache
  * @property \Carbon\Carbon|null $updated_at
@@ -36,9 +36,9 @@ use Carbon\Carbon;
  * @property \Illuminate\Database\Eloquent\Collection $votes CommentVote
  * @property int $votes_count_cache
  */
-class Comment extends Model
+class Comment extends Model implements Traits\ReportableInterface
 {
-    use Reportable, Validatable, WithDbCursorHelper;
+    use Traits\Reportable, Traits\WithDbCursorHelper, Validatable;
 
     const COMMENTABLES = [
         MorphMap::MAP[Beatmapset::class],
@@ -80,6 +80,11 @@ class Comment extends Model
     public static function isValidType($type)
     {
         return in_array($type, static::COMMENTABLES, true);
+    }
+
+    public function scopePinned(Builder $query): Builder
+    {
+        return $query->where('pinned', true);
     }
 
     public function scopeWithoutTrashed($query)
@@ -129,6 +134,58 @@ class Comment extends Model
         }
 
         $this->attributes['commentable_type'] = $value;
+    }
+
+    public function getAttribute($key)
+    {
+        return match ($key) {
+            'commentable_id',
+            'commentable_type',
+            'deleted_by_id',
+            'disqus_id',
+            'disqus_parent_id',
+            'disqus_thread_id',
+            'edited_by_id',
+            'id',
+            'message',
+            'parent_id',
+            'replies_count_cache',
+            'user_id',
+            'votes_count_cache' => $this->getRawAttribute($key),
+
+            'created_at',
+            'deleted_at',
+            'edited_at',
+            'updated_at' => $this->getTimeFast($key),
+
+            'created_at_json',
+            'deleted_at_json',
+            'edited_at_json',
+            'updated_at_json' => $this->getJsonTimeFast($key),
+
+            'pinned' => (bool) $this->getRawAttribute($key),
+
+            'disqus_user_data' => $this->getDisqusUserData(),
+
+            'commentable',
+            'editor',
+            'parent',
+            'replies',
+            'reportedIn',
+            'user',
+            'votes' => $this->getRelationValue($key),
+        };
+    }
+
+    public function setCommentable()
+    {
+        if ($this->parent_id === null || $this->parent === null) {
+            return;
+        }
+
+        $this->commentable_id = $this->parent->commentable_id;
+        $this->commentable_type = $this->parent->commentable_type;
+        $this->unsetRelation('commentable');
     }
 
     public function isValid()
@@ -182,11 +239,6 @@ class Comment extends Model
 
     public function save(array $options = [])
     {
-        if ($this->parent_id !== null && $this->parent !== null) {
-            $this->commentable_id = $this->parent->commentable_id;
-            $this->commentable_type = $this->parent->commentable_type;
-        }
-
         if (!$this->isValid()) {
             return false;
         }
@@ -222,8 +274,9 @@ class Comment extends Model
     public function softDelete($deletedBy)
     {
         return $this->update([
+            'deleted_at' => now(),
             'deleted_by_id' => $deletedBy->getKey(),
-            'deleted_at' => Carbon::now(),
+            'pinned' => false,
         ]);
     }
 
@@ -238,5 +291,12 @@ class Comment extends Model
             'reason' => 'Spam',
             'user_id' => $this->user_id,
         ];
+    }
+
+    private function getDisqusUserData(): ?array
+    {
+        $value = $this->getRawAttribute('disqus_user_data');
+
+        return $value === null ? null : json_decode($value, true);
     }
 }

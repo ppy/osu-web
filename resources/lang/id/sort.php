@@ -15,6 +15,17 @@ return [
     'top' => 'Komentar Terbaik',
     'username' => 'Nama Pengguna',
 
+    'artist_tracks' => [
+        'album' => 'Album',
+        'artist' => 'Artis',
+        'bpm' => 'BPM',
+        'genre' => 'Aliran',
+        'length' => 'Durasi',
+        'relevance' => 'Relevansi',
+        'title' => 'Judul',
+        'update' => 'Tanggal Pembaruan',
+    ],
+
     'forum_posts' => [
         'created' => 'Waktu posting',
         'relevance' => 'Relevansi',

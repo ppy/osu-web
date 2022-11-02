@@ -86,8 +86,19 @@ return [
         'channel' => [
             '_' => 'Chat',
 
+            'announcement' => [
+                '_' => 'Neue Ankündigung',
+
+                'announce' => [
+                    'channel_announcement' => ':username sagt ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Ankündigung von :username',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Neue Mitteilung',
+
                 'pm' => [
                     'channel_message' => ':username sagt ":title"',
                     'channel_message_compact' => ':title',
@@ -97,7 +108,7 @@ return [
         ],
 
         'build' => [
-            '_' => 'Änderungsprotokoll',
+            '_' => 'Changelog',
 
             'comment' => [
                 '_' => 'Neuer Kommentar',
@@ -148,6 +159,9 @@ return [
                 'user_beatmapset_new' => 'Neue Beatmap ":title" von :username',
                 'user_beatmapset_new_compact' => 'Neue Beatmap ":title"',
                 'user_beatmapset_new_group' => 'Neue Beatmaps von :username',
+
+                'user_beatmapset_revive' => 'Beatmap ":title" wiederbelebt von :username',
+                'user_beatmapset_revive_compact' => 'Beatmap ":title" wiederbelebt',
             ],
         ],
 
@@ -226,6 +240,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username hat neue Beatmaps erstellt',
+                'user_beatmapset_revive' => ':username hat Beatmaps wiederbelebt',
             ],
         ],
     ],

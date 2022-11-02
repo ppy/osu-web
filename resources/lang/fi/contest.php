@@ -31,6 +31,12 @@ return [
         'progress' => [
             '_' => '',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => '',
+            ],
+        ],
     ],
     'entry' => [
         '_' => 'ehdokas',
@@ -44,6 +50,7 @@ return [
             'beatmap' => 'Tähän kilpailuun sallitaan ainoastaan .osu-tiedostot.',
             'music' => 'Tähän kilpailuun sallitaan ainoastaan .mp3-tiedostot.',
         ],
+        'wrong_dimensions' => '',
         'too_big' => 'Tähän kilpailuun voi lähettää korkeintaan :limit työtä.',
     ],
     'beatmaps' => [

@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { NotificationStackJson } from 'interfaces/notification-json';
-import { action, computed, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import Notification from 'models/notification';
 import { Name } from 'models/notification-type';
 import { categoryFromName } from 'notification-maps/category';
@@ -83,7 +83,9 @@ export default class NotificationStack implements NotificationReadable, Notifica
     readonly objectType: Name,
     readonly category: string,
     readonly resolver: NotificationResolver,
-  ) {}
+  ) {
+    makeObservable(this);
+  }
 
   static fromJson(json: NotificationStackJson, resolver: NotificationResolver) {
     const obj = new NotificationStack(json.object_id, json.object_type, categoryFromName(json.name), resolver);

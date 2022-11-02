@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'المشرف',
     ],
-    'admin_forum' => [
-        '_' => 'المشرف',
-    ],
-    'admin_store' => [
-        '_' => 'المشرف',
-    ],
     'error' => [
         'error' => [
             '400' => 'طلب غير صالح',
@@ -29,13 +23,12 @@ return [
     ],
     'forum' => [
         '_' => 'المنتدى',
-        'topic_watches_controller' => [
-            'index' => 'لوحة التحكم',
+        'topic_logs_controller' => [
+            'index' => 'سجلات الموضوع',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'لوحة التحكم',
             'verify_link' => 'التحقق من الحساب',
         ],
         'artists_controller' => [
@@ -56,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'تاريخ الخريطة',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'لوحة التحكم',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'مناقشة الخريطة',
             'index' => 'قائمة الخرائط',
@@ -75,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => 'المسابقات',
-        ],
-        'follows_controller' => [
-            'index' => 'لوحة التحكم',
-        ],
-        'friends_controller' => [
-            'index' => 'لوحة التحكم',
         ],
         'groups_controller' => [
             'show' => 'المجموعات',
@@ -116,9 +100,6 @@ return [
         'scores_controller' => [
             '_' => 'الأداء',
         ],
-        'store_controller' => [
-            '_' => 'المتجر',
-        ],
         'tournaments_controller' => [
             '_' => 'البطولات',
         ],
@@ -130,9 +111,9 @@ return [
             '_' => 'ويكي',
         ],
     ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'التصنيف',
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'صادِق التطبيق',
         ],
     ],
     'store' => [

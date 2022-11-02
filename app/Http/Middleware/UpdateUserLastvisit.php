@@ -51,7 +51,7 @@ class UpdateUserLastvisit
     private function recordSession($request)
     {
         // Add metadata to session to help user recognize this login location
-        $countryCode = presence(request_country($request)) ?? 'XX';
+        $countryCode = presence(request_country($request)) ?? Country::UNKNOWN;
         $request->session()->put('meta', [
             'agent' => $request->header('User-Agent'),
             'country' => [

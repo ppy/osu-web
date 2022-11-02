@@ -3,7 +3,15 @@
 
 import UserGroupJson from 'interfaces/user-group-json';
 import UserJson from 'interfaces/user-json';
-import { action, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
+
+export function normaliseUsername(username: string) {
+  return username.trim().toLowerCase();
+}
+
+export function usernameSortAscending(x: UserJson | User , y: UserJson | User) {
+  return x.username.localeCompare(y.username);
+}
 
 export default class User {
   @observable avatarUrl = '/images/layout/avatar-guest.png'; // TODO: move to a global config store?
@@ -17,40 +25,19 @@ export default class User {
   @observable isOnline = false;
   @observable isSupporter = false;
   @observable lastVisit: string | null = null;
-  @observable loaded = false;
   @observable pmFriendsOnly = false;
   @observable profileColour = '';
   @observable username = '';
 
   constructor(id: number) {
     this.id = id;
-  }
 
-  static fromJson(json: UserJson): User {
-    const user = new User(json.id);
-    return Object.assign(user, {
-      avatarUrl: json.avatar_url,
-      countryCode: json.country_code,
-      defaultGroup: json.default_group,
-      groups: json.groups,
-      isActive: json.is_active,
-      isBot: json.is_bot,
-      isOnline: json.is_online,
-      isSupporter: json.is_supporter,
-      loaded: true,
-      pmFriendsOnly: json.pm_friends_only,
-      profileColour: json.profile_colour,
-      username: json.username,
-    });
+    makeObservable(this);
   }
 
   is(user?: User | UserJson | null) {
     if (user == null) return false;
     return user.id === this.id;
-  }
-
-  load() {
-    // TODO: do automagic loading stuff?
   }
 
   /**
@@ -76,17 +63,21 @@ export default class User {
   }
 
   @action
-  updateFromJson(json: UserJson) {
-    this.username = json.username;
+  updateWithJson(json: UserJson) {
     this.avatarUrl = json.avatar_url;
-    this.profileColour = json.profile_colour ?? '';
     this.countryCode = json.country_code;
-    this.isSupporter = json.is_supporter;
+    this.defaultGroup = json.default_group;
     this.isActive = json.is_active;
     this.isBot = json.is_bot;
     this.isOnline = json.is_online;
+    this.isSupporter = json.is_supporter;
     this.pmFriendsOnly = json.pm_friends_only;
-    this.loaded = true;
+    this.profileColour= json.profile_colour ?? '';
+    this.username = json.username;
+
+    if (json.groups != null) {
+      this.groups = json.groups;
+    }
   }
 }
 

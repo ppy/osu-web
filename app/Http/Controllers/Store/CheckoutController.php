@@ -27,7 +27,7 @@ class CheckoutController extends Controller
         }
         $this->middleware('verify-user');
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function show($id)
@@ -105,7 +105,7 @@ class CheckoutController extends Controller
     {
         return Auth::user()
             ->orders()
-            ->whereIn('status', ['incart', 'processing'])
+            ->whereCanCheckout()
             ->with('items.product')
             ->find($id);
     }

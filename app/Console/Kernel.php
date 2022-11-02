@@ -18,6 +18,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\EsCreateSearchBlacklist::class,
         Commands\EsIndexDocuments::class,
+        Commands\EsIndexScoresQueue::class,
+        Commands\EsIndexScoresSetSchema::class,
         Commands\EsIndexWiki::class,
 
         // modding stuff
@@ -67,7 +69,10 @@ class Kernel extends ConsoleKernel
         Commands\UserNotificationsCleanup::class,
         Commands\NotificationsCleanup::class,
 
+        Commands\ChatExpireAck::class,
         Commands\ChatChannelSetLastMessageId::class,
+
+        Commands\BeatmapLeadersRefresh::class,
     ];
 
     /**
@@ -111,6 +116,10 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('notifications:cleanup')
             ->cron('15,45 * * * *')
+            ->withoutOverlapping();
+
+        $schedule->command('chat:expire-ack')
+            ->everyFiveMinutes()
             ->withoutOverlapping();
     }
 

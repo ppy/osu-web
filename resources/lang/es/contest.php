@@ -31,6 +31,12 @@ return [
         'progress' => [
             '_' => ':used / :max votos usados',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => 'Debe jugar todos los mapas en las listas de juego especificadas antes de votar',
+            ],
+        ],
     ],
     'entry' => [
         '_' => 'participación',
@@ -44,6 +50,7 @@ return [
             'beatmap' => 'Solo se aceptan archivos .osu en este concurso.',
             'music' => 'Solo se aceptan archivos .mp3 en este concurso.',
         ],
+        'wrong_dimensions' => '',
         'too_big' => 'Tu archivo no puede exceder el siguiente tamaño: :limit.',
     ],
     'beatmaps' => [

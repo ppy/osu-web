@@ -7,19 +7,13 @@ return [
     'admin' => [
         '_' => 'адмін',
     ],
-    'admin_forum' => [
-        '_' => 'адмін',
-    ],
-    'admin_store' => [
-        '_' => 'адмін',
-    ],
     'error' => [
         'error' => [
-            '400' => 'неправильний запит',
+            '400' => 'невірний запит',
             '404' => 'не знайдено',
             '403' => 'доступ заборонено',
             '401' => 'ви не авторизовані',
-            '401-verification' => 'підтвердження аккаунта',
+            '401-verification' => 'підтвердження акаунта',
             '405' => 'не знайдено',
             '422' => 'невірний запит',
             '429' => 'занадто багато запитів',
@@ -29,20 +23,19 @@ return [
     ],
     'forum' => [
         '_' => 'форум',
-        'topic_watches_controller' => [
-            'index' => 'головна',
+        'topic_logs_controller' => [
+            'index' => 'журнал тем',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'головна',
-            'verify_link' => 'підтвердження аккаунта',
+            'verify_link' => 'підтвердження акаунта',
         ],
         'artists_controller' => [
-            '_' => 'вибрані виконавці',
+            '_' => 'обрані виконавці',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => 'публікації в обговореннях біткарти',
+            '_' => 'публікації в обговореннях бітмап',
         ],
         'beatmap_discussions_controller' => [
             '_' => 'обговорення біткарти',
@@ -51,18 +44,15 @@ return [
             '_' => 'збірки карт',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => 'голоса в обговоренні бтікарти',
+            '_' => 'голоса в обговоренні бітмапи',
         ],
         'beatmapset_events_controller' => [
-            '_' => 'історія біткарти',
-        ],
-        'beatmapset_watches_controller' => [
-            'index' => 'головна',
+            '_' => 'історія бітмапи',
         ],
         'beatmapsets_controller' => [
-            'discussion' => 'обговорення біткарти',
-            'index' => 'бібліотека біткарт',
-            'show' => 'інформація о біткарті',
+            'discussion' => 'обговорення бітмапи',
+            'index' => 'бібліотека бітмап',
+            'show' => 'інформація про бітмапу',
         ],
         'changelog_controller' => [
             '_' => 'історія змін',
@@ -75,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => 'конкурси',
-        ],
-        'follows_controller' => [
-            'index' => 'головна',
-        ],
-        'friends_controller' => [
-            'index' => 'панель керування',
         ],
         'groups_controller' => [
             'show' => 'групи',
@@ -116,9 +100,6 @@ return [
         'scores_controller' => [
             '_' => 'продуктивність',
         ],
-        'store_controller' => [
-            '_' => 'крамниця',
-        ],
         'tournaments_controller' => [
             '_' => 'турніри',
         ],
@@ -130,9 +111,9 @@ return [
             '_' => 'wiki',
         ],
     ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'рейтинг',
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'авторизація додатку',
         ],
     ],
     'store' => [

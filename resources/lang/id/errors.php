@@ -10,10 +10,10 @@ return [
     'unknown' => 'Terdapat masalah yang tidak diketahui.',
 
     'codes' => [
-        'http-401' => 'Mohon masuk untuk melanjutkan.',
+        'http-401' => 'Silakan masuk untuk melanjutkan.',
         'http-403' => 'Akses ditolak.',
         'http-404' => 'Tidak ditemukan.',
-        'http-429' => 'Terlalu banyak percobaan. Mohon coba lagi nanti.',
+        'http-429' => 'Terlalu banyak percobaan. Silakan coba lagi nanti.',
     ],
     'account' => [
         'profile-order' => [
@@ -25,10 +25,11 @@ return [
         'standard_converts_only' => 'Tidak ada skor yang tercatat pada mode permainan yang dikehendaki di tingkat kesulitan ini.',
     ],
     'checkout' => [
-        'generic' => 'Terjadi kesalahan ketika akan melangsungkan proses checkout.',
+        'generic' => 'Terjadi kesalahan dalam mempersiapkan proses checkout.',
     ],
     'search' => [
         'default' => 'Hasil pencarian tidak dapat ditampilkan pada saat ini. Mohon coba lagi nanti.',
-        'operation_timeout_exception' => 'Aktivitas pencarian saat ini lebih sibuk dari biasanya. Mohon coba lagi nanti.',
+        'invalid_cursor_exception' => 'Parameter kursor yang ditentukan tidak valid.',
+        'operation_timeout_exception' => 'Aktivitas pencarian saat ini sedang lebih sibuk dari biasanya. Mohon coba lagi nanti.',
     ],
 ];

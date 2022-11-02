@@ -8,7 +8,7 @@ namespace App\Models;
 use App\Exceptions\BeatmapProcessorException;
 use App\Exceptions\InvariantException;
 use App\Jobs\CheckBeatmapsetCovers;
-use App\Jobs\EsIndexDocument;
+use App\Jobs\EsDocument;
 use App\Jobs\Notifications\BeatmapsetDiscussionLock;
 use App\Jobs\Notifications\BeatmapsetDiscussionUnlock;
 use App\Jobs\Notifications\BeatmapsetDisqualify;
@@ -19,13 +19,13 @@ use App\Jobs\Notifications\BeatmapsetRank;
 use App\Jobs\Notifications\BeatmapsetRemoveFromLoved;
 use App\Jobs\Notifications\BeatmapsetResetNominations;
 use App\Jobs\RemoveBeatmapsetBestScores;
+use App\Jobs\RemoveBeatmapsetSoloScores;
 use App\Libraries\BBCodeFromDB;
 use App\Libraries\Commentable;
 use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageWithUrl;
 use App\Libraries\Transactions\AfterCommit;
-use App\Traits\CommentableDefaults;
 use App\Traits\Memoizes;
 use App\Traits\Validatable;
 use Cache;
@@ -40,7 +40,7 @@ use Illuminate\Database\QueryException;
  * @property int $approved
  * @property \Carbon\Carbon|null $approved_date
  * @property int|null $approvedby_id
- * @property User $approver
+ * @property User|null $approver
  * @property string $artist
  * @property string $artist_unicode
  * @property \Illuminate\Database\Eloquent\Collection $beatmapDiscussions BeatmapDiscussion
@@ -49,6 +49,7 @@ use Illuminate\Database\QueryException;
  * @property \Illuminate\Database\Eloquent\Collection $beatmapsetNominations BeatmapsetNomination
  * @property mixed|null $body_hash
  * @property float $bpm
+ * @property bool $comment_locked
  * @property string $commentable_identifier
  * @property Comment $comments
  * @property \Carbon\Carbon|null $cover_updated_at
@@ -56,7 +57,6 @@ use Illuminate\Database\QueryException;
  * @property \Illuminate\Database\Eloquent\Collection $defaultBeatmaps Beatmap
  * @property \Carbon\Carbon|null $deleted_at
  * @property string|null $difficulty_names
- * @property bool $discussion_enabled
  * @property bool $discussion_locked
  * @property string $displaytitle
  * @property bool $download_disabled
@@ -84,6 +84,7 @@ use Illuminate\Database\QueryException;
  * @property \Carbon\Carbon|null $queued_at
  * @property float $rating
  * @property string $source
+ * @property bool $spotlight
  * @property int $star_priority
  * @property bool $storyboard
  * @property \Carbon\Carbon|null $submit_date
@@ -92,6 +93,8 @@ use Illuminate\Database\QueryException;
  * @property int $thread_id
  * @property string $title
  * @property string $title_unicode
+ * @property ArtistTrack $track
+ * @property int|null $track_id
  * @property User $user
  * @property \Illuminate\Database\Eloquent\Collection $userRatings BeatmapsetUserRating
  * @property int $user_id
@@ -99,9 +102,9 @@ use Illuminate\Database\QueryException;
  * @property bool $video
  * @property \Illuminate\Database\Eloquent\Collection $watches BeatmapsetWatch
  */
-class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
+class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, Traits\ReportableInterface
 {
-    use CommentableDefaults, Elasticsearch\BeatmapsetTrait, Memoizes, Reportable, SoftDeletes, Validatable;
+    use Memoizes, SoftDeletes, Traits\CommentableDefaults, Traits\Es\BeatmapsetSearch, Traits\Reportable, Validatable;
 
     protected $_storage = null;
     protected $table = 'osu_beatmapsets';
@@ -109,13 +112,14 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
     protected $casts = [
         'active' => 'boolean',
+        'comment_locked' => 'boolean',
+        'discussion_locked' => 'boolean',
         'download_disabled' => 'boolean',
         'epilepsy' => 'boolean',
         'nsfw' => 'boolean',
+        'spotlight' => 'boolean',
         'storyboard' => 'boolean',
         'video' => 'boolean',
-        'discussion_enabled' => 'boolean',
-        'discussion_locked' => 'boolean',
     ];
 
     protected $dates = [
@@ -129,17 +133,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     ];
 
     public $timestamps = false;
-    protected $hidden = [
-        'header_hash',
-        'body_hash',
-        'download_disabled',
-        'download_disabled_url',
-        'displaytitle',
-        'approvedby_id',
-        'difficulty_names',
-        'thread_icon_date',
-        'thread_id',
-    ];
 
     const STATES = [
         'graveyard' => -2,
@@ -154,24 +147,18 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
     public static function coverSizes()
     {
-        $shapes = ['cover', 'card', 'list', 'slimcover'];
-        $scales = ['', '@2x'];
+        static $sizes;
 
-        $sizes = [];
-        foreach ($shapes as $shape) {
-            foreach ($scales as $scale) {
-                $sizes[] = "$shape$scale";
+        if ($sizes === null) {
+            $sizes = [];
+            foreach (['cover', 'card', 'list', 'slimcover'] as $shape) {
+                foreach (['', '@2x'] as $scale) {
+                    $sizes[] = "{$shape}{$scale}";
+                }
             }
         }
 
         return $sizes;
-    }
-
-    public static function isValidCoverSize($coverSize)
-    {
-        $validSizes = array_merge(['raw', 'fullsize'], self::coverSizes());
-
-        return in_array($coverSize, $validSizes, true);
     }
 
     public static function popular()
@@ -224,6 +211,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     public function beatmapDiscussions()
     {
         return $this->hasMany(BeatmapDiscussion::class);
+    }
+
+    public function bssProcessQueues()
+    {
+        return $this->hasMany(BssProcessQueue::class);
     }
 
     public function recentFavourites($limit = 50)
@@ -381,8 +373,9 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
     public function allCoverURLs()
     {
         $urls = [];
+        $timestamp = $this->defaultCoverTimestamp();
         foreach (self::coverSizes() as $size) {
-            $urls[$size] = $this->coverURL($size);
+            $urls[$size] = $this->coverURL($size, $timestamp);
         }
 
         return $urls;
@@ -390,28 +383,26 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
     public function coverURL($coverSize = 'cover', $customTimestamp = null)
     {
-        if (!self::isValidCoverSize($coverSize)) {
-            return false;
-        }
-
-        $timestamp = 0;
-        if ($customTimestamp) {
-            $timestamp = $customTimestamp;
-        } elseif ($this->cover_updated_at) {
-            $timestamp = $this->cover_updated_at->format('U');
-        }
+        $timestamp = $customTimestamp ?? $this->defaultCoverTimestamp();
 
         return $this->storage()->url($this->coverPath()."{$coverSize}.jpg?{$timestamp}");
     }
 
     public function coverPath()
     {
-        return "beatmaps/{$this->beatmapset_id}/covers/";
+        $id = $this->getKey() ?? 0;
+
+        return "beatmaps/{$id}/covers/";
     }
 
     public function storeCover($target_filename, $source_path)
     {
         $this->storage()->put($this->coverPath().$target_filename, file_get_contents($source_path));
+    }
+
+    public function downloadLimited()
+    {
+        return $this->download_disabled || $this->download_disabled_url !== null;
     }
 
     public function previewURL()
@@ -563,6 +554,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
         if ($this->isScoreable() !== $oldScoreable || $this->isRanked()) {
             dispatch(new RemoveBeatmapsetBestScores($this));
+            dispatch(new RemoveBeatmapsetSoloScores($this));
         }
 
         if ($this->isScoreable() !== $oldScoreable) {
@@ -598,7 +590,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         });
     }
 
-    public function disqualifyOrResetNominations(User $user, BeatmapDiscussion $post)
+    public function disqualifyOrResetNominations(User $user, BeatmapDiscussion $discussion)
     {
         $event = BeatmapsetEvent::DISQUALIFY;
         $notificationClass = BeatmapsetDisqualify::class;
@@ -609,15 +601,15 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
             throw new InvariantException('invalid state');
         }
 
-        $this->getConnection()->transaction(function () use ($event, $notificationClass, $post, $user) {
+        $this->getConnection()->transaction(function () use ($discussion, $event, $notificationClass, $user) {
             $nominators = User::whereIn('user_id', $this->beatmapsetNominations()->current()->select('user_id'))->get();
 
-            BeatmapsetEvent::log($event, $user, $post, ['nominator_ids' => $nominators->pluck('user_id')])->saveOrExplode();
+            BeatmapsetEvent::log($event, $user, $discussion, ['nominator_ids' => $nominators->pluck('user_id')])->saveOrExplode();
             foreach ($nominators as $nominator) {
                 BeatmapsetEvent::log(
                     BeatmapsetEvent::NOMINATION_RESET_RECEIVED,
                     $nominator,
-                    $post,
+                    $discussion,
                     ['source_user_id' => $user->getKey(), 'source_user_username' => $user->username]
                 )->saveOrExplode();
             }
@@ -833,6 +825,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
             $this->update(['play_count' => 0]);
             $this->beatmaps()->update(['playcount' => 0, 'passcount' => 0]);
             $this->setApproved('ranked', null);
+            $this->bssProcessQueues()->create();
 
             // global event
             Event::generate('beatmapsetApprove', ['beatmapset' => $this]);
@@ -923,9 +916,104 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         return $this->belongsTo(Language::class, 'language_id');
     }
 
+    public function getAttribute($key)
+    {
+        return match ($key) {
+            'approved',
+            'approvedby_id',
+            'artist',
+            'beatmapset_id',
+            'body_hash',
+            'bpm',
+            'creator',
+            'difficulty_names',
+            'discussion_enabled',
+            'displaytitle',
+            'download_disabled_url',
+            'favourite_count',
+            'filename',
+            'filesize',
+            'filesize_novideo',
+            'genre_id',
+            'header_hash',
+            'hype',
+            'language_id',
+            'laravel_through_key', // added by hasOneThrough relation in BeatmapDiscussionPost
+            'nominations',
+            'offset',
+            'osz2_hash',
+            'play_count',
+            'previous_queue_duration',
+            'rating',
+            'source',
+            'star_priority',
+            'storyboard_hash',
+            'tags',
+            'thread_id',
+            'title',
+            'track_id',
+            'user_id',
+            'versions_available' => $this->getRawAttribute($key),
+
+            'approved_date',
+            'cover_updated_at',
+            'deleted_at',
+            'last_update',
+            'queued_at',
+            'submit_date',
+            'thread_icon_date' => $this->getTimeFast($key),
+
+            'approved_date_json',
+            'cover_updated_at_json',
+            'deleted_at_json',
+            'last_update_json',
+            'queued_at_json',
+            'submit_date_json',
+            'thread_icon_date_json' => $this->getJsonTimeFast($key),
+
+            'active',
+            'comment_locked',
+            'discussion_locked',
+            'download_disabled',
+            'epilepsy',
+            'nsfw',
+            'spotlight',
+            'storyboard',
+            'video' => (bool) $this->getRawAttribute($key),
+
+            'artist_unicode' => $this->getArtistUnicode(),
+            'commentable_identifier' => $this->getCommentableIdentifierAttribute(),
+            'title_unicode' => $this->getTitleUnicode(),
+
+            'allBeatmaps',
+            'approver',
+            'beatmapDiscussions',
+            'beatmaps',
+            'beatmapsetNominations',
+            'bssProcessQueues',
+            'comments',
+            'defaultBeatmaps',
+            'events',
+            'favourites',
+            'genre',
+            'language',
+            'reportedIn',
+            'topic',
+            'track',
+            'user',
+            'userRatings',
+            'watches' => $this->getRelationValue($key),
+        };
+    }
+
     public function requiredHype()
     {
         return config('osu.beatmapset.required_hype');
+    }
+
+    public function commentLocked(): bool
+    {
+        return $this->comment_locked || $this->downloadLimited();
     }
 
     public function commentableTitle()
@@ -1047,9 +1135,17 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         return $this->beatmapsetNominations()->current()->exists();
     }
 
+    /**
+     * This will cause additional query if `difficulty_names` column is blank and beatmaps relation isn't preloaded.
+     */
     public function playmodes()
     {
-        return $this->beatmaps->pluck('playmode')->unique()->values();
+        $rawPlaymodes = present($this->difficulty_names)
+            ? collect(explode(',', $this->difficulty_names))
+                ->map(fn (string $name) => substr($name, strrpos($name, '@') + 1))
+            : $this->beatmaps->pluck('playmode');
+
+        return $rawPlaymodes->unique()->values();
     }
 
     public function playmodeCount()
@@ -1134,15 +1230,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         return array_search_null($this->approved, static::STATES);
     }
 
-    public function defaultJson()
-    {
-        return json_item($this, 'Beatmapset', [
-            'beatmaps',
-            'current_user_attributes',
-            'nominations',
-        ]);
-    }
-
     public function defaultDiscussionJson()
     {
         return json_item(
@@ -1163,7 +1250,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
                 'discussions.posts',
                 'discussions.votes',
                 'events',
-                'events.nomination_modes',
                 'nominations',
                 'related_users',
                 'related_users.groups',
@@ -1183,12 +1269,17 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
     public function approver()
     {
-        return $this->belongsTo(User::class, 'user_id', 'approvedby_id');
+        return $this->belongsTo(User::class, 'approvedby_id');
     }
 
     public function topic()
     {
         return $this->belongsTo(Forum\Topic::class, 'thread_id');
+    }
+
+    public function track()
+    {
+        return $this->belongsTo(ArtistTrack::class);
     }
 
     public function userRatings()
@@ -1204,13 +1295,19 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
             $ratings[$i] = 0;
         }
 
-        $userRatings = $this->userRatings()
-            ->select('rating', \DB::raw('count(*) as count'))
-            ->groupBy('rating')
-            ->get();
+        if ($this->relationLoaded('userRatings')) {
+            foreach ($this->userRatings as $userRating) {
+                $ratings[$userRating->rating]++;
+            }
+        } else {
+            $userRatings = $this->userRatings()
+                ->select('rating', \DB::raw('count(*) as count'))
+                ->groupBy('rating')
+                ->get();
 
-        foreach ($userRatings as $rating) {
-            $ratings[$rating->rating] = $rating->count;
+            foreach ($userRatings as $rating) {
+                $ratings[$rating->rating] = $rating->count;
+            }
         }
 
         return $ratings;
@@ -1297,11 +1394,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         return new BBCodeFromDB($description, $post->bbcode_uid, $options);
     }
 
-    public function getArtistUnicodeAttribute($value)
-    {
-        return $value ?? $this->artist;
-    }
-
     public function getDisplayArtist(?User $user)
     {
         $profileCustomization = $user->userProfileCustomization ?? new UserProfileCustomization();
@@ -1333,11 +1425,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         return Forum\Post::find($topic->topic_first_post_id);
     }
 
-    public function getTitleUnicodeAttribute($value)
-    {
-        return $value ?? $this->title;
-    }
-
     public function freshHype()
     {
         return $this
@@ -1357,7 +1444,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
 
     public function afterCommit()
     {
-        dispatch(new EsIndexDocument($this));
+        dispatch(new EsDocument($this));
     }
 
     public function notificationCover()
@@ -1410,5 +1497,20 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable
         static::addGlobalScope('active', function ($builder) {
             $builder->active();
         });
+    }
+
+    private function defaultCoverTimestamp(): string
+    {
+        return $this->cover_updated_at?->format('U') ?? '0';
+    }
+
+    private function getArtistUnicode()
+    {
+        return $this->getRawAttribute('artist_unicode') ?? $this->artist;
+    }
+
+    private function getTitleUnicode()
+    {
+        return $this->getRawAttribute('title_unicode') ?? $this->title;
     }
 }

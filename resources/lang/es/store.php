@@ -4,10 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => 'Almacén',
-    ],
-
     'cart' => [
         'checkout' => 'Pagar',
         'info' => ':count_delimited producto en el carrito ($:subtotal)|:count_delimited productos en el carrito ($:subtotal)',
@@ -113,7 +109,7 @@ return [
             'out_with_alternative' => 'Lamentablemente, este artículo esta agotado. ¡Usa el menú desplegable para elegir un tipo diferente o vuelve más tarde!',
         ],
 
-        'add_to_cart' => 'Añadir al carrito',
+        'add_to_cart' => 'Agregar al carrito',
         'notify' => '¡Notificarme cuando esté disponible!',
 
         'notification_success' => 'serás notificado cuando tengamos más existencias. Haz clic :link para cancelar',

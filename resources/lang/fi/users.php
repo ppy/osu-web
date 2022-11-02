@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Olet estänyt tämän käyttäjän.',
+        'comment_text' => '',
         'blocked_count' => 'Estetyt käyttäjät (:count)',
         'hide_profile' => 'piilota profiili',
+        'hide_comment' => '',
         'not_blocked' => 'Tämä käyttäjä ei ole estetty.',
         'show_profile' => 'näytä profiili',
+        'show_comment' => '',
         'too_many' => 'Estoraja saavutettu.',
         'button' => [
             'block' => 'estä',
@@ -159,6 +162,10 @@ return [
             '_' => 'Julkaistu :link',
             'count' => ':count_delimited kommentti|:count_delimited kommenttia',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Muuta profiilin kansikuvaa',
@@ -203,6 +210,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Kuopatut',
+                ],
+                'guest' => [
+                    'title' => '',
                 ],
                 'loved' => [
                     'title' => 'Rakastetut beatmapit',
@@ -301,7 +311,7 @@ return [
                 'recent' => 'Viimeisin',
                 'title' => 'Mitalit',
             ],
-            'multiplayer' => [
+            'playlists' => [
                 'title' => '',
             ],
             'posts' => [
@@ -311,6 +321,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Viimeisimmät',
+            ],
+            'realtime' => [
+                'title' => 'Moninpelit',
             ],
             'top_ranks' => [
                 'download_replay' => 'Lataa Replay',
@@ -324,6 +337,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Kärkisijat',
+                ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
                 ],
             ],
             'votes' => [
@@ -350,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Porttikielto',
                         'silence' => 'Mykistys',
+                        'tournament_ban' => '',
                         'note' => 'Muistutus',
                     ],
                 ],
@@ -391,6 +414,7 @@ return [
             'country_simple' => 'Maakohtainen sijoitus',
             'global' => 'Maailmanlaajuinen sijoitus pelimuodossa :mode',
             'global_simple' => 'Maailmanlaajuinen sijoitus',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Tarkkuus',

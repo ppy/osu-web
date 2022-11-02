@@ -11,12 +11,20 @@ return [
         'rule_violation' => 'Algunos de los elementos contenidos en este mapa han sido eliminados después de ser considerados no aptos para su uso en osu!.',
     ],
 
+    'cover' => [
+        'deleted' => 'Mapa eliminado',
+    ],
+
     'download' => [
-        'limit_exceeded' => 'Reduzca la velocidad, juegue más.',
+        'limit_exceeded' => 'Más despacio, juegue un poco.',
+    ],
+
+    'featured_artist_badge' => [
+        'label' => 'Artista destacado',
     ],
 
     'index' => [
-        'title' => 'Listado de Mapas',
+        'title' => 'Lista de mapas',
         'guest_title' => 'Mapas',
     ],
 
@@ -105,7 +113,7 @@ return [
             ],
 
             'report' => [
-                '_' => 'Si encuentra un problema con este mapa, por favor, informe de ello :link para alertar al equipo.',
+                '_' => 'Si encuentras un problema con este mapa, por favor repórtalo :link para alertar al equipo.',
                 'button' => 'Informar un problema',
                 'link' => 'aquí',
             ],
@@ -117,6 +125,7 @@ return [
             'language' => 'Idioma',
             'no_scores' => 'Los datos todavía están siendo calculados...',
             'nsfw' => 'Contenido explícito',
+            'offset' => 'Compensación en línea',
             'points-of-failure' => 'Puntos de fracaso',
             'source' => 'Fuente',
             'storyboard' => 'Este mapa contiene storyboard',
@@ -126,12 +135,12 @@ return [
         ],
 
         'nsfw_warning' => [
-            'details' => 'Este mapa del tiempo contiene contenido explícito, ofensivo o perturbador. ¿Desea verlo de todos modos?',
+            'details' => 'Este mapa contiene contenido explícito, ofensivo o perturbador. ¿Desea verlo de todos modos?',
             'title' => 'Contenido explícito',
 
             'buttons' => [
                 'disable' => 'Desactivar advertencia',
-                'listing' => 'Listado de mapas',
+                'listing' => 'Volver a lista de mapas',
                 'show' => 'Mostrar',
             ],
         ],
@@ -139,6 +148,7 @@ return [
         'scoreboard' => [
             'achieved' => 'logrado :when',
             'country' => 'Clasificación Nacional',
+            'error' => 'Error al cargar las clasificaciones',
             'friend' => 'Clasificación entre Amigos',
             'global' => 'Clasificación Global',
             'supporter-link' => '¡Clic <a href=":link">aquí</a> para ver todas las características de lujo que ofrece!',
@@ -150,11 +160,12 @@ return [
                 'combo' => 'Combo máximo',
                 'miss' => 'Fallos',
                 'mods' => 'Mods',
+                'pin' => 'Anclar',
                 'player' => 'Jugador',
                 'pp' => '',
                 'rank' => 'Puesto',
-                'score_total' => 'Puntuación total',
                 'score' => 'Puntuación',
+                'score_total' => 'Puntuación total',
                 'time' => 'Tiempo',
             ],
 
@@ -169,6 +180,10 @@ return [
                 'first' => 'Liderando',
                 'own' => 'Tu mejor puntuación',
             ],
+            'supporter_link' => [
+                '_' => '¡Clic :here para ver todas las características de lujo que ofrece!',
+                'here' => 'aquí',
+            ],
         ],
 
         'stats' => [
@@ -181,7 +196,8 @@ return [
             'total_length' => 'Duración (Duración del drenaje: :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => 'Número de círculos',
-            'count_sliders' => 'Número de deslizadores',
+            'count_sliders' => 'Número de sliders',
+            'offset' => 'Compensación en línea: :offset',
             'user-rating' => 'Valoración de los usuarios',
             'rating-spread' => 'Desglose de valoraciones',
             'nominations' => 'Nominaciones',
@@ -197,5 +213,9 @@ return [
             'pending' => 'Pendiente',
             'graveyard' => 'Abandonado',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => 'Destacado',
     ],
 ];

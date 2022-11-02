@@ -23,7 +23,8 @@ return [
     ],
 
     'status' => [
-        'non_best' => '只有個人最佳成績的回饋 pp',
+        'non_best' => 'pp 只授予個人最佳成績',
+        'non_passing' => '僅有過關的成績能獲取 pp',
         'processing' => '成績仍在結算中，不久後就會顯示',
     ],
 ];

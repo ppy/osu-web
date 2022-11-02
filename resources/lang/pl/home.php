@@ -76,8 +76,8 @@ return [
         'action' => 'Pobierz osu!',
 
         'help' => [
-            '_' => 'jeżeli masz problem z uruchomieniem gry lub utworzeniem konta, :help_forum_link albo :support_button.',
-            'help_forum_link' => 'sprawdź forum',
+            '_' => 'jeżeli masz problem z uruchomieniem gry bądź utworzeniem konta, :help_forum_link lub :support_button.',
+            'help_forum_link' => 'sprawdź forum pomocy',
             'support_button' => 'skontaktuj się z pomocą techniczną',
         ],
 
@@ -131,16 +131,5 @@ return [
             'support' => 'Wspomóż osu!',
             'store' => 'Sklep osu!',
         ],
-    ],
-
-    'support-osu' => [
-        'title' => 'Wow!',
-        'subtitle' => 'Wygląda na to, że dobrze się bawisz! :D',
-        'body' => [
-            'part-1' => 'Czy wiesz, że osu! nie zawiera reklam i jest utrzymywane dzięki wsparciu graczy?',
-            'part-2' => 'Czy wiesz, że wspierając osu! otrzymasz wiele przydatnych funkcji takich jak <strong>automatyczne pobieranie beatmap</strong> podczas gier wieloosobowych czy oglądania innych graczy?',
-        ],
-        'find-out-more' => 'Kliknij tutaj, aby dowiedzieć się więcej!',
-        'download-starting' => "A, i nie martw się - pobieranie już się rozpoczęło ;)",
     ],
 ];

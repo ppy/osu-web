@@ -6,14 +6,14 @@
 namespace Tests\Controllers\OAuth;
 
 use App\Models\OAuth\Token;
-use Laravel\Passport\RefreshToken;
+use Database\Factories\OAuth\RefreshTokenFactory;
 use Tests\TestCase;
 
 class TokensControllerTest extends TestCase
 {
     public function testDestroyCurrent()
     {
-        $refreshToken = factory(RefreshToken::class)->create();
+        $refreshToken = (new RefreshTokenFactory())->create();
         $token = $refreshToken->accessToken;
 
         $this
@@ -27,7 +27,7 @@ class TokensControllerTest extends TestCase
 
     public function testDestroyCurrentClientGrant()
     {
-        $token = factory(Token::class)->create(['user_id' => null]);
+        $token = Token::factory()->create(['user_id' => null]);
 
         $this
             ->actingWithToken($token)

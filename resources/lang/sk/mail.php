@@ -15,6 +15,7 @@ return [
         'closing' => '',
         'hello' => 'Ahoj :user,',
         'report' => '',
+        'ignore' => '',
     ],
 
     'donation_thanks' => [

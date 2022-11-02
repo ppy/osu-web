@@ -779,12 +779,10 @@ class BaseTables extends Migration
         Schema::create('osu_username_change_history', function (Blueprint $table) {
             $table->increments('change_id');
             $table->integer('user_id')->unsigned()->index('user_id'); // medium???
-            $column = $table->string('username', 30);
-            $column->charset = 'utf8';
+            $table->string('username', 30);
             $table->enum('type', ['support', 'paid', 'admin', 'revert', 'inactive']);
             $table->timestamp('timestamp')->nullable()->useCurrent();
-            $column = $table->string('username_last', 30)->nullable()->index('username_last');
-            $column->charset = 'utf8';
+            $table->string('username_last', 30)->nullable()->index('username_last');
         });
         $this->comment('osu_username_change_history', 'Stores historical changes to user\'\'s usernames over time.');
 

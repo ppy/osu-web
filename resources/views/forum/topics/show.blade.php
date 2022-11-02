@@ -133,8 +133,8 @@
             'arrow' => 'up',
             'attributes' => ['data-mode' => 'previous'],
             'hidden' => $posts->first()->post_id === $topic->topic_first_post_id,
-            'modifiers' => ['forum-topic'],
-            'url' => route('forum.topics.show', ['topic' => $topic, 'end' => ($posts->first()->post_id - 1), 'with_deleted' => $showDeleted ? '1' : '0']),
+            'modifiers' => 'forum-topic',
+            'url' => $navUrls['previous'],
         ])
 
         @include('forum.topics._posts')
@@ -143,8 +143,8 @@
             'additionalClasses' => 'js-forum-posts-show-more js-forum__posts-show-more--next',
             'attributes' => ['data-mode' => 'next'],
             'hidden' => $firstPostPosition + sizeof($posts) - 1 >= $topic->postCount(),
-            'modifiers' => ['forum-topic'],
-            'url' => route('forum.topics.show', ['topic' => $topic, 'start' => $posts->last()->post_id + 1, 'with_deleted' => $showDeleted ? '1' : '0']),
+            'modifiers' => 'forum-topic',
+            'url' => $navUrls['next'],
         ])
     </div>
 

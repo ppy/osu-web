@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'administrador',
     ],
-    'admin_forum' => [
-        '_' => 'administrador',
-    ],
-    'admin_store' => [
-        '_' => 'administrador',
-    ],
     'error' => [
         'error' => [
             '400' => 'pedido inválido',
@@ -29,13 +23,12 @@ return [
     ],
     'forum' => [
         '_' => 'fórum',
-        'topic_watches_controller' => [
-            'index' => 'painel de controlo',
+        'topic_logs_controller' => [
+            'index' => 'registos do tópico',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'painel de controlo',
             'verify_link' => 'verificação da conta',
         ],
         'artists_controller' => [
@@ -56,12 +49,9 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'histórico do beatmap',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'painel de controlo',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'discussão do beatmap',
-            'index' => 'listagem do beatmap',
+            'index' => 'listagem de beatmaps',
             'show' => 'informação do beatmap',
         ],
         'changelog_controller' => [
@@ -75,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => 'concursos',
-        ],
-        'follows_controller' => [
-            'index' => 'painel de controlo',
-        ],
-        'friends_controller' => [
-            'index' => 'painel de controlo',
         ],
         'groups_controller' => [
             'show' => 'grupos',
@@ -116,9 +100,6 @@ return [
         'scores_controller' => [
             '_' => 'desempenho',
         ],
-        'store_controller' => [
-            '_' => 'loja',
-        ],
         'tournaments_controller' => [
             '_' => 'torneios',
         ],
@@ -130,9 +111,9 @@ return [
             '_' => 'wiki',
         ],
     ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'classificação',
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'autorizar aplicação',
         ],
     ],
     'store' => [

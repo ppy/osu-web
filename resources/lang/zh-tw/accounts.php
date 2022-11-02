@@ -15,7 +15,6 @@ return [
         ],
 
         'email' => [
-            'current' => '目前電子郵件地址',
             'new' => '新電子郵件地址',
             'new_confirmation' => '再次輸入電子郵件地址',
             'title' => '電子郵件',
@@ -29,7 +28,7 @@ return [
         ],
 
         'profile' => [
-            'title' => '編輯個人簡介',
+            'title' => '個人資料',
 
             'user' => [
                 'user_discord' => '',

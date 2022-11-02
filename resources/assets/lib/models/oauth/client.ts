@@ -4,7 +4,7 @@
 import { ClientJson } from 'interfaces/client-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import { action, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 
 export class Client {
   id: number;
@@ -21,19 +21,25 @@ export class Client {
     this.scopes = new Set(client.scopes);
     this.userId = client.user_id;
     this.user = client.user;
+
+    makeObservable(this);
   }
 
   @action
-  async revoke() {
+  revoke() {
     this.isRevoking = true;
 
-    return $.ajax({
+    const xhr = $.ajax({
       method: 'DELETE',
       url: route('oauth.authorized-clients.destroy', { authorized_client: this.id }),
-    }).then(() => {
+    }) as JQuery.jqXHR<void>;
+
+    xhr.done(action(() => {
       this.revoked = true;
-    }).always(() => {
+    })).always(action(() => {
       this.isRevoking = false;
-    });
+    }));
+
+    return xhr;
   }
 }

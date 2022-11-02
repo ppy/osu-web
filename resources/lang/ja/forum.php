@@ -127,6 +127,55 @@ return [
             'previous' => '投稿を10件戻る',
         ],
 
+        'logs' => [
+            '_' => 'トピックログ',
+            'button' => 'トピックログを見る',
+
+            'columns' => [
+                'action' => 'アクション',
+                'date' => '日付',
+                'user' => 'ユーザー',
+            ],
+
+            'data' => [
+                'add_tag' => '":tag" タグを追加しました',
+                'announcement' => 'ピン留めされたトピックと、お知らせとしてマークされたトピック',
+                'edit_topic' => ':title へ',
+                'fork' => ':topic から',
+                'pin' => 'トピックをピン留め',
+                'post_operation' => '投稿者 :username',
+                'remove_tag' => 'タグ ":tag" を削除しました',
+                'source_forum_operation' => ':forum から',
+                'unpin' => 'トピックのピン留めを外す',
+            ],
+
+            'no_results' => 'ログが見つかりませんでした',
+
+            'operations' => [
+                'delete_post' => '削除された投稿',
+                'delete_topic' => 'トピックを削除',
+                'edit_topic' => 'トピックのタイトルを変更しました',
+                'edit_poll' => '編集されたトピックの投票',
+                'fork' => 'トピックをコピーしました',
+                'issue_tag' => '発行されたタグ',
+                'lock' => 'ロックされたトピック',
+                'merge' => 'このトピックに投稿を統合しました',
+                'move' => '移動したトピック',
+                'pin' => 'トピックをピン留め',
+                'post_edited' => '投稿を編集',
+                'restore_post' => '再投稿',
+                'restore_topic' => 'トピックを復元',
+                'split_destination' => '分割投稿の移動',
+                'split_source' => '投稿を分割',
+                'topic_type' => 'トピックのタイプを設定する',
+                'topic_type_changed' => 'トピックの種類を変更しました',
+                'unlock' => 'トピックのロックを解除する',
+                'unpin' => 'トピックのピンを外す',
+                'user_lock' => '自分のスレッドをロック',
+                'user_unlock' => '自分のスレッドをアンロック',
+            ],
+        ],
+
         'post_edit' => [
             'cancel' => 'キャンセル',
             'post' => '保存',
@@ -247,7 +296,7 @@ return [
         'lock' => [
             'is_locked' => 'このトピックはロックされていて投稿が制限されています。',
             'to_0' => 'トピックのロックを解除する',
-            'to_0_confirm' => 'トピックロックを解除しますか？',
+            'to_0_confirm' => 'トピックをアンロックしますか？',
             'to_0_done' => 'ロックが解除されました',
             'to_1' => 'トピックをロックする',
             'to_1_confirm' => 'トピックをロックしますか？',
@@ -260,7 +309,7 @@ return [
 
         'moderate_pin' => [
             'to_0' => 'トピックのピンを外す',
-            'to_0_confirm' => 'トピックのピンを外しますか？',
+            'to_0_confirm' => 'トピックのピン留めを解除しますか？',
             'to_0_done' => 'ピンが外されました',
             'to_1' => 'トピックをピン留めする',
             'to_1_confirm' => 'トピックをピン留めしますか？',

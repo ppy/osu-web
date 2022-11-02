@@ -28,7 +28,7 @@ return [
             '_' => 'Mapa',
 
             'beatmap_owner_change' => [
-                '_' => 'Dificultades de invitados',
+                '_' => 'Dificultad de invitado',
                 'beatmap_owner_change' => 'Ahora eres dueño de la dificultad ":beatmap" para el mapa ":title"',
                 'beatmap_owner_change_compact' => 'Ahora eres dueño de la dificultad ":beatmap"',
             ],
@@ -49,10 +49,10 @@ return [
 
             'beatmapset_problem' => [
                 '_' => 'Problema con mapa calificado',
-                'beatmapset_discussion_qualified_problem' => 'Denunciado por :username en ":title": ":content"',
-                'beatmapset_discussion_qualified_problem_empty' => 'Denunciado por :username en ":title"',
-                'beatmapset_discussion_qualified_problem_compact' => 'Denunciado por :username: ":content"',
-                'beatmapset_discussion_qualified_problem_compact_empty' => 'Denunciado por :username',
+                'beatmapset_discussion_qualified_problem' => 'Reportado por :username en ":title": ":content"',
+                'beatmapset_discussion_qualified_problem_empty' => 'Reportado por :username en ":title"',
+                'beatmapset_discussion_qualified_problem_compact' => 'Reportado por :username: ":content"',
+                'beatmapset_discussion_qualified_problem_compact_empty' => 'Reportado por :username',
             ],
 
             'beatmapset_state' => [
@@ -86,8 +86,19 @@ return [
         'channel' => [
             '_' => 'Chat',
 
+            'announcement' => [
+                '_' => 'Nuevo anuncio',
+
+                'announce' => [
+                    'channel_announcement' => ':username dice ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Anuncio de :username',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Nuevo mensaje',
+
                 'pm' => [
                     'channel_message' => ':username dice ":title"',
                     'channel_message_compact' => ':title',
@@ -148,6 +159,9 @@ return [
                 'user_beatmapset_new' => 'Nuevo mapa ":title" por :username',
                 'user_beatmapset_new_compact' => 'Nuevo mapa ":title"',
                 'user_beatmapset_new_group' => 'Nuevos mapas por :username',
+
+                'user_beatmapset_revive' => 'Mapa ":title" revivido por :username',
+                'user_beatmapset_revive_compact' => 'Mapa ":title" revivido',
             ],
         ],
 
@@ -176,7 +190,7 @@ return [
             ],
 
             'beatmapset_problem' => [
-                'beatmapset_discussion_qualified_problem' => 'Se informó de un nuevo problema en ":title"',
+                'beatmapset_discussion_qualified_problem' => 'Se reportó un nuevo problema en ":title"',
             ],
 
             'beatmapset_state' => [
@@ -226,6 +240,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username ha creado nuevos mapas',
+                'user_beatmapset_revive' => ':username ha revivido mapas',
             ],
         ],
     ],

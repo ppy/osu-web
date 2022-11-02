@@ -6,8 +6,8 @@
 namespace App\Models\Multiplayer;
 
 use App\Models\Model;
+use App\Models\Traits\WithDbCursorHelper;
 use App\Models\User;
-use App\Traits\WithDbCursorHelper;
 
 /**
  * Aggregate root for user multiplayer high scores.

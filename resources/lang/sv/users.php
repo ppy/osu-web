@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Du har blockerat denna användare.',
+        'comment_text' => 'Denna kommentar är dold.',
         'blocked_count' => 'blockerade användare (:count)',
         'hide_profile' => 'dölj profil',
+        'hide_comment' => 'dölj',
         'not_blocked' => 'Användaren är inte blockerad.',
         'show_profile' => 'visa profil',
+        'show_comment' => 'visa',
         'too_many' => 'Du har nått gränsen för blockeringar.',
         'button' => [
             'block' => 'Blockera',
@@ -159,6 +162,10 @@ return [
             '_' => 'Upplagd :link',
             'count' => ':count_delimited kommentar|:count_delimited kommentarer',
         ],
+        'cover' => [
+            'to_0' => 'Dölj omslagsbild',
+            'to_1' => 'Visa omslagsbild',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Ändra Profilomslag',
@@ -203,6 +210,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Beatmaps på kyrkogården',
+                ],
+                'guest' => [
+                    'title' => 'Gästdeltagande Beatmaps',
                 ],
                 'loved' => [
                     'title' => 'Älskade beatmaps',
@@ -301,8 +311,8 @@ return [
                 'recent' => 'Senaste',
                 'title' => 'Medaljer',
             ],
-            'multiplayer' => [
-                'title' => 'Flerspelarspel',
+            'playlists' => [
+                'title' => 'Spelspellista',
             ],
             'posts' => [
                 'title' => 'Inlägg',
@@ -311,6 +321,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Senaste',
+            ],
+            'realtime' => [
+                'title' => 'Multiplayerspel',
             ],
             'top_ranks' => [
                 'download_replay' => 'Ladda ner Repris',
@@ -324,6 +337,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Förstaplats-ranker',
+                ],
+                'pin' => [
+                    'to_0' => 'Lossa',
+                    'to_0_done' => 'Ej fäst resultat',
+                    'to_1' => 'Fäst',
+                    'to_1_done' => 'Fäst resultat',
+                ],
+                'pinned' => [
+                    'title' => 'Fästa resultat',
                 ],
             ],
             'votes' => [
@@ -350,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Bannlys',
                         'silence' => 'Tystad',
+                        'tournament_ban' => 'Turneringsförbud',
                         'note' => 'Anteckning',
                     ],
                 ],
@@ -384,23 +407,24 @@ return [
         ],
         'post_count' => [
             '_' => 'Bidragit med :link',
-            'count' => ':count foruminlägg|:count foruminlägg',
+            'count' => ':count_delimited foruminlägg|:count_delimited foruminlägg',
         ],
         'rank' => [
             'country' => 'Nationell rankning för :mode',
             'country_simple' => 'Nationell rankning',
             'global' => 'Global rank för :mode',
             'global_simple' => 'Global rankning',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Träffsäkerhet',
             'level' => 'Nivå :level',
             'level_progress' => 'Framsteg till nästa nivå',
-            'maximum_combo' => 'Maximal Kombo',
+            'maximum_combo' => 'Högsta kombo',
             'medals' => 'Medaljer',
             'play_count' => 'Antal gånger spelat',
             'play_time' => 'Total speltid',
-            'ranked_score' => 'Rankad Poäng',
+            'ranked_score' => 'Rankad poäng',
             'replays_watched_by_others' => 'Repriser sedda av andra',
             'score_ranks' => 'Poängranker',
             'total_hits' => 'Totala träffar',

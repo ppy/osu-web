@@ -12,7 +12,7 @@ class FindForProfilePage
 {
     public static function find($id, ?string $type = null, ?bool $assertCanonicalId = null)
     {
-        $user = User::lookupWithHistory($id, $type, true);
+        $user = static::fromAuth($id, $type) ?? User::lookupWithHistory($id, $type, true);
         $request = request();
 
         if ($user === null || !priv_check('UserShow', $user)->can()) {
@@ -28,12 +28,35 @@ class FindForProfilePage
         if (($assertCanonicalId ?? !is_json_request()) && (string) $user->getKey() !== (string) $id) {
             $redirectTarget = route(
                 $request->route()->getName(),
-                array_merge($request->query(), $request->route()->parameters(), compact('user'))
+                array_merge($request->query(), $request->route()->parameters(), ['user' => $user, 'key' => null])
             );
 
             throw new UserProfilePageLookupException(fn () => ujs_redirect($redirectTarget));
         }
 
         return $user;
+    }
+
+    private static function fromAuth($id, ?string $type): ?User
+    {
+        $user = auth()->user();
+
+        if ($user === null) {
+            return null;
+        }
+
+        $userId = (string) $user->getKey();
+        switch ($type) {
+            case 'id':
+                $isSelf = $id === $userId;
+                break;
+            case 'username':
+                $isSelf = $id === $user->username;
+                break;
+            default:
+                $isSelf = $id === $userId || (!ctype_digit($user->username) && $id === $user->username);
+        }
+
+        return $isSelf ? $user : null;
     }
 }

@@ -5,11 +5,11 @@
 
 namespace App\Models\Store;
 
+use App\Exceptions\InvariantException;
 use App\Exceptions\ValidationException;
 use App\Libraries\ChangeUsername;
 use App\Models\SupporterTag;
 use App\Traits\Validatable;
-use Exception;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -69,8 +69,8 @@ class OrderItem extends Model
 
     public function delete()
     {
-        if ($this->order->status !== 'incart') {
-            throw new Exception("Delete not allowed on Order ({$this->order->getKey()}).");
+        if (!$this->order->isCart()) {
+            throw new InvariantException("Delete not allowed on Order ({$this->order->getKey()}).");
         }
 
         parent::delete();

@@ -11,8 +11,16 @@ return [
         'rule_violation' => '',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Hidasta vähän, pelaa enemmän.',
+    ],
+
+    'featured_artist_badge' => [
+        'label' => '',
     ],
 
     'index' => [
@@ -117,6 +125,7 @@ return [
             'language' => 'Kieli',
             'no_scores' => 'Dataa lasketaan...',
             'nsfw' => '',
+            'offset' => '',
             'points-of-failure' => 'Epäonnistumiskohdat',
             'source' => 'Lähde',
             'storyboard' => '',
@@ -139,6 +148,7 @@ return [
         'scoreboard' => [
             'achieved' => 'saavutettu :when',
             'country' => 'Maakohtaiset sijoitukset',
+            'error' => '',
             'friend' => 'Kavereiden sijoitukset',
             'global' => 'Maailmanlaajuiset sijoitukset',
             'supporter-link' => 'Klikkaa <a href=":link">tästä</a> nähdäksesi kaikki hienot ominaisuudet mitä saat!',
@@ -150,11 +160,12 @@ return [
                 'combo' => 'Maksimikombo',
                 'miss' => 'Ohi',
                 'mods' => 'Modit',
+                'pin' => '',
                 'player' => 'Pelaaja',
                 'pp' => '',
                 'rank' => 'Sijoitus',
-                'score_total' => 'Kokonaispisteet',
                 'score' => 'Pisteet',
+                'score_total' => 'Kokonaispisteet',
                 'time' => 'Aika',
             ],
 
@@ -169,6 +180,10 @@ return [
                 'first' => 'Johdossa',
                 'own' => 'Sinun parhaasi',
             ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
+            ],
         ],
 
         'stats' => [
@@ -182,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Ympyröiden määrä',
             'count_sliders' => 'Slidereiden määrä',
+            'offset' => '',
             'user-rating' => 'Käyttäjien arvio',
             'rating-spread' => 'Arvioiden jakauma',
             'nominations' => 'Suositukset',
@@ -197,5 +213,9 @@ return [
             'pending' => '',
             'graveyard' => 'Hautausmaa',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

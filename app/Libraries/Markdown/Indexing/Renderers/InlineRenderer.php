@@ -5,25 +5,25 @@
 
 namespace App\Libraries\Markdown\Indexing\Renderers;
 
-use League\CommonMark\ElementRendererInterface;
-use League\CommonMark\Inline\Element\AbstractInline;
-use League\CommonMark\Inline\Element\AbstractStringContainer;
-use League\CommonMark\Inline\Renderer\InlineRendererInterface;
+use League\CommonMark\Node\Inline\AbstractStringContainer;
+use League\CommonMark\Node\Node;
+use League\CommonMark\Renderer\ChildNodeRendererInterface;
+use League\CommonMark\Renderer\NodeRendererInterface;
 
-class InlineRenderer implements InlineRendererInterface
+class InlineRenderer implements NodeRendererInterface
 {
     /**
-     * @param AbstractInline $inline
-     * @param ElementRendererInterface $htmlRenderer
+     * @param Node $node
+     * @param ChildNodeRendererInterface $childRenderer
      *
      * @return string
      */
-    public function render(AbstractInline $inline, ElementRendererInterface $renderer)
+    public function render(Node $node, ChildNodeRendererInterface $childRenderer): string
     {
-        if ($inline instanceof AbstractStringContainer) {
-            return $inline->getContent();
+        if ($node instanceof AbstractStringContainer) {
+            return $node->getLiteral();
         } else {
-            return $renderer->renderInlines($inline->children());
+            return $childRenderer->renderNodes($node->children());
         }
     }
 }

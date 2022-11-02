@@ -19,11 +19,15 @@ return [
             'contest' => '콘테스트',
             'contests' => '콘테스트',
             'root' => '콘솔',
-            'store_orders' => '상점 관리자',
         ],
 
         'artists' => [
             'index' => '목록',
+        ],
+
+        'beatmapsets' => [
+            'show' => '정보',
+            'discussions' => '토론',
         ],
 
         'changelog' => [
@@ -47,7 +51,8 @@ return [
 
         'users' => [
             'modding' => '모딩',
-            'multiplayer' => '멀티플레이',
+            'playlists' => '플레이리스트',
+            'realtime' => '멀티플레이어',
             'show' => '정보',
         ],
     ],
@@ -63,18 +68,10 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => '비트맵',
-            'artists' => '공식 아티스트',
-            'index' => '목록',
-            'packs' => '맵팩',
         ],
         'community' => [
             '_' => '커뮤니티',
-            'chat' => '채팅',
-            'contests' => '콘테스트',
             'dev' => '개발',
-            'forum-forums-index' => '포럼',
-            'getLive' => '라이브 스트림',
-            'tournaments' => '토너먼트',
         ],
         'help' => [
             '_' => '도움말',
@@ -82,30 +79,17 @@ return [
             'getFaq' => 'FAQ',
             'getRules' => '규칙',
             'getSupport' => '지원 센터',
-            'getWiki' => '위키',
         ],
         'home' => [
             '_' => '메인',
-            'changelog-index' => '변경 사항',
-            'getDownload' => '다운로드',
-            'news-index' => '소식',
-            'search' => '검색',
             'team' => '운영진',
         ],
         'rankings' => [
             '_' => '순위',
-            'charts' => '스포트라이트',
-            'country' => '국가',
-            'index' => '퍼포먼스',
             'kudosu' => 'kudosu',
-            'multiplayer' => '멀티플레이어',
-            'score' => '점수',
         ],
         'store' => [
             '_' => '상점',
-            'cart-show' => '장바구니',
-            'getListing' => '목록',
-            'orders-index' => '주문 내역',
         ],
     ],
 
@@ -217,7 +201,7 @@ return [
     ],
 
     'popup_search' => [
-        'initial' => '검색어를 입력해주세요!',
+        'initial' => '검색어를 입력하세요!',
         'retry' => '검색에 실패했습니다. 다시 시도하려면 클릭해주세요.',
     ],
 ];

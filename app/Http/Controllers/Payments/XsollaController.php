@@ -28,15 +28,15 @@ class XsollaController extends Controller
         $this->middleware('check-user-restricted', ['except' => ['callback']]);
         $this->middleware('verify-user', ['except' => ['callback']]);
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function token()
     {
         $projectId = config('payments.xsolla.project_id');
         $user = Auth::user();
-        $order = Order::whereIn('status', ['incart', 'processing'])
-            ->whereOrderNumber(request('orderNumber'))
+        $order = Order::whereOrderNumber(request('orderNumber'))
+            ->whereCanCheckout()
             ->first();
 
         if ($order === null) {
@@ -61,7 +61,11 @@ class XsollaController extends Controller
             'api_key' => config('payments.xsolla.api_key'),
         ]);
 
-        return $xsollaClient->createPaymentUITokenFromRequest($tokenRequest);
+        // This will be used for XPayStationWidget options.
+        return [
+            'access_token' => $xsollaClient->createPaymentUITokenFromRequest($tokenRequest),
+            'sandbox' => config('payments.sandbox'),
+        ];
     }
 
     // Called by xsolla after payment is approved by user.
@@ -76,7 +80,7 @@ class XsollaController extends Controller
                 return ['ok'];
             }
 
-            $result = $processor->run();
+            $processor->run();
         } catch (ValidationException $exception) {
             Log::error($exception->getMessage());
 
@@ -96,8 +100,6 @@ class XsollaController extends Controller
             // status code needs to be a 4xx code to make Xsolla an error to the user.
             return $this->errorResponse('Something went wrong.', 'FATAL_ERROR', 422);
         }
-
-        return $result;
     }
 
     // After user has approved payment and redirected here by xsolla

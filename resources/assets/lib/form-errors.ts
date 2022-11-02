@@ -1,10 +1,14 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { action, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 
 export class FormErrors {
   @observable private errors = new Map<string, string[]>();
+
+  constructor() {
+    makeObservable(this);
+  }
 
   @action
   clear() {
@@ -39,7 +43,9 @@ export class FormErrors {
 
   @action
   handleResponse = (xhr: JQueryXHR) => {
-    const errors = xhr.responseJSON.form_error;
+    // TODO: extra checks
+    // this is also only valid if there aren't more nested keys, which is fine for the current usages.
+    const errors = xhr.responseJSON.form_error as Record<string, string[]> | undefined;
     // only handle responses with form_error
     if (errors == null) return;
 

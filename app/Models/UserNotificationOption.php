@@ -26,6 +26,7 @@ class UserNotificationOption extends Model
     ];
 
     const BEATMAPSET_MODDING = 'beatmapset:modding'; // matches Follow notifiable_type:subtype
+    const CHANNEL_ANNOUNCEMENT = 'channel_announcement';
     const COMMENT_REPLY = 'comment_reply';
     const DELIVERY_MODE_DEFAULTS = ['mail' => false, 'push' => true];
     const DELIVERY_MODES = ['mail', 'push'];
@@ -42,14 +43,19 @@ class UserNotificationOption extends Model
         Notification::USER_ACHIEVEMENT_UNLOCK,
     ];
 
+    const SUPPORTS_NOTIFICATIONS = [
+        ...self::BEATMAPSET_DISQUALIFIABLE_NOTIFICATIONS,
+        ...self::HAS_DELIVERY_MODES,
+        self::CHANNEL_ANNOUNCEMENT,
+    ];
+
     protected $casts = [
         'details' => 'array',
     ];
 
     public static function supportsNotifications(string $name)
     {
-        return in_array($name, static::HAS_DELIVERY_MODES, true)
-            || in_array($name, static::BEATMAPSET_DISQUALIFIABLE_NOTIFICATIONS, true);
+        return in_array($name, static::SUPPORTS_NOTIFICATIONS, true);
     }
 
     public function user()

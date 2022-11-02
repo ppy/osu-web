@@ -19,11 +19,15 @@ return [
             'contest' => 'wettbewerb',
             'contests' => 'wettbewerbe',
             'root' => 'konsole',
-            'store_orders' => 'store admin',
         ],
 
         'artists' => [
             'index' => 'liste',
+        ],
+
+        'beatmapsets' => [
+            'show' => 'info',
+            'discussions' => 'diskussion',
         ],
 
         'changelog' => [
@@ -47,7 +51,8 @@ return [
 
         'users' => [
             'modding' => 'modding',
-            'multiplayer' => 'mehrspieler',
+            'playlists' => 'playlists',
+            'realtime' => 'multiplayer',
             'show' => 'info',
         ],
     ],
@@ -63,18 +68,10 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmaps',
-            'artists' => 'featured artists',
-            'index' => 'auflistung',
-            'packs' => 'pakete',
         ],
         'community' => [
             '_' => 'community',
-            'chat' => 'chat',
-            'contests' => 'wettbewerbe',
             'dev' => 'entwicklung',
-            'forum-forums-index' => 'forum',
-            'getLive' => 'live',
-            'tournaments' => 'turniere',
         ],
         'help' => [
             '_' => 'hilfe',
@@ -82,30 +79,17 @@ return [
             'getFaq' => 'faq',
             'getRules' => 'regeln',
             'getSupport' => 'ich brauche wirklich hilfe!',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'home',
-            'changelog-index' => 'changelog',
-            'getDownload' => 'download',
-            'news-index' => 'news',
-            'search' => 'suche',
             'team' => 'team',
         ],
         'rankings' => [
             '_' => 'ranglisten',
-            'charts' => 'charts',
-            'country' => 'länder',
-            'index' => 'performance',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'mehrspieler',
-            'score' => 'punkte',
         ],
         'store' => [
             '_' => 'shop',
-            'cart-show' => 'warenkorb',
-            'getListing' => 'produkte',
-            'orders-index' => 'bestellverlauf',
         ],
     ],
 

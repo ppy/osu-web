@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Bu kullanıcıyı engelledin.',
+        'comment_text' => 'Bu yorum gizlenmiş.',
         'blocked_count' => 'engellenen kullanıcılar (:count)',
         'hide_profile' => 'profili gizle',
+        'hide_comment' => 'gizle',
         'not_blocked' => 'Bu kullanıcı engellenmemiş.',
         'show_profile' => 'profili göster',
+        'show_comment' => 'göster',
         'too_many' => 'Engelleme sınırına ulaşıldı.',
         'button' => [
             'block' => 'engelle',
@@ -159,6 +162,10 @@ return [
             '_' => ':link gönderdi',
             'count' => ':count_delimited yorum|:count_delimited yorum',
         ],
+        'cover' => [
+            'to_0' => 'Kapağı gizle',
+            'to_1' => 'Kapağı göster',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Kapak Fotoğrafını Değiştir',
@@ -203,6 +210,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Mezarlıktaki Beatmapler',
+                ],
+                'guest' => [
+                    'title' => 'Beatmap\'e misafir olarak katıl',
                 ],
                 'loved' => [
                     'title' => 'Sevilen Beatmapler',
@@ -301,8 +311,8 @@ return [
                 'recent' => 'En Son',
                 'title' => 'Madalyalar',
             ],
-            'multiplayer' => [
-                'title' => 'Çok Oyunculu Oyunlar',
+            'playlists' => [
+                'title' => 'Oynama listesi Oyunları',
             ],
             'posts' => [
                 'title' => 'Gönderiler',
@@ -311,6 +321,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Son',
+            ],
+            'realtime' => [
+                'title' => 'Çok Oyunculu Oyunlar',
             ],
             'top_ranks' => [
                 'download_replay' => 'Tekrarı İndir',
@@ -324,6 +337,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Birincilikler',
+                ],
+                'pin' => [
+                    'to_0' => 'Sabitlemeyi kaldır',
+                    'to_0_done' => 'Skoru sabitlemeyi kaldır',
+                    'to_1' => 'Sabitle',
+                    'to_1_done' => 'Sabitlenmiş skor',
+                ],
+                'pinned' => [
+                    'title' => 'Sabitlenmiş skorlar',
                 ],
             ],
             'votes' => [
@@ -350,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Ban',
                         'silence' => 'Susturma',
+                        'tournament_ban' => 'Turnuva banı',
                         'note' => 'Not',
                     ],
                 ],
@@ -391,6 +414,7 @@ return [
             'country_simple' => 'Ülkesel Sıralama',
             'global' => ':mode için Dünya sıralaması',
             'global_simple' => 'Küresel Sıralama',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Vuruş İsabeti',

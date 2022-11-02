@@ -19,10 +19,50 @@ class CommentsControllerTest extends TestCase
     private $beatmapset;
     private $params;
 
+    /**
+     * @dataProvider pinPermissionsDataProvider
+     */
+    public function testPin(?string $groupIdentifier, bool $onBeatmapset, bool $asBeatmapsetOwner, bool $asCommentOwner, bool $withPinned, bool $expectAllowed): void
+    {
+        $user = User::factory()->withGroup($groupIdentifier)->create();
+        $comment = Comment::factory()->create([
+            'commentable_type' => $onBeatmapset ? 'beatmapset' : 'build',
+            'user_id' => $asCommentOwner ? $user->getKey() : User::factory(),
+        ]);
+
+        if ($asBeatmapsetOwner) {
+            $comment->commentable->update(['user_id' => $user->getKey()]);
+        }
+
+        if ($withPinned) {
+            $comment->commentable->comments()->save(Comment::factory()->make(['pinned' => true]));
+        }
+
+        $this
+            ->actingAsVerified($user)
+            ->post(route('comments.pin', $comment->getKey()))
+            ->assertStatus($expectAllowed ? 200 : 403);
+
+        $this->assertSame($comment->fresh()->pinned, $expectAllowed);
+    }
+
+    public function testPinReply(): void
+    {
+        $comment = Comment::factory()->reply()->create();
+        $user = User::factory()->withGroup('admin')->create();
+
+        $this
+            ->actingAsVerified($user)
+            ->post(route('comments.pin', $comment->getKey()))
+            ->assertStatus(422);
+
+        $this->assertFalse($comment->fresh()->pinned);
+    }
+
     public function testStore()
     {
         $this->prepareForStore();
-        $otherUser = factory(User::class)->create();
+        $otherUser = User::factory()->create();
 
         $follow = Follow::create([
             'notifiable' => $this->beatmapset,
@@ -40,6 +80,19 @@ class CommentsControllerTest extends TestCase
 
         $this->assertSame($previousComments + 1, Comment::count());
         $this->assertSame($previousNotifications + 1, Notification::count());
+    }
+
+    public function testStoreDownloadLimitedBeatmapset()
+    {
+        $this->prepareForStore();
+        $this->beatmapset->update(['download_disabled_url' => 'https://hello.world']);
+
+        $this->expectCountChange(fn () => Comment::count(), 0);
+
+        $this
+            ->be($this->user)
+            ->post(route('comments.store'), $this->params)
+            ->assertStatus(403);
     }
 
     public function testStoreNotEnoughPlays()
@@ -106,6 +159,71 @@ class CommentsControllerTest extends TestCase
         $this->assertSame($previousComments + 1, $this->beatmapset->comments()->count());
     }
 
+    public function testStoreReplyDownloadLimitedBeatmapset()
+    {
+        $this->prepareForStore();
+        $parent = $this->beatmapset->comments()->create([
+            'user_id' => $this->user->getKey(),
+            'message' => 'Hello.',
+        ]);
+        $this->beatmapset->update(['download_disabled_url' => 'https://hello.world']);
+
+        $params = ['comment' => [
+            'parent_id' => $parent->getKey(),
+            'message' => 'This is a reply.',
+        ]];
+
+        $this->expectCountChange(fn () => Comment::count(), 0);
+
+        $this
+            ->actingAsVerified($this->user)
+            ->post(route('comments.store'), $params)
+            ->assertStatus(403);
+    }
+
+    public function testUpdate()
+    {
+        $this->prepareForStore();
+        $comment = $this->beatmapset->comments()->create([
+            'user_id' => $this->user->getKey(),
+            'message' => 'Hello.',
+        ]);
+
+        $newMessage = 'Edited.';
+        $params = ['comment' => [
+            'message' => $newMessage,
+        ]];
+
+        $this
+            ->actingAsVerified($this->user)
+            ->put(route('comments.update', $comment), $params)
+            ->assertSuccessful();
+
+        $this->assertSame($newMessage, $comment->fresh()->message);
+    }
+
+    public function testUpdateDownloadLimitedBeatmapset()
+    {
+        $this->prepareForStore();
+        $oldMessage = 'Hello.';
+        $comment = $this->beatmapset->comments()->create([
+            'user_id' => $this->user->getKey(),
+            'message' => $oldMessage,
+        ]);
+        $this->beatmapset->update(['download_disabled_url' => 'https://hello.world']);
+
+        $params = ['comment' => [
+            'message' => 'Edited.',
+        ]];
+
+        $this
+            ->actingAsVerified($this->user)
+            ->put(route('comments.update', $comment), $params)
+            ->assertStatus(403);
+
+        $this->assertSame($oldMessage, $comment->fresh()->message);
+    }
+
     public function testApiUnauthenticatedUserCanViewIndex()
     {
         $this
@@ -115,7 +233,7 @@ class CommentsControllerTest extends TestCase
 
     public function testApiUnauthenticatedUserCanViewComment()
     {
-        $comment = factory(Comment::class)->create();
+        $comment = Comment::factory()->create();
 
         $this
             ->json('GET', route('api.comments.show', ['comment' => $comment->getKey()]))
@@ -143,15 +261,65 @@ class CommentsControllerTest extends TestCase
         ];
     }
 
+    /**
+     * Data in order:
+     * - User's group identifier
+     * - Whether the commentable is a beatmapset
+     * - Whether the user is the beatmapset's creator
+     * - Whether the user is the comment's creator
+     * - Whether the commentable already has a pinned comment
+     * - Whether pinning should be allowed
+     */
+    public function pinPermissionsDataProvider(): array
+    {
+        return [
+            ['admin', true,  true,  true,  true,  true],
+            ['admin', true,  true,  true,  false, true],
+            ['admin', true,  true,  false, true,  true],
+            ['admin', true,  true,  false, false, true],
+            ['admin', true,  false, true,  true,  true],
+            ['admin', true,  false, true,  false, true],
+            ['admin', true,  false, false, true,  true],
+            ['admin', true,  false, false, false, true],
+            ['admin', false, false, true,  true,  true],
+            ['admin', false, false, true,  false, true],
+            ['admin', false, false, false, true,  true],
+            ['admin', false, false, false, false, true],
+            ['gmt',   true,  true,  true,  true,  false],
+            ['gmt',   true,  true,  true,  false, true],
+            ['gmt',   true,  true,  false, true,  false],
+            ['gmt',   true,  true,  false, false, true],
+            ['gmt',   true,  false, true,  true,  false],
+            ['gmt',   true,  false, true,  false, true],
+            ['gmt',   true,  false, false, true,  false],
+            ['gmt',   true,  false, false, false, true],
+            ['gmt',   false, false, true,  true,  false],
+            ['gmt',   false, false, true,  false, false],
+            ['gmt',   false, false, false, true,  false],
+            ['gmt',   false, false, false, false, false],
+            [null,    true,  true,  true,  true,  false],
+            [null,    true,  true,  true,  false, true],
+            [null,    true,  true,  false, true,  false],
+            [null,    true,  true,  false, false, false],
+            [null,    true,  false, true,  true,  false],
+            [null,    true,  false, true,  false, false],
+            [null,    true,  false, false, true,  false],
+            [null,    true,  false, false, false, false],
+            [null,    false, false, true,  true,  false],
+            [null,    false, false, true,  false, false],
+            [null,    false, false, false, true,  false],
+            [null,    false, false, false, false, false],
+        ];
+    }
+
     private function prepareForStore()
     {
         config()->set('osu.user.post_action_verification', false);
-
-        $this->user = factory(User::class)->create();
         $this->minPlays = config('osu.user.min_plays_for_posting');
-        $this->user->statisticsOsu()->create(['playcount' => $this->minPlays]);
 
-        $this->beatmapset = factory(Beatmapset::class)->create();
+        $this->user = User::factory()->withPlays()->create();
+
+        $this->beatmapset = Beatmapset::factory()->create();
 
         $this->params = ['comment' => [
             'commentable_type' => 'beatmapset',

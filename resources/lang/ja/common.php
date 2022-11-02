@@ -21,7 +21,7 @@ return [
     'buttons' => [
         'admin' => '管理者',
         'authorise' => '承認',
-        'authorising' => '承認...',
+        'authorising' => '承認中...',
         'back_to_previous' => '直前の状態に戻す',
         'back_to_top' => 'トップに戻る',
         'cancel' => 'キャンセル',
@@ -44,6 +44,7 @@ return [
         'reply_resolve' => '返信して解決',
         'reset' => 'リセット',
         'restore' => '復元',
+        'retry' => 'リトライ',
         'save' => '保存',
         'saving' => '保存中・・・',
         'search' => '検索',
@@ -53,7 +54,7 @@ return [
         'show_less' => '表示を縮小する',
         'show_more' => '展開する',
         'show_more_options' => '詳細オプションを表示する',
-        'submit' => '',
+        'submit' => '送信',
         'unpin' => 'ピン解除',
         'update' => 'アップデート',
         'upload_image' => '画像をアップロード',
@@ -92,11 +93,11 @@ return [
 
     'datetime' => [
         'year_month' => [
-            'moment' => 'MMMM YYYY',
+            'moment' => 'YYYY年MM月',
             'php' => 'MMMM y',
         ],
         'year_month_short' => [
-            'moment' => 'MMM YYYY',
+            'moment' => 'YYYY年MM月',
         ],
     ],
 
@@ -126,7 +127,7 @@ return [
         'count_50' => '50',
         'count_geki' => '',
         'count_katu' => '200',
-        'count_miss' => 'Miss',
+        'count_miss' => 'ミス',
     ],
 
     'scoreboard_time' => [

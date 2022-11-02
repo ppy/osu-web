@@ -1,36 +1,37 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import ScoreJson from 'interfaces/score-json';
+import SoloScoreJson from 'interfaces/solo-score-json';
 import * as React from 'react';
+import { formatNumber } from 'utils/html';
 
 interface Props {
-  score: ScoreJson;
-  suffix?: JSX.Element;
+  score: SoloScoreJson;
+  suffix?: React.ReactNode;
 }
 
 export default function PpValue(props: Props) {
-  if (props.score.best_id == null) {
-    return (
-      <span title={osu.trans('scores.status.non_best')}>
-        -
-      </span>
-    );
+  let title: string;
+  let content: React.ReactNode;
+
+  const isBest = props.score.best_id != null;
+  const isSolo = props.score.type === 'solo_score';
+
+  if (!isBest && !isSolo) {
+    title = osu.trans('scores.status.non_best');
+    content = '-';
+  } else if (props.score.pp == null) {
+    if (isSolo && !props.score.passed) {
+      title = osu.trans('scores.status.non_passing');
+      content = '-';
+    } else {
+      title = osu.trans('scores.status.processing');
+      content = <span className='fas fa-exclamation-triangle' />;
+    }
+  } else {
+    title = formatNumber(props.score.pp);
+    content = <>{formatNumber(Math.round(props.score.pp))}{props.suffix}</>;
   }
 
-  if (props.score.pp == null) {
-    return (
-      <span
-        className='fas fa-exclamation-triangle'
-        title={osu.trans('scores.status.processing')}
-      />
-    );
-  }
-
-  return (
-    <span title={osu.formatNumber(props.score.pp)}>
-      {osu.formatNumber(Math.round(props.score.pp))}
-      {props.suffix}
-    </span>
-  );
+  return <span title={title}>{content}</span>;
 }

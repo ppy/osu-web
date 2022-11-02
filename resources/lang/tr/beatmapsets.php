@@ -11,8 +11,16 @@ return [
         'rule_violation' => 'Bu beatmap üzerinde yer alan bazı varlıklar osu!\'da kullanıma uygun olmadığına karar verildikten sonra kaldırıldı.',
     ],
 
+    'cover' => [
+        'deleted' => 'Silinmiş beatmap',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Yavaş ol, daha çok oyna.',
+    ],
+
+    'featured_artist_badge' => [
+        'label' => 'Featured artist',
     ],
 
     'index' => [
@@ -117,6 +125,7 @@ return [
             'language' => 'Dil',
             'no_scores' => 'Veriler hala hesaplanıyor...',
             'nsfw' => 'Müstehcen içerik',
+            'offset' => 'Çevrimiçi ofset',
             'points-of-failure' => 'Başarısız Olunan Kısımlar',
             'source' => 'Kaynak',
             'storyboard' => 'Bu beatmap storyboard içeriyor',
@@ -139,6 +148,7 @@ return [
         'scoreboard' => [
             'achieved' => ':when oynandı',
             'country' => 'Ülke Sıralaması',
+            'error' => 'Sıralama yüklenemedi',
             'friend' => 'Arkadaş Sıralaması',
             'global' => 'Dünya Sıralaması',
             'supporter-link' => 'Aldığınız tüm süslü özellikleri görmek için buraya <a href=":link">tıklayın</a>!',
@@ -150,11 +160,12 @@ return [
                 'combo' => 'Maks Kombo',
                 'miss' => 'Iska',
                 'mods' => 'Modlar',
+                'pin' => 'Sabitle',
                 'player' => 'Oyuncu',
                 'pp' => '',
                 'rank' => 'Sıralama',
-                'score_total' => 'Toplam Skor',
                 'score' => 'Skor',
+                'score_total' => 'Toplam Skor',
                 'time' => 'Zaman',
             ],
 
@@ -169,6 +180,10 @@ return [
                 'first' => 'Lider',
                 'own' => 'En İyi Skorun',
             ],
+            'supporter_link' => [
+                '_' => 'Aldığınız tüm süslü özellikleri görmek için :here tıklayın!',
+                'here' => 'burada',
+            ],
         ],
 
         'stats' => [
@@ -182,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Daire Sayısı',
             'count_sliders' => 'Slider Sayısı',
+            'offset' => 'Çevrimiçi ofset: :offset',
             'user-rating' => 'Kullanıcı Reytingi',
             'rating-spread' => 'Reyting Dağılımı',
             'nominations' => 'Adaylıklar',
@@ -197,5 +213,9 @@ return [
             'pending' => 'Beklemede',
             'graveyard' => 'Mezarlıkta',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => 'Spotlight',
     ],
 ];

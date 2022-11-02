@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'адмін',
     ],
-    'admin_forum' => [
-        '_' => 'адмін',
-    ],
-    'admin_store' => [
-        '_' => 'адмін',
-    ],
     'error' => [
         'error' => [
             '400' => 'недапушчальны запыт',
@@ -29,13 +23,12 @@ return [
     ],
     'forum' => [
         '_' => 'форум',
-        'topic_watches_controller' => [
-            'index' => 'панэль кіравання',
+        'topic_logs_controller' => [
+            'index' => 'статыстыка тэмы',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'панэль кіравання',
             'verify_link' => 'пацверджанне ўліковага запісу',
         ],
         'artists_controller' => [
@@ -56,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'гісторыя бітмапы',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'панэль кіравання',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'абмеркаванне бітмапы',
             'index' => 'спіс бітмап',
@@ -75,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => 'конкурсы',
-        ],
-        'follows_controller' => [
-            'index' => 'табліца',
-        ],
-        'friends_controller' => [
-            'index' => 'панэль кіравання',
         ],
         'groups_controller' => [
             'show' => 'групы',
@@ -114,10 +98,7 @@ return [
             '_' => 'рэйтынг',
         ],
         'scores_controller' => [
-            '_' => 'прадукцыйнасць',
-        ],
-        'store_controller' => [
-            '_' => 'крама',
+            '_' => 'па прадукцыйнасці',
         ],
         'tournaments_controller' => [
             '_' => 'турніры',
@@ -130,10 +111,9 @@ return [
             '_' => 'вікі',
         ],
     ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'рэйтынг
-',
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'аўтарызацыя праграмы',
         ],
     ],
     'store' => [

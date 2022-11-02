@@ -1,35 +1,14 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-@osu =
+import { formatNumber } from 'utils/html'
+import { currentUrl } from 'utils/turbolinks'
+
+window.osu =
   isIos: /iPad|iPhone|iPod/.test(navigator.platform)
-  urlRegex: /(https?:\/\/((?:(?:[a-z0-9]\.|[a-z0-9][a-z0-9-]*[a-z0-9]\.)*[a-z][a-z0-9-]*[a-z0-9](?::\d+)?)(?:(?:(?:\/+(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)*(?:\?(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?(?:#(?:[a-z0-9$_\.\+!\*',;:@&=/?-]|%[0-9a-f]{2})*)?)?(?:[^\.,:\s])))/ig
-
-  bottomPage: ->
-    osu.bottomPageDistance() == 0
-
-
-  bottomPageDistance: ->
-    body = document.documentElement ? document.body.parent ? document.body
-    (body.scrollHeight - body.scrollTop) - body.clientHeight
-
-
-  currentUserIsFriendsWith: (user_id) ->
-    _.find currentUser.friends, target_id: user_id
-
 
   groupColour: (group) ->
     '--group-colour': group?.colour ? 'initial'
-
-
-  setHash: (newHash) ->
-    currentUrl = _exported.currentUrl().href
-    newUrl = currentUrl.replace /#.*/, ''
-    newUrl += newHash
-
-    return if newUrl == currentUrl
-
-    history.replaceState history.state, null, newUrl
 
 
   ajaxError: (xhr) ->
@@ -44,47 +23,6 @@
       $(element).trigger 'ajax:error', [xhr, status, error]
 
 
-  parseJson: (id, remove = false) ->
-    element = window.newBody?.querySelector("##{id}")
-    return unless element?
-
-    json = JSON.parse element.text
-    element.remove() if remove
-
-    json
-
-
-  storeJson: (id, object) ->
-    json = JSON.stringify object
-    element = document.getElementById(id)
-
-    if !element?
-      element = document.createElement 'script'
-      element.id = id
-      element.type = 'application/json'
-      document.body.appendChild element
-
-    element.text = json
-
-
-  # make a clone of json-like object (object with simple values)
-  jsonClone: (object) ->
-    JSON.parse JSON.stringify(object ? null)
-
-
-  isInputElement: (el) ->
-    el.tagName in ['INPUT', 'SELECT', 'TEXTAREA'] || el.isContentEditable
-
-
-  isClickable: (el) ->
-    if osu.isInputElement(el) || el.tagName in ['A', 'BUTTON']
-      true
-    else if el.parentNode
-      osu.isClickable el.parentNode
-    else
-      false
-
-
   # mobile safari zooms in on focus of input boxes with font-size < 16px, this works around that
   focus: (el) =>
     el = $(el)[0] # so we can handle both jquery'd and normal dom nodes
@@ -96,34 +34,6 @@
     el.style.fontSize = prevSize
 
 
-  link: (url, text, options = {}) ->
-    if options.unescape
-      url = _.unescape(url)
-      text = _.unescape(text)
-
-    el = document.createElement('a')
-    el.setAttribute 'href', url
-    el.setAttribute 'data-remote', true if options.isRemote
-    el.className = options.classNames.join(' ') if options.classNames
-    el.textContent = text
-    if options.props
-      _.each options.props, (val, prop) ->
-        el.setAttribute prop, val if val?
-    el.outerHTML
-
-
-  linkify: (text, newWindow = false) ->
-    text.replace(osu.urlRegex, "<a href=\"$1\" rel=\"nofollow noreferrer\"#{if newWindow then ' target=\"_blank\"' else ''}>$2</a>")
-
-
-  timeago: (time) ->
-    el = document.createElement('time')
-    el.classList.add 'js-timeago'
-    el.setAttribute 'datetime', time
-    el.textContent = time
-    el.outerHTML
-
-
   formatBytes: (bytes, decimals=2) ->
     suffixes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
     k = 1000
@@ -131,26 +41,14 @@
     return "#{bytes} B" if (bytes < k)
 
     i = Math.floor(Math.log(bytes) / Math.log(k))
-    "#{osu.formatNumber(bytes / Math.pow(k, i), decimals)} #{suffixes[i]}"
-
-
-  formatNumber: (number, precision, options, locale) ->
-    return null unless number?
-
-    options ?= {}
-
-    if precision?
-      options.minimumFractionDigits = precision
-      options.maximumFractionDigits = precision
-
-    number.toLocaleString locale ? currentLocale, options
+    "#{formatNumber(bytes / Math.pow(k, i), decimals)} #{suffixes[i]}"
 
 
   reloadPage: (keepScroll = true) ->
     $(document).off '.ujsHideLoadingOverlay'
     Turbolinks.clearCache()
 
-    osu.navigate _exported.currentUrl().href, keepScroll, action: 'replace'
+    osu.navigate currentUrl().href, keepScroll, action: 'replace'
 
 
   urlPresence: (url) ->
@@ -245,7 +143,7 @@
     if !isFallbackLocale && !osu.transExists(key, locale)
       return osu.transChoice(key, count, replacements, fallbackLocale)
 
-    replacements.count_delimited = osu.formatNumber(count, null, null, locale)
+    replacements.count_delimited = formatNumber(count, null, null, locale)
     translated = Lang.choice(key, count, replacements, locale)
 
     if !isFallbackLocale && !translated?
@@ -266,18 +164,6 @@
 
   uuid: ->
     Turbolinks.uuid() # no point rolling our own
-
-
-  updateQueryString: (url, params) ->
-    docUrl = _exported.currentUrl()
-    urlObj = new URL(url ? docUrl.href, docUrl.origin)
-    for own key, value of params
-      if value?
-        urlObj.searchParams.set(key, value)
-      else
-        urlObj.searchParams.delete(key)
-
-    return urlObj.href
 
 
   xhrErrorMessage: (xhr) ->

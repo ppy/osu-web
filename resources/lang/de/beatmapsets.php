@@ -11,8 +11,16 @@ return [
         'rule_violation' => 'Einige in dieser Beatmap enthaltene Assets wurden entfernt, nachdem sie als nicht für die Verwendung in osu! geeignet eingestuft worden waren.',
     ],
 
+    'cover' => [
+        'deleted' => 'Gelöschte Beatmap',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Nur langsam, spiel mehr.',
+    ],
+
+    'featured_artist_badge' => [
+        'label' => 'Featured Artist',
     ],
 
     'index' => [
@@ -88,7 +96,7 @@ return [
         ],
 
         'hype' => [
-            'action' => 'Wenn du es dir Spaß gemacht hat, diese Map zu spielen, dann hype sie, um bei ihrem Fortschritt zum <strong>Ranked</strong>-Status zu helfen.',
+            'action' => 'Wenn es dir Spaß gemacht hat, diese Map zu spielen, dann hype sie, um bei ihrem Fortschritt zum <strong>Ranked</strong>-Status zu helfen.',
 
             'current' => [
                 '_' => 'Die Map ist zurzeit :status.',
@@ -117,6 +125,7 @@ return [
             'language' => 'Sprache',
             'no_scores' => 'Die Daten werden noch verarbeitet...',
             'nsfw' => 'Expliziter Inhalt',
+            'offset' => 'Online-Offset',
             'points-of-failure' => 'Stellen, an denen Spieler gescheitert sind',
             'source' => 'Quelle',
             'storyboard' => 'Diese Beatmap enthält ein Storyboard',
@@ -139,6 +148,7 @@ return [
         'scoreboard' => [
             'achieved' => 'erreicht :when',
             'country' => 'Landesrangliste',
+            'error' => 'Die Rangliste konnte nicht geladen werden',
             'friend' => 'Freundesrangliste',
             'global' => 'Globale Rangliste',
             'supporter-link' => '<a href=":link">Hier</a> klicken, um alle tollen Features zu entdecken!',
@@ -150,11 +160,12 @@ return [
                 'combo' => 'Combo',
                 'miss' => 'Miss',
                 'mods' => 'Mods',
+                'pin' => 'Anpinnen',
                 'player' => 'Spieler',
                 'pp' => '',
                 'rank' => 'Rang',
-                'score_total' => 'Gesamtpunktzahl',
                 'score' => 'Punktzahl',
+                'score_total' => 'Gesamtpunktzahl',
                 'time' => 'Zeit',
             ],
 
@@ -162,12 +173,16 @@ return [
                 'country' => 'Niemand in deinem Land hat einen Rang auf dieser Beatmap!',
                 'friend' => 'Keiner deiner Freunde hat einen Rang auf dieser Beatmap!',
                 'global' => 'Noch niemand auf der Rangliste. Wie wärs?',
-                'loading' => 'Lade Ränge...',
+                'loading' => 'Lade Scores...',
                 'unranked' => 'Unranked Beatmap.',
             ],
             'score' => [
                 'first' => 'An der Spitze',
                 'own' => 'Dein bester Rang',
+            ],
+            'supporter_link' => [
+                '_' => 'Klicke :here um alle schönen Features zu sehen, die du bekommst!',
+                'here' => 'hier',
             ],
         ],
 
@@ -182,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Circle-Anzahl',
             'count_sliders' => 'Slider-Anzahl',
+            'offset' => 'Online-Offset: :offset',
             'user-rating' => 'Benutzerbewertungen',
             'rating-spread' => 'Bewertungsverteilung',
             'nominations' => 'Nominierungen',
@@ -197,5 +213,9 @@ return [
             'pending' => 'Ausstehend',
             'graveyard' => 'Friedhof',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => 'Spotlight',
     ],
 ];

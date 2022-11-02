@@ -26,13 +26,6 @@
   --font-default-zh-tw: @font-default-zh-tw;
   --font-content: @font-content;
 
-  --diff-easy: @diff-easy;
-  --diff-normal: @diff-normal;
-  --diff-hard: @diff-hard;
-  --diff-insane: @diff-insane;
-  --diff-expert: @diff-expert;
-  --diff-expert-plus: @diff-expert-plus;
-
   --beatmapset-status-colour-default: var(--hsl-b3);
   --beatmapset-graveyard-bg: #000;
   --beatmapset-graveyard-colour: hsl(var(--hsl-b1));
@@ -54,6 +47,15 @@ html, body {
   height: 100%;
 }
 
+html {
+  scroll-padding-top: calc(@nav2-height--pinned + 1em);
+  scroll-padding-bottom: 1em;
+
+  @media @mobile {
+    scroll-padding-top: calc(@navbar-height + 1em);
+  }
+}
+
 body {
   .default-font();
   // no overlap between rightmost side and scrollbar
@@ -62,6 +64,11 @@ body {
   overflow-y: scroll;
   // fix tooltip positioning on edge when combined with overflow-y scroll above
   position: static;
+
+  --z-index--nav-bar-mobile: @z-index--nav-bar;
+  &.js-nav2--active {
+    --z-index--nav-bar-mobile: @z-index--nav-bar-mobile-active;
+  }
 }
 
 .content {
@@ -96,10 +103,12 @@ body {
   width: 100%;
   top: 155px;
   z-index: 9999;
+  pointer-events: none;
 
   .alert {
-    border: none;
     .default-box-shadow();
+    border: none;
+    pointer-events: auto;
   }
 
   .popup-text {

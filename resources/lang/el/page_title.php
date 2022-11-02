@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => '',
     ],
-    'admin_forum' => [
-        '_' => '',
-    ],
-    'admin_store' => [
-        '_' => '',
-    ],
     'error' => [
         'error' => [
             '400' => '',
@@ -29,13 +23,12 @@ return [
     ],
     'forum' => [
         '_' => '',
-        'topic_watches_controller' => [
+        'topic_logs_controller' => [
             'index' => '',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => '',
             'verify_link' => '',
         ],
         'artists_controller' => [
@@ -56,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => '',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => '',
-        ],
         'beatmapsets_controller' => [
             'discussion' => '',
             'index' => '',
@@ -75,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => '',
-        ],
-        'follows_controller' => [
-            'index' => '',
-        ],
-        'friends_controller' => [
-            'index' => '',
         ],
         'groups_controller' => [
             'show' => '',
@@ -116,9 +100,6 @@ return [
         'scores_controller' => [
             '_' => '',
         ],
-        'store_controller' => [
-            '_' => 'κατάστημα',
-        ],
         'tournaments_controller' => [
             '_' => '',
         ],
@@ -130,8 +111,8 @@ return [
             '_' => 'wiki',
         ],
     ],
-    'multiplayer' => [
-        'rooms_controller' => [
+    'passport' => [
+        'authorization_controller' => [
             '_' => '',
         ],
     ],

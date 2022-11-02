@@ -15,7 +15,6 @@ return [
         ],
 
         'email' => [
-            'current' => 'nuværende email-adresse',
             'new' => 'ny email',
             'new_confirmation' => 'email bekræftelse',
             'title' => 'Email',
@@ -56,7 +55,7 @@ return [
 
         'options' => [
             '_' => 'leveringsmuligheder',
-            'beatmap_owner_change' => '',
+            'beatmap_owner_change' => 'gæst sværhedsgrad',
             'beatmapset:modding' => 'beatmap modding',
             'channel_message' => 'privat beskeder',
             'comment_new' => 'nye kommentarer',

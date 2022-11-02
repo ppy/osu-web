@@ -7,7 +7,9 @@ namespace App\Libraries;
 
 use App\Models\Group;
 use App\Traits\LocallyCached;
+use Exception;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class Groups
 {
@@ -40,9 +42,20 @@ class Groups
     /**
      * Get a group by its ID.
      */
-    public function byId(?int $id): ?Group
+    public function byId(int|string|null $id): ?Group
     {
         return $this->allById()->get($id);
+    }
+
+    /**
+     * Get a group by its ID or throw an exception.
+     *
+     * @throws ModelNotFoundException
+     */
+    public function byIdOrFail(int|string|null $id): Group
+    {
+        return $this->byId($id)
+            ?? throw (new ModelNotFoundException())->setModel(Group::class, (int) $id);
     }
 
     /**
@@ -55,12 +68,19 @@ class Groups
         $group = $this->allByIdentifier()->get($id);
 
         if ($group === null) {
-            $group = Group::create([
-                'identifier' => $id,
-                'group_name' => $id,
-                'group_desc' => $id,
-                'short_name' => $id,
-            ])->fresh();
+            try {
+                $group = Group::create([
+                    'identifier' => $id,
+                    'group_name' => $id,
+                    'group_desc' => $id,
+                    'short_name' => $id,
+                ])->fresh();
+            } catch (Exception $ex) {
+                if (!is_sql_unique_exception($ex)) {
+                    throw $ex;
+                }
+                $group = Group::firstWhere(['identifier' => $id]);
+            }
 
             // TODO: This shouldn't have to be called here, since it's already
             // called by `Group::afterCommit`, but `Group::afterCommit` isn't

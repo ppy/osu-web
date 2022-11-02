@@ -4,11 +4,15 @@
 import DispatcherAction from 'actions/dispatcher-action';
 import { UserLoginAction } from 'actions/user-login-actions';
 import { ClientJson } from 'interfaces/client-json';
-import { action, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import { Client } from 'models/oauth/client';
 
 export default class ClientStore {
   @observable clients = new Map<number, Client>();
+
+  constructor() {
+    makeObservable(this);
+  }
 
   handleDispatchAction(dispatchedAction: DispatcherAction) {
     if (dispatchedAction instanceof UserLoginAction) {

@@ -65,8 +65,8 @@ return [
                 'beatmapset_nominate_compact' => 'ビートマップがノミネートされました。',
                 'beatmapset_qualify' => '「:title」は十分なノミネートを受けたのでランキングに入れられました。',
                 'beatmapset_qualify_compact' => 'ビートマップがランキングのキューに入りました',
-                'beatmapset_rank' => '「:title」はrankedされました。',
-                'beatmapset_rank_compact' => 'ビートマップがrankedされました。',
+                'beatmapset_rank' => '「:title」はrankedになりました。',
+                'beatmapset_rank_compact' => 'ビートマップがrankedになりました。',
                 'beatmapset_remove_from_loved' => '「:title」はlovedから削除されました',
                 'beatmapset_remove_from_loved_compact' => 'ビートマップはlovedから削除されました',
                 'beatmapset_reset_nominations' => ':usernameの問題点投稿によりビートマップ「:title」のノミネーションがリセットされました。 ',
@@ -86,8 +86,19 @@ return [
         'channel' => [
             '_' => 'チャット',
 
+            'announcement' => [
+                '_' => '新しいお知らせ',
+
+                'announce' => [
+                    'channel_announcement' => ':usernameが":title"で発言',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => ':username からのお知らせ',
+                ],
+            ],
+
             'channel' => [
                 '_' => '新しいメッセージ',
+
                 'pm' => [
                     'channel_message' => ':usernameが「:title」で発言',
                     'channel_message_compact' => ':title',
@@ -148,6 +159,9 @@ return [
                 'user_beatmapset_new' => ':username による新しいビートマップ「:title」',
                 'user_beatmapset_new_compact' => '新しいビートマップ「:title」',
                 'user_beatmapset_new_group' => ':username の新しいビートマップ',
+
+                'user_beatmapset_revive' => '":title"が :usernameによって復活しました',
+                'user_beatmapset_revive_compact' => '":title"が復活しました',
             ],
         ],
 
@@ -180,7 +194,7 @@ return [
             ],
 
             'beatmapset_state' => [
-                'beatmapset_disqualify' => '「:title」はdisqualifyされました',
+                'beatmapset_disqualify' => '「:title」はqualifiedではなくなりました',
                 'beatmapset_love' => '「:title」はlovedになりました',
                 'beatmapset_nominate' => '「:title」はノミネートされました',
                 'beatmapset_qualify' => '「:title」は十分なノミネートを獲得し、ランキングキューに入りました',
@@ -226,6 +240,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':usernameがビートマップを作成しました',
+                'user_beatmapset_revive' => ':username がビートマップを復活させました',
             ],
         ],
     ],

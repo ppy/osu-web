@@ -9,7 +9,7 @@ import DispatchListener from 'dispatch-listener';
 @dispatchListener
 class ClassA implements DispatchListener {
   count = 0;
-  handleDispatchAction(action: DispatcherAction) {
+  handleDispatchAction(_action: DispatcherAction) {
     this.count++;
   }
 }

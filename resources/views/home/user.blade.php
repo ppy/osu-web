@@ -4,12 +4,6 @@
 --}}
 @extends('master')
 
-@php
-    $user = auth()->user();
-    $profileCustomization = $user->userProfileCustomization ?? $user->userProfileCustomization()->make();
-    $beatmapsetShowNsfw = $profileCustomization->beatmapset_show_nsfw;
-@endphp
-
 @section('content')
     @include('home._user_header_default')
 
@@ -65,7 +59,7 @@
                             'href' => route('support-the-game'),
                             'label' => osu_trans('home.user.buttons.support'),
                             'icon' => 'heart',
-                            'colour' => 'green'
+                            'colour' => 'c-pink-darker'
                         ])
                     </div>
 
@@ -74,7 +68,7 @@
                             'href' => route('store.products.index'),
                             'label' => osu_trans('home.user.buttons.store'),
                             'icon' => 'shopping-cart',
-                            'colour' => 'pink-darker'
+                            'colour' => 'c-darkorange'
                         ])
                     </div>
                 </div>
@@ -85,7 +79,7 @@
 
                 <div class="user-home__beatmapsets">
                     @foreach ($newBeatmapsets as $beatmapset)
-                        @include('home._user_beatmapset', ['type' => 'new', 'showNsfw' => $beatmapsetShowNsfw])
+                        @include('home._user_beatmapset', ['type' => 'new'])
                     @endforeach
                 </div>
 
@@ -95,7 +89,7 @@
 
                 <div class="user-home__beatmapsets">
                     @foreach ($popularBeatmapsets as $beatmapset)
-                        @include('home._user_beatmapset', ['type' => 'popular', 'showNsfw' => $beatmapsetShowNsfw])
+                        @include('home._user_beatmapset', ['type' => 'popular'])
                     @endforeach
                 </div>
             </div>

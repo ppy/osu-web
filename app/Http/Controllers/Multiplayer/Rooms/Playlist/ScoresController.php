@@ -8,7 +8,6 @@ namespace App\Http\Controllers\Multiplayer\Rooms\Playlist;
 use App\Exceptions\InvariantException;
 use App\Http\Controllers\Controller as BaseController;
 use App\Libraries\ClientCheck;
-use App\Libraries\Multiplayer\Mod;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\PlaylistItemUserHighScore;
 use App\Models\Multiplayer\Room;
@@ -150,7 +149,7 @@ class ScoresController extends BaseController
         $user = auth()->user();
         $params = request()->all();
 
-        ClientCheck::assert($user, $params);
+        ClientCheck::findBuild($user, $params);
 
         $score = $room->startPlay($user, $playlistItem);
 
@@ -191,9 +190,9 @@ class ScoresController extends BaseController
 
     private function extractScoreParams(array $params, PlaylistItem $playlistItem)
     {
-        $mods = Mod::parseInputArray(
+        $mods = app('mods')->parseInputArray(
+            $playlistItem->ruleset_id,
             $params['mods'] ?? [],
-            $playlistItem->ruleset_id
         );
 
         return [

@@ -26,7 +26,8 @@ describe('OsuCore user:update subscriber testing thing', () => {
       username: 'foo',
     };
 
-    const user = User.fromJson(json);
+    const user = new User(json.id);
+    user.updateWithJson(json);
 
     $.publish('user:update', json);
 

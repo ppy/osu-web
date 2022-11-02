@@ -127,6 +127,55 @@ return [
             'previous' => 'gå bakåt 10 inlägg',
         ],
 
+        'logs' => [
+            '_' => 'Ämneslogg',
+            'button' => 'Bläddra bland ämnesloggar',
+
+            'columns' => [
+                'action' => 'Åtgärd',
+                'date' => 'Datum',
+                'user' => 'Användare',
+            ],
+
+            'data' => [
+                'add_tag' => 'la till taggen ":tag"',
+                'announcement' => 'fäst ämne och markerat som meddelande',
+                'edit_topic' => 'till :title',
+                'fork' => 'från :topic',
+                'pin' => 'fäst ämne',
+                'post_operation' => 'upplagd av :username',
+                'remove_tag' => 'tog bort taggen ":tag"',
+                'source_forum_operation' => 'från :forum',
+                'unpin' => 'icke-fäst ämne',
+            ],
+
+            'no_results' => 'inga loggar hittade...',
+
+            'operations' => [
+                'delete_post' => 'Tog bort inlägg',
+                'delete_topic' => 'Tog bort ämne',
+                'edit_topic' => 'Ändrade ämnestitel',
+                'edit_poll' => 'Redigerade ämnesenkät',
+                'fork' => 'Kopierade ämne',
+                'issue_tag' => 'Utfärdade tagg',
+                'lock' => 'Låste ämne',
+                'merge' => 'Sammanfogade inlägg till detta ämne',
+                'move' => 'Flyttade ämne',
+                'pin' => 'Fäste ämne',
+                'post_edited' => 'Redigerade inlägg',
+                'restore_post' => 'Återställde inlägg',
+                'restore_topic' => 'Återställt ämne',
+                'split_destination' => 'Flyttade delade inlägg',
+                'split_source' => 'Dela inlägg',
+                'topic_type' => 'Ange ämnestyp',
+                'topic_type_changed' => 'Ändrade ämnestyp',
+                'unlock' => 'Låste upp ämne',
+                'unpin' => 'Avfäste ämnet',
+                'user_lock' => 'Låste eget ämne',
+                'user_unlock' => 'Låste upp eget ämne',
+            ],
+        ],
+
         'post_edit' => [
             'cancel' => 'Avbryt',
             'post' => 'Spara',
@@ -188,7 +237,7 @@ return [
                 'options_info' => 'Skriv varje val på en ny rad. Du kan skriva upp till 10 val.',
                 'title' => 'Fråga',
                 'vote_change' => 'Tillåt ändring av röst.',
-                'vote_change_info' => 'Om aktiverad, så kan användare ändra sina röster.',
+                'vote_change_info' => 'Om aktiverat så kan användare ändra sina röster.',
             ],
         ],
 

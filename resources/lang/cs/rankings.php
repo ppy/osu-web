@@ -5,24 +5,24 @@
 
 return [
     'countries' => [
-        'all' => '',
-        'title' => '',
+        'all' => 'Vše',
+        'title' => 'Stát',
     ],
 
     'filter' => [
-        'title' => '',
+        'title' => 'Zobrazit',
 
         'variant' => [
-            'title' => '',
+            'title' => 'Varianta',
         ],
     ],
 
     'type' => [
-        'charts' => 'Výběry',
-        'country' => 'Stát',
-        'multiplayer' => '',
-        'performance' => 'Výkon',
-        'score' => 'Skóre',
+        'charts' => 'výběry',
+        'country' => 'stát',
+        'multiplayer' => 'hra pro více hráčů',
+        'performance' => 'výkon',
+        'score' => 'skóre',
     ],
 
     'spotlight' => [

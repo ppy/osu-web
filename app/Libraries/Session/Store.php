@@ -22,7 +22,7 @@ class Store extends \Illuminate\Session\Store
         }
 
         $keys = static::keys($userId);
-        event(UserSessionEvent::newLogout($userId, $keys));
+        UserSessionEvent::newLogout($userId, $keys)->broadcast();
         Redis::del(array_merge([static::listKey($userId)], $keys));
     }
 
@@ -73,7 +73,7 @@ class Store extends \Illuminate\Session\Store
 
     public static function removeFullId($userId, $fullId)
     {
-        return static::removeKey($userId, config('cache.prefix').':'.$fullId);
+        static::removeKey($userId, config('cache.prefix').':'.$fullId);
     }
 
     public static function removeKey($userId, $key)
@@ -86,7 +86,7 @@ class Store extends \Illuminate\Session\Store
             $userId = static::parseKey($key)['userId'];
         }
 
-        event(UserSessionEvent::newLogout($userId, [$key]));
+        UserSessionEvent::newLogout($userId, [$key])->broadcast();
         Redis::srem(static::listKey($userId), $key);
         Redis::del($key);
     }

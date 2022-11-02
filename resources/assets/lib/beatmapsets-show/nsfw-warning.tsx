@@ -9,25 +9,7 @@ interface Props {
   onClose: () => void;
 }
 
-interface State {
-  busy: boolean;
-}
-
-export default class NsfwWarning extends React.PureComponent<Props, State> {
-  private xhr?: JQuery.jqXHR;
-
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      busy: false,
-    };
-  }
-
-  componentWillUnmount() {
-    this.xhr?.abort();
-  }
-
+export default class NsfwWarning extends React.PureComponent<Props> {
   render() {
     return (
       <div className='osu-page osu-page--generic'>
@@ -47,17 +29,15 @@ export default class NsfwWarning extends React.PureComponent<Props, State> {
           <div className='nsfw-warning__row nsfw-warning__row--buttons'>
             <button
               className='nsfw-warning__button nsfw-warning__button--show'
-              disabled={this.state.busy}
               onClick={this.props.onClose}
               type='button'
             >
               {osu.trans('beatmapsets.show.nsfw_warning.buttons.show')}
             </button>
 
-            {currentUser.id != null &&
+            {core.currentUser != null &&
               <button
                 className='nsfw-warning__button nsfw-warning__button--show'
-                disabled={this.state.busy}
                 onClick={this.disableWarning}
                 type='button'
               >
@@ -74,16 +54,8 @@ export default class NsfwWarning extends React.PureComponent<Props, State> {
     );
   }
 
-  private disableWarning = () => {
-    this.xhr = core.userPreferences.set('beatmapset_show_nsfw', true);
-
-    if (this.xhr == null) {
-      this.props.onClose();
-    } else {
-      this.setState({ busy: true });
-      this.xhr
-        .always(() => this.setState({ busy: false }))
-        .done(this.props.onClose);
-    }
+  private readonly disableWarning = () => {
+    core.userPreferences.set('beatmapset_show_nsfw', true);
+    this.props.onClose();
   };
 }

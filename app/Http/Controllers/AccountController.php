@@ -14,6 +14,7 @@ use App\Mail\UserPasswordUpdated;
 use App\Models\OAuth\Client;
 use App\Models\UserAccountHistory;
 use App\Models\UserNotificationOption;
+use App\Transformers\CurrentUserTransformer;
 use Auth;
 use DB;
 use Mail;
@@ -58,35 +59,39 @@ class AccountController extends Controller
             'verifyLink',
         ]]);
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function avatar()
     {
+        $user = auth()->user();
+
         try {
-            Auth::user()->setAvatar(Request::file('avatar_file'));
+            $user->setAvatar(Request::file('avatar_file'));
         } catch (ImageProcessorException $e) {
             return error_popup($e->getMessage());
         }
 
-        return Auth::user()->defaultJson();
+        return json_item($user, new CurrentUserTransformer());
     }
 
     public function cover()
     {
-        if (Request::hasFile('cover_file') && !Auth::user()->osu_subscriber) {
+        $user = auth()->user();
+
+        if (Request::hasFile('cover_file') && !$user->osu_subscriber) {
             return error_popup(osu_trans('errors.supporter_only'));
         }
 
         try {
-            Auth::user()
+            $user
                 ->profileCustomization()
                 ->setCover(Request::input('cover_id'), Request::file('cover_file'));
         } catch (ImageProcessorException $e) {
             return error_popup($e->getMessage());
         }
 
-        return Auth::user()->defaultJson();
+        return json_item($user, new CurrentUserTransformer());
     }
 
     public function edit()
@@ -138,7 +143,7 @@ class AccountController extends Controller
             return $this->errorResponse($user, $e);
         }
 
-        return $user->defaultJson();
+        return json_item($user, new CurrentUserTransformer());
     }
 
     public function updateEmail()
@@ -172,7 +177,13 @@ class AccountController extends Controller
         }
 
         DB::transaction(function () use ($requestParams) {
-            // FIXME: less queries
+            $user = auth()->user();
+            $user
+                ->notificationOptions()
+                ->whereIn('name', array_keys($requestParams))
+                ->select('user_id')
+                ->lockForUpdate()
+                ->get();
             foreach ($requestParams as $key => $value) {
                 if (!UserNotificationOption::supportsNotifications($key)) {
                     continue;
@@ -180,7 +191,7 @@ class AccountController extends Controller
 
                 $params = get_params($value, null, ['details:any']);
 
-                $option = auth()->user()->notificationOptions()->firstOrNew(['name' => $key]);
+                $option = $user->notificationOptions()->firstOrNew(['name' => $key]);
                 // TODO: show correct field error.
                 $option->fill($params)->saveOrExplode();
             }
@@ -214,7 +225,7 @@ class AccountController extends Controller
             'comments_sort:string',
             'extras_order:string[]',
             'forum_posts_show_deleted:bool',
-            'ranking_expanded:bool',
+            'profile_cover_expanded:bool',
             'user_list_filter:string',
             'user_list_sort:string',
             'user_list_view:string',
@@ -232,7 +243,7 @@ class AccountController extends Controller
             return $this->errorResponse($user, $e);
         }
 
-        return $user->defaultJson();
+        return json_item($user, new CurrentUserTransformer());
     }
 
     public function updatePassword()
@@ -244,6 +255,10 @@ class AccountController extends Controller
             if (present($user->user_email)) {
                 Mail::to($user)->send(new UserPasswordUpdated($user));
             }
+
+            $user->resetSessions();
+            $this->login($user);
+            UserVerification::fromCurrentRequest()->markVerified();
 
             return response([], 204);
         } else {

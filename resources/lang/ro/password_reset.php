@@ -13,8 +13,8 @@ return [
 
     'error' => [
         'contact_support' => 'Te rugăm să contactezi asistența pentru a îți recupera contul.',
-        'expired' => '',
-        'invalid' => '',
+        'expired' => 'Codul de verificare a expirat.',
+        'invalid' => 'Eroare neașteptată în codul de verificare.',
         'is_privileged' => 'Contactați-l pe peppy lulz.',
         'missing_key' => 'Necesar.',
         'too_many_tries' => 'Prea multe încercări eșuate.',

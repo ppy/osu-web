@@ -11,4 +11,18 @@
   &--important {
     font-weight: bold;
   }
+
+  &--profile-page-extra {
+    background-color: hsl(var(--hsl-b3));
+  }
+
+  &__markdown-inline-content {
+    display: inline;
+
+    // flatten markdown paragraphs
+    p {
+      display: inline;
+      margin: 0;
+    }
+  }
 }

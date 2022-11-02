@@ -8,11 +8,19 @@ return [
         'disabled' => 'このビートマップは現在ダウンロード不可能です。',
         'parts-removed' => '権利者の申し立てによりこのビートマップは部分的に削除されています。',
         'more-info' => '詳細はこちらです。',
-        'rule_violation' => 'このマップに含まれる一部のアセットは、osu!での使用に適さないと判断され、削除されています。',
+        'rule_violation' => 'このビートマップに含まれる一部のアセットは、osu!での使用に適さないと判断され、削除されています。',
+    ],
+
+    'cover' => [
+        'deleted' => '削除されたビートマップ',
     ],
 
     'download' => [
         'limit_exceeded' => 'スピードを落として、もっと遊ぼう。',
+    ],
+
+    'featured_artist_badge' => [
+        'label' => '注目アーティスト',
     ],
 
     'index' => [
@@ -117,6 +125,7 @@ return [
             'language' => '言語',
             'no_scores' => 'データはまだ計算中です・・・',
             'nsfw' => '過激な表現を含むコンテンツ',
+            'offset' => 'オンラインオフセット',
             'points-of-failure' => '失敗地点',
             'source' => 'ソース',
             'storyboard' => 'このビートマップにはストーリーボードが含まれています',
@@ -139,6 +148,7 @@ return [
         'scoreboard' => [
             'achieved' => '達成日 :when',
             'country' => '国別ランキング',
+            'error' => 'ランキングの読み込みに失敗しました',
             'friend' => 'フレンドランキング',
             'global' => '世界ランキング',
             'supporter-link' => '<a href=":link">ここ</a>をクリックする事でosu!サポーターの詳細が見れます。',
@@ -150,11 +160,12 @@ return [
                 'combo' => '最大コンボ',
                 'miss' => 'ミス',
                 'mods' => 'Mods',
+                'pin' => 'ピン留め',
                 'player' => 'プレイヤー',
                 'pp' => '',
                 'rank' => '順位',
-                'score_total' => '合計スコア',
                 'score' => 'スコア',
+                'score_total' => '合計スコア',
                 'time' => '時間',
             ],
 
@@ -169,6 +180,10 @@ return [
                 'first' => 'リード',
                 'own' => 'あなたのベスト',
             ],
+            'supporter_link' => [
+                '_' => 'osu!サポーターの詳細を見るには:hereしてください。',
+                'here' => 'こちらをクリック',
+            ],
         ],
 
         'stats' => [
@@ -182,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'サークルの数',
             'count_sliders' => 'スライダーの数',
+            'offset' => 'オフセット :offset',
             'user-rating' => 'ユーザーの評価',
             'rating-spread' => '評価分布',
             'nominations' => 'ノミネーション',
@@ -197,5 +213,9 @@ return [
             'pending' => 'Pending',
             'graveyard' => 'Graveyard',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => 'スポットライト',
     ],
 ];

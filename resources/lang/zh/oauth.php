@@ -8,19 +8,19 @@ return [
 
     'authorise' => [
         'request' => '正在请求访问你的账户',
-        'scopes_title' => '该应用将可以：',
+        'scopes_title' => '此应用程序能：',
         'title' => '授权请求',
     ],
 
     'authorized_clients' => [
         'confirm_revoke' => '你确定要撤回给予的权限吗？',
         'scopes_title' => '此应用能够：',
-        'owned_by' => '由 :user 拥有',
+        'owned_by' => ':user 所有',
         'none' => '无授权第三方',
 
         'revoked' => [
             'false' => '撤除访问权限',
-            'true' => '访问权限已被撤除',
+            'true' => '已撤除访问权限',
         ],
     ],
 
@@ -49,7 +49,7 @@ return [
 
     'own_clients' => [
         'confirm_delete' => '你确定想要删除这个客户端？',
-        'confirm_reset' => '您确定要重置客户端密钥吗？这将撤销现有的所有 Token。',
+        'confirm_reset' => '你确定要重置客户端密钥吗？这将撤销现有的所有 Token。',
         'new' => '新的 OAuth 应用',
         'none' => '没有客户端',
 

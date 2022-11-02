@@ -5,12 +5,13 @@ import { dispatch } from 'app-dispatcher';
 import { NotificationBundleJson } from 'interfaces/notification-json';
 import { route } from 'laroute';
 import { debounce } from 'lodash';
-import { action } from 'mobx';
+import { action, makeObservable } from 'mobx';
 import Notification from 'models/notification';
 import { NotificationContextData } from 'notifications-context';
 import NotificationDeletable from 'notifications/notification-deletable';
 import { NotificationIdentity, resolveIdentityType, toJson, toString } from 'notifications/notification-identity';
 import NotificationReadable from 'notifications/notification-readable';
+import { onError } from 'utils/ajax';
 import { NotificationCursor } from './notification-cursor';
 import { NotificationEventDelete, NotificationEventMoreLoaded, NotificationEventRead } from './notification-events';
 
@@ -21,6 +22,10 @@ export class NotificationResolver {
   private deleteByIdsQueue = new Map<number, Notification>();
   private queuedMarkedAsRead = new Map<number, Notification>();
   private queuedMarkedAsReadIdentities = new Map<string, NotificationReadable>();
+
+  constructor() {
+    makeObservable(this);
+  }
 
   @action
   delete(deletable: NotificationDeletable) {
@@ -35,16 +40,17 @@ export class NotificationResolver {
       return;
     }
 
-    $.ajax({
+    const xhr = $.ajax({
       data: { identities: [toJson(deletable.identity)] },
       dataType: 'json',
       method: 'DELETE',
       url: route('notifications.index'),
-    })
-      .then(action(() => {
-        dispatch(new NotificationEventDelete([deletable.identity], 0));
-      }))
-      .catch(osu.ajaxError)
+    }) as JQuery.jqXHR<void>;
+
+    xhr.done(action(() => {
+      dispatch(new NotificationEventDelete([deletable.identity], 0));
+    }))
+      .fail(onError)
       .always(action(() => deletable.isDeleting = false));
   }
 
@@ -115,13 +121,16 @@ export class NotificationResolver {
   }
 
   private sendMarkAsReadRequest(data: any) {
-    return $.ajax({
+    const xhr = $.ajax({
       data,
       dataType: 'json',
       method: 'POST',
       url: route('notifications.mark-read'),
-    })
-      .catch(osu.ajaxError);
+    }) as JQuery.jqXHR<void>;
+
+    xhr.fail(onError);
+
+    return xhr;
   }
 
   private sendQueuedMarkedAsRead() {

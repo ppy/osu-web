@@ -2,46 +2,40 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .beatmap-list-item {
-  display: flex;
-  align-items: center;
-
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  gap: 0.625em;
   min-width: 0;
-  text-align: left;
-
-  font-size: 12px;
+  --difficulty-badge-width: max-content;
+  --main-width: 0;
 
   &--deleted {
     opacity: 0.5;
   }
 
-  &--large {
-    flex: 1;
-    font-size: 15px;
+  &--inline {
+    display: inline-grid;
+  }
+
+  &--full-width {
+    --main-width: auto;
   }
 
   &__col {
-    flex: none;
+    &--icon {
+      .center-content();
+      font-size: 1.25em;
+      width: 1em;
+    }
 
     &--main {
-      min-width: 0;
-      flex: 1 1 auto;
-      padding: 0 10px;
+      align-self: baseline;
+      min-width: var(--main-width);
       white-space: nowrap;
     }
   }
 
-  &__counter {
-    .default-border-radius();
-    padding: 2px 5px;
-    font-size: 80%;
-    font-weight: bold;
-    margin-left: 10px;
-    background-color: @osu-colour-b2;
-    color: @osu-colour-b5;
-  }
-
-  &__small {
-    font-size: 11px;
-    font-weight: 500;
+  &__version {
+    text-decoration: var(--version-text-decoration, none);
   }
 }

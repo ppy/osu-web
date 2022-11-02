@@ -22,6 +22,7 @@ return [
     ],
 
     'links' => [
+        'beatmaps' => 'osu! Beatmapit',
         'osu' => 'osu!-profiili',
         'site' => 'Virallinen Nettisivu',
     ],
@@ -29,7 +30,8 @@ return [
     'songs' => [
         '_' => 'Kappaleet',
         'count' => ':count kappale|:count kappaletta',
-        'exclusive' => 'vain osu!ssa',
+        'original' => 'osu! originaali',
+        'original_badge' => 'ALKUPERÄINEN',
     ],
 
     'tracklist' => [
@@ -37,5 +39,24 @@ return [
         'length' => 'pituus',
         'bpm' => 'bpm',
         'genre' => 'tyylilaji',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => 'kappalehaku',
+
+            'form' => [
+                'advanced' => 'Laajennettu haku',
+                'album' => 'Albumi',
+                'artist' => 'Esittäjä',
+                'bpm_gte' => 'BPM Minimi',
+                'bpm_lte' => 'BPM Maksimi',
+                'empty' => 'Hakukriteerejä vastaavia kappaleita ei löytynyt.',
+                'genre' => 'Tyylilaji',
+                'genre_all' => 'Kaikki',
+                'length_gte' => 'Pituuden Minimi',
+                'length_lte' => 'Pituuden Maksimi',
+            ],
+        ],
     ],
 ];

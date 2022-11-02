@@ -23,7 +23,7 @@ return [
             'set_metadata' => 'Du måste ange genren och språket innan du nominerar.',
         ],
         'resolve' => [
-            'not_owner' => 'Endast trådskaparen eller beatmap-ägare kan lösa en diskussion.',
+            'not_owner' => 'Endast trådskaparen eller beatmapägaren kan lösa en diskussion.',
         ],
 
         'store' => [
@@ -31,7 +31,7 @@ return [
         ],
 
         'vote' => [
-            'bot' => "Kan inte rösta på diskussion gjord av bot",
+            'bot' => "Kan inte rösta på en diskussion gjord av en bot",
             'limit_exceeded' => 'Var god vänta innan du lägger fler röster',
             'owner' => "Kan inte rösta på din egen diskussion!",
             'wrong_beatmapset_state' => 'Kan endast rösta på diskussioner för väntande beatmaps.',
@@ -63,15 +63,20 @@ return [
     ],
 
     'chat' => [
+        'annnonce_only' => 'Denna kanal är endast för notiser.',
         'blocked' => 'Kan inte skicka meddelanden till en användare som blockerar dig eller som du har blockerat.',
         'friends_only' => 'Användaren blockerar meddelanden från personer som inte finns på sin vänlista.',
         'moderated' => 'Den kanalen är för närvarande modererad.',
         'no_access' => 'Du har ingen behörighet till denna kanalen.',
+        'receive_friends_only' => 'Användaren kanske inte kan svara eftersom du bara accepterar meddelanden från personer på din vänlista.',
         'restricted' => 'Du kan inte skicka meddelanden medan du är tystad, begränsad eller bannad.',
         'silenced' => 'Du kan inte skicka meddelanden medan du är tystad, begränsad eller bannad.',
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => 'Kommentarer har inaktiverats',
+        ],
         'update' => [
             'deleted' => "Kan ej redigera raderade inlägg.",
         ],
@@ -163,6 +168,13 @@ return [
 
         'view' => [
             'admin_only' => 'Endast administratörer kan se detta forum.',
+        ],
+    ],
+
+    'score' => [
+        'pin' => [
+            'not_owner' => 'Endast resultatägaren kan fästa resultat.',
+            'too_many' => 'Fäst för många resultat.',
         ],
     ],
 

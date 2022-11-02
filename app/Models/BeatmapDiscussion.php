@@ -40,6 +40,10 @@ class BeatmapDiscussion extends Model
 {
     use Validatable;
 
+    protected $attributes = [
+        'resolved' => false,
+    ];
+
     protected $casts = [
         'kudosu_denied' => 'boolean',
         'resolved' => 'boolean',
@@ -67,7 +71,7 @@ class BeatmapDiscussion extends Model
     // FIXME: This and other static search functions should be extracted out.
     public static function search($rawParams = [])
     {
-        $pagination = pagination($rawParams);
+        $pagination = pagination(cursor_from_params($rawParams) ?? $rawParams);
 
         $params = [
             'limit' => $pagination['limit'],
@@ -381,17 +385,6 @@ class BeatmapDiscussion extends Model
         return $this->fill([
             'timestamp' => $this->startingPost->timestamp() ?? null,
         ])->saveOrExplode();
-    }
-
-    /**
-     * To get the correct result, this should be called before discussions are updated, as it checks the open problems count.
-     */
-    public function shouldNotifyQualifiedProblem(?string $event): bool
-    {
-        return $this->beatmapset->isQualified() && (
-            $event === BeatmapsetEvent::ISSUE_REOPEN
-            || $event === null && !$this->exists && $this->isProblem()
-        ) && $this->beatmapset->beatmapDiscussions()->openProblems()->count() === 0;
     }
 
     public function fixBeatmapsetId()

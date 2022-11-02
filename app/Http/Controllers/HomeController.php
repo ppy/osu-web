@@ -30,7 +30,7 @@ class HomeController extends Controller
 
         $this->middleware('require-scopes:public', ['only' => 'search']);
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function bbcodePreview()
@@ -83,11 +83,6 @@ class HomeController extends Controller
     public function messageUser($user)
     {
         return ujs_redirect(route('chat.index', ['sendto' => $user]));
-    }
-
-    public function osuSupportPopup()
-    {
-        return ext_view('objects._popup_support_osu');
     }
 
     public function quickSearch()
@@ -177,12 +172,12 @@ class HomeController extends Controller
 
     public function supportTheGame()
     {
-        if (Auth::check()) {
-            $user = Auth::user();
+        $user = auth()->user();
 
+        if ($user !== null) {
             // current status
-            $expiration = optional($user->osu_subscriptionexpiry)->addDays(1);
-            $current = $expiration !== null ? $expiration->isFuture() : false;
+            $expiration = $user->osu_subscriptionexpiry?->addDays(1);
+            $current = $expiration?->isFuture() ?? false;
 
             // purchased
             $tagPurchases = $user->supporterTagPurchases;
@@ -214,14 +209,12 @@ class HomeController extends Controller
                     ->pluck('timestamp')
                     ->first();
 
-                if ($lastTagPurchaseDate === null) {
-                    $lastTagPurchaseDate = $expiration->copy()->subMonths(1);
-                }
+                $lastTagPurchaseDate ??= $expiration->copy()->subMonths(1);
 
-                $total = $expiration->diffInDays($lastTagPurchaseDate);
+                $total = max(1, $expiration->diffInDays($lastTagPurchaseDate));
                 $used = $lastTagPurchaseDate->diffInDays();
 
-                $supporterStatus['remainingRatio'] = 100 - round($used / $total * 100, 2);
+                $supporterStatus['remainingPercent'] = 100 - round($used / $total * 100, 2);
             }
         }
 

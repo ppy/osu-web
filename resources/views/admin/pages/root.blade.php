@@ -19,15 +19,6 @@
             </li>
         </ul>
 
-        <h2 class="title">{{ osu_trans('admin.pages.root.sections.store') }}</h2>
-        <ul>
-            <li>
-                <a href="{{ route('admin.store.orders.index') }}">
-                    {{ osu_trans('admin.store.orders.index.title') }}
-                </a>
-            </li>
-        </ul>
-
         <h2 class="title">{{ osu_trans('admin.pages.root.sections.forum') }}</h2>
         <ul>
             <li>

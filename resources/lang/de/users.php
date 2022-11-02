@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Du hast diesen Benutzer geblockt.',
+        'comment_text' => 'Dieser Kommentar ist ausgeblendet.',
         'blocked_count' => 'geblockte benutzer (:count)',
         'hide_profile' => 'Profil verbergen',
+        'hide_comment' => 'ausblenden',
         'not_blocked' => 'Dieser Benutzer ist nicht geblockt.',
         'show_profile' => 'Profil anzeigen',
+        'show_comment' => 'anzeigen',
         'too_many' => 'Block-Limit erreicht.',
         'button' => [
             'block' => 'Blocken',
@@ -83,7 +86,7 @@ return [
     'login' => [
         '_' => 'Login',
         'button' => 'Einloggen',
-        'button_posting' => 'Einloggen...',
+        'button_posting' => 'Logge ein...',
         'email_login_disabled' => 'Das Anmelden per E-Mail ist derzeit deaktiviert. Bitte benutze stattdessen Deinen Benutzernamen.',
         'failed' => 'Falscher Login',
         'forgot' => 'Passwort vergessen?',
@@ -159,6 +162,10 @@ return [
             '_' => ':link abgegeben',
             'count' => ':count_delimited Kommentar|:count_delimited Kommentare',
         ],
+        'cover' => [
+            'to_0' => 'Cover verbergen',
+            'to_1' => 'Cover anzeigen',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Profilbanner ändern',
@@ -204,6 +211,9 @@ return [
                 'graveyard' => [
                     'title' => 'Begrabene Beatmaps',
                 ],
+                'guest' => [
+                    'title' => 'Als Gast beigetragene Beatmaps',
+                ],
                 'loved' => [
                     'title' => 'Loved Beatmaps',
                 ],
@@ -228,7 +238,7 @@ return [
                 'title' => 'Historisch',
 
                 'monthly_playcounts' => [
-                    'title' => 'Play-Verlauf',
+                    'title' => 'Spielverlauf',
                     'count_label' => 'Spiele',
                 ],
                 'most_played' => [
@@ -301,8 +311,8 @@ return [
                 'recent' => 'Neueste',
                 'title' => 'Medaillen',
             ],
-            'multiplayer' => [
-                'title' => 'Mehrspielerspiele',
+            'playlists' => [
+                'title' => 'Playlist-Spiele',
             ],
             'posts' => [
                 'title' => 'Beiträge',
@@ -311,6 +321,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Neulich',
+            ],
+            'realtime' => [
+                'title' => 'Mehrspieler-Spiele',
             ],
             'top_ranks' => [
                 'download_replay' => 'Replay herunterladen',
@@ -324,6 +337,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Erster Platz',
+                ],
+                'pin' => [
+                    'to_0' => 'Ablösen',
+                    'to_0_done' => 'Score abgelöst',
+                    'to_1' => 'Anpinnen',
+                    'to_1_done' => 'Score angepinnt',
+                ],
+                'pinned' => [
+                    'title' => 'Angepinnte Scores',
                 ],
             ],
             'votes' => [
@@ -350,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Bann',
                         'silence' => 'Silence',
+                        'tournament_ban' => 'Turniersperre',
                         'note' => 'Warnung',
                     ],
                 ],
@@ -378,7 +401,7 @@ return [
             'placeholder' => 'Seiteninhalt hier eingeben',
 
             'restriction_info' => [
-                '_' => 'Sie müssen ein :link sein, um diese Funktion freizuschalten.',
+                '_' => 'Du musst ein :link sein, um diese Funktion freizuschalten.',
                 'link' => 'osu!supporter',
             ],
         ],
@@ -391,6 +414,7 @@ return [
             'country_simple' => 'Landesrangliste',
             'global' => 'Globaler Rang im Modus :mode',
             'global_simple' => 'Globale Rangliste',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Genauigkeit',
@@ -406,7 +430,7 @@ return [
             'total_hits' => 'Anzahl Treffer',
             'total_score' => 'Gesamtpunktzahl',
             // modding stats
-            'graveyard_beatmapset_count' => 'Begrabende Beatmaps',
+            'graveyard_beatmapset_count' => 'Begrabene Beatmaps',
             'loved_beatmapset_count' => 'Loved Beatmaps',
             'pending_beatmapset_count' => 'Ausstehende Beatmaps',
             'ranked_beatmapset_count' => 'Ranked & Approved Beatmaps',

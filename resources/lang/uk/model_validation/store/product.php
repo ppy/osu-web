@@ -4,8 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'insufficient_stock' => 'Даний товар відсутній у потрібній кількості!',
+    'insufficient_stock' => 'Наразі товар відсутній в таких наявностях!',
     'must_separate' => 'Цей товар має бути виділений окремо від інших',
-    'not_available' => 'Цей товар недоступний.',
-    'too_many' => 'Ви можете замовити тільки: count шт. цього товару за раз.',
+    'not_available' => 'Товар недоступний.',
+    'too_many' => 'Ви можете замовити лише :count одиниць цього товару за раз.',
 ];

@@ -2,9 +2,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { discussionTypeIcons } from 'beatmap-discussions/discussion-type';
-import BeatmapJsonExtended from 'interfaces/beatmap-json-extended';
-import { Cancelable, throttle } from 'lodash';
-import { Portal } from 'portal';
+import { Portal } from 'components/portal';
+import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
+import { throttle } from 'lodash';
 import * as React from 'react';
 import { Editor as SlateEditor, Element as SlateElement, Node as SlateNode, Point, Text as SlateText, Transforms } from 'slate';
 import { ReactEditor } from 'slate-react';
@@ -12,7 +12,7 @@ import { nextVal } from 'utils/seq';
 import { SlateContext } from './slate-context';
 
 interface Props {
-  currentBeatmap: BeatmapJsonExtended;
+  currentBeatmap: BeatmapExtendedJson;
 }
 
 export class EditorInsertionMenu extends React.Component<Props> {
@@ -26,11 +26,11 @@ export class EditorInsertionMenu extends React.Component<Props> {
   private readonly insertRef: React.RefObject<HTMLDivElement> = React.createRef();
   private mouseOver = false;
   private scrollContainer: HTMLElement | undefined;
-  private readonly throttledContainerMouseExit: (() => void) & Cancelable;
-  private readonly throttledContainerMouseMove: ((event: JQuery.MouseMoveEvent) => void) & Cancelable;
-  private readonly throttledMenuMouseEnter: (() => void) & Cancelable;
-  private readonly throttledMenuMouseExit: (() => void) & Cancelable;
-  private readonly throttledScroll: (() => void) & Cancelable;
+  private readonly throttledContainerMouseExit;
+  private readonly throttledContainerMouseMove;
+  private readonly throttledMenuMouseEnter;
+  private readonly throttledMenuMouseExit;
+  private readonly throttledScroll;
 
   constructor(props: Props) {
     super(props);
@@ -154,7 +154,7 @@ export class EditorInsertionMenu extends React.Component<Props> {
   };
 
   private insertBlock = (event: React.MouseEvent<HTMLElement>) => {
-    const ed: ReactEditor = this.context;
+    const ed = this.context;
     const slateNodeElement = this.hoveredBlock?.lastChild;
     const type = event.currentTarget.dataset.discussionType;
     const beatmapId = this.props.currentBeatmap?.id;
@@ -242,7 +242,7 @@ export class EditorInsertionMenu extends React.Component<Props> {
         title={osu.trans(`beatmaps.discussions.review.insert-block.${type}`)}
         type='button'
       >
-        <i className={icon}/>
+        <i className={icon} />
       </button>
     );
   };

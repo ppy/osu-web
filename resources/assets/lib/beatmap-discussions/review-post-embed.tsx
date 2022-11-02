@@ -2,8 +2,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { discussionTypeIcons } from 'beatmap-discussions/discussion-type';
-import { BeatmapIcon } from 'beatmap-icon';
+import { BeatmapIcon } from 'components/beatmap-icon';
 import * as React from 'react';
+import { format, formatTimestamp, startingPost } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { BeatmapsContext } from './beatmaps-context';
 import { DiscussionsContext } from './discussions-context';
@@ -27,6 +28,12 @@ export const ReviewPostEmbed = ({ data }: Props) => {
         <div className={`${bn}__missing`}>{osu.trans('beatmaps.discussions.review.embed.missing')}</div>
       </div>
     );
+  }
+
+  const post = startingPost(discussion);
+  if (post.system) {
+    console.error('embed should not have system starting post', discussion.id);
+    return null;
   }
 
   const beatmap = discussion.beatmap_id == null ? undefined : beatmaps[discussion.beatmap_id];
@@ -58,7 +65,7 @@ export const ReviewPostEmbed = ({ data }: Props) => {
     <div className={`${bn}__timestamp-text`}>
       {
         discussion.timestamp !== null
-          ? BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp)
+          ? formatTimestamp(discussion.timestamp)
           : osu.trans('beatmap_discussions.timestamp_display.general')
       }
     </div>
@@ -87,7 +94,7 @@ export const ReviewPostEmbed = ({ data }: Props) => {
       <div className={`${bn}__content`}>
         <div className={`${bn}__selectors`}>
           <div className='icon-dropdown-menu icon-dropdown-menu--disabled'>
-            {beatmap != null && <BeatmapIcon beatmap={beatmap} />}
+            {beatmap != null && <BeatmapIcon beatmap={beatmap} withTooltip />}
             {!discussion.beatmap_id &&
               <i className='fas fa-fw fa-star-of-life' title={osu.trans('beatmaps.discussions.mode.scopes.generalAll')} />
             }
@@ -103,7 +110,7 @@ export const ReviewPostEmbed = ({ data }: Props) => {
         </div>
         <div className={`${bn}__stripe`} />
         <div className={`${bn}__message-container`}>
-          <div className={`${bn}__body`} dangerouslySetInnerHTML={{ __html: BeatmapDiscussionHelper.format((discussion.starting_post || discussion.posts[0]).message) }} />
+          <div className={`${bn}__body`} dangerouslySetInnerHTML={{ __html: format(post.message) }} />
         </div>
         {parentLink()}
       </div>

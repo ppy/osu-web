@@ -11,8 +11,16 @@ return [
         'rule_violation' => '',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => '',
+    ],
+
+    'featured_artist_badge' => [
+        'label' => '',
     ],
 
     'index' => [
@@ -117,6 +125,7 @@ return [
             'language' => 'Γλώσσα',
             'no_scores' => 'Τα δεδομένα ακόμα υπολογίζονται...',
             'nsfw' => '',
+            'offset' => '',
             'points-of-failure' => 'Σημεία Αποτυχίας',
             'source' => 'Προέλευση',
             'storyboard' => '',
@@ -139,6 +148,7 @@ return [
         'scoreboard' => [
             'achieved' => 'επετεύχθη :when',
             'country' => 'Κατάταξη στη Χώρα',
+            'error' => '',
             'friend' => 'Κατάταξη στους Φίλους',
             'global' => 'Παγκόσμια Κατάταξη',
             'supporter-link' => 'Κάντε κλικ <a href=":link">εδώ</a> για να δείτε όλες τις φοβερές δυνατότητες που μπορείτε να αποκτήσετε!',
@@ -150,11 +160,12 @@ return [
                 'combo' => 'Μέγιστο Combo',
                 'miss' => 'Αστοχίες',
                 'mods' => 'Mods',
+                'pin' => '',
                 'player' => 'Παίκτης',
                 'pp' => '',
                 'rank' => 'Κατάταξη',
-                'score_total' => 'Συνολικό Σκορ',
                 'score' => 'Σκορ',
+                'score_total' => 'Συνολικό Σκορ',
                 'time' => '',
             ],
 
@@ -169,6 +180,10 @@ return [
                 'first' => 'Προηγείται',
                 'own' => 'Το καλύτερό σας',
             ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
+            ],
         ],
 
         'stats' => [
@@ -182,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Αριθμός Κύκλων',
             'count_sliders' => 'Αριθμός Sliders',
+            'offset' => '',
             'user-rating' => 'Βαθμολόγηση Χρηστών',
             'rating-spread' => 'Εύρος Βαθμολογίας',
             'nominations' => 'Υποψηφιότητες',
@@ -197,5 +213,9 @@ return [
             'pending' => '',
             'graveyard' => '',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

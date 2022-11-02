@@ -33,24 +33,27 @@ return [
 
     'blocks' => [
         'banner_text' => 'Bạn đã chặn người dùng này.',
+        'comment_text' => 'Bình luận này bị ẩn.',
         'blocked_count' => 'người dùng đã bị chặn (:count)',
-        'hide_profile' => 'ẩn trang cá nhân',
+        'hide_profile' => 'Ẩn trang cá nhân',
+        'hide_comment' => 'ẩn',
         'not_blocked' => 'Người dùng này chưa bị chặn.',
-        'show_profile' => 'hiển thị trang cá nhân',
+        'show_profile' => 'Hiển thị trang cá nhân',
+        'show_comment' => 'hiện',
         'too_many' => 'Đã đạt giới hạn số người bị chặn.',
         'button' => [
-            'block' => 'chặn',
-            'unblock' => 'bỏ chặn',
+            'block' => 'Chặn',
+            'unblock' => 'Bỏ chặn',
         ],
     ],
 
     'card' => [
         'loading' => 'Đang tải...',
-        'send_message' => 'gửi tin nhắn',
+        'send_message' => 'Gửi tin nhắn',
     ],
 
     'disabled' => [
-        'title' => 'Hỏng rồi! Có vẻ tài khoản của bạn đã bị vô hiệu hóa.',
+        'title' => 'Ôi không! Có vẻ tài khoản của bạn đã bị vô hiệu hóa.',
         'warning' => "",
 
         'if_mistake' => [
@@ -71,12 +74,12 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => '',
+        'by_game_mode' => 'Thành viên theo chế độ chơi',
     ],
 
     'force_reactivation' => [
         'reason' => [
-            'inactive_different_country' => "",
+            'inactive_different_country' => "Tài khoản của bạn đã không sử dụng trong một thời gian dài.",
         ],
     ],
 
@@ -128,7 +131,7 @@ return [
 
         'options' => [
             'cheating' => 'Chơi xấu / Gian lận',
-            'multiple_accounts' => '',
+            'multiple_accounts' => 'Sử dụng nhiều tài khoản',
             'insults' => 'Xúc phạm tôi / những người khác',
             'spam' => 'Spamming',
             'unwanted_content' => 'Có những nội dung không phù hợp',
@@ -138,7 +141,7 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Tài khoản của bạn đã bị hạn chế!',
-        'message' => 'Trong khi bị hạn chế, Bạn sẽ không thể tương tác với những người chơi khác và chỉ có bạn thấy được điểm của bạn. Đây thường là kết quả của một quá trình từ động và thường sẽ được gỡ bỏ trong vòng 24 giờ. Nếu bạn muốn kháng nghị về sự hạn chế này, vui lòng <a href="mailto:accounts@ppy.sh">liên hệ hỗ trợ</a>.',
+        'message' => 'Trong khi bị hạn chế, Bạn sẽ không thể tương tác với những người chơi khác và chỉ có bạn thấy được điểm của bạn. Đây thường là kết quả của một quá trình tự động và thường sẽ được gỡ bỏ trong vòng 24 giờ. Nếu bạn muốn kháng nghị về sự hạn chế này, vui lòng <a href="mailto:accounts@ppy.sh">liên hệ hỗ trợ</a>.',
     ],
     'show' => [
         'age' => ':age tuổi',
@@ -146,7 +149,7 @@ return [
         'first_members' => 'Ở đây kể từ khi bắt đầu',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
-        'joined_at' => 'Đã tham gia :date',
+        'joined_at' => 'Đã tham gia vào :date',
         'lastvisit' => 'Lần cuối hoạt động :date',
         'lastvisit_online' => 'Hiện đang trực tuyến',
         'missingtext' => 'Có thể bạn đã thực hiện một lỗi đánh máy! (hoặc người dùng này có thể đã bị ban)',
@@ -157,7 +160,11 @@ return [
 
         'comments_count' => [
             '_' => 'Đã đăng :link',
-            'count' => '',
+            'count' => ':count_delimited bình luận|:count_delimited bình luận',
+        ],
+        'cover' => [
+            'to_0' => 'Ẩn ảnh bìa',
+            'to_1' => 'Hiện ảnh bìa',
         ],
         'edit' => [
             'cover' => [
@@ -204,11 +211,14 @@ return [
                 'graveyard' => [
                     'title' => 'Graveyarded Beatmaps',
                 ],
+                'guest' => [
+                    'title' => '',
+                ],
                 'loved' => [
                     'title' => 'Loved Beatmaps',
                 ],
                 'pending' => [
-                    'title' => 'Beatmap Đang Chờ (:count)',
+                    'title' => 'Beatmap Đang Chờ',
                 ],
                 'ranked' => [
                     'title' => 'Beatmap Được Xếp Hạng & Được Chấp Nhận',
@@ -289,7 +299,7 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => '',
+                    '_' => 'Dựa trên bao nhiêu đóng góp mà người dùng cho việc điều phối beatmap. Xem :link để biết thêm thông tin.',
                     'link' => 'trang này',
                 ],
             ],
@@ -301,7 +311,7 @@ return [
                 'recent' => 'Gần Nhất',
                 'title' => 'Huy Chương',
             ],
-            'multiplayer' => [
+            'playlists' => [
                 'title' => '',
             ],
             'posts' => [
@@ -312,6 +322,9 @@ return [
             'recent_activity' => [
                 'title' => 'Gần Đây',
             ],
+            'realtime' => [
+                'title' => 'Màn chơi nhiều người chơi',
+            ],
             'top_ranks' => [
                 'download_replay' => 'Tải Xuống Replay',
                 'not_ranked' => 'Chỉ có beatmap được xếp hạng mới có pp.',
@@ -320,18 +333,27 @@ return [
                 'title' => 'Xếp Hạng',
 
                 'best' => [
-                    'title' => 'Thực Hiện Tốt Nhất',
+                    'title' => 'Thành tích tốt nhất',
                 ],
                 'first' => [
                     'title' => 'Xếp Hạng Nhất',
+                ],
+                'pin' => [
+                    'to_0' => 'Gỡ ghim',
+                    'to_0_done' => 'Điểm gỡ ghim',
+                    'to_1' => 'Ghim',
+                    'to_1_done' => 'Điểm được ghim',
+                ],
+                'pinned' => [
+                    'title' => 'Điểm Được Ghim',
                 ],
             ],
             'votes' => [
                 'given' => '',
                 'received' => '',
-                'title' => '',
-                'title_longer' => '',
-                'vote_count' => '',
+                'title' => 'Phiếu',
+                'title_longer' => 'Phiếu gần đây',
+                'vote_count' => ':count_delimited bình chọn|:count_delimited bình chọn',
             ],
             'account_standing' => [
                 'title' => 'Trạng Thái Tài Khoản',
@@ -350,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Ban',
                         'silence' => 'Im lặng',
+                        'tournament_ban' => 'Cấm thi đấu',
                         'note' => 'Ghi chú',
                     ],
                 ],
@@ -378,8 +401,8 @@ return [
             'placeholder' => 'Nhập nội dung trang vào đây',
 
             'restriction_info' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Bạn cần trở thành một :link để mở khoá tính năng này.',
+                'link' => 'osu!supporter',
             ],
         ],
         'post_count' => [
@@ -391,6 +414,7 @@ return [
             'country_simple' => 'Hạng Quốc Gia',
             'global' => 'Hạng quốc tế cho :mode',
             'global_simple' => 'Hạng Toàn Cầu',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Độ Chính Xác',
@@ -398,24 +422,24 @@ return [
             'level_progress' => 'Tiến độ qua level tiếp theo',
             'maximum_combo' => 'Combo Cao Nhất',
             'medals' => 'Huy Chương',
-            'play_count' => 'Số Lần Chơi',
-            'play_time' => 'Tổng Thời Gian Chơi',
+            'play_count' => 'Số lần chơi',
+            'play_time' => 'Tổng thời gian chơi',
             'ranked_score' => 'Điểm Được Xếp Hạng',
             'replays_watched_by_others' => 'Replay Được Xem',
-            'score_ranks' => 'Điểm Số',
+            'score_ranks' => 'Thứ hạng điểm',
             'total_hits' => 'Tổng Lần Bấm',
-            'total_score' => 'Tổng Điểm',
+            'total_score' => 'Tổng điểm',
             // modding stats
-            'graveyard_beatmapset_count' => '',
-            'loved_beatmapset_count' => '',
-            'pending_beatmapset_count' => '',
-            'ranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => 'Các beatmap bị đắp mộ',
+            'loved_beatmapset_count' => 'Các beatmap được yêu thích',
+            'pending_beatmapset_count' => 'Beatmap Đang Chờ',
+            'ranked_beatmapset_count' => 'Các beatmap được xếp hạng',
         ],
     ],
 
     'silenced_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'Bạn đang bị Im lặng.',
+        'message' => 'Một vài hành động có thể sẽ không thực hiện được.',
     ],
 
     'status' => [
@@ -431,8 +455,8 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => '',
-        'card' => '',
-        'list' => '',
+        'brick' => 'Xem kiểu gạch',
+        'card' => 'Xem kiểu thẻ',
+        'list' => 'Xem kiểu danh sách',
     ],
 ];

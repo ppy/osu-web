@@ -127,6 +127,55 @@ return [
             'previous' => '10 beiträge zurückgehen',
         ],
 
+        'logs' => [
+            '_' => 'Thread-Protokolle',
+            'button' => 'Thread-Protokolle durchsuchen',
+
+            'columns' => [
+                'action' => 'Maßnahme',
+                'date' => 'Datum',
+                'user' => 'Benutzer',
+            ],
+
+            'data' => [
+                'add_tag' => 'tag ":tag" hinzugefügt',
+                'announcement' => 'thread angeheftet und als ankündigung markiert',
+                'edit_topic' => 'nach :title',
+                'fork' => 'von :topic',
+                'pin' => 'thread angeheftet',
+                'post_operation' => 'gepostet von :username',
+                'remove_tag' => 'tag ":tag" entfernt',
+                'source_forum_operation' => 'von :forum',
+                'unpin' => 'thread losgelöst',
+            ],
+
+            'no_results' => 'keine protokolle gefunden...',
+
+            'operations' => [
+                'delete_post' => 'Beitrag gelöscht',
+                'delete_topic' => 'Thread gelöscht',
+                'edit_topic' => 'Thread-Titel geändert',
+                'edit_poll' => 'Thread-Umfrage bearbeitet',
+                'fork' => 'Thread kopiert',
+                'issue_tag' => 'Tag erstellt',
+                'lock' => 'Thread gesperrt',
+                'merge' => 'Beiträge zu diesem Thread hinzugefügt',
+                'move' => 'Thread verschoben',
+                'pin' => 'Thread angeheftet',
+                'post_edited' => 'Beitrag bearbeitet',
+                'restore_post' => 'Beitrag wiederhergestellt',
+                'restore_topic' => 'Thread wiederhergestellt',
+                'split_destination' => 'Aufgeteilte Beiträge verschoben',
+                'split_source' => 'Beiträge aufgeteilt',
+                'topic_type' => 'Thread-Typ festgelegt',
+                'topic_type_changed' => 'Thread-Typ geändert',
+                'unlock' => 'Thread entsperrt',
+                'unpin' => 'Thread losgelöst',
+                'user_lock' => 'Eigenen Thread gesperrt',
+                'user_unlock' => 'Eigenen Thread entsperrt',
+            ],
+        ],
+
         'post_edit' => [
             'cancel' => 'Abbrechen',
             'post' => 'Speichern',

@@ -31,6 +31,12 @@ return [
         'progress' => [
             '_' => 'โหวตแล้ว :used / :max',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => '',
+            ],
+        ],
     ],
     'entry' => [
         '_' => 'รายการ',
@@ -44,6 +50,7 @@ return [
             'beatmap' => 'เฉพาะไฟล์นามสกุล .osu เท่านั้นที่สามารถส่งเข้าประกวดได้',
             'music' => 'เฉพาะไฟล์นามสกุล .mp3 เท่านั้นที่สามารถส่งเข้าประกวดได้',
         ],
+        'wrong_dimensions' => '',
         'too_big' => 'งานประกวดครั้งนี้สามารถส่งได้มากสุด :limit งาน',
     ],
     'beatmaps' => [

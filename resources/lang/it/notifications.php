@@ -69,8 +69,8 @@ return [
                 'beatmapset_rank_compact' => 'La beatmap è stata classificata',
                 'beatmapset_remove_from_loved' => '":title" è stato rimossa da Loved',
                 'beatmapset_remove_from_loved_compact' => 'La beatmap è stata rimossa dalle amate',
-                'beatmapset_reset_nominations' => 'La nomina di ":title" è stata reimpostata',
-                'beatmapset_reset_nominations_compact' => 'La nomina è stata reimpostata',
+                'beatmapset_reset_nominations' => 'La nomina di ":title" è stata resettata',
+                'beatmapset_reset_nominations_compact' => 'La nomina è stata resettata',
             ],
 
             'comment' => [
@@ -86,8 +86,19 @@ return [
         'channel' => [
             '_' => 'Chat',
 
+            'announcement' => [
+                '_' => 'Nuovo annuncio',
+
+                'announce' => [
+                    'channel_announcement' => ':username dice ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Annuncio da :username',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Nuovo messaggio',
+
                 'pm' => [
                     'channel_message' => ':username ha scritto ":title"',
                     'channel_message_compact' => ':title',
@@ -148,6 +159,9 @@ return [
                 'user_beatmapset_new' => 'Nuova beatmap ":title" di :username',
                 'user_beatmapset_new_compact' => 'Nuova beatmap ":title"',
                 'user_beatmapset_new_group' => 'Nuove beatmap di :username',
+
+                'user_beatmapset_revive' => 'Beatmap ":title" rianimata da :username',
+                'user_beatmapset_revive_compact' => 'Beatmap ":title" rianimata',
             ],
         ],
 
@@ -226,6 +240,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username ha creato nuove beatmap',
+                'user_beatmapset_revive' => ':username ha resuscitato delle beatmap',
             ],
         ],
     ],

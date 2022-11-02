@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Έχετε μπλοκάρει αυτόν τον χρήστη.',
+        'comment_text' => '',
         'blocked_count' => 'μπλοκαρισμένοι χρήστες (:count)',
         'hide_profile' => 'απόκρυψη προφίλ',
+        'hide_comment' => '',
         'not_blocked' => 'Αυτός ο χρήστης δεν είναι μπλοκαρισμένος.',
         'show_profile' => 'εμφάνιση προφίλ',
+        'show_comment' => '',
         'too_many' => 'Φτάσατε το όριο μπλοκαρισμάτων.',
         'button' => [
             'block' => 'μπλοκάρισμα',
@@ -159,6 +162,10 @@ return [
             '_' => '',
             'count' => '',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Αλλάξτε το Εξώφυλλο του Προφίλ σας',
@@ -203,6 +210,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Παρατημένα Beatmaps',
+                ],
+                'guest' => [
+                    'title' => '',
                 ],
                 'loved' => [
                     'title' => 'Loved Beatmaps',
@@ -301,7 +311,7 @@ return [
                 'recent' => 'Πρόσφατα',
                 'title' => 'Μετάλλια',
             ],
-            'multiplayer' => [
+            'playlists' => [
                 'title' => '',
             ],
             'posts' => [
@@ -311,6 +321,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Πρόσφατα',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'Λήψη Επανάληψης',
@@ -324,6 +337,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Πρώτες Θέσεις',
+                ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
                 ],
             ],
             'votes' => [
@@ -350,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Αποκλεισμός',
                         'silence' => 'Σίγαση',
+                        'tournament_ban' => '',
                         'note' => 'Σημείωση',
                     ],
                 ],
@@ -391,6 +414,7 @@ return [
             'country_simple' => 'Εθνική Κατάταξη',
             'global' => 'Παγκόσμια κατάταξη για το :mode',
             'global_simple' => 'Παγκόσμια Κατάταξη',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Ακρίβεια Ευστοχίας',

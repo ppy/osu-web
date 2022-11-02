@@ -1,13 +1,14 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import DifficultyBadge from 'difficulty-badge';
+import BeatmapListItem from 'components/beatmap-list-item';
+import { Portal } from 'components/portal';
 import BeatmapJson from 'interfaces/beatmap-json';
 import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
+import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
-import { Portal } from 'portal';
 import * as React from 'react';
 import { TransitionStatus } from 'react-transition-group';
 import { classWithModifiers } from 'utils/css';
@@ -40,34 +41,40 @@ const ItemRow = observer(({ beatmap }: { beatmap: BeatmapJson }) => (
     className='beatmaps-popup-item'
     href={route('beatmaps.show', { beatmap: beatmap.id })}
   >
-    <span className='beatmaps-popup-item__col beatmaps-popup-item__col--mode'>
-      <span className={`fal fa-extra-mode-${beatmap.mode}`} />
-    </span>
-    <DifficultyBadge rating={beatmap.difficulty_rating} />
-    <span className='beatmaps-popup-item__col beatmaps-popup-item__col--name u-ellipsis-overflow'>
-      {beatmap.version}
-    </span>
+    <BeatmapListItem beatmap={beatmap} />
   </a>
 ));
 
 @observer
 export default class BeatmapsPopup extends React.Component<Props> {
   contentRef = React.createRef<HTMLDivElement>();
+  @observable position = {
+    left: '0px',
+    top: '0px',
+    width: '0px',
+  };
+
+  constructor(props: Props) {
+    super(props);
+    makeObservable(this);
+  }
+
+  componentDidMount() {
+    $(window).on('resize', this.updatePosition);
+  }
+
+  componentWillUnmount() {
+    $(window).off('resize', this.updatePosition);
+  }
 
   render() {
+    this.updatePosition();
     const style: React.CSSProperties = {
       opacity: 0,
       transitionDuration: `${this.props.transitionDuration}ms`,
       ...beatmapsPopupTransitionStyles[this.props.state],
+      ...this.position,
     };
-
-    if (this.props.parent != null) {
-      const parentRects = this.props.parent.getBoundingClientRect();
-
-      style.top = `${window.scrollY + parentRects.bottom}px`;
-      style.left = `${window.scrollX + parentRects.left}px`;
-      style.width = `${parentRects.width}px`;
-    }
 
     return (
       <Portal>
@@ -87,4 +94,17 @@ export default class BeatmapsPopup extends React.Component<Props> {
       </Portal>
     );
   }
+
+  @action
+  private readonly updatePosition = () => {
+    const parent = this.props.parent;
+
+    if (parent == null) return;
+
+    const parentRects = parent.getBoundingClientRect();
+
+    this.position.top = `${window.scrollY + parentRects.bottom}px`;
+    this.position.left = `${window.scrollX + parentRects.left}px`;
+    this.position.width = `${parentRects.width}px`;
+  };
 }

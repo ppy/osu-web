@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Du har blokkerte denne brukeren.',
+        'comment_text' => '',
         'blocked_count' => 'blokkerte brukere (:count)',
         'hide_profile' => 'Skjul profil',
+        'hide_comment' => '',
         'not_blocked' => 'Den brukeren er ikke blokkert.',
         'show_profile' => 'Vis profil',
+        'show_comment' => '',
         'too_many' => 'Maks antall blokkerte personer nådd.',
         'button' => [
             'block' => 'Blokker',
@@ -128,7 +131,7 @@ return [
 
         'options' => [
             'cheating' => 'Lureri / Juks',
-            'multiple_accounts' => '',
+            'multiple_accounts' => 'Bruker flere kontoer',
             'insults' => 'Fornærmer meg / andre',
             'spam' => 'Spamming',
             'unwanted_content' => 'Deling av upassende innhold',
@@ -158,6 +161,10 @@ return [
         'comments_count' => [
             '_' => '',
             'count' => '',
+        ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
         ],
         'edit' => [
             'cover' => [
@@ -203,6 +210,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => 'Gravlagte Beatmaps',
+                ],
+                'guest' => [
+                    'title' => '',
                 ],
                 'loved' => [
                     'title' => 'Elskede Beatmaps',
@@ -301,7 +311,7 @@ return [
                 'recent' => 'Nyeste',
                 'title' => 'Medaljer',
             ],
-            'multiplayer' => [
+            'playlists' => [
                 'title' => '',
             ],
             'posts' => [
@@ -311,6 +321,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Nylige',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'Last ned Reprise',
@@ -324,6 +337,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Førsteplasser',
+                ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
                 ],
             ],
             'votes' => [
@@ -350,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Utestengelse',
                         'silence' => 'Forstummet',
+                        'tournament_ban' => '',
                         'note' => 'Merknad',
                     ],
                 ],
@@ -391,6 +414,7 @@ return [
             'country_simple' => 'Landsrangering',
             'global' => 'Global rangering for :mode',
             'global_simple' => 'Global Rangering',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Presisjon',

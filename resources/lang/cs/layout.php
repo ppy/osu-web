@@ -5,34 +5,38 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Přehrát další skladbu automaticky',
     ],
 
     'defaults' => [
-        'page_description' => 'osu! - Rytmus je jen o klkání! Spolu s Ouendan/EBA, Taikem, originálními herními módy a plně funkčním level editorem.',
+        'page_description' => 'osu! - Rytmus je na dosah jen jednoho *kliknutí*! Spolu s Ouendan/EBA, Taikem, originálními herními módy a také plně funkčním level editorem.',
     ],
 
     'header' => [
         'admin' => [
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
+            'beatmapset' => 'beatmapset',
+            'beatmapset_covers' => 'překrytí beatmapsetu',
             'contest' => 'soutěž',
             'contests' => 'soutěže',
             'root' => 'konzole',
-            'store_orders' => '',
         ],
 
         'artists' => [
-            'index' => '',
+            'index' => 'seznam',
+        ],
+
+        'beatmapsets' => [
+            'show' => 'info',
+            'discussions' => 'diskuze',
         ],
 
         'changelog' => [
-            'index' => '',
+            'index' => 'výpis',
         ],
 
         'help' => [
             'index' => 'index',
-            'sitemap' => '',
+            'sitemap' => 'Mapa stránek',
         ],
 
         'store' => [
@@ -42,70 +46,50 @@ return [
         ],
 
         'tournaments' => [
-            'index' => '',
+            'index' => 'seznam',
         ],
 
         'users' => [
             'modding' => 'módování',
-            'multiplayer' => '',
+            'playlists' => 'playlisty',
+            'realtime' => 'multiplayer',
             'show' => 'informace',
         ],
     ],
 
     'gallery' => [
         'close' => 'Zavřít (Esc)',
-        'fullscreen' => '',
+        'fullscreen' => 'Přepnout režim celé obrazovky',
         'zoom' => 'Přiblížit/Oddálit',
-        'previous' => '',
-        'next' => '',
+        'previous' => 'Předchozí (šipka vlevo)',
+        'next' => 'Další (šipka vpravo)',
     ],
 
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmapy',
-            'artists' => 'featured artists',
-            'index' => 'výpis',
-            'packs' => 'balíčky',
         ],
         'community' => [
             '_' => 'komunita',
-            'chat' => 'chat',
-            'contests' => 'soutěže',
             'dev' => 'vývoj',
-            'forum-forums-index' => 'fórum',
-            'getLive' => 'živě',
-            'tournaments' => 'turnaje',
         ],
         'help' => [
             '_' => 'nápověda',
-            'getAbuse' => '',
+            'getAbuse' => 'nahlásit zneužití',
             'getFaq' => 'časté dotazy',
             'getRules' => 'pravidla',
             'getSupport' => 'ne, vážně, potřebuji pomoc!',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'domů',
-            'changelog-index' => 'seznam změn',
-            'getDownload' => 'stáhnout',
-            'news-index' => 'novinky',
-            'search' => 'hledat',
             'team' => 'tým',
         ],
         'rankings' => [
             '_' => 'žebříček',
-            'charts' => 'výběr',
-            'country' => 'země',
-            'index' => 'výkon',
             'kudosu' => 'kudosu',
-            'multiplayer' => '',
-            'score' => 'skóre',
         ],
         'store' => [
             '_' => 'obchod',
-            'cart-show' => 'košík',
-            'getListing' => 'zboží',
-            'orders-index' => 'historie objednávek',
         ],
     ],
 
@@ -119,11 +103,11 @@ return [
         ],
         'help' => [
             '_' => 'Nápověda & Komunita',
-            'faq' => 'Často kladené dotazy',
+            'faq' => 'Často kladené otázky',
             'forum' => 'Komunitní fóra',
             'livestreams' => 'Živá vysílání',
             'report' => 'Náhlasit chybu',
-            'wiki' => '',
+            'wiki' => 'Wiki',
         ],
         'legal' => [
             '_' => 'Právní záležitosti & Stav serveru',
@@ -137,7 +121,7 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => 'Neplatný parametr požadavku',
             'description' => '',
         ],
         '404' => [
@@ -157,11 +141,11 @@ return [
             'description' => "Omlouvám se, ale požadovaná stránka není nalezena!",
         ],
         '422' => [
-            'error' => '',
+            'error' => 'Neplatný parametr požadavku',
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => 'Překročen limit',
             'description' => '',
         ],
         '500' => [
@@ -185,12 +169,12 @@ return [
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => 'přihlásit se / vytvořit účet',
 
         'login' => [
             'forgot' => "Zapomněl jsem své údaje",
             'password' => 'heslo',
-            'title' => 'Pro pokračování se přihlašte',
+            'title' => 'Pro pokračování se přihlaste',
             'username' => 'uživatelské jméno',
 
             'error' => [
@@ -201,7 +185,7 @@ return [
 
         'register' => [
             'download' => 'Stáhnout',
-            'info' => 'Potřebujete účet, pane. Proč již jeden nemáte?',
+            'info' => 'Stáhněte si osu! pro vytvoření vlastního účtu!',
             'title' => "Nemáte účet?",
         ],
     ],
@@ -209,7 +193,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Nastavení',
-            'follows' => '',
+            'follows' => 'Sledované položky',
             'friends' => 'Přátelé',
             'logout' => 'Odhlásit se',
             'profile' => 'Můj profil',

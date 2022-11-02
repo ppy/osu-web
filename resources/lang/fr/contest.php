@@ -31,6 +31,12 @@ return [
         'progress' => [
             '_' => ':used / :max votes utilisés',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => 'Doit jouer toutes les beatmaps dans les playlists spécifiées avant de voter',
+            ],
+        ],
     ],
     'entry' => [
         '_' => 'inscription',
@@ -44,6 +50,7 @@ return [
             'beatmap' => 'Seuls les fichiers .osu sont acceptés pour ce concours.',
             'music' => 'Seuls les fichiers .mp3 sont acceptés pour ce concours.',
         ],
+        'wrong_dimensions' => '',
         'too_big' => 'Les entrées pour le concours sont limitées à :limit.',
     ],
     'beatmaps' => [
@@ -65,7 +72,7 @@ return [
     ],
     'states' => [
         'entry' => 'Entrée ouverte',
-        'voting' => 'Vote démarré',
+        'voting' => 'En cours de vote',
         'results' => 'Résultats tombés',
     ],
 ];

@@ -127,6 +127,55 @@ return [
             'previous' => 'go back 10 posts',
         ],
 
+        'logs' => [
+            '_' => '',
+            'button' => '',
+
+            'columns' => [
+                'action' => '',
+                'date' => 'วันที่',
+                'user' => 'ผู้ใช้',
+            ],
+
+            'data' => [
+                'add_tag' => 'เพิ่มแท็ก ":tag" แล้ว',
+                'announcement' => '',
+                'edit_topic' => 'ถึง :title',
+                'fork' => 'จาก :topic',
+                'pin' => 'หัวข้อที่ปักหมุดไว้',
+                'post_operation' => 'โพสต์โดย :username',
+                'remove_tag' => 'ลบแท็ก ":tag" แล้ว',
+                'source_forum_operation' => 'จาก :forum',
+                'unpin' => 'หัวข้อที่ไม่ปักหมุดไว้',
+            ],
+
+            'no_results' => '',
+
+            'operations' => [
+                'delete_post' => '',
+                'delete_topic' => '',
+                'edit_topic' => '',
+                'edit_poll' => '',
+                'fork' => '',
+                'issue_tag' => '',
+                'lock' => '',
+                'merge' => '',
+                'move' => '',
+                'pin' => '',
+                'post_edited' => '',
+                'restore_post' => '',
+                'restore_topic' => '',
+                'split_destination' => '',
+                'split_source' => '',
+                'topic_type' => '',
+                'topic_type_changed' => '',
+                'unlock' => '',
+                'unpin' => '',
+                'user_lock' => '',
+                'user_unlock' => '',
+            ],
+        ],
+
         'post_edit' => [
             'cancel' => 'ยกเลิก',
             'post' => 'บันทึก',

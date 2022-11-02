@@ -15,7 +15,7 @@ return [
     'result' => [
         'empty' => 'Aucun résultat',
         'empty_for' => 'Aucun résultat pour :modes',
-        'more' => 'Plus de résultats de recherche de :mode',
-        'title' => 'Résultats de recherche de :mode',
+        'more' => 'Plus de résultats de recherche :mode',
+        'title' => 'Résultats de recherche :mode',
     ],
 ];

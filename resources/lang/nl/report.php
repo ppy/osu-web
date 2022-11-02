@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'beatmapset' => [
+        'button' => 'Rapporteer',
+        'title' => 'Rapporteer :username\'s beatmap?',
+    ],
+
     'beatmapset_discussion_post' => [
         'button' => 'Rapporteer',
         'title' => 'Rapporteer :username\'s bericht?',

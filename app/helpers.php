@@ -7,6 +7,18 @@ use App\Libraries\LocaleMeta;
 use App\Models\LoginAttempt;
 use Illuminate\Support\HtmlString;
 
+function api_version(): int
+{
+    $request = request();
+    $version = $request->attributes->get('api_version');
+    if ($version === null) {
+        $version = get_int($request->header('x-api-version')) ?? 0;
+        $request->attributes->set('api_version', $version);
+    }
+
+    return $version;
+}
+
 /*
  * Like array_search but returns null if not found instead of false.
  * Strict mode only.
@@ -141,7 +153,7 @@ function cache_expire_with_fallback(string $key, int $duration = 2592000)
         return;
     }
 
-    $data['expires_at'] = now()->addHour(-1);
+    $data['expires_at'] = now()->addHours(-1);
     Cache::put($fullKey, $data, $duration);
 }
 
@@ -172,23 +184,33 @@ function captcha_triggered()
     return $triggered;
 }
 
-function class_with_modifiers(string $className, ?array $modifiers = null)
+function class_modifiers_each(array $modifiersArray, callable $callback)
+{
+    foreach ($modifiersArray as $modifiers) {
+        if (is_array($modifiers)) {
+            // either "$modifier => boolean" or "$i => $modifier|null"
+            foreach ($modifiers as $k => $v) {
+                if (is_bool($v)) {
+                    if ($v) {
+                        $callback($k);
+                    }
+                } elseif ($v !== null) {
+                    $callback($v);
+                }
+            }
+        } elseif (is_string($modifiers)) {
+            $callback($modifiers);
+        }
+    }
+}
+
+function class_with_modifiers(string $className, ...$modifiersArray)
 {
     $class = $className;
 
-    if ($modifiers !== null) {
-        if (isset($modifiers[0])) {
-            foreach ($modifiers as $modifier) {
-                $class .= " {$className}--{$modifier}";
-            }
-        } else {
-            foreach ($modifiers as $modifier => $enabled) {
-                if ($enabled === true) {
-                    $class .= " {$className}--{$modifier}";
-                }
-            }
-        }
-    }
+    class_modifiers_each($modifiersArray, function ($m) use (&$class, $className) {
+        $class .= " {$className}--{$m}";
+    });
 
     return $class;
 }
@@ -250,29 +272,71 @@ function current_locale_meta(): LocaleMeta
     return locale_meta(app()->getLocale());
 }
 
+function cursor_decode($cursorString): ?array
+{
+    if (is_string($cursorString) && present($cursorString)) {
+        $cursor = json_decode(base64_decode(strtr($cursorString, '-_', '+/'), true), true);
+
+        if (is_array($cursor)) {
+            return $cursor;
+        }
+    }
+
+    return null;
+}
+
+function cursor_encode(?array $cursor): ?string
+{
+    if ($cursor === null) {
+        return null;
+    }
+
+    // url safe base64
+    // reference: https://datatracker.ietf.org/doc/html/rfc4648#section-5
+    return rtrim(strtr(base64_encode(json_encode($cursor)), '+/', '-_'), '=');
+}
+
+function cursor_for_response(?array $cursor): array
+{
+    return [
+        'cursor' => $cursor,
+        'cursor_string' => cursor_encode($cursor),
+    ];
+}
+
+function cursor_from_params($params): ?array
+{
+    if (is_array($params)) {
+        $cursor = cursor_decode($params['cursor_string'] ?? null) ?? $params['cursor'] ?? null;
+
+        if (is_array($cursor)) {
+            return $cursor;
+        }
+    }
+
+    return null;
+}
+
 function datadog_timing(callable $callable, $stat, array $tag = null)
 {
-    $withClockwork = app('clockwork.support')->isEnabled();
+    $startTime = microtime(true);
 
-    if ($withClockwork) {
+    $result = $callable();
+
+    $endTime = microtime(true);
+
+    if (app('clockwork.support')->isEnabled()) {
         // spaces used so clockwork doesn't run across the whole screen.
         $description = $stat
                        .' '.($tag['type'] ?? null)
                        .' '.($tag['index'] ?? null);
 
-        clock()->event($description)->start();
+        $clockworkEvent = clock()->event($description);
+        $clockworkEvent->start = $startTime;
+        $clockworkEvent->end = $endTime;
     }
 
-    $start = microtime(true);
-
-    $result = $callable();
-
-    if ($withClockwork) {
-        clock()->event($description)->end();
-    }
-
-    $duration = microtime(true) - $start;
-    Datadog::microtiming($stat, $duration, 1, $tag);
+    Datadog::microtiming($stat, $endTime - $startTime, 1, $tag);
 
     return $result;
 }
@@ -405,6 +469,25 @@ function markdown($input, $preset = 'default')
     return $converter[$preset]->load($input)->html();
 }
 
+function markdown_chat($input)
+{
+    static $converter;
+
+    if (!isset($converter)) {
+        $environment = new League\CommonMark\Environment\Environment([
+            'allow_unsafe_links' => false,
+            'max_nesting_level' => 20,
+            'renderer' => ['soft_break' => '<br />'],
+        ]);
+
+        $environment->addExtension(new App\Libraries\Markdown\Chat\Extension());
+
+        $converter = new League\CommonMark\MarkdownConverter($environment);
+    }
+
+    return $converter->convertToHtml($input)->getContent();
+}
+
 function markdown_plain($input)
 {
     static $converter;
@@ -416,7 +499,7 @@ function markdown_plain($input)
         ]);
     }
 
-    return $converter->convertToHtml($input);
+    return $converter->convertToHtml($input)->getContent();
 }
 
 function max_offset($page, $limit)
@@ -739,14 +822,37 @@ function page_description($extra)
     return blade_safe(implode(' » ', array_map('e', $parts)));
 }
 
+// sync with pageTitleMap in header-v4.tsx
 function page_title()
 {
     $currentRoute = app('route-section')->getCurrent();
     $checkLocale = config('app.fallback_locale');
+
+    $actionKey = "{$currentRoute['namespace']}.{$currentRoute['controller']}.{$currentRoute['action']}";
+    $actionKey = match ($actionKey) {
+        'forum.topic_watches_controller.index' => 'main.home_controller.index',
+        'main.account_controller.edit' => 'main.home_controller.index',
+        'main.beatmapset_watches_controller.index' => 'main.home_controller.index',
+        'main.follows_controller.index' => 'main.home_controller.index',
+        'main.friends_controller.index' => 'main.home_controller.index',
+        default => $actionKey,
+    };
+    $controllerKey = "{$currentRoute['namespace']}.{$currentRoute['controller']}._";
+    $controllerKey = match ($controllerKey) {
+        'main.artist_tracks_controller._' => 'main.artists_controller._',
+        'main.store_controller._' => 'store._',
+        'multiplayer.rooms_controller._' => 'main.ranking_controller._',
+        default => $controllerKey,
+    };
+    $namespaceKey = "{$currentRoute['namespace']}._";
+    $namespaceKey = match ($namespaceKey) {
+        'admin_forum._' => 'admin._',
+        default => $namespaceKey,
+    };
     $keys = [
-        "page_title.{$currentRoute['namespace']}.{$currentRoute['controller']}.{$currentRoute['action']}",
-        "page_title.{$currentRoute['namespace']}.{$currentRoute['controller']}._",
-        "page_title.{$currentRoute['namespace']}._",
+        "page_title.{$actionKey}",
+        "page_title.{$controllerKey}",
+        "page_title.{$namespaceKey}",
     ];
 
     foreach ($keys as $key) {
@@ -862,9 +968,16 @@ function post_url($topicId, $postId, $jumpHash = true, $tail = false)
     return $url;
 }
 
+function wiki_image_url(string $path, bool $fullUrl = true)
+{
+    static $placeholder = '_WIKI_IMAGE_';
+
+    return str_replace($placeholder, $path, route('wiki.image', ['path' => $placeholder], $fullUrl));
+}
+
 function wiki_url($path = null, $locale = null, $api = null, $fullUrl = true)
 {
-    $path = $path === null ? 'Main_Page' : str_replace('%2F', '/', rawurlencode($path));
+    $path = $path === null ? 'Main_Page' : str_replace(['%2F', '%23'], ['/', '#'], rawurlencode($path));
 
     $params = [
         'path' => 'WIKI_PATH',
@@ -952,44 +1065,44 @@ function nav_links()
 
     $links['home'] = [
         '_' => route('home'),
-        'news-index' => route('news.index'),
-        'team' => wiki_url('Team'),
-        'changelog-index' => route('changelog.index'),
-        'getDownload' => route('download'),
-        'search' => route('search'),
+        'page_title.main.news_controller._' => route('news.index'),
+        'layout.menu.home.team' => wiki_url('Team'),
+        'page_title.main.changelog_controller._' => route('changelog.index'),
+        'page_title.main.home_controller.get_download' => route('download'),
+        'page_title.main.home_controller.search' => route('search'),
     ];
     $links['beatmaps'] = [
-        'index' => route('beatmapsets.index'),
-        'artists' => route('artists.index'),
-        'packs' => route('packs.index'),
+        'page_title.main.beatmapsets_controller.index' => route('beatmapsets.index'),
+        'page_title.main.artists_controller._' => route('artists.index'),
+        'page_title.main.beatmap_packs_controller._' => route('packs.index'),
     ];
     $links['rankings'] = [
-        'index' => route('rankings', ['mode' => $defaultMode, 'type' => 'performance']),
-        'charts' => route('rankings', ['mode' => $defaultMode, 'type' => 'charts']),
-        'score' => route('rankings', ['mode' => $defaultMode, 'type' => 'score']),
-        'country' => route('rankings', ['mode' => $defaultMode, 'type' => 'country']),
-        'multiplayer' => route('multiplayer.rooms.show', ['room' => 'latest']),
-        'kudosu' => osu_url('rankings.kudosu'),
+        'rankings.type.performance' => route('rankings', ['mode' => $defaultMode, 'type' => 'performance']),
+        'rankings.type.charts' => route('rankings', ['mode' => $defaultMode, 'type' => 'charts']),
+        'rankings.type.score' => route('rankings', ['mode' => $defaultMode, 'type' => 'score']),
+        'rankings.type.country' => route('rankings', ['mode' => $defaultMode, 'type' => 'country']),
+        'rankings.type.multiplayer' => route('multiplayer.rooms.show', ['room' => 'latest']),
+        'layout.menu.rankings.kudosu' => osu_url('rankings.kudosu'),
     ];
     $links['community'] = [
-        'forum-forums-index' => route('forum.forums.index'),
-        'chat' => route('chat.index'),
-        'contests' => route('contests.index'),
-        'tournaments' => route('tournaments.index'),
-        'getLive' => route('livestreams.index'),
-        'dev' => osu_url('dev'),
+        'page_title.forum._' => route('forum.forums.index'),
+        'page_title.main.chat_controller._' => route('chat.index'),
+        'page_title.main.contests_controller._' => route('contests.index'),
+        'page_title.main.tournaments_controller._' => route('tournaments.index'),
+        'page_title.main.livestreams_controller._' => route('livestreams.index'),
+        'layout.menu.community.dev' => osu_url('dev'),
     ];
     $links['store'] = [
-        'getListing' => action('StoreController@getListing'),
-        'cart-show' => route('store.cart.show'),
-        'orders-index' => route('store.orders.index'),
+        'layout.header.store.products' => route('store.products.index'),
+        'layout.header.store.cart' => route('store.cart.show'),
+        'layout.header.store.orders' => route('store.orders.index'),
     ];
     $links['help'] = [
-        'getWiki' => wiki_url('Main_Page'),
-        'getFaq' => wiki_url('FAQ'),
-        'getRules' => wiki_url('Rules'),
-        'getAbuse' => wiki_url('Reporting_Bad_Behaviour/Abuse'),
-        'getSupport' => wiki_url('Help_Centre'),
+        'page_title.main.wiki_controller._' => wiki_url('Main_Page'),
+        'layout.menu.help.getFaq' => wiki_url('FAQ'),
+        'layout.menu.help.getRules' => wiki_url('Rules'),
+        'layout.menu.help.getAbuse' => wiki_url('Reporting_Bad_Behaviour/Abuse'),
+        'layout.menu.help.getSupport' => wiki_url('Help_Centre'),
     ];
 
     return $links;
@@ -1098,14 +1211,20 @@ function i18n_date($datetime, $format = IntlDateFormatter::LONG, $pattern = null
 
 function i18n_number_format($number, $style = null, $pattern = null, $precision = null, $locale = null)
 {
-    $formatter = NumberFormatter::create(
-        $locale ?? App::getLocale(),
-        $style ?? NumberFormatter::DEFAULT_STYLE,
-        $pattern
-    );
+    if ($style === null && $pattern === null && $precision === null) {
+        static $formatters = [];
+        $locale ??= App::getLocale();
+        $formatter = $formatters[$locale] ??= new NumberFormatter($locale, NumberFormatter::DEFAULT_STYLE);
+    } else {
+        $formatter = new NumberFormatter(
+            $locale ?? App::getLocale(),
+            $style ?? NumberFormatter::DEFAULT_STYLE,
+            $pattern
+        );
 
-    if ($precision !== null) {
-        $formatter->setAttribute(NumberFormatter::FRACTION_DIGITS, $precision);
+        if ($precision !== null) {
+            $formatter->setAttribute(NumberFormatter::FRACTION_DIGITS, $precision);
+        }
     }
 
     return $formatter->format($number);
@@ -1171,7 +1290,7 @@ function json_item($model, $transformer, $includes = null)
 
 function fast_imagesize($url)
 {
-    $result = Cache::remember("imageSize:{$url}", Carbon\Carbon::now()->addMonth(1), function () use ($url) {
+    $result = Cache::remember("imageSize:{$url}", Carbon\Carbon::now()->addMonths(1), function () use ($url) {
         $curl = curl_init($url);
         curl_setopt_array($curl, [
             CURLOPT_HTTPHEADER => [
@@ -1251,6 +1370,47 @@ function get_int($string)
     }
 }
 
+function get_length($string): ?array
+{
+    static $scales = [
+        'ms' => 0.001,
+        's' => 1,
+        'm' => 60,
+        'h' => 3600,
+    ];
+
+    $string = get_string($string);
+
+    if ($string === null) {
+        return null;
+    }
+
+    $scaleKey = substr($string, -2);
+
+    if (!isset($scales[$scaleKey])) {
+        $scaleKey = substr($scaleKey, -1);
+    }
+
+    if (!isset($scales[$scaleKey])) {
+        $scaleKey = 's';
+        $string .= $scaleKey;
+    }
+
+    $value = get_float(substr($string, 0, -strlen($scaleKey)));
+
+    if ($value === null) {
+        return null;
+    }
+
+    $scale = $scales[$scaleKey] ?? 1;
+    $value *= $scale;
+
+    return [
+        'scale' => $scale,
+        'value' => $value,
+    ];
+}
+
 function get_file($input)
 {
     if ($input instanceof Symfony\Component\HttpFoundation\File\UploadedFile) {
@@ -1280,15 +1440,6 @@ function get_class_basename($className)
 function get_class_namespace($className)
 {
     return substr($className, 0, strrpos($className, '\\'));
-}
-
-function get_model_basename($model)
-{
-    if (!is_string($model)) {
-        $model = get_class($model);
-    }
-
-    return str_replace('\\', '', snake_case(substr($model, strlen('App\\Models\\'))));
 }
 
 function ci_file_search($fileName)
@@ -1335,13 +1486,17 @@ function get_param_value($input, $type)
         case 'array':
             return get_arr($input);
         case 'bool':
+        case 'boolean':
             return get_bool($input);
         case 'int':
             return get_int($input);
         case 'file':
             return get_file($input);
+        case 'number':
         case 'float':
             return get_float($input);
+        case 'length':
+            return get_length($input);
         case 'string':
             return get_string($input);
         case 'string_split':

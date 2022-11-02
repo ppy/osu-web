@@ -6,21 +6,30 @@
 namespace App\Models;
 
 use App\Exceptions\ModelNotSavedException;
+use App\Libraries\MorphMap;
 use App\Libraries\Transactions\AfterCommit;
 use App\Libraries\Transactions\AfterRollback;
 use App\Libraries\TransactionStateManager;
-use App\Traits\MacroableModel;
+use App\Scopes\MacroableModelScope;
+use Carbon\Carbon;
 use Exception;
+use Illuminate\Database\ClassMorphViolationException;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model as BaseModel;
 
 abstract class Model extends BaseModel
 {
-    use MacroableModel;
+    use HasFactory;
 
     protected $connection = 'mysql';
     protected $guarded = [];
     protected $macros;
     protected $primaryKeys;
+
+    public static function booted()
+    {
+        static::addGlobalScope(new MacroableModelScope());
+    }
 
     public function getForeignKey()
     {
@@ -29,6 +38,11 @@ abstract class Model extends BaseModel
         }
 
         return $this->primaryKey;
+    }
+
+    public function getKey()
+    {
+        return $this->getRawAttribute($this->primaryKey);
     }
 
     public function getMacros()
@@ -40,6 +54,24 @@ abstract class Model extends BaseModel
         ];
 
         return array_merge($this->macros ?? [], $baseMacros);
+    }
+
+    public function getMorphClass()
+    {
+        $className = static::class;
+
+        $ret = MorphMap::getType($className);
+
+        if ($ret !== null) {
+            return $ret;
+        }
+
+        throw new ClassMorphViolationException($this);
+    }
+
+    public function getRawAttribute(string $key)
+    {
+        return $this->attributes[$key] ?? null;
     }
 
     /**
@@ -85,7 +117,7 @@ abstract class Model extends BaseModel
     {
         return function ($baseQuery) {
             $query = clone $baseQuery;
-            $query->getQuery()->orders = null;
+            $query->unorder();
             $query->getQuery()->offset = null;
             $query->limit(null);
 
@@ -104,9 +136,7 @@ abstract class Model extends BaseModel
 
     public function scopeReorderBy($query, $field, $order)
     {
-        $query->getQuery()->orders = null;
-
-        return $query->orderBy($field, $order);
+        return $query->unorder()->orderBy($field, $order);
     }
 
     public function scopeOrderByField($query, $field, $ids)
@@ -127,6 +157,13 @@ abstract class Model extends BaseModel
     public function scopeNone($query)
     {
         $query->whereRaw('false');
+    }
+
+    public function scopeUnorder($query)
+    {
+        $query->getQuery()->orders = null;
+
+        return $query;
     }
 
     public function scopeWithPresent($query, $column)
@@ -177,6 +214,41 @@ abstract class Model extends BaseModel
         return ($includeDbPrefix ? $this->dbName().'.' : '').$this->getTable();
     }
 
+    /**
+     * Fast Time Attribute Getter (kind of)
+     *
+     * This is only usable for models with default dateFormat (`Y-m-d H:i:s`).
+     */
+    protected function getTimeFast(string $key): ?Carbon
+    {
+        $value = $this->getRawAttribute($key);
+
+        return $value === null
+            ? null
+            : Carbon::createFromFormat('Y-m-d H:i:s', $value);
+    }
+
+    /**
+     * Fast Time Attribute to Json Transformer
+     *
+     * Key must be suffixed with `_json`.
+     * This is only usable for models with default dateFormat (`Y-m-d H:i:s`).
+     */
+    protected function getJsonTimeFast(string $key): ?string
+    {
+        $value = $this->getRawAttribute(substr($key, 0, -5));
+
+        if ($value === null) {
+            return null;
+        }
+
+        // From: "2020-10-10 10:10:10"
+        // To: "2020-10-10T10:10:10Z"
+        $value[10] = 'T';
+
+        return "{$value}Z";
+    }
+
     // Allows save/update/delete to work with composite primary keys.
     // Note this doesn't fix 'find' method and a bunch of other laravel things
     // which rely on getKeyName and getKey (and they themselves are broken as well).
@@ -188,9 +260,15 @@ abstract class Model extends BaseModel
             }
 
             return $query;
-        } else {
-            return parent::setKeysForSaveQuery($query);
         }
+
+        return parent::setKeysForSaveQuery($query);
+    }
+
+    // same deal with setKeysForSaveQuery but for select query
+    protected function setKeysForSelectQuery($query)
+    {
+        return $this->setKeysForSaveQuery($query);
     }
 
     private function enlistCallbacks($model, $connection)

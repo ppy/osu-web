@@ -11,8 +11,16 @@ return [
         'rule_violation' => 'Alguns arquivos contidos neste mapa foram removidos depois de serem julgados como não sendo adequados para uso no osu!.',
     ],
 
+    'cover' => [
+        'deleted' => 'Beatmap excluído',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Vá devagar, jogue mais.',
+    ],
+
+    'featured_artist_badge' => [
+        'label' => 'Artista em destaque',
     ],
 
     'index' => [
@@ -117,6 +125,7 @@ return [
             'language' => 'Idioma',
             'no_scores' => 'Dados ainda sendo calculados...',
             'nsfw' => 'Conteúdo explícito',
+            'offset' => 'Atraso de áudio online',
             'points-of-failure' => 'Pontos de Falha',
             'source' => 'Fonte',
             'storyboard' => 'Este beatmap contém storyboard',
@@ -139,6 +148,7 @@ return [
         'scoreboard' => [
             'achieved' => 'conquistado :when',
             'country' => 'Ranking Nacional',
+            'error' => 'Falha ao carregar a classificação',
             'friend' => 'Ranking de Amigos',
             'global' => 'Ranking Global',
             'supporter-link' => 'Clique <a href=":link">aqui</a> para ver todas as novas funções às quais você ganha acesso!',
@@ -150,11 +160,12 @@ return [
                 'combo' => 'Combo Máximo',
                 'miss' => 'Erros',
                 'mods' => 'Mods',
+                'pin' => 'Fixar',
                 'player' => 'Jogador',
                 'pp' => '',
                 'rank' => 'Rank',
-                'score_total' => 'Pontuação Total',
                 'score' => 'Pontuação',
+                'score_total' => 'Pontuação Total',
                 'time' => 'Tempo',
             ],
 
@@ -169,6 +180,10 @@ return [
                 'first' => 'Na Liderança',
                 'own' => 'Seu Melhor',
             ],
+            'supporter_link' => [
+                '_' => 'Clique :here para ver todos os recursos que você ganhou!',
+                'here' => 'aqui',
+            ],
         ],
 
         'stats' => [
@@ -182,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Quantidade de Círculos',
             'count_sliders' => 'Quantidade de Sliders',
+            'offset' => 'Atraso de áudio online: :offset',
             'user-rating' => 'Avaliação',
             'rating-spread' => 'Gráfico de Avaliações',
             'nominations' => 'Nomeações',
@@ -197,5 +213,9 @@ return [
             'pending' => 'Pendente',
             'graveyard' => 'Cemitério',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => 'Destaque',
     ],
 ];

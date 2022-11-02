@@ -25,7 +25,7 @@ return [
             'featured-artists' => [
                 'title' => 'Featured Artists',
                 'description' => 'Với sự hỗ trợ của bạn, chúng tôi có thể tiếp cận thêm nhiều nghệ sĩ tuyệt vời hơn nữa và cấp phép cho âm nhạc tuyệt vời hơn để dùng trong osu!',
-                'link_text' => '',
+                'link_text' => 'Xem danh sách hiện hành &raquo;',
             ],
             'ads' => [
                 'title' => 'Giữ osu! tự duy trì',
@@ -51,7 +51,7 @@ return [
 
             'friend_ranking' => [
                 'title' => 'Xếp hạng bạn bè',
-                'description' => "",
+                'description' => "Xem cách bạn so tài với bạn bè của mình trên bảng xếp hạng của beatmap, cả trong trò chơi và trên trang web.",
             ],
 
             'country_ranking' => [
@@ -106,7 +106,7 @@ return [
 
             'skinnables' => [
                 'title' => 'Thêm Skin',
-                'description' => 'Thêm in-game skin, như là màn hình background ở menu chính.',
+                'description' => 'Thêm skin trong trò chơi, giống như hình nền ở bảng chọn chính.',
             ],
 
             'feature_votes' => [
@@ -120,7 +120,7 @@ return [
             ],
 
             'more_favourites' => [
-                'title' => '',
+                'title' => 'Thêm Yêu thích',
                 'description' => 'Lượng beatmap tối đa bạn có thể yêu thích được tăng từ :normally &rarr; :supporter',
             ],
             'more_friends' => [
@@ -133,7 +133,7 @@ return [
             ],
             'friend_filtering' => [
                 'title' => 'Bảng xếp hạng Bạn bè',
-                'description' => '',
+                'description' => 'Cạnh tranh với bạn bè của bạn và xem cách bạn xếp hạng so với họ!',
             ],
 
         ],

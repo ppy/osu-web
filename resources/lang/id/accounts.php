@@ -5,17 +5,16 @@
 
 return [
     'edit' => [
-        'title_compact' => 'pengaturan',
+        'title_compact' => 'pengaturan akun',
         'username' => 'nama pengguna',
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => 'Pastikan avatar Anda mematuhi :link yang berlaku.<br/>  Dengan kata lain, avatar Anda harus <strong>cocok untuk segala usia</strong> tanpa mengandung unsur-unsur yang tidak dibenarkan seperti cacian, hinaan, atau konten-konten yang bersifat sugestif.',
+            'rules' => 'Pastikan avatar Anda tunduk pada :link yang berlaku.<br/>Dengan kata lain, avatar Anda harus <strong>cocok untuk segala usia</strong> tanpa mengandung unsur apapun yang tidak dibenarkan seperti cacian, hinaan, atau hal yang bersifat sugestif.',
             'rules_link' => 'peraturan komunitas',
         ],
 
         'email' => [
-            'current' => 'email saat ini',
             'new' => 'email baru',
             'new_confirmation' => 'konfirmasi email',
             'title' => 'Email',
@@ -50,9 +49,9 @@ return [
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'terima notifikasi pada saat terdapat masalah baru pada beatmap yang berstatus Qualified pada mode',
         'beatmapset_disqualify' => 'terima notifikasi pada saat terdapat beatmap yang terdiskualifikasi pada mode',
-        'comment_reply' => 'terima notifikasi pada saat terdapat balasan baru pada komentar yang Anda kirim',
+        'comment_reply' => 'terima notifikasi pada saat terdapat balasan baru pada komentar Anda',
         'title' => 'Notifikasi',
-        'topic_auto_subscribe' => 'hidupkan notifikasi secara otomatis di topik forum baru yang Anda buat',
+        'topic_auto_subscribe' => 'aktifkan notifikasi secara otomatis untuk topik forum baru yang Anda buat',
 
         'options' => [
             '_' => 'kirimkan notifikasi melalui',
@@ -69,13 +68,13 @@ return [
     ],
 
     'oauth' => [
-        'authorized_clients' => 'klien yang memiliki akses',
+        'authorized_clients' => 'klien yang terizin',
         'own_clients' => 'klien yang Anda miliki',
         'title' => 'OAuth',
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => 'nonaktifkan peringatan untuk beatmap-beatmap yang mengandung konten eksplisit',
+        'beatmapset_show_nsfw' => 'nonaktifkan peringatan untuk beatmap yang mengandung konten eksplisit',
         'beatmapset_title_show_original' => 'tampilkan metadata beatmap dalam bahasa aslinya',
         'title' => 'Pengaturan',
 
@@ -97,17 +96,17 @@ return [
 
     'privacy' => [
         'friends_only' => 'Blokir pesan pribadi dari orang yang tidak ada dalam daftar teman Anda',
-        'hide_online' => 'sembunyikan keberadaan online Anda',
+        'hide_online' => 'sembunyikan status online Anda',
         'title' => 'Kebijakan Privasi',
     ],
 
     'security' => [
         'current_session' => 'saat ini',
         'end_session' => 'Akhiri Sesi',
-        'end_session_confirmation' => 'Aksi ini akan langsung mengakhiri sesi anda di perangkat tersebut. Apakah anda yakin?',
+        'end_session_confirmation' => 'Tindakan ini akan secara otomatis mengakhiri sesi Anda pada perangkat yang bersangkutan. Apakah Anda yakin?',
         'last_active' => 'Terakhir aktif:',
         'title' => 'Keamanan',
-        'web_sessions' => 'web session',
+        'web_sessions' => 'sesi web',
     ],
 
     'update_email' => [
@@ -124,6 +123,6 @@ return [
     ],
 
     'verification_invalid' => [
-        'title' => 'Tautan verifikasi tidak valid atau kedaluwarsa',
+        'title' => 'Tautan verifikasi tidak valid atau sudah tidak berlaku',
     ],
 ];

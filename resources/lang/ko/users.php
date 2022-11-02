@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => '해당 유저를 차단했습니다.',
+        'comment_text' => '이 댓글은 숨겨진 상태입니다.',
         'blocked_count' => '차단된 유저 (:count)',
         'hide_profile' => '프로필 숨기기',
+        'hide_comment' => '숨기기',
         'not_blocked' => '해당 유저는 차단되어있지 않습니다.',
         'show_profile' => '프로필 표시',
+        'show_comment' => '보기',
         'too_many' => '차단 한계치에 도달했습니다.',
         'button' => [
             'block' => '차단',
@@ -145,7 +148,7 @@ return [
         'change_avatar' => '아바타를 바꾸세요!',
         'first_members' => 'osu!의 초창기부터 함께한 유저',
         'is_developer' => 'osu!developer',
-        'is_supporter' => 'osu!supporter',
+        'is_supporter' => 'osu! 서포터',
         'joined_at' => ':date에 가입',
         'lastvisit' => ':date에 마지막으로 접속',
         'lastvisit_online' => '현재 온라인',
@@ -158,6 +161,10 @@ return [
         'comments_count' => [
             '_' => ':link 작성됨',
             'count' => '댓글 :count_delimited개',
+        ],
+        'cover' => [
+            'to_0' => '커버 숨기기',
+            'to_1' => '커버 표시',
         ],
         'edit' => [
             'cover' => [
@@ -203,6 +210,9 @@ return [
                 ],
                 'graveyard' => [
                     'title' => '무덤에 간 비트맵',
+                ],
+                'guest' => [
+                    'title' => '게스트 참여 비트맵',
                 ],
                 'loved' => [
                     'title' => 'Loved 비트맵',
@@ -301,8 +311,8 @@ return [
                 'recent' => '최근 획득',
                 'title' => '메달',
             ],
-            'multiplayer' => [
-                'title' => '멀티플레이 게임',
+            'playlists' => [
+                'title' => '플레이리스트 게임',
             ],
             'posts' => [
                 'title' => '게시글',
@@ -311,6 +321,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => '최근 활동',
+            ],
+            'realtime' => [
+                'title' => '멀티플레이어 게임',
             ],
             'top_ranks' => [
                 'download_replay' => '리플레이 다운로드',
@@ -324,6 +337,15 @@ return [
                 ],
                 'first' => [
                     'title' => '1위 달성 맵',
+                ],
+                'pin' => [
+                    'to_0' => '고정 해제',
+                    'to_0_done' => '고정되지 않은 점수',
+                    'to_1' => '고정',
+                    'to_1_done' => '고정 점수',
+                ],
+                'pinned' => [
+                    'title' => '고정 점수',
                 ],
             ],
             'votes' => [
@@ -350,6 +372,7 @@ return [
                     'actions' => [
                         'restriction' => 'Ban',
                         'silence' => '침묵',
+                        'tournament_ban' => '토너먼트 차단',
                         'note' => '알림',
                     ],
                 ],
@@ -368,7 +391,7 @@ return [
             'reason_1' => '사용자명이 변경되었을 가능성이 있습니다.',
             'reason_2' => '보안 혹은 남용 문제 때문에 일시적으로 이 계정을 사용할 수 없습니다.',
             'reason_3' => '오타가 있나봐요!',
-            'reason_header' => '이에 대한 몇 가지 이유가 있습니다:',
+            'reason_header' => '아래 이유로 인해 발생했을 가능성이 있어요:',
             'title' => '사용자를 찾을 수 없습니다! ;_;',
         ],
         'page' => [
@@ -391,6 +414,7 @@ return [
             'country_simple' => '국가 순위',
             'global' => ':mode 세계 순위',
             'global_simple' => '세계 순위',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => '정확도',

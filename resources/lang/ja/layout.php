@@ -19,11 +19,15 @@ return [
             'contest' => 'コンテスト',
             'contests' => 'コンテスト',
             'root' => 'コンソール',
-            'store_orders' => 'ストア管理者',
         ],
 
         'artists' => [
             'index' => '一覧',
+        ],
+
+        'beatmapsets' => [
+            'show' => '詳細',
+            'discussions' => 'ディスカッション',
         ],
 
         'changelog' => [
@@ -47,7 +51,8 @@ return [
 
         'users' => [
             'modding' => 'modding',
-            'multiplayer' => 'マルチプレイヤー',
+            'playlists' => 'プレイリスト',
+            'realtime' => 'マルチプレイヤー',
             'show' => '詳細',
         ],
     ],
@@ -63,18 +68,10 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'ビートマップ',
-            'artists' => '注目アーティスト',
-            'index' => '一覧',
-            'packs' => 'パック',
         ],
         'community' => [
             '_' => 'コミュニティ',
-            'chat' => 'チャット',
-            'contests' => 'コンテスト',
             'dev' => '開発',
-            'forum-forums-index' => 'フォーラム',
-            'getLive' => '配信',
-            'tournaments' => 'トーナメント',
         ],
         'help' => [
             '_' => 'ヘルプ',
@@ -82,30 +79,17 @@ return [
             'getFaq' => 'FAQ',
             'getRules' => 'ルール',
             'getSupport' => 'サポートが必要です！',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'ホーム',
-            'changelog-index' => '更新履歴',
-            'getDownload' => 'ダウンロード',
-            'news-index' => 'お知らせ',
-            'search' => '検索',
             'team' => 'osu!team',
         ],
         'rankings' => [
             '_' => 'ランキング',
-            'charts' => 'スポットライト',
-            'country' => '国別',
-            'index' => 'パフォーマンス',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'マルチプレイヤー',
-            'score' => 'スコア',
         ],
         'store' => [
             '_' => 'ストア',
-            'cart-show' => 'カート',
-            'getListing' => '商品一覧',
-            'orders-index' => '注文履歴',
         ],
     ],
 
@@ -161,7 +145,7 @@ return [
             'description' => '',
         ],
         '429' => [
-            'error' => '試行可能回数の上限に達しました。',
+            'error' => 'レート制限に達しました',
             'description' => '',
         ],
         '500' => [

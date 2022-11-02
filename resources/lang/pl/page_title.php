@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'admin',
     ],
-    'admin_forum' => [
-        '_' => 'admin',
-    ],
-    'admin_store' => [
-        '_' => 'admin',
-    ],
     'error' => [
         'error' => [
             '400' => 'nieprawidłowe żądanie',
@@ -29,13 +23,12 @@ return [
     ],
     'forum' => [
         '_' => 'forum',
-        'topic_watches_controller' => [
-            'index' => 'strona główna',
+        'topic_logs_controller' => [
+            'index' => 'rejestry wątków',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'strona główna',
             'verify_link' => 'weryfikacja konta',
         ],
         'artists_controller' => [
@@ -56,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'historia beatmap',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'strona główna',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'dyskusja beatmapy',
             'index' => 'lista beatmap',
@@ -75,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => 'konkursy',
-        ],
-        'follows_controller' => [
-            'index' => 'strona główna',
-        ],
-        'friends_controller' => [
-            'index' => 'strona główna',
         ],
         'groups_controller' => [
             'show' => 'grupy',
@@ -116,9 +100,6 @@ return [
         'scores_controller' => [
             '_' => 'wynik',
         ],
-        'store_controller' => [
-            '_' => 'sklep',
-        ],
         'tournaments_controller' => [
             '_' => 'turnieje',
         ],
@@ -130,9 +111,9 @@ return [
             '_' => 'wiki',
         ],
     ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'rankingi',
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'autoryzuj aplikację',
         ],
     ],
     'store' => [

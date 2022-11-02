@@ -11,8 +11,16 @@ return [
         'rule_violation' => 'Część zawartości tej beatmapy została usunięta po uznaniu jej za nieodpowiednią do użycia w osu!.',
     ],
 
+    'cover' => [
+        'deleted' => 'Usunięta beatmapa',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Zwolnij, pograj więcej!',
+    ],
+
+    'featured_artist_badge' => [
+        'label' => 'Wyróżniony artysta',
     ],
 
     'index' => [
@@ -117,6 +125,7 @@ return [
             'language' => 'Język',
             'no_scores' => 'Dane są nadal ładowane...',
             'nsfw' => 'Treść dla pełnoletnich',
+            'offset' => 'Opóźnienie',
             'points-of-failure' => 'Wykres porażek',
             'source' => 'Źródło',
             'storyboard' => 'Ta beatmapa zawiera scenorys',
@@ -139,6 +148,7 @@ return [
         'scoreboard' => [
             'achieved' => 'osiągnięte :when',
             'country' => 'Ranking krajowy',
+            'error' => 'Nie udało się załadować rankingu',
             'friend' => 'Ranking znajomych',
             'global' => 'Ranking globalny',
             'supporter-link' => 'Kliknij <a href=":link">tutaj</a>, aby zobaczyć, jakie jeszcze funkcje otrzymasz w zamian za zakup statusu donatora!',
@@ -150,11 +160,12 @@ return [
                 'combo' => 'Combo',
                 'miss' => 'Pudła',
                 'mods' => 'Modyfikatory',
+                'pin' => 'Przypnij',
                 'player' => 'Gracz',
                 'pp' => '',
                 'rank' => 'Pozycja',
-                'score_total' => 'Wynik',
                 'score' => 'Wynik',
+                'score_total' => 'Wynik',
                 'time' => 'Data',
             ],
 
@@ -169,6 +180,10 @@ return [
                 'first' => 'Najlepszy wynik',
                 'own' => 'Twój wynik',
             ],
+            'supporter_link' => [
+                '_' => 'Kliknij :here, aby zobaczyć, jakie jeszcze funkcje otrzymasz!',
+                'here' => 'tutaj',
+            ],
         ],
 
         'stats' => [
@@ -182,6 +197,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Liczba kółek',
             'count_sliders' => 'Liczba sliderów',
+            'offset' => 'Opóźnienie: :offset',
             'user-rating' => 'Oceny użytkowników',
             'rating-spread' => 'Wykres ocen',
             'nominations' => 'Nominacje',
@@ -197,5 +213,9 @@ return [
             'pending' => 'Oczekująca',
             'graveyard' => 'Porzucona',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => 'Wyróżniona',
     ],
 ];

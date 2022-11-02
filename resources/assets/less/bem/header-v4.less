@@ -113,8 +113,8 @@
     }
 
     .@{_top}--users & {
-      opacity: 1;
-      .at2x-simple('~@images/headers/supporter.jpg');
+      opacity: 0.25;
+      filter: blur(50px);
     }
   }
 
@@ -157,12 +157,6 @@
       .@{_top}--supporter & {
         .large();
       }
-
-      .@{_top}--users & {
-        @media @desktop {
-          min-height: 320px;
-        }
-      }
     }
   }
 
@@ -189,6 +183,10 @@
 
     .@{_top}--beatmappacks & {
       background-image: url('~@images/icons/beatmappacks.svg');
+    }
+
+    .@{_top}--beatmapset & {
+      background-image: url('~@images/icons/beatmapsets.svg');
     }
 
     .@{_top}--beatmapsets & {
@@ -294,36 +292,19 @@
 
       @media @desktop {
         font-size: @font-size--large;
+        height: @header-title-height;
       }
     }
 
-    .@{_top}--users & {
-      padding-left: @gutter-profile-page;
-      padding-right: $padding-left;
-
+    .@{_top}--beatmapset & {
       @media @desktop {
-        padding-left: @gutter-profile-page-desktop;
+        padding-left: @gutter-beatmapset-desktop;
         padding-right: $padding-left;
       }
     }
   }
 
-  &__spinner {
-    .center-content();
-    .full-size();
-    font-size: 60px;
-    background-color: hsla(var(--hsl-b6), 0.5);
-    color: @osu-colour-c1;
-    display: none;
-
-    @media @desktop {
-      display: flex;
-    }
-  }
-
   &__title {
-    padding-top: 15px;
-    padding-bottom: 15px;
     display: none;
 
     @media @desktop {

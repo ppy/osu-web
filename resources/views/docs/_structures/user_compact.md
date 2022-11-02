@@ -29,7 +29,7 @@ is_online       | boolean                   | is the user currently online? (eit
 is_supporter    | boolean                   | does this user have supporter?
 last_visit      | [Timestamp](#timestamp)?  | last access time. `null` if the user hides online presence
 pm_friends_only | boolean                   | whether or not the user allows PM from other than friends
-profile_colour  | string                    | colour of username/profile highlight, hex code (e.g. `#333333`)
+profile_colour  | string?                   | colour of username/profile highlight, hex code (e.g. `#333333`)
 username        | string                    | user's display name
 
 <div id="usercompact-optionalattributes" data-unique="usercompact-optionalattributes"></div>
@@ -58,6 +58,7 @@ monthly_playcounts         | [UserMonthlyPlaycount](#usermonthlyplaycount)[]
 page                       | |
 pending_beatmapset_count   | |
 previous_usernames         | |
+rank_highest               | [RankHighest](#usercompact-rankhighest)?
 rank_history               | |
 ranked_beatmapset_count    | |
 replays_watched_counts     | |
@@ -81,6 +82,15 @@ id            | number      | |
 tournament_id | number      | |
 image         | string      | |
 
+<div id="usercompact-rankhighest" data-unique="usercompact-rankhighest"></div>
+
+### RankHighest
+
+Field      | Type
+-----------|-----
+rank       | number
+updated_at | [Timestamp](#timestamp)
+
 <div id="usercompact-useraccounthistory" data-unique="usercompact-useraccounthistory"></div>
 
 ### UserAccountHistory
@@ -88,9 +98,11 @@ image         | string      | |
 Field       | Type      | Description
 ------------|-----------|------------
 description | string?   | |
-type        | string    | `note`, `restriction`, or `silence`.
-timestamp   | Timestamp | |
+id          | number    | |
 length      | number    | In seconds.
+permanent   | boolean   | |
+timestamp   | Timestamp | |
+type        | string    | `note`, `restriction`, or `silence`.
 
 <div id="usercompact-userbadge" data-unique="usercompact-userbadge"></div>
 

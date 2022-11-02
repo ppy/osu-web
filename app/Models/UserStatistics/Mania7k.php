@@ -20,24 +20,7 @@ namespace App\Models\UserStatistics;
  * @property int $x_rank_count
  * @property int $xh_rank_count
  */
-class Mania7k extends Model
+class Mania7k extends VariantModel
 {
     protected $table = 'osu_user_stats_mania_7k';
-
-    // placeholder as the table is missing some columns
-    public $accuracy;
-    public $accuracy_count;
-    public $accuracy_total;
-    public $count100;
-    public $count300;
-    public $count50;
-    public $countMiss;
-    public $exit_count;
-    public $fail_count;
-    public $level;
-    public $max_combo;
-    public $rank;
-    public $ranked_score;
-    public $replay_popularity;
-    public $total_score;
 }

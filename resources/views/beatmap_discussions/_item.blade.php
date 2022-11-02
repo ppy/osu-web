@@ -16,10 +16,12 @@
     <div class="beatmap-discussion beatmap-discussion--single beatmapset-activities__post-grow{{ $discussion->trashed() ? ' beatmap-discussion--deleted' : ''}}">
         <div class="beatmap-discussion-timestamp__icons-container">
             <div class="beatmap-discussion-timestamp__icons">
-                <a href="{{ route('beatmapsets.discussion', $discussion->beatmapset) }}#/{{ $discussion->getKey() }}">
-                    <img class='beatmapset-cover'
-                        src="{{$discussion->beatmapset->coverURL('list')}}"
-                        srcSet="{{$discussion->beatmapset->coverURL('list')}} 1x, {{$discussion->beatmapset->coverURL('list@2x')}} 2x">
+                <a class="link link--no-underline" href="{{ route('beatmapsets.discussion', $discussion->beatmapset) }}#/{{ $discussion->getKey() }}">
+                    @include('objects._beatmapset_cover', [
+                        'beatmapset' => $discussion->beatmapset,
+                        'modifiers' => null,
+                        'size' => 'list',
+                    ])
                 </a>
                 <div class="beatmap-discussion-timestamp__icon beatmapset-activities__timeline-icon-margin">
                     <span class="beatmap-discussion-message-type beatmap-discussion-message-type--{{str_replace('_', '-', $discussion->message_type)}}">

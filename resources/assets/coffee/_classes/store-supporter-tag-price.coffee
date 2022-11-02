@@ -1,7 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-class @StoreSupporterTagPrice
+class window.StoreSupporterTagPrice
   @durationToPrice: (duration) ->
     duration = +duration
     switch
@@ -31,9 +31,6 @@ class @StoreSupporterTagPrice
       when @_price >= 8 then 2
       when @_price >= 4 then 1
       else 0
-
-  pricePerMonth: ->
-    osu.formatNumber(@_price / @duration(), 2)
 
   discount: ->
     if @duration() >= 12

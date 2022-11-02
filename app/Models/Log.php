@@ -14,6 +14,8 @@ namespace App\Models;
  * @property string $log_operation
  * @property int $log_time
  * @property int $log_type
+ * @property Forum\Post|null $post
+ * @property int|null $post_id
  * @property User $reportee
  * @property int $reportee_id
  * @property Forum\Topic $topic
@@ -52,9 +54,91 @@ class Log extends Model
         $this->attributes['log_data'] = serialize($value);
     }
 
+    public function dataForDisplay(): ?array
+    {
+        $logData = $this->log_data;
+        $logOperation = $this->log_operation;
+        $translationKey = $this->translationKey();
+
+        $params = [];
+
+        switch ($logOperation) {
+            case 'LOG_DELETED_POST':
+            case 'LOG_POST_EDITED':
+            case 'LOG_RESTORE_POST':
+                $post = $this->post;
+                $translationKey = 'post_operation';
+
+                if ($post === null && $logOperation !== 'LOG_POST_EDITED') {
+                    return null;
+                } else if ($post === null) {
+                    $params['username'] = $logData[1];
+                } else {
+                    $params['username'] = $post->user->username;
+                    $url = $post->url();
+                }
+
+                break;
+
+            case 'LOG_EDIT_TOPIC':
+                $params['title'] = $logData[0];
+                break;
+
+            case 'LOG_FORK':
+                $params['topic'] = $logData[0];
+                break;
+
+            case 'LOG_ISSUE_TAG':
+                $state = $logData['state'] ? 'add' : 'remove';
+                $params['tag'] = $logData['issueTag'];
+                $translationKey = "{$state}_tag";
+                break;
+
+            case 'LOG_MOVE':
+            case 'LOG_SPLIT_SOURCE':
+                $params['forum'] = $logData[0];
+                $translationKey = 'source_forum_operation';
+                break;
+
+            case 'LOG_TOPIC_TYPE':
+                $translationKey = match ($logData['type']) {
+                    0 => 'unpin',
+                    1 => 'pin',
+                    2 => 'announcement',
+                };
+
+                break;
+
+            default:
+                // the remaining ones don't contain any useful data and are self-explanatory without further info
+                return null;
+        }
+
+        return [
+            'text' => osu_trans("forum.topic.logs.data.{$translationKey}", $params),
+            'url' => $url ?? null,
+        ];
+    }
+
+    public function translationKey(): string
+    {
+        $logOperation = $this->log_operation;
+
+        if (str_starts_with($logOperation, 'LOG_')) {
+            $logOperation = substr($logOperation, 4);
+        }
+
+        return strtolower($logOperation);
+    }
+
     public function forum()
     {
         return $this->belongsTo(Forum\Forum::class, 'forum_id');
+    }
+
+    public function post()
+    {
+        return $this->belongsTo(Forum\Post::class, 'post_id')->withTrashed();
     }
 
     public function topic()
@@ -79,6 +163,7 @@ class Log extends Model
             'reportee_id',
             'log_type',
             'forum_id',
+            'post_id',
             'topic_id',
             'log_ip',
             'log_operation',

@@ -14,54 +14,153 @@ class UserGroupsControllerTest extends TestCase
 {
     public function testUserGroupAdd()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $group = app('groups')->byIdentifier('gmt');
-        $userAddEventCount = $this->getUserAddEventCount($user, $group);
-        $url = route('interop.user-groups.store', [
-            'group_id' => $group->getKey(),
+        $userAddEventCount = $this->eventCount(UserGroupEvent::USER_ADD, $user, $group);
+        $url = route('interop.user-group.update', [
+            'group' => $group->getKey(),
             'timestamp' => time(),
-            'user_id' => $user->getKey(),
+            'user' => $user->getKey(),
         ]);
 
         $this
             ->withInterOpHeader($url)
-            ->post($url)
+            ->put($url)
             ->assertStatus(204);
 
         $user->refresh();
 
         $this->assertTrue($user->isGroup($group));
-        $this->assertSame($this->getUserAddEventCount($user, $group), $userAddEventCount + 1);
+        $this->assertSame(
+            $this->eventCount(UserGroupEvent::USER_ADD, $user, $group),
+            $userAddEventCount + 1,
+        );
     }
 
     public function testUserGroupAddWhenAlreadyMember()
     {
-        $user = $this->createUserWithGroup('gmt');
+        $user = User::factory()->withGroup('gmt')->create();
         $group = app('groups')->byIdentifier('gmt');
-        $userAddEventCount = $this->getUserAddEventCount($user, $group);
-        $url = route('interop.user-groups.store', [
-            'group_id' => $group->getKey(),
+        $userAddEventCount = $this->eventCount(UserGroupEvent::USER_ADD, $user, $group);
+        $url = route('interop.user-group.update', [
+            'group' => $group->getKey(),
             'timestamp' => time(),
-            'user_id' => $user->getKey(),
+            'user' => $user->getKey(),
         ]);
 
         $this
             ->withInterOpHeader($url)
-            ->post($url)
+            ->put($url)
             ->assertStatus(204);
 
-        $this->assertSame($this->getUserAddEventCount($user, $group), $userAddEventCount);
+        $user->refresh();
+
+        $this->assertTrue($user->isGroup($group));
+        $this->assertSame(
+            $this->eventCount(UserGroupEvent::USER_ADD, $user, $group),
+            $userAddEventCount,
+        );
+    }
+
+    public function testUserGroupAddWhenHasSamePlaymodes()
+    {
+        $playmodes = ['osu'];
+        $user = User::factory()->withGroup('nat', $playmodes)->create();
+        $group = app('groups')->byIdentifier('nat');
+        $userAddPlaymodesEventCount = $this->eventCount(UserGroupEvent::USER_ADD_PLAYMODES, $user, $group);
+        $url = route('interop.user-group.update', [
+            'group' => $group->getKey(),
+            'playmodes' => $playmodes,
+            'timestamp' => time(),
+            'user' => $user->getKey(),
+        ]);
+
+        $this
+            ->withInterOpHeader($url)
+            ->put($url)
+            ->assertStatus(204);
+
+        $this->assertSame(
+            $this->eventCount(UserGroupEvent::USER_ADD_PLAYMODES, $user, $group),
+            $userAddPlaymodesEventCount,
+        );
+    }
+
+    public function testUserGroupChangePlaymodes()
+    {
+        $playmodes = ['fruits', 'mania'];
+        $user = User::factory()->withGroup('nat', ['osu', 'taiko'])->create();
+        $group = app('groups')->byIdentifier('nat');
+        $userAddEventCount = $this->eventCount(UserGroupEvent::USER_ADD, $user, $group);
+        $userAddPlaymodesEventCount = $this->eventCount(UserGroupEvent::USER_ADD_PLAYMODES, $user, $group);
+        $userRemovePlaymodesEventCount = $this->eventCount(UserGroupEvent::USER_REMOVE_PLAYMODES, $user, $group);
+        $url = route('interop.user-group.update', [
+            'group' => $group->getKey(),
+            'playmodes' => $playmodes,
+            'timestamp' => time(),
+            'user' => $user->getKey(),
+        ]);
+
+        $this
+            ->withInterOpHeader($url)
+            ->put($url)
+            ->assertStatus(204);
+
+        $user->refresh();
+
+        $actualPlaymodes = $user->findUserGroup($group, true)->playmodes;
+
+        $this->assertCount(count($playmodes), $actualPlaymodes);
+        $this->assertArraySubset($playmodes, $actualPlaymodes);
+        $this->assertSame(
+            $this->eventCount(UserGroupEvent::USER_ADD, $user, $group),
+            $userAddEventCount,
+        );
+        $this->assertSame(
+            $this->eventCount(UserGroupEvent::USER_ADD_PLAYMODES, $user, $group),
+            $userAddPlaymodesEventCount + 1,
+        );
+        $this->assertSame(
+            $this->eventCount(UserGroupEvent::USER_REMOVE_PLAYMODES, $user, $group),
+            $userRemovePlaymodesEventCount + 1,
+        );
     }
 
     public function testUserGroupRemove()
     {
-        $user = $this->createUserWithGroup('gmt');
+        $user = User::factory()->withGroup('gmt')->create();
         $group = app('groups')->byIdentifier('gmt');
-        $userRemoveEventCount = $this->getUserRemoveEventCount($user, $group);
-        $url = route('interop.user-groups.destroy', [
-            'group_id' => $group->getKey(),
+        $userRemoveEventCount = $this->eventCount(UserGroupEvent::USER_REMOVE, $user, $group);
+        $url = route('interop.user-group.destroy', [
+            'group' => $group->getKey(),
             'timestamp' => time(),
-            'user_id' => $user->getKey(),
+            'user' => $user->getKey(),
+        ]);
+
+        $this
+            ->withInterOpHeader($url)
+            ->delete($url)
+            ->assertStatus(204);
+
+        $user->refresh();
+
+        $this->assertNotSame($user->group_id, $group->getKey());
+        $this->assertFalse($user->isGroup($group));
+        $this->assertSame(
+            $this->eventCount(UserGroupEvent::USER_REMOVE, $user, $group),
+            $userRemoveEventCount + 1,
+        );
+    }
+
+    public function testUserGroupRemoveWhenNotMember()
+    {
+        $user = User::factory()->create();
+        $group = app('groups')->byIdentifier('gmt');
+        $userRemoveEventCount = $this->eventCount(UserGroupEvent::USER_REMOVE, $user, $group);
+        $url = route('interop.user-group.destroy', [
+            'group' => $group->getKey(),
+            'timestamp' => time(),
+            'user' => $user->getKey(),
         ]);
 
         $this
@@ -72,62 +171,22 @@ class UserGroupsControllerTest extends TestCase
         $user->refresh();
 
         $this->assertFalse($user->isGroup($group));
-        $this->assertSame($this->getUserRemoveEventCount($user, $group), $userRemoveEventCount + 1);
-    }
-
-    public function testUserGroupRemoveWhenNotMember()
-    {
-        $user = factory(User::class)->create();
-        $group = app('groups')->byIdentifier('gmt');
-        $userRemoveEventCount = $this->getUserRemoveEventCount($user, $group);
-        $url = route('interop.user-groups.destroy', [
-            'group_id' => $group->getKey(),
-            'timestamp' => time(),
-            'user_id' => $user->getKey(),
-        ]);
-
-        $this
-            ->withInterOpHeader($url)
-            ->delete($url)
-            ->assertStatus(204);
-
-        $this->assertSame($this->getUserRemoveEventCount($user, $group), $userRemoveEventCount);
+        $this->assertSame(
+            $this->eventCount(UserGroupEvent::USER_REMOVE, $user, $group),
+            $userRemoveEventCount,
+        );
     }
 
     public function testUserGroupSetDefault()
     {
-        $user = $this->createUserWithGroup('gmt', ['group_id' => app('groups')->byIdentifier('default')->getKey()]);
+        $user = User::factory()->withGroup('gmt')->create(['group_id' => app('groups')->byIdentifier('default')]);
         $group = app('groups')->byIdentifier('gmt');
-        $userAddEventCount = $this->getUserAddEventCount($user, $group);
-        $userSetDefaultEventCount = $this->getUserSetDefaultEventCount($user, $group);
-        $url = route('interop.user-groups.store-default', [
-            'group_id' => $group->getKey(),
+        $userAddEventCount = $this->eventCount(UserGroupEvent::USER_ADD, $user, $group);
+        $userSetDefaultEventCount = $this->eventCount(UserGroupEvent::USER_SET_DEFAULT, $user, $group);
+        $url = route('interop.user-group.set-default', [
+            'group' => $group->getKey(),
             'timestamp' => time(),
-            'user_id' => $user->getKey(),
-        ]);
-
-        $this
-            ->withInterOpHeader($url)
-            ->post($url)
-            ->assertStatus(204);
-
-        $user->refresh();
-
-        $this->assertSame($user->group_id, $group->getKey());
-        $this->assertSame($this->getUserAddEventCount($user, $group), $userAddEventCount);
-        $this->assertSame($this->getUserSetDefaultEventCount($user, $group), $userSetDefaultEventCount + 1);
-    }
-
-    public function testUserGroupSetDefaultWhenNotMember()
-    {
-        $user = factory(User::class)->create();
-        $group = app('groups')->byIdentifier('gmt');
-        $userAddEventCount = $this->getUserAddEventCount($user, $group);
-        $userSetDefaultEventCount = $this->getUserSetDefaultEventCount($user, $group);
-        $url = route('interop.user-groups.store-default', [
-            'group_id' => $group->getKey(),
-            'timestamp' => time(),
-            'user_id' => $user->getKey(),
+            'user' => $user->getKey(),
         ]);
 
         $this
@@ -139,46 +198,136 @@ class UserGroupsControllerTest extends TestCase
 
         $this->assertSame($user->group_id, $group->getKey());
         $this->assertTrue($user->isGroup($group));
-        $this->assertSame($this->getUserAddEventCount($user, $group), $userAddEventCount + 1);
-        $this->assertSame($this->getUserSetDefaultEventCount($user, $group), $userSetDefaultEventCount + 1);
+        $this->assertSame(
+            $this->eventCount(UserGroupEvent::USER_ADD, $user, $group),
+            $userAddEventCount,
+        );
+        $this->assertSame(
+            $this->eventCount(UserGroupEvent::USER_SET_DEFAULT, $user, $group),
+            $userSetDefaultEventCount + 1,
+        );
     }
 
-    public function testMissingUserOrGroup()
+    public function testUserGroupSetDefaultLeavesPlaymodesUnchanged()
     {
-        $url = route('interop.user-groups.store', [
+        $playmodes = ['osu'];
+        $user = User::factory()->withGroup('nat', $playmodes)->create(['group_id' => app('groups')->byIdentifier('default')->getKey()]);
+        $group = app('groups')->byIdentifier('nat');
+        $url = route('interop.user-group.set-default', [
+            'group' => $group->getKey(),
             'timestamp' => time(),
+            'user' => $user->getKey(),
         ]);
 
         $this
             ->withInterOpHeader($url)
             ->post($url)
-            ->assertStatus(404);
+            ->assertStatus(204);
+
+        $user->refresh();
+
+        $actualPlaymodes = $user->findUserGroup($group, true)->playmodes;
+
+        $this->assertCount(count($playmodes), $actualPlaymodes);
+        $this->assertArraySubset($playmodes, $actualPlaymodes);
     }
 
-    private function getUserAddEventCount(User $user, Group $group): int
+    public function testUserGroupSetDefaultWhenAlreadyDefault()
     {
-        return UserGroupEvent::where([
-            'group_id' => $group->getKey(),
-            'type' => UserGroupEvent::USER_ADD,
-            'user_id' => $user->getKey(),
-        ])->count();
+        $user = User::factory()->withGroup('gmt')->create();
+        $group = app('groups')->byIdentifier('gmt');
+        $userSetDefaultEventCount = $this->eventCount(UserGroupEvent::USER_SET_DEFAULT, $user, $group);
+        $url = route('interop.user-group.set-default', [
+            'group' => $group->getKey(),
+            'timestamp' => time(),
+            'user' => $user->getKey(),
+        ]);
+
+        $this
+            ->withInterOpHeader($url)
+            ->post($url)
+            ->assertStatus(204);
+
+        $this->assertSame(
+            $this->eventCount(UserGroupEvent::USER_SET_DEFAULT, $user, $group),
+            $userSetDefaultEventCount,
+        );
     }
 
-    private function getUserRemoveEventCount(User $user, Group $group): int
+    public function testUserGroupSetDefaultWhenNotMember()
     {
-        return UserGroupEvent::where([
-            'group_id' => $group->getKey(),
-            'type' => UserGroupEvent::USER_REMOVE,
-            'user_id' => $user->getKey(),
-        ])->count();
+        $user = User::factory()->create();
+        $group = app('groups')->byIdentifier('gmt');
+        $userAddEventCount = $this->eventCount(UserGroupEvent::USER_ADD, $user, $group);
+        $userSetDefaultEventCount = $this->eventCount(UserGroupEvent::USER_SET_DEFAULT, $user, $group);
+        $url = route('interop.user-group.set-default', [
+            'group' => $group->getKey(),
+            'timestamp' => time(),
+            'user' => $user->getKey(),
+        ]);
+
+        $this
+            ->withInterOpHeader($url)
+            ->post($url)
+            ->assertStatus(204);
+
+        $user->refresh();
+
+        $this->assertSame($user->group_id, $group->getKey());
+        $this->assertTrue($user->isGroup($group));
+        $this->assertSame(
+            $this->eventCount(UserGroupEvent::USER_ADD, $user, $group),
+            $userAddEventCount + 1,
+        );
+        $this->assertSame(
+            $this->eventCount(UserGroupEvent::USER_SET_DEFAULT, $user, $group),
+            $userSetDefaultEventCount + 1,
+        );
     }
 
-    private function getUserSetDefaultEventCount(User $user, Group $group): int
+    public function testInvalidPlaymodes()
     {
-        return UserGroupEvent::where([
-            'group_id' => $group->getKey(),
-            'type' => UserGroupEvent::USER_SET_DEFAULT,
-            'user_id' => $user->getKey(),
-        ])->count();
+        $user = User::factory()->create();
+        $group = app('groups')->byIdentifier('nat');
+        $group->update(['has_playmodes' => true]);
+        $url = route('interop.user-group.update', [
+            'group' => $group->getKey(),
+            'playmodes' => ['osu', 'invalid_playmode'],
+            'timestamp' => time(),
+            'user' => $user->getKey(),
+        ]);
+
+        $this
+            ->withInterOpHeader($url)
+            ->put($url)
+            ->assertStatus(422);
+    }
+
+    public function testPlaymodesWithoutGroupPlaymodesSet()
+    {
+        $user = User::factory()->create();
+        $group = app('groups')->byIdentifier('gmt');
+        $url = route('interop.user-group.update', [
+            'group' => $group->getKey(),
+            'playmodes' => ['osu'],
+            'timestamp' => time(),
+            'user' => $user->getKey(),
+        ]);
+
+        $this
+            ->withInterOpHeader($url)
+            ->put($url)
+            ->assertStatus(422);
+    }
+
+    private function eventCount(string $type, User $user, Group $group): int
+    {
+        return UserGroupEvent
+            ::where([
+                'group_id' => $group->getKey(),
+                'type' => $type,
+                'user_id' => $user->getKey(),
+            ])
+            ->count();
     }
 }

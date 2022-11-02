@@ -6,7 +6,7 @@
 namespace App\Models\Multiplayer;
 
 use App\Models\Model;
-use App\Traits\WithDbCursorHelper;
+use App\Models\Traits\WithDbCursorHelper;
 
 /**
  * Dumb persistence model for UserScoreAggregate.

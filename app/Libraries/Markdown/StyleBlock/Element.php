@@ -5,66 +5,21 @@
 
 namespace App\Libraries\Markdown\StyleBlock;
 
-use League\CommonMark\Block\Element\AbstractBlock;
-use League\CommonMark\Cursor;
+use League\CommonMark\Node\Block\AbstractBlock;
 
 class Element extends AbstractBlock
 {
-    /**
-     * @var string
-     */
-    protected $class;
+    private string $className;
 
-    /**
-     * @var static[]
-     */
-    protected $containedStyleBlocks = [];
-
-    public function __construct(string $class)
+    public function __construct(string $className)
     {
-        $this->class = $class;
+        parent::__construct();
+
+        $this->className = $className;
     }
 
-    public function getClass(): string
+    public function getClassName(): string
     {
-        return $this->class;
-    }
-
-    public function canContain(AbstractBlock $block): bool
-    {
-        if ($block instanceof static) {
-            $this->containedStyleBlocks[] = $block;
-        }
-
-        return true;
-    }
-
-    public function isCode(): bool
-    {
-        return false;
-    }
-
-    public function matchesNextLine(Cursor $cursor): bool
-    {
-        // Make sure the most nested open StyleBlock tries to handle this first
-        if ($cursor->getRemainder() === '}}}' && !$this->containsOpenStyleBlock()) {
-            $cursor->advanceToEnd();
-
-            return false;
-        }
-
-        return true;
-    }
-
-    private function containsOpenStyleBlock(): bool
-    {
-        // Assumes that these StyleBlocks are never removed from descendant tree
-        foreach ($this->containedStyleBlocks as $styleBlock) {
-            if ($styleBlock->isOpen()) {
-                return true;
-            }
-        }
-
-        return false;
+        return $this->className;
     }
 }

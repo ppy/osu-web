@@ -24,7 +24,7 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "",
+            'discussion_locked' => "Beatmap này đang bị khoá thảo luận và không thể được hype",
             'guest' => 'Cần phải đăng nhập để hype.',
             'hyped' => 'Bạn đã hype beatmap này rồi.',
             'limit_exceeded' => 'Bạn đã sử dụng hết số hype bạn có.',
@@ -57,7 +57,7 @@ return [
     ],
 
     'follow' => [
-        'invalid' => '',
+        'invalid' => ':attribute đã chọn không hợp lệ.',
     ],
 
     'forum' => [
@@ -73,8 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Không cho phép xóa beatmap metadata.',
             'beatmapset_post_no_edit' => 'Không cho phép chỉnh sửa beatmap metadata.',
-            'first_post_no_delete' => '',
-            'missing_topic' => '',
+            'first_post_no_delete' => 'Không thể xóa bài đăng mở đầu',
+            'missing_topic' => 'Bài viết thiếu chủ đề',
             'only_quote' => 'Câu trả lời của bạn chỉ có một trích dẫn.',
 
             'attributes' => [
@@ -110,12 +110,12 @@ return [
 
     'oauth' => [
         'client' => [
-            'too_many' => '',
-            'url' => '',
+            'too_many' => 'Vượt quá số lượng ứng dụng OAuth được cho phép.',
+            'url' => 'Xin vui lòng nhập một URL hợp lệ.',
 
             'attributes' => [
-                'name' => '',
-                'redirect' => '',
+                'name' => 'Tên ứng dụng',
+                'redirect' => 'URL gọi lại ứng dụng',
             ],
         ],
     ],
@@ -123,11 +123,11 @@ return [
     'user' => [
         'contains_username' => 'Mật khẩu không thể chứa tên tài khoản.',
         'email_already_used' => 'Địa chỉ email đã được sử dụng.',
-        'email_not_allowed' => '',
+        'email_not_allowed' => 'Địa chỉ email không được phép.',
         'invalid_country' => 'Quốc gia không có trong cơ sở dữ liệu.',
         'invalid_discord' => 'Tên người dùng Discord không hợp lệ.',
         'invalid_email' => "Dường như đây không phải là địa chỉ email hợp lệ.",
-        'invalid_twitter' => '',
+        'invalid_twitter' => 'Tên người dùng Twitter không hợp lệ.',
         'too_short' => 'Mật khẩu mới quá ngắn.',
         'unknown_duplicate' => 'Tên người dùng hoặc email đã được sử dụng.',
         'username_available_in' => 'Tên người dùng này sẽ có sẵn để sử dụng trong :duration.',
@@ -163,7 +163,8 @@ return [
     ],
 
     'user_report' => [
-        'reason_not_valid' => '',
+        'no_ranked_beatmapset' => 'Beatmap đã Được Xếp hạng không thể bị báo cáo',
+        'reason_not_valid' => ':reason không phù hợp cho kiểu báo cáo này.',
         'self' => "Bạn không thể báo cáo chính mình!",
     ],
 

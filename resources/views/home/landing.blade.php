@@ -23,59 +23,14 @@
             <div class="landing-nav__section">
                 @foreach ($navLinks as $section => $links)
                     <a
-                        href="{{ $links['_'] ?? array_values($links)[0] }}"
+                        href="{{ array_first($links) }}"
                         class="landing-nav__link {{ ($section == "home") ? "landing-nav__link--bold" : "" }}"
                     >
                         {{ osu_trans("layout.menu.$section._") }}
                     </a>
                 @endforeach
 
-                <div class="landing-nav__locale-menu-link">
-                    <span class="landing-nav__link js-menu" data-menu-target="landing--locale">
-                        <span class="landing-nav__locale-flag">
-                            @include('objects._flag_country', [
-                                'countryCode' => $currentLocaleMeta->flag(),
-                            ])
-                        </span>
-
-                        {{ $currentLocaleMeta->name() }}
-                    </span>
-
-                    <div
-                        class="js-menu landing-nav__locale-menu"
-                        data-menu-id="landing--locale"
-                        data-visibility="hidden"
-                    >
-                        @foreach (config('app.available_locales') as $locale)
-                            @php
-                                $localeMeta = locale_meta($locale);
-                            @endphp
-                            <button
-                                type="button"
-                                class="landing-nav__locale-button"
-                                @if ($localeMeta !== $currentLocaleMeta)
-                                    data-url="{{ route('set-locale', ['locale' => $locale]) }}"
-                                    data-remote="1"
-                                    data-method="POST"
-                                @endif
-                            >
-                                <span class="landing-nav__link landing-nav__link--locale">
-                                    <span class="landing-nav__locale-link-pointer">
-                                        <span class="fas fa-chevron-right"></span>
-                                    </span>
-
-                                    <span class="landing-nav__locale-flag">
-                                        @include('objects._flag_country', [
-                                            'countryCode' => $localeMeta->flag(),
-                                        ])
-                                    </span>
-
-                                    {{ $localeMeta->name() }}
-                                </span>
-                            </button>
-                        @endforeach
-                    </div>
-                </div>
+                {!! app('layout-cache')->getLocalesLanding() !!}
             </div>
 
             <div class="landing-nav__section">
@@ -97,20 +52,18 @@
     <div class="osu-page">
         <div class="landing-hero">
             <div class="landing-hero__bg-container">
-                <div class="landing-hero__bg-inner-container js-scale" data-scale="ws">
-                    {{--
-                        playsinline is for iphone autoplay
-                        reference: https://webkit.org/blog/6784/new-video-policies-for-ios/
-                    --}}
-                    <video
-                        class="landing-hero__bg js-autoplay"
-                        autoplay
-                        loop
-                        muted
-                        playsinline
-                        src="{{ config('osu.landing.video_url') }}"
-                    ></video>
-                </div>
+                {{--
+                    playsinline is for iphone autoplay
+                    reference: https://webkit.org/blog/6784/new-video-policies-for-ios/
+                --}}
+                <video
+                    class="landing-hero__bg"
+                    autoplay
+                    loop
+                    muted
+                    playsinline
+                    src="{{ config('osu.landing.video_url') }}"
+                ></video>
             </div>
 
             <div class="landing-hero__pippi">

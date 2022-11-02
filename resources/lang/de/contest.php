@@ -24,12 +24,18 @@ return [
 
         'button' => [
             'add' => 'Abstimmen',
-            'remove' => 'Vote entfernen',
-            'used_up' => 'Du hast alle deine Votes verwendet',
+            'remove' => 'Stimme entfernen',
+            'used_up' => 'Du hast alle deine Stimmen verwendet',
         ],
 
         'progress' => [
             '_' => ':used / :max Stimmen vergeben',
+        ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => 'Bevor du abstimmen kannst, musst du alle Beatmaps in den angegebenen Playlists gespielt haben',
+            ],
         ],
     ],
     'entry' => [
@@ -44,6 +50,7 @@ return [
             'beatmap' => 'Nur .osu-Dateien werden in diesem Wettbewerb akzeptiert.',
             'music' => 'Nur .mp3-Dateien werden in diesem Wettbewerb akzeptiert.',
         ],
+        'wrong_dimensions' => '',
         'too_big' => 'Einsendungen in diesem Wettbewerb können nur bis zu :limit groß sein.',
     ],
     'beatmaps' => [

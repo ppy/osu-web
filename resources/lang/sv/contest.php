@@ -31,6 +31,12 @@ return [
         'progress' => [
             '_' => ':used / :max röster använda',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => 'Du måste spela alla beatmaps i de specificerade spellistorna innan du röstar',
+            ],
+        ],
     ],
     'entry' => [
         '_' => 'bidrag',
@@ -44,6 +50,7 @@ return [
             'beatmap' => 'Endast .osu-filer är tillåtna i denna tävling.',
             'music' => 'Endast .mp3-filer är tillåtna i denna tävling.',
         ],
+        'wrong_dimensions' => '',
         'too_big' => 'Bidrag till denna tävling får vara högst :limit.',
     ],
     'beatmaps' => [

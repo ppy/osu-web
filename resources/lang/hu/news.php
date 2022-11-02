@@ -8,8 +8,8 @@ return [
         'title_page' => 'osu!hírek',
 
         'nav' => [
-            'newer' => 'Újabb posztok',
-            'older' => 'Régebbi posztok',
+            'newer' => 'Újabb hozzászólások',
+            'older' => 'Régebbi hozzászólások',
         ],
 
         'title' => [
