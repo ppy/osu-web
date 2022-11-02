@@ -109,6 +109,7 @@ class ChatController extends Controller
             'is_action:bool',
             'message',
             'target_id:int',
+            'uuid',
         ], ['null_missing' => true]);
 
         $target = User::lookup($params['target_id'], 'id');
@@ -123,7 +124,8 @@ class ChatController extends Controller
             $sender,
             $target,
             $params['message'],
-            $params['is_action']
+            $params['is_action'],
+            $params['uuid']
         );
 
         $channelJson = json_item($message->channel, ChannelTransformer::forUser($sender), ChannelTransformer::CONVERSATION_INCLUDES);
