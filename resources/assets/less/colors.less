@@ -70,7 +70,7 @@
 // osu!palette 2019v2-final-copy-last-FINAL
 // The default hue is osu! pink (333) and is injected into the body via master.blade.php as var(--base-hue) within :root
 // The section-to-colour mapping is done via section_to_hue_map() in helpers.php
-:root {
+.base-colours() {
   @base-colours: {
     // key: name
     // value: saturation, lightness
@@ -101,6 +101,9 @@
   each(@base-colours, {
     --hsl-@{key}: var(--base-hue), @value;
   });
+}
+:root {
+  .base-colours();
 }
 @osu-colour-p: hsl(var(--hsl-p));
 @osu-colour-h1: hsl(var(--hsl-h1));
