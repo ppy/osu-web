@@ -852,7 +852,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'beatmapPlaycounts',
             'beatmaps',
             'beatmapsetNominations',
-            'beatmapsetNominationsToday',
             'beatmapsetRatings',
             'beatmapsetWatches',
             'beatmapsets',
