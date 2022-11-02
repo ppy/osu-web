@@ -11,7 +11,7 @@ use App\Notifications\UserReportNotification;
 use PDOException;
 
 /**
- * @property-read \Illuminate\Database\Eloquent\Collection $reportedIn UserReport
+ * @property-read \Illuminate\Database\Eloquent\Collection<UserReport> $reportedIn
  */
 trait Reportable
 {

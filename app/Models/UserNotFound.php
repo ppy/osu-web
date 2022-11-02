@@ -5,9 +5,6 @@
 
 namespace App\Models;
 
-/**
- * {@inheritdoc}
- */
 class UserNotFound extends User
 {
     public function checkPassword($password)

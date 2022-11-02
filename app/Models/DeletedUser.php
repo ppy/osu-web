@@ -5,9 +5,6 @@
 
 namespace App\Models;
 
-/**
- * {@inheritdoc}
- */
 class DeletedUser extends User
 {
     public $user_avatar = null;

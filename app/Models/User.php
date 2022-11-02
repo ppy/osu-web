@@ -47,7 +47,7 @@ use Request;
  * @property-read Collection<BeatmapDiscussionVote> $beatmapDiscussionVotes
  * @property-read Collection<BeatmapDiscussion> $beatmapDiscussions
  * @property-read Collection<BeatmapPlaycount> $beatmapPlaycounts
- * @property-read Collection<Beatmap> $beatmaps Beatmap
+ * @property-read Collection<Beatmap> $beatmaps
  * @property-read Collection<BeatmapsetNomination> $beatmapsetNominations
  * @property-read Collection<BeatmapsetUserRating> $beatmapsetRatings
  * @property-read Collection<BeatmapsetWatch> $beatmapsetWatches
@@ -124,7 +124,7 @@ use Request;
  * @property-read Collection<OAuth\Token> $tokens
  * @property-read Collection<Forum\TopicWatch> $topicWatches
  * @property-read Collection<UserAchievement> $userAchievements
- * @property-read Collection<UserGroup> $userGroups UserGroup
+ * @property-read Collection<UserGroup> $userGroups
  * @property-read Collection<UserNotification> $userNotifications
  * @property-read Forum\Post|null $userPage
  * @property-read UserProfileCustomization|null $userProfileCustomization
