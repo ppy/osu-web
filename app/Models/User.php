@@ -159,6 +159,8 @@ use Request;
  * @property int $user_last_privmsg
  * @property int $user_last_search
  * @property int $user_last_warning
+ * @property string $user_lastfm
+ * @property string $user_lastfm_session
  * @property Carbon|null $user_lastmark
  * @property string $user_lastpage
  * @property Carbon|null $user_lastpost_time
