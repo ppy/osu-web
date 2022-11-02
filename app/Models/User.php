@@ -64,6 +64,7 @@ use Request;
  * @property-read string|null $email
  * @property-read Collection<Event> $events
  * @property-read Collection<FavouriteBeatmapset> $favourites
+ * @property-read Collection<Follow> $follows
  * @property-read Collection<Forum\Post> $forumPosts
  * @property-read Collection<static> $friends
  * @property-read Collection<GithubUser> $githubUsers
@@ -906,6 +907,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'storeAddresses',
             'supporterTagPurchases',
             'supporterTags',
+            'tokens',
             'topicWatches',
             'userAchievements',
             'userGroups',
