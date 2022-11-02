@@ -608,6 +608,36 @@
         ]
     },
     {
+        "uri": "api/v2/loved-polls",
+        "methods": [
+            "POST"
+        ],
+        "controller": "App\\Http\\Controllers\\LovedPollsController@store",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "App\\Http\\Middleware\\RequireScopes:loved"
+        ],
+        "scopes": [
+            "loved"
+        ]
+    },
+    {
+        "uri": "api/v2/loved-polls/{topic}",
+        "methods": [
+            "DELETE"
+        ],
+        "controller": "App\\Http\\Controllers\\LovedPollsController@destroy",
+        "middlewares": [
+            "App\\Http\\Middleware\\ThrottleRequests:1200,1,api:",
+            "App\\Http\\Middleware\\RequireScopes",
+            "App\\Http\\Middleware\\RequireScopes:loved"
+        ],
+        "scopes": [
+            "loved"
+        ]
+    },
+    {
         "uri": "api/v2/matches",
         "methods": [
             "GET",

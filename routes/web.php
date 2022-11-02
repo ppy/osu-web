@@ -456,6 +456,10 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
                 Route::resource('posts', 'PostsController', ['only' => ['update']]);
             });
         });
+
+        Route::post('loved-polls', 'LovedPollsController@store')->name('loved-polls.store');
+        Route::delete('loved-polls/{topic}', 'LovedPollsController@destroy')->name('loved-polls.destroy');
+
         Route::resource('matches', 'MatchesController', ['only' => ['index', 'show']]);
 
         Route::group(['as' => 'rooms.', 'prefix' => 'rooms'], function () {
