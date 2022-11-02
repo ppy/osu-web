@@ -63,7 +63,7 @@ class Achievement extends Model
         };
     }
 
-    private function getMode()
+    private function getMode(): ?string
     {
         $value = $this->getRawAttribute('mode');
 
