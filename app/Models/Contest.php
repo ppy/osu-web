@@ -349,7 +349,11 @@ class Contest extends Model
 
     public function usersVotedCount(): int
     {
-        return $this->votes()->distinct()->count('user_id');
+        return cache()->remember(
+            static::class.':'.__FUNCTION__.':'.$this->getKey(),
+            300,
+            fn () => $this->votes()->distinct('user_id')->count(),
+        );
     }
 
     public function url()
