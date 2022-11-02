@@ -38,17 +38,15 @@
       align-items: stretch;
       position: relative;
     }
+
+    &--notifications {
+      margin-left: 6px;
+    }
   }
 
   &__colgroup {
     display: flex;
     flex: none;
-
-    &--icons {
-      .nav2__col {
-        margin-left: 10px;
-      }
-    }
 
     &--menu {
       margin-right: auto;
@@ -178,8 +176,9 @@
   }
 
   &__notification-container {
+    display: flex;
     padding: 2px;
-    border: 2px solid #fff;
+    border: 2px solid hsl(var(--hsl-c1));
     border-radius: 30px;
   }
 }

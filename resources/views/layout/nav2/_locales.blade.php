@@ -6,12 +6,10 @@
     class="nav-button js-click-menu"
     data-click-menu-target="nav2-locale-popup"
 >
-    <span class="nav-button__locale-current-flag">
-        @include('objects._flag_country', [
-            'countryCode' => $currentLocaleMeta->flag(),
-            'modifiers' => ['flat'],
-        ])
-    </span>
+    @include('objects._flag_country', [
+        'countryCode' => $currentLocaleMeta->flag(),
+        'modifiers' => ['flat'],
+    ])
 </button>
 
 <div class="nav-click-popup">

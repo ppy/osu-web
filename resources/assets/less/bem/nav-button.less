@@ -5,16 +5,13 @@
   .reset-input();
   .center-content();
   .link-plain();
-  color: #fff;
+  color: hsl(var(--hsl-c1));
 
-  &--chat {
-    padding: 7px 10px;
-    background-color: fade(#fff, 20%);
-    border-radius: 30px;
+  padding: 10px;
+  border-radius: 10000px;
 
-    &.js-click-menu--active, &:hover {
-      background-color: fade(#fff, 30%);
-    }
+  &.js-click-menu--active, &:hover {
+    background-color: hsla(var(--hsl-c1), 0.2);
   }
 
   &--mobile {
@@ -24,13 +21,12 @@
   }
 
   &--notifications {
-    margin-left: 2px;
-    margin-right: 10px;
+    padding: 7px 10px;
   }
 
   &--social {
     &:hover {
-      color: #fff;
+      color: hsl(var(--hsl-c1));
     }
   }
 

@@ -72,6 +72,7 @@
                 href="{{ osu_url('social.twitter') }}"
                 class="nav-button nav-button--social"
                 title="Twitter"
+                data-tooltip-position="bottom center"
             >
                 <span class="fab fa-twitter"></span>
             </a>
@@ -82,6 +83,7 @@
                 href="{{ route('support-the-game') }}"
                 class="nav-button nav-button--support"
                 title="{{ osu_trans('page_title.main.home_controller.support_the_game') }}"
+                data-tooltip-position="bottom center"
             >
                 <span class="fas fa-heart"></span>
             </a>
@@ -92,10 +94,10 @@
         </div>
 
         @if (Auth::user() !== null)
-            <div class="nav2__col">
+            <div class="nav2__col nav2__col--notifications">
                 <div class="nav2__notification-container">
                     <a
-                        class="nav-button nav-button--chat js-click-menu js-react--chat-icon"
+                        class="nav-button nav-button--notifications js-click-menu js-react--chat-icon"
                         data-click-menu-target="nav2-chat-notification-widget"
                         data-turbolinks-permanent
                         id="notification-widget-chat-icon"
