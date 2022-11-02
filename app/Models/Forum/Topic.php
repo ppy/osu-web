@@ -12,12 +12,14 @@ use App\Libraries\BBCodeForDB;
 use App\Libraries\Transactions\AfterCommit;
 use App\Models\Beatmapset;
 use App\Models\Log;
+use App\Models\LovedPoll;
 use App\Models\Notification;
 use App\Models\User;
 use App\Traits\Memoizes;
 use App\Traits\Validatable;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\QueryException;
 
@@ -30,6 +32,7 @@ use Illuminate\Database\QueryException;
  * @property int $forum_id
  * @property int $icon_id
  * @property \Illuminate\Database\Eloquent\Collection $logs Log
+ * @property-read LovedPoll|null $lovedPoll
  * @property mixed $osu_lastreplytype
  * @property int $osu_starpriority
  * @property \Illuminate\Database\Eloquent\Collection $pollOptions PollOption
@@ -206,6 +209,11 @@ class Topic extends Model implements AfterCommit
     public function featureVotes()
     {
         return $this->hasMany(FeatureVote::class);
+    }
+
+    public function lovedPoll(): HasOne
+    {
+        return $this->hasOne(LovedPoll::class);
     }
 
     public function pollOptions()
