@@ -20,14 +20,17 @@ class Token extends PassportToken
 
     public $timestamps = true;
 
-    /**
-     * Whether the resource owner is delegated to the client's owner.
-     *
-     * @return bool
-     */
-    public function delegatesOwner(): bool
+    public function can($scope)
     {
-        return in_array('delegate', $this->scopes, true);
+        static $scopesRequiredExplicitly;
+        $scopesRequiredExplicitly ??= new Set(['delegate', 'loved']);
+
+        // Skip checking "*" for scopes that require an explicit request
+        if ($scopesRequiredExplicitly->contains($scope)) {
+            return in_array($scope, $this->scopes, true);
+        }
+
+        return parent::can($scope);
     }
 
     /**
@@ -38,7 +41,7 @@ class Token extends PassportToken
      */
     public function getResourceOwner(): ?User
     {
-        if ($this->isClientCredentials() && $this->delegatesOwner()) {
+        if ($this->isClientCredentials() && $this->can('delegate')) {
             return $this->client->user;
         }
 
@@ -118,12 +121,12 @@ class Token extends PassportToken
                 throw new InvalidScopeException('* is not allowed with Client Credentials');
             }
 
-            if ($this->delegatesOwner() && !$this->client->user->isBot()) {
+            if ($scopes->contains('delegate') && !$this->client->user->isBot()) {
                 throw new InvalidScopeException('Delegation with Client Credentials is only available to chat bots.');
             }
 
             if (!$scopes->intersect($scopesRequireDelegation)->isEmpty()) {
-                if (!$this->delegatesOwner()) {
+                if (!$scopes->contains('delegate')) {
                     throw new InvalidScopeException('delegate scope is required.');
                 }
 
@@ -134,7 +137,7 @@ class Token extends PassportToken
             }
         } else {
             // delegation is only available for client_credentials.
-            if ($this->delegatesOwner()) {
+            if ($scopes->contains('delegate')) {
                 throw new InvalidScopeException('delegate scope is only valid for client_credentials tokens.');
             }
 
