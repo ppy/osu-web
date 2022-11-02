@@ -19,6 +19,7 @@ use App\Models\BeatmapsetEvent;
 use App\Models\BeatmapsetWatch;
 use App\Models\Genre;
 use App\Models\Language;
+use App\Models\LovedPoll;
 use App\Transformers\BeatmapsetTransformer;
 use Auth;
 use Carbon\Carbon;
@@ -369,8 +370,16 @@ class BeatmapsetsController extends Controller
             'beatmaps.failtimes',
             'genre',
             'language',
+            'lovedPolls',
+            'lovedPolls.descriptionAuthor',
+            'lovedPolls.topic',
+            'lovedPolls.topic.firstPost',
+            'lovedPolls.topic.pollOptions',
             'user',
         ]);
+        $beatmapset->lovedPolls->each(
+            fn (LovedPoll $poll) => $poll->setRelation('beatmapset', $beatmapset),
+        );
 
         return json_item($beatmapset, 'Beatmapset', [
             'beatmaps',
@@ -382,6 +391,7 @@ class BeatmapsetsController extends Controller
             'description',
             'genre',
             'language',
+            'loved_polls',
             'ratings',
             'recent_favourites',
             'user',

@@ -11,9 +11,11 @@ use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\BeatmapsetWatch;
 use App\Models\DeletedUser;
+use App\Models\LovedPoll;
 use App\Models\User;
 use Auth;
 use League\Fractal;
+use League\Fractal\Resource\ResourceInterface;
 
 class BeatmapsetCompactTransformer extends TransformerAbstract
 {
@@ -27,6 +29,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         'genre',
         'has_favourited',
         'language',
+        'loved_polls',
         'nominations',
         'ratings',
         'recent_favourites',
@@ -162,6 +165,16 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
     public function includeLanguage(Beatmapset $beatmapset)
     {
         return $this->item($beatmapset->language, new LanguageTransformer());
+    }
+
+    public function includeLovedPolls(Beatmapset $beatmapset): ResourceInterface
+    {
+        return $this->collection(
+            $beatmapset
+                ->lovedPolls
+                ->filter(fn (LovedPoll $poll) => $poll->isValid()),
+            new LovedPollTransformer(),
+        );
     }
 
     public function includeNominations(Beatmapset $beatmapset)
