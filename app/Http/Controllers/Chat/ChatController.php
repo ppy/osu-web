@@ -64,6 +64,7 @@ class ChatController extends Controller
      * @bodyParam target_id integer required `user_id` of user to start PM with
      * @bodyParam message string required message to send
      * @bodyParam is_action boolean required whether the message is an action
+     * @bodyParam uuid string client-side message identifier which will be sent back in response and websocket json. Example: some-uuid-string
      *
      * @response {
      *   "channel": [
@@ -88,6 +89,7 @@ class ChatController extends Controller
      *     "timestamp": "2018-07-06T06:33:42+00:00",
      *     "content": "i can haz featured artist plz?",
      *     "is_action": 0,
+     *     "uuid": "some-uuid-string",
      *     "sender": {
      *       "id": 102,
      *       "username": "nekodex",
