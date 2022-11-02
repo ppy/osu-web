@@ -88,7 +88,7 @@ class ChatController extends Controller
      *     "channel_id": 1234,
      *     "timestamp": "2018-07-06T06:33:42+00:00",
      *     "content": "i can haz featured artist plz?",
-     *     "is_action": 0,
+     *     "is_action": false,
      *     "uuid": "some-uuid-string",
      *     "sender": {
      *       "id": 102,

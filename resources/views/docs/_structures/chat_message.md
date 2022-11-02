@@ -6,7 +6,7 @@
   "channel_id": 5,
   "timestamp": "2018-07-06T06:33:34+00:00",
   "content": "i am a lazerface",
-  "is_action": 0,
+  "is_action": false,
   "uuid": "some-uuid-string",
   "sender": {
     "id": 2,
