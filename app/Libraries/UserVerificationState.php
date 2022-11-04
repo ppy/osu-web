@@ -55,7 +55,7 @@ class UserVerificationState
         );
     }
 
-    private function __construct($user, $session, $legacySessionQueryWhere)
+    public function __construct($user, $session, $legacySessionQueryWhere)
     {
         $this->legacySessionQueryWhere = $legacySessionQueryWhere;
         $this->session = $session;

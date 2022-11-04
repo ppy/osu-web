@@ -6,27 +6,29 @@
 namespace App\Http\Middleware;
 
 use App\Libraries\UserVerification;
+use App\Models\User;
 use Closure;
 use Illuminate\Contracts\Auth\Guard as AuthGuard;
 use Illuminate\Http\Request;
 
 class VerifyUser
 {
-    protected $auth;
+    protected ?User $user;
 
     public function __construct(AuthGuard $auth)
     {
-        $this->auth = $auth;
+        $this->user = $auth->user();
     }
 
     public function handle(Request $request, Closure $next)
     {
-        if (!$this->alwaysSkipVerification() && $this->requiresVerification($request)) {
-            $verification = UserVerification::fromCurrentRequest();
-
-            if (!$verification->isDone()) {
-                return $verification->initiate();
-            }
+        if (
+            $this->user !== null
+            && !$this->user->isSessionVerified()
+            && !$this->alwaysSkipVerification()
+            && $this->requiresVerification($request)
+        ) {
+            return UserVerification::fromCurrentRequest()->initiate();
         }
 
         return $next($request);
@@ -39,10 +41,6 @@ class VerifyUser
 
     private function alwaysSkipVerification()
     {
-        if (config('osu.user.bypass_verification')) {
-            return true;
-        }
-
         $currentRouteData = app('route-section')->getCurrent();
         $currentRoute = "{$currentRouteData['controller']}@{$currentRouteData['action']}";
 

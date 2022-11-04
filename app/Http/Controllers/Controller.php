@@ -43,11 +43,15 @@ abstract class Controller extends BaseController
     {
         cleanup_cookies();
 
-        session()->flush();
-        session()->regenerateToken();
-        session()->put('requires_verification', VerifyUserAlways::isRequired($user));
+        $session = session();
+        $session->flush();
+        $session->regenerateToken();
+        $session->put('requires_verification', VerifyUserAlways::isRequired($user));
+        if (config('osu.user.bypass_verification')) {
+            (new UserVerificationState($user, $session, null))->markVerified();
+        }
         Auth::login($user, $remember);
-        session()->migrate(true, Auth::user()->user_id);
+        $session->migrate(true, $user->getKey());
     }
 
     protected function logout()

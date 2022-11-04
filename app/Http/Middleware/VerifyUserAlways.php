@@ -5,9 +5,6 @@
 
 namespace App\Http\Middleware;
 
-use App\Events\UserSessionEvent;
-use App\Libraries\UserVerificationState;
-
 class VerifyUserAlways extends VerifyUser
 {
     public static function isRequired($user)
@@ -17,14 +14,8 @@ class VerifyUserAlways extends VerifyUser
 
     public function requiresVerification($request)
     {
-        $user = auth()->user();
-
-        if ($user === null) {
+        if ($this->user === null) {
             return false;
-        }
-
-        if (UserVerificationState::fromCurrentRequest()->isDone()) {
-            $user->markSessionVerified();
         }
 
         $method = $request->getMethod();
@@ -32,13 +23,7 @@ class VerifyUserAlways extends VerifyUser
             ? !in_array($method, ['GET', 'HEAD', 'OPTIONS'], true)
             : false;
 
-        $isRequired = $isPostAction || static::isRequired($user) || $method === 'DELETE';
-
-        if (session()->get('requires_verification') !== $isRequired) {
-            session()->put('requires_verification', $isRequired);
-            session()->save();
-            UserSessionEvent::newVerificationRequirementChange($user->getKey(), $isRequired)->broadcast();
-        }
+        $isRequired = $isPostAction || $method === 'DELETE' || session()->get('requires_verification');
 
         return $isRequired;
     }
