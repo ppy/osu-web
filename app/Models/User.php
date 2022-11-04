@@ -93,7 +93,7 @@ use Request;
  * @property-read Collection<Beatmapset> $profileBeatmapsetsGraveyard
  * @property-read Collection<Beatmapset> $profileBeatmapsetsLoved
  * @property-read Collection<Beatmapset> $profileBeatmapsetsPending
- * @property-read Collection<Beatmapset> $profileBeatmapsetsranked
+ * @property-read Collection<Beatmapset> $profileBeatmapsetsRanked
  * @property-read Rank $rank
  * @property-read Collection<RankHighest> $rankHighests
  * @property-read Collection<RankHistory> $rankHistories
