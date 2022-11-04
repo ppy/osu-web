@@ -12,7 +12,9 @@ class VerifyUserAlways extends VerifyUser
 {
     public static function isRequired($user)
     {
-        return $user !== null && ($user->isPrivileged() || $user->isInactive());
+        return !config('osu.user.bypass_verification')
+            && $user !== null
+            && ($user->isPrivileged() || $user->isInactive());
     }
 
     public function requiresVerification($request)
