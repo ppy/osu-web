@@ -50,6 +50,7 @@ return [
             'beatmap' => 'Chỉ những tệp .osu mới được chấp nhận cho cuộc thi này.',
             'music' => 'Chỉ những tệp .mp3 mới được chấp nhận cho cuộc thi này.',
         ],
+        'wrong_dimensions' => '',
         'too_big' => 'Số bài dự thi cho cuộc thi này tối đa là :limit.',
     ],
     'beatmaps' => [

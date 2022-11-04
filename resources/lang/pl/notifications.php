@@ -239,7 +239,7 @@ return [
             ],
 
             'user_beatmapset_new' => [
-                'user_beatmapset_new' => 'Użytkownik :username stworzył nowe beatmapy',
+                'user_beatmapset_new' => 'Użytkownik :username przesłał nowe beatmapy',
                 'user_beatmapset_revive' => 'Użytkownik :username ożywił beatmapy',
             ],
         ],

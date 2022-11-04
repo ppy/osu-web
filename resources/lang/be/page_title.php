@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'адмін',
     ],
-    'admin_forum' => [
-        '_' => 'адмін',
-    ],
-    'admin_store' => [
-        '_' => 'адмін',
-    ],
     'error' => [
         'error' => [
             '400' => 'недапушчальны запыт',
@@ -32,17 +26,10 @@ return [
         'topic_logs_controller' => [
             'index' => 'статыстыка тэмы',
         ],
-        'topic_watches_controller' => [
-            'index' => 'панэль кіравання',
-        ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'панэль кіравання',
             'verify_link' => 'пацверджанне ўліковага запісу',
-        ],
-        'artist_tracks_controller' => [
-            '_' => 'ліцэнзаваныя мастакі',
         ],
         'artists_controller' => [
             '_' => 'ліцэнзаваныя мастакі',
@@ -62,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'гісторыя бітмапы',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'панэль кіравання',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'абмеркаванне бітмапы',
             'index' => 'спіс бітмап',
@@ -81,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => 'конкурсы',
-        ],
-        'follows_controller' => [
-            'index' => 'табліца',
-        ],
-        'friends_controller' => [
-            'index' => 'панэль кіравання',
         ],
         'groups_controller' => [
             'show' => 'групы',
@@ -122,9 +100,6 @@ return [
         'scores_controller' => [
             '_' => 'па прадукцыйнасці',
         ],
-        'store_controller' => [
-            '_' => 'крама',
-        ],
         'tournaments_controller' => [
             '_' => 'турніры',
         ],
@@ -134,12 +109,6 @@ return [
         ],
         'wiki_controller' => [
             '_' => 'вікі',
-        ],
-    ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'рэйтынг
-',
         ],
     ],
     'passport' => [

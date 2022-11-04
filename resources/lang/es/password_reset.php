@@ -6,7 +6,7 @@
 return [
     'button' => [
         'cancel' => 'Cancelar',
-        'resend' => 'Reenviar verificación por correo electrónico',
+        'resend' => 'Reenviar verificación por correo',
         'set' => 'Establecer contraseña',
         'start' => 'Empezar',
     ],
@@ -23,7 +23,7 @@ return [
     ],
 
     'notice' => [
-        'sent' => 'Revisa tu correo electrónico por tu código de verificación.',
+        'sent' => 'Revise su correo para obtener el código de verificación.',
         'saved' => '¡Nueva contraseña guardada!',
     ],
 
@@ -35,7 +35,7 @@ return [
     ],
 
     'starting' => [
-        'username' => 'Ingresa correo electrónico o nombre de usuario',
+        'username' => 'Ingrese correo o nombre de usuario',
 
         'support' => [
             '_' => '¿Necesita asistencia? Contáctenos a través de nuestro :button.',

@@ -414,6 +414,7 @@ return [
             'country_simple' => 'Nationell rankning',
             'global' => 'Global rank för :mode',
             'global_simple' => 'Global rankning',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Träffsäkerhet',

@@ -22,13 +22,10 @@ class TransformerAbstract extends Fractal\TransformerAbstract
         return $this->requiredPermission;
     }
 
-    /**
-     * {@inheritcoc}
-     */
     protected function callIncludeMethod(Fractal\Scope $scope, $includeName, $data)
     {
         if (!$this->hasPermission($includeName, $data)) {
-            return; // or false apparently
+            return false;
         }
 
         return parent::callIncludeMethod($scope, $includeName, $data);

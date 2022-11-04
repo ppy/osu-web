@@ -50,6 +50,7 @@ return [
             'beatmap' => 'Ang mga .osu file lamang ang tinatanggap para sa paligsahang ito.',
             'music' => 'Ang mga .mp3 file lamang ang tinatanggap para sa paligsahang ito.',
         ],
+        'wrong_dimensions' => '',
         'too_big' => 'Ang bilang ng pagsumite sa paligsahan na ito ay hanggang :limit.',
     ],
     'beatmaps' => [

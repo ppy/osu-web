@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'administrateur',
     ],
-    'admin_forum' => [
-        '_' => 'administrateur',
-    ],
-    'admin_store' => [
-        '_' => 'administrateur',
-    ],
     'error' => [
         'error' => [
             '400' => 'requête invalide',
@@ -32,17 +26,10 @@ return [
         'topic_logs_controller' => [
             'index' => 'historique du sujet',
         ],
-        'topic_watches_controller' => [
-            'index' => 'tableau de bord',
-        ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'tableau de bord',
             'verify_link' => 'vérification du compte',
-        ],
-        'artist_tracks_controller' => [
-            '_' => 'featured artists',
         ],
         'artists_controller' => [
             '_' => 'featured artists',
@@ -62,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'historique des beatmaps',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'tableau de bord',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'discussion de la beatmap',
             'index' => 'liste des beatmaps',
@@ -81,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => 'concours',
-        ],
-        'follows_controller' => [
-            'index' => 'tableau de bord',
-        ],
-        'friends_controller' => [
-            'index' => 'tableau de bord',
         ],
         'groups_controller' => [
             'show' => 'groupes',
@@ -122,9 +100,6 @@ return [
         'scores_controller' => [
             '_' => 'performance',
         ],
-        'store_controller' => [
-            '_' => 'osu!store',
-        ],
         'tournaments_controller' => [
             '_' => 'tournois',
         ],
@@ -134,11 +109,6 @@ return [
         ],
         'wiki_controller' => [
             '_' => 'wiki',
-        ],
-    ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'classement',
         ],
     ],
     'passport' => [

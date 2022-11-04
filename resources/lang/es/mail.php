@@ -14,8 +14,8 @@ return [
     'common' => [
         'closing' => 'Atentamente,',
         'hello' => 'Hola :user,',
-        'report' => 'Por favor, responda a este correo electrónico INMEDIATAMENTE si no ha solicitado este cambio.',
-        'ignore' => 'Si no solicitó esto, puede ignorar este correo electrónico.',
+        'report' => 'Responda a este correo INMEDIATAMENTE si no ha solicitado este cambio.',
+        'ignore' => 'Si no solicitó esto, puede ignorar este correo.',
     ],
 
     'donation_thanks' => [
@@ -54,7 +54,7 @@ return [
     'store_payment_completed' => [
         'prepare_shipping' => 'Hemos recibido su pago y estamos preparando su orden para el envío. Puede tardar unos días en enviarse, dependiendo de la cantidad de pedidos. Puede seguir el progreso de su orden aquí, incluyendo los detalles de seguimiento cuando estén disponibles:',
         'processing' => 'Hemos recibido su pago y estamos procesando su orden. Puede seguir el progreso de su orden aquí:',
-        'questions' => "Si tiene alguna pregunta, no dude en responder a este correo electrónico.",
+        'questions' => "Si tiene alguna pregunta, no dude en responder a este correo.",
         'shipping' => 'Envío',
         'subject' => '¡Hemos recibido su orden de la osu!store!',
         'thank_you' => '¡Gracias por su pedido de la osu!store!',
@@ -71,10 +71,10 @@ return [
     ],
 
     'user_email_updated' => [
-        'changed_to' => 'Este es un correo electrónico de confirmación para informarle que su dirección de correo electrónico de osu! ha sido cambiada a: ":email".',
-        'check' => 'Por favor, asegúrese de que ha recibido este correo electrónico en su nueva dirección para evitar perder el acceso a su cuenta de osu! en el futuro.',
-        'sent' => 'Por razones de seguridad, este correo electrónico ha sido enviado tanto a su nueva como a su antigua dirección de correo electrónico.',
-        'subject' => 'Confirmación de cambio de correo electrónico de osu!',
+        'changed_to' => 'Este es un correo de confirmación para informarle que su dirección de correo de osu! ha sido cambiada a: ":email".',
+        'check' => 'Asegúrese de que ha recibido este correo en su nueva dirección para evitar perder el acceso a su cuenta de osu! en el futuro.',
+        'sent' => 'Por razones de seguridad, este correo ha sido enviado tanto a su nueva como a su antigua dirección de correo.',
+        'subject' => 'Confirmación de cambio de correo de osu!',
     ],
 
     'user_force_reactivation' => [
@@ -86,7 +86,7 @@ return [
 
     'user_notification_digest' => [
         'new' => 'Sólo informándole de que hay nuevas actualizaciones en los elementos que está viendo.',
-        'settings' => 'Cambiar las preferencias de notificaciones por correo electrónico:',
+        'settings' => 'Cambiar las preferencias de notificaciones por correo:',
         'subject' => 'Nuevas notificaciones de osu!',
     ],
 

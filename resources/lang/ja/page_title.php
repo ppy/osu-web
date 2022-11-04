@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => '管理者',
     ],
-    'admin_forum' => [
-        '_' => '管理者',
-    ],
-    'admin_store' => [
-        '_' => '管理者',
-    ],
     'error' => [
         'error' => [
             '400' => '無効なリクエスト',
@@ -32,17 +26,10 @@ return [
         'topic_logs_controller' => [
             'index' => 'トピックログ',
         ],
-        'topic_watches_controller' => [
-            'index' => 'ダッシュボード',
-        ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'ダッシュボード',
             'verify_link' => 'アカウント認証',
-        ],
-        'artist_tracks_controller' => [
-            '_' => '注目アーティスト',
         ],
         'artists_controller' => [
             '_' => '注目アーティスト',
@@ -62,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'ビートマップ履歴',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'ダッシュボード',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'ビートマップディスカッション',
             'index' => 'ビートマップリスト',
@@ -81,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => 'コンテスト',
-        ],
-        'follows_controller' => [
-            'index' => 'ダッシュボード',
-        ],
-        'friends_controller' => [
-            'index' => 'ダッシュボード',
         ],
         'groups_controller' => [
             'show' => 'グループ',
@@ -122,9 +100,6 @@ return [
         'scores_controller' => [
             '_' => 'パフォーマンス',
         ],
-        'store_controller' => [
-            '_' => 'ストア',
-        ],
         'tournaments_controller' => [
             '_' => 'トーナメント',
         ],
@@ -134,11 +109,6 @@ return [
         ],
         'wiki_controller' => [
             '_' => 'wiki',
-        ],
-    ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'ランキング',
         ],
     ],
     'passport' => [

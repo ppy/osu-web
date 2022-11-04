@@ -22,8 +22,8 @@ return [
     ],
 
     'links' => [
-        'beatmaps' => 'beatmaps osu!',
-        'osu' => 'profil osu!',
+        'beatmaps' => 'Beatmaps osu!',
+        'osu' => 'Profil osu!',
         'site' => 'Site officiel',
     ],
 
