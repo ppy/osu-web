@@ -2166,7 +2166,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function isSessionVerified()
     {
-        return $this->isSessionVerified;
+        return $this->isSessionVerified || config('osu.user.bypass_verification');
     }
 
     public function markSessionVerified()
