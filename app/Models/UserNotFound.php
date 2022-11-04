@@ -94,11 +94,8 @@ class UserNotFound extends User
     public static function instance()
     {
         static $user;
-        if (!isset($user)) {
-            $user = new static(['user_id' => -1, 'username' => '']);
-        }
 
-        return $user;
+        return $user ??= new static(['user_id' => -1, 'username' => '']);
     }
 
     public function checkPassword($password)
