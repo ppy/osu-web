@@ -345,7 +345,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         try {
             return $this->updateUsername($name, $type);
         } catch (QueryException $ex) {
-            if (!is_sql_unique_exception($ex) || $try > 9) {
+            // Maybe use different suffix altogether if people manage
+            // to try using same name more than 21 times.
+            if (!is_sql_unique_exception($ex) || $try > 20) {
                 throw $ex;
             }
 
