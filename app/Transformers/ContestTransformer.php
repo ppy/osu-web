@@ -7,11 +7,13 @@ namespace App\Transformers;
 
 use App\Models\Contest;
 use Auth;
+use League\Fractal\Resource\ResourceInterface;
 
 class ContestTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'entries',
+        'users_voted_count',
     ];
 
     public function transform(Contest $contest)
@@ -41,5 +43,10 @@ class ContestTransformer extends TransformerAbstract
     public function includeEntries(Contest $contest)
     {
         return $this->collection($contest->entriesByType(Auth::user()), new ContestEntryTransformer());
+    }
+
+    public function includeUsersVotedCount(Contest $contest): ResourceInterface
+    {
+        return $this->primitive($contest->usersVotedCount());
     }
 }

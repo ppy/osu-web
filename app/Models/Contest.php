@@ -290,7 +290,11 @@ class Contest extends Model
             $includes[] = 'results';
         }
 
-        $contestJson = json_item($this, new ContestTransformer());
+        $contestJson = json_item(
+            $this,
+            new ContestTransformer(),
+            $this->show_votes ? ['users_voted_count'] : null,
+        );
         if ($this->isVotingStarted()) {
             $contestJson['entries'] = json_collection($this->entriesByType($user), new ContestEntryTransformer(), $includes);
         }
@@ -340,6 +344,15 @@ class Contest extends Model
         return json_collection(
             UserContestEntry::where(['contest_id' => $this->id, 'user_id' => $user->user_id])->get(),
             new UserContestEntryTransformer()
+        );
+    }
+
+    public function usersVotedCount(): int
+    {
+        return cache()->remember(
+            static::class.':'.__FUNCTION__.':'.$this->getKey(),
+            300,
+            fn () => $this->votes()->distinct('user_id')->count(),
         );
     }
 
