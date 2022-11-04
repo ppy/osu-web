@@ -91,10 +91,28 @@ namespace App\Models;
  */
 class UserNotFound extends User
 {
+    public static function instance()
+    {
+        static $user;
+        if (!isset($user)) {
+            $user = new static(['user_id' => -1, 'username' => '']);
+        }
+
+        return $user;
+    }
+
     public function checkPassword($password)
     {
         // password check should always fail.
         return false;
+    }
+
+    public function getAttribute($key)
+    {
+        return match ($key) {
+            'username' => osu_trans('supporter_tag.user_search.not_found'),
+            default => parent::getAttribute($key),
+        };
     }
 
     public function isValid()
@@ -106,15 +124,5 @@ class UserNotFound extends User
     {
         // not saveable.
         return false;
-    }
-
-    public static function instance()
-    {
-        static $user;
-        if (!isset($user)) {
-            $user = new static(['user_id' => -1, 'username' => osu_trans('supporter_tag.user_search.not_found')]);
-        }
-
-        return $user;
     }
 }
