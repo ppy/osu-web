@@ -3,21 +3,28 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace App\Models;
+
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property int|null $canonical_id
- * @property \Illuminate\Database\Eloquent\Collection $changelogEntries ChangelogEntry
+ * @property-read \Illuminate\Database\Eloquent\Collection<ChangelogEntry> $changelogEntries
  * @property \Carbon\Carbon|null $created_at
+ * @property-read string|null $created_at_json
  * @property int $id
  * @property \Carbon\Carbon|null $updated_at
- * @property User $user
+ * @property-read string|null $updated_at_json
+ * @property-read User|null $user
  * @property int|null $user_id
  * @property string|null $username
  */
 class GithubUser extends Model
 {
-    public static function importFromGithub($data)
+    public static function importFromGithub(array $data): static
     {
         $githubUser = static::where('canonical_id', '=', $data['id'])->first();
 
@@ -39,39 +46,58 @@ class GithubUser extends Model
         return $githubUser;
     }
 
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function changelogEntries()
+    public function changelogEntries(): HasMany
     {
         return $this->hasMany(ChangelogEntry::class);
     }
 
-    public function displayName()
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function displayName(): string
     {
         return presence($this->username)
-            ?? optional($this->user)->username
+            ?? $this->osuUsername()
             ?? '[no name]';
     }
 
-    public function githubUrl()
+    public function githubUrl(): ?string
     {
         if (present($this->username)) {
             return "https://github.com/{$this->username}";
         }
     }
 
-    public function userUrl()
+    public function osuUsername(): ?string
+    {
+        return $this->user?->username;
+    }
+
+    public function userUrl(): ?string
     {
         if ($this->user_id !== null) {
             return route('users.show', $this->user_id);
         }
     }
 
-    public function url()
+    public function getAttribute($key)
     {
-        return $this->githubUrl() ?? $this->userUrl();
+        return match ($key) {
+            'canonical_id',
+            'id',
+            'user_id',
+            'username' => $this->getRawAttribute($key),
+
+            'created_at',
+            'updated_at' => $this->getTimeFast($key),
+
+            'created_at_json',
+            'updated_at_json' => $this->getJsonTimeFast($key),
+
+            'changelogEntries',
+            'user' => $this->getRelationValue($key),
+        };
     }
 }
