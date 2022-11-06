@@ -2,7 +2,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import GameMode from 'interfaces/game-mode';
+import GroupJson from 'interfaces/group-json';
 import UserJson from 'interfaces/user-json';
+import { route } from 'laroute';
 import { usernameSortAscending } from 'models/user';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
@@ -10,6 +12,7 @@ import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { currentUrlParams } from 'utils/turbolinks';
 import { updateQueryString } from 'utils/url';
+import BigButton from './big-button';
 import { Sort } from './sort';
 import { ViewMode, viewModes } from './user-card';
 import { UserCards } from './user-cards';
@@ -23,10 +26,7 @@ const playModes: PlayModeFilter[] = ['all', 'osu', 'taiko', 'fruits', 'mania'];
 const sortModes: SortMode[] = ['last_visit', 'rank', 'username'];
 
 interface Props {
-  descriptionHtml?: string;
-  playmodeFilter?: boolean;
-  playmodeFilterGroupId?: number;
-  title?: string;
+  group?: GroupJson;
   users: UserJson[];
 }
 
@@ -151,16 +151,26 @@ export class UserList extends React.PureComponent<Props> {
         {this.renderSelections()}
 
         <div className='user-list'>
-          {this.props.title != null && (
-            <h1 className='user-list__title'>{this.props.title}</h1>
+          {this.props.group?.name != null && (
+            <h1 className='user-list__title'>
+              {this.props.group.name}
+              <BigButton
+                href={route('group-history.index', { group: this.props.group.identifier })}
+                icon='fas fa-history'
+                text={osu.trans('group_history.view')}
+              />
+            </h1>
           )}
 
-          {this.props.descriptionHtml != null && (
-            <div dangerouslySetInnerHTML={{ __html: this.props.descriptionHtml }} className='user-list__description' />
+          {this.props.group?.description?.html != null && (
+            <div
+              className='user-list__description'
+              dangerouslySetInnerHTML={{ __html: this.props.group.description.html }}
+            />
           )}
 
           <div className='user-list__toolbar'>
-            {this.props.playmodeFilter && (
+            {this.props.group?.has_playmodes && (
               <div className='user-list__toolbar-row'>
                 <div className='user-list__toolbar-item'>{this.renderPlaymodeFilter()}</div>
               </div>
@@ -272,19 +282,11 @@ export class UserList extends React.PureComponent<Props> {
     // TODO: should be cached or something
     let users = this.props.users.slice();
     const playmode = this.state.playMode;
-    if (this.props.playmodeFilter && playmode !== 'all') {
-      users = users.filter((user) => {
-        if (user.groups && user.groups.length > 0) {
-          if (this.props.playmodeFilterGroupId != null) {
-            const filterGroup = user.groups.find((group) => group.id === this.props.playmodeFilterGroupId);
-            return filterGroup?.playmodes?.includes(playmode);
-          }
-
-          return user.groups.some((group) => group.playmodes?.includes(playmode));
-        } else {
-          return false;
-        }
-      });
+    if (this.props.group?.has_playmodes && playmode !== 'all') {
+      const group = this.props.group;
+      users = users.filter((user) => (
+        user.groups?.find((g) => g.id === group.id)?.playmodes?.includes(playmode)
+      ));
     }
 
     switch (filter) {
