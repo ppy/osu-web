@@ -77,9 +77,9 @@ class GithubUser extends Model
 
     public function githubUrl(): ?string
     {
-        if (present($this->username)) {
-            return "https://github.com/{$this->username}";
-        }
+        return present($this->username)
+            ? "https://github.com/{$this->username}"
+            : null;
     }
 
     public function osuUsername(): ?string
@@ -89,9 +89,9 @@ class GithubUser extends Model
 
     public function userUrl(): ?string
     {
-        if ($this->user_id !== null) {
-            return route('users.show', $this->user_id);
-        }
+        return $this->user_id !== null
+            ? route('users.show', $this->user_id)
+            : null;
     }
 
     public function getAttribute($key)
