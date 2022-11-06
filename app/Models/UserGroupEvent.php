@@ -9,6 +9,8 @@ namespace App\Models;
 
 use App\Exceptions\InvariantException;
 use App\Exceptions\ModelNotSavedException;
+use App\Models\Traits\WithDbCursorHelper;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
@@ -24,9 +26,22 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $type
  * @property-read User|null $user
  * @property int|null $user_id
+ * @method static Builder visibleForUser(User|null $user)
  */
 class UserGroupEvent extends Model
 {
+    use WithDbCursorHelper;
+
+    const DEFAULT_SORT = 'id_desc';
+    const SORTS = [
+        'id_asc' => [
+            ['column' => 'id', 'order' => 'ASC'],
+        ],
+        'id_desc' => [
+            ['column' => 'id', 'order' => 'DESC'],
+        ],
+    ];
+
     const GROUP_ADD = 'group_add';
     const GROUP_REMOVE = 'group_remove';
     const GROUP_RENAME = 'group_rename';
@@ -151,6 +166,23 @@ class UserGroupEvent extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function scopeVisibleForUser(Builder $query, ?User $user): void
+    {
+        if (priv_check_user($user, 'UserGroupEventShowAll')->can()) {
+            return;
+        }
+
+        $userGroupIds = priv_check_user($user, 'IsSpecialScope')->can()
+            ? $user->groupIds()['active']
+            : [];
+
+        $query->where('hidden', false);
+
+        if (!empty($userGroupIds)) {
+            $query->orWhereIn('group_id', $userGroupIds);
+        }
     }
 
     public function getAttribute($key)
