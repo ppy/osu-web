@@ -117,9 +117,10 @@ class ChangelogController extends Controller
      *           "major": true,
      *           "created_at": "2021-06-19T08:09:39+00:00",
      *           "github_user": {
-     *             "id": 218,
      *             "display_name": "bdach",
      *             "github_url": "https://github.com/bdach",
+     *             "github_username": "bdach",
+     *             "id": 218,
      *             "osu_username": null,
      *             "user_id": null,
      *             "user_url": null
@@ -318,9 +319,10 @@ class ChangelogController extends Controller
      *       "major": true,
      *       "created_at": "2021-05-20T10:56:49+00:00",
      *       "github_user": {
-     *         "id": null,
      *         "display_name": "peppy",
      *         "github_url": null,
+     *         "github_username": null,
+     *         "id": null,
      *         "osu_username": "peppy",
      *         "user_id": 2,
      *         "user_url": "https://osu.ppy.sh/users/2"

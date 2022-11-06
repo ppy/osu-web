@@ -24,12 +24,19 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class GithubUser extends Model
 {
+    /**
+     * Check if the app is capable of authenticating users via the GitHub API.
+     */
     public static function canAuthenticate(): bool
     {
         return config('osu.github.client_id') !== null
             && config('osu.github.client_secret') !== null;
     }
 
+    /**
+     * Create or update a GitHub user with data from the GitHub API. Optionally
+     * associate the GitHub user to an osu! user.
+     */
     public static function importFromGithub(array $apiUser, ?User $user = null): static
     {
         $params = [
