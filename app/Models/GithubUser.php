@@ -24,26 +24,25 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class GithubUser extends Model
 {
-    public static function importFromGithub(array $data): static
+    public static function importFromGithub(array $apiUser, ?User $user = null): static
     {
-        $githubUser = static::where('canonical_id', '=', $data['id'])->first();
-
-        if (isset($githubUser)) {
-            $githubUser->update(['username' => $data['login']]);
-        } else {
-            $githubUser = static::where('username', '=', $data['login'])->last();
-
-            if (isset($githubUser)) {
-                $githubUser->update(['canonical_id' => $data['id']]);
-            } else {
-                $githubUser = static::create([
-                    'canonical_id' => $data['id'],
-                    'username' => $data['login'],
-                ]);
-            }
+        $params = [
+            'canonical_id' => $apiUser['id'],
+            'username' => $apiUser['login'],
+        ];
+        if ($user !== null) {
+            $params['user_id'] = $user->getKey();
         }
 
-        return $githubUser;
+        $githubUser = static::where('canonical_id', $params['canonical_id'])->first()
+            ?? static::where('username', $params['username'])->last();
+
+        if ($githubUser === null) {
+            return static::create($params);
+        } else {
+            $githubUser->update($params);
+            return $githubUser;
+        }
     }
 
     public function changelogEntries(): HasMany
