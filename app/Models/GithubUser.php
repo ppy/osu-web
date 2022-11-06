@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -21,6 +22,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property-read User|null $user
  * @property int|null $user_id
  * @property string|null $username
+ * @method static Builder withGithubInfo()
  */
 class GithubUser extends Model
 {
@@ -66,6 +68,11 @@ class GithubUser extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function scopeWithGithubInfo(Builder $query): void
+    {
+        $query->whereNotNull(['canonical_id', 'username']);
     }
 
     public function displayName(): string

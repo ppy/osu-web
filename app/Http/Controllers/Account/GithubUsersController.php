@@ -64,7 +64,7 @@ class GithubUsersController extends Controller
     {
         abort_unless(GithubUser::canAuthenticate(), 404);
         abort_if(
-            auth()->user()->githubUsers()->count() >= 10,
+            auth()->user()->githubUsers()->withGithubInfo()->count() >= 10,
             403,
             'Too many GitHub accounts.',
         );
