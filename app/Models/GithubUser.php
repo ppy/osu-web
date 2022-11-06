@@ -24,6 +24,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class GithubUser extends Model
 {
+    public static function canAuthenticate(): bool
+    {
+        return config('osu.github.client_id') !== null
+            && config('osu.github.client_secret') !== null;
+    }
+
     public static function importFromGithub(array $apiUser, ?User $user = null): static
     {
         $params = [

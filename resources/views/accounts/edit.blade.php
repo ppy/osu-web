@@ -164,9 +164,11 @@
         @include('accounts._edit_oauth')
     </div>
 
-    <div class="osu-page" id="github">
-        @include('accounts._edit_github_users')
-    </div>
+    @if (\App\Models\GithubUser::canAuthenticate())
+        <div class="osu-page" id="github">
+            @include('accounts._edit_github_users')
+        </div>
+    @endif
 @endsection
 
 @section("script")
@@ -174,9 +176,11 @@
     {!! json_encode($authorizedClients) !!}
   </script>
 
-  <script id="json-github-users" type="application/json">
-    {!! json_encode($githubUsers) !!}
-  </script>
+  @if (\App\Models\GithubUser::canAuthenticate())
+    <script id="json-github-users" type="application/json">
+      {!! json_encode($githubUsers) !!}
+    </script>
+  @endif
 
   <script id="json-own-clients" type="application/json">
     {!! json_encode($ownClients) !!}

@@ -62,10 +62,7 @@ class GithubUsersController extends Controller
 
     public function create()
     {
-        abort_if(
-            config('osu.github.client_id') === null || config('osu.github.client_secret') === null,
-            404,
-        );
+        abort_unless(GithubUser::canAuthenticate(), 404);
         abort_if(
             auth()->user()->githubUsers()->count() >= 10,
             403,
