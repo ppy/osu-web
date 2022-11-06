@@ -215,7 +215,7 @@ Route::group(['middleware' => ['web']], function () {
             Route::post('verify', 'AccountController@verify')->name('verify');
             Route::put('/', 'AccountController@update')->name('update');
 
-            Route::get('github-users/callback', 'Account\GithubUsersController@callback');
+            Route::get('github-users/callback', 'Account\GithubUsersController@callback')->name('github-users.callback');
             Route::resource('github-users', 'Account\GithubUsersController', ['only' => ['create', 'destroy']]);
         });
 
