@@ -20,9 +20,6 @@ export class EntryList extends BaseEntryList
 
     return null unless @state.contest.entries.length > 0
 
-    if @state.contest.show_votes
-      totalVotes = _.sumBy @state.contest.entries, (i) -> i.results.votes
-
     entries = @state.contest.entries.map (entry, index) =>
       el Entry,
         key: entry.id,
@@ -34,7 +31,6 @@ export class EntryList extends BaseEntryList
         contest: @state.contest,
         selected: @state.selected,
         winnerVotes: if @state.contest.show_votes then _.maxBy(@state.contest.entries, (i) -> i.results.votes).results.votes
-        totalVotes: if @state.contest.show_votes then totalVotes
 
     div className: 'contest-voting-list__table',
       div className: 'contest-voting-list__header',
