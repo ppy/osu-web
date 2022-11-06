@@ -163,11 +163,19 @@
     <div class="osu-page" id="oauth">
         @include('accounts._edit_oauth')
     </div>
+
+    <div class="osu-page" id="github">
+        @include('accounts._edit_github_users')
+    </div>
 @endsection
 
 @section("script")
   <script id="json-authorized-clients" type="application/json">
     {!! json_encode($authorizedClients) !!}
+  </script>
+
+  <script id="json-github-users" type="application/json">
+    {!! json_encode($githubUsers) !!}
   </script>
 
   <script id="json-own-clients" type="application/json">

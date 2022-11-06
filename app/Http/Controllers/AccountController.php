@@ -113,10 +113,19 @@ class AccountController extends Controller
 
         $notificationOptions = $user->notificationOptions->keyBy('name');
 
+        $githubUsers = json_collection(
+            $user
+                ->githubUsers()
+                ->whereNotNull(['canonical_id', 'username'])
+                ->get(),
+            'GithubUser',
+        );
+
         return ext_view('accounts.edit', compact(
             'authorizedClients',
             'blocks',
             'currentSessionId',
+            'githubUsers',
             'notificationOptions',
             'ownClients',
             'sessions'

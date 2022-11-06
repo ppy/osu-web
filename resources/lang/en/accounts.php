@@ -46,6 +46,13 @@ return [
         ],
     ],
 
+    'github_users' => [
+        'accounts' => 'accounts',
+        'link' => 'Link GitHub account',
+        'none' => 'No GitHub accounts',
+        'title' => 'GitHub',
+    ],
+
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'receive notifications for new problems on qualified beatmaps of the following modes',
         'beatmapset_disqualify' => 'receive notifications for when beatmaps of the following modes are disqualified',
