@@ -3,19 +3,26 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace App\Models;
 
+use App\Exceptions\InvariantException;
+use App\Exceptions\ModelNotSavedException;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 /**
- * @property User|null $actor
+ * @property-read User|null $actor
  * @property int|null $actor_id
  * @property \Carbon\Carbon $created_at
- * @property array|null $details
- * @property Group $group
+ * @property-read string $created_at_json
+ * @property array $details
+ * @property-read Group $group
  * @property int $group_id
  * @property bool $hidden
  * @property int $id
  * @property string $type
- * @property User|null $user
+ * @property-read User|null $user
  * @property int|null $user_id
  */
 class UserGroupEvent extends Model
@@ -36,9 +43,19 @@ class UserGroupEvent extends Model
         'hidden' => 'boolean',
     ];
 
-    public static function logGroupRename(?User $actor, Group $group, string $previousName, string $name): self
+    public static function logGroupAdd(?User $actor, Group $group): void
     {
-        return static::log($actor, static::GROUP_RENAME, null, $group, [
+        static::log($actor, static::GROUP_ADD, null, $group);
+    }
+
+    public static function logGroupRemove(?User $actor, Group $group): void
+    {
+        static::log($actor, static::GROUP_REMOVE, null, $group);
+    }
+
+    public static function logGroupRename(?User $actor, Group $group, string $previousName, string $name): void
+    {
+        static::log($actor, static::GROUP_RENAME, null, $group, [
             'details' => [
                 'group_name' => $name,
                 'previous_group_name' => $previousName,
@@ -46,40 +63,55 @@ class UserGroupEvent extends Model
         ]);
     }
 
-    public static function logUserAdd(?User $actor, User $user, Group $group, ?array $playmodes = null): self
+    public static function logUserAdd(?User $actor, User $user, Group $group, ?array $playmodes = null): void
     {
-        return static::log($actor, static::USER_ADD, $user, $group, [
+        // Never log additions to the default group
+        if ($group->identifier === 'default') {
+            return;
+        }
+
+        if (empty($playmodes)) {
+            $playmodes = null;
+        }
+
+        static::log($actor, static::USER_ADD, $user, $group, [
             'details' => compact('playmodes'),
         ]);
     }
 
-    public static function logUserAddPlaymodes(?User $actor, User $user, Group $group, array $playmodes): self
+    public static function logUserAddPlaymodes(?User $actor, User $user, Group $group, array $playmodes): void
     {
-        return static::log($actor, static::USER_ADD_PLAYMODES, $user, $group, [
+        if (empty($playmodes)) {
+            throw new InvariantException(__FUNCTION__.' called with no playmodes');
+        }
+
+        static::log($actor, static::USER_ADD_PLAYMODES, $user, $group, [
             'details' => compact('playmodes'),
         ]);
     }
 
-    public static function logUserRemove(?User $actor, User $user, Group $group): self
+    public static function logUserRemove(?User $actor, User $user, Group $group): void
     {
-        return static::log($actor, static::USER_REMOVE, $user, $group);
+        static::log($actor, static::USER_REMOVE, $user, $group);
     }
 
-    public static function logUserRemovePlaymodes(?User $actor, User $user, Group $group, array $playmodes): self
+    public static function logUserRemovePlaymodes(?User $actor, User $user, Group $group, array $playmodes): void
     {
-        return static::log($actor, static::USER_REMOVE_PLAYMODES, $user, $group, [
+        if (empty($playmodes)) {
+            throw new InvariantException(__FUNCTION__.' called with no playmodes');
+        }
+
+        static::log($actor, static::USER_REMOVE_PLAYMODES, $user, $group, [
             'details' => compact('playmodes'),
         ]);
     }
 
-    public static function logUserSetDefault(?User $actor, User $user, Group $group): self
+    public static function logUserSetDefault(?User $actor, User $user, Group $group): void
     {
-        return static::log($actor, static::USER_SET_DEFAULT, $user, $group, [
-            'hidden' => true,
-        ]);
+        static::log($actor, static::USER_SET_DEFAULT, $user, $group);
     }
 
-    private static function log(?User $actor, string $type, ?User $user, Group $group, array $attributes = []): self
+    private static function log(?User $actor, string $type, ?User $user, Group $group, array $attributes = []): void
     {
         $attributes['details'] = array_merge(
             [
@@ -90,7 +122,7 @@ class UserGroupEvent extends Model
             $attributes['details'] ?? [],
         );
 
-        return static::create(array_merge(
+        $event = static::create(array_merge(
             [
                 'actor_id' => $actor?->getKey(),
                 'group_id' => $group->getKey(),
@@ -100,20 +132,48 @@ class UserGroupEvent extends Model
             ],
             $attributes,
         ));
+
+        if (!$event->exists) {
+            throw new ModelNotSavedException('Failed to save model');
+        }
     }
 
-    public function actor()
+    public function actor(): BelongsTo
     {
         return $this->belongsTo(User::class, 'actor_id');
     }
 
-    public function group()
+    public function group(): BelongsTo
     {
         return $this->belongsTo(Group::class, 'group_id');
     }
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function getAttribute($key)
+    {
+        return match ($key) {
+            'actor_id',
+            'group_id',
+            'id',
+            'type',
+            'user_id' => $this->getRawAttribute($key),
+
+            'details' => json_decode($this->getRawAttribute($key), true),
+
+            'hidden' => (bool) $this->getRawAttribute($key),
+
+            'created_at' => $this->getTimeFast($key),
+
+            'created_at_json' => $this->getJsonTimeFast($key),
+
+            'actor',
+            'user' => $this->getRelationValue($key),
+
+            'group' => app('groups')->byIdOrFail($this->getRawAttribute('group_id')),
+        };
     }
 }
