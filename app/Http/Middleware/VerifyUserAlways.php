@@ -7,6 +7,12 @@ namespace App\Http\Middleware;
 
 class VerifyUserAlways extends VerifyUser
 {
+    const GET_ACTION_METHODS = [
+        'GET' => true,
+        'HEAD' => true,
+        'OPTIONS' => true,
+    ];
+
     public static function isRequired($user)
     {
         return $user !== null && ($user->isPrivileged() || $user->isInactive());
@@ -20,7 +26,7 @@ class VerifyUserAlways extends VerifyUser
 
         $method = $request->getMethod();
         $isPostAction = config('osu.user.post_action_verification')
-            ? !in_array($method, ['GET', 'HEAD', 'OPTIONS'], true)
+            ? !isset(static::GET_ACTION_METHODS[$method])
             : false;
 
         $isRequired = $isPostAction || $method === 'DELETE' || session()->get('requires_verification');
