@@ -45,9 +45,6 @@ export class StoreCheckout
         new Promise (resolve) ->
           window.location.href = url
 
-      when 'free'
-        window.osu.promisify $.post(route('store.checkout.store', { orderId, provider }))
-
       when 'paypal'
         StorePaypal.fetchApprovalLink(orderId).then (link) ->
           window.location.href = link
