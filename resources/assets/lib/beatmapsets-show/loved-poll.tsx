@@ -183,8 +183,9 @@ export default class LovedPoll extends React.PureComponent<Props> {
       return;
     }
 
-    this.changingVoteTo = pollOption;
     this.xhr?.abort();
+    this.changingVoteTo = pollOption;
+
     this.xhr = $.ajax(
       route('loved-polls.vote', { topic: this.poll.topic_id }),
       {
@@ -192,8 +193,7 @@ export default class LovedPoll extends React.PureComponent<Props> {
         dataType: 'JSON',
         method: 'POST',
       },
-    );
-    this.xhr
+    )
       .done(this.setPoll)
       .fail(onErrorWithCallback(() => this.changeVote(pollOption)))
       .always(action(() => this.changingVoteTo = undefined));
