@@ -32,7 +32,7 @@ export class StoreCheckout
       showLoadingOverlay.flush()
 
       init[provider]?.then ->
-        window.osu.promisify $.post(route('store.checkout.store'), { provider, orderId })
+        $.post(route('store.checkout.store'), { provider, orderId })
       .then =>
         @startPayment(event.target.dataset)
       .catch @handleError

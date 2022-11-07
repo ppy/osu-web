@@ -80,7 +80,7 @@ export class Store {
       shopifyCheckoutId: checkout.id,
     };
 
-    await osu.promisify($.post(route('store.checkout.store'), params));
+    await $.post(route('store.checkout.store'), params);
     window.location.href = checkout.webUrl;
   }
 
