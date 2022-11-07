@@ -111,13 +111,6 @@ window.osu =
     string? && string != ''
 
 
-  promisify: (deferred) ->
-    new Promise (resolve, reject) ->
-      deferred
-      .done resolve
-      .fail reject
-
-
   trans: (key, replacements = {}, locale) ->
     locale = fallbackLocale unless osu.transExists(key, locale)
 

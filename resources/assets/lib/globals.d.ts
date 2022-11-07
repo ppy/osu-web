@@ -33,7 +33,6 @@ declare module 'legacy-modules' {
     popup: (message: string, type: string) => void;
     presence: (str?: string | null) => string | null;
     present: (str?: string | null) => boolean;
-    promisify: (xhr: JQuery.jqXHR) => Promise<any>;
     reloadPage: () => void;
     trans: (...args: any[]) => string;
     transArray: (array: any[], key?: string) => string;
