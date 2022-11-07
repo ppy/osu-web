@@ -11,9 +11,6 @@ use Artisan;
 use LaravelRedis;
 use Tests\TestCase;
 
-/**
- * @group EsSoloScores
- */
 class EsIndexScoresQueueTest extends TestCase
 {
     const SCHEMA = 'test_queue_command';
