@@ -44,7 +44,7 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
     const additionalAttributes: Partial<Record<`data-${string}`, string>> = {};
 
     if (this.props.showPinSortableHandle) {
-      const pinData = this.props.score.current_user_attributes.pin;
+      const pinData = score.current_user_attributes.pin;
       additionalAttributes['data-score-pin'] = JSON.stringify(pinData);
       blockClass += ' js-score-pin-sortable';
     }
@@ -62,7 +62,7 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
           <div className={`${bn}__detail`}>
             <a
               className={`${bn}__title u-ellipsis-overflow`}
-              href={beatmapUrl(beatmap, rulesetName(this.props.score.ruleset_id))}
+              href={beatmapUrl(beatmap, rulesetName(score.ruleset_id))}
             >
               {getTitle(beatmapset)}
               {' '}
