@@ -26,18 +26,17 @@ class VerifyUser
         'wiki_controller@suggestions' => true,
     ];
 
-    protected ?User $user;
-
-    public function __construct(AuthGuard $auth)
+    public function __construct(protected AuthGuard $auth)
     {
-        $this->user = $auth->user();
     }
 
     public function handle(Request $request, Closure $next)
     {
+        $user = $this->auth->user();
+
         if (
-            $this->user !== null
-            && !$this->user->isSessionVerified()
+            $user !== null
+            && !$user->isSessionVerified()
             && !$this->alwaysSkipVerification()
             && $this->requiresVerification($request)
         ) {

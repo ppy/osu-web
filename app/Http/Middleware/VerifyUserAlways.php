@@ -20,10 +20,6 @@ class VerifyUserAlways extends VerifyUser
 
     public function requiresVerification($request)
     {
-        if ($this->user === null) {
-            return false;
-        }
-
         $method = $request->getMethod();
         $isPostAction = config('osu.user.post_action_verification')
             ? !isset(static::GET_ACTION_METHODS[$method])
