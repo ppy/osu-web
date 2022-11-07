@@ -3,6 +3,7 @@
 
 import ScorePin from 'components/score-pin';
 import SoloScoreJson from 'interfaces/solo-score-json';
+import UserJson from 'interfaces/user-json';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -13,12 +14,13 @@ import { ReportReportable } from './report-reportable';
 
 interface Props {
   score: SoloScoreJson;
+  user: UserJson;
 }
 
 @observer
 export class PlayDetailMenu extends React.Component<Props> {
   render() {
-    const { score } = this.props;
+    const { score, user } = this.props;
     const ruleset = rulesetName(score.ruleset_id);
 
     const children = (dismiss: () => void) => (
@@ -54,7 +56,7 @@ export class PlayDetailMenu extends React.Component<Props> {
             className='simple-menu__item'
             reportableId={(score.best_id ?? score.id).toString()}
             reportableType={score.best_id == null ? score.type : `score_best_${ruleset}`}
-            user={score.user}
+            user={user}
           />
         )}
       </div>
