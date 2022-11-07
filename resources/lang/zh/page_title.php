@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => '管理员',
     ],
-    'admin_forum' => [
-        '_' => '管理',
-    ],
-    'admin_store' => [
-        '_' => '管理员',
-    ],
     'error' => [
         'error' => [
             '400' => '请求无效',
@@ -32,17 +26,10 @@ return [
         'topic_logs_controller' => [
             'index' => '主题记录',
         ],
-        'topic_watches_controller' => [
-            'index' => '主页',
-        ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => '主页',
             'verify_link' => '账户验证',
-        ],
-        'artist_tracks_controller' => [
-            '_' => '精选艺术家',
         ],
         'artists_controller' => [
             '_' => '精选艺术家',
@@ -62,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => '谱面历史',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => '主页',
-        ],
         'beatmapsets_controller' => [
             'discussion' => '谱面讨论',
             'index' => '谱面列表',
@@ -81,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => '评选',
-        ],
-        'follows_controller' => [
-            'index' => '看板',
-        ],
-        'friends_controller' => [
-            'index' => '主页',
         ],
         'groups_controller' => [
             'show' => '用户组',
@@ -122,9 +100,6 @@ return [
         'scores_controller' => [
             '_' => '表现',
         ],
-        'store_controller' => [
-            '_' => '商店',
-        ],
         'tournaments_controller' => [
             '_' => '比赛',
         ],
@@ -134,11 +109,6 @@ return [
         ],
         'wiki_controller' => [
             '_' => 'wiki',
-        ],
-    ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => '排名',
         ],
     ],
     'passport' => [

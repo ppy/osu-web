@@ -50,6 +50,7 @@ return [
             'beatmap' => '',
             'music' => '',
         ],
+        'wrong_dimensions' => '',
         'too_big' => '',
     ],
     'beatmaps' => [

@@ -122,14 +122,14 @@ return [
 
     'user' => [
         'contains_username' => 'La contraseña no puede contener el nombre de usuario.',
-        'email_already_used' => 'El correo electrónico ya está siendo utilizado.',
-        'email_not_allowed' => 'Dirección de correo electrónico no permitida.',
+        'email_already_used' => 'Dirección de correo ya usada.',
+        'email_not_allowed' => 'Dirección de correo no permitida.',
         'invalid_country' => 'El país no está en la base de datos.',
         'invalid_discord' => 'Nombre de usuario de Discord no válido.',
-        'invalid_email' => "No parece ser una dirección de correo electrónico válida.",
+        'invalid_email' => "No parece ser una dirección de correo válida.",
         'invalid_twitter' => 'Nombre de usuario de Twitter no válido.',
         'too_short' => 'La nueva contraseña es muy corta.',
-        'unknown_duplicate' => 'El nombre de usuario o correo electrónico ya está siendo utilizado.',
+        'unknown_duplicate' => 'Nombre de usuario o correo ya usado.',
         'username_available_in' => 'Este nombre de usuario estará disponible para su uso en :duration.',
         'username_available_soon' => '¡Este nombre de usuario estará disponible para su uso en cualquier momento!',
         'username_invalid_characters' => 'El nombre de usuario solicitado contiene caracteres no válidos.',
@@ -142,13 +142,13 @@ return [
         'username_too_long' => 'El nombre de usuario solicitado es muy largo.',
         'weak' => 'Contraseña no permitida.',
         'wrong_current_password' => 'La contraseña actual es incorrecta.',
-        'wrong_email_confirmation' => 'La confirmación de correo electrónico no coincide.',
+        'wrong_email_confirmation' => 'La confirmación de correo no coincide.',
         'wrong_password_confirmation' => 'La confirmación de contraseña no coincide.',
         'too_long' => 'Se excedió el límite máximo - puedes usar hasta :limit caracteres.',
 
         'attributes' => [
             'username' => 'Nombre de usuario',
-            'user_email' => 'Correo electrónico',
+            'user_email' => 'Dirección de correo',
             'password' => 'Contraseña',
         ],
 

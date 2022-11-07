@@ -131,7 +131,7 @@ return [
 
         'options' => [
             'cheating' => 'Lureri / Juks',
-            'multiple_accounts' => '',
+            'multiple_accounts' => 'Bruker flere kontoer',
             'insults' => 'Fornærmer meg / andre',
             'spam' => 'Spamming',
             'unwanted_content' => 'Deling av upassende innhold',
@@ -414,6 +414,7 @@ return [
             'country_simple' => 'Landsrangering',
             'global' => 'Global rangering for :mode',
             'global_simple' => 'Global Rangering',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Presisjon',

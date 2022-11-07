@@ -414,6 +414,7 @@ return [
             'country_simple' => 'Classificação nacional',
             'global' => 'Classificação global para :mode',
             'global_simple' => 'Classificação global',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisão de acertos',

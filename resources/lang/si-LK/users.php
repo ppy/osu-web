@@ -414,6 +414,7 @@ return [
             'country_simple' => '',
             'global' => '',
             'global_simple' => '',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => '',

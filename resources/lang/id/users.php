@@ -414,6 +414,7 @@ return [
             'country_simple' => 'Peringkat Negara',
             'global' => 'Peringkat global untuk :mode',
             'global_simple' => 'Peringkat Global',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Akurasi Hit',

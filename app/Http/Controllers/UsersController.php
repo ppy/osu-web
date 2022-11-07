@@ -586,6 +586,7 @@ class UsersController extends Controller
      * - page
      * - pending_beatmapset_count
      * - previous_usernames
+     * - rank_highest
      * - rank_history
      * - ranked_beatmapset_count
      * - replays_watched_counts
@@ -877,6 +878,7 @@ class UsersController extends Controller
             'account_history',
             'page',
             'pending_beatmapset_count',
+            'rank_highest',
             'rank_history',
             'statistics',
             'statistics.country_rank',

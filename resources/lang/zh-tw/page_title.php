@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => '管理員',
     ],
-    'admin_forum' => [
-        '_' => '管理',
-    ],
-    'admin_store' => [
-        '_' => '管理員',
-    ],
     'error' => [
         'error' => [
             '400' => '請求無效',
@@ -32,17 +26,10 @@ return [
         'topic_logs_controller' => [
             'index' => '主題日誌',
         ],
-        'topic_watches_controller' => [
-            'index' => '主頁',
-        ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => '主頁',
             'verify_link' => '帳戶驗證',
-        ],
-        'artist_tracks_controller' => [
-            '_' => '精選藝術家',
         ],
         'artists_controller' => [
             '_' => '精選藝術家',
@@ -62,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => '圖譜歷史',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => '主頁',
-        ],
         'beatmapsets_controller' => [
             'discussion' => '圖譜討論',
             'index' => '圖譜列表',
@@ -81,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => '評選',
-        ],
-        'follows_controller' => [
-            'index' => '看板',
-        ],
-        'friends_controller' => [
-            'index' => '主頁',
         ],
         'groups_controller' => [
             'show' => '群組',
@@ -122,9 +100,6 @@ return [
         'scores_controller' => [
             '_' => '成績',
         ],
-        'store_controller' => [
-            '_' => '商店',
-        ],
         'tournaments_controller' => [
             '_' => '官方比賽',
         ],
@@ -134,11 +109,6 @@ return [
         ],
         'wiki_controller' => [
             '_' => 'wiki',
-        ],
-    ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => '排名',
         ],
     ],
     'passport' => [

@@ -104,7 +104,7 @@ return [
 
         'action_from' => [
             '_' => '您的账号有一个来自 :country 的操作需要验证。',
-            'unknown_country' => '未知国家',
+            'unknown_country' => '未知国家/地区',
         ],
     ],
 ];
