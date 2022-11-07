@@ -2,7 +2,9 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-
+@php
+    $user = Auth::user();
+@endphp
 <a class='user-home-beatmapset' href="{{route('beatmapsets.show', $beatmapset->beatmapset_id)}}">
     @include('objects._beatmapset_cover', [
         'beatmapset' => $beatmapset,
@@ -18,9 +20,13 @@
                 </div>
             @endforeach
 
-            <div class='user-home-beatmapset__title u-ellipsis-overflow'>{{$beatmapset->title}}</div>
+            <div class='user-home-beatmapset__title u-ellipsis-overflow'>
+                {{ $beatmapset->getDisplayTitle($user) }}
+            </div>
         </div>
-        <div class='user-home-beatmapset__artist u-ellipsis-overflow'>{{$beatmapset->artist}}</div>
+        <div class='user-home-beatmapset__artist u-ellipsis-overflow'>
+            {{ $beatmapset->getDisplayArtist($user) }}
+        </div>
         <div class='user-home-beatmapset__creator u-ellipsis-overflow'>
             {!! osu_trans('home.user.beatmaps.by_user', ['user' => tag(
                 'span',
