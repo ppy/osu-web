@@ -11,13 +11,14 @@ namespace App\Models;
  * @property bool $enabled
  * @property string $grouping
  * @property string|null $image
- * @property int|null $mode
+ * @property string|null $mode
  * @property string $name
  * @property int $ordering
  * @property int $progression
  * @property string|null $quest_instructions
  * @property int|null $quest_ordering
  * @property string $slug
+ * @method static \Illuminate\Database\Eloquent\Builder achievable()
  */
 class Achievement extends Model
 {
@@ -62,7 +63,7 @@ class Achievement extends Model
         };
     }
 
-    private function getMode()
+    private function getMode(): ?string
     {
         $value = $this->getRawAttribute('mode');
 
