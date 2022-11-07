@@ -61,11 +61,12 @@ class UserVerificationState
         $this->session = $session;
         $this->user = $user;
 
-        if ($this->session->getId() === session()->getId()) {
+        $currentSession = session();
+        if ($this->session->getId() === $currentSession->getId()) {
             // Override passed session if it's the same as current session
             // otherwise the changes here will be overriden when current
             // session is saved.
-            $this->session = session();
+            $this->session = $currentSession;
         }
     }
 
