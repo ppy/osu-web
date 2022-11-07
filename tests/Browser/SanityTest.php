@@ -47,6 +47,7 @@ use App\Models\UserProfileCustomization;
 use App\Models\UserStatistics;
 use Exception;
 use Illuminate\Routing\Route as LaravelRoute;
+use Illuminate\Support\Facades\Schema;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
@@ -91,6 +92,7 @@ class SanityTest extends DuskTestCase
         }
 
         // Clean up extra things that get created (i.e. as side-effects, etc)
+        Schema::disableForeignKeyConstraints();
         Beatmap::truncate();
         Beatmapset::truncate();
         Channel::truncate();
@@ -110,6 +112,7 @@ class SanityTest extends DuskTestCase
         UserNotification::truncate();
         UserProfileCustomization::truncate();
         UserStatistics\Osu::truncate();
+        Schema::enableForeignKeyConstraints();
 
         app('groups')->resetCache();
     }
