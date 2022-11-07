@@ -13,6 +13,19 @@ use Illuminate\Http\Request;
 
 class VerifyUser
 {
+    const SKIP_VERIFICATION_ROUTES = [
+        'account_controller@reissue_code' => true,
+        'account_controller@verify' => true,
+        'account_controller@verify_link' => true,
+        'notifications_controller@endpoint' => true,
+        'sessions_controller@destroy' => true,
+        'sessions_controller@store' => true,
+        'wiki_controller@image' => true,
+        'wiki_controller@show' => true,
+        'wiki_controller@sitemap' => true,
+        'wiki_controller@suggestions' => true,
+    ];
+
     protected ?User $user;
 
     public function __construct(AuthGuard $auth)
@@ -44,19 +57,6 @@ class VerifyUser
         $currentRouteData = app('route-section')->getCurrent();
         $currentRoute = "{$currentRouteData['controller']}@{$currentRouteData['action']}";
 
-        static $routes = [
-            'account_controller@reissue_code',
-            'account_controller@verify',
-            'account_controller@verify_link',
-            'notifications_controller@endpoint',
-            'sessions_controller@destroy',
-            'sessions_controller@store',
-            'wiki_controller@image',
-            'wiki_controller@show',
-            'wiki_controller@sitemap',
-            'wiki_controller@suggestions',
-        ];
-
-        return in_array($currentRoute, $routes, true);
+        return isset(static::SKIP_VERIFICATION_ROUTES[$currentRoute]);
     }
 }
