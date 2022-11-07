@@ -6,7 +6,6 @@
 namespace App\Http\Middleware;
 
 use App\Libraries\UserVerification;
-use App\Models\User;
 use Closure;
 use Illuminate\Contracts\Auth\Guard as AuthGuard;
 use Illuminate\Http\Request;
