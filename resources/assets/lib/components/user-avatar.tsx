@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as React from 'react';
-import { classWithModifiers, Modifiers } from 'utils/css';
+import { classWithModifiers, Modifiers, urlPresence } from 'utils/css';
 
 interface UserForAvatarJson {
   // TODO: make non-optional; existing coffeescript passes {} for guest user.
@@ -18,7 +18,7 @@ export default function UserAvatar(props: Props) {
   return (
     <span
       className={`${classWithModifiers('avatar', props.modifiers)} avatar--guest`}
-      style={{ backgroundImage: osu.urlPresence(props.user?.avatar_url) }}
+      style={{ backgroundImage: urlPresence(props.user?.avatar_url) }}
     />
   );
 }

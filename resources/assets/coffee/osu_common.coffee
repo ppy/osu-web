@@ -5,8 +5,6 @@ import { formatNumber } from 'utils/html'
 import { currentUrl } from 'utils/turbolinks'
 
 window.osu =
-  isIos: /iPad|iPhone|iPod/.test(navigator.platform)
-
   groupColour: (group) ->
     '--group-colour': group?.colour ? 'initial'
 
@@ -21,17 +19,6 @@ window.osu =
   emitAjaxError: (element = document.body) =>
     (xhr, status, error) =>
       $(element).trigger 'ajax:error', [xhr, status, error]
-
-
-  # mobile safari zooms in on focus of input boxes with font-size < 16px, this works around that
-  focus: (el) =>
-    el = $(el)[0] # so we can handle both jquery'd and normal dom nodes
-    return el.focus() if !osu.isIos
-
-    prevSize = el.style.fontSize
-    el.style.fontSize = '16px'
-    el.focus()
-    el.style.fontSize = prevSize
 
 
   formatBytes: (bytes, decimals=2) ->
@@ -49,13 +36,6 @@ window.osu =
     Turbolinks.clearCache()
 
     osu.navigate currentUrl().href, keepScroll, action: 'replace'
-
-
-  urlPresence: (url) ->
-    # Wrapping the string with quotes and escaping the used quotes inside
-    # is sufficient. Use double quote as it's easy to figure out with
-    # encodeURI (it doesn't escape single quote).
-    if osu.present(url) then "url(\"#{String(url).replace(/"/g, '%22')}\")" else null
 
 
   navigate: (url, keepScroll, {action = 'advance'} = {}) ->
@@ -111,13 +91,6 @@ window.osu =
     string? && string != ''
 
 
-  promisify: (deferred) ->
-    new Promise (resolve, reject) ->
-      deferred
-      .done resolve
-      .fail reject
-
-
   trans: (key, replacements = {}, locale) ->
     locale = fallbackLocale unless osu.transExists(key, locale)
 
@@ -160,10 +133,6 @@ window.osu =
     translated = Lang.get(key, null, locale)
 
     osu.present(translated) && translated != key
-
-
-  uuid: ->
-    Turbolinks.uuid() # no point rolling our own
 
 
   xhrErrorMessage: (xhr) ->

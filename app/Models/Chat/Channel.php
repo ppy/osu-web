@@ -24,16 +24,22 @@ use Illuminate\Support\Str;
 use LaravelRedis as Redis;
 
 /**
- * @property string[] $allowed_groups
+ * @property int[] $allowed_groups
  * @property int $channel_id
- * @property \Carbon\Carbon $creation_time
+ * @property Carbon $creation_time
+ * @property-read string $creation_time_json
  * @property string $description
- * @property \Illuminate\Database\Eloquent\Collection $messages Message
+ * @property int|null $last_message_id
+ * @property-read Collection<Message> $messages
  * @property int|null $match_id
- * @property int $moderated
+ * @property bool $moderated
+ * @property-read \App\Models\LegacyMatch\LegacyMatch|null $multiplayerMatch
  * @property string $name
  * @property int|null $room_id
- * @property mixed $type
+ * @property string $type
+ * @property-read Collection<UserChannel> $userChannels
+ * @method static \Illuminate\Database\Eloquent\Builder PM()
+ * @method static \Illuminate\Database\Eloquent\Builder public()
  */
 class Channel extends Model
 {
@@ -75,11 +81,9 @@ class Channel extends Model
     /**
      * Creates a chat broadcast Channel and associated UserChannels.
      *
-     * @param Collection $users
-     * @param array $rawParams
-     * @return Channel
+     * @param Collection<User> $users
      */
-    public static function createAnnouncement(Collection $users, array $rawParams, ?string $uuid = null): self
+    public static function createAnnouncement(Collection $users, array $rawParams, ?string $uuid = null): static
     {
         $params = get_params($rawParams, null, [
             'description:string',
@@ -162,13 +166,7 @@ class Channel extends Model
         return "chat:channel:{$channelId}";
     }
 
-    /**
-     * @param User $user1
-     * @param User $user2
-     *
-     * @return string
-     */
-    public static function getPMChannelName(User $user1, User $user2)
+    public static function getPMChannelName(User $user1, User $user2): string
     {
         $userIds = [$user1->getKey(), $user2->getKey()];
         sort($userIds);

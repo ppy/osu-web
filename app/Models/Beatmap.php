@@ -82,12 +82,12 @@ class Beatmap extends Model
         return $variant === null || in_array($variant, static::VARIANTS[$mode] ?? [], true);
     }
 
-    public static function modeInt($str)
+    public static function modeInt($str): ?int
     {
         return static::MODES[$str] ?? null;
     }
 
-    public static function modeStr($int)
+    public static function modeStr($int): ?string
     {
         static $lookupMap;
 

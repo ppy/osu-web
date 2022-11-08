@@ -3,7 +3,7 @@
 
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import { classWithModifiers, Modifiers } from 'utils/css';
+import { classWithModifiers, Modifiers, urlPresence } from 'utils/css';
 import Controller from './controller';
 
 const bn = 'profile-cover-selection';
@@ -27,7 +27,7 @@ export default class CoverSelection extends React.PureComponent<Props> {
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
         style={{
-          backgroundImage: osu.urlPresence(this.props.thumbUrl),
+          backgroundImage: urlPresence(this.props.thumbUrl),
         }}
       >
         {this.props.isSelected && (

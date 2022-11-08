@@ -25,7 +25,7 @@ class AssetsManifest
         $this->manifest = json_decode(file_get_contents($manifestPath), true);
     }
 
-    public function src(string $resource)
+    public function src(string $resource): HtmlString
     {
         if (!isset($this->manifest[$resource])) {
             throw new Exception("resource not defined: {$resource}.");

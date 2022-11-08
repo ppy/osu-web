@@ -220,7 +220,7 @@ export class Nominations extends React.PureComponent
   focusNewDiscussion: (callback) ->
     inputBox = $('.js-hype--input')
 
-    osu.focus(inputBox)
+    inputBox.focus()
 
     # ensure input box is in view and focus it
     $.scrollTo inputBox, 200,

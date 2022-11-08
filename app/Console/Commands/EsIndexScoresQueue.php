@@ -76,8 +76,6 @@ class EsIndexScoresQueue extends Command
             });
         }
 
-        $this->search->refresh();
-
         $this->bar->finish();
         $this->line('');
         $totalTime = (int) ((hrtime(true) - $startTimeNs) / 1000000000);
