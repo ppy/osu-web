@@ -9,13 +9,6 @@ window.osu =
     '--group-colour': group?.colour ? 'initial'
 
 
-  ajaxError: (xhr) ->
-    return if osuCore.userLogin.showOnError(xhr)
-    return if osuCore.userVerification.showOnError(xhr)
-
-    osu.popup osu.xhrErrorMessage(xhr), 'danger'
-
-
   emitAjaxError: (element = document.body) =>
     (xhr, status, error) =>
       $(element).trigger 'ajax:error', [xhr, status, error]

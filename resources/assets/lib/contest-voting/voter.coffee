@@ -4,7 +4,8 @@
 import { route } from 'laroute'
 import core from 'osu-core-singleton'
 import * as React from 'react'
-import { div,a,i } from 'react-dom-factories'
+import { div, a, i } from 'react-dom-factories'
+import { onError } from 'utils/ajax'
 import { createClickCallback } from 'utils/html'
 
 el = React.createElement
@@ -23,7 +24,7 @@ export class Voter extends React.Component
     .done (response) =>
       $.publish 'contest:vote:done', response: response
 
-    .fail osu.ajaxError
+    .fail onError
 
     .always =>
       $.publish 'contest:vote:end'

@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import core from 'osu-core-singleton'
+import { onError } from 'utils/ajax'
 import { bottomPage, formatNumber, isInputElement } from 'utils/html'
 import { hideLoadingOverlay } from 'utils/loading-overlay'
 import { pageChange } from 'utils/page-change'
@@ -335,7 +336,7 @@ export default class Forum
       link.classList.remove 'js-disabled'
     .fail (xhr) =>
       link.dataset.failed = '1'
-      osu.ajaxError xhr
+      onError xhr
 
 
   jumpToSubmit: (e) =>

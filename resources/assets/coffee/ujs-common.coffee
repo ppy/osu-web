@@ -1,6 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { onError } from 'utils/ajax'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 
 $(document).on 'ajax:before', ->
@@ -27,4 +28,4 @@ $(document).on 'ajax:error', (event, xhr) ->
   # authentication logic is handled in user-dropdown-modal.js
   return if xhr.status == 401
 
-  osu.ajaxError xhr
+  onError xhr
