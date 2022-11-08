@@ -15,12 +15,12 @@ _octane() {
   /app/artisan config:cache
   /app/artisan route:cache
 
-  exec /app/artisan octane:start --host=0.0.0.0
+  exec /app/artisan octane:start --host=0.0.0.0 "$@"
 }
 
 case "$command" in
     artisan) exec /app/artisan "$@";;
     assets) exec nginx -c /app/docker/deployment/nginx-assets.conf "$@";;
-    octane) _octane;;
+    octane) _octane "$@";;
     *) exec "$command" "$@";;
 esac

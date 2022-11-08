@@ -8,6 +8,7 @@ import { debounce } from 'lodash';
 import { action, autorun, computed, makeObservable, observable, runInAction } from 'mobx';
 import core from 'osu-core-singleton';
 import { onError } from 'utils/ajax';
+import { uuid } from 'utils/seq';
 
 interface LocalStorageProps extends Record<InputKey, string> {
   validUsers: number[];
@@ -31,7 +32,7 @@ export default class CreateAnnouncement implements FormWithErrors<InputKey> {
 
   private debouncedLookupUsers = debounce(() => this.lookupUsers(), 1000);
   private initialized = false;
-  private uuid = osu.uuid();
+  private uuid = uuid();
   private xhrLookupUsers?: JQuery.jqXHR<{ users: UserJson[] }>;
 
   @computed
