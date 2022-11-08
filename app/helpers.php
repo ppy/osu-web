@@ -19,6 +19,18 @@ function api_version(): int
     return $version;
 }
 
+function array_filter_set(array|ArrayAccess $array): array
+{
+    $ret = [];
+    foreach ($array as $item) {
+        if ($item !== null) {
+            $ret[] = $item;
+        }
+    }
+
+    return $ret;
+}
+
 /*
  * Like array_search but returns null if not found instead of false.
  * Strict mode only.
