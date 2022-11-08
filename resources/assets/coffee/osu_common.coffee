@@ -5,8 +5,6 @@ import { formatNumber } from 'utils/html'
 import { currentUrl } from 'utils/turbolinks'
 
 window.osu =
-  isIos: /iPad|iPhone|iPod/.test(navigator.platform)
-
   groupColour: (group) ->
     '--group-colour': group?.colour ? 'initial'
 
