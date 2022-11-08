@@ -1416,13 +1416,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function getPost()
     {
-        $topic = $this->topic;
-
-        if ($topic === null) {
-            return;
-        }
-
-        return Forum\Post::find($topic->topic_first_post_id);
+        return $this->topic?->firstPost;
     }
 
     public function freshHype()
