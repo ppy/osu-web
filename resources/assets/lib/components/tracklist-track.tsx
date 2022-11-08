@@ -5,7 +5,7 @@ import ArtistJson from 'interfaces/artist-json';
 import ArtistTrackJson, { ArtistTrackWithArtistJson } from 'interfaces/artist-track-json';
 import { route } from 'laroute';
 import * as React from 'react';
-import { classWithModifiers, Modifiers } from 'utils/css';
+import { classWithModifiers, Modifiers, urlPresence } from 'utils/css';
 import { formatNumber } from 'utils/html';
 
 type TrackJson = {
@@ -42,7 +42,7 @@ export default class TracklistTrack extends React.PureComponent<Props> {
         <div
           className='artist-track__col artist-track__col--preview'
           style={{
-            backgroundImage: osu.urlPresence(this.props.track.cover_url),
+            backgroundImage: urlPresence(this.props.track.cover_url),
           }}
         >
           <button className='artist-track__button artist-track__button--play js-audio--play'>
