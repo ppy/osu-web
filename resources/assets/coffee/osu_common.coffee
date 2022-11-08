@@ -155,10 +155,6 @@ window.osu =
     osu.present(translated) && translated != key
 
 
-  uuid: ->
-    Turbolinks.uuid() # no point rolling our own
-
-
   xhrErrorMessage: (xhr) ->
     validationMessage = xhr?.responseJSON?.validation_error
 
