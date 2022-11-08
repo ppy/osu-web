@@ -9,11 +9,6 @@ window.osu =
     '--group-colour': group?.colour ? 'initial'
 
 
-  emitAjaxError: (element = document.body) =>
-    (xhr, status, error) =>
-      $(element).trigger 'ajax:error', [xhr, status, error]
-
-
   formatBytes: (bytes, decimals=2) ->
     suffixes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
     k = 1000

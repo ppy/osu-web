@@ -6,6 +6,10 @@ import { createClickCallback } from 'utils/html';
 
 const jqXHRProperties = ['status', 'statusText', 'readyState', 'responseText'];
 
+export function emitError(element: HTMLElement = document.body) {
+  return (xhr: JQuery.jqXHR, status: string, errorThrown: unknown) => $(element).trigger('ajax:error', [xhr, status, errorThrown]);
+}
+
 export const error = (xhr: JQuery.jqXHR, status: string, callback?: () => void) => {
   if (status === 'abort') return;
   if (core.userLogin.showOnError(xhr, callback)) return;
