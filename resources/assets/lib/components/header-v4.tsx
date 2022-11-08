@@ -4,7 +4,7 @@
 import HeaderLink from 'interfaces/header-link';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { classWithModifiers, Modifiers } from 'utils/css';
+import { classWithModifiers, Modifiers, urlPresence } from 'utils/css';
 import { parseJson } from 'utils/json';
 
 interface Props {
@@ -65,7 +65,7 @@ export default class HeaderV4 extends React.Component<Props> {
           <div className='header-v4__bg-container'>
             <div
               className='header-v4__bg'
-              style={{ backgroundImage: osu.urlPresence(this.props.backgroundImage) }}
+              style={{ backgroundImage: urlPresence(this.props.backgroundImage) }}
             />
           </div>
 
