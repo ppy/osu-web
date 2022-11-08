@@ -99,6 +99,7 @@ class CommentBundle
         }
 
         $allComments = $comments->concat($includedComments)->concat($pinnedComments);
+        $allComments->load('commentable');
 
         $result = [
             'comments' => json_collection($comments, 'Comment'),
@@ -180,7 +181,7 @@ class CommentBundle
             }
         }
 
-        $query->with('commentable')->cursorSort($sortOrCursorHelper, $cursor ?? null);
+        $query->cursorSort($sortOrCursorHelper, $cursor ?? null);
 
         if (!$this->includeDeleted) {
             $query->whereNull('deleted_at');
