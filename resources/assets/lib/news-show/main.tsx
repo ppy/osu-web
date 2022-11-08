@@ -12,7 +12,7 @@ import { route } from 'laroute';
 import PostItem from 'news-index/post-item';
 import NewsSidebar from 'news-sidebar/main';
 import * as React from 'react';
-import { classWithModifiers } from 'utils/css';
+import { classWithModifiers, urlPresence } from 'utils/css';
 
 interface Props {
   container: HTMLElement;
@@ -29,7 +29,7 @@ function NavPost({ post, subtitle, modifiers }: { modifiers: string[]; post?: Ne
     <a
       className={classWithModifiers('page-nav-fancy', modifiers)}
       href={route('news.show', { news: post.slug })}
-      style={{ backgroundImage: osu.urlPresence(post.first_image) }}
+      style={{ backgroundImage: urlPresence(post.first_image) }}
     >
       <div className='page-nav-fancy__label'>
         <div className='page-nav-fancy__subtitle'>
