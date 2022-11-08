@@ -4,6 +4,7 @@
 import { pull } from 'lodash'
 import { reaction } from 'mobx'
 import core from 'osu-core-singleton'
+import { urlPresence } from 'utils/css'
 
 export default class CurrentUserObserver
   constructor: ->
@@ -29,13 +30,13 @@ export default class CurrentUserObserver
   setAvatars: (elements) =>
     elements ?= @avatars
 
-    bgImage = osu.urlPresence(currentUser.avatar_url) if currentUser.id?
+    bgImage = urlPresence(currentUser.avatar_url) if currentUser.id?
     for el in elements
       el.style.backgroundImage = bgImage
 
 
   setCovers: =>
-    bgImage = osu.urlPresence(core.currentUser.cover.url) if core.currentUser?
+    bgImage = urlPresence(core.currentUser.cover.url) if core.currentUser?
     for el in @covers
       el.style.backgroundImage = bgImage
 

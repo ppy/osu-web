@@ -40,13 +40,6 @@ window.osu =
     osu.navigate currentUrl().href, keepScroll, action: 'replace'
 
 
-  urlPresence: (url) ->
-    # Wrapping the string with quotes and escaping the used quotes inside
-    # is sufficient. Use double quote as it's easy to figure out with
-    # encodeURI (it doesn't escape single quote).
-    if osu.present(url) then "url(\"#{String(url).replace(/"/g, '%22')}\")" else null
-
-
   navigate: (url, keepScroll, {action = 'advance'} = {}) ->
     osu.keepScrollOnLoad() if keepScroll
     Turbolinks.visit url, action: action
