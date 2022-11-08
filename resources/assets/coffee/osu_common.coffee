@@ -23,17 +23,6 @@ window.osu =
       $(element).trigger 'ajax:error', [xhr, status, error]
 
 
-  # mobile safari zooms in on focus of input boxes with font-size < 16px, this works around that
-  focus: (el) =>
-    el = $(el)[0] # so we can handle both jquery'd and normal dom nodes
-    return el.focus() if !osu.isIos
-
-    prevSize = el.style.fontSize
-    el.style.fontSize = '16px'
-    el.focus()
-    el.style.fontSize = prevSize
-
-
   formatBytes: (bytes, decimals=2) ->
     suffixes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
     k = 1000
