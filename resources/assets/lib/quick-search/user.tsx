@@ -8,7 +8,7 @@ import UserGroupBadges from 'components/user-group-badges';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as React from 'react';
-import { classWithModifiers } from 'utils/css';
+import { classWithModifiers, urlPresence } from 'utils/css';
 
 export default function User({ user, modifiers = [] }: { modifiers?: string[]; user: UserJson }) {
   const url = route('users.show', { user: user.id });
@@ -16,7 +16,7 @@ export default function User({ user, modifiers = [] }: { modifiers?: string[]; u
   return (
     <div className={`${classWithModifiers('user-search-card', modifiers)} clickable-row`}>
       <a className='user-search-card__avatar-container' href={url}>
-        <div className='avatar avatar--full' style={{ backgroundImage: osu.urlPresence(user.avatar_url) }} />
+        <div className='avatar avatar--full' style={{ backgroundImage: urlPresence(user.avatar_url) }} />
       </a>
 
       <div className='user-search-card__details'>
