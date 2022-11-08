@@ -178,7 +178,7 @@ return [
             'username' => 'nombre de usuario',
 
             'error' => [
-                'email' => "El nombre de usuario o correo electrónico no existe",
+                'email' => "El nombre de usuario o correo no existe",
                 'password' => 'Contraseña incorrecta',
             ],
         ],

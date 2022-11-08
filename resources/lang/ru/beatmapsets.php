@@ -65,7 +65,7 @@ return [
             'favourite' => 'Добавить в избранное',
             'favourite_login' => 'Войдите, чтобы добавить эту карту в избранное',
             'logged-out' => 'Вы должны войти для загрузки карты!',
-            'mapped_by' => 'сделана :mapper',
+            'mapped_by' => 'автор :mapper',
             'unfavourite' => 'Удалить из избранного',
             'updated_timeago' => 'обновлена :timeago',
 

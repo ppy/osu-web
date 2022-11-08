@@ -6,7 +6,8 @@
   "channel_id": 5,
   "timestamp": "2018-07-06T06:33:34+00:00",
   "content": "i am a lazerface",
-  "is_action": 0,
+  "is_action": false,
+  "uuid": "some-uuid-string",
   "sender": {
     "id": 2,
     "username": "peppy",
@@ -32,3 +33,4 @@ timestamp  | string                       | when the message was sent, ISO-8601
 content    | string                       | message content
 is_action  | boolean                      | was this an action? i.e. `/me dances`
 sender     | [UserCompact](#usercompact)  | embedded UserCompact object to save additional api lookups
+uuid       | ?string                      | message identifier originally sent by client

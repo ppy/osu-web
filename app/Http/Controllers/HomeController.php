@@ -17,6 +17,9 @@ use App\Models\UserDonation;
 use Auth;
 use Request;
 
+/**
+ * @group Home
+ */
 class HomeController extends Controller
 {
     public function __construct()
@@ -40,6 +43,9 @@ class HomeController extends Controller
         return $post->bodyHTML();
     }
 
+    /**
+     * @group Undocumented
+     */
     public function downloadQuotaCheck()
     {
         return [
@@ -136,8 +142,6 @@ class HomeController extends Controller
      * @queryParam mode Either `all`, `user`, or `wiki_page`. Default is `all`. Example: all
      * @queryParam query Search keyword. Example: hello
      * @queryParam page Search result page. Ignored for mode `all`. Example: 1
-     *
-     * @group Home
      */
     public function search()
     {

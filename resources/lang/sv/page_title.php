@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'admin',
     ],
-    'admin_forum' => [
-        '_' => 'admin',
-    ],
-    'admin_store' => [
-        '_' => 'admin',
-    ],
     'error' => [
         'error' => [
             '400' => 'ogiltig begäran',
@@ -32,17 +26,10 @@ return [
         'topic_logs_controller' => [
             'index' => 'ämneslogg',
         ],
-        'topic_watches_controller' => [
-            'index' => 'kontrollpanel',
-        ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'kontrollpanel',
             'verify_link' => 'kontobekräftelse',
-        ],
-        'artist_tracks_controller' => [
-            '_' => 'utvalda artister',
         ],
         'artists_controller' => [
             '_' => 'utvalda artister',
@@ -62,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'beatmaphistorik',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'kontrollpanel',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'beatmapdiskussioner',
             'index' => 'beatmaplistning',
@@ -81,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => 'tävlingar',
-        ],
-        'follows_controller' => [
-            'index' => 'kontrollpanel',
-        ],
-        'friends_controller' => [
-            'index' => 'kontrollpanel',
         ],
         'groups_controller' => [
             'show' => 'grupper',
@@ -122,9 +100,6 @@ return [
         'scores_controller' => [
             '_' => 'prestation',
         ],
-        'store_controller' => [
-            '_' => 'butik',
-        ],
         'tournaments_controller' => [
             '_' => 'turneringar',
         ],
@@ -134,11 +109,6 @@ return [
         ],
         'wiki_controller' => [
             '_' => 'wiki',
-        ],
-    ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'rankning',
         ],
     ],
     'passport' => [

@@ -9,7 +9,6 @@ namespace App\Models\Solo;
 
 use App\Exceptions\InvariantException;
 use App\Libraries\ScoreRank;
-use Carbon\Carbon;
 use Illuminate\Contracts\Database\Eloquent\Castable;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use JsonSerializable;
@@ -19,7 +18,7 @@ class ScoreData implements Castable, JsonSerializable
     public float $accuracy;
     public int $beatmapId;
     public ?int $buildId;
-    public Carbon $endedAt;
+    public string $endedAt;
     public ?int $legacyScoreId;
     public ?int $legacyTotalScore;
     public int $maxCombo;
@@ -28,7 +27,7 @@ class ScoreData implements Castable, JsonSerializable
     public bool $passed;
     public string $rank;
     public int $rulesetId;
-    public ?Carbon $startedAt;
+    public ?string $startedAt;
     public ScoreDataStatistics $statistics;
     public int $totalScore;
     public int $userId;
@@ -55,7 +54,7 @@ class ScoreData implements Castable, JsonSerializable
         $this->accuracy = $data['accuracy'] ?? 0;
         $this->beatmapId = $data['beatmap_id'];
         $this->buildId = $data['build_id'] ?? null;
-        $this->endedAt = parse_time_to_carbon($data['ended_at']);
+        $this->endedAt = $data['ended_at'];
         $this->legacyScoreId = $data['legacy_score_id'] ?? null;
         $this->legacyTotalScore = $data['legacy_total_score'] ?? null;
         $this->maxCombo = $data['max_combo'] ?? 0;
@@ -64,7 +63,7 @@ class ScoreData implements Castable, JsonSerializable
         $this->passed = $data['passed'] ?? false;
         $this->rank = $data['rank'] ?? 'F';
         $this->rulesetId = $data['ruleset_id'];
-        $this->startedAt = parse_time_to_carbon($data['started_at'] ?? null);
+        $this->startedAt = $data['started_at'] ?? null;
         $this->statistics = new ScoreDataStatistics($data['statistics'] ?? []);
         $this->totalScore = $data['total_score'] ?? 0;
         $this->userId = $data['user_id'];
@@ -78,7 +77,7 @@ class ScoreData implements Castable, JsonSerializable
             {
                 $dataJson = json_decode($value, true);
                 $dataJson['beatmap_id'] ??= $attributes['beatmap_id'];
-                $dataJson['ended_at'] ??= $attributes['created_at'];
+                $dataJson['ended_at'] ??= $model->created_at_json;
                 $dataJson['ruleset_id'] ??= $attributes['ruleset_id'];
                 $dataJson['user_id'] ??= $attributes['user_id'];
 
@@ -119,7 +118,7 @@ class ScoreData implements Castable, JsonSerializable
             'accuracy' => $this->accuracy,
             'beatmap_id' => $this->beatmapId,
             'build_id' => $this->buildId,
-            'ended_at' => json_time($this->endedAt),
+            'ended_at' => $this->endedAt,
             'legacy_score_id' => $this->legacyScoreId,
             'legacy_total_score' => $this->legacyTotalScore,
             'max_combo' => $this->maxCombo,
@@ -128,7 +127,7 @@ class ScoreData implements Castable, JsonSerializable
             'passed' => $this->passed,
             'rank' => $this->rank,
             'ruleset_id' => $this->rulesetId,
-            'started_at' => json_time($this->startedAt),
+            'started_at' => $this->startedAt,
             'statistics' => $this->statistics,
             'total_score' => $this->totalScore,
             'user_id' => $this->userId,

@@ -108,27 +108,23 @@ class BeatmapsController extends Controller
     /**
      * Get Beatmaps
      *
-     * Returns list of beatmaps.
+     * Returns a list of beatmaps.
      *
      * ---
      *
      * ### Response format
      *
-     * Field | Type | Description
-     * ----- | ---- | -----------
-     * beatmaps | [BeatmapCompact](#beatmapcompact)[] | Includes: beatmapset (with ratings), failtimes, max_combo.
+     * Field    | Type                  | Description
+     * -------- | --------------------- | -----------
+     * beatmaps | [Beatmap](#beatmap)[] | Includes `beatmapset` (with `ratings`), `failtimes`, and `max_combo`.
      *
-     * @queryParam ids[] Beatmap id to be returned. Specify once for each beatmap id requested. Up to 50 beatmaps can be requested at once. Example: 1
+     * @queryParam ids[] integer Beatmap IDs to be returned. Specify once for each beatmap ID requested. Up to 50 beatmaps can be requested at once. Example: 1
      *
      * @response {
      *   "beatmaps": [
      *     {
      *       "id": 1,
-     *       "other": "attributes..."
-     *     },
-     *     {
-     *       "id": 2,
-     *       "other": "attributes..."
+     *       // Other Beatmap attributes...
      *     }
      *   ]
      * }

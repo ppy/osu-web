@@ -414,6 +414,7 @@ return [
             'country_simple' => 'Ülkesel Sıralama',
             'global' => ':mode için Dünya sıralaması',
             'global_simple' => 'Küresel Sıralama',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Vuruş İsabeti',

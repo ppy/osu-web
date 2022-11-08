@@ -8,7 +8,7 @@ import { NotificationContext } from 'notifications-context';
 import NotificationDeleteButton from 'notifications/notification-delete-button';
 import NotificationReadButton from 'notifications/notification-read-button';
 import * as React from 'react';
-import { classWithModifiers, mergeModifiers } from 'utils/css';
+import { classWithModifiers, mergeModifiers, urlPresence } from 'utils/css';
 
 interface Props {
   canMarkAsRead?: boolean;
@@ -82,7 +82,7 @@ export default class Item extends React.Component<Props> {
       <div
         className='notification-popup-item__cover'
         style={{
-          backgroundImage: osu.urlPresence(coverUrl),
+          backgroundImage: urlPresence(coverUrl),
         }}
       >
         <div className='notification-popup-item__cover-overlay'>

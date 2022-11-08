@@ -8,7 +8,6 @@ namespace Tests\Controllers;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
-use App\Models\Forum;
 use App\Models\Genre;
 use App\Models\Language;
 use App\Models\User;
@@ -175,15 +174,9 @@ class BeatmapsetsControllerTest extends TestCase
      */
     public function testBeatmapsetUpdateDescriptionAsOwner(bool $downloadDisabled, ?string $downloadDisabledUrl, bool $ok)
     {
-        $topic = factory(Forum\Topic::class)->create();
-        $post = factory(Forum\Post::class)->create(['topic_id' => $topic->getKey()]);
-        $topic->refreshCache();
-
-        $beatmapset = Beatmapset::factory()->create([
+        $beatmapset = Beatmapset::factory()->owner()->withDescription()->create([
             'download_disabled' => $downloadDisabled,
             'download_disabled_url' => $downloadDisabledUrl,
-            'user_id' => User::factory(),
-            'thread_id' => $topic->getKey(),
         ]);
         $owner = $beatmapset->user;
         $beatmapset->updateDescription('old description', $owner);

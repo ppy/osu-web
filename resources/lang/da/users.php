@@ -414,6 +414,7 @@ return [
             'country_simple' => 'Lande Rang',
             'global' => 'Global rang for :mode',
             'global_simple' => 'Global Rang',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Præcision',

@@ -414,6 +414,7 @@ return [
             'country_simple' => 'ترتيب الدولة',
             'global' => 'الترتيب العالمي لـ :mode',
             'global_simple' => 'الترتيب العالمي',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'دقة التصويب',

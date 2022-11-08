@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'админ',
     ],
-    'admin_forum' => [
-        '_' => 'админ',
-    ],
-    'admin_store' => [
-        '_' => 'админ',
-    ],
     'error' => [
         'error' => [
             '400' => 'невалидна заявка',
@@ -32,17 +26,10 @@ return [
         'topic_logs_controller' => [
             'index' => 'дневници',
         ],
-        'topic_watches_controller' => [
-            'index' => 'главно табло',
-        ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'главно табло',
             'verify_link' => 'потвърждаване на профил',
-        ],
-        'artist_tracks_controller' => [
-            '_' => 'представени автори',
         ],
         'artists_controller' => [
             '_' => 'представени автори',
@@ -62,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'бийтмап история',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'главно табло',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'бийтмап дискусия',
             'index' => 'списък с бийтмапове',
@@ -81,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => 'конкурси',
-        ],
-        'follows_controller' => [
-            'index' => 'главно табло',
-        ],
-        'friends_controller' => [
-            'index' => 'главно табло',
         ],
         'groups_controller' => [
             'show' => 'групи',
@@ -122,9 +100,6 @@ return [
         'scores_controller' => [
             '_' => 'представяне',
         ],
-        'store_controller' => [
-            '_' => 'магазин',
-        ],
         'tournaments_controller' => [
             '_' => 'турнири',
         ],
@@ -134,11 +109,6 @@ return [
         ],
         'wiki_controller' => [
             '_' => 'wiki',
-        ],
-    ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'класиране',
         ],
     ],
     'passport' => [

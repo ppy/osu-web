@@ -94,6 +94,7 @@ class AuthApi
         if ($user !== null) {
             auth()->setUser($user);
             $user->withAccessToken($token);
+            // this should match osu-notification-server OAuthVerifier
             $user->markSessionVerified();
         }
 

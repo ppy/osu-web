@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'beheerder',
     ],
-    'admin_forum' => [
-        '_' => 'beheerder',
-    ],
-    'admin_store' => [
-        '_' => 'beheerder',
-    ],
     'error' => [
         'error' => [
             '400' => 'ongeldige aanvraag',
@@ -32,17 +26,10 @@ return [
         'topic_logs_controller' => [
             'index' => 'onderwerp logs',
         ],
-        'topic_watches_controller' => [
-            'index' => 'dashboard',
-        ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'dashboard',
             'verify_link' => 'account verificatie',
-        ],
-        'artist_tracks_controller' => [
-            '_' => 'aanbevolen artiesten  ',
         ],
         'artists_controller' => [
             '_' => 'aanbevolen artiesten',
@@ -62,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'beatmap geschiedenis',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'dashboard',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'beatmap discussie',
             'index' => 'beatmap listing',
@@ -81,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => 'wedstrijden',
-        ],
-        'follows_controller' => [
-            'index' => 'dashboard',
-        ],
-        'friends_controller' => [
-            'index' => 'dashboard',
         ],
         'groups_controller' => [
             'show' => 'groepen',
@@ -122,9 +100,6 @@ return [
         'scores_controller' => [
             '_' => 'prestatie',
         ],
-        'store_controller' => [
-            '_' => 'winkel',
-        ],
         'tournaments_controller' => [
             '_' => 'toernooien',
         ],
@@ -134,11 +109,6 @@ return [
         ],
         'wiki_controller' => [
             '_' => 'wiki',
-        ],
-    ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'ranglijst',
         ],
     ],
     'passport' => [

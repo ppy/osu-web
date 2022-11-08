@@ -242,7 +242,7 @@ return [
                     'count_label' => 'Parties',
                 ],
                 'most_played' => [
-                    'count' => 'Nombre de fois jouée',
+                    'count' => 'nombre de fois jouée',
                     'title' => 'Beatmaps les plus jouées',
                 ],
                 'recent_plays' => [
@@ -414,6 +414,7 @@ return [
             'country_simple' => 'Classement Pays',
             'global' => 'Classement global en :mode',
             'global_simple' => 'Classement Global',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Précision',

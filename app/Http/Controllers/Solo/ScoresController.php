@@ -46,7 +46,7 @@ class ScoresController extends BaseController
                     'ended_at' => json_time(now()),
                     'mods' => app('mods')->parseInputArray($scoreToken->ruleset_id, $params['mods'] ?? []),
                     'ruleset_id' => $scoreToken->ruleset_id,
-                    'started_at' => $scoreToken->created_at,
+                    'started_at' => $scoreToken->created_at_json,
                     'user_id' => $scoreToken->user_id,
                 ]);
 

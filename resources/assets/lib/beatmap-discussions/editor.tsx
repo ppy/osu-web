@@ -516,6 +516,7 @@ export default class Editor extends React.Component<Props, State> {
   // "correct" way to reset slate to initial value
   // https://docs.slatejs.org/walkthroughs/06-saving-to-a-database
   private resetEditorValue() {
+    Transforms.deselect(this.slateEditor);
     this.slateEditor.children = emptyDocTemplate;
     this.slateEditor.onChange();
   }

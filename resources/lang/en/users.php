@@ -414,6 +414,7 @@ return [
             'country_simple' => 'Country Ranking',
             'global' => 'Global rank for :mode',
             'global_simple' => 'Global Ranking',
+            'highest' => 'Highest rank: :rank on :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Hit Accuracy',

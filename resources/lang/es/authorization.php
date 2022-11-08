@@ -114,13 +114,13 @@ return [
 
             'store' => [
                 'play_more' => '¡Intenta jugar antes de publicar en los foros, por favor! Si tiene un problema jugando, publícalo en el foro de Ayuda y Soporte.',
-                'too_many_help_posts' => "Necesitas jugar más el juego antes de poder hacer publicaciones adicionales. Si aún tienes problemas para jugar, envía un correo electrónico a support@ppy.sh", // FIXME: unhardcode email address.
+                'too_many_help_posts' => "Necesitas jugar más el juego antes de poder hacer publicaciones adicionales. Si sigues teniendo problemas para jugar, envía un correo a support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Por favor edita tu última publicación en vez de publicar otra vez.',
+                'double_post' => 'Por favor, edite su última publicación en lugar de publicarla de nuevo.',
                 'locked' => 'No puedes responder a un hilo cerrado.',
                 'no_forum_access' => 'Se requiere acceso al foro solicitado.',
                 'no_permission' => 'No tienes permisos para responder.',
