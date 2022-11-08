@@ -1320,16 +1320,12 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function description()
     {
-        $bbcode = $this->getBBCode();
-
-        return $bbcode ? $bbcode->toHTML() : null;
+        return $this->getBBCode()?->toHTML();
     }
 
     public function editableDescription()
     {
-        $bbcode = $this->getBBCode();
-
-        return $bbcode ? $bbcode->toEditor() : null;
+        return $this->getBBCode()?->toEditor();
     }
 
     public function updateDescription($bbcode, $user)
