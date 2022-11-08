@@ -112,7 +112,7 @@ class CommentBundle
             'pinned_comments' => json_collection($pinnedComments, 'Comment'),
             'user_votes' => $this->getUserVotes($allComments),
             'user_follow' => $this->getUserFollow(),
-            'users' => json_collection($this->getUsers($comments->concat($allComments)), 'UserCompact'),
+            'users' => json_collection($this->getUsers($allComments), 'UserCompact'),
             'sort' => $this->params->sort,
             'cursor' => $this->params->cursorHelper->next($comments),
         ];
