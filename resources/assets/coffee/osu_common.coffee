@@ -121,24 +121,3 @@ window.osu =
     translated = Lang.get(key, null, locale)
 
     osu.present(translated) && translated != key
-
-
-  xhrErrorMessage: (xhr) ->
-    validationMessage = xhr?.responseJSON?.validation_error
-
-    if validationMessage?
-      allErrors = []
-      for own _field, errors of validationMessage
-        allErrors = allErrors.concat(errors)
-
-      message = "#{allErrors.join(', ')}."
-
-    message ?= xhr?.responseJSON?.error
-    message ?= xhr?.responseJSON?.message
-
-    if !message? || message == ''
-      errorKey = "errors.codes.http-#{xhr?.status}"
-      message = osu.trans errorKey
-      message = osu.trans 'errors.unknown' if message == errorKey
-
-    message
