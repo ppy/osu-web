@@ -161,7 +161,7 @@ class CommentBundle
             $query->withoutTrashed();
         }
 
-        return min($query->count(), config('osu.pagination.max_count'));
+        return Comment::from($query->select('id')->limit(config('osu.pagination.max_count')))->count();
     }
 
     private function getComments($query, $isChildren = true, $pinnedOnly = false)
