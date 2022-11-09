@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute'
+import { emitError } from 'utils/ajax'
 import { pageChange } from 'utils/page-change'
 
 export default class BbcodePreview
@@ -41,7 +42,7 @@ export default class BbcodePreview
       pageChange()
       @showPreview(e)
 
-    .fail osu.emitAjaxError(target)
+    .fail emitError(target)
 
 
   showPreview: (e) =>

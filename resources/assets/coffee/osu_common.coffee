@@ -9,18 +9,6 @@ window.osu =
     '--group-colour': group?.colour ? 'initial'
 
 
-  ajaxError: (xhr) ->
-    return if osuCore.userLogin.showOnError(xhr)
-    return if osuCore.userVerification.showOnError(xhr)
-
-    osu.popup osu.xhrErrorMessage(xhr), 'danger'
-
-
-  emitAjaxError: (element = document.body) =>
-    (xhr, status, error) =>
-      $(element).trigger 'ajax:error', [xhr, status, error]
-
-
   formatBytes: (bytes, decimals=2) ->
     suffixes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
     k = 1000
@@ -133,24 +121,3 @@ window.osu =
     translated = Lang.get(key, null, locale)
 
     osu.present(translated) && translated != key
-
-
-  xhrErrorMessage: (xhr) ->
-    validationMessage = xhr?.responseJSON?.validation_error
-
-    if validationMessage?
-      allErrors = []
-      for own _field, errors of validationMessage
-        allErrors = allErrors.concat(errors)
-
-      message = "#{allErrors.join(', ')}."
-
-    message ?= xhr?.responseJSON?.error
-    message ?= xhr?.responseJSON?.message
-
-    if !message? || message == ''
-      errorKey = "errors.codes.http-#{xhr?.status}"
-      message = osu.trans errorKey
-      message = osu.trans 'errors.unknown' if message == errorKey
-
-    message
