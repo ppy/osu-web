@@ -9,6 +9,7 @@ use App\Models\Comment;
 use App\Models\CommentVote;
 use App\Models\User;
 use Ds\Set;
+use Illuminate\Database\Eloquent\Collection;
 
 class CommentBundle
 {
@@ -57,7 +58,7 @@ class CommentBundle
 
         // Either use the provided comment as a base, or look for matching comments.
         if (isset($this->comment)) {
-            $comments = collect([$this->comment]);
+            $comments = new Collection([$this->comment]);
             if ($this->comment->parent !== null) {
                 $includedComments->push($this->comment->parent);
             }
@@ -103,6 +104,7 @@ class CommentBundle
         }
 
         $allComments = $comments->concat($includedComments)->concat($pinnedComments);
+        $allComments->load('commentable');
 
         $result = [
             'comments' => json_collection($comments, 'Comment'),
@@ -184,7 +186,7 @@ class CommentBundle
             }
         }
 
-        $query->with('commentable')->cursorSort($sortOrCursorHelper, $cursor ?? null);
+        $query->cursorSort($sortOrCursorHelper, $cursor ?? null);
 
         if (!$this->includeDeleted) {
             $query->whereNull('deleted_at');
