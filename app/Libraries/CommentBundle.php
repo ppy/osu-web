@@ -160,8 +160,9 @@ class CommentBundle
         if (!$this->includeDeleted) {
             $query->withoutTrashed();
         }
+        $query->select('id')->limit(config('osu.pagination.max_count'))->unorder();
 
-        return Comment::from($query->select('id')->limit(config('osu.pagination.max_count')))->count();
+        return Comment::from($query)->count();
     }
 
     private function getComments($query, $isChildren = true, $pinnedOnly = false)
