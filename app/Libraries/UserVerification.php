@@ -20,15 +20,17 @@ class UserVerification
 
     public static function fromCurrentRequest()
     {
-        $verification = request()->attributes->get('user_verification');
+        $request = request();
+        $attributes = $request->attributes;
+        $verification = $attributes->get('user_verification');
 
         if ($verification === null) {
             $verification = new static(
                 auth()->user(),
-                request(),
+                $request,
                 UserVerificationState::fromCurrentRequest()
             );
-            request()->attributes->set('user_verification', $verification);
+            $attributes->set('user_verification', $verification);
         }
 
         return $verification;
