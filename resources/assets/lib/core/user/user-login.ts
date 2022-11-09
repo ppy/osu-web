@@ -5,6 +5,7 @@ import Captcha from 'core/captcha';
 import UserJson from 'interfaces/user-json';
 import * as Cookies from 'js-cookie';
 import core from 'osu-core-singleton';
+import { xhrErrorMessage } from 'utils/ajax';
 import { createClickCallback } from 'utils/html';
 
 declare global {
@@ -78,7 +79,7 @@ export default class UserLogin {
   private loginError = (e: JQuery.Event, xhr: JQuery.jqXHR) => {
     e.preventDefault();
     e.stopPropagation();
-    $('.js-login-form--error').text(osu.xhrErrorMessage(xhr));
+    $('.js-login-form--error').text(xhrErrorMessage(xhr));
 
     // Timeout here is to let ujs events fire first, so that the disabling of the submit button
     // in captcha.reset() happens _after_ the button has been re-enabled
