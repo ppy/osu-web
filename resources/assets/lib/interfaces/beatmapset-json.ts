@@ -5,6 +5,7 @@ import BeatmapExtendedJson from './beatmap-extended-json';
 import BeatmapJson from './beatmap-json';
 import BeatmapsetDiscussionJson from './beatmapset-discussion-json';
 import BeatmapsetEventJson from './beatmapset-event-json';
+import BeatmapsetNominationJson from './beatmapset-nomination-json';
 import GameMode from './game-mode';
 import GenreJson from './genre-json';
 import LanguageJson from './language-json';
@@ -62,6 +63,7 @@ export interface CurrentUserAttributes {
 interface BeatmapsetJsonAvailableIncludes {
   beatmaps: BeatmapJson[];
   converts: BeatmapExtendedJson[];
+  current_nominations: BeatmapsetNominationJson[];
   current_user_attributes: CurrentUserAttributes;
   description: BeatmapsetDescription;
   discussions: BeatmapsetDiscussionJson[];
