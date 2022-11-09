@@ -64,8 +64,8 @@ export type SoloScoreJsonForBeatmap = SoloScoreJson & Required<Pick<SoloScoreJso
 
 export type SoloScoreJsonForShow = SoloScoreJson & Required<Pick<SoloScoreJson, 'beatmap' | 'beatmapset' | 'best_id' | 'rank_global' | 'replay' | 'user'>>;
 
-export type SoloScoreJsonForUser = SoloScoreJson & Required<Pick<SoloScoreJson, 'beatmap' | 'beatmapset' | 'user'>>;
+export type SoloScoreJsonForUser = SoloScoreJson & Required<Pick<SoloScoreJson, 'beatmap' | 'beatmapset'>>;
 
 export function isSoloScoreJsonForUser(score: SoloScoreJson): score is SoloScoreJsonForUser {
-  return score.beatmap != null && score.beatmapset != null && score.user != null;
+  return score.beatmap != null && score.beatmapset != null;
 }

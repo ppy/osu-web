@@ -6,6 +6,7 @@ import { route } from 'laroute'
 import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { button, div, i, span, a } from 'react-dom-factories'
+import { onError } from 'utils/ajax'
 import { badgeGroup, canModeratePosts, formatTimestamp } from 'utils/beatmapset-discussion-helper'
 import { classWithModifiers } from 'utils/css'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
@@ -198,7 +199,7 @@ export class Discussion extends React.PureComponent
     .done (data) =>
       $.publish 'beatmapsetDiscussions:update', beatmapset: data
 
-    .fail osu.ajaxError
+    .fail onError
 
     .always hideLoadingOverlay
 

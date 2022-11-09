@@ -470,7 +470,6 @@ class UsersController extends Controller
      * beatmap    | |
      * beatmapset | |
      * weight     | Only for type `best`.
-     * user       | |
      *
      * @urlParam user integer required Id of the user. Example: 1
      * @urlParam type string required Score type. Must be one of these: `best`, `firsts`, `recent`. Example: best

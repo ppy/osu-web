@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as React from 'react';
+import { urlPresence } from 'utils/css';
 
 interface Props {
   track: {
@@ -16,7 +17,7 @@ export default function TrackPreview({ track }: Props) {
       className='track-cover-preview js-audio--play js-audio--player'
       data-audio-url={track.preview}
       style={{
-        backgroundImage: osu.urlPresence(track.cover_url),
+        backgroundImage: urlPresence(track.cover_url),
       }}
       type='button'
     >

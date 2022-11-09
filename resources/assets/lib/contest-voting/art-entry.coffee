@@ -4,7 +4,7 @@
 import { route } from 'laroute'
 import * as React from 'react'
 import { div, span, a, i } from 'react-dom-factories'
-import { classWithModifiers } from 'utils/css'
+import { classWithModifiers, urlPresence } from 'utils/css'
 import { formatNumber } from 'utils/html'
 import { Voter } from './voter'
 
@@ -55,7 +55,7 @@ export class ArtEntry extends React.Component
       div
         className: "#{bn}__thumbnail",
         style:
-          backgroundImage: osu.urlPresence(@props.entry.thumbnail)
+          backgroundImage: urlPresence(@props.entry.thumbnail)
         a entryLinkProps
 
         div

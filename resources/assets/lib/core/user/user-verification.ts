@@ -3,6 +3,7 @@
 
 import { route } from 'laroute';
 import core from 'osu-core-singleton';
+import { xhrErrorMessage } from 'utils/ajax';
 import { fadeIn, fadeOut, fadeToggle } from 'utils/fade';
 import { createClickCallback } from 'utils/html';
 
@@ -105,7 +106,7 @@ export default class UserVerification {
   };
 
   private error = (xhr: JQuery.jqXHR) => {
-    this.setMessage(osu.xhrErrorMessage(xhr));
+    this.setMessage(xhrErrorMessage(xhr));
   };
 
   private float = (float: boolean, modal: HTMLElement, referenceBottom?: number) => {

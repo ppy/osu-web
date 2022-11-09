@@ -12,6 +12,7 @@ import { UserLink } from 'components/user-link'
 import { route } from 'laroute'
 import * as React from 'react'
 import { a, div, i, span } from 'react-dom-factories'
+import { onError } from 'utils/ajax'
 import { canModeratePosts, format, previewMessage } from 'utils/beatmapset-discussion-helper'
 import { nominationsCount } from 'utils/beatmapset-helper'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
@@ -139,7 +140,7 @@ export class Nominations extends React.PureComponent
     @xhr.delete = $.ajax(url, params)
       .done ->
         Turbolinks.visit route('users.show', { user })
-      .fail osu.ajaxError
+      .fail onError
       .always hideLoadingOverlay
 
 
@@ -158,7 +159,7 @@ export class Nominations extends React.PureComponent
     @xhr.discussionLock = $.ajax(url, params)
       .done (response) =>
         $.publish 'beatmapsetDiscussions:update', beatmapset: response
-      .fail osu.ajaxError
+      .fail onError
       .always hideLoadingOverlay
 
 
@@ -175,7 +176,7 @@ export class Nominations extends React.PureComponent
     @xhr.discussionLock = $.ajax(url, params)
       .done (response) =>
         $.publish 'beatmapsetDiscussions:update', beatmapset: response
-      .fail osu.ajaxError
+      .fail onError
       .always hideLoadingOverlay
 
 
@@ -196,7 +197,7 @@ export class Nominations extends React.PureComponent
     @xhr.removeFromLoved = $.ajax(url, params)
       .done (response) =>
         $.publish 'beatmapsetDiscussions:update', beatmapset: response
-      .fail osu.ajaxError
+      .fail onError
       .always hideLoadingOverlay
 
 
@@ -220,7 +221,7 @@ export class Nominations extends React.PureComponent
   focusNewDiscussion: (callback) ->
     inputBox = $('.js-hype--input')
 
-    osu.focus(inputBox)
+    inputBox.focus()
 
     # ensure input box is in view and focus it
     $.scrollTo inputBox, 200,

@@ -3,6 +3,7 @@
 
 import { padStart } from 'lodash';
 import { CSSProperties } from 'react';
+import { urlPresence } from './css';
 
 export function bottomPage() {
   return bottomPageDistance() === 0;
@@ -33,8 +34,8 @@ export function cssVar2x(url?: string | null) {
   if (url == null) return;
 
   return {
-    '--bg': osu.urlPresence(url),
-    '--bg-2x': osu.urlPresence(make2x(url)),
+    '--bg': urlPresence(url),
+    '--bg-2x': urlPresence(make2x(url)),
   } as CSSProperties;
 }
 

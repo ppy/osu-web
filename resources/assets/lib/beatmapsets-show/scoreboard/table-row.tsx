@@ -153,7 +153,7 @@ export default class ScoreboardTableRow extends React.Component<Props> {
         </TdLink>
 
         <td className={`${bn}__popup-menu`}>
-          {hasMenu(score) && <PlayDetailMenu score={score} />}
+          {hasMenu(score) && <PlayDetailMenu score={score} user={score.user} />}
         </td>
       </tr>
     );
