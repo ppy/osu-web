@@ -8,6 +8,7 @@ namespace App\Libraries;
 use App\Models\Comment;
 use App\Models\CommentVote;
 use App\Models\User;
+use Ds\Set;
 use Illuminate\Database\Eloquent\Collection;
 
 class CommentBundle
@@ -69,31 +70,34 @@ class CommentBundle
             }
         }
 
-        $commentIds = $comments->pluck('id');
-
-        // Get parents when listing comments index
-        if ($this->commentable === null) {
-            $parents = $this->getComments(Comment::whereIn('id', $comments->pluck('parent_id')));
-            $includedComments = $includedComments->concat($parents);
+        // Get parents when listing comments index or loading comment replies
+        if ($this->commentable === null || $this->params->parentId !== null) {
+            $parentIds = array_reject_null($comments->pluck('parent_id'));
+            if (count($parentIds) > 0) {
+                $parents = $this->getComments(Comment::whereIn('id', $parentIds));
+                $includedComments = $includedComments->concat($parents);
+            }
         }
+
+        $commentIds = new Set($comments->pluck('id'));
 
         // Get nested comments
         if ($this->params->parentId !== null) {
-            $nestedParentIds = $commentIds;
+            $nestedParentIds = $commentIds->toArray();
 
             for ($i = 0; $i < $this->depth; $i++) {
                 $nestedComments = $this->getComments(Comment::whereIn('parent_id', $nestedParentIds));
-                $nestedParentIds = $nestedComments->pluck('id');
                 $includedComments = $includedComments->concat($nestedComments);
+                $nestedParentIds = array_reject_null($nestedComments->pluck('id'));
+                if (count($nestedParentIds) === 0) {
+                    break;
+                }
             }
-
-            $parents = Comment::whereIn('id', $comments->pluck('parent_id'))->get();
-            $includedComments = $includedComments->concat($parents);
         }
 
-        $includedComments = $includedComments->unique('id', true)->reject(function ($comment) use ($commentIds) {
-            return $commentIds->contains($comment->getKey());
-        });
+        $includedComments = $includedComments
+            ->unique('id', true)
+            ->reject(fn ($comment) => $commentIds->contains($comment->getKey()));
 
         if ($this->includePinned) {
             $pinnedComments = $this->getComments($this->commentsQuery()->where('pinned', true), true, true);
@@ -110,7 +114,7 @@ class CommentBundle
             'pinned_comments' => json_collection($pinnedComments, 'Comment'),
             'user_votes' => $this->getUserVotes($allComments),
             'user_follow' => $this->getUserFollow(),
-            'users' => json_collection($this->getUsers($comments->concat($allComments)), 'UserCompact'),
+            'users' => json_collection($this->getUsers($allComments), 'UserCompact'),
             'sort' => $this->params->sort,
             'cursor' => $this->params->cursorHelper->next($comments),
         ];
@@ -229,6 +233,6 @@ class CommentBundle
             $userIds = $userIds->concat($comments->pluck('deleted_by_id'));
         }
 
-        return User::whereIn('user_id', $userIds)->get();
+        return User::whereIn('user_id', array_reject_null($userIds))->get();
     }
 }
