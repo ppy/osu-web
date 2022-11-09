@@ -6,6 +6,7 @@
 import { route } from 'laroute'
 import { StorePaypal } from 'store-paypal'
 import { StoreXsolla } from 'store-xsolla'
+import { onError } from 'utils/ajax'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 
 export class StoreCheckout
@@ -66,4 +67,4 @@ export class StoreCheckout
 
     # TODO: less unknown error, disable button
     # TODO: handle error.message
-    osu.ajaxError(error?.xhr)
+    onError(error?.xhr)
