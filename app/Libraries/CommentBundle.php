@@ -72,7 +72,7 @@ class CommentBundle
 
         // Get parents when listing comments index or loading comment replies
         if ($this->commentable === null || $this->params->parentId !== null) {
-            $parentIds = array_filter_set($comments->pluck('parent_id'));
+            $parentIds = array_reject_null($comments->pluck('parent_id'));
             if (count($parentIds) > 0) {
                 $parents = $this->getComments(Comment::whereIn('id', $parentIds));
                 $includedComments = $includedComments->concat($parents);
@@ -88,7 +88,7 @@ class CommentBundle
             for ($i = 0; $i < $this->depth; $i++) {
                 $nestedComments = $this->getComments(Comment::whereIn('parent_id', $nestedParentIds));
                 $includedComments = $includedComments->concat($nestedComments);
-                $nestedParentIds = array_filter_set($nestedComments->pluck('id'));
+                $nestedParentIds = array_reject_null($nestedComments->pluck('id'));
                 if (count($nestedParentIds) === 0) {
                     break;
                 }
@@ -233,6 +233,6 @@ class CommentBundle
             $userIds = $userIds->concat($comments->pluck('deleted_by_id'));
         }
 
-        return User::whereIn('user_id', array_filter_set($userIds))->get();
+        return User::whereIn('user_id', array_reject_null($userIds))->get();
     }
 }

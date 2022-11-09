@@ -19,7 +19,7 @@ function api_version(): int
     return $version;
 }
 
-function array_filter_set(array|ArrayAccess $array): array
+function array_reject_null(array|ArrayAccess $array): array
 {
     $ret = [];
     foreach ($array as $item) {
