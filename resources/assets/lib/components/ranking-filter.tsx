@@ -6,7 +6,7 @@ import CountryJson from 'interfaces/country-json';
 import GameMode from 'interfaces/game-mode';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { currentUrlParams } from 'utils/turbolinks';
+import { currentUrlParams, navigate } from 'utils/turbolinks';
 import { updateQueryString } from 'utils/url';
 import { Sort } from './sort';
 
@@ -78,11 +78,11 @@ export default class RankingFilter extends React.PureComponent<Props> {
 
   // TODO: rename component prop to onChange
   handleCountryChange = (option: Option) => {
-    osu.navigate(updateQueryString(null, { country: option.id, page: null }));
+    navigate(updateQueryString(null, { country: option.id, page: null }));
   };
 
   handleFilterChange = (event: React.MouseEvent<HTMLButtonElement>) => {
-    osu.navigate(updateQueryString(null, { filter: event.currentTarget.dataset.value, page: null }));
+    navigate(updateQueryString(null, { filter: event.currentTarget.dataset.value, page: null }));
   };
 
   handleRenderOption = (props: OptionRenderProps) => (
@@ -97,7 +97,7 @@ export default class RankingFilter extends React.PureComponent<Props> {
   );
 
   handleVariantChange = (event: React.MouseEvent<HTMLButtonElement>) => {
-    osu.navigate(updateQueryString(null, { page: null, variant: event.currentTarget.dataset.value }));
+    navigate(updateQueryString(null, { page: null, variant: event.currentTarget.dataset.value }));
   };
 
   render() {
