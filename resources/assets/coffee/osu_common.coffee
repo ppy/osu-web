@@ -67,10 +67,6 @@ window.osu =
     $alert.appendTo($popup).fadeIn()
 
 
-  popupShowing: ->
-    $('#overlay').is(':visible')
-
-
   presence: (string) ->
     if osu.present(string) then string else null
 
