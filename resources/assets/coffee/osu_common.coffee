@@ -5,10 +5,6 @@ import { formatNumber } from 'utils/html'
 import { currentUrl, navigate } from 'utils/turbolinks'
 
 window.osu =
-  groupColour: (group) ->
-    '--group-colour': group?.colour ? 'initial'
-
-
   reloadPage: (keepScroll = true) ->
     $(document).off '.ujsHideLoadingOverlay'
     Turbolinks.clearCache()

@@ -5,6 +5,7 @@ import mapperGroup from 'beatmap-discussions/mapper-group'
 import { SelectOptions } from 'components/select-options'
 import * as React from 'react'
 import { a } from 'react-dom-factories'
+import { groupColour } from 'utils/css'
 
 el = React.createElement
 
@@ -47,7 +48,7 @@ export class UserFilter extends React.PureComponent
 
   renderOption: ({ cssClasses, children, onClick, option }) =>
     group = if @isOwner(option) then mapperGroup else option.groups?[0]
-    style = osu.groupColour(group)
+    style = groupColour(group)
 
     a
       className: cssClasses

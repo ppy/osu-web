@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import GroupJson from 'interfaces/group-json';
 import { forEach } from 'lodash';
 
 export type Modifiers = (string | null | undefined)[] | Partial<Record<string, boolean | null | undefined>> | string | null | undefined;
@@ -31,6 +32,10 @@ export function classWithModifiers(className: string, ...modifiersArray: Modifie
   eachModifier(modifiersArray, (m) => ret += ` ${className}--${m}`);
 
   return ret;
+}
+
+export function groupColour(group?: GroupJson | null) {
+  return { '--group-colour': group?.colour ?? 'initial' };
 }
 
 export function mergeModifiers(...modifiersArray: Modifiers[]) {
