@@ -8,24 +8,6 @@ describe('osu_common', () => {
     });
   });
 
-  describe('formatBytes', () => {
-    it('cenvert to same value in bytes', () => {
-      expect(osu.formatBytes(100)).toBe('100 B');
-    });
-
-    it('convert value to KB', () => {
-      expect(osu.formatBytes(1000)).toBe('1.00 KB');
-    });
-
-    it('convert value to MB', () => {
-      expect(osu.formatBytes(1000000)).toBe('1.00 MB');
-    });
-
-    it('convert value to KB without precision', () => {
-      expect(osu.formatBytes(1000, 0)).toBe('1 KB');
-    });
-  });
-
   describe('presence', () => {
     it('check for non empty string', () => {
       expect(osu.presence('test')).toBe('test');

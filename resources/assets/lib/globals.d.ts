@@ -26,7 +26,6 @@ declare module 'legacy-modules' {
   }
 
   interface OsuCommon {
-    formatBytes: (bytes: number, decimals?: number) => string;
     popup: (message: string, type: string) => void;
     presence: (str?: string | null) => string | null;
     present: (str?: string | null) => boolean;
