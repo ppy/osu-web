@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute'
+import { onError } from 'utils/ajax'
 
 export default class BeatmapPack
   @initialize: ->
@@ -44,7 +45,7 @@ export default class BeatmapPack
           @packBody.innerHTML = data
           @slideDown() if @isCurrent
 
-      .fail osu.ajaxError
+      .fail onError
 
       .always =>
         @busy = false

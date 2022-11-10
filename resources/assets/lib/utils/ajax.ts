@@ -4,14 +4,24 @@
 import core from 'osu-core-singleton';
 import { createClickCallback } from 'utils/html';
 
+interface UnknownErrorJson {
+  error?: string;
+  message?: string;
+  validation_error?: Record<string, string>[];
+}
+
 const jqXHRProperties = ['status', 'statusText', 'readyState', 'responseText'];
+
+export function emitError(element: HTMLElement = document.body) {
+  return (xhr: JQuery.jqXHR, status: string, errorThrown: unknown) => $(element).trigger('ajax:error', [xhr, status, errorThrown]);
+}
 
 export const error = (xhr: JQuery.jqXHR, status: string, callback?: () => void) => {
   if (status === 'abort') return;
   if (core.userLogin.showOnError(xhr, callback)) return;
   if (core.userVerification.showOnError(xhr, callback)) return;
 
-  osu.popup(osu.xhrErrorMessage(xhr), 'danger');
+  osu.popup(xhrErrorMessage(xhr), 'danger');
 };
 
 export const fileuploadFailCallback = (event: unknown, data: JQueryFileUploadDone) => {
@@ -31,3 +41,25 @@ export const onErrorWithCallback = (callback?: () => void) => (xhr: JQuery.jqXHR
 };
 
 export const onErrorWithClick = (target: unknown) => onErrorWithCallback(createClickCallback(target));
+
+export function xhrErrorMessage(xhr?: JQuery.jqXHR) {
+  if (xhr == null || xhr.responseJSON == null) {
+    return osu.trans('errors.unknown');
+  }
+
+  const json = xhr.responseJSON as UnknownErrorJson;
+  if (json.validation_error != null) {
+    return `${Object.values(json.validation_error).flat().join(', ')}.`;
+  }
+
+  let message = json.error ?? json.message ?? '';
+  if (!osu.present(message)) {
+    const errorKey = `errors.codes.http-${xhr.status}`;
+    message = osu.trans(errorKey);
+    if (message === errorKey) {
+      message = osu.trans('errors.unknown');
+    }
+  }
+
+  return message;
+}
