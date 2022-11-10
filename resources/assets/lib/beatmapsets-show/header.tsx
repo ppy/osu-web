@@ -4,6 +4,8 @@
 import BeatmapsetCover from 'components/beatmapset-cover';
 import BeatmapsetMapping from 'components/beatmapset-mapping';
 import BigButton from 'components/big-button';
+import StringWithComponent from 'components/string-with-component';
+import { UserLink } from 'components/user-link';
 import UserListPopup, { createTooltip } from 'components/user-list-popup';
 import { route } from 'laroute';
 import { action, computed, makeObservable } from 'mobx';
@@ -100,17 +102,32 @@ export default class Header extends React.Component<Props> {
             <div className='beatmapset-header__beatmap-picker-box'>
               <BeatmapPicker controller={this.controller} />
 
-              <span className='beatmapset-header__diff-name'>
-                {this.controller.hoveredBeatmap?.version ?? this.controller.currentBeatmap.version}
-              </span>
+              {this.controller.hoveredBeatmap == null ? (
+                <span className='beatmapset-header__diff-name'>
+                  {this.controller.currentBeatmap.version}
 
-              {this.controller.hoveredBeatmap != null &&
-                <span className='beatmapset-header__star-difficulty'>
-                  {osu.trans('beatmapsets.show.stats.stars')}
-                  {' '}
-                  {formatNumber(this.controller.hoveredBeatmap.difficulty_rating, 2)}
+                  {this.controller.currentBeatmap.user_id !== this.controller.beatmapset.user_id && (
+                    <span className='beatmapset-header__diff-extra'>
+                      <StringWithComponent
+                        mappings={{
+                          mapper: <UserLink user={this.controller.mapper(this.controller.currentBeatmap)} />,
+                        }}
+                        pattern={osu.trans('beatmapsets.show.details.mapped_by')}
+                      />
+                    </span>
+                  )}
                 </span>
-              }
+              ) : (
+                <span className='beatmapset-header__diff-name'>
+                  {this.controller.hoveredBeatmap.version}
+
+                  <span className='beatmapset-header__diff-extra beatmapset-header__diff-extra--star-difficulty'>
+                    {osu.trans('beatmapsets.show.stats.stars')}
+                    {' '}
+                    {formatNumber(this.controller.hoveredBeatmap.difficulty_rating, 2)}
+                  </span>
+                </span>
+              )}
 
               <div>
                 <span className='beatmapset-header__value' title={osu.trans('beatmapsets.show.stats.playcount')}>
