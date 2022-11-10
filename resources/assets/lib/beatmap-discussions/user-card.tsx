@@ -7,6 +7,7 @@ import UserGroupJson from 'interfaces/user-group-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as React from 'react';
+import { groupColour } from 'utils/css';
 
 const bn = 'beatmap-discussion-user-card';
 
@@ -23,7 +24,7 @@ export class UserCard extends React.PureComponent<Props> {
 
   render() {
     return (
-      <div className={bn} style={osu.groupColour(this.props.group)}>
+      <div className={bn} style={groupColour(this.props.group)}>
         <div className={`${bn}__avatar`}>
           {this.props.user.is_deleted ? (
             <span className={`${bn}__user-link`}>

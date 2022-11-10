@@ -5,10 +5,6 @@ import { formatNumber } from 'utils/html'
 import { currentUrl } from 'utils/turbolinks'
 
 window.osu =
-  groupColour: (group) ->
-    '--group-colour': group?.colour ? 'initial'
-
-
   formatBytes: (bytes, decimals=2) ->
     suffixes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
     k = 1000
