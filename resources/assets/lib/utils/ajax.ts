@@ -43,7 +43,7 @@ export const onErrorWithCallback = (callback?: () => void) => (xhr: JQuery.jqXHR
 export const onErrorWithClick = (target: unknown) => onErrorWithCallback(createClickCallback(target));
 
 export function xhrErrorMessage(xhr?: JQuery.jqXHR) {
-  if (xhr == null) {
+  if (xhr == null || xhr.responseJSON == null) {
     return osu.trans('errors.unknown');
   }
 
