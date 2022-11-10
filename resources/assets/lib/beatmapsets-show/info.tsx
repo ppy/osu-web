@@ -11,6 +11,7 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import { onErrorWithClick } from 'utils/ajax';
 import { formatNumber } from 'utils/html';
+import { present } from 'utils/string';
 import Controller from './controller';
 import MetadataEditor from './metadata-editor';
 
@@ -66,7 +67,7 @@ export default class Info extends React.Component<Props> {
   render() {
     const tags = this.controller.beatmapset.tags
       .split(' ')
-      .filter(osu.present)
+      .filter(present)
       .slice(0, 21);
 
     const tagsOverload = tags.length === 21;
@@ -117,7 +118,7 @@ export default class Info extends React.Component<Props> {
         <div className='beatmapset-info__box beatmapset-info__box--meta'>
           {this.withEditMetadata && this.renderEditMetadataButton()}
 
-          {osu.present(this.controller.beatmapset.source) &&
+          {present(this.controller.beatmapset.source) &&
             <>
               <h3 className='beatmapset-info__header'>
                 {osu.trans('beatmapsets.show.info.source')}

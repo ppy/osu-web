@@ -3,6 +3,7 @@
 
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { present } from 'utils/string';
 
 interface Props {
   current: number;
@@ -41,7 +42,7 @@ export class CircularProgress extends React.PureComponent<Props, any> {
           over: percentage === 1,
           over50: percentage > 0.5,
           warn: percentage >= warnThreshold && percentage < 1,
-          [this.props.theme]: osu.present(this.props.theme),
+          [this.props.theme]: present(this.props.theme),
         })}
         title={this.props.tooltip || `${this.props.current} / ${this.props.max}`}
       >

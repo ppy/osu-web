@@ -3,6 +3,7 @@
 
 import core from 'osu-core-singleton';
 import { createClickCallback } from 'utils/html';
+import { present } from './string';
 
 interface UnknownErrorJson {
   error?: string;
@@ -53,7 +54,7 @@ export function xhrErrorMessage(xhr?: JQuery.jqXHR) {
   }
 
   let message = json.error ?? json.message ?? '';
-  if (!osu.present(message)) {
+  if (!present(message)) {
     const errorKey = `errors.codes.http-${xhr.status}`;
     message = osu.trans(errorKey);
     if (message === errorKey) {

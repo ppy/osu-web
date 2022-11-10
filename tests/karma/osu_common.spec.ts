@@ -59,42 +59,6 @@ describe('osu_common', () => {
     });
   });
 
-  describe('presence', () => {
-    it('check for non empty string', () => {
-      expect(osu.presence('test')).toBe('test');
-    });
-
-    it('check for empty string', () => {
-      expect(osu.presence('')).toBe(null);
-    });
-
-    it('check for null', () => {
-      expect(osu.presence(null)).toBe(null);
-    });
-
-    it('check for undefined', () => {
-      expect(osu.presence()).toBe(null);
-    });
-  });
-
-  describe('present', () => {
-    it('check for non empty string', () => {
-      expect(osu.present('test')).toBe(true);
-    });
-
-    it('check for empty string', () => {
-      expect(osu.present('')).toBe(false);
-    });
-
-    it('check for null', () => {
-      expect(osu.present(null)).toBe(false);
-    });
-
-    it('check for undefined', () => {
-      expect(osu.present()).toBe(false);
-    });
-  });
-
   describe('trans', () => {
     it('returns the translated key', () => {
       expect(osu.trans('common.confirmation')).toBe('Are you sure?');

@@ -7,6 +7,7 @@ import { route } from 'laroute';
 import * as React from 'react';
 import { classWithModifiers, Modifiers, urlPresence } from 'utils/css';
 import { formatNumber } from 'utils/html';
+import { present } from 'utils/string';
 
 type TrackJson = {
   artist: ArtistJson;
@@ -54,7 +55,7 @@ export default class TracklistTrack extends React.PureComponent<Props> {
         <div className='artist-track__col artist-track__col--names'>
           <div className='artist-track__title u-ellipsis-overflow'>
             {this.props.track.title}
-            {osu.present(this.props.track.version) && (
+            {present(this.props.track.version) && (
               <>
                 {' '}
                 <span className='artist-track__version'>

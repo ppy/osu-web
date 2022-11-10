@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { formatNumber } from 'utils/html'
+import { present } from 'utils/string'
 import { currentUrl, navigate } from 'utils/turbolinks'
 
 window.osu =
@@ -52,14 +53,6 @@ window.osu =
     $alert.appendTo($popup).fadeIn()
 
 
-  presence: (string) ->
-    if osu.present(string) then string else null
-
-
-  present: (string) ->
-    string? && string != ''
-
-
   trans: (key, replacements = {}, locale) ->
     locale = fallbackLocale unless osu.transExists(key, locale)
 
@@ -101,4 +94,4 @@ window.osu =
   transExists: (key, locale) ->
     translated = Lang.get(key, null, locale)
 
-    osu.present(translated) && translated != key
+    present(translated) && translated != key

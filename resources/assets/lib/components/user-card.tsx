@@ -9,6 +9,7 @@ import * as _ from 'lodash';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { present } from 'utils/string';
 import FlagCountry from './flag-country';
 import FollowUserMappingButton from './follow-user-mapping-button';
 import { PopupMenuPersistent } from './popup-menu-persistent';
@@ -145,7 +146,7 @@ export class UserCard extends React.PureComponent<Props, State> {
 
   renderAvatar() {
     const modifiers = { loaded: this.state.avatarLoaded };
-    const hasAvatar = osu.present(this.user.avatar_url) && !this.isUserNotFound;
+    const hasAvatar = present(this.user.avatar_url) && !this.isUserNotFound;
 
     return (
       <div className='user-card__avatar-space'>

@@ -30,8 +30,6 @@ declare module 'legacy-modules' {
     formatBytes: (bytes: number, decimals?: number) => string;
     groupColour: (group?: GroupJson | null) => React.CSSProperties;
     popup: (message: string, type: string) => void;
-    presence: (str?: string | null) => string | null;
-    present: (str?: string | null) => boolean;
     reloadPage: () => void;
     trans: (...args: any[]) => string;
     transArray: (array: any[], key?: string) => string;

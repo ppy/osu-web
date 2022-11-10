@@ -17,6 +17,7 @@ import { canModeratePosts, format, previewMessage } from 'utils/beatmapset-discu
 import { nominationsCount } from 'utils/beatmapset-helper'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { pageChange } from 'utils/page-change'
+import { presence } from 'utils/string'
 import { linkHtml, wikiUrl } from 'utils/url'
 
 el = React.createElement
@@ -145,7 +146,7 @@ export class Nominations extends React.PureComponent
 
 
   discussionLock: =>
-    reason = osu.presence(prompt(osu.trans('beatmaps.discussions.lock.prompt.lock')))
+    reason = presence(prompt(osu.trans('beatmaps.discussions.lock.prompt.lock')))
 
     return unless reason?
 
@@ -181,7 +182,7 @@ export class Nominations extends React.PureComponent
 
 
   removeFromLoved: =>
-    reason = osu.presence(prompt(osu.trans('beatmaps.nominations.remove_from_loved_prompt')))
+    reason = presence(prompt(osu.trans('beatmaps.nominations.remove_from_loved_prompt')))
 
     return unless reason?
 
