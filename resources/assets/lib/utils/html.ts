@@ -5,6 +5,9 @@ import { padStart } from 'lodash';
 import { CSSProperties } from 'react';
 import { urlPresence } from './css';
 
+const suffixes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+const kilo = 1000;
+
 export function bottomPage() {
   return bottomPageDistance() === 0;
 }
@@ -41,6 +44,15 @@ export function cssVar2x(url?: string | null) {
 
 function padTimeComponent(time: number) {
   return padStart(time.toString(), 2, '0');
+}
+
+export function formatBytes(bytes: number, decimals = 2) {
+  if (bytes < kilo) {
+    return `${bytes} B`;
+  }
+
+  const i = Math.floor(Math.log(bytes) / Math.log(kilo));
+  return `${formatNumber(bytes / Math.pow(kilo, i), decimals)} ${suffixes[i]}`;
 }
 
 export function formatDuration(valueSecond: number) {

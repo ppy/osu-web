@@ -6,6 +6,7 @@ import * as React from 'react'
 import { div, form, input, label, span } from 'react-dom-factories'
 import { fileuploadFailCallback } from 'utils/ajax'
 import { classWithModifiers } from 'utils/css'
+import { formatBytes } from 'utils/html'
 import { nextVal } from 'utils/seq'
 
 el = React.createElement
@@ -75,7 +76,7 @@ export class Uploader extends React.Component
           return
 
         if file.size > maxSize
-          osu.popup osu.trans('contest.entry.too_big', limit: osu.formatBytes(maxSize, 0)), 'danger'
+          osu.popup osu.trans('contest.entry.too_big', limit: formatBytes(maxSize, 0)), 'danger'
           return
 
         if @props.contest.type != 'art' || !@props.contest.forced_width && !@props.contest.forced_height
