@@ -2,7 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { formatNumber } from 'utils/html'
-import { currentUrl } from 'utils/turbolinks'
+import { currentUrl, navigate } from 'utils/turbolinks'
 
 window.osu =
   formatBytes: (bytes, decimals=2) ->
@@ -19,22 +19,7 @@ window.osu =
     $(document).off '.ujsHideLoadingOverlay'
     Turbolinks.clearCache()
 
-    osu.navigate currentUrl().href, keepScroll, action: 'replace'
-
-
-  navigate: (url, keepScroll, {action = 'advance'} = {}) ->
-    osu.keepScrollOnLoad() if keepScroll
-    Turbolinks.visit url, action: action
-
-
-  keepScrollOnLoad: ->
-    position = [
-      window.pageXOffset
-      window.pageYOffset
-    ]
-
-    $(document).one 'turbolinks:load', ->
-      window.scrollTo position[0], position[1]
+    navigate currentUrl().href, keepScroll, action: 'replace'
 
 
   popup: (message, type = 'info') ->

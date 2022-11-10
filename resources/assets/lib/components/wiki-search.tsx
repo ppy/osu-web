@@ -4,6 +4,7 @@
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { navigate } from 'utils/turbolinks';
 import { wikiUrl } from 'utils/url';
 import { WikiSearchController } from 'wiki-search-controller';
 
@@ -50,7 +51,7 @@ export class WikiSearch extends React.Component {
       if (this.controller.selectedItem == null) {
         this.handleSearch();
       } else {
-        osu.navigate(wikiUrl(this.controller.selectedItem.path));
+        navigate(wikiUrl(this.controller.selectedItem.path));
       }
     } else if (key === 'ArrowUp' || key === 'ArrowDown') {
       this.keepSelectionInView = true;

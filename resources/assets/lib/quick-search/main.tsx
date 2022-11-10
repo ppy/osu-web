@@ -8,10 +8,12 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
+import { navigate } from 'utils/turbolinks';
 import Beatmapset from './beatmapset';
 import User from './user';
 import { ResultMode, Section } from './worker';
 import Worker from './worker';
+
 
 interface Props {
   modifiers?: string[];
@@ -89,7 +91,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
   private navigateToSelected() {
     const url = this.props.worker.selectedURL;
     if (url) {
-      osu.navigate(url, false);
+      navigate(url, false);
     }
   }
 
