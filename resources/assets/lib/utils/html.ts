@@ -5,8 +5,9 @@ import { padStart } from 'lodash';
 import { CSSProperties } from 'react';
 import { urlPresence } from './css';
 
-const suffixes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+const byteSuffixes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 const kilo = 1000;
+const numberSuffixes = ['', 'k', 'm', 'b', 't'];
 
 export function bottomPage() {
   return bottomPageDistance() === 0;
@@ -52,7 +53,7 @@ export function formatBytes(bytes: number, decimals = 2) {
   }
 
   const i = Math.floor(Math.log(bytes) / Math.log(kilo));
-  return `${formatNumber(bytes / Math.pow(kilo, i), decimals)} ${suffixes[i]}`;
+  return `${formatNumber(bytes / Math.pow(kilo, i), decimals)} ${byteSuffixes[i]}`;
 }
 
 export function formatDuration(valueSecond: number) {
@@ -87,9 +88,6 @@ export function formatNumber(num: number, precision?: number, options?: Intl.Num
 export function formatNumberSuffixed(num?: number, precision?: number, options?: Intl.NumberFormatOptions) {
   if (num == null) return;
 
-  const suffixes = ['', 'k', 'm', 'b', 't'];
-  const k = 1000;
-
   const format = (n: number) => {
     options ??= {};
 
@@ -101,11 +99,11 @@ export function formatNumberSuffixed(num?: number, precision?: number, options?:
     return n.toLocaleString('en', options);
   };
 
-  if (num < k) return format(num);
+  if (num < kilo) return format(num);
 
-  const i = Math.min(suffixes.length - 1, Math.floor(Math.log(num) / Math.log(k)));
+  const i = Math.min(numberSuffixes.length - 1, Math.floor(Math.log(num) / Math.log(kilo)));
 
-  return `${format(num / Math.pow(k, i))}${suffixes[i]}`;
+  return `${format(num / Math.pow(kilo, i))}${numberSuffixes[i]}`;
 }
 
 export function htmlElementOrNull(thing: unknown) {
