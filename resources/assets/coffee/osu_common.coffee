@@ -9,16 +9,6 @@ window.osu =
     '--group-colour': group?.colour ? 'initial'
 
 
-  formatBytes: (bytes, decimals=2) ->
-    suffixes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
-    k = 1000
-
-    return "#{bytes} B" if (bytes < k)
-
-    i = Math.floor(Math.log(bytes) / Math.log(k))
-    "#{formatNumber(bytes / Math.pow(k, i), decimals)} #{suffixes[i]}"
-
-
   reloadPage: (keepScroll = true) ->
     $(document).off '.ujsHideLoadingOverlay'
     Turbolinks.clearCache()
