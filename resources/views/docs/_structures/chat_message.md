@@ -24,13 +24,19 @@
 
 Represents an individual Message within a [ChatChannel](#chatchannel).
 
+Field        | Type                         | Description
+------------ | ---------------------------- | ------------------------------------------------------------
+message_id   | number                       | unique identifier for message
+sender_id    | number                       | `user_id` of the sender
+channel_id   | number                       | `channel_id` of where the message was sent
+timestamp    | string                       | when the message was sent, ISO-8601
+content      | string                       | message content
+content_html | string?                      | Markdown message content as HTML
+is_action    | boolean                      | was this an action? i.e. `/me dances`
+uuid         | string?                      | message identifier originally sent by client
+
+Optional attributes:
+
 Field      | Type                         | Description
 ---------- | ---------------------------- | ------------------------------------------------------------
-message_id | number                       | unique identifier for message
-sender_id  | number                       | `user_id` of the sender
-channel_id | number                       | `channel_id` of where the message was sent
-timestamp  | string                       | when the message was sent, ISO-8601
-content    | string                       | message content
-is_action  | boolean                      | was this an action? i.e. `/me dances`
 sender     | [UserCompact](#usercompact)  | embedded UserCompact object to save additional api lookups
-uuid       | ?string                      | message identifier originally sent by client
