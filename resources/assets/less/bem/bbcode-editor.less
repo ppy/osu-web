@@ -21,18 +21,6 @@
     background-color: @osu-colour-b2;
   }
 
-  &--beatmapset-description-editor {
-    .default-gutter-v2();
-    padding-top: @editor-padding;
-    padding-bottom: $padding-top;
-    background-color: hsl(var(--hsl-b2));
-    border-radius: @border-radius-large;
-
-    .forum-post-content {
-      font-size: @font-size--normal;
-    }
-  }
-
   &--profile-page {
     padding-right: var(--inner-gutter);
   }
@@ -62,11 +50,6 @@
     .@{_top}[data-state=loading-preview] & {
       opacity: 0.5;
       pointer-events: none;
-    }
-
-    .@{_top}--beatmapset-description-editor & {
-      // approximation of 80vh - 3 lines of button bars and editor padding
-      max-height: calc(80vh - 2 * @editor-padding - 2 * @content-padding - 3 * (1em + 2 * @buttons-margin));
     }
   }
 
@@ -164,16 +147,6 @@
       min-height: 0;
       overflow-y: auto;
       margin-bottom: 5px;
-    }
-
-    .@{_top}--beatmapset-description-editor & {
-      max-height: 600px;
-      overflow-y: auto;
-
-      @media @desktop {
-        padding-left: 30px;
-        padding-right: $padding-left;
-      }
     }
   }
 
