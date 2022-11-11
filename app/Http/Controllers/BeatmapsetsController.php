@@ -379,7 +379,6 @@ class BeatmapsetsController extends Controller
             'beatmaps',
             'beatmaps.failtimes',
             'beatmaps.max_combo',
-            'beatmapset_nominations',
             'converts',
             'converts.failtimes',
             'current_nominations',

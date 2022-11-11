@@ -21,7 +21,6 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'beatmaps',
-        'beatmapset_nominations',
         'converts',
         'current_nominations',
         'current_user_attributes',
@@ -83,14 +82,6 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         return $this->collection($beatmapset->$rel, new $this->beatmapTransformer());
     }
 
-    public function includeBeatmapsetNominations(Beatmapset $beatmapset)
-    {
-        return $this->collection(
-            $beatmapset->beatmapsetNominations,
-            new BeatmapsetNominationTransformer(),
-        );
-    }
-
     public function includeConverts(Beatmapset $beatmapset)
     {
         $converts = [];
@@ -105,15 +96,12 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
                     continue;
                 }
 
-                $convertedBeatmap = clone $beatmap;
+                $beatmap = clone $beatmap;
 
-                $convertedBeatmap->playmode = $modeInt;
-                $convertedBeatmap->convert = true;
-                if ($beatmap->relationLoaded('user')) {
-                    $convertedBeatmap->setRelation('user', $beatmap->user);
-                }
+                $beatmap->playmode = $modeInt;
+                $beatmap->convert = true;
 
-                array_push($converts, $convertedBeatmap);
+                array_push($converts, $beatmap);
             }
         }
 
