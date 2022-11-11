@@ -1,6 +1,8 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { presence } from 'utils/string'
+
 export default class TooltipDefault
   constructor: ->
     $(document).on 'mouseover touchstart', '[title]:not(iframe)', @onMouseOver
@@ -13,7 +15,7 @@ export default class TooltipDefault
 
     title = el.getAttribute 'title'
     el.removeAttribute 'title'
-    htmlTitle = osu.presence(el.dataset.htmlTitle)
+    htmlTitle = presence(el.dataset.htmlTitle)
 
     return if _.size(title) == 0 && !htmlTitle?
 

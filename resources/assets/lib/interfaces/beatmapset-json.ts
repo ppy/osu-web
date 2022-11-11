@@ -64,6 +64,7 @@ interface BeatmapsetJsonAvailableIncludes {
   beatmaps: BeatmapJson[];
   beatmapset_nominations: BeatmapsetNominationJson[];
   converts: BeatmapExtendedJson[];
+  current_nominations: BeatmapsetNominationJson[];
   current_user_attributes: CurrentUserAttributes;
   description: BeatmapsetDescription;
   discussions: BeatmapsetDiscussionJson[];

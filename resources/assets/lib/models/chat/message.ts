@@ -7,6 +7,7 @@ import { action, computed, makeObservable, observable } from 'mobx';
 import User from 'models/user';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
+import { uuid } from 'utils/seq';
 import { linkify } from 'utils/url';
 
 export const maxLength = 1024;
@@ -16,7 +17,7 @@ export default class Message {
   @observable content = '';
   @observable errored = false;
   @observable isAction = false;
-  @observable messageId: number | string = osu.uuid();
+  @observable messageId: number | string = uuid();
   @observable persisted = false;
   @observable senderId = -1;
   @observable timestamp: string = moment().toISOString();

@@ -5,6 +5,7 @@ import { route } from 'laroute'
 import { runInAction } from 'mobx'
 import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
+import { onError } from 'utils/ajax'
 import { parseJsonNullable, storeJson } from 'utils/json'
 import { nextVal } from 'utils/seq'
 
@@ -103,7 +104,7 @@ export class CommentsManager extends React.PureComponent
     .fail (xhr, status) =>
       return if status == 'abort'
 
-      osu.ajaxError xhr
+      onError xhr
 
 
   updateSort: (_event, {sort}) =>

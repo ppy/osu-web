@@ -46,7 +46,7 @@ interface BeatmapsetJsonForShowOverrideIncludes {
 }
 
 type BeatmapsetJsonForShowIncludes = Required<Pick<BeatmapsetExtendedJson,
-| 'beatmapset_nominations'
+| 'current_nominations'
 | 'current_user_attributes'
 | 'description'
 | 'genre'

@@ -54,7 +54,7 @@ abstract class Model extends BaseModel
     public function scopeDefault($query)
     {
         return $query
-            ->whereHas('beatmap')
+            ->whereHas('beatmap.beatmapset')
             ->orderBy('score_id', 'desc');
     }
 
