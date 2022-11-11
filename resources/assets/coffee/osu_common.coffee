@@ -3,15 +3,10 @@
 
 import { formatNumber } from 'utils/html'
 import { present } from 'utils/string'
-import { currentUrl, navigate } from 'utils/turbolinks'
+import { currentUrl, navigate, reloadPage } from 'utils/turbolinks'
 
 window.osu =
-  reloadPage: (keepScroll = true) ->
-    $(document).off '.ujsHideLoadingOverlay'
-    Turbolinks.clearCache()
-
-    navigate currentUrl().href, keepScroll, action: 'replace'
-
+  reloadPage: reloadPage
 
   popup: (message, type = 'info') ->
     $popup = $('#popup-container')
