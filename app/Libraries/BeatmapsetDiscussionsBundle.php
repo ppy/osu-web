@@ -15,7 +15,6 @@ use App\Transformers\BeatmapDiscussionTransformer;
 use App\Transformers\BeatmapsetTransformer;
 use App\Transformers\BeatmapTransformer;
 use App\Transformers\UserCompactTransformer;
-use Ds\Set;
 use Illuminate\Pagination\Paginator;
 
 class BeatmapsetDiscussionsBundle extends BeatmapsetDiscussionsBundleBase
@@ -104,11 +103,7 @@ class BeatmapsetDiscussionsBundle extends BeatmapsetDiscussionsBundleBase
             $discussions = $this->getDiscussions();
 
             $allDiscussions = $discussions->merge($this->getRelatedDiscussions());
-            $userIds = (new Set([
-                ...$allDiscussions->pluck('startingPost.last_editor_id'),
-                ...$allDiscussions->pluck('user_id'),
-                ...$this->getBeatmaps()->pluck('user_id'),
-            ]))->toArray();
+            $userIds = $allDiscussions->pluck('user_id')->merge($allDiscussions->pluck('startingPost.last_editor_id'))->unique()->values();
 
             $users = User::whereIn('user_id', $userIds)->with('userGroups');
 
