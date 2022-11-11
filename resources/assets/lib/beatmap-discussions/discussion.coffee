@@ -8,7 +8,7 @@ import { renderToStaticMarkup } from 'react-dom/server'
 import { button, div, i, span, a } from 'react-dom-factories'
 import { onError } from 'utils/ajax'
 import { badgeGroup, canModeratePosts, formatTimestamp } from 'utils/beatmapset-discussion-helper'
-import { classWithModifiers } from 'utils/css'
+import { classWithModifiers, groupColour } from 'utils/css'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { discussionTypeIcons } from './discussion-type'
 import { NewReply } from './new-reply'
@@ -76,7 +76,7 @@ export class Discussion extends React.PureComponent
       div className: "#{bn}__discussion",
         div
           className: "#{bn}__top"
-          style: osu.groupColour(group)
+          style: groupColour(group)
           div className: "#{bn}__top-user",
             el UserCard,
               user: user

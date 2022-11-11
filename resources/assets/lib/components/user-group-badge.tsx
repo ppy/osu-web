@@ -4,7 +4,7 @@
 import UserGroupJson from 'interfaces/user-group-json';
 import { route } from 'laroute';
 import * as React from 'react';
-import { classWithModifiers, Modifiers } from 'utils/css';
+import { classWithModifiers, groupColour, Modifiers } from 'utils/css';
 
 interface Props {
   group?: UserGroupJson | null;
@@ -44,7 +44,7 @@ export default function UserGroupBadge({group, modifiers}: Props) {
       modifiers,
     ),
     'data-label': group.short_name,
-    style: osu.groupColour(group),
+    style: groupColour(group),
     title,
   };
 
