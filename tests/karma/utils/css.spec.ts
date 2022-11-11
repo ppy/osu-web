@@ -1,9 +1,41 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { urlPresence } from 'utils/css';
+import GroupJson from 'interfaces/group-json';
+import { groupColour, urlPresence } from 'utils/css';
 
 describe('utils/css', () => {
+  describe('.groupColour', () => {
+    const group: GroupJson = {
+      colour: '#abcdef',
+      has_listing: true,
+      has_playmodes: true,
+      id: 1,
+      identifier: 'abc',
+      is_probationary: false,
+      name: 'ABC',
+      short_name: 'abc',
+    };
+
+    it('get CSS object with correct colour', () => {
+      expect(groupColour(group)).toEqual({
+        '--group-colour': '#abcdef',
+      });
+    });
+
+    it('get CSS object with initial value when null', () => {
+      expect(groupColour({ ...group, colour: null })).toEqual({
+        '--group-colour': 'initial',
+      });
+    });
+
+    it('get CSS object with initial value when undefined', () => {
+      expect(groupColour()).toEqual({
+        '--group-colour': 'initial',
+      });
+    });
+  });
+
   describe('.urlPresence', () => {
     describe('when url is empty', () => {
       const cases = [

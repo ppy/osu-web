@@ -11,7 +11,6 @@ declare module 'mod-names.json' {
 // There interfaces are only used in this file.
 declare module 'legacy-modules' {
   type BeatmapsetDiscussionJson = import('interfaces/beatmapset-discussion-json').default;
-  type GroupJson = import('interfaces/group-json').default;
 
   interface BeatmapDiscussionHelperClass {
     url(options: any, useCurrent?: boolean): string;
@@ -27,12 +26,7 @@ declare module 'legacy-modules' {
   }
 
   interface OsuCommon {
-    formatBytes: (bytes: number, decimals?: number) => string;
-    groupColour: (group?: GroupJson | null) => React.CSSProperties;
-    navigate: (url: string, keepScroll?: boolean, action?: Partial<Record<string, unknown>>) => void;
     popup: (message: string, type: string) => void;
-    presence: (str?: string | null) => string | null;
-    present: (str?: string | null) => boolean;
     reloadPage: () => void;
     trans: (...args: any[]) => string;
     transArray: (array: any[], key?: string) => string;

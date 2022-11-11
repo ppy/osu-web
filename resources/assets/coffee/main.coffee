@@ -37,6 +37,7 @@ import SyncHeight from 'core-legacy/sync-height'
 import TooltipDefault from 'core-legacy/tooltip-default'
 import TwitchPlayer from 'core-legacy/twitch-player'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
+import { navigate } from 'utils/turbolinks'
 
 Turbolinks.start()
 Turbolinks.setProgressBarDelay(0)
@@ -101,7 +102,7 @@ window.twitchPlayer ?= new TwitchPlayer(osuCore.turbolinksReload)
 
 
 $(document).on 'change', '.js-url-selector', (e) ->
-  osu.navigate e.target.value, (e.target.dataset.keepScroll == '1')
+  navigate e.target.value, (e.target.dataset.keepScroll == '1')
 
 
 $(document).on 'keydown', (e) ->

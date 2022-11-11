@@ -2,43 +2,15 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { formatNumber } from 'utils/html'
-import { currentUrl } from 'utils/turbolinks'
+import { present } from 'utils/string'
+import { currentUrl, navigate } from 'utils/turbolinks'
 
 window.osu =
-  groupColour: (group) ->
-    '--group-colour': group?.colour ? 'initial'
-
-
-  formatBytes: (bytes, decimals=2) ->
-    suffixes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
-    k = 1000
-
-    return "#{bytes} B" if (bytes < k)
-
-    i = Math.floor(Math.log(bytes) / Math.log(k))
-    "#{formatNumber(bytes / Math.pow(k, i), decimals)} #{suffixes[i]}"
-
-
   reloadPage: (keepScroll = true) ->
     $(document).off '.ujsHideLoadingOverlay'
     Turbolinks.clearCache()
 
-    osu.navigate currentUrl().href, keepScroll, action: 'replace'
-
-
-  navigate: (url, keepScroll, {action = 'advance'} = {}) ->
-    osu.keepScrollOnLoad() if keepScroll
-    Turbolinks.visit url, action: action
-
-
-  keepScrollOnLoad: ->
-    position = [
-      window.pageXOffset
-      window.pageYOffset
-    ]
-
-    $(document).one 'turbolinks:load', ->
-      window.scrollTo position[0], position[1]
+    navigate currentUrl().href, keepScroll, action: 'replace'
 
 
   popup: (message, type = 'info') ->
@@ -65,14 +37,6 @@ window.osu =
 
     document.activeElement.blur?()
     $alert.appendTo($popup).fadeIn()
-
-
-  presence: (string) ->
-    if osu.present(string) then string else null
-
-
-  present: (string) ->
-    string? && string != ''
 
 
   trans: (key, replacements = {}, locale) ->
@@ -116,4 +80,4 @@ window.osu =
   transExists: (key, locale) ->
     translated = Lang.get(key, null, locale)
 
-    osu.present(translated) && translated != key
+    present(translated) && translated != key

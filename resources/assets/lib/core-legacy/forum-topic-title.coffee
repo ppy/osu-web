@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { emitError } from 'utils/ajax'
+import { presence, present } from 'utils/string'
 
 export default class ForumTopicTitle
   constructor: ->
@@ -35,7 +36,7 @@ export default class ForumTopicTitle
 
 
   onInput: =>
-    @saveButton[0].disabled = !osu.present(@input[0].value)
+    @saveButton[0].disabled = !present(@input[0].value)
 
 
   onKeyup: (e) =>
@@ -50,7 +51,7 @@ export default class ForumTopicTitle
     input = @input[0]
     newTitle = input.value
 
-    return if !osu.presence(newTitle)?
+    return if !presence(newTitle)?
 
     return @cancel() if newTitle == input.defaultValue
 

@@ -13,6 +13,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
 import { classWithModifiers } from 'utils/css';
+import { present } from 'utils/string';
 
 type Props = Record<string, never>;
 
@@ -130,7 +131,7 @@ export default class InputBox extends React.Component<Props> {
   sendMessage(messageText?: string) {
     if (core.dataStore.chatState.selectedChannel == null
       || messageText == null
-      || !osu.present(trim(messageText))) {
+      || !present(trim(messageText))) {
       return;
     }
 
@@ -147,7 +148,7 @@ export default class InputBox extends React.Component<Props> {
       messageText = trim(messageText.substring(split + 1));
 
       // we only support /me commands for now
-      if (command !== 'me' || !osu.present(messageText)) {
+      if (command !== 'me' || !present(messageText)) {
         return;
       }
     }

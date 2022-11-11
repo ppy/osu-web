@@ -4,6 +4,7 @@
 import { route } from 'laroute'
 import { emitError } from 'utils/ajax'
 import { pageChange } from 'utils/page-change'
+import { present } from 'utils/string'
 
 export default class BbcodePreview
   constructor: ->
@@ -22,7 +23,7 @@ export default class BbcodePreview
 
     return if $form.attr('data-state') == 'preview'
 
-    return unless osu.present(text)
+    return unless present(text)
 
     if text == $body.attr('data-last-text')
       @showPreview(e)

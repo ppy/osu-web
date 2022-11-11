@@ -7,6 +7,7 @@ import UserGroupBadge from 'components/user-group-badge'
 import { route } from 'laroute'
 import * as React from 'react'
 import { a, div, h1, h2, span } from 'react-dom-factories'
+import { groupColour } from 'utils/css'
 
 el = React.createElement
 
@@ -34,7 +35,7 @@ export class Votes extends React.Component
     bn = 'modding-profile-vote-card'
     userBadge = user.groups?[0]
     topClasses = bn
-    style = osu.groupColour(userBadge)
+    style = groupColour(userBadge)
 
     div
       key: user.id
