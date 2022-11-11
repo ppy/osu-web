@@ -8,7 +8,7 @@ export function popup(message: string, type: PopupType = 'info') {
   const $popup = $('#popup-container');
   const $alert = $('.popup-clone').clone();
 
-  const closeAlert = () => $alert.click();
+  const closeAlert = () => $alert.trigger('click');
 
   // handle types of alerts by changing the colour
   $alert
