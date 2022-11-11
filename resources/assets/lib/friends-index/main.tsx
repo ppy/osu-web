@@ -25,7 +25,7 @@ export class Main extends React.PureComponent<Props> {
         />
 
         <div className='osu-page osu-page--generic-compact'>
-          <UserCardTypeContext.Provider value={{isFriendsPage: true}}>
+          <UserCardTypeContext.Provider value={{ isFriendsPage: true }}>
             <UserList users={this.props.friends} />
           </UserCardTypeContext.Provider>
         </div>

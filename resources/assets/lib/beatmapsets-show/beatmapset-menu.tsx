@@ -20,7 +20,7 @@ export default function BeatmapsetMenu(props: Props) {
             icon
             reportableId={props.beatmapset.id.toString()}
             reportableType='beatmapset'
-            user={{username: props.beatmapset.creator}}
+            user={{ username: props.beatmapset.creator }}
           />
         </div>
       )}

@@ -35,7 +35,7 @@ export default class ConversationPanel extends React.Component<Record<string, ne
               <>
                 <div className='chat-conversation-panel__title'>{osu.trans('chat.no-conversations.title')}</div>
                 <div className='chat-conversation-panel__instructions'>{osu.trans('chat.no-conversations.howto')}</div>
-                <div dangerouslySetInnerHTML={{__html: osu.trans('chat.no-conversations.lazer', { link: lazerLink })}} />
+                <div dangerouslySetInnerHTML={{ __html: osu.trans('chat.no-conversations.lazer', { link: lazerLink }) }} />
               </>
             )}
           </div>

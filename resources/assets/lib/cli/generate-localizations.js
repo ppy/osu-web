@@ -58,7 +58,7 @@ function writeTranslations(languages) {
 function generateLocalizations() {
   // Remove previous existing files and ensure directory exists.
   glob.sync(path.resolve(localesPath, '*.js')).forEach(fs.unlinkSync);
-  fs.mkdirSync(localesPath, {recursive: true});
+  fs.mkdirSync(localesPath, { recursive: true });
 
   generateTranslations();
   writeTranslations(extractLanguages());

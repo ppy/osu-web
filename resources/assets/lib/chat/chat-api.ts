@@ -80,7 +80,7 @@ export function getUpdates(since: number, lastHistoryId?: number | null) {
 export function markAsRead(channelId: number, messageId: number) {
   return $.ajax({
     type: 'PUT',
-    url: route('chat.channels.mark-as-read', {channel: channelId, message: messageId}),
+    url: route('chat.channels.mark-as-read', { channel: channelId, message: messageId }),
   }) as JQuery.jqXHR<void>;
 }
 

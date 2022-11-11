@@ -166,14 +166,14 @@ export class EditorInsertionMenu extends React.Component<Props> {
       case 'praise':
         insertNode = {
           beatmapId,
-          children: [{text: ''}],
+          children: [{ text: '' }],
           discussionType: type,
           type: 'embed',
         };
         break;
       case 'paragraph':
         insertNode = {
-          children: [{text: ''}],
+          children: [{ text: '' }],
           type: 'paragraph',
         };
         break;

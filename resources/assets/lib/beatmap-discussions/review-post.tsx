@@ -19,7 +19,7 @@ export class ReviewPost extends React.Component<Props> {
   embed(id: number) {
     return (
       <div key={uuid()} className='beatmap-discussion-review-post__block'>
-        <ReviewPostEmbed data={{discussion_id: id}} />
+        <ReviewPostEmbed data={{ discussion_id: id }} />
       </div>
     );
   }
