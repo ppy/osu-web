@@ -89,6 +89,7 @@ export default class Header extends React.Component<Props> {
               large={false}
               modifiers='beatmapset-show'
               onSelectBeatmap={this.onSelectBeatmap}
+              users={this.controller.usersById}
             />
           </div>
 

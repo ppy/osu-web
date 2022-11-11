@@ -102,13 +102,13 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
         onClick={this.selectBeatmap}
       >
         <BeatmapListItem beatmap={beatmap} />
-        {this.props.beatmapset.user_id !== this.props.currentBeatmap.user_id && (
+        {this.props.beatmapset.user_id !== beatmap.user_id && (
           <>
             {' '}
             <span className='beatmap-list__item-mapper'>
               <StringWithComponent
                 mappings={{
-                  mapper: <UserLink user={this.props.currentBeatmap.user ?? this.props.users[this.props.currentBeatmap.user_id] ?? deletedUser.toJson()} />,
+                  mapper: <UserLink user={this.props.users[beatmap.user_id] ?? deletedUser.toJson()} />,
                 }}
                 pattern={osu.trans('beatmapsets.show.details.mapped_by')}
               />
