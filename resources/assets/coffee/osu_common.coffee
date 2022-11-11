@@ -7,10 +7,6 @@ import { popup } from 'utils/popup'
 import { currentUrl, navigate, reloadPage } from 'utils/turbolinks'
 
 window.osu =
-  reloadPage: reloadPage
-
-  popup: popup
-
   trans: (key, replacements = {}, locale) ->
     locale = fallbackLocale unless osu.transExists(key, locale)
 
