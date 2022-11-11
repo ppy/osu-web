@@ -3,6 +3,7 @@
 
 import GroupJson from 'interfaces/group-json';
 import { forEach } from 'lodash';
+import { present } from './string';
 
 export type Modifiers = (string | null | undefined)[] | Partial<Record<string, boolean | null | undefined>> | string | null | undefined;
 
@@ -50,6 +51,6 @@ export function urlPresence(url?: string | null) {
   // Wrapping the string with quotes and escaping the used quotes inside
   // is sufficient. Use double quote as it's easy to figure out with
   // encodeURI (it doesn't escape single quote).
-  return osu.present(url) ? `url("${String(url).replace(/"/g, '%22')}")` : undefined;
+  return present(url) ? `url("${String(url).replace(/"/g, '%22')}")` : undefined;
 }
 

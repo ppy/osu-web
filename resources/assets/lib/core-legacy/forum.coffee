@@ -6,6 +6,7 @@ import { onError } from 'utils/ajax'
 import { bottomPage, formatNumber, isInputElement } from 'utils/html'
 import { hideLoadingOverlay } from 'utils/loading-overlay'
 import { pageChange } from 'utils/page-change'
+import { present } from 'utils/string'
 import { currentUrl } from 'utils/turbolinks'
 
 replaceUrl = (url) ->
@@ -261,7 +262,7 @@ export default class Forum
     $(document).one 'turbolinks:before-cache', ->
       history.scrollRestoration = 'auto'
 
-    shouldScroll = currentUrl().hash == '' && osu.present(topicMeta.postJumpTo)
+    shouldScroll = currentUrl().hash == '' && present(topicMeta.postJumpTo)
 
     if shouldScroll
       @scrollTo parseInt(topicMeta.postJumpTo, 10)
