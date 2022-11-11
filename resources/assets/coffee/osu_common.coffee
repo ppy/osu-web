@@ -3,36 +3,13 @@
 
 import { formatNumber } from 'utils/html'
 import { present } from 'utils/string'
+import { popup } from 'utils/popup'
 import { currentUrl, navigate, reloadPage } from 'utils/turbolinks'
 
 window.osu =
   reloadPage: reloadPage
 
-  popup: (message, type = 'info') ->
-    $popup = $('#popup-container')
-    $alert = $('.popup-clone').clone()
-
-    closeAlert = -> $alert.click()
-
-    # handle types of alerts by changing the colour
-    $alert
-      .addClass "alert-#{type} popup-active"
-      .removeClass 'popup-clone'
-
-    $alert.find('.popup-text').html message
-
-    # warning/danger messages stay forever until clicked
-    if type in ['warning', 'danger']
-      $('#overlay')
-        .off('click.close-alert')
-        .one('click.close-alert', closeAlert)
-        .fadeIn()
-    else
-      Timeout.set 5000, closeAlert
-
-    document.activeElement.blur?()
-    $alert.appendTo($popup).fadeIn()
-
+  popup: popup
 
   trans: (key, replacements = {}, locale) ->
     locale = fallbackLocale unless osu.transExists(key, locale)
