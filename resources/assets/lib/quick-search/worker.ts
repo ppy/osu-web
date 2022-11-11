@@ -67,7 +67,7 @@ export default class Worker {
         newSelected = { index: this.sectionLength(section) - 1, section: sectionIdx };
       }
     } else {
-      newSelected = {...this.selected};
+      newSelected = { ...this.selected };
       newSelected.index += direction;
     }
 

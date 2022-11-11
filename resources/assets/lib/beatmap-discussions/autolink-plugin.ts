@@ -26,7 +26,7 @@ export function autolinkPlugin(this: Processor) {
 
     return eat(matched)({
       children: [
-        {type: 'text', value: url},
+        { type: 'text', value: url },
       ],
       type: 'link',
       url: matched,
