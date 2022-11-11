@@ -22,8 +22,8 @@ namespace App\Models;
 class BeatmapsetNomination extends Model
 {
     protected $casts = [
-        'reset' => 'bool',
         'modes' => 'array',
+        'reset' => 'bool',
     ];
 
     public function beatmapset()
