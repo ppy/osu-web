@@ -61,6 +61,7 @@ class AuthServiceProvider extends ServiceProvider
             'chat.write' => osu_trans('api.scopes.chat.write'),
             'friends.read' => osu_trans('api.scopes.friends.read'),
             'identify' => osu_trans('api.scopes.identify'),
+            'loved' => '',
             'public' => osu_trans('api.scopes.public'),
         ]);
     }

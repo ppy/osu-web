@@ -31,6 +31,7 @@ use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\QueryException;
 
@@ -75,6 +76,7 @@ use Illuminate\Database\QueryException;
  * @property Language $language
  * @property int $language_id
  * @property \Carbon\Carbon $last_update
+ * @property \Illuminate\Database\Eloquent\Collection<LovedPoll> $lovedPolls
  * @property int $nominations
  * @property bool $nsfw
  * @property int $offset
@@ -916,6 +918,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return $this->belongsTo(Language::class, 'language_id');
     }
 
+    public function lovedPolls(): HasMany
+    {
+        return $this->hasMany(LovedPoll::class)->orderBy('topic_id', 'DESC');
+    }
+
     public function getAttribute($key)
     {
         return match ($key) {
@@ -998,6 +1005,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             'favourites',
             'genre',
             'language',
+            'lovedPolls',
             'reportedIn',
             'topic',
             'track',

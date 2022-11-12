@@ -19,6 +19,7 @@ use App\Models\User;
 use App\Models\UserGroup;
 use App\Models\UserGroupEvent;
 use App\Models\UserRelation;
+use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
 
 /**
@@ -100,6 +101,7 @@ class ScoreEsIndexTest extends TestCase
         parent::tearDownAfterClass();
 
         (new static())->refreshApplication();
+        Schema::disableForeignKeyConstraints();
         Beatmap::truncate();
         Beatmapset::truncate();
         Country::truncate();
@@ -111,6 +113,7 @@ class ScoreEsIndexTest extends TestCase
         UserGroup::truncate();
         UserGroupEvent::truncate();
         UserRelation::truncate();
+        Schema::enableForeignKeyConstraints();
         (new ScoreSearch())->deleteAll();
     }
 

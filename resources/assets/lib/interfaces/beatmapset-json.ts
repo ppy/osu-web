@@ -8,6 +8,7 @@ import BeatmapsetEventJson from './beatmapset-event-json';
 import GameMode from './game-mode';
 import GenreJson from './genre-json';
 import LanguageJson from './language-json';
+import LovedPollJson from './loved-poll-json';
 import UserJson, { UserJsonDeleted } from './user-json';
 
 interface BeatmapsetCovers {
@@ -69,6 +70,7 @@ interface BeatmapsetJsonAvailableIncludes {
   genre: GenreJson;
   has_favourited: boolean;
   language: LanguageJson;
+  loved_polls: LovedPollJson[];
   nominations: BeatmapsetNominationsInterface;
   ratings: number[];
   recent_favourites: UserJson[];

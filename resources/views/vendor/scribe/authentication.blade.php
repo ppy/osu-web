@@ -371,6 +371,7 @@ $scopeDescriptions = [
     'forum.write' => "Allows creating and editing forum posts on a user's behalf.",
     'friends.read' => 'Allows reading of the user\'s friend list.',
     'identify' => 'Allows reading of the public profile of the user (`/me`).',
+    'loved' => 'Allows managing Project Loved polls.',
     'public' => 'Allows reading of publicly available data on behalf of the user.',
 ];
 @endphp

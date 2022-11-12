@@ -1,0 +1,39 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.beatmapset-loved-poll-result {
+  @_top: beatmapset-loved-poll-result;
+
+  .default-border-radius();
+  background-color: @osu-colour-b3;
+  display: flex;
+  height: 32px;
+  position: relative;
+
+  &__content {
+    font-weight: 600;
+    position: relative;
+    margin: auto;
+  }
+
+  &__fill {
+    .default-border-radius();
+    background-color: @osu-colour-purple-3;
+    position: absolute;
+    height: 100%;
+
+    .@{_top}--highlight & {
+      background-color: @osu-colour-purple-2;
+    }
+  }
+
+  &__threshold {
+    border-right: 3px solid @osu-colour-b1;
+    position: absolute;
+    height: 100%;
+
+    .@{_top}--highlight & {
+      border-right-color: @osu-colour-green-2;
+    }
+  }
+}

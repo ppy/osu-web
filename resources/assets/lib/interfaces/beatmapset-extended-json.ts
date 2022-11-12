@@ -50,6 +50,7 @@ type BeatmapsetJsonForShowIncludes = Required<Pick<BeatmapsetExtendedJson,
 | 'description'
 | 'genre'
 | 'language'
+| 'loved_polls'
 | 'ratings'
 | 'recent_favourites'
 | 'related_users'

@@ -1,0 +1,74 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+@import "../colors";
+
+.beatmapset-loved-poll {
+  .base-colours();
+  --base-hue: 333;
+  --base-hue-deg: 333deg;
+
+  background-color: @osu-colour-b5;
+  display: flex;
+  flex-direction: column;
+  font-size: @font-size--normal;
+  padding: 0 20px;
+
+  @media @desktop {
+    flex-direction: row;
+  }
+
+  &__box {
+    padding: 15px 0;
+
+    @media @desktop {
+      flex-grow: 1;
+      margin: 0 10px;
+    }
+
+    &--poll {
+      background-color: @osu-colour-b4;
+      display: flex;
+      flex-direction: column;
+      padding: 15px;
+      row-gap: 10px;
+
+      @media @desktop {
+        flex: 0 0 @beatmapset-float-box-width;
+      }
+
+      > :first-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    row-gap: 5px;
+  }
+
+  &__header {
+    font-size: @font-size--title-small-4;
+    margin: 15px 0 10px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &--small {
+      font-size: @font-size--title-small;
+      font-weight: bold;
+    }
+  }
+
+  &__voted-icon {
+    margin-left: 10px;
+  }
+
+  &__view-topic-button {
+    margin-top: auto;
+  }
+}

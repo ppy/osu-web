@@ -253,6 +253,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('legal/{locale?}/{path?}', 'LegalController@show')->name('legal');
     Route::put('legal/{locale}/{path}', 'LegalController@update');
 
+    Route::post('loved-polls/{topic}/vote', 'LovedPollsController@vote')->name('loved-polls.vote');
+
     Route::group(['prefix' => 'multiplayer', 'as' => 'multiplayer.', 'namespace' => 'Multiplayer'], function () {
         Route::resource('rooms', 'RoomsController', ['only' => ['show']]);
     });
@@ -454,6 +456,10 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
                 Route::resource('posts', 'PostsController', ['only' => ['update']]);
             });
         });
+
+        Route::post('loved-polls', 'LovedPollsController@store')->name('loved-polls.store');
+        Route::delete('loved-polls/{topic}', 'LovedPollsController@destroy')->name('loved-polls.destroy');
+
         Route::resource('matches', 'MatchesController', ['only' => ['index', 'show']]);
 
         Route::group(['as' => 'rooms.', 'prefix' => 'rooms'], function () {

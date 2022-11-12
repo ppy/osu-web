@@ -20,6 +20,7 @@ use App\Models\Solo\ScorePerformance;
 use App\Models\User;
 use App\Models\UserGroup;
 use App\Models\UserGroupEvent;
+use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
 
 /**
@@ -66,6 +67,7 @@ class RemoveBeatmapsetSoloScoresTest extends TestCase
         $this->beforeApplicationDestroyed(function () use ($search) {
             $this->refreshApplication();
             $db = app('db');
+            Schema::disableForeignKeyConstraints();
             Beatmap::truncate();
             Beatmapset::truncate();
             Country::truncate();
@@ -77,6 +79,7 @@ class RemoveBeatmapsetSoloScoresTest extends TestCase
             User::truncate();
             UserGroup::truncate();
             UserGroupEvent::truncate();
+            Schema::enableForeignKeyConstraints();
             $search->deleteAll();
             foreach (config('database.connections') as $name => $_dbConfig) {
                 $conn = $db->connection($name);

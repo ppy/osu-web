@@ -20,6 +20,7 @@ use App\Models\UserGroup;
 use App\Models\UserGroupEvent;
 use App\Models\UserRelation;
 use Artisan;
+use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
 
 class BeatmapsControllerSoloScoresTest extends TestCase
@@ -162,6 +163,7 @@ class BeatmapsControllerSoloScoresTest extends TestCase
     public static function tearDownAfterClass(): void
     {
         (new static())->refreshApplication();
+        Schema::disableForeignKeyConstraints();
         Beatmap::truncate();
         Beatmapset::truncate();
         Country::truncate();
@@ -173,6 +175,7 @@ class BeatmapsControllerSoloScoresTest extends TestCase
         UserGroup::truncate();
         UserGroupEvent::truncate();
         UserRelation::truncate();
+        Schema::enableForeignKeyConstraints();
         (new ScoreSearch())->deleteAll();
     }
 
