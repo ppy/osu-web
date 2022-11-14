@@ -25,7 +25,7 @@ export default function NewsHeader(props: Props) {
     links.push({
       active: true,
       title: props.post.title,
-      url: route('news.show', {news: props.post.slug}),
+      url: route('news.show', { news: props.post.slug }),
     });
   }
 

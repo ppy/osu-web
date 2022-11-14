@@ -92,8 +92,8 @@ export class Nominator extends React.PureComponent<Props, State> {
   nominate = () => {
     this.xhr?.abort();
 
-    this.setState({loading: true}, () => {
-      const url = route('beatmapsets.nominate', {beatmapset: this.props.beatmapset.id});
+    this.setState({ loading: true }, () => {
+      const url = route('beatmapsets.nominate', { beatmapset: this.props.beatmapset.id });
       const params = {
         data: {
           playmodes: this.state.selectedModes,
@@ -103,7 +103,7 @@ export class Nominator extends React.PureComponent<Props, State> {
 
       this.xhr = $.ajax(url, params)
         .done((response) => {
-          $.publish('beatmapsetDiscussions:update', {beatmapset: response});
+          $.publish('beatmapsetDiscussions:update', { beatmapset: response });
         })
         .fail(onError)
         .always(this.hideNominationModal);
@@ -228,11 +228,11 @@ export class Nominator extends React.PureComponent<Props, State> {
     return (curr === (req ?? 0) - 1) && !this.hasFullNomination(mode);
   };
 
-  showNominationModal = () => this.setState({visible: true});
+  showNominationModal = () => this.setState({ visible: true });
 
   updateCheckboxes = () => {
     const checkedBoxes = _.map(this.checkboxContainerRef.current?.querySelectorAll<HTMLInputElement>('input[type=checkbox]:checked'), (node) => node.value);
-    this.setState({selectedModes: checkedBoxes as GameMode[]});
+    this.setState({ selectedModes: checkedBoxes as GameMode[] });
   };
 
   userCanNominate = () => {
