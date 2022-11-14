@@ -87,6 +87,11 @@ class UserAccountHistory extends Model
             ->orderBy('timestamp', 'desc');
     }
 
+    public function scopeRecentForChat($query)
+    {
+        return $query->where('timestamp', '>', Carbon::now()->subDays(config('osu.user.ban_persist_days')));
+    }
+
     public function actor()
     {
         return $this->belongsTo(User::class, 'banner_id', 'user_id');
