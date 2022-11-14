@@ -3,7 +3,6 @@
 
 import { formatNumber } from 'utils/html'
 import { present } from 'utils/string'
-import { popup } from 'utils/popup'
 
 window.osu =
   trans: (key, replacements = {}, locale) ->
