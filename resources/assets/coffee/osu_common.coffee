@@ -4,7 +4,6 @@
 import { formatNumber } from 'utils/html'
 import { present } from 'utils/string'
 import { popup } from 'utils/popup'
-import { currentUrl, navigate, reloadPage } from 'utils/turbolinks'
 
 window.osu =
   trans: (key, replacements = {}, locale) ->
