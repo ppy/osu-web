@@ -122,7 +122,6 @@ module.exports = {
         ],
         '@typescript-eslint/semi': ['error', 'always'],
         '@typescript-eslint/type-annotation-spacing': 'error',
-        '@typescript-eslint/unbound-method': 'warn', // TODO: some calls are intentionally unbounded...
         '@typescript-eslint/unified-signatures': 'error',
         'dot-notation': 'off',
         'no-invalid-this': 'off',

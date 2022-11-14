@@ -37,7 +37,7 @@ export class BeatmapsetSearchController {
     state: 'completed',
   };
 
-  private readonly debouncedFilterChangedSearch = debounce(this.filterChangedSearch, 500);
+  private readonly debouncedFilterChangedSearch = debounce(() => this.filterChangedSearch(), 500);
   private filtersObserver!: Lambda;
   private initialErrorMessage?: string;
 

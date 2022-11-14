@@ -55,9 +55,9 @@ export default class NotificationController {
   }
 
   @action
-  loadMore() {
+  loadMore = () => {
     this.type?.loadMore(this.contextType);
-  }
+  };
 
   @action
   markCurrentTypeAsRead() {

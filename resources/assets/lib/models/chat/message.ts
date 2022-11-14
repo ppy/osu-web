@@ -39,7 +39,7 @@ export default class Message {
     makeObservable(this);
   }
 
-  static fromJson(json: MessageJson): Message {
+  static fromJson(this: void, json: MessageJson): Message {
     const message = new Message();
     message.channelId = json.channel_id;
     message.content = json.content;
