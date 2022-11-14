@@ -1,6 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { htmlElementOrNull } from './html';
+
 type PopupType = 'danger' | 'info' | 'warning';
 const persistentPopups: PopupType[] = ['danger', 'warning'];
 
@@ -27,10 +29,7 @@ export function popup(message: string, type: PopupType = 'info') {
     setTimeout(closeAlert, 5000);
   }
 
-  const activeElement = document.activeElement;
-  if (activeElement instanceof HTMLElement) {
-    activeElement.blur();
-  }
+  htmlElementOrNull(document.activeElement)?.blur();
 
   $alert.appendTo($popup).fadeIn();
 }
