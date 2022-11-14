@@ -24,7 +24,7 @@ interface Props {
   completed: boolean;
   disabled: boolean;
   onClose: () => void;
-  onSubmit: ({comments}: {comments: string}) => void;
+  onSubmit: ({ comments }: { comments: string }) => void;
   title: React.ReactNode;
   visible: boolean;
   visibleOptions: string[];

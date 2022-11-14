@@ -40,6 +40,6 @@ export default class EditorIssueTypeSelector extends React.Component<Props> {
 
   select = (discussionType: BeatmapReviewDiscussionType) => {
     const path = ReactEditor.findPath(this.context, this.props.element);
-    Transforms.setNodes(this.context, { discussionType }, {at: path});
+    Transforms.setNodes(this.context, { discussionType }, { at: path });
   };
 }
