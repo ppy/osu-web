@@ -122,6 +122,7 @@ module.exports = {
         ],
         '@typescript-eslint/semi': ['error', 'always'],
         '@typescript-eslint/type-annotation-spacing': 'error',
+        '@typescript-eslint/unbound-method': 'error',
         '@typescript-eslint/unified-signatures': 'error',
         'dot-notation': 'off',
         'no-invalid-this': 'off',
