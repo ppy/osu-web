@@ -233,7 +233,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
 
   @computed
   private get url() {
-    return route('beatmapsets.show', { beatmapset: this.props.beatmapset.id});
+    return route('beatmapsets.show', { beatmapset: this.props.beatmapset.id });
   }
 
   constructor(props: Props) {

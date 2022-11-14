@@ -3,6 +3,7 @@
 
 import UserPreferences from 'core/user/user-preferences';
 import { autorun } from 'mobx';
+import { presence } from 'utils/string';
 import Slider from './slider';
 import { format, TimeFormat } from './time-format';
 
@@ -363,7 +364,7 @@ export default class Main {
   };
 
   private replaceAudioElem = (elem: HTMLAudioElement) => {
-    const src = osu.presence(elem.src) ?? osu.presence(elem.querySelector('source')?.src);
+    const src = presence(elem.src) ?? presence(elem.querySelector('source')?.src);
 
     if (src == null) {
       throw new Error('audio element is missing src');

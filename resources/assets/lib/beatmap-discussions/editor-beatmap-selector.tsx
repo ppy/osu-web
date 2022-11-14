@@ -68,6 +68,6 @@ export default class EditorBeatmapSelector extends React.Component<Props> {
     const beatmapId = id !== 'all' ? parseInt(id, 10) : undefined;
 
     const path = ReactEditor.findPath(this.context, this.props.element);
-    Transforms.setNodes(this.context, {beatmapId}, {at: path});
+    Transforms.setNodes(this.context, { beatmapId }, { at: path });
   };
 }

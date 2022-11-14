@@ -17,6 +17,7 @@ import { onError } from 'utils/ajax';
 import { validMessageLength } from 'utils/beatmapset-discussion-helper';
 import { InputEventType, makeTextAreaHandler, TextAreaCallback } from 'utils/input-handler';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
+import { present } from 'utils/string';
 import MessageLengthCounter from './message-length-counter';
 
 const bn = 'beatmap-discussion-post';
@@ -41,7 +42,7 @@ const actionResolveLookup = {
 @observer
 export class NewReply extends React.Component<Props> {
   @observable private readonly box = React.createRef<HTMLTextAreaElement>();
-  @observable private editing = osu.present(this.storedMessage);
+  @observable private editing = present(this.storedMessage);
   private readonly handleKeyDown;
   @observable private message = this.storedMessage;
   @observable private posting: string | null = null;
@@ -125,7 +126,7 @@ export class NewReply extends React.Component<Props> {
 
   @action
   private readonly onCancelClick = () => {
-    if (osu.present(this.message) && !confirm(osu.trans('common.confirmation_unsaved'))) return;
+    if (present(this.message) && !confirm(osu.trans('common.confirmation_unsaved'))) return;
 
     this.editing = false;
     this.setMessage('');
@@ -262,7 +263,7 @@ export class NewReply extends React.Component<Props> {
   private setMessage(message: string) {
     this.message = message;
 
-    if (!osu.present(this.message)) {
+    if (!present(this.message)) {
       localStorage.removeItem(this.storageKey);
     } else {
       localStorage.setItem(this.storageKey, this.message);

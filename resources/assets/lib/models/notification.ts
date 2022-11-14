@@ -12,6 +12,7 @@ import NotificationDeletable from 'notifications/notification-deletable';
 import { NotificationIdentity } from 'notifications/notification-identity';
 import NotificationReadable from 'notifications/notification-readable';
 import core from 'osu-core-singleton';
+import { presence } from 'utils/string';
 
 export default class Notification implements NotificationReadable, NotificationDeletable {
   createdAtJson?: string;
@@ -54,7 +55,7 @@ export default class Notification implements NotificationReadable, NotificationD
 
   @computed get title() {
     if (core.userPreferences.get('beatmapset_title_show_original')) {
-      return osu.presence(this.details.titleUnicode) ?? this.details.title;
+      return presence(this.details.titleUnicode) ?? this.details.title;
     }
 
     return this.details.title;

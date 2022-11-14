@@ -6,6 +6,7 @@
 import { route } from 'laroute'
 import { StorePaypal } from 'store-paypal'
 import { StoreXsolla } from 'store-xsolla'
+import { onError } from 'utils/ajax'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 
 export class StoreCheckout
@@ -32,7 +33,7 @@ export class StoreCheckout
       showLoadingOverlay.flush()
 
       init[provider]?.then ->
-        window.osu.promisify $.post(route('store.checkout.store'), { provider, orderId })
+        $.post(route('store.checkout.store'), { provider, orderId })
       .then =>
         @startPayment(event.target.dataset)
       .catch @handleError
@@ -44,9 +45,6 @@ export class StoreCheckout
       when 'centili'
         new Promise (resolve) ->
           window.location.href = url
-
-      when 'free'
-        window.osu.promisify $.post(route('store.checkout.store', { orderId, provider }))
 
       when 'paypal'
         StorePaypal.fetchApprovalLink(orderId).then (link) ->
@@ -69,4 +67,4 @@ export class StoreCheckout
 
     # TODO: less unknown error, disable button
     # TODO: handle error.message
-    osu.ajaxError(error?.xhr)
+    onError(error?.xhr)

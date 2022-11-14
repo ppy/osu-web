@@ -993,6 +993,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             'bssProcessQueues',
             'comments',
             'defaultBeatmaps',
+            'descriptionPost',
             'events',
             'favourites',
             'genre',
@@ -1272,6 +1273,18 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return $this->belongsTo(User::class, 'approvedby_id');
     }
 
+    public function descriptionPost()
+    {
+        return $this->hasOneThrough(
+            Forum\Post::class,
+            Forum\Topic::class,
+            'topic_id',
+            'post_id',
+            'thread_id',
+            'topic_first_post_id',
+        );
+    }
+
     public function topic()
     {
         return $this->belongsTo(Forum\Topic::class, 'thread_id');
@@ -1320,21 +1333,17 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function description()
     {
-        $bbcode = $this->getBBCode();
-
-        return $bbcode ? $bbcode->toHTML() : null;
+        return $this->getBBCode()?->toHTML();
     }
 
     public function editableDescription()
     {
-        $bbcode = $this->getBBCode();
-
-        return $bbcode ? $bbcode->toEditor() : null;
+        return $this->getBBCode()?->toEditor();
     }
 
     public function updateDescription($bbcode, $user)
     {
-        $post = $this->getPost();
+        $post = $this->descriptionPost;
         if ($post === null) {
             return;
         }
@@ -1378,7 +1387,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     private function getBBCode()
     {
-        $post = $this->getPost();
+        $post = $this->descriptionPost;
 
         if ($post === null) {
             return;
@@ -1412,17 +1421,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         }
 
         return $this->title;
-    }
-
-    public function getPost()
-    {
-        $topic = $this->topic;
-
-        if ($topic === null) {
-            return;
-        }
-
-        return Forum\Post::find($topic->topic_first_post_id);
     }
 
     public function freshHype()

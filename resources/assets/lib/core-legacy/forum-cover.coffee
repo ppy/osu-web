@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { fileuploadFailCallback } from 'utils/ajax'
+import { urlPresence } from 'utils/css'
 
 export default class ForumCover
   constructor: ->
@@ -125,7 +126,7 @@ export default class ForumCover
 
     backgroundImageUrl = @uploadButton[0].dataset.fileUrl || @uploadButton[0].dataset.defaultFileUrl
 
-    $(@header).css(backgroundImage: osu.urlPresence(backgroundImageUrl) ? '')
+    $(@header).css(backgroundImage: urlPresence(backgroundImageUrl) ? '')
 
     @removeButton[0].disabled = !@hasCover()
 

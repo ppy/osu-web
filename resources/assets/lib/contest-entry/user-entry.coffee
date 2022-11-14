@@ -5,6 +5,8 @@ import TimeWithTooltip from 'components/time-with-tooltip'
 import { route } from 'laroute'
 import * as React from 'react'
 import { button, div, i } from 'react-dom-factories'
+import { onError } from 'utils/ajax'
+import { formatBytes } from 'utils/html'
 
 el = React.createElement
 
@@ -21,7 +23,7 @@ export class UserEntry extends React.Component
     .done (data) =>
       $.publish 'contest:entries:update', data: data
 
-    .fail osu.ajaxError
+    .fail onError
 
   render: ->
     div className: 'contest-userentry contest-userentry--ok',
@@ -43,4 +45,4 @@ export class UserEntry extends React.Component
         el TimeWithTooltip, dateTime: @props.entry.created_at, relative: true
 
       div className: 'contest-userentry__filesize',
-        osu.formatBytes(@props.entry.filesize)
+        formatBytes(@props.entry.filesize)
