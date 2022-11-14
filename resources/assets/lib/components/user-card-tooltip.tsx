@@ -110,7 +110,7 @@ function onMouseOver(event: JQuery.TriggeredEvent<Document, unknown, HTMLElement
   const userId = presence(el.dataset.userId);
   if (userId == null) return;
   // don't show cards for blocked users
-  if (_.find(core.currentUser?.blocks ?? [], { target_id: parseInt(userId, 10)})) return;
+  if (_.find(core.currentUser?.blocks ?? [], { target_id: parseInt(userId, 10) })) return;
 
   if (el._tooltip == null) {
     return createTooltip(el);

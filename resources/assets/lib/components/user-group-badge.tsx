@@ -11,7 +11,7 @@ interface Props {
   modifiers?: Modifiers;
 }
 
-export default function UserGroupBadge({group, modifiers}: Props) {
+export default function UserGroupBadge({ group, modifiers }: Props) {
   if (group == null) {
     return null;
   }

@@ -9,7 +9,7 @@ interface Props {
   type: string;
 }
 
-const MessageDividerBase = ({timestamp, type}: Props, innerRef: React.Ref<HTMLDivElement>) => {
+const MessageDividerBase = ({ timestamp, type }: Props, innerRef: React.Ref<HTMLDivElement>) => {
   switch (type) {
     case 'DAY_MARKER':
       return (<div ref={innerRef} className='chat-conversation__day-divider'>{moment(timestamp).format('LL')}</div>);
