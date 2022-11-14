@@ -313,7 +313,7 @@ class ChatController extends Controller
         }
 
         if ($includeSilences) {
-            $silences = $this->getSilences($params['history_since'], null);
+            $silences = $this->getSilences($params['history_since'], $params['since']);
 
             $response['silences'] = json_collection($silences, new UserSilenceTransformer());
         }
