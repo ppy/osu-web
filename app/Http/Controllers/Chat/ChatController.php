@@ -291,7 +291,8 @@ class ChatController extends Controller
 
         // messages need presence
         if ($includeMessages || $includePresence) {
-            $presence = (new UserChannelList(auth()->user()))->get();
+            $userChannelList = new UserChannelList(auth()->user());
+            $presence = $userChannelList->get();
         }
 
         if ($includeMessages) {
@@ -308,6 +309,10 @@ class ChatController extends Controller
                 ->orderBy('message_id', 'DESC')
                 ->get()
                 ->reverse();
+            $channelsById = $userChannelList->getChannels()->keyBy('channel_id');
+            foreach ($messages as $message) {
+                $message->setRelation('channel', $channelsById[$message->channel_id] ?? null);
+            }
 
             $response['messages'] = json_collection($messages, new MessageTransformer(), ['sender']);
         }
