@@ -9,6 +9,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { rulesetName } from 'utils/beatmap-helper';
 import { canBeReported, hasReplay, scoreDownloadUrl } from 'utils/score-helper';
+import { trans } from 'utils/string';
 
 interface Props {
   score: SoloScoreJsonForShow;
@@ -35,7 +36,7 @@ export default function Buttons(props: Props) {
           data-turbolinks={false}
           href={scoreDownloadUrl(props.score)}
         >
-          {osu.trans('users.show.extra.top_ranks.download_replay')}
+          {trans('users.show.extra.top_ranks.download_replay')}
         </a>
       )}
 

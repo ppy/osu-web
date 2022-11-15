@@ -3,6 +3,7 @@
 
 import * as React from 'react';
 import { nextVal } from 'utils/seq';
+import { trans } from 'utils/string';
 
 interface Props {
   pswp: any;
@@ -70,14 +71,14 @@ export default class GalleryContestVoteButton extends React.PureComponent<Props,
     }
 
     if (this.state.button.isSelected) {
-      return osu.trans('contest.voting.button.remove');
+      return trans('contest.voting.button.remove');
     }
 
     if (!this.state.button.hasVote) {
-      return osu.trans('contest.voting.button.used_up');
+      return trans('contest.voting.button.used_up');
     }
 
-    return osu.trans('contest.voting.button.add');
+    return trans('contest.voting.button.add');
 
   };
 

@@ -8,6 +8,7 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import { onErrorWithCallback } from 'utils/ajax';
 import { showLoadingOverlay, hideLoadingOverlay } from 'utils/loading-overlay';
+import { trans } from 'utils/string';
 import Controller from './controller';
 
 interface Props {
@@ -27,7 +28,7 @@ export default class UserPageEditor extends React.Component<Props> {
       <BbcodeEditor
         modifiers='profile-page'
         onChange={this.onChange}
-        placeholder={osu.trans('users.show.page.placeholder')}
+        placeholder={trans('users.show.page.placeholder')}
         rawValue={this.props.controller.state.user.page.raw}
       />
     );

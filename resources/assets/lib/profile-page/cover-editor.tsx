@@ -7,6 +7,7 @@ import { isModalShowing } from 'modal-helper';
 import CoverSelector from 'profile-page/cover-selector';
 import * as React from 'react';
 import { nextVal } from 'utils/seq';
+import { trans } from 'utils/string';
 import Controller from './controller';
 
 interface Props {
@@ -49,7 +50,7 @@ export default class CoverEditor extends React.Component<Props> {
         <button
           className='btn-circle btn-circle--page-toggle'
           onClick={this.onClickCoverSelectorToggle}
-          title={osu.trans('users.show.edit.cover.button')}
+          title={trans('users.show.edit.cover.button')}
         >
           <span className='fas fa-pencil-alt' />
         </button>

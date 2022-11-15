@@ -8,6 +8,7 @@ import { route } from 'laroute';
 import { debounce, intersection } from 'lodash';
 import { action, computed, IObjectDidChange, Lambda, makeObservable, observable, observe, runInAction } from 'mobx';
 import core from 'osu-core-singleton';
+import { trans, transArray } from 'utils/string';
 import { currentUrl } from 'utils/turbolinks';
 
 
@@ -81,8 +82,8 @@ export class BeatmapsetSearchController {
 
   @computed
   get supporterRequiredFilterText() {
-    const trans = this.filters.supporterRequired.map((name) => osu.trans(`beatmaps.listing.search.filters.${name}`));
-    return osu.transArray(trans);
+    const text = this.filters.supporterRequired.map((name) => trans(`beatmaps.listing.search.filters.${name}`));
+    return transArray(text);
   }
 
   @action

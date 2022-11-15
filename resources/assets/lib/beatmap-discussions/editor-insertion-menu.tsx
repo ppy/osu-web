@@ -9,6 +9,7 @@ import * as React from 'react';
 import { Editor as SlateEditor, Element as SlateElement, Node as SlateNode, Point, Text as SlateText, Transforms } from 'slate';
 import { ReactEditor } from 'slate-react';
 import { nextVal } from 'utils/seq';
+import { trans } from 'utils/string';
 import { SlateContext } from './slate-context';
 
 interface Props {
@@ -239,7 +240,7 @@ export class EditorInsertionMenu extends React.Component<Props> {
         className={`${this.bn}__menu-button ${this.bn}__menu-button--${type}`}
         data-discussion-type={type}
         onClick={this.insertBlock}
-        title={osu.trans(`beatmaps.discussions.review.insert-block.${type}`)}
+        title={trans(`beatmaps.discussions.review.insert-block.${type}`)}
         type='button'
       >
         <i className={icon} />

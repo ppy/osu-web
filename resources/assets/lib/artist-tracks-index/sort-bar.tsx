@@ -5,7 +5,7 @@ import { computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
-import { present } from 'utils/string';
+import { present, trans } from 'utils/string';
 import makeLink from './make-link';
 import {
   ArtistTrackSearch,
@@ -76,7 +76,7 @@ export default class SortBar extends React.Component<Props> {
           <div className='sort sort--artist-tracks'>
             <div className='sort__items'>
               <div className='sort__item sort__item--title'>
-                {osu.trans('sort._')}
+                {trans('sort._')}
               </div>
 
               {artistTrackSortFields.map(this.renderLink)}
@@ -87,7 +87,7 @@ export default class SortBar extends React.Component<Props> {
         <div className='artist-track-search-sort__mobile'>
           <div className='sort-mobile'>
             <div className='sort-mobile__item sort-mobile__item--title'>
-              {osu.trans('sort._')}
+              {trans('sort._')}
             </div>
             <div className='sort-mobile__item'>
               <div className='form-select'>
@@ -168,7 +168,7 @@ export default class SortBar extends React.Component<Props> {
         href={url}
         onClick={this.handleLinkClick}
       >
-        {osu.trans(`sort.artist_tracks.${field}`)}
+        {trans(`sort.artist_tracks.${field}`)}
 
         <span className='sort__item-arrow'>
           <span className={orderIcon[orderForIcon].desktop} />
@@ -182,7 +182,7 @@ export default class SortBar extends React.Component<Props> {
 
     return (
       <option key={field} value={field}>
-        {osu.trans(`sort.artist_tracks.${field}`)}
+        {trans(`sort.artist_tracks.${field}`)}
       </option>
     );
   };

@@ -8,6 +8,7 @@ import { onErrorWithClick } from 'utils/ajax';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { nextVal } from 'utils/seq';
+import { trans } from 'utils/string';
 import { Spinner } from './spinner';
 
 interface Props {
@@ -63,8 +64,8 @@ export default class FollowUserMappingButton extends React.Component<Props, Stat
     }
 
     const title = canToggle
-      ? osu.trans(`follows.mapping.${this.state.following ? 'to_0' : 'to_1'}`)
-      : osu.trans('follows.mapping.followers');
+      ? trans(`follows.mapping.${this.state.following ? 'to_0' : 'to_1'}`)
+      : trans('follows.mapping.followers');
 
     const blockClass = classWithModifiers(
       bn,
