@@ -7,6 +7,7 @@ import * as Cookies from 'js-cookie';
 import core from 'osu-core-singleton';
 import { xhrErrorMessage } from 'utils/ajax';
 import { createClickCallback } from 'utils/html';
+import { reloadPage } from 'utils/turbolinks';
 
 declare global {
   interface Window {
@@ -64,7 +65,7 @@ export default class UserLogin {
 
     if (core.currentUser != null) {
       // broken page state
-      osu.reloadPage();
+      reloadPage();
     } else {
       this.show(callback);
     }
@@ -95,7 +96,7 @@ export default class UserLogin {
     const callback = this.callback;
 
     if (callback == null) {
-      osu.reloadPage();
+      reloadPage();
       return;
     }
 
