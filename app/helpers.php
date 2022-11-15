@@ -590,15 +590,6 @@ function pagination($params, $defaults = null)
     return compact('limit', 'page', 'offset');
 }
 
-function param_string_simple($value)
-{
-    if (is_array($value)) {
-        $value = implode(',', $value);
-    }
-
-    return presence($value);
-}
-
 function product_quantity_options($product, $selected = null)
 {
     if ($product->stock === null) {
