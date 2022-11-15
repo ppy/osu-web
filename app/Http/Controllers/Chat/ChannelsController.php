@@ -282,6 +282,7 @@ class ChannelsController extends Controller
         }
 
         if (isset($channel)) {
+            // TODO: recent_messages deprecated.
             return json_item($channel, ChannelTransformer::forUser($sender), ['recent_messages.sender']);
         } else {
             abort(422, 'unknown or missing type parameter');

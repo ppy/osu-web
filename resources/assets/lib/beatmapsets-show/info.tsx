@@ -3,7 +3,9 @@
 
 import BbcodeEditor, { OnChangeProps } from 'components/bbcode-editor';
 import { Modal } from 'components/modal';
+import { UserLink } from 'components/user-link';
 import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
+import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { round, sum } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
@@ -44,6 +46,20 @@ export default class Info extends React.Component<Props> {
       fails,
       maxValue: Math.max(1, Math.max(...fails.map(sum))),
     };
+  }
+
+  @computed
+  private get nominators() {
+    const ret: UserJson[] = [];
+    const usersById = this.controller.usersById;
+    for (const nomination of this.controller.beatmapset.current_nominations) {
+      const user = usersById[nomination.user_id];
+      if (user != null) {
+        ret.push(user);
+      }
+    }
+
+    return ret;
   }
 
   private get withEditDescription() {
@@ -117,6 +133,25 @@ export default class Info extends React.Component<Props> {
 
         <div className='beatmapset-info__box beatmapset-info__box--meta'>
           {this.withEditMetadata && this.renderEditMetadataButton()}
+
+          {this.nominators.length > 0 &&
+            <>
+              <h3 className='beatmapset-info__header'>
+                {osu.trans('beatmapsets.show.info.nominators')}
+              </h3>
+              <div>
+                {this.nominators.map((user, i) => (
+                  <React.Fragment key={user.id}>
+                    <UserLink
+                      className='beatmapset-info__link'
+                      user={user}
+                    />
+                    {i < this.nominators.length - 1 && ', '}
+                  </React.Fragment>
+                ))}
+              </div>
+            </>
+          }
 
           {present(this.controller.beatmapset.source) &&
             <>

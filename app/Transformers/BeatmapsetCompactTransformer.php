@@ -15,12 +15,14 @@ use App\Models\User;
 use Auth;
 use Ds\Set;
 use League\Fractal;
+use League\Fractal\Resource\Collection;
 
 class BeatmapsetCompactTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'beatmaps',
         'converts',
+        'current_nominations',
         'current_user_attributes',
         'description',
         'discussions',
@@ -104,6 +106,11 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         }
 
         return $this->collection($converts, new BeatmapTransformer());
+    }
+
+    public function includeCurrentNominations(Beatmapset $beatmapset): Collection
+    {
+        return $this->collection($beatmapset->beatmapsetNominationsCurrent, new BeatmapsetNominationTransformer());
     }
 
     public function includeCurrentUserAttributes(Beatmapset $beatmapset)
@@ -255,6 +262,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
                 break;
             case 'show':
                 $userIds->add(...$beatmapset->beatmaps->pluck('user_id'));
+                $userIds->add(...$beatmapset->beatmapsetNominationsCurrent->pluck('user_id'));
                 break;
         }
 
