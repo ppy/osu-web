@@ -58,22 +58,7 @@ window.osu =
 
 
   transChoice: (key, count, replacements = {}, locale) ->
-    locale ?= currentLocale
-    isFallbackLocale = locale == fallbackLocale
-
-    if !isFallbackLocale && !osu.transExists(key, locale)
-      return osu.transChoice(key, count, replacements, fallbackLocale)
-
-    replacements.count_delimited = formatNumber(count, null, null, locale)
-    translated = Lang.choice(key, count, replacements, locale)
-
-    if !isFallbackLocale && !translated?
-      # added by Lang.choice
-      delete replacements.count
-
-      return osu.transChoice(key, count, replacements, fallbackLocale)
-
-    translated
+    transChoice(key, count, replacements, locale)
 
 
   # Handles case where crowdin fills in untranslated key with empty string.
