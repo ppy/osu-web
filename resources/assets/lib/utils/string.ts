@@ -11,7 +11,7 @@ export function present(value?: string | null) {
   return value != null && value !== '';
 }
 
-export function trans(key: string, repalcements: Record<string, string> = {}, locale: string) {
+export function trans(key: string, repalcements: Record<string, string> = {}, locale?: string) {
   if (!transExists) {
     locale = fallbackLocale;
   }
@@ -52,7 +52,7 @@ export function transChoice(key: string, count: number, replacements: Record<str
 }
 
 // Handles case where crowdin fills in untranslated key with empty string.
-export function transExists(key: string, locale: string) {
+export function transExists(key: string, locale?: string) {
   const translated = window.Lang.get(key, undefined, locale);
 
   return present(translated) && translated !== key;
