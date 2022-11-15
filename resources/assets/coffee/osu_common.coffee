@@ -2,7 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { formatNumber } from 'utils/html'
-import { present, transExists } from 'utils/string'
+import { present, trans, transArray, transExists } from 'utils/string'
 import { currentUrl, navigate } from 'utils/turbolinks'
 
 window.osu =
@@ -40,21 +40,11 @@ window.osu =
 
 
   trans: (key, replacements = {}, locale) ->
-    locale = fallbackLocale unless osu.transExists(key, locale)
-
-    Lang.get(key, replacements, locale)
+    trans(key, replacements, locale)
 
 
   transArray: (array, key = 'common.array_and') ->
-    switch array.length
-      when 0
-        ''
-      when 1
-        "#{array[0]}"
-      when 2
-        array.join(osu.trans("#{key}.two_words_connector"))
-      else
-        "#{array[...-1].join(osu.trans("#{key}.words_connector"))}#{osu.trans("#{key}.last_word_connector")}#{_.last(array)}"
+    transArray(array, key)
 
 
   transChoice: (key, count, replacements = {}, locale) ->

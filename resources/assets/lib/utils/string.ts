@@ -11,6 +11,27 @@ export function present(value?: string | null) {
   return value != null && value !== '';
 }
 
+export function trans(key: string, repalcements: Record<string, string> = {}, locale: string) {
+  if (!transExists) {
+    locale = fallbackLocale;
+  }
+
+  return window.Lang.get(key, repalcements, locale);
+}
+
+export function transArray(array: string[], key = 'common.array_and') {
+  switch (array.length) {
+    case 0:
+      return '';
+    case 1:
+      return `${array[0]}`;
+    case 2:
+      return array.join(trans(`${key}.two_words_connector`));
+    default:
+      return `${array.slice(0, -1).join(trans(`${key}.words_connector`))}${trans(`${key}.last_word_connector`)}${array.slice(-1)[0]}`;
+  }
+}
+
 export function transChoice(key: string, count: number, replacements: Record<string, string> = {}, locale?: string): string {
   locale ??= currentLocale;
   const isFallbackLocale = locale === fallbackLocale;
