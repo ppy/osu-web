@@ -22,7 +22,7 @@ export class EditorToolbar extends React.Component {
   private readonly throttledUpdate = throttle(() => this.updatePosition(), 100);
 
   get selectionRange() {
-    const {selection} = this.context;
+    const { selection } = this.context;
 
     if (
       !selection ||

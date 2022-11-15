@@ -29,7 +29,7 @@ export function timestampPlugin(this: Processor) {
 
     return eat(matched)({
       children: [
-        {type: 'text', value: timestamp},
+        { type: 'text', value: timestamp },
       ],
       href: openBeatmapEditor(timestamp),
       type: 'timestamp',
