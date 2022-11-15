@@ -4,7 +4,7 @@
 import { presence, present, trans, transArray, transExists } from 'utils/string';
 
 describe('utils/string', () => {
-  describe('presence', () => {
+  describe('.presence', () => {
     it('check for non empty string', () => {
       expect(presence('test')).toBe('test');
     });
@@ -22,7 +22,7 @@ describe('utils/string', () => {
     });
   });
 
-  describe('present', () => {
+  describe('.present', () => {
     it('check for non empty string', () => {
       expect(present('test')).toBe(true);
     });
