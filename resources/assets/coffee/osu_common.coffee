@@ -2,7 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { formatNumber } from 'utils/html'
-import { present } from 'utils/string'
+import { present, transExists } from 'utils/string'
 import { currentUrl, navigate } from 'utils/turbolinks'
 
 window.osu =
@@ -78,6 +78,4 @@ window.osu =
 
   # Handles case where crowdin fills in untranslated key with empty string.
   transExists: (key, locale) ->
-    translated = Lang.get(key, null, locale)
-
-    present(translated) && translated != key
+    transExists(key, locale)
