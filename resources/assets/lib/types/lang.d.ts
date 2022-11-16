@@ -1,10 +1,10 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import 'lang';
+import 'utils/lang';
 
 // override lang.js Replacements type with ours.
-declare module 'lang' {
+declare module 'utils/lang' {
   interface Lang {
     choice(key: string, num: number, replacements?: Replacements, locale?: string): string;
     get(key: string, replacements?: Replacements, locale?: string): string;
