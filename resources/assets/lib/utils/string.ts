@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { Replacement, Replacements } from 'lang';
 import { formatNumber } from './html';
 
 export function presence(value?: string | null) {
@@ -11,15 +12,15 @@ export function present(value?: string | null) {
   return value != null && value !== '';
 }
 
-export function trans(key: string, repalcements: Record<string, string> = {}, locale?: string) {
+export function trans(key: string, replacements: Replacements = {}, locale?: string) {
   if (!transExists) {
     locale = fallbackLocale;
   }
 
-  return window.Lang.get(key, repalcements, locale);
+  return window.Lang.get(key, replacements, locale);
 }
 
-export function transArray(array: string[], key = 'common.array_and') {
+export function transArray(array: Replacement[], key = 'common.array_and') {
   switch (array.length) {
     case 0:
       return '';
@@ -32,7 +33,7 @@ export function transArray(array: string[], key = 'common.array_and') {
   }
 }
 
-export function transChoice(key: string, count: number, replacements: Record<string, string> = {}, locale?: string): string {
+export function transChoice(key: string, count: number, replacements: Replacements = {}, locale?: string): string {
   locale ??= currentLocale;
   const isFallbackLocale = locale === fallbackLocale;
 
