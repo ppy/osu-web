@@ -4,7 +4,7 @@
 import { route } from 'laroute';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 
 interface Props {
   onClose: () => void;

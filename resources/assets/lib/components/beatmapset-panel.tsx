@@ -19,7 +19,7 @@ import { getArtist, getDiffColour, getTitle, group as groupBeatmaps } from 'util
 import { showVisual, toggleFavourite } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber, formatNumberSuffixed } from 'utils/html';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 import { beatmapsetDownloadDirect } from 'utils/url';
 import StringWithComponent from './string-with-component';
 import TimeWithTooltip from './time-with-tooltip';

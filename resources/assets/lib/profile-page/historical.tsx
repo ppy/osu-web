@@ -12,7 +12,7 @@ import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 import { switchNever } from 'utils/switch-never';
 import BeatmapPlaycount from './beatmap-playcount';
 import ExtraHeader from './extra-header';

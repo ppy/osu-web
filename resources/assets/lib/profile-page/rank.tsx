@@ -7,7 +7,7 @@ import UserStatisticsJson, { RankType } from 'interfaces/user-statistics-json';
 import * as moment from 'moment';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 
 interface Props {
   highest?: RankHighestJson | null;

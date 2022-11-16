@@ -8,7 +8,7 @@ import { UserLink } from 'components/user-link';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import * as moment from 'moment';
 import * as React from 'react';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 
 const bn = 'beatmapset-mapping';
 

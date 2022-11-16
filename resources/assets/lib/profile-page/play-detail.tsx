@@ -11,8 +11,8 @@ import PpValue from 'scores/pp-value';
 import { getArtist, getTitle, rulesetName, shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
+import { trans } from 'utils/lang';
 import { hasMenu } from 'utils/score-helper';
-import { trans } from 'utils/string';
 import { beatmapUrl } from 'utils/url';
 
 const bn = 'play-detail';

@@ -13,7 +13,7 @@ import NotificationReadButton from 'notifications/notification-read-button';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 import Stack from './stack';
 
 interface Link {

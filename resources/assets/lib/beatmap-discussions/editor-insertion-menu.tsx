@@ -8,8 +8,8 @@ import { throttle } from 'lodash';
 import * as React from 'react';
 import { Editor as SlateEditor, Element as SlateElement, Node as SlateNode, Point, Text as SlateText, Transforms } from 'slate';
 import { ReactEditor } from 'slate-react';
+import { trans } from 'utils/lang';
 import { nextVal } from 'utils/seq';
-import { trans } from 'utils/string';
 import { SlateContext } from './slate-context';
 
 interface Props {

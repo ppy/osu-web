@@ -4,7 +4,7 @@
 import EventJson from 'interfaces/event-json';
 import * as React from 'react';
 import { Modifiers } from 'utils/css';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 import { switchNever } from 'utils/switch-never';
 import AchievementBadge from './achievement-badge';
 

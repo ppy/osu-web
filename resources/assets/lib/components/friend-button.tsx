@@ -12,7 +12,7 @@ import * as React from 'react';
 import { onErrorWithCallback } from 'utils/ajax';
 import { Modifiers, classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 import { Spinner } from './spinner';
 
 const bn = 'user-action-button';

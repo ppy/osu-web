@@ -13,7 +13,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 import VirtualList, { RenderProps } from 'virtual-list/virtual-list';
 import AvailableFilters from './available-filters';
 import { Paginator } from './paginator';

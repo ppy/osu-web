@@ -6,7 +6,7 @@ import { route } from 'laroute';
 import { Dictionary } from 'lodash';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 import StringWithComponent from './string-with-component';
 
 type ReactButton = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;

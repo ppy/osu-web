@@ -7,7 +7,7 @@ import { route } from 'laroute';
 import * as moment from 'moment';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 
 export default function PostItem({ modifiers, post }: { modifiers?: string[]; post: PostJson }) {
   let cover;

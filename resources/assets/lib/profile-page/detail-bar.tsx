@@ -10,7 +10,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import ExtraMenu, { showExtraMenu } from 'profile-page/extra-menu';
 import * as React from 'react';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 
 interface Props {
   user: UserExtendedJson;

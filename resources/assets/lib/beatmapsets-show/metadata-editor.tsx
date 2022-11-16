@@ -10,8 +10,8 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
 import { parseJson } from 'utils/json';
+import { trans } from 'utils/lang';
 import { getInt } from 'utils/math';
-import { trans } from 'utils/string';
 import Controller from './controller';
 
 interface Props {

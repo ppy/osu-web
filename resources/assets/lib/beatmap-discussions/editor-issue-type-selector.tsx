@@ -8,7 +8,7 @@ import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import * as React from 'react';
 import { Transforms } from 'slate';
 import { ReactEditor } from 'slate-react';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 import IconDropdownMenu, { MenuItem } from './icon-dropdown-menu';
 import { SlateContext } from './slate-context';
 

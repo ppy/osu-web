@@ -6,7 +6,7 @@ import UserStatisticsJson from 'interfaces/user-statistics-json';
 import * as moment from 'moment';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
-import { transChoice, trans } from 'utils/string';
+import { trans, transChoice } from 'utils/lang';
 
 interface Props {
   stats: UserStatisticsJson;

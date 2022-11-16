@@ -13,7 +13,7 @@ import { RenderElementProps } from 'slate-react';
 import { ReactEditor } from 'slate-react';
 import { formatTimestamp, nearbyDiscussions, parseTimestamp, timestampRegex } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
-import { trans, transArray } from 'utils/string';
+import { trans, transArray } from 'utils/lang';
 import { linkHtml } from 'utils/url';
 import { DraftsContext } from './drafts-context';
 import EditorBeatmapSelector from './editor-beatmap-selector';

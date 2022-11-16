@@ -6,7 +6,7 @@ import { BeatmapIcon } from 'components/beatmap-icon';
 import * as React from 'react';
 import { format, formatTimestamp, startingPost } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 import { BeatmapsContext } from './beatmaps-context';
 import { DiscussionsContext } from './discussions-context';
 

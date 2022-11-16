@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 
 export default function homeLinks(active: string) {
   return [

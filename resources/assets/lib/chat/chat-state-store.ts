@@ -16,7 +16,7 @@ import CreateAnnouncement from 'models/chat/create-announcement';
 import ChannelStore from 'stores/channel-store';
 import { onError } from 'utils/ajax';
 import { setBrowserTitle } from 'utils/html';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 import { updateQueryString } from 'utils/url';
 import ChannelJoinEvent from './channel-join-event';
 import ChannelPartEvent from './channel-part-event';

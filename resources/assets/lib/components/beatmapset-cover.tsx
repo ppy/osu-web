@@ -6,7 +6,7 @@ import * as React from 'react';
 import { showVisual } from 'utils/beatmapset-helper';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { cssVar2x } from 'utils/html';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 
 interface PropsWithIsDeleted {
   isDeleted: true;

@@ -2,8 +2,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as React from 'react';
+import { trans } from 'utils/lang';
 import { nextVal } from 'utils/seq';
-import { trans } from 'utils/string';
 
 interface Props {
   pswp: any;

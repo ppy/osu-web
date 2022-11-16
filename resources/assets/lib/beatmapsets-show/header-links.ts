@@ -4,7 +4,7 @@
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import HeaderLink from 'interfaces/header-link';
 import { route } from 'laroute';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 import { switchNever } from 'utils/switch-never';
 
 const linkModes = ['show', 'discussions'] as const;

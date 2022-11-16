@@ -12,7 +12,7 @@ import DetailBar from 'profile-page/detail-bar';
 import headerLinks from 'profile-page/header-links';
 import * as React from 'react';
 import MultiplayerHistory from 'user-multiplayer-index/multiplayer-history';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 import MultiplayerHistoryStore from './multiplayer-history-store';
 
 interface Props {

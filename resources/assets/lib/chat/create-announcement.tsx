@@ -12,7 +12,7 @@ import { isInputKey } from 'models/chat/create-announcement';
 import { maxLength } from 'models/chat/message';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 
 type Props = Record<string, never>;
 

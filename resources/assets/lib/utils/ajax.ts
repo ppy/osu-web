@@ -3,7 +3,8 @@
 
 import core from 'osu-core-singleton';
 import { createClickCallback } from 'utils/html';
-import { present, trans } from './string';
+import { trans } from 'utils/lang';
+import { present } from './string';
 
 interface UnknownErrorJson {
   error?: string;

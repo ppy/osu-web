@@ -9,7 +9,7 @@ import GameMode from 'interfaces/game-mode';
 import * as React from 'react';
 import { getArtist, getTitle } from 'utils/beatmap-helper';
 import { formatNumber } from 'utils/html';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 import { beatmapUrl } from 'utils/url';
 
 const bn = 'beatmap-playcount';

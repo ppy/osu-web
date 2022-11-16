@@ -10,7 +10,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { createPortal } from 'react-dom';
 import { classWithModifiers } from 'utils/css';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 import AvailableFilters, { FilterOption } from './available-filters';
 import { SearchFilter } from './search-filter';
 

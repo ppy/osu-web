@@ -14,7 +14,7 @@ import * as React from 'react';
 import { onErrorWithCallback } from 'utils/ajax';
 import { classWithModifiers } from 'utils/css';
 import { transparentGif } from 'utils/html';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 
 type BeatmapsetWithDiscussionJson = BeatmapsetExtendedJson;
 

@@ -13,7 +13,7 @@ import * as _ from 'lodash';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
 import { classWithModifiers } from 'utils/css';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 
 interface Props {
   beatmapset: BeatmapsetExtendedJson;

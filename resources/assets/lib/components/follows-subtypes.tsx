@@ -4,7 +4,7 @@
 import { route } from 'laroute';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 
 interface Props {
   currentSubtype: string;

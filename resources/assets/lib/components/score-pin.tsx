@@ -7,7 +7,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { onErrorWithCallback } from 'utils/ajax';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 
 interface Props {
   className: string;

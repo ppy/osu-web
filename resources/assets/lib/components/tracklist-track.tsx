@@ -7,7 +7,8 @@ import { route } from 'laroute';
 import * as React from 'react';
 import { classWithModifiers, Modifiers, urlPresence } from 'utils/css';
 import { formatNumber } from 'utils/html';
-import { present, trans } from 'utils/string';
+import { trans } from 'utils/lang';
+import { present } from 'utils/string';
 
 type TrackJson = {
   artist: ArtistJson;

@@ -16,7 +16,7 @@ import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 import { MessageDivider } from './message-divider';
 import MessageGroup from './message-group';
 

@@ -9,7 +9,8 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { jsonClone } from 'utils/json';
-import { presence, present, trans } from 'utils/string';
+import { trans } from 'utils/lang';
+import { presence, present } from 'utils/string';
 import makeLink from './make-link';
 
 type Nullable<T> = T | null | undefined;

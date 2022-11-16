@@ -11,7 +11,7 @@ import { action, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 
 const store = core.dataStore.ownClientStore;
 const uiState = core.dataStore.uiState;

@@ -18,8 +18,8 @@ import PpValue from 'scores/pp-value';
 import { rulesetName, shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
+import { trans } from 'utils/lang';
 import { isPerfectCombo, modeAttributesMap, scoreUrl, totalScore } from 'utils/score-helper';
-import { trans } from 'utils/string';
 
 interface Props {
   beatmap: BeatmapJson;

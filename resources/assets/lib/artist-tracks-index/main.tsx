@@ -12,7 +12,7 @@ import * as React from 'react';
 import { onError } from 'utils/ajax';
 import { classWithModifiers } from 'utils/css';
 import { jsonClone } from 'utils/json';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 import { navigate } from 'utils/turbolinks';
 import SearchForm, { ArtistTrackSearch } from './search-form';
 import Sort from './sort-bar';

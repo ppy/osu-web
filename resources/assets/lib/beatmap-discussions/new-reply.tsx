@@ -16,8 +16,9 @@ import TextareaAutosize from 'react-autosize-textarea';
 import { onError } from 'utils/ajax';
 import { validMessageLength } from 'utils/beatmapset-discussion-helper';
 import { InputEventType, makeTextAreaHandler, TextAreaCallback } from 'utils/input-handler';
+import { trans } from 'utils/lang';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
-import { present, trans } from 'utils/string';
+import { present } from 'utils/string';
 import MessageLengthCounter from './message-length-counter';
 
 const bn = 'beatmap-discussion-post';

@@ -12,7 +12,7 @@ import { NotificationContext } from 'notifications-context';
 import NotificationDeleteButton from 'notifications/notification-delete-button';
 import NotificationReadButton from 'notifications/notification-read-button';
 import * as React from 'react';
-import { transChoice, trans } from 'utils/string';
+import { trans, transChoice } from 'utils/lang';
 import Item from './item';
 import ItemCompact from './item-compact';
 

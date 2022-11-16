@@ -5,7 +5,7 @@ import HeaderLink from 'interfaces/header-link';
 import UserExtendedJson from 'interfaces/user-extended-json';
 import { MultiplayerTypeGroup } from 'interfaces/user-multiplayer-history-json';
 import { route } from 'laroute';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 
 type LinkMode = 'modding' | 'show' | MultiplayerTypeGroup;
 

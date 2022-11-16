@@ -10,8 +10,8 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
 import { group as groupBeatmaps } from 'utils/beatmap-helper';
+import { trans } from 'utils/lang';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
-import { trans } from 'utils/string';
 
 interface Props {
   beatmapset: BeatmapsetExtendedJson;

@@ -3,7 +3,8 @@
 
 import UserPreferences from 'core/user/user-preferences';
 import { autorun } from 'mobx';
-import { presence, trans } from 'utils/string';
+import { trans } from 'utils/lang';
+import { presence } from 'utils/string';
 import Slider from './slider';
 import { format, TimeFormat } from './time-format';
 

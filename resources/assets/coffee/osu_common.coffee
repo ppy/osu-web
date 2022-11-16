@@ -2,7 +2,8 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { formatNumber } from 'utils/html'
-import { present, trans, transArray, transExists } from 'utils/string'
+import { present } from 'utils/string'
+import { trans, transArray, transExists } from 'utils/lang'
 import { currentUrl, navigate } from 'utils/turbolinks'
 
 window.osu =

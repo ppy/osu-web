@@ -4,7 +4,7 @@
 import SoloScoreJson from 'interfaces/solo-score-json';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 
 interface Props {
   score: SoloScoreJson;

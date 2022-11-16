@@ -7,8 +7,8 @@ import * as React from 'react';
 import { onErrorWithClick } from 'utils/ajax';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
+import { trans } from 'utils/lang';
 import { nextVal } from 'utils/seq';
-import { trans } from 'utils/string';
 import { Spinner } from './spinner';
 
 interface Props {

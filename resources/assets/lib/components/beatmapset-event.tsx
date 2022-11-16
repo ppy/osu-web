@@ -13,7 +13,7 @@ import * as React from 'react';
 import { format, previewMessage } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
-import { trans, transArray } from 'utils/string';
+import { trans, transArray } from 'utils/lang';
 import { linkHtml } from 'utils/url';
 
 export type EventViewMode = 'discussions' | 'profile' | 'list';

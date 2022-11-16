@@ -8,7 +8,7 @@ import { computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 import { switchNever } from 'utils/switch-never';
 import Controller from './controller';
 import Mod from './mod';

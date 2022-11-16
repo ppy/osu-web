@@ -4,7 +4,7 @@
 import { Comment } from 'models/comment';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
-import { transChoice } from 'utils/string';
+import { transChoice } from 'utils/lang';
 
 interface Props {
   comments: Comment[];

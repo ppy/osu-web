@@ -4,7 +4,7 @@
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 import { navigate } from 'utils/turbolinks';
 import { wikiUrl } from 'utils/url';
 import { WikiSearchController } from 'wiki-search-controller';

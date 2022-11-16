@@ -9,7 +9,7 @@ import NotificationDeleteButton from 'notifications/notification-delete-button';
 import NotificationReadButton from 'notifications/notification-read-button';
 import * as React from 'react';
 import { classWithModifiers, mergeModifiers, urlPresence } from 'utils/css';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 
 interface Props {
   canMarkAsRead?: boolean;

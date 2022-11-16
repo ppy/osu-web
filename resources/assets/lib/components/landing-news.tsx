@@ -5,7 +5,7 @@ import { route } from 'laroute';
 import * as _ from 'lodash';
 import PostItem from 'news-index/post-item';
 import * as React from 'react';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 import ShowMoreLink from './show-more-link';
 
 export function LandingNews({ posts }: { posts: PostJson[] }) {

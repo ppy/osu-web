@@ -11,7 +11,7 @@ import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
-import { transChoice, trans } from 'utils/string';
+import { trans, transChoice } from 'utils/lang';
 
 // these are ordered in the order they appear in.
 const textKeys = ['join_date', 'last_visit', 'playstyle', 'post_count', 'comments_count'] as const;

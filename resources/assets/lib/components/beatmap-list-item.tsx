@@ -6,7 +6,7 @@ import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapJson from 'interfaces/beatmap-json';
 import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 
 interface Props {
   beatmap: BeatmapJson | BeatmapExtendedJson;

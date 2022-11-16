@@ -14,7 +14,7 @@ import RankChart from 'profile-page/rank-chart';
 import RankCount from 'profile-page/rank-count';
 import Stats from 'profile-page/stats';
 import * as React from 'react';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 import Controller from './controller';
 import CoverEditor from './cover-editor';
 import Links from './links';

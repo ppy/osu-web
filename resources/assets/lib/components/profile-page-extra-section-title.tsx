@@ -3,7 +3,7 @@
 
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 
 interface Props {
   count?: number | null;

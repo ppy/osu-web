@@ -6,8 +6,8 @@ import { observer } from 'mobx-react';
 import { isModalShowing } from 'modal-helper';
 import CoverSelector from 'profile-page/cover-selector';
 import * as React from 'react';
+import { trans } from 'utils/lang';
 import { nextVal } from 'utils/seq';
-import { trans } from 'utils/string';
 import Controller from './controller';
 
 interface Props {

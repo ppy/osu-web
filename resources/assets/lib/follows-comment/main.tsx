@@ -11,7 +11,7 @@ import CurrentUserJson from 'interfaces/current-user-json';
 import FollowCommentJson from 'interfaces/follow-comment-json';
 import { route } from 'laroute';
 import * as React from 'react';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 
 interface Props {
   follows: FollowCommentJson[];

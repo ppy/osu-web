@@ -13,7 +13,7 @@ import * as moment from 'moment';
 import * as React from 'react';
 import { getDiffColour } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
-import { trans, transChoice } from 'utils/string';
+import { trans, transChoice } from 'utils/lang';
 import MultiplayerHistoryStore from './multiplayer-history-store';
 
 interface Props {

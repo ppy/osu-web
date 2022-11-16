@@ -8,7 +8,7 @@ import { route } from 'laroute';
 import { debounce, intersection } from 'lodash';
 import { action, computed, IObjectDidChange, Lambda, makeObservable, observable, observe, runInAction } from 'mobx';
 import core from 'osu-core-singleton';
-import { trans, transArray } from 'utils/string';
+import { trans, transArray } from 'utils/lang';
 import { currentUrl } from 'utils/turbolinks';
 
 

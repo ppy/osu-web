@@ -5,7 +5,7 @@ import * as d3 from 'd3';
 import { maxBy } from 'lodash';
 import { formatNumber } from 'utils/html';
 import { parseJson } from 'utils/json';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 
 interface Datum {
   x: number;

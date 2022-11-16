@@ -6,7 +6,7 @@ import TimeWithTooltip from 'components/time-with-tooltip';
 import AchievementJson from 'interfaces/achievement-json';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 import AchievementBadgeIcon from './achievement-badge-icon';
 
 interface Props {

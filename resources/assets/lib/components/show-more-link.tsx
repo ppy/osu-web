@@ -3,7 +3,7 @@
 
 import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 import { Spinner } from './spinner';
 
 const bn = 'show-more-link';

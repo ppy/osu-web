@@ -9,7 +9,7 @@ import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import Room from 'user-multiplayer-index/room';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 import MultiplayerHistoryStore from './multiplayer-history-store';
 
 interface Props {

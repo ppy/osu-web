@@ -11,7 +11,7 @@ import FollowMappingJson from 'interfaces/follow-mapping-json';
 import { route } from 'laroute';
 import * as React from 'react';
 import { urlPresence } from 'utils/css';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 
 interface Props {
   follows: FollowMappingJson[];

@@ -10,7 +10,7 @@ import { OwnClient as Client } from 'models/oauth/own-client';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 
 const uiState = core.dataStore.uiState;
 

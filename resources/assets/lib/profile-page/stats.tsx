@@ -5,7 +5,7 @@ import UserStatisticsJson from 'interfaces/user-statistics-json';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 
 // sorted by display order
 const entryKeys = [

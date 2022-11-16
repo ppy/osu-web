@@ -6,7 +6,7 @@ import core from 'osu-core-singleton';
 import { xhrErrorMessage } from 'utils/ajax';
 import { fadeIn, fadeOut, fadeToggle } from 'utils/fade';
 import { createClickCallback } from 'utils/html';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 
 interface ReissueCodeJson {
   message: string;

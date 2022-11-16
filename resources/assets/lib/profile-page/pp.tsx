@@ -5,7 +5,7 @@ import ValueDisplay from 'components/value-display';
 import UserStatisticsJson from 'interfaces/user-statistics-json';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 
 function formatNumberRounded(value: number) {
   return formatNumber(Math.round(value));

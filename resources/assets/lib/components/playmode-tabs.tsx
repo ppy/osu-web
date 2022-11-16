@@ -4,7 +4,7 @@
 import GameMode from 'interfaces/game-mode';
 import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 
 interface Entry {
   count?: number;

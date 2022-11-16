@@ -5,8 +5,8 @@ import { route } from 'laroute';
 import core from 'osu-core-singleton';
 import { toShopifyVariantGid } from 'shopify-gid';
 import { createClickCallback } from 'utils/html';
+import { trans } from 'utils/lang';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
-import { trans } from 'utils/string';
 import client from './shopify-client';
 
 declare global {

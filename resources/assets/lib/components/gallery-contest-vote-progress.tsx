@@ -3,7 +3,7 @@
 
 import { CircularProgress } from 'components/circular-progress';
 import * as React from 'react';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 
 type Props = Record<string, never>;
 

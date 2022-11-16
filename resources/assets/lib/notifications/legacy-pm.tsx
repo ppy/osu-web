@@ -6,7 +6,7 @@ import LegacyPmNotification from 'models/legacy-pm-notification';
 import { nameToIcons } from 'notification-maps/icons';
 import Item from 'notification-widget/item';
 import * as React from 'react';
-import { transChoice } from 'utils/string';
+import { transChoice } from 'utils/lang';
 
 @observer
 export default class LegacyPm extends React.Component {

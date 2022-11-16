@@ -15,8 +15,8 @@ import * as React from 'react';
 import PpValue from 'scores/pp-value';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
+import { trans } from 'utils/lang';
 import { hasMenu, isPerfectCombo, modeAttributesMap, scoreUrl, totalScore } from 'utils/score-helper';
-import { trans } from 'utils/string';
 
 const bn = 'beatmap-scoreboard-table';
 

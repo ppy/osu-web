@@ -12,7 +12,7 @@ import { observer } from 'mobx-react';
 import NewsSidebar from 'news-sidebar/main';
 import * as React from 'react';
 import { jsonClone } from 'utils/json';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 import PostItem from './post-item';
 
 interface NewsSearch {

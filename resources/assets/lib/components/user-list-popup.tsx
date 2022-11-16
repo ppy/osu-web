@@ -5,7 +5,7 @@ import UserAvatar from 'components/user-avatar';
 import { UserLink } from 'components/user-link';
 import UserJson from 'interfaces/user-json';
 import * as React from 'react';
-import { transChoice } from 'utils/string';
+import { transChoice } from 'utils/lang';
 
 interface Props {
   count: number;

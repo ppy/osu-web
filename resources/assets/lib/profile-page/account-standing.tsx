@@ -13,7 +13,7 @@ import ExtraHeader from 'profile-page/extra-header';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { stripTags } from 'utils/html';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 import ExtraPageProps from './extra-page-props';
 
 const bn = 'profile-extra-recent-infringements';

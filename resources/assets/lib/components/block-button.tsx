@@ -9,7 +9,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { onErrorWithCallback } from 'utils/ajax';
 import { classWithModifiers, Modifiers } from 'utils/css';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 import { Spinner } from './spinner';
 
 const bn = 'textual-button';

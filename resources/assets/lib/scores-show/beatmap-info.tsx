@@ -9,7 +9,7 @@ import BeatmapsetJson from 'interfaces/beatmapset-json';
 import { route } from 'laroute';
 import * as React from 'react';
 import { getArtist, getTitle } from 'utils/beatmap-helper';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 
 interface Props {
   beatmap: BeatmapExtendedJson;

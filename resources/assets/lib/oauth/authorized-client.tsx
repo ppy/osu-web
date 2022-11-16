@@ -8,7 +8,7 @@ import { observer } from 'mobx-react';
 import { Client } from 'models/oauth/client';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 
 interface Props {
   client: Client;

@@ -7,8 +7,8 @@ import * as React from 'react';
 import { ContainerContext, KeyContext } from 'stateful-activation-context';
 import { shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 import { modeAttributesMap } from 'utils/score-helper';
-import { trans } from 'utils/string';
 import Controller from './controller';
 import TableRow from './table-row';
 

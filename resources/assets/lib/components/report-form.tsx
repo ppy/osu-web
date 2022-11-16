@@ -7,7 +7,7 @@ import { intersectionWith } from 'lodash';
 import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 
 const bn = 'report-form';
 const maxLength = 2000;

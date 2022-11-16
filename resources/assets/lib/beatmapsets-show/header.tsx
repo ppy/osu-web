@@ -17,7 +17,7 @@ import { getArtist, getTitle } from 'utils/beatmap-helper';
 import { toggleFavourite } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 import { beatmapDownloadDirect, wikiUrl } from 'utils/url';
 import BeatmapPicker from './beatmap-picker';
 import BeatmapsetMenu from './beatmapset-menu';

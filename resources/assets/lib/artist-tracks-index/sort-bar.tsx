@@ -5,7 +5,8 @@ import { computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
-import { present, trans } from 'utils/string';
+import { trans } from 'utils/lang';
+import { present } from 'utils/string';
 import makeLink from './make-link';
 import {
   ArtistTrackSearch,

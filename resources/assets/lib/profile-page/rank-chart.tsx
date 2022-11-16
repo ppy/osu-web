@@ -9,7 +9,7 @@ import { last } from 'lodash';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
-import { trans, transChoice } from 'utils/string';
+import { trans, transChoice } from 'utils/lang';
 
 interface Props {
   rankHistory: RankHistoryJson | null;

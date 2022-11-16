@@ -6,7 +6,8 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers, Modifiers, urlPresence } from 'utils/css';
 import { parseJson } from 'utils/json';
-import { presence, trans, transExists } from 'utils/string';
+import { trans, transExists } from 'utils/lang';
+import { presence } from 'utils/string';
 
 interface Props {
   backgroundImage?: string | null;

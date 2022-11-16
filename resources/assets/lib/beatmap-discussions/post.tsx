@@ -28,7 +28,7 @@ import { onError } from 'utils/ajax';
 import { badgeGroup, format, validMessageLength } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 import MessageLengthCounter from './message-length-counter';
 import { UserCard } from './user-card';
 

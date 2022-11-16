@@ -13,7 +13,8 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
 import { classWithModifiers } from 'utils/css';
-import { present, trans } from 'utils/string';
+import { trans } from 'utils/lang';
+import { present } from 'utils/string';
 
 type Props = Record<string, never>;
 

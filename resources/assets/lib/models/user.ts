@@ -4,7 +4,7 @@
 import UserGroupJson from 'interfaces/user-group-json';
 import UserJson from 'interfaces/user-json';
 import { action, makeObservable, observable } from 'mobx';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 
 export function normaliseUsername(username: string) {
   return username.trim().toLowerCase();

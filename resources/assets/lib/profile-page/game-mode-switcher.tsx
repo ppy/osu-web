@@ -9,7 +9,7 @@ import { action, observable, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { onErrorWithCallback } from 'utils/ajax';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 import Controller from './controller';
 
 interface Props {

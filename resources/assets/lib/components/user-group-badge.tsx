@@ -5,7 +5,7 @@ import UserGroupJson from 'interfaces/user-group-json';
 import { route } from 'laroute';
 import * as React from 'react';
 import { classWithModifiers, groupColour, Modifiers } from 'utils/css';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 
 interface Props {
   group?: UserGroupJson | null;

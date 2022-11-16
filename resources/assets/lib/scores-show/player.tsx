@@ -6,8 +6,8 @@ import { SoloScoreJsonForShow } from 'interfaces/solo-score-json';
 import * as moment from 'moment';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
+import { trans } from 'utils/lang';
 import { totalScore } from 'utils/score-helper';
-import { trans } from 'utils/string';
 
 interface Props {
   score: SoloScoreJsonForShow;

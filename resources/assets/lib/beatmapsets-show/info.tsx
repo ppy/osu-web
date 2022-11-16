@@ -13,7 +13,8 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import { onErrorWithClick } from 'utils/ajax';
 import { formatNumber } from 'utils/html';
-import { present, trans } from 'utils/string';
+import { trans } from 'utils/lang';
+import { present } from 'utils/string';
 import Controller from './controller';
 import MetadataEditor from './metadata-editor';
 

@@ -6,7 +6,7 @@ import BeatmapsetJson from 'interfaces/beatmapset-json';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { formatDuration, formatNumber } from 'utils/html';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 
 const bn = 'beatmap-basic-stats';
 

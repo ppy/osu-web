@@ -5,7 +5,7 @@ import { SupportedChannelType, supportedChannelTypes } from 'interfaces/chat/cha
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 import ConversationListItem from './conversation-list-item';
 import CreateAnnouncementButton from './create-announcement-button';
 

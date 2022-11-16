@@ -4,7 +4,7 @@
 import ValueDisplay from 'components/value-display';
 import UserAchievementJson from 'interfaces/user-achievement-json';
 import * as React from 'react';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 
 interface Props {
   userAchievements: UserAchievementJson[];

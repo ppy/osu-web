@@ -3,7 +3,7 @@
 
 import * as clipboard from 'clipboard-polyfill';
 import * as React from 'react';
-import { trans } from 'utils/string';
+import { trans } from 'utils/lang';
 
 interface Props {
   label?: string;

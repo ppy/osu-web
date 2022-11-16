@@ -4,7 +4,7 @@
 import * as _ from 'lodash';
 import Notification from 'models/notification';
 import { isBeatmapOwnerChangeNotification } from 'models/notification/beatmap-owner-change-notification';
-import { transExists, trans } from 'utils/string';
+import { trans, transExists } from 'utils/lang';
 
 type Replacements = { title: string } & Partial<Record<string, string>>;
 
