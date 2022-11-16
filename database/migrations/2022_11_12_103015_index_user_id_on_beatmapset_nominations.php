@@ -17,7 +17,7 @@ class IndexUserIdOnBeatmapsetNominations extends Migration
     public function up()
     {
         Schema::table('beatmapset_nominations', function (Blueprint $table): void {
-            $table->index('user_id');
+            $table->index(['user_id', 'reset']);
         });
     }
 
@@ -29,7 +29,7 @@ class IndexUserIdOnBeatmapsetNominations extends Migration
     public function down()
     {
         Schema::table('beatmapset_nominations', function (Blueprint $table): void {
-            $table->dropIndex('user_id');
+            $table->dropIndex(['user_id', 'reset']);
         });
     }
 }
