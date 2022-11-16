@@ -5,6 +5,7 @@ import { computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { present } from 'utils/string';
 import makeLink from './make-link';
 import {
   ArtistTrackSearch,
@@ -125,7 +126,7 @@ export default class SortBar extends React.Component<Props> {
 
   private isFieldVisible(field: ArtistTrackSortField) {
     if (field === 'relevance') {
-      return artistTrackSearchRelevanceParams.some((p) => osu.present(this.params[p]));
+      return artistTrackSearchRelevanceParams.some((p) => present(this.params[p]));
     }
 
     return true;

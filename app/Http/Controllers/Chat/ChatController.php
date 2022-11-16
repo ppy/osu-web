@@ -64,6 +64,7 @@ class ChatController extends Controller
      * @bodyParam target_id integer required `user_id` of user to start PM with
      * @bodyParam message string required message to send
      * @bodyParam is_action boolean required whether the message is an action
+     * @bodyParam uuid string client-side message identifier which will be sent back in response and websocket json. Example: some-uuid-string
      *
      * @response {
      *   "channel": [
@@ -87,7 +88,8 @@ class ChatController extends Controller
      *     "channel_id": 1234,
      *     "timestamp": "2018-07-06T06:33:42+00:00",
      *     "content": "i can haz featured artist plz?",
-     *     "is_action": 0,
+     *     "is_action": false,
+     *     "uuid": "some-uuid-string",
      *     "sender": {
      *       "id": 102,
      *       "username": "nekodex",
@@ -109,6 +111,7 @@ class ChatController extends Controller
             'is_action:bool',
             'message',
             'target_id:int',
+            'uuid',
         ], ['null_missing' => true]);
 
         $target = User::lookup($params['target_id'], 'id');
@@ -123,7 +126,8 @@ class ChatController extends Controller
             $sender,
             $target,
             $params['message'],
-            $params['is_action']
+            $params['is_action'],
+            $params['uuid']
         );
 
         $channelJson = json_item($message->channel, ChannelTransformer::forUser($sender), ChannelTransformer::CONVERSATION_INCLUDES);
@@ -309,22 +313,7 @@ class ChatController extends Controller
         }
 
         if ($includeSilences) {
-            $silenceQuery = UserAccountHistory::bans()->limit(100);
-            $lastHistoryId = $params['history_since'];
-
-            if ($lastHistoryId === null) {
-                $previousMessage = Message::where('message_id', '<=', $since)->last();
-
-                if ($previousMessage === null) {
-                    $silenceQuery->none();
-                } else {
-                    $silenceQuery->where('timestamp', '>', $previousMessage->timestamp);
-                }
-            } else {
-                $silenceQuery->where('ban_id', '>', $lastHistoryId)->reorderBy('ban_id', 'DESC');
-            }
-
-            $silences = $silenceQuery->get();
+            $silences = $this->getSilences($params['history_since'], $since);
 
             $response['silences'] = json_collection($silences, new UserSilenceTransformer());
         }
@@ -343,7 +332,7 @@ class ChatController extends Controller
 
     private function getSilences(?int $lastHistoryId, ?int $since)
     {
-        $silenceQuery = UserAccountHistory::bans()->limit(100);
+        $silenceQuery = UserAccountHistory::bans()->recentForChat()->limit(100);
 
         if ($lastHistoryId === null) {
             $previousMessage = Message::where('message_id', '<=', $since)->last();

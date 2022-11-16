@@ -12,10 +12,12 @@ import { UserLink } from 'components/user-link'
 import { route } from 'laroute'
 import * as React from 'react'
 import { a, div, i, span } from 'react-dom-factories'
+import { onError } from 'utils/ajax'
 import { canModeratePosts, format, previewMessage } from 'utils/beatmapset-discussion-helper'
 import { nominationsCount } from 'utils/beatmapset-helper'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { pageChange } from 'utils/page-change'
+import { presence } from 'utils/string'
 import { linkHtml, wikiUrl } from 'utils/url'
 
 el = React.createElement
@@ -139,12 +141,12 @@ export class Nominations extends React.PureComponent
     @xhr.delete = $.ajax(url, params)
       .done ->
         Turbolinks.visit route('users.show', { user })
-      .fail osu.ajaxError
+      .fail onError
       .always hideLoadingOverlay
 
 
   discussionLock: =>
-    reason = osu.presence(prompt(osu.trans('beatmaps.discussions.lock.prompt.lock')))
+    reason = presence(prompt(osu.trans('beatmaps.discussions.lock.prompt.lock')))
 
     return unless reason?
 
@@ -158,7 +160,7 @@ export class Nominations extends React.PureComponent
     @xhr.discussionLock = $.ajax(url, params)
       .done (response) =>
         $.publish 'beatmapsetDiscussions:update', beatmapset: response
-      .fail osu.ajaxError
+      .fail onError
       .always hideLoadingOverlay
 
 
@@ -175,12 +177,12 @@ export class Nominations extends React.PureComponent
     @xhr.discussionLock = $.ajax(url, params)
       .done (response) =>
         $.publish 'beatmapsetDiscussions:update', beatmapset: response
-      .fail osu.ajaxError
+      .fail onError
       .always hideLoadingOverlay
 
 
   removeFromLoved: =>
-    reason = osu.presence(prompt(osu.trans('beatmaps.nominations.remove_from_loved_prompt')))
+    reason = presence(prompt(osu.trans('beatmaps.nominations.remove_from_loved_prompt')))
 
     return unless reason?
 
@@ -196,7 +198,7 @@ export class Nominations extends React.PureComponent
     @xhr.removeFromLoved = $.ajax(url, params)
       .done (response) =>
         $.publish 'beatmapsetDiscussions:update', beatmapset: response
-      .fail osu.ajaxError
+      .fail onError
       .always hideLoadingOverlay
 
 
@@ -220,7 +222,7 @@ export class Nominations extends React.PureComponent
   focusNewDiscussion: (callback) ->
     inputBox = $('.js-hype--input')
 
-    osu.focus(inputBox)
+    inputBox.focus()
 
     # ensure input box is in view and focus it
     $.scrollTo inputBox, 200,

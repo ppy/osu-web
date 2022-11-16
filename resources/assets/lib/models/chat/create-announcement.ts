@@ -8,6 +8,8 @@ import { debounce } from 'lodash';
 import { action, autorun, computed, makeObservable, observable, runInAction } from 'mobx';
 import core from 'osu-core-singleton';
 import { onError } from 'utils/ajax';
+import { uuid } from 'utils/seq';
+import { presence, present } from 'utils/string';
 
 interface LocalStorageProps extends Record<InputKey, string> {
   validUsers: number[];
@@ -31,17 +33,17 @@ export default class CreateAnnouncement implements FormWithErrors<InputKey> {
 
   private debouncedLookupUsers = debounce(() => this.lookupUsers(), 1000);
   private initialized = false;
-  private uuid = osu.uuid();
+  private uuid = uuid();
   private xhrLookupUsers?: JQuery.jqXHR<{ users: UserJson[] }>;
 
   @computed
   get errors() {
     return {
-      description: !osu.present(this.inputs.description),
-      message: !osu.present(this.inputs.message),
-      name: !osu.present(this.inputs.name),
+      description: !present(this.inputs.description),
+      message: !present(this.inputs.message),
+      name: !present(this.inputs.name),
       users: this.validUsers.size === 0
-        || osu.present(this.inputs.users.trim()), // implies invalid ids left
+        || present(this.inputs.users.trim()), // implies invalid ids left
     };
   }
 
@@ -82,7 +84,7 @@ export default class CreateAnnouncement implements FormWithErrors<InputKey> {
           userIds.push(...json.validUsers);
         }
 
-        if (osu.present(json.users.trim())) {
+        if (present(json.users.trim())) {
           userIds.push(...json.users.split(','));
         }
 
@@ -160,7 +162,7 @@ export default class CreateAnnouncement implements FormWithErrors<InputKey> {
     const invalidUsers: string[] = [];
 
     for (const userId of userIds) {
-      const trimmedUserId = osu.presence(userId.trim());
+      const trimmedUserId = presence(userId.trim());
 
       if (!this.validUsersContains(trimmedUserId)) {
         invalidUsers.push(userId);
@@ -178,7 +180,7 @@ export default class CreateAnnouncement implements FormWithErrors<InputKey> {
     this.xhrLookupUsers?.abort();
     this.debouncedLookupUsers.cancel();
 
-    const userIds = this.inputs.users.split(',').map((s) => osu.presence(s.trim())).filter(Boolean);
+    const userIds = this.inputs.users.split(',').map((s) => presence(s.trim())).filter(Boolean);
     if (userIds.length === 0) {
       this.lookingUpUsers = false;
       return;

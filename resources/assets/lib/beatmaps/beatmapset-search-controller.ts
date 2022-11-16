@@ -8,6 +8,7 @@ import { route } from 'laroute';
 import { debounce, intersection } from 'lodash';
 import { action, computed, IObjectDidChange, Lambda, makeObservable, observable, observe, runInAction } from 'mobx';
 import core from 'osu-core-singleton';
+import { popup } from 'utils/popup';
 import { currentUrl } from 'utils/turbolinks';
 
 
@@ -117,7 +118,7 @@ export class BeatmapsetSearchController {
     this.restoreStateFromUrl();
     this.search(0, true);
     if (this.initialErrorMessage != null) {
-      osu.popup(this.initialErrorMessage, 'danger');
+      popup(this.initialErrorMessage, 'danger');
       delete this.initialErrorMessage;
     }
   }

@@ -3,7 +3,9 @@
 
 import BbcodeEditor, { OnChangeProps } from 'components/bbcode-editor';
 import { Modal } from 'components/modal';
+import { UserLink } from 'components/user-link';
 import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
+import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { round, sum } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
@@ -11,6 +13,7 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import { onErrorWithClick } from 'utils/ajax';
 import { formatNumber } from 'utils/html';
+import { present } from 'utils/string';
 import Controller from './controller';
 import MetadataEditor from './metadata-editor';
 
@@ -45,6 +48,20 @@ export default class Info extends React.Component<Props> {
     };
   }
 
+  @computed
+  private get nominators() {
+    const ret: UserJson[] = [];
+    const usersById = this.controller.usersById;
+    for (const nomination of this.controller.beatmapset.current_nominations) {
+      const user = usersById[nomination.user_id];
+      if (user != null) {
+        ret.push(user);
+      }
+    }
+
+    return ret;
+  }
+
   private get withEditDescription() {
     return this.controller.beatmapset.description.bbcode != null;
   }
@@ -66,7 +83,7 @@ export default class Info extends React.Component<Props> {
   render() {
     const tags = this.controller.beatmapset.tags
       .split(' ')
-      .filter(osu.present)
+      .filter(present)
       .slice(0, 21);
 
     const tagsOverload = tags.length === 21;
@@ -117,7 +134,26 @@ export default class Info extends React.Component<Props> {
         <div className='beatmapset-info__box beatmapset-info__box--meta'>
           {this.withEditMetadata && this.renderEditMetadataButton()}
 
-          {osu.present(this.controller.beatmapset.source) &&
+          {this.nominators.length > 0 &&
+            <>
+              <h3 className='beatmapset-info__header'>
+                {osu.trans('beatmapsets.show.info.nominators')}
+              </h3>
+              <div>
+                {this.nominators.map((user, i) => (
+                  <React.Fragment key={user.id}>
+                    <UserLink
+                      className='beatmapset-info__link'
+                      user={user}
+                    />
+                    {i < this.nominators.length - 1 && ', '}
+                  </React.Fragment>
+                ))}
+              </div>
+            </>
+          }
+
+          {present(this.controller.beatmapset.source) &&
             <>
               <h3 className='beatmapset-info__header'>
                 {osu.trans('beatmapsets.show.info.source')}

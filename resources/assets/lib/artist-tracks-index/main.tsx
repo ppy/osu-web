@@ -12,6 +12,7 @@ import * as React from 'react';
 import { onError } from 'utils/ajax';
 import { classWithModifiers } from 'utils/css';
 import { jsonClone } from 'utils/json';
+import { navigate } from 'utils/turbolinks';
 import SearchForm, { ArtistTrackSearch } from './search-form';
 import Sort from './sort-bar';
 
@@ -114,7 +115,7 @@ export default class Main extends React.Component<Props> {
   };
 
   private readonly onNewSearch = (url: string) => {
-    osu.navigate(url, true);
+    navigate(url, true);
     this.isNavigating = true;
   };
 }

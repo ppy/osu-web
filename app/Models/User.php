@@ -32,6 +32,8 @@ use Hash;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Translation\HasLocalePreference;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\QueryException;
 use Laravel\Passport\HasApiTokens;
@@ -39,66 +41,94 @@ use League\OAuth2\Server\Exception\OAuthServerException;
 use Request;
 
 /**
- * @property \Illuminate\Database\Eloquent\Collection $accountHistories UserAccountHistory
- * @property ApiKey $apiKey
- * @property \Illuminate\Database\Eloquent\Collection $badges UserBadge
- * @property \Illuminate\Database\Eloquent\Collection $beatmapDiscussionVotes BeatmapDiscussionVote
- * @property \Illuminate\Database\Eloquent\Collection $beatmapDiscussions BeatmapDiscussion
- * @property \Illuminate\Database\Eloquent\Collection $beatmapPlaycounts BeatmapPlaycount
- * @property \Illuminate\Database\Eloquent\Collection $beatmaps Beatmap
- * @property \Illuminate\Database\Eloquent\Collection $beatmapsetNominations BeatmapsetEvent
- * @property \Illuminate\Database\Eloquent\Collection $beatmapsetRatings BeatmapsetUserRating
- * @property \Illuminate\Database\Eloquent\Collection $beatmapsetWatches BeatmapsetWatch
- * @property \Illuminate\Database\Eloquent\Collection $beatmapsets Beatmapset
- * @property \Illuminate\Database\Eloquent\Collection $blocks static
- * @property \Illuminate\Database\Eloquent\Collection $changelogs Changelog
- * @property \Illuminate\Database\Eloquent\Collection $channels Chat\Channel
- * @property \Illuminate\Database\Eloquent\Collection $clients UserClient
- * @property Country $country
- * @property string $country_acronym
- * @property mixed $current_password
- * @property mixed $displayed_last_visit
- * @property string|null $email
- * @property \Illuminate\Database\Eloquent\Collection $events Event
- * @property \Illuminate\Database\Eloquent\Collection $favourites FavouriteBeatmapset
- * @property \Illuminate\Database\Eloquent\Collection $forumPosts Forum\Post
- * @property \Illuminate\Database\Eloquent\Collection $friends static
- * @property \Illuminate\Database\Eloquent\Collection $githubUsers GithubUser
- * @property \Illuminate\Database\Eloquent\Collection $givenKudosu KudosuHistory
+ * @property-read Collection<UserAccountHistory> $accountHistories
+ * @property-read ApiKey|null $apiKey
+ * @property-read Collection<UserBadge> $badges
+ * @property-read Collection<BeatmapDiscussionVote> $beatmapDiscussionVotes
+ * @property-read Collection<BeatmapDiscussion> $beatmapDiscussions
+ * @property-read Collection<BeatmapPlaycount> $beatmapPlaycounts
+ * @property-read Collection<Beatmap> $beatmaps
+ * @property-read Collection<BeatmapsetNomination> $beatmapsetNominations
+ * @property-read Collection<BeatmapsetUserRating> $beatmapsetRatings
+ * @property-read Collection<BeatmapsetWatch> $beatmapsetWatches
+ * @property-read Collection<Beatmapset> $beatmapsets
+ * @property-read Collection<static> $blocks
+ * @property-read Collection<Changelog> $changelogs
+ * @property-read Collection<Chat\Channel> $channels
+ * @property-read Collection<UserClient> $clients
+ * @property-read Collection<Comment> $comments
+ * @property-read Country|null $country
+ * @property string|null $country_acronym
+ * @property-write string|null $current_password
+ * @property-read Carbon|null $displayed_last_visit
+ * @property-read string|null $email
+ * @property-read Collection<Event> $events
+ * @property-read Collection<FavouriteBeatmapset> $favourites
+ * @property-read Collection<Follow> $follows
+ * @property-read Collection<Forum\Post> $forumPosts
+ * @property-read Collection<static> $friends
+ * @property-read Collection<GithubUser> $githubUsers
+ * @property-read Collection<KudosuHistory> $givenKudosu
  * @property int $group_id
- * @property mixed $hide_presence
- * @property \Illuminate\Database\Eloquent\Collection $monthlyPlaycounts UserMonthlyPlaycount
- * @property \Illuminate\Database\Eloquent\Collection $oauthClients Client
+ * @property bool $hide_presence
+ * @property-read Collection<UserMonthlyPlaycount> $monthlyPlaycounts
+ * @property-read Collection<UserNotificationOption> $notificationOptions
+ * @property-read Collection<Client> $oauthClients
+ * @property-read Collection<Store\Order> $orders
  * @property int $osu_featurevotes
  * @property int $osu_kudosavailable
  * @property int $osu_kudosdenied
  * @property int $osu_kudostotal
  * @property float $osu_mapperrank
- * @property int $osu_playmode
- * @property int $osu_playstyle
+ * @property string|null $osu_playmode
+ * @property string[]|null $osu_playstyle
  * @property bool $osu_subscriber
- * @property \Carbon\Carbon|null $osu_subscriptionexpiry
+ * @property Carbon|null $osu_subscriptionexpiry
  * @property int $osu_testversion
- * @property mixed $password
- * @property mixed $password_confirmation
- * @property mixed $playmode
- * @property mixed $pm_friends_only
- * @property \Illuminate\Database\Eloquent\Collection $profileBanners ProfileBanner
- * @property Rank $rank
- * @property \Illuminate\Database\Eloquent\Collection $rankHistories RankHistory
- * @property \Illuminate\Database\Eloquent\Collection $receivedKudosu KudosuHistory
- * @property \Illuminate\Database\Eloquent\Collection $relations UserRelation
+ * @property-write string|null $password
+ * @property-write string|null $password_confirmation
+ * @property-read string|null $playmode
+ * @property bool $pm_friends_only
+ * @property-read Collection<ProfileBanner> $profileBanners
+ * @property-read Collection<Beatmapset> $profileBeatmapsetsGraveyard
+ * @property-read Collection<Beatmapset> $profileBeatmapsetsLoved
+ * @property-read Collection<Beatmapset> $profileBeatmapsetsPending
+ * @property-read Collection<Beatmapset> $profileBeatmapsetsRanked
+ * @property-read Rank $rank
+ * @property-read Collection<RankHighest> $rankHighests
+ * @property-read Collection<RankHistory> $rankHistories
+ * @property-read Collection<KudosuHistory> $receivedKudosu
+ * @property-read Collection<UserRelation> $relations
  * @property string|null $remember_token
- * @property \Illuminate\Database\Eloquent\Collection $replaysWatchedCounts UserReplaysWatchedCount
- * @property UserReport $reportedIn
- * @property \Illuminate\Database\Eloquent\Collection $reportsMade UserReport
- * @property \Illuminate\Database\Eloquent\Collection $storeAddresses Store\Address
- * @property \Illuminate\Database\Eloquent\Collection $supporterTagPurchases UserDonation
- * @property \Illuminate\Database\Eloquent\Collection $supporterTags UserDonation
- * @property \Illuminate\Database\Eloquent\Collection $userAchievements UserAchievement
- * @property \Illuminate\Database\Eloquent\Collection $userGroups UserGroup
- * @property Forum\Post $userPage
- * @property UserProfileCustomization $userProfileCustomization
+ * @property-read Collection<UserReplaysWatchedCount> $replaysWatchedCounts
+ * @property-read Collection<UserReport> $reportsMade
+ * @property-read Collection<ScorePin> $scorePins
+ * @property-read Collection<Score\Best\Fruits> $scoresBestFruits
+ * @property-read Collection<Score\Best\Mania> $scoresBestMania
+ * @property-read Collection<Score\Best\Osu> $scoresBestOsu
+ * @property-read Collection<Score\Best\Taiko> $scoresBestTaiko
+ * @property-read Collection<Score\Best\Fruits> $scoresFirstFruits
+ * @property-read Collection<Score\Best\Mania> $scoresFirstMania
+ * @property-read Collection<Score\Best\Osu> $scoresFirstOsu
+ * @property-read Collection<Score\Best\Taiko> $scoresFirstTaiko
+ * @property-read Collection<Score\Fruits> $scoresFruits
+ * @property-read Collection<Score\Mania> $scoresMania
+ * @property-read Collection<Score\Osu> $scoresOsu
+ * @property-read Collection<Score\Taiko> $scoresTaiko
+ * @property-read UserStatistics\Fruits|null $statisticsFruits
+ * @property-read UserStatistics\Mania|null $statisticsMania
+ * @property-read UserStatistics\Osu|null $statisticsOsu
+ * @property-read UserStatistics\Taiko|null $statisticsTaiko
+ * @property-read Collection<Store\Address> $storeAddresses
+ * @property-read Collection<UserDonation> $supporterTagPurchases
+ * @property-read Collection<UserDonation> $supporterTags
+ * @property-read Collection<OAuth\Token> $tokens
+ * @property-read Collection<Forum\TopicWatch> $topicWatches
+ * @property-read Collection<UserAchievement> $userAchievements
+ * @property-read Collection<UserGroup> $userGroups
+ * @property-read Collection<UserNotification> $userNotifications
+ * @property-read Forum\Post|null $userPage
+ * @property-read UserProfileCustomization|null $userProfileCustomization
  * @property string $user_actkey
  * @property int $user_allow_massemail
  * @property bool $user_allow_pm
@@ -109,30 +139,32 @@ use Request;
  * @property int $user_avatar_type
  * @property int $user_avatar_width
  * @property string $user_birthday
- * @property string $user_colour
+ * @property string|null $user_colour
  * @property string $user_dateformat
- * @property mixed $user_discord
+ * @property string|null $user_discord
  * @property int $user_dst
  * @property string|null $user_email
- * @property mixed $user_email_confirmation
+ * @property-write string|null $user_email_confirmation
  * @property int $user_emailtime
- * @property string $user_from
+ * @property string|null $user_from
  * @property int $user_full_folder
  * @property int $user_id
  * @property int $user_inactive_reason
  * @property int $user_inactive_time
  * @property string|null $user_interests
  * @property string $user_ip
- * @property string $user_jabber
+ * @property string|null $user_jabber
  * @property string $user_lang
  * @property string $user_last_confirm_key
  * @property int $user_last_privmsg
  * @property int $user_last_search
  * @property int $user_last_warning
- * @property int $user_lastmark
+ * @property string $user_lastfm
+ * @property string $user_lastfm_session
+ * @property Carbon|null $user_lastmark
  * @property string $user_lastpage
- * @property int $user_lastpost_time
- * @property int $user_lastvisit
+ * @property Carbon|null $user_lastpost_time
+ * @property Carbon|null $user_lastvisit
  * @property int $user_login_attempts
  * @property int $user_message_rules
  * @property string $user_msnm
@@ -146,14 +178,14 @@ use Request;
  * @property int $user_passchg
  * @property string $user_password
  * @property int|null $user_perm_from
- * @property mixed|null $user_permissions
+ * @property string $user_permissions
  * @property int $user_post_show_days
  * @property string $user_post_sortby_dir
  * @property string $user_post_sortby_type
  * @property int $user_posts
  * @property int|null $user_rank
- * @property \Carbon\Carbon $user_regdate
- * @property mixed $user_sig
+ * @property Carbon $user_regdate
+ * @property string $user_sig
  * @property string $user_sig_bbcode_bitfield
  * @property string $user_sig_bbcode_uid
  * @property int $user_style
@@ -161,17 +193,20 @@ use Request;
  * @property int $user_topic_show_days
  * @property string $user_topic_sortby_dir
  * @property string $user_topic_sortby_type
- * @property string $user_twitter
+ * @property string|null $user_twitter
  * @property int $user_type
  * @property int $user_unread_privmsg
  * @property int $user_warnings
- * @property string $user_website
+ * @property string|null $user_website
  * @property string $username
- * @property \Illuminate\Database\Eloquent\Collection $usernameChangeHistory UsernameChangeHistory
- * @property \Illuminate\Database\Eloquent\Collection $usernameChangeHistoryPublic publically visible UsernameChangeHistory containing only user_id and username_last
+ * @property-read Collection<UsernameChangeHistory> $usernameChangeHistory
+ * @property-read Collection<UsernameChangeHistory> $usernameChangeHistoryPublic publically visible UsernameChangeHistory containing only user_id and username_last
  * @property string $username_clean
  * @property string|null $username_previous
  * @property int|null $userpage_post_id
+ * @method static Builder default()
+ * @method static Builder eagerloadForListing()
+ * @method static Builder online()
  */
 class User extends Model implements AfterCommit, AuthenticatableContract, HasLocalePreference, Indexable, Traits\ReportableInterface
 {
@@ -310,7 +345,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         try {
             return $this->updateUsername($name, $type);
         } catch (QueryException $ex) {
-            if (!is_sql_unique_exception($ex) || $try > 9) {
+            // Maybe use different suffix altogether if people manage
+            // to try using same name more than 21 times.
+            if (!is_sql_unique_exception($ex) || $try > 20) {
                 throw $ex;
             }
 
@@ -819,7 +856,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'beatmapPlaycounts',
             'beatmaps',
             'beatmapsetNominations',
-            'beatmapsetNominationsToday',
             'beatmapsetRatings',
             'beatmapsetWatches',
             'beatmapsets',
@@ -874,6 +910,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'storeAddresses',
             'supporterTagPurchases',
             'supporterTags',
+            'tokens',
             'topicWatches',
             'userAchievements',
             'userGroups',
@@ -2045,7 +2082,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
      *
      * @param bool $includeCurrent true if previous usernames matching the the current one should be included.
      *
-     * @return \Illuminate\Database\Eloquent\Collection string
+     * @return Collection string
      */
     public function previousUsernames(bool $includeCurrent = false)
     {

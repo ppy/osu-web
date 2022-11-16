@@ -29,8 +29,8 @@ export class Entry extends React.Component
       entry_title = @props.entry.title
 
     if @props.contest.show_votes
-      votePercentage = _.round((@props.entry.results.votes / @props.totalVotes)*100, 2)
       relativeVotePercentage = _.round((@props.entry.results.votes / @props.winnerVotes)*100, 2)
+      usersVotedPercentage = _.round((@props.entry.results.votes / @props.contest.users_voted_count)*100, 2)
 
     div className: "contest-voting-list__row#{if selected && !@props.contest.show_votes then ' contest-voting-list__row--selected' else ''}",
       if @props.contest.show_votes
@@ -78,5 +78,5 @@ export class Entry extends React.Component
         else
           div className:'contest__vote-count',
             osu.transChoice 'contest.vote.count', @props.entry.results.votes
-            if isFinite(votePercentage)
-              " (#{formatNumber(votePercentage)}%)"
+            if Number.isFinite usersVotedPercentage
+              " (#{formatNumber(usersVotedPercentage)}%)"

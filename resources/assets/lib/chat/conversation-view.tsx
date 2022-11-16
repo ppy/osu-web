@@ -204,7 +204,7 @@ export default class ConversationView extends React.Component<Props> {
                 <a
                   className='js-usercard'
                   data-user-id={channel.pmTarget}
-                  href={route('users.show', {user: channel.pmTarget})}
+                  href={route('users.show', { user: channel.pmTarget })}
                 >
                   {channel.name}
                 </a>
@@ -213,7 +213,7 @@ export default class ConversationView extends React.Component<Props> {
               pattern={osu.trans('chat.talking_with')}
             />
           ) : (
-            osu.trans('chat.talking_in', {channel: channel.name})
+            osu.trans('chat.talking_in', { channel: channel.name })
           )}
         </div>
         {channel.description &&

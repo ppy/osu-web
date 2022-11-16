@@ -7,6 +7,7 @@ import { Element, Text } from 'slate';
 import * as unified from 'unified';
 import type { Parent, Node as UnistNode } from 'unist';
 import { formatTimestamp, startingPost } from 'utils/beatmapset-discussion-helper';
+import { present } from 'utils/string';
 import { BeatmapDiscussionReview, isBeatmapReviewDiscussionType, PersistedDocumentIssueEmbed } from '../interfaces/beatmap-discussion-review';
 import { disableTokenizersPlugin } from './disable-tokenizers-plugin';
 
@@ -53,7 +54,7 @@ export function parseFromJson(json: string, discussions: Partial<Record<number, 
     switch (block.type) {
       // paragraph
       case 'paragraph': {
-        if (!osu.present(block.text.trim())) {
+        if (!present(block.text.trim())) {
           // empty block (aka newline)
           doc.push({
             children: [{

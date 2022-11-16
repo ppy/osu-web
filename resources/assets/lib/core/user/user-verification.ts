@@ -3,8 +3,10 @@
 
 import { route } from 'laroute';
 import core from 'osu-core-singleton';
+import { xhrErrorMessage } from 'utils/ajax';
 import { fadeIn, fadeOut, fadeToggle } from 'utils/fade';
 import { createClickCallback } from 'utils/html';
+import { reloadPage } from 'utils/turbolinks';
 
 interface ReissueCodeJson {
   message: string;
@@ -105,7 +107,7 @@ export default class UserVerification {
   };
 
   private error = (xhr: JQuery.jqXHR) => {
-    this.setMessage(osu.xhrErrorMessage(xhr));
+    this.setMessage(xhrErrorMessage(xhr));
   };
 
   private float = (float: boolean, modal: HTMLElement, referenceBottom?: number) => {
@@ -240,7 +242,7 @@ export default class UserVerification {
     inputBox.dataset.lastKey = '';
 
     if (this.isVerificationPage()) {
-      return osu.reloadPage();
+      return reloadPage();
     }
 
     callback?.();

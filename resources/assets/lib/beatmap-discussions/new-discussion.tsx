@@ -24,6 +24,7 @@ import { nominationsCount } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
+import { present } from 'utils/string';
 import { linkHtml } from 'utils/url';
 import MessageLengthCounter from './message-length-counter';
 
@@ -465,7 +466,7 @@ export class NewDiscussion extends React.Component<Props> {
   };
 
   private storeMessage() {
-    if (!osu.present(this.message)) {
+    if (!present(this.message)) {
       localStorage.removeItem(this.storageKey);
     } else {
       localStorage.setItem(this.storageKey, this.message);

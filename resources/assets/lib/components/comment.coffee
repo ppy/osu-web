@@ -6,6 +6,7 @@ import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
 import * as React from 'react'
 import { a, button, div, span, textarea, p } from 'react-dom-factories'
+import { onError } from 'utils/ajax'
 import { classWithModifiers } from 'utils/css'
 import { estimateMinLines } from 'utils/estimate-min-lines'
 import { createClickCallback, formatNumberSuffixed } from 'utils/html'
@@ -513,7 +514,7 @@ export class Comment extends React.PureComponent
     .fail (xhr, status) =>
       return if status == 'abort'
 
-      osu.ajaxError xhr
+      onError xhr
 
 
   togglePinned: =>
@@ -527,7 +528,7 @@ export class Comment extends React.PureComponent
     .fail (xhr, status) =>
       return if status == 'abort'
 
-      osu.ajaxError xhr
+      onError xhr
 
 
   handleReplyPosted: (type) =>
@@ -588,7 +589,7 @@ export class Comment extends React.PureComponent
     .fail (xhr, status) =>
       return if status == 'abort'
 
-      osu.ajaxError xhr
+      onError xhr
 
 
   toggleNewReply: =>
@@ -622,7 +623,7 @@ export class Comment extends React.PureComponent
       return if status == 'abort'
       return $(target).trigger('ajax:error', [xhr, status]) if xhr.status == 401
 
-      osu.ajaxError xhr
+      onError xhr
 
 
   closeNewReply: =>
