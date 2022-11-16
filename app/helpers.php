@@ -590,15 +590,6 @@ function pagination($params, $defaults = null)
     return compact('limit', 'page', 'offset');
 }
 
-function param_string_simple($value)
-{
-    if (is_array($value)) {
-        $value = implode(',', $value);
-    }
-
-    return presence($value);
-}
-
 function product_quantity_options($product, $selected = null)
 {
     if ($product->stock === null) {
@@ -693,20 +684,6 @@ function tag($element, $attributes = [], $content = null)
     }
 
     return '<'.$element.$attributeString.'>'.($content ?? '').'</'.$element.'>';
-}
-
-function to_sentence($array, $key = 'common.array_and')
-{
-    switch (count($array)) {
-        case 0:
-            return '';
-        case 1:
-            return (string) $array[0];
-        case 2:
-            return implode(osu_trans("{$key}.two_words_connector"), $array);
-        default:
-            return implode(osu_trans("{$key}.words_connector"), array_slice($array, 0, -1)).osu_trans("{$key}.last_word_connector").array_last($array);
-    }
 }
 
 // Handles case where crowdin fills in untranslated key with empty string.
