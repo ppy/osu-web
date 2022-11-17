@@ -38,20 +38,3 @@ window.osu =
 
     document.activeElement.blur?()
     $alert.appendTo($popup).fadeIn()
-
-
-  trans: (key, replacements = {}, locale) ->
-    trans(key, replacements, locale)
-
-
-  transArray: (array, key = 'common.array_and') ->
-    transArray(array, key)
-
-
-  transChoice: (key, count, replacements = {}, locale) ->
-    transChoice(key, count, replacements, locale)
-
-
-  # Handles case where crowdin fills in untranslated key with empty string.
-  transExists: (key, locale) ->
-    transExists(key, locale)
