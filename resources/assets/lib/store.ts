@@ -7,6 +7,7 @@ import { toShopifyVariantGid } from 'shopify-gid';
 import { createClickCallback } from 'utils/html';
 import { trans } from 'utils/lang';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
+import { popup } from 'utils/popup';
 import client from './shopify-client';
 
 declare global {
@@ -71,7 +72,7 @@ export class Store {
       });
     } catch (error) {
       hideLoadingOverlay();
-      osu.popup(trans('errors.checkout.generic'), 'danger');
+      popup(trans('errors.checkout.generic'), 'danger');
       return;
     }
 
@@ -110,7 +111,7 @@ export class Store {
     if (checkout != null) {
       window.location.href = checkout.webUrl;
     } else {
-      osu.popup(trans('store.order.shopify_expired'), 'info');
+      popup(trans('store.order.shopify_expired'), 'info');
       hideLoadingOverlay();
     }
   }

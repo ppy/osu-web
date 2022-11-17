@@ -4,6 +4,7 @@
 import core from 'osu-core-singleton';
 import { createClickCallback } from 'utils/html';
 import { trans } from 'utils/lang';
+import { popup } from './popup';
 import { present } from './string';
 
 interface UnknownErrorJson {
@@ -23,7 +24,7 @@ export const error = (xhr: JQuery.jqXHR, status: string, callback?: () => void) 
   if (core.userLogin.showOnError(xhr, callback)) return;
   if (core.userVerification.showOnError(xhr, callback)) return;
 
-  osu.popup(xhrErrorMessage(xhr), 'danger');
+  popup(xhrErrorMessage(xhr), 'danger');
 };
 
 export const fileuploadFailCallback = (event: unknown, data: JQueryFileUploadDone) => {

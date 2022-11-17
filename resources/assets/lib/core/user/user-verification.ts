@@ -7,6 +7,7 @@ import { xhrErrorMessage } from 'utils/ajax';
 import { fadeIn, fadeOut, fadeToggle } from 'utils/fade';
 import { createClickCallback } from 'utils/html';
 import { trans } from 'utils/lang';
+import { reloadPage } from 'utils/turbolinks';
 
 interface ReissueCodeJson {
   message: string;
@@ -242,7 +243,7 @@ export default class UserVerification {
     inputBox.dataset.lastKey = '';
 
     if (this.isVerificationPage()) {
-      return osu.reloadPage();
+      return reloadPage();
     }
 
     callback?.();

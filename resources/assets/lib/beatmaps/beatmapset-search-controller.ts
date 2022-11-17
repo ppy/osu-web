@@ -9,6 +9,7 @@ import { debounce, intersection } from 'lodash';
 import { action, computed, IObjectDidChange, Lambda, makeObservable, observable, observe, runInAction } from 'mobx';
 import core from 'osu-core-singleton';
 import { trans, transArray } from 'utils/lang';
+import { popup } from 'utils/popup';
 import { currentUrl } from 'utils/turbolinks';
 
 
@@ -38,7 +39,7 @@ export class BeatmapsetSearchController {
     state: 'completed',
   };
 
-  private readonly debouncedFilterChangedSearch = debounce(this.filterChangedSearch, 500);
+  private readonly debouncedFilterChangedSearch = debounce(() => this.filterChangedSearch(), 500);
   private filtersObserver!: Lambda;
   private initialErrorMessage?: string;
 
@@ -118,7 +119,7 @@ export class BeatmapsetSearchController {
     this.restoreStateFromUrl();
     this.search(0, true);
     if (this.initialErrorMessage != null) {
-      osu.popup(this.initialErrorMessage, 'danger');
+      popup(this.initialErrorMessage, 'danger');
       delete this.initialErrorMessage;
     }
   }

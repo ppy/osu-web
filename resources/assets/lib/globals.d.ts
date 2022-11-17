@@ -25,11 +25,6 @@ declare module 'legacy-modules' {
     };
   }
 
-  interface OsuCommon {
-    popup: (message: string, type: string) => void;
-    reloadPage: () => void;
-  }
-
   interface TooltipDefault {
     remove: (el: HTMLElement) => void;
   }

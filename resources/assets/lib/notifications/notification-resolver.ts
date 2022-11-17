@@ -17,8 +17,8 @@ import { NotificationEventDelete, NotificationEventMoreLoaded, NotificationEvent
 
 // I don't know what to name this
 export class NotificationResolver {
-  private debouncedDeleteByIds = debounce(this.deleteByIds, 500);
-  private debouncedSendQueuedMarkedAsRead = debounce(this.sendQueuedMarkedAsRead, 500);
+  private debouncedDeleteByIds = debounce(() => this.deleteByIds(), 500);
+  private debouncedSendQueuedMarkedAsRead = debounce(() => this.sendQueuedMarkedAsRead(), 500);
   private deleteByIdsQueue = new Map<number, Notification>();
   private queuedMarkedAsRead = new Map<number, Notification>();
   private queuedMarkedAsReadIdentities = new Map<string, NotificationReadable>();
