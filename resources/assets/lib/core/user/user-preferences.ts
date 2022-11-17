@@ -57,8 +57,8 @@ export default class UserPreferences {
 
   private fromStorage(): Partial<UserPreferencesJson> {
     try {
-      const data = localStorage.userPreferences as unknown;
-      if (typeof(data) === 'string') {
+      const data = localStorage.getItem('userPreferences');
+      if (data != null) {
         const preferences = JSON.parse(data) as unknown;
 
         if (preferences != null && typeof preferences === 'object') {
