@@ -7,6 +7,7 @@ import BeatmapsetCover from 'components/beatmapset-cover'
 import { route } from 'laroute'
 import * as React from 'react'
 import { div, h2, a, img } from 'react-dom-factories'
+import { trans } from 'utils/lang'
 import { Discussion } from "../beatmap-discussions/discussion"
 
 el = React.createElement

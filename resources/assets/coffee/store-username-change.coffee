@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute'
+import { trans } from 'utils/lang'
 
 preventUsernameSubmission = ->
   StoreCart.setEnabled(false)

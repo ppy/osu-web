@@ -7,6 +7,7 @@ import { VoteSummary } from './vote-summary'
 import * as React from 'react'
 import { div,a,i,span } from 'react-dom-factories'
 import { classWithModifiers } from 'utils/css'
+import { trans } from 'utils/lang'
 el = React.createElement
 
 export class EntryList extends BaseEntryList

@@ -7,6 +7,7 @@ import { div, form, input, label, span } from 'react-dom-factories'
 import { fileuploadFailCallback } from 'utils/ajax'
 import { classWithModifiers } from 'utils/css'
 import { formatBytes } from 'utils/html'
+import { trans } from 'utils/lang'
 import { nextVal } from 'utils/seq'
 
 el = React.createElement

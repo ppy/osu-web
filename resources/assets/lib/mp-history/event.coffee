@@ -5,6 +5,7 @@ import TimeWithTooltip from 'components/time-with-tooltip'
 import { route } from 'laroute'
 import * as React from 'react'
 import { div, span, a, i } from 'react-dom-factories'
+import { trans } from 'utils/lang'
 import { linkHtml } from 'utils/url'
 
 el = React.createElement

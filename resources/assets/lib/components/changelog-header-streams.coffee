@@ -4,6 +4,7 @@
 import * as React from 'react'
 import { a, div, p } from 'react-dom-factories'
 import { classWithModifiers } from 'utils/css'
+import { transChoice } from 'utils/lang'
 import { changelogBuild } from 'utils/url'
 
 el = React.createElement

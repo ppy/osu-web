@@ -12,6 +12,7 @@ import { button, div, span } from 'react-dom-factories'
 import { onErrorWithCallback } from 'utils/ajax'
 import { classWithModifiers } from 'utils/css'
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler'
+import { trans } from 'utils/lang'
 
 el = React.createElement
 

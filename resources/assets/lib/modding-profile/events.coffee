@@ -5,6 +5,7 @@ import BeatmapsetEvents from 'components/beatmapset-events'
 import { route } from 'laroute'
 import * as React from 'react'
 import { div, h2, a, img } from 'react-dom-factories'
+import { trans } from 'utils/lang'
 
 el = React.createElement
 

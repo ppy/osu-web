@@ -5,6 +5,7 @@ import StringWithComponent from 'components/string-with-component'
 import { snakeCase, size } from 'lodash'
 import * as React from 'react'
 import { a, div, li, span, ul } from 'react-dom-factories'
+import { trans } from 'utils/lang'
 
 el = React.createElement
 

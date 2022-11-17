@@ -9,6 +9,7 @@ import { route } from 'laroute'
 import * as React from 'react'
 import { button, div, h1, p, span } from 'react-dom-factories'
 import { jsonClone } from 'utils/json'
+import { trans } from 'utils/lang'
 
 el = React.createElement
 

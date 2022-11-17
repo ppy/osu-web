@@ -6,6 +6,7 @@ import { route } from 'laroute'
 import * as React from 'react'
 import { a, button, div, h1, h2, p } from 'react-dom-factories'
 import { emitError } from 'utils/ajax'
+import { trans } from 'utils/lang'
 
 el = React.createElement
 

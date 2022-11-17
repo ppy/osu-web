@@ -5,6 +5,7 @@ import * as React from 'react'
 import { div, dd, dl, dt } from 'react-dom-factories'
 import { classWithModifiers } from 'utils/css'
 import { formatNumber } from 'utils/html'
+import { trans } from 'utils/lang'
 
 entries = [
   'ranked_beatmapset_count'

@@ -4,6 +4,7 @@
 import { createElement as el, createRef, PureComponent } from 'react'
 import * as React from 'react'
 import { button, div, i } from 'react-dom-factories'
+import { trans } from 'utils/lang'
 
 export class BackToTop extends PureComponent
   constructor: (props) ->

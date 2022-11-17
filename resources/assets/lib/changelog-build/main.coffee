@@ -9,6 +9,7 @@ import HeaderV4 from 'components/header-v4'
 import { route } from 'laroute'
 import * as React from 'react'
 import { a, div, h1, h2, i, li, ol, p, span } from 'react-dom-factories'
+import { trans } from 'utils/lang'
 import { changelogBuild } from 'utils/url'
 
 el = React.createElement

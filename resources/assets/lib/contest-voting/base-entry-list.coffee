@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { button, span } from 'react-dom-factories'
+import { trans } from 'utils/lang'
 import { nextVal } from 'utils/seq'
 
 export class BaseEntryList extends React.Component

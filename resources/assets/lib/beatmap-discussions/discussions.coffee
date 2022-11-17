@@ -6,6 +6,7 @@ import * as React from 'react'
 import { a, button, div, i, p, span } from 'react-dom-factories'
 import { canModeratePosts } from 'utils/beatmapset-discussion-helper'
 import { jsonClone } from 'utils/json'
+import { trans } from 'utils/lang'
 import { nextVal } from 'utils/seq'
 import { Discussion } from './discussion'
 

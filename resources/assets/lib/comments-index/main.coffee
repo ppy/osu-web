@@ -8,6 +8,7 @@ import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
 import * as React from 'react'
 import { a, button, div, h1, p, span } from 'react-dom-factories'
+import { trans } from 'utils/lang'
 
 el = React.createElement
 

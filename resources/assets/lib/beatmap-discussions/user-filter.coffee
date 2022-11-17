@@ -6,6 +6,7 @@ import { SelectOptions } from 'components/select-options'
 import * as React from 'react'
 import { a } from 'react-dom-factories'
 import { groupColour } from 'utils/css'
+import { trans } from 'utils/lang'
 
 el = React.createElement
 

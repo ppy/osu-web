@@ -6,6 +6,7 @@ import * as React from 'react'
 import { button, div, h3 } from 'react-dom-factories'
 import { classWithModifiers } from 'utils/css'
 import { bottomPageDistance } from 'utils/html'
+import { trans } from 'utils/lang'
 import { Event } from './event'
 import { Game } from './game'
 

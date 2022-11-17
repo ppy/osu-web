@@ -10,6 +10,7 @@ import BeatmapsetCover from 'components/beatmapset-cover'
 import { deletedUser } from 'models/user'
 import * as React from 'react'
 import { a, div, img } from 'react-dom-factories'
+import { trans } from 'utils/lang'
 import { nextVal } from 'utils/seq'
 el = React.createElement
 

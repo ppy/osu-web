@@ -3,6 +3,7 @@
 
 import * as React from 'react'
 import { div } from 'react-dom-factories'
+import { trans } from 'utils/lang'
 el = React.createElement
 
 bn = 'countdown-timer'

@@ -6,6 +6,7 @@ import { Score } from './score'
 import * as React from 'react'
 import { div, span } from 'react-dom-factories'
 import { formatNumber } from 'utils/html'
+import { trans } from 'utils/lang'
 el = React.createElement
 
 export class Game extends React.Component

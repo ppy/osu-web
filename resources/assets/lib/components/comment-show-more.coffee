@@ -6,6 +6,7 @@ import core from 'osu-core-singleton'
 import * as React from 'react'
 import { button, div, span } from 'react-dom-factories'
 import { classWithModifiers } from 'utils/css'
+import { trans } from 'utils/lang'
 import ShowMoreLink from './show-more-link'
 import { Spinner } from './spinner'
 

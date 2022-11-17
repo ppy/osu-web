@@ -6,6 +6,7 @@ import * as React from 'react'
 import { div, span, a, i } from 'react-dom-factories'
 import { classWithModifiers, urlPresence } from 'utils/css'
 import { formatNumber } from 'utils/html'
+import { transChoice } from 'utils/lang'
 import { Voter } from './voter'
 
 el = React.createElement
