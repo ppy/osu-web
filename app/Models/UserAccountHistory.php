@@ -87,6 +87,11 @@ class UserAccountHistory extends Model
             ->orderBy('timestamp', 'desc');
     }
 
+    public function scopeRecentForChat($query)
+    {
+        return $query->where('timestamp', '>', Carbon::now()->subHours(1));
+    }
+
     public function actor()
     {
         return $this->belongsTo(User::class, 'banner_id', 'user_id');
