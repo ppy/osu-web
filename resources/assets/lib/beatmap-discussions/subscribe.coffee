@@ -29,7 +29,7 @@ export class Subscribe extends React.PureComponent
       modifiers: 'full'
       props:
         onClick: @toggleWatch
-      text: osu.trans "common.buttons.watch.to_#{+!@isWatching()}"
+      text: trans "common.buttons.watch.to_#{+!@isWatching()}"
 
 
   isWatching: =>

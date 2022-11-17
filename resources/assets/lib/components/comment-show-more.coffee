@@ -59,7 +59,7 @@ export class CommentShowMore extends React.PureComponent
           button
             className: "#{bn}__link"
             onClick: @load
-            @props.label ? osu.trans('common.buttons.show_more')
+            @props.label ? trans('common.buttons.show_more')
 
 
   load: =>

@@ -58,7 +58,7 @@ export ChangelogEntry = ({entry}) =>
           span
             className: 'changelog-entry__user'
             dangerouslySetInnerHTML:
-              __html: osu.trans('changelog.entry.by', user: link)
+              __html: trans('changelog.entry.by', user: link)
 
     if entry.message_html?
       div

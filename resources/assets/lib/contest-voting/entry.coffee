@@ -75,9 +75,9 @@ export class Entry extends React.Component
       if @props.contest.show_votes
         if @props.contest.best_of
           div className:'contest__vote-count contest__vote-count--no-percentages',
-            osu.transChoice 'contest.vote.points', @props.entry.results.votes
+            transChoice 'contest.vote.points', @props.entry.results.votes
         else
           div className:'contest__vote-count',
-            osu.transChoice 'contest.vote.count', @props.entry.results.votes
+            transChoice 'contest.vote.count', @props.entry.results.votes
             if Number.isFinite usersVotedPercentage
               " (#{formatNumber(usersVotedPercentage)}%)"

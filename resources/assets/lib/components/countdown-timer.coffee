@@ -42,9 +42,9 @@ export class CountdownTimer extends React.Component
       seconds: Math.floor(diff % 60)
 
     div className: bn,
-      div className: "#{bn}__header", "#{osu.trans('common.time.remaining')}:"
+      div className: "#{bn}__header", "#{trans('common.time.remaining')}:"
       for field, value of fields
         div key: field, className: "#{bn}__field",
           div className: "#{bn}__digit",
             if value < 10 then "0#{value}" else value
-          div className: "#{bn}__label", osu.trans("common.countdown.#{field}")
+          div className: "#{bn}__label", trans("common.countdown.#{field}")

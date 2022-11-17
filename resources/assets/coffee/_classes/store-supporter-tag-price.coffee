@@ -42,7 +42,7 @@ class window.StoreSupporterTagPrice
       Math.max(0, Math.round(raw, 0))
 
   discountText: ->
-    osu.trans('store.discount', percent: @discount())
+    trans('store.discount', percent: @discount())
 
   durationInYears: ->
     years: Math.floor(@duration() / 12)
@@ -54,9 +54,9 @@ class window.StoreSupporterTagPrice
     texts = []
 
     if duration.years > 0
-      texts.push osu.transChoice('common.count.years', duration.years)
+      texts.push transChoice('common.count.years', duration.years)
 
     if duration.months > 0
-      texts.push osu.transChoice('common.count.months', duration.months)
+      texts.push transChoice('common.count.months', duration.months)
 
     texts.join(', ')

@@ -97,7 +97,7 @@ export class ArtEntry extends React.Component
               span className: "#{bn}__entrant", @props.entry.results.actual_name
           div className: "#{bn}__result-pane",
             span className: "#{bn}__result-votes",
-              osu.transChoice 'contest.vote.count', @props.entry.results.votes
+              transChoice 'contest.vote.count', @props.entry.results.votes
             if Number.isFinite usersVotedPercentage
               span className: "#{bn}__result-votes #{bn}__result-votes--percentage",
                 " (#{formatNumber(usersVotedPercentage)}%)"

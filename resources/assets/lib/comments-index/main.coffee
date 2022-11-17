@@ -41,7 +41,7 @@ export class Main extends React.Component
 
           if comments.length < 1
             div className: 'comments__text',
-              osu.trans 'comments.index.no_comments'
+              trans 'comments.index.no_comments'
           else
             for comment in comments
               el Comment,
@@ -59,7 +59,7 @@ export class Main extends React.Component
   headerLinks: =>
     links = [
       {
-        title: osu.trans 'comments.index.nav_title'
+        title: trans 'comments.index.nav_title'
         url: route('comments.index')
       }
     ]
@@ -71,7 +71,7 @@ export class Main extends React.Component
           url: route('users.show', user: @props.user.id)
         },
         {
-          title: osu.trans 'comments.index.nav_comments'
+          title: trans 'comments.index.nav_comments'
           url: route('comments.index', user_id: @props.user.id)
         }
       )

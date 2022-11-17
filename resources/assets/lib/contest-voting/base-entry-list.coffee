@@ -59,7 +59,7 @@ export class BaseEntryList extends React.Component
       onClick: @onToggleShowVotedOnlyClick
       span className: 'btn-osu-big__icon-inline btn-osu-big__icon-inline--left',
         span className: if @state.showVotedOnly then 'fas fa-check-square' else 'far fa-square'
-      osu.trans('contest.voting.show_voted_only')
+      trans('contest.voting.show_voted_only')
 
 
   onToggleShowVotedOnlyClick: =>

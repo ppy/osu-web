@@ -29,7 +29,7 @@ export class Comments extends React.PureComponent
 
       div className: classWithModifiers('comments', @props.modifiers), id: 'comments',
         h2 className: 'comments__title',
-          osu.trans('comments.title')
+          trans('comments.title')
           span className: 'comments__count', formatNumber(uiState.comments.total)
 
         if pinnedComments.length > 0
@@ -65,7 +65,7 @@ export class Comments extends React.PureComponent
         else
           div
             className: 'comments__items comments__items--empty'
-            osu.trans('comments.empty')
+            trans('comments.empty')
 
 
   renderComment: (comment, pinned = false) =>
@@ -90,16 +90,16 @@ export class Comments extends React.PureComponent
       onClick: @toggleShowDeleted
       span className: 'sort__item-icon',
         span className: if core.userPreferences.get('comments_show_deleted') then 'fas fa-check-square' else 'far fa-square'
-      osu.trans('common.buttons.show_deleted')
+      trans('common.buttons.show_deleted')
 
 
   renderFollowToggle: =>
     if uiState.comments.userFollow
       icon = 'fas fa-eye-slash'
-      label = osu.trans('common.buttons.watch.to_0')
+      label = trans('common.buttons.watch.to_0')
     else
       icon = 'fas fa-eye'
-      label = osu.trans('common.buttons.watch.to_1')
+      label = trans('common.buttons.watch.to_1')
 
     iconEl =
       if @props.loadingFollow

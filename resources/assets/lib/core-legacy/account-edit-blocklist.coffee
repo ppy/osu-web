@@ -15,7 +15,7 @@ export default class AccountEditBlocklist
   updateBlockCount: =>
     return unless currentUser.id?
 
-    $("#{@jsClass}-count").text osu.trans('users.blocks.blocked_count', count: currentUser.blocks?.length ? 0)
+    $("#{@jsClass}-count").text trans('users.blocks.blocked_count', count: currentUser.blocks?.length ? 0)
 
 
   toggle: (e) =>
@@ -25,8 +25,8 @@ export default class AccountEditBlocklist
 
     label =
       if $(".#{@element}").hasClass('hidden')
-        osu.trans 'common.buttons.show'
+        trans 'common.buttons.show'
       else
-        osu.trans 'common.buttons.hide'
+        trans 'common.buttons.hide'
 
     $(@jsClass).text label

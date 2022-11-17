@@ -89,7 +89,7 @@ export class Content extends React.PureComponent
           if @props.isAutoloading
             div
               className: 'mp-history-content__autoload-label'
-              osu.trans 'matches.match.in_progress_spinner_label'
+              trans 'matches.match.in_progress_spinner_label'
           el ShowMoreLink,
             callback: @props.loadNext
             hasMore: true

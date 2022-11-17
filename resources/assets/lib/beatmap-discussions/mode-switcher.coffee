@@ -56,7 +56,7 @@ export class ModeSwitcher extends React.PureComponent
                   div null,
                     if mode == 'general'
                       el StringWithComponent,
-                        pattern: osu.trans('beatmaps.discussions.mode.general'),
+                        pattern: trans('beatmaps.discussions.mode.general'),
                         mappings:
                           scope:
                             span
@@ -65,15 +65,15 @@ export class ModeSwitcher extends React.PureComponent
 
                     else if mode == 'generalAll'
                       el StringWithComponent,
-                        pattern: osu.trans('beatmaps.discussions.mode.general'),
+                        pattern: trans('beatmaps.discussions.mode.general'),
                         mappings:
                           scope:
                             span
                               className: 'page-mode-link__subtitle'
-                              "(#{osu.trans('beatmaps.discussions.mode.scopes.generalAll')})"
+                              "(#{trans('beatmaps.discussions.mode.scopes.generalAll')})"
 
                     else
-                      osu.trans("beatmaps.discussions.mode.#{snakeCase mode}")
+                      trans("beatmaps.discussions.mode.#{snakeCase mode}")
 
                   if mode != 'events'
                     span className: 'page-mode-link__badge',

@@ -40,9 +40,9 @@ export class GameHeader extends React.Component
               ' - '
               el TimeWithTooltip, dateTime: @props.game.end_time, format: timeFormat
           else
-            " #{osu.trans 'matches.match.in-progress'}"
-        span className: 'mp-history-game__stat', osu.trans "beatmaps.mode.#{@props.game.mode}"
-        span className: 'mp-history-game__stat', osu.trans "matches.game.scoring-type.#{@props.game.scoring_type}"
+            " #{trans 'matches.match.in-progress'}"
+        span className: 'mp-history-game__stat', trans "beatmaps.mode.#{@props.game.mode}"
+        span className: 'mp-history-game__stat', trans "matches.game.scoring-type.#{@props.game.scoring_type}"
 
       div className: 'mp-history-game__metadata-box',
         h1 className: 'mp-history-game__metadata mp-history-game__metadata--title',
@@ -54,6 +54,6 @@ export class GameHeader extends React.Component
 
       div
         className: 'mp-history-game__team-type'
-        title: osu.trans "matches.match.team-types.#{@props.game.team_type}"
+        title: trans "matches.match.team-types.#{@props.game.team_type}"
         style:
           backgroundImage: "url(/images/badges/team-types/#{@props.game.team_type}.svg)"

@@ -33,7 +33,7 @@ export class Score extends React.Component
               user.username
 
             if !@props.score.match.pass
-              span className: 'mp-history-player-score__failed', osu.trans 'matches.match.failed'
+              span className: 'mp-history-player-score__failed', trans 'matches.match.failed'
 
           a
             href: route 'rankings',
@@ -61,7 +61,7 @@ export class Score extends React.Component
                   formatNumber(@props.score.score)
 
               div className: "mp-history-player-score__stat mp-history-player-score__stat--#{m}", key: m,
-                span className: 'mp-history-player-score__stat-label mp-history-player-score__stat-label--small', osu.trans "matches.match.score.stats.#{m}"
+                span className: 'mp-history-player-score__stat-label mp-history-player-score__stat-label--small', trans "matches.match.score.stats.#{m}"
                 span className: "mp-history-player-score__stat-number mp-history-player-score__stat-number--#{modifier}", value
 
           div className: 'mp-history-player-score__stat-row',
@@ -74,7 +74,7 @@ export class Score extends React.Component
                 key: m,
                 span
                   className: 'mp-history-player-score__stat-label mp-history-player-score__stat-label--large'
-                  osu.trans "common.score_count.#{m}"
+                  trans "common.score_count.#{m}"
                 span
                   className: 'mp-history-player-score__stat-number mp-history-player-score__stat-number--small'
                   formatNumber(@props.score.statistics[m])

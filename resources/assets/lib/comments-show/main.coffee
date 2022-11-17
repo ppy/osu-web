@@ -39,11 +39,11 @@ export class Main extends React.PureComponent
   headerLinks: =>
     [
         {
-          title: osu.trans 'comments.index.nav_title'
+          title: trans 'comments.index.nav_title'
           url: route('comments.index')
         }
         {
-          title: osu.trans 'comments.show.nav_title'
+          title: trans 'comments.show.nav_title'
           url: route('comments.show', @comment)
         }
     ]

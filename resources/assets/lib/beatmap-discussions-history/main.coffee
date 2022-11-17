@@ -113,7 +113,7 @@ export class Main extends React.PureComponent
           el BeatmapsContext.Provider, value: beatmaps,
             div className: 'modding-profile-list modding-profile-list--index',
               if @props.discussions.length == 0
-                div className: 'modding-profile-list__empty', osu.trans('beatmap_discussions.index.none_found')
+                div className: 'modding-profile-list__empty', trans('beatmap_discussions.index.none_found')
               else
                 for discussion in @props.discussions when discussion?
                   div

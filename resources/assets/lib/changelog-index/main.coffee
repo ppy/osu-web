@@ -67,7 +67,7 @@ export class Main extends React.PureComponent
   headerLinks: =>
     [
       {
-        title: osu.trans 'layout.header.changelog.index'
+        title: trans 'layout.header.changelog.index'
         url: route('changelog.index')
       }
     ]

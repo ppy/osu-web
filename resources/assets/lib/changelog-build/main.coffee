@@ -75,23 +75,23 @@ export class Main extends React.PureComponent
 
       div className: 'supporter-promo__text-box',
         h2 className: 'supporter-promo__heading',
-          osu.trans('changelog.support.heading')
+          trans('changelog.support.heading')
 
         div null,
           p
             className: 'supporter-promo__text'
             dangerouslySetInnerHTML: __html:
-              osu.trans 'changelog.support.text_1',
-                link: "<a href='#{route('support-the-game')}' class='supporter-promo__link'>#{osu.trans('changelog.support.text_1_link')}</a>"
+              trans 'changelog.support.text_1',
+                link: "<a href='#{route('support-the-game')}' class='supporter-promo__link'>#{trans('changelog.support.text_1_link')}</a>"
           p className: 'supporter-promo__text supporter-promo__text--small',
-            osu.trans('changelog.support.text_2')
+            trans('changelog.support.text_2')
 
 
   headerLinks: =>
     [
       {
         url: route('changelog.index')
-        title: osu.trans 'layout.header.changelog.index'
+        title: trans 'layout.header.changelog.index'
       }
       {
         url: changelogBuild @props.build

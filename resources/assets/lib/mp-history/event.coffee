@@ -38,5 +38,5 @@ export class Event extends React.Component
       div
         className: 'mp-history-event__text',
         dangerouslySetInnerHTML:
-          __html: osu.trans "matches.match.events.#{event_type}#{if user? then '' else '-no-user'}",
+          __html: trans "matches.match.events.#{event_type}#{if user? then '' else '-no-user'}",
             user: userLink
