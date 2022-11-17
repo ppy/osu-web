@@ -26,8 +26,6 @@ declare module 'legacy-modules' {
   }
 
   interface OsuCommon {
-    popup: (message: string, type: string) => void;
-    reloadPage: () => void;
     trans: (...args: any[]) => string;
     transArray: (array: any[], key?: string) => string;
     transChoice: (key: string, count: number, replacements?: any, locale?: string) => string;

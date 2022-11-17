@@ -6,6 +6,7 @@ import core from 'osu-core-singleton';
 import { toShopifyVariantGid } from 'shopify-gid';
 import { createClickCallback } from 'utils/html';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
+import { popup } from 'utils/popup';
 import client from './shopify-client';
 
 declare global {
@@ -70,7 +71,7 @@ export class Store {
       });
     } catch (error) {
       hideLoadingOverlay();
-      osu.popup(osu.trans('errors.checkout.generic'), 'danger');
+      popup(osu.trans('errors.checkout.generic'), 'danger');
       return;
     }
 
@@ -109,7 +110,7 @@ export class Store {
     if (checkout != null) {
       window.location.href = checkout.webUrl;
     } else {
-      osu.popup(osu.trans('store.order.shopify_expired'), 'info');
+      popup(osu.trans('store.order.shopify_expired'), 'info');
       hideLoadingOverlay();
     }
   }

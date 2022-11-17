@@ -35,3 +35,10 @@ export function navigate(url: string, keepScroll = false, { action }: Turbolinks
 
   Turbolinks.visit(url, { action });
 }
+
+export function reloadPage(keepScroll = true) {
+  $(document).off('.ujsHideLoadingOverlay');
+  Turbolinks.clearCache();
+
+  navigate(currentUrl().href, keepScroll, { action: 'replace' });
+}

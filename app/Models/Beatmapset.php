@@ -901,6 +901,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return $this->hasMany(BeatmapsetNomination::class);
     }
 
+    public function beatmapsetNominationsCurrent()
+    {
+        return $this->beatmapsetNominations()->current();
+    }
+
     public function events()
     {
         return $this->hasMany(BeatmapsetEvent::class);
@@ -990,6 +995,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             'beatmapDiscussions',
             'beatmaps',
             'beatmapsetNominations',
+            'beatmapsetNominationsCurrent',
             'bssProcessQueues',
             'comments',
             'defaultBeatmaps',
