@@ -4,7 +4,7 @@
 import { Modal } from 'components/modal';
 import { SelectOptions } from 'components/select-options';
 import { intersectionWith } from 'lodash';
-import { action, makeObservable, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 
@@ -27,7 +27,7 @@ interface Props {
   onSubmit: ({ comments }: { comments: string }) => void;
   title: React.ReactNode;
   visible: boolean;
-  visibleOptions: string[];
+  visibleOptions?: string[];
 }
 
 interface ReportOption {
@@ -37,13 +37,17 @@ interface ReportOption {
 
 @observer
 export class ReportForm extends React.Component<Props> {
-  static readonly defaultProps = {
-    visibleOptions: availableOptions.map((option) => option.id),
-  };
-
   @observable private comments = '';
-  private readonly options = intersectionWith(availableOptions, this.props.visibleOptions, (left, right) => left.id === right);
   @observable private selectedReason = this.options[0];
+
+  @computed
+  private get options() {
+    if (this.props.visibleOptions == null) {
+      return availableOptions;
+    }
+
+    return intersectionWith(availableOptions, this.props.visibleOptions, (left, right) => left.id === right);
+  }
 
   constructor(props: Props) {
     super(props);
