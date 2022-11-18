@@ -5,11 +5,8 @@ import Lang from 'lang.js';
 import { formatNumber } from 'utils/html';
 import { present } from 'utils/string';
 
-type Replacement = string | number | null | undefined;
-
-export interface Replacements {
-  [key: string]: Replacement;
-}
+type Replacement = string | number;
+type Replacements = Partial<Record<string, Replacement>>;
 
 export function trans(key: string, replacements: Replacements = {}, locale?: string) {
   if (!transExists) {
