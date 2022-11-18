@@ -8,7 +8,7 @@ import { route } from 'laroute'
 import * as React from 'react'
 import { a, div, h1, h2, span } from 'react-dom-factories'
 import { groupColour } from 'utils/css'
-import { trans } from 'utils/lang'
+import { trans, transChoice } from 'utils/lang'
 
 el = React.createElement
 

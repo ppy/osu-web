@@ -6,7 +6,7 @@ import { route } from 'laroute'
 import * as React from 'react'
 import { a,i,div,span } from 'react-dom-factories'
 import { formatNumber } from 'utils/html'
-import { trans } from 'utils/lang'
+import { transChoice } from 'utils/lang'
 import { Voter } from './voter'
 
 el = React.createElement
