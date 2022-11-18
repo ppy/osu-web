@@ -213,7 +213,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
         discussions.map((discussion) => {
           const timestamp = formatTimestamp(discussion.timestamp);
           if (timestamp == null) {
-            return;
+            return 'unknown';
           }
 
           // don't linkify timestamps when in edit mode
