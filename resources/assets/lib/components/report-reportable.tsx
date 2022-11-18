@@ -113,7 +113,6 @@ export class ReportReportable extends React.PureComponent<Props, State> {
               mappings={{ username: <strong>{user.username}</strong> }}
               pattern={osu.trans(`report.${groupKey}.title`)}
             />}
-            visible
             visibleOptions={availableOptions[groupKey]}
           />
         )}

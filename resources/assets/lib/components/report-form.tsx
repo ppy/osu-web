@@ -26,7 +26,6 @@ interface Props {
   onClose: () => void;
   onSubmit: ({ comments }: { comments: string }) => void;
   title: React.ReactNode;
-  visible: boolean;
   visibleOptions?: string[];
 }
 
@@ -56,24 +55,10 @@ export class ReportForm extends React.Component<Props> {
   }
 
   render() {
-    return this.props.visible ? this.renderForm() : null;
-  }
-
-  @action
-  private readonly handleCommentsChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    this.comments = e.target.value;
-  };
-
-  @action
-  private readonly handleReasonChange = (option: ReportOption) => {
-    this.selectedReason = option;
-  };
-
-  private renderForm() {
     const title = this.props.completed ? osu.trans('users.report.thanks') : this.props.title;
 
     return (
-      <Modal onClose={this.props.onClose} visible={this.props.visible}>
+      <Modal onClose={this.props.onClose} visible>
         <div className={bn}>
           <div className={`${bn}__header`}>
             <div className={`${bn}__row ${bn}__row--exclamation`}>
@@ -92,6 +77,16 @@ export class ReportForm extends React.Component<Props> {
       </Modal>
     );
   }
+
+  @action
+  private readonly handleCommentsChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    this.comments = e.target.value;
+  };
+
+  @action
+  private readonly handleReasonChange = (option: ReportOption) => {
+    this.selectedReason = option;
+  };
 
   private renderFormContent() {
     return (
