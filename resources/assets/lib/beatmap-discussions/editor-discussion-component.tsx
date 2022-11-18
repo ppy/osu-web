@@ -209,21 +209,20 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     const nearbyUnsaved = this.nearbyDraftEmbeds(drafts) ?? [];
 
     if (discussions.length > 0 || nearbyUnsaved.length > 1) {
-      const timestamps =
-        discussions.map((discussion) => {
-          const timestamp = formatTimestamp(discussion.timestamp);
-          if (timestamp == null) {
-            return 'unknown';
-          }
+      const timestamps: string[] = [];
+      discussions.forEach((discussion) => {
+        if (discussion.timestamp == null) return;
+        const timestamp = formatTimestamp(discussion.timestamp);
 
-          // don't linkify timestamps when in edit mode
-          return this.props.editMode
-            ? timestamp
-            : linkHtml(BeatmapDiscussionHelper.url({ discussion }),
-              timestamp,
-              { classNames: ['js-beatmap-discussion--jump'] },
-            );
-        });
+        // don't linkify timestamps when in edit mode
+        timestamps.push(this.props.editMode
+          ? timestamp
+          : linkHtml(BeatmapDiscussionHelper.url({ discussion }),
+            timestamp,
+            { classNames: ['js-beatmap-discussion--jump'] },
+          ),
+        );
+      });
 
       if (nearbyUnsaved.length > 1) {
         timestamps.push(trans('beatmap_discussions.nearby_posts.unsaved', { count: nearbyUnsaved.length - 1 }));

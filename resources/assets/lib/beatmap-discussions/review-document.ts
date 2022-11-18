@@ -104,7 +104,7 @@ export function parseFromJson(json: string, discussions: Partial<Record<number, 
           }],
           discussionId: discussion.id,
           discussionType: discussion.message_type,
-          timestamp: formatTimestamp(discussion.timestamp),
+          timestamp: discussion.timestamp != null ? formatTimestamp(discussion.timestamp) : undefined,
           type: 'embed',
         });
         break;
