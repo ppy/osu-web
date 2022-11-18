@@ -2,11 +2,32 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import Lang from 'lang.js';
+import * as React from 'react';
 import { formatNumber } from 'utils/html';
 import { present } from 'utils/string';
 
 type Replacement = string | number;
 type Replacements = Partial<Record<string, Replacement>>;
+
+export function joinComponents(array: React.ReactNode[], key = 'common.array_and') {
+  switch (array.length) {
+    case 0:
+      return '';
+    case 1:
+      return array[0];
+    case 2:
+      return <>{array[0]}{trans(`${key}.two_words_connector`)}{array[1]}</>;
+  }
+
+  const nodes = [array[0]];
+  const lastIndex = array.length - 1;
+  for (let i = 1; i < lastIndex - 1; i++) {
+    nodes.push(<React.Fragment key={i}>{trans(`${key}.words_connector`)} {array[i]}</React.Fragment>);
+  }
+
+  nodes.push(<React.Fragment key={lastIndex}>{trans(`${key}.last_word_connector`)} {array[lastIndex]}</React.Fragment>);
+  return nodes;
+}
 
 export function trans(key: string, replacements: Replacements = {}, locale?: string) {
   if (!transExists) {
