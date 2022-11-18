@@ -72,7 +72,7 @@ export class ReportForm extends React.Component<Props> {
             </div>
           </div>
 
-          {this.renderFormContent()}
+          {!this.props.completed && this.renderFormContent()}
         </div>
       </Modal>
     );
