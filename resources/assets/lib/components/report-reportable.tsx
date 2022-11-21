@@ -3,7 +3,6 @@
 
 import { ReportForm } from 'components/report-form';
 import { route } from 'laroute';
-import { Dictionary } from 'lodash';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
 import { trans } from 'utils/lang';
@@ -32,7 +31,7 @@ interface State {
   showingForm: boolean;
 }
 
-const availableOptions: Dictionary<string[]> = {
+const availableOptions: Partial<Record<string, string[]>> = {
   beatmapset: ['UnwantedContent', 'Other'],
   beatmapset_discussion_post: ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'],
   comment: ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'],
@@ -115,7 +114,6 @@ export class ReportReportable extends React.PureComponent<Props, State> {
               mappings={{ username: <strong>{user.username}</strong> }}
               pattern={trans(`report.${groupKey}.title`)}
             />}
-            visible
             visibleOptions={availableOptions[groupKey]}
           />
         )}
