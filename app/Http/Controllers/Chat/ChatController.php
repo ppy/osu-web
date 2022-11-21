@@ -262,13 +262,11 @@ class ChatController extends Controller
     public function updates()
     {
         static $availableIncludes;
-        $availableIncludes ??= new Set(['messages', 'presence', 'silences']);
+        $availableIncludes ??= new Set(['presence', 'silences']);
 
         $params = get_params(request()->all(), null, [
-            'channel_id:int',
             'history_since:int',
             'includes:array',
-            'limit:int',
             'since:int',
         ], ['null_missing' => true]);
 
@@ -280,54 +278,16 @@ class ChatController extends Controller
             ? $availableIncludes->intersect(new Set($params['includes']))
             : $availableIncludes;
 
-        $includeMessages = $includes->contains('messages');
-        $includePresence = $includes->contains('presence');
-        $includeSilences = $includes->contains('silences');
-
-        $since = $params['since'];
-        $limit = clamp($params['limit'] ?? 50, 1, 50);
-
         $response = [];
 
-        // messages need presence
-        if ($includeMessages || $includePresence) {
+        if ($includes->contains('presence')) {
             $userChannelList = new UserChannelList(auth()->user());
-            $presence = $userChannelList->get();
+            $response['presence'] = $userChannelList->get();
         }
 
-        if ($includeMessages) {
-            $channelIds = array_pluck($presence, 'channel_id');
-            if ($params['channel_id'] !== null) {
-                $channelIds = array_values(array_intersect($channelIds, [$params['channel_id']]));
-            }
-
-            $messages = Message
-                ::with('sender')
-                ->whereIn('channel_id', $channelIds)
-                ->since($since)
-                ->limit($limit)
-                ->orderBy('message_id', 'DESC')
-                ->get()
-                ->reverse();
-            $channelsById = $userChannelList->getChannels()->keyBy('channel_id');
-            foreach ($messages as $message) {
-                $message->setRelation('channel', $channelsById[$message->channel_id] ?? null);
-            }
-
-            $response['messages'] = json_collection($messages, new MessageTransformer(), ['sender']);
-        }
-
-        if ($includeSilences) {
-            $silences = $this->getSilences($params['history_since'], $since);
-
+        if ($includes->contains('silences')) {
+            $silences = $this->getSilences($params['history_since'], $params['since']);
             $response['silences'] = json_collection($silences, new UserSilenceTransformer());
-        }
-
-        if ($includePresence) {
-            // to match old behaviour (204 when no messages and no silences); doesn't apply if messages not requested.
-            $response['presence'] = $includeMessages && $messages->isEmpty() && $includeSilences && $silences->isEmpty()
-                ? []
-                : $presence;
         }
 
         $hasAny = array_first($response, fn ($val) => count($val) > 0) !== null;
