@@ -290,7 +290,7 @@ export class Discussion extends React.PureComponent
                 title: trans 'beatmaps.discussions.resolved'
 
         div className: "#{tbn}__text",
-          formatTimestamp @props.discussion.timestamp
+          formatTimestamp @props.discussion.timestamp if @props.discussion.timestamp?
 
 
   toggleCollapse: =>
