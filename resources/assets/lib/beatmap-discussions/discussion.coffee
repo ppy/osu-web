@@ -289,8 +289,9 @@ export class Discussion extends React.PureComponent
                 className: 'far fa-check-circle'
                 title: trans 'beatmaps.discussions.resolved'
 
-        div className: "#{tbn}__text",
-          formatTimestamp @props.discussion.timestamp if @props.discussion.timestamp?
+        if @props.discussion.timestamp?
+          div className: "#{tbn}__text",
+            formatTimestamp @props.discussion.timestamp
 
 
   toggleCollapse: =>
