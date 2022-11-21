@@ -8,7 +8,6 @@ declare(strict_types=1);
 namespace Tests\Controllers\Chat;
 
 use App\Models\Chat\Channel;
-use App\Models\Chat\Message;
 use App\Models\OAuth\Client;
 use App\Models\User;
 use App\Models\UserRelation;
