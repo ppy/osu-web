@@ -156,7 +156,7 @@ class ChatController extends Controller
     /**
      * Get Updates
      *
-     * This endpoint returns new messages since the given `message_id` along with updated channel 'presence' data.
+     * Returns the list of channels the current User is in along with an updated UserSilence list.
      *
      * ---
      *
@@ -164,18 +164,11 @@ class ChatController extends Controller
      *
      * Field            | Type
      * ---------------- | -----------------
-     * messages         | [ChatMessage](#chatmessage)[]?
      * presence         | [ChatChannel](#chatchannel)[]?
      * silences         | [UserSilence](#usersilence)[]?
      *
-     * <aside class="notice">
-     *   Note that this returns messages for all channels the user has joined unless specified.
-     * </aside>
-     *
-     * @queryParam channel_id integer If provided, will only return messages for the given channel the user is in.
      * @queryParam history_since integer [UserSilence](#usersilence) after the specified id to return.
-     * @queryParam includes string[] List of `presence`, `messages`, `silences` fields to include in the response. Returns all if not specified.
-     * @queryParam limit integer Maximum number of messages to return (max of 50).
+     * @queryParam includes string[] List of `presence`, `silences` fields to include in the response. Returns all if not specified.
      * @queryParam since integer required Messages after the specified `message_id` to return.
      *
      * @response {
@@ -209,46 +202,6 @@ class ChatController extends Controller
      *       ],
      *       "last_read_id": 9150001235,
      *       "last_message_id": 9150001234
-     *     }
-     *   ],
-     *   "messages": [
-     *     {
-     *       "message_id": 9150005004,
-     *       "sender_id": 2,
-     *       "channel_id": 5,
-     *       "timestamp": "2018-07-06T06:33:34+00:00",
-     *       "content": "i am a lazerface",
-     *       "is_action": 0,
-     *       "sender": {
-     *         "id": 2,
-     *         "username": "peppy",
-     *         "profile_colour": "#3366FF",
-     *         "avatar_url": "https://a.ppy.sh/2?1519081077.png",
-     *         "country_code": "AU",
-     *         "is_active": true,
-     *         "is_bot": false,
-     *         "is_online": true,
-     *         "is_supporter": true
-     *       }
-     *     },
-     *     {
-     *       "message_id": 9150005005,
-     *       "sender_id": 102,
-     *       "channel_id": 5,
-     *       "timestamp": "2018-07-06T06:33:42+00:00",
-     *       "content": "uh ok then",
-     *       "is_action": 0,
-     *       "sender": {
-     *         "id": 102,
-     *         "username": "nekodex",
-     *         "profile_colour": "#333333",
-     *         "avatar_url": "https://a.ppy.sh/102?1500537068",
-     *         "country_code": "AU",
-     *         "is_active": true,
-     *         "is_bot": false,
-     *         "is_online": true,
-     *         "is_supporter": true
-     *       }
      *     }
      *   ],
      *   "silences": [

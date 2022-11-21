@@ -25,6 +25,9 @@ For a full list of changes, see the
 
 ## Breaking Changes
 
+### 2022-11-21
+- `messages` in [Get Updates](#get-updates) has been removed.
+
 ### 2022-11-11
 - `recent_messages` in [ChatChannel](#chatchannel) has been deprecated, it will be removed from [Create Channel](#create-channel) response in the near future.
 
