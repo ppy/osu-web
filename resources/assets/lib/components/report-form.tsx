@@ -2,15 +2,29 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { SelectOptions } from 'components/select-options';
+import { route } from 'laroute';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
+import { render, unmountComponentAtNode } from 'react-dom';
+import { onError } from 'utils/ajax';
 import { trans } from 'utils/lang';
 import Modal from './modal';
 import StringWithComponent from './string-with-component';
 
 const bn = 'report-form';
 const maxLength = 2000;
+
+export function showReportForm(params: { reportableId: string; reportableType: ReportableType; username: string }) {
+  const root = document.createElement('div');
+
+  render(<ReportForm
+    reportableId={params.reportableId}
+    reportableType={params.reportableType}
+    root={root}
+    username={params.username}
+  />, root);
+}
 
 export const reportableTypeToGroupKey = {
   beatmapset: 'beatmapset',
@@ -46,11 +60,9 @@ const availableOptionsByGroupKey: Partial<Record<GroupKey, (keyof typeof availab
 };
 
 interface Props {
-  completed: boolean;
-  disabled: boolean;
-  onClose: () => void;
-  onSubmit: ({ comments }: { comments: string }) => void;
+  reportableId: string;
   reportableType: ReportableType;
+  root: HTMLElement;
   username: string;
 }
 
@@ -62,7 +74,10 @@ interface ReportOption {
 @observer
 export default class ReportForm extends React.Component<Props> {
   @observable private comments = '';
+  @observable private completed = false;
+  @observable private disabled = false;
   @observable private selectedReason = this.options[0];
+  private timeout: number | undefined;
 
   private get groupKey() {
     return reportableTypeToGroupKey[this.props.reportableType];
@@ -84,9 +99,18 @@ export default class ReportForm extends React.Component<Props> {
     makeObservable(this);
   }
 
+  componentDidMount() {
+    $(document).on('turbolinks:before-cache', this.handleClose);
+  }
+
+  componentWillUnmount() {
+    $(document).off('turbolinks:before-cache', this.handleClose);
+    window.clearTimeout(this.timeout);
+  }
+
   render() {
     return (
-      <Modal onClose={this.props.onClose} visible>
+      <Modal onClose={this.handleClose} visible>
         <div className={bn}>
           <div className={`${bn}__header`}>
             <div className={`${bn}__row ${bn}__row--exclamation`}>
@@ -100,11 +124,15 @@ export default class ReportForm extends React.Component<Props> {
             </div>
           </div>
 
-          {!this.props.completed && this.renderFormContent()}
+          {!this.completed && this.renderFormContent()}
         </div>
       </Modal>
     );
   }
+
+  private readonly handleClose = () => {
+    unmountComponentAtNode(this.props.root);
+  };
 
   @action
   private readonly handleCommentsChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -114,6 +142,33 @@ export default class ReportForm extends React.Component<Props> {
   @action
   private readonly handleReasonChange = (option: ReportOption) => {
     this.selectedReason = option;
+  };
+
+  @action
+  private readonly handleSubmit = () => {
+    this.disabled = true;
+
+    const data = {
+      comments: this.comments,
+      reason: this.selectedReason.id,
+      reportable_id: this.props.reportableId,
+      reportable_type: this.props.reportableType,
+    };
+
+    const params = {
+      data,
+      dataType: 'json',
+      type: 'POST',
+      url: route('reports.store'),
+    };
+
+    $.ajax(params).done(action(() => {
+      this.timeout = window.setTimeout(this.handleClose, 1000);
+      this.completed = true;
+    })).fail(action((xhr: JQuery.jqXHR) => {
+      onError(xhr);
+      this.disabled = false;
+    }));
   };
 
   private renderFormContent() {
@@ -150,16 +205,16 @@ export default class ReportForm extends React.Component<Props> {
         <div className={`${bn}__row ${bn}__row--buttons`}>
           <button
             className={`${bn}__button ${bn}__button--report`}
-            disabled={this.props.disabled || this.comments.length === 0}
-            onClick={this.sendReport}
+            disabled={this.disabled || this.comments.length === 0}
+            onClick={this.handleSubmit}
             type='button'
           >
             {trans('users.report.actions.send')}
           </button>
           <button
             className={`${bn}__button`}
-            disabled={this.props.disabled}
-            onClick={this.props.onClose}
+            disabled={this.disabled}
+            onClick={this.handleClose}
             type='button'
           >
             {trans('users.report.actions.cancel')}
@@ -170,7 +225,7 @@ export default class ReportForm extends React.Component<Props> {
   }
 
   private renderTitle() {
-    if (this.props.completed) {
+    if (this.completed) {
       return trans('users.report.thanks');
     }
 
@@ -181,14 +236,4 @@ export default class ReportForm extends React.Component<Props> {
       />
     );
   }
-
-  @action
-  private readonly sendReport = () => {
-    const data = {
-      comments: this.comments,
-      reason: this.selectedReason.id,
-    };
-
-    this.props.onSubmit(data);
-  };
 }
