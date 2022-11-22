@@ -2,32 +2,56 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { SelectOptions } from 'components/select-options';
-import { intersectionWith } from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { trans } from 'utils/lang';
 import Modal from './modal';
+import StringWithComponent from './string-with-component';
 
 const bn = 'report-form';
 const maxLength = 2000;
-const availableOptions = [
-  { id: 'Cheating', text: trans('users.report.options.cheating') },
-  { id: 'MultipleAccounts', text: trans('users.report.options.multiple_accounts') },
-  { id: 'Insults', text: trans('users.report.options.insults') },
-  { id: 'Spam', text: trans('users.report.options.spam') },
-  { id: 'UnwantedContent', text: trans('users.report.options.unwanted_content') },
-  { id: 'Nonsense', text: trans('users.report.options.nonsense') },
-  { id: 'Other', text: trans('users.report.options.other') },
-];
+
+export const reportableTypeToGroupKey = {
+  beatmapset: 'beatmapset',
+  beatmapset_discussion_post: 'beatmapset_discussion_post',
+  comment: 'comment',
+  forum_post: 'forum_post',
+  score_best_fruits: 'scores',
+  score_best_mania: 'scores',
+  score_best_osu: 'scores',
+  score_best_taiko: 'scores',
+  solo_score: 'scores',
+  user: 'user',
+} as const;
+export type ReportableType = keyof typeof reportableTypeToGroupKey;
+type GroupKey = typeof reportableTypeToGroupKey[ReportableType];
+
+const availableOptions = {
+  Cheating: trans('users.report.options.cheating'),
+  Insults: trans('users.report.options.insults'),
+  MultipleAccounts: trans('users.report.options.multiple_accounts'),
+  Nonsense: trans('users.report.options.nonsense'),
+  Other: trans('users.report.options.other'),
+  Spam: trans('users.report.options.spam'),
+  UnwantedContent: trans('users.report.options.unwanted_content'),
+} as const;
+
+const availableOptionsByGroupKey: Partial<Record<GroupKey, (keyof typeof availableOptions)[]>> = {
+  beatmapset: ['UnwantedContent', 'Other'],
+  beatmapset_discussion_post: ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'],
+  comment: ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'],
+  forum_post: ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'],
+  scores: ['Cheating', 'MultipleAccounts', 'Other'],
+};
 
 interface Props {
   completed: boolean;
   disabled: boolean;
   onClose: () => void;
   onSubmit: ({ comments }: { comments: string }) => void;
-  title: React.ReactNode;
-  visibleOptions?: string[];
+  reportableType: ReportableType;
+  username: string;
 }
 
 interface ReportOption {
@@ -36,17 +60,22 @@ interface ReportOption {
 }
 
 @observer
-export class ReportForm extends React.Component<Props> {
+export default class ReportForm extends React.Component<Props> {
   @observable private comments = '';
   @observable private selectedReason = this.options[0];
 
+  private get groupKey() {
+    return reportableTypeToGroupKey[this.props.reportableType];
+  }
+
   @computed
   private get options() {
-    if (this.props.visibleOptions == null) {
-      return availableOptions;
-    }
+    const options = availableOptionsByGroupKey[this.groupKey]
+      ?? Object.keys(availableOptions) as (keyof typeof availableOptions)[];
 
-    return intersectionWith(availableOptions, this.props.visibleOptions, (left, right) => left.id === right);
+    return options.map((option) => ({
+      id: option as string, text: availableOptions[option],
+    }));
   }
 
   constructor(props: Props) {
@@ -56,8 +85,6 @@ export class ReportForm extends React.Component<Props> {
   }
 
   render() {
-    const title = this.props.completed ? trans('users.report.thanks') : this.props.title;
-
     return (
       <Modal onClose={this.props.onClose} visible>
         <div className={bn}>
@@ -68,7 +95,7 @@ export class ReportForm extends React.Component<Props> {
 
             <div className={`${bn}__row ${bn}__row--title`}>
               <span>
-                {title}
+                {this.renderTitle()}
               </span>
             </div>
           </div>
@@ -139,6 +166,19 @@ export class ReportForm extends React.Component<Props> {
           </button>
         </div>
       </div>
+    );
+  }
+
+  private renderTitle() {
+    if (this.props.completed) {
+      return trans('users.report.thanks');
+    }
+
+    return (
+      <StringWithComponent
+        mappings={{ username: <strong>{this.props.username}</strong> }}
+        pattern={trans(`report.${this.groupKey}.title`)}
+      />
     );
   }
 

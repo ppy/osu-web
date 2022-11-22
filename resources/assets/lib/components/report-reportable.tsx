@@ -1,22 +1,20 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { ReportForm } from 'components/report-form';
 import { route } from 'laroute';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
 import { trans } from 'utils/lang';
-import StringWithComponent from './string-with-component';
+import ReportForm, { ReportableType, reportableTypeToGroupKey } from './report-form';
 
 type ReactButton = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
 type ReactButtonWithoutRef = Pick<ReactButton, Exclude<keyof ReactButton, 'ref'>>;
 
 interface Props extends ReactButtonWithoutRef {
-  baseKey?: string;
   icon: boolean;
   onFormClose: () => void;
   reportableId: string;
-  reportableType: string;
+  reportableType: ReportableType;
   user: { username: string };
 }
 
@@ -30,14 +28,6 @@ interface State {
   disabled: boolean;
   showingForm: boolean;
 }
-
-const availableOptions: Partial<Record<string, string[]>> = {
-  beatmapset: ['UnwantedContent', 'Other'],
-  beatmapset_discussion_post: ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'],
-  comment: ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'],
-  forum_post: ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'],
-  scores: ['Cheating', 'MultipleAccounts', 'Other'],
-};
 
 export class ReportReportable extends React.PureComponent<Props, State> {
   static defaultProps = {
@@ -88,8 +78,8 @@ export class ReportReportable extends React.PureComponent<Props, State> {
   };
 
   render(): React.ReactNode {
-    const { baseKey, icon, onFormClose, reportableId, reportableType, user, ...attribs } = this.props;
-    const groupKey = baseKey || this.props.reportableType;
+    const { icon, onFormClose, reportableId, reportableType, user, ...attribs } = this.props;
+    const groupKey = reportableTypeToGroupKey[this.props.reportableType];
 
     return (
       <>
@@ -110,11 +100,8 @@ export class ReportReportable extends React.PureComponent<Props, State> {
             disabled={this.state.disabled}
             onClose={this.onFormClose}
             onSubmit={this.onSubmit}
-            title={<StringWithComponent
-              mappings={{ username: <strong>{user.username}</strong> }}
-              pattern={trans(`report.${groupKey}.title`)}
-            />}
-            visibleOptions={availableOptions[groupKey]}
+            reportableType={this.props.reportableType}
+            username={user.username}
           />
         )}
       </>
