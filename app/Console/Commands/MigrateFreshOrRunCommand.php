@@ -30,9 +30,9 @@ class MigrateFreshOrRunCommand extends Command
     public function handle()
     {
         if (!$this->migrator->repositoryExists() || $this->migrator->getLastBatchNumber() === null) {
-            return $this->fresh();
+            $this->fresh();
         } else {
-            return $this->migrate();
+            $this->migrate();
         }
     }
 

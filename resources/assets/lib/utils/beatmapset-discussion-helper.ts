@@ -44,6 +44,7 @@ export const timestampRegex = /\b(((\d{2,}):([0-5]\d)[:.](\d{3}))(\s\((?:\d+[,|]
 const maxMessagePreviewLength = 100;
 export const maxLengthTimeline = 750;
 
+export type NearbyDiscussion<T extends BeatmapsetDiscussionJson> = T & { timestamp: number };
 type NearbyDiscussionsCategory = 'd0' | 'd100' | 'd1000' | 'other';
 const nearbyDiscussionsMessageTypes = new Set(['suggestion', 'problem']);
 
@@ -114,15 +115,19 @@ export function format(text: string, options: FormatOptions = {}) {
   return `<div class='${blockClass}'>${text}</div>`;
 }
 
-export function formatTimestamp(value: number | null) {
-  if (value == null) return;
-
+export function formatTimestamp(value: number) {
   const ms = value % 1000;
   const s = Math.floor(value / 1000) % 60;
   // remaining duration goes here even if it's over an hour
   const m = Math.floor(value / 1000 / 60);
 
   return `${padStart(m.toString(), 2, '0')}:${padStart(s.toString(), 2, '0')}.${padStart(ms.toString(), 3, '0')}`;
+}
+
+function isNearbyDiscussion<T extends BeatmapsetDiscussionJson>(discussion: T): discussion is NearbyDiscussion<T> {
+  return !(discussion.timestamp == null
+    || !nearbyDiscussionsMessageTypes.has(discussion.message_type)
+    || (discussion.user_id === core.currentUserOrFail.id && moment(discussion.updated_at).diff(moment(), 'hour') > -24));
 }
 
 export function linkTimestamp(text: string, classNames: string[] = []) {
@@ -134,23 +139,18 @@ export function linkTimestamp(text: string, classNames: string[] = []) {
   );
 }
 
-export function nearbyDiscussions<T extends BeatmapsetDiscussionJson>(discussions: T[], timestamp: number) {
-  const nearby: Partial<Record<NearbyDiscussionsCategory, T[]>> = {};
+export function nearbyDiscussions<T extends BeatmapsetDiscussionJson, R extends NearbyDiscussion<T>>(discussions: T[], timestamp: number): R[] {
+  const nearby: Partial<Record<NearbyDiscussionsCategory, R[]>> = {};
 
   for (const discussion of discussions) {
-    if (discussion.timestamp == null
-      || !nearbyDiscussionsMessageTypes.has(discussion.message_type)
-      || (discussion.user_id === core.currentUserOrFail.id && moment(discussion.updated_at).diff(moment(), 'hour') > -24)
-    ) {
-      continue;
-    }
+    if (isNearbyDiscussion(discussion)) {
+      const distance = Math.abs(discussion.timestamp - timestamp);
+      const category = nearbyDiscussionsDistanceToCategory(distance);
 
-    const distance = Math.abs(discussion.timestamp - timestamp);
-    const category = nearbyDiscussionsDistanceToCategory(distance);
-
-    if (category != null) {
-      nearby[category] ??= [];
-      nearby[category]?.push(discussion);
+      if (category != null) {
+        nearby[category] ??= [];
+        nearby[category]?.push(discussion as R); // TODO: how to type without casting
+      }
     }
   }
 

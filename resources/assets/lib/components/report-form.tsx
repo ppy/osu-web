@@ -4,7 +4,7 @@
 import { Modal } from 'components/modal';
 import { SelectOptions } from 'components/select-options';
 import { intersectionWith } from 'lodash';
-import { action, makeObservable, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { trans } from 'utils/lang';
@@ -27,8 +27,7 @@ interface Props {
   onClose: () => void;
   onSubmit: ({ comments }: { comments: string }) => void;
   title: React.ReactNode;
-  visible: boolean;
-  visibleOptions: string[];
+  visibleOptions?: string[];
 }
 
 interface ReportOption {
@@ -38,13 +37,17 @@ interface ReportOption {
 
 @observer
 export class ReportForm extends React.Component<Props> {
-  static readonly defaultProps = {
-    visibleOptions: availableOptions.map((option) => option.id),
-  };
-
   @observable private comments = '';
-  private readonly options = intersectionWith(availableOptions, this.props.visibleOptions, (left, right) => left.id === right);
   @observable private selectedReason = this.options[0];
+
+  @computed
+  private get options() {
+    if (this.props.visibleOptions == null) {
+      return availableOptions;
+    }
+
+    return intersectionWith(availableOptions, this.props.visibleOptions, (left, right) => left.id === right);
+  }
 
   constructor(props: Props) {
     super(props);
@@ -53,24 +56,10 @@ export class ReportForm extends React.Component<Props> {
   }
 
   render() {
-    return this.props.visible ? this.renderForm() : null;
-  }
-
-  @action
-  private readonly handleCommentsChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    this.comments = e.target.value;
-  };
-
-  @action
-  private readonly handleReasonChange = (option: ReportOption) => {
-    this.selectedReason = option;
-  };
-
-  private renderForm() {
     const title = this.props.completed ? trans('users.report.thanks') : this.props.title;
 
     return (
-      <Modal onClose={this.props.onClose} visible={this.props.visible}>
+      <Modal onClose={this.props.onClose} visible>
         <div className={bn}>
           <div className={`${bn}__header`}>
             <div className={`${bn}__row ${bn}__row--exclamation`}>
@@ -84,11 +73,21 @@ export class ReportForm extends React.Component<Props> {
             </div>
           </div>
 
-          {this.renderFormContent()}
+          {!this.props.completed && this.renderFormContent()}
         </div>
       </Modal>
     );
   }
+
+  @action
+  private readonly handleCommentsChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    this.comments = e.target.value;
+  };
+
+  @action
+  private readonly handleReasonChange = (option: ReportOption) => {
+    this.selectedReason = option;
+  };
 
   private renderFormContent() {
     return (

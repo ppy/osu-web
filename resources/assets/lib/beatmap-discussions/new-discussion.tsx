@@ -19,7 +19,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
 import { onError } from 'utils/ajax';
-import { canModeratePosts, formatTimestamp, nearbyDiscussions, parseTimestamp, validMessageLength } from 'utils/beatmapset-discussion-helper';
+import { canModeratePosts, formatTimestamp, NearbyDiscussion, nearbyDiscussions, parseTimestamp, validMessageLength } from 'utils/beatmapset-discussion-helper';
 import { nominationsCount } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
@@ -65,7 +65,7 @@ interface DiscussionByFilter {
 
 interface DiscussionsCache {
   beatmap: BeatmapExtendedJson;
-  discussions: Discussion[];
+  discussions: NearbyDiscussion<Discussion>[];
   timestamp: number | null;
 }
 
@@ -375,7 +375,7 @@ export class NewDiscussion extends React.Component<Props> {
 
   private renderNearbyTimestamps() {
     if (this.nearbyDiscussions.length === 0) return;
-    const currentTimestamp = formatTimestamp(this.timestamp);
+    const currentTimestamp = this.timestamp != null ? formatTimestamp(this.timestamp) : '';
     const timestamps = this.nearbyDiscussions.map((discussion) => (
       <a
         key={discussion.id}
@@ -438,7 +438,7 @@ export class NewDiscussion extends React.Component<Props> {
   private renderTimestamp() {
     if (this.props.mode !== 'timeline') return null;
 
-    const timestamp = formatTimestamp(this.timestamp) ?? trans('beatmaps.discussions.new.timestamp_missing');
+    const timestamp = this.timestamp != null ? formatTimestamp(this.timestamp) : trans('beatmaps.discussions.new.timestamp_missing');
 
     return (
       <div className={`${bn}__footer-content`}>
