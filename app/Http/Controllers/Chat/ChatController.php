@@ -53,9 +53,9 @@ class ChatController extends Controller
      *
      * Field            | Type
      * ---------------- | -----------------
-     * new_channel_id   | `channel_id` of newly created [ChatChannel](#chatchannel)
-     * presence         | array of [ChatChannel](#chatchannel)
+     * channel          | The new [ChatChannel](#chatchannel)
      * message          | the sent [ChatMessage](#chatmessage)
+     * new_channel_id   | Deprecated; `channel_id` of newly created [ChatChannel](#chatchannel)
      *
      * <aside class="notice">
      *   This endpoint will only allow the creation of PMs initially, group chat support will come later.
@@ -139,7 +139,7 @@ class ChatController extends Controller
                 new MessageTransformer(),
                 ['sender']
             ),
-            'new_channel_id' => $message->channel_id,
+            'new_channel_id' => $message->channel_id, // TODO: remove, there's channel already.
         ];
     }
 
