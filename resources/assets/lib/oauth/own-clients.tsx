@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BigButton from 'components/big-button';
-import { Modal } from 'components/modal';
+import Modal from 'components/modal';
 import { action, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import { ClientDetails } from 'oauth/client-details';
