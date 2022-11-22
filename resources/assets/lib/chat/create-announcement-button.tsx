@@ -5,6 +5,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 
 @observer
 export default class CreateAnnouncementButton extends React.Component {
@@ -21,7 +22,7 @@ export default class CreateAnnouncementButton extends React.Component {
               <span className='fas fa-plus' />
             </span>
           </div>
-          <div className='chat-conversation-list-item__name'>{osu.trans('chat.channels.create')}</div>
+          <div className='chat-conversation-list-item__name'>{trans('chat.channels.create')}</div>
         </button>
       </div>
     );

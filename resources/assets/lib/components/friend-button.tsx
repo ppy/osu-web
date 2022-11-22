@@ -12,6 +12,7 @@ import * as React from 'react';
 import { onErrorWithCallback } from 'utils/ajax';
 import { Modifiers, classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
+import { trans } from 'utils/lang';
 import { Spinner } from './spinner';
 
 const bn = 'user-action-button';
@@ -67,18 +68,18 @@ export default class FriendButton extends React.Component<Props> {
   @computed
   private get title() {
     if (!this.isVisible) {
-      return osu.trans('friends.buttons.disabled');
+      return trans('friends.buttons.disabled');
     }
 
     if (this.friend != null) {
-      return osu.trans('friends.buttons.remove');
+      return trans('friends.buttons.remove');
     }
 
     if (this.isFriendLimit) {
-      return osu.trans('friends.too_many');
+      return trans('friends.too_many');
     }
 
-    return osu.trans('friends.buttons.add');
+    return trans('friends.buttons.add');
   }
 
   constructor(props: Props) {

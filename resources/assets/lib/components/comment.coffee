@@ -10,6 +10,7 @@ import { onError } from 'utils/ajax'
 import { classWithModifiers } from 'utils/css'
 import { estimateMinLines } from 'utils/estimate-min-lines'
 import { createClickCallback, formatNumberSuffixed } from 'utils/html'
+import { trans, transChoice } from 'utils/lang'
 import ClickToCopy from './click-to-copy'
 import { CommentEditor } from './comment-editor'
 import { CommentShowMore } from './comment-show-more'
@@ -24,7 +25,7 @@ import { UserLink } from './user-link'
 
 el = React.createElement
 
-deletedUser = username: osu.trans('users.deleted')
+deletedUser = username: trans('users.deleted')
 commentableMetaStore = core.dataStore.commentableMetaStore
 store = core.dataStore.commentStore
 userStore = core.dataStore.userStore
@@ -39,9 +40,9 @@ export class Comment extends React.PureComponent
 
   makePreview = (comment, user) ->
     if comment.isDeleted
-      osu.trans('comments.deleted')
+      trans('comments.deleted')
     else if isBlocked(user)
-      osu.trans('users.blocks.comment_text')
+      trans('users.blocks.comment_text')
     else
       makePreviewElement.innerHTML = comment.messageHtml
       _.truncate makePreviewElement.textContent, length: 100
@@ -145,7 +146,7 @@ export class Comment extends React.PureComponent
                   className: 'comment__row-item  comment__row-item--pinned'
                   span className: 'fa fa-thumbtack'
                   ' '
-                  osu.trans 'comments.pinned'
+                  trans 'comments.pinned'
 
               if parent?
                 span
@@ -155,7 +156,7 @@ export class Comment extends React.PureComponent
               if @props.comment.isDeleted
                 span
                   className: 'comment__row-item comment__row-item--deleted'
-                  osu.trans('comments.deleted')
+                  trans('comments.deleted')
 
             if @state.editing
               div className: 'comment__editor',
@@ -208,7 +209,7 @@ export class Comment extends React.PureComponent
               comments: @children
               total: @props.comment.repliesCount
               modifiers: @props.modifiers
-              label: osu.trans('comments.load_replies') if @children.length == 0
+              label: trans('comments.load_replies') if @children.length == 0
               ref: @loadMoreRef
 
 
@@ -223,7 +224,7 @@ export class Comment extends React.PureComponent
         div className: 'comment__container',
           div className: 'comment__message',
             p className: 'osu-md osu-md--comment osu-md__paragraph',
-              osu.trans('users.blocks.comment_text')
+              trans('users.blocks.comment_text')
               ' '
               @renderForceShowButton()
 
@@ -248,7 +249,7 @@ export class Comment extends React.PureComponent
           type: 'button'
           className: 'comment__action'
           onClick: @delete
-          osu.trans('common.buttons.delete')
+          trans('common.buttons.delete')
 
 
   renderDeletedBy: =>
@@ -264,8 +265,8 @@ export class Comment extends React.PureComponent
               if @props.comment.deletedById?
                 el UserLink, user: (userStore.get(@props.comment.deletedById) ? deletedUser)
               else
-                osu.trans('comments.deleted_by_system')
-          pattern: osu.trans('comments.deleted_by')
+                trans('comments.deleted_by_system')
+          pattern: trans('comments.deleted_by')
 
 
   renderPin: =>
@@ -275,7 +276,7 @@ export class Comment extends React.PureComponent
           type: 'button'
           className: 'comment__action'
           onClick: @togglePinned
-          osu.trans 'common.buttons.' + if @props.comment.pinned then 'unpin' else 'pin'
+          trans 'common.buttons.' + if @props.comment.pinned then 'unpin' else 'pin'
 
 
   renderEdit: =>
@@ -285,7 +286,7 @@ export class Comment extends React.PureComponent
           type: 'button'
           className: "comment__action #{if @state.editing then 'comment__action--active' else ''}"
           onClick: @toggleEdit
-          osu.trans('common.buttons.edit')
+          trans('common.buttons.edit')
 
 
   renderEditedBy: =>
@@ -297,7 +298,7 @@ export class Comment extends React.PureComponent
           mappings:
             timeago: el(TimeWithTooltip, dateTime: @props.comment.editedAt, relative: true)
             user: el UserLink, user: editor
-          pattern: osu.trans('comments.edited')
+          pattern: trans('comments.edited')
 
 
   renderOwnerBadge: (meta) =>
@@ -313,7 +314,7 @@ export class Comment extends React.PureComponent
         className: 'comment__action comment__action--permalink'
         el ClickToCopy,
           value: route('comments.show', comment: @props.comment.id)
-          label: osu.trans 'common.buttons.permalink'
+          label: trans 'common.buttons.permalink'
           valueAsUrl: true
 
 
@@ -322,10 +323,10 @@ export class Comment extends React.PureComponent
 
     if !@state.expandReplies && @children.length == 0
       callback = @loadReplies
-      label = osu.trans('comments.load_replies')
+      label = trans('comments.load_replies')
     else
       callback = @toggleReplies
-      label = osu.transChoice('comments.replies_count', @props.comment.repliesCount)
+      label = transChoice('comments.replies_count', @props.comment.repliesCount)
 
     div className: 'comment__row-item comment__row-item--replies',
       el ShowMoreLink,
@@ -364,7 +365,7 @@ export class Comment extends React.PureComponent
           type: 'button'
           className: "comment__action #{if @state.showNewReply then 'comment__action--active' else ''}"
           onClick: @toggleNewReply
-          osu.trans('common.buttons.reply')
+          trans('common.buttons.reply')
 
 
   renderReport: =>
@@ -384,7 +385,7 @@ export class Comment extends React.PureComponent
           type: 'button'
           className: 'comment__action'
           onClick: @restore
-          osu.trans('common.buttons.restore')
+          trans('common.buttons.restore')
 
 
   renderToggleClipButton: =>
@@ -393,9 +394,9 @@ export class Comment extends React.PureComponent
       className: 'comment__toggle-clip'
       onClick: @toggleClip
       if @state.clipped
-        osu.trans('common.buttons.read_more')
+        trans('common.buttons.read_more')
       else
-        osu.trans('common.buttons.show_less')
+        trans('common.buttons.show_less')
 
 
   renderUserAvatar: (user) =>
@@ -465,7 +466,7 @@ export class Comment extends React.PureComponent
         span className: 'comment__commentable-meta-type',
           span className: 'comment__commentable-meta-icon fas fa-comment'
           ' '
-          osu.trans("comments.commentable_name.#{@props.comment.commentableType}")
+          trans("comments.commentable_name.#{@props.comment.commentableType}")
       component params,
         meta.title
 
@@ -482,7 +483,7 @@ export class Comment extends React.PureComponent
             onClick: @onShowDeletedToggleClick
             span className: 'sort__item-icon',
               span className: if core.userPreferences.get('comments_show_deleted') then 'fas fa-check-square' else 'far fa-square'
-            osu.trans('common.buttons.show_deleted')
+            trans('common.buttons.show_deleted')
 
 
   renderForceShowButton: =>
@@ -490,7 +491,7 @@ export class Comment extends React.PureComponent
       type: 'button'
       className: 'comment__action'
       onClick: @toggleForceShow
-      if !@state.forceShow then osu.trans('users.blocks.show_comment') else osu.trans('users.blocks.hide_comment')
+      if !@state.forceShow then trans('users.blocks.show_comment') else trans('users.blocks.hide_comment')
 
 
   renderForceShow: =>
@@ -504,7 +505,7 @@ export class Comment extends React.PureComponent
 
 
   delete: =>
-    return unless confirm(osu.trans('common.confirmation'))
+    return unless confirm(trans('common.confirmation'))
 
     @xhr.delete?.abort()
     @xhr.delete = $.ajax route('comments.destroy', comment: @props.comment.id),

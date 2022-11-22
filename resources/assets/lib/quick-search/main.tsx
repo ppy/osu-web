@@ -8,6 +8,7 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
+import { trans, transArray } from 'utils/lang';
 import { navigate } from 'utils/turbolinks';
 import Beatmapset from './beatmapset';
 import User from './user';
@@ -54,7 +55,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
               className='quick-search-input__input js-click-menu--autofocus'
               onChange={this.updateQuery}
               onKeyDown={this.onInputKeyDown}
-              placeholder={osu.trans('home.search.placeholder')}
+              placeholder={trans('home.search.placeholder')}
               value={this.props.worker.query}
             />
           </div>
@@ -65,7 +66,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
               onClick={this.props.onClose}
               type='button'
             >
-              {osu.trans('common.buttons.close')}
+              {trans('common.buttons.close')}
             </button>
           )}
         </div>
@@ -188,7 +189,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
       <div className='quick-search-items quick-search-items--empty'>
         {modes.map((mode) => (
           <div key={mode} className='quick-search-items__item'>
-            {osu.trans('quick_search.result.empty_for', { modes: osu.trans(`quick_search.mode.${mode}`) })}
+            {trans('quick_search.result.empty_for', { modes: trans(`quick_search.mode.${mode}`) })}
           </div>
         ))}
       </div>
@@ -199,10 +200,10 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     if (this.count('forum_post') === 0 && this.count('wiki_page') === 0) {
       return (
         <span className='quick-search-items quick-search-items--empty'>
-          {osu.trans('quick_search.result.empty_for', {
-            modes: osu.transArray([
-              osu.trans('quick_search.mode.forum_post'),
-              osu.trans('quick_search.mode.wiki_page'),
+          {trans('quick_search.result.empty_for', {
+            modes: transArray([
+              trans('quick_search.mode.forum_post'),
+              trans('quick_search.mode.wiki_page'),
             ]),
           })}
         </span>
@@ -253,7 +254,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
         href={route('search', { mode, query: this.props.worker.query })}
       >
         <div className='search-result-more__content'>
-          {osu.trans(key, { mode: osu.trans(`quick_search.mode.${mode}`) })}
+          {trans(key, { mode: trans(`quick_search.mode.${mode}`) })}
           <span className='search-result-more__count'>
             {formatNumber(this.count(mode))}
           </span>
@@ -269,8 +270,8 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     return (
       <h2 className='title'>
         <StringWithComponent
-          mappings={{ mode: <strong>{osu.trans(`quick_search.mode.${mode}`)}</strong> }}
-          pattern={osu.trans('quick_search.result.title')}
+          mappings={{ mode: <strong>{trans(`quick_search.mode.${mode}`)}</strong> }}
+          pattern={trans('quick_search.result.title')}
         />
       </h2>
     );
@@ -284,7 +285,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
     if (this.count('user') === 0) {
       return (
         <span className='quick-search-items quick-search-items--empty'>
-          {osu.trans('quick_search.result.empty', { mode: osu.trans('quick_search.mode.beatmapset') })}
+          {trans('quick_search.result.empty', { mode: trans('quick_search.mode.beatmapset') })}
         </span>
       );
     }

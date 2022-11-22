@@ -7,17 +7,18 @@ import { intersectionWith } from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
+import { trans } from 'utils/lang';
 
 const bn = 'report-form';
 const maxLength = 2000;
 const availableOptions = [
-  { id: 'Cheating', text: osu.trans('users.report.options.cheating') },
-  { id: 'MultipleAccounts', text: osu.trans('users.report.options.multiple_accounts') },
-  { id: 'Insults', text: osu.trans('users.report.options.insults') },
-  { id: 'Spam', text: osu.trans('users.report.options.spam') },
-  { id: 'UnwantedContent', text: osu.trans('users.report.options.unwanted_content') },
-  { id: 'Nonsense', text: osu.trans('users.report.options.nonsense') },
-  { id: 'Other', text: osu.trans('users.report.options.other') },
+  { id: 'Cheating', text: trans('users.report.options.cheating') },
+  { id: 'MultipleAccounts', text: trans('users.report.options.multiple_accounts') },
+  { id: 'Insults', text: trans('users.report.options.insults') },
+  { id: 'Spam', text: trans('users.report.options.spam') },
+  { id: 'UnwantedContent', text: trans('users.report.options.unwanted_content') },
+  { id: 'Nonsense', text: trans('users.report.options.nonsense') },
+  { id: 'Other', text: trans('users.report.options.other') },
 ];
 
 interface Props {
@@ -55,7 +56,7 @@ export class ReportForm extends React.Component<Props> {
   }
 
   render() {
-    const title = this.props.completed ? osu.trans('users.report.thanks') : this.props.title;
+    const title = this.props.completed ? trans('users.report.thanks') : this.props.title;
 
     return (
       <Modal onClose={this.props.onClose} visible>
@@ -94,7 +95,7 @@ export class ReportForm extends React.Component<Props> {
         {this.options.length !== 0 && (
           <>
             <div className={`${bn}__row`}>
-              {osu.trans('users.report.reason')}
+              {trans('users.report.reason')}
             </div>
             <div className={`${bn}__row`}>
               <SelectOptions
@@ -108,14 +109,14 @@ export class ReportForm extends React.Component<Props> {
           </>
         )}
         <div className={`${bn}__row`}>
-          {osu.trans('users.report.comments')}
+          {trans('users.report.comments')}
         </div>
         <div className={`${bn}__row`}>
           <textarea
             className={`${bn}__textarea`}
             maxLength={maxLength}
             onChange={this.handleCommentsChange}
-            placeholder={osu.trans('users.report.placeholder')}
+            placeholder={trans('users.report.placeholder')}
             value={this.comments}
           />
         </div>
@@ -126,7 +127,7 @@ export class ReportForm extends React.Component<Props> {
             onClick={this.sendReport}
             type='button'
           >
-            {osu.trans('users.report.actions.send')}
+            {trans('users.report.actions.send')}
           </button>
           <button
             className={`${bn}__button`}
@@ -134,7 +135,7 @@ export class ReportForm extends React.Component<Props> {
             onClick={this.props.onClose}
             type='button'
           >
-            {osu.trans('users.report.actions.cancel')}
+            {trans('users.report.actions.cancel')}
           </button>
         </div>
       </div>

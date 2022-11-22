@@ -7,12 +7,13 @@ import * as React from 'react'
 import { button, div, i } from 'react-dom-factories'
 import { onError } from 'utils/ajax'
 import { formatBytes } from 'utils/html'
+import { trans } from 'utils/lang'
 
 el = React.createElement
 
 export class UserEntry extends React.Component
   delete: =>
-    return unless confirm(osu.trans('common.confirmation'))
+    return unless confirm(trans('common.confirmation'))
 
     params =
       method: 'DELETE'
@@ -31,7 +32,7 @@ export class UserEntry extends React.Component
         button
           className: 'contest-userentry__delete'
           type: 'button'
-          title: osu.trans('common.buttons.delete')
+          title: trans('common.buttons.delete')
           onClick: @delete
           i className: 'fas fa-times'
 

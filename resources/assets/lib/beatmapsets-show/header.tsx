@@ -17,6 +17,7 @@ import { getArtist, getTitle } from 'utils/beatmap-helper';
 import { toggleFavourite } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
+import { trans } from 'utils/lang';
 import { beatmapDownloadDirect, wikiUrl } from 'utils/url';
 import BeatmapPicker from './beatmap-picker';
 import BeatmapsetMenu from './beatmapset-menu';
@@ -112,7 +113,7 @@ export default class Header extends React.Component<Props> {
                         mappings={{
                           mapper: <UserLink user={this.controller.mapper(this.controller.currentBeatmap)} />,
                         }}
-                        pattern={osu.trans('beatmapsets.show.details.mapped_by')}
+                        pattern={trans('beatmapsets.show.details.mapped_by')}
                       />
                     </span>
                   )}
@@ -122,7 +123,7 @@ export default class Header extends React.Component<Props> {
                   {this.controller.hoveredBeatmap.version}
 
                   <span className='beatmapset-header__diff-extra beatmapset-header__diff-extra--star-difficulty'>
-                    {osu.trans('beatmapsets.show.stats.stars')}
+                    {trans('beatmapsets.show.stats.stars')}
                     {' '}
                     {formatNumber(this.controller.hoveredBeatmap.difficulty_rating, 2)}
                   </span>
@@ -130,13 +131,13 @@ export default class Header extends React.Component<Props> {
               )}
 
               <div>
-                <span className='beatmapset-header__value' title={osu.trans('beatmapsets.show.stats.playcount')}>
+                <span className='beatmapset-header__value' title={trans('beatmapsets.show.stats.playcount')}>
                   <span className='beatmapset-header__value-icon'><span className='fas fa-play-circle' /></span>
                   <span className='beatmapset-header__value-name'>{formatNumber(this.controller.beatmapset.play_count)}</span>
                 </span>
 
                 {this.controller.beatmapset.status === 'pending' &&
-                  <span className='beatmapset-header__value' title={osu.trans('beatmapsets.show.stats.nominations')}>
+                  <span className='beatmapset-header__value' title={trans('beatmapsets.show.stats.nominations')}>
                     <span className='beatmapset-header__value-icon'><span className='fas fa-thumbs-up' /></span>
                     <span className='beatmapset-header__value-name'>
                       {formatNumber(this.controller.beatmapset.nominations_summary.current)}
@@ -167,14 +168,14 @@ export default class Header extends React.Component<Props> {
                 {getTitle(this.controller.beatmapset)}
               </a>
               {this.controller.beatmapset.nsfw &&
-                <span className='beatmapset-badge beatmapset-badge--nsfw'>{osu.trans('beatmapsets.nsfw_badge.label')}</span>
+                <span className='beatmapset-badge beatmapset-badge--nsfw'>{trans('beatmapsets.nsfw_badge.label')}</span>
               }
               {this.controller.beatmapset.spotlight &&
                 <a
                   className='beatmapset-badge beatmapset-badge--spotlight'
                   href={wikiUrl('Beatmap_Spotlights')}
                 >
-                  {osu.trans('beatmapsets.spotlight_badge.label')}
+                  {trans('beatmapsets.spotlight_badge.label')}
                 </a>
               }
             </span>
@@ -191,7 +192,7 @@ export default class Header extends React.Component<Props> {
                   className='beatmapset-badge beatmapset-badge--featured-artist'
                   href={route('tracks.show', { track: this.controller.beatmapset.track_id })}
                 >
-                  {osu.trans('beatmapsets.featured_artist_badge.label')}
+                  {trans('beatmapsets.featured_artist_badge.label')}
                 </a>
               }
             </span>
@@ -207,7 +208,7 @@ export default class Header extends React.Component<Props> {
                   modifiers={['beatmapset-header-square', `beatmapset-header-square-${favouriteButton.action}`]}
                   props={{
                     onClick: this.onClickFavourite,
-                    title: osu.trans(`beatmapsets.show.details.${favouriteButton.action}`),
+                    title: trans(`beatmapsets.show.details.${favouriteButton.action}`),
                   }}
                 />
               }
@@ -245,8 +246,8 @@ export default class Header extends React.Component<Props> {
           'data-turbolinks': 'false',
         }}
         text={{
-          bottom: bottomTextKey == null ? undefined : osu.trans(`beatmapsets.show.details.download.${bottomTextKey}`),
-          top: osu.trans(`beatmapsets.show.details.download.${topTextKey}`),
+          bottom: bottomTextKey == null ? undefined : trans(`beatmapsets.show.details.download.${bottomTextKey}`),
+          top: trans(`beatmapsets.show.details.download.${topTextKey}`),
         }}
       />
     );
@@ -279,13 +280,13 @@ export default class Header extends React.Component<Props> {
     let href: string | null;
 
     if (this.controller.beatmapset.availability.download_disabled) {
-      label = osu.trans('beatmapsets.availability.disabled');
+      label = trans('beatmapsets.availability.disabled');
     } else {
       if (this.controller.beatmapset.availability.more_information === 'rule_violation') {
-        label = osu.trans('beatmapsets.availability.rule_violation');
+        label = trans('beatmapsets.availability.rule_violation');
         href = `${wikiUrl('Rules')}#beatmap-submission-rules`;
       } else {
-        label = osu.trans('beatmapsets.availability.parts-removed');
+        label = trans('beatmapsets.availability.parts-removed');
       }
     }
 
@@ -298,7 +299,7 @@ export default class Header extends React.Component<Props> {
         {href != null &&
           <div className='beatmapset-header__availability-link'>
             <a href={href} rel="noreferrer" target='_blank'>
-              {osu.trans('beatmapsets.availability.more-info')}
+              {trans('beatmapsets.availability.more-info')}
             </a>
           </div>
         }
@@ -346,8 +347,8 @@ export default class Header extends React.Component<Props> {
         icon='fas fa-lock'
         modifiers='beatmapset-header'
         text={{
-          bottom: osu.trans('beatmapsets.show.details.login_required.bottom'),
-          top: osu.trans('beatmapsets.show.details.login_required.top'),
+          bottom: trans('beatmapsets.show.details.login_required.bottom'),
+          top: trans('beatmapsets.show.details.login_required.top'),
         }}
       />
     );
@@ -359,13 +360,13 @@ export default class Header extends React.Component<Props> {
         {this.controller.beatmapset.storyboard &&
           <div
             className='beatmapset-status beatmapset-status--show-icon'
-            title={osu.trans('beatmapsets.show.info.storyboard')}
+            title={trans('beatmapsets.show.info.storyboard')}
           >
             <span className='fas fa-image' />
           </div>
         }
         <div className='beatmapset-status beatmapset-status--show'>
-          {osu.trans(`beatmapsets.show.status.${this.controller.currentBeatmap.status}`)}
+          {trans(`beatmapsets.show.status.${this.controller.currentBeatmap.status}`)}
         </div>
       </div>
     );

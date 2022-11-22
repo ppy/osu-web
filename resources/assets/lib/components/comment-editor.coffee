@@ -12,6 +12,7 @@ import { button, div, span } from 'react-dom-factories'
 import { onErrorWithCallback } from 'utils/ajax'
 import { classWithModifiers } from 'utils/css'
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler'
+import { trans } from 'utils/lang'
 
 el = React.createElement
 
@@ -46,9 +47,9 @@ export class CommentEditor extends React.PureComponent
 
     placeholder =
       if mode in ['new', 'reply'] && !canComment
-        @props.commentableMeta.current_user_attributes?.can_new_comment_reason ? osu.trans('authorization.comment.store.disabled')
+        @props.commentableMeta.current_user_attributes?.can_new_comment_reason ? trans('authorization.comment.store.disabled')
       else
-        osu.trans("comments.placeholder.#{mode}")
+        trans("comments.placeholder.#{mode}")
 
     blockClass = classWithModifiers bn, @props.modifiers, fancy: mode == 'new'
 
@@ -69,8 +70,8 @@ export class CommentEditor extends React.PureComponent
         className: "#{bn}__footer"
         div className: "#{bn}__footer-item #{bn}__footer-item--notice hidden-xs",
           if canComment
-            osu.trans 'comments.editor.textarea_hint._',
-              action: osu.trans("comments.editor.textarea_hint.#{mode}")
+            trans 'comments.editor.textarea_hint._',
+              action: trans("comments.editor.textarea_hint.#{mode}")
 
         if @props.close?
           div className: "#{bn}__footer-item",
@@ -79,7 +80,7 @@ export class CommentEditor extends React.PureComponent
               modifiers: 'comment-editor'
               props:
                 onClick: @props.close
-              text: osu.trans('common.buttons.cancel')
+              text: trans('common.buttons.cancel')
 
         if currentUser.id?
           div className: "#{bn}__footer-item",
@@ -100,7 +101,7 @@ export class CommentEditor extends React.PureComponent
             el BigButton,
               extraClasses: ['js-user-link']
               modifiers: 'comment-editor'
-              text: osu.trans("comments.guest_button.#{mode}")
+              text: trans("comments.guest_button.#{mode}")
 
 
   buttonText: =>
@@ -110,7 +111,7 @@ export class CommentEditor extends React.PureComponent
         when 'edit' then 'save'
         when 'new' then 'post'
 
-    osu.trans("common.buttons.#{key}")
+    trans("common.buttons.#{key}")
 
 
   canComment: =>
@@ -127,7 +128,7 @@ export class CommentEditor extends React.PureComponent
 
     initialMessage = @props.message ? ''
 
-    return if initialMessage != @state.message && !confirm(osu.trans('common.confirmation_unsaved'))
+    return if initialMessage != @state.message && !confirm(trans('common.confirmation_unsaved'))
 
     @props.close()
 

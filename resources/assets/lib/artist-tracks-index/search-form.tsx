@@ -9,6 +9,7 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { jsonClone } from 'utils/json';
+import { trans } from 'utils/lang';
 import { presence, present } from 'utils/string';
 import makeLink from './make-link';
 
@@ -97,12 +98,12 @@ export default class SearchForm extends React.Component<Props> {
             className='artist-track-search-form__big-input'
             name='query'
             onChange={this.handleChangeString}
-            placeholder={osu.trans('beatmaps.listing.search.prompt')}
+            placeholder={trans('beatmaps.listing.search.prompt')}
             value={this.params.query ?? ''}
           />
 
           <h3 className='title title--artist-track-search-advanced'>
-            {osu.trans('artist.tracks.index.form.advanced')}
+            {trans('artist.tracks.index.form.advanced')}
           </h3>
 
           <div className='artist-track-search-form__advanced'>
@@ -169,7 +170,7 @@ export default class SearchForm extends React.Component<Props> {
 
             <InputContainer labelKey='artist.tracks.index.form.genre' modifiers={['4', 'genre']}>
               <div className='artist-track-search-form__genres'>
-                {this.renderGenreLink(osu.trans('artist.tracks.index.form.genre_all'), null)}
+                {this.renderGenreLink(trans('artist.tracks.index.form.genre_all'), null)}
                 {this.props.availableGenres.map((genre) => this.renderGenreLink(genre, genre))}
               </div>
             </InputContainer>
@@ -181,7 +182,7 @@ export default class SearchForm extends React.Component<Props> {
             href={this.makeLink(this.emptySearch)}
             modifiers={['artist-track-search', 'rounded-thin']}
             props={{ onClick: this.handleReset }}
-            text={osu.trans('common.buttons.reset')}
+            text={trans('common.buttons.reset')}
           />
 
           <BigButton
@@ -189,7 +190,7 @@ export default class SearchForm extends React.Component<Props> {
             href={this.url}
             modifiers={['artist-track-search', 'rounded-thin-wide']}
             props={{ onClick: this.handleSubmit }}
-            text={osu.trans('common.buttons.search')}
+            text={trans('common.buttons.search')}
           />
         </div>
       </form>

@@ -7,6 +7,7 @@ import { ReportReportable } from 'components/report-reportable';
 import UserJson from 'interfaces/user-json';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { trans } from 'utils/lang';
 
 interface Props {
   user: UserJson;
@@ -20,7 +21,7 @@ export default function ExtraMenu(props: Props) {
   return (
     <div
       className='btn-circle btn-circle--page-toggle btn-circle--page-toggle-detail'
-      title={osu.trans('common.buttons.show_more_options')}
+      title={trans('common.buttons.show_more_options')}
     >
       <PopupMenu>
         {(dismiss) => (

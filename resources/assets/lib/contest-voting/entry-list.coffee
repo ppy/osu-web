@@ -7,6 +7,7 @@ import { VoteSummary } from './vote-summary'
 import * as React from 'react'
 import { div,a,i,span } from 'react-dom-factories'
 import { classWithModifiers } from 'utils/css'
+import { trans } from 'utils/lang'
 el = React.createElement
 
 export class EntryList extends BaseEntryList
@@ -14,9 +15,9 @@ export class EntryList extends BaseEntryList
     if @state.contest.best_of && @state.contest.entries.length == 0
       return div className: 'contest__voting-notice',
         if currentUser.id?
-          osu.trans('contest.voting.best_of.none_played')
+          trans('contest.voting.best_of.none_played')
         else
-          osu.trans('contest.voting.login_required')
+          trans('contest.voting.login_required')
 
     return null unless @state.contest.entries.length > 0
 
@@ -41,10 +42,10 @@ export class EntryList extends BaseEntryList
         if @state.options.showLink
           div className: classWithModifiers('contest-voting-list__icon', 'submitted-beatmaps': @state.contest.submitted_beatmaps)
         div className: 'contest-voting-list__header-wrapper',
-          div className: 'contest-voting-list__header-title', osu.trans('contest.entry._')
+          div className: 'contest-voting-list__header-title', trans('contest.entry._')
           div className: 'contest-voting-list__header-voted-toggle-button',
             @renderToggleShowVotedOnly()
           div className: 'contest-voting-list__header-votesummary',
-            div className: 'contest__vote-summary-text', osu.trans('contest.vote.list')
+            div className: 'contest__vote-summary-text', trans('contest.vote.list')
             el VoteSummary, voteCount: @state.selected.length, maxVotes: @state.contest.max_votes
       div {}, entries

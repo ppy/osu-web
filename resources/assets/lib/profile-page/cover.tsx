@@ -14,6 +14,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers, urlPresence } from 'utils/css';
+import { trans } from 'utils/lang';
 
 interface Props {
   coverUrl: string | null;
@@ -58,7 +59,7 @@ export default class Cover extends React.Component<Props> {
             <a
               className='profile-info__avatar'
               href={`${route('account.edit')}#avatar`}
-              title={osu.trans('users.show.change_avatar')}
+              title={trans('users.show.change_avatar')}
             >
               {this.renderAvatar()}
             </a>
@@ -101,7 +102,7 @@ export default class Cover extends React.Component<Props> {
             <button
               className='btn-circle btn-circle--page-toggle'
               onClick={this.onCoverExpandedToggle}
-              title={osu.trans(`users.show.cover.to_${this.showCover ? '0' : '1'}`)}
+              title={trans(`users.show.cover.to_${this.showCover ? '0' : '1'}`)}
               type='button'
             >
               <span className={this.showCover ? 'fas fa-chevron-up' : 'fas fa-chevron-down'} />
@@ -124,7 +125,7 @@ export default class Cover extends React.Component<Props> {
     return (
       <>
         {this.props.user.is_supporter &&
-          <span className='profile-info__icon profile-info__icon--supporter' title={osu.trans('users.show.is_supporter')}>
+          <span className='profile-info__icon profile-info__icon--supporter' title={trans('users.show.is_supporter')}>
             {times(this.props.user.support_level ?? 0, (i) => <span key={i} className='fas fa-heart' />)}
           </span>
         }
@@ -144,7 +145,7 @@ export default class Cover extends React.Component<Props> {
         <a
           className='profile-previous-usernames__icon profile-previous-usernames__icon--with-title'
           onClick={doNothing}
-          title={`${osu.trans('users.show.previous_usernames')}: ${previousUsernames}`}
+          title={`${trans('users.show.previous_usernames')}: ${previousUsernames}`}
         >
           <span className='fas fa-address-card' />
         </a>
@@ -152,7 +153,7 @@ export default class Cover extends React.Component<Props> {
           <span className='fas fa-address-card' />
         </div>
         <div className='profile-previous-usernames__content'>
-          <div className='profile-previous-usernames__title'>{osu.trans('users.show.previous_usernames')}</div>
+          <div className='profile-previous-usernames__title'>{trans('users.show.previous_usernames')}</div>
           <div className='profile-previous-usernames__names'>{previousUsernames}</div>
         </div>
       </div>

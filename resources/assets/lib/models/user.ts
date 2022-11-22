@@ -4,6 +4,7 @@
 import UserGroupJson from 'interfaces/user-group-json';
 import UserJson from 'interfaces/user-json';
 import { action, makeObservable, observable } from 'mobx';
+import { trans } from 'utils/lang';
 
 export function normaliseUsername(username: string) {
   return username.trim().toLowerCase();
@@ -83,7 +84,7 @@ export default class User {
 
 const deletedUser = new User(-1);
 deletedUser.isDeleted = true;
-deletedUser.username = osu.trans('users.deleted');
+deletedUser.username = trans('users.deleted');
 
 export {
   deletedUser,

@@ -9,6 +9,7 @@ import * as _ from 'lodash';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 import { present } from 'utils/string';
 import FlagCountry from './flag-country';
 import FollowUserMappingButton from './follow-user-mapping-button';
@@ -57,7 +58,7 @@ export class UserCard extends React.PureComponent<Props, State> {
     last_visit: '',
     pm_friends_only: true,
     profile_colour: '',
-    username: osu.trans('users.card.loading'),
+    username: trans('users.card.loading'),
   };
 
   state: Readonly<State> = {
@@ -281,7 +282,7 @@ export class UserCard extends React.PureComponent<Props, State> {
             onClick={dismiss}
           >
             <span className='fas fa-envelope' />
-            {` ${osu.trans('users.card.send_message')}`}
+            {` ${trans('users.card.send_message')}`}
           </a>
         )}
 
@@ -310,7 +311,7 @@ export class UserCard extends React.PureComponent<Props, State> {
       return null;
     }
 
-    const status = this.isOnline ? osu.trans('users.status.online') : osu.trans('users.status.offline');
+    const status = this.isOnline ? trans('users.status.online') : trans('users.status.offline');
 
     return (
       <div className='user-card__content user-card__content--status'>
@@ -323,7 +324,7 @@ export class UserCard extends React.PureComponent<Props, State> {
                   mappings={{
                     date: <TimeWithTooltip dateTime={this.user.last_visit} relative />,
                   }}
-                  pattern={osu.trans('users.show.lastvisit')}
+                  pattern={trans('users.show.lastvisit')}
                 />
               )}
             </span>
@@ -352,7 +353,7 @@ export class UserCard extends React.PureComponent<Props, State> {
   }
 
   private renderUsername() {
-    const displayName = this.user.is_deleted ? osu.trans('users.deleted') : this.user.username;
+    const displayName = this.user.is_deleted ? trans('users.deleted') : this.user.username;
 
     return this.url == null ? (
       <div className='user-card__username u-ellipsis-pre-overflow'>{displayName}</div>

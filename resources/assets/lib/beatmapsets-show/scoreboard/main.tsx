@@ -8,6 +8,7 @@ import { computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 import { switchNever } from 'utils/switch-never';
 import Controller from './controller';
 import Mod from './mod';
@@ -93,7 +94,7 @@ export default class Main extends React.Component<Props> {
   private renderEmptyMessage(key: string) {
     return (
       <p className='beatmapset-scoreboard__notice beatmapset-scoreboard__notice--no-scores'>
-        {osu.trans(`beatmapsets.show.scoreboard.no_scores.${key}`)}
+        {trans(`beatmapsets.show.scoreboard.no_scores.${key}`)}
       </p>
     );
   }
@@ -102,12 +103,12 @@ export default class Main extends React.Component<Props> {
     return (
       <div className='beatmapset-scoreboard__notice'>
         <p>
-          {osu.trans('beatmapsets.show.scoreboard.error')}
+          {trans('beatmapsets.show.scoreboard.error')}
         </p>
 
         <p className='beatmapset-scoreboard__supporter-text beatmapset-scoreboard__supporter-text--small'>
           <button className='btn-osu-big btn-osu-big--rounded-thin' onClick={this.onClickRetryButton} type='button'>
-            {osu.trans('common.buttons.retry')}
+            {trans('common.buttons.retry')}
           </button>
         </p>
       </div>
@@ -173,13 +174,13 @@ export default class Main extends React.Component<Props> {
     return (
       <div className='beatmapset-scoreboard__notice'>
         <p className='beatmapset-scoreboard__supporter-text'>
-          {osu.trans('beatmapsets.show.scoreboard.supporter-only')}
+          {trans('beatmapsets.show.scoreboard.supporter-only')}
         </p>
 
         <p className='beatmapset-scoreboard__supporter-text beatmapset-scoreboard__supporter-text--small'>
           <StringWithComponent
-            mappings={{ here: <a href={route('support-the-game')}>{osu.trans('beatmapsets.show.scoreboard.supporter_link.here')}</a> }}
-            pattern={osu.trans('beatmapsets.show.scoreboard.supporter_link._')}
+            mappings={{ here: <a href={route('support-the-game')}>{trans('beatmapsets.show.scoreboard.supporter_link.here')}</a> }}
+            pattern={trans('beatmapsets.show.scoreboard.supporter_link._')}
           />
         </p>
       </div>
@@ -189,7 +190,7 @@ export default class Main extends React.Component<Props> {
   private renderUnrankedMessage() {
     return (
       <p className='beatmapset-scoreboard__notice beatmapset-scoreboard__notice--no-scores'>
-        {osu.trans('beatmapsets.show.scoreboard.no_scores.unranked')}
+        {trans('beatmapsets.show.scoreboard.no_scores.unranked')}
       </p>
     );
   }

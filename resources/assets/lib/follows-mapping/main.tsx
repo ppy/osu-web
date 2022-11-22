@@ -11,6 +11,7 @@ import FollowMappingJson from 'interfaces/follow-mapping-json';
 import { route } from 'laroute';
 import * as React from 'react';
 import { urlPresence } from 'utils/css';
+import { trans } from 'utils/lang';
 
 interface Props {
   follows: FollowMappingJson[];
@@ -31,7 +32,7 @@ export default class Main extends React.PureComponent<Props> {
           <FollowsSubtypes currentSubtype='mapping' />
 
           {this.props.follows.length === 0
-            ? osu.trans('follows.mapping.empty')
+            ? trans('follows.mapping.empty')
             : (
               <div className='follows-table follows-table--mapping'>
                 {this.props.follows.map(this.renderItem)}

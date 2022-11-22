@@ -6,6 +6,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 
 type Props = Record<string, never>;
 
@@ -63,7 +64,7 @@ export class SearchSort extends React.Component<Props> {
     return (
       <div className='sort sort--beatmapsets'>
         <div className='sort__items'>
-          <span className='sort__item sort__item--title'>{osu.trans('sort._')}</span>
+          <span className='sort__item sort__item--title'>{trans('sort._')}</span>
           {this.fields.map(this.renderField)}
         </div>
       </div>
@@ -81,7 +82,7 @@ export class SearchSort extends React.Component<Props> {
         href='#'
         onClick={this.select}
       >
-        {osu.trans(`beatmaps.listing.search.sorting.${field}`)}
+        {trans(`beatmaps.listing.search.sorting.${field}`)}
         <span className='sort__item-arrow'>
           <i className={`fas fa-caret-${this.filters.searchSort.order === 'asc' ? 'up' : 'down'}`} />
         </span>

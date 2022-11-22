@@ -10,6 +10,7 @@ import BeatmapsetCover from 'components/beatmapset-cover'
 import { deletedUser } from 'models/user'
 import * as React from 'react'
 import { a, div, img } from 'react-dom-factories'
+import { trans } from 'utils/lang'
 import { nextVal } from 'utils/seq'
 el = React.createElement
 
@@ -112,7 +113,7 @@ export class Main extends React.PureComponent
           el BeatmapsContext.Provider, value: beatmaps,
             div className: 'modding-profile-list modding-profile-list--index',
               if @props.discussions.length == 0
-                div className: 'modding-profile-list__empty', osu.trans('beatmap_discussions.index.none_found')
+                div className: 'modding-profile-list__empty', trans('beatmap_discussions.index.none_found')
               else
                 for discussion in @props.discussions when discussion?
                   div

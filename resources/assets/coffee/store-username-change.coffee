@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute'
+import { trans } from 'utils/lang'
 
 preventUsernameSubmission = ->
   StoreCart.setEnabled(false)
@@ -43,9 +44,9 @@ $(document).on 'input', '.js-username-change-input', (e) ->
   preventUsernameSubmission()
 
   if requestedUsername.length == 0
-    $status.text osu.trans('store.username_change.check')
+    $status.text trans('store.username_change.check')
   else
-    $status.text osu.trans('store.username_change.checking', username: requestedUsername)
+    $status.text trans('store.username_change.checking', username: requestedUsername)
     debouncedCheckUsernameValidity()
 
 $(document).on 'turbolinks:load', ->

@@ -6,6 +6,7 @@ import LegacyPmNotification from 'models/legacy-pm-notification';
 import { nameToIcons } from 'notification-maps/icons';
 import Item from 'notification-widget/item';
 import * as React from 'react';
+import { transChoice } from 'utils/lang';
 
 @observer
 export default class LegacyPm extends React.Component {
@@ -19,7 +20,7 @@ export default class LegacyPm extends React.Component {
       <Item
         icons={nameToIcons.legacy_pm}
         item={item}
-        message={osu.transChoice('notifications.item.legacy_pm.legacy_pm.legacy_pm', item.count)}
+        message={transChoice('notifications.item.legacy_pm.legacy_pm.legacy_pm', item.count)}
         modifiers={['one']}
         url='/forum/ucp.php?i=pm&folder=inbox'
         withCategory

@@ -6,6 +6,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers, Modifiers, urlPresence } from 'utils/css';
 import { parseJson } from 'utils/json';
+import { trans, transExists } from 'utils/lang';
 import { presence } from 'utils/string';
 
 interface Props {
@@ -207,8 +208,8 @@ export default class HeaderV4 extends React.Component<Props> {
     ];
 
     for (const key of keys) {
-      if (osu.transExists(key, fallbackLocale)) {
-        return osu.trans(key);
+      if (transExists(key, fallbackLocale)) {
+        return trans(key);
       }
     }
 

@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as React from 'react';
+import { trans } from 'utils/lang';
 import { nextVal } from 'utils/seq';
 
 interface Props {
@@ -70,14 +71,14 @@ export default class GalleryContestVoteButton extends React.PureComponent<Props,
     }
 
     if (this.state.button.isSelected) {
-      return osu.trans('contest.voting.button.remove');
+      return trans('contest.voting.button.remove');
     }
 
     if (!this.state.button.hasVote) {
-      return osu.trans('contest.voting.button.used_up');
+      return trans('contest.voting.button.used_up');
     }
 
-    return osu.trans('contest.voting.button.add');
+    return trans('contest.voting.button.add');
 
   };
 

@@ -7,6 +7,7 @@ import UserStatisticsJson, { RankType } from 'interfaces/user-statistics-json';
 import * as moment from 'moment';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
+import { trans } from 'utils/lang';
 
 interface Props {
   highest?: RankHighestJson | null;
@@ -23,14 +24,14 @@ export default function Rank({ highest, stats, type }: Props) {
     const variantRank = variant[key];
     if (variantRank == null) continue;
 
-    const name = osu.trans(`beatmaps.variant.${variant.mode}.${variant.variant}`);
+    const name = trans(`beatmaps.variant.${variant.mode}.${variant.variant}`);
     const value = `#${formatNumber(variantRank)}`;
 
     tooltip.push(`<div>${name}: ${value}</div>`);
   }
 
   if (highest != null) {
-    const text = osu.trans('users.show.rank.highest', {
+    const text = trans('users.show.rank.highest', {
       date: moment(highest.updated_at).format('ll'),
       rank: `#${formatNumber(highest.rank)}`,
     });
@@ -40,7 +41,7 @@ export default function Rank({ highest, stats, type }: Props) {
 
   return (
     <ValueDisplay
-      label={osu.trans(`users.show.rank.${type}_simple`)}
+      label={trans(`users.show.rank.${type}_simple`)}
       modifiers='rank'
       value={
         <div data-html-title={tooltip.join('')} title=''>

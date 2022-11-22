@@ -7,6 +7,7 @@ import { route } from 'laroute';
 import * as moment from 'moment';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 
 export default function PostItem({ modifiers, post }: { modifiers?: string[]; post: PostJson }) {
   let cover;
@@ -45,7 +46,7 @@ export default function PostItem({ modifiers, post }: { modifiers?: string[]; po
         <div className='news-card__row news-card__row--author'>
           <StringWithComponent
             mappings={{ user: <strong>{post.author}</strong> }}
-            pattern={osu.trans('news.show.by')}
+            pattern={trans('news.show.by')}
           />
         </div>
       </div>

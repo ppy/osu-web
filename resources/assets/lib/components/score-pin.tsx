@@ -7,6 +7,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { onErrorWithCallback } from 'utils/ajax';
+import { trans } from 'utils/lang';
 import { popup } from 'utils/popup';
 
 interface Props {
@@ -31,7 +32,7 @@ export default class ScorePin extends React.Component<Props> {
   private get label() {
     const targetState = this.isPinned ? '0' : '1';
 
-    return osu.trans(`users.show.extra.top_ranks.pin.to_${targetState}`);
+    return trans(`users.show.extra.top_ranks.pin.to_${targetState}`);
   }
 
   constructor(props: Props) {
@@ -61,7 +62,7 @@ export default class ScorePin extends React.Component<Props> {
 
     core.scorePins.apiPin(this.props.score, !this.isPinned)
       .done(() => {
-        popup(osu.trans(`users.show.extra.top_ranks.pin.to_${targetState}_done`), 'info');
+        popup(trans(`users.show.extra.top_ranks.pin.to_${targetState}_done`), 'info');
         this.onUpdateCallbacks?.done?.();
       }).fail((xhr, status) => this.onUpdateCallbacks?.fail(xhr, status));
   };

@@ -4,6 +4,7 @@
 import SoloScoreJson from 'interfaces/solo-score-json';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
+import { trans } from 'utils/lang';
 
 interface Props {
   score: SoloScoreJson;
@@ -18,14 +19,14 @@ export default function PpValue(props: Props) {
   const isSolo = props.score.type === 'solo_score';
 
   if (!isBest && !isSolo) {
-    title = osu.trans('scores.status.non_best');
+    title = trans('scores.status.non_best');
     content = '-';
   } else if (props.score.pp == null) {
     if (isSolo && !props.score.passed) {
-      title = osu.trans('scores.status.non_passing');
+      title = trans('scores.status.non_passing');
       content = '-';
     } else {
-      title = osu.trans('scores.status.processing');
+      title = trans('scores.status.processing');
       content = <span className='fas fa-exclamation-triangle' />;
     }
   } else {

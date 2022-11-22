@@ -6,6 +6,7 @@ import * as React from 'react'
 import { div, span, a, i } from 'react-dom-factories'
 import { classWithModifiers, urlPresence } from 'utils/css'
 import { formatNumber } from 'utils/html'
+import { transChoice } from 'utils/lang'
 import { Voter } from './voter'
 
 el = React.createElement
@@ -96,7 +97,7 @@ export class ArtEntry extends React.Component
               span className: "#{bn}__entrant", @props.entry.results.actual_name
           div className: "#{bn}__result-pane",
             span className: "#{bn}__result-votes",
-              osu.transChoice 'contest.vote.count', @props.entry.results.votes
+              transChoice 'contest.vote.count', @props.entry.results.votes
             if Number.isFinite usersVotedPercentage
               span className: "#{bn}__result-votes #{bn}__result-votes--percentage",
                 " (#{formatNumber(usersVotedPercentage)}%)"

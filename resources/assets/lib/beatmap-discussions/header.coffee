@@ -16,6 +16,7 @@ import { deletedUser } from 'models/user'
 import * as React from 'react'
 import { a, div, h1, h2, p, span } from 'react-dom-factories'
 import { getArtist, getTitle } from 'utils/beatmap-helper'
+import { trans } from 'utils/lang'
 import BeatmapList from './beatmap-list'
 import Chart from './chart'
 import { Nominations } from './nominations'
@@ -68,7 +69,7 @@ export class Header extends React.PureComponent
             href: route('beatmapsets.show', beatmapset: @props.beatmapset.id)
             icon: 'fas fa-info'
             modifiers: 'full'
-            text: osu.trans('beatmaps.discussions.beatmap_information')
+            text: trans('beatmaps.discussions.beatmap_information')
 
       div className: "#{bn}__content #{bn}__content--nomination",
         el Nominations,
@@ -104,12 +105,12 @@ export class Header extends React.PureComponent
               className: 'link link--white link--no-underline'
               getTitle(@props.beatmapset)
             if @props.beatmapset.nsfw
-              span className: 'beatmapset-badge beatmapset-badge--nsfw', osu.trans('beatmapsets.nsfw_badge.label')
+              span className: 'beatmapset-badge beatmapset-badge--nsfw', trans('beatmapsets.nsfw_badge.label')
             if @props.beatmapset.spotlight
               a
                 className: 'beatmapset-badge beatmapset-badge--spotlight'
                 href: wikiUrl('Beatmap_Spotlights')
-                osu.trans('beatmapsets.spotlight_badge.label')
+                trans('beatmapsets.spotlight_badge.label')
           h2
             className: "#{bn}__title #{bn}__title--artist"
             getArtist(@props.beatmapset)
@@ -117,7 +118,7 @@ export class Header extends React.PureComponent
               a
                 className: 'beatmapset-badge beatmapset-badge--featured-artist'
                 href: route 'tracks.show', @props.beatmapset.track_id
-                osu.trans('beatmapsets.featured_artist_badge.label')
+                trans('beatmapsets.featured_artist_badge.label')
 
         div
           className: "#{bn}__filters"
@@ -154,7 +155,7 @@ export class Header extends React.PureComponent
                   el StringWithComponent,
                     mappings:
                       user: el(UserLink, user: @props.users[@props.currentBeatmap.user_id] ? deletedUser)
-                    pattern: osu.trans('beatmaps.discussions.guest')
+                    pattern: trans('beatmaps.discussions.guest')
             el BeatmapBasicStats, beatmap: @props.currentBeatmap, beatmapset: @props.beatmapset
 
 
@@ -191,7 +192,7 @@ export class Header extends React.PureComponent
           className: "#{bn}__content"
           div
             className: "#{bn}__title"
-            osu.trans("beatmaps.discussions.stats.#{_.snakeCase(type)}")
+            trans("beatmaps.discussions.stats.#{_.snakeCase(type)}")
           div
             className: "#{bn}__count"
             total

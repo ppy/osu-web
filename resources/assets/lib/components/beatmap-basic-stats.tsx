@@ -6,6 +6,7 @@ import BeatmapsetJson from 'interfaces/beatmapset-json';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { formatDuration, formatNumber } from 'utils/html';
+import { trans } from 'utils/lang';
 
 const bn = 'beatmap-basic-stats';
 
@@ -41,7 +42,7 @@ export default class BeatmapBasicStats extends React.Component<Props> {
 
         const offset = this.props.beatmapset.offset;
         if (offset !== 0) {
-          titleAppend += ` (${osu.trans('beatmapsets.show.stats.offset', { offset: formatNumber(offset) })})`;
+          titleAppend += ` (${trans('beatmapsets.show.stats.offset', { offset: formatNumber(offset) })})`;
         }
         break;
       }
@@ -57,7 +58,7 @@ export default class BeatmapBasicStats extends React.Component<Props> {
       <div
         key={key}
         className={`${bn}__entry`}
-        title={`${osu.trans(`beatmapsets.show.stats.${key}`, titleParams)}${titleAppend}`}
+        title={`${trans(`beatmapsets.show.stats.${key}`, titleParams)}${titleAppend}`}
       >
         <div
           className={`${bn}__entry-icon`}
