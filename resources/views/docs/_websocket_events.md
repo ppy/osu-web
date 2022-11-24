@@ -1,35 +1,56 @@
 
 # Websocket Events
 
-The following Chat-related events are sent to the user over the websocket connection:
+## `logout` event
+
+User session using same authentication key has been logged out (not yet implemented for OAuth authentication).
+Server will disconnect session after sending this event so don't try to reconnect.
+
+## `new` event
+
+Sent when a new notification is received.
+
+### Payload Format
+
+See [Notification](#notification) object for notification types.
+
+## `read` event
+
+Sent when a notification has been read.
+
+TODO: `ids` should be moved to `data` to match other events.
+
+Field | Type     | Description
+----- | -------- | ----------------------------------
+event | string   | `read`
+ids   | number[] | id of Notifications which are read
 
 ## chat.channel.join
 
-Broadcast to the user when the user joins a channel.
+Broadcast to the user when the user joins a chat channel.
 
-### Response Format
+### Payload Format
 
 [ChatChannel](#chat-channel) with `current_user_attributes`, `last_message_id`, `users` additional attributes.
 
 ## chat.channel.part
 
-Broadcast to the user when the user leaves a channel.
+Broadcast to the user when the user leaves a chat channel.
 
-### Response Format
+### Payload Format
 
 [ChatChannel](#chat-channel) with `current_user_attributes`, `last_message_id`, `users` additional attributes.
 
 ## chat.message.new
 
-Sent to the user when the user receives a message.
+Sent to the user when the user receives a chat message.
 
-### Response Format
+### Payload Format
 
 Field    | Type                          | Description
----------|-------------------------------|-------------
+-------- |------------------------------ |-------------
 messages | [ChatMessage](#chatmessage)[] | The messages received.
 users    | [UserCompact](#usercompact)[] | The related users who sent the messages.
-
 
 Messages intented for a user are always sent even if the user does not currently have the channel open.
 Such messages include PM and Announcement messages.

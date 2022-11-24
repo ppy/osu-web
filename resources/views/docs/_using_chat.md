@@ -8,11 +8,11 @@ The Chat websocket API allows receiving updates in real-time; this requires a co
 Sending messages is still performed through the HTTP-based API.
 
 <aside class="notice">
-Websocket messages may arrive before or after the related HTTP web request completes.
-It is up to the client to handle this.
+  Websocket messages may arrive before or after the related HTTP web request completes.
+  It is up to the client to handle this.
 </aside>
 
-## Getting user channels list
+## Getting the user's channel list
 
 TODO: update default parameter
 
