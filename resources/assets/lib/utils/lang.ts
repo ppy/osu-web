@@ -9,7 +9,7 @@ type Replacement = string | number;
 type Replacements = Partial<Record<string, Replacement>>;
 
 export function trans(key: string, replacements: Replacements = {}, locale?: string) {
-  if (!transExists) {
+  if (!transExists(key, locale)) {
     locale = fallbackLocale;
   }
 
