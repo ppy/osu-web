@@ -109,7 +109,7 @@ export default class DiscussionVoteButtons extends React.Component<Props> {
 
   private renderVote(type: VoteType) {
     const [baseScore, icon] = type === 'up' ? [1, 'thumbs-up'] : [-1, 'thumbs-down'];
-    const currentVote = this.props.discussion.current_user_attributes.vote_score;
+    const currentVote = this.props.discussion.current_user_attributes?.vote_score;
     const score = currentVote === baseScore ? 0 : baseScore;
     const disabled = this.voteXhr != null || this.props.cannotVote || (type === 'down' && !this.canDownvote);
 

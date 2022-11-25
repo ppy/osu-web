@@ -35,7 +35,7 @@ interface Props {
   discussion: BeatmapsetDiscussionJsonForShow | BeatmapsetDiscussionJsonForBundle;
   highlighted: boolean;
   isTimelineVisible: boolean;
-  parentDiscussion?: BeatmapsetDiscussionJson & Required<Pick<BeatmapsetDiscussionJson, 'current_user_attributes'>>;
+  parentDiscussion?: BeatmapsetDiscussionJson;
   // preview = true is for rendering the non-discussion version;
   // still need this flag instead of just relying on type discrimination
   // due to updates getting merged into the big discussions blob at the root.
