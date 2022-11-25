@@ -26,7 +26,7 @@ interface Props {
 
 @observer
 export default class DiscussionVoteButtons extends React.Component<Props> {
-  private readonly tooltips: Partial<Record<VoteType, unknown>> = {};
+  private readonly tooltips: Partial<Record<VoteType, JQuery>> = {};
   @observable private voteXhr: JQuery.jqXHR<BeatmapsetDiscussionJsonForShow> | null = null;
 
   @computed

@@ -52,7 +52,7 @@ export function createTooltip(target: HTMLElement, positionAt: PositionAt, conte
       def: false,
       tip: false,
     },
-  }) as unknown;
+  }) as JQuery;
 }
 
 export default function UserListPopup(props: Props) {
