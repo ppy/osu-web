@@ -10,23 +10,22 @@ type Replacement = string | number;
 export type Replacements = Partial<Record<string, Replacement>>;
 
 export function joinComponents(array: React.ReactNode[], key = 'common.array_and') {
-  switch (array.length) {
-    case 0:
-      return '';
-    case 1:
-      return array[0];
-    case 2:
-      return <>{array[0]}{trans(`${key}.two_words_connector`)}{array[1]}</>;
+  const nodes: React.ReactFragment[] = [];
+
+  if (array.length > 0) {
+    nodes.push(<React.Fragment key={0}>{array[0]}</React.Fragment>);
+
+    const lastIndex = array.length - 1;
+    const lastConnector = lastIndex === 1 ? trans(`${key}.two_words_connector`) : trans(`${key}.last_word_connector`);
+
+    for (let i = 1; i < lastIndex; i++) {
+      nodes.push(<React.Fragment key={i}>{trans(`${key}.words_connector`)}{array[i]}</React.Fragment>);
+    }
+
+    nodes.push(<React.Fragment key={lastIndex}>{lastConnector}{array[lastIndex]}</React.Fragment>);
   }
 
-  const nodes = [array[0]];
-  const lastIndex = array.length - 1;
-  for (let i = 1; i < lastIndex - 1; i++) {
-    nodes.push(<React.Fragment key={i}>{trans(`${key}.words_connector`)} {array[i]}</React.Fragment>);
-  }
-
-  nodes.push(<React.Fragment key={lastIndex}>{trans(`${key}.last_word_connector`)} {array[lastIndex]}</React.Fragment>);
-  return nodes;
+  return <>{nodes}</>;
 }
 
 export function trans(key: string, replacements: Replacements = {}, locale?: string) {
