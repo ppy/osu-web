@@ -65,7 +65,9 @@ class ForumSearch extends Search
 
         $query->mustNot(['terms' => ['poster_id' => $this->params->blockedUserIds()]]);
 
-        $query->mustNot(['term' => ['is_deleted' => true]]);
+        if (!$this->params->includeDeleted) {
+            $query->mustNot(['term' => ['is_deleted' => true]]);
+        }
 
         return $query;
     }

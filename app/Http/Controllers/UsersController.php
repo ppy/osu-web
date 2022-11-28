@@ -387,7 +387,7 @@ class UsersController extends Controller
 
         $params = request()->all();
         $params['username'] = $id;
-        $search = (new ForumSearch(new ForumSearchRequestParams($params)))->size(50);
+        $search = (new ForumSearch(new ForumSearchRequestParams($params, Auth::user())))->size(50);
 
         return ext_view('users.posts', compact('search', 'user'));
     }
