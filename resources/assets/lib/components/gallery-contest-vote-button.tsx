@@ -79,7 +79,7 @@ export default class GalleryContestVoteButton extends React.PureComponent<Props,
       isLoading: false,
       isSelected: false,
       votingOver: false,
-    }
+    };
   };
 
   private buttonTitle = () => {
