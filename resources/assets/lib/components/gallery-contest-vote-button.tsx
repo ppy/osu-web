@@ -10,10 +10,10 @@ interface Props {
 }
 
 interface ButtonState {
-  hasVote?: boolean;
-  isLoading?: boolean;
-  isSelected?: boolean;
-  votingOver?: boolean;
+  hasVote: boolean;
+  isLoading: boolean;
+  isSelected: boolean;
+  votingOver: boolean;
 }
 
 interface State {
@@ -74,7 +74,12 @@ export default class GalleryContestVoteButton extends React.PureComponent<Props,
       return JSON.parse(button.dataset.contestVoteMeta) as ButtonState;
     }
 
-    return {};
+    return {
+      hasVote: false,
+      isLoading: false,
+      isSelected: false,
+      votingOver: false,
+    }
   };
 
   private buttonTitle = () => {
