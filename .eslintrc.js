@@ -121,6 +121,16 @@ module.exports = {
           },
         ],
         '@typescript-eslint/semi': ['error', 'always'],
+        // TODO: make more strict.
+        '@typescript-eslint/strict-boolean-expressions': [
+          'error',
+          {
+            allowAny: true,
+            allowNullableBoolean: true,
+            allowNullableNumber: true,
+            allowNullableString: true,
+          },
+        ],
         '@typescript-eslint/type-annotation-spacing': 'error',
         '@typescript-eslint/unified-signatures': 'error',
         'dot-notation': 'off',
