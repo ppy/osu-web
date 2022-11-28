@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BbcodeEditor, { OnChangeProps } from 'components/bbcode-editor';
-import { Modal } from 'components/modal';
+import Modal from 'components/modal';
 import { UserLink } from 'components/user-link';
 import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
 import UserJson from 'interfaces/user-json';

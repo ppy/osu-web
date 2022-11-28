@@ -12,7 +12,7 @@ import client from './shopify-client';
 
 declare global {
   interface Window {
-    Store: Store;
+    Store?: Store;
   }
 }
 
@@ -31,7 +31,7 @@ export class Store {
   }
 
   static init(sharedContext: Window) {
-    sharedContext.Store = sharedContext.Store || new Store();
+    sharedContext.Store = sharedContext.Store ?? new Store();
   }
 
   async beginCheckout(event: ClickEvent) {

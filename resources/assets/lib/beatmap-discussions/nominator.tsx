@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BigButton from 'components/big-button';
-import { Modal } from 'components/modal';
+import Modal from 'components/modal';
 import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import GameMode from 'interfaces/game-mode';
@@ -85,9 +85,11 @@ export class Nominator extends React.PureComponent<Props, State> {
   legacyMode = () => this.props.beatmapset.nominations?.legacy_mode;
 
   mapCanBeNominated = () => {
-    const requiredHype = this.props.beatmapset.hype?.required;
+    if (this.props.beatmapset.hype == null) {
+      return false;
+    }
 
-    return this.props.beatmapset.status === 'pending' && requiredHype && this.props.currentHype >= requiredHype;
+    return this.props.beatmapset.status === 'pending' && this.props.currentHype >= this.props.beatmapset.hype.required;
   };
 
   nominate = () => {
