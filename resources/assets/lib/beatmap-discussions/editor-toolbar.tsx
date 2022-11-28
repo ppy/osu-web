@@ -68,7 +68,7 @@ export class EditorToolbar extends React.Component {
   }
 
   render() {
-    if (!this.context || !this.visible) {
+    if (this.context == null || !this.visible) {
       return null;
     }
 
@@ -96,7 +96,7 @@ export class EditorToolbar extends React.Component {
 
   updatePosition() {
     const tooltip = this.ref.current;
-    if (!tooltip || !this.context) {
+    if (!tooltip || this.context == null) {
       return;
     }
 
@@ -121,13 +121,11 @@ export class EditorToolbar extends React.Component {
       }
 
       const containerBounds = this.scrollContainer?.getBoundingClientRect();
-      const containerTop = containerBounds?.top ?? 0;
-      const containerBottom = containerBounds?.bottom;
       const selectionBounds = selectionRange.getBoundingClientRect();
 
-      const outsideContainer =
-        selectionBounds.top < containerTop ||
-        (containerBottom && selectionBounds.top > containerBottom);
+      const outsideContainer = containerBounds != null
+        && (selectionBounds.top < containerBounds.top
+          || selectionBounds.top > containerBounds.bottom);
 
       if (outsideContainer) {
         return this.hide();
