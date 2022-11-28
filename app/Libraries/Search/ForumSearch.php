@@ -32,7 +32,7 @@ class ForumSearch extends Search
     {
         parent::__construct(Post::esIndexName(), $params ?? new ForumSearchParams());
 
-        $this->source(['topic_id', 'post_id', 'post_time', 'poster_id', 'search_content', 'topic_title']);
+        $this->source(['is_deleted','topic_id', 'post_id', 'post_time', 'poster_id', 'search_content', 'topic_title']);
         $this->highlight(
             (new Highlight())
                 ->field('topic_title')
