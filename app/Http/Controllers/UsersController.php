@@ -389,7 +389,12 @@ class UsersController extends Controller
         $params['username'] = $id;
         $search = (new ForumSearch(new ForumSearchRequestParams($params, Auth::user())))->size(50);
 
-        return ext_view('users.posts', compact('search', 'user'));
+        $fields = ['user' => null];
+        if (!(Auth::user()?->isModerator() ?? false)) {
+            $fields['includeDeleted'] = null;
+        }
+
+        return ext_view('users.posts', compact('fields', 'search', 'user'));
     }
 
     /**

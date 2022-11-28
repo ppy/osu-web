@@ -47,7 +47,7 @@
             @include('home._search_page_tabs', compact('allSearch'))
 
             @if ($searchMode === 'forum_post')
-                @include('objects.search._forum_options')
+                @include('objects.search._forum_options', compact('fields'))
             @endif
 
             @if ($allSearch->hasQuery())

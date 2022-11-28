@@ -24,7 +24,7 @@ class ForumSearchRequestParams extends ForumSearchParams
         $this->parseSort(get_string($request['sort'] ?? null));
 
         if ($user?->isModerator() ?? false) {
-            $this->includeDeleted = true;
+            $this->includeDeleted = get_bool($request['include_deleted'] ?? false);
         }
     }
 
