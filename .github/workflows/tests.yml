@@ -138,7 +138,7 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 
-      - run: mysql -u root -h 127.0.0.1 < ./docker/development/db_setup.sql
+      - run: php artisan db:create
 
       - run: ./build.sh
 

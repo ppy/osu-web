@@ -16,6 +16,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
+        Commands\DbCreate::class,
+
         Commands\EsCreateSearchBlacklist::class,
         Commands\EsIndexDocuments::class,
         Commands\EsIndexScoresQueue::class,
