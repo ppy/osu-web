@@ -34,9 +34,6 @@ _run composer install
 
 _run artisan dusk:chrome-driver
 
-_run artisan db:create
-_run_dusk artisan db:create
-
 if [ "$genkey" = 1 ]; then
     echo "Generating app key"
     _run artisan key:generate
