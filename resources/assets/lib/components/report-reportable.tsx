@@ -10,7 +10,7 @@ type ReactButtonWithoutRef = Pick<ReactButton, Exclude<keyof ReactButton, 'ref'>
 
 interface Props extends ReactButtonWithoutRef {
   icon: boolean;
-  onFormClose: () => void;
+  onFormOpen: () => void;
   reportableId: string;
   reportableType: ReportableType;
   user: { username: string };
@@ -19,11 +19,11 @@ interface Props extends ReactButtonWithoutRef {
 export class ReportReportable extends React.PureComponent<Props> {
   static defaultProps = {
     icon: false,
-    onFormClose: () => { /** nothing */ },
+    onFormOpen: () => { /** nothing */ },
   };
 
   render() {
-    const { icon, onFormClose, reportableId, reportableType, user, ...attribs } = this.props;
+    const { icon, onFormOpen, reportableId, reportableType, user, ...attribs } = this.props;
     const groupKey = reportableTypeToGroupKey[this.props.reportableType];
     const buttonText = trans(`report.${groupKey}.button`);
 
@@ -45,7 +45,7 @@ export class ReportReportable extends React.PureComponent<Props> {
   private onShowFormButtonClick = (e: React.MouseEvent<HTMLElement>) => {
     if (e.button !== 0) return;
 
-    this.props.onFormClose();
+    this.props.onFormOpen();
     showReportForm({
       reportableId: this.props.reportableId,
       reportableType: this.props.reportableType,
