@@ -1,7 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { IconExpand } from 'components/icon-expand'
+import IconExpand from 'components/icon-expand'
 import * as React from 'react'
 import { a, button, div, i, p, span } from 'react-dom-factories'
 import { canModeratePosts } from 'utils/beatmapset-discussion-helper'
