@@ -1,269 +1,379 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
-
-import { IconExpand } from 'components/icon-expand'
-import * as React from 'react'
-import { a, button, div, i, p, span } from 'react-dom-factories'
-import { canModeratePosts } from 'utils/beatmapset-discussion-helper'
-import { jsonClone } from 'utils/json'
-import { trans } from 'utils/lang'
-import { nextVal } from 'utils/seq'
-import { Discussion } from './discussion'
-
-el = React.createElement
-
-bn = 'beatmap-discussions'
-
-sortPresets =
-  updated_at:
-    text: trans('beatmaps.discussions.sort.updated_at')
-    sort: (a, b) ->
-      if a.last_post_at == b.last_post_at
-        b.id - a.id
-      else
-        Date.parse(b.last_post_at) - Date.parse(a.last_post_at)
-
-  created_at:
-    text: trans('beatmaps.discussions.sort.created_at')
-    sort: (a, b) ->
-      if a.created_at == b.created_at
-        a.id - b.id
-      else
-        Date.parse(a.created_at) - Date.parse(b.created_at)
-
-  # there's obviously no timeline field
-  timeline:
-    text: trans('beatmaps.discussions.sort.timeline')
-    sort: (a, b) ->
-      if a.timestamp == b.timestamp
-        a.id - b.id
-      else
-        a.timestamp - b.timestamp
-
-
-export class Discussions extends React.PureComponent
-  constructor: (props) ->
-    super props
-
-    @eventId = "beatmapset-discussions-#{nextVal()}"
-
-    @state =
-      discussionCollapses: {}
-      discussionDefaultCollapsed: false
-      highlightedDiscussionId: null
-      sort:
-        generalAll: 'updated_at'
-        general: 'updated_at'
-        timeline: 'timeline'
-        reviews: 'updated_at'
-
-
-  componentDidMount: ->
-    $.subscribe "beatmapset-discussions:collapse.#{@eventId}", @toggleCollapse
-    $.subscribe "beatmapset-discussions:highlight.#{@eventId}", @setHighlight
-
-
-  componentWillUnmount: ->
-    $.unsubscribe ".#{@eventId}"
-
-
-  render: =>
-    discussions = @props.currentDiscussions[@props.mode]
-
-    div className: 'osu-page osu-page--small osu-page--full',
-      div
-        className: bn
-
-        div className: 'page-title',
-          trans('beatmaps.discussions.title')
-
-        div className: "#{bn}__toolbar",
-          div className: "#{bn}__toolbar-content #{bn}__toolbar-content--left",
-            div
-              className: "#{bn}__toolbar-item"
-              @renderSortOptions()
-          div className: "#{bn}__toolbar-content #{bn}__toolbar-content--right",
-            @renderShowDeletedToggle()
-
-            button
-              type: 'button'
-              className: "#{bn}__toolbar-item #{bn}__toolbar-item--link"
-              'data-type': 'collapse'
-              onClick: @expand
-              el IconExpand,
-                expand: false
-                parentClass: "#{bn}__toolbar-link-content"
-              span className: "#{bn}__toolbar-link-content",
-                trans('beatmaps.discussions.collapse.all-collapse')
-
-            button
-              type: 'button'
-              className: "#{bn}__toolbar-item #{bn}__toolbar-item--link"
-              'data-type': 'expand'
-              onClick: @expand
-              el IconExpand,
-                parentClass: "#{bn}__toolbar-link-content"
-              span className: "#{bn}__toolbar-link-content",
-                trans('beatmaps.discussions.collapse.all-expand')
-
-
-        if discussions.length == 0
-          div className: "#{bn}__discussions #{bn}__discussions--empty",
-            trans 'beatmaps.discussions.empty.empty'
-
-        else if _.size(@props.currentDiscussions.byFilter[@props.currentFilter][@props.mode]) == 0
-          div className: "#{bn}__discussions #{bn}__discussions--empty",
-            trans 'beatmaps.discussions.empty.hidden'
-
-        else
-          div
-            className: "#{bn}__discussions"
-            @timelineCircle()
-
-            if @isTimelineVisible()
-              div className: "#{bn}__timeline-line hidden-xs"
-
-            div null,
-              @sortedDiscussions().map @discussionPage
-
-            @timelineCircle()
-
-
-  renderShowDeletedToggle: =>
-    return null unless canModeratePosts(@props.currentUser)
-
-    button
-      type: 'button'
-      className: "#{bn}__toolbar-item #{bn}__toolbar-item--link"
-      onClick: @toggleShowDeleted
-      span className: "#{bn}__toolbar-link-content",
-        span
-          className: if @props.showDeleted then 'fas fa-check-square' else 'far fa-square'
-      span className: "#{bn}__toolbar-link-content",
-        trans('beatmaps.discussions.show_deleted')
-
-
-  renderSortOptions: =>
-    presets =
-      switch @props.mode
-        when 'timeline'
-          ['timeline', 'updated_at']
-        else
-          ['created_at', 'updated_at']
-
-    div
-      className: 'sort sort--beatmapset-discussions'
-      div
-        className: 'sort__items'
-        span className: 'sort__item sort__item--title', trans('sort._')
-        for preset in presets
-          button
-            key: preset
-            type: 'button'
-            className: "sort__item sort__item--button #{if @currentSort() == preset then 'sort__item--active' else ''}"
-            'data-sort-preset': preset
-            onClick: @changeSort
-            sortPresets[preset].text
-
-
-  discussionPage: (discussion) =>
-    return if !discussion.id?
-
-    visible = @props.currentDiscussions.byFilter[@props.currentFilter][@props.mode][discussion.id]?
-
-    return unless visible
-
-    if discussion.parent_id?
-      parentDiscussion = @props.currentDiscussions.byFilter.total.reviews[discussion.parent_id]
-
-    div
-      key: discussion.id
-      className: "#{bn}__discussion"
-      el Discussion,
-        discussion: discussion
-        users: @props.users
-        currentUser: @props.currentUser
-        beatmapset: @props.beatmapset
-        currentBeatmap: @props.currentBeatmap
-        readPostIds: @props.readPostIds
-        isTimelineVisible: @isTimelineVisible()
-        visible: visible
-        showDeleted: @props.showDeleted
-        parentDiscussion: parentDiscussion
-        collapsed: @isDiscussionCollapsed(discussion.id)
-        highlighted: @state.highlightedDiscussionId == discussion.id
-
-
-  changeSort: (e) =>
-    targetPreset = e.currentTarget.dataset.sortPreset
-
-    return if targetPreset == @currentSort()
-
-    sort = jsonClone @state.sort
-    sort[@props.mode] = targetPreset
-
-    @setState {sort}
-
-
-  currentSort: =>
-    @state.sort[@props.mode]
-
-
-  expand: (e) =>
-    @setState
-      discussionCollapses: {}
-      discussionDefaultCollapsed: e.currentTarget.dataset.type == 'collapse'
-
-
-  hidden: (discussion) =>
-    switch @props.currentFilter
-      when 'mine' then discussion.user_id != @props.currentUser.id
-      when 'resolved' then discussion.message_type == 'praise' || !discussion.resolved
-      when 'pending' then discussion.message_type == 'praise' || discussion.resolved
-      when 'praises' then discussion.message_type != 'praise'
-      else false
-
-
-  isDiscussionCollapsed: (discussionId) ->
-    @state.discussionCollapses[discussionId] ? @state.discussionDefaultCollapsed
-
-
-  isTimelineVisible: =>
-    @props.mode == 'timeline' && @currentSort() == 'timeline'
-
-
-  setHighlight: (_event, {discussionId}) =>
-    @setState highlightedDiscussionId: discussionId
-
-
-  sortedDiscussions: ->
-    @props.currentDiscussions[@props.mode].slice().sort (a, b) =>
-      mapperNoteCompare =
-        # no sticky for timeline sort
-        @currentSort() != 'timeline' &&
-        # stick the mapper note
-        'mapper_note' in [a.message_type, b.message_type] &&
-        # but if both are mapper note, do base comparison
-        a.message_type != b.message_type
-
-      if mapperNoteCompare
-        if a.message_type == 'mapper_note' then -1 else 1
-      else
-        sortPresets[@currentSort()].sort(a, b)
-
-
-  timelineCircle: =>
-    div
-      'data-visibility': if !@isTimelineVisible() then 'hidden'
-      className: "#{bn}__mode-circle #{bn}__mode-circle--active hidden-xs"
-
-
-  toggleCollapse: (_event, {discussionId}) =>
-    newDiscussionCollapses = Object.assign({}, @state.discussionCollapses)
-    newDiscussionCollapses[discussionId] = !(@isDiscussionCollapsed(discussionId))
-
-    @setState discussionCollapses: newDiscussionCollapses
-
-
-  toggleShowDeleted: =>
-    $.publish 'beatmapDiscussionPost:toggleShowDeleted'
+// Copyright (c) ppy Pty Ltd <contactthis.ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+import { IconExpand } from 'components/icon-expand';
+import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
+import { BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
+import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
+import { BeatmapsetWithDiscussionsJson } from 'interfaces/beatmapset-json';
+import GameMode from 'interfaces/game-mode';
+import UserJson from 'interfaces/user-json';
+import { BeatmapsetDiscussionJson } from 'legacy-modules';
+import { size } from 'lodash';
+import * as React from 'react';
+import { canModeratePosts } from 'utils/beatmapset-discussion-helper';
+import { classWithModifiers } from 'utils/css';
+import { jsonClone } from 'utils/json';
+import { trans } from 'utils/lang';
+import { nextVal } from 'utils/seq';
+import { Discussion } from './discussion';
+
+const bn = 'beatmap-discussions';
+
+const sortPresets = {
+  created_at: {
+    sort(a: { created_at: string; id: number }, b: { created_at: string; id: number }) {
+      if (a.created_at === b.created_at) {
+        return a.id - b.id;
+      } else {
+        return Date.parse(a.created_at) - Date.parse(b.created_at);
+      }
+    },
+    text: trans('beatmaps.discussions.sort.created_at'),
+  },
+
+  // there's obviously no timeline field
+  timeline: {
+    sort(a: { id: number; timestamp: number }, b: { id: number; timestamp: number }) {
+      if (a.timestamp === b.timestamp) {
+        return a.id - b.id;
+      } else {
+        return a.timestamp - b.timestamp;
+      }
+    },
+    text: trans('beatmaps.discussions.sort.timeline'),
+  },
+  updated_at: {
+    sort(a: { id: number; last_post_at: string }, b: { id: number; last_post_at: string }) {
+      if (a.last_post_at === b.last_post_at) {
+        return b.id - a.id;
+      } else {
+        return Date.parse(b.last_post_at) - Date.parse(a.last_post_at);
+      }
+    },
+    text: trans('beatmaps.discussions.sort.updated_at'),
+  },
+};
+
+type Filter = 'deleted' | 'hype' | 'mapperNotes' | 'mine' | 'pending' | 'praises' | 'resolved' | 'total';
+// type Mode = 'events' | 'general' | 'generalAll' | 'timeline' | 'reviews';
+type Mode = 'general' | 'generalAll' | 'timeline' | 'reviews';
+type Sort = 'created_at' | 'updated_at' | 'timeline';
+
+interface CurrentDiscussions {
+  byFilter: {
+    deleted: DiscussionByFilter;
+    hype: DiscussionByFilter;
+    mapperNotes: DiscussionByFilter;
+    mine: DiscussionByFilter;
+    pending: DiscussionByFilter;
+    praises: DiscussionByFilter;
+    resolved: DiscussionByFilter;
+    total: DiscussionByFilter;
+  };
+  countsByBeatmap: Record<number, number>;
+  countsByPlaymode: Record<GameMode, number>;
+  general: BeatmapsetDiscussionJson[];
+  generalAll: BeatmapsetDiscussionJson[];
+  reviews: BeatmapsetDiscussionJson[];
+  timeline: BeatmapsetDiscussionJson[];
+  timelineAllUsers: BeatmapsetDiscussionJson[];
+  totalHype: number;
+  unresolvedIssues: number;
+}
+
+interface DiscussionByFilter {
+  general: Record<number, BeatmapsetDiscussionJson>;
+  generalAll: Record<number, BeatmapsetDiscussionJson>;
+  reviews: Record<number, BeatmapsetDiscussionJson>;
+  timeline: Record<number, BeatmapsetDiscussionJson>;
+}
+
+interface Props {
+  beatmapset: BeatmapsetExtendedJson & BeatmapsetWithDiscussionsJson;
+  currentBeatmap: BeatmapExtendedJson;
+  currentDiscussions: CurrentDiscussions;
+  currentFilter: Filter;
+  currentUser: UserJson;
+  mode: Mode;
+  readPostIds: Set<number>;
+  showDeleted: boolean;
+  users: Record<number, UserJson>;
+}
+
+interface State {
+  discussionCollapses: Record<number, boolean>;
+  discussionDefaultCollapsed: boolean;
+  highlightedDiscussionId: number | null;
+  sort: {
+    general: Sort;
+    generalAll: Sort;
+    reviews: Sort;
+    timeline: Sort;
+  };
+}
+
+export class Discussions extends React.PureComponent<Props, State> {
+  state: Readonly<State> = {
+    discussionCollapses: {},
+    discussionDefaultCollapsed: false,
+    highlightedDiscussionId: null,
+    sort: {
+      general: 'updated_at',
+      generalAll: 'updated_at',
+      reviews: 'updated_at',
+      timeline: 'timeline',
+    },
+  };
+
+  private readonly eventId = `beatmapset-discussions-${nextVal()}`;
+
+  componentDidMount() {
+    $.subscribe(`beatmapset-discussions:collapse.${this.eventId}`, this.toggleCollapse);
+    return $.subscribe(`beatmapset-discussions:highlight.${this.eventId}`, this.setHighlight);
+  }
+
+  componentWillUnmount() {
+    return $.unsubscribe(`.${this.eventId}`);
+  }
+
+  render() {
+    return (
+      <div className='osu-page osu-page--small osu-page--full'>
+        <div className={bn}>
+          <div className='page-title'>
+            {trans('beatmaps.discussions.title')}
+          </div>
+          <div className={`${bn}__toolbar`}>
+            <div className={`${bn}__toolbar-content ${bn}__toolbar-content--left`}>
+              <div className={`${bn}__toolbar-item`}>
+                {this.renderSortOptions()}
+              </div>
+            </div>
+            <div className={`${bn}__toolbar-content ${bn}__toolbar-content--right`}>
+              {this.renderShowDeletedToggle()}
+
+              <button
+                className={`${bn}__toolbar-item ${bn}__toolbar-item--link`}
+                data-type='collapse'
+                onClick={this.expand}
+                type='button'
+              >
+                <IconExpand expand={false} parentClass={`${bn}__toolbar-link-content`} />
+                <span className={`${bn}__toolbar-link-content`}>
+                  {trans('beatmaps.discussions.collapse.all-collapse')}
+                </span>
+              </button>
+              <button
+                className={`${bn}__toolbar-item ${bn}__toolbar-item--link`}
+                data-type='expand'
+                onClick={this.expand}
+                type='button'
+              >
+                <IconExpand expand parentClass={`${bn}__toolbar-link-content`} />
+                <span className={`${bn}__toolbar-link-content`}>
+                  {trans('beatmaps.discussions.collapse.all-expand')}
+                </span>
+              </button>
+            </div>
+          </div>
+
+          {this.renderDiscussions()}
+        </div>
+      </div>
+    );
+  }
+
+  private readonly renderDiscussionPage = (discussion: BeatmapsetDiscussionJsonForShow) => {
+    if (discussion.id == null) return null; // TODO: does this still happen?
+
+    const visible = this.props.currentDiscussions.byFilter[this.props.currentFilter][this.props.mode][discussion.id] != null;
+
+    if (!visible) return null;
+
+    const parentDiscussion = discussion.parent_id != null ? this.props.currentDiscussions.byFilter.total.reviews[discussion.parent_id] : null;
+
+    return (
+      <div
+        key={discussion.id}
+        className={`${bn}__discussion`}
+      >
+        <Discussion
+          beatmapset={this.props.beatmapset}
+          collapsed={this.isDiscussionCollapsed(discussion.id)}
+          currentBeatmap={this.props.currentBeatmap}
+          discussion={discussion}
+          highlighted={this.state.highlightedDiscussionId === discussion.id}
+          isTimelineVisible={this.isTimelineVisible()}
+          parentDiscussion={parentDiscussion}
+          readPostIds={this.props.readPostIds}
+          showDeleted={this.props.showDeleted}
+          users={this.props.users}
+        />
+      </div>
+    );
+  };
+
+  private renderDiscussions() {
+    const discussions = this.props.currentDiscussions[this.props.mode];
+
+    if (discussions.length === 0) {
+      return (
+        <div className={`${bn}__discussions ${bn}__discussions--empty`}>
+          {trans('beatmaps.discussions.empty.empty')}
+        </div>
+      );
+    }
+
+    if (size(this.props.currentDiscussions.byFilter[this.props.currentFilter][this.props.mode]) === 0) {
+      return (
+        <div className={`${bn}__discussions ${bn}__discussions--empty`}>
+          {trans('beatmaps.discussions.empty.hidden')}
+        </div>
+      );
+    }
+
+    return (
+      <div className={`${bn}__discussions`}>
+        {this.renderTimelineCircle()}
+
+        {this.isTimelineVisible() && <div className={`${bn}__timeline-line hidden-xs`} />}
+
+        <div>
+          {this.sortedDiscussions().map(this.renderDiscussionPage)}
+        </div>
+
+        {this.renderTimelineCircle()}
+      </div>
+    );
+  }
+
+  private renderShowDeletedToggle() {
+    if (!canModeratePosts()) return null;
+
+    return (
+      <button
+        className={`${bn}__toolbar-item ${bn}__toolbar-item--link`}
+        onClick={this.toggleShowDeleted}
+        type='button'
+      >
+        <span className={`${bn}__toolbar-link-content`}>
+          <span className={this.props.showDeleted ? 'fas fa-check-square' : 'far fa-square'} />
+        </span>
+        <span className={`${bn}__toolbar-link-content`}>
+          {trans('beatmaps.discussions.show_deleted')}
+        </span>
+      </button>
+    );
+  }
+
+  private renderSortOptions() {
+    const presets = this.props.mode === 'timeline'
+      ? ['timeline', 'updated_at']
+      : ['created_at', 'updated_at'];
+
+    return (
+      <div className='sort sort--beatmapset-discussions'>
+        <div className='sort__items'>
+          <span className='sort__item sort__item--title'>{trans('sort._')}</span>
+          {presets.map((preset) => (
+            <button
+              key={preset}
+              className={classWithModifiers('sort__item', 'button', { active: this.currentSort() === preset })}
+              onClick={this.changeSort}
+              type='button'
+            >
+              sortPresets[preset].text
+            </button>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  private renderTimelineCircle() {
+    return (
+      <div
+        className={`${bn}__mode-circle ${bn}__mode-circle--active hidden-xs`}
+        data-visibility={!this.isTimelineVisible() ? 'hidden' : undefined}
+      />
+    );
+  }
+
+  private readonly changeSort = (e: React.SyntheticEvent<HTMLButtonElement>) => {
+    const targetPreset = e.currentTarget.dataset.sortPreset;
+
+    if (targetPreset === this.currentSort()) {
+      return;
+    }
+
+    const sort = jsonClone(this.state.sort);
+    sort[this.props.mode] = targetPreset;
+
+    return this.setState({ sort });
+  };
+
+  private currentSort() {
+    return this.state.sort[this.props.mode];
+  }
+
+  private expand = (e: React.SyntheticEvent<HTMLButtonElement>) => this.setState({
+    discussionCollapses: {},
+    discussionDefaultCollapsed: e.currentTarget.dataset.type === 'collapse',
+  });
+
+  private hidden(discussion: { message_type: string; resolved: any; user_id: any }) {
+    switch (this.props.currentFilter) {
+      case 'mine': return discussion.user_id !== this.props.currentUser.id;
+      case 'resolved': return (discussion.message_type === 'praise') || !discussion.resolved;
+      case 'pending': return (discussion.message_type === 'praise') || discussion.resolved;
+      case 'praises': return discussion.message_type !== 'praise';
+      default: return false;
+    }
+  }
+
+  private isDiscussionCollapsed(discussionId: number) {
+    return this.state.discussionCollapses[discussionId] != null ? this.state.discussionCollapses[discussionId] : this.state.discussionDefaultCollapsed;
+  }
+
+  private isTimelineVisible() {
+    return (this.props.mode === 'timeline') && (this.currentSort() === 'timeline');
+  }
+
+  private readonly setHighlight = (_event: unknown, { discussionId }: { discussionId: number }) => {
+    this.setState({ highlightedDiscussionId: discussionId });
+  };
+
+  private sortedDiscussions() {
+    return this.props.currentDiscussions[this.props.mode].slice().sort((a: { message_type: string }, b: { message_type: any }) => {
+      const mapperNoteCompare =
+        // no sticky for timeline sort
+        (this.currentSort() !== 'timeline') &&
+        // stick the mapper note
+        [a.message_type, b.message_type].includes('mapper_note') &&
+        // but if both are mapper note, do base comparison
+        (a.message_type !== b.message_type);
+
+      if (mapperNoteCompare) {
+        if (a.message_type === 'mapper_note') {
+          return -1;
+        } else {
+          return 1;
+        }
+      } else {
+        return sortPresets[this.currentSort()].sort(a, b);
+      }
+    });
+  }
+
+  private readonly toggleCollapse = (_event: unknown, { discussionId }: { discussionId: number }) => {
+    const newDiscussionCollapses = Object.assign({}, this.state.discussionCollapses);
+    newDiscussionCollapses[discussionId] = !(this.isDiscussionCollapsed(discussionId));
+
+    this.setState({ discussionCollapses: newDiscussionCollapses });
+  };
+
+  private readonly toggleShowDeleted = () => {
+    $.publish('beatmapDiscussionPost:toggleShowDeleted');
+  };
+}

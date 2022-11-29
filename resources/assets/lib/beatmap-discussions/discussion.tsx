@@ -35,7 +35,7 @@ interface Props {
   discussion: BeatmapsetDiscussionJsonForShow | BeatmapsetDiscussionJsonForBundle;
   highlighted: boolean;
   isTimelineVisible: boolean;
-  parentDiscussion?: BeatmapsetDiscussionJson;
+  parentDiscussion?: BeatmapsetDiscussionJson | null;
   // preview = true is for rendering the non-discussion version;
   // still need this flag instead of just relying on type discrimination
   // due to updates getting merged into the big discussions blob at the root.
@@ -47,6 +47,10 @@ interface Props {
 
 @observer
 export class Discussion extends React.Component<Props> {
+  static defaultProps = {
+    preview: false,
+  };
+
   private lastResolvedState = false;
 
   constructor(props: Props) {
