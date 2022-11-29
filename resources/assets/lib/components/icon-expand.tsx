@@ -15,8 +15,7 @@ interface Props {
 
 function Icon({ position, icon }: IconProps) {
   return (
-    <span className={`icon-stack__icon icon-stack__icon--${position}`}
-    >
+    <span className={`icon-stack__icon icon-stack__icon--${position}`}>
       <i className={`fas fa-fw fa-${icon}`} />
     </span>
   );
