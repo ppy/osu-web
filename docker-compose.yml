@@ -47,6 +47,10 @@ services:
   migrator:
     <<: *x-web
     command: ['migrate']
+    depends_on:
+      db:
+        condition: service_healthy
+
 
   beatmap-difficulty-lookup-cache:
     image: pppy/osu-beatmap-difficulty-lookup-cache
@@ -85,6 +89,14 @@ services:
     ports:
       - "${MYSQL_EXTERNAL_PORT:-3306}:3306"
     command: --default-authentication-plugin=mysql_native_password
+    healthcheck:
+      # important to use 127.0.0.1 instead of localhost as mysql starts twice.
+      # the first time it listens on sockets but isn't actually ready
+      # see https://github.com/docker-library/mysql/issues/663
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1"]
+      interval: 1s
+      timeout: 20s
+      retries: 10
 
   redis:
     image: redis:latest
