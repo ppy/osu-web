@@ -88,6 +88,8 @@ services:
 
   redis:
     image: redis:latest
+    ports:
+      - "${REDIS_EXTERNAL_PORT:-6379}:6379"
 
   elasticsearch:
     # Version must be kept up to date with library defined in: composer.json
