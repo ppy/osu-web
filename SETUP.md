@@ -41,8 +41,7 @@ Consult the [laravel documentation](https://laravel.com/docs/6.x/installation#we
 ### Initialize database
 
 ```bash
-# this script assumes you can connect passwordless as root
-$ mysql -u root < ./docker/development/db_setup.sql
+$ php artisan db:create
 ```
 
 ### Install packages and build assets
