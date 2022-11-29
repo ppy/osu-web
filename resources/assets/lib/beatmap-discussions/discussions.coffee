@@ -91,7 +91,6 @@ export class Discussions extends React.PureComponent
               'data-type': 'collapse'
               onClick: @expand
               el IconExpand,
-                expand: false
                 parentClass: "#{bn}__toolbar-link-content"
               span className: "#{bn}__toolbar-link-content",
                 trans('beatmaps.discussions.collapse.all-collapse')
@@ -102,6 +101,7 @@ export class Discussions extends React.PureComponent
               'data-type': 'expand'
               onClick: @expand
               el IconExpand,
+                expand: true
                 parentClass: "#{bn}__toolbar-link-content"
               span className: "#{bn}__toolbar-link-content",
                 trans('beatmaps.discussions.collapse.all-expand')

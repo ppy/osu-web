@@ -22,7 +22,7 @@ function Icon({ position, icon }: IconProps) {
   );
 }
 
-export default function IconExpand({ expand = true, parentClass }: Props) {
+export default function IconExpand({ expand = false, parentClass }: Props) {
   return (
     <span className={`icon-stack ${parentClass}`}>
       <span className='icon-stack__base'>
