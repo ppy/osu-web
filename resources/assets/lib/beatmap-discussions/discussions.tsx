@@ -73,7 +73,6 @@ interface Props {
   currentBeatmap: BeatmapExtendedJson;
   currentDiscussions: CurrentDiscussions;
   currentFilter: Filter;
-  currentUser: UserJson;
   mode: DiscussionsMode;
   readPostIds: Set<number>;
   showDeleted: boolean;
