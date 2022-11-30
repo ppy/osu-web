@@ -17,13 +17,15 @@ export default class Portal extends PureComponent<Props> {
     $(document).on('turbolinks:before-cache', this.removePortal);
   }
 
-  componentWillUnmount = () => {
+  componentWillUnmount() {
     this.removePortal();
 
     $(document).off('turbolinks:before-cache', this.removePortal);
   };
 
-  render = () => createPortal(this.props.children, this.container);
+  render() {
+    return createPortal(this.props.children, this.container);
+  }
 
   private readonly addPortal = () => document.body.appendChild(this.container);
 
