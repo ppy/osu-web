@@ -10,6 +10,7 @@ import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
 import { BeatmapsetDiscussionJson } from 'legacy-modules';
 import { size } from 'lodash';
+import { observer } from 'mobx-react';
 import * as React from 'react';
 import { canModeratePosts } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
@@ -122,7 +123,8 @@ interface State {
   };
 }
 
-export class Discussions extends React.PureComponent<Props, State> {
+@observer
+export class Discussions extends React.Component<Props, State> {
   state: Readonly<State> = {
     discussionCollapses: {},
     discussionDefaultCollapsed: false,
