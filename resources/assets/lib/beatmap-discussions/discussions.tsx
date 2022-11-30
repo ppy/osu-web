@@ -183,13 +183,7 @@ export class Discussions extends React.Component<Props> {
 
   @action
   private readonly handleChangeSort = (e: React.SyntheticEvent<HTMLButtonElement>) => {
-    const targetPreset = e.currentTarget.dataset.sortPreset as Sort;
-
-    if (targetPreset === this.currentSort) {
-      return;
-    }
-
-    this.sort[this.props.mode] = targetPreset;
+    this.sort[this.props.mode] = e.currentTarget.dataset.sortPreset as Sort;
   };
 
   @action
