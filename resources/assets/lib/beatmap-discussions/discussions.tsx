@@ -127,8 +127,8 @@ export class Discussions extends React.Component<Props> {
   }
 
   componentDidMount() {
-    $.subscribe(`beatmapset-discussions:collapse.${this.eventId}`, this.toggleCollapse);
-    $.subscribe(`beatmapset-discussions:highlight.${this.eventId}`, this.setHighlight);
+    $.subscribe(`beatmapset-discussions:collapse.${this.eventId}`, this.handleToggleCollapse);
+    $.subscribe(`beatmapset-discussions:highlight.${this.eventId}`, this.handleSetHighlight);
   }
 
   componentWillUnmount() {
@@ -198,6 +198,17 @@ export class Discussions extends React.Component<Props> {
     this.discussionDefaultCollapsed = e.currentTarget.dataset.type === 'collapse';
     this.discussionCollapses.clear();
   };
+
+  @action
+  private readonly handleSetHighlight = (_event: unknown, { discussionId }: DiscussionIdEvent) => {
+    this.highlightedDiscussionId = discussionId;
+  };
+
+  @action
+  private readonly handleToggleCollapse = (_event: unknown, { discussionId }: DiscussionIdEvent) => {
+    this.discussionCollapses.set(discussionId, !this.isDiscussionCollapsed(discussionId));
+  };
+
 
   private isDiscussionCollapsed(discussionId: number) {
     return this.discussionCollapses.get(discussionId) ?? this.discussionDefaultCollapsed;
@@ -323,16 +334,6 @@ export class Discussions extends React.Component<Props> {
       />
     );
   }
-
-  @action
-  private readonly setHighlight = (_event: unknown, { discussionId }: DiscussionIdEvent) => {
-    this.highlightedDiscussionId = discussionId;
-  };
-
-  @action
-  private readonly toggleCollapse = (_event: unknown, { discussionId }: DiscussionIdEvent) => {
-    this.discussionCollapses.set(discussionId, !this.isDiscussionCollapsed(discussionId));
-  };
 
   private readonly toggleShowDeleted = () => {
     $.publish('beatmapDiscussionPost:toggleShowDeleted');
