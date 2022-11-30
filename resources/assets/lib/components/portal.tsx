@@ -9,7 +9,7 @@ interface Props {
   children: ReactNode;
 }
 
-export class Portal extends PureComponent<Props> {
+export default class Portal extends PureComponent<Props> {
   private readonly container = document.createElement('div');
   private readonly eventId = `portal-${nextVal()}`;
 
