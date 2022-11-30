@@ -10,11 +10,11 @@ import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
 import { BeatmapsetDiscussionJson } from 'legacy-modules';
 import { size } from 'lodash';
+import { computed, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { canModeratePosts } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
-import { jsonClone } from 'utils/json';
 import { trans } from 'utils/lang';
 import { nextVal } from 'utils/seq';
 import { Discussion } from './discussion';
@@ -115,12 +115,6 @@ interface State {
   discussionCollapses: Record<number, boolean>;
   discussionDefaultCollapsed: boolean;
   highlightedDiscussionId: number | null;
-  sort: {
-    general: Sort;
-    generalAll: Sort;
-    reviews: Sort;
-    timeline: Sort;
-  };
 }
 
 @observer
@@ -129,15 +123,43 @@ export class Discussions extends React.Component<Props, State> {
     discussionCollapses: {},
     discussionDefaultCollapsed: false,
     highlightedDiscussionId: null,
-    sort: {
-      general: 'updated_at',
-      generalAll: 'updated_at',
-      reviews: 'updated_at',
-      timeline: 'timeline',
-    },
   };
 
   private readonly eventId = `beatmapset-discussions-${nextVal()}`;
+  @observable private sort: Record<Mode, Sort> = {
+    general: 'updated_at',
+    generalAll: 'updated_at',
+    reviews: 'updated_at',
+    timeline: 'timeline',
+  };
+
+  @computed
+  private get currentSort() {
+    return this.sort[this.props.mode];
+  }
+
+  @computed
+  private get sortedDiscussions() {
+    return this.props.currentDiscussions[this.props.mode].slice().sort((a: BeatmapsetDiscussionJson, b: BeatmapsetDiscussionJson) => {
+      const mapperNoteCompare =
+        // no sticky for timeline sort
+        this.currentSort !== 'timeline'
+        // stick the mapper note
+        && [a.message_type, b.message_type].includes('mapper_note')
+        // but if both are mapper note, do base comparison
+        && a.message_type !== b.message_type;
+
+      if (mapperNoteCompare) {
+        if (a.message_type === 'mapper_note') {
+          return -1;
+        } else {
+          return 1;
+        }
+      } else {
+        return sortPresets[this.currentSort].sort(a, b);
+      }
+    });
+  }
 
   componentDidMount() {
     $.subscribe(`beatmapset-discussions:collapse.${this.eventId}`, this.toggleCollapse);
@@ -195,21 +217,15 @@ export class Discussions extends React.Component<Props, State> {
     );
   }
 
-  private currentSort() {
-    return this.state.sort[this.props.mode];
-  }
-
+  @action
   private readonly handleChangeSort = (e: React.SyntheticEvent<HTMLButtonElement>) => {
     const targetPreset = e.currentTarget.dataset.sortPreset as Sort;
 
-    if (targetPreset === this.currentSort()) {
+    if (targetPreset === this.currentSort) {
       return;
     }
 
-    const sort = jsonClone(this.state.sort);
-    sort[this.props.mode] = targetPreset;
-
-    return this.setState({ sort });
+    this.sort[this.props.mode] = targetPreset;
   };
 
   private handleExpandClick = (e: React.SyntheticEvent<HTMLButtonElement>) => this.setState({
@@ -222,7 +238,7 @@ export class Discussions extends React.Component<Props, State> {
   }
 
   private isTimelineVisible() {
-    return (this.props.mode === 'timeline') && (this.currentSort() === 'timeline');
+    return this.props.mode === 'timeline' && this.currentSort === 'timeline';
   }
 
   private readonly renderDiscussionPage = (discussion: BeatmapsetDiscussionJsonForShow) => {
@@ -281,7 +297,7 @@ export class Discussions extends React.Component<Props, State> {
         {this.isTimelineVisible() && <div className={`${bn}__timeline-line hidden-xs`} />}
 
         <div>
-          {this.sortedDiscussions().map(this.renderDiscussionPage)}
+          {this.sortedDiscussions.map(this.renderDiscussionPage)}
         </div>
 
         {this.renderTimelineCircle()}
@@ -320,7 +336,7 @@ export class Discussions extends React.Component<Props, State> {
           {presets.map((preset) => (
             <button
               key={preset}
-              className={classWithModifiers('sort__item', 'button', { active: this.currentSort() === preset })}
+              className={classWithModifiers('sort__item', 'button', { active: this.currentSort === preset })}
               data-sort-preset={preset}
               onClick={this.handleChangeSort}
               type='button'
@@ -345,28 +361,6 @@ export class Discussions extends React.Component<Props, State> {
   private readonly setHighlight = (_event: unknown, { discussionId }: DiscussionIdEvent) => {
     this.setState({ highlightedDiscussionId: discussionId });
   };
-
-  private sortedDiscussions() {
-    return this.props.currentDiscussions[this.props.mode].slice().sort((a: BeatmapsetDiscussionJson, b: BeatmapsetDiscussionJson) => {
-      const mapperNoteCompare =
-        // no sticky for timeline sort
-        (this.currentSort() !== 'timeline') &&
-        // stick the mapper note
-        [a.message_type, b.message_type].includes('mapper_note') &&
-        // but if both are mapper note, do base comparison
-        (a.message_type !== b.message_type);
-
-      if (mapperNoteCompare) {
-        if (a.message_type === 'mapper_note') {
-          return -1;
-        } else {
-          return 1;
-        }
-      } else {
-        return sortPresets[this.currentSort()].sort(a, b);
-      }
-    });
-  }
 
   private readonly toggleCollapse = (_event: unknown, { discussionId }: DiscussionIdEvent) => {
     const newDiscussionCollapses = Object.assign({}, this.state.discussionCollapses);
