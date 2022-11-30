@@ -189,7 +189,7 @@ export class Discussions extends React.PureComponent<Props, State> {
   }
 
   private readonly handleChangeSort = (e: React.SyntheticEvent<HTMLButtonElement>) => {
-    const targetPreset = e.currentTarget.dataset.sortPreset;
+    const targetPreset = e.currentTarget.dataset.sortPreset as Sort;
 
     if (targetPreset === this.currentSort()) {
       return;
@@ -298,7 +298,7 @@ export class Discussions extends React.PureComponent<Props, State> {
   }
 
   private renderSortOptions() {
-    const presets = this.props.mode === 'timeline'
+    const presets: Sort[] = this.props.mode === 'timeline'
       ? ['timeline', 'updated_at']
       : ['created_at', 'updated_at'];
 
@@ -310,6 +310,7 @@ export class Discussions extends React.PureComponent<Props, State> {
             <button
               key={preset}
               className={classWithModifiers('sort__item', 'button', { active: this.currentSort() === preset })}
+              data-sort-preset={preset}
               onClick={this.handleChangeSort}
               type='button'
             >
