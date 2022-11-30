@@ -22,7 +22,7 @@ const bn = 'beatmap-discussions';
 
 const sortPresets = {
   created_at: {
-    sort(a: { created_at: string; id: number }, b: { created_at: string; id: number }) {
+    sort(a: BeatmapsetDiscussionJson, b: BeatmapsetDiscussionJson) {
       if (a.created_at === b.created_at) {
         return a.id - b.id;
       } else {
@@ -34,7 +34,12 @@ const sortPresets = {
 
   // there's obviously no timeline field
   timeline: {
-    sort(a: { id: number; timestamp: number }, b: { id: number; timestamp: number }) {
+    sort(a: BeatmapsetDiscussionJson, b: BeatmapsetDiscussionJson) {
+      // TODO: this shouldnt be called when not timeline, anyway.
+      if (a.timestamp == null || b.timestamp == null) {
+        return 0;
+      }
+
       if (a.timestamp === b.timestamp) {
         return a.id - b.id;
       } else {
@@ -44,7 +49,7 @@ const sortPresets = {
     text: trans('beatmaps.discussions.sort.timeline'),
   },
   updated_at: {
-    sort(a: { id: number; last_post_at: string }, b: { id: number; last_post_at: string }) {
+    sort(a: BeatmapsetDiscussionJson, b: BeatmapsetDiscussionJson) {
       if (a.last_post_at === b.last_post_at) {
         return b.id - a.id;
       } else {
@@ -89,6 +94,10 @@ interface DiscussionByFilter {
   timeline: Record<number, BeatmapsetDiscussionJson>;
 }
 
+interface DiscussionIdEvent {
+  discussionId: number;
+}
+
 interface Props {
   beatmapset: BeatmapsetExtendedJson & BeatmapsetWithDiscussionsJson;
   currentBeatmap: BeatmapExtendedJson;
@@ -130,11 +139,11 @@ export class Discussions extends React.PureComponent<Props, State> {
 
   componentDidMount() {
     $.subscribe(`beatmapset-discussions:collapse.${this.eventId}`, this.toggleCollapse);
-    return $.subscribe(`beatmapset-discussions:highlight.${this.eventId}`, this.setHighlight);
+    $.subscribe(`beatmapset-discussions:highlight.${this.eventId}`, this.setHighlight);
   }
 
   componentWillUnmount() {
-    return $.unsubscribe(`.${this.eventId}`);
+    $.unsubscribe(`.${this.eventId}`);
   }
 
   render() {
@@ -314,7 +323,7 @@ export class Discussions extends React.PureComponent<Props, State> {
               onClick={this.handleChangeSort}
               type='button'
             >
-              sortPresets[preset].text
+              {sortPresets[preset].text}
             </button>
           ))}
         </div>
@@ -331,12 +340,12 @@ export class Discussions extends React.PureComponent<Props, State> {
     );
   }
 
-  private readonly setHighlight = (_event: unknown, { discussionId }: { discussionId: number }) => {
+  private readonly setHighlight = (_event: unknown, { discussionId }: DiscussionIdEvent) => {
     this.setState({ highlightedDiscussionId: discussionId });
   };
 
   private sortedDiscussions() {
-    return this.props.currentDiscussions[this.props.mode].slice().sort((a: { message_type: string }, b: { message_type: any }) => {
+    return this.props.currentDiscussions[this.props.mode].slice().sort((a: BeatmapsetDiscussionJson, b: BeatmapsetDiscussionJson) => {
       const mapperNoteCompare =
         // no sticky for timeline sort
         (this.currentSort() !== 'timeline') &&
@@ -357,9 +366,9 @@ export class Discussions extends React.PureComponent<Props, State> {
     });
   }
 
-  private readonly toggleCollapse = (_event: unknown, { discussionId }: { discussionId: number }) => {
+  private readonly toggleCollapse = (_event: unknown, { discussionId }: DiscussionIdEvent) => {
     const newDiscussionCollapses = Object.assign({}, this.state.discussionCollapses);
-    newDiscussionCollapses[discussionId] = !(this.isDiscussionCollapsed(discussionId));
+    newDiscussionCollapses[discussionId] = !this.isDiscussionCollapsed(discussionId);
 
     this.setState({ discussionCollapses: newDiscussionCollapses });
   };
