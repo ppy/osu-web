@@ -3,7 +3,6 @@
 
 import { PureComponent, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
-import { nextVal } from 'utils/seq';
 
 interface Props {
   children: ReactNode;
@@ -11,18 +10,17 @@ interface Props {
 
 export default class Portal extends PureComponent<Props> {
   private readonly container = document.createElement('div');
-  private readonly eventId = `portal-${nextVal()}`;
 
   componentDidMount() {
     this.addPortal();
 
-    $(document).on(`turbolinks:before-cache.${this.eventId}`, this.removePortal);
+    $(document).on('turbolinks:before-cache', this.removePortal);
   }
 
   componentWillUnmount = () => {
     this.removePortal();
 
-    $(document).off(`turbolinks:before-cache.${this.eventId}`);
+    $(document).off('turbolinks:before-cache', this.removePortal);
   };
 
   render = () => createPortal(this.props.children, this.container);
