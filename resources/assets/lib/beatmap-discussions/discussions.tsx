@@ -10,7 +10,7 @@ import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
 import { BeatmapsetDiscussionJson } from 'legacy-modules';
 import { size } from 'lodash';
-import { computed, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { canModeratePosts } from 'utils/beatmapset-discussion-helper';
@@ -111,21 +111,12 @@ interface Props {
   users: Record<number, UserJson>;
 }
 
-interface State {
-  discussionCollapses: Record<number, boolean>;
-  discussionDefaultCollapsed: boolean;
-  highlightedDiscussionId: number | null;
-}
-
 @observer
-export class Discussions extends React.Component<Props, State> {
-  state: Readonly<State> = {
-    discussionCollapses: {},
-    discussionDefaultCollapsed: false,
-    highlightedDiscussionId: null,
-  };
-
+export class Discussions extends React.Component<Props> {
+  @observable discussionCollapses = new Map<number, boolean>();
+  @observable private discussionDefaultCollapsed = false;
   private readonly eventId = `beatmapset-discussions-${nextVal()}`;
+  @observable private highlightedDiscussionId: number | null = null;
   @observable private sort: Record<Mode, Sort> = {
     general: 'updated_at',
     generalAll: 'updated_at',
@@ -159,6 +150,11 @@ export class Discussions extends React.Component<Props, State> {
         return sortPresets[this.currentSort].sort(a, b);
       }
     });
+  }
+
+  constructor(props: Props) {
+    super(props);
+    makeObservable(this);
   }
 
   componentDidMount() {
@@ -228,13 +224,14 @@ export class Discussions extends React.Component<Props, State> {
     this.sort[this.props.mode] = targetPreset;
   };
 
-  private handleExpandClick = (e: React.SyntheticEvent<HTMLButtonElement>) => this.setState({
-    discussionCollapses: {},
-    discussionDefaultCollapsed: e.currentTarget.dataset.type === 'collapse',
-  });
+  @action
+  private handleExpandClick = (e: React.SyntheticEvent<HTMLButtonElement>) => {
+    this.discussionDefaultCollapsed = e.currentTarget.dataset.type === 'collapse';
+    this.discussionCollapses.clear();
+  };
 
   private isDiscussionCollapsed(discussionId: number) {
-    return this.state.discussionCollapses[discussionId] != null ? this.state.discussionCollapses[discussionId] : this.state.discussionDefaultCollapsed;
+    return this.discussionCollapses.get(discussionId) ?? this.discussionDefaultCollapsed;
   }
 
   private isTimelineVisible() {
@@ -260,7 +257,7 @@ export class Discussions extends React.Component<Props, State> {
           collapsed={this.isDiscussionCollapsed(discussion.id)}
           currentBeatmap={this.props.currentBeatmap}
           discussion={discussion}
-          highlighted={this.state.highlightedDiscussionId === discussion.id}
+          highlighted={this.highlightedDiscussionId === discussion.id}
           isTimelineVisible={this.isTimelineVisible()}
           parentDiscussion={parentDiscussion}
           readPostIds={this.props.readPostIds}
@@ -358,15 +355,14 @@ export class Discussions extends React.Component<Props, State> {
     );
   }
 
+  @action
   private readonly setHighlight = (_event: unknown, { discussionId }: DiscussionIdEvent) => {
-    this.setState({ highlightedDiscussionId: discussionId });
+    this.highlightedDiscussionId = discussionId;
   };
 
+  @action
   private readonly toggleCollapse = (_event: unknown, { discussionId }: DiscussionIdEvent) => {
-    const newDiscussionCollapses = Object.assign({}, this.state.discussionCollapses);
-    newDiscussionCollapses[discussionId] = !this.isDiscussionCollapsed(discussionId);
-
-    this.setState({ discussionCollapses: newDiscussionCollapses });
+    this.discussionCollapses.set(discussionId, !this.isDiscussionCollapsed(discussionId));
   };
 
   private readonly toggleShowDeleted = () => {
