@@ -10,14 +10,8 @@ interface Props {
 }
 
 export class Portal extends PureComponent<Props> {
-  private readonly container: HTMLElement;
+  private readonly container = document.createElement('div');
   private readonly eventId = `portal-${nextVal()}`;
-
-  constructor(props: Props) {
-    super(props);
-
-    this.container = document.createElement('div');
-  }
 
   addPortal = () => document.body.appendChild(this.container);
 
