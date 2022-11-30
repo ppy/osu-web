@@ -13,8 +13,6 @@ export default class Portal extends PureComponent<Props> {
   private readonly container = document.createElement('div');
   private readonly eventId = `portal-${nextVal()}`;
 
-  addPortal = () => document.body.appendChild(this.container);
-
   componentDidMount() {
     this.addPortal();
 
@@ -27,11 +25,13 @@ export default class Portal extends PureComponent<Props> {
     $(document).off(`turbolinks:before-cache.${this.eventId}`);
   };
 
-  removePortal = () => {
+  render = () => createPortal(this.props.children, this.container);
+
+  private readonly addPortal = () => document.body.appendChild(this.container);
+
+  private readonly removePortal = () => {
     if (this.container.parentElement === document.body) {
       document.body.removeChild(this.container);
     }
   };
-
-  render = () => createPortal(this.props.children, this.container);
 }
