@@ -149,29 +149,8 @@ export class Discussions extends React.Component<Props> {
             </div>
             <div className={`${bn}__toolbar-content ${bn}__toolbar-content--right`}>
               {this.renderShowDeletedToggle()}
-
-              <button
-                className={`${bn}__toolbar-item ${bn}__toolbar-item--link`}
-                data-type='collapse'
-                onClick={this.handleExpandClick}
-                type='button'
-              >
-                <IconExpand expand={false} parentClass={`${bn}__toolbar-link-content`} />
-                <span className={`${bn}__toolbar-link-content`}>
-                  {trans('beatmaps.discussions.collapse.all-collapse')}
-                </span>
-              </button>
-              <button
-                className={`${bn}__toolbar-item ${bn}__toolbar-item--link`}
-                data-type='expand'
-                onClick={this.handleExpandClick}
-                type='button'
-              >
-                <IconExpand expand parentClass={`${bn}__toolbar-link-content`} />
-                <span className={`${bn}__toolbar-link-content`}>
-                  {trans('beatmaps.discussions.collapse.all-expand')}
-                </span>
-              </button>
+              {this.renderExpandCollapseAllButton('collapse')}
+              {this.renderExpandCollapseAllButton('expand')}
             </div>
           </div>
 
@@ -272,6 +251,22 @@ export class Discussions extends React.Component<Props> {
 
         {this.renderTimelineCircle()}
       </div>
+    );
+  }
+
+  private renderExpandCollapseAllButton(type: 'collapse' | 'expand') {
+    return (
+      <button
+        className={`${bn}__toolbar-item ${bn}__toolbar-item--link`}
+        data-type={type}
+        onClick={this.handleExpandClick}
+        type='button'
+      >
+        <IconExpand expand={type === 'expand'} parentClass={`${bn}__toolbar-link-content`} />
+        <span className={`${bn}__toolbar-link-content`}>
+          {trans(`beatmaps.discussions.collapse.all-${type}`)}
+        </span>
+      </button>
     );
   }
 
