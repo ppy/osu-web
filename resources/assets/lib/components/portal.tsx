@@ -21,7 +21,7 @@ export default class Portal extends PureComponent<Props> {
     this.removePortal();
 
     $(document).off('turbolinks:before-cache', this.removePortal);
-  };
+  }
 
   render() {
     return createPortal(this.props.children, this.container);
