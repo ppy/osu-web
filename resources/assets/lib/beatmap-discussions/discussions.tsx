@@ -6,7 +6,6 @@ import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import { BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import { BeatmapsetWithDiscussionsJson } from 'interfaces/beatmapset-json';
-import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
 import { BeatmapsetDiscussionJson } from 'legacy-modules';
 import { size } from 'lodash';
@@ -17,7 +16,9 @@ import { canModeratePosts } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import { nextVal } from 'utils/seq';
+import CurrentDiscussions, { Filter } from './current-discussions';
 import { Discussion } from './discussion';
+import DiscussionsMode from './discussions-mode';
 
 const bn = 'beatmap-discussions';
 
@@ -36,7 +37,7 @@ const sortPresets = {
   // there's obviously no timeline field
   timeline: {
     sort(a: BeatmapsetDiscussionJson, b: BeatmapsetDiscussionJson) {
-      // TODO: this shouldnt be called when not timeline, anyway.
+      // TODO: this shouldn't be called when not timeline, anyway.
       if (a.timestamp == null || b.timestamp == null) {
         return 0;
       }
@@ -61,39 +62,7 @@ const sortPresets = {
   },
 };
 
-type Filter = 'deleted' | 'hype' | 'mapperNotes' | 'mine' | 'pending' | 'praises' | 'resolved' | 'total';
-// type Mode = 'events' | 'general' | 'generalAll' | 'timeline' | 'reviews';
-type Mode = 'general' | 'generalAll' | 'timeline' | 'reviews';
 type Sort = 'created_at' | 'updated_at' | 'timeline';
-
-interface CurrentDiscussions {
-  byFilter: {
-    deleted: DiscussionByFilter;
-    hype: DiscussionByFilter;
-    mapperNotes: DiscussionByFilter;
-    mine: DiscussionByFilter;
-    pending: DiscussionByFilter;
-    praises: DiscussionByFilter;
-    resolved: DiscussionByFilter;
-    total: DiscussionByFilter;
-  };
-  countsByBeatmap: Record<number, number>;
-  countsByPlaymode: Record<GameMode, number>;
-  general: BeatmapsetDiscussionJson[];
-  generalAll: BeatmapsetDiscussionJson[];
-  reviews: BeatmapsetDiscussionJson[];
-  timeline: BeatmapsetDiscussionJson[];
-  timelineAllUsers: BeatmapsetDiscussionJson[];
-  totalHype: number;
-  unresolvedIssues: number;
-}
-
-interface DiscussionByFilter {
-  general: Record<number, BeatmapsetDiscussionJson>;
-  generalAll: Record<number, BeatmapsetDiscussionJson>;
-  reviews: Record<number, BeatmapsetDiscussionJson>;
-  timeline: Record<number, BeatmapsetDiscussionJson>;
-}
 
 interface DiscussionIdEvent {
   discussionId: number;
@@ -105,7 +74,7 @@ interface Props {
   currentDiscussions: CurrentDiscussions;
   currentFilter: Filter;
   currentUser: UserJson;
-  mode: Mode;
+  mode: DiscussionsMode;
   readPostIds: Set<number>;
   showDeleted: boolean;
   users: Record<number, UserJson>;
@@ -117,7 +86,7 @@ export class Discussions extends React.Component<Props> {
   @observable private discussionDefaultCollapsed = false;
   private readonly eventId = `beatmapset-discussions-${nextVal()}`;
   @observable private highlightedDiscussionId: number | null = null;
-  @observable private sort: Record<Mode, Sort> = {
+  @observable private sort: Record<DiscussionsMode, Sort> = {
     general: 'updated_at',
     generalAll: 'updated_at',
     reviews: 'updated_at',

@@ -11,7 +11,6 @@ import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import { BeatmapsetDiscussionPostStoreResponseJson } from 'interfaces/beatmapset-discussion-post-responses';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import { BeatmapsetWithDiscussionsJson } from 'interfaces/beatmapset-json';
-import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
@@ -27,41 +26,11 @@ import { trans, transArray } from 'utils/lang';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import { present } from 'utils/string';
 import { linkHtml } from 'utils/url';
+import CurrentDiscussions from './current-discussions';
+import DiscussionsMode from './discussions-mode';
 import MessageLengthCounter from './message-length-counter';
 
 const bn = 'beatmap-discussion-new';
-
-type Mode = 'events' | 'general' | 'generalAll' | 'timeline' | 'reviews';
-
-// TODO: move to store/context
-interface CurrentDiscussions {
-  byFilter: {
-    deleted: DiscussionByFilter;
-    hype: DiscussionByFilter;
-    mapperNotes: DiscussionByFilter;
-    mine: DiscussionByFilter;
-    pending: DiscussionByFilter;
-    praises: DiscussionByFilter;
-    resolved: DiscussionByFilter;
-    total: DiscussionByFilter;
-  };
-  countsByBeatmap: Record<number, number>;
-  countsByPlaymode: Record<GameMode, number>;
-  general: BeatmapsetDiscussionJson[];
-  generalAll: BeatmapsetDiscussionJson[];
-  reviews: BeatmapsetDiscussionJson[];
-  timeline: BeatmapsetDiscussionJson[];
-  timelineAllUsers: BeatmapsetDiscussionJson[];
-  totalHype: number;
-  unresolvedIssues: number;
-}
-
-interface DiscussionByFilter {
-  general: Record<number, BeatmapsetDiscussionJson>;
-  generalAll: Record<number, BeatmapsetDiscussionJson>;
-  reviews: Record<number, BeatmapsetDiscussionJson>;
-  timeline: Record<number, BeatmapsetDiscussionJson>;
-}
 
 interface DiscussionsCache {
   beatmap: BeatmapExtendedJson;
@@ -75,7 +44,7 @@ interface Props {
   currentBeatmap: BeatmapExtendedJson;
   currentDiscussions: CurrentDiscussions;
   innerRef: React.RefObject<HTMLDivElement>;
-  mode: Mode;
+  mode: DiscussionsMode;
   pinned: boolean;
   setPinned: (flag: boolean) => void;
   stickTo: React.RefObject<HTMLElement>;
