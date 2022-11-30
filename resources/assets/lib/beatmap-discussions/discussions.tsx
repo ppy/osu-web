@@ -156,7 +156,7 @@ export class Discussions extends React.PureComponent<Props, State> {
               <button
                 className={`${bn}__toolbar-item ${bn}__toolbar-item--link`}
                 data-type='collapse'
-                onClick={this.expand}
+                onClick={this.handleExpandClick}
                 type='button'
               >
                 <IconExpand expand={false} parentClass={`${bn}__toolbar-link-content`} />
@@ -167,7 +167,7 @@ export class Discussions extends React.PureComponent<Props, State> {
               <button
                 className={`${bn}__toolbar-item ${bn}__toolbar-item--link`}
                 data-type='expand'
-                onClick={this.expand}
+                onClick={this.handleExpandClick}
                 type='button'
               >
                 <IconExpand expand parentClass={`${bn}__toolbar-link-content`} />
@@ -182,6 +182,36 @@ export class Discussions extends React.PureComponent<Props, State> {
         </div>
       </div>
     );
+  }
+
+  private currentSort() {
+    return this.state.sort[this.props.mode];
+  }
+
+  private readonly handleChangeSort = (e: React.SyntheticEvent<HTMLButtonElement>) => {
+    const targetPreset = e.currentTarget.dataset.sortPreset;
+
+    if (targetPreset === this.currentSort()) {
+      return;
+    }
+
+    const sort = jsonClone(this.state.sort);
+    sort[this.props.mode] = targetPreset;
+
+    return this.setState({ sort });
+  };
+
+  private handleExpandClick = (e: React.SyntheticEvent<HTMLButtonElement>) => this.setState({
+    discussionCollapses: {},
+    discussionDefaultCollapsed: e.currentTarget.dataset.type === 'collapse',
+  });
+
+  private isDiscussionCollapsed(discussionId: number) {
+    return this.state.discussionCollapses[discussionId] != null ? this.state.discussionCollapses[discussionId] : this.state.discussionDefaultCollapsed;
+  }
+
+  private isTimelineVisible() {
+    return (this.props.mode === 'timeline') && (this.currentSort() === 'timeline');
   }
 
   private readonly renderDiscussionPage = (discussion: BeatmapsetDiscussionJsonForShow) => {
@@ -280,7 +310,7 @@ export class Discussions extends React.PureComponent<Props, State> {
             <button
               key={preset}
               className={classWithModifiers('sort__item', 'button', { active: this.currentSort() === preset })}
-              onClick={this.changeSort}
+              onClick={this.handleChangeSort}
               type='button'
             >
               sortPresets[preset].text
@@ -298,36 +328,6 @@ export class Discussions extends React.PureComponent<Props, State> {
         data-visibility={!this.isTimelineVisible() ? 'hidden' : undefined}
       />
     );
-  }
-
-  private readonly changeSort = (e: React.SyntheticEvent<HTMLButtonElement>) => {
-    const targetPreset = e.currentTarget.dataset.sortPreset;
-
-    if (targetPreset === this.currentSort()) {
-      return;
-    }
-
-    const sort = jsonClone(this.state.sort);
-    sort[this.props.mode] = targetPreset;
-
-    return this.setState({ sort });
-  };
-
-  private currentSort() {
-    return this.state.sort[this.props.mode];
-  }
-
-  private expand = (e: React.SyntheticEvent<HTMLButtonElement>) => this.setState({
-    discussionCollapses: {},
-    discussionDefaultCollapsed: e.currentTarget.dataset.type === 'collapse',
-  });
-
-  private isDiscussionCollapsed(discussionId: number) {
-    return this.state.discussionCollapses[discussionId] != null ? this.state.discussionCollapses[discussionId] : this.state.discussionDefaultCollapsed;
-  }
-
-  private isTimelineVisible() {
-    return (this.props.mode === 'timeline') && (this.currentSort() === 'timeline');
   }
 
   private readonly setHighlight = (_event: unknown, { discussionId }: { discussionId: number }) => {
