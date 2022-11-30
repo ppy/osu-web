@@ -322,16 +322,6 @@ export class Discussions extends React.PureComponent<Props, State> {
     discussionDefaultCollapsed: e.currentTarget.dataset.type === 'collapse',
   });
 
-  private hidden(discussion: { message_type: string; resolved: any; user_id: any }) {
-    switch (this.props.currentFilter) {
-      case 'mine': return discussion.user_id !== this.props.currentUser.id;
-      case 'resolved': return (discussion.message_type === 'praise') || !discussion.resolved;
-      case 'pending': return (discussion.message_type === 'praise') || discussion.resolved;
-      case 'praises': return discussion.message_type !== 'praise';
-      default: return false;
-    }
-  }
-
   private isDiscussionCollapsed(discussionId: number) {
     return this.state.discussionCollapses[discussionId] != null ? this.state.discussionCollapses[discussionId] : this.state.discussionDefaultCollapsed;
   }
