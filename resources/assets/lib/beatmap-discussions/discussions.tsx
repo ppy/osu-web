@@ -246,9 +246,7 @@ export class Discussions extends React.Component<Props> {
 
         {this.isTimelineVisible && <div className={`${bn}__timeline-line hidden-xs`} />}
 
-        <div>
-          {this.sortedDiscussions.map(this.renderDiscussionPage)}
-        </div>
+        {this.sortedDiscussions.map(this.renderDiscussionPage)}
 
         {this.renderTimelineCircle()}
       </div>
