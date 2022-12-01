@@ -42,7 +42,7 @@ export const isFormatActive = (editor: Editor, format: 'bold' | 'italic') => {
     match: (node) => Text.isText(node) && node[format] === true,
     mode: 'all',
   });
-  return !!match;
+  return match != null;
 };
 
 const getCurrentNode = (editor: Editor) => {
