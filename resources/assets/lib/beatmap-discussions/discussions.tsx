@@ -25,11 +25,9 @@ const bn = 'beatmap-discussions';
 const sortPresets = {
   created_at: {
     sort(a: BeatmapsetDiscussionJson, b: BeatmapsetDiscussionJson) {
-      if (a.created_at === b.created_at) {
-        return a.id - b.id;
-      } else {
-        return Date.parse(a.created_at) - Date.parse(b.created_at);
-      }
+      return a.created_at === b.created_at
+        ? a.id - b.id
+        : Date.parse(a.created_at) - Date.parse(b.created_at);
     },
     text: trans('beatmaps.discussions.sort.created_at'),
   },
@@ -41,21 +39,17 @@ const sortPresets = {
         return 0;
       }
 
-      if (a.timestamp === b.timestamp) {
-        return a.id - b.id;
-      } else {
-        return a.timestamp - b.timestamp;
-      }
+      return a.timestamp === b.timestamp
+        ? a.id - b.id
+        : a.timestamp - b.timestamp;
     },
     text: trans('beatmaps.discussions.sort.timeline'),
   },
   updated_at: {
     sort(a: BeatmapsetDiscussionJson, b: BeatmapsetDiscussionJson) {
-      if (a.last_post_at === b.last_post_at) {
-        return b.id - a.id;
-      } else {
-        return Date.parse(b.last_post_at) - Date.parse(a.last_post_at);
-      }
+      return a.last_post_at === b.last_post_at
+        ?  b.id - a.id
+        : Date.parse(b.last_post_at) - Date.parse(a.last_post_at);
     },
     text: trans('beatmaps.discussions.sort.updated_at'),
   },
@@ -107,11 +101,7 @@ export class Discussions extends React.Component<Props> {
         && a.message_type !== b.message_type;
 
       if (mapperNoteCompare) {
-        if (a.message_type === 'mapper_note') {
-          return -1;
-        } else {
-          return 1;
-        }
+        return a.message_type === 'mapper_note' ? -1 : 1;
       } else {
         return sortPresets[this.currentSort].sort(a, b);
       }
