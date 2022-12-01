@@ -77,7 +77,7 @@ export class OwnClients extends React.Component {
     }
 
     return (
-      <Modal onClose={this.handleModalClose} visible>
+      <Modal onClose={this.handleModalClose}>
         {component}
       </Modal>
     );
