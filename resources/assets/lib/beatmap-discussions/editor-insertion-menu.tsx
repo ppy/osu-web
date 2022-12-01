@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { discussionTypeIcons } from 'beatmap-discussions/discussion-type';
-import { Portal } from 'components/portal';
+import Portal from 'components/portal';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import { throttle } from 'lodash';
 import * as React from 'react';
