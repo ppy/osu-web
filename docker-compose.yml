@@ -81,7 +81,6 @@ services:
     environment:
       <<: *x-env
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-      MYSQL_ONETIME_PASSWORD: "yes"
     ports:
       - "${MYSQL_EXTERNAL_PORT:-3306}:3306"
     command: --default-authentication-plugin=mysql_native_password
