@@ -98,6 +98,11 @@ export class Discussions extends React.Component<Props> {
   }
 
   @computed
+  private get isTimelineVisible() {
+    return this.props.mode === 'timeline' && this.currentSort === 'timeline';
+  }
+
+  @computed
   private get sortedDiscussions() {
     return this.props.currentDiscussions[this.props.mode].slice().sort((a: BeatmapsetDiscussionJson, b: BeatmapsetDiscussionJson) => {
       const mapperNoteCompare =
@@ -186,10 +191,6 @@ export class Discussions extends React.Component<Props> {
     return this.discussionCollapses.get(discussionId) ?? this.discussionDefaultCollapsed;
   }
 
-  private isTimelineVisible() {
-    return this.props.mode === 'timeline' && this.currentSort === 'timeline';
-  }
-
   private readonly renderDiscussionPage = (discussion: BeatmapsetDiscussionJsonForShow) => {
     if (discussion.id == null) return null; // TODO: does this still happen?
 
@@ -210,7 +211,7 @@ export class Discussions extends React.Component<Props> {
           currentBeatmap={this.props.currentBeatmap}
           discussion={discussion}
           highlighted={this.highlightedDiscussionId === discussion.id}
-          isTimelineVisible={this.isTimelineVisible()}
+          isTimelineVisible={this.isTimelineVisible}
           parentDiscussion={parentDiscussion}
           readPostIds={this.props.readPostIds}
           showDeleted={this.props.showDeleted}
@@ -243,7 +244,7 @@ export class Discussions extends React.Component<Props> {
       <div className={`${bn}__discussions`}>
         {this.renderTimelineCircle()}
 
-        {this.isTimelineVisible() && <div className={`${bn}__timeline-line hidden-xs`} />}
+        {this.isTimelineVisible && <div className={`${bn}__timeline-line hidden-xs`} />}
 
         <div>
           {this.sortedDiscussions.map(this.renderDiscussionPage)}
@@ -318,7 +319,7 @@ export class Discussions extends React.Component<Props> {
     return (
       <div
         className={`${bn}__mode-circle ${bn}__mode-circle--active hidden-xs`}
-        data-visibility={!this.isTimelineVisible() ? 'hidden' : undefined}
+        data-visibility={!this.isTimelineVisible ? 'hidden' : undefined}
       />
     );
   }
