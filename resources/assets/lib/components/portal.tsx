@@ -6,6 +6,7 @@ import { createPortal } from 'react-dom';
 
 interface Props {
   children: ReactNode;
+  root?: Element;
 }
 
 export default class Portal extends PureComponent<Props> {
@@ -27,7 +28,9 @@ export default class Portal extends PureComponent<Props> {
     return createPortal(this.props.children, this.container);
   }
 
-  private readonly addPortal = () => document.body.appendChild(this.container);
+  private addPortal() {
+    (this.props.root ?? document.body).appendChild(this.container);
+  }
 
   private readonly removePortal = () => {
     this.container.remove();
