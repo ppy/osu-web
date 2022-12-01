@@ -29,7 +29,7 @@ export default class Portal extends PureComponent<Props> {
   }
 
   private addPortal() {
-    (this.props.root ?? document.body).appendChild(this.container);
+    (this.props.root ?? window.newBody ?? document.body).appendChild(this.container);
   }
 
   private readonly removePortal = () => {
