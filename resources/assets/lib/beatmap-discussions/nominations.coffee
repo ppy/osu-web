@@ -534,7 +534,7 @@ export class Nominations extends React.PureComponent
   renderChangeOwnerModal: =>
     return if !@state.changeOwnerModal
 
-    el Modal, visible: true,
+    el Modal, null,
       el BeatmapsOwnerEditor,
         beatmapset: @props.beatmapset,
         users: @props.users
@@ -543,7 +543,7 @@ export class Nominations extends React.PureComponent
   renderLoveBeatmapModal: =>
     return if !@state.loveBeatmapModal
 
-    el Modal, visible: true, onClose: @handleLoveBeatmapModal,
+    el Modal, onClose: @handleLoveBeatmapModal,
       el LoveBeatmapModal,
         beatmapset: @props.beatmapset
         onClose: @handleLoveBeatmapModal
