@@ -15,10 +15,10 @@ import * as React from 'react';
 import { canModeratePosts } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
-import { nextVal } from 'utils/seq';
 import CurrentDiscussions, { Filter } from './current-discussions';
 import { Discussion } from './discussion';
 import DiscussionsMode from './discussions-mode';
+import DiscussionsStateContext, { newDefault } from './discussions-state-context';
 
 const bn = 'beatmap-discussions';
 
@@ -33,7 +33,6 @@ const sortPresets = {
     },
     text: trans('beatmaps.discussions.sort.created_at'),
   },
-
   // there's obviously no timeline field
   timeline: {
     sort(a: BeatmapsetDiscussionJson, b: BeatmapsetDiscussionJson) {
@@ -64,11 +63,8 @@ const sortPresets = {
 
 type Sort = 'created_at' | 'updated_at' | 'timeline';
 
-interface DiscussionIdEvent {
-  discussionId: number;
-}
-
 interface Props {
+  // TODO: most of these can move to context/store after main is converted to typescript.
   beatmapset: BeatmapsetExtendedJson & BeatmapsetWithDiscussionsJson;
   currentBeatmap: BeatmapExtendedJson;
   currentDiscussions: CurrentDiscussions;
@@ -81,10 +77,7 @@ interface Props {
 
 @observer
 export class Discussions extends React.Component<Props> {
-  @observable discussionCollapses = new Map<number, boolean>();
-  @observable private discussionDefaultCollapsed = false;
-  private readonly eventId = `beatmapset-discussions-${nextVal()}`;
-  @observable private highlightedDiscussionId: number | null = null;
+  @observable private discussionsState = newDefault();
   @observable private sort: Record<DiscussionsMode, Sort> = {
     general: 'updated_at',
     generalAll: 'updated_at',
@@ -131,12 +124,11 @@ export class Discussions extends React.Component<Props> {
   }
 
   componentDidMount() {
-    $.subscribe(`beatmapset-discussions:collapse.${this.eventId}`, this.handleToggleCollapse);
-    $.subscribe(`beatmapset-discussions:highlight.${this.eventId}`, this.handleSetHighlight);
+    $.subscribe('beatmapset-discussions:highlight', this.handleSetHighlight);
   }
 
   componentWillUnmount() {
-    $.unsubscribe(`.${this.eventId}`);
+    $.unsubscribe('beatmapset-discussions:highlight', this.handleSetHighlight);
   }
 
   render() {
@@ -172,24 +164,15 @@ export class Discussions extends React.Component<Props> {
 
   @action
   private handleExpandClick = (e: React.SyntheticEvent<HTMLButtonElement>) => {
-    this.discussionDefaultCollapsed = e.currentTarget.dataset.type === 'collapse';
-    this.discussionCollapses.clear();
+    this.discussionsState.discussionDefaultCollapsed = e.currentTarget.dataset.type === 'collapse';
+    this.discussionsState.discussionCollapsed.clear();
   };
 
   @action
-  private readonly handleSetHighlight = (_event: unknown, { discussionId }: DiscussionIdEvent) => {
-    this.highlightedDiscussionId = discussionId;
+  private readonly handleSetHighlight = (_event: unknown, { discussionId }: { discussionId: number }) => {
+    // TODO: update main to use context instead of publishing event.
+    this.discussionsState.highlightedDiscussionId = discussionId;
   };
-
-  @action
-  private readonly handleToggleCollapse = (_event: unknown, { discussionId }: DiscussionIdEvent) => {
-    this.discussionCollapses.set(discussionId, !this.isDiscussionCollapsed(discussionId));
-  };
-
-
-  private isDiscussionCollapsed(discussionId: number) {
-    return this.discussionCollapses.get(discussionId) ?? this.discussionDefaultCollapsed;
-  }
 
   private readonly renderDiscussionPage = (discussion: BeatmapsetDiscussionJsonForShow) => {
     if (discussion.id == null) return null; // TODO: does this still happen?
@@ -207,10 +190,8 @@ export class Discussions extends React.Component<Props> {
       >
         <Discussion
           beatmapset={this.props.beatmapset}
-          collapsed={this.isDiscussionCollapsed(discussion.id)}
           currentBeatmap={this.props.currentBeatmap}
           discussion={discussion}
-          highlighted={this.highlightedDiscussionId === discussion.id}
           isTimelineVisible={this.isTimelineVisible}
           parentDiscussion={parentDiscussion}
           readPostIds={this.props.readPostIds}
@@ -246,7 +227,9 @@ export class Discussions extends React.Component<Props> {
 
         {this.isTimelineVisible && <div className={`${bn}__timeline-line hidden-xs`} />}
 
-        {this.sortedDiscussions.map(this.renderDiscussionPage)}
+        <DiscussionsStateContext.Provider value={this.discussionsState}>
+          {this.sortedDiscussions.map(this.renderDiscussionPage)}
+        </DiscussionsStateContext.Provider>
 
         {this.renderTimelineCircle()}
       </div>
