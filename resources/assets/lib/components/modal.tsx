@@ -5,12 +5,14 @@ import * as React from 'react';
 import { blackoutToggle } from 'utils/blackout';
 import Portal from './portal';
 
-export const isModalOpen = () => document.body.classList.contains('js-react-modal---is-open');
+export const isModalOpen = () => modals.size !==  0;
 
 interface Props {
   children: React.ReactNode;
   onClose?: () => void;
 }
+
+const modals = new Set<Modal>();
 
 export default class Modal extends React.PureComponent<Props> {
   private clickEndTarget: undefined | EventTarget;
@@ -46,10 +48,12 @@ export default class Modal extends React.PureComponent<Props> {
     );
   }
 
-  private close(this: void) {
-    document.body.classList.remove('js-react-modal---is-open');
-    blackoutToggle(false, 0.5);
-  }
+  private readonly close = () => {
+    modals.delete(this);
+    if (modals.size === 0) {
+      blackoutToggle(false);
+    }
+  };
 
   private readonly handleBeforeCache = () => {
     // componentWillUnmount runs too late depending on how the top level component was registered
@@ -86,9 +90,8 @@ export default class Modal extends React.PureComponent<Props> {
     }
   };
 
-  private open(this: void) {
-    // TODO: move to global react state or something
-    document.body.classList.add('js-react-modal---is-open');
+  private readonly open = () => {
+    modals.add(this);
     blackoutToggle(true, 0.5);
-  }
+  };
 }
