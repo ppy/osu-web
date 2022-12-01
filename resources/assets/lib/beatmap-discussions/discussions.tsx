@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contactthis.ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { IconExpand } from 'components/icon-expand';
+import IconExpand from 'components/icon-expand';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import { BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';

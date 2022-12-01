@@ -85,9 +85,11 @@ export class Nominator extends React.PureComponent<Props, State> {
   legacyMode = () => this.props.beatmapset.nominations?.legacy_mode;
 
   mapCanBeNominated = () => {
-    const requiredHype = this.props.beatmapset.hype?.required;
+    if (this.props.beatmapset.hype == null) {
+      return false;
+    }
 
-    return this.props.beatmapset.status === 'pending' && requiredHype && this.props.currentHype >= requiredHype;
+    return this.props.beatmapset.status === 'pending' && this.props.currentHype >= this.props.beatmapset.hype.required;
   };
 
   nominate = () => {
@@ -186,7 +188,7 @@ export class Nominator extends React.PureComponent<Props, State> {
     const content = this.hybridMode() ? this.modalContentHybrid() : this.modalContentNormal();
 
     return (
-      <Modal onClose={this.hideNominationModal} visible={this.state.visible}>
+      <Modal onClose={this.hideNominationModal}>
         <div className={this.bn}>
           <div className={`${this.bn}__header`}>{trans('beatmapsets.nominate.dialog.header')}</div>
           {content}

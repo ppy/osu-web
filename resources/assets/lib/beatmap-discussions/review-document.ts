@@ -65,7 +65,7 @@ export function parseFromJson(json: string, discussions: Partial<Record<number, 
         } else {
           const parsed = processor.parse(block.text) as ParsedDocumentNode;
 
-          if (!parsed.children || parsed.children.length < 1) {
+          if (parsed.children == null || parsed.children.length < 1) {
             console.error('children missing... ?');
             break;
           }

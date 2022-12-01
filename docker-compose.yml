@@ -77,18 +77,18 @@ services:
     image: mysql/mysql-server:8.0
     volumes:
       - database:/var/lib/mysql
-      - ./docker/development/db_setup.sql:/docker-entrypoint-initdb.d/db_setup.sql
       - ./docker/development/db_user.sql:/docker-entrypoint-initdb.d/db_user.sql
     environment:
       <<: *x-env
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-      MYSQL_ONETIME_PASSWORD: "yes"
     ports:
       - "${MYSQL_EXTERNAL_PORT:-3306}:3306"
     command: --default-authentication-plugin=mysql_native_password
 
   redis:
     image: redis:latest
+    ports:
+      - "${REDIS_EXTERNAL_PORT:-6379}:6379"
 
   elasticsearch:
     # Version must be kept up to date with library defined in: composer.json

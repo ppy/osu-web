@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { DiscussionType, discussionTypeIcons } from 'beatmap-discussions/discussion-type';
+import { DiscussionType, discussionTypeIcons, discussionTypes } from 'beatmap-discussions/discussion-type';
 import BigButton from 'components/big-button';
 import StringWithComponent from 'components/string-with-component';
 import TimeWithTooltip from 'components/time-with-tooltip';
@@ -183,10 +183,8 @@ export class NewDiscussion extends React.Component<Props> {
 
   @action
   private readonly post = (e: React.SyntheticEvent<HTMLElement>) => {
-    if (!this.validPost || this.postXhr != null) return;
-
     const type = e.currentTarget.dataset.type;
-    if (type == null) return;
+    if (type == null || !this.validPost(type) || this.postXhr != null) return;
 
     if (type === 'problem') {
       const problemType = this.problemType();
@@ -468,7 +466,8 @@ export class NewDiscussion extends React.Component<Props> {
     this.timestampConfirmed = !this.timestampConfirmed;
   };
 
-  private validPost(type: DiscussionType) {
+  private validPost(type: string): type is DiscussionType {
+    if (!(discussionTypes as Readonly<string[]>).includes(type)) return false;
     if (!validMessageLength(this.message, this.isTimeline)) return false;
     if (!this.isTimeline) return true;
 

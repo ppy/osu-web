@@ -41,7 +41,7 @@ export default class DiscussionVoteButtons extends React.Component<Props> {
 
   componentDidUpdate() {
     for (const type of voteTypes) {
-      this.tooltips[type]?.qtip('api').set('content.text', this.getTooltipContent(type));
+      this.tooltips[type]?.qtip('api')?.set('content.text', this.getTooltipContent(type));
     }
   }
 
