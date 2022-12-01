@@ -10,7 +10,6 @@ export const isModalOpen = () => document.body.classList.contains('js-react-moda
 interface Props {
   children: React.ReactNode;
   onClose?: () => void;
-  visible: boolean;
 }
 
 export default class Modal extends React.PureComponent<Props> {
@@ -24,13 +23,7 @@ export default class Modal extends React.PureComponent<Props> {
     document.addEventListener('keydown', this.handleEsc);
     $(document).on('turbolinks:before-cache', this.handleBeforeCache);
 
-    this.syncVisible();
-  }
-
-  componentDidUpdate(prevProps: Props) {
-    if (prevProps.visible !== this.props.visible) {
-      this.syncVisible();
-    }
+    this.open();
   }
 
   componentWillUnmount() {
@@ -102,13 +95,5 @@ export default class Modal extends React.PureComponent<Props> {
         {this.props.children}
       </div>
     );
-  }
-
-  private syncVisible() {
-    if (this.props.visible) {
-      this.open();
-    } else {
-      this.close();
-    }
   }
 }
