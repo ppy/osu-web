@@ -34,7 +34,7 @@ interface SharedStyles {
 // partial qtip2 typings
 interface QTip2 {
   (...args: unknown[]): any;
-  (method: 'api'): QTip2Api;
+  (method: 'api'): QTip2Api | undefined;
 }
 
 interface QTip2Api {
