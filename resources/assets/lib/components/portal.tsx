@@ -27,7 +27,7 @@ export default class Portal extends PureComponent<Props> {
     return createPortal(this.props.children, this.container);
   }
 
-  private readonly addPortal = () => document.body.appendChild(this.container);
+  private readonly addPortal = () => (window.newBody ?? document.body).appendChild(this.container);
 
   private readonly removePortal = () => {
     this.container.remove();
