@@ -1596,7 +1596,11 @@ function parse_time_to_carbon($value)
     }
 
     if (is_numeric($value)) {
-        return Carbon\Carbon::createFromTimestamp($value);
+        try {
+            return Carbon\Carbon::createFromTimestamp($value);
+        } catch (Carbon\Exceptions\InvalidFormatException $_e) {
+            return;
+        }
     }
 
     if (is_string($value)) {
