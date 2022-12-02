@@ -15,15 +15,17 @@ export function joinComponents(array: React.ReactElement[], key = 'common.array_
   if (array.length > 0) {
     nodes.push(array[0]);
 
-    const lastIndex = array.length - 1;
-    const lastConnector = lastIndex === 1 ? trans(`${key}.two_words_connector`) : trans(`${key}.last_word_connector`);
-    const connector = trans(`${key}.words_connector`);
+    if (array.length > 1) {
+      const lastIndex = array.length - 1;
+      const lastConnector = lastIndex === 1 ? trans(`${key}.two_words_connector`) : trans(`${key}.last_word_connector`);
+      const connector = trans(`${key}.words_connector`);
 
-    for (let i = 1; i < lastIndex; i++) {
-      nodes.push(<React.Fragment key={array[i].key}>{connector}{array[i]}</React.Fragment>);
+      for (let i = 1; i < lastIndex; i++) {
+        nodes.push(<React.Fragment key={array[i].key}>{connector}{array[i]}</React.Fragment>);
+      }
+
+      nodes.push(<React.Fragment key={array[lastIndex].key}>{lastConnector}{array[lastIndex]}</React.Fragment>);
     }
-
-    nodes.push(<React.Fragment key={array[lastIndex].key}>{lastConnector}{array[lastIndex]}</React.Fragment>);
   }
 
   return <>{nodes}</>;
