@@ -110,7 +110,7 @@ export default class ReportForm extends React.Component<Props> {
 
   render() {
     return (
-      <Modal onClose={this.handleClose} visible>
+      <Modal onClose={this.handleClose}>
         <div className={bn}>
           <div className={`${bn}__header`}>
             <div className={`${bn}__row ${bn}__row--exclamation`}>
