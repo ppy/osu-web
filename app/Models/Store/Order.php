@@ -653,15 +653,7 @@ class Order extends Model
         // FIXME: custom class stuff should probably not go in Order...
         switch ($product->custom_class) {
             case 'supporter-tag':
-                $targetId = (int) $params['extra_data']['target_id'];
-                if ($targetId === $this->user_id) {
-                    $params['extra_data']['username'] = $this->user->username;
-                } else {
-                    $user = User::default()->where('user_id', $targetId)->firstOrFail();
-                    $params['extra_data']['username'] = $user->username;
-                }
-
-                $params['extra_data']['duration'] = SupporterTag::getDuration($params['cost']);
+                $params['extra_data'] = $this->paramsSupporterTag($params);
                 break;
             case 'username-change':
                 // ignore received cost
@@ -672,10 +664,7 @@ class Order extends Model
             case 'mwc7-supporter':
             case 'owc-supporter':
             case 'twc-supporter':
-                // much dodgy. wow.
-                $matches = [];
-                preg_match('/.+\((?<country>.+)\)$/', $product->name, $matches);
-                $params['extra_data']['cc'] = Country::where('name', $matches['country'])->first()->acronym;
+                $params['extra_data'] = $this->paramsTournamentBanner($params);
                 $params['cost'] = $product->cost ?? 0;
                 break;
             default:
@@ -687,8 +676,42 @@ class Order extends Model
             'extra_info' => $params['extra_info'],
             'extra_data' => $params['extra_data'],
             'cost' => $params['cost'],
-            'product_id' => $product->product_id,
+            'product_id' => $product->getKey(),
         ]);
+    }
+
+    private function paramsSupporterTag(array $rawParams)
+    {
+        $params = get_params($rawParams, 'extra_data', [
+            'duration:int',
+            'target_id:int',
+        ]);
+
+        $targetId = $params['target_id'];
+        if ($targetId === $this->user_id) {
+            $params['username'] = $this->user->username;
+        } else {
+            $user = User::default()->where('user_id', $targetId)->firstOrFail();
+            $params['username'] = $user->username;
+        }
+
+        $params['duration'] = SupporterTag::getDuration($rawParams['cost']);
+
+        return $params;
+    }
+
+    private function paramsTournamentBanner(array $rawParams)
+    {
+        $params = get_params($rawParams, 'extra_data', [
+            'tournament_id:int'
+        ]);
+
+        // much dodgy. wow.
+        $matches = [];
+        preg_match('/.+\((?<country>.+)\)$/', $rawParams['product']->name, $matches);
+        $params['cc'] = Country::where('name', $matches['country'])->first()->acronym;
+
+        return $params;
     }
 
     private function updateOrderItem(array $params, $addToExisting = false)
