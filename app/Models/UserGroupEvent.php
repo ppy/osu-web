@@ -18,7 +18,6 @@ use InvalidArgumentException;
  * @property array|null $details
  * @property-read Group $group
  * @property int $group_id
- * @property bool $hidden
  * @property int $id
  * @property string $type
  * @property-read User|null $user
@@ -142,8 +141,6 @@ class UserGroupEvent extends Model
 
             'details' => json_decode($this->getRawAttribute($key), true),
 
-            'hidden' => (bool) $this->getRawAttribute($key),
-
             'created_at' => $this->getTimeFast($key),
 
             'created_at_json' => $this->getJsonTimeFast($key),
@@ -153,5 +150,12 @@ class UserGroupEvent extends Model
 
             'group' => app('groups')->byIdOrFail($this->getRawAttribute('group_id')),
         };
+    }
+
+    // Laravel has own hidden property
+    // TODO: https://github.com/ppy/osu-web/pull/9486#discussion_r1017831112
+    public function isHidden(): bool
+    {
+        return (bool) $this->getRawAttribute('hidden');
     }
 }

@@ -48,6 +48,7 @@ class UserChannel extends Model
     }
 
     // Laravel has own hidden property
+    // TODO: https://github.com/ppy/osu-web/pull/9486#discussion_r1017831112
     public function isHidden()
     {
         return (bool) $this->getRawAttribute('hidden');
