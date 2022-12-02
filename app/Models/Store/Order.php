@@ -648,10 +648,6 @@ class Order extends Model
 
     private function newOrderItem(array $params)
     {
-        if ($params['cost'] < 0) {
-            $params['cost'] = 0;
-        }
-
         $product = $params['product'];
 
         // FIXME: custom class stuff should probably not go in Order...
@@ -714,13 +710,27 @@ class Order extends Model
 
     private static function orderItemParams(array $form)
     {
-        return [
-            'id' => array_get($form, 'id'),
-            'quantity' => array_get($form, 'quantity'),
-            'product' => Product::enabled()->find(array_get($form, 'product_id')),
-            'cost' => intval(array_get($form, 'cost')),
-            'extraInfo' => array_get($form, 'extra_info'),
-            'extraData' => array_get($form, 'extra_data'),
-        ];
+        $params = get_params($form, null, [
+            'id:int',
+            'cost:int',
+            'extra_data:array',
+            'extra_info',
+            'product_id:int',
+            'quantity:int',
+        ], ['null_missing' => true]);
+
+        // normalize values
+        if ($params['cost'] === null || $params['cost'] < 0) {
+            $params['cost'] = 0;
+        }
+        $params['extraData'] = $params['extra_data'];
+        $params['extraInfo'] = $params['extra_info'];
+        $params['product'] = Product::enabled()->find($params['product_id']);
+
+        unset($params['extra_data']);
+        unset($params['extra_info']);
+        unset($params['product_id']);
+
+        return $params;
     }
 }
