@@ -6,6 +6,8 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers, Modifiers, urlPresence } from 'utils/css';
 import { parseJson } from 'utils/json';
+import { trans, transExists } from 'utils/lang';
+import { presence } from 'utils/string';
 
 interface Props {
   backgroundImage?: string | null;
@@ -54,7 +56,7 @@ export default class HeaderV4 extends React.Component<Props> {
   render(): React.ReactNode {
     const classNames = classWithModifiers(
       'header-v4',
-      osu.presence(this.props.theme),
+      presence(this.props.theme),
       { restricted: core.currentUser?.is_restricted ?? false },
       this.props.modifiers,
     );
@@ -206,8 +208,8 @@ export default class HeaderV4 extends React.Component<Props> {
     ];
 
     for (const key of keys) {
-      if (osu.transExists(key, fallbackLocale)) {
-        return osu.trans(key);
+      if (transExists(key, fallbackLocale)) {
+        return trans(key);
       }
     }
 

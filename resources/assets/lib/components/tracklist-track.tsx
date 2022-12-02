@@ -7,6 +7,8 @@ import { route } from 'laroute';
 import * as React from 'react';
 import { classWithModifiers, Modifiers, urlPresence } from 'utils/css';
 import { formatNumber } from 'utils/html';
+import { trans } from 'utils/lang';
+import { present } from 'utils/string';
 
 type TrackJson = {
   artist: ArtistJson;
@@ -54,7 +56,7 @@ export default class TracklistTrack extends React.PureComponent<Props> {
         <div className='artist-track__col artist-track__col--names'>
           <div className='artist-track__title u-ellipsis-overflow'>
             {this.props.track.title}
-            {osu.present(this.props.track.version) && (
+            {present(this.props.track.version) && (
               <>
                 {' '}
                 <span className='artist-track__version'>
@@ -81,14 +83,14 @@ export default class TracklistTrack extends React.PureComponent<Props> {
           {this.props.track.exclusive && (
             <span
               className='pill-badge pill-badge--pink pill-badge--with-shadow'
-              title={osu.trans('artist.songs.original')}
+              title={trans('artist.songs.original')}
             >
-              {osu.trans('artist.songs.original_badge')}
+              {trans('artist.songs.original_badge')}
             </span>
           )}
           {this.props.track.is_new && (
             <span className='pill-badge pill-badge--yellow pill-badge--with-shadow'>
-              {osu.trans('common.badges.new')}
+              {trans('common.badges.new')}
             </span>
           )}
         </div>
@@ -110,7 +112,7 @@ export default class TracklistTrack extends React.PureComponent<Props> {
           <a
             className='artist-track__button'
             href={this.props.track.osz}
-            title={osu.trans('artist.beatmaps.download')}
+            title={trans('artist.beatmaps.download')}
           >
             <span className='fas fa-fw fa-download' />
           </a>

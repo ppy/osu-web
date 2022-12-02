@@ -38,6 +38,10 @@ fi
 
 php artisan view:clear
 
+if [ -n "${OSU_DB_CREATE:-}" ]; then
+  php artisan db:create
+fi
+
 # e.g. OSU_SKIP_DB_MIGRATION=1 ./build.sh to bypass running migrations
 if [ -z "${OSU_SKIP_DB_MIGRATION:-}" ]; then
   php artisan migrate --force

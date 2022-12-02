@@ -9,6 +9,7 @@ import { route } from 'laroute'
 import * as React from 'react'
 import { button, div, h1, p, span } from 'react-dom-factories'
 import { jsonClone } from 'utils/json'
+import { trans } from 'utils/lang'
 
 el = React.createElement
 
@@ -66,7 +67,7 @@ export class Main extends React.PureComponent
   headerLinks: =>
     [
       {
-        title: osu.trans 'layout.header.changelog.index'
+        title: trans 'layout.header.changelog.index'
         url: route('changelog.index')
       }
     ]

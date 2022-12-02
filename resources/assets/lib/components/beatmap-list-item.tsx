@@ -6,6 +6,7 @@ import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapJson from 'interfaces/beatmap-json';
 import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 
 interface Props {
   beatmap: BeatmapJson | BeatmapExtendedJson;
@@ -16,7 +17,7 @@ interface Props {
 export default class BeatmapListItem extends React.PureComponent<Props> {
   render() {
     const deleted = 'deleted_at' in this.props.beatmap && this.props.beatmap.deleted_at !== null;
-    const version = `${this.props.beatmap.version}${deleted ? ` [${osu.trans('beatmap_discussions.index.deleted_beatmap')}]` : ''}`;
+    const version = `${this.props.beatmap.version}${deleted ? ` [${trans('beatmap_discussions.index.deleted_beatmap')}]` : ''}`;
 
     return (
       <div className={classWithModifiers('beatmap-list-item', { deleted, inline: this.props.inline }, this.props.modifiers)}>

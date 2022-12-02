@@ -25,8 +25,8 @@ class ChannelTransformer extends TransformerAbstract
     protected $availableIncludes = [
         'current_user_attributes',
         'last_message_id',
-        'last_read_id', // deprecated
-        'recent_messages',
+        'last_read_id', // TODO: deprecated
+        'recent_messages', // TODO: deprecated
         'users',
     ];
 

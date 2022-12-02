@@ -5,6 +5,7 @@ import UserAvatar from 'components/user-avatar'
 import { route } from 'laroute'
 import * as React from 'react'
 import { br, tr, td, a, img, dl, dt, dd, div } from 'react-dom-factories'
+import { formatBytes } from 'utils/html'
 import { UserEntryDeleteButton } from './user-entry-delete-button'
 
 el = React.createElement
@@ -30,7 +31,7 @@ export class UserArtEntry extends React.Component
           dd className: 'admin-contest__meta-row',
             a download: @props.entry.original_filename, href: @props.entry.url, @props.entry.filename
           dt className: 'admin-contest__meta-row', 'Filesize'
-          dd className: 'admin-contest__meta-row', osu.formatBytes(@props.entry.filesize)
+          dd className: 'admin-contest__meta-row', formatBytes(@props.entry.filesize)
 
       td className: 'osu-table__cell admin-contest-entry__preview',
         a download: @props.entry.original_filename, href: @props.entry.url,

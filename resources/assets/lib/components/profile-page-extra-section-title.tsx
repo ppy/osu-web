@@ -3,6 +3,7 @@
 
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
+import { trans } from 'utils/lang';
 
 interface Props {
   count?: number | null;
@@ -12,7 +13,7 @@ interface Props {
 export default function ProfilePageExtraSectionTitle(props: Props) {
   return (
     <h3 className='title title--page-extra-small'>
-      {osu.trans(props.titleKey)}
+      {trans(props.titleKey)}
 
       {props.count != null &&
         <span className='title__count'>

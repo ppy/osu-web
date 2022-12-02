@@ -14,6 +14,7 @@ import * as React from 'react';
 import { onErrorWithCallback } from 'utils/ajax';
 import { classWithModifiers } from 'utils/css';
 import { transparentGif } from 'utils/html';
+import { trans } from 'utils/lang';
 
 type BeatmapsetWithDiscussionJson = BeatmapsetExtendedJson;
 
@@ -106,7 +107,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
 
   @action
   private handleResetClick = () => {
-    if (!confirm(osu.trans('beatmap_discussions.owner_editor.reset_confirm'))) return;
+    if (!confirm(trans('beatmap_discussions.owner_editor.reset_confirm'))) return;
 
     this.editing = false;
     this.updateOwner(this.props.beatmapsetUser.id);

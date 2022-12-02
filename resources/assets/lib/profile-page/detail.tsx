@@ -14,6 +14,7 @@ import RankChart from 'profile-page/rank-chart';
 import RankCount from 'profile-page/rank-count';
 import Stats from 'profile-page/stats';
 import * as React from 'react';
+import { trans } from 'utils/lang';
 import Controller from './controller';
 import CoverEditor from './cover-editor';
 import Links from './links';
@@ -71,7 +72,7 @@ export default class Detail extends React.Component<Props> {
               {this.user.statistics.is_ranked ? (
                 <RankChart rankHistory={this.user.rank_history} stats={this.user.statistics} />
               ) : (
-                <div className='profile-detail__empty-chart'>{osu.trans('users.show.extra.unranked')}</div>
+                <div className='profile-detail__empty-chart'>{trans('users.show.extra.unranked')}</div>
               )}
             </div>
             <div className='profile-detail__chart-numbers'>

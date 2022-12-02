@@ -12,6 +12,7 @@ import { observer } from 'mobx-react';
 import NewsSidebar from 'news-sidebar/main';
 import * as React from 'react';
 import { jsonClone } from 'utils/json';
+import { trans } from 'utils/lang';
 import PostItem from './post-item';
 
 interface NewsSearch {
@@ -51,7 +52,7 @@ export default class Main extends React.Component<Props> {
       <>
         <NewsHeader
           section='index'
-          title={osu.trans('news.index.title.info')}
+          title={trans('news.index.title.info')}
         />
         <div className='osu-page osu-page--wiki'>
           <div className='wiki-page'>
@@ -90,7 +91,7 @@ export default class Main extends React.Component<Props> {
                 'data-url': route('news.store'),
                 type: 'button',
               },
-              text: osu.trans('news.store.button'),
+              text: trans('news.store.button'),
             },
           ]}
         />

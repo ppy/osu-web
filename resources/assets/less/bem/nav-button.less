@@ -2,22 +2,16 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .nav-button {
-  @_button-content-size: 16px;
-  @_icon-size: 40px;
-
   .reset-input();
-  .circle(@_icon-size);
   .center-content();
   .link-plain();
-  border: 3px solid fade(#fff, 25%);
-  font-size: @_button-content-size;
-  color: #fff;
-  margin: 0 3px;
+  color: hsl(var(--hsl-c1));
+
+  padding: 10px;
+  border-radius: 10000px;
 
   &.js-click-menu--active, &:hover {
-    background-color: fade(#000, 50%);
-    border-color: #fff;
-    color: #fff;
+    background-color: hsla(var(--hsl-c1), 0.2);
   }
 
   &--mobile {
@@ -26,25 +20,19 @@
     border: none;
   }
 
-  &--social {
-    &:hover {
-      color: #fff;
-    }
+  &--notifications {
+    padding: 7px 10px;
   }
 
-  &--stadium {
-    width: auto;
-    border-radius: @_icon-size;
-    padding: 0 10px;
+  &--social {
+    &:hover {
+      color: hsl(var(--hsl-c1));
+    }
   }
 
   &--support {
     &:hover {
       color: @pink;
     }
-  }
-
-  &__locale-current-flag {
-    font-size: @_button-content-size;
   }
 }

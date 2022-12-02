@@ -9,6 +9,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { onErrorWithCallback } from 'utils/ajax';
 import { classWithModifiers, Modifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 import { Spinner } from './spinner';
 
 const bn = 'textual-button';
@@ -79,9 +80,9 @@ export default class BlockButton extends React.Component<Props> {
           )}
           {' '}
           {this.block == null ? (
-            osu.trans('users.blocks.button.block')
+            trans('users.blocks.button.block')
           ) : (
-            osu.trans('users.blocks.button.unblock')
+            trans('users.blocks.button.unblock')
           )}
         </span>
       </button>
@@ -89,7 +90,7 @@ export default class BlockButton extends React.Component<Props> {
   }
 
   private readonly clicked = () => {
-    if (confirm(osu.trans('common.confirmation'))) {
+    if (confirm(trans('common.confirmation'))) {
       this.toggleBlock();
     } else {
       this.props.onClick?.();

@@ -35,6 +35,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             Middleware\AutologinFromLegacyCookie::class,
             Middleware\VerifyCsrfToken::class,
+            Middleware\SetSessionVerification::class,
             Middleware\SetLocale::class,
             Middleware\UpdateUserLastvisit::class,
             Middleware\VerifyUserAlways::class,

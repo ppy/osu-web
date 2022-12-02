@@ -8,6 +8,7 @@ import { UserLink } from 'components/user-link';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import * as moment from 'moment';
 import * as React from 'react';
+import { trans } from 'utils/lang';
 
 const bn = 'beatmapset-mapping';
 
@@ -44,7 +45,7 @@ export default class BeatmapsetMapping extends React.PureComponent<Props> {
               mappings={{
                 mapper: <UserLink className={`${bn}__user`} user={displayUser} />,
               }}
-              pattern={osu.trans('beatmapsets.show.details.mapped_by')}
+              pattern={trans('beatmapsets.show.details.mapped_by')}
             />
           </div>
 
@@ -77,7 +78,7 @@ export default class BeatmapsetMapping extends React.PureComponent<Props> {
               </strong>
             ),
           }}
-          pattern={osu.trans(`beatmapsets.show.details_date.${key}`)}
+          pattern={trans(`beatmapsets.show.details_date.${key}`)}
         />
       </div>
     );

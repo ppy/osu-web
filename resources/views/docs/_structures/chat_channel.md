@@ -34,7 +34,7 @@ icon*                   | string                                           | dis
 type                    | string                                           | see channel types below
 last_read_id*           | number?                                          | Deprecated; use `current_user_attributes.last_read_id`.
 last_message_id*        | number?                                          | `message_id` of last known message (only returned in presence responses)
-recent_messages         | ChatMessage[]?                                   | up to 50 most recent messages
+recent_messages         | ChatMessage[]?                                   | Deprecated; up to 50 most recent messages
 moderated*              | boolean                                          | user can't send message when the value is `true` (only returned in presence responses)
 users*                  | number[]?                                        | array of `user_id` that are in the channel (not included for `PUBLIC` channels)
 

@@ -16,6 +16,7 @@ import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 import { MessageDivider } from './message-divider';
 import MessageGroup from './message-group';
 
@@ -204,16 +205,16 @@ export default class ConversationView extends React.Component<Props> {
                 <a
                   className='js-usercard'
                   data-user-id={channel.pmTarget}
-                  href={route('users.show', {user: channel.pmTarget})}
+                  href={route('users.show', { user: channel.pmTarget })}
                 >
                   {channel.name}
                 </a>
               ) }}
               // TODO: rework this once the user class situation is resolved
-              pattern={osu.trans('chat.talking_with')}
+              pattern={trans('chat.talking_with')}
             />
           ) : (
-            osu.trans('chat.talking_in', {channel: channel.name})
+            trans('chat.talking_in', { channel: channel.name })
           )}
         </div>
         {channel.description &&
@@ -248,7 +249,7 @@ export default class ConversationView extends React.Component<Props> {
       <div className={classWithModifiers('chat-conversation__users', { loading: this.currentChannel.announcementUsers == null })}>
         {this.currentChannel.announcementUsers == null ? (
           <>
-            <Spinner modifiers='self-center' /><span>{osu.trans('chat.loading_users')}</span>
+            <Spinner modifiers='self-center' /><span>{trans('chat.loading_users')}</span>
           </>
         ) : (
           this.currentChannel.announcementUsers.map((user) => (
@@ -283,7 +284,7 @@ export default class ConversationView extends React.Component<Props> {
       return;
     }
 
-    const message = this.currentChannel.type === 'PM' ? osu.trans('chat.cannot_send.user') : osu.trans('chat.cannot_send.channel');
+    const message = this.currentChannel.type === 'PM' ? trans('chat.cannot_send.user') : trans('chat.cannot_send.channel');
 
     return (
       <div>

@@ -4,6 +4,7 @@
 import EventJson from 'interfaces/event-json';
 import * as React from 'react';
 import { Modifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 import { switchNever } from 'utils/switch-never';
 import AchievementBadge from './achievement-badge';
 
@@ -40,7 +41,7 @@ export default function parseEvent(event: EventJson, modifiers: Modifiers): { ba
         badge: <span className='fas fa-check' />,
         iconModifiers: event.approval,
         mappings: {
-          approval: osu.trans(`events.beatmapset_status.${event.approval}`),
+          approval: trans(`events.beatmapset_status.${event.approval}`),
           beatmapset: <a href={event.beatmapset.url}>{event.beatmapset.title}</a>,
           user: <strong><a href={event.user.url}>{event.user.username}</a></strong>,
         },
@@ -89,7 +90,7 @@ export default function parseEvent(event: EventJson, modifiers: Modifiers): { ba
         badge: <div className={`score-rank score-rank--${event.scoreRank}`} />,
         mappings: {
           beatmap: <em><a href={event.beatmap.url}>{event.beatmap.title}</a></em>,
-          mode: osu.trans(`beatmaps.mode.${event.mode}`),
+          mode: trans(`beatmaps.mode.${event.mode}`),
           rank: event.rank,
           user: <strong><em><a href={event.user.url}>{event.user.username}</a></em></strong>,
         },
@@ -100,7 +101,7 @@ export default function parseEvent(event: EventJson, modifiers: Modifiers): { ba
         badge: <span className='fas fa-angle-double-down' />,
         mappings: {
           beatmap: <em><a href={event.beatmap.url}>{event.beatmap.title}</a></em>,
-          mode: osu.trans(`beatmaps.mode.${event.mode}`),
+          mode: trans(`beatmaps.mode.${event.mode}`),
           user: <strong><em><a href={event.user.url}>{event.user.username}</a></em></strong>,
         },
       };

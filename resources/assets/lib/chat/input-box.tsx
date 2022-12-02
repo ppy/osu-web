@@ -13,6 +13,8 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
 import { classWithModifiers } from 'utils/css';
+import { trans } from 'utils/lang';
+import { present } from 'utils/string';
 
 type Props = Record<string, never>;
 
@@ -94,7 +96,7 @@ export default class InputBox extends React.Component<Props> {
   render(): React.ReactNode {
     const channel = this.currentChannel;
     const buttonIcon = core.dataStore.chatState.isReady ? 'fas fa-reply' : 'fas fa-times';
-    const buttonText = osu.trans(core.dataStore.chatState.isReady ? 'chat.input.send' : 'chat.input.disconnected');
+    const buttonText = trans(core.dataStore.chatState.isReady ? 'chat.input.send' : 'chat.input.disconnected');
 
     return (
       <div className='chat-input'>
@@ -108,7 +110,7 @@ export default class InputBox extends React.Component<Props> {
           name='textbox'
           onChange={this.handleChange}
           onKeyDown={this.checkIfEnterPressed}
-          placeholder={this.inputDisabled ? osu.trans('chat.input.disabled') : osu.trans('chat.input.placeholder')}
+          placeholder={this.inputDisabled ? trans('chat.input.disabled') : trans('chat.input.placeholder')}
           value={channel?.inputText}
         />
 
@@ -130,7 +132,7 @@ export default class InputBox extends React.Component<Props> {
   sendMessage(messageText?: string) {
     if (core.dataStore.chatState.selectedChannel == null
       || messageText == null
-      || !osu.present(trim(messageText))) {
+      || !present(trim(messageText))) {
       return;
     }
 
@@ -147,7 +149,7 @@ export default class InputBox extends React.Component<Props> {
       messageText = trim(messageText.substring(split + 1));
 
       // we only support /me commands for now
-      if (command !== 'me' || !osu.present(messageText)) {
+      if (command !== 'me' || !present(messageText)) {
         return;
       }
     }

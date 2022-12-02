@@ -16,6 +16,7 @@ import NotificationDeleteButton from 'notifications/notification-delete-button';
 import NotificationReadButton from 'notifications/notification-read-button';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { trans } from 'utils/lang';
 
 @observer
 export class Main extends React.Component {
@@ -29,7 +30,7 @@ export class Main extends React.Component {
     return typeNames.map((name) => ({
       active: this.controller.currentFilter === name,
       data: { 'data-type': name },
-      title: osu.trans(`notifications.filters.${name ?? '_'}`),
+      title: trans(`notifications.filters.${name ?? '_'}`),
       url: route('notifications.index', { type: name }),
     }));
   }
@@ -126,7 +127,7 @@ export class Main extends React.Component {
       <NotificationDeleteButton
         isDeleting={type.isDeleting}
         onDelete={this.handleDelete}
-        text={osu.trans('notifications.delete', { type: osu.trans(`notifications.filters.${type.name ?? '_'}`) })}
+        text={trans('notifications.delete', { type: trans(`notifications.filters.${type.name ?? '_'}`) })}
       />
     );
   }
@@ -140,7 +141,7 @@ export class Main extends React.Component {
       <NotificationReadButton
         isMarkingAsRead={type.isMarkingAsRead}
         onMarkAsRead={this.handleMarkAsRead}
-        text={osu.trans('notifications.mark_read', { type: osu.trans(`notifications.filters.${type.name ?? '_'}`) })}
+        text={trans('notifications.mark_read', { type: trans(`notifications.filters.${type.name ?? '_'}`) })}
       />
     );
   }

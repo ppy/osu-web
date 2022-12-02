@@ -9,6 +9,7 @@ import { last } from 'lodash';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
+import { trans, transChoice } from 'utils/lang';
 
 interface Props {
   rankHistory: RankHistoryJson | null;
@@ -30,11 +31,11 @@ const options = makeOptionsNumber({
 });
 
 function formatX(d: number) {
-  return d === 0 ? osu.trans('common.time.now') : osu.transChoice('common.time.days_ago', -d);
+  return d === 0 ? trans('common.time.now') : transChoice('common.time.days_ago', -d);
 }
 
 function formatY(d: number) {
-  return `<strong>${osu.trans('users.show.rank.global_simple')}</strong> #${formatNumber(-d)}`;
+  return `<strong>${trans('users.show.rank.global_simple')}</strong> #${formatNumber(-d)}`;
 }
 
 export default class RankChart extends React.Component<Props> {

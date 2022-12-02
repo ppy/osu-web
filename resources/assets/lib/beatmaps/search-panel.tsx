@@ -10,6 +10,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { createPortal } from 'react-dom';
 import { classWithModifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 import AvailableFilters, { FilterOption } from './available-filters';
 import { SearchFilter } from './search-filter';
 
@@ -33,7 +34,7 @@ interface FilterProps {
 }
 
 const Filter = observer(({ multiselect = false, name, options, showTitle = true }: FilterProps) => {
-  const title = showTitle ? osu.trans(`beatmaps.listing.search.filters.${name}`) : undefined;
+  const title = showTitle ? trans(`beatmaps.listing.search.filters.${name}`) : undefined;
 
   return (
     <SearchFilter
@@ -114,12 +115,12 @@ export class SearchPanel extends React.Component<Props> {
       <ol className='sticky-header-breadcrumbs'>
         <li className='sticky-header-breadcrumbs__item'>
           <span className='sticky-header-breadcrumbs__link'>
-            {osu.trans('beatmapsets.index.guest_title')}
+            {trans('beatmapsets.index.guest_title')}
           </span>
         </li>
         <li className='sticky-header-breadcrumbs__item'>
           <span className='sticky-header-breadcrumbs__link'>
-            {osu.trans('home.search.title')}
+            {trans('home.search.title')}
           </span>
         </li>
       </ol>
@@ -136,7 +137,7 @@ export class SearchPanel extends React.Component<Props> {
           <input
             className='beatmapsets-search__input'
             disabled
-            placeholder={osu.trans('beatmaps.listing.search.login_required')}
+            placeholder={trans('beatmaps.listing.search.login_required')}
           />
           <div className='beatmapsets-search__icon'>
             <i className='fas fa-search' />
@@ -157,7 +158,7 @@ export class SearchPanel extends React.Component<Props> {
             className='beatmapsets-search__input js-beatmapsets-search-input'
             name='search'
             onChange={this.onChange}
-            placeholder={osu.trans('beatmaps.listing.search.prompt')}
+            placeholder={trans('beatmaps.listing.search.prompt')}
             value={this.query}
           />
           <div className='beatmapsets-search__icon'>
@@ -187,7 +188,7 @@ export class SearchPanel extends React.Component<Props> {
             className='beatmapsets-search__input js-beatmapsets-search-input'
             name='search'
             onChange={this.onChange}
-            placeholder={osu.trans('beatmaps.listing.search.prompt')}
+            placeholder={trans('beatmaps.listing.search.prompt')}
             value={this.query}
           />
           <div className='beatmapsets-search__icon'>
@@ -199,7 +200,7 @@ export class SearchPanel extends React.Component<Props> {
         <Filter name='status' options={filters.statuses} />
         <Filter name='nsfw' options={filters.nsfw} />
         <a className='beatmapsets-search__expand-link' href='#' onClick={this.expand}>
-          <div>{osu.trans('beatmaps.listing.search.options')}</div>
+          <div>{trans('beatmaps.listing.search.options')}</div>
           <div><i className='fas fa-angle-down' /></div>
         </a>
         <div className='beatmapsets-search__advanced'>

@@ -217,6 +217,9 @@ return [
                 'loved' => [
                     'title' => 'Loved Beatmaps',
                 ],
+                'nominated' => [
+                    'title' => 'Nominated Ranked Beatmaps',
+                ],
                 'pending' => [
                     'title' => 'Pending Beatmaps',
                 ],

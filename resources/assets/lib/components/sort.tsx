@@ -4,6 +4,7 @@
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 
 interface Props {
   currentValue: string;
@@ -39,9 +40,9 @@ export class Sort extends React.PureComponent<Props> {
           {value === 'rank'
             ? (
               <span>
-                <i className={`fas fa-extra-mode-${core.currentUser?.playmode ?? 'osu'}`} /> {osu.trans('sort.rank')}
+                <i className={`fas fa-extra-mode-${core.currentUser?.playmode ?? 'osu'}`} /> {trans('sort.rank')}
               </span>
-            ) : osu.trans(`${this.props.transPrefix}${value}`)
+            ) : trans(`${this.props.transPrefix}${value}`)
           }
         </button>
       );
@@ -51,7 +52,7 @@ export class Sort extends React.PureComponent<Props> {
       <div className={classWithModifiers('sort', this.props.modifiers)}>
         <div className='sort__items'>
           {this.props.showTitle && (
-            <span className='sort__item sort__item--title'>{this.props.title ?? osu.trans('sort._')}</span>
+            <span className='sort__item sort__item--title'>{this.props.title ?? trans('sort._')}</span>
           )}
           {items}
         </div>

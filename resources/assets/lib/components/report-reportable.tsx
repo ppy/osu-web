@@ -3,9 +3,9 @@
 
 import { ReportForm } from 'components/report-form';
 import { route } from 'laroute';
-import { Dictionary } from 'lodash';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
+import { trans } from 'utils/lang';
 import StringWithComponent from './string-with-component';
 
 type ReactButton = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
@@ -31,7 +31,7 @@ interface State {
   showingForm: boolean;
 }
 
-const availableOptions: Dictionary<string[]> = {
+const availableOptions: Partial<Record<string, string[]>> = {
   beatmapset: ['UnwantedContent', 'Other'],
   beatmapset_discussion_post: ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'],
   comment: ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'],
@@ -99,9 +99,9 @@ export class ReportReportable extends React.PureComponent<Props, State> {
               <span className='textual-button textual-button--inline'>
                 <i className='textual-button__icon fas fa-exclamation-triangle' />
                 {' '}
-                {osu.trans(`report.${groupKey}.button`)}
+                {trans(`report.${groupKey}.button`)}
               </span>
-            ) : osu.trans(`report.${groupKey}.button`)
+            ) : trans(`report.${groupKey}.button`)
           }
         </button>
         {this.state.showingForm && (
@@ -112,9 +112,8 @@ export class ReportReportable extends React.PureComponent<Props, State> {
             onSubmit={this.onSubmit}
             title={<StringWithComponent
               mappings={{ username: <strong>{user.username}</strong> }}
-              pattern={osu.trans(`report.${groupKey}.title`)}
+              pattern={trans(`report.${groupKey}.title`)}
             />}
-            visible
             visibleOptions={availableOptions[groupKey]}
           />
         )}

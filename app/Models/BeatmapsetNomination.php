@@ -23,6 +23,7 @@ class BeatmapsetNomination extends Model
 {
     protected $casts = [
         'modes' => 'array',
+        'reset' => 'bool',
     ];
 
     public function beatmapset()

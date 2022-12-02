@@ -83,6 +83,7 @@ class ScoreSearchParams extends SearchParams
         switch ($sort) {
             case 'score_desc':
                 $this->sorts = [
+                    new Sort('is_legacy', 'asc'),
                     new Sort('total_score', 'desc'),
                     new Sort('id', 'asc'),
                 ];

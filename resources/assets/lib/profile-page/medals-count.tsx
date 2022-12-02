@@ -4,6 +4,7 @@
 import ValueDisplay from 'components/value-display';
 import UserAchievementJson from 'interfaces/user-achievement-json';
 import * as React from 'react';
+import { trans } from 'utils/lang';
 
 interface Props {
   userAchievements: UserAchievementJson[];
@@ -12,7 +13,7 @@ interface Props {
 export default function MedalsCount({ userAchievements }: Props) {
   return (
     <ValueDisplay
-      label={osu.trans('users.show.stats.medals')}
+      label={trans('users.show.stats.medals')}
       modifiers='plain'
       value={userAchievements.length}
     />

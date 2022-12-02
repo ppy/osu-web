@@ -8,6 +8,7 @@ import UserJson from 'interfaces/user-json';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 import Editor from './editor';
 
 interface Props {
@@ -71,12 +72,12 @@ export default class NewReview extends React.Component<Props, State> {
             <div className='osu-page osu-page--small'>
               <div className='beatmap-discussion-new'>
                 <div className='page-title'>
-                  {osu.trans('beatmaps.discussions.review.new')}
+                  {trans('beatmaps.discussions.review.new')}
                   <span className='page-title__button'>
                     <span
                       className={buttonCssClasses}
                       onClick={this.toggleSticky}
-                      title={osu.trans(`beatmaps.discussions.new.${this.props.pinned ? 'unpin' : 'pin'}`)}
+                      title={trans(`beatmaps.discussions.new.${this.props.pinned ? 'unpin' : 'pin'}`)}
                     >
                       <span className='btn-circle__content'><i className='fas fa-thumbtack' /></span>
                     </span>
@@ -96,7 +97,7 @@ export default class NewReview extends React.Component<Props, State> {
                       }
                     </DiscussionsContext.Consumer>
                     :
-                    <div className='beatmap-discussion-new__login-required'>{osu.trans('beatmaps.discussions.require-login')}</div>
+                    <div className='beatmap-discussion-new__login-required'>{trans('beatmaps.discussions.require-login')}</div>
                 }
               </div>
             </div>

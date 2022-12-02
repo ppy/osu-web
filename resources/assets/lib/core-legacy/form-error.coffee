@@ -1,6 +1,8 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { onError } from 'utils/ajax'
+
 export default class FormError
   constructor: ->
     $(document).on 'ajax:error', '.js-form-error', @showError
@@ -41,7 +43,7 @@ export default class FormError
   showError: (e, xhr) =>
     data = xhr.responseJSON?.form_error
 
-    return osu.ajaxError(xhr) if !data?
+    return onError(xhr) if !data?
 
     @setError e.target, @flattenData(data)
 
