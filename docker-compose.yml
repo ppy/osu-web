@@ -47,6 +47,9 @@ services:
   migrator:
     <<: *x-web
     command: ['migrate']
+    depends_on:
+      db:
+        condition: service_healthy
 
   beatmap-difficulty-lookup-cache:
     image: pppy/osu-beatmap-difficulty-lookup-cache
@@ -77,18 +80,26 @@ services:
     image: mysql/mysql-server:8.0
     volumes:
       - database:/var/lib/mysql
-      - ./docker/development/db_setup.sql:/docker-entrypoint-initdb.d/db_setup.sql
       - ./docker/development/db_user.sql:/docker-entrypoint-initdb.d/db_user.sql
     environment:
       <<: *x-env
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-      MYSQL_ONETIME_PASSWORD: "yes"
     ports:
       - "${MYSQL_EXTERNAL_PORT:-3306}:3306"
     command: --default-authentication-plugin=mysql_native_password
+    healthcheck:
+      # important to use 127.0.0.1 instead of localhost as mysql starts twice.
+      # the first time it listens on sockets but isn't actually ready
+      # see https://github.com/docker-library/mysql/issues/663
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1"]
+      interval: 1s
+      timeout: 20s
+      retries: 10
 
   redis:
     image: redis:latest
+    ports:
+      - "${REDIS_EXTERNAL_PORT:-6379}:6379"
 
   elasticsearch:
     # Version must be kept up to date with library defined in: composer.json

@@ -59,7 +59,7 @@ export class ReportForm extends React.Component<Props> {
     const title = this.props.completed ? trans('users.report.thanks') : this.props.title;
 
     return (
-      <Modal onClose={this.props.onClose} visible>
+      <Modal onClose={this.props.onClose}>
         <div className={bn}>
           <div className={`${bn}__header`}>
             <div className={`${bn}__row ${bn}__row--exclamation`}>

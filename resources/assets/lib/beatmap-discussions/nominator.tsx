@@ -188,7 +188,7 @@ export class Nominator extends React.PureComponent<Props, State> {
     const content = this.hybridMode() ? this.modalContentHybrid() : this.modalContentNormal();
 
     return (
-      <Modal onClose={this.hideNominationModal} visible={this.state.visible}>
+      <Modal onClose={this.hideNominationModal}>
         <div className={this.bn}>
           <div className={`${this.bn}__header`}>{trans('beatmapsets.nominate.dialog.header')}</div>
           {content}
