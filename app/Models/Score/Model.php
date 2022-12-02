@@ -163,7 +163,7 @@ abstract class Model extends BaseModel
 
     public function url()
     {
-        return route('scores.show', ['mode' => $this->getMode(), 'score' => $this->getKey()]);
+        return route('scores.show-legacy', ['mode' => $this->getMode(), 'score' => $this->getKey()]);
     }
 
     protected function getData()
