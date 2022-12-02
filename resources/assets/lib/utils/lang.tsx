@@ -13,7 +13,7 @@ export function joinComponents(array: React.ReactElement[], key = 'common.array_
   const nodes: React.ReactFragment[] = [];
 
   if (array.length > 0) {
-    nodes.push(<React.Fragment key={array[0].key}>{array[0]}</React.Fragment>);
+    nodes.push(array[0]);
 
     const lastIndex = array.length - 1;
     const lastConnector = lastIndex === 1 ? trans(`${key}.two_words_connector`) : trans(`${key}.last_word_connector`);
