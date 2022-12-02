@@ -96,7 +96,7 @@ export default class Info extends React.Component<Props> {
     return (
       <div className='beatmapset-info'>
         {this.isEditingDescription &&
-          <Modal onClose={this.handleCloseDescriptionEditor} visible>
+          <Modal onClose={this.handleCloseDescriptionEditor}>
             <div className='osu-page'>
               <BbcodeEditor
                 key={this.controller.beatmapset.id /* ensure component is reset if beatmapset changes */}
@@ -110,7 +110,7 @@ export default class Info extends React.Component<Props> {
         }
 
         {this.isEditingMetadata &&
-          <Modal onClose={this.handleCloseMetadataEditor} visible>
+          <Modal onClose={this.handleCloseMetadataEditor}>
             <MetadataEditor controller={this.props.controller} onClose={this.handleCloseMetadataEditor} />
           </Modal>
         }

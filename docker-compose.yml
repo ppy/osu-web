@@ -84,7 +84,6 @@ services:
     environment:
       <<: *x-env
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-      MYSQL_ONETIME_PASSWORD: "yes"
     ports:
       - "${MYSQL_EXTERNAL_PORT:-3306}:3306"
     command: --default-authentication-plugin=mysql_native_password
@@ -99,6 +98,8 @@ services:
 
   redis:
     image: redis:latest
+    ports:
+      - "${REDIS_EXTERNAL_PORT:-6379}:6379"
 
   elasticsearch:
     # Version must be kept up to date with library defined in: composer.json
