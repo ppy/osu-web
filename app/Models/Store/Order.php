@@ -653,15 +653,15 @@ class Order extends Model
         // FIXME: custom class stuff should probably not go in Order...
         switch ($product->custom_class) {
             case 'supporter-tag':
-                $targetId = (int) $params['extraData']['target_id'];
+                $targetId = (int) $params['extra_data']['target_id'];
                 if ($targetId === $this->user_id) {
-                    $params['extraData']['username'] = $this->user->username;
+                    $params['extra_data']['username'] = $this->user->username;
                 } else {
                     $user = User::default()->where('user_id', $targetId)->firstOrFail();
-                    $params['extraData']['username'] = $user->username;
+                    $params['extra_data']['username'] = $user->username;
                 }
 
-                $params['extraData']['duration'] = SupporterTag::getDuration($params['cost']);
+                $params['extra_data']['duration'] = SupporterTag::getDuration($params['cost']);
                 break;
             case 'username-change':
                 // ignore received cost
@@ -675,7 +675,7 @@ class Order extends Model
                 // much dodgy. wow.
                 $matches = [];
                 preg_match('/.+\((?<country>.+)\)$/', $product->name, $matches);
-                $params['extraData']['cc'] = Country::where('name', $matches['country'])->first()->acronym;
+                $params['extra_data']['cc'] = Country::where('name', $matches['country'])->first()->acronym;
                 $params['cost'] = $product->cost ?? 0;
                 break;
             default:
@@ -684,8 +684,8 @@ class Order extends Model
 
         return $this->items()->make([
             'quantity' => $params['quantity'],
-            'extra_info' => $params['extraInfo'],
-            'extra_data' => $params['extraData'],
+            'extra_info' => $params['extra_info'],
+            'extra_data' => $params['extra_data'],
             'cost' => $params['cost'],
             'product_id' => $product->product_id,
         ]);
@@ -723,12 +723,8 @@ class Order extends Model
         if ($params['cost'] === null || $params['cost'] < 0) {
             $params['cost'] = 0;
         }
-        $params['extraData'] = $params['extra_data'];
-        $params['extraInfo'] = $params['extra_info'];
         $params['product'] = Product::enabled()->find($params['product_id']);
 
-        unset($params['extra_data']);
-        unset($params['extra_info']);
         unset($params['product_id']);
 
         return $params;
