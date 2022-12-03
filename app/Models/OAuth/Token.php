@@ -23,7 +23,7 @@ class Token extends PassportToken
     public function can($scope)
     {
         static $scopesRequiredExplicitly;
-        $scopesRequiredExplicitly ??= new Set(['delegate']);
+        $scopesRequiredExplicitly ??= new Set(['delegate', 'loved']);
 
         // Skip checking "*" for scopes that require an explicit request
         if ($scopesRequiredExplicitly->contains($scope)) {
@@ -135,6 +135,10 @@ class Token extends PassportToken
                     throw new InvalidScopeException('delegation is not supported for this combination of scopes.');
                 }
             }
+
+            if ($scopes->contains('loved') && $this->client_id !== config('osu.loved.oauth_client_id')) {
+                throw new InvalidScopeException('The "loved" scope is available only to the Loved client.');
+            }
         } else {
             // delegation is only available for client_credentials.
             if ($scopes->contains('delegate')) {
@@ -145,6 +149,10 @@ class Token extends PassportToken
             // the user's own client can send messages as themselves for authorization code flows.
             if ($scopes->contains('chat.write') && !($this->isOwnToken() || $this->client->user->isBot())) {
                 throw new InvalidScopeException('This scope is only available for chat bots or your own clients.');
+            }
+
+            if ($scopes->contains('loved')) {
+                throw new InvalidScopeException('The "loved" scope is available only to tokens using client credentials.');
             }
         }
 

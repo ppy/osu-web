@@ -131,6 +131,9 @@ return [
         'bancho_bot_user_id' => get_int(env('BANCHO_BOT_USER_ID')) ?? 3,
         'shared_interop_secret' => env('SHARED_INTEROP_SECRET', ''),
     ],
+    'loved' => [
+        'oauth_client_id' => get_int(env('LOVED_OAUTH_CLIENT_ID')),
+    ],
     'multiplayer' => [
         'max_attempts_limit' => get_int(env('MULTIPLAYER_MAX_ATTEMPTS_LIMIT')) ?? 128,
     ],
