@@ -7,7 +7,6 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Exceptions\ModelNotSavedException;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use InvalidArgumentException;
 
@@ -121,7 +120,7 @@ class UserGroupEvent extends Model
             $attributes['details'] ?? [],
         );
 
-        $event = static::create(array_merge(
+        (new static(array_merge(
             [
                 'actor_id' => $actor?->getKey(),
                 'group_id' => $group->getKey(),
@@ -130,11 +129,7 @@ class UserGroupEvent extends Model
                 'user_id' => $user?->getKey(),
             ],
             $attributes,
-        ));
-
-        if (!$event->exists) {
-            throw new ModelNotSavedException('Failed to save model');
-        }
+        )))->saveOrExplode();
     }
 
     public function actor(): BelongsTo
