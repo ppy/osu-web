@@ -11,6 +11,7 @@ use App\Models\OAuth\Client;
 use App\Models\OAuth\Token;
 use App\Models\User;
 use Database\Factories\OAuth\RefreshTokenFactory;
+use Ds\Set;
 use Illuminate\Support\Facades\Event;
 use Laravel\Passport\Passport;
 use Tests\TestCase;
@@ -130,6 +131,46 @@ class TokenTest extends TestCase
     }
 
     /**
+     * @dataProvider implyScopesDataProvider
+     */
+    public function testImplyScopes(string $scope, bool $can): void
+    {
+        $user = User::factory()->create();
+        $token = $this->createToken($user, ['*']);
+
+        $this->assertSame($can, $token->can($scope));
+    }
+
+    public function testLovedScope(): void
+    {
+        $client = Client::factory()->create();
+        config()->set('osu.loved.oauth_client_id', $client->getKey());
+
+        $this->expectNotToPerformAssertions();
+
+        $this->createToken(null, ['loved'], $client);
+    }
+
+    public function testLovedScopeInvalidClient(): void
+    {
+        $client = Client::factory()->create();
+        config()->set('osu.loved.oauth_client_id', $client->getKey() + 1);
+
+        $this->expectException(InvalidScopeException::class);
+
+        $this->createToken(null, ['loved'], $client);
+    }
+
+    public function testLovedScopeNoClientConfigured(): void
+    {
+        config()->set('osu.loved.oauth_client_id', null);
+
+        $this->expectException(InvalidScopeException::class);
+
+        $this->createToken(null, ['loved']);
+    }
+
+    /**
      * @dataProvider scopesDataProvider
      *
      * @return void
@@ -233,12 +274,24 @@ class TokenTest extends TestCase
         ];
     }
 
+    public function implyScopesDataProvider(): array
+    {
+        $cannotImply = new Set(['delegate', 'loved']);
+
+        return Passport::scopes()
+            ->pluck('id')
+            ->map(fn (string $id) => [$id, !$cannotImply->contains($id)])
+            ->values()
+            ->toArray();
+    }
+
     public function scopesDataProvider()
     {
         return [
             'null is not a valid scope' => [null, InvalidScopeException::class],
             'empty scope should fail' => [[], InvalidScopeException::class],
             'all scope is allowed' => [['*'], null],
+            'loved scope is not allowed' => [['loved'], InvalidScopeException::class],
         ];
     }
 
