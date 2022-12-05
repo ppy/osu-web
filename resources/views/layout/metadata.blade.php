@@ -45,33 +45,38 @@
     <meta name="ga-tracking-id" content="{{ config("services.ga.tracking_id") }}">
 @endif
 
-@if ($currentLocale === 'vi')
-    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,600,700&display=swap&subset=vietnamese" rel="stylesheet">
-    <style>
-        :root {
-            --font-default-override: var(--font-default-vi);
-        }
-    </style>
-@elseif ($currentLocale === 'zh')
-    <style>
-        :root {
-            --font-default-override: var(--font-default-zh);
-        }
-    </style>
-@elseif ($currentLocale === 'zh-tw')
-    <style>
-        :root {
-            --font-default-override: var(--font-default-zh-tw);
-        }
-    </style>
-@elseif ($currentLocale === 'th')
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap&subset=thai" rel="stylesheet">
-    <style>
-        :root {
-            --font-default-override: var(--font-default-th);
-        }
-    </style>
-@endif
+@switch($currentLocale)
+    @case('vi')
+        <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,600,700&display=swap&subset=vietnamese" rel="stylesheet">
+        <style>
+            :root {
+                --font-default-override: var(--font-default-vi);
+            }
+        </style>
+        @break
+    @case('zh')
+        <style>
+            :root {
+                --font-default-override: var(--font-default-zh);
+            }
+        </style>
+        @break
+    @case('zh-tw')
+        <style>
+            :root {
+                --font-default-override: var(--font-default-zh-tw);
+            }
+        </style>
+        @break
+    @case('th')
+        <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap&subset=thai" rel="stylesheet">
+        <style>
+            :root {
+                --font-default-override: var(--font-default-th);
+            }
+        </style>
+        @break
+@endswitch
 
 <link rel="stylesheet" media="all" href="{{ unmix('css/app.css') }}" data-turbolinks-track="reload">
 
