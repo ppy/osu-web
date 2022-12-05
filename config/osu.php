@@ -198,6 +198,7 @@ return [
         'base' => 'https://osu.ppy.sh',
         'bounty-form' => env('OS_BOUNTY_URL'),
         'dev' => 'https://discord.gg/ppy',
+        'experimental_host' => presence(env('OSU_EXPERIMENTAL_HOST')),
         'installer' => 'https://m1.ppy.sh/r/osu!install.exe',
         'installer-mirror' => 'https://m2.ppy.sh/r/osu!install.exe',
         'osx' => 'https://osx.ppy.sh',
