@@ -4,6 +4,8 @@
 --}}
 @php
     $appUrl = config('app.url');
+    $currentLocale = App::getLocale();
+    $fallbackLocale = config('app.fallback_locale');
 @endphp
 <link rel="apple-touch-icon" sizes="180x180" href="{{ $appUrl }}/images/favicon/apple-touch-icon.png">
 <link rel="icon" sizes="32x32" href="{{ $appUrl }}/images/favicon/favicon-32x32.png">
@@ -43,26 +45,26 @@
     <meta name="ga-tracking-id" content="{{ config("services.ga.tracking_id") }}">
 @endif
 
-@if (App::getLocale() === 'vi')
+@if ($currentLocale === 'vi')
     <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,600,700&display=swap&subset=vietnamese" rel="stylesheet">
     <style>
         :root {
             --font-default-override: var(--font-default-vi);
         }
     </style>
-@elseif (App::getLocale() === 'zh')
+@elseif ($currentLocale === 'zh')
     <style>
         :root {
             --font-default-override: var(--font-default-zh);
         }
     </style>
-@elseif (App::getLocale() === 'zh-tw')
+@elseif ($currentLocale === 'zh-tw')
     <style>
         :root {
             --font-default-override: var(--font-default-zh-tw);
         }
     </style>
-@elseif (App::getLocale() === 'th')
+@elseif ($currentLocale === 'th')
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap&subset=thai" rel="stylesheet">
     <style>
         :root {
@@ -74,7 +76,7 @@
 <link rel="stylesheet" media="all" href="{{ unmix('css/app.css') }}" data-turbolinks-track="reload">
 
 <script>
-    var currentLocale = {!! json_encode(App::getLocale()) !!};
+    var currentLocale = {!! json_encode($currentLocale) !!};
     var fallbackLocale = {!! json_encode(config('app.fallback_locale')) !!};
 </script>
 
@@ -106,9 +108,9 @@
     </script>
 @endif
 
-<script src="{{ unmix('js/locales/'.app()->getLocale().'.js') }}" data-turbolinks-track="reload"></script>
-@if (config('app.fallback_locale') !== app()->getLocale())
-    <script src="{{ unmix('js/locales/'.config('app.fallback_locale').'.js') }}" data-turbolinks-track="reload"></script>
+<script src="{{ unmix("js/locales/{$currentLocale}.js") }}" data-turbolinks-track="reload"></script>
+@if ($fallbackLocale !== $currentLocale)
+    <script src="{{ unmix("js/locales/{$fallbackLocale}.js") }}" data-turbolinks-track="reload"></script>
 @endif
 
 <script src="{{ unmix('js/commons.js') }}" data-turbolinks-track="reload"></script>
