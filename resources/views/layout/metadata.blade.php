@@ -82,7 +82,7 @@
 
 <script>
     var currentLocale = {!! json_encode($currentLocale) !!};
-    var fallbackLocale = {!! json_encode(config('app.fallback_locale')) !!};
+    var fallbackLocale = {!! json_encode($fallbackLocale) !!};
 </script>
 
 <script src="{{ unmix('js/runtime.js') }}" data-turbolinks-track="reload"></script>
