@@ -219,6 +219,11 @@ class Score extends Model implements Traits\ReportableInterface
         return false;
     }
 
+    public function url(): string
+    {
+        return route('scores.show', $this);
+    }
+
     public function userRank(?array $params = null): int
     {
         return UserRank::getRank(ScoreSearchParams::fromArray(array_merge($params ?? [], [
