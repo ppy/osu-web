@@ -35,8 +35,10 @@ class FetchDedupedScores
 
         while ($hasNext) {
             if ($nextCursor !== null) {
-                // FIXME: cursor value returned is 0/1 but elasticsearch expects false/true...
-                $nextCursor['is_legacy'] = get_bool($nextCursor['is_legacy']);
+                if (isset($nextCursor['is_legacy'])) {
+                    // FIXME: cursor value returned is 0/1 string but elasticsearch expects false/true...
+                    $nextCursor['is_legacy'] = get_bool($nextCursor['is_legacy']);
+                }
                 $search->searchAfter(array_values($nextCursor));
             }
             $response = $search->response();
