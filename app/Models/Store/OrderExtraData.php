@@ -6,17 +6,19 @@
 namespace App\Models\Store;
 
 use App\Exceptions\InvariantException;
+use ArrayAccess;
 use Illuminate\Contracts\Database\Eloquent\Castable;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
+use JsonSerializable;
 
-class OrderExtraData implements Castable
+class OrderExtraData implements ArrayAccess, Castable, JsonSerializable
 {
-    private ?string $countryAcronym;
-    private ?Product $product;
-    private ?int $duration;
-    private ?int $targetId;
-    private ?int $tournamentId;
-    private ?string $username;
+    public ?string $countryAcronym;
+    public ?Product $product;
+    public ?int $duration;
+    public ?int $targetId;
+    public ?int $tournamentId;
+    public ?string $username;
 
     public function __construct(array $data)
     {
@@ -41,7 +43,7 @@ class OrderExtraData implements Castable
                 if (!($model instanceof OrderItem)) {
                     throw new InvariantException('OrderExtraData model must be OrderItem');
                 }
-
+                \Log::debug('get', compact('key', 'value'));
                 $dataJson = json_decode($value, true);
                 $dataJson['product'] = $model->product;
 
@@ -50,6 +52,10 @@ class OrderExtraData implements Castable
 
             public function set($model, $key, $value, $attributes)
             {
+                if (!($model instanceof OrderItem)) {
+                    throw new InvariantException('OrderExtraData model must be OrderItem');
+                }
+                \Log::debug('set', compact('key', 'value'));
                 if (!($value instanceof OrderExtraData)) {
                     $value = new OrderExtraData($value);
                 }
@@ -59,8 +65,64 @@ class OrderExtraData implements Castable
         };
     }
 
+    public function jsonSerialize(): array
+    {
+        $ret = [
+            'cc' => $this->countryAcronym,
+            'duration' => $this->duration,
+            'target_id' => $this->targetId,
+            'tournament_id' => $this->tournamentId,
+            'username' => $this->username,
+        ];
+
+        foreach ($ret as $field => $value) {
+            if ($value === null) {
+                unset($ret[$field]);
+            }
+        }
+
+        return $ret !== [] ? $ret : null;
+    }
+
     public function getProduct()
     {
         return $this->product;
+    }
+
+    // temporary stuff for testing
+    public function offsetExists($offset): bool
+    {
+        $key = static::toPropertyName($offset);
+
+        return $this->$key !== null;
+    }
+
+    public function offsetGet($offset): mixed
+    {
+        $key = static::toPropertyName($offset);
+
+        return $this->$key;
+    }
+
+    public function offsetSet($offset, $value): void
+    {
+        $key = static::toPropertyName($offset);
+        $this->$key = $value;
+    }
+
+    public function offsetUnset($offset): void
+    {
+        $key = static::toPropertyName($offset);
+        $this->$key = null;
+    }
+
+    private static function toPropertyName(string $key)
+    {
+        $name = camel_case($key);
+
+        return match ($name) {
+            'cc' => 'countryAcronym',
+            default => $name,
+        };
     }
 }
