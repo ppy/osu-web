@@ -24,7 +24,7 @@ export default class Portal extends PureComponent<Props> {
     super(props);
 
     this.container = document.createElement('div');
-    this.container.className = 'js-portal';
+    this.container.className = containerClass;
   }
 
   componentDidMount() {
