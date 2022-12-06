@@ -21,7 +21,8 @@ export default class Modal extends React.PureComponent<Props> {
   componentDidMount() {
     document.body.appendChild(this.portal);
     document.addEventListener('keydown', this.handleEsc);
-    $(document).on('turbolinks:before-cache', this.handleBeforeCache);
+    // componentWillUnmount runs too late depending on how the top level component was registered
+    $(document).on('turbolinks:before-cache', this.close);
 
     this.open();
   }
@@ -29,22 +30,17 @@ export default class Modal extends React.PureComponent<Props> {
   componentWillUnmount() {
     this.close();
     document.removeEventListener('keydown', this.handleEsc);
-    $(document).off('turbolinks:before-cache', this.handleBeforeCache);
+    $(document).off('turbolinks:before-cache', this.close);
   }
 
   render() {
     return createPortal(this.renderPortalContent(), this.portal);
   }
 
-  private close(this: void) {
+  private close = () => {
     document.body.classList.remove('js-react-modal---is-open');
     blackoutToggle(false, 0.5);
-  }
-
-  private readonly handleBeforeCache = () => {
-    // componentWillUnmount runs too late depending on how the top level component was registered
-    this.close();
-    document.body.removeChild(this.portal);
+    this.portal.remove();
   };
 
   private readonly handleEsc = (e: KeyboardEvent) => {
