@@ -65,7 +65,7 @@ class OrderExtraData implements ArrayAccess, Castable, JsonSerializable
         };
     }
 
-    public function jsonSerialize(): array
+    public function jsonSerialize(): ?array
     {
         $ret = [
             'cc' => $this->countryAcronym,
