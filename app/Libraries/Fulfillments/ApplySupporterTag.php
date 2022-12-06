@@ -16,13 +16,12 @@ use DB;
  */
 class ApplySupporterTag extends OrderItemFulfillment
 {
-    private ?User $donor;
-    private ?User $target;
-
-    private int $donorId;
-    private int $targetId;
-    private int $duration;
     private int $amount;
+    private int $duration;
+    private User $donor;
+    private int $donorId;
+    private User $target;
+    private int $targetId;
 
     public function __construct(OrderItem $orderItem)
     {
@@ -33,10 +32,7 @@ class ApplySupporterTag extends OrderItemFulfillment
         $extraData = $orderItem->extra_data;
         $this->targetId = $extraData->targetId;
         $this->duration = $extraData->duration;
-    }
 
-    private function assignUsers()
-    {
         $this->donor = User::findOrFail($this->donorId);
         $this->target = User::findOrFail($this->targetId);
     }
@@ -60,8 +56,6 @@ class ApplySupporterTag extends OrderItemFulfillment
 
                 return;
             }
-
-            $this->assignUsers();
 
             $donation = $this->applyDonation();
             $this->updateVotes($this->duration);
@@ -94,8 +88,6 @@ class ApplySupporterTag extends OrderItemFulfillment
 
                 return;
             }
-
-            $this->assignUsers();
 
             foreach ($donations as $donation) { // loop, but there should only be one.
                 $donation->cancel($this->cancelledTransactionId());
