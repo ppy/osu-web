@@ -17,6 +17,8 @@ return new class extends Migration
             '',
             '_fruits',
             '_mania',
+            '_mania_4k',
+            '_mania_7k',
             '_taiko',
         ];
 
