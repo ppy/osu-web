@@ -9,30 +9,33 @@ interface Props {
   root?: Element;
 }
 
+const containerClass = 'js-portal';
+
+export function removeLeftoverPortalContainers() {
+  for (const container of (window.newBody ?? document.body).querySelectorAll(`.${containerClass}`)) {
+    container.remove();
+  }
+}
+
 export default class Portal extends PureComponent<Props> {
-  private readonly container = document.createElement('div');
+  private readonly container: HTMLDivElement;
+
+  constructor(props: Props) {
+    super(props);
+
+    this.container = document.createElement('div');
+    this.container.className = 'js-portal';
+  }
 
   componentDidMount() {
-    this.addPortal();
-
-    $(document).on('turbolinks:before-cache', this.removePortal);
+    (this.props.root ?? window.newBody ?? document.body).appendChild(this.container);
   }
 
   componentWillUnmount() {
-    this.removePortal();
-
-    $(document).off('turbolinks:before-cache', this.removePortal);
+    this.container.remove();
   }
 
   render() {
     return createPortal(this.props.children, this.container);
   }
-
-  private addPortal() {
-    (this.props.root ?? window.newBody ?? document.body).appendChild(this.container);
-  }
-
-  private readonly removePortal = () => {
-    this.container.remove();
-  };
 }
