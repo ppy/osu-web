@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property float|null $cost
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon|null $deleted_at
- * @property array|null $extra_data
+ * @property OrderExtraData|null $extra_data
  * @property string|null $extra_info
  * @property int $id
  * @property Order $order
@@ -36,10 +36,10 @@ class OrderItem extends Model
     protected $casts = [
         'cost' => 'float',
         'extra_data' => OrderExtraData::class,
-        // 'extra_data' => 'array',
         'reserved' => 'boolean',
     ];
 
+    // TODO: This is a lie, type comes from $this->product->custom_class now
     // The format for extra_data is:
     // [
     //     'type' => 'custom-extra-info',

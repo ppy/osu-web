@@ -24,7 +24,7 @@ class OrderExtraData implements ArrayAccess, Castable, JsonSerializable
     {
         $this->product = $data['product'] ?? null;
 
-        // supproter tag
+        // supporter tag
         $this->duration = $data['duration'] ?? null;
         $this->targetId = $data['target_id'] ?? null;
         $this->username = $data['username'] ?? null;
