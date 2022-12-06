@@ -19,22 +19,19 @@ class ApplySupporterTag extends OrderItemFulfillment
     private int $amount;
     private int $duration;
     private User $donor;
-    private int $donorId;
     private User $target;
-    private int $targetId;
 
     public function __construct(OrderItem $orderItem)
     {
         parent::__construct($orderItem);
-        $this->donorId = $orderItem->order->user_id;
-        $this->amount = $orderItem->cost;
 
         $extraData = $orderItem->extra_data;
-        $this->targetId = $extraData->targetId;
+
+        $this->amount = $orderItem->cost;
         $this->duration = $extraData->duration;
 
-        $this->donor = User::findOrFail($this->donorId);
-        $this->target = User::findOrFail($this->targetId);
+        $this->donor = User::findOrFail($orderItem->order->user_id);
+        $this->target = User::findOrFail($extraData->targetId);
     }
 
     public function cancelledTransactionId()
@@ -109,8 +106,8 @@ class ApplySupporterTag extends OrderItemFulfillment
     {
         return new UserDonation([
             'transaction_id' => $this->getTransactionId(),
-            'user_id' => $this->donorId,
-            'target_user_id' => $this->targetId,
+            'user_id' => $this->donor->getKey(),
+            'target_user_id' => $this->target->getKey(),
             'length' => $this->duration,
             'amount' => $this->amount,
         ]);
