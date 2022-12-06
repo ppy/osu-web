@@ -27,7 +27,7 @@ class UserStatisticsTransformer extends TransformerAbstract
             $globalRank = $stats->globalRankExp();
             $pp = $stats->rank_score_exp;
             $globalRankExp = null;
-            $ppExp = null;
+            $ppExp = 0;
         } else {
             $globalRank = $stats->globalRank();
             $pp = $stats->rank_score;
