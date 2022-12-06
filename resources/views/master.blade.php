@@ -111,11 +111,10 @@
             >
                 @yield('permanent-fixed-footer')
 
-                @if (config('osu.is_development_deploy'))
                     <div class="development-deploy-footer">
-                        This is a development instance of the <a href="https://osu.ppy.sh" class="development-deploy-footer__link">osu! website</a>. Please do not login with your osu! credentials.
+                        You are viewing an experimental osu!web deploy with osu!(lazer) scores incorporated in the mix.
+                        <br>You can choose to return to the <a href="https://osu.ppy.sh" class="js-link-main-host development-deploy-footer__link">normal version</a>.
                     </div>
-                @endif
             </div>
         </div>
 
