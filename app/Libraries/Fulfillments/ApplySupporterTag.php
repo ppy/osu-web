@@ -5,6 +5,7 @@
 
 namespace App\Libraries\Fulfillments;
 
+use App\Models\Store\OrderItem;
 use App\Models\User;
 use App\Models\UserDonation;
 use Carbon\Carbon;
@@ -15,21 +16,23 @@ use DB;
  */
 class ApplySupporterTag extends OrderItemFulfillment
 {
-    private $donor;
-    private $target;
+    private ?User $donor;
+    private ?User $target;
 
-    private $donorId;
-    private $targetId;
-    private $duration;
-    private $amount;
+    private int $donorId;
+    private int $targetId;
+    private int $duration;
+    private int $amount;
 
-    public function __construct($orderItem)
+    public function __construct(OrderItem $orderItem)
     {
         parent::__construct($orderItem);
         $this->donorId = $orderItem->order->user_id;
-        $this->targetId = $orderItem->extra_data['target_id'];
-        $this->duration = (int) $orderItem->extra_data['duration'];
         $this->amount = $orderItem->cost;
+
+        $extraData = $orderItem->extra_data;
+        $this->targetId = $extraData->targetId;
+        $this->duration = $extraData->duration;
     }
 
     private function assignUsers()
