@@ -703,7 +703,7 @@ class Order extends Model
     private function paramsTournamentBanner(array $rawParams)
     {
         $params = get_params($rawParams, 'extra_data', [
-            'tournament_id:int'
+            'tournament_id:int',
         ]);
 
         // much dodgy. wow.
