@@ -53,10 +53,10 @@ export class PlayDetailMenu extends React.Component<Props> {
 
         {canBeReported(score) && (
           <ReportReportable
-            baseKey='scores'
             className='simple-menu__item'
+            onFormOpen={dismiss}
             reportableId={(score.best_id ?? score.id).toString()}
-            reportableType={score.best_id == null ? score.type : `score_best_${ruleset}`}
+            reportableType={score.type === 'solo_score' ? score.type : `score_best_${ruleset}`}
             user={user}
           />
         )}
