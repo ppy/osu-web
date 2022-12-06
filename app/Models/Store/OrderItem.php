@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property float|null $cost
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon|null $deleted_at
- * @property OrderExtraData|null $extra_data
+ * @property OrderItemExtraData|null $extra_data
  * @property string|null $extra_info
  * @property int $id
  * @property Order $order
@@ -35,7 +35,7 @@ class OrderItem extends Model
 
     protected $casts = [
         'cost' => 'float',
-        'extra_data' => OrderExtraData::class,
+        'extra_data' => OrderItemExtraData::class,
         'reserved' => 'boolean',
     ];
 

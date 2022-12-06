@@ -11,7 +11,7 @@ use Illuminate\Contracts\Database\Eloquent\Castable;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use JsonSerializable;
 
-class OrderExtraData implements ArrayAccess, Castable, JsonSerializable
+class OrderItemExtraData implements ArrayAccess, Castable, JsonSerializable
 {
     public ?string $countryAcronym;
     public ?Product $product;
@@ -41,23 +41,23 @@ class OrderExtraData implements ArrayAccess, Castable, JsonSerializable
             public function get($model, $key, $value, $attributes)
             {
                 if (!($model instanceof OrderItem)) {
-                    throw new InvariantException('OrderExtraData model must be OrderItem');
+                    throw new InvariantException('OrderItemExtraData model must be OrderItem');
                 }
                 \Log::debug('get', compact('key', 'value'));
                 $dataJson = json_decode($value, true);
                 $dataJson['product'] = $model->product;
 
-                return new OrderExtraData($dataJson);
+                return new OrderItemExtraData($dataJson);
             }
 
             public function set($model, $key, $value, $attributes)
             {
                 if (!($model instanceof OrderItem)) {
-                    throw new InvariantException('OrderExtraData model must be OrderItem');
+                    throw new InvariantException('OrderItemExtraData model must be OrderItem');
                 }
                 \Log::debug('set', compact('key', 'value'));
-                if (!($value instanceof OrderExtraData)) {
-                    $value = new OrderExtraData($value);
+                if (!($value instanceof OrderItemExtraData)) {
+                    $value = new OrderItemExtraData($value);
                 }
 
                 return [$key => json_encode($value)];
