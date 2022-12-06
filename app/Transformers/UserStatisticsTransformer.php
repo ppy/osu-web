@@ -23,16 +23,16 @@ class UserStatisticsTransformer extends TransformerAbstract
             $stats = new UserStatistics\Osu();
         }
 
-        if (config('osu.scores.experimental_rank')) {
+        if (config('osu.scores.experimental_rank_as_default')) {
             $globalRank = $stats->globalRankExp();
             $pp = $stats->rank_score_exp;
-            $globalRankExp = null;
-            $ppExp = 0;
         } else {
             $globalRank = $stats->globalRank();
             $pp = $stats->rank_score;
-            $globalRankExp = $stats->globalRankExp();
-            $ppExp = $stats->rank_score_exp;
+            if (config('osu.scores.experimental_rank_as_extra')) {
+                $globalRankExp = $stats->globalRankExp();
+                $ppExp = $stats->rank_score_exp;
+            }
         }
 
         return [
@@ -42,9 +42,9 @@ class UserStatisticsTransformer extends TransformerAbstract
             ],
 
             'global_rank' => $globalRank,
-            'global_rank_exp' => $globalRankExp,
+            'global_rank_exp' => $globalRankExp ?? null,
             'pp' => $pp,
-            'pp_exp' => $ppExp,
+            'pp_exp' => $ppExp ?? 0,
             'ranked_score' => $stats->ranked_score,
             'hit_accuracy' => $stats->hit_accuracy,
             'play_count' => $stats->playcount,
