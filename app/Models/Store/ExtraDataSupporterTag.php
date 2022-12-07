@@ -11,9 +11,9 @@ use JsonSerializable;
 
 class ExtraDataSupporterTag extends ExtraDataBase implements JsonSerializable
 {
-    public ?int $duration;
-    public ?int $targetId;
-    public ?string $username;
+    public int $duration;
+    public int $targetId;
+    public string $username;
 
     public function __construct(array $data)
     {
