@@ -2,32 +2,68 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { SelectOptions } from 'components/select-options';
-import { intersectionWith } from 'lodash';
+import { route } from 'laroute';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
+import { render, unmountComponentAtNode } from 'react-dom';
+import { onError } from 'utils/ajax';
 import { trans } from 'utils/lang';
 import Modal from './modal';
+import StringWithComponent from './string-with-component';
 
 const bn = 'report-form';
 const maxLength = 2000;
-const availableOptions = [
-  { id: 'Cheating', text: trans('users.report.options.cheating') },
-  { id: 'MultipleAccounts', text: trans('users.report.options.multiple_accounts') },
-  { id: 'Insults', text: trans('users.report.options.insults') },
-  { id: 'Spam', text: trans('users.report.options.spam') },
-  { id: 'UnwantedContent', text: trans('users.report.options.unwanted_content') },
-  { id: 'Nonsense', text: trans('users.report.options.nonsense') },
-  { id: 'Other', text: trans('users.report.options.other') },
-];
+
+export function showReportForm(params: { reportableId: string; reportableType: ReportableType; username: string }) {
+  const root = document.createElement('div');
+
+  render(<ReportForm
+    reportableId={params.reportableId}
+    reportableType={params.reportableType}
+    root={root}
+    username={params.username}
+  />, root);
+}
+
+export const reportableTypeToGroupKey = {
+  beatmapset: 'beatmapset',
+  beatmapset_discussion_post: 'beatmapset_discussion_post',
+  comment: 'comment',
+  forum_post: 'forum_post',
+  score_best_fruits: 'scores',
+  score_best_mania: 'scores',
+  score_best_osu: 'scores',
+  score_best_taiko: 'scores',
+  solo_score: 'scores',
+  user: 'user',
+} as const;
+export type ReportableType = keyof typeof reportableTypeToGroupKey;
+type GroupKey = typeof reportableTypeToGroupKey[ReportableType];
+
+const availableOptions = {
+  Cheating: trans('users.report.options.cheating'),
+  Insults: trans('users.report.options.insults'),
+  MultipleAccounts: trans('users.report.options.multiple_accounts'),
+  Nonsense: trans('users.report.options.nonsense'),
+  Other: trans('users.report.options.other'),
+  Spam: trans('users.report.options.spam'),
+  UnwantedContent: trans('users.report.options.unwanted_content'),
+} as const;
+
+const availableOptionsByGroupKey: Partial<Record<GroupKey, (keyof typeof availableOptions)[]>> = {
+  beatmapset: ['UnwantedContent', 'Other'],
+  beatmapset_discussion_post: ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'],
+  comment: ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'],
+  forum_post: ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'],
+  scores: ['Cheating', 'MultipleAccounts', 'Other'],
+};
 
 interface Props {
-  completed: boolean;
-  disabled: boolean;
-  onClose: () => void;
-  onSubmit: ({ comments }: { comments: string }) => void;
-  title: React.ReactNode;
-  visibleOptions?: string[];
+  reportableId: string;
+  reportableType: ReportableType;
+  root: HTMLElement;
+  username: string;
 }
 
 interface ReportOption {
@@ -36,17 +72,25 @@ interface ReportOption {
 }
 
 @observer
-export class ReportForm extends React.Component<Props> {
+export default class ReportForm extends React.Component<Props> {
   @observable private comments = '';
+  @observable private completed = false;
+  @observable private disabled = false;
   @observable private selectedReason = this.options[0];
+  private timeout: number | undefined;
+
+  private get groupKey() {
+    return reportableTypeToGroupKey[this.props.reportableType];
+  }
 
   @computed
   private get options() {
-    if (this.props.visibleOptions == null) {
-      return availableOptions;
-    }
+    const options = availableOptionsByGroupKey[this.groupKey]
+      ?? Object.keys(availableOptions) as (keyof typeof availableOptions)[];
 
-    return intersectionWith(availableOptions, this.props.visibleOptions, (left, right) => left.id === right);
+    return options.map((option) => ({
+      id: option as string, text: availableOptions[option],
+    }));
   }
 
   constructor(props: Props) {
@@ -55,11 +99,18 @@ export class ReportForm extends React.Component<Props> {
     makeObservable(this);
   }
 
-  render() {
-    const title = this.props.completed ? trans('users.report.thanks') : this.props.title;
+  componentDidMount() {
+    $(document).on('turbolinks:before-cache', this.handleClose);
+  }
 
+  componentWillUnmount() {
+    $(document).off('turbolinks:before-cache', this.handleClose);
+    window.clearTimeout(this.timeout);
+  }
+
+  render() {
     return (
-      <Modal onClose={this.props.onClose}>
+      <Modal onClose={this.handleClose}>
         <div className={bn}>
           <div className={`${bn}__header`}>
             <div className={`${bn}__row ${bn}__row--exclamation`}>
@@ -68,16 +119,20 @@ export class ReportForm extends React.Component<Props> {
 
             <div className={`${bn}__row ${bn}__row--title`}>
               <span>
-                {title}
+                {this.renderTitle()}
               </span>
             </div>
           </div>
 
-          {!this.props.completed && this.renderFormContent()}
+          {!this.completed && this.renderFormContent()}
         </div>
       </Modal>
     );
   }
+
+  private readonly handleClose = () => {
+    unmountComponentAtNode(this.props.root);
+  };
 
   @action
   private readonly handleCommentsChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -87,6 +142,33 @@ export class ReportForm extends React.Component<Props> {
   @action
   private readonly handleReasonChange = (option: ReportOption) => {
     this.selectedReason = option;
+  };
+
+  @action
+  private readonly handleSubmit = () => {
+    this.disabled = true;
+
+    const data = {
+      comments: this.comments,
+      reason: this.selectedReason.id,
+      reportable_id: this.props.reportableId,
+      reportable_type: this.props.reportableType,
+    };
+
+    const params = {
+      data,
+      dataType: 'json',
+      type: 'POST',
+      url: route('reports.store'),
+    };
+
+    $.ajax(params).done(action(() => {
+      this.timeout = window.setTimeout(this.handleClose, 1000);
+      this.completed = true;
+    })).fail(action((xhr: JQuery.jqXHR) => {
+      onError(xhr);
+      this.disabled = false;
+    }));
   };
 
   private renderFormContent() {
@@ -123,16 +205,16 @@ export class ReportForm extends React.Component<Props> {
         <div className={`${bn}__row ${bn}__row--buttons`}>
           <button
             className={`${bn}__button ${bn}__button--report`}
-            disabled={this.props.disabled || this.comments.length === 0}
-            onClick={this.sendReport}
+            disabled={this.disabled || this.comments.length === 0}
+            onClick={this.handleSubmit}
             type='button'
           >
             {trans('users.report.actions.send')}
           </button>
           <button
             className={`${bn}__button`}
-            disabled={this.props.disabled}
-            onClick={this.props.onClose}
+            disabled={this.disabled}
+            onClick={this.handleClose}
             type='button'
           >
             {trans('users.report.actions.cancel')}
@@ -142,13 +224,16 @@ export class ReportForm extends React.Component<Props> {
     );
   }
 
-  @action
-  private readonly sendReport = () => {
-    const data = {
-      comments: this.comments,
-      reason: this.selectedReason.id,
-    };
+  private renderTitle() {
+    if (this.completed) {
+      return trans('users.report.thanks');
+    }
 
-    this.props.onSubmit(data);
-  };
+    return (
+      <StringWithComponent
+        mappings={{ username: <strong>{this.props.username}</strong> }}
+        pattern={trans(`report.${this.groupKey}.title`)}
+      />
+    );
+  }
 }

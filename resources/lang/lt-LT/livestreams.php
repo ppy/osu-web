@@ -5,13 +5,13 @@
 
 return [
     'promote' => [
-        'pin' => '',
-        'unpin' => "",
+        'pin' => 'Ar tikrai norite viešinti šia transliaciją?',
+        'unpin' => "Ar jus užtikrintas, kad norite pašalinti šios transliacijos viešinimą?",
     ],
 
     'top-headers' => [
-        'headline' => 'Tiesoginės transliacijos',
-        'description' => 'Kas penkias minutes data ateina iš twitch.tv remiantis katalogų sąrašu. Nedvejodami pradėkite transliuoti ir įtraukite save į sąrašą!. Daugiau informacijos kaip pradėti prašome pažiūrėti :link.',
+        'headline' => 'Tiesioginės Transliacijos',
+        'description' => 'Priklausomai nuo katalogų išdėstymo, duomenys iš twitch.tv gaunami kas pekias minutes. Kai tik užsinorėja galite pradėti transliuoti ir įtraukti savę į sąrašą! Daugiau informacijos kaip pradėti rasite :link.',
 
         'link' => 'wiki puslapį apie tiesoginį transliavimą',
     ],

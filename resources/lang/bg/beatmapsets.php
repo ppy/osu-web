@@ -124,6 +124,7 @@ return [
             'genre' => 'Жанр',
             'language' => 'Език',
             'no_scores' => 'Информацията все още се обработва...',
+            'nominators' => '',
             'nsfw' => 'Explicit съдържание',
             'offset' => 'Онлайн offset',
             'points-of-failure' => 'Връхни точки на провал',

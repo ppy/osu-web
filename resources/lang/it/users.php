@@ -217,6 +217,9 @@ return [
                 'loved' => [
                     'title' => 'Beatmap Amate',
                 ],
+                'nominated' => [
+                    'title' => '',
+                ],
                 'pending' => [
                     'title' => 'Beatmap In Attesa',
                 ],
@@ -414,7 +417,7 @@ return [
             'country_simple' => 'Classifica Nazionale',
             'global' => 'Posto globale per :mode',
             'global_simple' => 'Classifica Globale',
-            'highest' => '',
+            'highest' => 'Grado più alto: :rank il :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisione dei Colpi',
@@ -423,7 +426,7 @@ return [
             'maximum_combo' => 'Combo Massima',
             'medals' => 'Medaglie',
             'play_count' => 'Partite Giocate',
-            'play_time' => 'Tempo totale di gioco',
+            'play_time' => 'Tempo di Gioco',
             'ranked_score' => 'Punteggio Classificato',
             'replays_watched_by_others' => 'Replay Guardati da Altri',
             'score_ranks' => 'Rank dei Punteggi',

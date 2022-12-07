@@ -63,7 +63,7 @@ return [
 
         'reasons' => [
             'compromised' => 'Su cuenta se ha considerado comprometida. Puede ser desactivada temporalmente mientras se confirma su identidad.',
-            'opening' => 'Hay un serie de razones que pueden resultar en la desactivación de su cuenta:',
+            'opening' => 'Hay una serie de razones que pueden resultar en la desactivación de su cuenta:',
 
             'tos' => [
                 '_' => 'Ha roto una o más de nuestras :community_rules o :tos.',
@@ -216,6 +216,9 @@ return [
                 ],
                 'loved' => [
                     'title' => 'Mapas Amados',
+                ],
+                'nominated' => [
+                    'title' => '',
                 ],
                 'pending' => [
                     'title' => 'Mapas Pendientes',
@@ -414,7 +417,7 @@ return [
             'country_simple' => 'Clasificación Nacional',
             'global' => 'Rank global para :mode',
             'global_simple' => 'Clasificación Global',
-            'highest' => '',
+            'highest' => 'Clasificación más alta: :rank el :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisión',
