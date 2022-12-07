@@ -217,6 +217,9 @@ return [
                 'loved' => [
                     'title' => 'Ulubione beatmapy społeczności',
                 ],
+                'nominated' => [
+                    'title' => '',
+                ],
                 'pending' => [
                     'title' => 'Oczekujące beatmapy',
                 ],
@@ -414,7 +417,7 @@ return [
             'country_simple' => 'Ranking krajowy',
             'global' => 'Pozycja w rankingu globalnym dla :mode',
             'global_simple' => 'Ranking globalny',
-            'highest' => '',
+            'highest' => 'Najwyższa pozycja: :rank (osiągnięta :date)',
         ],
         'stats' => [
             'hit_accuracy' => 'Celność',

@@ -4,40 +4,40 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    '_' => '',
+    '_' => 'Razvrsti po',
 
-    'all' => '',
-    'friends' => '',
-    'last_visit' => '',
-    'new' => '',
-    'old' => '',
-    'rank' => '',
-    'top' => '',
-    'username' => '',
+    'all' => 'Vse',
+    'friends' => 'Prijatelji',
+    'last_visit' => 'Nedavno aktivno',
+    'new' => 'Nedavno',
+    'old' => 'Staro',
+    'rank' => 'Uvrstitev',
+    'top' => 'Top',
+    'username' => 'Uporabniško ime',
 
     'artist_tracks' => [
-        'album' => '',
-        'artist' => '',
-        'bpm' => '',
-        'genre' => '',
-        'length' => '',
-        'relevance' => '',
-        'title' => '',
-        'update' => '',
+        'album' => 'Album',
+        'artist' => 'Izvajalec',
+        'bpm' => 'BPM',
+        'genre' => 'Žanr',
+        'length' => 'Trajanje',
+        'relevance' => 'Ustreznost',
+        'title' => 'Naslov',
+        'update' => 'Posodobi',
     ],
 
     'forum_posts' => [
-        'created' => '',
-        'relevance' => '',
+        'created' => 'Datum objave',
+        'relevance' => 'Ustreznost',
     ],
 
     'forum_topics' => [
         'feature_votes' => '',
-        'new' => '',
+        'new' => 'Zadnji odgovor',
     ],
 
     'users' => [
-        'relevance' => '',
-        'username' => '',
+        'relevance' => 'Ustreznost',
+        'username' => 'Ime',
     ],
 ];

@@ -6,8 +6,8 @@
 return [
     'instrument_declined' => 'Paypal atšaukė pasirinktą apmokėjimo būdą.',
     'invalid_resource_id' => 'Apmokėjimo informacija nerasta.',
-    'invalid_token' => '',
-    'old_format' => '',
-    'resource_not_found' => '',
+    'invalid_token' => 'Klaida vykdant jūsų mokėjimą.',
+    'old_format' => 'Atstatymo nuoroda nebegalioja, prašome bandyti dar kartą.',
+    'resource_not_found' => 'Apmokėjimo informacija nerasta.',
     'unknown' => "Apmokėjimas buvo atšauktas, bet mes nežinome kodėl.",
 ];

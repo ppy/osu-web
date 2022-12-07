@@ -27,14 +27,14 @@ return [
         'title' => '',
 
         'beatmapset' => [
-            'login_required' => '',
-            'more' => '',
+            'login_required' => 'Inicieu sessió per cercar beatmaps',
+            'more' => ':count resultats més de cerca de beatmap',
             'more_simple' => '',
-            'title' => '',
+            'title' => 'Beatmaps',
         ],
 
         'forum_post' => [
-            'all' => '',
+            'all' => 'Tots els fòrums',
             'link' => '',
             'login_required' => '',
             'more_simple' => '',
@@ -49,8 +49,8 @@ return [
         ],
 
         'mode' => [
-            'all' => '',
-            'beatmapset' => '',
+            'all' => 'tots',
+            'beatmapset' => 'beatmap',
             'forum_post' => '',
             'user' => '',
             'wiki_page' => '',
@@ -87,21 +87,21 @@ return [
             'linux' => '',
         ],
         'mirror' => '',
-        'macos-fallback' => '',
+        'macos-fallback' => 'usuaris de macOS',
         'steps' => [
             'register' => [
                 'title' => '',
                 'description' => '',
             ],
             'download' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'descarregar el joc',
+                'description' => 'fes clic al botó de dalt per descarregar l\'instal·lador, després executa-ho!',
             ],
             'beatmaps' => [
-                'title' => '',
+                'title' => 'obtenir mapes',
                 'description' => [
                     '_' => '',
-                    'browse' => '',
+                    'browse' => 'fes una ullada',
                 ],
             ],
         ],
@@ -123,8 +123,8 @@ return [
         ],
         'beatmaps' => [
             'new' => '',
-            'popular' => '',
-            'by_user' => '',
+            'popular' => 'Beatmaps populars',
+            'by_user' => 'per :user',
         ],
         'buttons' => [
             'download' => '',

@@ -124,6 +124,7 @@ return [
             'genre' => 'Žáner',
             'language' => 'Jazyk',
             'no_scores' => 'Vypočítavajú sa dáta...',
+            'nominators' => '',
             'nsfw' => '',
             'offset' => '',
             'points-of-failure' => 'Body Neúspechu',

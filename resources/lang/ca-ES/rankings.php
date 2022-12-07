@@ -5,43 +5,43 @@
 
 return [
     'countries' => [
-        'all' => '',
-        'title' => '',
+        'all' => 'Tot',
+        'title' => 'País',
     ],
 
     'filter' => [
-        'title' => '',
+        'title' => 'Mostra',
 
         'variant' => [
-            'title' => '',
+            'title' => 'Variant',
         ],
     ],
 
     'type' => [
-        'charts' => '',
-        'country' => '',
-        'multiplayer' => '',
-        'performance' => '',
-        'score' => '',
+        'charts' => 'focus',
+        'country' => 'país',
+        'multiplayer' => 'multijugador',
+        'performance' => 'rendiment',
+        'score' => 'puntuació',
     ],
 
     'spotlight' => [
-        'end_date' => '',
-        'map_count' => '',
-        'participants' => '',
-        'start_date' => '',
+        'end_date' => 'Data de finalització',
+        'map_count' => 'Recompte de mapes',
+        'participants' => 'Participants',
+        'start_date' => 'Data d\'inici',
     ],
 
     'stat' => [
-        'accuracy' => '',
-        'active_users' => '',
-        'country' => '',
-        'play_count' => '',
-        'performance' => '',
-        'total_score' => '',
-        'ranked_score' => '',
-        'average_score' => '',
-        'average_performance' => '',
+        'accuracy' => 'Precisió',
+        'active_users' => 'Usuaris actius',
+        'country' => 'País',
+        'play_count' => 'Nombre de partides',
+        'performance' => 'Rendiment',
+        'total_score' => 'Puntuació total',
+        'ranked_score' => 'Puntuació classificada',
+        'average_score' => 'Mitjana. Puntuació',
+        'average_performance' => 'Mitjana. Perfecte.',
         'ss' => '',
         's' => '',
         'a' => '',

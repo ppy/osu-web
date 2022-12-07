@@ -13,7 +13,7 @@ return [
         ],
 
         'item' => [
-            'registered' => 'Užsiregistrave žaidėjai',
+            'registered' => 'Užsiregistravę žaidėjai',
         ],
 
         'state' => [
@@ -24,12 +24,12 @@ return [
 
     'show' => [
         'banner' => 'Palaikyk Savo Komandą',
-        'entered' => 'Jūs esate užsiregistrave šiam turnyrui.<br><br>Atkreipkite dėmesį, kad tai <b>nereiškia</b>, kad esate priskirtas į komandą.<br><br>Kitos instrukcijos bus jums atsiųstos el. paštu arčiau turnyro datos, todėl prašau įsitikinkite, kad jūsų osu! paskyros el. pašto adresas dar galioja!',
+        'entered' => 'Jūs esate užsiregistraves šiam turnyrui.<br><br>Atkreipkite dėmesį, kad tai <b>nereiškia</b>, kad esate priskirtas į komandą.<br><br>Kitos instrukcijos bus jums atsiųstos el. paštu arčiau turnyro datos, todėl prašau įsitikinkite, kad jūsų osu! paskyros el. pašto adresas dar galioja!',
         'info_page' => 'Informacijos puslapis',
-        'login_to_register' => '',
-        'not_yet_entered' => '',
-        'rank_too_low' => '',
-        'registration_ends' => '',
+        'login_to_register' => ':login, kad matyti registracijos informacija!',
+        'not_yet_entered' => 'Jūs nepriregistruotas šiam turnyrui.',
+        'rank_too_low' => 'Atsiprašom, bet jūs neatitinkate turnyro reikalavimų!',
+        'registration_ends' => 'Registracijos užsidaro :date',
 
         'button' => [
             'cancel' => 'Atšaukti Registraciją',
@@ -43,10 +43,10 @@ return [
 
         'state' => [
             'before_registration' => 'Šio turnyro registracija dar nebuvo atidaryta.',
-            'ended' => 'Šis turnyras jau baigėsi. Rezultatus gali peržiūrėti informaciniam puslapy.',
+            'ended' => 'Šis turnyras jau baigėsi. Rezultatus gali peržiūrėti informaciniame puslapy.',
             'registration_closed' => 'Šio turnyro registracija buvo uždaryta. Dėl pasikeitimų tikrinkite informacinį puslapį.',
-            'running' => '',
+            'running' => 'Šis turnyras vyksta. Daugiau informacijos rasite informaciniame puslapy.',
         ],
     ],
-    'tournament_period' => '',
+    'tournament_period' => 'nuo :start iki :end',
 ];

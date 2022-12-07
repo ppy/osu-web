@@ -5,32 +5,32 @@
 
 return [
     'beatmapset' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Prijavi',
+        'title' => 'Prijavi beatmapo igralca :username?',
     ],
 
     'beatmapset_discussion_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Prijavi',
+        'title' => 'Prijavi objavo igralca :username?',
     ],
 
     'comment' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Prijavi',
+        'title' => 'Prijavi komentar igralca :username?',
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Prijavi',
+        'title' => 'Prijavi objavo igralca :username?',
     ],
 
     'scores' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Prijavi rezultat',
+        'title' => 'Prijavi rezultat igralca :username?',
     ],
 
     'user' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Prijavi',
+        'title' => 'Prijavi :username?',
     ],
 ];

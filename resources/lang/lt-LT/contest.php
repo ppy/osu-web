@@ -5,7 +5,7 @@
 
 return [
     'header' => [
-        'small' => '',
+        'small' => 'Rungtyniauk per daugiau būdų, nei tik apskritimų spaudinėjimą.',
         'large' => 'Bendruomenės Konkursai',
     ],
 
@@ -15,55 +15,55 @@ return [
 
     'voting' => [
         'login_required' => 'Balsavimui reikia prisijungti.',
-        'over' => 'Balsavimai šitam konkursui baigėsi',
+        'over' => 'Balsavimas šitam konkursui baigėsi',
         'show_voted_only' => 'Rodyti balsus',
 
         'best_of' => [
-            'none_played' => "",
+            'none_played' => "Nepanašu, kad žaidėte bitmapų, kurie butu kvalifikuoti šiam konkursui!",
         ],
 
         'button' => [
             'add' => 'Balsuoti',
             'remove' => 'Pašalinti balsą',
-            'used_up' => 'Jūs jau išnaudojote visus turinčius balsus',
+            'used_up' => 'Jūs jau išnaudojote visus turimus balsus',
         ],
 
         'progress' => [
-            '_' => '',
+            '_' => ':used / :max balsų panaudota',
         ],
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => '',
+                'incomplete_play' => 'Privaloma sužaisti visus bitmapus nurodytuose grojaraščiuose prieš balsuojant',
             ],
         ],
     ],
     'entry' => [
-        '_' => 'įrašas',
-        'login_required' => 'Prašome prisijungti norint įeiti į šį konkursa.',
+        '_' => 'pateiktis',
+        'login_required' => 'Prašome prisijungti norint įeiti į šį konkursą.',
         'silenced_or_restricted' => 'Jūs negalite dalyvauti konkursuose būdami uždrausti arba nutildyti.',
-        'preparation' => '',
-        'drop_here' => 'Numesk savo įrašą čia',
+        'preparation' => 'Dabar mes ruošiam šį konkursą. Prašome kantriai palaukti!',
+        'drop_here' => 'Numesk savo pateikti čia',
         'download' => 'Atsiųsti .osz',
         'wrong_type' => [
-            'art' => '',
-            'beatmap' => '',
-            'music' => '',
+            'art' => 'Tik .jpg failai priimami šiam konkursui.',
+            'beatmap' => 'Tik .osu failai priimami šiam konkursui.',
+            'music' => 'Tik .mp3 failai priimami šiam konkursui.',
         ],
-        'wrong_dimensions' => '',
-        'too_big' => '',
+        'wrong_dimensions' => 'Pateikymai šiam konkursui turi būti :widthx:height',
+        'too_big' => 'Pateikymai šiam konkursui gali būti tik iki :limit.',
     ],
     'beatmaps' => [
-        'download' => 'Atsisiūsti įrašą',
+        'download' => 'Atsisiųsti Pateiktį',
     ],
     'vote' => [
         'list' => 'balsai',
-        'count' => '',
-        'points' => '',
+        'count' => ':count_delimited balsas|:count_delimited balsai(-ų)',
+        'points' => ':count_delimited taškas|:count_delimited taškai(-ų)',
     ],
     'dates' => [
-        'ended' => 'Pabaiga :date',
-        'ended_no_date' => 'Užbaigtas',
+        'ended' => 'Baigėsi :date',
+        'ended_no_date' => 'Baigėsi',
 
         'starts' => [
             '_' => 'Pradžia :date',
@@ -71,8 +71,8 @@ return [
         ],
     ],
     'states' => [
-        'entry' => '',
-        'voting' => 'Balsavimas prasideda',
-        'results' => 'Rezultatai',
+        'entry' => 'Atidarytas Pateikimui',
+        'voting' => 'Balsavimas Pradėtas',
+        'results' => 'Yra rezultatai',
     ],
 ];

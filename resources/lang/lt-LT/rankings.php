@@ -5,29 +5,29 @@
 
 return [
     'countries' => [
-        'all' => '',
-        'title' => '',
+        'all' => 'Visi',
+        'title' => 'Šalis',
     ],
 
     'filter' => [
         'title' => 'Rodyti',
 
         'variant' => [
-            'title' => '',
+            'title' => 'Variantai',
         ],
     ],
 
     'type' => [
-        'charts' => 'Traukantys dėmesį',
+        'charts' => 'traukantys dėmesį',
         'country' => 'Šalimis',
-        'multiplayer' => '',
-        'performance' => 'Našumo',
+        'multiplayer' => 'žaidimas tinkle',
+        'performance' => 'našumo',
         'score' => 'Taškai',
     ],
 
     'spotlight' => [
         'end_date' => 'Pabaigos data',
-        'map_count' => '',
+        'map_count' => 'Bitmapų skaičius',
         'participants' => 'Dalyviai',
         'start_date' => 'Pradžios data',
     ],
@@ -36,10 +36,10 @@ return [
         'accuracy' => 'Taiklumas',
         'active_users' => 'Aktyvūs Vartotojai',
         'country' => 'Šalis',
-        'play_count' => 'Žaidimų Skaičius',
+        'play_count' => 'Sužaidimų Skaičius',
         'performance' => 'Našumas',
-        'total_score' => 'Viso taškų',
-        'ranked_score' => 'Patvirtinti Taškai',
+        'total_score' => 'Iš viso taškų',
+        'ranked_score' => 'Reitinguoti taškai',
         'average_score' => 'Vid. Taškų',
         'average_performance' => 'Vid. Našumas.',
         'ss' => '',
