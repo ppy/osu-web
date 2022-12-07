@@ -79,7 +79,7 @@ class Channel extends Model
         'group' => 'GROUP',
     ];
 
-    public static function ack(int $channelId, int $userId, ?int $timestamp, ?Redis $redis): void
+    public static function ack(int $channelId, int $userId, ?int $timestamp = null, ?Redis $redis = null): void
     {
         $timestamp ??= time();
         $redis ??= LaravelRedis::client();
