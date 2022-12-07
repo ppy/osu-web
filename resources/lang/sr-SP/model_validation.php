@@ -4,11 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => '',
-    'not_negative' => '',
-    'required' => '',
-    'too_long' => '',
-    'wrong_confirmation' => '',
+    'invalid' => 'Неважећи :attribute наведено.',
+    'not_negative' => ':attribute не може бити негативан.',
+    'required' => ':attribute је обавезан.',
+    'too_long' => ':attribute је премашио максималну дужину - може имати највише :limit знакова.',
+    'wrong_confirmation' => 'Потврда се не подудара.
+',
 
     'beatmapset_discussion' => [
         'beatmap_missing' => '',
@@ -16,16 +17,16 @@ return [
         'hype_requires_null_beatmap' => '',
         'invalid_beatmap_id' => '',
         'invalid_beatmapset_id' => '',
-        'locked' => '',
+        'locked' => 'Дискусија је закључана.',
 
         'attributes' => [
             'message_type' => '',
-            'timestamp' => '',
+            'timestamp' => 'Временска ознака',
         ],
 
         'hype' => [
-            'discussion_locked' => "",
-            'guest' => '',
+            'discussion_locked' => "Ова мапа је тренутно закључана за дискусију и не може бити хајпована",
+            'guest' => 'Морате бити пријављени да би сте могли да хајпујете.',
             'hyped' => '',
             'limit_exceeded' => '',
             'not_hypeable' => '',
@@ -39,7 +40,7 @@ return [
     ],
 
     'beatmapset_discussion_post' => [
-        'discussion_locked' => '',
+        'discussion_locked' => 'Дискусија је закључана.',
         'first_post' => '',
 
         'attributes' => [
@@ -84,7 +85,7 @@ return [
 
         'topic' => [
             'attributes' => [
-                'topic_title' => '',
+                'topic_title' => 'Наслов теме',
             ],
         ],
 
@@ -111,7 +112,7 @@ return [
     'oauth' => [
         'client' => [
             'too_many' => '',
-            'url' => '',
+            'url' => 'Молимо да унесете важећи URL.',
 
             'attributes' => [
                 'name' => '',
@@ -121,58 +122,59 @@ return [
     ],
 
     'user' => [
-        'contains_username' => '',
-        'email_already_used' => '',
-        'email_not_allowed' => '',
-        'invalid_country' => '',
-        'invalid_discord' => '',
-        'invalid_email' => "",
-        'invalid_twitter' => '',
-        'too_short' => '',
-        'unknown_duplicate' => '',
-        'username_available_in' => '',
-        'username_available_soon' => '',
-        'username_invalid_characters' => '',
-        'username_in_use' => '',
-        'username_locked' => '', // TODO: language for this should be slightly different.
-        'username_no_space_userscore_mix' => '',
-        'username_no_spaces' => "",
-        'username_not_allowed' => '',
-        'username_too_short' => '',
-        'username_too_long' => '',
-        'weak' => '',
-        'wrong_current_password' => '',
-        'wrong_email_confirmation' => '',
-        'wrong_password_confirmation' => '',
-        'too_long' => '',
+        'contains_username' => 'Лозинка не сме да садржи корисничко име.',
+        'email_already_used' => 'Адреса е-поште је већ коришћена.',
+        'email_not_allowed' => 'Адреса е-поште није дозвољена.',
+        'invalid_country' => 'Држава није у бази података.',
+        'invalid_discord' => 'Discord корисничко име је неважеће.',
+        'invalid_email' => "Изгледа да није важећа адреса е-поште.",
+        'invalid_twitter' => 'Twitter корисничко име је неважеће.',
+        'too_short' => 'Нова лозинка је превише кратка.',
+        'unknown_duplicate' => 'Корисничко име или адреса е-поште су већ коришћени.',
+        'username_available_in' => 'Ово корисничко име ће бити доступно за употребу за :duration.',
+        'username_available_soon' => 'Ово корисничко име ће бити доступно за коришћење сваког тренутка!',
+        'username_invalid_characters' => 'Захтевано корисничко име садржи неважеће знакове.',
+        'username_in_use' => 'Корисничко име је већ у употреби!',
+        'username_locked' => 'Корисничко име је већ у употреби!', // TODO: language for this should be slightly different.
+        'username_no_space_userscore_mix' => 'Молимо користите доње црте или размаке, а не обоје!',
+        'username_no_spaces' => "Корисничко име не може да почиње нити да се завршава размацима!",
+        'username_not_allowed' => 'Овај избор корисничког имена није дозвољен.',
+        'username_too_short' => 'Тражено корисничко име је прекратко.',
+        'username_too_long' => 'Захтевано корисничко име је предугачко.',
+        'weak' => 'Лозинка на црној листи.',
+        'wrong_current_password' => 'Тренутна лозинка је нетачна.',
+        'wrong_email_confirmation' => 'Потврда е-поште се не подудара.',
+        'wrong_password_confirmation' => 'Потврда лозинке се не подудара.',
+        'too_long' => 'Прекорачена максимална дужина - може да садржи највише :limit знакова.',
 
         'attributes' => [
-            'username' => '',
-            'user_email' => '',
-            'password' => '',
+            'username' => 'Корисничко име',
+            'user_email' => 'Адреса е-поште',
+            'password' => 'Лозинка',
         ],
 
         'change_username' => [
-            'restricted' => '',
+            'restricted' => 'Не можете променити своје корисничко име док сте ограничени.
+',
             'supporter_required' => [
-                '_' => '',
-                'link_text' => '',
+                '_' => 'Морате имати :link да бисте променили име!',
+                'link_text' => 'подржан osu!',
             ],
-            'username_is_same' => '',
+            'username_is_same' => 'Ово је већ твоје корисничко име, будало!',
         ],
     ],
 
     'user_report' => [
-        'no_ranked_beatmapset' => '',
-        'reason_not_valid' => '',
-        'self' => "",
+        'no_ranked_beatmapset' => 'Није могуће пријавити рангиране мапе',
+        'reason_not_valid' => ':reason није важећи за овај тип извештаја.',
+        'self' => "Не можете сами да се пријавите!",
     ],
 
     'store' => [
         'order_item' => [
             'attributes' => [
-                'quantity' => '',
-                'cost' => '',
+                'quantity' => 'Количина',
+                'cost' => 'Цена',
             ],
         ],
     ],

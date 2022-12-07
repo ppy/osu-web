@@ -12,26 +12,26 @@ return [
     ],
 
     'beatmaps' => [
-        '_' => 'Beatmapai',
-        'download' => 'Parsisiųsti Beatmapo šabloną',
-        'download-na' => 'Beatmapo Šablonas dar nepasiekiamas',
+        '_' => 'Bitmapai',
+        'download' => 'Parsisiųsti Bitmapo šabloną',
+        'download-na' => 'Bitmapo Šablonas dar nepasiekiamas',
     ],
 
     'index' => [
-        'description' => 'Rekomenduojami atlikėjai - tai atlikėjai su kuriais mes bendradarbiaujame norit suteikti naujausią ir orginaliausią muziką osu! žaidime. Šie atlikėjai ir jų išskirtiniai kūriniai buvo išrinkti osu! komandos kaip geriausi ir labiausiai tinkami beatmapų kūrimui. Kai kurie atlikėjai sukūrė specialiai osu! skirtų kūrinių.<br><br>Visi kūriniai šioje skiltyje yra pateikti jau su sureguliuotu tempu ir buvo oficialiai licenzijuoti naudojimui osu! žaidime ir su osu! žaidimu susijusiam turiniui.',
+        'description' => 'Rekomenduojami atlikėjai - tai atlikėjai su kuriais mes bendradarbiaujame norit suteikti naujausią ir orginaliausią muziką osu! žaidime. Šie atlikėjai ir jų išskirtiniai kūriniai buvo išrinkti osu! komandos kaip geriausi ir labiausiai tinkami bitmapų kūrimui. Kai kurie atlikėjai sukūrė specialiai osu! skirtų kūrinių.<br><br>Visi kūriniai šioje skiltyje yra pateikti jau su sureguliuotu tempu ir buvo oficialiai licenzijuoti naudojimui osu! žaidime ir su osu! žaidimu susijusiam turiniui.',
     ],
 
     'links' => [
-        'beatmaps' => '',
+        'beatmaps' => 'osu! Bitmapai',
         'osu' => 'osu! profilis',
-        'site' => 'Oficialus tinklalapis',
+        'site' => 'Oficialus Tinklalapis',
     ],
 
     'songs' => [
         '_' => 'Dainos',
         'count' => ':count daina |:count dainos',
-        'original' => '',
-        'original_badge' => '',
+        'original' => 'osu! autentiškas',
+        'original_badge' => 'Autentiškas',
     ],
 
     'tracklist' => [
@@ -43,19 +43,19 @@ return [
 
     'tracks' => [
         'index' => [
-            '_' => '',
+            '_' => 'takelių paieška',
 
             'form' => [
-                'advanced' => '',
-                'album' => '',
-                'artist' => '',
-                'bpm_gte' => '',
-                'bpm_lte' => '',
-                'empty' => '',
-                'genre' => '',
-                'genre_all' => '',
-                'length_gte' => '',
-                'length_lte' => '',
+                'advanced' => 'Išplėstinė paieška',
+                'album' => 'Albumas',
+                'artist' => 'Atlikėjas',
+                'bpm_gte' => 'Minimalus BPM',
+                'bpm_lte' => 'Maksimalus BPM',
+                'empty' => 'Takelių atitinkančių paieškos kriterijus nerasta.',
+                'genre' => 'Žanras',
+                'genre_all' => 'Visi',
+                'length_gte' => 'Minimali Trukmė',
+                'length_lte' => 'Maksimali Trukmė',
             ],
         ],
     ],

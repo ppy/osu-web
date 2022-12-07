@@ -5,7 +5,7 @@
 
 return [
     'index' => [
-        'none_running' => 'No hay torneos en activos en este momento, ¡por favor vuelve más tarde!',
+        'none_running' => 'No hay torneos activos en este momento, ¡por favor vuelva más tarde!',
         'registration_period' => 'Inscripción: :start al :end',
 
         'header' => [
@@ -44,7 +44,7 @@ return [
         'state' => [
             'before_registration' => 'La inscripción para este torneo aún no se ha abierto.',
             'ended' => 'Este torneo ha concluido. Visita la página de información para los resultados.',
-            'registration_closed' => 'Registro para este torneo ha cerrado. Visite la página de información para las actualizaciones más recientes.',
+            'registration_closed' => 'El registro para este torneo se ha cerrado. Visite la página de información para las actualizaciones más recientes.',
             'running' => 'Este torneo está actualmente en curso. Visita la página de información para más detalles.',
         ],
     ],

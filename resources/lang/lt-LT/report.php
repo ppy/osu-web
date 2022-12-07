@@ -5,28 +5,28 @@
 
 return [
     'beatmapset' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Pranešti',
+        'title' => 'Pranešti :username bitmapą?',
     ],
 
     'beatmapset_discussion_post' => [
         'button' => 'Pranešti',
-        'title' => 'Pranešti :username\'s postą?',
+        'title' => 'Pranešti :username žinutę?',
     ],
 
     'comment' => [
         'button' => 'Pranešti',
-        'title' => 'Pranešti :username\'s komentarą?',
+        'title' => 'Pranešti :username komentarą?',
     ],
 
     'forum_post' => [
         'button' => 'Pranešti',
-        'title' => 'Pranešti :username\'s postą?',
+        'title' => 'Pranešti :username publikaciją?',
     ],
 
     'scores' => [
-        'button' => 'Pranešti taškų rezultatą',
-        'title' => 'Pranešti :username\'s taškų rezultatą?',
+        'button' => 'Pranešti Rezultatą',
+        'title' => 'Pranešti :username rezultatą?',
     ],
 
     'user' => [

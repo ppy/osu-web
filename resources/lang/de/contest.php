@@ -50,7 +50,7 @@ return [
             'beatmap' => 'Nur .osu-Dateien werden in diesem Wettbewerb akzeptiert.',
             'music' => 'Nur .mp3-Dateien werden in diesem Wettbewerb akzeptiert.',
         ],
-        'wrong_dimensions' => '',
+        'wrong_dimensions' => 'Beiträge für diesen Wettbewerb müssen im Format :widthx:height sein',
         'too_big' => 'Einsendungen in diesem Wettbewerb können nur bis zu :limit groß sein.',
     ],
     'beatmaps' => [

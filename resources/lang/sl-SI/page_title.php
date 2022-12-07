@@ -5,126 +5,126 @@
 
 return [
     'admin' => [
-        '_' => '',
+        '_' => 'admin',
     ],
     'error' => [
         'error' => [
-            '400' => '',
-            '404' => '',
-            '403' => '',
-            '401' => '',
-            '401-verification' => '',
-            '405' => '',
-            '422' => '',
-            '429' => '',
-            '500' => '',
-            '503' => '',
+            '400' => 'neveljavna zahteva',
+            '404' => 'manjka',
+            '403' => 'ni dovoljeno',
+            '401' => 'nepooblaščeno',
+            '401-verification' => 'verifikacija računa',
+            '405' => 'manjka',
+            '422' => 'neveljavna zahteva',
+            '429' => 'preveč zahtev',
+            '500' => 'nekaj se je zalomilo',
+            '503' => 'vzdrževanje',
         ],
     ],
     'forum' => [
-        '_' => '',
+        '_' => 'forum',
         'topic_logs_controller' => [
-            'index' => '',
+            'index' => 'dnevniki teme',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'verify_link' => '',
+            'verify_link' => 'verifikacija računa',
         ],
         'artists_controller' => [
-            '_' => '',
+            '_' => 'priznani ustvarjalci',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => '',
+            '_' => 'objave beatmap razprav',
         ],
         'beatmap_discussions_controller' => [
-            '_' => '',
+            '_' => 'beatmap razprave',
         ],
         'beatmap_packs_controller' => [
-            '_' => '',
+            '_' => 'paketi beatmapov',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => '',
+            '_' => 'glasovi na beatmap razpravah',
         ],
         'beatmapset_events_controller' => [
-            '_' => '',
+            '_' => 'zgodovina beatmap',
         ],
         'beatmapsets_controller' => [
-            'discussion' => '',
-            'index' => '',
-            'show' => '',
+            'discussion' => 'beatmap razprava',
+            'index' => 'seznam beatmap',
+            'show' => 'info beatmape',
         ],
         'changelog_controller' => [
-            '_' => '',
+            '_' => 'dnevnik sprememb',
         ],
         'chat_controller' => [
-            '_' => '',
+            '_' => 'klepet',
         ],
         'comments_controller' => [
-            '_' => '',
+            '_' => 'komentarji',
         ],
         'contests_controller' => [
-            '_' => '',
+            '_' => 'tekmovanja',
         ],
         'groups_controller' => [
-            'show' => '',
+            'show' => 'skupine',
         ],
         'home_controller' => [
-            'get_download' => '',
-            'index' => '',
-            'search' => '',
-            'support_the_game' => '',
-            'testflight' => '',
+            'get_download' => 'prenesi',
+            'index' => 'nadzorna plošča',
+            'search' => 'išči',
+            'support_the_game' => 'podpri igro',
+            'testflight' => 'testflight',
         ],
         'legal_controller' => [
-            '_' => '',
+            '_' => 'informacije',
         ],
         'livestreams_controller' => [
-            '_' => '',
+            '_' => 'oddajanja v živo',
         ],
         'matches_controller' => [
-            '_' => '',
+            '_' => 'tekma',
         ],
         'news_controller' => [
-            '_' => '',
+            '_' => 'novice',
         ],
         'notifications_controller' => [
-            '_' => '',
+            '_' => 'zgodovina obvestil',
         ],
         'password_reset_controller' => [
-            '_' => '',
+            '_' => 'ponastavitev gesla',
         ],
         'ranking_controller' => [
-            '_' => '',
+            '_' => 'uvrstitve',
         ],
         'scores_controller' => [
             '_' => '',
         ],
         'tournaments_controller' => [
-            '_' => '',
+            '_' => 'turnirji',
         ],
         'users_controller' => [
-            '_' => '',
-            'disabled' => '',
+            '_' => 'informacije o igralcu',
+            'disabled' => 'obvestilo',
         ],
         'wiki_controller' => [
-            '_' => '',
+            '_' => 'wiki',
         ],
     ],
     'passport' => [
         'authorization_controller' => [
-            '_' => '',
+            '_' => 'pooblasti aplikacijo',
         ],
     ],
     'store' => [
-        '_' => '',
+        '_' => 'trgovina',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => '',
         ],
         'multiplayer_controller' => [
-            '_' => '',
+            '_' => 'zgodovina večigralskih tekem',
         ],
     ],
 ];

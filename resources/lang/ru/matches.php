@@ -9,25 +9,25 @@ return [
         'difference' => 'с разницей в :difference очков',
         'failed' => 'НЕ ПРОШЁЛ',
         'header' => 'Многопользовательская игра',
-        'in-progress' => '(игра в процессе)',
-        'in_progress_spinner_label' => 'игра в процессе',
+        'in-progress' => '(матч в процессе)',
+        'in_progress_spinner_label' => 'матч в процессе',
         'loading-events' => 'Загрузка событий...',
         'winner' => ':team победила',
 
         'events' => [
-            'player-left' => ':user покинул игру',
-            'player-joined' => ':user зашёл в игру',
-            'player-kicked' => ':user был выгнан из игры',
-            'match-created' => ':user создал игру',
-            'match-disbanded' => 'игра была распущена',
+            'player-left' => ':user покинул комнату',
+            'player-joined' => ':user зашёл в комнату',
+            'player-kicked' => ':user был выгнан из комнаты',
+            'match-created' => ':user создал комнату',
+            'match-disbanded' => 'комната была распущена',
             'host-changed' => ':user стал хостом',
 
-            'player-left-no-user' => 'игрок покинул игру',
-            'player-joined-no-user' => 'игрок присоединился к игре',
-            'player-kicked-no-user' => 'игрок был кикнут из игры',
-            'match-created-no-user' => 'игра была создана',
-            'match-disbanded-no-user' => 'игра была распущена',
-            'host-changed-no-user' => 'хост игры поменялся',
+            'player-left-no-user' => 'игрок покинул комнату',
+            'player-joined-no-user' => 'игрок зашёл в комнату',
+            'player-kicked-no-user' => 'игрок был выгнан из комнаты',
+            'match-created-no-user' => 'комната была создана',
+            'match-disbanded-no-user' => 'комната была распущена',
+            'host-changed-no-user' => 'хост поменялся',
         ],
 
         'score' => [
@@ -39,10 +39,10 @@ return [
         ],
 
         'team-types' => [
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
+            'head-to-head' => 'Каждый сам за себя',
+            'tag-coop' => 'Прохождение по секциям',
+            'team-vs' => 'Противостояние команд',
+            'tag-team-vs' => 'Секционное противостояние команд',
         ],
 
         'teams' => [
@@ -52,9 +52,9 @@ return [
     ],
     'game' => [
         'scoring-type' => [
-            'score' => 'Лучшие очки',
-            'accuracy' => 'Лучшая точность',
-            'combo' => 'Лучшее комбо',
+            'score' => 'Наибольшее кол-во очков',
+            'accuracy' => 'Наилучшая точность',
+            'combo' => 'Наивысшее комбо',
             'scorev2' => 'Score V2',
         ],
     ],

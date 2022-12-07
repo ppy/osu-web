@@ -41,7 +41,7 @@ return [
             '_' => '',
         ],
         'beatmap_packs_controller' => [
-            '_' => '',
+            '_' => 'paquets de beatmaps',
         ],
         'beatmapset_discussion_votes_controller' => [
             '_' => '',
@@ -51,8 +51,8 @@ return [
         ],
         'beatmapsets_controller' => [
             'discussion' => '',
-            'index' => '',
-            'show' => '',
+            'index' => 'llista de beatmaps',
+            'show' => 'info del beatmap',
         ],
         'changelog_controller' => [
             '_' => '',
