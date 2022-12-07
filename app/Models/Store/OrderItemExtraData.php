@@ -31,7 +31,7 @@ class OrderItemExtraData implements CastsAttributes
         }
 
         \Log::debug('set', compact('key', 'value', 'attributes'));
-        if (!($value instanceof ExtraDataBase)) {
+        if ($value !== null && !($value instanceof ExtraDataBase)) {
             $value = ExtraDataBase::toExtraDataClass($value);
         }
 
