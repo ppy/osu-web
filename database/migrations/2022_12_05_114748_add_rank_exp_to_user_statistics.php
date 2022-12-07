@@ -37,6 +37,8 @@ return new class extends Migration
         static::applyAll(function (Blueprint $table): void {
             $table->unsignedFloat('rank_score_exp')->default(0)->after('rank_score_index');
             $table->unsignedInteger('rank_score_index_exp')->default(0)->after('rank_score_exp');
+            $table->index(['rank_score_exp'], 'rank_score_exp');
+            $table->index(['country_acronym', 'rank_score_exp'], 'country_acronym_exp');
         });
     }
 
@@ -48,6 +50,8 @@ return new class extends Migration
     public function down()
     {
         static::applyAll(function (Blueprint $table): void {
+            $table->dropIndex('rank_score_exp');
+            $table->dropIndex('country_acronym_exp');
             $table->dropColumn('rank_score_exp');
             $table->dropColumn('rank_score_index_exp');
         });

@@ -20,6 +20,15 @@ abstract class Model extends BaseModel
 {
     use Memoizes;
 
+    public static function ppColumn()
+    {
+        static $ret;
+
+        return $ret ??= config('osu.scores.experimental_rank_as_default')
+            ? 'rank_score_exp'
+            : 'rank_score';
+    }
+
     protected $primaryKey = 'user_id';
 
     public $timestamps = false;
@@ -199,6 +208,13 @@ abstract class Model extends BaseModel
     public function isRanked()
     {
         return $this->rank_score !== 0.0 && $this->rank_score_index !== 0;
+    }
+
+    public function pp()
+    {
+        $column = static::ppColumn();
+
+        return $this->$column;
     }
 
     public function scopeFriendsOf($query, $user)

@@ -25,10 +25,8 @@ class UserStatisticsTransformer extends TransformerAbstract
 
         if (config('osu.scores.experimental_rank_as_default')) {
             $globalRank = $stats->globalRankExp();
-            $pp = $stats->rank_score_exp;
         } else {
             $globalRank = $stats->globalRank();
-            $pp = $stats->rank_score;
             if (config('osu.scores.experimental_rank_as_extra')) {
                 $globalRankExp = $stats->globalRankExp();
                 $ppExp = $stats->rank_score_exp;
@@ -43,7 +41,7 @@ class UserStatisticsTransformer extends TransformerAbstract
 
             'global_rank' => $globalRank,
             'global_rank_exp' => $globalRankExp ?? null,
-            'pp' => $pp,
+            'pp' => $stats->pp(),
             'pp_exp' => $ppExp ?? 0,
             'ranked_score' => $stats->ranked_score,
             'hit_accuracy' => $stats->hit_accuracy,
