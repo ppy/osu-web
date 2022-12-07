@@ -18,7 +18,6 @@ class OrderItemExtraData implements CastsAttributes
             throw new InvalidArgumentException('OrderItemExtraData model must be OrderItem');
         }
 
-        \Log::debug('get', compact('key', 'value'));
         $dataJson = json_decode($value ?? '', true) ?? [];
 
         return ExtraDataBase::toExtraDataClass($dataJson);
@@ -30,7 +29,6 @@ class OrderItemExtraData implements CastsAttributes
             throw new InvalidArgumentException('OrderItemExtraData model must be OrderItem');
         }
 
-        \Log::debug('set', compact('key', 'value', 'attributes'));
         if ($value !== null && !($value instanceof ExtraDataBase)) {
             $value = ExtraDataBase::toExtraDataClass($value);
         }
