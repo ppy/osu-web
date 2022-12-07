@@ -9,18 +9,34 @@ namespace App\Models\Store;
 
 abstract class ExtraDataBase
 {
-    public static function toExtraDataClass(OrderItem $model, array $data)
+    public static function toExtraDataClass(array $data)
     {
-        // TODO: The cast depends on product or product_id being set first.
-        // This needs to be changed to not be dependant on the model.
-        return match ($model->product->custom_class) {
+        // avoid using data from the model, they might not be set when this is called.
+        $type = $data['type'] ?? static::guessType($data);
+
+        return match ($type) {
             'supporter-tag' => new ExtraDataSupporterTag($data),
             'cwc-supporter',
             'mwc4-supporter',
             'mwc7-supporter',
             'owc-supporter',
-            'twc-supporter' => new ExtraDataTournamentBanner($data),
+            'twc-supporter',
+            'tournament' => new ExtraDataTournamentBanner($data),
             default => null,
         };
+    }
+
+    private static function guessType(array $data)
+    {
+        if (isset($data['target_id']) && isset($data['duration'])) {
+            return 'supporter-tag';
+        }
+
+        // we know it's some kind of tournament...just not which one
+        if (isset($data['tournament_id']) && isset($data['cc'])) {
+            return 'tournament';
+        }
+
+        return null;
     }
 }

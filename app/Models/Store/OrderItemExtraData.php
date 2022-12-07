@@ -18,16 +18,10 @@ class OrderItemExtraData implements CastsAttributes
             throw new InvalidArgumentException('OrderItemExtraData model must be OrderItem');
         }
 
-        // TODO: The cast depends on product or product_id being set first.
-        // The type needs to be added to extra_data.
-        if ($model->product_id === null) {
-            throw new InvalidArgumentException('missing product_id');
-        }
-
         \Log::debug('get', compact('key', 'value'));
         $dataJson = json_decode($value ?? '', true) ?? [];
 
-        return ExtraDataBase::toExtraDataClass($model, $dataJson);
+        return ExtraDataBase::toExtraDataClass($dataJson);
     }
 
     public function set($model, $key, $value, $attributes)
@@ -36,15 +30,9 @@ class OrderItemExtraData implements CastsAttributes
             throw new InvalidArgumentException('OrderItemExtraData model must be OrderItem');
         }
 
-        // TODO: The cast depends on product or product_id being set first.
-        // The type needs to be added to extra_data.
-        if ($model->product_id === null) {
-            throw new InvalidArgumentException('missing product_id');
-        }
-
         \Log::debug('set', compact('key', 'value', 'attributes'));
         if (!($value instanceof ExtraDataBase)) {
-            $value = ExtraDataBase::toExtraDataClass($model, $value);
+            $value = ExtraDataBase::toExtraDataClass($value);
         }
 
         return [$key => $value !== null ? json_encode($value) : null];
