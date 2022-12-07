@@ -217,6 +217,9 @@ return [
                 'loved' => [
                     'title' => 'Beatmaps adorados',
                 ],
+                'nominated' => [
+                    'title' => '',
+                ],
                 'pending' => [
                     'title' => 'Beatmaps pendentes',
                 ],
@@ -414,7 +417,7 @@ return [
             'country_simple' => 'Classificação nacional',
             'global' => 'Classificação global para :mode',
             'global_simple' => 'Classificação global',
-            'highest' => '',
+            'highest' => 'Classificação mais alta: :rank em :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisão de acertos',

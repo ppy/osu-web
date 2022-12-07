@@ -50,7 +50,7 @@ return [
             'beatmap' => 'Numai fișierele de tip .osu sunt acceptate pentru acest concurs.',
             'music' => 'Numai fișierele de tip .mp3 sunt acceptate pentru acest concurs.',
         ],
-        'wrong_dimensions' => '',
+        'wrong_dimensions' => 'Intrările pentru acest concurs trebuie să fie :widthx:height',
         'too_big' => 'Întrările pentru acest concurs pot fi numai până la :limit.',
     ],
     'beatmaps' => [
@@ -71,7 +71,7 @@ return [
         ],
     ],
     'states' => [
-        'entry' => 'Inscriere deschisă',
+        'entry' => 'Înscriere Deschisă',
         'voting' => 'Votarea a început',
         'results' => 'Rezultate postate',
     ],

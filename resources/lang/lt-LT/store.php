@@ -6,14 +6,14 @@
 return [
     'cart' => [
         'checkout' => 'Apmokėti',
-        'info' => '',
+        'info' => ':count_delimited pirkinis krepšelyje ($:subtotal)|:count_delimited pirkiniai krepšelyje ($:subtotal)',
         'more_goodies' => 'Noriu išsirinkti daugiau prekių prieš apmokant',
         'shipping_fees' => 'pristatymo mokesčiai',
         'title' => 'Prekių Krepšelis',
         'total' => 'iš viso',
 
         'errors_no_checkout' => [
-            'line_1' => 'Ups, yra problemų su tavo prekių krepšeliu kurios neleidžia apmokėti!',
+            'line_1' => 'O ne, yra problemų su tavo prekių krepšeliu, kurios neleidžia apmokėti!',
             'line_2' => 'Ištrinti arba atnaujinti viršuje esančias prekes prieš tęsiant.',
         ],
 
@@ -27,56 +27,56 @@ return [
     ],
 
     'checkout' => [
-        'cart_problems' => 'Ups, atsirado problemų su tavo prekių krepšeliu!',
+        'cart_problems' => 'O ne, atsirado problemų su tavo prekių krepšeliu!',
         'cart_problems_edit' => 'Norint redaguoti spausk čia.',
         'declined' => 'Apmokėjimas buvo atšauktas.',
         'delayed_shipping' => 'Šiuo metu yra labai daug užsakymų! Maloniai kviečiame užsakyti prekes, tačiau prekės **papildomai vėluos 1-2 savaites** iki kol mes susidorosime su dabartiniais užsakymais.',
         'old_cart' => 'Tavo prekių krepšelis atrodo nebuvo atnaujintas, pamėgink dar kartą.',
         'pay' => 'Apmokėti su Paypal',
-        'title_compact' => '',
+        'title_compact' => 'apmokėti',
 
         'has_pending' => [
-            '_' => '',
-            'link_text' => '',
+            '_' => 'Turi nebaigtus apmokėjimus, spausk :link, kad juos peržiūrėti.',
+            'link_text' => 'čia',
         ],
 
         'pending_checkout' => [
             'line_1' => 'Ankstesnis apmokėjimas buvo pradėtas bet nebaigtas.',
-            'line_2' => '',
+            'line_2' => 'Pasirink apmokėjimo būdą, kad tęsti.',
         ],
     ],
 
     'discount' => 'sutaupyk :percent%',
 
     'invoice' => [
-        'echeck_delay' => '',
-        'title_compact' => '',
+        'echeck_delay' => 'Kadangi jūsų mokėjote el. čekiu, pervedimas gali užtrukti iki 10 dienų kol praeis per PayPal sistemą!',
+        'title_compact' => 'sąskaita',
 
         'status' => [
             'processing' => [
-                'title' => '',
-                'line_1' => '',
+                'title' => 'Jūsų pervedimas dar nepatvirtintas!',
+                'line_1' => 'Net jei jau sumokėjote, mums dar gali būti neatėjęs jūsų pervedimo patvirtinimas. Prašome atnaujinti puslapį už minutės ar dviejų!',
                 'line_2' => [
-                    '_' => '',
-                    'link_text' => '',
+                    '_' => 'Jei turėjote problemų apmokėjimo metu, :link',
+                    'link_text' => 'spauskite čia, kad tęsti apmokėjimą',
                 ],
             ],
         ],
     ],
 
     'order' => [
-        'cancel' => '',
-        'cancel_confirm' => '',
-        'cancel_not_allowed' => '',
-        'invoice' => '',
-        'no_orders' => '',
-        'paid_on' => '',
-        'resume' => '',
-        'shopify_expired' => '',
+        'cancel' => 'Atšaukti užsakymą',
+        'cancel_confirm' => 'Šis užsakymas bus atšauktas ir mokėjimas bus nepriimtas. Mokėjimų tiekėjas ne iškart gražinti pinigus. Jūs užtikrintas?',
+        'cancel_not_allowed' => 'Šio užsakymo nebegali atšaukti.',
+        'invoice' => 'Peržiūrėti sąskaitą',
+        'no_orders' => 'Nėra užsakymų.',
+        'paid_on' => 'Užsakyta :date',
+        'resume' => 'Tęsti Apmokėjimą',
+        'shopify_expired' => 'Ši apmokėjimo nuoroda nebegalioja.',
 
         'item' => [
             'display_name' => [
-                'supporter_tag' => '',
+                'supporter_tag' => ':name vartotojui :username (:duration)',
             ],
             'quantity' => 'Kiekis',
         ],
@@ -92,12 +92,12 @@ return [
         ],
 
         'status' => [
-            'cancelled' => '',
-            'checkout' => '',
-            'delivered' => '',
-            'paid' => '',
-            'processing' => '',
-            'shipped' => '',
+            'cancelled' => 'Atšaukta',
+            'checkout' => 'Ruošiama',
+            'delivered' => 'Pristatyta',
+            'paid' => 'Apmokėta',
+            'processing' => 'Laukiantis patvirtinimo',
+            'shipped' => 'Išsiųsta',
         ],
     ],
 
@@ -121,8 +121,8 @@ return [
     'supporter_tag' => [
         'gift' => 'dovanoti žaidėjui',
         'require_login' => [
-            '_' => '',
-            'link_text' => '',
+            '_' => 'Tu turi būti :link, kad gauti osu!supporter žymę!',
+            'link_text' => 'prisijungęs',
         ],
     ],
 
@@ -130,8 +130,8 @@ return [
         'check' => 'Patikrinimui įvesk norimą vartotojo vardą!',
         'checking' => 'Tikrinama ar galimas :username...',
         'require_login' => [
-            '_' => 'Tau reikia :link, kad pakeistum vardą!',
-            'link_text' => '',
+            '_' => 'Tau turi būti :link, kad pakeistum vardą!',
+            'link_text' => 'prisijungęs',
         ],
     ],
 

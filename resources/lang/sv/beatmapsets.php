@@ -124,6 +124,7 @@ return [
             'genre' => 'Genre',
             'language' => 'Språk',
             'no_scores' => 'Data beräknas...',
+            'nominators' => '',
             'nsfw' => 'Explicit innehåll',
             'offset' => 'Online-förskjutning',
             'points-of-failure' => 'Punkter av Misslyckande',

@@ -5,29 +5,29 @@
 
 return [
     'match' => [
-        'beatmap-deleted' => 'beatmapas ištrintas',
+        'beatmap-deleted' => 'bitmapas ištrintas',
         'difference' => ':difference skirtumu',
         'failed' => 'NEPRAĖJO',
-        'header' => '',
-        'in-progress' => '(vyksta rungtynės)',
-        'in_progress_spinner_label' => '',
+        'header' => 'Keli Mačai',
+        'in-progress' => '(vyksta mačas)',
+        'in_progress_spinner_label' => 'vyksta mačas',
         'loading-events' => 'Įvykiai keliami...',
         'winner' => ':team laimėjo',
 
         'events' => [
-            'player-left' => ':user išėjo iš rungtynių',
-            'player-joined' => ':user prisijungė prie rungtynių',
-            'player-kicked' => ':user buvo išmestas iš rungtynių',
-            'match-created' => ':user sukūrė rungtynes',
-            'match-disbanded' => 'rungtynės buvo sustabdytos',
-            'host-changed' => ':user tapo vedėju',
+            'player-left' => ':user išėjo iš mačo',
+            'player-joined' => ':user prisijungė prie mačo',
+            'player-kicked' => ':user buvo išmestas iš mačo',
+            'match-created' => ':user sukūrė mačą',
+            'match-disbanded' => 'mačas buvo sustabdytas',
+            'host-changed' => ':user tapo šeimininku',
 
-            'player-left-no-user' => 'žaidėjas išėjo iš rungtynių',
-            'player-joined-no-user' => 'žaidėjas prisijungė prie rungtynių',
-            'player-kicked-no-user' => 'žaidėjas buvo išmestas iš rungtynių',
-            'match-created-no-user' => 'rungtynės buvo sukurtos',
-            'match-disbanded-no-user' => 'rungtynės buvo sustabdytos',
-            'host-changed-no-user' => 'pasikeitė vedėjas',
+            'player-left-no-user' => 'žaidėjas išėjo iš mačo',
+            'player-joined-no-user' => 'žaidėjas prisijungė prie mačo',
+            'player-kicked-no-user' => 'žaidėjas buvo išmestas iš mačo',
+            'match-created-no-user' => 'mačas buvo sukurtas',
+            'match-disbanded-no-user' => 'mačas buvo sustabdytas',
+            'host-changed-no-user' => 'pasikeitė šeimininkas',
         ],
 
         'score' => [
@@ -40,9 +40,9 @@ return [
 
         'team-types' => [
             'head-to-head' => 'Kiekvienas už save',
-            'tag-coop' => '',
+            'tag-coop' => 'Pakaitinis Ko-op',
             'team-vs' => 'Komandinis',
-            'tag-team-vs' => '',
+            'tag-team-vs' => 'Komandinis Pakaitinis',
         ],
 
         'teams' => [
@@ -53,7 +53,7 @@ return [
     'game' => [
         'scoring-type' => [
             'score' => 'Daugiausiai Taškų',
-            'accuracy' => 'Didžausias Tikslumas',
+            'accuracy' => 'Didžiausias Tikslumas',
             'combo' => 'Didžiausias Kombo',
             'scorev2' => 'Taškai V2',
         ],

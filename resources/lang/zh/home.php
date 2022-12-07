@@ -122,7 +122,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => '新 Ranked 谱面',
+            'new' => '新上架 (Ranked) 谱面',
             'popular' => '热门谱面',
             'by_user' => '作者：:user',
         ],

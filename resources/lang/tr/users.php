@@ -217,6 +217,9 @@ return [
                 'loved' => [
                     'title' => 'Sevilen Beatmapler',
                 ],
+                'nominated' => [
+                    'title' => '',
+                ],
                 'pending' => [
                     'title' => 'Beklemedeki Beatmapler',
                 ],

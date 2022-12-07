@@ -218,6 +218,9 @@ return [
                 'loved' => [
                     'title' => 'บีทแมพที่ Loved',
                 ],
+                'nominated' => [
+                    'title' => '',
+                ],
                 'pending' => [
                     'title' => 'บีทแมพที่กำลังทำ',
                 ],

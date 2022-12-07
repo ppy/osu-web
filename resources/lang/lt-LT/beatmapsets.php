@@ -124,6 +124,7 @@ return [
             'genre' => 'Žanras',
             'language' => 'Kalba',
             'no_scores' => '',
+            'nominators' => '',
             'nsfw' => '',
             'offset' => '',
             'points-of-failure' => '',
