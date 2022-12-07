@@ -124,6 +124,7 @@ return [
             'genre' => 'Žanrs',
             'language' => 'Valoda',
             'no_scores' => 'Rezultāti joprojām tiek aprēķināti...',
+            'nominators' => '',
             'nsfw' => '',
             'offset' => '',
             'points-of-failure' => 'Izkrišanas punkti',

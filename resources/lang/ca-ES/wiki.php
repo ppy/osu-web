@@ -5,26 +5,26 @@
 
 return [
     'show' => [
-        'fallback_translation' => '',
-        'incomplete_or_outdated' => '',
-        'missing' => '',
-        'missing_title' => '',
-        'missing_translation' => '',
-        'needs_cleanup_or_rewrite' => '',
-        'search' => '',
-        'stub' => '',
-        'toc' => '',
+        'fallback_translation' => 'La pàgina sol·licitada encara no està traduïda a la llengua seleccionada (:language). Es mostra la versió anglesa.',
+        'incomplete_or_outdated' => 'El contingut d\'aquesta pàgina és incomplet o obsolet. Si podeu ajudar, considereu actualitzar l\'article!',
+        'missing' => 'No s\'ha pogut trobar la pàgina sol·licitada ":keyword".',
+        'missing_title' => 'No trobat',
+        'missing_translation' => 'No s\'ha pogut trobar la pàgina sol·licitada per a l\'idioma seleccionat.',
+        'needs_cleanup_or_rewrite' => 'Aquesta pàgina no compleix els estàndards de l\'osu! wiki i s\'ha de netejar o reescriure. Si podeu ajudar, considereu actualitzar l\'article!',
+        'search' => 'Cerca a les pàgines existents :link.',
+        'stub' => 'Aquest article és incomplet i espera que algú l\'expandeixi.',
+        'toc' => 'Continguts',
 
         'edit' => [
-            'link' => '',
-            'refresh' => '',
+            'link' => 'Mostra a GitHub',
+            'refresh' => 'Actualitza',
         ],
 
         'translation' => [
-            'legal' => '',
-            'outdated' => '',
+            'legal' => 'Aquesta traducció només es proporciona per conveniència. La versió original :default serà l\'única versió legalment vinculant d\'aquest text.',
+            'outdated' => 'Aquesta pàgina conté una traducció obsoleta del contingut original. Si us plau, comproveu la informació :default per a la més precisa (i considereu actualitzar la traducció si podeu ajudar)!',
 
-            'default' => '',
+            'default' => 'Versió anglesa',
         ],
     ],
 ];

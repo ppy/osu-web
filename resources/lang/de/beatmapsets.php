@@ -124,6 +124,7 @@ return [
             'genre' => 'Genre',
             'language' => 'Sprache',
             'no_scores' => 'Die Daten werden noch verarbeitet...',
+            'nominators' => '',
             'nsfw' => 'Expliziter Inhalt',
             'offset' => 'Online-Offset',
             'points-of-failure' => 'Stellen, an denen Spieler gescheitert sind',

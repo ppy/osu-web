@@ -7,7 +7,7 @@ return [
     'achievement' => '',
     'beatmap_playcount' => '',
     'beatmapset_approve' => '',
-    'beatmapset_delete' => '',
+    'beatmapset_delete' => ':beatmapset s\'ha eliminat.',
     'beatmapset_revive' => '',
     'beatmapset_update' => '',
     'beatmapset_upload' => '',
@@ -20,9 +20,9 @@ return [
     'username_change' => '',
 
     'beatmapset_status' => [
-        'approved' => '',
-        'loved' => '',
-        'qualified' => '',
-        'ranked' => '',
+        'approved' => 'aprobado',
+        'loved' => 'estimat',
+        'qualified' => 'qualificat',
+        'ranked' => 'clasificado',
     ],
 ];
