@@ -11,7 +11,7 @@ use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use InvalidArgumentException;
 use JsonSerializable;
 
-class OrderItemExtraData implements ArrayAccess, Castable, JsonSerializable
+class OrderItemExtraData implements Castable, JsonSerializable
 {
     public ?string $countryAcronym;
     public ?Product $product;
@@ -82,47 +82,5 @@ class OrderItemExtraData implements ArrayAccess, Castable, JsonSerializable
         }
 
         return $ret !== [] ? $ret : null;
-    }
-
-    public function getProduct()
-    {
-        return $this->product;
-    }
-
-    // temporary stuff for testing
-    public function offsetExists($offset): bool
-    {
-        $key = static::toPropertyName($offset);
-
-        return $this->$key !== null;
-    }
-
-    public function offsetGet($offset): mixed
-    {
-        $key = static::toPropertyName($offset);
-
-        return $this->$key;
-    }
-
-    public function offsetSet($offset, $value): void
-    {
-        $key = static::toPropertyName($offset);
-        $this->$key = $value;
-    }
-
-    public function offsetUnset($offset): void
-    {
-        $key = static::toPropertyName($offset);
-        $this->$key = null;
-    }
-
-    private static function toPropertyName(string $key)
-    {
-        $name = camel_case($key);
-
-        return match ($name) {
-            'cc' => 'countryAcronym',
-            default => $name,
-        };
     }
 }
