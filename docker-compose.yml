@@ -122,7 +122,7 @@ services:
       discovery.type: single-node
       ES_JAVA_OPTS: "-Xms512m -Xmx512m" # less OOM on default settings.
     healthcheck:
-      test: curl -s http://localhost:9200 >/dev/null || exit 1
+      test: curl -s http://localhost:9200/_cluster/health?wait_for_status=yellow >/dev/null || exit 1
       interval: 1s
       timeout: 60s
       start_period: 60s
