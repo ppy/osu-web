@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Tests\Libraries\Fulfillments;
 
+use App\Libraries\Fulfillments\FulfillmentException;
 use App\Libraries\Fulfillments\SupporterTagFulfillment;
 use App\Mail\DonationThanks;
 use App\Mail\SupporterGift;
@@ -239,6 +240,30 @@ class SupporterTagFulfillmentTest extends TestCase
         $this->assertSame(2, $donor->osu_featurevotes);
     }
 
+    // Sanity test against weirdness
+    public function testInsufficientAmountSingle()
+    {
+        $this->createOrderItem($this->user, 1, 3);
+
+        $this->expectException(FulfillmentException::class);
+        $this->expectCountChange(fn () => UserDonation::count(), 0);
+
+        $fulfiller = new SupporterTagFulfillment($this->order);
+        $fulfiller->run();
+    }
+
+    public function testInsufficientAmountMultiple()
+    {
+        $this->createOrderItem($this->user, 1, 3);
+        $this->createOrderItem($this->user, 1, 4);
+
+        $this->expectException(FulfillmentException::class);
+        $this->expectCountChange(fn () => UserDonation::count(), 0);
+
+        $fulfiller = new SupporterTagFulfillment($this->order);
+        $fulfiller->run();
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -253,17 +278,17 @@ class SupporterTagFulfillmentTest extends TestCase
         ]);
     }
 
-    private function createDonationOrderItem(User $giftee, bool $cancelled, bool $run)
+    private function createDonationOrderItem(User $giftee, bool $cancelled, bool $ranPreviously)
     {
         $orderItem = $this->createOrderItem($giftee, 1, 4);
 
         if ($cancelled) {
             $this->createUserDonation($orderItem, $giftee, false);
-            if ($run) {
+            if ($ranPreviously) {
                 $this->createUserDonation($orderItem, $giftee, true);
             }
         } else {
-            if ($run) {
+            if ($ranPreviously) {
                 $this->createUserDonation($orderItem, $giftee, false);
             }
         }
