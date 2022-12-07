@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property float|null $cost
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon|null $deleted_at
- * @property OrderItemExtraData|null $extra_data
+ * @property ExtraDataBase|null $extra_data
  * @property string|null $extra_info
  * @property int $id
  * @property Order $order
