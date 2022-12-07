@@ -675,13 +675,17 @@ class Order extends Model
             $params['extra_data']['type'] = $product->custom_class;
         }
 
-        return $this->items()->make([
+        $item = $this->items()->make([
             'quantity' => $params['quantity'],
             'extra_info' => $params['extra_info'],
             'extra_data' => $params['extra_data'],
             'cost' => $params['cost'],
             'product_id' => $product->getKey(),
         ]);
+
+        $item->setRelation('product', $product);
+
+        return $item;
     }
 
     private function paramsSupporterTag(array $rawParams)
