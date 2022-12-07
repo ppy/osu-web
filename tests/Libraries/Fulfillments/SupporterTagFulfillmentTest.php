@@ -3,6 +3,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace Tests\Libraries\Fulfillments;
 
 use App\Libraries\Fulfillments\SupporterTagFulfillment;
@@ -18,11 +20,14 @@ use Tests\TestCase;
 
 class SupporterTagFulfillmentTest extends TestCase
 {
+    private Order $order;
+    private User $user;
+
     public function testDonateSupporterTagToSelf()
     {
         $donor = $this->user;
         $expectedExpiry = $donor->osu_subscriptionexpiry->copy()->addMonthsNoOverflow(1);
-        $this->createDonationOrderItem($this->order, $this->user, false, false);
+        $this->createDonationOrderItem($this->user, false, false);
 
         $fulfiller = new SupporterTagFulfillment($this->order);
         $fulfiller->run();
@@ -45,7 +50,7 @@ class SupporterTagFulfillmentTest extends TestCase
         ]);
         $expectedExpiry = $giftee->osu_subscriptionexpiry->copy()->addMonthsNoOverflow(1);
 
-        $this->createDonationOrderItem($this->order, $giftee, false, false);
+        $this->createDonationOrderItem($giftee, false, false);
 
         $fulfiller = new SupporterTagFulfillment($this->order);
         $fulfiller->run();
@@ -69,15 +74,13 @@ class SupporterTagFulfillmentTest extends TestCase
     public function testMailDonateSupporterTagToOthers()
     {
         Mail::fake();
-        $today = Carbon::today();
 
-        $donor = $this->user;
         $giftee1 = User::factory()->create(['user_sig' => '']); // prevent factory from generating user_sig
         $giftee2 = User::factory()->create(['user_sig' => '']);
 
-        $this->createDonationOrderItem($this->order, $giftee1, false, false);
-        $this->createDonationOrderItem($this->order, $giftee1, false, false);
-        $this->createDonationOrderItem($this->order, $giftee2, false, false);
+        $this->createDonationOrderItem($giftee1, false, false);
+        $this->createDonationOrderItem($giftee1, false, false);
+        $this->createDonationOrderItem($giftee2, false, false);
 
         $fulfiller = new SupporterTagFulfillment($this->order);
         $fulfiller->run();
@@ -102,8 +105,8 @@ class SupporterTagFulfillmentTest extends TestCase
         $expectedExpiry = $donor->osu_subscriptionexpiry->copy()->addMonthsNoOverflow(1);
 
         // consider the first item as processed
-        $this->createDonationOrderItem($this->order, $this->user, false, true);
-        $this->createDonationOrderItem($this->order, $this->user, false, false);
+        $this->createDonationOrderItem($this->user, false, true);
+        $this->createDonationOrderItem($this->user, false, false);
 
         $fulfiller = new SupporterTagFulfillment($this->order);
         $fulfiller->run();
@@ -120,8 +123,8 @@ class SupporterTagFulfillmentTest extends TestCase
         $donor = $this->user;
         $expectedExpiry = $donor->osu_subscriptionexpiry->copy();
 
-        $this->createDonationOrderItem($this->order, $this->user, false, true);
-        $this->createDonationOrderItem($this->order, $this->user, false, true);
+        $this->createDonationOrderItem($this->user, false, true);
+        $this->createDonationOrderItem($this->user, false, true);
 
         $fulfiller = new SupporterTagFulfillment($this->order);
         $fulfiller->run();
@@ -151,7 +154,7 @@ class SupporterTagFulfillmentTest extends TestCase
             $expectedExpiry = $today->day($donor->osu_subscriptionexpiry->endOfMonth()->day);
         }
 
-        $this->createDonationOrderItem($this->order, $this->user, false, true);
+        $this->createDonationOrderItem($this->user, false, true);
 
         $fulfiller = new SupporterTagFulfillment($this->order);
         $fulfiller->revoke();
@@ -176,8 +179,8 @@ class SupporterTagFulfillmentTest extends TestCase
 
         $oldExpiry = $donor->osu_subscriptionexpiry;
 
-        $this->createDonationOrderItem($this->order, $this->user, true, true);
-        $this->createDonationOrderItem($this->order, $this->user, true, false);
+        $this->createDonationOrderItem($this->user, true, true);
+        $this->createDonationOrderItem($this->user, true, false);
 
         $fulfiller = new SupporterTagFulfillment($this->order);
         $fulfiller->revoke();
@@ -201,8 +204,8 @@ class SupporterTagFulfillmentTest extends TestCase
             'osu_subscriptionexpiry' => $today->copy()->addMonthsNoOverflow(2),
         ]);
 
-        $this->createDonationOrderItem($this->order, $this->user, true, true);
-        $this->createDonationOrderItem($this->order, $this->user, true, true);
+        $this->createDonationOrderItem($this->user, true, true);
+        $this->createDonationOrderItem($this->user, true, true);
 
         $fulfiller = new SupporterTagFulfillment($this->order);
         $fulfiller->revoke();
@@ -225,7 +228,7 @@ class SupporterTagFulfillmentTest extends TestCase
         ]);
 
         $expectedExpiry = $today->copy()->addMonthsNoOverflow(1);
-        $this->createDonationOrderItem($this->order, $this->user, false, false);
+        $this->createDonationOrderItem($this->user, false, false);
 
         $fulfiller = new SupporterTagFulfillment($this->order);
         $fulfiller->run();
@@ -250,7 +253,7 @@ class SupporterTagFulfillmentTest extends TestCase
         ]);
     }
 
-    private function createDonationOrderItem($order, $giftee, $cancelled = false, $run = false)
+    private function createDonationOrderItem(User $giftee, bool $cancelled, bool $run)
     {
         $orderItem = $this->createOrderItem($giftee, 1, 4);
 
@@ -266,7 +269,7 @@ class SupporterTagFulfillmentTest extends TestCase
         }
     }
 
-    private function createUserDonation($orderItem, $giftee, $cancelled = false)
+    private function createUserDonation(OrderItem $orderItem, User $giftee, bool $cancelled)
     {
         $donor = $orderItem->order->user;
 
@@ -277,7 +280,7 @@ class SupporterTagFulfillmentTest extends TestCase
         ]);
     }
 
-    private function createOrderItem($user, $duration, $amount)
+    private function createOrderItem(User $user, int $duration, int $amount)
     {
         return factory(OrderItem::class)->states('supporter_tag')->create([
             'order_id' => $this->order->order_id,
