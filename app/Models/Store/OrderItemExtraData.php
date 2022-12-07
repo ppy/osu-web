@@ -5,10 +5,10 @@
 
 namespace App\Models\Store;
 
-use App\Exceptions\InvariantException;
 use ArrayAccess;
 use Illuminate\Contracts\Database\Eloquent\Castable;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
+use InvalidArgumentException;
 use JsonSerializable;
 
 class OrderItemExtraData implements ArrayAccess, Castable, JsonSerializable
@@ -41,7 +41,7 @@ class OrderItemExtraData implements ArrayAccess, Castable, JsonSerializable
             public function get($model, $key, $value, $attributes)
             {
                 if (!($model instanceof OrderItem)) {
-                    throw new InvariantException('OrderItemExtraData model must be OrderItem');
+                    throw new InvalidArgumentException('OrderItemExtraData model must be OrderItem');
                 }
                 \Log::debug('get', compact('key', 'value'));
                 $dataJson = json_decode($value, true);
@@ -53,7 +53,7 @@ class OrderItemExtraData implements ArrayAccess, Castable, JsonSerializable
             public function set($model, $key, $value, $attributes)
             {
                 if (!($model instanceof OrderItem)) {
-                    throw new InvariantException('OrderItemExtraData model must be OrderItem');
+                    throw new InvalidArgumentException('OrderItemExtraData model must be OrderItem');
                 }
                 \Log::debug('set', compact('key', 'value'));
                 if (!($value instanceof OrderItemExtraData)) {
