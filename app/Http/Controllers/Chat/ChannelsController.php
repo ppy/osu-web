@@ -84,17 +84,21 @@ class ChannelsController extends Controller
     public function join($channelId, $userId)
     {
         $channel = Channel::where('channel_id', $channelId)->firstOrFail();
-        $user = auth()->user();
+        $currentUser = auth()->user();
+        $currentUserId = $currentUser->getKey();
 
         priv_check('ChatChannelJoin', $channel)->ensureCan();
 
-        if ($user->user_id !== get_int($userId)) {
+        if ($currentUserId !== get_int($userId)) {
             abort(403);
         }
 
-        $channel->addUser(Auth::user());
+        $channel->addUser($currentUser);
+        if ($channel->isPublic()) {
+            Channel::ack($channel->getKey(), $currentUserId);
+        }
 
-        return json_item($channel, ChannelTransformer::forUser($user), ChannelTransformer::LISTING_INCLUDES);
+        return json_item($channel, ChannelTransformer::forUser($currentUser), ChannelTransformer::LISTING_INCLUDES);
     }
 
     /**
