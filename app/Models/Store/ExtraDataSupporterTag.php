@@ -17,8 +17,8 @@ class ExtraDataSupporterTag extends ExtraDataBase implements JsonSerializable
 
     public function __construct(array $data)
     {
-        $this->duration = $data['duration'] ?? null;
-        $this->targetId = $data['target_id'] ?? null;
+        $this->duration = get_int($data['duration'] ?? null);
+        $this->targetId = get_int($data['target_id'] ?? null);
         $this->username = $data['username'] ?? null;
     }
 
