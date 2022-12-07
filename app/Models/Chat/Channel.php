@@ -502,6 +502,10 @@ class Channel extends Model
 
     public function addUser(User $user)
     {
+        if ($this->isPublic()) {
+            static::ack($this->getKey(), $user->getKey());
+        }
+
         $userChannel = $this->userChannelFor($user);
 
         if ($userChannel !== null) {
