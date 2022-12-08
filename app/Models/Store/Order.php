@@ -653,7 +653,7 @@ class Order extends Model
         // FIXME: custom class stuff should probably not go in Order...
         switch ($product->custom_class) {
             case 'supporter-tag':
-                $params['extra_data'] = $this->paramsSupporterTag($params);
+                $params['extra_data'] = $this->extraDataSupporterTag($params);
                 break;
             // TODO: look at migrating to extra_data
             case 'username-change':
@@ -665,7 +665,7 @@ class Order extends Model
             case 'mwc7-supporter':
             case 'owc-supporter':
             case 'twc-supporter':
-                $params['extra_data'] = $this->paramsTournamentBanner($params);
+                $params['extra_data'] = $this->extraDataTournamentBanner($params);
                 $params['cost'] = $product->cost ?? 0;
                 break;
             default:
@@ -685,44 +685,6 @@ class Order extends Model
         return $item;
     }
 
-    private function paramsSupporterTag(array $orderItemParams)
-    {
-        $params = get_params($orderItemParams, 'extra_data', [
-            'duration:int',
-            'target_id:int',
-        ]);
-
-        $params['type'] = ExtraDataSupporterTag::TYPE;
-
-        $targetId = $params['target_id'];
-        if ($targetId === $this->user_id) {
-            $params['username'] = $this->user->username;
-        } else {
-            $user = User::default()->where('user_id', $targetId)->firstOrFail();
-            $params['username'] = $user->username;
-        }
-
-        $params['duration'] = SupporterTag::getDuration($orderItemParams['cost']);
-
-        return $params;
-    }
-
-    private function paramsTournamentBanner(array $orderItemParams)
-    {
-        $params = get_params($orderItemParams, 'extra_data', [
-            'tournament_id:int',
-        ]);
-
-        $params['type'] = ExtraDataTournamentBanner::TYPE;
-
-        // much dodgy. wow.
-        $matches = [];
-        preg_match('/.+\((?<country>.+)\)$/', $orderItemParams['product']->name, $matches);
-        $params['cc'] = Country::where('name', $matches['country'])->first()->acronym;
-
-        return $params;
-    }
-
     private function updateOrderItem(array $params, $addToExisting = false)
     {
         $product = $params['product'];
@@ -738,6 +700,41 @@ class Order extends Model
         }
 
         return $item;
+    }
+
+    // TODO: maybe move to class later?
+    private function extraDataSupporterTag(array $orderItemParams)
+    {
+        $params = get_params($orderItemParams, 'extra_data', [
+            'target_id:int',
+        ]);
+
+        $targetId = $params['target_id'];
+        if ($targetId === $this->user_id) {
+            $params['username'] = $this->user->username;
+        } else {
+            $user = User::default()->where('user_id', $targetId)->firstOrFail();
+            $params['username'] = $user->username;
+        }
+
+        $params['duration'] = SupporterTag::getDuration($orderItemParams['cost']);
+
+        return new ExtraDataSupporterTag($params);
+    }
+
+    // TODO: maybe move to class later?
+    private function extraDataTournamentBanner(array $orderItemParams)
+    {
+        $params = get_params($orderItemParams, 'extra_data', [
+            'tournament_id:int',
+        ]);
+
+        // much dodgy. wow.
+        $matches = [];
+        preg_match('/.+\((?<country>.+)\)$/', $orderItemParams['product']->name, $matches);
+        $params['cc'] = Country::where('name', $matches['country'])->first()->acronym;
+
+        return new ExtraDataTournamentBanner($params);
     }
 
     private static function orderItemParams(array $form)
