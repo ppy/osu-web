@@ -8,6 +8,7 @@ import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { onErrorWithCallback } from 'utils/ajax';
+import { trans } from 'utils/lang';
 
 interface Props {
   onDelete: (id: number) => void;
@@ -42,7 +43,7 @@ export default class GithubUser extends React.Component<Props> {
           isBusy={this.deleting}
           modifiers={['account-edit', 'danger', 'settings-oauth']}
           props={{ onClick: this.onDeleteButtonClick }}
-          text={osu.trans('common.buttons.delete')}
+          text={trans('common.buttons.delete')}
         />
       </div>
     );

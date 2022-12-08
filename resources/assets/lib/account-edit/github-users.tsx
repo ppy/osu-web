@@ -7,6 +7,7 @@ import { route } from 'laroute';
 import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
+import { trans } from 'utils/lang';
 import GithubUser from './github-user';
 
 interface Props {
@@ -29,7 +30,7 @@ export default class GithubUsers extends React.Component<Props> {
     return (
       <>
         {this.users.length === 0
-          ? <div className='github-user'>{osu.trans('accounts.github_users.none')}</div>
+          ? <div className='github-user'>{trans('accounts.github_users.none')}</div>
           : this.users.map((user) => (
             <GithubUser
               key={user.id}
@@ -40,7 +41,7 @@ export default class GithubUsers extends React.Component<Props> {
         <BigButton
           href={route('account.github-users.create')}
           icon='fas fa-link'
-          text={osu.trans('accounts.github_users.link')}
+          text={trans('accounts.github_users.link')}
         />
       </>
     );
