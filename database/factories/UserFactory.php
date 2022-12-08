@@ -104,7 +104,7 @@ class UserFactory extends Factory
                         // TODO: This shouldn't have to be called here, since it's already
                         // called by `Group::afterCommit`, but `Group::afterCommit` isn't
                         // running in tests when creating/saving `Group`s.
-                        app('groups')->resetCache();
+                        app('groups')->resetMemoized();
                     }
 
                     $user->findUserGroup($group, true)->update(['playmodes' => $playmodes]);

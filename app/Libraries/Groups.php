@@ -90,7 +90,7 @@ class Groups
             // TODO: This shouldn't have to be called here, since it's already
             // called by `Group::afterCommit`, but `Group::afterCommit` isn't
             // running in tests when creating/saving `Group`s.
-            $this->resetCache();
+            $this->resetMemoized();
         }
 
         return $group;
