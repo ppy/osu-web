@@ -34,11 +34,12 @@ trait LocallyCached
     private static function getCurrentVersion(): int
     {
         $cacheKey = static::getVersionCacheKey();
-        $version = cache()->get($cacheKey);
+        $cache = cache();
+        $version = $cache->get($cacheKey);
 
         if ($version === null) {
             $version = hrtime(true);
-            cache()->forever($cacheKey, $version);
+            $cache->forever($cacheKey, $version);
         }
 
         return $version;
