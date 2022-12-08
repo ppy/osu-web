@@ -21,8 +21,7 @@ class LayoutCache
     public function getBeatmapsetFilters(): string
     {
         return $this->memoize(__FUNCTION__.':'.app()->getLocale(), fn () =>
-            view('beatmapsets._filters')->render()
-        );
+            view('beatmapsets._filters')->render());
     }
 
     public function getLocalesDesktop(): string
@@ -33,8 +32,7 @@ class LayoutCache
         return $this->memoize($key, fn () =>
             view('layout.nav2._locales', [
                 'currentLocaleMeta' => locale_meta($currentLocale),
-            ])->render()
-        );
+            ])->render());
     }
 
     public function getLocalesLanding(): string
@@ -45,8 +43,7 @@ class LayoutCache
         return $this->memoize($key, fn () =>
             view('home._landing_locales', [
                 'currentLocaleMeta' => locale_meta($currentLocale),
-            ])->render()
-        );
+            ])->render());
     }
 
     public function getLocalesMobile(): string
@@ -57,7 +54,6 @@ class LayoutCache
         return $this->memoize($key, fn () =>
             view('layout.header_mobile._locales', [
                 'currentLocaleMeta' => locale_meta($currentLocale),
-            ])->render()
-        );
+            ])->render());
     }
 }

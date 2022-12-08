@@ -6,10 +6,10 @@
 namespace App\Libraries;
 
 use App\Models\Group;
+use App\Traits\Memoizes;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use App\Traits\Memoizes;
 
 class Groups
 {
