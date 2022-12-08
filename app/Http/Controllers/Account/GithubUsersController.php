@@ -63,11 +63,6 @@ class GithubUsersController extends Controller
     public function create()
     {
         abort_unless(GithubUser::canAuthenticate(), 404);
-        abort_if(
-            auth()->user()->githubUsers()->withGithubInfo()->count() >= 10,
-            403,
-            'Too many GitHub accounts.',
-        );
 
         $state = bin2hex(random_bytes(32));
         session()->put('github_auth_state', $state);
