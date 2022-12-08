@@ -59,6 +59,8 @@
           <element key="app" value="App"/>
           <element key="database/factories" value="Database\Factories"/>
           <element key="database/seeders" value="Database\Seeders"/>
+          <element key="hush-hush-medals/src" value="App\Listeners\MedalUnlocks\HushHush"/>
+          <element key="hush-hush-medals/tests" value="Tests\MedalUnlocks\HushHush"/>
           <element key="tests" value="Tests"/>
         </property>
       </properties>
