@@ -77,15 +77,11 @@ class GithubUsersController extends Controller
 
     public function destroy(int $id)
     {
-        $githubUser = auth()->user()->githubUsers()->findOrFail($id);
-
-        abort_if(
-            $githubUser->canonical_id === null || $githubUser->username === null,
-            422,
-            'Cannot unassociate user from GitHub user without a valid ID or username.',
-        );
-
-        $githubUser->update(['user_id' => null]);
+        auth()->user()
+            ->githubUsers()
+            ->withGithubInfo()
+            ->findOrFail($id)
+            ->update(['user_id' => null]);
 
         return response(null, 204);
     }
