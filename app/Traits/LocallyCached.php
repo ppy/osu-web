@@ -28,7 +28,7 @@ trait LocallyCached
 
     private static function getVersionCacheKey(): string
     {
-        return 'local_cache:'.static::class.':version';
+        return 'local_cache_v2:'.static::class.':version';
     }
 
     private static function getCurrentVersion(): int
@@ -39,7 +39,7 @@ trait LocallyCached
 
         if ($version === null) {
             $version = hrtime(true);
-            $cache->forever($cacheKey, $version);
+            $cache->put($cacheKey, $version, 300);
         }
 
         return $version;
