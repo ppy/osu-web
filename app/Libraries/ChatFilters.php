@@ -6,16 +6,21 @@
 namespace App\Libraries;
 
 use App\Models\ChatFilter;
-use App\Traits\LocallyCached;
+use App\Traits\Memoizes;
 use Illuminate\Database\Eloquent\Collection;
 
 class ChatFilters
 {
-    use LocallyCached;
+    use Memoizes;
+
+    public function __construct()
+    {
+        app('local-cache-manager')->registerCallback(fn () => $this->resetMemoized());
+    }
 
     public function all()
     {
-        return $this->cachedMemoize(__FUNCTION__, fn () => $this->fetch());
+        return $this->memoize(__FUNCTION__, fn () => $this->fetch());
     }
 
     protected function fetch(): Collection

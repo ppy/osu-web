@@ -6,21 +6,26 @@
 namespace App\Libraries;
 
 use App\Models\Group;
-use App\Traits\LocallyCached;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Traits\Memoizes;
 
 class Groups
 {
-    use LocallyCached;
+    use Memoizes;
+
+    public function __construct()
+    {
+        app('local-cache-manager')->registerCallback(fn () => $this->resetMemoized());
+    }
 
     /**
      * Get all groups.
      */
     public function all(): Collection
     {
-        return $this->cachedMemoize(__FUNCTION__, fn () => $this->fetch());
+        return $this->memoize(__FUNCTION__, fn () => $this->fetch());
     }
 
     /**

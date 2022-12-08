@@ -9,7 +9,6 @@ class OctaneResetLocalCache
 {
     public function handle($event): void
     {
-        app('chat-filters')->incrementResetTicker();
-        app('groups')->incrementResetTicker();
+        app('local-cache-manager')->incrementResetTicker();
     }
 }
