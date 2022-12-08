@@ -5,7 +5,10 @@
 
 namespace App\Models;
 
+use App\Jobs\Notifications\UserAchievementUnlock;
+use Exception;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @property-read Achievement $achievement
@@ -26,6 +29,33 @@ class UserAchievement extends Model
     protected $primaryKey = ':composite';
     protected $primaryKeys = ['user_id', 'achievement_id'];
     protected $table = 'osu_user_achievements';
+
+    /**
+     * Unlock the medal for the given user.
+     */
+    public static function unlock(User $user, Achievement $achievement, ?Beatmap $beatmap = null): bool
+    {
+        return DB::transaction(function () use ($achievement, $beatmap, $user) {
+            try {
+                $userAchievement = $user->userAchievements()->create([
+                    'achievement_id' => $achievement->getKey(),
+                    'beatmap_id' => $beatmap?->getKey(),
+                ]);
+            } catch (Exception $e) {
+                if (is_sql_unique_exception($e)) {
+                    return false;
+                }
+
+                throw $e;
+            }
+
+            Event::generate('achievement', compact('achievement', 'user'));
+
+            (new UserAchievementUnlock($achievement, $user))->dispatch();
+
+            return true;
+        });
+    }
 
     public function achievement(): BelongsTo
     {
