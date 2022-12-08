@@ -7,8 +7,42 @@ declare(strict_types=1);
 
 namespace App\Models\Store;
 
-abstract class ExtraDataBase
+use Illuminate\Contracts\Database\Eloquent\Castable;
+use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
+use InvalidArgumentException;
+
+abstract class ExtraDataBase implements Castable
 {
+    public static function castUsing(array $arguments)
+    {
+        return new class implements CastsAttributes
+        {
+            public function get($model, $key, $value, $attributes)
+            {
+                if (!($model instanceof OrderItem)) {
+                    throw new InvalidArgumentException('OrderItemExtraData model must be OrderItem');
+                }
+
+                $dataJson = json_decode($value ?? '', true) ?? [];
+
+                return ExtraDataBase::toExtraDataClass($dataJson);
+            }
+
+            public function set($model, $key, $value, $attributes)
+            {
+                if (!($model instanceof OrderItem)) {
+                    throw new InvalidArgumentException('OrderItemExtraData model must be OrderItem');
+                }
+
+                if ($value !== null && !($value instanceof ExtraDataBase)) {
+                    $value = ExtraDataBase::toExtraDataClass($value);
+                }
+
+                return [$key => $value !== null ? json_encode($value) : null];
+            }
+        };
+    }
+
     public static function toExtraDataClass(array $data)
     {
         // avoid using data from the model, they might not be set when this is called.

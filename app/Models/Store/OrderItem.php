@@ -35,7 +35,7 @@ class OrderItem extends Model
 
     protected $casts = [
         'cost' => 'float',
-        'extra_data' => OrderItemExtraData::class,
+        'extra_data' => ExtraDataBase::class,
         'reserved' => 'boolean',
     ];
 
