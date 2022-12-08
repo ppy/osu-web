@@ -653,6 +653,7 @@ class Order extends Model
         // FIXME: custom class stuff should probably not go in Order...
         switch ($product->custom_class) {
             case 'supporter-tag':
+                $params['cost'] ??= 0;
                 $params['extra_data'] = $this->extraDataSupporterTag($params);
                 break;
             // TODO: look at migrating to extra_data
@@ -748,10 +749,6 @@ class Order extends Model
             'quantity:int',
         ], ['null_missing' => true]);
 
-        // normalize values
-        if ($params['cost'] === null || $params['cost'] < 0) {
-            $params['cost'] = 0;
-        }
         $params['product'] = Product::enabled()->find($params['product_id']);
 
         unset($params['product_id']);
