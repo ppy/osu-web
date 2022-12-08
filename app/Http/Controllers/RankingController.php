@@ -133,8 +133,10 @@ class RankingController extends Controller
         } else {
             $class = UserStatistics\Model::getClass($mode, $this->params['variant']);
             $table = (new $class())->getTable();
+            $ppColumn = $class::ppColumn();
             $stats = $class
                 ::with(['user', 'user.country'])
+                ->where($ppColumn, '>', 0)
                 ->whereHas('user', function ($userQuery) {
                     $userQuery->default();
                 });
@@ -151,7 +153,7 @@ class RankingController extends Controller
                     $forceIndex = $isExperimentalRank ? 'rank_score_exp' : 'rank_score';
                 }
 
-                $stats->orderBy($class::ppColumn(), 'desc');
+                $stats->orderBy($ppColumn, 'desc');
             } else { // 'score'
                 $stats->orderBy('ranked_score', 'desc');
                 // force to order by ranked_score instead of sucking down entire users table first.
