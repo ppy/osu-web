@@ -526,7 +526,7 @@ class Order extends Model
     public function updateItem(array $itemForm, $addToExisting = false)
     {
         return $this->guardNotModifiable(function () use ($itemForm, $addToExisting) {
-            $params = static::orderItemParams($itemForm);
+            [$params, $product] = static::orderItemParams($itemForm);
 
             // done first to allow removing of disabled products from cart.
             if ($params['quantity'] <= 0) {
@@ -534,16 +534,16 @@ class Order extends Model
             }
 
             // TODO: better validation handling.
-            if ($params['product'] === null) {
+            if ($product === null) {
                 return osu_trans('model_validation/store/product.not_available');
             }
 
             $this->saveOrExplode();
 
-            if ($params['product']->allow_multiple) {
-                $item = $this->newOrderItem($params);
+            if ($product->allow_multiple) {
+                $item = $this->newOrderItem($params, $product);
             } else {
-                $item = $this->updateOrderItem($params, $addToExisting);
+                $item = $this->updateOrderItem($params, $product, $addToExisting);
             }
 
             $item->saveOrExplode();
@@ -646,10 +646,8 @@ class Order extends Model
         optional($this->items()->find($params['id']))->delete();
     }
 
-    private function newOrderItem(array $params)
+    private function newOrderItem(array $params, Product $product)
     {
-        $product = $params['product'];
-
         // FIXME: custom class stuff should probably not go in Order...
         switch ($product->custom_class) {
             case 'supporter-tag':
@@ -666,7 +664,7 @@ class Order extends Model
             case 'mwc7-supporter':
             case 'owc-supporter':
             case 'twc-supporter':
-                $params['extra_data'] = $this->extraDataTournamentBanner($params);
+                $params['extra_data'] = $this->extraDataTournamentBanner($params, $product);
                 $params['cost'] = $product->cost ?? 0;
                 break;
             default:
@@ -686,12 +684,11 @@ class Order extends Model
         return $item;
     }
 
-    private function updateOrderItem(array $params, $addToExisting = false)
+    private function updateOrderItem(array $params, Product $product, $addToExisting = false)
     {
-        $product = $params['product'];
         $item = $this->items()->where('product_id', $product->product_id)->get()->first();
         if ($item === null) {
-            return $this->newOrderItem($params);
+            return $this->newOrderItem($params, $product);
         }
 
         if ($addToExisting) {
@@ -724,7 +721,7 @@ class Order extends Model
     }
 
     // TODO: maybe move to class later?
-    private function extraDataTournamentBanner(array $orderItemParams)
+    private function extraDataTournamentBanner(array $orderItemParams, Product $product)
     {
         $params = get_params($orderItemParams, 'extra_data', [
             'tournament_id:int',
@@ -732,7 +729,7 @@ class Order extends Model
 
         // much dodgy. wow.
         $matches = [];
-        preg_match('/.+\((?<country>.+)\)$/', $orderItemParams['product']->name, $matches);
+        preg_match('/.+\((?<country>.+)\)$/', $product->name, $matches);
         $params['cc'] = Country::where('name', $matches['country'])->first()->acronym;
 
         return new ExtraDataTournamentBanner($params);
@@ -749,10 +746,10 @@ class Order extends Model
             'quantity:int',
         ], ['null_missing' => true]);
 
-        $params['product'] = Product::enabled()->find($params['product_id']);
+        $product = Product::enabled()->find($params['product_id']);
 
         unset($params['product_id']);
 
-        return $params;
+        return [$params, $product];
     }
 }
