@@ -16,13 +16,12 @@ class Chat
     public static function ack(User $user)
     {
         $channelIds = $user->channels()->public()->pluck((new Channel())->qualifyColumn('channel_id'));
+        $userId = $user->getKey();
         $timestamp = time();
         $transaction = Redis::transaction();
 
         foreach ($channelIds as $channelId) {
-            $key = Channel::getAckKey($channelId);
-            $transaction->zadd($key, $timestamp, $user->getKey());
-            $transaction->expire($key, Channel::CHAT_ACTIVITY_TIMEOUT * 10);
+            Channel::ack($channelId, $userId, $timestamp, $transaction);
         }
 
         $transaction->exec();
