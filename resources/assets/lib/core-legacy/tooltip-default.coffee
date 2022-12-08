@@ -41,11 +41,15 @@ export default class TooltipDefault
       when 'right center' then 'left center'
       when 'bottom center' then 'top center'
 
+    isHoverable = el.dataset.tooltipHoverable == '1'
+
     classes = 'qtip tooltip-default'
     if el.dataset.tooltipFloat == 'fixed'
       classes += ' tooltip-default--fixed'
     if el.dataset.tooltipModifiers?
       classes += " tooltip-default--#{el.dataset.tooltipModifiers}"
+    if isHoverable
+      classes += ' u-hover'
 
     options =
       overwrite: false
@@ -76,6 +80,10 @@ export default class TooltipDefault
 
     if el.dataset.tooltipHideEvents
       options.hide.event = el.dataset.tooltipHideEvents
+
+    if isHoverable
+      options.hide.delay = 200
+      options.hide.fixed = true
 
     el.dataset.origTitle = title
 

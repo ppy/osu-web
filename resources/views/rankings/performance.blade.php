@@ -69,7 +69,7 @@
                         {{ i18n_number_format($score->playcount) }}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--focused">
-                        {{ i18n_number_format(round($score->rank_score)) }}
+                        {{ i18n_number_format(round($score->pp())) }}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {{ i18n_number_format(max(0, $score->x_rank_count + $score->xh_rank_count)) }}
