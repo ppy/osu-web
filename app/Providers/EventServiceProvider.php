@@ -5,6 +5,7 @@
 
 namespace App\Providers;
 
+use App\Libraries\MedalUnlockHelpers;
 use App\Listeners;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -23,4 +24,9 @@ class EventServiceProvider extends ServiceProvider
         Listeners\Fulfillments\PaymentSubscribers::class,
         Listeners\Fulfillments\ValidationSubscribers::class,
     ];
+
+    protected function discoveredEvents(): array
+    {
+        return MedalUnlockHelpers::discoverMedalUnlocks();
+    }
 }
