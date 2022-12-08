@@ -7,51 +7,51 @@ return [
     'cancel' => 'Atšaukti',
 
     'authorise' => [
-        'request' => '',
-        'scopes_title' => '',
-        'title' => '',
+        'request' => 'prašo priėjimo prie jūsų paskyros.',
+        'scopes_title' => 'Ši aplikacija galės:',
+        'title' => 'Įgaliojimo Prašymas',
     ],
 
     'authorized_clients' => [
-        'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
-        'none' => '',
+        'confirm_revoke' => 'Ar jus užtikrintas, kad norite panaikinti šio kliento leidimus?',
+        'scopes_title' => 'Ši aplikacija gali:',
+        'owned_by' => 'Priklauso :user',
+        'none' => 'Nėra Klientų',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Atšaukti Prieigą',
+            'true' => 'Prieiga Atšaukta',
         ],
     ],
 
     'client' => [
-        'id' => '',
-        'name' => '',
-        'redirect' => '',
-        'reset' => '',
-        'reset_failed' => '',
-        'secret' => '',
+        'id' => 'Kliento ID',
+        'name' => 'Aplikacijos Pavadinimas',
+        'redirect' => 'Aplikacijos Atgalinio susisiekimo URL',
+        'reset' => 'Atstatyti kliento raktą',
+        'reset_failed' => 'Nepavyko atstatyti kliento rakto',
+        'secret' => 'Kliento Raktas',
 
         'secret_visible' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Rodyti kliento raktą',
+            'true' => 'Slėpti kliento raktą',
         ],
     ],
 
     'new_client' => [
-        'header' => '',
-        'register' => '',
+        'header' => 'Registruoti naują OAuth aplikaciją',
+        'register' => 'Registruoti aplikaciją',
         'terms_of_use' => [
-            '_' => '',
-            'link' => '',
+            '_' => 'Naudodami API jūs sutinkate su :link.',
+            'link' => 'Naudojimosi Sąlygomis',
         ],
     ],
 
     'own_clients' => [
-        'confirm_delete' => '',
-        'confirm_reset' => '',
-        'new' => '',
-        'none' => '',
+        'confirm_delete' => 'Ar tikrai norite pašalinti šį klientą?',
+        'confirm_reset' => 'Ar jūs užtikrinti, kad norite atstatyti kliento raktą? Tai pašalins visas esamas atminas.',
+        'new' => 'Nauja OAuth Aplikacija',
+        'none' => 'Nėra Klientų',
 
         'revoked' => [
             'false' => 'Ištrinti',

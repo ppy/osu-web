@@ -54,7 +54,7 @@ abstract class Model extends BaseModel
     public function scopeDefault($query)
     {
         return $query
-            ->whereHas('beatmap')
+            ->whereHas('beatmap.beatmapset')
             ->orderBy('score_id', 'desc');
     }
 
@@ -159,11 +159,6 @@ abstract class Model extends BaseModel
     public function getMode(): string
     {
         return snake_case(get_class_basename(static::class));
-    }
-
-    public function url()
-    {
-        return route('scores.show', ['mode' => $this->getMode(), 'score' => $this->getKey()]);
     }
 
     protected function getData()

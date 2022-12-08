@@ -9,6 +9,7 @@ import * as React from 'react';
 import { unmountComponentAtNode } from 'react-dom';
 import { activeKeyDidChange as contextActiveKeyDidChange, ContainerContext, KeyContext, State as ActiveKeyState } from 'stateful-activation-context';
 import { TooltipContext } from 'tooltip-context';
+import { presence } from 'utils/string';
 import { UserCard } from './user-card';
 
 interface Props {
@@ -106,10 +107,10 @@ function onMouseOver(event: JQuery.TriggeredEvent<Document, unknown, HTMLElement
   if (core.windowSize.isMobile) return;
 
   const el = event.currentTarget;
-  const userId = osu.presence(el.dataset.userId);
+  const userId = presence(el.dataset.userId);
   if (userId == null) return;
   // don't show cards for blocked users
-  if (_.find(core.currentUser?.blocks ?? [], { target_id: parseInt(userId, 10)})) return;
+  if (_.find(core.currentUser?.blocks ?? [], { target_id: parseInt(userId, 10) })) return;
 
   if (el._tooltip == null) {
     return createTooltip(el);

@@ -28,7 +28,7 @@ return [
         'followers' => 'pengikut mapping',
         'page_title' => 'mapper yang diikuti',
         'title' => 'mapper',
-        'to_0' => 'hentikan penerimaan notifikasi setiap kali pengguna ini mengunggah beatmap baru',
+        'to_0' => 'hentikan notifikasi setiap kali pengguna ini mengunggah beatmap baru',
         'to_1' => 'kirimkan saya notifikasi setiap kali pengguna ini mengunggah beatmap baru',
     ],
 

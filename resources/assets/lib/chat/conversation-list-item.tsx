@@ -8,6 +8,7 @@ import Channel from 'models/chat/channel';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 
 interface Props {
   channel: Channel;
@@ -73,7 +74,7 @@ export default class ConversationListItem extends React.Component<Props> {
   }
 
   private readonly part = () => {
-    if (this.props.channel.type === 'ANNOUNCE' && !confirm(osu.trans('chat.channels.confirm_part'))){
+    if (this.props.channel.type === 'ANNOUNCE' && !confirm(trans('chat.channels.confirm_part'))){
       return;
     }
 

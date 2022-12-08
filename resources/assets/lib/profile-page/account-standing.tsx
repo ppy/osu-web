@@ -13,6 +13,7 @@ import ExtraHeader from 'profile-page/extra-header';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { stripTags } from 'utils/html';
+import { trans } from 'utils/lang';
 import ExtraPageProps from './extra-page-props';
 
 const bn = 'profile-extra-recent-infringements';
@@ -25,7 +26,7 @@ interface ColumnProps {
 
 const ColumnAction = ({ history }: ColumnProps) => (
   <div className={`${bn}__action ${bn}__action--${history.type.replace(/_/g, '-')}`}>
-    {osu.trans(`users.show.extra.account_standing.recent_infringements.actions.${history.type}`)}
+    {trans(`users.show.extra.account_standing.recent_infringements.actions.${history.type}`)}
   </div>
 );
 
@@ -44,7 +45,7 @@ const ColumnDescription = ({ history }: ColumnProps) => (
       <span className={`${bn}__actor`}>
         <StringWithComponent
           mappings={{ username: <UserLink user={history.actor} /> }}
-          pattern={osu.trans('users.show.extra.account_standing.recent_infringements.actor')}
+          pattern={trans('users.show.extra.account_standing.recent_infringements.actor')}
         />
       </span>
     )}
@@ -55,7 +56,7 @@ const ColumnLength = ({ history }: ColumnProps) => {
   if (history.type === 'restriction' || history.permanent) {
     return (
       <div className={`${bn}__action ${bn}__action--restriction`}>
-        {osu.trans('users.show.extra.account_standing.recent_infringements.length_permanent')}
+        {trans('users.show.extra.account_standing.recent_infringements.length_permanent')}
       </div>
     );
   }
@@ -98,7 +99,7 @@ export default class AccountStanding extends React.Component<ExtraPageProps> {
             <StringWithComponent
               mappings={{ username: <strong>{this.props.controller.state.user.username}</strong> }}
               // TODO: remove stripTags once translations are updated
-              pattern={stripTags(osu.trans('users.show.extra.account_standing.bad_standing'))}
+              pattern={stripTags(trans('users.show.extra.account_standing.bad_standing'))}
             />
           </div>
         )}
@@ -111,7 +112,7 @@ export default class AccountStanding extends React.Component<ExtraPageProps> {
                 username: <strong>{this.props.controller.state.user.username}</strong>,
               }}
               // TODO: remove stripTags once translations are updated
-              pattern={stripTags(osu.trans('users.show.extra.account_standing.remaining_silence'))}
+              pattern={stripTags(trans('users.show.extra.account_standing.remaining_silence'))}
             />
           </div>
         )}
@@ -146,7 +147,7 @@ export default class AccountStanding extends React.Component<ExtraPageProps> {
 
   private readonly renderHeaderColumn = (column: Column) => (
     <th key={column} className={classWithModifiers(`${bn}__table-cell`, 'header', column)}>
-      {osu.trans(`users.show.extra.account_standing.recent_infringements.${column}`)}
+      {trans(`users.show.extra.account_standing.recent_infringements.${column}`)}
     </th>
   );
 }

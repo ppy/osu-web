@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { DiscussionType, discussionTypeIcons } from 'beatmap-discussions/discussion-type';
+import { DiscussionType, discussionTypeIcons, discussionTypes } from 'beatmap-discussions/discussion-type';
 import BigButton from 'components/big-button';
 import StringWithComponent from 'components/string-with-component';
 import TimeWithTooltip from 'components/time-with-tooltip';
@@ -19,12 +19,13 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
 import { onError } from 'utils/ajax';
-import { canModeratePosts, formatTimestamp, nearbyDiscussions, parseTimestamp, validMessageLength } from 'utils/beatmapset-discussion-helper';
+import { canModeratePosts, formatTimestamp, NearbyDiscussion, nearbyDiscussions, parseTimestamp, validMessageLength } from 'utils/beatmapset-discussion-helper';
 import { nominationsCount } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
+import { joinComponents, trans } from 'utils/lang';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
-import { linkHtml } from 'utils/url';
+import { present } from 'utils/string';
 import MessageLengthCounter from './message-length-counter';
 
 const bn = 'beatmap-discussion-new';
@@ -64,7 +65,7 @@ interface DiscussionByFilter {
 
 interface DiscussionsCache {
   beatmap: BeatmapExtendedJson;
-  discussions: Discussion[];
+  discussions: NearbyDiscussion<Discussion>[];
   timestamp: number | null;
 }
 
@@ -137,15 +138,15 @@ export class NewDiscussion extends React.Component<Props> {
     if (core.currentUser == null) return;
 
     if (this.canPost) {
-      return osu.trans(`beatmaps.discussions.message_placeholder.${this.props.mode}`, { version: this.props.currentBeatmap.version });
+      return trans(`beatmaps.discussions.message_placeholder.${this.props.mode}`, { version: this.props.currentBeatmap.version });
     }
 
     if (core.currentUser.is_silenced) {
-      return osu.trans('beatmaps.discussions.message_placeholder_silenced');
+      return trans('beatmaps.discussions.message_placeholder_silenced');
     } else if (this.props.beatmapset.discussion_locked) {
-      return osu.trans('beatmaps.discussions.message_placeholder_locked');
+      return trans('beatmaps.discussions.message_placeholder_locked');
     } else {
-      return osu.trans('beatmaps.discussions.message_placeholder_deleted_beatmap');
+      return trans('beatmaps.discussions.message_placeholder_deleted_beatmap');
     }
   }
 
@@ -213,20 +214,18 @@ export class NewDiscussion extends React.Component<Props> {
 
   @action
   private readonly post = (e: React.SyntheticEvent<HTMLElement>) => {
-    if (!this.validPost || this.postXhr != null) return;
-
     const type = e.currentTarget.dataset.type;
-    if (type == null) return;
+    if (type == null || !this.validPost(type) || this.postXhr != null) return;
 
     if (type === 'problem') {
       const problemType = this.problemType();
       if (problemType !== 'problem') {
-        if (!confirm(osu.trans(`beatmaps.nominations.reset_confirm.${problemType}`))) return;
+        if (!confirm(trans(`beatmaps.nominations.reset_confirm.${problemType}`))) return;
       }
     }
 
     if (type === 'hype') {
-      if (!confirm(osu.trans('beatmaps.hype.confirm', { n: this.props.beatmapset.current_user_attributes.remaining_hype }))) return;
+      if (!confirm(trans('beatmaps.hype.confirm', { n: this.props.beatmapset.current_user_attributes.remaining_hype }))) return;
     }
 
     showLoadingOverlay();
@@ -297,13 +296,13 @@ export class NewDiscussion extends React.Component<Props> {
       <div className='osu-page osu-page--small'>
         <div className={bn}>
           <div className='page-title'>
-            {osu.trans('beatmaps.discussions.new.title')}
+            {trans('beatmaps.discussions.new.title')}
 
             <span className='page-title__button'>
               <span
                 className={buttonCssClasses}
                 onClick={this.toggleSticky}
-                title={osu.trans(`beatmaps.discussions.new.${this.props.pinned ? 'unpin' : 'pin'}`)}
+                title={trans(`beatmaps.discussions.new.${this.props.pinned ? 'unpin' : 'pin'}`)}
               >
                 <span className='btn-circle__content'>
                   <i className='fas fa-thumbtack' />
@@ -343,30 +342,30 @@ export class NewDiscussion extends React.Component<Props> {
     return (
       <div className={`${bn}__footer-content js-hype--explanation js-flash-border`}>
         <div className={`${bn}__footer-message ${bn}__footer-message--label`}>
-          {osu.trans('beatmaps.hype.title')}
+          {trans('beatmaps.hype.title')}
         </div>
         <div className={`${bn}__footer-message`}>
           {core.currentUser != null ? (
             <span>
-              {this.props.beatmapset.current_user_attributes.can_hype ? osu.trans('beatmaps.hype.explanation') : this.props.beatmapset.current_user_attributes.can_hype_reason}
+              {this.props.beatmapset.current_user_attributes.can_hype ? trans('beatmaps.hype.explanation') : this.props.beatmapset.current_user_attributes.can_hype_reason}
               {(this.props.beatmapset.current_user_attributes.can_hype || this.props.beatmapset.current_user_attributes.remaining_hype <= 0) && (
                 <>
                   <StringWithComponent
                     mappings={{ remaining: this.props.beatmapset.current_user_attributes.remaining_hype }}
-                    pattern={` ${osu.trans('beatmaps.hype.remaining')}`}
+                    pattern={` ${trans('beatmaps.hype.remaining')}`}
                   />
                   {this.props.beatmapset.current_user_attributes.new_hype_time != null && (
                     <StringWithComponent
                       mappings={{
                         new_time: <TimeWithTooltip dateTime={this.props.beatmapset.current_user_attributes.new_hype_time} relative />,
                       }}
-                      pattern={` ${osu.trans('beatmaps.hype.new_time')}`}
+                      pattern={` ${trans('beatmaps.hype.new_time')}`}
                     />
                   )}
                 </>
               )}
             </span>
-          ) : osu.trans('beatmaps.hype.explanation_guest')}
+          ) : trans('beatmaps.hype.explanation_guest')}
         </div>
       </div>
     );
@@ -374,28 +373,25 @@ export class NewDiscussion extends React.Component<Props> {
 
   private renderNearbyTimestamps() {
     if (this.nearbyDiscussions.length === 0) return;
-    const currentTimestamp = formatTimestamp(this.timestamp);
+    const currentTimestamp = this.timestamp != null ? formatTimestamp(this.timestamp) : '';
     const timestamps = this.nearbyDiscussions.map((discussion) => (
-      linkHtml(
-        BeatmapDiscussionHelper.url({ discussion }),
-        formatTimestamp(discussion.timestamp) ?? '',
-        { classNames: ['js-beatmap-discussion--jump'] },
-      )
+      <a
+        key={discussion.id}
+        className='js-beatmap-discussion--jump'
+        href={BeatmapDiscussionHelper.url({ discussion })}
+      >
+        {formatTimestamp(discussion.timestamp)}
+      </a>
     ));
-
-    const timestampsString = osu.transArray(timestamps);
 
     return (
       <div className={`${bn}__notice`}>
-        <div
-          className={`${bn}__notice-text`}
-          dangerouslySetInnerHTML={{
-            __html: osu.trans('beatmap_discussions.nearby_posts.notice', {
-              existing_timestamps: timestampsString,
-              timestamp: currentTimestamp,
-            }),
-          }}
-        />
+        <div className={`${bn}__notice-text`}>
+          <StringWithComponent
+            mappings={{ existing_timestamps: joinComponents(timestamps), timestamp: currentTimestamp }}
+            pattern={trans('beatmap_discussions.nearby_posts.notice')}
+          />
+        </div>
 
         <label className={`${bn}__notice-checkbox`}>
           <div className='osu-switch-v2'>
@@ -407,14 +403,14 @@ export class NewDiscussion extends React.Component<Props> {
             />
             <span className='osu-switch-v2__content' />
           </div>
-          {osu.trans('beatmap_discussions.nearby_posts.confirm')}
+          {trans('beatmap_discussions.nearby_posts.confirm')}
         </label>
       </div>
     );
   }
 
   private renderTextarea() {
-    if (core.currentUser == null) return osu.trans('beatmaps.discussions.require-login');
+    if (core.currentUser == null) return trans('beatmaps.discussions.require-login');
 
     return (
       <>
@@ -440,12 +436,12 @@ export class NewDiscussion extends React.Component<Props> {
   private renderTimestamp() {
     if (this.props.mode !== 'timeline') return null;
 
-    const timestamp = formatTimestamp(this.timestamp) ?? osu.trans('beatmaps.discussions.new.timestamp_missing');
+    const timestamp = this.timestamp != null ? formatTimestamp(this.timestamp) : trans('beatmaps.discussions.new.timestamp_missing');
 
     return (
       <div className={`${bn}__footer-content`}>
         <div className={`${bn}__footer-message ${bn}__footer-message--label`}>
-          {osu.trans('beatmaps.discussions.new.timestamp')}
+          {trans('beatmaps.discussions.new.timestamp')}
         </div>
         <div className={`${bn}__footer-message`}>
           {timestamp}
@@ -465,7 +461,7 @@ export class NewDiscussion extends React.Component<Props> {
   };
 
   private storeMessage() {
-    if (!osu.present(this.message)) {
+    if (!present(this.message)) {
       localStorage.removeItem(this.storageKey);
     } else {
       localStorage.setItem(this.storageKey, this.message);
@@ -484,7 +480,7 @@ export class NewDiscussion extends React.Component<Props> {
           'data-type': type,
           onClick: this.post,
         }}
-        text={osu.trans(`beatmaps.discussions.message_type.${typeText}`)}
+        text={trans(`beatmaps.discussions.message_type.${typeText}`)}
       />
     );
   }
@@ -498,7 +494,8 @@ export class NewDiscussion extends React.Component<Props> {
     this.timestampConfirmed = !this.timestampConfirmed;
   };
 
-  private validPost(type: DiscussionType) {
+  private validPost(type: string): type is DiscussionType {
+    if (!(discussionTypes as Readonly<string[]>).includes(type)) return false;
     if (!validMessageLength(this.message, this.isTimeline)) return false;
     if (!this.isTimeline) return true;
 

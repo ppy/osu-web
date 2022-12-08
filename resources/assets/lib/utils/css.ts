@@ -1,7 +1,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import GroupJson from 'interfaces/group-json';
 import { forEach } from 'lodash';
+import { present } from './string';
 
 export type Modifiers = (string | null | undefined)[] | Partial<Record<string, boolean | null | undefined>> | string | null | undefined;
 
@@ -33,6 +35,10 @@ export function classWithModifiers(className: string, ...modifiersArray: Modifie
   return ret;
 }
 
+export function groupColour(group?: GroupJson | null) {
+  return { '--group-colour': group?.colour ?? 'initial' };
+}
+
 export function mergeModifiers(...modifiersArray: Modifiers[]) {
   const ret: string[] = [];
 
@@ -40,3 +46,11 @@ export function mergeModifiers(...modifiersArray: Modifiers[]) {
 
   return ret;
 }
+
+export function urlPresence(url?: string | null) {
+  // Wrapping the string with quotes and escaping the used quotes inside
+  // is sufficient. Use double quote as it's easy to figure out with
+  // encodeURI (it doesn't escape single quote).
+  return present(url) ? `url("${String(url).replace(/"/g, '%22')}")` : undefined;
+}
+

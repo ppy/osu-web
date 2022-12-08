@@ -6,6 +6,7 @@ import { action, observable, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 import { nextVal } from 'utils/seq';
 import Controller from './controller';
 import CoverSelection from './cover-selection';
@@ -61,7 +62,7 @@ export default class CoverSelector extends React.Component<Props> {
             </div>),
           )}
           <p className='profile-cover-change-popup__selections-info'>
-            {osu.trans('users.show.edit.cover.defaults_info')}
+            {trans('users.show.edit.cover.defaults_info')}
           </p>
         </div>
         <CoverUploader
@@ -76,7 +77,7 @@ export default class CoverSelector extends React.Component<Props> {
             onDragEnter={this.dropOverlayEnter}
             onDragLeave={this.dropOverlayLeave}
           >
-            {osu.trans('users.show.edit.cover.upload.dropzone')}
+            {trans('users.show.edit.cover.upload.dropzone')}
           </div>
         }
       </div>

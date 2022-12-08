@@ -19,10 +19,10 @@ return [
     ],
 
     'donation_thanks' => [
-        'benefit_more' => '',
+        'benefit_more' => 'A més, amb el temps apareixeran nous beneficis per supporter!',
         'feedback' => "",
         'keep_free' => '',
-        'keep_running' => '',
+        'keep_running' => 'El vostre suport manté a osu! funcionant durant :minutes! Potser no sembli gaire, però tot suma :).',
         'subject' => '',
         'translation' => '',
 
@@ -64,7 +64,7 @@ return [
     'supporter_gift' => [
         'anonymous_gift' => '',
         'anonymous_gift_maybe_not' => '',
-        'duration' => '',
+        'duration' => 'Gràcies a aquesta persona, vostè té accés a osu!direct i altres beneficis d\'osu!supporter durant :duration.',
         'features' => '',
         'gifted' => '',
         'subject' => '',

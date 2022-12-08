@@ -12,6 +12,7 @@ import { NotificationContext } from 'notifications-context';
 import NotificationDeleteButton from 'notifications/notification-delete-button';
 import NotificationReadButton from 'notifications/notification-read-button';
 import * as React from 'react';
+import { trans, transChoice } from 'utils/lang';
 import Item from './item';
 import ItemCompact from './item-compact';
 
@@ -87,7 +88,7 @@ export default class ItemGroup extends React.Component<Props, State> {
       >
         <span className='show-more-link__label'>
           <span className='show-more-link__label-text'>
-            {osu.transChoice(transKey, count)}
+            {transChoice(transKey, count)}
           </span>
           <span className='show-more-link__label-icon'>
             <span className={`fas fa-angle-${this.state.expanded ? 'up' : 'down'}`} />
@@ -141,7 +142,7 @@ export default class ItemGroup extends React.Component<Props, State> {
         callback={this.handleShowLess}
         direction='up'
         hasMore
-        label={osu.trans('common.buttons.show_less')}
+        label={trans('common.buttons.show_less')}
         modifiers={['notification-group']}
       />
     );

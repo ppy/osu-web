@@ -19,6 +19,7 @@ env:
   NOTIFICATION_REDIS_HOST: 127.0.0.1
   OSU_INSTALL_DEV: 1
   OSU_USE_SYSTEM_COMPOSER: 1
+  OSU_DB_CREATE: 1
   PAYMENT_SANDBOX: true
   PASSPORT_PRIVATE_KEY: |+
     -----BEGIN PRIVATE KEY-----
@@ -129,16 +130,14 @@ jobs:
 
       - name: Get composer cache directory
         id: composercache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
       - name: Cache composer
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ steps.composercache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
-
-      - run: mysql -u root -h 127.0.0.1 < ./docker/development/db_setup.sql
 
       - run: ./build.sh
 

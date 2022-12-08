@@ -217,6 +217,9 @@ return [
                 'loved' => [
                     'title' => 'Mīļākās Bītmapes',
                 ],
+                'nominated' => [
+                    'title' => '',
+                ],
                 'pending' => [
                     'title' => '',
                 ],

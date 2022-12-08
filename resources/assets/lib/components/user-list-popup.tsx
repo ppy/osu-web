@@ -5,6 +5,7 @@ import UserAvatar from 'components/user-avatar';
 import { UserLink } from 'components/user-link';
 import UserJson from 'interfaces/user-json';
 import * as React from 'react';
+import { transChoice } from 'utils/lang';
 
 interface Props {
   count: number;
@@ -73,7 +74,7 @@ export default function UserListPopup(props: Props) {
       }
       {props.count > props.users.length &&
         <div className='user-list-popup__remainder-count'>
-          {osu.transChoice('common.count.plus_others', props.count - props.users.length)}
+          {transChoice('common.count.plus_others', props.count - props.users.length)}
         </div>
       }
     </div>

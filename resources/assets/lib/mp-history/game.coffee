@@ -6,6 +6,7 @@ import { Score } from './score'
 import * as React from 'react'
 import { div, span } from 'react-dom-factories'
 import { formatNumber } from 'utils/html'
+import { trans } from 'utils/lang'
 el = React.createElement
 
 export class Game extends React.Component
@@ -45,12 +46,12 @@ export class Game extends React.Component
           div className: 'mp-history-game__team-scores',
             ['red', 'blue'].map (m) =>
               div className: "mp-history-game__team-score mp-history-game__team-score--#{m}", key: m,
-                span className: 'mp-history-game__team-score-text mp-history-game__team-score-text--name', osu.trans "matches.match.teams.#{m}"
+                span className: 'mp-history-game__team-score-text mp-history-game__team-score-text--name', trans "matches.match.teams.#{m}"
                 span className: 'mp-history-game__team-score-text mp-history-game__team-score-text--score', formatNumber(@props.teamScores[m])
 
           div className: 'mp-history-game__results',
-            span className: 'mp-history-game__results-text', osu.trans 'matches.match.winner', team: osu.trans "matches.match.teams.#{winningTeam}"
-            span className: 'mp-history-game__results-text mp-history-game__results-text--score', osu.trans 'matches.match.difference', difference: formatNumber(difference)
+            span className: 'mp-history-game__results-text', trans 'matches.match.winner', team: trans "matches.match.teams.#{winningTeam}"
+            span className: 'mp-history-game__results-text mp-history-game__results-text--score', trans 'matches.match.difference', difference: formatNumber(difference)
 
   deletedBeatmap:
     id: null
@@ -58,7 +59,7 @@ export class Game extends React.Component
 
   deletedBeatmapset:
     id: null
-    title: osu.trans 'matches.match.beatmap-deleted'
+    title: trans 'matches.match.beatmap-deleted'
     artist: ''
     covers:
       cover: ''

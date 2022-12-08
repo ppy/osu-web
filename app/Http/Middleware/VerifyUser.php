@@ -12,21 +12,34 @@ use Illuminate\Http\Request;
 
 class VerifyUser
 {
-    protected $auth;
+    const SKIP_VERIFICATION_ROUTES = [
+        'account_controller@reissue_code' => true,
+        'account_controller@verify' => true,
+        'account_controller@verify_link' => true,
+        'notifications_controller@endpoint' => true,
+        'sessions_controller@destroy' => true,
+        'sessions_controller@store' => true,
+        'wiki_controller@image' => true,
+        'wiki_controller@show' => true,
+        'wiki_controller@sitemap' => true,
+        'wiki_controller@suggestions' => true,
+    ];
 
-    public function __construct(AuthGuard $auth)
+    public function __construct(protected AuthGuard $auth)
     {
-        $this->auth = $auth;
     }
 
     public function handle(Request $request, Closure $next)
     {
-        if (!$this->alwaysSkipVerification() && $this->requiresVerification($request)) {
-            $verification = UserVerification::fromCurrentRequest();
+        $user = $this->auth->user();
 
-            if (!$verification->isDone()) {
-                return $verification->initiate();
-            }
+        if (
+            $user !== null
+            && !$user->isSessionVerified()
+            && !$this->alwaysSkipVerification()
+            && $this->requiresVerification($request)
+        ) {
+            return UserVerification::fromCurrentRequest()->initiate();
         }
 
         return $next($request);
@@ -39,26 +52,9 @@ class VerifyUser
 
     private function alwaysSkipVerification()
     {
-        if (config('osu.user.bypass_verification')) {
-            return true;
-        }
-
         $currentRouteData = app('route-section')->getCurrent();
         $currentRoute = "{$currentRouteData['controller']}@{$currentRouteData['action']}";
 
-        static $routes = [
-            'account_controller@reissue_code',
-            'account_controller@verify',
-            'account_controller@verify_link',
-            'notifications_controller@endpoint',
-            'sessions_controller@destroy',
-            'sessions_controller@store',
-            'wiki_controller@image',
-            'wiki_controller@show',
-            'wiki_controller@sitemap',
-            'wiki_controller@suggestions',
-        ];
-
-        return in_array($currentRoute, $routes, true);
+        return isset(static::SKIP_VERIFICATION_ROUTES[$currentRoute]);
     }
 }

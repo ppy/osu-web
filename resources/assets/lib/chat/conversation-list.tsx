@@ -5,6 +5,7 @@ import { SupportedChannelType, supportedChannelTypes } from 'interfaces/chat/cha
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { trans } from 'utils/lang';
 import ConversationListItem from './conversation-list-item';
 import CreateAnnouncementButton from './create-announcement-button';
 
@@ -14,7 +15,7 @@ function renderChannels(type: SupportedChannelType) {
     return (
       <React.Fragment key={type}>
         <div className='chat-conversation-list__header'>
-          {osu.trans(`chat.channels.list.title.${type}`)}
+          {trans(`chat.channels.list.title.${type}`)}
         </div>
         {channels.map((channel) => <ConversationListItem key={channel.channelId} channel={channel} />)}
         <div className='chat-conversation-list-separator' />

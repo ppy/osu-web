@@ -5,16 +5,17 @@ import BeatmapsetEvents from 'components/beatmapset-events'
 import { route } from 'laroute'
 import * as React from 'react'
 import { div, h2, a, img } from 'react-dom-factories'
+import { trans } from 'utils/lang'
 
 el = React.createElement
 
 export class Events extends React.Component
   render: =>
     div className: 'page-extra',
-      h2 className: 'title title--page-extra', osu.trans('users.show.extra.events.title_longer')
+      h2 className: 'title title--page-extra', trans('users.show.extra.events.title_longer')
       div className: 'modding-profile-list',
         if @props.events.length == 0
-          div className: 'modding-profile-list__empty', osu.trans('users.show.extra.none')
+          div className: 'modding-profile-list__empty', trans('users.show.extra.none')
         else
           el React.Fragment, null,
             el BeatmapsetEvents,
@@ -25,4 +26,4 @@ export class Events extends React.Component
             a
               className: 'modding-profile-list__show-more'
               href: route('beatmapsets.events.index', user: @props.user.id),
-              osu.trans('users.show.extra.events.show_more')
+              trans('users.show.extra.events.show_more')

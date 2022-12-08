@@ -124,6 +124,7 @@ return [
             'genre' => 'Žanr',
             'language' => 'Jezik',
             'no_scores' => 'Podatki v preračunavanju...',
+            'nominators' => '',
             'nsfw' => 'Eksplicitna vsebina',
             'offset' => 'Online odmik',
             'points-of-failure' => 'Točke neuspehov',

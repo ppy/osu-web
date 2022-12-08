@@ -2,7 +2,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
+import { keyBy } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
+import { deletedUser } from 'models/user';
 import core from 'osu-core-singleton';
 import { find, findDefault, group } from 'utils/beatmap-helper';
 import { parse } from 'utils/beatmapset-page-hash';
@@ -67,6 +69,11 @@ export default class Controller {
     return this.beatmaps.get(this.currentBeatmap.mode) ?? [];
   }
 
+  @computed
+  get usersById() {
+    return keyBy(this.beatmapset.related_users, 'id');
+  }
+
   constructor(private container: HTMLElement) {
     let state: State | null = null;
     try {
@@ -97,6 +104,10 @@ export default class Controller {
   destroy() {
     this.saveState();
     $(document).off('turbolinks:before-cache', this.saveState);
+  }
+
+  mapper(beatmap: BeatmapJsonForBeatmapsetShow) {
+    return this.usersById[beatmap.user_id] ?? deletedUser;
   }
 
   @action

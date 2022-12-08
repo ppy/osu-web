@@ -5,11 +5,13 @@ import Mod from 'components/mod';
 import { PlayDetailMenu } from 'components/play-detail-menu';
 import TimeWithTooltip from 'components/time-with-tooltip';
 import { SoloScoreJsonForUser } from 'interfaces/solo-score-json';
+import UserJson from 'interfaces/user-json';
 import * as React from 'react';
 import PpValue from 'scores/pp-value';
 import { getArtist, getTitle, rulesetName, shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
+import { trans } from 'utils/lang';
 import { hasMenu } from 'utils/score-helper';
 import { beatmapUrl } from 'utils/url';
 
@@ -20,6 +22,7 @@ interface Props {
   score: SoloScoreJsonForUser;
   showPinSortableHandle?: boolean;
   showPpWeight?: boolean;
+  user: UserJson;
 }
 
 interface State {
@@ -28,7 +31,7 @@ interface State {
 
 export default class PlayDetail extends React.PureComponent<Props, State> {
   render() {
-    const score = this.props.score;
+    const { score, user } = this.props;
     const { beatmap, beatmapset } = score;
 
     let blockClass = classWithModifiers(
@@ -42,7 +45,7 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
     const additionalAttributes: Partial<Record<`data-${string}`, string>> = {};
 
     if (this.props.showPinSortableHandle) {
-      const pinData = this.props.score.current_user_attributes.pin;
+      const pinData = score.current_user_attributes.pin;
       additionalAttributes['data-score-pin'] = JSON.stringify(pinData);
       blockClass += ' js-score-pin-sortable';
     }
@@ -60,12 +63,12 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
           <div className={`${bn}__detail`}>
             <a
               className={`${bn}__title u-ellipsis-overflow`}
-              href={beatmapUrl(beatmap, rulesetName(this.props.score.ruleset_id))}
+              href={beatmapUrl(beatmap, rulesetName(score.ruleset_id))}
             >
               {getTitle(beatmapset)}
               {' '}
               <small className={`${bn}__artist`}>
-                {osu.trans('users.show.extra.beatmaps.by_artist', { artist: getArtist(beatmapset) })}
+                {trans('users.show.extra.beatmaps.by_artist', { artist: getArtist(beatmapset) })}
               </small>
             </a>
             <div className={`${bn}__beatmap-and-time`}>
@@ -98,7 +101,7 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
 
               {scoreWeight != null && (
                 <div className={`${bn}__pp-weight`}>
-                  {osu.trans('users.show.extra.top_ranks.pp_weight', {
+                  {trans('users.show.extra.top_ranks.pp_weight', {
                     percentage: `${formatNumber(Math.round(scoreWeight.percentage))}%`,
                   })}
                 </div>
@@ -117,7 +120,7 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
                 suffix={<span className={`${bn}__pp-unit`}>pp</span>}
               />
             ) : (
-              <span title={osu.trans('users.show.extra.top_ranks.not_ranked')}>
+              <span title={trans('users.show.extra.top_ranks.not_ranked')}>
                 {(beatmap.status === 'loved') ? (
                   <span className='fas fa-heart' />
                 ) : (
@@ -128,7 +131,7 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
           </div>
 
           <div className={`${bn}__more`}>
-            {hasMenu(score) && <PlayDetailMenu score={score} />}
+            {hasMenu(score) && <PlayDetailMenu score={score} user={user} />}
           </div>
         </div>
       </div>

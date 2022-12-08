@@ -1,11 +1,12 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { IconExpand } from 'components/icon-expand'
+import IconExpand from 'components/icon-expand'
 import * as React from 'react'
 import { a, button, div, i, p, span } from 'react-dom-factories'
 import { canModeratePosts } from 'utils/beatmapset-discussion-helper'
 import { jsonClone } from 'utils/json'
+import { trans } from 'utils/lang'
 import { nextVal } from 'utils/seq'
 import { Discussion } from './discussion'
 
@@ -15,7 +16,7 @@ bn = 'beatmap-discussions'
 
 sortPresets =
   updated_at:
-    text: osu.trans('beatmaps.discussions.sort.updated_at')
+    text: trans('beatmaps.discussions.sort.updated_at')
     sort: (a, b) ->
       if a.last_post_at == b.last_post_at
         b.id - a.id
@@ -23,7 +24,7 @@ sortPresets =
         Date.parse(b.last_post_at) - Date.parse(a.last_post_at)
 
   created_at:
-    text: osu.trans('beatmaps.discussions.sort.created_at')
+    text: trans('beatmaps.discussions.sort.created_at')
     sort: (a, b) ->
       if a.created_at == b.created_at
         a.id - b.id
@@ -32,7 +33,7 @@ sortPresets =
 
   # there's obviously no timeline field
   timeline:
-    text: osu.trans('beatmaps.discussions.sort.timeline')
+    text: trans('beatmaps.discussions.sort.timeline')
     sort: (a, b) ->
       if a.timestamp == b.timestamp
         a.id - b.id
@@ -74,7 +75,7 @@ export class Discussions extends React.PureComponent
         className: bn
 
         div className: 'page-title',
-          osu.trans('beatmaps.discussions.title')
+          trans('beatmaps.discussions.title')
 
         div className: "#{bn}__toolbar",
           div className: "#{bn}__toolbar-content #{bn}__toolbar-content--left",
@@ -90,10 +91,9 @@ export class Discussions extends React.PureComponent
               'data-type': 'collapse'
               onClick: @expand
               el IconExpand,
-                expand: false
                 parentClass: "#{bn}__toolbar-link-content"
               span className: "#{bn}__toolbar-link-content",
-                osu.trans('beatmaps.discussions.collapse.all-collapse')
+                trans('beatmaps.discussions.collapse.all-collapse')
 
             button
               type: 'button'
@@ -101,18 +101,19 @@ export class Discussions extends React.PureComponent
               'data-type': 'expand'
               onClick: @expand
               el IconExpand,
+                expand: true
                 parentClass: "#{bn}__toolbar-link-content"
               span className: "#{bn}__toolbar-link-content",
-                osu.trans('beatmaps.discussions.collapse.all-expand')
+                trans('beatmaps.discussions.collapse.all-expand')
 
 
         if discussions.length == 0
           div className: "#{bn}__discussions #{bn}__discussions--empty",
-            osu.trans 'beatmaps.discussions.empty.empty'
+            trans 'beatmaps.discussions.empty.empty'
 
         else if _.size(@props.currentDiscussions.byFilter[@props.currentFilter][@props.mode]) == 0
           div className: "#{bn}__discussions #{bn}__discussions--empty",
-            osu.trans 'beatmaps.discussions.empty.hidden'
+            trans 'beatmaps.discussions.empty.hidden'
 
         else
           div
@@ -139,7 +140,7 @@ export class Discussions extends React.PureComponent
         span
           className: if @props.showDeleted then 'fas fa-check-square' else 'far fa-square'
       span className: "#{bn}__toolbar-link-content",
-        osu.trans('beatmaps.discussions.show_deleted')
+        trans('beatmaps.discussions.show_deleted')
 
 
   renderSortOptions: =>
@@ -154,7 +155,7 @@ export class Discussions extends React.PureComponent
       className: 'sort sort--beatmapset-discussions'
       div
         className: 'sort__items'
-        span className: 'sort__item sort__item--title', osu.trans('sort._')
+        span className: 'sort__item sort__item--title', trans('sort._')
         for preset in presets
           button
             key: preset

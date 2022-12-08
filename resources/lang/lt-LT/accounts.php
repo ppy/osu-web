@@ -47,21 +47,21 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'gauti pranešimus dėl naujų problemų ant išlaikytų ritmo žemėlapių ar kitas susijusių modų',
-        'beatmapset_disqualify' => 'gauti pranešimus tada kai beatmap šių režimų yra diskvalifikuoti',
+        'beatmapset_discussion_qualified_problem' => 'gauti pranešimus dėl naujų problemų kvalifikuotuose bitmapuose šiuose režimuose ',
+        'beatmapset_disqualify' => 'gauti pranešimus, kai šių režimų bitmapai diskvalifikuojami',
         'comment_reply' => 'gauti pranešimus apie atsakymus ant jūsų komentarų',
         'title' => 'Pranešimai',
         'topic_auto_subscribe' => 'automatiškai įjungti pranešimus naujuose forumo temose kurias tu sukūrei',
 
         'options' => [
             '_' => 'pristatymo būdai',
-            'beatmap_owner_change' => '',
-            'beatmapset:modding' => 'beatmap modifikacijos',
-            'channel_message' => 'privatūs susirašinėjimo rašymas',
+            'beatmap_owner_change' => 'svečio sunkumas',
+            'beatmapset:modding' => 'bitmapų modifikacijos',
+            'channel_message' => 'privatūs susirašinėjimai',
             'comment_new' => 'nauji komentarai',
             'forum_topic_reply' => 'temos atsakymas',
             'mail' => 'paštas',
-            'mapping' => '',
+            'mapping' => 'bitmapų maperis',
             'push' => 'push',
             'user_achievement_unlock' => 'žaidėjo medalis atrakintas',
         ],
@@ -74,14 +74,14 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '',
-        'beatmapset_title_show_original' => 'rodyti beatmap duomenis originalo kalboje',
-        'title' => 'Nustatymai',
+        'beatmapset_show_nsfw' => 'slėpti perspėjimus dėl eksplicitinio turinio bitmapuose',
+        'beatmapset_title_show_original' => 'rodyti bitmapo metaduomenys orginaliaja kalba',
+        'title' => 'Parinktys',
 
         'beatmapset_download' => [
-            '_' => 'paprastas beatmap siuntimosi tipas
+            '_' => 'numatytasis bitmapų siuntimosi tipas
 ',
-            'all' => 'su vaizdo įrašų jei galima',
+            'all' => 'su vaizdo įrašų, jei yra',
             'direct' => 'atidaryti per osu!direct',
             'no_video' => 'be vaizdo įrašo',
         ],
@@ -106,12 +106,12 @@ return [
         'end_session' => 'Užbaigti sesiją',
         'end_session_confirmation' => 'Tai iškarto pabaigs sesiją tame įrenginyje. Ar jūs isitikinęs?',
         'last_active' => 'Paskutinį kartą aktyvus:',
-        'title' => 'Apsauga',
+        'title' => 'Saugumas',
         'web_sessions' => 'internetinės sesijos',
     ],
 
     'update_email' => [
-        'update' => 'atnaujinti',
+        'update' => 'užsaugoti',
     ],
 
     'update_password' => [
@@ -124,6 +124,6 @@ return [
     ],
 
     'verification_invalid' => [
-        'title' => 'Netinkamas arba nebegaliojanti patvirtinimo nuoroda',
+        'title' => 'Netinkama arba nebegaliojanti patvirtinimo nuoroda',
     ],
 ];

@@ -66,12 +66,13 @@
             </a>
         </div>
     </div>
-    <div class="nav2__colgroup js-nav-button--container">
+    <div class="nav2__colgroup nav2__colgroup--icons js-nav-button--container">
         <div class="nav2__col js-nav-button--item">
             <a
                 href="{{ osu_url('social.twitter') }}"
                 class="nav-button nav-button--social"
                 title="Twitter"
+                data-tooltip-position="bottom center"
             >
                 <span class="fab fa-twitter"></span>
             </a>
@@ -82,6 +83,7 @@
                 href="{{ route('support-the-game') }}"
                 class="nav-button nav-button--support"
                 title="{{ osu_trans('page_title.main.home_controller.support_the_game') }}"
+                data-tooltip-position="bottom center"
             >
                 <span class="fas fa-heart"></span>
             </a>
@@ -92,51 +94,50 @@
         </div>
 
         @if (Auth::user() !== null)
-            <div class="nav2__col">
-                <a
-                    class="nav-button nav-button--stadium js-click-menu js-react--chat-icon"
-                    data-click-menu-target="nav2-chat-notification-widget"
-                    data-turbolinks-permanent
-                    id="notification-widget-chat-icon"
-                    href="{{ route('chat.index') }}"
-                >
-                    <span class="notification-icon">
-                        <i class="fas fa-comment-alt"></i>
-                        <span class="notification-icon__count">...</span>
-                    </span>
-                </a>
-                <div
-                    class="nav-click-popup js-click-menu js-react--notification-widget"
-                    data-click-menu-id="nav2-chat-notification-widget"
-                    data-visibility="hidden"
-                    data-notification-widget="{{ json_encode(['extraClasses' => 'js-nav2--centered-popup hidden', 'only' => 'channel']) }}"
-                    data-turbolinks-permanent
-                    id="notification-widget-chat"
-                ></div>
+            <div class="nav2__col nav2__col--notifications">
+                <div class="nav2__notification-container">
+                    <a
+                        class="nav-button nav-button--notifications js-click-menu js-react--chat-icon"
+                        data-click-menu-target="nav2-chat-notification-widget"
+                        data-turbolinks-permanent
+                        id="notification-widget-chat-icon"
+                        href="{{ route('chat.index') }}"
+                    >
+                        <span class="notification-icon">
+                            <i class="fas fa-comment-alt"></i>
+                            <span class="notification-icon__count">...</span>
+                        </span>
+                    </a>
+                    <div
+                        class="nav-click-popup js-click-menu js-react--notification-widget"
+                        data-click-menu-id="nav2-chat-notification-widget"
+                        data-visibility="hidden"
+                        data-notification-widget="{{ json_encode(['extraClasses' => 'js-nav2--centered-popup hidden', 'only' => 'channel']) }}"
+                        data-turbolinks-permanent
+                        id="notification-widget-chat"
+                    ></div>
 
-            </div>
-
-            <div class="nav2__col">
-                <a
-                    class="nav-button nav-button--stadium js-click-menu js-react--main-notification-icon"
-                    data-click-menu-target="nav2-notification-widget"
-                    data-turbolinks-permanent
-                    id="notification-widget-icon"
-                    href="{{ route('notifications.index') }}"
-                >
-                    <span class="notification-icon">
-                        <i class="fas fa-inbox"></i>
-                        <span class="notification-icon__count">...</span>
-                    </span>
-                </a>
-                <div
-                    class="nav-click-popup js-click-menu js-react--notification-widget"
-                    data-click-menu-id="nav2-notification-widget"
-                    data-visibility="hidden"
-                    data-notification-widget="{{ json_encode(['extraClasses' => 'js-nav2--centered-popup hidden', 'excludes' => ['channel']]) }}"
-                    data-turbolinks-permanent
-                    id="notification-widget"
-                ></div>
+                    <a
+                        class="nav-button nav-button--notifications js-click-menu js-react--main-notification-icon"
+                        data-click-menu-target="nav2-notification-widget"
+                        data-turbolinks-permanent
+                        id="notification-widget-icon"
+                        href="{{ route('notifications.index') }}"
+                    >
+                        <span class="notification-icon">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-icon__count">...</span>
+                        </span>
+                    </a>
+                    <div
+                        class="nav-click-popup js-click-menu js-react--notification-widget"
+                        data-click-menu-id="nav2-notification-widget"
+                        data-visibility="hidden"
+                        data-notification-widget="{{ json_encode(['extraClasses' => 'js-nav2--centered-popup hidden', 'excludes' => ['channel']]) }}"
+                        data-turbolinks-permanent
+                        id="notification-widget"
+                    ></div>
+                </div>
             </div>
         @endif
 

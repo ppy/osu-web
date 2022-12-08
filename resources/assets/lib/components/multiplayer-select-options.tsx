@@ -4,6 +4,7 @@
 import { Option, OptionRenderProps, SelectOptions } from 'components/select-options';
 import { route } from 'laroute';
 import * as React from 'react';
+import { navigate } from 'utils/turbolinks';
 
 interface RoomJson {
   id: number;
@@ -39,7 +40,7 @@ export default class MultiplayerSelectOptions extends React.PureComponent<Props>
   }
 
   private handleChange = (option: Option<number>) => {
-    osu.navigate(this.href(option.id));
+    navigate(this.href(option.id));
   };
 
   private href(id: number | null) {

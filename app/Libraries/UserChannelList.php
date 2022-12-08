@@ -33,6 +33,15 @@ class UserChannelList
         return json_collection($filteredChannels, $transformer, ChannelTransformer::LISTING_INCLUDES);
     }
 
+    public function getChannels(): Collection
+    {
+        if (!isset($this->channels)) {
+            $this->loadChannels();
+        }
+
+        return $this->channels;
+    }
+
     private function loadChannels()
     {
         $userChannels = UserChannel::where('user_id', $this->user->getKey())

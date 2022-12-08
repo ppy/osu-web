@@ -5,12 +5,15 @@ import TimeWithTooltip from 'components/time-with-tooltip'
 import { route } from 'laroute'
 import * as React from 'react'
 import { button, div, i } from 'react-dom-factories'
+import { onError } from 'utils/ajax'
+import { formatBytes } from 'utils/html'
+import { trans } from 'utils/lang'
 
 el = React.createElement
 
 export class UserEntry extends React.Component
   delete: =>
-    return unless confirm(osu.trans('common.confirmation'))
+    return unless confirm(trans('common.confirmation'))
 
     params =
       method: 'DELETE'
@@ -21,7 +24,7 @@ export class UserEntry extends React.Component
     .done (data) =>
       $.publish 'contest:entries:update', data: data
 
-    .fail osu.ajaxError
+    .fail onError
 
   render: ->
     div className: 'contest-userentry contest-userentry--ok',
@@ -29,7 +32,7 @@ export class UserEntry extends React.Component
         button
           className: 'contest-userentry__delete'
           type: 'button'
-          title: osu.trans('common.buttons.delete')
+          title: trans('common.buttons.delete')
           onClick: @delete
           i className: 'fas fa-times'
 
@@ -43,4 +46,4 @@ export class UserEntry extends React.Component
         el TimeWithTooltip, dateTime: @props.entry.created_at, relative: true
 
       div className: 'contest-userentry__filesize',
-        osu.formatBytes(@props.entry.filesize)
+        formatBytes(@props.entry.filesize)

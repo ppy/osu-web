@@ -13,31 +13,31 @@ return [
     'old' => 'Seni',
     'rank' => 'Reitingas',
     'top' => 'Geriausi',
-    'username' => 'Slapyvardis',
+    'username' => 'Vartotojo vardas',
 
     'artist_tracks' => [
-        'album' => '',
-        'artist' => '',
-        'bpm' => '',
-        'genre' => '',
-        'length' => '',
-        'relevance' => '',
-        'title' => '',
-        'update' => '',
+        'album' => 'Albumas',
+        'artist' => 'Atlikėjas',
+        'bpm' => 'BPM',
+        'genre' => 'Žanras',
+        'length' => 'Trukmė',
+        'relevance' => 'Aktualumas',
+        'title' => 'Pavadinimas',
+        'update' => 'Atnaujinti',
     ],
 
     'forum_posts' => [
-        'created' => '',
-        'relevance' => '',
+        'created' => 'Publikavimo laikas',
+        'relevance' => 'Aktualumas',
     ],
 
     'forum_topics' => [
-        'feature_votes' => '',
+        'feature_votes' => 'Žvaigždžių piemenybė',
         'new' => 'Paskutinis atsakymas',
     ],
 
     'users' => [
-        'relevance' => '',
+        'relevance' => 'Aktualumas',
         'username' => 'Pavadinimas',
     ],
 ];

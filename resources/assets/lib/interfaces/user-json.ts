@@ -45,6 +45,7 @@ interface UserJsonAvailableIncludes {
   loved_beatmapset_count: number;
   mapping_follower_count: number;
   monthly_playcounts: UserMonthlyPlaycountJson[];
+  nominated_beatmapset_count: number;
   page: {
     html: string;
     raw: string;

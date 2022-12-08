@@ -9,6 +9,7 @@ import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import Room from 'user-multiplayer-index/room';
+import { trans } from 'utils/lang';
 import MultiplayerHistoryStore from './multiplayer-history-store';
 
 interface Props {
@@ -35,8 +36,8 @@ export default class MultiplayerHistory extends React.Component<Props> {
     if (this.props.store.rooms.length === 0) {
       return (
         <div className='user-multiplayer-history'>
-          {osu.trans('multiplayer.empty._', {
-            type_group: osu.trans(`multiplayer.empty.${this.props.store.typeGroup}`),
+          {trans('multiplayer.empty._', {
+            type_group: trans(`multiplayer.empty.${this.props.store.typeGroup}`),
           })}
         </div>
       );

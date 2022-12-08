@@ -6,8 +6,8 @@
 return [
     'instrument_declined' => 'Den utvalgte betalingsmåten ble avvist av Paypal.',
     'invalid_resource_id' => 'Ingen betalingsinformasjon ble funnet.',
-    'invalid_token' => '',
-    'old_format' => '',
-    'resource_not_found' => '',
+    'invalid_token' => 'Det oppstod en feil under fullføring av din betaling.',
+    'old_format' => 'Betalingslenken er utgått, vennligst prøv igjen.',
+    'resource_not_found' => 'Ingen betalingsinformasjon ble funnet.',
     'unknown' => "Betalingen ble avvist, men vi er ikke sikker på hvorfor.",
 ];

@@ -3,6 +3,7 @@
 
 import * as clipboard from 'clipboard-polyfill';
 import * as React from 'react';
+import { trans } from 'utils/lang';
 
 interface Props {
   label?: string;
@@ -22,8 +23,8 @@ export default class ClickToCopy extends React.Component<Props> {
   private readonly linkRef = React.createRef<HTMLAnchorElement>();
   private timer?: number;
   private readonly titles = {
-    default: osu.trans('common.buttons.click_to_copy'),
-    onClick: osu.trans('common.buttons.click_to_copy_copied'),
+    default: trans('common.buttons.click_to_copy'),
+    onClick: trans('common.buttons.click_to_copy_copied'),
   } as const;
 
   private get api() {

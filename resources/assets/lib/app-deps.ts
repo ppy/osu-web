@@ -20,6 +20,8 @@ import Lang from 'lang.js';
 import { configure as mobxConfigure } from 'mobx';
 import * as moment from 'moment';
 import Turbolinks from 'turbolinks';
+import { popup } from 'utils/popup';
+import { reloadPage } from 'utils/turbolinks';
 
 interface SharedStyles {
   header: {
@@ -48,6 +50,8 @@ declare global {
     Lang: Lang;
     LangMessages: unknown;
     moment: any;
+    popup: typeof popup;
+    reloadPage: typeof reloadPage;
     Turbolinks: Turbolinks;
   }
 }
@@ -61,6 +65,8 @@ window.Lang = patchPluralHandler(new Lang({
   messages: window.LangMessages,
 }));
 window.moment = moment;
+window.popup = popup;
+window.reloadPage = reloadPage;
 window.Turbolinks = Turbolinks;
 
 // refer to variables.less

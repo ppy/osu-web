@@ -4,148 +4,148 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'deleted' => '',
+    'deleted' => '[odstranjeni uporabnik]',
 
     'beatmapset_activities' => [
         'title' => "",
         'title_compact' => '',
 
         'discussions' => [
-            'title_recent' => '',
+            'title_recent' => 'Nedavno začete razprave',
         ],
 
         'events' => [
-            'title_recent' => '',
+            'title_recent' => 'Nedavni dogodki',
         ],
 
         'posts' => [
-            'title_recent' => '',
+            'title_recent' => 'Zadnje objave',
         ],
 
         'votes_received' => [
-            'title_most' => '',
+            'title_most' => 'Največ prejetih glasov za (v zadnjih 3 mesecih)',
         ],
 
         'votes_made' => [
-            'title_most' => '',
+            'title_most' => 'Največ oddanih glasov za (v zadnjih 3 mesecih)',
         ],
     ],
 
     'blocks' => [
-        'banner_text' => '',
-        'comment_text' => '',
-        'blocked_count' => '',
-        'hide_profile' => '',
-        'hide_comment' => '',
-        'not_blocked' => '',
-        'show_profile' => '',
-        'show_comment' => '',
-        'too_many' => '',
+        'banner_text' => 'Tega igralca si blokiral.',
+        'comment_text' => 'Ta komentar je skrit.',
+        'blocked_count' => 'blokirani uporabniki (:count)',
+        'hide_profile' => 'Skrij profil',
+        'hide_comment' => 'skrij',
+        'not_blocked' => 'Ta igralec ni blokiran.',
+        'show_profile' => 'Prikaži profil',
+        'show_comment' => 'prikaži',
+        'too_many' => 'Meja blokiranih igralcev je dosežena.',
         'button' => [
-            'block' => '',
-            'unblock' => '',
+            'block' => 'Blokiraj',
+            'unblock' => 'Odblokiraj',
         ],
     ],
 
     'card' => [
-        'loading' => '',
-        'send_message' => '',
+        'loading' => 'Nalaganje...',
+        'send_message' => 'Pošlji sporočilo',
     ],
 
     'disabled' => [
-        'title' => '',
-        'warning' => "",
+        'title' => 'Oh ne! Tvoj račun je bil onemogočen.',
+        'warning' => "V primeru, da si prekršil pravilo, upoštevaj, da na splošno obstaja enomesečno obdobje mirovanja, v tem času ne bomo upoštevali nobenih pomilostilnih zahtev. Po tem obdobju nas lahko kontaktiraš, če se ti zdi pomembno. Upoštevaj, da ustvarjanje novih računov kot izogib onemogočenemu računu, bo pomenilo <strong>podaljšanje tega enomesečnega mirovanja</strong>. Upoštevaj tudi, da <strong>z vsakim novim računom, nadaljno kršiš pravila</strong>. Zelo ti priporočamo, da ne greš po tej poti!",
 
         'if_mistake' => [
-            '_' => '',
-            'email' => '',
+            '_' => 'Če misliš, da je to napaka, nas kontaktiraj (preko :email ali s klikom na "?" v spodnjem desnem kotu strani). Upoštevaj da smo vedno popolnoma prepričani o svojih ukrepih, saj temeljijo na zelo zanesljivih podatkih. Pridržujemo si pravico, da tvoje zahteve ne upoštevamo, če menimo, da si namerno nepošten.',
+            'email' => 'e-pošta',
         ],
 
         'reasons' => [
-            'compromised' => '',
-            'opening' => '',
+            'compromised' => 'Tvoj račun je bil ogrožen. Račun je začasno onemogočen, dokler se ne potrdi njegova identiteta.',
+            'opening' => 'Tvoj račun je lahko onemogočen iz več razlogov:',
 
             'tos' => [
-                '_' => '',
-                'community_rules' => '',
-                'tos' => '',
+                '_' => 'Kršil si enega ali več pravil naših :community_rules ali :tos.',
+                'community_rules' => 'pravil skupnosti',
+                'tos' => 'pogojev storitev',
             ],
         ],
     ],
 
     'filtering' => [
-        'by_game_mode' => '',
+        'by_game_mode' => 'Igralci glede na igralni način',
     ],
 
     'force_reactivation' => [
         'reason' => [
-            'inactive_different_country' => "",
+            'inactive_different_country' => "Tvoj račun že dlje časa ni bil uporabljen.",
         ],
     ],
 
     'login' => [
-        '_' => '',
-        'button' => '',
-        'button_posting' => '',
-        'email_login_disabled' => '',
-        'failed' => '',
-        'forgot' => '',
-        'info' => '',
-        'invalid_captcha' => '',
-        'locked_ip' => '',
-        'password' => '',
-        'register' => "",
-        'remember' => '',
-        'title' => '',
-        'username' => '',
+        '_' => 'Vpiši se',
+        'button' => 'Vpiši se',
+        'button_posting' => 'Vpisovanje...',
+        'email_login_disabled' => 'Vpis z e-poštnim naslovom je trenutno onemogočeno. Prosimo namesto tega uporabi svoje uporabniško ime.',
+        'failed' => 'Nepravilen vpis',
+        'forgot' => 'Si pozabil svoje geslo?',
+        'info' => 'Za nadaljevanje se moraš vpisati',
+        'invalid_captcha' => 'Preveč neuspešnih poskusov vpisa, izpolni captcha in poskusi znova. (Osveži stran, če captcha ni vidna)',
+        'locked_ip' => 'Tvoj IP naslov je zaklenjen. Prosimo počakaj nekaj minut.',
+        'password' => 'Geslo',
+        'register' => "Nimaš še osu! računa? Ustvari novega",
+        'remember' => 'Zapomni si ta računalnik',
+        'title' => 'Za nadaljevanje se moraš vpisati',
+        'username' => 'Uporabniško ime',
 
         'beta' => [
-            'main' => '',
-            'small' => '',
+            'main' => 'Dostop do beta različice je trenutno omejen na uporabnike z določenimi pravicami.',
+            'small' => '(osu!supporterji bodo kmalu imeli dostop)',
         ],
     ],
 
     'posts' => [
-        'title' => '',
+        'title' => 'objave igralca :username',
     ],
 
     'anonymous' => [
-        'login_link' => '',
-        'login_text' => '',
-        'username' => '',
-        'error' => '',
+        'login_link' => 'klikni za vpis',
+        'login_text' => 'vpiši se',
+        'username' => 'Gost',
+        'error' => 'Za to moraš biti vpisan.',
     ],
-    'logout_confirm' => '',
+    'logout_confirm' => 'Ali si prepričan, da se želiš izpisati? :(',
     'report' => [
-        'button_text' => '',
-        'comments' => '',
-        'placeholder' => '',
-        'reason' => '',
-        'thanks' => '',
-        'title' => '',
+        'button_text' => 'Prijavi',
+        'comments' => 'Komentarji',
+        'placeholder' => 'Navedi vse informacije, za katere meniš, da bi lahko bile koristne.',
+        'reason' => 'Razlog',
+        'thanks' => 'Hvala za tvojo prijavo!',
+        'title' => 'Prijavi :username?',
 
         'actions' => [
-            'send' => '',
-            'cancel' => '',
+            'send' => 'Pošlji prijavo',
+            'cancel' => 'Prekliči',
         ],
 
         'options' => [
-            'cheating' => '',
-            'multiple_accounts' => '',
-            'insults' => '',
-            'spam' => '',
-            'unwanted_content' => '',
-            'nonsense' => '',
-            'other' => '',
+            'cheating' => 'Goljufanje',
+            'multiple_accounts' => 'Uporaba več računov',
+            'insults' => 'Žaljenje mene / drugih',
+            'spam' => 'Spammanje',
+            'unwanted_content' => 'Pošiljanje neprimerne vsebine',
+            'nonsense' => 'Nesmisel',
+            'other' => 'Drugo (napiši spodaj)',
         ],
     ],
     'restricted_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'Tvoj račun je omejen!',
+        'message' => 'Med omejitvijo ne bo možna komunikacija z drugimi igralci, tvoji rezultati pa bodo vidni samo tebi. To je običajno rezultat samodejnega postopka in se običajno odpravi v 24 urah. Če se želiš pritožiti na omejitev, se obrni na <a href="mailto:accounts@ppy.sh">podporo</a>.',
     ],
     'show' => [
-        'age' => '',
-        'change_avatar' => '',
+        'age' => ':age let',
+        'change_avatar' => 'spremeni svoj avatar!',
         'first_members' => '',
         'is_developer' => '',
         'is_supporter' => '',
@@ -217,6 +217,9 @@ return [
                 'loved' => [
                     'title' => '',
                 ],
+                'nominated' => [
+                    'title' => '',
+                ],
                 'pending' => [
                     'title' => '',
                 ],
@@ -238,62 +241,62 @@ return [
                 'title' => '',
 
                 'monthly_playcounts' => [
-                    'title' => '',
-                    'count_label' => '',
+                    'title' => 'Zgodovina igranja',
+                    'count_label' => 'Igranja',
                 ],
                 'most_played' => [
-                    'count' => '',
-                    'title' => '',
+                    'count' => 'število igranj',
+                    'title' => 'Največkrat igrane beatmape',
                 ],
                 'recent_plays' => [
-                    'accuracy' => '',
-                    'title' => '',
+                    'accuracy' => 'natančnost: :percentage',
+                    'title' => 'Zadnja igranja (24h)',
                 ],
                 'replays_watched_counts' => [
-                    'title' => '',
-                    'count_label' => '',
+                    'title' => 'Zgodovina gledanih replayev',
+                    'count_label' => 'Gledanih replayev',
                 ],
             ],
             'kudosu' => [
-                'recent_entries' => '',
-                'title' => '',
-                'total' => '',
+                'recent_entries' => 'Nedavna zgodovina Kudosu točk',
+                'title' => 'Kudosu!',
+                'total' => 'Skupno število zasluženih Kudosu točk',
 
                 'entry' => [
-                    'amount' => '',
-                    'empty' => "",
+                    'amount' => ':amount kudosu',
+                    'empty' => "Ta igralec še ni prejel nobenega kudosu!",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => '',
+                            'give' => 'Prejeto :amount od kudosu zavrnitvene razveljavitve modding objave :post',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => '',
+                            'reset' => 'Zavrnjeno :amount od modding objave :post',
                         ],
 
                         'delete' => [
-                            'reset' => '',
+                            'reset' => 'Izgubljeno :amount od izbrisane modding objave :post',
                         ],
 
                         'restore' => [
-                            'give' => '',
+                            'give' => 'Prejeto :amount od povrnitve modding objave :post',
                         ],
 
                         'vote' => [
-                            'give' => '',
-                            'reset' => '',
+                            'give' => 'Prejeto :amount od prejetja glasov v modding objavi :post',
+                            'reset' => 'Izgubljeno :amount od izgube glasov v modding objavi :post',
                         ],
 
                         'recalculate' => [
-                            'give' => '',
-                            'reset' => '',
+                            'give' => 'Prejeto :amount od preračunanih glasov v modding objavi :post',
+                            'reset' => 'Izgubljeno :amount od preračunanih glasov v modding objavi :post',
                         ],
                     ],
 
                     'forum_post' => [
-                        'give' => '',
-                        'reset' => '',
+                        'give' => 'Prejeto :amount od :giver za objavo na :post',
+                        'reset' => 'Ponastavitev Kudosu točk od :giver za objavo :post',
                         'revoke' => '',
                     ],
                 ],
