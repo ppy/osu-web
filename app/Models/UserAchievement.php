@@ -5,11 +5,16 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 /**
- * @property Achievement $achievement
+ * @property-read Achievement $achievement
  * @property int $achievement_id
+ * @property-read Beatmap|null $beatmap
+ * @property int|null $beatmap_id
  * @property \Carbon\Carbon $date
- * @property User $user
+ * @property-read string $date_json
+ * @property-read User $user
  * @property int $user_id
  */
 class UserAchievement extends Model
@@ -22,14 +27,19 @@ class UserAchievement extends Model
     protected $primaryKeys = ['user_id', 'achievement_id'];
     protected $table = 'osu_user_achievements';
 
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function achievement()
+    public function achievement(): BelongsTo
     {
         return $this->belongsTo(Achievement::class, 'achievement_id');
+    }
+
+    public function beatmap(): BelongsTo
+    {
+        return $this->belongsTo(Beatmap::class, 'beatmap_id');
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function getAttribute($key)
@@ -44,6 +54,7 @@ class UserAchievement extends Model
             'date_json' => $this->getJsonTimeFast($key),
 
             'achievement',
+            'beatmap',
             'user' => $this->getRelationValue($key),
         };
     }
