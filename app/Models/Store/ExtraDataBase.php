@@ -10,9 +10,12 @@ namespace App\Models\Store;
 use Illuminate\Contracts\Database\Eloquent\Castable;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use InvalidArgumentException;
+use JsonSerializable;
 
-abstract class ExtraDataBase implements Castable
+abstract class ExtraDataBase implements Castable, JsonSerializable
 {
+    const TYPE = '';
+
     public static function castUsing(array $arguments)
     {
         return new class implements CastsAttributes
@@ -20,7 +23,7 @@ abstract class ExtraDataBase implements Castable
             public function get($model, $key, $value, $attributes)
             {
                 if (!($model instanceof OrderItem)) {
-                    throw new InvalidArgumentException('OrderItemExtraData model must be OrderItem');
+                    throw new InvalidArgumentException('model must be OrderItem');
                 }
 
                 $dataJson = json_decode($value ?? '', true) ?? [];
@@ -31,7 +34,7 @@ abstract class ExtraDataBase implements Castable
             public function set($model, $key, $value, $attributes)
             {
                 if (!($model instanceof OrderItem)) {
-                    throw new InvalidArgumentException('OrderItemExtraData model must be OrderItem');
+                    throw new InvalidArgumentException('model must be OrderItem');
                 }
 
                 if ($value !== null && !($value instanceof ExtraDataBase)) {
@@ -55,7 +58,7 @@ abstract class ExtraDataBase implements Castable
             'mwc7-supporter',
             'owc-supporter',
             'twc-supporter',
-            'tournament' => new ExtraDataTournamentBanner($data),
+            'tournament-banner' => new ExtraDataTournamentBanner($data),
             default => null,
         };
     }
@@ -63,14 +66,19 @@ abstract class ExtraDataBase implements Castable
     private static function guessType(array $data)
     {
         if (isset($data['target_id']) && isset($data['duration'])) {
-            return 'supporter-tag';
+            return ExtraDataSupporterTag::TYPE;
         }
 
         // we know it's some kind of tournament...just not which one
         if (isset($data['tournament_id']) && isset($data['cc'])) {
-            return 'tournament';
+            return ExtraDataTournamentBanner::TYPE;
         }
 
         return null;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return ['type' => static::TYPE];
     }
 }

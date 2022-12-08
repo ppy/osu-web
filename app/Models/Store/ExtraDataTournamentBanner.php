@@ -11,24 +11,22 @@ use JsonSerializable;
 
 class ExtraDataTournamentBanner extends ExtraDataBase implements JsonSerializable
 {
+    const TYPE = 'tournament-banner';
+
     public string $countryAcronym;
     public int $tournamentId;
-    public ?string $type;
 
     public function __construct(array $data)
     {
         $this->tournamentId = get_int($data['tournament_id']);
         $this->countryAcronym = $data['cc'];
-        // TODO: temporarily allow null to handle existing data
-        $this->type = $data['type'] ?? null;
     }
 
     public function jsonSerialize(): array
     {
-        return [
+        return array_merge(parent::jsonSerialize(), [
             'cc' => $this->countryAcronym,
             'tournament_id' => $this->tournamentId,
-            'type' => $this->type,
-        ];
+        ]);
     }
 }

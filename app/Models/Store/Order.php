@@ -671,10 +671,6 @@ class Order extends Model
                 $params['cost'] = $product->cost ?? 0;
         }
 
-        if ($product->custom_class !== null && isset($params['extra_data'])) {
-            $params['extra_data']['type'] = $product->custom_class;
-        }
-
         $item = $this->items()->make([
             'quantity' => $params['quantity'],
             'extra_info' => $params['extra_info'],
