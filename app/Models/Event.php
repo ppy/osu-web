@@ -256,7 +256,7 @@ class Event extends Model
 
     public function parseMatchesAchievement($matches)
     {
-        $achievement = Achievement::where(['name' => $matches['achievementName']])->first();
+        $achievement = app('medals')->byNameIncludeDisabled($matches['achievementName']);
         if ($achievement === null) {
             return $this->parseFailure("unknown achievement ({$matches['achievementName']})");
         }
