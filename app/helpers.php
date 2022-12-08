@@ -19,7 +19,7 @@ function api_version(): int
     return $version;
 }
 
-function array_reject_null(array|ArrayAccess $array): array
+function array_reject_null(iterable $array): array
 {
     $ret = [];
     foreach ($array as $item) {
@@ -1509,7 +1509,7 @@ function get_params($input, $namespace, $keys, $options = [])
 
     $params = [];
 
-    if (is_array($input) || ($input instanceof ArrayAccess)) {
+    if (is_iterable($input)) {
         $options['null_missing'] = $options['null_missing'] ?? false;
 
         foreach ($keys as $keyAndType) {
