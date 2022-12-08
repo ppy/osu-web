@@ -38,11 +38,11 @@ class CartController extends Controller
     {
         $params = get_params(request()->all(), null, [
             'add:bool',
-            'item:any',
+            'item:array',
         ]);
 
         $add = $params['add'] ?? false;
-        $error = $this->userCart()->updateItem($params['item'], $add);
+        $error = $this->userCart()->updateItem($params['item'] ?? [], $add);
 
         if ($error === null) {
             return $add ? ujs_redirect(route('store.cart.show')) : ext_view('layout.ujs-reload', [], 'js');

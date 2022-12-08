@@ -655,6 +655,7 @@ class Order extends Model
             case 'supporter-tag':
                 $params['extra_data'] = $this->paramsSupporterTag($params);
                 break;
+            // TODO: look at migrating to extra_data
             case 'username-change':
                 // ignore received cost
                 $params['cost'] = $this->user->usernameChangeCost();
@@ -684,12 +685,14 @@ class Order extends Model
         return $item;
     }
 
-    private function paramsSupporterTag(array $rawParams)
+    private function paramsSupporterTag(array $orderItemParams)
     {
-        $params = get_params($rawParams, 'extra_data', [
+        $params = get_params($orderItemParams, 'extra_data', [
             'duration:int',
             'target_id:int',
         ]);
+
+        $params['type'] = ExtraDataSupporterTag::TYPE;
 
         $targetId = $params['target_id'];
         if ($targetId === $this->user_id) {
@@ -699,20 +702,22 @@ class Order extends Model
             $params['username'] = $user->username;
         }
 
-        $params['duration'] = SupporterTag::getDuration($rawParams['cost']);
+        $params['duration'] = SupporterTag::getDuration($orderItemParams['cost']);
 
         return $params;
     }
 
-    private function paramsTournamentBanner(array $rawParams)
+    private function paramsTournamentBanner(array $orderItemParams)
     {
-        $params = get_params($rawParams, 'extra_data', [
+        $params = get_params($orderItemParams, 'extra_data', [
             'tournament_id:int',
         ]);
 
+        $params['type'] = ExtraDataTournamentBanner::TYPE;
+
         // much dodgy. wow.
         $matches = [];
-        preg_match('/.+\((?<country>.+)\)$/', $rawParams['product']->name, $matches);
+        preg_match('/.+\((?<country>.+)\)$/', $orderItemParams['product']->name, $matches);
         $params['cc'] = Country::where('name', $matches['country'])->first()->acronym;
 
         return $params;
