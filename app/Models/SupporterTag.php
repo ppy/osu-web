@@ -93,9 +93,7 @@ class SupporterTag
 
         $extraData = $item->extra_data;
         $durationText = static::getDurationText($extraData->duration);
-
-        // test data didn't include username, so ?? ''
-        $username = $extraData->username ?? '';
+        $username = $extraData->username;
 
         return $html
             ? blade_safe(osu_trans($transKey, [

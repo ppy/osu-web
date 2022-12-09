@@ -39,13 +39,6 @@ class OrderItem extends Model
         'reserved' => 'boolean',
     ];
 
-    // TODO: This is a lie, type comes from $this->product->custom_class now
-    // The format for extra_data is:
-    // [
-    //     'type' => 'custom-extra-info',
-    //     ...additional fields
-    // ]
-
     public function scopeHasShipping($query)
     {
         return $query->whereHas('product', function ($q) {
