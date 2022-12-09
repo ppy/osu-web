@@ -11,7 +11,7 @@ return [
 
     'cannot_send' => [
         'channel' => 'No puede enviar un mensaje a este canal en este momento. Esto puede deberse a cualquiera de las siguientes razones:',
-        'user' => 'No puede enviar un mensaje a este usuario en este momento. Esto puede deberse a cualquiera de las siguientes razones:',
+        'user' => 'No se puede enviar mensajes a este usuario en este momento.',
     ],
 
     'channels' => [

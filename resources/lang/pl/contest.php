@@ -50,7 +50,7 @@ return [
             'beatmap' => 'Jedynie pliki o rozszerzeniu .osu są dozwolone w tym konkursie.',
             'music' => 'Jedynie pliki o rozszerzeniu .mp3 są dozwolone w tym konkursie.',
         ],
-        'wrong_dimensions' => '',
+        'wrong_dimensions' => 'Zgłoszenia do tego konkursu muszą mieć rozdzielczość :widthx:height',
         'too_big' => 'Maksymalna wielkość zgłoszeń dla tego konkursu to :limit.',
     ],
     'beatmaps' => [

@@ -124,6 +124,7 @@ return [
             'genre' => 'ז\'אנר',
             'language' => 'שפה',
             'no_scores' => 'נתונים עדיין מחושבים...',
+            'nominators' => '',
             'nsfw' => '',
             'offset' => '',
             'points-of-failure' => 'נקודות כשל',

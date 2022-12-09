@@ -40,7 +40,7 @@ return [
         'post' => '发表',
         'read_more' => '阅读更多',
         'reply' => '回复',
-        'reply_reopen' => '回复并重新打开',
+        'reply_reopen' => '回复并要求重审',
         'reply_resolve' => '回复并标记为已解决',
         'reset' => '重置',
         'restore' => '恢复',
@@ -86,8 +86,8 @@ return [
 
     'countdown' => [
         'days' => '天',
-        'hours' => '小时',
-        'minutes' => '分钟',
+        'hours' => '时',
+        'minutes' => '分',
         'seconds' => '秒',
     ],
 
@@ -135,20 +135,20 @@ return [
         'dd' => '%d 天前',
         'h' => '%d 小时前',
         'hh' => '%d 小时前',
-        'm' => '%d 分钟前',
-        'mm' => '%d 分钟前',
+        'm' => '刚刚',
+        'mm' => '刚刚',
         'month' => '%d 月前',
         'months' => '%d 月前',
         'past' => '',
-        's' => '%d 秒前',
+        's' => '刚刚',
         'y' => '%d 年前',
         'yy' => '%d 年前',
     ],
 
     'time' => [
-        'days_ago' => ':count 天前',
+        'days_ago' => ':count_delimited 天前',
         'hours_ago' => ':count_delimited 小时前',
-        'now' => '现在',
+        'now' => '刚刚',
         'remaining' => '剩余时间',
     ],
 

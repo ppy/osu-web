@@ -5,44 +5,44 @@
 
 return [
     'index' => [
-        'title_page' => '',
+        'title_page' => 'osu!novice',
 
         'nav' => [
-            'newer' => '',
-            'older' => '',
+            'newer' => 'Novejše objave',
+            'older' => 'Starejše objave',
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'novice',
+            'info' => 'prednja stran',
         ],
     ],
 
     'show' => [
-        'by' => '',
+        'by' => 'od :user',
 
         'nav' => [
-            'newer' => '',
-            'older' => '',
+            'newer' => 'Novejša objava',
+            'older' => 'Starejša objava',
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'novice',
+            'info' => 'objava',
         ],
     ],
 
     'sidebar' => [
-        'archive' => '',
+        'archive' => 'Arhiv novic',
     ],
 
     'store' => [
-        'button' => '',
-        'ok' => '',
+        'button' => 'Posodobi',
+        'ok' => 'Seznam posodobljen.',
     ],
 
     'update' => [
-        'button' => '',
-        'ok' => '',
+        'button' => 'Posodobi',
+        'ok' => 'Objava posodobljena.',
     ],
 ];

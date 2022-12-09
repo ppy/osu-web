@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => '',
+    'play_more' => 'Geriau pažaisk daugiau osu!, jo?',
     'require_login' => 'Norint tęsti reikia prisijungti.',
     'require_verification' => 'Patvirtinkite jei norite tęsti.',
     'restricted' => "Kol ribotas negali to daryti.",
@@ -19,30 +19,30 @@ return [
         'nominate' => [
             'exhausted' => 'Jau pasiekei dienos nominacijų limitą, pamėgink rytoj.',
             'incorrect_state' => 'Įvyko klaida atliekant šį veiksmą, pamėgink atnaujinti puslapį.',
-            'owner' => "Savo beatmapo negali nominuoti.",
-            'set_metadata' => 'Jūs turite padaryti žanrą ir kalbą prieš nominuojant.',
+            'owner' => "Nominuoti savo bitmapo negali.",
+            'set_metadata' => 'Jūs turite nustatyti žanrą ir kalbą prieš nominuojant.',
         ],
         'resolve' => [
-            'not_owner' => 'Uždaryti diskusiją gali tik pokalbio ir beatmapo kūrėjai.',
+            'not_owner' => 'Uždaryti diskusiją gali tik pokalbio ir bitmapo kūrėjai.',
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Tik beatmapo kūrėjas ar nominatorius/QAT grupės narys gali rašyti maperio užrašus.',
+            'mapper_note_wrong_user' => 'Tik bitmapo kūrėjas ar nominatorius/NAT grupės narys gali rašyti į kūrėjo užrašus.',
         ],
 
         'vote' => [
-            'bot' => "Negalima balsuoti diskusijoje sukurtos roboto",
-            'limit_exceeded' => 'Palauk kurį laiką prieš balsuojant daugiau',
+            'bot' => "Negalima balsuoti diskusijoje sukurtoje boto",
+            'limit_exceeded' => 'Palaukite kurį laiką prieš balsuojant daugiau',
             'owner' => "Negali balsuoti už savo diskusiją.",
-            'wrong_beatmapset_state' => 'Gali balsuoti tik už nepabaigtų beatmapų diskusijas.',
+            'wrong_beatmapset_state' => 'Gali balsuoti tik nepabaigtų bitmapų diskusijose.',
         ],
     ],
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => 'Jūs galite tik ištrinti savo pranešimų.',
+            'not_owner' => 'Jūs galite ištrinti tik savo žinutes.',
             'resolved' => 'Jūs negalite ištrinti įrašo kuris priklauso išspręstai diskusijai.',
-            'system_generated' => 'Automatiškai sugeneruotas įrašas negali būti ištrintas.',
+            'system_generated' => 'Automatiškai sugeneruota žinutė negali būti ištrinta.',
         ],
 
         'edit' => [
@@ -52,30 +52,30 @@ return [
         ],
 
         'store' => [
-            'beatmapset_locked' => 'Šis beatmapo diskusiją užrakintą.',
+            'beatmapset_locked' => 'Ši bitmapo diskusiją užrakintą.',
         ],
     ],
 
     'beatmapset' => [
         'metadata' => [
-            'nominated' => 'Jūs negalite pakeisti nominuoto žemėlapio duomenų. Susisiekite su BN arba NAT nariu jeigu jūs manote, kad tai buvo nustatyta neteisingai.',
+            'nominated' => 'Jūs negalite pakeisti nominuoto bitmapo metaduomenų. Susisiekite su BN arba NAT nariu jeigu jūs manote, kad jie buvo nustatyti neteisingai.',
         ],
     ],
 
     'chat' => [
-        'annnonce_only' => '',
-        'blocked' => 'Negalima išsiųsti žinutės vartotujui kuris jumis yra užblokavę arba jūs jį esą užblokavę.',
-        'friends_only' => 'Vartotojas šiuo metu užblokavo žinutės iš žmonių kurie nėra vartotojo draugų sąraše.',
+        'annnonce_only' => 'Šis kanalas tik pranešimams.',
+        'blocked' => 'Negalima išsiųsti žinučių vartotojui, kuris yra jūs užblokavęs, ar jūs esat užblokavę.',
+        'friends_only' => 'Vartotojas šiuo metu užblokavo žinutės iš žmonių, kurie nėra vartotojo draugų sąraše.',
         'moderated' => 'Šiuo momentu šis kanalas yra prižiūrimas.',
         'no_access' => 'Jūs neturite leidimo įeiti į šį kanalą.',
-        'receive_friends_only' => '',
-        'restricted' => 'Būnant užblokuotam, apribotam, užtildytam, jūs negalite siųsti žinutės.',
-        'silenced' => '',
+        'receive_friends_only' => 'Naudotojas gali negalėti atsakyti, nes priėmat žinutes tik iš žmonių jūsų draugų sąraše.',
+        'restricted' => 'Būnant užblokuotam, apribotam, užtildytam, jūs negalite siųsti žinučių.',
+        'silenced' => 'Būnant užblokuotam, apribotam, užtildytam, jūs negalite siųsti žinučių.',
     ],
 
     'comment' => [
         'store' => [
-            'disabled' => '',
+            'disabled' => 'Komentarai išjungti',
         ],
         'update' => [
             'deleted' => "Ištrintos žinutės negalima redaguoti.",
@@ -86,20 +86,20 @@ return [
         'voting_over' => 'Po konkurso balsavimo pabaigos, balso keitimas nebegalimas.',
 
         'entry' => [
-            'limit_reached' => '',
-            'over' => '',
+            'limit_reached' => 'Jūs pasiekėt pateikymų limitą šiam konkursui',
+            'over' => 'Ačiū už jūsų pateiktis! Pateikimas šiam konkursui buvo sustabdytas ir netrukus prasidės balsavimas.',
         ],
     ],
 
     'forum' => [
         'moderate' => [
-            'no_permission' => 'Leidimo keisti šį forumą jūs neturitę.',
+            'no_permission' => 'Leidimo keisti šį forumą jūs neturite.',
         ],
 
         'post' => [
             'delete' => [
                 'only_last_post' => 'Trinti galima tik paskutinę žinutę.',
-                'locked' => 'Po temos užrakinimo trinti žinučių negalima.',
+                'locked' => 'Užrakintos temos žinučių trinti negalima.',
                 'no_forum_access' => 'Prieiga prie norimo forumo reikalauja papildomų teisių.',
                 'not_owner' => 'Tik žinutės autorius gali ištrinti žinutę.',
             ],
@@ -173,8 +173,8 @@ return [
 
     'score' => [
         'pin' => [
-            'not_owner' => '',
-            'too_many' => '',
+            'not_owner' => 'Tik rezultato savininkas gali prisegti rezultatą.',
+            'too_many' => 'Prisegta perdaug rezultatų.',
         ],
     ],
 

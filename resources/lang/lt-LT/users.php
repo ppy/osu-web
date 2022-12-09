@@ -8,7 +8,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => ":user Taisymų istorija",
-        'title_compact' => '',
+        'title_compact' => 'Taisymai',
 
         'discussions' => [
             'title_recent' => 'Neseniai pradėtos diskusijos',
@@ -33,53 +33,53 @@ return [
 
     'blocks' => [
         'banner_text' => 'Jūs užblokavote šį vartotoją.',
-        'comment_text' => '',
-        'blocked_count' => 'blokuoti vartotojai (:count)',
-        'hide_profile' => 'slėpti profilį',
-        'hide_comment' => '',
+        'comment_text' => 'Šis komentaras yra paslėptas.',
+        'blocked_count' => 'užblokuoti vartotojai (:count)',
+        'hide_profile' => 'Slėpti profilį',
+        'hide_comment' => 'slėpti',
         'not_blocked' => 'Šis vartotojas nėra užblokuotas.',
-        'show_profile' => 'rodyti profilį',
-        'show_comment' => '',
+        'show_profile' => 'Rodyti profilį',
+        'show_comment' => 'rodyti',
         'too_many' => 'Pasiektas blokavimų limitas.',
         'button' => [
-            'block' => 'užblokuoti',
-            'unblock' => 'atblokuoti',
+            'block' => 'Užblokuoti',
+            'unblock' => 'Atblokuoti',
         ],
     ],
 
     'card' => [
         'loading' => 'Įkeliama...',
-        'send_message' => 'siųsti žinutę',
+        'send_message' => 'Siųsti žinutę',
     ],
 
     'disabled' => [
-        'title' => '',
-        'warning' => "",
+        'title' => 'O, ne! Panašu, kad jūsu paskyra buvo deaktyvuota.',
+        'warning' => "Žinokite, kad taisyklės pažeidimo atveju įprastai yra vieno mėnesio nusiraminimo laikotarpis per kurį nepriimame amnestavimo prašymų. Po šio laikotarpio galite su mumis susisiekti, jei jums to reikia. Naujos paskyros susikūrimas po praeitos deaktyvavimo, lydės į <strong> šio vieno mėnesio nusiraminimo laikotarpio pratęsimą</strong>. Taip pat žinokite, <strong>kad kiekviena nauja susikurta paskyra vis labiau laužo taisykles</strong>. Mes stipriai rekomenduojame nesirinkti šio kelio!",
 
         'if_mistake' => [
-            '_' => '',
+            '_' => 'Jei manote, kad čia kažkokia klaida, galite susisiekti su mumis (per :email arba paspausdami „?“ apatiniame dešiniajame šio puslapio kampe). Prašome žinoti, kad mes visiškai tikri savo veiksmais, nes jie paremti patikimais duomenimis. Mes pasiliekame teisę nepaisyti jūsų prašymo, jei manome, kad esate sąmoningai nenuoširdus.',
             'email' => 'el. paštas',
         ],
 
         'reasons' => [
-            'compromised' => '',
-            'opening' => '',
+            'compromised' => 'Manome, kad jūsų paskyra yra pažeista. Ji galimai bus deaktyvuota iki kol patvirtinsime tapatybę.',
+            'opening' => 'Egzistuoja kelios priežastys dėl kurių jūsų paskyra gali būti deaktyvuota:',
 
             'tos' => [
-                '_' => '',
-                'community_rules' => '',
-                'tos' => '',
+                '_' => 'Jūs sulaužėt viena ar daugiau mūsų :community_rules arba :tos.',
+                'community_rules' => 'bendruomenės taisyklės',
+                'tos' => 'paslaugų teikimo sąlygos',
             ],
         ],
     ],
 
     'filtering' => [
-        'by_game_mode' => '',
+        'by_game_mode' => 'Nariai pagal žaidimo režimą',
     ],
 
     'force_reactivation' => [
         'reason' => [
-            'inactive_different_country' => "",
+            'inactive_different_country' => "Jūsų paskyra buvo nenaudojama ilga laiką.",
         ],
     ],
 
@@ -87,21 +87,21 @@ return [
         '_' => 'Prisijungti',
         'button' => 'Prisijungti',
         'button_posting' => 'Prijungiama...',
-        'email_login_disabled' => '',
+        'email_login_disabled' => 'Prisijungimas naudojantis el. paštu išjungtas. Prašom naudoti vartotojo vardą.',
         'failed' => 'Neteisingi prisijungimo duomenys',
         'forgot' => 'Pamiršai slaptažodį?',
-        'info' => '',
-        'invalid_captcha' => '',
-        'locked_ip' => 'tavo IP adresas yra užblokuotas. Palauk porą minučių.',
+        'info' => 'Prisijunkite, kad tęsti',
+        'invalid_captcha' => 'Per daug nesėkmingų prisijungimo bandymų, atlikite ženklų testą ir bandykite iš naujo. (Atnaujinkite puslapį, jei nėra ženklų testo)',
+        'locked_ip' => 'Tavo IP adresas yra užblokuotas. Palauk porą minučių.',
         'password' => 'Slaptažodis',
         'register' => "Neturi osu! profilio? Susikurk",
-        'remember' => 'Prisiminti mane šiame kompiuteryje',
+        'remember' => 'Prisiminti šį kompiuterį',
         'title' => 'Norint tęsti reikia prisijungti',
         'username' => 'Vartotojo vardas',
 
         'beta' => [
             'main' => 'Šiuo metu beta prieiga galima tik išskirtiniams vartotojams.',
-            'small' => '',
+            'small' => '(osu! rėmėjai bus įleisti greitu metu)',
         ],
     ],
 
@@ -110,38 +110,38 @@ return [
     ],
 
     'anonymous' => [
-        'login_link' => 'paspauskite, jei norite prisijungti',
+        'login_link' => 'paspauskite, kad prisijungti',
         'login_text' => 'prisijungti',
         'username' => 'Svečias',
         'error' => 'Turite būti prisijungęs norint tai padaryti.',
     ],
     'logout_confirm' => 'Ar tikrai nori atsijungti? :(',
     'report' => [
-        'button_text' => '',
-        'comments' => '',
-        'placeholder' => '',
-        'reason' => '',
-        'thanks' => '',
-        'title' => '',
+        'button_text' => 'Pranešti',
+        'comments' => 'Komentarai',
+        'placeholder' => 'Prašome pateikti bet kokia informacija, kuri manote, kad gali būti naudinga.',
+        'reason' => 'Priežastis',
+        'thanks' => 'Ačiū už jūsų pranešimą!',
+        'title' => 'Pranešti apie :username?',
 
         'actions' => [
-            'send' => '',
-            'cancel' => '',
+            'send' => 'Siųsti pranešimą',
+            'cancel' => 'Atšaukti',
         ],
 
         'options' => [
-            'cheating' => '',
-            'multiple_accounts' => '',
-            'insults' => '',
-            'spam' => '',
-            'unwanted_content' => '',
-            'nonsense' => '',
-            'other' => '',
+            'cheating' => 'Sukčiavimas',
+            'multiple_accounts' => 'Naudoja kelias paskyras',
+            'insults' => 'Įžeidinėja manę / kitus',
+            'spam' => 'Siuntinėja šlamštą',
+            'unwanted_content' => 'Nuorodos į netinkamą turinį',
+            'nonsense' => 'Nesąmonės',
+            'other' => 'Kita (nurodykite žemiau)',
         ],
     ],
     'restricted_banner' => [
         'title' => 'Tavo vartotojo prieiga buvo apribota!',
-        'message' => '',
+        'message' => 'Kol ribotas, negalėsite sąveikauti su kitais žaidėjais ir jūsų rezultatai bus matomi tik jums. Įprastai šis apribojimas įvyksta dėl automatizuoto proceso ir yra atšaukiamas per 24 valandas. Jei norite apeliuoti šį apribojimą, prašome <a href="mailto:accounts@ppy.sh">susisiekti su pagalba</a>.',
     ],
     'show' => [
         'age' => ':age metų',
@@ -151,20 +151,20 @@ return [
         'is_supporter' => 'osu!rėmėjas',
         'joined_at' => 'Prisijungė :date',
         'lastvisit' => 'Paskutinį kart matytas :date',
-        'lastvisit_online' => '',
+        'lastvisit_online' => 'Prisijungę žaidėjai',
         'missingtext' => 'Turbūt padarei klaidą! (arba vartotojas buvo užblokuotas)',
         'origin_country' => 'Iš :country',
-        'previous_usernames' => 'dar žinomas kaip',
+        'previous_usernames' => 'buvo žinomas kaip',
         'plays_with' => 'Žaidžia su :devices',
         'title' => ":username profilis",
 
         'comments_count' => [
-            '_' => '',
-            'count' => '',
+            '_' => 'Paskelbta :link',
+            'count' => '::count_delimited komentaras|:count_delimited komentarų',
         ],
         'cover' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Slėpti viršelį',
+            'to_1' => 'Rodyti viršelį',
         ],
         'edit' => [
             'cover' => [
@@ -173,15 +173,15 @@ return [
                 'upload' => [
                     'broken_file' => 'Nepavyko apdoroti paveiksliuko. Patikrink įkeltą paveiksliuką ir mėgink dar kart.',
                     'button' => 'Įkelti paveiksliuką',
-                    'dropzone' => 'Tam, kad įkelti, mesk čia',
+                    'dropzone' => 'Mesk čia, kad įkelti',
                     'dropzone_info' => 'Taip pat gali mesti čia, kad įkelti, paveiksliuką',
                     'size_info' => 'Viršelio dydis turėtų būti 2400x620',
                     'too_large' => 'Įkeltas failas per didelis.',
                     'unsupported_format' => 'Formatas nepalaikomas.',
 
                     'restriction_info' => [
-                        '_' => '',
-                        'link' => '',
+                        '_' => 'Įkelti gali tik :link',
+                        'link' => 'osu!rėmėjai',
                     ],
                 ],
             ],
@@ -193,144 +193,147 @@ return [
         ],
 
         'extra' => [
-            'none' => '',
+            'none' => 'nėra',
             'unranked' => 'Rezultatų nėra',
 
             'achievements' => [
                 'achieved-on' => 'Pasiekta :date',
-                'locked' => '',
+                'locked' => 'Užrakintas',
                 'title' => 'Pasiekimai',
             ],
             'beatmaps' => [
-                'by_artist' => '',
-                'title' => 'Beatmapai',
+                'by_artist' => ':artist',
+                'title' => 'Bitmapai',
 
                 'favourite' => [
-                    'title' => 'Mėgstami Beatmapai',
+                    'title' => 'Mėgstami Bitmapai',
                 ],
                 'graveyard' => [
-                    'title' => 'Išmesti Beatmapai',
+                    'title' => 'Palaidoti Bitmapai',
                 ],
                 'guest' => [
-                    'title' => '',
+                    'title' => 'Bitmapai sukurti kaip svečio',
                 ],
                 'loved' => [
+                    'title' => 'Mylimi Bitmapai',
+                ],
+                'nominated' => [
                     'title' => '',
                 ],
                 'pending' => [
-                    'title' => '',
+                    'title' => 'Laukiantis Bitmapai',
                 ],
                 'ranked' => [
-                    'title' => '',
+                    'title' => 'Reitinguoti Bitmapai',
                 ],
             ],
             'discussions' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Diskusijos',
+                'title_longer' => 'Paskutinės Diskusijos',
+                'show_more' => 'rodyti daugiau diskusijų',
             ],
             'events' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Įvykiai',
+                'title_longer' => 'Paskutiniai įvykiai',
+                'show_more' => 'rodyti daugiau įvykių',
             ],
             'historical' => [
                 'title' => 'Istorija',
 
                 'monthly_playcounts' => [
-                    'title' => 'Žaidimų Istorija',
-                    'count_label' => '',
+                    'title' => 'Sužaidimų Istorija',
+                    'count_label' => 'Sužaidimai',
                 ],
                 'most_played' => [
                     'count' => 'žaista kartų',
-                    'title' => 'Daugiausiai žaisti Beatmapai',
+                    'title' => 'Daugiausiai žaisti Bitmapai',
                 ],
                 'recent_plays' => [
                     'accuracy' => 'tikslumas: :percentage',
                     'title' => 'Nesenai žaisti (24h)',
                 ],
                 'replays_watched_counts' => [
-                    'title' => 'Įrašų Peržiūros Istorija',
-                    'count_label' => '',
+                    'title' => 'Atkūrimų Peržiūrų Istorija',
+                    'count_label' => 'Atkūrimai Žiūrėti',
                 ],
             ],
             'kudosu' => [
                 'recent_entries' => 'Paskutinių Kudosu Istorija',
                 'title' => 'Kudosu!',
-                'total' => 'Viso uždirbtų Kudosu',
+                'total' => 'Visi uždirbti Kudosu',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => "",
+                    'empty' => "Naudotojas negavo nei kiek kudosu!",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => '',
+                            'give' => 'Gauta :amount už kudosu atmetimo anuliavimą taisymų žinutėje tarp :post',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => '',
+                            'reset' => 'Atmesta :amount už taisymų žinutę :post',
                         ],
 
                         'delete' => [
-                            'reset' => '',
+                            'reset' => 'Prarasta :amount dėl taisymų žinutės ištrynimo iš :post',
                         ],
 
                         'restore' => [
-                            'give' => '',
+                            'give' => 'Gauta :amount dėl taisymų žinutės atstatymo tarp :post',
                         ],
 
                         'vote' => [
-                            'give' => '',
-                            'reset' => '',
+                            'give' => 'Gauta :amount už gautus balsus taisymų žinutėje tarp :post',
+                            'reset' => 'Prarasta :amount dėl prarastu balsų taisymų žinutėje tarp :post',
                         ],
 
                         'recalculate' => [
-                            'give' => '',
-                            'reset' => '',
+                            'give' => 'Gauta :amount dėl balsų perskaičiavimo taisymų žinutėje tarp :post',
+                            'reset' => 'Prarasta :amount dėl balsų perskaičiavimo taisymų žinutėje tarp :post',
                         ],
                     ],
 
                     'forum_post' => [
-                        'give' => '',
-                        'reset' => '',
-                        'revoke' => '',
+                        'give' => 'Gauta :amount iš :giver dėl žinutės tarp :post',
+                        'reset' => ':giver atšaukė kudosu už žinutę tarp :post',
+                        'revoke' => ':giver atmetė kudosu už žinutę tarp :post',
                     ],
                 ],
 
                 'total_info' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'Priklauso nuo to kiek naudotojas prisidėjo prie bitmapų moderavimo. Žiūrėk :link dėl tolimesnės informacijos.',
+                    'link' => 'šį puslapį',
                 ],
             ],
             'me' => [
-                'title' => '',
+                'title' => 'aš!',
             ],
             'medals' => [
-                'empty' => "",
-                'recent' => '',
+                'empty' => "Šis vartotojas dar neturi. ;_;",
+                'recent' => 'Naujausi',
                 'title' => 'Medaliai',
             ],
             'playlists' => [
-                'title' => '',
+                'title' => 'Žaidimų Rinkiniai',
             ],
             'posts' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Žinutės',
+                'title_longer' => 'Paskutinės žinutės',
+                'show_more' => 'rodyti daugiau žinučių',
             ],
             'recent_activity' => [
                 'title' => 'Paskutinės',
             ],
             'realtime' => [
-                'title' => '',
+                'title' => 'Tinklo Žaidimai',
             ],
             'top_ranks' => [
-                'download_replay' => '',
-                'not_ranked' => 'Tik pripažinti beatmapai duoda pp.',
-                'pp_weight' => '',
-                'view_details' => '',
-                'title' => 'Reitingas',
+                'download_replay' => 'Atsiusti atkūrimą',
+                'not_ranked' => 'Tik reitinguoti bitmapai duoda pp',
+                'pp_weight' => 'prilygintas :percentage',
+                'view_details' => 'Išsamiau',
+                'title' => 'Reitingai',
 
                 'best' => [
                     'title' => 'Geriausi rezultatai',
@@ -339,26 +342,26 @@ return [
                     'title' => 'Pirmos vietos',
                 ],
                 'pin' => [
-                    'to_0' => '',
-                    'to_0_done' => '',
-                    'to_1' => '',
-                    'to_1_done' => '',
+                    'to_0' => 'Atsegti',
+                    'to_0_done' => 'Atsegtas rezultatas',
+                    'to_1' => 'Prisegti',
+                    'to_1_done' => 'Prisegtas rezultatas',
                 ],
                 'pinned' => [
-                    'title' => '',
+                    'title' => 'Prisegti Rezultatai',
                 ],
             ],
             'votes' => [
-                'given' => '',
-                'received' => '',
-                'title' => '',
-                'title_longer' => '',
-                'vote_count' => '',
+                'given' => 'Balsuota (paskutiniai 3 mėnesiai)',
+                'received' => 'Gauta Balsų (paskutiniai 3 mėnesiai)',
+                'title' => 'Balsai',
+                'title_longer' => 'Paskutiniai Balsavimai',
+                'vote_count' => 'Prieš:count_delimited balsas| Prieš:count_delimited balsai(-ų)',
             ],
             'account_standing' => [
                 'title' => 'Paskyros padėtis',
                 'bad_standing' => "<strong>:username</strong> paskyra nėra geroje padėtyje :(",
-                'remaining_silence' => '<strong>:username</strong> vėl galės kalbėti už :duration.',
+                'remaining_silence' => ':username vėl galės kalbėti už :duration.',
 
                 'recent_infringements' => [
                     'title' => 'Paskutiniai pažeidimai',
@@ -370,10 +373,10 @@ return [
                     'actor' => 'nuo :username',
 
                     'actions' => [
-                        'restriction' => '',
+                        'restriction' => 'Užblokuotas',
                         'silence' => 'Užtildytas',
-                        'tournament_ban' => '',
-                        'note' => 'Pastabos',
+                        'tournament_ban' => 'Turnyrų užblokavimas',
+                        'note' => 'Pastaba',
                     ],
                 ],
             ],
@@ -395,68 +398,69 @@ return [
             'title' => 'Vartotojas nerastas! ;_;',
         ],
         'page' => [
-            'button' => '',
-            'description' => '',
-            'edit_big' => '',
-            'placeholder' => '',
+            'button' => 'Redaguoti profilio puslapį',
+            'description' => '<strong>aš!</strong> yra asmeninis prisitaikomas plotas jūsų profilio puslapyje.',
+            'edit_big' => 'Redaguok manę!',
+            'placeholder' => 'Rašyk puslapio turinį čia',
 
             'restriction_info' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Tu turi būti :link, kad atrakinti šia funkciją.',
+                'link' => 'osu!rėmėjas',
             ],
         ],
         'post_count' => [
-            '_' => '',
-            'count' => '',
+            '_' => 'Įnašas :link',
+            'count' => ':count_delimited forumo žinutė|:count_delimited  forumo žinutės',
         ],
         'rank' => [
-            'country' => '',
-            'country_simple' => '',
-            'global' => '',
-            'global_simple' => '',
-            'highest' => '',
+            'country' => 'Šalies reitingas tarp :mode',
+            'country_simple' => 'Šalies Reitingas',
+            'global' => 'Pasaulinis reitingas tarp :mode',
+            'global_simple' => 'Pasaulinis Reitingas',
+            'highest' => 'Aukščiausias reitingas: :rank kada: :date',
         ],
         'stats' => [
-            'hit_accuracy' => '',
-            'level' => '',
-            'level_progress' => '',
-            'maximum_combo' => '',
-            'medals' => '',
-            'play_count' => '',
-            'play_time' => '',
-            'ranked_score' => '',
-            'replays_watched_by_others' => '',
-            'score_ranks' => '',
-            'total_hits' => '',
-            'total_score' => '',
+            'hit_accuracy' => 'Paspaudimų Tikslumas',
+            'level' => 'Lygis :level',
+            'level_progress' => 'Progresas į kitą lygį',
+            'maximum_combo' => 'Didžiausias Kombo',
+            'medals' => 'Medaliai',
+            'play_count' => 'Sužaidimų Skaičius',
+            'play_time' => 'Bendras žaidimo laikas
+',
+            'ranked_score' => 'Reitinguoti taškai',
+            'replays_watched_by_others' => 'Atkūrimų peržiūros iš kitų',
+            'score_ranks' => 'Taškų Įvertinimai',
+            'total_hits' => 'Visi Pataikymai',
+            'total_score' => 'Visi taškai',
             // modding stats
-            'graveyard_beatmapset_count' => '',
-            'loved_beatmapset_count' => '',
-            'pending_beatmapset_count' => '',
-            'ranked_beatmapset_count' => '',
+            'graveyard_beatmapset_count' => 'Palaidoti Bitmapai',
+            'loved_beatmapset_count' => 'Mylimi Bitmapai',
+            'pending_beatmapset_count' => 'Laukiantis Bitmapai',
+            'ranked_beatmapset_count' => 'Reitinguoti Bitmapai',
         ],
     ],
 
     'silenced_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'Šiuo metu esi nutildytas.',
+        'message' => 'Kai kurie veiksmai gali būti neprieinami.',
     ],
 
     'status' => [
-        'all' => '',
-        'online' => '',
-        'offline' => '',
+        'all' => 'Visi',
+        'online' => 'Prisijungęs',
+        'offline' => 'Atsijungęs',
     ],
     'store' => [
-        'saved' => '',
+        'saved' => 'Naudotojas sukurtas',
     ],
     'verify' => [
-        'title' => '',
+        'title' => 'Paskyros Patvirtinimas',
     ],
 
     'view_mode' => [
-        'brick' => '',
-        'card' => '',
-        'list' => '',
+        'brick' => 'Rodyti plytelėmis',
+        'card' => 'Rodymas kortelėmis',
+        'list' => 'Rodymas sąrašu',
     ],
 ];

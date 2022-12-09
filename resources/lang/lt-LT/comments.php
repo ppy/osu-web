@@ -5,18 +5,18 @@
 
 return [
     'deleted' => 'ištrinta',
-    'deleted_by' => '',
-    'deleted_by_system' => '',
-    'deleted_count' => '',
-    'edited' => 'redaguota :timeago pateikta :user',
+    'deleted_by' => 'prieš :timeago ištrinė :user',
+    'deleted_by_system' => 'sistema',
+    'deleted_count' => '::count_delimited ištrintas komentaras|:count_delimited ištrinti (-a) komentarai (-ų)',
+    'edited' => 'redaguota :timeago pateikė :user',
     'pinned' => 'prisegta',
     'empty' => 'Dar komentarų nėra.',
     'load_replies' => 'krauti atsakymus',
-    'replies_count' => '',
+    'replies_count' => ':count_delimited atsakymas|:count_delimited atsakymai (-ų)',
     'title' => 'Komentarai',
 
     'commentable_name' => [
-        'beatmapset' => 'Beatmapas',
+        'beatmapset' => 'Bitmapas',
         'build' => 'Pakeitimų sąrašas',
         'news_post' => 'Naujienos',
         '_deleted' => 'Ištrintas elementas',
@@ -33,7 +33,7 @@ return [
 
     'guest_button' => [
         'new' => 'Prisijunkite norint komentuoti',
-        'reply' => 'Prisijunkite jeigu norite atsakyti',
+        'reply' => 'Prisijunkite, kad atsakyti',
     ],
 
     'index' => [
