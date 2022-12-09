@@ -10,7 +10,7 @@ namespace App\Http\Controllers\Account;
 use App\Http\Controllers\Controller;
 use App\Models\GithubUser;
 use Github\Client as GithubClient;
-use GuzzleHttp\Client as HttpClient;
+use League\OAuth2\Client\Provider\Github as GithubProvider;
 
 class GithubUsersController extends Controller
 {
@@ -36,26 +36,15 @@ class GithubUsersController extends Controller
             'Invalid state.',
         );
 
-        $tokenResponseBody = (new HttpClient())
-            ->request('POST', 'https://github.com/login/oauth/access_token', [
-                'query' => [
-                    'client_id' => config('osu.github.client_id'),
-                    'client_secret' => config('osu.github.client_secret'),
-                    'code' => $params['code'],
-                ],
-            ])
-            ->getBody()
-            ->getContents();
-        parse_str($tokenResponseBody, $tokenResponseBodyParams);
-        $token = $tokenResponseBodyParams['access_token'] ?? null;
+        $client = new GithubClient();
+        $provider = $this->makeGithubOAuthProvider();
+        $token = $provider->getAccessToken('authorization_code', [
+            'code' => $params['code'],
+        ]);
+        $client->authenticate($token->getToken(), null, GithubClient::AUTH_ACCESS_TOKEN);
+        $apiUser = $client->currentUser()->show();
 
-        abort_if($token === null, 500, 'Invalid response from GitHub API.');
-
-        $githubClient = new GithubClient();
-        $githubClient->authenticate($token, null, GithubClient::AUTH_ACCESS_TOKEN);
-        $githubApiUser = $githubClient->currentUser()->show();
-
-        GithubUser::importFromGithub($githubApiUser, auth()->user());
+        GithubUser::importFromGithub($apiUser, auth()->user());
 
         return redirect(route('account.edit').'#github');
     }
@@ -64,15 +53,15 @@ class GithubUsersController extends Controller
     {
         abort_unless(GithubUser::canAuthenticate(), 404);
 
-        $state = bin2hex(random_bytes(32));
-        session()->put('github_auth_state', $state);
-
-        return redirect('https://github.com/login/oauth/authorize?'.http_build_query([
+        $provider = $this->makeGithubOAuthProvider();
+        $url = $provider->getAuthorizationUrl([
             'allow_signup' => 'false',
-            'client_id' => config('osu.github.client_id'),
-            'scope' => '',
-            'state' => $state,
-        ]));
+            'scope' => ' ', // Provider doesn't support empty scope
+        ]);
+
+        session()->put('github_auth_state', $provider->getState());
+
+        return redirect($url);
     }
 
     public function destroy(int $id)
@@ -84,5 +73,13 @@ class GithubUsersController extends Controller
             ->update(['user_id' => null]);
 
         return response(null, 204);
+    }
+
+    private function makeGithubOAuthProvider(): GithubProvider
+    {
+        return new GithubProvider([
+            'clientId' => config('osu.github.client_id'),
+            'clientSecret' => config('osu.github.client_secret'),
+        ]);
     }
 }
