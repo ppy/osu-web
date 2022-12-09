@@ -5,7 +5,7 @@
 
 return [
     'cart' => [
-        'checkout' => '',
+        'checkout' => 'Realitza la compra',
         'info' => '',
         'more_goodies' => '',
         'shipping_fees' => '',
@@ -49,7 +49,7 @@ return [
     'discount' => '',
 
     'invoice' => [
-        'echeck_delay' => '',
+        'echeck_delay' => 'Com que el seu pagament va ser un eCheck, si us plau permeti fins a 10 dies addicionals perquè el pagament es faci a través de PayPal!',
         'title_compact' => '',
 
         'status' => [
@@ -67,7 +67,7 @@ return [
     'order' => [
         'cancel' => '',
         'cancel_confirm' => '',
-        'cancel_not_allowed' => '',
+        'cancel_not_allowed' => 'Aquesta ordre no es pot cancel·lar en aquest moment.',
         'invoice' => '',
         'no_orders' => '',
         'paid_on' => '',

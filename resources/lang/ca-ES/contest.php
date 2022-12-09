@@ -5,7 +5,7 @@
 
 return [
     'header' => [
-        'small' => '',
+        'small' => 'Competeix de més maneres que només pressionant cercles.',
         'large' => '',
     ],
 
@@ -23,9 +23,9 @@ return [
         ],
 
         'button' => [
-            'add' => '',
-            'remove' => '',
-            'used_up' => '',
+            'add' => 'Vota',
+            'remove' => 'Eliminar vot',
+            'used_up' => 'Ja has fet servir tots els teus vots',
         ],
 
         'progress' => [
@@ -34,17 +34,17 @@ return [
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => '',
+                'incomplete_play' => 'Heu de jugar tots els beatmaps a les llistes de joc especificades abans de votar',
             ],
         ],
     ],
     'entry' => [
-        '_' => '',
-        'login_required' => '',
+        '_' => 'entrada',
+        'login_required' => 'Si us plau, inicieu la sessió per participar al concurs.',
         'silenced_or_restricted' => '',
         'preparation' => '',
         'drop_here' => '',
-        'download' => '',
+        'download' => 'Descarregar .osz',
         'wrong_type' => [
             'art' => '',
             'beatmap' => '',
@@ -54,10 +54,10 @@ return [
         'too_big' => '',
     ],
     'beatmaps' => [
-        'download' => '',
+        'download' => 'Descarregar entrada',
     ],
     'vote' => [
-        'list' => '',
+        'list' => 'vots',
         'count' => '',
         'points' => '',
     ],
@@ -67,12 +67,12 @@ return [
 
         'starts' => [
             '_' => '',
-            'soon' => '',
+            'soon' => 'aviat™',
         ],
     ],
     'states' => [
-        'entry' => '',
-        'voting' => '',
-        'results' => '',
+        'entry' => 'Entrada oberta',
+        'voting' => 'Votació iniciada',
+        'results' => 'Resultats fora',
     ],
 ];

@@ -124,6 +124,7 @@ return [
             'genre' => 'Műfaj',
             'language' => 'Nyelv',
             'no_scores' => 'Az adatok még számítás alatt...',
+            'nominators' => '',
             'nsfw' => 'Felnőtt tartalom',
             'offset' => 'Online eltolás',
             'points-of-failure' => 'Kibukási Alkalmak',

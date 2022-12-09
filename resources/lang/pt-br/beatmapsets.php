@@ -124,6 +124,7 @@ return [
             'genre' => 'Gênero',
             'language' => 'Idioma',
             'no_scores' => 'Dados ainda sendo calculados...',
+            'nominators' => '',
             'nsfw' => 'Conteúdo explícito',
             'offset' => 'Atraso de áudio online',
             'points-of-failure' => 'Pontos de Falha',

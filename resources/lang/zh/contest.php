@@ -50,7 +50,7 @@ return [
             'beatmap' => '只接受 .osu 格式的文件.',
             'music' => '只接受 .mp3 格式的文件.',
         ],
-        'wrong_dimensions' => '',
+        'wrong_dimensions' => '参与竞赛的数量必须达到 :widthx:height',
         'too_big' => '参赛文件的大小不能超过 :limit.',
     ],
     'beatmaps' => [
@@ -62,11 +62,11 @@ return [
         'points' => ':count_delimited 分',
     ],
     'dates' => [
-        'ended' => '结束于 :date',
+        'ended' => ':date 结束',
         'ended_no_date' => '已结束',
 
         'starts' => [
-            '_' => '开始于 :date',
+            '_' => ':date 开始',
             'soon' => '敬请期待™
 ',
         ],

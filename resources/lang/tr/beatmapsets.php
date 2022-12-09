@@ -124,6 +124,7 @@ return [
             'genre' => 'Tür',
             'language' => 'Dil',
             'no_scores' => 'Veriler hala hesaplanıyor...',
+            'nominators' => '',
             'nsfw' => 'Müstehcen içerik',
             'offset' => 'Çevrimiçi ofset',
             'points-of-failure' => 'Başarısız Olunan Kısımlar',

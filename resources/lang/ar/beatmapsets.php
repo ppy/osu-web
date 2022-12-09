@@ -124,6 +124,7 @@ return [
             'genre' => 'النوع',
             'language' => 'اللغة',
             'no_scores' => 'لا تزال البيانات تُحسب...',
+            'nominators' => '',
             'nsfw' => 'محتوى حساس',
             'offset' => 'الإزاحة عبر الإنترنت',
             'points-of-failure' => 'نقاط الفشل',

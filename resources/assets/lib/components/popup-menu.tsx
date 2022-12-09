@@ -3,9 +3,9 @@
 
 import { isModalShowing } from 'modal-helper';
 import * as React from 'react';
-import { createPortal } from 'react-dom';
 import { TooltipContext } from 'tooltip-context';
 import { nextVal } from 'utils/seq';
+import Portal from './portal';
 
 type Children = (dismiss: () => void) => React.ReactNode;
 
@@ -37,7 +37,7 @@ export default class PopupMenu extends React.PureComponent<PropsWithDefaults, St
   private readonly buttonRef = React.createRef<HTMLButtonElement>();
   private readonly eventId = `popup-menu-${nextVal()}`;
   private readonly menuRef = React.createRef<HTMLDivElement>();
-  private readonly portal = document.createElement('div');
+  private readonly menuRootRef = React.createRef<HTMLDivElement>();
   private tooltipHideEvent: unknown;
 
   private get $tooltipElement() {
@@ -53,14 +53,12 @@ export default class PopupMenu extends React.PureComponent<PropsWithDefaults, St
   componentDidMount() {
     this.tooltipHideEvent = this.$tooltipElement?.qtip('option', 'hide.event');
     $(window).on(`resize.${this.eventId}`, this.resize);
-    $(document).on(`turbolinks:before-cache.${this.eventId}`, this.removePortal);
   }
 
   componentDidUpdate(_prevProps: PropsWithDefaults, prevState: State) {
     if (prevState.active === this.state.active) return;
 
     if (this.state.active) {
-      this.addPortal();
       this.resize();
       const $tooltipElement = this.$tooltipElement;
 
@@ -72,7 +70,6 @@ export default class PopupMenu extends React.PureComponent<PropsWithDefaults, St
       $(document).on(`click.${this.eventId} keydown.${this.eventId}`, this.hide);
       this.props.onShow?.();
     } else {
-      this.removePortal();
       this.$tooltipElement?.qtip('option', 'hide.event', this.tooltipHideEvent);
 
       $(document).off(`click.${this.eventId} keydown.${this.eventId}`, this.hide);
@@ -87,7 +84,7 @@ export default class PopupMenu extends React.PureComponent<PropsWithDefaults, St
 
   render() {
     if (this.props.customRender) {
-      return this.props.customRender(createPortal(this.renderMenu(), this.portal), this.buttonRef, this.toggle);
+      return this.props.customRender(this.renderMenu(), this.buttonRef, this.toggle);
     }
 
     return (
@@ -101,16 +98,10 @@ export default class PopupMenu extends React.PureComponent<PropsWithDefaults, St
           <span className='fas fa-ellipsis-v' />
         </button>
 
-        {createPortal(this.renderMenu(), this.portal)}
+        {this.renderMenu()}
       </>
     );
   }
-
-  private readonly addPortal = () => {
-    if (this.portal.parentElement == null) {
-      document.body.appendChild(this.portal);
-    }
-  };
 
   private readonly dismiss = () => {
     this.setState({ active: false });
@@ -130,39 +121,49 @@ export default class PopupMenu extends React.PureComponent<PropsWithDefaults, St
   };
 
   private isMenuInPath(path: EventTarget[]) {
-    return path.includes(this.portal) || (this.buttonRef.current != null && path.includes(this.buttonRef.current));
-  }
+    for (const ref of ['menuRootRef', 'buttonRef'] as const) {
+      const el = this[ref].current;
+      if (el != null && path.includes(el)) {
+        return true;
+      }
+    }
 
-  private readonly removePortal = () => {
-    this.portal.remove();
-  };
+    return false;
+  }
 
   private renderMenu() {
     // using fadeIn causes rendering glitches from the stacking context due to will-change
     if (!this.state.active) return null;
 
     return (
-      <div ref={this.menuRef} className='popup-menu-float'>
-        {this.props.children(this.dismiss)}
-      </div>
+      <Portal>
+        <div ref={this.menuRootRef}>
+          <div ref={this.menuRef} className='popup-menu-float'>
+            {this.props.children(this.dismiss)}
+          </div>
+        </div>
+      </Portal>
     );
   }
 
   private readonly resize = () => {
     if (!this.state.active) return;
 
-    if (this.buttonRef.current == null || this.menuRef.current == null) {
+    const buttonEl = this.buttonRef.current;
+    const menuEl = this.menuRef.current;
+    const menuRootEl = this.menuRootRef.current;
+    if (buttonEl == null || menuEl == null || menuRootEl == null) {
       throw new Error('missing button and/or menu element');
     }
 
     // disappear if the tree the menu is in is no longer displayed
-    if (this.buttonRef.current.offsetParent == null) {
-      this.portal.style.display = 'none';
+    if (buttonEl.offsetParent == null) {
+      menuRootEl.style.display = 'none';
       return;
     }
 
-    const buttonRect = this.buttonRef.current.getBoundingClientRect();
-    const menuRect = this.menuRef.current.getBoundingClientRect();
+    const buttonRect = buttonEl.getBoundingClientRect();
+    const menuRect = menuEl.getBoundingClientRect();
     const { scrollX, scrollY } = window;
 
     let left = scrollX + buttonRect.right;
@@ -172,16 +173,16 @@ export default class PopupMenu extends React.PureComponent<PropsWithDefaults, St
       left += menuRect.width - buttonRect.width;
     }
 
-    this.portal.style.display = 'block';
-    this.portal.style.position = 'absolute';
-    this.portal.style.top = `${Math.floor(scrollY + buttonRect.bottom + 5)}px`;
-    this.portal.style.left = `${Math.floor(left)}px`;
+    menuRootEl.style.display = 'block';
+    menuRootEl.style.position = 'absolute';
+    menuRootEl.style.top = `${Math.floor(scrollY + buttonRect.bottom + 5)}px`;
+    menuRootEl.style.left = `${Math.floor(left)}px`;
 
     // keeps the menu showing above the tooltip;
     // portal should be after the tooltip in the document body.
     const tooltipElement = this.tooltipElement;
     if (tooltipElement != null) {
-      this.portal.style.zIndex = getComputedStyle(tooltipElement).zIndex;
+      menuRootEl.style.zIndex = getComputedStyle(tooltipElement).zIndex;
     }
   };
 

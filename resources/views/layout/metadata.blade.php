@@ -82,7 +82,8 @@
 
 <script>
     var currentLocale = {!! json_encode($currentLocale) !!};
-    var fallbackLocale = {!! json_encode(config('app.fallback_locale')) !!};
+    var fallbackLocale = {!! json_encode($fallbackLocale) !!};
+    var experimentalHost = {!! json_encode(config('osu.urls.experimental_host')) !!}
 </script>
 
 <script src="{{ unmix('js/runtime.js') }}" data-turbolinks-track="reload"></script>

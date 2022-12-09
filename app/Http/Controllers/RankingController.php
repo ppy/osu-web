@@ -133,24 +133,27 @@ class RankingController extends Controller
         } else {
             $class = UserStatistics\Model::getClass($mode, $this->params['variant']);
             $table = (new $class())->getTable();
+            $ppColumn = $class::ppColumn();
             $stats = $class
                 ::with(['user', 'user.country'])
+                ->where($ppColumn, '>', 0)
                 ->whereHas('user', function ($userQuery) {
                     $userQuery->default();
                 });
 
             if ($type === 'performance') {
+                $isExperimentalRank = config('osu.scores.experimental_rank_as_default');
                 if ($this->country !== null) {
                     $stats->where('country_acronym', $this->country['acronym']);
                     // preferrable to rank_score when filtering by country.
                     // On a few countries the default index is slightly better but much worse on the rest.
-                    $forceIndex = 'country_acronym_2';
+                    $forceIndex = $isExperimentalRank ? 'country_acronym_exp' : 'country_acronym_2';
                 } else {
                     // force to order by rank_score instead of sucking down entire users table first.
-                    $forceIndex = 'rank_score';
+                    $forceIndex = $isExperimentalRank ? 'rank_score_exp' : 'rank_score';
                 }
 
-                $stats->orderBy('rank_score', 'desc');
+                $stats->orderBy($ppColumn, 'desc');
             } else { // 'score'
                 $stats->orderBy('ranked_score', 'desc');
                 // force to order by ranked_score instead of sucking down entire users table first.

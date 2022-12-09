@@ -43,14 +43,14 @@ return [
     ],
 
     'post' => [
-        'confirm_destroy' => '',
-        'confirm_restore' => '',
+        'confirm_destroy' => 'Realment voleu eliminar la publicació?',
+        'confirm_restore' => 'Realment voleu restaurar la publicació?',
         'edited' => '',
         'posted_at' => '',
         'posted_by' => '',
 
         'actions' => [
-            'destroy' => '',
+            'destroy' => 'Eliminar publicació',
             'edit' => '',
             'report' => '',
             'restore' => '',
@@ -75,9 +75,9 @@ return [
     ],
 
     'topic' => [
-        'confirm_destroy' => '',
-        'confirm_restore' => '',
-        'deleted' => '',
+        'confirm_destroy' => 'Realment voleu eliminar el tema?',
+        'confirm_restore' => 'Realment voleu restaurar el tema?',
+        'deleted' => 'tema eliminat',
         'go_to_latest' => '',
         'has_replied' => '',
         'in_forum' => '',
@@ -88,11 +88,11 @@ return [
         'post_reply' => '',
         'reply_box_placeholder' => '',
         'reply_title_prefix' => '',
-        'started_by' => '',
+        'started_by' => 'per :user',
         'started_by_verbose' => '',
 
         'actions' => [
-            'destroy' => '',
+            'destroy' => 'Eliminar tema',
             'restore' => '',
         ],
 
@@ -101,7 +101,7 @@ return [
             'preview' => '',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
-            'preview_hide' => '',
+            'preview_hide' => 'Escriure',
             'submit' => '',
 
             'necropost' => [
@@ -123,7 +123,7 @@ return [
             'enter' => '',
             'first' => '',
             'last' => '',
-            'next' => '',
+            'next' => 'saltar les 10 publicacions següents',
             'previous' => '',
         ],
 
@@ -132,15 +132,15 @@ return [
             'button' => '',
 
             'columns' => [
-                'action' => '',
-                'date' => '',
-                'user' => '',
+                'action' => 'Acció',
+                'date' => 'Data',
+                'user' => 'Usuari',
             ],
 
             'data' => [
-                'add_tag' => '',
+                'add_tag' => 'etiqueta ":tag" agregada',
                 'announcement' => '',
-                'edit_topic' => '',
+                'edit_topic' => 'a :title',
                 'fork' => '',
                 'pin' => '',
                 'post_operation' => '',
@@ -152,8 +152,8 @@ return [
             'no_results' => '',
 
             'operations' => [
-                'delete_post' => '',
-                'delete_topic' => '',
+                'delete_post' => 'Publicació eliminada',
+                'delete_topic' => 'Tema eliminat',
                 'edit_topic' => '',
                 'edit_poll' => '',
                 'fork' => '',
@@ -226,8 +226,8 @@ return [
             ],
 
             'poll' => [
-                'hide_results' => '',
-                'hide_results_info' => '',
+                'hide_results' => 'Amaga els resultats de l\'enquesta.',
+                'hide_results_info' => 'Només es mostraran després que finalitzi l\'enquesta.',
                 'length' => '',
                 'length_days_suffix' => '',
                 'length_info' => '',
@@ -236,7 +236,7 @@ return [
                 'options' => '',
                 'options_info' => '',
                 'title' => '',
-                'vote_change' => '',
+                'vote_change' => 'Permetre tornar a votar.',
                 'vote_change_info' => '',
             ],
         ],
@@ -320,12 +320,12 @@ return [
         ],
 
         'moderate_toggle_deleted' => [
-            'show' => '',
-            'hide' => '',
+            'show' => 'Mostra publicacions eliminades',
+            'hide' => 'Amagar publicacions eliminades',
         ],
 
         'show' => [
-            'deleted-posts' => '',
+            'deleted-posts' => 'Publicacions eliminades',
             'total_posts' => '',
 
             'feature_vote' => [

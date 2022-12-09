@@ -4,175 +4,175 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => '',
-    'not_negative' => '',
-    'required' => '',
-    'too_long' => '',
-    'wrong_confirmation' => '',
+    'invalid' => 'Določen :attribute je neveljaven.',
+    'not_negative' => ':attribute ne sme biti negativen.',
+    'required' => ':attribute je obvezen.',
+    'too_long' => 'Dosežen največja dolžina za :attribute - lahko vsebuje samo do :limit znakov.',
+    'wrong_confirmation' => 'Potrditev se ne ujema.',
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => '',
-        'beatmapset_no_hype' => "",
-        'hype_requires_null_beatmap' => '',
-        'invalid_beatmap_id' => '',
-        'invalid_beatmapset_id' => '',
-        'locked' => '',
+        'beatmap_missing' => 'Časovna oznaka je navedena, ampak manjka težavnost beatmape.',
+        'beatmapset_no_hype' => "Beatmapa ne more biti hypana.",
+        'hype_requires_null_beatmap' => 'Hype mora biti opravljen v General (vse težavnosti) delu. ',
+        'invalid_beatmap_id' => 'Določena težavnost je neveljavna. ',
+        'invalid_beatmapset_id' => 'Določena beatmapa je neveljavna.',
+        'locked' => 'Razprava je zaklenjena.',
 
         'attributes' => [
-            'message_type' => '',
-            'timestamp' => '',
+            'message_type' => 'Tip sporočila',
+            'timestamp' => 'Časovna oznaka',
         ],
 
         'hype' => [
-            'discussion_locked' => "",
-            'guest' => '',
-            'hyped' => '',
-            'limit_exceeded' => '',
-            'not_hypeable' => '',
-            'owner' => '',
+            'discussion_locked' => "Ta beatmapa je trenutno zaklenjena za razpravo in ne more biti hypana",
+            'guest' => 'Za hypanje je potreben vpis.',
+            'hyped' => 'To beatmapo si že hypal.',
+            'limit_exceeded' => 'Porabil si vse svoje hype točke.',
+            'not_hypeable' => 'Ta beatmapa ne more biti hypana',
+            'owner' => 'Ne moreš hypati svoje beatmape.',
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => '',
-            'negative' => "",
+            'exceeds_beatmapset_length' => 'Določena časovna oznaka presega dolžino beatmape.',
+            'negative' => "Časovna oznaka ne sme biti negativna.",
         ],
     ],
 
     'beatmapset_discussion_post' => [
-        'discussion_locked' => '',
-        'first_post' => '',
+        'discussion_locked' => 'Razprava je zaklenjena.',
+        'first_post' => 'Izbris začetne objave ni mogoč.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Sporočilo',
         ],
     ],
 
     'comment' => [
-        'deleted_parent' => '',
-        'top_only' => '',
+        'deleted_parent' => 'Odgovor na izbrisan komentar ni dovoljen.',
+        'top_only' => 'Pripenjanje odgovora na komentar ni dovoljeno.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Sporočilo',
         ],
     ],
 
     'follow' => [
-        'invalid' => '',
+        'invalid' => 'Določen :attribute je neveljaven.',
     ],
 
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => '',
-            'not_enough_feature_votes' => '',
+            'not_enough_feature_votes' => 'Ni dovolj glasov.',
         ],
 
         'poll_vote' => [
-            'invalid' => '',
+            'invalid' => 'Določena možnost je neveljavna.',
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => '',
-            'beatmapset_post_no_edit' => '',
-            'first_post_no_delete' => '',
-            'missing_topic' => '',
-            'only_quote' => '',
+            'beatmapset_post_no_delete' => 'Brisanje objave metadata beatmape ni dovoljeno.',
+            'beatmapset_post_no_edit' => 'Urejanje objave metadata beatmape ni dovoljeno.',
+            'first_post_no_delete' => 'Izbris začetne objave ni mogoč',
+            'missing_topic' => 'Objavi manjka tema',
+            'only_quote' => 'Tvoj odgovor vsebuje le citat.',
 
             'attributes' => [
-                'post_text' => '',
+                'post_text' => 'Telo objave',
             ],
         ],
 
         'topic' => [
             'attributes' => [
-                'topic_title' => '',
+                'topic_title' => 'Naslov teme',
             ],
         ],
 
         'topic_poll' => [
-            'duplicate_options' => '',
-            'grace_period_expired' => '',
-            'hiding_results_forever' => '',
-            'invalid_max_options' => '',
-            'minimum_one_selection' => '',
-            'minimum_two_options' => '',
-            'too_many_options' => '',
+            'duplicate_options' => 'Podvojena možnost ni dovoljena.',
+            'grace_period_expired' => 'Urejanje glasovanja po več kot :limit ur ni možno.',
+            'hiding_results_forever' => 'Rezultatov glasovanja, ki se nikoli ne konča, ni možno skriti.',
+            'invalid_max_options' => 'Možnosti na igralca naj ne presega številu možnih možnosti.',
+            'minimum_one_selection' => 'Na igralca je potrebna vsaj ena možnost.',
+            'minimum_two_options' => 'Potrebni sta dve možnosti.',
+            'too_many_options' => 'Prekoračeno največje število dovoljenih možnosti.',
 
             'attributes' => [
-                'title' => '',
+                'title' => 'Naslov glasovanja',
             ],
         ],
 
         'topic_vote' => [
-            'required' => '',
-            'too_many' => '',
+            'required' => 'Izberi možnost, ko glasuješ.',
+            'too_many' => 'Izbranih več možnosti kot je dovoljeno.',
         ],
     ],
 
     'oauth' => [
         'client' => [
-            'too_many' => '',
-            'url' => '',
+            'too_many' => 'Prekoračeno največje število dovoljenih OAuth aplikacij.',
+            'url' => 'Prosimo vnesi pravilen URL.',
 
             'attributes' => [
-                'name' => '',
-                'redirect' => '',
+                'name' => 'Ime aplikacije',
+                'redirect' => 'Callback URL aplikacije',
             ],
         ],
     ],
 
     'user' => [
-        'contains_username' => '',
-        'email_already_used' => '',
-        'email_not_allowed' => '',
-        'invalid_country' => '',
-        'invalid_discord' => '',
-        'invalid_email' => "",
-        'invalid_twitter' => '',
-        'too_short' => '',
-        'unknown_duplicate' => '',
-        'username_available_in' => '',
-        'username_available_soon' => '',
-        'username_invalid_characters' => '',
-        'username_in_use' => '',
-        'username_locked' => '', // TODO: language for this should be slightly different.
-        'username_no_space_userscore_mix' => '',
-        'username_no_spaces' => "",
-        'username_not_allowed' => '',
-        'username_too_short' => '',
-        'username_too_long' => '',
-        'weak' => '',
-        'wrong_current_password' => '',
-        'wrong_email_confirmation' => '',
-        'wrong_password_confirmation' => '',
-        'too_long' => '',
+        'contains_username' => 'Geslo naj ne vsebuje uporabniškega imena.',
+        'email_already_used' => 'Ta E-poštni naslov je že uporabljen.',
+        'email_not_allowed' => 'Ta E-poštni naslov ni dovoljen.',
+        'invalid_country' => 'Država ni v podatkovni bazi.',
+        'invalid_discord' => 'Neveljavno Discord uporabniško ime.',
+        'invalid_email' => "E-poštni naslov ni veljaven.",
+        'invalid_twitter' => 'Neveljavno Twitter uporabniško ime.',
+        'too_short' => 'Novo geslo je prekratko.',
+        'unknown_duplicate' => 'Uporabniško ime ali e-poštni naslov je že uporabljen.',
+        'username_available_in' => 'To uporabniško ime bo na voljo čez :duration.',
+        'username_available_soon' => 'To uporabniško ime bo na voljo zelo kmalu!',
+        'username_invalid_characters' => 'Željeno uporabniško ime vsebuje neveljavne znake.',
+        'username_in_use' => 'To uporabniško ime je že v uporabi!',
+        'username_locked' => 'To uporabniško ime je že v uporabi!', // TODO: language for this should be slightly different.
+        'username_no_space_userscore_mix' => 'Prosimo uporabi podčrtaje ali presledke, ne oboje hkrati!',
+        'username_no_spaces' => "Uporabniško ime se ne sme začeti ali končati s presledki!",
+        'username_not_allowed' => 'Ta izbira uporabniškega imena ni dovoljena. ',
+        'username_too_short' => 'Željeno uporabniško ime je prekratko.',
+        'username_too_long' => 'Željeno uporabniško ime je predolgo.',
+        'weak' => 'Nedovoljeno geslo.',
+        'wrong_current_password' => 'Trenutno geslo je nepravilno.',
+        'wrong_email_confirmation' => 'E-poštno potrdilo se ne ujema.',
+        'wrong_password_confirmation' => 'Potrdilo gesla se ne ujema.',
+        'too_long' => 'Prekoračena največja dolžina - lahko vsebuje le do :limit znakov.',
 
         'attributes' => [
-            'username' => '',
-            'user_email' => '',
-            'password' => '',
+            'username' => 'Uporabniško ime',
+            'user_email' => 'E-poštni naslov',
+            'password' => 'Geslo',
         ],
 
         'change_username' => [
-            'restricted' => '',
+            'restricted' => 'Ne moreš si spremeniti uporabniškega imena medtem, ko imaš omejitev na profilu.',
             'supporter_required' => [
-                '_' => '',
-                'link_text' => '',
+                '_' => 'Za spremembo imena moraš :link!',
+                'link_text' => 'podpirati osu!',
             ],
-            'username_is_same' => '',
+            'username_is_same' => 'To uporabniško ime je že tvoje!',
         ],
     ],
 
     'user_report' => [
-        'no_ranked_beatmapset' => '',
-        'reason_not_valid' => '',
-        'self' => "",
+        'no_ranked_beatmapset' => 'Rankiranih beatmap ni možno prijaviti ',
+        'reason_not_valid' => ':reason ni veljaven tip prijave.',
+        'self' => "Ne moreš prijaviti samega sebe!",
     ],
 
     'store' => [
         'order_item' => [
             'attributes' => [
-                'quantity' => '',
-                'cost' => '',
+                'quantity' => 'Količina',
+                'cost' => 'Cena',
             ],
         ],
     ],

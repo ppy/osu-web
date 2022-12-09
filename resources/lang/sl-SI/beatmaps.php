@@ -91,7 +91,7 @@ return [
 
         'new' => [
             'pin' => 'Pripni',
-            'timestamp' => 'Časonvna oznaka',
+            'timestamp' => 'Časovna oznaka',
             'timestamp_missing' => 'Za časovno oznako pritisni ctrl-c v načinu urejanja in prilepi svoje sporočilo!',
             'title' => 'Nova razprava',
             'unpin' => 'Odpni',

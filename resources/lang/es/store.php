@@ -13,7 +13,7 @@ return [
         'total' => 'total',
 
         'errors_no_checkout' => [
-            'line_1' => 'Oh oh, ¡hay problema con tu carrito que esta impidiendo el pago!',
+            'line_1' => 'Oh, oh, ¡hay problemas con su carrito que están impidiendo el pago!',
             'line_2' => 'Elimina o actualiza los elementos de arriba para continuar.',
         ],
 

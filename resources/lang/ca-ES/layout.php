@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Reprodueix la següent pista automàticament',
     ],
 
     'defaults' => [
@@ -14,7 +14,7 @@ return [
 
     'header' => [
         'admin' => [
-            'beatmapset' => '',
+            'beatmapset' => 'beatmapset',
             'beatmapset_covers' => '',
             'contest' => '',
             'contests' => '',
@@ -26,7 +26,7 @@ return [
         ],
 
         'beatmapsets' => [
-            'show' => '',
+            'show' => 'info',
             'discussions' => '',
         ],
 
@@ -58,16 +58,16 @@ return [
     ],
 
     'gallery' => [
-        'close' => '',
-        'fullscreen' => '',
-        'zoom' => '',
-        'previous' => '',
-        'next' => '',
+        'close' => 'Tancar (Esc)',
+        'fullscreen' => 'Alternar pantalla completa',
+        'zoom' => 'Apropar/reduir',
+        'previous' => 'Anterior (fletxa esquerra)',
+        'next' => 'Següent (fletxa dreta)',
     ],
 
     'menu' => [
         'beatmaps' => [
-            '_' => '',
+            '_' => 'beatmaps',
         ],
         'community' => [
             '_' => '',
@@ -78,7 +78,7 @@ return [
             'getAbuse' => '',
             'getFaq' => '',
             'getRules' => '',
-            'getSupport' => '',
+            'getSupport' => 'no, de debò, necessito ajuda!',
         ],
         'home' => [
             '_' => '',
@@ -96,26 +96,26 @@ return [
     'footer' => [
         'general' => [
             '_' => '',
-            'home' => '',
-            'changelog-index' => '',
-            'beatmaps' => '',
-            'download' => '',
+            'home' => 'Casa',
+            'changelog-index' => 'Registre de canvis',
+            'beatmaps' => 'Llistat de beatmaps',
+            'download' => 'Descarregar osu!',
         ],
         'help' => [
-            '_' => '',
-            'faq' => '',
-            'forum' => '',
-            'livestreams' => '',
+            '_' => 'Ajuda i comunitat',
+            'faq' => 'Preguntes freqüents',
+            'forum' => 'Fòrums de la comunitat',
+            'livestreams' => 'Transmissions en directe',
             'report' => '',
-            'wiki' => '',
+            'wiki' => 'Wiki',
         ],
         'legal' => [
-            '_' => '',
-            'copyright' => '',
-            'privacy' => '',
-            'server_status' => '',
-            'source_code' => '',
-            'terms' => '',
+            '_' => 'Estat legal',
+            'copyright' => 'Drets d\'autor (DMCA)',
+            'privacy' => 'Privacitat',
+            'server_status' => 'Estat del servidor',
+            'source_code' => 'Codi font',
+            'terms' => 'Termes',
         ],
     ],
 
@@ -125,7 +125,7 @@ return [
             'description' => '',
         ],
         '404' => [
-            'error' => '',
+            'error' => 'Falta la pàgina',
             'description' => "",
         ],
         '403' => [
@@ -149,16 +149,16 @@ return [
             'description' => '',
         ],
         '500' => [
-            'error' => '',
-            'description' => "",
+            'error' => 'Oh no! Alguna cosa s\'ha trencat! ;_;',
+            'description' => "Som notificats automàticament de cada error.",
         ],
         'fatal' => [
             'error' => '',
-            'description' => "",
+            'description' => "Som notificats automàticament de cada error.",
         ],
         '503' => [
             'error' => '',
-            'description' => "",
+            'description' => "El manteniment normalment triga entre 5 segons i 10 minuts. Si continueu passat aquest temps, veieu :link per a més informació.",
             'link' => [
                 'text' => '',
                 'href' => '',
@@ -173,8 +173,8 @@ return [
 
         'login' => [
             'forgot' => "",
-            'password' => '',
-            'title' => '',
+            'password' => 'contrasenya',
+            'title' => 'Inicia sessió per continuar',
             'username' => '',
 
             'error' => [

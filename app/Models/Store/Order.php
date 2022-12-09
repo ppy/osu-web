@@ -667,6 +667,8 @@ class Order extends Model
                 $params['extra_data'] = $this->extraDataTournamentBanner($params, $product);
                 $params['cost'] = $product->cost ?? 0;
                 break;
+            case Product::REDIRECT_PLACEHOLDER:
+                throw new InvariantException("Product can't be ordered");
             default:
                 $params['cost'] = $product->cost ?? 0;
         }
