@@ -15,6 +15,10 @@ class ProductsController extends Controller
     public function show($id)
     {
         $product = $this->getProduct($id);
+        if ($product->isRedirectPlaceholder()) {
+            return redirect($product->description);
+        }
+
         $cart = $this->userCart();
 
         $requestedNotification = Auth::check()
