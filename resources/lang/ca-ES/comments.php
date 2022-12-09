@@ -4,10 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'deleted' => '',
-    'deleted_by' => '',
-    'deleted_by_system' => '',
-    'deleted_count' => '',
+    'deleted' => 'eliminat',
+    'deleted_by' => 'eliminat :timeago per :user',
+    'deleted_by_system' => 'sistema',
+    'deleted_count' => ':count_delimited comentari eliminat|:count_delimited comentaris eliminats',
     'edited' => '',
     'pinned' => '',
     'empty' => '',
@@ -16,10 +16,10 @@ return [
     'title' => '',
 
     'commentable_name' => [
-        'beatmapset' => '',
+        'beatmapset' => 'Beatmap',
         'build' => '',
         'news_post' => '',
-        '_deleted' => '',
+        '_deleted' => 'Element eliminat',
     ],
 
     'editor' => [

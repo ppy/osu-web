@@ -40,6 +40,8 @@ use Carbon\Carbon;
  */
 class Product extends Model
 {
+    const REDIRECT_PLACEHOLDER = 'redirect';
+
     protected $primaryKey = 'product_id';
 
     protected $casts = [
@@ -69,6 +71,11 @@ class Product extends Model
     public function notificationRequests()
     {
         return $this->hasMany(NotificationRequest::class);
+    }
+
+    public function isRedirectPlaceholder()
+    {
+        return $this->custom_class === static::REDIRECT_PLACEHOLDER;
     }
 
     public function inStock($quantity = 1, $includeVariations = false)
@@ -267,5 +274,12 @@ class Product extends Model
         }
 
         return $this->types;
+    }
+
+    public function url(): string
+    {
+        return $this->isRedirectPlaceholder()
+            ? $this->description
+            : route('store.products.show', $this);
     }
 }

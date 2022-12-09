@@ -6,102 +6,102 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => '',
-            'system_generated' => '',
-            'wrong_user' => '',
+            'null_user' => 'Heu d\'iniciar sessió per editar.',
+            'system_generated' => 'No es pot editar una publicació generada pel sistema.',
+            'wrong_user' => 'Has de ser el propietari de la publicació per editar-la.',
         ],
     ],
 
     'events' => [
-        'empty' => '',
+        'empty' => 'No ha passat res... encara.',
     ],
 
     'index' => [
-        'deleted_beatmap' => '',
-        'none_found' => '',
-        'title' => '',
+        'deleted_beatmap' => 'eliminat',
+        'none_found' => 'No s\'ha trobat cap discussió que coincideixi amb aquests criteris de cerca.',
+        'title' => 'Discussions del beatmap',
 
         'form' => [
-            '_' => '',
-            'deleted' => '',
-            'mode' => '',
-            'only_unresolved' => '',
-            'types' => '',
-            'username' => '',
+            '_' => 'Cerca',
+            'deleted' => 'Inclou discussions eliminades',
+            'mode' => 'Mode del beatmap',
+            'only_unresolved' => 'Mostra només discussions no resoltes',
+            'types' => 'Tipus de missatges',
+            'username' => 'Nom d\'usuari',
 
             'beatmapset_status' => [
-                '_' => '',
-                'all' => '',
-                'disqualified' => '',
-                'never_qualified' => '',
-                'qualified' => '',
-                'ranked' => '',
+                '_' => 'Estat del beatmap',
+                'all' => 'Tots',
+                'disqualified' => 'Desqualificat',
+                'never_qualified' => 'Mai qualificat',
+                'qualified' => 'Qualificat',
+                'ranked' => 'Classificat',
             ],
 
             'user' => [
-                'label' => '',
-                'overview' => '',
+                'label' => 'Usuari',
+                'overview' => 'Resum d\'activitats',
             ],
         ],
     ],
 
     'item' => [
-        'created_at' => '',
-        'deleted_at' => '',
-        'message_type' => '',
-        'permalink' => '',
+        'created_at' => 'Data de publicació',
+        'deleted_at' => 'Data d\'eliminació',
+        'message_type' => 'Tipus',
+        'permalink' => 'Enllaç permanent',
     ],
 
     'nearby_posts' => [
-        'confirm' => '',
-        'notice' => '',
-        'unsaved' => '',
+        'confirm' => 'Cap de les publicacions aborda el meu assumpte',
+        'notice' => 'Ja hi ha publicacions a prop de :timestamp (:existing_timestamps). Si us plau reviseu-les abans de publicar.',
+        'unsaved' => ':count en aquesta revisió',
     ],
 
     'owner_editor' => [
-        'button' => '',
-        'reset_confirm' => '',
-        'user' => '',
-        'version' => '',
+        'button' => 'Propietari de la dificultat',
+        'reset_confirm' => 'Restablir propietari per a aquesta dificultat?',
+        'user' => 'Propietari',
+        'version' => 'Dificultat',
     ],
 
     'reply' => [
         'open' => [
-            'guest' => '',
-            'user' => '',
+            'guest' => 'Inicia sessió per respondre',
+            'user' => 'Respondre',
         ],
     ],
 
     'review' => [
-        'block_count' => '',
-        'go_to_parent' => '',
-        'go_to_child' => '',
+        'block_count' => ':used / :max blocs utilitzats',
+        'go_to_parent' => 'Veure publicació de revisió',
+        'go_to_child' => 'Veure discussió',
         'validation' => [
-            'block_too_large' => '',
-            'external_references' => '',
-            'invalid_block_type' => '',
-            'invalid_document' => '',
-            'invalid_discussion_type' => '',
-            'minimum_issues' => '',
-            'missing_text' => '',
-            'too_many_blocks' => '',
+            'block_too_large' => 'cada bloc només pot contenir fins a :limit caràcters',
+            'external_references' => 'la revisió conté referències a problemes que no pertanyen a aquesta revisió',
+            'invalid_block_type' => 'tipus de bloc no vàlid',
+            'invalid_document' => 'revisió no vàlida',
+            'invalid_discussion_type' => 'tipus de discussió no vàlida',
+            'minimum_issues' => 'la revisió ha de contenir un mínim de :count problema|la revisió ha de contenir un mínim de :count problemes',
+            'missing_text' => 'falta text al bloc',
+            'too_many_blocks' => 'les revisions només poden contenir :count paràgraf/problema|les revisions només poden contenir fins a :count paràgrafs/problemes',
         ],
     ],
 
     'system' => [
         'resolved' => [
-            'true' => '',
-            'false' => '',
+            'true' => 'Marcat com a resolt per :user',
+            'false' => 'Reobert per :user',
         ],
     ],
 
     'timestamp_display' => [
-        'general' => '',
-        'general_all' => '',
+        'general' => 'general',
+        'general_all' => 'general (tot)',
     ],
 
     'user_filter' => [
-        'everyone' => '',
-        'label' => '',
+        'everyone' => 'Tothom',
+        'label' => 'Filtra per usuari',
     ],
 ];

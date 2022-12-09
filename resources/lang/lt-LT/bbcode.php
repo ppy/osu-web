@@ -10,7 +10,7 @@ return [
     'italic' => 'Pasviręs',
     'link' => 'Nuoroda',
     'list' => 'Sąrašas',
-    'list_numbered' => 'Sunumeruotas sąrašas',
+    'list_numbered' => 'Numeruotas sąrašas',
     'size' => [
         '_' => 'Šrifto dydis',
         'tiny' => 'Mažytis',

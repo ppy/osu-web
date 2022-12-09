@@ -91,16 +91,15 @@ class SupporterTag
     {
         static $transKey = 'store.order.item.display_name.supporter_tag';
 
-        $durationText = static::getDurationText((int) $item->extra_data['duration']);
-
-        // test data didn't include username, so ?? ''
-        $username = $item->extra_data['username'] ?? '';
+        $extraData = $item->extra_data;
+        $durationText = static::getDurationText($extraData->duration);
+        $username = $extraData->username;
 
         return $html
             ? blade_safe(osu_trans($transKey, [
                 'duration' => e($durationText),
                 'name' => e($item->product->name),
-                'username' => link_to_user($item->extra_data['target_id'], $username),
+                'username' => link_to_user($extraData->targetId, $username),
             ])) : osu_trans($transKey, [
                 'duration' => $durationText,
                 'name' => $item->product->name,

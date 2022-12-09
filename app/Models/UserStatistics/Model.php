@@ -20,6 +20,15 @@ abstract class Model extends BaseModel
 {
     use Memoizes;
 
+    public static function ppColumn()
+    {
+        static $ret;
+
+        return $ret ??= config('osu.scores.experimental_rank_as_default')
+            ? 'rank_score_exp'
+            : 'rank_score';
+    }
+
     protected $primaryKey = 'user_id';
 
     public $timestamps = false;
@@ -129,7 +138,9 @@ abstract class Model extends BaseModel
                 'playcount' => 0,
                 'rank' => 0,
                 'rank_score' => 0,
+                'rank_score_exp' => 0,
                 'rank_score_index' => 0,
+                'rank_score_index_exp' => 0,
                 'ranked_score' => 0,
                 'replay_popularity' => 0,
                 'total_score' => 0,
@@ -187,9 +198,23 @@ abstract class Model extends BaseModel
         return $this->rank_score_index;
     }
 
+    public function globalRankExp(): ?float
+    {
+        $value = $this->rank_score_index_exp;
+
+        return $value === 0 ? null : $value;
+    }
+
     public function isRanked()
     {
         return $this->rank_score !== 0.0 && $this->rank_score_index !== 0;
+    }
+
+    public function pp()
+    {
+        $column = static::ppColumn();
+
+        return $this->$column;
     }
 
     public function scopeFriendsOf($query, $user)

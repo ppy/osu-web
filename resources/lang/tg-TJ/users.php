@@ -217,6 +217,9 @@ return [
                 'loved' => [
                     'title' => '',
                 ],
+                'nominated' => [
+                    'title' => '',
+                ],
                 'pending' => [
                     'title' => '',
                 ],

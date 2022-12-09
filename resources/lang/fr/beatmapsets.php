@@ -124,6 +124,7 @@ return [
             'genre' => 'Genre',
             'language' => 'Langue',
             'no_scores' => 'Les données sont encore en cours de calcul...',
+            'nominators' => '',
             'nsfw' => 'Contenu explicite',
             'offset' => 'Décalage en ligne',
             'points-of-failure' => 'Répartition des échecs',

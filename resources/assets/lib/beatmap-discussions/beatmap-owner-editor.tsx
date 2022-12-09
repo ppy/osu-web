@@ -155,7 +155,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
       ? (this.inputUser ?? { avatar_url: transparentGif })
       : this.props.user;
 
-    return <UserAvatar modifiers={['full-circle']} user={user} />;
+    return <UserAvatar modifiers='full-circle' user={user} />;
   }
 
   private renderButtons() {

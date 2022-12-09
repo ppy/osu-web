@@ -5,8 +5,8 @@
 
 return [
     'confirmation' => 'Ar esate įsitikinę?',
-    'confirmation_unsaved' => 'Neįsaugoti pakeitimai bus prarasti. Ar jūs įsitikinęs?',
-    'saved' => 'Išsaugotas',
+    'confirmation_unsaved' => 'Neišsaugoti pakeitimai bus prarasti. Ar jūs įsitikinęs?',
+    'saved' => 'Išsaugota',
 
     'array_and' => [
         'words_connector' => ', ',
@@ -153,11 +153,11 @@ return [
     ],
 
     'title' => [
-        'notice' => '',
+        'notice' => 'Pastaba',
     ],
 
     'wrong_user' => [
-        '_' => '',
-        'logout_link' => '',
+        '_' => 'Esate prisijunges kaip :user. :logout_link.',
+        'logout_link' => 'Spausk čia, kad prisijungti kaip kitas vartotojas',
     ],
 ];

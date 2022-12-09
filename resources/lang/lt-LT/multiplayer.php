@@ -5,26 +5,26 @@
 
 return [
     'empty' => [
-        '_' => '',
-        'playlists' => '',
-        'realtime' => '',
+        '_' => 'Dar nežaista osu!(lazer) :type_group!',
+        'playlists' => 'grojaraščių',
+        'realtime' => 'žaidimų tinkle',
     ],
 
     'room' => [
-        'hosted_by' => '',
-        'invalid_password' => '',
-        'map_count' => '',
-        'player_count' => '',
-        'time_left' => '',
+        'hosted_by' => 'šeimininkas :user',
+        'invalid_password' => 'Negaliojantis slaptažodis',
+        'map_count' => ':count_delimited bitmapas|:count_delimited bitmapai',
+        'player_count' => ':count_delimited žaidėjas|:count_delimited žaidėjai (-ų)',
+        'time_left' => ':time liko',
 
         'errors' => [
-            'duration_too_long' => '',
+            'duration_too_long' => 'Per ilga trūkmė.',
         ],
 
         'status' => [
-            'active' => '',
-            'ended' => '',
-            'soon' => '',
+            'active' => 'aktyvus',
+            'ended' => 'baigėsi',
+            'soon' => 'greitai baigsis',
         ],
     ],
 ];

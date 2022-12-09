@@ -526,7 +526,7 @@ class Order extends Model
     public function updateItem(array $itemForm, $addToExisting = false)
     {
         return $this->guardNotModifiable(function () use ($itemForm, $addToExisting) {
-            $params = static::orderItemParams($itemForm);
+            [$params, $product] = static::orderItemParams($itemForm);
 
             // done first to allow removing of disabled products from cart.
             if ($params['quantity'] <= 0) {
@@ -534,16 +534,16 @@ class Order extends Model
             }
 
             // TODO: better validation handling.
-            if ($params['product'] === null) {
+            if ($product === null) {
                 return osu_trans('model_validation/store/product.not_available');
             }
 
             $this->saveOrExplode();
 
-            if ($params['product']->allow_multiple) {
-                $item = $this->newOrderItem($params);
+            if ($product->allow_multiple) {
+                $item = $this->newOrderItem($params, $product);
             } else {
-                $item = $this->updateOrderItem($params, $addToExisting);
+                $item = $this->updateOrderItem($params, $product, $addToExisting);
             }
 
             $item->saveOrExplode();
@@ -646,27 +646,15 @@ class Order extends Model
         optional($this->items()->find($params['id']))->delete();
     }
 
-    private function newOrderItem(array $params)
+    private function newOrderItem(array $params, Product $product)
     {
-        if ($params['cost'] < 0) {
-            $params['cost'] = 0;
-        }
-
-        $product = $params['product'];
-
         // FIXME: custom class stuff should probably not go in Order...
         switch ($product->custom_class) {
             case 'supporter-tag':
-                $targetId = (int) $params['extraData']['target_id'];
-                if ($targetId === $this->user_id) {
-                    $params['extraData']['username'] = $this->user->username;
-                } else {
-                    $user = User::default()->where('user_id', $targetId)->firstOrFail();
-                    $params['extraData']['username'] = $user->username;
-                }
-
-                $params['extraData']['duration'] = SupporterTag::getDuration($params['cost']);
+                $params['cost'] ??= 0;
+                $params['extra_data'] = $this->extraDataSupporterTag($params);
                 break;
+            // TODO: look at migrating to extra_data
             case 'username-change':
                 // ignore received cost
                 $params['cost'] = $this->user->usernameChangeCost();
@@ -676,31 +664,33 @@ class Order extends Model
             case 'mwc7-supporter':
             case 'owc-supporter':
             case 'twc-supporter':
-                // much dodgy. wow.
-                $matches = [];
-                preg_match('/.+\((?<country>.+)\)$/', $product->name, $matches);
-                $params['extraData']['cc'] = Country::where('name', $matches['country'])->first()->acronym;
+                $params['extra_data'] = $this->extraDataTournamentBanner($params, $product);
                 $params['cost'] = $product->cost ?? 0;
                 break;
+            case Product::REDIRECT_PLACEHOLDER:
+                throw new InvariantException("Product can't be ordered");
             default:
                 $params['cost'] = $product->cost ?? 0;
         }
 
-        return $this->items()->make([
+        $item = $this->items()->make([
             'quantity' => $params['quantity'],
-            'extra_info' => $params['extraInfo'],
-            'extra_data' => $params['extraData'],
+            'extra_info' => $params['extra_info'],
+            'extra_data' => $params['extra_data'],
             'cost' => $params['cost'],
-            'product_id' => $product->product_id,
+            'product_id' => $product->getKey(),
         ]);
+
+        $item->setRelation('product', $product);
+
+        return $item;
     }
 
-    private function updateOrderItem(array $params, $addToExisting = false)
+    private function updateOrderItem(array $params, Product $product, $addToExisting = false)
     {
-        $product = $params['product'];
         $item = $this->items()->where('product_id', $product->product_id)->get()->first();
         if ($item === null) {
-            return $this->newOrderItem($params);
+            return $this->newOrderItem($params, $product);
         }
 
         if ($addToExisting) {
@@ -712,15 +702,56 @@ class Order extends Model
         return $item;
     }
 
+    // TODO: maybe move to class later?
+    private function extraDataSupporterTag(array $orderItemParams)
+    {
+        $params = get_params($orderItemParams, 'extra_data', [
+            'target_id:int',
+        ]);
+
+        $targetId = $params['target_id'];
+        if ($targetId === $this->user_id) {
+            $params['username'] = $this->user->username;
+        } else {
+            $user = User::default()->where('user_id', $targetId)->firstOrFail();
+            $params['username'] = $user->username;
+        }
+
+        $params['duration'] = SupporterTag::getDuration($orderItemParams['cost']);
+
+        return new ExtraDataSupporterTag($params);
+    }
+
+    // TODO: maybe move to class later?
+    private function extraDataTournamentBanner(array $orderItemParams, Product $product)
+    {
+        $params = get_params($orderItemParams, 'extra_data', [
+            'tournament_id:int',
+        ]);
+
+        // much dodgy. wow.
+        $matches = [];
+        preg_match('/.+\((?<country>.+)\)$/', $product->name, $matches);
+        $params['cc'] = Country::where('name', $matches['country'])->first()->acronym;
+
+        return new ExtraDataTournamentBanner($params);
+    }
+
     private static function orderItemParams(array $form)
     {
-        return [
-            'id' => array_get($form, 'id'),
-            'quantity' => array_get($form, 'quantity'),
-            'product' => Product::enabled()->find(array_get($form, 'product_id')),
-            'cost' => intval(array_get($form, 'cost')),
-            'extraInfo' => array_get($form, 'extra_info'),
-            'extraData' => array_get($form, 'extra_data'),
-        ];
+        $params = get_params($form, null, [
+            'id:int',
+            'cost:int',
+            'extra_data:array',
+            'extra_info',
+            'product_id:int',
+            'quantity:int',
+        ], ['null_missing' => true]);
+
+        $product = Product::enabled()->find($params['product_id']);
+
+        unset($params['product_id']);
+
+        return [$params, $product];
     }
 }

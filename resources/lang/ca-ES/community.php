@@ -6,9 +6,9 @@
 return [
     'support' => [
         'convinced' => [
-            'title' => '',
-            'support' => '',
-            'gift' => '',
+            'title' => '¡Estic convençut! :D',
+            'support' => 'donar suport a osu!',
+            'gift' => 'o regalar supporter a altres jugadors',
             'instructions' => '',
         ],
         'why-support' => [
@@ -16,7 +16,7 @@ return [
 
             'team' => [
                 'title' => '',
-                'description' => '',
+                'description' => 'Un petit equip desenvolupa i manté osu!. El seu suport els ajuda, ja sap... viure.',
             ],
             'infra' => [
                 'title' => '',
@@ -45,7 +45,7 @@ return [
         'perks' => [
             'title' => '',
             'osu_direct' => [
-                'title' => '',
+                'title' => 'osu!direct',
                 'description' => '',
             ],
 
@@ -66,7 +66,7 @@ return [
 
             'auto_downloads' => [
                 'title' => '',
-                'description' => '',
+                'description' => 'Els beatmaps es descarregaran automàticament en partides multijugador, mentre espectes a altres, o en fer clic a enllaços rellevants al xat!',
             ],
 
             'upload_more' => [
@@ -96,7 +96,7 @@ return [
 
             'speedy_downloads' => [
                 'title' => '',
-                'description' => '',
+                'description' => 'Restriccions de descàrrega més indulgents, especialment quan s\'utilitza osu!direct.',
             ],
 
             'change_username' => [
@@ -121,15 +121,15 @@ return [
 
             'more_favourites' => [
                 'title' => '',
-                'description' => '',
+                'description' => 'El nombre màxim de mapes que podeu marcar com a favorit augmenta de :normally &rarr; :supporter',
             ],
             'more_friends' => [
                 'title' => '',
-                'description' => '',
+                'description' => 'El nombre màxim d\'amics que podeu tenir augmenta de :normally &rarr; :supporter',
             ],
             'more_beatmaps' => [
                 'title' => '',
-                'description' => '',
+                'description' => 'El nombre de beatmaps pendents que pots tenir alhora es calcula a partir d\'un valor base més una bonificació addicional per cada beatmap classificat que tinguis actualment (fins a un límit).<br/><br/>Normalment això és :base més :bonus per beatmap classificat (fins a :bonus_max). Amb supporter, això augmenta a :supporter_base més :supporter_bonus per cada beatmap classificat (fins a :supporter_bonus_max).',
             ],
             'friend_filtering' => [
                 'title' => '',
