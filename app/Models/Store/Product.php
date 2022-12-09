@@ -276,7 +276,7 @@ class Product extends Model
         return $this->types;
     }
 
-    public function url()
+    public function url(): string
     {
         return $this->isRedirectPlaceholder()
             ? $this->description
