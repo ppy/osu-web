@@ -48,6 +48,7 @@ return [
 
     'github_users' => [
         'accounts' => 'accounts',
+        'error_no_contribution' => 'Cannot link GitHub account without any contribution history in osu! repositories.',
         'link' => 'Link GitHub account',
         'none' => 'No GitHub accounts',
         'title' => 'GitHub',

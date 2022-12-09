@@ -43,8 +43,14 @@ class GithubUsersController extends Controller
         ]);
         $client->authenticate($token->getToken(), null, GithubClient::AUTH_ACCESS_TOKEN);
         $apiUser = $client->currentUser()->show();
+        $user = GithubUser::firstWhere('canonical_id', $apiUser['id']);
 
-        GithubUser::importFromGithub($apiUser, auth()->user());
+        abort_if($user === null, 422, osu_trans('accounts.github_users.error_no_contribution'));
+
+        $user->update([
+            'user_id' => auth()->id(),
+            'username' => $apiUser['login'],
+        ]);
 
         return redirect(route('account.edit').'#github');
     }

@@ -36,28 +36,17 @@ class GithubUser extends Model
     }
 
     /**
-     * Create or update a GitHub user with data from the GitHub API. Optionally
-     * associate the GitHub user to an osu! user.
+     * Create or update a GitHub user with data from the GitHub API.
      */
-    public static function importFromGithub(array $apiUser, ?User $user = null): static
+    public static function importFromGithub(array $apiUser): static
     {
-        $params = [
-            'canonical_id' => $apiUser['id'],
-            'username' => $apiUser['login'],
-        ];
-        if ($user !== null) {
-            $params['user_id'] = $user->getKey();
-        }
-
-        $githubUser = static::where('canonical_id', $params['canonical_id'])->first()
-            ?? static::where('username', $params['username'])->last();
-
-        if ($githubUser === null) {
-            return static::create($params);
-        } else {
-            $githubUser->update($params);
-            return $githubUser;
-        }
+        return static::updateOrCreate(
+            ['canonical_id' => $apiUser['id']],
+            [
+                'canonical_id' => $apiUser['id'],
+                'username' => $apiUser['login'],
+            ],
+        );
     }
 
     public function changelogEntries(): HasMany
