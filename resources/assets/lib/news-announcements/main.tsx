@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import Img2x from 'components/img2x';
-import NewsAnnouncement from 'interfaces/news-announcement';
+import NewsAnnouncementJson from 'interfaces/news-announcement-json';
 import { action, autorun, IReactionDisposer, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
@@ -12,7 +12,7 @@ const bn = 'news-announcements';
 const itemBn = 'news-announcement';
 
 interface Props {
-  announcements: NewsAnnouncement[];
+  announcements: NewsAnnouncementJson[];
 }
 
 @observer
