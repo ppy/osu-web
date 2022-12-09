@@ -52,13 +52,8 @@ abstract class ExtraDataBase implements Castable, JsonSerializable
         $type = $data['type'] ?? static::guessType($data);
 
         return match ($type) {
-            'supporter-tag' => new ExtraDataSupporterTag($data),
-            'cwc-supporter',
-            'mwc4-supporter',
-            'mwc7-supporter',
-            'owc-supporter',
-            'twc-supporter',
-            'tournament-banner' => new ExtraDataTournamentBanner($data),
+            ExtraDataSupporterTag::TYPE => new ExtraDataSupporterTag($data),
+            ExtraDataTournamentBanner::TYPE => new ExtraDataTournamentBanner($data),
             default => null,
         };
     }
