@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property float|null $cost
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon|null $deleted_at
- * @property array|null $extra_data
+ * @property ExtraDataBase|null $extra_data
  * @property string|null $extra_info
  * @property int $id
  * @property Order $order
@@ -35,15 +35,9 @@ class OrderItem extends Model
 
     protected $casts = [
         'cost' => 'float',
-        'extra_data' => 'array',
+        'extra_data' => ExtraDataBase::class,
         'reserved' => 'boolean',
     ];
-
-    // The format for extra_data is:
-    // [
-    //     'type' => 'custom-extra-info',
-    //     ...additional fields
-    // ]
 
     public function scopeHasShipping($query)
     {
