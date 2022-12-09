@@ -10,6 +10,8 @@
     <div class="osu-page">
         <div class="user-home">
             <div class="user-home__news">
+                <div class="js-react--news-announcements"></div>
+
                 <h2 class="user-home__news-title">{{ osu_trans('home.user.news.title') }}</h2>
 
                 @foreach ($news as $post)
@@ -95,4 +97,14 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section("script")
+    @parent
+
+    <script id="json-news-announcements" type="application/json">
+        {!! json_encode($newsAnnouncements) !!}
+    </script>
+
+    @include('layout._react_js', ['src' => 'js/news-announcements.js'])
 @endsection

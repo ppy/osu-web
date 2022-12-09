@@ -1,0 +1,29 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.news-announcement {
+  flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
+
+  &__content {
+    background: hsla(var(--hsl-b4), 0.5);
+    bottom: 0;
+    padding: 10px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+  }
+
+  &__image {
+    height: 100%;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+  }
+
+  &__link {
+    display: block;
+    height: 100%;
+  }
+}
