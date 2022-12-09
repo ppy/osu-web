@@ -5,6 +5,7 @@
 
 use App\Libraries\LocaleMeta;
 use App\Models\LoginAttempt;
+use Illuminate\Support\Arr;
 use Illuminate\Support\HtmlString;
 
 function api_version(): int
@@ -1509,7 +1510,7 @@ function get_params($input, $namespace, $keys, $options = [])
 
     $params = [];
 
-    if (is_iterable($input)) {
+    if (Arr::accessible($input)) {
         $options['null_missing'] = $options['null_missing'] ?? false;
 
         foreach ($keys as $keyAndType) {
