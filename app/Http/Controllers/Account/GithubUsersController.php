@@ -45,7 +45,7 @@ class GithubUsersController extends Controller
         $apiUser = $client->currentUser()->show();
         $user = GithubUser::firstWhere('canonical_id', $apiUser['id']);
 
-        abort_if($user === null, 422, osu_trans('accounts.github_users.error_no_contribution'));
+        abort_if($user === null, 422, osu_trans('accounts.github_user.error_no_contribution'));
 
         $user->update([
             'user_id' => auth()->id(),
@@ -58,6 +58,11 @@ class GithubUsersController extends Controller
     public function create()
     {
         abort_unless(GithubUser::canAuthenticate(), 404);
+        abort_if(
+            auth()->user()->githubUser()->exists(),
+            422,
+            'Cannot link more than one GitHub account.',
+        );
 
         $provider = $this->makeGithubOAuthProvider();
         $url = $provider->getAuthorizationUrl([
@@ -72,8 +77,8 @@ class GithubUsersController extends Controller
 
     public function destroy(int $id)
     {
-        auth()->user()
-            ->githubUsers()
+        GithubUser
+            ::where('user_id', auth()->id())
             ->findOrFail($id)
             ->update(['user_id' => null]);
 

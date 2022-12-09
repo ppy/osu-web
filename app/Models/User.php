@@ -35,6 +35,7 @@ use Illuminate\Contracts\Translation\HasLocalePreference;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\QueryException;
 use Laravel\Passport\HasApiTokens;
 use League\OAuth2\Server\Exception\OAuthServerException;
@@ -67,7 +68,7 @@ use Request;
  * @property-read Collection<Follow> $follows
  * @property-read Collection<Forum\Post> $forumPosts
  * @property-read Collection<static> $friends
- * @property-read Collection<GithubUser> $githubUsers
+ * @property-read GithubUser|null $githubUser
  * @property-read Collection<KudosuHistory> $givenKudosu
  * @property int $group_id
  * @property bool $hide_presence
@@ -870,7 +871,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'follows',
             'forumPosts',
             'friends',
-            'githubUsers',
+            'githubUser',
             'givenKudosu',
             'monthlyPlaycounts',
             'notificationOptions',
@@ -1151,9 +1152,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->hasMany(UserBadge::class);
     }
 
-    public function githubUsers()
+    public function githubUser(): HasOne
     {
-        return $this->hasMany(GithubUser::class);
+        return $this->hasOne(GithubUser::class)->orderBy('updated_at', 'desc');
     }
 
     public function monthlyPlaycounts()

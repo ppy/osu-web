@@ -166,7 +166,7 @@
 
     @if (\App\Models\GithubUser::canAuthenticate())
         <div class="osu-page" id="github">
-            @include('accounts._edit_github_users')
+            @include('accounts._edit_github_user')
         </div>
     @endif
 @endsection
@@ -177,8 +177,8 @@
   </script>
 
   @if (\App\Models\GithubUser::canAuthenticate())
-    <script id="json-github-users" type="application/json">
-      {!! json_encode($githubUsers) !!}
+    <script id="json-github-user" type="application/json">
+      {!! json_encode($githubUser) !!}
     </script>
   @endif
 

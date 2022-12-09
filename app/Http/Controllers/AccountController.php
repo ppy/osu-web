@@ -114,20 +114,15 @@ class AccountController extends Controller
 
         $notificationOptions = $user->notificationOptions->keyBy('name');
 
-        if (GithubUser::canAuthenticate()) {
-            $githubUsers = json_collection(
-                $user->githubUsers()->get(),
-                'GithubUser',
-            );
-        } else {
-            $githubUsers = null;
-        }
+        $githubUser = GithubUser::canAuthenticate() && $user->githubUser !== null
+            ? json_item($user->githubUser, 'GithubUser')
+            : null;
 
         return ext_view('accounts.edit', compact(
             'authorizedClients',
             'blocks',
             'currentSessionId',
-            'githubUsers',
+            'githubUser',
             'notificationOptions',
             'ownClients',
             'sessions'
