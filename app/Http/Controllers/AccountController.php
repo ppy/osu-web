@@ -116,7 +116,7 @@ class AccountController extends Controller
 
         if (GithubUser::canAuthenticate()) {
             $githubUsers = json_collection(
-                $user->githubUsers()->withGithubInfo()->get(),
+                $user->githubUsers()->get(),
                 'GithubUser',
             );
         } else {

@@ -42,18 +42,13 @@ export ChangelogEntry = ({entry}) =>
               "#{entry.repository.replace /^.*\//, ''}##{entry.github_pull_request_id}"
             ')'
         do =>
-          user = _.escape(entry.github_user.display_name)
-          url = entry.github_user.github_url ? entry.github_user.user_url
-
+          user = _.escape(entry.github_user.github_username)
           link =
-            if url?
-              "<a
-                data-user-id='#{entry.github_user.user_id ? ''}'
-                class='changelog-entry__user-link js-usercard'
-                href='#{_.escape(url)}'
-              >#{user}</a>"
-            else
-              user
+            "<a
+              data-user-id='#{entry.github_user.user_id ? ''}'
+              class='changelog-entry__user-link js-usercard'
+              href='#{_.escape(entry.github_user.github_url)}'
+            >#{user}</a>"
 
           span
             className: 'changelog-entry__user'

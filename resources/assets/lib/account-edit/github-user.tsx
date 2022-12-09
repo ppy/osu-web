@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BigButton from 'components/big-button';
-import { GithubUserJsonForAccountEdit } from 'interfaces/github-user-json';
+import GithubUserJson from 'interfaces/github-user-json';
 import { route } from 'laroute';
 import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
@@ -12,7 +12,7 @@ import { trans } from 'utils/lang';
 
 interface Props {
   onDelete: (id: number) => void;
-  user: GithubUserJsonForAccountEdit;
+  user: GithubUserJson;
 }
 
 @observer

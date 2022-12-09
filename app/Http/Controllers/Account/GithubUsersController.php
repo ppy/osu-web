@@ -74,7 +74,6 @@ class GithubUsersController extends Controller
     {
         auth()->user()
             ->githubUsers()
-            ->withGithubInfo()
             ->findOrFail($id)
             ->update(['user_id' => null]);
 

@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BigButton from 'components/big-button';
-import { GithubUserJsonForAccountEdit } from 'interfaces/github-user-json';
+import GithubUserJson from 'interfaces/github-user-json';
 import { route } from 'laroute';
 import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
@@ -11,12 +11,12 @@ import { trans } from 'utils/lang';
 import GithubUser from './github-user';
 
 interface Props {
-  users: GithubUserJsonForAccountEdit[];
+  users: GithubUserJson[];
 }
 
 @observer
 export default class GithubUsers extends React.Component<Props> {
-  @observable private users: GithubUserJsonForAccountEdit[];
+  @observable private users: GithubUserJson[];
 
   constructor(props: Props) {
     super(props);

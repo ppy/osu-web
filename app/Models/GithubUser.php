@@ -7,12 +7,11 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * @property int|null $canonical_id
+ * @property int $canonical_id
  * @property-read \Illuminate\Database\Eloquent\Collection<ChangelogEntry> $changelogEntries
  * @property \Carbon\Carbon|null $created_at
  * @property-read string|null $created_at_json
@@ -21,8 +20,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property-read string|null $updated_at_json
  * @property-read User|null $user
  * @property int|null $user_id
- * @property string|null $username
- * @method static Builder withGithubInfo()
+ * @property string $username
  */
 class GithubUser extends Model
 {
@@ -59,23 +57,9 @@ class GithubUser extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function scopeWithGithubInfo(Builder $query): void
+    public function githubUrl(): string
     {
-        $query->whereNotNull(['canonical_id', 'username']);
-    }
-
-    public function displayName(): string
-    {
-        return presence($this->username)
-            ?? $this->osuUsername()
-            ?? '[no name]';
-    }
-
-    public function githubUrl(): ?string
-    {
-        return present($this->username)
-            ? "https://github.com/{$this->username}"
-            : null;
+        return "https://github.com/{$this->username}";
     }
 
     public function osuUsername(): ?string
