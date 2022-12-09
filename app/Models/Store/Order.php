@@ -682,6 +682,8 @@ class Order extends Model
                 $params['extraData']['cc'] = Country::where('name', $matches['country'])->first()->acronym;
                 $params['cost'] = $product->cost ?? 0;
                 break;
+            case Product::REDIRECT_PLACEHOLDER:
+                throw new InvariantException("Product can't be ordered");
             default:
                 $params['cost'] = $product->cost ?? 0;
         }
