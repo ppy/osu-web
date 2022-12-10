@@ -8,6 +8,7 @@ namespace App\Models\Wiki;
 use App\Exceptions\GitHubNotFoundException;
 use App\Libraries\OsuWiki;
 use Exception;
+use Illuminate\Contracts\Cache\LockTimeoutException;
 
 class Image implements WikiObject
 {
@@ -37,7 +38,7 @@ class Image implements WikiObject
     public function __construct($path)
     {
         $this->path = OsuWiki::cleanPath($path);
-        $this->cache = cache()->get($this->cacheKey());
+        $this->cache = $this->fetchFromCache();
     }
 
     public function cacheKey()
@@ -67,10 +68,23 @@ class Image implements WikiObject
             return $this;
         }
 
-        $lock = cache()->lock($this->cacheKey().':lock', 300);
+        $cache = cache();
+        $lock = $cache->lock($this->cacheKey().':lock', 300);
 
         if (!$lock->get()) {
-            return $this;
+            if ($this->cache !== null) {
+                return $this;
+            }
+
+            try {
+                $lock->block(10);
+                $lock->release();
+                $this->cache = $this->fetchFromCache();
+
+                return $this->sync($force);
+            } catch (LockTimeoutException $_e) {
+                // previous attempt is taking too long; try fetching the image anyway
+            }
         }
 
         try {
@@ -94,8 +108,13 @@ class Image implements WikiObject
             'data' => $data ?? null,
             'cached_at' => time(),
         ];
-        cache()->put($this->cacheKey(), $this->cache);
+        $cache->put($this->cacheKey(), $this->cache);
 
         return $this;
+    }
+
+    private function fetchFromCache(): ?array
+    {
+        return cache()->get($this->cacheKey());
     }
 }
