@@ -40,7 +40,10 @@ class ArtistsController extends Controller
             ->where('visible', true)
             ->orderBy('id', 'desc')
             ->with(['tracks' => function ($query) {
-                $query->orderBy('display_order', 'ASC');
+                $query
+                    ->orderBy('display_order', 'asc')
+                    ->orderBy('exclusive', 'desc')
+                    ->orderBy('id', 'desc');
             }])
             ->with('tracks.artist')
             ->get();
@@ -49,6 +52,8 @@ class ArtistsController extends Controller
             ->tracks()
             ->whereNull('album_id')
             ->with('artist')
+            ->orderBy('display_order', 'asc')
+            ->orderBy('exclusive', 'desc')
             ->orderBy('id', 'desc')
             ->get();
 
