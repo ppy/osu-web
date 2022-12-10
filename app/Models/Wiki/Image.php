@@ -69,7 +69,8 @@ class Image implements WikiObject
         }
 
         $cache = cache();
-        $lock = $cache->lock($this->cacheKey().':lock', 300);
+        $cacheKey = $this->cacheKey();
+        $lock = $cache->lock($cacheKey.':lock', 300);
 
         if (!$lock->get()) {
             if ($this->cache !== null) {
@@ -108,7 +109,7 @@ class Image implements WikiObject
             'data' => $data ?? null,
             'cached_at' => time(),
         ];
-        $cache->put($this->cacheKey(), $this->cache);
+        $cache->put($cacheKey, $this->cache);
 
         return $this;
     }
