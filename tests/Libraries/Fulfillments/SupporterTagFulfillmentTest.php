@@ -11,6 +11,7 @@ use App\Libraries\Fulfillments\FulfillmentException;
 use App\Libraries\Fulfillments\SupporterTagFulfillment;
 use App\Mail\DonationThanks;
 use App\Mail\SupporterGift;
+use App\Models\Event;
 use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
 use App\Models\User;
@@ -83,6 +84,9 @@ class SupporterTagFulfillmentTest extends TestCase
         $this->createDonationOrderItem($giftee1, false, false);
         $this->createDonationOrderItem($giftee2, false, false);
 
+        // TODO: should change to get the message from Event and test against that.
+        $this->expectCountChange(fn () => Event::count(), 3);
+
         $fulfiller = new SupporterTagFulfillment($this->order);
         $fulfiller->run();
 
@@ -105,6 +109,9 @@ class SupporterTagFulfillmentTest extends TestCase
         Mail::fake();
 
         $this->createDonationOrderItem($this->user, false, false);
+
+        // TODO: should change to get the message from Event and test against that.
+        $this->expectCountChange(fn () => Event::count(), 1);
 
         $fulfiller = new SupporterTagFulfillment($this->order);
         $fulfiller->run();
