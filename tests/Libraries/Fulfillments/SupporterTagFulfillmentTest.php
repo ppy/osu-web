@@ -100,6 +100,19 @@ class SupporterTagFulfillmentTest extends TestCase
         Mail::assertQueued(DonationThanks::class, 1);
     }
 
+    public function testMailDonateSupporterTagToSelf()
+    {
+        Mail::fake();
+
+        $this->createDonationOrderItem($this->user, false, false);
+
+        $fulfiller = new SupporterTagFulfillment($this->order);
+        $fulfiller->run();
+
+        Mail::assertNotQueued(SupporterGift::class);
+        Mail::assertQueued(DonationThanks::class, 1);
+    }
+
     public function testPartiallyFulfilledOrder()
     {
         $donor = $this->user;
