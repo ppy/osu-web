@@ -41,15 +41,17 @@ _migrate() {
     _rexec php /app/artisan migrate:fresh-or-run
 }
 
+_octane() {
+  # install node dependencies first in case octane is run with --watch
+  _run yarn --network-timeout 100000 --frozen-lockfile
+  exec /app/artisan octane:start --host=0.0.0.0 "$@"
+}
+
 _schedule() {
     while sleep 300; do
         _run php /app/artisan schedule:run &
         echo 'Sleeping for 5 minutes'
     done
-}
-
-_serve() {
-    exec php-fpm8.0 -R -y docker/development/php-fpm.conf
 }
 
 _test() {
@@ -73,6 +75,6 @@ _watch() {
 
 case "$command" in
     artisan) _rexec php /app/artisan "$@";;
-    job|migrate|schedule|serve|test|watch) "_$command" "$@";;
+    job|migrate|octane|schedule|test|watch) "_$command" "$@";;
     *) _rexec "$command" "$@";;
 esac
