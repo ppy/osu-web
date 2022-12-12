@@ -73,19 +73,26 @@ class SupporterTagFulfillmentTest extends TestCase
         $this->assertSame(0, $giftee->osu_featurevotes);
     }
 
-    public function testMailDonateSupporterTagToOthers()
+    /**
+     * @dataProvider boolDataProvider
+     */
+    public function testMailDonateSupporterTagToOthers(bool $hidden)
     {
         Mail::fake();
 
         $giftee1 = User::factory()->create(['user_sig' => '']); // prevent factory from generating user_sig
         $giftee2 = User::factory()->create(['user_sig' => '']);
 
-        $this->createDonationOrderItem($giftee1, false, false);
-        $this->createDonationOrderItem($giftee1, false, false);
-        $this->createDonationOrderItem($giftee2, false, false);
+        $this->createDonationOrderItem($giftee1, false, false, $hidden);
+        $this->createDonationOrderItem($giftee1, false, false, $hidden);
+        $this->createDonationOrderItem($giftee2, false, false, $hidden);
 
         // TODO: should change to get the message from Event and test against that.
-        $this->expectCountChange(fn () => Event::count(), 3);
+        $expectedCount = 3;
+        if ($hidden) {
+            $expectedCount--;
+        }
+        $this->expectCountChange(fn () => Event::count(), $expectedCount);
 
         $fulfiller = new SupporterTagFulfillment($this->order);
         $fulfiller->run();
@@ -104,14 +111,21 @@ class SupporterTagFulfillmentTest extends TestCase
         Mail::assertQueued(DonationThanks::class, 1);
     }
 
-    public function testMailDonateSupporterTagToSelf()
+    /**
+     * @dataProvider boolDataProvider
+     */
+    public function testMailDonateSupporterTagToSelf(bool $hidden)
     {
         Mail::fake();
 
-        $this->createDonationOrderItem($this->user, false, false);
+        $this->createDonationOrderItem($this->user, false, false, $hidden);
 
         // TODO: should change to get the message from Event and test against that.
-        $this->expectCountChange(fn () => Event::count(), 1);
+        $expectedCount = 1;
+        if ($hidden) {
+            $expectedCount--;
+        }
+        $this->expectCountChange(fn () => Event::count(), $expectedCount);
 
         $fulfiller = new SupporterTagFulfillment($this->order);
         $fulfiller->run();
@@ -284,6 +298,14 @@ class SupporterTagFulfillmentTest extends TestCase
         $fulfiller->run();
     }
 
+    public function boolDataProvider()
+    {
+        return [
+            [true],
+            [false],
+        ];
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -298,9 +320,9 @@ class SupporterTagFulfillmentTest extends TestCase
         ]);
     }
 
-    private function createDonationOrderItem(User $giftee, bool $cancelled, bool $ranPreviously)
+    private function createDonationOrderItem(User $giftee, bool $cancelled, bool $ranPreviously, bool $hidden = false)
     {
-        $orderItem = $this->createOrderItem($giftee, 1, 4);
+        $orderItem = $this->createOrderItem($giftee, 1, 4, $hidden);
 
         if ($cancelled) {
             $this->createUserDonation($orderItem, $giftee, false);
@@ -325,15 +347,16 @@ class SupporterTagFulfillmentTest extends TestCase
         ]);
     }
 
-    private function createOrderItem(User $user, int $duration, int $amount)
+    private function createOrderItem(User $user, int $duration, int $amount, bool $hidden = false)
     {
         return factory(OrderItem::class)->states('supporter_tag')->create([
             'order_id' => $this->order->order_id,
             'cost' => $amount,
             'extra_data' => [
+                'duration' => $duration,
+                'hidden' => $hidden,
                 'target_id' => $user->user_id,
                 'username' => $user->username,
-                'duration' => $duration,
             ],
         ]);
     }
