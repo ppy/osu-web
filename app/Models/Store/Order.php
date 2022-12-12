@@ -706,6 +706,7 @@ class Order extends Model
     private function extraDataSupporterTag(array $orderItemParams)
     {
         $params = get_params($orderItemParams, 'extra_data', [
+            'hidden:bool',
             'target_id:int',
         ]);
 

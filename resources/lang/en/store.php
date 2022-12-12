@@ -120,6 +120,8 @@ return [
 
     'supporter_tag' => [
         'gift' => 'gift to player',
+        'hide' => 'hide this gift from my activity',
+
         'require_login' => [
             '_' => 'You need to be :link to get an osu!supporter tag!',
             'link_text' => 'signed in',
