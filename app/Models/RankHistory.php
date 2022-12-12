@@ -107,6 +107,15 @@ class RankHistory extends Model
 
     public $timestamps = false;
 
+    public function __construct(array $attributes = [])
+    {
+        if (config('osu.scores.experimental_rank_as_default')) {
+            $this->table = 'osu_user_performance_rank_exp';
+        }
+
+        parent::__construct($attributes);
+    }
+
     public function getDataAttribute()
     {
         $data = [];
