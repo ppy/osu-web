@@ -15,11 +15,6 @@ class Groups
 {
     use Memoizes;
 
-    public function __construct()
-    {
-        app('local-cache-manager')->registerCallback(fn () => $this->resetMemoized());
-    }
-
     /**
      * Get all groups.
      */

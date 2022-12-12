@@ -13,11 +13,6 @@ class ChatFilters
 {
     use Memoizes;
 
-    public function __construct()
-    {
-        app('local-cache-manager')->registerCallback(fn () => $this->resetMemoized());
-    }
-
     public function all()
     {
         return $this->memoize(__FUNCTION__, fn () => $this->fetch());

@@ -11,7 +11,6 @@ class LocalCacheManager
 {
     private int $resetTicker = 0;
     private int $resetTickerLimit;
-    private array $callbacks = [];
 
     public function incrementResetTicker(): void
     {
@@ -24,15 +23,10 @@ class LocalCacheManager
         }
     }
 
-    public function registerCallback(callable $callback)
-    {
-        $this->callbacks[] = $callback;
-    }
-
     private function resetCache(): void
     {
-        foreach ($this->callbacks as $callback) {
-            $callback();
+        foreach (['chat-filters', 'groups', 'layout-cache'] as $memoizedSingleton) {
+            app($memoizedSingleton)->resetMemoized();
         }
     }
 }

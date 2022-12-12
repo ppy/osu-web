@@ -13,11 +13,6 @@ class LayoutCache
 {
     use Memoizes;
 
-    public function __construct()
-    {
-        app('local-cache-manager')->registerCallback(fn () => $this->resetMemoized());
-    }
-
     public function getBeatmapsetFilters(): string
     {
         return $this->memoize(__FUNCTION__.':'.app()->getLocale(), fn () =>
