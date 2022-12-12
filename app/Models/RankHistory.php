@@ -114,10 +114,9 @@ class RankHistory extends Model
         $startOffset = Count::currentRankStart($this->mode)->count;
         $end = $startOffset + 90;
 
+        $attributes = $this->attributes;
         for ($i = $startOffset; $i < $end; $i++) {
-            $column = 'r'.strval($i % 90);
-
-            $data[] = intval($this->$column);
+            $data[] = $attributes['r'.strval($i % 90)] ?? 0;
         }
 
         $diffHead = $data[0] - $data[1];
