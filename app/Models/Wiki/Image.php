@@ -104,12 +104,15 @@ class Image implements WikiObject
             return $this;
         }
 
-        $this->cache = [
-            'data' => $data ?? null,
-            'cached_at' => time(),
-        ];
-        $cache->put($cacheKey, $this->cache);
-        $lock->release();
+        try {
+            $this->cache = [
+                'data' => $data ?? null,
+                'cached_at' => time(),
+            ];
+            $cache->put($cacheKey, $this->cache);
+        } finally {
+            $lock->release();
+        }
 
         return $this;
     }
