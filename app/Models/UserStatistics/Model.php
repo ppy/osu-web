@@ -189,25 +189,27 @@ abstract class Model extends BaseModel
         });
     }
 
-    public function globalRank()
+    public function globalRank(): ?int
     {
-        if (!$this->isRanked()) {
-            return;
-        }
+        $column = config('osu.scores.experimental_rank_as_default')
+            ? 'rank_score_index_exp'
+            : 'rank_score_index';
 
-        return $this->rank_score_index;
+        $value = $this->$column;
+
+        return $value === 0 || $this->pp() === 0.0 ? null : $value;
     }
 
-    public function globalRankExp(): ?float
+    public function globalRankExp(): ?int
     {
         $value = $this->rank_score_index_exp;
 
-        return $value === 0 ? null : $value;
+        return $value === 0 || $this->rank_score_exp === 0.0 ? null : $value;
     }
 
     public function isRanked()
     {
-        return $this->rank_score !== 0.0 && $this->rank_score_index !== 0;
+        return $this->globalRank() !== null;
     }
 
     public function pp()
