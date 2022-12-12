@@ -48,7 +48,11 @@ export default class RankChart extends React.Component<Props> {
 
     const raw = this.props.rankHistory?.data ?? [];
     const data = raw.map((rank, i) => ({ x: i - raw.length + 1, y: -rank })).filter((point) => point.y < 0);
-    if (data.length > 0) {
+
+    if (data.length === 0) {
+      data.push({ x: -1, y: -this.props.stats.global_rank });
+      data.push({ x: 0, y: -this.props.stats.global_rank });
+    } else {
       if (data.length === 1) {
         data.unshift({ x: data[0].x - 1, y: data[0].y });
       }
