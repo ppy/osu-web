@@ -99,10 +99,9 @@ class Image implements WikiObject
             // do nothing and cache empty data
         } catch (Exception $e) {
             log_error($e);
+            $lock->release();
 
             return $this;
-        } finally {
-            $lock->release();
         }
 
         $this->cache = [
@@ -110,6 +109,7 @@ class Image implements WikiObject
             'cached_at' => time(),
         ];
         $cache->put($cacheKey, $this->cache);
+        $lock->release();
 
         return $this;
     }
