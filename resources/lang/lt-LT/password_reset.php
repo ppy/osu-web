@@ -12,10 +12,10 @@ return [
     ],
 
     'error' => [
-        'contact_support' => 'Prašome kreiptis į palaikymo tarnybą dėl paskyros atkūrimo.',
-        'expired' => '',
-        'invalid' => '',
-        'is_privileged' => 'Susisiek su peppy cha.',
+        'contact_support' => 'Prašome kreiptis į pagalbą dėl paskyros atkūrimo.',
+        'expired' => 'Patvirtinimo kodas nebegalioja.',
+        'invalid' => 'Nežinoma klaida patvirtinimo kode.',
+        'is_privileged' => 'Dėl paskyros atstatymo susisiek su aukštos padėties administratoriumi.',
         'missing_key' => 'Privaloma.',
         'too_many_tries' => 'Per daug nepavykusių bandymų.',
         'user_not_found' => 'Reikalaujamas vartotojas neegzistuoja.',
@@ -30,7 +30,7 @@ return [
     'started' => [
         'password' => 'Naujas slaptažodis',
         'password_confirmation' => 'Slaptažodžio patvirtinimas',
-        'title' => 'Keičiamas slaptažodis <strong>:username</strong> vartotojui.',
+        'title' => 'Keičiamas slaptažodis <strong>:username</strong> paskyrai.',
         'verification_key' => 'Patvirtinimo kodas',
     ],
 
@@ -38,8 +38,8 @@ return [
         'username' => 'Įrašykite el. pašto adresą arba naudotojo vardą',
 
         'support' => [
-            '_' => '',
-            'button' => '',
+            '_' => 'Reikia tolimesnės pagalbos? Susisiekite su mumis per :button.',
+            'button' => 'pagalbos sistemą',
         ],
     ],
 ];

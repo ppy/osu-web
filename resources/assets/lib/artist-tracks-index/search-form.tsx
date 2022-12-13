@@ -49,6 +49,7 @@ export type ArtistTrackSearch = {
 } & Partial<Record<ArtistTrackSearchRelevanceParam, Nullable<string>>> & Partial<Record<ArtistTrackSearchNumberRangeParam, Nullable<EsRange<number | string>>>>;
 
 const lengthRegexp = '^\\d+(\\.\\d*)?(ms|s|m|h)?$';
+const numericRegexp = '^\\d*$';
 
 interface Props {
   availableGenres: string[];
@@ -129,8 +130,9 @@ export default class SearchForm extends React.Component<Props> {
                 className='artist-track-search-form__input'
                 data-param='bpm'
                 data-range='gte'
+                inputMode='numeric'
                 onChange={this.handleChangeRangeNatural}
-                type='number'
+                pattern={numericRegexp}
                 value={this.params.bpm?.gte ?? ''}
               />
             </InputContainer>
@@ -140,8 +142,9 @@ export default class SearchForm extends React.Component<Props> {
                 className='artist-track-search-form__input'
                 data-param='bpm'
                 data-range='lte'
+                inputMode='numeric'
                 onChange={this.handleChangeRangeNatural}
-                type='number'
+                pattern={numericRegexp}
                 value={this.params.bpm?.lte ?? ''}
               />
             </InputContainer>

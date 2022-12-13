@@ -8,32 +8,32 @@ return [
         'title_page' => 'osu!naujienos',
 
         'nav' => [
-            'newer' => 'Naujesni įrašai',
-            'older' => 'Senesni įrašai',
+            'newer' => 'Naujesnės publikacijos',
+            'older' => 'Senesnės publikacijos',
         ],
 
         'title' => [
-            '_' => 'Naujienos :info',
-            'info' => 'Pagrindinis puslapis',
+            '_' => 'naujienos',
+            'info' => 'pagrindinis puslapis',
         ],
     ],
 
     'show' => [
-        'by' => 'nuo :user',
+        'by' => ':user',
 
         'nav' => [
-            'newer' => 'Naujesnis įrašas',
-            'older' => 'Senesnis įrašas',
+            'newer' => 'Naujesnė publikacija',
+            'older' => 'Senesnė publikacija',
         ],
 
         'title' => [
-            '_' => 'Naujienos :info',
-            'info' => 'Įrašas',
+            '_' => 'naujienos',
+            'info' => 'publikacija',
         ],
     ],
 
     'sidebar' => [
-        'archive' => '',
+        'archive' => 'Naujienų Archyvas',
     ],
 
     'store' => [
@@ -43,6 +43,6 @@ return [
 
     'update' => [
         'button' => 'Atnaujinti',
-        'ok' => 'Pranešimas atnaujintas.',
+        'ok' => 'Publikacija atnaujinta.',
     ],
 ];

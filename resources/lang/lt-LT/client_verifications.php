@@ -5,14 +5,14 @@
 
 return [
     'completed' => [
-        'home' => 'Eiti į prietaisų skydelį',
+        'home' => 'Eiti į ataskaitų sritį',
         'logout' => 'Atsijungti',
-        'text' => 'Jūs jau galite uždaryti šį skirtuką/langą dabar',
+        'text' => 'Galite uždaryti šį skirtuką/langą dabar',
         'title' => 'osu! kliento patvirtinimas užbaigtas',
     ],
 
     'create' => [
-        'confirm' => 'Patvirtink paspaudžiant mygtuką žemiau, kad pabaigti kliento patikrinima.',
+        'confirm' => 'Paspausk mygtuką žemiau, kad pabaigti kliento patvirtinimą.',
         'title' => 'osu! kliento patvirtinimas',
     ],
 ];

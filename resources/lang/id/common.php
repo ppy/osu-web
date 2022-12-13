@@ -5,7 +5,7 @@
 
 return [
     'confirmation' => 'Apakah Anda yakin?',
-    'confirmation_unsaved' => 'Perubahan-perubahan yang tidak disimpan akan hilang. Apakah Anda yakin?',
+    'confirmation_unsaved' => 'Segala perubahan yang tidak disimpan akan hilang. Apakah Anda yakin?',
     'saved' => 'Tersimpan',
 
     'array_and' => [

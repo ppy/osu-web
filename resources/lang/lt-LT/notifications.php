@@ -6,140 +6,140 @@
 return [
     'all_read' => 'Visi pranešimai yra perskaityti!',
     'delete' => 'Ištrinti :type',
-    'loading' => 'Kraunama neperskaitytus pranešimus...',
-    'mark_read' => '',
+    'loading' => 'Kraunami neperskaityti pranešimai...',
+    'mark_read' => 'Išvalyti :type',
     'none' => 'Nėra pranešimų',
     'see_all' => 'peržiūrėti visus pranešimus',
     'see_channel' => 'eiti į pokalbių langą',
-    'verifying' => '',
+    'verifying' => 'Prašom patvirtinti sesiją, kad matyti pranešimus',
 
     'filters' => [
         '_' => 'visi',
         'user' => 'profilis',
-        'beatmapset' => 'beatmapai',
+        'beatmapset' => 'bitmapai',
         'forum_topic' => 'forumas',
         'news_post' => 'naujienos',
         'build' => 'versijos',
-        'channel' => '',
+        'channel' => 'pokalbiai',
     ],
 
     'item' => [
         'beatmapset' => [
-            '_' => 'Beatmap',
+            '_' => 'Bitmapas',
 
             'beatmap_owner_change' => [
-                '_' => '',
-                'beatmap_owner_change' => 'Jūs dabar esate savininkas šio sudėtingumo ":beatmap" šitam beatmapui ":title"',
+                '_' => 'Svečio sunkumas',
+                'beatmap_owner_change' => 'Jūs dabar esate savininkas šio sunkumo ":beatmap" šitam bitmapui ":title"',
                 'beatmap_owner_change_compact' => 'Jūs dabar esate savininkas šio sunkumo ":beatmap"',
             ],
 
             'beatmapset_discussion' => [
-                '_' => 'Beatmap diskusija',
-                'beatmapset_discussion_lock' => 'Diskusijos ":title" buvo atrakintos',
+                '_' => 'Bitmapo diskusija',
+                'beatmapset_discussion_lock' => 'Diskusija tarp ":title" buvo užrakinta',
                 'beatmapset_discussion_lock_compact' => 'Diskusija buvo užrakinta',
-                'beatmapset_discussion_post_new' => '',
-                'beatmapset_discussion_post_new_empty' => '',
-                'beatmapset_discussion_post_new_compact' => '',
-                'beatmapset_discussion_post_new_compact_empty' => '',
-                'beatmapset_discussion_review_new' => '',
-                'beatmapset_discussion_review_new_compact' => '',
-                'beatmapset_discussion_unlock' => '',
-                'beatmapset_discussion_unlock_compact' => '',
+                'beatmapset_discussion_post_new' => 'Nauja žinutė tarp :title" iš :username: ":content"',
+                'beatmapset_discussion_post_new_empty' => 'Nauja žinutė tarp :title" iš :username',
+                'beatmapset_discussion_post_new_compact' => 'Nauja žinutė iš :username ":content"',
+                'beatmapset_discussion_post_new_compact_empty' => 'Nauja žinutė iš :username',
+                'beatmapset_discussion_review_new' => 'Nauja apžvalga ant ":title" iš :username, kurioje yra problemos: :problems, pasiūlymai: :suggestions, pagyrimai: :praises',
+                'beatmapset_discussion_review_new_compact' => 'Nauja apžvalga iš :username, kurioje yra problemos: :problems, pasiūlymai: :suggestions, pagyrimai: :praises',
+                'beatmapset_discussion_unlock' => 'Diskusija apie ":title" buvo atrakinta',
+                'beatmapset_discussion_unlock_compact' => 'Diskusija buvo atrakinta',
             ],
 
             'beatmapset_problem' => [
-                '_' => '',
-                'beatmapset_discussion_qualified_problem' => '',
-                'beatmapset_discussion_qualified_problem_empty' => '',
-                'beatmapset_discussion_qualified_problem_compact' => '',
-                'beatmapset_discussion_qualified_problem_compact_empty' => '',
+                '_' => 'Kvalifikuoto Bitmapo problema',
+                'beatmapset_discussion_qualified_problem' => 'Pranešė :username apie ":title": ":content"',
+                'beatmapset_discussion_qualified_problem_empty' => 'Pranešė :username apie ":title"',
+                'beatmapset_discussion_qualified_problem_compact' => 'Pranešė :username: ":content"',
+                'beatmapset_discussion_qualified_problem_compact_empty' => 'Pranešė :username',
             ],
 
             'beatmapset_state' => [
-                '_' => '',
-                'beatmapset_disqualify' => '',
-                'beatmapset_disqualify_compact' => '',
-                'beatmapset_love' => '',
-                'beatmapset_love_compact' => '',
-                'beatmapset_nominate' => '',
-                'beatmapset_nominate_compact' => '',
-                'beatmapset_qualify' => '',
-                'beatmapset_qualify_compact' => '',
-                'beatmapset_rank' => '',
-                'beatmapset_rank_compact' => '',
-                'beatmapset_remove_from_loved' => '',
-                'beatmapset_remove_from_loved_compact' => '',
-                'beatmapset_reset_nominations' => '',
-                'beatmapset_reset_nominations_compact' => '',
+                '_' => 'Bitmapo būsena pasikeitė',
+                'beatmapset_disqualify' => '":title" buvo diskvalifikuotas',
+                'beatmapset_disqualify_compact' => 'Bitmapas buvo diskvalifikuotas',
+                'beatmapset_love' => '":title" buvo paaukštintas į mylimą',
+                'beatmapset_love_compact' => 'Bitmapas buvo paaukštintas į mylimą',
+                'beatmapset_nominate' => '":title" buvo nominuotas',
+                'beatmapset_nominate_compact' => 'Bitmapas buvo nominuotas',
+                'beatmapset_qualify' => '":title" gavo pakankamai nominacijų ir pateko į reitingavimo eilę',
+                'beatmapset_qualify_compact' => 'Bitmapas pateko į reitingavimo eilę',
+                'beatmapset_rank' => '":title" buvo reitinguotas',
+                'beatmapset_rank_compact' => 'Bitmapas buvo reitinguotas',
+                'beatmapset_remove_from_loved' => '":title" buvo pašalintas iš Mylimų',
+                'beatmapset_remove_from_loved_compact' => 'Bitmapas buvo pašalintas iš Mylimų',
+                'beatmapset_reset_nominations' => '":title" nominacija buvo atstatyta',
+                'beatmapset_reset_nominations_compact' => 'Nominacija buvo atstatyta',
             ],
 
             'comment' => [
-                '_' => '',
+                '_' => 'Naujas komentaras',
 
-                'comment_new' => '',
-                'comment_new_compact' => '',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_new' => ':username pakomentavo ":content" tarp ":title"',
+                'comment_new_compact' => ':username pakomentavo ":content"',
+                'comment_reply' => ':username atsakė ":content" tarp ":title"',
+                'comment_reply_compact' => ':username atsakė ":content"',
             ],
         ],
 
         'channel' => [
-            '_' => '',
+            '_' => 'Pokalbiai',
 
             'announcement' => [
-                '_' => '',
+                '_' => 'Naujas pranešimas',
 
                 'announce' => [
-                    'channel_announcement' => '',
-                    'channel_announcement_compact' => '',
-                    'channel_announcement_group' => '',
+                    'channel_announcement' => ':username sako ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Pranešimas iš :username',
                 ],
             ],
 
             'channel' => [
-                '_' => '',
+                '_' => 'Nauja žinutė',
 
                 'pm' => [
-                    'channel_message' => '',
-                    'channel_message_compact' => '',
-                    'channel_message_group' => '',
+                    'channel_message' => ':username sako ":title"',
+                    'channel_message_compact' => ':title',
+                    'channel_message_group' => 'nuo :username',
                 ],
             ],
         ],
 
         'build' => [
-            '_' => '',
+            '_' => 'Pakeitimų sąrašas',
 
             'comment' => [
-                '_' => '',
+                '_' => 'Naujas komentaras',
 
-                'comment_new' => '',
-                'comment_new_compact' => '',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_new' => ':username pakomentavo ":content" tarp ":title"',
+                'comment_new_compact' => ':username pakomentavo ":content"',
+                'comment_reply' => ':username atsakė ":content" tarp ":title"',
+                'comment_reply_compact' => ':username atsakė ":content"',
             ],
         ],
 
         'news_post' => [
-            '_' => '',
+            '_' => 'Naujienos',
 
             'comment' => [
-                '_' => '',
+                '_' => 'Naujas komentaras',
 
-                'comment_new' => '',
-                'comment_new_compact' => '',
-                'comment_reply' => '',
-                'comment_reply_compact' => '',
+                'comment_new' => ':username pakomentavo ":content" tarp ":title"',
+                'comment_new_compact' => ':username pakomentavo ":content"',
+                'comment_reply' => ':username atsakė ":content" tarp ":title"',
+                'comment_reply_compact' => ':username atsakė ":content"',
             ],
         ],
 
         'forum_topic' => [
-            '_' => '',
+            '_' => 'Forumo tema',
 
             'forum_topic_reply' => [
-                '_' => '',
-                'forum_topic_reply' => '',
-                'forum_topic_reply_compact' => '',
+                '_' => 'Naujas forumo atsakymas',
+                'forum_topic_reply' => ':username atsakė į ":title"',
+                'forum_topic_reply_compact' => ':username atsakė',
             ],
         ],
 
@@ -148,31 +148,31 @@ return [
 
             'legacy_pm' => [
                 '_' => '',
-                'legacy_pm' => '',
+                'legacy_pm' => ':count_delimited neperskaityta žinutė|:count_delimited neperskaitytos(-ų) žinutės(-čių)',
             ],
         ],
 
         'user' => [
             'user_beatmapset_new' => [
-                '_' => '',
+                '_' => 'Naujas bitmapas',
 
-                'user_beatmapset_new' => '',
-                'user_beatmapset_new_compact' => '',
-                'user_beatmapset_new_group' => '',
+                'user_beatmapset_new' => 'Naujas bitmapas ":title" iš :username',
+                'user_beatmapset_new_compact' => 'Naujas bitmapas ":title"',
+                'user_beatmapset_new_group' => 'Nauji bitmapai iš :username',
 
-                'user_beatmapset_revive' => '',
-                'user_beatmapset_revive_compact' => '',
+                'user_beatmapset_revive' => 'Bitmapą ":title" atgaivino :username',
+                'user_beatmapset_revive_compact' => 'Bitmapas ":title" atgaivintas',
             ],
         ],
 
         'user_achievement' => [
-            '_' => '',
+            '_' => 'Medaliai',
 
             'user_achievement_unlock' => [
-                '_' => '',
-                'user_achievement_unlock' => '',
-                'user_achievement_unlock_compact' => '',
-                'user_achievement_unlock_group' => '',
+                '_' => 'Naujas medalis',
+                'user_achievement_unlock' => 'Atrakinta ":title"!',
+                'user_achievement_unlock_compact' => 'Atrakinta ":title"!',
+                'user_achievement_unlock_group' => 'Medaliai atrakinti!',
             ],
         ],
     ],
@@ -180,67 +180,67 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => '',
+                'beatmap_owner_change' => 'Dabar esi svečias bitmapo ":title"',
             ],
 
             'beatmapset_discussion' => [
-                'beatmapset_discussion_lock' => '',
-                'beatmapset_discussion_post_new' => '',
-                'beatmapset_discussion_unlock' => '',
+                'beatmapset_discussion_lock' => 'Diskusija tarp ":title" buvo užrakinta',
+                'beatmapset_discussion_post_new' => 'Diskusija tarp ":title" turi naujinimų',
+                'beatmapset_discussion_unlock' => 'Diskusija tarp ":title" buvo atrakinta',
             ],
 
             'beatmapset_problem' => [
-                'beatmapset_discussion_qualified_problem' => '',
+                'beatmapset_discussion_qualified_problem' => 'Pranešta apie naują problemą tarp ":title"',
             ],
 
             'beatmapset_state' => [
-                'beatmapset_disqualify' => '',
-                'beatmapset_love' => '',
-                'beatmapset_nominate' => '',
-                'beatmapset_qualify' => '',
-                'beatmapset_rank' => '',
-                'beatmapset_remove_from_loved' => '',
-                'beatmapset_reset_nominations' => '',
+                'beatmapset_disqualify' => '":title" buvo diskvalifikuotas',
+                'beatmapset_love' => '":title" buvo paaukštintas į mylimą',
+                'beatmapset_nominate' => '":title" buvo nominuotas',
+                'beatmapset_qualify' => '":title" gavo pakankamai nominacijų ir pateko į reitingavimo eilę',
+                'beatmapset_rank' => '":title" buvo reitinguotas',
+                'beatmapset_remove_from_loved' => '":title" buvo pašalintas iš Mylimų',
+                'beatmapset_reset_nominations' => '":title" nominacija buvo atstatyta',
             ],
 
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Bitmapas ":title" turi naujų komentarų',
             ],
         ],
 
         'channel' => [
             'channel' => [
-                'pm' => '',
+                'pm' => 'Tu gavai žinutę iš :username',
             ],
         ],
 
         'build' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Pakeitimų sąrašas ":title" turi naujų komentarų',
             ],
         ],
 
         'news_post' => [
             'comment' => [
-                'comment_new' => '',
+                'comment_new' => 'Naujienos ":title" turi naujų komentarų',
             ],
         ],
 
         'forum_topic' => [
             'forum_topic_reply' => [
-                'forum_topic_reply' => '',
+                'forum_topic_reply' => 'Yra naujų atsakymų tarp ":title"',
             ],
         ],
 
         'user' => [
             'user_achievement_unlock' => [
-                'user_achievement_unlock' => '',
-                'user_achievement_unlock_self' => '',
+                'user_achievement_unlock' => ':username atrakino naują medalį ":title"!',
+                'user_achievement_unlock_self' => 'Tu atrakinai naują medalį ":title"!',
             ],
 
             'user_beatmapset_new' => [
-                'user_beatmapset_new' => '',
-                'user_beatmapset_revive' => '',
+                'user_beatmapset_new' => ':username sukūrė naujų bitmapų',
+                'user_beatmapset_revive' => ':username atgaivino bitmapus',
             ],
         ],
     ],

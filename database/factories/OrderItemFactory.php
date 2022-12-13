@@ -26,7 +26,7 @@ $factory->state(App\Models\Store\OrderItem::class, 'supporter_tag', function (Fa
             $user = $order->user;
 
             return [
-                'target_id' => (string) $user->user_id,
+                'target_id' => $user->getKey(),
                 'username' => $user->username,
                 'duration' => 1,
             ];

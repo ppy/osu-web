@@ -4,19 +4,19 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'all_read' => '',
-    'delete' => '',
+    'all_read' => 'Totes les notificacions llegides!',
+    'delete' => 'Eliminar :type',
     'loading' => '',
     'mark_read' => '',
     'none' => '',
-    'see_all' => '',
+    'see_all' => 'veure totes les notificacions',
     'see_channel' => '',
     'verifying' => '',
 
     'filters' => [
-        '_' => '',
+        '_' => 'totes',
         'user' => '',
-        'beatmapset' => '',
+        'beatmapset' => 'beatmaps',
         'forum_topic' => '',
         'news_post' => '',
         'build' => '',
@@ -25,10 +25,10 @@ return [
 
     'item' => [
         'beatmapset' => [
-            '_' => '',
+            '_' => 'Beatmap',
 
             'beatmap_owner_change' => [
-                '_' => '',
+                '_' => 'Dificultat de convidat',
                 'beatmap_owner_change' => '',
                 'beatmap_owner_change_compact' => '',
             ],
@@ -40,7 +40,7 @@ return [
                 'beatmapset_discussion_post_new' => '',
                 'beatmapset_discussion_post_new_empty' => '',
                 'beatmapset_discussion_post_new_compact' => '',
-                'beatmapset_discussion_post_new_compact_empty' => '',
+                'beatmapset_discussion_post_new_compact_empty' => 'Nova publicació per :username',
                 'beatmapset_discussion_review_new' => '',
                 'beatmapset_discussion_review_new_compact' => '',
                 'beatmapset_discussion_unlock' => '',
@@ -154,10 +154,10 @@ return [
 
         'user' => [
             'user_beatmapset_new' => [
-                '_' => '',
+                '_' => 'Nou beatmap',
 
-                'user_beatmapset_new' => '',
-                'user_beatmapset_new_compact' => '',
+                'user_beatmapset_new' => 'Nou beatmap ":title" per :username',
+                'user_beatmapset_new_compact' => 'Nou beatmap ":title"',
                 'user_beatmapset_new_group' => '',
 
                 'user_beatmapset_revive' => '',

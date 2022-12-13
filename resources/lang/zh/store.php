@@ -70,7 +70,7 @@ return [
         'cancel_not_allowed' => '目前无法取消订单。',
         'invoice' => '查看发票',
         'no_orders' => '没有可显示的订单。',
-        'paid_on' => '订单支付于 :date',
+        'paid_on' => ':date 支付订单',
         'resume' => '恢复结账',
         'shopify_expired' => '此订单的结账链接已过期。',
 

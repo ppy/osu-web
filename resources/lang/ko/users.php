@@ -217,6 +217,9 @@ return [
                 'loved' => [
                     'title' => 'Loved 비트맵',
                 ],
+                'nominated' => [
+                    'title' => '',
+                ],
                 'pending' => [
                     'title' => '대기 중인 비트맵',
                 ],
@@ -414,7 +417,7 @@ return [
             'country_simple' => '국가 순위',
             'global' => ':mode 세계 순위',
             'global_simple' => '세계 순위',
-            'highest' => '',
+            'highest' => '최고 순위: :rank, :date에 달성',
         ],
         'stats' => [
             'hit_accuracy' => '정확도',

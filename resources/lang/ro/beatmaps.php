@@ -231,7 +231,7 @@ return [
                 'mode' => 'Mod',
                 'nsfw' => 'Conținut Obscen',
                 'played' => 'Jucat',
-                'rank' => 'Clasament atins',
+                'rank' => 'Clasament Obținut',
                 'status' => 'Categorii',
             ],
             'sorting' => [
