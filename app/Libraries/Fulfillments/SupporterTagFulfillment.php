@@ -17,7 +17,7 @@ use Mail;
 
 class SupporterTagFulfillment extends OrderFulfiller
 {
-    const TAGGED_NAME = 'supporter-tag';
+    const TAGGED_NAME = Product::SUPPORTER_TAG_NAME;
 
     private $continued;
     private $fulfillers;

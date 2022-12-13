@@ -11,7 +11,7 @@ use JsonSerializable;
 
 class ExtraDataSupporterTag extends ExtraDataBase implements JsonSerializable
 {
-    const TYPE = 'supporter-tag';
+    const TYPE = Product::SUPPORTER_TAG_NAME;
 
     public int $duration;
     public bool $hidden;
