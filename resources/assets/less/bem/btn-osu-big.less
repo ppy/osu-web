@@ -141,7 +141,7 @@
     padding: 10px 5px;
   }
 
-  &--download-page {
+  &--download {
     .default-box-shadow();
     .default-border-radius();
     .center-content();
@@ -150,11 +150,16 @@
     flex: none;
     width: 240px;
     padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 
     flex-direction: column;
-    --bg: hsl(var(--hsl-blue-3)) center/150% url("~@images/backgrounds/button.svg");
-    --hover-bg: hsl(var(--hsl-blue-3)) calc(50% - 20px) 50%/150% url("~@images/backgrounds/button.svg");
+    --bg-colour: hsl(var(--hsl-blue-3));
+    --bg: var(--bg-colour) center/150% url("~@images/backgrounds/button.svg");
+    --hover-bg: var(--bg-colour) calc(50% - 20px) 50%/150% url("~@images/backgrounds/button.svg");
+  }
+
+  &--download-lazer {
+    --bg-colour: hsl(var(--hsl-purple-3));
   }
 
   &--fileupload {
@@ -469,7 +474,7 @@
   }
 
   &__text-top {
-    .@{top}--download-page & {
+    .@{top}--download & {
       .default-text-shadow();
       font-size: @font-size--large;
       font-weight: 700;
@@ -480,7 +485,7 @@
   &__text-bottom {
     font-size: @font-size--small;
 
-    .@{top}--download-page & {
+    .@{top}--download & {
       .default-text-shadow();
       font-size: @font-size--normal;
     }

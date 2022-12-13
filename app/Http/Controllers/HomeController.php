@@ -15,6 +15,7 @@ use App\Models\Forum\Post;
 use App\Models\NewsPost;
 use App\Models\UserDonation;
 use Auth;
+use Jenssegers\Agent\Agent;
 use Request;
 
 /**
@@ -55,7 +56,39 @@ class HomeController extends Controller
 
     public function getDownload()
     {
-        return ext_view('home.download');
+        static $lazerPlatformNames = [
+            'android' => 'Android 5 or later',
+            'ios' => 'iOS 10 or later',
+            'linux_x64' => 'Linux (x64)',
+            'macos_intel' => 'macOS 10.15 or later (Intel)',
+            'windows_x64' => 'Windows 8.1 or later (x64)',
+        ];
+
+        $httpHeaders = [];
+        // format headers to what Agent is expecting
+        foreach (request()->headers->all() as $key => $values) {
+            $headerKey = 'HTTP_'.strtoupper(strtr($key, '-', '_'));
+            $httpHeaders[$headerKey] = $values[0];
+        }
+        $agent = new Agent($httpHeaders);
+
+        if ($agent->is('Windows')) {
+            $platform = 'windows_x64';
+        } elseif ($agent->isiOS() || $agent->isiPadOS()) {
+            $platform = 'ios';
+        } elseif ($agent->is('OS X')) {
+            // FIXME: figure out a way to detect Apple Silicon
+            $platform = 'macos_intel';
+        } elseif ($agent->is('Linux')) {
+            $platform = 'linux_x64';
+        } elseif ($agent->isAndroidOS()) {
+            $platform = 'android';
+        }
+
+        return ext_view('home.download', [
+            'lazerUrl' => config("osu.urls.lazer_dl.{$platform}"),
+            'lazerPlatformName' => $lazerPlatformNames[$platform],
+        ]);
     }
 
     public function index()

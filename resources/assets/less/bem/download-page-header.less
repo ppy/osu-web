@@ -2,38 +2,100 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .download-page-header {
-  .default-text-shadow();
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  .default-gutter-v2();
+  padding-bottom: 20px;
 
-  margin: 20px 0;
-  color: @osu-colour-c1;
+  &__action {
+    font-size: @font-size--title;
+  }
 
-  @media @desktop {
-    margin-left: 90px;
-    width: 180px;
-    text-shadow: none;
+  &__action-description {
+    flex: 1;
+    text-align: center;
+    padding-bottom: 10px;
+
+    @media @desktop {
+      min-height: 100px;
+    }
+  }
+
+  &__action-title {
+    font-size: @font-size--title;
+    margin: 10px 0;
+  }
+
+  &__choice {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__choices {
+    display: grid;
+    gap: 10px;
+
+    @media @desktop {
+      grid-template-columns: 1fr auto 1fr;
+    }
   }
 
   &__extra-link {
     .link-white();
+    .link-plain();
+    font-size: @font-size--title-small;
+
+    &::before {
+      content: '• ';
+    }
   }
 
-  &__icon {
-    font-size: 24px;
-    padding-bottom: 20px;
+  &__extra-links {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__separator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: @font-size--title;
+    width: 100%;
+    height: auto;
+    --separator-thickness: 2px;
+    --separator-width: auto;
+    --separator-height: var(--separator-thickness);
+
+    @media @desktop {
+      flex-direction: column;
+      height: 100%;
+      width: auto;
+      --separator-width: var(--separator-thickness);
+      --separator-height: auto;
+
+      &::after {
+        padding-top: 5px; // balances line-height of separator text
+      }
+    }
+
+    &::after, &::before {
+      content: '';
+      display: block;
+      flex: 1;
+      background-color: hsl(var(--hsl-b2));
+      width: var(--separator-width);
+      height: var(--separator-height);
+    }
   }
 
   &__tagline {
-    font-size: 40px;
-    font-weight: 200;
+    display: block;
     text-align: center;
-    padding-bottom: 15px;
-    white-space: nowrap;
-  }
-
-  &__text {
-    font-size: @font-size--normal;
+    font-size: @font-size--large-3;
+    padding: 20px 0;
+    margin: 0;
   }
 }
