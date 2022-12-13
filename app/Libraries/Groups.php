@@ -70,9 +70,10 @@ class Groups
         if ($group === null) {
             try {
                 $group = Group::create([
-                    'identifier' => $id,
+                    'group_desc' => '',
                     'group_name' => $id,
-                    'group_desc' => $id,
+                    'group_type' => 0,
+                    'identifier' => $id,
                     'short_name' => $id,
                 ])->fresh();
             } catch (Exception $ex) {
