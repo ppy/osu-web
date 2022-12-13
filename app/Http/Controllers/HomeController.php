@@ -60,7 +60,7 @@ class HomeController extends Controller
             'android' => 'Android 5 or later',
             'ios' => 'iOS 10 or later',
             'linux_x64' => 'Linux (x64)',
-            'macos_intel' => 'macOS 10.15 or later (Intel)',
+            'macos_as' => 'macOS 10.15 or later (Apple Silicon)',
             'windows_x64' => 'Windows 8.1 or later (x64)',
         ];
 
@@ -77,8 +77,8 @@ class HomeController extends Controller
         } elseif ($agent->isiOS() || $agent->isiPadOS()) {
             $platform = 'ios';
         } elseif ($agent->is('OS X')) {
-            // FIXME: figure out a way to detect Apple Silicon
-            $platform = 'macos_intel';
+            // FIXME: figure out a way to differentiate Intel and Apple Silicon
+            $platform = 'macos_as';
         } elseif ($agent->is('Linux')) {
             $platform = 'linux_x64';
         } elseif ($agent->isAndroidOS()) {
