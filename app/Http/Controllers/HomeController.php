@@ -84,6 +84,7 @@ class HomeController extends Controller
         } elseif ($agent->isAndroidOS()) {
             $platform = 'android';
         }
+        $platform ??= 'windows_x64';
 
         return ext_view('home.download', [
             'lazerUrl' => config("osu.urls.lazer_dl.{$platform}"),
