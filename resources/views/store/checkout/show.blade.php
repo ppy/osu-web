@@ -34,6 +34,18 @@
 
             @include("store.objects.order", ['order' => $order, 'modifiers' => ['checkout']])
 
+            @if ($order->containsSupporterTag())
+                <label class="store-page__option">
+                    @include('objects._switch', ['locals' => [
+                        'additionalClass' => 'js-store-checkout-option',
+                        'checked' => $order->isGiftsHidden(),
+                        'name' => 'hide_from_activity',
+                    ]])
+                    {{ osu_trans('store.checkout.hide_from_activity') }}
+                </label>
+            @endif
+
+
             <div class="store-cart-footer">
                 <div class="store-cart-footer__total-box store-cart-footer__total-box--full">
                     <p class="store-cart-footer__text">total</p>

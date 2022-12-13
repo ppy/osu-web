@@ -31,15 +31,6 @@
             !!}
         </div>
     </div>
-    <div class="store-supporter-tag__options">
-        <label class="store-supporter-tag__option">
-            @include('objects._switch', ['locals' => [
-                'checked' => false,
-                'name' => 'item[extra_data][hide]',
-            ]])
-            {{ osu_trans('store.supporter_tag.hide') }}
-        </label>
-    </div>
     <div class="store-slider">
         <div class="js-slider ui-slider ui-slider-horizontal">
             <div class="ui-slider-handle">

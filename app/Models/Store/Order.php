@@ -13,6 +13,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -29,21 +30,21 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @property Address $address
  * @property int|null $address_id
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon|null $deleted_at
- * @property \Illuminate\Database\Eloquent\Collection $items OrderItem
+ * @property Carbon $created_at
+ * @property Carbon|null $deleted_at
+ * @property Collection<OrderItem> $items
  * @property string|null $last_tracking_state
  * @property int $order_id
  * @property string|null $provider
- * @property \Carbon\Carbon|null $paid_at
- * @property \Illuminate\Database\Eloquent\Collection $payments Payment
+ * @property Carbon|null $paid_at
+ * @property Collection<Payment> $payments
  * @property string|null $reference For paypal transactions, this is the resource Id of the paypal order; otherwise, it is the same as the transaction_id without the prefix.
- * @property \Carbon\Carbon|null $shipped_at
+ * @property Carbon|null $shipped_at
  * @property float|null $shipping
  * @property mixed $status
  * @property string|null $tracking_code
  * @property string|null $transaction_id For paypal transactions, this value is based on the IPN or captured payment Id, not the order resource id.
- * @property \Carbon\Carbon|null $updated_at
+ * @property Carbon|null $updated_at
  * @property User $user
  * @property int $user_id
  */
@@ -368,6 +369,11 @@ class Order extends Model
         return $this->status === static::STATUS_PAYMENT_REQUESTED;
     }
 
+    public function containsSupporterTag(): bool
+    {
+        return $this->items->first(fn (OrderItem $item) => $item->product->custom_class === Product::SUPPORTER_TAG_NAME) !== null;
+    }
+
     public function hasInvoice(): bool
     {
         return in_array($this->status, static::STATUS_HAS_INVOICE, true);
@@ -391,6 +397,20 @@ class Order extends Model
     public function isEmpty(): bool
     {
         return !$this->items()->exists();
+    }
+
+    public function isGiftsHidden(): bool
+    {
+        // Consider all supporter tags should be hidden from activity if any one of them is marked to be hidden.
+        // This also skips needing to perform a product lookup.
+        foreach ($this->items as $item) {
+            $extraData = $item->extra_data;
+            if ($extraData instanceof ExtraDataSupporterTag && $extraData->hidden) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function isModifiable(): bool
@@ -468,6 +488,22 @@ class Order extends Model
         $this->saveOrExplode();
     }
 
+    public function setGiftsHidden(bool $hide = true)
+    {
+        // batch update query not used as it will override extra_data contents.
+        $this->getConnection()->transaction(function () use ($hide) {
+            foreach ($this->items as $item) {
+                $extraData = $item->extra_data;
+                if ($extraData instanceof ExtraDataSupporterTag) {
+                    $extraData->hidden = $hide;
+                    $item->saveOrExplode();
+                }
+            }
+        });
+    }
+
+    #region public functions for updating cart state
+
     /**
      * Marks the Order as cancelled. Does not do anything if already cancelled.
      *
@@ -512,6 +548,10 @@ class Order extends Model
         $this->status = $this->requiresShipping() ? static::STATUS_PAID : static::STATUS_DELIVERED;
         $this->saveOrExplode();
     }
+
+    #endregion
+
+    #region public functions for updating cart quantities
 
     /**
      * Updates the Order with form parameters.
@@ -582,6 +622,8 @@ class Order extends Model
             $orderItem->saveOrExplode();
         });
     }
+
+    #endregion
 
     public static function cart($user)
     {
@@ -706,7 +748,6 @@ class Order extends Model
     private function extraDataSupporterTag(array $orderItemParams)
     {
         $params = get_params($orderItemParams, 'extra_data', [
-            'hidden:bool',
             'target_id:int',
         ]);
 

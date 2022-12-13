@@ -53,6 +53,7 @@ class CheckoutController extends Controller
     public function store()
     {
         $params = get_params(request()->all(), null, [
+            'hide_from_activity:bool',
             'orderId:int',
             'provider',
             'shopifyCheckoutId'
@@ -62,6 +63,10 @@ class CheckoutController extends Controller
 
         if ($order === null || $order->isEmpty()) {
             return ujs_redirect(route('store.cart.show'));
+        }
+
+        if ($params['hide_from_activity'] !== null) {
+            $order->setGiftsHidden($params['hide_from_activity']);
         }
 
         $checkout = new OrderCheckout($order, $params['provider'], $params['shopifyCheckoutId']);
