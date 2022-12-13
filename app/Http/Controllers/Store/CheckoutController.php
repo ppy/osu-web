@@ -56,7 +56,7 @@ class CheckoutController extends Controller
             'hide_from_activity:bool',
             'orderId:int',
             'provider',
-            'shopifyCheckoutId'
+            'shopifyCheckoutId',
         ], ['null_missing' => true]);
 
         $order = $this->orderForCheckout($params['orderId']);
