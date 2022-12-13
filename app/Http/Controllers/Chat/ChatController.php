@@ -156,7 +156,7 @@ class ChatController extends Controller
     /**
      * Get Updates
      *
-     * Returns the list of channels the current User is in along with an updated UserSilence list.
+     * Returns the list of channels the current User is in along with an updated list of [UserSilence](#usersilence)s.
      *
      * ---
      *
@@ -167,8 +167,8 @@ class ChatController extends Controller
      * presence         | [ChatChannel](#chatchannel)[]?
      * silences         | [UserSilence](#usersilence)[]?
      *
-     * @queryParam history_since integer [UserSilence](#usersilence) after the specified id to return.
-     * @queryParam includes string[] List of `presence`, `silences` fields to include in the response. Returns all if not specified.
+     * @queryParam history_since integer [UserSilence](#usersilence)s after the specified id to return.
+     * @queryParam includes string[] List of fields from `presence`, `silences` to include in the response. Returns all if not specified.
      * @queryParam since integer required Messages after the specified `message_id` to return.
      *
      * @response {
