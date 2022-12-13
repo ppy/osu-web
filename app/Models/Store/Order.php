@@ -650,7 +650,7 @@ class Order extends Model
     {
         // FIXME: custom class stuff should probably not go in Order...
         switch ($product->custom_class) {
-            case 'supporter-tag':
+            case Product::SUPPORTER_TAG_NAME:
                 $params['cost'] ??= 0;
                 $params['extra_data'] = $this->extraDataSupporterTag($params);
                 break;

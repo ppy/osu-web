@@ -8,6 +8,7 @@ namespace App\Libraries\Fulfillments;
 use App\Events\Fulfillments\SupporterTagEvent;
 use App\Models\Event;
 use App\Models\Store\OrderItem;
+use App\Models\Store\Product;
 use App\Models\SupporterTag;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
@@ -135,7 +136,7 @@ class SupporterTagFulfillment extends OrderFulfiller
     private function getOrderItems(): Collection
     {
         if (!isset($this->orderItems)) {
-            $this->orderItems = $this->order->items()->customClass('supporter-tag')->get();
+            $this->orderItems = $this->order->items()->customClass(Product::SUPPORTER_TAG_NAME)->get();
         }
 
         return $this->orderItems;
