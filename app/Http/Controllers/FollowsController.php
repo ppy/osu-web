@@ -84,6 +84,10 @@ class FollowsController extends Controller
                 throw $e;
             }
         }
+        
+        if ($currentUser->getKey() === $targetId) {
+            abort(422);
+        }
 
         if ($params['subtype'] === 'mapping') {
             dispatch(new UpdateUserMappingFollowerCountCache($params['notifiable_id']));
