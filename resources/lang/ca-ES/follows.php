@@ -24,15 +24,15 @@ return [
     ],
 
     'mapping' => [
-        'empty' => '',
+        'empty' => 'No s\'ha mirat cap mapejador.',
         'followers' => '',
-        'page_title' => '',
-        'title' => '',
-        'to_0' => '',
-        'to_1' => '',
+        'page_title' => 'llista de seguiment de mapejadors',
+        'title' => 'mapejador',
+        'to_0' => 'deixar de notificar-me quan aquest usuari pugi un nou beatmap',
+        'to_1' => 'notificar-me quan aquest usuari pugi un nou beatmap',
     ],
 
     'modding' => [
-        'title' => '',
+        'title' => 'discusió del beatmap',
     ],
 ];

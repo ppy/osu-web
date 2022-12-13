@@ -47,8 +47,8 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => '在以下模式的合格谱面上接收新问题通知：',
-        'beatmapset_disqualify' => '在以下模式的谱面被标记为不合格时接收通知：',
+        'beatmapset_discussion_qualified_problem' => '接收以下游戏模式在过审 (Qualified) 谱面上的新问题通知：',
+        'beatmapset_disqualify' => '接收以下游戏模式谱面下架 (DQ) 时的通知：',
         'comment_reply' => '在你的评论被回复时接收通知',
         'title' => '通知',
         'topic_auto_subscribe' => '自动启用自己创建的主题的通知',
@@ -74,7 +74,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '隐藏谱面少儿不宜提示',
+        'beatmapset_show_nsfw' => '隐藏不良内容谱面提示',
         'beatmapset_title_show_original' => '以原语言显示谱面信息',
         'title' => '选项',
 

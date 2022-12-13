@@ -10,6 +10,7 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
 import { parseJson } from 'utils/json';
+import { trans } from 'utils/lang';
 import { getInt } from 'utils/math';
 import Controller from './controller';
 
@@ -71,7 +72,7 @@ export default class MetadataEditor extends React.Component<Props> {
       <form className='simple-form simple-form--modal'>
         <label className='simple-form__row'>
           <div className='simple-form__label'>
-            {osu.trans('beatmapsets.show.info.language')}
+            {trans('beatmapsets.show.info.language')}
           </div>
 
           <div className='form-select form-select--full'>
@@ -93,7 +94,7 @@ export default class MetadataEditor extends React.Component<Props> {
 
         <label className='simple-form__row'>
           <div className='simple-form__label'>
-            {osu.trans('beatmapsets.show.info.genre')}
+            {trans('beatmapsets.show.info.genre')}
           </div>
 
           <div className='form-select form-select--full'>
@@ -116,7 +117,7 @@ export default class MetadataEditor extends React.Component<Props> {
         {this.canEditOffset &&
           <label className='simple-form__row'>
             <div className='simple-form__label'>
-              {osu.trans('beatmapsets.show.info.offset')}
+              {trans('beatmapsets.show.info.offset')}
             </div>
 
             <input
@@ -132,7 +133,7 @@ export default class MetadataEditor extends React.Component<Props> {
 
         <div className='simple-form__row'>
           <div className='simple-form__label'>
-            {osu.trans('beatmapsets.show.info.nsfw')}
+            {trans('beatmapsets.show.info.nsfw')}
           </div>
 
           <label className='osu-switch-v2'>
@@ -156,7 +157,7 @@ export default class MetadataEditor extends React.Component<Props> {
                 onClick={this.save}
                 type='button'
               >
-                {osu.trans('common.buttons.save')}
+                {trans('common.buttons.save')}
               </button>
             </div>
 
@@ -167,7 +168,7 @@ export default class MetadataEditor extends React.Component<Props> {
                 onClick={this.props.onClose}
                 type='button'
               >
-                {osu.trans('common.buttons.cancel')}
+                {trans('common.buttons.cancel')}
               </button>
             </div>
           </div>

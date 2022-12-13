@@ -5,13 +5,14 @@ import { route } from 'laroute';
 import core from 'osu-core-singleton';
 import { toShopifyVariantGid } from 'shopify-gid';
 import { createClickCallback } from 'utils/html';
+import { trans } from 'utils/lang';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import { popup } from 'utils/popup';
 import client from './shopify-client';
 
 declare global {
   interface Window {
-    Store: Store;
+    Store?: Store;
   }
 }
 
@@ -30,7 +31,7 @@ export class Store {
   }
 
   static init(sharedContext: Window) {
-    sharedContext.Store = sharedContext.Store || new Store();
+    sharedContext.Store = sharedContext.Store ?? new Store();
   }
 
   async beginCheckout(event: ClickEvent) {
@@ -71,7 +72,7 @@ export class Store {
       });
     } catch (error) {
       hideLoadingOverlay();
-      popup(osu.trans('errors.checkout.generic'), 'danger');
+      popup(trans('errors.checkout.generic'), 'danger');
       return;
     }
 
@@ -110,7 +111,7 @@ export class Store {
     if (checkout != null) {
       window.location.href = checkout.webUrl;
     } else {
-      popup(osu.trans('store.order.shopify_expired'), 'info');
+      popup(trans('store.order.shopify_expired'), 'info');
       hideLoadingOverlay();
     }
   }

@@ -8,6 +8,7 @@ import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import * as React from 'react';
 import { Transforms } from 'slate';
 import { ReactEditor } from 'slate-react';
+import { trans } from 'utils/lang';
 import IconDropdownMenu, { MenuItem } from './icon-dropdown-menu';
 import { SlateContext } from './slate-context';
 
@@ -25,7 +26,7 @@ export default class EditorIssueTypeSelector extends React.Component<Props> {
     const menuOptions: MenuItem[] = beatmapReviewDiscussionTypes.map((type) => ({
       icon: <span className={`beatmap-discussion-message-type beatmap-discussion-message-type--${type}`}><i className={discussionTypeIcons[type]} /></span>,
       id: type,
-      label: osu.trans(`beatmaps.discussions.message_type.${type}`),
+      label: trans(`beatmaps.discussions.message_type.${type}`),
     }));
 
     return (

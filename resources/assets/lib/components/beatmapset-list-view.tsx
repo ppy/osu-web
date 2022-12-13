@@ -5,6 +5,7 @@ import BeatmapsetJson from 'interfaces/beatmapset-json';
 import { route } from 'laroute';
 import * as React from 'react';
 import { getArtist, getTitle } from 'utils/beatmap-helper';
+import { trans } from 'utils/lang';
 import BeatmapsetCover from './beatmapset-cover';
 
 interface Props {
@@ -20,7 +21,7 @@ export default class BeatmapsetListView extends React.PureComponent<Props> {
 
           <div className='beatmapset-list-view__content'>
             <div className='beatmapset-list-view__title'>
-              {osu.trans('beatmapsets.panel.empty')}
+              {trans('beatmapsets.panel.empty')}
             </div>
           </div>
         </div>
@@ -39,12 +40,12 @@ export default class BeatmapsetListView extends React.PureComponent<Props> {
           <div className='beatmapset-list-view__title u-ellipsis-overflow'>
             {getTitle(this.props.beatmapset)}
             <span className='beatmapset-list-view__artist'>
-              {osu.trans('users.show.extra.beatmaps.by_artist', { artist: getArtist(this.props.beatmapset) })}
+              {trans('users.show.extra.beatmaps.by_artist', { artist: getArtist(this.props.beatmapset) })}
             </span>
           </div>
 
           <div className='beatmapset-status beatmapset-status--list-view'>
-            {osu.trans(`beatmapsets.show.status.${this.props.beatmapset.status}`)}
+            {trans(`beatmapsets.show.status.${this.props.beatmapset.status}`)}
           </div>
         </div>
       </a>

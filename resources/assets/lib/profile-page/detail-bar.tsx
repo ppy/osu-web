@@ -10,6 +10,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import ExtraMenu, { showExtraMenu } from 'profile-page/extra-menu';
 import * as React from 'react';
+import { trans } from 'utils/lang';
 
 interface Props {
   user: UserExtendedJson;
@@ -57,7 +58,7 @@ export default class DetailBar extends React.Component<Props> {
             <a
               className='user-action-button user-action-button--profile-page'
               href={route('messages.users.show', { user: this.props.user.id })}
-              title={osu.trans('users.card.send_message')}
+              title={trans('users.card.send_message')}
             >
               <i className='fas fa-envelope' />
             </a>
@@ -71,7 +72,7 @@ export default class DetailBar extends React.Component<Props> {
             <div className='profile-detail-bar__level-bar'>
               <div
                 className='bar bar--user-profile'
-                title={osu.trans('users.show.stats.level_progress')}
+                title={trans('users.show.stats.level_progress')}
               >
                 <div className='bar__fill' style={{ width: `${this.props.user.statistics.level.progress}%` }} />
                 <div className='bar__text'>{`${this.props.user.statistics.level.progress}%`}</div>

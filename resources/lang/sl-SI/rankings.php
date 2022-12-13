@@ -5,42 +5,42 @@
 
 return [
     'countries' => [
-        'all' => '',
-        'title' => '',
+        'all' => 'Vse',
+        'title' => 'Država',
     ],
 
     'filter' => [
-        'title' => '',
+        'title' => 'Prikaži',
 
         'variant' => [
-            'title' => '',
+            'title' => 'Različica',
         ],
     ],
 
     'type' => [
         'charts' => '',
-        'country' => '',
-        'multiplayer' => '',
+        'country' => 'država',
+        'multiplayer' => 'večigralski način',
         'performance' => '',
         'score' => '',
     ],
 
     'spotlight' => [
-        'end_date' => '',
-        'map_count' => '',
-        'participants' => '',
-        'start_date' => '',
+        'end_date' => 'Datum konca',
+        'map_count' => 'Število beatmap',
+        'participants' => 'Udeleženci',
+        'start_date' => 'Datum začetka',
     ],
 
     'stat' => [
-        'accuracy' => '',
-        'active_users' => '',
-        'country' => '',
-        'play_count' => '',
+        'accuracy' => 'Natančnost',
+        'active_users' => 'Aktivni igralci',
+        'country' => 'Država',
+        'play_count' => 'Število igranj',
         'performance' => '',
-        'total_score' => '',
-        'ranked_score' => '',
-        'average_score' => '',
+        'total_score' => 'Skupaj točk',
+        'ranked_score' => 'Rangirana uvrstitev',
+        'average_score' => 'Povpr. rezultat',
         'average_performance' => '',
         'ss' => '',
         's' => '',

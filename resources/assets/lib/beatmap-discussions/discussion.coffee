@@ -9,6 +9,7 @@ import { button, div, i, span, a } from 'react-dom-factories'
 import { onError } from 'utils/ajax'
 import { badgeGroup, canModeratePosts, formatTimestamp } from 'utils/beatmapset-discussion-helper'
 import { classWithModifiers, groupColour } from 'utils/css'
+import { trans } from 'utils/lang'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { discussionTypeIcons } from './discussion-type'
 import { NewReply } from './new-reply'
@@ -94,7 +95,7 @@ export class Discussion extends React.PureComponent
       if @props.parentDiscussion?
         a
           href: BeatmapDiscussionHelper.url({discussion: @props.parentDiscussion})
-          title: osu.trans('beatmap_discussions.review.go_to_parent')
+          title: trans('beatmap_discussions.review.go_to_parent')
           className: "#{bn}__link-to-parent js-beatmap-discussion--jump",
           i className: 'fas fa-tasks'
 
@@ -169,9 +170,9 @@ export class Discussion extends React.PureComponent
     count = @props.discussion.votes[type]
     title =
       if count < 1
-        osu.trans "beatmaps.discussions.votes.none.#{type}"
+        trans "beatmaps.discussions.votes.none.#{type}"
       else
-        "#{osu.trans("beatmaps.discussions.votes.latest.#{type}")}:"
+        "#{trans("beatmaps.discussions.votes.latest.#{type}")}:"
     users = @props.discussion.votes['voters'][type].map (id) =>
       @props.users[id] ? {}
 
@@ -280,16 +281,17 @@ export class Discussion extends React.PureComponent
               className: "beatmap-discussion-message-type beatmap-discussion-message-type--#{_.kebabCase(@props.discussion.message_type)}"
               i
                 className: discussionTypeIcons[@props.discussion.message_type]
-                title: osu.trans "beatmaps.discussions.message_type.#{@props.discussion.message_type}"
+                title: trans "beatmaps.discussions.message_type.#{@props.discussion.message_type}"
 
           if @props.discussion.resolved
             div className: "#{tbn}__icon #{tbn}__icon--resolved",
               i
                 className: 'far fa-check-circle'
-                title: osu.trans 'beatmaps.discussions.resolved'
+                title: trans 'beatmaps.discussions.resolved'
 
-        div className: "#{tbn}__text",
-          formatTimestamp @props.discussion.timestamp
+        if @props.discussion.timestamp?
+          div className: "#{tbn}__text",
+            formatTimestamp @props.discussion.timestamp
 
 
   toggleCollapse: =>

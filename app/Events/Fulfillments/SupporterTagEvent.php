@@ -7,7 +7,7 @@ namespace App\Events\Fulfillments;
 
 use App\Events\MessageableEvent;
 use App\Models\Store\Order;
-use ArrayAccess;
+use App\Models\Store\OrderItem;
 use Sentry\State\Scope;
 
 class SupporterTagEvent implements HasOrder, MessageableEvent
@@ -15,10 +15,10 @@ class SupporterTagEvent implements HasOrder, MessageableEvent
     /** @var Order */
     protected $order;
 
-    /** @var ArrayAccess */
+    /** @var iterable<OrderItem> */
     private $orderItems;
 
-    public function __construct(Order $order, ArrayAccess $orderItems)
+    public function __construct(Order $order, iterable $orderItems)
     {
         $this->order = $order;
         $this->orderItems = $orderItems;
@@ -45,10 +45,11 @@ class SupporterTagEvent implements HasOrder, MessageableEvent
                 continue;
             }
 
-            $duration = (int) $item->extra_data['duration'];
-            $userId = $item->extra_data['target_id'];
+            $extraData = $item->extra_data;
+            $duration = $extraData->duration;
+            $userId = $extraData->targetId;
             $userLink = route('users.show', $userId);
-            $username = $item->extra_data['username'];
+            $username = $extraData->username;
 
             $message .= "\n<{$userLink}|{$username}> ({$userId}) for {$duration} months!";
         }

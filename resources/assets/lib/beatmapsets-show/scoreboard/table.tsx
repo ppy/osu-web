@@ -7,6 +7,7 @@ import * as React from 'react';
 import { ContainerContext, KeyContext } from 'stateful-activation-context';
 import { shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 import { modeAttributesMap } from 'utils/score-helper';
 import Controller from './controller';
 import TableRow from './table-row';
@@ -45,21 +46,21 @@ export default class Table extends React.Component<Props> {
             <thead>
               <tr>
                 <th className={`${bn}__header ${bn}__header--rank`}>
-                  {osu.trans('beatmapsets.show.scoreboard.headers.rank')}
+                  {trans('beatmapsets.show.scoreboard.headers.rank')}
                 </th>
                 <th className={`${bn}__header ${bn}__header--grade`} />
                 <th className={`${bn}__header ${bn}__header--score`}>
-                  {osu.trans('beatmapsets.show.scoreboard.headers.score')}
+                  {trans('beatmapsets.show.scoreboard.headers.score')}
                 </th>
                 <th className={`${bn}__header ${bn}__header--accuracy`}>
-                  {osu.trans('beatmapsets.show.scoreboard.headers.accuracy')}
+                  {trans('beatmapsets.show.scoreboard.headers.accuracy')}
                 </th>
                 <th className={`${bn}__header ${bn}__header--flag`} />
                 <th className={`${bn}__header ${bn}__header--player`}>
-                  {osu.trans('beatmapsets.show.scoreboard.headers.player')}
+                  {trans('beatmapsets.show.scoreboard.headers.player')}
                 </th>
                 <th className={`${bn}__header ${bn}__header--maxcombo`}>
-                  {osu.trans('beatmapsets.show.scoreboard.headers.combo')}
+                  {trans('beatmapsets.show.scoreboard.headers.combo')}
                 </th>
                 {modeAttributesMap[this.props.controller.beatmap.mode].map((stat) => (
                   <th
@@ -71,14 +72,14 @@ export default class Table extends React.Component<Props> {
                 ))}
                 {this.showPp &&
                   <th className={`${bn}__header ${bn}__header--pp`}>
-                    {osu.trans('beatmapsets.show.scoreboard.headers.pp')}
+                    {trans('beatmapsets.show.scoreboard.headers.pp')}
                   </th>
                 }
                 <th className={`${bn}__header ${bn}__header--time`}>
-                  {osu.trans('beatmapsets.show.scoreboard.headers.time')}
+                  {trans('beatmapsets.show.scoreboard.headers.time')}
                 </th>
                 <th className={`${bn}__header ${bn}__header--mods`}>
-                  {osu.trans('beatmapsets.show.scoreboard.headers.mods')}
+                  {trans('beatmapsets.show.scoreboard.headers.mods')}
                 </th>
                 <th className={`${bn}__header ${bn}__header--popup-menu`} />
               </tr>

@@ -3,33 +3,38 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use InvalidArgumentException;
+
 /**
- * @property User|null $actor
+ * @property-read User|null $actor
  * @property int|null $actor_id
  * @property \Carbon\Carbon $created_at
- * @property array|null $details
- * @property Group $group
+ * @property-read string $created_at_json
+ * @property array $details
+ * @property-read Group $group
  * @property int $group_id
- * @property bool $hidden
  * @property int $id
  * @property string $type
- * @property User|null $user
+ * @property-read User|null $user
  * @property int|null $user_id
  */
 class UserGroupEvent extends Model
 {
-    const GROUP_ADD = 'group_add';
-    const GROUP_REMOVE = 'group_remove';
-    const GROUP_RENAME = 'group_rename';
-    const USER_ADD = 'user_add';
-    const USER_ADD_PLAYMODES = 'user_add_playmodes';
-    const USER_REMOVE = 'user_remove';
-    const USER_REMOVE_PLAYMODES = 'user_remove_playmodes';
-    const USER_SET_DEFAULT = 'user_set_default';
+    public const GROUP_ADD = 'group_add';
+    public const GROUP_REMOVE = 'group_remove';
+    public const GROUP_RENAME = 'group_rename';
+    public const USER_ADD = 'user_add';
+    public const USER_ADD_PLAYMODES = 'user_add_playmodes';
+    public const USER_REMOVE = 'user_remove';
+    public const USER_REMOVE_PLAYMODES = 'user_remove_playmodes';
+    public const USER_SET_DEFAULT = 'user_set_default';
 
-    const UPDATED_AT = null;
+    public const UPDATED_AT = null;
 
     protected $casts = [
         'details' => 'array',
@@ -55,6 +60,10 @@ class UserGroupEvent extends Model
 
     public static function logUserAddPlaymodes(?User $actor, User $user, Group $group, array $playmodes): self
     {
+        if (empty($playmodes)) {
+            throw new InvalidArgumentException('playmodes must not be empty');
+        }
+
         return static::log($actor, static::USER_ADD_PLAYMODES, $user, $group, [
             'details' => compact('playmodes'),
         ]);
@@ -67,6 +76,10 @@ class UserGroupEvent extends Model
 
     public static function logUserRemovePlaymodes(?User $actor, User $user, Group $group, array $playmodes): self
     {
+        if (empty($playmodes)) {
+            throw new InvalidArgumentException('playmodes must not be empty');
+        }
+
         return static::log($actor, static::USER_REMOVE_PLAYMODES, $user, $group, [
             'details' => compact('playmodes'),
         ]);
@@ -102,18 +115,47 @@ class UserGroupEvent extends Model
         ));
     }
 
-    public function actor()
+    public function actor(): BelongsTo
     {
         return $this->belongsTo(User::class, 'actor_id');
     }
 
-    public function group()
+    public function group(): BelongsTo
     {
         return $this->belongsTo(Group::class, 'group_id');
     }
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function getAttribute($key)
+    {
+        return match ($key) {
+            'actor_id',
+            'group_id',
+            'id',
+            'type',
+            'user_id' => $this->getRawAttribute($key),
+
+            'details' => json_decode($this->getRawAttribute($key) ?? '[]', true),
+
+            'created_at' => $this->getTimeFast($key),
+
+            'created_at_json' => $this->getJsonTimeFast($key),
+
+            'actor',
+            'user' => $this->getRelationValue($key),
+
+            'group' => app('groups')->byIdOrFail($this->getRawAttribute('group_id')),
+        };
+    }
+
+    // Laravel has own hidden property
+    // TODO: https://github.com/ppy/osu-web/pull/9486#discussion_r1017831112
+    public function isHidden(): bool
+    {
+        return (bool) $this->getRawAttribute('hidden');
     }
 }

@@ -34,7 +34,7 @@ return [
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => '',
+                'incomplete_play' => 'Du skal spile alle beatmaps i denne specifikke playliste før du kan stemme',
             ],
         ],
     ],

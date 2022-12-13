@@ -5,8 +5,8 @@
 
 return [
     'create' => [
-        'download' => '',
-        'label' => '',
-        'title' => '',
+        'download' => 'Feu clic aquí per baixar la partida i crear un compte',
+        'label' => 'Primer, signem al vostre compte!',
+        'title' => 'Inici de sessió del compte',
     ],
 ];

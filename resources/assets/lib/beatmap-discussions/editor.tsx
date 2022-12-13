@@ -21,6 +21,7 @@ import { sortWithMode } from 'utils/beatmap-helper';
 import { timestampRegex } from 'utils/beatmapset-discussion-helper';
 import { nominationsCount } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 import { DraftsContext } from './drafts-context';
 import EditorDiscussionComponent from './editor-discussion-component';
 import {
@@ -301,7 +302,7 @@ export default class Editor extends React.Component<Props, State> {
                   <Editable
                     decorate={this.decorateTimestamps}
                     onKeyDown={this.onKeyDown}
-                    placeholder={osu.trans('beatmaps.discussions.message_placeholder.review')}
+                    placeholder={trans('beatmaps.discussions.message_placeholder.review')}
                     readOnly={this.state.posting}
                     renderElement={this.renderElement}
                     renderLeaf={this.renderLeaf}
@@ -322,7 +323,7 @@ export default class Editor extends React.Component<Props, State> {
                     onClick={this.resetInput}
                     type='button'
                   >
-                    {osu.trans('common.buttons.clear')}
+                    {trans('common.buttons.clear')}
                   </button>
                   <div>
                     <span className={`${editorClass}__block-count`}>
@@ -334,7 +335,7 @@ export default class Editor extends React.Component<Props, State> {
                       onClick={this.post}
                       type='submit'
                     >
-                      {this.state.posting ? <Spinner /> : osu.trans('common.buttons.post')}
+                      {this.state.posting ? <Spinner /> : trans('common.buttons.post')}
                     </button>
                   </div>
                 </div>
@@ -352,7 +353,7 @@ export default class Editor extends React.Component<Props, State> {
       max={this.context.max_blocks}
       onlyShowAsWarning
       theme={theme}
-      tooltip={osu.trans('beatmap_discussions.review.block_count', {
+      tooltip={trans('beatmap_discussions.review.block_count', {
         max: this.context.max_blocks,
         used: this.state.blockCount,
       })}
@@ -409,7 +410,7 @@ export default class Editor extends React.Component<Props, State> {
     if (event) {
       event.preventDefault();
 
-      if (!confirm(osu.trans('common.confirmation'))) {
+      if (!confirm(trans('common.confirmation'))) {
         return;
       }
     }
@@ -440,11 +441,11 @@ export default class Editor extends React.Component<Props, State> {
       docContainsProblem;
 
     if (canDisqualify && willDisqualify) {
-      return confirm(osu.trans('beatmaps.nominations.reset_confirm.disqualify'));
+      return confirm(trans('beatmaps.nominations.reset_confirm.disqualify'));
     }
 
     if (canReset && willReset) {
-      return confirm(osu.trans('beatmaps.nominations.reset_confirm.nomination_reset'));
+      return confirm(trans('beatmaps.nominations.reset_confirm.nomination_reset'));
     }
 
     return true;

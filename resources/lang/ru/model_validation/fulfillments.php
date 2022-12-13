@@ -10,6 +10,6 @@ return [
         'reverting_username_mismatch' => '',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => 'Сумма платежа недостаточна для приобретения osu!supporter (:actual вместо :expected)',
+        'insufficient_paid' => 'Суммы платежа недостаточно для приобретения тега osu!supporter (:actual вместо :expected)',
     ],
 ];

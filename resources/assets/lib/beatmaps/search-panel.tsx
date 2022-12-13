@@ -3,13 +3,14 @@
 
 import { FilterKey } from 'beatmapset-search-filters';
 import BeatmapsetCover from 'components/beatmapset-cover';
+import Portal from 'components/portal';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { createPortal } from 'react-dom';
 import { classWithModifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 import AvailableFilters, { FilterOption } from './available-filters';
 import { SearchFilter } from './search-filter';
 
@@ -17,12 +18,6 @@ interface Props {
   availableFilters: AvailableFilters;
   firstBeatmapset?: BeatmapsetJson;
   innerRef: React.RefObject<HTMLDivElement>;
-}
-
-function mountPortal(portal: HTMLElement, root?: Element | null) {
-  // clean up any existing element when navigating backwards.
-  window.newBody?.querySelector(`#${portal.id}`)?.remove();
-  root?.appendChild(portal);
 }
 
 interface FilterProps {
@@ -33,7 +28,7 @@ interface FilterProps {
 }
 
 const Filter = observer(({ multiselect = false, name, options, showTitle = true }: FilterProps) => {
-  const title = showTitle ? osu.trans(`beatmaps.listing.search.filters.${name}`) : undefined;
+  const title = showTitle ? trans(`beatmaps.listing.search.filters.${name}`) : undefined;
 
   return (
     <SearchFilter
@@ -48,10 +43,6 @@ const Filter = observer(({ multiselect = false, name, options, showTitle = true 
 // props don't change anymore when selecting a new filter
 @observer
 export class SearchPanel extends React.Component<Props> {
-  private readonly breadcrumbsElement = core.stickyHeader.breadcrumbsElement;
-  private readonly breadcrumbsPortal = document.createElement('div');
-  private readonly contentElement = core.stickyHeader.contentElement;
-  private readonly contentPortal = document.createElement('div');
   private readonly inputRef = React.createRef<HTMLInputElement>();
   private readonly pinnedInputRef = React.createRef<HTMLInputElement>();
   @observable private query = this.controller.filters.query ?? '';
@@ -64,29 +55,33 @@ export class SearchPanel extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
 
-    this.breadcrumbsPortal.id = 'search-panel-breadcrumbs-portal';
-    this.contentPortal.id = 'search-panel-content-portal';
-
     makeObservable(this);
   }
 
   componentDidMount() {
     $(document).on('sticky-header:sticking', this.setHeaderPinned);
-    mountPortal(this.breadcrumbsPortal, this.breadcrumbsElement);
-    mountPortal(this.contentPortal, this.contentElement);
   }
 
   componentWillUnmount() {
     $(document).off('sticky-header:sticking', this.setHeaderPinned);
-    this.breadcrumbsPortal.remove();
-    this.contentPortal.remove();
   }
 
   render() {
+    const breadcrumbsElement = core.stickyHeader.breadcrumbsElement;
+    const contentElement = core.stickyHeader.contentElement;
+
     return (
       <>
-        {this.breadcrumbsElement != null && createPortal(this.renderBreadcrumbs(), this.breadcrumbsPortal)}
-        {this.contentElement != null && createPortal(this.renderStickyContent(), this.contentPortal)}
+        {breadcrumbsElement != null && (
+          <Portal root={breadcrumbsElement}>
+            {this.renderBreadcrumbs()}
+          </Portal>
+        )}
+        {contentElement != null && (
+          <Portal root={contentElement}>
+            {this.renderStickyContent()}
+          </Portal>
+        )}
         <div className='osu-page osu-page--beatmapsets-search-header'>
           {this.controller.advancedSearch ? this.renderUser() : this.renderGuest()}
         </div>
@@ -114,12 +109,12 @@ export class SearchPanel extends React.Component<Props> {
       <ol className='sticky-header-breadcrumbs'>
         <li className='sticky-header-breadcrumbs__item'>
           <span className='sticky-header-breadcrumbs__link'>
-            {osu.trans('beatmapsets.index.guest_title')}
+            {trans('beatmapsets.index.guest_title')}
           </span>
         </li>
         <li className='sticky-header-breadcrumbs__item'>
           <span className='sticky-header-breadcrumbs__link'>
-            {osu.trans('home.search.title')}
+            {trans('home.search.title')}
           </span>
         </li>
       </ol>
@@ -136,7 +131,7 @@ export class SearchPanel extends React.Component<Props> {
           <input
             className='beatmapsets-search__input'
             disabled
-            placeholder={osu.trans('beatmaps.listing.search.login_required')}
+            placeholder={trans('beatmaps.listing.search.login_required')}
           />
           <div className='beatmapsets-search__icon'>
             <i className='fas fa-search' />
@@ -157,7 +152,7 @@ export class SearchPanel extends React.Component<Props> {
             className='beatmapsets-search__input js-beatmapsets-search-input'
             name='search'
             onChange={this.onChange}
-            placeholder={osu.trans('beatmaps.listing.search.prompt')}
+            placeholder={trans('beatmaps.listing.search.prompt')}
             value={this.query}
           />
           <div className='beatmapsets-search__icon'>
@@ -187,7 +182,7 @@ export class SearchPanel extends React.Component<Props> {
             className='beatmapsets-search__input js-beatmapsets-search-input'
             name='search'
             onChange={this.onChange}
-            placeholder={osu.trans('beatmaps.listing.search.prompt')}
+            placeholder={trans('beatmaps.listing.search.prompt')}
             value={this.query}
           />
           <div className='beatmapsets-search__icon'>
@@ -199,7 +194,7 @@ export class SearchPanel extends React.Component<Props> {
         <Filter name='status' options={filters.statuses} />
         <Filter name='nsfw' options={filters.nsfw} />
         <a className='beatmapsets-search__expand-link' href='#' onClick={this.expand}>
-          <div>{osu.trans('beatmaps.listing.search.options')}</div>
+          <div>{trans('beatmaps.listing.search.options')}</div>
           <div><i className='fas fa-angle-down' /></div>
         </a>
         <div className='beatmapsets-search__advanced'>

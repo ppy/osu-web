@@ -4,6 +4,7 @@
 import GameMode from 'interfaces/game-mode';
 import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 
 interface Entry {
   count?: number;
@@ -47,12 +48,12 @@ export default class PlaymodeTabs extends React.Component<Props> {
       <>
         <span
           className={`fal fa-extra-mode-${entry.mode}`}
-          title={entry.disabled ? undefined : osu.trans(`beatmaps.mode.${entry.mode}`)}
+          title={entry.disabled ? undefined : trans(`beatmaps.mode.${entry.mode}`)}
         />
         {entry.mode === this.props.defaultMode &&
           <span
             className='game-mode-link__icon'
-            title={osu.trans('users.show.edit.default_playmode.is_default_tooltip')}
+            title={trans('users.show.edit.default_playmode.is_default_tooltip')}
           >
             <span className='fas fa-star' />
           </span>

@@ -6,6 +6,7 @@ import core from 'osu-core-singleton';
 import { xhrErrorMessage } from 'utils/ajax';
 import { fadeIn, fadeOut, fadeToggle } from 'utils/fade';
 import { createClickCallback } from 'utils/html';
+import { trans } from 'utils/lang';
 import { reloadPage } from 'utils/turbolinks';
 
 interface ReissueCodeJson {
@@ -132,7 +133,7 @@ export default class UserVerification {
 
   private prepareForRequest = (type: string) => {
     this.request?.abort();
-    this.setMessage(osu.trans(`user_verification.box.${type}`), true);
+    this.setMessage(trans(`user_verification.box.${type}`), true);
   };
 
   private reissue = (e: JQuery.Event) => {

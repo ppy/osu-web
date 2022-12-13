@@ -217,6 +217,9 @@ return [
                 'loved' => [
                     'title' => 'Mga Minamahal na Beatmap',
                 ],
+                'nominated' => [
+                    'title' => '',
+                ],
                 'pending' => [
                     'title' => 'Pending na mga Beatmap',
                 ],
@@ -414,7 +417,7 @@ return [
             'country_simple' => 'Pambansang Ranggo',
             'global' => 'Pandaigdigang ranggo para sa :mode',
             'global_simple' => 'Pambansang Ranggo',
-            'highest' => '',
+            'highest' => 'Pinakamataas na ranggo: :rank sa :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Katumpakan sa Pagtama',

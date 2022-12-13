@@ -8,6 +8,7 @@ import { route } from 'laroute'
 import * as React from 'react'
 import { a, div, h1, h2, span } from 'react-dom-factories'
 import { groupColour } from 'utils/css'
+import { trans, transChoice } from 'utils/lang'
 
 el = React.createElement
 
@@ -16,7 +17,7 @@ export class Votes extends React.Component
 
     div className: 'page-extra',
       h1 className: 'title title--page-extra',
-        osu.trans("users.show.extra.votes.title_longer")
+        trans("users.show.extra.votes.title_longer")
 
       for direction in ['received', 'given']
         el React.Fragment, key: direction,
@@ -67,4 +68,4 @@ export class Votes extends React.Component
 
       div className: "#{bn}__votes-container",
         div className: "#{bn}__score", if score > 0 then "+#{score}" else score
-        div className: "#{bn}__count", osu.transChoice('users.show.extra.votes.vote_count', count)
+        div className: "#{bn}__count", transChoice('users.show.extra.votes.vote_count', count)

@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BbcodeEditor, { OnChangeProps } from 'components/bbcode-editor';
-import { Modal } from 'components/modal';
+import Modal from 'components/modal';
 import { UserLink } from 'components/user-link';
 import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
 import UserJson from 'interfaces/user-json';
@@ -13,6 +13,7 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import { onErrorWithClick } from 'utils/ajax';
 import { formatNumber } from 'utils/html';
+import { trans } from 'utils/lang';
 import { present } from 'utils/string';
 import Controller from './controller';
 import MetadataEditor from './metadata-editor';
@@ -95,7 +96,7 @@ export default class Info extends React.Component<Props> {
     return (
       <div className='beatmapset-info'>
         {this.isEditingDescription &&
-          <Modal onClose={this.handleCloseDescriptionEditor} visible>
+          <Modal onClose={this.handleCloseDescriptionEditor}>
             <div className='osu-page'>
               <BbcodeEditor
                 key={this.controller.beatmapset.id /* ensure component is reset if beatmapset changes */}
@@ -109,7 +110,7 @@ export default class Info extends React.Component<Props> {
         }
 
         {this.isEditingMetadata &&
-          <Modal onClose={this.handleCloseMetadataEditor} visible>
+          <Modal onClose={this.handleCloseMetadataEditor}>
             <MetadataEditor controller={this.props.controller} onClose={this.handleCloseMetadataEditor} />
           </Modal>
         }
@@ -118,7 +119,7 @@ export default class Info extends React.Component<Props> {
           {this.withEditDescription && this.renderEditDescriptionButton()}
 
           <h3 className='beatmapset-info__header'>
-            {osu.trans('beatmapsets.show.info.description')}
+            {trans('beatmapsets.show.info.description')}
           </h3>
 
           <div className='beatmapset-info__description-container u-fancy-scrollbar'>
@@ -137,7 +138,7 @@ export default class Info extends React.Component<Props> {
           {this.nominators.length > 0 &&
             <>
               <h3 className='beatmapset-info__header'>
-                {osu.trans('beatmapsets.show.info.nominators')}
+                {trans('beatmapsets.show.info.nominators')}
               </h3>
               <div>
                 {this.nominators.map((user, i) => (
@@ -156,7 +157,7 @@ export default class Info extends React.Component<Props> {
           {present(this.controller.beatmapset.source) &&
             <>
               <h3 className='beatmapset-info__header'>
-                {osu.trans('beatmapsets.show.info.source')}
+                {trans('beatmapsets.show.info.source')}
               </h3>
               <a
                 className='beatmapset-info__link'
@@ -170,7 +171,7 @@ export default class Info extends React.Component<Props> {
           <div className='beatmapset-info__half-box'>
             <div className='beatmapset-info__half-entry'>
               <h3 className='beatmapset-info__header'>
-                {osu.trans('beatmapsets.show.info.genre')}
+                {trans('beatmapsets.show.info.genre')}
               </h3>
               <a
                 className='beatmapset-info__link'
@@ -182,7 +183,7 @@ export default class Info extends React.Component<Props> {
 
             <div className='beatmapset-info__half-entry'>
               <h3 className='beatmapset-info__header'>
-                {osu.trans('beatmapsets.show.info.language')}
+                {trans('beatmapsets.show.info.language')}
               </h3>
               <a
                 className='beatmapset-info__link'
@@ -196,7 +197,7 @@ export default class Info extends React.Component<Props> {
           {tags.length > 0 &&
             <>
               <h3 className='beatmapset-info__header'>
-                {osu.trans('beatmapsets.show.info.tags')}
+                {trans('beatmapsets.show.info.tags')}
               </h3>
               <div>
                 {tags.map((tag, i) => (
@@ -318,7 +319,7 @@ export default class Info extends React.Component<Props> {
       return (
         <div className='beatmap-success-rate'>
           <div className='beatmap-success-rate__empty'>
-            {osu.trans('beatmapsets.show.info.no_scores')}
+            {trans('beatmapsets.show.info.no_scores')}
           </div>
         </div>
       );
@@ -329,7 +330,7 @@ export default class Info extends React.Component<Props> {
     return (
       <div className='beatmap-success-rate'>
         <h3 className='beatmap-success-rate__header'>
-          {osu.trans('beatmapsets.show.info.success-rate')}
+          {trans('beatmapsets.show.info.success-rate')}
         </h3>
 
         <div className='bar bar--beatmap-success-rate'>
@@ -353,7 +354,7 @@ export default class Info extends React.Component<Props> {
         </div>
 
         <h3 className='beatmap-success-rate__header'>
-          {osu.trans('beatmapsets.show.info.points-of-failure')}
+          {trans('beatmapsets.show.info.points-of-failure')}
         </h3>
 
         <div className='beatmap-success-rate__chart'>

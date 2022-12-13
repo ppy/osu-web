@@ -11,6 +11,7 @@ import PpValue from 'scores/pp-value';
 import { getArtist, getTitle, rulesetName, shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
+import { trans } from 'utils/lang';
 import { hasMenu } from 'utils/score-helper';
 import { beatmapUrl } from 'utils/url';
 
@@ -67,7 +68,7 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
               {getTitle(beatmapset)}
               {' '}
               <small className={`${bn}__artist`}>
-                {osu.trans('users.show.extra.beatmaps.by_artist', { artist: getArtist(beatmapset) })}
+                {trans('users.show.extra.beatmaps.by_artist', { artist: getArtist(beatmapset) })}
               </small>
             </a>
             <div className={`${bn}__beatmap-and-time`}>
@@ -100,7 +101,7 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
 
               {scoreWeight != null && (
                 <div className={`${bn}__pp-weight`}>
-                  {osu.trans('users.show.extra.top_ranks.pp_weight', {
+                  {trans('users.show.extra.top_ranks.pp_weight', {
                     percentage: `${formatNumber(Math.round(scoreWeight.percentage))}%`,
                   })}
                 </div>
@@ -119,7 +120,7 @@ export default class PlayDetail extends React.PureComponent<Props, State> {
                 suffix={<span className={`${bn}__pp-unit`}>pp</span>}
               />
             ) : (
-              <span title={osu.trans('users.show.extra.top_ranks.not_ranked')}>
+              <span title={trans('users.show.extra.top_ranks.not_ranked')}>
                 {(beatmap.status === 'loved') ? (
                   <span className='fas fa-heart' />
                 ) : (

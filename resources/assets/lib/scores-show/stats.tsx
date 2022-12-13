@@ -9,6 +9,7 @@ import PpValue from 'scores/pp-value';
 import { rulesetName, shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
+import { trans } from 'utils/lang';
 import { isPerfectCombo, modeAttributesMap } from 'utils/score-helper';
 
 interface Props {
@@ -27,7 +28,7 @@ export default function Stats(props: Props) {
         <div className='score-stats__group-row'>
           <div className='score-stats__stat'>
             <div className='score-stats__stat-row score-stats__stat-row--label'>
-              {osu.trans('beatmapsets.show.scoreboard.headers.accuracy')}
+              {trans('beatmapsets.show.scoreboard.headers.accuracy')}
             </div>
             <div className={classWithModifiers('score-stats__stat-row', { perfect: props.score.accuracy === 1 })}>
               {formatNumber(props.score.accuracy * 100, 2)}%
@@ -36,7 +37,7 @@ export default function Stats(props: Props) {
 
           <div className='score-stats__stat'>
             <div className='score-stats__stat-row score-stats__stat-row--label'>
-              {osu.trans('beatmapsets.show.scoreboard.headers.combo')}
+              {trans('beatmapsets.show.scoreboard.headers.combo')}
             </div>
             <div className={classWithModifiers('score-stats__stat-row', { perfect: isPerfectCombo(props.score) })}>
               {formatNumber(props.score.max_combo)}x
@@ -46,7 +47,7 @@ export default function Stats(props: Props) {
           {shouldShowPp(props.beatmap) && (
             <div className='score-stats__stat'>
               <div className='score-stats__stat-row score-stats__stat-row--label'>
-                {osu.trans('beatmapsets.show.scoreboard.headers.pp')}
+                {trans('beatmapsets.show.scoreboard.headers.pp')}
               </div>
               <div className='score-stats__stat-row'>
                 <PpValue score={props.score} />

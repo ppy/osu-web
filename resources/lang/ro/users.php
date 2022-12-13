@@ -217,6 +217,9 @@ return [
                 'loved' => [
                     'title' => 'Beatmap-uri iubite',
                 ],
+                'nominated' => [
+                    'title' => '',
+                ],
                 'pending' => [
                     'title' => 'Beatmap-uri în așteptare',
                 ],
@@ -414,7 +417,7 @@ return [
             'country_simple' => 'Clasament pe țară',
             'global' => 'Clasament global pentru :mode',
             'global_simple' => 'Clasament global',
-            'highest' => '',
+            'highest' => 'Clasament maxim :rank atins pe :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Precizie',

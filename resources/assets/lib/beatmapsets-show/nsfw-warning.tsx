@@ -4,6 +4,7 @@
 import { route } from 'laroute';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { trans } from 'utils/lang';
 
 interface Props {
   onClose: () => void;
@@ -19,11 +20,11 @@ export default class NsfwWarning extends React.PureComponent<Props> {
           </div>
 
           <div className='nsfw-warning__row nsfw-warning__row--title'>
-            {osu.trans('beatmapsets.show.nsfw_warning.title')}
+            {trans('beatmapsets.show.nsfw_warning.title')}
           </div>
 
           <div className='nsfw-warning__row'>
-            {osu.trans('beatmapsets.show.nsfw_warning.details')}
+            {trans('beatmapsets.show.nsfw_warning.details')}
           </div>
 
           <div className='nsfw-warning__row nsfw-warning__row--buttons'>
@@ -32,7 +33,7 @@ export default class NsfwWarning extends React.PureComponent<Props> {
               onClick={this.props.onClose}
               type='button'
             >
-              {osu.trans('beatmapsets.show.nsfw_warning.buttons.show')}
+              {trans('beatmapsets.show.nsfw_warning.buttons.show')}
             </button>
 
             {core.currentUser != null &&
@@ -41,12 +42,12 @@ export default class NsfwWarning extends React.PureComponent<Props> {
                 onClick={this.disableWarning}
                 type='button'
               >
-                {osu.trans('beatmapsets.show.nsfw_warning.buttons.disable')}
+                {trans('beatmapsets.show.nsfw_warning.buttons.disable')}
               </button>
             }
 
             <a className='nsfw-warning__button' href={route('beatmapsets.index')}>
-              {osu.trans('beatmapsets.show.nsfw_warning.buttons.listing')}
+              {trans('beatmapsets.show.nsfw_warning.buttons.listing')}
             </a>
           </div>
         </div>

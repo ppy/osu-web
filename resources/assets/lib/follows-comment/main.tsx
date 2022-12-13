@@ -11,6 +11,7 @@ import CurrentUserJson from 'interfaces/current-user-json';
 import FollowCommentJson from 'interfaces/follow-comment-json';
 import { route } from 'laroute';
 import * as React from 'react';
+import { trans } from 'utils/lang';
 
 interface Props {
   follows: FollowCommentJson[];
@@ -31,7 +32,7 @@ export default class Main extends React.PureComponent<Props> {
           <FollowsSubtypes currentSubtype='comment' />
 
           {this.props.follows.length === 0
-            ? osu.trans('follows.comment.empty')
+            ? trans('follows.comment.empty')
             : (
               <table className='follows-table'>
                 <tbody>
@@ -52,7 +53,7 @@ export default class Main extends React.PureComponent<Props> {
       <tr key={key} className='follows-table__row'>
         <td className='follows-table__data'>
           <div className='type-badge'>
-            {osu.trans(`comments.commentable_name.${follow.notifiable_type}`)}
+            {trans(`comments.commentable_name.${follow.notifiable_type}`)}
           </div>
         </td>
 
@@ -71,10 +72,10 @@ export default class Main extends React.PureComponent<Props> {
                   time: <TimeWithTooltip dateTime={follow.latest_comment.created_at} relative />,
                   username: follow.latest_comment.user?.username ?? '???',
                 }}
-                pattern={osu.trans('follows.comment.table.latest_comment_value')}
+                pattern={trans('follows.comment.table.latest_comment_value')}
               />
             </a>
-          ) : osu.trans('follows.comment.table.latest_comment_empty')}
+          ) : trans('follows.comment.table.latest_comment_empty')}
         </td>
 
         <td className='follows-table__data'>

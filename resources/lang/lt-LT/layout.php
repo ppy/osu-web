@@ -5,17 +5,17 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Groti kitą takelį automatiškai',
     ],
 
     'defaults' => [
-        'page_description' => '',
+        'page_description' => 'osu! - Ritmas yra tik per vieną *paspaudimą* nuo tavęs! Su Ouendan/EBA, Taiko ir originaliais žaidimo režimais, taip pat pilnai veikiančiu lygių redagavimo įrankių.',
     ],
 
     'header' => [
         'admin' => [
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
+            'beatmapset' => 'bitmapų setas',
+            'beatmapset_covers' => 'bitmapo seto viršeliai',
             'contest' => 'konkursas',
             'contests' => 'konkursai',
             'root' => 'konsolė',
@@ -26,8 +26,8 @@ return [
         ],
 
         'beatmapsets' => [
-            'show' => '',
-            'discussions' => '',
+            'show' => 'info',
+            'discussions' => 'diskusija',
         ],
 
         'changelog' => [
@@ -36,7 +36,7 @@ return [
 
         'help' => [
             'index' => 'indeksas',
-            'sitemap' => '',
+            'sitemap' => 'Svetainės struktūra',
         ],
 
         'store' => [
@@ -50,33 +50,33 @@ return [
         ],
 
         'users' => [
-            'modding' => '',
-            'playlists' => '',
-            'realtime' => '',
-            'show' => 'informacija',
+            'modding' => 'taisymai',
+            'playlists' => 'grojaraščiai',
+            'realtime' => 'žaidimas tinkle',
+            'show' => 'info',
         ],
     ],
 
     'gallery' => [
         'close' => 'Užverti (Esc)',
         'fullscreen' => 'Perjungti viso ekrano būsena',
-        'zoom' => '',
-        'previous' => '',
-        'next' => '',
+        'zoom' => 'Didinti/mažinti mastelį',
+        'previous' => 'Ankstesnis (rodyklė į kairę)',
+        'next' => 'Sekantis (rodyklė į dešinę)',
     ],
 
     'menu' => [
         'beatmaps' => [
-            '_' => 'beatmapai',
+            '_' => 'bitmapai',
         ],
         'community' => [
             '_' => 'bendruomenė',
-            'dev' => '',
+            'dev' => 'kūrimas',
         ],
         'help' => [
             '_' => 'pagalba',
             'getAbuse' => 'pranešti apie piktnaudžiavimą',
-            'getFaq' => '',
+            'getFaq' => 'duk',
             'getRules' => 'taisyklės',
             'getSupport' => 'ne, tikrai, man reikia pagalbos!',
         ],
@@ -86,122 +86,122 @@ return [
         ],
         'rankings' => [
             '_' => 'reitingai',
-            'kudosu' => '',
+            'kudosu' => 'kudosu',
         ],
         'store' => [
-            '_' => '',
+            '_' => 'parduotuvė',
         ],
     ],
 
     'footer' => [
         'general' => [
-            '_' => '',
-            'home' => '',
-            'changelog-index' => '',
-            'beatmaps' => '',
-            'download' => '',
+            '_' => 'Bendrieji',
+            'home' => 'Pradžia',
+            'changelog-index' => 'Pakeitimų sąrašas',
+            'beatmaps' => 'Bitmapų sąrašas',
+            'download' => 'Atsisiūsti osu!',
         ],
         'help' => [
-            '_' => '',
-            'faq' => '',
-            'forum' => '',
-            'livestreams' => '',
-            'report' => '',
-            'wiki' => '',
+            '_' => 'Pagalba ir Bendruomenė',
+            'faq' => 'Dažniausiai Užduodami Klausimai',
+            'forum' => 'Bendruomenės Forumai',
+            'livestreams' => 'Tiesioginės Transliacijos',
+            'report' => 'Pranešti apie problemą',
+            'wiki' => 'Wiki',
         ],
         'legal' => [
-            '_' => '',
-            'copyright' => '',
-            'privacy' => '',
-            'server_status' => '',
-            'source_code' => '',
-            'terms' => '',
+            '_' => 'Teisė ir Būsena',
+            'copyright' => 'Autorinės teisės (DMCA)',
+            'privacy' => 'Privatumas',
+            'server_status' => 'Serverio būsena',
+            'source_code' => 'Pirminis Kodas',
+            'terms' => 'Sąlygos',
         ],
     ],
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => 'Negaliojantis užklausos parametrai',
             'description' => '',
         ],
         '404' => [
-            'error' => '',
-            'description' => "",
+            'error' => 'Puslapis Nerastas',
+            'description' => "Atsiprašom, bet puslapio, kurio ieškote čia nėra!",
         ],
         '403' => [
-            'error' => "",
-            'description' => '',
+            'error' => "Tavęs čia neturėtu būti.",
+            'description' => 'Bet gali pabandyti grįžti atgal.',
         ],
         '401' => [
-            'error' => "",
-            'description' => '',
+            'error' => "Tavęs čia neturėtu būti.",
+            'description' => 'Bet gali pabandyti grįžti atgal. Arba prisijungti.',
         ],
         '405' => [
-            'error' => '',
-            'description' => "",
+            'error' => 'Puslapis nerastas',
+            'description' => "Atsiprašom, bet puslapio, kurio ieškote čia nėra!",
         ],
         '422' => [
-            'error' => '',
+            'error' => 'Negaliojantis užklausos parametrai',
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => 'Iškvietimų limitas viršytas',
             'description' => '',
         ],
         '500' => [
-            'error' => '',
-            'description' => "",
+            'error' => 'O ne! kažkas nesuveikė! ;_;',
+            'description' => "Mes automatiškai informuojami apie visas įvykusias klaidas.",
         ],
         'fatal' => [
-            'error' => '',
-            'description' => "",
+            'error' => 'O ne! kažkas nesuveikė (stipriai)! ;_;',
+            'description' => "Mes automatiškai informuojami apie visas įvykusias klaidas.",
         ],
         '503' => [
-            'error' => '',
-            'description' => "",
+            'error' => 'Išjungta tvarkymui!',
+            'description' => "Tvarkymas įprastai užtrunka nuo 5 sekundžių iki 10 minučių. Jei neveikia ilgiau, tikrinkite :link dėl papildomos informacijos.",
             'link' => [
                 'text' => '',
                 'href' => '',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => "",
+        'reference' => "Štai kodas, kuri galite duoti pagalbai, dėl viso pikto!",
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => 'prisijungti / registruotis',
 
         'login' => [
-            'forgot' => "",
-            'password' => '',
-            'title' => '',
-            'username' => '',
+            'forgot' => "Pamiršau prisijungimo duomenys",
+            'password' => 'slaptažodis',
+            'title' => 'Prisijunk, kad tęsti',
+            'username' => 'vartotojo vardas',
 
             'error' => [
-                'email' => "",
-                'password' => '',
+                'email' => "Naudotojas arba el. paštas neegzistuoja",
+                'password' => 'Neteisingas slaptažodis',
             ],
         ],
 
         'register' => [
-            'download' => '',
-            'info' => '',
-            'title' => "",
+            'download' => 'Atsisiųsti',
+            'info' => 'Atsisiųsk osu!, kad susikurti paskyrą!',
+            'title' => "Neturite paskyros?",
         ],
     ],
 
     'popup_user' => [
         'links' => [
-            'account-edit' => '',
-            'follows' => '',
-            'friends' => '',
-            'logout' => '',
-            'profile' => '',
+            'account-edit' => 'Nustatymai',
+            'follows' => 'Stebimi',
+            'friends' => 'Draugai',
+            'logout' => 'Atsijungti',
+            'profile' => 'Mano Profilis',
         ],
     ],
 
     'popup_search' => [
-        'initial' => '',
-        'retry' => '',
+        'initial' => 'Ieškokite rašydami!',
+        'retry' => 'Paieška nepavyko. Spauskite, kad bandyti iš naujo.',
     ],
 ];

@@ -4,6 +4,7 @@
 import NewsPostJson from 'interfaces/news-post-json';
 import { route } from 'laroute';
 import * as React from 'react';
+import { trans } from 'utils/lang';
 import HeaderV4 from './header-v4';
 
 interface Props {
@@ -16,7 +17,7 @@ export default function NewsHeader(props: Props) {
   const links = [
     {
       active: props.section === 'index',
-      title: osu.trans('news.index.title.info'),
+      title: trans('news.index.title.info'),
       url: route('news.index'),
     },
   ];

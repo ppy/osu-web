@@ -12,6 +12,7 @@ import * as React from 'react';
 import { onError } from 'utils/ajax';
 import { classWithModifiers } from 'utils/css';
 import { jsonClone } from 'utils/json';
+import { trans } from 'utils/lang';
 import { navigate } from 'utils/turbolinks';
 import SearchForm, { ArtistTrackSearch } from './search-form';
 import Sort from './sort-bar';
@@ -30,12 +31,12 @@ interface Props {
 
 const headerLinks = [
   {
-    title: osu.trans('layout.header.artists.index'),
+    title: trans('layout.header.artists.index'),
     url: route('artists.index'),
   },
   {
     active: true,
-    title: osu.trans('artist.tracks.index._'),
+    title: trans('artist.tracks.index._'),
     url: route('artists.tracks.index'),
   },
 ];
@@ -72,7 +73,7 @@ export default class Main extends React.Component<Props> {
         <div className='osu-page osu-page--artist-track-search-result'>
           {this.data.artist_tracks.length === 0 ? (
             <div>
-              {osu.trans('artist.tracks.index.form.empty')}
+              {trans('artist.tracks.index.form.empty')}
             </div>
           ) : (
             <>

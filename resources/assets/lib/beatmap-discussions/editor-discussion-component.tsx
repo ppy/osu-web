@@ -13,6 +13,7 @@ import { RenderElementProps } from 'slate-react';
 import { ReactEditor } from 'slate-react';
 import { formatTimestamp, nearbyDiscussions, parseTimestamp, timestampRegex } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
+import { trans, transArray } from 'utils/lang';
 import { linkHtml } from 'utils/url';
 import { DraftsContext } from './drafts-context';
 import EditorBeatmapSelector from './editor-beatmap-selector';
@@ -208,29 +209,28 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     const nearbyUnsaved = this.nearbyDraftEmbeds(drafts) ?? [];
 
     if (discussions.length > 0 || nearbyUnsaved.length > 1) {
-      const timestamps =
-        discussions.map((discussion) => {
-          const timestamp = formatTimestamp(discussion.timestamp);
-          if (timestamp == null) {
-            return;
-          }
+      const timestamps: string[] = [];
+      discussions.forEach((discussion) => {
+        if (discussion.timestamp == null) return;
+        const timestamp = formatTimestamp(discussion.timestamp);
 
-          // don't linkify timestamps when in edit mode
-          return this.props.editMode
-            ? timestamp
-            : linkHtml(BeatmapDiscussionHelper.url({ discussion }),
-              timestamp,
-              { classNames: ['js-beatmap-discussion--jump'] },
-            );
-        });
+        // don't linkify timestamps when in edit mode
+        timestamps.push(this.props.editMode
+          ? timestamp
+          : linkHtml(BeatmapDiscussionHelper.url({ discussion }),
+            timestamp,
+            { classNames: ['js-beatmap-discussion--jump'] },
+          ),
+        );
+      });
 
       if (nearbyUnsaved.length > 1) {
-        timestamps.push(osu.trans('beatmap_discussions.nearby_posts.unsaved', { count: nearbyUnsaved.length - 1 }));
+        timestamps.push(trans('beatmap_discussions.nearby_posts.unsaved', { count: nearbyUnsaved.length - 1 }));
       }
 
-      const timestampsString = osu.transArray(timestamps);
+      const timestampsString = transArray(timestamps);
 
-      const nearbyText = osu.trans('beatmap_discussions.nearby_posts.notice', {
+      const nearbyText = trans('beatmap_discussions.nearby_posts.notice', {
         existing_timestamps: timestampsString,
         timestamp: this.props.element.timestamp,
       });
@@ -265,8 +265,8 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
 
     const timestampTooltipType = this.props.element.beatmapId != null ? 'diff' : 'all-diff';
 
-    const timestampTooltip = osu.trans(`beatmaps.discussions.review.embed.timestamp.${timestampTooltipType}`, {
-      type: osu.trans(`beatmaps.discussions.message_type.${this.discussionType()}`),
+    const timestampTooltip = trans(`beatmaps.discussions.review.embed.timestamp.${timestampTooltipType}`, {
+      type: trans(`beatmaps.discussions.message_type.${this.discussionType()}`),
     });
 
     const deleteButton =
@@ -276,7 +276,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
           contentEditable={false}
           disabled={this.props.readOnly}
           onClick={this.delete}
-          title={osu.trans(`beatmaps.discussions.review.embed.${canEdit ? 'delete' : 'unlink'}`)}
+          title={trans(`beatmaps.discussions.review.embed.${canEdit ? 'delete' : 'unlink'}`)}
         >
           <i className={`fas fa-${canEdit ? 'trash-alt' : 'link'}`} />
         </button>
@@ -294,7 +294,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
           <div
             className={`${this.bn}__indicator`}
             contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
-            title={osu.trans('beatmaps.discussions.review.embed.unsaved')}
+            title={trans('beatmaps.discussions.review.embed.unsaved')}
           >
             <i className='fas fa-pencil-alt' />
           </div>
@@ -323,7 +323,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
                 contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
               >
                 <span title={canEdit ? timestampTooltip : ''}>
-                  {this.props.element.timestamp ?? osu.trans('beatmap_discussions.timestamp_display.general')}
+                  {this.props.element.timestamp ?? trans('beatmap_discussions.timestamp_display.general')}
                 </span>
               </div>
               {unsavedIndicator}

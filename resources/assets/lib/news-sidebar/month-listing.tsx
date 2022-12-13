@@ -6,6 +6,7 @@ import { route } from 'laroute';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { trans } from 'utils/lang';
 
 interface Props {
   currentPost?: NewsPostJson;
@@ -67,7 +68,7 @@ export default class MonthListing extends React.Component<Props, State> {
     return (
       <div className='news-sidebar-month'>
         <button className='news-sidebar-month__toggle' onClick={this.toggleExpand} type='button'>
-          {this.props.date.format(osu.trans('common.datetime.year_month_short.moment'))}
+          {this.props.date.format(trans('common.datetime.year_month_short.moment'))}
 
           <span className='news-sidebar-month__toggle-icon'>
             <i

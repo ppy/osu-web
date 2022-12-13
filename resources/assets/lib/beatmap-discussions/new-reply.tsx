@@ -16,6 +16,7 @@ import TextareaAutosize from 'react-autosize-textarea';
 import { onError } from 'utils/ajax';
 import { validMessageLength } from 'utils/beatmapset-discussion-helper';
 import { InputEventType, makeTextAreaHandler, TextAreaCallback } from 'utils/input-handler';
+import { trans } from 'utils/lang';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import { present } from 'utils/string';
 import MessageLengthCounter from './message-length-counter';
@@ -126,7 +127,7 @@ export class NewReply extends React.Component<Props> {
 
   @action
   private readonly onCancelClick = () => {
-    if (present(this.message) && !confirm(osu.trans('common.confirmation_unsaved'))) return;
+    if (present(this.message) && !confirm(trans('common.confirmation_unsaved'))) return;
 
     this.editing = false;
     this.setMessage('');
@@ -186,14 +187,14 @@ export class NewReply extends React.Component<Props> {
               disabled={this.posting != null}
               onChange={this.handleChange}
               onKeyDown={this.handleKeyDown}
-              placeholder={osu.trans('beatmaps.discussions.reply_placeholder')}
+              placeholder={trans('beatmaps.discussions.reply_placeholder')}
               value={this.message}
             />
           </div>
         </div>
 
         <div className={`${bn}__footer ${bn}__footer--notice`}>
-          {osu.trans('beatmaps.discussions.reply_notice')}
+          {trans('beatmaps.discussions.reply_notice')}
           <MessageLengthCounter isTimeline={this.isTimeline} message={this.message} />
         </div>
 
@@ -226,8 +227,8 @@ export class NewReply extends React.Component<Props> {
 
   private renderPlaceholder() {
     const [text, icon, disabled] = core.currentUser != null
-      ? [osu.trans('beatmap_discussions.reply.open.user'), 'fas fa-reply', core.currentUser.is_silenced]
-      : [osu.trans('beatmap_discussions.reply.open.guest'), 'fas fa-sign-in-alt', false];
+      ? [trans('beatmap_discussions.reply.open.user'), 'fas fa-reply', core.currentUser.is_silenced]
+      : [trans('beatmap_discussions.reply.open.guest'), 'fas fa-sign-in-alt', false];
 
     return (
       <div className={`${bn} ${bn}--reply ${bn}--new-reply ${bn}--new-reply-placeholder`}>
@@ -253,7 +254,7 @@ export class NewReply extends React.Component<Props> {
             'data-action': postAction,
             onClick: this.post,
           }}
-          text={osu.trans(`common.buttons.${postAction}`)}
+          text={trans(`common.buttons.${postAction}`)}
         />
       </div>
     );

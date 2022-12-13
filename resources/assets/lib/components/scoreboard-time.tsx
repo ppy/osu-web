@@ -3,6 +3,7 @@
 
 import * as moment from 'moment';
 import * as React from 'react';
+import { trans } from 'utils/lang';
 
 interface Props {
   dateTime: string;
@@ -32,7 +33,7 @@ function setupScoreboardLocale() {
 
   const relativeTime: Partial<Record<string, string>> = { future: '' };
   for (const [key, unit] of Object.entries(translatedUnits)) {
-    relativeTime[unit] = osu.trans(`common.scoreboard_time.${key}`);
+    relativeTime[unit] = trans(`common.scoreboard_time.${key}`);
   }
 
   moment.defineLocale('scoreboard', { relativeTime });

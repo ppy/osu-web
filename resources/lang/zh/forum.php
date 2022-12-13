@@ -45,7 +45,7 @@ return [
     'post' => [
         'confirm_destroy' => '删除此回复？',
         'confirm_restore' => '恢复此回复？',
-        'edited' => '最后由 :user 于 :when 编辑，总共编辑了 :count_delimited 次。',
+        'edited' => '最后一次由 :user 在 :when 编辑，总共编辑了 :count_delimited 次。',
         'posted_at' => '发表于 :when',
         'posted_by' => '发帖人：:username',
 
@@ -287,10 +287,10 @@ return [
         ],
 
         'issue_tag_resolved' => [
-            'to_0' => '移除 "resolved" 标签',
-            'to_0_done' => '已移除 "resolved" 标签',
-            'to_1' => '添加 "resolved" 标签',
-            'to_1_done' => '已添加 "resolved" 标签',
+            'to_0' => '移除“已解决”标签',
+            'to_0_done' => '已移除“已解决”标签',
+            'to_1' => '添加 "已解决" 标签',
+            'to_1_done' => '已添加 "已解决" 标签',
         ],
 
         'lock' => [
@@ -358,8 +358,8 @@ return [
                 ],
 
                 'detail' => [
-                    'end_time' => '将于 :time 结束',
-                    'ended' => '结束于 :time',
+                    'end_time' => ':time 结束',
+                    'ended' => ':time 结束',
                     'results_hidden' => '投票结束后才显示结果。',
                     'total' => '总票数: :count',
                 ],

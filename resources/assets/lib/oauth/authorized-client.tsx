@@ -8,6 +8,7 @@ import { observer } from 'mobx-react';
 import { Client } from 'models/oauth/client';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
+import { trans } from 'utils/lang';
 
 interface Props {
   client: Client;
@@ -29,7 +30,7 @@ export class AuthorizedClient extends React.Component<Props> {
               mappings={{
                 user: <UserLink user={client.user} />,
               }}
-              pattern={osu.trans('oauth.authorized_clients.owned_by')}
+              pattern={trans('oauth.authorized_clients.owned_by')}
             />
           </span>
           <div className='oauth-client__scopes'>
@@ -45,7 +46,7 @@ export class AuthorizedClient extends React.Component<Props> {
             props={{
               onClick: this.revokeClicked,
             }}
-            text={osu.trans(`oauth.authorized_clients.revoked.${client.revoked}`)}
+            text={trans(`oauth.authorized_clients.revoked.${client.revoked}`)}
           />
         </div>
       </div>
@@ -56,13 +57,13 @@ export class AuthorizedClient extends React.Component<Props> {
     const scopes = Array.from(this.props.client.scopes).sort();
     return (
       <>
-        <div>{osu.trans('oauth.authorized_clients.scopes_title')}</div>
+        <div>{trans('oauth.authorized_clients.scopes_title')}</div>
         <ul className='oauth-scopes'>
           {
             scopes.map((scope) => (
               <li key={scope}>
                 <span className='oauth-scopes__icon'><span className='fas fa-check' /></span>
-                {osu.trans(`api.scopes.${scope}`)}
+                {trans(`api.scopes.${scope}`)}
               </li>
             ))
           }
@@ -72,7 +73,7 @@ export class AuthorizedClient extends React.Component<Props> {
   }
 
   revokeClicked = () => {
-    if (!confirm(osu.trans('oauth.authorized_clients.confirm_revoke'))) return;
+    if (!confirm(trans('oauth.authorized_clients.confirm_revoke'))) return;
 
     this.props.client.revoke().fail(onError);
   };

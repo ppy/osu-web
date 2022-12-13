@@ -70,7 +70,7 @@ return [
         'no_access' => 'Du har ingen adgang til denne kanalen.',
         'receive_friends_only' => '',
         'restricted' => 'Du kan ikke sende meldinger mens du er stum, begrenset eller bannlyst.',
-        'silenced' => '',
+        'silenced' => 'Du kan ikke sende meldinger mens du er stum, begrenset eller bannlyst.',
     ],
 
     'comment' => [

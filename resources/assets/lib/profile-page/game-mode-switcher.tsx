@@ -9,6 +9,7 @@ import { action, observable, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { onErrorWithCallback } from 'utils/ajax';
+import { trans } from 'utils/lang';
 import Controller from './controller';
 
 interface Props {
@@ -61,9 +62,9 @@ export default class GameModeSwitcher extends React.Component<Props> {
         >
           <StringWithComponent
             mappings={{
-              mode: <strong>{osu.trans(`beatmaps.mode.${this.props.controller.currentMode}`)}</strong>,
+              mode: <strong>{trans(`beatmaps.mode.${this.props.controller.currentMode}`)}</strong>,
             }}
-            pattern={osu.trans('users.show.edit.default_playmode.set')}
+            pattern={trans('users.show.edit.default_playmode.set')}
           />
         </button>
       </div>

@@ -9,6 +9,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 
 interface Props {
   children?: React.ReactNode;
@@ -54,7 +55,7 @@ export default class UserProfileContainer extends React.Component<Props> {
             <span>
               <i className='textual-button__icon fas fa-low-vision' />
               {' '}
-              {this.forceShow ? osu.trans('users.blocks.hide_profile') : osu.trans('users.blocks.show_profile')}
+              {this.forceShow ? trans('users.blocks.hide_profile') : trans('users.blocks.show_profile')}
             </span>
           </button>
         </div>
@@ -63,7 +64,7 @@ export default class UserProfileContainer extends React.Component<Props> {
 
     return (
       <div className='osu-page'>
-        <NotificationBanner message={message} title={osu.trans('users.blocks.banner_text')} type='warning' />
+        <NotificationBanner message={message} title={trans('users.blocks.banner_text')} type='warning' />
       </div>
     );
   }

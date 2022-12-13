@@ -143,6 +143,11 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
         };
     }
 
+    public function url(): string
+    {
+        return route('scores.show-legacy', ['mode' => $this->getMode(), 'score' => $this->getKey()]);
+    }
+
     public function userRank($options)
     {
         // laravel model has a $hidden property

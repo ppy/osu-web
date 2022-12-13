@@ -6,6 +6,7 @@ import UserStatisticsJson from 'interfaces/user-statistics-json';
 import * as moment from 'moment';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
+import { trans, transChoice } from 'utils/lang';
 
 interface Props {
   stats: UserStatisticsJson;
@@ -27,14 +28,14 @@ export default function PlayTime({ stats }: Props) {
     titleUnit = 'minutes';
   }
 
-  const title = osu.transChoice(`common.count.${titleUnit}`, titleValue);
+  const title = transChoice(`common.count.${titleUnit}`, titleValue);
 
   let timeString = daysLeftOver > 0 ? `${formatNumber(daysLeftOver)}d ` : '';
   timeString += `${hours}h ${minutes}m`;
 
   return (
     <ValueDisplay
-      label={osu.trans('users.show.stats.play_time')}
+      label={trans('users.show.stats.play_time')}
       modifiers={['plain', 'plain-wide']}
       value={
         <span data-tooltip-position='bottom center' title={title}>

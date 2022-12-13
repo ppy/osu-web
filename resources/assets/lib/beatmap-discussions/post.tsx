@@ -28,6 +28,7 @@ import { onError } from 'utils/ajax';
 import { badgeGroup, format, validMessageLength } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
+import { trans } from 'utils/lang';
 import MessageLengthCounter from './message-length-counter';
 import { UserCard } from './user-card';
 
@@ -197,7 +198,7 @@ export default class Post extends React.Component<Props> {
               />
             ),
           }}
-          pattern={osu.trans('beatmaps.discussions.deleted')}
+          pattern={trans('beatmaps.discussions.deleted')}
         />
       </span>
     );
@@ -213,7 +214,7 @@ export default class Post extends React.Component<Props> {
             editor: <UserLink className={`${bn}__info-user`} user={this.props.lastEditor} />,
             update_time: <TimeWithTooltip dateTime={this.props.post.updated_at} relative />,
           }}
-          pattern={osu.trans('beatmaps.discussions.edited')}
+          pattern={trans('beatmaps.discussions.edited')}
         />
       </span>
     );
@@ -223,12 +224,12 @@ export default class Post extends React.Component<Props> {
     return (
       <a
         className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
-        data-confirm={osu.trans('common.confirmation')}
+        data-confirm={trans('common.confirmation')}
         data-method='POST'
         data-remote
         href={route(`beatmapsets.discussions.${op}-kudosu`, { discussion: this.props.discussion.id })}
       >
-        {osu.trans(`beatmaps.discussions.${op}_kudosu`)}
+        {trans(`beatmaps.discussions.${op}_kudosu`)}
       </a>
     );
   }
@@ -282,7 +283,7 @@ export default class Post extends React.Component<Props> {
                 <BigButton
                   disabled={this.isPosting}
                   props={{ onClick: this.editCancel }}
-                  text={osu.trans('common.buttons.cancel')}
+                  text={trans('common.buttons.cancel')}
                 />
               </div>
             </div>
@@ -290,7 +291,7 @@ export default class Post extends React.Component<Props> {
               <BigButton
                 disabled={!canPost}
                 props={{ onClick: this.updatePost }}
-                text={osu.trans('common.buttons.save')}
+                text={trans('common.buttons.save')}
               />
             </div>
           </div>
@@ -326,7 +327,7 @@ export default class Post extends React.Component<Props> {
 
           {this.props.type === 'discussion' && this.props.discussion.kudosu_denied && (
             <span className={`${bn}__info`}>
-              {osu.trans('beatmaps.discussions.kudosu_denied')}
+              {trans('beatmaps.discussions.kudosu_denied')}
             </span>
           )}
         </div>
@@ -343,7 +344,7 @@ export default class Post extends React.Component<Props> {
         <div className={`${bn}__actions-group`}>
           <span className={`${bn}__action ${bn}__action--button`}>
             <ClickToCopy
-              label={osu.trans('common.buttons.permalink')}
+              label={trans('common.buttons.permalink')}
               value={BeatmapDiscussionHelper.url({ discussion: this.props.discussion, post: this.props.type === 'reply' ? this.props.post : null })}
               valueAsUrl
             />
@@ -353,31 +354,31 @@ export default class Post extends React.Component<Props> {
               className={`${bn}__action ${bn}__action--button`}
               onClick={this.editStart}
             >
-              {osu.trans('beatmaps.discussions.edit')}
+              {trans('beatmaps.discussions.edit')}
             </button>
           )}
 
           {this.deleteModel.deleted_at == null && this.props.canBeDeleted && (
             <a
               className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
-              data-confirm={osu.trans('common.confirmation')}
+              data-confirm={trans('common.confirmation')}
               data-method='DELETE'
               data-remote
               href={this.deleteHref('destroy')}
             >
-              {osu.trans('beatmaps.discussions.delete')}
+              {trans('beatmaps.discussions.delete')}
             </a>
           )}
 
           {this.deleteModel.deleted_at != null && this.props.canBeRestored && (
             <a
               className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
-              data-confirm={osu.trans('common.confirmation')}
+              data-confirm={trans('common.confirmation')}
               data-method='POST'
               data-remote
               href={this.deleteHref('restore')}
             >
-              {osu.trans('beatmaps.discussions.restore')}
+              {trans('beatmaps.discussions.restore')}
             </a>
           )}
 
