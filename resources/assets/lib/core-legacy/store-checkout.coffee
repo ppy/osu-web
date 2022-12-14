@@ -33,7 +33,7 @@ export class StoreCheckout
       showLoadingOverlay.flush()
 
       init[provider]?.then ->
-        hide_from_activity = document.querySelector('.js-store-checkout-option')?.checked
+        hide_from_activity = document.querySelector('.js-hide-from-activity')?.checked
         $.post(route('store.checkout.store'), { hide_from_activity, provider, orderId })
       .then =>
         @startPayment(event.target.dataset)
