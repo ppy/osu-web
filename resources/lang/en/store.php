@@ -31,7 +31,7 @@ return [
         'cart_problems_edit' => 'Click here to go edit it.',
         'declined' => 'The payment was cancelled.',
         'delayed_shipping' => 'We are currently overwhelmed with orders! You are welcome to place your order, but please expect an **additional 1-2 week delay** while we catch up with existing orders.',
-        'hide_from_activity' => 'Hide all gifts in this order from my activity',
+        'hide_from_activity' => 'Hide all osu!supporter tags in this order from my activity',
         'old_cart' => 'Your cart appears to be out of date and has been reloaded, please try again.',
         'pay' => 'Checkout with Paypal',
         'title_compact' => 'checkout',
@@ -51,6 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'As your payment was an eCheck, please allow up to 10 extra days for the payment to clear through PayPal!',
+        'hide_from_activity' => 'osu!supporter tags in this order are not displayed in your recent activities.',
         'title_compact' => 'invoice',
 
         'status' => [
