@@ -31,8 +31,7 @@ class SupporterTagFulfillmentTest extends TestCase
         $expectedExpiry = $donor->osu_subscriptionexpiry->copy()->addMonthsNoOverflow(1);
         $this->createDonationOrderItem($this->user, false, false);
 
-        $fulfiller = new SupporterTagFulfillment($this->order);
-        $fulfiller->run();
+        (new SupporterTagFulfillment($this->order))->run();
 
         $donor->refresh();
         $this->assertTrue($donor->osu_subscriber);
@@ -54,8 +53,7 @@ class SupporterTagFulfillmentTest extends TestCase
 
         $this->createDonationOrderItem($giftee, false, false);
 
-        $fulfiller = new SupporterTagFulfillment($this->order);
-        $fulfiller->run();
+        (new SupporterTagFulfillment($this->order))->run();
 
         $donor->refresh();
         $giftee->refresh();
@@ -92,8 +90,7 @@ class SupporterTagFulfillmentTest extends TestCase
         $this->expectCountChange(fn () => Event::where('user_id', $giftee2->getKey())->count(), 1);
         $this->expectCountChange(fn () => Event::where('user_id', $this->user->getKey())->count(), $hidden ? 0 : 1);
 
-        $fulfiller = new SupporterTagFulfillment($this->order);
-        $fulfiller->run();
+        (new SupporterTagFulfillment($this->order))->run();
 
         Mail::assertQueued(SupporterGift::class, function ($mail) use ($giftee1, $giftee2) {
             $params = $this->invokeProperty($mail, 'params');
@@ -120,8 +117,7 @@ class SupporterTagFulfillmentTest extends TestCase
 
         $this->expectCountChange(fn () => Event::where('user_id', $this->user->getKey())->count(), $hidden ? 0 : 1);
 
-        $fulfiller = new SupporterTagFulfillment($this->order);
-        $fulfiller->run();
+        (new SupporterTagFulfillment($this->order))->run();
 
         Mail::assertNotQueued(SupporterGift::class);
         Mail::assertQueued(DonationThanks::class, 1);
@@ -136,8 +132,7 @@ class SupporterTagFulfillmentTest extends TestCase
         $this->createDonationOrderItem($this->user, false, true);
         $this->createDonationOrderItem($this->user, false, false);
 
-        $fulfiller = new SupporterTagFulfillment($this->order);
-        $fulfiller->run();
+        (new SupporterTagFulfillment($this->order))->run();
 
         $donor->refresh();
         // Should only apply one supporter tag.
@@ -154,8 +149,7 @@ class SupporterTagFulfillmentTest extends TestCase
         $this->createDonationOrderItem($this->user, false, true);
         $this->createDonationOrderItem($this->user, false, true);
 
-        $fulfiller = new SupporterTagFulfillment($this->order);
-        $fulfiller->run();
+        (new SupporterTagFulfillment($this->order))->run();
 
         $donor->refresh();
         // Should not apply any supporter tags
@@ -184,8 +178,7 @@ class SupporterTagFulfillmentTest extends TestCase
 
         $this->createDonationOrderItem($this->user, false, true);
 
-        $fulfiller = new SupporterTagFulfillment($this->order);
-        $fulfiller->revoke();
+        (new SupporterTagFulfillment($this->order))->revoke();
 
         $donor->refresh();
 
@@ -210,8 +203,7 @@ class SupporterTagFulfillmentTest extends TestCase
         $this->createDonationOrderItem($this->user, true, true);
         $this->createDonationOrderItem($this->user, true, false);
 
-        $fulfiller = new SupporterTagFulfillment($this->order);
-        $fulfiller->revoke();
+        (new SupporterTagFulfillment($this->order))->revoke();
 
         $donor->refresh();
 
@@ -235,8 +227,7 @@ class SupporterTagFulfillmentTest extends TestCase
         $this->createDonationOrderItem($this->user, true, true);
         $this->createDonationOrderItem($this->user, true, true);
 
-        $fulfiller = new SupporterTagFulfillment($this->order);
-        $fulfiller->revoke();
+        (new SupporterTagFulfillment($this->order))->revoke();
 
         $donor->refresh();
 
@@ -258,8 +249,7 @@ class SupporterTagFulfillmentTest extends TestCase
         $expectedExpiry = $today->copy()->addMonthsNoOverflow(1);
         $this->createDonationOrderItem($this->user, false, false);
 
-        $fulfiller = new SupporterTagFulfillment($this->order);
-        $fulfiller->run();
+        (new SupporterTagFulfillment($this->order))->run();
 
         $donor->refresh();
         $this->assertTrue($donor->osu_subscriber);
@@ -275,8 +265,7 @@ class SupporterTagFulfillmentTest extends TestCase
         $this->expectException(FulfillmentException::class);
         $this->expectCountChange(fn () => UserDonation::count(), 0);
 
-        $fulfiller = new SupporterTagFulfillment($this->order);
-        $fulfiller->run();
+        (new SupporterTagFulfillment($this->order))->run();
     }
 
     public function testInsufficientAmountMultiple()
@@ -287,8 +276,7 @@ class SupporterTagFulfillmentTest extends TestCase
         $this->expectException(FulfillmentException::class);
         $this->expectCountChange(fn () => UserDonation::count(), 0);
 
-        $fulfiller = new SupporterTagFulfillment($this->order);
-        $fulfiller->run();
+        (new SupporterTagFulfillment($this->order))->run();
     }
 
     public function boolDataProvider()
