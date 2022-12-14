@@ -41,6 +41,7 @@ use Carbon\Carbon;
 class Product extends Model
 {
     const REDIRECT_PLACEHOLDER = 'redirect';
+    const SUPPORTER_TAG_NAME = 'supporter-tag';
 
     protected $primaryKey = 'product_id';
 
