@@ -38,7 +38,7 @@
                 <label class="store-page__option">
                     @include('objects._switch', ['locals' => [
                         'additionalClass' => 'js-store-checkout-option',
-                        'checked' => $order->isGiftsHidden(),
+                        'checked' => $order->isHideSupporterFromActivity(),
                         'name' => 'hide_from_activity',
                     ]])
                     {{ osu_trans('store.checkout.hide_from_activity') }}

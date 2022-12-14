@@ -86,7 +86,7 @@ class SupporterTagFulfillment extends OrderFulfiller
 
         $isGift = count($gifts) !== 0;
 
-        if (!$this->order->isGiftsHidden()) {
+        if (!$this->order->isHideSupporterFromActivity()) {
             Event::generate(
                 $this->continued ? 'userSupportAgain' : 'userSupportFirst',
                 ['user' => $donor, 'date' => $this->order->paid_at]

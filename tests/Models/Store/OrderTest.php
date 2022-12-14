@@ -22,17 +22,17 @@ class OrderTest extends TestCase
         $this->assertTrue($order->containsSupporterTag());
     }
 
-    public function testIsGiftsHidden()
+    public function testIsHideSupporterFromActivity()
     {
         $order = factory(Order::class)->create();
         factory(OrderItem::class, 2)->states('supporter_tag')->create(['order_id' => $order]);
 
-        $this->assertFalse($order->isGiftsHidden());
+        $this->assertFalse($order->isHideSupporterFromActivity());
 
         $order->items[0]->extra_data->hidden = true;
         $order->saveOrExplode();
 
-        $this->assertTrue($order->isGiftsHidden());
+        $this->assertTrue($order->isHideSupporterFromActivity());
     }
 
     public function testSetGiftsHidden()

@@ -371,7 +371,7 @@ class Order extends Model
 
     public function containsSupporterTag(): bool
     {
-        return $this->items->first(fn (OrderItem $item) => $item->product->custom_class === Product::SUPPORTER_TAG_NAME) !== null;
+        return $this->items->contains(fn (OrderItem $item) => $item->product->custom_class === Product::SUPPORTER_TAG_NAME);
     }
 
     public function hasInvoice(): bool
@@ -399,7 +399,7 @@ class Order extends Model
         return !$this->items()->exists();
     }
 
-    public function isGiftsHidden(): bool
+    public function isHideSupporterFromActivity(): bool
     {
         // Consider all supporter tags should be hidden from activity if any one of them is marked to be hidden.
         // This also skips needing to perform a product lookup.
