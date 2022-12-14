@@ -88,6 +88,12 @@ class ScoreSearchParams extends SearchParams
                     new Sort('id', 'asc'),
                 ];
                 break;
+            case 'pp_desc':
+                $this->sorts = [
+                    new Sort('pp', 'desc'),
+                    new Sort('id', 'asc'),
+                ];
+                break;
             case null:
                 $this->sorts = [];
                 break;
