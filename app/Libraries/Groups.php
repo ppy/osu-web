@@ -72,7 +72,7 @@ class Groups
                 $group = Group::create([
                     'group_desc' => '',
                     'group_name' => $id,
-                    'group_type' => 0,
+                    'group_type' => 2,
                     'identifier' => $id,
                     'short_name' => $id,
                 ])->fresh();
