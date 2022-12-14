@@ -83,16 +83,14 @@ class SupporterTagFulfillmentTest extends TestCase
         $giftee1 = User::factory()->create(['user_sig' => '']); // prevent factory from generating user_sig
         $giftee2 = User::factory()->create(['user_sig' => '']);
 
+        // This also tests multiple gifts only send 1 mail/event each
         $this->createDonationOrderItem($giftee1, false, false, $hidden);
         $this->createDonationOrderItem($giftee1, false, false, $hidden);
         $this->createDonationOrderItem($giftee2, false, false, $hidden);
 
-        // TODO: should change to get the message from Event and test against that.
-        $expectedCount = 3;
-        if ($hidden) {
-            $expectedCount--;
-        }
-        $this->expectCountChange(fn () => Event::count(), $expectedCount);
+        $this->expectCountChange(fn () => Event::where('user_id', $giftee1->getKey())->count(), 1);
+        $this->expectCountChange(fn () => Event::where('user_id', $giftee2->getKey())->count(), 1);
+        $this->expectCountChange(fn () => Event::where('user_id', $this->user->getKey())->count(), $hidden ? 0 : 1);
 
         $fulfiller = new SupporterTagFulfillment($this->order);
         $fulfiller->run();
@@ -120,12 +118,7 @@ class SupporterTagFulfillmentTest extends TestCase
 
         $this->createDonationOrderItem($this->user, false, false, $hidden);
 
-        // TODO: should change to get the message from Event and test against that.
-        $expectedCount = 1;
-        if ($hidden) {
-            $expectedCount--;
-        }
-        $this->expectCountChange(fn () => Event::count(), $expectedCount);
+        $this->expectCountChange(fn () => Event::where('user_id', $this->user->getKey())->count(), $hidden ? 0 : 1);
 
         $fulfiller = new SupporterTagFulfillment($this->order);
         $fulfiller->run();
