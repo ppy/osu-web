@@ -122,7 +122,7 @@ class OrderItem extends Model
     public function getDisplayName(bool $html = false)
     {
         switch ($this->product->custom_class) {
-            case 'supporter-tag':
+            case Product::SUPPORTER_TAG_NAME:
                 return SupporterTag::getDisplayName($this, $html);
             default:
                 return $this->product->name.($this->extra_info !== null ? " ({$this->extra_info})" : '');
