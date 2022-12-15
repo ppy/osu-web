@@ -26,7 +26,7 @@ const bn = 'beatmap-discussion-post';
 interface Props {
   beatmapset: BeatmapsetJson;
   currentBeatmap: BeatmapJson;
-  discussion: BeatmapsetDiscussionJson & Required<Pick<BeatmapsetDiscussionJson, 'current_user_attributes'>>;
+  discussion: BeatmapsetDiscussionJson;
 }
 
 const actionIcons = {
@@ -51,11 +51,11 @@ export class NewReply extends React.Component<Props> {
   private startEditing = false;
 
   private get canReopen() {
-    return this.props.discussion.can_be_resolved && this.props.discussion.current_user_attributes.can_reopen;
+    return this.props.discussion.can_be_resolved && (this.props.discussion.current_user_attributes?.can_reopen ?? false);
   }
 
   private get canResolve() {
-    return this.props.discussion.can_be_resolved && this.props.discussion.current_user_attributes.can_resolve;
+    return this.props.discussion.can_be_resolved && (this.props.discussion.current_user_attributes?.can_resolve ?? false);
   }
 
   private get isTimeline() {
