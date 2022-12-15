@@ -77,7 +77,7 @@
             </div>
         </div>
     </div>
-    <div class="user-profile-pages">
+    <div class="user-profile-pages user-profile-pages--no-tabs">
         <div class="page-extra">
             <h2 class="title title--page-extra">
                 {{ osu_trans('home.download.quick_start_guide') }}
