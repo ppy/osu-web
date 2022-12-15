@@ -8,6 +8,7 @@ namespace App\Libraries\Fulfillments;
 use App\Events\Fulfillments\SupporterTagEvent;
 use App\Models\Event;
 use App\Models\Store\OrderItem;
+use App\Models\Store\Product;
 use App\Models\SupporterTag;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
@@ -16,7 +17,7 @@ use Mail;
 
 class SupporterTagFulfillment extends OrderFulfiller
 {
-    const TAGGED_NAME = 'supporter-tag';
+    const TAGGED_NAME = Product::SUPPORTER_TAG_NAME;
 
     private $continued;
     private $fulfillers;
@@ -85,10 +86,12 @@ class SupporterTagFulfillment extends OrderFulfiller
 
         $isGift = count($gifts) !== 0;
 
-        Event::generate(
-            $this->continued ? 'userSupportAgain' : 'userSupportFirst',
-            ['user' => $donor, 'date' => $this->order->paid_at]
-        );
+        if (!$this->order->isHideSupporterFromActivity()) {
+            Event::generate(
+                $this->continued ? 'userSupportAgain' : 'userSupportFirst',
+                ['user' => $donor, 'date' => $this->order->paid_at]
+            );
+        }
 
         if (present($donor->user_email)) {
             Mail::to($donor)
@@ -133,7 +136,7 @@ class SupporterTagFulfillment extends OrderFulfiller
     private function getOrderItems(): Collection
     {
         if (!isset($this->orderItems)) {
-            $this->orderItems = $this->order->items()->customClass('supporter-tag')->get();
+            $this->orderItems = $this->order->items()->customClass(Product::SUPPORTER_TAG_NAME)->get();
         }
 
         return $this->orderItems;
