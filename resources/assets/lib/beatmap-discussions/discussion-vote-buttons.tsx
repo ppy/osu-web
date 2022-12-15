@@ -5,7 +5,7 @@ import UserListPopup, { createTooltip } from 'components/user-list-popup';
 import { BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import { action, computed, makeObservable, observable, runInAction } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
