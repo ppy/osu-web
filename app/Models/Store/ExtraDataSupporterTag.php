@@ -11,15 +11,17 @@ use JsonSerializable;
 
 class ExtraDataSupporterTag extends ExtraDataBase implements JsonSerializable
 {
-    const TYPE = 'supporter-tag';
+    const TYPE = Product::SUPPORTER_TAG_NAME;
 
     public int $duration;
+    public bool $hidden;
     public int $targetId;
     public string $username;
 
     public function __construct(array $data)
     {
         $this->duration = get_int($data['duration']);
+        $this->hidden = $data['hidden'] ?? false;
         $this->targetId = get_int($data['target_id']);
         $this->username = $data['username'];
     }
@@ -28,6 +30,7 @@ class ExtraDataSupporterTag extends ExtraDataBase implements JsonSerializable
     {
         return array_merge(parent::jsonSerialize(), [
             'duration' => $this->duration,
+            'hidden' => $this->hidden,
             'target_id' => $this->targetId,
             'username' => $this->username,
         ]);
