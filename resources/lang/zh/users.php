@@ -194,10 +194,10 @@ return [
 
         'extra' => [
             'none' => '无',
-            'unranked' => '最近没有玩过',
+            'unranked' => '最近没玩过',
 
             'achievements' => [
-                'achieved-on' => '达成于 :date',
+                'achieved-on' => ':date 达成',
                 'locked' => '锁定',
                 'title' => '成就',
             ],
@@ -215,13 +215,16 @@ return [
                     'title' => '参与客串制作的谱面',
                 ],
                 'loved' => [
-                    'title' => 'Loved 的谱面',
+                    'title' => '社区喜爱 (Loved) 谱面',
+                ],
+                'nominated' => [
+                    'title' => '',
                 ],
                 'pending' => [
                     'title' => 'Pending 谱面',
                 ],
                 'ranked' => [
-                    'title' => 'Ranked 谱面',
+                    'title' => '上架 (Ranked) 谱面',
                 ],
             ],
             'discussions' => [
@@ -327,7 +330,7 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => '下载回放',
-                'not_ranked' => '只有 ranked 谱面才能得到 pp。',
+                'not_ranked' => '只能在上架 (Ranked) 谱面中获得 pp。',
                 'pp_weight' => '权重：:percentage',
                 'view_details' => '查看详情',
                 'title' => '成绩',
@@ -410,11 +413,11 @@ return [
             'count' => ':count 篇帖子',
         ],
         'rank' => [
-            'country' => ':mode 模式的国内/区内排名',
-            'country_simple' => '国内/区内排名',
+            'country' => ':mode 模式的地区排名',
+            'country_simple' => '地区排名',
             'global' => ':mode 模式的全球排名',
             'global_simple' => '全球排名',
-            'highest' => '',
+            'highest' => ':date 达成生涯最高排名 :rank',
         ],
         'stats' => [
             'hit_accuracy' => '准确率',
@@ -424,16 +427,16 @@ return [
             'medals' => '奖章',
             'play_count' => '游戏次数',
             'play_time' => '游戏时间',
-            'ranked_score' => 'Ranked 谱面总分',
+            'ranked_score' => '进榜总分',
             'replays_watched_by_others' => '回放被观看次数',
             'score_ranks' => '得分等级',
             'total_hits' => '总命中次数',
             'total_score' => '总分',
             // modding stats
             'graveyard_beatmapset_count' => '坟场里的谱面',
-            'loved_beatmapset_count' => 'Loved 的谱面',
+            'loved_beatmapset_count' => '社区喜爱 (Loved) 谱面',
             'pending_beatmapset_count' => 'Pending 的谱面',
-            'ranked_beatmapset_count' => 'Ranked 的谱面',
+            'ranked_beatmapset_count' => '上架 (Ranked) 谱面',
         ],
     ],
 

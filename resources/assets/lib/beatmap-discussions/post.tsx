@@ -61,7 +61,7 @@ export default class Post extends React.Component<Props> {
 
   @computed
   private get canEdit() {
-    return this.isAdmin || this.isOwn && this.props.post.id > this.props.resolvedSystemPostId && !(this.props.beatmapset?.discussion_locked ?? false);
+    return this.isAdmin || this.isOwn && this.props.post.id > this.props.resolvedSystemPostId && !this.props.beatmapset.discussion_locked;
   }
 
   @computed
@@ -358,7 +358,7 @@ export default class Post extends React.Component<Props> {
 
   private renderMessageViewerActions() {
     const canModerate = canModeratePosts();
-    const canDeleted = this.props.type === 'discussion' ? this.props.discussion.current_user_attributes?.can_destroy : canModerate || this.canEdit;
+    const canDelete = this.props.type === 'discussion' ? this.props.discussion.current_user_attributes?.can_destroy : canModerate || this.canEdit;
 
     return (
       <div className={`${bn}__actions`}>
@@ -379,7 +379,7 @@ export default class Post extends React.Component<Props> {
             </button>
           )}
 
-          {this.deleteModel.deleted_at == null && canDeleted && (
+          {this.deleteModel.deleted_at == null && canDelete && (
             <a
               className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
               data-confirm={trans('common.confirmation')}

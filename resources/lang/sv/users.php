@@ -217,6 +217,9 @@ return [
                 'loved' => [
                     'title' => 'Älskade beatmaps',
                 ],
+                'nominated' => [
+                    'title' => '',
+                ],
                 'pending' => [
                     'title' => 'Väntande beatmaps',
                 ],

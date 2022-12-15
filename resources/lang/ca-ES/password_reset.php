@@ -5,7 +5,7 @@
 
 return [
     'button' => [
-        'cancel' => '',
+        'cancel' => 'Cancel·la',
         'resend' => '',
         'set' => '',
         'start' => '',
@@ -16,7 +16,7 @@ return [
         'expired' => '',
         'invalid' => '',
         'is_privileged' => '',
-        'missing_key' => '',
+        'missing_key' => 'Requerit.',
         'too_many_tries' => '',
         'user_not_found' => '',
         'wrong_key' => '',

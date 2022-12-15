@@ -8,7 +8,6 @@ import ChatIcon from 'components/chat-icon'
 import { Comments } from 'components/comments'
 import { CommentsManager } from 'components/comments-manager'
 import { CountdownTimer } from 'components/countdown-timer'
-import ForumPostReport from 'components/forum-post-report'
 import { LandingNews } from 'components/landing-news'
 import MainNotificationIcon from 'components/main-notification-icon'
 import MultiplayerSelectOptions from 'components/multiplayer-select-options'
@@ -57,8 +56,6 @@ core.reactTurbolinks.register 'beatmap-discussion-events', (container) ->
 
 core.reactTurbolinks.register 'beatmapset-panel', (container) ->
   createElement BeatmapsetPanel, observable(JSON.parse(container.dataset.beatmapsetPanel))
-
-core.reactTurbolinks.register 'forum-post-report', -> createElement(ForumPostReport)
 
 core.reactTurbolinks.register 'spotlight-select-options', ->
   createElement SpotlightSelectOptions, parseJson('json-spotlight-select-options')

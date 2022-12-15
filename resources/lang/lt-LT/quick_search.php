@@ -5,17 +5,17 @@
 
 return [
     'mode' => [
-        'beatmapset' => '',
-        'forum_post' => '',
-        'other' => '',
-        'user' => '',
-        'wiki_page' => '',
+        'beatmapset' => 'Bitmapas',
+        'forum_post' => 'Forumas',
+        'other' => 'Kiti',
+        'user' => 'Žaidėjas',
+        'wiki_page' => 'Wiki',
     ],
 
     'result' => [
-        'empty' => '',
-        'empty_for' => '',
-        'more' => '',
-        'title' => '',
+        'empty' => 'Nerasta',
+        'empty_for' => 'Nerasta tarp :modes',
+        'more' => 'Daugiau :mode Paieškos Rezultatų',
+        'title' => ':mode Paieškos Rezultatai',
     ],
 ];

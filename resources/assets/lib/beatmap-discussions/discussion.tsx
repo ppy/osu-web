@@ -25,24 +25,26 @@ import { UserCard } from './user-card';
 
 const bn = 'beatmap-discussion';
 
-function isShowVersion(discussion: BeatmapsetDiscussionJsonForBundle | BeatmapsetDiscussionJsonForShow): discussion is BeatmapsetDiscussionJsonForShow {
-  return 'posts' in discussion;
-}
-
-interface Props {
+interface PropsBase {
   beatmapset: BeatmapsetExtendedJson;
   currentBeatmap: BeatmapExtendedJson;
-  discussion: BeatmapsetDiscussionJsonForShow | BeatmapsetDiscussionJsonForBundle;
   isTimelineVisible: boolean;
   parentDiscussion?: BeatmapsetDiscussionJson | null;
-  // preview = true is for rendering the non-discussion version;
-  // still need this flag instead of just relying on type discrimination
-  // due to updates getting merged into the big discussions blob at the root.
-  preview: boolean;
   readPostIds?: Set<number>;
   showDeleted: boolean;
   users: Partial<Record<number | string, UserJson>>;
 }
+
+// preview version is used on pages other than the main discussions page.
+type Props = PropsBase & ({
+  // BeatmapsetDiscussionJsonForShow is because editing still returns
+  // BeatmapsetDiscussionJsonForShow which gets merged into the parent discussions blob.
+  discussion: BeatmapsetDiscussionJsonForBundle | BeatmapsetDiscussionJsonForShow;
+  preview: true;
+} | {
+  discussion: BeatmapsetDiscussionJsonForShow;
+  preview: false;
+});
 
 @observer
 export class Discussion extends React.Component<Props> {
@@ -78,7 +80,7 @@ export class Discussion extends React.Component<Props> {
   @computed
   private get resolvedSystemPostId() {
     // TODO: handling resolved status in bundles....?
-    if (!isShowVersion(this.props.discussion)) return -1;
+    if (this.props.preview) return -1;
 
     const systemPost = findLast(this.props.discussion.posts, (post) => post != null && post.system && post.message.type === 'resolve');
     return systemPost?.id ?? -1;
@@ -133,9 +135,9 @@ export class Discussion extends React.Component<Props> {
             <div className={`${bn}__top-message`}>
               {this.renderPost(firstPost, 'discussion')}
             </div>
-            {!this.props.preview && this.renderPostButtons()}
+            {this.renderPostButtons()}
           </div>
-          {!this.props.preview && this.postFooter()}
+          {this.postFooter()}
           <div className={lineClasses} />
         </div>
       </div>
@@ -166,7 +168,7 @@ export class Discussion extends React.Component<Props> {
   }
 
   private postFooter() {
-    if (!isShowVersion(this.props.discussion)) return null;
+    if (this.props.preview) return null;
 
     let cssClasses = `${bn}__expanded`;
     if (this.collapsed) {
@@ -215,6 +217,8 @@ export class Discussion extends React.Component<Props> {
   }
 
   private renderPostButtons() {
+    if (this.props.preview) return null;
+
     const user = this.props.users[this.props.discussion.user_id];
 
     return (
@@ -229,11 +233,11 @@ export class Discussion extends React.Component<Props> {
               <i className='fas fa-tasks' />
             </a>
           )}
-          {isShowVersion(this.props.discussion) && <DiscussionVoteButtons
+          <DiscussionVoteButtons
             cannotVote={this.isOwner(this.props.discussion) || (user?.is_bot ?? false) || !this.canBeRepliedTo}
             discussion={this.props.discussion}
             users={this.props.users}
-          />}
+          />
           <button
             className={`${bn}__action ${bn}__action--with-line`}
             onClick={this.handleCollapseClick}

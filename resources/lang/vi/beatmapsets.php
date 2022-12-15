@@ -124,6 +124,7 @@ return [
             'genre' => 'Thể Loại',
             'language' => 'Ngôn Ngữ',
             'no_scores' => 'Vẫn đang tính toán dữ liệu...',
+            'nominators' => '',
             'nsfw' => 'Nội dung không lành mạnh',
             'offset' => '',
             'points-of-failure' => 'Tỉ Lệ Thất Bại',

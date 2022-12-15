@@ -5,7 +5,7 @@ import UserListPopup, { createTooltip } from 'components/user-list-popup';
 import { BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import { action, computed, makeObservable, observable, runInAction } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -68,7 +68,7 @@ export default class DiscussionVoteButtons extends React.Component<Props> {
       ? trans(`beatmaps.discussions.votes.none.${type}`)
       : `${trans(`beatmaps.discussions.votes.latest.${type}`)}:`;
 
-    const users = this.props.discussion.votes.voters[type].map((id) => this.props.users[id] ?? {});
+    const users = this.props.discussion.votes.voters[type].map((id) => this.props.users[id] ?? { id });
 
     return renderToStaticMarkup(<UserListPopup count={count} title={title} users={users} />);
   }
@@ -89,9 +89,8 @@ export default class DiscussionVoteButtons extends React.Component<Props> {
     });
 
     this.voteXhr
-      .done((data) => runInAction(() => {
-        $.publish('beatmapsetDiscussions:update', { beatmapset: data });
-      })).fail(onError)
+      .done((beatmapset) => $.publish('beatmapsetDiscussions:update', { beatmapset }))
+      .fail(onError)
       .always(action(() => {
         hideLoadingOverlay();
         this.voteXhr = null;
@@ -103,8 +102,6 @@ export default class DiscussionVoteButtons extends React.Component<Props> {
     const type = target.dataset.type as VoteType;
 
     this.tooltips[type] ??= createTooltip(target, 'top center', this.getTooltipContent(type));
-
-    return this.tooltips[type];
   };
 
   private renderVote(type: VoteType) {

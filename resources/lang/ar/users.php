@@ -217,6 +217,9 @@ return [
                 'loved' => [
                     'title' => 'خرائط Loved',
                 ],
+                'nominated' => [
+                    'title' => '',
+                ],
                 'pending' => [
                     'title' => 'الخرائط المعلقة',
                 ],

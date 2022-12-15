@@ -217,6 +217,9 @@ return [
                 'loved' => [
                     'title' => 'Lovedされたビートマップ',
                 ],
+                'nominated' => [
+                    'title' => '',
+                ],
                 'pending' => [
                     'title' => 'Pendingビートマップ',
                 ],
@@ -414,7 +417,7 @@ return [
             'country_simple' => '国別ランキング',
             'global' => ':modeの世界ランク',
             'global_simple' => '世界ランキング',
-            'highest' => '',
+            'highest' => '最高ランク: :rank (:dateに取得)',
         ],
         'stats' => [
             'hit_accuracy' => '精度',

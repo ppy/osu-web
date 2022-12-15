@@ -124,6 +124,7 @@ return [
             'genre' => 'Aliran',
             'language' => 'Bahasa',
             'no_scores' => 'Data sedang diproses...',
+            'nominators' => '',
             'nsfw' => 'Konten eksplisit',
             'offset' => 'Offset online',
             'points-of-failure' => 'Titik-Titik Kegagalan',
