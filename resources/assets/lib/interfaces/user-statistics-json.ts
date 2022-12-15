@@ -18,7 +18,8 @@ interface Variant {
 
 interface UserStatisticsBaseJson {
   country_rank?: number | null;
-  global_rank?: number | null;
+  global_rank: number | null;
+  global_rank_exp: number | null;
   grade_counts: Record<Grade, number>;
   hit_accuracy: number;
   is_ranked: boolean;
@@ -30,6 +31,7 @@ interface UserStatisticsBaseJson {
   play_count: number;
   play_time: number;
   pp: number;
+  pp_exp: number;
   ranked_score: number;
   replays_watched_by_others: number;
   total_hits: number;

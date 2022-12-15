@@ -124,6 +124,7 @@ return [
             'genre' => 'Dyanre',
             'language' => 'Wika',
             'no_scores' => 'Kinakalkula pa ang mga datos...',
+            'nominators' => '',
             'nsfw' => 'Maselang nilalaman',
             'offset' => 'Online na offset',
             'points-of-failure' => 'Mga punto ng pagkabigo',

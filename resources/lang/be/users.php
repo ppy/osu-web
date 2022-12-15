@@ -217,6 +217,9 @@ return [
                 'loved' => [
                     'title' => 'Любімыя бітмапы',
                 ],
+                'nominated' => [
+                    'title' => '',
+                ],
                 'pending' => [
                     'title' => 'Чаканыя бітмапы',
                 ],

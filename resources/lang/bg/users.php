@@ -217,6 +217,9 @@ return [
                 'loved' => [
                     'title' => 'Обичани бийтмапове',
                 ],
+                'nominated' => [
+                    'title' => '',
+                ],
                 'pending' => [
                     'title' => 'Чакащи класиране бийтмапове',
                 ],
@@ -414,7 +417,7 @@ return [
             'country_simple' => 'Държавно класиране',
             'global' => 'Световна класация за :mode',
             'global_simple' => 'Глобално класиране',
-            'highest' => '',
+            'highest' => 'Най-висок ранг: :rank на :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Прецизност на ударите',

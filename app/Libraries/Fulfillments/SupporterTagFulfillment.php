@@ -8,19 +8,21 @@ namespace App\Libraries\Fulfillments;
 use App\Events\Fulfillments\SupporterTagEvent;
 use App\Models\Event;
 use App\Models\Store\OrderItem;
+use App\Models\Store\Product;
 use App\Models\SupporterTag;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Log;
 use Mail;
 
 class SupporterTagFulfillment extends OrderFulfiller
 {
-    const TAGGED_NAME = 'supporter-tag';
+    const TAGGED_NAME = Product::SUPPORTER_TAG_NAME;
 
     private $continued;
     private $fulfillers;
-    private $orderItems;
-    private $minimumRequired = 0; // do not read this field outside of minimumRequired()
+    private int $minimumRequired = 0; // do not read this field outside of minimumRequired()
+    private ?Collection $orderItems;
 
     public function run()
     {
@@ -64,10 +66,14 @@ class SupporterTagFulfillment extends OrderFulfiller
         $totalDuration = 0;
 
         foreach ($items as $item) {
-            $duration = (int) $item['extra_data']['duration'];
+            $extraData = $item->extra_data;
+
+            $duration = $extraData->duration;
             $totalDuration += $duration;
-            $targetId = $item['extra_data']['target_id'];
+
+            $targetId = $extraData->targetId;
             $target = User::find($targetId);
+
             // TODO: warn if user doesn't exist, but don't explode.
             if ($donor->getKey() !== $target->getKey()) {
                 if (($gifts[$targetId] ?? null) === null) {
@@ -80,10 +86,12 @@ class SupporterTagFulfillment extends OrderFulfiller
 
         $isGift = count($gifts) !== 0;
 
-        Event::generate(
-            $this->continued ? 'userSupportAgain' : 'userSupportFirst',
-            ['user' => $donor, 'date' => $this->order->paid_at]
-        );
+        if (!$this->order->isHideSupporterFromActivity()) {
+            Event::generate(
+                $this->continued ? 'userSupportAgain' : 'userSupportFirst',
+                ['user' => $donor, 'date' => $this->order->paid_at]
+            );
+        }
 
         if (present($donor->user_email)) {
             Mail::to($donor)
@@ -122,10 +130,13 @@ class SupporterTagFulfillment extends OrderFulfiller
         return $this->validationErrors()->isEmpty();
     }
 
-    private function getOrderItems()
+    /**
+     * @return Collection<OrderItem>
+     */
+    private function getOrderItems(): Collection
     {
         if (!isset($this->orderItems)) {
-            $this->orderItems = $this->order->items()->customClass('supporter-tag')->get();
+            $this->orderItems = $this->order->items()->customClass(Product::SUPPORTER_TAG_NAME)->get();
         }
 
         return $this->orderItems;
@@ -155,11 +166,7 @@ class SupporterTagFulfillment extends OrderFulfiller
 
     private function createFulfiller(OrderItem $item)
     {
-        $extraData = $item['extra_data'];
-        $duration = (int) $extraData['duration'];
-        $minimum = SupporterTag::getMinimumDonation($duration);
-
-        $this->minimumRequired += $minimum;
+        $this->minimumRequired += SupporterTag::getMinimumDonation($item->extra_data->duration);
 
         return new ApplySupporterTag($item);
     }
