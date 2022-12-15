@@ -68,7 +68,7 @@ export default class DiscussionVoteButtons extends React.Component<Props> {
       ? trans(`beatmaps.discussions.votes.none.${type}`)
       : `${trans(`beatmaps.discussions.votes.latest.${type}`)}:`;
 
-    const users = this.props.discussion.votes.voters[type].map((id) => this.props.users[id] ?? {});
+    const users = this.props.discussion.votes.voters[type].map((id) => this.props.users[id] ?? { id });
 
     return renderToStaticMarkup(<UserListPopup count={count} title={title} users={users} />);
   }
