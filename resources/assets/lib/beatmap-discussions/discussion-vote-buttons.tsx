@@ -102,8 +102,6 @@ export default class DiscussionVoteButtons extends React.Component<Props> {
     const type = target.dataset.type as VoteType;
 
     this.tooltips[type] ??= createTooltip(target, 'top center', this.getTooltipContent(type));
-
-    return this.tooltips[type];
   };
 
   private renderVote(type: VoteType) {
