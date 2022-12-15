@@ -61,7 +61,7 @@ export default class Post extends React.Component<Props> {
 
   @computed
   private get canEdit() {
-    return this.isAdmin || this.isOwn && this.props.post.id > this.props.resolvedSystemPostId && !(this.props.beatmapset?.discussion_locked ?? false);
+    return this.isAdmin || this.isOwn && this.props.post.id > this.props.resolvedSystemPostId && !this.props.beatmapset.discussion_locked;
   }
 
   @computed
