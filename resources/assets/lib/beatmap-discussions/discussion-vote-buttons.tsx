@@ -89,9 +89,8 @@ export default class DiscussionVoteButtons extends React.Component<Props> {
     });
 
     this.voteXhr
-      .done((data) => runInAction(() => {
-        $.publish('beatmapsetDiscussions:update', { beatmapset: data });
-      })).fail(onError)
+      .done((beatmapset) => $.publish('beatmapsetDiscussions:update', { beatmapset }))
+      .fail(onError)
       .always(action(() => {
         hideLoadingOverlay();
         this.voteXhr = null;
