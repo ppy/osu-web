@@ -13,6 +13,7 @@ import MainNotificationIcon from 'components/main-notification-icon'
 import MultiplayerSelectOptions from 'components/multiplayer-select-options'
 import QuickSearchButton from 'components/quick-search-button'
 import RankingFilter from 'components/ranking-filter'
+import RankingSelectOptions from 'components/ranking-select-options'
 import { SpotlightSelectOptions } from 'components/spotlight-select-options'
 import { UserCard } from 'components/user-card'
 import { UserCardStore } from 'components/user-card-store'
@@ -56,6 +57,11 @@ core.reactTurbolinks.register 'beatmap-discussion-events', (container) ->
 
 core.reactTurbolinks.register 'beatmapset-panel', (container) ->
   createElement BeatmapsetPanel, observable(JSON.parse(container.dataset.beatmapsetPanel))
+
+core.reactTurbolinks.register 'forum-post-report', -> createElement(ForumPostReport)
+
+core.reactTurbolinks.register 'ranking-select-options', ->
+  createElement RankingSelectOptions, parseJson('json-ranking-select-options')
 
 core.reactTurbolinks.register 'spotlight-select-options', ->
   createElement SpotlightSelectOptions, parseJson('json-spotlight-select-options')
