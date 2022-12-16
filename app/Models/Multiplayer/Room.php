@@ -26,7 +26,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Channel $channel
  * @property int|null $channel_id
  * @property \Carbon\Carbon|null $created_at
- * @property string|null $description
  * @property \Carbon\Carbon|null $deleted_at
  * @property \Carbon\Carbon $ends_at
  * @property User $host
