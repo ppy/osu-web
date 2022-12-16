@@ -6,6 +6,8 @@
 namespace App\Libraries\Fulfillments;
 
 use App\Events\Fulfillments\SupporterTagEvent;
+use App\Mail\DonationThanks;
+use App\Mail\SupporterGift;
 use App\Models\Event;
 use App\Models\Store\OrderItem;
 use App\Models\Store\Product;
@@ -76,21 +78,24 @@ class SupporterTagFulfillment extends OrderFulfiller
             $totalDuration = $isGift ? null : $items->sum('extra_data.duration'); // duration is not relevant for gift.
 
             Mail::to($donor)
-                ->queue(new \App\Mail\DonationThanks($donor, $totalDuration, $donationTotal, $isGift, $this->continued));
+                ->queue(new DonationThanks($donor, $totalDuration, $donationTotal, $isGift, $this->continued));
         } else {
             Log::warning("User ({$$donor->getKey()}) does not have an email address set!");
         }
 
-        foreach ($giftsByUserId as $targetId => $items) {
+        /** @var Collection<OrderItem> $gifts */
+        foreach ($giftsByUserId as $targetId => $gifts) {
             // TODO: warn if user doesn't exist, but don't explode.
             $giftee = User::find($targetId);
 
             Event::generate('userSupportGift', ['user' => $giftee, 'date' => $this->order->paid_at]);
 
             if (present($giftee->user_email)) {
-                $duration = $items->sum('extra_data.duration');
+                $duration = $gifts->sum('extra_data.duration');
+                $messages = $gifts->map(fn ($gift) => $gift->extra_data->message);
+
                 Mail::to($giftee)
-                    ->queue(new \App\Mail\SupporterGift($donor, $giftee, $duration));
+                    ->queue(new SupporterGift($donor, $giftee, $duration, $messages));
             } else {
                 Log::warning("User ({$giftee->getKey()}) does not have an email address set!");
             }

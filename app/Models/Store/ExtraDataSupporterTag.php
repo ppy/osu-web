@@ -14,6 +14,7 @@ use JsonSerializable;
 
 class ExtraDataSupporterTag extends ExtraDataBase implements JsonSerializable
 {
+    const MAX_MESSAGE_LENGTH = 100;
     const TYPE = Product::SUPPORTER_TAG_NAME;
 
     public int $duration;
@@ -28,6 +29,12 @@ class ExtraDataSupporterTag extends ExtraDataBase implements JsonSerializable
             'message',
             'target_id:int',
         ], ['null_missing' => true]);
+
+        // fun
+        $params['message'] = presence(unzalgo(trim(str_replace("\r\n", "\n", $params['message']))));
+        if (mb_strlen($params['message']) > static::MAX_MESSAGE_LENGTH) {
+            throw new InvariantException('message is too long');
+        }
 
         $targetId = $params['target_id'];
         // Allow restricted users if it's themselves.

@@ -122,6 +122,7 @@ return [
 
     'supporter_tag' => [
         'gift' => 'gift to player',
+        'gift_message' => 'add an optional message to your gift! (up to :length characters)',
 
         'require_login' => [
             '_' => 'You need to be :link to get an osu!supporter tag!',
