@@ -10,6 +10,8 @@ use App\Exceptions\InvariantException;
 use App\Models\Beatmap;
 use App\Models\Chat\Channel;
 use App\Models\Model;
+use App\Models\Season;
+use App\Models\SeasonRoom;
 use App\Models\Traits\WithDbCursorHelper;
 use App\Models\User;
 use App\Traits\Memoizes;
@@ -24,6 +26,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Channel $channel
  * @property int|null $channel_id
  * @property \Carbon\Carbon|null $created_at
+ * @property string|null $description
  * @property \Carbon\Carbon|null $deleted_at
  * @property \Carbon\Carbon $ends_at
  * @property User $host
@@ -109,12 +112,14 @@ class Room extends Model
             'category',
             'limit:int',
             'mode',
+            'season:any',
             'sort',
             'type_group',
             'user:any',
         ], ['null_missing' => true]);
 
         $user = $params['user'];
+        $season = $params['season'];
         $sort = $params['sort'];
         $category = $params['category'];
         $typeGroup = $params['type_group'];
@@ -132,11 +137,17 @@ class Room extends Model
 
         $query = static::whereIn('type', static::TYPE_GROUPS[$typeGroup]);
 
+        if (isset($season)) {
+            $query->whereRelation('seasons', 'seasons.id', $season->id);
+        }
+
         if (in_array($category, static::CATEGORIES, true)) {
             $query->where('category', $category);
         }
 
         switch ($params['mode']) {
+            case 'all':
+                break;
             case 'ended':
                 $query->ended();
                 $sort ??= 'ended';
@@ -190,6 +201,11 @@ class Room extends Model
     public function scores()
     {
         return $this->hasMany(Score::class);
+    }
+
+    public function seasons()
+    {
+        return $this->belongsToMany(Season::class, SeasonRoom::class);
     }
 
     public function userHighScores()

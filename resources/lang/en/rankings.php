@@ -23,6 +23,11 @@ return [
         'multiplayer' => 'multiplayer',
         'performance' => 'performance',
         'score' => 'score',
+        'seasons' => 'seasons',
+    ],
+
+    'seasons' => [
+        'ongoing' => 'This season is still ongoing.',
     ],
 
     'spotlight' => [
