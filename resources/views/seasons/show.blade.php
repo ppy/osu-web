@@ -23,12 +23,12 @@
 @section ("script")
     @parent
 
-    <script id="json-rooms" type="application/json">
-        {!! json_encode($roomsJson) !!}
-    </script>
-
     <script id="json-currentSeason" type="application/json">
         {!! json_encode(json_item($season, 'Season')) !!}
+    </script>
+
+    <script id="json-rooms" type="application/json">
+        {!! json_encode($roomsJson) !!}
     </script>
 
     <script id="json-seasons" type="application/json">
