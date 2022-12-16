@@ -42,25 +42,22 @@
   &__extra-link {
     .link-white();
     font-size: @font-size--title-small;
+
+    &--separator {
+      pointer-events: none;
+
+      &::before {
+        content: '•';
+      }
+    }
   }
 
   &__extra-links {
     width: 100%;
     display: flex;
     justify-content: center;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    --gap: 10px;
-    gap: var(--gap);
-
-    > li {
-      display: flex;
-      & + li::before {
-        content: '•';
-        margin-right: var(--gap);
-      }
-    }
+    flex-wrap: wrap;
+    gap: 10px;
   }
 
   &__separator {

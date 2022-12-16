@@ -26,16 +26,15 @@
                         <span class="btn-osu-big__text-bottom">{{ osu_trans('home.download.os.windows') }}</span>
                     </a>
 
-                    <ul class="download-page-header__extra-links">
-                        <li>
-                            <a class="download-page-header__extra-link" href="{{ config('osu.urls.installer-mirror') }}">
-                                {{ osu_trans('home.download.mirror') }}
-                            </a>
-                        <li>
-                            <a class="download-page-header__extra-link" href="{{ config('osu.urls.osx') }}">
-                                {{ osu_trans('home.download.macos-fallback') }}
-                            </a>
-                    </ul>
+                    <div class="download-page-header__extra-links">
+                        <a class="download-page-header__extra-link" href="{{ config('osu.urls.installer-mirror') }}">
+                            {{ osu_trans('home.download.mirror') }}
+                        </a>
+                        <span class="download-page-header__extra-link download-page-header__extra-link--separator"></span>
+                        <a class="download-page-header__extra-link" href="{{ config('osu.urls.osx') }}">
+                            {{ osu_trans('home.download.macos-fallback') }}
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="download-page-header__choice">
@@ -67,12 +66,11 @@
                         </span>
                     </a>
 
-                    <ul class="download-page-header__extra-links">
-                        <li>
-                            <a class="download-page-header__extra-link" href="{{ config('osu.urls.lazer_dl_other') }}">
-                                {{ osu_trans('home.download.other_os') }}
-                            </a>
-                    </ul>
+                    <div class="download-page-header__extra-links">
+                        <a class="download-page-header__extra-link" href="{{ config('osu.urls.lazer_dl_other') }}">
+                            {{ osu_trans('home.download.other_os') }}
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
