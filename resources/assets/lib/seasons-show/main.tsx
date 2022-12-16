@@ -30,13 +30,13 @@ export default function Main(props: Props) {
       </div>
 
       <div className='osu-page osu-page--info-bar'>
-        <div className="grid-items">
+        <div className='grid-items'>
           {props.currentSeason.start_date !== null &&
             <div className='counter-box counter-box--info'>
-              <div className="counter-box__title">
+              <div className='counter-box__title'>
                 {trans('rankings.spotlight.start_date')}
               </div>
-              <div className="counter-box__count">
+              <div className='counter-box__count'>
                 <TimeWithTooltip
                   dateTime={props.currentSeason.start_date}
                   format='YYYY-MM-DD'
@@ -46,10 +46,10 @@ export default function Main(props: Props) {
           }
 
           <div className='counter-box counter-box--info'>
-            <div className="counter-box__title">
+            <div className='counter-box__title'>
               {trans('rankings.spotlight.end_date')}
             </div>
-            <div className="counter-box__count">
+            <div className='counter-box__count'>
               {props.currentSeason.end_date !== null
                 ? <TimeWithTooltip
                   dateTime={props.currentSeason.end_date}
@@ -60,18 +60,18 @@ export default function Main(props: Props) {
             </div>
           </div>
 
-          <div className="counter-box counter-box--info">
-            <div className="counter-box__title">
+          <div className='counter-box counter-box--info'>
+            <div className='counter-box__title'>
               {trans('rankings.seasons.room_count')}
             </div>
-            <div className="counter-box__count">
+            <div className='counter-box__count'>
               {props.currentSeason.room_count}
             </div>
           </div>
         </div>
       </div>
 
-      <div className="osu-page osu-page--generic">
+      <div className='osu-page osu-page--generic'>
         <MultiplayerList
           showMoreRoute={route('seasons.show', { season: props.currentSeason.id })}
           store={props.store}
