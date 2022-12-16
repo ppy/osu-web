@@ -7,6 +7,8 @@ declare(strict_types=1);
 
 namespace App\Models\Store;
 
+use App\Models\SupporterTag;
+use App\Models\User;
 use JsonSerializable;
 
 class ExtraDataSupporterTag extends ExtraDataBase implements JsonSerializable
@@ -17,6 +19,26 @@ class ExtraDataSupporterTag extends ExtraDataBase implements JsonSerializable
     public bool $hidden;
     public int $targetId;
     public string $username;
+
+    public static function fromRequestParams(array $orderItemParams, User $user)
+    {
+        $params = get_params($orderItemParams, 'extra_data', [
+            'target_id:int',
+        ]);
+
+        $targetId = $params['target_id'];
+        // Allow restricted users if it's themselves.
+        if ($targetId === $user->getKey()) {
+            $params['username'] = $user->username;
+        } else {
+            $user = User::default()->where('user_id', $targetId)->firstOrFail();
+            $params['username'] = $user->username;
+        }
+
+        $params['duration'] = SupporterTag::getDuration($orderItemParams['cost']);
+
+        return new static($params);
+    }
 
     public function __construct(array $data)
     {

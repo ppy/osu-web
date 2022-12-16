@@ -8,7 +8,6 @@ namespace App\Models\Store;
 use App\Exceptions\InvariantException;
 use App\Exceptions\OrderNotModifiableException;
 use App\Models\Country;
-use App\Models\SupporterTag;
 use App\Models\User;
 use Carbon\Carbon;
 use DB;
@@ -694,7 +693,7 @@ class Order extends Model
         switch ($product->custom_class) {
             case Product::SUPPORTER_TAG_NAME:
                 $params['cost'] ??= 0;
-                $params['extra_data'] = $this->extraDataSupporterTag($params);
+                $params['extra_data'] = ExtraDataSupporterTag::fromRequestParams($params, $this->user);
                 break;
             // TODO: look at migrating to extra_data
             case 'username-change':
@@ -742,26 +741,6 @@ class Order extends Model
         }
 
         return $item;
-    }
-
-    // TODO: maybe move to class later?
-    private function extraDataSupporterTag(array $orderItemParams)
-    {
-        $params = get_params($orderItemParams, 'extra_data', [
-            'target_id:int',
-        ]);
-
-        $targetId = $params['target_id'];
-        if ($targetId === $this->user_id) {
-            $params['username'] = $this->user->username;
-        } else {
-            $user = User::default()->where('user_id', $targetId)->firstOrFail();
-            $params['username'] = $user->username;
-        }
-
-        $params['duration'] = SupporterTag::getDuration($orderItemParams['cost']);
-
-        return new ExtraDataSupporterTag($params);
     }
 
     // TODO: maybe move to class later?
