@@ -40,12 +40,12 @@ class SeasonsController extends Controller
     public function show($id)
     {
         if ($id == 'latest') {
-            $season = Season::latest()->firstOrFail();
+            $season = Season::last();
         } else {
             $season = Season::findOrFail($id);
         }
 
-        $seasons = Season::all();
+        $seasons = Season::orderByDesc('id')->get();
 
         $params = get_params(request()->all(), null, [
             'cursor:array',
