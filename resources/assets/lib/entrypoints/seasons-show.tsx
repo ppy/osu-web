@@ -8,7 +8,7 @@ import * as React from 'react';
 import MultiplayerListStore from 'stores/multiplayer-list-store';
 import { parseJson } from 'utils/json';
 
-core.reactTurbolinks.register('seasons-show-list', () => {
+core.reactTurbolinks.register('seasons-show', () => {
   const season: {id: number} = parseJson('json-season');
   const store = new MultiplayerListStore();
   store.updateWithJson(parseJson('json-rooms'));
