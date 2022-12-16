@@ -7,6 +7,7 @@ import { observer } from 'mobx-react';
 import { action, computed, makeObservable, observable } from 'mobx';
 import * as React from 'react';
 import MultiplayerListStore from 'stores/multiplayer-list-store';
+import { trans } from 'utils/lang';
 import MultiplayerRoom from './multiplayer-room';
 
 interface Props {
@@ -34,7 +35,7 @@ export default class MultiplayerList extends React.Component<Props> {
       return (
         <div className='multiplayer-list'>
           {osu.trans('multiplayer.empty._', {
-            type_group: osu.trans(`multiplayer.empty.${this.props.store.typeGroup}`),
+            type_group: trans(`multiplayer.empty.${this.props.store.typeGroup}`),
           })}
         </div>
       );
