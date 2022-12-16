@@ -7,6 +7,7 @@ namespace App\Libraries;
 
 use App\Models\Notification;
 use App\Models\User;
+use App\Models\UserNotification;
 use DB;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -45,6 +46,8 @@ class NotificationsBundle
             $this->fillTypes($this->objectType);
         }
 
+        $this->fillStackTotal();
+
         $response = [
             'notifications' => json_collection($this->userNotifications->load('notification'), 'Notification'),
             'stacks' => array_values($this->stacks),
@@ -79,8 +82,6 @@ class NotificationsBundle
             $query->where('is_read', false);
         }
 
-        $total = $query->count();
-
         $query->orderBy('id', 'desc')->limit(static::PER_STACK_LIMIT);
 
         if ($this->cursorId !== null) {
@@ -91,9 +92,68 @@ class NotificationsBundle
 
         $json = $this->stackToJson($stack, $objectType, $objectId, $category);
         if ($json !== null) {
-            $json['total'] = $total;
             $this->stacks[$key] = $json;
             $this->userNotifications = $this->userNotifications->merge($stack);
+        }
+    }
+
+    private function fillStackTotal(): void
+    {
+        if (empty($this->stacks)) {
+            return;
+        }
+
+        $binds = [];
+        $bindValues = [];
+        foreach ($this->stacks as $key => $stackJson) {
+            foreach (Notification::namesInCategory($stackJson['category']) as $name) {
+                $bindValues[] = $stackJson['object_type'];
+                $bindValues[] = $stackJson['object_id'];
+                $bindValues[] = $name;
+                $binds[] = '(?, ?, ?)';
+            }
+        }
+
+        $notificationModel = new Notification();
+        $userNotificationModel = new UserNotification();
+
+        $groupColumns = [
+            'type' => $notificationModel->qualifyColumn('notifiable_type'),
+            'id' => $notificationModel->qualifyColumn('notifiable_id'),
+            'name' => $notificationModel->qualifyColumn('name'),
+        ];
+
+        $bindsString = implode(', ', $binds);
+        $whereString = "({$groupColumns['type']}, {$groupColumns['id']}, {$groupColumns['name']}) IN ({$bindsString})";
+
+        $query = $this
+            ->user
+            ->userNotifications()
+            ->hasPushDelivery()
+            ->join(
+                $notificationModel->getTable(),
+                $notificationModel->qualifyColumn('id'),
+                '=',
+                $userNotificationModel->qualifyColumn('notification_id')
+            )
+            ->selectRaw("
+                COUNT(*) as count,
+                {$groupColumns['type']},
+                {$groupColumns['id']},
+                {$groupColumns['name']}")
+            ->whereRaw($whereString, $bindValues)
+            ->groupBy(array_values($groupColumns));
+
+        if ($this->unreadOnly) {
+            $query->where('is_read', false);
+        }
+
+        foreach ($query->get() as $count) {
+            $name = $count->getRawAttribute('name');
+            $category = Notification::NAME_TO_CATEGORY[$name] ?? $name;
+            $key = "{$count->getRawAttribute('notifiable_type')}-{$count->getRawAttribute('notifiable_id')}-{$category}";
+            $this->stacks[$key]['total'] ??= 0;
+            $this->stacks[$key]['total'] += $count->getRawAttribute('count');
         }
     }
 
