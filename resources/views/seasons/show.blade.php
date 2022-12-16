@@ -58,7 +58,7 @@
     @endif
 
     <div class="osu-page osu-page--generic">
-        <div class="js-react--seasons-show-list"></div>
+        <div class="js-react--seasons-show"></div>
     </div>
 
     <script id="json-ranking-select-options" type="application/json">
