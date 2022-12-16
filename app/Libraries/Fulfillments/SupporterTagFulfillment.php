@@ -61,30 +61,13 @@ class SupporterTagFulfillment extends OrderFulfiller
     {
         $items = $this->getOrderItems();
         $donor = $this->order->user;
-        $gifts = [];
         $donationTotal = $items->sum('cost');
-        $totalDuration = 0;
+        $itemsByUserId = $items->groupBy('extra_data.targetId');
+        $totalDuration = $items->sum('extra_data.duration');
 
-        foreach ($items as $item) {
-            $extraData = $item->extra_data;
-
-            $duration = $extraData->duration;
-            $totalDuration += $duration;
-
-            $targetId = $extraData->targetId;
-            $target = User::find($targetId);
-
-            // TODO: warn if user doesn't exist, but don't explode.
-            if ($donor->getKey() !== $target->getKey()) {
-                if (($gifts[$targetId] ?? null) === null) {
-                    $gifts[$targetId] = ['target' => $target, 'duration' => $duration];
-                } else {
-                    $gifts[$targetId]['duration'] += $duration;
-                }
-            }
-        }
-
-        $isGift = count($gifts) !== 0;
+        // $itemsByUserId is gifts only from this point.
+        $itemsByUserId->forget($donor->getKey());
+        $isGift = !$itemsByUserId->isEmpty();
 
         if (!$this->order->isHideSupporterFromActivity()) {
             Event::generate(
@@ -100,13 +83,16 @@ class SupporterTagFulfillment extends OrderFulfiller
             Log::warning("User ({$$donor->getKey()}) does not have an email address set!");
         }
 
-        foreach ($gifts as $_key => $value) {
-            $giftee = $value['target'];
+        foreach ($itemsByUserId as $targetId => $items) {
+            // TODO: warn if user doesn't exist, but don't explode.
+            $giftee = User::find($targetId);
+
             Event::generate('userSupportGift', ['user' => $giftee, 'date' => $this->order->paid_at]);
 
             if (present($giftee->user_email)) {
+                $duration = $items->sum('extra_data.duration');
                 Mail::to($giftee)
-                    ->queue(new \App\Mail\SupporterGift($donor, $giftee, $value['duration']));
+                    ->queue(new \App\Mail\SupporterGift($donor, $giftee, $duration));
             } else {
                 Log::warning("User ({$giftee->getKey()}) does not have an email address set!");
             }
