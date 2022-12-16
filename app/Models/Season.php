@@ -28,6 +28,8 @@ class Season extends Model
         if ($this->hasRooms() && $this->concluded) {
             return $this->rooms->sortByDesc('id')->first()->ends_at;
         }
+
+        return null;
     }
 
     public function hasRooms(): bool
@@ -40,6 +42,8 @@ class Season extends Model
         if ($this->hasRooms()) {
             return $this->rooms->sortBy('id')->first()->starts_at;
         }
+
+        return null;
     }
 
     public function rooms(): BelongsToMany
