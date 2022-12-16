@@ -26,7 +26,7 @@ class Season extends Model
     public function endDate(): ?Carbon
     {
         if ($this->hasRooms() && $this->concluded) {
-            return $this->rooms->sortByDesc('id')->first()->ends_at;
+            return $this->rooms->sortByDesc('ends_at')->first()->ends_at;
         }
 
         return null;
@@ -40,7 +40,7 @@ class Season extends Model
     public function startDate(): ?Carbon
     {
         if ($this->hasRooms()) {
-            return $this->rooms->sortBy('id')->first()->starts_at;
+            return $this->rooms->sortBy('starts_at')->first()->starts_at;
         }
 
         return null;
