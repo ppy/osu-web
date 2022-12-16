@@ -26,7 +26,7 @@ class SupporterGift extends Mailable implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(User $donor, User $giftee, int $duration, iterable $messages)
+    public function __construct(User $donor, User $giftee, int $duration, ?iterable $messages = null)
     {
         $this->params = [
             'donor' => $donor,
