@@ -58,16 +58,11 @@ core.reactTurbolinks.register 'beatmap-discussion-events', (container) ->
 core.reactTurbolinks.register 'beatmapset-panel', (container) ->
   createElement BeatmapsetPanel, observable(JSON.parse(container.dataset.beatmapsetPanel))
 
-core.reactTurbolinks.register 'forum-post-report', -> createElement(ForumPostReport)
-
 core.reactTurbolinks.register 'ranking-select-options', ->
   createElement RankingSelectOptions, parseJson('json-ranking-select-options')
 
 core.reactTurbolinks.register 'spotlight-select-options', ->
   createElement SpotlightSelectOptions, parseJson('json-spotlight-select-options')
-
-core.reactTurbolinks.register 'multiplayer-select-options', ->
-  createElement MultiplayerSelectOptions, parseJson('json-multiplayer-select-options')
 
 core.reactTurbolinks.register 'comments', (container) ->
   props = JSON.parse(container.dataset.props)
