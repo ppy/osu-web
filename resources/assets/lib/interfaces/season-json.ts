@@ -5,5 +5,6 @@ export default interface SeasonJson {
   end_date: string | null;
   id: number;
   name: string;
+  room_count: number;
   start_date: string | null;
 }

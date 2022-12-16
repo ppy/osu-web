@@ -28,6 +28,7 @@ return [
 
     'seasons' => [
         'ongoing' => 'This season is still ongoing.',
+        'room_count' => 'Playlist count',
     ],
 
     'spotlight' => [
