@@ -34,7 +34,7 @@ export default class MultiplayerList extends React.Component<Props> {
     if (this.props.store.rooms.length === 0) {
       return (
         <div className='multiplayer-list'>
-          {osu.trans('multiplayer.empty._', {
+          {trans('multiplayer.empty._', {
             type_group: trans(`multiplayer.empty.${this.props.store.typeGroup}`),
           })}
         </div>
