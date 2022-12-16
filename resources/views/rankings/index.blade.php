@@ -15,7 +15,7 @@
                 return route('multiplayer.rooms.show', ['room' => 'latest']);
             }
             if ($routeType === 'seasons') {
-                return route('seasons.show', 'latest');
+                return route('seasons.show', ['season' => 'latest']);
             }
 
             return trim(route('rankings', [
