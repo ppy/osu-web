@@ -14,7 +14,6 @@ core.reactTurbolinks.register('seasons-show', () => {
   return (
     <Main
       currentSeason={parseJson('json-currentSeason')}
-      rooms={parseJson('json-rooms')}
       seasons={parseJson('json-seasons')}
       store={store}
     />

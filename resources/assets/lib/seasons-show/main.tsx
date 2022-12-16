@@ -4,7 +4,6 @@
 import MultiplayerList from 'components/multiplayer-list';
 import RankingSelectOptions from 'components/ranking-select-options';
 import TimeWithTooltip from 'components/time-with-tooltip';
-import RoomJson from 'interfaces/room-json';
 import SeasonJson from 'interfaces/season-json';
 import { route } from 'laroute';
 import * as React from 'react';
@@ -13,7 +12,6 @@ import { trans } from 'utils/lang';
 
 interface Props {
   currentSeason: SeasonJson;
-  rooms: RoomJson[];
   seasons: SeasonJson[];
   store: MultiplayerListStore;
 }
