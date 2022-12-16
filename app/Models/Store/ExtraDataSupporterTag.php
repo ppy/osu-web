@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace App\Models\Store;
 
+use App\Exceptions\InvariantException;
 use App\Models\SupporterTag;
 use App\Models\User;
 use JsonSerializable;
@@ -17,14 +18,16 @@ class ExtraDataSupporterTag extends ExtraDataBase implements JsonSerializable
 
     public int $duration;
     public bool $hidden;
+    public ?string $message;
     public int $targetId;
     public string $username;
 
     public static function fromRequestParams(array $orderItemParams, User $user)
     {
         $params = get_params($orderItemParams, 'extra_data', [
+            'message',
             'target_id:int',
-        ]);
+        ], ['null_missing' => true]);
 
         $targetId = $params['target_id'];
         // Allow restricted users if it's themselves.
@@ -44,6 +47,7 @@ class ExtraDataSupporterTag extends ExtraDataBase implements JsonSerializable
     {
         $this->duration = get_int($data['duration']);
         $this->hidden = $data['hidden'] ?? false;
+        $this->message = $data['message'] ?? null;
         $this->targetId = get_int($data['target_id']);
         $this->username = $data['username'];
     }
@@ -53,6 +57,7 @@ class ExtraDataSupporterTag extends ExtraDataBase implements JsonSerializable
         return array_merge(parent::jsonSerialize(), [
             'duration' => $this->duration,
             'hidden' => $this->hidden,
+            'message' => $this->message,
             'target_id' => $this->targetId,
             'username' => $this->username,
         ]);
