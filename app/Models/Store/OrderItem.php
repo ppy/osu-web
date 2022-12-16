@@ -151,4 +151,12 @@ class OrderItem extends Model
     {
         return 'store.order_item';
     }
+
+    public function __get($key)
+    {
+        // TODO: remove this after no more things are queued with old $casts
+        $this->casts['extra_data'] = ExtraDataBase::class;
+
+        return parent::__get($key);
+    }
 }
