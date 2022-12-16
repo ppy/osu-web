@@ -164,6 +164,7 @@ class ChatController extends Controller
      *
      * Field            | Type
      * ---------------- | -----------------
+     * messages         | This field is not used and will be removed.
      * presence         | [ChatChannel](#chatchannel)[]?
      * silences         | [UserSilence](#usersilence)[]?
      *
@@ -215,7 +216,7 @@ class ChatController extends Controller
     public function updates()
     {
         static $availableIncludes;
-        $availableIncludes ??= new Set(['presence', 'silences']);
+        $availableIncludes ??= new Set(['messages', 'presence', 'silences']);
 
         $params = get_params(request()->all(), null, [
             'history_since:int',
@@ -241,6 +242,11 @@ class ChatController extends Controller
         if ($includes->contains('silences')) {
             $silences = $this->getSilences($params['history_since'], $params['since']);
             $response['silences'] = json_collection($silences, new UserSilenceTransformer());
+        }
+
+        // FIXME: empty array for compatibility with old lazer versions
+        if ($includes->contains('messages')) {
+            $response['messages'] = [];
         }
 
         $hasAny = array_first($response, fn ($val) => count($val) > 0) !== null;
