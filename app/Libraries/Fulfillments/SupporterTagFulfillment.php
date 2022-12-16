@@ -61,13 +61,8 @@ class SupporterTagFulfillment extends OrderFulfiller
     {
         $items = $this->getOrderItems();
         $donor = $this->order->user;
-        $donationTotal = $items->sum('cost');
-        $itemsByUserId = $items->groupBy('extra_data.targetId');
-        $totalDuration = $items->sum('extra_data.duration');
-
-        // $itemsByUserId is gifts only from this point.
-        $itemsByUserId->forget($donor->getKey());
-        $isGift = !$itemsByUserId->isEmpty();
+        $giftsByUserId = $items->groupBy('extra_data.targetId')->forget($donor->getKey());
+        $isGift = !$giftsByUserId->isEmpty();
 
         if (!$this->order->isHideSupporterFromActivity()) {
             Event::generate(
@@ -77,13 +72,16 @@ class SupporterTagFulfillment extends OrderFulfiller
         }
 
         if (present($donor->user_email)) {
+            $donationTotal = $items->sum('cost');
+            $totalDuration = $isGift ? null : $items->sum('extra_data.duration'); // duration is not relevant for gift.
+
             Mail::to($donor)
                 ->queue(new \App\Mail\DonationThanks($donor, $totalDuration, $donationTotal, $isGift, $this->continued));
         } else {
             Log::warning("User ({$$donor->getKey()}) does not have an email address set!");
         }
 
-        foreach ($itemsByUserId as $targetId => $items) {
+        foreach ($giftsByUserId as $targetId => $items) {
             // TODO: warn if user doesn't exist, but don't explode.
             $giftee = User::find($targetId);
 
