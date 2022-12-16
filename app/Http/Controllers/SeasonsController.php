@@ -41,6 +41,10 @@ class SeasonsController extends Controller
     {
         if ($id == 'latest') {
             $season = Season::last();
+
+            if ($season === null) {
+                abort(404);
+            }
         } else {
             $season = Season::findOrFail($id);
         }
