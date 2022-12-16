@@ -59,6 +59,15 @@ export default function Main(props: Props) {
               }
             </div>
           </div>
+
+          <div className="counter-box counter-box--info">
+            <div className="counter-box__title">
+              {trans('rankings.seasons.room_count')}
+            </div>
+            <div className="counter-box__count">
+              {props.currentSeason.room_count}
+            </div>
+          </div>
         </div>
       </div>
 
