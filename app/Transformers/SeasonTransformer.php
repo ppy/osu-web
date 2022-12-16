@@ -12,8 +12,10 @@ class SeasonTransformer extends TransformerAbstract
     public function transform(Season $season)
     {
         return [
+            'end_date' => $season->endDate(),
             'id' => $season->id,
             'name' => $season->name,
+            'start_date' => $season->startDate(),
         ];
     }
 }

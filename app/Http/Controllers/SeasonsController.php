@@ -54,16 +54,10 @@ class SeasonsController extends Controller
 
         $roomsJson = $this->getJson($season, $params);
 
-        $selectOptions = [
-            'currentItem' => json_item($season, new SeasonTransformer()),
-            'items' => json_collection($seasons, new SeasonTransformer()),
-            'type' => 'seasons',
-        ];
-
         if (is_json_request()) {
             return $roomsJson;
         }
 
-        return ext_view('seasons.show', compact('roomsJson', 'season', 'selectOptions'));
+        return ext_view('seasons.show', compact('roomsJson', 'season', 'seasons'));
     }
 }
