@@ -34,7 +34,7 @@
                 )
             !!}
         </div>
-        <div class="grid-cell">
+        <div class="js-store-supporter-tag-message grid-cell hidden">
             {!!
                 Form::textarea(
                     'item[extra_data][message]',

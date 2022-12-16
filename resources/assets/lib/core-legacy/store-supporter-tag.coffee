@@ -142,6 +142,10 @@ export default class StoreSupporterTag
   updateUserInteraction: =>
     enabled = @user?.id? && Number.isFinite(@user.id) && @user.id > 0
 
+    document.querySelector('.js-store-supporter-tag-message')
+      .classList
+      .toggle 'hidden', !(enabled && @user?.id != window.currentUser.id)
+
     StoreCart.setEnabled(enabled)
     # TODO: need to elevate this element when switching over to new store design.
     $(@el).toggleClass('js-store--disabled', !enabled)

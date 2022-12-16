@@ -39,6 +39,7 @@ class ExtraDataSupporterTag extends ExtraDataBase implements JsonSerializable
         $targetId = $params['target_id'];
         // Allow restricted users if it's themselves.
         if ($targetId === $user->getKey()) {
+            $params['message'] = null;
             $params['username'] = $user->username;
         } else {
             $user = User::default()->where('user_id', $targetId)->firstOrFail();
