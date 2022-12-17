@@ -96,7 +96,8 @@ class Beatmap extends Model
         return $lookupMap[$int] ?? null;
     }
 
-    public function playlistItem() {
+    public function playlistItem()
+    {
         return $this->hasOne(Multiplayer\PlaylistItem::class);
     }
 

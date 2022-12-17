@@ -8,7 +8,6 @@ namespace App\Http\Controllers;
 use App\Models\Multiplayer\Room;
 use App\Models\Season;
 use App\Transformers\Multiplayer\RoomTransformer;
-use App\Transformers\SeasonTransformer;
 
 class SeasonsController extends Controller
 {
@@ -42,7 +41,7 @@ class SeasonsController extends Controller
 
     public function show($id)
     {
-        if ($id == 'latest') {
+        if ($id === 'latest') {
             $season = Season::last();
 
             if ($season === null) {
