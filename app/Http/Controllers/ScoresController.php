@@ -27,10 +27,6 @@ class ScoresController extends Controller
 
     public function download($rulesetOrSoloId, $id = null)
     {
-        static $responseHeaders = [
-            'Content-Type' => 'application/x-osu-replay',
-        ];
-
         $shouldRedirect = !is_api_request() && !from_app_url();
         if ($id === null) {
             if ($shouldRedirect) {
@@ -59,6 +55,10 @@ class ScoresController extends Controller
             log_error($e);
             abort(404);
         }
+
+        static $responseHeaders = [
+            'Content-Type' => 'application/x-osu-replay',
+        ];
 
         return response()->streamDownload(function () use ($file) {
             echo $file;
