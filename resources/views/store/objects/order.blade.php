@@ -48,7 +48,7 @@
                 </div>
                 <div class="order-line-items__data order-line-items__data--value">
                     {{ currency($i->subtotal()) }}
-                </td>
+                </div>
             </li>
         @endif
     @endforeach
