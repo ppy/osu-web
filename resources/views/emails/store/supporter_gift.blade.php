@@ -11,6 +11,7 @@
 {!! osu_trans('mail.supporter_gift.duration', ['duration' => \App\Models\SupporterTag::getDurationText($duration)]) !!}
 {!! osu_trans('mail.supporter_gift.features') !!}
 {!! route('support-the-game') !!}
+
 @if (count($messages) === 0)
 {!! osu_trans('mail.supporter_gift.anonymous_gift') !!}
 {!! osu_trans('mail.supporter_gift.anonymous_gift_maybe_not') !!}
