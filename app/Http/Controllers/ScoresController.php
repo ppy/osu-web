@@ -47,8 +47,8 @@ class ScoresController extends Controller
         }
 
         try {
-            $file = isset($soloScore)
-                ? $soloScore->getReplayFile()
+            $file = $score instanceof SoloScore
+                ? $score->getReplayFile()
                 : $this->getLegacyReplayFile($score);
         } catch (FileNotFoundException $e) {
             // missing from storage.
