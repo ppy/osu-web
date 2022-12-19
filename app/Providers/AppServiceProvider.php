@@ -35,13 +35,16 @@ use Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
+    const LOCAL_CACHE_SINGLETONS = [
+        'chat-filters' => ChatFilters::class,
+        'groups' => Groups::class,
+        'layout-cache' => LayoutCache::class,
+    ];
+
     const SINGLETONS = [
         'OsuAuthorize' => OsuAuthorize::class,
         'assets-manifest' => AssetsManifest::class,
-        'chat-filters' => ChatFilters::class,
         'clean-html' => CleanHTML::class,
-        'groups' => Groups::class,
-        'layout-cache' => LayoutCache::class,
         'local-cache-manager' => LocalCacheManager::class,
         'mods' => Mods::class,
         'route-section' => RouteSection::class,
@@ -98,8 +101,12 @@ class AppServiceProvider extends ServiceProvider
             'App\Services\Registrar'
         );
 
-        foreach (static::SINGLETONS as $name => $class) {
+        foreach (array_merge(static::SINGLETONS, static::LOCAL_CACHE_SINGLETONS) as $name => $class) {
             $this->app->singleton($name, fn () => new $class());
+        }
+        $localCacheManager = app('local-cache-manager');
+        foreach (static::LOCAL_CACHE_SINGLETONS as $name => $_class) {
+            $localCacheManager->registerSingleton(app($name));
         }
 
         $this->app->singleton('hash', function ($app) {

@@ -11,6 +11,7 @@ class LocalCacheManager
 {
     private int $resetTicker = 0;
     private int $resetTickerLimit;
+    private array $singletons = [];
 
     public function incrementResetTicker(): void
     {
@@ -23,10 +24,15 @@ class LocalCacheManager
         }
     }
 
+    public function registerSingleton($singleton): void
+    {
+        $this->singletons[] = $singleton;
+    }
+
     private function resetCache(): void
     {
-        foreach (['chat-filters', 'groups', 'layout-cache'] as $memoizedSingleton) {
-            app($memoizedSingleton)->resetMemoized();
+        foreach ($this->singletons as $singleton) {
+            $singleton->resetMemoized();
         }
     }
 }
