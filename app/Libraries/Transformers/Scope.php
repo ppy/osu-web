@@ -66,7 +66,7 @@ class Scope extends Fractal\Scope
     protected function serializeResource(Serializer $serializer, $data): ?array
     {
         if ($data === null) {
-            return null;
+            return $serializer->null();
         }
 
         return parent::serializeResource($serializer, $data);
