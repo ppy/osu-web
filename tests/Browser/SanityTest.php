@@ -111,7 +111,7 @@ class SanityTest extends DuskTestCase
         UserProfileCustomization::truncate();
         UserStatistics\Osu::truncate();
 
-        app('groups')->resetCache();
+        app('groups')->resetMemoized();
     }
 
     private static function createScaffolding()
@@ -251,7 +251,7 @@ class SanityTest extends DuskTestCase
 
         self::$scaffolding['room'] = factory(Room::class)->create(['category' => 'spotlight']);
 
-        app('groups')->resetCache();
+        app('groups')->resetMemoized();
     }
 
     private static function filterLog(array $log)
