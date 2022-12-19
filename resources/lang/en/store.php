@@ -77,10 +77,15 @@ return [
         'shopify_expired' => 'The checkout link for this order has expired.',
 
         'item' => [
+            'quantity' => 'Quantity',
+
             'display_name' => [
                 'supporter_tag' => ':name for :username (:duration)',
             ],
-            'quantity' => 'Quantity',
+
+            'subtext' => [
+                'supporter_tag' => 'Message: :message',
+            ],
         ],
 
         'not_modifiable_exception' => [
