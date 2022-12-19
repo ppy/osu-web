@@ -25,7 +25,7 @@ class ExtraDataSupporterTagTest extends TestCase
             ],
         ];
 
-        $extraData = ExtraDataSupporterTag::fromRequestParams($params, $user);
+        $extraData = ExtraDataSupporterTag::fromOrderItemParams($params, $user);
 
         $this->assertSame("this\nis\na\nmessage", $extraData->message);
     }
@@ -41,7 +41,7 @@ class ExtraDataSupporterTagTest extends TestCase
             ],
         ];
 
-        $extraData = ExtraDataSupporterTag::fromRequestParams($params, $user);
+        $extraData = ExtraDataSupporterTag::fromOrderItemParams($params, $user);
 
         $this->assertNull($extraData->message);
     }
