@@ -158,7 +158,7 @@ class SanityTest extends DuskTestCase
         self::$scaffolding['contest'] = factory(Contest::class)->states('entry')->create();
 
         // factories for /community/tournaments/*
-        self::$scaffolding['tournament'] = factory(Tournament::class)->create();
+        self::$scaffolding['tournament'] = Tournament::factory()->create();
 
         // factories for /beatmaps/artists/*
         self::$scaffolding['artist'] = factory(Artist::class)->create();

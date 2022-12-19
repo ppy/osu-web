@@ -165,6 +165,8 @@ return [
     ],
     'scores' => [
         'es_cache_duration' => 60 * (get_float(env('SCORES_ES_CACHE_DURATION')) ?? 0.5), // in minutes, converted to seconds
+        'experimental_rank_as_default' => get_bool(env('SCORES_EXPERIMENTAL_RANK_AS_DEFAULT')) ?? false,
+        'experimental_rank_as_extra' => get_bool(env('SCORES_EXPERIMENTAL_RANK_AS_EXTRA')) ?? false,
         'rank_cache' => [
             'local_server' => get_bool(env('SCORES_RANK_CACHE_LOCAL_SERVER')) ?? false,
             'min_users' => get_int(env('SCORES_RANK_CACHE_MIN_USERS')) ?? 35000,
@@ -198,6 +200,7 @@ return [
         'base' => 'https://osu.ppy.sh',
         'bounty-form' => env('OS_BOUNTY_URL'),
         'dev' => 'https://discord.gg/ppy',
+        'experimental_host' => presence(env('OSU_EXPERIMENTAL_HOST')),
         'installer' => 'https://m1.ppy.sh/r/osu!install.exe',
         'installer-mirror' => 'https://m2.ppy.sh/r/osu!install.exe',
         'osx' => 'https://osx.ppy.sh',

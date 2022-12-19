@@ -17,10 +17,15 @@ import Tab from './tab';
 import Table from './table';
 import TopCard from './top-card';
 
-const defaultMods = ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'HD', 'FL', 'SO'];
-const osuMods = defaultMods.concat('TD');
-const maniaMods = ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'FI', 'HD', 'FL', 'MR'];
-const maniaKeyMods = ['4K', '5K', '6K', '7K', '8K', '9K'];
+const defaultMods = ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'HD', 'FL'];
+const mods = {
+  fruits: defaultMods,
+  mania: ['NM', 'EZ', 'NF', 'HT', 'SD', 'PF', 'DT', 'NC', 'FI', 'HD', 'FL', 'MR'],
+  osu: [...defaultMods, 'SO', 'TD'],
+  taiko: defaultMods,
+};
+const maniaConvertMods = [...mods.mania];
+maniaConvertMods.splice(-1, 0, '4K', '5K', '6K', '7K', '8K', '9K');
 
 interface Props {
   beatmap: BeatmapExtendedJson;
@@ -37,19 +42,11 @@ export default class Main extends React.Component<Props> {
 
   @computed
   private get mods() {
-    if (this.controller.beatmap.mode === 'mania') {
-      if (this.controller.beatmap.convert) {
-        return [...maniaMods, ...maniaKeyMods];
-      }
-
-      return maniaMods;
+    if (this.controller.beatmap.mode === 'mania' && this.controller.beatmap.convert) {
+      return maniaConvertMods;
     }
 
-    if (this.controller.beatmap.mode === 'osu') {
-      return osuMods;
-    }
-
-    return defaultMods;
+    return mods[this.controller.beatmap.mode];
   }
 
   constructor(props: Props) {

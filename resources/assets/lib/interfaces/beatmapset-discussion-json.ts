@@ -54,14 +54,12 @@ export default BeatmapsetDiscussionJson;
 export type BeatmapsetDiscussionJsonForBundle =
 Omit<BeatmapsetDiscussionJson, 'posts'> // bundle explicitly does not include posts; need this for type discrimination.
 & Required<Pick<BeatmapsetDiscussionJson,
-'current_user_attributes'
-| 'starting_post'
+'starting_post'
 >>;
 
 // discussions page version
 export type BeatmapsetDiscussionJsonForShow =
 BeatmapsetDiscussionJson & Required<Pick<BeatmapsetDiscussionJson,
-'current_user_attributes'
-| 'posts'
+'posts'
 | 'votes'
 >>;

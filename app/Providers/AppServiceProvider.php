@@ -23,6 +23,7 @@ use App\Libraries\RouteSection;
 use App\Libraries\User\ScorePins;
 use Datadog;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Http\Request;
 use Illuminate\Queue\Events\JobProcessed;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Octane\Contracts\DispatchesTasks;
@@ -77,6 +78,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->make('translator')->setSelector(new OsuMessageSelector());
 
         app('url')->forceScheme(substr(config('app.url'), 0, 5) === 'https' ? 'https' : 'http');
+
+        Request::setTrustedProxies(config('trustedproxy.proxies'), config('trustedproxy.headers'));
     }
 
     /**
