@@ -100,7 +100,7 @@ class SupporterTagFulfillment extends OrderFulfiller
 
                     if ($extraData->message !== null) {
                         $messages[] = $extraData->message;
-                    };
+                    }
                 }
 
                 Mail::to($giftee)

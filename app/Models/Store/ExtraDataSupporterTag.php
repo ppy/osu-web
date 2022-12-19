@@ -48,7 +48,6 @@ class ExtraDataSupporterTag extends ExtraDataBase implements JsonSerializable
 
                 $params['message'] = presence($params['message']);
             }
-
         }
 
         $params['duration'] = SupporterTag::getDuration($orderItemParams['cost']);
