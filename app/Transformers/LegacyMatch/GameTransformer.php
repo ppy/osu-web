@@ -12,7 +12,7 @@ use App\Transformers\TransformerAbstract;
 
 class GameTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'beatmap',
         'scores',
     ];

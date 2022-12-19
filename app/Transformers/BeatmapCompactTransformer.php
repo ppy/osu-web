@@ -10,7 +10,7 @@ use App\Models\BeatmapFailtimes;
 
 class BeatmapCompactTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'beatmapset',
         'checksum',
         'failtimes',

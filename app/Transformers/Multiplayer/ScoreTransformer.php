@@ -16,7 +16,7 @@ class ScoreTransformer extends TransformerAbstract
     const BASE_PRELOAD = ['score.user.userProfileCustomization', 'score.user.country'];
     const BASE_INCLUDES = ['user.country', 'user.cover'];
 
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'position',
         'scores_around',
         'user',

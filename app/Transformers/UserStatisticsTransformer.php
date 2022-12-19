@@ -10,7 +10,7 @@ use App\Models\UserStatistics;
 
 class UserStatisticsTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'country_rank',
         'rank',
         'user',

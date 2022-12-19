@@ -11,14 +11,11 @@ use League\Fractal;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\Item;
 use League\Fractal\Resource\NullResource;
-use League\Fractal\Serializer\SerializerAbstract;
+use League\Fractal\Serializer\Serializer;
 
 class Scope extends Fractal\Scope
 {
-    /**
-     * {@inheritdoc}
-     */
-    protected function executeResourceTransformers()
+    protected function executeResourceTransformers(): array
     {
         $transformer = $this->resource->getTransformer();
         $data = $this->resource->getData();
@@ -48,10 +45,7 @@ class Scope extends Fractal\Scope
         return [$transformedData, $includedData];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function fireTransformer($transformer, $data)
+    protected function fireTransformer($transformer, $data): array
     {
         if ($transformer instanceof TransformerAbstract) {
             $permission = $transformer->getRequiredPermission();
@@ -69,10 +63,10 @@ class Scope extends Fractal\Scope
         return [$transformedData, $includedData];
     }
 
-    protected function serializeResource(SerializerAbstract $serializer, $data)
+    protected function serializeResource(Serializer $serializer, $data): ?array
     {
         if ($data === null) {
-            return;
+            return null;
         }
 
         return parent::serializeResource($serializer, $data);
