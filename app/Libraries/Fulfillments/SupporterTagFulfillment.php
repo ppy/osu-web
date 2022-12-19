@@ -91,8 +91,17 @@ class SupporterTagFulfillment extends OrderFulfiller
             Event::generate('userSupportGift', ['user' => $giftee, 'date' => $this->order->paid_at]);
 
             if (present($giftee->user_email)) {
-                $duration = $gifts->sum('extra_data.duration');
-                $messages = $gifts->map(fn ($gift) => $gift->extra_data->message);
+                $duration = 0;
+                $messages = [];
+
+                foreach ($gifts as $gift) {
+                    $extraData = $gift->extra_data;
+                    $duration += $extraData->duration;
+
+                    if ($extraData->message !== null) {
+                        $messages[] = $extraData->message;
+                    };
+                }
 
                 Mail::to($giftee)
                     ->queue(new SupporterGift($donor, $giftee, $duration, $messages));
