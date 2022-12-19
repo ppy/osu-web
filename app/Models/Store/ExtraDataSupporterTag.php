@@ -32,7 +32,7 @@ class ExtraDataSupporterTag extends ExtraDataBase implements JsonSerializable
 
         // fun
         $params['message'] = presence(unzalgo(trim(str_replace("\r\n", "\n", $params['message']))));
-        if (mb_strlen($params['message']) > static::MAX_MESSAGE_LENGTH) {
+        if ($params['message'] !== null && mb_strlen($params['message']) > static::MAX_MESSAGE_LENGTH) {
             throw new InvariantException('message is too long');
         }
 
