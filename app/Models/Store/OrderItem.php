@@ -129,6 +129,16 @@ class OrderItem extends Model
         }
     }
 
+    public function getSubtext()
+    {
+        $extraData = $this->extra_data;
+        if ($extraData instanceof ExtraDataSupporterTag && $extraData->message !== null) {
+            return trans('store.order.item.subtext.supporter_tag', ['message' => $extraData->message]);
+        }
+
+        return null;
+    }
+
     public function releaseProduct()
     {
         if ($this->reserved) {

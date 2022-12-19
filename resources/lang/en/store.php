@@ -77,10 +77,15 @@ return [
         'shopify_expired' => 'The checkout link for this order has expired.',
 
         'item' => [
+            'quantity' => 'Quantity',
+
             'display_name' => [
                 'supporter_tag' => ':name for :username (:duration)',
             ],
-            'quantity' => 'Quantity',
+
+            'subtext' => [
+                'supporter_tag' => 'Message: :message',
+            ],
         ],
 
         'not_modifiable_exception' => [
@@ -122,6 +127,7 @@ return [
 
     'supporter_tag' => [
         'gift' => 'gift to player',
+        'gift_message' => 'add an optional message to your gift! (up to :length characters)',
 
         'require_login' => [
             '_' => 'You need to be :link to get an osu!supporter tag!',

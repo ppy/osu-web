@@ -6,6 +6,8 @@
 namespace App\Libraries\Fulfillments;
 
 use App\Events\Fulfillments\SupporterTagEvent;
+use App\Mail\DonationThanks;
+use App\Mail\SupporterGift;
 use App\Models\Event;
 use App\Models\Store\OrderItem;
 use App\Models\Store\Product;
@@ -61,30 +63,8 @@ class SupporterTagFulfillment extends OrderFulfiller
     {
         $items = $this->getOrderItems();
         $donor = $this->order->user;
-        $gifts = [];
-        $donationTotal = $items->sum('cost');
-        $totalDuration = 0;
-
-        foreach ($items as $item) {
-            $extraData = $item->extra_data;
-
-            $duration = $extraData->duration;
-            $totalDuration += $duration;
-
-            $targetId = $extraData->targetId;
-            $target = User::find($targetId);
-
-            // TODO: warn if user doesn't exist, but don't explode.
-            if ($donor->getKey() !== $target->getKey()) {
-                if (($gifts[$targetId] ?? null) === null) {
-                    $gifts[$targetId] = ['target' => $target, 'duration' => $duration];
-                } else {
-                    $gifts[$targetId]['duration'] += $duration;
-                }
-            }
-        }
-
-        $isGift = count($gifts) !== 0;
+        $giftsByUserId = $items->groupBy('extra_data.targetId')->forget($donor->getKey());
+        $isGift = !$giftsByUserId->isEmpty();
 
         if (!$this->order->isHideSupporterFromActivity()) {
             Event::generate(
@@ -94,19 +74,37 @@ class SupporterTagFulfillment extends OrderFulfiller
         }
 
         if (present($donor->user_email)) {
+            $donationTotal = $items->sum('cost');
+            $totalDuration = $isGift ? null : $items->sum('extra_data.duration'); // duration is not relevant for gift.
+
             Mail::to($donor)
-                ->queue(new \App\Mail\DonationThanks($donor, $totalDuration, $donationTotal, $isGift, $this->continued));
+                ->queue(new DonationThanks($donor, $totalDuration, $donationTotal, $isGift, $this->continued));
         } else {
             Log::warning("User ({$$donor->getKey()}) does not have an email address set!");
         }
 
-        foreach ($gifts as $_key => $value) {
-            $giftee = $value['target'];
+        /** @var Collection<OrderItem> $gifts */
+        foreach ($giftsByUserId as $targetId => $gifts) {
+            // TODO: warn if user doesn't exist, but don't explode.
+            $giftee = User::find($targetId);
+
             Event::generate('userSupportGift', ['user' => $giftee, 'date' => $this->order->paid_at]);
 
             if (present($giftee->user_email)) {
+                $duration = 0;
+                $messages = [];
+
+                foreach ($gifts as $gift) {
+                    $extraData = $gift->extra_data;
+                    $duration += $extraData->duration;
+
+                    if ($extraData->message !== null) {
+                        $messages[] = $extraData->message;
+                    }
+                }
+
                 Mail::to($giftee)
-                    ->queue(new \App\Mail\SupporterGift($donor, $giftee, $value['duration']));
+                    ->queue(new SupporterGift($donor, $giftee, $duration, $messages));
             } else {
                 Log::warning("User ({$giftee->getKey()}) does not have an email address set!");
             }
