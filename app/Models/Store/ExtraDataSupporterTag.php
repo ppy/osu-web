@@ -23,18 +23,12 @@ class ExtraDataSupporterTag extends ExtraDataBase implements JsonSerializable
     public int $targetId;
     public string $username;
 
-    public static function fromRequestParams(array $orderItemParams, User $user)
+    public static function fromOrderItemParams(array $orderItemParams, User $user)
     {
         $params = get_params($orderItemParams, 'extra_data', [
             'message',
             'target_id:int',
         ], ['null_missing' => true]);
-
-        // fun
-        $params['message'] = presence(unzalgo(trim(str_replace("\r\n", "\n", $params['message']))));
-        if ($params['message'] !== null && mb_strlen($params['message']) > static::MAX_MESSAGE_LENGTH) {
-            throw new InvariantException('message is too long');
-        }
 
         $targetId = $params['target_id'];
         // Allow restricted users if it's themselves.
@@ -44,6 +38,17 @@ class ExtraDataSupporterTag extends ExtraDataBase implements JsonSerializable
         } else {
             $user = User::default()->where('user_id', $targetId)->firstOrFail();
             $params['username'] = $user->username;
+
+            // fun
+            if ($params['message'] !== null) {
+                $params['message'] = unzalgo(trim(str_replace("\r\n", "\n", $params['message'])));
+                if (mb_strlen($params['message']) > static::MAX_MESSAGE_LENGTH) {
+                    throw new InvariantException('message is too long');
+                }
+
+                $params['message'] = presence($params['message']);
+            }
+
         }
 
         $params['duration'] = SupporterTag::getDuration($orderItemParams['cost']);

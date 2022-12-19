@@ -693,7 +693,7 @@ class Order extends Model
         switch ($product->custom_class) {
             case Product::SUPPORTER_TAG_NAME:
                 $params['cost'] ??= 0;
-                $params['extra_data'] = ExtraDataSupporterTag::fromRequestParams($params, $this->user);
+                $params['extra_data'] = ExtraDataSupporterTag::fromOrderItemParams($params, $this->user);
                 break;
             // TODO: look at migrating to extra_data
             case 'username-change':
