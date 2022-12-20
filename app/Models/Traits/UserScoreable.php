@@ -24,7 +24,7 @@ trait UserScoreable
             'ruleset_id' => Beatmap::MODES[$mode],
             'sort' => 'pp_desc',
             'user_id' => $this->getKey(),
-        ])))->all();
+        ]), "aggregatedScoresBest_{$mode}"))->all();
     }
 
     public function beatmapBestScoreIds(string $mode)
