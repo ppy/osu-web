@@ -110,6 +110,7 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('modding:rank')
             ->cron('*/20 * * * *')
+            ->withoutOverlapping()
             ->onOneServer();
 
         $schedule->command('oauth:delete-expired-tokens')
