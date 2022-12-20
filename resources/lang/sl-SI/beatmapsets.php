@@ -65,7 +65,7 @@ return [
             'favourite' => 'Dodaj beatmapo med priljubljene',
             'favourite_login' => 'Vpiši se za dodajanje beatmape med priljubljene',
             'logged-out' => 'Preden lahko preneseš beatmapo moraš biti vpisan!',
-            'mapped_by' => '',
+            'mapped_by' => 'mappal :mapper',
             'unfavourite' => 'Odstrani beatmapo iz priljubljenih',
             'updated_timeago' => 'zadnje posodobljeno :timeago',
 
@@ -124,7 +124,7 @@ return [
             'genre' => 'Žanr',
             'language' => 'Jezik',
             'no_scores' => 'Podatki v preračunavanju...',
-            'nominators' => '',
+            'nominators' => 'Nominatorji',
             'nsfw' => 'Eksplicitna vsebina',
             'offset' => 'Online odmik',
             'points-of-failure' => 'Točke neuspehov',
@@ -217,6 +217,6 @@ return [
     ],
 
     'spotlight_badge' => [
-        'label' => '',
+        'label' => 'Osrednja pozornost',
     ],
 ];

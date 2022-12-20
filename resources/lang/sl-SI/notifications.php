@@ -144,7 +144,7 @@ return [
         ],
 
         'legacy_pm' => [
-            '_' => '',
+            '_' => 'Stari forum PM',
 
             'legacy_pm' => [
                 '_' => '',

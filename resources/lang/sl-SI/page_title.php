@@ -98,7 +98,7 @@ return [
             '_' => 'uvrstitve',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => 'moč',
         ],
         'tournaments_controller' => [
             '_' => 'turnirji',
@@ -121,7 +121,7 @@ return [
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => '',
+            '_' => 'informacije o modderju',
         ],
         'multiplayer_controller' => [
             '_' => 'zgodovina večigralskih tekem',

@@ -6,40 +6,40 @@
 return [
     'button' => [
         'cancel' => 'Cancel·la',
-        'resend' => '',
-        'set' => '',
-        'start' => '',
+        'resend' => 'Torna a enviar el correu de verificació',
+        'set' => 'Estableix contrasenya',
+        'start' => 'Inici',
     ],
 
     'error' => [
-        'contact_support' => '',
-        'expired' => '',
-        'invalid' => '',
-        'is_privileged' => '',
+        'contact_support' => 'Sisplau contacta\'ns per a recuperar el compte.',
+        'expired' => 'El codi de verificació ha expirat.',
+        'invalid' => 'Error inesperat en el codi de verificació.',
+        'is_privileged' => 'Sisplau, contacta un administrador per a recuperar el teu compte.',
         'missing_key' => 'Requerit.',
-        'too_many_tries' => '',
-        'user_not_found' => '',
-        'wrong_key' => '',
+        'too_many_tries' => 'Massa intents fracassats.',
+        'user_not_found' => 'Usuari innexistent.',
+        'wrong_key' => 'Codi incorrecte.',
     ],
 
     'notice' => [
-        'sent' => '',
-        'saved' => '',
+        'sent' => 'Comprova el teu correu pel codi de verificació.',
+        'saved' => 'Contrasenya nova desada!',
     ],
 
     'started' => [
-        'password' => '',
-        'password_confirmation' => '',
-        'title' => '',
-        'verification_key' => '',
+        'password' => 'Nova contrasenya',
+        'password_confirmation' => 'Confirmació de contrasenya',
+        'title' => 'Reestablint la constrasenya pel compte <strong>:username</strong>.',
+        'verification_key' => 'Codi de verificació',
     ],
 
     'starting' => [
-        'username' => '',
+        'username' => 'Adreça electrònica o  nom d\'usuari',
 
         'support' => [
-            '_' => '',
-            'button' => '',
+            '_' => 'Necessites més assistència? Contacta\'ns a través del nostre :button.',
+            'button' => 'sistema de suport',
         ],
     ],
 ];

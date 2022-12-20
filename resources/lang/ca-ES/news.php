@@ -5,11 +5,11 @@
 
 return [
     'index' => [
-        'title_page' => '',
+        'title_page' => 'osu!news',
 
         'nav' => [
-            'newer' => '',
-            'older' => '',
+            'newer' => 'Publicacions més recents',
+            'older' => 'Publicacions anteriors',
         ],
 
         'title' => [
@@ -22,27 +22,27 @@ return [
         'by' => 'per :user',
 
         'nav' => [
-            'newer' => '',
-            'older' => '',
+            'newer' => 'Publicació següent',
+            'older' => 'Publicació anterior',
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'novetats',
+            'info' => 'publicació',
         ],
     ],
 
     'sidebar' => [
-        'archive' => '',
+        'archive' => 'Arxiu de novetats',
     ],
 
     'store' => [
-        'button' => '',
-        'ok' => '',
+        'button' => 'Actualitza',
+        'ok' => 'Llistat actualitzat.',
     ],
 
     'update' => [
-        'button' => '',
-        'ok' => '',
+        'button' => 'Actualitza',
+        'ok' => 'Publicació actualitzada.',
     ],
 ];

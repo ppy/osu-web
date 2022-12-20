@@ -36,7 +36,7 @@ return [
         'labels' => [
             'description' => 'opis',
             'name' => 'ime sobe',
-            'users' => '',
+            'users' => 'igralci, ki jih želiš dodati',
         ],
     ],
 

@@ -5,26 +5,26 @@
 
 return [
     'empty' => [
-        '_' => '',
-        'playlists' => '',
-        'realtime' => '',
+        '_' => 'No s\'ha jugat cap partida :type_group d\'osu!(lazer) encara!',
+        'playlists' => 'llista de reproducció',
+        'realtime' => 'multijugador',
     ],
 
     'room' => [
-        'hosted_by' => '',
-        'invalid_password' => '',
-        'map_count' => '',
-        'player_count' => '',
-        'time_left' => '',
+        'hosted_by' => 'allotjat per :user',
+        'invalid_password' => 'La contrasenya de la sala és incorrecta',
+        'map_count' => ':count_delimited mapa|:count_delimited mapes',
+        'player_count' => ':count_delimited jugador|:count_delimited jugadors',
+        'time_left' => ':time restant',
 
         'errors' => [
-            'duration_too_long' => '',
+            'duration_too_long' => 'La durada és massa llarga.',
         ],
 
         'status' => [
-            'active' => '',
-            'ended' => '',
-            'soon' => '',
+            'active' => 'actiu',
+            'ended' => 'finalitzat',
+            'soon' => 'finalitza aviat',
         ],
     ],
 ];
