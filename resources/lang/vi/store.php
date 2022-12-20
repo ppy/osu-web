@@ -31,6 +31,7 @@ return [
         'cart_problems_edit' => 'Nhấp vào đây để chỉnh sửa nó.',
         'declined' => 'Thanh toán đã bị hủy.',
         'delayed_shipping' => 'Hiện tại chúng tôi đang có một lượng đơn hàng rất lớn! Bạn vẫn có thể thoải mái đặt hàng, nhưng vui lòng đợi **thêm 1-2 tuần** trong khi chúng tôi bắt kịp với những đơn hàng hiện tại.',
+        'hide_from_activity' => '',
         'old_cart' => 'Giỏ hàng của bạn đã hết hạn và đã được nạp lại, vui lòng thử lại sau.',
         'pay' => 'Thanh toán với Paypal',
         'title_compact' => 'thanh toán',
@@ -50,6 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Vì bạn thanh toán bằng eCheck, hãy chờ thêm tối đa 10 ngày để thanh toán qua khỏi PayPal!',
+        'hide_from_activity' => '',
         'title_compact' => 'hóa đơn',
 
         'status' => [
@@ -75,10 +77,15 @@ return [
         'shopify_expired' => 'Link thanh toán cho đơn hàng này đã hết hạn.',
 
         'item' => [
+            'quantity' => 'Số lượng',
+
             'display_name' => [
                 'supporter_tag' => ':name cho :username (:duration)',
             ],
-            'quantity' => 'Số lượng',
+
+            'subtext' => [
+                'supporter_tag' => '',
+            ],
         ],
 
         'not_modifiable_exception' => [
@@ -120,6 +127,8 @@ return [
 
     'supporter_tag' => [
         'gift' => 'tặng người chơi khác',
+        'gift_message' => '',
+
         'require_login' => [
             '_' => 'Bạn cần phải :link để nhận một osu!supporter tag!',
             'link_text' => 'đăng nhập',

@@ -18,7 +18,7 @@ return [
     ],
 
     'type' => [
-        'charts' => 'traukantys dėmesį',
+        'charts' => 'pasižymėje',
         'country' => 'Šalimis',
         'multiplayer' => 'žaidimas tinkle',
         'performance' => 'našumo',

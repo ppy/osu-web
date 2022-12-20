@@ -86,7 +86,7 @@ return [
             'macos' => 'za macOS',
             'linux' => 'za Linux',
         ],
-        'mirror' => '',
+        'mirror' => 'mirror',
         'macos-fallback' => 'macOS uporabniki',
         'steps' => [
             'register' => [

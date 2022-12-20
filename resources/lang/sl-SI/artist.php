@@ -48,7 +48,7 @@ return [
             'form' => [
                 'advanced' => 'Napredno iskanje',
                 'album' => 'Album',
-                'artist' => 'Izvajalec',
+                'artist' => 'Ustvarjalec',
                 'bpm_gte' => 'Minimalni BPM',
                 'bpm_lte' => 'Maksimalni BPM',
                 'empty' => 'Najdena ni bila nobena pesem, ki bi ustrezala iskalnim kriterijem.',

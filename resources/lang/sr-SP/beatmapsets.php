@@ -130,7 +130,7 @@ return [
             'genre' => 'Жанр',
             'language' => 'Језик',
             'no_scores' => 'Подаци се још израчунавају...',
-            'nominators' => '',
+            'nominators' => 'Номинатори',
             'nsfw' => 'Експлицитни садржај',
             'offset' => 'Онлајн размак',
             'points-of-failure' => 'Тачке Неуспеха',

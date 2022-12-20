@@ -218,7 +218,7 @@ return [
                     'title' => 'Sevilen Beatmapler',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => 'Aday Gösterilen Dereceli Beatmapler',
                 ],
                 'pending' => [
                     'title' => 'Beklemedeki Beatmapler',
@@ -417,7 +417,7 @@ return [
             'country_simple' => 'Ülkesel Sıralama',
             'global' => ':mode için Dünya sıralaması',
             'global_simple' => 'Küresel Sıralama',
-            'highest' => '',
+            'highest' => ':date tarihinde en yüksek rank: :rank',
         ],
         'stats' => [
             'hit_accuracy' => 'Vuruş İsabeti',

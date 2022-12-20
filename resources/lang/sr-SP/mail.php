@@ -68,6 +68,7 @@ return [
         'duration' => 'Захваљујући њима, имате приступ osu!direct и другим погодностима за osu!supporter током следећег :duration.',
         'features' => 'Више детаља о овим карактеристикама можете сазнати овде:',
         'gifted' => 'Неко вам је управо поклонио osu!supporter ознаку!',
+        'gift_message' => '',
         'subject' => 'Добили сте osu!supporter ознаку!',
     ],
 

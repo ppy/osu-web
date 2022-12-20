@@ -121,8 +121,8 @@ return [
             ],
 
             'feature_votes' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'Могућност гласања за нове додатке',
+                'description' => 'Могућност гласања за нове додатке у игри (2 гласа месечно)',
             ],
 
             'sort_options' => [
@@ -132,7 +132,7 @@ return [
 
             'more_favourites' => [
                 'title' => 'Још Омиљених',
-                'description' => '',
+                'description' => 'Максималан број мапа које можете имати је повећан :normally &rarr; :supporter',
             ],
             'more_friends' => [
                 'title' => 'Више Пријатеља',
@@ -140,7 +140,7 @@ return [
             ],
             'more_beatmaps' => [
                 'title' => 'Отпремите Још Мапа',
-                'description' => '',
+                'description' => 'Колико мапа на чекању можете имати у било ком тренутку зависи од рачунице почетне вредности плус додатни бонус за сваку рангирану мапу коју имате (до одређеног лимита).<br/><br/>То је уобичајено :base плус :bonus по рангираној мапи (макс. :bonus_max). Са supporter те вредности се повећавају на :supporter_base плус :supporter_bonus по рангираној мапи (макс. :supporter_bonus_max).',
             ],
             'friend_filtering' => [
                 'title' => 'Листинг Пријатеља',

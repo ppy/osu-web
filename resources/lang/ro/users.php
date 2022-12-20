@@ -218,7 +218,7 @@ return [
                     'title' => 'Beatmap-uri iubite',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => 'Beatmap-uri Clasate Nominalizate',
                 ],
                 'pending' => [
                     'title' => 'Beatmap-uri în așteptare',

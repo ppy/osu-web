@@ -124,7 +124,7 @@ return [
             'genre' => 'Gatunek',
             'language' => 'Język',
             'no_scores' => 'Dane są nadal ładowane...',
-            'nominators' => '',
+            'nominators' => 'Nominatorzy',
             'nsfw' => 'Treść dla pełnoletnich',
             'offset' => 'Opóźnienie',
             'points-of-failure' => 'Wykres porażek',

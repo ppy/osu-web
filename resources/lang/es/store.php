@@ -31,6 +31,7 @@ return [
         'cart_problems_edit' => 'Haz clic aquí para editarlo.',
         'declined' => 'El pago ha sido cancelado.',
         'delayed_shipping' => '¡Ahora mismo estamos sobresaturados de pedidos! Eres bienvenido a solicitar tu orden, pero considera un **retraso adicional de 1-2 semanas** mientras nos ponemos al día con órdenes ya existentes.',
+        'hide_from_activity' => '',
         'old_cart' => 'Tu carrito parecía estar desactualizado y fue reiniciado, por favor intenta de nuevo.',
         'pay' => 'Pagar con PayPal',
         'title_compact' => 'caja',
@@ -50,6 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Como su pago fue un eCheck, ¡por favor permita hasta 10 días adicionales para que el pago se realice a través de PayPal!',
+        'hide_from_activity' => '',
         'title_compact' => 'factura',
 
         'status' => [
@@ -75,10 +77,15 @@ return [
         'shopify_expired' => 'El enlace de pago de esta orden ha expirado.',
 
         'item' => [
+            'quantity' => 'Cantidad',
+
             'display_name' => [
                 'supporter_tag' => ':name para :username (:duration)',
             ],
-            'quantity' => 'Cantidad',
+
+            'subtext' => [
+                'supporter_tag' => '',
+            ],
         ],
 
         'not_modifiable_exception' => [
@@ -120,6 +127,8 @@ return [
 
     'supporter_tag' => [
         'gift' => 'regalar al jugador',
+        'gift_message' => '',
+
         'require_login' => [
             '_' => '¡Tienes que :link para obtener un tag de osu!supporter!',
             'link_text' => 'iniciar sesión',
