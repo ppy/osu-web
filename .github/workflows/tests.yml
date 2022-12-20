@@ -10,7 +10,6 @@ env:
   APP_KEY: base64:q7U5qyAkedR1F6UhN0SQlUxBpAMDyfHy3NNFkqmiMqA=
   APP_URL: http://localhost:8000
   CACHE_DRIVER: redis
-  CACHE_DRIVER_LOCAL: array
   DB_HOST: 127.0.0.1
   DB_USERNAME: root
   ES_SOLO_SCORES_HOST: http://localhost:9200

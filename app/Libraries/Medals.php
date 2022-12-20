@@ -8,13 +8,13 @@ declare(strict_types=1);
 namespace App\Libraries;
 
 use App\Models\Achievement;
-use App\Traits\LocallyCached;
+use App\Traits\Memoizes;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class Medals
 {
-    use LocallyCached;
+    use Memoizes;
 
     /**
      * Get all enabled medals.
@@ -91,7 +91,7 @@ class Medals
 
     private function allIncludeDisabled(): Collection
     {
-        return $this->cachedMemoize(__FUNCTION__, function () {
+        return $this->memoize(__FUNCTION__, function () {
             return Achievement
                 ::orderBy('grouping')
                 ->orderBy('ordering')
