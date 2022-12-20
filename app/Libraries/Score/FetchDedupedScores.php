@@ -15,8 +15,11 @@ class FetchDedupedScores
     private int $limit;
     private array $result;
 
-    public function __construct(private string $dedupeColumn, private ScoreSearchParams $params)
-    {
+    public function __construct(
+        private string $dedupeColumn,
+        private ScoreSearchParams $params,
+        private ?string $searchLoggingTag = null
+    ) {
         $this->limit = $this->params->size;
     }
 
@@ -24,6 +27,7 @@ class FetchDedupedScores
     {
         $this->params->size = $this->limit + 50;
         $search = new ScoreSearch($this->params);
+        $search->loggingTag = $this->searchLoggingTag;
 
         $nextCursor = null;
         $hasNext = true;
