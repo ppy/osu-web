@@ -9,6 +9,7 @@
 
   padding: 10px;
   border-radius: 10000px;
+  transition: none;
 
   &.js-click-menu--active, &:hover {
     background-color: hsla(var(--hsl-c1), 0.2);
@@ -33,6 +34,12 @@
   &--support {
     &:hover {
       color: @pink;
+    }
+  }
+
+  &--twitter {
+    &:hover {
+      color: @twitter-colour;
     }
   }
 }
