@@ -42,8 +42,6 @@ _migrate() {
 }
 
 _octane() {
-  # install node dependencies first in case octane is run with --watch
-  _run yarn --network-timeout 100000 --frozen-lockfile
   exec /app/artisan octane:start --host=0.0.0.0 "$@"
 }
 
