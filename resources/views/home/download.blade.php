@@ -44,13 +44,16 @@
                         {{ osu_trans('home.download.action_lazer_title') }}
                     </h3>
 
-                    {{ osu_trans('home.download.action_lazer_description') }}
-                    @if (($lazerInfoUrl = config('osu.urls.lazer_info')) !== null)
-                        <br>
-                        <a href="{{ $lazerInfoUrl }}">
-                            {{ osu_trans('home.download.action_lazer_info') }}
-                        </a>
-                    @endif
+                    <div>
+                        <div>
+                            {{ osu_trans('home.download.action_lazer_description') }}
+                        </div>
+                        @if (($lazerInfoUrl = config('osu.urls.lazer_info')) !== null)
+                            <a href="{{ $lazerInfoUrl }}">
+                                {{ osu_trans('home.download.action_lazer_info') }}
+                            </a>
+                        @endif
+                    </div>
                 </div>
                 <div>
                     <a

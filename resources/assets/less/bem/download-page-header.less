@@ -7,24 +7,24 @@
 
   &__action-description {
     flex: 1;
-    text-align: center;
-    padding-bottom: 10px;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    gap: 10px;
     align-items: center;
     justify-content: center;
+    text-align: center;
   }
 
   &__action-title {
     font-size: @font-size--title;
     font-weight: inherit;
+    margin: 0;
   }
 
   &__choice {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
 
     @media @desktop {
       padding: 40px 0;
