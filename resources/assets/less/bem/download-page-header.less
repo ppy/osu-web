@@ -5,18 +5,14 @@
   .default-gutter-v2();
   padding-bottom: 20px;
 
-  &__action {
-    font-size: @font-size--title;
-  }
-
   &__action-description {
     flex: 1;
     text-align: center;
     padding-bottom: 10px;
-
-    @media @desktop {
-      min-height: 100px;
-    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   &__action-title {
@@ -28,6 +24,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 10px;
+
+    @media @desktop {
+      padding: 40px 0;
+    }
   }
 
   &__choices {

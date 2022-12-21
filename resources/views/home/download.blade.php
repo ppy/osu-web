@@ -13,12 +13,12 @@
         <h2 class="download-page-header__tagline">{{ strtr(osu_trans('home.download.tagline'), ['<br>' => ' ']) }}</h2>
 
         <div class="download-page-header__choices">
-            <div class="download-page-header__choice download-page-header__choice--stable">
-                <h3 class="download-page-header__action-title">
-                    {{ osu_trans('home.download.action_title') }}
-                </h3>
-                <p class="download-page-header__action-description">
-                </p>
+            <div class="download-page-header__choice">
+                <div class="download-page-header__action-description">
+                    <h3 class="download-page-header__action-title">
+                        {{ osu_trans('home.download.action_title') }}
+                    </h3>
+                </div>
 
                 <div>
                     <a class="btn-osu-big btn-osu-big--download" href="{{ config('osu.urls.installer') }}">
@@ -37,20 +37,19 @@
                     </div>
                 </div>
             </div>
+            <div class="download-page-header__separator">{{ osu_trans('home.download.or') }}</div>
             <div class="download-page-header__choice">
-                <div class="download-page-header__separator">{{ osu_trans('home.download.or') }}</div>
-            </div>
-            <div class="download-page-header__choice download-page-header__choice--experimental">
-                <h3 class="download-page-header__action-title">
-                    {{ osu_trans('home.download.action_lazer_title') }}
-                </h3>
                 <div class="download-page-header__action-description">
+                    <h3 class="download-page-header__action-title">
+                        {{ osu_trans('home.download.action_lazer_title') }}
+                    </h3>
+
                     {{ osu_trans('home.download.action_lazer_description') }}
                     @if (($lazerInfoUrl = config('osu.urls.lazer_info')) !== null)
-                    <br>
-                    <a href="{{ $lazerInfoUrl }}">
-                        {{ osu_trans('home.download.action_lazer_info') }}
-                    </a>
+                        <br>
+                        <a href="{{ $lazerInfoUrl }}">
+                            {{ osu_trans('home.download.action_lazer_info') }}
+                        </a>
                     @endif
                 </div>
                 <div>
