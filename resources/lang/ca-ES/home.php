@@ -5,93 +5,93 @@
 
 return [
     'landing' => [
-        'download' => '',
-        'online' => '',
-        'peak' => '',
-        'players' => '',
-        'title' => '',
-        'see_more_news' => '',
+        'download' => 'Descarregar ara',
+        'online' => 'hi ha <strong>:players</strong>  en línia, en un total de <strong>:games</strong> partides',
+        'peak' => 'Pic, :count usuaris en línia',
+        'players' => '<strong>:count</strong> jugadors registrats',
+        'title' => 'benvingut',
+        'see_more_news' => 'veure més novetats',
 
         'slogan' => [
-            'main' => '',
-            'sub' => '',
+            'main' => 'el millor joc de ritme gratuït',
+            'sub' => 'el ritme només a un clic',
         ],
     ],
 
     'search' => [
-        'advanced_link' => '',
-        'button' => '',
-        'empty_result' => '',
-        'keyword_required' => '',
-        'placeholder' => '',
-        'title' => '',
+        'advanced_link' => 'Cerca avançada',
+        'button' => 'Cerca',
+        'empty_result' => 'No s\'ha trobat res!',
+        'keyword_required' => 'Es necessita una paraula clau',
+        'placeholder' => 'escriu per cercar',
+        'title' => 'cerca',
 
         'beatmapset' => [
             'login_required' => 'Inicieu sessió per cercar beatmaps',
             'more' => ':count resultats més de cerca de beatmap',
-            'more_simple' => '',
+            'more_simple' => 'Veure més resultats',
             'title' => 'Beatmaps',
         ],
 
         'forum_post' => [
             'all' => 'Tots els fòrums',
-            'link' => '',
-            'login_required' => '',
-            'more_simple' => '',
-            'title' => '',
+            'link' => 'Cerca en el fòrum',
+            'login_required' => 'Inicia sessió per cercar en el fòrum',
+            'more_simple' => 'Veure més resultats',
+            'title' => 'Fòrum',
 
             'label' => [
-                'forum' => '',
-                'forum_children' => '',
-                'topic_id' => '',
-                'username' => '',
+                'forum' => 'cerca en fòrums',
+                'forum_children' => 'inclou subfòrums',
+                'topic_id' => 'tema #',
+                'username' => 'autor',
             ],
         ],
 
         'mode' => [
             'all' => 'tots',
             'beatmapset' => 'beatmap',
-            'forum_post' => '',
-            'user' => '',
-            'wiki_page' => '',
+            'forum_post' => 'fòrum',
+            'user' => 'jugador',
+            'wiki_page' => 'wiki',
         ],
 
         'user' => [
-            'login_required' => '',
-            'more' => '',
-            'more_simple' => '',
-            'more_hidden' => '',
-            'title' => '',
+            'login_required' => 'Inicia sessió per cercar usuaris',
+            'more' => ':count més resultats de jugadors',
+            'more_simple' => 'Veure més resultats',
+            'more_hidden' => 'La cerca està limitada a :max jugadors. Intenta refinar la consulta.',
+            'title' => 'Jugadors',
         ],
 
         'wiki_page' => [
-            'link' => '',
-            'more_simple' => '',
-            'title' => '',
+            'link' => 'Cerca la wiki',
+            'more_simple' => 'Veure més resultats',
+            'title' => 'Wiki',
         ],
     ],
 
     'download' => [
-        'tagline' => "",
-        'action' => '',
+        'tagline' => "endavant<br>comencem!",
+        'action' => 'Descarrega l\'osu!',
 
         'help' => [
-            '_' => '',
-            'help_forum_link' => '',
-            'support_button' => '',
+            '_' => 'si trobes un problema començant el joc o registrant un compte, :help_forum_link o :support_button.',
+            'help_forum_link' => 'visita el fòrum d\'ajuda',
+            'support_button' => 'contacta l\'equip de suport',
         ],
 
         'os' => [
-            'windows' => '',
-            'macos' => '',
-            'linux' => '',
+            'windows' => 'per a Windows',
+            'macos' => 'per a macOS',
+            'linux' => 'per a Linux',
         ],
-        'mirror' => '',
+        'mirror' => 'enllaç alternatiu',
         'macos-fallback' => 'usuaris de macOS',
         'steps' => [
             'register' => [
-                'title' => '',
-                'description' => '',
+                'title' => 'crea un compte',
+                'description' => 'segueix les instruccions a l\'iniciar el joc per iniciar sessió o crear un nou compte',
             ],
             'download' => [
                 'title' => 'descarregar el joc',
@@ -100,36 +100,36 @@ return [
             'beatmaps' => [
                 'title' => 'obtenir mapes',
                 'description' => [
-                    '_' => '',
+                    '_' => ':browse la enorme biblioteca de beatmaps creats pels usuaris i comença a jugar!',
                     'browse' => 'fes una ullada',
                 ],
             ],
         ],
-        'video-guide' => '',
+        'video-guide' => 'guia en vídeo',
     ],
 
     'user' => [
-        'title' => '',
+        'title' => 'tauler',
         'news' => [
-            'title' => '',
-            'error' => '',
+            'title' => 'Notícies',
+            'error' => 'Error en carregar les novetats, intenta actualitzar la pàgina?...',
         ],
         'header' => [
             'stats' => [
-                'friends' => '',
-                'games' => '',
-                'online' => '',
+                'friends' => 'Amics en línia',
+                'games' => 'Partides',
+                'online' => 'Usuaris en línia',
             ],
         ],
         'beatmaps' => [
-            'new' => '',
+            'new' => 'Nous Beatmaps Classificatoris',
             'popular' => 'Beatmaps populars',
             'by_user' => 'per :user',
         ],
         'buttons' => [
-            'download' => '',
-            'support' => '',
-            'store' => '',
+            'download' => 'Descarrega l\'osu!',
+            'support' => 'Dona suport a l\'osu!',
+            'store' => 'osu!store',
         ],
     ],
 ];

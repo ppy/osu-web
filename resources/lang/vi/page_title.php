@@ -24,7 +24,7 @@ return [
     'forum' => [
         '_' => 'diễn đàn',
         'topic_logs_controller' => [
-            'index' => '',
+            'index' => 'nhật kí chủ đề',
         ],
     ],
     'main' => [

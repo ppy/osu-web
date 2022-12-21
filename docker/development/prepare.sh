@@ -12,11 +12,11 @@ if [ ! -f artisan ]; then
 fi
 
 _run() {
-    docker-compose run --rm php "$@"
+    docker compose run --rm php "$@"
 }
 
 _run_dusk() {
-    docker-compose run --rm -e APP_ENV=dusk.local php "$@"
+    docker compose run --rm -e APP_ENV=dusk.local php "$@"
 }
 
 genkey=0
@@ -66,4 +66,4 @@ if [ ! -f .docker/.my.cnf ]; then
     cp .docker/.my.cnf.example .docker/.my.cnf
 fi
 
-echo "Preparation completed. Adjust .env file if needed and run 'docker-compose up' followed by running migration."
+echo "Preparation completed. Adjust .env file if needed and run 'docker compose up' followed by running migration."

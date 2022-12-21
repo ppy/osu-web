@@ -124,7 +124,7 @@ return [
             'genre' => 'ジャンル',
             'language' => '言語',
             'no_scores' => 'データはまだ計算中です・・・',
-            'nominators' => '',
+            'nominators' => '推薦者',
             'nsfw' => '過激な表現を含むコンテンツ',
             'offset' => 'オンラインオフセット',
             'points-of-failure' => '失敗地点',

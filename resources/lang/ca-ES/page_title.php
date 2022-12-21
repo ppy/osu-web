@@ -5,126 +5,126 @@
 
 return [
     'admin' => [
-        '_' => '',
+        '_' => 'administrador',
     ],
     'error' => [
         'error' => [
-            '400' => '',
-            '404' => '',
-            '403' => '',
-            '401' => '',
-            '401-verification' => '',
-            '405' => '',
-            '422' => '',
-            '429' => '',
-            '500' => '',
-            '503' => '',
+            '400' => 'sol·licitud invàlida',
+            '404' => 'no trobat',
+            '403' => 'prohibit',
+            '401' => 'no autoritzat',
+            '401-verification' => 'verificació del compte',
+            '405' => 'no trobat',
+            '422' => 'sol·licitud invàlida',
+            '429' => 'massa sol·licituds',
+            '500' => 'alguna cosa no ha anat bé',
+            '503' => 'manteniment',
         ],
     ],
     'forum' => [
-        '_' => '',
+        '_' => 'fòrum',
         'topic_logs_controller' => [
-            'index' => '',
+            'index' => 'registre dels temes',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'verify_link' => '',
+            'verify_link' => 'verificació del compte',
         ],
         'artists_controller' => [
-            '_' => '',
+            '_' => 'artistes destacats',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => '',
+            '_' => 'publicacions de discussió de beatmaps',
         ],
         'beatmap_discussions_controller' => [
-            '_' => '',
+            '_' => 'discussions de beatmaps',
         ],
         'beatmap_packs_controller' => [
             '_' => 'paquets de beatmaps',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => '',
+            '_' => 'vots de discussions de beatmaps',
         ],
         'beatmapset_events_controller' => [
-            '_' => '',
+            '_' => 'historial de beatmaps',
         ],
         'beatmapsets_controller' => [
-            'discussion' => '',
+            'discussion' => 'discusió de beatmap',
             'index' => 'llista de beatmaps',
             'show' => 'info del beatmap',
         ],
         'changelog_controller' => [
-            '_' => '',
+            '_' => 'registre de canvis',
         ],
         'chat_controller' => [
-            '_' => '',
+            '_' => 'xat',
         ],
         'comments_controller' => [
-            '_' => '',
+            '_' => 'comentaris',
         ],
         'contests_controller' => [
-            '_' => '',
+            '_' => 'tornejos',
         ],
         'groups_controller' => [
-            'show' => '',
+            'show' => 'grups',
         ],
         'home_controller' => [
-            'get_download' => '',
-            'index' => '',
-            'search' => '',
-            'support_the_game' => '',
-            'testflight' => '',
+            'get_download' => 'descarregar',
+            'index' => 'tauler',
+            'search' => 'cerca',
+            'support_the_game' => 'dona suport al joc',
+            'testflight' => 'testflight',
         ],
         'legal_controller' => [
-            '_' => '',
+            '_' => 'informació',
         ],
         'livestreams_controller' => [
-            '_' => '',
+            '_' => 'transmissions en directe',
         ],
         'matches_controller' => [
-            '_' => '',
+            '_' => 'coincidències',
         ],
         'news_controller' => [
-            '_' => '',
+            '_' => 'notícies',
         ],
         'notifications_controller' => [
-            '_' => '',
+            '_' => 'historial de notificacions',
         ],
         'password_reset_controller' => [
-            '_' => '',
+            '_' => 'restablir la contrasenya',
         ],
         'ranking_controller' => [
-            '_' => '',
+            '_' => 'classificacions',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => 'rendiment',
         ],
         'tournaments_controller' => [
-            '_' => '',
+            '_' => 'tornejos',
         ],
         'users_controller' => [
-            '_' => '',
-            'disabled' => '',
+            '_' => 'informació del jugador',
+            'disabled' => 'avís',
         ],
         'wiki_controller' => [
-            '_' => '',
+            '_' => 'wiki',
         ],
     ],
     'passport' => [
         'authorization_controller' => [
-            '_' => '',
+            '_' => 'autoritza l\'aplicació',
         ],
     ],
     'store' => [
-        '_' => '',
+        '_' => 'botiga',
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => '',
+            '_' => 'informació del modder',
         ],
         'multiplayer_controller' => [
-            '_' => '',
+            '_' => 'historial de multijugador',
         ],
     ],
 ];

@@ -124,7 +124,7 @@ return [
             'genre' => 'Género',
             'language' => 'Língua',
             'no_scores' => 'Os dados ainda estão a ser calculados...',
-            'nominators' => '',
+            'nominators' => 'Nomeadores',
             'nsfw' => 'Conteúdo explícito',
             'offset' => 'Desvio do online',
             'points-of-failure' => 'Pontos de falha',

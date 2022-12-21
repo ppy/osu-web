@@ -5,12 +5,48 @@
 
 namespace Tests\Models\Store;
 
+use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
 use App\Models\Store\Product;
 use Tests\TestCase;
 
 class OrderTest extends TestCase
 {
+    public function testContainsSupporterTag()
+    {
+        $order = factory(Order::class)->create();
+        $product = factory(Product::class)->create();
+        factory(OrderItem::class)->create(['order_id' => $order, 'product_id' => $product]);
+        factory(OrderItem::class)->states('supporter_tag')->create(['order_id' => $order]);
+
+        $this->assertTrue($order->containsSupporterTag());
+    }
+
+    public function testIsHideSupporterFromActivity()
+    {
+        $order = factory(Order::class)->create();
+        factory(OrderItem::class, 2)->states('supporter_tag')->create(['order_id' => $order]);
+
+        $this->assertFalse($order->isHideSupporterFromActivity());
+
+        $order->items[0]->extra_data->hidden = true;
+        $order->saveOrExplode();
+
+        $this->assertTrue($order->isHideSupporterFromActivity());
+    }
+
+    public function testSetGiftsHidden()
+    {
+        $order = factory(Order::class)->create();
+        factory(OrderItem::class, 2)->states('supporter_tag')->create(['order_id' => $order]);
+
+        $order->setGiftsHidden(true);
+        OrderItem::each(fn ($item) => $this->assertTrue($item->extra_data->hidden));
+
+        $order->setGiftsHidden(false);
+        OrderItem::each(fn ($item) => $this->assertFalse($item->extra_data->hidden));
+    }
+
     public function testSwitchOrderItemReservation()
     {
         $product1 = factory(Product::class)->create(['stock' => 5, 'max_quantity' => 5]);

@@ -74,7 +74,7 @@ return [
             'praise' => '赞',
             'problem' => '问题',
             'problem_warning' => '报告问题',
-            'review' => '审核',
+            'review' => '审阅',
             'suggestion' => '建议',
         ],
 

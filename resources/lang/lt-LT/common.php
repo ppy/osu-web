@@ -146,8 +146,8 @@ return [
     ],
 
     'time' => [
-        'days_ago' => ':count_delimited prieš dieną|:count_delimited prieš dienų',
-        'hours_ago' => 'Prieš:count_delimited valandą| Prieš:count_delimited valandas',
+        'days_ago' => 'prieš :count_delimited dieną|prieš :count_delimited dienų',
+        'hours_ago' => 'Prieš :count_delimited valandą| Prieš :count_delimited valandas',
         'now' => 'dabar',
         'remaining' => 'Likęs laikas',
     ],

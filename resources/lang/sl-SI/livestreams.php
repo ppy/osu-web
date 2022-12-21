@@ -13,6 +13,6 @@ return [
         'headline' => 'Oddajanja v živo',
         'description' => 'Podatki so pridobljeni od twitch.tv vsakih pet minut glede na seznam v imeniku. Oddajaj v živo in se uvrsti na seznam! Za več informacij o konfiguraciji prosimo obišči :link.',
 
-        'link' => '',
+        'link' => 'wiki stran o prenosih v živo',
     ],
 ];
