@@ -124,6 +124,7 @@ return [
             'genre' => 'Genre',
             'language' => 'Taal',
             'no_scores' => 'Data nog aan het berekenen...',
+            'nominators' => '',
             'nsfw' => 'Expliciete inhoud',
             'offset' => 'Online offset',
             'points-of-failure' => 'Faalpunten',

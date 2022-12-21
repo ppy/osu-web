@@ -5,14 +5,14 @@
 
 return [
     'completed' => [
-        'home' => '',
-        'logout' => '',
-        'text' => '',
-        'title' => '',
+        'home' => 'Anar al tauler de control',
+        'logout' => 'Tancar sessió',
+        'text' => 'Ara podeu tancar aquesta pestanya/finestra',
+        'title' => 'la verificació del client osu! s\'ha completat',
     ],
 
     'create' => [
-        'confirm' => '',
-        'title' => '',
+        'confirm' => 'Feu clic al botó d\'autorització de sota per finalitzar la verificació del client.',
+        'title' => 'verificació del client osu!',
     ],
 ];

@@ -31,6 +31,7 @@ return [
         'cart_problems_edit' => 'Κάντε κλικ εδώ για να το επεξεργαστείτε.',
         'declined' => 'Η πληρωμή ακυρώθηκε.',
         'delayed_shipping' => 'Προσωρινά μας έχουν κατακλύσει οι παραγγελίες! Μπορείτε να παραγγείλετε, αλλά παρακαλούμε να περιμένετε **1-2 εβδομάδες επιπλέον** ενώ προσπαθούμε να προλάβουμε τις υπάρχουσες παραγγελίες.',
+        'hide_from_activity' => '',
         'old_cart' => 'Το καλάθι σας φαίνεται να έχει ξεπερασμένα πράγματα και έχει ανανεωθεί, παρακαλώ προσπαθήστε ξανά.',
         'pay' => 'Ολοκλήρωση αγοράς με Paypal',
         'title_compact' => '',
@@ -50,6 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Δεδομένου ότι η πληρωμή σας ήταν μια eCheck, παρακαλώ επιτρέψτε έως και 10ημέρες για την πληρωμή μέσω PayPal!',
+        'hide_from_activity' => '',
         'title_compact' => '',
 
         'status' => [
@@ -75,10 +77,15 @@ return [
         'shopify_expired' => '',
 
         'item' => [
+            'quantity' => 'Ποσότητα',
+
             'display_name' => [
                 'supporter_tag' => ':name για τον χρήστη :username (:duration)',
             ],
-            'quantity' => 'Ποσότητα',
+
+            'subtext' => [
+                'supporter_tag' => '',
+            ],
         ],
 
         'not_modifiable_exception' => [
@@ -120,6 +127,8 @@ return [
 
     'supporter_tag' => [
         'gift' => 'δωρίστε σε έναν παίχτη',
+        'gift_message' => '',
+
         'require_login' => [
             '_' => 'Πρέπει να είστε :link για να πάρετε ένα supporter tag!',
             'link_text' => 'συνδεδεμένος',

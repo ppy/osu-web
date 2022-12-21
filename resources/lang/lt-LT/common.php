@@ -5,8 +5,8 @@
 
 return [
     'confirmation' => 'Ar esate įsitikinę?',
-    'confirmation_unsaved' => 'Neįsaugoti pakeitimai bus prarasti. Ar jūs įsitikinęs?',
-    'saved' => 'Išsaugotas',
+    'confirmation_unsaved' => 'Neišsaugoti pakeitimai bus prarasti. Ar jūs įsitikinęs?',
+    'saved' => 'Išsaugota',
 
     'array_and' => [
         'words_connector' => ', ',
@@ -146,18 +146,18 @@ return [
     ],
 
     'time' => [
-        'days_ago' => ':count_delimited prieš dieną|:count_delimited prieš dienų',
-        'hours_ago' => 'Prieš:count_delimited valandą| Prieš:count_delimited valandas',
+        'days_ago' => 'prieš :count_delimited dieną|prieš :count_delimited dienų',
+        'hours_ago' => 'Prieš :count_delimited valandą| Prieš :count_delimited valandas',
         'now' => 'dabar',
         'remaining' => 'Likęs laikas',
     ],
 
     'title' => [
-        'notice' => '',
+        'notice' => 'Pastaba',
     ],
 
     'wrong_user' => [
-        '_' => '',
-        'logout_link' => '',
+        '_' => 'Esate prisijunges kaip :user. :logout_link.',
+        'logout_link' => 'Spausk čia, kad prisijungti kaip kitas vartotojas',
     ],
 ];

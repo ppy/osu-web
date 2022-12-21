@@ -1,9 +1,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { isModalShowing } from 'modal-helper';
 import * as React from 'react';
 import { TooltipContext } from 'tooltip-context';
+import { isModalShowing } from 'utils/modal-helper';
 import { nextVal } from 'utils/seq';
 import Portal from './portal';
 
@@ -84,7 +84,7 @@ export default class PopupMenu extends React.PureComponent<PropsWithDefaults, St
 
   render() {
     if (this.props.customRender) {
-      return this.props.customRender(<Portal>{this.renderMenu()}</Portal>, this.buttonRef, this.toggle);
+      return this.props.customRender(this.renderMenu(), this.buttonRef, this.toggle);
     }
 
     return (
@@ -98,7 +98,7 @@ export default class PopupMenu extends React.PureComponent<PropsWithDefaults, St
           <span className='fas fa-ellipsis-v' />
         </button>
 
-        <Portal>{this.renderMenu()}</Portal>
+        {this.renderMenu()}
       </>
     );
   }
@@ -136,11 +136,13 @@ export default class PopupMenu extends React.PureComponent<PropsWithDefaults, St
     if (!this.state.active) return null;
 
     return (
-      <div ref={this.menuRootRef}>
-        <div ref={this.menuRef} className='popup-menu-float'>
-          {this.props.children(this.dismiss)}
+      <Portal>
+        <div ref={this.menuRootRef}>
+          <div ref={this.menuRef} className='popup-menu-float'>
+            {this.props.children(this.dismiss)}
+          </div>
         </div>
-      </div>
+      </Portal>
     );
   }
 

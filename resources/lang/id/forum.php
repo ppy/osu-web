@@ -32,7 +32,7 @@ return [
         ],
 
         'topics' => [
-            'empty' => 'Tidak ada topik apapun!',
+            'empty' => 'Tidak ada topik!',
         ],
     ],
 

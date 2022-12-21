@@ -50,7 +50,7 @@ return [
             'beatmap' => 'Endast .osu-filer är tillåtna i denna tävling.',
             'music' => 'Endast .mp3-filer är tillåtna i denna tävling.',
         ],
-        'wrong_dimensions' => '',
+        'wrong_dimensions' => 'Bidrag för denna tävling måste vara :widthx:height',
         'too_big' => 'Bidrag till denna tävling får vara högst :limit.',
     ],
     'beatmaps' => [
