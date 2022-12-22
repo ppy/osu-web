@@ -3,12 +3,13 @@
 
 import GameMode from 'interfaces/game-mode';
 import { BeatmapsetDiscussionJson } from 'legacy-modules';
+import DiscussionsMode from './discussions-mode';
 
 export type Filter = 'deleted' | 'hype' | 'mapperNotes' | 'mine' | 'pending' | 'praises' | 'resolved' | 'total';
 
 // TODO: move to store/context
 export default interface CurrentDiscussions {
-  byFilter: Record<Filter, DiscussionByFilter>;
+  byFilter: Record<Filter, Record<DiscussionsMode, Partial<Record<number, BeatmapsetDiscussionJson>>>>;
   countsByBeatmap: Partial<Record<number, number>>;
   countsByPlaymode: Partial<Record<GameMode, number>>;
   general: BeatmapsetDiscussionJson[];
@@ -18,11 +19,4 @@ export default interface CurrentDiscussions {
   timelineAllUsers: BeatmapsetDiscussionJson[];
   totalHype: number;
   unresolvedIssues: number;
-}
-
-interface DiscussionByFilter {
-  general: Partial<Record<number, BeatmapsetDiscussionJson>>;
-  generalAll: Partial<Record<number, BeatmapsetDiscussionJson>>;
-  reviews: Partial<Record<number, BeatmapsetDiscussionJson>>;
-  timeline: Partial<Record<number, BeatmapsetDiscussionJson>>;
 }
