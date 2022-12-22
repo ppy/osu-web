@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 /**
  * @property bool $concluded
  * @property string $name
+ * @property-read Collection<Multiplayer\Room> $rooms
  */
 class Season extends Model
 {
