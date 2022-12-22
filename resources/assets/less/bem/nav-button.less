@@ -25,12 +25,6 @@
     padding: 7px 10px;
   }
 
-  &--social {
-    &:hover {
-      color: hsl(var(--hsl-c1));
-    }
-  }
-
   &--support {
     &:hover {
       color: @pink;
@@ -39,7 +33,8 @@
 
   &--twitter {
     &:hover {
-      color: @twitter-colour;
+      // twitter blue doesn't work with coloured background
+      color: hsl(var(--hsl-c1));
     }
   }
 }
