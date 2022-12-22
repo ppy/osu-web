@@ -63,7 +63,7 @@ export function transChoice(key: string, count: number, replacements: Replacemen
   replacements.count_delimited = formatNumber(count, undefined, undefined, locale);
   const translated = window.Lang.choice(key, count, replacements, locale);
 
-  if (!isFallbackLocale && translated != null) {
+  if (!isFallbackLocale && translated == null) {
     delete replacements.count;
     return transChoice(key, count, replacements, fallbackLocale);
   }
