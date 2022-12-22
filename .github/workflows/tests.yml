@@ -123,7 +123,7 @@ jobs:
       - name: Set php version
         uses: shivammathur/setup-php@v2
         with:
-          extensions: redis
+          extensions: redis, swoole
           tools: composer:v2
           php-version: ${{ matrix.php }}
 

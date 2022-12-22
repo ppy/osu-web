@@ -130,7 +130,7 @@ Dusk tests can make use of an external Chrome driver instance by setting the fol
 
 e.g. If Docker Desktop and the default networking are used and `chromedriver` is running on the host:
 
-    docker compose run --rm -e DUSK_WEBDRIVER_URL=host.docker.internal:9515 APP_URL=http://127.0.0.1:8080 php test browser
+    docker compose run --rm -e DUSK_WEBDRIVER_URL=host.docker.internal:9515 -e APP_URL=http://127.0.0.1:8080 php test browser
 
 The host `chromedriver` will need to allow connections from the container:
 
