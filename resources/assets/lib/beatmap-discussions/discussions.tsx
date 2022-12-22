@@ -165,8 +165,6 @@ export class Discussions extends React.Component<Props> {
   };
 
   private readonly renderDiscussionPage = (discussion: BeatmapsetDiscussionJsonForShow) => {
-    if (discussion.id == null) return null; // TODO: does this still happen?
-
     const visible = this.props.currentDiscussions.byFilter[this.props.currentFilter][this.props.mode][discussion.id] != null;
 
     if (!visible) return null;
