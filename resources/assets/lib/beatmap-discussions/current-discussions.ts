@@ -9,8 +9,8 @@ export type Filter = 'deleted' | 'hype' | 'mapperNotes' | 'mine' | 'pending' | '
 // TODO: move to store/context
 export default interface CurrentDiscussions {
   byFilter: Record<Filter, DiscussionByFilter>;
-  countsByBeatmap: Record<number, number>;
-  countsByPlaymode: Record<GameMode, number>;
+  countsByBeatmap: Partial<Record<number, number>>;
+  countsByPlaymode: Partial<Record<GameMode, number>>;
   general: BeatmapsetDiscussionJson[];
   generalAll: BeatmapsetDiscussionJson[];
   reviews: BeatmapsetDiscussionJson[];
@@ -21,8 +21,8 @@ export default interface CurrentDiscussions {
 }
 
 interface DiscussionByFilter {
-  general: Record<number, BeatmapsetDiscussionJson>;
-  generalAll: Record<number, BeatmapsetDiscussionJson>;
-  reviews: Record<number, BeatmapsetDiscussionJson>;
-  timeline: Record<number, BeatmapsetDiscussionJson>;
+  general: Partial<Record<number, BeatmapsetDiscussionJson>>;
+  generalAll: Partial<Record<number, BeatmapsetDiscussionJson>>;
+  reviews: Partial<Record<number, BeatmapsetDiscussionJson>>;
+  timeline: Partial<Record<number, BeatmapsetDiscussionJson>>;
 }
