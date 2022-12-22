@@ -62,11 +62,11 @@ return [
 
         'details' => [
             'by_artist' => 'by :artist',
-            'favourite' => 'Favourite this beatmap',
-            'favourite_login' => 'Sign in to favourite this beatmap',
-            'logged-out' => 'You need to sign in before downloading any beatmaps!',
+            'favourite' => 'favourite this beatmap',
+            'favourite_login' => 'sign in to favourite this beatmap',
+            'logged-out' => 'you need to sign in before downloading any beatmaps!',
             'mapped_by' => 'mapped by :mapper',
-            'unfavourite' => 'Unfavourite this beatmap',
+            'unfavourite' => 'unfavourite this beatmap',
             'updated_timeago' => 'last updated :timeago',
 
             'download' => [

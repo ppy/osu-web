@@ -49,7 +49,7 @@ return [
 
     'card' => [
         'loading' => 'Loading...',
-        'send_message' => 'Send message',
+        'send_message' => 'send message',
     ],
 
     'disabled' => [
@@ -398,7 +398,7 @@ return [
             'title' => 'User not found! ;_;',
         ],
         'page' => [
-            'button' => 'Edit profile page',
+            'button' => 'edit profile page',
             'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
             'edit_big' => 'Edit me!',
             'placeholder' => 'Type page content here',
@@ -422,7 +422,7 @@ return [
         'stats' => [
             'hit_accuracy' => 'Hit Accuracy',
             'level' => 'Level :level',
-            'level_progress' => 'Progress to next level',
+            'level_progress' => 'progress to next level',
             'maximum_combo' => 'Maximum Combo',
             'medals' => 'Medals',
             'play_count' => 'Play Count',
