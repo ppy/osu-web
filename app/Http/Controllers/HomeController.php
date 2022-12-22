@@ -72,19 +72,18 @@ class HomeController extends Controller
         }
         $agent = new Agent($httpHeaders);
 
-        if ($agent->is('Windows')) {
-            $platform = 'windows_x64';
-        } elseif ($agent->isiOS() || $agent->isiPadOS()) {
-            $platform = 'ios';
-        } elseif ($agent->is('OS X')) {
-            // FIXME: figure out a way to differentiate Intel and Apple Silicon
-            $platform = 'macos_as';
-        } elseif ($agent->is('Linux')) {
-            $platform = 'linux_x64';
-        } elseif ($agent->isAndroidOS()) {
-            $platform = 'android';
-        }
-        $platform ??= 'windows_x64';
+        $platform = match (true) {
+            // Try matching most likely platform first
+            $agent->is('Windows') => 'windows_x64',
+            // iPadOS detection apparently doesn't work on newer version
+            // and detected as macOS instead.
+            ($agent->isiOS() || $agent->isiPadOS()) => $platform = 'ios',
+            // FIXME: Figure out a way to differentiate Intel and Apple Silicon.
+            $agent->is('OS X') => 'macos_as',
+            $agent->is('Linux') => 'linux_x64',
+            $agent->isAndroidOS() => 'android',
+            default => 'windows_x64',
+        };
 
         return ext_view('home.download', [
             'lazerUrl' => config("osu.urls.lazer_dl.{$platform}"),
