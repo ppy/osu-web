@@ -49,7 +49,7 @@ const sortPresets = {
   updated_at: {
     sort(a: BeatmapsetDiscussionJson, b: BeatmapsetDiscussionJson) {
       return a.last_post_at === b.last_post_at
-        ?  b.id - a.id
+        ? b.id - a.id
         : Date.parse(b.last_post_at) - Date.parse(a.last_post_at);
     },
     text: trans('beatmaps.discussions.sort.updated_at'),
