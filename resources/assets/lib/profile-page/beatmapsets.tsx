@@ -34,6 +34,10 @@ const sectionKeys = [
     key: 'graveyard',
     urlType: 'graveyardBeatmapsets',
   },
+  {
+    key: 'nominated',
+    urlType: 'nominatedBeatmapsets',
+  },
 ] as const;
 
 @observer

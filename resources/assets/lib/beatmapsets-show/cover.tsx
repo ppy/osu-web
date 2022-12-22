@@ -6,6 +6,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 import Controller from './controller';
 
 interface Props {
@@ -35,12 +36,12 @@ export default class Cover extends React.Component<Props> {
                 '--colour': `var(--beatmapset-${this.props.controller.currentBeatmap.status}-colour)`,
               } as React.CSSProperties}
             >
-              {osu.trans(`beatmapsets.show.status.${this.props.controller.currentBeatmap.status}`)}
+              {trans(`beatmapsets.show.status.${this.props.controller.currentBeatmap.status}`)}
             </div>
 
             {this.props.controller.beatmapset.nsfw && (
               <div className='beatmapset-badge beatmapset-badge--cover beatmapset-badge--nsfw'>
-                {osu.trans('beatmapsets.nsfw_badge.label')}
+                {trans('beatmapsets.nsfw_badge.label')}
               </div>
             )}
           </div>
@@ -49,7 +50,7 @@ export default class Cover extends React.Component<Props> {
             {this.props.controller.beatmapset.storyboard && (
               <div
                 className='beatmapset-status beatmapset-status--show-icon'
-                title={osu.trans('beatmapsets.show.info.storyboard')}
+                title={trans('beatmapsets.show.info.storyboard')}
               >
                 <i className='fas fa-image' />
               </div>
@@ -68,7 +69,7 @@ export default class Cover extends React.Component<Props> {
             <button
               className='beatmapset-page-cover__preview beatmapset-page-cover__preview--circle'
               onClick={this.toggleExpand}
-              title={osu.trans(`common.buttons.${expanded ? 'collapse' : 'expand'}`)}
+              title={trans(`common.buttons.${expanded ? 'collapse' : 'expand'}`)}
             >
               <span className={`fas fa-chevron-${expanded ? 'up' : 'down'}`} />
             </button>

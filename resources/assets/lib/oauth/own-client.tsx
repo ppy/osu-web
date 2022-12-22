@@ -7,6 +7,7 @@ import { OwnClient as Client } from 'models/oauth/own-client';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
+import { trans } from 'utils/lang';
 
 const uiState = core.dataStore.uiState;
 
@@ -17,7 +18,7 @@ interface Props {
 @observer
 export class OwnClient extends React.Component<Props> {
   deleteClicked = () => {
-    if (!confirm(osu.trans('oauth.own_clients.confirm_delete'))) return;
+    if (!confirm(trans('oauth.own_clients.confirm_delete'))) return;
 
     this.props.client.delete().fail(onError);
   };
@@ -39,7 +40,7 @@ export class OwnClient extends React.Component<Props> {
             props={{
               onClick: this.showClientDetails,
             }}
-            text={osu.trans('common.buttons.edit')}
+            text={trans('common.buttons.edit')}
           />
           <BigButton
             disabled={client.isRevoking || client.revoked}
@@ -49,7 +50,7 @@ export class OwnClient extends React.Component<Props> {
             props={{
               onClick: this.deleteClicked,
             }}
-            text={osu.trans(`oauth.own_clients.revoked.${client.revoked}`)}
+            text={trans(`oauth.own_clients.revoked.${client.revoked}`)}
           />
         </div>
       </div>

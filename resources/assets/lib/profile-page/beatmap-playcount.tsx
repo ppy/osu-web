@@ -9,6 +9,7 @@ import GameMode from 'interfaces/game-mode';
 import * as React from 'react';
 import { getArtist, getTitle } from 'utils/beatmap-helper';
 import { formatNumber } from 'utils/html';
+import { trans } from 'utils/lang';
 import { beatmapUrl } from 'utils/url';
 
 const bn = 'beatmap-playcount';
@@ -43,7 +44,7 @@ export default class BeatmapPlaycount extends React.PureComponent<Props> {
               <a className={`${bn}__title`} href={url}>
                 {`${getTitle(beatmapset)} [${beatmap.version}] `}
                 <span className={`${bn}__title-artist`}>
-                  {osu.trans('users.show.extra.beatmaps.by_artist', { artist: getArtist(beatmapset) })}
+                  {trans('users.show.extra.beatmaps.by_artist', { artist: getArtist(beatmapset) })}
                 </span>
               </a>
             </div>
@@ -53,7 +54,7 @@ export default class BeatmapPlaycount extends React.PureComponent<Props> {
                   mappings={{
                     artist: <strong>{getArtist(beatmapset)}</strong>,
                   }}
-                  pattern={osu.trans('users.show.extra.beatmaps.by_artist')}
+                  pattern={trans('users.show.extra.beatmaps.by_artist')}
                 />
               </span>
               {' ' /* separator for overflow tooltip */}
@@ -70,7 +71,7 @@ export default class BeatmapPlaycount extends React.PureComponent<Props> {
                       />
                     ),
                   }}
-                  pattern={osu.trans('beatmapsets.show.details.mapped_by')}
+                  pattern={trans('beatmapsets.show.details.mapped_by')}
                 />
               </span>
             </div>
@@ -88,7 +89,7 @@ export default class BeatmapPlaycount extends React.PureComponent<Props> {
     return (
       <div
         className={`${bn}__count`}
-        title={osu.trans('users.show.extra.historical.most_played.count')}
+        title={trans('users.show.extra.historical.most_played.count')}
       >
         <span className={`${bn}__count-icon`}>
           <span className='fas fa-play' />

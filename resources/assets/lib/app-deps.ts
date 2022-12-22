@@ -20,6 +20,8 @@ import Lang from 'lang.js';
 import { configure as mobxConfigure } from 'mobx';
 import * as moment from 'moment';
 import Turbolinks from 'turbolinks';
+import { popup } from 'utils/popup';
+import { reloadPage } from 'utils/turbolinks';
 
 interface SharedStyles {
   header: {
@@ -29,9 +31,22 @@ interface SharedStyles {
   };
 }
 
+// partial qtip2 typings
+interface QTip2 {
+  (...args: unknown[]): any;
+  (method: 'api'): QTip2Api | undefined;
+}
+
+interface QTip2Api {
+  destroy(immediate?: boolean): QTip2Api;
+  hide(): QTip2Api;
+  set(...args: unknown[]): QTip2Api;
+  tooltip?: HTMLElement;
+}
+
 declare global {
   interface JQuery {
-    qtip(...args: any): any;
+    qtip: QTip2;
   }
 
   interface HTMLElement {
@@ -43,11 +58,14 @@ declare global {
     _styles: SharedStyles;
     currentLocale: string;
     currentUser: CurrentUserJson | { id: undefined };
+    experimentalHost: string | null;
     fallbackLocale: string;
     jQuery: any;
     Lang: Lang;
     LangMessages: unknown;
     moment: any;
+    popup: typeof popup;
+    reloadPage: typeof reloadPage;
     Turbolinks: Turbolinks;
   }
 }
@@ -61,6 +79,8 @@ window.Lang = patchPluralHandler(new Lang({
   messages: window.LangMessages,
 }));
 window.moment = moment;
+window.popup = popup;
+window.reloadPage = reloadPage;
 window.Turbolinks = Turbolinks;
 
 // refer to variables.less

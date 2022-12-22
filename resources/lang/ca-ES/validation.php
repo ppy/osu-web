@@ -4,6 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'mixture' => '',
-    'required' => '',
+    'mixture' => ':attribute falta el número o la lletra',
+    'required' => ':attribute és obligatori',
 ];

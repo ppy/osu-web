@@ -8,6 +8,7 @@ import { SoloScoreJsonForShow } from 'interfaces/solo-score-json';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { rulesetName } from 'utils/beatmap-helper';
+import { trans } from 'utils/lang';
 import { canBeReported, hasReplay, scoreDownloadUrl } from 'utils/score-helper';
 
 interface Props {
@@ -35,7 +36,7 @@ export default function Buttons(props: Props) {
           data-turbolinks={false}
           href={scoreDownloadUrl(props.score)}
         >
-          {osu.trans('users.show.extra.top_ranks.download_replay')}
+          {trans('users.show.extra.top_ranks.download_replay')}
         </a>
       )}
 
@@ -53,11 +54,10 @@ export default function Buttons(props: Props) {
                 }
                 {visibleMenuItems.has('report') &&
                   <ReportReportable
-                    baseKey='scores'
                     className='simple-menu__item'
-                    onFormClose={dismiss}
+                    onFormOpen={dismiss}
                     reportableId={(props.score.best_id ?? props.score.id).toString()}
-                    reportableType={props.score.best_id == null ? props.score.type : `score_best_${ruleset}`}
+                    reportableType={props.score.type === 'solo_score' ? props.score.type : `score_best_${ruleset}`}
                     user={props.score.user}
                   />
                 }

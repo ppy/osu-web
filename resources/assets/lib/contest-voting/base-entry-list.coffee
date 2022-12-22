@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { button, span } from 'react-dom-factories'
+import { trans } from 'utils/lang'
 import { nextVal } from 'utils/seq'
 
 export class BaseEntryList extends React.Component
@@ -58,7 +59,7 @@ export class BaseEntryList extends React.Component
       onClick: @onToggleShowVotedOnlyClick
       span className: 'btn-osu-big__icon-inline btn-osu-big__icon-inline--left',
         span className: if @state.showVotedOnly then 'fas fa-check-square' else 'far fa-square'
-      osu.trans('contest.voting.show_voted_only')
+      trans('contest.voting.show_voted_only')
 
 
   onToggleShowVotedOnlyClick: =>

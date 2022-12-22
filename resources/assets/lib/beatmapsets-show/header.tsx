@@ -8,6 +8,7 @@ import { route } from 'laroute';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { getArtist, getTitle } from 'utils/beatmap-helper';
+import { trans } from 'utils/lang';
 import BeatmapPicker from './beatmap-picker';
 import Controller from './controller';
 
@@ -32,12 +33,12 @@ export default class Header extends React.Component<Props> {
               '--colour': `var(--beatmapset-${this.controller.currentBeatmap.status}-colour)`,
             } as React.CSSProperties}
           >
-            {osu.trans(`beatmapsets.show.status.${this.controller.currentBeatmap.status}`)}
+            {trans(`beatmapsets.show.status.${this.controller.currentBeatmap.status}`)}
           </div>
 
           {this.controller.beatmapset.nsfw && (
             <div className='beatmapset-badge beatmapset-badge--header beatmapset-badge--nsfw'>
-              {osu.trans('beatmapsets.nsfw_badge.label')}
+              {trans('beatmapsets.nsfw_badge.label')}
             </div>
           )}
         </div>
@@ -63,7 +64,7 @@ export default class Header extends React.Component<Props> {
                     {getArtist(this.controller.beatmapset)}
                   </a>,
               }}
-              pattern={osu.trans('beatmapsets.show.details.by_artist')}
+              pattern={trans('beatmapsets.show.details.by_artist')}
             />
           </div>
         </div>
@@ -76,7 +77,7 @@ export default class Header extends React.Component<Props> {
                   user={{ id: this.controller.beatmapset.user_id, username: this.controller.beatmapset.creator }}
                 />,
             }}
-            pattern={osu.trans('beatmapsets.show.details.created_by')}
+            pattern={trans('beatmapsets.show.details.created_by')}
           />
         </div>
 

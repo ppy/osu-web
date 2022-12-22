@@ -31,6 +31,7 @@ return [
         'cart_problems_edit' => 'Кликнете тук, за да го редактирате.',
         'declined' => 'Плащането е отменено.',
         'delayed_shipping' => 'В момента сме затрупани с поръчки! Добре дошли сте да пуснете вашата поръчка, но очаквайте **допълнително 1-2 седмици закъснение**, докато наваксаме с вече съществуващите поръчки.',
+        'hide_from_activity' => '',
         'old_cart' => 'Вашата количка изглежда е с изтекъл срок и бе възобновена, моля опитайте отново.',
         'pay' => 'Плащане с PayPal',
         'title_compact' => 'разплащане',
@@ -50,6 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Вие заплатихте чрез eCheck, което може да отнеме до 10 дена от страна на PayPal за потвърждение на плащането!',
+        'hide_from_activity' => '',
         'title_compact' => 'фактура',
 
         'status' => [
@@ -75,10 +77,15 @@ return [
         'shopify_expired' => 'Връзката за тази поръчката изтече.',
 
         'item' => [
+            'quantity' => 'Количество',
+
             'display_name' => [
                 'supporter_tag' => ':name за :username (:duration)',
             ],
-            'quantity' => 'Количество',
+
+            'subtext' => [
+                'supporter_tag' => '',
+            ],
         ],
 
         'not_modifiable_exception' => [
@@ -120,6 +127,8 @@ return [
 
     'supporter_tag' => [
         'gift' => 'подари на играч',
+        'gift_message' => '',
+
         'require_login' => [
             '_' => 'Моля, :link, за да закупите osu!supporter !',
             'link_text' => 'влез в профила си',

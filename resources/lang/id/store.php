@@ -31,6 +31,7 @@ return [
         'cart_problems_edit' => 'Klik di sini untuk menyuntingnya.',
         'declined' => 'Pembayaran dibatalkan.',
         'delayed_shipping' => 'Kami sedang kebanjiran pesanan! Apabila Anda memesan sekarang, harap beri kami waktu tambahan **selama 1-2 minggu** untuk memproses pesanan Anda karena kami saat ini masih harus mengurus berbagai pesanan yang telah kami terima sebelumnya.',
+        'hide_from_activity' => '',
         'old_cart' => 'Keranjang Anda nampaknya sudah kedaluwarsa dan telah dimuat ulang, silakan coba lagi.',
         'pay' => 'Checkout melalui Paypal',
         'title_compact' => 'checkout',
@@ -50,6 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Berhubung pembayaran Anda berupa eCheck, mohon tunggu hingga setidaknya 10 hari agar pembayaran Anda dapat diproses oleh PayPal!',
+        'hide_from_activity' => '',
         'title_compact' => 'faktur',
 
         'status' => [
@@ -75,10 +77,15 @@ return [
         'shopify_expired' => 'Tautan checkout untuk pesanan ini telah kadaluarsa.',
 
         'item' => [
+            'quantity' => 'Jumlah',
+
             'display_name' => [
                 'supporter_tag' => ':name untuk :username (:duration)',
             ],
-            'quantity' => 'Jumlah',
+
+            'subtext' => [
+                'supporter_tag' => '',
+            ],
         ],
 
         'not_modifiable_exception' => [
@@ -120,6 +127,8 @@ return [
 
     'supporter_tag' => [
         'gift' => 'hadiahkan ke pengguna lain',
+        'gift_message' => '',
+
         'require_login' => [
             '_' => 'Anda harus :link untuk dapat menerima osu!supporter tag!',
             'link_text' => 'masuk',

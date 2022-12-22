@@ -13,6 +13,7 @@ import * as React from 'react';
 import { format, previewMessage } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
+import { trans, transArray } from 'utils/lang';
 import { linkHtml } from 'utils/url';
 
 export type EventViewMode = 'discussions' | 'profile' | 'list';
@@ -120,7 +121,7 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
     if (this.discussionId != null) {
       if (this.discussion == null) {
         url = route('beatmapsets.discussions.show', { discussion: this.discussionId });
-        text = osu.trans('beatmapset_events.item.discussion_deleted');
+        text = trans('beatmapset_events.item.discussion_deleted');
       } else {
         const firstPostMessage = this.firstPost?.message;
         url = BeatmapDiscussionHelper.url({ discussion: this.discussion });
@@ -180,8 +181,8 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
         const modes = this.props.event.comment?.modes;
         if (modes != null && modes.length > 0) {
           eventType = 'nominate_modes';
-          const nominationModes = modes.map((mode) => osu.trans(`beatmaps.mode.${mode}`));
-          params.modes = osu.transArray(nominationModes);
+          const nominationModes = modes.map((mode) => trans(`beatmaps.mode.${mode}`));
+          params.modes = transArray(nominationModes);
         }
         break;
       }
@@ -213,11 +214,11 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
     }
 
     const key = `beatmapset_events.event.${eventType}`;
-    let message = osu.trans(key, params);
+    let message = trans(key, params);
 
     // append owner of the event if not already included in main message
     // naive check; we don't use anything other than :user
-    if (user != null && !osu.trans(key).includes(':user')) {
+    if (user != null && !trans(key).includes(':user')) {
       message += ` (${user})`;
     }
 

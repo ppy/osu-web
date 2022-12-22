@@ -3,6 +3,7 @@
 
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 
 interface Props {
   currentPage: string;
@@ -15,7 +16,7 @@ export default function ProfilePageExtraTab(props: Props) {
     'profile-page',
     { 'is-active': props.page === props.currentPage },
   );
-  const title = osu.trans(`users.show.extra.${props.page}.title`);
+  const title = trans(`users.show.extra.${props.page}.title`);
 
   return (
     <span className={blockClass}>

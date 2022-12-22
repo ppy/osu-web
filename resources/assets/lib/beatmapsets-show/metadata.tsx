@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { Modal } from 'components/modal';
+import Modal from 'components/modal';
 import TimeWithTooltip from 'components/time-with-tooltip';
 import { UserLink } from 'components/user-link';
 import UserJson from 'interfaces/user-json';
@@ -10,6 +10,7 @@ import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as moment from 'moment';
 import * as React from 'react';
+import { trans } from 'utils/lang';
 import Controller from './controller';
 import MetadataEditor from './metadata-editor';
 
@@ -52,7 +53,7 @@ export default class Metadata extends React.PureComponent<Props> {
     return (
       <div className='beatmapset-metadata u-fancy-scrollbar'>
         {this.isEditing && (
-          <Modal onClose={this.toggleEditing} visible>
+          <Modal onClose={this.toggleEditing}>
             <MetadataEditor controller={this.props.controller} onClose={this.toggleEditing} />
           </Modal>
         )}
@@ -60,7 +61,7 @@ export default class Metadata extends React.PureComponent<Props> {
         {this.beatmapset.source !== '' && (
           <>
             <div>
-              {osu.trans('beatmapsets.show.info.source')}
+              {trans('beatmapsets.show.info.source')}
             </div>
             <div className='beatmapset-metadata__value'>
               <a href={route('beatmapsets.index', { q: this.beatmapset.source })}>
@@ -71,7 +72,7 @@ export default class Metadata extends React.PureComponent<Props> {
         )}
 
         <div>
-          {osu.trans('beatmapsets.show.info.genre')}
+          {trans('beatmapsets.show.info.genre')}
         </div>
         <div className='beatmapset-metadata__value'>
           <a href={route('beatmapsets.index', { g: this.beatmapset.genre.id })}>
@@ -82,7 +83,7 @@ export default class Metadata extends React.PureComponent<Props> {
         <div className='beatmapset-metadata__spacer' />
 
         <div>
-          {osu.trans('beatmapsets.show.info.language')}
+          {trans('beatmapsets.show.info.language')}
         </div>
         <div className='beatmapset-metadata__value'>
           <a href={route('beatmapsets.index', { l: this.beatmapset.language.id })}>
@@ -93,7 +94,7 @@ export default class Metadata extends React.PureComponent<Props> {
         {tags.length > 0 && (
           <>
             <div>
-              {osu.trans('beatmapsets.show.info.tags')}
+              {trans('beatmapsets.show.info.tags')}
             </div>
             <div className='beatmapset-metadata__value beatmapset-metadata__value--tags'>
               {tags.map((tag, idx) => (
@@ -113,7 +114,7 @@ export default class Metadata extends React.PureComponent<Props> {
         {nominators != null && nominators.length > 0 && (
           <>
             <div>
-              {osu.trans('beatmapsets.show.info.nominators')}
+              {trans('beatmapsets.show.info.nominators')}
             </div>
             <div className='beatmapset-metadata__value'>
               {nominators.map((nominator, idx) => (
@@ -129,7 +130,7 @@ export default class Metadata extends React.PureComponent<Props> {
         {this.beatmapset.submitted_date != null && (
           <>
             <div>
-              {osu.trans('beatmapsets.show.info.submitted')}
+              {trans('beatmapsets.show.info.submitted')}
             </div>
             <div className='beatmapset-metadata__value'>
               {this.renderDate(this.beatmapset.submitted_date)}
@@ -140,7 +141,7 @@ export default class Metadata extends React.PureComponent<Props> {
         {this.beatmapset.ranked > 0 && this.beatmapset.ranked_date != null ? (
           <>
             <div>
-              {osu.trans(`beatmapsets.show.info.${this.beatmapset.status}`)}
+              {trans(`beatmapsets.show.info.${this.beatmapset.status}`)}
             </div>
             <div className='beatmapset-metadata__value'>
               {this.renderDate(this.beatmapset.ranked_date)}
@@ -149,7 +150,7 @@ export default class Metadata extends React.PureComponent<Props> {
         ) : (
           <>
             <div>
-              {osu.trans('beatmapsets.show.info.updated')}
+              {trans('beatmapsets.show.info.updated')}
             </div>
             <div className='beatmapset-metadata__value'>
               {this.renderDate(this.beatmapset.last_updated)}

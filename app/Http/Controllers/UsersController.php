@@ -53,6 +53,7 @@ class UsersController extends Controller
         'graveyardBeatmapsets' => 2,
         'guestBeatmapsets' => 6,
         'lovedBeatmapsets' => 6,
+        'nominatedBeatmapsets' => 6,
         'pendingBeatmapsets' => 6,
         'rankedBeatmapsets' => 6,
 
@@ -155,6 +156,7 @@ class UsersController extends Controller
                     'graveyard' => $this->getExtraSection('graveyardBeatmapsets', $this->user->profileBeatmapsetCountByGroupedStatus('graveyard')),
                     'guest' => $this->getExtraSection('guestBeatmapsets', $this->user->profileBeatmapsetsGuest()->count()),
                     'loved' => $this->getExtraSection('lovedBeatmapsets', $this->user->profileBeatmapsetCountByGroupedStatus('loved')),
+                    'nominated' => $this->getExtraSection('nominatedBeatmapsets', $this->user->profileBeatmapsetsNominated()->count()),
                     'ranked' => $this->getExtraSection('rankedBeatmapsets', $this->user->profileBeatmapsetCountByGroupedStatus('ranked')),
                     'pending' => $this->getExtraSection('pendingBeatmapsets', $this->user->profileBeatmapsetCountByGroupedStatus('pending')),
                 ];
@@ -304,6 +306,7 @@ class UsersController extends Controller
             'guest' => 'guestBeatmapsets',
             'loved' => 'lovedBeatmapsets',
             'most_played' => 'beatmapPlaycounts',
+            'nominated' => 'nominatedBeatmapsets',
             'ranked' => 'rankedBeatmapsets',
             'pending' => 'pendingBeatmapsets',
 
@@ -742,6 +745,12 @@ class UsersController extends Controller
                 $query = $this->user->profileBeatmapsetsLoved()
                     ->orderBy('approved_date', 'desc');
                 break;
+            case 'nominatedBeatmapsets':
+                $transformer = 'Beatmapset';
+                $includes = ['beatmaps'];
+                $query = $this->user->profileBeatmapsetsNominated()
+                    ->orderBy('approved_date', 'desc');
+                break;
             case 'rankedBeatmapsets':
                 $transformer = 'Beatmapset';
                 $includes = ['beatmaps'];
@@ -864,6 +873,7 @@ class UsersController extends Controller
             'graveyard_beatmapset_count',
             'guest_beatmapset_count',
             'loved_beatmapset_count',
+            'nominated_beatmapset_count',
             'pending_beatmapset_count',
             'ranked_beatmapset_count',
 

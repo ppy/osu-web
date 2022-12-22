@@ -4,7 +4,7 @@
 import { presence, present } from 'utils/string';
 
 describe('utils/string', () => {
-  describe('presence', () => {
+  describe('.presence', () => {
     it('check for non empty string', () => {
       expect(presence('test')).toBe('test');
     });
@@ -22,7 +22,7 @@ describe('utils/string', () => {
     });
   });
 
-  describe('present', () => {
+  describe('.present', () => {
     it('check for non empty string', () => {
       expect(present('test')).toBe(true);
     });
@@ -37,6 +37,12 @@ describe('utils/string', () => {
 
     it('check for undefined', () => {
       expect(present()).toBe(false);
+    });
+  });
+
+  describe('locale file loaded in test runner', () => {
+    it('should be loaded', () => {
+      expect(window.Lang.has('common.confirmation')).toBe(true);
     });
   });
 });

@@ -7,6 +7,7 @@ import { route } from 'laroute';
 import * as React from 'react';
 import { getArtist, getTitle } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 
 export default function Beatmapset({ beatmapset, modifiers = [] }: { beatmapset: BeatmapsetJson; modifiers?: string[] }) {
   const url = route('beatmapsets.show', { beatmapset: beatmapset.id });
@@ -18,12 +19,12 @@ export default function Beatmapset({ beatmapset, modifiers = [] }: { beatmapset:
         <div className='beatmapset-search-card__title'>
           {`${getTitle(beatmapset)} `}
           <span className='beatmapset-search-card__title-artist'>
-            {osu.trans('users.show.extra.beatmaps.by_artist', { artist: getArtist(beatmapset) })}
+            {trans('users.show.extra.beatmaps.by_artist', { artist: getArtist(beatmapset) })}
           </span>
         </div>
 
         <div className='beatmapset-search-card__extra'>
-          {osu.trans('beatmapsets.show.details.mapped_by', { mapper: beatmapset.creator })}
+          {trans('beatmapsets.show.details.mapped_by', { mapper: beatmapset.creator })}
         </div>
       </div>
     </a>

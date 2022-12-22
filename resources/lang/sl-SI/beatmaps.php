@@ -91,7 +91,7 @@ return [
 
         'new' => [
             'pin' => 'Pripni',
-            'timestamp' => 'Časonvna oznaka',
+            'timestamp' => 'Časovna oznaka',
             'timestamp_missing' => 'Za časovno oznako pritisni ctrl-c v načinu urejanja in prilepi svoje sporočilo!',
             'title' => 'Nova razprava',
             'unpin' => 'Odpni',
@@ -118,7 +118,7 @@ return [
         ],
 
         'show' => [
-            'title' => '',
+            'title' => ':title mappal :mapper',
         ],
 
         'sort' => [
@@ -255,7 +255,7 @@ return [
     'general' => [
         'converts' => 'Vključi pretvorjene beatmape',
         'featured_artists' => 'Priznani ustvarjalci',
-        'follows' => '',
+        'follows' => 'Naročeni mapperji',
         'recommended' => 'Priporočena težavnost',
         'spotlights' => 'Beatmapa v središču pozornosti',
     ],

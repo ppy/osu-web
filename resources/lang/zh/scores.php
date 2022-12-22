@@ -16,7 +16,7 @@ return [
             'submitted_on' => '达成时间',
 
             'rank' => [
-                'country' => '国内/区内排名',
+                'country' => '地区排名',
                 'global' => '全球排名',
             ],
         ],

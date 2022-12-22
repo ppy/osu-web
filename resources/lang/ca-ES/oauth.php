@@ -4,58 +4,58 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'cancel' => '',
+    'cancel' => 'Cancel·lar',
 
     'authorise' => [
-        'request' => '',
-        'scopes_title' => '',
-        'title' => '',
+        'request' => 'està sol·licitant permís per accedir al vostre compte.',
+        'scopes_title' => 'Aquesta aplicació serà capaç de:',
+        'title' => 'Sol·licitud d\'autorització',
     ],
 
     'authorized_clients' => [
-        'confirm_revoke' => '',
-        'scopes_title' => '',
-        'owned_by' => '',
-        'none' => '',
+        'confirm_revoke' => 'Esteu segur que voleu revocar els permisos d\'aquest client?',
+        'scopes_title' => 'Aquesta aplicació pot:',
+        'owned_by' => 'Propietat de :user',
+        'none' => 'Cap client',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Revoca l\'accés',
+            'true' => 'Accés denegat',
         ],
     ],
 
     'client' => [
-        'id' => '',
-        'name' => '',
-        'redirect' => '',
-        'reset' => '',
-        'reset_failed' => '',
-        'secret' => '',
+        'id' => 'ID del client',
+        'name' => 'Nom de l\'aplicació',
+        'redirect' => 'URL de trucada d\'Aplicació',
+        'reset' => 'Restablir secret de client',
+        'reset_failed' => 'No s\'ha pogut restablir el secret de client',
+        'secret' => 'Secret del client',
 
         'secret_visible' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Mostra secret de client',
+            'true' => 'Amaga el secret de client',
         ],
     ],
 
     'new_client' => [
-        'header' => '',
-        'register' => '',
+        'header' => 'Registreu una nova aplicació OAuth',
+        'register' => 'Registre de l\'aplicació',
         'terms_of_use' => [
-            '_' => '',
-            'link' => '',
+            '_' => 'En utilitzar l\'API, vostè accepta els :link.',
+            'link' => 'Condicions d\'ús',
         ],
     ],
 
     'own_clients' => [
-        'confirm_delete' => '',
-        'confirm_reset' => '',
-        'new' => '',
-        'none' => '',
+        'confirm_delete' => 'Esteu segur que voleu eliminar aquest client?',
+        'confirm_reset' => 'Esteu segur que voleu restablir el client secret? Això revocarà tots els tokens existents.',
+        'new' => 'Nova aplicació OAuth',
+        'none' => 'Cap client',
 
         'revoked' => [
-            'false' => '',
-            'true' => '',
+            'false' => 'Eliminar',
+            'true' => 'Eliminat',
         ],
     ],
 ];

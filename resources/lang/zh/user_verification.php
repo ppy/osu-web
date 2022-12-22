@@ -16,7 +16,7 @@ return [
             'recover_link' => '点击此处',
             'reissue' => '也可以 :reissue_link 或者 :logout_link.',
             'reissue_link' => '重发验证码',
-            'logout_link' => '退出',
+            'logout_link' => '登出',
         ],
     ],
 

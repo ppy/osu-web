@@ -7,6 +7,7 @@ import { UserLink } from 'components/user-link';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { formatDuration, formatNumber } from 'utils/html';
+import { trans } from 'utils/lang';
 import Controller from './controller';
 import CountBadge from './count-badge';
 import Extra from './extra';
@@ -34,7 +35,7 @@ export default class Info extends React.Component<Props> {
                 mappings={{
                   mapper: <UserLink user={this.props.controller.mapper(showedBeatmap)} />,
                 }}
-                pattern={osu.trans('beatmapsets.show.details.mapped_by')}
+                pattern={trans('beatmapsets.show.details.mapped_by')}
               />
             </span>
           </div>

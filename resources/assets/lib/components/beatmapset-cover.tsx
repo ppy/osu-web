@@ -6,6 +6,7 @@ import * as React from 'react';
 import { showVisual } from 'utils/beatmapset-helper';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { cssVar2x } from 'utils/html';
+import { trans } from 'utils/lang';
 
 interface PropsWithIsDeleted {
   isDeleted: true;
@@ -31,7 +32,7 @@ export default function BeatmapsetCover(props: Props) {
     return (
       <div
         className={className}
-        title={osu.trans('beatmapsets.cover.deleted')}
+        title={trans('beatmapsets.cover.deleted')}
       >
         <span className='fas fa-trash' />
       </div>

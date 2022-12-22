@@ -31,6 +31,7 @@ return [
         'cart_problems_edit' => 'Кликните овде да би сте изменили.',
         'declined' => 'Плаћање је отказано.',
         'delayed_shipping' => 'Тренутно имамо превише наруџбина! И даље можете поручити, али молимо Вас да очекујете **закашњење од 1-2 недеље** док не прођемо кроз све наруџбине.',
+        'hide_from_activity' => '',
         'old_cart' => 'Изгледа да су ваша колица застарела и поново су учитана, молимо Вас да пробате поново.',
         'pay' => 'Платите преко Paypal-а',
         'title_compact' => 'завршите куповину',
@@ -50,6 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Зато што је Ваша куповина плаћена eCheck-ом, молимо Вас да дозволите до 10 додатних дана док се куповина не потврди преко PayPal-а!',
+        'hide_from_activity' => '',
         'title_compact' => 'рачун',
 
         'status' => [
@@ -75,10 +77,15 @@ return [
         'shopify_expired' => 'Линк за ову наруџбину је истекао.',
 
         'item' => [
+            'quantity' => 'Количина',
+
             'display_name' => [
                 'supporter_tag' => ':name за :username (:duration)',
             ],
-            'quantity' => 'Количина',
+
+            'subtext' => [
+                'supporter_tag' => '',
+            ],
         ],
 
         'not_modifiable_exception' => [
@@ -120,6 +127,8 @@ return [
 
     'supporter_tag' => [
         'gift' => 'поклоните играчу',
+        'gift_message' => '',
+
         'require_login' => [
             '_' => 'Морате бити :link да би сте добили osu!supporter таг!',
             'link_text' => 'пријављени',

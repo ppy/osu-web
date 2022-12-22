@@ -4,6 +4,7 @@
 import { route } from 'laroute';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 
 interface Props {
   currentSubtype: string;
@@ -18,7 +19,7 @@ export default function FollowsSubtypes(props: Props) {
           className={classWithModifiers('page-tabs__tab', { active: t === props.currentSubtype })}
           href={route('follows.index', { subtype: t })}
         >
-          {osu.trans(`follows.${t}.title`)}
+          {trans(`follows.${t}.title`)}
         </a>
       ))}
     </div>

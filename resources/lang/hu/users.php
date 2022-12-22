@@ -217,6 +217,9 @@ return [
                 'loved' => [
                     'title' => 'Szeretett beatmapek',
                 ],
+                'nominated' => [
+                    'title' => '',
+                ],
                 'pending' => [
                     'title' => 'Függő beatmapek',
                 ],

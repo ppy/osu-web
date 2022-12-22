@@ -8,6 +8,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { rulesetName } from 'utils/beatmap-helper';
+import { trans } from 'utils/lang';
 import { canBeReported, hasReplay, hasShow, scoreDownloadUrl, scoreUrl } from 'utils/score-helper';
 import { PopupMenuPersistent } from './popup-menu-persistent';
 import { ReportReportable } from './report-reportable';
@@ -35,7 +36,7 @@ export class PlayDetailMenu extends React.Component<Props> {
 
         {hasShow(score) && (
           <a className='simple-menu__item' href={scoreUrl(score)}>
-            {osu.trans('users.show.extra.top_ranks.view_details')}
+            {trans('users.show.extra.top_ranks.view_details')}
           </a>
         )}
 
@@ -46,16 +47,16 @@ export class PlayDetailMenu extends React.Component<Props> {
             href={scoreDownloadUrl(score)}
             onClick={dismiss}
           >
-            {osu.trans('users.show.extra.top_ranks.download_replay')}
+            {trans('users.show.extra.top_ranks.download_replay')}
           </a>
         )}
 
         {canBeReported(score) && (
           <ReportReportable
-            baseKey='scores'
             className='simple-menu__item'
+            onFormOpen={dismiss}
             reportableId={(score.best_id ?? score.id).toString()}
-            reportableType={score.best_id == null ? score.type : `score_best_${ruleset}`}
+            reportableType={score.type === 'solo_score' ? score.type : `score_best_${ruleset}`}
             user={user}
           />
         )}

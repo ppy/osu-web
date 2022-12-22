@@ -6,6 +6,7 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
+import { trans } from 'utils/lang';
 import Controller from './controller';
 
 interface Props {
@@ -51,7 +52,7 @@ export default class Extra extends React.PureComponent<Props> {
     return (
       <div className='beatmapset-extra'>
         <div className='beatmapset-extra__item'>
-          {osu.trans('beatmapsets.show.info.success-rate')}
+          {trans('beatmapsets.show.info.success-rate')}
         </div>
         <div className='beatmapset-extra__item beatmapset-extra__item--value beatmapset-extra__item--success-rate'>
           {formatNumber(this.successRate, 2)}%
@@ -61,7 +62,7 @@ export default class Extra extends React.PureComponent<Props> {
         </div>
 
         <div className='beatmapset-extra__item'>
-          {osu.trans('beatmapsets.show.stats.user-rating')}
+          {trans('beatmapsets.show.stats.user-rating')}
         </div>
         <div className='beatmapset-extra__item beatmapset-extra__item--value beatmapset-extra__item--user-rating'>
           <div>{this.userRating.negative}</div>
@@ -74,7 +75,7 @@ export default class Extra extends React.PureComponent<Props> {
         {this.beatmapset.is_scoreable && (
           <>
             <div className='beatmapset-extra__item'>
-              {osu.trans('beatmapsets.show.stats.rating-spread')}
+              {trans('beatmapsets.show.stats.rating-spread')}
             </div>
             <div className='beatmapset-extra__item beatmapset-extra__item--chart'>
               {this.renderChart(this.beatmapset.ratings.slice(1))}

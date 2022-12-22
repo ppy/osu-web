@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { emitError } from 'utils/ajax'
+import { reloadPage } from 'utils/turbolinks'
 import { presence, present } from 'utils/string'
 
 export default class ForumTopicTitle
@@ -65,7 +66,7 @@ export default class ForumTopicTitle
         "#{input.name}": newTitle
     .done =>
       # because page title is also changed =D
-      osu.reloadPage()
+      reloadPage()
     .fail (xhr) =>
       input.disabled = false
       @saveButton[0].disabled = false

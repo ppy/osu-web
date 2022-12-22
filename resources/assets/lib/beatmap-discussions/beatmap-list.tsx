@@ -11,8 +11,8 @@ import { deletedUser } from 'models/user';
 import * as React from 'react';
 import { blackoutToggle } from 'utils/blackout';
 import { classWithModifiers, Modifiers } from 'utils/css';
-import { formatNumber } from 'utils/html';
-import { isClickable } from 'utils/html';
+import { formatNumber, isClickable } from 'utils/html';
+import { trans } from 'utils/lang';
 import { nextVal } from 'utils/seq';
 
 interface Props {
@@ -110,7 +110,7 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
                 mappings={{
                   mapper: <UserLink user={this.props.users[beatmap.user_id] ?? deletedUser.toJson()} />,
                 }}
-                pattern={osu.trans('beatmapsets.show.details.mapped_by')}
+                pattern={trans('beatmapsets.show.details.mapped_by')}
               />
             </span>
           </>

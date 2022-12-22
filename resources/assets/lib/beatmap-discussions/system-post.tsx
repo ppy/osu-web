@@ -7,6 +7,7 @@ import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 import { switchNever } from 'utils/switch-never';
 
 interface Props {
@@ -33,7 +34,7 @@ export default function SystemPost({ post, user }: Props) {
               {user.username}
             </a>,
           }}
-          pattern={osu.trans(`beatmap_discussions.system.resolved.${post.message.value}`)}
+          pattern={trans(`beatmap_discussions.system.resolved.${post.message.value}`)}
         />
       </div>
     </div>

@@ -4,6 +4,7 @@
 import BeatmapsetEvent from 'components/beatmapset-event'
 import * as React from 'react'
 import { a, div, li, span, ul } from 'react-dom-factories'
+import { trans } from 'utils/lang'
 el = React.createElement
 
 export class Events extends React.PureComponent
@@ -20,7 +21,7 @@ export class Events extends React.PureComponent
         if _.isEmpty events
           div
             className: 'beatmapset-events__empty'
-            osu.trans('beatmap_discussions.events.empty')
+            trans('beatmap_discussions.events.empty')
         else
           for event in events by -1
             createdAtString = moment(event.created_at).format 'LL'

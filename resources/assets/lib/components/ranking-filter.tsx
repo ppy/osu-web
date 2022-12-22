@@ -6,6 +6,7 @@ import CountryJson from 'interfaces/country-json';
 import GameMode from 'interfaces/game-mode';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { trans } from 'utils/lang';
 import { currentUrlParams, navigate } from 'utils/turbolinks';
 import { updateQueryString } from 'utils/url';
 import { Sort } from './sort';
@@ -19,7 +20,7 @@ interface Props {
   variants?: string[];
 }
 
-const allCountries = { id: null, text: osu.trans('rankings.countries.all') };
+const allCountries = { id: null, text: trans('rankings.countries.all') };
 
 export default class RankingFilter extends React.PureComponent<Props> {
   private countriesSorted?: Required<CountryJson>[];
@@ -34,10 +35,6 @@ export default class RankingFilter extends React.PureComponent<Props> {
         // prioritizes current user's country
         if (core.currentUser?.country_code === a.code) return -1;
         if (core.currentUser?.country_code === b.code) return 1;
-
-        const priority = b.display - a.display;
-
-        if (priority !== 0) return priority;
 
         return a.name.localeCompare(b.name);
       });
@@ -117,7 +114,7 @@ export default class RankingFilter extends React.PureComponent<Props> {
         {core.currentUser != null && (
           <div className='ranking-filter__item'>
             <div className='ranking-filter__item--title'>
-              {osu.trans('rankings.filter.title')}
+              {trans('rankings.filter.title')}
             </div>
             <Sort
               currentValue={this.filterMode ?? 'all'}
@@ -131,7 +128,7 @@ export default class RankingFilter extends React.PureComponent<Props> {
         {this.props.variants != null && (
           <div className='ranking-filter__item'>
             <div className='ranking-filter__item--title'>
-              {osu.trans('rankings.filter.variant.title')}
+              {trans('rankings.filter.variant.title')}
             </div>
             {this.renderVariants()}
           </div>
@@ -146,7 +143,7 @@ export default class RankingFilter extends React.PureComponent<Props> {
     return (
       <>
         <div className='ranking-filter__item--title'>
-          {osu.trans('rankings.countries.title')}
+          {trans('rankings.countries.title')}
         </div>
         <SelectOptions
           bn='ranking-select-options'

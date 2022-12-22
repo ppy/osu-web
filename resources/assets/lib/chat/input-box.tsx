@@ -7,12 +7,13 @@ import BigButton from 'components/big-button';
 import { trim } from 'lodash';
 import { action, autorun, computed, makeObservable, reaction } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
-import { isModalShowing } from 'modal-helper';
 import Message, { maxLength } from 'models/chat/message';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
 import { classWithModifiers } from 'utils/css';
+import { trans } from 'utils/lang';
+import { isModalShowing } from 'utils/modal-helper';
 import { present } from 'utils/string';
 
 type Props = Record<string, never>;
@@ -95,7 +96,7 @@ export default class InputBox extends React.Component<Props> {
   render(): React.ReactNode {
     const channel = this.currentChannel;
     const buttonIcon = core.dataStore.chatState.isReady ? 'fas fa-reply' : 'fas fa-times';
-    const buttonText = osu.trans(core.dataStore.chatState.isReady ? 'chat.input.send' : 'chat.input.disconnected');
+    const buttonText = trans(core.dataStore.chatState.isReady ? 'chat.input.send' : 'chat.input.disconnected');
 
     return (
       <div className='chat-input'>
@@ -109,7 +110,7 @@ export default class InputBox extends React.Component<Props> {
           name='textbox'
           onChange={this.handleChange}
           onKeyDown={this.checkIfEnterPressed}
-          placeholder={this.inputDisabled ? osu.trans('chat.input.disabled') : osu.trans('chat.input.placeholder')}
+          placeholder={this.inputDisabled ? trans('chat.input.disabled') : trans('chat.input.placeholder')}
           value={channel?.inputText}
         />
 

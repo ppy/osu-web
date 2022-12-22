@@ -9,6 +9,7 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import { fileuploadFailCallback } from 'utils/ajax';
 import { classWithModifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 import Controller from './controller';
 import CoverSelection from './cover-selection';
 
@@ -50,7 +51,7 @@ export default class CoverUploader extends React.Component<Props> {
               { disabled: !this.props.controller.canUploadCover },
             )}
           >
-            {osu.trans('users.show.edit.cover.upload.button')}
+            {trans('users.show.edit.cover.upload.button')}
           </label>
         </div>
 
@@ -65,21 +66,21 @@ export default class CoverUploader extends React.Component<Props> {
                       rel="noreferrer"
                       target='_blank'
                     >
-                      {osu.trans('users.show.edit.cover.upload.restriction_info.link')}
+                      {trans('users.show.edit.cover.upload.restriction_info.link')}
                     </a>
                   ),
                 }}
-                pattern={osu.trans('users.show.edit.cover.upload.restriction_info._')}
+                pattern={trans('users.show.edit.cover.upload.restriction_info._')}
               />
             </strong>
           </p>
 
           <p className='profile-cover-uploader__info-entry'>
-            {osu.trans('users.show.edit.cover.upload.dropzone_info')}
+            {trans('users.show.edit.cover.upload.dropzone_info')}
           </p>
 
           <p className='profile-cover-uploader__info-entry'>
-            {osu.trans('users.show.edit.cover.upload.size_info')}
+            {trans('users.show.edit.cover.upload.size_info')}
           </p>
         </div>
       </div>

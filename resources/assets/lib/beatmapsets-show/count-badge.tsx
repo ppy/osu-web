@@ -4,6 +4,7 @@
 import StringWithComponent from 'components/string-with-component';
 import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 
 interface Props {
   data: Partial<Record<string, string>>;
@@ -22,7 +23,7 @@ export default function CountBadge({ data, modifiers }: Props) {
                   {value}
                 </span>,
             }}
-            pattern={osu.trans(`beatmapsets.show.details.${key}`)}
+            pattern={trans(`beatmapsets.show.details.${key}`)}
           />
         </div>
       ))}

@@ -4,6 +4,7 @@
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import HeaderLink from 'interfaces/header-link';
 import { route } from 'laroute';
+import { trans } from 'utils/lang';
 import { switchNever } from 'utils/switch-never';
 
 const linkModes = ['show', 'discussions'] as const;
@@ -28,7 +29,7 @@ function url(mode: LinkMode, beatmapset: BeatmapsetExtendedJson) {
 export default function headerLinks(active: LinkMode, beatmapset: BeatmapsetExtendedJson): HeaderLink[] {
   return linkModes.map((mode) => ({
     active: mode === active,
-    title: osu.trans(`layout.header.beatmapsets.${mode}`),
+    title: trans(`layout.header.beatmapsets.${mode}`),
     url: url(mode, beatmapset),
   }));
 }

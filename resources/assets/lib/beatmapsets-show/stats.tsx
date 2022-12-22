@@ -4,6 +4,7 @@
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
+import { trans } from 'utils/lang';
 import Controller from './controller';
 import CountBadge from './count-badge';
 
@@ -67,7 +68,7 @@ export default class Stats extends React.Component<Props> {
     return (
       <React.Fragment key={key}>
         {addSpacer && <div className='beatmapset-stats__spacer' />}
-        <div>{osu.trans(`beatmapsets.show.stats.${label}`)}</div>
+        <div>{trans(`beatmapsets.show.stats.${label}`)}</div>
         <div className='beatmapset-stats__value'>
           {value}
         </div>

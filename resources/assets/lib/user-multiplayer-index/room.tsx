@@ -13,6 +13,7 @@ import * as moment from 'moment';
 import * as React from 'react';
 import { getDiffColour } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
+import { trans, transChoice } from 'utils/lang';
 import MultiplayerHistoryStore from './multiplayer-history-store';
 
 interface Props {
@@ -59,12 +60,12 @@ export default class Room extends React.Component<Props> {
         {this.renderCover()}
         <div className='multiplayer-room__content'>
           <div className='multiplayer-room__badge-container'>
-            <div className={classWithModifiers('multiplayer-room__badge', [this.status])}>{osu.trans(`multiplayer.room.status.${this.status}`)}</div>
+            <div className={classWithModifiers('multiplayer-room__badge', [this.status])}>{trans(`multiplayer.room.status.${this.status}`)}</div>
             {endsAt != null &&
               <time className='js-tooltip-time u-hover' title={endsAt}>
                 {this.status === 'ended'
                   ? moment(endsAt).fromNow()
-                  : osu.trans('multiplayer.room.time_left', { time: moment(endsAt).fromNow(true) })}
+                  : trans('multiplayer.room.time_left', { time: moment(endsAt).fromNow(true) })}
               </time>
             }
           </div>
@@ -73,7 +74,7 @@ export default class Room extends React.Component<Props> {
             {this.renderMembers()}
           </div>
           <div className='multiplayer-room__badge-container multiplayer-room__badge-container--bottom'>
-            <div className={classWithModifiers('multiplayer-room__badge', ['map-count'])}>{osu.transChoice('multiplayer.room.map_count', this.playlistItemCount)}</div>
+            <div className={classWithModifiers('multiplayer-room__badge', ['map-count'])}>{transChoice('multiplayer.room.map_count', this.playlistItemCount)}</div>
             <div
               className='multiplayer-room__difficulty'
               style={{
@@ -109,7 +110,7 @@ export default class Room extends React.Component<Props> {
       <div className='multiplayer-room__host'>
         <StringWithComponent
           mappings={{ user: <UserLink className='u-hover' user={this.props.room.host} /> }}
-          pattern={osu.trans('multiplayer.room.hosted_by')}
+          pattern={trans('multiplayer.room.hosted_by')}
         />
       </div>
     );
@@ -127,7 +128,7 @@ export default class Room extends React.Component<Props> {
   private renderParticipants() {
     return (
       <div className='multiplayer-room__participants'>
-        {osu.transChoice('multiplayer.room.player_count', this.props.room.participant_count)}
+        {transChoice('multiplayer.room.player_count', this.props.room.participant_count)}
       </div>
     );
   }

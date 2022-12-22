@@ -9,6 +9,7 @@ import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { trans } from 'utils/lang';
 import AchievementBadge from './achievement-badge';
 import ExtraHeader from './extra-header';
 import ExtraPageProps from './extra-page-props';
@@ -130,7 +131,7 @@ export default class Medals extends React.Component<ExtraPageProps> {
             ))}
           </div>
         ) : (
-          osu.trans('users.show.extra.medals.empty')
+          trans('users.show.extra.medals.empty')
         )}
       </div>
     );

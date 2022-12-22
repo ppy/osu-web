@@ -7,6 +7,7 @@ import { route } from 'laroute';
 import modNames from 'mod-names.json';
 import core from 'osu-core-singleton';
 import { rulesetName } from './beatmap-helper';
+import { trans } from './lang';
 
 export function canBeReported(score: SoloScoreJson) {
   return (score.best_id != null || score.type === 'solo_score')
@@ -62,7 +63,7 @@ interface AttributeData {
   label: string;
 }
 
-const labelMiss = osu.trans('beatmapsets.show.scoreboard.headers.miss');
+const labelMiss = trans('beatmapsets.show.scoreboard.headers.miss');
 
 export const modeAttributesMap: Record<GameMode, AttributeData[]> = {
   fruits: [

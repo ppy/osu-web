@@ -8,6 +8,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { toggleFavourite } from 'utils/beatmapset-helper';
 import { formatNumber } from 'utils/html';
+import { trans } from 'utils/lang';
 import { beatmapDownloadDirect } from 'utils/url';
 import BeatmapsetMenu from './beatmapset-menu';
 import Controller from './controller';
@@ -36,8 +37,8 @@ const DownloadButton = ({
       'data-turbolinks': false,
     }}
     text={{
-      bottom: bottomTextKey && osu.trans(`beatmapsets.show.details.download.${bottomTextKey}`),
-      top: osu.trans(`beatmapsets.show.details.download.${topTextKey}`),
+      bottom: bottomTextKey && trans(`beatmapsets.show.details.download.${bottomTextKey}`),
+      top: trans(`beatmapsets.show.details.download.${topTextKey}`),
     }}
   />
 );
@@ -50,7 +51,7 @@ export default class Toolbar extends React.Component<Props> {
         <div className='beatmapset-toolbar__count'>
           <div>
             <div>
-              {osu.trans('beatmapsets.show.details.count.total_play')}
+              {trans('beatmapsets.show.details.count.total_play')}
             </div>
             <div className='beatmapset-toolbar__count-value'>
               {formatNumber(this.props.controller.beatmapset.play_count)}
@@ -59,7 +60,7 @@ export default class Toolbar extends React.Component<Props> {
 
           <div>
             <div>
-              {osu.trans('beatmapsets.show.details.count.diff_play')}
+              {trans('beatmapsets.show.details.count.diff_play')}
             </div>
             <div className='beatmapset-toolbar__count-value'>
               {formatNumber(this.props.controller.currentBeatmap.playcount)}
@@ -125,7 +126,7 @@ export default class Toolbar extends React.Component<Props> {
       <button
         className='btn-osu-big btn-osu-big--beatmapset-favourite btn-osu-big--pink'
         onClick={this.toggleFavourite}
-        title={osu.trans(`beatmapsets.show.details.${button.action}`)}
+        title={trans(`beatmapsets.show.details.${button.action}`)}
       >
         <i className={button.icon} />
         {' '}
@@ -141,8 +142,8 @@ export default class Toolbar extends React.Component<Props> {
           extraClasses={['js-user-link']}
           modifiers='beatmapset-toolbar'
           text={{
-            bottom: osu.trans('beatmapsets.show.details.login_required.bottom'),
-            top: osu.trans('beatmapsets.show.details.login_required.top'),
+            bottom: trans('beatmapsets.show.details.login_required.bottom'),
+            top: trans('beatmapsets.show.details.login_required.top'),
           }}
         />
       );

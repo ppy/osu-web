@@ -13,6 +13,7 @@ import PostItem from 'news-index/post-item';
 import NewsSidebar from 'news-sidebar/main';
 import * as React from 'react';
 import { classWithModifiers, urlPresence } from 'utils/css';
+import { trans } from 'utils/lang';
 
 interface Props {
   container: HTMLElement;
@@ -55,7 +56,7 @@ export default class Main extends React.Component<Props> {
         <NewsHeader
           post={this.props.post}
           section='show'
-          title={osu.trans('news.show.title.info')}
+          title={trans('news.show.title.info')}
         />
 
         <div className='osu-page osu-page--wiki'>
@@ -73,7 +74,7 @@ export default class Main extends React.Component<Props> {
                   <p className='news-show__author'>
                     <StringWithComponent
                       mappings={{ user: <strong>{this.props.post.author}</strong> }}
-                      pattern={osu.trans('news.show.by')}
+                      pattern={trans('news.show.by')}
                     />
                   </p>
                 </div>
@@ -105,7 +106,7 @@ export default class Main extends React.Component<Props> {
               props: {
                 href: this.props.post.edit_url,
               },
-              text: osu.trans('wiki.show.edit.link'),
+              text: trans('wiki.show.edit.link'),
             },
             {
               component: 'button',
@@ -117,7 +118,7 @@ export default class Main extends React.Component<Props> {
                 'data-url': route('news.update', { news: this.props.post.id }),
                 type: 'button',
               },
-              text: osu.trans('news.update.button'),
+              text: trans('news.update.button'),
             },
           ]}
         />
@@ -166,8 +167,8 @@ export default class Main extends React.Component<Props> {
 
     return (
       <>
-        <NavPost modifiers={['next']} post={newerPost} subtitle={osu.trans('news.show.nav.newer')} />
-        <NavPost modifiers={['prev']} post={olderPost} subtitle={osu.trans('news.show.nav.older')} />
+        <NavPost modifiers={['next']} post={newerPost} subtitle={trans('news.show.nav.newer')} />
+        <NavPost modifiers={['prev']} post={olderPost} subtitle={trans('news.show.nav.older')} />
       </>
     );
   };

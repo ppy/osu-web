@@ -12,7 +12,7 @@ return [
     ],
 
     'error' => [
-        'contact_support' => '请联系支持团队以找回账户',
+        'contact_support' => '请联系支持团队以找回账户。',
         'expired' => '验证码已过期。',
         'invalid' => '发送验证码时出现意外错误。',
         'is_privileged' => '联系 peppy（笑）',

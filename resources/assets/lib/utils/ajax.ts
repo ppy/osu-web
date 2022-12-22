@@ -3,6 +3,8 @@
 
 import core from 'osu-core-singleton';
 import { createClickCallback } from 'utils/html';
+import { trans } from 'utils/lang';
+import { popup } from './popup';
 import { present } from './string';
 
 interface UnknownErrorJson {
@@ -22,7 +24,7 @@ export const error = (xhr: JQuery.jqXHR, status: string, callback?: () => void) 
   if (core.userLogin.showOnError(xhr, callback)) return;
   if (core.userVerification.showOnError(xhr, callback)) return;
 
-  osu.popup(xhrErrorMessage(xhr), 'danger');
+  popup(xhrErrorMessage(xhr), 'danger');
 };
 
 export const fileuploadFailCallback = (event: unknown, data: JQueryFileUploadDone) => {
@@ -45,7 +47,7 @@ export const onErrorWithClick = (target: unknown) => onErrorWithCallback(createC
 
 export function xhrErrorMessage(xhr?: JQuery.jqXHR) {
   if (xhr == null || xhr.responseJSON == null) {
-    return osu.trans('errors.unknown');
+    return trans('errors.unknown');
   }
 
   const json = xhr.responseJSON as UnknownErrorJson;
@@ -56,9 +58,9 @@ export function xhrErrorMessage(xhr?: JQuery.jqXHR) {
   let message = json.error ?? json.message ?? '';
   if (!present(message)) {
     const errorKey = `errors.codes.http-${xhr.status}`;
-    message = osu.trans(errorKey);
+    message = trans(errorKey);
     if (message === errorKey) {
-      message = osu.trans('errors.unknown');
+      message = trans('errors.unknown');
     }
   }
 

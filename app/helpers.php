@@ -5,6 +5,7 @@
 
 use App\Libraries\LocaleMeta;
 use App\Models\LoginAttempt;
+use Illuminate\Support\Arr;
 use Illuminate\Support\HtmlString;
 
 function api_version(): int
@@ -19,7 +20,7 @@ function api_version(): int
     return $version;
 }
 
-function array_reject_null(array|ArrayAccess $array): array
+function array_reject_null(iterable $array): array
 {
     $ret = [];
     foreach ($array as $item) {
@@ -590,15 +591,6 @@ function pagination($params, $defaults = null)
     return compact('limit', 'page', 'offset');
 }
 
-function param_string_simple($value)
-{
-    if (is_array($value)) {
-        $value = implode(',', $value);
-    }
-
-    return presence($value);
-}
-
 function product_quantity_options($product, $selected = null)
 {
     if ($product->stock === null) {
@@ -693,20 +685,6 @@ function tag($element, $attributes = [], $content = null)
     }
 
     return '<'.$element.$attributeString.'>'.($content ?? '').'</'.$element.'>';
-}
-
-function to_sentence($array, $key = 'common.array_and')
-{
-    switch (count($array)) {
-        case 0:
-            return '';
-        case 1:
-            return (string) $array[0];
-        case 2:
-            return implode(osu_trans("{$key}.two_words_connector"), $array);
-        default:
-            return implode(osu_trans("{$key}.words_connector"), array_slice($array, 0, -1)).osu_trans("{$key}.last_word_connector").array_last($array);
-    }
 }
 
 // Handles case where crowdin fills in untranslated key with empty string.
@@ -1532,7 +1510,7 @@ function get_params($input, $namespace, $keys, $options = [])
 
     $params = [];
 
-    if (is_array($input) || ($input instanceof ArrayAccess)) {
+    if (Arr::accessible($input)) {
         $options['null_missing'] = $options['null_missing'] ?? false;
 
         foreach ($keys as $keyAndType) {
@@ -1619,7 +1597,11 @@ function parse_time_to_carbon($value)
     }
 
     if (is_numeric($value)) {
-        return Carbon\Carbon::createFromTimestamp($value);
+        try {
+            return Carbon\Carbon::createFromTimestamp($value);
+        } catch (Carbon\Exceptions\InvalidFormatException $_e) {
+            return;
+        }
     }
 
     if (is_string($value)) {

@@ -5,6 +5,7 @@ import NewsPostJson from 'interfaces/news-post-json';
 import NewsSidebarMetaJson from 'interfaces/news-sidebar-meta-json';
 import * as moment from 'moment';
 import * as React from 'react';
+import { trans } from 'utils/lang';
 import MonthListing from './month-listing';
 import Years from './years';
 
@@ -47,7 +48,7 @@ export default function Main(props: Props) {
         type='button'
       >
         <h2 className='sidebar__title'>
-          {osu.trans('news.sidebar.archive')}
+          {trans('news.sidebar.archive')}
         </h2>
 
         <div className='sidebar__mobile-toggle-icon'>
