@@ -18,7 +18,8 @@ import { trans } from 'utils/lang';
 import CurrentDiscussions, { Filter } from './current-discussions';
 import { Discussion } from './discussion';
 import DiscussionsMode from './discussions-mode';
-import DiscussionsStateContext, { newDefault } from './discussions-state-context';
+import DiscussionsState from './discussions-state';
+import DiscussionsStateContext from './discussions-state-context';
 
 const bn = 'beatmap-discussions';
 
@@ -71,7 +72,7 @@ interface Props {
 
 @observer
 export class Discussions extends React.Component<Props> {
-  @observable private discussionsState = newDefault();
+  @observable private discussionsState = new DiscussionsState();
   @observable private sort: Record<DiscussionsMode, Sort> = {
     general: 'updated_at',
     generalAll: 'updated_at',
