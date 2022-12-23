@@ -222,7 +222,7 @@ return [
             'options' => 'Pilihan Pencarian Lebih Lanjut',
             'supporter_filter' => 'Penyaringan berdasarkan :filters memerlukan osu!supporter tag yang aktif',
             'not-found' => 'tidak ada hasil',
-            'not-found-quote' => '... tidak, tidak apa hasil apapun yang ditemukan.',
+            'not-found-quote' => '… enggak, tidak ada yang ditemukan.',
             'filters' => [
                 'extra' => 'Konten Tambahan',
                 'general' => 'Umum',

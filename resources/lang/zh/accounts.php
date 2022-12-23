@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => '头像',
-            'rules' => '请确保你的头像符合 :link。<br/>这意味着头像内容必须是<strong>全年龄的</strong>，即没有裸露、亵渎或暗示的内容。',
+            'rules' => '请确保你的头像符合 :link。<br/>这意味着头像内容必须是<strong>全年龄的</strong>，即没有裸露、不文明语言或暗示的内容。',
             'rules_link' => '社区规则',
         ],
 
@@ -56,7 +56,7 @@ return [
         'options' => [
             '_' => '推送设置',
             'beatmap_owner_change' => '客串难度',
-            'beatmapset:modding' => '谱面修改',
+            'beatmapset:modding' => '谱面摸图',
             'channel_message' => '私信',
             'comment_new' => '新评论',
             'forum_topic_reply' => '主题回复',
@@ -80,7 +80,7 @@ return [
 
         'beatmapset_download' => [
             '_' => '默认谱面下载类型',
-            'all' => '包含视频',
+            'all' => '包含视频（若可用）',
             'direct' => '在 osu!direct 中查看',
             'no_video' => '不包含视频',
         ],

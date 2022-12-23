@@ -39,18 +39,18 @@ return [
         ],
     ],
     'entry' => [
-        '_' => '',
+        '_' => 'prijava',
         'login_required' => 'Prosimo vpiši se, da se lahko pridružiš tekmovanju.',
         'silenced_or_restricted' => 'Ne moreš se udeležiti tekmovanj, ko si utišan ali imaš omejitev na računu.',
         'preparation' => 'Trenutno pripravljamo to tekmovanje. Prosimo počakaj strpno!',
-        'drop_here' => '',
+        'drop_here' => 'Svojo prijavo oddaj tukaj',
         'download' => 'Prenesi .osz',
         'wrong_type' => [
             'art' => 'Za to tekmovanje so sprejemljive samo .jpg in .png datoteke.',
             'beatmap' => 'Za to tekmovanje so sprejemljive samo .osu datoteke.',
             'music' => 'Za to tekmovanje so sprejemljive samo .mp3 datoteke.',
         ],
-        'wrong_dimensions' => '',
+        'wrong_dimensions' => 'Prijave za to tekmovanje morajo biti :widthx:height',
         'too_big' => 'Dostopov v to tekmovanje je samo do :limit.',
     ],
     'beatmaps' => [

@@ -206,25 +206,25 @@ return [
                 'title' => 'Mapas',
 
                 'favourite' => [
-                    'title' => 'Mapas Favoritos',
+                    'title' => 'Mapas favoritos',
                 ],
                 'graveyard' => [
-                    'title' => 'Mapas Abandonados',
+                    'title' => 'Mapas abandonados',
                 ],
                 'guest' => [
                     'title' => 'Mapas con participación de invitados',
                 ],
                 'loved' => [
-                    'title' => 'Mapas Amados',
+                    'title' => 'Mapas amados',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => 'Mapas clasificados nominados',
                 ],
                 'pending' => [
-                    'title' => 'Mapas Pendientes',
+                    'title' => 'Mapas pendientes',
                 ],
                 'ranked' => [
-                    'title' => 'Mapas Clasificados',
+                    'title' => 'Mapas clasificados',
                 ],
             ],
             'discussions' => [
@@ -414,9 +414,9 @@ return [
         ],
         'rank' => [
             'country' => 'Rank nacional para :mode',
-            'country_simple' => 'Clasificación Nacional',
+            'country_simple' => 'Clasificación nacional',
             'global' => 'Rank global para :mode',
-            'global_simple' => 'Clasificación Global',
+            'global_simple' => 'Clasificación global',
             'highest' => 'Clasificación más alta: :rank el :date',
         ],
         'stats' => [
@@ -433,10 +433,10 @@ return [
             'total_hits' => 'Golpes totales',
             'total_score' => 'Puntuación total',
             // modding stats
-            'graveyard_beatmapset_count' => 'Mapas Abandonados',
-            'loved_beatmapset_count' => 'Mapas Amados',
-            'pending_beatmapset_count' => 'Mapas Pendientes',
-            'ranked_beatmapset_count' => 'Mapas Clasificados',
+            'graveyard_beatmapset_count' => 'Mapas abandonados',
+            'loved_beatmapset_count' => 'Mapas amados',
+            'pending_beatmapset_count' => 'Mapas pendientes',
+            'ranked_beatmapset_count' => 'Mapas clasificados',
         ],
     ],
 

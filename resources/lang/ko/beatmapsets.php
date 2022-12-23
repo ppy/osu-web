@@ -124,7 +124,7 @@ return [
             'genre' => '장르',
             'language' => '언어',
             'no_scores' => '데이터를 수집중입니다...',
-            'nominators' => '',
+            'nominators' => '추천인',
             'nsfw' => '부적절한 내용',
             'offset' => '온라인 오프셋',
             'points-of-failure' => '실패 지점',

@@ -31,6 +31,7 @@ return [
         'cart_problems_edit' => 'Düzenlemek için buraya tıklayın.',
         'declined' => 'Ödeme iptal edildi.',
         'delayed_shipping' => 'Şu an siparişlere boğulmuş durumdayız! Siparişinizi vermekte özgürsünüz ancak biz mevcut siparişleri yetiştirmekle uğraşırken **ek olarak 1-2 hafta gecikme** bekleyebilirsiniz.',
+        'hide_from_activity' => '',
         'old_cart' => 'Sepetiniz güncel görünmediği için tekrar yüklendi, lütfen tekrar deneyin.',
         'pay' => 'Paypal ile Ödeme Yap',
         'title_compact' => 'kasaya git',
@@ -50,6 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Ödemenizin bir eCheck olması nedeniyle, ödemenizin PayPal\'dan temizlenmesi için 10 ekstra günü göz önüne alın!',
+        'hide_from_activity' => '',
         'title_compact' => 'fatura',
 
         'status' => [
@@ -75,10 +77,15 @@ return [
         'shopify_expired' => 'Bu sipariş için ödeme bağlantısının süresi doldu.',
 
         'item' => [
+            'quantity' => 'Adet',
+
             'display_name' => [
                 'supporter_tag' => ':username için :name (:duration)',
             ],
-            'quantity' => 'Adet',
+
+            'subtext' => [
+                'supporter_tag' => '',
+            ],
         ],
 
         'not_modifiable_exception' => [
@@ -120,6 +127,8 @@ return [
 
     'supporter_tag' => [
         'gift' => 'oyuncuya hediye et',
+        'gift_message' => '',
+
         'require_login' => [
             '_' => 'osu!supporter etiketi almak için :link !',
             'link_text' => 'giriş yapmış',

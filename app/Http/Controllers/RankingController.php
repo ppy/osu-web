@@ -285,7 +285,7 @@ class RankingController extends Controller
     {
         $relation = 'statistics'.title_case($mode);
 
-        return Country::where('display', '>', 0)->whereHas($relation, function ($query) {
+        return Country::whereHas($relation, function ($query) {
             $query->where('display', true);
         })->get();
     }

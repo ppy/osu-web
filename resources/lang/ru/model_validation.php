@@ -6,7 +6,7 @@
 return [
     'invalid' => 'Указан неверный :attribute.',
     'not_negative' => ':attribute не может быть отрицательным.',
-    'required' => ':attribute является необходимым.',
+    'required' => 'Поле :attribute обязательно для заполнения.',
     'too_long' => ':attribute превышает максимальное количество символов - можно использовать только до :limit characters символов.',
     'wrong_confirmation' => 'Поля не совпадают.',
 
@@ -110,7 +110,7 @@ return [
 
     'oauth' => [
         'client' => [
-            'too_many' => 'Превышено максимально количество приложений OAuth.',
+            'too_many' => 'Превышено максимальное количество приложений OAuth.',
             'url' => 'Пожалуйста, введите действительный URL.',
 
             'attributes' => [

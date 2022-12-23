@@ -124,7 +124,7 @@ return [
             'genre' => 'Tür',
             'language' => 'Dil',
             'no_scores' => 'Veriler hala hesaplanıyor...',
-            'nominators' => '',
+            'nominators' => 'Nominator\'ler',
             'nsfw' => 'Müstehcen içerik',
             'offset' => 'Çevrimiçi ofset',
             'points-of-failure' => 'Başarısız Olunan Kısımlar',
@@ -157,7 +157,7 @@ return [
             'title' => 'Skor tahtası',
 
             'headers' => [
-                'accuracy' => 'İSABETLİLİK',
+                'accuracy' => 'İsabetlilik',
                 'combo' => 'Maks Kombo',
                 'miss' => 'Iska',
                 'mods' => 'Modlar',

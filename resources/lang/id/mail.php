@@ -22,7 +22,7 @@ return [
         'benefit_more' => 'Di samping itu, para pemilik supporter tag juga akan mendapatkan berbagai keutamaan baru seiring waktunya!',
         'feedback' => "Apabila Anda memiliki pertanyaan atau saran lebih lanjut, jangan sungkan untuk membalas email ini; Saya akan menghubungi Anda kembali sesegera mungkin!",
         'keep_free' => 'Berkat orang-orang seperti Anda, osu! dapat mewujudkan lingkungan permainan dan komunitas yang terbebas dari iklan dan sistem pembayaran yang mengganggu.',
-        'keep_running' => 'Dukungan Anda membuat osu! dapat berjalan selama sekitar :minutes! Angka ini mungkin tidak terlihat besar, namun dukungan sekecil apapun akan tetap berarti bagi kami :).',
+        'keep_running' => 'Dukungan Anda membuat osu! dapat berjalan selama sekitar :minutes! Angka ini mungkin tidak terlihat besar, namun dukungan sekecil apa pun akan tetap berarti bagi kami :).',
         'subject' => 'Terima kasih, osu! mencintaimu',
         'translation' => 'Sebagai bahan rujukan, tersedia terjemahan dari komunitas di bawah ini:',
 
@@ -67,6 +67,7 @@ return [
         'duration' => 'Berkat mereka, Anda kini dapat mengakses osu!direct dan berbagai fitur khusus osu!supporter lainnya selama :duration.',
         'features' => 'Anda dapat membaca rincian lebih lanjut mengenai fitur-fitur ini di sini:',
         'gifted' => 'Seseorang baru saja menghadiahkan Anda osu!supporter tag!',
+        'gift_message' => '',
         'subject' => 'Anda telah dihadiahkan osu!supporter tag!',
     ],
 

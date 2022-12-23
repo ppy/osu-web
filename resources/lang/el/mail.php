@@ -67,6 +67,7 @@ return [
         'duration' => '',
         'features' => '',
         'gifted' => '',
+        'gift_message' => '',
         'subject' => 'Σας δωρήθηκε ένα osu!supporter tag!',
     ],
 

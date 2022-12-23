@@ -64,7 +64,7 @@ class ProductSeeder extends Seeder
 
     public function seedBanners()
     {
-        $tournament = factory(Tournament::class)->create();
+        $tournament = Tournament::factory()->create();
         // Get some countries to use.
         $countries = Country::limit(6)->get()->toArray();
         $master_country = array_shift($countries);

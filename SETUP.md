@@ -68,13 +68,11 @@ At this point you should be able to access the site via whatever webserver you c
 - Run `bin/docker_dev.sh`. Make sure the repository folder is owned by the user executing this command (must be non-root).
 - Due to the nature of Docker (a container is killed when the command running in it finishes), the Yarn container will be run in watch mode.
 - Do note that the supplied Elasticsearch container uses a high (1+ GB) amount of RAM. Ensure that your system (or virtual machine, if running on Windows/macOS) has a necessary amount of memory allocated (at least 2 GB). If you can't (or don't want to), you can comment out the relevant elasticsearch lines in `docker-compose.yml`.
-- To run any of the below commands, make sure you are using the docker container: `docker-compose run --rm php`.
-  - To run artisan commands, run using `docker-compose run --rm php artisan`.
+- To run any of the below commands, make sure you are using the docker container: `docker compose run --rm php`.
+  - To run artisan commands, run using `docker compose run --rm php artisan`.
 
 ---
 **Notes**
-
-Newer versions of docker can use `docker compose` instead of `docker-compose`
 
 The `elasticsearch` and `db` containers store their data to volumes, the containers will use data on these volumes if they already exist.
 
@@ -106,7 +104,7 @@ The Mysql images provided by Docker and Mysql have different uids for the `mysql
 
 update the ownership of the mysql data files:
 
-    docker-compose run --rm db sh -c 'chown -R mysql:mysql /var/lib/mysql'
+    docker compose run --rm db sh -c 'chown -R mysql:mysql /var/lib/mysql'
 
 
 ### Windows
@@ -132,7 +130,7 @@ Dusk tests can make use of an external Chrome driver instance by setting the fol
 
 e.g. If Docker Desktop and the default networking are used and `chromedriver` is running on the host:
 
-    docker-compose run --rm -e DUSK_WEBDRIVER_URL=host.docker.internal:9515 APP_URL=http://127.0.0.1:8080 php test browser
+    docker compose run --rm -e DUSK_WEBDRIVER_URL=host.docker.internal:9515 -e APP_URL=http://127.0.0.1:8080 php test browser
 
 The host `chromedriver` will need to allow connections from the container:
 
@@ -170,7 +168,7 @@ Sometimes a restart of notification-server and notification-server-dusk will be 
 See if anything has stopped:
 
 ```
-docker-compose ps
+docker compose ps
 ```
 
 Start docker in background:
@@ -178,19 +176,19 @@ Start docker in background:
 ```
 bin/docker_dev.sh -d
 # alternatively
-# docker-compose up -d
+# docker compose up -d
 ```
 
 Start single docker service:
 
 ```
-docker-compose start <servicename>
+docker compose start <servicename>
 ```
 
 Restart single docker service:
 
 ```
-docker-compose restart <servicename>
+docker compose restart <servicename>
 ```
 
 #### Direct database access
@@ -200,7 +198,7 @@ Using own mysql client, connect to port 3306 or `MYSQL_EXTERNAL_PORT` if set whe
 Alternatively, there's mysql client installed in php service:
 
 ```
-docker-compose run --rm php mysql
+docker compose run --rm php mysql
 ```
 
 #### Updating image
@@ -208,25 +206,25 @@ docker-compose run --rm php mysql
 Docker images need to be occasionally updated to make sure they're running latest version of the packages.
 
 ```
-docker-compose down --rmi all
-docker-compose pull
-docker-compose build --pull
+docker compose down --rmi all
+docker compose pull
+docker compose build --pull
 ```
 
 (don't use `build --no-cache` as it'll end up rebuilding `php` image multiple times)
 
 #### Faster php commands
 
-When frequently running commands, doing `docker-compose run` may feel a little bit slow. An alternative is by running the command in existing instance instead. For example to run `artisan tinker`:
+When frequently running commands, doing `docker compose run` may feel a little bit slow. An alternative is by running the command in existing instance instead. For example to run `artisan tinker`:
 
 ```
-docker-compose exec php /app/docker/development/entrypoint.sh artisan tinker
+docker compose exec php /app/docker/development/entrypoint.sh artisan tinker
 ```
 
-Add an alias for the docker-compose command so it doesn't need to be specified every time:
+Add an alias for the docker compose command so it doesn't need to be specified every time:
 
 ```
-alias p='docker-compose exec php /app/docker/development/entrypoint.sh'
+alias p='docker compose exec php /app/docker/development/entrypoint.sh'
 p artisan tinker
 ```
 
@@ -252,7 +250,7 @@ Using Laravel's [Mix](https://laravel.com/docs/6.x/mix).
 $ yarn run development
 ```
 
-Note that if you use the bundled docker-compose setup, yarn/webpack will be already run in watch mode.
+Note that if you use the bundled docker compose setup, yarn/webpack will be already run in watch mode.
 
 ## Reset the database + seeding sample data
 
@@ -300,7 +298,7 @@ APP_ENV=testing php artisan migrate:fresh --yes
 or if using docker:
 
 ```
-docker-compose run --rm -e APP_ENV=testing php artisan migrate:fresh --yes
+docker compose run --rm -e APP_ENV=testing php artisan migrate:fresh --yes
 ```
 
 ---
@@ -321,7 +319,7 @@ bin/phpunit.sh
 or if using Docker:
 
 ```
-docker-compose run --rm php test phpunit
+docker compose run --rm php test phpunit
 ```
 
 Regular PHPUnit arguments are accepted, e.g.:
@@ -341,7 +339,7 @@ bin/run_dusk.sh
 or if using Docker:
 
 ```
-docker-compose run --rm php test browser
+docker compose run --rm php test browser
 ```
 
 ---
@@ -364,7 +362,7 @@ yarn karma start --single-run
 or if using Docker:
 
 ```
-docker-compose run --rm php test js
+docker compose run --rm php test js
 ```
 
 # Documentation

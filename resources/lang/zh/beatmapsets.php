@@ -124,7 +124,7 @@ return [
             'genre' => '流派',
             'language' => '语言',
             'no_scores' => '数据还在计算中。。。',
-            'nominators' => '',
+            'nominators' => '提名者',
             'nsfw' => '不良内容',
             'offset' => '在线偏移值',
             'points-of-failure' => '失败位置',
