@@ -88,42 +88,54 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('store:cleanup-stale-orders')
-            ->daily();
+            ->daily()
+            ->onOneServer();
 
         $schedule->command('store:expire-products')
-            ->hourly();
+            ->hourly()
+            ->onOneServer();
 
         $schedule->command('builds:update-propagation-history')
-            ->everyThirtyMinutes();
+            ->everyThirtyMinutes()
+            ->onOneServer();
 
         $schedule->command('forum:topic-cover-cleanup --yes')
             ->daily()
-            ->withoutOverlapping();
+            ->withoutOverlapping()
+            ->onOneServer();
 
         $schedule->command('rankings:recalculate-country-stats')
-            ->cron('25 0,3,6,9,12,15,18,21 * * *');
+            ->cron('25 0,3,6,9,12,15,18,21 * * *')
+            ->onOneServer();
 
         $schedule->command('modding:rank')
-            ->cron('*/20 * * * *');
+            ->cron('*/20 * * * *')
+            ->withoutOverlapping()
+            ->onOneServer();
 
         $schedule->command('oauth:delete-expired-tokens')
-            ->cron('14 1 * * *');
+            ->cron('14 1 * * *')
+            ->onOneServer();
 
         $schedule->command('notifications:send-mail')
             ->hourly()
-            ->withoutOverlapping();
+            ->withoutOverlapping()
+            ->onOneServer();
 
         $schedule->command('user-notifications:cleanup')
             ->everyThirtyMinutes()
-            ->withoutOverlapping();
+            ->withoutOverlapping()
+            ->onOneServer();
 
         $schedule->command('notifications:cleanup')
             ->cron('15,45 * * * *')
-            ->withoutOverlapping();
+            ->withoutOverlapping()
+            ->onOneServer();
 
         $schedule->command('chat:expire-ack')
             ->everyFiveMinutes()
-            ->withoutOverlapping();
+            ->withoutOverlapping()
+            ->onOneServer();
     }
 
     protected function commands()

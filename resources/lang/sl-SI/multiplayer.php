@@ -5,13 +5,13 @@
 
 return [
     'empty' => [
-        '_' => '',
-        'playlists' => '',
-        'realtime' => '',
+        '_' => 'Igre osu!(lazer) :type_group še niso bile odigrane!',
+        'playlists' => 'seznam pesmi',
+        'realtime' => 'večigralski način',
     ],
 
     'room' => [
-        'hosted_by' => '',
+        'hosted_by' => 'gostuje :user',
         'invalid_password' => 'Neveljavno geslo sobe',
         'map_count' => ':count_delimited beatmapa|:count_delimited beatmap',
         'player_count' => ':count_delimited igralec|:count_delimited igralcev',

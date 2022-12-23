@@ -29,8 +29,9 @@ return [
     'checkout' => [
         'cart_problems' => '啊哦，您的购物车中存在问题！',
         'cart_problems_edit' => '点击此处编辑。',
-        'declined' => '取消支付。',
+        'declined' => '支付被取消。',
         'delayed_shipping' => '欢迎购买，但是我们正在处理大量的订单，所以订单**可能会有 1-2 周的延迟**。',
+        'hide_from_activity' => '',
         'old_cart' => '您的购物车已经过期，请重试。',
         'pay' => '使用 Paypal 支付',
         'title_compact' => '结账',
@@ -49,7 +50,8 @@ return [
     'discount' => '节省 :percent%',
 
     'invoice' => [
-        'echeck_delay' => '由于您的支付是通过 eCheck 进行的，请再等待至多 10 天以使你的支付通过 PayPal 完成！',
+        'echeck_delay' => '由于您的支付是通过 eCheck 进行的，请再等待至多 10 天来让 PayPal 完成支付。',
+        'hide_from_activity' => '',
         'title_compact' => '账单',
 
         'status' => [
@@ -75,10 +77,15 @@ return [
         'shopify_expired' => '此订单的结账链接已过期。',
 
         'item' => [
+            'quantity' => '数量',
+
             'display_name' => [
                 'supporter_tag' => ':name 给 :username （:duration）',
             ],
-            'quantity' => '数量',
+
+            'subtext' => [
+                'supporter_tag' => '',
+            ],
         ],
 
         'not_modifiable_exception' => [
@@ -120,6 +127,8 @@ return [
 
     'supporter_tag' => [
         'gift' => '要赠与的玩家',
+        'gift_message' => '',
+
         'require_login' => [
             '_' => '你需要 :link 以获得 osu! 支持者标签！',
             'link_text' => '登录',

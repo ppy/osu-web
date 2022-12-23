@@ -32,7 +32,7 @@ return [
 
         'score' => [
             'stats' => [
-                'accuracy' => 'Doğruluk',
+                'accuracy' => 'İsabetlilik',
                 'combo' => 'Kombo',
                 'score' => 'Skor',
             ],
@@ -53,7 +53,7 @@ return [
     'game' => [
         'scoring-type' => [
             'score' => 'En Yüksek Skor',
-            'accuracy' => 'Yüksek doğruluk',
+            'accuracy' => 'En Yüksek İsabetlilik',
             'combo' => 'En yüksek Kombo',
             'scorev2' => 'Skor V2',
         ],

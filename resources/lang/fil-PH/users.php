@@ -218,7 +218,7 @@ return [
                     'title' => 'Mga Minamahal na Beatmap',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => 'Mga nominadong Na-rank na Mga beatmap',
                 ],
                 'pending' => [
                     'title' => 'Pending na mga Beatmap',

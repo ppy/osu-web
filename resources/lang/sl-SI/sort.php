@@ -32,7 +32,7 @@ return [
     ],
 
     'forum_topics' => [
-        'feature_votes' => '',
+        'feature_votes' => 'Star prioriteta',
         'new' => 'Zadnji odgovor',
     ],
 

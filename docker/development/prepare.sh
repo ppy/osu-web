@@ -12,11 +12,11 @@ if [ ! -f artisan ]; then
 fi
 
 _run() {
-    docker-compose run --rm php "$@"
+    docker compose run --rm php "$@"
 }
 
 _run_dusk() {
-    docker-compose run --rm -e APP_ENV=dusk.local php "$@"
+    docker compose run --rm -e APP_ENV=dusk.local php "$@"
 }
 
 genkey=0
@@ -30,6 +30,9 @@ if [ -n "${GITHUB_TOKEN:-}" ]; then
     _run composer config -g github-oauth.github.com "${GITHUB_TOKEN}"
     grep ^GITHUB_TOKEN= .env || echo "GITHUB_TOKEN=${GITHUB_TOKEN}" >> .env
 fi
+
+_run yarn --network-timeout 100000 --frozen-lockfile
+
 _run composer install
 
 _run artisan dusk:chrome-driver
@@ -66,4 +69,4 @@ if [ ! -f .docker/.my.cnf ]; then
     cp .docker/.my.cnf.example .docker/.my.cnf
 fi
 
-echo "Preparation completed. Adjust .env file if needed and run 'docker-compose up' followed by running migration."
+echo "Preparation completed. Adjust .env file if needed and run 'docker compose up' followed by running migration."

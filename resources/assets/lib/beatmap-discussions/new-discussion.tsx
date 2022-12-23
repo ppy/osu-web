@@ -30,7 +30,6 @@ import MessageLengthCounter from './message-length-counter';
 
 const bn = 'beatmap-discussion-new';
 
-type Discussion = BeatmapsetDiscussionJson & Required<Pick<BeatmapsetDiscussionJson, 'current_user_attributes'>>;
 type Mode = 'events' | 'general' | 'generalAll' | 'timeline' | 'reviews';
 
 // TODO: move to store/context
@@ -47,25 +46,25 @@ interface CurrentDiscussions {
   };
   countsByBeatmap: Record<number, number>;
   countsByPlaymode: Record<GameMode, number>;
-  general: Discussion[];
-  generalAll: Discussion[];
-  reviews: Discussion[];
-  timeline: Discussion[];
-  timelineAllUsers: Discussion[];
+  general: BeatmapsetDiscussionJson[];
+  generalAll: BeatmapsetDiscussionJson[];
+  reviews: BeatmapsetDiscussionJson[];
+  timeline: BeatmapsetDiscussionJson[];
+  timelineAllUsers: BeatmapsetDiscussionJson[];
   totalHype: number;
   unresolvedIssues: number;
 }
 
 interface DiscussionByFilter {
-  general: Record<number, Discussion>;
-  generalAll: Record<number, Discussion>;
-  reviews: Record<number, Discussion>;
-  timeline: Record<number, Discussion>;
+  general: Record<number, BeatmapsetDiscussionJson>;
+  generalAll: Record<number, BeatmapsetDiscussionJson>;
+  reviews: Record<number, BeatmapsetDiscussionJson>;
+  timeline: Record<number, BeatmapsetDiscussionJson>;
 }
 
 interface DiscussionsCache {
   beatmap: BeatmapExtendedJson;
-  discussions: NearbyDiscussion<Discussion>[];
+  discussions: NearbyDiscussion<BeatmapsetDiscussionJson>[];
   timestamp: number | null;
 }
 

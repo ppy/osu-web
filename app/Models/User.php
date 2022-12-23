@@ -838,6 +838,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'hide_presence' => !$this->user_allow_viewonline,
             'id' => $this->getKey(), // used by clockwork
             'name' => null, // used by mailer
+            'nonexistent' => null,
             'pm_friends_only' => !$this->user_allow_pm,
             'user_discord' => $this->user_jabber,
             'user_from' => presence(html_entity_decode_better($this->getRawAttribute($key))),
@@ -1269,7 +1270,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function rankHighests(): HasMany
     {
-        return $this->hasMany(RankHighest::class);
+        return config('osu.scores.experimental_rank_as_default')
+            ? $this->hasMany(RankHighest::class, null, 'nonexistent')
+            : $this->hasMany(RankHighest::class);
     }
 
     public function rankHistories()

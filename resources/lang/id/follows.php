@@ -5,7 +5,7 @@
 
 return [
     'comment' => [
-        'empty' => 'Anda tidak sedang mengikuti komentar apapun.',
+        'empty' => 'Tidak ada komentar yang diikuti.',
         'page_title' => 'komentar yang diikuti',
         'title' => 'komentar',
 
@@ -24,7 +24,7 @@ return [
     ],
 
     'mapping' => [
-        'empty' => 'Anda tidak sedang mengikuti siapapun.',
+        'empty' => 'Tidak ada pemeta yang diikuti.',
         'followers' => 'pengikut mapping',
         'page_title' => 'mapper yang diikuti',
         'title' => 'mapper',

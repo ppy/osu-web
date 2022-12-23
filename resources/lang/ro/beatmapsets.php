@@ -124,7 +124,7 @@ return [
             'genre' => 'Gen',
             'language' => 'Limbă',
             'no_scores' => 'Încă se calculează datele...',
-            'nominators' => '',
+            'nominators' => 'Nominalizatori',
             'nsfw' => 'Conținut obscen',
             'offset' => 'Offset online',
             'points-of-failure' => 'Puncte de eșec',
