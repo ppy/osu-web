@@ -7,7 +7,7 @@ return [
     'invalid' => ':attribute especificado no válido.',
     'not_negative' => ':attribute no puede ser negativo.',
     'required' => ':attribute es requerido.',
-    'too_long' => ':attribute ha excedido el límite máximo - sólo puede ser de hasta :limit caracteres.',
+    'too_long' => ':attribute ha excedido el límite máximo - solo puede ser de hasta :limit caracteres.',
     'wrong_confirmation' => 'La confirmación no coincide.',
 
     'beatmapset_discussion' => [
@@ -75,7 +75,7 @@ return [
             'beatmapset_post_no_edit' => 'Editar la publicación de los metadatos del mapa no está permitido.',
             'first_post_no_delete' => 'No se puede eliminar la publicación inicial',
             'missing_topic' => 'Falta el tema de la publicación',
-            'only_quote' => 'Tu respuesta sólo contiene una cita.',
+            'only_quote' => 'Tu respuesta solo contiene una cita.',
 
             'attributes' => [
                 'post_text' => 'Cuerpo de la publicación',
@@ -92,7 +92,7 @@ return [
             'duplicate_options' => 'Opciones duplicadas no permitidas.',
             'grace_period_expired' => 'No se puede editar una encuesta después de :limit horas',
             'hiding_results_forever' => 'No se pueden ocultar los resultados de una encuesta que nunca finaliza.',
-            'invalid_max_options' => 'La opciones por usuario no pueden exceder el número de opciones disponibles.',
+            'invalid_max_options' => 'Las opciones por usuario no pueden exceder el número de opciones disponibles.',
             'minimum_one_selection' => 'Se requiere un mínimo de una opción por usuario.',
             'minimum_two_options' => 'Se necesitan al menos dos opciones.',
             'too_many_options' => 'Número de opciones permitidas excedidas.',

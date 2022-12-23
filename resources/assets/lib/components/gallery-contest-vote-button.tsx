@@ -9,7 +9,19 @@ interface Props {
   pswp: any;
 }
 
-export default class GalleryContestVoteButton extends React.PureComponent<Props, any> {
+interface ButtonState {
+  hasVote: boolean;
+  isLoading: boolean;
+  isSelected: boolean;
+  votingOver: boolean;
+}
+
+interface State {
+  button: ButtonState;
+  isLoading: boolean;
+}
+
+export default class GalleryContestVoteButton extends React.PureComponent<Props, State> {
   private eventId = `gallery-contest-${nextVal()}`;
   private mainRef = React.createRef<HTMLButtonElement>();
 
@@ -59,10 +71,15 @@ export default class GalleryContestVoteButton extends React.PureComponent<Props,
     const button = this.button();
 
     if (button != null && button.dataset.contestVoteMeta != null) {
-      return JSON.parse(button.dataset.contestVoteMeta);
+      return JSON.parse(button.dataset.contestVoteMeta) as ButtonState;
     }
 
-    return {};
+    return {
+      hasVote: false,
+      isLoading: false,
+      isSelected: false,
+      votingOver: false,
+    };
   };
 
   private buttonTitle = () => {

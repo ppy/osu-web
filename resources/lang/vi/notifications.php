@@ -161,8 +161,8 @@ return [
                 'user_beatmapset_new_compact' => 'Beatmap mới ":title"',
                 'user_beatmapset_new_group' => 'Beatmaps mới bởi :username',
 
-                'user_beatmapset_revive' => '',
-                'user_beatmapset_revive_compact' => '',
+                'user_beatmapset_revive' => 'Beatmap ":title" đã được hồi sinh bởi :username',
+                'user_beatmapset_revive_compact' => 'Beatmap ":title" đã được hồi sinh',
             ],
         ],
 
@@ -242,7 +242,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username đã tạo beatmap mới',
-                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive' => ':username đã hồi sinh một số beatmap',
             ],
         ],
     ],

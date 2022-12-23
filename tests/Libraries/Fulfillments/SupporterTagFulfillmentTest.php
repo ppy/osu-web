@@ -3,11 +3,15 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace Tests\Libraries\Fulfillments;
 
+use App\Libraries\Fulfillments\FulfillmentException;
 use App\Libraries\Fulfillments\SupporterTagFulfillment;
 use App\Mail\DonationThanks;
 use App\Mail\SupporterGift;
+use App\Models\Event;
 use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
 use App\Models\User;
@@ -18,14 +22,16 @@ use Tests\TestCase;
 
 class SupporterTagFulfillmentTest extends TestCase
 {
+    private Order $order;
+    private User $user;
+
     public function testDonateSupporterTagToSelf()
     {
         $donor = $this->user;
         $expectedExpiry = $donor->osu_subscriptionexpiry->copy()->addMonthsNoOverflow(1);
-        $this->createDonationOrderItem($this->order, $this->user, false, false);
+        $this->createDonationOrderItem($this->user, false, false);
 
-        $fulfiller = new SupporterTagFulfillment($this->order);
-        $fulfiller->run();
+        (new SupporterTagFulfillment($this->order))->run();
 
         $donor->refresh();
         $this->assertTrue($donor->osu_subscriber);
@@ -45,10 +51,9 @@ class SupporterTagFulfillmentTest extends TestCase
         ]);
         $expectedExpiry = $giftee->osu_subscriptionexpiry->copy()->addMonthsNoOverflow(1);
 
-        $this->createDonationOrderItem($this->order, $giftee, false, false);
+        $this->createDonationOrderItem($giftee, false, false);
 
-        $fulfiller = new SupporterTagFulfillment($this->order);
-        $fulfiller->run();
+        (new SupporterTagFulfillment($this->order))->run();
 
         $donor->refresh();
         $giftee->refresh();
@@ -66,21 +71,26 @@ class SupporterTagFulfillmentTest extends TestCase
         $this->assertSame(0, $giftee->osu_featurevotes);
     }
 
-    public function testMailDonateSupporterTagToOthers()
+    /**
+     * @dataProvider boolDataProvider
+     */
+    public function testMailDonateSupporterTagToOthers(bool $hidden)
     {
         Mail::fake();
-        $today = Carbon::today();
 
-        $donor = $this->user;
         $giftee1 = User::factory()->create(['user_sig' => '']); // prevent factory from generating user_sig
         $giftee2 = User::factory()->create(['user_sig' => '']);
 
-        $this->createDonationOrderItem($this->order, $giftee1, false, false);
-        $this->createDonationOrderItem($this->order, $giftee1, false, false);
-        $this->createDonationOrderItem($this->order, $giftee2, false, false);
+        // This also tests multiple gifts only send 1 mail/event each
+        $this->createDonationOrderItem($giftee1, false, false, $hidden);
+        $this->createDonationOrderItem($giftee1, false, false, $hidden);
+        $this->createDonationOrderItem($giftee2, false, false, $hidden);
 
-        $fulfiller = new SupporterTagFulfillment($this->order);
-        $fulfiller->run();
+        $this->expectCountChange(fn () => Event::where('user_id', $giftee1->getKey())->count(), 1);
+        $this->expectCountChange(fn () => Event::where('user_id', $giftee2->getKey())->count(), 1);
+        $this->expectCountChange(fn () => Event::where('user_id', $this->user->getKey())->count(), $hidden ? 0 : 1);
+
+        (new SupporterTagFulfillment($this->order))->run();
 
         Mail::assertQueued(SupporterGift::class, function ($mail) use ($giftee1, $giftee2) {
             $params = $this->invokeProperty($mail, 'params');
@@ -92,7 +102,36 @@ class SupporterTagFulfillmentTest extends TestCase
             }
         });
 
+        Mail::assertQueued(DonationThanks::class, function ($mail) {
+            return $this->invokeProperty($mail, 'params')['isGift'] === true; // non-truthy check
+        });
+
         Mail::assertQueued(SupporterGift::class, 2);
+        Mail::assertQueued(DonationThanks::class, 1);
+    }
+
+    /**
+     * @dataProvider boolDataProvider
+     */
+    public function testMailDonateSupporterTagToSelf(bool $hidden)
+    {
+        Mail::fake();
+
+        $this->createDonationOrderItem($this->user, false, false, $hidden);
+        $this->createDonationOrderItem($this->user, false, false, $hidden);
+
+        $this->expectCountChange(fn () => Event::where('user_id', $this->user->getKey())->count(), $hidden ? 0 : 1);
+
+        (new SupporterTagFulfillment($this->order))->run();
+
+        Mail::assertQueued(DonationThanks::class, function ($mail) {
+            $params = $this->invokeProperty($mail, 'params');
+
+            return $params['duration'] === 2
+                && $params['isGift'] === false; // non-truthy check
+        });
+
+        Mail::assertNotQueued(SupporterGift::class);
         Mail::assertQueued(DonationThanks::class, 1);
     }
 
@@ -102,11 +141,10 @@ class SupporterTagFulfillmentTest extends TestCase
         $expectedExpiry = $donor->osu_subscriptionexpiry->copy()->addMonthsNoOverflow(1);
 
         // consider the first item as processed
-        $this->createDonationOrderItem($this->order, $this->user, false, true);
-        $this->createDonationOrderItem($this->order, $this->user, false, false);
+        $this->createDonationOrderItem($this->user, false, true);
+        $this->createDonationOrderItem($this->user, false, false);
 
-        $fulfiller = new SupporterTagFulfillment($this->order);
-        $fulfiller->run();
+        (new SupporterTagFulfillment($this->order))->run();
 
         $donor->refresh();
         // Should only apply one supporter tag.
@@ -120,11 +158,10 @@ class SupporterTagFulfillmentTest extends TestCase
         $donor = $this->user;
         $expectedExpiry = $donor->osu_subscriptionexpiry->copy();
 
-        $this->createDonationOrderItem($this->order, $this->user, false, true);
-        $this->createDonationOrderItem($this->order, $this->user, false, true);
+        $this->createDonationOrderItem($this->user, false, true);
+        $this->createDonationOrderItem($this->user, false, true);
 
-        $fulfiller = new SupporterTagFulfillment($this->order);
-        $fulfiller->run();
+        (new SupporterTagFulfillment($this->order))->run();
 
         $donor->refresh();
         // Should not apply any supporter tags
@@ -151,10 +188,9 @@ class SupporterTagFulfillmentTest extends TestCase
             $expectedExpiry = $today->day($donor->osu_subscriptionexpiry->endOfMonth()->day);
         }
 
-        $this->createDonationOrderItem($this->order, $this->user, false, true);
+        $this->createDonationOrderItem($this->user, false, true);
 
-        $fulfiller = new SupporterTagFulfillment($this->order);
-        $fulfiller->revoke();
+        (new SupporterTagFulfillment($this->order))->revoke();
 
         $donor->refresh();
 
@@ -176,11 +212,10 @@ class SupporterTagFulfillmentTest extends TestCase
 
         $oldExpiry = $donor->osu_subscriptionexpiry;
 
-        $this->createDonationOrderItem($this->order, $this->user, true, true);
-        $this->createDonationOrderItem($this->order, $this->user, true, false);
+        $this->createDonationOrderItem($this->user, true, true);
+        $this->createDonationOrderItem($this->user, true, false);
 
-        $fulfiller = new SupporterTagFulfillment($this->order);
-        $fulfiller->revoke();
+        (new SupporterTagFulfillment($this->order))->revoke();
 
         $donor->refresh();
 
@@ -201,11 +236,10 @@ class SupporterTagFulfillmentTest extends TestCase
             'osu_subscriptionexpiry' => $today->copy()->addMonthsNoOverflow(2),
         ]);
 
-        $this->createDonationOrderItem($this->order, $this->user, true, true);
-        $this->createDonationOrderItem($this->order, $this->user, true, true);
+        $this->createDonationOrderItem($this->user, true, true);
+        $this->createDonationOrderItem($this->user, true, true);
 
-        $fulfiller = new SupporterTagFulfillment($this->order);
-        $fulfiller->revoke();
+        (new SupporterTagFulfillment($this->order))->revoke();
 
         $donor->refresh();
 
@@ -225,15 +259,44 @@ class SupporterTagFulfillmentTest extends TestCase
         ]);
 
         $expectedExpiry = $today->copy()->addMonthsNoOverflow(1);
-        $this->createDonationOrderItem($this->order, $this->user, false, false);
+        $this->createDonationOrderItem($this->user, false, false);
 
-        $fulfiller = new SupporterTagFulfillment($this->order);
-        $fulfiller->run();
+        (new SupporterTagFulfillment($this->order))->run();
 
         $donor->refresh();
         $this->assertTrue($donor->osu_subscriber);
         $this->assertTrue($expectedExpiry->equalTo($donor->osu_subscriptionexpiry));
         $this->assertSame(2, $donor->osu_featurevotes);
+    }
+
+    // Sanity test against weirdness
+    public function testInsufficientAmountSingle()
+    {
+        $this->createOrderItem($this->user, 1, 3);
+
+        $this->expectException(FulfillmentException::class);
+        $this->expectCountChange(fn () => UserDonation::count(), 0);
+
+        (new SupporterTagFulfillment($this->order))->run();
+    }
+
+    public function testInsufficientAmountMultiple()
+    {
+        $this->createOrderItem($this->user, 1, 3);
+        $this->createOrderItem($this->user, 1, 4);
+
+        $this->expectException(FulfillmentException::class);
+        $this->expectCountChange(fn () => UserDonation::count(), 0);
+
+        (new SupporterTagFulfillment($this->order))->run();
+    }
+
+    public function boolDataProvider()
+    {
+        return [
+            [true],
+            [false],
+        ];
     }
 
     protected function setUp(): void
@@ -250,23 +313,23 @@ class SupporterTagFulfillmentTest extends TestCase
         ]);
     }
 
-    private function createDonationOrderItem($order, $giftee, $cancelled = false, $run = false)
+    private function createDonationOrderItem(User $giftee, bool $cancelled, bool $ranPreviously, bool $hidden = false)
     {
-        $orderItem = $this->createOrderItem($giftee, 1, 4);
+        $orderItem = $this->createOrderItem($giftee, 1, 4, $hidden);
 
         if ($cancelled) {
             $this->createUserDonation($orderItem, $giftee, false);
-            if ($run) {
+            if ($ranPreviously) {
                 $this->createUserDonation($orderItem, $giftee, true);
             }
         } else {
-            if ($run) {
+            if ($ranPreviously) {
                 $this->createUserDonation($orderItem, $giftee, false);
             }
         }
     }
 
-    private function createUserDonation($orderItem, $giftee, $cancelled = false)
+    private function createUserDonation(OrderItem $orderItem, User $giftee, bool $cancelled)
     {
         $donor = $orderItem->order->user;
 
@@ -277,15 +340,16 @@ class SupporterTagFulfillmentTest extends TestCase
         ]);
     }
 
-    private function createOrderItem($user, $duration, $amount)
+    private function createOrderItem(User $user, int $duration, int $amount, bool $hidden = false)
     {
         return factory(OrderItem::class)->states('supporter_tag')->create([
             'order_id' => $this->order->order_id,
             'cost' => $amount,
             'extra_data' => [
+                'duration' => $duration,
+                'hidden' => $hidden,
                 'target_id' => $user->user_id,
                 'username' => $user->username,
-                'duration' => $duration,
             ],
         ]);
     }

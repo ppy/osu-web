@@ -35,7 +35,7 @@ export default function ExtraMenu(props: Props) {
             <ReportReportable
               className='simple-menu__item'
               icon
-              onFormClose={dismiss}
+              onFormOpen={dismiss}
               reportableId={props.user.id.toString()}
               reportableType='user'
               user={props.user}

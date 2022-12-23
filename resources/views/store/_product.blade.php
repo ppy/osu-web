@@ -21,7 +21,7 @@
     }
 @endphp
 <a
-    href="{{ route('store.products.show', $product) }}"
+    href="{{ $product->url() }}"
     class="{{ $blockClass }}"
     {!! background_image($backgroundImage) !!}
 >

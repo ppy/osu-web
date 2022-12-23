@@ -217,6 +217,9 @@ return [
                 'loved' => [
                     'title' => 'Elskede beatmaps',
                 ],
+                'nominated' => [
+                    'title' => '',
+                ],
                 'pending' => [
                     'title' => 'Afventende Beatmaps',
                 ],
@@ -304,7 +307,7 @@ return [
                 ],
             ],
             'me' => [
-                'title' => 'me!',
+                'title' => 'mig!',
             ],
             'medals' => [
                 'empty' => "Denne bruger har ikke fået nogle endnu. ;_;",

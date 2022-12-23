@@ -246,7 +246,7 @@ return [
         ],
 
         'index' => [
-            'feature_votes' => '',
+            'feature_votes' => 'star prioriteta',
             'replies' => 'odgovori',
             'views' => 'ogledi',
         ],
@@ -334,7 +334,7 @@ return [
 
                 'info' => [
                     '_' => 'To je :feature_request. :supporters lahko glasujejo za funkcijske želje.',
-                    'feature_request' => '',
+                    'feature_request' => 'zahteva za funkcijo',
                     'supporters' => 'Podporniki',
                 ],
 

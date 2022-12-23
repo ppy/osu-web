@@ -14,14 +14,14 @@ return [
 
     'scopes' => [
         'bot' => 'Veikti kaip pokalbio botas.',
-        'identify' => 'Nustatyti jūsų tapatybė ir skaityti jūsų viešąjį profilį.',
+        'identify' => 'Nustatyti jūsų tapatybę ir skaityti jūsų viešąjį profilį.',
 
         'chat' => [
             'write' => 'Siųskite žinutes jūsų vardu.',
         ],
 
         'forum' => [
-            'write' => '',
+            'write' => 'Kūrti ir redaguoti forumo temas ir žinutes jūsų vardu.',
         ],
 
         'friends' => [

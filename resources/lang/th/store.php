@@ -31,6 +31,7 @@ return [
         'cart_problems_edit' => 'กดที่นี่เพื่อแก้ไข',
         'declined' => 'การชำระเงินถูกยกเลิก',
         'delayed_shipping' => 'ขณะนี้เราได้รับการสั่งสินค้าเป็นจำนวนมาก เราขอขอบคุณที่คุณซื้อสินค้ากับเรา แต่สินค้าอาจจะถึงมือคุณ**ช้าลง 1-2 สัปดาห์** เพื่อที่เราจะสามารถจัดการกับรายการสั่งสินค้าที่มีอยู่ก่อนได้',
+        'hide_from_activity' => '',
         'old_cart' => 'เหมือนว่าตะกร้าสินค้าของคุณจะเก่าและได้ทำการรีโหลดให้แล้ว กรุณาลองใหม่อีกครั้ง',
         'pay' => 'ชำระด้วย PayPal',
         'title_compact' => 'ชำระเงิน',
@@ -50,6 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'เนื่องจากการชำระเงินของคุณเป็น eCheck โปรดรอเพิ่มอีก 10 วันเพื่อให้การชำระเงินผ่าน PayPal!',
+        'hide_from_activity' => '',
         'title_compact' => 'ใบกำกับสินค้า',
 
         'status' => [
@@ -75,10 +77,15 @@ return [
         'shopify_expired' => 'ลิงค์ชำระเงินสำหรับคำสั่งซื้อนี้หมดอายุแล้ว',
 
         'item' => [
+            'quantity' => 'จำนวน',
+
             'display_name' => [
                 'supporter_tag' => ':name สำหรับ :username (:duration)',
             ],
-            'quantity' => 'จำนวน',
+
+            'subtext' => [
+                'supporter_tag' => '',
+            ],
         ],
 
         'not_modifiable_exception' => [
@@ -120,6 +127,8 @@ return [
 
     'supporter_tag' => [
         'gift' => 'ส่งให้ผู้เล่นอื่น',
+        'gift_message' => '',
+
         'require_login' => [
             '_' => 'คุณจะเป็นต้อง :link จึงจะได้รับป้าย osu!supporter',
             'link_text' => 'เข้าสู่ระบบ',

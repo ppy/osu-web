@@ -60,7 +60,7 @@ return [
     'gallery' => [
         'close' => 'Cerrar (Esc)',
         'fullscreen' => 'Alternar pantalla completa',
-        'zoom' => 'Zoom Acercar/Alejar',
+        'zoom' => 'Acercar/Alejar',
         'previous' => 'Anterior (flecha izquierda)',
         'next' => 'Siguiente (flecha derecha)',
     ],

@@ -31,6 +31,7 @@ return [
         'cart_problems_edit' => 'Натисніть тут, щоб змінити.',
         'declined' => 'Ваш платіж було скасовано.',
         'delayed_shipping' => 'В даний час у нас багато замовлень. Ти можеш замовити товар, але будь ласка, пам\'ятай, що його обробка замовлення може зайняти 1-2 тижні.',
+        'hide_from_activity' => '',
         'old_cart' => 'Здається ваша корзина застаріла, тому була перезавантажена, будь ласка спробуйте ще раз.',
         'pay' => 'Оплатити за допомогою PayPal',
         'title_compact' => 'перевірка',
@@ -50,6 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Оскільки оплата була через eCheck, очікування підтвердження оплати через Paypal може зайнятий до 10 днів!',
+        'hide_from_activity' => '',
         'title_compact' => 'рахунок',
 
         'status' => [
@@ -75,10 +77,15 @@ return [
         'shopify_expired' => 'Термін дії посилання для оформлення замовлення закінчився.',
 
         'item' => [
+            'quantity' => 'Кількість',
+
             'display_name' => [
                 'supporter_tag' => ':name для :username (:duration)',
             ],
-            'quantity' => 'Кількість',
+
+            'subtext' => [
+                'supporter_tag' => '',
+            ],
         ],
 
         'not_modifiable_exception' => [
@@ -120,6 +127,8 @@ return [
 
     'supporter_tag' => [
         'gift' => 'подарунок для гравця',
+        'gift_message' => '',
+
         'require_login' => [
             '_' => 'Ви маєте бути :link для покупки osu!прихильник!',
             'link_text' => 'увійти',

@@ -7,15 +7,16 @@ declare(strict_types=1);
 
 namespace App\Libraries;
 
+use App\Traits\Memoizes;
+
 class LayoutCache
 {
-    private array $cache = [];
+    use Memoizes;
 
     public function getBeatmapsetFilters(): string
     {
-        $key = __FUNCTION__.':'.app()->getLocale();
-
-        return $this->cache[$key] ??= view('beatmapsets._filters')->render();
+        return $this->memoize(__FUNCTION__.':'.app()->getLocale(), fn () =>
+            view('beatmapsets._filters')->render());
     }
 
     public function getLocalesDesktop(): string
@@ -23,9 +24,10 @@ class LayoutCache
         $currentLocale = app()->getLocale();
         $key = __FUNCTION__.':'.$currentLocale;
 
-        return $this->cache[$key] ??= view('layout.nav2._locales', [
-            'currentLocaleMeta' => locale_meta($currentLocale),
-        ])->render();
+        return $this->memoize($key, fn () =>
+            view('layout.nav2._locales', [
+                'currentLocaleMeta' => locale_meta($currentLocale),
+            ])->render());
     }
 
     public function getLocalesLanding(): string
@@ -33,9 +35,10 @@ class LayoutCache
         $currentLocale = app()->getLocale();
         $key = __FUNCTION__.':'.$currentLocale;
 
-        return $this->cache[$key] ??= view('home._landing_locales', [
-            'currentLocaleMeta' => locale_meta($currentLocale),
-        ])->render();
+        return $this->memoize($key, fn () =>
+            view('home._landing_locales', [
+                'currentLocaleMeta' => locale_meta($currentLocale),
+            ])->render());
     }
 
     public function getLocalesMobile(): string
@@ -43,8 +46,9 @@ class LayoutCache
         $currentLocale = app()->getLocale();
         $key = __FUNCTION__.':'.$currentLocale;
 
-        return $this->cache[$key] ??= view('layout.header_mobile._locales', [
-            'currentLocaleMeta' => locale_meta($currentLocale),
-        ])->render();
+        return $this->memoize($key, fn () =>
+            view('layout.header_mobile._locales', [
+                'currentLocaleMeta' => locale_meta($currentLocale),
+            ])->render());
     }
 }

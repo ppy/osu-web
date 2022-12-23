@@ -15,11 +15,11 @@ import { a, div, i, span } from 'react-dom-factories'
 import { onError } from 'utils/ajax'
 import { canModeratePosts, format, previewMessage } from 'utils/beatmapset-discussion-helper'
 import { nominationsCount } from 'utils/beatmapset-helper'
-import { trans, transArray } from 'utils/lang'
+import { joinComponents, trans } from 'utils/lang'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { pageChange } from 'utils/page-change'
 import { presence } from 'utils/string'
-import { linkHtml, wikiUrl } from 'utils/url'
+import { wikiUrl } from 'utils/url'
 
 el = React.createElement
 
@@ -401,13 +401,14 @@ export class Nominations extends React.PureComponent
 
     return null if nominators.length == 0
 
-    div dangerouslySetInnerHTML:
-      __html: trans 'beatmaps.nominations.nominated_by',
-        users: transArray nominators.map (user) ->
-            linkHtml route('users.show', user: user.id), user.username,
-              classNames: ['js-usercard']
-              props:
-                'data-user-id': user.id
+    span null,
+      el StringWithComponent,
+        mappings:
+          users: joinComponents nominators.map (user) ->
+            el UserLink,
+              key: user.id
+              user: user
+        pattern: trans('beatmaps.nominations.nominated_by')
 
 
   discussionLockMessage: =>
@@ -534,7 +535,7 @@ export class Nominations extends React.PureComponent
   renderChangeOwnerModal: =>
     return if !@state.changeOwnerModal
 
-    el Modal, visible: true,
+    el Modal, null,
       el BeatmapsOwnerEditor,
         beatmapset: @props.beatmapset,
         users: @props.users
@@ -543,7 +544,7 @@ export class Nominations extends React.PureComponent
   renderLoveBeatmapModal: =>
     return if !@state.loveBeatmapModal
 
-    el Modal, visible: true, onClose: @handleLoveBeatmapModal,
+    el Modal, onClose: @handleLoveBeatmapModal,
       el LoveBeatmapModal,
         beatmapset: @props.beatmapset
         onClose: @handleLoveBeatmapModal

@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property float|null $cost
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon|null $deleted_at
- * @property array|null $extra_data
+ * @property ExtraDataBase|null $extra_data
  * @property string|null $extra_info
  * @property int $id
  * @property Order $order
@@ -35,15 +35,9 @@ class OrderItem extends Model
 
     protected $casts = [
         'cost' => 'float',
-        'extra_data' => 'array',
+        'extra_data' => ExtraDataBase::class,
         'reserved' => 'boolean',
     ];
-
-    // The format for extra_data is:
-    // [
-    //     'type' => 'custom-extra-info',
-    //     ...additional fields
-    // ]
 
     public function scopeHasShipping($query)
     {
@@ -128,11 +122,21 @@ class OrderItem extends Model
     public function getDisplayName(bool $html = false)
     {
         switch ($this->product->custom_class) {
-            case 'supporter-tag':
+            case Product::SUPPORTER_TAG_NAME:
                 return SupporterTag::getDisplayName($this, $html);
             default:
                 return $this->product->name.($this->extra_info !== null ? " ({$this->extra_info})" : '');
         }
+    }
+
+    public function getSubtext()
+    {
+        $extraData = $this->extra_data;
+        if ($extraData instanceof ExtraDataSupporterTag && $extraData->message !== null) {
+            return trans('store.order.item.subtext.supporter_tag', ['message' => $extraData->message]);
+        }
+
+        return null;
     }
 
     public function releaseProduct()
@@ -156,5 +160,13 @@ class OrderItem extends Model
     public function validationErrorsTranslationPrefix()
     {
         return 'store.order_item';
+    }
+
+    public function __get($key)
+    {
+        // TODO: remove this after no more things are queued with old $casts
+        $this->casts['extra_data'] = ExtraDataBase::class;
+
+        return parent::__get($key);
     }
 }

@@ -161,11 +161,6 @@ abstract class Model extends BaseModel
         return snake_case(get_class_basename(static::class));
     }
 
-    public function url()
-    {
-        return route('scores.show', ['mode' => $this->getMode(), 'score' => $this->getKey()]);
-    }
-
     protected function getData()
     {
         $mods = array_map(fn ($m) => ['acronym' => $m, 'settings' => []], $this->enabled_mods);

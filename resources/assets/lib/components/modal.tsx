@@ -2,35 +2,28 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as React from 'react';
-import { createPortal } from 'react-dom';
 import { blackoutToggle } from 'utils/blackout';
+import Portal from './portal';
 
-export const isModalOpen = () => document.body.classList.contains('js-react-modal---is-open');
+export const isModalOpen = () => modals.size !==  0;
 
 interface Props {
   children: React.ReactNode;
   onClose?: () => void;
-  visible: boolean;
 }
+
+const modals = new Set<Modal>();
 
 export default class Modal extends React.PureComponent<Props> {
   private clickEndTarget: undefined | EventTarget;
   private clickStartTarget: undefined | EventTarget;
-  private readonly portal = document.createElement('div');
   private readonly ref = React.createRef<HTMLDivElement>();
 
   componentDidMount() {
-    document.body.appendChild(this.portal);
     document.addEventListener('keydown', this.handleEsc);
     $(document).on('turbolinks:before-cache', this.handleBeforeCache);
 
-    this.syncVisible();
-  }
-
-  componentDidUpdate(prevProps: Props) {
-    if (prevProps.visible !== this.props.visible) {
-      this.syncVisible();
-    }
+    this.open();
   }
 
   componentWillUnmount() {
@@ -40,18 +33,31 @@ export default class Modal extends React.PureComponent<Props> {
   }
 
   render() {
-    return createPortal(this.renderPortalContent(), this.portal);
+    return (
+      <Portal>
+        <div
+          ref={this.ref}
+          className='js-react-modal'
+          onClick={this.hideModal}
+          onMouseDown={this.handleMouseDown}
+          onMouseUp={this.handleMouseUp}
+        >
+          {this.props.children}
+        </div>
+      </Portal>
+    );
   }
 
-  private close(this: void) {
-    document.body.classList.remove('js-react-modal---is-open');
-    blackoutToggle(false, 0.5);
-  }
+  private readonly close = () => {
+    modals.delete(this);
+    if (modals.size === 0) {
+      blackoutToggle(false);
+    }
+  };
 
   private readonly handleBeforeCache = () => {
     // componentWillUnmount runs too late depending on how the top level component was registered
     this.close();
-    document.body.removeChild(this.portal);
   };
 
   private readonly handleEsc = (e: KeyboardEvent) => {
@@ -84,31 +90,8 @@ export default class Modal extends React.PureComponent<Props> {
     }
   };
 
-  private open(this: void) {
-    // TODO: move to global react state or something
-    document.body.classList.add('js-react-modal---is-open');
+  private readonly open = () => {
+    modals.add(this);
     blackoutToggle(true, 0.5);
-  }
-
-  private renderPortalContent() {
-    return (
-      <div
-        ref={this.ref}
-        className='js-react-modal'
-        onClick={this.hideModal}
-        onMouseDown={this.handleMouseDown}
-        onMouseUp={this.handleMouseUp}
-      >
-        {this.props.children}
-      </div>
-    );
-  }
-
-  private syncVisible() {
-    if (this.props.visible) {
-      this.open();
-    } else {
-      this.close();
-    }
-  }
+  };
 }
