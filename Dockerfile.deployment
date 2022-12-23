@@ -26,7 +26,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
     php8.0-xml \
     php8.0-zip \
     php8.0 \
-    zip
+    zip \
+    libjpeg-turbo-progs
 
 WORKDIR /app
 

@@ -30,7 +30,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
     php8.0-xml \
     php8.0-zip \
     php8.0 \
-    zip
+    zip \
+    libjpeg-turbo-progs
 
 RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
 RUN apt-get update
