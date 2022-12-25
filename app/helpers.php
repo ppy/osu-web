@@ -498,7 +498,7 @@ function markdown_chat($input)
         $converter = new League\CommonMark\MarkdownConverter($environment);
     }
 
-    return $converter->convertToHtml($input)->getContent();
+    return $converter->convert($input)->getContent();
 }
 
 function markdown_plain($input)
@@ -512,7 +512,7 @@ function markdown_plain($input)
         ]);
     }
 
-    return $converter->convertToHtml($input)->getContent();
+    return $converter->convert($input)->getContent();
 }
 
 function max_offset($page, $limit)
