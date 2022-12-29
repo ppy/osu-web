@@ -83,6 +83,15 @@ class AuthApi
 
         $user = $token->getResourceOwner();
 
+        // user row gone
+        if ($user === null) {
+            throw new AuthenticationException();
+        }
+
+        if ($user->isRestricted()) {
+            throw new AuthenticationException();
+        }
+
         if ($token->isClientCredentials() && $psrUserId !== null) {
             throw new AuthenticationException();
         }
