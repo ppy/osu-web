@@ -83,7 +83,12 @@ class AuthApi
 
         $user = $token->getResourceOwner();
 
-        if ($user !== null && $user->isRestricted()) {
+        // user row gone
+        if ($user === null) {
+            throw new AuthenticationException();
+        }
+
+        if ($user->isRestricted()) {
             throw new AuthenticationException();
         }
 
