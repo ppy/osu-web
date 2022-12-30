@@ -23,6 +23,11 @@
     margin: 10px 0;
   }
 
+  &--user-create {
+    max-width: 500px;
+    margin: auto;
+  }
+
   &__buttons {
     margin: -5px;
     display: flex;
@@ -31,6 +36,16 @@
   &__button {
     margin: 5px;
     flex: none;
+  }
+
+  &__captcha {
+    min-height: 78px;
+
+    &:empty {
+      &::before {
+      content: '\a0';
+      }
+    }
   }
 
   &__checkbox {
@@ -76,6 +91,22 @@
     @media @desktop {
       display: flex;
       flex-wrap: wrap;
+    }
+  }
+
+  &__error {
+    color: hsl(var(--hsl-red-1));
+    width: 100%;
+    margin-top: 5px;
+
+    &:empty {
+      &::before {
+      content: '\a0';
+      }
+    }
+
+    @media @desktop {
+      padding-left: @_base-column-width;
     }
   }
 
@@ -202,6 +233,10 @@
       font-weight: normal;
       font-size: @font-size--title-small-2;
       font-style: normal;
+    }
+
+    &.js-form-error--field {
+      flex-wrap: wrap;
     }
   }
 

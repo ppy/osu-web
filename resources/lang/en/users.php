@@ -52,6 +52,17 @@ return [
         'send_message' => 'Send message',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => 'password',
+            'password_confirmation' => 'password confirmation',
+            'submit' => 'create account',
+            'user_email' => 'email',
+            'user_email_confirmation' => 'email confirmation',
+            'username' => 'username',
+        ],
+    ],
+
     'disabled' => [
         'title' => 'Uh-oh! It looks like your account has been disabled.',
         'warning' => "In the case you have broken a rule, please note that there is generally a cool-down period of one month during which we will not consider any amnesty requests. After this period, you are free to contact us should you deem it necessary. Please note that creating new accounts after you have had one disabled will result in an <strong>extension of this one month cool-down</strong>. Please also note that for <strong>every account you create, you are further breaking rules</strong>. We highly suggest you don't go down this path!",
@@ -451,6 +462,7 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_web' => 'please register through web',
         'saved' => 'User created',
     ],
     'verify' => [
