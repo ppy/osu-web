@@ -60,6 +60,11 @@ return [
             'user_email' => 'email',
             'user_email_confirmation' => 'email confirmation',
             'username' => 'username',
+
+            'tos_notice' => [
+                '_' => 'by creating account you agree to the :link',
+                'link' => 'terms of service',
+            ],
         ],
     ],
 

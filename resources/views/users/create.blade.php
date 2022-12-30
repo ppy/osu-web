@@ -105,6 +105,20 @@
                     </div>
                 </div>
             </div>
+            <div class="simple-form__row simple-form__row--no-label">
+                <p>
+                    {!! osu_trans('users.create.form.tos_notice._', [
+                        'link' => tag(
+                            'a',
+                            [
+                                'href' => route('legal', ['locale' => app()->getLocale(), 'path' => 'Terms']),
+                                'target' => '_blank',
+                            ],
+                            osu_trans('users.create.form.tos_notice.link')
+                        ),
+                    ]) !!}
+                </p>
+            </div>
         </form>
     </div>
 @endsection
