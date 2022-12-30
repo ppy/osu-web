@@ -227,6 +227,7 @@ return [
     'user' => [
         'allow_email_login' => get_bool(env('USER_ALLOW_EMAIL_LOGIN')) ?? true,
         'allow_registration' => get_bool(env('ALLOW_REGISTRATION')) ?? true,
+        'registration_mode' => presence(env('REGISTRATION_MODE')) ?? 'client',
         'allowed_rename_groups' => explode(' ', env('USER_ALLOWED_RENAME_GROUPS', 'default')),
         'bypass_verification' => get_bool(env('USER_BYPASS_VERIFICATION')) ?? false,
         'hide_pinned_solo_scores' => get_bool(env('USER_HIDE_PINNED_SOLO_SCORES')) ?? true,

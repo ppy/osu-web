@@ -412,6 +412,52 @@ function img2x(array $attributes)
     return tag('img', $attributes);
 }
 
+function inet_prefixlen_start(string $inet, int $version, int $prefixlen): ?string
+{
+    switch ($version) {
+        case 4:
+            if (filter_var($inet, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4) !== false) {
+                $pack = 'c*';
+                $size = 8;
+            }
+            break;
+        case 6:
+            if (filter_var($inet, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6) !== false) {
+                $pack = 'n*';
+                $size = 16;
+            }
+            break;
+    }
+
+    if (!isset($pack)) {
+        return null;
+    }
+
+    $ipArray = unpack($pack, inet_pton($inet));
+    $groupMask = (1 << $size) - 1;
+    $fullSize = $size * count($ipArray);
+    $groupCount = count($ipArray);
+    for ($i = 0; $i < $groupCount; $i++) {
+        $mask = $groupMask;
+        for ($j = 0; $j < $size; $j++) {
+            $fullIndex = $i * $size + $j;
+            // keep everything before prefixlen, remove otherwise
+            $indexMaskValue = $fullIndex < $prefixlen ? 0 : 1;
+            // shifting goes from the end, one less of size:
+            // (size 8)
+            // i = 0 -> shift = 7 (1000 0000)
+            // i = 7 -> shift = 0 (0000 0001)
+            $index = $size - $j - 1;
+            $mask ^= $indexMaskValue << $index;
+        }
+        // ipArray is 1-indexed
+        $group = $i + 1;
+        $ipArray[$group] = $ipArray[$group] & $mask;
+    }
+
+    return inet_ntop(pack($pack, ...$ipArray));
+}
+
 function locale_meta(string $locale): LocaleMeta
 {
     return LocaleMeta::find($locale);

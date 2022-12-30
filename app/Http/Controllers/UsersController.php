@@ -278,7 +278,8 @@ class UsersController extends Controller
                 return response(null, 204);
             }
 
-            $throttleKey = "registration:{$ip}";
+            $throttleIp = inet_prefixlen_start($ip, 4, 24) ?? inet_prefixlen_start($ip, 6, 56) ?? $ip;
+            $throttleKey = 'registration:'.$throttleIp;
 
             if (app(RateLimiter::class)->tooManyAttempts($throttleKey, 10)) {
                 abort(429);
