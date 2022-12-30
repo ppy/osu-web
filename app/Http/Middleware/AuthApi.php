@@ -88,7 +88,7 @@ class AuthApi
                 throw new AuthenticationException();
             }
         } else {
-            if ($user === null ||  $user->getKey() !== $psrUserId) {
+            if ($user === null || $user->getKey() !== $psrUserId) {
                 throw new AuthenticationException();
             }
         }
