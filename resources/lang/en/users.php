@@ -462,6 +462,7 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => 'please register via the game client instead!',
         'from_web' => 'please register through web',
         'saved' => 'User created',
     ],

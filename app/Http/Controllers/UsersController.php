@@ -118,7 +118,7 @@ class UsersController extends Controller
     public function create()
     {
         if (config('osu.user.registration_mode') !== 'web') {
-            abort(403);
+            return abort(403, osu_trans('users.store.from_client'));
         }
 
         return ext_view('users.create');
@@ -261,7 +261,7 @@ class UsersController extends Controller
                 }
             }
         } elseif (!$fromClient) {
-            return error_popup('Wrong client', 403);
+            return error_popup(osu_trans('users.store.from_client'), 403);
         }
 
         $countryCode = request_country();
