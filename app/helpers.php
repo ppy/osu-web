@@ -439,16 +439,18 @@ function inet_prefixlen_start(string $inet, int $version, int $prefixlen): ?stri
     $groupCount = count($ipArray);
     for ($i = 0; $i < $groupCount; $i++) {
         $mask = $groupMask;
+        $indexStart = $i * $size;
         for ($j = 0; $j < $size; $j++) {
-            $fullIndex = $i * $size + $j;
-            // keep everything before prefixlen, remove otherwise
-            $indexMaskValue = $fullIndex < $prefixlen ? 0 : 1;
+            $fullIndex = $indexStart + $j;
+            if ($fullIndex < $prefixlen) {
+                continue;
+            }
             // shifting goes from the end, one less of size:
             // (size 8)
             // i = 0 -> shift = 7 (1000 0000)
             // i = 7 -> shift = 0 (0000 0001)
             $index = $size - $j - 1;
-            $mask ^= $indexMaskValue << $index;
+            $mask ^= 1 << $index;
         }
         // ipArray is 1-indexed
         $group = $i + 1;
