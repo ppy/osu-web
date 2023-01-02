@@ -131,11 +131,9 @@ class ChatTest extends TestCase
 
         Chat::sendPrivateMessage($sender, $target, 'test message', false);
 
-        $channel = Channel::findPM($sender, $target);
-
         if ($successful) {
             $this->assertInstanceOf(Channel::class, Channel::findPM($sender, $target));
-        };
+        }
     }
 
     /**
