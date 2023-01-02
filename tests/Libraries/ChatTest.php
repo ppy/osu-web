@@ -107,6 +107,36 @@ class ChatTest extends TestCase
     }
 
     /**
+     * @dataProvider sendPMMinPlaysDataProvider
+     */
+    public function testSendPMMinPlays(?string $groupIdentifier, $hasMinPlays, $successful)
+    {
+        config()->set('osu.user.min_plays_allow_verified_bypass', false);
+        config()->set('osu.user.min_plays_for_posting', 2);
+
+        $playCount = $hasMinPlays ? null : 1;
+
+        $sender = User::factory()->withGroup($groupIdentifier)->withPlays($playCount)->create();
+        $sender->markSessionVerified();
+        $target = User::factory()->create(['pm_friends_only' => false]);
+
+        $countChange = $successful ? 1 : 0;
+
+        $this->expectCountChange(fn () => Channel::count(), $countChange);
+        $this->expectCountChange(fn () => Message::count(), $countChange);
+
+        if (!$successful) {
+            $this->expectException(AuthorizationException::class);
+        }
+
+        Chat::sendPrivateMessage($sender, $target, 'test message', false);
+
+        if ($successful) {
+            $this->assertInstanceOf(Channel::class, Channel::findPM($sender, $target));
+        }
+    }
+
+    /**
      * @dataProvider sendPmFriendsOnlyGroupsDataProvider
      */
     public function testSendPMFriendsOnly(?string $groupIdentifier, $successful)
@@ -237,6 +267,16 @@ class ChatTest extends TestCase
             ['gmt', true],
             ['nat', true],
             [null, false],
+        ];
+    }
+
+    public function sendPMMinPlaysDataProvider()
+    {
+        return [
+            [null, true, true],
+            [null, false, false],
+            ['bot', true, true],
+            ['bot', false, true],
         ];
     }
 
