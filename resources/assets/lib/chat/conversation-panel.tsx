@@ -5,6 +5,7 @@ import Img2x from 'components/img2x';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { trans } from 'utils/lang';
 import ConversationView from './conversation-view';
 import CreateAnnouncement from './create-announcement';
 import InputBox from './input-box';
@@ -28,14 +29,14 @@ export default class ConversationPanel extends React.Component<Record<string, ne
             <Img2x alt='Art by Badou_Rammsteiner' src='/images/layout/chat/none-yet.png' title='Art by Badou_Rammsteiner' />
             {core.dataStore.channelStore.channels.size > 0 ? (
               <>
-                <div className='chat-conversation-panel__title'>{osu.trans('chat.not_found.title')}</div>
-                <div className='chat-conversation-panel__instructions'>{osu.trans('chat.not_found.message')}</div>
+                <div className='chat-conversation-panel__title'>{trans('chat.not_found.title')}</div>
+                <div className='chat-conversation-panel__instructions'>{trans('chat.not_found.message')}</div>
               </>
             ) : (
               <>
-                <div className='chat-conversation-panel__title'>{osu.trans('chat.no-conversations.title')}</div>
-                <div className='chat-conversation-panel__instructions'>{osu.trans('chat.no-conversations.howto')}</div>
-                <div dangerouslySetInnerHTML={{__html: osu.trans('chat.no-conversations.lazer', { link: lazerLink })}} />
+                <div className='chat-conversation-panel__title'>{trans('chat.no-conversations.title')}</div>
+                <div className='chat-conversation-panel__instructions'>{trans('chat.no-conversations.howto')}</div>
+                <div dangerouslySetInnerHTML={{ __html: trans('chat.no-conversations.lazer', { link: lazerLink }) }} />
               </>
             )}
           </div>

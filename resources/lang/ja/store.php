@@ -31,6 +31,7 @@ return [
         'cart_problems_edit' => 'クリックで変更',
         'declined' => 'お支払いはキャンセルされました。',
         'delayed_shipping' => '現在注文が多く大変混雑しています。注文はまだ受け付けていますが、**１～２週間ほどの遅延**が発生する可能性があります。',
+        'hide_from_activity' => '',
         'old_cart' => 'あなたのカートは期限切れ、または再読み込みされたようです。再度お試しください。',
         'pay' => 'Paypalで支払う',
         'title_compact' => '決済',
@@ -50,6 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => '決済方法がeCheckのため、PayPalを介した支払いが完了するまで、さらに最大10日を要します。予めご了承ください。',
+        'hide_from_activity' => '',
         'title_compact' => '請求書',
 
         'status' => [
@@ -75,10 +77,15 @@ return [
         'shopify_expired' => 'この注文の決済リンクは期限切れとなりました。',
 
         'item' => [
+            'quantity' => '個数',
+
             'display_name' => [
                 'supporter_tag' => ':nameを:usernameに贈る（:duration）',
             ],
-            'quantity' => '個数',
+
+            'subtext' => [
+                'supporter_tag' => '',
+            ],
         ],
 
         'not_modifiable_exception' => [
@@ -120,6 +127,8 @@ return [
 
     'supporter_tag' => [
         'gift' => 'プレイヤーにギフトを贈る',
+        'gift_message' => '',
+
         'require_login' => [
             '_' => 'サポータータグを入手するには:linkが必要です！',
             'link_text' => 'ログイン',

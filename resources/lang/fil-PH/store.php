@@ -31,6 +31,7 @@ return [
         'cart_problems_edit' => 'Mag-click dito para i-edit ito.',
         'declined' => 'Nakansela ang bayad.',
         'delayed_shipping' => 'Kami ay punong puno ng mga order! Maari kang maglagay ng order, pero maaring mahintulot ang iyong order ng mga 1-2 linggo habang inaasikaso namin ang mga order sa ngayon.',
+        'hide_from_activity' => '',
         'old_cart' => 'Dahil matagal na panahon na ang lumipas, ini-load muli ang iyong kariton, mangyaring subukang muli.',
         'pay' => 'Paglabas gamit ang Paypal',
         'title_compact' => 'checkout',
@@ -50,6 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Dahil ang pagbayad ay eCheck, maari pong magantay ng 10 araw para dumaan ng PayPal ang iyong bayarin!',
+        'hide_from_activity' => '',
         'title_compact' => 'invoice',
 
         'status' => [
@@ -75,10 +77,15 @@ return [
         'shopify_expired' => 'Ang link ng checkout para sa order na ito ay nag-expire na.',
 
         'item' => [
+            'quantity' => 'Dami',
+
             'display_name' => [
                 'supporter_tag' => ':name para kay :username (:duration)',
             ],
-            'quantity' => 'Dami',
+
+            'subtext' => [
+                'supporter_tag' => '',
+            ],
         ],
 
         'not_modifiable_exception' => [
@@ -120,6 +127,8 @@ return [
 
     'supporter_tag' => [
         'gift' => 'regalo sa manlalaro',
+        'gift_message' => '',
+
         'require_login' => [
             '_' => 'Kailangan mong :link upang makakuha ng osu! Supporter tag!',
             'link_text' => 'naka-sign in',

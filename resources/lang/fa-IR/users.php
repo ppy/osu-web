@@ -217,6 +217,9 @@ return [
                 'loved' => [
                     'title' => 'بیت مپ های "دوست داشته شده"',
                 ],
+                'nominated' => [
+                    'title' => '',
+                ],
                 'pending' => [
                     'title' => 'بیت مپ های در انتظار',
                 ],
@@ -414,6 +417,7 @@ return [
             'country_simple' => 'رتبه کشوری',
             'global' => 'رتبه جهانی برای :mode',
             'global_simple' => 'رتبه جهانی',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'دقت ضربات',

@@ -10,6 +10,9 @@ use App\Models\UserReport;
 use App\Notifications\UserReportNotification;
 use PDOException;
 
+/**
+ * @property-read \Illuminate\Database\Eloquent\Collection<UserReport> $reportedIn
+ */
 trait Reportable
 {
     abstract protected function newReportableExtraParams(): array;

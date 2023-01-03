@@ -5,12 +5,14 @@ import mapperGroup from 'beatmap-discussions/mapper-group'
 import { SelectOptions } from 'components/select-options'
 import * as React from 'react'
 import { a } from 'react-dom-factories'
+import { groupColour } from 'utils/css'
+import { trans } from 'utils/lang'
 
 el = React.createElement
 
 allUsers =
   id: null,
-  text: osu.trans('beatmap_discussions.user_filter.everyone')
+  text: trans('beatmap_discussions.user_filter.everyone')
 
 export class UserFilter extends React.PureComponent
   mapUserProperties: (user) ->
@@ -35,7 +37,7 @@ export class UserFilter extends React.PureComponent
     selected = if @props.selectedUser?
                  @mapUserProperties(@props.selectedUser)
                else
-                 id: null, text: osu.trans('beatmap_discussions.user_filter.label')
+                 id: null, text: trans('beatmap_discussions.user_filter.label')
 
     el SelectOptions,
       bn: 'beatmap-discussions-user-filter'
@@ -47,7 +49,7 @@ export class UserFilter extends React.PureComponent
 
   renderOption: ({ cssClasses, children, onClick, option }) =>
     group = if @isOwner(option) then mapperGroup else option.groups?[0]
-    style = osu.groupColour(group)
+    style = groupColour(group)
 
     a
       className: cssClasses

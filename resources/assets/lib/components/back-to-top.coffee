@@ -4,6 +4,7 @@
 import { createElement as el, createRef, PureComponent } from 'react'
 import * as React from 'react'
 import { button, div, i } from 'react-dom-factories'
+import { trans } from 'utils/lang'
 
 export class BackToTop extends PureComponent
   constructor: (props) ->
@@ -66,7 +67,7 @@ export class BackToTop extends PureComponent
       className: 'back-to-top'
       'data-tooltip-float': 'fixed'
       onClick: @onClick
-      title: if @state.lastScrollY? then osu.trans('common.buttons.back_to_previous') else osu.trans('common.buttons.back_to_top')
+      title: if @state.lastScrollY? then trans('common.buttons.back_to_previous') else trans('common.buttons.back_to_top')
       i className: if @state.lastScrollY? then 'fas fa-angle-down' else 'fas fa-angle-up'
 
 

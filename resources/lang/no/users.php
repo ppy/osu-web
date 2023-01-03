@@ -130,8 +130,8 @@ return [
         ],
 
         'options' => [
-            'cheating' => 'Lureri / Juks',
-            'multiple_accounts' => '',
+            'cheating' => 'Juksing',
+            'multiple_accounts' => 'Bruker flere kontoer',
             'insults' => 'Fornærmer meg / andre',
             'spam' => 'Spamming',
             'unwanted_content' => 'Deling av upassende innhold',
@@ -216,6 +216,9 @@ return [
                 ],
                 'loved' => [
                     'title' => 'Elskede Beatmaps',
+                ],
+                'nominated' => [
+                    'title' => '',
                 ],
                 'pending' => [
                     'title' => 'Ventende Beatmaps',
@@ -414,6 +417,7 @@ return [
             'country_simple' => 'Landsrangering',
             'global' => 'Global rangering for :mode',
             'global_simple' => 'Global Rangering',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Presisjon',
@@ -437,8 +441,8 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'Du er øyeblikkelig forstummet.',
+        'message' => 'Noen handlinger kan være utilgjengelige.',
     ],
 
     'status' => [

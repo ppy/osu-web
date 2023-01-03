@@ -67,6 +67,7 @@ return [
         'duration' => 'Dank ihnen hast Du Zugriff auf osu!direct und andere osu!supporter-Vorteile für die nächsten :duration.',
         'features' => 'Weitere Details zu diesen Funktionen findest Du hier:',
         'gifted' => 'Jemand hat Dir gerade ein osu!supporter-Tag geschenkt!',
+        'gift_message' => '',
         'subject' => 'Dir wurde ein osu!supporter-Tag geschenkt!',
     ],
 

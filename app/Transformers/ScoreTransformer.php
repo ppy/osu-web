@@ -20,6 +20,7 @@ class ScoreTransformer extends TransformerAbstract
     const TYPE_LEGACY = 'legacy';
     const TYPE_SOLO = 'solo';
 
+    // TODO: user include is deprecated.
     const USER_PROFILE_INCLUDES = ['beatmap', 'beatmapset', 'user'];
     const USER_PROFILE_INCLUDES_PRELOAD = [
         'beatmap',

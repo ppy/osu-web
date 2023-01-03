@@ -217,6 +217,9 @@ return [
                 'loved' => [
                     'title' => 'Szeretett beatmapek',
                 ],
+                'nominated' => [
+                    'title' => '',
+                ],
                 'pending' => [
                     'title' => 'Függő beatmapek',
                 ],
@@ -414,6 +417,7 @@ return [
             'country_simple' => 'Országos Rangsor',
             'global' => 'Globális rank a :mode-ra/re',
             'global_simple' => 'Globális Rangsor',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Találati Pontosság',

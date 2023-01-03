@@ -5,73 +5,74 @@
 
 return [
     'header' => [
-        'small' => '',
-        'large' => '',
+        'small' => 'Competeix de més maneres que només pressionant cercles.',
+        'large' => 'Tornejos de la comunitat',
     ],
 
     'index' => [
-        'nav_title' => '',
+        'nav_title' => 'llistat',
     ],
 
     'voting' => [
-        'login_required' => '',
-        'over' => '',
-        'show_voted_only' => '',
+        'login_required' => 'Sisplau, inicia sessió per a votar.',
+        'over' => 'La votació per aquest torneig ha finalitzat',
+        'show_voted_only' => 'Mostra els votats',
 
         'best_of' => [
-            'none_played' => "",
+            'none_played' => "No sembla que hagis jugat cap beatmap per a qualificar-te per al torneig!",
         ],
 
         'button' => [
-            'add' => '',
-            'remove' => '',
-            'used_up' => '',
+            'add' => 'Vota',
+            'remove' => 'Eliminar vot',
+            'used_up' => 'Ja has fet servir tots els teus vots',
         ],
 
         'progress' => [
-            '_' => '',
+            '_' => ':used / :max vots utilitzats',
         ],
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => '',
+                'incomplete_play' => 'Heu de jugar tots els beatmaps a les llistes de joc especificades abans de votar',
             ],
         ],
     ],
     'entry' => [
-        '_' => '',
-        'login_required' => '',
-        'silenced_or_restricted' => '',
-        'preparation' => '',
-        'drop_here' => '',
-        'download' => '',
+        '_' => 'entrada',
+        'login_required' => 'Si us plau, inicieu la sessió per participar al concurs.',
+        'silenced_or_restricted' => 'No pots accedir a tornejos mentre estràs silenciat o restringit.',
+        'preparation' => 'Estem preparant aquest torneig. Sisplau, espera una mica!',
+        'drop_here' => 'Deixa anar la teva inscripció aquí',
+        'download' => 'Descarregar .osz',
         'wrong_type' => [
-            'art' => '',
-            'beatmap' => '',
-            'music' => '',
+            'art' => 'Només fitxers .jpg i .png s\'accepten per aquest torneig.',
+            'beatmap' => 'Només fitxers .osu s\'accepten per aquest torneig.',
+            'music' => 'Només fitxer .mp3 s\'accepten per aquest torneig.',
         ],
-        'too_big' => '',
+        'wrong_dimensions' => 'Les inscripcions per aquest torneig han de ser :widthx:height',
+        'too_big' => 'Les inscripcions per aquest torneig només poden ser fins a :limit.',
     ],
     'beatmaps' => [
-        'download' => '',
+        'download' => 'Descarregar entrada',
     ],
     'vote' => [
-        'list' => '',
-        'count' => '',
-        'points' => '',
+        'list' => 'vots',
+        'count' => ':count_delimited vot |:count_delimited vots',
+        'points' => ':count_delimited punt|:count_delimited punts',
     ],
     'dates' => [
-        'ended' => '',
-        'ended_no_date' => '',
+        'ended' => 'Finalitzat :date',
+        'ended_no_date' => 'Finalitzat',
 
         'starts' => [
-            '_' => '',
-            'soon' => '',
+            '_' => 'Comença :date',
+            'soon' => 'aviat™',
         ],
     ],
     'states' => [
-        'entry' => '',
-        'voting' => '',
-        'results' => '',
+        'entry' => 'Entrada oberta',
+        'voting' => 'Votació iniciada',
+        'results' => 'Resultats fora',
     ],
 ];

@@ -21,19 +21,26 @@ use Carbon\Carbon;
 use ChaseConey\LaravelDatadogHelper\Datadog;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
-use LaravelRedis as Redis;
+use LaravelRedis;
+use Redis;
 
 /**
- * @property string[] $allowed_groups
+ * @property int[] $allowed_groups
  * @property int $channel_id
- * @property \Carbon\Carbon $creation_time
+ * @property Carbon $creation_time
+ * @property-read string $creation_time_json
  * @property string $description
- * @property \Illuminate\Database\Eloquent\Collection $messages Message
+ * @property int|null $last_message_id
+ * @property-read Collection<Message> $messages
  * @property int|null $match_id
- * @property int $moderated
+ * @property bool $moderated
+ * @property-read \App\Models\LegacyMatch\LegacyMatch|null $multiplayerMatch
  * @property string $name
  * @property int|null $room_id
- * @property mixed $type
+ * @property string $type
+ * @property-read Collection<UserChannel> $userChannels
+ * @method static \Illuminate\Database\Eloquent\Builder PM()
+ * @method static \Illuminate\Database\Eloquent\Builder public()
  */
 class Channel extends Model
 {
@@ -72,14 +79,21 @@ class Channel extends Model
         'group' => 'GROUP',
     ];
 
+    public static function ack(int $channelId, int $userId, ?int $timestamp = null, ?Redis $redis = null): void
+    {
+        $timestamp ??= time();
+        $redis ??= LaravelRedis::client();
+        $key = static::getAckKey($channelId);
+        $redis->zadd($key, $timestamp, $userId);
+        $redis->expire($key, static::CHAT_ACTIVITY_TIMEOUT * 10);
+    }
+
     /**
      * Creates a chat broadcast Channel and associated UserChannels.
      *
-     * @param Collection $users
-     * @param array $rawParams
-     * @return Channel
+     * @param Collection<User> $users
      */
-    public static function createAnnouncement(Collection $users, array $rawParams, ?string $uuid = null): self
+    public static function createAnnouncement(Collection $users, array $rawParams, ?string $uuid = null): static
     {
         $params = get_params($rawParams, null, [
             'description:string',
@@ -162,13 +176,7 @@ class Channel extends Model
         return "chat:channel:{$channelId}";
     }
 
-    /**
-     * @param User $user1
-     * @param User $user2
-     *
-     * @return string
-     */
-    public static function getPMChannelName(User $user1, User $user2)
+    public static function getPMChannelName(User $user1, User $user2): string
     {
         $userIds = [$user1->getKey(), $user2->getKey()];
         sort($userIds);
@@ -179,7 +187,7 @@ class Channel extends Model
     public function activeUserIds()
     {
         return $this->isPublic()
-            ? Redis::zrangebyscore(static::getAckKey($this->getKey()), now()->subSeconds(static::CHAT_ACTIVITY_TIMEOUT)->timestamp, 'inf')
+            ? LaravelRedis::zrangebyscore(static::getAckKey($this->getKey()), now()->subSeconds(static::CHAT_ACTIVITY_TIMEOUT)->timestamp, 'inf')
             : $this->userIds();
     }
 
@@ -439,7 +447,7 @@ class Channel extends Model
         // This works by keeping a sorted set of when the last messages were sent by the user (per message type).
         // The timestamp of the message is used as the score, which allows for zremrangebyscore to cull old messages
         // in a rolling window fashion.
-        [,$sent] = Redis::transaction()
+        [,$sent] = LaravelRedis::transaction()
             ->zremrangebyscore($key, 0, $now->timestamp - $window)
             ->zrange($key, 0, -1, 'WITHSCORES')
             ->zadd($key, $now->timestamp, (string) Str::uuid())
@@ -494,6 +502,10 @@ class Channel extends Model
 
     public function addUser(User $user)
     {
+        if ($this->isPublic()) {
+            static::ack($this->getKey(), $user->getKey());
+        }
+
         $userChannel = $this->userChannelFor($user);
 
         if ($userChannel !== null) {

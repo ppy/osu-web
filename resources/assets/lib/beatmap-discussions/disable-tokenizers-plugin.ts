@@ -3,7 +3,7 @@
 
 import { Processor } from 'unified';
 
-export function disableTokenizersPlugin(this: Processor, {allowedBlocks = [] as string[], allowedInlines = [] as string[]} = {}) {
+export function disableTokenizersPlugin(this: Processor, { allowedBlocks = [] as string[], allowedInlines = [] as string[] } = {}) {
   // Ensure core required tokenizers are always allowed (otherwise infinite loops and other bad things happen...)
   allowedBlocks.push('root', 'newline');
   allowedInlines.push('text');

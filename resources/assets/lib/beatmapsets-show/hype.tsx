@@ -11,6 +11,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
+import { trans } from 'utils/lang';
 
 const bn = 'beatmapset-hype';
 
@@ -59,23 +60,23 @@ export default class Hype extends React.Component<Props> {
         <div className={`${bn}__box ${bn}__box--description`}>
           <div className={`${bn}__description-row ${bn}__description-row--status`}>
             <div className='beatmapset-status beatmapset-status--hype'>
-              {osu.trans(`beatmapsets.show.status.${this.props.beatmapset.status}`)}
+              {trans(`beatmapsets.show.status.${this.props.beatmapset.status}`)}
             </div>
           </div>
           <p className={`${bn}__description-row ${bn}__description-row--current`}>
-            {osu.trans('beatmapsets.show.hype.current._', {
-              status: osu.trans(`beatmapsets.show.hype.current.status.${this.props.beatmapset.status}`),
+            {trans('beatmapsets.show.hype.current._', {
+              status: trans(`beatmapsets.show.hype.current.status.${this.props.beatmapset.status}`),
             })}
           </p>
           {this.props.beatmapset.status === 'qualified' ? (
             <p className={`${bn}__description-row ${bn}__description-row--action`}>
               <StringWithComponent
                 mappings={{
-                  link: <a href={this.reportUrl}>{osu.trans('beatmapsets.show.hype.report.link')}</a>,
+                  link: <a href={this.reportUrl}>{trans('beatmapsets.show.hype.report.link')}</a>,
                 }}
                 pattern={this.userCanDisqualify
-                  ? osu.trans('beatmapsets.show.hype.disqualify._')
-                  : osu.trans('beatmapsets.show.hype.report._')
+                  ? trans('beatmapsets.show.hype.disqualify._')
+                  : trans('beatmapsets.show.hype.report._')
                 }
               />
             </p>
@@ -83,7 +84,7 @@ export default class Hype extends React.Component<Props> {
             <p
               className={`${bn}__description-row ${bn}__description-row--action`}
               dangerouslySetInnerHTML={{
-                __html: osu.trans('beatmapsets.show.hype.action'),
+                __html: trans('beatmapsets.show.hype.action'),
               }}
             />
           )}
@@ -92,7 +93,7 @@ export default class Hype extends React.Component<Props> {
         <div className={`${bn}__box ${bn}__box--float`}>
           <div className={`${bn}__lights-header`}>
             <span className={`${bn}__lights-title`}>
-              {osu.trans('beatmaps.hype.section_title')}
+              {trans('beatmaps.hype.section_title')}
             </span>
             <span>
               {formatNumber(this.hype.current)}
@@ -122,7 +123,7 @@ export default class Hype extends React.Component<Props> {
               href={this.hypeUrl}
               icon='fas fa-bullhorn'
               modifiers='full'
-              text={osu.trans('beatmaps.hype.button')}
+              text={trans('beatmaps.hype.button')}
             />
           </div>
 
@@ -136,8 +137,8 @@ export default class Hype extends React.Component<Props> {
     if (this.props.beatmapset.status !== 'qualified') return null;
 
     const [text, icon] = this.userCanDisqualify
-      ? [osu.trans('beatmaps.nominations.disqualify'), 'fas fa-thumbs-down']
-      : [osu.trans('beatmapsets.show.hype.report.button'), 'fas fa-exclamation-triangle'];
+      ? [trans('beatmaps.nominations.disqualify'), 'fas fa-thumbs-down']
+      : [trans('beatmapsets.show.hype.report.button'), 'fas fa-exclamation-triangle'];
 
     return (
       <BigButton

@@ -217,6 +217,9 @@ return [
                 'loved' => [
                     'title' => 'Rakastetut beatmapit',
                 ],
+                'nominated' => [
+                    'title' => '',
+                ],
                 'pending' => [
                     'title' => 'Vireillä olevat Beatmapit',
                 ],
@@ -414,6 +417,7 @@ return [
             'country_simple' => 'Maakohtainen sijoitus',
             'global' => 'Maailmanlaajuinen sijoitus pelimuodossa :mode',
             'global_simple' => 'Maailmanlaajuinen sijoitus',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Tarkkuus',

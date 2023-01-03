@@ -50,7 +50,7 @@ return [
         ],
 
         'users' => [
-            'modding' => '',
+            'modding' => 'modding',
             'playlists' => 'seznam pesmi',
             'realtime' => 'večigralski način',
             'show' => 'info',
@@ -193,7 +193,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Nastavitve',
-            'follows' => '',
+            'follows' => 'Opazovani seznami',
             'friends' => 'Prijatelji',
             'logout' => 'Odjavi se',
             'profile' => 'Moj profil',

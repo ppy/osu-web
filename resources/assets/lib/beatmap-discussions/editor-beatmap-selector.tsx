@@ -9,6 +9,7 @@ import * as React from 'react';
 import { Transforms } from 'slate';
 import { ReactEditor } from 'slate-react';
 import { classWithModifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 import IconDropdownMenu, { MenuItem } from './icon-dropdown-menu';
 import { SlateContext } from './slate-context';
 
@@ -34,7 +35,7 @@ export default class EditorBeatmapSelector extends React.Component<Props> {
             <i className='fas fa-xs fa-star-of-life' />
           </div>
           <div className='beatmap-list-item__col beatmap-list-item__col--main'>
-            {osu.trans('beatmaps.discussions.mode.scopes.generalAll')}
+            {trans('beatmaps.discussions.mode.scopes.generalAll')}
           </div>
         </div>
       ),
@@ -68,6 +69,6 @@ export default class EditorBeatmapSelector extends React.Component<Props> {
     const beatmapId = id !== 'all' ? parseInt(id, 10) : undefined;
 
     const path = ReactEditor.findPath(this.context, this.props.element);
-    Transforms.setNodes(this.context, {beatmapId}, {at: path});
+    Transforms.setNodes(this.context, { beatmapId }, { at: path });
   };
 }

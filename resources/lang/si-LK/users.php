@@ -217,6 +217,9 @@ return [
                 'loved' => [
                     'title' => '',
                 ],
+                'nominated' => [
+                    'title' => '',
+                ],
                 'pending' => [
                     'title' => '',
                 ],
@@ -414,6 +417,7 @@ return [
             'country_simple' => '',
             'global' => '',
             'global_simple' => '',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => '',

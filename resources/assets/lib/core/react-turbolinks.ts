@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { removeLeftoverPortalContainers } from 'components/portal';
 import TurbolinksReload from 'core/turbolinks-reload';
 import { runInAction } from 'mobx';
 import * as React from 'react';
@@ -79,9 +80,10 @@ export default class ReactTurbolinks {
   };
 
   private handleBeforeRender = (e: JQuery.TriggeredEvent) => {
-    window.newBody = (e.originalEvent as Event & { data: { newBody: HTMLElement }}).data.newBody;
+    window.newBody = (e.originalEvent as Event & { data: { newBody: HTMLElement } }).data.newBody;
     this.setNewUrl();
     this.pageReady = true;
+    removeLeftoverPortalContainers();
     this.loadScripts(false);
     this.boot();
   };

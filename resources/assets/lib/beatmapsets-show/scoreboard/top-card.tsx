@@ -18,6 +18,7 @@ import PpValue from 'scores/pp-value';
 import { rulesetName, shouldShowPp } from 'utils/beatmap-helper';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
+import { trans } from 'utils/lang';
 import { isPerfectCombo, modeAttributesMap, scoreUrl, totalScore } from 'utils/score-helper';
 
 interface Props {
@@ -73,7 +74,7 @@ export default class TopCard extends React.PureComponent<Props> {
                   mappings={{
                     when: <TimeWithTooltip dateTime={this.props.score.ended_at} relative />,
                   }}
-                  pattern={osu.trans('beatmapsets.show.scoreboard.achieved')}
+                  pattern={trans('beatmapsets.show.scoreboard.achieved')}
                 />
               </div>
 
@@ -98,7 +99,7 @@ export default class TopCard extends React.PureComponent<Props> {
               {core.scorePins.canBePinned(this.props.score) &&
                 <div className='beatmap-score-top__stat'>
                   <div className='beatmap-score-top__stat-header'>
-                    {osu.trans('beatmapsets.show.scoreboard.headers.pin')}
+                    {trans('beatmapsets.show.scoreboard.headers.pin')}
                   </div>
                   <div className='beatmap-score-top__stat-value beatmap-score-top__stat-value--smaller u-hover'>
                     <ScorePin className='btn-osu-big' score={this.props.score} />
@@ -108,7 +109,7 @@ export default class TopCard extends React.PureComponent<Props> {
 
               <div className='beatmap-score-top__stat'>
                 <div className='beatmap-score-top__stat-header beatmap-score-top__stat-header--wider'>
-                  {osu.trans('beatmapsets.show.scoreboard.headers.score_total')}
+                  {trans('beatmapsets.show.scoreboard.headers.score_total')}
                 </div>
                 <div className='beatmap-score-top__stat-value beatmap-score-top__stat-value--score'>
                   {formatNumber(totalScore(this.props.score))}
@@ -119,7 +120,7 @@ export default class TopCard extends React.PureComponent<Props> {
             <div className='beatmap-score-top__stats'>
               <div className='beatmap-score-top__stat'>
                 <div className='beatmap-score-top__stat-header beatmap-score-top__stat-header--wider'>
-                  {osu.trans('beatmapsets.show.scoreboard.headers.accuracy')}
+                  {trans('beatmapsets.show.scoreboard.headers.accuracy')}
                 </div>
                 <div
                   className={classWithModifiers('beatmap-score-top__stat-value', {
@@ -132,7 +133,7 @@ export default class TopCard extends React.PureComponent<Props> {
 
               <div className='beatmap-score-top__stat'>
                 <div className='beatmap-score-top__stat-header beatmap-score-top__stat-header--wider'>
-                  {osu.trans('beatmapsets.show.scoreboard.headers.combo')}
+                  {trans('beatmapsets.show.scoreboard.headers.combo')}
                 </div>
                 <div
                   className={classWithModifiers('beatmap-score-top__stat-value', {
@@ -159,7 +160,7 @@ export default class TopCard extends React.PureComponent<Props> {
               {shouldShowPp(this.props.beatmap) && (
                 <div className='beatmap-score-top__stat'>
                   <div className='beatmap-score-top__stat-header'>
-                    {osu.trans('beatmapsets.show.scoreboard.headers.pp')}
+                    {trans('beatmapsets.show.scoreboard.headers.pp')}
                   </div>
                   <div className='beatmap-score-top__stat-value beatmap-score-top__stat-value--smaller u-hover'>
                     <PpValue score={this.props.score} />
@@ -169,7 +170,7 @@ export default class TopCard extends React.PureComponent<Props> {
 
               <div className='beatmap-score-top__stat'>
                 <div className='beatmap-score-top__stat-header'>
-                  {osu.trans('beatmapsets.show.scoreboard.headers.time')}
+                  {trans('beatmapsets.show.scoreboard.headers.time')}
                 </div>
                 <div className='beatmap-score-top__stat-value beatmap-score-top__stat-value--smaller u-hover'>
                   <ScoreboardTime dateTime={this.props.score.ended_at} />
@@ -178,7 +179,7 @@ export default class TopCard extends React.PureComponent<Props> {
 
               <div className='beatmap-score-top__stat'>
                 <div className='beatmap-score-top__stat-header beatmap-score-top__stat-header--mods'>
-                  {osu.trans('beatmapsets.show.scoreboard.headers.mods')}
+                  {trans('beatmapsets.show.scoreboard.headers.mods')}
                 </div>
                 <div className='beatmap-score-top__stat-value beatmap-score-top__stat-value--mods u-hover'>
                   {this.props.score.mods.map((mod) => <Mod key={mod.acronym} mod={mod.acronym} />)}

@@ -60,7 +60,7 @@ return [
             'channel_message' => 'mensajes de chat privados',
             'comment_new' => 'nuevos comentarios',
             'forum_topic_reply' => 'respuestas a temas',
-            'mail' => 'correo electrónico',
+            'mail' => 'correo',
             'mapping' => 'creadores de mapas',
             'push' => 'push',
             'user_achievement_unlock' => 'medallas desbloqueadas',

@@ -9,6 +9,7 @@ import BeatmapsetJson from 'interfaces/beatmapset-json';
 import { route } from 'laroute';
 import * as React from 'react';
 import { getArtist, getTitle } from 'utils/beatmap-helper';
+import { trans } from 'utils/lang';
 
 interface Props {
   beatmap: BeatmapExtendedJson;
@@ -26,7 +27,7 @@ const BeatmapInfo = (props: Props) => {
           {getTitle(beatmapset)}
           {' '}
           <span className='score-beatmap__artist'>
-            {osu.trans('scores.show.beatmap.by', { artist: getArtist(beatmapset) })}
+            {trans('scores.show.beatmap.by', { artist: getArtist(beatmapset) })}
           </span>
         </a>
       </h1>
@@ -43,7 +44,7 @@ const BeatmapInfo = (props: Props) => {
               mappings={{
                 mapper: <UserLink user={{ id: beatmapset.user_id, username: beatmapset.creator }} />,
               }}
-              pattern={osu.trans('beatmapsets.show.details.mapped_by')}
+              pattern={trans('beatmapsets.show.details.mapped_by')}
             />
           </span>
         </span>

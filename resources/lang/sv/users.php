@@ -217,6 +217,9 @@ return [
                 'loved' => [
                     'title' => 'Älskade beatmaps',
                 ],
+                'nominated' => [
+                    'title' => 'Nominerade rankade beatmaps',
+                ],
                 'pending' => [
                     'title' => 'Väntande beatmaps',
                 ],
@@ -414,6 +417,7 @@ return [
             'country_simple' => 'Nationell rankning',
             'global' => 'Global rank för :mode',
             'global_simple' => 'Global rankning',
+            'highest' => 'Högsta rank: :rank den :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Träffsäkerhet',

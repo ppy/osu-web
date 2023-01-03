@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    '_' => 'Сортировать по',
+    '_' => 'Отсортировать по',
 
     'all' => 'Всех',
     'friends' => 'Друзей',

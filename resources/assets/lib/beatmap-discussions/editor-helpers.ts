@@ -8,6 +8,7 @@ import {
 } from 'interfaces/beatmap-discussion-review';
 import { Editor, Element as SlateElement, Node as SlateNode, Range as SlateRange, Text, Transforms } from 'slate';
 import { parseTimestamp } from 'utils/beatmapset-discussion-helper';
+import { present } from 'utils/string';
 
 export const blockCount = (input: SlateElement[]) => input.length;
 
@@ -41,7 +42,7 @@ export const isFormatActive = (editor: Editor, format: 'bold' | 'italic') => {
     match: (node) => Text.isText(node) && node[format] === true,
     mode: 'all',
   });
-  return !!match;
+  return match != null;
 };
 
 const getCurrentNode = (editor: Editor) => {
@@ -133,7 +134,7 @@ export const serializeSlateDocument = (input: SlateElement[]) => {
 
   // strip last block if it's empty (i.e. the placeholder that allows easier insertion at the end of a document)
   const lastBlock = review[review.length - 1];
-  if (lastBlock.type === 'paragraph' && !osu.present(lastBlock.text)) {
+  if (lastBlock.type === 'paragraph' && !present(lastBlock.text)) {
     review.pop();
   }
 

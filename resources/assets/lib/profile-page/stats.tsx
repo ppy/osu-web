@@ -5,6 +5,7 @@ import UserStatisticsJson from 'interfaces/user-statistics-json';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
+import { trans } from 'utils/lang';
 
 // sorted by display order
 const entryKeys = [
@@ -40,7 +41,7 @@ export default class Stats extends React.PureComponent<Props> {
 
   private readonly renderEntry = (key: EntryKey) => (
     <dl key={key} className={classWithModifiers('profile-stats__entry', `key-${key}`)}>
-      <dt className='profile-stats__key'>{osu.trans(`users.show.stats.${key}`)}</dt>
+      <dt className='profile-stats__key'>{trans(`users.show.stats.${key}`)}</dt>
       <dd className='profile-stats__value'>{this.formatValue(key)}</dd>
     </dl>
   );

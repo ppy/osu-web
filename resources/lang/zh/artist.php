@@ -52,7 +52,7 @@ return [
                 'bpm_gte' => '最低 BPM',
                 'bpm_lte' => '最高 BPM',
                 'empty' => '未找到符合条件的曲目。',
-                'genre' => '风格',
+                'genre' => '流派',
                 'genre_all' => '全部',
                 'length_gte' => '时长下限',
                 'length_lte' => '时长上限',

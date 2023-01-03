@@ -4,9 +4,6 @@
 fixedElements = document.getElementsByClassName('js-fixed-element')
 
 $(document).on 'shown.bs.modal', '.modal', (e) ->
-  # safari breaks when calling focus() on most conditions.
-  return if osu.isIos
-
   $(e.target).find('.modal-af').focus()
 
 

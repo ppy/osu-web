@@ -5,6 +5,7 @@ import TimeWithTooltip from 'components/time-with-tooltip'
 import { route } from 'laroute'
 import * as React from 'react'
 import { div, span, a, i } from 'react-dom-factories'
+import { trans } from 'utils/lang'
 import { linkHtml } from 'utils/url'
 
 el = React.createElement
@@ -37,5 +38,5 @@ export class Event extends React.Component
       div
         className: 'mp-history-event__text',
         dangerouslySetInnerHTML:
-          __html: osu.trans "matches.match.events.#{event_type}#{if user? then '' else '-no-user'}",
+          __html: trans "matches.match.events.#{event_type}#{if user? then '' else '-no-user'}",
             user: userLink

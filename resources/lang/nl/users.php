@@ -217,6 +217,9 @@ return [
                 'loved' => [
                     'title' => 'Loved Beatmaps',
                 ],
+                'nominated' => [
+                    'title' => '',
+                ],
                 'pending' => [
                     'title' => 'Afwachtende Beatmaps',
                 ],
@@ -414,6 +417,7 @@ return [
             'country_simple' => 'Landelijke Ranking',
             'global' => 'Globale rank voor :mode',
             'global_simple' => 'Wereldwijde Ranking',
+            'highest' => 'Hoogste rank: :rank op :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Hit Precisie',

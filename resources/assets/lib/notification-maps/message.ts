@@ -4,6 +4,7 @@
 import * as _ from 'lodash';
 import Notification from 'models/notification';
 import { isBeatmapOwnerChangeNotification } from 'models/notification/beatmap-owner-change-notification';
+import { trans, transExists } from 'utils/lang';
 
 type Replacements = { title: string } & Partial<Record<string, string>>;
 
@@ -38,11 +39,11 @@ export function formatMessage(item: Notification, compact = false) {
   }
 
   const emptyKey = `${key}_empty`;
-  if (item.details.content == null && osu.transExists(emptyKey)) {
+  if (item.details.content == null && transExists(emptyKey)) {
     key = emptyKey;
   }
 
-  return osu.trans(key, replacements);
+  return trans(key, replacements);
 }
 
 export function formatMessageGroup(item: Notification) {
@@ -54,7 +55,7 @@ export function formatMessageGroup(item: Notification) {
 
     const key = `notifications.item.${item.objectType}.${item.category}.${item.details.type}.${item.name}_group`;
 
-    return osu.trans(key, replacements);
+    return trans(key, replacements);
   }
 
   if (item.name === 'user_achievement_unlock') {
@@ -62,7 +63,7 @@ export function formatMessageGroup(item: Notification) {
       username: item.details.username,
     };
 
-    return osu.trans(`notifications.item.${item.displayType}.${item.category}.${item.name}_group`, replacements);
+    return trans(`notifications.item.${item.displayType}.${item.category}.${item.name}_group`, replacements);
   }
 
   if (item.category === 'user_beatmapset_new') {
@@ -70,7 +71,7 @@ export function formatMessageGroup(item: Notification) {
       username: item.details.username,
     };
 
-    return osu.trans(`notifications.item.${item.displayType}.${item.category}.${item.category}_group`, replacements);
+    return trans(`notifications.item.${item.displayType}.${item.category}.${item.category}_group`, replacements);
   }
 
   return item.title;

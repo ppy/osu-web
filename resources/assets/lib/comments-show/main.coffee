@@ -8,6 +8,7 @@ import { Observer } from 'mobx-react'
 import core from 'osu-core-singleton'
 import * as React from 'react'
 import { a, button, div, h1, li, ol, p, span } from 'react-dom-factories'
+import { trans } from 'utils/lang'
 
 el = React.createElement
 
@@ -38,11 +39,11 @@ export class Main extends React.PureComponent
   headerLinks: =>
     [
         {
-          title: osu.trans 'comments.index.nav_title'
+          title: trans 'comments.index.nav_title'
           url: route('comments.index')
         }
         {
-          title: osu.trans 'comments.show.nav_title'
+          title: trans 'comments.show.nav_title'
           url: route('comments.show', @comment)
         }
     ]

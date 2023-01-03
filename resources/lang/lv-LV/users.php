@@ -217,6 +217,9 @@ return [
                 'loved' => [
                     'title' => 'Mīļākās Bītmapes',
                 ],
+                'nominated' => [
+                    'title' => '',
+                ],
                 'pending' => [
                     'title' => '',
                 ],
@@ -414,6 +417,7 @@ return [
             'country_simple' => 'Valsts Rankējums',
             'global' => 'Globālais ranks pēc :mode',
             'global_simple' => 'Globālais Rankējums',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Trāpījuma Precizitāte',

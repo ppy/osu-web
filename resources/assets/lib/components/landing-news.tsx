@@ -5,9 +5,10 @@ import { route } from 'laroute';
 import * as _ from 'lodash';
 import PostItem from 'news-index/post-item';
 import * as React from 'react';
+import { trans } from 'utils/lang';
 import ShowMoreLink from './show-more-link';
 
-export function LandingNews({posts}: {posts: PostJson[]}) {
+export function LandingNews({ posts }: { posts: PostJson[] }) {
   return (
     <div className='landing-news'>
       {posts.length > 0 &&
@@ -21,7 +22,7 @@ export function LandingNews({posts}: {posts: PostJson[]}) {
           <div className='landing-news__link'>
             <ShowMoreLink
               hasMore
-              label={osu.trans('home.landing.see_more_news')}
+              label={trans('home.landing.see_more_news')}
               loading={false}
               modifiers={['no-icon']}
               url={route('news.index')}

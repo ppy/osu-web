@@ -13,6 +13,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 import VirtualList, { RenderProps } from 'virtual-list/virtual-list';
 import AvailableFilters from './available-filters';
 import { Paginator } from './paginator';
@@ -47,11 +48,11 @@ const BeatmapList = ({ items }: RenderProps<number[]>) => (
 const EmptyList = () => (
   <div className='beatmapsets__empty'>
     <Img2x
-      alt={osu.trans('beatmaps.listing.search.not-found')}
+      alt={trans('beatmaps.listing.search.not-found')}
       src='/images/layout/beatmaps/not-found.png'
-      title={osu.trans('beatmaps.listing.search.not-found')}
+      title={trans('beatmaps.listing.search.not-found')}
     />
-    {osu.trans('beatmaps.listing.search.not-found-quote')}
+    {trans('beatmaps.listing.search.not-found-quote')}
   </div>
 );
 
@@ -136,21 +137,21 @@ export class SearchContent extends React.Component<Props> {
     const filters = this.controller.supporterRequiredFilterText;
     const link = (
       <a href={route('store.products.show', { product: 'supporter-tag' })}>
-        {osu.trans('beatmaps.listing.search.supporter_filter_quote.link_text')}
+        {trans('beatmaps.listing.search.supporter_filter_quote.link_text')}
       </a>
     );
 
     return (
       <div className='beatmapsets__empty'>
         <Img2x
-          alt={osu.trans('beatmaps.listing.search.supporter_filter', { filters })}
+          alt={trans('beatmaps.listing.search.supporter_filter', { filters })}
           src='/images/layout/beatmaps/supporter-required.png'
-          title={osu.trans('beatmaps.listing.search.supporter_filter', { filters })}
+          title={trans('beatmaps.listing.search.supporter_filter', { filters })}
         />
         <p>
           <StringWithComponent
             mappings={{ filters, link }}
-            pattern={osu.trans('beatmaps.listing.search.supporter_filter_quote._')}
+            pattern={trans('beatmaps.listing.search.supporter_filter_quote._')}
           />
         </p>
       </div>

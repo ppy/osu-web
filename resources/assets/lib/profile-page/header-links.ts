@@ -5,6 +5,7 @@ import HeaderLink from 'interfaces/header-link';
 import UserExtendedJson from 'interfaces/user-extended-json';
 import { MultiplayerTypeGroup } from 'interfaces/user-multiplayer-history-json';
 import { route } from 'laroute';
+import { trans } from 'utils/lang';
 
 type LinkMode = 'modding' | 'show' | MultiplayerTypeGroup;
 
@@ -20,7 +21,7 @@ const url = {
 function link(mode: LinkMode, active: boolean, userId: number) {
   return {
     active,
-    title: osu.trans(`layout.header.users.${mode}`),
+    title: trans(`layout.header.users.${mode}`),
     url: url[mode](userId),
   };
 }

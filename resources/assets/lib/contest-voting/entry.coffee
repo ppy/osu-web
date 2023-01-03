@@ -6,6 +6,7 @@ import { route } from 'laroute'
 import * as React from 'react'
 import { a,i,div,span } from 'react-dom-factories'
 import { formatNumber } from 'utils/html'
+import { transChoice } from 'utils/lang'
 import { Voter } from './voter'
 
 el = React.createElement
@@ -29,8 +30,8 @@ export class Entry extends React.Component
       entry_title = @props.entry.title
 
     if @props.contest.show_votes
-      votePercentage = _.round((@props.entry.results.votes / @props.totalVotes)*100, 2)
       relativeVotePercentage = _.round((@props.entry.results.votes / @props.winnerVotes)*100, 2)
+      usersVotedPercentage = _.round((@props.entry.results.votes / @props.contest.users_voted_count)*100, 2)
 
     div className: "contest-voting-list__row#{if selected && !@props.contest.show_votes then ' contest-voting-list__row--selected' else ''}",
       if @props.contest.show_votes
@@ -74,9 +75,9 @@ export class Entry extends React.Component
       if @props.contest.show_votes
         if @props.contest.best_of
           div className:'contest__vote-count contest__vote-count--no-percentages',
-            osu.transChoice 'contest.vote.points', @props.entry.results.votes
+            transChoice 'contest.vote.points', @props.entry.results.votes
         else
           div className:'contest__vote-count',
-            osu.transChoice 'contest.vote.count', @props.entry.results.votes
-            if isFinite(votePercentage)
-              " (#{formatNumber(votePercentage)}%)"
+            transChoice 'contest.vote.count', @props.entry.results.votes
+            if Number.isFinite usersVotedPercentage
+              " (#{formatNumber(usersVotedPercentage)}%)"

@@ -1,6 +1,8 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { presence } from 'utils/string'
+
 export default class TooltipDefault
   constructor: ->
     $(document).on 'mouseover touchstart', '[title]:not(iframe)', @onMouseOver
@@ -13,7 +15,7 @@ export default class TooltipDefault
 
     title = el.getAttribute 'title'
     el.removeAttribute 'title'
-    htmlTitle = osu.presence(el.dataset.htmlTitle)
+    htmlTitle = presence(el.dataset.htmlTitle)
 
     return if _.size(title) == 0 && !htmlTitle?
 
@@ -39,11 +41,15 @@ export default class TooltipDefault
       when 'right center' then 'left center'
       when 'bottom center' then 'top center'
 
+    isHoverable = el.dataset.tooltipHoverable == '1'
+
     classes = 'qtip tooltip-default'
     if el.dataset.tooltipFloat == 'fixed'
       classes += ' tooltip-default--fixed'
     if el.dataset.tooltipModifiers?
       classes += " tooltip-default--#{el.dataset.tooltipModifiers}"
+    if isHoverable
+      classes += ' u-hover'
 
     options =
       overwrite: false
@@ -74,6 +80,10 @@ export default class TooltipDefault
 
     if el.dataset.tooltipHideEvents
       options.hide.event = el.dataset.tooltipHideEvents
+
+    if isHoverable
+      options.hide.delay = 200
+      options.hide.fixed = true
 
     el.dataset.origTitle = title
 

@@ -38,6 +38,10 @@
       align-items: stretch;
       position: relative;
     }
+
+    &--notifications {
+      margin-left: 6px;
+    }
   }
 
   &__colgroup {
@@ -171,8 +175,10 @@
     }
   }
 
-  &__notification-count {
-    margin-left: 5px;
-    font-size: @font-size--small;
+  &__notification-container {
+    display: flex;
+    padding: 2px;
+    border: 2px solid hsl(var(--hsl-c1));
+    border-radius: 30px;
   }
 }

@@ -217,6 +217,9 @@ return [
                 'loved' => [
                     'title' => 'Voljene beatmape',
                 ],
+                'nominated' => [
+                    'title' => '',
+                ],
                 'pending' => [
                     'title' => 'Beatmape na čekanju',
                 ],
@@ -414,6 +417,7 @@ return [
             'country_simple' => 'Rang u državi',
             'global' => 'Globalni rang za :mode',
             'global_simple' => 'Globalni rang',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Preciznost pogodaka',

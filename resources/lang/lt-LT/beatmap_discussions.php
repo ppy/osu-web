@@ -19,23 +19,23 @@ return [
     'index' => [
         'deleted_beatmap' => 'ištrintas',
         'none_found' => 'Jokių diskusijų atitinkančių šių paieškos kriterijų nebuvo rasta.',
-        'title' => 'Beatmapo Diskusijos',
+        'title' => 'Bitmapo Diskusijos',
 
         'form' => [
             '_' => 'Ieškoti',
             'deleted' => 'Įtraukti ištrintas diskusijas',
-            'mode' => '',
+            'mode' => 'Bitmapo režimas',
             'only_unresolved' => 'Rodyti tiktais neišspręstas diskusijas',
-            'types' => 'Žinutės tipai',
+            'types' => 'Žinučių tipai',
             'username' => 'Vartotojo vardas',
 
             'beatmapset_status' => [
-                '_' => '„Beatmap“ Statusas',
+                '_' => 'Bitmapo Būsena',
                 'all' => 'Visi',
                 'disqualified' => 'Diskvalifikuotas',
-                'never_qualified' => 'Niekada nekvalifikuotas',
+                'never_qualified' => 'Niekada nebuvo kvalifikuotas',
                 'qualified' => 'Kvalifikuotas',
-                'ranked' => 'Patvirtintas',
+                'ranked' => 'Reitinguotas',
             ],
 
             'user' => [
@@ -60,10 +60,10 @@ return [
     ],
 
     'owner_editor' => [
-        'button' => 'Žemėlapio savininkas',
-        'reset_confirm' => '',
+        'button' => 'Sunkumo Savininkas',
+        'reset_confirm' => 'Atstatyti savininką šiam sunkumui?',
         'user' => 'Savininkas',
-        'version' => 'Sudėtingumas',
+        'version' => 'Sunkumas',
     ],
 
     'reply' => [
@@ -74,20 +74,20 @@ return [
     ],
 
     'review' => [
-        'block_count' => ':used / :max blokų panaudota',
-        'go_to_parent' => 'Žiurėti aprašymo publikavimą
+        'block_count' => ':used / :max teksto laukų panaudota',
+        'go_to_parent' => 'Žiūrėti Apžvalgos Publikacija
 ',
         'go_to_child' => 'Peržiūrėti diskusiją
 ',
         'validation' => [
-            'block_too_large' => 'kiekvienas blokas gali turėti iki :limit ženklų',
-            'external_references' => '',
-            'invalid_block_type' => '',
-            'invalid_document' => '',
-            'invalid_discussion_type' => '',
-            'minimum_issues' => '',
-            'missing_text' => '',
-            'too_many_blocks' => '',
+            'block_too_large' => 'kiekvienas teksto laukas gali turėti iki :limit ženklų',
+            'external_references' => 'apžvalgoje yra nuorodų į problemas, kurios nepriklauso šiai apžvalgai',
+            'invalid_block_type' => 'negalimas teksto lauko tipas',
+            'invalid_document' => 'negalima apžvalga',
+            'invalid_discussion_type' => 'negalimas diskusijos tipas',
+            'minimum_issues' => 'apžvalgoje turi būti bent :count problema|apžvalgoje turi būti bent :count problemos(-ų)',
+            'missing_text' => 'teksto lauke nėra teksto',
+            'too_many_blocks' => 'apžvalga gali turėti tik :count pastraipą/problemą|apžvalga gali turėti tik :count pastraipas(-ų)/problemas(-ų)',
         ],
     ],
 

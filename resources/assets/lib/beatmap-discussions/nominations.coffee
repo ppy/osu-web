@@ -5,18 +5,21 @@ import BeatmapsOwnerEditor from 'beatmap-discussions/beatmaps-owner-editor'
 import LoveBeatmapModal from 'beatmap-discussions/love-beatmap-modal'
 import { Nominator } from 'beatmap-discussions/nominator'
 import BigButton from 'components/big-button'
-import { Modal } from 'components/modal'
+import Modal from 'components/modal'
 import StringWithComponent from 'components/string-with-component'
 import TimeWithTooltip from 'components/time-with-tooltip'
 import { UserLink } from 'components/user-link'
 import { route } from 'laroute'
 import * as React from 'react'
 import { a, div, i, span } from 'react-dom-factories'
+import { onError } from 'utils/ajax'
 import { canModeratePosts, format, previewMessage } from 'utils/beatmapset-discussion-helper'
 import { nominationsCount } from 'utils/beatmapset-helper'
+import { joinComponents, trans } from 'utils/lang'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { pageChange } from 'utils/page-change'
-import { linkHtml, wikiUrl } from 'utils/url'
+import { presence } from 'utils/string'
+import { wikiUrl } from 'utils/url'
 
 el = React.createElement
 
@@ -122,9 +125,9 @@ export class Nominations extends React.PureComponent
 
   delete: =>
     message = if @userIsOwner()
-                osu.trans('beatmaps.nominations.delete_own_confirm')
+                trans('beatmaps.nominations.delete_own_confirm')
               else
-                osu.trans('beatmaps.nominations.delete_other_confirm')
+                trans('beatmaps.nominations.delete_other_confirm')
 
     return unless confirm(message)
 
@@ -139,12 +142,12 @@ export class Nominations extends React.PureComponent
     @xhr.delete = $.ajax(url, params)
       .done ->
         Turbolinks.visit route('users.show', { user })
-      .fail osu.ajaxError
+      .fail onError
       .always hideLoadingOverlay
 
 
   discussionLock: =>
-    reason = osu.presence(prompt(osu.trans('beatmaps.discussions.lock.prompt.lock')))
+    reason = presence(prompt(trans('beatmaps.discussions.lock.prompt.lock')))
 
     return unless reason?
 
@@ -158,12 +161,12 @@ export class Nominations extends React.PureComponent
     @xhr.discussionLock = $.ajax(url, params)
       .done (response) =>
         $.publish 'beatmapsetDiscussions:update', beatmapset: response
-      .fail osu.ajaxError
+      .fail onError
       .always hideLoadingOverlay
 
 
   discussionUnlock: =>
-    return unless confirm(osu.trans('beatmaps.discussions.lock.prompt.unlock'))
+    return unless confirm(trans('beatmaps.discussions.lock.prompt.unlock'))
 
     showLoadingOverlay()
 
@@ -175,12 +178,12 @@ export class Nominations extends React.PureComponent
     @xhr.discussionLock = $.ajax(url, params)
       .done (response) =>
         $.publish 'beatmapsetDiscussions:update', beatmapset: response
-      .fail osu.ajaxError
+      .fail onError
       .always hideLoadingOverlay
 
 
   removeFromLoved: =>
-    reason = osu.presence(prompt(osu.trans('beatmaps.nominations.remove_from_loved_prompt')))
+    reason = presence(prompt(trans('beatmaps.nominations.remove_from_loved_prompt')))
 
     return unless reason?
 
@@ -196,7 +199,7 @@ export class Nominations extends React.PureComponent
     @xhr.removeFromLoved = $.ajax(url, params)
       .done (response) =>
         $.publish 'beatmapsetDiscussions:update', beatmapset: response
-      .fail osu.ajaxError
+      .fail onError
       .always hideLoadingOverlay
 
 
@@ -220,7 +223,7 @@ export class Nominations extends React.PureComponent
   focusNewDiscussion: (callback) ->
     inputBox = $('.js-hype--input')
 
-    osu.focus(inputBox)
+    inputBox.focus()
 
     # ensure input box is in view and focus it
     $.scrollTo inputBox, 200,
@@ -256,7 +259,7 @@ export class Nominations extends React.PureComponent
         __html: previewMessage(discussion.posts[0].message)
     else
       link = "##{event.comment.beatmap_discussion_id}"
-      message = osu.trans('beatmaps.nominations.reset_message_deleted')
+      message = trans('beatmaps.nominations.reset_message_deleted')
 
     {user, discussion, link, message}
 
@@ -270,13 +273,13 @@ export class Nominations extends React.PureComponent
               modifiers: ['white']
               newlines: false
         else
-          osu.trans('beatmaps.nominations.disqualified_no_reason')
+          trans('beatmaps.nominations.disqualified_no_reason')
 
       return el StringWithComponent,
         mappings:
           reason: reason
           time_ago: el(TimeWithTooltip, dateTime: event.created_at, relative: true)
-        pattern: osu.trans 'beatmaps.nominations.disqualified_at'
+        pattern: trans 'beatmaps.nominations.disqualified_at'
 
     parsedEvent = @parseEventData(event)
 
@@ -286,7 +289,7 @@ export class Nominations extends React.PureComponent
         message: parsedEvent.message
         time_ago: el(TimeWithTooltip, dateTime: event.created_at, relative: true)
         user: el(UserLink, user: parsedEvent.user)
-      pattern: osu.trans "beatmaps.nominations.reset_at.#{event.type}"
+      pattern: trans "beatmaps.nominations.reset_at.#{event.type}"
 
 
   userCanDisqualify: =>
@@ -300,20 +303,20 @@ export class Nominations extends React.PureComponent
   statusMessage: =>
     switch @props.beatmapset.status
       when 'approved', 'loved', 'ranked'
-        osu.trans "beatmaps.discussions.status-messages.#{@props.beatmapset.status}",
+        trans "beatmaps.discussions.status-messages.#{@props.beatmapset.status}",
           date: moment(@props.beatmapset.ranked_date).format(dateFormat)
       when 'graveyard'
-        osu.trans 'beatmaps.discussions.status-messages.graveyard',
+        trans 'beatmaps.discussions.status-messages.graveyard',
           date: moment(@props.beatmapset.last_updated).format(dateFormat)
       when 'wip'
-        osu.trans 'beatmaps.discussions.status-messages.wip'
+        trans 'beatmaps.discussions.status-messages.wip'
       when 'qualified'
         rankingETA = @props.beatmapset.nominations.ranking_eta
         date =
           if rankingETA?
             moment(rankingETA).format(dateFormat)
           else
-            osu.trans 'beatmaps.nominations.rank_estimate.soon'
+            trans 'beatmaps.nominations.rank_estimate.soon'
 
         el StringWithComponent,
           mappings:
@@ -322,8 +325,8 @@ export class Nominations extends React.PureComponent
             queue: a
               href: wikiUrl('Beatmap_ranking_procedure/Ranking_queue')
               target: '_blank'
-              osu.trans 'beatmaps.nominations.rank_estimate.queue'
-          pattern: osu.trans 'beatmaps.nominations.rank_estimate._'
+              trans 'beatmaps.nominations.rank_estimate.queue'
+          pattern: trans 'beatmaps.nominations.rank_estimate._'
       else
         null
 
@@ -339,7 +342,7 @@ export class Nominations extends React.PureComponent
       div className: "#{bn}__header",
         span
           className: "#{bn}__title"
-          osu.trans 'beatmaps.hype.section_title'
+          trans 'beatmaps.hype.section_title'
         span {},
           "#{hypeRaw} / #{requiredHype}"
       @renderLights(hype, requiredHype)
@@ -359,7 +362,7 @@ export class Nominations extends React.PureComponent
       div className: "#{bn}__header",
         span
           className: "#{bn}__title"
-          osu.trans 'beatmaps.nominations.title'
+          trans 'beatmaps.nominations.title'
         span null,
           " #{nominationsCount(nominations, 'current')} / #{nominationsCount(nominations, 'required')}"
 
@@ -398,13 +401,14 @@ export class Nominations extends React.PureComponent
 
     return null if nominators.length == 0
 
-    div dangerouslySetInnerHTML:
-      __html: osu.trans 'beatmaps.nominations.nominated_by',
-        users: osu.transArray nominators.map (user) ->
-            linkHtml route('users.show', user: user.id), user.username,
-              classNames: ['js-usercard']
-              props:
-                'data-user-id': user.id
+    span null,
+      el StringWithComponent,
+        mappings:
+          users: joinComponents nominators.map (user) ->
+            el UserLink,
+              key: user.id
+              user: user
+        pattern: trans('beatmaps.nominations.nominated_by')
 
 
   discussionLockMessage: =>
@@ -415,7 +419,7 @@ export class Nominations extends React.PureComponent
     return null unless lockEvent?
 
     div dangerouslySetInnerHTML:
-      __html: osu.trans 'beatmapset_events.event.discussion_lock',
+      __html: trans 'beatmapset_events.event.discussion_lock',
         text: format(lockEvent.comment.reason, newlines: false)
 
 
@@ -426,7 +430,7 @@ export class Nominations extends React.PureComponent
       icon: 'fas fa-bullhorn'
       props:
         onClick: @focusNewDiscussionWithModeSwitch
-      text: osu.trans 'beatmaps.feedback.button'
+      text: trans 'beatmaps.feedback.button'
 
 
   hypeButton: =>
@@ -440,7 +444,7 @@ export class Nominations extends React.PureComponent
       props:
         onClick: @focusHypeInput
         title: @props.beatmapset.current_user_attributes?.can_hype_reason
-      text: if userAlreadyHyped then osu.trans('beatmaps.hype.button_done') else osu.trans('beatmaps.hype.button')
+      text: if userAlreadyHyped then trans('beatmaps.hype.button_done') else trans('beatmaps.hype.button')
 
 
   disqualifyButton: =>
@@ -453,7 +457,7 @@ export class Nominations extends React.PureComponent
       modifiers: 'warning'
       props:
         onClick: @focusNewDiscussionWithModeSwitch
-      text: osu.trans 'beatmaps.nominations.disqualify'
+      text: trans 'beatmaps.nominations.disqualify'
 
 
   discussionLockButton: =>
@@ -474,7 +478,7 @@ export class Nominations extends React.PureComponent
       icon: icon
       modifiers: 'warning'
       props: { onClick }
-      text: osu.trans "beatmaps.discussions.lock.button.#{action}"
+      text: trans "beatmaps.discussions.lock.button.#{action}"
 
 
   loveButton: =>
@@ -485,7 +489,7 @@ export class Nominations extends React.PureComponent
       modifiers: 'pink'
       props:
         onClick: @handleLoveBeatmapModal
-      text: osu.trans 'beatmaps.nominations.love'
+      text: trans 'beatmaps.nominations.love'
 
 
   removeFromLovedButton: =>
@@ -496,7 +500,7 @@ export class Nominations extends React.PureComponent
       modifiers: 'danger'
       props:
         onClick: @removeFromLoved
-      text: osu.trans 'beatmaps.nominations.remove_from_loved'
+      text: trans 'beatmaps.nominations.remove_from_loved'
 
 
   deleteButton: =>
@@ -507,7 +511,7 @@ export class Nominations extends React.PureComponent
       modifiers: 'danger'
       props:
         onClick: @delete
-      text: osu.trans 'beatmaps.nominations.delete'
+      text: trans 'beatmaps.nominations.delete'
 
 
   changeOwnerButton: =>
@@ -517,7 +521,7 @@ export class Nominations extends React.PureComponent
       icon: 'fas fa-pen'
       props:
         onClick: @handleChangeOwnerClick
-      text: osu.trans 'beatmap_discussions.owner_editor.button'
+      text: trans 'beatmap_discussions.owner_editor.button'
 
 
   handleChangeOwnerClick: =>
@@ -531,7 +535,7 @@ export class Nominations extends React.PureComponent
   renderChangeOwnerModal: =>
     return if !@state.changeOwnerModal
 
-    el Modal, visible: true,
+    el Modal, null,
       el BeatmapsOwnerEditor,
         beatmapset: @props.beatmapset,
         users: @props.users
@@ -540,7 +544,7 @@ export class Nominations extends React.PureComponent
   renderLoveBeatmapModal: =>
     return if !@state.loveBeatmapModal
 
-    el Modal, visible: true, onClose: @handleLoveBeatmapModal,
+    el Modal, onClose: @handleLoveBeatmapModal,
       el LoveBeatmapModal,
         beatmapset: @props.beatmapset
         onClose: @handleLoveBeatmapModal

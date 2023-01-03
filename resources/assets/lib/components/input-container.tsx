@@ -4,6 +4,7 @@
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 
 interface CommonProps {
   for?: string;
@@ -31,7 +32,7 @@ const InputContainer = observer(<T extends string>(props: React.PropsWithChildre
     <label className={classWithModifiers('input-container', { error }, props.modifiers)} htmlFor={props.for}>
       {props.labelKey != null && (
         <div className='input-container__label'>
-          {osu.trans(props.labelKey)}
+          {trans(props.labelKey)}
         </div>
       )}
       {props.children}

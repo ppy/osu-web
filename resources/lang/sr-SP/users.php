@@ -218,6 +218,9 @@ return [
                 'loved' => [
                     'title' => 'Loved Мапе',
                 ],
+                'nominated' => [
+                    'title' => '',
+                ],
                 'pending' => [
                     'title' => 'Нерешене Мапе',
                 ],
@@ -416,6 +419,7 @@ return [
             'country_simple' => 'Државни Ранг',
             'global' => 'Глобални ранг за :mode',
             'global_simple' => 'Глобални ранг',
+            'highest' => 'Највиши ранг: :rank на :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Прецизност ',

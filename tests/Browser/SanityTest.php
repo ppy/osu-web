@@ -111,7 +111,7 @@ class SanityTest extends DuskTestCase
         UserProfileCustomization::truncate();
         UserStatistics\Osu::truncate();
 
-        app('groups')->resetCache();
+        app('groups')->resetMemoized();
     }
 
     private static function createScaffolding()
@@ -158,7 +158,7 @@ class SanityTest extends DuskTestCase
         self::$scaffolding['contest'] = factory(Contest::class)->states('entry')->create();
 
         // factories for /community/tournaments/*
-        self::$scaffolding['tournament'] = factory(Tournament::class)->create();
+        self::$scaffolding['tournament'] = Tournament::factory()->create();
 
         // factories for /beatmaps/artists/*
         self::$scaffolding['artist'] = factory(Artist::class)->create();
@@ -251,7 +251,7 @@ class SanityTest extends DuskTestCase
 
         self::$scaffolding['room'] = factory(Room::class)->create(['category' => 'spotlight']);
 
-        app('groups')->resetCache();
+        app('groups')->resetMemoized();
     }
 
     private static function filterLog(array $log)

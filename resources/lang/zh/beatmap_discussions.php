@@ -13,7 +13,7 @@ return [
     ],
 
     'events' => [
-        'empty' => '目前还没有什么事件……呢。',
+        'empty' => '还没有什么时间呢......目前为止。',
     ],
 
     'index' => [
@@ -32,10 +32,10 @@ return [
             'beatmapset_status' => [
                 '_' => '谱面状态',
                 'all' => '所有',
-                'disqualified' => '不合格',
-                'never_qualified' => '从未提名为合格',
+                'disqualified' => '下架 (DQ)',
+                'never_qualified' => '从未过审 (Qualified)',
                 'qualified' => '合格',
-                'ranked' => '上架',
+                'ranked' => '上架 (Ranked)',
             ],
 
             'user' => [
@@ -54,7 +54,7 @@ return [
 
     'nearby_posts' => [
         'confirm' => '在这个时间点上没有相关的讨论记录。',
-        'notice' => '在 :timestamp 附近（:existing_timestamps）有讨论记录，发表前请检查。',
+        'notice' => '发表讨论前，请检查 :timestamp 附近 (:existing_timestamps) 已存在的讨论记录。',
         'unsaved' => '此审阅中有 :count',
     ],
 
@@ -91,7 +91,7 @@ return [
     'system' => [
         'resolved' => [
             'true' => '被 :user 标记为 “已解决”',
-            'false' => '被 :user 重新打开',
+            'false' => ':user 要求重审',
         ],
     ],
 

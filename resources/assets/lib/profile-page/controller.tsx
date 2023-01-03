@@ -31,6 +31,7 @@ const sectionToUrlType = {
   graveyardBeatmapsets: 'graveyard',
   guestBeatmapsets: 'guest',
   lovedBeatmapsets: 'loved',
+  nominatedBeatmapsets: 'nominated',
   pendingBeatmapsets: 'pending',
   rankedBeatmapsets: 'ranked',
   scoresBest: 'best',
@@ -40,7 +41,7 @@ const sectionToUrlType = {
 } as const;
 
 // #region lazy loaded extra pages
-const beatmapsetsExtraPageKeys = ['favourite', 'graveyard', 'guest', 'loved', 'pending', 'ranked'] as const;
+const beatmapsetsExtraPageKeys = ['favourite', 'graveyard', 'guest', 'loved', 'nominated', 'pending', 'ranked'] as const;
 type BeatmapsetsJson = Record<typeof beatmapsetsExtraPageKeys[number], PageSectionJson<BeatmapsetExtendedJson>>;
 
 interface HistoricalJson {
@@ -298,6 +299,7 @@ export default class Controller {
       case 'graveyardBeatmapsets':
       case 'guestBeatmapsets':
       case 'lovedBeatmapsets':
+      case 'nominatedBeatmapsets':
       case 'pendingBeatmapsets':
       case 'rankedBeatmapsets': {
         const type = sectionToUrlType[section];

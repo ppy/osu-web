@@ -1,6 +1,8 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { trans } from 'utils/lang'
+
 export default class FormConfirmation
   constructor: (@formError) ->
     $(document).on 'input', '.js-form-confirmation', @onInput
@@ -41,4 +43,4 @@ export default class FormConfirmation
     if inputMain == inputConfirmation
       return @formError.setOneError fields.confirmation, []
 
-    @formError.setOneError fields.confirmation, [osu.trans 'model_validation.wrong_confirmation']
+    @formError.setOneError fields.confirmation, [trans 'model_validation.wrong_confirmation']

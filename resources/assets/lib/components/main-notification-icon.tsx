@@ -34,7 +34,7 @@ export default class MainNotificationIcon extends React.Component<Props> {
   render() {
     return (<NotificationIcon
       count={this.unreadCount + this.unreadLegacyPmCount}
-      iconClassName='fas fa-inbox'
+      iconClassName='fas fa-bell'
       ready={core.notificationsWorker.hasData}
       type={this.props.type}
     />);
