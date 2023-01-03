@@ -69,7 +69,7 @@ export default class Main extends React.Component<Props> {
                 <div className='news-index__item news-index__item--more'>
                   <ShowMoreLink
                     callback={this.handleShowMore}
-                    hasMore={this.data.cursor != null}
+                    hasMore={this.data.cursor_string != null}
                     loading={this.loadingXhr != null}
                     modifiers='t-dark-purple-dark'
                   />
@@ -101,7 +101,7 @@ export default class Main extends React.Component<Props> {
 
   @action
   private handleShowMore = () => {
-    if (this.data.cursor == null || this.loadingXhr != null) {
+    if (this.data.cursor_string == null || this.loadingXhr != null) {
       return;
     }
 
