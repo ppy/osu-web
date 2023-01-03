@@ -21,7 +21,7 @@ interface NewsSearch {
 }
 
 interface NewsIndexJson {
-  cursor: unknown;
+  cursor_string: string | null;
   news_posts: PostJson[];
   news_sidebar: NewsSidebarMetaJson;
   search: NewsSearch;
@@ -105,7 +105,7 @@ export default class Main extends React.Component<Props> {
       return;
     }
 
-    this.loadingXhr = $.get(route('news.index'), { ...this.data.search, cursor: this.data.cursor })
+    this.loadingXhr = $.get(route('news.index'), { ...this.data.search, cursor_string: this.data.cursor_string })
       .done(action((newData: NewsIndexJson) => {
         newData.news_posts = this.data.news_posts.concat(newData.news_posts);
         this.data = newData;
