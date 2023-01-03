@@ -19,7 +19,7 @@ import Sort from './sort-bar';
 
 export interface ArtistTracksIndex {
   artist_tracks: ArtistTrackWithArtistJson[];
-  cursor: unknown;
+  cursor_string: string | null;
   search: ArtistTrackSearch;
 }
 
@@ -89,7 +89,7 @@ export default class Main extends React.Component<Props> {
 
                 <ShowMoreLink
                   callback={this.handleShowMore}
-                  hasMore={this.data.cursor != null}
+                  hasMore={this.data.cursor_string != null}
                   loading={this.loadingXhr != null}
                   modifiers='centre-10'
                 />
@@ -103,7 +103,7 @@ export default class Main extends React.Component<Props> {
 
   @action
   private readonly handleShowMore = () => {
-    this.loadingXhr = $.getJSON(route('artists.tracks.index'), { ...this.data.search, cursor: this.data.cursor });
+    this.loadingXhr = $.getJSON(route('artists.tracks.index'), { ...this.data.search, cursor_string: this.data.cursor_string });
 
     this.loadingXhr.done((newData) => runInAction(() => {
       const { container, ...prevProps } = this.props;

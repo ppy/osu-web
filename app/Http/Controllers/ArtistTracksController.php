@@ -16,11 +16,10 @@ class ArtistTracksController extends Controller
         $params = ArtistTrackSearchParamsFromRequest::fromArray(request()->all());
         $search = new ArtistTrackSearch($params);
 
-        $data = [
+        $data = array_merge([
             'artist_tracks' => json_collection($search->records(), 'ArtistTrack', ['artist', 'album']),
             'search' => ArtistTrackSearchParamsFromRequest::toArray($params),
-            'cursor' => $search->getSortCursor(),
-        ];
+        ], cursor_for_response($search->getSortCursor()));
 
         if (is_json_request()) {
             return $data;
