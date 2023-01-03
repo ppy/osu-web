@@ -60,7 +60,7 @@ trait UserScoreable
             $results = new Collection(array_slice($this->beatmapBestScores[$mode], $offset, $limit));
         } else {
             $ids = array_slice($ids, $offset, $limit);
-            $results = Score::whereKey($ids)->orderByField('id', $ids)->get();
+            $results = Score::whereKey($ids)->orderByField('id', $ids)->whereHas('beatmap.beatmapset')->get();
         }
 
         $results->load($with);
