@@ -8,6 +8,7 @@ namespace App\Http\Controllers;
 use App\Libraries\Search\ArtistTrackSearch;
 use App\Libraries\Search\ArtistTrackSearchParamsFromRequest;
 use App\Models\ArtistTrack;
+use App\Transformers\ArtistTrackTransformer;
 
 class ArtistTracksController extends Controller
 {
@@ -16,8 +17,9 @@ class ArtistTracksController extends Controller
         $params = ArtistTrackSearchParamsFromRequest::fromArray(request()->all());
         $search = new ArtistTrackSearch($params);
 
+        $tracks = $search->records();
         $data = array_merge([
-            'artist_tracks' => json_collection($search->records(), 'ArtistTrack', ['artist', 'album']),
+            'artist_tracks' => json_collection($tracks, new ArtistTrackTransformer(), ['artist', 'album']),
             'search' => ArtistTrackSearchParamsFromRequest::toArray($params),
         ], cursor_for_response($search->getSortCursor()));
 
