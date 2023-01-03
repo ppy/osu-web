@@ -128,7 +128,6 @@ abstract class Search extends HasSearch implements Queryable
 
     public function getSortCursor(): ?array
     {
-        // FIXME: should cast cursor values to match sort.
         $requested = $this->params->size;
         $received = $this->response()->count();
         $total = $this->response()->total();
@@ -136,17 +135,10 @@ abstract class Search extends HasSearch implements Queryable
         if ($received === $requested && $received < $total) {
             $last = array_last($this->response()->hits());
             if (array_key_exists('sort', $last)) {
-                $fields = array_map(function ($sort) {
-                    return $sort->field;
-                }, $this->params->sorts);
-
-                $casted = array_map(function ($value) {
-                    // stringify all ints since javascript doesn't like big ints.
-                    // fortunately the minimum value is PHP_INT_MIN instead of the equivalent double.
-                    return is_int($value) ? (string) $value : $value;
-                }, $last['sort']);
-
-                return array_combine($fields, $casted);
+                return array_combine(
+                    array_map(fn ($sort) => $sort->field, $this->params->sorts),
+                    $last['sort'],
+                );
             }
         }
 
@@ -193,6 +185,7 @@ abstract class Search extends HasSearch implements Queryable
      */
     public function searchAfter(?array $searchAfter)
     {
+        // FIXME: The values should be sanitised. The count and type must match sort options.
         $this->params->searchAfter = $searchAfter;
         $this->response = null;
 
