@@ -9,6 +9,11 @@ trait Memoizes
 {
     private $memoized = [];
 
+    public function resetMemoized(): void
+    {
+        $this->memoized = [];
+    }
+
     protected function memoize(string $key, callable $function)
     {
         if (!array_key_exists($key, $this->memoized)) {
@@ -16,10 +21,5 @@ trait Memoizes
         }
 
         return $this->memoized[$key];
-    }
-
-    protected function resetMemoized(): void
-    {
-        $this->memoized = [];
     }
 }

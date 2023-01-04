@@ -102,6 +102,10 @@ class SupporterTagFulfillmentTest extends TestCase
             }
         });
 
+        Mail::assertQueued(DonationThanks::class, function ($mail) {
+            return $this->invokeProperty($mail, 'params')['isGift'] === true; // non-truthy check
+        });
+
         Mail::assertQueued(SupporterGift::class, 2);
         Mail::assertQueued(DonationThanks::class, 1);
     }
@@ -114,10 +118,18 @@ class SupporterTagFulfillmentTest extends TestCase
         Mail::fake();
 
         $this->createDonationOrderItem($this->user, false, false, $hidden);
+        $this->createDonationOrderItem($this->user, false, false, $hidden);
 
         $this->expectCountChange(fn () => Event::where('user_id', $this->user->getKey())->count(), $hidden ? 0 : 1);
 
         (new SupporterTagFulfillment($this->order))->run();
+
+        Mail::assertQueued(DonationThanks::class, function ($mail) {
+            $params = $this->invokeProperty($mail, 'params');
+
+            return $params['duration'] === 2
+                && $params['isGift'] === false; // non-truthy check
+        });
 
         Mail::assertNotQueued(SupporterGift::class);
         Mail::assertQueued(DonationThanks::class, 1);

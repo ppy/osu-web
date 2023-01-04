@@ -11,7 +11,7 @@ return [
     'beatmapset_revive' => ':beatmapset telah dikembalikan dari Graveyard menuju Pending oleh <strong>:user</strong>.',
     'beatmapset_update' => '<strong><em>:user</em></strong> telah memperbarui beatmap "<em>:beatmapset</em>"',
     'beatmapset_upload' => '<strong><em>:user</em></strong> telah mengunggah beatmap baru ":beatmapset"',
-    'empty' => "Pengguna ini tidak melakukan aktivitas apapun baru-baru ini!",
+    'empty' => "Pengguna ini tidak melakukan aktivitas apa pun baru-baru ini!",
     'rank' => '<strong><em>:user</em></strong> telah meraih peringkat #:rank pada <em>:beatmap</em> (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> telah kehilangan peringkat pertama pada <em>:beatmap</em> (:mode)',
     'user_support_again' => '<strong>:user</strong> telah memutuskan untuk kembali mendukung osu! - terima kasih atas kemurahan hati Anda!',

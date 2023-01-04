@@ -67,6 +67,7 @@ return [
         'duration' => 'תודה לכם, עכשיו יש לך גישה ל-osu!direct ולאפשריות נוספות של תורם! ההתרונות הבאים :duration.',
         'features' => 'אתה יכול למצוא עוד פרטים על האפשרויות האלו כאן:',
         'gifted' => 'דמישהו שלח לך osu!supporter בתור מתנה!',
+        'gift_message' => '',
         'subject' => 'השלחת osu!supporter בהצלחה!',
     ],
 

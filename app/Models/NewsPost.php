@@ -270,14 +270,14 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
     public function newer()
     {
         return $this->memoize(__FUNCTION__, function () {
-            return static::cursorSort('published_asc', $this)->first();
+            return static::default()->cursorSort('published_asc', $this)->first();
         });
     }
 
     public function older()
     {
         return $this->memoize(__FUNCTION__, function () {
-            return static::cursorSort('published_desc', $this)->first();
+            return static::default()->cursorSort('published_desc', $this)->first();
         });
     }
 

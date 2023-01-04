@@ -10,7 +10,6 @@ env:
   APP_KEY: base64:q7U5qyAkedR1F6UhN0SQlUxBpAMDyfHy3NNFkqmiMqA=
   APP_URL: http://localhost:8000
   CACHE_DRIVER: redis
-  CACHE_DRIVER_LOCAL: array
   DB_HOST: 127.0.0.1
   DB_USERNAME: root
   ES_SOLO_SCORES_HOST: http://localhost:9200
@@ -73,8 +72,9 @@ jobs:
 
       elasticsearch:
         env:
-          action.auto_create_index: "false"
+          action.auto_create_index: false
           discovery.type: single-node
+          ingest.geoip.downloader.enabled: false
         image: elasticsearch:7.17.6
         ports:
           - 9200:9200
@@ -124,7 +124,7 @@ jobs:
       - name: Set php version
         uses: shivammathur/setup-php@v2
         with:
-          extensions: redis
+          extensions: redis, swoole
           tools: composer:v2
           php-version: ${{ matrix.php }}
 

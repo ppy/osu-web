@@ -124,7 +124,7 @@ return [
             'genre' => 'Жанр',
             'language' => 'Мова',
             'no_scores' => 'Дані все ще обробляються...',
-            'nominators' => '',
+            'nominators' => 'Номінатори',
             'nsfw' => ' Непристойний вміст',
             'offset' => 'Онлайн офсет',
             'points-of-failure' => 'Шкала провалів',

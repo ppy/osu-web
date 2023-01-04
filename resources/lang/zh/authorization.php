@@ -48,7 +48,7 @@ return [
         'edit' => [
             'not_owner' => '只有作者可以编辑。',
             'resolved' => '你不能编辑已解决讨论里的帖子。',
-            'system_generated' => '无法编辑自动回复。',
+            'system_generated' => '自动生成的帖子无法被编辑。',
         ],
 
         'store' => [

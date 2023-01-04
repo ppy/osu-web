@@ -4,12 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'title_compact' => '',
-    'too_many' => '',
+    'title_compact' => 'amics',
+    'too_many' => 'S\'ha arribat al límit d\'amics',
 
     'buttons' => [
-        'add' => '',
-        'disabled' => '',
-        'remove' => '',
+        'add' => 'afegeix amic',
+        'disabled' => 'seguidors',
+        'remove' => 'eliminar amic',
     ],
 ];

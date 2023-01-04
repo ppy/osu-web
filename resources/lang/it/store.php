@@ -31,6 +31,7 @@ return [
         'cart_problems_edit' => 'Clicca qui per modificarlo.',
         'declined' => 'Il pagamento è stato annullato.',
         'delayed_shipping' => 'Attualmente siamo sommersi dagli ordini! Sei libero di effettuare ordini, ma per favore aspettati un **ritardo addizionale di 1-2 settimane** mentre completiamo gli ordini già esistenti.',
+        'hide_from_activity' => '',
         'old_cart' => 'Il tuo carrello sembra essere obsoleto ed è stato ricaricato; per favore riprova.',
         'pay' => 'Acquista con Paypal',
         'title_compact' => 'pagamento',
@@ -50,6 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Visto che il tuo pagamento era un eCheck, dovrai attendere altri 10 giorni per far passare il pagamento attraverso PayPal!',
+        'hide_from_activity' => '',
         'title_compact' => 'ricevuta',
 
         'status' => [
@@ -75,10 +77,15 @@ return [
         'shopify_expired' => 'Il link del pagamento per quest\'ordine è scaduto.',
 
         'item' => [
+            'quantity' => 'Quantità',
+
             'display_name' => [
                 'supporter_tag' => ':name per :username(:duration)',
             ],
-            'quantity' => 'Quantità',
+
+            'subtext' => [
+                'supporter_tag' => '',
+            ],
         ],
 
         'not_modifiable_exception' => [
@@ -120,6 +127,8 @@ return [
 
     'supporter_tag' => [
         'gift' => 'regalo ad un giocatore',
+        'gift_message' => '',
+
         'require_login' => [
             '_' => 'Devi :link per poter ottenere un tag supporter!',
             'link_text' => 'eseguire l\'accesso',

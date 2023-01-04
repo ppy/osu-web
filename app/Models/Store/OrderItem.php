@@ -129,6 +129,16 @@ class OrderItem extends Model
         }
     }
 
+    public function getSubtext()
+    {
+        $extraData = $this->extra_data;
+        if ($extraData instanceof ExtraDataSupporterTag && $extraData->message !== null) {
+            return trans('store.order.item.subtext.supporter_tag', ['message' => $extraData->message]);
+        }
+
+        return null;
+    }
+
     public function releaseProduct()
     {
         if ($this->reserved) {
@@ -150,5 +160,13 @@ class OrderItem extends Model
     public function validationErrorsTranslationPrefix()
     {
         return 'store.order_item';
+    }
+
+    public function __get($key)
+    {
+        // TODO: remove this after no more things are queued with old $casts
+        $this->casts['extra_data'] = ExtraDataBase::class;
+
+        return parent::__get($key);
     }
 }
