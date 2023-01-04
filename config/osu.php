@@ -254,6 +254,7 @@ return [
             'key_length' => 8,
             'tries' => 8,
         ],
+        'registration_mode' => presence(env('REGISTRATION_MODE')) ?? 'client',
         'super_friendly' => array_map('intval', explode(' ', env('SUPER_FRIENDLY', '3'))),
         'ban_persist_days' => get_int(env('BAN_PERSIST_DAYS')) ?? 28,
     ],
