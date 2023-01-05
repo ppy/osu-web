@@ -218,6 +218,9 @@ return [
                 'loved' => [
                     'title' => 'מפות אהובות',
                 ],
+                'nominated' => [
+                    'title' => '',
+                ],
                 'pending' => [
                     'title' => '',
                 ],

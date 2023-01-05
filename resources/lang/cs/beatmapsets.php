@@ -124,6 +124,7 @@ return [
             'genre' => 'Žánr',
             'language' => 'Jazyk',
             'no_scores' => 'Data se vypočítávají...',
+            'nominators' => '',
             'nsfw' => 'Explicitní obsah',
             'offset' => 'Online offset',
             'points-of-failure' => 'Body neúspěchů',

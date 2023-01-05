@@ -217,6 +217,9 @@ return [
                 'loved' => [
                     'title' => 'Oblíbené Beatmapy',
                 ],
+                'nominated' => [
+                    'title' => '',
+                ],
                 'pending' => [
                     'title' => 'Čekající Beatmapy',
                 ],

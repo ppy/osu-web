@@ -105,7 +105,7 @@ class BannerFulfillmentTest extends TestCase
         ]);
 
         // crap test
-        $this->tournament = factory(Tournament::class)->create();
+        $this->tournament = Tournament::factory()->create();
         $this->product = Product::customClass('mwc7-supporter')->orderBy('product_id', 'desc')->first();
         $this->findOrSeed();
     }

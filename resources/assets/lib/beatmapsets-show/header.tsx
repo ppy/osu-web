@@ -103,32 +103,7 @@ export default class Header extends React.Component<Props> {
             <div className='beatmapset-header__beatmap-picker-box'>
               <BeatmapPicker controller={this.controller} />
 
-              {this.controller.hoveredBeatmap == null ? (
-                <span className='beatmapset-header__diff-name'>
-                  {this.controller.currentBeatmap.version}
-
-                  {this.controller.currentBeatmap.user_id !== this.controller.beatmapset.user_id && (
-                    <span className='beatmapset-header__diff-extra'>
-                      <StringWithComponent
-                        mappings={{
-                          mapper: <UserLink user={this.controller.mapper(this.controller.currentBeatmap)} />,
-                        }}
-                        pattern={trans('beatmapsets.show.details.mapped_by')}
-                      />
-                    </span>
-                  )}
-                </span>
-              ) : (
-                <span className='beatmapset-header__diff-name'>
-                  {this.controller.hoveredBeatmap.version}
-
-                  <span className='beatmapset-header__diff-extra beatmapset-header__diff-extra--star-difficulty'>
-                    {trans('beatmapsets.show.stats.stars')}
-                    {' '}
-                    {formatNumber(this.controller.hoveredBeatmap.difficulty_rating, 2)}
-                  </span>
-                </span>
-              )}
+              {this.renderBeatmapVersion()}
 
               <div>
                 <span className='beatmapset-header__value' title={trans('beatmapsets.show.stats.playcount')}>
@@ -304,6 +279,35 @@ export default class Header extends React.Component<Props> {
           </div>
         }
       </div>
+    );
+  }
+
+  private renderBeatmapVersion() {
+    const beatmap = this.controller.hoveredBeatmap ?? this.controller.currentBeatmap;
+
+    return (
+      <span className='beatmapset-header__diff-name'>
+        {beatmap.version}
+
+        {beatmap.user_id !== this.controller.beatmapset.user_id && (
+          <span className='beatmapset-header__diff-extra'>
+            <StringWithComponent
+              mappings={{
+                mapper: <UserLink user={this.controller.mapper(beatmap)} />,
+              }}
+              pattern={trans('beatmapsets.show.details.mapped_by')}
+            />
+          </span>
+        )}
+
+        {this.controller.hoveredBeatmap != null && (
+          <span className='beatmapset-header__diff-extra beatmapset-header__diff-extra--star-difficulty'>
+            {trans('beatmapsets.show.stats.stars')}
+            {' '}
+            {formatNumber(beatmap.difficulty_rating, 2)}
+          </span>
+        )}
+      </span>
     );
   }
 

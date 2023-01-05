@@ -80,7 +80,6 @@
             </div>
         @endif
         <div class="osu-layout__section osu-layout__section--full js-content {{ $currentSection }}_{{ $currentAction }}">
-            @include("layout.popup")
             @yield('content')
         </div>
         @if (!isset($blank))

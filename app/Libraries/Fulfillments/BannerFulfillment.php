@@ -62,8 +62,8 @@ abstract class BannerFulfillment extends OrderFulfiller
         $extraData = $orderItem->extra_data;
         $user = $orderItem->order->user;
         $user->profileBanners()->create([
-            'tournament_id' => $extraData['tournament_id'],
-            'country_acronym' => $extraData['cc'],
+            'tournament_id' => $extraData->tournamentId,
+            'country_acronym' => $extraData->countryAcronym,
         ]);
     }
 
@@ -75,8 +75,8 @@ abstract class BannerFulfillment extends OrderFulfiller
         // just any matching banner
         $banner = $user
             ->profileBanners()
-            ->where('tournament_id', $extraData['tournament_id'])
-            ->where('country_acronym', $extraData['cc'])
+            ->where('tournament_id', $extraData->tournamentId)
+            ->where('country_acronym', $extraData->countryAcronym)
             ->first();
 
         if ($banner) {

@@ -20,7 +20,7 @@ class OrderCheckoutTest extends TestCase
 {
     public function testTournamentBannerWhenAvailable()
     {
-        $tournament = factory(Tournament::class)->create();
+        $tournament = Tournament::factory()->create();
         $product = $this->createTournamentProduct($tournament, Carbon::now()->addDays(1));
         $orderItem = factory(OrderItem::class)->create([
             'product_id' => $product->product_id,
@@ -37,7 +37,7 @@ class OrderCheckoutTest extends TestCase
 
     public function testTournamentBannerWhenNoEndDate()
     {
-        $tournament = factory(Tournament::class)->create();
+        $tournament = Tournament::factory()->create();
         $product = $this->createTournamentProduct($tournament);
         $orderItem = factory(OrderItem::class)->create([
             'product_id' => $product->product_id,
@@ -54,7 +54,7 @@ class OrderCheckoutTest extends TestCase
 
     public function testTournamentBannerWhenNotAvailable()
     {
-        $tournament = factory(Tournament::class)->create();
+        $tournament = Tournament::factory()->create();
         $product = $this->createTournamentProduct($tournament, Carbon::now()->subDays(1));
         $orderItem = factory(OrderItem::class)->create([
             'product_id' => $product->product_id,

@@ -96,8 +96,6 @@ class BeatmapDiscussionTransformer extends TransformerAbstract
             return;
         }
 
-        $score = 0;
-
         // This assumes beatmapDiscussionVotes are already preloaded and
         // thus will save one query.
         foreach ($discussion->beatmapDiscussionVotes as $vote) {
@@ -107,16 +105,12 @@ class BeatmapDiscussionTransformer extends TransformerAbstract
             }
         }
 
-        $ret = [
-            'vote_score' => $score,
+        return $this->primitive([
+            'vote_score' => $score ?? 0,
             'can_moderate_kudosu' => priv_check_user($currentUser, 'BeatmapDiscussionAllowOrDenyKudosu', $discussion)->can(),
             'can_resolve' => priv_check_user($currentUser, 'BeatmapDiscussionResolve', $discussion)->can(),
             'can_reopen' => priv_check_user($currentUser, 'BeatmapDiscussionReopen', $discussion)->can(),
             'can_destroy' => priv_check_user($currentUser, 'BeatmapDiscussionDestroy', $discussion)->can(),
-        ];
-
-        return $this->item($discussion, function () use ($ret) {
-            return $ret;
-        });
+        ]);
     }
 }

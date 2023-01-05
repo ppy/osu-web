@@ -1,83 +1,95 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { htmlElementOrNull } from 'utils/html';
+
 export default class Captcha {
-  sitekey = '';
-  triggered = false;
+  private sitekey = '';
 
   constructor() {
-    $(document).on('turbolinks:load', this.render);
+    $(document).on('turbolinks:load', this.renderAll);
+    $(document).on('ajax:error', '.js-captcha--reset-on-error', this.resetOnError);
   }
 
-  container = () => document.querySelector<HTMLDivElement>('.js-captcha--container');
+  containers = () => document.querySelectorAll<HTMLDivElement>('.js-captcha--container');
 
-  disableSubmit = () => {
-    const targetButton = this.submitButton();
-    if (targetButton) {
+  disableSubmit = (container: HTMLDivElement) => {
+    const targetButton = this.submitButton(container);
+    if (targetButton != null) {
       targetButton.disabled = true;
     }
   };
 
-  enableSubmit = () => {
-    const targetButton = this.submitButton();
-    if (targetButton) {
+  enableSubmit = (container: HTMLDivElement) => {
+    const targetButton = this.submitButton(container);
+    if (targetButton != null) {
       targetButton.disabled = false;
     }
   };
 
-  init = (sitekey: string, triggered: boolean) => {
+  findContainer = (formInput: unknown) => htmlElementOrNull(
+    htmlElementOrNull(formInput)?.closest('form'),
+  )?.querySelector<HTMLDivElement>('.js-captcha--container');
+
+  init = (sitekey: string) => {
     this.sitekey = sitekey;
-    this.triggered = triggered;
-    this.render();
+    this.renderAll();
   };
 
-  isEnabled = () => this.container() &&
+  isEnabled = (container: HTMLDivElement) => this.isTriggered(container) &&
       typeof(grecaptcha) === 'object' &&
       typeof(grecaptcha.render) === 'function' &&
-      this.sitekey !== '' &&
-      this.triggered;
+      this.sitekey !== '';
 
-  isLoaded = () => this.container()?.innerHTML !== '';
+  isLoaded = (container: HTMLDivElement) => container.innerHTML !== '';
 
-  render = () => {
-    if (this.isEnabled() && !this.isLoaded()) {
-      grecaptcha.render(this.container()!, {
-        callback: this.enableSubmit,
-        'error-callback': this.disableSubmit,
-        'expired-callback': this.disableSubmit,
+  isTriggered = (container: HTMLDivElement) => container.dataset.captchaTriggered === '1';
+
+  render = (container: HTMLDivElement) => {
+    if (this.isEnabled(container) && !this.isLoaded(container)) {
+      const disableSubmit = () => this.disableSubmit(container);
+      const id = grecaptcha.render(container, {
+        callback: () => this.enableSubmit(container),
+        'error-callback': disableSubmit,
+        'expired-callback': disableSubmit,
         sitekey: this.sitekey,
         theme: 'dark',
       });
+      container.dataset.captchaId = id.toString();
 
-      this.disableSubmit();
+      disableSubmit();
     }
   };
 
-  reset = () => {
-    if (this.isEnabled()) {
-      grecaptcha.reset();
-      this.disableSubmit();
+  reset = (container: HTMLDivElement) => {
+    if (this.isEnabled(container)) {
+      grecaptcha.reset(+(container.dataset.captchaId ?? ''));
+      this.disableSubmit(container);
     }
   };
 
-  submitButton = () => document.querySelector<HTMLButtonElement>('.js-captcha--submit-button');
+  submitButton = (container: HTMLDivElement) => container.closest('form')?.querySelector<HTMLButtonElement>('.js-captcha--submit-button');
 
-  trigger = () => {
-    if (this.triggered) {
+  trigger = (container: HTMLDivElement) => {
+    if (this.isTriggered(container)) {
       return;
     }
 
-    this.triggered = true;
-    this.render();
+    container.dataset.captchaTriggered = '1';
+    this.render(container);
   };
 
-  untrigger = () => {
-    if (!this.isEnabled()) {
-      return;
+  private readonly renderAll = () => {
+    for (const container of this.containers()) {
+      this.render(container);
     }
+  };
 
-    this.triggered = false;
-    this.container()!.innerHTML = '';
-    this.enableSubmit();
+  private readonly resetOnError = (e: JQuery.TriggeredEvent) => {
+    const container = this.findContainer(htmlElementOrNull(e.target));
+
+    if (container != null) {
+      this.reset(container);
+    }
   };
 }

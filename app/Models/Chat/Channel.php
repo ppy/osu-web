@@ -21,7 +21,8 @@ use Carbon\Carbon;
 use ChaseConey\LaravelDatadogHelper\Datadog;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
-use LaravelRedis as Redis;
+use LaravelRedis;
+use Redis;
 
 /**
  * @property int[] $allowed_groups
@@ -77,6 +78,15 @@ class Channel extends Model
         'pm' => 'PM',
         'group' => 'GROUP',
     ];
+
+    public static function ack(int $channelId, int $userId, ?int $timestamp = null, ?Redis $redis = null): void
+    {
+        $timestamp ??= time();
+        $redis ??= LaravelRedis::client();
+        $key = static::getAckKey($channelId);
+        $redis->zadd($key, $timestamp, $userId);
+        $redis->expire($key, static::CHAT_ACTIVITY_TIMEOUT * 10);
+    }
 
     /**
      * Creates a chat broadcast Channel and associated UserChannels.
@@ -177,7 +187,7 @@ class Channel extends Model
     public function activeUserIds()
     {
         return $this->isPublic()
-            ? Redis::zrangebyscore(static::getAckKey($this->getKey()), now()->subSeconds(static::CHAT_ACTIVITY_TIMEOUT)->timestamp, 'inf')
+            ? LaravelRedis::zrangebyscore(static::getAckKey($this->getKey()), now()->subSeconds(static::CHAT_ACTIVITY_TIMEOUT)->timestamp, 'inf')
             : $this->userIds();
     }
 
@@ -437,7 +447,7 @@ class Channel extends Model
         // This works by keeping a sorted set of when the last messages were sent by the user (per message type).
         // The timestamp of the message is used as the score, which allows for zremrangebyscore to cull old messages
         // in a rolling window fashion.
-        [,$sent] = Redis::transaction()
+        [,$sent] = LaravelRedis::transaction()
             ->zremrangebyscore($key, 0, $now->timestamp - $window)
             ->zrange($key, 0, -1, 'WITHSCORES')
             ->zadd($key, $now->timestamp, (string) Str::uuid())
@@ -492,6 +502,10 @@ class Channel extends Model
 
     public function addUser(User $user)
     {
+        if ($this->isPublic()) {
+            static::ack($this->getKey(), $user->getKey());
+        }
+
         $userChannel = $this->userChannelFor($user);
 
         if ($userChannel !== null) {

@@ -36,10 +36,6 @@ export default class RankingFilter extends React.PureComponent<Props> {
         if (core.currentUser?.country_code === a.code) return -1;
         if (core.currentUser?.country_code === b.code) return 1;
 
-        const priority = b.display - a.display;
-
-        if (priority !== 0) return priority;
-
         return a.name.localeCompare(b.name);
       });
     }
