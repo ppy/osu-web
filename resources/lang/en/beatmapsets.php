@@ -62,10 +62,15 @@ return [
 
         'details' => [
             'by_artist' => 'by :artist',
+            'circle_count' => 'Circle Count :value',
+            'created_by' => 'created by :creator',
             'favourite' => 'Favourite this beatmap',
             'favourite_login' => 'Sign in to favourite this beatmap',
+            'length' => 'Length :value',
             'logged-out' => 'You need to sign in before downloading any beatmaps!',
             'mapped_by' => 'mapped by :mapper',
+            'slider_count' => 'Slider Count :value',
+            'song_bpm' => 'BPM :value',
             'unfavourite' => 'Unfavourite this beatmap',
             'updated_timeago' => 'last updated :timeago',
 
@@ -79,6 +84,12 @@ return [
             'login_required' => [
                 'bottom' => 'to access more features',
                 'top' => 'Sign In',
+            ],
+
+            'count' => [
+                'total_play' => 'Total Play Count',
+                'diff_play' => 'Difficulty Play Count',
+                'favourite' => 'Favourite Count',
             ],
         ],
 
@@ -120,18 +131,25 @@ return [
         ],
 
         'info' => [
+            'approved' => 'Approved',
+            'creator' => 'Creator',
             'description' => 'Description',
             'genre' => 'Genre',
             'language' => 'Language',
+            'loved' => 'Loved',
             'no_scores' => 'Data still being calculated...',
             'nominators' => 'Nominators',
             'nsfw' => 'Explicit content',
             'offset' => 'Online offset',
             'points-of-failure' => 'Points of Failure',
+            'qualified' => 'Qualified',
+            'ranked' => 'Ranked',
             'source' => 'Source',
             'storyboard' => 'This beatmap contains storyboard',
+            'submitted' => 'Submitted',
             'success-rate' => 'Success Rate',
             'tags' => 'Tags',
+            'updated' => 'Last updated',
             'video' => 'This beatmap contains video',
         ],
 

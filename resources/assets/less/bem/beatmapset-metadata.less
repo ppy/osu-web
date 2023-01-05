@@ -1,0 +1,37 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.beatmapset-metadata {
+  --edit-button-opacity: 0;
+
+  display: grid;
+  grid-template-columns: auto 2fr;
+  column-gap: 10px;
+  position: relative;
+
+  &:hover {
+    --edit-button-opacity: 1;
+  }
+
+  &__edit-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: var(--edit-button-opacity);
+    transition: opacity 120ms ease-in-out;
+  }
+
+  &__spacer {
+    height: 10px;
+    grid-column: 1/span 2;
+  }
+
+  &__value {
+    font-weight: 700;
+
+    &--tags {
+      max-height: 60px;
+      overflow-y: auto;
+    }
+  }
+}

@@ -6,41 +6,16 @@
   color: #fff;
   min-width: 0;
   position: relative;
+  --icons-bg-opacity: 0;
 
   &--selecting {
     z-index: @z-index--blackout-visible;
+    --icons-bg-opacity: 1;
   }
 
   &__body {
     height: var(--box-height);
     min-width: 0;
-  }
-
-  &__selector {
-    .default-box-shadow();
-
-    position: absolute;
-    width: 100%;
-    top: 100%;
-    left: 0;
-    margin-top: 5px;
-    background-color: @osu-colour-b5;
-
-    flex-direction: column;
-
-
-    display: none;
-    .@{top}--selecting & {
-      display: flex;
-    }
-
-    &--submenu {
-      top: 0;
-      left: 100%;
-      margin-left: 5px;
-      margin-top: 0;
-      padding: 10px 0;
-    }
   }
 
   &__item {
@@ -51,6 +26,7 @@
     align-items: center;
     text-align: left;
     padding: 5px 10px;
+    cursor: pointer;
     gap: 10px;
     font-size: @font-size--title-small;
 
@@ -72,6 +48,15 @@
       &:hover {
         background-color: @osu-colour-b6;
       }
+
+      .@{top}--beatmapset-show & {
+        box-shadow: none;
+
+        @media @desktop {
+          background-color: transparent;
+          padding: 0;
+        }
+      }
     }
 
     &--current {
@@ -89,7 +74,98 @@
     color: hsl(var(--hsl-b5));
   }
 
+
+  &__item-mapper {
+    color: hsl(var(--hsl-c2));
+    font-weight: normal;
+  }
+
   &__item-selector-button {
     margin-left: auto;
+  }
+
+  &__selected {
+    &--icons {
+      display: none;
+
+      .@{top}--beatmapset-show & {
+        @media @desktop {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          font-size: 9px;
+          gap: 2px;
+          position: relative;
+
+          &::before {
+            .default-border-radius();
+            --padding: 4px;
+            --offset: calc(-1 * var(--padding));
+            --size: calc(100% + 2 * var(--padding));
+            content: '';
+            position: absolute;
+            top: var(--offset);
+            left: var(--offset);
+            width: var(--size);
+            height: var(--size);
+            background-color: hsl(var(--hsl-b5));
+            pointer-events: none;
+            opacity: var(--icons-bg-opacity);
+          }
+        }
+      }
+    }
+
+    &--list {
+      display: flex;
+      flex: 1;
+
+      .@{top}--beatmapset-show & {
+        @media @desktop {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &__selector {
+    .default-border-radius();
+    .default-box-shadow();
+
+    position: absolute;
+    width: 100%;
+    top: 100%;
+    left: 0;
+    margin-top: 5px;
+    background-color: @osu-colour-b5;
+
+    flex-direction: column;
+    max-height: 300px;
+    overflow-y: auto;
+
+
+    display: none;
+    .@{top}--selecting & {
+      display: flex;
+    }
+
+    &--submenu {
+      top: 0;
+      left: 100%;
+      margin-left: 5px;
+      margin-top: 0;
+      padding: 10px 0;
+    }
+
+    .@{top}--beatmapset-show & {
+      @media @desktop {
+        width: max-content;
+        max-width: 50vw;
+        top: 50%;
+        left: 100%;
+        margin-top: 0;
+        margin-left: 5px;
+        transform: translateY(-50%);
+      }
+    }
   }
 }

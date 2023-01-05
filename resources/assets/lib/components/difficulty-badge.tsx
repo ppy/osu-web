@@ -3,13 +3,13 @@
 
 import * as React from 'react';
 import { getDiffColour } from 'utils/beatmap-helper';
-import { classWithModifiers } from 'utils/css';
+import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 
-export default function DifficultyBadge(props: { rating: number }) {
+export default function DifficultyBadge(props: { modifiers?: Modifiers; rating: number }) {
   return (
     <div
-      className={classWithModifiers('difficulty-badge', {
+      className={classWithModifiers('difficulty-badge', props.modifiers, {
         'expert-plus': props.rating >= 6.5,
       })}
       style={{

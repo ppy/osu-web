@@ -27,7 +27,7 @@ export default class BeatmapSelection extends React.Component<Props> {
   }
 
   render() {
-    const className = classWithModifiers('beatmapset-beatmap-picker__beatmap', { active: this.active });
+    const className = classWithModifiers('beatmapset-beatmap-selection', { active: this.active });
 
     return (
       <a

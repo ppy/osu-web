@@ -21,14 +21,6 @@
     background-color: @osu-colour-b2;
   }
 
-  &--beatmapset-description-editor {
-    .default-gutter-v2();
-    padding-top: @editor-padding;
-    padding-bottom: $padding-top;
-    background-color: hsl(var(--hsl-b2));
-    border-radius: @border-radius-large;
-  }
-
   &--profile-page {
     padding-right: var(--inner-gutter);
   }
@@ -58,11 +50,6 @@
     .@{_top}[data-state=loading-preview] & {
       opacity: 0.5;
       pointer-events: none;
-    }
-
-    .@{_top}--beatmapset-description-editor & {
-      // approximation of 80vh - 3 lines of button bars and editor padding
-      max-height: calc(80vh - 2 * @editor-padding - 2 * @content-padding - 3 * (1em + 2 * @buttons-margin));
     }
   }
 

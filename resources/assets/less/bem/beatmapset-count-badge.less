@@ -1,0 +1,27 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.beatmapset-count-badge {
+  display: flex;
+  background-color: hsl(var(--hsl-b4));
+  border-radius: @border-radius--large;
+  text-align: center;
+  padding: 4px 0;
+  justify-content: space-evenly;
+  min-width: 100%;
+  align-items: center;
+
+  &--length-bpm {
+    @media @desktop {
+      min-width: 200px;
+      font-size: @font-size--title-small;
+      padding: 0;
+    }
+  }
+
+  &__value {
+    font-weight: 700;
+    color: hsl(var(--hsl-c2));
+    margin-left: 5px;
+  }
+}

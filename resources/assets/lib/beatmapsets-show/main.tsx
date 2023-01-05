@@ -11,12 +11,15 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import { generate, setHash } from 'utils/beatmapset-page-hash';
 import Controller from './controller';
+import Cover from './cover';
+import Description from './description';
 import Header from './header';
 import headerLinks from './header-links';
 import Hype from './hype';
 import Info from './info';
 import NsfwWarning from './nsfw-warning';
 import ScoreboardMain from './scoreboard/main';
+import Toolbar from './toolbar';
 
 interface Props {
   container: HTMLElement;
@@ -99,10 +102,14 @@ export default class Main extends React.Component<Props> {
     return (
       <>
         <div className='osu-page osu-page--generic-compact'>
+          <Cover controller={this.controller} />
           <Header controller={this.controller} />
           <Info controller={this.controller} />
+          <Toolbar controller={this.controller} />
 
           <div className='user-profile-pages user-profile-pages--no-tabs'>
+            <Description controller={this.controller} />
+
             {this.controller.beatmapset.can_be_hyped &&
               <div className='page-extra page-extra--compact'>
                 <Hype beatmapset={this.controller.beatmapset} />

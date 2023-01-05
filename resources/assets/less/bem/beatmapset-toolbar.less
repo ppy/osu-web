@@ -1,0 +1,52 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.beatmapset-toolbar {
+  .default-gutter-v2();
+  padding-top: 10px;
+  padding-bottom: $padding-top;
+
+  position: relative;
+  background-color: hsl(var(--hsl-b3));
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+
+  @media @desktop {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+
+    @media @desktop {
+      flex: none;
+    }
+  }
+
+  &__count {
+    display: flex;
+    gap: 15px;
+    font-size: @font-size--normal;
+    flex: 1;
+  }
+
+  &__count-value {
+    font-size: @font-size--title-small;
+    color: hsl(var(--hsl-c2));
+  }
+
+  &__menu {
+    .center-content();
+    position: relative;
+
+    @media @desktop {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+  }
+}

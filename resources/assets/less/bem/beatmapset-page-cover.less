@@ -1,0 +1,100 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.beatmapset-page-cover {
+  --content-height: 30px;
+  --cover-height: auto;
+  .default-box-shadow();
+
+  position: relative;
+  font-size: @font-size--title-small;
+  height: var(--cover-height);
+  display: flex;
+  align-items: flex-end;
+
+  &--expanded {
+    --cover-height: 250px;
+  }
+
+  &__content {
+    margin: 10px 0;
+    .default-gutter-v2();
+    height: var(--content-height);
+    width: 100%;
+    position: relative; // put this above absolute-positioned cover
+
+    display: flex;
+  }
+
+  &__content-item {
+    height: 100%;
+    display: flex;
+    column-gap: 10px;
+
+    &--left {
+      @media @mobile {
+        display: none;
+      }
+    }
+
+    &--right {
+      margin-left: auto;
+
+      @media @mobile {
+        margin-left: 0;
+        flex-direction: row-reverse;
+      }
+    }
+  }
+
+  &__image {
+    .full-size();
+    object-fit: cover;
+
+    &--default {
+      .at2x("~@images/layout/beatmaps/default-bg.png");
+      background-position: center;
+      background-size: cover;
+    }
+  }
+
+  &__preview {
+    .link-plain();
+    .link-white();
+    .reset-input();
+
+    .center-content();
+    position: relative;
+
+    --progress: 0;
+    background-color: hsla(var(--hsl-b4), 0.8);
+    font-size: inherit; // icon size
+    cursor: pointer;
+    border-radius: @border-radius--extra;
+    width: 100px;
+    height: 100%;
+
+    &:hover {
+      background-color: hsla(var(--hsl-b6), 0.75);
+    }
+
+    &--circle {
+      width: var(--content-height);
+      border-radius: 10000px;
+    }
+  }
+
+  &__toggle {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    right: @gutter-v2;
+    display: flex;
+    justify-content: center;
+
+    @media @desktop {
+      right: 0;
+      width: @gutter-v2-desktop;
+    }
+  }
+}

@@ -15,7 +15,8 @@
   }
 
   &--beatmap-stats {
-    height: 5px;
+    .default-border-radius();
+    height: 4px;
     background-color: @osu-colour-b6;
   }
 
@@ -23,6 +24,12 @@
     height: 5px;
     background-color: @osu-colour-b6;
     margin-top: 5px;
+  }
+
+  &--beatmapset-extra {
+    .default-border-radius();
+    height: 4px;
+    background-color: @osu-colour-red-3;
   }
 
   &--beatmapset-off {
@@ -79,16 +86,23 @@
 
     .@{_top}--beatmap-stats & {
       .default-bar-transition();
-      background-color: #fff;
-    }
-
-    .@{_top}--beatmap-stats-stars & {
-      background-color: @yellow;
+      .default-border-radius();
+      background-color: @osu-colour-h1;
     }
 
     .@{_top}--beatmap-success-rate & {
       .default-bar-transition();
       background-color: @green;
+    }
+
+    .@{_top}--beatmapset-extra & {
+      .default-bar-transition();
+      .default-border-radius();
+      background-color: @osu-colour-lime-1;
+    }
+
+    .@{_top}--beatmapset-extra-rating & {
+      margin-left: auto;
     }
 
     .@{_top}--forum-poll & {

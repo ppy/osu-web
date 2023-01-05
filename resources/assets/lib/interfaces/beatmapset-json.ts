@@ -18,7 +18,7 @@ interface BeatmapsetCovers {
   slimcover: string;
 }
 
-interface BeatmapsetDescription {
+export interface BeatmapsetDescription {
   bbcode: string | null;
   description: string | null;
 }
@@ -62,6 +62,7 @@ export interface CurrentUserAttributes {
 
 interface BeatmapsetJsonAvailableIncludes {
   beatmaps: BeatmapJson[];
+  beatmapset_nominations: BeatmapsetNominationJson[];
   converts: BeatmapExtendedJson[];
   current_nominations: BeatmapsetNominationJson[];
   current_user_attributes: CurrentUserAttributes;

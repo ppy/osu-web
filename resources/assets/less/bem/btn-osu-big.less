@@ -73,6 +73,14 @@
     --disabled-bg: hsl(var(--hsl-b2));
   }
 
+  &--beatmapset-favourite {
+    .default-text-shadow();
+    min-width: 50px;
+    height: @btn-circle-diameter;
+    border-radius: @btn-circle-diameter;
+    padding: 0 15px;
+  }
+
   &--beatmapset-header {
     min-width: 120px;
     height: 45px;
@@ -83,6 +91,22 @@
     width: 45px;
     height: 45px;
     margin: 0 5px 5px 0;
+  }
+
+  &--beatmapset-toolbar {
+    --bg: hsl(var(--hsl-lime-3));
+    --hover-bg: hsl(var(--hsl-lime-2));
+
+    .default-text-shadow();
+    min-width: 120px;
+    height: @btn-circle-diameter;
+    border-radius: @btn-circle-diameter;
+    padding: 0 15px;
+    text-align: center;
+
+    .@{top}__left {
+      text-align: center;
+    }
   }
 
   &--comment-editor {
