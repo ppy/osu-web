@@ -1,6 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import BeatmapExtendedJson from './beatmap-extended-json';
+import BeatmapJson from './beatmap-json';
 import GameMode from './game-mode';
 import Rank from './rank';
 import { ScoreJsonAvailableIncludes, ScoreJsonDefaultIncludes } from './score-json';
@@ -62,7 +64,11 @@ export default SoloScoreJson;
 
 export type SoloScoreJsonForBeatmap = SoloScoreJson & Required<Pick<SoloScoreJson, 'user'>>;
 
-export type SoloScoreJsonForShow = SoloScoreJson & Required<Pick<SoloScoreJson, 'beatmap' | 'beatmapset' | 'best_id' | 'rank_global' | 'replay' | 'user'>>;
+export type SoloScoreJsonForShow = SoloScoreJson
+& Required<Pick<SoloScoreJson, 'beatmapset' | 'best_id' | 'rank_global' | 'replay' | 'user'>>
+& {
+  beatmap: BeatmapExtendedJson & Required<Pick<BeatmapJson, 'user'>>;
+};
 
 export type SoloScoreJsonForUser = SoloScoreJson & Required<Pick<SoloScoreJson, 'beatmap' | 'beatmapset'>>;
 
