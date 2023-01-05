@@ -23,7 +23,7 @@ class Ip2Asn
         $search = inet_pton($this->prefixIPv4($ip));
 
         if ($search === false) {
-            return "0";
+            return '0';
         }
 
         while ($start <= $end) {
