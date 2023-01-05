@@ -103,11 +103,10 @@ class Room extends Model
         }
     }
 
-    public static function search(array $params)
+    public static function search(array $rawParams)
     {
-        $params = get_params($params, null, [
+        $params = get_params($rawParams, null, [
             'category',
-            'cursor:array',
             'limit:int',
             'mode',
             'sort',
@@ -153,7 +152,7 @@ class Room extends Model
         }
 
         $cursorHelper = static::makeDbCursorHelper($sort);
-        $query->cursorSort($cursorHelper, $params['cursor']);
+        $query->cursorSort($cursorHelper, cursor_from_params($rawParams));
 
         $limit = clamp($params['limit'] ?? 250, 1, 250);
         $query->limit($limit);

@@ -9,6 +9,7 @@
 
   padding: 10px;
   border-radius: 10000px;
+  transition: none;
 
   &.js-click-menu--active, &:hover {
     background-color: hsla(var(--hsl-c1), 0.2);
@@ -24,15 +25,16 @@
     padding: 7px 10px;
   }
 
-  &--social {
-    &:hover {
-      color: hsl(var(--hsl-c1));
-    }
-  }
-
   &--support {
     &:hover {
       color: @pink;
+    }
+  }
+
+  &--twitter {
+    &:hover {
+      // twitter blue doesn't work with coloured background
+      color: hsl(var(--hsl-c1));
     }
   }
 }

@@ -7,7 +7,7 @@ import BeatmapsetDiscussionPostJson from 'interfaces/beatmapset-discussion-post-
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import UserJson from 'interfaces/user-json';
 import { findLast, kebabCase } from 'lodash';
-import { computed, makeObservable } from 'mobx';
+import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import { deletedUser } from 'models/user';
 import core from 'osu-core-singleton';
@@ -17,6 +17,7 @@ import { classWithModifiers, groupColour } from 'utils/css';
 import { trans } from 'utils/lang';
 import { discussionTypeIcons } from './discussion-type';
 import DiscussionVoteButtons from './discussion-vote-buttons';
+import DiscussionsStateContext from './discussions-state-context';
 import { NewReply } from './new-reply';
 import Post from './post';
 import SystemPost from './system-post';
@@ -26,11 +27,9 @@ const bn = 'beatmap-discussion';
 
 interface PropsBase {
   beatmapset: BeatmapsetExtendedJson;
-  collapsed: boolean;
   currentBeatmap: BeatmapExtendedJson;
-  highlighted: boolean;
   isTimelineVisible: boolean;
-  parentDiscussion?: BeatmapsetDiscussionJson;
+  parentDiscussion?: BeatmapsetDiscussionJson | null;
   readPostIds?: Set<number>;
   showDeleted: boolean;
   users: Partial<Record<number | string, UserJson>>;
@@ -49,6 +48,12 @@ type Props = PropsBase & ({
 
 @observer
 export class Discussion extends React.Component<Props> {
+  static contextType = DiscussionsStateContext;
+  static defaultProps = {
+    preview: false,
+  };
+
+  declare context: React.ContextType<typeof DiscussionsStateContext>;
   private lastResolvedState = false;
 
   constructor(props: Props) {
@@ -60,6 +65,16 @@ export class Discussion extends React.Component<Props> {
   private get canBeRepliedTo() {
     return (!this.props.beatmapset.discussion_locked || canModeratePosts())
       && (this.props.discussion.beatmap_id == null || this.props.currentBeatmap.deleted_at == null);
+  }
+
+  @computed
+  private get collapsed() {
+    return this.context.discussionCollapsed.get(this.props.discussion.id) ?? this.context.discussionDefaultCollapsed;
+  }
+
+  @computed
+  private get highlighted() {
+    return this.context.highlightedDiscussionId === this.props.discussion.id;
   }
 
   @computed
@@ -91,7 +106,7 @@ export class Discussion extends React.Component<Props> {
 
     const topClasses = classWithModifiers(bn, {
       deleted: this.props.discussion.deleted_at != null,
-      highlighted: this.props.highlighted,
+      highlighted: this.highlighted,
       'horizontal-desktop': this.props.discussion.message_type !== 'review',
       preview: this.props.preview,
       review: this.props.discussion.message_type === 'review',
@@ -129,13 +144,15 @@ export class Discussion extends React.Component<Props> {
     );
   }
 
+  @action
   private readonly handleCollapseClick = () => {
-    $.publish('beatmapset-discussions:collapse', { discussionId: this.props.discussion.id });
+    this.context.discussionCollapsed.set(this.props.discussion.id, !this.collapsed);
   };
 
+  @action
   private readonly handleSetHighlight = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.defaultPrevented) return;
-    $.publish('beatmapset-discussions:highlight', { discussionId: this.props.discussion.id });
+    this.context.highlightedDiscussionId = this.props.discussion.id;
   };
 
   private isOwner(object: { user_id: number }) {
@@ -154,7 +171,7 @@ export class Discussion extends React.Component<Props> {
     if (this.props.preview) return null;
 
     let cssClasses = `${bn}__expanded`;
-    if (this.props.collapsed) {
+    if (this.collapsed) {
       cssClasses += ' hidden';
     }
 
@@ -226,7 +243,7 @@ export class Discussion extends React.Component<Props> {
             onClick={this.handleCollapseClick}
           >
             <div
-              className={classWithModifiers('beatmap-discussion-expand', { expanded: !this.props.collapsed })}
+              className={classWithModifiers('beatmap-discussion-expand', { expanded: !this.collapsed })}
             >
               <i className='fas fa-chevron-down' />
             </div>
