@@ -913,7 +913,7 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user, $prefix);
 
-        if (!(config('osu.user.min_plays_allow_verified_bypass'))) {
+        if (!config('osu.user.min_plays_allow_verified_bypass')) {
             $this->ensureHasPlayed($user);
         }
 
@@ -962,7 +962,7 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user, $prefix);
 
-        if (!(config('osu.user.min_plays_allow_verified_bypass'))) {
+        if (!config('osu.user.min_plays_allow_verified_bypass')) {
             $this->ensureHasPlayed($user);
         }
 
