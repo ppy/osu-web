@@ -94,16 +94,12 @@ class ChatTest extends TestCase
         $sender->markSessionVerified();
         $target = User::factory()->create(['pm_friends_only' => false]);
 
-        $initialChannelsCount = Channel::count();
-        $initialMessagesCount = Message::count();
+        $this->expectCountChange(fn () => Channel::count(), 1);
+        $this->expectCountChange(fn () => Message::count(), 1);
 
         Chat::sendPrivateMessage($sender, $target, 'test message', false);
 
-        $channel = Channel::findPM($sender, $target);
-
-        $this->assertInstanceOf(Channel::class, $channel);
-        $this->assertSame($initialChannelsCount + 1, Channel::count());
-        $this->assertSame($initialMessagesCount + 1, Message::count());
+        $this->assertInstanceOf(Channel::class, Channel::findPM($sender, $target));
     }
 
     /**
@@ -145,8 +141,9 @@ class ChatTest extends TestCase
         $sender->markSessionVerified();
         $target = User::factory()->create(['pm_friends_only' => true]);
 
-        $initialChannelsCount = Channel::count();
-        $initialMessagesCount = Message::count();
+        $countChange = $successful ? 1 : 0;
+        $this->expectCountChange(fn () => Channel::count(), $countChange);
+        $this->expectCountChange(fn () => Message::count(), $countChange);
 
         try {
             Chat::sendPrivateMessage($sender, $target, 'test message', false);
@@ -154,13 +151,12 @@ class ChatTest extends TestCase
             $savedException = $e;
         }
 
+        $channel = Channel::findPM($sender, $target);
+
         if ($successful) {
-            $this->assertSame($initialChannelsCount + 1, Channel::count());
-            $this->assertSame($initialMessagesCount + 1, Message::count());
+            $this->assertNotNull($channel);
         } else {
-            $this->assertNull(Channel::findPM($sender, $target));
-            $this->assertSame($initialChannelsCount, Channel::count());
-            $this->assertSame($initialMessagesCount, Message::count());
+            $this->assertNull($channel);
             $this->assertSame(
                 osu_trans('authorization.chat.friends_only'),
                 $savedException->getMessage()
@@ -177,8 +173,8 @@ class ChatTest extends TestCase
         $sender->markSessionVerified();
         $target = User::factory()->create(['pm_friends_only' => false]);
 
-        $initialChannelsCount = Channel::count();
-        $initialMessagesCount = Message::count();
+        $this->expectCountChange(fn () => Channel::count(), 0);
+        $this->expectCountChange(fn () => Message::count(), 0);
 
         try {
             Chat::sendPrivateMessage($sender, $target, 'test message', false);
@@ -187,8 +183,6 @@ class ChatTest extends TestCase
         }
 
         $this->assertNull(Channel::findPM($sender, $target));
-        $this->assertSame($initialChannelsCount, Channel::count());
-        $this->assertSame($initialMessagesCount, Message::count());
         $this->assertSame(
             osu_trans('authorization.chat.receive_friends_only'),
             $savedException->getMessage()
@@ -202,8 +196,9 @@ class ChatTest extends TestCase
         $sender->markSessionVerified();
         $target = User::factory()->create(['pm_friends_only' => false]);
 
-        $initialChannelsCount = Channel::count();
-        $initialMessagesCount = Message::count();
+        $this->expectCountChange(fn () => Channel::count(), 0);
+        $this->expectCountChange(fn () => Message::count(), 0);
+
         $longMessage = str_repeat('a', config('osu.chat.message_length_limit') + 1);
 
         try {
@@ -213,8 +208,6 @@ class ChatTest extends TestCase
         }
 
         $this->assertNull(Channel::findPM($sender, $target));
-        $this->assertSame($initialChannelsCount, Channel::count());
-        $this->assertSame($initialMessagesCount, Message::count());
         $this->assertSame(
             osu_trans('api.error.chat.too_long'),
             $savedException->getMessage()
@@ -229,13 +222,10 @@ class ChatTest extends TestCase
 
         Chat::sendPrivateMessage($sender, $target, 'test message', false);
 
-        $initialChannelsCount = Channel::count();
-        $initialMessagesCount = Message::count();
+        $this->expectCountChange(fn () => Channel::count(), 0);
+        $this->expectCountChange(fn () => Message::count(), 1);
 
         Chat::sendPrivateMessage($sender, $target, 'test message again', false);
-
-        $this->assertSame($initialChannelsCount, Channel::count());
-        $this->assertSame($initialMessagesCount + 1, Message::count());
     }
 
     public function createAnnouncementApiDataProvider()
