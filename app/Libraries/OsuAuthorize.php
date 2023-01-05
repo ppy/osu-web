@@ -913,7 +913,7 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user, $prefix);
 
-        if (!(config('osu.user.min_plays_allow_verified_bypass') || $user->isBot())) {
+        if (!(config('osu.user.min_plays_allow_verified_bypass'))) {
             $this->ensureHasPlayed($user);
         }
 
@@ -962,7 +962,7 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user, $prefix);
 
-        if (!(config('osu.user.min_plays_allow_verified_bypass') || $user->isBot())) {
+        if (!(config('osu.user.min_plays_allow_verified_bypass'))) {
             $this->ensureHasPlayed($user);
         }
 
@@ -998,9 +998,7 @@ class OsuAuthorize
         $this->ensureSessionVerified($user);
         $this->ensureCleanRecord($user, $prefix);
         // This check becomes useless when min_plays_allow_verified_bypass is enabled.
-        if (!$user->isBot()) {
-            $this->ensureHasPlayed($user);
-        }
+        $this->ensureHasPlayed($user);
 
         if (!$this->doCheckUser($user, 'ChatChannelRead', $channel)->can()) {
             return $prefix.'no_access';
@@ -2038,7 +2036,7 @@ class OsuAuthorize
      */
     public function ensureHasPlayed(?User $user): void
     {
-        if ($user === null) {
+        if ($user === null || $user->isBot()) {
             return;
         }
 
