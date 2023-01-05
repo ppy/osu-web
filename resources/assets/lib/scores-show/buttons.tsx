@@ -54,11 +54,10 @@ export default function Buttons(props: Props) {
                 }
                 {visibleMenuItems.has('report') &&
                   <ReportReportable
-                    baseKey='scores'
                     className='simple-menu__item'
-                    onFormClose={dismiss}
+                    onFormOpen={dismiss}
                     reportableId={(props.score.best_id ?? props.score.id).toString()}
-                    reportableType={props.score.best_id == null ? props.score.type : `score_best_${ruleset}`}
+                    reportableType={props.score.type === 'solo_score' ? props.score.type : `score_best_${ruleset}`}
                     user={props.score.user}
                   />
                 }

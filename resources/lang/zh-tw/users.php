@@ -217,6 +217,9 @@ return [
                 'loved' => [
                     'title' => '喜歡的圖譜',
                 ],
+                'nominated' => [
+                    'title' => '',
+                ],
                 'pending' => [
                     'title' => '待處理的圖譜',
                 ],

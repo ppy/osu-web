@@ -124,6 +124,7 @@ return [
             'genre' => 'Genre',
             'language' => 'Sprog',
             'no_scores' => 'Data er stadig ved at blive beregnet...',
+            'nominators' => '',
             'nsfw' => 'Eksplicit indhold',
             'offset' => 'Online forskydning',
             'points-of-failure' => 'Fejl-steder',

@@ -60,7 +60,6 @@ declare const Turbolinks: import('turbolinks').default;
 
 // our helpers
 declare const tooltipDefault: import('legacy-modules').TooltipDefault;
-declare const osu: import('legacy-modules').OsuCommon;
 
 // external (to typescript) classes
 declare const BeatmapDiscussionHelper: import('legacy-modules').BeatmapDiscussionHelperClass;

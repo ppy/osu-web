@@ -124,6 +124,7 @@ return [
             'genre' => 'Είδος',
             'language' => 'Γλώσσα',
             'no_scores' => 'Τα δεδομένα ακόμα υπολογίζονται...',
+            'nominators' => '',
             'nsfw' => '',
             'offset' => '',
             'points-of-failure' => 'Σημεία Αποτυχίας',

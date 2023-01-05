@@ -11,7 +11,6 @@ import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import { BeatmapsetDiscussionPostStoreResponseJson } from 'interfaces/beatmapset-discussion-post-responses';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import { BeatmapsetWithDiscussionsJson } from 'interfaces/beatmapset-json';
-import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
@@ -23,50 +22,18 @@ import { canModeratePosts, formatTimestamp, NearbyDiscussion, nearbyDiscussions,
 import { nominationsCount } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
-import { trans, transArray } from 'utils/lang';
+import { joinComponents, trans } from 'utils/lang';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import { present } from 'utils/string';
-import { linkHtml } from 'utils/url';
+import CurrentDiscussions from './current-discussions';
+import DiscussionsMode from './discussions-mode';
 import MessageLengthCounter from './message-length-counter';
 
 const bn = 'beatmap-discussion-new';
 
-type Discussion = BeatmapsetDiscussionJson & Required<Pick<BeatmapsetDiscussionJson, 'current_user_attributes'>>;
-type Mode = 'events' | 'general' | 'generalAll' | 'timeline' | 'reviews';
-
-// TODO: move to store/context
-interface CurrentDiscussions {
-  byFilter: {
-    deleted: DiscussionByFilter;
-    hype: DiscussionByFilter;
-    mapperNotes: DiscussionByFilter;
-    mine: DiscussionByFilter;
-    pending: DiscussionByFilter;
-    praises: DiscussionByFilter;
-    resolved: DiscussionByFilter;
-    total: DiscussionByFilter;
-  };
-  countsByBeatmap: Record<number, number>;
-  countsByPlaymode: Record<GameMode, number>;
-  general: Discussion[];
-  generalAll: Discussion[];
-  reviews: Discussion[];
-  timeline: Discussion[];
-  timelineAllUsers: Discussion[];
-  totalHype: number;
-  unresolvedIssues: number;
-}
-
-interface DiscussionByFilter {
-  general: Record<number, Discussion>;
-  generalAll: Record<number, Discussion>;
-  reviews: Record<number, Discussion>;
-  timeline: Record<number, Discussion>;
-}
-
 interface DiscussionsCache {
   beatmap: BeatmapExtendedJson;
-  discussions: NearbyDiscussion<Discussion>[];
+  discussions: NearbyDiscussion<BeatmapsetDiscussionJson>[];
   timestamp: number | null;
 }
 
@@ -76,7 +43,7 @@ interface Props {
   currentBeatmap: BeatmapExtendedJson;
   currentDiscussions: CurrentDiscussions;
   innerRef: React.RefObject<HTMLDivElement>;
-  mode: Mode;
+  mode: DiscussionsMode;
   pinned: boolean;
   setPinned: (flag: boolean) => void;
   stickTo: React.RefObject<HTMLElement>;
@@ -376,26 +343,23 @@ export class NewDiscussion extends React.Component<Props> {
     if (this.nearbyDiscussions.length === 0) return;
     const currentTimestamp = this.timestamp != null ? formatTimestamp(this.timestamp) : '';
     const timestamps = this.nearbyDiscussions.map((discussion) => (
-      linkHtml(
-        BeatmapDiscussionHelper.url({ discussion }),
-        formatTimestamp(discussion.timestamp) ?? '',
-        { classNames: ['js-beatmap-discussion--jump'] },
-      )
+      <a
+        key={discussion.id}
+        className='js-beatmap-discussion--jump'
+        href={BeatmapDiscussionHelper.url({ discussion })}
+      >
+        {formatTimestamp(discussion.timestamp)}
+      </a>
     ));
-
-    const timestampsString = transArray(timestamps);
 
     return (
       <div className={`${bn}__notice`}>
-        <div
-          className={`${bn}__notice-text`}
-          dangerouslySetInnerHTML={{
-            __html: trans('beatmap_discussions.nearby_posts.notice', {
-              existing_timestamps: timestampsString,
-              timestamp: currentTimestamp,
-            }),
-          }}
-        />
+        <div className={`${bn}__notice-text`}>
+          <StringWithComponent
+            mappings={{ existing_timestamps: joinComponents(timestamps), timestamp: currentTimestamp }}
+            pattern={trans('beatmap_discussions.nearby_posts.notice')}
+          />
+        </div>
 
         <label className={`${bn}__notice-checkbox`}>
           <div className='osu-switch-v2'>

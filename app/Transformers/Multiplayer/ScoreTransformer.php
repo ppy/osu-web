@@ -74,11 +74,11 @@ class ScoreTransformer extends TransformerAbstract
                 ->limit($limit)
                 ->getWithHasMore();
 
-            $ret[$type] = [
+            $nextCursor = $hasMore ? $cursorHelper->next($highScores) : null;
+            $ret[$type] = array_merge([
                 'scores' => json_collection($highScores->pluck('score'), new static(), static::BASE_INCLUDES),
                 'params' => ['limit' => $limit, 'sort' => $cursorHelper->getSortName()],
-                'cursor' => $hasMore ? $cursorHelper->next($highScores) : null,
-            ];
+            ], cursor_for_response($nextCursor));
         }
 
         return $this->primitive($ret);

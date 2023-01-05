@@ -86,7 +86,7 @@ return [
         'new_topic' => 'Создать новую тему',
         'new_topic_login' => 'Войдите, чтобы создать новую тему',
         'post_reply' => 'Ответить',
-        'reply_box_placeholder' => 'Начинайте вводить тут',
+        'reply_box_placeholder' => 'Напишите ответ',
         'reply_title_prefix' => 'Ответ',
         'started_by' => 'от :user',
         'started_by_verbose' => 'начато :user',

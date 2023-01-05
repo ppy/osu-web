@@ -5,26 +5,26 @@
 
 return [
     'empty' => [
-        '_' => '',
-        'playlists' => '',
-        'realtime' => '',
+        '_' => 'Igre osu!(lazer) :type_group še niso bile odigrane!',
+        'playlists' => 'seznam pesmi',
+        'realtime' => 'večigralski način',
     ],
 
     'room' => [
-        'hosted_by' => '',
-        'invalid_password' => '',
-        'map_count' => '',
-        'player_count' => '',
-        'time_left' => '',
+        'hosted_by' => 'gostuje :user',
+        'invalid_password' => 'Neveljavno geslo sobe',
+        'map_count' => ':count_delimited beatmapa|:count_delimited beatmap',
+        'player_count' => ':count_delimited igralec|:count_delimited igralcev',
+        'time_left' => 'še :time',
 
         'errors' => [
-            'duration_too_long' => '',
+            'duration_too_long' => 'Dolžina je predolga.',
         ],
 
         'status' => [
-            'active' => '',
-            'ended' => '',
-            'soon' => '',
+            'active' => 'aktivno',
+            'ended' => 'zaključeno',
+            'soon' => 'se zaključuje',
         ],
     ],
 ];

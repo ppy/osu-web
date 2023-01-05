@@ -5,8 +5,8 @@
 
 return [
     'comment' => [
-        'empty' => '',
-        'page_title' => '',
+        'empty' => 'Nėra stebimų comentarų.',
+        'page_title' => 'komentarų stebėjimo sąrašas',
         'title' => 'komentarai',
 
         'table' => [
@@ -24,15 +24,15 @@ return [
     ],
 
     'mapping' => [
-        'empty' => 'Nėra stebimų beatmap kūrėjų.',
-        'followers' => '',
-        'page_title' => 'beatmap kūrėjo stebėjimo sąrašas',
-        'title' => 'beatmap kūrėjas',
-        'to_0' => 'sustabdyti pranešimus kai šis vartotojas įkels nauja beatmap',
-        'to_1' => 'pranešti mane kai šis vartotojas įkels nauja beatmap',
+        'empty' => 'Nėra stebimų maperių.',
+        'followers' => 'mapinimo prenumeratos',
+        'page_title' => 'maperių stebėjimo sąrašas',
+        'title' => 'maperis',
+        'to_0' => 'sustabdyti pranešimus apie vartotojo įkeliamus naujus bitmapus',
+        'to_1' => 'pranešti man, kai šis vartotojas įkels naują bitmapą',
     ],
 
     'modding' => [
-        'title' => 'beatmap diskusija',
+        'title' => 'bitmapo diskusija',
     ],
 ];

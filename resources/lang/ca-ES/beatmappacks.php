@@ -5,41 +5,41 @@
 
 return [
     'index' => [
-        'description' => '',
-        'nav_title' => '',
-        'title' => '',
+        'description' => 'Col·leccions preempaquetades de beatmaps basades en un tema comú.',
+        'nav_title' => 'llistat',
+        'title' => 'Paquets de beatmaps',
 
         'blurb' => [
-            'important' => '',
-            'install_instruction' => '',
+            'important' => 'LLEGEIX AIXÒ ABANS DE DESCARREGAR',
+            'install_instruction' => 'Instal·lació: Un cop descarregat un paquet, extraieu-ne el contingut al directori Songs d\'osu! i aquest farà la resta.',
             'note' => [
-                '_' => '',
-                'scary' => '',
+                '_' => 'També tingues en compte que és molt recomanable :scary, ja que els beatmaps més antics són de molta menor qualitat que els beatmaps més recents.',
+                'scary' => 'descarregar els paquets dels més recents als més antics',
             ],
         ],
     ],
 
     'show' => [
-        'download' => '',
+        'download' => 'Descarregar',
         'item' => [
-            'cleared' => '',
-            'not_cleared' => '',
+            'cleared' => 'completat',
+            'not_cleared' => 'no completat',
         ],
         'no_diff_reduction' => [
-            '_' => '',
-            'link' => '',
+            '_' => ':link no es poden utilitzar per completar aquest paquet.',
+            'link' => 'Els mods de reducció de dificultat',
         ],
     ],
 
     'mode' => [
-        'artist' => '',
-        'chart' => '',
-        'standard' => '',
-        'theme' => '',
+        'artist' => 'Artista/Àlbum',
+        'chart' => 'Destacats',
+        'standard' => 'Standard',
+        'theme' => 'Tema',
     ],
 
     'require_login' => [
-        '_' => '',
-        'link_text' => '',
+        '_' => 'Necessites tenir la :link per descarregar',
+        'link_text' => 'sessió iniciada',
     ],
 ];

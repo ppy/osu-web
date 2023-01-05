@@ -4,40 +4,40 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    '_' => '',
+    '_' => 'Ordena per',
 
-    'all' => '',
-    'friends' => '',
-    'last_visit' => '',
-    'new' => '',
-    'old' => '',
-    'rank' => '',
-    'top' => '',
-    'username' => '',
+    'all' => 'Tot',
+    'friends' => 'Amics',
+    'last_visit' => 'Actius recentment',
+    'new' => 'Recent',
+    'old' => 'Antic ',
+    'rank' => 'Classificació',
+    'top' => 'Superior',
+    'username' => 'Nom d’usuari',
 
     'artist_tracks' => [
-        'album' => '',
-        'artist' => '',
-        'bpm' => '',
-        'genre' => '',
-        'length' => '',
-        'relevance' => '',
-        'title' => '',
-        'update' => '',
+        'album' => 'Album',
+        'artist' => 'Artista',
+        'bpm' => 'BPM',
+        'genre' => 'Gènere',
+        'length' => 'Duració',
+        'relevance' => 'Rellevància',
+        'title' => 'Títol',
+        'update' => 'Actualització',
     ],
 
     'forum_posts' => [
-        'created' => '',
-        'relevance' => '',
+        'created' => 'Temps d\'entrada',
+        'relevance' => 'Rellevància',
     ],
 
     'forum_topics' => [
-        'feature_votes' => '',
-        'new' => '',
+        'feature_votes' => 'Prioritat de l\'estrella',
+        'new' => 'Última resposta',
     ],
 
     'users' => [
-        'relevance' => '',
-        'username' => '',
+        'relevance' => 'Rellevància',
+        'username' => 'Nom',
     ],
 ];

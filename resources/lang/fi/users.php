@@ -217,6 +217,9 @@ return [
                 'loved' => [
                     'title' => 'Rakastetut beatmapit',
                 ],
+                'nominated' => [
+                    'title' => '',
+                ],
                 'pending' => [
                     'title' => 'Vireillä olevat Beatmapit',
                 ],

@@ -50,7 +50,7 @@ return [
             'beatmap' => 'Kontes ini hanya menerima berkas dengan ekstensi .osu.',
             'music' => 'Kontes ini hanya menerima berkas dengan ekstensi .mp3.',
         ],
-        'wrong_dimensions' => '',
+        'wrong_dimensions' => 'Entri untuk kontes ini harus berukuran :widthx:height',
         'too_big' => 'Berkas yang diikutsertakan untuk kontes ini tidak boleh melebihi batas ukuran :limit.',
     ],
     'beatmaps' => [

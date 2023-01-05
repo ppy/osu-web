@@ -3,10 +3,10 @@
 
 import { action, observable, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
-import { isModalShowing } from 'modal-helper';
 import CoverSelector from 'profile-page/cover-selector';
 import * as React from 'react';
 import { trans } from 'utils/lang';
+import { isModalShowing } from 'utils/modal-helper';
 import { nextVal } from 'utils/seq';
 import Controller from './controller';
 

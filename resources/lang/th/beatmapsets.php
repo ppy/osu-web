@@ -124,6 +124,7 @@ return [
             'genre' => 'ประเภท',
             'language' => 'ภาษา',
             'no_scores' => 'ข้อมูลกำลังถูกคำนวณ...',
+            'nominators' => '',
             'nsfw' => 'เนื้อหาไม่เหมาะสม',
             'offset' => '',
             'points-of-failure' => 'ความล้มเหลว',

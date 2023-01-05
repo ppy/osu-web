@@ -50,12 +50,12 @@ return [
             ],
 
             'friend_ranking' => [
-                'title' => 'Rank degli Amici',
+                'title' => 'Classifica Amici',
                 'description' => "Guarda quanto competi contro i tuoi amici sulla classifica di una beatmap, sia in gioco che sul sito web.",
             ],
 
             'country_ranking' => [
-                'title' => 'Rank del Paese',
+                'title' => 'Classifica Nazionale',
                 'description' => 'Conquista il tuo paese prima di conquistare il mondo.',
             ],
 

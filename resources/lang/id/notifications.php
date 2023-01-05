@@ -39,7 +39,7 @@ return [
                 'beatmapset_discussion_lock_compact' => 'Diskusi beatmap telah dikunci',
                 'beatmapset_discussion_post_new' => 'Postingan baru pada ":title" oleh :username: ":content"',
                 'beatmapset_discussion_post_new_empty' => 'Postingan baru pada ":title" oleh :username',
-                'beatmapset_discussion_post_new_compact' => 'Postingan baru dari :username',
+                'beatmapset_discussion_post_new_compact' => 'Postingan baru oleh :username: ":content"',
                 'beatmapset_discussion_post_new_compact_empty' => 'Postingan baru oleh :username',
                 'beatmapset_discussion_review_new' => 'Terdapat ulasan baru pada ":title" oleh :username yang menyinggung seputar masalah: :problems, saran: :suggestions, dan pujian berupa: :praises',
                 'beatmapset_discussion_review_new_compact' => 'Terdapat ulasan baru oleh :username yang menyinggung seputar masalah: :problems, saran: :suggestions, dan pujian berupa: :praises',
@@ -158,7 +158,7 @@ return [
 
                 'user_beatmapset_new' => 'Beatmap baru ":title" oleh :username',
                 'user_beatmapset_new_compact' => 'Beatmap baru ":title"',
-                'user_beatmapset_new_group' => 'Beatmap-beatmap baru oleh :username',
+                'user_beatmapset_new_group' => 'Beatmap baru oleh :username',
 
                 'user_beatmapset_revive' => 'Beatmap ":title" telah dipulihkan dari Graveyard oleh :username',
                 'user_beatmapset_revive_compact' => 'Beatmap ":title" dipulihkan',
