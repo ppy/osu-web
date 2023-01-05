@@ -62,7 +62,7 @@ return [
 
     'forum' => [
         'feature_vote' => [
-            'not_feature_topic' => '',
+            'not_feature_topic' => 'Lahko glasuješ le za zahtevo za funkcijo.',
             'not_enough_feature_votes' => 'Ni dovolj glasov.',
         ],
 

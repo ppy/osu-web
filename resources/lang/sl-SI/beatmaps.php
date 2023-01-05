@@ -118,7 +118,7 @@ return [
         ],
 
         'show' => [
-            'title' => '',
+            'title' => ':title mappal :mapper',
         ],
 
         'sort' => [
@@ -255,7 +255,7 @@ return [
     'general' => [
         'converts' => 'Vključi pretvorjene beatmape',
         'featured_artists' => 'Priznani ustvarjalci',
-        'follows' => '',
+        'follows' => 'Naročeni mapperji',
         'recommended' => 'Priporočena težavnost',
         'spotlights' => 'Beatmapa v središču pozornosti',
     ],

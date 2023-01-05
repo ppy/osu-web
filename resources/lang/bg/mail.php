@@ -70,6 +70,7 @@ return [
         'duration' => 'Благодарение на тях имате достъп до osu!direct и още други osu!supporter привилегии за следващите :duration.',
         'features' => 'Може да откриете повече информация на тези функционалности тук:',
         'gifted' => 'Някой току що ви подари osu!supporter tag!',
+        'gift_message' => '',
         'subject' => 'Подариха ви osu!supporter!',
     ],
 

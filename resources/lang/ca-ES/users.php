@@ -218,7 +218,7 @@ return [
                     'title' => 'Beatmaps Estimats',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => 'Betmaps classificats nominats',
                 ],
                 'pending' => [
                     'title' => 'Beatmaps Pendents',
@@ -260,11 +260,11 @@ return [
             'kudosu' => [
                 'recent_entries' => 'Historial recent de Kudosu',
                 'title' => 'Kudosu!',
-                'total' => '',
+                'total' => 'Kudosu total obtingut',
 
                 'entry' => [
-                    'amount' => '',
-                    'empty' => "",
+                    'amount' => ':amount kudosu',
+                    'empty' => "Aquest usuari no ha rebut cap kudosu!",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
@@ -272,7 +272,7 @@ return [
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => '',
+                            'reset' => 'S\'ha denegat :amount per la publicació :post',
                         ],
 
                         'delete' => [
@@ -280,96 +280,96 @@ return [
                         ],
 
                         'restore' => [
-                            'give' => '',
+                            'give' => 'Rebuts :amount pel restabliment de la publicació :post',
                         ],
 
                         'vote' => [
-                            'give' => '',
-                            'reset' => '',
+                            'give' => 'Rebuts :amount gràcies als vots a la publicació de :post',
+                            'reset' => 'Has perdut :amount per perdre vots a la publicació :post',
                         ],
 
                         'recalculate' => [
-                            'give' => '',
-                            'reset' => '',
+                            'give' => 'Has rebut :amount pels vots en el recàlcul de la publicació :post',
+                            'reset' => 'Has perdut :amount pels vots en el recàlcul de la publicació :post',
                         ],
                     ],
 
                     'forum_post' => [
-                        'give' => '',
-                        'reset' => '',
-                        'revoke' => '',
+                        'give' => 'Has rebut :amount de :giver per la publicació :post',
+                        'reset' => 'Kudosu reinciat per :giver pel post :post',
+                        'revoke' => 'S\'han denegat els kudosu de :giver per la publicació :post',
                     ],
                 ],
 
                 'total_info' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'Basat en les contribucions que l\'usuari ha fet a la moderació de beatmaps. Vegi :link per a més informació.',
+                    'link' => 'aquesta pàgina',
                 ],
             ],
             'me' => [
-                'title' => '',
+                'title' => 'jo!',
             ],
             'medals' => [
-                'empty' => "",
-                'recent' => '',
-                'title' => '',
+                'empty' => "Aquest usuari no n'ha rebut cap encara ;_;",
+                'recent' => 'Recents',
+                'title' => 'Medalles',
             ],
             'playlists' => [
-                'title' => '',
+                'title' => 'Partides de la llista',
             ],
             'posts' => [
-                'title' => '',
-                'title_longer' => '',
-                'show_more' => '',
+                'title' => 'Publicacions',
+                'title_longer' => 'Publicacions Recents',
+                'show_more' => 'veure més publicacions',
             ],
             'recent_activity' => [
-                'title' => '',
+                'title' => 'Recent',
             ],
             'realtime' => [
-                'title' => '',
+                'title' => 'Partides multijugador',
             ],
             'top_ranks' => [
-                'download_replay' => '',
-                'not_ranked' => '',
-                'pp_weight' => '',
-                'view_details' => '',
-                'title' => '',
+                'download_replay' => 'Baixar repetició',
+                'not_ranked' => 'Només beatmaps classificatoris donen pp',
+                'pp_weight' => 'valorat :percentage',
+                'view_details' => 'Veure Detalls',
+                'title' => 'Classificacions',
 
                 'best' => [
-                    'title' => '',
+                    'title' => 'Millors',
                 ],
                 'first' => [
-                    'title' => '',
+                    'title' => 'Primera posició',
                 ],
                 'pin' => [
-                    'to_0' => '',
-                    'to_0_done' => '',
-                    'to_1' => '',
-                    'to_1_done' => '',
+                    'to_0' => 'Desfixar',
+                    'to_0_done' => 'Puntuació desfixada',
+                    'to_1' => 'Fixar',
+                    'to_1_done' => 'Puntuació fixada',
                 ],
                 'pinned' => [
-                    'title' => '',
+                    'title' => 'Puntuacions fixades',
                 ],
             ],
             'votes' => [
-                'given' => '',
-                'received' => '',
-                'title' => '',
-                'title_longer' => '',
-                'vote_count' => '',
+                'given' => 'Vots atorgats (últims 3 mesos)',
+                'received' => 'Vots rebuts (últims 3 mesos)',
+                'title' => 'Vots',
+                'title_longer' => 'Vots recents',
+                'vote_count' => ':count_delimited vot |:count_delimited vots',
             ],
             'account_standing' => [
-                'title' => '',
-                'bad_standing' => "",
-                'remaining_silence' => '',
+                'title' => 'Estat del compte',
+                'bad_standing' => "El compte de :username no està en bon estat :(",
+                'remaining_silence' => ':username podrà tornar a parlar :duration.',
 
                 'recent_infringements' => [
-                    'title' => '',
-                    'date' => '',
-                    'action' => '',
-                    'length' => '',
-                    'length_permanent' => '',
-                    'description' => '',
+                    'title' => 'Infraccions Recents',
+                    'date' => 'data',
+                    'action' => 'acció',
+                    'length' => 'durada',
+                    'length_permanent' => 'Permanent',
+                    'description' => 'descripció',
                     'actor' => 'per :username',
 
                     'actions' => [
@@ -398,40 +398,40 @@ return [
             'title' => 'Usuari no trobat! ;_;',
         ],
         'page' => [
-            'button' => '',
-            'description' => '',
-            'edit_big' => '',
-            'placeholder' => '',
+            'button' => 'Editar pàgina de perfil',
+            'description' => '<strong>jo!</strong> és una zona personalitzable de la teva pàgina de perfil.',
+            'edit_big' => 'Edita\'m!',
+            'placeholder' => 'Escriu els continguts aquí',
 
             'restriction_info' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'Has de ser un :link per a desbloquejar aquesta funció.',
+                'link' => 'osu!supporter',
             ],
         ],
         'post_count' => [
-            '_' => '',
-            'count' => '',
+            '_' => 'Ha contribuït amb :link',
+            'count' => ':count_delimited publicació|:count_delimited publicacions',
         ],
         'rank' => [
-            'country' => '',
-            'country_simple' => '',
-            'global' => '',
-            'global_simple' => '',
-            'highest' => '',
+            'country' => 'Classificació per països per :mode',
+            'country_simple' => 'Classificació per Països',
+            'global' => 'Classifació global per :mode',
+            'global_simple' => 'Classificació global',
+            'highest' => 'Classificació més alta: :rank el :date',
         ],
         'stats' => [
-            'hit_accuracy' => '',
-            'level' => '',
+            'hit_accuracy' => 'Precisió',
+            'level' => 'Nivell :level',
             'level_progress' => 'Progrés al següent nivell',
-            'maximum_combo' => '',
-            'medals' => '',
-            'play_count' => '',
-            'play_time' => '',
-            'ranked_score' => '',
-            'replays_watched_by_others' => '',
-            'score_ranks' => '',
-            'total_hits' => '',
-            'total_score' => '',
+            'maximum_combo' => 'Màxim combo',
+            'medals' => 'Medalles',
+            'play_count' => 'Nombre de partides',
+            'play_time' => 'Temps total de joc',
+            'ranked_score' => 'Puntuació classificada',
+            'replays_watched_by_others' => 'Repeticions vistes per altres',
+            'score_ranks' => 'Classificació de les puntuacions',
+            'total_hits' => 'Encerts Totals',
+            'total_score' => 'Puntuació total',
             // modding stats
             'graveyard_beatmapset_count' => 'Beatmaps Abandonats',
             'loved_beatmapset_count' => 'Beatmaps Estimats',
@@ -441,25 +441,25 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'Ara mateix estàs silenciat.',
+        'message' => 'Algunes accions no estan disponibles.',
     ],
 
     'status' => [
         'all' => 'Tots',
-        'online' => '',
-        'offline' => '',
+        'online' => 'En línia',
+        'offline' => 'Sense connexió',
     ],
     'store' => [
-        'saved' => '',
+        'saved' => 'Usuari creat',
     ],
     'verify' => [
-        'title' => '',
+        'title' => 'Verificació del compte',
     ],
 
     'view_mode' => [
-        'brick' => '',
-        'card' => '',
-        'list' => '',
+        'brick' => 'Vista de bloc',
+        'card' => 'Vista de targeta',
+        'list' => 'Vista de llista',
     ],
 ];

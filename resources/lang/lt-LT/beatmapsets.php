@@ -12,7 +12,7 @@ return [
     ],
 
     'cover' => [
-        'deleted' => '',
+        'deleted' => 'Ištrintas bitmapas',
     ],
 
     'download' => [
@@ -20,22 +20,22 @@ return [
     ],
 
     'featured_artist_badge' => [
-        'label' => '',
+        'label' => 'Rekomenduojami atlikėjai',
     ],
 
     'index' => [
-        'title' => '',
+        'title' => 'Bitmapų sąrašas',
         'guest_title' => 'Beatmapai',
     ],
 
     'panel' => [
-        'empty' => '',
+        'empty' => 'nėra bitmapų',
 
         'download' => [
-            'all' => '',
-            'video' => '',
-            'no_video' => '',
-            'direct' => '',
+            'all' => 'atsisiųsti',
+            'video' => 'atsisiųsti su vaizdo įrašu',
+            'no_video' => 'atsisiųsti be vaizdo įrašo',
+            'direct' => 'atidaryti per osu!direct',
         ],
     ],
 
@@ -47,7 +47,7 @@ return [
 
         'dialog' => [
             'confirmation' => '',
-            'header' => '',
+            'header' => 'Nominuoti Bitmapą',
             'hybrid_warning' => '',
             'which_modes' => '',
         ],
@@ -83,12 +83,12 @@ return [
         ],
 
         'details_date' => [
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'ranked' => '',
-            'submitted' => '',
-            'updated' => '',
+            'approved' => 'patvirtintas :timeago',
+            'loved' => 'mylimas :timeago',
+            'qualified' => 'kvalifikuota :timeago',
+            'ranked' => 'reitinguota :timeago',
+            'submitted' => 'pateikta :timeago',
+            'updated' => 'paskutinį kartą atnaujinta :timeago',
         ],
 
         'favourites' => [
@@ -96,26 +96,26 @@ return [
         ],
 
         'hype' => [
-            'action' => '',
+            'action' => 'Skatink šį bitmapą, jei patiko jį žaisti, ir padėk jam pasiekti <strong>Reitinguoto</strong> būseną.',
 
             'current' => [
-                '_' => '',
+                '_' => 'Šis bitmapas yra :status.',
 
                 'status' => [
-                    'pending' => 'patvirtinamas',
+                    'pending' => 'laukiantis',
                     'qualified' => 'kvalifikuotas',
-                    'wip' => '',
+                    'wip' => 'vis dar kuriamas',
                 ],
             ],
 
             'disqualify' => [
-                '_' => '',
+                '_' => 'Jei randate problemą šiame bitmape, prašome diskvalifikuoti :link.',
             ],
 
             'report' => [
-                '_' => '',
-                'button' => '',
-                'link' => '',
+                '_' => 'Jei radote problemą su šiuo bitmapu, prašome pranešti :link, kad mūsų komanda sužinotu.',
+                'button' => 'Pranešti Problemą',
+                'link' => 'čia',
             ],
         ],
 
@@ -124,66 +124,66 @@ return [
             'genre' => 'Žanras',
             'language' => 'Kalba',
             'no_scores' => '',
-            'nominators' => '',
-            'nsfw' => '',
-            'offset' => '',
-            'points-of-failure' => '',
+            'nominators' => 'Nominatoriai',
+            'nsfw' => 'Eksplicitinis turinys',
+            'offset' => 'Tinklo poslinkis',
+            'points-of-failure' => 'Pralaimėjimų Vietos',
             'source' => 'Šaltinis',
-            'storyboard' => '',
+            'storyboard' => 'Šis bitmapas turi foninę animaciją',
             'success-rate' => 'Sėkmingi kartai',
             'tags' => 'Žymos',
-            'video' => '',
+            'video' => 'Šis bitmapas turi vaizdo įrašą',
         ],
 
         'nsfw_warning' => [
             'details' => '',
-            'title' => '',
+            'title' => 'Eksplicitinis Turinys',
 
             'buttons' => [
-                'disable' => '',
-                'listing' => '',
-                'show' => '',
+                'disable' => 'Išjungti įspėjimą',
+                'listing' => 'Bitmapų sąrašas',
+                'show' => 'Rodyti',
             ],
         ],
 
         'scoreboard' => [
             'achieved' => 'pasiekta :when',
             'country' => 'Šalies reitingai',
-            'error' => '',
+            'error' => 'Nepaviko įkelti rezultatų',
             'friend' => 'Draugų reitingai',
             'global' => 'Pasaulinis Reitingas',
             'supporter-link' => '',
             'supporter-only' => 'Tau reikia turėti osu!supporter, kad pasiektum draugų ir Šalių reitingus!',
-            'title' => '',
+            'title' => 'Rezultatų lenta',
 
             'headers' => [
                 'accuracy' => 'Taiklumas',
                 'combo' => 'Didžiausias combo',
                 'miss' => 'Nepataikyti',
                 'mods' => 'Modifikacijos',
-                'pin' => '',
+                'pin' => 'Prisegti',
                 'player' => 'Žaidėjas',
                 'pp' => '',
                 'rank' => 'Reitingas',
                 'score' => 'Taškai',
                 'score_total' => 'Visi taškai',
-                'time' => '',
+                'time' => 'Laikas',
             ],
 
             'no_scores' => [
-                'country' => '',
+                'country' => 'Niekas iš jūsų šalies dar neįstatė rezultato šiam bitmapui!',
                 'friend' => '',
                 'global' => '',
                 'loading' => 'Įkeliami rezultatai...',
-                'unranked' => '',
+                'unranked' => 'Nereitinguotas bitmapas.',
             ],
             'score' => [
                 'first' => 'Pirmauja',
                 'own' => 'Tavo geriausias',
             ],
             'supporter_link' => [
-                '_' => '',
-                'here' => '',
+                '_' => 'Spausk :here, kad pamatytum visus privalomus, kuriuos gausi!',
+                'here' => 'čia',
             ],
         ],
 
@@ -197,26 +197,26 @@ return [
             'total_length' => 'Trukmė',
             'bpm' => 'BPM',
             'count_circles' => 'Apskritimų skaičius',
-            'count_sliders' => '',
-            'offset' => '',
+            'count_sliders' => 'Slidukų Skaičius',
+            'offset' => 'Tinklo poslinkis: :offset',
             'user-rating' => 'Narių įvertinimas',
             'rating-spread' => 'Vertimų išsidėstymas',
-            'nominations' => '',
+            'nominations' => 'Nominacijos',
             'playcount' => 'Žaidimų skaičius',
         ],
 
         'status' => [
-            'ranked' => '',
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'wip' => '',
-            'pending' => '',
-            'graveyard' => '',
+            'ranked' => 'Reitinguotas',
+            'approved' => 'Patvirtintas',
+            'loved' => 'Mylimas',
+            'qualified' => 'Kvalifikuotas',
+            'wip' => 'WIP',
+            'pending' => 'Laukiantis',
+            'graveyard' => 'Kapinės',
         ],
     ],
 
     'spotlight_badge' => [
-        'label' => '',
+        'label' => 'Pasižymėjęs',
     ],
 ];

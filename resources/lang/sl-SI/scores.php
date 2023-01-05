@@ -17,7 +17,7 @@ return [
 
             'rank' => [
                 'country' => 'Državna uvrstitev',
-                'global' => 'Globalna uvrstitev',
+                'global' => 'Svetovna uvrstitev',
             ],
         ],
     ],

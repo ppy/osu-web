@@ -72,8 +72,9 @@ jobs:
 
       elasticsearch:
         env:
-          action.auto_create_index: "false"
+          action.auto_create_index: false
           discovery.type: single-node
+          ingest.geoip.downloader.enabled: false
         image: elasticsearch:7.17.6
         ports:
           - 9200:9200
@@ -123,7 +124,7 @@ jobs:
       - name: Set php version
         uses: shivammathur/setup-php@v2
         with:
-          extensions: redis
+          extensions: redis, swoole
           tools: composer:v2
           php-version: ${{ matrix.php }}
 

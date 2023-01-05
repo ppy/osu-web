@@ -31,6 +31,7 @@ return [
         'cart_problems_edit' => 'Trykk her for å endre den.',
         'declined' => 'Betalingen ble avbrutt.',
         'delayed_shipping' => 'Vi er for tiden overveldet av bestillinger! Du er velkommen til å bestille, men vennligst ta hensyn til at bestillingen kan ta **ytterlige 1-2 uke lenger** mens vi fullfører de eksisterende bestillingene.',
+        'hide_from_activity' => '',
         'old_cart' => 'Det ser ut til at handlevognen din er utdatert og har blitt oppdatert, prøv igjen.',
         'pay' => 'Betal med Paypal',
         'title_compact' => 'gå til kassen',
@@ -50,6 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Ettersom betalingen din var en eCheck, vennligst tillatt opp til 10 ekstra dager for at betalingen skal kunne komme gjennom PayPal!',
+        'hide_from_activity' => '',
         'title_compact' => 'faktura',
 
         'status' => [
@@ -75,10 +77,15 @@ return [
         'shopify_expired' => '',
 
         'item' => [
+            'quantity' => 'Mengde',
+
             'display_name' => [
                 'supporter_tag' => ':name til :username (:duration)',
             ],
-            'quantity' => 'Mengde',
+
+            'subtext' => [
+                'supporter_tag' => '',
+            ],
         ],
 
         'not_modifiable_exception' => [
@@ -120,6 +127,8 @@ return [
 
     'supporter_tag' => [
         'gift' => 'gi som gave',
+        'gift_message' => '',
+
         'require_login' => [
             '_' => 'Du må være :link for å få tak i en osu!supporter tag!',
             'link_text' => 'logget inn',
