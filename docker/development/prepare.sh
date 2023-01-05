@@ -69,4 +69,6 @@ if [ ! -f .docker/.my.cnf ]; then
     cp .docker/.my.cnf.example .docker/.my.cnf
 fi
 
+./bin/update_ip2asn.sh
+
 echo "Preparation completed. Adjust .env file if needed and run 'docker compose up' followed by running migration."
