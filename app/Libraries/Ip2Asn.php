@@ -22,6 +22,10 @@ class Ip2Asn
         $end = count($this->db) - 1;
         $search = inet_pton($this->prefixIPv4($ip));
 
+        if ($search === false) {
+            return "0";
+        }
+
         while ($start <= $end) {
             $current = (int) (($start + $end) / 2);
             $compareRow = $this->db[$current];
