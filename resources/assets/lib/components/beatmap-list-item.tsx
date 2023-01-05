@@ -18,6 +18,7 @@ interface BaseProps {
   inline?: boolean;
   modifiers?: Modifiers;
 }
+
 type MapperProps = {
   beatmapset: BeatmapsetJson;
   mapper: Pick<UserJson, 'id' | 'username'>;
