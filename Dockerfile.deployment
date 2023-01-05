@@ -52,6 +52,7 @@ RUN rm -f /var/log/nginx/access.log /var/log/nginx/error.log && \
 COPY . .
 RUN mkdir -p bootstrap/cache storage/logs storage/framework/cache storage/framework/views storage/framework/sessions public/uploads public/uploads-avatar public/uploads-replay
 RUN composer dump-autoload
+RUN ./bin/update_ip2asn.sh
 
 ARG APP_URL
 ARG DOCS_URL
