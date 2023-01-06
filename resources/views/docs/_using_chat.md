@@ -4,7 +4,7 @@ TODO: better title
 
 Chat consists of HTTP-based and websocket-based APIs.
 
-The Chat websocket API allows receiving updates in real-time; this requires a connection to the [Notification Websocket](#notification-websocket).
+The Chat websocket API allows receiving updates in real-time; this requires a connection to the [Notification Websocket](#websocket).
 Sending messages is still performed through the HTTP-based API.
 
 <aside class="notice">
