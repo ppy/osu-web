@@ -7,12 +7,19 @@ declare(strict_types=1);
 
 namespace App\Libraries;
 
+use Exception;
+
 class Ip2Asn
 {
     private array $db;
+    private $fh;
 
     public function __construct()
     {
+        $this->fh = fopen(database_path('ip2asn-combined.tsv'), 'r');
+        if ($this->fh === false) {
+            throw new Exception('failed opening ip2asn database');
+        }
         $this->db = $this->parseFileForDb();
     }
 
@@ -28,7 +35,12 @@ class Ip2Asn
 
         while ($start <= $end) {
             $current = (int) (($start + $end) / 2);
-            [$asn, $compare] = explode(':', $this->db[$current], 2);
+            $loc = $this->db[$current];
+            fseek($this->fh, $loc);
+            $row = fgets($this->fh);
+            $data = explode("\t", $row, 4);
+            $compare = inet_pton($this->prefixIPv4($data[1]));
+            $asn = $data[2];
             if ($compare === $search) {
                 return $asn;
             } elseif ($compare < $search) {
@@ -44,13 +56,13 @@ class Ip2Asn
 
     private function parseFileForDb(): array
     {
-        $rows = explode("\n", file_get_contents(database_path('ip2asn-combined.tsv')));
-        array_pop($rows); // remove blank string from end of file newline
+        fseek($this->fh, 0);
 
-        $ret = [];
-        foreach ($rows as $row) {
-            $data = explode("\t", $row, 4);
-            $ret[] = implode(':', [$data[2], inet_pton($this->prefixIPv4($data[1]))]);
+        $ret = [ftell($this->fh)];
+        while (($row = fgets($this->fh)) !== false) {
+            if ($row !== '') {
+                $ret[] = ftell($this->fh);
+            }
         }
 
         return $ret;
