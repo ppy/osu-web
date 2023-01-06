@@ -4,8 +4,9 @@
 import { route } from 'laroute'
 import * as React from 'react'
 import { div, span, a, i } from 'react-dom-factories'
-import { classWithModifiers } from 'utils/css'
+import { classWithModifiers, urlPresence } from 'utils/css'
 import { formatNumber } from 'utils/html'
+import { transChoice } from 'utils/lang'
 import { Voter } from './voter'
 
 el = React.createElement
@@ -24,9 +25,9 @@ export class ArtEntry extends React.Component
     hideVoteButton = (@props.selected.length >= @props.contest.max_votes || votingOver) && !isSelected
 
     if showVotes
-      votePercentage = _.round((@props.entry.results.votes / @props.totalVotes)*100, 2)
       place = @props.displayIndex + 1
       top3 = place <= 3
+      usersVotedPercentage = _.round((@props.entry.results.votes / @props.contest.users_voted_count)*100, 2)
 
     entryLinkProps =
       className: "#{bn}__thumbnail-link"
@@ -55,7 +56,7 @@ export class ArtEntry extends React.Component
       div
         className: "#{bn}__thumbnail",
         style:
-          backgroundImage: osu.urlPresence(@props.entry.thumbnail)
+          backgroundImage: urlPresence(@props.entry.thumbnail)
         a entryLinkProps
 
         div
@@ -96,7 +97,7 @@ export class ArtEntry extends React.Component
               span className: "#{bn}__entrant", @props.entry.results.actual_name
           div className: "#{bn}__result-pane",
             span className: "#{bn}__result-votes",
-              osu.transChoice 'contest.vote.count', @props.entry.results.votes
-            if not isNaN(votePercentage)
+              transChoice 'contest.vote.count', @props.entry.results.votes
+            if Number.isFinite usersVotedPercentage
               span className: "#{bn}__result-votes #{bn}__result-votes--percentage",
-                " (#{formatNumber(votePercentage)}%)"
+                " (#{formatNumber(usersVotedPercentage)}%)"

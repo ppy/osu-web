@@ -86,7 +86,7 @@ export default class IconDropdownMenu extends React.Component<Props> {
 
     const target = event.currentTarget;
 
-    if (!target) {
+    if (target == null) {
       return;
     }
 

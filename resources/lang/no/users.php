@@ -130,7 +130,7 @@ return [
         ],
 
         'options' => [
-            'cheating' => 'Lureri / Juks',
+            'cheating' => 'Juksing',
             'multiple_accounts' => 'Bruker flere kontoer',
             'insults' => 'Fornærmer meg / andre',
             'spam' => 'Spamming',
@@ -216,6 +216,9 @@ return [
                 ],
                 'loved' => [
                     'title' => 'Elskede Beatmaps',
+                ],
+                'nominated' => [
+                    'title' => '',
                 ],
                 'pending' => [
                     'title' => 'Ventende Beatmaps',
@@ -438,8 +441,8 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'Du er øyeblikkelig forstummet.',
+        'message' => 'Noen handlinger kan være utilgjengelige.',
     ],
 
     'status' => [

@@ -1,9 +1,27 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { formatNumber, isClickable, isInputElement } from 'utils/html';
+import { formatBytes, formatNumber, isClickable, isInputElement } from 'utils/html';
 
 describe('utils/html', () => {
+  describe('formatBytes', () => {
+    it('cenvert to same value in bytes', () => {
+      expect(formatBytes(100)).toBe('100 B');
+    });
+
+    it('convert value to KB', () => {
+      expect(formatBytes(1000)).toBe('1.00 KB');
+    });
+
+    it('convert value to MB', () => {
+      expect(formatBytes(1000000)).toBe('1.00 MB');
+    });
+
+    it('convert value to KB without precision', () => {
+      expect(formatBytes(1000, 0)).toBe('1 KB');
+    });
+  });
+
   describe('formatNumber', () => {
     it('formats the number with correct precision', () => {
       expect(formatNumber(12.345, 2)).toBe('12.35');

@@ -14,7 +14,7 @@ use Auth;
 use Request;
 
 /**
- @group Beatmapset Discussions
+ * @group Beatmapset Discussions
  */
 class BeatmapDiscussionsController extends Controller
 {

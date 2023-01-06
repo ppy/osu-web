@@ -5,6 +5,8 @@ import BigButton from 'components/big-button'
 import { route } from 'laroute'
 import * as React from 'react'
 import { a, button, div, h1, h2, p } from 'react-dom-factories'
+import { emitError } from 'utils/ajax'
+import { trans } from 'utils/lang'
 
 el = React.createElement
 
@@ -27,7 +29,7 @@ export class Subscribe extends React.PureComponent
       modifiers: 'full'
       props:
         onClick: @toggleWatch
-      text: osu.trans "common.buttons.watch.to_#{+!@isWatching()}"
+      text: trans "common.buttons.watch.to_#{+!@isWatching()}"
 
 
   isWatching: =>
@@ -43,6 +45,6 @@ export class Subscribe extends React.PureComponent
     .done (data) =>
       $.publish 'beatmapsetDiscussions:update', watching: !@isWatching()
     .fail (xhr) =>
-      osu.emitAjaxError() xhr
+      emitError() xhr
     .always =>
       @setState loading: false

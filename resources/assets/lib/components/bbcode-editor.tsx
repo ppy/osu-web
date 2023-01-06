@@ -4,6 +4,7 @@
 import { snakeCase } from 'lodash';
 import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 
 type ChangeType = 'cancel' | 'save';
 
@@ -72,7 +73,7 @@ export default class BbcodeEditor extends React.Component<Props> {
 
             <div className='bbcode-editor__buttons bbcode-editor__buttons--actions'>
               <div className='bbcode-editor__button bbcode-editor__button--cancel'>
-                {this.actionButton(this.cancel, osu.trans('common.buttons.cancel'))}
+                {this.actionButton(this.cancel, trans('common.buttons.cancel'))}
               </div>
               <div className='bbcode-editor__button bbcode-editor__button--hide-on-write'>
                 {this.renderPreviewHideButton()}
@@ -81,7 +82,7 @@ export default class BbcodeEditor extends React.Component<Props> {
                 {this.renderPreviewShowButton()}
               </div>
               <div className='bbcode-editor__button'>
-                {this.actionButton(this.save, osu.trans('common.buttons.save'), 'forum-primary')}
+                {this.actionButton(this.save, trans('common.buttons.save'), 'forum-primary')}
               </div>
             </div>
           </div>
@@ -104,7 +105,7 @@ export default class BbcodeEditor extends React.Component<Props> {
   }
 
   private cancel = (event?: React.SyntheticEvent) => {
-    if (this.bodyRef.current?.value !== this.props.rawValue && !confirm(osu.trans('common.confirmation_unsaved'))) {
+    if (this.bodyRef.current?.value !== this.props.rawValue && !confirm(trans('common.confirmation_unsaved'))) {
       return;
     }
 
@@ -127,7 +128,7 @@ export default class BbcodeEditor extends React.Component<Props> {
         disabled={this.props.disabled}
         type='button'
       >
-        {osu.trans('forum.topic.create.preview_hide')}
+        {trans('forum.topic.create.preview_hide')}
       </button>
     );
   }
@@ -139,7 +140,7 @@ export default class BbcodeEditor extends React.Component<Props> {
         disabled={this.props.disabled}
         type='button'
       >
-        {osu.trans('forum.topic.create.preview')}
+        {trans('forum.topic.create.preview')}
       </button>
     );
   }
@@ -166,7 +167,7 @@ export default class BbcodeEditor extends React.Component<Props> {
     this.sendOnChange({ event, type: 'save' });
   };
 
-  private sendOnChange({event, type}: { event?: React.SyntheticEvent; type: ChangeType }) {
+  private sendOnChange({ event, type }: { event?: React.SyntheticEvent; type: ChangeType }) {
     this.props.onChange({
       event,
       hasChanged: this.bodyRef.current?.value !== this.props.rawValue,
@@ -180,7 +181,7 @@ export default class BbcodeEditor extends React.Component<Props> {
       <button
         className={`btn-circle btn-circle--bbcode js-bbcode-btn--${name}`}
         disabled={this.props.disabled}
-        title={osu.trans(`bbcode.${snakeCase(name)}`)}
+        title={trans(`bbcode.${snakeCase(name)}`)}
         type='button'
       >
         <span className='btn-circle__content'>{content}</span>
@@ -192,10 +193,10 @@ export default class BbcodeEditor extends React.Component<Props> {
     return (
       <label
         className='bbcode-size-select'
-        title={osu.trans('bbcode.size._')}
+        title={trans('bbcode.size._')}
       >
         <span className='bbcode-size-select__label'>
-          {osu.trans('bbcode.size._')}
+          {trans('bbcode.size._')}
         </span>
 
         <i className='fas fa-chevron-down' />
@@ -205,10 +206,10 @@ export default class BbcodeEditor extends React.Component<Props> {
           className='bbcode-size-select__select js-bbcode-btn--size'
           disabled={this.props.disabled}
         >
-          <option value='50'>{osu.trans('bbcode.size.tiny')}</option>
-          <option value='85'>{osu.trans('bbcode.size.small')}</option>
-          <option value='100'>{osu.trans('bbcode.size.normal')}</option>
-          <option value='150'>{osu.trans('bbcode.size.large')}</option>
+          <option value='50'>{trans('bbcode.size.tiny')}</option>
+          <option value='85'>{trans('bbcode.size.small')}</option>
+          <option value='100'>{trans('bbcode.size.normal')}</option>
+          <option value='150'>{trans('bbcode.size.large')}</option>
         </select>
       </label>
     );

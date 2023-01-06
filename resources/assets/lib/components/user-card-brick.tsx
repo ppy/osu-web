@@ -9,7 +9,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import UserCardTypeContext from 'user-card-type-context';
-import { classWithModifiers, Modifiers } from 'utils/css';
+import { classWithModifiers, groupColour, Modifiers } from 'utils/css';
 
 interface Props {
   modifiers?: Modifiers;
@@ -67,7 +67,7 @@ export default class UserCardBrick extends React.Component<Props> {
         >
           <div
             className='user-card-brick__group-bar'
-            style={osu.groupColour(group)}
+            style={groupColour(group)}
             title={group?.name}
           />
 

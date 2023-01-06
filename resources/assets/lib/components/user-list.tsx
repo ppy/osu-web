@@ -8,6 +8,7 @@ import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 import { currentUrlParams } from 'utils/turbolinks';
 import { updateQueryString } from 'utils/url';
 import { Sort } from './sort';
@@ -194,7 +195,7 @@ export class UserList extends React.PureComponent<Props> {
         onClick={this.optionSelected}
       >
         <div className='update-streams-v2__bar u-changelog-stream--bg' />
-        <p className='update-streams-v2__row update-streams-v2__row--name'>{osu.trans(`users.status.${key}`)}</p>
+        <p className='update-streams-v2__row update-streams-v2__row--name'>{trans(`users.status.${key}`)}</p>
         <p className='update-streams-v2__row update-streams-v2__row--version'>{text}</p>
       </a>
     );
@@ -230,7 +231,7 @@ export class UserList extends React.PureComponent<Props> {
           className={classWithModifiers('user-list__view-mode', this.state.viewMode === 'card' ? ['active'] : [])}
           data-value='card'
           onClick={this.onViewSelected}
-          title={osu.trans('users.view_mode.card')}
+          title={trans('users.view_mode.card')}
         >
           <span className='fas fa-square' />
         </button>
@@ -238,7 +239,7 @@ export class UserList extends React.PureComponent<Props> {
           className={classWithModifiers('user-list__view-mode', this.state.viewMode === 'list' ? ['active'] : [])}
           data-value='list'
           onClick={this.onViewSelected}
-          title={osu.trans('users.view_mode.list')}
+          title={trans('users.view_mode.list')}
         >
           <span className='fas fa-bars' />
         </button>
@@ -246,7 +247,7 @@ export class UserList extends React.PureComponent<Props> {
           className={classWithModifiers('user-list__view-mode', this.state.viewMode === 'brick' ? ['active'] : [])}
           data-value='brick'
           onClick={this.onViewSelected}
-          title={osu.trans('users.view_mode.brick')}
+          title={trans('users.view_mode.brick')}
         >
           <span className='fas fa-th' />
         </button>
@@ -304,10 +305,10 @@ export class UserList extends React.PureComponent<Props> {
         className={classWithModifiers('user-list__view-mode', this.state.playMode === mode ? ['active'] : [])}
         data-value={mode}
         onClick={this.playmodeSelected}
-        title={osu.trans(`beatmaps.mode.${mode}`)}
+        title={trans(`beatmaps.mode.${mode}`)}
       >
         {mode === 'all' ?
-          <span>{osu.trans('beatmaps.mode.all')}</span>
+          <span>{trans('beatmaps.mode.all')}</span>
           :
           <span className={`fal fa-extra-mode-${mode}`} />
         }
@@ -316,7 +317,7 @@ export class UserList extends React.PureComponent<Props> {
 
     return (
       <div className='user-list__view-modes'>
-        <span className='user-list__view-mode-title'>{osu.trans('users.filtering.by_game_mode')}</span> {playmodeButtons}
+        <span className='user-list__view-mode-title'>{trans('users.filtering.by_game_mode')}</span> {playmodeButtons}
       </div>
     );
   }

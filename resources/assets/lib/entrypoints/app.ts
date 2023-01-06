@@ -3,7 +3,6 @@
 
 import 'app-deps';
 
-import 'osu_common.coffee';
 import 'jquery-pubsub.coffee';
 
 import '_classes/beatmap-discussion-helper.coffee';

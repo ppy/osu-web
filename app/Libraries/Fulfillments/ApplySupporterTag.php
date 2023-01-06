@@ -5,6 +5,7 @@
 
 namespace App\Libraries\Fulfillments;
 
+use App\Models\Store\OrderItem;
 use App\Models\User;
 use App\Models\UserDonation;
 use Carbon\Carbon;
@@ -15,27 +16,22 @@ use DB;
  */
 class ApplySupporterTag extends OrderItemFulfillment
 {
-    private $donor;
-    private $target;
+    private int $amount;
+    private int $duration;
+    private User $donor;
+    private User $target;
 
-    private $donorId;
-    private $targetId;
-    private $duration;
-    private $amount;
-
-    public function __construct($orderItem)
+    public function __construct(OrderItem $orderItem)
     {
         parent::__construct($orderItem);
-        $this->donorId = $orderItem->order->user_id;
-        $this->targetId = $orderItem->extra_data['target_id'];
-        $this->duration = (int) $orderItem->extra_data['duration'];
-        $this->amount = $orderItem->cost;
-    }
 
-    private function assignUsers()
-    {
-        $this->donor = User::findOrFail($this->donorId);
-        $this->target = User::findOrFail($this->targetId);
+        $extraData = $orderItem->extra_data;
+
+        $this->amount = $orderItem->cost;
+        $this->duration = $extraData->duration;
+
+        $this->donor = User::findOrFail($orderItem->order->user_id);
+        $this->target = User::findOrFail($extraData->targetId);
     }
 
     public function cancelledTransactionId()
@@ -57,8 +53,6 @@ class ApplySupporterTag extends OrderItemFulfillment
 
                 return;
             }
-
-            $this->assignUsers();
 
             $donation = $this->applyDonation();
             $this->updateVotes($this->duration);
@@ -92,8 +86,6 @@ class ApplySupporterTag extends OrderItemFulfillment
                 return;
             }
 
-            $this->assignUsers();
-
             foreach ($donations as $donation) { // loop, but there should only be one.
                 $donation->cancel($this->cancelledTransactionId());
                 $this->updateVotes(-$this->duration);
@@ -114,8 +106,8 @@ class ApplySupporterTag extends OrderItemFulfillment
     {
         return new UserDonation([
             'transaction_id' => $this->getTransactionId(),
-            'user_id' => $this->donorId,
-            'target_user_id' => $this->targetId,
+            'user_id' => $this->donor->getKey(),
+            'target_user_id' => $this->target->getKey(),
             'length' => $this->duration,
             'amount' => $this->amount,
         ]);

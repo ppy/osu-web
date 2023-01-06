@@ -12,6 +12,7 @@ import { isInputKey } from 'models/chat/create-announcement';
 import { maxLength } from 'models/chat/message';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { trans } from 'utils/lang';
 
 type Props = Record<string, never>;
 
@@ -49,7 +50,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
     return (
       <div className='chat-form'>
         <div className='chat-form__fields'>
-          <div className='chat-form__title'>{osu.trans('chat.form.title.announcement')}</div>
+          <div className='chat-form__title'>{trans('chat.form.title.announcement')}</div>
           <InputContainer labelKey='chat.form.labels.name' model={this.model} modifiers='chat' name='name'>
             <input
               className='chat-form__input'
@@ -96,7 +97,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
               name='message'
               onBlur={this.handleBlur}
               onChange={this.handleInput}
-              placeholder={osu.trans('chat.input.placeholder')}
+              placeholder={trans('chat.input.placeholder')}
               rows={10}
             />
           </InputContainer>
@@ -108,7 +109,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
             isBusy={core.dataStore.chatState.isJoiningChannel}
             modifiers='chat-send'
             props={{ onClick: this.handleButtonClick }}
-            text={osu.trans(core.dataStore.chatState.isReady ? 'chat.input.create' : 'chat.input.disconnected')}
+            text={trans(core.dataStore.chatState.isReady ? 'chat.input.create' : 'chat.input.disconnected')}
           />
         </div>
       </div>

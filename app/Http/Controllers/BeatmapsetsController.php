@@ -372,18 +372,23 @@ class BeatmapsetsController extends Controller
             'user',
         ]);
 
-        return json_item($beatmapset, 'Beatmapset', [
+        $transformer = new BeatmapsetTransformer();
+        $transformer->relatedUsersType = 'show';
+
+        return json_item($beatmapset, $transformer, [
             'beatmaps',
             'beatmaps.failtimes',
             'beatmaps.max_combo',
             'converts',
             'converts.failtimes',
+            'current_nominations',
             'current_user_attributes',
             'description',
             'genre',
             'language',
             'ratings',
             'recent_favourites',
+            'related_users',
             'user',
         ]);
     }

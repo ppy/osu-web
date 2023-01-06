@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapListItem from 'components/beatmap-list-item';
-import { Portal } from 'components/portal';
+import Portal from 'components/portal';
 import BeatmapJson from 'interfaces/beatmap-json';
 import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
@@ -41,7 +41,7 @@ const ItemRow = observer(({ beatmap }: { beatmap: BeatmapJson }) => (
     className='beatmaps-popup-item'
     href={route('beatmaps.show', { beatmap: beatmap.id })}
   >
-    <BeatmapListItem beatmap={beatmap} />
+    <BeatmapListItem beatmap={beatmap} mapper={null} />
   </a>
 ));
 

@@ -5,26 +5,26 @@
 
 return [
     'show' => [
-        'title' => '',
+        'title' => ':username en :title [:version]',
 
         'beatmap' => [
-            'by' => '',
+            'by' => 'per :artist',
         ],
 
         'player' => [
-            'by' => '',
-            'submitted_on' => '',
+            'by' => 'Jugat per',
+            'submitted_on' => 'Enviat el',
 
             'rank' => [
-                'country' => '',
-                'global' => '',
+                'country' => 'Classificació nacional',
+                'global' => 'Classificació global',
             ],
         ],
     ],
 
     'status' => [
-        'non_best' => '',
-        'non_passing' => '',
-        'processing' => '',
+        'non_best' => 'Només les millors puntuacions personals atorguen pp',
+        'non_passing' => 'Només les puntuacions aprovades atorguen pp',
+        'processing' => 'Aquesta puntuació encara s\'està calculant i es mostrarà aviat',
     ],
 ];

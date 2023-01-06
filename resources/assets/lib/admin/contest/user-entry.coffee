@@ -5,6 +5,7 @@ import UserAvatar from 'components/user-avatar'
 import { route } from 'laroute'
 import * as React from 'react'
 import { tr, td, a, div } from 'react-dom-factories'
+import { formatBytes } from 'utils/html'
 import { UserEntryDeleteButton } from './user-entry-delete-button'
 
 el = React.createElement
@@ -30,7 +31,7 @@ export class UserEntry extends React.Component
           a download: @props.entry.original_filename, href: @props.entry.url, @props.entry.filename
 
       td className: 'osu-table__cell admin-contest-entry__column',
-          osu.formatBytes(@props.entry.filesize)
+          formatBytes(@props.entry.filesize)
 
       td className: 'admin-contest-entry__column admin-contest-entry__column--button',
         el UserEntryDeleteButton,

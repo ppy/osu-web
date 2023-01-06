@@ -8,11 +8,11 @@ namespace App\Models\Store;
 use App\Exceptions\InvariantException;
 use App\Exceptions\OrderNotModifiableException;
 use App\Models\Country;
-use App\Models\SupporterTag;
 use App\Models\User;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -29,21 +29,21 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @property Address $address
  * @property int|null $address_id
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon|null $deleted_at
- * @property \Illuminate\Database\Eloquent\Collection $items OrderItem
+ * @property Carbon $created_at
+ * @property Carbon|null $deleted_at
+ * @property Collection<OrderItem> $items
  * @property string|null $last_tracking_state
  * @property int $order_id
  * @property string|null $provider
- * @property \Carbon\Carbon|null $paid_at
- * @property \Illuminate\Database\Eloquent\Collection $payments Payment
+ * @property Carbon|null $paid_at
+ * @property Collection<Payment> $payments
  * @property string|null $reference For paypal transactions, this is the resource Id of the paypal order; otherwise, it is the same as the transaction_id without the prefix.
- * @property \Carbon\Carbon|null $shipped_at
+ * @property Carbon|null $shipped_at
  * @property float|null $shipping
  * @property mixed $status
  * @property string|null $tracking_code
  * @property string|null $transaction_id For paypal transactions, this value is based on the IPN or captured payment Id, not the order resource id.
- * @property \Carbon\Carbon|null $updated_at
+ * @property Carbon|null $updated_at
  * @property User $user
  * @property int $user_id
  */
@@ -368,6 +368,11 @@ class Order extends Model
         return $this->status === static::STATUS_PAYMENT_REQUESTED;
     }
 
+    public function containsSupporterTag(): bool
+    {
+        return $this->items->contains(fn (OrderItem $item) => $item->product->custom_class === Product::SUPPORTER_TAG_NAME);
+    }
+
     public function hasInvoice(): bool
     {
         return in_array($this->status, static::STATUS_HAS_INVOICE, true);
@@ -391,6 +396,20 @@ class Order extends Model
     public function isEmpty(): bool
     {
         return !$this->items()->exists();
+    }
+
+    public function isHideSupporterFromActivity(): bool
+    {
+        // Consider all supporter tags should be hidden from activity if any one of them is marked to be hidden.
+        // This also skips needing to perform a product lookup.
+        foreach ($this->items as $item) {
+            $extraData = $item->extra_data;
+            if ($extraData instanceof ExtraDataSupporterTag && $extraData->hidden) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function isModifiable(): bool
@@ -468,6 +487,22 @@ class Order extends Model
         $this->saveOrExplode();
     }
 
+    public function setGiftsHidden(bool $hide = true)
+    {
+        // batch update query not used as it will override extra_data contents.
+        $this->getConnection()->transaction(function () use ($hide) {
+            foreach ($this->items as $item) {
+                $extraData = $item->extra_data;
+                if ($extraData instanceof ExtraDataSupporterTag) {
+                    $extraData->hidden = $hide;
+                    $item->saveOrExplode();
+                }
+            }
+        });
+    }
+
+    #region public functions for updating cart state
+
     /**
      * Marks the Order as cancelled. Does not do anything if already cancelled.
      *
@@ -513,6 +548,10 @@ class Order extends Model
         $this->saveOrExplode();
     }
 
+    #endregion
+
+    #region public functions for updating cart quantities
+
     /**
      * Updates the Order with form parameters.
      *
@@ -526,7 +565,7 @@ class Order extends Model
     public function updateItem(array $itemForm, $addToExisting = false)
     {
         return $this->guardNotModifiable(function () use ($itemForm, $addToExisting) {
-            $params = static::orderItemParams($itemForm);
+            [$params, $product] = static::orderItemParams($itemForm);
 
             // done first to allow removing of disabled products from cart.
             if ($params['quantity'] <= 0) {
@@ -534,16 +573,16 @@ class Order extends Model
             }
 
             // TODO: better validation handling.
-            if ($params['product'] === null) {
+            if ($product === null) {
                 return osu_trans('model_validation/store/product.not_available');
             }
 
             $this->saveOrExplode();
 
-            if ($params['product']->allow_multiple) {
-                $item = $this->newOrderItem($params);
+            if ($product->allow_multiple) {
+                $item = $this->newOrderItem($params, $product);
             } else {
-                $item = $this->updateOrderItem($params, $addToExisting);
+                $item = $this->updateOrderItem($params, $product, $addToExisting);
             }
 
             $item->saveOrExplode();
@@ -582,6 +621,8 @@ class Order extends Model
             $orderItem->saveOrExplode();
         });
     }
+
+    #endregion
 
     public static function cart($user)
     {
@@ -646,27 +687,15 @@ class Order extends Model
         optional($this->items()->find($params['id']))->delete();
     }
 
-    private function newOrderItem(array $params)
+    private function newOrderItem(array $params, Product $product)
     {
-        if ($params['cost'] < 0) {
-            $params['cost'] = 0;
-        }
-
-        $product = $params['product'];
-
         // FIXME: custom class stuff should probably not go in Order...
         switch ($product->custom_class) {
-            case 'supporter-tag':
-                $targetId = (int) $params['extraData']['target_id'];
-                if ($targetId === $this->user_id) {
-                    $params['extraData']['username'] = $this->user->username;
-                } else {
-                    $user = User::default()->where('user_id', $targetId)->firstOrFail();
-                    $params['extraData']['username'] = $user->username;
-                }
-
-                $params['extraData']['duration'] = SupporterTag::getDuration($params['cost']);
+            case Product::SUPPORTER_TAG_NAME:
+                $params['cost'] ??= 0;
+                $params['extra_data'] = ExtraDataSupporterTag::fromOrderItemParams($params, $this->user);
                 break;
+            // TODO: look at migrating to extra_data
             case 'username-change':
                 // ignore received cost
                 $params['cost'] = $this->user->usernameChangeCost();
@@ -676,31 +705,33 @@ class Order extends Model
             case 'mwc7-supporter':
             case 'owc-supporter':
             case 'twc-supporter':
-                // much dodgy. wow.
-                $matches = [];
-                preg_match('/.+\((?<country>.+)\)$/', $product->name, $matches);
-                $params['extraData']['cc'] = Country::where('name', $matches['country'])->first()->acronym;
+                $params['extra_data'] = $this->extraDataTournamentBanner($params, $product);
                 $params['cost'] = $product->cost ?? 0;
                 break;
+            case Product::REDIRECT_PLACEHOLDER:
+                throw new InvariantException("Product can't be ordered");
             default:
                 $params['cost'] = $product->cost ?? 0;
         }
 
-        return $this->items()->make([
+        $item = $this->items()->make([
             'quantity' => $params['quantity'],
-            'extra_info' => $params['extraInfo'],
-            'extra_data' => $params['extraData'],
+            'extra_info' => $params['extra_info'],
+            'extra_data' => $params['extra_data'],
             'cost' => $params['cost'],
-            'product_id' => $product->product_id,
+            'product_id' => $product->getKey(),
         ]);
+
+        $item->setRelation('product', $product);
+
+        return $item;
     }
 
-    private function updateOrderItem(array $params, $addToExisting = false)
+    private function updateOrderItem(array $params, Product $product, $addToExisting = false)
     {
-        $product = $params['product'];
         $item = $this->items()->where('product_id', $product->product_id)->get()->first();
         if ($item === null) {
-            return $this->newOrderItem($params);
+            return $this->newOrderItem($params, $product);
         }
 
         if ($addToExisting) {
@@ -712,15 +743,36 @@ class Order extends Model
         return $item;
     }
 
+    // TODO: maybe move to class later?
+    private function extraDataTournamentBanner(array $orderItemParams, Product $product)
+    {
+        $params = get_params($orderItemParams, 'extra_data', [
+            'tournament_id:int',
+        ]);
+
+        // much dodgy. wow.
+        $matches = [];
+        preg_match('/.+\((?<country>.+)\)$/', $product->name, $matches);
+        $params['cc'] = Country::where('name', $matches['country'])->first()->acronym;
+
+        return new ExtraDataTournamentBanner($params);
+    }
+
     private static function orderItemParams(array $form)
     {
-        return [
-            'id' => array_get($form, 'id'),
-            'quantity' => array_get($form, 'quantity'),
-            'product' => Product::enabled()->find(array_get($form, 'product_id')),
-            'cost' => intval(array_get($form, 'cost')),
-            'extraInfo' => array_get($form, 'extra_info'),
-            'extraData' => array_get($form, 'extra_data'),
-        ];
+        $params = get_params($form, null, [
+            'id:int',
+            'cost:int',
+            'extra_data:array',
+            'extra_info',
+            'product_id:int',
+            'quantity:int',
+        ], ['null_missing' => true]);
+
+        $product = Product::enabled()->find($params['product_id']);
+
+        unset($params['product_id']);
+
+        return [$params, $product];
     }
 }

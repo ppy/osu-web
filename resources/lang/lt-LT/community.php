@@ -60,7 +60,7 @@ return [
             ],
 
             'mod_filtering' => [
-                'title' => '',
+                'title' => 'Filtruoti pagal Modus',
                 'description' => '',
             ],
 
@@ -141,8 +141,8 @@ return [
             'contribution' => '',
             'gifted' => "",
             'not_yet' => "Jūs dar nesate turėje osu!supporter rolės :(",
-            'valid_until' => '',
-            'was_valid_until' => '',
+            'valid_until' => 'Jūsų osu!rėmėjo žyma galioja iki :date!',
+            'was_valid_until' => 'Jūsų osu!rėmėjo žyma buvo galiojanti :date.',
         ],
     ],
 ];

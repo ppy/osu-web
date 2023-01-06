@@ -6,6 +6,7 @@ import core from 'osu-core-singleton'
 import * as React from 'react'
 import { button, div, span } from 'react-dom-factories'
 import { classWithModifiers } from 'utils/css'
+import { trans } from 'utils/lang'
 import ShowMoreLink from './show-more-link'
 import { Spinner } from './spinner'
 
@@ -58,7 +59,7 @@ export class CommentShowMore extends React.PureComponent
           button
             className: "#{bn}__link"
             onClick: @load
-            @props.label ? osu.trans('common.buttons.show_more')
+            @props.label ? trans('common.buttons.show_more')
 
 
   load: =>

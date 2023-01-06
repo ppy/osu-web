@@ -4,6 +4,7 @@
 import * as React from 'react'
 import { a, div, p } from 'react-dom-factories'
 import { classWithModifiers } from 'utils/css'
+import { transChoice } from 'utils/lang'
 import { changelogBuild } from 'utils/url'
 
 el = React.createElement
@@ -35,4 +36,4 @@ export class ChangelogHeaderStreams extends React.PureComponent
       if stream.user_count > 0
         p
           className: 'update-streams-v2__row update-streams-v2__row--users'
-          osu.transChoice 'changelog.builds.users_online', stream.user_count
+          transChoice 'changelog.builds.users_online', stream.user_count

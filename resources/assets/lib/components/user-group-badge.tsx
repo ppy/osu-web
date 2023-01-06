@@ -4,14 +4,15 @@
 import UserGroupJson from 'interfaces/user-group-json';
 import { route } from 'laroute';
 import * as React from 'react';
-import { classWithModifiers, Modifiers } from 'utils/css';
+import { classWithModifiers, groupColour, Modifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 
 interface Props {
   group?: UserGroupJson | null;
   modifiers?: Modifiers;
 }
 
-export default function UserGroupBadge({group, modifiers}: Props) {
+export default function UserGroupBadge({ group, modifiers }: Props) {
   if (group == null) {
     return null;
   }
@@ -29,7 +30,7 @@ export default function UserGroupBadge({group, modifiers}: Props) {
     );
 
     const playmodeNames = group.playmodes
-      .map((playmode) => osu.trans(`beatmaps.mode.${playmode}`))
+      .map((playmode) => trans(`beatmaps.mode.${playmode}`))
       .join(', ');
 
     title += ` (${playmodeNames})`;
@@ -44,7 +45,7 @@ export default function UserGroupBadge({group, modifiers}: Props) {
       modifiers,
     ),
     'data-label': group.short_name,
-    style: osu.groupColour(group),
+    style: groupColour(group),
     title,
   };
 

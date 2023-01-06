@@ -7,6 +7,7 @@ import { Element, Text } from 'slate';
 import * as unified from 'unified';
 import type { Parent, Node as UnistNode } from 'unist';
 import { formatTimestamp, startingPost } from 'utils/beatmapset-discussion-helper';
+import { present } from 'utils/string';
 import { BeatmapDiscussionReview, isBeatmapReviewDiscussionType, PersistedDocumentIssueEmbed } from '../interfaces/beatmap-discussion-review';
 import { disableTokenizersPlugin } from './disable-tokenizers-plugin';
 
@@ -53,7 +54,7 @@ export function parseFromJson(json: string, discussions: Partial<Record<number, 
     switch (block.type) {
       // paragraph
       case 'paragraph': {
-        if (!osu.present(block.text.trim())) {
+        if (!present(block.text.trim())) {
           // empty block (aka newline)
           doc.push({
             children: [{
@@ -64,7 +65,7 @@ export function parseFromJson(json: string, discussions: Partial<Record<number, 
         } else {
           const parsed = processor.parse(block.text) as ParsedDocumentNode;
 
-          if (!parsed.children || parsed.children.length < 1) {
+          if (parsed.children == null || parsed.children.length < 1) {
             console.error('children missing... ?');
             break;
           }
@@ -103,7 +104,7 @@ export function parseFromJson(json: string, discussions: Partial<Record<number, 
           }],
           discussionId: discussion.id,
           discussionType: discussion.message_type,
-          timestamp: formatTimestamp(discussion.timestamp),
+          timestamp: discussion.timestamp != null ? formatTimestamp(discussion.timestamp) : undefined,
           type: 'embed',
         });
         break;

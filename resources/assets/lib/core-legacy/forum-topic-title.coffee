@@ -1,6 +1,10 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import { emitError } from 'utils/ajax'
+import { reloadPage } from 'utils/turbolinks'
+import { presence, present } from 'utils/string'
+
 export default class ForumTopicTitle
   constructor: ->
     @input = document.getElementsByClassName('js-forum-topic-title--input')
@@ -33,7 +37,7 @@ export default class ForumTopicTitle
 
 
   onInput: =>
-    @saveButton[0].disabled = !osu.present(@input[0].value)
+    @saveButton[0].disabled = !present(@input[0].value)
 
 
   onKeyup: (e) =>
@@ -48,7 +52,7 @@ export default class ForumTopicTitle
     input = @input[0]
     newTitle = input.value
 
-    return if !osu.presence(newTitle)?
+    return if !presence(newTitle)?
 
     return @cancel() if newTitle == input.defaultValue
 
@@ -62,8 +66,8 @@ export default class ForumTopicTitle
         "#{input.name}": newTitle
     .done =>
       # because page title is also changed =D
-      osu.reloadPage()
+      reloadPage()
     .fail (xhr) =>
       input.disabled = false
       @saveButton[0].disabled = false
-      osu.emitAjaxError() xhr
+      emitError() xhr

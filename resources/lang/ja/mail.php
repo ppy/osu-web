@@ -69,6 +69,7 @@ return [
         'duration' => 'それらのおかげで、次の:duration osu!directやその他のosu!サポーター特典を利用できます。',
         'features' => 'これらの機能の詳細については、こちらをご覧ください:',
         'gifted' => '誰かがあなたにosu!サポータータグをプレゼントしました！',
+        'gift_message' => '',
         'subject' => 'あなたはosu!サポータータグを贈られました！',
     ],
 

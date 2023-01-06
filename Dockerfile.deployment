@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y software-properties-common
@@ -6,6 +6,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y software-properties-common
 RUN add-apt-repository ppa:ondrej/php
 
 RUN apt-get update
+# jpegtran is not included in `jhead` dependencies in this version of Ubuntu. Revisit when upgrading/changing distro. See https://github.com/ppy/osu-web/pull/9673
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
     build-essential \
     curl \
@@ -26,7 +27,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
     php8.0-xml \
     php8.0-zip \
     php8.0 \
-    zip
+    zip \
+    libjpeg-turbo-progs
 
 WORKDIR /app
 

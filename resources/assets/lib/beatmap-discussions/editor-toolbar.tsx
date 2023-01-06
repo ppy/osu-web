@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { Portal } from 'components/portal';
+import Portal from 'components/portal';
 import { throttle } from 'lodash';
 import * as React from 'react';
 import { Editor, Element, Node, Range } from 'slate';
@@ -22,7 +22,7 @@ export class EditorToolbar extends React.Component {
   private readonly throttledUpdate = throttle(() => this.updatePosition(), 100);
 
   get selectionRange() {
-    const {selection} = this.context;
+    const { selection } = this.context;
 
     if (
       !selection ||
@@ -68,7 +68,7 @@ export class EditorToolbar extends React.Component {
   }
 
   render() {
-    if (!this.context || !this.visible) {
+    if (this.context == null || !this.visible) {
       return null;
     }
 
@@ -96,7 +96,7 @@ export class EditorToolbar extends React.Component {
 
   updatePosition() {
     const tooltip = this.ref.current;
-    if (!tooltip || !this.context) {
+    if (!tooltip || this.context == null) {
       return;
     }
 
@@ -121,13 +121,11 @@ export class EditorToolbar extends React.Component {
       }
 
       const containerBounds = this.scrollContainer?.getBoundingClientRect();
-      const containerTop = containerBounds?.top ?? 0;
-      const containerBottom = containerBounds?.bottom;
       const selectionBounds = selectionRange.getBoundingClientRect();
 
-      const outsideContainer =
-        selectionBounds.top < containerTop ||
-        (containerBottom && selectionBounds.top > containerBottom);
+      const outsideContainer = containerBounds != null
+        && (selectionBounds.top < containerBounds.top
+          || selectionBounds.top > containerBounds.bottom);
 
       if (outsideContainer) {
         return this.hide();

@@ -6,6 +6,7 @@ import { route } from 'laroute'
 import * as React from 'react'
 import { div, h2, a, img, span } from 'react-dom-factories'
 import { canModeratePosts } from 'utils/beatmapset-discussion-helper'
+import { trans } from 'utils/lang'
 import Post from "../beatmap-discussions/post"
 
 el = React.createElement
@@ -13,10 +14,10 @@ el = React.createElement
 export class Posts extends React.Component
   render: =>
     div className: 'page-extra',
-      h2 className: 'title title--page-extra', osu.trans('users.show.extra.posts.title_longer')
+      h2 className: 'title title--page-extra', trans('users.show.extra.posts.title_longer')
       div className: 'modding-profile-list',
         if @props.posts.length == 0
-          div className: 'modding-profile-list__empty', osu.trans('users.show.extra.none')
+          div className: 'modding-profile-list__empty', trans('users.show.extra.none')
         else
           [
             for post in @props.posts
@@ -44,7 +45,7 @@ export class Posts extends React.Component
                     div className: "beatmap-discussion-timestamp__icons-container",
                       span
                         className: 'fas fa-reply'
-                        title: osu.trans 'common.buttons.reply'
+                        title: trans 'common.buttons.reply'
 
                 div className: discussionClasses,
                   div className: "beatmap-discussion__discussion",
@@ -68,5 +69,5 @@ export class Posts extends React.Component
               key: 'show-more'
               className: 'modding-profile-list__show-more'
               href: route('users.modding.posts', {user: @props.user.id}),
-              osu.trans('users.show.extra.posts.show_more')
+              trans('users.show.extra.posts.show_more')
           ]

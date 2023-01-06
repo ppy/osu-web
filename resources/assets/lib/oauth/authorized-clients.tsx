@@ -5,6 +5,7 @@ import { observer } from 'mobx-react';
 import { AuthorizedClient } from 'oauth/authorized-client';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { trans } from 'utils/lang';
 
 const store = core.dataStore.clientStore;
 
@@ -28,6 +29,6 @@ export class AuthorizedClients extends React.Component {
   }
 
   renderEmpty() {
-    return <div className='oauth-clients__client'>{osu.trans('oauth.authorized_clients.none')}</div>;
+    return <div className='oauth-clients__client'>{trans('oauth.authorized_clients.none')}</div>;
   }
 }

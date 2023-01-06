@@ -7,6 +7,8 @@ import UserGroupJson from 'interfaces/user-group-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as React from 'react';
+import { groupColour } from 'utils/css';
+import { trans } from 'utils/lang';
 
 const bn = 'beatmap-discussion-user-card';
 
@@ -23,7 +25,7 @@ export class UserCard extends React.PureComponent<Props> {
 
   render() {
     return (
-      <div className={bn} style={osu.groupColour(this.props.group)}>
+      <div className={bn} style={groupColour(this.props.group)}>
         <div className={`${bn}__avatar`}>
           {this.props.user.is_deleted ? (
             <span className={`${bn}__user-link`}>
@@ -58,7 +60,7 @@ export class UserCard extends React.PureComponent<Props> {
               <a
                 className={`${bn}__user-modding-history-link`}
                 href={route('users.modding.index', { user: this.props.user.id })}
-                title={osu.trans('beatmap_discussion_posts.item.modding_history_link')}
+                title={trans('beatmap_discussion_posts.item.modding_history_link')}
               >
                 <i className='fas fa-align-left' />
               </a>

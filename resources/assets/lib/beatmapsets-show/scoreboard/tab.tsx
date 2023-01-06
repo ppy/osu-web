@@ -4,6 +4,7 @@
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 import Controller from './controller';
 import ScoreboardType from './scoreboard-type';
 
@@ -22,7 +23,7 @@ export default class ScoreboardTab extends React.Component<Props> {
         })}
         onClick={this.onClick}
       >
-        {osu.trans(`beatmapsets.show.scoreboard.${this.props.type}`)}
+        {trans(`beatmapsets.show.scoreboard.${this.props.type}`)}
       </div>
     );
   }

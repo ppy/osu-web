@@ -15,8 +15,12 @@ use App\Models\Forum\Post;
 use App\Models\NewsPost;
 use App\Models\UserDonation;
 use Auth;
+use Jenssegers\Agent\Agent;
 use Request;
 
+/**
+ * @group Home
+ */
 class HomeController extends Controller
 {
     public function __construct()
@@ -40,6 +44,9 @@ class HomeController extends Controller
         return $post->bodyHTML();
     }
 
+    /**
+     * @group Undocumented
+     */
     public function downloadQuotaCheck()
     {
         return [
@@ -49,7 +56,39 @@ class HomeController extends Controller
 
     public function getDownload()
     {
-        return ext_view('home.download');
+        static $lazerPlatformNames = [
+            'android' => 'Android 5 or later',
+            'ios' => 'iOS 10 or later',
+            'linux_x64' => 'Linux (x64)',
+            'macos_as' => 'macOS 10.15 or later (Apple Silicon)',
+            'windows_x64' => 'Windows 8.1 or later (x64)',
+        ];
+
+        $httpHeaders = [];
+        // format headers to what Agent is expecting
+        foreach (request()->headers->all() as $key => $values) {
+            $headerKey = 'HTTP_'.strtoupper(strtr($key, '-', '_'));
+            $httpHeaders[$headerKey] = $values[0];
+        }
+        $agent = new Agent($httpHeaders);
+
+        $platform = match (true) {
+            // Try matching most likely platform first
+            $agent->is('Windows') => 'windows_x64',
+            // iPadOS detection apparently doesn't work on newer version
+            // and detected as macOS instead.
+            ($agent->isiOS() || $agent->isiPadOS()) => $platform = 'ios',
+            // FIXME: Figure out a way to differentiate Intel and Apple Silicon.
+            $agent->is('OS X') => 'macos_as',
+            $agent->is('Linux') => 'linux_x64',
+            $agent->isAndroidOS() => 'android',
+            default => 'windows_x64',
+        };
+
+        return ext_view('home.download', [
+            'lazerUrl' => config("osu.urls.lazer_dl.{$platform}"),
+            'lazerPlatformName' => $lazerPlatformNames[$platform],
+        ]);
     }
 
     public function index()
@@ -136,8 +175,6 @@ class HomeController extends Controller
      * @queryParam mode Either `all`, `user`, or `wiki_page`. Default is `all`. Example: all
      * @queryParam query Search keyword. Example: hello
      * @queryParam page Search result page. Ignored for mode `all`. Example: 1
-     *
-     * @group Home
      */
     public function search()
     {

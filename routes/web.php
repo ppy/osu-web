@@ -275,6 +275,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('users/check-username-availability', 'UsersController@checkUsernameAvailability')->name('users.check-username-availability');
     Route::post('users/check-username-exists', 'UsersController@checkUsernameExists')->name('users.check-username-exists');
     Route::get('users/disabled', 'UsersController@disabled')->name('users.disabled');
+    Route::get('users/create', 'UsersController@create')->name('users.create');
 
     Route::group(['as' => 'users.', 'prefix' => 'users/{user}'], function () {
         Route::get('card', 'UsersController@card')->name('card');

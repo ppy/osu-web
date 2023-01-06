@@ -5,6 +5,7 @@
 
 use App\Libraries\LocaleMeta;
 use App\Models\LoginAttempt;
+use Illuminate\Support\Arr;
 use Illuminate\Support\HtmlString;
 
 function api_version(): int
@@ -17,6 +18,18 @@ function api_version(): int
     }
 
     return $version;
+}
+
+function array_reject_null(iterable $array): array
+{
+    $ret = [];
+    foreach ($array as $item) {
+        if ($item !== null) {
+            $ret[] = $item;
+        }
+    }
+
+    return $ret;
 }
 
 /*
@@ -168,7 +181,7 @@ function captcha_enabled()
     return config('captcha.sitekey') !== '' && config('captcha.secret') !== '';
 }
 
-function captcha_triggered()
+function captcha_login_triggered()
 {
     if (!captcha_enabled()) {
         return false;
@@ -485,7 +498,7 @@ function markdown_chat($input)
         $converter = new League\CommonMark\MarkdownConverter($environment);
     }
 
-    return $converter->convertToHtml($input)->getContent();
+    return $converter->convert($input)->getContent();
 }
 
 function markdown_plain($input)
@@ -499,7 +512,7 @@ function markdown_plain($input)
         ]);
     }
 
-    return $converter->convertToHtml($input)->getContent();
+    return $converter->convert($input)->getContent();
 }
 
 function max_offset($page, $limit)
@@ -576,15 +589,6 @@ function pagination($params, $defaults = null)
     $page = 1 + $offset / $limit;
 
     return compact('limit', 'page', 'offset');
-}
-
-function param_string_simple($value)
-{
-    if (is_array($value)) {
-        $value = implode(',', $value);
-    }
-
-    return presence($value);
 }
 
 function product_quantity_options($product, $selected = null)
@@ -681,20 +685,6 @@ function tag($element, $attributes = [], $content = null)
     }
 
     return '<'.$element.$attributeString.'>'.($content ?? '').'</'.$element.'>';
-}
-
-function to_sentence($array, $key = 'common.array_and')
-{
-    switch (count($array)) {
-        case 0:
-            return '';
-        case 1:
-            return (string) $array[0];
-        case 2:
-            return implode(osu_trans("{$key}.two_words_connector"), $array);
-        default:
-            return implode(osu_trans("{$key}.words_connector"), array_slice($array, 0, -1)).osu_trans("{$key}.last_word_connector").array_last($array);
-    }
 }
 
 // Handles case where crowdin fills in untranslated key with empty string.
@@ -907,7 +897,7 @@ function link_to_user($id, $username = null, $color = null, $classNames = null)
         $color ?? ($color = $id->user_colour);
         $id = $id->getKey();
     }
-    $id = e($id);
+    $id = presence(e($id));
     $username = e($username);
     $style = user_color_style($color, 'color');
 
@@ -1520,7 +1510,7 @@ function get_params($input, $namespace, $keys, $options = [])
 
     $params = [];
 
-    if (is_array($input) || ($input instanceof ArrayAccess)) {
+    if (Arr::accessible($input)) {
         $options['null_missing'] = $options['null_missing'] ?? false;
 
         foreach ($keys as $keyAndType) {
@@ -1607,7 +1597,11 @@ function parse_time_to_carbon($value)
     }
 
     if (is_numeric($value)) {
-        return Carbon\Carbon::createFromTimestamp($value);
+        try {
+            return Carbon\Carbon::createFromTimestamp($value);
+        } catch (Carbon\Exceptions\InvalidFormatException $_e) {
+            return;
+        }
     }
 
     if (is_string($value)) {
@@ -1627,9 +1621,9 @@ function parse_time_to_carbon($value)
     }
 }
 
-function format_duration_for_display($seconds)
+function format_duration_for_display(int $seconds)
 {
-    return floor($seconds / 60).':'.str_pad($seconds % 60, 2, '0', STR_PAD_LEFT);
+    return floor($seconds / 60).':'.str_pad((string) ($seconds % 60), 2, '0', STR_PAD_LEFT);
 }
 
 // Converts a standard image url to a retina one
@@ -1823,13 +1817,9 @@ function search_error_message(?Exception $e): ?string
 /**
  * Gets the path to a versioned resource.
  *
- * @param string $resource
- * @param string $manifest
- * @return HtmlString
- *
  * @throws Exception
  */
-function unmix(string $resource)
+function unmix(string $resource): HtmlString
 {
     return app('assets-manifest')->src($resource);
 }

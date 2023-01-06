@@ -10,6 +10,7 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
 import { group as groupBeatmaps } from 'utils/beatmap-helper';
+import { trans } from 'utils/lang';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 
 interface Props {
@@ -43,7 +44,7 @@ export default class LoveConfirmation extends React.Component<Props> {
     return (
       <div className='love-beatmap-modal u-fancy-scrollbar'>
         <div className='love-beatmap-modal__row love-beatmap-modal__row--title'>
-          {osu.trans('beatmaps.nominations.love_choose')}
+          {trans('beatmaps.nominations.love_choose')}
         </div>
 
         <div className='love-beatmap-modal__row love-beatmap-modal__row--content'>
@@ -56,7 +57,7 @@ export default class LoveConfirmation extends React.Component<Props> {
             onClick={this.props.onClose}
             type='button'
           >
-            {osu.trans('common.buttons.close')}
+            {trans('common.buttons.close')}
           </button>
 
           <button
@@ -65,7 +66,7 @@ export default class LoveConfirmation extends React.Component<Props> {
             onClick={this.handleSubmit}
             type='button'
           >
-            {osu.trans('common.buttons.submit')}
+            {trans('common.buttons.submit')}
           </button>
         </div>
       </div>
@@ -103,7 +104,7 @@ export default class LoveConfirmation extends React.Component<Props> {
   };
 
   private handleSubmit = () => {
-    if (!confirm(osu.trans('beatmaps.nominations.love_confirm'))) {
+    if (!confirm(trans('beatmaps.nominations.love_confirm'))) {
       return;
     }
 
@@ -148,7 +149,7 @@ export default class LoveConfirmation extends React.Component<Props> {
               />
               <span className='osu-switch-v2__content' />
             </div>
-            {osu.trans(`beatmaps.mode.${mode}`)}
+            {trans(`beatmaps.mode.${mode}`)}
           </label>
         </div>
         <ul className='love-beatmap-modal__diff-list'>

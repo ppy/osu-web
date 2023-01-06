@@ -30,17 +30,6 @@ declare module 'components/comments-manager' {
   class CommentsManager extends React.PureComponent<Props> {}
 }
 
-declare module 'components/modal' {
-  interface Props {
-    onClose?: () => void;
-    visible: boolean;
-  }
-
-  class Modal extends React.PureComponent<Props> {
-    static isOpen(): boolean;
-  }
-}
-
 declare module 'components/select-options' {
   interface Option<T = string> {
     id: T | null;

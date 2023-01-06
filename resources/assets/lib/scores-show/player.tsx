@@ -6,6 +6,7 @@ import { SoloScoreJsonForShow } from 'interfaces/solo-score-json';
 import * as moment from 'moment';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
+import { trans } from 'utils/lang';
 import { totalScore } from 'utils/score-helper';
 
 interface Props {
@@ -31,13 +32,13 @@ export default function Player(props: Props) {
 
       <div className='score-player__row score-player__row--player'>
         <span>
-          {osu.trans('scores.show.player.by')}
+          {trans('scores.show.player.by')}
         </span>
         <strong>
           {props.score.user.username}
         </strong>
         <span>
-          {osu.trans('scores.show.player.submitted_on')}
+          {trans('scores.show.player.submitted_on')}
         </span>
         <strong>
           {moment(props.score.ended_at).format('LLL')}
@@ -46,7 +47,7 @@ export default function Player(props: Props) {
 
       <div className='score-player__row score-player__row--rank'>
         <div className='score-player__rank score-player__rank--label'>
-          {osu.trans('scores.show.player.rank.global')}
+          {trans('scores.show.player.rank.global')}
         </div>
         <div className='score-player__rank score-player__rank--value'>
           {props.score.rank_global == null ? '-' : `#${formatNumber(props.score.rank_global)}`}

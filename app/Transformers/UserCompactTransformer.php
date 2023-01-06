@@ -72,6 +72,7 @@ class UserCompactTransformer extends TransformerAbstract
         'loved_beatmapset_count',
         'mapping_follower_count',
         'monthly_playcounts',
+        'nominated_beatmapset_count',
         'page',
         'pending_beatmapset_count',
         'previous_usernames',
@@ -300,6 +301,11 @@ class UserCompactTransformer extends TransformerAbstract
             $user->monthlyPlaycounts,
             new UserMonthlyPlaycountTransformer()
         );
+    }
+
+    public function includeNominatedBeatmapsetCount(User $user)
+    {
+        return $this->primitive($user->profileBeatmapsetsNominated()->count());
     }
 
     public function includePage(User $user)

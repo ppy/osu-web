@@ -57,15 +57,6 @@
       .at2x-fallback(--header-bg, '~@images/headers/contest.jpg');
     }
 
-    .@{_top}--download & {
-      .at2x-simple('~@images/headers/download.jpg');
-      opacity: 0.5;
-
-      @media @desktop {
-        opacity: 0.9;
-      }
-    }
-
     .@{_top}--forum & {
       .at2x-simple('~@images/headers/forum-topic-covers/forum-cover-category-osu.jpg');
     }
@@ -148,10 +139,6 @@
         .@{_top}--restricted & {
           height: (@nav2-height + 70px + 70px);
         }
-      }
-
-      .@{_top}--download & {
-        .large();
       }
 
       .@{_top}--supporter & {

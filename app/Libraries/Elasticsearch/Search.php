@@ -128,6 +128,7 @@ abstract class Search extends HasSearch implements Queryable
 
     public function getSortCursor(): ?array
     {
+        // FIXME: should cast cursor values to match sort.
         $requested = $this->params->size;
         $received = $this->response()->count();
         $total = $this->response()->total();

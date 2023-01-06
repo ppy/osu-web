@@ -2,7 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { pageChange } from 'utils/page-change'
-import { currentUrl } from 'utils/turbolinks'
+import { currentUrl, navigate } from 'utils/turbolinks'
 
 export default class ForumTopicReply
   constructor: ({ @bbcodePreview, @forum, @stickyFooter }) ->
@@ -109,7 +109,7 @@ export default class ForumTopicReply
       e.target.dataset.forceReload == '1'
 
     if needReload
-      osu.navigate $newPost.find('.js-post-url').attr('href')
+      navigate $newPost.find('.js-post-url').attr('href')
     else
       @forum.setTotalPosts(@forum.totalPosts() + 1)
       @forum.endPost().insertAdjacentHTML 'afterend', data

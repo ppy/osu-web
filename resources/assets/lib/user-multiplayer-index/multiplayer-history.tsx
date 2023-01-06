@@ -9,6 +9,7 @@ import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import Room from 'user-multiplayer-index/room';
+import { trans } from 'utils/lang';
 import MultiplayerHistoryStore from './multiplayer-history-store';
 
 interface Props {
@@ -22,7 +23,7 @@ export default class MultiplayerHistory extends React.Component<Props> {
 
   @computed
   private get hasMore() {
-    return this.props.store.cursor != null;
+    return this.props.store.cursorString != null;
   }
 
   constructor(props: Props) {
@@ -35,8 +36,8 @@ export default class MultiplayerHistory extends React.Component<Props> {
     if (this.props.store.rooms.length === 0) {
       return (
         <div className='user-multiplayer-history'>
-          {osu.trans('multiplayer.empty._', {
-            type_group: osu.trans(`multiplayer.empty.${this.props.store.typeGroup}`),
+          {trans('multiplayer.empty._', {
+            type_group: trans(`multiplayer.empty.${this.props.store.typeGroup}`),
           })}
         </div>
       );
@@ -62,7 +63,7 @@ export default class MultiplayerHistory extends React.Component<Props> {
 
     this.loading = true;
     const url = route('users.multiplayer.index', { typeGroup: this.props.store.typeGroup, user: this.props.user.id });
-    void $.getJSON(url, { cursor: this.props.store.cursor })
+    void $.getJSON(url, { cursor_string: this.props.store.cursorString })
       .done(action((response: UserMultiplayerHistoryJson) => {
         this.props.store.updateWithJson(response);
       })).always(action(() => {

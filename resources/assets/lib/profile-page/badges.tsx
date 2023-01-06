@@ -3,6 +3,8 @@
 
 import UserBadgeJson from 'interfaces/user-badge-json';
 import * as React from 'react';
+import { urlPresence } from 'utils/css';
+import { present } from 'utils/string';
 
 interface Props {
   badges: UserBadgeJson[];
@@ -20,11 +22,11 @@ export default class Badges extends React.PureComponent<Props> {
           const props = {
             className: 'profile-badges__badge',
             key: badge.image_url,
-            style: { backgroundImage: osu.urlPresence(badge.image_url) },
+            style: { backgroundImage: urlPresence(badge.image_url) },
             title: badge.description,
           };
 
-          return osu.present(badge.url) ? (
+          return present(badge.url) ? (
             <a href={badge.url} {...props} />
           ) : (
             <span {...props} />

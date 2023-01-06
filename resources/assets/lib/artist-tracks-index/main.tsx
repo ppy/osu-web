@@ -12,12 +12,14 @@ import * as React from 'react';
 import { onError } from 'utils/ajax';
 import { classWithModifiers } from 'utils/css';
 import { jsonClone } from 'utils/json';
+import { trans } from 'utils/lang';
+import { navigate } from 'utils/turbolinks';
 import SearchForm, { ArtistTrackSearch } from './search-form';
 import Sort from './sort-bar';
 
 export interface ArtistTracksIndex {
   artist_tracks: ArtistTrackWithArtistJson[];
-  cursor: unknown;
+  cursor_string: string | null;
   search: ArtistTrackSearch;
 }
 
@@ -29,12 +31,12 @@ interface Props {
 
 const headerLinks = [
   {
-    title: osu.trans('layout.header.artists.index'),
+    title: trans('layout.header.artists.index'),
     url: route('artists.index'),
   },
   {
     active: true,
-    title: osu.trans('artist.tracks.index._'),
+    title: trans('artist.tracks.index._'),
     url: route('artists.tracks.index'),
   },
 ];
@@ -71,7 +73,7 @@ export default class Main extends React.Component<Props> {
         <div className='osu-page osu-page--artist-track-search-result'>
           {this.data.artist_tracks.length === 0 ? (
             <div>
-              {osu.trans('artist.tracks.index.form.empty')}
+              {trans('artist.tracks.index.form.empty')}
             </div>
           ) : (
             <>
@@ -87,7 +89,7 @@ export default class Main extends React.Component<Props> {
 
                 <ShowMoreLink
                   callback={this.handleShowMore}
-                  hasMore={this.data.cursor != null}
+                  hasMore={this.data.cursor_string != null}
                   loading={this.loadingXhr != null}
                   modifiers='centre-10'
                 />
@@ -101,7 +103,7 @@ export default class Main extends React.Component<Props> {
 
   @action
   private readonly handleShowMore = () => {
-    this.loadingXhr = $.getJSON(route('artists.tracks.index'), { ...this.data.search, cursor: this.data.cursor });
+    this.loadingXhr = $.getJSON(route('artists.tracks.index'), { ...this.data.search, cursor_string: this.data.cursor_string });
 
     this.loadingXhr.done((newData) => runInAction(() => {
       const { container, ...prevProps } = this.props;
@@ -114,7 +116,7 @@ export default class Main extends React.Component<Props> {
   };
 
   private readonly onNewSearch = (url: string) => {
-    osu.navigate(url, true);
+    navigate(url, true);
     this.isNavigating = true;
   };
 }

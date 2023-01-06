@@ -31,6 +31,7 @@ return [
         'cart_problems_edit' => 'Klik her for at redigere den.',
         'declined' => 'Betalingen blev annulleret.',
         'delayed_shipping' => 'Vi bliver overvældet med ordrer lige nu! Du skal stadig være velkommen til at afgive din ordre, men forvent **yderligere 1-2 ugers forsinkelse** mens vi forsøger at indhente alle andre ordre.',
+        'hide_from_activity' => '',
         'old_cart' => 'Din indkøbskurv ser ud til at være forældet og er blevet genindlæst, prøv venligst igen.',
         'pay' => 'Betal med PayPal',
         'title_compact' => 'til kassen',
@@ -50,6 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Siden du betalte med en eCheck, vent venligst op til 10 ekstra dage for at betalingen kommer igennem med PayPal!',
+        'hide_from_activity' => '',
         'title_compact' => 'faktura',
 
         'status' => [
@@ -75,10 +77,15 @@ return [
         'shopify_expired' => 'Checkout linket for denne ordre er udløbet.',
 
         'item' => [
+            'quantity' => 'Kvantitet',
+
             'display_name' => [
                 'supporter_tag' => ':name for :username (:duration)',
             ],
-            'quantity' => 'Kvantitet',
+
+            'subtext' => [
+                'supporter_tag' => '',
+            ],
         ],
 
         'not_modifiable_exception' => [
@@ -120,6 +127,8 @@ return [
 
     'supporter_tag' => [
         'gift' => 'giv som gave',
+        'gift_message' => '',
+
         'require_login' => [
             '_' => 'Du skal være :link for at få et supporter tag!',
             'link_text' => 'logget ind',

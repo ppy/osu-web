@@ -31,6 +31,7 @@ use App\Transformers\UserReplaysWatchedCountTransformer;
 use App\Transformers\UserTransformer;
 use Auth;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use NoCaptcha;
 use Request;
 use Sentry\State\Scope;
 
@@ -53,6 +54,7 @@ class UsersController extends Controller
         'graveyardBeatmapsets' => 2,
         'guestBeatmapsets' => 6,
         'lovedBeatmapsets' => 6,
+        'nominatedBeatmapsets' => 6,
         'pendingBeatmapsets' => 6,
         'rankedBeatmapsets' => 6,
 
@@ -69,7 +71,7 @@ class UsersController extends Controller
 
     public function __construct()
     {
-        $this->middleware('guest', ['only' => 'store']);
+        $this->middleware('guest', ['only' => ['create', 'store']]);
         $this->middleware('auth', ['only' => [
             'checkUsernameAvailability',
             'checkUsernameExists',
@@ -111,6 +113,15 @@ class UsersController extends Controller
         }
 
         return json_item($user, 'UserCompact', UserCompactTransformer::CARD_INCLUDES);
+    }
+
+    public function create()
+    {
+        if (config('osu.user.registration_mode') !== 'web') {
+            return abort(403, osu_trans('users.store.from_client'));
+        }
+
+        return ext_view('users.create');
     }
 
     public function disabled()
@@ -155,6 +166,7 @@ class UsersController extends Controller
                     'graveyard' => $this->getExtraSection('graveyardBeatmapsets', $this->user->profileBeatmapsetCountByGroupedStatus('graveyard')),
                     'guest' => $this->getExtraSection('guestBeatmapsets', $this->user->profileBeatmapsetsGuest()->count()),
                     'loved' => $this->getExtraSection('lovedBeatmapsets', $this->user->profileBeatmapsetCountByGroupedStatus('loved')),
+                    'nominated' => $this->getExtraSection('nominatedBeatmapsets', $this->user->profileBeatmapsetsNominated()->count()),
                     'ranked' => $this->getExtraSection('rankedBeatmapsets', $this->user->profileBeatmapsetCountByGroupedStatus('ranked')),
                     'pending' => $this->getExtraSection('pendingBeatmapsets', $this->user->profileBeatmapsetCountByGroupedStatus('pending')),
                 ];
@@ -209,13 +221,49 @@ class UsersController extends Controller
             return error_popup('Banned IP', 403);
         }
 
-        // Prevents browser-based form submission.
-        // Javascript-side is prevented using CORS.
-        if (!starts_with(Request::header('User-Agent'), config('osu.client.user_agent'))) {
-            return error_popup('Wrong client', 403);
+        $rawParams = request()->all();
+        $params = get_params($rawParams, 'user', [
+            'password',
+            'password_confirmation',
+            'user_email',
+            'user_email_confirmation',
+            'username',
+        ], ['null_missing' => true]);
+
+        $webRegistration = config('osu.user.registration_mode') === 'web';
+        $fromClient = starts_with(Request::header('User-Agent'), config('osu.client.user_agent'));
+
+        if ($webRegistration) {
+            if ($fromClient) {
+                return response([
+                    'error' => osu_trans('users.store.from_web'),
+                    'url' => route('users.create'),
+                ], 422);
+            }
+
+            if (captcha_enabled()) {
+                static $captchaField = 'g-recaptcha-response';
+                $token = $rawParams[$captchaField] ?? null;
+
+                $validCaptcha = NoCaptcha::verifyResponse($token);
+
+                if (!$validCaptcha) {
+                    return abort(422, 'invalid captcha');
+                }
+
+                foreach (['user_email', 'password'] as $confirmableField) {
+                    $confirmationField = "{$confirmableField}_confirmation";
+                    if ($params[$confirmationField] !== $params[$confirmationField]) {
+                        return response([
+                            'form_error' => ['user' => [$confirmationField => osu_trans('model_validation.wrong_confirmation')]],
+                        ], 422);
+                    }
+                }
+            }
+        } elseif (!$fromClient) {
+            return error_popup(osu_trans('users.store.from_client'), 403);
         }
 
-        $params = get_params(request()->all(), 'user', ['username', 'user_email', 'password']);
         $countryCode = request_country();
         $country = Country::find($countryCode);
         $params['user_ip'] = $ip;
@@ -226,7 +274,7 @@ class UsersController extends Controller
         try {
             $registration->assertValid();
 
-            if (get_bool(request('check'))) {
+            if (get_bool($rawParams['check'] ?? null)) {
                 return response(null, 204);
             }
 
@@ -239,6 +287,8 @@ class UsersController extends Controller
             $registration->save();
             app(RateLimiter::class)->hit($throttleKey, 600);
 
+            $user = $registration->user();
+
             if ($country === null) {
                 app('sentry')->getClient()->captureMessage(
                     'User registered from unknown country: '.$countryCode,
@@ -246,11 +296,18 @@ class UsersController extends Controller
                     (new Scope())
                         ->setExtra('country', $countryCode)
                         ->setExtra('ip', $ip)
-                        ->setExtra('user_id', $registration->user()->getKey())
+                        ->setExtra('user_id', $user->getKey())
                 );
             }
 
-            return json_item($registration->user()->fresh(), new CurrentUserTransformer());
+            if ($webRegistration) {
+                $this->login($user);
+                session()->flash('popup', osu_trans('users.store.saved'));
+
+                return ujs_redirect(route('home'));
+            } else {
+                return json_item($user->fresh(), new CurrentUserTransformer());
+            }
         } catch (ValidationException $e) {
             return response(['form_error' => [
                 'user' => $registration->user()->validationErrors()->all(),
@@ -304,6 +361,7 @@ class UsersController extends Controller
             'guest' => 'guestBeatmapsets',
             'loved' => 'lovedBeatmapsets',
             'most_played' => 'beatmapPlaycounts',
+            'nominated' => 'nominatedBeatmapsets',
             'ranked' => 'rankedBeatmapsets',
             'pending' => 'pendingBeatmapsets',
 
@@ -470,7 +528,6 @@ class UsersController extends Controller
      * beatmap    | |
      * beatmapset | |
      * weight     | Only for type `best`.
-     * user       | |
      *
      * @urlParam user integer required Id of the user. Example: 1
      * @urlParam type string required Score type. Must be one of these: `best`, `firsts`, `recent`. Example: best
@@ -743,6 +800,12 @@ class UsersController extends Controller
                 $query = $this->user->profileBeatmapsetsLoved()
                     ->orderBy('approved_date', 'desc');
                 break;
+            case 'nominatedBeatmapsets':
+                $transformer = 'Beatmapset';
+                $includes = ['beatmaps'];
+                $query = $this->user->profileBeatmapsetsNominated()
+                    ->orderBy('approved_date', 'desc');
+                break;
             case 'rankedBeatmapsets':
                 $transformer = 'Beatmapset';
                 $includes = ['beatmaps'];
@@ -865,6 +928,7 @@ class UsersController extends Controller
             'graveyard_beatmapset_count',
             'guest_beatmapset_count',
             'loved_beatmapset_count',
+            'nominated_beatmapset_count',
             'pending_beatmapset_count',
             'ranked_beatmapset_count',
 

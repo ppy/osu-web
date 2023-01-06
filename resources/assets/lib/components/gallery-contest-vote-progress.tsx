@@ -3,6 +3,7 @@
 
 import { CircularProgress } from 'components/circular-progress';
 import * as React from 'react';
+import { trans } from 'utils/lang';
 
 type Props = Record<string, never>;
 
@@ -33,7 +34,7 @@ export default class GalleryContestVoteProgress extends React.PureComponent<Prop
           current={this.state.voteCount}
           max={this.state.maxVotes}
           theme='gallery-contest'
-          tooltip={osu.trans('contest.voting.progress._', {
+          tooltip={trans('contest.voting.progress._', {
             max: this.state.maxVotes,
             used: this.state.voteCount,
           })}

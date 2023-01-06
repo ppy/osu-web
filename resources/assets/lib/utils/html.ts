@@ -3,6 +3,11 @@
 
 import { padStart } from 'lodash';
 import { CSSProperties } from 'react';
+import { urlPresence } from './css';
+
+const byteSuffixes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+const kilo = 1000;
+const numberSuffixes = ['', 'k', 'm', 'b', 't'];
 
 export function bottomPage() {
   return bottomPageDistance() === 0;
@@ -33,13 +38,22 @@ export function cssVar2x(url?: string | null) {
   if (url == null) return;
 
   return {
-    '--bg': osu.urlPresence(url),
-    '--bg-2x': osu.urlPresence(make2x(url)),
+    '--bg': urlPresence(url),
+    '--bg-2x': urlPresence(make2x(url)),
   } as CSSProperties;
 }
 
 function padTimeComponent(time: number) {
   return padStart(time.toString(), 2, '0');
+}
+
+export function formatBytes(bytes: number, decimals = 2) {
+  if (bytes < kilo) {
+    return `${bytes} B`;
+  }
+
+  const i = Math.floor(Math.log(bytes) / Math.log(kilo));
+  return `${formatNumber(bytes / Math.pow(kilo, i), decimals)} ${byteSuffixes[i]}`;
 }
 
 export function formatDuration(valueSecond: number) {
@@ -74,9 +88,6 @@ export function formatNumber(num: number, precision?: number, options?: Intl.Num
 export function formatNumberSuffixed(num?: number, precision?: number, options?: Intl.NumberFormatOptions) {
   if (num == null) return;
 
-  const suffixes = ['', 'k', 'm', 'b', 't'];
-  const k = 1000;
-
   const format = (n: number) => {
     options ??= {};
 
@@ -88,11 +99,11 @@ export function formatNumberSuffixed(num?: number, precision?: number, options?:
     return n.toLocaleString('en', options);
   };
 
-  if (num < k) return format(num);
+  if (num < kilo) return format(num);
 
-  const i = Math.min(suffixes.length - 1, Math.floor(Math.log(num) / Math.log(k)));
+  const i = Math.min(numberSuffixes.length - 1, Math.floor(Math.log(num) / Math.log(kilo)));
 
-  return `${format(num / Math.pow(k, i))}${suffixes[i]}`;
+  return `${format(num / Math.pow(kilo, i))}${numberSuffixes[i]}`;
 }
 
 export function htmlElementOrNull(thing: unknown) {

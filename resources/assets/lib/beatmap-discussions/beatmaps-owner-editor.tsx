@@ -8,6 +8,7 @@ import { observer } from 'mobx-react';
 import { deletedUser, normaliseUsername } from 'models/user';
 import * as React from 'react';
 import { group as groupBeatmaps } from 'utils/beatmap-helper';
+import { trans } from 'utils/lang';
 import BeatmapOwnerEditor from './beatmap-owner-editor';
 
 interface Props {
@@ -48,11 +49,11 @@ export default class BeatmapsOwnerEditor extends React.Component<Props> {
           {/* header and its grid placeholder */}
           <div />
           <strong>
-            {osu.trans('beatmap_discussions.owner_editor.version')}
+            {trans('beatmap_discussions.owner_editor.version')}
           </strong>
           <div />
           <strong>
-            {osu.trans('beatmap_discussions.owner_editor.user')}
+            {trans('beatmap_discussions.owner_editor.user')}
           </strong>
           <div />
 
@@ -75,7 +76,7 @@ export default class BeatmapsOwnerEditor extends React.Component<Props> {
             onClick={this.props.onClose}
             type='button'
           >
-            {osu.trans('common.buttons.close')}
+            {trans('common.buttons.close')}
           </button>
         </div>
       </div>

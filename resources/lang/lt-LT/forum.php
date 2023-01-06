@@ -4,23 +4,23 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'pinned_topics' => '',
+    'pinned_topics' => 'Prisegtos Temos',
     'slogan' => "",
     'subforums' => 'Subforumai',
     'title' => 'Forumas',
 
     'covers' => [
-        'edit' => '',
+        'edit' => 'Redaguoti viršelį',
 
         'create' => [
             '_' => 'Išrinkti viršelio paveikslėlį',
             'button' => 'Įkelti paveiksliuką',
-            'info' => '',
+            'info' => 'Viršelio dydis turėtu būti :dimensions. Jūs taip pat galite čia įmesti paveikslėlį įkėlimui.',
         ],
 
         'destroy' => [
             '_' => 'Ištrink viršelio paveikslėlį',
-            'confirm' => '',
+            'confirm' => 'Ar tikrai norite pašalinti viršelį?',
         ],
     ],
 
@@ -39,7 +39,7 @@ return [
     'mark_as_read' => [
         'forum' => 'Pažymėti foruma kaip skaitytą',
         'forums' => 'Pažymėti forumus kaip skaitytus',
-        'busy' => '',
+        'busy' => 'Pažymima kaip skaityta...',
     ],
 
     'post' => [
@@ -53,7 +53,7 @@ return [
             'destroy' => 'Ištrinti pranešimą',
             'edit' => 'Redaguoti postą',
             'report' => 'Pranešti apie postą',
-            'restore' => '',
+            'restore' => 'Gražinti Publikaciją',
         ],
 
         'create' => [
@@ -63,33 +63,33 @@ return [
         ],
 
         'info' => [
-            'post_count' => '',
+            'post_count' => ':count_delimited publikacija|:count_delimited publikacijos(-ų)',
             'topic_starter' => 'Temos Pradininkas',
         ],
     ],
 
     'search' => [
         'go_to_post' => 'Eiti į postą',
-        'post_number_input' => '',
-        'total_posts' => '',
+        'post_number_input' => 'įveskite publikacijos numerį',
+        'total_posts' => ':posts_count iš viso publikacijų',
     ],
 
     'topic' => [
-        'confirm_destroy' => '',
-        'confirm_restore' => '',
+        'confirm_destroy' => 'Tikrai ištrinti temą?',
+        'confirm_restore' => 'Tikrai gražinti temą?',
         'deleted' => 'ištrintos temos',
         'go_to_latest' => 'peržiūrėti vėliausius postus',
         'has_replied' => 'Jūs atsakyte į šią temą',
-        'in_forum' => '',
-        'latest_post' => '',
+        'in_forum' => 'tarp :forum',
+        'latest_post' => ':when iš :user',
         'latest_reply_by' => 'vėliausia atsakyma pateikė :user',
         'new_topic' => 'Nauja tema',
-        'new_topic_login' => '',
-        'post_reply' => '',
-        'reply_box_placeholder' => '',
-        'reply_title_prefix' => '',
-        'started_by' => '',
-        'started_by_verbose' => '',
+        'new_topic_login' => 'Naujos temos publikavimui reikia prisijungti',
+        'post_reply' => 'Publikuoti',
+        'reply_box_placeholder' => 'Rašykite čia norėdami atsakyti',
+        'reply_title_prefix' => 'Re',
+        'started_by' => 'iš :user',
+        'started_by_verbose' => 'pradėjo :user',
 
         'actions' => [
             'destroy' => 'Ištrinti temą',
@@ -184,7 +184,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => '',
+            'title_compact' => 'forumo temų stebėjimo sąrašas',
 
             'box' => [
                 'total' => '',
