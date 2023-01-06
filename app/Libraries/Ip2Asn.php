@@ -28,35 +28,29 @@ class Ip2Asn
 
         while ($start <= $end) {
             $current = (int) (($start + $end) / 2);
-            $compareRow = $this->db[$current];
-            $compare = $compareRow[0];
+            [$asn, $compare] = explode(':', $this->db[$current], 2);
             if ($compare === $search) {
-                return $compareRow[1];
+                return $asn;
             } elseif ($compare < $search) {
                 $start = $current + 1;
             } elseif ($compare > $search) {
-                $lastInnerSearchAsn = $compareRow[1];
+                $lastInnerSearchAsn = $asn;
                 $end = $current - 1;
             }
         }
 
-        return $lastInnerSearchAsn ?? $compareRow[1];
+        return $lastInnerSearchAsn ?? $asn;
     }
 
     private function parseFileForDb(): array
     {
         $rows = explode("\n", file_get_contents(database_path('ip2asn-combined.tsv')));
+        array_pop($rows); // remove blank string from end of file newline
 
         $ret = [];
         foreach ($rows as $row) {
-            if ($row === '') {
-                continue;
-            }
             $data = explode("\t", $row, 4);
-            $ret[] = [
-                inet_pton($this->prefixIPv4($data[1])),
-                $data[2],
-            ];
+            $ret[] = implode(':', [$data[2], inet_pton($this->prefixIPv4($data[1]))]);
         }
 
         return $ret;
