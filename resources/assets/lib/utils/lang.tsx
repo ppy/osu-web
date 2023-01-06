@@ -2,11 +2,34 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import Lang from 'lang.js';
+import * as React from 'react';
 import { formatNumber } from 'utils/html';
 import { present } from 'utils/string';
 
 type Replacement = string | number;
-type Replacements = Partial<Record<string, Replacement>>;
+export type Replacements = Partial<Record<string, Replacement>>;
+
+export function joinComponents(array: React.ReactElement[], key = 'common.array_and') {
+  const nodes: React.ReactFragment[] = [];
+
+  if (array.length > 0) {
+    nodes.push(array[0]);
+
+    if (array.length > 1) {
+      const lastIndex = array.length - 1;
+      const lastConnector = lastIndex === 1 ? trans(`${key}.two_words_connector`) : trans(`${key}.last_word_connector`);
+      const connector = trans(`${key}.words_connector`);
+
+      for (let i = 1; i < lastIndex; i++) {
+        nodes.push(<React.Fragment key={array[i].key}>{connector}{array[i]}</React.Fragment>);
+      }
+
+      nodes.push(<React.Fragment key={array[lastIndex].key}>{lastConnector}{array[lastIndex]}</React.Fragment>);
+    }
+  }
+
+  return <>{nodes}</>;
+}
 
 export function trans(key: string, replacements: Replacements = {}, locale?: string) {
   if (!transExists(key, locale)) {
@@ -40,7 +63,7 @@ export function transChoice(key: string, count: number, replacements: Replacemen
   replacements.count_delimited = formatNumber(count, undefined, undefined, locale);
   const translated = window.Lang.choice(key, count, replacements, locale);
 
-  if (!isFallbackLocale && translated != null) {
+  if (!isFallbackLocale && translated == null) {
     delete replacements.count;
     return transChoice(key, count, replacements, fallbackLocale);
   }

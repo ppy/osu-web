@@ -5,7 +5,6 @@ import { NotificationStackJson } from 'interfaces/notification-json';
 import { action, computed, makeObservable, observable } from 'mobx';
 import Notification from 'models/notification';
 import { Name } from 'models/notification-type';
-import { categoryFromName } from 'notification-maps/category';
 import { NotificationContextData } from 'notifications-context';
 import { NotificationCursor } from 'notifications/notification-cursor';
 import NotificationDeletable from 'notifications/notification-deletable';
@@ -88,7 +87,7 @@ export default class NotificationStack implements NotificationReadable, Notifica
   }
 
   static fromJson(json: NotificationStackJson, resolver: NotificationResolver) {
-    const obj = new NotificationStack(json.object_id, json.object_type, categoryFromName(json.name), resolver);
+    const obj = new NotificationStack(json.object_id, json.object_type, json.category, resolver);
     obj.updateWithJson(json);
     return obj;
   }
@@ -156,5 +155,5 @@ export default class NotificationStack implements NotificationReadable, Notifica
 }
 
 export function idFromJson(json: NotificationStackJson) {
-  return `${json.object_type}-${json.object_id}-${categoryFromName(json.name)}`;
+  return `${json.object_type}-${json.object_id}-${json.category}`;
 }

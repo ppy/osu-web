@@ -78,9 +78,9 @@ return [
         'nomination_reset' => 'Nominacijų atstatymas',
         'nomination_reset_received' => '',
         'nsfw_toggle' => '',
-        'offset_edit' => '',
-        'qualify' => '',
+        'offset_edit' => 'Poslinkio redagavimas',
+        'qualify' => 'Kvalifikacija',
         'rank' => 'Reitingas',
-        'remove_from_loved' => '',
+        'remove_from_loved' => 'Pašalinimas iš mylimų',
     ],
 ];

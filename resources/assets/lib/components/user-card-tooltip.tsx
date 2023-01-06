@@ -120,7 +120,7 @@ function onMouseOver(event: JQuery.TriggeredEvent<Document, unknown, HTMLElement
     // wrong userId, destroy current tooltip
     const qtip = $(el).qtip('api');
     if (qtip != null) {
-      const tooltipElement = qtip.tooltip as HTMLElement | undefined;
+      const tooltipElement = qtip.tooltip;
       if (tooltipElement != null) {
         const container = tooltipElement.querySelector('.js-react--user-card-tooltip');
         if (container != null) {

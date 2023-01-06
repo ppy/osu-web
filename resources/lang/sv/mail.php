@@ -67,6 +67,7 @@ return [
         'duration' => 'Tack vare dem har du tillgång till osu!direct och andra osu!supporter-fördelar för de kommande :duration.',
         'features' => 'Du kan läsa mer om dessa funktioner här:',
         'gifted' => 'Någon har precis gett dig en osu!supporter-tagg!',
+        'gift_message' => '',
         'subject' => 'Du har fått en osu!supporter-tagg!',
     ],
 

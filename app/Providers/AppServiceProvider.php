@@ -12,6 +12,7 @@ use App\Libraries\ChatFilters;
 use App\Libraries\CleanHTML;
 use App\Libraries\Groups;
 use App\Libraries\LayoutCache;
+use App\Libraries\LocalCacheManager;
 use App\Libraries\Mods;
 use App\Libraries\MorphMap;
 use App\Libraries\OsuAuthorize;
@@ -22,6 +23,7 @@ use App\Libraries\RouteSection;
 use App\Libraries\User\ScorePins;
 use Datadog;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Http\Request;
 use Illuminate\Queue\Events\JobProcessed;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Octane\Contracts\DispatchesTasks;
@@ -33,13 +35,17 @@ use Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
+    const LOCAL_CACHE_SINGLETONS = [
+        'chat-filters' => ChatFilters::class,
+        'groups' => Groups::class,
+        'layout-cache' => LayoutCache::class,
+    ];
+
     const SINGLETONS = [
         'OsuAuthorize' => OsuAuthorize::class,
         'assets-manifest' => AssetsManifest::class,
-        'chat-filters' => ChatFilters::class,
         'clean-html' => CleanHTML::class,
-        'groups' => Groups::class,
-        'layout-cache' => LayoutCache::class,
+        'local-cache-manager' => LocalCacheManager::class,
         'mods' => Mods::class,
         'route-section' => RouteSection::class,
         'score-pins' => ScorePins::class,
@@ -60,8 +66,7 @@ class AppServiceProvider extends ServiceProvider
 
         Queue::after(function (JobProcessed $event) {
             app('OsuAuthorize')->resetCache();
-            app('groups')->incrementResetTicker();
-            app('chat-filters')->incrementResetTicker();
+            app('local-cache-manager')->incrementResetTicker();
 
             Datadog::increment(
                 config('datadog-helper.prefix_web').'.queue.run',
@@ -76,6 +81,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->make('translator')->setSelector(new OsuMessageSelector());
 
         app('url')->forceScheme(substr(config('app.url'), 0, 5) === 'https' ? 'https' : 'http');
+
+        Request::setTrustedProxies(config('trustedproxy.proxies'), config('trustedproxy.headers'));
     }
 
     /**
@@ -94,8 +101,12 @@ class AppServiceProvider extends ServiceProvider
             'App\Services\Registrar'
         );
 
-        foreach (static::SINGLETONS as $name => $class) {
+        foreach (array_merge(static::SINGLETONS, static::LOCAL_CACHE_SINGLETONS) as $name => $class) {
             $this->app->singleton($name, fn () => new $class());
+        }
+        $localCacheManager = app('local-cache-manager');
+        foreach (static::LOCAL_CACHE_SINGLETONS as $name => $_class) {
+            $localCacheManager->registerSingleton(app($name));
         }
 
         $this->app->singleton('hash', function ($app) {

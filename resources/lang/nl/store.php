@@ -31,6 +31,7 @@ return [
         'cart_problems_edit' => 'Klik hier om het te wijzigen.',
         'declined' => 'De betaling is geannuleerd.',
         'delayed_shipping' => 'We zijn momenteel overweldigd met bestellingen! Je kunt nog steeds bestellingen plaatsen maar verwacht dan **een vertraging van 1-2 weken** terwijl wij de bestaande bestellingen verwerken.',
+        'hide_from_activity' => '',
         'old_cart' => 'Je winkelwagen lijkt verouderd te zijn en wordt herladen, probeer het opnieuw.',
         'pay' => 'Afrekenen met Paypal',
         'title_compact' => 'afrekenen',
@@ -50,6 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Aangezien uw betaling een eCheck was, Wacht maximaal 10 dagen extra om de betaling veilig via PayPal te laten gaan!',
+        'hide_from_activity' => '',
         'title_compact' => 'factuur',
 
         'status' => [
@@ -75,10 +77,15 @@ return [
         'shopify_expired' => 'De checkout link voor deze bestelling is verlopen.',
 
         'item' => [
+            'quantity' => 'Aantal',
+
             'display_name' => [
                 'supporter_tag' => ':name voor :username (:duration)',
             ],
-            'quantity' => 'Aantal',
+
+            'subtext' => [
+                'supporter_tag' => '',
+            ],
         ],
 
         'not_modifiable_exception' => [
@@ -120,6 +127,8 @@ return [
 
     'supporter_tag' => [
         'gift' => 'schenk aan speler',
+        'gift_message' => '',
+
         'require_login' => [
             '_' => 'Je moet :link zijn om een osu!supporter tag te krijgen!',
             'link_text' => 'ingelogd',

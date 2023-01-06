@@ -68,7 +68,7 @@ export function canModeratePosts(user?: UserJson) {
   user ??= core.currentUser;
   if (user == null) return false;
 
-  return user.is_admin || user.is_moderator;
+  return (user.is_admin || user.is_moderator) ?? false;
 }
 
 export function defaultMode(beatmapId?: string | null) {

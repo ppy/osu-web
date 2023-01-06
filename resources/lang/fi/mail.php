@@ -67,6 +67,7 @@ return [
         'duration' => '',
         'features' => '',
         'gifted' => 'Joku on juuri antanut sinulle osu! -tukijan!',
+        'gift_message' => '',
         'subject' => 'Sinulle on lahjoitettu osu!tukijatagi!',
     ],
 

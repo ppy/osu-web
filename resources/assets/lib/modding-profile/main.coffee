@@ -176,10 +176,12 @@ export class Main extends React.PureComponent
                   'data-page-id': 'main'
                   el Cover, user: @props.user, currentMode: @props.user.playmode, coverUrl: @props.user.cover.url
                   if !@props.user.is_bot
-                    div className: 'profile-detail',
+                    el React.Fragment, null,
                       el ProfileTournamentBanner, banner: @state.user.active_tournament_banner
-                      el Badges, badges: @state.user.badges
-                      el Stats, user: @props.user
+
+                      div className: 'profile-detail',
+                        el Badges, badges: @state.user.badges
+                        el Stats, user: @props.user
 
                   el DetailBar, user: @props.user
 

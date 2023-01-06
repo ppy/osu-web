@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { route } from 'laroute'
+import { fadeToggle } from 'utils/fade'
 
 export default class StoreSupporterTag
   RESOLUTION: 8
@@ -20,6 +21,7 @@ export default class StoreSupporterTag
     @priceElement = @el.querySelector('.js-price')
     @durationElement = @el.querySelector('.js-duration')
     @discountElement = @el.querySelector('.js-discount')
+    @messageInput = @el.querySelector('.js-store-supporter-tag-message')
     @slider = @el.querySelector('.js-slider')
     @sliderPresets = @el.querySelectorAll('.js-slider-preset')
     @targetIdElement = @el.querySelector('input[name="item[extra_data][target_id]"]')
@@ -141,6 +143,8 @@ export default class StoreSupporterTag
 
   updateUserInteraction: =>
     enabled = @user?.id? && Number.isFinite(@user.id) && @user.id > 0
+    messageInputVisible = enabled && @user?.id != window.currentUser.id
+    fadeToggle(@messageInput, messageInputVisible)
 
     StoreCart.setEnabled(enabled)
     # TODO: need to elevate this element when switching over to new store design.

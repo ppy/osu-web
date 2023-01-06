@@ -144,7 +144,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     }
 
     const qtip = $(this.tooltipEl).qtip('api');
-    if (qtip) {
+    if (qtip != null) {
       qtip.destroy();
       this.tooltipEl = undefined;
     }

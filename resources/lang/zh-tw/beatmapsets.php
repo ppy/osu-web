@@ -124,6 +124,7 @@ return [
             'genre' => '曲風',
             'language' => '語言',
             'no_scores' => '資料還在計算中...',
+            'nominators' => '',
             'nsfw' => '成人內容',
             'offset' => '線上偏移調整',
             'points-of-failure' => '失敗位置',
