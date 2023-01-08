@@ -10,15 +10,12 @@ use Tests\TestCase;
 
 class Ip2AsnTest extends TestCase
 {
-    private static Ip2Asn $instance;
     /**
      * @dataProvider dataProviderForLookup
      */
     public function testLookup(string $ip, string $asn)
     {
-        static::$instance ??= new Ip2Asn();
-
-        $this->assertSame(static::$instance->lookup($ip), $asn);
+        $this->assertSame((new Ip2Asn())->lookup($ip), $asn);
     }
 
     public function dataProviderForLookup(): array
