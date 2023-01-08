@@ -18,10 +18,11 @@ class Ip2Asn
     public function __construct()
     {
         $this->dbFh = fopen(Ip2AsnUpdater::getDbPath(), 'r');
-        $this->index = file_get_contents(Ip2AsnUpdater::getIndexPath());
-        if ($this->dbFh === false || $this->index === false) {
-            throw new Exception('failed opening ip2asn database');
+        $index = file_get_contents(Ip2AsnUpdater::getIndexPath());
+        if ($this->dbFh === false || $index === false) {
+            throw new Exception('failed opening ip2asn database or index');
         }
+        $this->index = $index;
 
         // 4 bytes per entry (int32)
         $this->count = strlen($this->index) / 4;
