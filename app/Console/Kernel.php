@@ -25,6 +25,8 @@ class Kernel extends ConsoleKernel
         Commands\EsIndexScoresSetSchema::class,
         Commands\EsIndexWiki::class,
 
+        Commands\Ip2AsnUpdate::class,
+
         // modding stuff
         Commands\ModdingRankCommand::class,
 

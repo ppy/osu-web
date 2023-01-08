@@ -71,4 +71,4 @@ else
   echo "OSU_SKIP_ASSET_BUILD set, skipping javascript asset build."
 fi
 
-./bin/update_ip2asn.sh
+php artisan ip2asn:update

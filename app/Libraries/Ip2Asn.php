@@ -11,22 +11,26 @@ use Exception;
 
 class Ip2Asn
 {
-    private array $db;
-    private $fh;
+    private $dbFh;
+    private string $index;
+    private int $count;
 
     public function __construct()
     {
-        $this->fh = fopen(database_path('ip2asn-combined.tsv'), 'r');
-        if ($this->fh === false) {
+        $this->dbFh = fopen(Ip2AsnUpdater::getDbPath(), 'r');
+        $this->index = file_get_contents(Ip2AsnUpdater::getIndexPath());
+        if ($this->dbFh === false || $this->index === false) {
             throw new Exception('failed opening ip2asn database');
         }
-        $this->db = $this->parseFileForDb();
+
+        // 4 bytes per entry (int32)
+        $this->count = strlen($this->index) / 4;
     }
 
     public function lookup(string $ip): string
     {
         $start = 0;
-        $end = count($this->db) - 1;
+        $end = $this->count - 1;
         $search = inet_pton($this->prefixIPv4($ip));
 
         if ($search === false) {
@@ -35,9 +39,9 @@ class Ip2Asn
 
         while ($start <= $end) {
             $current = (int) (($start + $end) / 2);
-            $loc = $this->db[$current];
-            fseek($this->fh, $loc);
-            $row = fgets($this->fh);
+            $loc = unpack('l', substr($this->index, $current * 4, 4))[1];
+            fseek($this->dbFh, $loc);
+            $row = fgets($this->dbFh);
             $data = explode("\t", $row, 4);
             $compare = inet_pton($this->prefixIPv4($data[1]));
             $asn = $data[2];
@@ -52,20 +56,6 @@ class Ip2Asn
         }
 
         return $lastInnerSearchAsn ?? $asn;
-    }
-
-    private function parseFileForDb(): array
-    {
-        fseek($this->fh, 0);
-
-        $ret = [ftell($this->fh)];
-        while (($row = fgets($this->fh)) !== false) {
-            if ($row !== '') {
-                $ret[] = ftell($this->fh);
-            }
-        }
-
-        return $ret;
     }
 
     /**
