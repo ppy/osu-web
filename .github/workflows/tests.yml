@@ -96,7 +96,7 @@ jobs:
           -e ES_HOST=http://elasticsearch:9200
           -e REDIS_HOST=redis
           -e SCHEMA=test
-          --entrypoint sh pppy/osu-elastic-indexer -c "exec dotnet osu.ElasticIndexer.dll queue --force-version --wait"
+          --entrypoint sh pppy/osu-elastic-indexer -c "exec dotnet osu.ElasticIndexer.dll queue watch --force-version --wait"
 
       osu-notification-server:
         env:
