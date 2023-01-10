@@ -19,8 +19,6 @@ class Ip2AsnUpdater
         return database_path('ip2asn.idx');
     }
 
-    private string $tsv;
-
     public function run(): void
     {
         $dbPath = static::getDbPath();
