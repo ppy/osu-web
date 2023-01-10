@@ -218,7 +218,7 @@ return [
                     'title' => 'Beatmaps adorados',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => 'Beatmaps classificados nomeados',
                 ],
                 'pending' => [
                     'title' => 'Beatmaps pendentes',

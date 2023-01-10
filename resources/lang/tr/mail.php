@@ -67,6 +67,7 @@ return [
         'duration' => 'Onun sayesinde, sonraki :duration boyunca osu!direct\'e ve diğer osu!supporter ayrıcalıklarına sahip olacaksın.',
         'features' => 'Bu avantajlar hakkında daha fazla detaylı bilgiye buradan ulaşabilirsiniz:',
         'gifted' => 'Birisi size az önce bir osu!supporter etiketi hediye etti!',
+        'gift_message' => '',
         'subject' => 'Size bir osu! Destekçisi etiketi verildi!',
     ],
 

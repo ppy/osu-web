@@ -218,7 +218,7 @@ return [
                     'title' => 'Lovedされたビートマップ',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => '推薦されたランクビートマップ',
                 ],
                 'pending' => [
                     'title' => 'Pendingビートマップ',

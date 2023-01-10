@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => 'Неважећи :attribute наведено.',
+    'invalid' => 'Неважећи :attribute наведен.',
     'not_negative' => ':attribute не може бити негативан.',
     'required' => ':attribute је обавезан.',
     'too_long' => ':attribute је премашио максималну дужину - може имати највише :limit знакова.',
@@ -12,74 +12,74 @@ return [
 ',
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => '',
-        'beatmapset_no_hype' => "",
-        'hype_requires_null_beatmap' => '',
-        'invalid_beatmap_id' => '',
-        'invalid_beatmapset_id' => '',
+        'beatmap_missing' => 'Временска ознака је присутна али тежина мапе није дефинисана.',
+        'beatmapset_no_hype' => "Ова мапа не може бити \"хајпована\".",
+        'hype_requires_null_beatmap' => '"Хајповање" мора бити одрађено у Генералној (све тежине) секцији.',
+        'invalid_beatmap_id' => 'Неважећа тежина је наведена.',
+        'invalid_beatmapset_id' => 'Неисправна мапа је наведена.',
         'locked' => 'Дискусија је закључана.',
 
         'attributes' => [
-            'message_type' => '',
+            'message_type' => 'Врсте порука',
             'timestamp' => 'Временска ознака',
         ],
 
         'hype' => [
             'discussion_locked' => "Ова мапа је тренутно закључана за дискусију и не може бити хајпована",
             'guest' => 'Морате бити пријављени да би сте могли да хајпујете.',
-            'hyped' => '',
-            'limit_exceeded' => '',
-            'not_hypeable' => '',
-            'owner' => '',
+            'hyped' => 'Већ сте "хајповали" ову мапу.',
+            'limit_exceeded' => 'Искористили сте све Ваше "хајпове".',
+            'not_hypeable' => 'Ова мапа не може бити "хајпована"',
+            'owner' => 'Не можете "хајповати" Вашу мапу.',
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => '',
-            'negative' => "",
+            'exceeds_beatmapset_length' => 'Наведена временска ознака је изван дужине мапе.',
+            'negative' => "Временска ознака не може бити негативна вредност.",
         ],
     ],
 
     'beatmapset_discussion_post' => [
         'discussion_locked' => 'Дискусија је закључана.',
-        'first_post' => '',
+        'first_post' => 'Не можете обрисати почетну објаву.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Порука',
         ],
     ],
 
     'comment' => [
-        'deleted_parent' => '',
-        'top_only' => '',
+        'deleted_parent' => 'Одговарање на обрисан коментар није дозвољено.',
+        'top_only' => 'Одговарање на прикачен коментар није дозвољено.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Порука',
         ],
     ],
 
     'follow' => [
-        'invalid' => '',
+        'invalid' => 'Неважећи :attribute наведен.',
     ],
 
     'forum' => [
         'feature_vote' => [
-            'not_feature_topic' => '',
-            'not_enough_feature_votes' => '',
+            'not_feature_topic' => 'Можете гласати само за нове додатке.',
+            'not_enough_feature_votes' => 'Немате довољно гласова.',
         ],
 
         'poll_vote' => [
-            'invalid' => '',
+            'invalid' => 'Изабрали сте неисправну опцију.',
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => '',
-            'beatmapset_post_no_edit' => '',
-            'first_post_no_delete' => '',
-            'missing_topic' => '',
-            'only_quote' => '',
+            'beatmapset_post_no_delete' => 'Брисање објаве која садржи метаподатке мапе није дозвољено.',
+            'beatmapset_post_no_edit' => 'Измена објаве која садржи метаподатке мапе није дозвољено.',
+            'first_post_no_delete' => 'Не можете обрисати почетну објаву',
+            'missing_topic' => 'Објава не садржи тему',
+            'only_quote' => 'Ваш одговор садржи само цитат.',
 
             'attributes' => [
-                'post_text' => '',
+                'post_text' => 'Тело објаве',
             ],
         ],
 
@@ -90,7 +90,7 @@ return [
         ],
 
         'topic_poll' => [
-            'duplicate_options' => '',
+            'duplicate_options' => 'Опција дуплирања није дозвољена.',
             'grace_period_expired' => '',
             'hiding_results_forever' => '',
             'invalid_max_options' => '',

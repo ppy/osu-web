@@ -218,7 +218,7 @@ return [
                     'title' => 'Loved 비트맵',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => '추천된 Ranked 비트맵',
                 ],
                 'pending' => [
                     'title' => '대기 중인 비트맵',

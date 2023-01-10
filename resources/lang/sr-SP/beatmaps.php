@@ -167,7 +167,7 @@ return [
         'remaining' => 'Имате још :remaining "хајпова".',
         'required_text' => '"Хајп" :current/:required',
         'section_title' => '"Хајп" Воз',
-        'title' => 'Хајп',
+        'title' => '"Хајп"',
     ],
 
     'feedback' => [

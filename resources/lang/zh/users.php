@@ -23,11 +23,11 @@ return [
         ],
 
         'votes_received' => [
-            'title_most' => '得赞最多（最近三个月）',
+            'title_most' => '最多获赞（最近三个月）',
         ],
 
         'votes_made' => [
-            'title_most' => '赞数最多（最近三个月）',
+            'title_most' => '最多点赞（最近三个月）',
         ],
     ],
 
@@ -218,7 +218,7 @@ return [
                     'title' => '社区喜爱 (Loved) 谱面',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => '提名过的上架 (Ranked) 谱面',
                 ],
                 'pending' => [
                     'title' => 'Pending 谱面',
@@ -246,7 +246,7 @@ return [
                 ],
                 'most_played' => [
                     'count' => '游玩次数',
-                    'title' => '最多游玩的谱面',
+                    'title' => '玩得最多的谱面',
                 ],
                 'recent_plays' => [
                     'accuracy' => '准确率：:percentage',
@@ -410,7 +410,7 @@ return [
         ],
         'post_count' => [
             '_' => '发表了 :link',
-            'count' => ':count 篇帖子',
+            'count' => ':count_delimited 篇帖子|:count_delimited 篇帖子',
         ],
         'rank' => [
             'country' => ':mode 模式的地区排名',
@@ -435,7 +435,7 @@ return [
             // modding stats
             'graveyard_beatmapset_count' => '坟场里的谱面',
             'loved_beatmapset_count' => '社区喜爱 (Loved) 谱面',
-            'pending_beatmapset_count' => 'Pending 的谱面',
+            'pending_beatmapset_count' => '待定 (Pending) 谱面',
             'ranked_beatmapset_count' => '上架 (Ranked) 谱面',
         ],
     ],

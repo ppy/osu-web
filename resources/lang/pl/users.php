@@ -218,7 +218,7 @@ return [
                     'title' => 'Ulubione beatmapy społeczności',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => 'Nominowane beatmapy do sekcji rankingowej',
                 ],
                 'pending' => [
                     'title' => 'Oczekujące beatmapy',

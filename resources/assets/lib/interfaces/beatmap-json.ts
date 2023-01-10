@@ -3,6 +3,7 @@
 
 import BeatmapsetJson from './beatmapset-json';
 import GameMode from './game-mode';
+import UserJson from './user-json';
 
 interface BeatmapFailTimesArray {
   exit: number[];
@@ -14,6 +15,7 @@ interface BeatmapJsonAvailableIncludes {
   checksum: string | null;
   failtimes: BeatmapFailTimesArray;
   max_combo: number;
+  user: UserJson;
 }
 
 interface BeatmapJsonDefaultAttributes {

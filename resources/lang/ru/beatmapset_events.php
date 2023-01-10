@@ -26,7 +26,7 @@ return [
         'language_edit' => 'Язык изменен с :old на :new.',
         'love' => 'Карта получила категорию Любимая. (:user)',
         'nominate' => 'Номинирована :user.',
-        'nominate_modes' => 'Карта была номинирована :user (:modes).',
+        'nominate_modes' => 'Карта получила номинацию от :user (:modes).',
         'nomination_reset' => 'Из-за новой проблемы в :discussion (:text) статус номинации был сброшен.',
         'nomination_reset_received' => 'Номинация пользователя :user была сброшена :source_user (:text)',
         'nomination_reset_received_profile' => 'Номинация была сброшена :user (:text)',

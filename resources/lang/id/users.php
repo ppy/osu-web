@@ -119,7 +119,7 @@ return [
     'report' => [
         'button_text' => 'Laporkan',
         'comments' => 'Komentar Tambahan',
-        'placeholder' => 'Mohon berikan informasi apapun yang Anda yakini dapat bermanfaat.',
+        'placeholder' => 'Mohon berikan informasi apa pun yang Anda yakini dapat bermanfaat.',
         'reason' => 'Alasan',
         'thanks' => 'Terima kasih atas laporan Anda!',
         'title' => 'Laporkan :username?',
@@ -141,7 +141,7 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Akun Anda telah di-restrict!',
-        'message' => 'Selama akun Anda di-restrict, Anda tidak akan dapat berinteraksi dengan para pengguna lain dan skor yang telah Anda raih hanya akan dapat dilihat oleh diri Anda sendiri. Hal ini pada umumnya merupakan efek samping dari proses yang dilakukan oleh sistem kami secara otomatis dan akan diangkat dalam 24 jam apabila Anda memang tidak melanggar peraturan apapun. Apabila Anda ingin mengajukan banding, mohon <a href="mailto:accounts@ppy.sh">hubungi layanan dukungan</a>.',
+        'message' => 'Selama dibatasi, Anda tidak dapat berinteraksi dengan pengguna lain dan skor Anda hanya akan terlihat oleh Anda. Hal ini biasanya terproses secara otomatis dan akan diangkat dalam 24 jam. Jika Anda ingin mengajukan atas pembatasan Anda, mohon <a href="mailto:accounts@ppy.sh">hubungi layanan dukungan</a>.',
     ],
     'show' => [
         'age' => ':age tahun',
@@ -218,7 +218,7 @@ return [
                     'title' => 'Beatmap Loved',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => 'Beatmap Ranked yang Dinominasikan',
                 ],
                 'pending' => [
                     'title' => 'Beatmap Pending',
@@ -310,7 +310,7 @@ return [
                 'title' => 'saya!',
             ],
             'medals' => [
-                'empty' => "Pengguna ini belum membuka medali apapun. ;_;",
+                'empty' => "Pengguna ini belum mendapatkannya. ;_;",
                 'recent' => 'Terbaru',
                 'title' => 'Medali',
             ],

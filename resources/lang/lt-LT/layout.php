@@ -193,7 +193,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Nustatymai',
-            'follows' => 'Stebimi',
+            'follows' => 'Stebėjimo sąrašai',
             'friends' => 'Draugai',
             'logout' => 'Atsijungti',
             'profile' => 'Mano Profilis',

@@ -14,6 +14,7 @@ class VerifyUser
 {
     const SKIP_VERIFICATION_ROUTES = [
         'account_controller@reissue_code' => true,
+        'account_controller@update_options' => true,
         'account_controller@verify' => true,
         'account_controller@verify_link' => true,
         'notifications_controller@endpoint' => true,

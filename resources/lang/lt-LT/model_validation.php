@@ -4,32 +4,32 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => '',
+    'invalid' => 'Negalimas :attribute nurodytas.',
     'not_negative' => ':attribute negali būti neigiamas.',
     'required' => ':attribute yra privalomas.',
     'too_long' => ':attribute yra per ilgas - gali būti daugiausiai :limit simbolių.',
     'wrong_confirmation' => 'Patvirtinimas nesutampa.',
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => 'Laikas nurodytas tačiau trūksta beatmapo.',
-        'beatmapset_no_hype' => "Beatmapas negali būti iškeltas.",
-        'hype_requires_null_beatmap' => 'Iškelimas turi būti atliekamas Bendroje (visų sudėtingumų) sekcijoje.',
-        'invalid_beatmap_id' => 'Nurodytas neteisingas sudėtingumas.',
-        'invalid_beatmapset_id' => 'Nurodytas neteisingas beatmapas.',
+        'beatmap_missing' => 'Laiko žyma nurodyta tačiau trūksta bitmapo sunkumo.',
+        'beatmapset_no_hype' => "Bitmapas negali būti skatinamas.",
+        'hype_requires_null_beatmap' => 'Skatinimas turi būti atliekamas Bendroje (visų sudėtingumų) sekcijoje.',
+        'invalid_beatmap_id' => 'Nurodytas neteisingas sunkumas.',
+        'invalid_beatmapset_id' => 'Nurodytas neteisingas bitmapas.',
         'locked' => 'Diskusija užrakinta.',
 
         'attributes' => [
-            'message_type' => '',
-            'timestamp' => '',
+            'message_type' => 'Žinutės tipas',
+            'timestamp' => 'Laiko žyma',
         ],
 
         'hype' => [
-            'discussion_locked' => "",
-            'guest' => 'Iškėlimui reikia prisijungti.',
-            'hyped' => 'Tu jau iškėliai šį beatmapą.',
-            'limit_exceeded' => 'Jau išnaudojai visus savo iškėlimus.',
-            'not_hypeable' => 'Šis Beatmapas negali būti iškeltas',
-            'owner' => 'Savo beatmapo iškelti negali.',
+            'discussion_locked' => "Šio bitmapo diskusija šiuo metu užrakinta ir jis negali būti skatinamas",
+            'guest' => 'Skatinimui reikia prisijungti.',
+            'hyped' => 'Tu jau paskatinai šį beatmapą.',
+            'limit_exceeded' => 'Jau išnaudojai visus savo skatinimus.',
+            'not_hypeable' => 'Šis Bitmapas negali būti skatinamas',
+            'owner' => 'Savo bitmapo skatinti negali.',
         ],
 
         'timestamp' => [
@@ -39,140 +39,140 @@ return [
     ],
 
     'beatmapset_discussion_post' => [
-        'discussion_locked' => '',
-        'first_post' => '',
+        'discussion_locked' => 'Diskusija užrakinta.',
+        'first_post' => 'Negalimas ištrinti pirmosios publikacijos.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Žinutė',
         ],
     ],
 
     'comment' => [
-        'deleted_parent' => '',
-        'top_only' => '',
+        'deleted_parent' => 'Atsakymas į ištrintą komentarą negalimas.',
+        'top_only' => 'Komentaro atsakymo prisegimas negalimas.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Žinutė',
         ],
     ],
 
     'follow' => [
-        'invalid' => '',
+        'invalid' => 'Negalimas :attribute nurodytas.',
     ],
 
     'forum' => [
         'feature_vote' => [
             'not_feature_topic' => '',
-            'not_enough_feature_votes' => '',
+            'not_enough_feature_votes' => 'Nepakanka balsų.',
         ],
 
         'poll_vote' => [
-            'invalid' => '',
+            'invalid' => 'Nurodytas negalimas nustatymas.',
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => '',
-            'beatmapset_post_no_edit' => '',
-            'first_post_no_delete' => '',
-            'missing_topic' => '',
-            'only_quote' => '',
+            'beatmapset_post_no_delete' => 'Negalima ištrinti bitmapo metaduomenų publikacijos.',
+            'beatmapset_post_no_edit' => 'Negalima redaguoti bitmapo metaduomenų publikacijos.',
+            'first_post_no_delete' => 'Negalimas ištrinti pirmosios publikacijos',
+            'missing_topic' => 'Publikacija neturi temos',
+            'only_quote' => 'Jūsų atsakyme yra tik citata.',
 
             'attributes' => [
-                'post_text' => '',
+                'post_text' => 'Publikacijos laukas',
             ],
         ],
 
         'topic' => [
             'attributes' => [
-                'topic_title' => '',
+                'topic_title' => 'Temos pavadinimas',
             ],
         ],
 
         'topic_poll' => [
-            'duplicate_options' => '',
-            'grace_period_expired' => '',
-            'hiding_results_forever' => '',
-            'invalid_max_options' => '',
-            'minimum_one_selection' => '',
-            'minimum_two_options' => '',
-            'too_many_options' => '',
+            'duplicate_options' => 'Dubliuoti nustatymai negalimi.',
+            'grace_period_expired' => 'Negalima redaguoti apklausos po daugiau nei :limit valandų.',
+            'hiding_results_forever' => 'Negalima paslėpti rezultatų iš apklausos, kuri niekada nesibaigia.',
+            'invalid_max_options' => 'Pasirinkimų vienam vartotojui negali būti daugiau nei pačių pasirinkimų.',
+            'minimum_one_selection' => 'Turi būti bent vienas pasirinkimas vienam vartotojui.',
+            'minimum_two_options' => 'Turi būti bent du pasirinkimai.',
+            'too_many_options' => 'Pažymėta daugiau pasirinkimų nei galima.',
 
             'attributes' => [
-                'title' => '',
+                'title' => 'Apklausos pavadinimas',
             ],
         ],
 
         'topic_vote' => [
-            'required' => '',
-            'too_many' => '',
+            'required' => 'Pažymėk pasirinkimą, kai balsuoji.',
+            'too_many' => 'Pasirinkta daugiau nei galima.',
         ],
     ],
 
     'oauth' => [
         'client' => [
-            'too_many' => '',
-            'url' => '',
+            'too_many' => 'Viršytas galimas OAuth aplikacijų skaičius.',
+            'url' => 'Prašome įvesti tinkamą URL.',
 
             'attributes' => [
-                'name' => '',
-                'redirect' => '',
+                'name' => 'Aplikacijos Pavadinimas',
+                'redirect' => 'Aplikacijos Atgalinio susisiekimo URL',
             ],
         ],
     ],
 
     'user' => [
-        'contains_username' => '',
-        'email_already_used' => '',
-        'email_not_allowed' => '',
-        'invalid_country' => '',
-        'invalid_discord' => '',
-        'invalid_email' => "",
-        'invalid_twitter' => '',
-        'too_short' => '',
-        'unknown_duplicate' => '',
-        'username_available_in' => '',
-        'username_available_soon' => '',
-        'username_invalid_characters' => '',
-        'username_in_use' => '',
-        'username_locked' => '', // TODO: language for this should be slightly different.
-        'username_no_space_userscore_mix' => '',
-        'username_no_spaces' => "",
-        'username_not_allowed' => '',
-        'username_too_short' => '',
-        'username_too_long' => '',
-        'weak' => '',
-        'wrong_current_password' => '',
-        'wrong_email_confirmation' => '',
-        'wrong_password_confirmation' => '',
-        'too_long' => '',
+        'contains_username' => 'Slaptažodyje negali būti vartotojo vardas.',
+        'email_already_used' => 'El. pašto adresas jau naudojamas.',
+        'email_not_allowed' => 'Negalimas el. pašto adresas.',
+        'invalid_country' => 'Šalies nėra duomenų bazėje.',
+        'invalid_discord' => 'Negalimas Discord vartotojo vardas.',
+        'invalid_email' => "Nepanašu, kad tai galiojantis el. pašto adresas.",
+        'invalid_twitter' => 'Negalimas Twitter vartotojo vardas.',
+        'too_short' => 'Naujas slaptažodis per trumpas.',
+        'unknown_duplicate' => 'Vartotojo vardas arba el. pašto adresas jau yra naudojamas.',
+        'username_available_in' => 'Šį vartotojo vardą bus galima naudoti :duration.',
+        'username_available_soon' => 'Šį vartotojo vardą bus galima naudoti bet kuria minutę!',
+        'username_invalid_characters' => 'Prašomas vartotojo vardas turi negalimų ženklų.',
+        'username_in_use' => 'Vartotojo vardas jau naudojamas!',
+        'username_locked' => 'Vartotojo vardas jau naudojamas!', // TODO: language for this should be slightly different.
+        'username_no_space_userscore_mix' => 'Prašome naudoti pabrėžimus arba tarpus, bet ne abu!',
+        'username_no_spaces' => "Vartotojo vardas negali prasidėti ar beigtis su tarpais!",
+        'username_not_allowed' => 'Šis Vartotojo vardas negalimas.',
+        'username_too_short' => 'Prašomas vartotojo vardas per trumpas.',
+        'username_too_long' => 'Prašomas vartotojo varadas per ilgas.',
+        'weak' => 'Juodojo sąrašo slaptažodis.',
+        'wrong_current_password' => 'Dabartinis slaptažodis neteisingas.',
+        'wrong_email_confirmation' => 'El. pašto patvirtinimas nesutampa.',
+        'wrong_password_confirmation' => 'Slaptažodžio patvirtinimas nesutampa.',
+        'too_long' => 'Viršytas galimas ilgis. Gali būti tik iki :limit ženklų.',
 
         'attributes' => [
-            'username' => '',
-            'user_email' => '',
-            'password' => '',
+            'username' => 'Vartotojo vardas',
+            'user_email' => 'El. pašto adresas',
+            'password' => 'Slaptažodis',
         ],
 
         'change_username' => [
-            'restricted' => '',
+            'restricted' => 'Negali pakeisti savo vartotojo vardą, kol esi apribotas.',
             'supporter_required' => [
-                '_' => '',
-                'link_text' => '',
+                '_' => 'Jūs turite būti :link, kad galėtum pasikeisti savo vardą!',
+                'link_text' => 'parėmęs osu!',
             ],
-            'username_is_same' => '',
+            'username_is_same' => 'Jau naudojate šį vartotojo vardą!',
         ],
     ],
 
     'user_report' => [
-        'no_ranked_beatmapset' => '',
-        'reason_not_valid' => '',
-        'self' => "",
+        'no_ranked_beatmapset' => 'Reitinguoti bitmapai negali būti pranešti',
+        'reason_not_valid' => ':reason negalioja šiam pranešimo tipui.',
+        'self' => "Negalite pranešti savęs!",
     ],
 
     'store' => [
         'order_item' => [
             'attributes' => [
-                'quantity' => '',
-                'cost' => '',
+                'quantity' => 'Kiekis',
+                'cost' => 'Kaina',
             ],
         ],
     ],
