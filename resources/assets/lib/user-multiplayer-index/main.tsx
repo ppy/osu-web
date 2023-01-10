@@ -2,21 +2,22 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import HeaderV4 from 'components/header-v4';
+import MultiplayerList from 'components/multiplayer-list';
 import ProfileTournamentBanner from 'components/profile-tournament-banner';
 import UserProfileContainer from 'components/user-profile-container';
 import UserExtendedJson from 'interfaces/user-extended-json';
+import { route } from 'laroute';
 import core from 'osu-core-singleton';
 import Badges from 'profile-page/badges';
 import Cover from 'profile-page/cover';
 import DetailBar from 'profile-page/detail-bar';
 import headerLinks from 'profile-page/header-links';
 import * as React from 'react';
-import MultiplayerHistory from 'user-multiplayer-index/multiplayer-history';
+import MultiplayerListStore from 'stores/multiplayer-list-store';
 import { trans } from 'utils/lang';
-import MultiplayerHistoryStore from './multiplayer-history-store';
 
 interface Props {
-  store: MultiplayerHistoryStore;
+  store: MultiplayerListStore;
   user: UserExtendedJson;
 }
 
@@ -45,7 +46,10 @@ export default function Main(props: Props) {
         <div className='user-profile-pages user-profile-pages--no-tabs'>
           <div className='page-extra'>
             <h2 className='title title--page-extra'>{trans(`users.show.extra.${props.store.typeGroup}.title`)}</h2>
-            <MultiplayerHistory store={props.store} user={props.user} />
+            <MultiplayerList
+              showMoreRoute={route('users.multiplayer.index', { typeGroup: props.store.typeGroup, user: props.user.id })}
+              store={props.store}
+            />
           </div>
         </div>
       </div>

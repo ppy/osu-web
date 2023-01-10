@@ -3,15 +3,19 @@
 
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import Main from 'seasons-show/main';
 import MultiplayerListStore from 'stores/multiplayer-list-store';
-import Main from 'user-multiplayer-index/main';
 import { parseJson } from 'utils/json';
 
-core.reactTurbolinks.register('user-multiplayer-index', () => {
+core.reactTurbolinks.register('seasons-show', () => {
   const store = new MultiplayerListStore();
-  store.updateWithJson(parseJson('json-user-multiplayer-index'));
+  store.updateWithJson(parseJson('json-rooms'));
 
   return (
-    <Main store={store} user={parseJson('json-user')} />
+    <Main
+      currentSeason={parseJson('json-currentSeason')}
+      seasons={parseJson('json-seasons')}
+      store={store}
+    />
   );
 });
