@@ -46,6 +46,7 @@ class Ip2AsnUpdater
                 $index .= pack('l', $currentLine);
             }
         }
+
         if ($newDb) {
             file_put_contents($dbPath, $tsv);
         }
