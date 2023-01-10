@@ -44,10 +44,10 @@ class Ip2AsnUpdater
 
         if ($newDb) {
             $logger('Db file is outdated. Downloading');
+            $tsv = gzdecode(file_get_contents('https://iptoasn.com/data/ip2asn-combined.tsv.gz'));
+        } else {
+            $tsv = file_get_contents($dbPath);
         }
-        $tsv = $newDb
-            ? gzdecode(file_get_contents('https://iptoasn.com/data/ip2asn-combined.tsv.gz'))
-            : file_get_contents($dbPath);
 
         $logger('Indexing db');
         $currentLine = 0;
