@@ -7,13 +7,13 @@ return [
     'cancel' => 'Batal',
 
     'authorise' => [
-        'request' => 'meminta izin untuk dapat mengakses akun Anda.',
+        'request' => 'meminta izin untuk dapat mengakses akunmu.',
         'scopes_title' => 'Ke depannya, aplikasi ini akan mampu untuk:',
         'title' => 'Permohonan Otorisasi',
     ],
 
     'authorized_clients' => [
-        'confirm_revoke' => 'Apakah anda yakin untuk mencabut izin akses klien ini?',
+        'confirm_revoke' => 'Apakah kamu yakin untuk mencabut izin akses klien ini?',
         'scopes_title' => 'Aplikasi ini dapat:',
         'owned_by' => 'Dimiliki oleh :user',
         'none' => 'Tidak Ada Klien',
@@ -48,8 +48,8 @@ return [
     ],
 
     'own_clients' => [
-        'confirm_delete' => 'Apakah Anda yakin untuk menghapus klien ini?',
-        'confirm_reset' => 'Apakah Anda yakin untuk mengatur ulang client secret? Tindakan ini akan menganulir izin akses seluruh token yang telah diotorisir sebelumnya.',
+        'confirm_delete' => 'Apakah kamu yakin untuk menghapus klien ini?',
+        'confirm_reset' => 'Apakah kamu yakin untuk mengatur ulang client secret? Tindakan ini akan menganulir izin akses seluruh token yang telah diotorisir sebelumnya.',
         'new' => 'Buat Izin Aplikasi Baru',
         'none' => 'Tidak Ada Klien',
 

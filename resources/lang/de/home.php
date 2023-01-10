@@ -72,8 +72,21 @@ return [
     ],
 
     'download' => [
-        'tagline' => "lass uns<br>loslegen!",
         'action' => 'osu! herunterladen',
+        'action_lazer' => '',
+        'action_lazer_description' => '',
+        'action_lazer_info' => '',
+        'action_lazer_title' => '',
+        'action_title' => '',
+        'for_os' => '',
+        'lazer_note' => '',
+        'macos-fallback' => 'macOS-benutzer',
+        'mirror' => 'mirror',
+        'or' => '',
+        'other_os' => '',
+        'quick_start_guide' => '',
+        'tagline' => "lass uns<br>loslegen!",
+        'video-guide' => 'Videoanleitung (Englisch)',
 
         'help' => [
             '_' => 'wenn du probleme mit dem starten des spiels oder der registrierung deines accounts hast, :help_forum_link oder :support_button.',
@@ -86,8 +99,6 @@ return [
             'macos' => 'für macOS',
             'linux' => 'für Linux',
         ],
-        'mirror' => 'mirror',
-        'macos-fallback' => 'macOS-benutzer',
         'steps' => [
             'register' => [
                 'title' => 'erstell einen account',
@@ -105,7 +116,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'Videoanleitung (Englisch)',
     ],
 
     'user' => [

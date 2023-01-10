@@ -84,7 +84,7 @@ return [
             ],
 
             'subtext' => [
-                'supporter_tag' => '',
+                'supporter_tag' => 'メッセージ :message',
             ],
         ],
 
@@ -127,7 +127,7 @@ return [
 
     'supporter_tag' => [
         'gift' => 'プレイヤーにギフトを贈る',
-        'gift_message' => '',
+        'gift_message' => 'ギフトに任意のメッセージを追加 (最大 :length 文字)',
 
         'require_login' => [
             '_' => 'サポータータグを入手するには:linkが必要です！',

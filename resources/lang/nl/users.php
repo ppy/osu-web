@@ -52,6 +52,22 @@ return [
         'send_message' => 'stuur bericht',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => '',
+            'password_confirmation' => '',
+            'submit' => '',
+            'user_email' => '',
+            'user_email_confirmation' => '',
+            'username' => '',
+
+            'tos_notice' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'disabled' => [
         'title' => 'Uh-oh! Het lijkt erop dat je account is uitgeschakeld.',
         'warning' => "In het geval dat je een regel hebt overtreden, houd er rekening mee dat er over het algemeen een afkoelperiode van één maand is waarin we geen amnestieverzoeken in behandeling nemen. Na deze periode kunt u contact met ons opnemen als je dit nodig vind. Houd er rekening mee dat het maken van nieuwe accounts nadat uw account is uitgeschakeld, resulteert in een <strong> verlenging van deze cool-down van een maand </strong>. Houd er ook rekening mee dat voor <strong> elk account dat je maakt, je de regels verder overtreedt </strong>. We raden je ten zeerste aan om dit niet te doen!",
@@ -451,6 +467,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => 'Door gebruiker gemaakt',
     ],
     'verify' => [

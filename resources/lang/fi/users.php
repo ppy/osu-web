@@ -52,6 +52,22 @@ return [
         'send_message' => 'lähetä viesti',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => '',
+            'password_confirmation' => '',
+            'submit' => '',
+            'user_email' => '',
+            'user_email_confirmation' => '',
+            'username' => '',
+
+            'tos_notice' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'disabled' => [
         'title' => 'Jaahas. Käyttäjätilisi taitaa olla lukittu.',
         'warning' => "Jos olet rikkonut sääntöä huomaa, että yleensä on yksi kuukausi, jolloin emme ota huomioon armahduspyyntöjä. Tämän ajanjakson jälkeen voit ottaa meihin yhteyttä, jos pidät sitä tarpeellisena. Huomaa, että uusien tilien luominen sen jälkeen, kun yksi on poistettu käytöstä, johtaa <strong>  tämän kuukauden jäähdytyksen jatkamiseen </strong>. Huomaa myös, että <strong> jokaisella luomallasi tilillä rikot edelleen sääntöjä </strong>. Suosittelemme, ettet mene tätä polkua!",
@@ -451,6 +467,8 @@ return [
         'offline' => 'Poissa',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => 'Käyttäjä luotu',
     ],
     'verify' => [

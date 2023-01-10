@@ -66,6 +66,7 @@ return [
             'favourite_login' => 'Đăng nhập để yêu thích beatmap này',
             'logged-out' => 'Bạn cần phải đăng nhập trước khi tải xuống beatmap!',
             'mapped_by' => 'được tạo bởi :mapper',
+            'mapped_by_guest' => '',
             'unfavourite' => 'Bỏ yêu thích beatmapset này',
             'updated_timeago' => 'cập nhật lần cuối vào :timeago',
 

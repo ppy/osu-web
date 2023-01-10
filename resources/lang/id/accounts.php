@@ -10,7 +10,7 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => 'Pastikan avatar Anda tunduk pada :link yang berlaku.<br/>Dengan kata lain, avatar Anda harus <strong>cocok untuk segala usia</strong> tanpa mengandung unsur apa pun yang tidak dibenarkan seperti cacian, hinaan, atau hal yang bersifat sugestif.',
+            'rules' => 'Pastikan avatarmu tunduk pada :link yang berlaku.<br/>Dengan kata lain, avatarmu harus <strong>cocok untuk segala usia</strong> tanpa mengandung unsur apa pun yang tidak dibenarkan seperti cacian, hinaan, atau hal yang bersifat sugestif.',
             'rules_link' => 'peraturan komunitas',
         ],
 
@@ -49,9 +49,9 @@ return [
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'terima notifikasi pada saat terdapat masalah baru pada beatmap yang berstatus Qualified pada mode',
         'beatmapset_disqualify' => 'terima notifikasi pada saat terdapat beatmap yang terdiskualifikasi pada mode',
-        'comment_reply' => 'terima notifikasi pada saat terdapat balasan baru pada komentar Anda',
+        'comment_reply' => 'terima notifikasi pada saat terdapat balasan baru pada komentar yang kamu tulis',
         'title' => 'Notifikasi',
-        'topic_auto_subscribe' => 'aktifkan notifikasi secara otomatis untuk topik forum baru yang Anda buat',
+        'topic_auto_subscribe' => 'aktifkan notifikasi secara otomatis untuk topik forum baru yang kamu buat',
 
         'options' => [
             '_' => 'kirimkan notifikasi melalui',
@@ -69,7 +69,7 @@ return [
 
     'oauth' => [
         'authorized_clients' => 'klien yang terizin',
-        'own_clients' => 'klien yang Anda miliki',
+        'own_clients' => 'klien yang dimiliki',
         'title' => 'OAuth',
     ],
 
@@ -96,14 +96,14 @@ return [
 
     'privacy' => [
         'friends_only' => 'Blokir pesan pribadi dari orang yang tidak ada dalam daftar teman Anda',
-        'hide_online' => 'sembunyikan status online Anda',
+        'hide_online' => 'sembunyikan keberadaan online Anda',
         'title' => 'Kebijakan Privasi',
     ],
 
     'security' => [
         'current_session' => 'saat ini',
         'end_session' => 'Akhiri Sesi',
-        'end_session_confirmation' => 'Tindakan ini akan secara otomatis mengakhiri sesi Anda pada perangkat yang bersangkutan. Apakah Anda yakin?',
+        'end_session_confirmation' => 'Tindakan ini akan secara otomatis mengakhiri sesimu pada perangkat yang bersangkutan. Apakah kamu yakin?',
         'last_active' => 'Terakhir aktif:',
         'title' => 'Keamanan',
         'web_sessions' => 'sesi web',
@@ -118,7 +118,7 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => 'Anda dapat menutup laman ini sekarang',
+        'text' => 'Kamu dapat menutup tab/jendela ini sekarang',
         'title' => 'Verifikasi selesai',
     ],
 

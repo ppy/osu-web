@@ -11,9 +11,9 @@ return [
 
         'blurb' => [
             'important' => 'BACA INI SEBELUM MENGUNDUH',
-            'install_instruction' => 'Petunjuk Pemasangan: Setelah paket beatmap selesai diunduh, ekstrak berkas. rar yang Anda peroleh ke dalam folder Songs yang terdapat pada direktori osu! Anda.',
+            'install_instruction' => 'Petunjuk Pemasangan: Setelah paket beatmap selesai diunduh, ekstrak berkas. rar yang kamu peroleh ke dalam folder Songs yang terdapat pada direktori osu! milikmu.',
             'note' => [
-                '_' => 'Kami menyarankan Anda untuk :scary karena pada umumnya beatmap keluaran terdahulu memiliki kualitas yang jauh lebih rendah dibanding beatmap modern.',
+                '_' => 'Kami menyarankanmu untuk :scary karena beatmap keluaran terdahulu pada umumnya memiliki kualitas yang jauh lebih rendah dibanding beatmap modern.',
                 'scary' => 'mengunduh paket beatmap mulai dari yang paling baru hingga yang paling awal',
             ],
         ],
@@ -26,8 +26,8 @@ return [
             'not_cleared' => 'belum dimainkan',
         ],
         'no_diff_reduction' => [
-            '_' => 'Anda tidak dapat menggunakan :link untuk menuntaskan paket beatmap ini.',
-            'link' => 'mod pengurang kesulitan',
+            '_' => ':link tidak dapat digunakan untuk menuntaskan paket beatmap ini.',
+            'link' => 'Mod pengurang kesulitan',
         ],
     ],
 
@@ -39,7 +39,7 @@ return [
     ],
 
     'require_login' => [
-        '_' => 'Anda harus :link untuk mengunduh',
+        '_' => 'Kamu harus :link untuk mengunduh',
         'link_text' => 'masuk',
     ],
 ];

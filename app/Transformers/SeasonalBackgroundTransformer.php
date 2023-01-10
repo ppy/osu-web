@@ -9,11 +9,11 @@ use App\Models\UserContestEntry;
 
 class SeasonalBackgroundTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'user',
     ];
 
-    protected $defaultIncludes = [
+    protected array $defaultIncludes = [
         'user',
     ];
 

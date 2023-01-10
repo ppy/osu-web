@@ -66,6 +66,7 @@ return [
             'favourite_login' => 'Autentifică-te pentru a adăuga acest beatmap la preferate',
             'logged-out' => 'Trebuie să te autentifici înainte de a descărca vreun beatmap!',
             'mapped_by' => 'creat de :mapper',
+            'mapped_by_guest' => '',
             'unfavourite' => 'Elimină acest beatmapset de la favorite',
             'updated_timeago' => 'ultima actualizare :timeago',
 

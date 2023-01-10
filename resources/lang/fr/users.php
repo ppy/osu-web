@@ -52,6 +52,22 @@ return [
         'send_message' => 'envoyer un message',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => '',
+            'password_confirmation' => '',
+            'submit' => '',
+            'user_email' => '',
+            'user_email_confirmation' => '',
+            'username' => '',
+
+            'tos_notice' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'disabled' => [
         'title' => 'Oh-oh ! Il semble que votre compte ait été désactivé.',
         'warning' => "Dans le cas où vous avez enfreint une règle, veuillez noter qu'il y a généralement une période d'un mois pendant laquelle nous n'accepterons aucune demande de réactivation. Après cette période, vous êtes libre de nous contacter si vous le jugez nécessaire. Veuillez noter que la création de nouveaux comptes entraînera une prolongation <strong>de ce délai de récupération d'un mois</strong>. Veuillez également noter que pour <strong>chaque compte que vous créez, vous enfreignez à nouveau les règles</strong>. Nous vous suggérons fortement de ne pas suivre cette voie !",
@@ -451,6 +467,8 @@ return [
         'offline' => 'Hors-ligne',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => 'Utilisateur créé',
     ],
     'verify' => [

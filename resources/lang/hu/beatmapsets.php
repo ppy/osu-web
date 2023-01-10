@@ -66,6 +66,7 @@ return [
             'favourite_login' => 'Jelentkezz be, hogy kedvencnek jelölt ezt beatmap-et',
             'logged-out' => 'Beatmapek letöltéshez be kell jelentkezned!',
             'mapped_by' => 'mappolva :mapper által',
+            'mapped_by_guest' => '',
             'unfavourite' => 'Beatmap eltávolitása a kedvencek közül',
             'updated_timeago' => 'utóljára frissítve: :timeago',
 
@@ -124,7 +125,7 @@ return [
             'genre' => 'Műfaj',
             'language' => 'Nyelv',
             'no_scores' => 'Az adatok még számítás alatt...',
-            'nominators' => '',
+            'nominators' => 'Nominálók',
             'nsfw' => 'Felnőtt tartalom',
             'offset' => 'Online eltolás',
             'points-of-failure' => 'Kibukási Alkalmak',

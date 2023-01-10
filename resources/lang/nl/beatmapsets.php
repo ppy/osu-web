@@ -66,6 +66,7 @@ return [
             'favourite_login' => 'Log in om deze beatmap als favoriet te markeren',
             'logged-out' => 'Je moet ingelogd zijn voordat je beatmaps kan downloaden!',
             'mapped_by' => 'gemapped door :mapper',
+            'mapped_by_guest' => '',
             'unfavourite' => 'Verwijder markering als favoriet',
             'updated_timeago' => 'laatst bijgewerkt :timeago',
 

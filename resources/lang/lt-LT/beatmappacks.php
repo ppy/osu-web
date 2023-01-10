@@ -5,7 +5,7 @@
 
 return [
     'index' => [
-        'description' => 'Beatmapų kolekcijos pagal temas.',
+        'description' => 'Surinktos bitmapų kolekcijos pagal temas.',
         'nav_title' => 'sąrašas',
         'title' => 'Bitmapų Rinkiniai',
 

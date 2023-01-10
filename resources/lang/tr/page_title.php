@@ -105,6 +105,7 @@ return [
         ],
         'users_controller' => [
             '_' => 'oyuncu bilgisi',
+            'create' => '',
             'disabled' => 'bildirim',
         ],
         'wiki_controller' => [

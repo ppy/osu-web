@@ -10,12 +10,12 @@ return [
     'title_compact' => 'chat',
 
     'cannot_send' => [
-        'channel' => 'Anda sedang tidak dapat mengirimkan pesan pada channel ini.',
-        'user' => 'Anda sedang tidak dapat mengirimkan pesan kepada pengguna ini.',
+        'channel' => 'Kamu sedang tidak dapat mengirimkan pesan pada kanal percakapan ini.',
+        'user' => 'Kamu sedang tidak dapat mengirimkan pesan kepada pengguna ini.',
     ],
 
     'channels' => [
-        'confirm_part' => 'Apakah Anda ingin menyembunyikan kanal percakapan ini? Anda akan tetap menerima pesan dari kanal percakapan ini.',
+        'confirm_part' => 'Apakah kamu ingin menyembunyikan kanal percakapan ini? Kamu akan tetap menerima pesan dari kanal percakapan ini.',
         'create' => 'buat pengumuman',
 
         'list' => [
@@ -41,7 +41,7 @@ return [
     ],
 
     'not_found' => [
-        'message' => 'Tidak ada apa-apa di sini. Mungkin Anda telah meninggalkan kanal percakapan ini atau kanal yang hendak Anda tuju sudah tidak ada...',
+        'message' => 'Tidak ada apa-apa di sini. Mungkin kamu telah meninggalkan kanal percakapan ini atau kanal yang ingin kamu tuju sudah tidak ada...',
         'title' => 'kanal percakapan tidak ditemukan',
     ],
 
@@ -55,7 +55,7 @@ return [
 
     'no-conversations' => [
         'howto' => "Mulailah percakapan baru melalui tombol yang tertera pada laman profil atau kartu pop-up pengguna.",
-        'lazer' => 'Kanal percakapan publik yang Anda buka melalui <a href=":link">osu!lazer</a> juga akan terlihat di sini.',
+        'lazer' => 'Kanal percakapan publik yang kamu buka melalui <a href=":link">osu!lazer</a> juga akan terlihat di sini.',
         'title' => 'belum ada percakapan',
     ],
 ];
