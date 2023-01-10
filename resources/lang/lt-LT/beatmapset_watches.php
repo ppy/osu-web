@@ -5,12 +5,12 @@
 
 return [
     'index' => [
-        'description' => 'Čia bitmapų diskusijos, kurias sekate. Jūs būsite informuoti, kai bus naujų publikacijų ar atnaujinimų.',
+        'description' => 'Čia bitmapų diskusijos, kurias sekate. Jūs būsite informuoti, kai bus naujų įrašų ar atnaujinimų.',
         'title_compact' => 'bitmapų diskusijų stebėjimo sąrašas',
 
         'counts' => [
             'total' => 'Stebimi bitmapai',
-            'unread' => 'Bitmapai su nauja įvykiais',
+            'unread' => 'Bitmapai su naujais įvykiais',
         ],
 
         'table' => [

@@ -14,7 +14,7 @@ return [
         'hosted_by' => 'šeimininkas :user',
         'invalid_password' => 'Negaliojantis slaptažodis',
         'map_count' => ':count_delimited bitmapas|:count_delimited bitmapai',
-        'player_count' => ':count_delimited žaidėjas|:count_delimited žaidėjai (-ų)',
+        'player_count' => ':count_delimited žaidėjas|:count_delimited žaidėjų',
         'time_left' => ':time liko',
 
         'errors' => [

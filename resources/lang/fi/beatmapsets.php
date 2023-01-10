@@ -66,6 +66,7 @@ return [
             'favourite_login' => '',
             'logged-out' => 'Sinun täytyy kirjautua sisään ladataksesi beatmappeja!',
             'mapped_by' => 'luonut: :mapper',
+            'mapped_by_guest' => '',
             'unfavourite' => 'Poista tämä beatmapkokoelma suosikeista',
             'updated_timeago' => 'päivitetty viimeksi :timeago',
 

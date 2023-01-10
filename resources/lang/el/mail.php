@@ -5,7 +5,7 @@
 
 return [
     'beatmapset_update_notice' => [
-        'new' => '',
+        'new' => 'Απλά σε ενημερώνουμε πως υπήρξε μια νέα ενημέρωση στο beatmap ":title" από την τελευταία σου επίσκεψη.',
         'subject' => 'Νέα ενημέρωση για το beatmap ":title"',
         'unwatch' => '',
         'visit' => '',
@@ -13,7 +13,7 @@ return [
 
     'common' => [
         'closing' => '',
-        'hello' => '',
+        'hello' => 'Γεια σου :user,',
         'report' => '',
         'ignore' => '',
     ],
@@ -33,8 +33,8 @@ return [
 
         'support' => [
             '_' => '',
-            'first' => '',
-            'repeat' => '',
+            'first' => 'υποστήριξη',
+            'repeat' => 'συνεχή υποστήριξη',
         ],
     ],
 
@@ -97,7 +97,7 @@ return [
     ],
 
     'user_verification' => [
-        'code' => '',
+        'code' => 'Ο κωδικός επαλήθευσης σας είναι:',
         'code_hint' => '',
         'link' => '',
         'report' => '',

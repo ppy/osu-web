@@ -24,7 +24,7 @@ return [
     ],
 
     'mapping' => [
-        'empty' => 'Tidak ada pemeta yang diikuti.',
+        'empty' => 'Kamu tidak sedang mengikuti siapapun.',
         'followers' => 'pengikut mapping',
         'page_title' => 'mapper yang diikuti',
         'title' => 'mapper',

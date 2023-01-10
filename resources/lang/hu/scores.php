@@ -24,7 +24,7 @@ return [
 
     'status' => [
         'non_best' => 'Csak a legjobb személyes pontszámok adnak pp-t',
-        'non_passing' => '',
+        'non_passing' => 'Csak sikeres eredmények jutalmaznak pp-t',
         'processing' => 'Ez a pontszám még értékelés alatt van és hamarosan mutatva lesz',
     ],
 ];

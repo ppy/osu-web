@@ -31,7 +31,7 @@ return [
         'cart_problems_edit' => '点击此处编辑。',
         'declined' => '支付被取消。',
         'delayed_shipping' => '欢迎购买，但是我们正在处理大量的订单，所以订单**可能会有 1-2 周的延迟**。',
-        'hide_from_activity' => '',
+        'hide_from_activity' => '不把此订单中的支持者标签购买同步到个人活动',
         'old_cart' => '您的购物车已经过期，请重试。',
         'pay' => '使用 Paypal 支付',
         'title_compact' => '结账',
@@ -51,7 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => '由于您的支付是通过 eCheck 进行的，请再等待至多 10 天来让 PayPal 完成支付。',
-        'hide_from_activity' => '',
+        'hide_from_activity' => '此订单的支持者标签购买未显示在你的个人活动中。',
         'title_compact' => '账单',
 
         'status' => [
@@ -84,7 +84,7 @@ return [
             ],
 
             'subtext' => [
-                'supporter_tag' => '',
+                'supporter_tag' => '留言：:message',
             ],
         ],
 
@@ -127,7 +127,7 @@ return [
 
     'supporter_tag' => [
         'gift' => '要赠与的玩家',
-        'gift_message' => '',
+        'gift_message' => '给礼物留下附言吧！（可选，至多 :length 个字符）',
 
         'require_login' => [
             '_' => '你需要 :link 以获得 osu! 支持者标签！',

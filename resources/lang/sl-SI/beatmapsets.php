@@ -66,6 +66,7 @@ return [
             'favourite_login' => 'Vpiši se za dodajanje beatmape med priljubljene',
             'logged-out' => 'Preden lahko preneseš beatmapo moraš biti vpisan!',
             'mapped_by' => 'mappal :mapper',
+            'mapped_by_guest' => '',
             'unfavourite' => 'Odstrani beatmapo iz priljubljenih',
             'updated_timeago' => 'zadnje posodobljeno :timeago',
 

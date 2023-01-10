@@ -72,8 +72,21 @@ return [
     ],
 
     'download' => [
-        'tagline' => "시작해봐요!",
         'action' => 'osu! 다운로드',
+        'action_lazer' => '',
+        'action_lazer_description' => '',
+        'action_lazer_info' => '',
+        'action_lazer_title' => '',
+        'action_title' => '',
+        'for_os' => '',
+        'lazer_note' => '',
+        'macos-fallback' => 'macOS 사용자',
+        'mirror' => '미러',
+        'or' => '',
+        'other_os' => '',
+        'quick_start_guide' => '',
+        'tagline' => "시작해봐요!",
+        'video-guide' => '영상 가이드',
 
         'help' => [
             '_' => '게임을 시작하거나 계정을 등록하는데 문제가 있다면, :help_forum_link 하거나 :support_button 해보세요.',
@@ -86,8 +99,6 @@ return [
             'macos' => 'macOS 용',
             'linux' => 'Linux 용',
         ],
-        'mirror' => '미러',
-        'macos-fallback' => 'macOS 사용자',
         'steps' => [
             'register' => [
                 'title' => '계정 만들기',
@@ -105,7 +116,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => '영상 가이드',
     ],
 
     'user' => [

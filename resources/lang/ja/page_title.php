@@ -105,6 +105,7 @@ return [
         ],
         'users_controller' => [
             '_' => 'プレイヤー情報',
+            'create' => '',
             'disabled' => '通知',
         ],
         'wiki_controller' => [

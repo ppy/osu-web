@@ -36,7 +36,7 @@ return [
         'remove_from_loved' => 'Dilepas dari Loved oleh :user. (:text)',
 
         'nsfw_toggle' => [
-            'to_0' => 'Tanda eksplisit telah dilepas',
+            'to_0' => 'Tanda eksplisit dilepas',
             'to_1' => 'Ditandai eksplisit',
         ],
     ],

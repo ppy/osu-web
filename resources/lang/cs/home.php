@@ -72,8 +72,21 @@ return [
     ],
 
     'download' => [
-        'tagline' => "pusťme se<br>do toho!",
         'action' => 'Stáhnout osu!',
+        'action_lazer' => '',
+        'action_lazer_description' => '',
+        'action_lazer_info' => '',
+        'action_lazer_title' => '',
+        'action_title' => '',
+        'for_os' => '',
+        'lazer_note' => '',
+        'macos-fallback' => 'macOS uživatelé',
+        'mirror' => 'mirror',
+        'or' => '',
+        'other_os' => '',
+        'quick_start_guide' => '',
+        'tagline' => "pusťme se<br>do toho!",
+        'video-guide' => 'videonávod',
 
         'help' => [
             '_' => 'pokud máš problém se spuštěním hry nebo registrací účtu, tak :help_forum_link nebo :support_button.',
@@ -86,8 +99,6 @@ return [
             'macos' => 'pro macOS',
             'linux' => 'pro Linux',
         ],
-        'mirror' => 'mirror',
-        'macos-fallback' => 'macOS uživatelé',
         'steps' => [
             'register' => [
                 'title' => 'založte si účet',
@@ -105,7 +116,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'videonávod',
     ],
 
     'user' => [

@@ -30,7 +30,7 @@ return [
             'login_required' => 'Prisijunkite, kad ieškoti bitmapų',
             'more' => ':count dar bitmapų paieškos rezultatų',
             'more_simple' => ' Žiūrėti daugiau bitmapų paieškos rezultatų',
-            'title' => 'Beatmaps',
+            'title' => 'Bitmapai',
         ],
 
         'forum_post' => [
@@ -72,8 +72,21 @@ return [
     ],
 
     'download' => [
-        'tagline' => "gaukime <br> ko jums reikia pradžiai!",
         'action' => 'Atsisiųsti osu!',
+        'action_lazer' => '',
+        'action_lazer_description' => '',
+        'action_lazer_info' => '',
+        'action_lazer_title' => '',
+        'action_title' => '',
+        'for_os' => '',
+        'lazer_note' => '',
+        'macos-fallback' => 'macOS vartotojams',
+        'mirror' => 'dubliavimas',
+        'or' => '',
+        'other_os' => '',
+        'quick_start_guide' => '',
+        'tagline' => "gaukime <br> ko jums reikia pradžiai!",
+        'video-guide' => 'vaizdo gidas',
 
         'help' => [
             '_' => 'jei patiriate problemas paleidžiant žaidimą ar registruojantis paskyrai, :help_forum_link arba :support_button.',
@@ -86,8 +99,6 @@ return [
             'macos' => 'MacOS sistemai',
             'linux' => 'Linux sistemai',
         ],
-        'mirror' => 'dubliavimas',
-        'macos-fallback' => 'macOS vartotojams',
         'steps' => [
             'register' => [
                 'title' => 'susikurk paskyrą',
@@ -98,14 +109,13 @@ return [
                 'description' => 'paspauskt mygtyką viršuje, kad atsisiųsti diegimo programa, ir paleisk!',
             ],
             'beatmaps' => [
-                'title' => 'gauk bitmaps',
+                'title' => 'gauk bitmapų',
                 'description' => [
                     '_' => ':browse žaidėjų sukurtus bitmapus ir pradėk juos žaisti!',
                     'browse' => 'naršyti',
                 ],
             ],
         ],
-        'video-guide' => 'vaizdo gidas',
     ],
 
     'user' => [

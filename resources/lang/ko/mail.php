@@ -67,7 +67,7 @@ return [
         'duration' => '선물해주신 분 덕분에 :duration 동안 osu!direct를 비롯한 다른 osu! 서포터 혜택을 누리실 수 있습니다.',
         'features' => '자세한 기능은 다음 링크를 통해 확인하실 수 있습니다:',
         'gifted' => '누군가가 당신에게 osu! 서포터 태그를 선물했습니다!',
-        'gift_message' => '',
+        'gift_message' => '이 태그를 선물하신 분께서 메시지를 남기셨어요:',
         'subject' => 'osu! 서포터 태그를 선물 받았습니다!',
     ],
 

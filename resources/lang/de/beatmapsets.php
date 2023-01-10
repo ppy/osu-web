@@ -66,6 +66,7 @@ return [
             'favourite_login' => 'Melde dich an, um diese Beatmap zu favorisieren',
             'logged-out' => 'Zum Herunterladen von Beatmaps muss man eingeloggt sein!',
             'mapped_by' => 'erstellt von :mapper',
+            'mapped_by_guest' => '',
             'unfavourite' => 'Dieses Beatmapset von deinen Favoriten entfernen',
             'updated_timeago' => 'zuletzt aktualisiert :timeago',
 
@@ -124,7 +125,7 @@ return [
             'genre' => 'Genre',
             'language' => 'Sprache',
             'no_scores' => 'Die Daten werden noch verarbeitet...',
-            'nominators' => '',
+            'nominators' => 'Nominatoren',
             'nsfw' => 'Expliziter Inhalt',
             'offset' => 'Online-Offset',
             'points-of-failure' => 'Stellen, an denen Spieler gescheitert sind',

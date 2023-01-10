@@ -66,6 +66,7 @@ return [
             'favourite_login' => 'Zaloguj się, by dodać tę beatmapę do ulubionych',
             'logged-out' => 'Zaloguj się, aby zacząć pobierać beatmapy!',
             'mapped_by' => 'autorstwa :mapper',
+            'mapped_by_guest' => '',
             'unfavourite' => 'Usuń z ulubionych',
             'updated_timeago' => 'ostatnio zaktualizowana :timeago',
 

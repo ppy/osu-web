@@ -72,8 +72,21 @@ return [
     ],
 
     'download' => [
-        'tagline' => "让我们<br>开始吧！",
         'action' => '下载 osu!',
+        'action_lazer' => '',
+        'action_lazer_description' => '',
+        'action_lazer_info' => '',
+        'action_lazer_title' => '',
+        'action_title' => '',
+        'for_os' => '',
+        'lazer_note' => '',
+        'macos-fallback' => 'macOS 用户',
+        'mirror' => '从镜像服务器下载',
+        'or' => '',
+        'other_os' => '',
+        'quick_start_guide' => '',
+        'tagline' => "让我们<br>开始吧！",
+        'video-guide' => '视频教程',
 
         'help' => [
             '_' => '如果您在开始游戏或注册账户时遇到问题，请 :help_forum_link 或 :support_button。',
@@ -86,8 +99,6 @@ return [
             'macos' => 'macOS 版',
             'linux' => 'Linux 版',
         ],
-        'mirror' => '从镜像服务器下载',
-        'macos-fallback' => 'macOS 用户',
         'steps' => [
             'register' => [
                 'title' => '注册账号',
@@ -105,7 +116,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => '视频教程',
     ],
 
     'user' => [
