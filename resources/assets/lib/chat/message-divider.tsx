@@ -3,6 +3,7 @@
 
 import * as moment from 'moment';
 import * as React from 'react';
+import { trans } from 'utils/lang';
 
 interface Props {
   timestamp: string;
@@ -15,7 +16,7 @@ const MessageDividerBase = ({ timestamp, type }: Props, innerRef: React.Ref<HTML
       return (<div ref={innerRef} className='chat-conversation__day-divider'>{moment(timestamp).format('LL')}</div>);
 
     case 'UNREAD_MARKER':
-      return (<div ref={innerRef} className='chat-conversation__unread-marker' data-content='unread messages' />);
+      return (<div ref={innerRef} className='chat-conversation__unread-marker' data-content={trans('chat.unread_messages')} />);
 
     default:
       return null;
