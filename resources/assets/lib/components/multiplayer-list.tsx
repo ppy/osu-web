@@ -21,7 +21,7 @@ export default class MultiplayerList extends React.Component<Props> {
 
   @computed
   private get hasMore() {
-    return this.props.store.cursor != null;
+    return this.props.store.cursorString != null;
   }
 
   constructor(props: Props) {
@@ -61,7 +61,7 @@ export default class MultiplayerList extends React.Component<Props> {
 
     this.loading = true;
     const url = this.props.showMoreRoute;
-    void $.getJSON(url, { cursor: this.props.store.cursor })
+    void $.getJSON(url, { cursor_string: this.props.store.cursorString })
       .done(action((response: MultiplayerListJson) => {
         this.props.store.updateWithJson(response);
       })).always(action(() => {

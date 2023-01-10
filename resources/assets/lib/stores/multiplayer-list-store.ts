@@ -5,7 +5,7 @@ import UserMultiplayerHistoryJson, { EndpointRoomJson, MultiplayerTypeGroup } fr
 import { action, makeObservable, observable } from 'mobx';
 
 export default class MultiplayerListStore {
-  @observable cursor: unknown = null;
+  @observable cursorString: string | null = null;
   @observable rooms: EndpointRoomJson[] = [];
   @observable typeGroup: MultiplayerTypeGroup = 'realtime';
 
@@ -20,6 +20,6 @@ export default class MultiplayerListStore {
     }
 
     this.typeGroup = json.type_group;
-    this.cursor = json.cursor;
+    this.cursorString = json.cursor_string;
   }
 }
