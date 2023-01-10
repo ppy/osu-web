@@ -15,6 +15,10 @@ class Ip2AsnUpdate extends Command
 
     public function handle()
     {
-        (new Ip2AsnUpdater())->run();
+        $this->info('Updating ip2asn database');
+        (new Ip2AsnUpdater())->run(function (string $message): void {
+            $this->info($message);
+        });
+        $this->info('Done');
     }
 }

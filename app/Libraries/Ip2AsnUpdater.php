@@ -7,6 +7,8 @@ declare(strict_types=1);
 
 namespace App\Libraries;
 
+use Log;
+
 class Ip2AsnUpdater
 {
     public static function getDbPath()
@@ -19,8 +21,12 @@ class Ip2AsnUpdater
         return database_path('ip2asn.idx');
     }
 
-    public function run(): void
+    public function run(?callable $logger = null): void
     {
+        $logger ??= function (string $message) {
+            Log::info("ip2asn: {$message}");
+        };
+        $logger('Checking db for updates');
         $dbPath = static::getDbPath();
         $indexPath = static::getIndexPath();
 
@@ -31,13 +37,19 @@ class Ip2AsnUpdater
 
         $newIndex = !$dbExists || !file_exists($indexPath) || filemtime($dbPath) > filemtime($indexPath);
         if (!$newDb && !$newIndex) {
+            $logger('All relevant files are up to date');
+
             return;
         }
 
+        if ($newDb) {
+            $logger('Db file is outdated. Downloading');
+        }
         $tsv = $newDb
             ? gzdecode(file_get_contents('https://iptoasn.com/data/ip2asn-combined.tsv.gz'))
             : file_get_contents($dbPath);
 
+        $logger('Indexing db');
         $currentLine = 0;
         $index = pack('l', $currentLine);
         while (($currentLine = strpos($tsv, "\n", $currentLine)) !== false) {
@@ -47,6 +59,7 @@ class Ip2AsnUpdater
             }
         }
 
+        $logger('Writing db and index to file');
         if ($newDb) {
             file_put_contents($dbPath, $tsv);
         }
