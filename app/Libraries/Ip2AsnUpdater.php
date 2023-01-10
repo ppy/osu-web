@@ -26,7 +26,9 @@ class Ip2AsnUpdater
         $logger ??= function (string $message) {
             Log::info("ip2asn: {$message}");
         };
+
         $logger('Checking db for updates');
+
         $dbPath = static::getDbPath();
         $indexPath = static::getIndexPath();
 
