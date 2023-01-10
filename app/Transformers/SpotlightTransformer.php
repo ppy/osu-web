@@ -10,7 +10,7 @@ use League\Fractal;
 
 class SpotlightTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'participant_count',
     ];
 

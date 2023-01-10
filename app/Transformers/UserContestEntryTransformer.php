@@ -9,7 +9,7 @@ use App\Models\UserContestEntry;
 
 class UserContestEntryTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'user',
     ];
 
