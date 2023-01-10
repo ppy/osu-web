@@ -40,7 +40,7 @@
     $currentLocaleMeta ??= current_locale_meta();
 @endphp
 <!DOCTYPE html>
-<html prefix="og: http://ogp.me/ns#" lang="{{ $currentLocaleMeta->html() }}">
+<html prefix="og: http://ogp.me/ns#" lang="{{ $contentLocale ?? $currentLocaleMeta->html() }}">
     <head>
         @include("layout.metadata")
         <title>{!! $title !!}</title>

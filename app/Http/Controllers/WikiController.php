@@ -107,7 +107,12 @@ class WikiController extends Controller
             return json_item($page, 'WikiPage');
         }
 
-        return ext_view($page->template(), compact('page'), null, $status ?? null);
+        return ext_view(
+            $page->template(),
+            ['contentLocale' => $page->locale, 'page' => $page],
+            null,
+            $status ?? null
+        );
     }
 
     public function image($path)
