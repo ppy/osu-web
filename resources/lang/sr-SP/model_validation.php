@@ -91,32 +91,32 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Опција дуплирања није дозвољена.',
-            'grace_period_expired' => '',
-            'hiding_results_forever' => '',
-            'invalid_max_options' => '',
-            'minimum_one_selection' => '',
-            'minimum_two_options' => '',
-            'too_many_options' => '',
+            'grace_period_expired' => 'Није могуће уређивати анкету након више од :limit сати.',
+            'hiding_results_forever' => 'Не може сакрити анкете резултата која се никада не завршава.',
+            'invalid_max_options' => 'Опција по кориснику не сме бити већа од броја доступних опција.',
+            'minimum_one_selection' => 'Потребна је најмање једна опција по кориснику.',
+            'minimum_two_options' => 'Потребне су најмање две опције.',
+            'too_many_options' => 'Прекорачен је максимални број дозвољених опција.',
 
             'attributes' => [
-                'title' => '',
+                'title' => 'Наслов анкете',
             ],
         ],
 
         'topic_vote' => [
-            'required' => '',
-            'too_many' => '',
+            'required' => 'Изаберите опцију приликом гласања.',
+            'too_many' => 'Изабрано је више опција него што је дозвољено.',
         ],
     ],
 
     'oauth' => [
         'client' => [
-            'too_many' => '',
+            'too_many' => 'Премашен је максимални број дозвољених OAuth апликација.',
             'url' => 'Молимо да унесете важећи URL.',
 
             'attributes' => [
-                'name' => '',
-                'redirect' => '',
+                'name' => 'Име Апликације',
+                'redirect' => 'Callback URL апликације',
             ],
         ],
     ],

@@ -52,6 +52,22 @@ return [
         'send_message' => 'Ipadala ang mensahe',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => '',
+            'password_confirmation' => '',
+            'submit' => '',
+            'user_email' => '',
+            'user_email_confirmation' => '',
+            'username' => '',
+
+            'tos_notice' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'disabled' => [
         'title' => 'Naku po! Mukhang ang iyong account ay hindi magagamit.',
         'warning' => "Sa kaso na ikaw ay nakalabag sa rules, alamin na mayroong isang buwan na hindi namin bibigyang konsiderasyon ang anumang request sa amnestiya. Pagkatapos ng sinabing isang buwan ay maaari na kaming i-contact kung kinakailangan. Binibigyang paalala namin na ang paglikha ng bagong account matapos magkaroon ng disabled account ay magreresulta sa <strong>pagdagdag sa isang buwan na cool-down</strong>. <strong>Sa bawat isang account na iyong nilikha ikaw ay lalong lumalabag sa rules.</strong> ",
@@ -451,6 +467,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => 'Ginawa ng user',
     ],
     'verify' => [

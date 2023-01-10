@@ -72,8 +72,21 @@ return [
     ],
 
     'download' => [
-        'tagline' => "låt oss<br>få dig igång!",
         'action' => 'Ladda ner osu!',
+        'action_lazer' => '',
+        'action_lazer_description' => '',
+        'action_lazer_info' => '',
+        'action_lazer_title' => '',
+        'action_title' => '',
+        'for_os' => '',
+        'lazer_note' => '',
+        'macos-fallback' => 'macOS-användare',
+        'mirror' => 'mirror',
+        'or' => '',
+        'other_os' => '',
+        'quick_start_guide' => '',
+        'tagline' => "låt oss<br>få dig igång!",
+        'video-guide' => 'videoguide',
 
         'help' => [
             '_' => 'om du har problem med att starta spelet eller registrera ett konto, :help_forum_link eller :support_button.',
@@ -86,8 +99,6 @@ return [
             'macos' => 'för macOS',
             'linux' => 'för Linux',
         ],
-        'mirror' => 'mirror',
-        'macos-fallback' => 'macOS-användare',
         'steps' => [
             'register' => [
                 'title' => 'skaffa ett konto',
@@ -105,7 +116,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'videoguide',
     ],
 
     'user' => [

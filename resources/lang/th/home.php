@@ -72,8 +72,21 @@ return [
     ],
 
     'download' => [
-        'tagline' => "เรามา<br>เริ่มกันเถอะ",
         'action' => 'ดาวน์โหลด osu!',
+        'action_lazer' => '',
+        'action_lazer_description' => '',
+        'action_lazer_info' => '',
+        'action_lazer_title' => '',
+        'action_title' => '',
+        'for_os' => '',
+        'lazer_note' => '',
+        'macos-fallback' => 'ผู้ใช้ macOS',
+        'mirror' => 'เซิร์ฟเวอร์อื่น',
+        'or' => '',
+        'other_os' => '',
+        'quick_start_guide' => '',
+        'tagline' => "เรามา<br>เริ่มกันเถอะ",
+        'video-guide' => 'ไกด์วิดิโอ',
 
         'help' => [
             '_' => 'ถ้ามีปัญหาในการเข้าเกมหรือสมัครบัญชีสามารถหาความช่วยเหลือได้ที่ :help_forum_link หรือ :support_button',
@@ -86,8 +99,6 @@ return [
             'macos' => 'สำหรับ macOS',
             'linux' => 'สำหรับ Linux',
         ],
-        'mirror' => 'เซิร์ฟเวอร์อื่น',
-        'macos-fallback' => 'ผู้ใช้ macOS',
         'steps' => [
             'register' => [
                 'title' => 'สร้างบัญชี',
@@ -105,7 +116,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'ไกด์วิดิโอ',
     ],
 
     'user' => [

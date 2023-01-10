@@ -52,6 +52,22 @@ return [
         'send_message' => '发送消息',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => '',
+            'password_confirmation' => '',
+            'submit' => '',
+            'user_email' => '',
+            'user_email_confirmation' => '',
+            'username' => '',
+
+            'tos_notice' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'disabled' => [
         'title' => '哎呀！看起来您的账户已被禁用。',
         'warning' => "如果您违反了规则，原则上在一个月的期限以内我们不会考虑解禁您的账户。在此之后，您如果需要，可以随时联系我们。请注意，在一个账户被封后创建新账户会<strong>使您的封禁期限被延长</strong>。您更需要注意<strong>您每创建一个新账户都会更严重地违反规则</strong>。我们强烈建议您不要误入歧途。",
@@ -451,6 +467,8 @@ return [
         'offline' => '离线',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => '账户已创建',
     ],
     'verify' => [

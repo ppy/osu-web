@@ -7,12 +7,12 @@ return [
     'deleted' => 'ištrinta',
     'deleted_by' => 'prieš :timeago ištrinė :user',
     'deleted_by_system' => 'sistema',
-    'deleted_count' => '::count_delimited ištrintas komentaras|:count_delimited ištrinti (-a) komentarai (-ų)',
+    'deleted_count' => '::count_delimited ištrintas komentaras|:count_delimited ištrinta komentarų',
     'edited' => 'redaguota :timeago pateikė :user',
     'pinned' => 'prisegta',
     'empty' => 'Dar komentarų nėra.',
     'load_replies' => 'krauti atsakymus',
-    'replies_count' => ':count_delimited atsakymas|:count_delimited atsakymai (-ų)',
+    'replies_count' => ':count_delimited atsakymas|:count_delimited atsakymų',
     'title' => 'Komentarai',
 
     'commentable_name' => [
@@ -26,7 +26,7 @@ return [
         'textarea_hint' => [
             '_' => 'Spausk enter kad :action. Spausk shift+enter naujai eilutei.',
             'edit' => 'išsaugoti',
-            'new' => 'siųsti',
+            'new' => 'publikuoti',
             'reply' => 'atsakyti',
         ],
     ],

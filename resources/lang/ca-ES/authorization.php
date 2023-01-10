@@ -41,7 +41,7 @@ return [
     'beatmap_discussion_post' => [
         'destroy' => [
             'not_owner' => 'Només podeu eliminar les vostres publicacions.',
-            'resolved' => 'No podeu eliminar una publicació d\'una discussió resolta.',
+            'resolved' => 'No podeu suprimir una publicació d\'una discussió resolta.',
             'system_generated' => 'La publicació generada automàticament no es pot eliminar.',
         ],
 
@@ -68,9 +68,9 @@ return [
         'friends_only' => 'L\'usuari està bloquejant missatges de persones que no estan a la seva llista d\'amics.',
         'moderated' => 'Aquest canal està actualment moderat.',
         'no_access' => 'No tens accés a aquest canal.',
-        'receive_friends_only' => 'És possible que l\'usuari no pugui respondre perquè només accepteu missatges de persones de la vostra llista d\'amics.',
-        'restricted' => 'No pots enviar missatges mentre estiguis silenciat, restringit o prohibit.',
-        'silenced' => 'No pots enviar missatges mentre estiguis silenciat, restringit o prohibit.',
+        'receive_friends_only' => 'És possible que l\'usuari no pugui respondre perquè només accepta missatges de persones de la llista d\'amics.',
+        'restricted' => 'No podeu enviar missatges mentre estigui silenciat, restringit o banejat.',
+        'silenced' => 'No podeu enviar missatges mentre estigui silenciat, restringit o banejat.',
     ],
 
     'comment' => [

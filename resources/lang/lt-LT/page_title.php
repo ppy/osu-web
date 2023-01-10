@@ -35,7 +35,7 @@ return [
             '_' => 'rekomenduojami atlikėjai',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => 'bitmapo diskusijos žinutės',
+            '_' => 'bitmapo diskusijos Įrašai',
         ],
         'beatmap_discussions_controller' => [
             '_' => 'bitmapo diskusijos',
@@ -58,7 +58,7 @@ return [
             '_' => 'pakeitimų sąrašas',
         ],
         'chat_controller' => [
-            '_' => 'pokalbis',
+            '_' => 'pokalbiai',
         ],
         'comments_controller' => [
             '_' => 'komentarai',
@@ -105,6 +105,7 @@ return [
         ],
         'users_controller' => [
             '_' => 'žaidėjo informacija',
+            'create' => '',
             'disabled' => 'pastaba',
         ],
         'wiki_controller' => [

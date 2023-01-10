@@ -8,14 +8,14 @@ return [
 
     'beatmapset_activities' => [
         'title' => "Історія редагування мап користувача :user",
-        'title_compact' => 'Модифікація',
+        'title_compact' => 'Моддинг',
 
         'discussions' => [
             'title_recent' => 'Нещодавно розпочаті дискусії',
         ],
 
         'events' => [
-            'title_recent' => 'Недавні події',
+            'title_recent' => 'Нещодавні події',
         ],
 
         'posts' => [
@@ -50,6 +50,22 @@ return [
     'card' => [
         'loading' => 'Завантаження...',
         'send_message' => 'Надіслати повідомлення',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => '',
+            'password_confirmation' => '',
+            'submit' => '',
+            'user_email' => '',
+            'user_email_confirmation' => '',
+            'username' => '',
+
+            'tos_notice' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -126,7 +142,7 @@ return [
 
         'actions' => [
             'send' => 'Надіслати скаргу',
-            'cancel' => 'Відмінити',
+            'cancel' => 'Скасувати',
         ],
 
         'options' => [
@@ -175,7 +191,7 @@ return [
                     'button' => 'Завантажити зображення',
                     'dropzone' => 'Для завантаження файлу перетягніть його сюди',
                     'dropzone_info' => 'Ви також можете перетягнути зображення сюди для завантаження',
-                    'size_info' => 'Розмір обкладинки повинен бути 2400x620',
+                    'size_info' => 'Розмір обкладинки повинен бути 2400x640',
                     'too_large' => 'Завантажене зображення занадто велике.',
                     'unsupported_format' => 'Непідтримуваний формат.',
 
@@ -203,28 +219,28 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'від :artist',
-                'title' => 'Мапи',
+                'title' => 'Бітмапи',
 
                 'favourite' => [
                     'title' => 'Вподобайки',
                 ],
                 'graveyard' => [
-                    'title' => 'Закинуті карти',
+                    'title' => 'Закинуті бітмапи',
                 ],
                 'guest' => [
                     'title' => 'Мапи з гостьовими складностями',
                 ],
                 'loved' => [
-                    'title' => 'Улюблені карти',
+                    'title' => 'Улюблені бітмапи',
                 ],
                 'nominated' => [
-                    'title' => 'Номіновані рангові мапи',
+                    'title' => 'Номіновані рангові бітмапи',
                 ],
                 'pending' => [
                     'title' => 'На розгляді',
                 ],
                 'ranked' => [
-                    'title' => 'Рейтингові і схвалені карти',
+                    'title' => 'Рейтингові і схвалені бітмапи',
                 ],
             ],
             'discussions' => [
@@ -451,6 +467,8 @@ return [
         'offline' => 'Не в мережі',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => 'Зареєстрований',
     ],
     'verify' => [

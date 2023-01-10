@@ -8,7 +8,7 @@ return [
     'beatmap_playcount' => ':beatmap была сыграна :count раз!',
     'beatmapset_approve' => ':beatmapset от <strong>:user</strong> стала :approval!',
     'beatmapset_delete' => ':beatmapset была удалена.',
-    'beatmapset_revive' => ':beatmapset была пробуждена из вечного сна <strong>:user</strong>.',
+    'beatmapset_revive' => '<strong>:user</strong> наконец-то возродил карту :beatmapset.',
     'beatmapset_update' => '<strong><em>:user</em></strong> обновил карту "<em>:beatmapset</em>"',
     'beatmapset_upload' => '<strong><em>:user</em></strong> опубликовал карту ":beatmapset"',
     'empty' => "Этот пользователь не делал ничего заметного в последнее время!",

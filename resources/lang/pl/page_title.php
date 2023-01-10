@@ -105,6 +105,7 @@ return [
         ],
         'users_controller' => [
             '_' => 'informacje o użytkowniku',
+            'create' => '',
             'disabled' => 'powiadomienie',
         ],
         'wiki_controller' => [

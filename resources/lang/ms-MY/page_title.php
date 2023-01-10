@@ -105,6 +105,7 @@ return [
         ],
         'users_controller' => [
             '_' => '',
+            'create' => '',
             'disabled' => '',
         ],
         'wiki_controller' => [

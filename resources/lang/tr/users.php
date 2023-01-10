@@ -52,6 +52,22 @@ return [
         'send_message' => 'mesaj gönder',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => '',
+            'password_confirmation' => '',
+            'submit' => '',
+            'user_email' => '',
+            'user_email_confirmation' => '',
+            'username' => '',
+
+            'tos_notice' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'disabled' => [
         'title' => 'Olamaz! Görünüşe bakılırsa hesabın kilitlenmiş.',
         'warning' => "Bir kuralı ihlal etmeniz durumunda, genellikle herhangi bir af(veya itiraz) talebini dikkate almayacağımız bir aylık bekleme süresinin olduğunu unutmayın.  Bu süreden sonra, gerekli olması halinde bizimle iletişime geçmekte özgürsünüz. Bir hesabı devre dışı bıraktıktan sonra yeni hesap oluşturmanın <strong>bu bir aylık bekleme süresinin uzatılmasına</strong> neden olacağını lütfen unutmayın. Ayrıca <strong> oluşturduğunuz her hesap için kuralları daha fazla ihlal ettiğinizi </strong> unutmayın. Bu yolda gitmemenizi önemle tavsiye ederiz!",
@@ -212,7 +228,7 @@ return [
                     'title' => 'Mezarlıktaki Beatmapler',
                 ],
                 'guest' => [
-                    'title' => 'Beatmap\'e misafir olarak katıl',
+                    'title' => 'Konuk Olarak Katıldığı Beatmapler',
                 ],
                 'loved' => [
                     'title' => 'Sevilen Beatmapler',
@@ -348,7 +364,7 @@ return [
                     'to_1_done' => 'Sabitlenmiş skor',
                 ],
                 'pinned' => [
-                    'title' => 'Sabitlenmiş skorlar',
+                    'title' => 'Sabitlenen Skorlar',
                 ],
             ],
             'votes' => [
@@ -451,6 +467,8 @@ return [
         'offline' => 'Çevrimdışı',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => 'Kullanıcı oluşturuldu',
     ],
     'verify' => [

@@ -5,10 +5,10 @@
 
 return [
     'availability' => [
-        'disabled' => 'Ši „beatmap“. Šiuo metu nėra galimybės atsiųsti.',
-        'parts-removed' => '',
-        'more-info' => '',
-        'rule_violation' => '',
+        'disabled' => 'Atsiųsti bitmapą šiuo metu nėra galimybės.',
+        'parts-removed' => 'Dalys šio bitmapo buvo pašalintos, kūrėjo ar trečiosios šalies laikančios teises prašymu.',
+        'more-info' => 'Žiūrėk čia dėl papildomos informacijos.',
+        'rule_violation' => 'Kai kurie elementai buvo pašalinti iš šio bitmapo, įvertinus juos kaip netinkamus naudojimui tarp osu!.',
     ],
 
     'cover' => [
@@ -16,7 +16,7 @@ return [
     ],
 
     'download' => [
-        'limit_exceeded' => '',
+        'limit_exceeded' => 'Neskubėk, pažaisk daugiau.',
     ],
 
     'featured_artist_badge' => [
@@ -25,7 +25,7 @@ return [
 
     'index' => [
         'title' => 'Bitmapų sąrašas',
-        'guest_title' => 'Beatmapai',
+        'guest_title' => 'Bitmapai',
     ],
 
     'panel' => [
@@ -40,34 +40,35 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => '',
-        'incorrect_mode' => '',
-        'full_bn_required' => '',
-        'too_many' => '',
+        'hybrid_requires_modes' => 'Mišriame bitmape reikia pasirinkti bent vieną rėžimą nominavimui.',
+        'incorrect_mode' => 'Jūs neturite leidimo nominuoti šiam rėžimui: :mode',
+        'full_bn_required' => 'Turi būti pilnai įgaliotas nominatorius, kad galėtum atlikti kvalifikavimo nominacija.',
+        'too_many' => 'Nominavimo reikalavimai jau patenkinti.',
 
         'dialog' => [
-            'confirmation' => '',
+            'confirmation' => 'Ar tikrai norite nominuoti šį bitmapą?',
             'header' => 'Nominuoti Bitmapą',
-            'hybrid_warning' => '',
-            'which_modes' => '',
+            'hybrid_warning' => 'pastaba: jūs galite nominuoti tik kartą, tai prašom užtikrinti, kad nominuojate visus rėžimus, kuriuos ketinote',
+            'which_modes' => 'Kokiems rėžimams nominuoti?',
         ],
     ],
 
     'nsfw_badge' => [
-        'label' => '',
+        'label' => 'Eksplicitinis',
     ],
 
     'show' => [
-        'discussion' => '',
+        'discussion' => 'Diskusija',
 
         'details' => [
-            'by_artist' => '',
-            'favourite' => '',
-            'favourite_login' => '',
-            'logged-out' => '',
-            'mapped_by' => ':title sukūrė :mapper',
-            'unfavourite' => '',
-            'updated_timeago' => 'paskiausiai atnaujinta prieš :timeago',
+            'by_artist' => ':artist',
+            'favourite' => 'Pridėti bitmapą į mėgstamus',
+            'favourite_login' => 'Prisijunk, kad mėgti šį bitmapą',
+            'logged-out' => 'Reikia prisijungti bitmapų atsisiuntimui!',
+            'mapped_by' => 'sukūrė :mapper',
+            'mapped_by_guest' => '',
+            'unfavourite' => 'Pašalinti bitmapą iš mėgstamų',
+            'updated_timeago' => 'paskutinį kartą atnaujinta :timeago',
 
             'download' => [
                 '_' => 'Atsisiųsti',
@@ -77,7 +78,7 @@ return [
             ],
 
             'login_required' => [
-                'bottom' => 'kad pasiektum daugiau galimybių',
+                'bottom' => 'kad pasiektum daugiau funkcijų',
                 'top' => 'Prisijungti',
             ],
         ],
@@ -92,7 +93,7 @@ return [
         ],
 
         'favourites' => [
-            'limit_reached' => '',
+            'limit_reached' => 'Per daug mėgstamų bitmapų! Pašalink keletą iš mėgstamų prieš bandydamas vėl.',
         ],
 
         'hype' => [
@@ -123,20 +124,20 @@ return [
             'description' => 'Aprašymas',
             'genre' => 'Žanras',
             'language' => 'Kalba',
-            'no_scores' => '',
+            'no_scores' => 'Duomenys dar apskaičiuojami...',
             'nominators' => 'Nominatoriai',
             'nsfw' => 'Eksplicitinis turinys',
             'offset' => 'Tinklo poslinkis',
             'points-of-failure' => 'Pralaimėjimų Vietos',
             'source' => 'Šaltinis',
             'storyboard' => 'Šis bitmapas turi foninę animaciją',
-            'success-rate' => 'Sėkmingi kartai',
+            'success-rate' => 'Įveikimų Rodiklis',
             'tags' => 'Žymos',
             'video' => 'Šis bitmapas turi vaizdo įrašą',
         ],
 
         'nsfw_warning' => [
-            'details' => '',
+            'details' => 'Šiame bitmape yra eksplicitinio, įžeidžiančio ar nerimą keliančio turinio. Vis tiek rodyti?',
             'title' => 'Eksplicitinis Turinys',
 
             'buttons' => [
@@ -148,19 +149,19 @@ return [
 
         'scoreboard' => [
             'achieved' => 'pasiekta :when',
-            'country' => 'Šalies reitingai',
+            'country' => 'Šalies Rezultatai',
             'error' => 'Nepaviko įkelti rezultatų',
-            'friend' => 'Draugų reitingai',
-            'global' => 'Pasaulinis Reitingas',
-            'supporter-link' => '',
-            'supporter-only' => 'Tau reikia turėti osu!supporter, kad pasiektum draugų ir Šalių reitingus!',
+            'friend' => 'Draugų Rezultatai',
+            'global' => 'Pasauliniai Rezultatai',
+            'supporter-link' => 'Spausk <a href=":link">čia</a>, kad pamatytum visus privalomus, kuriuos gausi!',
+            'supporter-only' => 'Tu turi būti osu!rėmėjas, kad pasiektum draugų, šalių ar konkrečių modų rezultatus!',
             'title' => 'Rezultatų lenta',
 
             'headers' => [
-                'accuracy' => 'Taiklumas',
-                'combo' => 'Didžiausias combo',
+                'accuracy' => 'Tikslumas',
+                'combo' => 'Didžiausias Kombo',
                 'miss' => 'Nepataikyti',
-                'mods' => 'Modifikacijos',
+                'mods' => 'Modai',
                 'pin' => 'Prisegti',
                 'player' => 'Žaidėjas',
                 'pp' => '',
@@ -172,8 +173,8 @@ return [
 
             'no_scores' => [
                 'country' => 'Niekas iš jūsų šalies dar neįstatė rezultato šiam bitmapui!',
-                'friend' => '',
-                'global' => '',
+                'friend' => 'Niekas iš jūsų draugų dar nenustatė rezultato šiam bitmapui!',
+                'global' => 'Jokiu rezultatų. Galbūt norėtum pabandyti nustatyti koki?',
                 'loading' => 'Įkeliami rezultatai...',
                 'unranked' => 'Nereitinguotas bitmapas.',
             ],
@@ -190,19 +191,19 @@ return [
         'stats' => [
             'cs' => 'Apskritimų dydis',
             'cs-mania' => 'Klavišų kiekis',
-            'drain' => 'Gyvybės išsekimas',
+            'drain' => 'HP išsekimas',
             'accuracy' => 'Tikslumas',
             'ar' => 'Artėjimo greitis',
-            'stars' => 'Žvaigždžių sunkumas',
-            'total_length' => 'Trukmė',
+            'stars' => 'Žvaigždžių Įvertinimas',
+            'total_length' => 'Trukmė (Senkimo trukmė: :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => 'Apskritimų skaičius',
             'count_sliders' => 'Slidukų Skaičius',
             'offset' => 'Tinklo poslinkis: :offset',
-            'user-rating' => 'Narių įvertinimas',
-            'rating-spread' => 'Vertimų išsidėstymas',
+            'user-rating' => 'Vartotojų Įvertinimas',
+            'rating-spread' => 'Vertinimų Išsidėstymas',
             'nominations' => 'Nominacijos',
-            'playcount' => 'Žaidimų skaičius',
+            'playcount' => 'Sužaidimų skaičius',
         ],
 
         'status' => [

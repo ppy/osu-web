@@ -157,7 +157,7 @@ return [
                 'edit_topic' => 'Tiêu đề chủ đề đã được thay đổi',
                 'edit_poll' => 'Cuộc thăm dò chủ đề đã được chỉnh sửa',
                 'fork' => 'Chủ đề đã được sao chép',
-                'issue_tag' => '',
+                'issue_tag' => 'Thẻ được phát hành',
                 'lock' => 'Chủ đề bị khóa',
                 'merge' => 'Các bài viết đã được gộp vào chủ đề này',
                 'move' => 'Di chuyển chủ đề',

@@ -13,12 +13,12 @@ return [
         'total' => 'total',
 
         'errors_no_checkout' => [
-            'line_1' => 'Uh-oh, terdapat masalah dengan keranjang Anda yang menghalangi kami untuk dapat memproses pemesanan lebih lanjut!',
+            'line_1' => 'Uh-oh, terdapat masalah dengan keranjangmu yang menghalangi proses checkout!',
             'line_2' => 'Hapus atau perbarui item-item di atas untuk melanjutkan.',
         ],
 
         'empty' => [
-            'text' => 'Keranjang anda masih kosong.',
+            'text' => 'Keranjangmu masih kosong.',
             'return_link' => [
                 '_' => 'Kembali ke tautan :link untuk mencari merchandise!',
                 'link_text' => 'etalase toko',
@@ -27,40 +27,40 @@ return [
     ],
 
     'checkout' => [
-        'cart_problems' => 'Aduh, ada masalah dengan pemesanan anda!',
+        'cart_problems' => 'Uh oh, terdapat masalah dengan keranjangmu!',
         'cart_problems_edit' => 'Klik di sini untuk menyuntingnya.',
         'declined' => 'Pembayaran dibatalkan.',
-        'delayed_shipping' => 'Kami sedang kebanjiran pesanan! Apabila Anda memesan sekarang, harap beri kami waktu tambahan **selama 1-2 minggu** untuk memproses pesanan Anda karena kami saat ini masih harus mengurus berbagai pesanan yang telah kami terima sebelumnya.',
-        'hide_from_activity' => '',
-        'old_cart' => 'Keranjang Anda nampaknya sudah kedaluwarsa dan telah dimuat ulang, silakan coba lagi.',
+        'delayed_shipping' => 'Kami sedang kebanjiran pesanan! Apabila kamu memesan sekarang, harap beri kami waktu tambahan **selama 1-2 minggu** untuk memproses pesananmu karena kami saat ini masih harus mengurus pesanan yang telah kami terima sebelumnya.',
+        'hide_from_activity' => 'Sembunyikan seluruh tag osu!supporter pada pesanan ini dari aktivitas saya',
+        'old_cart' => 'Keranjangmu sepertinya telah kedaluwarsa dan telah dimuat ulang. Silakan coba lagi.',
         'pay' => 'Checkout melalui Paypal',
         'title_compact' => 'checkout',
 
         'has_pending' => [
-            '_' => 'Anda memiliki transaksi yang belum tuntas, klik :link untuk melihatnya.',
+            '_' => 'Kamu memiliki transaksi yang belum tuntas. Klik :link untuk melihatnya.',
             'link_text' => 'di sini',
         ],
 
         'pending_checkout' => [
-            'line_1' => 'Anda belum menuntaskan pembayaran sebelumnya.',
-            'line_2' => 'Lanjutkan pembayaran Anda dengan memilih metode pembayaran.',
+            'line_1' => 'Transaksi sebelumnya belum dituntaskan.',
+            'line_2' => 'Lanjutkan pembayaranmu dengan memilih metode pembayaran.',
         ],
     ],
 
     'discount' => 'hemat :percent%',
 
     'invoice' => [
-        'echeck_delay' => 'Berhubung pembayaran Anda berupa eCheck, mohon tunggu hingga setidaknya 10 hari agar pembayaran Anda dapat diproses oleh PayPal!',
-        'hide_from_activity' => '',
+        'echeck_delay' => 'Berhubung pembayaranmu berupa eCheck, mohon tunggu hingga setidaknya 10 hari agar pembayaranmu dapat diproses oleh PayPal!',
+        'hide_from_activity' => 'Tag osu!supporter yang dipesan melalui pesanan ini tidak akan ditampilkan pada riwayat aktivitas terkini milikmu.',
         'title_compact' => 'faktur',
 
         'status' => [
             'processing' => [
-                'title' => 'Pembayaran Anda belum terkonfirmasi!',
-                'line_1' => 'Apabila Anda sebelumnya benar-benar telah membayar sesuai dengan jumlah yang tertagih, ada kemungkinan sistem kami masih memproses dan mengonfirmasi pembayaran Anda tersebut. Mohon tunggu beberapa menit dan muat ulang halaman ini!',
+                'title' => 'Pembayaranmu belum terkonfirmasi!',
+                'line_1' => 'Apabila kamu telah membayar sebelumnya, ada kemungkinan sistem kami masih memproses dan mengonfirmasi pembayaranmu. Silakan muat ulang halaman ini dalam beberapa menit!',
                 'line_2' => [
-                    '_' => 'Apabila Anda mengalami masalah dalam proses checkout, :link',
-                    'link_text' => 'klik di sini untuk melanjutkan transaksi Anda',
+                    '_' => 'Apabila kamu mengalami masalah dalam proses checkout, :link',
+                    'link_text' => 'klik di sini untuk melanjutkan transaksimu',
                 ],
             ],
         ],
@@ -68,7 +68,7 @@ return [
 
     'order' => [
         'cancel' => 'Batalkan Pesanan',
-        'cancel_confirm' => 'Pesanan ini akan secara otomatis dibatalkan dan segala biaya yang telah Anda keluarkan tidak akan kami terima. Apakah Anda yakin?',
+        'cancel_confirm' => 'Pesanan ini akan dibatalkan dan segala biaya yang telah kamu keluarkan tidak akan kami terima. Apakah kamu yakin?',
         'cancel_not_allowed' => 'Pesanan ini tidak dapat dibatalkan pada saat ini.',
         'invoice' => 'Lihat Faktur',
         'no_orders' => 'Tidak ada pesanan yang tercatat.',
@@ -84,18 +84,18 @@ return [
             ],
 
             'subtext' => [
-                'supporter_tag' => '',
+                'supporter_tag' => 'Pesan: :message',
             ],
         ],
 
         'not_modifiable_exception' => [
-            'cancelled' => 'Anda tidak dapat menyunting pesanan yang telah dibatalkan.',
-            'checkout' => 'Anda tidak dapat menyunting pesanan yang sedang diproses.', // checkout and processing should have the same message.
+            'cancelled' => 'Kamu tidak dapat menyunting pesanan yang telah dibatalkan.',
+            'checkout' => 'Kamu tidak dapat menyunting pesanan yang sedang diproses.', // checkout and processing should have the same message.
             'default' => 'Pesanan tidak dapat diubah',
-            'delivered' => 'Anda tidak dapat menyunting pesanan yang telah dikirim.',
-            'paid' => 'Anda tidak dapat menyunting pesanan yang telah dibayar.',
-            'processing' => 'Anda tidak dapat menyunting pesanan yang sedang diproses.',
-            'shipped' => 'Anda tidak dapat menyunting pesanan yang telah dikirim.',
+            'delivered' => 'Kamu tidak dapat menyunting pesanan yang telah dikirim.',
+            'paid' => 'Kamu tidak dapat menyunting pesanan yang telah dibayar.',
+            'processing' => 'Kamu tidak dapat menyunting pesanan yang sedang diproses.',
+            'shipped' => 'Kamu tidak dapat menyunting pesanan yang telah dikirim.',
         ],
 
         'status' => [
@@ -119,7 +119,7 @@ return [
         'add_to_cart' => 'Tambahkan ke Keranjang',
         'notify' => 'Beri tahu saya bila telah tersedia!',
 
-        'notification_success' => 'Anda akan diberitahu saat kami punya stok baru. klik :link untuk membatalkan',
+        'notification_success' => 'kamu akan diberitahukan pada saat kami memiliki stok baru. klik :link untuk membatalkan',
         'notification_remove_text' => 'di sini',
 
         'notification_in_stock' => 'Produk ini telah tersedia!',
@@ -127,10 +127,10 @@ return [
 
     'supporter_tag' => [
         'gift' => 'hadiahkan ke pengguna lain',
-        'gift_message' => '',
+        'gift_message' => 'tambahkan pesan untuk melengkapi hadiahmu! (maksimal :length karakter)',
 
         'require_login' => [
-            '_' => 'Anda harus :link untuk dapat menerima osu!supporter tag!',
+            '_' => 'Kamu harus :link untuk menerima tag osu!supporter!',
             'link_text' => 'masuk',
         ],
     ],

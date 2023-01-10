@@ -67,7 +67,7 @@ return [
         'duration' => 'Jo ar jos dėka, jūs turite priėjimą prie osu!direct ir kitų osu!rėmėjo privalumų :duration laikotarpiui. ',
         'features' => 'Daugiau informacijos apie šiuos privalumus galite rasti čia:',
         'gifted' => 'Kažkas jums padovanojo osu!rėmėjo žymą!',
-        'gift_message' => '',
+        'gift_message' => 'Asmuo padovanojęs jums šią žymą, paliko jums žinutę: ',
         'subject' => 'Jums buvo padovanota osu!rėmėjo žyma!',
     ],
 

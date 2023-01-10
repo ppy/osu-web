@@ -142,7 +142,7 @@ return [
                 'announcement' => 'закрепить тему и пометить как анонс',
                 'edit_topic' => 'к :title',
                 'fork' => 'от :topic',
-                'pin' => 'закрепленная тема',
+                'pin' => 'закреплённая тема',
                 'post_operation' => 'опубликовано :username',
                 'remove_tag' => 'убран ":tag" тег',
                 'source_forum_operation' => 'от :forum',

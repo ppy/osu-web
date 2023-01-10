@@ -52,6 +52,22 @@ return [
         'send_message' => '메시지 보내기',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => '',
+            'password_confirmation' => '',
+            'submit' => '',
+            'user_email' => '',
+            'user_email_confirmation' => '',
+            'username' => '',
+
+            'tos_notice' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'disabled' => [
         'title' => '이런! 계정이 비활성화 된 것 같네요.',
         'warning' => "규칙을 어긴 경우, 일반적으로 한 달 동안 어떠한 사면 요청도 받고 있지 않습니다. 해당 기간이 끝난 후, 사면이 필요하다고 판단될 경우 언제든지 저희에게 연락하실 수 있습니다. 하나의 계정이 비활성화된 이후 새로운 계정을 만들면 <strong>한 달의 기간이 연장될 수 있음</strong>을 명심해주세요. 또한, <strong>계정을 새로 만들 때마다 더욱 규칙 위반으로 간주</strong>한다는 것을 잊지 마세요. 이 길은 절대로 건너지 말아 주시기 바랍니다!",
@@ -451,6 +467,8 @@ return [
         'offline' => '오프라인',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => '사용자 계정 생성됨',
     ],
     'verify' => [
