@@ -66,5 +66,7 @@ class Ip2AsnUpdater
             file_put_contents($dbPath, $tsv);
         }
         file_put_contents($indexPath, $index);
+
+        $logger('Finished updating db');
     }
 }
