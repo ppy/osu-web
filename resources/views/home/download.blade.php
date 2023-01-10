@@ -74,6 +74,9 @@
                         </a>
                     </div>
                 </div>
+                <div class="download-page-header__note">
+                    {{ osu_trans('home.download.lazer_note') }}
+                </div>
             </div>
         </div>
     </div>
