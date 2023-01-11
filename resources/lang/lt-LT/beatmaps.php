@@ -22,7 +22,7 @@ return [
         'kudosu_denied' => 'Uždrausta gauti kudosu.',
         'message_placeholder_deleted_beatmap' => 'Šis sudėtingumas buvo ištrintas, todėl jo diskusijos nebegalimos.',
         'message_placeholder_locked' => 'Šio bitmapo diskusijos buvo išjungtos.',
-        'message_placeholder_silenced' => "Negali publikuoti diskusijose kol esi užtildytas.",
+        'message_placeholder_silenced' => "Negali rašyti diskusijose, kol esi užtildytas.",
         'message_type_select' => 'Pasirink Komentaro Tipą',
         'reply_notice' => 'Spausk Enter norint atsakyti.',
         'reply_placeholder' => 'Rašykite savo atsakymą čia',
@@ -55,7 +55,7 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'Ši žinutė bus perkeltą į bendrą bitmapo diskusiją. Sunkumo kritikavimui, pradėk žinutę su laiko žyma (pvz.: 00:12:345).',
+            'in_general' => 'Šis įrašas bus perkeltas į bendrą bitmapo diskusiją. Sunkumo kritikavimui, pradėk žinutę su laiko žyma (pvz.: 00:12:345).',
             'in_timeline' => 'Kad kritikuoti kelias laiko žymas, publikuok kelis kartus (vieną publikacija per laiko žymę).',
         ],
 
@@ -105,7 +105,7 @@ return [
                 'unlink' => 'Atsieti',
                 'unsaved' => 'Neišsaugota',
                 'timestamp' => [
-                    'all-diff' => 'Publikacijos tarp „Visi sunkumai“ negali būti pažymėtas laiko žyma.',
+                    'all-diff' => 'Įrašai tarp „Visi sunkumai“ negali būti pažymėti laiko žyma.',
                     'diff' => 'Jei šis :type prasideda su laiko žyma, jis bus rodomas Laiko Juostoje.',
                 ],
             ],
@@ -140,7 +140,7 @@ return [
         'status-messages' => [
             'approved' => 'Šis bitmapas buvo patvirtintas :date!',
             'graveyard' => "Šis bitmapas jau nebeatnaujinamas nuo :date ir greičiausiai buvo apleistas kūrėjo...",
-            'loved' => 'Šis beatmapas buvo pridėtas kaip mylimas nuo :date!',
+            'loved' => 'Šis bitmapas buvo pridėtas kaip mylimas nuo :date!',
             'ranked' => 'Šis bitmapas buvo reitinguotas nuo :date!',
             'wip' => 'Pastaba: Šis bitmapas yra kūrėjo pažymėtas kaip vis dar kuriamas.',
         ],
@@ -210,7 +210,7 @@ return [
 
         'reset_confirm' => [
             'disqualify' => 'Ar jūs užtikrintas? Tai pašalins bitmapą iš kvalifikuotų ir atstatis nominavimo procesą.',
-            'nomination_reset' => 'Ar jūs užtikrintas? Naujos problemos publikavimas atstatis nominavimo procesą.',
+            'nomination_reset' => 'Ar jūs užtikrintas? Naujos problemos publikavimas atstatys nominavimo procesą.',
             'problem_warning' => 'Ar tiktai norite pranešti problemą šiame bitmape? Bitmapo nominuotojai bus informuoti apie problemą.',
         ],
     ],
@@ -238,7 +238,7 @@ return [
                 'title' => 'Pavadinimas',
                 'artist' => 'Atlikėjas',
                 'difficulty' => 'Sunkumas',
-                'favourites' => 'Mėgstamiausi',
+                'favourites' => 'Mėgstami',
                 'updated' => 'Atnaujintas',
                 'ranked' => 'Reitinguotas',
                 'rating' => 'Įvertinimas',
@@ -255,7 +255,7 @@ return [
     'general' => [
         'converts' => 'Įtraukti konvertuotus bitmapus',
         'featured_artists' => 'Rekomenduojami atlikėjai',
-        'follows' => 'Sekami maperiai',
+        'follows' => 'Sekami kūrėjai',
         'recommended' => 'Rekomenduojamas sunkumas',
         'spotlights' => 'Pasižymėję bitmapai',
     ],
@@ -270,7 +270,7 @@ return [
     'status' => [
         'any' => 'Bet kokie',
         'approved' => 'Patvirtintas',
-        'favourites' => 'Mėgstamiausi',
+        'favourites' => 'Mėgstami',
         'graveyard' => 'Kapinės',
         'leaderboard' => 'Turi Rezultatų lentą',
         'loved' => 'Mylimi',
@@ -341,7 +341,7 @@ return [
     ],
     'panel' => [
         'playcount' => 'Sužaidimų skaičius :count',
-        'favourites' => 'Mėgstamiausi :count',
+        'favourites' => 'Mėgstami :count',
     ],
     'variant' => [
         'mania' => [

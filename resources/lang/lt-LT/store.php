@@ -31,7 +31,7 @@ return [
         'cart_problems_edit' => 'Norint redaguoti spausk čia.',
         'declined' => 'Apmokėjimas buvo atšauktas.',
         'delayed_shipping' => 'Šiuo metu yra labai daug užsakymų! Maloniai kviečiame užsakyti prekes, tačiau prekės **papildomai vėluos 1-2 savaites** iki kol mes susidorosime su dabartiniais užsakymais.',
-        'hide_from_activity' => '',
+        'hide_from_activity' => 'Nerodyti visas šio užsakymo osu!rėmėjo žymas tarp mano veiklos',
         'old_cart' => 'Tavo prekių krepšelis atrodo nebuvo atnaujintas, pamėgink dar kartą.',
         'pay' => 'Apmokėti su Paypal',
         'title_compact' => 'apmokėti',
@@ -51,7 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Kadangi jūsų mokėjote el. čekiu, pervedimas gali užtrukti iki 10 dienų kol praeis per PayPal sistemą!',
-        'hide_from_activity' => '',
+        'hide_from_activity' => 'osu!rėmėjo žymos šiame užsakyme nerodomos jūsų pastarojoje veikloje.',
         'title_compact' => 'sąskaita',
 
         'status' => [
@@ -84,7 +84,7 @@ return [
             ],
 
             'subtext' => [
-                'supporter_tag' => '',
+                'supporter_tag' => 'Žinutė: :message',
             ],
         ],
 
@@ -127,7 +127,7 @@ return [
 
     'supporter_tag' => [
         'gift' => 'dovanoti žaidėjui',
-        'gift_message' => '',
+        'gift_message' => 'pridėti nebūtiną žinutę jūsu dovanai! (iki :length ženklų)',
 
         'require_login' => [
             '_' => 'Tu turi būti :link, kad gauti osu!supporter žymę!',

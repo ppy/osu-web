@@ -11,7 +11,7 @@ class BeatmapsetTransformer extends BeatmapsetCompactTransformer
 {
     protected $beatmapTransformer = BeatmapTransformer::class;
 
-    protected $defaultIncludes = [
+    protected array $defaultIncludes = [
         'has_favourited',
     ];
 

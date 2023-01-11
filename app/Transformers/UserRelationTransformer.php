@@ -9,7 +9,7 @@ use App\Models\UserRelation;
 
 class UserRelationTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'target',
     ];
 

@@ -278,7 +278,7 @@ class UsersController extends Controller
                 return response(null, 204);
             }
 
-            $throttleKey = "registration:{$ip}";
+            $throttleKey = 'registration:asn:'.app('ip2asn')->lookup($ip);
 
             if (app(RateLimiter::class)->tooManyAttempts($throttleKey, 10)) {
                 abort(429);

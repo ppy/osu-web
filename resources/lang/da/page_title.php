@@ -105,6 +105,7 @@ return [
         ],
         'users_controller' => [
             '_' => 'spiller info',
+            'create' => '',
             'disabled' => 'notits',
         ],
         'wiki_controller' => [

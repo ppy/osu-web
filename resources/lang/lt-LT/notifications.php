@@ -37,10 +37,10 @@ return [
                 '_' => 'Bitmapo diskusija',
                 'beatmapset_discussion_lock' => 'Diskusija tarp ":title" buvo užrakinta',
                 'beatmapset_discussion_lock_compact' => 'Diskusija buvo užrakinta',
-                'beatmapset_discussion_post_new' => 'Nauja žinutė tarp :title" iš :username: ":content"',
-                'beatmapset_discussion_post_new_empty' => 'Nauja žinutė tarp :title" iš :username',
-                'beatmapset_discussion_post_new_compact' => 'Nauja žinutė iš :username ":content"',
-                'beatmapset_discussion_post_new_compact_empty' => 'Nauja žinutė iš :username',
+                'beatmapset_discussion_post_new' => 'Naujas įrašas tarp :title" iš :username: ":content"',
+                'beatmapset_discussion_post_new_empty' => 'Naujas įrašas tarp :title" iš :username',
+                'beatmapset_discussion_post_new_compact' => 'Naujas įrašas iš :username ":content"',
+                'beatmapset_discussion_post_new_compact_empty' => 'Naujas įrašas iš :username',
                 'beatmapset_discussion_review_new' => 'Nauja apžvalga ant ":title" iš :username, kurioje yra problemos: :problems, pasiūlymai: :suggestions, pagyrimai: :praises',
                 'beatmapset_discussion_review_new_compact' => 'Nauja apžvalga iš :username, kurioje yra problemos: :problems, pasiūlymai: :suggestions, pagyrimai: :praises',
                 'beatmapset_discussion_unlock' => 'Diskusija apie ":title" buvo atrakinta',
@@ -87,12 +87,12 @@ return [
             '_' => 'Pokalbiai',
 
             'announcement' => [
-                '_' => 'Naujas pranešimas',
+                '_' => 'Naujas skelbimas',
 
                 'announce' => [
                     'channel_announcement' => ':username sako ":title"',
                     'channel_announcement_compact' => ':title',
-                    'channel_announcement_group' => 'Pranešimas iš :username',
+                    'channel_announcement_group' => 'Skelbimas iš :username',
                 ],
             ],
 
@@ -144,11 +144,11 @@ return [
         ],
 
         'legacy_pm' => [
-            '_' => '',
+            '_' => 'Senojo Forumo Pranešimas',
 
             'legacy_pm' => [
                 '_' => '',
-                'legacy_pm' => ':count_delimited neperskaityta žinutė|:count_delimited neperskaitytos(-ų) žinutės(-čių)',
+                'legacy_pm' => ':count_delimited neperskaityta žinutė|:count_delimited neperskaitytų žinučių',
             ],
         ],
 

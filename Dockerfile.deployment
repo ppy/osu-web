@@ -57,6 +57,7 @@ ARG APP_URL
 ARG DOCS_URL
 RUN yarn production
 
+RUN php artisan ip2asn:update
 RUN php artisan scribe:generate
 
 RUN rm -rf node_modules

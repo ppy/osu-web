@@ -32,9 +32,9 @@ return [
                 'description' => 'A ti támogatásotok segíti, hogy a játék független legyen és teljesen hirdetésmentes szponzorok nélkül.',
             ],
             'tournaments' => [
-                'title' => 'Hivatalos Versenyek',
+                'title' => 'Hivatalos bajnokságok',
                 'description' => 'Támogasd a hivatalos osu! Világbajnokság rendezését (és díjait).',
-                'link_text' => 'Versenyek felfedezése &raquo;',
+                'link_text' => 'Bajnokságok felfedezése &raquo;',
             ],
             'bounty-program' => [
                 'title' => 'Nyílt forrású bounty program',

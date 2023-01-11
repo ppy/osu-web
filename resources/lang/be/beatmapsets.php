@@ -66,6 +66,7 @@ return [
             'favourite_login' => 'Увайдзіце, каб дадаць бітмапу ў абраныя',
             'logged-out' => 'Каб спампаваць нейкую бітмапу, вам трэба ўвайсці!',
             'mapped_by' => 'створана :mapper',
+            'mapped_by_guest' => '',
             'unfavourite' => 'Выдаліць з абраных',
             'updated_timeago' => 'абноўлены :timeago',
 

@@ -13,12 +13,12 @@ return [
 
     'beatmaps' => [
         '_' => 'Bitmapai',
-        'download' => 'Parsisiųsti Bitmapo šabloną',
+        'download' => 'Atsisiųsti Bitmapo šabloną',
         'download-na' => 'Bitmapo Šablonas dar nepasiekiamas',
     ],
 
     'index' => [
-        'description' => 'Rekomenduojami atlikėjai - tai atlikėjai su kuriais mes bendradarbiaujame norit suteikti naujausią ir orginaliausią muziką osu! žaidime. Šie atlikėjai ir jų išskirtiniai kūriniai buvo išrinkti osu! komandos kaip geriausi ir labiausiai tinkami bitmapų kūrimui. Kai kurie atlikėjai sukūrė specialiai osu! skirtų kūrinių.<br><br>Visi kūriniai šioje skiltyje yra pateikti jau su sureguliuotu tempu ir buvo oficialiai licenzijuoti naudojimui osu! žaidime ir su osu! žaidimu susijusiam turiniui.',
+        'description' => 'Rekomenduojami atlikėjai - tai atlikėjai su kuriais mes bendradarbiaujame norit suteikti naujausią ir orginaliausią muziką osu! žaidime. Šie atlikėjai ir jų išskirtiniai kūriniai buvo išrinkti osu! komandos kaip geriausi ir labiausiai tinkami bitmapų kūrimui. Kai kurie atlikėjai sukūrė specialiai osu! skirtų kūrinių.<br><br>Visi kūriniai šioje skiltyje yra pateikti jau su sureguliuotu tempu ir buvo oficialiai licencijuoti naudojimui osu! žaidime ir su osu! žaidimu susijusiam turiniui.',
     ],
 
     'links' => [

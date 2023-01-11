@@ -31,7 +31,7 @@ return [
         'cart_problems_edit' => 'Klikni tukaj za urejanje.',
         'declined' => 'Plačilo je bilo preklicano.',
         'delayed_shipping' => 'Trenutno imamo preveč naročil! Naročilo je dobrodošlo, ampak pričakuj **dodaten teden ali dva zamika**, da se lahko ujamemo s preostalimi naročili.',
-        'hide_from_activity' => '',
+        'hide_from_activity' => 'Skrij vse osu!supporter oznake v tem naročilu iz moje dejavnosti',
         'old_cart' => 'Tvoja nakupovalna košarica je zastarela in je bila osvežena, prosimo poskusi znova.',
         'pay' => 'Plačaj s Paypal-om',
         'title_compact' => 'plačilo',
@@ -51,7 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Ker je bilo tvoje plačilo narejeno z eCheck-om, prosimo počakaj vsaj do 10 dodatnih dni, da se plačilo poravna preko PayPal-a!',
-        'hide_from_activity' => '',
+        'hide_from_activity' => 'osu!supporter oznake v tem naročilu ne bodo prikazane v tvojih nedavnih dejavnostih.',
         'title_compact' => 'račun',
 
         'status' => [
@@ -84,7 +84,7 @@ return [
             ],
 
             'subtext' => [
-                'supporter_tag' => '',
+                'supporter_tag' => 'Sporočilo: :message',
             ],
         ],
 
@@ -127,7 +127,7 @@ return [
 
     'supporter_tag' => [
         'gift' => 'podari igralcu',
-        'gift_message' => '',
+        'gift_message' => 'dodaj izbirno sporočilo k tvojemu darilu! (vse do :length znakov)',
 
         'require_login' => [
             '_' => 'Za pridobitev osu!supporter značke moraš biti :link!',

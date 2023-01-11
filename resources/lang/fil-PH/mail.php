@@ -67,7 +67,7 @@ return [
         'duration' => 'Salamat sa kanila, may access ka na sa osu!direct at iba pang osu!supporter na benepisyo para sa sususnod na :duration.',
         'features' => 'Maaari mong malaman ang higit pang mga detalye tungkol sa mga features dito:',
         'gifted' => 'May nagregalo sa\'yo ng osu!supporter tag!',
-        'gift_message' => '',
+        'gift_message' => 'Ang taong nagbigay sa iyo ng tag na ito ay ng-iwan sa iyo ng mensahe:',
         'subject' => 'Ikaw ay binigyan ng osu!supporter tag!',
     ],
 

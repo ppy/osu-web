@@ -66,6 +66,7 @@ return [
             'favourite_login' => 'Connectez-vous pour ajouter cette beatmap aux favoris',
             'logged-out' => 'Vous devez vous connecter pour pouvoir télécharger des beatmaps !',
             'mapped_by' => 'mappée par :mapper',
+            'mapped_by_guest' => '',
             'unfavourite' => 'Retirer cette beatmapset des favoris',
             'updated_timeago' => 'dernière mise à jour le :timeago',
 

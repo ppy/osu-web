@@ -31,7 +31,7 @@ return [
         'cart_problems_edit' => 'Pro editaci klikni sem.',
         'declined' => 'Tvá platba byla zrušena.',
         'delayed_shipping' => 'V tuto chvíli jsme zahlceni objednávkami! Svou objednávku můžeš umístit, ale počítej prosím s **dalšími 1-2 týdny zpoždění** zatímco dokončíme už existující objednávky.',
-        'hide_from_activity' => '',
+        'hide_from_activity' => 'Schovat všechny osu!supporter tagy v této objednávce z mých aktivit',
         'old_cart' => 'Obsah tvého košíku se zdá být zastaralý a proto byl znovu načten, zkus to prosím znovu.',
         'pay' => 'Zaplatit přes PayPal',
         'title_compact' => 'zaplatit',
@@ -51,7 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Jelikož vaše platba byla prováděna službou eCheck, prosím, dejte nám až 10 dní na to, aby platba úspěšně prošla přes PayPal!',
-        'hide_from_activity' => '',
+        'hide_from_activity' => 'osu!supporter tagy v této objednávce se nebudou zobrazovat v nedávných aktivitách.',
         'title_compact' => 'faktura',
 
         'status' => [
@@ -84,7 +84,7 @@ return [
             ],
 
             'subtext' => [
-                'supporter_tag' => '',
+                'supporter_tag' => 'Zpráva: :message',
             ],
         ],
 
@@ -127,7 +127,7 @@ return [
 
     'supporter_tag' => [
         'gift' => 'darovat hráči',
-        'gift_message' => '',
+        'gift_message' => 'přidat volitelnou zprávu k dárku! (maximálně :length znaků)',
 
         'require_login' => [
             '_' => 'Pro obdržení štítku podporovatele se musíš :link!',

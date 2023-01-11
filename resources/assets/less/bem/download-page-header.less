@@ -21,12 +21,14 @@
   }
 
   &__choice {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
 
     @media @desktop {
+      gap: 20px;
       padding: 40px 0;
     }
   }
@@ -92,6 +94,16 @@
       background-color: hsl(var(--hsl-b2));
       width: var(--separator-width);
       height: var(--separator-height);
+    }
+  }
+
+  &__note {
+    font-size: @font-size--title-small;
+    color: hsl(var(--hsl-red-1));
+
+    @media @desktop {
+      position: absolute;
+      bottom: 0;
     }
   }
 

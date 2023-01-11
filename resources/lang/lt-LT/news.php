@@ -8,8 +8,8 @@ return [
         'title_page' => 'osu!naujienos',
 
         'nav' => [
-            'newer' => 'Naujesnės publikacijos',
-            'older' => 'Senesnės publikacijos',
+            'newer' => 'Naujesni įrašai',
+            'older' => 'Senesni įrašai',
         ],
 
         'title' => [
@@ -22,13 +22,13 @@ return [
         'by' => ':user',
 
         'nav' => [
-            'newer' => 'Naujesnė publikacija',
-            'older' => 'Senesnė publikacija',
+            'newer' => 'Naujesnis įrašas',
+            'older' => 'Senesnis įrašas',
         ],
 
         'title' => [
             '_' => 'naujienos',
-            'info' => 'publikacija',
+            'info' => 'Įrašas',
         ],
     ],
 
@@ -43,6 +43,6 @@ return [
 
     'update' => [
         'button' => 'Atnaujinti',
-        'ok' => 'Publikacija atnaujinta.',
+        'ok' => 'Įrašas atnaujintas.',
     ],
 ];

@@ -72,9 +72,22 @@ return [
     ],
 
     'download' => [
+        'action' => 'Изтегли osu!',
+        'action_lazer' => '',
+        'action_lazer_description' => '',
+        'action_lazer_info' => '',
+        'action_lazer_title' => '',
+        'action_title' => '',
+        'for_os' => '',
+        'lazer_note' => '',
+        'macos-fallback' => 'macOS потребители',
+        'mirror' => 'алтернативна връзка',
+        'or' => '',
+        'other_os' => '',
+        'quick_start_guide' => '',
         'tagline' => "нека ви помогнем<br>
 да започнете!",
-        'action' => 'Изтегли osu!',
+        'video-guide' => 'видео ръководство',
 
         'help' => [
             '_' => 'при проблем със стартиране на играта или регистриране на профил, посетете :help_forum_link или :support_button.',
@@ -87,8 +100,6 @@ return [
             'macos' => 'за macOS',
             'linux' => 'за Linux',
         ],
-        'mirror' => 'алтернативна връзка',
-        'macos-fallback' => 'macOS потребители',
         'steps' => [
             'register' => [
                 'title' => 'създай акаунт',
@@ -106,7 +117,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'видео ръководство',
     ],
 
     'user' => [

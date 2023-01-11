@@ -72,8 +72,21 @@ return [
     ],
 
     'download' => [
-        'tagline' => "să<br>începem!",
         'action' => 'Descarcă osu!',
+        'action_lazer' => '',
+        'action_lazer_description' => '',
+        'action_lazer_info' => '',
+        'action_lazer_title' => '',
+        'action_title' => '',
+        'for_os' => '',
+        'lazer_note' => '',
+        'macos-fallback' => 'utilizatori macOS',
+        'mirror' => 'sursă alternativă',
+        'or' => '',
+        'other_os' => '',
+        'quick_start_guide' => '',
+        'tagline' => "să<br>începem!",
+        'video-guide' => 'ghid video',
 
         'help' => [
             '_' => 'dacă ai o problemă la pornirea jocului sau la înregistrarea contului, :help_forum_link sau :support_button.',
@@ -86,8 +99,6 @@ return [
             'macos' => 'pentru macOS',
             'linux' => 'pentru Linux',
         ],
-        'mirror' => 'sursă alternativă',
-        'macos-fallback' => 'utilizatori macOS',
         'steps' => [
             'register' => [
                 'title' => 'creează un cont',
@@ -105,7 +116,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'ghid video',
     ],
 
     'user' => [

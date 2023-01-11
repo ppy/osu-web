@@ -10,7 +10,7 @@ use App\Transformers\TransformerAbstract;
 
 class LegacyMatchTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'events',
     ];
 

@@ -7,8 +7,8 @@ return [
     'authorizations' => [
         'update' => [
             'null_user' => 'Redagavimui reikia prisijungti.',
-            'system_generated' => 'Sistemos sugeneruotos žinutės negali būti redaguojamos.',
-            'wrong_user' => 'Redaguoti gali tik žinutės siuntėjas.',
+            'system_generated' => 'Sistemos sugeneruoti įrašai negali būti redaguojami.',
+            'wrong_user' => 'Redaguoti gali tik įrašo siuntėjas.',
         ],
     ],
 
@@ -46,15 +46,15 @@ return [
     ],
 
     'item' => [
-        'created_at' => 'Pranešimo data',
+        'created_at' => 'Publikavimo data',
         'deleted_at' => 'Ištrynimo data',
         'message_type' => 'Tipas',
         'permalink' => 'Nuoroda',
     ],
 
     'nearby_posts' => [
-        'confirm' => 'Nei viena žinutė neišsprendžia mano rūpesčių',
-        'notice' => 'Šios žinutės išsiųstos :timestamp (:existing_timestamps). Peržiūrėk jas, prieš siunčiant naują.',
+        'confirm' => 'Nei vienas įrašas neišsprendžia mano rūpesčių',
+        'notice' => 'Šie įrašai išsiųsti :timestamp (:existing_timestamps). Peržiūrėk juos, prieš publikuojant naują.',
         'unsaved' => ':count šioje apžvalgoje
 ',
     ],
@@ -75,7 +75,7 @@ return [
 
     'review' => [
         'block_count' => ':used / :max teksto laukų panaudota',
-        'go_to_parent' => 'Žiūrėti Apžvalgos Publikacija
+        'go_to_parent' => 'Žiūrėti Apžvalgos Įrašą
 ',
         'go_to_child' => 'Peržiūrėti diskusiją
 ',

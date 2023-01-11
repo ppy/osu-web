@@ -52,6 +52,22 @@ return [
         'send_message' => 'enviar mensagem',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => '',
+            'password_confirmation' => '',
+            'submit' => '',
+            'user_email' => '',
+            'user_email_confirmation' => '',
+            'username' => '',
+
+            'tos_notice' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'disabled' => [
         'title' => 'Oh não! Parece que a sua conta foi desativada.',
         'warning' => "No caso de você ter infringido uma regra, observe que geralmente há um período de espera de um mês durante o qual não consideraremos nenhum pedido de anistia. Após esse período, você pode entrar em contato conosco caso julgue necessário. Observe que a criação de novas contas após a desativação de uma conta resultará em uma <strong> extensão desse período de espera de um mês </strong>. Observe também que, para <strong> todas as contas criadas, você está violando ainda mais as regras </strong>. É altamente recomendável que você não siga esse caminho!",
@@ -451,6 +467,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => 'Usuário criado',
     ],
     'verify' => [

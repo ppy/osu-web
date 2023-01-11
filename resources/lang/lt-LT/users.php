@@ -19,7 +19,7 @@ return [
         ],
 
         'posts' => [
-            'title_recent' => 'Naujausios žinutės',
+            'title_recent' => 'Naujausi įrašai',
         ],
 
         'votes_received' => [
@@ -50,6 +50,22 @@ return [
     'card' => [
         'loading' => 'Įkeliama...',
         'send_message' => 'Siųsti žinutę',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => '',
+            'password_confirmation' => '',
+            'submit' => '',
+            'user_email' => '',
+            'user_email_confirmation' => '',
+            'username' => '',
+
+            'tos_notice' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -106,7 +122,7 @@ return [
     ],
 
     'posts' => [
-        'title' => ':username žinutės',
+        'title' => ':username įrašai',
     ],
 
     'anonymous' => [
@@ -159,7 +175,7 @@ return [
         'title' => ":username profilis",
 
         'comments_count' => [
-            '_' => 'Paskelbta :link',
+            '_' => 'Publikuota :link',
             'count' => '::count_delimited komentaras|:count_delimited komentarų',
         ],
         'cover' => [
@@ -218,7 +234,7 @@ return [
                     'title' => 'Mylimi Bitmapai',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => 'Nominuoti Reitinguoti Bitmapai',
                 ],
                 'pending' => [
                     'title' => 'Laukiantis Bitmapai',
@@ -268,36 +284,36 @@ return [
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => 'Gauta :amount už kudosu atmetimo anuliavimą taisymų žinutėje tarp :post',
+                            'give' => 'Gauta :amount už kudosu atmetimo anuliavimą taisymų įrašą tarp :post',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => 'Atmesta :amount už taisymų žinutę :post',
+                            'reset' => 'Atmesta :amount už taisymų įraša :post',
                         ],
 
                         'delete' => [
-                            'reset' => 'Prarasta :amount dėl taisymų žinutės ištrynimo iš :post',
+                            'reset' => 'Prarasta :amount dėl taisymų įrašo ištrynimo iš :post',
                         ],
 
                         'restore' => [
-                            'give' => 'Gauta :amount dėl taisymų žinutės atstatymo tarp :post',
+                            'give' => 'Gauta :amount dėl taisymų įrašo atstatymo tarp :post',
                         ],
 
                         'vote' => [
-                            'give' => 'Gauta :amount už gautus balsus taisymų žinutėje tarp :post',
-                            'reset' => 'Prarasta :amount dėl prarastu balsų taisymų žinutėje tarp :post',
+                            'give' => 'Gauta :amount už gautus balsus taisymų įraše tarp :post',
+                            'reset' => 'Prarasta :amount dėl prarastu balsų taisymų įraše tarp :post',
                         ],
 
                         'recalculate' => [
-                            'give' => 'Gauta :amount dėl balsų perskaičiavimo taisymų žinutėje tarp :post',
-                            'reset' => 'Prarasta :amount dėl balsų perskaičiavimo taisymų žinutėje tarp :post',
+                            'give' => 'Gauta :amount dėl balsų perskaičiavimo taisymų įraše tarp :post',
+                            'reset' => 'Prarasta :amount dėl balsų perskaičiavimo taisymų įraše tarp :post',
                         ],
                     ],
 
                     'forum_post' => [
-                        'give' => 'Gauta :amount iš :giver dėl žinutės tarp :post',
-                        'reset' => ':giver atšaukė kudosu už žinutę tarp :post',
-                        'revoke' => ':giver atmetė kudosu už žinutę tarp :post',
+                        'give' => 'Gauta :amount iš :giver dėl įrašo tarp :post',
+                        'reset' => ':giver atstatė kudosu už įrašą tarp :post',
+                        'revoke' => ':giver atmetė kudosu už įrašą tarp :post',
                     ],
                 ],
 
@@ -318,9 +334,9 @@ return [
                 'title' => 'Žaidimų Rinkiniai',
             ],
             'posts' => [
-                'title' => 'Žinutės',
-                'title_longer' => 'Paskutinės žinutės',
-                'show_more' => 'rodyti daugiau žinučių',
+                'title' => 'Įrašai',
+                'title_longer' => 'Paskutiniai Įrašai',
+                'show_more' => 'rodyti daugiau įrašų',
             ],
             'recent_activity' => [
                 'title' => 'Paskutinės',
@@ -356,7 +372,7 @@ return [
                 'received' => 'Gauta Balsų (paskutiniai 3 mėnesiai)',
                 'title' => 'Balsai',
                 'title_longer' => 'Paskutiniai Balsavimai',
-                'vote_count' => 'Prieš:count_delimited balsas| Prieš:count_delimited balsai(-ų)',
+                'vote_count' => 'Prieš:count_delimited balsas| Prieš:count_delimited balsų',
             ],
             'account_standing' => [
                 'title' => 'Paskyros padėtis',
@@ -409,8 +425,8 @@ return [
             ],
         ],
         'post_count' => [
-            '_' => 'Įnašas :link',
-            'count' => ':count_delimited forumo žinutė|:count_delimited  forumo žinutės',
+            '_' => 'Indėlis :link',
+            'count' => ':count_delimited forumo įrašas|:count_delimited  forumo įrašų',
         ],
         'rank' => [
             'country' => 'Šalies reitingas tarp :mode',
@@ -452,6 +468,8 @@ return [
         'offline' => 'Atsijungęs',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => 'Naudotojas sukurtas',
     ],
     'verify' => [

@@ -33,7 +33,7 @@ return [
     ],
 
     'stat' => [
-        'accuracy' => 'Taiklumas',
+        'accuracy' => 'Tikslumas',
         'active_users' => 'Aktyvūs Vartotojai',
         'country' => 'Šalis',
         'play_count' => 'Sužaidimų Skaičius',

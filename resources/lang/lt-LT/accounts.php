@@ -61,7 +61,7 @@ return [
             'comment_new' => 'nauji komentarai',
             'forum_topic_reply' => 'temos atsakymas',
             'mail' => 'paštas',
-            'mapping' => 'bitmapų maperis',
+            'mapping' => 'bitmapo kūrėjas',
             'push' => 'push',
             'user_achievement_unlock' => 'žaidėjo medalis atrakintas',
         ],
