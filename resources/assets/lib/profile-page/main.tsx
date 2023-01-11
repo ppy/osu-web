@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import LazyLoadContext, { Props as ContextProps, Snapshot} from 'components/lazy-load-context';
+import LazyLoadContext, { Props as ContextProps, Snapshot } from 'components/lazy-load-context';
 import UserProfileContainer from 'components/user-profile-container';
 import { ProfileExtraPage } from 'interfaces/user-extended-json';
 import { pull, last, first, throttle, debounce } from 'lodash';
