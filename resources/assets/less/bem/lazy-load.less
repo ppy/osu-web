@@ -2,14 +2,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .lazy-load {
+  // TODO: need better min-height for different sections?
+  // most extra pages will be larger than this unless they have less than the default number of items.
+  min-height: 150px; // excludes the non-lazy-loaded part (e.g. headers)
+
   &--loading {
     display: flex;
     align-items: center;
     justify-content: center;
-    // TODO: need better min-height for different sections?
-    // most extra pages will be larger than this unless they have less than the default number of items.
-    // TODO: define min-height for the extra page itself instead of just the lazy-load part.
-    min-height: 150px; // excludes the non-lazy-loaded part (e.g. headers)
   }
 
   &__button {
