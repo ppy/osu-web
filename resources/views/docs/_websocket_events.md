@@ -1,6 +1,20 @@
 
 # Websocket Events
 
+Websocket events generally have the following standard format:
+
+```json
+{
+  "data": {},
+  "event": "some.event"
+}
+```
+
+Field | Type    | Description
+----- |-------- | -------------
+event | string  | Name of the event
+data  | object? | Event payload
+
 ## `logout` event
 
 User session using same authentication key has been logged out (not yet implemented for OAuth authentication).
@@ -17,6 +31,10 @@ See [Notification](#notification) object for notification types.
 ## `read` event
 
 Sent when a notification has been read.
+
+<aside class="notice">
+  This event does not use the `data` property for payload.
+</aside>
 
 TODO: `ids` should be moved to `data` to match other events.
 
@@ -41,6 +59,10 @@ Broadcast to the user when the user leaves a chat channel.
 
 [ChatChannel](#chat-channel) with `current_user_attributes`, `last_message_id`, `users` additional attributes.
 
+## chat.end
+
+Send to the websocket to stop receiving chat messages.
+
 ## chat.message.new
 
 Sent to the user when the user receives a chat message.
@@ -56,3 +78,7 @@ Messages intented for a user are always sent even if the user does not currently
 Such messages include PM and Announcement messages.
 
 Other messages, e.g. public channel messages are not sent if the user is no longer present in the channel.
+
+## chat.start
+
+Send to the websocket to start receiving chat messages.

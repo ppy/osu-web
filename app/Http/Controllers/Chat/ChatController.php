@@ -28,6 +28,24 @@ class ChatController extends Controller
         parent::__construct();
     }
 
+    /**
+     * Chat Keepalive
+     *
+     * Request periodically to reset chat activity timeout. Also returns an updated list of recent silences.
+     *
+     * See [Public channels and activity timeout](#public-channels-and-activity-timeout)
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Field            | Type
+     * ---------------- | -----------------
+     * silences         | [UserSilence](#usersilence)[]?
+     *
+     * @queryParam history_since integer [UserSilence](#usersilence)s after the specified id to return.
+     * @queryParam since integer required Messages after the specified `message_id` to return.
+     */
     public function ack()
     {
         Chat::ack(auth()->user());

@@ -12,6 +12,18 @@ Sending messages is still performed through the HTTP-based API.
   It is up to the client to handle this.
 </aside>
 
+To begin receiving chat messages, clients should send the [chat.start](#chatstart) event across the socket connection.
+To stop receiving chat messages, send [chat.end](#chatend).
+
+## Public channels and activity timeout
+
+To continue receiving chat messages in [PUBLIC](#channeltype) channels,
+clients must peridiocally request the [Chat Keepalive](#chat-keepalive) endpoint to remain active;
+30 seconds is a reasonable interval.
+When a client is no longer considered active, the server will stop sending messages in public channels to the client.
+
+Private messages are not affected by this activity timeout.
+
 ## Getting the user's channel list
 
 TODO: update default parameter
