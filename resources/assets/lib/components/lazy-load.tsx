@@ -103,7 +103,13 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
       throw new Error('LazyLoadContext is missing.');
     }
 
-    return this.props.children;
+    // wrapper so the parent element can be flexbox without affecting child elements;
+    // Flexbox to workaround Safari overlapping the elements for some reason.
+    return (
+      <div className='lazy-load__content'>
+        {this.props.children}
+      </div>
+    );
   }
 
   private renderNotLoaded() {

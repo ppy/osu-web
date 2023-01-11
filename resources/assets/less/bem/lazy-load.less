@@ -2,18 +2,20 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .lazy-load {
+  display: flex;
   // TODO: need better min-height for different sections?
   // most extra pages will be larger than this unless they have less than the default number of items.
   min-height: 150px; // excludes the non-lazy-loaded part (e.g. headers)
-
-  &--loading {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  align-items: center;
+  justify-content: center;
 
   &__button {
     text-align: center;
+  }
+
+  // workaround wrapper for Safari making consecutive blocks smaller than they should be.
+  &__content {
+    flex: 1;
   }
 
   &__error {
