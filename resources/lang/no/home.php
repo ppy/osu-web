@@ -72,8 +72,21 @@ return [
     ],
 
     'download' => [
-        'tagline' => "la oss<br>få deg i gang!",
         'action' => 'Last ned osu!',
+        'action_lazer' => '',
+        'action_lazer_description' => '',
+        'action_lazer_info' => '',
+        'action_lazer_title' => '',
+        'action_title' => '',
+        'for_os' => '',
+        'lazer_note' => '',
+        'macos-fallback' => 'macOS brukere',
+        'mirror' => 'alternativ link',
+        'or' => '',
+        'other_os' => '',
+        'quick_start_guide' => '',
+        'tagline' => "la oss<br>få deg i gang!",
+        'video-guide' => 'video veiledning',
 
         'help' => [
             '_' => '',
@@ -86,8 +99,6 @@ return [
             'macos' => 'for macOS',
             'linux' => 'for Linux',
         ],
-        'mirror' => 'alternativ link',
-        'macos-fallback' => 'macOS brukere',
         'steps' => [
             'register' => [
                 'title' => 'opprett en konto',
@@ -105,7 +116,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'video veiledning',
     ],
 
     'user' => [

@@ -66,6 +66,7 @@ return [
             'favourite_login' => 'Mag-sign in para i-favourite ang beatmap na ito',
             'logged-out' => 'Kailangan mong mag-sign-in bago ka pwedeng mag-download ng mga beatmap!',
             'mapped_by' => 'minapa ni :mapper',
+            'mapped_by_guest' => '',
             'unfavourite' => 'I-unfavorite ang beatmap na ito',
             'updated_timeago' => 'huling na-update sa :timeago',
 

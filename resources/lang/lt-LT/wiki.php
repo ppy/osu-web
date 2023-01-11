@@ -22,7 +22,7 @@ return [
 
         'translation' => [
             'legal' => 'Šis vertimas yra tik dėl patogumo. Originalioji :default yra vienintelė teisiškai galiojanti teksto versija.',
-            'outdated' => 'Šiame puslapyje turninio vertimas pasenęs. Peržiurėkite :default dėl tiksliausios informacijos ( ir pasvarstyk dėl vertimo atnaujinimo, jei gali)!',
+            'outdated' => 'Šiame puslapyje turinio vertimas pasenęs. Peržiūrėkite :default dėl tiksliausios informacijos ( ir pasvarstyk dėl vertimo atnaujinimo, jei gali)!',
 
             'default' => 'Angliška versija',
         ],

@@ -84,7 +84,7 @@ return [
             ],
 
             'subtext' => [
-                'supporter_tag' => '',
+                'supporter_tag' => 'Melding: :message',
             ],
         ],
 
@@ -127,7 +127,7 @@ return [
 
     'supporter_tag' => [
         'gift' => 'gi som gave',
-        'gift_message' => '',
+        'gift_message' => 'legg inn en valgfri melding til din gave! (opptil :length tegn)',
 
         'require_login' => [
             '_' => 'Du må være :link for å få tak i en osu!supporter tag!',

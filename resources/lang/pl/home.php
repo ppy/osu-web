@@ -72,8 +72,21 @@ return [
     ],
 
     'download' => [
-        'tagline' => "rozpocznij swoją<br>przygodę z osu!",
         'action' => 'Pobierz osu!',
+        'action_lazer' => '',
+        'action_lazer_description' => '',
+        'action_lazer_info' => '',
+        'action_lazer_title' => '',
+        'action_title' => '',
+        'for_os' => '',
+        'lazer_note' => '',
+        'macos-fallback' => 'użytkownicy macOS',
+        'mirror' => 'serwer lustrzany',
+        'or' => '',
+        'other_os' => '',
+        'quick_start_guide' => '',
+        'tagline' => "rozpocznij swoją<br>przygodę z osu!",
+        'video-guide' => 'poradnik',
 
         'help' => [
             '_' => 'jeżeli masz problem z uruchomieniem gry bądź utworzeniem konta, :help_forum_link lub :support_button.',
@@ -86,8 +99,6 @@ return [
             'macos' => 'dla systemu macOS',
             'linux' => 'dla systemu Linux',
         ],
-        'mirror' => 'serwer lustrzany',
-        'macos-fallback' => 'użytkownicy macOS',
         'steps' => [
             'register' => [
                 'title' => 'utwórz konto',
@@ -105,7 +116,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'poradnik',
     ],
 
     'user' => [

@@ -9,7 +9,7 @@ use App\Models\Group;
 
 class GroupTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = ['description'];
+    protected array $availableIncludes = ['description'];
 
     public function transform(Group $group)
     {

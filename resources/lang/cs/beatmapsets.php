@@ -66,6 +66,7 @@ return [
             'favourite_login' => 'Pro přidání beatmapy do oblíbených se přihlas',
             'logged-out' => 'Pro stahování beatmap musíš být přihlášen!',
             'mapped_by' => 'beatmapu vytvořil :mapper',
+            'mapped_by_guest' => '',
             'unfavourite' => 'Odebrat z mých oblíbených',
             'updated_timeago' => 'naposledy aktualizováno :timeago',
 
@@ -124,7 +125,7 @@ return [
             'genre' => 'Žánr',
             'language' => 'Jazyk',
             'no_scores' => 'Data se vypočítávají...',
-            'nominators' => '',
+            'nominators' => 'Nominátoři',
             'nsfw' => 'Explicitní obsah',
             'offset' => 'Online offset',
             'points-of-failure' => 'Body neúspěchů',

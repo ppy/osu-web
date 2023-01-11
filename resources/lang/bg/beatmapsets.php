@@ -66,6 +66,7 @@ return [
             'favourite_login' => 'Влез, за добавяне в любими',
             'logged-out' => 'Моля, влез в профила си, за изтегляне на бийтмапове!',
             'mapped_by' => 'създаден от :mapper',
+            'mapped_by_guest' => '',
             'unfavourite' => 'премахване от Любими',
             'updated_timeago' => 'последно актуализиран :timeago',
 

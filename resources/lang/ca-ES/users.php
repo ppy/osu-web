@@ -52,6 +52,22 @@ return [
         'send_message' => 'Enviar missatge',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => '',
+            'password_confirmation' => '',
+            'submit' => '',
+            'user_email' => '',
+            'user_email_confirmation' => '',
+            'username' => '',
+
+            'tos_notice' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'disabled' => [
         'title' => 'Vaja! Sembla que el teu compte ha estat desactivat.',
         'warning' => "En cas que hi hagi trencat una regla, tingueu en compte que generalment hi ha un període d'espera d'un mes durant el qual no considerarem cap sol·licitud d'amnistia. Després d'aquest període, podeu contactar amb nosaltres si ho considereu necessari. Tingueu en compte que la creació de comptes nous després d'haver tingut un desactivat resultarà en una <strong>extensió d'aquest període d'espera d'un mes</strong>. Si us plau, també tingueu en compte que per <strong>cada compte que creeu, estarà violant més regles</strong>. Us suggerim que no seguiu aquest camí!",
@@ -451,6 +467,8 @@ return [
         'offline' => 'Sense connexió',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => 'Usuari creat',
     ],
     'verify' => [

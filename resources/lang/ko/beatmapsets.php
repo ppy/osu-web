@@ -66,6 +66,7 @@ return [
             'favourite_login' => '로그인하여 이 비트맵을 즐겨찾기 하세요.',
             'logged-out' => '로그인 후 비트맵을 다운로드하세요!',
             'mapped_by' => ':mapper 님의 맵',
+            'mapped_by_guest' => '',
             'unfavourite' => '즐겨찾기 해제',
             'updated_timeago' => ':timeago에 마지막으로 수정',
 

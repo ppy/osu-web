@@ -66,6 +66,7 @@ return [
             'favourite_login' => 'Inicie sesión para marcar este mapa como favorito',
             'logged-out' => '¡Necesitas iniciar sesión antes de descargar cualquier mapa!',
             'mapped_by' => 'mapeado por :mapper',
+            'mapped_by_guest' => '',
             'unfavourite' => 'Desmarcar como favorito',
             'updated_timeago' => 'actualizado por última vez :timeago',
 

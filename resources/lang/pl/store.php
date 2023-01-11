@@ -31,7 +31,7 @@ return [
         'cart_problems_edit' => 'Kliknij tutaj, aby go zedytować.',
         'declined' => 'Płatność została anulowana.',
         'delayed_shipping' => 'Obecnie jesteśmy przeciążeni zamówieniami! Wciąż możesz złożyć swoje zamówienie, ale spodziewaj się **dodatkowego opóźnienia w postaci 1-2 tygodni**, dopóki te już istniejące nie zostaną zakończone.',
-        'hide_from_activity' => '',
+        'hide_from_activity' => 'Ukryj zakup wszystkich statusów donatora osu! z tego zamówienia w mojej aktywności',
         'old_cart' => 'Zawartość twojego koszyka była przestarzała i została odświeżona, spróbuj ponownie.',
         'pay' => 'Zapłać przez PayPal',
         'title_compact' => 'kasa',
@@ -51,7 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Jako że twoja płatność została przesłana czekiem elektronicznym, odczekaj do 10 dni na przetworzenie transakcji przez PayPal.',
-        'hide_from_activity' => '',
+        'hide_from_activity' => 'Zakup statusów donatora osu! z tego zamówienia nie zostanie wyświetlony w twojej aktywności.',
         'title_compact' => 'faktura',
 
         'status' => [
@@ -84,7 +84,7 @@ return [
             ],
 
             'subtext' => [
-                'supporter_tag' => '',
+                'supporter_tag' => 'Wiadomość: „:message”',
             ],
         ],
 
@@ -127,7 +127,7 @@ return [
 
     'supporter_tag' => [
         'gift' => 'podaruj innemu użytkownikowi',
-        'gift_message' => '',
+        'gift_message' => 'dołącz opcjonalną wiadomość do tego prezentu (do :length znaków)',
 
         'require_login' => [
             '_' => 'Aby uzyskać status donatora osu!, musisz się :link!',

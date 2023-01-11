@@ -10,7 +10,7 @@ use App\Models\DeletedUser;
 
 class ContestEntryTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'results',
         'artMeta',
     ];

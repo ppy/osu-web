@@ -146,7 +146,7 @@ services:
 
   score-indexer:
     image: pppy/osu-elastic-indexer
-    command: ["queue", "--force-version"]
+    command: ["queue", "watch", "--force-version"]
     depends_on:
       redis:
         condition: service_healthy
