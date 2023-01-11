@@ -6,11 +6,12 @@ import Controller from './controller';
 
 export const beatmapsetSections = [
   'favouriteBeatmapsets',
-  'guestBeatmapsets',
-  'rankedBeatmapsets',
-  'lovedBeatmapsets',
-  'pendingBeatmapsets',
   'graveyardBeatmapsets',
+  'guestBeatmapsets',
+  'lovedBeatmapsets',
+  'nominatedBeatmapsets',
+  'pendingBeatmapsets',
+  'rankedBeatmapsets',
 ] as const;
 export type BeatmapsetSection = typeof beatmapsetSections[number];
 

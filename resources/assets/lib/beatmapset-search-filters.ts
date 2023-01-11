@@ -4,6 +4,7 @@
 import { invert } from 'lodash';
 import { action, computed, intercept, makeObservable, observable } from 'mobx';
 import core from 'osu-core-singleton';
+import { presence, present } from 'utils/string';
 import { updateQueryString } from 'utils/url';
 
 export const charToKey: Record<string, FilterKey> = {
@@ -96,7 +97,7 @@ export class BeatmapsetSearchFilters {
     makeObservable(this);
 
     intercept(this, 'query', (change) => {
-      change.newValue = osu.presence((change.newValue as FilterValueType)?.trim());
+      change.newValue = presence((change.newValue as FilterValueType)?.trim());
 
       return change;
     });
@@ -111,7 +112,7 @@ export class BeatmapsetSearchFilters {
       case 'status':
         return 'leaderboard';
       case 'sort':
-        if (osu.present(this.query)) {
+        if (present(this.query)) {
           return 'relevance_desc';
         } else if (['pending', 'wip', 'graveyard', 'mine'].includes(this.status ?? '')) {
           return 'updated_desc';

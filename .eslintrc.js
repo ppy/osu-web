@@ -103,6 +103,7 @@ module.exports = {
         '@typescript-eslint/no-unused-expressions': 'error',
         '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', ignoreRestSiblings: true }],
         '@typescript-eslint/no-use-before-define': 'off',
+        '@typescript-eslint/object-curly-spacing': ['error', 'always'],
         '@typescript-eslint/prefer-for-of': 'error',
         '@typescript-eslint/prefer-function-type': 'error',
         '@typescript-eslint/quotes': [
@@ -120,12 +121,22 @@ module.exports = {
           },
         ],
         '@typescript-eslint/semi': ['error', 'always'],
+        // TODO: make more strict.
+        '@typescript-eslint/strict-boolean-expressions': [
+          'error',
+          {
+            allowAny: true,
+            allowNullableBoolean: true,
+            allowNullableNumber: true,
+            allowNullableString: true,
+          },
+        ],
         '@typescript-eslint/type-annotation-spacing': 'error',
-        '@typescript-eslint/unbound-method': 'warn', // TODO: some calls are intentionally unbounded...
         '@typescript-eslint/unified-signatures': 'error',
         'dot-notation': 'off',
         'no-invalid-this': 'off',
         'no-shadow': 'off',
+        'object-curly-spacing': 'off',
         quotes: 'off',
         'react-hooks/exhaustive-deps': 'error',
         'react/jsx-boolean-value': 'error',
@@ -228,6 +239,7 @@ module.exports = {
     'no-trailing-spaces': 'error',
     'no-undef-init': 'error',
     'no-unsafe-finally': 'error',
+    'object-curly-spacing': ['error', 'always'],
     'object-shorthand': 'error',
     'one-var': ['error', 'never'],
     'quote-props': ['error', 'as-needed'],

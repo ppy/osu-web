@@ -66,6 +66,7 @@ return [
             'favourite_login' => 'ลงชื่อบีทแมพนี้เป็นรายการโปรด',
             'logged-out' => 'คุณต้องเข้าสู่ระบบก่อนที่จะดาวน์โหลดบีทแมพ',
             'mapped_by' => 'แมพโดย :mapper',
+            'mapped_by_guest' => '',
             'unfavourite' => 'เลิก Favourite beatmapset นี้',
             'updated_timeago' => 'อัปเดตล่าสุดเมื่อ :timeago',
 
@@ -124,6 +125,7 @@ return [
             'genre' => 'ประเภท',
             'language' => 'ภาษา',
             'no_scores' => 'ข้อมูลกำลังถูกคำนวณ...',
+            'nominators' => '',
             'nsfw' => 'เนื้อหาไม่เหมาะสม',
             'offset' => '',
             'points-of-failure' => 'ความล้มเหลว',

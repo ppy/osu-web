@@ -3,6 +3,7 @@
 
 import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 import { Spinner } from './spinner';
 
 const bn = 'show-more-link';
@@ -61,7 +62,7 @@ export default class ShowMoreLink<T> extends React.PureComponent<Props<T>> {
           </span>
 
           <span className={`${bn}__label-text`}>
-            {this.props.label ?? osu.trans('common.buttons.show_more')}
+            {this.props.label ?? trans('common.buttons.show_more')}
             {this.props.remaining != null && ` (${this.props.remaining})`}
           </span>
 

@@ -105,6 +105,7 @@ describe('Notification Index', () => {
         spyOn(controller, 'loadMore');
         controller.navigateTo('user');
 
+        // eslint-disable-next-line @typescript-eslint/unbound-method
         expect(controller.loadMore).toHaveBeenCalledTimes(1);
       });
     });
@@ -114,6 +115,7 @@ describe('Notification Index', () => {
         spyOn(controller, 'loadMore');
         controller.navigateTo('beatmapset');
 
+        // eslint-disable-next-line @typescript-eslint/unbound-method
         expect(controller.loadMore).toHaveBeenCalledTimes(0);
       });
     });

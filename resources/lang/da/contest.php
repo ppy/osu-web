@@ -34,7 +34,7 @@ return [
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => '',
+                'incomplete_play' => 'Du skal spile alle beatmaps i denne specifikke playliste før du kan stemme',
             ],
         ],
     ],
@@ -50,6 +50,7 @@ return [
             'beatmap' => 'Kun .osu filer er accepteret i denne konkurrence.',
             'music' => 'Kun .mp3 filer er accepteret i denne konkurrence.',
         ],
+        'wrong_dimensions' => '',
         'too_big' => 'Bidrag til denne konkurrence kan maks være op til :limit.',
     ],
     'beatmaps' => [

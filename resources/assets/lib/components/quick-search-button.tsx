@@ -1,7 +1,6 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { Modal } from 'components/modal';
 import { route } from 'laroute';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
@@ -9,6 +8,7 @@ import QuickSearch from 'quick-search/main';
 import Worker from 'quick-search/worker';
 import * as React from 'react';
 import { currentUrl } from 'utils/turbolinks';
+import Modal from './modal';
 
 interface Props {
   worker: Worker;
@@ -60,7 +60,7 @@ interface State {
     }
 
     return (
-      <Modal onClose={this.toggle} visible>
+      <Modal onClose={this.toggle}>
         <QuickSearch ref={this.formRef} onClose={this.toggle} worker={this.props.worker} />
       </Modal>
     );

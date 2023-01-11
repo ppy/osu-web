@@ -13,7 +13,7 @@ use Carbon\Carbon;
 
 class RoomTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'current_playlist_item',
         'current_user_score',
         'difficulty_range',

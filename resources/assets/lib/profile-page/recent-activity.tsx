@@ -13,6 +13,7 @@ import ExtraHeader from 'profile-page/extra-header';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { stripTags } from 'utils/html';
+import { trans } from 'utils/lang';
 import ExtraPageProps from './extra-page-props';
 import parseEvent from './parse-event';
 
@@ -56,7 +57,7 @@ export default class RecentActivity extends React.Component<ExtraPageProps> {
   };
 
   private renderEmpty() {
-    return <p className='profile-extra-entries'>{osu.trans('events.empty')}</p>;
+    return <p className='profile-extra-entries'>{trans('events.empty')}</p>;
   }
 
   private renderEntries() {
@@ -92,7 +93,7 @@ export default class RecentActivity extends React.Component<ExtraPageProps> {
             <StringWithComponent
               mappings={mappings}
               // TODO: remove stripTags once translations are updated
-              pattern={stripTags(osu.trans(`events.${snakeCase(event.type)}`))}
+              pattern={stripTags(trans(`events.${snakeCase(event.type)}`))}
             />
           </div>
         </div>

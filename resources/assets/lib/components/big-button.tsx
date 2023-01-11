@@ -3,6 +3,7 @@
 
 import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
+import { present } from 'utils/string';
 import { Spinner } from './spinner';
 
 interface Props {
@@ -49,7 +50,7 @@ export default class BigButton extends React.Component<Props> {
       blockClass += ` ${this.props.extraClasses.join(' ')}`;
     }
 
-    if (osu.present(this.props.href)) {
+    if (present(this.props.href)) {
       if (this.props.disabled) {
         return (
           <span className={blockClass} {...this.props.props}>

@@ -9,6 +9,8 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { jsonClone } from 'utils/json';
+import { trans } from 'utils/lang';
+import { presence, present } from 'utils/string';
 import makeLink from './make-link';
 
 type Nullable<T> = T | null | undefined;
@@ -47,6 +49,7 @@ export type ArtistTrackSearch = {
 } & Partial<Record<ArtistTrackSearchRelevanceParam, Nullable<string>>> & Partial<Record<ArtistTrackSearchNumberRangeParam, Nullable<EsRange<number | string>>>>;
 
 const lengthRegexp = '^\\d+(\\.\\d*)?(ms|s|m|h)?$';
+const numericRegexp = '^\\d*$';
 
 interface Props {
   availableGenres: string[];
@@ -96,12 +99,12 @@ export default class SearchForm extends React.Component<Props> {
             className='artist-track-search-form__big-input'
             name='query'
             onChange={this.handleChangeString}
-            placeholder={osu.trans('beatmaps.listing.search.prompt')}
+            placeholder={trans('beatmaps.listing.search.prompt')}
             value={this.params.query ?? ''}
           />
 
           <h3 className='title title--artist-track-search-advanced'>
-            {osu.trans('artist.tracks.index.form.advanced')}
+            {trans('artist.tracks.index.form.advanced')}
           </h3>
 
           <div className='artist-track-search-form__advanced'>
@@ -127,8 +130,9 @@ export default class SearchForm extends React.Component<Props> {
                 className='artist-track-search-form__input'
                 data-param='bpm'
                 data-range='gte'
+                inputMode='numeric'
                 onChange={this.handleChangeRangeNatural}
-                type='number'
+                pattern={numericRegexp}
                 value={this.params.bpm?.gte ?? ''}
               />
             </InputContainer>
@@ -138,8 +142,9 @@ export default class SearchForm extends React.Component<Props> {
                 className='artist-track-search-form__input'
                 data-param='bpm'
                 data-range='lte'
+                inputMode='numeric'
                 onChange={this.handleChangeRangeNatural}
-                type='number'
+                pattern={numericRegexp}
                 value={this.params.bpm?.lte ?? ''}
               />
             </InputContainer>
@@ -168,7 +173,7 @@ export default class SearchForm extends React.Component<Props> {
 
             <InputContainer labelKey='artist.tracks.index.form.genre' modifiers={['4', 'genre']}>
               <div className='artist-track-search-form__genres'>
-                {this.renderGenreLink(osu.trans('artist.tracks.index.form.genre_all'), null)}
+                {this.renderGenreLink(trans('artist.tracks.index.form.genre_all'), null)}
                 {this.props.availableGenres.map((genre) => this.renderGenreLink(genre, genre))}
               </div>
             </InputContainer>
@@ -180,7 +185,7 @@ export default class SearchForm extends React.Component<Props> {
             href={this.makeLink(this.emptySearch)}
             modifiers={['artist-track-search', 'rounded-thin']}
             props={{ onClick: this.handleReset }}
-            text={osu.trans('common.buttons.reset')}
+            text={trans('common.buttons.reset')}
           />
 
           <BigButton
@@ -188,7 +193,7 @@ export default class SearchForm extends React.Component<Props> {
             href={this.url}
             modifiers={['artist-track-search', 'rounded-thin-wide']}
             props={{ onClick: this.handleSubmit }}
-            text={osu.trans('common.buttons.search')}
+            text={trans('common.buttons.search')}
           />
         </div>
       </form>
@@ -210,7 +215,7 @@ export default class SearchForm extends React.Component<Props> {
       throw new Error('missing input field dataset');
     }
 
-    const value = osu.presence(input.value);
+    const value = presence(input.value);
 
     if (value != null && input.pattern != null && (RegExp(input.pattern).exec(value)) == null) {
       return;
@@ -235,7 +240,7 @@ export default class SearchForm extends React.Component<Props> {
     const param = e.target.name as ArtistTrackSearchRelevanceParam;
     const value = e.target.value;
 
-    if (osu.present(value)) {
+    if (present(value)) {
       this.params[param] = value;
     } else {
       delete this.params[param];
@@ -245,7 +250,7 @@ export default class SearchForm extends React.Component<Props> {
   @action
   private readonly handleGenreLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    this.params.genre = osu.presence(e.currentTarget.dataset.value);
+    this.params.genre = presence(e.currentTarget.dataset.value);
     this.props.onNewSearch(e.currentTarget.href);
   };
 
@@ -282,7 +287,7 @@ export default class SearchForm extends React.Component<Props> {
       <a
         key={name}
         className={classWithModifiers('artist-track-search-form__genre-link', {
-          active: osu.presence(this.params.genre) === value,
+          active: presence(this.params.genre) === value,
         })}
         data-value={value ?? ''}
         href={this.makeLink({ ...this.params, genre: value })}

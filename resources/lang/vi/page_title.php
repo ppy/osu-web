@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'admin',
     ],
-    'admin_forum' => [
-        '_' => 'admin của forum',
-    ],
-    'admin_store' => [
-        '_' => 'quản trị viên',
-    ],
     'error' => [
         'error' => [
             '400' => 'yêu cầu không hợp lệ',
@@ -30,19 +24,12 @@ return [
     'forum' => [
         '_' => 'diễn đàn',
         'topic_logs_controller' => [
-            'index' => '',
-        ],
-        'topic_watches_controller' => [
-            'index' => 'tổng quan',
+            'index' => 'nhật kí chủ đề',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'tổng quan',
             'verify_link' => 'xác thực tài khoản',
-        ],
-        'artist_tracks_controller' => [
-            '_' => 'nghệ sĩ tiêu biểu',
         ],
         'artists_controller' => [
             '_' => 'nghệ sĩ tiêu biểu',
@@ -62,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'lịch sử beatmap',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'tổng quan',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'góc thảo luận beatmap ',
             'index' => 'danh sách beatmap',
@@ -81,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => 'cuộc thi',
-        ],
-        'follows_controller' => [
-            'index' => 'tổng quan',
-        ],
-        'friends_controller' => [
-            'index' => 'trang chủ',
         ],
         'groups_controller' => [
             'show' => 'nhóm',
@@ -123,24 +101,16 @@ return [
         'scores_controller' => [
             '_' => 'hiệu suất',
         ],
-        'store_controller' => [
-            '_' => 'cửa hàng',
-        ],
         'tournaments_controller' => [
             '_' => 'giải đấu',
         ],
         'users_controller' => [
             '_' => 'thông tin người chơi',
+            'create' => '',
             'disabled' => 'để ý',
         ],
         'wiki_controller' => [
             '_' => 'wiki',
-        ],
-    ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'xếp hạng
-',
         ],
     ],
     'passport' => [

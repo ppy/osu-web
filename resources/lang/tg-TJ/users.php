@@ -52,6 +52,22 @@ return [
         'send_message' => '',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => '',
+            'password_confirmation' => '',
+            'submit' => '',
+            'user_email' => '',
+            'user_email_confirmation' => '',
+            'username' => '',
+
+            'tos_notice' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'disabled' => [
         'title' => '',
         'warning' => "",
@@ -215,6 +231,9 @@ return [
                     'title' => '',
                 ],
                 'loved' => [
+                    'title' => '',
+                ],
+                'nominated' => [
                     'title' => '',
                 ],
                 'pending' => [
@@ -414,6 +433,7 @@ return [
             'country_simple' => '',
             'global' => '',
             'global_simple' => '',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => '',
@@ -447,6 +467,8 @@ return [
         'offline' => '',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => '',
     ],
     'verify' => [

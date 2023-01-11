@@ -14,10 +14,8 @@ use Illuminate\Database\Query\Expression;
 /**
  * @property Channel $channel
  * @property int $channel_id
- * @property bool $hidden
  * @property int|null $last_read_id
  * @property User $user
- * @property User $userScoped
  * @property int $user_id
  */
 class UserChannel extends Model
@@ -31,11 +29,6 @@ class UserChannel extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function userScoped()
-    {
-        return $this->belongsTo(User::class, 'user_id')->default();
-    }
-
     public function channel()
     {
         return $this->belongsTo(Channel::class, 'channel_id');
@@ -47,20 +40,18 @@ class UserChannel extends Model
             'channel_id',
             'user_id' => $this->getRawAttribute($key),
 
-            'hidden' => (bool) $this->getRawAttribute($key),
-
             'last_read_id' => $this->getLastReadId(),
 
             'channel',
-            'user',
-            'userScoped' => $this->getRelationValue($key),
+            'user' => $this->getRelationValue($key),
         };
     }
 
     // Laravel has own hidden property
+    // TODO: https://github.com/ppy/osu-web/pull/9486#discussion_r1017831112
     public function isHidden()
     {
-        return $this->getAttribute('hidden');
+        return (bool) $this->getRawAttribute('hidden');
     }
 
     public function markAsRead($messageId = null)

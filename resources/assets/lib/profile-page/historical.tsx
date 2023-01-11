@@ -9,6 +9,7 @@ import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as moment from 'moment';
 import * as React from 'react';
+import { trans } from 'utils/lang';
 import BeatmapPlaycount from './beatmap-playcount';
 import Chart, { ChartData } from './chart';
 import ExtraHeader from './extra-header';
@@ -120,7 +121,7 @@ export default class Historical extends React.Component<ExtraPageProps> {
             <ProfilePageExtraSectionTitle titleKey='users.show.extra.historical.monthly_playcounts.title' />
 
             <div className='page-extra__chart'>
-              <Chart data={this.monthlyPlaycountsData} labelY={`${osu.trans('users.show.extra.historical.monthly_playcounts.count_label')}`} />
+              <Chart data={this.monthlyPlaycountsData} labelY={`${trans('users.show.extra.historical.monthly_playcounts.count_label')}`} />
             </div>
           </>
         }
@@ -155,7 +156,7 @@ export default class Historical extends React.Component<ExtraPageProps> {
             <ProfilePageExtraSectionTitle titleKey='users.show.extra.historical.replays_watched_counts.title' />
 
             <div className='page-extra__chart'>
-              <Chart data={this.replaysWatchedCountsData} labelY={`${osu.trans('users.show.extra.historical.replays_watched_counts.count_label')}`} />
+              <Chart data={this.replaysWatchedCountsData} labelY={`${trans('users.show.extra.historical.replays_watched_counts.count_label')}`} />
             </div>
           </>
         }

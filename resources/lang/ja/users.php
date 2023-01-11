@@ -52,6 +52,22 @@ return [
         'send_message' => 'メッセージの送信',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => '',
+            'password_confirmation' => '',
+            'submit' => '',
+            'user_email' => '',
+            'user_email_confirmation' => '',
+            'username' => '',
+
+            'tos_notice' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'disabled' => [
         'title' => 'ああ！アカウントが無効になっているようです。',
         'warning' => "ルールに違反した場合は、通常１か月のクールダウン期間があり、その間のリクエストは考慮されません。この期間の後、必要と思われる場合はお気軽にお問い合わせください。無効にしたアカウントを1つ作成した後に新しいアカウントを作成すると、<strong>１か月のクールダウンが延長される</strong>ことに注意してください。また、<strong>作成するすべてのアカウントが、さらなる規則に違反することに注意してください</strong>。この道をたどらないでください！",
@@ -216,6 +232,9 @@ return [
                 ],
                 'loved' => [
                     'title' => 'Lovedされたビートマップ',
+                ],
+                'nominated' => [
+                    'title' => 'ノミネートしたRankedビートマップ',
                 ],
                 'pending' => [
                     'title' => 'Pendingビートマップ',
@@ -414,6 +433,7 @@ return [
             'country_simple' => '国別ランキング',
             'global' => ':modeの世界ランク',
             'global_simple' => '世界ランキング',
+            'highest' => '最高ランク: :rank (:dateに取得)',
         ],
         'stats' => [
             'hit_accuracy' => '精度',
@@ -447,6 +467,8 @@ return [
         'offline' => 'オフライン',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => 'ユーザーが作成されました',
     ],
     'verify' => [

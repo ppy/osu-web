@@ -5,17 +5,17 @@
 
 return [
     'index' => [
-        'description' => '',
-        'title_compact' => '',
+        'description' => 'Čia bitmapų diskusijos, kurias sekate. Jūs būsite informuoti, kai bus naujų įrašų ar atnaujinimų.',
+        'title_compact' => 'bitmapų diskusijų stebėjimo sąrašas',
 
         'counts' => [
-            'total' => '',
-            'unread' => '',
+            'total' => 'Stebimi bitmapai',
+            'unread' => 'Bitmapai su naujais įvykiais',
         ],
 
         'table' => [
-            'empty' => '',
-            'last_update' => '',
+            'empty' => 'Nėra stebimų bitmapų diskusijų.',
+            'last_update' => 'Paskutinis atnaujinimas',
             'open_issues' => 'Atviros klaidos',
             'state' => 'Būsena',
             'title' => 'Pavadinimas',
@@ -23,7 +23,7 @@ return [
     ],
 
     'status' => [
-        'read' => 'Skaityti',
+        'read' => 'Skaityta',
         'unread' => 'Neskaityta',
     ],
 ];

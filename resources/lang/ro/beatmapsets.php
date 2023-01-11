@@ -66,6 +66,7 @@ return [
             'favourite_login' => 'Autentifică-te pentru a adăuga acest beatmap la preferate',
             'logged-out' => 'Trebuie să te autentifici înainte de a descărca vreun beatmap!',
             'mapped_by' => 'creat de :mapper',
+            'mapped_by_guest' => '',
             'unfavourite' => 'Elimină acest beatmapset de la favorite',
             'updated_timeago' => 'ultima actualizare :timeago',
 
@@ -124,6 +125,7 @@ return [
             'genre' => 'Gen',
             'language' => 'Limbă',
             'no_scores' => 'Încă se calculează datele...',
+            'nominators' => 'Nominalizatori',
             'nsfw' => 'Conținut obscen',
             'offset' => 'Offset online',
             'points-of-failure' => 'Puncte de eșec',
@@ -147,10 +149,10 @@ return [
 
         'scoreboard' => [
             'achieved' => 'realizat :when',
-            'country' => 'Clasament pe țară',
+            'country' => 'Clasament Țară',
             'error' => 'Încărcarea clasamentului a eșuat',
-            'friend' => 'Clasamentul prietenilor',
-            'global' => 'Clasament global',
+            'friend' => 'Clasament Prieteni',
+            'global' => 'Clasament Global',
             'supporter-link' => 'Faceți clic <a href=":link">aici</a> pentru a vedea toate avantajele pe care le poți obține!',
             'supporter-only' => 'Trebuie să fii un suporter pentru a accesa clasamentul prietenilor și pe țară!',
             'title' => 'Tabela de scor',

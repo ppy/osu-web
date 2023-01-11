@@ -6,6 +6,7 @@ import * as React from 'react'
 import { button, div, h3 } from 'react-dom-factories'
 import { classWithModifiers } from 'utils/css'
 import { bottomPageDistance } from 'utils/html'
+import { trans } from 'utils/lang'
 import { Event } from './event'
 import { Game } from './game'
 
@@ -88,7 +89,7 @@ export class Content extends React.PureComponent
           if @props.isAutoloading
             div
               className: 'mp-history-content__autoload-label'
-              osu.trans 'matches.match.in_progress_spinner_label'
+              trans 'matches.match.in_progress_spinner_label'
           el ShowMoreLink,
             callback: @props.loadNext
             hasMore: true

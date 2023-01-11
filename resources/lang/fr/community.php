@@ -129,7 +129,7 @@ return [
             ],
             'more_beatmaps' => [
                 'title' => 'Mettre en ligne plus de beatmaps',
-                'description' => 'Le nombre de beatmaps en attente que vous pouvez avoir en même temps est calculé à partir d\'une valeur de base plus un bonus supplémentaire pour chaque beatmap classée que vous avez actuellement (jusqu\'à une limite).<br/><br/>Normalement, cela est :base plus :bonus par beatmap classé (jusqu\'à :bonus_max). Avec supporter, cela passe à :supporter_base plus :supporter_bonus par beatmap classé (jusqu\'à :supporter_bonus_max).',
+                'description' => 'Le nombre de beatmaps en attente que vous pouvez avoir en même temps est calculé à partir d\'une valeur de base plus un bonus supplémentaire pour chaque beatmap classée que vous avez actuellement (jusqu\'à une certaine limite).<br/><br/>Normalement, cette limite est de :base plus :bonus par beatmap classée (jusqu\'à :bonus_max). Avec le supporter, cette limite passe à :supporter_base plus :supporter_bonus par beatmap classée (jusqu\'à :supporter_bonus_max).',
             ],
             'friend_filtering' => [
                 'title' => 'Classement des amis',

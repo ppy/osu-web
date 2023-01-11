@@ -15,6 +15,7 @@ import * as React from 'react';
 import PpValue from 'scores/pp-value';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
+import { trans } from 'utils/lang';
 import { hasMenu, isPerfectCombo, modeAttributesMap, scoreUrl, totalScore } from 'utils/score-helper';
 
 const bn = 'beatmap-scoreboard-table';
@@ -106,7 +107,7 @@ export default class ScoreboardTableRow extends React.Component<Props> {
 
         {score.user.is_deleted ? (
           <TdLink href={this.scoreUrl}>
-            {osu.trans('users.deleted')}
+            {trans('users.deleted')}
           </TdLink>
         ) : (
           <td className={`${bn}__cell u-relative`}>
@@ -153,7 +154,7 @@ export default class ScoreboardTableRow extends React.Component<Props> {
         </TdLink>
 
         <td className={`${bn}__popup-menu`}>
-          {hasMenu(score) && <PlayDetailMenu score={score} />}
+          {hasMenu(score) && <PlayDetailMenu score={score} user={score.user} />}
         </td>
       </tr>
     );

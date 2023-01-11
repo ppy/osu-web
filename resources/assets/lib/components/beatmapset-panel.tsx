@@ -19,6 +19,7 @@ import { getArtist, getDiffColour, getTitle, group as groupBeatmaps } from 'util
 import { showVisual, toggleFavourite } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber, formatNumberSuffixed } from 'utils/html';
+import { trans } from 'utils/lang';
 import { beatmapsetDownloadDirect } from 'utils/url';
 import StringWithComponent from './string-with-component';
 import TimeWithTooltip from './time-with-tooltip';
@@ -69,7 +70,7 @@ const BeatmapDots = observer(({ compact, beatmaps, mode }: { beatmaps: BeatmapJs
 
 const BeatmapsetBadge = ({ type }: { type: string }) => (
   <span className={`beatmapset-badge beatmapset-badge--${type} beatmapset-badge--panel`}>
-    {osu.trans(`beatmapsets.${type.replace(/-/g, '_')}_badge.label`)}
+    {trans(`beatmapsets.${type.replace(/-/g, '_')}_badge.label`)}
   </span>
 );
 
@@ -83,7 +84,7 @@ const MapperLink = observer(({ beatmapset }: { beatmapset: BeatmapsetJson }) => 
 const PlayIcon = ({ icon, titleVariant }: { icon: string; titleVariant: string }) => (
   <div
     className='beatmapset-panel__play-icon'
-    title={osu.trans(`beatmapsets.show.info.${titleVariant}`)}
+    title={trans(`beatmapsets.show.info.${titleVariant}`)}
   >
     <i className={icon} />
   </div>
@@ -137,11 +138,11 @@ export default class BeatmapsetPanel extends React.Component<Props> {
   @computed
   private get downloadLink() {
     if (core.currentUser == null) {
-      return { title: osu.trans('beatmapsets.show.details.logged-out') };
+      return { title: trans('beatmapsets.show.details.logged-out') };
     }
 
     if (this.props.beatmapset.availability?.download_disabled) {
-      return { title: osu.trans('beatmapsets.availability.disabled') };
+      return { title: trans('beatmapsets.availability.disabled') };
     }
 
     let type = core.userPreferences.get('beatmapset_download');
@@ -175,7 +176,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
     }
 
     return {
-      title: osu.trans(`beatmapsets.panel.download.${titleVariant}`),
+      title: trans(`beatmapsets.panel.download.${titleVariant}`),
       url,
     };
   }
@@ -233,7 +234,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
 
   @computed
   private get url() {
-    return route('beatmapsets.show', { beatmapset: this.props.beatmapset.id});
+    return route('beatmapsets.show', { beatmapset: this.props.beatmapset.id });
   }
 
   constructor(props: Props) {
@@ -420,7 +421,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
         </div>
         <div className='beatmapset-panel__info-row beatmapset-panel__info-row--artist'>
           <a className='beatmapset-panel__main-link u-ellipsis-overflow' href={this.url}>
-            {osu.trans('beatmapsets.show.details.by_artist', { artist: getArtist(this.props.beatmapset) })}
+            {trans('beatmapsets.show.details.by_artist', { artist: getArtist(this.props.beatmapset) })}
           </a>
           {this.props.beatmapset.track_id != null &&
             <div className="beatmapset-panel__badge-container">
@@ -439,7 +440,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
           <div className='u-ellipsis-overflow'>
             <StringWithComponent
               mappings={{ mapper: <MapperLink beatmapset={this.props.beatmapset} /> }}
-              pattern={osu.trans('beatmapsets.show.details.mapped_by')}
+              pattern={trans('beatmapsets.show.details.mapped_by')}
             />
           </div>
         </div>
@@ -448,7 +449,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
           {this.showHypeCounts && this.props.beatmapset.hype != null && (
             <StatsItem
               icon='fas fa-bullhorn'
-              title={osu.trans('beatmaps.hype.required_text', {
+              title={trans('beatmaps.hype.required_text', {
                 current: formatNumber(this.props.beatmapset.hype.current),
                 required: formatNumber(this.props.beatmapset.hype.required),
               })}
@@ -460,7 +461,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
           {this.showHypeCounts && this.nominations != null && (
             <StatsItem
               icon='fas fa-thumbs-up'
-              title={osu.trans('beatmaps.nominations.required_text', {
+              title={trans('beatmaps.nominations.required_text', {
                 current: formatNumber(this.nominations.current),
                 required: formatNumber(this.nominations.required),
               })}
@@ -471,14 +472,14 @@ export default class BeatmapsetPanel extends React.Component<Props> {
 
           <StatsItem
             icon={this.favourite.icon}
-            title={osu.trans('beatmaps.panel.favourites', { count: formatNumber(this.props.beatmapset.favourite_count) })}
+            title={trans('beatmaps.panel.favourites', { count: formatNumber(this.props.beatmapset.favourite_count) })}
             type='favourite-count'
             value={this.props.beatmapset.favourite_count}
           />
 
           <StatsItem
             icon='fas fa-play-circle'
-            title={osu.trans('beatmaps.panel.playcount', { count: formatNumber(this.props.beatmapset.play_count) })}
+            title={trans('beatmaps.panel.playcount', { count: formatNumber(this.props.beatmapset.play_count) })}
             type='play-count'
             value={this.props.beatmapset.play_count}
           />
@@ -505,7 +506,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
                 '--colour': `var(--beatmapset-${this.props.beatmapset.status}-colour)`,
               } as React.CSSProperties}
             >
-              {osu.trans(`beatmapsets.show.status.${this.props.beatmapset.status}`)}
+              {trans(`beatmapsets.show.status.${this.props.beatmapset.status}`)}
             </div>
           </div>
           {[...this.groupedBeatmaps].map(([mode, beatmaps]) => (
@@ -530,7 +531,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
           {core.currentUser == null ? (
             <span
               className='beatmapset-panel__menu-item beatmapset-panel__menu-item--disabled'
-              title={osu.trans('beatmapsets.show.details.favourite_login')}
+              title={trans('beatmapsets.show.details.favourite_login')}
             >
               <span className={this.favourite.icon} />
             </span>
@@ -538,7 +539,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
             <button
               className='beatmapset-panel__menu-item'
               onClick={this.toggleFavourite}
-              title={osu.trans(`beatmapsets.show.details.${this.favourite.toggleTitleVariant}`)}
+              title={trans(`beatmapsets.show.details.${this.favourite.toggleTitleVariant}`)}
               type='button'
             >
               <span className={this.favourite.icon} />

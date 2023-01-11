@@ -48,7 +48,7 @@ return [
         'dialog' => [
             'confirmation' => '¿Seguro que desea nominar este mapa?',
             'header' => 'Nominar mapa',
-            'hybrid_warning' => 'nota: sólo puede nominar una vez, así que asegúrese de que está nominando para todos los modos de juego que desee',
+            'hybrid_warning' => 'nota: solo puede nominar una vez, así que asegúrese de que está nominando para todos los modos de juego que desee',
             'which_modes' => '¿Nominar para qué modos?',
         ],
     ],
@@ -66,6 +66,7 @@ return [
             'favourite_login' => 'Inicie sesión para marcar este mapa como favorito',
             'logged-out' => '¡Necesitas iniciar sesión antes de descargar cualquier mapa!',
             'mapped_by' => 'mapeado por :mapper',
+            'mapped_by_guest' => '',
             'unfavourite' => 'Desmarcar como favorito',
             'updated_timeago' => 'actualizado por última vez :timeago',
 
@@ -124,6 +125,7 @@ return [
             'genre' => 'Género',
             'language' => 'Idioma',
             'no_scores' => 'Los datos todavía están siendo calculados...',
+            'nominators' => 'Nominadores',
             'nsfw' => 'Contenido explícito',
             'offset' => 'Compensación en línea',
             'points-of-failure' => 'Puntos de fracaso',
@@ -147,10 +149,10 @@ return [
 
         'scoreboard' => [
             'achieved' => 'logrado :when',
-            'country' => 'Clasificación Nacional',
+            'country' => 'Clasificación nacional',
             'error' => 'Error al cargar las clasificaciones',
-            'friend' => 'Clasificación entre Amigos',
-            'global' => 'Clasificación Global',
+            'friend' => 'Clasificación entre amigos',
+            'global' => 'Clasificación global',
             'supporter-link' => '¡Clic <a href=":link">aquí</a> para ver todas las características de lujo que ofrece!',
             'supporter-only' => '¡Debe ser un osu!supporter para acceder a las clasificaciones nacionales y entre amigos!',
             'title' => 'Tabla de puntuaciones',
@@ -170,7 +172,7 @@ return [
             ],
 
             'no_scores' => [
-                'country' => '¡Nadie de tu país ha marcado una puntuación en este mapa aún!',
+                'country' => '¡Nadie de tu país ha establecido una puntuación en este mapa aún!',
                 'friend' => '¡Ninguno de tus amigos ha marcado una puntuación en este mapa aún!',
                 'global' => 'Sin puntuaciones aún. ¿Tal vez deberías intentar establecer alguna?',
                 'loading' => 'Cargando puntuaciones...',
@@ -196,7 +198,7 @@ return [
             'total_length' => 'Duración (Duración del drenaje: :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => 'Número de círculos',
-            'count_sliders' => 'Número de sliders',
+            'count_sliders' => 'Número de deslizadores',
             'offset' => 'Compensación en línea: :offset',
             'user-rating' => 'Valoración de los usuarios',
             'rating-spread' => 'Desglose de valoraciones',

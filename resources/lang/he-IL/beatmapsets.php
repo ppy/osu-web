@@ -66,6 +66,7 @@ return [
             'favourite_login' => '',
             'logged-out' => 'אתה צריך להתחבר לפני הורדת מפות כלשהן!',
             'mapped_by' => 'נוצרה על ידי :mapper',
+            'mapped_by_guest' => '',
             'unfavourite' => 'הסר מפה ממועדפות',
             'updated_timeago' => 'עודכנה לאחרונה :timeago',
 
@@ -124,6 +125,7 @@ return [
             'genre' => 'ז\'אנר',
             'language' => 'שפה',
             'no_scores' => 'נתונים עדיין מחושבים...',
+            'nominators' => '',
             'nsfw' => '',
             'offset' => '',
             'points-of-failure' => 'נקודות כשל',

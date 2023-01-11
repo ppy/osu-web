@@ -8,11 +8,11 @@ declare(strict_types=1);
 namespace Tests\Controllers\Chat;
 
 use App\Models\Chat\Channel;
-use App\Models\Chat\Message;
 use App\Models\OAuth\Client;
 use App\Models\User;
 use App\Models\UserRelation;
 use Faker;
+use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
 class ChatControllerTest extends TestCase
@@ -260,34 +260,16 @@ class ChatControllerTest extends TestCase
 
     //endregion
 
-    //region GET /chat/updates?since=[message_id] - Get Updates
-    public function testChatUpdatesWhenGuest() // fail
+    //region GET /chat/updates
+    public function testChatUpdatesWhenGuest()
     {
         $this->json('GET', route('api.chat.updates'))
             ->assertStatus(401);
     }
 
-    public function testChatUpdatesWithNoNewMessages() // success
+    public function testChatUpdatesJoinChannel()
     {
         $publicChannel = Channel::factory()->type('public')->create();
-        $publicMessage = Message::factory()->create(['channel_id' => $publicChannel->channel_id]);
-
-        // join the channel
-        $this->actAsScopedUser($this->user, ['*']);
-        $this->json('PUT', route('api.chat.channels.join', [
-            'channel' => $publicChannel->channel_id,
-            'user' => $this->user->user_id,
-        ]))
-            ->assertSuccessful();
-
-        $this->json('GET', route('api.chat.updates'), ['since' => $publicMessage->message_id])
-            ->assertStatus(204);
-    }
-
-    public function testChatUpdates() // success
-    {
-        $publicChannel = Channel::factory()->type('public')->create();
-        $publicMessage = Message::factory()->create(['channel_id' => $publicChannel->channel_id]);
 
         // join channel
         $this->actAsScopedUser($this->user, ['*']);
@@ -299,42 +281,9 @@ class ChatControllerTest extends TestCase
 
         $this->json('GET', route('api.chat.updates'), ['since' => 0])
             ->assertStatus(200)
-            ->assertJsonFragment(['content' => $publicMessage->content]);
-    }
-
-    public function testChatUpdatesHidesRestrictedUserMessages() // success
-    {
-        // create PM
-        $this->actAsScopedUser($this->user, ['*']);
-        $response = $this->json(
-            'POST',
-            route('api.chat.new'),
-            [
-                'target_id' => $this->anotherUser->user_id,
-                'message' => self::$faker->sentence(),
-            ]
-        )->assertStatus(200);
-
-        $presenceData = $response->decodeResponseJson();
-        $channelId = $presenceData['new_channel_id'];
-
-        // create reply
-        $publicMessage = Message::factory()->create([
-            'user_id' => $this->anotherUser->user_id,
-            'channel_id' => $channelId,
-        ]);
-
-        // ensure reply is visible
-        $this->json('GET', route('api.chat.updates'), ['since' => 0])
-            ->assertStatus(200)
-            ->assertJsonFragment(['content' => $publicMessage->content]);
-
-        // restrict $this->anotherUser
-        $this->anotherUser->update(['user_warnings' => 1]);
-
-        // ensure reply is no longer visible
-        $this->json('GET', route('api.chat.updates'), ['since' => 0])
-            ->assertStatus(204);
+            ->assertJson(fn (AssertableJson $json) =>
+                $json->where('presence.0.channel_id', $publicChannel->getKey())
+                    ->etc());
     }
 
     //endregion

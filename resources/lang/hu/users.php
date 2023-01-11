@@ -33,13 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Blokkoltad ezt a felhasználót.',
-        'comment_text' => '',
+        'comment_text' => 'Ez a hozzászólás rejtett.',
         'blocked_count' => '(:count) blokkolt felhasználók',
         'hide_profile' => 'profil elrejtése',
-        'hide_comment' => '',
+        'hide_comment' => 'elrejtés',
         'not_blocked' => 'Ez a felhasználó nincs blokkolva.',
         'show_profile' => 'profil megjelenítése',
-        'show_comment' => '',
+        'show_comment' => 'mutatás',
         'too_many' => 'Blokkolási limit elérve.',
         'button' => [
             'block' => 'tiltás',
@@ -50,6 +50,22 @@ return [
     'card' => [
         'loading' => 'Betöltés...',
         'send_message' => 'üzenet küldése',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => '',
+            'password_confirmation' => '',
+            'submit' => '',
+            'user_email' => '',
+            'user_email_confirmation' => '',
+            'username' => '',
+
+            'tos_notice' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -217,6 +233,9 @@ return [
                 'loved' => [
                     'title' => 'Szeretett beatmapek',
                 ],
+                'nominated' => [
+                    'title' => 'Nominált rangsorolt beatmapek',
+                ],
                 'pending' => [
                     'title' => 'Függő beatmapek',
                 ],
@@ -312,7 +331,7 @@ return [
                 'title' => 'Medálok',
             ],
             'playlists' => [
-                'title' => 'Lejátszási listás játékok',
+                'title' => 'Játéklistás játékok',
             ],
             'posts' => [
                 'title' => 'Bejegyzések',
@@ -372,7 +391,7 @@ return [
                     'actions' => [
                         'restriction' => 'Kitiltás',
                         'silence' => 'Némítás',
-                        'tournament_ban' => '',
+                        'tournament_ban' => 'Bajnoksági kitiltás',
                         'note' => 'Megjegyzés',
                     ],
                 ],
@@ -414,6 +433,7 @@ return [
             'country_simple' => 'Országos Rangsor',
             'global' => 'Globális rank a :mode-ra/re',
             'global_simple' => 'Globális Rangsor',
+            'highest' => 'Legnagyobb rank: :rank elérve :date dátumkor',
         ],
         'stats' => [
             'hit_accuracy' => 'Találati Pontosság',
@@ -447,6 +467,8 @@ return [
         'offline' => 'Nem elérhető',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => 'Felhasználó létrehozva',
     ],
     'verify' => [

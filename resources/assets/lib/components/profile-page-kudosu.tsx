@@ -9,6 +9,7 @@ import getPage, { PageSectionWithoutCountJson } from 'profile-page/extra-page';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
 import { parseJsonNullable, storeJson } from 'utils/json';
+import { trans } from 'utils/lang';
 import { apiShowMoreRecentlyReceivedKudosu, OffsetPaginatorJson } from 'utils/offset-paginator';
 import { wikiUrl } from 'utils/url';
 import LazyLoad from './lazy-load';
@@ -23,11 +24,11 @@ function Entry({ kudosu }: { kudosu: KudosuHistoryJson }) {
   const textMappings = {
     amount: (
       <strong className='profile-extra-entries__kudosu-amount'>
-        {osu.trans('users.show.extra.kudosu.entry.amount', { amount: formatNumber(Math.abs(kudosu.amount)) })}
+        {trans('users.show.extra.kudosu.entry.amount', { amount: formatNumber(Math.abs(kudosu.amount)) })}
       </strong>
     ),
     giver: kudosu.giver == null
-      ? osu.trans('users.deleted')
+      ? trans('users.deleted')
       : <a href={kudosu.giver.url}>{kudosu.giver.username}</a>,
     post: kudosu.post.url == null
       ? kudosu.post.title
@@ -40,7 +41,7 @@ function Entry({ kudosu }: { kudosu: KudosuHistoryJson }) {
         <div className='profile-extra-entries__text'>
           <StringWithComponent
             mappings={textMappings}
-            pattern={osu.trans(`users.show.extra.kudosu.entry.${kudosu.model}.${kudosu.action}`)}
+            pattern={trans(`users.show.extra.kudosu.entry.${kudosu.model}.${kudosu.action}`)}
           />
         </div>
       </div>
@@ -96,14 +97,14 @@ export default class ProfilePageKudosu extends React.Component<Props> {
                   mappings={{
                     link: (
                       <a href={wikiUrl('Kudosu')}>
-                        {osu.trans('users.show.extra.kudosu.total_info.link')}
+                        {trans('users.show.extra.kudosu.total_info.link')}
                       </a>
                     ),
                   }}
-                  pattern={osu.trans('users.show.extra.kudosu.total_info._')}
+                  pattern={trans('users.show.extra.kudosu.total_info._')}
                 />
               )}
-              label={osu.trans('users.show.extra.kudosu.total')}
+              label={trans('users.show.extra.kudosu.total')}
               modifiers='kudosu'
               value={formatNumber(this.props.total)}
             />
@@ -140,7 +141,7 @@ export default class ProfilePageKudosu extends React.Component<Props> {
     if (this.kudosu.items.length === 0) {
       return (
         <div className='profile-extra-entries profile-extra-entries--kudosu'>
-          {osu.trans('users.show.extra.kudosu.entry.empty')}
+          {trans('users.show.extra.kudosu.entry.empty')}
         </div>
       );
     }

@@ -12,7 +12,7 @@ class BeatmapTransformer extends BeatmapCompactTransformer
     protected $beatmapsetTransformer = BeatmapsetTransformer::class;
     protected $requiredPermission = 'BeatmapShow';
 
-    protected $defaultIncludes = [
+    protected array $defaultIncludes = [
         'checksum',
     ];
 

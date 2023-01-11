@@ -52,6 +52,22 @@ return [
         'send_message' => 'Wyślij wiadomość',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => '',
+            'password_confirmation' => '',
+            'submit' => '',
+            'user_email' => '',
+            'user_email_confirmation' => '',
+            'username' => '',
+
+            'tos_notice' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'disabled' => [
         'title' => 'Och! Wygląda na to, że Twoje konto zostało zdezaktywowane.',
         'warning' => "Jeżeli złamiesz zasady, pamiętaj o tym, że zwyczajowo obowiązuje okres oczekiwania o długości 1 miesiąca, podczas którego nie będziemy przyjmować żadnych próśb o amnestię. Po tym czasie możesz skontaktować się z nami, jeśli uznasz to za konieczne. Miej na uwadze, że tworzenie nowych kont po otrzymaniu blokady na jedno z nich poskutkuje <strong>przedłużeniem tego miesięcznego okresu oczekiwania</strong>. Pamiętaj także, że <strong>każdorazowe utworzenie nowego konta jest dalszym łamaniem zasad</strong>. Stanowczo zalecamy nieobieranie tej ścieżki!",
@@ -216,6 +232,9 @@ return [
                 ],
                 'loved' => [
                     'title' => 'Ulubione beatmapy społeczności',
+                ],
+                'nominated' => [
+                    'title' => 'Nominowane beatmapy do sekcji rankingowej',
                 ],
                 'pending' => [
                     'title' => 'Oczekujące beatmapy',
@@ -414,6 +433,7 @@ return [
             'country_simple' => 'Ranking krajowy',
             'global' => 'Pozycja w rankingu globalnym dla :mode',
             'global_simple' => 'Ranking globalny',
+            'highest' => 'Najwyższa pozycja: :rank (osiągnięta :date)',
         ],
         'stats' => [
             'hit_accuracy' => 'Celność',
@@ -447,6 +467,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => 'Użytkownik utworzony',
     ],
     'verify' => [

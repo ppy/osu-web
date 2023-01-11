@@ -66,6 +66,7 @@ return [
             'favourite_login' => '',
             'logged-out' => '',
             'mapped_by' => '',
+            'mapped_by_guest' => '',
             'unfavourite' => '',
             'updated_timeago' => '',
 
@@ -124,6 +125,7 @@ return [
             'genre' => '',
             'language' => '',
             'no_scores' => '',
+            'nominators' => '',
             'nsfw' => '',
             'offset' => '',
             'points-of-failure' => '',

@@ -7,6 +7,8 @@ import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { trans } from 'utils/lang';
+import { present } from 'utils/string';
 import ExtraHeader from './extra-header';
 import ExtraPageProps from './extra-page-props';
 import UserPageEditor from './user-page-editor';
@@ -25,7 +27,7 @@ export default class UserPage extends React.Component<ExtraPageProps> {
   }
 
   render() {
-    const isBlank = !osu.present(this.props.controller.state.user.page.raw);
+    const isBlank = !present(this.props.controller.state.user.page.raw);
     const canEdit = this.canEdit;
 
     return (
@@ -37,7 +39,7 @@ export default class UserPage extends React.Component<ExtraPageProps> {
             <button
               className='btn-circle btn-circle--page-toggle'
               onClick={this.editStart}
-              title={osu.trans('users.show.page.button')}
+              title={trans('users.show.page.button')}
               type='button'
             >
               <span className='fas fa-pencil-alt' />
@@ -77,7 +79,7 @@ export default class UserPage extends React.Component<ExtraPageProps> {
             onClick={this.editStart}
             type='button'
           >
-            {osu.trans('users.show.page.edit_big')}
+            {trans('users.show.page.edit_big')}
           </button>
         </p>
 
@@ -87,7 +89,7 @@ export default class UserPage extends React.Component<ExtraPageProps> {
 
         <p
           className='profile-extra-user-page__new-content'
-          dangerouslySetInnerHTML={{ __html: osu.trans('users.show.page.description') }}
+          dangerouslySetInnerHTML={{ __html: trans('users.show.page.description') }}
         />
 
         {!this.props.controller.state.user.has_supported && (
@@ -100,11 +102,11 @@ export default class UserPage extends React.Component<ExtraPageProps> {
                     rel="noreferrer"
                     target='_blank'
                   >
-                    {osu.trans('users.show.page.restriction_info.link')}
+                    {trans('users.show.page.restriction_info.link')}
                   </a>
                 ),
               }}
-              pattern={osu.trans('users.show.page.restriction_info._')}
+              pattern={trans('users.show.page.restriction_info._')}
             />
           </p>
         )}

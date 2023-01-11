@@ -50,6 +50,7 @@ return [
             'beatmap' => 'Bare .osu filer er akseptert for denne konkurransen.',
             'music' => 'Bare .mp3 filer er akseptert for denne konkurransen.',
         ],
+        'wrong_dimensions' => '',
         'too_big' => 'Bidrag til denne konkurransen kan maks være :limit.',
     ],
     'beatmaps' => [

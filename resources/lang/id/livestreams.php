@@ -5,8 +5,8 @@
 
 return [
     'promote' => [
-        'pin' => 'Apakah Anda yakin untuk mempromosikan siaran langsung ini?',
-        'unpin' => "Apakah Anda yakin untuk menghentikan promosi siaran langsung ini?",
+        'pin' => 'Apakah kamu yakin untuk mempromosikan siaran langsung ini?',
+        'unpin' => "Apakah kamu yakin untuk menghentikan promosi siaran langsung ini?",
     ],
 
     'top-headers' => [

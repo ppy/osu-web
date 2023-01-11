@@ -17,7 +17,15 @@
         @if (!$forShipping || $i->product->requiresShipping())
             <li class="order-line-items__item order-line-items__item--main">
                 <div class="order-line-items__data order-line-items__data--name">
-                    {{ $i->getDisplayName(true) }}
+                    @php
+                        $subtext = $i->getSubtext();
+                    @endphp
+                    <div>{{ $i->getDisplayName(true) }}</div>
+                    @if ($subtext !== null)
+                        <div class="order-line-items__subtext">
+                            {{ $subtext }}
+                        </div>
+                    @endif
 
                     @if (isset($itemErrors[$i->id]))
                         <ul class="order-line-items__errors">
@@ -40,7 +48,7 @@
                 </div>
                 <div class="order-line-items__data order-line-items__data--value">
                     {{ currency($i->subtotal()) }}
-                </td>
+                </div>
             </li>
         @endif
     @endforeach

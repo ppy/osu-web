@@ -9,6 +9,7 @@ import { last } from 'lodash';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
+import { trans, transChoice } from 'utils/lang';
 
 interface Props {
   rankHistory: RankHistoryJson | null;
@@ -30,11 +31,11 @@ const options = makeOptionsNumber({
 });
 
 function formatX(d: number) {
-  return d === 0 ? osu.trans('common.time.now') : osu.transChoice('common.time.days_ago', -d);
+  return d === 0 ? trans('common.time.now') : transChoice('common.time.days_ago', -d);
 }
 
 function formatY(d: number) {
-  return `<strong>${osu.trans('users.show.rank.global_simple')}</strong> #${formatNumber(-d)}`;
+  return `<strong>${trans('users.show.rank.global_simple')}</strong> #${formatNumber(-d)}`;
 }
 
 export default class RankChart extends React.Component<Props> {
@@ -47,16 +48,19 @@ export default class RankChart extends React.Component<Props> {
 
     const raw = this.props.rankHistory?.data ?? [];
     const data = raw.map((rank, i) => ({ x: i - raw.length + 1, y: -rank })).filter((point) => point.y < 0);
-    if (data.length > 0) {
-      if (data.length === 1) {
-        data.unshift({ x: data[0].x - 1, y: data[0].y });
-      }
 
-      const lastData = last(data);
+    if (data.length === 0) {
+      data.push({ x: 0, y: -this.props.stats.global_rank });
+    }
 
-      if (lastData?.x !== 0) {
-        data.push({ x: 0, y: -this.props.stats.global_rank });
-      }
+    if (data.length === 1) {
+      data.unshift({ x: data[0].x - 1, y: data[0].y });
+    }
+
+    const lastData = last(data);
+
+    if (lastData?.x !== 0) {
+      data.push({ x: 0, y: -this.props.stats.global_rank });
     }
 
     return data;

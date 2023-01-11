@@ -6,6 +6,7 @@ import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
+import { trans } from 'utils/lang';
 import Controller from './controller';
 
 interface Props {
@@ -65,11 +66,11 @@ export default class Stats extends React.Component<Props> {
 
         {this.props.controller.beatmapset.is_scoreable &&
           <div className='beatmapset-stats__row beatmapset-stats__row--rating'>
-            <div className='beatmapset-stats__rating-header'>{osu.trans('beatmapsets.show.stats.user-rating')}</div>
+            <div className='beatmapset-stats__rating-header'>{trans('beatmapsets.show.stats.user-rating')}</div>
 
             {this.renderRatingBar()}
 
-            <div className='beatmapset-stats__rating-header'>{osu.trans('beatmapsets.show.stats.rating-spread')}</div>
+            <div className='beatmapset-stats__rating-header'>{trans('beatmapsets.show.stats.rating-spread')}</div>
 
             <div className='beatmapset-stats__rating-chart'>
               {this.renderRatingChart()}
@@ -155,7 +156,7 @@ export default class Stats extends React.Component<Props> {
 
     return (
       <tr key={key}>
-        <th className='beatmap-stats-table__label'>{osu.trans(`beatmapsets.show.stats.${label}`)}</th>
+        <th className='beatmap-stats-table__label'>{trans(`beatmapsets.show.stats.${label}`)}</th>
 
         <td className='beatmap-stats-table__bar'>
           <div className={`bar bar--beatmap-stats bar--beatmap-stats-${label}`}>

@@ -72,8 +72,21 @@ return [
     ],
 
     'download' => [
-        'tagline' => "vamos<br>começar!",
         'action' => 'Baixar osu!',
+        'action_lazer' => '',
+        'action_lazer_description' => '',
+        'action_lazer_info' => '',
+        'action_lazer_title' => '',
+        'action_title' => '',
+        'for_os' => '',
+        'lazer_note' => '',
+        'macos-fallback' => 'usuários de macOS',
+        'mirror' => 'link alternativo',
+        'or' => '',
+        'other_os' => '',
+        'quick_start_guide' => '',
+        'tagline' => "vamos<br>começar!",
+        'video-guide' => 'guia em vídeo',
 
         'help' => [
             '_' => 'se você tiver problemas para iniciar o jogo ou registrar-se, :help_forum_link ou :support_button.',
@@ -86,8 +99,6 @@ return [
             'macos' => 'para macOS',
             'linux' => 'para Linux',
         ],
-        'mirror' => 'link alternativo',
-        'macos-fallback' => 'usuários de macOS',
         'steps' => [
             'register' => [
                 'title' => 'crie uma conta',
@@ -105,7 +116,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'guia em vídeo',
     ],
 
     'user' => [

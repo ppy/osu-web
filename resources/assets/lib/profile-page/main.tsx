@@ -15,6 +15,7 @@ import { bottomPage } from 'utils/html';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import { pageChange } from 'utils/page-change';
 import { nextVal } from 'utils/seq';
+import { present } from 'utils/string';
 import { switchNever } from 'utils/switch-never';
 import { currentUrl } from 'utils/turbolinks';
 import AccountStanding from './account-standing';
@@ -84,7 +85,7 @@ export default class Main extends React.Component<Props> {
       profileOrder.push('account_standing');
     }
 
-    if (!osu.present(this.controller.state.user.page.raw) && !this.controller.withEdit) {
+    if (!present(this.controller.state.user.page.raw) && !this.controller.withEdit) {
       pull(profileOrder, 'me');
     }
 

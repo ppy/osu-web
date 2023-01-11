@@ -3,6 +3,8 @@
 
 import UserPreferences from 'core/user/user-preferences';
 import { autorun } from 'mobx';
+import { trans } from 'utils/lang';
+import { presence } from 'utils/string';
 import Slider from './slider';
 import { format, TimeFormat } from './time-format';
 
@@ -47,7 +49,7 @@ const createMainPlayer = () => {
     </div>
 
     <div class="audio-player__autoplay-control">
-      <button type="button" class="audio-player__autoplay-button js-audio--toggle-autoplay" title="${osu.trans('layout.audio.autoplay')}"></button>
+      <button type="button" class="audio-player__autoplay-button js-audio--toggle-autoplay" title="${trans('layout.audio.autoplay')}"></button>
     </div>
   `;
 
@@ -363,7 +365,7 @@ export default class Main {
   };
 
   private replaceAudioElem = (elem: HTMLAudioElement) => {
-    const src = osu.presence(elem.src) ?? osu.presence(elem.querySelector('source')?.src);
+    const src = presence(elem.src) ?? presence(elem.querySelector('source')?.src);
 
     if (src == null) {
       throw new Error('audio element is missing src');

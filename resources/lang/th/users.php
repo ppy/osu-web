@@ -7,7 +7,7 @@ return [
     'deleted' => '[ผู้ใช้ที่ถูกลบ]',
 
     'beatmapset_activities' => [
-        'title' => ":user's ประวัติการมอด",
+        'title' => "ประวัติการมอดของ :user",
         'title_compact' => 'การวิจารณ์บีทแมพ',
 
         'discussions' => [
@@ -52,8 +52,24 @@ return [
         'send_message' => 'ส่งข้อความ',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => '',
+            'password_confirmation' => '',
+            'submit' => '',
+            'user_email' => '',
+            'user_email_confirmation' => '',
+            'username' => '',
+
+            'tos_notice' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'disabled' => [
-        'title' => 'โอ๊ะโอ บัญชีของคุณถูกระงับ',
+        'title' => 'โอ๊ะโอ ดูเหมือนว่าบัญชีของคุณถูกระงับ',
         'warning' => "ถ้าคุณทำผิดกฎ เราจะบอกว่ามีระยะเวลาเว้นช่วง (Cool-down) หนึ่งเดือน ซึ่งระหว่างนี้เราจะไม่รับคำขอยกโทษ และหลังจากผ่านไปแล้วหนึ่งเดือน คุณค่อยติดต่อเรากลับมา (ถ้าจำเป็น) อีกอย่างคือถ้าสร้างบัญชีเพิ่มอีก (หลังจากอันเก่าโดนระงับ) ก็<strong>จะโดนอีกหนึ่งเดือน</strong> และจะบอกว่า<strong>ยิ่งสร้างบัญชีเพิ่ม ยิ่งทำผิดกฎมากขึ้น</strong> ขอร้องล่ะนะ",
 
         'if_mistake' => [
@@ -217,6 +233,9 @@ return [
                 ],
                 'loved' => [
                     'title' => 'บีทแมพที่ Loved',
+                ],
+                'nominated' => [
+                    'title' => '',
                 ],
                 'pending' => [
                     'title' => 'บีทแมพที่กำลังทำ',
@@ -415,6 +434,7 @@ return [
             'country_simple' => 'อันดับในประเทศ',
             'global' => 'อันดับทั่วโลกของ :mode',
             'global_simple' => 'อันดับทั่วโลก',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'ความแม่นยำเฉลี่ย',
@@ -448,6 +468,8 @@ return [
         'offline' => 'ออฟไลน์',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => 'ผู้ใช้ถูกสร้างขึ้น',
     ],
     'verify' => [

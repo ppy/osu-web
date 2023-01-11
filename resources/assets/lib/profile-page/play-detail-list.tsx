@@ -131,6 +131,7 @@ export default class PlayDetailList extends React.Component<Props> {
                   score={score}
                   showPinSortableHandle={this.withPinSortable}
                   showPpWeight={showPpWeight}
+                  user={this.props.controller.state.user}
                 />
               </KeyContext.Provider>
             ))}

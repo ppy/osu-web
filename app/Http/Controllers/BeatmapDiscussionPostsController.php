@@ -17,7 +17,7 @@ use App\Models\BeatmapsetWatch;
 use App\Models\User;
 
 /**
- @group Beatmapset Discussions
+ * @group Beatmapset Discussions
  */
 class BeatmapDiscussionPostsController extends Controller
 {

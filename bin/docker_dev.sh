@@ -2,4 +2,4 @@
 
 cd "$(dirname "$0")/.."
 
-./docker/development/prepare.sh && exec docker-compose up "$@"
+./docker/development/prepare.sh && exec docker compose up "$@"

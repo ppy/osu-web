@@ -6,6 +6,7 @@ import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { trans } from 'utils/lang';
 import LazyLoadContext, { Snapshot } from './lazy-load-context';
 
 interface Props {
@@ -108,10 +109,10 @@ export default class LazyLoad extends React.Component<React.PropsWithChildren<Pr
   private renderNotLoaded() {
     return this.error ? (
       <div className='lazy-load__error'>
-        <p>{osu.trans('errors.load_failed')}</p>
+        <p>{trans('errors.load_failed')}</p>
         <div className='lazy-load__button'>
           <button className='btn-osu-big btn-osu-big--rounded-thin' onClick={this.load} type='button'>
-            {osu.trans('common.buttons.retry')}
+            {trans('common.buttons.retry')}
           </button>
         </div>
       </div>

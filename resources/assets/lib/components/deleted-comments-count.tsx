@@ -4,6 +4,7 @@
 import { Comment } from 'models/comment';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { transChoice } from 'utils/lang';
 
 interface Props {
   comments: Comment[];
@@ -23,7 +24,7 @@ export default class DeletedCommentsCount extends React.Component<Props> {
         <span className='deleted-comments-count__icon'>
           <span className='far fa-trash-alt' />
         </span>
-        {osu.transChoice('comments.deleted_count', deletedCount)}
+        {transChoice('comments.deleted_count', deletedCount)}
       </div>
     );
   }
