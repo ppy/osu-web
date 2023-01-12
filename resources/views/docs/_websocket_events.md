@@ -12,8 +12,8 @@ Websocket events generally have the following standard format:
 
 Field | Type    | Description
 ----- |-------- | -------------
-event | string  | Name of the event
-data  | object? | Event payload
+event | string  | Name of the event.
+data  | object? | Event payload.
 
 ## `logout` event
 
@@ -59,10 +59,6 @@ Broadcast to the user when the user leaves a chat channel.
 
 [ChatChannel](#chat-channel) with `current_user_attributes`, `last_message_id`, `users` additional attributes.
 
-## chat.end
-
-Send to the websocket to stop receiving chat messages.
-
 ## chat.message.new
 
 Sent to the user when the user receives a chat message.
@@ -78,7 +74,3 @@ Messages intented for a user are always sent even if the user does not currently
 Such messages include PM and Announcement messages.
 
 Other messages, e.g. public channel messages are not sent if the user is no longer present in the channel.
-
-## chat.start
-
-Send to the websocket to start receiving chat messages.
