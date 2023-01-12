@@ -42,7 +42,7 @@ Re-creating a `PM` channel will simply rejoin the existing channel.
 
 Make a request to the [Join Channel](#join-channel) endpoint where `channel` is the `channel_id`.
 
-A <a href="#chatchanneljoin">chat.channel.join</a> event is sent when the over the websocket when the user joins a channel.
+A [chat.channel.join](#chatchanneljoin) event is sent when the over the websocket when the user joins a channel.
 
 ## Leaving a channel
 
@@ -50,14 +50,14 @@ Make a request to the [Leave Channel](#leave-channel) endpoint.
 
 Leaving a channel will remove it from the User's channel list.
 
-A <a href="#chatchannelpart">chat.channel.part</a> event is sent over the websocket when the user leaves a channel.
+A [chat.channel.part](#chatchannelpart) event is sent over the websocket when the user leaves a channel.
 
 ## Sending messages
 
 Channels should be [joined](#joining-a-channel) or [created](#creating-a-channel) before messages are sent to them.
 To send a message a channel, make a request to the [Send Message to Channel](#send-message-to-channel) endpoint.
 
-A <a href="#chatmessagenew">chat.message.new</a> event is sent over the websocket when the user receives a message.
+A [chat.message.new](#chatmessagenew) event is sent over the websocket when the user receives a message.
 
 ## Getting info about a channel
 
