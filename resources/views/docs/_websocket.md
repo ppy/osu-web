@@ -11,9 +11,4 @@ wscat -c "{notification_endpoint}"
 
 This endpoint allows you to receive notifications and chat events without constantly polling the server.
 
-Events received over the websocket have the follow basic format:
-
-Field | Type    | Description
------ | ------- | -----------------------
-event | string  | The name of the event.
-data  | object? | Payload of the event; see [Websocket Events](#websocket-events)
+See [Websocket Events](#websocket-events) for the structure of websocket messages.
