@@ -14,10 +14,7 @@
   .all(@name, @filename) {
     &--@{name} {
       .at2x-simple("~@images/badges/mods/mod_@{filename}.png");
-
-      &::after, &::before {
-        --generic-display: none;
-      }
+      --generic-display: none;
     }
   }
 
