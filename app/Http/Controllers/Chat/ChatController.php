@@ -41,7 +41,7 @@ class ChatController extends Controller
      *
      * Field            | Type
      * ---------------- | -----------------
-     * silences         | [UserSilence](#usersilence)[]?
+     * silences         | [UserSilence](#usersilence)[]
      *
      * @queryParam history_since integer [UserSilence](#usersilence)s after the specified id to return.
      * @queryParam since integer required Messages after the specified `message_id` to return.
