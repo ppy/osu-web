@@ -2,6 +2,14 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
+@php
+    $params = get_params(request()->all(), null, [
+        'username',
+        'email',
+    ], ['null_missing' => true]);
+    $focus = $params['username'] === null ? 'username' : 'password';
+@endphp
+
 @extends('master')
 
 @section('content')
@@ -23,6 +31,8 @@
                     class="simple-form__input"
                     name="user[username]"
                     required
+                    value="{{ $params['username'] }}"
+                    {{ $focus === 'username' ? 'autofocus' : '' }}
                 >
                 <div class="simple-form__error js-form-error--error"></div>
             </label>
@@ -37,6 +47,7 @@
                     name="user[password]"
                     type="password"
                     required
+                    {{ $focus === 'password' ? 'autofocus' : '' }}
                 >
                 <div class="simple-form__error js-form-error--error"></div>
             </label>
@@ -64,6 +75,8 @@
                     class="simple-form__input js-form-confirmation"
                     name="user[user_email]"
                     required
+                    type="email"
+                    value="{{ $params['email'] }}"
                 >
                 <div class="simple-form__error js-form-error--error"></div>
             </label>
@@ -77,6 +90,8 @@
                     class="simple-form__input js-form-confirmation"
                     name="user[user_email_confirmation]"
                     required
+                    type="email"
+                    value="{{ $params['email'] }}"
                 >
                 <div class="simple-form__error js-form-error--error"></div>
             </label>
