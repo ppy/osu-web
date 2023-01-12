@@ -1,7 +1,7 @@
 
 # Websocket Commands
 
-Similar to Websocket commands have the format:
+Websocket commands have the format:
 
 ```json
 {
