@@ -16,7 +16,7 @@
     @include('layout._page_header_v4')
     <div class="osu-page osu-page--generic">
         <form
-            action="{{ route('users.store') }}"
+            action="{{ route('users.store-web') }}"
             class="simple-form simple-form--user-create js-form-error js-captcha--reset-on-error"
             data-remote="1"
             data-skip-ajax-error-popup="1"
