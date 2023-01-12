@@ -44,7 +44,8 @@ class ChatController extends Controller
      * silences         | [UserSilence](#usersilence)[]
      *
      * @queryParam history_since integer [UserSilence](#usersilence)s after the specified id to return.
-     * @queryParam since integer required Messages after the specified `message_id` to return.
+     * This field is preferred and takes precedence over `since`.
+     * @queryParam since integer [UserSilence](#usersilence)s after the specified [ChatMessage.message_id](#chatmessage) to return. No-example
      */
     public function ack()
     {
@@ -187,8 +188,9 @@ class ChatController extends Controller
      * silences         | [UserSilence](#usersilence)[]?
      *
      * @queryParam history_since integer [UserSilence](#usersilence)s after the specified id to return.
-     * @queryParam includes string[] List of fields from `presence`, `silences` to include in the response. Returns all if not specified.
-     * @queryParam since integer required Messages after the specified `message_id` to return.
+     * This field is preferred and takes precedence over `since`.
+     * @queryParam includes string[] List of fields from `presence`, `silences` to include in the response. Returns all if not specified. No-example
+     * @queryParam since integer [UserSilence](#usersilence)s after the specified [ChatMessage.message_id](#chatmessage) to return. No-example
      *
      * @response {
      *   "presence": [
