@@ -15,12 +15,12 @@ Field | Type    | Description
 event | string  | Name of the event.
 data  | object? | Event payload.
 
-## `logout` event
+## logout event
 
 User session using same authentication key has been logged out (not yet implemented for OAuth authentication).
 Server will disconnect session after sending this event so don't try to reconnect.
 
-## `new` event
+## new event
 
 Sent when a new notification is received.
 
@@ -28,7 +28,7 @@ Sent when a new notification is received.
 
 See [Notification](#notification) object for notification types.
 
-## `read` event
+## read event
 
 Sent when a notification has been read.
 
