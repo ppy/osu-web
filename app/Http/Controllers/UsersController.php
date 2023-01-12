@@ -71,7 +71,7 @@ class UsersController extends Controller
 
     public function __construct()
     {
-        $this->middleware('guest', ['only' => ['create', 'store']]);
+        $this->middleware('guest', ['only' => ['create', 'store', 'storeWeb']]);
         $this->middleware('auth', ['only' => [
             'checkUsernameAvailability',
             'checkUsernameExists',
