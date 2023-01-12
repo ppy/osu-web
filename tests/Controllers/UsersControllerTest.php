@@ -153,14 +153,14 @@ class UsersControllerTest extends TestCase
         $this->expectCountChange(fn () => User::count(), 1);
 
         $this->post(route('users.store-web'), [
-                'user' => [
-                    'username' => 'user1',
-                    'user_email' => 'user1@example.com',
-                    'user_email_confirmation' => 'user1@example.com',
-                    'password' => 'hunter22',
-                    'password_confirmation' => 'hunter22',
-                ],
-            ])->assertRedirect(route('home'));
+            'user' => [
+                'username' => 'user1',
+                'user_email' => 'user1@example.com',
+                'user_email_confirmation' => 'user1@example.com',
+                'password' => 'hunter22',
+                'password_confirmation' => 'hunter22',
+            ],
+        ])->assertRedirect(route('home'));
     }
 
     /**
@@ -180,6 +180,24 @@ class UsersControllerTest extends TestCase
                     'password_confirmation' => $passwordConfirmation,
                 ],
             ])->assertStatus(422);
+    }
+
+    public function testStoreWebLoggedIn(): void
+    {
+        config()->set('osu.user.registration_mode', 'web');
+        $user = User::factory()->create();
+
+        $this->expectCountChange(fn () => User::count(), 0);
+
+        $this->actingAsVerified($user)->post(route('users.store-web'), [
+            'user' => [
+                'username' => 'user1',
+                'user_email' => 'user1@example.com',
+                'user_email_confirmation' => 'user1@example.com',
+                'password' => 'hunter22',
+                'password_confirmation' => 'hunter22',
+            ],
+        ])->assertRedirect('/');
     }
 
     public function testStoreWithCountry()
