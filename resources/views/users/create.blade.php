@@ -75,6 +75,7 @@
                     class="simple-form__input js-form-confirmation"
                     name="user[user_email]"
                     required
+                    type="email"
                     value="{{ $params['email'] }}"
                 >
                 <div class="simple-form__error js-form-error--error"></div>
@@ -89,6 +90,7 @@
                     class="simple-form__input js-form-confirmation"
                     name="user[user_email_confirmation]"
                     required
+                    type="email"
                     value="{{ $params['email'] }}"
                 >
                 <div class="simple-form__error js-form-error--error"></div>
