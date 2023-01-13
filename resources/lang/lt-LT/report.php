@@ -11,7 +11,7 @@ return [
 
     'beatmapset_discussion_post' => [
         'button' => 'Pranešti',
-        'title' => 'Pranešti :username žinutę?',
+        'title' => 'Pranešti :username įrašą?',
     ],
 
     'comment' => [
@@ -21,7 +21,7 @@ return [
 
     'forum_post' => [
         'button' => 'Pranešti',
-        'title' => 'Pranešti :username publikaciją?',
+        'title' => 'Pranešti :username įrašą?',
     ],
 
     'scores' => [

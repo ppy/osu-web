@@ -52,6 +52,22 @@ return [
         'send_message' => 'nosūtīt ziņu',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => '',
+            'password_confirmation' => '',
+            'submit' => '',
+            'user_email' => '',
+            'user_email_confirmation' => '',
+            'username' => '',
+
+            'tos_notice' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'disabled' => [
         'title' => '',
         'warning' => "",
@@ -451,6 +467,8 @@ return [
         'offline' => '',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => '',
     ],
     'verify' => [

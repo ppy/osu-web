@@ -12,7 +12,7 @@ use App\Transformers\UserCompactTransformer;
 
 class MessageTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'sender',
     ];
 

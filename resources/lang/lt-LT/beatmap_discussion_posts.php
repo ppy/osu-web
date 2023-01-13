@@ -5,7 +5,7 @@
 
 return [
     'index' => [
-        'title' => 'Bitmapo diskusijos žinutės',
+        'title' => 'Bitmapo diskusijos Įrašai',
     ],
 
     'item' => [

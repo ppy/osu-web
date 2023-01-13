@@ -9,7 +9,7 @@ use App\Models\Follow;
 
 class FollowCommentTransformer extends FollowTransformer
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'commentable_meta',
         'latest_comment',
     ];

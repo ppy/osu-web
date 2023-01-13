@@ -105,6 +105,7 @@ return [
         ],
         'users_controller' => [
             '_' => 'معلومات اللاعب',
+            'create' => '',
             'disabled' => 'ملحوظة',
         ],
         'wiki_controller' => [

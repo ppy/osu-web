@@ -7,13 +7,13 @@ import BigButton from 'components/big-button';
 import { trim } from 'lodash';
 import { action, autorun, computed, makeObservable, reaction } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
-import { isModalShowing } from 'modal-helper';
 import Message, { maxLength } from 'models/chat/message';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
+import { isModalShowing } from 'utils/modal-helper';
 import { present } from 'utils/string';
 
 type Props = Record<string, never>;

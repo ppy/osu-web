@@ -18,11 +18,11 @@ return [
     ],
 
     'type' => [
-        'charts' => '',
+        'charts' => 'osrednje pozornosti',
         'country' => 'država',
         'multiplayer' => 'večigralski način',
-        'performance' => '',
-        'score' => '',
+        'performance' => 'moč',
+        'score' => 'rezultat',
     ],
 
     'spotlight' => [
@@ -37,11 +37,11 @@ return [
         'active_users' => 'Aktivni igralci',
         'country' => 'Država',
         'play_count' => 'Število igranj',
-        'performance' => '',
+        'performance' => 'Moč',
         'total_score' => 'Skupaj točk',
         'ranked_score' => 'Rangirana uvrstitev',
         'average_score' => 'Povpr. rezultat',
-        'average_performance' => '',
+        'average_performance' => 'Povp. rezul.',
         'ss' => '',
         's' => '',
         'a' => '',

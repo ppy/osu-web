@@ -4,7 +4,7 @@
 .beatmap-list-item {
   display: grid;
   grid-template-columns: auto auto 1fr;
-  gap: 0.625em;
+  gap: 0.4em;
   min-width: 0;
   --difficulty-badge-width: max-content;
   --main-width: 0;
@@ -35,7 +35,17 @@
     }
   }
 
+  &__mapper {
+    color: hsl(var(--hsl-c2));
+    font-size: 0.87em;
+  }
+
   &__version {
     text-decoration: var(--version-text-decoration, none);
+  }
+
+  &__version-link {
+    .link-white();
+    .link-plain();
   }
 }

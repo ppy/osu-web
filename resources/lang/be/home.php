@@ -72,8 +72,21 @@ return [
     ],
 
     'download' => [
-        'tagline' => "давай<br>распачнем!",
         'action' => 'Спампаваць osu!',
+        'action_lazer' => '',
+        'action_lazer_description' => '',
+        'action_lazer_info' => '',
+        'action_lazer_title' => '',
+        'action_title' => '',
+        'for_os' => '',
+        'lazer_note' => '',
+        'macos-fallback' => 'для macOS',
+        'mirror' => 'люстэрка',
+        'or' => '',
+        'other_os' => '',
+        'quick_start_guide' => '',
+        'tagline' => "давай<br>распачнем!",
+        'video-guide' => 'відэа дапаможнік',
 
         'help' => [
             '_' => 'калі ў вас узніклі праблемы з пачаткам гульні альбо рэгістрацыяй уліковага запісу, :help_forum_link або :support_button. ',
@@ -86,8 +99,6 @@ return [
             'macos' => 'для macOS',
             'linux' => 'для Linux',
         ],
-        'mirror' => 'люстэрка',
-        'macos-fallback' => 'для macOS',
         'steps' => [
             'register' => [
                 'title' => 'стварыце ўлік. запіс',
@@ -105,7 +116,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'відэа дапаможнік',
     ],
 
     'user' => [

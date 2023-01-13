@@ -72,8 +72,21 @@ return [
     ],
 
     'download' => [
-        'tagline' => "hãy<br>bắt đầu!",
         'action' => 'Tải xuống osu!',
+        'action_lazer' => '',
+        'action_lazer_description' => '',
+        'action_lazer_info' => '',
+        'action_lazer_title' => '',
+        'action_title' => '',
+        'for_os' => '',
+        'lazer_note' => '',
+        'macos-fallback' => 'người dùng macOS',
+        'mirror' => 'liên kết phụ',
+        'or' => '',
+        'other_os' => '',
+        'quick_start_guide' => '',
+        'tagline' => "hãy<br>bắt đầu!",
+        'video-guide' => 'hướng dẫn bằng video',
 
         'help' => [
             '_' => 'nếu bạn gặp vấn đề khi bắt đầu game hoặc tạo tài khoản, :help_forum_link hoặc :support_button.',
@@ -86,8 +99,6 @@ return [
             'macos' => 'cho macOS',
             'linux' => 'cho Linux',
         ],
-        'mirror' => 'liên kết phụ',
-        'macos-fallback' => 'người dùng macOS',
         'steps' => [
             'register' => [
                 'title' => 'tạo tài khoản',
@@ -105,7 +116,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'hướng dẫn bằng video',
     ],
 
     'user' => [

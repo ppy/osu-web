@@ -339,7 +339,7 @@ return [
                 ],
 
                 'user' => [
-                    'count' => '{0} 0票|{1} :count_delimited 票|[2,*] :count_delimited 票',
+                    'count' => '{0} 0 票|{1} :count_delimited 票|[2,*] :count_delimited 票',
                     'current' => '还有 :votes 张选票。',
                     'not_enough' => "没有票了",
                 ],

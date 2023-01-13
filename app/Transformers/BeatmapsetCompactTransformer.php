@@ -19,7 +19,7 @@ use League\Fractal\Resource\Collection;
 
 class BeatmapsetCompactTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'beatmaps',
         'converts',
         'current_nominations',

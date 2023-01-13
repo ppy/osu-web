@@ -24,7 +24,7 @@ return [
     'forum' => [
         '_' => 'diễn đàn',
         'topic_logs_controller' => [
-            'index' => '',
+            'index' => 'nhật kí chủ đề',
         ],
     ],
     'main' => [
@@ -106,6 +106,7 @@ return [
         ],
         'users_controller' => [
             '_' => 'thông tin người chơi',
+            'create' => '',
             'disabled' => 'để ý',
         ],
         'wiki_controller' => [

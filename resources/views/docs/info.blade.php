@@ -25,6 +25,12 @@ For a full list of changes, see the
 
 ## Breaking Changes
 
+### 2023-01-05
+- `new_channel_id` in [Create New PM](#create-new-pm) response has been deprecated, use `channel.channel_id` instead.
+
+### 2022-11-21
+- `messages` has been removed from Chat [Get Updates](#get-updates).
+
 ### 2022-11-11
 - `recent_messages` in [ChatChannel](#chatchannel) has been deprecated, it will be removed from [Create Channel](#create-channel) response in the near future.
 

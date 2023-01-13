@@ -9,7 +9,7 @@ use App\Models\NewsPost;
 
 class NewsPostTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'content',
         'navigation',
         'preview',

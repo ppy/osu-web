@@ -9,11 +9,11 @@ use App\Models\Comment;
 
 class CommentTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'user',
     ];
 
-    protected $defaultIncludes = [
+    protected array $defaultIncludes = [
         'deleted_by_id',
         'message',
         'message_html',

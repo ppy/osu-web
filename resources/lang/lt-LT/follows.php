@@ -24,10 +24,10 @@ return [
     ],
 
     'mapping' => [
-        'empty' => 'Nėra stebimų maperių.',
+        'empty' => 'Nėra stebimų kūrėjų.',
         'followers' => 'mapinimo prenumeratos',
-        'page_title' => 'maperių stebėjimo sąrašas',
-        'title' => 'maperis',
+        'page_title' => 'kūrėjų stebėjimo sąrašas',
+        'title' => 'kūrėjas',
         'to_0' => 'sustabdyti pranešimus apie vartotojo įkeliamus naujus bitmapus',
         'to_1' => 'pranešti man, kai šis vartotojas įkels naują bitmapą',
     ],

@@ -22,10 +22,11 @@ class MultiplayerController extends Controller
             return ujs_redirect(route('users.multiplayer.index', ['typeGroup' => 'realtime', 'user' => $userId]));
         }
 
-        $params = get_params(request()->all(), null, [
-            'cursor:array',
-            'limit:int',
-        ], ['null_missing' => true]);
+        $rawParams = request()->all();
+        $params = [
+            'cursor' => cursor_from_params($rawParams),
+            'limit' => get_int($params['limit'] ?? null),
+        ];
 
         $json = $this->getJson($user, $params, $typeGroup);
 
@@ -62,11 +63,12 @@ class MultiplayerController extends Controller
         $rooms->each->findAndSetCurrentPlaylistItem();
         $rooms->loadMissing('currentPlaylistItem.beatmap.beatmapset');
 
-        return [
-            'cursor' => $hasMore ? $search['cursorHelper']->next($rooms) : null,
+        $nextCursor = $hasMore ? $search['cursorHelper']->next($rooms) : null;
+
+        return array_merge([
             'rooms' => json_collection($rooms, new RoomTransformer(), ['current_playlist_item.beatmap.beatmapset', 'difficulty_range', 'host', 'playlist_item_stats']),
             'search' => $search['search'],
             'type_group' => $typeGroup,
-        ];
+        ], cursor_for_response($nextCursor));
     }
 }

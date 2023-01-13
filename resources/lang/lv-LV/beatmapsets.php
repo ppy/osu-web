@@ -66,6 +66,7 @@ return [
             'favourite_login' => '',
             'logged-out' => 'Jums nepieciešams pierakstīties pirms lejupielādēt jebkuru bītkarti!',
             'mapped_by' => 'kartēja :mapper',
+            'mapped_by_guest' => '',
             'unfavourite' => '',
             'updated_timeago' => 'pēdējo reizi atjaonots :timeago',
 

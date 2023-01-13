@@ -5,12 +5,14 @@
 
 namespace App\Serializers;
 
-class ApiSerializer extends \League\Fractal\Serializer\ArraySerializer
+use League\Fractal\Serializer\ArraySerializer;
+
+class ApiSerializer extends ArraySerializer
 {
     /**
      * no 'data' root node thx.
      */
-    public function collection($resourceKey, array $data)
+    public function collection(?string $resourceKey, array $data): array
     {
         return $data;
     }

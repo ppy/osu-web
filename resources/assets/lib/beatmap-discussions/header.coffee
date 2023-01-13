@@ -127,10 +127,12 @@ export class Header extends React.PureComponent
             className: "#{bn}__filter-group"
             el BeatmapList,
               beatmaps: @props.beatmaps.get(@props.currentBeatmap.mode)
+              beatmapset: @props.beatmapset
               currentBeatmap: @props.currentBeatmap
               createLink: @createLink
               getCount: @getCount
               onSelectBeatmap: @onSelectBeatmap
+              users: @props.users
 
           div
             className: "#{bn}__filter-group #{bn}__filter-group--stats"

@@ -6,28 +6,28 @@
 return [
     'match' => [
         'beatmap-deleted' => 'beatmap eliminat',
-        'difference' => '',
+        'difference' => 'per :difference',
         'failed' => 'FRACASSAT',
-        'header' => '',
-        'in-progress' => '',
-        'in_progress_spinner_label' => '',
-        'loading-events' => '',
-        'winner' => '',
+        'header' => 'Partides Multijugador',
+        'in-progress' => '(partida en progrés)',
+        'in_progress_spinner_label' => 'partida en progrés',
+        'loading-events' => 'Carregant esdeveniments...',
+        'winner' => 'guanya :team',
 
         'events' => [
-            'player-left' => '',
-            'player-joined' => '',
-            'player-kicked' => '',
-            'match-created' => '',
-            'match-disbanded' => '',
-            'host-changed' => '',
+            'player-left' => ':user ha abandonat la partida',
+            'player-joined' => ':user s\'ha unit',
+            'player-kicked' => ':user ha estat expulsat',
+            'match-created' => ':user ha creat la partida',
+            'match-disbanded' => 'la partida ha estat dissolta',
+            'host-changed' => ':user és ara l\'amfitrió',
 
-            'player-left-no-user' => '',
-            'player-joined-no-user' => '',
-            'player-kicked-no-user' => '',
-            'match-created-no-user' => '',
-            'match-disbanded-no-user' => '',
-            'host-changed-no-user' => '',
+            'player-left-no-user' => 'un jugador ha abandonat la partida',
+            'player-joined-no-user' => 'un jugador s\'ha unit',
+            'player-kicked-no-user' => 'un jugador ha estat expulsat',
+            'match-created-no-user' => 's\'ha creat la partida',
+            'match-disbanded-no-user' => 'la partida s\'ha dissolt',
+            'host-changed-no-user' => 'l\'amfitrió ha canviat',
         ],
 
         'score' => [
@@ -46,16 +46,16 @@ return [
         ],
 
         'teams' => [
-            'blue' => '',
+            'blue' => 'Equip Blau',
             'red' => 'Equip Vermell',
         ],
     ],
     'game' => [
         'scoring-type' => [
             'score' => 'Equip Blau',
-            'accuracy' => '',
-            'combo' => '',
-            'scorev2' => '',
+            'accuracy' => 'Precisió més alta',
+            'combo' => 'Combo més alt',
+            'scorev2' => 'Puntuació V2',
         ],
     ],
 ];

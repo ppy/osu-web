@@ -41,7 +41,6 @@ export class Discussions extends React.Component
                       currentUser: currentUser
                       beatmapset: beatmapsets[discussion.beatmapset_id]
                       isTimelineVisible: false
-                      visible: false
                       showDeleted: true
                       preview: true
                 a
