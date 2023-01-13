@@ -19,20 +19,17 @@ class VerifyCsrfToken extends BaseVerifier
         'payments/paypal/ipn',
         'payments/shopify/callback',
         'payments/xsolla/callback',
+        'users',
     ];
 
     public function handle($request, Closure $next)
     {
-        $currentRouteData = app('route-section')->getCurrent();
-        $currentRoute = "{$currentRouteData['controller']}@{$currentRouteData['action']}";
-
-        if ($currentRoute === 'users_controller@store' && config('osu.user.registration_mode') === 'client') {
-            return $next($request);
-        }
-
         try {
             return parent::handle($request, $next);
         } catch (TokenMismatchException $e) {
+            $currentRouteData = app('route-section')->getCurrent();
+            $currentRoute = "{$currentRouteData['controller']}@{$currentRouteData['action']}";
+
             if ($currentRoute === 'sessions_controller@store') {
                 DatadogLoginAttempt::log('invalid_csrf');
             }

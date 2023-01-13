@@ -258,6 +258,12 @@
   }
 }
 
+.at2x-var(@key, @url) {
+  @url2x: replace(@url, "(\.[^.]+)$", "@2x$1");
+  @{key}: url(@url);
+  @{key}-2x: url(@url2x);
+}
+
 // Will force the element to be rendered in its own layer
 // in hardware accelerated mode.
 // Be careful that elements using this will have z-index context applied.
