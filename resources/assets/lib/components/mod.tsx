@@ -11,9 +11,9 @@ interface Props {
 
 export default function Mod({ mod }: Props) {
   const modJson = modNames[mod] ?? {
-    acronym: '??',
-    name: '??',
-    type: 'fun',
+    acronym: mod,
+    name: '',
+    type: 'Fun',
   };
 
   return (
