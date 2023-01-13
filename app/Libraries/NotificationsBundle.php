@@ -16,6 +16,11 @@ class NotificationsBundle
     const PER_STACK_LIMIT = 50;
     const STACK_LIMIT = 50;
 
+    private static function stackKey(string $objectType, int $objectId, string $category): string
+    {
+        return "{$objectType}-{$objectId}-{$category}";
+    }
+
     private $category;
     private $cursorId;
     private $objectId;
@@ -64,7 +69,7 @@ class NotificationsBundle
 
     private function fillStacks(string $objectType, int $objectId, string $category)
     {
-        $key = "{$objectType}-{$objectId}-{$category}";
+        $key = static::stackKey($objectType, $objectId, $category);
         // skip multiple notification names mapped to the same category.
         if (isset($this->stacks[$key])) {
             return;
@@ -151,7 +156,7 @@ class NotificationsBundle
         foreach ($query->get() as $row) {
             $name = $row->getRawAttribute('name');
             $category = Notification::NAME_TO_CATEGORY[$name] ?? $name;
-            $key = "{$row->getRawAttribute('notifiable_type')}-{$row->getRawAttribute('notifiable_id')}-{$category}";
+            $key = static::stackKey($row->getRawAttribute('notifiable_type'), $row->getRawAttribute('notifiable_id'), $category);
             $this->stacks[$key]['total'] ??= 0;
             $this->stacks[$key]['total'] += $row->getRawAttribute('count');
         }
