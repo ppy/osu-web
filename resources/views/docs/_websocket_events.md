@@ -1,4 +1,3 @@
-
 # Websocket Events
 
 Websocket events generally have the following standard format:
@@ -33,7 +32,7 @@ See [Notification](#notification) object for notification types.
 Sent when a notification has been read.
 
 <aside class="notice">
-  This event does not use the `data` property for payload.
+  This event does not use the <code>data</code> property for payload.
 </aside>
 
 TODO: `ids` should be moved to `data` to match other events.
