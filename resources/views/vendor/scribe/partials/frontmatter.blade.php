@@ -15,7 +15,10 @@ includes:
 - "./groups/*"
 - "./errors.md"
 - "./append.md"
-- "../views/docs/_notification_websocket.md"
+- "../views/docs/_using_chat.md"
+- "../views/docs/_websocket.md"
+- "../views/docs/_websocket_events.md"
+- "../views/docs/_websocket_commands.md"
 - "../views/docs/_structures.md"
 - "../views/docs/_structures/*.md"
 
