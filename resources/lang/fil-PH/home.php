@@ -72,8 +72,21 @@ return [
     ],
 
     'download' => [
-        'tagline' => "tayo nang<br>simulan ito!",
         'action' => 'I-download ang osu!',
+        'action_lazer' => '',
+        'action_lazer_description' => '',
+        'action_lazer_info' => '',
+        'action_lazer_title' => '',
+        'action_title' => '',
+        'for_os' => '',
+        'lazer_note' => '',
+        'macos-fallback' => 'mga gumagamit ng macOS',
+        'mirror' => 'mirror',
+        'or' => '',
+        'other_os' => '',
+        'quick_start_guide' => '',
+        'tagline' => "tayo nang<br>simulan ito!",
+        'video-guide' => 'video na panggabay',
 
         'help' => [
             '_' => 'kung may problema ka sa pagbukas ng laro o sa paggawa ng account, :help_forum_link o :support_button.',
@@ -86,8 +99,6 @@ return [
             'macos' => 'para sa macOS',
             'linux' => 'para sa Linux',
         ],
-        'mirror' => 'mirror',
-        'macos-fallback' => 'mga gumagamit ng macOS',
         'steps' => [
             'register' => [
                 'title' => 'gumawa ng account',
@@ -105,7 +116,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'video na panggabay',
     ],
 
     'user' => [

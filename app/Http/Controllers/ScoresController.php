@@ -34,47 +34,35 @@ class ScoresController extends Controller
             }
             $soloScore = SoloScore::where('has_replay', true)->findOrFail($rulesetOrSoloId);
 
-            $score = $soloScore->legacyScore();
-
-            if ($score === null) {
-                abort(404);
-            }
-
-            $ruleset = $score->getMode();
+            $score = $soloScore->legacyScore() ?? $soloScore;
         } else {
             if ($shouldRedirect) {
                 return ujs_redirect(route('scores.show-legacy', ['score' => $id, 'mode' => $rulesetOrSoloId]));
             }
-            $ruleset = $rulesetOrSoloId;
             // don't limit downloading replays of restricted users for review purpose
-            $score = ScoreBest::getClass($ruleset)
+            $score = ScoreBest::getClass($rulesetOrSoloId)
                 ::where('score_id', $id)
                 ->where('replay', true)
                 ->firstOrFail();
         }
 
-        $replayFile = $score->replayFile();
-        if ($replayFile === null) {
-            abort(404);
-        }
-
         try {
-            $filename = "replay-{$ruleset}_{$score->beatmap_id}_{$score->getKey()}.osr";
-            $body = $replayFile->get();
+            $file = $score instanceof SoloScore
+                ? $score->getReplayFile()
+                : $this->getLegacyReplayFile($score);
         } catch (FileNotFoundException $e) {
             // missing from storage.
             log_error($e);
             abort(404);
         }
 
-        $file = $replayFile->headerChunk()
-            .pack('i', strlen($body))
-            .$body
-            .$replayFile->endChunk();
+        static $responseHeaders = [
+            'Content-Type' => 'application/x-osu-replay',
+        ];
 
         return response()->streamDownload(function () use ($file) {
             echo $file;
-        }, $filename, ['Content-Type' => 'application/x-osu-replay']);
+        }, $this->makeReplayFilename($score), $responseHeaders);
     }
 
     public function show($rulesetOrSoloId, $legacyId = null)
@@ -92,6 +80,7 @@ class ScoresController extends Controller
 
         $scoreJson = json_item($score, new ScoreTransformer(), array_merge([
             'beatmap.max_combo',
+            'beatmap.user',
             'beatmapset',
             'rank_global',
         ], $userIncludes));
@@ -126,5 +115,28 @@ class ScoresController extends Controller
             ])->firstOrFail();
 
         return response()->json($score->userRank(['cached' => false]) - 1);
+    }
+
+    private function getLegacyReplayFile(ScoreBest $score): string
+    {
+        $replayFile = $score->replayFile();
+        if ($replayFile === null) {
+            abort(404);
+        }
+        $body = $replayFile->get();
+
+        return $replayFile->headerChunk()
+            .pack('i', strlen($body))
+            .$body
+            .$replayFile->endChunk();
+    }
+
+    private function makeReplayFilename(ScoreBest|SoloScore $score): string
+    {
+        $prefix = $score instanceof SoloScore
+            ? 'solo-replay'
+            : 'replay';
+
+        return "{$prefix}-{$score->getMode()}_{$score->beatmap_id}_{$score->getKey()}.osr";
     }
 }

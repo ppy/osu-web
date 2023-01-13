@@ -67,6 +67,7 @@ return [
         'duration' => 'Дзякуючы яму, у вас зараз ёсць доступ да osu!direct і іншым перавагам osu!supporter на: :duration.',
         'features' => 'Больш падрабязна пра гэтыя функцыі вы можаце даведацца тут:',
         'gifted' => 'Хтосьці толькі што падарыў вам osu!supporter тэг!',
+        'gift_message' => '',
         'subject' => 'Вам падаравалі osu!supporter!',
     ],
 

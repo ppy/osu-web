@@ -52,6 +52,22 @@ return [
         'send_message' => 'Pošalji poruku',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => '',
+            'password_confirmation' => '',
+            'submit' => '',
+            'user_email' => '',
+            'user_email_confirmation' => '',
+            'username' => '',
+
+            'tos_notice' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'disabled' => [
         'title' => 'Uh oh! Čini se da je tvoj račun onemogućen.',
         'warning' => "U slučaju da si prekršio/la pravilo, imaj na umu da općenito postoji razdoblje mirovanja od mjesec dana tijekom kojeg nećemo razmatrati nikakve zahtjeve za amnestiju. Nakon tog razdoblja, slobodni ste nas kontaktirati ako smatrate da je potrebno. Imaj na umu da će stvaranje novih računa nakon što si jedan onemogućio/la rezultirati <strong>produženjem ovog jednomjesečnog hlađenja</strong>.  Također imaj na umu da za <strong>svaki račun koji izradiš dodatno kršiš pravila</strong>.  Toplo preporučamo da ne idete ovim putem!",
@@ -451,6 +467,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => 'Stvoreno od strane korisnika',
     ],
     'verify' => [

@@ -105,6 +105,7 @@ return [
         ],
         'users_controller' => [
             '_' => 'info pemain',
+            'create' => '',
             'disabled' => 'pemberitahuan',
         ],
         'wiki_controller' => [

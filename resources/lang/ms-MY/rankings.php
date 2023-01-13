@@ -18,9 +18,9 @@ return [
     ],
 
     'type' => [
-        'charts' => '',
+        'charts' => 'sorotan',
         'country' => 'Negara',
-        'multiplayer' => 'pemain beramai',
+        'multiplayer' => 'pemainan beramai',
         'performance' => 'Prestasi',
         'score' => 'skor',
     ],
@@ -39,7 +39,7 @@ return [
         'play_count' => 'Kiraan Main',
         'performance' => 'Prestasi',
         'total_score' => 'Jumlah Skor',
-        'ranked_score' => 'Skor Pengelasan',
+        'ranked_score' => 'Skor Ranked',
         'average_score' => 'Skor Purata',
         'average_performance' => 'Prestasi Purata. ',
         'ss' => '',

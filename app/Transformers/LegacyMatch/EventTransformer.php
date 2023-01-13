@@ -11,7 +11,7 @@ use App\Transformers\UserCompactTransformer;
 
 class EventTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'user',
         'game',
     ];

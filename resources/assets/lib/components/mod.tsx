@@ -1,19 +1,26 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import modNames from 'mod-names.json';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
-import { modName } from 'utils/score-helper';
 
 interface Props {
   mod: string;
 }
 
 export default function Mod({ mod }: Props) {
+  const modJson = modNames[mod] ?? {
+    acronym: '??',
+    name: '??',
+    type: 'fun',
+  };
+
   return (
     <div
-      className={classWithModifiers('mod', mod)}
-      title={modName(mod)}
+      className={classWithModifiers('mod', modJson.acronym, `type-${modJson.type}`)}
+      data-acronym={modJson.acronym}
+      title={modJson.name}
     />
   );
 }

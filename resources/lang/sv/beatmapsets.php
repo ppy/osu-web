@@ -66,6 +66,7 @@ return [
             'favourite_login' => 'Logga in för att favoritmarkera denna beatmap',
             'logged-out' => 'Du behöver logga in innan du laddar ner beatmaps!',
             'mapped_by' => 'skapad av :mapper',
+            'mapped_by_guest' => '',
             'unfavourite' => 'Ta bort favoritmarkering på detta beatmapset',
             'updated_timeago' => 'senast ändrad :timeago',
 
@@ -124,7 +125,7 @@ return [
             'genre' => 'Genre',
             'language' => 'Språk',
             'no_scores' => 'Data beräknas...',
-            'nominators' => '',
+            'nominators' => 'Nominatorer',
             'nsfw' => 'Explicit innehåll',
             'offset' => 'Online-förskjutning',
             'points-of-failure' => 'Punkter av Misslyckande',

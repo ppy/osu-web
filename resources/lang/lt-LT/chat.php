@@ -4,58 +4,58 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'loading_users' => '',
+    'loading_users' => 'įkeliami vartotojai...',
     'talking_in' => 'pokalbis :channel',
     'talking_with' => 'pokalbis su :name',
-    'title_compact' => 'pokalbis',
+    'title_compact' => 'pokalbiai',
 
     'cannot_send' => [
-        'channel' => 'Šiuo metu tu negali rašyti šiame kanale. Taip galėjo nutikti dėl kažkurios iš šių priežasčių:',
-        'user' => 'Šiuo metu tu negali rašyti šiam žaidėjui. Taip galėjo nutikti dėl kažkurios iš šių priežasčių:',
+        'channel' => 'Šiuo metu jūs negalite rašyti šiame kanale.',
+        'user' => 'Šiuo metu jūs negalite rašyti šiam žaidėjui.',
     ],
 
     'channels' => [
-        'confirm_part' => '',
-        'create' => '',
+        'confirm_part' => 'Ar norite paslėpti šį kanalą? Jūs toliau gausite žinutes iš šio kanalo.',
+        'create' => 'kurti skelbimą',
 
         'list' => [
             'title' => [
-                'ANNOUNCE' => '',
-                'GROUP' => '',
-                'PM' => '',
-                'PUBLIC' => '',
+                'ANNOUNCE' => 'Skelbimai',
+                'GROUP' => 'Grupės',
+                'PM' => 'Tiesioginės žinutės',
+                'PUBLIC' => 'Kanalai',
             ],
         ],
     ],
 
     'form' => [
         'title' => [
-            'announcement' => '',
+            'announcement' => 'Sukurti Naują Skelbimą',
         ],
 
         'labels' => [
-            'description' => '',
-            'name' => '',
-            'users' => '',
+            'description' => 'aprašymas',
+            'name' => 'kambario pavadinimas',
+            'users' => 'žaidėjai pridėjimui',
         ],
     ],
 
     'not_found' => [
-        'message' => '',
-        'title' => '',
+        'message' => 'Čia nieko nėra. Galbūt jūs palikote šį kanalą arba jis nebeegzistuoja...',
+        'title' => 'kanalas nerastas',
     ],
 
     'input' => [
-        'create' => '',
+        'create' => 'Kurti',
         'disabled' => 'žinutės išsiųsti nepavyko...',
-        'disconnected' => '',
+        'disconnected' => 'Atjungta',
         'placeholder' => 'rašyk čia...',
         'send' => 'Siųsti',
     ],
 
     'no-conversations' => [
-        'howto' => "",
-        'lazer' => '',
+        'howto' => "Pradėkite pokalbį iš vartotojo profilio arba iššokančios kortelės.",
+        'lazer' => 'Vieši kanalai prisijungti per <a href=":link">osu!lazer</a> bus matomi ir čia.',
         'title' => 'kol kas pokalbių nėra',
     ],
 ];

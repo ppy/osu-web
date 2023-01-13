@@ -11,7 +11,7 @@ use App\Transformers\TransformerAbstract;
 
 class PlaylistItemTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'beatmap',
     ];
 

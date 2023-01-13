@@ -2,7 +2,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 declare module 'mod-names.json' {
-  const modNames: Partial<Record<string, string>>;
+  import ModJson from 'interfaces/mod-json';
+
+  const modNames: Partial<Record<string, ModJson>>;
 
   export default modNames;
 }
@@ -60,7 +62,6 @@ declare const Turbolinks: import('turbolinks').default;
 
 // our helpers
 declare const tooltipDefault: import('legacy-modules').TooltipDefault;
-declare const osu: import('legacy-modules').OsuCommon;
 
 // external (to typescript) classes
 declare const BeatmapDiscussionHelper: import('legacy-modules').BeatmapDiscussionHelperClass;

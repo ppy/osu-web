@@ -66,6 +66,7 @@ return [
             'favourite_login' => 'Увійдіть, щоб додати цю мапу до вподобаних',
             'logged-out' => 'Необхідно ввійти для того що б завантажувати мапи!',
             'mapped_by' => 'створена :mapper',
+            'mapped_by_guest' => '',
             'unfavourite' => 'Видалити з вподобаного',
             'updated_timeago' => 'оновлена :timeago',
 
@@ -124,7 +125,7 @@ return [
             'genre' => 'Жанр',
             'language' => 'Мова',
             'no_scores' => 'Дані все ще обробляються...',
-            'nominators' => '',
+            'nominators' => 'Номінатори',
             'nsfw' => ' Непристойний вміст',
             'offset' => 'Онлайн офсет',
             'points-of-failure' => 'Шкала провалів',

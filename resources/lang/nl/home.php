@@ -72,8 +72,21 @@ return [
     ],
 
     'download' => [
-        'tagline' => "laten we<br>beginnen!",
         'action' => 'Download osu!',
+        'action_lazer' => '',
+        'action_lazer_description' => '',
+        'action_lazer_info' => '',
+        'action_lazer_title' => '',
+        'action_title' => '',
+        'for_os' => '',
+        'lazer_note' => '',
+        'macos-fallback' => 'macOS gebruikers',
+        'mirror' => 'mirror',
+        'or' => '',
+        'other_os' => '',
+        'quick_start_guide' => '',
+        'tagline' => "laten we<br>beginnen!",
+        'video-guide' => 'videogids',
 
         'help' => [
             '_' => 'als je problemen hebt met het opstarten van het spel of wanneer je een account wilt aanmaken, neem dan een kijkje op het :help_forum_link of neem contact op met :support_button.',
@@ -86,8 +99,6 @@ return [
             'macos' => 'voor macOS',
             'linux' => 'voor Linux',
         ],
-        'mirror' => 'mirror',
-        'macos-fallback' => 'macOS gebruikers',
         'steps' => [
             'register' => [
                 'title' => 'maak een account',
@@ -105,7 +116,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'videogids',
     ],
 
     'user' => [

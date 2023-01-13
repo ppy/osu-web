@@ -105,6 +105,7 @@ return [
         ],
         'users_controller' => [
             '_' => 'informations du joueur',
+            'create' => '',
             'disabled' => 'remarque',
         ],
         'wiki_controller' => [

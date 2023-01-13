@@ -31,9 +31,22 @@ interface SharedStyles {
   };
 }
 
+// partial qtip2 typings
+interface QTip2 {
+  (...args: unknown[]): any;
+  (method: 'api'): QTip2Api | undefined;
+}
+
+interface QTip2Api {
+  destroy(immediate?: boolean): QTip2Api;
+  hide(): QTip2Api;
+  set(...args: unknown[]): QTip2Api;
+  tooltip?: HTMLElement;
+}
+
 declare global {
   interface JQuery {
-    qtip(...args: any): any;
+    qtip: QTip2;
   }
 
   interface HTMLElement {

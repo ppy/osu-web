@@ -9,7 +9,7 @@ use App\Models\User;
 
 class UserTransformer extends UserCompactTransformer
 {
-    protected $defaultIncludes = [
+    protected array $defaultIncludes = [
         'country',
         'cover',
         'is_admin',

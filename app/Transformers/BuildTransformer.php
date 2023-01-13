@@ -10,13 +10,13 @@ use App\Models\ChangelogEntry;
 
 class BuildTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'changelog_entries',
         'update_stream',
         'versions',
     ];
 
-    protected $defaultIncludes = [
+    protected array $defaultIncludes = [
         'update_stream',
     ];
 
