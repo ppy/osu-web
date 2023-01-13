@@ -148,12 +148,12 @@ class NotificationsBundle
             $query->where('is_read', false);
         }
 
-        foreach ($query->get() as $count) {
-            $name = $count->getRawAttribute('name');
+        foreach ($query->get() as $row) {
+            $name = $row->getRawAttribute('name');
             $category = Notification::NAME_TO_CATEGORY[$name] ?? $name;
-            $key = "{$count->getRawAttribute('notifiable_type')}-{$count->getRawAttribute('notifiable_id')}-{$category}";
+            $key = "{$row->getRawAttribute('notifiable_type')}-{$row->getRawAttribute('notifiable_id')}-{$category}";
             $this->stacks[$key]['total'] ??= 0;
-            $this->stacks[$key]['total'] += $count->getRawAttribute('count');
+            $this->stacks[$key]['total'] += $row->getRawAttribute('count');
         }
     }
 
