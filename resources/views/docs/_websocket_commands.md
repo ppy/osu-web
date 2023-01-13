@@ -1,4 +1,3 @@
-
 # Websocket Commands
 
 Websocket commands have the format:
