@@ -468,7 +468,7 @@ return [
     ],
     'store' => [
         'from_client' => 'please register via the game client instead!',
-        'from_web' => 'please register through web',
+        'from_web' => 'please complete registration using the osu! website',
         'saved' => 'User created',
     ],
     'verify' => [
