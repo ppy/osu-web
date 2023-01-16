@@ -67,7 +67,7 @@ return [
         'duration' => 'Dzięki tej osobie otrzymasz dostęp do osu!direct i innych korzyści przeznaczonych dla donatorów osu! przez następne :duration.',
         'features' => 'Więcej informacji na temat korzyści wynikających z posiadania statusu donatora osu! znajdziesz tutaj:',
         'gifted' => 'Ktoś podarował Ci status donatora osu!',
-        'gift_message' => '',
+        'gift_message' => 'Użytkownik, który podarował Ci ten status donatora, pozostawił następującą wiadomość:',
         'subject' => 'Otrzymujesz status donatora osu!',
     ],
 

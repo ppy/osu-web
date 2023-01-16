@@ -18,7 +18,6 @@ class ArtistTrackSearchParamsFromRequest
             'album',
             'artist',
             'bpm:array',
-            'cursor:array',
             'genre',
             'is_default_sort:bool',
             'length:array',
@@ -36,7 +35,7 @@ class ArtistTrackSearchParamsFromRequest
         $params->genre = $paramsArray['genre'];
         [$params->length, $params->lengthInput] = ComparatorParam::make($paramsArray['length'], 'length', 0.5);
         $params->parseSort($paramsArray['sort'], $paramsArray['is_default_sort']);
-        $params->searchAfter = SearchAfterParam::make($params, $paramsArray['cursor']); // TODO: filter cursor param
+        $params->searchAfter = SearchAfterParam::make($params, cursor_from_params($rawParams)); // TODO: enforce value types
 
         return $params;
     }

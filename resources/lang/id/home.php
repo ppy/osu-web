@@ -44,7 +44,7 @@ return [
                 'forum' => 'cari di forum',
                 'forum_children' => 'sertakan subforum',
                 'topic_id' => 'topik #',
-                'username' => 'pemilik',
+                'username' => 'pembuat post',
             ],
         ],
 
@@ -60,7 +60,7 @@ return [
             'login_required' => 'Masuk untuk mencari pengguna',
             'more' => ':count hasil pencarian pengguna lainnya',
             'more_simple' => 'Lihat hasil pencarian pengguna lainnya',
-            'more_hidden' => 'Pencarian pengguna terbatas hanya untuk :max pengguna. Cobalah untuk mempersempit kriteria pencarian Anda.',
+            'more_hidden' => 'Pencarian pengguna terbatas hanya untuk :max pengguna. Cobalah untuk mempersempit kriteria pencarian.',
             'title' => 'Pengguna',
         ],
 
@@ -72,11 +72,24 @@ return [
     ],
 
     'download' => [
-        'tagline' => "mari persiapkan<br>diri Anda!",
         'action' => 'Unduh osu!',
+        'action_lazer' => '',
+        'action_lazer_description' => '',
+        'action_lazer_info' => '',
+        'action_lazer_title' => '',
+        'action_title' => '',
+        'for_os' => '',
+        'lazer_note' => '',
+        'macos-fallback' => 'osu! untuk pengguna macOS',
+        'mirror' => 'tautan alternatif',
+        'or' => '',
+        'other_os' => '',
+        'quick_start_guide' => '',
+        'tagline' => "mari persiapkan<br>dirimu!",
+        'video-guide' => 'panduan video',
 
         'help' => [
-            '_' => 'apabila Anda menemui suatu masalah di saat Anda hendak memulai permainan atau mendaftarkan akun, harap :help_forum_link atau :support_button.',
+            '_' => 'apabila kamu menemui masalah pada saat kamu ingin memulai permainan atau mendaftarkan akun, harap :help_forum_link atau :support_button.',
             'help_forum_link' => 'kunjungi sub-forum Help',
             'support_button' => 'hubungi layanan dukungan kami',
         ],
@@ -86,8 +99,6 @@ return [
             'macos' => 'untuk macOS',
             'linux' => 'untuk Linux',
         ],
-        'mirror' => 'tautan alternatif',
-        'macos-fallback' => 'osu! untuk pengguna macOS',
         'steps' => [
             'register' => [
                 'title' => 'buat akun',
@@ -105,7 +116,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'panduan video',
     ],
 
     'user' => [

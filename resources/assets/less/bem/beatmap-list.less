@@ -16,41 +16,15 @@
     min-width: 0;
   }
 
-  &__selector {
-    .default-box-shadow();
-
-    position: absolute;
-    width: 100%;
-    top: 100%;
-    left: 0;
-    margin-top: 5px;
-    background-color: @osu-colour-b5;
-
-    flex-direction: column;
-
-
-    display: none;
-    .@{top}--selecting & {
-      display: flex;
-    }
-
-    &--submenu {
-      top: 0;
-      left: 100%;
-      margin-left: 5px;
-      margin-top: 0;
-      padding: 10px 0;
-    }
-  }
-
   &__item {
     .link-plain();
     .link-white();
 
+    cursor: pointer;
     display: flex;
     align-items: center;
     text-align: left;
-    padding: 5px 10px;
+    padding: 3px 10px;
     gap: 10px;
     font-size: @font-size--title-small;
 
@@ -91,5 +65,32 @@
 
   &__item-selector-button {
     margin-left: auto;
+  }
+
+  &__selector {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    max-height: 70vh;
+  }
+
+  &__selector-container {
+    .default-box-shadow();
+    .default-border-radius();
+    .fancy-scrollbar();
+    background-color: @osu-colour-b5;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 5px;
+    padding: 10px 0;
+    min-width: 100%;
+    width: max-content;
+    max-width: ~"max(90vw, 100%)";
+
+    display: none;
+    .@{top}--selecting & {
+      display: grid;
+    }
   }
 }

@@ -66,6 +66,7 @@ return [
             'favourite_login' => 'Sign in to favourite this beatmap',
             'logged-out' => 'You need to sign in before downloading any beatmaps!',
             'mapped_by' => 'mapped by :mapper',
+            'mapped_by_guest' => 'guest difficulty by :mapper',
             'unfavourite' => 'Unfavourite this beatmap',
             'updated_timeago' => 'last updated :timeago',
 

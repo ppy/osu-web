@@ -126,19 +126,19 @@ return [
         ],
         '404' => [
             'error' => 'Laman Tidak Ditemukan',
-            'description' => "Maaf, namun laman yang Anda minta tidak ada di sini!",
+            'description' => "Maaf, namun laman yang kamu minta tidak ada di sini!",
         ],
         '403' => [
-            'error' => "Anda tidak seharusnya berada di sini.",
-            'description' => 'Anda dapat mencoba untuk kembali ke halaman sebelumnya.',
+            'error' => "Kamu tidak seharusnya berada di sini.",
+            'description' => 'Kamu dapat mencoba untuk kembali ke halaman sebelumnya.',
         ],
         '401' => [
-            'error' => "Anda tidak seharusnya berada di sini.",
-            'description' => 'Anda dapat mencoba untuk kembali ke halaman sebelumnya. Atau mungkin coba untuk masuk terlebih dahulu.',
+            'error' => "Kamu tidak seharusnya berada di sini.",
+            'description' => 'Kamu dapat mencoba untuk kembali ke halaman sebelumnya. Atau mungkin coba untuk masuk terlebih dahulu.',
         ],
         '405' => [
             'error' => 'Laman Tidak Ditemukan',
-            'description' => "Maaf, namun laman yang Anda minta tidak ada di sini!",
+            'description' => "Maaf, namun laman yang kamu minta tidak ada di sini!",
         ],
         '422' => [
             'error' => 'Parameter yang diminta tidak valid',
@@ -165,7 +165,7 @@ return [
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => "Untuk berjaga-jaga, berikut kode yang dapat Anda berikan kepada layanan dukungan kami!",
+        'reference' => "Untuk berjaga-jaga, berikut kode yang dapat kamu berikan kepada layanan dukungan kami!",
     ],
 
     'popup_login' => [
@@ -185,7 +185,7 @@ return [
 
         'register' => [
             'download' => 'Unduh',
-            'info' => 'Unduh osu! untuk membuat akun Anda!',
+            'info' => 'Unduh osu! untuk membuat akunmu!',
             'title' => "Belum memiliki akun?",
         ],
     ],

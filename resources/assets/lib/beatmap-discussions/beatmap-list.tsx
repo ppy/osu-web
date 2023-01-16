@@ -3,6 +3,9 @@
 
 import BeatmapListItem from 'components/beatmap-list-item';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
+import BeatmapsetJson from 'interfaces/beatmapset-json';
+import UserJson from 'interfaces/user-json';
+import { deletedUser } from 'models/user';
 import * as React from 'react';
 import { blackoutToggle } from 'utils/blackout';
 import { classWithModifiers } from 'utils/css';
@@ -11,10 +14,12 @@ import { nextVal } from 'utils/seq';
 
 interface Props {
   beatmaps: BeatmapExtendedJson[];
+  beatmapset: BeatmapsetJson;
   createLink: (beatmap: BeatmapExtendedJson) => string;
   currentBeatmap: BeatmapExtendedJson;
   getCount: (beatmap: BeatmapExtendedJson) => number | undefined;
   onSelectBeatmap: (beatmapId: number) => void;
+  users: Partial<Record<number, UserJson>>;
 }
 
 interface State {
@@ -51,14 +56,16 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
             href={this.props.createLink(this.props.currentBeatmap)}
             onClick={this.toggleSelector}
           >
-            <BeatmapListItem beatmap={this.props.currentBeatmap} modifiers='large' />
+            <BeatmapListItem beatmap={this.props.currentBeatmap} mapper={null} modifiers='large' />
             <div className='beatmap-list__item-selector-button'>
               <span className='fas fa-chevron-down' />
             </div>
           </a>
 
-          <div className='beatmap-list__selector'>
-            {this.props.beatmaps.map(this.beatmapListItem)}
+          <div className='beatmap-list__selector-container'>
+            <div className='beatmap-list__selector'>
+              {this.props.beatmaps.map(this.beatmapListItem)}
+            </div>
           </div>
         </div>
       </div>
@@ -69,20 +76,25 @@ export default class BeatmapList extends React.PureComponent<Props, State> {
     const count = this.props.getCount(beatmap);
 
     return (
-      <a
+      <div
         key={beatmap.id}
         className={classWithModifiers('beatmap-list__item', { current: beatmap.id === this.props.currentBeatmap.id })}
         data-id={beatmap.id}
-        href={this.props.createLink(beatmap)}
         onClick={this.selectBeatmap}
       >
-        <BeatmapListItem beatmap={beatmap} />
+        <BeatmapListItem
+          beatmap={beatmap}
+          beatmapUrl={this.props.createLink(beatmap)}
+          beatmapset={this.props.beatmapset}
+          mapper={this.props.users[beatmap.user_id] ?? deletedUser}
+          showNonGuestMapper={false}
+        />
         {count != null &&
           <div className='beatmap-list__item-count'>
             {formatNumber(count)}
           </div>
         }
-      </a>
+      </div>
     );
   };
 

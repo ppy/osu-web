@@ -5,18 +5,13 @@
 
 namespace App\Libraries\Transformers;
 
-use League\Fractal;
+use League\Fractal\Manager;
 use League\Fractal\Resource\ResourceInterface;
+use League\Fractal\ScopeFactory as FractalScopeFactory;
 
-class ScopeFactory extends Fractal\ScopeFactory
+class ScopeFactory extends FractalScopeFactory
 {
-    /**
-     * @param Manager $manager
-     * @param ResourceInterface $resource
-     * @param string|null $scopeIdentifier
-     * @return Scope
-     */
-    public function createScopeFor(Fractal\Manager $manager, ResourceInterface $resource, $scopeIdentifier = null)
+    public function createScopeFor(Manager $manager, ResourceInterface $resource, $scopeIdentifier = null): Scope
     {
         return new Scope($manager, $resource, $scopeIdentifier);
     }

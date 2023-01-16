@@ -11,6 +11,7 @@ use App\Libraries\BroadcastsPendingForTests;
 use App\Libraries\ChatFilters;
 use App\Libraries\CleanHTML;
 use App\Libraries\Groups;
+use App\Libraries\Ip2Asn;
 use App\Libraries\LayoutCache;
 use App\Libraries\LocalCacheManager;
 use App\Libraries\Mods;
@@ -45,6 +46,7 @@ class AppServiceProvider extends ServiceProvider
         'OsuAuthorize' => OsuAuthorize::class,
         'assets-manifest' => AssetsManifest::class,
         'clean-html' => CleanHTML::class,
+        'ip2asn' => Ip2Asn::class,
         'local-cache-manager' => LocalCacheManager::class,
         'mods' => Mods::class,
         'route-section' => RouteSection::class,

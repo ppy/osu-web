@@ -31,7 +31,7 @@ return [
         'cart_problems_edit' => 'Mag-click dito para i-edit ito.',
         'declined' => 'Nakansela ang bayad.',
         'delayed_shipping' => 'Kami ay punong puno ng mga order! Maari kang maglagay ng order, pero maaring mahintulot ang iyong order ng mga 1-2 linggo habang inaasikaso namin ang mga order sa ngayon.',
-        'hide_from_activity' => '',
+        'hide_from_activity' => 'Itago ang lahat ng mga tag ng osu!supporter sa pagkakasunud-sunod na ito mula sa aking aktibidad',
         'old_cart' => 'Dahil matagal na panahon na ang lumipas, ini-load muli ang iyong kariton, mangyaring subukang muli.',
         'pay' => 'Paglabas gamit ang Paypal',
         'title_compact' => 'checkout',
@@ -51,7 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Dahil ang pagbayad ay eCheck, maari pong magantay ng 10 araw para dumaan ng PayPal ang iyong bayarin!',
-        'hide_from_activity' => '',
+        'hide_from_activity' => 'ang mga tag ng osu!supporter sa pagkakasunud-sunod na ito ay hindi ipinapakita sa iyong kamakailang mga aktibidad.',
         'title_compact' => 'invoice',
 
         'status' => [
@@ -84,7 +84,7 @@ return [
             ],
 
             'subtext' => [
-                'supporter_tag' => '',
+                'supporter_tag' => 'Mensahe: :message',
             ],
         ],
 
@@ -127,7 +127,7 @@ return [
 
     'supporter_tag' => [
         'gift' => 'regalo sa manlalaro',
-        'gift_message' => '',
+        'gift_message' => 'magdagdag ng opsyonal na mensahe sa iyong regalo! (hanggang sa :length ka mga karakter)',
 
         'require_login' => [
             '_' => 'Kailangan mong :link upang makakuha ng osu! Supporter tag!',

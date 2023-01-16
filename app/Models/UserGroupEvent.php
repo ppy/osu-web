@@ -41,9 +41,19 @@ class UserGroupEvent extends Model
         'hidden' => 'boolean',
     ];
 
-    public static function logGroupRename(?User $actor, Group $group, string $previousName, string $name): self
+    public static function logGroupAdd(?User $actor, Group $group): void
     {
-        return static::log($actor, static::GROUP_RENAME, null, $group, [
+        static::log($actor, static::GROUP_ADD, null, $group);
+    }
+
+    public static function logGroupRemove(?User $actor, Group $group): void
+    {
+        static::log($actor, static::GROUP_REMOVE, null, $group);
+    }
+
+    public static function logGroupRename(?User $actor, Group $group, string $previousName, string $name): void
+    {
+        static::log($actor, static::GROUP_RENAME, null, $group, [
             'details' => [
                 'group_name' => $name,
                 'previous_group_name' => $previousName,
@@ -51,48 +61,55 @@ class UserGroupEvent extends Model
         ]);
     }
 
-    public static function logUserAdd(?User $actor, User $user, Group $group, ?array $playmodes = null): self
+    public static function logUserAdd(?User $actor, User $user, Group $group, ?array $playmodes = null): void
     {
-        return static::log($actor, static::USER_ADD, $user, $group, [
+        // Never log additions to the default group
+        if ($group->identifier === 'default') {
+            return;
+        }
+
+        if (empty($playmodes)) {
+            $playmodes = null;
+        }
+
+        static::log($actor, static::USER_ADD, $user, $group, [
             'details' => compact('playmodes'),
         ]);
     }
 
-    public static function logUserAddPlaymodes(?User $actor, User $user, Group $group, array $playmodes): self
+    public static function logUserAddPlaymodes(?User $actor, User $user, Group $group, array $playmodes): void
     {
         if (empty($playmodes)) {
             throw new InvalidArgumentException('playmodes must not be empty');
         }
 
-        return static::log($actor, static::USER_ADD_PLAYMODES, $user, $group, [
+        static::log($actor, static::USER_ADD_PLAYMODES, $user, $group, [
             'details' => compact('playmodes'),
         ]);
     }
 
-    public static function logUserRemove(?User $actor, User $user, Group $group): self
+    public static function logUserRemove(?User $actor, User $user, Group $group): void
     {
-        return static::log($actor, static::USER_REMOVE, $user, $group);
+        static::log($actor, static::USER_REMOVE, $user, $group);
     }
 
-    public static function logUserRemovePlaymodes(?User $actor, User $user, Group $group, array $playmodes): self
+    public static function logUserRemovePlaymodes(?User $actor, User $user, Group $group, array $playmodes): void
     {
         if (empty($playmodes)) {
             throw new InvalidArgumentException('playmodes must not be empty');
         }
 
-        return static::log($actor, static::USER_REMOVE_PLAYMODES, $user, $group, [
+        static::log($actor, static::USER_REMOVE_PLAYMODES, $user, $group, [
             'details' => compact('playmodes'),
         ]);
     }
 
-    public static function logUserSetDefault(?User $actor, User $user, Group $group): self
+    public static function logUserSetDefault(?User $actor, User $user, Group $group): void
     {
-        return static::log($actor, static::USER_SET_DEFAULT, $user, $group, [
-            'hidden' => true,
-        ]);
+        static::log($actor, static::USER_SET_DEFAULT, $user, $group);
     }
 
-    private static function log(?User $actor, string $type, ?User $user, Group $group, array $attributes = []): self
+    private static function log(?User $actor, string $type, ?User $user, Group $group, array $attributes = []): void
     {
         $attributes['details'] = array_merge(
             [
@@ -103,7 +120,7 @@ class UserGroupEvent extends Model
             $attributes['details'] ?? [],
         );
 
-        return static::create(array_merge(
+        (new static(array_merge(
             [
                 'actor_id' => $actor?->getKey(),
                 'group_id' => $group->getKey(),
@@ -112,7 +129,7 @@ class UserGroupEvent extends Model
                 'user_id' => $user?->getKey(),
             ],
             $attributes,
-        ));
+        )))->saveOrExplode();
     }
 
     public function actor(): BelongsTo
@@ -139,7 +156,7 @@ class UserGroupEvent extends Model
             'type',
             'user_id' => $this->getRawAttribute($key),
 
-            'details' => json_decode($this->getRawAttribute($key) ?? '[]', true),
+            'details' => json_decode($this->getRawAttribute($key), true),
 
             'created_at' => $this->getTimeFast($key),
 

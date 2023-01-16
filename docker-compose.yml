@@ -122,9 +122,10 @@ services:
     volumes:
       - elasticsearch:/usr/share/elasticsearch/data
     environment:
-      action.auto_create_index: "false"
+      action.auto_create_index: false
       discovery.type: single-node
       ES_JAVA_OPTS: "-Xms512m -Xmx512m" # less OOM on default settings.
+      ingest.geoip.downloader.enabled: false
     healthcheck:
       test: curl -s http://localhost:9200/_cluster/health?wait_for_status=yellow >/dev/null || exit 1
       interval: 1s
@@ -145,7 +146,7 @@ services:
 
   score-indexer:
     image: pppy/osu-elastic-indexer
-    command: ["queue", "--force-version"]
+    command: ["queue", "watch", "--force-version"]
     depends_on:
       redis:
         condition: service_healthy

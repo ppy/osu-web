@@ -52,6 +52,22 @@ return [
         'send_message' => 'Odeslat zprávu',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => '',
+            'password_confirmation' => '',
+            'submit' => '',
+            'user_email' => '',
+            'user_email_confirmation' => '',
+            'username' => '',
+
+            'tos_notice' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'disabled' => [
         'title' => 'Ale ne! Vypadá to, že váš účet byl zablokován.',
         'warning' => "V případě porušení pravidla, Vezměte prosím na vědomí, že obecně existuje lhůta jednoho měsíce, během níž nebudeme zvažovat žádné žádosti o amnestii. Po tomto období nás můžete kontaktovat, pokud to považujete za nezbytné. Vezměte prosím v potaz, že vytvořením nových účtů poté, co budete mít jeden deaktivovaný, dojde k <strong>prodloužení jedno měsíčné lhůty</strong>. Vezměte prosím na vědomí, že pro <strong>každý účet, který vytváříte, dále porušujete pravidla</strong>. Velmi doporučujeme, abyste se touto cestou neubírali!",
@@ -218,7 +234,7 @@ return [
                     'title' => 'Oblíbené Beatmapy',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => 'Nominované Hodnocené Beatmapy',
                 ],
                 'pending' => [
                     'title' => 'Čekající Beatmapy',
@@ -417,7 +433,7 @@ return [
             'country_simple' => 'Místní hodnocení',
             'global' => 'Globální pozice pro :mode',
             'global_simple' => 'Světové hodnocení',
-            'highest' => '',
+            'highest' => 'Nejvyšší rank :rank v :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Přesnost zásahů',
@@ -451,6 +467,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => 'Uživatelem vytvořen',
     ],
     'verify' => [
