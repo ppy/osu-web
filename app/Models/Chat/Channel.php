@@ -404,7 +404,7 @@ class Channel extends Model
             if ($this->isDirty($field)) {
                 $val = $this->$field;
                 if ($val !== null && mb_strlen($val) > $limit) {
-                    $this->validationErrors()->add($field, '.too_long', ['limit' => $limit]);
+                    $this->validationErrors()->add($field, 'too_long', ['limit' => $limit]);
                 }
             }
         }
