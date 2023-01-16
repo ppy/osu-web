@@ -2,8 +2,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsetPanel from 'components/beatmapset-panel';
+import LazyLoad from 'components/lazy-load';
 import ProfilePageExtraSectionTitle from 'components/profile-page-extra-section-title';
 import ShowMoreLink from 'components/show-more-link';
+import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import ExtraHeader from './extra-header';
@@ -42,35 +44,42 @@ const sectionKeys = [
 
 @observer
 export default class Beatmapsets extends React.Component<ExtraPageProps> {
+  @computed
+  private get hasData() {
+    return this.props.controller.state.lazy.beatmaps != null;
+  }
+
   render() {
     return (
       <div className='page-extra'>
         <ExtraHeader name={this.props.name} withEdit={this.props.controller.withEdit} />
-        {sectionKeys.map(this.renderBeatmapsets)}
+        <LazyLoad hasData={this.hasData} name={this.props.name} onLoad={this.handleOnLoad}>
+          {sectionKeys.map(this.renderBeatmapsets)}
+        </LazyLoad>
       </div>
     );
   }
+
+  private readonly handleOnLoad = () => this.props.controller.get('beatmaps');
 
   private readonly onShowMore = (section: BeatmapsetSection) => {
     this.props.controller.apiShowMore(section);
   };
 
   private readonly renderBeatmapsets = (section: typeof sectionKeys[number]) => {
-    const state = this.props.controller.state.beatmapsets;
-    const count = state[section.key].count;
-    const beatmapsets = state[section.key].items;
-    const pagination = state[section.key].pagination;
+    const state = this.props.controller.state.lazy.beatmaps?.[section.key];
+    if (state == null) return;
 
     return (
       <React.Fragment key={section.key}>
         <ProfilePageExtraSectionTitle
-          count={count}
+          count={state.count}
           titleKey={`users.show.extra.beatmaps.${section.key}.title`}
         />
 
-        {beatmapsets.length > 0 && (
+        {state.items.length > 0 && (
           <div className='osu-layout__col-container osu-layout__col-container--with-gutter js-audio--group'>
-            {beatmapsets.map((beatmapset) => (
+            {state.items.map((beatmapset) => (
               <div
                 key={beatmapset.id}
                 className='osu-layout__col osu-layout__col--sm-6'
@@ -81,7 +90,7 @@ export default class Beatmapsets extends React.Component<ExtraPageProps> {
 
             <div className='osu-layout__col'>
               <ShowMoreLink
-                {...pagination}
+                {...state.pagination}
                 callback={this.onShowMore}
                 data={section.urlType}
                 modifiers='profile-page'

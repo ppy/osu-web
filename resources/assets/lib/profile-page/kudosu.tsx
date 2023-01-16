@@ -9,17 +9,12 @@ export default class Kudosu extends React.Component<ExtraPageProps> {
   render() {
     return (
       <ProfilePageKudosu
-        kudosu={this.props.controller.state.kudosu}
+        kudosu={this.props.controller.state.lazy.kudosu}
         name={this.props.name}
-        onShowMore={this.onShowMore}
         total={this.props.controller.state.user.kudosu.total}
         userId={this.props.controller.state.user.id}
         withEdit={this.props.controller.withEdit}
       />
     );
   }
-
-  private readonly onShowMore = () => {
-    this.props.controller.apiShowMore('recentlyReceivedKudosu');
-  };
 }
