@@ -101,7 +101,6 @@ export default class CreateAnnouncement extends React.Component<Props> {
             />
             <MessageLengthCounter maxLength={this.model.maxLengths.message} message={this.model.inputs.message} />
           </InputContainer>
-
         </div>
         <div className='chat-form__button-bar'>
           <BigButton
