@@ -87,7 +87,7 @@ class ForumSearch extends Search
      */
     public function topics(): Builder
     {
-        return Topic::whereIn('topic_id', $this->response()->ids('topic_id'));
+        return Topic::withTrashed()->whereIn('topic_id', $this->response()->ids('topic_id'));
     }
 
     public function response(): SearchResponse
