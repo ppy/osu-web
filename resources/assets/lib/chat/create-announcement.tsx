@@ -100,16 +100,16 @@ export default class CreateAnnouncement extends React.Component<Props> {
               placeholder={trans('chat.input.placeholder')}
             />
           </InputContainer>
-        </div>
-        <div className='chat-form__button-bar'>
-          <BigButton
-            disabled={!this.canSend}
-            icon='fas fa-bullhorn'
-            isBusy={core.dataStore.chatState.isJoiningChannel}
-            modifiers='chat-send'
-            props={{ onClick: this.handleButtonClick }}
-            text={trans(core.dataStore.chatState.isReady ? 'chat.input.create' : 'chat.input.disconnected')}
-          />
+          <div className='chat-form__button-bar'>
+            <BigButton
+              disabled={!this.canSend}
+              icon='fas fa-bullhorn'
+              isBusy={core.dataStore.chatState.isJoiningChannel}
+              modifiers='chat-send'
+              props={{ onClick: this.handleButtonClick }}
+              text={trans(core.dataStore.chatState.isReady ? 'chat.input.create' : 'chat.input.disconnected')}
+            />
+          </div>
         </div>
       </div>
     );
