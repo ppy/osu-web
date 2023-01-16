@@ -88,7 +88,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
               <BusySpinner busy={this.model.lookingUpUsers} />
             </div>
           </InputContainer>
-          <InputContainer model={this.model} modifiers='chat' name='message'>
+          <InputContainer model={this.model} modifiers={['chat', 'fill']} name='message'>
             <textarea
               autoComplete='off'
               className='chat-form__input chat-form__input--box'
@@ -98,7 +98,6 @@ export default class CreateAnnouncement extends React.Component<Props> {
               onBlur={this.handleBlur}
               onChange={this.handleInput}
               placeholder={trans('chat.input.placeholder')}
-              rows={10}
             />
           </InputContainer>
         </div>
