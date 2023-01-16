@@ -228,7 +228,7 @@ class ChannelsController extends Controller
      * @bodyParam channel.description string the channel description; required if `type` is `ANNOUNCE`. No-example
      * @bodyParam message string message to send with the announcement; required if `type` is `ANNOUNCE`. No-example
      * @bodyParam target_id integer target user id; required if `type` is `PM`; ignored, otherwise. Example: 2
-     * @bodyParam target_ids integer[] target user ids; required if `type` is `PM`; ignored, otherwise. No-example
+     * @bodyParam target_ids integer[] target user ids; required if `type` is `ANNOUNCE`; ignored, otherwise. No-example
      * @bodyParam type string required channel type (currently only supports `PM` and `ANNOUNCE`) Example: PM
      *
      * @response {
