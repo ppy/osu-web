@@ -21,7 +21,7 @@ export default function MessageLengthCounter({ message, isTimeline }: Props) {
   }
 
   return (
-    <div className={classWithModifiers('beatmap-discussion-message-length-counter', modifier)}>
+    <div className={classWithModifiers('message-length-counter', modifier)}>
       {`${message.length} / ${maxLengthTimeline}`}
     </div>
   );

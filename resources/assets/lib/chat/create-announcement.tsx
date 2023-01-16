@@ -13,6 +13,7 @@ import { maxLength } from 'models/chat/message';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { trans } from 'utils/lang';
+import MessageLengthCounter from './message-length-counter';
 
 type Props = Record<string, never>;
 
@@ -60,6 +61,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
               onBlur={this.handleBlur}
               onChange={this.handleInput}
             />
+            <MessageLengthCounter maxLength={this.model.maxLengths.name} message={this.model.inputs.name} />
           </InputContainer>
           <InputContainer labelKey='chat.form.labels.description' model={this.model} modifiers='chat' name='description'>
             <input
@@ -70,6 +72,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
               onBlur={this.handleBlur}
               onChange={this.handleInput}
             />
+            <MessageLengthCounter maxLength={this.model.maxLengths.description} message={this.model.inputs.description} />
           </InputContainer>
           <InputContainer for='chat-form-users' labelKey='chat.form.labels.users' model={this.model} modifiers='chat' name='users'>
             <div className='chat-form__users'>
@@ -100,7 +103,9 @@ export default class CreateAnnouncement extends React.Component<Props> {
               placeholder={trans('chat.input.placeholder')}
               rows={10}
             />
+            <MessageLengthCounter maxLength={this.model.maxLengths.message} message={this.model.inputs.message} />
           </InputContainer>
+
         </div>
         <div className='chat-form__button-bar'>
           <BigButton

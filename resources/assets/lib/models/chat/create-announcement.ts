@@ -28,6 +28,11 @@ export function isInputKey(key: string): key is InputKey {
 export default class CreateAnnouncement implements FormWithErrors<InputKey> {
   @observable inputs: Record<InputKey, string>;
   @observable lookingUpUsers = false;
+  readonly maxLengths = Object.freeze({
+    description: 255,
+    message: 1024,
+    name: 50,
+  });
   @observable showError: Record<InputKey, boolean>;
   @observable validUsers = new Map<number, UserJson>();
 
