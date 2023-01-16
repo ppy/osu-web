@@ -52,7 +52,8 @@ class Channel extends Model
 
     const ANNOUNCE_MESSAGE_LENGTH_LIMIT = 1024; // limited by column length
     const CHAT_ACTIVITY_TIMEOUT = 60; // in seconds.
-    const MAX_LENGTHS = [
+
+    const MAX_FIELD_LENGTHS = [
         'description' => 255,
         'name' => 50,
     ];
@@ -393,22 +394,19 @@ class Channel extends Model
 
         if ($this->name === null) {
             $this->validationErrors()->add('name', 'required');
-        } else if (mb_strlen($this->name) > static::MAX_LENGTHS['name']) {
-            $this->validationErrors()->add(
-                'name',
-                'too_long',
-                ['limit' => static::MAX_LENGTHS['name']]
-            );
         }
 
         if ($this->description === null) {
             $this->validationErrors()->add('description', 'required');
-        } else if (mb_strlen($this->description) > static::MAX_LENGTHS['description']) {
-            $this->validationErrors()->add(
-                'description',
-                'too_long',
-                ['limit' => static::MAX_LENGTHS['description']]
-            );
+        }
+
+        foreach (static::MAX_FIELD_LENGTHS as $field => $limit) {
+            if ($this->isDirty($field)) {
+                $val = $this->$field;
+                if ($val !== null && mb_strlen($val) > $limit) {
+                    $this->validationErrors()->add($field, '.too_long', ['limit' => $limit]);
+                }
+            }
         }
 
         return $this->validationErrors()->isEmpty();
