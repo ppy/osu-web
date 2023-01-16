@@ -84,8 +84,6 @@ class ForumSearch extends Search
 
     /**
      * Returns a Builder for a Collection of all the posts that appeared in this query.
-     *
-     * @return array
      */
     public function topics(): Builder
     {
