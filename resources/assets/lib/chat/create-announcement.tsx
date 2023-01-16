@@ -13,7 +13,7 @@ import { maxLength } from 'models/chat/message';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { trans } from 'utils/lang';
-import MessageLengthCounter from './message-length-counter';
+import MessageLengthCounter from '../components/message-length-counter';
 
 type Props = Record<string, never>;
 
