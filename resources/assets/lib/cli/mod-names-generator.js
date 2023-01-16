@@ -13,13 +13,25 @@ function modNamesGenerator() {
   const modNames = {};
   for (const mods of modsByRuleset) {
     for (const mod of mods.Mods) {
-      modNames[mod.Acronym] = mod.Name;
+      modNames[mod.Acronym] = {
+        acronym: mod.Acronym,
+        name: mod.Name,
+        type: mod.Type,
+      };
     }
   }
 
   // extra for mod icons
-  modNames.V2 = 'Score V2';
-  modNames.NM = 'No Mod';
+  modNames.V2 = {
+    acronym: 'V2',
+    name: 'Score V2',
+    type: 'Conversion',
+  };
+  modNames.NM = {
+    acronym: 'NM',
+    name: 'No Mod',
+    type: 'Conversion', // not really relevant
+  };
 
   const outDir = `${root}/resources/assets/build`;
   fs.mkdirSync(outDir, { recursive: true });

@@ -9,6 +9,7 @@ SPECTATOR   | |
 TEMPORARY   | _deprecated_
 PM          | see below (user_channels)
 GROUP       | is player in channel? (user_channels)
+ANNOUNCE    | is user in the `announce` group? |
 
 For PMs, two factors are taken into account:
 
