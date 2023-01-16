@@ -368,7 +368,7 @@ export default class Controller {
 
   @action
   get<T extends keyof LazyPages>(page: T) {
-    const xhr = getPage<LazyPages[T]>(this.state.user, page)
+    const xhr = getPage<LazyPages[T]>(this.state.user, page, this.currentMode)
       .done((json) => runInAction(() => {
         this.state.lazy[page] = json;
       }));
