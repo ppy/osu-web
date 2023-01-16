@@ -50,7 +50,13 @@ export default class CreateAnnouncement extends React.Component<Props> {
       <div className='chat-form'>
         <div className='chat-form__fields'>
           <div className='chat-form__title'>{trans('chat.form.title.announcement')}</div>
-          <InputContainer labelKey='chat.form.labels.name' maxLength={maxLengths.name} model={this.model} modifiers='chat' name='name'>
+          <InputContainer
+            labelKey='chat.form.labels.name'
+            maxLength={maxLengths.name}
+            model={this.model}
+            modifiers='chat'
+            name='name'
+          >
             <input
               className='chat-form__input'
               defaultValue={this.model.inputs.name}
@@ -59,7 +65,13 @@ export default class CreateAnnouncement extends React.Component<Props> {
               onChange={this.handleInput}
             />
           </InputContainer>
-          <InputContainer labelKey='chat.form.labels.description' maxLength={maxLengths.description} model={this.model} modifiers='chat' name='description'>
+          <InputContainer
+            labelKey='chat.form.labels.description'
+            maxLength={maxLengths.description}
+            model={this.model}
+            modifiers='chat'
+            name='description'
+          >
             <input
               className='chat-form__input'
               defaultValue={this.model.inputs.description}
@@ -68,7 +80,13 @@ export default class CreateAnnouncement extends React.Component<Props> {
               onChange={this.handleInput}
             />
           </InputContainer>
-          <InputContainer for='chat-form-users' labelKey='chat.form.labels.users' model={this.model} modifiers='chat' name='users'>
+          <InputContainer
+            for='chat-form-users'
+            labelKey='chat.form.labels.users'
+            model={this.model}
+            modifiers='chat'
+            name='users'
+          >
             <div className='chat-form__users'>
               <UserCardBrick user={core.currentUserOrFail} />
               {this.renderValidUsers()}
@@ -85,7 +103,14 @@ export default class CreateAnnouncement extends React.Component<Props> {
               <BusySpinner busy={this.model.lookingUpUsers} />
             </div>
           </InputContainer>
-          <InputContainer for='chat-form-message' labelKey='chat.form.labels.message' maxLength={maxLengths.message} model={this.model} modifiers='chat' name='message'>
+          <InputContainer
+            for='chat-form-message'
+            labelKey='chat.form.labels.message'
+            maxLength={maxLengths.message}
+            model={this.model}
+            modifiers='chat'
+            name='message'
+          >
             <textarea
               autoComplete='off'
               className='chat-form__input chat-form__input--box'
