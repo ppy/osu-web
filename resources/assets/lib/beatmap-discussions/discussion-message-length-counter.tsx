@@ -13,5 +13,5 @@ interface Props {
 export default function DiscussionMessageLengthCounter({ message, isTimeline }: Props) {
   if (!isTimeline) return null;
 
-  return <MessageLengthCounter maxLength={maxLengthTimeline} message={message} />;
+  return <MessageLengthCounter maxLength={maxLengthTimeline} message={message} modifiers='discussion' />;
 }

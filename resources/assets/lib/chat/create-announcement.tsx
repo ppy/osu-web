@@ -8,11 +8,10 @@ import UserCardBrick from 'components/user-card-brick';
 import UserJson from 'interfaces/user-json';
 import { action, computed, makeObservable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
-import { isInputKey } from 'models/chat/create-announcement';
+import { isInputKey, maxLengths } from 'models/chat/create-announcement';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { trans } from 'utils/lang';
-import MessageLengthCounter from '../components/message-length-counter';
 
 type Props = Record<string, never>;
 
@@ -51,7 +50,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
       <div className='chat-form'>
         <div className='chat-form__fields'>
           <div className='chat-form__title'>{trans('chat.form.title.announcement')}</div>
-          <InputContainer labelKey='chat.form.labels.name' model={this.model} modifiers='chat' name='name'>
+          <InputContainer labelKey='chat.form.labels.name' maxLength={maxLengths.name} model={this.model} modifiers='chat' name='name'>
             <input
               className='chat-form__input'
               defaultValue={this.model.inputs.name}
@@ -59,9 +58,8 @@ export default class CreateAnnouncement extends React.Component<Props> {
               onBlur={this.handleBlur}
               onChange={this.handleInput}
             />
-            <MessageLengthCounter maxLength={this.model.maxLengths.name} message={this.model.inputs.name} />
           </InputContainer>
-          <InputContainer labelKey='chat.form.labels.description' model={this.model} modifiers='chat' name='description'>
+          <InputContainer labelKey='chat.form.labels.description' maxLength={maxLengths.description} model={this.model} modifiers='chat' name='description'>
             <input
               className='chat-form__input'
               defaultValue={this.model.inputs.description}
@@ -69,7 +67,6 @@ export default class CreateAnnouncement extends React.Component<Props> {
               onBlur={this.handleBlur}
               onChange={this.handleInput}
             />
-            <MessageLengthCounter maxLength={this.model.maxLengths.description} message={this.model.inputs.description} />
           </InputContainer>
           <InputContainer for='chat-form-users' labelKey='chat.form.labels.users' model={this.model} modifiers='chat' name='users'>
             <div className='chat-form__users'>
@@ -88,18 +85,18 @@ export default class CreateAnnouncement extends React.Component<Props> {
               <BusySpinner busy={this.model.lookingUpUsers} />
             </div>
           </InputContainer>
-          <InputContainer model={this.model} modifiers='chat' name='message'>
+          <InputContainer for='chat-form-message' labelKey='chat.form.labels.message' maxLength={maxLengths.message} model={this.model} modifiers='chat' name='message'>
             <textarea
               autoComplete='off'
               className='chat-form__input chat-form__input--box'
               defaultValue={this.model.inputs.message}
+              id='chat-form-message'
               name='message'
               onBlur={this.handleBlur}
               onChange={this.handleInput}
               placeholder={trans('chat.input.placeholder')}
               rows={10}
             />
-            <MessageLengthCounter maxLength={this.model.maxLengths.message} message={this.model.inputs.message} />
           </InputContainer>
         </div>
         <div className='chat-form__button-bar'>

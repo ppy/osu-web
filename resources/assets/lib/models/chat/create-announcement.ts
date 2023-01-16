@@ -21,6 +21,12 @@ type InputKey = typeof inputKeys[number];
 
 const localStorageKey = 'createAnnouncement';
 
+export const maxLengths = Object.freeze({
+  description: 255,
+  message: maxLength,
+  name: 50,
+});
+
 export function isInputKey(key: string): key is InputKey {
   return (inputKeys as Readonly<string[]>).includes(key);
 }
@@ -29,11 +35,6 @@ export function isInputKey(key: string): key is InputKey {
 export default class CreateAnnouncement implements FormWithErrors<InputKey> {
   @observable inputs: Record<InputKey, string>;
   @observable lookingUpUsers = false;
-  readonly maxLengths = Object.freeze({
-    description: 255,
-    message: maxLength,
-    name: 50,
-  });
   @observable showError: Record<InputKey, boolean>;
   @observable validUsers = new Map<number, UserJson>();
 
@@ -182,7 +183,7 @@ export default class CreateAnnouncement implements FormWithErrors<InputKey> {
   }
 
   private isValidLength(key: Exclude<InputKey, 'users'>) {
-    return present(this.inputs[key]) && this.inputs[key].length <= this.maxLengths[key];
+    return present(this.inputs[key]) && this.inputs[key].length <= maxLengths[key];
   }
 
   @action

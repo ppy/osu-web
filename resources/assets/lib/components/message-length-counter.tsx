@@ -2,11 +2,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import * as React from 'react';
-import { classWithModifiers } from 'utils/css';
+import { classWithModifiers, Modifiers } from 'utils/css';
 
 interface Props {
   maxLength: number;
   message: string;
+  modifiers?: Modifiers;
 }
 
 function modifier(message: string, maxLength: number) {
@@ -19,9 +20,9 @@ function modifier(message: string, maxLength: number) {
   return null;
 }
 
-export default function MessageLengthCounter({ maxLength, message }: Props) {
+export default function MessageLengthCounter({ maxLength, message, modifiers }: Props) {
   return (
-    <div className={classWithModifiers('message-length-counter', modifier(message, maxLength))}>
+    <div className={classWithModifiers('message-length-counter', modifier(message, maxLength), modifiers)}>
       {`${message.length} / ${maxLength}`}
     </div>
   );
