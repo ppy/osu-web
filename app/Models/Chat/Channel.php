@@ -53,6 +53,11 @@ class Channel extends Model
     const ANNOUNCE_MESSAGE_LENGTH_LIMIT = 1024; // limited by column length
     const CHAT_ACTIVITY_TIMEOUT = 60; // in seconds.
 
+    const MAX_FIELD_LENGTHS = [
+        'description' => 255,
+        'name' => 50,
+    ];
+
     public ?string $uuid = null;
 
     protected $primaryKey = 'channel_id';
@@ -393,6 +398,15 @@ class Channel extends Model
 
         if ($this->description === null) {
             $this->validationErrors()->add('description', 'required');
+        }
+
+        foreach (static::MAX_FIELD_LENGTHS as $field => $limit) {
+            if ($this->isDirty($field)) {
+                $val = $this->$field;
+                if ($val !== null && mb_strlen($val) > $limit) {
+                    $this->validationErrors()->add($field, 'too_long', ['limit' => $limit]);
+                }
+            }
         }
 
         return $this->validationErrors()->isEmpty();
