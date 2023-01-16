@@ -53,7 +53,7 @@ trait ForumPostSearch
         foreach ($mappings as $field => $mapping) {
             switch ($field) {
                 case 'is_deleted':
-                    $value = $this->trashed();
+                    $value = $this->trashed() || $this->topic->trashed();
                     break;
                 case 'topic_title':
                     if ($this->topic !== null && $this->topic->topic_first_post_id === $this->getKey()) {
