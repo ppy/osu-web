@@ -41,14 +41,7 @@ class ChatTest extends TestCase
             $this->expectException(AuthorizationException::class);
         }
 
-        $channel = Chat::createAnnouncement($sender, [
-            'channel' => [
-                'description' => 'best',
-                'name' => 'announcements',
-            ],
-            'message' => 'test',
-            'target_ids' => $users->pluck('user_id')->toArray(),
-        ]);
+        $channel = $this->createAnnouncement($sender, $users->pluck('user_id')->toArray());
 
         if ($isAllowed) {
             $this->assertTrue($channel->fresh()->exists());
@@ -60,14 +53,7 @@ class ChatTest extends TestCase
         $sender = User::factory()->withGroup('announce')->create()->markSessionVerified();
         $user = User::factory()->create();
 
-        $channel = Chat::createAnnouncement($sender, [
-            'channel' => [
-                'description' => 'best',
-                'name' => 'announcements',
-            ],
-            'message' => 'test',
-            'target_ids' => [$user->getKey()],
-        ]);
+        $channel = $this->createAnnouncement($sender, [$user->getKey()]);
 
         $this->assertTrue($channel->fresh()->users()->contains('user_id', $sender->getKey()));
     }
@@ -81,14 +67,7 @@ class ChatTest extends TestCase
         $sender = User::factory()->withGroup('announce')->create()->markSessionVerified();
         $user = User::factory()->create();
 
-        Chat::createAnnouncement($sender, [
-            'channel' => [
-                'description' => 'best',
-                'name' => 'announcements',
-            ],
-            'message' => 'test',
-            'target_ids' => [$user->getKey()],
-        ]);
+        $this->createAnnouncement($sender, [$user->getKey()]);
 
         Queue::assertPushed(ChannelAnnouncement::class);
         $this->runFakeQueue();
@@ -346,5 +325,17 @@ class ChatTest extends TestCase
             [false, VerificationRequiredException::class],
             [true, null],
         ];
+    }
+
+    private function createAnnouncement(User $sender, array $targetIds): Channel
+    {
+        return Chat::createAnnouncement($sender, [
+            'channel' => [
+                'description' => 'best',
+                'name' => 'announcements',
+            ],
+            'message' => 'test',
+            'target_ids' => $targetIds,
+        ]);
     }
 }
