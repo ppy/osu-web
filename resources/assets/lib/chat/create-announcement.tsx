@@ -81,7 +81,6 @@ export default class CreateAnnouncement extends React.Component<Props> {
             />
           </InputContainer>
           <InputContainer
-            for='chat-form-users'
             labelKey='chat.form.labels.users'
             model={this.model}
             modifiers='chat'
@@ -92,7 +91,6 @@ export default class CreateAnnouncement extends React.Component<Props> {
               {this.renderValidUsers()}
               <input
                 className='chat-form__input chat-form__input--users'
-                id='chat-form-users'
                 name='users'
                 onBlur={this.handleBlur}
                 onChange={this.handleUsersInputChange}
@@ -104,7 +102,6 @@ export default class CreateAnnouncement extends React.Component<Props> {
             </div>
           </InputContainer>
           <InputContainer
-            for='chat-form-message'
             labelKey='chat.form.labels.message'
             maxLength={maxLengths.message}
             model={this.model}
@@ -115,7 +112,6 @@ export default class CreateAnnouncement extends React.Component<Props> {
               autoComplete='off'
               className='chat-form__input chat-form__input--box'
               defaultValue={this.model.inputs.message}
-              id='chat-form-message'
               name='message'
               onBlur={this.handleBlur}
               onChange={this.handleInput}
