@@ -51,7 +51,9 @@ export default class PlayDetailList extends React.Component<Props> {
 
   @computed
   private get scores() {
-    return this.sectionMap.key === 'recent' ? this.props.controller.state.historical.recent : this.props.controller.state.topScores[this.sectionMap.key];
+    return this.sectionMap.key === 'recent'
+      ? this.props.controller.state.lazy.historical?.recent
+      : this.props.controller.state.lazy.top_ranks?.[this.sectionMap.key];
   }
 
   @computed
@@ -66,6 +68,8 @@ export default class PlayDetailList extends React.Component<Props> {
 
   @computed
   private get uniqueItems() {
+    if (this.scores == null) return [];
+
     const ret = new Map<number, SoloScoreJsonForUser>();
     this.scores.items.forEach((item) => ret.set(item.id, item));
 
@@ -107,6 +111,8 @@ export default class PlayDetailList extends React.Component<Props> {
   }
 
   render() {
+    if (this.scores == null) return null;
+
     const showPpWeight = 'showPpWeight' in this.sectionMap && this.sectionMap.showPpWeight;
 
     return (
@@ -152,7 +158,7 @@ export default class PlayDetailList extends React.Component<Props> {
   };
 
   private onUpdatePinOrder = (event: Event, ui: JQueryUI.SortableUIParams) => {
-    if (!Array.isArray(this.scores.items)) {
+    if (this.scores == null) {
       throw new Error('trying to update pin order with missing data');
     }
 

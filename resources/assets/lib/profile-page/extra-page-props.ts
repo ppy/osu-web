@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import UserExtendedJson from 'interfaces/user-extended-json';
+import UserExtendedJson, { ProfileExtraPage } from 'interfaces/user-extended-json';
 import Controller from './controller';
 
 export const beatmapsetSections = [
@@ -45,5 +45,5 @@ export type ProfilePageSection = typeof profilePageSections[number];
 
 export default interface ExtraPageProps {
   controller: Controller;
-  name: string;
+  name: ProfileExtraPage;
 }

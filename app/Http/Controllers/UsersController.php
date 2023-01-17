@@ -650,13 +650,6 @@ class UsersController extends Controller
                 'user' => $userArray,
             ];
 
-            // moved data
-            // TODO: lazy load
-            $this->parsePaginationParams();
-            foreach (static::LAZY_EXTRA_PAGES as $page) {
-                $initialData[$page] = $this->extraPages($id, $page);
-            }
-
             return ext_view('users.show', compact('initialData', 'user'));
         }
     }

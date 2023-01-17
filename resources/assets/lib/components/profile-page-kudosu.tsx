@@ -2,17 +2,23 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import KudosuHistoryJson from 'interfaces/kudosu-history-json';
+import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import ExtraHeader from 'profile-page/extra-header';
+import getPage, { PageSectionWithoutCountJson } from 'profile-page/extra-page';
 import * as React from 'react';
 import { formatNumber } from 'utils/html';
+import { parseJsonNullable, storeJson } from 'utils/json';
 import { trans } from 'utils/lang';
-import { OffsetPaginatorJson } from 'utils/offset-paginator';
+import { apiShowMoreRecentlyReceivedKudosu, OffsetPaginatorJson } from 'utils/offset-paginator';
 import { wikiUrl } from 'utils/url';
+import LazyLoad from './lazy-load';
 import ShowMoreLink from './show-more-link';
 import StringWithComponent from './string-with-component';
 import TimeWithTooltip from './time-with-tooltip';
 import ValueDisplay from './value-display';
+
+const jsonId = 'json-kudosu';
 
 function Entry({ kudosu }: { kudosu: KudosuHistoryJson }) {
   const textMappings = {
@@ -47,9 +53,8 @@ function Entry({ kudosu }: { kudosu: KudosuHistoryJson }) {
 }
 
 interface Props {
-  kudosu: OffsetPaginatorJson<KudosuHistoryJson>;
+  kudosu?: OffsetPaginatorJson<KudosuHistoryJson>;
   name: string;
-  onShowMore: () => void;
   total: number;
   userId: number;
   withEdit: boolean;
@@ -57,38 +62,83 @@ interface Props {
 
 @observer
 export default class ProfilePageKudosu extends React.Component<Props> {
+  @observable private kudosu?: OffsetPaginatorJson<KudosuHistoryJson>;
+  private showMoreXhr?: JQuery.jqXHR<KudosuHistoryJson[]>;
+  private xhr?: JQuery.jqXHR<PageSectionWithoutCountJson<KudosuHistoryJson>>;
+
+  @computed
+  private get hasData() {
+    return this.kudosu != null;
+  }
+
+  constructor(props: Props) {
+    super(props);
+
+    this.kudosu = parseJsonNullable(jsonId) ?? props.kudosu;
+
+    makeObservable(this);
+  }
+
+  componentWillUnmount(){
+    this.xhr?.abort();
+    this.showMoreXhr?.abort();
+  }
+
   render() {
     return (
       <div className='page-extra'>
         <ExtraHeader name={this.props.name} withEdit={this.props.withEdit} />
 
-        <div className='kudosu-box'>
-          <ValueDisplay
-            description={(
-              <StringWithComponent
-                mappings={{
-                  link: (
-                    <a href={wikiUrl('Kudosu')}>
-                      {trans('users.show.extra.kudosu.total_info.link')}
-                    </a>
-                  ),
-                }}
-                pattern={trans('users.show.extra.kudosu.total_info._')}
-              />
-            )}
-            label={trans('users.show.extra.kudosu.total')}
-            modifiers='kudosu'
-            value={formatNumber(this.props.total)}
-          />
-        </div>
+        <LazyLoad hasData={this.hasData} name={this.props.name} onLoad={this.handleOnLoad}>
+          <div className='kudosu-box'>
+            <ValueDisplay
+              description={(
+                <StringWithComponent
+                  mappings={{
+                    link: (
+                      <a href={wikiUrl('Kudosu')}>
+                        {trans('users.show.extra.kudosu.total_info.link')}
+                      </a>
+                    ),
+                  }}
+                  pattern={trans('users.show.extra.kudosu.total_info._')}
+                />
+              )}
+              label={trans('users.show.extra.kudosu.total')}
+              modifiers='kudosu'
+              value={formatNumber(this.props.total)}
+            />
+          </div>
 
-        {this.renderEntries()}
+          {this.renderEntries()}
+        </LazyLoad>
       </div>
     );
   }
 
+  @action
+  private readonly handleOnLoad = () => {
+    this.xhr = getPage({ id: this.props.userId }, 'kudosu');
+
+    this.xhr.done((json) => runInAction(() => {
+      this.kudosu = json;
+      this.saveState();
+    }));
+
+    return this.xhr;
+  };
+
+  @action
+  private readonly handleShowMore = () => {
+    if (this.kudosu == null) return;
+
+    this.showMoreXhr = apiShowMoreRecentlyReceivedKudosu(this.kudosu, this.props.userId).done(this.saveState);
+  };
+
   private renderEntries() {
-    if (this.props.kudosu.items.length === 0) {
+    if (this.kudosu == null) return null;
+
+    if (this.kudosu.items.length === 0) {
       return (
         <div className='profile-extra-entries profile-extra-entries--kudosu'>
           {trans('users.show.extra.kudosu.entry.empty')}
@@ -98,16 +148,20 @@ export default class ProfilePageKudosu extends React.Component<Props> {
 
     return (
       <ul className='profile-extra-entries profile-extra-entries--kudosu'>
-        {Array.isArray(this.props.kudosu.items) && this.props.kudosu.items.map((kudosu) => <Entry key={kudosu.id} kudosu={kudosu} />)}
+        {this.kudosu.items.map((kudosu) => <Entry key={kudosu.id} kudosu={kudosu} />)}
 
         <li className='profile-extra-entries__item'>
           <ShowMoreLink
-            {...this.props.kudosu.pagination}
-            callback={this.props.onShowMore}
+            {...this.kudosu.pagination}
+            callback={this.handleShowMore}
             modifiers='profile-page'
           />
         </li>
       </ul>
     );
   }
+
+  private readonly saveState = () => {
+    storeJson(jsonId, this.kudosu);
+  };
 }

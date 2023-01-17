@@ -1,11 +1,13 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import LazyLoad from 'components/lazy-load';
 import ShowMoreLink from 'components/show-more-link';
 import StringWithComponent from 'components/string-with-component';
 import TimeWithTooltip from 'components/time-with-tooltip';
 import EventJson from 'interfaces/event-json';
 import { snakeCase } from 'lodash';
+import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import ExtraHeader from 'profile-page/extra-header';
 import * as React from 'react';
@@ -17,14 +19,38 @@ import parseEvent from './parse-event';
 
 @observer
 export default class RecentActivity extends React.Component<ExtraPageProps> {
+  @computed
+  private get count() {
+    return this.data?.items.length ?? 0;
+  }
+
+  private get data() {
+    return this.props.controller.state.lazy.recent_activity;
+  }
+
+  @computed
+  private get hasData() {
+    return this.data != null;
+  }
+
+  constructor(props: ExtraPageProps) {
+    super(props);
+
+    makeObservable(this);
+  }
+
   render() {
     return (
       <div className='page-extra'>
         <ExtraHeader name={this.props.name} withEdit={this.props.controller.withEdit} />
-        {this.props.controller.state.recentActivity.items.length > 0 ? this.renderEntries() : this.renderEmpty()}
+        <LazyLoad hasData={this.hasData} name={this.props.name} onLoad={this.handleOnLoad}>
+          {this.count > 0 ? this.renderEntries() : this.renderEmpty()}
+        </LazyLoad>
       </div>
     );
   }
+
+  private readonly handleOnLoad = () => this.props.controller.get('recent_activity');
 
   private readonly onShowMore = () => {
     this.props.controller.apiShowMore('recentActivity');
@@ -35,12 +61,14 @@ export default class RecentActivity extends React.Component<ExtraPageProps> {
   }
 
   private renderEntries() {
+    if (this.data == null) return null;
+
     return (
       <ul className='profile-extra-entries'>
-        {this.props.controller.state.recentActivity.items.map(this.renderEntry)}
+        {this.data.items.map(this.renderEntry)}
         <li className='profile-extra-entries__item'>
           <ShowMoreLink
-            {...this.props.controller.state.recentActivity.pagination}
+            {...this.data.pagination}
             callback={this.onShowMore}
             modifiers='profile-page'
           />
