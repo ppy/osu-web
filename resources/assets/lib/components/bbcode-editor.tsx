@@ -116,7 +116,7 @@ export default class BbcodeEditor extends React.Component<Props> {
   };
 
   private onKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.keyCode === 27) {
+    if (e.key === 'Escape') {
       this.cancel();
     }
   };

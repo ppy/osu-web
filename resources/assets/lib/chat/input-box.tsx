@@ -67,7 +67,7 @@ export default class InputBox extends React.Component<Props> {
   };
 
   checkIfEnterPressed = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.keyCode === 13) {
+    if (e.key === 'Enter') {
       e.preventDefault();
       if (!this.sendDisabled) {
         this.sendMessage(this.currentChannel?.inputText);
