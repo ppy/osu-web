@@ -11,7 +11,7 @@ use App\Models\User;
 
 class ChannelAnnouncement extends BroadcastNotificationBase
 {
-    const NOTIFICATION_OPTION_NAME = Notification::CHANNEL_MESSAGE;
+    const DELIVERY_MODE_DEFAULTS = ['mail' => true, 'push' => true];
 
     protected $message;
 
