@@ -81,6 +81,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
             />
           </InputContainer>
           <InputContainer
+            for='chat-form-users'
             labelKey='chat.form.labels.users'
             model={this.model}
             modifiers='chat'
@@ -91,6 +92,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
               {this.renderValidUsers()}
               <input
                 className='chat-form__input chat-form__input--users'
+                id='chat-form-users'
                 name='users'
                 onBlur={this.handleBlur}
                 onChange={this.handleUsersInputChange}
