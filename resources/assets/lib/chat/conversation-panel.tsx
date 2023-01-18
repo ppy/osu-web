@@ -8,7 +8,6 @@ import * as React from 'react';
 import { trans } from 'utils/lang';
 import ConversationView from './conversation-view';
 import CreateAnnouncement from './create-announcement';
-import InputBox from './input-box';
 
 const lazerLink = 'https://github.com/ppy/osu/releases';
 
@@ -18,10 +17,7 @@ export default class ConversationPanel extends React.Component<Record<string, ne
     return (
       <div className='chat-conversation-panel'>
         {core.dataStore.chatState.selectedChannel != null ? (
-          <>
-            <ConversationView />
-            <InputBox />
-          </>
+          <ConversationView />
         ) : core.dataStore.chatState.showingCreateAnnouncement ? (
           <CreateAnnouncement />
         ) : (
