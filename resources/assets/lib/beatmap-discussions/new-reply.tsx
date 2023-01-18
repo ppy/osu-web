@@ -19,7 +19,7 @@ import { InputEventType, makeTextAreaHandler, TextAreaCallback } from 'utils/inp
 import { trans } from 'utils/lang';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import { present } from 'utils/string';
-import MessageLengthCounter from './message-length-counter';
+import DiscussionMessageLengthCounter from './discussion-message-length-counter';
 
 const bn = 'beatmap-discussion-post';
 
@@ -195,7 +195,7 @@ export class NewReply extends React.Component<Props> {
 
         <div className={`${bn}__footer ${bn}__footer--notice`}>
           {trans('beatmaps.discussions.reply_notice')}
-          <MessageLengthCounter isTimeline={this.isTimeline} message={this.message} />
+          <DiscussionMessageLengthCounter isTimeline={this.isTimeline} message={this.message} />
         </div>
 
         <div className={`${bn}__footer`}>

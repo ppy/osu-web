@@ -10,6 +10,7 @@ import core from 'osu-core-singleton';
 import { onError } from 'utils/ajax';
 import { uuid } from 'utils/seq';
 import { presence, present } from 'utils/string';
+import { maxLength } from './message';
 
 interface LocalStorageProps extends Record<InputKey, string> {
   validUsers: number[];
@@ -19,6 +20,12 @@ const inputKeys = ['description', 'message', 'name', 'users'] as const;
 type InputKey = typeof inputKeys[number];
 
 const localStorageKey = 'createAnnouncement';
+
+export const maxLengths = Object.freeze({
+  description: 255,
+  message: maxLength,
+  name: 50,
+});
 
 export function isInputKey(key: string): key is InputKey {
   return (inputKeys as Readonly<string[]>).includes(key);
@@ -39,9 +46,9 @@ export default class CreateAnnouncement implements FormWithErrors<InputKey> {
   @computed
   get errors() {
     return {
-      description: !present(this.inputs.description),
-      message: !present(this.inputs.message),
-      name: !present(this.inputs.name),
+      description: !this.isValidLength('description'),
+      message: !this.isValidLength('message'),
+      name: !this.isValidLength('name'),
       users: this.validUsers.size === 0
         || present(this.inputs.users.trim()), // implies invalid ids left
     };
@@ -173,6 +180,10 @@ export default class CreateAnnouncement implements FormWithErrors<InputKey> {
 
     // current user is implicit, always remove.
     this.validUsers.delete(core.currentUserOrFail.id);
+  }
+
+  private isValidLength(key: Exclude<InputKey, 'users'>) {
+    return present(this.inputs[key]) && this.inputs[key].length <= maxLengths[key];
   }
 
   @action
