@@ -17,7 +17,7 @@ export default class ForumTopicPostJump
 
 
   keyup: (e) =>
-    if e.keyCode == 27
+    if e.key == 'Escape'
       $(e.currentTarget).blur()
       return
 

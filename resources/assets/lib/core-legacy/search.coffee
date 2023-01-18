@@ -20,7 +20,7 @@ export default class Search
 
 
   maybeSubmitInput: (e) =>
-    return if e.keyCode != 13
+    return if e.key != 'Enter'
 
     e.preventDefault()
     @submitInput(e)

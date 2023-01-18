@@ -144,7 +144,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
   };
 
   private handleUsernameInputKeyup = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.keyCode === 13) this.handleSaveClick();
+    if (e.key === 'Enter') this.handleSaveClick();
   };
 
   private renderAvatar() {

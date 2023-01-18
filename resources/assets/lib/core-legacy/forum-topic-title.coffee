@@ -41,11 +41,9 @@ export default class ForumTopicTitle
 
 
   onKeyup: (e) =>
-    switch e.keyCode
-      # enter
-      when 13 then @save()
-      # escape
-      when 27 then @cancel()
+    switch e.key
+      when 'Enter' then @save()
+      when 'Escape' then @cancel()
 
 
   save: =>
