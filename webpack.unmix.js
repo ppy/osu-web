@@ -105,11 +105,11 @@ class Manifest {
 // #region entrypoints and output
 const entry = {
   app: [
-    './resources/assets/less/app.less',
+    './resources/css/app.less',
   ],
 };
 
-const entrypointsPath = 'resources/assets/lib/entrypoints';
+const entrypointsPath = 'resources/js/entrypoints';
 const supportedExts = new Set(['.coffee', '.ts', '.tsx']);
 fs.readdirSync(resolvePath(entrypointsPath), { withFileTypes: true }).forEach((item) => {
   if (item.isFile()) {
@@ -157,7 +157,7 @@ const plugins = [
   }),
   new CopyPlugin({
     patterns: [
-      { from: 'resources/assets/build/locales', to: outputFilename('js/locales/[name]') },
+      { from: 'resources/builds/locales', to: outputFilename('js/locales/[name]') },
       { from: 'node_modules/moment/locale', to: outputFilename('js/moment-locales/[name]') },
       { from: 'node_modules/@discordapp/twemoji/dist/svg/*-*.svg', to: 'images/flags/[name].[ext]' },
     ],
@@ -256,16 +256,15 @@ const rules = [
 // #region resolvers
 const resolve = {
   alias: {
-    '@fonts': path.resolve(__dirname, 'resources/assets/fonts'),
+    '@fonts': path.resolve(__dirname, 'resources/fonts'),
     '@images': path.resolve(__dirname, 'public/images'),
     layzr: resolvePath('node_modules/layzr.js/dist/layzr.module.js'),
     'ziggy-route': resolvePath('vendor/tightenco/ziggy/dist/index.es.js'),
   },
   extensions: ['*', '.js', '.coffee', '.ts', '.tsx'],
   modules: [
-    resolvePath('resources/assets/build'),
-    resolvePath('resources/assets/lib'),
-    resolvePath('resources/assets/coffee'),
+    resolvePath('resources/builds'),
+    resolvePath('resources/js'),
     resolvePath('node_modules'),
   ],
   plugins: [new TsconfigPathsPlugin()],

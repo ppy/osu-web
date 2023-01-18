@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "./resources/assets/lib",
+    "baseUrl": "./resources/js",
     "experimentalDecorators": true,
     "jsx": "react",
     "lib": ["dom", "dom.iterable", "es2020"],
@@ -16,6 +16,6 @@
     "useDefineForClassFields": true
   },
   "include": [
-    "resources/assets/lib"
+    "resources/js"
   ]
 }
