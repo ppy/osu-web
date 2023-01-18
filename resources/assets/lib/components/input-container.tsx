@@ -5,6 +5,7 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { trans } from 'utils/lang';
+import MessageLengthCounter from './message-length-counter';
 
 interface CommonProps {
   for?: string;
@@ -14,13 +15,14 @@ interface CommonProps {
 
 export interface FormWithErrors<T extends string> {
   errors: Record<T, boolean>;
+  inputs: Record<T, string>;
   showError: Record<T, boolean>;
 }
 
 // extra props when error marking support is used.
 type Props<T extends string> =
   CommonProps & (
-    { model: FormWithErrors<T>; name: T }
+    { maxLength?: number; model: FormWithErrors<T>; name: T }
     | { model?: never; name?: never }
   );
 
@@ -33,6 +35,9 @@ const InputContainer = observer(<T extends string>(props: React.PropsWithChildre
       {props.labelKey != null && (
         <div className='input-container__label'>
           {trans(props.labelKey)}
+          {props.model != null && props.maxLength != null && (
+            <MessageLengthCounter maxLength={props.maxLength} message={props.model.inputs[props.name]} />
+          )}
         </div>
       )}
       {props.children}

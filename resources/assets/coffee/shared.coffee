@@ -96,7 +96,7 @@ $(document).on 'click', '.clickable-row', (e) ->
 
 # submit form on ctrl-enter (or cmd-enter).
 $(document).on 'keydown', '.js-quick-submit', (e) ->
-  return unless (e.ctrlKey || e.metaKey) && e.keyCode == 13
+  return unless (e.ctrlKey || e.metaKey) && e.key == 'Enter'
 
   e.preventDefault()
   $(e.target).closest('form').submit()

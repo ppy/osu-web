@@ -30,7 +30,7 @@ import { badgeGroup, canModeratePosts, format, validMessageLength } from 'utils/
 import { classWithModifiers } from 'utils/css';
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
 import { trans } from 'utils/lang';
-import MessageLengthCounter from './message-length-counter';
+import DiscussionMessageLengthCounter from './discussion-message-length-counter';
 import { UserCard } from './user-card';
 
 const bn = 'beatmap-discussion-post';
@@ -291,7 +291,7 @@ export default class Post extends React.Component<Props> {
               style={{ minHeight: this.textareaMinHeight }}
               value={this.message}
             />
-            <MessageLengthCounter isTimeline={this.isTimeline} message={this.message} />
+            <DiscussionMessageLengthCounter isTimeline={this.isTimeline} message={this.message} />
           </>
         )}
         <div className={`${bn}__actions`}>

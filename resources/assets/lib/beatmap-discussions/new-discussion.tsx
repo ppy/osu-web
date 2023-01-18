@@ -26,8 +26,8 @@ import { joinComponents, trans } from 'utils/lang';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import { present } from 'utils/string';
 import CurrentDiscussions from './current-discussions';
+import DiscussionMessageLengthCounter from './discussion-message-length-counter';
 import DiscussionsMode from './discussions-mode';
-import MessageLengthCounter from './message-length-counter';
 
 const bn = 'beatmap-discussion-new';
 
@@ -393,7 +393,7 @@ export class NewDiscussion extends React.Component<Props> {
           value={this.canPost ? this.message : ''}
         />
 
-        <MessageLengthCounter
+        <DiscussionMessageLengthCounter
           isTimeline={this.isTimeline}
           message={this.message}
         />
