@@ -26,6 +26,11 @@ export default class Message {
   @observable private contentHtml?: string;
 
   @computed
+  get isHtml() {
+    return this.contentHtml !== null;
+  }
+
+  @computed
   get parsedContent() {
     return this.contentHtml ?? linkify(escape(this.content), true);
   }
