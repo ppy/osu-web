@@ -60,5 +60,6 @@ export default class Message {
     this.messageId = json.message_id;
     this.timestamp = json.timestamp;
     this.persisted = true;
+    this.contentHtml = json.content_html;
   }
 }
