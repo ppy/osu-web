@@ -96,10 +96,6 @@ export default class InputBox extends React.Component<Props> {
   render(): React.ReactNode {
     const channel = this.currentChannel;
 
-    if (this.inputDisabled && channel?.type === 'ANNOUNCE') {
-      return null;
-    }
-
     const buttonIcon = core.dataStore.chatState.isReady ? 'fas fa-reply' : 'fas fa-times';
     const buttonText = trans(core.dataStore.chatState.isReady ? 'chat.input.send' : 'chat.input.disconnected');
 

@@ -193,7 +193,8 @@ export default class ConversationView extends React.Component<Props> {
       return <div className='chat-conversation' />;
     }
 
-    const className = classWithModifiers('chat-conversation', channel.type, { 'cannot-message': !channel.canMessage });
+    const renderInput = !(!channel.canMessage && channel.type === 'ANNOUNCE');
+    const className = classWithModifiers('chat-conversation', channel.type, { 'no-input': !renderInput });
 
     return (
       <>
@@ -243,7 +244,7 @@ export default class ConversationView extends React.Component<Props> {
             this.renderCannotSendMessage()
           }
         </div>
-        <InputBox />
+        {renderInput && <InputBox />}
       </>
     );
   }
