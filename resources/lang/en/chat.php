@@ -36,6 +36,7 @@ return [
 
         'labels' => [
             'description' => 'description',
+            'message' => 'message',
             'name' => 'room name',
             'users' => 'players to add',
         ],
