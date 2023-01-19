@@ -31,7 +31,7 @@ class MessageTransformer extends TransformerAbstract
             $response['uuid'] = $message->uuid;
         }
 
-        if ($message->channel->isAnnouncement()) {
+        if ($message->channel->isAnnouncement() && !$message->is_action) {
             $response['content_html'] = markdown_chat($message->content);
         }
 

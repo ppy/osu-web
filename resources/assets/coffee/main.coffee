@@ -106,4 +106,4 @@ $(document).on 'change', '.js-url-selector', (e) ->
 
 
 $(document).on 'keydown', (e) ->
-  $.publish 'key:esc' if e.keyCode == 27
+  $.publish 'key:esc' if e.key == 'Escape'
