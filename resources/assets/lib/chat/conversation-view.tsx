@@ -240,7 +240,7 @@ export default class ConversationView extends React.Component<Props> {
             </div>
           }
           {this.conversationStack}
-          {!channel.canMessage &&
+          {!channel.canMessage && renderInput &&
             this.renderCannotSendMessage()
           }
         </div>
