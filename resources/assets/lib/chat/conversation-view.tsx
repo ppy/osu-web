@@ -193,7 +193,7 @@ export default class ConversationView extends React.Component<Props> {
       return <div className='chat-conversation' />;
     }
 
-    const renderInput = !(!channel.canMessage && channel.type === 'ANNOUNCE');
+    const renderInput = channel.canMessage || channel.type !== 'ANNOUNCE';
     const className = classWithModifiers('chat-conversation', channel.type, { 'no-input': !renderInput });
 
     return (
