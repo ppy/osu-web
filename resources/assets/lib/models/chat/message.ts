@@ -25,7 +25,6 @@ export default class Message {
 
   @observable private contentHtml?: string;
 
-  @computed
   get isHtml() {
     return this.contentHtml != null;
   }
