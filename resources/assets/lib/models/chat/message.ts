@@ -27,7 +27,7 @@ export default class Message {
 
   @computed
   get isHtml() {
-    return this.contentHtml !== null;
+    return this.contentHtml != null;
   }
 
   @computed
