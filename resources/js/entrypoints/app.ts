@@ -11,7 +11,7 @@ import '_classes/store-supporter-tag-price.coffee';
 import '_classes/timeout.coffee';
 
 import 'spoilerbox.coffee';
-import 'store.coffee';
+import 'store-legacy.coffee';
 import 'store-username-change.coffee';
 import 'forum/post-box.coffee';
 import 'ujs-common.coffee';

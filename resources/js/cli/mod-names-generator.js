@@ -5,7 +5,7 @@
 
 const fs = require('fs');
 
-const root = `${__dirname}/../../../..`;
+const root = `${__dirname}/../../..`;
 
 function modNamesGenerator() {
   const modsByRuleset = JSON.parse(fs.readFileSync(`${root}/database/mods.json`));
@@ -33,7 +33,7 @@ function modNamesGenerator() {
     type: 'Conversion', // not really relevant
   };
 
-  const outDir = `${root}/resources/assets/build`;
+  const outDir = `${root}/resources/builds`;
   fs.mkdirSync(outDir, { recursive: true });
   fs.writeFileSync(`${outDir}/mod-names.json`, JSON.stringify(modNames));
 }

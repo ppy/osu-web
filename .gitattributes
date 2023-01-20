@@ -1,4 +1,4 @@
 * text=auto
 *.sh eol=lf
 /public/images/** binary
-/resources/assets/fonts/** binary
+/resources/fonts/** binary
