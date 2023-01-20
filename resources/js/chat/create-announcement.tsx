@@ -12,6 +12,7 @@ import { isInputKey, maxLengths } from 'models/chat/create-announcement';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { trans } from 'utils/lang';
+import MarkdownHelp from './markdown-help';
 
 type Props = Record<string, never>;
 
@@ -103,6 +104,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
               <BusySpinner busy={this.model.lookingUpUsers} />
             </div>
           </InputContainer>
+          <MarkdownHelp />
           <InputContainer
             labelKey='chat.form.labels.message'
             maxLength={maxLengths.message}
