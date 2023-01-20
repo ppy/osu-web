@@ -17,6 +17,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
+import InputBox from './input-box';
 import { MessageDivider } from './message-divider';
 import MessageGroup from './message-group';
 
@@ -192,53 +193,59 @@ export default class ConversationView extends React.Component<Props> {
       return <div className='chat-conversation' />;
     }
 
+    const renderInput = channel.canMessage || channel.type !== 'ANNOUNCE';
+    const className = classWithModifiers('chat-conversation', channel.type, { 'no-input': !renderInput });
+
     return (
-      <div ref={this.chatViewRef} className={classWithModifiers('chat-conversation', channel.type)} onScroll={this.handleOnScroll}>
-        <div className='chat-conversation__new-chat-avatar'>
-          <UserAvatar user={{ avatar_url: channel.icon }} />
-        </div>
-        {this.renderUsers()}
-        <div className='chat-conversation__chat-label'>
-          {channel.pmTarget != null ? (
-            <StringWithComponent
-              mappings={{ name: (
-                <a
-                  className='js-usercard'
-                  data-user-id={channel.pmTarget}
-                  href={route('users.show', { user: channel.pmTarget })}
-                >
-                  {channel.name}
-                </a>
-              ) }}
-              // TODO: rework this once the user class situation is resolved
-              pattern={trans('chat.talking_with')}
-            />
-          ) : (
-            trans('chat.talking_in', { channel: channel.name })
-          )}
-        </div>
-        {channel.description &&
+      <>
+        <div ref={this.chatViewRef} className={className} onScroll={this.handleOnScroll}>
+          <div className='chat-conversation__new-chat-avatar'>
+            <UserAvatar user={{ avatar_url: channel.icon }} />
+          </div>
+          {this.renderUsers()}
           <div className='chat-conversation__chat-label'>
-            {channel.description}
+            {channel.pmTarget != null ? (
+              <StringWithComponent
+                mappings={{ name: (
+                  <a
+                    className='js-usercard'
+                    data-user-id={channel.pmTarget}
+                    href={route('users.show', { user: channel.pmTarget })}
+                  >
+                    {channel.name}
+                  </a>
+                ) }}
+                // TODO: rework this once the user class situation is resolved
+                pattern={trans('chat.talking_with')}
+              />
+            ) : (
+              trans('chat.talking_in', { channel: channel.name })
+            )}
           </div>
-        }
-        <ShowMoreLink
-          callback={this.loadEarlierMessages}
-          direction='up'
-          hasMore={channel.hasEarlierMessages}
-          loading={channel.loadingEarlierMessages}
-          modifiers='chat-conversation-earlier-messages'
-        />
-        {channel.loadingMessages &&
-          <div className='chat-conversation__day-divider'>
-            <Spinner />
-          </div>
-        }
-        {this.conversationStack}
-        {!channel.canMessage &&
-          this.renderCannotSendMessage()
-        }
-      </div>
+          {channel.description &&
+            <div className='chat-conversation__chat-label'>
+              {channel.description}
+            </div>
+          }
+          <ShowMoreLink
+            callback={this.loadEarlierMessages}
+            direction='up'
+            hasMore={channel.hasEarlierMessages}
+            loading={channel.loadingEarlierMessages}
+            modifiers='chat-conversation-earlier-messages'
+          />
+          {channel.loadingMessages &&
+            <div className='chat-conversation__day-divider'>
+              <Spinner />
+            </div>
+          }
+          {this.conversationStack}
+          {!channel.canMessage && renderInput &&
+            this.renderCannotSendMessage()
+          }
+        </div>
+        {renderInput && <InputBox />}
+      </>
     );
   }
 

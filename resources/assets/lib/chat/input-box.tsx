@@ -22,6 +22,10 @@ type Props = Record<string, never>;
 export default class InputBox extends React.Component<Props> {
   private inputBoxRef = React.createRef<HTMLTextAreaElement>();
 
+  get allowMultiLine() {
+    return this.currentChannel?.type === 'ANNOUNCE';
+  }
+
   @computed
   get currentChannel() {
     return core.dataStore.chatState.selectedChannel;
@@ -68,6 +72,8 @@ export default class InputBox extends React.Component<Props> {
 
   checkIfEnterPressed = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter') {
+      if (e.shiftKey && this.allowMultiLine) return;
+
       e.preventDefault();
       if (!this.sendDisabled) {
         this.sendMessage(this.currentChannel?.inputText);
@@ -95,6 +101,7 @@ export default class InputBox extends React.Component<Props> {
 
   render(): React.ReactNode {
     const channel = this.currentChannel;
+
     const buttonIcon = core.dataStore.chatState.isReady ? 'fas fa-reply' : 'fas fa-times';
     const buttonText = trans(core.dataStore.chatState.isReady ? 'chat.input.send' : 'chat.input.disconnected');
 
