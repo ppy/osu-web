@@ -5,6 +5,7 @@ import CurrentUserJson from 'interfaces/current-user-json';
 
 // import jquery + plugins
 import * as $ from 'jquery';
+import 'jquery.tocify';
 import 'jquery-ujs';
 import 'bootstrap';
 import 'timeago/jquery.timeago.js';
@@ -54,13 +55,13 @@ declare global {
   }
 
   interface Window {
-    $: any;
+    $: JQueryStatic;
     _styles: SharedStyles;
     currentLocale: string;
     currentUser: CurrentUserJson | { id: undefined };
     experimentalHost: string | null;
     fallbackLocale: string;
-    jQuery: any;
+    jQuery: JQueryStatic;
     Lang: Lang;
     LangMessages: unknown;
     moment: any;

@@ -20,12 +20,12 @@ desktop.ini
 /yarn-error.log
 
 # Compiled/copied assets
+/.scribe
 /public/assets
 /public/docs
 /public/uploads
 /public/uploads-avatar
 /public/uploads-replay
-/resources/docs
 
 # server logs
 /logs/osu/*
