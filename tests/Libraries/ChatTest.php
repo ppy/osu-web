@@ -5,14 +5,20 @@
 
 namespace Tests\Libraries;
 
+use App\Events\NewPrivateNotificationEvent;
 use App\Exceptions\AuthorizationException;
 use App\Exceptions\VerificationRequiredException;
+use App\Jobs\Notifications\ChannelAnnouncement;
 use App\Libraries\Chat;
+use App\Mail\UserNotificationDigest;
 use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
 use App\Models\OAuth\Client;
 use App\Models\User;
+use Event;
 use Exception;
+use Mail;
+use Queue;
 use Tests\TestCase;
 
 class ChatTest extends TestCase
@@ -35,14 +41,7 @@ class ChatTest extends TestCase
             $this->expectException(AuthorizationException::class);
         }
 
-        $channel = Chat::createAnnouncement($sender, [
-            'channel' => [
-                'description' => 'best',
-                'name' => 'announcements',
-            ],
-            'message' => 'test',
-            'target_ids' => $users->pluck('user_id')->toArray(),
-        ]);
+        $channel = $this->createAnnouncement($sender, $users->pluck('user_id')->toArray());
 
         if ($isAllowed) {
             $this->assertTrue($channel->fresh()->exists());
@@ -54,16 +53,31 @@ class ChatTest extends TestCase
         $sender = User::factory()->withGroup('announce')->create()->markSessionVerified();
         $user = User::factory()->create();
 
-        $channel = Chat::createAnnouncement($sender, [
-            'channel' => [
-                'description' => 'best',
-                'name' => 'announcements',
-            ],
-            'message' => 'test',
-            'target_ids' => [$user->getKey()],
-        ]);
+        $channel = $this->createAnnouncement($sender, [$user->getKey()]);
 
         $this->assertTrue($channel->fresh()->users()->contains('user_id', $sender->getKey()));
+    }
+
+    public function testCreateAnnouncementSendsNotification()
+    {
+        Queue::fake();
+        Event::fake();
+        Mail::fake();
+
+        $sender = User::factory()->withGroup('announce')->create()->markSessionVerified();
+        $user = User::factory()->create();
+
+        $this->createAnnouncement($sender, [$user->getKey()]);
+
+        Queue::assertPushed(ChannelAnnouncement::class);
+        $this->runFakeQueue();
+
+        Event::assertDispatched(NewPrivateNotificationEvent::class);
+
+        $this->artisan('notifications:send-mail');
+        $this->runFakeQueue();
+
+        Mail::assertSent(UserNotificationDigest::class);
     }
 
     /**
@@ -311,5 +325,17 @@ class ChatTest extends TestCase
             [false, VerificationRequiredException::class],
             [true, null],
         ];
+    }
+
+    private function createAnnouncement(User $sender, array $targetIds): Channel
+    {
+        return Chat::createAnnouncement($sender, [
+            'channel' => [
+                'description' => 'best',
+                'name' => 'announcements',
+            ],
+            'message' => 'test',
+            'target_ids' => $targetIds,
+        ]);
     }
 }
