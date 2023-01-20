@@ -8,11 +8,13 @@
   color: inherit;
   font-size: @font-size--wiki;
   word-wrap: break-word;
+
+  --code-background-colour: hsl(var(--hsl-b6));
   --paragraph-space: @md-paragraph-space;
 
   code {
     .default-border-radius();
-    background-color: @osu-colour-b6;
+    background-color: var(--code-background-colour);
     color: @osu-colour-l1;
     padding: 1px 4px;
   }
@@ -40,19 +42,29 @@
   }
 
   pre {
-    background-color: @osu-colour-b6;
+    background-color: var(--code-background-colour);
     color: @osu-colour-l1;
     border: none;
-    border-radius: 0px;
+    border-radius: 0;
 
     > code {
       border: none;
-      padding: 0px;
+      padding: 0;
     }
   }
 
   > *:last-child {
     margin-bottom: 0;
+  }
+
+  &--chat {
+    --code-background-colour: hsl(var(--hsl-b3));
+    flex: 1;
+
+    h1, h2, h3, h4, h5, h6 {
+      font-size: revert;
+      border-bottom: 1px solid hsl(var(--hsl-b3));
+    }
   }
 
   &--group {
