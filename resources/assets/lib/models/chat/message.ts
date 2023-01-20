@@ -25,6 +25,10 @@ export default class Message {
 
   @observable private contentHtml?: string;
 
+  get isHtml() {
+    return this.contentHtml != null;
+  }
+
   @computed
   get parsedContent() {
     return this.contentHtml ?? linkify(escape(this.content), true);
@@ -60,5 +64,6 @@ export default class Message {
     this.messageId = json.message_id;
     this.timestamp = json.timestamp;
     this.persisted = true;
+    this.contentHtml = json.content_html;
   }
 }

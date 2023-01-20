@@ -17,10 +17,11 @@ export default class MessageItem extends React.Component<Props> {
     return (
       <div className={classWithModifiers('chat-message-item', { sending: !this.props.message.persisted })}>
         <div className='chat-message-item__entry'>
-          <span
-            dangerouslySetInnerHTML={{ __html: this.props.message.parsedContent }}
-            className={classWithModifiers('chat-message-item__content', { action: this.props.message.isAction })}
-          />
+          {this.props.message.isHtml ? (
+            <div className='osu-md osu-md--chat'>
+              {this.renderContent()}
+            </div>
+          ) : this.renderContent()}
           {!this.props.message.persisted && !this.props.message.errored &&
             <div className='chat-message-item__status'>
               <Spinner />
@@ -33,6 +34,15 @@ export default class MessageItem extends React.Component<Props> {
           }
         </div>
       </div>
+    );
+  }
+
+  private renderContent() {
+    return (
+      <span
+        className={classWithModifiers('chat-message-item__content', { action: this.props.message.isAction })}
+        dangerouslySetInnerHTML={{ __html: this.props.message.parsedContent }}
+      />
     );
   }
 }
