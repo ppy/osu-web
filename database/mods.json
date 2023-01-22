@@ -2120,7 +2120,12 @@
         "Name": "Fade In",
         "Description": "Keys appear out of nowhere!",
         "Type": "DifficultyIncrease",
-        "Settings": [],
+        "Settings": [
+          {
+            "Name": "coverage",
+            "Type": "number"
+          }
+        ],
         "IncompatibleMods": [
           "HD",
           "FL"
@@ -2135,7 +2140,12 @@
         "Name": "Hidden",
         "Description": "Keys fade out before you hit them!",
         "Type": "DifficultyIncrease",
-        "Settings": [],
+        "Settings": [
+          {
+            "Name": "coverage",
+            "Type": "number"
+          }
+        ],
         "IncompatibleMods": [
           "FI",
           "FL"
