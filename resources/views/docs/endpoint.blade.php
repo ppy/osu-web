@@ -24,10 +24,15 @@
 <h2 id="{!! $endpoint->fullSlug() !!}">{{ $endpoint->name() }}</h2>
 @endif
 
+@if ($isApiUri)
 <p>
 @component('scribe::components.badges.auth', ['authenticated' => $endpoint->isAuthed()])
 @endcomponent
+    @foreach($helper->getScopeTags($methods, $uri) as $scope)
+        {{ ApidocRouteHelper::scopeBadge($scope) }}
+    @endforeach
 </p>
+@endif
 
 {!! Parsedown::instance()->text($topDescription) !!}
 
