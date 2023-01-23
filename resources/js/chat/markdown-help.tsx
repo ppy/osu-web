@@ -103,7 +103,7 @@ export default class MarkdownHelp extends React.Component<Record<string, never>>
           className='link'
           onClick={this.toggle}
         >
-          Supported Markdown
+          {trans('chat.markdown_supported')}
         </button>
         {this.showingModal && (
           <Modal onClose={this.toggle}>

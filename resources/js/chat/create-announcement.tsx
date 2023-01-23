@@ -104,8 +104,9 @@ export default class CreateAnnouncement extends React.Component<Props> {
               <BusySpinner busy={this.model.lookingUpUsers} />
             </div>
           </InputContainer>
-          <MarkdownHelp />
           <InputContainer
+            extras={<MarkdownHelp />}
+            for='chat-form-message'
             labelKey='chat.form.labels.message'
             maxLength={maxLengths.message}
             model={this.model}
@@ -116,6 +117,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
               autoComplete='off'
               className='chat-form__input chat-form__input--box'
               defaultValue={this.model.inputs.message}
+              id='chat-form-message'
               name='message'
               onBlur={this.handleBlur}
               onChange={this.handleInput}

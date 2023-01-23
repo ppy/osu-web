@@ -5,6 +5,7 @@
 
 return [
     'loading_users' => 'loading users...',
+    'markdown_supported' => '(markdown supported)',
     'talking_in' => 'talking in :channel',
     'talking_with' => 'talking with :name',
     'title_compact' => 'chat',
