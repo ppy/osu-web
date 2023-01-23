@@ -171,6 +171,7 @@
             :fields="$endpoint->nestedBodyParameters" :endpointId="$endpoint->endpointId()"
     />
 @endif
+</form>
 
 @if(count($endpoint->responseFields))
     <h3>Response</h3>
@@ -180,6 +181,5 @@
             :isInput="false"
     />
 @endif
-</form>
 
 {!! Parsedown::instance()->text($bottomDescription) !!}
