@@ -5,6 +5,7 @@ import Modal from 'components/modal';
 import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
+import { trans } from 'utils/lang';
 
 const examples = [
   {
@@ -108,7 +109,18 @@ export default class MarkdownHelp extends React.Component<Record<string, never>>
           <Modal onClose={this.toggle}>
             <div className='markdown-help'>
               <div className='osu-md osu-md--chat'>
-                {examples.map((example, index) => <React.Fragment key={index}>{renderExample(example)}</React.Fragment>)}
+                <div className='markdown-help__examples'>
+                  {examples.map((example, index) => <React.Fragment key={index}>{renderExample(example)}</React.Fragment>)}
+                </div>
+              </div>
+              <div className='markdown-help__buttons'>
+                <button
+                  className='btn-osu-big btn-osu-big--rounded-thin'
+                  onClick={this.toggle}
+                  type='button'
+                >
+                  {trans('common.buttons.close')}
+                </button>
               </div>
             </div>
           </Modal>
