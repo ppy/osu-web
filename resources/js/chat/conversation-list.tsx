@@ -18,8 +18,8 @@ function renderChannels(type: SupportedChannelType) {
           {trans(`chat.channels.list.title.${type}`)}
         </div>
         {channels.map((channel) => <ConversationListItem key={channel.channelId} channel={channel} />)}
-        <div className='chat-conversation-list-separator' />
         {type === 'ANNOUNCE' && <CreateAnnouncementButton />}
+        <div className='chat-conversation-list-separator' />
       </React.Fragment>
     );
   }
