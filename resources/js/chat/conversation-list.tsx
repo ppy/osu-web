@@ -9,16 +9,28 @@ import { trans } from 'utils/lang';
 import ConversationListItem from './conversation-list-item';
 import CreateAnnouncementButton from './create-announcement-button';
 
+const icons: Record<SupportedChannelType, string> = {
+  ANNOUNCE: 'fas fa-bullhorn',
+  GROUP: 'fas fa-user-group', // just give it an icon; nothing returns this yet.
+  PM: 'fas fa-envelope',
+  PUBLIC: 'fas fa-comments',
+};
+
 function renderChannels(type: SupportedChannelType) {
   const channels = core.dataStore.channelStore.groupedChannels[type];
   if (channels.length > 0 || type === 'ANNOUNCE' && core.dataStore.chatState.canChatAnnounce) {
+    const title = trans(`chat.channels.list.title.${type}`);
+
     return (
       <React.Fragment key={type}>
-        <div className='chat-conversation-list__header'>
-          {trans(`chat.channels.list.title.${type}`)}
+        <div className='chat-conversation-list__group'>
+          <div className='chat-conversation-list__header'>
+            <span className='chat-conversation-list__header-text'>{title}</span>
+            <span className='chat-conversation-list__header-icon' title={title}><i className={icons[type]} /></span>
+          </div>
+          {channels.map((channel) => <ConversationListItem key={channel.channelId} channel={channel} />)}
+          {type === 'ANNOUNCE' && <CreateAnnouncementButton />}
         </div>
-        {channels.map((channel) => <ConversationListItem key={channel.channelId} channel={channel} />)}
-        {type === 'ANNOUNCE' && <CreateAnnouncementButton />}
         <div className='chat-conversation-list-separator' />
       </React.Fragment>
     );
