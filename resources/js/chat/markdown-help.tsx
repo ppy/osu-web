@@ -9,66 +9,66 @@ import { trans } from 'utils/lang';
 
 const examples = [
   {
-    markdown: '# Heading 1',
     html: <h1>Heading 1</h1>,
+    markdown: '# Heading 1',
   },
   {
-    markdown: '## Heading 2',
     html: <h2>Heading 2</h2>,
+    markdown: '## Heading 2',
   },
   {
-    markdown: '### Heading 3',
     html: <h3>Heading 3</h3>,
+    markdown: '### Heading 3',
   },
   {
-    markdown: '**bold** and *emphasis*',
     html: <><strong>bold</strong> and <em>emphasis</em></>,
+    markdown: '**bold** and *emphasis*',
   },
   {
-    markdown: '[links](https://osu.ppy.sh)',
     html: <a href='https://osu.ppy.sh'>links</a>,
+    markdown: '[links](https://osu.ppy.sh)',
   },
   {
-    markdown: <>
-      1. ordered<br />
-      1. list
-    </>,
     html: <ol>
       <li>ordered</li>
       <li>list</li>
     </ol>,
+    markdown: <>
+      1. ordered<br />
+      1. list
+    </>,
   },
   {
-    markdown: <>
-      - unordered<br />
-      - list
-    </>,
     html: <ul>
       <li>unordered</li>
       <li>list</li>
     </ul>,
-  },
-  {
-    markdown: '> quote',
-    html: <blockquote><p>quote</p></blockquote>,
-  },
-  {
     markdown: <>
-      ```<br />
-      code<br />
-      blocks<br />
-      ```
+      - unordered<br />
+      - list
     </>,
+  },
+  {
+    html: <blockquote><p>quote</p></blockquote>,
+    markdown: '> quote',
+  },
+  {
     html: <pre>
       <code>
         code{'\n'}
         blocks
       </code>
     </pre>,
+    markdown: <>
+      ```<br />
+      code<br />
+      blocks<br />
+      ```
+    </>,
   },
   {
-    markdown: '`inline block`',
     html: <code>inline block</code>,
+    markdown: '`inline block`',
   },
 ];
 
