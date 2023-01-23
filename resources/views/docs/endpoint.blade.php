@@ -64,8 +64,7 @@
             <pre><code class="language-http">@foreach($response->headers as $header => $value)
 {{ $header }}: {{ is_array($value) ? implode('; ', $value) : $value }}
 @endforeach </code></pre></details> @endif
-        <pre>
-@if(is_string($response->content) && Str::startsWith($response->content, "<<binary>>"))
+        <pre>@if(is_string($response->content) && Str::startsWith($response->content, "<<binary>>"))
 <code>[Binary data] - {{ htmlentities(str_replace("<<binary>>", "", $response->content)) }}</code>
 @elseif($response->status == 204)
 <code>[Empty response]</code>
