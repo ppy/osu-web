@@ -286,7 +286,7 @@
       },
       {
         "Acronym": "TP",
-        "Name": "Target",
+        "Name": "Target Practice",
         "Description": "Practice keeping up with the beat of the song.",
         "Type": "Conversion",
         "Settings": [
@@ -806,16 +806,16 @@
         "Type": "Fun",
         "Settings": [
           {
+            "Name": "inverse_muting",
+            "Type": "boolean"
+          },
+          {
             "Name": "enable_metronome",
             "Type": "boolean"
           },
           {
             "Name": "mute_combo_count",
             "Type": "number"
-          },
-          {
-            "Name": "inverse_muting",
-            "Type": "boolean"
           },
           {
             "Name": "affects_hit_sounds",
@@ -1388,16 +1388,16 @@
         "Type": "Fun",
         "Settings": [
           {
+            "Name": "inverse_muting",
+            "Type": "boolean"
+          },
+          {
             "Name": "enable_metronome",
             "Type": "boolean"
           },
           {
             "Name": "mute_combo_count",
             "Type": "number"
-          },
-          {
-            "Name": "inverse_muting",
-            "Type": "boolean"
           },
           {
             "Name": "affects_hit_sounds",
@@ -1874,16 +1874,16 @@
         "Type": "Fun",
         "Settings": [
           {
+            "Name": "inverse_muting",
+            "Type": "boolean"
+          },
+          {
             "Name": "enable_metronome",
             "Type": "boolean"
           },
           {
             "Name": "mute_combo_count",
             "Type": "number"
-          },
-          {
-            "Name": "inverse_muting",
-            "Type": "boolean"
           },
           {
             "Name": "affects_hit_sounds",
@@ -2120,7 +2120,12 @@
         "Name": "Fade In",
         "Description": "Keys appear out of nowhere!",
         "Type": "DifficultyIncrease",
-        "Settings": [],
+        "Settings": [
+          {
+            "Name": "coverage",
+            "Type": "number"
+          }
+        ],
         "IncompatibleMods": [
           "HD",
           "FL"
@@ -2135,7 +2140,12 @@
         "Name": "Hidden",
         "Description": "Keys fade out before you hit them!",
         "Type": "DifficultyIncrease",
-        "Settings": [],
+        "Settings": [
+          {
+            "Name": "coverage",
+            "Type": "number"
+          }
+        ],
         "IncompatibleMods": [
           "FI",
           "FL"
@@ -2618,16 +2628,16 @@
         "Type": "Fun",
         "Settings": [
           {
+            "Name": "inverse_muting",
+            "Type": "boolean"
+          },
+          {
             "Name": "enable_metronome",
             "Type": "boolean"
           },
           {
             "Name": "mute_combo_count",
             "Type": "number"
-          },
-          {
-            "Name": "inverse_muting",
-            "Type": "boolean"
           },
           {
             "Name": "affects_hit_sounds",
@@ -2673,3 +2683,4 @@
     ]
   }
 ]
+
