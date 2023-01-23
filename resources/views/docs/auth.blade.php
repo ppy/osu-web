@@ -357,7 +357,7 @@ fetch("{{ config('app.url') }}/api/[version]/[endpoint]", {
 <blockquote><p>Make sure to replace <code>@{{token}}</code> with your OAuth2 token.</p></blockquote>
 
 <aside class="notice">
-You must replace <code>@{{token}}</code> with your OAuth2 token.
+    You must replace <code>@{{token}}</code> with your OAuth2 token.
 </aside>
 
 
@@ -444,30 +444,30 @@ $scopeDescriptions = [
 </table>
 
 <p>
-<code>identify</code> is the default scope for the <a href="#authorization-code-grant">Authorization Code Grant</a> and always implicitly provided. The <a href="#client-credentials-grant">Client Credentials Grant</a> does not currently have any default scopes.
+    <code>identify</code> is the default scope for the <a href="#authorization-code-grant">Authorization Code Grant</a> and always implicitly provided. The <a href="#client-credentials-grant">Client Credentials Grant</a> does not currently have any default scopes.
 </p>
 
 <p>
-Routes marked with <a class="badge badge-scope badge-scope-lazer" name="scope-lazer">lazer</a> are intended for use by the <a href="https://github.com/ppy/osu">osu!lazer</a> client and not currently available for use with Authorization Code or Client Credentials grants.
+    Routes marked with <a class="badge badge-scope badge-scope-lazer" name="scope-lazer">lazer</a> are intended for use by the <a href="https://github.com/ppy/osu">osu!lazer</a> client and not currently available for use with Authorization Code or Client Credentials grants.
 </p>
 
 <p>
-Using the {{ ApidocRouteHelper::scopeBadge('chat.write') }} scope requires either
-<ul>
-    <li>a <a href="{{ $wikiUrl }}">Chat Bot</a> account to send messages on behalf of other users.
-    <li>Authorization code grant where the user is the same as the client's owner (send as yourself).
-</ul>
+    Using the {{ ApidocRouteHelper::scopeBadge('chat.write') }} scope requires either
+    <ul>
+        <li>a <a href="{{ $wikiUrl }}">Chat Bot</a> account to send messages on behalf of other users.
+        <li>Authorization code grant where the user is the same as the client's owner (send as yourself).
+    </ul>
 </p>
 
 
 <h2>Managing OAuth applications</h2>
 
 <p>
-Your <a href="{{ route('account.edit').'#oauth' }}">account settings</a> page will show your registered OAuth applications, and all the OAuth applications you have granted permissions to.
+    Your <a href="{{ route('account.edit').'#oauth' }}">account settings</a> page will show your registered OAuth applications, and all the OAuth applications you have granted permissions to.
 </p>
 
 <h3>Reset Client Secret</h3>
 
 <p>
-You can generate a new <code>Client Secret</code> by choosing to "Reset client secret", however, this will disable all access tokens issued for the application.
+    You can generate a new <code>Client Secret</code> by choosing to "Reset client secret", however, this will disable all access tokens issued for the application.
 </p>
