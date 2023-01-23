@@ -9,9 +9,7 @@
     </span>
 </a>
 <div class="tocify-wrapper">
-    @if($metadata['logo'] != false)
-        <img src="{{ $metadata['logo'] }}" alt="logo" class="logo" style="padding-top: 10px;" width="100%"/>
-    @endif
+    <div class="logo"></div>
 
     @isset($metadata['example_languages'])
         <div class="lang-selector">
