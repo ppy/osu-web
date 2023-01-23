@@ -286,7 +286,7 @@
       },
       {
         "Acronym": "TP",
-        "Name": "Target",
+        "Name": "Target Practice",
         "Description": "Practice keeping up with the beat of the song.",
         "Type": "Conversion",
         "Settings": [
@@ -806,16 +806,16 @@
         "Type": "Fun",
         "Settings": [
           {
+            "Name": "inverse_muting",
+            "Type": "boolean"
+          },
+          {
             "Name": "enable_metronome",
             "Type": "boolean"
           },
           {
             "Name": "mute_combo_count",
             "Type": "number"
-          },
-          {
-            "Name": "inverse_muting",
-            "Type": "boolean"
           },
           {
             "Name": "affects_hit_sounds",
@@ -1388,16 +1388,16 @@
         "Type": "Fun",
         "Settings": [
           {
+            "Name": "inverse_muting",
+            "Type": "boolean"
+          },
+          {
             "Name": "enable_metronome",
             "Type": "boolean"
           },
           {
             "Name": "mute_combo_count",
             "Type": "number"
-          },
-          {
-            "Name": "inverse_muting",
-            "Type": "boolean"
           },
           {
             "Name": "affects_hit_sounds",
@@ -1874,16 +1874,16 @@
         "Type": "Fun",
         "Settings": [
           {
+            "Name": "inverse_muting",
+            "Type": "boolean"
+          },
+          {
             "Name": "enable_metronome",
             "Type": "boolean"
           },
           {
             "Name": "mute_combo_count",
             "Type": "number"
-          },
-          {
-            "Name": "inverse_muting",
-            "Type": "boolean"
           },
           {
             "Name": "affects_hit_sounds",
@@ -2628,16 +2628,16 @@
         "Type": "Fun",
         "Settings": [
           {
+            "Name": "inverse_muting",
+            "Type": "boolean"
+          },
+          {
             "Name": "enable_metronome",
             "Type": "boolean"
           },
           {
             "Name": "mute_combo_count",
             "Type": "number"
-          },
-          {
-            "Name": "inverse_muting",
-            "Type": "boolean"
           },
           {
             "Name": "affects_hit_sounds",
@@ -2683,3 +2683,4 @@
     ]
   }
 ]
+
