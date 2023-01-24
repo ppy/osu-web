@@ -16,19 +16,41 @@
     overflow-x: auto;
   }
 
+  &__group {
+    @media @mobile {
+      display: flex;
+    }
+  }
+
   &__header {
-    background-color: hsl(var(--hsl-b5));
+    display: flex;
+    gap: 5px;
+
+    background: hsl(var(--hsl-b5));
     color: hsl(var(--hsl-c1));
     padding: 10px 30px;
     font-size: @font-size--normal;
-    text-transform: uppercase;
     position: sticky;
     top: 0;
+    left: 0;
     z-index: 1; // keep above items
 
     @media @mobile {
-      // FIXME: no idea how to display on mobile...
+      padding: 5px;
+    }
+  }
+
+  &__header-text {
+    text-transform: uppercase;
+
+    @media @mobile {
       display: none;
+    }
+  }
+
+  &__header-icon {
+    @media @mobile {
+      align-self: center;
     }
   }
 }
