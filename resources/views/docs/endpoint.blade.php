@@ -130,7 +130,8 @@
               'type' => $parameter->type ?? 'string',
               'required' => $parameter->required,
               'description' => $parameter->description,
-              'example' => $parameter->example ?? '',
+              // TODO: show correct example (from $parameter->example)
+              'example' => '',
               'endpointId' => $endpoint->endpointId(),
               'component' => 'url',
               'isInput' => true,
@@ -154,7 +155,8 @@
               'type' => $parameter->type,
               'required' => $parameter->required,
               'description' => $parameter->description,
-              'example' => $parameter->example ?? '',
+              // TODO: show correct example (from $parameter->example)
+              'example' => '',
               'endpointId' => $endpoint->endpointId(),
               'component' => 'query',
               'isInput' => true,
@@ -166,7 +168,7 @@
 @endif
 @if(count($endpoint->nestedBodyParameters))
     <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-    <x-scribe::nested-fields
+    <x-docs.nested-fields
             :fields="$endpoint->nestedBodyParameters" :endpointId="$endpoint->endpointId()"
     />
 @endif
@@ -175,7 +177,7 @@
 @if(count($endpoint->responseFields))
     <h3>Response</h3>
     <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
-    <x-scribe::nested-fields
+    <x-docs.nested-fields
             :fields="$endpoint->nestedResponseFields" :endpointId="$endpoint->endpointId()"
             :isInput="false"
     />
