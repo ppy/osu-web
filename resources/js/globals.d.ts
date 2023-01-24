@@ -16,15 +16,6 @@ declare module 'legacy-modules' {
 
   interface BeatmapDiscussionHelperClass {
     url(options: any, useCurrent?: boolean): string;
-    urlParse(urlString: string, discussions?: BeatmapsetDiscussionJson[] | null, options?: any): {
-      beatmapId?: number;
-      beatmapsetId?: number;
-      discussionId?: number;
-      filter: string;
-      mode: string;
-      postId?: number;
-      user?: number;
-    };
   }
 
   interface TooltipDefault {

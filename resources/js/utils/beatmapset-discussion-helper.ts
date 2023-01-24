@@ -1,6 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { Filter, filters } from 'beatmap-discussions/current-discussions';
+import { DiscussionPage, discussionPages } from 'beatmap-discussions/discussion-mode';
 import guestGroup from 'beatmap-discussions/guest-group';
 import mapperGroup from 'beatmap-discussions/mapper-group';
 import BeatmapJson from 'interfaces/beatmap-json';
@@ -8,7 +10,7 @@ import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForBundle, Beatmapset
 import BeatmapsetDiscussionPostJson from 'interfaces/beatmapset-discussion-post-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
-import { escape, padStart, sortBy, truncate } from 'lodash';
+import { assign, escape, find, padStart, sortBy, truncate } from 'lodash';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import { currentUrl } from 'utils/turbolinks';
@@ -23,6 +25,16 @@ interface BadgeGroupParams {
   user?: UserJson;
 }
 
+interface DiscussionPageUrlParams {
+  beatmapId?: number;
+  beatmapsetId?: number;
+  discussionId?: number;
+  filter: Filter;
+  mode: DiscussionPage;
+  postId?: number;
+  user?: number;
+}
+
 interface FormatOptions {
   modifiers?: Modifiers;
   newlines?: boolean;
@@ -35,6 +47,10 @@ interface PropsFromHrefValue {
   rel: 'nofollow noreferrer';
   target?: '_blank';
 }
+
+// urlParse lookups
+const filterLookup = new Set(filters) as Set<string>;
+const pageLookup = new Set(discussionPages) as Set<string>;
 
 export const defaultBeatmapId = '-';
 
@@ -71,7 +87,7 @@ export function canModeratePosts(user?: UserJson) {
   return (user.is_admin || user.is_moderator) ?? false;
 }
 
-export function defaultMode(beatmapId?: string | null) {
+export function defaultMode(beatmapId?: number | string | null) {
   return beatmapId != null && beatmapId !== defaultBeatmapId ? 'timeline' : 'generalAll';
 }
 
@@ -122,6 +138,15 @@ export function formatTimestamp(value: number) {
   const m = Math.floor(value / 1000 / 60);
 
   return `${padStart(m.toString(), 2, '0')}:${padStart(s.toString(), 2, '0')}.${padStart(ms.toString(), 3, '0')}`;
+}
+
+
+function isDiscussionPage(value: string): value is DiscussionPage {
+  return pageLookup.has(value);
+}
+
+function isFilter(value: string): value is Filter {
+  return filterLookup.has(value);
 }
 
 function isNearbyDiscussion<T extends BeatmapsetDiscussionJson>(discussion: T): discussion is NearbyDiscussion<T> {
@@ -196,7 +221,7 @@ export function previewMessage(message: string) {
 }
 
 export function propsFromHref(href: string) {
-  const current = BeatmapDiscussionHelper.urlParse(currentUrl().href);
+  const current = urlParse(currentUrl().href);
 
   const props: PropsFromHrefValue = {
     children: href,
@@ -216,7 +241,7 @@ export function propsFromHref(href: string) {
   }
 
   if (targetUrl != null && targetUrl.host === currentUrl().host) {
-    const target = BeatmapDiscussionHelper.urlParse(targetUrl.href, null, { forceDiscussionId: true });
+    const target = urlParse(targetUrl.href, null, { forceDiscussionId: true });
     if (target?.discussionId != null && target.beatmapsetId != null) {
       const hash = [target.discussionId, target.postId].filter(Number.isFinite).join('/');
       if (current?.beatmapsetId === target.beatmapsetId) {
@@ -252,6 +277,54 @@ export function stateFromDiscussion(discussion: BeatmapsetDiscussionJson) {
   };
 }
 
+interface UrlParseOptions {
+  forceDiscussionId?: boolean;
+}
+
+export function urlParse(urlString: string | null, discussions?: BeatmapsetDiscussionJson[] | null, { forceDiscussionId = false }: UrlParseOptions) {
+  const url = new URL(urlString ?? currentUrl().href);
+
+  const [, pathBeatmapsets, beatmapsetIdString, pathDiscussions, beatmapIdString, mode, filter] = url.pathname.split(/\/+/);
+
+  if (pathBeatmapsets !== 'beatmapsets' || pathDiscussions !== 'discussion') return null;
+
+  // should return null if beatmapsetId not valid or something.
+  const beatmapsetId = getInt(beatmapsetIdString);
+  const beatmapId = getInt(beatmapIdString);
+
+  const ret: DiscussionPageUrlParams = {
+    beatmapId,
+    beatmapsetId,
+    filter: isFilter(filter) ? filter : 'total',
+    // empty path segments are ''
+    mode: isDiscussionPage(mode) ? mode : defaultMode(beatmapId),
+    user: getInt(url.searchParams.get('user')),
+  };
+
+  if (url.hash[1] === '/') {
+    const [discussionId, postId] = url.hash.slice(2).split('/').map(getInt);
+
+    if (discussionId != null) {
+      if (discussions != null) {
+        const discussion = find(discussions, { id: discussionId });
+
+        if (discussion != null) {
+          assign(ret, stateFromDiscussion(discussion));
+
+          if (discussion.posts?.[0].id === postId) return ret;
+        }
+      } else if (forceDiscussionId) {
+        ret.discussionId = discussionId;
+      }
+    }
+
+    if (ret.discussionId != null && postId != null) {
+      ret.postId = postId;
+    }
+  }
+
+  return ret;
+}
 export function validMessageLength(message?: string | null, isTimeline = false) {
   if (!message?.length) return false;
 
