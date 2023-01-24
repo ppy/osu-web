@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import StringWithComponent from 'components/string-with-component';
-import BeatmapJson from 'interfaces/beatmap-json';;
+import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import { snakeCase, size } from 'lodash';
 import * as React from 'react';
@@ -28,7 +28,6 @@ export class ModeSwitcher extends React.PureComponent<Props> {
   componentDidMount() {
     this.scrollModeSwitcher();
   }
-
 
   componentDidUpdate() {
     this.scrollModeSwitcher();
@@ -75,22 +74,15 @@ export class ModeSwitcher extends React.PureComponent<Props> {
   );
 
   private renderModeText(mode: DiscussionsMode) {
-    if (mode === 'general') {
-      return (
-        <StringWithComponent
-          mappings={{
-            scope: <span className='page-mode-link__subtitle'>{`(${this.props.currentBeatmap.version})`}</span>,
-          }}
-          pattern={trans('beatmaps.discussions.mode.general')}
-        />
-      );
-    }
+    if (mode === 'general' || mode === 'generalAll') {
+      const text = mode === 'general'
+        ? this.props.currentBeatmap.version
+        : trans('beatmaps.discussions.mode.scopes.generalAll');
 
-    if (mode === 'generalAll') {
       return (
         <StringWithComponent
           mappings={{
-            scope: <span className='page-mode-link__subtitle'>{`(${trans('beatmaps.discussions.mode.scopes.generalAll')})`}</span>
+            scope: <span className='page-mode-link__subtitle'>{`(${text})`}</span>,
           }}
           pattern={trans('beatmaps.discussions.mode.general')}
         />
