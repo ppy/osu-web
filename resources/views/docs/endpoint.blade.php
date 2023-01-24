@@ -92,7 +92,7 @@
 @foreach($endpoint->httpMethods as $method)
     <p>
         @component('scribe::components.badges.http-method', ['method' => $method])@endcomponent
-        <b><code>{{$endpoint->uri}}</code></b>
+        <b><code>{{ $displayUri }}</code></b>
     </p>
 @endforeach
 <form>
