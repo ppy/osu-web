@@ -1,93 +1,115 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@.ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import StringWithComponent from 'components/string-with-component'
-import { snakeCase, size } from 'lodash'
-import * as React from 'react'
-import { a, div, li, span, ul } from 'react-dom-factories'
-import { trans } from 'utils/lang'
+import StringWithComponent from 'components/string-with-component';
+import BeatmapJson from 'interfaces/beatmap-json';;
+import BeatmapsetJson from 'interfaces/beatmapset-json';
+import { snakeCase, size } from 'lodash';
+import * as React from 'react';
+import { classWithModifiers } from 'utils/css';
+import { trans } from 'utils/lang';
+import CurrentDiscussions, { Filter } from './current-discussions';
+import { DiscussionsModeAll, discussionsModeNames } from './discussions-mode';
 
-el = React.createElement
+interface Props {
+  beatmapset: BeatmapsetJson;
+  currentBeatmap: BeatmapJson;
+  currentDiscussions: CurrentDiscussions;
+  currentFilter: Filter;
+  innerRef: React.RefObject<HTMLDivElement>;
+  mode: DiscussionsModeAll;
+}
 
-export class ModeSwitcher extends React.PureComponent
-  selectedClassName: 'page-mode-link--is-active'
+const selectedClassName = 'page-mode-link--is-active';
 
-  constructor: (props) ->
-    super props
+export class ModeSwitcher extends React.PureComponent<Props> {
+  private scrollerRef = React.createRef<HTMLUListElement>();
 
-    @scrollerRef = React.createRef()
+  componentDidMount() {
+    this.scrollModeSwitcher();
+  }
 
-  componentDidMount: =>
-    @scrollModeSwitcher()
 
-  componentDidUpdate: =>
-    @scrollModeSwitcher()
+  componentDidUpdate() {
+    this.scrollModeSwitcher();
+  }
 
-  render: =>
-    modes = ['reviews', 'generalAll', 'general', 'timeline', 'events']
+  render() {
+    return (
+      <>
+        <div className='page-extra-tabs-before' />
+        <div ref={this.props.innerRef} className='page-extra-tabs'>
+          <div className='osu-page osu-page--small'>
+            <ul ref={this.scrollerRef} className='page-mode page-mode--page-extra-tabs'>
+              {discussionsModeNames.map(this.renderMode)}
+            </ul>
+          </div>
+        </div>
+      </>
+    );
+  }
 
-    [
-      div
-        className: 'page-extra-tabs-before'
-        key: 'page-extra-tabs-before'
+  private renderMode = (mode: DiscussionsModeAll) => (
+    <li key={mode} className='page-mode__item'>
+      <a
+        className={classWithModifiers('page-mode-link', { 'is-active': this.props.mode === mode })}
+        data-mode={mode}
+        href={BeatmapDiscussionHelper.url({
+          beatmapId: this.props.currentBeatmap.id,
+          beatmapsetId: this.props.beatmapset.id,
+          mode,
+        })}
+        onClick={this.switch}
+      >
+        <div>
+          {this.renderModeText(mode)}
+          {mode !== 'events' && (
+            <span className='page-mode-link__badge'>
+              {size(this.props.currentDiscussions.byFilter[this.props.currentFilter][mode])}
+            </span>
+          )}
+          <span className='page-mode-link__stripe' />
+        </div>
+      </a>
+    </li>
+  );
 
-      div
-        className: 'page-extra-tabs'
-        key: 'page-extra-tabs'
-        ref: @props.innerRef
+  private renderModeText(mode: DiscussionsModeAll) {
+    if (mode === 'general') {
+      return (
+        <StringWithComponent
+          mappings={{
+            scope: <span className='page-mode-link__subtitle'>{`(${this.props.currentBeatmap.version})`}</span>,
+          }}
+          pattern={trans('beatmaps.discussions.mode.general')}
+        />
+      );
+    }
 
-        div className: 'osu-page osu-page--small',
-          ul
-            className: 'page-mode page-mode--page-extra-tabs',
-            ref: @scrollerRef
+    if (mode === 'generalAll') {
+      return (
+        <StringWithComponent
+          mappings={{
+            scope: <span className='page-mode-link__subtitle'>{`(${trans('beatmaps.discussions.mode.scopes.generalAll')})`}</span>
+          }}
+          pattern={trans('beatmaps.discussions.mode.general')}
+        />
+      );
+    }
 
-            for mode in modes
-              li
-                key: mode
-                className: 'page-mode__item'
-                a
-                  className: "page-mode-link #{if @props.mode == mode then @selectedClassName else ''}"
-                  onClick: @switch
-                  href: BeatmapDiscussionHelper.url
-                    mode: mode
-                    beatmapId: @props.currentBeatmap.id
-                    beatmapsetId: @props.beatmapset.id
-                  'data-mode': mode
-                  div null,
-                    if mode == 'general'
-                      el StringWithComponent,
-                        pattern: trans('beatmaps.discussions.mode.general'),
-                        mappings:
-                          scope:
-                            span
-                              className: 'page-mode-link__subtitle'
-                              "(#{@props.currentBeatmap.version})"
+    return trans(`beatmaps.discussions.mode.${snakeCase(mode)}`);
+  }
 
-                    else if mode == 'generalAll'
-                      el StringWithComponent,
-                        pattern: trans('beatmaps.discussions.mode.general'),
-                        mappings:
-                          scope:
-                            span
-                              className: 'page-mode-link__subtitle'
-                              "(#{trans('beatmaps.discussions.mode.scopes.generalAll')})"
+  private scrollModeSwitcher() {
+    if (this.scrollerRef.current == null) return;
 
-                    else
-                      trans("beatmaps.discussions.mode.#{snakeCase mode}")
+    // on mobile, ModeSwitcher becomes horizontally scrollable - scrollTo ensures that the selected tab is made visible
+    $(this.scrollerRef.current).scrollTo(`.${selectedClassName}`, 0, { over: { left: -1 } });
+  }
 
-                  if mode != 'events'
-                    span className: 'page-mode-link__badge',
-                      size(@props.currentDiscussions.byFilter[@props.currentFilter][mode])
-                  span className: 'page-mode-link__stripe'
-    ]
+  private readonly switch = (e: React.SyntheticEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
 
-  scrollModeSwitcher: =>
-    return if !@scrollerRef.current?
-
-    # on mobile, ModeSwitcher becomes horizontally scrollable - scrollTo ensures that the selected tab is made visible
-    $(@scrollerRef.current).scrollTo(".#{@selectedClassName}", 0, {over: {left: -1}})
-
-  switch: (e) =>
-    e.preventDefault()
-
-    $.publish 'beatmapsetDiscussions:update', mode: e.currentTarget.dataset.mode
+    $.publish('beatmapsetDiscussions:update', { mode: e.currentTarget.dataset.mode });
+  };
+}
