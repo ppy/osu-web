@@ -64,7 +64,7 @@ interface Props {
   currentBeatmap: BeatmapExtendedJson;
   currentDiscussions: CurrentDiscussions;
   currentFilter: Filter;
-  mode: DiscussionsMode;
+  mode: Exclude<DiscussionsMode, 'events'>;
   readPostIds: Set<number>;
   showDeleted: boolean;
   users: Record<number, UserJson>;
@@ -73,7 +73,7 @@ interface Props {
 @observer
 export class Discussions extends React.Component<Props> {
   @observable private discussionsState = new DiscussionsState();
-  @observable private sort: Record<DiscussionsMode, Sort> = {
+  @observable private sort: Record<Exclude<DiscussionsMode, 'events'>, Sort> = {
     general: 'updated_at',
     generalAll: 'updated_at',
     reviews: 'updated_at',

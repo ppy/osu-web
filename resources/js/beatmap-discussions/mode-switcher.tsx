@@ -9,7 +9,7 @@ import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import CurrentDiscussions, { Filter } from './current-discussions';
-import { DiscussionsModeAll, discussionsModeNames } from './discussions-mode';
+import DiscussionsMode, { discussionsModes } from './discussions-mode';
 
 interface Props {
   beatmapset: BeatmapsetJson;
@@ -17,7 +17,7 @@ interface Props {
   currentDiscussions: CurrentDiscussions;
   currentFilter: Filter;
   innerRef: React.RefObject<HTMLDivElement>;
-  mode: DiscussionsModeAll;
+  mode: DiscussionsMode;
 }
 
 const selectedClassName = 'page-mode-link--is-active';
@@ -41,7 +41,7 @@ export class ModeSwitcher extends React.PureComponent<Props> {
         <div ref={this.props.innerRef} className='page-extra-tabs'>
           <div className='osu-page osu-page--small'>
             <ul ref={this.scrollerRef} className='page-mode page-mode--page-extra-tabs'>
-              {discussionsModeNames.map(this.renderMode)}
+              {discussionsModes.map(this.renderMode)}
             </ul>
           </div>
         </div>
@@ -49,7 +49,7 @@ export class ModeSwitcher extends React.PureComponent<Props> {
     );
   }
 
-  private renderMode = (mode: DiscussionsModeAll) => (
+  private renderMode = (mode: DiscussionsMode) => (
     <li key={mode} className='page-mode__item'>
       <a
         className={classWithModifiers('page-mode-link', { 'is-active': this.props.mode === mode })}
@@ -74,7 +74,7 @@ export class ModeSwitcher extends React.PureComponent<Props> {
     </li>
   );
 
-  private renderModeText(mode: DiscussionsModeAll) {
+  private renderModeText(mode: DiscussionsMode) {
     if (mode === 'general') {
       return (
         <StringWithComponent

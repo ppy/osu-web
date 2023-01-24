@@ -9,7 +9,7 @@ export type Filter = 'deleted' | 'hype' | 'mapperNotes' | 'mine' | 'pending' | '
 
 // TODO: move to store/context
 export default interface CurrentDiscussions {
-  byFilter: Record<Filter, Record<DiscussionsMode, Partial<Record<number, BeatmapsetDiscussionJson>>>>;
+  byFilter: Record<Filter, Record<Exclude<DiscussionsMode, 'events'>, Partial<Record<number, BeatmapsetDiscussionJson>>>>;
   countsByBeatmap: Partial<Record<number, number>>;
   countsByPlaymode: Partial<Record<GameMode, number>>;
   general: BeatmapsetDiscussionJson[];
