@@ -290,7 +290,8 @@ INTRO
      * - 'logo' => 'img/logo.png' // for `laravel` type
      *
      */
-    'logo' => 'https://osu.ppy.sh/images/layout/osu-logo-white.svg',
+    // for osu theme it's specified directly in the css instead
+    'logo' => null,
 
     /**
      * The strategies Scribe will use to extract information about your routes at each stage.
