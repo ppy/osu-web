@@ -22,6 +22,8 @@ class CreateSeasonRoomsTable extends Migration
             $table->id();
             $table->integer('room_id')->unsigned();
             $table->integer('season_id')->unsigned();
+
+            $table->unique(['room_id', 'season_id']);
         });
     }
 
