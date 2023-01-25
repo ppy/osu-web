@@ -26,8 +26,8 @@ class Season extends Model
 
     public function endDate(): ?Carbon
     {
-        return $this->hasRooms() && $this->concluded
-            ? $this->rooms->sortByDesc('ends_at')->first()->ends_at
+        return $this->concluded
+            ? $this->rooms->max('ends_at')
             : null;
     }
 
@@ -38,9 +38,7 @@ class Season extends Model
 
     public function startDate(): ?Carbon
     {
-        return $this->hasRooms()
-            ? $this->rooms->sortBy('starts_at')->first()->starts_at
-            : null;
+        return $this->rooms->min('starts_at');
     }
 
     public function rooms(): BelongsToMany
