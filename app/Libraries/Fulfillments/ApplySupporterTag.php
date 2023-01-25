@@ -18,20 +18,25 @@ class ApplySupporterTag extends OrderItemFulfillment
 {
     private int $amount;
     private int $duration;
-    private User $donor;
-    private User $target;
+    private ?User $donor;
+    private int $donorId;
+    private ?User $target;
+    private int $targetId;
 
     public function __construct(OrderItem $orderItem)
     {
         parent::__construct($orderItem);
 
+        /** @var ExtraDataSupporterTag $extraData */
         $extraData = $orderItem->extra_data;
 
         $this->amount = $orderItem->cost;
         $this->duration = $extraData->duration;
 
-        $this->donor = User::findOrFail($orderItem->order->user_id);
-        $this->target = User::findOrFail($extraData->targetId);
+        // User lookup should be done when run() instead of initialization,
+        // otherwise the user will be out of date when multiple instances with the same user are processed.
+        $this->donorId = $orderItem->order->user_id;
+        $this->targetId = $extraData->targetId;
     }
 
     public function cancelledTransactionId()
@@ -53,6 +58,8 @@ class ApplySupporterTag extends OrderItemFulfillment
 
                 return;
             }
+
+            $this->assignUsers();
 
             $donation = $this->applyDonation();
             $this->updateVotes($this->duration);
@@ -85,6 +92,8 @@ class ApplySupporterTag extends OrderItemFulfillment
 
                 return;
             }
+
+            $this->assignUsers();
 
             foreach ($donations as $donation) { // loop, but there should only be one.
                 $donation->cancel($this->cancelledTransactionId());
@@ -121,6 +130,12 @@ class ApplySupporterTag extends OrderItemFulfillment
         $old = $this->target->osu_subscriptionexpiry < $now ? $now : $this->target->osu_subscriptionexpiry;
         $this->target->osu_subscriptionexpiry = $old->addMonthsNoOverflow($this->duration);
         $this->target->osu_subscriber = true;
+    }
+
+    private function assignUsers()
+    {
+        $this->donor = User::findOrFail($this->donorId);
+        $this->target = User::findOrFail($this->targetId);
     }
 
     private function revokeSubscription()
