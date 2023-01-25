@@ -40,7 +40,7 @@ export class UserFilter extends React.PureComponent
                  id: null, text: trans('beatmap_discussions.user_filter.label')
 
     el SelectOptions,
-      bn: 'beatmap-discussions-user-filter'
+      modifiers: 'beatmap-discussions-user-filter'
       renderOption: @renderOption
       onChange: @handleChange
       options: options

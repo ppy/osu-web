@@ -30,7 +30,7 @@ export default class MultiplayerSelectOptions extends React.PureComponent<Props>
 
     return (
       <SelectOptions
-        bn='spotlight-select-options'
+        modifiers='spotlight'
         onChange={this.handleChange}
         options={options}
         renderOption={this.renderOption}
