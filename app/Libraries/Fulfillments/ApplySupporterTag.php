@@ -17,10 +17,8 @@ class ApplySupporterTag extends OrderItemFulfillment
 {
     private int $amount;
     private int $duration;
-    private ?User $donor;
-    private int $donorId;
-    private ?User $target;
-    private int $targetId;
+    private User $donor;
+    private User $target;
 
     public function cancelledTransactionId()
     {
