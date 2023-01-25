@@ -33,7 +33,7 @@ class Season extends Model
 
     public function hasRooms(): bool
     {
-        return $this->rooms()->count() > 0;
+        return $this->rooms()->exists();
     }
 
     public function startDate(): ?Carbon
