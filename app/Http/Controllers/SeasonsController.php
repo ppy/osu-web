@@ -31,12 +31,13 @@ class SeasonsController extends Controller
         $rooms->each->findAndSetCurrentPlaylistItem();
         $rooms->loadMissing('currentPlaylistItem.beatmap.beatmapset');
 
-        return [
-            'cursor' => $hasMore ? $search['cursorHelper']->next($rooms) : null,
+        $nextCursor = $hasMore ? $search['cursorHelper']->next($rooms) : null;
+
+        return array_merge([
             'rooms' => json_collection($rooms, new RoomTransformer(), ['current_playlist_item.beatmap.beatmapset', 'difficulty_range', 'host', 'playlist_item_stats']),
             'search' => $search['search'],
             'type_group' => 'playlists',
-        ];
+        ], cursor_for_response($nextCursor));
     }
 
     public function show($id)
@@ -53,10 +54,11 @@ class SeasonsController extends Controller
 
         $seasons = Season::orderByDesc('id')->get();
 
-        $params = get_params(request()->all(), null, [
-            'cursor:array',
-            'limit:int',
-        ], ['null_missing' => true]);
+        $rawParams = request()->all();
+        $params = [
+            'cursor' => cursor_from_params($rawParams),
+            'limit' => get_int($params['limit'] ?? null),
+        ];
 
         $roomsJson = $this->getJson($season, $params);
 
