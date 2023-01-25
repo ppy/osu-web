@@ -23,22 +23,6 @@ class ApplySupporterTag extends OrderItemFulfillment
     private ?User $target;
     private int $targetId;
 
-    public function __construct(OrderItem $orderItem)
-    {
-        parent::__construct($orderItem);
-
-        /** @var ExtraDataSupporterTag $extraData */
-        $extraData = $orderItem->extra_data;
-
-        $this->amount = $orderItem->cost;
-        $this->duration = $extraData->duration;
-
-        // User lookup should be done when run() instead of initialization,
-        // otherwise the user will be out of date when multiple instances with the same user are processed.
-        $this->donorId = $orderItem->order->user_id;
-        $this->targetId = $extraData->targetId;
-    }
-
     public function cancelledTransactionId()
     {
         return "{$this->getTransactionId()}-cancel";
@@ -51,6 +35,8 @@ class ApplySupporterTag extends OrderItemFulfillment
      */
     public function run()
     {
+        $this->setup();
+
         DB::transaction(function () {
             // check if transaction was already applied.
             if (UserDonation::where('transaction_id', $this->getTransactionId())->count() > 0) {
@@ -58,8 +44,6 @@ class ApplySupporterTag extends OrderItemFulfillment
 
                 return;
             }
-
-            $this->assignUsers();
 
             $donation = $this->applyDonation();
             $this->updateVotes($this->duration);
@@ -78,6 +62,8 @@ class ApplySupporterTag extends OrderItemFulfillment
      */
     public function revoke()
     {
+        $this->setup();
+
         DB::transaction(function () {
             // cancel only if applied.
             if (UserDonation::where('transaction_id', $this->cancelledTransactionId())->count() > 0) {
@@ -92,8 +78,6 @@ class ApplySupporterTag extends OrderItemFulfillment
 
                 return;
             }
-
-            $this->assignUsers();
 
             foreach ($donations as $donation) { // loop, but there should only be one.
                 $donation->cancel($this->cancelledTransactionId());
@@ -132,16 +116,22 @@ class ApplySupporterTag extends OrderItemFulfillment
         $this->target->osu_subscriber = true;
     }
 
-    private function assignUsers()
-    {
-        $this->donor = User::findOrFail($this->donorId);
-        $this->target = User::findOrFail($this->targetId);
-    }
-
     private function revokeSubscription()
     {
         $old = $this->target->osu_subscriptionexpiry;
         $this->target->osu_subscriptionexpiry = $old->subMonthsNoOverflow($this->duration);
         $this->target->osu_subscriber = Carbon::now()->diffInMinutes($old, false) > 0;
+    }
+
+    private function setup()
+    {
+        /** @var ExtraDataSupporterTag $extraData */
+        $extraData = $this->orderItem->extra_data;
+
+        $this->amount = $this->orderItem->cost;
+        $this->duration = $extraData->duration;
+
+        $this->donor = User::findOrFail($this->orderItem->order->user_id);
+        $this->target = User::findOrFail($extraData->targetId);
     }
 }
