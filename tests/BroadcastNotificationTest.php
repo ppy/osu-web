@@ -81,7 +81,7 @@ class BroadcastNotificationTest extends TestCase
         Queue::assertPushed(BeatmapsetDiscussionPostNew::class);
         $this->runFakeQueue();
 
-        if ($details['push'] ?? UserNotificationOption::DELIVERY_MODE_DEFAULTS['push']) {
+        if ($details['push'] ?? BeatmapsetDiscussionPostNew::DELIVERY_MODE_DEFAULTS['push']) {
             Event::assertDispatched(NewPrivateNotificationEvent::class);
         } else {
             Event::assertNotDispatched(NewPrivateNotificationEvent::class);
@@ -92,7 +92,7 @@ class BroadcastNotificationTest extends TestCase
         $this->artisan('notifications:send-mail');
         $this->runFakeQueue();
 
-        if ($details['mail'] ?? UserNotificationOption::DELIVERY_MODE_DEFAULTS['mail']) {
+        if ($details['mail'] ?? BeatmapsetDiscussionPostNew::DELIVERY_MODE_DEFAULTS['mail']) {
             Mail::assertSent(UserNotificationDigest::class);
         } else {
             Mail::assertNotSent(UserNotificationDigest::class);

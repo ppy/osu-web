@@ -11,11 +11,9 @@ env:
   APP_URL: http://localhost:8000
   CACHE_DRIVER: redis
   DB_HOST: 127.0.0.1
-  DB_USERNAME: root
   ES_SOLO_SCORES_HOST: http://localhost:9200
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   NOTIFICATION_ENDPOINT: ws://127.0.0.1:2345
-  NOTIFICATION_REDIS_HOST: 127.0.0.1
   OSU_INSTALL_DEV: 1
   OSU_USE_SYSTEM_COMPOSER: 1
   OSU_DB_CREATE: 1
@@ -101,63 +99,19 @@ jobs:
         php: ['8.0']
     name: Tests
     runs-on: ubuntu-latest
-    services:
-      db:
-        image: mysql:8.0
-        ports:
-          - 3306:3306
-        options: >-
-          --health-cmd="mysqladmin ping"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=5
-          -e MYSQL_ALLOW_EMPTY_PASSWORD=1
-          --entrypoint sh mysql:8.0 -c "exec docker-entrypoint.sh mysqld --default-authentication-plugin=mysql_native_password"
-
-      elasticsearch:
-        env:
-          action.auto_create_index: false
-          discovery.type: single-node
-          ingest.geoip.downloader.enabled: false
-        image: elasticsearch:7.17.6
-        ports:
-          - 9200:9200
-
-      redis:
-        image: redis
-        ports:
-          - 6379:6379
-
-      osu-beatmap-difficulty-lookup-cache:
-        image: pppy/osu-beatmap-difficulty-lookup-cache
-        ports:
-          - 5000:80
-
-      osu-elastic-indexer:
-        image: pppy/osu-elastic-indexer
-        options: >-
-          -e DB_CONNECTION_STRING=Server=db;Database=osu;Uid=root
-          -e ES_HOST=http://elasticsearch:9200
-          -e REDIS_HOST=redis
-          -e SCHEMA=test
-          --entrypoint sh pppy/osu-elastic-indexer -c "exec dotnet osu.ElasticIndexer.dll queue watch --force-version --wait"
-
-      osu-notification-server:
-        env:
-          APP_KEY: ${{ env.APP_KEY }}
-          DB_HOST: db
-          DB_USERNAME: ${{ env.DB_USERNAME }}
-          NOTIFICATION_REDIS_HOST: redis
-          NOTIFICATION_SERVER_LISTEN_HOST: 0.0.0.0
-          PASSPORT_PUBLIC_KEY: ${{ env.PASSPORT_PUBLIC_KEY }}
-          REDIS_HOST: redis
-        image: pppy/osu-notification-server
-        ports:
-          - 2345:2345
-
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Services
+        run: 'docker compose up --quiet-pull --wait
+          beatmap-difficulty-lookup-cache
+          db
+          elasticsearch
+          notification-server
+          redis
+          score-indexer
+        '
 
       - name: Setup node.js
         uses: actions/setup-node@v3
@@ -194,14 +148,14 @@ jobs:
       - name: Generate docs
         run: php artisan scribe:generate
 
-      - name: Run karma
-        run: yarn karma start --single-run --browsers ChromeHeadless
-
       - name: Run PHPUnit
         run: ./bin/phpunit.sh
 
       - name: Run Dusk
         run: ./bin/run_dusk.sh
+
+      - name: Run karma
+        run: yarn karma start --single-run --browsers ChromeHeadless
 
       # this only tests that the rollback functions are valid and doesn't check
       # if they actually do what they're expected to do.

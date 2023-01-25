@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "yarn run development",
     "development": "cross-env NODE_ENV=development webpack --progress --hide-modules --config=webpack.config.js",
-    "lint": "eslint --cache 'resources/assets/lib/**/*.{js,ts,tsx}' 'tests/karma/**/*.ts' '*.js'",
+    "lint": "eslint --cache 'resources/js/**/*.{js,ts,tsx}' 'tests/karma/**/*.ts' '*.js'",
     "localize": "yarn run generate-localizations",
     "prod": "yarn run production",
     "production": "cross-env NODE_ENV=production webpack --hide-modules --config=webpack.config.js",
@@ -103,14 +103,14 @@
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-typescript-sort-keys": "^1.7.0",
-    "jasmine-core": "^3.4.0",
-    "karma": "^6.3.16",
-    "karma-chrome-launcher": "^2.2.0",
-    "karma-jasmine": "^2.0.1",
+    "jasmine-core": "^4.1.0",
+    "karma": "^6.4.1",
+    "karma-chrome-launcher": "^3.1.1",
+    "karma-jasmine": "^5.1.0",
     "karma-mocha-reporter": "^2.2.5",
-    "karma-sourcemap-loader": "^0.3.7",
-    "karma-typescript": "^5.0.2",
-    "karma-webpack": "3.0.0",
+    "karma-sourcemap-loader": "^0.3.8",
+    "karma-typescript": "^5.5.3",
+    "karma-webpack": "^5.0.0",
     "mobx-react-devtools": "^6.0.3"
   }
 }

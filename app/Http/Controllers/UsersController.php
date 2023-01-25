@@ -71,7 +71,7 @@ class UsersController extends Controller
 
     public function __construct()
     {
-        $this->middleware('guest', ['only' => ['create', 'store']]);
+        $this->middleware('guest', ['only' => ['create', 'store', 'storeWeb']]);
         $this->middleware('auth', ['only' => [
             'checkUsernameAvailability',
             'checkUsernameExists',
@@ -211,108 +211,56 @@ class UsersController extends Controller
 
     public function store()
     {
-        if (!config('osu.user.allow_registration')) {
-            return abort(403, 'User registration is currently disabled');
+        if (config('osu.user.registration_mode') !== 'client') {
+            return response([
+                'error' => osu_trans('users.store.from_web'),
+                'url' => route('users.create'),
+            ], 403);
         }
 
-        $ip = Request::ip();
+        if (!starts_with(Request::header('User-Agent'), config('osu.client.user_agent'))) {
+            return error_popup(osu_trans('users.store.from_client'), 403);
+        }
 
-        if (IpBan::where('ip', '=', $ip)->exists()) {
-            return error_popup('Banned IP', 403);
+        return $this->storeUser(request()->all());
+    }
+
+    public function storeWeb()
+    {
+        if (config('osu.user.registration_mode') !== 'web') {
+            return error_popup(osu_trans('users.store.from_client'), 403);
         }
 
         $rawParams = request()->all();
+
+        if (captcha_enabled()) {
+            static $captchaField = 'g-recaptcha-response';
+            $token = $rawParams[$captchaField] ?? null;
+
+            $validCaptcha = NoCaptcha::verifyResponse($token);
+
+            if (!$validCaptcha) {
+                return abort(422, 'invalid captcha');
+            }
+        }
+
         $params = get_params($rawParams, 'user', [
             'password',
             'password_confirmation',
             'user_email',
             'user_email_confirmation',
-            'username',
         ], ['null_missing' => true]);
 
-        $webRegistration = config('osu.user.registration_mode') === 'web';
-        $fromClient = starts_with(Request::header('User-Agent'), config('osu.client.user_agent'));
-
-        if ($webRegistration) {
-            if ($fromClient) {
+        foreach (['user_email', 'password'] as $confirmableField) {
+            $confirmationField = "{$confirmableField}_confirmation";
+            if ($params[$confirmableField] !== $params[$confirmationField]) {
                 return response([
-                    'error' => osu_trans('users.store.from_web'),
-                    'url' => route('users.create'),
+                    'form_error' => ['user' => [$confirmationField => osu_trans('model_validation.wrong_confirmation')]],
                 ], 422);
             }
-
-            if (captcha_enabled()) {
-                static $captchaField = 'g-recaptcha-response';
-                $token = $rawParams[$captchaField] ?? null;
-
-                $validCaptcha = NoCaptcha::verifyResponse($token);
-
-                if (!$validCaptcha) {
-                    return abort(422, 'invalid captcha');
-                }
-
-                foreach (['user_email', 'password'] as $confirmableField) {
-                    $confirmationField = "{$confirmableField}_confirmation";
-                    if ($params[$confirmationField] !== $params[$confirmationField]) {
-                        return response([
-                            'form_error' => ['user' => [$confirmationField => osu_trans('model_validation.wrong_confirmation')]],
-                        ], 422);
-                    }
-                }
-            }
-        } elseif (!$fromClient) {
-            return error_popup(osu_trans('users.store.from_client'), 403);
         }
 
-        $countryCode = request_country();
-        $country = Country::find($countryCode);
-        $params['user_ip'] = $ip;
-        $params['country_acronym'] = $country === null ? '' : $country->getKey();
-
-        $registration = new UserRegistration($params);
-
-        try {
-            $registration->assertValid();
-
-            if (get_bool($rawParams['check'] ?? null)) {
-                return response(null, 204);
-            }
-
-            $throttleKey = 'registration:asn:'.app('ip2asn')->lookup($ip);
-
-            if (app(RateLimiter::class)->tooManyAttempts($throttleKey, 10)) {
-                abort(429);
-            }
-
-            $registration->save();
-            app(RateLimiter::class)->hit($throttleKey, 600);
-
-            $user = $registration->user();
-
-            if ($country === null) {
-                app('sentry')->getClient()->captureMessage(
-                    'User registered from unknown country: '.$countryCode,
-                    null,
-                    (new Scope())
-                        ->setExtra('country', $countryCode)
-                        ->setExtra('ip', $ip)
-                        ->setExtra('user_id', $user->getKey())
-                );
-            }
-
-            if ($webRegistration) {
-                $this->login($user);
-                session()->flash('popup', osu_trans('users.store.saved'));
-
-                return ujs_redirect(route('home'));
-            } else {
-                return json_item($user->fresh(), new CurrentUserTransformer());
-            }
-        } catch (ValidationException $e) {
-            return response(['form_error' => [
-                'user' => $registration->user()->validationErrors()->all(),
-            ]], 422);
-        }
+        return $this->storeUser($rawParams);
     }
 
     /**
@@ -702,13 +650,6 @@ class UsersController extends Controller
                 'user' => $userArray,
             ];
 
-            // moved data
-            // TODO: lazy load
-            $this->parsePaginationParams();
-            foreach (static::LAZY_EXTRA_PAGES as $page) {
-                $initialData[$page] = $this->extraPages($id, $page);
-            }
-
             return ext_view('users.show', compact('initialData', 'user'));
         }
     }
@@ -980,5 +921,73 @@ class UsersController extends Controller
         }
 
         return $userJson;
+    }
+
+    private function storeUser(array $rawParams)
+    {
+        if (!config('osu.user.allow_registration')) {
+            return abort(403, 'User registration is currently disabled');
+        }
+
+        $ip = Request::ip();
+
+        if (IpBan::where('ip', '=', $ip)->exists()) {
+            return error_popup('Banned IP', 403);
+        }
+
+        $params = get_params($rawParams, 'user', [
+            'password',
+            'user_email',
+            'username',
+        ], ['null_missing' => true]);
+        $countryCode = request_country();
+        $country = Country::find($countryCode);
+        $params['user_ip'] = $ip;
+        $params['country_acronym'] = $country === null ? '' : $country->getKey();
+
+        $registration = new UserRegistration($params);
+
+        try {
+            $registration->assertValid();
+
+            if (get_bool($rawParams['check'] ?? null)) {
+                return response(null, 204);
+            }
+
+            $throttleKey = 'registration:asn:'.app('ip2asn')->lookup($ip);
+
+            if (app(RateLimiter::class)->tooManyAttempts($throttleKey, 10)) {
+                abort(429);
+            }
+
+            $registration->save();
+            app(RateLimiter::class)->hit($throttleKey, 600);
+
+            $user = $registration->user();
+
+            if ($country === null) {
+                app('sentry')->getClient()->captureMessage(
+                    'User registered from unknown country: '.$countryCode,
+                    null,
+                    (new Scope())
+                        ->setExtra('country', $countryCode)
+                        ->setExtra('ip', $ip)
+                        ->setExtra('user_id', $user->getKey())
+                );
+            }
+
+            if (config('osu.user.registration_mode') === 'web') {
+                $this->login($user);
+                session()->flash('popup', osu_trans('users.store.saved'));
+
+                return ujs_redirect(route('home'));
+            } else {
+                return json_item($user->fresh(), new CurrentUserTransformer());
+            }
+        } catch (ValidationException $e) {
+            return response(['form_error' => [
+                'user' => $registration->user()->validationErrors()->all(),
+            ]], 422);
+        }
     }
 }

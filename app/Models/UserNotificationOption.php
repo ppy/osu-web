@@ -28,7 +28,6 @@ class UserNotificationOption extends Model
     const BEATMAPSET_MODDING = 'beatmapset:modding'; // matches Follow notifiable_type:subtype
     const CHANNEL_ANNOUNCEMENT = 'channel_announcement';
     const COMMENT_REPLY = 'comment_reply';
-    const DELIVERY_MODE_DEFAULTS = ['mail' => false, 'push' => true];
     const DELIVERY_MODES = ['mail', 'push'];
     const FORUM_TOPIC_REPLY = Notification::FORUM_TOPIC_REPLY;
     const MAPPING = 'mapping';

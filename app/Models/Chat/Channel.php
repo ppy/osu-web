@@ -53,9 +53,16 @@ class Channel extends Model
     const ANNOUNCE_MESSAGE_LENGTH_LIMIT = 1024; // limited by column length
     const CHAT_ACTIVITY_TIMEOUT = 60; // in seconds.
 
+    const MAX_FIELD_LENGTHS = [
+        'description' => 255,
+        'name' => 50,
+    ];
+
     public ?string $uuid = null;
 
-    protected $primaryKey = 'channel_id';
+    protected $attributes = [
+        'description' => '',
+    ];
 
     protected $casts = [
         'moderated' => 'boolean',
@@ -64,6 +71,8 @@ class Channel extends Model
     protected $dates = [
         'creation_time',
     ];
+
+    protected $primaryKey = 'channel_id';
 
     private ?Collection $pmUsers;
     private array $preloadedUserChannels = [];
@@ -216,7 +225,7 @@ class Channel extends Model
 
     public function setDescriptionAttribute(?string $value)
     {
-        $this->attributes['description'] = $value !== null ? trim($value) : null;
+        $this->attributes['description'] = trim($value ?? '');
     }
 
     public function setNameAttribute(?string $value)
@@ -391,8 +400,13 @@ class Channel extends Model
             $this->validationErrors()->add('name', 'required');
         }
 
-        if ($this->description === null) {
-            $this->validationErrors()->add('description', 'required');
+        foreach (static::MAX_FIELD_LENGTHS as $field => $limit) {
+            if ($this->isDirty($field)) {
+                $val = $this->$field;
+                if ($val !== null && mb_strlen($val) > $limit) {
+                    $this->validationErrors()->add($field, 'too_long', ['limit' => $limit]);
+                }
+            }
         }
 
         return $this->validationErrors()->isEmpty();
