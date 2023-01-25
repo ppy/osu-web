@@ -79,7 +79,7 @@ class SupporterTagFulfillmentTest extends TestCase
         Mail::fake();
 
         // prevent factory from generating user_sig
-        $giftee1 = User::factory()->create(['osu_subscriptionexpiry' => Carbon::today()->copy(), 'user_sig' => '']);
+        $giftee1 = User::factory()->create(['osu_subscriptionexpiry' => Carbon::today(), 'user_sig' => '']);
         $giftee2 = User::factory()->create(['user_sig' => '']);
 
         // This also tests multiple gifts only send 1 mail/event each
@@ -92,7 +92,7 @@ class SupporterTagFulfillmentTest extends TestCase
         $this->expectCountChange(fn () => Event::where('user_id', $this->user->getKey())->count(), $hidden ? 0 : 1);
 
         // Also test multiple tags in same run to same user get applied properly.
-        $expectedExpiry = $giftee1->osu_subscriptionexpiry->copy()->addMonthsNoOverflow(2);
+        $expectedExpiry = $giftee1->osu_subscriptionexpiry->addMonthsNoOverflow(2);
 
         (new SupporterTagFulfillment($this->order))->run();
 
