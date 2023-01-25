@@ -3,13 +3,13 @@
 
 import GameMode from 'interfaces/game-mode';
 import { BeatmapsetDiscussionJson } from 'legacy-modules';
-import DiscussionsMode from './discussions-mode';
+import { DiscussionPage } from './discussions-mode';
 
 export type Filter = 'deleted' | 'hype' | 'mapperNotes' | 'mine' | 'pending' | 'praises' | 'resolved' | 'total';
 
 // TODO: move to store/context
 export default interface CurrentDiscussions {
-  byFilter: Record<Filter, Record<Exclude<DiscussionsMode, 'events'>, Partial<Record<number, BeatmapsetDiscussionJson>>>>;
+  byFilter: Record<Filter, Record<Exclude<DiscussionPage, 'events'>, Partial<Record<number, BeatmapsetDiscussionJson>>>>;
   countsByBeatmap: Partial<Record<number, number>>;
   countsByPlaymode: Partial<Record<GameMode, number>>;
   general: BeatmapsetDiscussionJson[];
