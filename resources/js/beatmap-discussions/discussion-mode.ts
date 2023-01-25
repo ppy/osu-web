@@ -3,3 +3,7 @@
 
 export const discussionPages = ['reviews', 'general', 'generalAll', 'timeline', 'events'] as const;
 export type DiscussionPage = (typeof discussionPages)[number];
+
+type DiscussionMode = Exclude<DiscussionPage, 'events'>;
+
+export default DiscussionMode;

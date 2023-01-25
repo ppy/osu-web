@@ -27,7 +27,7 @@ import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import { present } from 'utils/string';
 import CurrentDiscussions from './current-discussions';
 import DiscussionMessageLengthCounter from './discussion-message-length-counter';
-import { DiscussionPage } from './discussions-mode';
+import DiscussionMode from './discussion-mode';
 
 const bn = 'beatmap-discussion-new';
 
@@ -43,7 +43,7 @@ interface Props {
   currentBeatmap: BeatmapExtendedJson;
   currentDiscussions: CurrentDiscussions;
   innerRef: React.RefObject<HTMLDivElement>;
-  mode: DiscussionPage;
+  mode: DiscussionMode;
   pinned: boolean;
   setPinned: (flag: boolean) => void;
   stickTo: React.RefObject<HTMLElement>;

@@ -17,7 +17,7 @@ import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import CurrentDiscussions, { Filter } from './current-discussions';
 import { Discussion } from './discussion';
-import { DiscussionPage } from './discussions-mode';
+import DiscussionMode from './discussion-mode';
 import DiscussionsState from './discussions-state';
 import DiscussionsStateContext from './discussions-state-context';
 
@@ -64,7 +64,7 @@ interface Props {
   currentBeatmap: BeatmapExtendedJson;
   currentDiscussions: CurrentDiscussions;
   currentFilter: Filter;
-  mode: Exclude<DiscussionPage, 'events'>;
+  mode: DiscussionMode;
   readPostIds: Set<number>;
   showDeleted: boolean;
   users: Record<number, UserJson>;
@@ -73,7 +73,7 @@ interface Props {
 @observer
 export class Discussions extends React.Component<Props> {
   @observable private discussionsState = new DiscussionsState();
-  @observable private sort: Record<Exclude<DiscussionPage, 'events'>, Sort> = {
+  @observable private sort: Record<DiscussionMode, Sort> = {
     general: 'updated_at',
     generalAll: 'updated_at',
     reviews: 'updated_at',

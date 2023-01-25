@@ -9,7 +9,7 @@ import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import CurrentDiscussions, { Filter } from './current-discussions';
-import { DiscussionPage, discussionPages } from './discussions-mode';
+import { DiscussionPage, discussionPages } from './discussion-mode';
 
 interface Props {
   beatmapset: BeatmapsetJson;
