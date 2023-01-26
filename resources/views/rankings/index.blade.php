@@ -78,7 +78,7 @@
                             </div>
                             <div class="select-options select-options--ranking">
                                 <div class="select-options__select">
-                                    <div class="select-options__option">{{ optional($country)->name ?? osu_trans('rankings.countries.all') }}</div>
+                                    <div class="select-options__option">{{ $country?->name ?? osu_trans('rankings.countries.all') }}</div>
                                 </div>
                             </div>
                         @endif
