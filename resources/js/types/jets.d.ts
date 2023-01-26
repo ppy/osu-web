@@ -6,6 +6,6 @@ declare module 'jets' {
   type JetsOptions = unknown;
 
   export default class Jets {
-    constructor(JetsOptions);
+    constructor(options: JetsOptions);
   }
 }

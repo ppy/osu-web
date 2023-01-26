@@ -5,5 +5,5 @@
 type TocifyOptions = unknown;
 
 interface JQuery {
-  tocify(TocifyOptions): unknown;
+  tocify(options: TocifyOptions): unknown;
 }
