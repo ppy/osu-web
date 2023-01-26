@@ -3,7 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
-    /** @var  Knuckles\Camel\Output\OutputEndpointData $endpoint */
+    /** @var Knuckles\Camel\Output\OutputEndpointData $endpoint */
     use App\Libraries\ApidocRouteHelper;
 
     $uri = $endpoint->uri;
