@@ -30,7 +30,7 @@ interface ComponentOptionRenderProps<T = string> {
 
 interface Props<T> {
   blackout?: boolean;
-  modifiers: Modifiers;
+  modifiers?: Modifiers;
   onChange: (option: Option<T>) => void;
   options: Option<T>[];
   renderOption?(props: OptionRenderProps<T>): JSX.Element;
