@@ -5,7 +5,6 @@
 
 namespace App\Libraries\Fulfillments;
 
-use App\Models\Store\OrderItem;
 use App\Models\User;
 use App\Models\UserDonation;
 use Carbon\Carbon;
@@ -21,19 +20,6 @@ class ApplySupporterTag extends OrderItemFulfillment
     private User $donor;
     private User $target;
 
-    public function __construct(OrderItem $orderItem)
-    {
-        parent::__construct($orderItem);
-
-        $extraData = $orderItem->extra_data;
-
-        $this->amount = $orderItem->cost;
-        $this->duration = $extraData->duration;
-
-        $this->donor = User::findOrFail($orderItem->order->user_id);
-        $this->target = User::findOrFail($extraData->targetId);
-    }
-
     public function cancelledTransactionId()
     {
         return "{$this->getTransactionId()}-cancel";
@@ -46,6 +32,8 @@ class ApplySupporterTag extends OrderItemFulfillment
      */
     public function run()
     {
+        $this->setup();
+
         DB::transaction(function () {
             // check if transaction was already applied.
             if (UserDonation::where('transaction_id', $this->getTransactionId())->count() > 0) {
@@ -71,6 +59,8 @@ class ApplySupporterTag extends OrderItemFulfillment
      */
     public function revoke()
     {
+        $this->setup();
+
         DB::transaction(function () {
             // cancel only if applied.
             if (UserDonation::where('transaction_id', $this->cancelledTransactionId())->count() > 0) {
@@ -128,5 +118,17 @@ class ApplySupporterTag extends OrderItemFulfillment
         $old = $this->target->osu_subscriptionexpiry;
         $this->target->osu_subscriptionexpiry = $old->subMonthsNoOverflow($this->duration);
         $this->target->osu_subscriber = Carbon::now()->diffInMinutes($old, false) > 0;
+    }
+
+    private function setup()
+    {
+        /** @var ExtraDataSupporterTag $extraData */
+        $extraData = $this->orderItem->extra_data;
+
+        $this->amount = $this->orderItem->cost;
+        $this->duration = $extraData->duration;
+
+        $this->donor = User::findOrFail($this->orderItem->order->user_id);
+        $this->target = User::findOrFail($extraData->targetId);
     }
 }

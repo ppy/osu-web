@@ -46,7 +46,7 @@ export default class CreateAnnouncement implements FormWithErrors<InputKey> {
   @computed
   get errors() {
     return {
-      description: !this.isValidLength('description'),
+      description: !this.isValidLength('description', true),
       message: !this.isValidLength('message'),
       name: !this.isValidLength('name'),
       users: this.validUsers.size === 0
@@ -182,8 +182,8 @@ export default class CreateAnnouncement implements FormWithErrors<InputKey> {
     this.validUsers.delete(core.currentUserOrFail.id);
   }
 
-  private isValidLength(key: Exclude<InputKey, 'users'>) {
-    return present(this.inputs[key]) && this.inputs[key].length <= maxLengths[key];
+  private isValidLength(key: Exclude<InputKey, 'users'>, allowEmpty = false) {
+    return (allowEmpty || present(this.inputs[key])) && this.inputs[key].length <= maxLengths[key];
   }
 
   @action
