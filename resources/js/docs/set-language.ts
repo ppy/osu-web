@@ -2,7 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { htmlElementOrNull } from 'utils/html';
-import { parseJson } from 'utils/json';
 import { presence } from 'utils/string';
 
 type Languages = string[];
@@ -13,11 +12,7 @@ export default class SetLanguage {
   private readonly languages: Languages;
 
   constructor() {
-    try {
-      this.languages = parseJson<Languages>(document.body.dataset.languages ?? '');
-    } catch {
-      this.languages = ['bash'];
-    }
+    this.languages = JSON.parse(document.body.dataset.languages ?? '') as Languages;
     this.language = this.currentLanguage();
 
     document.addEventListener('click', this.updateLanguage);
