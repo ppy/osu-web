@@ -142,6 +142,7 @@ jobs:
 
       - name: Setup indices
         run: |
+          php artisan es:index-scores:set-schema --schema=1
           php artisan es:create-search-blacklist
           php artisan es:index-documents --yes
           php artisan es:index-wiki --create-only --yes
