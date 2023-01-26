@@ -10,7 +10,7 @@ type Languages = string[];
 const currentStorageKey = 'docs-example-language';
 
 export default class SetLanguage {
-  private languages: Languages;
+  private readonly languages: Languages;
 
   constructor() {
     try {
