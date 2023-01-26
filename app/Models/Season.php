@@ -31,11 +31,6 @@ class Season extends Model
             : null;
     }
 
-    public function hasRooms(): bool
-    {
-        return $this->rooms()->exists();
-    }
-
     public function startDate(): ?Carbon
     {
         return $this->rooms->min('starts_at');
