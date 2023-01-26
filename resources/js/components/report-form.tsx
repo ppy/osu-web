@@ -182,7 +182,7 @@ export default class ReportForm extends React.Component<Props> {
             <div className={`${bn}__row`}>
               <SelectOptions
                 blackout={false}
-                bn={`${bn}-select-options`}
+                bn='report-form-select-options'
                 onChange={this.handleReasonChange}
                 options={this.options}
                 selected={this.selectedReason}
