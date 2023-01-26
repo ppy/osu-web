@@ -4,15 +4,13 @@
 import { htmlElementOrNull } from 'utils/html';
 import { presence } from 'utils/string';
 
-type Languages = string[];
-
 const currentStorageKey = 'docs-example-language';
 
 export default class SetLanguage {
-  private readonly languages: Languages;
+  private readonly languages;
 
   constructor() {
-    this.languages = JSON.parse(document.body.dataset.languages ?? '') as Languages;
+    this.languages = JSON.parse(document.body.dataset.languages ?? '') as string[];
     this.language = this.currentLanguage();
 
     document.addEventListener('click', this.updateLanguage);
