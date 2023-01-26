@@ -9,6 +9,11 @@ const currentStorageKey = 'docs-example-language';
 export default class SetLanguage {
   private readonly languages;
 
+  private set language(newLanguage: string) {
+    window.localStorage.setItem(currentStorageKey, newLanguage);
+    document.body.dataset.language = newLanguage;
+  }
+
   constructor() {
     this.languages = JSON.parse(document.body.dataset.languages ?? '') as string[];
     this.language = this.currentLanguage();
@@ -18,11 +23,6 @@ export default class SetLanguage {
 
   private currentLanguage() {
     return presence(window.localStorage.getItem(currentStorageKey)) ?? this.languages[0];
-  }
-
-  private set language(newLanguage: string) {
-    window.localStorage.setItem(currentStorageKey, newLanguage);
-    document.body.dataset.language = newLanguage;
   }
 
   private readonly updateLanguage = (event: MouseEvent) => {
