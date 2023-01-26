@@ -14,11 +14,11 @@ declare global {
 }
 
 class Docs {
-  highlight = new Highlight();
-  search;
-  setLanguage = new SetLanguage();
-  sidebarToggle = new SidebarToggle();
-  tocify = new Tocify();
+  readonly highlight = new Highlight();
+  readonly search;
+  readonly setLanguage = new SetLanguage();
+  readonly sidebarToggle = new SidebarToggle();
+  readonly tocify = new Tocify();
 
   constructor() {
     // depends on Tocify to be initialised

@@ -2,8 +2,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 export default class SidebarToggle {
-  private menuWrapper: Element;
-  private navButton: Element;
+  private readonly menuWrapper: Element;
+  private readonly navButton: Element;
 
   constructor() {
     const navButton = document.getElementById('nav-button');
