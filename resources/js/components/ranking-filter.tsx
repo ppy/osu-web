@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { Option, OptionRenderProps, SelectOptions } from 'components/select-options';
+import SelectOptions, { Option, OptionRenderProps } from 'components/select-options';
 import CountryJson from 'interfaces/country-json';
 import GameMode from 'interfaces/game-mode';
 import core from 'osu-core-singleton';
