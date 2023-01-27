@@ -10,6 +10,7 @@ import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForBundle, Beatmapset
 import BeatmapsetDiscussionPostJson from 'interfaces/beatmapset-discussion-post-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
+import { route } from 'laroute';
 import { assign, escape, find, padStart, sortBy, truncate } from 'lodash';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
@@ -275,6 +276,92 @@ export function stateFromDiscussion(discussion: BeatmapsetDiscussionJson) {
     discussionId: discussion.id,
     mode: discussionMode(discussion),
   };
+}
+
+interface UrlOptions {
+  beatmap?: BeatmapJson;
+  beatmapId?: number;
+  beatmapsetId?: number;
+  discussion?: BeatmapsetDiscussionJson;
+  discussionId?: number;
+  discussions?: BeatmapsetDiscussionJson[]; // for validating discussionId and getting relevant params
+  filter?: Filter;
+  mode?: DiscussionPage;
+  post?: BeatmapsetDiscussionPostJson;
+  postId?: number;
+  user?: number;
+}
+
+export function url(options: UrlOptions, useCurrent = false) {
+  let {
+    beatmap,
+    beatmapId,
+    beatmapsetId,
+    discussion,
+    discussionId,
+    discussions,
+    filter,
+    mode,
+    post,
+    postId,
+    user,
+  } = useCurrent ? assign(urlParse(null), options) : options;
+
+  const params: Partial<Record<string, string | number | null>> = {};
+
+  if (beatmap != null) {
+    beatmapsetId = beatmap.beatmapset_id;
+    beatmapId = beatmap.id;
+  }
+
+  params.beatmapset = beatmapsetId;
+
+  params.beatmap = beatmap == null || ['events', 'generalAll', 'reviews'].includes(mode ?? '')
+    ? defaultBeatmapId
+    : beatmapId;
+
+  params.mode = mode ?? defaultMode(beatmapId);
+
+  if (filter != null && filter !== 'total' && params.mode !== 'events') {
+    params.filter = filter;
+  }
+
+  if (discussion != null) {
+    discussionId = discussion.id;
+  }
+
+  if (discussionId != null) {
+    if (discussion != null && discussions != null) {
+      discussion = find(discussions, { id: discussionId });
+    }
+
+    if (discussion != null) {
+      const discussionState = discussion != null ? stateFromDiscussion(discussion) : null;
+      if (discussionState != null) {
+        params.beatmapset = discussionState.beatmapsetId;
+        params.beatmap = discussionState.beatmapId;
+        params.mode = discussionState.mode;
+      }
+    }
+  }
+
+  const value = new URL(route('beatmapsets.discussion', params));
+  if (discussionId != null) {
+    value.hash = `/${discussionId}`;
+
+    postId = post?.id ?? postId;
+    if (postId != null) {
+      value.hash += `/${postId}`;
+    }
+  }
+
+  if (user != null) {
+    value.searchParams.set('user', user.toString());
+  } else {
+    value.searchParams.delete('user');
+  }
+
+  return value.toString();
 }
 
 export function urlParse(urlString: string | null, discussions?: BeatmapsetDiscussionJson[] | null, forceDiscussionId = false) {
