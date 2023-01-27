@@ -5,11 +5,12 @@ import * as React from 'react'
 import { a, i, div } from 'react-dom-factories'
 import { createRef, PureComponent } from 'react'
 import { blackoutToggle } from 'utils/blackout'
+import { classWithModifiers } from 'utils/css'
 
 export class SelectOptions extends PureComponent
   constructor: (props) ->
     super props
-    @bn = @props.bn ? 'select-options'
+    @bn = 'select-options'
     @hasBlackout = @props.blackout || @props.blackout == undefined
     @ref = createRef()
 
@@ -43,11 +44,10 @@ export class SelectOptions extends PureComponent
 
 
   render: =>
-    classNames = "#{@bn}"
-    classNames += " #{@bn}--selecting" if @state.showingSelector
+    className = classWithModifiers(@bn, @props.modifiers, selecting: @state.showingSelector)
 
     div
-      className: classNames
+      className: className
       ref: @ref
       div
         className: "#{@bn}__select"

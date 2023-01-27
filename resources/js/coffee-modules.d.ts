@@ -45,7 +45,7 @@ declare module 'components/select-options' {
 
   interface Props<T> {
     blackout?: boolean;
-    bn?: string;
+    modifiers: import('utils/css').Modifiers;
     onChange: (option: Option<T>) => void;
     options: Option<T>[];
     renderOption?: (props: OptionRenderProps<T>) => React.ReactNode;

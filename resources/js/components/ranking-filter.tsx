@@ -146,7 +146,7 @@ export default class RankingFilter extends React.PureComponent<Props> {
           {trans('rankings.countries.title')}
         </div>
         <SelectOptions
-          bn='ranking-select-options'
+          modifiers='ranking'
           onChange={this.handleCountryChange}
           options={[...this.options.values()]} // TODO: change to iterable
           renderOption={this.handleRenderOption}
