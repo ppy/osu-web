@@ -302,7 +302,9 @@ export function urlParse(urlString: string | null, discussions?: BeatmapsetDiscu
     const [discussionId, postId] = url.hash.slice(2).split('/').map(getInt);
 
     if (discussionId != null) {
-      if (discussions != null) {
+      if (forceDiscussionId) {
+        ret.discussionId = discussionId;
+      } else if (discussions != null) {
         const discussion = find(discussions, { id: discussionId });
 
         if (discussion != null) {
@@ -310,8 +312,6 @@ export function urlParse(urlString: string | null, discussions?: BeatmapsetDiscu
 
           if (discussion.posts?.[0].id === postId) return ret;
         }
-      } else if (forceDiscussionId) {
-        ret.discussionId = discussionId;
       }
     }
 
