@@ -241,7 +241,7 @@ export function propsFromHref(href: string) {
   }
 
   if (targetUrl != null && targetUrl.host === currentUrl().host) {
-    const target = urlParse(targetUrl.href, null, { forceDiscussionId: true });
+    const target = urlParse(targetUrl.href, null, true);
     if (target?.discussionId != null && target.beatmapsetId != null) {
       const hash = [target.discussionId, target.postId].filter(Number.isFinite).join('/');
       if (current?.beatmapsetId === target.beatmapsetId) {
@@ -277,11 +277,7 @@ export function stateFromDiscussion(discussion: BeatmapsetDiscussionJson) {
   };
 }
 
-interface UrlParseOptions {
-  forceDiscussionId?: boolean;
-}
-
-export function urlParse(urlString: string | null, discussions?: BeatmapsetDiscussionJson[] | null, { forceDiscussionId = false }: UrlParseOptions) {
+export function urlParse(urlString: string | null, discussions?: BeatmapsetDiscussionJson[] | null, forceDiscussionId = false) {
   const url = new URL(urlString ?? currentUrl().href);
 
   const [, pathBeatmapsets, beatmapsetIdString, pathDiscussions, beatmapIdString, mode, filter] = url.pathname.split(/\/+/);
@@ -325,6 +321,7 @@ export function urlParse(urlString: string | null, discussions?: BeatmapsetDiscu
 
   return ret;
 }
+
 export function validMessageLength(message?: string | null, isTimeline = false) {
   if (!message?.length) return false;
 
