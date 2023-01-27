@@ -49,6 +49,8 @@ interface PropsFromHrefValue {
   target?: '_blank';
 }
 
+export const defaultFilter = 'total';
+
 // urlParse lookups
 const filterLookup = new Set(filters) as Set<string>;
 const pageLookup = new Set(discussionPages) as Set<string>;
