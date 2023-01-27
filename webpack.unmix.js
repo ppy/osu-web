@@ -17,6 +17,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const webpack = require('webpack');
+const WebpackBuildNotifierPlugin = require('webpack-build-notifier');
 const SentryPlugin = require('webpack-sentry-plugin');
 
 // #region env
@@ -189,6 +190,10 @@ if (process.env.SENTRY_RELEASE === '1') {
       release: process.env.GIT_SHA,
     }),
   );
+}
+
+if (fs.existsSync(resolvePath('.webpack-build-notifier-config.js'))) {
+  plugins.push(new WebpackBuildNotifierPlugin(require(resolvePath('.webpack-build-notifier-config.js'))));
 }
 
 // #endregion
