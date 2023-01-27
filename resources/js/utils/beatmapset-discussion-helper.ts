@@ -302,6 +302,7 @@ export function urlParse(urlString: string | null, discussions?: BeatmapsetDiscu
     const [discussionId, postId] = url.hash.slice(2).split('/').map(getInt);
 
     if (discussionId != null) {
+      // TODO: just always assign if available?
       if (forceDiscussionId) {
         ret.discussionId = discussionId;
       } else if (discussions != null) {
