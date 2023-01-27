@@ -292,7 +292,7 @@ interface UrlOptions {
   user?: number;
 }
 
-export function url(options: UrlOptions, useCurrent = false) {
+export function makeUrl(options: UrlOptions, useCurrent = false) {
   let {
     beatmap,
     beatmapId,
