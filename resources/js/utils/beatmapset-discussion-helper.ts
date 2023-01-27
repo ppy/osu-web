@@ -27,7 +27,7 @@ interface BadgeGroupParams {
 
 interface DiscussionPageUrlParams {
   beatmapId?: number;
-  beatmapsetId?: number;
+  beatmapsetId: number;
   discussionId?: number;
   filter: Filter;
   mode: DiscussionPage;
@@ -281,11 +281,12 @@ export function urlParse(urlString: string | null, discussions?: BeatmapsetDiscu
   const url = new URL(urlString ?? currentUrl().href);
 
   const [, pathBeatmapsets, beatmapsetIdString, pathDiscussions, beatmapIdString, mode, filter] = url.pathname.split(/\/+/);
-
-  if (pathBeatmapsets !== 'beatmapsets' || pathDiscussions !== 'discussion') return null;
-
-  // should return null if beatmapsetId not valid or something.
   const beatmapsetId = getInt(beatmapsetIdString);
+
+  if (pathBeatmapsets !== 'beatmapsets' || pathDiscussions !== 'discussion' || beatmapsetId == null) {
+    return null;
+  }
+
   const beatmapId = getInt(beatmapIdString);
 
   const ret: DiscussionPageUrlParams = {
