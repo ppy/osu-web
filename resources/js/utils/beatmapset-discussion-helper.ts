@@ -293,19 +293,26 @@ interface UrlOptions {
 }
 
 export function makeUrl(options: UrlOptions, useCurrent = false) {
-  let {
+  if (useCurrent) {
+    options = assign(urlParse(null), options);
+  }
+
+  const {
     beatmap,
-    beatmapId,
-    beatmapsetId,
-    discussion,
-    discussionId,
     discussions,
     filter,
     mode,
     post,
-    postId,
     user,
-  } = useCurrent ? assign(urlParse(null), options) : options;
+  } = options;
+
+  let {
+    beatmapId,
+    beatmapsetId,
+    discussion,
+    discussionId,
+    postId,
+  } = options;
 
   const params: Partial<Record<string, string | number | null>> = {};
 
