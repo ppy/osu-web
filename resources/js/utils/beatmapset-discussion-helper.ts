@@ -309,7 +309,8 @@ export function urlParse(urlString: string | null, discussions?: BeatmapsetDiscu
 
         if (discussion != null) {
           assign(ret, stateFromDiscussion(discussion));
-
+          // TODO: is there a case where this is useful?
+          // first post matches url postId but maybe not wanted in return value...
           if (discussion.posts?.[0].id === postId) return ret;
         }
       }
