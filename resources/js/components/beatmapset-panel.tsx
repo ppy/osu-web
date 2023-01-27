@@ -502,7 +502,7 @@ export default class BeatmapsetPanel extends React.Component<Props> {
             <div
               className='beatmapset-status beatmapset-status--panel'
               style={{
-                '--bg': `var(--beatmapset-${this.props.beatmapset.status}-bg)`,
+                '--bg-hsl': `var(--beatmapset-${this.props.beatmapset.status}-bg-hsl)`,
                 '--colour': `var(--beatmapset-${this.props.beatmapset.status}-colour)`,
               } as React.CSSProperties}
             >
