@@ -46,9 +46,9 @@ const availableOptions = {
   Insults: trans('users.report.options.insults'),
   MultipleAccounts: trans('users.report.options.multiple_accounts'),
   Nonsense: trans('users.report.options.nonsense'),
-  Other: trans('users.report.options.other'),
   Spam: trans('users.report.options.spam'),
   UnwantedContent: trans('users.report.options.unwanted_content'),
+  Other: trans('users.report.options.other'),
 } as const;
 
 const availableOptionsByGroupKey: Partial<Record<GroupKey, (keyof typeof availableOptions)[]>> = {
