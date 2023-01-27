@@ -12,7 +12,7 @@ import core from 'osu-core-singleton'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
 import * as BeatmapHelper from 'utils/beatmap-helper'
-import { defaultMode, stateFromDiscussion, urlParse } from 'utils/beatmapset-discussion-helper'
+import { defaultMode, makeUrl, stateFromDiscussion, urlParse } from 'utils/beatmapset-discussion-helper'
 import { nextVal } from 'utils/seq'
 import { currentUrl } from 'utils/turbolinks'
 import { Discussions } from './discussions'
@@ -505,7 +505,7 @@ export class Main extends React.PureComponent
 
 
   urlFromState: =>
-    BeatmapDiscussionHelper.url
+    makeUrl
       beatmap: @currentBeatmap()
       mode: @state.currentMode
       filter: @state.currentFilter

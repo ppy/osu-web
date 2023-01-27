@@ -12,12 +12,6 @@ declare module 'mod-names.json' {
 // Scoping to prevent global type import pollution.
 // There interfaces are only used in this file.
 declare module 'legacy-modules' {
-  type BeatmapsetDiscussionJson = import('interfaces/beatmapset-discussion-json').default;
-
-  interface BeatmapDiscussionHelperClass {
-    url(options: any, useCurrent?: boolean): string;
-  }
-
   interface TooltipDefault {
     remove: (el: HTMLElement) => void;
   }
@@ -55,6 +49,5 @@ declare const Turbolinks: import('turbolinks').default;
 declare const tooltipDefault: import('legacy-modules').TooltipDefault;
 
 // external (to typescript) classes
-declare const BeatmapDiscussionHelper: import('legacy-modules').BeatmapDiscussionHelperClass;
 declare const fallbackLocale: string;
 declare const currentLocale: string;

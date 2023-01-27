@@ -13,7 +13,7 @@ import { route } from 'laroute'
 import * as React from 'react'
 import { a, div, i, span } from 'react-dom-factories'
 import { onError } from 'utils/ajax'
-import { canModeratePosts, format, previewMessage } from 'utils/beatmapset-discussion-helper'
+import { canModeratePosts, format, makeUrl, previewMessage } from 'utils/beatmapset-discussion-helper'
 import { nominationsCount } from 'utils/beatmapset-helper'
 import { joinComponents, trans } from 'utils/lang'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
@@ -252,7 +252,7 @@ export class Nominations extends React.PureComponent
     if discussion?
       link = a
         className: 'js-beatmap-discussion--jump'
-        href: BeatmapDiscussionHelper.url(discussion: discussion)
+        href: makeUrl(discussion: discussion)
         "##{discussion.id}"
 
       message = span dangerouslySetInnerHTML:

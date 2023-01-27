@@ -5,6 +5,7 @@ import mapperGroup from 'beatmap-discussions/mapper-group'
 import { SelectOptions } from 'components/select-options'
 import * as React from 'react'
 import { a } from 'react-dom-factories'
+import { makeUrl } from 'utils/beatmapset-discussion-helper'
 import { groupColour } from 'utils/css'
 import { trans } from 'utils/lang'
 
@@ -53,7 +54,7 @@ export class UserFilter extends React.PureComponent
 
     a
       className: cssClasses
-      href: BeatmapDiscussionHelper.url user: option?.id, true
+      href: makeUrl user: option?.id, true
       key: option?.id
       onClick: onClick
       style: style

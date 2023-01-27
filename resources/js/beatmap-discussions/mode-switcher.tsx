@@ -6,6 +6,7 @@ import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import { snakeCase, size } from 'lodash';
 import * as React from 'react';
+import { makeUrl } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import CurrentDiscussions, { Filter } from './current-discussions';
@@ -53,7 +54,7 @@ export class ModeSwitcher extends React.PureComponent<Props> {
       <a
         className={classWithModifiers('page-mode-link', { 'is-active': this.props.mode === mode })}
         data-mode={mode}
-        href={BeatmapDiscussionHelper.url({
+        href={makeUrl({
           beatmapId: this.props.currentBeatmap.id,
           beatmapsetId: this.props.beatmapset.id,
           mode,
