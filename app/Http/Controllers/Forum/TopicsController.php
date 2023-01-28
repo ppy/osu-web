@@ -477,7 +477,7 @@ class TopicsController extends Controller
      * @bodyParam forum_topic_poll[hide_results] boolean Enable this to hide result until voting period ends (default: false). No-example
      * @bodyParam forum_topic_poll[length_days] number Number of days for voting period. 0 means the voting will never ends (default: 0). This parameter is required if `hide_results` option is enabled. No-example
      * @bodyParam forum_topic_poll[max_options] number Maximum number of votes each user can cast (default: 1). No-example
-     * @bodyParam forum_topic_poll[options] string required Newline-separated list of voting options. BBCode is supported. Example: item A...
+     * @bodyParam forum_topic_poll[options] string required Newline (\r\n) separated list of voting options. BBCode is supported. Example: item A...
      * @bodyParam forum_topic_poll[title] string required Title of the poll. Example: my poll
      * @bodyParam forum_topic_poll[vote_change] boolean Enable this to allow user to change their votes (default: false). No-example
      */
