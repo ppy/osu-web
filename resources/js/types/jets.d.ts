@@ -1,8 +1,11 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-.report-form-select-options {
-  .select-options(report-form-select-options);
+declare module 'jets' {
+  // TODO: fill in types
+  type JetsOptions = unknown;
 
-  width: 100%;
+  export default class Jets {
+    constructor(options: JetsOptions);
+  }
 }

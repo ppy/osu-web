@@ -64,7 +64,8 @@ _fix() {
             resources/css/jquery-ui/slider.less|\
             resources/css/jquery-ui/theme.less|\
             resources/css/spinner.less|\
-            resources/css/torus.less)
+            resources/css/torus.less|\
+            resources/js/jquery.tocify.js)
                 _debug "S $file"
                 continue
             ;;

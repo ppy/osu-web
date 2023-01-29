@@ -18,7 +18,7 @@ export class SpotlightSelectOptions extends PureComponent
 
   render: =>
     el SelectOptions,
-      bn: 'spotlight-select-options'
+      modifiers: 'spotlight'
       renderOption: @renderOption
       onChange: @handleChange
       options: @props.options

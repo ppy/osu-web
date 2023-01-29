@@ -1,5 +1,7 @@
 <?php
 
+use Knuckles\Scribe\Extracting\Strategies;
+
 return [
 
     /*
@@ -163,13 +165,13 @@ return [
          * Middleware to attach to the docs endpoint (if `add_routes` is true).
          */
         'middleware' => [],
+        /*
+         * Directory within `public` in which to store CSS and JS assets.
+         * By default, assets are stored in `public/vendor/scribe`.
+         * If set, assets will be stored in `public/{{assets_directory}}`
+         */
+        'assets_directory' => null,
     ],
-
-    /**
-     * Add a Try It Out button to your endpoints so consumers can test endpoints right from their browser.
-     * Don't forget to enable CORS headers for your endpoints.
-     */
-    'interactive' => false,
 
     /*
      * How is your API authenticated? This information will be used in the displayed docs, generated examples and response calls.
@@ -279,11 +281,6 @@ INTRO
     ],
 
     /*
-     * Name for the group of endpoints which do not have a @group set.
-     */
-    'default_group' => 'Undocumented',
-
-    /*
      * Custom logo path. This will be used as the value of the src attribute for the <img> tag,
      * so make sure it points to a public URL or path accessible from your web server. For best results, the image width should be 230px.
      * Set this to false to not use a logo.
@@ -293,18 +290,8 @@ INTRO
      * - 'logo' => 'img/logo.png' // for `laravel` type
      *
      */
-    'logo' => 'https://osu.ppy.sh/images/layout/osu-logo-white.svg',
-
-    /*
-     * The router your API is using (Laravel or Dingo).
-     */
-    'router' => 'laravel',
-
-    /*
-     * If you would like the package to generate the same example values for parameters on each run,
-     * set this to any number (eg. 1234)
-     */
-    'faker_seed' => null,
+    // for osu theme it's specified directly in the css instead
+    'logo' => null,
 
     /**
      * The strategies Scribe will use to extract information about your routes at each stage.
@@ -312,30 +299,33 @@ INTRO
      */
     'strategies' => [
         'metadata' => [
-            \Knuckles\Scribe\Extracting\Strategies\Metadata\GetFromDocBlocks::class,
+            Strategies\Metadata\GetFromDocBlocks::class,
         ],
         'urlParameters' => [
-            \Knuckles\Scribe\Extracting\Strategies\UrlParameters\GetFromLaravelAPI::class,
-            \Knuckles\Scribe\Extracting\Strategies\UrlParameters\GetFromLumenAPI::class,
-            \Knuckles\Scribe\Extracting\Strategies\UrlParameters\GetFromUrlParamTag::class,
+            Strategies\UrlParameters\GetFromLaravelAPI::class,
+            Strategies\UrlParameters\GetFromLumenAPI::class,
+            Strategies\UrlParameters\GetFromUrlParamTag::class,
         ],
         'queryParameters' => [
-            \Knuckles\Scribe\Extracting\Strategies\QueryParameters\GetFromQueryParamTag::class,
+            Strategies\QueryParameters\GetFromQueryParamTag::class,
+            Strategies\QueryParameters\GetFromFormRequest::class,
+            Strategies\QueryParameters\GetFromInlineValidator::class,
         ],
         'headers' => [
-            \Knuckles\Scribe\Extracting\Strategies\Headers\GetFromRouteRules::class,
-            \Knuckles\Scribe\Extracting\Strategies\Headers\GetFromHeaderTag::class,
+            Strategies\Headers\GetFromRouteRules::class,
+            Strategies\Headers\GetFromHeaderTag::class,
         ],
         'bodyParameters' => [
-            \Knuckles\Scribe\Extracting\Strategies\BodyParameters\GetFromFormRequest::class,
-            \Knuckles\Scribe\Extracting\Strategies\BodyParameters\GetFromBodyParamTag::class,
+            Strategies\BodyParameters\GetFromFormRequest::class,
+            Strategies\BodyParameters\GetFromBodyParamTag::class,
+            Strategies\BodyParameters\GetFromInlineValidator::class,
         ],
         'responses' => [
-            \Knuckles\Scribe\Extracting\Strategies\Responses\UseResponseTag::class,
-            \Knuckles\Scribe\Extracting\Strategies\Responses\UseResponseFileTag::class,
+            Strategies\Responses\UseResponseTag::class,
+            Strategies\Responses\UseResponseFileTag::class,
         ],
         'responseFields' => [
-            \Knuckles\Scribe\Extracting\Strategies\ResponseFields\GetFromResponseFieldTag::class,
+            Strategies\ResponseFields\GetFromResponseFieldTag::class,
         ],
     ],
 
@@ -357,15 +347,68 @@ INTRO
     'routeMatcher' => \Knuckles\Scribe\Matching\RouteMatcher::class,
 
     /**
-     * [Advanced] If one of your app's database drivers does not support transactions,
-     * docs generation (instantiating Eloquent models and making response calls) will likely fail.
-     * To avoid that, you can add the driver class name here. Be warned: that means all database changes will persist.
-     */
-    'continue_without_database_transactions' => [],
-
-    /**
      * For response calls, api resource responses and transformer responses, Scribe will try to start database transactions, so no changes are persisted to your database.
      * Tell Scribe which connections should be transacted here. If you only use the default db connection, you can leave this as is.
      */
     'database_connections_to_transact' => [config('database.default')],
+    'theme' => 'osu',
+    'try_it_out' => [
+        /**
+         * Add a Try It Out button to your endpoints so consumers can test endpoints right from their browser.
+         * Don't forget to enable CORS headers for your endpoints.
+         */
+        'enabled' => false,
+        /**
+         * The base URL for the API tester to use (for example, you can set this to your staging URL).
+         * Leave as null to use the current app URL (config(app.url)).
+         */
+        'base_url' => null,
+        /**
+         * Fetch a CSRF token before each request, and add it as an X-XSRF-TOKEN header. Needed if you're using Laravel Sanctum.
+         */
+        'use_csrf' => false,
+        /**
+         * The URL to fetch the CSRF token from (if `use_csrf` is true).
+         */
+        'csrf_url' => '/sanctum/csrf-cookie',
+    ],
+    'groups' => [
+        /*
+         * Endpoints which don't have a @group will be placed in this default group.
+         */
+        'default' => 'Undocumented',
+        /*
+         * By default, Scribe will sort groups alphabetically, and endpoints in the order their routes are defined.
+         * You can override this by listing the groups, subgroups and endpoints here in the order you want them.
+         *
+         * Any groups, subgroups or endpoints you don't list here will be added as usual after the ones here.
+         * If an endpoint/subgroup is listed under a group it doesn't belong in, it will be ignored.
+         * Note: you must include the initial '/' when writing an endpoint.
+         */
+        'order' => [],
+    ],
+    /**
+     * Customize the "Last updated" value displayed in the docs by specifying tokens and formats.
+     * Examples:
+     * - {date:F j Y} => March 28, 2022
+     * - {git:short} => Short hash of the last Git commit
+     *
+     * Available tokens are `{date:<format>}` and `{git:<format>}`.
+     * The format you pass to `date` will be passed to PhP's `date()` function.
+     * The format you pass to `git` can be either "short" or "long".
+     */
+    'last_updated' => 'Last updated: {date:F j, Y}',
+    'examples' => [
+        /*
+         * If you would like the package to generate the same example values for parameters on each run,
+         * set this to any number (eg. 1234)
+         */
+        'faker_seed' => null,
+        /*
+         * With API resources and transformers, Scribe tries to generate example models to use in your API responses.
+         * By default, Scribe will try the model's factory, and if that fails, try fetching the first from the database.
+         * You can reorder or remove strategies here.
+         */
+        'models_source' => ['factoryCreate', 'factoryMake', 'databaseFirst'],
+    ],
 ];
