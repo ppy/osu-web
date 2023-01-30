@@ -299,7 +299,6 @@ export function makeUrl(options: UrlOptions) {
     beatmap,
     discussion,
     filter,
-    mode,
     post,
     user,
   } = options;
@@ -308,13 +307,28 @@ export function makeUrl(options: UrlOptions) {
     beatmapId,
     beatmapsetId,
     discussionId,
+    mode,
     postId,
   } = options;
 
+  // TODO: beatmap and discussion are never passed at the same time;
+  // ids are also never passed if the objects are being used (except the user id)
   if (beatmap != null) {
     beatmapsetId = beatmap.beatmapset_id;
     beatmapId = beatmap.id;
   }
+
+  if (discussion != null) {
+    discussionId = discussion.id;
+    const discussionState = stateFromDiscussion(discussion);
+    if (discussionState != null) {
+      beatmapsetId = discussionState.beatmapsetId;
+      beatmapId = discussionState.beatmapId ?? undefined;
+      mode = discussionState.mode;
+    }
+  }
+
+  postId = post?.id ?? postId;
 
   const params: Partial<Record<string, string | number | null>> = {
     beatmap: beatmapId == null || generalPages.has(mode) ? defaultBeatmapId : beatmapId,
@@ -326,21 +340,10 @@ export function makeUrl(options: UrlOptions) {
     params.filter = filter;
   }
 
-  if (discussion != null) {
-    discussionId = discussion.id;
-    const discussionState = stateFromDiscussion(discussion);
-    if (discussionState != null) {
-      params.beatmapset = discussionState.beatmapsetId;
-      params.beatmap = discussionState.beatmapId ?? defaultBeatmapId;
-      params.mode = discussionState.mode;
-    }
-  }
-
   const value = new URL(route('beatmapsets.discussion', params));
   if (discussionId != null) {
     value.hash = `/${discussionId}`;
 
-    postId = post?.id ?? postId;
     if (postId != null) {
       value.hash += `/${postId}`;
     }
