@@ -42,8 +42,8 @@ return [
         'show_comment' => 'arată',
         'too_many' => 'A fost atinsă limita de blocare.',
         'button' => [
-            'block' => 'blochează',
-            'unblock' => 'deblochează',
+            'block' => 'Blochează',
+            'unblock' => 'Deblochează',
         ],
     ],
 
@@ -54,16 +54,16 @@ return [
 
     'create' => [
         'form' => [
-            'password' => '',
-            'password_confirmation' => '',
-            'submit' => '',
-            'user_email' => '',
-            'user_email_confirmation' => '',
-            'username' => '',
+            'password' => 'parolă',
+            'password_confirmation' => 'confirmare parolă',
+            'submit' => 'creează cont',
+            'user_email' => 'e-mail',
+            'user_email_confirmation' => 'confirmare e-mail',
+            'username' => 'nume de utilizator',
 
             'tos_notice' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'prin crearea contului sunteți de acord cu :link',
+                'link' => 'termeni și condiții de utilizare',
             ],
         ],
     ],
@@ -467,8 +467,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
-        'from_client' => '',
-        'from_web' => '',
+        'from_client' => 'te rugăm să te înregistrezi prin intermediul jocului!',
+        'from_web' => 'te rugăm să te înregistrezi prin site',
         'saved' => 'Utilizator creat',
     ],
     'verify' => [

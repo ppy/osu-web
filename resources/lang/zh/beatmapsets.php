@@ -66,7 +66,7 @@ return [
             'favourite_login' => '登录以收藏这张谱面',
             'logged-out' => '下载谱面前请先登录！',
             'mapped_by' => '谱师：:mapper',
-            'mapped_by_guest' => '',
+            'mapped_by_guest' => ':mapper 的客串难度',
             'unfavourite' => '取消收藏',
             'updated_timeago' => ':timeago 更新',
 

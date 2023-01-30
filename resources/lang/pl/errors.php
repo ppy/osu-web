@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => '',
     'missing_route' => 'Nieprawidłowy adres URL lub nieprawidłowa metoda żądania.',
     'no_restricted_access' => 'Nie możesz wykonać tej czynności podczas blokady konta.',
     'supporter_only' => 'Potrzebujesz statusu donatora osu!, aby korzystać z tej funkcji.',

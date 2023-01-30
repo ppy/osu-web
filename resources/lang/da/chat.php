@@ -8,6 +8,7 @@ return [
     'talking_in' => 'taler i :channel',
     'talking_with' => 'taler med:name',
     'title_compact' => 'chat',
+    'unread_messages' => '',
 
     'cannot_send' => [
         'channel' => 'Du kan ikke skrive i denne kanal på nuværende tidspunkt. Dette kan være pga. en af disse grunde:',
@@ -35,6 +36,7 @@ return [
 
         'labels' => [
             'description' => 'beskrivelse',
+            'message' => '',
             'name' => 'navn på rum',
             'users' => 'spillere at tilføje',
         ],

@@ -66,7 +66,7 @@ return [
             'favourite_login' => 'Prisijunk, kad mėgti šį bitmapą',
             'logged-out' => 'Reikia prisijungti bitmapų atsisiuntimui!',
             'mapped_by' => 'sukūrė :mapper',
-            'mapped_by_guest' => '',
+            'mapped_by_guest' => 'svečio sunkumas iš :mapper',
             'unfavourite' => 'Pašalinti bitmapą iš mėgstamų',
             'updated_timeago' => 'paskutinį kartą atnaujinta :timeago',
 

@@ -105,7 +105,7 @@ return [
         ],
         'users_controller' => [
             '_' => 'player info',
-            'create' => '',
+            'create' => 'maglikha ng account',
             'disabled' => 'abiso',
         ],
         'wiki_controller' => [

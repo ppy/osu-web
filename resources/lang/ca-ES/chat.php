@@ -8,6 +8,7 @@ return [
     'talking_in' => 'parlant en :channel',
     'talking_with' => 'parlant amb :name',
     'title_compact' => 'xat',
+    'unread_messages' => '',
 
     'cannot_send' => [
         'channel' => 'No pots enviar missatges en aquest canal.',
@@ -35,6 +36,7 @@ return [
 
         'labels' => [
             'description' => 'descripció',
+            'message' => '',
             'name' => 'nom de la sala',
             'users' => 'jugadors per afegir',
         ],

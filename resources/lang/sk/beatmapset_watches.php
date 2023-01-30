@@ -9,13 +9,13 @@ return [
         'title_compact' => 'sledovanie moddingu',
 
         'counts' => [
-            'total' => '',
-            'unread' => '',
+            'total' => 'Sledované Beatmapy',
+            'unread' => 'Beatmapy s novou aktivitou',
         ],
 
         'table' => [
             'empty' => 'Nesledujete diskusiu žiadnej beatmapy.',
-            'last_update' => '',
+            'last_update' => 'Posledná aktualizácia',
             'open_issues' => 'Nevyriešené problémy',
             'state' => 'Stav',
             'title' => 'Názov',

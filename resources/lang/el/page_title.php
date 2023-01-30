@@ -105,7 +105,7 @@ return [
         ],
         'users_controller' => [
             '_' => '',
-            'create' => '',
+            'create' => 'δημιούργησε λογαριασμό',
             'disabled' => '',
         ],
         'wiki_controller' => [
