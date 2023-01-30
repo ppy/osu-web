@@ -2362,7 +2362,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
         return $value === null
             ? null
-            : Carbon::createFromFormat('Y-m-d H:i:s', "{$value} 00:00:00");
+            : (strlen($value) === 10
+                ? Carbon::createFromFormat('Y-m-d H:i:s', "{$value} 00:00:00")
+                : $this->getTimeFast($value));
     }
 
     private function getOsuPlaystyle()
