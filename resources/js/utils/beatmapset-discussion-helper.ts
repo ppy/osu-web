@@ -286,7 +286,6 @@ interface UrlOptions {
   beatmapsetId?: number;
   discussion?: BeatmapsetDiscussionJson;
   discussionId?: number;
-  discussions?: BeatmapsetDiscussionJson[]; // for validating discussionId and getting relevant params
   filter?: Filter;
   mode?: DiscussionPage;
   post?: BeatmapsetDiscussionPostJson;
@@ -301,7 +300,7 @@ export function makeUrl(options: UrlOptions, useCurrent = false) {
 
   const {
     beatmap,
-    discussions,
+    discussion,
     filter,
     mode,
     post,
@@ -311,7 +310,6 @@ export function makeUrl(options: UrlOptions, useCurrent = false) {
   let {
     beatmapId,
     beatmapsetId,
-    discussion,
     discussionId,
     postId,
   } = options;
@@ -340,10 +338,6 @@ export function makeUrl(options: UrlOptions, useCurrent = false) {
   }
 
   if (discussionId != null) {
-    if (discussion != null && discussions != null) {
-      discussion = find(discussions, { id: discussionId });
-    }
-
     if (discussion != null) {
       const discussionState = discussion != null ? stateFromDiscussion(discussion) : null;
       if (discussionState != null) {
