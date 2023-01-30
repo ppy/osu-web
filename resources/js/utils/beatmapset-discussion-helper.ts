@@ -181,6 +181,70 @@ export function linkTimestamp(text: string, classNames: string[] = []) {
   );
 }
 
+export function makeUrl(options: UrlOptions) {
+  const {
+    beatmap,
+    discussion,
+    filter,
+    post,
+    user,
+  } = options;
+
+  let {
+    beatmapId,
+    beatmapsetId,
+    discussionId,
+    mode,
+    postId,
+  } = options;
+
+  // TODO: beatmap and discussion are never passed at the same time;
+  // ids are also never passed if the objects are being used (except the user id)
+  if (beatmap != null) {
+    beatmapsetId = beatmap.beatmapset_id;
+    beatmapId = beatmap.id;
+  }
+
+  if (discussion != null) {
+    discussionId = discussion.id;
+    const discussionState = stateFromDiscussion(discussion);
+    if (discussionState != null) {
+      beatmapsetId = discussionState.beatmapsetId;
+      beatmapId = discussionState.beatmapId ?? undefined;
+      mode = discussionState.mode;
+    }
+  }
+
+  postId = post?.id ?? postId;
+
+  const params: Partial<Record<string, string | number | null>> = {
+    beatmap: beatmapId == null || generalPages.has(mode) ? defaultBeatmapId : beatmapId,
+    beatmapset: beatmapsetId,
+    mode: mode ?? defaultMode(beatmapId),
+  };
+
+  if (filter != null && filter !== 'total' && params.mode !== 'events') {
+    params.filter = filter;
+  }
+
+  const value = new URL(route('beatmapsets.discussion', params));
+  if (discussionId != null) {
+    value.hash = `/${discussionId}`;
+
+    if (postId != null) {
+      value.hash += `/${postId}`;
+    }
+  }
+
+  if (user != null) {
+    value.searchParams.set('user', user.toString());
+  } else {
+    value.searchParams.delete('user');
+  }
+
+  return value.toString();
+}
+
 export function nearbyDiscussions<T extends BeatmapsetDiscussionJson, R extends NearbyDiscussion<T>>(discussions: T[], timestamp: number): R[] {
   const nearby: Partial<Record<NearbyDiscussionsCategory, R[]>> = {};
 
@@ -292,70 +356,6 @@ export function stateFromDiscussion(discussion: BeatmapsetDiscussionJson) {
     discussionId: discussion.id,
     mode: discussionMode(discussion),
   };
-}
-
-export function makeUrl(options: UrlOptions) {
-  const {
-    beatmap,
-    discussion,
-    filter,
-    post,
-    user,
-  } = options;
-
-  let {
-    beatmapId,
-    beatmapsetId,
-    discussionId,
-    mode,
-    postId,
-  } = options;
-
-  // TODO: beatmap and discussion are never passed at the same time;
-  // ids are also never passed if the objects are being used (except the user id)
-  if (beatmap != null) {
-    beatmapsetId = beatmap.beatmapset_id;
-    beatmapId = beatmap.id;
-  }
-
-  if (discussion != null) {
-    discussionId = discussion.id;
-    const discussionState = stateFromDiscussion(discussion);
-    if (discussionState != null) {
-      beatmapsetId = discussionState.beatmapsetId;
-      beatmapId = discussionState.beatmapId ?? undefined;
-      mode = discussionState.mode;
-    }
-  }
-
-  postId = post?.id ?? postId;
-
-  const params: Partial<Record<string, string | number | null>> = {
-    beatmap: beatmapId == null || generalPages.has(mode) ? defaultBeatmapId : beatmapId,
-    beatmapset: beatmapsetId,
-    mode: mode ?? defaultMode(beatmapId),
-  };
-
-  if (filter != null && filter !== 'total' && params.mode !== 'events') {
-    params.filter = filter;
-  }
-
-  const value = new URL(route('beatmapsets.discussion', params));
-  if (discussionId != null) {
-    value.hash = `/${discussionId}`;
-
-    if (postId != null) {
-      value.hash += `/${postId}`;
-    }
-  }
-
-  if (user != null) {
-    value.searchParams.set('user', user.toString());
-  } else {
-    value.searchParams.delete('user');
-  }
-
-  return value.toString();
 }
 
 export function urlParse(urlString: string | null, discussions?: BeatmapsetDiscussionJson[] | null, forceDiscussionId = false) {
