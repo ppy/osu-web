@@ -319,28 +319,23 @@ export function makeUrl(options: UrlOptions, useCurrent = false) {
     beatmapId = beatmap.id;
   }
 
-  if (discussion != null) {
-    discussionId = discussion.id;
-  }
-
   const params: Partial<Record<string, string | number | null>> = {
     beatmap: beatmap == null || ['events', 'generalAll', 'reviews'].includes(mode ?? '') ? defaultBeatmapId : beatmapId,
     beatmapset: beatmapsetId,
-    mode: mode ?? defaultMode(beatmapId)
+    mode: mode ?? defaultMode(beatmapId),
   };
 
   if (filter != null && filter !== 'total' && params.mode !== 'events') {
     params.filter = filter;
   }
 
-  if (discussionId != null) {
-    if (discussion != null) {
-      const discussionState = discussion != null ? stateFromDiscussion(discussion) : null;
-      if (discussionState != null) {
-        params.beatmapset = discussionState.beatmapsetId;
-        params.beatmap = discussionState.beatmapId;
-        params.mode = discussionState.mode;
-      }
+  if (discussion != null) {
+    discussionId = discussion.id;
+    const discussionState = stateFromDiscussion(discussion);
+    if (discussionState != null) {
+      params.beatmapset = discussionState.beatmapsetId;
+      params.beatmap = discussionState.beatmapId;
+      params.mode = discussionState.mode;
     }
   }
 
