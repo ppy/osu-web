@@ -293,11 +293,7 @@ interface UrlOptions {
   user?: number;
 }
 
-export function makeUrl(options: UrlOptions, useCurrent = false) {
-  if (useCurrent) {
-    options = assign(urlParse(null), options);
-  }
-
+export function makeUrl(options: UrlOptions) {
   const {
     beatmap,
     discussion,
