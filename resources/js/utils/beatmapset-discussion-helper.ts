@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { Filter, filters } from 'beatmap-discussions/current-discussions';
-import { DiscussionPage, discussionPages } from 'beatmap-discussions/discussion-mode';
+import DiscussionMode, { DiscussionPage, discussionPages } from 'beatmap-discussions/discussion-mode';
 import guestGroup from 'beatmap-discussions/guest-group';
 import mapperGroup from 'beatmap-discussions/mapper-group';
 import BeatmapJson from 'interfaces/beatmap-json';
@@ -118,7 +118,7 @@ function discussionLinkify(text: string) {
   });
 }
 
-export function discussionMode(discussion: BeatmapsetDiscussionJson) {
+export function discussionMode(discussion: BeatmapsetDiscussionJson): DiscussionMode {
   return discussion.message_type === 'review'
     ? 'reviews'
     : discussion.beatmap_id != null
@@ -287,7 +287,7 @@ export function startingPost(discussion: BeatmapsetDiscussionJsonForBundle | Bea
 
 export function stateFromDiscussion(discussion: BeatmapsetDiscussionJson) {
   return {
-    beatmapId: discussion.beatmap_id ?? defaultBeatmapId,
+    beatmapId: discussion.beatmap_id,
     beatmapsetId: discussion.beatmapset_id,
     discussionId: discussion.id,
     mode: discussionMode(discussion),
@@ -331,7 +331,7 @@ export function makeUrl(options: UrlOptions) {
     const discussionState = stateFromDiscussion(discussion);
     if (discussionState != null) {
       params.beatmapset = discussionState.beatmapsetId;
-      params.beatmap = discussionState.beatmapId;
+      params.beatmap = discussionState.beatmapId ?? defaultBeatmapId;
       params.mode = discussionState.mode;
     }
   }
