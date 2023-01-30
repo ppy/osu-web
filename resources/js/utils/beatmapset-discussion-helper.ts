@@ -316,7 +316,7 @@ export function makeUrl(options: UrlOptions) {
   }
 
   const params: Partial<Record<string, string | number | null>> = {
-    beatmap: beatmap == null || ['events', 'generalAll', 'reviews'].includes(mode ?? '') ? defaultBeatmapId : beatmapId,
+    beatmap: beatmapId == null || ['events', 'generalAll', 'reviews'].includes(mode ?? '') ? defaultBeatmapId : beatmapId,
     beatmapset: beatmapsetId,
     mode: mode ?? defaultMode(beatmapId),
   };
