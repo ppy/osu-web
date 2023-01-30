@@ -384,23 +384,26 @@ export function urlParse(urlString: string | null, discussions?: BeatmapsetDiscu
 
     if (discussionId != null) {
       ret.discussionId = discussionId;
+      if (postId != null) {
+        ret.postId = postId;
+      }
 
       if (discussions != null && discussionId != null) {
         const discussion = find(discussions, { id: discussionId });
 
         if (discussion != null) {
           assign(ret, stateFromDiscussion(discussion));
-          // TODO: is there a case where this is useful?
-          // first post matches url postId but maybe not wanted in return value...
-          if (discussion.posts?.[0].id === postId) return ret;
+          if (discussion.posts != null) {
+            const post = find(discussion.posts, { id: postId });
+            if (post == null) {
+              ret.postId = undefined;
+            }
+          }
         } else {
           ret.discussionId = undefined;
+          ret.postId = undefined;
         }
       }
-    }
-
-    if (ret.discussionId != null && postId != null) {
-      ret.postId = postId;
     }
   }
 
