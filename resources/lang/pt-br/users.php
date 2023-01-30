@@ -54,16 +54,16 @@ return [
 
     'create' => [
         'form' => [
-            'password' => '',
-            'password_confirmation' => '',
-            'submit' => '',
-            'user_email' => '',
-            'user_email_confirmation' => '',
-            'username' => '',
+            'password' => 'senha',
+            'password_confirmation' => 'confirmar senha',
+            'submit' => 'criar conta',
+            'user_email' => 'email',
+            'user_email_confirmation' => 'confirmar email',
+            'username' => 'nome de usuário',
 
             'tos_notice' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'ao criar a conta você concorda com :link',
+                'link' => 'termos de serviço',
             ],
         ],
     ],
@@ -467,8 +467,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
-        'from_client' => '',
-        'from_web' => '',
+        'from_client' => 'por favor registre-se através do cliente do jogo!',
+        'from_web' => 'por favor registre-se através do site',
         'saved' => 'Usuário criado',
     ],
     'verify' => [

@@ -54,16 +54,16 @@ return [
 
     'create' => [
         'form' => [
-            'password' => '',
-            'password_confirmation' => '',
-            'submit' => '',
-            'user_email' => '',
-            'user_email_confirmation' => '',
-            'username' => '',
+            'password' => 'парола',
+            'password_confirmation' => 'потвърди парола',
+            'submit' => 'създаване на профил',
+            'user_email' => 'имейл',
+            'user_email_confirmation' => 'потвърди имейл',
+            'username' => 'потребителско име',
 
             'tos_notice' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'чрез създаването на профил се съгласявате с :link',
+                'link' => 'условията за ползване',
             ],
         ],
     ],
@@ -467,8 +467,8 @@ return [
         'offline' => 'Офлайн',
     ],
     'store' => [
-        'from_client' => '',
-        'from_web' => '',
+        'from_client' => 'Моля, регистрирайте се от клиента за игра!',
+        'from_web' => 'моля, регистрирайте се от браузъра',
         'saved' => 'Потребител създаден',
     ],
     'verify' => [

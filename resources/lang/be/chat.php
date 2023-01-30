@@ -8,6 +8,7 @@ return [
     'talking_in' => 'размаўляе ў :channel',
     'talking_with' => 'размаўляе з :name',
     'title_compact' => 'чат',
+    'unread_messages' => '',
 
     'cannot_send' => [
         'channel' => 'Зараз вы не можаце адпраўляць паведамленні ў гэты канал. Магчыма гэта выклікана адной з наступных прычын:',
@@ -35,6 +36,7 @@ return [
 
         'labels' => [
             'description' => 'апісанне',
+            'message' => '',
             'name' => 'назва пакоя',
             'users' => 'дабаўляемых гульцоў',
         ],

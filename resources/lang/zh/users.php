@@ -54,16 +54,16 @@ return [
 
     'create' => [
         'form' => [
-            'password' => '',
-            'password_confirmation' => '',
-            'submit' => '',
-            'user_email' => '',
-            'user_email_confirmation' => '',
-            'username' => '',
+            'password' => '密码',
+            'password_confirmation' => '确认密码',
+            'submit' => '注册新账户',
+            'user_email' => '邮箱地址',
+            'user_email_confirmation' => '确认邮箱地址',
+            'username' => '用户名',
 
             'tos_notice' => [
-                '_' => '',
-                'link' => '',
+                '_' => '完成注册，即视为您同意了 :link',
+                'link' => '服务协议',
             ],
         ],
     ],
@@ -237,7 +237,7 @@ return [
                     'title' => '提名过的上架 (Ranked) 谱面',
                 ],
                 'pending' => [
-                    'title' => 'Pending 谱面',
+                    'title' => '待定 (Pending) 谱面',
                 ],
                 'ranked' => [
                     'title' => '上架 (Ranked) 谱面',
@@ -467,8 +467,8 @@ return [
         'offline' => '离线',
     ],
     'store' => [
-        'from_client' => '',
-        'from_web' => '',
+        'from_client' => '请使用游戏客户端注册！',
+        'from_web' => '请通过网页注册',
         'saved' => '账户已创建',
     ],
     'verify' => [

@@ -277,7 +277,7 @@ return [
         'mine' => 'Map của tôi',
         'pending' => 'Đang chờ',
         'wip' => 'Chưa xong',
-        'qualified' => 'Qualified',
+        'qualified' => 'Đủ tư cách',
         'ranked' => 'Đã được xếp hạng',
     ],
     'genre' => [

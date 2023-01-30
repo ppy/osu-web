@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => '',
     'missing_route' => 'URL inválido ou método de pedido incorreto.',
     'no_restricted_access' => 'Tu não és capaz de desempenhar esta ação enquanto a tua conta estiver num estado restrito.',
     'supporter_only' => 'Tens de ser um apoiante para utilizar esta funcionalidade.',

@@ -72,7 +72,7 @@ return [
     ],
 
     'download' => [
-        'action' => 'Lejuplādēt osu!',
+        'action' => 'Lejupielādēt osu!',
         'action_lazer' => '',
         'action_lazer_description' => '',
         'action_lazer_info' => '',

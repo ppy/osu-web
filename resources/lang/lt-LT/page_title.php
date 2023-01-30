@@ -105,7 +105,7 @@ return [
         ],
         'users_controller' => [
             '_' => 'žaidėjo informacija',
-            'create' => '',
+            'create' => 'kurti paskyrą',
             'disabled' => 'pastaba',
         ],
         'wiki_controller' => [
