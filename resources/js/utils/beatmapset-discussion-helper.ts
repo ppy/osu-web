@@ -314,27 +314,23 @@ export function makeUrl(options: UrlOptions, useCurrent = false) {
     postId,
   } = options;
 
-  const params: Partial<Record<string, string | number | null>> = {};
-
   if (beatmap != null) {
     beatmapsetId = beatmap.beatmapset_id;
     beatmapId = beatmap.id;
   }
 
-  params.beatmapset = beatmapsetId;
+  if (discussion != null) {
+    discussionId = discussion.id;
+  }
 
-  params.beatmap = beatmap == null || ['events', 'generalAll', 'reviews'].includes(mode ?? '')
-    ? defaultBeatmapId
-    : beatmapId;
-
-  params.mode = mode ?? defaultMode(beatmapId);
+  const params: Partial<Record<string, string | number | null>> = {
+    beatmap: beatmap == null || ['events', 'generalAll', 'reviews'].includes(mode ?? '') ? defaultBeatmapId : beatmapId,
+    beatmapset: beatmapsetId,
+    mode: mode ?? defaultMode(beatmapId)
+  };
 
   if (filter != null && filter !== 'total' && params.mode !== 'events') {
     params.filter = filter;
-  }
-
-  if (discussion != null) {
-    discussionId = discussion.id;
   }
 
   if (discussionId != null) {
