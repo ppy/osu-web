@@ -49,10 +49,24 @@ interface PropsFromHrefValue {
   target?: '_blank';
 }
 
+interface UrlOptions {
+  beatmap?: BeatmapJson;
+  beatmapId?: number;
+  beatmapsetId?: number;
+  discussion?: BeatmapsetDiscussionJson;
+  discussionId?: number;
+  filter?: Filter;
+  mode?: DiscussionPage;
+  post?: BeatmapsetDiscussionPostJson;
+  postId?: number;
+  user?: number;
+}
+
 export const defaultFilter = 'total';
 
-// urlParse lookups
+// urlParse and makeUrl lookups
 const filterLookup = new Set(filters) as Set<string>;
+const generalPages = new Set(['events', 'generalAll', 'reviews']) as Set<string | undefined>;
 const pageLookup = new Set(discussionPages) as Set<string>;
 
 export const defaultBeatmapId = '-';
@@ -280,19 +294,6 @@ export function stateFromDiscussion(discussion: BeatmapsetDiscussionJson) {
   };
 }
 
-interface UrlOptions {
-  beatmap?: BeatmapJson;
-  beatmapId?: number;
-  beatmapsetId?: number;
-  discussion?: BeatmapsetDiscussionJson;
-  discussionId?: number;
-  filter?: Filter;
-  mode?: DiscussionPage;
-  post?: BeatmapsetDiscussionPostJson;
-  postId?: number;
-  user?: number;
-}
-
 export function makeUrl(options: UrlOptions) {
   const {
     beatmap,
@@ -316,7 +317,7 @@ export function makeUrl(options: UrlOptions) {
   }
 
   const params: Partial<Record<string, string | number | null>> = {
-    beatmap: beatmapId == null || ['events', 'generalAll', 'reviews'].includes(mode ?? '') ? defaultBeatmapId : beatmapId,
+    beatmap: beatmapId == null || generalPages.has(mode) ? defaultBeatmapId : beatmapId,
     beatmapset: beatmapsetId,
     mode: mode ?? defaultMode(beatmapId),
   };
