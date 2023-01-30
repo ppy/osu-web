@@ -322,7 +322,7 @@ export function propsFromHref(href: string) {
   }
 
   if (targetUrl != null && targetUrl.host === currentUrl().host) {
-    const target = urlParse(targetUrl.href, null, true);
+    const target = urlParse(targetUrl.href, null);
     if (target?.discussionId != null && target.beatmapsetId != null) {
       const hash = [target.discussionId, target.postId].filter(Number.isFinite).join('/');
       if (current?.beatmapsetId === target.beatmapsetId) {
@@ -358,7 +358,7 @@ export function stateFromDiscussion(discussion: BeatmapsetDiscussionJson) {
   };
 }
 
-export function urlParse(urlString: string | null, discussions?: BeatmapsetDiscussionJson[] | null, forceDiscussionId = false) {
+export function urlParse(urlString: string | null, discussions?: BeatmapsetDiscussionJson[] | null) {
   const url = new URL(urlString ?? currentUrl().href);
 
   const [, pathBeatmapsets, beatmapsetIdString, pathDiscussions, beatmapIdString, mode, filter] = url.pathname.split(/\/+/);
@@ -383,10 +383,9 @@ export function urlParse(urlString: string | null, discussions?: BeatmapsetDiscu
     const [discussionId, postId] = url.hash.slice(2).split('/').map(getInt);
 
     if (discussionId != null) {
-      // TODO: just always assign if available?
-      if (forceDiscussionId) {
-        ret.discussionId = discussionId;
-      } else if (discussions != null) {
+      ret.discussionId = discussionId;
+
+      if (discussions != null && discussionId != null) {
         const discussion = find(discussions, { id: discussionId });
 
         if (discussion != null) {
@@ -394,6 +393,8 @@ export function urlParse(urlString: string | null, discussions?: BeatmapsetDiscu
           // TODO: is there a case where this is useful?
           // first post matches url postId but maybe not wanted in return value...
           if (discussion.posts?.[0].id === postId) return ret;
+        } else {
+          ret.discussionId = undefined;
         }
       }
     }
