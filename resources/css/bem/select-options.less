@@ -2,6 +2,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .select-options {
+  @_top: select-options;
+
   --decoration-colour: inherit;
   --option-hover-bg: hsl(var(--hsl-b4));
   --option-padding: 5px 10px;
@@ -47,20 +49,26 @@
   &__option {
     .reset-input();
     .link-plain();
-    .link-white();
 
+    --colour: hsl(var(--hsl-c1));
     display: flex;
     justify-content: space-between;
     padding: var(--option-padding);
     white-space: nowrap;
+    color: var(--colour);
 
     &--selected {
       background-color: @osu-colour-b3;
     }
 
-    &:hover {
-      background-color: var(--option-hover-bg);
+    .@{_top}--beatmap-discussions-user-filter & {
+      --colour: var(--group-colour, hsl(var(--hsl-c1)));
     }
+
+    .link-hover({
+      background-color: var(--option-hover-bg);
+      color: var(--colour);
+    });
   }
 
   &__select {

@@ -131,7 +131,7 @@ return [
             'deleted' => '已删除',
             'mapper_notes' => '备注',
             'mine' => '我的',
-            'pending' => '待处理',
+            'pending' => '待定 (Pending)',
             'praises' => '赞',
             'resolved' => '已解决',
             'total' => '所有',
@@ -311,7 +311,7 @@ return [
         'polish' => '波兰语',
         'instrumental' => '器乐',
         'other' => '其他',
-        'unspecified' => '未指定',
+        'unspecified' => '尚未指定',
     ],
 
     'nsfw' => [

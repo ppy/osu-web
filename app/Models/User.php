@@ -2358,11 +2358,14 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     private function getOsuSubscriptionexpiry()
     {
-        $value = $this->getRawAttribute('osu_subscriptionexpiry');
+        $column = 'osu_subscriptionexpiry';
+        $value = $this->getRawAttribute($column);
 
         return $value === null
             ? null
-            : Carbon::createFromFormat('Y-m-d H:i:s', "{$value} 00:00:00");
+            : (strlen($value) === 10
+                ? Carbon::createFromFormat('Y-m-d H:i:s', "{$value} 00:00:00")
+                : $this->getTimeFast($column));
     }
 
     private function getOsuPlaystyle()

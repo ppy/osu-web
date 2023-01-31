@@ -54,16 +54,16 @@ return [
 
     'create' => [
         'form' => [
-            'password' => '',
-            'password_confirmation' => '',
-            'submit' => '',
-            'user_email' => '',
-            'user_email_confirmation' => '',
-            'username' => '',
+            'password' => 'password',
+            'password_confirmation' => 'kumpirmasyon ng password',
+            'submit' => 'maglikha ng account',
+            'user_email' => 'email',
+            'user_email_confirmation' => 'kumpirmasyon ng email',
+            'username' => 'username',
 
             'tos_notice' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'sa pamamagitan ng paggawa ng account sumasang-ayon ka sa :link',
+                'link' => 'mga termino ng serbisyo',
             ],
         ],
     ],
@@ -467,8 +467,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
-        'from_client' => '',
-        'from_web' => '',
+        'from_client' => 'pakirehistro sa pamamagitan ng game client sa halip!',
+        'from_web' => 'pakirehistro sa pamamagitan ng web',
         'saved' => 'Ginawa ng user',
     ],
     'verify' => [

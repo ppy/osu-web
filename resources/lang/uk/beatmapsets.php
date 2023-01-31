@@ -66,7 +66,7 @@ return [
             'favourite_login' => 'Увійдіть, щоб додати цю мапу до вподобаних',
             'logged-out' => 'Необхідно ввійти для того що б завантажувати мапи!',
             'mapped_by' => 'створена :mapper',
-            'mapped_by_guest' => '',
+            'mapped_by_guest' => 'гостьова складність від :mapper',
             'unfavourite' => 'Видалити з вподобаного',
             'updated_timeago' => 'оновлена :timeago',
 

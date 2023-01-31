@@ -4,126 +4,157 @@
 --}}
 @php
     use App\Libraries\ApidocRouteHelper;
-    use Knuckles\Scribe\Extracting\Generator;
+    use Knuckles\Camel\Output\OutputEndpointData;
 
     $baseUrl = config('app.url');
     $wikiUrl = wiki_url('Bot_account', null, false);
 
     $defaultHeaders = [
         'Accept' => 'application/json',
-        'Content-Type' => 'application/json',
+        'Content-Type' => 'application/x-www-form-urlencoded',
     ];
 @endphp
 
-# Authentication
+<h1>Authentication</h1>
 
-Routes marked with the <a class="badge badge-scope badge-scope-oauth" name="scope-oauth">OAuth</a> label require a valid OAuth2 token for access.
+<p>
+    Routes marked with the <a class="badge badge-scope badge-scope-oauth" name="scope-oauth">OAuth</a> label require a valid OAuth2 token for access.
+</p>
 
-More information about applications you have registered and granted permissions to can be found [here](#managing-oauth-applications).
+<p>
+    More information about applications you have registered and granted permissions to can be found <a href="#managing-oauth-applications">here</a>.
+</p>
 
-The API supports the following grant types:
-- [Authorization Code Grant](https://oauth.net/2/grant-types/authorization-code/)
-- [Client Credentials Grant](https://oauth.net/2/grant-types/client-credentials/)
+<p>
+    The API supports the following grant types:
+    <ul>
+        <li><a href="https://oauth.net/2/grant-types/authorization-code/">Authorization Code Grant</a>
+        <li><a href="https://oauth.net/2/grant-types/client-credentials/">Client Credentials Grant</a>
+    </ul>
+</p>
 
-Before you can use the osu!api, you will need to
-1. have registered an OAuth Application.
-2. acquire an access token by either:
-  - authorizing users for your application;
-  - requesting Client Credentials token.
-
-
-## Registering an OAuth application
-
-Before you can get an OAuth token, you will need to register an OAuth application on your [account settings page]({{ route('account.edit').'#new-oauth-application' }})
-
-To register an OAuth application you will need to provide the:
-
-Name                     | Description
--------------------------|--------------------------
-Application Name         | This is the name that will be visible to users of your application. The name of your application cannot be changed.
-Application Callback URL | The URL in your application where users will be sent after authorization.
-
-The `Application Callback URL` is required when for using [Authorization Codes](#authorization-code-grant).
-This may be left blank if you are only using [Client Credentials Grants](#client-credentials-grant).
-
-Your new OAuth application will have a `Client ID` and `Client Secret`; the `Client Secret` is like a password for your OAuth application, it should be kept private and **do not share it with anyone else**.
+<p>
+    Before you can use the osu!api, you will need to
+    <ol>
+        <li>have registered an OAuth Application.
+        <li>
+            acquire an access token by either:
+            <ul>
+                <li>authorizing users for your application;
+                <li>requesting Client Credentials token.
+            </ul>
+    </ol>
+</p>
 
 
-## Authorization Code Grant
+<h2>Registering an OAuth application</h2>
 
-The flow to authorize users for your application is:
-1. Requesting authorization from users
-2. Users are redirected back to your site
-3. Your application accesses the API with the user's access token
+<p>
+    Before you can get an OAuth token, you will need to register an OAuth application on your <a href="{{ route('account.edit').'#new-oauth-application' }}">account settings page</a>.
+<p>
+
+<p>
+    To register an OAuth application you will need to provide the:
+</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Application Name</td>
+            <td>
+                This is the name that will be visible to users of your application. The name of your application cannot be changed.
+            </td>
+        </tr>
+        <tr>
+            <td>Application Callback URL</td>
+            <td>
+                The URL in your application where users will be sent after authorization.
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p>
+    The <code>Application Callback URL</code> is required when for using <a href="#authorization-code-grant">Authorization Codes</a>.
+    This may be left blank if you are only using <a href="#client-credentials-grant">Client Credentials Grants</a>.
+</p>
+
+<p>
+    Your new OAuth application will have a <code>Client ID</code> and <code>Client Secret</code>; the <code>Client Secret</code> is like a password for your OAuth application, it should be kept private and <strong>do not share it with anyone else</strong>.
+</p>
+
+
+<h2>Authorization Code Grant</h2>
+
+<p>
+    The flow to authorize users for your application is:
+    <ol>
+        <li>Requesting authorization from users
+        <li>Users are redirected back to your site
+        <li>Your application accesses the API with the user's access token
+    </ol>
+</p>
 
 <aside class="notice">
 Restricted users can grant authorization like anyone else. If your client should not support restricted users, it can check <code>is_restricted</code> from the <a href="#get-own-data">Get Own Data</a> response.
 </aside>
 
 
-### Request authorization from a user
+<h3>Request authorization from a user</h3>
 
 @php
     $description = 'To obtain an access token, you must first get an authorization code that is created when a user grants permissions to your application. To request permission from the user, they should be redirected to:';
     $uri = route('oauth.authorizations.authorize', null, false);
-    $route = [
-        'bodyParameters' => [],
-        'boundUri' => $uri,
-        'cleanBodyParameters' => [],
-        'fileParameters' => [],
-        'headers' => [],
+    $endpoint = new OutputEndpointData([
         'metadata' => ['authenticated' => false, 'description' => $description],
         'methods' => ['GET'],
-        'nestedBodyParameters' => [],
-        'responses' => [],
+        'httpMethods' => ['GET'],
         'uri' => $uri,
-        'urlParameters' => [],
         'queryParameters' => [
             'client_id' => [
                 'description' => 'The Client ID you received when you [registered]('.route('account.edit').'#new-oauth-application).',
                 'name' => 'client_id',
                 'type' => 'number',
-                'value' => 1,
+                'example' => 1,
             ],
             'redirect_uri' => [
                 'description' => 'The URL in your application where users will be sent after authorization. This must match the registered Application Callback URL exactly.',
                 'name' => 'redirect_uri',
-                'value' => 'http://localhost:4000',
+                'example' => 'http://localhost:4000',
             ],
             'response_type' => [
                 'description' => 'This should always be `code` when requesting authorization.',
                 'name' => 'response_type',
-                'value' => 'code',
+                'example' => 'code',
             ],
             'scope' => [
                 'description' => 'A space-delimited string of [scopes](#scopes).',
                 'name' => 'scope',
                 'required' => false,
-                'value' => 'public identify',
+                'example' => 'public identify',
             ],
             'state' => [
                 'description' => 'Data that will be returned when a temporary code is issued. It can be used to provide a token for protecting against cross-site request forgery attacks.',
                 'name' => 'state',
                 'required' => false,
-                'value' => 'randomval',
+                'example' => 'randomval',
             ],
         ],
-    ];
-    $route['cleanQueryParameters'] = Generator::cleanParams($route['queryParameters']);
+    ]);
 @endphp
-@include('scribe::partials.endpoint', [
-    'endpointId' => 'oauth-authorizations-authorize',
-    'route' => $route,
-    'settings' => [
-        'interactive' => false,
-        // request should be done on browser
-        'languages' => [],
-    ],
+@include('docs.endpoint', [
+    'endpoint' => $endpoint,
     'showEndpointTitle' => false,
     'showRequestTitle' => false,
 ])
 
-### User is redirected back to your site
+<h3>User is redirected back to your site</h3>
 
 @php
     $description = <<<EOT
@@ -150,37 +181,37 @@ Restricted users can grant authorization like anyone else. If your client should
         refresh_token | string | The refresh token.
         EOT;
     $uri = route('oauth.passport.token', null, false);
-    $route = [
+    $endpoint = new OutputEndpointData([
         'bodyParameters' => [
             'client_id' => [
                 'description' => 'The client ID of your application.',
                 'name' => 'client_id',
                 'required' => true,
-                'value' => 1,
+                'example' => 1,
             ],
             'client_secret' => [
                 'description' => 'The client secret of your application.',
                 'name' => 'client_secret',
                 'required' => true,
-                'value' => 'clientsecret',
+                'example' => 'clientsecret',
             ],
             'code' => [
                 'description' => 'The code you received.',
                 'name' => 'code',
                 'required' => true,
-                'value' => 'receivedcode',
+                'example' => 'receivedcode',
             ],
             'grant_type' => [
                 'description' => 'This must always be `authorization_code`',
                 'name' => 'grant_type',
                 'required' => true,
-                'value' => 'authorization_code',
+                'example' => 'authorization_code',
             ],
             'redirect_uri' => [
                 'description' => 'The URL in your application where users will be sent after authorization.',
                 'name' => 'redirect_uri',
                 'required' => true,
-                'value' => 'http://localhost:4000',
+                'example' => 'http://localhost:4000',
             ],
         ],
         'boundUri' => $uri,
@@ -188,7 +219,7 @@ Restricted users can grant authorization like anyone else. If your client should
         'fileParameters' => [],
         'headers' => $defaultHeaders,
         'metadata' => ['authenticated' => false, 'description' => $description],
-        'methods' => ['POST'],
+        'httpMethods' => ['POST'],
         'queryParameters' => [],
         'responses' => [
             [
@@ -204,22 +235,15 @@ Restricted users can grant authorization like anyone else. If your client should
         'showresponse' => true,
         'uri' => $uri,
         'urlParameters' => [],
-    ];
-    $route['cleanBodyParameters'] = Generator::cleanParams($route['bodyParameters']);
-    $route['nestedBodyParameters'] = Generator::nestArrayAndObjectFields($route['bodyParameters']);
+    ]);
 @endphp
-@include('scribe::partials.endpoint', [
-    'endpointId' => 'oauth-passport-token',
-    'route' => $route,
-    'settings' => [
-        'interactive' => false,
-        'languages' => config('scribe.example_languages'),
-    ],
+@include('docs.endpoint', [
+    'endpoint' => $endpoint,
     'showEndpointTitle' => false,
     'showRequestTitle' => false,
 ])
 
-## Client Credentials Grant
+<h2>Client Credentials Grant</h2>
 
 @php
     $description = <<<EOT
@@ -240,35 +264,35 @@ Restricted users can grant authorization like anyone else. If your client should
         access_token  | string | The access token.
         EOT;
     $uri = route('oauth.passport.token', null, false);
-    $route = [
+    $endpoint = new OutputEndpointData([
         'bodyParameters' => [
             'client_id' => [
                 'description' => 'The Client ID you received when you [registered]('.route('account.edit').'#new-oauth-application).',
                 'name' => 'client_id',
                 'required' => true,
                 'type' => 'number',
-                'value' => 1,
+                'example' => 1,
             ],
             'client_secret' => [
                 'description' => 'The client secret of your application.',
                 'name' => 'client_secret',
                 'required' => true,
                 'type' => 'string',
-                'value' => 'clientsecret',
+                'example' => 'clientsecret',
             ],
             'grant_type' => [
                 'description' => 'This must always be `client_credentials`.',
                 'name' => 'grant_type',
                 'required' => true,
                 'type' => 'string',
-                'value' => 'client_credentials',
+                'example' => 'client_credentials',
             ],
             'scope' => [
                 'description' => 'Must be `public`; other scopes have no meaningful effect.',
                 'name' => 'scope',
                 'required' => true,
                 'type' => 'string',
-                'value' => 'public',
+                'example' => 'public',
             ],
         ],
         'boundUri' => $uri,
@@ -276,7 +300,7 @@ Restricted users can grant authorization like anyone else. If your client should
         'fileParameters' => [],
         'headers' => $defaultHeaders,
         'metadata' => ['authenticated' => false, 'description' => $description],
-        'methods' => ['POST'],
+        'httpMethods' => ['POST'],
         'queryParameters' => [],
         'responses' => [
             [
@@ -291,78 +315,101 @@ Restricted users can grant authorization like anyone else. If your client should
         'showresponse' => true,
         'uri' => $uri,
         'urlParameters' => [],
-    ];
-    $route['cleanBodyParameters'] = Generator::cleanParams($route['bodyParameters']);
-    $route['nestedBodyParameters'] = Generator::nestArrayAndObjectFields($route['bodyParameters']);
+    ]);
 @endphp
-@include('scribe::partials.endpoint', [
-    'endpointId' => 'oauth-passport-token-client',
-    'route' => $route,
-    'settings' => [
-        'interactive' => false,
-        'languages' => config('scribe.example_languages'),
-    ],
+@include('docs.endpoint', [
+    'endpoint' => $endpoint,
     'showEndpointTitle' => false,
     'showRequestTitle' => false,
 ])
 
-## Using the access token to access the API
+<h2>Using the access token to access the API</h2>
 
-With the access token, you can make requests to osu!api on behalf of a user.
+<p>
+    With the access token, you can make requests to osu!api on behalf of a user.
+</p>
 
-The token should be included in the header of requests to the API.
+<p>
+    The token should be included in the header of requests to the API.
+</p>
 
-`Authorization: Bearer @{{token}}`
+<p>
+    <code>Authorization: Bearer @{{token}}</code>
+</p>
 
-```shell
-# With shell, you can just pass the correct header with each request
+<div class="bash-example">
+    <pre><code class="language-bash"
+># With shell, you can just pass the correct header with each request
 curl "{{ config('app.url') }}/api/[version]/[endpoint]"
-  -H "Authorization: Bearer @{{token}}"
-```
+  -H "Authorization: Bearer @{{token}}"</code><pre>
+</div>
 
-```javascript
-// This javascript example uses fetch()
+<div class="javascript-example">
+    <pre><code class="language-javascript"
+>// This javascript example uses fetch()
 fetch("{{ config('app.url') }}/api/[version]/[endpoint]", {
     headers: {
       Authorization: 'Bearer @{{token}}'
     }
-});
-```
+});</code></pre>
+</div>
 
-> Make sure to replace `@{{token}}` with your OAuth2 token.
+<blockquote><p>Make sure to replace <code>@{{token}}</code> with your OAuth2 token.</p></blockquote>
 
 <aside class="notice">
-You must replace <code>@{{token}}</code> with your OAuth2 token.
+    You must replace <code>@{{token}}</code> with your OAuth2 token.
 </aside>
 
 
-## Resource Owner
+<h2>Resource Owner</h2>
 
-The `Resource Owner` is the user that a token acts on behalf of.
+<p>
+    The <code>Resource Owner</code> is the user that a token acts on behalf of.
+</p>
 
-For [Authorization Code Grant](#authorization-code-grant) tokens, the Resource Owner is the user authorizing the token.
+<p>
+    For <a href="#authorization-code-grant">Authorization Code Grant</a> tokens, the Resource Owner is the user authorizing the token.
+</p>
 
-[Client Credentials Grant](#client-credentials-grant) tokens do not have a Resource Owner (i.e. is a guest user), unless they have been granted the {{ ApidocRouteHelper::scopeBadge('delegate') }} scope. The Resource Owner of tokens with the {{ ApidocRouteHelper::scopeBadge('delegate') }} scope is the owner of the OAuth Application that was granted the token.
+<p>
+    <a href="#client-credentials-grant">Client Credentials Grant</a> tokens do not have a Resource Owner (i.e. is a guest user), unless they have been granted the {{ ApidocRouteHelper::scopeBadge('delegate') }} scope. The Resource Owner of tokens with the {{ ApidocRouteHelper::scopeBadge('delegate') }} scope is the owner of the OAuth Application that was granted the token.
+</p>
 
-Routes marked with <span class='badge badge-scope badge-user'>requires user</span> require the use of tokens that have a Resource Owner.
-
-
-## Client Credentials Delegation
-
-Client Credentials Grant tokens may be allowed to act on behalf of the owner of the OAuth client (delegation) by requesting the {{ ApidocRouteHelper::scopeBadge('delegate') }} scope, in addition to other scopes supporting delegation.
-When using delegation, scopes that support delegation cannot be used together with scopes that do not support delegation.
-Delegation is only available to [Chat Bot]({{ $wikiUrl }})s.
-
-The following scopes currently support delegation:
-
-Name   |
--------|
-{{ ApidocRouteHelper::scopeBadge('chat.write') }} |
+<p>
+    Routes marked with <span class='badge badge-scope badge-user'>requires user</span> require the use of tokens that have a Resource Owner.
+</p>
 
 
-## Scopes
+<h2>Client Credentials Delegation</h2>
 
-The following scopes are currently supported:
+<p>
+    Client Credentials Grant tokens may be allowed to act on behalf of the owner of the OAuth client (delegation) by requesting the {{ ApidocRouteHelper::scopeBadge('delegate') }} scope, in addition to other scopes supporting delegation.
+    When using delegation, scopes that support delegation cannot be used together with scopes that do not support delegation.
+    Delegation is only available to <a href="{{ $wikiUrl }}">Chat Bot</a>s.
+</p>
+
+<p>
+    The following scopes currently support delegation:
+</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ ApidocRouteHelper::scopeBadge('chat.write') }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Scopes</h2>
+
+<p>
+    The following scopes are currently supported:
+</p>
 
 @php
 $scopeDescriptions = [
@@ -375,25 +422,52 @@ $scopeDescriptions = [
 ];
 @endphp
 
-Name   | Description
--------|-------------------------------
-@foreach ($scopeDescriptions as $scope => $description)
-<a class="badge badge-scope badge-scope-{{ $scope }}" name="scope-{{ $scope }}">{{ $scope }}</a> | {{ $description }}
-@endforeach
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($scopeDescriptions as $scope => $description)
+            <tr>
+                <td>
+                    <a class="badge badge-scope badge-scope-{{ $scope }}" name="scope-{{ $scope }}">{{ $scope }}</a>
+                </td>
+                <td>{!! markdown_plain($description) !!}</td>
+            </tr>
+        @endforeach
+        <tr>
+        </tr>
+    </tbody>
+</table>
 
-`identify` is the default scope for the [Authorization Code Grant](#authorization-code-grant) and always implicitly provided. The [Client Credentials Grant](#client-credentials-grant) does not currently have any default scopes.
+<p>
+    <code>identify</code> is the default scope for the <a href="#authorization-code-grant">Authorization Code Grant</a> and always implicitly provided. The <a href="#client-credentials-grant">Client Credentials Grant</a> does not currently have any default scopes.
+</p>
 
-Routes marked with <a class="badge badge-scope badge-scope-lazer" name="scope-lazer">lazer</a> are intended for use by the [osu!lazer](https://github.com/ppy/osu) client and not currently available for use with Authorization Code or Client Credentials grants.
+<p>
+    Routes marked with <a class="badge badge-scope badge-scope-lazer" name="scope-lazer">lazer</a> are intended for use by the <a href="https://github.com/ppy/osu">osu!lazer</a> client and not currently available for use with Authorization Code or Client Credentials grants.
+</p>
 
-Using the {{ ApidocRouteHelper::scopeBadge('chat.write') }} scope requires either
-- a [Chat Bot]({{ $wikiUrl }}) account to send messages on behalf of other users.
-- Authorization code grant where the user is the same as the client's owner (send as yourself).
+<p>
+    Using the {{ ApidocRouteHelper::scopeBadge('chat.write') }} scope requires either
+    <ul>
+        <li>a <a href="{{ $wikiUrl }}">Chat Bot</a> account to send messages on behalf of other users.
+        <li>Authorization code grant where the user is the same as the client's owner (send as yourself).
+    </ul>
+</p>
 
 
-## Managing OAuth applications
+<h2>Managing OAuth applications</h2>
 
-Your [account settings]({{ route('account.edit').'#oauth' }}) page will show your registered OAuth applications, and all the OAuth applications you have granted permissions to.
+<p>
+    Your <a href="{{ route('account.edit').'#oauth' }}">account settings</a> page will show your registered OAuth applications, and all the OAuth applications you have granted permissions to.
+</p>
 
-### Reset Client Secret
+<h3>Reset Client Secret</h3>
 
-You can generate a new `Client Secret` by choosing to "Reset client secret", however, this will disable all access tokens issued for the application.
+<p>
+    You can generate a new <code>Client Secret</code> by choosing to "Reset client secret", however, this will disable all access tokens issued for the application.
+</p>

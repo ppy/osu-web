@@ -74,7 +74,7 @@ return [
             'index' => 'tablou de comenzi',
             'search' => 'caută',
             'support_the_game' => 'sprijină jocul',
-            'testflight' => 'test de zbor',
+            'testflight' => 'testflight',
         ],
         'legal_controller' => [
             '_' => 'informație',
@@ -105,7 +105,7 @@ return [
         ],
         'users_controller' => [
             '_' => 'info jucător',
-            'create' => '',
+            'create' => 'creează cont',
             'disabled' => 'observație',
         ],
         'wiki_controller' => [

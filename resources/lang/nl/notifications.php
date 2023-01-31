@@ -211,6 +211,10 @@ Beatmap ":title" vernieuwd',
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => '',
+            ],
+
             'channel' => [
                 'pm' => 'Je hebt een nieuw bericht ontvangen van :username',
             ],

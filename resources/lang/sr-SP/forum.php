@@ -128,7 +128,7 @@ return [
         ],
 
         'logs' => [
-            '_' => '',
+            '_' => 'Логови за теме',
             'button' => '',
 
             'columns' => [
@@ -143,7 +143,7 @@ return [
                 'edit_topic' => '',
                 'fork' => '',
                 'pin' => 'закачена тема',
-                'post_operation' => '',
+                'post_operation' => 'поставио :username',
                 'remove_tag' => '',
                 'source_forum_operation' => '',
                 'unpin' => '',
@@ -156,23 +156,23 @@ return [
                 'delete_topic' => 'Обрисана тема',
                 'edit_topic' => '',
                 'edit_poll' => '',
-                'fork' => '',
+                'fork' => 'Копирана тема',
                 'issue_tag' => '',
                 'lock' => 'Закључана тема',
-                'merge' => '',
+                'merge' => 'Спојени постови у овој теми',
                 'move' => '',
                 'pin' => 'Закачена тема',
                 'post_edited' => '',
                 'restore_post' => '',
-                'restore_topic' => '',
+                'restore_topic' => 'Враћена тема',
                 'split_destination' => '',
                 'split_source' => '',
                 'topic_type' => '',
-                'topic_type_changed' => '',
+                'topic_type_changed' => 'Промењен тип теме',
                 'unlock' => 'Откључана тема',
                 'unpin' => 'Откачена тема',
-                'user_lock' => '',
-                'user_unlock' => '',
+                'user_lock' => 'Закључана сопствена тема',
+                'user_unlock' => 'Откључана сопствена тема',
             ],
         ],
 
@@ -184,15 +184,15 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => '',
+            'title_compact' => 'листа претплате на теме форума',
 
             'box' => [
                 'total' => 'Претплаћене теме',
-                'unread' => '',
+                'unread' => 'Теме са новим одговорима',
             ],
 
             'info' => [
-                'total' => '',
+                'total' => 'Пратите укупно :total тема.',
                 'unread' => '',
             ],
         ],
@@ -351,7 +351,7 @@ return [
                 'vote' => 'Гласај',
 
                 'button' => [
-                    'change_vote' => '',
+                    'change_vote' => 'Промени глас',
                     'edit' => 'Измени анкету',
                     'view_results' => 'Пређи на резултате',
                     'vote' => 'Гласај',

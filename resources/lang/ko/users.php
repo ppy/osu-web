@@ -54,16 +54,16 @@ return [
 
     'create' => [
         'form' => [
-            'password' => '',
-            'password_confirmation' => '',
-            'submit' => '',
-            'user_email' => '',
-            'user_email_confirmation' => '',
-            'username' => '',
+            'password' => '비밀번호',
+            'password_confirmation' => '비밀번호 확인',
+            'submit' => '계정 만들기',
+            'user_email' => '이메일',
+            'user_email_confirmation' => '이메일 확인',
+            'username' => '사용자 이름',
 
             'tos_notice' => [
-                '_' => '',
-                'link' => '',
+                '_' => '계정을 만듦으로써 :link에 동의하는 것으로 간주됩니다.',
+                'link' => '이용 약관',
             ],
         ],
     ],
@@ -467,8 +467,8 @@ return [
         'offline' => '오프라인',
     ],
     'store' => [
-        'from_client' => '',
-        'from_web' => '',
+        'from_client' => '게임 클라이언트에서 가입해주세요!',
+        'from_web' => '웹을 통해서 가입해주세요!',
         'saved' => '사용자 계정 생성됨',
     ],
     'verify' => [

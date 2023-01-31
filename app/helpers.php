@@ -501,8 +501,12 @@ function markdown_chat($input)
     return $converter->convert($input)->getContent();
 }
 
-function markdown_plain($input)
+function markdown_plain(?string $input): string
 {
+    if ($input === null) {
+        return '';
+    }
+
     static $converter;
 
     if (!isset($converter)) {

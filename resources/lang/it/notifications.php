@@ -28,7 +28,7 @@ return [
             '_' => 'Beatmap',
 
             'beatmap_owner_change' => [
-                '_' => 'Guest difficulty',
+                '_' => 'Difficoltà guest',
                 'beatmap_owner_change' => 'Sei diventato il proprietario della difficoltà ":beatmap" nella beatmap ":title"',
                 'beatmap_owner_change_compact' => 'Sei diventato il proprietario della difficoltà ":beatmap"',
             ],
@@ -209,6 +209,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => '',
+            ],
+
             'channel' => [
                 'pm' => 'Hai ricevuto un nuovo messaggio da :username',
             ],

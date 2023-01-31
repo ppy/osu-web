@@ -5,14 +5,14 @@
 
 return [
     'completed' => [
-        'home' => '',
-        'logout' => '',
-        'text' => '',
-        'title' => '',
+        'home' => 'Doties uz informācijas paneli',
+        'logout' => 'Iziet',
+        'text' => 'Tagad varat aizvērt šo cilni/logu',
+        'title' => 'osu! klienta verifikācija ir pabeigta',
     ],
 
     'create' => [
-        'confirm' => '',
-        'title' => '',
+        'confirm' => 'Noklikšķiniet uz autorizācijas pogas, lai pabeigtu klienta verifikāciju.',
+        'title' => 'osu! klienta verifikācija',
     ],
 ];

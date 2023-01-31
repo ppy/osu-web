@@ -54,16 +54,16 @@ return [
 
     'create' => [
         'form' => [
-            'password' => '',
-            'password_confirmation' => '',
-            'submit' => '',
-            'user_email' => '',
-            'user_email_confirmation' => '',
-            'username' => '',
+            'password' => 'heslo',
+            'password_confirmation' => 'potvrzení hesla',
+            'submit' => 'vytvořit účet',
+            'user_email' => 'email',
+            'user_email_confirmation' => 'ověření e-mailu',
+            'username' => 'uživatelské jméno',
 
             'tos_notice' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'vytvořením účtu souhlasíte s :link',
+                'link' => 'smluvní podmínky',
             ],
         ],
     ],
@@ -467,8 +467,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
-        'from_client' => '',
-        'from_web' => '',
+        'from_client' => 'prosím, zaregistrujte se přes herního klienta!',
+        'from_web' => 'prosím, zaregistrujte se přes web',
         'saved' => 'Uživatelem vytvořen',
     ],
     'verify' => [

@@ -41,15 +41,18 @@ export const reportableTypeToGroupKey = {
 export type ReportableType = keyof typeof reportableTypeToGroupKey;
 type GroupKey = typeof reportableTypeToGroupKey[ReportableType];
 
+// intended to be in display order, not alphabetical order.
+/* eslint-disable sort-keys */
 const availableOptions = {
   Cheating: trans('users.report.options.cheating'),
-  Insults: trans('users.report.options.insults'),
   MultipleAccounts: trans('users.report.options.multiple_accounts'),
-  Nonsense: trans('users.report.options.nonsense'),
-  Other: trans('users.report.options.other'),
+  Insults: trans('users.report.options.insults'),
   Spam: trans('users.report.options.spam'),
   UnwantedContent: trans('users.report.options.unwanted_content'),
+  Nonsense: trans('users.report.options.nonsense'),
+  Other: trans('users.report.options.other'),
 } as const;
+/* eslint-enable sort-keys */
 
 const availableOptionsByGroupKey: Partial<Record<GroupKey, (keyof typeof availableOptions)[]>> = {
   beatmapset: ['UnwantedContent', 'Other'],

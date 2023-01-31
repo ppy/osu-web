@@ -73,10 +73,10 @@ return [
 
     'download' => [
         'action' => 'Last ned osu!',
-        'action_lazer' => '',
+        'action_lazer' => 'Last ned osu!(lazer)',
         'action_lazer_description' => '',
         'action_lazer_info' => '',
-        'action_lazer_title' => '',
+        'action_lazer_title' => 'prøv osu!(lazer)',
         'action_title' => '',
         'for_os' => '',
         'lazer_note' => '',

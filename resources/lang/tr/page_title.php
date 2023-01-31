@@ -105,7 +105,7 @@ return [
         ],
         'users_controller' => [
             '_' => 'oyuncu bilgisi',
-            'create' => '',
+            'create' => 'hesap oluştur',
             'disabled' => 'bildirim',
         ],
         'wiki_controller' => [

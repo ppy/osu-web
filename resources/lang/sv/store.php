@@ -127,7 +127,7 @@ return [
 
     'supporter_tag' => [
         'gift' => 'ge som gåva',
-        'gift_message' => '',
+        'gift_message' => 'lägg till ett valfritt meddelande till din gåva! (upp till :length tecken)',
 
         'require_login' => [
             '_' => 'Du behöver vara :link för att kunna få en osu!supporter tagg!',
