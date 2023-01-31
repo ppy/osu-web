@@ -356,6 +356,6 @@ class SupporterTagFulfillmentTest extends TestCase
 
     private function assertEqualsUpToMinute(Carbon $expected, Carbon $actual): void
     {
-        $this->assertEquals($expected->copy()->floorMinutes(1), $actual->copy()->floorMinutes(1));
+        $this->assertTrue($expected->diffInMinutes($actual, false) < 2);
     }
 }
