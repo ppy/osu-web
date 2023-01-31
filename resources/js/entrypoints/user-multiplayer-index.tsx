@@ -3,12 +3,12 @@
 
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import MultiplayerListStore from 'stores/multiplayer-list-store';
+import RoomListStore from 'stores/room-list-store';
 import Main from 'user-multiplayer-index/main';
 import { parseJson } from 'utils/json';
 
 core.reactTurbolinks.register('user-multiplayer-index', () => {
-  const store = new MultiplayerListStore();
+  const store = new RoomListStore();
   store.updateWithJson(parseJson('json-user-multiplayer-index'));
 
   return (

@@ -2,21 +2,21 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import ShowMoreLink from 'components/show-more-link';
-import MultiplayerListJson from 'interfaces/multiplayer-list-json';
+import RoomListJson from 'interfaces/room-list-json';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import MultiplayerListStore from 'stores/multiplayer-list-store';
+import RoomListStore from 'stores/room-list-store';
 import { trans } from 'utils/lang';
 import MultiplayerRoom from './multiplayer-room';
 
 interface Props {
   showMoreRoute: string;
-  store: MultiplayerListStore;
+  store: RoomListStore;
 }
 
 @observer
-export default class MultiplayerList extends React.Component<Props> {
+export default class RoomList extends React.Component<Props> {
   @observable private loading = false;
 
   @computed
@@ -33,7 +33,7 @@ export default class MultiplayerList extends React.Component<Props> {
   render() {
     if (this.props.store.rooms.length === 0) {
       return (
-        <div className='multiplayer-list'>
+        <div className='room-list'>
           {trans('multiplayer.empty._', {
             type_group: trans(`multiplayer.empty.${this.props.store.typeGroup}`),
           })}
@@ -42,9 +42,9 @@ export default class MultiplayerList extends React.Component<Props> {
     }
 
     return (
-      <div className='multiplayer-list'>
+      <div className='room-list'>
         {this.props.store.rooms.map((room) => <MultiplayerRoom key={room.id} room={room} />)}
-        <div className='multiplayer-list__more'>
+        <div className='room-list__more'>
           <ShowMoreLink
             callback={this.handleShowMore}
             hasMore={this.hasMore}
@@ -63,7 +63,7 @@ export default class MultiplayerList extends React.Component<Props> {
 
     const url = this.props.showMoreRoute;
     void $.getJSON(url, { cursor_string: this.props.store.cursorString })
-      .done(action((response: MultiplayerListJson) => {
+      .done(action((response: RoomListJson) => {
         this.props.store.updateWithJson(response);
       })).always(action(() => {
         this.loading = false;

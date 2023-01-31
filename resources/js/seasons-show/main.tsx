@@ -1,19 +1,19 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import MultiplayerList from 'components/multiplayer-list';
 import RankingSelectOptions from 'components/ranking-select-options';
+import RoomList from 'components/room-list';
 import TimeWithTooltip from 'components/time-with-tooltip';
 import SeasonJson from 'interfaces/season-json';
 import { route } from 'laroute';
 import * as React from 'react';
-import MultiplayerListStore from 'stores/multiplayer-list-store';
+import RoomListStore from 'stores/room-list-store';
 import { trans } from 'utils/lang';
 
 interface Props {
   currentSeason: SeasonJson;
   seasons: SeasonJson[];
-  store: MultiplayerListStore;
+  store: RoomListStore;
 }
 
 export default function Main(props: Props) {
@@ -70,7 +70,7 @@ export default function Main(props: Props) {
       </div>
 
       <div className='osu-page osu-page--generic'>
-        <MultiplayerList
+        <RoomList
           showMoreRoute={route('seasons.rooms', { season: props.currentSeason.id })}
           store={props.store}
         />

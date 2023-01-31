@@ -15,7 +15,7 @@ type RoomJsonIncludes =
 
 export type EndpointRoomJson = RoomJson & Required<Pick<RoomJson, RoomJsonIncludes>>;
 
-export default interface MultiplayerListJson {
+export default interface RoomListJson {
   beatmaps: BeatmapJson[];
   beatmapsets: BeatmapsetJson[];
   cursor_string: string | null;
