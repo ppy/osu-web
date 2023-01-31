@@ -84,6 +84,15 @@ class UsernameValidation
         $errors = new ValidationErrors('user');
 
         $users = static::usersOfUsername($username);
+
+        // top 100
+        // Queried directly on model because User::rankHighests is disabled
+        // when experimental rank is set as default.
+        $highestRank = RankHighest::whereIn('user_id', $users->pluck('user_id'))->min('rank');
+        if ($highestRank !== null && $highestRank <= 100) {
+            return $errors->add('username', '.username_locked');
+        }
+
         foreach ($users as $user) {
             // has badges
             if ($user->badges()->exists()) {
@@ -92,14 +101,6 @@ class UsernameValidation
 
             // ranked beatmaps
             if ($user->profileBeatmapsetsRanked()->exists()) {
-                return $errors->add('username', '.username_locked');
-            }
-
-            // top 100
-            // Queried directly on model because User::rankHighests is disabled
-            // when experimental rank is set as default.
-            $highestRank = RankHighest::where('user_id', $user->getKey())->min('rank');
-            if ($highestRank !== null && $highestRank <= 100) {
                 return $errors->add('username', '.username_locked');
             }
         }
