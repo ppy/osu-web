@@ -43,7 +43,7 @@ export default class MultiplayerList extends React.Component<Props> {
 
     return (
       <div className='multiplayer-list'>
-        {this.props.store.rooms.map((room) => <MultiplayerRoom key={room.id} room={room} store={this.props.store} />)}
+        {this.props.store.rooms.map((room) => <MultiplayerRoom key={room.id} room={room} />)}
         <div className='multiplayer-list__more'>
           <ShowMoreLink
             callback={this.handleShowMore}

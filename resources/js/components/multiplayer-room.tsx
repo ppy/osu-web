@@ -11,14 +11,12 @@ import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as moment from 'moment';
 import * as React from 'react';
-import MultiplayerListStore from 'stores/multiplayer-list-store';
 import { getDiffColour } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 import { trans, transChoice } from 'utils/lang';
 
 interface Props {
   room: EndpointRoomJson;
-  store: MultiplayerListStore;
 }
 
 const endingSoonDiffMs = 60 * 60 * 1000; // 60 minutes.

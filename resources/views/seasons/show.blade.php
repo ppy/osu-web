@@ -12,7 +12,7 @@
     'hasPager' => false,
     'hasScores' => false,
     'spotlight' => null,
-    'titlePrepend' => osu_trans('rankings.type.seasons').': '.$season->name,
+    'titlePrepend' => osu_trans('rankings.type.seasons').': '.$seasonJson['name'],
     'type' => 'seasons',
 ])
 
@@ -24,7 +24,7 @@
     @parent
 
     <script id="json-currentSeason" type="application/json">
-        {!! json_encode(json_item($season, 'Season')) !!}
+        {!! json_encode($seasonJson) !!}
     </script>
 
     <script id="json-rooms" type="application/json">
@@ -32,7 +32,7 @@
     </script>
 
     <script id="json-seasons" type="application/json">
-        {!! json_encode(json_collection($seasons, 'Season')) !!}
+        {!! json_encode($seasonsJson) !!}
     </script>
 
     @include('layout._react_js', ['src' => 'js/seasons-show.js'])

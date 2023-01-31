@@ -15,7 +15,7 @@ class SeasonTransformer extends TransformerAbstract
     {
         return [
             'end_date' => $season->endDate(),
-            'id' => $season->id,
+            'id' => $season->getKey(),
             'name' => $season->name,
             'room_count' => $season->rooms()->count(),
             'start_date' => $season->startDate(),

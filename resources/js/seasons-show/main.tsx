@@ -71,7 +71,7 @@ export default function Main(props: Props) {
 
       <div className='osu-page osu-page--generic'>
         <MultiplayerList
-          showMoreRoute={route('seasons.show', { season: props.currentSeason.id })}
+          showMoreRoute={route('seasons.rooms', { season: props.currentSeason.id })}
           store={props.store}
         />
       </div>

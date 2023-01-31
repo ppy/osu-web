@@ -66,7 +66,7 @@ class MultiplayerController extends Controller
         $nextCursor = $hasMore ? $search['cursorHelper']->next($rooms) : null;
 
         return array_merge([
-            'rooms' => json_collection($rooms, new RoomTransformer(), ['current_playlist_item.beatmap.beatmapset', 'difficulty_range', 'host', 'playlist_item_stats']),
+            'rooms' => json_collection($rooms, new RoomTransformer(), Room::INCLUDES_FOR_DISPLAY),
             'search' => $search['search'],
             'type_group' => $typeGroup,
         ], cursor_for_response($nextCursor));

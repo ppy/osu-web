@@ -65,6 +65,8 @@ class Room extends Model
         'realtime' => self::REALTIME_TYPES,
     ];
 
+    const INCLUDES_FOR_DISPLAY = ['current_playlist_item.beatmap.beatmapset', 'difficulty_range', 'host', 'playlist_item_stats'];
+
     const PLAYLIST_TYPE = 'playlists';
     const REALTIME_DEFAULT_TYPE = 'head_to_head';
     const REALTIME_TYPES = ['head_to_head', 'team_versus'];
