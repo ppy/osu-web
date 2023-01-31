@@ -27,6 +27,17 @@ class UsernameValidationTest extends TestCase
         $this->assertTrue($existing->is($users->first()));
     }
 
+    public function testValidateUsersOfUsernameInactive()
+    {
+        $existing = User::factory()->create([
+            'username' => 'user1',
+            'username_clean' => 'user1',
+            'user_lastvisit' => Carbon::now()->subYears(20),
+        ]);
+
+        $this->assertFalse(UsernameValidation::validateUsersOfUsername('user1')->isAny());
+    }
+
     public function testValidateUsersOfUsernameInactiveFormerTopRank()
     {
         $existing = User::factory()->create([
