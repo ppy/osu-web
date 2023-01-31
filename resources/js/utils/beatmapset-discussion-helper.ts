@@ -322,7 +322,7 @@ export function propsFromHref(href: string) {
   }
 
   if (targetUrl != null && targetUrl.host === currentUrl().host) {
-    const target = urlParse(targetUrl.href, null);
+    const target = urlParse(targetUrl.href);
     if (target?.discussionId != null && target.beatmapsetId != null) {
       const hash = [target.discussionId, target.postId].filter(Number.isFinite).join('/');
       if (current?.beatmapsetId === target.beatmapsetId) {
