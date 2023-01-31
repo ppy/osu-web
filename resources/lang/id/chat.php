@@ -8,6 +8,7 @@ return [
     'talking_in' => 'berbicara di :channel',
     'talking_with' => 'berbicara dengan :name',
     'title_compact' => 'chat',
+    'unread_messages' => '',
 
     'cannot_send' => [
         'channel' => 'Kamu sedang tidak dapat mengirimkan pesan pada kanal percakapan ini.',
@@ -35,6 +36,7 @@ return [
 
         'labels' => [
             'description' => 'keterangan',
+            'message' => '',
             'name' => 'nama ruangan',
             'users' => 'pemain yang akan ditambahkan',
         ],

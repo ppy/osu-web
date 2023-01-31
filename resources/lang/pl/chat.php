@@ -8,6 +8,7 @@ return [
     'talking_in' => 'rozmowa na kanale :channel',
     'talking_with' => 'rozmowa z użytkownikiem :name',
     'title_compact' => 'czat',
+    'unread_messages' => '',
 
     'cannot_send' => [
         'channel' => 'W tej chwili nie możesz wysyłać wiadomości na ten kanał.',
@@ -35,6 +36,7 @@ return [
 
         'labels' => [
             'description' => 'opis',
+            'message' => '',
             'name' => 'nazwa',
             'users' => 'odbiorcy',
         ],

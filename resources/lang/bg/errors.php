@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => '',
     'missing_route' => 'Невалидна връзка или вид на заявка.',
     'no_restricted_access' => 'Не сте в състояние да изпълните това действие, докато профилът ви е ограничен.',
     'supporter_only' => 'Трябва да сте osu!supporter, за да използвате тази функция.',

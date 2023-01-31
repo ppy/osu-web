@@ -148,7 +148,7 @@ return [
 
             'legacy_pm' => [
                 '_' => '',
-                'legacy_pm' => ':count_delimited непрочитанное сообщение|:count_delimited непрочитанных сообщения',
+                'legacy_pm' => ':count_delimited непрочитанное сообщение|:count_delimited непрочитанных сообщения|:count_delimited непрочитанных сообщений',
             ],
         ],
 
@@ -209,6 +209,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => '',
+            ],
+
             'channel' => [
                 'pm' => 'Вы получили новое сообщение от :username',
             ],

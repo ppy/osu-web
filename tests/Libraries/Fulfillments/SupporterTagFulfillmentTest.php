@@ -92,7 +92,7 @@ class SupporterTagFulfillmentTest extends TestCase
         $this->expectCountChange(fn () => Event::where('user_id', $this->user->getKey())->count(), $hidden ? 0 : 1);
 
         // Also test multiple tags in same run to same user get applied properly.
-        $expectedExpiry = $giftee1->osu_subscriptionexpiry->addMonthsNoOverflow(2);
+        $expectedExpiry = $giftee1->osu_subscriptionexpiry->addMonthsNoOverflow(1)->addMonthsNoOverflow(1);
 
         (new SupporterTagFulfillment($this->order))->run();
 

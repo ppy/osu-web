@@ -54,16 +54,16 @@ return [
 
     'create' => [
         'form' => [
-            'password' => '',
-            'password_confirmation' => '',
-            'submit' => '',
-            'user_email' => '',
-            'user_email_confirmation' => '',
-            'username' => '',
+            'password' => 'slaptažodis',
+            'password_confirmation' => 'slaptažodžio patvirtinimas',
+            'submit' => 'kurti paskyrą',
+            'user_email' => 'el. paštas',
+            'user_email_confirmation' => 'el. pašto patvirtinimas',
+            'username' => 'vartotojo vardas',
 
             'tos_notice' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'susikurdamas paskyrą jūs sutinkate su :link',
+                'link' => 'paslaugų teikimo sąlygom',
             ],
         ],
     ],
@@ -468,8 +468,8 @@ return [
         'offline' => 'Atsijungęs',
     ],
     'store' => [
-        'from_client' => '',
-        'from_web' => '',
+        'from_client' => 'prašome registruotis per žaidimo klientą!',
+        'from_web' => 'prašome registruotis per tinklalapį',
         'saved' => 'Naudotojas sukurtas',
     ],
     'verify' => [

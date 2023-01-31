@@ -105,7 +105,7 @@ return [
         ],
         'users_controller' => [
             '_' => 'инфо за играч',
-            'create' => '',
+            'create' => 'създаване на профил',
             'disabled' => 'известие',
         ],
         'wiki_controller' => [
