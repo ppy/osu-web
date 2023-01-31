@@ -82,7 +82,7 @@ class UsernameValidation
     {
         $errors = new ValidationErrors('user');
 
-        $users = static::usersOfUsername($username);
+        $users = static::usersOfUsername($username)->load('rankHighests');
         foreach ($users as $user) {
             // has badges
             if ($user->badges()->exists()) {
@@ -91,6 +91,11 @@ class UsernameValidation
 
             // ranked beatmaps
             if ($user->profileBeatmapsetsRanked()->exists()) {
+                return $errors->add('username', '.username_locked');
+            }
+
+            // top 100
+            if ($user->rankHighests->contains(fn ($r) => $r->rank <= 100)) {
                 return $errors->add('username', '.username_locked');
             }
         }

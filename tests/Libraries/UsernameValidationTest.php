@@ -7,6 +7,7 @@ namespace Tests\Libraries;
 
 use App\Libraries\UsernameValidation;
 use App\Models\User;
+use App\Models\RankHighest;
 use Carbon\Carbon;
 use Tests\TestCase;
 
@@ -24,5 +25,40 @@ class UsernameValidationTest extends TestCase
         $users = UsernameValidation::usersOfUsername('user1');
         $this->assertCount(1, $users);
         $this->assertTrue($existing->is($users->first()));
+    }
+
+    public function testValidateUsersOfUsernameInactiveFormerTopRank()
+    {
+        $existing = User::factory()->create([
+            'username' => 'user1',
+            'username_clean' => 'user1',
+            'user_lastvisit' => Carbon::now()->subYears(20),
+        ]);
+        RankHighest::factory()->create([
+            'user_id' => $existing,
+            'rank' => 100,
+        ]);
+
+        $this->assertTrue(UsernameValidation::validateUsersOfUsername('user1')->isAny());
+    }
+
+    public function testValidateUsersOfUsernameRenamedTopRank()
+    {
+        $existing = User::factory()->create([
+            'username' => 'user2',
+            'username_clean' => 'user2',
+            'user_lastvisit' => Carbon::now(),
+        ]);
+        $existing->usernameChangeHistory()->make([
+            'timestamp' => Carbon::now()->subYears(20),
+            'username' => 'user2',
+            'username_last' => 'user1',
+        ])->saveOrExplode();
+        RankHighest::factory()->create([
+            'user_id' => $existing,
+            'rank' => 100,
+        ]);
+
+        $this->assertTrue(UsernameValidation::validateUsersOfUsername('user1')->isAny());
     }
 }
