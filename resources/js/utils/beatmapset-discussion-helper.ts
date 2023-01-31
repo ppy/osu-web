@@ -380,8 +380,7 @@ export function urlParse(urlString: string | null, discussions?: BeatmapsetDiscu
   };
 
   if (url.hash[1] === '/') {
-    const [discussionId, postId] = url.hash.slice(2).split('/').map(getInt);
-
+    const [discussionId, postId] = url.hash.split('/').slice(1, 3).map(getInt);
     if (discussionId != null) {
       ret.discussionId = discussionId;
       if (postId != null) {
