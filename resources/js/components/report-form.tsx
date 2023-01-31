@@ -41,8 +41,7 @@ export const reportableTypeToGroupKey = {
 export type ReportableType = keyof typeof reportableTypeToGroupKey;
 type GroupKey = typeof reportableTypeToGroupKey[ReportableType];
 
-// Report form is intended to be in display order, not alphabetical order.
-
+// intended to be in display order, not alphabetical order.
 const availableOptions = {
   Cheating: trans('users.report.options.cheating'),
   MultipleAccounts: trans('users.report.options.multiple_accounts'),
