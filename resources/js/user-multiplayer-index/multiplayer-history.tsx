@@ -46,13 +46,11 @@ export default class MultiplayerHistory extends React.Component<Props> {
     return (
       <div className='user-multiplayer-history'>
         {this.props.store.rooms.map((room) => <Room key={room.id} room={room} store={this.props.store} />)}
-        <div className='user-multiplayer-history__more'>
-          <ShowMoreLink
-            callback={this.handleShowMore}
-            hasMore={this.hasMore}
-            loading={this.loading}
-          />
-        </div>
+        <ShowMoreLink
+          callback={this.handleShowMore}
+          hasMore={this.hasMore}
+          loading={this.loading}
+        />
       </div>
     );
   }
