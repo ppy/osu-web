@@ -6,8 +6,8 @@
 namespace Tests\Libraries;
 
 use App\Libraries\UsernameValidation;
-use App\Models\User;
 use App\Models\RankHighest;
+use App\Models\User;
 use Carbon\Carbon;
 use Tests\TestCase;
 
