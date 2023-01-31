@@ -10,14 +10,14 @@ return [
 
         'avatar' => [
             'title' => 'Profila attēls',
-            'rules' => 'Lūgums nodrošināt savu profila attēlu, vadoties pēc :link.<br/>Tas nozīmē, ka attēlam jābūt <strong> atbilstošam jebkuram vecumam</strong>, kas nedrīkstētu iekļaut kailumus, necenzētu valodu vai saturu ieteikšanu.',
+            'rules' => 'Lūdzu, pārliecinieties, ka jūsu profila attēls atbilst :link.<br/>Tas nozīmē, ka attēlam jābūt <strong>piemērotam visiem vecumiem</strong>, t.i., bez kailuma, rupjībām vai ierosinoša satura.',
             'rules_link' => 'kopienas noteikumi',
         ],
 
         'email' => [
             'new' => 'jauns e-pasts',
             'new_confirmation' => 'e-pasta apstiprinājums',
-            'title' => 'E-pasta adrese',
+            'title' => 'E-pasts',
         ],
 
         'password' => [
@@ -47,40 +47,40 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'saņemt paziņojumus par jaunu problēmu kvalificētām bītmapēm ar šādiem režīmiem',
-        'beatmapset_disqualify' => '',
-        'comment_reply' => '',
+        'beatmapset_discussion_qualified_problem' => 'saņemt paziņojumus par jaunām problēmām, kas saistītas ar kvalificētām šādu režīmu sitkartēm',
+        'beatmapset_disqualify' => 'saņemt paziņojumus, kad tiek diskvalificētas šādu režīmu sitkartes',
+        'comment_reply' => 'saņemt paziņojumus par atbildēm uz saviem komentāriem',
         'title' => 'Paziņojumi',
         'topic_auto_subscribe' => 'automātiski ieslēgt paziņojumus foruma tematiem, kurus esiet izveidojis',
 
         'options' => [
-            '_' => '',
-            'beatmap_owner_change' => '',
-            'beatmapset:modding' => '',
-            'channel_message' => '',
-            'comment_new' => 'Jauns komentārs',
-            'forum_topic_reply' => '',
-            'mail' => 'Pasts',
-            'mapping' => '',
-            'push' => 'piespiest',
-            'user_achievement_unlock' => '',
+            '_' => 'piegādes opcijas',
+            'beatmap_owner_change' => 'viesa grūtības līmenis',
+            'beatmapset:modding' => 'bītmapju modifikācijas',
+            'channel_message' => 'privātās čata ziņas',
+            'comment_new' => 'jauni komentāri',
+            'forum_topic_reply' => 'tēmas atbilde',
+            'mail' => 'pasts',
+            'mapping' => 'bītmapes kartētājs',
+            'push' => 'push',
+            'user_achievement_unlock' => 'lietotāja medaļa atklāta',
         ],
     ],
 
     'oauth' => [
         'authorized_clients' => 'autorizētie klienti',
-        'own_clients' => 'piederošie klienti',
-        'title' => 'OAutoriz',
+        'own_clients' => 'savi klienti',
+        'title' => 'OAuth',
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '',
-        'beatmapset_title_show_original' => '',
-        'title' => 'Izvēles',
+        'beatmapset_show_nsfw' => 'slēpt brīdinājumus par nepiemērotu saturu bītmapēs',
+        'beatmapset_title_show_original' => 'rādīt bītmapes metadatus oriģinālvalodā',
+        'title' => 'Opcijas',
 
         'beatmapset_download' => [
-            '_' => '',
-            'all' => '',
+            '_' => 'noklusējuma bītmapes lejupielādes tips',
+            'all' => 'ar video, ja pieejams',
             'direct' => 'atvērt osu!direct',
             'no_video' => 'bez video',
         ],
@@ -118,11 +118,11 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => 'Tagad jūs variet aizvērt šo cilni/logu',
-        'title' => 'Pārbaude pabeigta',
+        'text' => 'Tagad varat aizvērt šo cilni/logu',
+        'title' => 'Verifikācija ir pabeigta',
     ],
 
     'verification_invalid' => [
-        'title' => 'Nederīga vai novecojusi pārbaudes saite',
+        'title' => 'Nederīga vai novecojusi verifikācijas saite',
     ],
 ];

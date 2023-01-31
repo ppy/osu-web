@@ -54,12 +54,12 @@ return [
 
     'create' => [
         'form' => [
-            'password' => '',
-            'password_confirmation' => '',
-            'submit' => '',
+            'password' => 'κωδικός',
+            'password_confirmation' => 'επιβεβαίωση κωδικού',
+            'submit' => 'δημιούργησε λογαριασμό',
             'user_email' => '',
-            'user_email_confirmation' => '',
-            'username' => '',
+            'user_email_confirmation' => 'επιβεβαίωση email',
+            'username' => 'όνομα χρήστη',
 
             'tos_notice' => [
                 '_' => '',
@@ -468,7 +468,7 @@ return [
     ],
     'store' => [
         'from_client' => '',
-        'from_web' => '',
+        'from_web' => 'εγγραφείτε μέσω του web',
         'saved' => 'Ο χρήστης δημιουργήθηκε',
     ],
     'verify' => [

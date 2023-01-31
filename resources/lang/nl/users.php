@@ -54,16 +54,16 @@ return [
 
     'create' => [
         'form' => [
-            'password' => '',
-            'password_confirmation' => '',
-            'submit' => '',
-            'user_email' => '',
-            'user_email_confirmation' => '',
-            'username' => '',
+            'password' => 'wachtwoord',
+            'password_confirmation' => 'wacthwoordbevestiging',
+            'submit' => 'account aanmaken',
+            'user_email' => 'e-mail',
+            'user_email_confirmation' => 'e-mailadres bevestigen',
+            'username' => 'gebruikersnaam',
 
             'tos_notice' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'door een account aan te maken ga je akkoord met de :link',
+                'link' => 'gebruiksvoorwaarden',
             ],
         ],
     ],
@@ -234,7 +234,7 @@ return [
                     'title' => 'Loved Beatmaps',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => 'Genomineerde Ranked Beatmaps',
                 ],
                 'pending' => [
                     'title' => 'Afwachtende Beatmaps',
@@ -467,8 +467,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
-        'from_client' => '',
-        'from_web' => '',
+        'from_client' => 'registreer je alsjeblieft via de game client!',
+        'from_web' => 'registreer je alsjeblieft via het web',
         'saved' => 'Door gebruiker gemaakt',
     ],
     'verify' => [

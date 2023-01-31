@@ -184,7 +184,7 @@ return [
         ],
 
         'register' => [
-            'download' => 'Lejuplādēt',
+            'download' => 'Lejupielādēt',
             'info' => 'Lejupielādēt osu!, lai izveidotu savu kontu!',
             'title' => "Nav vēl konta?",
         ],

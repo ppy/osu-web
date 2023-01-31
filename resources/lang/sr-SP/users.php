@@ -54,16 +54,16 @@ return [
 
     'create' => [
         'form' => [
-            'password' => '',
-            'password_confirmation' => '',
-            'submit' => '',
-            'user_email' => '',
-            'user_email_confirmation' => '',
-            'username' => '',
+            'password' => 'лозинка',
+            'password_confirmation' => 'потврда лозинке',
+            'submit' => 'креирај налог',
+            'user_email' => 'Е-пошта',
+            'user_email_confirmation' => 'потврда Е-поште',
+            'username' => 'корисничко име',
 
             'tos_notice' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'креирањем налога прихватате :link',
+                'link' => 'услови коришћења',
             ],
         ],
     ],
@@ -469,8 +469,8 @@ return [
         'offline' => 'Офлајн',
     ],
     'store' => [
-        'from_client' => '',
-        'from_web' => '',
+        'from_client' => 'молимо вас да се региструјете преко клијента игре!',
+        'from_web' => 'молимо вас да се региструјете преко веба',
         'saved' => 'Корисник је креиран',
     ],
     'verify' => [

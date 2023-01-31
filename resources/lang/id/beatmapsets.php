@@ -66,7 +66,7 @@ return [
             'favourite_login' => 'Silakan masuk untuk menambahkan beatmap ini ke Beatmap Favorit',
             'logged-out' => 'Anda harus masuk sebelum mengunduh beatmap!',
             'mapped_by' => 'dibuat oleh :mapper',
-            'mapped_by_guest' => '',
+            'mapped_by_guest' => 'guest difficulty oleh :mapper',
             'unfavourite' => 'Hapus beatmap ini dari daftar Beatmap Favorit',
             'updated_timeago' => 'terakhir diperbarui :timeago',
 

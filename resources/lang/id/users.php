@@ -54,16 +54,16 @@ return [
 
     'create' => [
         'form' => [
-            'password' => '',
-            'password_confirmation' => '',
-            'submit' => '',
-            'user_email' => '',
-            'user_email_confirmation' => '',
-            'username' => '',
+            'password' => 'kata sandi',
+            'password_confirmation' => 'konfirmasi kata sandi',
+            'submit' => 'buat akun',
+            'user_email' => 'email',
+            'user_email_confirmation' => 'konfirmasi email',
+            'username' => 'nama pengguna',
 
             'tos_notice' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'dengan membuat akun, anda menyatakan diri setuju dengan :link yang berlaku',
+                'link' => 'ketentuan layanan',
             ],
         ],
     ],
@@ -467,8 +467,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
-        'from_client' => '',
-        'from_web' => '',
+        'from_client' => 'mohon untuk mendaftarkan diri melalui klien permainan!',
+        'from_web' => 'silakan mendaftarkan diri melalui situs web',
         'saved' => 'Pengguna dibuat',
     ],
     'verify' => [
