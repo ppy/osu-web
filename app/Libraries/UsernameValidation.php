@@ -5,6 +5,7 @@
 
 namespace App\Libraries;
 
+use App\Models\RankHighest;
 use App\Models\User;
 use App\Models\UsernameChangeHistory;
 use Carbon\Carbon;
@@ -82,7 +83,7 @@ class UsernameValidation
     {
         $errors = new ValidationErrors('user');
 
-        $users = static::usersOfUsername($username)->load('rankHighests');
+        $users = static::usersOfUsername($username);
         foreach ($users as $user) {
             // has badges
             if ($user->badges()->exists()) {
@@ -95,7 +96,10 @@ class UsernameValidation
             }
 
             // top 100
-            if ($user->rankHighests->contains(fn ($r) => $r->rank <= 100)) {
+            // Queried directly on model because User::rankHighests is disabled
+            // when experimental rank is set as default.
+            $highestRank = RankHighest::where('user_id', $user->getKey())->min('rank');
+            if ($highestRank !== null && $highestRank <= 100) {
                 return $errors->add('username', '.username_locked');
             }
         }
