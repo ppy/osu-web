@@ -659,6 +659,7 @@ class BeatmapDiscussion extends Model
                 BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_RESTORE, $restoredBy, $this)->saveOrExplode();
             }
 
+            $this->beatmapDiscussionPosts()->where('deleted_at', $this->deleted_at)->update(['deleted_at' => null]);
             $this->update(['deleted_at' => null]);
             $this->refreshKudosu('restore');
         });
@@ -685,10 +686,12 @@ class BeatmapDiscussion extends Model
                 BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_DELETE, $deletedBy, $this)->saveOrExplode();
             }
 
-            $this->fill([
+            $deleteAttributes = [
                 'deleted_by_id' => $deletedBy->user_id ?? null,
                 'deleted_at' => Carbon::now(),
-            ])->saveOrExplode();
+            ];
+            $this->fill($deleteAttributes)->saveOrExplode();
+            $this->beatmapDiscussionPosts()->whereNull('deleted_at')->update($deleteAttributes);
             $this->refreshKudosu('delete');
         });
     }
