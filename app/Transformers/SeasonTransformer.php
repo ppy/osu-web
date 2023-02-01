@@ -11,14 +11,25 @@ use App\Models\Season;
 
 class SeasonTransformer extends TransformerAbstract
 {
+    protected array $availableIncludes = [
+        'end_date',
+        'start_date',
+    ];
+
     public function transform(Season $season): array
     {
         return [
-            'end_date' => $season->endDate(),
             'id' => $season->getKey(),
             'name' => $season->name,
             'room_count' => $season->rooms()->count(),
-            'start_date' => $season->startDate(),
         ];
+    }
+
+    public function includeEndDate(Season $season) {
+        return $this->primitive($season->endDate());
+    }
+
+    public function includeStartDate(Season $season) {
+        return $this->primitive($season->startDate());
     }
 }

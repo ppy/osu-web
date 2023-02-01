@@ -28,7 +28,7 @@ class SeasonsController extends Controller
         $params = $this->paramsForResponse(request()->all(), $season);
         $roomsJson = Room::responseJson($params, false);
 
-        $seasonJson = json_item($season, new SeasonTransformer());
+        $seasonJson = json_item($season, new SeasonTransformer(), ['end_date', 'start_date']);
 
         $seasons = Season::orderByDesc('id')->get();
         $seasonsJson = json_collection($seasons, new SeasonTransformer());
