@@ -43,7 +43,6 @@ class SeasonsController extends Controller
             'limit' => get_int($rawParams['limit'] ?? null),
             'mode' => 'all',
             'season_id' => $season->getKey(),
-            'type_group' => 'playlists',
         ];
     }
 }

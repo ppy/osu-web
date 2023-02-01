@@ -110,6 +110,7 @@ class Room extends Model
     public static function responseJson(array $rawParams): array
     {
         $rawParams['limit'] = clamp($rawParams['limit'] ?? 50, 1, 50);
+        $typeGroup = $rawParams['type_group'] ?? null;
 
         $search = static::search($rawParams);
 
@@ -121,10 +122,11 @@ class Room extends Model
         $rooms->each->findAndSetCurrentPlaylistItem();
         $rooms->loadMissing('currentPlaylistItem.beatmap.beatmapset');
 
-        $response = [
-            'rooms' => json_collection($rooms, new RoomTransformer(), ['current_playlist_item.beatmap.beatmapset', 'difficulty_range', 'host', 'playlist_item_stats']),
-            'type_group' => $rawParams['type_group'],
-        ];
+        $response['rooms'] = json_collection($rooms, new RoomTransformer(), ['current_playlist_item.beatmap.beatmapset', 'difficulty_range', 'host', 'playlist_item_stats']);
+
+        if ($typeGroup !== null) {
+            $response['type_group'] = $typeGroup;
+        }
 
         $nextCursor = $hasMore ? $search['cursorHelper']->next($rooms) : null;
 

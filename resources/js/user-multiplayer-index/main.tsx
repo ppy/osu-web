@@ -13,11 +13,11 @@ import Cover from 'profile-page/cover';
 import DetailBar from 'profile-page/detail-bar';
 import headerLinks from 'profile-page/header-links';
 import * as React from 'react';
-import RoomListStore from 'stores/room-list-store';
+import UserMultiplayerHistoryStore from 'stores/user-multiplayer-history-store';
 import { trans } from 'utils/lang';
 
 interface Props {
-  store: RoomListStore;
+  store: UserMultiplayerHistoryStore;
   user: UserExtendedJson;
 }
 

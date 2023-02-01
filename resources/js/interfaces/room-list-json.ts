@@ -5,8 +5,6 @@ import BeatmapJson from './beatmap-json';
 import BeatmapsetJson from './beatmapset-json';
 import RoomJson from './room-json';
 
-export type MultiplayerTypeGroup = 'playlists' | 'realtime';
-
 type RoomJsonIncludes =
   'current_playlist_item' |
   'difficulty_range' |
@@ -20,5 +18,4 @@ export default interface RoomListJson {
   beatmapsets: BeatmapsetJson[];
   cursor_string: string | null;
   rooms: EndpointRoomJson[];
-  type_group: MultiplayerTypeGroup;
 }

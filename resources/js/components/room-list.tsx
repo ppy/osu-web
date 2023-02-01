@@ -2,17 +2,18 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import ShowMoreLink from 'components/show-more-link';
-import RoomListJson from 'interfaces/room-list-json';
+import UserMultiplayerHistoryJson from 'interfaces/user-multiplayer-history-json';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import RoomListStore from 'stores/room-list-store';
+import UserMultiplayerHistoryStore from 'stores/user-multiplayer-history-store';
 import { trans } from 'utils/lang';
 import MultiplayerRoom from './multiplayer-room';
 
 interface Props {
   showMoreRoute: string;
-  store: RoomListStore;
+  store: RoomListStore | UserMultiplayerHistoryStore;
 }
 
 @observer
@@ -31,12 +32,17 @@ export default class RoomList extends React.Component<Props> {
   }
 
   render() {
+    const emptyMessage = this.props.store instanceof UserMultiplayerHistoryStore
+      ? trans('multiplayer.empty._', {
+        type_group: trans(`multiplayer.empty.${this.props.store.typeGroup}`),
+      })
+      : trans('rankings.seasons.empty');
+
+
     if (this.props.store.rooms.length === 0) {
       return (
         <div className='room-list'>
-          {trans('multiplayer.empty._', {
-            type_group: trans(`multiplayer.empty.${this.props.store.typeGroup}`),
-          })}
+          {emptyMessage}
         </div>
       );
     }
@@ -63,7 +69,7 @@ export default class RoomList extends React.Component<Props> {
 
     const url = this.props.showMoreRoute;
     void $.getJSON(url, { cursor_string: this.props.store.cursorString })
-      .done(action((response: RoomListJson) => {
+      .done(action((response: UserMultiplayerHistoryJson) => {
         this.props.store.updateWithJson(response);
       })).always(action(() => {
         this.loading = false;

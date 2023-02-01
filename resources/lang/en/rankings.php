@@ -27,6 +27,7 @@ return [
     ],
 
     'seasons' => [
+        'empty' => 'There is no rooms in this season yet.',
         'ongoing' => 'This season is still ongoing.',
         'room_count' => 'Playlist count',
     ],
