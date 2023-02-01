@@ -21,17 +21,18 @@ interface Props {
 }
 
 interface FilterProps {
+  grid?: boolean;
   multiselect?: boolean;
   name: FilterKey;
   options: FilterOption[];
-  showTitle?: boolean;
 }
 
-const Filter = observer(({ multiselect = false, name, options, showTitle = true }: FilterProps) => {
-  const title = showTitle ? trans(`beatmaps.listing.search.filters.${name}`) : undefined;
+const Filter = observer(({ multiselect = false, name, options, grid = false }: FilterProps) => {
+  const title = grid ? trans(`beatmaps.listing.search.filters.${name}`) : undefined;
 
   return (
     <SearchFilter
+      modifiers={{ grid }}
       multiselect={multiselect}
       name={name}
       options={options}
@@ -160,8 +161,8 @@ export class SearchPanel extends React.Component<Props> {
           </div>
         </div>
         <div className='beatmapsets-search__filters'>
-          <Filter name='status' options={this.props.availableFilters.statuses} showTitle={false} />
-          <Filter name='mode' options={this.props.availableFilters.modes} showTitle={false} />
+          <Filter name='status' options={this.props.availableFilters.statuses} />
+          <Filter name='mode' options={this.props.availableFilters.modes} />
         </div>
       </div>
     );
@@ -189,20 +190,22 @@ export class SearchPanel extends React.Component<Props> {
             <i className='fas fa-search' />
           </div>
         </div>
-        <Filter multiselect name='general' options={filters.general} />
-        <Filter name='mode' options={filters.modes} />
-        <Filter name='status' options={filters.statuses} />
-        <Filter name='nsfw' options={filters.nsfw} />
-        <a className='beatmapsets-search__expand-link' href='#' onClick={this.expand}>
-          <div>{trans('beatmaps.listing.search.options')}</div>
-          <div><i className='fas fa-angle-down' /></div>
-        </a>
-        <div className='beatmapsets-search__advanced'>
-          <Filter name='genre' options={filters.genres} />
-          <Filter name='language' options={filters.languages} />
-          <Filter multiselect name='extra' options={filters.extras} />
-          <Filter multiselect name='rank' options={filters.ranks} />
-          <Filter name='played' options={filters.played} />
+        <div className='beatmapsets-search__filter-grid'>
+          <Filter grid multiselect name='general' options={filters.general} />
+          <Filter grid name='mode' options={filters.modes} />
+          <Filter grid name='status' options={filters.statuses} />
+          <Filter grid name='nsfw' options={filters.nsfw} />
+          <a className='beatmapsets-search__expand-link' href='#' onClick={this.expand}>
+            <div>{trans('beatmaps.listing.search.options')}</div>
+            <div><i className='fas fa-angle-down' /></div>
+          </a>
+          <div className='beatmapsets-search__advanced'>
+            <Filter grid name='genre' options={filters.genres} />
+            <Filter grid name='language' options={filters.languages} />
+            <Filter grid multiselect name='extra' options={filters.extras} />
+            <Filter grid multiselect name='rank' options={filters.ranks} />
+            <Filter grid name='played' options={filters.played} />
+          </div>
         </div>
       </div>
     );
