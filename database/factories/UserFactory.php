@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Libraries\Fulfillments\ApplySupporterTag;
 use App\Models\Country;
 use App\Models\User;
 use App\Models\UserAccountHistory;
@@ -76,7 +77,10 @@ class UserFactory extends Factory
 
     public function supporter()
     {
-        return $this->state(['osu_subscriber' => true, 'osu_subscriptionexpiry' => now()->addMonthsNoOverflow(1)]);
+        return $this->state([
+            'osu_subscriber' => true,
+            'osu_subscriptionexpiry' => ApplySupporterTag::addDuration(now()->floorSecond(), 1),
+        ]);
     }
 
     public function tournamentBanned()
