@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
@@ -27,7 +28,7 @@ class Season extends Model
             $season = $query->last();
 
             if ($season === null) {
-                return abort(404);
+                throw new ModelNotFoundException();
             }
         } else {
             $season = $query->findOrFail($id);
