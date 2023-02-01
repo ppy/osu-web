@@ -119,6 +119,9 @@ export class Discussion extends React.Component<Props> {
         className={`${topClasses} js-beatmap-discussion-jump`}
         data-id={this.props.discussion.id}
         onClick={this.handleSetHighlight}
+        style={{
+          '--discussion-colour': `var(--discussion-colour--${kebabCase(this.props.discussion.message_type)})`,
+        } as React.CSSProperties}
       >
         <div className={`${bn}__timestamp hidden-xs`}>
           {this.renderTimestamp()}

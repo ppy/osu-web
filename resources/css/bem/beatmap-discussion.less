@@ -11,6 +11,16 @@
   .own-layer();
   display: flex;
 
+  --discussion-colour--hype: @osu-colour-blue-3;
+  --discussion-colour--mapper-note: @osu-colour-purple-1;
+  --discussion-colour--praise: @osu-colour-blue-3;
+  --discussion-colour--problem: @osu-colour-red-3;
+  --discussion-colour--resolved: @osu-colour-lime-3;
+  --discussion-colour--review: @osu-colour-c2;
+  --discussion-colour--suggestion: @osu-colour-orange-3;
+
+  --discussion-colour: transparent;
+
   &--deleted {
     opacity: 0.5;
   }
@@ -57,6 +67,19 @@
     background-color: var(--base-bg);
     overflow: hidden;
     position: relative;
+
+    // hightlighted will override ::after
+    &::before {
+      @media @mobile {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 3px;
+        height: 100%;
+        background-color: var(--discussion-colour);
+      }
+    }
 
     .@{_top}--highlighted & {
       .thicker-box-shadow();
