@@ -13,15 +13,7 @@ class SeasonsController extends Controller
 {
     public function rooms($id)
     {
-        if ($id === 'latest') {
-            $season = Season::last();
-
-            if ($season === null) {
-                abort(404);
-            }
-        } else {
-            $season = Season::findOrFail($id);
-        }
+        $season = Season::latestOrId($id);
 
         $params = $this->paramsForResponse(request()->all(), $season);
         $roomsJson = Room::responseJson($params, false);
@@ -31,15 +23,7 @@ class SeasonsController extends Controller
 
     public function show($id)
     {
-        if ($id === 'latest') {
-            $season = Season::last();
-
-            if ($season === null) {
-                abort(404);
-            }
-        } else {
-            $season = Season::findOrFail($id);
-        }
+        $season = Season::latestOrId($id);
 
         $params = $this->paramsForResponse(request()->all(), $season);
         $roomsJson = Room::responseJson($params, false);

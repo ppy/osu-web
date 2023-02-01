@@ -21,6 +21,21 @@ class Season extends Model
         'concluded' => 'boolean',
     ];
 
+    public function scopeLatestOrId($query, $id)
+    {
+        if ($id === 'latest') {
+            $season = $query->last();
+
+            if ($season === null) {
+                return abort(404);
+            }
+        } else {
+            $season = $query->findOrFail($id);
+        }
+
+        return $season;
+    }
+
     public function endDate(): ?Carbon
     {
         return $this->concluded
