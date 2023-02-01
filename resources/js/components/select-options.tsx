@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { action, observable, makeObservable, reaction } from 'mobx';
-import { observer } from 'mobx-react';
+import { disposeOnUnmount, observer } from 'mobx-react';
 import * as React from 'react';
 import { blackoutToggle } from 'utils/blackout';
 import { classWithModifiers, Modifiers } from 'utils/css';
@@ -41,19 +41,18 @@ interface Props<T extends Option> {
 export default class SelectOptions<T extends Option> extends React.Component<Props<T>> {
   static readonly defaultProps = { blackout: true };
 
-  private readonly blackoutAutoToggleDisposer;
   private readonly ref = React.createRef<HTMLDivElement>();
   @observable private showingSelector = false;
 
   constructor(props: Props<T>) {
     super(props);
     makeObservable(this);
-    this.blackoutAutoToggleDisposer = reaction(
+    disposeOnUnmount(this, reaction(
       () => this.showingSelector,
       (showing: typeof this.showingSelector) => {
         blackoutToggle(showing, 0.5);
       },
-    );
+    ));
   }
 
   componentDidMount() {
@@ -62,7 +61,6 @@ export default class SelectOptions<T extends Option> extends React.Component<Pro
 
   componentWillUnmount() {
     document.removeEventListener('click', this.hideSelector);
-    this.blackoutAutoToggleDisposer();
   }
 
   render() {
