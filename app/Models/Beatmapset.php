@@ -299,10 +299,8 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     public function scopeWithPackTags(Builder $query): Builder
     {
         $idColumn = $this->qualifyColumn('beatmapset_id');
-        $pack = (new BeatmapPack());
-        $packTagColumn = $pack->qualifyColumn('tag');
-        $packItem = (new BeatmapPackItem());
-        $packItemBeatmapsetIdColumn = $packItem->qualifyColumn('beatmapset_id');
+        $packTagColumn = (new BeatmapPack())->qualifyColumn('tag');
+        $packItemBeatmapsetIdColumn = (new BeatmapPackItem())->qualifyColumn('beatmapset_id');
         $packQuery = BeatmapPack
             ::selectRaw("GROUP_CONCAT({$packTagColumn} SEPARATOR ',')")
             ->whereRelation(
