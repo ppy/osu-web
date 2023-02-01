@@ -6,6 +6,10 @@ import { route } from 'laroute';
 import * as React from 'react';
 import { navigate } from 'utils/turbolinks';
 
+interface RoomOption extends Option {
+  id: number;
+}
+
 interface RoomJson {
   id: number;
   name: string;
@@ -39,7 +43,7 @@ export default class MultiplayerSelectOptions extends React.PureComponent<Props>
     );
   }
 
-  private handleChange = (option: Option<number>) => {
+  private handleChange = (option: RoomOption) => {
     navigate(this.href(option.id));
   };
 
@@ -47,7 +51,7 @@ export default class MultiplayerSelectOptions extends React.PureComponent<Props>
     return route('multiplayer.rooms.show', { room: id ?? 'latest' });
   }
 
-  private renderOption = (props: OptionRenderProps<number>) => (
+  private renderOption = (props: OptionRenderProps<RoomOption>) => (
     <a
       key={props.option.id ?? -1}
       className={props.cssClasses}

@@ -9,36 +9,36 @@ import { classWithModifiers, Modifiers } from 'utils/css';
 
 const bn = 'select-options';
 
-export interface Option<T = string> {
-  id: T | null;
+export interface Option {
+  id: string | number | null;
   text: string;
 }
 
-export interface OptionRenderProps<T = string> {
+export interface OptionRenderProps<T extends Option> {
   children: React.ReactNode;
   cssClasses: string;
-  onClick: (event: React.SyntheticEvent) => void;
-  option: Option<T>;
+  onClick: (event: React.MouseEvent) => void;
+  option: T;
 }
 
-interface ComponentOptionRenderProps<T = string> {
+interface ComponentOptionRenderProps<T extends Option> {
   children: OptionRenderProps<T>['children'];
   onClick: OptionRenderProps<T>['onClick'];
   option: OptionRenderProps<T>['option'];
   selected?: boolean;
 }
 
-interface Props<T> {
+interface Props<T extends Option> {
   blackout?: boolean;
   modifiers?: Modifiers;
-  onChange: (option: Option<T>) => void;
-  options: Option<T>[];
+  onChange: (option: T) => void;
+  options: T[];
   renderOption?(props: OptionRenderProps<T>): JSX.Element;
-  selected: Option<T>;
+  selected: T;
 }
 
 @observer
-export default class SelectOptions<T = string> extends React.Component<Props<T>> {
+export default class SelectOptions<T extends Option> extends React.Component<Props<T>> {
   static readonly defaultProps = { blackout: true };
 
   private readonly blackoutAutoToggleDisposer;
@@ -108,7 +108,7 @@ export default class SelectOptions<T = string> extends React.Component<Props<T>>
   };
 
   @action
-  private readonly optionSelected = (event: React.MouseEvent, option: Option<T>) => {
+  private readonly optionSelected = (event: React.MouseEvent, option: T) => {
     if (event.button !== 0) return;
 
     event.preventDefault();
@@ -125,7 +125,7 @@ export default class SelectOptions<T = string> extends React.Component<Props<T>>
 
     return (
       <a
-        key={typeof option.id === 'string' ? option.id : ''}
+        key={option.id}
         className={cssClasses}
         href='#'
         onClick={onClick}
