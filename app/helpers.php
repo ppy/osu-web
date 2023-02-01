@@ -1422,9 +1422,10 @@ function get_string($input)
 
 function get_string_split($input)
 {
-    return get_arr(explode("\r\n", get_string($input)), function ($item) {
-        return presence(trim_unicode($item));
-    });
+    return get_arr(
+        explode("\n", strtr(get_string($input), ["\r\n" => "\n", "\r" => "\n"])),
+        fn ($item) => presence(trim_unicode($item)),
+    );
 }
 
 function get_class_basename($className)
