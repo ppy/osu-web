@@ -25,11 +25,13 @@ class SeasonTransformer extends TransformerAbstract
         ];
     }
 
-    public function includeEndDate(Season $season) {
+    public function includeEndDate(Season $season)
+    {
         return $this->primitive($season->endDate());
     }
 
-    public function includeStartDate(Season $season) {
+    public function includeStartDate(Season $season)
+    {
         return $this->primitive($season->startDate());
     }
 }
