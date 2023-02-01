@@ -107,21 +107,11 @@ class Room extends Model
         }
     }
 
-    public static function responseJson(array $rawParams, bool $includeSearch = true): array
+    public static function responseJson(array $rawParams): array
     {
-        $params = get_params($rawParams, null, [
-            'cursor:array',
-            'limit:int',
-            'mode',
-            'season_id:int',
-            'sort',
-            'type_group',
-            'user:any',
-        ], ['null_missing' => true]);
+        $rawParams['limit'] = clamp($rawParams['limit'] ?? 50, 1, 50);
 
-        $params['limit'] = clamp($params['limit'] ?? 50, 1, 50);
-
-        $search = static::search($params);
+        $search = static::search($rawParams);
 
         [$rooms, $hasMore] = $search['query']->with([
             'playlist.beatmap',
@@ -133,12 +123,8 @@ class Room extends Model
 
         $response = [
             'rooms' => json_collection($rooms, new RoomTransformer(), ['current_playlist_item.beatmap.beatmapset', 'difficulty_range', 'host', 'playlist_item_stats']),
-            'type_group' => $params['type_group'],
+            'type_group' => $rawParams['type_group'],
         ];
-
-        if ($includeSearch) {
-            $response['search'] = $search['search'];
-        }
 
         $nextCursor = $hasMore ? $search['cursorHelper']->next($rooms) : null;
 
