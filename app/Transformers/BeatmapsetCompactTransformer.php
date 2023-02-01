@@ -30,6 +30,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         'genre',
         'has_favourited',
         'language',
+        'pack_tags',
         'nominations',
         'ratings',
         'recent_favourites',
@@ -201,6 +202,11 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         }
 
         return $this->primitive($result);
+    }
+
+    public function includePackTags(Beatmapset $beatmapset)
+    {
+        return $this->primitive($beatmapset->pack_tags);
     }
 
     public function includeUser(Beatmapset $beatmapset)

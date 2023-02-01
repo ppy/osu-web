@@ -31,6 +31,8 @@ use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\QueryException;
 
@@ -218,6 +220,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return $this->hasMany(BssProcessQueue::class);
     }
 
+    public function packs(): BelongsToMany
+    {
+        return $this->belongsToMany(BeatmapPack::class, BeatmapPackItem::class);
+    }
+
     public function recentFavourites($limit = 50)
     {
         $favourites = FavouriteBeatmapset::where('beatmapset_id', $this->beatmapset_id)
@@ -287,6 +294,26 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     public function scopeNeverQualified($query)
     {
         return $query->withStates(['pending', 'wip'])->where('previous_queue_duration', 0);
+    }
+
+    public function scopeWithPackTags(Builder $query): Builder
+    {
+        $idColumn = $this->qualifyColumn('beatmapset_id');
+        $pack = (new BeatmapPack());
+        $packTagColumn = $pack->qualifyColumn('tag');
+        $packItem = (new BeatmapPackItem());
+        $packItemBeatmapsetIdColumn = $packItem->qualifyColumn('beatmapset_id');
+        $packQuery = BeatmapPack
+            ::selectRaw("GROUP_CONCAT({$packTagColumn} SEPARATOR ',')")
+            ->whereRelation(
+                'items',
+                DB::raw("{$packItemBeatmapsetIdColumn}"),
+                DB::raw("{$idColumn}"),
+            )->toSql();
+
+        return $query
+            ->select('*')
+            ->selectRaw("({$packQuery}) as pack_tags");
     }
 
     public function scopeWithStates($query, $states)
@@ -988,6 +1015,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
             'artist_unicode' => $this->getArtistUnicode(),
             'commentable_identifier' => $this->getCommentableIdentifierAttribute(),
+            'pack_tags' => $this->getPackTags(),
             'title_unicode' => $this->getTitleUnicode(),
 
             'allBeatmaps',
@@ -1004,6 +1032,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             'favourites',
             'genre',
             'language',
+            'packs',
             'reportedIn',
             'topic',
             'track',
@@ -1511,6 +1540,19 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     private function getArtistUnicode()
     {
         return $this->getRawAttribute('artist_unicode') ?? $this->artist;
+    }
+
+    private function getPackTags(): array
+    {
+        if (array_key_exists('pack_tags', $this->attributes)) {
+            $rawValue = $this->attributes['pack_tags'];
+
+            return $rawValue === null
+                ? []
+                : explode(',', $rawValue);
+        }
+
+        return $this->packs()->pluck('tag')->all();
     }
 
     private function getTitleUnicode()
