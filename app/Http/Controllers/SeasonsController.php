@@ -7,7 +7,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Multiplayer\Room;
 use App\Models\Season;
-use App\Transformers\Multiplayer\RoomTransformer;
 use App\Transformers\SeasonTransformer;
 
 class SeasonsController extends Controller
@@ -24,7 +23,8 @@ class SeasonsController extends Controller
             $season = Season::findOrFail($id);
         }
 
-        $roomsJson = $this->getJson($season, request()->all());
+        $params = $this->paramsForResponse(request()->all(), $season);
+        $roomsJson = Room::responseJson($params, false);
 
         return $roomsJson;
     }
@@ -41,46 +41,25 @@ class SeasonsController extends Controller
             $season = Season::findOrFail($id);
         }
 
+        $params = $this->paramsForResponse(request()->all(), $season);
+        $roomsJson = Room::responseJson($params, false);
+
         $seasonJson = json_item($season, new SeasonTransformer());
 
         $seasons = Season::orderByDesc('id')->get();
         $seasonsJson = json_collection($seasons, new SeasonTransformer());
 
-        $roomsJson = $this->getJson($season, request()->all());
-
         return ext_view('seasons.show', compact('roomsJson', 'seasonJson', 'seasonsJson'));
     }
 
-    private function getJson($season, $rawParams)
+    private function paramsForResponse($rawParams, $season)
     {
-        $params = [
+        return [
             'cursor' => cursor_from_params($rawParams),
-            'limit' => get_int($params['limit'] ?? null),
-        ];
-
-        $limit = clamp($params['limit'] ?? 50, 1, 50);
-
-        $search = Room::search([
-            'cursor' => $params['cursor'],
-            'limit' => $limit,
+            'limit' => get_int($rawParams['limit'] ?? null),
             'mode' => 'all',
-            'season' => $season,
+            'season_id' => $season->getKey(),
             'type_group' => 'playlists',
-        ]);
-
-        [$rooms, $hasMore] = $search['query']->with([
-            'playlist.beatmap',
-            'host',
-        ])->getWithHasMore();
-
-        $rooms->each->findAndSetCurrentPlaylistItem();
-        $rooms->loadMissing('currentPlaylistItem.beatmap.beatmapset');
-
-        $nextCursor = $hasMore ? $search['cursorHelper']->next($rooms) : null;
-
-        return array_merge([
-            'rooms' => json_collection($rooms, new RoomTransformer(), Room::INCLUDES_FOR_DISPLAY),
-            'type_group' => 'playlists',
-        ], cursor_for_response($nextCursor));
+        ];
     }
 }

@@ -15,6 +15,7 @@ use App\Models\SeasonRoom;
 use App\Models\Traits\WithDbCursorHelper;
 use App\Models\User;
 use App\Traits\Memoizes;
+use App\Transformers\Multiplayer\RoomTransformer;
 use Carbon\Carbon;
 use Ds\Set;
 use Illuminate\Database\Eloquent\Collection;
@@ -65,8 +66,6 @@ class Room extends Model
         'realtime' => self::REALTIME_TYPES,
     ];
 
-    const INCLUDES_FOR_DISPLAY = ['current_playlist_item.beatmap.beatmapset', 'difficulty_range', 'host', 'playlist_item_stats'];
-
     const PLAYLIST_TYPE = 'playlists';
     const REALTIME_DEFAULT_TYPE = 'head_to_head';
     const REALTIME_TYPES = ['head_to_head', 'team_versus'];
@@ -108,20 +107,58 @@ class Room extends Model
         }
     }
 
+    public static function responseJson(array $rawParams, bool $includeSearch = true): array
+    {
+        $params = get_params($rawParams, null, [
+            'cursor:array',
+            'limit:int',
+            'mode',
+            'season_id:int',
+            'sort',
+            'type_group',
+            'user:any',
+        ], ['null_missing' => true]);
+
+        $params['limit'] = clamp($params['limit'] ?? 50, 1, 50);
+
+        $search = static::search($params);
+
+        [$rooms, $hasMore] = $search['query']->with([
+            'playlist.beatmap',
+            'host',
+        ])->getWithHasMore();
+
+        $rooms->each->findAndSetCurrentPlaylistItem();
+        $rooms->loadMissing('currentPlaylistItem.beatmap.beatmapset');
+
+        $response = [
+            'rooms' => json_collection($rooms, new RoomTransformer(), ['current_playlist_item.beatmap.beatmapset', 'difficulty_range', 'host', 'playlist_item_stats']),
+            'type_group' => $params['type_group'],
+        ];
+
+        if ($includeSearch) {
+            $response['search'] = $search['search'];
+        }
+
+        $nextCursor = $hasMore ? $search['cursorHelper']->next($rooms) : null;
+
+        return array_merge($response, cursor_for_response($nextCursor));
+    }
+
     public static function search(array $rawParams)
     {
         $params = get_params($rawParams, null, [
             'category',
             'limit:int',
             'mode',
-            'season:any',
+            'season_id:int',
             'sort',
             'type_group',
             'user:any',
         ], ['null_missing' => true]);
 
         $user = $params['user'];
-        $season = $params['season'];
+        $seasonId = $params['season_id'];
         $sort = $params['sort'];
         $category = $params['category'];
         $typeGroup = $params['type_group'];
@@ -139,8 +176,8 @@ class Room extends Model
 
         $query = static::whereIn('type', static::TYPE_GROUPS[$typeGroup]);
 
-        if (isset($season)) {
-            $query->whereRelation('seasons', 'seasons.id', $season->id);
+        if (isset($seasonId)) {
+            $query->whereRelation('seasons', 'seasons.id', $seasonId);
         }
 
         if (in_array($category, static::CATEGORIES, true)) {
