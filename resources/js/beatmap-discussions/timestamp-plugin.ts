@@ -14,7 +14,7 @@ export function timestampPlugin(this: Processor) {
   }
 
   function inlineTokenizer(eat: Eat, value: string, silent?: true) {
-    const regex = new RegExp(/^((\d{2,}:[0-5]\d[:.]\d{3})( \((?:\d[,|])*\d\))?)/);
+    const regex = new RegExp(/^(\d{2,}):([0-5]\d)[:.](\d{3})( \((?:\d[,|])*\d\))?/);
     const result = regex.exec(value);
 
     if (!result) {
@@ -25,7 +25,8 @@ export function timestampPlugin(this: Processor) {
       return true;
     }
 
-    const [matched, timestamp] = result;
+    const [matched, m, s, ms, range] = result;
+    const timestamp = `${m}:${s}:${ms}${range ?? ''}`;
 
     return eat(matched)({
       children: [
