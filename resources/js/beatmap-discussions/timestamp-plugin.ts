@@ -6,6 +6,7 @@ import { Processor } from 'unified';
 import { openBeatmapEditor } from 'utils/url';
 
 // plugin to tokenize timestamps
+// TODO: need to convert this to an ast parser or something
 export function timestampPlugin(this: Processor) {
   function locator(value: string, fromIndex: number) {
     const match = value.substr(fromIndex).search(/[0-9]{2}:/);
@@ -32,8 +33,8 @@ export function timestampPlugin(this: Processor) {
       children: [
         { type: 'text', value: timestamp },
       ],
-      href: openBeatmapEditor(timestamp),
-      type: 'timestamp',
+      type: 'link',
+      url: openBeatmapEditor(timestamp),
     });
   }
 

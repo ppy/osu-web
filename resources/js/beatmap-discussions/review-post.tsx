@@ -3,23 +3,14 @@
 
 import { PersistedBeatmapDiscussionReview } from 'interfaces/beatmap-discussion-review';
 import * as React from 'react';
-import ReactMarkdown from 'react-markdown';
+import ReactMarkdown, { uriTransformer } from 'react-markdown';
 import { ReactMarkdownProps } from 'react-markdown/lib/complex-types';
-import { propsFromHref } from 'utils/beatmapset-discussion-helper';
+import { propsFromHref, timestampRegex } from 'utils/beatmapset-discussion-helper';
 import { uuid } from 'utils/seq';
 import { autolinkPlugin } from './autolink-plugin';
 import { disableTokenizersPlugin } from './disable-tokenizers-plugin';
 import { ReviewPostEmbed } from './review-post-embed';
 import { timestampPlugin } from './timestamp-plugin';
-
-declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
-  namespace JSX {
-    interface IntrinsicElements {
-      timestamp: React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>;
-    }
-  }
-}
 
 interface Props {
   message: string;
@@ -43,7 +34,6 @@ export class ReviewPost extends React.Component<Props> {
           p: (props) => (<div className='beatmap-discussion-review-post__block'>
             <div className='beatmapset-discussion-message' {...props} />
           </div>),
-          timestamp: (props) => <a className='beatmap-discussion-timestamp-decoration' {...props} />,
         }}
         remarkPlugins={[
           [
@@ -56,6 +46,7 @@ export class ReviewPost extends React.Component<Props> {
           autolinkPlugin,
           timestampPlugin,
         ]}
+        transformLinkUri={this.transformLinkUri}
         unwrapDisallowed
       >
         {source}
@@ -96,9 +87,25 @@ export class ReviewPost extends React.Component<Props> {
 
   // not sure if any additional props besides href and children are included.
   // there's more props like properties, tagName, type: "element", etc.
-  private linkRenderer = (props: ReactMarkdownProps & React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>) => {
-    const extraProps = propsFromHref(props.href ?? '');
+  private linkRenderer = (astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>) => {
+    // format as timestamp if link text matches.
+    if (typeof astProps.children[0] === 'string') {
+      if (timestampRegex.exec(astProps.children[0]) != null) {
+        return <a className='beatmap-discussion-timestamp-decoration' href={astProps.href}>{astProps.children}</a>;
+      }
+    }
 
-    return <a {...props} {...extraProps} />;
+    const props = propsFromHref(astProps.href ?? '');
+
+    return <a {...props}>{astProps.children}</a>;
+  };
+
+  private transformLinkUri = (uri: string) => {
+    if (uri.startsWith('osu://edit/')) {
+      // TODO: sanitize timestamp?
+      return uri;
+    }
+
+    return uriTransformer(uri);
   };
 }
