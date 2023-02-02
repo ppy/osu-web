@@ -31,9 +31,7 @@ export class ReviewPost extends React.Component<Props> {
         key={uuid()}
         components={{
           a: this.linkRenderer,
-          p: (props) => (<div className='beatmap-discussion-review-post__block'>
-            <div className='beatmapset-discussion-message' {...props} />
-          </div>),
+          p: this.paragraphRenderer,
         }}
         remarkPlugins={[
           [
@@ -85,8 +83,6 @@ export class ReviewPost extends React.Component<Props> {
     );
   }
 
-  // not sure if any additional props besides href and children are included.
-  // there's more props like properties, tagName, type: "element", etc.
   private linkRenderer = (astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>) => {
     // format as timestamp if link text matches.
     if (typeof astProps.children[0] === 'string') {
@@ -99,6 +95,12 @@ export class ReviewPost extends React.Component<Props> {
 
     return <a {...props}>{astProps.children}</a>;
   };
+
+  private paragraphRenderer = (astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement>) => (
+    <div className='beatmap-discussion-review-post__block'>
+      <div className='beatmapset-discussion-message'>{astProps.children}</div>
+    </div>
+  );
 
   private transformLinkUri = (uri: string) => {
     if (uri.startsWith('osu://edit/')) {
