@@ -40,6 +40,7 @@ class SeasonsController extends Controller
     {
         return [
             'cursor' => cursor_from_params($rawParams),
+            'max_limit' => 50,
             'limit' => get_int($rawParams['limit'] ?? null),
             'mode' => 'all',
             'season_id' => $season->getKey(),

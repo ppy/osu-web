@@ -109,7 +109,6 @@ class Room extends Model
 
     public static function responseJson(array $rawParams): array
     {
-        $rawParams['limit'] = clamp($rawParams['limit'] ?? 50, 1, 50);
         $typeGroup = $rawParams['type_group'] ?? null;
 
         $search = static::search($rawParams);
@@ -138,6 +137,7 @@ class Room extends Model
         $params = get_params($rawParams, null, [
             'category',
             'limit:int',
+            'max_limit:int',
             'mode',
             'season_id:int',
             'sort',
@@ -145,6 +145,7 @@ class Room extends Model
             'user:any',
         ], ['null_missing' => true]);
 
+        $maxLimit = $params['max_limit'] ?? 250;
         $user = $params['user'];
         $seasonId = $params['season_id'];
         $sort = $params['sort'];
@@ -192,7 +193,7 @@ class Room extends Model
         $cursorHelper = static::makeDbCursorHelper($sort);
         $query->cursorSort($cursorHelper, cursor_from_params($rawParams));
 
-        $limit = clamp($params['limit'] ?? 250, 1, 250);
+        $limit = clamp($params['limit'] ?? $maxLimit, 1, $maxLimit);
         $query->limit($limit);
 
         return [
