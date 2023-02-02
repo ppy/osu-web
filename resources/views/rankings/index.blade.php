@@ -3,6 +3,7 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
+    $mode ?? = default_mode();
     $selectorParams = [
         'type' => $type,
         'mode' => $mode,
