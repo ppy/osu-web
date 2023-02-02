@@ -121,7 +121,7 @@ export function formatTimestamp(value: number) {
   // remaining duration goes here even if it's over an hour
   const m = Math.floor(value / 1000 / 60);
 
-  return `${padStart(m.toString(), 2, '0')}:${padStart(s.toString(), 2, '0')}.${padStart(ms.toString(), 3, '0')}`;
+  return `${padStart(m.toString(), 2, '0')}:${padStart(s.toString(), 2, '0')}:${padStart(ms.toString(), 3, '0')}`;
 }
 
 function isNearbyDiscussion<T extends BeatmapsetDiscussionJson>(discussion: T): discussion is NearbyDiscussion<T> {
@@ -133,9 +133,11 @@ function isNearbyDiscussion<T extends BeatmapsetDiscussionJson>(discussion: T): 
 export function linkTimestamp(text: string, classNames: string[] = []) {
   return text.replace(
     linkTimestampRegex,
-    (_match, timestamp: string, m: string, s: string, ms: string, range?: string) => (
-      linkHtml(openBeatmapEditor(`${m}:${s}:${ms}${range ?? ''}`), timestamp, { classNames })
-    ),
+    (_match, _timestamp, m: string, s: string, ms: string, range?: string) => {
+      const timestamp = `${m}:${s}:${ms}${range ?? ''}`;
+
+      return linkHtml(openBeatmapEditor(timestamp), timestamp, { classNames });
+    },
   );
 }
 
