@@ -3,7 +3,8 @@
 
 import { PersistedBeatmapDiscussionReview } from 'interfaces/beatmap-discussion-review';
 import * as React from 'react';
-import * as ReactMarkdown from 'react-markdown';
+import ReactMarkdown from 'react-markdown';
+import { ReactMarkdownProps } from 'react-markdown/lib/complex-types';
 import { propsFromHref } from 'utils/beatmapset-discussion-helper';
 import { uuid } from 'utils/seq';
 import { autolinkPlugin } from './autolink-plugin';
@@ -28,7 +29,14 @@ export class ReviewPost extends React.Component<Props> {
     return (
       <ReactMarkdown
         key={uuid()}
-        plugins={[
+        components={{
+          a: this.linkRenderer,
+          p: (props) => (<div className='beatmap-discussion-review-post__block'>
+            <div className='beatmapset-discussion-message' {...props} />
+          </div>),
+          timestamp: (props) => <a className='beatmap-discussion-timestamp-decoration' {...props} />,
+        }}
+        remarkPlugins={[
           [
             disableTokenizersPlugin,
             {
@@ -39,16 +47,10 @@ export class ReviewPost extends React.Component<Props> {
           autolinkPlugin,
           timestampPlugin,
         ]}
-        renderers={{
-          link: this.linkRenderer,
-          paragraph: (props) => (<div className='beatmap-discussion-review-post__block'>
-            <div className='beatmapset-discussion-message' {...props} />
-          </div>),
-          timestamp: (props) => <a className='beatmap-discussion-timestamp-decoration' {...props} />,
-        }}
-        source={source}
         unwrapDisallowed
-      />
+      >
+        {source}
+      </ReactMarkdown>
     );
   }
 
@@ -84,8 +86,9 @@ export class ReviewPost extends React.Component<Props> {
   }
 
   // not sure if any additional props besides href and children are included.
-  private linkRenderer = (props: Readonly<ReactMarkdown.ReactMarkdownProps> & { href: string }) => {
-    const extraProps = propsFromHref(props.href);
+  // there's more props like properties, tagName, type: "element", etc.
+  private linkRenderer = (props: ReactMarkdownProps & React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>) => {
+    const extraProps = propsFromHref(props.href ?? '');
 
     return <a {...props} {...extraProps} />;
   };

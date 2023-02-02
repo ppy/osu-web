@@ -4,7 +4,7 @@
 import { BeatmapsetDiscussionJsonForBundle, BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
 import * as markdown from 'remark-parse';
 import { Element, Text } from 'slate';
-import * as unified from 'unified';
+import { unified } from 'unified';
 import type { Parent, Node as UnistNode } from 'unist';
 import { formatTimestamp, startingPost } from 'utils/beatmapset-discussion-helper';
 import { present } from 'utils/string';
