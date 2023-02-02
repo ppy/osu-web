@@ -137,6 +137,7 @@ class BBCodeForDB
     /*
     * Handles:
     * - Bold (b)
+    * - Code (c)
     * - Italic (i)
     * - Strike (strike, s)
     * - Underline (u)
@@ -144,7 +145,7 @@ class BBCodeForDB
     */
     public function parseInlineSimple($text)
     {
-        foreach (['b', 'i', 'strike', 's', 'u', 'spoiler'] as $tag) {
+        foreach (['b', 'c', 'i', 'strike', 's', 'u', 'spoiler'] as $tag) {
             $text = preg_replace(
                 "#\[{$tag}](.*?)\[/{$tag}\]#s",
                 "[{$tag}:{$this->uid}]\\1[/{$tag}:{$this->uid}]",
