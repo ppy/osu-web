@@ -12,14 +12,14 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
- * @property bool $concluded
+ * @property bool $finalised
  * @property string $name
  * @property-read Collection<Multiplayer\Room> $rooms
  */
 class Season extends Model
 {
     protected $casts = [
-        'concluded' => 'boolean',
+        'finalised' => 'boolean',
     ];
 
     public function scopeLatestOrId($query, $id)
@@ -39,7 +39,7 @@ class Season extends Model
 
     public function endDate(): ?Carbon
     {
-        return $this->concluded
+        return $this->finalised
             ? $this->rooms->max('ends_at')
             : null;
     }
