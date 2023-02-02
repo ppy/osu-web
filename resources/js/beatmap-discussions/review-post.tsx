@@ -12,6 +12,15 @@ import { disableTokenizersPlugin } from './disable-tokenizers-plugin';
 import { ReviewPostEmbed } from './review-post-embed';
 import { timestampPlugin } from './timestamp-plugin';
 
+declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace JSX {
+    interface IntrinsicElements {
+      timestamp: React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>;
+    }
+  }
+}
+
 interface Props {
   message: string;
 }
