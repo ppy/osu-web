@@ -29,7 +29,7 @@
 
     <script id="json-ranking-select-options" type="application/json">
         {!! json_encode([
-            'currentItem' => json_item($room, 'Multiplayer\Room'),
+            'currentItem' => json_item($room, 'RankingSelectOption'),
             'items' => json_collection($rooms, 'Multiplayer\Room'),
             'type' => 'multiplayer',
         ]) !!}
