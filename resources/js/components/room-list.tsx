@@ -12,7 +12,7 @@ import { trans } from 'utils/lang';
 import MultiplayerRoom from './multiplayer-room';
 
 interface Props {
-  showMoreRoute: string;
+  showMoreUrl: string;
   store: RoomListStore;
   typeGroup?: MultiplayerTypeGroup;
 }
@@ -68,7 +68,7 @@ export default class RoomList extends React.Component<Props> {
 
     this.loading = true;
 
-    const url = this.props.showMoreRoute;
+    const url = this.props.showMoreUrl;
     void $.getJSON(url, { cursor_string: this.props.store.cursorString })
       .done(action((response: RoomListJson) => {
         this.props.store.updateWithJson(response);

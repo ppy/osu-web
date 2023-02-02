@@ -49,7 +49,7 @@ export default function Main(props: Props) {
           <div className='page-extra'>
             <h2 className='title title--page-extra'>{trans(`users.show.extra.${props.typeGroup}.title`)}</h2>
             <RoomList
-              showMoreRoute={route('users.multiplayer.index', { typeGroup: props.typeGroup, user: props.user.id })}
+              showMoreUrl={route('users.multiplayer.index', { typeGroup: props.typeGroup, user: props.user.id })}
               store={props.store}
               typeGroup={props.typeGroup}
             />
