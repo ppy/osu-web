@@ -12,7 +12,6 @@ use App\Models\Season;
 
 class RankingSelectOptionTransformer extends TransformerAbstract
 {
-
     public function transform(Room|Season $item): array
     {
         return [
