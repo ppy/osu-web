@@ -15,7 +15,7 @@ class SeasonsController extends Controller
     {
         $season = Season::latestOrId($id);
 
-        $params = $this->paramsForResponse(request()->all(), $season);
+        $params = $this->paramsForResponse($season, request()->all());
         $roomsJson = Room::responseJson($params);
 
         return $roomsJson;
@@ -25,7 +25,7 @@ class SeasonsController extends Controller
     {
         $season = Season::latestOrId($id);
 
-        $params = $this->paramsForResponse(request()->all(), $season);
+        $params = $this->paramsForResponse($season);
         $roomsJson = Room::responseJson($params);
 
         $seasonJson = json_item($season, new SeasonTransformer(), ['end_date', 'start_date']);
@@ -36,7 +36,7 @@ class SeasonsController extends Controller
         return ext_view('seasons.show', compact('roomsJson', 'seasonJson', 'seasonsJson'));
     }
 
-    private function paramsForResponse($rawParams, $season)
+    private function paramsForResponse($season, $rawParams = null)
     {
         return [
             'cursor' => cursor_from_params($rawParams),
