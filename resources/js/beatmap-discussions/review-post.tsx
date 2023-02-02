@@ -67,7 +67,7 @@ export class ReviewPost extends React.Component<Props> {
     const docBlocks: JSX.Element[] = [];
 
     try {
-      const doc: PersistedBeatmapDiscussionReview = JSON.parse(this.props.message);
+      const doc = JSON.parse(this.props.message) as PersistedBeatmapDiscussionReview;
 
       doc.forEach((block) => {
         switch (block.type) {
