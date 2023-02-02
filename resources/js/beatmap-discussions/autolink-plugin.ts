@@ -36,6 +36,8 @@ export function autolinkPlugin(this: Processor) {
   // Ideally 'Parser' here should be typed like Parser from 'remark-parse', but the provided types appear wonky --
   // they causes issues with the inlineTokenizer definition below, so we're gonna leave it as an implicit 'any' for now.
   const Parser = this.Parser;
+  if (Parser == null) return;
+
   const inlineTokenizers = Parser.prototype.inlineTokenizers;
   const inlineMethods = Parser.prototype.inlineMethods;
 
