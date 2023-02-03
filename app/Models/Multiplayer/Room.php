@@ -111,7 +111,7 @@ class Room extends Model
     {
         $typeGroup = $rawParams['type_group'] ?? null;
 
-        $search = static::search($rawParams);
+        $search = static::search($rawParams, 50);
 
         [$rooms, $hasMore] = $search['query']->with([
             'playlist.beatmap',
@@ -132,7 +132,7 @@ class Room extends Model
         return array_merge($response, cursor_for_response($nextCursor));
     }
 
-    public static function search(array $rawParams)
+    public static function search(array $rawParams, ?int $maxLimit = null)
     {
         $params = get_params($rawParams, null, [
             'category',
@@ -145,7 +145,8 @@ class Room extends Model
             'user:any',
         ], ['null_missing' => true]);
 
-        $maxLimit = $params['max_limit'] ?? 250;
+        $maxLimit ??= 250;
+        $maxLimit = clamp($maxLimit, 1, 250);
         $user = $params['user'];
         $seasonId = $params['season_id'];
         $sort = $params['sort'];

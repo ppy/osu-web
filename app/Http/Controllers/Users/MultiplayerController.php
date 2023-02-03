@@ -24,7 +24,6 @@ class MultiplayerController extends Controller
         $params = [
             'cursor' => cursor_from_params($rawParams),
             'limit' => get_int($rawParams['limit'] ?? null),
-            'max_limit' => 50,
             'mode' => 'participated',
             'sort' => 'ended',
             'type_group' => $typeGroup,
