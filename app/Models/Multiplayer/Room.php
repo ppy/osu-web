@@ -146,7 +146,6 @@ class Room extends Model
         ], ['null_missing' => true]);
 
         $maxLimit ??= 250;
-        $maxLimit = clamp($maxLimit, 1, 250);
         $user = $params['user'];
         $seasonId = $params['season_id'];
         $sort = $params['sort'];
