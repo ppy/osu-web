@@ -8,9 +8,10 @@ import { propsFromHref } from 'utils/beatmapset-discussion-helper';
 import { openBeatmapEditor } from 'utils/url';
 
 export function linkRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>) {
+  // TODO: handle extra nodes in astProps.children
   const props = propsFromHref(astProps.href ?? '');
 
-  return <a href={astProps.href} {...props}>{astProps.children}</a>;
+  return <a href={astProps.href} {...props} />;
 }
 
 function paragraphDecorator(reactNode: React.ReactNode) {
