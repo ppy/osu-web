@@ -9,9 +9,26 @@
     'hasPager' => false,
     'hasScores' => false,
     'spotlight' => null,
-    'titlePrepend' => osu_trans('rankings.type.seasons').': '.$seasonJson['name'],
+    'titlePrepend' => osu_trans('rankings.type.seasons').': '.$season->name,
     'type' => 'seasons',
 ])
+
+@if ($season->url !== null)
+    @section('additionalLinks')
+        <div class="header-buttons">
+            <div class="header-buttons__item">
+                <a
+                    class="btn-osu-big btn-osu-big--rounded-thin"
+                    href="{{ $season->url }}"
+                    target="_blank"
+                    title="{{ osu_trans('rankings.seasons.url') }}"
+                >
+                    <i class="fas fa-info"></i>
+                </a>
+            </div>
+        </div>
+    @endsection
+@endif
 
 @section('ranking-header')
     <div class="js-react--seasons-show"></div>

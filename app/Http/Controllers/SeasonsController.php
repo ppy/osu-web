@@ -32,7 +32,7 @@ class SeasonsController extends Controller
         $seasons = Season::orderByDesc('id')->get();
         $seasonsJson = json_collection($seasons, new RankingSelectOptionTransformer());
 
-        return ext_view('seasons.show', compact('roomsJson', 'seasonJson', 'seasonsJson'));
+        return ext_view('seasons.show', compact('roomsJson', 'season', 'seasonJson', 'seasonsJson'));
     }
 
     private function paramsForResponse(int $seasonId, ?array $rawParams = null)

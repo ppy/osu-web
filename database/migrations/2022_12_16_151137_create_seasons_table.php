@@ -22,6 +22,7 @@ class CreateSeasonsTable extends Migration
             $table->id();
             $table->string('name');
             $table->boolean('finalised')->default(0);
+            $table->string('url')->nullable();
             $table->timestamps();
         });
     }

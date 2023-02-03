@@ -57,11 +57,13 @@
         'links' => $links,
         'theme' => 'rankings',
     ]])
-        @if ($hasMode)
-            @slot('linksAppend')
+        @slot('linksAppend')
+            @if($hasMode)
                 @include('rankings._mode_selector', $selectorParams)
-            @endslot
-        @endif
+            @endif
+
+            @yield('additionalLinks')
+        @endslot
     @endcomponent
 
     @yield('ranking-header')
