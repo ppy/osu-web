@@ -2,18 +2,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { Option, OptionRenderProps, SelectOptions } from 'components/select-options';
+import RankingSelectOptionJson from 'interfaces/ranking-select-option-json';
 import { route } from 'laroute';
 import * as React from 'react';
 import { navigate } from 'utils/turbolinks';
 
-interface ItemJson {
-  id: number;
-  name: string;
-}
-
 interface Props {
-  currentItem: ItemJson;
-  items: ItemJson[];
+  currentItem: RankingSelectOptionJson;
+  items: RankingSelectOptionJson[];
   type: 'multiplayer' | 'seasons';
 }
 
