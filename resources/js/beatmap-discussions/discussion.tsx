@@ -82,7 +82,7 @@ export class Discussion extends React.Component<Props> {
     // TODO: handling resolved status in bundles....?
     if (this.props.preview) return -1;
 
-    const systemPost = findLast(this.props.discussion.posts, (post) => post != null && post.system && post.message.type === 'resolve');
+    const systemPost = findLast(this.props.discussion.posts, (post) => post != null && post.system && post.message.type === 'resolved');
     return systemPost?.id ?? -1;
   }
 
@@ -255,7 +255,7 @@ export class Discussion extends React.Component<Props> {
 
   private readonly renderReply = (post: BeatmapsetDiscussionPostJson) => {
     if (!this.isVisible(post)) return null;
-    if (post.system && post.message.type === 'resolve') {
+    if (post.system && post.message.type === 'resolved') {
       if (this.lastResolvedState === post.message.value) return null;
       this.lastResolvedState = post.message.value;
     }
