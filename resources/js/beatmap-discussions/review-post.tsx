@@ -5,12 +5,12 @@ import { PersistedBeatmapDiscussionReview } from 'interfaces/beatmap-discussion-
 import * as React from 'react';
 import ReactMarkdown, { uriTransformer } from 'react-markdown';
 import { ReactMarkdownProps } from 'react-markdown/lib/complex-types';
-import { propsFromHref, timestampRegex } from 'utils/beatmapset-discussion-helper';
+import { propsFromHref } from 'utils/beatmapset-discussion-helper';
 import { uuid } from 'utils/seq';
+import { openBeatmapEditor } from 'utils/url';
 import { autolinkPlugin } from './autolink-plugin';
 import { disableTokenizersPlugin } from './disable-tokenizers-plugin';
 import { ReviewPostEmbed } from './review-post-embed';
-import { timestampPlugin } from './timestamp-plugin';
 
 interface Props {
   message: string;
@@ -42,7 +42,6 @@ export class ReviewPost extends React.Component<Props> {
             },
           ],
           autolinkPlugin,
-          timestampPlugin,
         ]}
         transformLinkUri={this.transformLinkUri}
         unwrapDisallowed
@@ -84,23 +83,51 @@ export class ReviewPost extends React.Component<Props> {
   }
 
   private linkRenderer = (astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>) => {
-    // format as timestamp if link text matches.
-    if (typeof astProps.children[0] === 'string') {
-      if (timestampRegex.exec(astProps.children[0]) != null) {
-        return <a className='beatmap-discussion-timestamp-decoration' href={astProps.href}>{astProps.children}</a>;
-      }
-    }
-
     const props = propsFromHref(astProps.href ?? '');
 
     return <a {...props}>{astProps.children}</a>;
   };
 
-  private paragraphRenderer = (astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement>) => (
-    <div className='beatmap-discussion-review-post__block'>
-      <div className='beatmapset-discussion-message'>{astProps.children}</div>
-    </div>
-  );
+  private paragraphRenderer = (astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement>) => {
+    let children = astProps.children;
+
+    // paragraph nodes should only have one element
+    if (typeof astProps.children[0] === 'string') {
+      const text = astProps.children[0];
+      const matches = [...text.matchAll(/\b(((\d{2,}):([0-5]\d)[:.](\d{3}))(\s\((?:\d+[,|])*\d+\))?)/g)];
+
+      if (matches.length > 0) {
+        let cursor = 0;
+        const nodes: React.ReactNode[] = [];
+
+        for (const match of matches) {
+          // insert any preceding text
+          const index = match.index ?? 0;
+          const textFragment = text.substring(cursor, index);
+          nodes.push(textFragment);
+
+          // decorate the timestamp as a link
+          const timestamp = match[0];
+          nodes.push((
+            <a key={`timestamp-${index}`} className='beatmap-discussion-timestamp-decoration' href={openBeatmapEditor(timestamp)}>{timestamp}</a>
+          ));
+
+          cursor = index + match[0].length;
+        }
+
+        // add any remaining text
+        nodes.push(text.substring(cursor, text.length));
+
+        children = nodes;
+      }
+    }
+
+    return (
+      <div className='beatmap-discussion-review-post__block'>
+        <div className='beatmapset-discussion-message'>{children}</div>
+      </div>
+    );
+  };
 
   private transformLinkUri = (uri: string) => {
     if (uri.startsWith('osu://edit/')) {
