@@ -25,9 +25,10 @@ export class ReviewPost extends React.Component<Props> {
     return (
       <ReactMarkdown
         key={uuid()}
+        className='beatmap-discussion-review-post__block'
         components={{
           a: linkRenderer,
-          p: (node) => <div className='beatmap-discussion-review-post__block'>{paragraphRenderer(node)}</div>,
+          p: paragraphRenderer,
         }}
         transformLinkUri={transformLinkUri}
         unwrapDisallowed
