@@ -137,7 +137,6 @@ class Room extends Model
         $params = get_params($rawParams, null, [
             'category',
             'limit:int',
-            'max_limit:int',
             'mode',
             'season_id:int',
             'sort',
