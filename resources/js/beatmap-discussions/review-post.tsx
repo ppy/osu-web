@@ -8,8 +8,6 @@ import { ReactMarkdownProps } from 'react-markdown/lib/complex-types';
 import { propsFromHref } from 'utils/beatmapset-discussion-helper';
 import { uuid } from 'utils/seq';
 import { openBeatmapEditor } from 'utils/url';
-import { autolinkPlugin } from './autolink-plugin';
-import { disableTokenizersPlugin } from './disable-tokenizers-plugin';
 import { ReviewPostEmbed } from './review-post-embed';
 
 interface Props {
@@ -33,16 +31,6 @@ export class ReviewPost extends React.Component<Props> {
           a: this.linkRenderer,
           p: this.paragraphRenderer,
         }}
-        remarkPlugins={[
-          [
-            disableTokenizersPlugin,
-            {
-              allowedBlocks: ['paragraph'],
-              allowedInlines: ['emphasis', 'strong'],
-            },
-          ],
-          autolinkPlugin,
-        ]}
         transformLinkUri={this.transformLinkUri}
         unwrapDisallowed
       >
@@ -88,13 +76,9 @@ export class ReviewPost extends React.Component<Props> {
     return <a {...props}>{astProps.children}</a>;
   };
 
-  private paragraphRenderer = (astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement>) => {
-    let children = astProps.children;
-
-    // paragraph nodes should only have one element
-    if (typeof astProps.children[0] === 'string') {
-      const text = astProps.children[0];
-      const matches = [...text.matchAll(/\b(((\d{2,}):([0-5]\d)[:.](\d{3}))(\s\((?:\d+[,|])*\d+\))?)/g)];
+  private paragraphDecorator = (reactNode: React.ReactNode) => {
+    if (typeof reactNode === 'string') {
+      const matches = [...reactNode.matchAll(/\b(((\d{2,}):([0-5]\d)[:.](\d{3}))(\s\((?:\d+[,|])*\d+\))?)/g)];
 
       if (matches.length > 0) {
         let cursor = 0;
@@ -103,7 +87,7 @@ export class ReviewPost extends React.Component<Props> {
         for (const match of matches) {
           // insert any preceding text
           const index = match.index ?? 0;
-          const textFragment = text.substring(cursor, index);
+          const textFragment = reactNode.substring(cursor, index);
           nodes.push(textFragment);
 
           // decorate the timestamp as a link
@@ -116,18 +100,20 @@ export class ReviewPost extends React.Component<Props> {
         }
 
         // add any remaining text
-        nodes.push(text.substring(cursor, text.length));
+        nodes.push(reactNode.substring(cursor, reactNode.length));
 
-        children = nodes;
+        return nodes;
       }
     }
 
-    return (
-      <div className='beatmap-discussion-review-post__block'>
-        <div className='beatmapset-discussion-message'>{children}</div>
-      </div>
-    );
+    return reactNode;
   };
+
+  private paragraphRenderer = (astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement>) => (
+    <div className='beatmap-discussion-review-post__block'>
+      <div className='beatmapset-discussion-message'>{astProps.children.map(this.paragraphDecorator)}</div>
+    </div>
+  );
 
   private transformLinkUri = (uri: string) => {
     if (uri.startsWith('osu://edit/')) {
