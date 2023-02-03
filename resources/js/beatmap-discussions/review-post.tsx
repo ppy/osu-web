@@ -73,7 +73,7 @@ export class ReviewPost extends React.Component<Props> {
   private linkRenderer = (astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>) => {
     const props = propsFromHref(astProps.href ?? '');
 
-    return <a {...props}>{astProps.children}</a>;
+    return <a href={astProps.href} {...props}>{astProps.children}</a>;
   };
 
   private paragraphDecorator = (reactNode: React.ReactNode) => {
