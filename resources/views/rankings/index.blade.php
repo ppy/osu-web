@@ -62,7 +62,7 @@
                 @include('rankings._mode_selector', $selectorParams)
             @endif
 
-            @yield('additionalLinks')
+            @yield('additionalHeaderLinks')
         @endslot
     @endcomponent
 

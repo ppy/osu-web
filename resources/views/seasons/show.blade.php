@@ -14,7 +14,7 @@
 ])
 
 @if ($season->url !== null)
-    @section('additionalLinks')
+    @section('additionalHeaderLinks')
         <div class="header-buttons">
             <div class="header-buttons__item">
                 <a
