@@ -2,30 +2,27 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { Option, OptionRenderProps, SelectOptions } from 'components/select-options';
+import RankingSelectOptionJson from 'interfaces/ranking-select-option-json';
 import { route } from 'laroute';
 import * as React from 'react';
 import { navigate } from 'utils/turbolinks';
 
-interface RoomJson {
-  id: number;
-  name: string;
-}
-
 interface Props {
-  currentRoom: RoomJson;
-  rooms: RoomJson[];
+  currentItem: RankingSelectOptionJson;
+  items: RankingSelectOptionJson[];
+  type: 'multiplayer' | 'seasons';
 }
 
-export default class MultiplayerSelectOptions extends React.PureComponent<Props> {
+export default class RankingSelectOptions extends React.PureComponent<Props> {
   render() {
-    const options = this.props.rooms.map((room) => ({
-      id: room.id,
-      text: room.name,
+    const options = this.props.items.map((item) => ({
+      id: item.id,
+      text: item.name,
     }));
 
     const selected = {
-      id: this.props.currentRoom.id,
-      text: this.props.currentRoom.name,
+      id: this.props.currentItem.id,
+      text: this.props.currentItem.name,
     };
 
     return (
@@ -44,7 +41,12 @@ export default class MultiplayerSelectOptions extends React.PureComponent<Props>
   };
 
   private href(id: number | null) {
-    return route('multiplayer.rooms.show', { room: id ?? 'latest' });
+    switch (this.props.type) {
+      case 'multiplayer':
+        return route('multiplayer.rooms.show', { room: id ?? 'latest' });
+      case 'seasons':
+        return route('seasons.show', { season: id ?? 'latest' });
+    }
   }
 
   private renderOption = (props: OptionRenderProps<number>) => (

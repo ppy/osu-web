@@ -10,9 +10,12 @@ use App\Exceptions\InvariantException;
 use App\Models\Beatmap;
 use App\Models\Chat\Channel;
 use App\Models\Model;
+use App\Models\Season;
+use App\Models\SeasonRoom;
 use App\Models\Traits\WithDbCursorHelper;
 use App\Models\User;
 use App\Traits\Memoizes;
+use App\Transformers\Multiplayer\RoomTransformer;
 use Carbon\Carbon;
 use Ds\Set;
 use Illuminate\Database\Eloquent\Collection;
@@ -33,6 +36,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $participant_count
  * @property \Illuminate\Database\Eloquent\Collection $playlist PlaylistItem
  * @property \Illuminate\Database\Eloquent\Collection $scores Score
+ * @property-read Collection<\App\Models\Season> $seasons
  * @property \Carbon\Carbon $starts_at
  * @property \Carbon\Carbon|null $updated_at
  * @property int $user_id
@@ -103,18 +107,46 @@ class Room extends Model
         }
     }
 
-    public static function search(array $rawParams)
+    public static function responseJson(array $rawParams): array
+    {
+        $typeGroup = $rawParams['type_group'] ?? null;
+
+        $search = static::search($rawParams, 50);
+
+        [$rooms, $hasMore] = $search['query']->with([
+            'playlist.beatmap',
+            'host',
+        ])->getWithHasMore();
+
+        $rooms->each->findAndSetCurrentPlaylistItem();
+        $rooms->loadMissing('currentPlaylistItem.beatmap.beatmapset');
+
+        $response['rooms'] = json_collection($rooms, new RoomTransformer(), ['current_playlist_item.beatmap.beatmapset', 'difficulty_range', 'host', 'playlist_item_stats']);
+
+        if ($typeGroup !== null) {
+            $response['type_group'] = $typeGroup;
+        }
+
+        $nextCursor = $hasMore ? $search['cursorHelper']->next($rooms) : null;
+
+        return array_merge($response, cursor_for_response($nextCursor));
+    }
+
+    public static function search(array $rawParams, ?int $maxLimit = null)
     {
         $params = get_params($rawParams, null, [
             'category',
             'limit:int',
             'mode',
+            'season_id:int',
             'sort',
             'type_group',
             'user:any',
         ], ['null_missing' => true]);
 
+        $maxLimit ??= 250;
         $user = $params['user'];
+        $seasonId = $params['season_id'];
         $sort = $params['sort'];
         $category = $params['category'];
         $typeGroup = $params['type_group'];
@@ -132,11 +164,17 @@ class Room extends Model
 
         $query = static::whereIn('type', static::TYPE_GROUPS[$typeGroup]);
 
+        if (isset($seasonId)) {
+            $query->whereRelation('seasons', 'seasons.id', $seasonId);
+        }
+
         if (in_array($category, static::CATEGORIES, true)) {
             $query->where('category', $category);
         }
 
         switch ($params['mode']) {
+            case 'all':
+                break;
             case 'ended':
                 $query->ended();
                 $sort ??= 'ended';
@@ -154,7 +192,7 @@ class Room extends Model
         $cursorHelper = static::makeDbCursorHelper($sort);
         $query->cursorSort($cursorHelper, cursor_from_params($rawParams));
 
-        $limit = clamp($params['limit'] ?? 250, 1, 250);
+        $limit = clamp($params['limit'] ?? $maxLimit, 1, $maxLimit);
         $query->limit($limit);
 
         return [
@@ -190,6 +228,11 @@ class Room extends Model
     public function scores()
     {
         return $this->hasMany(Score::class);
+    }
+
+    public function seasons()
+    {
+        return $this->belongsToMany(Season::class, SeasonRoom::class);
     }
 
     public function userHighScores()
