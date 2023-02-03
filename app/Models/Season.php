@@ -22,16 +22,16 @@ class Season extends Model
         'finalised' => 'boolean',
     ];
 
-    public function scopeLatestOrId($query, $id)
+    public static function latestOrId($id)
     {
         if ($id === 'latest') {
-            $season = $query->last();
+            $season = static::last();
 
             if ($season === null) {
                 throw new ModelNotFoundException();
             }
         } else {
-            $season = $query->findOrFail($id);
+            $season = static::findOrFail($id);
         }
 
         return $season;
