@@ -52,10 +52,31 @@ const getCurrentNode = (editor: Editor) => {
 };
 
 export const toggleFormat = (editor: Editor, format: 'bold' | 'italic') => {
+  const selection = editor.selection;
+  if (selection == null) return;
+
+  // offset the seleciton to exclude start and end whitespace otherwise they won't parse as markdown.
+  // TODO: add checks to make sure offsets are in document.
+  const str = Editor.string(editor, selection);
+  const length = str.length;
+  const paddingStart = length - str.trimStart().length;
+  const paddingEnd = length - str.trimEnd().length;
+
+  const at = {
+    anchor: {
+      offset: selection.anchor.offset - paddingEnd,
+      path: selection.anchor.path,
+    },
+    focus: {
+      offset: selection.focus.offset + paddingStart,
+      path: selection.focus.path,
+    },
+  };
+
   Transforms.setNodes(
     editor,
     { [format]: isFormatActive(editor, format) ? null : true },
-    { match: (node) => Text.isText(node), split: true },
+    { at, match: (node) => Text.isText(node), split: true },
   );
 };
 
