@@ -11,7 +11,6 @@ const disabled = [
   'autolink',
   'blockQuote',
   'characterEscape',
-  'characterReference',
   'codeFenced',
   'codeIndented',
   'codeText',
