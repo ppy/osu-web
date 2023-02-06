@@ -9,6 +9,7 @@ import type { Parent, Node as UnistNode } from 'unist';
 import { formatTimestamp, startingPost } from 'utils/beatmapset-discussion-helper';
 import { present } from 'utils/string';
 import { BeatmapDiscussionReview, isBeatmapReviewDiscussionType, PersistedDocumentIssueEmbed } from '../interfaces/beatmap-discussion-review';
+import disableConstructs from './disable-constructs';
 
 interface ParsedDocumentNode extends UnistNode {
   children: UnistNode[];
@@ -41,13 +42,8 @@ export function parseFromJson(json: string, discussions: Partial<Record<number, 
   }
 
   const processor = unified()
-    .use(remarkParse);
-    // TODO:
-    // .use(disableTokenizersPlugin,
-    //   {
-    //     allowedBlocks: ['paragraph'],
-    //     allowedInlines: ['emphasis', 'strong'],
-    //   });
+    .use(remarkParse)
+    .use(disableConstructs);
 
   const doc: Element[] = [];
   srcDoc.forEach((block) => {

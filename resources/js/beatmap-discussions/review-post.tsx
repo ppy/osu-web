@@ -5,6 +5,7 @@ import { PersistedBeatmapDiscussionReview } from 'interfaces/beatmap-discussion-
 import * as React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { uuid } from 'utils/seq';
+import disableConstructs from './disable-constructs';
 import { linkRenderer, paragraphRenderer, transformLinkUri } from './renderers';
 import { ReviewPostEmbed } from './review-post-embed';
 
@@ -30,6 +31,7 @@ export class ReviewPost extends React.Component<Props> {
           a: linkRenderer,
           p: paragraphRenderer,
         }}
+        remarkPlugins={[disableConstructs]}
         transformLinkUri={transformLinkUri}
         unwrapDisallowed
       >
