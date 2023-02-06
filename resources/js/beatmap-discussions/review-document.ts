@@ -9,7 +9,7 @@ import type { Parent, Node as UnistNode } from 'unist';
 import { formatTimestamp, startingPost } from 'utils/beatmapset-discussion-helper';
 import { present } from 'utils/string';
 import { BeatmapDiscussionReview, isBeatmapReviewDiscussionType, PersistedDocumentIssueEmbed } from '../interfaces/beatmap-discussion-review';
-import disableConstructs from './disable-constructs';
+import disableConstructs from './plugins/disable-constructs';
 
 interface ParsedDocumentNode extends UnistNode {
   children: UnistNode[];

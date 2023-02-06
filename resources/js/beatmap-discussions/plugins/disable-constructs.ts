@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import type { Processor } from 'unified';
+import add from './add';
 
 // list of constructs to disable
 // from micromark-core-commonmark.
@@ -30,5 +31,5 @@ const disabled = [
 
 // Limit the types allowed for reviews.
 export default function disableConstructs(this: Processor) {
-  this.data('micromarkExtensions', [{ disable: { null: disabled } }]);
+  add(this, 'micromarkExtensions', [{ disable: { null: disabled } }]);
 }

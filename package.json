@@ -62,6 +62,8 @@
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
     "lodash": "^4.17.19",
+    "mdast-util-gfm-autolink-literal": "^1.0.3",
+    "micromark-extension-gfm-autolink-literal": "^1.0.3",
     "mini-css-extract-plugin": "^1.6.0",
     "mobx": "^6.3.3",
     "mobx-react": "^7.2.0",
