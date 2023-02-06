@@ -2,14 +2,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapsetDiscussionJsonForBundle, BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
-import * as markdown from 'remark-parse';
+import remarkParse from 'remark-parse';
 import { Element, Text } from 'slate';
 import { unified } from 'unified';
 import type { Parent, Node as UnistNode } from 'unist';
 import { formatTimestamp, startingPost } from 'utils/beatmapset-discussion-helper';
 import { present } from 'utils/string';
 import { BeatmapDiscussionReview, isBeatmapReviewDiscussionType, PersistedDocumentIssueEmbed } from '../interfaces/beatmap-discussion-review';
-import { disableTokenizersPlugin } from './disable-tokenizers-plugin';
 
 interface ParsedDocumentNode extends UnistNode {
   children: UnistNode[];
@@ -42,12 +41,13 @@ export function parseFromJson(json: string, discussions: Partial<Record<number, 
   }
 
   const processor = unified()
-    .use(markdown)
-    .use(disableTokenizersPlugin,
-      {
-        allowedBlocks: ['paragraph'],
-        allowedInlines: ['emphasis', 'strong'],
-      });
+    .use(remarkParse);
+    // TODO:
+    // .use(disableTokenizersPlugin,
+    //   {
+    //     allowedBlocks: ['paragraph'],
+    //     allowedInlines: ['emphasis', 'strong'],
+    //   });
 
   const doc: Element[] = [];
   srcDoc.forEach((block) => {
