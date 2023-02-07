@@ -6,7 +6,7 @@ import {
   BeatmapDiscussionReview,
   DocumentIssueEmbed,
 } from 'interfaces/beatmap-discussion-review';
-import { Editor, Element as SlateElement, Node as SlateNode, Range as SlateRange, Text, Transforms } from 'slate';
+import { Editor, Element as SlateElement, Node as SlateNode, Point, Range as SlateRange, Text, Transforms } from 'slate';
 import { parseTimestamp } from 'utils/beatmapset-discussion-helper';
 import { present } from 'utils/string';
 
@@ -55,20 +55,22 @@ export const toggleFormat = (editor: Editor, format: 'bold' | 'italic') => {
   const selection = editor.selection;
   if (selection == null) return;
 
+  const direction = Point.compare(selection.focus, selection.anchor);
+
   // offset the seleciton to exclude start and end whitespace otherwise they won't parse as markdown.
   // TODO: add checks to make sure offsets are in document.
   const str = Editor.string(editor, selection);
   const length = str.length;
-  const paddingStart = length - str.trimStart().length;
-  const paddingEnd = length - str.trimEnd().length;
+  const paddingStart = (length - str.trimStart().length) * direction;
+  const paddingEnd = (length - str.trimEnd().length) * direction;
 
   const at = {
     anchor: {
-      offset: selection.anchor.offset - paddingEnd,
+      offset: selection.anchor.offset + paddingEnd,
       path: selection.anchor.path,
     },
     focus: {
-      offset: selection.focus.offset + paddingStart,
+      offset: selection.focus.offset - paddingStart,
       path: selection.focus.path,
     },
   };
