@@ -17,7 +17,7 @@ interface Props {
 export class ReviewPost extends React.Component<Props> {
   embed(id: number) {
     return (
-      <div key={uuid()} className='beatmap-discussion-review-post__block'>
+      <div key={uuid()} className='beatmapset-discussion-message'>
         <ReviewPostEmbed data={{ discussion_id: id }} />
       </div>
     );
@@ -27,7 +27,7 @@ export class ReviewPost extends React.Component<Props> {
     return (
       <ReactMarkdown
         key={uuid()}
-        className='beatmap-discussion-review-post__block'
+        className='beatmapset-discussion-message'
         components={{
           a: linkRenderer,
           em: emphasisRenderer,
