@@ -4,8 +4,8 @@
 import RankingSelectOptions from 'components/ranking-select-options';
 import RoomList from 'components/room-list';
 import TimeWithTooltip from 'components/time-with-tooltip';
-import RankingSelectOptionJson from 'interfaces/ranking-select-option-json';
 import SeasonJson from 'interfaces/season-json';
+import SelectOptionJson from 'interfaces/select-option-json';
 import { route } from 'laroute';
 import * as React from 'react';
 import RoomListStore from 'stores/room-list-store';
@@ -13,7 +13,7 @@ import { trans } from 'utils/lang';
 
 interface Props {
   currentSeason: SeasonJson;
-  seasons: RankingSelectOptionJson[];
+  seasons: SelectOptionJson[];
   store: RoomListStore;
 }
 

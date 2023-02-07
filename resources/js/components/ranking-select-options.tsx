@@ -2,14 +2,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import SelectOptions, { OptionRenderProps } from 'components/select-options';
-import RankingSelectOptionJson from 'interfaces/ranking-select-option-json';
+import SelectOptionJson from 'interfaces/select-option-json';
 import { route } from 'laroute';
 import * as React from 'react';
 import { navigate } from 'utils/turbolinks';
 
 interface Props {
-  currentItem: RankingSelectOptionJson;
-  items: RankingSelectOptionJson[];
+  currentItem: SelectOptionJson;
+  items: SelectOptionJson[];
   type: 'multiplayer' | 'seasons';
 }
 
@@ -26,7 +26,7 @@ export default class RankingSelectOptions extends React.PureComponent<Props> {
     );
   }
 
-  private handleChange = (option: RankingSelectOptionJson) => {
+  private handleChange = (option: SelectOptionJson) => {
     navigate(this.href(option.id));
   };
 
@@ -39,7 +39,7 @@ export default class RankingSelectOptions extends React.PureComponent<Props> {
     }
   }
 
-  private renderOption = (props: OptionRenderProps<RankingSelectOptionJson>) => (
+  private renderOption = (props: OptionRenderProps<SelectOptionJson>) => (
     <a
       key={props.option.id ?? -1}
       className={props.cssClasses}

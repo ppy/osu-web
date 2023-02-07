@@ -3,6 +3,6 @@
 
 import { Option } from 'components/select-options';
 
-export default interface RankingSelectOptionJson extends Option {
+export default interface SelectOptionJson extends Option {
   id: number;
 }
