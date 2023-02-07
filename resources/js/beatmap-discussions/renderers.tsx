@@ -4,8 +4,10 @@
 import * as React from 'react';
 import { uriTransformer } from 'react-markdown';
 import { ReactMarkdownProps } from 'react-markdown/lib/complex-types';
-import { propsFromHref } from 'utils/beatmapset-discussion-helper';
+import { propsFromHref, timestampRegex } from 'utils/beatmapset-discussion-helper';
 import { openBeatmapEditor } from 'utils/url';
+
+export const timestampRegexGlobal = new RegExp(timestampRegex, 'g');
 
 export function linkRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>) {
   // TODO: handle extra nodes in astProps.children
@@ -16,7 +18,7 @@ export function linkRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLPr
 
 function paragraphDecorator(reactNode: React.ReactNode) {
   if (typeof reactNode === 'string') {
-    const matches = [...reactNode.matchAll(/\b(((\d{2,}):([0-5]\d)[:.](\d{3}))(\s\((?:\d+[,|])*\d+\))?)/g)];
+    const matches = [...reactNode.matchAll(timestampRegexGlobal)];
 
     if (matches.length > 0) {
       let cursor = 0;
