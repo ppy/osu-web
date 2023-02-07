@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Tests\Libraries\Fulfillments;
 
+use App\Libraries\Fulfillments\ApplySupporterTag;
 use App\Libraries\Fulfillments\FulfillmentException;
 use App\Libraries\Fulfillments\SupporterTagFulfillment;
 use App\Mail\DonationThanks;
@@ -28,28 +29,28 @@ class SupporterTagFulfillmentTest extends TestCase
     public function testDonateSupporterTagToSelf()
     {
         $donor = $this->user;
-        $expectedExpiry = $donor->osu_subscriptionexpiry->copy()->addMonthsNoOverflow(1);
+        $expectedExpiry = ApplySupporterTag::addDuration($donor->osu_subscriptionexpiry, 1);
         $this->createDonationOrderItem($this->user, false, false);
 
         (new SupporterTagFulfillment($this->order))->run();
 
         $donor->refresh();
         $this->assertTrue($donor->osu_subscriber);
-        $this->assertTrue($expectedExpiry->equalTo($donor->osu_subscriptionexpiry));
+        $this->assertEqualsUpToMinute($expectedExpiry, $donor->osu_subscriptionexpiry);
         $this->assertSame(2, $donor->osu_featurevotes);
     }
 
     public function testDonateSupporterTagToOthers()
     {
-        $today = Carbon::today();
+        $now = Carbon::now();
 
         $donor = $this->user;
         $giftee = User::factory()->create([
             'osu_featurevotes' => 0,
-            'osu_subscriptionexpiry' => $today->copy(),
+            'osu_subscriptionexpiry' => $now->copy(),
             'user_sig' => '',
         ]);
-        $expectedExpiry = $giftee->osu_subscriptionexpiry->copy()->addMonthsNoOverflow(1);
+        $expectedExpiry = ApplySupporterTag::addDuration($giftee->osu_subscriptionexpiry, 1);
 
         $this->createDonationOrderItem($giftee, false, false);
 
@@ -63,8 +64,8 @@ class SupporterTagFulfillmentTest extends TestCase
         $this->assertTrue($giftee->osu_subscriber);
 
         // donor's expiry should not change.
-        $this->assertTrue($expectedExpiry->equalTo($giftee->osu_subscriptionexpiry));
-        $this->assertTrue($today->equalTo($donor->osu_subscriptionexpiry));
+        $this->assertEqualsUpToMinute($expectedExpiry, $giftee->osu_subscriptionexpiry);
+        $this->assertEqualsUpToMinute($now, $donor->osu_subscriptionexpiry);
 
         // votes go to donor.
         $this->assertSame(2, $donor->osu_featurevotes);
@@ -79,7 +80,7 @@ class SupporterTagFulfillmentTest extends TestCase
         Mail::fake();
 
         // prevent factory from generating user_sig
-        $giftee1 = User::factory()->create(['osu_subscriptionexpiry' => Carbon::today(), 'user_sig' => '']);
+        $giftee1 = User::factory()->create(['osu_subscriptionexpiry' => Carbon::now(), 'user_sig' => '']);
         $giftee2 = User::factory()->create(['user_sig' => '']);
 
         // This also tests multiple gifts only send 1 mail/event each
@@ -92,11 +93,11 @@ class SupporterTagFulfillmentTest extends TestCase
         $this->expectCountChange(fn () => Event::where('user_id', $this->user->getKey())->count(), $hidden ? 0 : 1);
 
         // Also test multiple tags in same run to same user get applied properly.
-        $expectedExpiry = $giftee1->osu_subscriptionexpiry->addMonthsNoOverflow(1)->addMonthsNoOverflow(1);
+        $expectedExpiry = ApplySupporterTag::addDuration($giftee1->osu_subscriptionexpiry, 2);
 
         (new SupporterTagFulfillment($this->order))->run();
 
-        $this->assertTrue($expectedExpiry->equalTo($giftee1->fresh()->osu_subscriptionexpiry));
+        $this->assertEqualsUpToMinute($expectedExpiry, $giftee1->fresh()->osu_subscriptionexpiry);
 
         Mail::assertQueued(SupporterGift::class, function ($mail) use ($giftee1, $giftee2) {
             $params = $this->invokeProperty($mail, 'params');
@@ -144,7 +145,7 @@ class SupporterTagFulfillmentTest extends TestCase
     public function testPartiallyFulfilledOrder()
     {
         $donor = $this->user;
-        $expectedExpiry = $donor->osu_subscriptionexpiry->copy()->addMonthsNoOverflow(1);
+        $expectedExpiry = ApplySupporterTag::addDuration($donor->osu_subscriptionexpiry, 1);
 
         // consider the first item as processed
         $this->createDonationOrderItem($this->user, false, true);
@@ -155,7 +156,7 @@ class SupporterTagFulfillmentTest extends TestCase
         $donor->refresh();
         // Should only apply one supporter tag.
         $this->assertTrue($donor->osu_subscriber);
-        $this->assertTrue($expectedExpiry->equalTo($donor->osu_subscriptionexpiry));
+        $this->assertEqualsUpToMinute($expectedExpiry, $donor->osu_subscriptionexpiry);
         $this->assertSame(2, $donor->osu_featurevotes);
     }
 
@@ -172,27 +173,20 @@ class SupporterTagFulfillmentTest extends TestCase
         $donor->refresh();
         // Should not apply any supporter tags
         $this->assertFalse($donor->osu_subscriber);
-        $this->assertTrue($expectedExpiry->equalTo($donor->osu_subscriptionexpiry));
+        $this->assertEqualsUpToMinute($expectedExpiry, $donor->osu_subscriptionexpiry);
         $this->assertSame(0, $donor->osu_featurevotes);
     }
 
     public function testRevokeDonateSupporterTagToSelf()
     {
-        $today = Carbon::today();
+        $now = Carbon::now();
 
         $donor = $this->user;
         $donor->update([
             'osu_featurevotes' => 2,
             'osu_subscriber' => true,
-            'osu_subscriptionexpiry' => $today->copy()->addMonthsNoOverflow(1),
+            'osu_subscriptionexpiry' => ApplySupporterTag::addDuration($now->copy(), 1),
         ]);
-
-        // workaround date insanity during testing
-        $expectedExpiry = $today->copy();
-        $insane = $today->day > $donor->osu_subscriptionexpiry->endOfMonth()->day;
-        if ($insane) {
-            $expectedExpiry = $today->day($donor->osu_subscriptionexpiry->endOfMonth()->day);
-        }
 
         $this->createDonationOrderItem($this->user, false, true);
 
@@ -200,20 +194,20 @@ class SupporterTagFulfillmentTest extends TestCase
 
         $donor->refresh();
 
-        $this->assertTrue($expectedExpiry->equalTo($donor->osu_subscriptionexpiry));
+        $this->assertEqualsUpToMinute($now, $donor->osu_subscriptionexpiry);
         $this->assertSame(0, $donor->osu_featurevotes);
         $this->assertFalse($donor->osu_subscriber);
     }
 
     public function testPartiallyRevokedOrder()
     {
-        $today = Carbon::today();
+        $now = Carbon::now();
 
         $donor = $this->user;
         $donor->update([
             'osu_featurevotes' => 4,
             'osu_subscriber' => true,
-            'osu_subscriptionexpiry' => $today->copy()->addMonthsNoOverflow(2),
+            'osu_subscriptionexpiry' => ApplySupporterTag::addDuration($now->copy(), 2),
         ]);
 
         $oldExpiry = $donor->osu_subscriptionexpiry;
@@ -226,20 +220,20 @@ class SupporterTagFulfillmentTest extends TestCase
         $donor->refresh();
 
         // there should be 1 month left.
-        $this->assertTrue($oldExpiry->subMonthsNoOverflow(1)->equalTo($donor->osu_subscriptionexpiry));
+        $this->assertEqualsUpToMinute(ApplySupporterTag::addDuration($oldExpiry, -1), $donor->osu_subscriptionexpiry);
         $this->assertSame(2, $donor->osu_featurevotes);
         $this->assertTrue($donor->osu_subscriber);
     }
 
     public function testAlreadyRevokedOrder()
     {
-        $today = Carbon::today();
+        $now = Carbon::now();
 
         $donor = $this->user;
         $donor->update([
             'osu_featurevotes' => 4,
             'osu_subscriber' => true,
-            'osu_subscriptionexpiry' => $today->copy()->addMonthsNoOverflow(2),
+            'osu_subscriptionexpiry' => ApplySupporterTag::addDuration($now->copy(), 2),
         ]);
 
         $this->createDonationOrderItem($this->user, true, true);
@@ -249,29 +243,29 @@ class SupporterTagFulfillmentTest extends TestCase
 
         $donor->refresh();
 
-        $this->assertTrue($today->copy()->addMonthsNoOverflow(2)->equalTo($donor->osu_subscriptionexpiry));
+        $this->assertEqualsUpToMinute(ApplySupporterTag::addDuration($now->copy(), 2), $donor->osu_subscriptionexpiry);
         $this->assertSame(4, $donor->osu_featurevotes);
         $this->assertTrue($donor->osu_subscriber);
     }
 
     public function testDonateSupporterTagAfterExpired()
     {
-        $today = Carbon::today();
+        $now = Carbon::now();
 
         $donor = $this->user;
         $donor->update([
             'osu_subscriber' => true,
-            'osu_subscriptionexpiry' => $today->copy()->subYears(1),
+            'osu_subscriptionexpiry' => $now->copy()->subYears(1),
         ]);
 
-        $expectedExpiry = $today->copy()->addMonthsNoOverflow(1);
+        $expectedExpiry = ApplySupporterTag::addDuration($now->copy(), 1);
         $this->createDonationOrderItem($this->user, false, false);
 
         (new SupporterTagFulfillment($this->order))->run();
 
         $donor->refresh();
         $this->assertTrue($donor->osu_subscriber);
-        $this->assertTrue($expectedExpiry->equalTo($donor->osu_subscriptionexpiry));
+        $this->assertEqualsUpToMinute($expectedExpiry, $donor->osu_subscriptionexpiry);
         $this->assertSame(2, $donor->osu_featurevotes);
     }
 
@@ -311,7 +305,7 @@ class SupporterTagFulfillmentTest extends TestCase
 
         $this->user = User::factory()->create([
             'osu_featurevotes' => 0,
-            'osu_subscriptionexpiry' => Carbon::today(),
+            'osu_subscriptionexpiry' => Carbon::now(),
         ]);
 
         $this->order = factory(Order::class)->states('paid')->create([
@@ -358,5 +352,10 @@ class SupporterTagFulfillmentTest extends TestCase
                 'username' => $user->username,
             ],
         ]);
+    }
+
+    private function assertEqualsUpToMinute(Carbon $expected, Carbon $actual): void
+    {
+        $this->assertTrue($expected->diffInMinutes($actual, false) < 2);
     }
 }
