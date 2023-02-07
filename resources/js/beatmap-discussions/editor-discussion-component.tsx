@@ -18,7 +18,10 @@ import { linkHtml } from 'utils/url';
 import { DraftsContext } from './drafts-context';
 import EditorBeatmapSelector from './editor-beatmap-selector';
 import EditorIssueTypeSelector from './editor-issue-type-selector';
+import { postEmbedModifiers } from './review-post-embed';
 import { SlateContext } from './slate-context';
+
+const bn = 'beatmap-discussion-review-post-embed-preview';
 
 interface Cache {
   nearbyDiscussions?: {
@@ -42,7 +45,6 @@ interface Props extends RenderElementProps {
 export default class EditorDiscussionComponent extends React.Component<Props> {
   static contextType = SlateContext;
 
-  bn = 'beatmap-discussion-review-post-embed-preview';
   cache: Cache = {};
   declare context: React.ContextType<typeof SlateContext>;
   tooltipContent = React.createRef<HTMLScriptElement>();
@@ -237,7 +239,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
 
       return (
         <div
-          className={`${this.bn}__indicator ${this.bn}__indicator--warning`}
+          className={`${bn}__indicator ${bn}__indicator--warning`}
           contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
           onMouseOver={this.createTooltip}
           onTouchStart={this.createTooltip}
@@ -272,7 +274,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     const deleteButton =
       (
         <button
-          className={`${this.bn}__delete`}
+          className={`${bn}__delete`}
           contentEditable={false}
           disabled={this.props.readOnly}
           onClick={this.delete}
@@ -292,7 +294,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
       this.props.editMode && canEdit ?
         (
           <div
-            className={`${this.bn}__indicator`}
+            className={`${bn}__indicator`}
             contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
             title={trans('beatmaps.discussions.review.embed.unsaved')}
           >
@@ -303,6 +305,11 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
 
     const disabled = this.props.readOnly || !canEdit;
 
+    const discussion = this.props.element.discussionId != null ? this.props.discussions[this.props.element.discussionId] : null;
+    const embedMofidiers = discussion != null
+      ? postEmbedModifiers(discussion)
+      : this.discussionType() === 'praise' ? 'praise' : null;
+
     return (
       <div
         className='beatmap-discussion beatmap-discussion--preview'
@@ -310,16 +317,16 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
         suppressContentEditableWarning
         {...this.props.attributes}
       >
-        <div className={classWithModifiers(this.bn, classMods)}>
-          <div className={`${this.bn}__content`}>
+        <div className={classWithModifiers(bn, classMods, embedMofidiers)}>
+          <div className={`${bn}__content`}>
             <div
-              className={`${this.bn}__selectors`}
+              className={`${bn}__selectors`}
               contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
             >
               <EditorBeatmapSelector {...this.props} disabled={disabled} element={this.props.element} />
               <EditorIssueTypeSelector {...this.props} disabled={disabled} element={this.props.element} />
               <div
-                className={`${this.bn}__timestamp`}
+                className={`${bn}__timestamp`}
                 contentEditable={false} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
               >
                 <span title={canEdit ? timestampTooltip : ''}>
@@ -330,10 +337,10 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
               {nearbyIndicator}
             </div>
             <div
-              className={`${this.bn}__stripe`} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
+              className={`${bn}__stripe`} // workaround for slatejs 'Cannot resolve a Slate point from DOM point' nonsense
               contentEditable={false}
             />
-            <div className={`${this.bn}__message-container`}>
+            <div className={`${bn}__message-container`}>
               <div className='beatmapset-discussion-message'>{this.props.children}</div>
             </div>
             {unsavedIndicator}
