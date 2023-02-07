@@ -4,11 +4,15 @@
 import { discussionTypeIcons } from 'beatmap-discussions/discussion-type';
 import { BeatmapIcon } from 'components/beatmap-icon';
 import * as React from 'react';
-import { format, formatTimestamp, makeUrl, startingPost } from 'utils/beatmapset-discussion-helper';
+import ReactMarkdown from 'react-markdown';
+import { formatTimestamp, makeUrl, startingPost } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import { BeatmapsContext } from './beatmaps-context';
 import { DiscussionsContext } from './discussions-context';
+import autolink from './plugins/autolink';
+import disableConstructs from './plugins/disable-constructs';
+import { emphasisRenderer, linkRenderer, paragraphRenderer, strongRenderer, transformLinkUri } from './renderers';
 
 interface Props {
   data: {
@@ -118,7 +122,22 @@ export const ReviewPostEmbed = ({ data }: Props) => {
         </div>
         <div className={`${bn}__stripe`} />
         <div className={`${bn}__message-container`}>
-          <div className={`${bn}__body`} dangerouslySetInnerHTML={{ __html: format(post.message) }} />
+          <div className={`${bn}__body`}>
+            <ReactMarkdown
+              className='beatmapset-discussion-message'
+              components={{
+                a: linkRenderer,
+                em: emphasisRenderer,
+                p: paragraphRenderer,
+                strong: strongRenderer,
+              }}
+              remarkPlugins={[autolink, disableConstructs]}
+              transformLinkUri={transformLinkUri}
+              unwrapDisallowed
+            >
+              {post.message}
+            </ReactMarkdown>
+          </div>
         </div>
         {parentLink()}
       </div>
