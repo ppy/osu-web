@@ -25,16 +25,13 @@ import { deletedUser } from 'models/user';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
-import ReactMarkdown from 'react-markdown';
 import { onError } from 'utils/ajax';
 import { badgeGroup, canModeratePosts, makeUrl, validMessageLength } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
 import { trans } from 'utils/lang';
+import DiscussionMessage from './discussion-message';
 import DiscussionMessageLengthCounter from './discussion-message-length-counter';
-import autolink from './plugins/autolink';
-import disableConstructs from './plugins/disable-constructs';
-import { emphasisRenderer, linkRenderer, paragraphRenderer, strongRenderer, transformLinkUri } from './renderers';
 import { UserCard } from './user-card';
 
 const bn = 'beatmap-discussion-post';
@@ -333,20 +330,7 @@ export default class Post extends React.Component<Props> {
           </div>
         ) : (
           <div ref={this.messageBodyRef} className={`${bn}__message`}>
-            <ReactMarkdown
-              className='beatmapset-discussion-message'
-              components={{
-                a: linkRenderer,
-                em: emphasisRenderer,
-                p: paragraphRenderer,
-                strong: strongRenderer,
-              }}
-              remarkPlugins={[autolink, disableConstructs]}
-              transformLinkUri={transformLinkUri}
-              unwrapDisallowed
-            >
-              {this.props.post.message}
-            </ReactMarkdown>
+            <DiscussionMessage markdown={this.props.post.message} />
           </div>
         )}
         <div className={`${bn}__info-container`}>

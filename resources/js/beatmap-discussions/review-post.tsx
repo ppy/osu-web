@@ -3,11 +3,8 @@
 
 import { PersistedBeatmapDiscussionReview } from 'interfaces/beatmap-discussion-review';
 import * as React from 'react';
-import ReactMarkdown from 'react-markdown';
 import { uuid } from 'utils/seq';
-import autolink from './plugins/autolink';
-import disableConstructs from './plugins/disable-constructs';
-import { emphasisRenderer, linkRenderer, paragraphRenderer, strongRenderer, transformLinkUri } from './renderers';
+import DiscussionMessage from './discussion-message';
 import { ReviewPostEmbed } from './review-post-embed';
 
 interface Props {
@@ -17,29 +14,13 @@ interface Props {
 export class ReviewPost extends React.Component<Props> {
   embed(id: number) {
     return (
-      <div key={uuid()} className='beatmapset-discussion-message'>
-        <ReviewPostEmbed data={{ discussion_id: id }} />
-      </div>
+      <ReviewPostEmbed key={uuid()} data={{ discussion_id: id }} />
     );
   }
 
   paragraph(source: string) {
     return (
-      <ReactMarkdown
-        key={uuid()}
-        className='beatmapset-discussion-message'
-        components={{
-          a: linkRenderer,
-          em: emphasisRenderer,
-          p: paragraphRenderer,
-          strong: strongRenderer,
-        }}
-        remarkPlugins={[autolink, disableConstructs]}
-        transformLinkUri={transformLinkUri}
-        unwrapDisallowed
-      >
-        {source}
-      </ReactMarkdown>
+      <DiscussionMessage key={uuid()} markdown={source} />
     );
   }
 
