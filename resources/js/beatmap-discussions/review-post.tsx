@@ -2,13 +2,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { PersistedBeatmapDiscussionReview } from 'interfaces/beatmap-discussion-review';
+import { BeatmapsetDiscussionMessagePostJson } from 'interfaces/beatmapset-discussion-post-json';
 import * as React from 'react';
 import { uuid } from 'utils/seq';
 import DiscussionMessage from './discussion-message';
 import { ReviewPostEmbed } from './review-post-embed';
 
 interface Props {
-  message: string;
+  post: BeatmapsetDiscussionMessagePostJson;
 }
 
 export class ReviewPost extends React.Component<Props> {
@@ -28,7 +29,7 @@ export class ReviewPost extends React.Component<Props> {
     const docBlocks: JSX.Element[] = [];
 
     try {
-      const doc = JSON.parse(this.props.message) as PersistedBeatmapDiscussionReview;
+      const doc = JSON.parse(this.props.post.message) as PersistedBeatmapDiscussionReview;
 
       doc.forEach((block) => {
         switch (block.type) {
