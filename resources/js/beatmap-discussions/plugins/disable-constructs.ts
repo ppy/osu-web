@@ -6,7 +6,7 @@ import add from './add';
 
 // list of constructs to disable
 // from micromark-core-commonmark.
-// only 'attention' is left enabled.
+// enabled: 'attention', 'characterReference'
 const disabled = [
   'autolink',
   'blockQuote',
