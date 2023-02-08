@@ -22,8 +22,8 @@ interface TextNode extends UnistNode {
   value: string;
 }
 
-function isParentNode(node: UnistNode): node is Parent {
-  return Array.isArray(node.children);
+function isParentNode(node: UnistNode | Parent): node is Parent {
+  return ('children' in node) && Array.isArray(node.children);
 }
 
 function isText(node: UnistNode): node is TextNode {
