@@ -37,7 +37,7 @@ type MakeUrlOptions = {
   user?: number;
 } & (
   // enforces mutual exclusivity when passing in as paramaters.
-  // doesn't completely discrimitate the type during type checks.
+  // doesn't completely discriminate the type during type checks.
   {
     beatmap?: never;
     beatmapId?: number;
