@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { SelectOptions } from 'components/select-options';
+import SelectOptions from 'components/select-options';
 import { route } from 'laroute';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
