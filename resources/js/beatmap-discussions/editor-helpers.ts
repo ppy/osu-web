@@ -81,7 +81,6 @@ function serializeEmbed(node: EmbedElement): DocumentIssueEmbed {
 function serializeMarkedText(text: string, format: string) {
   const trimmedText = text.trim();
 
-  // TODO: where's the thing that unescapes this?
   const formattedText = `${format}${trimmedText.replace('*', '\\*')}${format}`;
 
   if (trimmedText === text) {
