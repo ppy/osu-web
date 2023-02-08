@@ -26,30 +26,12 @@ interface BadgeGroupParams {
   user?: UserJson;
 }
 
-interface DiscussionPageUrlParams {
-  beatmapId?: number;
-  beatmapsetId: number;
-  discussionId?: number;
-  filter: Filter;
-  mode: DiscussionPage;
-  postId?: number;
-  user?: number;
-}
-
 interface FormatOptions {
   modifiers?: Modifiers;
   newlines?: boolean;
 }
 
-interface PropsFromHrefValue {
-  [key: string]: string | undefined;
-  children: string;
-  className?: string;
-  rel: 'nofollow noreferrer';
-  target?: '_blank';
-}
-
-type UrlOptions = {
+type MakeUrlOptions = {
   filter?: Filter;
   mode?: DiscussionPage;
   user?: number;
@@ -74,6 +56,19 @@ type UrlOptions = {
     postId?: never;
   }
 );
+
+// This is more for ensuring parseUrl returns the correct non-nullable properties
+type ParsedUrlParams =
+  Omit<MakeUrlOptions, 'beatmap' | 'discussion' | 'post'>
+  & Required<Pick<MakeUrlOptions, 'beatmapsetId' | 'filter' | 'mode'>>;
+
+interface PropsFromHrefValue {
+  [key: string]: string | undefined;
+  children: string;
+  className?: string;
+  rel: 'nofollow noreferrer';
+  target?: '_blank';
+}
 
 export const defaultFilter = 'total';
 
@@ -194,7 +189,7 @@ export function linkTimestamp(text: string, classNames: string[] = []) {
   );
 }
 
-export function makeUrl(options: UrlOptions) {
+export function makeUrl(options: MakeUrlOptions) {
   const {
     beatmap,
     discussion,
@@ -315,7 +310,7 @@ export function parseUrl(urlString?: string | null, discussions?: BeatmapsetDisc
 
   const beatmapId = getInt(beatmapIdString);
 
-  const ret: DiscussionPageUrlParams = {
+  const ret: ParsedUrlParams = {
     beatmapId,
     beatmapsetId,
     filter: isFilter(filter) ? filter : 'total',
