@@ -81,7 +81,8 @@ function serializeEmbed(node: EmbedElement): DocumentIssueEmbed {
 function serializeMarkedText(text: string, format: string) {
   const trimmedText = text.trim();
 
-  const formattedText = `${format}${trimmedText}${format}`;
+  // TODO: where's the thing that unescapes this?
+  const formattedText = `${format}${trimmedText.replace('*', '\\*')}${format}`;
 
   if (trimmedText === text) {
     return formattedText;
@@ -97,14 +98,12 @@ function serializeParagraph(node: ParagraphElement) {
     if (child.text !== '') {
       // simplified logic that forces nested marks to be split;
       // removing whitespace while preserving the nested marks gets messy.
-      // TODO: where's the thing that unescapes this?
-      const text = child.text.replace('*', '\\*');
       if (child.bold && child.italic) {
-        childOutput.push(serializeMarkedText(text, '***'));
+        childOutput.push(serializeMarkedText(child.text, '***'));
       } else if (child.bold) {
-        childOutput.push(serializeMarkedText(text, '**'));
+        childOutput.push(serializeMarkedText(child.text, '**'));
       } else if (child.italic) {
-        childOutput.push(serializeMarkedText(text, '*'));
+        childOutput.push(serializeMarkedText(child.text, '*'));
       } else {
         childOutput.push(child.text);
       }
