@@ -12,7 +12,7 @@ import core from 'osu-core-singleton'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
 import * as BeatmapHelper from 'utils/beatmap-helper'
-import { defaultFilter, defaultMode, makeUrl, stateFromDiscussion, urlParse } from 'utils/beatmapset-discussion-helper'
+import { defaultFilter, defaultMode, makeUrl, parseUrl, stateFromDiscussion } from 'utils/beatmapset-discussion-helper'
 import { nextVal } from 'utils/seq'
 import { currentUrl } from 'utils/turbolinks'
 import { Discussions } from './discussions'
@@ -355,7 +355,7 @@ export class Main extends React.PureComponent
 
 
   jumpToDiscussionByHash: =>
-    target = urlParse(null, @state.beatmapset.discussions)
+    target = parseUrl(null, @state.beatmapset.discussions)
 
     @jumpTo(null, id: target.discussionId, postId: target.postId) if target.discussionId?
 
@@ -395,7 +395,7 @@ export class Main extends React.PureComponent
 
   jumpToClick: (e) =>
     url = e.currentTarget.getAttribute('href')
-    { discussionId, postId } = urlParse(url, @state.beatmapset.discussions)
+    { discussionId, postId } = parseUrl(url, @state.beatmapset.discussions)
 
     return if !discussionId?
 
@@ -426,7 +426,7 @@ export class Main extends React.PureComponent
 
 
   queryFromLocation: (discussions = @state.beatmapsetDiscussion.beatmap_discussions) =>
-    urlParse(null, discussions)
+    parseUrl(null, discussions)
 
 
   saveStateToContainer: =>

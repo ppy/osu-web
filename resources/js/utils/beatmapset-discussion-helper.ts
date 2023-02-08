@@ -64,7 +64,7 @@ interface UrlOptions {
 
 export const defaultFilter = 'total';
 
-// urlParse and makeUrl lookups
+// parseUrl and makeUrl lookups
 const filterLookup = new Set(filters) as Set<string>;
 const generalPages = new Set(['events', 'generalAll', 'reviews']) as Set<string | undefined>;
 const pageLookup = new Set(discussionPages) as Set<string>;
@@ -292,73 +292,7 @@ export function parseTimestamp(message?: string | null) {
   return (timestamp[2] * 60 + timestamp[3]) * 1000 + timestamp[4];
 }
 
-
-export function previewMessage(message: string) {
-  if (message.length > maxMessagePreviewLength) {
-    return escape(truncate(message, { length: maxMessagePreviewLength }));
-  }
-
-  return format(message, { newlines: false });
-}
-
-export function propsFromHref(href: string) {
-  const current = urlParse(currentUrl().href);
-
-  const props: PropsFromHrefValue = {
-    children: href,
-    rel: 'nofollow noreferrer',
-    target: '_blank',
-  };
-
-  let targetUrl: URL | undefined;
-
-  try {
-    // TODO: The regexp used sometimes catches invalid URL like "https://example.com]".
-    // Either accept that as fact of life or a better regexp is needed which is
-    // probably rather difficult especially if we're going to support parsing IDN.
-    targetUrl = new URL(href);
-  } catch (e: unknown) {
-    // ignore error
-  }
-
-  if (targetUrl != null && targetUrl.host === currentUrl().host) {
-    const target = urlParse(targetUrl.href);
-    if (target?.discussionId != null && target.beatmapsetId != null) {
-      const hash = [target.discussionId, target.postId].filter(Number.isFinite).join('/');
-      if (current?.beatmapsetId === target.beatmapsetId) {
-        // same beatmapset, format: #123
-        props.children = `#${hash}`;
-        props.className = 'js-beatmap-discussion--jump';
-        props.target = undefined;
-      } else {
-        // different beatmapset, format: 1234#567
-        props.children = `${target.beatmapsetId}#${hash}`;
-      }
-    }
-  }
-
-  return props;
-}
-
-// Workaround for the discussion starting_post typing mess until the response gets refactored and normalized.
-export function startingPost(discussion: BeatmapsetDiscussionJsonForBundle | BeatmapsetDiscussionJsonForShow): BeatmapsetDiscussionPostJson {
-  if (!('posts' in discussion)) {
-    return discussion.starting_post;
-  }
-
-  return discussion.posts[0];
-}
-
-export function stateFromDiscussion(discussion: BeatmapsetDiscussionJson) {
-  return {
-    beatmapId: discussion.beatmap_id,
-    beatmapsetId: discussion.beatmapset_id,
-    discussionId: discussion.id,
-    mode: discussionMode(discussion),
-  };
-}
-
-export function urlParse(urlString: string | null, discussions?: BeatmapsetDiscussionJson[] | null) {
+export function parseUrl(urlString: string | null, discussions?: BeatmapsetDiscussionJson[] | null) {
   const url = new URL(urlString ?? currentUrl().href);
 
   const [, pathBeatmapsets, beatmapsetIdString, pathDiscussions, beatmapIdString, mode, filter] = url.pathname.split(/\/+/);
@@ -407,6 +341,71 @@ export function urlParse(urlString: string | null, discussions?: BeatmapsetDiscu
   }
 
   return ret;
+}
+
+export function previewMessage(message: string) {
+  if (message.length > maxMessagePreviewLength) {
+    return escape(truncate(message, { length: maxMessagePreviewLength }));
+  }
+
+  return format(message, { newlines: false });
+}
+
+export function propsFromHref(href: string) {
+  const current = parseUrl(currentUrl().href);
+
+  const props: PropsFromHrefValue = {
+    children: href,
+    rel: 'nofollow noreferrer',
+    target: '_blank',
+  };
+
+  let targetUrl: URL | undefined;
+
+  try {
+    // TODO: The regexp used sometimes catches invalid URL like "https://example.com]".
+    // Either accept that as fact of life or a better regexp is needed which is
+    // probably rather difficult especially if we're going to support parsing IDN.
+    targetUrl = new URL(href);
+  } catch (e: unknown) {
+    // ignore error
+  }
+
+  if (targetUrl != null && targetUrl.host === currentUrl().host) {
+    const target = parseUrl(targetUrl.href);
+    if (target?.discussionId != null && target.beatmapsetId != null) {
+      const hash = [target.discussionId, target.postId].filter(Number.isFinite).join('/');
+      if (current?.beatmapsetId === target.beatmapsetId) {
+        // same beatmapset, format: #123
+        props.children = `#${hash}`;
+        props.className = 'js-beatmap-discussion--jump';
+        props.target = undefined;
+      } else {
+        // different beatmapset, format: 1234#567
+        props.children = `${target.beatmapsetId}#${hash}`;
+      }
+    }
+  }
+
+  return props;
+}
+
+// Workaround for the discussion starting_post typing mess until the response gets refactored and normalized.
+export function startingPost(discussion: BeatmapsetDiscussionJsonForBundle | BeatmapsetDiscussionJsonForShow): BeatmapsetDiscussionPostJson {
+  if (!('posts' in discussion)) {
+    return discussion.starting_post;
+  }
+
+  return discussion.posts[0];
+}
+
+export function stateFromDiscussion(discussion: BeatmapsetDiscussionJson) {
+  return {
+    beatmapId: discussion.beatmap_id,
+    beatmapsetId: discussion.beatmapset_id,
+    discussionId: discussion.id,
+    mode: discussionMode(discussion),
+  };
 }
 
 export function validMessageLength(message?: string | null, isTimeline = false) {
