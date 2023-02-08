@@ -65,9 +65,9 @@ interface UrlOptions {
 export const defaultFilter = 'total';
 
 // parseUrl and makeUrl lookups
-const filterLookup = new Set(filters) as Set<string>;
-const generalPages = new Set(['events', 'generalAll', 'reviews']) as Set<string | undefined>;
-const pageLookup = new Set(discussionPages) as Set<string>;
+const filterLookup = new Set<unknown>(filters);
+const generalPages = new Set<unknown>(['events', 'generalAll', 'reviews']);
+const pageLookup = new Set<unknown>(discussionPages);
 
 export const defaultBeatmapId = '-';
 
