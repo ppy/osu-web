@@ -69,7 +69,7 @@ const filterLookup = new Set<unknown>(filters);
 const generalPages = new Set<unknown>(['events', 'generalAll', 'reviews']);
 const pageLookup = new Set<unknown>(discussionPages);
 
-export const defaultBeatmapId = '-';
+const defaultBeatmapId = '-';
 
 const lineBreakRegex = /(?:<br>){2,}/g;
 const linkTimestampRegex = /\b((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\)|\b))/g;
