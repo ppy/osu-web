@@ -92,25 +92,21 @@ function serializeMarkedText(text: string, format: string) {
 }
 
 function serializeParagraph(node: ParagraphElement) {
-  const childOutput: string[] = [];
-
-  node.children.forEach((child) => {
+  return node.children.map((child) => {
     if (child.text !== '') {
       // simplified logic that forces nested marks to be split;
       // removing whitespace while preserving the nested marks gets messy.
       if (child.bold && child.italic) {
-        childOutput.push(serializeMarkedText(child.text, '***'));
+        return serializeMarkedText(child.text, '***');
       } else if (child.bold) {
-        childOutput.push(serializeMarkedText(child.text, '**'));
+        return serializeMarkedText(child.text, '**');
       } else if (child.italic) {
-        childOutput.push(serializeMarkedText(child.text, '*'));
+        return serializeMarkedText(child.text, '*');
       } else {
-        childOutput.push(child.text);
+        return child.text;
       }
     }
-  });
-
-  return childOutput.join('');
+  }).join('');
 }
 
 export const slateDocumentContainsNewProblem = (input: SlateElement[]) =>
