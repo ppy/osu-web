@@ -39,7 +39,7 @@ export default class UserPage extends React.Component<ExtraPageProps> {
             <button
               className='btn-circle btn-circle--page-toggle'
               onClick={this.editStart}
-              title={trans('users.show.page.button')}
+              title={trans('users.show.page.edit_big')}
               type='button'
             >
               <span className='fas fa-pencil-alt' />
