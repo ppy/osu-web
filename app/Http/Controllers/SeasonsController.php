@@ -7,8 +7,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Multiplayer\Room;
 use App\Models\Season;
-use App\Transformers\RankingSelectOptionTransformer;
 use App\Transformers\SeasonTransformer;
+use App\Transformers\SelectOptionTransformer;
 
 class SeasonsController extends Controller
 {
@@ -30,7 +30,7 @@ class SeasonsController extends Controller
         $seasonJson = json_item($season, new SeasonTransformer());
 
         $seasons = Season::orderByDesc('id')->get();
-        $seasonsJson = json_collection($seasons, new RankingSelectOptionTransformer());
+        $seasonsJson = json_collection($seasons, new SelectOptionTransformer());
 
         return ext_view('seasons.show', compact('roomsJson', 'season', 'seasonJson', 'seasonsJson'));
     }

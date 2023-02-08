@@ -3,8 +3,11 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
+    use App\Transformers\SelectOptionTransformer;
+
     // used in table and index
     $mode = default_mode();
+    $selectOptionTransformer = new SelectOptionTransformer();
 @endphp
 @extends('rankings.index', [
     'country' => null,
@@ -29,8 +32,8 @@
 
     <script id="json-ranking-select-options" type="application/json">
         {!! json_encode([
-            'currentItem' => json_item($room, 'RankingSelectOption'),
-            'items' => json_collection($rooms, 'Multiplayer\Room'),
+            'currentItem' => json_item($room, $selectOptionTransformer),
+            'items' => json_collection($rooms, $selectOptionTransformer),
             'type' => 'multiplayer',
         ]) !!}
     </script>

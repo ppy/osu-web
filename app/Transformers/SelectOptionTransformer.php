@@ -9,14 +9,15 @@ namespace App\Transformers;
 
 use App\Models\Multiplayer\Room;
 use App\Models\Season;
+use App\Models\Spotlight;
 
-class RankingSelectOptionTransformer extends TransformerAbstract
+class SelectOptionTransformer extends TransformerAbstract
 {
-    public function transform(Room|Season $item): array
+    public function transform(Room|Season|Spotlight $item): array
     {
         return [
             'id' => $item->getKey(),
-            'name' => $item->name,
+            'text' => $item->name,
         ];
     }
 }

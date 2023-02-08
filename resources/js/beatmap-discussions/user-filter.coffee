@@ -2,7 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import mapperGroup from 'beatmap-discussions/mapper-group'
-import { SelectOptions } from 'components/select-options'
+import SelectOptions from 'components/select-options'
 import * as React from 'react'
 import { a } from 'react-dom-factories'
 import { groupColour } from 'utils/css'
