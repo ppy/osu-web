@@ -290,7 +290,7 @@ export function parseTimestamp(message?: string | null) {
   return (timestamp[2] * 60 + timestamp[3]) * 1000 + timestamp[4];
 }
 
-export function parseUrl(urlString: string | null, discussions?: BeatmapsetDiscussionJson[] | null) {
+export function parseUrl(urlString?: string | null, discussions?: BeatmapsetDiscussionJson[] | null) {
   const url = new URL(urlString ?? currentUrl().href);
 
   const [, pathBeatmapsets, beatmapsetIdString, pathDiscussions, beatmapIdString, mode, filter] = url.pathname.split(/\/+/);
@@ -350,7 +350,7 @@ export function previewMessage(message: string) {
 }
 
 export function propsFromHref(href: string) {
-  const current = parseUrl(currentUrl().href);
+  const current = parseUrl();
 
   const props: PropsFromHrefValue = {
     children: href,
