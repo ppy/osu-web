@@ -11,7 +11,7 @@ import BeatmapsetDiscussionPostJson from 'interfaces/beatmapset-discussion-post-
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import { assign, escape, find, padStart, sortBy, truncate } from 'lodash';
+import { assign, escape, padStart, sortBy, truncate } from 'lodash';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import { currentUrl } from 'utils/turbolinks';
@@ -322,12 +322,12 @@ export function parseUrl(urlString: string | null, discussions?: BeatmapsetDiscu
       }
 
       if (discussions != null && discussionId != null) {
-        const discussion = find(discussions, { id: discussionId });
+        const discussion = discussions.find((value) => value.id === discussionId);
 
         if (discussion != null) {
           assign(ret, stateFromDiscussion(discussion));
           if (discussion.posts != null) {
-            const post = find(discussion.posts, { id: postId });
+            const post = discussion.posts.find((value) => value.id === postId);
             if (post == null) {
               ret.postId = undefined;
             }
