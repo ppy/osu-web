@@ -81,7 +81,7 @@ function serializeEmbed(node: EmbedElement): DocumentIssueEmbed {
 function serializeMarkedText(text: string, format: string) {
   const trimmedText = text.trim();
 
-  const formattedText = `${format}${trimmedText.replace('*', '\\*')}${format}`;
+  const formattedText = `${format}${trimmedText.replace(/\*/g, '\\*')}${format}`;
 
   if (trimmedText === text) {
     return formattedText;
