@@ -49,18 +49,31 @@ interface PropsFromHrefValue {
   target?: '_blank';
 }
 
-interface UrlOptions {
-  beatmap?: BeatmapJson;
-  beatmapId?: number;
-  beatmapsetId?: number;
-  discussion?: BeatmapsetDiscussionJson;
-  discussionId?: number;
+type UrlOptions = {
   filter?: Filter;
   mode?: DiscussionPage;
-  post?: BeatmapsetDiscussionPostJson;
-  postId?: number;
   user?: number;
-}
+} & (
+  // enforces mutual exclusivity when passing in as paramaters.
+  // doesn't completely discrimitate the type during type checks.
+  {
+    beatmap?: never;
+    beatmapId?: number;
+    beatmapsetId?: number;
+    discussion?: never;
+    discussionId?: number;
+    post?: never;
+    postId?: number;
+  } | {
+    beatmap?: BeatmapJson;
+    beatmapId?: never;
+    beatmapsetId?: never;
+    discussion?: BeatmapsetDiscussionJson;
+    discussionId?: never;
+    post?: BeatmapsetDiscussionPostJson;
+    postId?: never;
+  }
+);
 
 export const defaultFilter = 'total';
 
