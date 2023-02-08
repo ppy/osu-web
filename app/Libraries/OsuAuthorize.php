@@ -730,6 +730,15 @@ class OsuAuthorize
         return 'unauthorized';
     }
 
+    public function checkBeatmapsetShowDeleted(?User $user): string
+    {
+        if ($user !== null && ($user->isBNG() || $user->isModerator())) {
+            return 'ok';
+        }
+
+        return 'unauthorized';
+    }
+
     /**
      * @param User|null $user
      * @param Beatmapset $beatmapset
