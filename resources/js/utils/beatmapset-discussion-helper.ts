@@ -238,8 +238,6 @@ export function makeUrl(options: UrlOptions) {
 
   if (user != null) {
     value.searchParams.set('user', user.toString());
-  } else {
-    value.searchParams.delete('user');
   }
 
   return value.toString();
