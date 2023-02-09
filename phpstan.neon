@@ -1,0 +1,16 @@
+includes:
+  - ./vendor/nunomaduro/larastan/extension.neon
+  - phpstan-baseline.neon
+  - phpstan-skip.neon
+
+parameters:
+  paths:
+    - app
+
+  # The level 9 is the highest level
+  level: 3
+
+  ignoreErrors:
+      - '#Unsafe usage of new static#'
+
+  checkMissingIterableValueType: false

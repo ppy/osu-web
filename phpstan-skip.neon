@@ -1,0 +1,6 @@
+parameters:
+  ignoreErrors:
+    - "#^Result of method Illuminate\\\\Console\\\\Command\\:\\:info\\(\\) \\(void\\) is used\\.$#"
+    - "#^Result of method Illuminate\\\\Console\\\\Command\\:\\:error\\(\\) \\(void\\) is used\\.$#"
+    - "#^Access to an undefined property App\\\\Models\\\\[a-zA-Z0-9\\_\\\\]+\\:\\:\\$[a-zA-Z0-9\\_]+\\.$#"
+    - "#^Unsafe call to private method App\\\\[a-zA-Z0-9\\_\\\\]+\\:\\:[a-zA-Z0-9\\(\\)]+ through static\\:\\:.$#"

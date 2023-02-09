@@ -1,0 +1,186 @@
+parameters:
+  ignoreErrors:
+    -
+      message: "#^Class App\\\\Models\\\\Score\\\\Best not found\\.$#"
+      count: 1
+      path: app/Console/Commands/UserRecalculateRankCounts.php
+
+    -
+      message: "#^Class App\\\\Models\\\\UserStatistics not found\\.$#"
+      count: 1
+      path: app/Console/Commands/UserRecalculateRankCounts.php
+
+    -
+      message: "#^Relation 'beatmapset' is not found in App\\\\Models\\\\Beatmap model\\.$#"
+      count: 1
+      path: app/Http/Controllers/BeatmapsController.php
+
+    -
+      message: "#^Call to an undefined static method App\\\\Models\\\\Chat\\\\Message\\:\\:last\\(\\)\\.$#"
+      count: 1
+      path: app/Http/Controllers/ChatController.php
+
+    -
+      message: "#^Called 'first' on Laravel collection, but could have been retrieved as a query\\.$#"
+      count: 1
+      path: app/Http/Controllers/HomeController.php
+
+    -
+      message: "#^Called 'first' on Laravel collection, but could have been retrieved as a query\\.$#"
+      count: 1
+      path: app/Http/Middleware/UpdateUserLastvisit.php
+
+    -
+      message: "#^Relation 'notification' is not found in App\\\\Models\\\\UserNotification model\\.$#"
+      count: 1
+      path: app/Jobs/MarkNotificationsRead.php
+
+    -
+      message: "#^Call to an undefined static method Illuminate\\\\Support\\\\Facades\\\\Redis\\:\\:transaction\\(\\)\\.$#"
+      count: 1
+      path: app/Libraries/Chat.php
+
+    -
+      message: "#^mkdir\\(\\)\\: File exists$#"
+      count: 1
+      path: app/Libraries/CleanHTML.php
+
+    -
+      message: "#^Call to an undefined method App\\\\Libraries\\\\ForumDefaultTopicCover\\:\\:delete\\(\\)\\.$#"
+      count: 1
+      path: app/Libraries/ForumDefaultTopicCover.php
+
+    -
+      message: "#^Class League\\\\CommonMark\\\\Extension\\\\Table\\\\TableCaption not found\\.$#"
+      count: 1
+      path: app/Libraries/Markdown/Indexing/Extension.php
+
+    -
+      message: "#^Call to an undefined static method GrahamCampbell\\\\GitHub\\\\Facades\\\\GitHub\\:\\:gitData\\(\\)\\.$#"
+      count: 1
+      path: app/Libraries/OsuWiki.php
+
+    -
+      message: "#^Call to an undefined static method GrahamCampbell\\\\GitHub\\\\Facades\\\\GitHub\\:\\:repo\\(\\)\\.$#"
+      count: 2
+      path: app/Libraries/OsuWiki.php
+
+    -
+      message: "#^Method App\\\\Libraries\\\\OsuWiki\\:\\:parseGithubPath\\(\\) should return array\\<array\\> but return statement is missing\\.$#"
+      count: 1
+      path: app/Libraries/OsuWiki.php
+
+    -
+      message: "#^Call to an undefined method App\\\\Libraries\\\\Payments\\\\PaymentProcessor\\:\\:userSearch\\(\\)\\.$#"
+      count: 1
+      path: app/Libraries/Payments/PaymentProcessor.php
+
+    -
+      message: "#^Call to an undefined method App\\\\Libraries\\\\ProfileCover\\:\\:delete\\(\\)\\.$#"
+      count: 1
+      path: app/Libraries/ProfileCover.php
+
+    -
+      message: "#^Variable \\$endTimeFunction in isset\\(\\) always exists and is not nullable\\.$#"
+      count: 1
+      path: app/Libraries/Search/BeatmapsetQueryParser.php
+
+    -
+      message: "#^Relation 'channel' is not found in App\\\\Models\\\\Chat\\\\UserChannel model\\.$#"
+      count: 1
+      path: app/Libraries/UserChannelList.php
+
+    -
+      message: "#^Called 'first' on Laravel collection, but could have been retrieved as a query\\.$#"
+      count: 1
+      path: app/Libraries/UserVerification.php
+
+    -
+      message: "#^Class App\\\\Models\\\\Score not found\\.$#"
+      count: 1
+      path: app/Models/Beatmap.php
+
+    -
+      message: "#^Class App\\\\Models\\\\Score\\\\Best not found\\.$#"
+      count: 1
+      path: app/Models/Beatmap.php
+
+    -
+      message: "#^Relation 'beatmapset' is not found in App\\\\Models\\\\BeatmapDiscussion model\\.$#"
+      count: 1
+      path: app/Models/BeatmapDiscussion.php
+
+    -
+      message: "#^Relation 'user' is not found in App\\\\Models\\\\BeatmapDiscussionPost model\\.$#"
+      count: 1
+      path: app/Models/BeatmapDiscussionPost.php
+
+    -
+      message: "#^Relation 'beatmapDiscussion' is not found in App\\\\Models\\\\BeatmapDiscussionVote model\\.$#"
+      count: 1
+      path: app/Models/BeatmapDiscussionVote.php
+
+    -
+      message: "#^Relation 'user' is not found in App\\\\Models\\\\BeatmapDiscussionVote model\\.$#"
+      count: 2
+      path: app/Models/BeatmapDiscussionVote.php
+
+    -
+      message: "#^Relation 'user' is not found in App\\\\Models\\\\FavouriteBeatmapset model\\.$#"
+      count: 1
+      path: app/Models/Beatmapset.php
+
+    -
+      message: "#^Variable \\$stream in isset\\(\\) always exists and is not nullable\\.$#"
+      count: 1
+      path: app/Models/Build.php
+
+    -
+      message: "#^Call to an undefined static method Illuminate\\\\Support\\\\Facades\\\\Redis\\:\\:transaction\\(\\)\\.$#"
+      count: 1
+      path: app/Models/Chat/Channel.php
+
+    -
+      message: "#^Anonymous function has an unused use \\$topic\\.$#"
+      count: 1
+      path: app/Models/Forum/Post.php
+
+    -
+      message: "#^Caught class App\\\\Models\\\\Forum\\\\Exception not found\\.$#"
+      count: 1
+      path: app/Models/Forum/TopicWatch.php
+
+    -
+      message: "#^Class App\\\\Models\\\\Score\\\\Best not found\\.$#"
+      count: 1
+      path: app/Models/ReplayViewCount/Model.php
+
+    -
+      message: "#^Class App\\\\Models\\\\ReplayViewCount not found\\.$#"
+      count: 1
+      path: app/Models/Score/Best/Model.php
+
+    -
+      message: "#^Relation 'user' is not found in App\\\\Models\\\\Solo\\\\Score model\\.$#"
+      count: 1
+      path: app/Models/Solo/Score.php
+
+    -
+      message: "#^Called 'Model\\:\\:make\\(\\)' which performs unnecessary work, use 'new Model\\(\\)'\\.$#"
+      count: 1
+      path: app/Models/User.php
+
+    -
+      message: "#^Relation 'beatmaps' is not found in App\\\\Models\\\\Beatmapset model\\.$#"
+      count: 1
+      path: app/Models/User.php
+
+    -
+      message: "#^Method App\\\\Models\\\\UserStatistics\\\\Model\\:\\:setCreatedAt\\(\\) should return \\$this\\(App\\\\Models\\\\UserStatistics\\\\Model\\) but return statement is missing\\.$#"
+      count: 1
+      path: app/Models/UserStatistics/Model.php
+
+    -
+      message: "#^Instantiated class App\\\\Transformers\\\\DeletedUser not found\\.$#"
+      count: 1
+      path: app/Transformers/UserContestEntryTransformer.php
