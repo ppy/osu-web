@@ -5,6 +5,7 @@ import BeatmapsOwnerEditor from 'beatmap-discussions/beatmaps-owner-editor'
 import LoveBeatmapModal from 'beatmap-discussions/love-beatmap-modal'
 import { Nominator } from 'beatmap-discussions/nominator'
 import BigButton from 'components/big-button'
+import DiscreteBar from 'components/discrete-bar'
 import Modal from 'components/modal'
 import StringWithComponent from 'components/string-with-component'
 import TimeWithTooltip from 'components/time-with-tooltip'
@@ -81,19 +82,6 @@ export class Nominations extends React.PureComponent
           div className: "#{bn}__item", @changeOwnerButton()
 
 
-  renderLights: (lightsOn, lightsTotal) ->
-    div className: "#{bn}__lights",
-      _.times lightsOn, (n) ->
-        div
-          key: n
-          className: 'bar bar--beatmapset-hype bar--beatmapset-on'
-
-      _.times (lightsTotal - lightsOn), (n) ->
-        div
-          key: lightsOn + n
-          className: 'bar bar--beatmapset-hype bar--beatmapset-off'
-
-
   # nominations = { 'current': { 'osu': 1, 'taiko': 0, ... }, 'required': { 'osu': 2, 'taiko': 2, ... }, ... };
   renderLightsForNominations: (nominations = {}) ->
     if nominations?.legacy_mode || !@isHybridMode()
@@ -105,22 +93,19 @@ export class Nominations extends React.PureComponent
         current = nominations.current[mode]
         required = nominations.required[mode]
 
-      @renderLights(current, required)
+      el DiscreteBar,
+        current: current
+        modifiers: 'beatmapset-hype'
+        total: required
     else
-      div className: "#{bn}__lights",
-        _.map nominations.required, (requiredLights, mode) ->
-          el React.Fragment, key: mode,
-            _.times nominations.current[mode], (n) ->
-              div
-                key: n
-                className: 'bar bar--beatmapset-nomination bar--beatmapset-on'
-                i className: "fal fa-extra-mode-#{mode}"
-
-            _.times (requiredLights - nominations.current[mode]), (n) ->
-              div
-                key: nominations.current[mode] + n
-                className: 'bar bar--beatmapset-nomination bar--beatmapset-off'
-                i className: "fal fa-extra-mode-#{mode}"
+      div className: "#{bn}__discrete-bar-group",
+        for own ruleset, required of nominations.required
+          el DiscreteBar,
+            current: nominations.current[ruleset]
+            key: ruleset
+            label: i(className: "fal fa-extra-mode-#{ruleset}")
+            modifiers: 'beatmapset-nomination-hybrid'
+            total: required
 
 
   delete: =>
@@ -345,7 +330,10 @@ export class Nominations extends React.PureComponent
           trans 'beatmaps.hype.section_title'
         span {},
           "#{hypeRaw} / #{requiredHype}"
-      @renderLights(hype, requiredHype)
+      el DiscreteBar,
+        current: hype
+        total: requiredHype
+        modifiers: 'beatmapset-hype'
 
 
   nominationBar: =>
