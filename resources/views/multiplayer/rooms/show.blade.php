@@ -5,8 +5,6 @@
 @php
     use App\Transformers\SelectOptionTransformer;
 
-    // used in table and index
-    $mode = default_mode();
     $selectOptionTransformer = new SelectOptionTransformer();
 @endphp
 @extends('rankings.index', [
