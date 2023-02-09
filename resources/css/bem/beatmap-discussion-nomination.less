@@ -10,6 +10,12 @@
   display: flex;
   flex-direction: column;
 
+  &__discrete-bar-group {
+    --nomination-hybrid-bar-gap: 5px;
+    display: flex;
+    gap: var(--nomination-hybrid-bar-gap);
+  }
+
   &__header {
     display: flex;
     justify-content: space-between;
@@ -58,11 +64,6 @@
     display: flex;
     flex-wrap: wrap;
     margin-top: 5px;
-  }
-
-  &__lights {
-    display: flex;
-    margin: 0 -2.5px;
   }
 
   &__title {

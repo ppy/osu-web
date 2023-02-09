@@ -2,23 +2,23 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import ShowMoreLink from 'components/show-more-link';
-import UserJson from 'interfaces/user-json';
-import UserMultiplayerHistoryJson from 'interfaces/user-multiplayer-history-json';
-import { route } from 'laroute';
+import RoomListJson from 'interfaces/room-list-json';
+import { MultiplayerTypeGroup } from 'interfaces/user-multiplayer-history-json';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import Room from 'user-multiplayer-index/room';
+import RoomListStore from 'stores/room-list-store';
 import { trans } from 'utils/lang';
-import MultiplayerHistoryStore from './multiplayer-history-store';
+import MultiplayerRoom from './multiplayer-room';
 
 interface Props {
-  store: MultiplayerHistoryStore;
-  user: UserJson;
+  showMoreUrl: string;
+  store: RoomListStore;
+  typeGroup?: MultiplayerTypeGroup;
 }
 
 @observer
-export default class MultiplayerHistory extends React.Component<Props> {
+export default class RoomList extends React.Component<Props> {
   @observable private loading = false;
 
   @computed
@@ -33,19 +33,24 @@ export default class MultiplayerHistory extends React.Component<Props> {
   }
 
   render() {
+    const emptyMessage = this.props.typeGroup != null
+      ? trans('multiplayer.empty._', {
+        type_group: trans(`multiplayer.empty.${this.props.typeGroup}`),
+      })
+      : trans('rankings.seasons.empty');
+
+
     if (this.props.store.rooms.length === 0) {
       return (
-        <div className='user-multiplayer-history'>
-          {trans('multiplayer.empty._', {
-            type_group: trans(`multiplayer.empty.${this.props.store.typeGroup}`),
-          })}
+        <div className='room-list'>
+          {emptyMessage}
         </div>
       );
     }
 
     return (
-      <div className='user-multiplayer-history'>
-        {this.props.store.rooms.map((room) => <Room key={room.id} room={room} store={this.props.store} />)}
+      <div className='room-list'>
+        {this.props.store.rooms.map((room) => <MultiplayerRoom key={room.id} room={room} />)}
         <ShowMoreLink
           callback={this.handleShowMore}
           hasMore={this.hasMore}
@@ -60,9 +65,10 @@ export default class MultiplayerHistory extends React.Component<Props> {
     if (this.loading) return;
 
     this.loading = true;
-    const url = route('users.multiplayer.index', { typeGroup: this.props.store.typeGroup, user: this.props.user.id });
+
+    const url = this.props.showMoreUrl;
     void $.getJSON(url, { cursor_string: this.props.store.cursorString })
-      .done(action((response: UserMultiplayerHistoryJson) => {
+      .done(action((response: RoomListJson) => {
         this.props.store.updateWithJson(response);
       })).always(action(() => {
         this.loading = false;
