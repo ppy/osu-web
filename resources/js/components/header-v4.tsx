@@ -2,7 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import HeaderLink from 'interfaces/header-link';
-import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers, Modifiers, urlPresence } from 'utils/css';
 import { parseJson } from 'utils/json';
@@ -53,11 +52,14 @@ export default class HeaderV4 extends React.Component<Props> {
     linksBreadcrumb: false,
   };
 
-  render(): React.ReactNode {
+  componentDidMount() {
+    $.publish('osu:page:change');
+  }
+
+  render() {
     const classNames = classWithModifiers(
       'header-v4',
       presence(this.props.theme),
-      { restricted: core.currentUser?.is_restricted ?? false },
       this.props.modifiers,
     );
 
@@ -70,6 +72,11 @@ export default class HeaderV4 extends React.Component<Props> {
               style={{ backgroundImage: urlPresence(this.props.backgroundImage) }}
             />
           </div>
+
+          <div
+            className='header-v4__banner-height js-sync-height--target'
+            data-sync-height-id='notification-banners'
+          />
 
           <div className='header-v4__content'>
             {this.props.contentPrepend}
