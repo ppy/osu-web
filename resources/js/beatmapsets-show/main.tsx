@@ -11,6 +11,7 @@ import { action, autorun, computed, IReactionDisposer, makeObservable, observabl
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { generate, setHash } from 'utils/beatmapset-page-hash';
+import { trans } from 'utils/lang';
 import Controller from './controller';
 import Header from './header';
 import headerLinks from './header-links';
@@ -18,7 +19,6 @@ import Hype from './hype';
 import Info from './info';
 import NsfwWarning from './nsfw-warning';
 import ScoreboardMain from './scoreboard/main';
-import { trans } from 'utils/lang';
 
 interface Props {
   container: HTMLElement;
