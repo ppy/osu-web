@@ -28,6 +28,7 @@ const internalUrls = [
   'oauth',
   'rankings',
   'scores',
+  'seasons',
   'session',
   'store',
   'users',

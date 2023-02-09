@@ -4,6 +4,7 @@
 import { route } from 'laroute';
 import Notification from 'models/notification';
 import { isBeatmapOwnerChangeNotification } from 'models/notification/beatmap-owner-change-notification';
+import { makeUrl } from 'utils/beatmapset-discussion-helper';
 
 export function urlGroup(item: Notification) {
   if (isBeatmapOwnerChangeNotification(item)) {
@@ -55,7 +56,7 @@ export function urlSingular(item: Notification) {
     case 'beatmapset_discussion_post_new':
     case 'beatmapset_discussion_qualified_problem':
     case 'beatmapset_discussion_review_new':
-      return BeatmapDiscussionHelper.url({
+      return makeUrl({
         beatmapId: item.details.beatmapId,
         beatmapsetId: item.objectId,
         discussionId: item.details.discussionId,
