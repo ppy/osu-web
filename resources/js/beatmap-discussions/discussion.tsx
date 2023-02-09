@@ -246,7 +246,9 @@ export class Discussion extends React.Component<Props> {
               <i className='fas fa-tasks' />
             </a>
           )}
-          <DiscussionTypeIcon type={this.props.discussion.message_type} />
+          <span className='visible-xs'>
+            <DiscussionTypeIcon type={this.props.discussion.message_type} />
+          </span>
           <DiscussionVoteButtons
             cannotVote={this.isOwner(this.props.discussion) || (user?.is_bot ?? false) || !this.canBeRepliedTo}
             discussion={this.props.discussion}
