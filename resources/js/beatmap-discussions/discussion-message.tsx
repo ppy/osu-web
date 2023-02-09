@@ -9,24 +9,27 @@ import { emphasisRenderer, imageRenderer, linkRenderer, paragraphRenderer, stron
 
 interface Props {
   markdown: string;
+  type?: 'reviews';
 }
 
 const DiscussionMessage = (props: Props) => (
-  <ReactMarkdown
-    className='beatmapset-discussion-message'
-    components={{
-      a: linkRenderer,
-      em: emphasisRenderer,
-      img: imageRenderer,
-      p: paragraphRenderer,
-      strong: strongRenderer,
-    }}
-    remarkPlugins={[autolink, disableConstructs]}
-    transformLinkUri={transformLinkUri}
-    unwrapDisallowed
-  >
-    {props.markdown}
-  </ReactMarkdown>
+  <div className='beatmapset-discussion-message'>
+    <ReactMarkdown
+      className='osu-md osu-md--discussions'
+      components={{
+        a: linkRenderer,
+        em: emphasisRenderer,
+        img: imageRenderer,
+        p: paragraphRenderer,
+        strong: strongRenderer,
+      }}
+      remarkPlugins={[autolink, [disableConstructs, { type: props.type }]]}
+      transformLinkUri={transformLinkUri}
+      unwrapDisallowed
+    >
+      {props.markdown}
+    </ReactMarkdown>
+  </div>
 );
 
 export default DiscussionMessage;

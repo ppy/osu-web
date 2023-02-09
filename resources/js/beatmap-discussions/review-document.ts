@@ -43,7 +43,7 @@ export function parseFromJson(json: string, discussions: Partial<Record<number, 
 
   const processor = unified()
     .use(remarkParse)
-    .use(disableConstructs);
+    .use(disableConstructs, { type: 'reviews' });
 
   const doc: Element[] = [];
   srcDoc.forEach((block) => {

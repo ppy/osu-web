@@ -22,7 +22,7 @@ export class ReviewPost extends React.Component<Props> {
         switch (block.type) {
           case 'paragraph': {
             const content = block.text.trim() === '' ? '&nbsp;' : block.text;
-            docBlocks.push(<DiscussionMessage key={index} markdown={content} />);
+            docBlocks.push(<DiscussionMessage key={index} markdown={content} type='reviews' />);
             break;
           }
           case 'embed':
