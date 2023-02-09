@@ -285,15 +285,15 @@ export class Discussion extends React.Component<Props> {
           <div className="beatmap-discussion-timestamp__icons">
             <div className="beatmap-discussion-timestamp__icon">
               <DiscussionTypeIcon type={this.props.discussion.message_type} />
-              {this.props.discussion.resolved && (
-                <div className="beatmap-discussion-timestamp__icon beatmap-discussion-timestamp__icon--resolved">
-                  <i
-                    className='far fa-check-circle'
-                    title={trans('beatmaps.discussions.resolved')}
-                  />
-                </div>
-              )}
             </div>
+            {this.props.discussion.resolved && (
+              <div className="beatmap-discussion-timestamp__icon beatmap-discussion-timestamp__icon--resolved">
+                <i
+                  className='far fa-check-circle'
+                  title={trans('beatmaps.discussions.resolved')}
+                />
+              </div>
+            )}
           </div>
           {this.props.discussion.timestamp != null && (
             <div className="beatmap-discussion-timestamp__text">
