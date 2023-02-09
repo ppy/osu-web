@@ -15,6 +15,13 @@ use DB;
  */
 class ApplySupporterTag extends OrderItemFulfillment
 {
+    public static function addDuration(Carbon $time, int $duration): Carbon
+    {
+        // round(365 / 12 * 24) = 730
+        // (it's 730.485 if accounting actual year (365.2425) but still close enough)
+        return $time->addHours($duration * 730);
+    }
+
     private int $amount;
     private int $duration;
     private User $donor;
@@ -107,17 +114,16 @@ class ApplySupporterTag extends OrderItemFulfillment
     {
         // start fresh if was an existing subscriber and expired.
         // null < $now = true.
-        $now = Carbon::now();
-        $old = $this->target->osu_subscriptionexpiry < $now ? $now : $this->target->osu_subscriptionexpiry;
-        $this->target->osu_subscriptionexpiry = $old->addMonthsNoOverflow($this->duration);
+        $new = static::addDuration(max(Carbon::now(), $this->target->osu_subscriptionexpiry), $this->duration);
+        $this->target->osu_subscriptionexpiry = $new;
         $this->target->osu_subscriber = true;
     }
 
     private function revokeSubscription()
     {
-        $old = $this->target->osu_subscriptionexpiry;
-        $this->target->osu_subscriptionexpiry = $old->subMonthsNoOverflow($this->duration);
-        $this->target->osu_subscriber = Carbon::now()->diffInMinutes($old, false) > 0;
+        $previous = static::addDuration($this->target->osu_subscriptionexpiry, -$this->duration);
+        $this->target->osu_subscriptionexpiry = $previous;
+        $this->target->osu_subscriber = Carbon::now()->diffInMinutes($previous, false) > 0;
     }
 
     private function setup()
