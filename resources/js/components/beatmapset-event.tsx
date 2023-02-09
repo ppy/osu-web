@@ -10,7 +10,7 @@ import { route } from 'laroute';
 import { escape, kebabCase } from 'lodash';
 import { deletedUser } from 'models/user';
 import * as React from 'react';
-import { format, previewMessage } from 'utils/beatmapset-discussion-helper';
+import { format, makeUrl, previewMessage } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans, transArray } from 'utils/lang';
@@ -124,7 +124,7 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
         text = trans('beatmapset_events.item.discussion_deleted');
       } else {
         const firstPostMessage = this.firstPost?.message;
-        url = BeatmapDiscussionHelper.url({ discussion: this.discussion });
+        url = makeUrl({ discussion: this.discussion });
         text = firstPostMessage != null ? previewMessage(firstPostMessage) : '[no preview]';
 
         const discussionUser = this.props.users[this.discussion.user_id];

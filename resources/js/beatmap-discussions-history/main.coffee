@@ -10,6 +10,7 @@ import BeatmapsetCover from 'components/beatmapset-cover'
 import { deletedUser } from 'models/user'
 import * as React from 'react'
 import { a, div, img } from 'react-dom-factories'
+import { makeUrl } from 'utils/beatmapset-discussion-helper'
 import { trans } from 'utils/lang'
 import { nextVal } from 'utils/seq'
 el = React.createElement
@@ -122,7 +123,7 @@ export class Main extends React.PureComponent
 
                     a
                       className: 'modding-profile-list__thumbnail'
-                      href: BeatmapDiscussionHelper.url(discussion: discussion),
+                      href: makeUrl(discussion: discussion),
 
                       el BeatmapsetCover,
                         beatmapset: beatmapsets[discussion.beatmapset_id]

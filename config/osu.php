@@ -223,6 +223,7 @@ return [
         ],
         'user' => [
             'recover' => '/wiki/Help_centre/Account#sign-in',
+            'restriction' => presence(env('OSU_URL_USER_RESTRICTION')) ?? '/wiki/Help_centre/Account_restrictions',
             'rules' => '/wiki/Osu!:Rules',
         ],
         'rankings' => [

@@ -3,6 +3,7 @@
 
 .bar {
   @_top: bar;
+  --fill: 0%;
   display: block;
   width: 100%;
   background-color: @yellow;
@@ -23,31 +24,7 @@
     height: 5px;
     background-color: @osu-colour-b6;
     margin-top: 5px;
-  }
-
-  &--beatmapset-off {
-    background-color: @osu-colour-b6;
-    color: @osu-colour-f1;
-  }
-
-  &--beatmapset-on {
-    background-color: @osu-colour-lime-3;
-    color: @osu-colour-b6;
-  }
-
-  &--beatmapset-hype {
-    .default-border-radius();
-    height: 5px;
-    margin: 5px 2.5px;
-  }
-
-  &--beatmapset-nomination {
-    border-radius: 10000px;
-    height: 20px;
-    margin: 5px 2.5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-bottom: calc(1em + 2px);
   }
 
   &--double {
@@ -72,6 +49,7 @@
 
   &__fill {
     height: 100%;
+    width: var(--fill);
 
     .@{_top}--beatmap-rating & {
       background-color: @yellow-dark;
@@ -111,7 +89,15 @@
   &__text {
     position: absolute;
     top: 100%;
-    right: 0;
     margin-top: 2px;
+
+    .@{_top}--beatmap-success-rate & {
+      margin-left: var(--fill);
+      transform: translateX(-50%);
+    }
+
+    .@{_top}--user-profile & {
+      right: 0;
+    }
   }
 }
