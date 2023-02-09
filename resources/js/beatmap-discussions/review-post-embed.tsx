@@ -4,7 +4,7 @@
 import { discussionTypeIcons } from 'beatmap-discussions/discussion-type';
 import { BeatmapIcon } from 'components/beatmap-icon';
 import * as React from 'react';
-import { format, formatTimestamp, startingPost } from 'utils/beatmapset-discussion-helper';
+import { format, formatTimestamp, makeUrl, startingPost } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import { BeatmapsContext } from './beatmaps-context';
@@ -81,7 +81,7 @@ export const ReviewPostEmbed = ({ data }: Props) => {
       <div className={`${bn}__link`}>
         <a
           className={`${bn}__link-text js-beatmap-discussion--jump`}
-          href={BeatmapDiscussionHelper.url({ discussion })}
+          href={makeUrl({ discussion })}
           title={trans('beatmap_discussions.review.go_to_child')}
         >
           <i className='fas fa-external-link-alt' />

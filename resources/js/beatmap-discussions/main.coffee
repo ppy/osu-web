@@ -12,7 +12,7 @@ import core from 'osu-core-singleton'
 import * as React from 'react'
 import { div } from 'react-dom-factories'
 import * as BeatmapHelper from 'utils/beatmap-helper'
-import { defaultMode, stateFromDiscussion } from 'utils/beatmapset-discussion-helper'
+import { defaultFilter, defaultMode, makeUrl, parseUrl, stateFromDiscussion } from 'utils/beatmapset-discussion-helper'
 import { nextVal } from 'utils/seq'
 import { currentUrl } from 'utils/turbolinks'
 import { Discussions } from './discussions'
@@ -355,7 +355,7 @@ export class Main extends React.PureComponent
 
 
   jumpToDiscussionByHash: =>
-    target = BeatmapDiscussionHelper.urlParse(null, @state.beatmapset.discussions)
+    target = parseUrl(null, @state.beatmapset.discussions)
 
     @jumpTo(null, id: target.discussionId, postId: target.postId) if target.discussionId?
 
@@ -371,7 +371,7 @@ export class Main extends React.PureComponent
       if @currentDiscussions().byFilter[@state.currentFilter][newState.mode][id]?
         @state.currentFilter
       else
-        BeatmapDiscussionHelper.DEFAULT_FILTER
+        defaultFilter
 
     if @state.selectedUserId? && @state.selectedUserId != discussion.user_id
       newState.selectedUserId = null
@@ -395,7 +395,7 @@ export class Main extends React.PureComponent
 
   jumpToClick: (e) =>
     url = e.currentTarget.getAttribute('href')
-    { discussionId, postId } = BeatmapDiscussionHelper.urlParse(url, @state.beatmapset.discussions)
+    { discussionId, postId } = parseUrl(url, @state.beatmapset.discussions)
 
     return if !discussionId?
 
@@ -426,7 +426,7 @@ export class Main extends React.PureComponent
 
 
   queryFromLocation: (discussions = @state.beatmapsetDiscussion.beatmap_discussions) =>
-    BeatmapDiscussionHelper.urlParse(null, discussions)
+    parseUrl(null, discussions)
 
 
   saveStateToContainer: =>
@@ -505,7 +505,7 @@ export class Main extends React.PureComponent
 
 
   urlFromState: =>
-    BeatmapDiscussionHelper.url
+    makeUrl
       beatmap: @currentBeatmap()
       mode: @state.currentMode
       filter: @state.currentFilter
