@@ -16,6 +16,7 @@ import { deletedUser } from 'models/user'
 import * as React from 'react'
 import { a, div, h1, h2, p, span } from 'react-dom-factories'
 import { getArtist, getTitle } from 'utils/beatmap-helper'
+import { makeUrl } from 'utils/beatmapset-discussion-helper'
 import { trans } from 'utils/lang'
 import BeatmapList from './beatmap-list'
 import Chart from './chart'
@@ -181,7 +182,7 @@ export class Header extends React.PureComponent
 
       a
         key: type
-        href: BeatmapDiscussionHelper.url
+        href: makeUrl
           filter: type
           beatmapsetId: @props.beatmapset.id
           beatmapId: @props.currentBeatmap.id
@@ -203,7 +204,7 @@ export class Header extends React.PureComponent
 
 
   createLink: (beatmap) =>
-    BeatmapDiscussionHelper.url beatmap: beatmap
+    makeUrl beatmap: beatmap
 
 
   getCount: (beatmap) =>

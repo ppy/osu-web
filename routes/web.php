@@ -269,6 +269,9 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::resource('reports', 'ReportsController', ['only' => ['store']]);
 
+    Route::resource('seasons', 'SeasonsController', ['only' => 'show']);
+    Route::get('seasons/{season}/rooms', 'SeasonsController@rooms')->name('seasons.rooms');
+
     Route::post('session', 'SessionsController@store')->name('login');
     Route::delete('session', 'SessionsController@destroy')->name('logout');
 

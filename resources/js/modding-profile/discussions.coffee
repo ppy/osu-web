@@ -7,6 +7,7 @@ import BeatmapsetCover from 'components/beatmapset-cover'
 import { route } from 'laroute'
 import * as React from 'react'
 import { div, h2, a, img } from 'react-dom-factories'
+import { makeUrl } from 'utils/beatmapset-discussion-helper'
 import { trans } from 'utils/lang'
 import { Discussion } from "../beatmap-discussions/discussion"
 
@@ -30,7 +31,7 @@ export class Discussions extends React.Component
 
                     a
                       className: 'modding-profile-list__thumbnail'
-                      href: BeatmapDiscussionHelper.url(discussion: discussion),
+                      href: makeUrl(discussion: discussion),
 
                       el BeatmapsetCover, beatmapset: beatmapsets[discussion.beatmapset_id], size: 'list'
 

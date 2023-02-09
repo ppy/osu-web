@@ -8,12 +8,15 @@
         'type' => $type,
         'mode' => $mode,
         'route' => function($routeMode, $routeType) use ($country, $spotlight) {
+            if ($routeType === 'country') {
+                return route('rankings', ['mode' => $routeMode, 'type' => $routeType]);
+            }
+
             if ($routeType === 'multiplayer') {
                 return route('multiplayer.rooms.show', ['room' => 'latest']);
             }
-
-            if ($routeType === 'country') {
-                return route('rankings', ['mode' => $routeMode, 'type' => $routeType]);
+            if ($routeType === 'seasons') {
+                return route('seasons.show', ['season' => 'latest']);
             }
 
             return trim(route('rankings', [
@@ -26,7 +29,7 @@
     ];
 
     $links = [];
-    foreach (['performance', 'charts', 'score', 'country', 'multiplayer'] as $tab) {
+    foreach (['performance', 'charts', 'score', 'country', 'multiplayer', 'seasons'] as $tab) {
         $links[] = [
             'active' => $tab === $type,
             'title' => osu_trans("rankings.type.{$tab}"),
@@ -44,6 +47,7 @@
 
     $hasMode = $hasMode ?? true;
     $hasFilter = $hasFilter ?? true;
+    $hasScores = $hasScores ?? true;
 @endphp
 
 @extends('master', ['titlePrepend' => $titlePrepend ?? osu_trans("rankings.type.{$type}")])
@@ -53,11 +57,13 @@
         'links' => $links,
         'theme' => 'rankings',
     ]])
-        @if ($hasMode)
-            @slot('linksAppend')
+        @slot('linksAppend')
+            @if($hasMode)
                 @include('rankings._mode_selector', $selectorParams)
-            @endslot
-        @endif
+            @endif
+
+            @yield('additionalHeaderLinks')
+        @endslot
     @endcomponent
 
     @yield('ranking-header')
@@ -118,30 +124,31 @@
         </div>
     @endif
 
-    <div class="osu-page osu-page--generic" id="scores">
-        @if ($hasPager)
-            @include('objects._pagination_v2', [
-                'object' => $scores
-                    ->appends(['country' => $country['acronym'] ?? null])
-                    ->fragment('scores')
-            ])
-        @endif
+    @if ($hasScores)
+        <div class="osu-page osu-page--generic" id="scores">
+            @if ($hasPager)
+                @include('objects._pagination_v2', [
+                    'object' => $scores
+                        ->appends(['country' => $country['acronym'] ?? null])
+                        ->fragment('scores')
+                ])
+            @endif
 
-        <div class="ranking-page">
-            @yield('scores')
+            <div class="ranking-page">
+                @yield('scores')
+            </div>
+
+            @yield('ranking-footer')
+
+            @if ($hasPager)
+                @include('objects._pagination_v2', [
+                    'object' => $scores
+                        ->appends(['country' => $country['acronym'] ?? null])
+                        ->fragment('scores')
+                ])
+            @endif
         </div>
-
-        @yield('ranking-footer')
-
-        @if ($hasPager)
-            @include('objects._pagination_v2', [
-                'object' => $scores
-                    ->appends(['country' => $country['acronym'] ?? null])
-                    ->fragment('scores')
-            ])
-        @endif
-    </div>
-
+    @endif
 @endsection
 
 @section("script")
