@@ -54,16 +54,16 @@ return [
 
     'create' => [
         'form' => [
-            'password' => '',
-            'password_confirmation' => '',
-            'submit' => '',
-            'user_email' => '',
-            'user_email_confirmation' => '',
-            'username' => '',
+            'password' => 'mật khẩu',
+            'password_confirmation' => 'xác nhận mật khẩu',
+            'submit' => 'tạo tài khoản',
+            'user_email' => 'email',
+            'user_email_confirmation' => 'xác nhận email',
+            'username' => 'tên người dùng',
 
             'tos_notice' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'khi tạo tài khoản bạn đồng ý với :link',
+                'link' => 'điều khoản dịch vụ',
             ],
         ],
     ],
@@ -467,8 +467,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
-        'from_client' => '',
-        'from_web' => '',
+        'from_client' => 'vui lòng đăng kí thông qua game!',
+        'from_web' => 'vui lòng đăng kí thông qua web',
         'saved' => 'Đã tạo người dùng',
     ],
     'verify' => [

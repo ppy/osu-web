@@ -20,7 +20,7 @@
     "guzzlehttp/guzzle": "*",
     "itsgoingd/clockwork": "^5.1",
     "jenssegers/agent": "*",
-    "knuckleswtf/scribe": "^2.7",
+    "knuckleswtf/scribe": "^4.0",
     "laravel/framework": "^8.58",
     "laravel/helpers": "^1.1",
     "laravel/legacy-factories": "^1.1",

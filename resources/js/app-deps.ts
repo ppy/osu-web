@@ -54,13 +54,13 @@ declare global {
   }
 
   interface Window {
-    $: any;
+    $: JQueryStatic;
     _styles: SharedStyles;
     currentLocale: string;
     currentUser: CurrentUserJson | { id: undefined };
     experimentalHost: string | null;
     fallbackLocale: string;
-    jQuery: any;
+    jQuery: JQueryStatic;
     Lang: Lang;
     LangMessages: unknown;
     moment: any;

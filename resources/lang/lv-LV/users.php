@@ -450,7 +450,7 @@ return [
             'total_score' => '',
             // modding stats
             'graveyard_beatmapset_count' => '',
-            'loved_beatmapset_count' => '',
+            'loved_beatmapset_count' => 'Loved Bītmapes',
             'pending_beatmapset_count' => '',
             'ranked_beatmapset_count' => '',
         ],

@@ -1,8 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-.report-form-select-options {
-  .select-options(report-form-select-options);
+import { Option } from 'components/select-options';
 
-  width: 100%;
+export default interface SelectOptionJson extends Option {
+  id: number;
 }

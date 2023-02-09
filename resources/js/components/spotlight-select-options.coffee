@@ -1,7 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { SelectOptions } from 'components/select-options'
+import SelectOptions from 'components/select-options'
 import { createElement as el, PureComponent } from 'react'
 import * as React from 'react'
 import { a } from 'react-dom-factories'
@@ -18,7 +18,7 @@ export class SpotlightSelectOptions extends PureComponent
 
   render: =>
     el SelectOptions,
-      bn: 'spotlight-select-options'
+      modifiers: 'spotlight'
       renderOption: @renderOption
       onChange: @handleChange
       options: @props.options

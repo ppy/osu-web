@@ -12,7 +12,7 @@ import { observer } from 'mobx-react';
 import { deletedUser } from 'models/user';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { badgeGroup, canModeratePosts, formatTimestamp, startingPost } from 'utils/beatmapset-discussion-helper';
+import { badgeGroup, canModeratePosts, formatTimestamp, makeUrl, startingPost } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers, groupColour } from 'utils/css';
 import { trans } from 'utils/lang';
 import { discussionTypeIcons } from './discussion-type';
@@ -82,7 +82,7 @@ export class Discussion extends React.Component<Props> {
     // TODO: handling resolved status in bundles....?
     if (this.props.preview) return -1;
 
-    const systemPost = findLast(this.props.discussion.posts, (post) => post != null && post.system && post.message.type === 'resolve');
+    const systemPost = findLast(this.props.discussion.posts, (post) => post != null && post.system && post.message.type === 'resolved');
     return systemPost?.id ?? -1;
   }
 
@@ -227,7 +227,7 @@ export class Discussion extends React.Component<Props> {
           {this.props.parentDiscussion != null && (
             <a
               className={`${bn}__link-to-parent js-beatmap-discussion--jump`}
-              href={BeatmapDiscussionHelper.url({ discussion: this.props.parentDiscussion })}
+              href={makeUrl({ discussion: this.props.parentDiscussion })}
               title={trans('beatmap_discussions.review.go_to_parent')}
             >
               <i className='fas fa-tasks' />
@@ -255,7 +255,7 @@ export class Discussion extends React.Component<Props> {
 
   private readonly renderReply = (post: BeatmapsetDiscussionPostJson) => {
     if (!this.isVisible(post)) return null;
-    if (post.system && post.message.type === 'resolve') {
+    if (post.system && post.message.type === 'resolved') {
       if (this.lastResolvedState === post.message.value) return null;
       this.lastResolvedState = post.message.value;
     }

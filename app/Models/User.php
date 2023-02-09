@@ -736,11 +736,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         $this->attributes['user_colour'] = ltrim($value, '#');
     }
 
-    public function setOsuSubscriptionexpiryAttribute($value)
-    {
-        $this->attributes['osu_subscriptionexpiry'] = $value?->format('Y-m-d');
-    }
-
     public function getAttribute($key)
     {
         return match ($key) {
@@ -816,16 +811,18 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             // float
             'user_timezone' => (float) $this->getRawAttribute($key),
 
-            // datetime
+            // datetime but unix timestamp
             'user_lastmark',
             'user_lastpost_time',
             'user_lastvisit',
             'user_regdate' => Carbon::createFromTimestamp($this->getRawAttribute($key)),
 
+            // datetime
+            'osu_subscriptionexpiry' => $this->getTimeFast($key),
+
             // custom cast
             'displayed_last_visit' => $this->getDisplayedLastVisit(),
             'osu_playstyle' => $this->getOsuPlaystyle(),
-            'osu_subscriptionexpiry' => $this->getOsuSubscriptionexpiry(),
             'playmode' => $this->getPlaymode(),
             'user_avatar' => $this->getUserAvatar(),
             'user_colour' => $this->getUserColour(),
@@ -2354,15 +2351,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     private function getDisplayedLastVisit()
     {
         return $this->hide_presence ? null : $this->user_lastvisit;
-    }
-
-    private function getOsuSubscriptionexpiry()
-    {
-        $value = $this->getRawAttribute('osu_subscriptionexpiry');
-
-        return $value === null
-            ? null
-            : Carbon::createFromFormat('Y-m-d H:i:s', "{$value} 00:00:00");
     }
 
     private function getOsuPlaystyle()

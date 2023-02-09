@@ -3,8 +3,11 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
+    use App\Transformers\SelectOptionTransformer;
+
     // used in table and index
     $mode = default_mode();
+    $selectOptionTransformer = new SelectOptionTransformer();
 @endphp
 @extends('rankings.index', [
     'country' => null,
@@ -17,20 +20,21 @@
 ])
 
 @section('ranking-header')
-    <div class="osu-page osu-page--description js-react--multiplayer-select-options">
-        <div class="spotlight-select-options">
-            <div class="spotlight-select-options__select">
-                <span class="spotlight-select-options__option">
+    <div class="osu-page osu-page--description js-react--ranking-select-options">
+        <div class="select-options select-options--spotlight">
+            <div class="select-options__select">
+                <span class="select-options__option">
                     {{ $room->name }}
                 </span>
             </div>
         </div>
     </div>
 
-    <script id="json-multiplayer-select-options" type="application/json">
+    <script id="json-ranking-select-options" type="application/json">
         {!! json_encode([
-            'currentRoom' => json_item($room, 'Multiplayer\Room'),
-            'rooms' => json_collection($rooms, 'Multiplayer\Room'),
+            'currentItem' => json_item($room, $selectOptionTransformer),
+            'items' => json_collection($rooms, $selectOptionTransformer),
+            'type' => 'multiplayer',
         ]) !!}
     </script>
 

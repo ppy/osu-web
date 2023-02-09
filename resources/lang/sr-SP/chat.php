@@ -8,6 +8,7 @@ return [
     'talking_in' => 'причате у :channel',
     'talking_with' => 'причате са :name',
     'title_compact' => 'чет',
+    'unread_messages' => '',
 
     'cannot_send' => [
         'channel' => 'Тренутно не можете слати поруке у овај чет.',
@@ -35,6 +36,7 @@ return [
 
         'labels' => [
             'description' => 'опис',
+            'message' => '',
             'name' => 'име собе',
             'users' => 'играче за додати',
         ],
