@@ -120,7 +120,7 @@ export class Discussion extends React.Component<Props> {
         data-id={this.props.discussion.id}
         onClick={this.handleSetHighlight}
         style={{
-          '--discussion-colour': `var(--beatmapset-discussion-colour--${kebabCase(this.props.discussion.message_type)})`,
+          '--discussion-colour': `var(--beatmapset-discussion-colour--${this.props.discussion.message_type})`,
         } as React.CSSProperties}
       >
         <div className={`${bn}__timestamp hidden-xs`}>
