@@ -14,7 +14,7 @@ interface Props {
 
 export default function DiscreteBar(props: Props) {
   const current = Math.max(0, props.current);
-  const total = Math.max(1, clamp(props.total, Math.min(current, props.total), props.total));
+  const total = Math.max(1, props.total);
 
   return (
     <div className={classWithModifiers('discrete-bar', props.modifiers)}>
