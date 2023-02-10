@@ -1,6 +1,7 @@
 # Local configuration.
 /.env*
 !/.env*.example
+/.webpack-build-notifier-config.js
 
 # ignore _ide_helper.php
 _ide_helper.php

@@ -191,6 +191,12 @@ if (process.env.SENTRY_RELEASE === '1') {
   );
 }
 
+const notifierConfigPath = resolvePath('.webpack-build-notifier-config.js');
+if (fs.existsSync(notifierConfigPath)) {
+  const WebpackBuildNotifierPlugin = require('webpack-build-notifier');
+  plugins.push(new WebpackBuildNotifierPlugin(require(notifierConfigPath)));
+}
+
 // #endregion
 
 // #region Loader rules
