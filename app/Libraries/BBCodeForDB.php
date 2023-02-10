@@ -137,27 +137,17 @@ class BBCodeForDB
     /**
      * Handles:
      * - Code (c)
+     * - Heading (heading)
      */
     public function parseInlineSimple(string $text): string
     {
-        foreach (['c'] as $tag) {
+        foreach (['c', 'heading'] as $tag) {
             $text = preg_replace(
                 "#\[{$tag}](.*?)\[/{$tag}\]#",
                 "[{$tag}:{$this->uid}]\\1[/{$tag}:{$this->uid}]",
                 $text
             );
         }
-
-        return $text;
-    }
-
-    public function parseHeading($text)
-    {
-        $text = preg_replace(
-            '#\[heading](.*?)\[/heading\]#',
-            "[heading:{$this->uid}]\\1[/heading:{$this->uid}]",
-            $text
-        );
 
         return $text;
     }
@@ -390,7 +380,6 @@ class BBCodeForDB
         $text = $this->parseImage($text);
         $text = $this->parseMultilineSimple($text);
         $text = $this->parseInlineSimple($text);
-        $text = $this->parseHeading($text);
         $text = $this->parseAudio($text);
         $text = $this->parseEmail($text);
         $text = $this->parseUrl($text);
