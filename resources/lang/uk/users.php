@@ -54,16 +54,16 @@ return [
 
     'create' => [
         'form' => [
-            'password' => '',
-            'password_confirmation' => '',
-            'submit' => '',
-            'user_email' => '',
-            'user_email_confirmation' => '',
-            'username' => '',
+            'password' => 'пароль',
+            'password_confirmation' => 'підтвердження паролю',
+            'submit' => 'створити обліковий запис',
+            'user_email' => 'ел. пошта',
+            'user_email_confirmation' => 'підтвердження ел. пошти',
+            'username' => 'ім\'я користувача',
 
             'tos_notice' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'створючи обліковий запис, ви даєте згоду з нашими :link',
+                'link' => 'умовами використання',
             ],
         ],
     ],
@@ -467,8 +467,8 @@ return [
         'offline' => 'Не в мережі',
     ],
     'store' => [
-        'from_client' => '',
-        'from_web' => '',
+        'from_client' => 'будь ласка, зареєструйтесь через ігровий клієнт!',
+        'from_web' => 'будь ласка, зареєструйтесь через сайт',
         'saved' => 'Зареєстрований',
     ],
     'verify' => [

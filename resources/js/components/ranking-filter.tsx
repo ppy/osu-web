@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { Option, OptionRenderProps, SelectOptions } from 'components/select-options';
+import SelectOptions, { Option, OptionRenderProps } from 'components/select-options';
 import CountryJson from 'interfaces/country-json';
 import GameMode from 'interfaces/game-mode';
 import core from 'osu-core-singleton';
@@ -12,6 +12,10 @@ import { updateQueryString } from 'utils/url';
 import { Sort } from './sort';
 
 type RankingTypes = 'performance' | 'charts' | 'scores' | 'country';
+
+interface CountryOption extends Option {
+  id: string | null;
+}
 
 interface Props {
   countries?: Required<CountryJson>[];
@@ -24,7 +28,7 @@ const allCountries = { id: null, text: trans('rankings.countries.all') };
 
 export default class RankingFilter extends React.PureComponent<Props> {
   private countriesSorted?: Required<CountryJson>[];
-  private optionsCached?: Map<string | null, Option<string>>;
+  private optionsCached?: Map<string | null, CountryOption>;
   private prevCountries?: Required<CountryJson>[];
 
   get countries() {
@@ -58,7 +62,7 @@ export default class RankingFilter extends React.PureComponent<Props> {
   get options() {
     if (this.optionsCached == null) {
       // local assignment workaround for https://github.com/microsoft/TypeScript/issues/36436
-      const optionsCached = this.optionsCached = new Map<string | null, Option<string>>();
+      const optionsCached = this.optionsCached = new Map<string | null, CountryOption>();
 
       optionsCached.set(allCountries.id, allCountries);
       this.countries.forEach((country) => {
@@ -74,7 +78,7 @@ export default class RankingFilter extends React.PureComponent<Props> {
   }
 
   // TODO: rename component prop to onChange
-  handleCountryChange = (option: Option) => {
+  handleCountryChange = (option: CountryOption) => {
     navigate(updateQueryString(null, { country: option.id, page: null }));
   };
 
@@ -82,9 +86,9 @@ export default class RankingFilter extends React.PureComponent<Props> {
     navigate(updateQueryString(null, { filter: event.currentTarget.dataset.value, page: null }));
   };
 
-  handleRenderOption = (props: OptionRenderProps) => (
+  handleRenderOption = (props: OptionRenderProps<CountryOption>) => (
     <a
-      key={props.option.id ?? ''}
+      key={props.option.id}
       className={props.cssClasses}
       href={updateQueryString(null, { country: props.option.id, page: null })}
       onClick={props.onClick}
@@ -146,7 +150,7 @@ export default class RankingFilter extends React.PureComponent<Props> {
           {trans('rankings.countries.title')}
         </div>
         <SelectOptions
-          bn='ranking-select-options'
+          modifiers='ranking'
           onChange={this.handleCountryChange}
           options={[...this.options.values()]} // TODO: change to iterable
           renderOption={this.handleRenderOption}

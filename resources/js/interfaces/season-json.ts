@@ -1,13 +1,10 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-.user-multiplayer-history {
-  display: grid;
-  grid-gap: 10px;
-
-  &__more {
-    display: flex;
-    height: auto;
-    justify-content: center;
-  }
+export default interface SeasonJson {
+  end_date: string | null;
+  id: number;
+  name: string;
+  room_count: number;
+  start_date: string | null;
 }

@@ -105,7 +105,7 @@ return [
         ],
         'users_controller' => [
             '_' => 'informacje o użytkowniku',
-            'create' => '',
+            'create' => 'rejestracja',
             'disabled' => 'powiadomienie',
         ],
         'wiki_controller' => [

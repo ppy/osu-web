@@ -3,11 +3,10 @@
 
 import IconExpand from 'components/icon-expand';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
-import { BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
+import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import { BeatmapsetWithDiscussionsJson } from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
-import { BeatmapsetDiscussionJson } from 'legacy-modules';
 import { size } from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';

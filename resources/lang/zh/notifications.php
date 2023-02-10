@@ -212,6 +212,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => '',
+            ],
+
             'channel' => [
                 'pm' => '您收到了来自 :username 的新消息',
             ],

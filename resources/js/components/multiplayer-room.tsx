@@ -5,7 +5,7 @@ import BeatmapsetCover from 'components/beatmapset-cover';
 import DifficultyBadge from 'components/difficulty-badge';
 import StringWithComponent from 'components/string-with-component';
 import { UserLink } from 'components/user-link';
-import { EndpointRoomJson } from 'interfaces/user-multiplayer-history-json';
+import { EndpointRoomJson } from 'interfaces/room-list-json';
 import { route } from 'laroute';
 import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
@@ -14,17 +14,15 @@ import * as React from 'react';
 import { getDiffColour } from 'utils/beatmap-helper';
 import { classWithModifiers } from 'utils/css';
 import { trans, transChoice } from 'utils/lang';
-import MultiplayerHistoryStore from './multiplayer-history-store';
 
 interface Props {
   room: EndpointRoomJson;
-  store: MultiplayerHistoryStore;
 }
 
 const endingSoonDiffMs = 60 * 60 * 1000; // 60 minutes.
 
 @observer
-export default class Room extends React.Component<Props> {
+export default class MultiplayerRoom extends React.Component<Props> {
   private get playlistItemCount() {
     return this.props.room.active
       ? this.props.room.playlist_item_stats.count_active

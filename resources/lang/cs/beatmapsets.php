@@ -66,7 +66,7 @@ return [
             'favourite_login' => 'Pro přidání beatmapy do oblíbených se přihlas',
             'logged-out' => 'Pro stahování beatmap musíš být přihlášen!',
             'mapped_by' => 'beatmapu vytvořil :mapper',
-            'mapped_by_guest' => '',
+            'mapped_by_guest' => 'obtížnost hosta od :mapper',
             'unfavourite' => 'Odebrat z mých oblíbených',
             'updated_timeago' => 'naposledy aktualizováno :timeago',
 

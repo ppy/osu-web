@@ -106,7 +106,7 @@ return [
         ],
         'users_controller' => [
             '_' => 'thông tin người chơi',
-            'create' => '',
+            'create' => 'tạo tài khoản',
             'disabled' => 'để ý',
         ],
         'wiki_controller' => [

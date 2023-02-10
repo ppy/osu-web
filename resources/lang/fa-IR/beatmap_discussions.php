@@ -74,16 +74,16 @@ return [
 
     'review' => [
         'block_count' => ':used از :max بلاک استفاده شده',
-        'go_to_parent' => '',
-        'go_to_child' => '',
+        'go_to_parent' => 'نمایش پست بررسی',
+        'go_to_child' => 'نمایش بخش گفتگو',
         'validation' => [
-            'block_too_large' => '',
-            'external_references' => '',
-            'invalid_block_type' => '',
-            'invalid_document' => '',
-            'invalid_discussion_type' => '',
-            'minimum_issues' => '',
-            'missing_text' => '',
+            'block_too_large' => 'هر قسمت میتواند تا :limit کلمه را شامل شود',
+            'external_references' => 'بررسی شامل ارجاعاتی است که به این پست تعلق ندارند',
+            'invalid_block_type' => 'نوع قسمت نامعتبر',
+            'invalid_document' => 'بررسی نامعتبر',
+            'invalid_discussion_type' => 'نوع گفتگو نامعتبر',
+            'minimum_issues' => 'بررسی باید حداقل شامل :count مشکل شود|بررسی باید حداقل شامل :count مشکل شود',
+            'missing_text' => 'این قسمت متنی ندارد',
             'too_many_blocks' => 'مرور ها باید :count پاراگراف یا مسئله داشته باشند|مرور ها باید حداکثر :count پاراگراف / مسئله داشته باشند',
         ],
     ],
@@ -91,17 +91,17 @@ return [
     'system' => [
         'resolved' => [
             'true' => 'توسط :user حل شده در نظر گرفته شد',
-            'false' => '',
+            'false' => 'پاسخ داده شده توسط :user',
         ],
     ],
 
     'timestamp_display' => [
-        'general' => '',
-        'general_all' => '',
+        'general' => 'عمومی',
+        'general_all' => 'عمومی (همه)',
     ],
 
     'user_filter' => [
-        'everyone' => '',
+        'everyone' => 'همه',
         'label' => 'فیلتر بر اساس کاربر',
     ],
 ];
