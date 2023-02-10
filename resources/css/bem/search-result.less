@@ -37,14 +37,18 @@
 
   &__entries {
     flex: 1;
-    display: flex;
-    flex-wrap: wrap;
-    margin: -5px;
-    min-width: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+
+    .@{top}--beatmapset & {
+      @media @desktop {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
 
     .@{top}--user & {
       display: block;
-      margin: 0;
     }
   }
 
