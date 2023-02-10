@@ -46,12 +46,16 @@ type Props = PropsBase & ({
   preview: false;
 });
 
-function DiscussionTypeIcon({ type }: { type: DiscussionType }) {
+function DiscussionTypeIcon({ type }: { type: DiscussionType | 'resolved' }) {
+  const titleKey = type === 'resolved'
+    ? 'beatmaps.discussions.resolved'
+    : `beatmaps.discussions.message_type.${type}`;
+
   return (
     <span
       className={discussionTypeIcons[type]}
       style={{ color: `var(--beatmapset-discussion-colour--${type})` }}
-      title={trans(`beatmaps.discussions.message_type.${type}`)}
+      title={trans(titleKey)}
     />
   );
 }
@@ -285,16 +289,9 @@ export class Discussion extends React.Component<Props> {
         {this.props.discussion.timestamp != null && this.props.isTimelineVisible && <div className="beatmap-discussion-timestamp__point" />}
         <div className="beatmap-discussion-timestamp__icons-container">
           <div className="beatmap-discussion-timestamp__icons">
-            <div className="beatmap-discussion-timestamp__icon">
-              <DiscussionTypeIcon type={this.props.discussion.message_type} />
-            </div>
+            <DiscussionTypeIcon type={this.props.discussion.message_type} />
             {this.props.discussion.resolved && (
-              <div className="beatmap-discussion-timestamp__icon beatmap-discussion-timestamp__icon--resolved">
-                <i
-                  className='far fa-check-circle'
-                  title={trans('beatmaps.discussions.resolved')}
-                />
-              </div>
+              <DiscussionTypeIcon type='resolved' />
             )}
           </div>
           {this.props.discussion.timestamp != null && (
