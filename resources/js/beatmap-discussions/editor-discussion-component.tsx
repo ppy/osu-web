@@ -11,7 +11,7 @@ import * as React from 'react';
 import { Transforms } from 'slate';
 import { RenderElementProps } from 'slate-react';
 import { ReactEditor } from 'slate-react';
-import { formatTimestamp, nearbyDiscussions, parseTimestamp, timestampRegex } from 'utils/beatmapset-discussion-helper';
+import { formatTimestamp, makeUrl, nearbyDiscussions, parseTimestamp, timestampRegex } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { trans, transArray } from 'utils/lang';
 import { linkHtml } from 'utils/url';
@@ -217,7 +217,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
         // don't linkify timestamps when in edit mode
         timestamps.push(this.props.editMode
           ? timestamp
-          : linkHtml(BeatmapDiscussionHelper.url({ discussion }),
+          : linkHtml(makeUrl({ discussion }),
             timestamp,
             { classNames: ['js-beatmap-discussion--jump'] },
           ),
