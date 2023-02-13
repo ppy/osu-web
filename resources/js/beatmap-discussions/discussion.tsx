@@ -15,7 +15,7 @@ import * as React from 'react';
 import { badgeGroup, canModeratePosts, formatTimestamp, makeUrl, startingPost } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers, groupColour } from 'utils/css';
 import { trans } from 'utils/lang';
-import { discussionTypeIcons } from './discussion-type';
+import { DiscussionType, discussionTypeIcons } from './discussion-type';
 import DiscussionVoteButtons from './discussion-vote-buttons';
 import DiscussionsStateContext from './discussions-state-context';
 import { NewReply } from './new-reply';
@@ -45,6 +45,20 @@ type Props = PropsBase & ({
   discussion: BeatmapsetDiscussionJsonForShow;
   preview: false;
 });
+
+function DiscussionTypeIcon({ type }: { type: DiscussionType | 'resolved' }) {
+  const titleKey = type === 'resolved'
+    ? 'beatmaps.discussions.resolved'
+    : `beatmaps.discussions.message_type.${type}`;
+
+  return (
+    <span
+      className={discussionTypeIcons[type]}
+      style={{ color: `var(--beatmapset-discussion-colour--${type})` }}
+      title={trans(titleKey)}
+    />
+  );
+}
 
 @observer
 export class Discussion extends React.Component<Props> {
@@ -119,6 +133,9 @@ export class Discussion extends React.Component<Props> {
         className={`${topClasses} js-beatmap-discussion-jump`}
         data-id={this.props.discussion.id}
         onClick={this.handleSetHighlight}
+        style={{
+          '--discussion-colour': `var(--beatmapset-discussion-colour--${this.props.discussion.message_type})`,
+        } as React.CSSProperties}
       >
         <div className={`${bn}__timestamp hidden-xs`}>
           {this.renderTimestamp()}
@@ -233,6 +250,9 @@ export class Discussion extends React.Component<Props> {
               <i className='fas fa-tasks' />
             </a>
           )}
+          <span className='visible-xs'>
+            <DiscussionTypeIcon type={this.props.discussion.message_type} />
+          </span>
           <DiscussionVoteButtons
             cannotVote={this.isOwner(this.props.discussion) || (user?.is_bot ?? false) || !this.canBeRepliedTo}
             discussion={this.props.discussion}
@@ -269,21 +289,10 @@ export class Discussion extends React.Component<Props> {
         {this.props.discussion.timestamp != null && this.props.isTimelineVisible && <div className="beatmap-discussion-timestamp__point" />}
         <div className="beatmap-discussion-timestamp__icons-container">
           <div className="beatmap-discussion-timestamp__icons">
-            <div className="beatmap-discussion-timestamp__icon">
-              <span
-                className={discussionTypeIcons[this.props.discussion.message_type]}
-                style={{ color: `var(--beatmapset-discussion-colour--${this.props.discussion.message_type})` }}
-                title={trans(`beatmaps.discussions.message_type.${this.props.discussion.message_type}`)}
-              />
-              {this.props.discussion.resolved && (
-                <div className="beatmap-discussion-timestamp__icon beatmap-discussion-timestamp__icon--resolved">
-                  <i
-                    className='far fa-check-circle'
-                    title={trans('beatmaps.discussions.resolved')}
-                  />
-                </div>
-              )}
-            </div>
+            <DiscussionTypeIcon type={this.props.discussion.message_type} />
+            {this.props.discussion.resolved && (
+              <DiscussionTypeIcon type='resolved' />
+            )}
           </div>
           {this.props.discussion.timestamp != null && (
             <div className="beatmap-discussion-timestamp__text">
