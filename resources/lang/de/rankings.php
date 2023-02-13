@@ -23,6 +23,14 @@ return [
         'multiplayer' => 'mehrspieler',
         'performance' => 'performance',
         'score' => 'punktzahl',
+        'seasons' => '',
+    ],
+
+    'seasons' => [
+        'empty' => '',
+        'ongoing' => '',
+        'room_count' => '',
+        'url' => '',
     ],
 
     'spotlight' => [

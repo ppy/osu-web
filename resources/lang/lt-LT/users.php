@@ -158,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'Tavo vartotojo prieiga buvo apribota!',
         'message' => 'Kol ribotas, negalėsite sąveikauti su kitais žaidėjais ir jūsų rezultatai bus matomi tik jums. Įprastai šis apribojimas įvyksta dėl automatizuoto proceso ir yra atšaukiamas per 24 valandas. Jei norite apeliuoti šį apribojimą, prašome <a href="mailto:accounts@ppy.sh">susisiekti su pagalba</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age metų',

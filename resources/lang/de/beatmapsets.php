@@ -66,7 +66,7 @@ return [
             'favourite_login' => 'Melde dich an, um diese Beatmap zu favorisieren',
             'logged-out' => 'Zum Herunterladen von Beatmaps muss man eingeloggt sein!',
             'mapped_by' => 'erstellt von :mapper',
-            'mapped_by_guest' => '',
+            'mapped_by_guest' => 'Gastschwierigkeit von :mapper',
             'unfavourite' => 'Dieses Beatmapset von deinen Favoriten entfernen',
             'updated_timeago' => 'zuletzt aktualisiert :timeago',
 

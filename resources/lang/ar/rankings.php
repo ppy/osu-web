@@ -23,6 +23,14 @@ return [
         'multiplayer' => 'متعدد اللاعبين',
         'performance' => 'الأداء',
         'score' => 'النقاط',
+        'seasons' => '',
+    ],
+
+    'seasons' => [
+        'empty' => '',
+        'ongoing' => '',
+        'room_count' => '',
+        'url' => '',
     ],
 
     'spotlight' => [

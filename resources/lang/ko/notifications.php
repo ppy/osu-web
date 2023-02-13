@@ -210,7 +210,7 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => '',
+                'announce' => '":name"에 새로운 공지가 있습니다',
             ],
 
             'channel' => [

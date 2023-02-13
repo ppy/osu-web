@@ -158,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'Naging limitado ang iyong account!',
         'message' => 'Habang restricted ang account, ikaw ay hindi maaaring makihalubilo sa kapwa kalaro at ang iyong mga iskor ay ikaw lamang ang makakakita. Ito ay madalas ng resulta ng isang automated na proseso at kadalasang ipinapawalang bisa pagkatapos ng 24 oras. Kung nais mong mag-apela sa iyong restriction, <a href="mailto:accounts@ppy.sh">i-contact ang support</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age taong gulang',
@@ -468,7 +469,7 @@ return [
     ],
     'store' => [
         'from_client' => 'pakirehistro sa pamamagitan ng game client sa halip!',
-        'from_web' => 'pakirehistro sa pamamagitan ng web',
+        'from_web' => 'pakikumpleto ang pagpaparehistro gamit ang osu! website',
         'saved' => 'Ginawa ng user',
     ],
     'verify' => [

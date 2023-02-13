@@ -23,6 +23,14 @@ return [
         'multiplayer' => 'רב משתתפים',
         'performance' => 'ביצועים',
         'score' => 'תוצאה',
+        'seasons' => '',
+    ],
+
+    'seasons' => [
+        'empty' => '',
+        'ongoing' => '',
+        'room_count' => '',
+        'url' => '',
     ],
 
     'spotlight' => [
