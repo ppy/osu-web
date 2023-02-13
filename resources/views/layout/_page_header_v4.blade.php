@@ -27,7 +27,7 @@
             <div class="header-v4__bg {{ $backgroundExtraClass }}" {!! background_image($backgroundImage ?? null, false) !!}></div>
         </div>
 
-        <div class="header-v4__banner-height js-sync-height--target" data-sync-height-id="notification-banners">
+        <div class="hidden-xs js-sync-height--target" data-sync-height-id="notification-banners">
         </div>
 
         <div class="header-v4__content">

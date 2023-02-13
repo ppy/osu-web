@@ -74,7 +74,7 @@ export default class HeaderV4 extends React.Component<Props> {
           </div>
 
           <div
-            className='header-v4__banner-height js-sync-height--target'
+            className='hidden-xs js-sync-height--target'
             data-sync-height-id='notification-banners'
           />
 
