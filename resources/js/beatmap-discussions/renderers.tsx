@@ -31,7 +31,9 @@ function paragraphDecorator(reactNode: React.ReactNode) {
         nodes.push(textFragment);
 
         // decorate the timestamp as a link
-        const timestamp = match[0];
+        const [,,, m, s, ms, range] = match;
+        const timestamp = `${m}:${s}:${ms}${range ?? ''}`;
+
         nodes.push((
           <a key={`timestamp-${index}`} className='beatmap-discussion-timestamp-decoration' href={openBeatmapEditor(timestamp)}>{timestamp}</a>
         ));
