@@ -237,9 +237,10 @@
 
   &--notification-banners {
     @media @desktop {
-      position: relative;
-      height: 0;
+      position: absolute;
       top: (@nav2-height + 10px);
+      display: grid;
+      gap: 4px;
     }
   }
 
