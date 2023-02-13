@@ -143,7 +143,6 @@ class OsuMarkdown
     private $document = '';
     private $firstImage;
     private $header;
-    private $imageUrls;
     private $toc;
 
     private $htmlConverterAndExtension;
@@ -218,7 +217,6 @@ class OsuMarkdown
 
             $this->firstImage = $processor->firstImage;
             $this->toc = $processor->toc;
-            $this->imageUrls = $processor->imageUrls;
 
             return "<div class='{$blockClass}'>{$converted}</div>";
         });
@@ -251,7 +249,6 @@ class OsuMarkdown
         return [
             'firstImage' => $this->firstImage,
             'header' => $this->header,
-            'imageUrls' => $this->imageUrls,
             'output' => $html,
             'toc' => $this->toc,
         ];

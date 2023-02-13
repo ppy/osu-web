@@ -328,7 +328,7 @@ export default class Post extends React.Component<Props> {
           </div>
         ) : (
           <div ref={this.messageBodyRef} className={`${bn}__message`}>
-            <DiscussionMessage markdown={this.props.post.message} post={this.props.post} />
+            <DiscussionMessage markdown={this.props.post.message} />
           </div>
         )}
         <div className={`${bn}__info-container`}>

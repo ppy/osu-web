@@ -1254,7 +1254,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
                 'current_user_attributes',
                 'discussions',
                 'discussions.current_user_attributes',
-                'discussions.posts.media_urls',
+                'discussions.posts',
                 'discussions.votes',
                 'events',
                 'nominations',

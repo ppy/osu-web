@@ -20,7 +20,7 @@ class BeatmapDiscussionsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('auth', ['except' => ['index', 'mediaUrls', 'show']]);
         $this->middleware('require-scopes:public', ['only' => ['index']]);
 
         parent::__construct();
@@ -115,6 +115,24 @@ class BeatmapDiscussionsController extends Controller
         $search = $bundle->getSearchParams();
 
         return ext_view('beatmap_discussions.index', compact('json', 'search', 'paginator'));
+    }
+
+    public function mediaUrls()
+    {
+        ['urls' => $urls] = get_params(request()->all(), null, [
+            'urls:string[]',
+        ], ['null_missing' => true]);
+
+        if ($urls === null) {
+            return (object) [];
+        }
+
+        $ret = [];
+        foreach ($urls as $url) {
+            $ret[$url] = proxy_media($url);
+        }
+
+        return $ret;
     }
 
     public function restore($id)

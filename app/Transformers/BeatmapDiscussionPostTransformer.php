@@ -11,7 +11,6 @@ class BeatmapDiscussionPostTransformer extends TransformerAbstract
 {
     protected array $availableIncludes = [
         'beatmap_discussion',
-        'media_urls',
     ];
 
     protected $requiredPermission = 'BeatmapDiscussionPostShow';
@@ -38,10 +37,5 @@ class BeatmapDiscussionPostTransformer extends TransformerAbstract
             $post->beatmapDiscussion,
             new BeatmapDiscussionTransformer()
         );
-    }
-
-    public function includeMediaUrls(BeatmapDiscussionPost $post)
-    {
-        return $this->primitive($post->mediaUrls());
     }
 }
