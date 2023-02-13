@@ -21,6 +21,7 @@ use League\Config\ConfigurationInterface;
 class DocumentProcessor
 {
     public ?string $firstImage;
+    public array $imageUrls = [];
     public ?string $title;
     public ?array $toc;
 
@@ -258,7 +259,10 @@ class DocumentProcessor
         $url = $this->node->getUrl();
 
         if (present($url)) {
-            $this->node->setUrl(proxy_media($url));
+            $proxiedUrl = proxy_media($url);
+            $this->node->setUrl($proxiedUrl);
+
+            $this->imageUrls[$url] = $proxiedUrl;
         }
     }
 

@@ -5,6 +5,7 @@ import BeatmapsetDiscussionJson from './beatmapset-discussion-json';
 
 interface BeatmapsetDiscussionPostAvailableIncludes {
   beatmap_discussion: BeatmapsetDiscussionJson;
+  media_urls: Record<string, string>;
 }
 
 interface BeatmapsetDiscussionPostDefaultAttributes {

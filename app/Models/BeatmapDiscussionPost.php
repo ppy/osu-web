@@ -6,6 +6,7 @@
 namespace App\Models;
 
 use App\Exceptions\ModelNotSavedException;
+use App\Libraries\Markdown\OsuMarkdown;
 use App\Traits\Validatable;
 use Carbon\Carbon;
 use DB;
@@ -233,6 +234,14 @@ class BeatmapDiscussionPost extends Model implements Traits\ReportableInterface
         }
 
         return $this->validationErrors()->isEmpty();
+    }
+
+    public function mediaUrls() {
+        if ($this->system) {
+            return [];
+        }
+
+        return (new OsuMarkdown('comment'))->load($this->message)->toArray()['imageUrls'];
     }
 
     public function validationErrorsTranslationPrefix()

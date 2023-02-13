@@ -114,7 +114,7 @@ export const ReviewPostEmbed = ({ data }: Props) => {
         <div className={`${bn}__stripe`} />
         <div className={`${bn}__message-container`}>
           <div className={`${bn}__body`}>
-            <DiscussionMessage markdown={post.message} />
+            <DiscussionMessage markdown={post.message} post={post} />
           </div>
         </div>
         {parentLink()}
