@@ -210,7 +210,7 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => '',
+                'announce' => 'Новая аб\'ява ў ":name"',
             ],
 
             'channel' => [
@@ -244,7 +244,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username стварыў новыя бітмапы',
-                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive' => ':username абнавіў карты',
             ],
         ],
     ],

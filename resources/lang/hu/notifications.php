@@ -211,7 +211,7 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => '',
+                'announce' => 'Új hirdetmény van ":name" csatornában',
             ],
 
             'channel' => [

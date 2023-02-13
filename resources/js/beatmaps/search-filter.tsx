@@ -6,11 +6,12 @@ import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { classWithModifiers } from 'utils/css';
+import { classWithModifiers, Modifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { FilterOption } from './available-filters';
 
 interface Props {
+  modifiers?: Modifiers;
   multiselect: boolean;
   name: FilterKey;
   options: FilterOption[];
@@ -47,7 +48,7 @@ export class SearchFilter extends React.Component<Props> {
 
   render() {
     return (
-      <div className='beatmapsets-search-filter'>
+      <div className={classWithModifiers('beatmapsets-search-filter', this.props.modifiers)}>
         {this.props.title != null && <span className='beatmapsets-search-filter__header'>{this.props.title}</span>}
         <div className='beatmapsets-search-filter__items'>
           {this.options.map(this.renderOption)}

@@ -23,6 +23,14 @@ return [
         'multiplayer' => 'nhiều người chơi',
         'performance' => 'thành tích',
         'score' => 'số điểm',
+        'seasons' => '',
+    ],
+
+    'seasons' => [
+        'empty' => '',
+        'ongoing' => '',
+        'room_count' => '',
+        'url' => '',
     ],
 
     'spotlight' => [

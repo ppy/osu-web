@@ -23,6 +23,14 @@ return [
         'multiplayer' => 'multiplayer',
         'performance' => 'Performance',
         'score' => 'Iskor',
+        'seasons' => '',
+    ],
+
+    'seasons' => [
+        'empty' => '',
+        'ongoing' => '',
+        'room_count' => '',
+        'url' => '',
     ],
 
     'spotlight' => [

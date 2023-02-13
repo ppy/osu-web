@@ -66,7 +66,7 @@ return [
             'favourite_login' => 'Jelentkezz be, hogy kedvencnek jelölt ezt beatmap-et',
             'logged-out' => 'Beatmapek letöltéshez be kell jelentkezned!',
             'mapped_by' => 'mappolva :mapper által',
-            'mapped_by_guest' => '',
+            'mapped_by_guest' => 'vendég nehézség :mapper által',
             'unfavourite' => 'Beatmap eltávolitása a kedvencek közül',
             'updated_timeago' => 'utóljára frissítve: :timeago',
 

@@ -26,7 +26,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
 import { onError } from 'utils/ajax';
-import { badgeGroup, canModeratePosts, format, validMessageLength } from 'utils/beatmapset-discussion-helper';
+import { badgeGroup, canModeratePosts, format, makeUrl, validMessageLength } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
 import { trans } from 'utils/lang';
@@ -366,7 +366,7 @@ export default class Post extends React.Component<Props> {
           <span className={`${bn}__action ${bn}__action--button`}>
             <ClickToCopy
               label={trans('common.buttons.permalink')}
-              value={BeatmapDiscussionHelper.url({ discussion: this.props.discussion, post: this.props.type === 'reply' ? this.props.post : null })}
+              value={makeUrl({ discussion: this.props.discussion, post: this.props.type === 'reply' ? this.props.post : undefined })}
               valueAsUrl
             />
           </span>

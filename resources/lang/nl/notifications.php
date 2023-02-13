@@ -212,7 +212,7 @@ Beatmap ":title" vernieuwd',
 
         'channel' => [
             'announcement' => [
-                'announce' => '',
+                'announce' => 'Er is een nieuwe aankondiging in ":name"',
             ],
 
             'channel' => [

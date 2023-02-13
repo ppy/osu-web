@@ -161,7 +161,7 @@ return [
                 'accuracy' => '准确率',
                 'combo' => '最大连击',
                 'miss' => 'Miss',
-                'mods' => 'Mods',
+                'mods' => '模组',
                 'pin' => '置顶',
                 'player' => '玩家',
                 'pp' => '',
