@@ -7,7 +7,7 @@ import ReactMarkdown from 'react-markdown';
 import { uuid } from 'utils/seq';
 import autolink from './plugins/autolink';
 import disableConstructs from './plugins/disable-constructs';
-import { linkRenderer, paragraphRenderer, transformLinkUri } from './renderers';
+import { emphasisRenderer, linkRenderer, paragraphRenderer, strongRenderer, transformLinkUri } from './renderers';
 import { ReviewPostEmbed } from './review-post-embed';
 
 interface Props {
@@ -30,7 +30,9 @@ export class ReviewPost extends React.Component<Props> {
         className='beatmap-discussion-review-post__block'
         components={{
           a: linkRenderer,
+          em: emphasisRenderer,
           p: paragraphRenderer,
+          strong: strongRenderer,
         }}
         remarkPlugins={[autolink, disableConstructs]}
         transformLinkUri={transformLinkUri}

@@ -9,6 +9,10 @@ import { openBeatmapEditor } from 'utils/url';
 
 export const timestampRegexGlobal = new RegExp(timestampRegex, 'g');
 
+export function emphasisRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) {
+  return <em>{astProps.children.map(timestampDecorator)}</em>;
+}
+
 export function linkRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>) {
   // TODO: handle extra nodes in astProps.children
   const props = propsFromHref(astProps.href ?? '');
@@ -16,7 +20,15 @@ export function linkRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLPr
   return <a href={astProps.href} {...props} />;
 }
 
-function paragraphDecorator(reactNode: React.ReactNode) {
+export function paragraphRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement>) {
+  return <div className='beatmapset-discussion-message'>{astProps.children.map(timestampDecorator)}</div>;
+}
+
+export function strongRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) {
+  return <strong>{astProps.children.map(timestampDecorator)}</strong>;
+}
+
+function timestampDecorator(reactNode: React.ReactNode) {
   if (typeof reactNode === 'string') {
     const matches = [...reactNode.matchAll(timestampRegexGlobal)];
 
@@ -49,10 +61,6 @@ function paragraphDecorator(reactNode: React.ReactNode) {
   }
 
   return reactNode;
-}
-
-export function paragraphRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement>) {
-  return <div className='beatmapset-discussion-message'>{astProps.children.map(paragraphDecorator)}</div>;
 }
 
 export function transformLinkUri(uri: string) {
