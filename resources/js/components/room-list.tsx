@@ -51,13 +51,11 @@ export default class RoomList extends React.Component<Props> {
     return (
       <div className='room-list'>
         {this.props.store.rooms.map((room) => <MultiplayerRoom key={room.id} room={room} />)}
-        <div className='room-list__more'>
-          <ShowMoreLink
-            callback={this.handleShowMore}
-            hasMore={this.hasMore}
-            loading={this.loading}
-          />
-        </div>
+        <ShowMoreLink
+          callback={this.handleShowMore}
+          hasMore={this.hasMore}
+          loading={this.loading}
+        />
       </div>
     );
   }

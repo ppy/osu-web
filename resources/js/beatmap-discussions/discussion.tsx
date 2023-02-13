@@ -6,7 +6,7 @@ import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForBundle, Beatmapset
 import BeatmapsetDiscussionPostJson from 'interfaces/beatmapset-discussion-post-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import UserJson from 'interfaces/user-json';
-import { findLast, kebabCase } from 'lodash';
+import { findLast } from 'lodash';
 import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import { deletedUser } from 'models/user';
@@ -270,12 +270,11 @@ export class Discussion extends React.Component<Props> {
         <div className="beatmap-discussion-timestamp__icons-container">
           <div className="beatmap-discussion-timestamp__icons">
             <div className="beatmap-discussion-timestamp__icon">
-              <span className={classWithModifiers('beatmap-discussion-message-type', kebabCase(this.props.discussion.message_type))}>
-                <i
-                  className={discussionTypeIcons[this.props.discussion.message_type]}
-                  title={trans(`beatmaps.discussions.message_type.${this.props.discussion.message_type}`)}
-                />
-              </span>
+              <span
+                className={discussionTypeIcons[this.props.discussion.message_type]}
+                style={{ color: `var(--beatmapset-discussion-colour--${this.props.discussion.message_type})` }}
+                title={trans(`beatmaps.discussions.message_type.${this.props.discussion.message_type}`)}
+              />
               {this.props.discussion.resolved && (
                 <div className="beatmap-discussion-timestamp__icon beatmap-discussion-timestamp__icon--resolved">
                   <i
