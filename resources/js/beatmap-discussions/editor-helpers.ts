@@ -96,7 +96,7 @@ function serializeMarkedText(text: string, format: string) {
 function serializeParagraph(node: ParagraphElement) {
   return node.children.map((child) => {
     if (child.text !== '') {
-      const text = child.text.replace(/\*/g, '\\*');
+      const text = child.text.replace(/([*_\\])/g, '\\$1');
       // simplified logic that forces nested marks to be split;
       // removing whitespace while preserving the nested marks gets messy.
       if (child.bold && child.italic) {
