@@ -1,13 +1,14 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import Bar from 'components/bar';
 import BbcodeEditor, { OnChangeProps } from 'components/bbcode-editor';
 import Modal from 'components/modal';
 import { UserLink } from 'components/user-link';
 import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import { round, sum } from 'lodash';
+import { sum } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
@@ -325,33 +326,19 @@ export default class Info extends React.Component<Props> {
       );
     }
 
-    const percentage = round((this.controller.currentBeatmap.passcount / this.controller.currentBeatmap.playcount) * 100, 1);
-
     return (
       <div className='beatmap-success-rate'>
         <h3 className='beatmap-success-rate__header'>
           {trans('beatmapsets.show.info.success-rate')}
         </h3>
 
-        <div className='bar bar--beatmap-success-rate'>
-          <div
-            className='bar__fill'
-            style={{
-              width: `${percentage}%`,
-            }}
-          />
-        </div>
-
-        <div
-          className='beatmap-success-rate__percentage'
-          data-tooltip-position='bottom center'
-          style={{
-            marginLeft: `${percentage}%`,
-          }}
+        <Bar
+          current={this.controller.currentBeatmap.passcount}
+          modifiers='beatmap-success-rate'
+          textPrecision={1}
           title={`${formatNumber(this.controller.currentBeatmap.passcount)} / ${formatNumber(this.controller.currentBeatmap.playcount)}`}
-        >
-          {`${percentage}%`}
-        </div>
+          total={this.controller.currentBeatmap.playcount}
+        />
 
         <h3 className='beatmap-success-rate__header'>
           {trans('beatmapsets.show.info.points-of-failure')}

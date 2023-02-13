@@ -2,14 +2,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BigButton from 'components/big-button';
+import DiscreteBar from 'components/discrete-bar';
 import StringWithComponent from 'components/string-with-component';
 import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
 import { route } from 'laroute';
-import { times } from 'lodash';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
 
@@ -102,17 +101,11 @@ export default class Hype extends React.Component<Props> {
             </span>
           </div>
 
-          <div className={`${bn}__lights`}>
-            {times(this.hype.required).map((i) => (
-              <div
-                key={i}
-                className={classWithModifiers('bar', [
-                  'beatmapset-hype',
-                  i < this.hype.current ? 'beatmapset-on' : 'beatmapset-off',
-                ])}
-              />
-            ))}
-          </div>
+          <DiscreteBar
+            current={this.hype.current}
+            modifiers='beatmapset-hype'
+            total={this.hype.required}
+          />
 
           <div
             className={`${bn}__button`}

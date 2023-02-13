@@ -24,7 +24,7 @@ export default class EditorIssueTypeSelector extends React.Component<Props> {
 
   render() {
     const menuOptions: MenuItem[] = beatmapReviewDiscussionTypes.map((type) => ({
-      icon: <span className={`beatmap-discussion-message-type beatmap-discussion-message-type--${type}`}><i className={discussionTypeIcons[type]} /></span>,
+      icon: <span className={discussionTypeIcons[type]} style={{ color: `var(--beatmapset-discussion-colour--${type})` }} />,
       id: type,
       label: trans(`beatmaps.discussions.message_type.${type}`),
     }));

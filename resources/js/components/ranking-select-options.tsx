@@ -1,53 +1,45 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { Option, OptionRenderProps, SelectOptions } from 'components/select-options';
+import SelectOptions, { OptionRenderProps } from 'components/select-options';
+import SelectOptionJson from 'interfaces/select-option-json';
 import { route } from 'laroute';
 import * as React from 'react';
 import { navigate } from 'utils/turbolinks';
 
-interface RoomJson {
-  id: number;
-  name: string;
-}
-
 interface Props {
-  currentRoom: RoomJson;
-  rooms: RoomJson[];
+  currentItem: SelectOptionJson;
+  items: SelectOptionJson[];
+  type: 'multiplayer' | 'seasons';
 }
 
-export default class MultiplayerSelectOptions extends React.PureComponent<Props> {
+export default class RankingSelectOptions extends React.PureComponent<Props> {
   render() {
-    const options = this.props.rooms.map((room) => ({
-      id: room.id,
-      text: room.name,
-    }));
-
-    const selected = {
-      id: this.props.currentRoom.id,
-      text: this.props.currentRoom.name,
-    };
-
     return (
       <SelectOptions
         modifiers='spotlight'
         onChange={this.handleChange}
-        options={options}
+        options={this.props.items}
         renderOption={this.renderOption}
-        selected={selected}
+        selected={this.props.currentItem}
       />
     );
   }
 
-  private handleChange = (option: Option<number>) => {
+  private handleChange = (option: SelectOptionJson) => {
     navigate(this.href(option.id));
   };
 
   private href(id: number | null) {
-    return route('multiplayer.rooms.show', { room: id ?? 'latest' });
+    switch (this.props.type) {
+      case 'multiplayer':
+        return route('multiplayer.rooms.show', { room: id ?? 'latest' });
+      case 'seasons':
+        return route('seasons.show', { season: id ?? 'latest' });
+    }
   }
 
-  private renderOption = (props: OptionRenderProps<number>) => (
+  private renderOption = (props: OptionRenderProps<SelectOptionJson>) => (
     <a
       key={props.option.id ?? -1}
       className={props.cssClasses}

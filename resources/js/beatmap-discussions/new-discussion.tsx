@@ -18,7 +18,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
 import { onError } from 'utils/ajax';
-import { canModeratePosts, formatTimestamp, NearbyDiscussion, nearbyDiscussions, parseTimestamp, validMessageLength } from 'utils/beatmapset-discussion-helper';
+import { canModeratePosts, formatTimestamp, makeUrl, NearbyDiscussion, nearbyDiscussions, parseTimestamp, validMessageLength } from 'utils/beatmapset-discussion-helper';
 import { nominationsCount } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
@@ -346,7 +346,7 @@ export class NewDiscussion extends React.Component<Props> {
       <a
         key={discussion.id}
         className='js-beatmap-discussion--jump'
-        href={BeatmapDiscussionHelper.url({ discussion })}
+        href={makeUrl({ discussion })}
       >
         {formatTimestamp(discussion.timestamp)}
       </a>

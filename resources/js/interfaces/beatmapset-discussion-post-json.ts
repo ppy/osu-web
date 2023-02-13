@@ -27,7 +27,7 @@ export type BeatmapsetDiscussionMessagePostJson = BeatmapsetDiscussionPostBase &
 
 export type BeatmapsetDiscussionSystemPostJson = BeatmapsetDiscussionPostBase & {
   message: {
-    type: 'resolve';
+    type: 'resolved';
     value: boolean;
   };
   system: true;
