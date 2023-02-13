@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'load_failed' => '',
+    'load_failed' => 'Daten konnten nicht geladen werden.',
     'missing_route' => 'Ungültige URL oder falsche Anforderungsmethode.',
     'no_restricted_access' => 'Diese Aktion steht nicht zur Verfügung, während der Account eingeschränkt ist.',
     'supporter_only' => 'Du musst ein osu!supporter sein, um dieses Feature zu nutzen.',

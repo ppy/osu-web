@@ -100,12 +100,15 @@ return [
         'scores_controller' => [
             '_' => 'па прадукцыйнасці',
         ],
+        'seasons_controller' => [
+            '_' => '',
+        ],
         'tournaments_controller' => [
             '_' => 'турніры',
         ],
         'users_controller' => [
             '_' => 'інфармацыя пра гульца',
-            'create' => '',
+            'create' => 'стварыць рахунак',
             'disabled' => 'звярніце ўвагу',
         ],
         'wiki_controller' => [

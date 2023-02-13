@@ -23,6 +23,14 @@ return [
         'multiplayer' => 'večigralski način',
         'performance' => 'moč',
         'score' => 'rezultat',
+        'seasons' => '',
+    ],
+
+    'seasons' => [
+        'empty' => '',
+        'ongoing' => '',
+        'room_count' => '',
+        'url' => '',
     ],
 
     'spotlight' => [

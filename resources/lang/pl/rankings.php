@@ -23,6 +23,14 @@ return [
         'multiplayer' => 'wieloosobowy',
         'performance' => 'globalny',
         'score' => 'punktowy',
+        'seasons' => '',
+    ],
+
+    'seasons' => [
+        'empty' => '',
+        'ongoing' => '',
+        'room_count' => '',
+        'url' => '',
     ],
 
     'spotlight' => [

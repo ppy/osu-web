@@ -158,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'Akun Anda telah di-restrict!',
         'message' => 'Selama di-restrict, kamu tidak dapat berinteraksi dengan pengguna lain dan skormu hanya akan dapat dilihat oleh dirimu sendiri. Hal ini biasanya terproses secara otomatis dan akan diangkat dalam 24 jam. Apabila kamu ingin mengajukan banding, mohon <a href="mailto:accounts@ppy.sh">hubungi layanan dukungan</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age tahun',
@@ -468,7 +469,7 @@ return [
     ],
     'store' => [
         'from_client' => 'mohon untuk mendaftarkan diri melalui klien permainan!',
-        'from_web' => 'silakan mendaftarkan diri melalui situs web',
+        'from_web' => 'mohon selesaikan pendaftaran melalui situs web osu!',
         'saved' => 'Pengguna dibuat',
     ],
     'verify' => [

@@ -82,9 +82,9 @@ return [
         'lazer_note' => '注意: リーダーボードのリセットが適用されます',
         'macos-fallback' => 'macOSユーザー',
         'mirror' => 'ミラー',
-        'or' => '',
-        'other_os' => '',
-        'quick_start_guide' => '',
+        'or' => 'または',
+        'other_os' => '他のプラットフォーム',
+        'quick_start_guide' => 'クイックスタートガイド',
         'tagline' => "さぁ、<br>始めよう！",
         'video-guide' => '説明動画',
 

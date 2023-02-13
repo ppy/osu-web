@@ -66,7 +66,7 @@ return [
             'favourite_login' => 'Log in om deze beatmap als favoriet te markeren',
             'logged-out' => 'Je moet ingelogd zijn voordat je beatmaps kan downloaden!',
             'mapped_by' => 'gemapped door :mapper',
-            'mapped_by_guest' => '',
+            'mapped_by_guest' => 'gast moeilijkheidsgraad door :mapper',
             'unfavourite' => 'Verwijder markering als favoriet',
             'updated_timeago' => 'laatst bijgewerkt :timeago',
 
@@ -125,7 +125,7 @@ return [
             'genre' => 'Genre',
             'language' => 'Taal',
             'no_scores' => 'Data nog aan het berekenen...',
-            'nominators' => '',
+            'nominators' => 'Nominatoren',
             'nsfw' => 'Expliciete inhoud',
             'offset' => 'Online offset',
             'points-of-failure' => 'Faalpunten',

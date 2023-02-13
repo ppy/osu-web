@@ -8,7 +8,7 @@ return [
     'talking_in' => 'je praat in :channel',
     'talking_with' => 'je praat met :name',
     'title_compact' => 'chat',
-    'unread_messages' => '',
+    'unread_messages' => 'ongelezen berichten',
 
     'cannot_send' => [
         'channel' => 'Je kan helaas nu geen berichten sturen in dit kanaal. Dit kan worden veroorzaakt door een van de volgende redenen:',
@@ -36,7 +36,7 @@ return [
 
         'labels' => [
             'description' => 'beschrijving',
-            'message' => '',
+            'message' => 'bericht',
             'name' => 'kamer naam',
             'users' => 'spelers om toevoegen',
         ],

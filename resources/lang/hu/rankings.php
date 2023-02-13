@@ -23,6 +23,14 @@ return [
         'multiplayer' => 'többjátékos',
         'performance' => 'Teljesítmény',
         'score' => 'Pontszám',
+        'seasons' => '',
+    ],
+
+    'seasons' => [
+        'empty' => '',
+        'ongoing' => '',
+        'room_count' => '',
+        'url' => '',
     ],
 
     'spotlight' => [

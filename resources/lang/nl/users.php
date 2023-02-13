@@ -49,7 +49,7 @@ return [
 
     'card' => [
         'loading' => 'Bezig met laden...',
-        'send_message' => 'stuur bericht',
+        'send_message' => 'Bericht sturen',
     ],
 
     'create' => [
@@ -158,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'Je account is gerestrict!',
         'message' => 'Zolang je gerestrict bent, kan je niet communiceren met andere spelers en kan enkel jij je scores zien. Meestal is dit het resultaat van een geautomatiseerd proces en wordt het binnen 24 uur verwijderd. Als je in beroep wil gaan, <a href="mailto:accounts@ppy.sh">contacteer dan support</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age jaar oud',
@@ -468,7 +469,7 @@ return [
     ],
     'store' => [
         'from_client' => 'registreer je alsjeblieft via de game client!',
-        'from_web' => 'registreer je alsjeblieft via het web',
+        'from_web' => 'voltooi alsjeblieft de registratie via de osu! website',
         'saved' => 'Door gebruiker gemaakt',
     ],
     'verify' => [

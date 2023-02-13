@@ -210,7 +210,7 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => '',
+                'announce' => 'Nowe ogłoszenie w pokoju „:name” ',
             ],
 
             'channel' => [

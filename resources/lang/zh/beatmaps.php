@@ -131,7 +131,7 @@ return [
             'deleted' => '已删除',
             'mapper_notes' => '备注',
             'mine' => '我的',
-            'pending' => '待定 (Pending)',
+            'pending' => '待处理',
             'praises' => '赞',
             'resolved' => '已解决',
             'total' => '所有',

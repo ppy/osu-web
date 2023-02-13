@@ -229,7 +229,7 @@ return [
                 'genre' => 'Aliran',
                 'language' => 'Bahasa',
                 'mode' => 'Mode',
-                'nsfw' => 'Beatmap Berkonten Eksplisit',
+                'nsfw' => 'Konten Eksplisit',
                 'played' => 'Riwayat Permainan',
                 'rank' => 'Torehan Peringkat',
                 'status' => 'Status',
