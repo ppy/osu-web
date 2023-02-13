@@ -9,6 +9,8 @@ import { ReactMarkdownProps } from 'react-markdown/lib/complex-types';
 
 type Props = ReactMarkdownProps & React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>;
 
+const placeholder = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
+
 async function getProxiedUrl(url: string) {
   const xhr = $.post(route('beatmapsets.discussions.media-urls'), {
     urls: [url],
@@ -34,9 +36,16 @@ export default class ImageLink extends React.Component<Props> {
   }
 
   render() {
+    // render node mutation when url changes to trigger Layzr
+    if (this.url == null) {
+      return (
+        <img {...this.props.node.properties} src={placeholder} />
+      );
+    }
+
     return (
       <a href={this.url} rel='nofollow noreferrer' target='_blank'>
-        <img {...this.props.node.properties} src={this.url} />
+        <img {...this.props.node.properties} data-normal={this.url} src={placeholder} />
       </a>
     );
   }
