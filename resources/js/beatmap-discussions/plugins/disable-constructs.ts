@@ -5,14 +5,15 @@ import type Constructs from 'micromark-core-commonmark';
 import type { Processor } from 'unified';
 import add from './add';
 
+type DisabledType = 'default' | 'editor' | 'reviews';
+
 export interface Options {
-  type?: 'reviews'; // only option :D
+  type?: DisabledType;
 }
 
 type Construct = keyof typeof Constructs;
 
-// list of constructs to disable
-const disabled: Construct[] = [
+const defaultDisabled: Construct[] = [
   'autolink',
   'blockQuote',
   'definition',
@@ -25,19 +26,33 @@ const disabled: Construct[] = [
   'thematicBreak',
 ];
 
-// code blocks (any multiline construct in general) may cause review editing to break.
-const disabledReviews: Construct[] = [
-  ...disabled,
-  'codeFenced',
-  'codeIndented',
-  'codeText',
-];
+// list of constructs to disable
+const disabled: Record<DisabledType, Construct[]> = {
+  default: defaultDisabled,
+  // Editor has to disable nearly everything to show mostly text.
+  editor: [
+    ...defaultDisabled,
+    'codeFenced',
+    'codeIndented',
+    'codeText',
+    'labelEnd',
+    'labelStartImage',
+    'labelStartLink',
+  ],
+  // code blocks (any multiline construct in general) may cause review editing to break.
+  reviews: [
+    ...defaultDisabled,
+    'codeFenced',
+    'codeIndented',
+    'codeText',
+  ],
+};
 
 // Limit the types allowed for reviews.
 export default function disableConstructs(this: Processor, options?: Options) {
   add(
     this,
     'micromarkExtensions',
-    [{ disable: { null: options?.type === 'reviews' ? disabledReviews : disabled } }],
+    [{ disable: { null: disabled[options?.type ?? 'default'] } }],
   );
 }
