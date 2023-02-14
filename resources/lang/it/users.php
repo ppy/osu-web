@@ -158,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'Il tuo account è stato limitato!',
         'message' => 'Quando sei limitato, non sarai in grado di interagire con gli altri giocatori e i tuoi punteggi saranno visibili solo a te. Solitamente questo è il risultato di un processo automatico e verrà risolto solitamente entro 24 ore. Se desideri fare appello contro la tua restrizione, <a href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age anni',
@@ -468,7 +469,7 @@ return [
     ],
     'store' => [
         'from_client' => 'registrati attraverso il gioco!',
-        'from_web' => 'per favore registrati tramite web',
+        'from_web' => 'si prega di completare la registrazione utilizzando il sito osu!',
         'saved' => 'Utente creato',
     ],
     'verify' => [

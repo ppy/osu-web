@@ -23,6 +23,14 @@ return [
         'multiplayer' => 'pemainan beramai',
         'performance' => 'Prestasi',
         'score' => 'skor',
+        'seasons' => '',
+    ],
+
+    'seasons' => [
+        'empty' => '',
+        'ongoing' => '',
+        'room_count' => '',
+        'url' => '',
     ],
 
     'spotlight' => [

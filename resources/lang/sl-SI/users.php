@@ -158,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'Tvoj račun je omejen!',
         'message' => 'Med omejitvijo ne bo možna komunikacija z drugimi igralci, tvoji rezultati pa bodo vidni samo tebi. To je običajno rezultat samodejnega postopka in se običajno odpravi v 24 urah. Če se želiš pritožiti na omejitev, se obrni na <a href="mailto:accounts@ppy.sh">podporo</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age let',

@@ -210,7 +210,7 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => '',
+                'announce' => 'Nové oznámení v „:name“',
             ],
 
             'channel' => [

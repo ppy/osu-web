@@ -100,6 +100,9 @@ return [
         'scores_controller' => [
             '_' => '成績',
         ],
+        'seasons_controller' => [
+            '_' => '',
+        ],
         'tournaments_controller' => [
             '_' => '官方比賽',
         ],

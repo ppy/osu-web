@@ -23,6 +23,14 @@ return [
         'multiplayer' => 'moninpeli',
         'performance' => 'Suorituskyky',
         'score' => 'Piste',
+        'seasons' => '',
+    ],
+
+    'seasons' => [
+        'empty' => '',
+        'ongoing' => '',
+        'room_count' => '',
+        'url' => '',
     ],
 
     'spotlight' => [

@@ -57,8 +57,15 @@ export const ReviewPostEmbed = ({ data }: Props) => {
 
   const messageTypeIcon = () => {
     const type = discussion.message_type;
+
     return (
-      <div className={`beatmap-discussion-message-type beatmap-discussion-message-type--${type}`}><i className={discussionTypeIcons[type]} title={trans(`beatmaps.discussions.message_type.${type}`)} /></div>
+      <div>
+        <span
+          className={discussionTypeIcons[type]}
+          style={{ color: `var(--beatmapset-discussion-colour--${type})` }}
+          title={trans(`beatmaps.discussions.message_type.${type}`)}
+        />
+      </div>
     );
   };
 

@@ -210,7 +210,7 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => '',
+                'announce' => 'May bagong anunsyo sa ":name"',
             ],
 
             'channel' => [

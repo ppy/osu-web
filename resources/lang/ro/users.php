@@ -158,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'Contul tău a fost restricționat!',
         'message' => 'Când ești restricționat, nu vei putea să interacționezi cu alți jucători și scorurile tale vor fi vizibile doar pentru tine. Acesta este de obicei rezultatul unui proces automat și, de obicei, în termen de 24 de ore. Dacă dorești să contești, te rugăm să <a href="mailto:accounts@ppy.sh">contactezi asistența</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age ani',
@@ -222,25 +223,25 @@ return [
                 'title' => 'Beatmap-uri',
 
                 'favourite' => [
-                    'title' => 'Beatmap-uri favorite',
+                    'title' => 'Beatmap-uri Favorite',
                 ],
                 'graveyard' => [
                     'title' => 'Beatmap-uri inactive',
                 ],
                 'guest' => [
-                    'title' => 'Beatmap-uri cu participare ca oaspete',
+                    'title' => 'Beatmap-uri cu Participare ca Oaspete',
                 ],
                 'loved' => [
-                    'title' => 'Beatmap-uri iubite',
+                    'title' => 'Beatmap-uri Iubite',
                 ],
                 'nominated' => [
                     'title' => 'Beatmap-uri Clasate Nominalizate',
                 ],
                 'pending' => [
-                    'title' => 'Beatmap-uri în așteptare',
+                    'title' => 'Beatmap-uri în Așteptare',
                 ],
                 'ranked' => [
-                    'title' => 'Beatmap-uri clasate & aprobate',
+                    'title' => 'Beatmap-uri Clasate & Aprobate',
                 ],
             ],
             'discussions' => [
@@ -352,10 +353,10 @@ return [
                 'title' => 'Clasamente',
 
                 'best' => [
-                    'title' => 'Cele mai bune performanțe',
+                    'title' => 'Performanțe de Top',
                 ],
                 'first' => [
-                    'title' => 'Primele locuri',
+                    'title' => 'Primele Locuri',
                 ],
                 'pin' => [
                     'to_0' => 'Defixează',
@@ -364,7 +365,7 @@ return [
                     'to_1_done' => 'Scor fixat',
                 ],
                 'pinned' => [
-                    'title' => 'Scoruri fixate',
+                    'title' => 'Scoruri Fixate',
                 ],
             ],
             'votes' => [
@@ -447,11 +448,11 @@ return [
             'replays_watched_by_others' => 'Reluări Vizionate de Alții',
             'score_ranks' => 'Clasament de scoruri',
             'total_hits' => 'Număr de Clicuri',
-            'total_score' => 'Scor total',
+            'total_score' => 'Scor Total',
             // modding stats
             'graveyard_beatmapset_count' => 'Beatmap-uri Inactive',
             'loved_beatmapset_count' => 'Beatmap-uri Iubite',
-            'pending_beatmapset_count' => 'Beatmap-uri în așteptare',
+            'pending_beatmapset_count' => 'Beatmap-uri în Așteptare',
             'ranked_beatmapset_count' => 'Beatmap-uri Clasate & Aprobate',
         ],
     ],
@@ -468,7 +469,7 @@ return [
     ],
     'store' => [
         'from_client' => 'te rugăm să te înregistrezi prin intermediul jocului!',
-        'from_web' => 'te rugăm să te înregistrezi prin site',
+        'from_web' => 'te rugăm să finalizezi înregistrarea prin site-ul osu!',
         'saved' => 'Utilizator creat',
     ],
     'verify' => [
