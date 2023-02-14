@@ -45,7 +45,7 @@ export default class Item extends React.Component<Props> {
 
     return (
       <div className={classWithModifiers('notification-popup-item', modifiers)}>
-        <a className='notification-popup-item__link' href={this.props.url} onClick={this.props.markRead} />
+        <a className='notification-popup-item__link' href={this.props.url} onMouseDown={this.onMouseDown} />
         {this.renderCover()}
         <div className='notification-popup-item__main'>
           <div className='notification-popup-item__content'>
@@ -61,6 +61,12 @@ export default class Item extends React.Component<Props> {
       </div>
     );
   }
+
+  private readonly onMouseDown = (event: React.MouseEvent) => {
+    if (event.button === 0 || event.button === 1) {
+      this.props.markRead?.();
+    }
+  };
 
   private renderCategory() {
     if (!this.props.withCategory) {
@@ -162,6 +168,7 @@ export default class Item extends React.Component<Props> {
       <a
         className='notification-popup-item__row notification-popup-item__row--time u-hover'
         href={this.props.url}
+        onMouseDown={this.onMouseDown}
       >
         <TimeWithTooltip dateTime={this.props.item.createdAtJson} relative />
       </a>
