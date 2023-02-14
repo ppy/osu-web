@@ -12,7 +12,7 @@ class ProfileBannerTransformer extends TransformerAbstract
     public function transform(ProfileBanner $banner)
     {
         $image = $banner->image();
-        $image2x = $image == null ? null : retinaify($image);
+        $image2x = $image === null ? null : retinaify($image);
 
         return [
             'id' => $banner->getKey(),
