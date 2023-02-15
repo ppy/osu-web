@@ -114,7 +114,6 @@ export class Discussions extends React.Component<Props> {
   }
 
   componentDidMount() {
-    this.discussionsState.lookupMediaUrls();
     $.subscribe('beatmapset-discussions:highlight', this.handleSetHighlight);
   }
 

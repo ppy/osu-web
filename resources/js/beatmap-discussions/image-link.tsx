@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { action } from 'mobx';
 import { observer } from 'mobx-react';
 import React from 'react';
 import { ReactMarkdownProps } from 'react-markdown/lib/complex-types';
@@ -15,9 +16,10 @@ export default class ImageLink extends React.Component<Props> {
   static contextType = DiscussionsStateContext;
   declare context: React.ContextType<typeof DiscussionsStateContext>;
 
+  @action
   componentDidMount(): void {
     if (this.props.src != null) {
-      this.context.mediaUrlsPending.add(this.props.src);
+      this.context.addUrl(this.props.src);
     }
   }
 
