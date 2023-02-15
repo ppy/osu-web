@@ -59,7 +59,7 @@ class HomeController extends Controller
         static $lazerPlatformNames;
         $lazerPlatformNames ??= [
             'android' => osu_trans('home.download.os_version_or_later', ['os_version' => 'Android 5']),
-            'ios' => osu_trans('home.download.os_version_or_later', ['os_version' => 'iOS 10']),
+            'ios' => osu_trans('home.download.os_version_or_later', ['os_version' => 'iOS 13.4']),
             'linux_x64' => 'Linux (x64)',
             'macos_as' => osu_trans('home.download.os_version_or_later', ['os_version' => 'macOS 10.15']).' (Apple Silicon)',
             'windows_x64' => osu_trans('home.download.os_version_or_later', ['os_version' => 'Windows 8.1']).' (x64)',
