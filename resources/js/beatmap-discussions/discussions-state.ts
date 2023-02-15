@@ -15,6 +15,7 @@ export default class DiscussionsState {
     makeObservable(this);
 
     autorun(() => {
+      // should be debounced by action.
       this.lookupMediaUrls();
     });
   }
@@ -29,7 +30,9 @@ export default class DiscussionsState {
     if (this.mediaUrlsPending.size === 0) return;
 
     const xhr = $.post(route('beatmapsets.discussions.media-urls'), {
-      urls: [...this.mediaUrlsPending.keys()],
+      // limit to 100 urls at a time;
+      // unresolved urls will automatically be looked up again when mediaUrlsPending updates/
+      urls: [...this.mediaUrlsPending.values()].slice(0, 100),
     }) as JQuery.jqXHR<Record<string, string>>;
 
     const urls = await xhr;

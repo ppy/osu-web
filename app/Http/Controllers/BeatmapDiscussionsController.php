@@ -127,6 +127,8 @@ class BeatmapDiscussionsController extends Controller
             return (object) [];
         }
 
+        // limit to 100 urls.
+        $urls = array_slice($urls, 0, 100);
         $ret = [];
         foreach ($urls as $url) {
             $ret[$url] = proxy_media($url);
