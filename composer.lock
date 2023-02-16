@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "04e11618f2a72815f3de1849829f2139",
+    "content-hash": "1b887e8e6926179b86a0c3dff4e82dd8",
     "packages": [
         {
             "name": "anhskohbo/no-captcha",
@@ -11220,24 +11220,24 @@
         },
         {
             "name": "xsolla/xsolla-sdk-php",
-            "version": "v4.2.0",
+            "version": "dev-php81",
             "source": {
                 "type": "git",
-                "url": "https://github.com/xsolla/xsolla-sdk-php.git",
-                "reference": "07729c112547f84fe2d6f21e2fc5cc9f316f01ad"
+                "url": "https://github.com/nanaya/xsolla-sdk-php.git",
+                "reference": "106c3104f1cdd4b6bfeba0dd56864269eb76f44b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/xsolla/xsolla-sdk-php/zipball/07729c112547f84fe2d6f21e2fc5cc9f316f01ad",
-                "reference": "07729c112547f84fe2d6f21e2fc5cc9f316f01ad",
+                "url": "https://api.github.com/repos/nanaya/xsolla-sdk-php/zipball/106c3104f1cdd4b6bfeba0dd56864269eb76f44b",
+                "reference": "106c3104f1cdd4b6bfeba0dd56864269eb76f44b",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
                 "ext-json": "*",
-                "guzzlehttp/guzzle": "~6.0",
-                "php": "^7.3|~8.0.0",
-                "symfony/http-foundation": "~2.3 || ~3.0 || ~4.0 || ~5.0"
+                "guzzlehttp/guzzle": "~6.0 || ~7.0",
+                "php": "^7.3|^8.0",
+                "symfony/http-foundation": "~2.3 || ~3.0 || ~4.0 || ~5.0 || ~6.0"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "~2.13",
@@ -11251,7 +11251,11 @@
                     "Xsolla\\SDK\\": "src"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Xsolla\\SDK\\Tests\\": "tests"
+                }
+            },
             "license": [
                 "MIT"
             ],
@@ -11265,13 +11269,13 @@
                 "xsolla"
             ],
             "support": {
-                "docs": "https://developers.xsolla.com",
                 "email": "integration@xsolla.com",
                 "issues": "https://github.com/xsolla/xsolla-sdk-php/issues",
+                "docs": "https://developers.xsolla.com",
                 "source": "https://github.com/xsolla/xsolla-sdk-php/releases"
             },
             "abandoned": true,
-            "time": "2021-05-12T07:56:37+00:00"
+            "time": "2023-02-15T06:54:26+00:00"
         }
     ],
     "packages-dev": [
@@ -13777,7 +13781,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "xsolla/xsolla-sdk-php": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
