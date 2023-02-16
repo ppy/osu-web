@@ -7,14 +7,14 @@ import { make2x } from 'utils/html';
 type ImgProps = React.ImgHTMLAttributes<HTMLImageElement>;
 
 // explicit className typing otherwise eslint complains.
-type Props = ImgProps & Pick<ImgProps, 'className'>;
+type Props = ImgProps & Pick<ImgProps, 'className'> & { src2x?: string };
 
 export default function Img2x(props: Props) {
-  const { className = '', ...otherProps } = props;
+  const { className = '', src2x, ...otherProps } = props;
 
   if (otherProps.src == null) {
     return <img {...otherProps} className={`${className} u-hidden`} />;
   }
 
-  return <img className={className} srcSet={`${otherProps.src} 1x, ${make2x(otherProps.src)} 2x`} {...otherProps} />;
+  return <img className={className} srcSet={`${otherProps.src} 1x, ${src2x ?? make2x(otherProps.src)} 2x`} {...otherProps} />;
 }
