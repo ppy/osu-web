@@ -74,17 +74,18 @@ class Room extends Model
     const REALTIME_DEFAULT_QUEUE_MODE = 'host_only';
     const REALTIME_QUEUE_MODES = [ 'host_only', 'all_players', 'all_players_round_robin' ];
 
-    protected $casts = [
-        'password' => PresentString::class,
-        'auto_skip' => 'boolean',
-    ];
-    protected $table = 'multiplayer_rooms';
-    protected $dates = ['starts_at', 'ends_at'];
+    public ?array $preloadedRecentParticipants = null;
+
     protected $attributes = [
         'participant_count' => 0,
     ];
-
-    public ?array $preloadedRecentParticipants = null;
+    protected $casts = [
+        'auto_skip' => 'boolean',
+        'ends_at' => 'datetime',
+        'password' => PresentString::class,
+        'starts_at' => 'datetime',
+    ];
+    protected $table = 'multiplayer_rooms';
 
     /**
      * Using this requires the collection to be queried with withRecentParticipantIds scope.

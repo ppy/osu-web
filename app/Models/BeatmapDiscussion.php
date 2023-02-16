@@ -45,11 +45,11 @@ class BeatmapDiscussion extends Model
     ];
 
     protected $casts = [
+        'deleted_at' => 'datetime',
         'kudosu_denied' => 'boolean',
+        'last_post_at' => 'datetime',
         'resolved' => 'boolean',
     ];
-
-    protected $dates = ['deleted_at', 'last_post_at'];
 
     const KUDOSU_STEPS = [1, 2, 5];
 

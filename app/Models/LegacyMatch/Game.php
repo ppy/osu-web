@@ -26,16 +26,13 @@ use App\Models\Beatmap;
  */
 class Game extends Model
 {
-    protected $primaryKey = 'game_id';
-
-    protected $hidden = ['match_id'];
-
-    protected $dates = [
-        'start_time',
-        'end_time',
-    ];
-
     public $timestamps = false;
+
+    protected $casts = [
+        'end_time' => 'datetime',
+        'start_time' => 'datetime',
+    ];
+    protected $primaryKey = 'game_id';
 
     const SCORING_TYPES = [
         'score' => 0,

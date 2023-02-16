@@ -28,15 +28,15 @@ class Spotlight extends Model
 
     public $timestamps = false;
 
-    protected $table = 'osu_charts';
-    protected $primaryKey = 'chart_id';
-
     protected $casts = [
         'active' => 'boolean',
+        'chart_month' => 'datetime',
+        'end_date' => 'datetime',
         'mode_specific' => 'boolean',
+        'start_date' => 'datetime',
     ];
-
-    protected $dates = ['chart_month', 'end_date', 'start_date'];
+    protected $primaryKey = 'chart_id';
+    protected $table = 'osu_charts';
 
     public function beatmapsets(string $mode)
     {
