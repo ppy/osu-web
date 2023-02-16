@@ -29,11 +29,14 @@ class UserStatisticsTransformer extends TransformerAbstract
         }
 
         return [
+            'count_100' => $stats->count100,
+            'count_300' => $stats->count300,
+            'count_50' => $stats->count50,
+            'count_miss' => $stats->countMiss,
             'level' => [
                 'current' => $stats->currentLevel(),
                 'progress' => $stats->currentLevelProgressPercent(),
             ],
-
             'global_rank' => $stats->globalRank(),
             'global_rank_exp' => $globalRankExp ?? null,
             'pp' => $stats->pp(),

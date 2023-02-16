@@ -17,20 +17,20 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
     libnss3 \
     mysql-client \
     netcat-openbsd \
-    php8.0-common \
-    php8.0-curl \
-    php8.0-ds \
-    php8.0-gd \
-    php8.0-intl \
-    php8.0-mbstring \
-    php8.0-mysql \
-    php8.0-redis \
-    php8.0-sqlite3 \
-    php8.0-swoole \
-    php8.0-tokenizer \
-    php8.0-xml \
-    php8.0-zip \
-    php8.0 \
+    php8.1-common \
+    php8.1-curl \
+    php8.1-ds \
+    php8.1-gd \
+    php8.1-intl \
+    php8.1-mbstring \
+    php8.1-mysql \
+    php8.1-redis \
+    php8.1-sqlite3 \
+    php8.1-swoole \
+    php8.1-tokenizer \
+    php8.1-xml \
+    php8.1-zip \
+    php8.1 \
     zip \
     libjpeg-turbo-progs
 
