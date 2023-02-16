@@ -26,6 +26,7 @@ class BeatmapsetTransformer extends BeatmapsetCompactTransformer
             ],
             'bpm' => $beatmapset->bpm,
             'can_be_hyped' => $beatmapset->canBeHyped(),
+            'deleted_at' => $beatmapset->deleted_at_json,
             'discussion_enabled' => true, // TODO: deprecated 2022-06-08
             'discussion_locked' => $beatmapset->discussion_locked,
             'is_scoreable' => $beatmapset->isScoreable(),

@@ -60,6 +60,11 @@ return [
     'show' => [
         'discussion' => 'Discussion',
 
+        'deleted_banner' => [
+            'title' => 'This beatmap has been deleted.',
+            'message' => '(only moderators can see this)',
+        ],
+
         'details' => [
             'by_artist' => 'by :artist',
             'favourite' => 'Favourite this beatmap',
