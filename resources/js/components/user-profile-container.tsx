@@ -64,7 +64,7 @@ export default class UserProfileContainer extends React.Component<Props> {
 
     return (
       <div className='osu-page'>
-        <NotificationBanner message={message} title={trans('users.blocks.banner_text')} type='warning' />
+        <NotificationBanner message={message} title={trans('users.blocks.banner_text')} type='info' />
       </div>
     );
   }
