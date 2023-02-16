@@ -17,6 +17,10 @@ interface Variant {
 }
 
 interface UserStatisticsBaseJson {
+  count_100: number;
+  count_300: number;
+  count_50: number;
+  count_miss: number;
   country_rank?: number | null;
   global_rank: number | null;
   global_rank_exp: number | null;

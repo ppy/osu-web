@@ -228,19 +228,20 @@ export default class Editor extends React.Component<Props, State> {
     );
   };
 
-  onKeyDown = (event: KeyboardEvent) => {
-    if (isHotkey('mod+b', event)) {
+  onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    const nativeEvent = event.nativeEvent;
+    if (isHotkey('mod+b', nativeEvent)) {
       event.preventDefault();
       toggleFormat(this.slateEditor, 'bold');
-    } else if (isHotkey('mod+i', event)) {
+    } else if (isHotkey('mod+i', nativeEvent)) {
       event.preventDefault();
       toggleFormat(this.slateEditor, 'italic');
-    } else if (isHotkey('shift+enter', event)) {
+    } else if (isHotkey('shift+enter', nativeEvent)) {
       if (insideEmbed(this.slateEditor)) {
         event.preventDefault();
         this.slateEditor.insertText('\n');
       }
-    } else if (isHotkey('delete', event) || isHotkey('backspace', event)) {
+    } else if (isHotkey('delete', nativeEvent) || isHotkey('backspace', nativeEvent)) {
       if (insideEmptyNode(this.slateEditor)) {
         event.preventDefault();
 
