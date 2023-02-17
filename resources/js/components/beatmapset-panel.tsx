@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsPopup from 'beatmapset-panel/beatmaps-popup';
+import BeatmapsetBadge from 'components/beatmapset-badge';
 import BeatmapsetCover from 'components/beatmapset-cover';
 import { CircularProgress } from 'components/circular-progress';
 import BeatmapJson from 'interfaces/beatmap-json';
@@ -67,12 +68,6 @@ const BeatmapDots = observer(({ compact, beatmaps, mode }: { beatmaps: BeatmapJs
     )}
   </div>
 ));
-
-const BeatmapsetBadge = ({ type }: { type: string }) => (
-  <span className={`beatmapset-badge beatmapset-badge--${type} beatmapset-badge--panel`}>
-    {trans(`beatmapsets.${type.replace(/-/g, '_')}_badge.label`)}
-  </span>
-);
 
 const MapperLink = observer(({ beatmapset }: { beatmapset: BeatmapsetJson }) => (
   <UserLink
@@ -412,22 +407,18 @@ export default class BeatmapsetPanel extends React.Component<Props> {
           <a className='beatmapset-panel__main-link u-ellipsis-overflow' href={this.url}>
             {getTitle(this.props.beatmapset)}
           </a>
-          {(this.props.beatmapset.nsfw || this.props.beatmapset.spotlight) &&
-            <div className="beatmapset-panel__badge-container">
-              {this.props.beatmapset.nsfw && <BeatmapsetBadge type='nsfw' />}
-              {this.props.beatmapset.spotlight && <BeatmapsetBadge type='spotlight' />}
-            </div>
-          }
+          <div className="beatmapset-panel__badge-container">
+            <BeatmapsetBadge beatmapset={this.props.beatmapset} type='nsfw' />
+            <BeatmapsetBadge beatmapset={this.props.beatmapset} type='spotlight' />
+          </div>
         </div>
         <div className='beatmapset-panel__info-row beatmapset-panel__info-row--artist'>
           <a className='beatmapset-panel__main-link u-ellipsis-overflow' href={this.url}>
             {trans('beatmapsets.show.details.by_artist', { artist: getArtist(this.props.beatmapset) })}
           </a>
-          {this.props.beatmapset.track_id != null &&
-            <div className="beatmapset-panel__badge-container">
-              <BeatmapsetBadge type='featured-artist' />
-            </div>
-          }
+          <div className="beatmapset-panel__badge-container">
+            <BeatmapsetBadge beatmapset={this.props.beatmapset} type='featured_artist' />
+          </div>
         </div>
 
         <div className='beatmapset-panel__info-row beatmapset-panel__info-row--source'>

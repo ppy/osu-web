@@ -556,10 +556,6 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if (!$beatmapset->isScoreable() && $user->isModerator()) {
-            return 'ok';
-        }
-
         return 'unauthorized';
     }
 
@@ -730,6 +726,15 @@ class OsuAuthorize
         return 'unauthorized';
     }
 
+    public function checkBeatmapsetShowDeleted(?User $user): string
+    {
+        if ($user !== null && ($user->isBNG() || $user->isModerator())) {
+            return 'ok';
+        }
+
+        return 'unauthorized';
+    }
+
     /**
      * @param User|null $user
      * @param Beatmapset $beatmapset
@@ -739,6 +744,7 @@ class OsuAuthorize
     public function checkBeatmapsetDescriptionEdit(?User $user, Beatmapset $beatmapset): string
     {
         $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         if ((!$beatmapset->downloadLimited() && $user->getKey() === $beatmapset->user_id) || $user->isModerator()) {
             return 'ok';
@@ -818,6 +824,7 @@ class OsuAuthorize
     public function checkBeatmapsetMetadataEdit(?User $user, Beatmapset $beatmapset): string
     {
         $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         if ($user->isModerator()) {
             return 'ok';

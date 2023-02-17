@@ -11,14 +11,14 @@ interface Props {
 }
 
 export default function ProfileTournamentBanner({ banner }: Props) {
-  if (banner == null) return null;
+  if (banner == null || banner.image == null) return null;
 
   return (
     <a
       className='profile-tournament-banner'
       href={route('tournaments.show', { tournament: banner.tournament_id })}
     >
-      <Img2x className='profile-tournament-banner__image' src={banner.image} />
+      <Img2x className='profile-tournament-banner__image' src={banner.image} src2x={banner['image@2x']} />
     </a>
   );
 }

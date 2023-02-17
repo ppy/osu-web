@@ -33,13 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Вы заблакавалі гэтага карыстальніка.',
-        'comment_text' => '',
+        'comment_text' => 'Гэты каментар скрыты.',
         'blocked_count' => 'заблакаваныя карыстальнікі (:count)',
         'hide_profile' => 'схаваць профіль',
-        'hide_comment' => '',
+        'hide_comment' => 'схаваць',
         'not_blocked' => 'Гэты карыстальнік не заблакаваны.',
         'show_profile' => 'паказаць профіль',
-        'show_comment' => '',
+        'show_comment' => 'паказаць',
         'too_many' => 'Дасягнуты ліміт блакавання.',
         'button' => [
             'block' => 'заблакаваць',
@@ -54,16 +54,16 @@ return [
 
     'create' => [
         'form' => [
-            'password' => '',
-            'password_confirmation' => '',
-            'submit' => '',
-            'user_email' => '',
-            'user_email_confirmation' => '',
-            'username' => '',
+            'password' => 'пароль',
+            'password_confirmation' => 'паўтарыце пароль',
+            'submit' => 'стварыць рахунак',
+            'user_email' => 'пошта',
+            'user_email_confirmation' => 'паўтарыце пошту',
+            'username' => 'нікнэйм',
 
             'tos_notice' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'ствараючы рахунак, вы згаджаецеся з :link',
+                'link' => 'ўмовамі выкарыстання',
             ],
         ],
     ],
@@ -158,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'Ваш уліковы запіс быў абмежаваны!',
         'message' => 'Падчас абмежавання, вы не можаце ўзаемадзейнічаць з іншымі гульцамі, а вашы вынікі будуць бачны толькі вам. Звычайна гэта вынік аўтаматычнага працэсу, які зазвычай знікае праз суткі. Калі вы хочаце скасаваць сваё абмежаванне, калі ласка <a href="mailto:accounts@ppy.sh">звяжыцеся з намі</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age год',
@@ -234,7 +235,7 @@ return [
                     'title' => 'Любімыя бітмапы',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => 'Намінаваныя рэйтынгавыя',
                 ],
                 'pending' => [
                     'title' => 'Чаканыя бітмапы',
@@ -391,7 +392,7 @@ return [
                     'actions' => [
                         'restriction' => 'Заблакіраваць',
                         'silence' => 'Зацішаны',
-                        'tournament_ban' => '',
+                        'tournament_ban' => 'Забарона на ўдзел у турнірах',
                         'note' => 'Нататка',
                     ],
                 ],
@@ -433,7 +434,7 @@ return [
             'country_simple' => 'Рэйтынг па краіне',
             'global' => 'Глабальны рэйтынг для :mode',
             'global_simple' => 'Глабальны рэйтынг',
-            'highest' => '',
+            'highest' => 'Найвышэйшы ранг: :rank, :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Дакладнасць трапленняў',
@@ -467,8 +468,8 @@ return [
         'offline' => 'Не ў сетцы',
     ],
     'store' => [
-        'from_client' => '',
-        'from_web' => '',
+        'from_client' => 'калі ласка, зарэгіструйцеся праз гульнявой кліент!',
+        'from_web' => 'калі ласка, завершыце рэгістрацыю праз сайт osu!',
         'saved' => 'Карыстальнік створаны',
     ],
     'verify' => [

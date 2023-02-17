@@ -14,9 +14,9 @@ namespace App\Models;
  */
 class IpBan extends Model
 {
+    protected $casts = ['timestamp' => 'datetime'];
     protected $table = 'osu_ip_bans';
     protected $primaryKey = 'ip';
-    protected $dates = ['timestamp'];
 
     public $timestamps = false;
 }

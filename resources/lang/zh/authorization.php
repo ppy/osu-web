@@ -34,7 +34,7 @@ return [
             'bot' => "不能对机器人的讨论投票",
             'limit_exceeded' => '请稍等后再投票。',
             'owner' => "不能为自己的讨论投票！",
-            'wrong_beatmapset_state' => '只能给 pending 谱面的讨论投票。',
+            'wrong_beatmapset_state' => '只能给待定 (Pending) 谱面的讨论投票。',
         ],
     ],
 

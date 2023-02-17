@@ -158,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => '账户进入限制模式！',
         'message' => '在被限制时，无法与其他玩家互动，分数只有自己可见。该限制通常由系统自动给予，并将在24小时内解除。需要申诉？请<a href="mailto:accounts@ppy.sh">联系支持团队</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age 岁',
@@ -228,13 +229,13 @@ return [
                     'title' => '已停更的谱面',
                 ],
                 'guest' => [
-                    'title' => '参与客串制作的谱面',
+                    'title' => '客串制作的谱面',
                 ],
                 'loved' => [
                     'title' => '社区喜爱 (Loved) 谱面',
                 ],
                 'nominated' => [
-                    'title' => '提名过的上架 (Ranked) 谱面',
+                    'title' => '提名并上架 (Ranked) 的谱面',
                 ],
                 'pending' => [
                     'title' => '待定 (Pending) 谱面',
@@ -468,7 +469,7 @@ return [
     ],
     'store' => [
         'from_client' => '请使用游戏客户端注册！',
-        'from_web' => '请通过网页注册',
+        'from_web' => '请通过网页完成注册',
         'saved' => '账户已创建',
     ],
     'verify' => [

@@ -32,11 +32,11 @@ class BeatmapPack extends Model
     protected $primaryKey = 'pack_id';
 
     protected $casts = [
+        'date' => 'datetime',
         'hidden' => 'boolean',
         'no_diff_reduction' => 'boolean',
     ];
 
-    protected $dates = ['date'];
     public $timestamps = false;
 
     public static function getPacks($type)

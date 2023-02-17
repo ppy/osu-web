@@ -3,6 +3,7 @@
 
 import headerLinks from 'beatmapsets-show/header-links'
 import BeatmapBasicStats from 'components/beatmap-basic-stats'
+import BeatmapsetBadge from 'components/beatmapset-badge'
 import BeatmapsetCover from 'components/beatmapset-cover'
 import BeatmapsetMapping from 'components/beatmapset-mapping'
 import BigButton from 'components/big-button'
@@ -16,6 +17,7 @@ import { deletedUser } from 'models/user'
 import * as React from 'react'
 import { a, div, h1, h2, p, span } from 'react-dom-factories'
 import { getArtist, getTitle } from 'utils/beatmap-helper'
+import { makeUrl } from 'utils/beatmapset-discussion-helper'
 import { trans } from 'utils/lang'
 import BeatmapList from './beatmap-list'
 import Chart from './chart'
@@ -104,21 +106,12 @@ export class Header extends React.PureComponent
               href: route('beatmapsets.show', beatmapset: @props.beatmapset.id)
               className: 'link link--white link--no-underline'
               getTitle(@props.beatmapset)
-            if @props.beatmapset.nsfw
-              span className: 'beatmapset-badge beatmapset-badge--nsfw', trans('beatmapsets.nsfw_badge.label')
-            if @props.beatmapset.spotlight
-              a
-                className: 'beatmapset-badge beatmapset-badge--spotlight'
-                href: wikiUrl('Beatmap_Spotlights')
-                trans('beatmapsets.spotlight_badge.label')
+            el BeatmapsetBadge, beatmapset: @props.beatmapset, type: 'nsfw'
+            el BeatmapsetBadge, beatmapset: @props.beatmapset, type: 'spotlight'
           h2
             className: "#{bn}__title #{bn}__title--artist"
             getArtist(@props.beatmapset)
-            if @props.beatmapset.track_id?
-              a
-                className: 'beatmapset-badge beatmapset-badge--featured-artist'
-                href: route 'tracks.show', @props.beatmapset.track_id
-                trans('beatmapsets.featured_artist_badge.label')
+            el BeatmapsetBadge, beatmapset: @props.beatmapset, type: 'featured_artist'
 
         div
           className: "#{bn}__filters"
@@ -181,7 +174,7 @@ export class Header extends React.PureComponent
 
       a
         key: type
-        href: BeatmapDiscussionHelper.url
+        href: makeUrl
           filter: type
           beatmapsetId: @props.beatmapset.id
           beatmapId: @props.currentBeatmap.id
@@ -203,7 +196,7 @@ export class Header extends React.PureComponent
 
 
   createLink: (beatmap) =>
-    BeatmapDiscussionHelper.url beatmap: beatmap
+    makeUrl beatmap: beatmap
 
 
   getCount: (beatmap) =>

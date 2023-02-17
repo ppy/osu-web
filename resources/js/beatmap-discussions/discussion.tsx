@@ -6,16 +6,16 @@ import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForBundle, Beatmapset
 import BeatmapsetDiscussionPostJson from 'interfaces/beatmapset-discussion-post-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import UserJson from 'interfaces/user-json';
-import { findLast, kebabCase } from 'lodash';
+import { findLast } from 'lodash';
 import { action, computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import { deletedUser } from 'models/user';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { badgeGroup, canModeratePosts, formatTimestamp, startingPost } from 'utils/beatmapset-discussion-helper';
+import { badgeGroup, canModeratePosts, formatTimestamp, makeUrl, startingPost } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers, groupColour } from 'utils/css';
 import { trans } from 'utils/lang';
-import { discussionTypeIcons } from './discussion-type';
+import { DiscussionType, discussionTypeIcons } from './discussion-type';
 import DiscussionVoteButtons from './discussion-vote-buttons';
 import DiscussionsStateContext from './discussions-state-context';
 import { NewReply } from './new-reply';
@@ -45,6 +45,20 @@ type Props = PropsBase & ({
   discussion: BeatmapsetDiscussionJsonForShow;
   preview: false;
 });
+
+function DiscussionTypeIcon({ type }: { type: DiscussionType | 'resolved' }) {
+  const titleKey = type === 'resolved'
+    ? 'beatmaps.discussions.resolved'
+    : `beatmaps.discussions.message_type.${type}`;
+
+  return (
+    <span
+      className={discussionTypeIcons[type]}
+      style={{ color: `var(--beatmapset-discussion-colour--${type})` }}
+      title={trans(titleKey)}
+    />
+  );
+}
 
 @observer
 export class Discussion extends React.Component<Props> {
@@ -82,7 +96,7 @@ export class Discussion extends React.Component<Props> {
     // TODO: handling resolved status in bundles....?
     if (this.props.preview) return -1;
 
-    const systemPost = findLast(this.props.discussion.posts, (post) => post != null && post.system && post.message.type === 'resolve');
+    const systemPost = findLast(this.props.discussion.posts, (post) => post != null && post.system && post.message.type === 'resolved');
     return systemPost?.id ?? -1;
   }
 
@@ -119,6 +133,9 @@ export class Discussion extends React.Component<Props> {
         className={`${topClasses} js-beatmap-discussion-jump`}
         data-id={this.props.discussion.id}
         onClick={this.handleSetHighlight}
+        style={{
+          '--discussion-colour': `var(--beatmapset-discussion-colour--${this.props.discussion.message_type})`,
+        } as React.CSSProperties}
       >
         <div className={`${bn}__timestamp hidden-xs`}>
           {this.renderTimestamp()}
@@ -227,12 +244,15 @@ export class Discussion extends React.Component<Props> {
           {this.props.parentDiscussion != null && (
             <a
               className={`${bn}__link-to-parent js-beatmap-discussion--jump`}
-              href={BeatmapDiscussionHelper.url({ discussion: this.props.parentDiscussion })}
+              href={makeUrl({ discussion: this.props.parentDiscussion })}
               title={trans('beatmap_discussions.review.go_to_parent')}
             >
               <i className='fas fa-tasks' />
             </a>
           )}
+          <span className='visible-xs'>
+            <DiscussionTypeIcon type={this.props.discussion.message_type} />
+          </span>
           <DiscussionVoteButtons
             cannotVote={this.isOwner(this.props.discussion) || (user?.is_bot ?? false) || !this.canBeRepliedTo}
             discussion={this.props.discussion}
@@ -255,7 +275,7 @@ export class Discussion extends React.Component<Props> {
 
   private readonly renderReply = (post: BeatmapsetDiscussionPostJson) => {
     if (!this.isVisible(post)) return null;
-    if (post.system && post.message.type === 'resolve') {
+    if (post.system && post.message.type === 'resolved') {
       if (this.lastResolvedState === post.message.value) return null;
       this.lastResolvedState = post.message.value;
     }
@@ -269,22 +289,10 @@ export class Discussion extends React.Component<Props> {
         {this.props.discussion.timestamp != null && this.props.isTimelineVisible && <div className="beatmap-discussion-timestamp__point" />}
         <div className="beatmap-discussion-timestamp__icons-container">
           <div className="beatmap-discussion-timestamp__icons">
-            <div className="beatmap-discussion-timestamp__icon">
-              <span className={classWithModifiers('beatmap-discussion-message-type', kebabCase(this.props.discussion.message_type))}>
-                <i
-                  className={discussionTypeIcons[this.props.discussion.message_type]}
-                  title={trans(`beatmaps.discussions.message_type.${this.props.discussion.message_type}`)}
-                />
-              </span>
-              {this.props.discussion.resolved && (
-                <div className="beatmap-discussion-timestamp__icon beatmap-discussion-timestamp__icon--resolved">
-                  <i
-                    className='far fa-check-circle'
-                    title={trans('beatmaps.discussions.resolved')}
-                  />
-                </div>
-              )}
-            </div>
+            <DiscussionTypeIcon type={this.props.discussion.message_type} />
+            {this.props.discussion.resolved && (
+              <DiscussionTypeIcon type='resolved' />
+            )}
           </div>
           {this.props.discussion.timestamp != null && (
             <div className="beatmap-discussion-timestamp__text">

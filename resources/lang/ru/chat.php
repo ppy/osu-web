@@ -8,7 +8,7 @@ return [
     'talking_in' => 'чат в :channel',
     'talking_with' => 'чат с :name',
     'title_compact' => 'чат',
-    'unread_messages' => '',
+    'unread_messages' => 'непрочитанные сообщения',
 
     'cannot_send' => [
         'channel' => 'Вы не можете написать в этот канал на данный момент:',
@@ -36,7 +36,7 @@ return [
 
         'labels' => [
             'description' => 'описание',
-            'message' => '',
+            'message' => 'сообщение',
             'name' => 'имя комнаты',
             'users' => 'добавляемых игроков',
         ],

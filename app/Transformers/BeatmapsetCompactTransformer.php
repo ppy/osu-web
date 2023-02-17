@@ -14,6 +14,7 @@ use App\Models\DeletedUser;
 use App\Models\User;
 use Auth;
 use Ds\Set;
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use League\Fractal;
 use League\Fractal\Resource\Collection;
 
@@ -78,16 +79,15 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
 
     public function includeBeatmaps(Beatmapset $beatmapset, Fractal\ParamBag $params)
     {
-        $rel = $params->get('with_trashed') ? 'allBeatmaps' : 'beatmaps';
 
-        return $this->collection($beatmapset->$rel, new $this->beatmapTransformer());
+        return $this->collection($this->beatmaps($beatmapset, $params), new $this->beatmapTransformer());
     }
 
     public function includeConverts(Beatmapset $beatmapset)
     {
         $converts = [];
 
-        foreach ($beatmapset->beatmaps as $beatmap) {
+        foreach ($this->beatmaps($beatmapset) as $beatmap) {
             if ($beatmap->mode !== 'osu') {
                 continue;
             }
@@ -267,7 +267,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
                 }
                 break;
             case 'show':
-                $userIds->add(...$beatmapset->beatmaps->pluck('user_id'));
+                $userIds->add(...$this->beatmaps($beatmapset)->pluck('user_id'));
                 $userIds->add(...$beatmapset->beatmapsetNominationsCurrent->pluck('user_id'));
                 break;
         }
@@ -275,5 +275,12 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         $users = User::with('userGroups')->whereIn('user_id', $userIds->toArray())->get();
 
         return $this->collection($users, new UserCompactTransformer());
+    }
+
+    private function beatmaps(Beatmapset $beatmapset, ?Fractal\ParamBag $params = null): EloquentCollection
+    {
+        $rel = $beatmapset->trashed() || ($params !== null && $params->get('with_trashed')) ? 'allBeatmaps' : 'beatmaps';
+
+        return $beatmapset->$rel;
     }
 }

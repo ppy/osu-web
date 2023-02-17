@@ -158,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => '',
         'message' => '',
+        'message_link' => '',
     ],
     'show' => [
         'age' => '',

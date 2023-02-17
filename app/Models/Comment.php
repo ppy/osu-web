@@ -68,14 +68,14 @@ class Comment extends Model implements Traits\ReportableInterface
 
     const DEFAULT_SORT = 'new';
 
-    protected $dates = ['deleted_at', 'edited_at'];
+    public $allowEmptyCommentable = false;
 
     protected $casts = [
+        'deleted_at' => 'datetime',
         'disqus_user_data' => 'array',
+        'edited_at' => 'datetime',
         'pinned' => 'boolean',
     ];
-
-    public $allowEmptyCommentable = false;
 
     public static function isValidType($type)
     {

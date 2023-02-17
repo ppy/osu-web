@@ -23,6 +23,14 @@ return [
         'multiplayer' => '多人游戏',
         'performance' => '表现',
         'score' => '总分',
+        'seasons' => '',
+    ],
+
+    'seasons' => [
+        'empty' => '',
+        'ongoing' => '',
+        'room_count' => '',
+        'url' => '',
     ],
 
     'spotlight' => [

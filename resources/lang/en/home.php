@@ -83,6 +83,7 @@ return [
         'macos-fallback' => 'macOS users',
         'mirror' => 'mirror',
         'or' => 'or',
+        'os_version_or_later' => ':os_version or later',
         'other_os' => 'other platforms',
         'quick_start_guide' => 'quick start guide',
         'tagline' => "let's get<br>you started!",

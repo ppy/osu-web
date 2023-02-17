@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'load_failed' => '',
+    'load_failed' => 'No s\'han pogut carregar les dades.',
     'missing_route' => 'URL invàlida o mètode de sol·licitud incorrecte.',
     'no_restricted_access' => 'No pots fer aquesta acció mentre el teu compte es troba restringit.',
     'supporter_only' => 'Has de ser un osu!supporter per a fer servir aquesta funció.',

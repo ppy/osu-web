@@ -158,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => '您的帳號已受到限制!',
         'message' => '當您的帳號受到系統自動限制時，您將無法與其他玩家互動，且您的遊戲分數僅供自己查閱。系統將在24小時內解除限制。如果您需要申訴？請<a href="mailto:accounts@ppy.sh">聯繫支援服務</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age 歲',

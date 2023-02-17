@@ -3,13 +3,12 @@
 
 import { PersistedBeatmapDiscussionReview } from 'interfaces/beatmap-discussion-review';
 import * as React from 'react';
-import * as ReactMarkdown from 'react-markdown';
-import { propsFromHref } from 'utils/beatmapset-discussion-helper';
+import ReactMarkdown from 'react-markdown';
 import { uuid } from 'utils/seq';
-import { autolinkPlugin } from './autolink-plugin';
-import { disableTokenizersPlugin } from './disable-tokenizers-plugin';
+import autolink from './plugins/autolink';
+import disableConstructs from './plugins/disable-constructs';
+import { emphasisRenderer, linkRenderer, paragraphRenderer, strongRenderer, transformLinkUri } from './renderers';
 import { ReviewPostEmbed } from './review-post-embed';
-import { timestampPlugin } from './timestamp-plugin';
 
 interface Props {
   message: string;
@@ -28,27 +27,19 @@ export class ReviewPost extends React.Component<Props> {
     return (
       <ReactMarkdown
         key={uuid()}
-        plugins={[
-          [
-            disableTokenizersPlugin,
-            {
-              allowedBlocks: ['paragraph'],
-              allowedInlines: ['emphasis', 'strong'],
-            },
-          ],
-          autolinkPlugin,
-          timestampPlugin,
-        ]}
-        renderers={{
-          link: this.linkRenderer,
-          paragraph: (props) => (<div className='beatmap-discussion-review-post__block'>
-            <div className='beatmapset-discussion-message' {...props} />
-          </div>),
-          timestamp: (props) => <a className='beatmap-discussion-timestamp-decoration' {...props} />,
+        className='beatmap-discussion-review-post__block'
+        components={{
+          a: linkRenderer,
+          em: emphasisRenderer,
+          p: paragraphRenderer,
+          strong: strongRenderer,
         }}
-        source={source}
+        remarkPlugins={[autolink, disableConstructs]}
+        transformLinkUri={transformLinkUri}
         unwrapDisallowed
-      />
+      >
+        {source}
+      </ReactMarkdown>
     );
   }
 
@@ -56,7 +47,7 @@ export class ReviewPost extends React.Component<Props> {
     const docBlocks: JSX.Element[] = [];
 
     try {
-      const doc: PersistedBeatmapDiscussionReview = JSON.parse(this.props.message);
+      const doc = JSON.parse(this.props.message) as PersistedBeatmapDiscussionReview;
 
       doc.forEach((block) => {
         switch (block.type) {
@@ -82,11 +73,4 @@ export class ReviewPost extends React.Component<Props> {
       </div>
     );
   }
-
-  // not sure if any additional props besides href and children are included.
-  private linkRenderer = (props: Readonly<ReactMarkdown.ReactMarkdownProps> & { href: string }) => {
-    const extraProps = propsFromHref(props.href);
-
-    return <a {...props} {...extraProps} />;
-  };
 }

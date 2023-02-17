@@ -158,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'Ditt konto har blivit begränsat!',
         'message' => 'När du är begränsad, kommer du inte kunna interagera med andra spelare och dina poäng kommer endast vara synliga för dig. Detta är oftast ett resultat av en automatiserad process och kommer troligen lyftas inom 24 timmar. Om du vill överklaga din begränsning, var vänlig <a href="mailto:accounts@ppy.sh">kontakta support</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age år gammal',

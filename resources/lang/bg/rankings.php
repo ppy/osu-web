@@ -23,6 +23,14 @@ return [
         'multiplayer' => 'мултиплейър',
         'performance' => 'представяне',
         'score' => 'резултат',
+        'seasons' => '',
+    ],
+
+    'seasons' => [
+        'empty' => '',
+        'ongoing' => '',
+        'room_count' => '',
+        'url' => '',
     ],
 
     'spotlight' => [

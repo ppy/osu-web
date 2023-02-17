@@ -15,8 +15,8 @@ class ForumTrack extends Model
     public $incrementing = false;
     public $timestamps = false;
 
+    protected $casts = ['mark_time' => 'datetime'];
     protected $dateFormat = 'U';
-    protected $dates = ['mark_time'];
     protected $primaryKey = ':composite';
     protected $primaryKeys = ['forum_id', 'user_id'];
     protected $table = 'phpbb_forums_track';

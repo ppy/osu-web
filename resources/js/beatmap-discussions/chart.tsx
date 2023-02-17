@@ -3,7 +3,7 @@
 
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import * as React from 'react';
-import { formatTimestamp } from 'utils/beatmapset-discussion-helper';
+import { formatTimestamp, makeUrl } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 
 interface Props {
@@ -41,7 +41,7 @@ export default function Chart(props: Props) {
           className={className}
           data-tooltip-modifiers='extra-padding'
           data-tooltip-position='bottom center'
-          href={BeatmapDiscussionHelper.url({ discussion })}
+          href={makeUrl({ discussion })}
           style={{
             left: `${100 * relativeTimestamp}%`,
           }}

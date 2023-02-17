@@ -12,13 +12,16 @@ use App\Models\BeatmapDifficultyAttrib;
 use App\Models\BeatmapFailtimes;
 use App\Models\BeatmapModeStats;
 use App\Models\Chat;
+use App\Models\FavouriteBeatmapset;
 use App\Models\Forum;
 use App\Models\LegacyMatch;
 use App\Models\UserAchievement;
 use App\Models\UserClient;
+use App\Models\UserDonation;
 use App\Models\UserGroup;
 use App\Models\UserRelation;
 use App\Models\UserReplaysWatchedCount;
+use Carbon\Carbon;
 use Tests\TestCase;
 
 class ModelCompositePrimaryKeysTest extends TestCase
@@ -43,9 +46,13 @@ class ModelCompositePrimaryKeysTest extends TestCase
     {
         [$item1, $item2] = $this->createModels($class, $baseParams, $item2Params, $check);
 
+        $this->assertSame(':composite', $item1->getKeyName());
+        $this->assertFalse($item1->incrementing);
+
         $key = $check[0];
-        $this->assertSame($check[1][0], $item1->fresh()->$key);
-        $this->assertSame($check[2], $item2->fresh()->$key);
+        $cast = $this->getCast($check[2]);
+        $this->assertSame($cast($check[1][0]), $cast($item1->fresh()->$key));
+        $this->assertSame($cast($check[2]), $cast($item2->fresh()->$key));
     }
 
     /**
@@ -58,8 +65,9 @@ class ModelCompositePrimaryKeysTest extends TestCase
         $key = $check[0];
         $newValue = $check[1][1];
         $item1->update([$key => $newValue]);
-        $this->assertSame($newValue, $item1->fresh()->$key);
-        $this->assertSame($check[2], $item2->fresh()->$key);
+        $cast = $this->getCast($check[2]);
+        $this->assertSame($cast($newValue), $cast($item1->fresh()->$key));
+        $this->assertSame($cast($check[2]), $cast($item2->fresh()->$key));
     }
 
     public function dataProviderBase()
@@ -121,6 +129,15 @@ class ModelCompositePrimaryKeysTest extends TestCase
                 ],
                 ['channel_id' => 1],
                 ['last_read_id', [1, 2], 3],
+            ],
+            [
+                FavouriteBeatmapset::class,
+                [
+                    'beatmapset_id' => 0,
+                    'user_id' => 0,
+                ],
+                ['beatmapset_id' => 2],
+                ['dateadded', [Carbon::now()->subDays(5), Carbon::now()->subDays(1)], Carbon::now()],
             ],
             [
                 Forum\AuthRole::class,
@@ -196,6 +213,16 @@ class ModelCompositePrimaryKeysTest extends TestCase
                 ['user_id', [0, 1], 2],
             ],
             [
+                UserDonation::class,
+                [
+                    'user_id' => 0,
+                    'transaction_id' => '',
+                    'amount' => 1,
+                ],
+                ['user_id' => 1],
+                ['length', [1, 2], 3],
+            ],
+            [
                 UserGroup::class,
                 [
                     'user_id' => 0,
@@ -230,5 +257,12 @@ class ModelCompositePrimaryKeysTest extends TestCase
             $class::create(array_merge($baseParams, [$check[0] => $check[1][0]])),
             $class::create(array_merge($baseParams, $item2Params, [$check[0] => $check[2]])),
         ];
+    }
+
+    private function getCast(mixed $value): callable
+    {
+        return $value instanceof Carbon
+            ? fn (Carbon $value): string => json_time($value)
+            : fn (mixed $value): mixed => $value;
     }
 }
