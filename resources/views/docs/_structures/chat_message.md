@@ -31,9 +31,10 @@ sender_id    | number                       | `user_id` of the sender
 channel_id   | number                       | `channel_id` of where the message was sent
 timestamp    | string                       | when the message was sent, ISO-8601
 content      | string                       | message content
-content_html | string?                      | Markdown message content as HTML
+content_html | string?                      | Deprecated. Markdown message content as HTML
 is_action    | boolean                      | was this an action? i.e. `/me dances`
 uuid         | string?                      | message identifier originally sent by client
+type         | string                       | type of message; 'action', 'markdown' or 'plain'
 
 Optional attributes:
 
