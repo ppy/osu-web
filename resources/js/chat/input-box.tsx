@@ -170,9 +170,10 @@ export default class InputBox extends React.Component<Props> {
     // Technically we don't need to check command here, but doing so in case we add more commands
     if (isCommand && command === 'me') {
       message.isAction = true;
+      message.type = 'action';
+    } else {
+      message.type = this.currentChannel.type === 'ANNOUNCE' ? 'markdown' : 'plain';
     }
-
-    message.type = !message.isAction && this.currentChannel.type === 'ANNOUNCE' ? 'markdown' : 'plain';
 
     if (this.currentChannel != null) {
       this.currentChannel.uiState.autoScroll = true;

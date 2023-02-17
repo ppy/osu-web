@@ -3,7 +3,7 @@
 
 import UserJson from 'interfaces/user-json';
 
-export type MessageType = 'markdown' | 'plain';
+export type MessageType = 'action' | 'markdown' | 'plain';
 
 export default interface MessageJson {
   channel_id: number;

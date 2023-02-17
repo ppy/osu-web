@@ -18,7 +18,9 @@ class MessageTransformer extends TransformerAbstract
 
     public function transform(Message $message)
     {
-        $type = $message->channel->isAnnouncement() && !$message->is_action ? 'markdown' : 'plain';
+        $type = $message->is_action
+            ? 'action'
+            : ($message->channel->isAnnouncement() ? 'markdown' : 'plain');
 
         $response = [
             'message_id' => $message->message_id,
@@ -26,7 +28,7 @@ class MessageTransformer extends TransformerAbstract
             'channel_id' => $message->channel_id,
             'timestamp' => $message->timestamp_json,
             'content' => $message->content,
-            'is_action' => $message->is_action,
+            'is_action' => $message->is_action, // maybe deprecate?
             'type' => $type,
         ];
 

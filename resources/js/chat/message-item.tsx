@@ -51,7 +51,7 @@ export default class MessageItem extends React.Component<Props> {
   private renderText() {
     return (
       <span
-        className={classWithModifiers('chat-message-item__content', { action: this.props.message.isAction })}
+        className={classWithModifiers('chat-message-item__content', { action: this.props.message.type === 'action' })}
       >
         {this.props.message.content}
       </span>
