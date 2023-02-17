@@ -213,7 +213,7 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => '',
+                'announce' => '“:name” 中有一条新通知',
             ],
 
             'channel' => [

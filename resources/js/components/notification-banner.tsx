@@ -25,6 +25,14 @@ export default class NotificationBanner extends React.PureComponent<Props> {
     this.portalRoot = portalRoot;
   }
 
+  componentDidMount() {
+    this.notifySyncHeight();
+  }
+
+  componentWillUnmount() {
+    window.setTimeout(this.notifySyncHeight);
+  }
+
   render() {
     return (
       <Portal root={this.portalRoot}>
@@ -40,5 +48,9 @@ export default class NotificationBanner extends React.PureComponent<Props> {
         </div>
       </Portal>
     );
+  }
+
+  private notifySyncHeight(this: void) {
+    $.publish('osu:page:change');
   }
 }

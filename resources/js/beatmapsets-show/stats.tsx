@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import Bar from 'components/bar';
 import BeatmapBasicStats from 'components/beatmap-basic-stats';
 import { computed, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
@@ -96,14 +97,11 @@ export default class Stats extends React.Component<Props> {
 
     return (
       <>
-        <div className='bar--beatmap-rating'>
-          <div
-            className='bar__fill'
-            style={{
-              width: `${(summary.negative / total) * 100}%`,
-            }}
-          />
-        </div>
+        <Bar
+          current={summary.negative}
+          modifiers='beatmap-rating'
+          total={total}
+        />
 
         <div className='beatmapset-stats__rating-values'>
           <span>{formatNumber(summary.negative)}</span>
@@ -159,14 +157,11 @@ export default class Stats extends React.Component<Props> {
         <th className='beatmap-stats-table__label'>{trans(`beatmapsets.show.stats.${label}`)}</th>
 
         <td className='beatmap-stats-table__bar'>
-          <div className={`bar bar--beatmap-stats bar--beatmap-stats-${label}`}>
-            <div
-              className='bar__fill'
-              style={{
-                width: `${10 * Math.min(10, rawValue)}%`,
-              }}
-            />
-          </div>
+          <Bar
+            current={rawValue}
+            modifiers={['beatmap-stats', `beatmap-stats-${label}`]}
+            total={10}
+          />
         </td>
 
         <td className='beatmap-stats-table__value'>{value}</td>

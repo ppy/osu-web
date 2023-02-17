@@ -16,12 +16,18 @@
   flex-direction: column;
   text-align: center;
   position: relative;
+  --divider-colour: @red;
+  --icon: url('~@images/layout/exclamation-icon.svg');
 
   @media @desktop {
-    margin: 2px;
     flex-direction: row;
     border-radius: 40px;
     text-align: left;
+  }
+
+  &--info {
+    background-color: hsla(var(--hsl-blue-3), 0.2);
+    --divider-colour: hsl(var(--hsl-blue-2));
   }
 
   &__col {
@@ -38,11 +44,7 @@
       flex: none;
       background-position: center;
       background-repeat: no-repeat;
-
-      .@{_top}--alert &,
-      .@{_top}--warning & {
-        background-image: url('~@images/layout/exclamation-icon.svg');
-      }
+      background-image: var(--icon);
     }
 
     &--label {
@@ -65,7 +67,7 @@
         position: absolute;
         content: '';
         height: @_bar-width;
-        background-color: @red;
+        background-color: var(--divider-colour);
         border-radius: 10px;
 
         left: 0;

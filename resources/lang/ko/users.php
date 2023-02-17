@@ -158,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => '계정이 제한되어 있습니다!',
         'message' => '계정이 제한되어있으면 다른 플레이어와 소통할 수 없으며 점수가 본인에게만 표시됩니다. 계정 제한은 보통 자동적으로 처리되며, 24시간 이내에 철회될 수 있습니다. 제한에 대한 항소를 원하시면 <a href="mailto:accounts@ppy.sh">지원팀에 연락</a>해주시기 바랍니다.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => '만 :age세',
@@ -468,7 +469,7 @@ return [
     ],
     'store' => [
         'from_client' => '게임 클라이언트에서 가입해주세요!',
-        'from_web' => '웹을 통해서 가입해주세요!',
+        'from_web' => 'osu! 웹사이트를 통해 가입해주세요!',
         'saved' => '사용자 계정 생성됨',
     ],
     'verify' => [

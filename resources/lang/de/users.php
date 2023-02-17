@@ -158,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'Dein Account wurde restricted!',
         'message' => 'Während du restricted bist, kannst du nicht mit anderen Spielern interagieren und deine Ranglistenscores sind nur für dich sichtbar. Dies passiert normalerweise durch einen automatischen Prozess und wird üblicherweise innerhalb von 24 Stunden aufgehoben. Wenn du Einspruch gegen deine Restriction erheben möchtest, wende dich bitte an <a href="mailto:accounts@ppy.sh">den Support</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age Jahre alt',
@@ -468,7 +469,7 @@ return [
     ],
     'store' => [
         'from_client' => 'Bitte registriere dich stattdessen über den Spiel-Client!',
-        'from_web' => 'Bitte registriere dich über das Web',
+        'from_web' => 'Bitte melde dich über die osu!-Webseite an',
         'saved' => 'Benutzer erstellt',
     ],
     'verify' => [

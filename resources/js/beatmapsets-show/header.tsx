@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import BeatmapsetBadge from 'components/beatmapset-badge';
 import BeatmapsetCover from 'components/beatmapset-cover';
 import BeatmapsetMapping from 'components/beatmapset-mapping';
 import BigButton from 'components/big-button';
@@ -142,17 +143,14 @@ export default class Header extends React.Component<Props> {
               >
                 {getTitle(this.controller.beatmapset)}
               </a>
-              {this.controller.beatmapset.nsfw &&
-                <span className='beatmapset-badge beatmapset-badge--nsfw'>{trans('beatmapsets.nsfw_badge.label')}</span>
-              }
-              {this.controller.beatmapset.spotlight &&
-                <a
-                  className='beatmapset-badge beatmapset-badge--spotlight'
-                  href={wikiUrl('Beatmap_Spotlights')}
-                >
-                  {trans('beatmapsets.spotlight_badge.label')}
-                </a>
-              }
+              <BeatmapsetBadge
+                beatmapset={this.controller.beatmapset}
+                type='nsfw'
+              />
+              <BeatmapsetBadge
+                beatmapset={this.controller.beatmapset}
+                type='spotlight'
+              />
             </span>
 
             <span className='beatmapset-header__details-text beatmapset-header__details-text--artist'>
@@ -162,14 +160,10 @@ export default class Header extends React.Component<Props> {
               >
                 {getArtist(this.controller.beatmapset)}
               </a>
-              {this.controller.beatmapset.track_id != null &&
-                <a
-                  className='beatmapset-badge beatmapset-badge--featured-artist'
-                  href={route('tracks.show', { track: this.controller.beatmapset.track_id })}
-                >
-                  {trans('beatmapsets.featured_artist_badge.label')}
-                </a>
-              }
+              <BeatmapsetBadge
+                beatmapset={this.controller.beatmapset}
+                type='featured_artist'
+              />
             </span>
 
             <BeatmapsetMapping beatmapset={this.controller.beatmapset} />

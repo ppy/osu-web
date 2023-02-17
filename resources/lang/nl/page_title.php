@@ -32,7 +32,7 @@ return [
             'verify_link' => 'account verificatie',
         ],
         'artists_controller' => [
-            '_' => 'aanbevolen artiesten',
+            '_' => 'uitgelichte artiesten',
         ],
         'beatmap_discussion_posts_controller' => [
             '_' => 'beatmap discussie berichten',
@@ -99,6 +99,9 @@ return [
         ],
         'scores_controller' => [
             '_' => 'prestatie',
+        ],
+        'seasons_controller' => [
+            '_' => '',
         ],
         'tournaments_controller' => [
             '_' => 'toernooien',

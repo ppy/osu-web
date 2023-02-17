@@ -158,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'Hesabınız kısıtlandı!',
         'message' => 'Kısıtlanmışken, diğer oyuncularla etkileşime geçemeyecek ve skorlarınızı sadece siz görebileceksiniz. Bu genellikle otomatik olan bir işlemin sonucudur ve 24 saat içerisinde kalkabilir. Kısıtlamanızın açılması için başvurmak istiyorsanız, lütfen <a href="mailto:accounts@ppy.sh">destek hattıyla</a> iletişime geçin.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age yaşında',
@@ -468,7 +469,7 @@ return [
     ],
     'store' => [
         'from_client' => 'lütfen bunun yerine oyun istemcisi ile kaydolun!',
-        'from_web' => 'lütfen web üzerinden kaydolun',
+        'from_web' => 'lütfen kayıt işleminizi osu! web sitesinde tamamlayın',
         'saved' => 'Kullanıcı oluşturuldu',
     ],
     'verify' => [

@@ -126,19 +126,12 @@
       .large() {
         @media @desktop {
           min-height: 450px;
-
-          .@{_top}--restricted & {
-            min-height: 450px;
-          }
         }
       }
 
       @media @desktop {
-        height: (@nav2-height + 70px);
-
-        .@{_top}--restricted & {
-          height: (@nav2-height + 70px + 70px);
-        }
+        padding-top: @nav2-height + 15px;
+        min-height: (@nav2-height + 70px);
       }
 
       .@{_top}--supporter & {

@@ -51,10 +51,7 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
 
     protected $casts = [
         'page' => 'array',
-    ];
-
-    protected $dates = [
-        'published_at',
+        'published_at' => 'datetime',
     ];
 
     public static function lookup($slug)

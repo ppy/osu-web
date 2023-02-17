@@ -158,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'El teu compte ha estat restringit!',
         'message' => 'Mentre estigui restringit, no podreu interactuar amb altres jugadors i les vostres puntuacions només seran visibles per a vosaltres. Això és, normalment, el resultat d\'un procés automatitzat i s\'aixeca normalment d\'aquí a 24 hores. Si vols apel·lar a la teva restricció, si us plau <a href="mailto:accounts@ppy.sh">contacta amb el suport</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age anys',
@@ -468,7 +469,7 @@ return [
     ],
     'store' => [
         'from_client' => 'si us plau, registreu-vos a través del client del joc!',
-        'from_web' => 'si us plau, registreu-vos a través del web',
+        'from_web' => 'si us plau, completeu el registre mitjançant el lloc web d\'osu!',
         'saved' => 'Usuari creat',
     ],
     'verify' => [

@@ -100,6 +100,9 @@ return [
         'scores_controller' => [
             '_' => 'performa',
         ],
+        'seasons_controller' => [
+            '_' => '',
+        ],
         'tournaments_controller' => [
             '_' => 'turnamen',
         ],

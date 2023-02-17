@@ -100,6 +100,9 @@ return [
         'scores_controller' => [
             '_' => 'moč',
         ],
+        'seasons_controller' => [
+            '_' => '',
+        ],
         'tournaments_controller' => [
             '_' => 'turnirji',
         ],

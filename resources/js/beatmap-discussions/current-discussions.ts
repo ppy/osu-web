@@ -5,7 +5,8 @@ import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import GameMode from 'interfaces/game-mode';
 import DiscussionMode from './discussion-mode';
 
-export type Filter = 'deleted' | 'hype' | 'mapperNotes' | 'mine' | 'pending' | 'praises' | 'resolved' | 'total';
+export const filters = ['deleted', 'hype', 'mapperNotes', 'mine', 'pending', 'praises', 'resolved', 'total'] as const;
+export type Filter = (typeof filters)[number];
 
 // TODO: move to store/context
 export default interface CurrentDiscussions {

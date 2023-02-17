@@ -4,12 +4,14 @@
 import { Comments } from 'components/comments';
 import { CommentsManager } from 'components/comments-manager';
 import HeaderV4 from 'components/header-v4';
+import NotificationBanner from 'components/notification-banner';
 import PlaymodeTabs from 'components/playmode-tabs';
 import GameMode, { gameModes } from 'interfaces/game-mode';
 import { action, autorun, computed, IReactionDisposer, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { generate, setHash } from 'utils/beatmapset-page-hash';
+import { trans } from 'utils/lang';
 import Controller from './controller';
 import Header from './header';
 import headerLinks from './header-links';
@@ -74,6 +76,7 @@ export default class Main extends React.Component<Props> {
   render() {
     return (
       <div className='osu-layout osu-layout--full'>
+        {this.renderDeletedNotification()}
         {this.renderPageHeader()}
         {this.controller.state.showingNsfwWarning
           ? <NsfwWarning onClose={this.onCloseNsfwWarning} />
@@ -94,6 +97,20 @@ export default class Main extends React.Component<Props> {
   private readonly onCloseNsfwWarning = () => {
     this.controller.state.showingNsfwWarning = false;
   };
+
+  private renderDeletedNotification() {
+    if (this.controller.beatmapset.deleted_at == null) {
+      return;
+    }
+
+    return (
+      <NotificationBanner
+        message={trans('beatmapsets.show.deleted_banner.message')}
+        title={trans('beatmapsets.show.deleted_banner.title')}
+        type='info'
+      />
+    );
+  }
 
   private renderPage() {
     return (

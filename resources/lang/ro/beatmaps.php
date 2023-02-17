@@ -142,7 +142,7 @@ return [
             'graveyard' => "Acest beatmap nu a fost actualizat din :date și este cel mai probabil abandonat de către creator...",
             'loved' => 'Acest beatmap a fost adăugat la Iubit pe :date!',
             'ranked' => 'Acest beatmap a fost clasat pe :date!',
-            'wip' => 'Notă: Acest beatmap este marcat ca o lucrare în desfășurare de către creator.',
+            'wip' => 'Notă: Acest beatmap este marcat ca fiind în lucru de către creator.',
         ],
 
         'votes' => [

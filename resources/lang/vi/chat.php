@@ -8,7 +8,7 @@ return [
     'talking_in' => 'đang trò chuyện ở :channel',
     'talking_with' => 'đang trò chuyện với :name',
     'title_compact' => 'chat',
-    'unread_messages' => '',
+    'unread_messages' => 'tin nhắn chưa đọc',
 
     'cannot_send' => [
         'channel' => 'Hiện bạn không thế gửi tin nhắn vào kênh này. Điều này có thể vì những lí do sau:',
@@ -36,7 +36,7 @@ return [
 
         'labels' => [
             'description' => 'mô tả',
-            'message' => '',
+            'message' => 'tin nhắn',
             'name' => 'tên phòng',
             'users' => 'người chơi để thêm',
         ],

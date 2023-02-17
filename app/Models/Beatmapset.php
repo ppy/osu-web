@@ -112,24 +112,21 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     protected $casts = [
         'active' => 'boolean',
+        'approved_date' => 'datetime',
         'comment_locked' => 'boolean',
+        'cover_updated_at' => 'datetime',
+        'deleted_at' => 'datetime',
         'discussion_locked' => 'boolean',
         'download_disabled' => 'boolean',
         'epilepsy' => 'boolean',
+        'last_update' => 'datetime',
         'nsfw' => 'boolean',
+        'queued_at' => 'datetime',
         'spotlight' => 'boolean',
         'storyboard' => 'boolean',
+        'submit_date' => 'datetime',
+        'thread_icon_date' => 'datetime',
         'video' => 'boolean',
-    ];
-
-    protected $dates = [
-        'approved_date',
-        'cover_updated_at',
-        'deleted_at',
-        'last_update',
-        'queued_at',
-        'submit_date',
-        'thread_icon_date',
     ];
 
     public $timestamps = false;

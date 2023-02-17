@@ -65,11 +65,8 @@ class Channel extends Model
     ];
 
     protected $casts = [
+        'creation_time' => 'datetime',
         'moderated' => 'boolean',
-    ];
-
-    protected $dates = [
-        'creation_time',
     ];
 
     protected $primaryKey = 'channel_id';

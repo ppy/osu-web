@@ -158,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'Tvůj účet byl omezen!',
         'message' => 'Zatímco jsi omezený, nebudeš moci komunikovat s ostatními hráči a tvá skóre budou viditelná pouze pro tebe. Toto je obvykle výsledkem automatického procesu, který by se měl sám vyřešit nejpozději do 24 hodin. Pokud si přeješ odvolat své omezení, prosím <a href="mailto:accounts@ppy.sh">kontaktuj podporu</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age let',
@@ -468,7 +469,7 @@ return [
     ],
     'store' => [
         'from_client' => 'prosím, zaregistrujte se přes herního klienta!',
-        'from_web' => 'prosím, zaregistrujte se přes web',
+        'from_web' => 'prosím dokončete registraci na webové stránce osu!',
         'saved' => 'Uživatelem vytvořen',
     ],
     'verify' => [

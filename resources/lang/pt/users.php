@@ -158,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'A tua conta foi restrita!',
         'message' => 'Enquanto restrito(a), estarás incapaz de interagir com outros jogadores e as tuas pontuações só serão visíveis para ti. Isto é habitualmente o resultado dum processo automático e irá ser levantado geralmente em 24 horas. Se quiseres apelar a tua restrição, por favor <a href="mailto:accounts@ppy.sh">contacta a assistência</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age anos',

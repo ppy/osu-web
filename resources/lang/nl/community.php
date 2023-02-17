@@ -23,7 +23,7 @@ return [
                 'description' => 'Bijdragen worden gebruikt om de servers achter de website, multiplayerfuncties, online ranglijsten, enz. draaiende te houden.',
             ],
             'featured-artists' => [
-                'title' => 'Aanbevolen artiesten',
+                'title' => 'Uitgelichte artiesten',
                 'description' => 'Met de hulp van jouw steun kunnen we nóg meer geweldige artiesten aanspreken. Dit laat ons toe licenties voor het gebruik van hun muziek in osu! te bemachtigen.',
                 'link_text' => 'Huidige artiestenlijst verkennen &raquo;',
             ],
