@@ -728,7 +728,7 @@ class OsuAuthorize
 
     public function checkBeatmapsetShowDeleted(?User $user): string
     {
-        if ($user !== null && ($user->isBNG() || $user->isModerator())) {
+        if ($user !== null && $user->isModerator()) {
             return 'ok';
         }
 
