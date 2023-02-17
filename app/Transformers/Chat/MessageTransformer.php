@@ -18,6 +18,8 @@ class MessageTransformer extends TransformerAbstract
 
     public function transform(Message $message)
     {
+        $type = $message->channel->isAnnouncement() && !$message->is_action ? 'markdown' : 'plain';
+
         $response = [
             'message_id' => $message->message_id,
             'sender_id' => $message->user_id,
@@ -25,13 +27,15 @@ class MessageTransformer extends TransformerAbstract
             'timestamp' => $message->timestamp_json,
             'content' => $message->content,
             'is_action' => $message->is_action,
+            'type' => $type,
         ];
 
         if ($message->uuid !== null) {
             $response['uuid'] = $message->uuid;
         }
 
-        if ($message->channel->isAnnouncement() && !$message->is_action) {
+        // TODO: deprecated; preserve while websocket clients reload.
+        if ($type === 'markdown') {
             $response['content_html'] = markdown_chat($message->content);
         }
 

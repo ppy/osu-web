@@ -20,7 +20,7 @@ export default class MessageItem extends React.Component<Props> {
     return (
       <div className={classWithModifiers('chat-message-item', { sending: !this.props.message.persisted })}>
         <div className='chat-message-item__entry'>
-          {this.props.message.isHtml ? this.renderMarkdown() : this.renderText()}
+          {this.props.message.type === 'markdown' ? this.renderMarkdown() : this.renderText()}
           {!this.props.message.persisted && !this.props.message.errored &&
             <div className='chat-message-item__status'>
               <Spinner />
