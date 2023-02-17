@@ -57,7 +57,7 @@ export default class InputBox extends React.Component<Props> {
 
     disposeOnUnmount(
       this,
-      reaction(() => core.dataStore.chatState.selectedChannel, (newValue, oldValue) => {
+      reaction(() => this.currentChannel, (newValue, oldValue) => {
         if (newValue != null && newValue !== oldValue && core.windowSize.isDesktop) {
           this.focusInput();
         }
