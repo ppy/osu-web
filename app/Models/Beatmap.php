@@ -55,10 +55,10 @@ class Beatmap extends Model
     protected $primaryKey = 'beatmap_id';
 
     protected $casts = [
+        'last_update' => 'datetime',
         'orphaned' => 'boolean',
     ];
 
-    protected $dates = ['last_update'];
     public $timestamps = false;
 
     const MODES = [

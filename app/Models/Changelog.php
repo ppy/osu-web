@@ -26,6 +26,12 @@ namespace App\Models;
  */
 class Changelog extends Model
 {
+    const PREFIXES = [
+        'add' => '+',
+        'fix' => '*',
+        'misc' => '?',
+    ];
+
     public $timestamps = false;
     protected $table = 'osu_changelog';
     protected $primaryKey = 'changelog_id';
@@ -33,16 +39,7 @@ class Changelog extends Model
     protected $casts = [
         'private' => 'boolean',
         'major' => 'boolean',
-    ];
-
-    protected $dates = [
-        'date',
-    ];
-
-    const PREFIXES = [
-        'add' => '+',
-        'fix' => '*',
-        'misc' => '?',
+        'date' => 'datetime',
     ];
 
     public function scopeDefault($query)

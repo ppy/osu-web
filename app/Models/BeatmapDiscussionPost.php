@@ -34,10 +34,9 @@ class BeatmapDiscussionPost extends Model implements Traits\ReportableInterface
     protected $touches = ['beatmapDiscussion'];
 
     protected $casts = [
+        'deleted_at' => 'datetime',
         'system' => 'boolean',
     ];
-
-    protected $dates = ['deleted_at'];
 
     public static function search($rawParams = [])
     {

@@ -20,7 +20,7 @@ class RankHighest extends Model
     public $incrementing = false;
     public $timestamps = false;
 
-    protected $dates = ['updated_at'];
+    protected $casts = ['updated_at' => 'datetime'];
     protected $primaryKey = ':composite';
     protected $primaryKeys = ['user_id', 'mode'];
     protected $table = 'osu_user_performance_rank_highest';

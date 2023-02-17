@@ -24,9 +24,7 @@ class Message extends Model
     protected $primaryKey = 'message_id';
     protected $casts = [
         'is_action' => 'boolean',
-    ];
-    protected $dates = [
-        'timestamp',
+        'timestamp' => 'datetime',
     ];
 
     public function channel()

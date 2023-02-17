@@ -16,8 +16,8 @@ class TopicTrack extends Model
     public $incrementing = false;
     public $timestamps = false;
 
+    protected $casts = ['mark_time' => 'datetime'];
     protected $dateFormat = 'U';
-    protected $dates = ['mark_time'];
     protected $primaryKey = ':composite';
     protected $primaryKeys = ['topic_id', 'user_id'];
     protected $table = 'phpbb_topics_track';
