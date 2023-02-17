@@ -1,10 +1,13 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import autolink from 'beatmap-discussions/plugins/autolink';
+import disableConstructs from 'beatmap-discussions/plugins/disable-constructs';
 import { Spinner } from 'components/spinner';
 import { observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as React from 'react';
+import ReactMarkdown from 'react-markdown';
 import { classWithModifiers } from 'utils/css';
 
 interface Props {
@@ -17,11 +20,7 @@ export default class MessageItem extends React.Component<Props> {
     return (
       <div className={classWithModifiers('chat-message-item', { sending: !this.props.message.persisted })}>
         <div className='chat-message-item__entry'>
-          {this.props.message.isHtml ? (
-            <div className='osu-md osu-md--chat'>
-              {this.renderContent()}
-            </div>
-          ) : this.renderContent()}
+          {this.props.message.isHtml ? this.renderMarkdown() : this.renderText()}
           {!this.props.message.persisted && !this.props.message.errored &&
             <div className='chat-message-item__status'>
               <Spinner />
@@ -37,12 +36,25 @@ export default class MessageItem extends React.Component<Props> {
     );
   }
 
-  private renderContent() {
+  private renderMarkdown() {
+    return (
+      <ReactMarkdown
+        className='osu-md osu-md--chat'
+        remarkPlugins={[autolink, [disableConstructs, { type: 'chat' }]]}
+        unwrapDisallowed
+      >
+        {this.props.message.content}
+      </ReactMarkdown>
+    );
+  }
+
+  private renderText() {
     return (
       <span
         className={classWithModifiers('chat-message-item__content', { action: this.props.message.isAction })}
-        dangerouslySetInnerHTML={{ __html: this.props.message.parsedContent }}
-      />
+      >
+        {this.props.message.content}
+      </span>
     );
   }
 }
