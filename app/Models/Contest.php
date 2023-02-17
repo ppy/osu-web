@@ -42,10 +42,13 @@ class Contest extends Model
 {
     use Memoizes;
 
-    protected $dates = ['entry_starts_at', 'entry_ends_at', 'voting_starts_at', 'voting_ends_at'];
     protected $casts = [
+        'entry_ends_at' => 'datetime',
+        'entry_starts_at' => 'datetime',
         'extra_options' => 'array',
         'visible' => 'boolean',
+        'voting_ends_at' => 'datetime',
+        'voting_starts_at' => 'datetime',
     ];
 
     public function entries()
