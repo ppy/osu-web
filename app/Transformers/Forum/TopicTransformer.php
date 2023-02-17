@@ -11,11 +11,11 @@ use League\Fractal\Resource\ResourceInterface;
 
 class TopicTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'poll',
     ];
 
-    protected $defaultIncludes = [
+    protected array $defaultIncludes = [
         'poll',
     ];
 

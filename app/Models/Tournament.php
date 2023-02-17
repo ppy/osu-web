@@ -31,7 +31,12 @@ class Tournament extends Model
 {
     protected $primaryKey = 'tournament_id';
 
-    protected $dates = ['signup_open', 'signup_close', 'start_date', 'end_date'];
+    protected $casts = [
+        'end_date' => 'datetime',
+        'signup_close' => 'datetime',
+        'signup_open' => 'datetime',
+        'start_date' => 'datetime',
+    ];
 
     public static function getGroupedListing()
     {

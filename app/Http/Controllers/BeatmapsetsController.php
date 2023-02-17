@@ -72,7 +72,11 @@ class BeatmapsetsController extends Controller
 
     public function show($id)
     {
-        $beatmapset = Beatmapset::whereHas('beatmaps')->findOrFail($id);
+        $beatmapset = (
+            priv_check('BeatmapsetShowDeleted')->can()
+                ? Beatmapset::withTrashed()->whereHas('allBeatmaps')
+                : Beatmapset::whereHas('beatmaps')
+        )->findOrFail($id);
 
         $set = $this->showJson($beatmapset);
 
@@ -363,10 +367,13 @@ class BeatmapsetsController extends Controller
 
     private function showJson($beatmapset)
     {
+        $beatmapRelation = $beatmapset->trashed()
+            ? 'allBeatmaps'
+            : 'beatmaps';
         $beatmapset->load([
-            'beatmaps.baseDifficultyRatings',
-            'beatmaps.baseMaxCombo',
-            'beatmaps.failtimes',
+            "{$beatmapRelation}.baseDifficultyRatings",
+            "{$beatmapRelation}.baseMaxCombo",
+            "{$beatmapRelation}.failtimes",
             'genre',
             'language',
             'user',

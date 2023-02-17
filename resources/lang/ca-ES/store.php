@@ -31,7 +31,7 @@ return [
         'cart_problems_edit' => 'Fes clic aquí per a editar-ho.',
         'declined' => 'El pagament s\'ha cancel·lat.',
         'delayed_shipping' => 'Ara mateix no podem atendre totes les comandes! La teva compra és benvinguda, però considera un **retard addicional de 1-2 setmanes** mentre ens posem al dia amb les comandes actuals.',
-        'hide_from_activity' => '',
+        'hide_from_activity' => 'Amaga totes les etiquetes osu!supporter en aquesta ordre de la meva activitat',
         'old_cart' => 'La vostra cistella sembla desactualitzada i s\'ha reiniciat, torna-ho a intentar.',
         'pay' => 'Pagament amb Paypal',
         'title_compact' => 'pagament',
@@ -51,7 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Com que el seu pagament va ser un eCheck, si us plau permeti fins a 10 dies addicionals perquè el pagament es faci a través de PayPal!',
-        'hide_from_activity' => '',
+        'hide_from_activity' => 'Les etiquetes d\'osu!supporter en aquesta ordre no es mostren a les vostres activitats recents.',
         'title_compact' => 'factura',
 
         'status' => [
@@ -84,7 +84,7 @@ return [
             ],
 
             'subtext' => [
-                'supporter_tag' => '',
+                'supporter_tag' => 'Missatge: :message',
             ],
         ],
 
@@ -127,7 +127,7 @@ return [
 
     'supporter_tag' => [
         'gift' => 'regalar a un jugador',
-        'gift_message' => '',
+        'gift_message' => 'afegeix un missatge opcional al teu regal! (fins a :length caràcters)',
 
         'require_login' => [
             '_' => 'Has de ser :link per obtenir una etiqueta d\'osu!supporter!',

@@ -30,7 +30,7 @@ return [
             'login_required' => 'Prisijunkite, kad ieškoti bitmapų',
             'more' => ':count dar bitmapų paieškos rezultatų',
             'more_simple' => ' Žiūrėti daugiau bitmapų paieškos rezultatų',
-            'title' => 'Beatmaps',
+            'title' => 'Bitmapai',
         ],
 
         'forum_post' => [
@@ -72,8 +72,21 @@ return [
     ],
 
     'download' => [
-        'tagline' => "gaukime <br> ko jums reikia pradžiai!",
         'action' => 'Atsisiųsti osu!',
+        'action_lazer' => 'Atsisiųsti osu!(lazer)',
+        'action_lazer_description' => 'kitas didesnis osu! atnaujinimas.',
+        'action_lazer_info' => 'peržiūrėk šį puslapį dėl papildomos informacijos',
+        'action_lazer_title' => 'išbandyk osu!(lazer)',
+        'action_title' => 'atsisiųsti osu!',
+        'for_os' => 'skirtas :os',
+        'lazer_note' => 'pastaba: rezultatų lentos atstatymai galioja',
+        'macos-fallback' => 'macOS vartotojams',
+        'mirror' => 'dubliavimas',
+        'or' => 'arba',
+        'other_os' => 'kitos platformos',
+        'quick_start_guide' => 'pagalba pradedančiam',
+        'tagline' => "gaukime <br> ko jums reikia pradžiai!",
+        'video-guide' => 'vaizdo gidas',
 
         'help' => [
             '_' => 'jei patiriate problemas paleidžiant žaidimą ar registruojantis paskyrai, :help_forum_link arba :support_button.',
@@ -86,8 +99,6 @@ return [
             'macos' => 'MacOS sistemai',
             'linux' => 'Linux sistemai',
         ],
-        'mirror' => 'dubliavimas',
-        'macos-fallback' => 'macOS vartotojams',
         'steps' => [
             'register' => [
                 'title' => 'susikurk paskyrą',
@@ -98,14 +109,13 @@ return [
                 'description' => 'paspauskt mygtyką viršuje, kad atsisiųsti diegimo programa, ir paleisk!',
             ],
             'beatmaps' => [
-                'title' => 'gauk bitmaps',
+                'title' => 'gauk bitmapų',
                 'description' => [
                     '_' => ':browse žaidėjų sukurtus bitmapus ir pradėk juos žaisti!',
                     'browse' => 'naršyti',
                 ],
             ],
         ],
-        'video-guide' => 'vaizdo gidas',
     ],
 
     'user' => [

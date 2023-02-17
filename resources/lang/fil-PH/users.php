@@ -52,6 +52,22 @@ return [
         'send_message' => 'Ipadala ang mensahe',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => 'password',
+            'password_confirmation' => 'kumpirmasyon ng password',
+            'submit' => 'maglikha ng account',
+            'user_email' => 'email',
+            'user_email_confirmation' => 'kumpirmasyon ng email',
+            'username' => 'username',
+
+            'tos_notice' => [
+                '_' => 'sa pamamagitan ng paggawa ng account sumasang-ayon ka sa :link',
+                'link' => 'mga termino ng serbisyo',
+            ],
+        ],
+    ],
+
     'disabled' => [
         'title' => 'Naku po! Mukhang ang iyong account ay hindi magagamit.',
         'warning' => "Sa kaso na ikaw ay nakalabag sa rules, alamin na mayroong isang buwan na hindi namin bibigyang konsiderasyon ang anumang request sa amnestiya. Pagkatapos ng sinabing isang buwan ay maaari na kaming i-contact kung kinakailangan. Binibigyang paalala namin na ang paglikha ng bagong account matapos magkaroon ng disabled account ay magreresulta sa <strong>pagdagdag sa isang buwan na cool-down</strong>. <strong>Sa bawat isang account na iyong nilikha ikaw ay lalong lumalabag sa rules.</strong> ",
@@ -142,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'Naging limitado ang iyong account!',
         'message' => 'Habang restricted ang account, ikaw ay hindi maaaring makihalubilo sa kapwa kalaro at ang iyong mga iskor ay ikaw lamang ang makakakita. Ito ay madalas ng resulta ng isang automated na proseso at kadalasang ipinapawalang bisa pagkatapos ng 24 oras. Kung nais mong mag-apela sa iyong restriction, <a href="mailto:accounts@ppy.sh">i-contact ang support</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age taong gulang',
@@ -451,6 +468,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => 'pakirehistro sa pamamagitan ng game client sa halip!',
+        'from_web' => 'pakikumpleto ang pagpaparehistro gamit ang osu! website',
         'saved' => 'Ginawa ng user',
     ],
     'verify' => [

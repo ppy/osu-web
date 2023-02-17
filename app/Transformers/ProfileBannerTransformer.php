@@ -11,10 +11,14 @@ class ProfileBannerTransformer extends TransformerAbstract
 {
     public function transform(ProfileBanner $banner)
     {
+        $image = $banner->image();
+        $image2x = $image === null ? null : retinaify($image);
+
         return [
             'id' => $banner->getKey(),
             'tournament_id' => $banner->tournament_id,
-            'image' => $banner->image(),
+            'image' => $image,
+            'image@2x' => $image2x,
         ];
     }
 }

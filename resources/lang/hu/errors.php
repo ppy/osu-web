@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => 'Nem sikerült betölteni az adatokat.',
     'missing_route' => 'Helytelen url vagy lekérési mód.',
     'no_restricted_access' => 'Felfüggesztett állapot erre nem vagy alkalmas.',
     'supporter_only' => 'Támogatónak kell lenned a funkció használatához.',

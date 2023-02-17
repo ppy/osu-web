@@ -72,8 +72,21 @@ return [
     ],
 
     'download' => [
-        'tagline' => "laitetaan sinut<br>liikkeelle!",
         'action' => 'Lataa osu!',
+        'action_lazer' => '',
+        'action_lazer_description' => '',
+        'action_lazer_info' => '',
+        'action_lazer_title' => '',
+        'action_title' => '',
+        'for_os' => '',
+        'lazer_note' => '',
+        'macos-fallback' => 'macOS-käyttäjät',
+        'mirror' => 'vaihtoehtoinen lataus',
+        'or' => '',
+        'other_os' => '',
+        'quick_start_guide' => '',
+        'tagline' => "laitetaan sinut<br>liikkeelle!",
+        'video-guide' => 'video-opas',
 
         'help' => [
             '_' => 'jos sinulla on ongelmia pelin käynnistämisessä tai tilin rekisteröinnissä, :help_forum_link tai :support_button.',
@@ -86,8 +99,6 @@ return [
             'macos' => 'macOS:lle',
             'linux' => 'Linuxille',
         ],
-        'mirror' => 'vaihtoehtoinen lataus',
-        'macos-fallback' => 'macOS-käyttäjät',
         'steps' => [
             'register' => [
                 'title' => 'luo tili',
@@ -105,7 +116,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'video-opas',
     ],
 
     'user' => [

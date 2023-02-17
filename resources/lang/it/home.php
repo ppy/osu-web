@@ -72,8 +72,21 @@ return [
     ],
 
     'download' => [
-        'tagline' => "iniziamo<br>subito!",
         'action' => 'Scarica osu!',
+        'action_lazer' => 'Scarica osu!(lazer)',
+        'action_lazer_description' => 'il prossimo grande aggiornamento per osu!',
+        'action_lazer_info' => 'guarda questa pagina per i dettagli',
+        'action_lazer_title' => 'prova osu!(lazer)',
+        'action_title' => 'scarica osu!',
+        'for_os' => 'per :os',
+        'lazer_note' => 'attenzione: si applicano reset alle classifiche',
+        'macos-fallback' => 'utenti macOS',
+        'mirror' => 'mirror',
+        'or' => 'oppure',
+        'other_os' => 'altre piattaforme',
+        'quick_start_guide' => 'guida iniziale',
+        'tagline' => "iniziamo<br>subito!",
+        'video-guide' => 'video guida',
 
         'help' => [
             '_' => 'se hai problemi ad avviare il gioco o a registrarti l\'account, :help_forum_link oppure :support_button.',
@@ -86,11 +99,9 @@ return [
             'macos' => 'per macOS',
             'linux' => 'per Linux',
         ],
-        'mirror' => 'mirror',
-        'macos-fallback' => 'utenti macOS',
         'steps' => [
             'register' => [
-                'title' => 'registrati',
+                'title' => 'registra un\'account',
                 'description' => 'segui le istruzioni quando avvii il gioco per accedere o creare un nuovo account',
             ],
             'download' => [
@@ -105,7 +116,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'video guida',
     ],
 
     'user' => [

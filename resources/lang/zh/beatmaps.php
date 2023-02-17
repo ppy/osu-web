@@ -311,7 +311,7 @@ return [
         'polish' => '波兰语',
         'instrumental' => '器乐',
         'other' => '其他',
-        'unspecified' => '未指定',
+        'unspecified' => '尚未指定',
     ],
 
     'nsfw' => [

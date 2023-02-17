@@ -66,6 +66,7 @@ return [
             'favourite_login' => 'قم بتسجيل الدخول لتفضيل هذه الخريطة',
             'logged-out' => 'تحتاج إلى تسجيل الدخول قبل تنزيل أي خريطة!',
             'mapped_by' => 'نشأت بواسطة :mapper',
+            'mapped_by_guest' => '',
             'unfavourite' => 'إلغاء تفضيل هذه الخريطة',
             'updated_timeago' => 'آخر تحديث :timeago',
 

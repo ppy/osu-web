@@ -15,6 +15,7 @@ use App\Models\Forum\Post;
 use App\Models\NewsPost;
 use App\Models\UserDonation;
 use Auth;
+use Jenssegers\Agent\Agent;
 use Request;
 
 /**
@@ -55,7 +56,40 @@ class HomeController extends Controller
 
     public function getDownload()
     {
-        return ext_view('home.download');
+        static $lazerPlatformNames;
+        $lazerPlatformNames ??= [
+            'android' => osu_trans('home.download.os_version_or_later', ['os_version' => 'Android 5']),
+            'ios' => osu_trans('home.download.os_version_or_later', ['os_version' => 'iOS 13.4']),
+            'linux_x64' => 'Linux (x64)',
+            'macos_as' => osu_trans('home.download.os_version_or_later', ['os_version' => 'macOS 10.15']).' (Apple Silicon)',
+            'windows_x64' => osu_trans('home.download.os_version_or_later', ['os_version' => 'Windows 8.1']).' (x64)',
+        ];
+
+        $httpHeaders = [];
+        // format headers to what Agent is expecting
+        foreach (request()->headers->all() as $key => $values) {
+            $headerKey = 'HTTP_'.strtoupper(strtr($key, '-', '_'));
+            $httpHeaders[$headerKey] = $values[0];
+        }
+        $agent = new Agent($httpHeaders);
+
+        $platform = match (true) {
+            // Try matching most likely platform first
+            $agent->is('Windows') => 'windows_x64',
+            // iPadOS detection apparently doesn't work on newer version
+            // and detected as macOS instead.
+            ($agent->isiOS() || $agent->isiPadOS()) => $platform = 'ios',
+            // FIXME: Figure out a way to differentiate Intel and Apple Silicon.
+            $agent->is('OS X') => 'macos_as',
+            $agent->isAndroidOS() => 'android',
+            $agent->is('Linux') => 'linux_x64',
+            default => 'windows_x64',
+        };
+
+        return ext_view('home.download', [
+            'lazerUrl' => config("osu.urls.lazer_dl.{$platform}"),
+            'lazerPlatformName' => $lazerPlatformNames[$platform],
+        ]);
     }
 
     public function index()

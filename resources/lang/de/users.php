@@ -52,6 +52,22 @@ return [
         'send_message' => 'Nachricht senden',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => 'passwort',
+            'password_confirmation' => 'passwort bestätigen',
+            'submit' => 'account erstellen',
+            'user_email' => 'e-mail',
+            'user_email_confirmation' => 'e-mail bestätigen',
+            'username' => 'benutzername',
+
+            'tos_notice' => [
+                '_' => 'durch die erstellung eines accounts bist du mit den :link einverstanden',
+                'link' => 'nutzungsbedingungen',
+            ],
+        ],
+    ],
+
     'disabled' => [
         'title' => 'Uh, oh! Anscheinend wurde dein Konto deaktiviert.',
         'warning' => "Falls Du gegen eine Regel verstoßen hast, beachte bitte, dass es in der Regel eine Frist von einem Monat gibt, in der wir keine Anträge berücksichtigen. Nach diesem Zeitraum kannst Du uns jederzeit kontaktieren, falls Du dies für erforderlich hältst. Beachte, dass das Erstellen neuer Konten nach dem Deaktivieren eines Kontos zu einer <strong>Verlängerung dieser einmonatigen Frist</strong> führt. Bitte beachte auch, dass du für <strong>jedes Konto, das du erstellst, weitere Regeln verletzt</strong>. Wir empfehlen Dir dringend, diesen Weg nicht zu gehen!",
@@ -142,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'Dein Account wurde restricted!',
         'message' => 'Während du restricted bist, kannst du nicht mit anderen Spielern interagieren und deine Ranglistenscores sind nur für dich sichtbar. Dies passiert normalerweise durch einen automatischen Prozess und wird üblicherweise innerhalb von 24 Stunden aufgehoben. Wenn du Einspruch gegen deine Restriction erheben möchtest, wende dich bitte an <a href="mailto:accounts@ppy.sh">den Support</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age Jahre alt',
@@ -218,7 +235,7 @@ return [
                     'title' => 'Loved Beatmaps',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => 'Nominierte Ranked Beatmaps',
                 ],
                 'pending' => [
                     'title' => 'Ausstehende Beatmaps',
@@ -451,6 +468,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => 'Bitte registriere dich stattdessen über den Spiel-Client!',
+        'from_web' => 'Bitte melde dich über die osu!-Webseite an',
         'saved' => 'Benutzer erstellt',
     ],
     'verify' => [

@@ -23,6 +23,14 @@ return [
         'multiplayer' => 'hra pro více hráčů',
         'performance' => 'výkon',
         'score' => 'skóre',
+        'seasons' => '',
+    ],
+
+    'seasons' => [
+        'empty' => '',
+        'ongoing' => '',
+        'room_count' => '',
+        'url' => '',
     ],
 
     'spotlight' => [

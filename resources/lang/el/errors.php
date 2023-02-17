@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => '',
     'missing_route' => '',
     'no_restricted_access' => 'Δεν μπορείτε να εκτελέσετε αυτήν την ενέργεια ενώ ο λογαριασμός σας είναι σε περιορισμένη κατάσταση (restricted).',
     'supporter_only' => 'Πρέπει να είστε supporter για να χρησιμοποιήσετε αυτήν τη λειτουργία.',

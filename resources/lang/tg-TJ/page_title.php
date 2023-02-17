@@ -100,11 +100,15 @@ return [
         'scores_controller' => [
             '_' => '',
         ],
+        'seasons_controller' => [
+            '_' => '',
+        ],
         'tournaments_controller' => [
             '_' => '',
         ],
         'users_controller' => [
             '_' => '',
+            'create' => '',
             'disabled' => '',
         ],
         'wiki_controller' => [

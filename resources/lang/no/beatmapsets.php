@@ -20,7 +20,7 @@ return [
     ],
 
     'featured_artist_badge' => [
-        'label' => '',
+        'label' => 'Utvalgt artist',
     ],
 
     'index' => [
@@ -29,7 +29,7 @@ return [
     ],
 
     'panel' => [
-        'empty' => '',
+        'empty' => 'ingen beatmaps',
 
         'download' => [
             'all' => 'last ned',
@@ -66,6 +66,7 @@ return [
             'favourite_login' => '',
             'logged-out' => 'Du må logge inn før du kan laste ned beatmaps!',
             'mapped_by' => 'mappet av :mapper',
+            'mapped_by_guest' => '',
             'unfavourite' => 'Fjern dette beatmapsettet som en favoritt',
             'updated_timeago' => 'sist oppdatert :timeago',
 

@@ -209,6 +209,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Nové oznámení v „:name“',
+            ],
+
             'channel' => [
                 'pm' => 'Obdrželi jste novou zprávu od :username',
             ],

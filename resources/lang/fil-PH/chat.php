@@ -8,6 +8,7 @@ return [
     'talking_in' => 'nakikipag-usap sa :channel',
     'talking_with' => 'kausap si :name',
     'title_compact' => 'chat',
+    'unread_messages' => 'hindi pa nababasang mga mensahe',
 
     'cannot_send' => [
         'channel' => 'Hindi ka makakapag-mensahe sa channel na ito sa oras na ito.',
@@ -35,6 +36,7 @@ return [
 
         'labels' => [
             'description' => 'deskripsyon',
+            'message' => 'mensahe',
             'name' => 'pangalan ng room',
             'users' => 'mga manlalaro na idadagdag',
         ],

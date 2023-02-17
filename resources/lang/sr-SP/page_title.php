@@ -100,11 +100,15 @@ return [
         'scores_controller' => [
             '_' => 'перформансе',
         ],
+        'seasons_controller' => [
+            '_' => '',
+        ],
         'tournaments_controller' => [
             '_' => 'турнири',
         ],
         'users_controller' => [
             '_' => 'информације о играчу',
+            'create' => 'креирај налог',
             'disabled' => 'напомена',
         ],
         'wiki_controller' => [

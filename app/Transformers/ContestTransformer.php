@@ -11,7 +11,7 @@ use League\Fractal\Resource\ResourceInterface;
 
 class ContestTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'entries',
         'users_voted_count',
     ];

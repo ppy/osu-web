@@ -23,6 +23,14 @@ return [
         'multiplayer' => 'multijugador',
         'performance' => 'rendiment',
         'score' => 'puntuació',
+        'seasons' => '',
+    ],
+
+    'seasons' => [
+        'empty' => '',
+        'ongoing' => '',
+        'room_count' => '',
+        'url' => '',
     ],
 
     'spotlight' => [

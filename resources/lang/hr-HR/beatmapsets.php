@@ -66,6 +66,7 @@ return [
             'favourite_login' => 'Prijavi se kako bi označio/la ovu beatmapu kao omiljenu',
             'logged-out' => 'Moraš se prijaviti prije preuzimanja beatmapa!',
             'mapped_by' => 'mapirano od :mapper',
+            'mapped_by_guest' => '',
             'unfavourite' => 'Ukloni beatmapu sa oznake omiljeno',
             'updated_timeago' => 'zadnje ažurirano :timeago',
 

@@ -52,6 +52,22 @@ return [
         'send_message' => 'Send besked',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => '',
+            'password_confirmation' => '',
+            'submit' => '',
+            'user_email' => '',
+            'user_email_confirmation' => '',
+            'username' => '',
+
+            'tos_notice' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'disabled' => [
         'title' => 'Uh-oh! Det ser ud som om din account er blevet midlertidigt lukket.',
         'warning' => "I tilfælde af at du har brudt en regel, bør du vide at der er en cool-down periode på en måned hvori vi ikke vil overveje nogen former for forespørgsler om lempelser eller ophævninger. Efter denne periode kan du kontakte os igen hvis du føler det er nødvendigt. Bemærk, hvis du laver flere konti efter at have fået en lukket vil det resultere i en <strong>forlængelse af din ene måneds cool-down</strong>. Bemærk også at for <strong>hver account du laver, bryder du reglerne yderligere</strong>. Vi anbefaler stærkt at du ikke gør dette!",
@@ -142,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'Du konto er blevet begrænset!',
         'message' => 'Når du er begrænset, kan du ikke interagere med andre spillere, og dine scores vil kun være synlige for dig. Dette er som regel en automatisk proces, og begrænsningen vil blive fjernet indenfor 24 timer. Hvis du ønsker at appellere din begrænsning, <a href="mailto:accounts@ppy.sh">kontakt supporten</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age år gammel',
@@ -451,6 +468,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => 'Bruger Oprettet',
     ],
     'verify' => [

@@ -23,6 +23,14 @@ return [
         'multiplayer' => 'multiplayer',
         'performance' => 'Præstation',
         'score' => 'Score',
+        'seasons' => '',
+    ],
+
+    'seasons' => [
+        'empty' => '',
+        'ongoing' => '',
+        'room_count' => '',
+        'url' => '',
     ],
 
     'spotlight' => [

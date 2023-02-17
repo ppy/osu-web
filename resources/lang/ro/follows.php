@@ -25,7 +25,7 @@ return [
 
     'mapping' => [
         'empty' => 'Niciun creator de beatmap-uri urmărit.',
-        'followers' => 'abonați creatori de beatmap-uri ',
+        'followers' => 'abonați beatmap-uri ',
         'page_title' => 'abonamente creatori beatmap-uri',
         'title' => 'creator de beatmap-uri ',
         'to_0' => 'nu mă mai notifica când acest utilizator încarcă un beatmap nou',

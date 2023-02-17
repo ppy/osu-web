@@ -18,7 +18,7 @@ return [
     ],
 
     'index' => [
-        'description' => 'Els artistes destacats són artistes amb qui col·laborem per brindar-li música nova i original a osu!. Aquests artistes i una selecció dels seus treballs han estat escollits per l\'equip d\'osu! per ser genials i adequats per a mapping. Alguns d\'aquests artistes destacats també van crear noves cançons exclusives per al seu ús a osu!.<br><br>Totes les cançons en aquesta secció són proporcionades com a fitxers .osz amb ritme prèviament calculat i han estat llicenciades oficialment per al seu ús en osu! i contingut relacionat amb osu!.',
+        'description' => 'Els artistes destacats són artistes amb els quals col·laborem per a brindar-li música nova i original a osu!. Aquests artistes i una selecció dels seus treballs han estat triats per l\'equip de osu! per ser genials i adequats per a mapping. Alguns d\'aquests artistes destacats també van crear noves cançons exclusives per al seu ús en osu!.<br><br>Totes les cançons en aquesta secció són proporcionades com a arxius .osz amb ritme prèviament calculat i han estat llicenciades oficialment per al seu ús en osu! i contingut relacionat amb osu!.',
     ],
 
     'links' => [

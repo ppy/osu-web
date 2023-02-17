@@ -62,12 +62,12 @@ return [
     ],
 
     'supporter_gift' => [
-        'anonymous_gift' => 'La persona que le regaló este tag puede optar por permanecer en el anonimato, por lo que no se ha mencionado en esta notificación.',
+        'anonymous_gift' => 'La persona que le regaló este tag puede optar por permanecer en el anonimato, por lo que no se le ha mencionado en esta notificación.',
         'anonymous_gift_maybe_not' => 'Pero es probable que ya sepas quién es ;).',
         'duration' => 'Gracias a esa persona, usted tiene acceso a osu!direct y a otros beneficios de osu!supporter durante :duration.',
         'features' => 'Puede encontrar más detalles sobre estas características aquí:',
         'gifted' => '¡Alguien le acaba de regalar un tag de osu!supporter!',
-        'gift_message' => '',
+        'gift_message' => 'La persona que le regaló este tag le dejó un mensaje:',
         'subject' => '¡Le han regalado un tag de osu!supporter!',
     ],
 

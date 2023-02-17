@@ -52,6 +52,22 @@ return [
         'send_message' => 'Gửi tin nhắn',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => 'mật khẩu',
+            'password_confirmation' => 'xác nhận mật khẩu',
+            'submit' => 'tạo tài khoản',
+            'user_email' => 'email',
+            'user_email_confirmation' => 'xác nhận email',
+            'username' => 'tên người dùng',
+
+            'tos_notice' => [
+                '_' => 'khi tạo tài khoản bạn đồng ý với :link',
+                'link' => 'điều khoản dịch vụ',
+            ],
+        ],
+    ],
+
     'disabled' => [
         'title' => 'Ôi không! Có vẻ tài khoản của bạn đã bị vô hiệu hóa.',
         'warning' => "Trong trường hợp bạn đã vi phạm luật, lưu ý sẽ có một khoảng thời gian trung bình một tháng chúng tôi sẽ không tiếp nhận mọi nhu cầu hối lỗi. Sau khoảng thời gian này, bạn hoàn toàn có thể thoải mái liên lạc chúng tôi nếu cần thiết. Lưu ý: tạo thêm tài khoản mới sau khi bạn đã bị ban sẽ <strong>gia tăng khoảng thời gian nói trên</strong>. Đồng thời hãy lưu ý rằng <strong>mỗi tài khoản tạo thêm là một lần bạn tiếp tục vi phạm luật</strong>. Chúng tôi khuyên bạn không nên theo con đường này!",
@@ -142,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'Tài khoản của bạn đã bị hạn chế!',
         'message' => 'Trong khi bị hạn chế, Bạn sẽ không thể tương tác với những người chơi khác và chỉ có bạn thấy được điểm của bạn. Đây thường là kết quả của một quá trình tự động và thường sẽ được gỡ bỏ trong vòng 24 giờ. Nếu bạn muốn kháng nghị về sự hạn chế này, vui lòng <a href="mailto:accounts@ppy.sh">liên hệ hỗ trợ</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age tuổi',
@@ -451,6 +468,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => 'vui lòng đăng kí thông qua game!',
+        'from_web' => 'vui lòng hoàn thành đăng kí thông qua trang web osu!',
         'saved' => 'Đã tạo người dùng',
     ],
     'verify' => [

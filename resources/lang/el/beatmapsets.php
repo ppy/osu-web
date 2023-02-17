@@ -66,6 +66,7 @@ return [
             'favourite_login' => '',
             'logged-out' => 'Πρέπει να συνδεθείτε πριν κάνετε λήψη κάποιου beatmap!',
             'mapped_by' => 'δημιουργήθηκε από :mapper',
+            'mapped_by_guest' => '',
             'unfavourite' => 'Αφαιρέστε αυτό το beatmapset από τα αγαπημένα',
             'updated_timeago' => 'τελευταία ενημέρωση :timeago',
 

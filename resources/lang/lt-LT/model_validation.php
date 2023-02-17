@@ -26,21 +26,21 @@ return [
         'hype' => [
             'discussion_locked' => "Šio bitmapo diskusija šiuo metu užrakinta ir jis negali būti skatinamas",
             'guest' => 'Skatinimui reikia prisijungti.',
-            'hyped' => 'Tu jau paskatinai šį beatmapą.',
+            'hyped' => 'Tu jau paskatinai šį bitmapą.',
             'limit_exceeded' => 'Jau išnaudojai visus savo skatinimus.',
             'not_hypeable' => 'Šis Bitmapas negali būti skatinamas',
             'owner' => 'Savo bitmapo skatinti negali.',
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => 'Nurodytas laikas yra didesnis negu beatmapo trukmė.',
+            'exceeds_beatmapset_length' => 'Nurodytas laiko žyma yra didesnė negu bitmapo trukmė.',
             'negative' => "Laikas negali būti neigiamas.",
         ],
     ],
 
     'beatmapset_discussion_post' => [
         'discussion_locked' => 'Diskusija užrakinta.',
-        'first_post' => 'Negalimas ištrinti pirmosios publikacijos.',
+        'first_post' => 'Negalimas ištrinti pirmojo įrašo.',
 
         'attributes' => [
             'message' => 'Žinutė',
@@ -62,7 +62,7 @@ return [
 
     'forum' => [
         'feature_vote' => [
-            'not_feature_topic' => '',
+            'not_feature_topic' => 'Gali balsuoti tik funkcijų prašymuose.',
             'not_enough_feature_votes' => 'Nepakanka balsų.',
         ],
 
@@ -71,14 +71,14 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'Negalima ištrinti bitmapo metaduomenų publikacijos.',
-            'beatmapset_post_no_edit' => 'Negalima redaguoti bitmapo metaduomenų publikacijos.',
-            'first_post_no_delete' => 'Negalimas ištrinti pirmosios publikacijos',
-            'missing_topic' => 'Publikacija neturi temos',
+            'beatmapset_post_no_delete' => 'Negalima ištrinti bitmapo metaduomenų įrašo.',
+            'beatmapset_post_no_edit' => 'Negalima redaguoti bitmapo metaduomenų įrašo.',
+            'first_post_no_delete' => 'Negalimas ištrinti pirmojo įrašo',
+            'missing_topic' => 'Įrašas neturi temos',
             'only_quote' => 'Jūsų atsakyme yra tik citata.',
 
             'attributes' => [
-                'post_text' => 'Publikacijos laukas',
+                'post_text' => 'Įrašo laukas',
             ],
         ],
 

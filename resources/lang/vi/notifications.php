@@ -210,6 +210,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Có một thông báo mới trong ":name"',
+            ],
+
             'channel' => [
                 'pm' => 'Bạn đã nhận được một tin nhắn mới từ
 :username',

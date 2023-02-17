@@ -100,11 +100,15 @@ return [
         'scores_controller' => [
             '_' => 'moč',
         ],
+        'seasons_controller' => [
+            '_' => '',
+        ],
         'tournaments_controller' => [
             '_' => 'turnirji',
         ],
         'users_controller' => [
             '_' => 'informacije o igralcu',
+            'create' => '',
             'disabled' => 'obvestilo',
         ],
         'wiki_controller' => [

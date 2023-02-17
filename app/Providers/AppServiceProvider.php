@@ -11,6 +11,7 @@ use App\Libraries\BroadcastsPendingForTests;
 use App\Libraries\ChatFilters;
 use App\Libraries\CleanHTML;
 use App\Libraries\Groups;
+use App\Libraries\Ip2Asn;
 use App\Libraries\LayoutCache;
 use App\Libraries\LocalCacheManager;
 use App\Libraries\Mods;
@@ -26,6 +27,7 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Request;
 use Illuminate\Queue\Events\JobProcessed;
 use Illuminate\Support\ServiceProvider;
+use Knuckles\Scribe\Scribe;
 use Laravel\Octane\Contracts\DispatchesTasks;
 use Laravel\Octane\SequentialTaskDispatcher;
 use Laravel\Octane\Swoole\SwooleTaskDispatcher;
@@ -45,6 +47,7 @@ class AppServiceProvider extends ServiceProvider
         'OsuAuthorize' => OsuAuthorize::class,
         'assets-manifest' => AssetsManifest::class,
         'clean-html' => CleanHTML::class,
+        'ip2asn' => Ip2Asn::class,
         'local-cache-manager' => LocalCacheManager::class,
         'mods' => Mods::class,
         'route-section' => RouteSection::class,
@@ -83,6 +86,10 @@ class AppServiceProvider extends ServiceProvider
         app('url')->forceScheme(substr(config('app.url'), 0, 5) === 'https' ? 'https' : 'http');
 
         Request::setTrustedProxies(config('trustedproxy.proxies'), config('trustedproxy.headers'));
+
+        // newest scribe tries to rename {modelName} parameters to {id}
+        // but it kind of doesn't work with our route handlers.
+        Scribe::normalizeEndpointUrlUsing(fn ($url) => $url);
     }
 
     /**

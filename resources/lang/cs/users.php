@@ -52,6 +52,22 @@ return [
         'send_message' => 'Odeslat zprávu',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => 'heslo',
+            'password_confirmation' => 'potvrzení hesla',
+            'submit' => 'vytvořit účet',
+            'user_email' => 'email',
+            'user_email_confirmation' => 'ověření e-mailu',
+            'username' => 'uživatelské jméno',
+
+            'tos_notice' => [
+                '_' => 'vytvořením účtu souhlasíte s :link',
+                'link' => 'smluvní podmínky',
+            ],
+        ],
+    ],
+
     'disabled' => [
         'title' => 'Ale ne! Vypadá to, že váš účet byl zablokován.',
         'warning' => "V případě porušení pravidla, Vezměte prosím na vědomí, že obecně existuje lhůta jednoho měsíce, během níž nebudeme zvažovat žádné žádosti o amnestii. Po tomto období nás můžete kontaktovat, pokud to považujete za nezbytné. Vezměte prosím v potaz, že vytvořením nových účtů poté, co budete mít jeden deaktivovaný, dojde k <strong>prodloužení jedno měsíčné lhůty</strong>. Vezměte prosím na vědomí, že pro <strong>každý účet, který vytváříte, dále porušujete pravidla</strong>. Velmi doporučujeme, abyste se touto cestou neubírali!",
@@ -142,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'Tvůj účet byl omezen!',
         'message' => 'Zatímco jsi omezený, nebudeš moci komunikovat s ostatními hráči a tvá skóre budou viditelná pouze pro tebe. Toto je obvykle výsledkem automatického procesu, který by se měl sám vyřešit nejpozději do 24 hodin. Pokud si přeješ odvolat své omezení, prosím <a href="mailto:accounts@ppy.sh">kontaktuj podporu</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age let',
@@ -218,7 +235,7 @@ return [
                     'title' => 'Oblíbené Beatmapy',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => 'Nominované Hodnocené Beatmapy',
                 ],
                 'pending' => [
                     'title' => 'Čekající Beatmapy',
@@ -417,7 +434,7 @@ return [
             'country_simple' => 'Místní hodnocení',
             'global' => 'Globální pozice pro :mode',
             'global_simple' => 'Světové hodnocení',
-            'highest' => '',
+            'highest' => 'Nejvyšší rank :rank v :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Přesnost zásahů',
@@ -451,6 +468,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => 'prosím, zaregistrujte se přes herního klienta!',
+        'from_web' => 'prosím dokončete registraci na webové stránce osu!',
         'saved' => 'Uživatelem vytvořen',
     ],
     'verify' => [

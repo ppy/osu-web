@@ -46,6 +46,7 @@ class Product extends Model
     protected $primaryKey = 'product_id';
 
     protected $casts = [
+        'available_until' => 'datetime',
         'cost' => 'float',
         'base_shipping' => 'float',
         'next_shipping' => 'float',
@@ -53,8 +54,6 @@ class Product extends Model
         'enabled' => 'boolean',
         'allow_multiple' => 'boolean',
     ];
-
-    protected $dates = ['available_until'];
 
     private $images;
     private $types;

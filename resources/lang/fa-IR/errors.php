@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => '',
     'missing_route' => 'لینک یا متد درخواست اشتباه.',
     'no_restricted_access' => 'شما نمیتوانید این کار را موقعی که حسابتان در وضعیت محدود شده قرار دارد، انجام دهید.',
     'supporter_only' => 'شما باید حامی osu! باشید تا بتوانید از این قابلیت استفاده کنیذ.',
