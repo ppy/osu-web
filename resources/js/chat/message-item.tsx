@@ -4,11 +4,13 @@
 import autolink from 'beatmap-discussions/plugins/autolink';
 import disableConstructs from 'beatmap-discussions/plugins/disable-constructs';
 import { Spinner } from 'components/spinner';
+import { escape } from 'lodash';
 import { observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { classWithModifiers } from 'utils/css';
+import { linkify } from 'utils/url';
 
 interface Props {
   message: Message;
@@ -52,9 +54,8 @@ export default class MessageItem extends React.Component<Props> {
     return (
       <span
         className={classWithModifiers('chat-message-item__content', { action: this.props.message.type === 'action' })}
-      >
-        {this.props.message.content}
-      </span>
+        dangerouslySetInnerHTML={{ __html: linkify(escape(this.props.message.content), true) }}
+      />
     );
   }
 }
