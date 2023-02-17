@@ -190,7 +190,9 @@ class HomeController extends Controller
             return response()->json($allSearch->toJson());
         }
 
-        return ext_view('home.search', compact('allSearch', 'isSearchPage'));
+        $fields = Auth::user()?->isModerator() ?? false ? [] : ['includeDeleted' => null];
+
+        return ext_view('home.search', compact('allSearch', 'fields', 'isSearchPage'));
     }
 
     public function setLocale()

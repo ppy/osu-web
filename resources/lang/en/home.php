@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'search in forums',
                 'forum_children' => 'include subforums',
+                'include_deleted' => 'include deleted posts',
                 'topic_id' => 'topic #',
                 'username' => 'author',
             ],
