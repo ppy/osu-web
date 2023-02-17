@@ -209,6 +209,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Terdapat pengumuman baru pada ":name"',
+            ],
+
             'channel' => [
                 'pm' => 'Kamu menerima pesan baru dari :username',
             ],

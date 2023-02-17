@@ -100,12 +100,15 @@ return [
         'scores_controller' => [
             '_' => 'performance',
         ],
+        'seasons_controller' => [
+            '_' => '',
+        ],
         'tournaments_controller' => [
             '_' => 'tournaments',
         ],
         'users_controller' => [
             '_' => 'player info',
-            'create' => '',
+            'create' => 'maglikha ng account',
             'disabled' => 'abiso',
         ],
         'wiki_controller' => [

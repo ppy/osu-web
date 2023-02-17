@@ -5,7 +5,6 @@
 
 namespace App\Libraries\Fulfillments;
 
-use App\Models\Store\OrderItem;
 use App\Models\User;
 use App\Models\UserDonation;
 use Carbon\Carbon;
@@ -16,23 +15,17 @@ use DB;
  */
 class ApplySupporterTag extends OrderItemFulfillment
 {
+    public static function addDuration(Carbon $time, int $duration): Carbon
+    {
+        // round(365 / 12 * 24) = 730
+        // (it's 730.485 if accounting actual year (365.2425) but still close enough)
+        return $time->addHours($duration * 730);
+    }
+
     private int $amount;
     private int $duration;
     private User $donor;
     private User $target;
-
-    public function __construct(OrderItem $orderItem)
-    {
-        parent::__construct($orderItem);
-
-        $extraData = $orderItem->extra_data;
-
-        $this->amount = $orderItem->cost;
-        $this->duration = $extraData->duration;
-
-        $this->donor = User::findOrFail($orderItem->order->user_id);
-        $this->target = User::findOrFail($extraData->targetId);
-    }
 
     public function cancelledTransactionId()
     {
@@ -46,6 +39,8 @@ class ApplySupporterTag extends OrderItemFulfillment
      */
     public function run()
     {
+        $this->setup();
+
         DB::transaction(function () {
             // check if transaction was already applied.
             if (UserDonation::where('transaction_id', $this->getTransactionId())->count() > 0) {
@@ -71,6 +66,8 @@ class ApplySupporterTag extends OrderItemFulfillment
      */
     public function revoke()
     {
+        $this->setup();
+
         DB::transaction(function () {
             // cancel only if applied.
             if (UserDonation::where('transaction_id', $this->cancelledTransactionId())->count() > 0) {
@@ -117,16 +114,27 @@ class ApplySupporterTag extends OrderItemFulfillment
     {
         // start fresh if was an existing subscriber and expired.
         // null < $now = true.
-        $now = Carbon::now();
-        $old = $this->target->osu_subscriptionexpiry < $now ? $now : $this->target->osu_subscriptionexpiry;
-        $this->target->osu_subscriptionexpiry = $old->addMonthsNoOverflow($this->duration);
+        $new = static::addDuration(max(Carbon::now(), $this->target->osu_subscriptionexpiry), $this->duration);
+        $this->target->osu_subscriptionexpiry = $new;
         $this->target->osu_subscriber = true;
     }
 
     private function revokeSubscription()
     {
-        $old = $this->target->osu_subscriptionexpiry;
-        $this->target->osu_subscriptionexpiry = $old->subMonthsNoOverflow($this->duration);
-        $this->target->osu_subscriber = Carbon::now()->diffInMinutes($old, false) > 0;
+        $previous = static::addDuration($this->target->osu_subscriptionexpiry, -$this->duration);
+        $this->target->osu_subscriptionexpiry = $previous;
+        $this->target->osu_subscriber = Carbon::now()->diffInMinutes($previous, false) > 0;
+    }
+
+    private function setup()
+    {
+        /** @var ExtraDataSupporterTag $extraData */
+        $extraData = $this->orderItem->extra_data;
+
+        $this->amount = $this->orderItem->cost;
+        $this->duration = $extraData->duration;
+
+        $this->donor = User::findOrFail($this->orderItem->order->user_id);
+        $this->target = User::findOrFail($extraData->targetId);
     }
 }

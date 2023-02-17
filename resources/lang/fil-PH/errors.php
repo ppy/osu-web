@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => 'Nabigong mag-load ng data.',
     'missing_route' => 'Di-wastong url o maling paraan ng paghiling.',
     'no_restricted_access' => 'Hindi mo magagawa ang aksyon na ito habang ang iyong account ay nasa isang pinaghihigpitang estado.',
     'supporter_only' => 'Dapat isa kang tagasuporta ng osu! upang gamitin ang tampok na ito.',

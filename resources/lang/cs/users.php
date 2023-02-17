@@ -54,16 +54,16 @@ return [
 
     'create' => [
         'form' => [
-            'password' => '',
-            'password_confirmation' => '',
-            'submit' => '',
-            'user_email' => '',
-            'user_email_confirmation' => '',
-            'username' => '',
+            'password' => 'heslo',
+            'password_confirmation' => 'potvrzení hesla',
+            'submit' => 'vytvořit účet',
+            'user_email' => 'email',
+            'user_email_confirmation' => 'ověření e-mailu',
+            'username' => 'uživatelské jméno',
 
             'tos_notice' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'vytvořením účtu souhlasíte s :link',
+                'link' => 'smluvní podmínky',
             ],
         ],
     ],
@@ -158,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'Tvůj účet byl omezen!',
         'message' => 'Zatímco jsi omezený, nebudeš moci komunikovat s ostatními hráči a tvá skóre budou viditelná pouze pro tebe. Toto je obvykle výsledkem automatického procesu, který by se měl sám vyřešit nejpozději do 24 hodin. Pokud si přeješ odvolat své omezení, prosím <a href="mailto:accounts@ppy.sh">kontaktuj podporu</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age let',
@@ -467,8 +468,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
-        'from_client' => '',
-        'from_web' => '',
+        'from_client' => 'prosím, zaregistrujte se přes herního klienta!',
+        'from_web' => 'prosím dokončete registraci na webové stránce osu!',
         'saved' => 'Uživatelem vytvořen',
     ],
     'verify' => [

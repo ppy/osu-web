@@ -100,12 +100,15 @@ return [
         'scores_controller' => [
             '_' => 'našumas',
         ],
+        'seasons_controller' => [
+            '_' => '',
+        ],
         'tournaments_controller' => [
             '_' => 'turnyrai',
         ],
         'users_controller' => [
             '_' => 'žaidėjo informacija',
-            'create' => '',
+            'create' => 'kurti paskyrą',
             'disabled' => 'pastaba',
         ],
         'wiki_controller' => [

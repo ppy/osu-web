@@ -100,12 +100,15 @@ return [
         'scores_controller' => [
             '_' => 'desempenho',
         ],
+        'seasons_controller' => [
+            '_' => '',
+        ],
         'tournaments_controller' => [
             '_' => 'torneios',
         ],
         'users_controller' => [
             '_' => 'informação do jogador',
-            'create' => '',
+            'create' => 'criar conta',
             'disabled' => 'aviso',
         ],
         'wiki_controller' => [

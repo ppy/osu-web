@@ -100,12 +100,15 @@ return [
         'scores_controller' => [
             '_' => 'performa',
         ],
+        'seasons_controller' => [
+            '_' => '',
+        ],
         'tournaments_controller' => [
             '_' => 'turnamen',
         ],
         'users_controller' => [
             '_' => 'info pemain',
-            'create' => '',
+            'create' => 'buat akun',
             'disabled' => 'pemberitahuan',
         ],
         'wiki_controller' => [

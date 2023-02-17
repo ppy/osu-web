@@ -1,6 +1,7 @@
 version: '3.4'
 
 x-env: &x-env
+  APP_KEY: "${APP_KEY}"
   BEATMAPS_DIFFICULTY_CACHE_SERVER_URL: http://beatmap-difficulty-lookup-cache:5000
   BROADCAST_DRIVER: redis
   CACHE_DRIVER: redis
@@ -11,6 +12,7 @@ x-env: &x-env
   ES_SOLO_SCORES_HOST: http://elasticsearch:9200
   GITHUB_TOKEN: "${GITHUB_TOKEN}"
   NOTIFICATION_REDIS_HOST: redis
+  PASSPORT_PUBLIC_KEY: "${PASSPORT_PUBLIC_KEY:-}"
   REDIS_HOST: redis
   SESSION_DRIVER: redis
 
@@ -57,6 +59,8 @@ services:
 
   beatmap-difficulty-lookup-cache:
     image: pppy/osu-beatmap-difficulty-lookup-cache
+    ports:
+      - "${BEATMAPS_DIFFICULTY_CACHE_EXTERNAL_PORT:-5000}:80"
 
   notification-server:
     image: pppy/osu-notification-server
@@ -70,6 +74,8 @@ services:
       - ./storage/oauth-public.key:/app/oauth-public.key
     environment:
       <<: *x-env
+    ports:
+      - "${NOTIFICATION_EXTERNAL_PORT:-2345}:2345"
 
   notification-server-dusk:
     image: pppy/osu-notification-server

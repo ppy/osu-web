@@ -210,6 +210,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Új hirdetmény van ":name" csatornában',
+            ],
+
             'channel' => [
                 'pm' => 'Új üzenetet kaptál tőle::username',
             ],

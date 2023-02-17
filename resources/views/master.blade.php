@@ -8,6 +8,8 @@
     $currentSection = $currentRoute['section'];
     $currentAction = $currentRoute['action'];
 
+    $currentUser = Auth::user();
+
     $titleTree = [];
 
     if (isset($titleOverride)) {
@@ -64,18 +66,27 @@
         <div id="overlay" class="blackout blackout--overlay" style="display: none;"></div>
         <div class="blackout js-blackout" data-visibility="hidden"></div>
 
-        @if (Auth::user() && Auth::user()->isRestricted())
+        @if ($currentUser !== null && $currentUser->isRestricted())
             @include('objects._notification_banner', [
                 'type' => 'alert',
                 'title' => osu_trans('users.restricted_banner.title'),
-                'message' => osu_trans('users.restricted_banner.message'),
+                'message' => osu_trans('users.restricted_banner.message', [
+                    'link' => tag(
+                        'a',
+                        ['href' => config('osu.urls.user.restriction')],
+                        osu_trans('users.restricted_banner.message_link'),
+                    ),
+                ]),
             ])
         @endif
 
         @if (!isset($blank))
             @include("layout.header")
 
-            <div class="osu-page osu-page--notification-banners js-notification-banners">
+            <div
+                class="osu-page osu-page--notification-banners js-notification-banners js-sync-height--reference"
+                data-sync-height-target="notification-banners"
+            >
                 @stack('notification_banners')
             </div>
         @endif

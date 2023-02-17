@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "../../resources/assets/lib",
+    "baseUrl": "../../resources/js",
     "experimentalDecorators": true,
     "sourceMap": true,
     "jsx": "react",
@@ -14,7 +14,7 @@
     "target": "es2015",
   },
   "include": [
-    "../../resources/assets/lib",
+    "../../resources/js",
     ".",
   ]
 }

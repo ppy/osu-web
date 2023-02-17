@@ -80,8 +80,8 @@ class HomeController extends Controller
             ($agent->isiOS() || $agent->isiPadOS()) => $platform = 'ios',
             // FIXME: Figure out a way to differentiate Intel and Apple Silicon.
             $agent->is('OS X') => 'macos_as',
-            $agent->is('Linux') => 'linux_x64',
             $agent->isAndroidOS() => 'android',
+            $agent->is('Linux') => 'linux_x64',
             default => 'windows_x64',
         };
 

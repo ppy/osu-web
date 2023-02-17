@@ -100,12 +100,15 @@ return [
         'scores_controller' => [
             '_' => 'продуктивність',
         ],
+        'seasons_controller' => [
+            '_' => '',
+        ],
         'tournaments_controller' => [
             '_' => 'турніри',
         ],
         'users_controller' => [
             '_' => 'інформація про гравця',
-            'create' => '',
+            'create' => 'створити обліковий запис',
             'disabled' => 'увага',
         ],
         'wiki_controller' => [

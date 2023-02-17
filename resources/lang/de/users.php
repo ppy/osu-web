@@ -54,16 +54,16 @@ return [
 
     'create' => [
         'form' => [
-            'password' => '',
-            'password_confirmation' => '',
-            'submit' => '',
-            'user_email' => '',
-            'user_email_confirmation' => '',
-            'username' => '',
+            'password' => 'passwort',
+            'password_confirmation' => 'passwort bestätigen',
+            'submit' => 'account erstellen',
+            'user_email' => 'e-mail',
+            'user_email_confirmation' => 'e-mail bestätigen',
+            'username' => 'benutzername',
 
             'tos_notice' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'durch die erstellung eines accounts bist du mit den :link einverstanden',
+                'link' => 'nutzungsbedingungen',
             ],
         ],
     ],
@@ -158,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'Dein Account wurde restricted!',
         'message' => 'Während du restricted bist, kannst du nicht mit anderen Spielern interagieren und deine Ranglistenscores sind nur für dich sichtbar. Dies passiert normalerweise durch einen automatischen Prozess und wird üblicherweise innerhalb von 24 Stunden aufgehoben. Wenn du Einspruch gegen deine Restriction erheben möchtest, wende dich bitte an <a href="mailto:accounts@ppy.sh">den Support</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age Jahre alt',
@@ -467,8 +468,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
-        'from_client' => '',
-        'from_web' => '',
+        'from_client' => 'Bitte registriere dich stattdessen über den Spiel-Client!',
+        'from_web' => 'Bitte melde dich über die osu!-Webseite an',
         'saved' => 'Benutzer erstellt',
     ],
     'verify' => [

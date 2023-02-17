@@ -158,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'Du konto er blevet begrænset!',
         'message' => 'Når du er begrænset, kan du ikke interagere med andre spillere, og dine scores vil kun være synlige for dig. Dette er som regel en automatisk proces, og begrænsningen vil blive fjernet indenfor 24 timer. Hvis du ønsker at appellere din begrænsning, <a href="mailto:accounts@ppy.sh">kontakt supporten</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age år gammel',

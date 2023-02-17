@@ -23,6 +23,14 @@ return [
         'multiplayer' => '',
         'performance' => 'Επίδοσης',
         'score' => 'Σκορ',
+        'seasons' => '',
+    ],
+
+    'seasons' => [
+        'empty' => '',
+        'ongoing' => '',
+        'room_count' => '',
+        'url' => '',
     ],
 
     'spotlight' => [

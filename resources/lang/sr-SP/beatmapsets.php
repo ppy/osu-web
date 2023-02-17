@@ -71,7 +71,7 @@ return [
             'favourite_login' => 'Пријави се како би означили мапу као омиљену',
             'logged-out' => 'Мораш се пријавити пре преузимања било које мапе!',
             'mapped_by' => 'маповано од стране :mapper',
-            'mapped_by_guest' => '',
+            'mapped_by_guest' => 'тешкоћа госта од :mapper',
             'unfavourite' => 'Уклони мапу са ознаке омиљено',
             'updated_timeago' => 'последњи пут ажурирано :timeago',
 

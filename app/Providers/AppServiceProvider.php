@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Request;
 use Illuminate\Queue\Events\JobProcessed;
 use Illuminate\Support\ServiceProvider;
+use Knuckles\Scribe\Scribe;
 use Laravel\Octane\Contracts\DispatchesTasks;
 use Laravel\Octane\SequentialTaskDispatcher;
 use Laravel\Octane\Swoole\SwooleTaskDispatcher;
@@ -85,6 +86,10 @@ class AppServiceProvider extends ServiceProvider
         app('url')->forceScheme(substr(config('app.url'), 0, 5) === 'https' ? 'https' : 'http');
 
         Request::setTrustedProxies(config('trustedproxy.proxies'), config('trustedproxy.headers'));
+
+        // newest scribe tries to rename {modelName} parameters to {id}
+        // but it kind of doesn't work with our route handlers.
+        Scribe::normalizeEndpointUrlUsing(fn ($url) => $url);
     }
 
     /**

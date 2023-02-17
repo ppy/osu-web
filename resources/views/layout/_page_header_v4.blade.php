@@ -20,14 +20,14 @@
     @if ($theme !== null)
         header-v4--{{ $theme }}
     @endif
-    @if ($currentUser !== null && ($currentUser->isRestricted() || ($currentActive === 'account_controller.edit' && $currentUser->isSilenced())))
-        header-v4--restricted
-    @endif
     {{ $headerExtraClass }}
 ">
     <div class="header-v4__container header-v4__container--main">
         <div class="header-v4__bg-container">
             <div class="header-v4__bg {{ $backgroundExtraClass }}" {!! background_image($backgroundImage ?? null, false) !!}></div>
+        </div>
+
+        <div class="hidden-xs js-sync-height--target" data-sync-height-id="notification-banners">
         </div>
 
         <div class="header-v4__content">

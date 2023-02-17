@@ -158,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'Vaš račun je organičen!',
         'message' => 'Dok ste ograničeni, nećete moći komunicirati s drugim igračima i vaši rezultati će biti vidljivi samo Vama. To je obični rezultat automatskog procesa i obično će se ukloniti u roku od 24 sata. Ako se želite apelovati na Vaše ograničenje, molimo <a href="mailto:accounts@ppy.sh">kontaktirajte podršku</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age godina',

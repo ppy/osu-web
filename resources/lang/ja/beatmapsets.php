@@ -66,7 +66,7 @@ return [
             'favourite_login' => 'ログインしてこのビートマップをお気に入りに登録する',
             'logged-out' => 'ビートマップをダウンロードするにはログインが必要です！',
             'mapped_by' => '作者 :mapper',
-            'mapped_by_guest' => '',
+            'mapped_by_guest' => ':mapper によるゲスト難易度',
             'unfavourite' => 'このビートマップをお気に入りから削除する',
             'updated_timeago' => '最終更新 :timeago',
 

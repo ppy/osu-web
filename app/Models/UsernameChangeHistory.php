@@ -15,11 +15,11 @@ namespace App\Models;
  */
 class UsernameChangeHistory extends Model
 {
+    public $timestamps = false;
+
+    protected $casts = ['timestamp' => 'datetime'];
     protected $table = 'osu_username_change_history';
     protected $primaryKey = 'change_id';
-
-    protected $dates = ['timestamp'];
-    public $timestamps = false;
 
     public function scopeVisible($query)
     {

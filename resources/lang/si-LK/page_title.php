@@ -100,6 +100,9 @@ return [
         'scores_controller' => [
             '_' => '',
         ],
+        'seasons_controller' => [
+            '_' => '',
+        ],
         'tournaments_controller' => [
             '_' => '',
         ],

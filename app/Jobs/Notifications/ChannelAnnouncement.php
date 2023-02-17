@@ -11,6 +11,8 @@ use App\Models\User;
 
 class ChannelAnnouncement extends BroadcastNotificationBase
 {
+    const DELIVERY_MODE_DEFAULTS = ['mail' => true, 'push' => true];
+
     protected $message;
 
     public static function getBaseKey(Notification $notification): string
@@ -32,10 +34,13 @@ class ChannelAnnouncement extends BroadcastNotificationBase
 
     public function getDetails(): array
     {
+        $channel = $this->message->channel;
+
         return [
-            'channel_id' => $this->message->channel->getKey(),
+            'channel_id' => $channel->getKey(),
+            'name' => $channel->name,
             'title' => truncate($this->message->content, static::CONTENT_TRUNCATE),
-            'type' => strtolower($this->message->channel->type),
+            'type' => strtolower($channel->type),
             'cover_url' => $this->source->user_avatar,
         ];
     }

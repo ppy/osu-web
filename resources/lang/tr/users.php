@@ -54,16 +54,16 @@ return [
 
     'create' => [
         'form' => [
-            'password' => '',
-            'password_confirmation' => '',
-            'submit' => '',
-            'user_email' => '',
-            'user_email_confirmation' => '',
-            'username' => '',
+            'password' => 'şifre',
+            'password_confirmation' => 'şifre onayı',
+            'submit' => 'hesap oluştur',
+            'user_email' => 'e-posta',
+            'user_email_confirmation' => 'e-posta onayı',
+            'username' => 'kullanıcı adı',
 
             'tos_notice' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'hesap oluşturarak :link kabul edersiniz',
+                'link' => 'hizmet şartları\'nı',
             ],
         ],
     ],
@@ -158,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'Hesabınız kısıtlandı!',
         'message' => 'Kısıtlanmışken, diğer oyuncularla etkileşime geçemeyecek ve skorlarınızı sadece siz görebileceksiniz. Bu genellikle otomatik olan bir işlemin sonucudur ve 24 saat içerisinde kalkabilir. Kısıtlamanızın açılması için başvurmak istiyorsanız, lütfen <a href="mailto:accounts@ppy.sh">destek hattıyla</a> iletişime geçin.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age yaşında',
@@ -467,8 +468,8 @@ return [
         'offline' => 'Çevrimdışı',
     ],
     'store' => [
-        'from_client' => '',
-        'from_web' => '',
+        'from_client' => 'lütfen bunun yerine oyun istemcisi ile kaydolun!',
+        'from_web' => 'lütfen kayıt işleminizi osu! web sitesinde tamamlayın',
         'saved' => 'Kullanıcı oluşturuldu',
     ],
     'verify' => [

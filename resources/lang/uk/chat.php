@@ -8,6 +8,7 @@ return [
     'talking_in' => 'чат в :channel',
     'talking_with' => 'чат з :name',
     'title_compact' => 'чат',
+    'unread_messages' => 'непрочитані повідомлення',
 
     'cannot_send' => [
         'channel' => 'Ви не можете написати повідомлення в цей канал, це обумовлено однією з наступних причин:',
@@ -35,6 +36,7 @@ return [
 
         'labels' => [
             'description' => 'опис',
+            'message' => 'повідомлення',
             'name' => 'назва кімнати',
             'users' => 'додавання гравців',
         ],

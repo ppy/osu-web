@@ -209,6 +209,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Hi ha un nou anunci a ":name"',
+            ],
+
             'channel' => [
                 'pm' => 'Has rebut un nou missatge de :username',
             ],

@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => 'Учитавање података није успело.',
     'missing_route' => 'Невалидан линк или погрешна метода захтева.',
     'no_restricted_access' => 'Не можете извршити ову акцију док је Ваш налог у ограниченом стању.',
     'supporter_only' => 'Морате бити osu!supporter да би сте користили ову опцију.',

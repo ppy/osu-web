@@ -54,16 +54,16 @@ return [
 
     'create' => [
         'form' => [
-            'password' => '',
-            'password_confirmation' => '',
-            'submit' => '',
-            'user_email' => '',
-            'user_email_confirmation' => '',
-            'username' => '',
+            'password' => 'hasło',
+            'password_confirmation' => 'potwierdź hasło',
+            'submit' => 'utwórz konto',
+            'user_email' => 'e-mail',
+            'user_email_confirmation' => 'potwierdź e-mail',
+            'username' => 'nazwa użytkownika',
 
             'tos_notice' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'tworząc konto, wyrażasz zgodę na :link',
+                'link' => 'warunki świadczenia usług',
             ],
         ],
     ],
@@ -158,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'Twoje konto zostało zablokowane!',
         'message' => 'Podczas blokady konta interakcja z innymi użytkownikami nie będzie możliwa, a twoje wyniki będą widoczne tylko dla ciebie. Zazwyczaj nałożenie blokady jest rezultatem zautomatyzowanego procesu, a jej usunięcie powinno nastąpić w ciągu 24 godzin. Jeżeli chcesz odwołać się od blokady, skontaktuj się z <a href="mailto:accounts@ppy.sh">pomocą techniczną</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => 'Ma :age lat',
@@ -467,8 +468,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
-        'from_client' => '',
-        'from_web' => '',
+        'from_client' => 'zarejestruj się poprzez klient gry!',
+        'from_web' => 'ukończ proces rejestracji poprzez stronę osu!',
         'saved' => 'Użytkownik utworzony',
     ],
     'verify' => [

@@ -4,58 +4,60 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'loading_users' => '',
-    'talking_in' => '',
+    'loading_users' => 'ielādē lietotājus...',
+    'talking_in' => 'runā :channel',
     'talking_with' => 'runā ar :name',
     'title_compact' => 'čats',
+    'unread_messages' => '',
 
     'cannot_send' => [
-        'channel' => '',
-        'user' => '',
+        'channel' => 'Šobrīd šajā kanālā nav iespējams nosūtīt ziņojumus.',
+        'user' => 'Šobrīd jūs nevarat nosūtīt ziņu šim lietotājam.',
     ],
 
     'channels' => [
-        'confirm_part' => '',
-        'create' => '',
+        'confirm_part' => 'Vai vēlaties paslēpt šo kanālu? Jūs joprojām saņemsiet ziņas no šī kanāla.',
+        'create' => 'izveidot paziņojumu',
 
         'list' => [
             'title' => [
-                'ANNOUNCE' => '',
-                'GROUP' => '',
-                'PM' => '',
-                'PUBLIC' => '',
+                'ANNOUNCE' => 'Paziņojumi',
+                'GROUP' => 'Grupas',
+                'PM' => 'Privātās ziņas',
+                'PUBLIC' => 'Kanāli',
             ],
         ],
     ],
 
     'form' => [
         'title' => [
-            'announcement' => '',
+            'announcement' => 'Izveidot Jaunu Paziņojumu',
         ],
 
         'labels' => [
-            'description' => '',
-            'name' => '',
-            'users' => '',
+            'description' => 'apraksts',
+            'message' => '',
+            'name' => 'istabas nosaukums',
+            'users' => 'pievienojamie spēlētāji',
         ],
     ],
 
     'not_found' => [
-        'message' => '',
-        'title' => '',
+        'message' => 'Šeit nekā nav, varbūt jūs atstājāt kanālu vai tas neeksistē...',
+        'title' => 'kanāls nav atrasts',
     ],
 
     'input' => [
-        'create' => '',
-        'disabled' => 'neizdevās nosūtīt ziņu...',
+        'create' => 'Izveidot',
+        'disabled' => 'nevar nosūtīt ziņu...',
         'disconnected' => 'Atvienots',
         'placeholder' => 'rakstīt ziņu...',
         'send' => 'Sūtīt',
     ],
 
     'no-conversations' => [
-        'howto' => "",
-        'lazer' => '',
-        'title' => 'sarunas pagaidām nav',
+        'howto' => "Sākt sarunas no lietotāja profila vai lietotāja kartes uznirstošā loga.",
+        'lazer' => 'Publiskie kanāli, kuriem pievienojaties, izmantojot <a href=":link">osu!lazer</a>, būs redzami arī šeit.',
+        'title' => 'pagaidām nav sarunu',
     ],
 ];

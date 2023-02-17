@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => 'Data gagal dimuat.',
     'missing_route' => 'URL yang dituju tidak valid, atau terdapat suatu masalah dalam proses pengambilan data dari server.',
     'no_restricted_access' => 'Kamu tidak dapat melakukan tindakan ini ketika akunmu sedang di-restrict.',
     'supporter_only' => 'Kamu harus menjadi seorang osu!supporter untuk dapat menggunakan fitur ini.',

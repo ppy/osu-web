@@ -22,15 +22,13 @@
             $title = $search->getHighlights($entry, 'topic_title') ?? $topic->topic_title;
         }
     @endphp
-    <div class="search-result-entry">
-        <div class="{{ class_with_modifiers('search-entry', ['deleted' => $entry->source('is_deleted')]) }}">
-            @include('objects.search._forum_post', [
-                'user' => $user,
-                'title' => $title,
-                'link' => $postUrl,
-                'excerpt' => $search->getHighlights($entry, 'search_content') ?? str_limit($entry->source('search_content'), 100),
-                'time' => $entry->source('post_time'),
-            ])
-        </div>
+    <div class="{{ class_with_modifiers('search-entry', ['deleted' => $entry->source('is_deleted')]) }}">
+        @include('objects.search._forum_post', [
+            'user' => $user,
+            'title' => $title,
+            'link' => $postUrl,
+            'excerpt' => $search->getHighlights($entry, 'search_content') ?? str_limit($entry->source('search_content'), 100),
+            'time' => $entry->source('post_time'),
+        ])
     </div>
 @endforeach

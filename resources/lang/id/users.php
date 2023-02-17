@@ -54,16 +54,16 @@ return [
 
     'create' => [
         'form' => [
-            'password' => '',
-            'password_confirmation' => '',
-            'submit' => '',
-            'user_email' => '',
-            'user_email_confirmation' => '',
-            'username' => '',
+            'password' => 'kata sandi',
+            'password_confirmation' => 'konfirmasi kata sandi',
+            'submit' => 'buat akun',
+            'user_email' => 'email',
+            'user_email_confirmation' => 'konfirmasi email',
+            'username' => 'nama pengguna',
 
             'tos_notice' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'dengan membuat akun, anda menyatakan diri setuju dengan :link yang berlaku',
+                'link' => 'ketentuan layanan',
             ],
         ],
     ],
@@ -158,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'Akun Anda telah di-restrict!',
         'message' => 'Selama di-restrict, kamu tidak dapat berinteraksi dengan pengguna lain dan skormu hanya akan dapat dilihat oleh dirimu sendiri. Hal ini biasanya terproses secara otomatis dan akan diangkat dalam 24 jam. Apabila kamu ingin mengajukan banding, mohon <a href="mailto:accounts@ppy.sh">hubungi layanan dukungan</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age tahun',
@@ -467,8 +468,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
-        'from_client' => '',
-        'from_web' => '',
+        'from_client' => 'mohon untuk mendaftarkan diri melalui klien permainan!',
+        'from_web' => 'mohon selesaikan pendaftaran melalui situs web osu!',
         'saved' => 'Pengguna dibuat',
     ],
     'verify' => [

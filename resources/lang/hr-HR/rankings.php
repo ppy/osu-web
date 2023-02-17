@@ -25,6 +25,14 @@ return [
         'multiplayer' => 'multiplayer',
         'performance' => 'izvedba',
         'score' => 'bodovi',
+        'seasons' => '',
+    ],
+
+    'seasons' => [
+        'empty' => '',
+        'ongoing' => '',
+        'room_count' => '',
+        'url' => '',
     ],
 
     'spotlight' => [

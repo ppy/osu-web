@@ -8,6 +8,7 @@ return [
     'talking_in' => 'parlando in :channel',
     'talking_with' => 'parlando con :name',
     'title_compact' => 'chat',
+    'unread_messages' => 'messaggi non letti',
 
     'cannot_send' => [
         'channel' => 'Al momento non puoi inviare messaggi in questo canale.',
@@ -35,6 +36,7 @@ return [
 
         'labels' => [
             'description' => 'descrizione',
+            'message' => 'messaggia',
             'name' => 'nome stanza',
             'users' => 'giocatori da aggiungere',
         ],
