@@ -83,5 +83,5 @@ composer-installer
 /storage/htmlpurifier/
 /storage/paypal_auth.cache
 
-/database/ip2asn.idx
-/database/ip2asn.tsv
+/database/ip2asn/*.idx
+/database/ip2asn/*.tsv
