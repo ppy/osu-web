@@ -164,14 +164,8 @@ export default class Controller {
     items.splice(newIndex, 0, target);
     this.saveState();
 
-    const params: ScorePinReorderParams = {
-      score_id: target.current_user_attributes.pin.score_id,
-      score_type: target.current_user_attributes.pin.score_type,
-    };
-    const adjacentParams = {
-      score_id: adjacentScore.id,
-      score_type: adjacentScore.type,
-    };
+    const params: ScorePinReorderParams = target.current_user_attributes.pin;
+    const adjacentParams = adjacentScore.current_user_attributes.pin;
     if (currentIndex > newIndex) {
       // target will be above existing item at index
       params.order3 = adjacentParams;
