@@ -83,10 +83,12 @@ class Order extends Model
     protected $primaryKey = 'order_id';
 
     protected $casts = [
+        'deleted_at' => 'datetime',
+        'paid_at' => 'datetime',
+        'shipped_at' => 'datetime',
         'shipping' => 'float',
     ];
 
-    protected $dates = ['deleted_at', 'shipped_at', 'paid_at'];
     protected $macros = ['itemsQuantities'];
 
     protected static function splitTransactionId($value)

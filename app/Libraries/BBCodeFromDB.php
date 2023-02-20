@@ -180,6 +180,14 @@ class BBCodeFromDB
         return $text;
     }
 
+    public function parseInlineCode(string $text): string
+    {
+        return strtr($text, [
+            "[c:{$this->uid}]" => '<code>',
+            "[/c:{$this->uid}]" => '</code>',
+        ]);
+    }
+
     public function parseList($text)
     {
         // basic list.
@@ -308,6 +316,7 @@ class BBCodeFromDB
         $text = $this->parseAudio($text);
         $text = $this->parseBold($text);
         $text = $this->parseCentre($text);
+        $text = $this->parseInlineCode($text);
         $text = $this->parseColour($text);
         $text = $this->parseEmail($text);
         $text = $this->parseImage($text);

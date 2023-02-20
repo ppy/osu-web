@@ -31,6 +31,7 @@ return [
         'cart_problems_edit' => 'לחץ כאן כדי לערוך את זה.',
         'declined' => 'התשלום בוטל.',
         'delayed_shipping' => 'אנחנו כרגע עמוסים עם הזמנות! אתה מוזמן לבצע את ההזמנה שלך, אבל בבקשה צפה ל- **עיכוב נוסף של 1-2 שבועות** כאשר אנחנו מנסים להתמודד עם הזמנות קיימות.',
+        'hide_from_activity' => '',
         'old_cart' => 'נדמה שפג תוקף העגלה שלך והיא נטענה מחדש, אנא נסה שוב.',
         'pay' => 'תשלום עם Paypal',
         'title_compact' => 'תשלום',
@@ -50,6 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'מכיוון שהתשלום שלך היה eCheck, נא אפשר עד ל-- 10 ימים נוספים לתשלום לעבור דרך PayPal!',
+        'hide_from_activity' => '',
         'title_compact' => 'חשבונית',
 
         'status' => [
@@ -75,10 +77,15 @@ return [
         'shopify_expired' => 'לינק התשלום עבור המשלוח הזה לא בתוקף.',
 
         'item' => [
+            'quantity' => 'כמות',
+
             'display_name' => [
                 'supporter_tag' => ':name ל- :username (:duration)',
             ],
-            'quantity' => 'כמות',
+
+            'subtext' => [
+                'supporter_tag' => '',
+            ],
         ],
 
         'not_modifiable_exception' => [
@@ -120,6 +127,8 @@ return [
 
     'supporter_tag' => [
         'gift' => 'תן מתנה לשחקן',
+        'gift_message' => '',
+
         'require_login' => [
             '_' => 'הינך צריך להיות :link כדי להשיג תג osu!supporter!',
             'link_text' => 'מחובר',

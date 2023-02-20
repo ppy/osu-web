@@ -6,7 +6,7 @@
 return [
     'empty' => [
         '_' => 'Nem játszottál még egy osu!(lazer) :type_group játékot sem!',
-        'playlists' => 'lejátszási lista',
+        'playlists' => 'játéklista',
         'realtime' => 'többjátékos',
     ],
 

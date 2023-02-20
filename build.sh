@@ -70,3 +70,5 @@ if [ -z "${OSU_SKIP_ASSET_BUILD:-}" ]; then
 else
   echo "OSU_SKIP_ASSET_BUILD set, skipping javascript asset build."
 fi
+
+php artisan ip2asn:update

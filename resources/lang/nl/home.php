@@ -72,8 +72,21 @@ return [
     ],
 
     'download' => [
-        'tagline' => "laten we<br>beginnen!",
         'action' => 'Download osu!',
+        'action_lazer' => 'Download osu!(lazer)',
+        'action_lazer_description' => 'de volgende grote update voor osu!',
+        'action_lazer_info' => 'bekijk deze pagina voor meer informatie',
+        'action_lazer_title' => 'probeer osu!(lazer)',
+        'action_title' => 'download osu!',
+        'for_os' => 'voor :os',
+        'lazer_note' => 'opmerking: leaderboard resets zijn van toepassing',
+        'macos-fallback' => 'macOS gebruikers',
+        'mirror' => 'mirror',
+        'or' => 'of',
+        'other_os' => 'andere platformen',
+        'quick_start_guide' => 'snelstartgids',
+        'tagline' => "laten we<br>beginnen!",
+        'video-guide' => 'videogids',
 
         'help' => [
             '_' => 'als je problemen hebt met het opstarten van het spel of wanneer je een account wilt aanmaken, neem dan een kijkje op het :help_forum_link of neem contact op met :support_button.',
@@ -86,8 +99,6 @@ return [
             'macos' => 'voor macOS',
             'linux' => 'voor Linux',
         ],
-        'mirror' => 'mirror',
-        'macos-fallback' => 'macOS gebruikers',
         'steps' => [
             'register' => [
                 'title' => 'maak een account',
@@ -105,7 +116,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'videogids',
     ],
 
     'user' => [

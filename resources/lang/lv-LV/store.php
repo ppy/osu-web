@@ -31,6 +31,7 @@ return [
         'cart_problems_edit' => '',
         'declined' => '',
         'delayed_shipping' => '',
+        'hide_from_activity' => 'Slēpt visus osu!supporter tagus šajā pasūtījumā no manas aktivitātes',
         'old_cart' => '',
         'pay' => '',
         'title_compact' => '',
@@ -50,6 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => '',
+        'hide_from_activity' => 'osu!supporter tagi šajā pasūtījumā netiek rādīti jūsu nesenajās aktivitātēs.',
         'title_compact' => '',
 
         'status' => [
@@ -75,10 +77,15 @@ return [
         'shopify_expired' => '',
 
         'item' => [
+            'quantity' => 'Daudzums',
+
             'display_name' => [
                 'supporter_tag' => ':name priekš :username (:duration)',
             ],
-            'quantity' => 'Daudzums',
+
+            'subtext' => [
+                'supporter_tag' => '',
+            ],
         ],
 
         'not_modifiable_exception' => [
@@ -120,8 +127,10 @@ return [
 
     'supporter_tag' => [
         'gift' => '',
+        'gift_message' => '',
+
         'require_login' => [
-            '_' => '',
+            '_' => 'Jums ir nepiciešams būt :link, lai iegūtu osu!supporter!',
             'link_text' => '',
         ],
     ],

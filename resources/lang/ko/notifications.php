@@ -160,8 +160,8 @@ return [
                 'user_beatmapset_new_compact' => '새 비트맵 ":title"',
                 'user_beatmapset_new_group' => ':username 님의 새 비트맵',
 
-                'user_beatmapset_revive' => '비트맵 ":title" 이(가) :username 님에게 리뷰 받음',
-                'user_beatmapset_revive_compact' => '비트맵 ":title" 이(가) 리뷰 받음',
+                'user_beatmapset_revive' => '비트맵 ":title" 이(가) :username 님에 의해 부활함',
+                'user_beatmapset_revive_compact' => '비트맵 ":title" 이(가) 부활함',
             ],
         ],
 
@@ -209,6 +209,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => '":name"에 새로운 공지가 있습니다',
+            ],
+
             'channel' => [
                 'pm' => ':username 님에게 새로운 메시지를 받았습니다.',
             ],

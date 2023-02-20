@@ -45,11 +45,11 @@ class Event extends Model
         'usernameChange' => "!^<b><a href='(?<userUrl>.+?)'>(?<previousUsername>.+?)</a></b> has changed their username to (?<userName>.+)\!$!",
     ];
 
-    protected $table = 'osu_events';
-    protected $primaryKey = 'event_id';
-
-    protected $dates = ['date'];
     public $timestamps = false;
+
+    protected $casts = ['date' => 'datetime'];
+    protected $primaryKey = 'event_id';
+    protected $table = 'osu_events';
 
     public static function generate($type, $options)
     {

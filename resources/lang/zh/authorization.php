@@ -34,7 +34,7 @@ return [
             'bot' => "不能对机器人的讨论投票",
             'limit_exceeded' => '请稍等后再投票。',
             'owner' => "不能为自己的讨论投票！",
-            'wrong_beatmapset_state' => '只能给 pending 谱面的讨论投票。',
+            'wrong_beatmapset_state' => '只能给待定 (Pending) 谱面的讨论投票。',
         ],
     ],
 
@@ -48,7 +48,7 @@ return [
         'edit' => [
             'not_owner' => '只有作者可以编辑。',
             'resolved' => '你不能编辑已解决讨论里的帖子。',
-            'system_generated' => '无法编辑自动回复。',
+            'system_generated' => '自动生成的帖子无法被编辑。',
         ],
 
         'store' => [

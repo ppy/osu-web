@@ -5,27 +5,27 @@
 
 return [
     'comment' => [
-        'empty' => '',
-        'page_title' => '',
-        'title' => '',
+        'empty' => 'No hi ha comentaris seguits.',
+        'page_title' => 'llista de comentaris seguits',
+        'title' => 'comentari',
 
         'table' => [
-            'latest_comment_empty' => '',
-            'latest_comment_value' => '',
+            'latest_comment_empty' => 'no hi ha comentaris',
+            'latest_comment_value' => ':time per :username',
         ],
     ],
 
     'forum_topic' => [
-        'title' => '',
+        'title' => 'tema del fòrum',
     ],
 
     'index' => [
-        'title_compact' => '',
+        'title_compact' => 'llistes de seguiment',
     ],
 
     'mapping' => [
         'empty' => 'No s\'ha mirat cap mapejador.',
-        'followers' => '',
+        'followers' => 'subscriptors de mapping',
         'page_title' => 'llista de seguiment de mapejadors',
         'title' => 'mapejador',
         'to_0' => 'deixar de notificar-me quan aquest usuari pugi un nou beatmap',

@@ -100,11 +100,15 @@ return [
         'scores_controller' => [
             '_' => '成績',
         ],
+        'seasons_controller' => [
+            '_' => '',
+        ],
         'tournaments_controller' => [
             '_' => '官方比賽',
         ],
         'users_controller' => [
             '_' => '玩家資訊',
+            'create' => '',
             'disabled' => '通知',
         ],
         'wiki_controller' => [

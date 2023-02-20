@@ -103,29 +103,29 @@ class Manifest {
 // #endregion
 
 // #region entrypoints and output
-const entry = {
-  app: [
-    './resources/assets/less/app.less',
-  ],
-};
+const entry = {};
+const entrypointDirs = [
+  'resources/css/entrypoints',
+  'resources/js/entrypoints',
+];
+const supportedExts = new Set(['.coffee', '.less', '.ts', '.tsx']);
+for (const entrypointsPath of entrypointDirs) {
+  fs.readdirSync(resolvePath(entrypointsPath), { withFileTypes: true }).forEach((item) => {
+    if (item.isFile()) {
+      const filename = item.name;
+      const ext = path.extname(filename);
 
-const entrypointsPath = 'resources/assets/lib/entrypoints';
-const supportedExts = new Set(['.coffee', '.ts', '.tsx']);
-fs.readdirSync(resolvePath(entrypointsPath), { withFileTypes: true }).forEach((item) => {
-  if (item.isFile()) {
-    const filename = item.name;
-    const ext = path.extname(filename);
+      if (supportedExts.has(ext)) {
+        const entryName = path.basename(filename, ext);
 
-    if (supportedExts.has(ext)) {
-      const entryName = path.basename(filename, ext);
-
-      if (entry[entryName] == null) {
-        entry[entryName] = [];
+        if (entry[entryName] == null) {
+          entry[entryName] = [];
+        }
+        entry[entryName].push(resolvePath(entrypointsPath, filename));
       }
-      entry[entryName].push(resolvePath(entrypointsPath, filename));
     }
-  }
-});
+  });
+}
 
 const output = {
   filename: outputFilename('js/[name]', 'js'),
@@ -157,7 +157,7 @@ const plugins = [
   }),
   new CopyPlugin({
     patterns: [
-      { from: 'resources/assets/build/locales', to: outputFilename('js/locales/[name]') },
+      { from: 'resources/builds/locales', to: outputFilename('js/locales/[name]') },
       { from: 'node_modules/moment/locale', to: outputFilename('js/moment-locales/[name]') },
       { from: 'node_modules/@discordapp/twemoji/dist/svg/*-*.svg', to: 'images/flags/[name].[ext]' },
     ],
@@ -189,6 +189,12 @@ if (process.env.SENTRY_RELEASE === '1') {
       release: process.env.GIT_SHA,
     }),
   );
+}
+
+const notifierConfigPath = resolvePath('.webpack-build-notifier-config.js');
+if (fs.existsSync(notifierConfigPath)) {
+  const WebpackBuildNotifierPlugin = require('webpack-build-notifier');
+  plugins.push(new WebpackBuildNotifierPlugin(require(notifierConfigPath)));
 }
 
 // #endregion
@@ -256,16 +262,14 @@ const rules = [
 // #region resolvers
 const resolve = {
   alias: {
-    '@fonts': path.resolve(__dirname, 'resources/assets/fonts'),
+    '@fonts': path.resolve(__dirname, 'resources/fonts'),
     '@images': path.resolve(__dirname, 'public/images'),
-    layzr: resolvePath('node_modules/layzr.js/dist/layzr.module.js'),
     'ziggy-route': resolvePath('vendor/tightenco/ziggy/dist/index.es.js'),
   },
   extensions: ['*', '.js', '.coffee', '.ts', '.tsx'],
   modules: [
-    resolvePath('resources/assets/build'),
-    resolvePath('resources/assets/lib'),
-    resolvePath('resources/assets/coffee'),
+    resolvePath('resources/builds'),
+    resolvePath('resources/js'),
     resolvePath('node_modules'),
   ],
   plugins: [new TsconfigPathsPlugin()],
@@ -274,6 +278,15 @@ const resolve = {
 // #endregion
 
 // #region optimization and chunk splitting settings
+function partialPathCheck(pathCheck, partialPathArray) {
+  return pathCheck.includes(['', ...partialPathArray, ''].join(path.sep));
+}
+
+const docsOnlyLibraries = [
+  ['node_modules', 'highlight.js'],
+  ['node_modules', 'jets'],
+];
+
 const cacheGroups = {
   commons: {
     chunks: 'initial',
@@ -287,7 +300,10 @@ const cacheGroups = {
     priority: -10,
     reuseExistingChunk: true,
     // Doing it this way doesn't split the css imported via app.less from the main css bundle.
-    test: (module) => module.resource && module.resource.includes(`${path.sep}node_modules${path.sep}`),
+    test: (module) => module.resource && (
+      partialPathCheck(module.resource, ['node_modules'])
+      && docsOnlyLibraries.every((p) => !partialPathCheck(module.resource, p))
+    ),
   },
 };
 

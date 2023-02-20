@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => 'データの読み込みに失敗しました。',
     'missing_route' => '不正なURLまたは不正なリクエストです。',
     'no_restricted_access' => 'アカウントが制限されている状態では実行できません。',
     'supporter_only' => 'osu!サポーター限定の機能です。',

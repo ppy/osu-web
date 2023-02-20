@@ -72,8 +72,21 @@ return [
     ],
 
     'download' => [
-        'tagline' => "ну ж бо<br>розпочнімо!",
         'action' => 'Завантажити osu!',
+        'action_lazer' => 'Завантажити osu!(lazer)',
+        'action_lazer_description' => 'наступне глобальне оновлення osu!',
+        'action_lazer_info' => 'перейдіть на цю сторінку для того що дізнатись більше інформації',
+        'action_lazer_title' => 'спробуйте osu!(lazer)',
+        'action_title' => 'завантажити osu!',
+        'for_os' => 'для :os',
+        'lazer_note' => 'примітка: таблиці лідерів можуть бути скинуті',
+        'macos-fallback' => 'для macOS',
+        'mirror' => 'дзеркало',
+        'or' => 'або',
+        'other_os' => 'інші платформи',
+        'quick_start_guide' => 'короткий посібник',
+        'tagline' => "ну ж бо<br>розпочнімо!",
+        'video-guide' => 'відео інструкція',
 
         'help' => [
             '_' => 'якщо у вас є проблеми з запуском гри або реєстрацією облікового запису, :help_forum_link або :support_button.',
@@ -86,8 +99,6 @@ return [
             'macos' => 'для macOS',
             'linux' => 'для Linux',
         ],
-        'mirror' => 'дзеркало',
-        'macos-fallback' => 'для macOS',
         'steps' => [
             'register' => [
                 'title' => 'створіть обліковий запис',
@@ -105,7 +116,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'відео інструкція',
     ],
 
     'user' => [

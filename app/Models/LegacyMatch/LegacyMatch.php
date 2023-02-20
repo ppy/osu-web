@@ -36,15 +36,12 @@ class LegacyMatch extends Model
 
     public $timestamps = false;
 
-    protected $primaryKey = 'match_id';
-    protected $hidden = ['private', 'keep_forever'];
     protected $casts = [
         'keep_forever' => 'boolean',
+        'start_time' => 'datetime',
+        'end_time' => 'datetime',
     ];
-    protected $dates = [
-        'start_time',
-        'end_time',
-    ];
+    protected $primaryKey = 'match_id';
     protected $table = 'matches';
 
     public function games()

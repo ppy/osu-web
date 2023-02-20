@@ -30,6 +30,9 @@ if [ -n "${GITHUB_TOKEN:-}" ]; then
     _run composer config -g github-oauth.github.com "${GITHUB_TOKEN}"
     grep ^GITHUB_TOKEN= .env || echo "GITHUB_TOKEN=${GITHUB_TOKEN}" >> .env
 fi
+
+_run yarn --network-timeout 100000 --frozen-lockfile
+
 _run composer install
 
 _run artisan dusk:chrome-driver
@@ -64,6 +67,10 @@ fi
 if [ ! -f .docker/.my.cnf ]; then
     echo "Copying default mysql client config"
     cp .docker/.my.cnf.example .docker/.my.cnf
+fi
+
+if [ ! -f database/ip2asn.tsv ]; then
+    _run artisan ip2asn:update
 fi
 
 echo "Preparation completed. Adjust .env file if needed and run 'docker compose up' followed by running migration."

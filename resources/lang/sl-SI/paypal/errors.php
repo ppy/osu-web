@@ -6,8 +6,8 @@
 return [
     'instrument_declined' => 'Izbrano plačilno metodo je zavrnil PayPal.',
     'invalid_resource_id' => 'Ni podatkov o plačevanju.',
-    'invalid_token' => '',
-    'old_format' => '',
-    'resource_not_found' => '',
+    'invalid_token' => 'Pri izvedbi plačila je prišlo do napake.',
+    'old_format' => 'Povezava za plačilo je potekla, poskusi znova.',
+    'resource_not_found' => 'Informacij o plačilu ni bilo mogoče najti.',
     'unknown' => "Plačilo je bilo zavrnjeno iz neznanega vzroka.",
 ];

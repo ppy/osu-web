@@ -28,6 +28,25 @@ class ChatController extends Controller
         parent::__construct();
     }
 
+    /**
+     * Chat Keepalive
+     *
+     * Request periodically to reset chat activity timeout. Also returns an updated list of recent silences.
+     *
+     * See [Public channels and activity timeout](#public-channels-and-activity-timeout)
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Field            | Type
+     * ---------------- | -----------------
+     * silences         | [UserSilence](#usersilence)[]
+     *
+     * @queryParam history_since integer [UserSilence](#usersilence)s after the specified id to return.
+     * This field is preferred and takes precedence over `since`.
+     * @queryParam since integer [UserSilence](#usersilence)s after the specified [ChatMessage.message_id](#chatmessage) to return. No-example
+     */
     public function ack()
     {
         Chat::ack(auth()->user());
@@ -53,9 +72,9 @@ class ChatController extends Controller
      *
      * Field            | Type
      * ---------------- | -----------------
-     * new_channel_id   | `channel_id` of newly created [ChatChannel](#chatchannel)
-     * presence         | array of [ChatChannel](#chatchannel)
+     * channel          | The new [ChatChannel](#chatchannel)
      * message          | the sent [ChatMessage](#chatmessage)
+     * new_channel_id   | Deprecated; `channel_id` of newly created [ChatChannel](#chatchannel)
      *
      * <aside class="notice">
      *   This endpoint will only allow the creation of PMs initially, group chat support will come later.
@@ -139,7 +158,7 @@ class ChatController extends Controller
                 new MessageTransformer(),
                 ['sender']
             ),
-            'new_channel_id' => $message->channel_id,
+            'new_channel_id' => $message->channel_id, // TODO: remove, there's channel already.
         ];
     }
 
@@ -169,8 +188,9 @@ class ChatController extends Controller
      * silences         | [UserSilence](#usersilence)[]?
      *
      * @queryParam history_since integer [UserSilence](#usersilence)s after the specified id to return.
-     * @queryParam includes string[] List of fields from `presence`, `silences` to include in the response. Returns all if not specified.
-     * @queryParam since integer required Messages after the specified `message_id` to return.
+     * This field is preferred and takes precedence over `since`.
+     * @queryParam includes string[] List of fields from `presence`, `silences` to include in the response. Returns all if not specified. No-example
+     * @queryParam since integer [UserSilence](#usersilence)s after the specified [ChatMessage.message_id](#chatmessage) to return. No-example
      *
      * @response {
      *   "presence": [

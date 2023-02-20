@@ -10,14 +10,14 @@ return [
     'italic' => 'Slīprraksts',
     'link' => 'Saite',
     'list' => 'Saraksts',
-    'list_numbered' => 'Numurēts saraksts',
+    'list_numbered' => 'Numurēts Saraksts',
     'size' => [
-        '_' => 'Fonta izmērs',
+        '_' => 'Fonta Izmērs',
         'tiny' => 'Sīks',
         'small' => 'Mazs',
         'normal' => 'Vidējs',
         'large' => 'Liels',
     ],
-    'spoilerbox' => 'Slēptā kaste',
+    'spoilerbox' => 'Spoilera lodziņš',
     'strikethrough' => 'Izsvītrojums',
 ];

@@ -72,8 +72,21 @@ return [
     ],
 
     'download' => [
-        'tagline' => "さぁ、<br>始めよう！",
         'action' => 'osu!をダウンロード',
+        'action_lazer' => 'osu!(lazer)をダウンロード',
+        'action_lazer_description' => '次の大規模アップデート',
+        'action_lazer_info' => '詳細はこちらのページをご覧ください',
+        'action_lazer_title' => 'osu!(lazer)を試す',
+        'action_title' => 'osu!をダウンロード',
+        'for_os' => ':os 版',
+        'lazer_note' => '注意: リーダーボードのリセットが適用されます',
+        'macos-fallback' => 'macOSユーザー',
+        'mirror' => 'ミラー',
+        'or' => 'または',
+        'other_os' => '他のプラットフォーム',
+        'quick_start_guide' => 'クイックスタートガイド',
+        'tagline' => "さぁ、<br>始めよう！",
+        'video-guide' => '説明動画',
 
         'help' => [
             '_' => 'ゲームの開始やアカウント登録に問題がある場合は、:help_forum_link または :support_button。',
@@ -86,8 +99,6 @@ return [
             'macos' => 'for macOS',
             'linux' => 'for Linux',
         ],
-        'mirror' => 'ミラー',
-        'macos-fallback' => 'macOSユーザー',
         'steps' => [
             'register' => [
                 'title' => 'アカウントを作る',
@@ -105,7 +116,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => '説明動画',
     ],
 
     'user' => [

@@ -100,11 +100,15 @@ return [
         'scores_controller' => [
             '_' => 'suorituskyky',
         ],
+        'seasons_controller' => [
+            '_' => '',
+        ],
         'tournaments_controller' => [
             '_' => 'turnaukset',
         ],
         'users_controller' => [
             '_' => 'pelaajatiedot',
+            'create' => '',
             'disabled' => 'ilmoitus',
         ],
         'wiki_controller' => [

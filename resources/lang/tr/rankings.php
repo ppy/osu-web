@@ -23,6 +23,14 @@ return [
         'multiplayer' => 'çok oyunculu',
         'performance' => 'Performans',
         'score' => 'Skor',
+        'seasons' => '',
+    ],
+
+    'seasons' => [
+        'empty' => '',
+        'ongoing' => '',
+        'room_count' => '',
+        'url' => '',
     ],
 
     'spotlight' => [

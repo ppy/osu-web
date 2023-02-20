@@ -37,7 +37,7 @@ trait ForumPostSearch
 
     public function esShouldIndex()
     {
-        return $this->forum->enable_indexing && !$this->trashed() && ($this->topic !== null && !$this->topic->trashed());
+        return $this->forum->enable_indexing && $this->topic !== null;
     }
 
     public function getEsId()
@@ -52,6 +52,9 @@ trait ForumPostSearch
         $document = [];
         foreach ($mappings as $field => $mapping) {
             switch ($field) {
+                case 'is_deleted':
+                    $value = $this->trashed() || $this->topic->trashed();
+                    break;
                 case 'topic_title':
                     if ($this->topic !== null && $this->topic->topic_first_post_id === $this->getKey()) {
                         $value = $this->topic->topic_title;

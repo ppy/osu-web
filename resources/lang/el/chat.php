@@ -8,6 +8,7 @@ return [
     'talking_in' => 'μιλάτε στο: :channel',
     'talking_with' => 'μιλάτε με: :name',
     'title_compact' => 'συνομιλία',
+    'unread_messages' => '',
 
     'cannot_send' => [
         'channel' => 'Δεν μπορείτε να στείλετε μήνυμα σε αυτό το κανάλι αυτή τη στιγμή. Αυτό μπορεί να οφείλεται σε οποιοδήποτε από τους παρακάτω λόγους:',
@@ -35,6 +36,7 @@ return [
 
         'labels' => [
             'description' => '',
+            'message' => '',
             'name' => '',
             'users' => '',
         ],

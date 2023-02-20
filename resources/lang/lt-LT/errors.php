@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => '',
     'missing_route' => 'Negaliojanti nuoroda arba neteisingas prašymo metodas.',
     'no_restricted_access' => 'Jūs negalite atlikti šio veiksmo, kai jūsų paskyra yra apribotoje būsenoje.',
     'supporter_only' => 'Jūs turite būti osu!rėmėjas, kad galėtumėte naudotis šia funkcija.',

@@ -100,11 +100,15 @@ return [
         'scores_controller' => [
             '_' => 'ביצועים',
         ],
+        'seasons_controller' => [
+            '_' => '',
+        ],
         'tournaments_controller' => [
             '_' => 'טורנירים',
         ],
         'users_controller' => [
             '_' => 'מידע שחקן',
+            'create' => '',
             'disabled' => 'שים לב',
         ],
         'wiki_controller' => [

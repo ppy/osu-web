@@ -51,12 +51,11 @@ class UserReport extends Model
 
     const CREATED_AT = 'timestamp';
 
-    protected $table = 'osu_user_reports';
-    protected $primaryKey = 'report_id';
-
-    protected $dates = ['timestamp'];
-
     public $timestamps = false;
+
+    protected $casts = ['timestamp' => 'datetime'];
+    protected $primaryKey = 'report_id';
+    protected $table = 'osu_user_reports';
 
     public function reportable()
     {

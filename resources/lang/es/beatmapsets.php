@@ -66,6 +66,7 @@ return [
             'favourite_login' => 'Inicie sesión para marcar este mapa como favorito',
             'logged-out' => '¡Necesitas iniciar sesión antes de descargar cualquier mapa!',
             'mapped_by' => 'mapeado por :mapper',
+            'mapped_by_guest' => 'dificultad de invitado por :mapper',
             'unfavourite' => 'Desmarcar como favorito',
             'updated_timeago' => 'actualizado por última vez :timeago',
 
@@ -124,7 +125,7 @@ return [
             'genre' => 'Género',
             'language' => 'Idioma',
             'no_scores' => 'Los datos todavía están siendo calculados...',
-            'nominators' => '',
+            'nominators' => 'Nominadores',
             'nsfw' => 'Contenido explícito',
             'offset' => 'Compensación en línea',
             'points-of-failure' => 'Puntos de fracaso',
@@ -148,10 +149,10 @@ return [
 
         'scoreboard' => [
             'achieved' => 'logrado :when',
-            'country' => 'Clasificación Nacional',
+            'country' => 'Clasificación nacional',
             'error' => 'Error al cargar las clasificaciones',
-            'friend' => 'Clasificación entre Amigos',
-            'global' => 'Clasificación Global',
+            'friend' => 'Clasificación entre amigos',
+            'global' => 'Clasificación global',
             'supporter-link' => '¡Clic <a href=":link">aquí</a> para ver todas las características de lujo que ofrece!',
             'supporter-only' => '¡Debe ser un osu!supporter para acceder a las clasificaciones nacionales y entre amigos!',
             'title' => 'Tabla de puntuaciones',

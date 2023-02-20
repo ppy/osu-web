@@ -23,6 +23,14 @@ return [
         'multiplayer' => 'в мультиплеере',
         'performance' => 'по производительности',
         'score' => 'по очкам',
+        'seasons' => '',
+    ],
+
+    'seasons' => [
+        'empty' => '',
+        'ongoing' => '',
+        'room_count' => '',
+        'url' => '',
     ],
 
     'spotlight' => [

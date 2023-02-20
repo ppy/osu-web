@@ -210,6 +210,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Új hirdetmény van ":name" csatornában',
+            ],
+
             'channel' => [
                 'pm' => 'Új üzenetet kaptál tőle::username',
             ],
@@ -241,7 +245,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username új beatmapeket hozott létre',
-                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive' => ':username újraélesztett beatmepeket',
             ],
         ],
     ],

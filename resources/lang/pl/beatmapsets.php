@@ -66,6 +66,7 @@ return [
             'favourite_login' => 'Zaloguj się, by dodać tę beatmapę do ulubionych',
             'logged-out' => 'Zaloguj się, aby zacząć pobierać beatmapy!',
             'mapped_by' => 'autorstwa :mapper',
+            'mapped_by_guest' => 'gościnny poziom trudności autorstwa :mapper',
             'unfavourite' => 'Usuń z ulubionych',
             'updated_timeago' => 'ostatnio zaktualizowana :timeago',
 
@@ -124,7 +125,7 @@ return [
             'genre' => 'Gatunek',
             'language' => 'Język',
             'no_scores' => 'Dane są nadal ładowane...',
-            'nominators' => '',
+            'nominators' => 'Nominatorzy',
             'nsfw' => 'Treść dla pełnoletnich',
             'offset' => 'Opóźnienie',
             'points-of-failure' => 'Wykres porażek',

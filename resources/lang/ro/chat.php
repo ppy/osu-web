@@ -8,6 +8,7 @@ return [
     'talking_in' => 'vorbești în :channel',
     'talking_with' => 'vorbești cu :name',
     'title_compact' => 'chat',
+    'unread_messages' => 'mesaje necitite',
 
     'cannot_send' => [
         'channel' => 'Nu poți trimite mesaje în acest canal momentan.',
@@ -35,6 +36,7 @@ return [
 
         'labels' => [
             'description' => 'descriere',
+            'message' => 'mesaj',
             'name' => 'numele camerei',
             'users' => 'jucători de adăugat',
         ],

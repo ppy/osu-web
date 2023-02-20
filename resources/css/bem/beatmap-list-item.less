@@ -1,0 +1,51 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.beatmap-list-item {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  gap: 0.4em;
+  min-width: 0;
+  --difficulty-badge-width: max-content;
+  --main-width: 0;
+
+  &--deleted {
+    opacity: 0.5;
+  }
+
+  &--inline {
+    display: inline-grid;
+  }
+
+  &--full-width {
+    --main-width: auto;
+  }
+
+  &__col {
+    &--icon {
+      .center-content();
+      font-size: 1.25em;
+      width: 1em;
+    }
+
+    &--main {
+      align-self: baseline;
+      min-width: var(--main-width);
+      white-space: nowrap;
+    }
+  }
+
+  &__mapper {
+    color: hsl(var(--hsl-c2));
+    font-size: 0.87em;
+  }
+
+  &__version {
+    text-decoration: var(--version-text-decoration, none);
+  }
+
+  &__version-link {
+    .link-white();
+    .link-plain();
+  }
+}

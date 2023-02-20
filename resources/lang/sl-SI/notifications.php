@@ -144,7 +144,7 @@ return [
         ],
 
         'legacy_pm' => [
-            '_' => '',
+            '_' => 'Stari forum PM',
 
             'legacy_pm' => [
                 '_' => '',
@@ -209,6 +209,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => '',
+            ],
+
             'channel' => [
                 'pm' => 'Prejel si novo sporočilo od :username',
             ],

@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => 'Не атрымалася загрузіць даныя.',
     'missing_route' => 'Няправільны Url альбо няправільны спосаб запыту.',
     'no_restricted_access' => 'Вы не можаце выкарыстоўваць гэту функцыю, пакуль ваш уліковы запіс абмежаваны.',
     'supporter_only' => 'Каб выкарыстоўваць гэту магчымасць, вы павінны быць ахвяравальнікам.',

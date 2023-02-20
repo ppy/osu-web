@@ -100,11 +100,15 @@ return [
         'scores_controller' => [
             '_' => 'gjennomføring',
         ],
+        'seasons_controller' => [
+            '_' => '',
+        ],
         'tournaments_controller' => [
             '_' => 'turneringer',
         ],
         'users_controller' => [
             '_' => 'spillerinfo',
+            'create' => '',
             'disabled' => 'varsel',
         ],
         'wiki_controller' => [
