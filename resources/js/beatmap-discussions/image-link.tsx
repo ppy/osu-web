@@ -44,7 +44,7 @@ export default class ImageLink extends React.Component<Props> {
     return (
       <a className='beatmapset-discussion-image-link' href={url} rel='nofollow noreferrer' target='_blank'>
         {!this.loaded && this.renderSpinner()}
-        <img {...this.props.node.properties} onLoad={this.handleOnLoad} src={url} />
+        <img {...this.props.node.properties} loading="lazy" onLoad={this.handleOnLoad} src={url} />
       </a>
     );
   }
