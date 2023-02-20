@@ -1812,7 +1812,7 @@ function search_error_message(?Exception $e): ?string
     }
 
     $basename = snake_case(get_class_basename(get_class($e)));
-    $key = "errors.search.${basename}";
+    $key = "errors.search.{$basename}";
     $text = osu_trans($key);
 
     return $text === $key ? osu_trans('errors.search.default') : $text;
