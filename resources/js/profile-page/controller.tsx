@@ -79,11 +79,11 @@ interface LazyPages {
 
 export type Page = ProfileExtraPage | 'main';
 
-interface ScorePinReorderParams {
-  order1_score_id?: ScoreCurrentUserPinJson['score_id'];
-  order3_score_id?: ScoreCurrentUserPinJson['score_id'];
-  score_id: ScoreCurrentUserPinJson['score_id'];
-  score_type: ScoreCurrentUserPinJson['score_type'];
+type ScorePinReorderParamsBase = Pick<ScoreCurrentUserPinJson, 'score_id' | 'score_type'>;
+
+interface ScorePinReorderParams extends ScorePinReorderParamsBase {
+  order1?: ScorePinReorderParamsBase;
+  order3?: ScorePinReorderParamsBase;
 }
 
 interface State {
@@ -147,8 +147,8 @@ export default class Controller {
 
     const origItems = this.state.lazy.top_ranks.pinned.items.slice();
     const items = this.state.lazy.top_ranks.pinned.items;
-    const adjacentScoreId = items[newIndex]?.id;
-    if (adjacentScoreId == null) {
+    const adjacentScore = items[newIndex];
+    if (adjacentScore == null) {
       throw new Error('invalid newIndex specified');
     }
 
@@ -168,12 +168,16 @@ export default class Controller {
       score_id: target.current_user_attributes.pin.score_id,
       score_type: target.current_user_attributes.pin.score_type,
     };
+    const adjacentParams = {
+      score_id: adjacentScore.id,
+      score_type: adjacentScore.type,
+    };
     if (currentIndex > newIndex) {
       // target will be above existing item at index
-      params.order3_score_id = adjacentScoreId;
+      params.order3 = adjacentParams;
     } else {
       // target will be below existing item at index
-      params.order1_score_id = adjacentScoreId;
+      params.order1 = adjacentParams;
     }
 
     showLoadingOverlay();

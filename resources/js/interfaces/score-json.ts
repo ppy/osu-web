@@ -10,7 +10,7 @@ import UserJson from './user-json';
 export interface ScoreCurrentUserPinJson {
   is_pinned: boolean;
   score_id: number;
-  score_type: `score_best_${GameMode}`;
+  score_type: `score_best_${GameMode}` | 'solo_score';
 }
 
 export type ScoreStatisticsAttribute = 'count_50' | 'count_100' | 'count_300' | 'count_geki' | 'count_katu' | 'count_miss';
