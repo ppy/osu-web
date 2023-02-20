@@ -28,6 +28,11 @@ class AchievementFactory extends Factory
 
     protected $model = Achievement::class;
 
+    public function configure(): static
+    {
+        return $this->afterCreating(fn () => app('medals')->resetMemoized());
+    }
+
     public function definition(): array
     {
         return [

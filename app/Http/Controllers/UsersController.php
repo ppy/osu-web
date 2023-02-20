@@ -14,7 +14,6 @@ use App\Libraries\Search\ForumSearch;
 use App\Libraries\Search\ForumSearchRequestParams;
 use App\Libraries\User\FindForProfilePage;
 use App\Libraries\UserRegistration;
-use App\Models\Achievement;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\Country;
@@ -637,14 +636,7 @@ class UsersController extends Controller
         if (is_api_request()) {
             return $userArray;
         } else {
-            $achievements = json_collection(
-                Achievement::achievable()
-                    ->orderBy('grouping')
-                    ->orderBy('ordering')
-                    ->orderBy('progression')
-                    ->get(),
-                'Achievement'
-            );
+            $achievements = json_collection(app('medals')->all(), 'Achievement');
 
             $extras = [];
 

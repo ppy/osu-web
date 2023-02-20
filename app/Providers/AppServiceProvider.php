@@ -14,6 +14,7 @@ use App\Libraries\Groups;
 use App\Libraries\Ip2Asn;
 use App\Libraries\LayoutCache;
 use App\Libraries\LocalCacheManager;
+use App\Libraries\Medals;
 use App\Libraries\Mods;
 use App\Libraries\MorphMap;
 use App\Libraries\OsuAuthorize;
@@ -41,6 +42,7 @@ class AppServiceProvider extends ServiceProvider
         'chat-filters' => ChatFilters::class,
         'groups' => Groups::class,
         'layout-cache' => LayoutCache::class,
+        'medals' => Medals::class,
     ];
 
     const SINGLETONS = [
