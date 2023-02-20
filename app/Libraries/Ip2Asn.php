@@ -12,15 +12,15 @@ use WeakMap;
 
 class Ip2Asn
 {
+    private WeakMap $count;
     private WeakMap $dbFh;
     private WeakMap $index;
-    private WeakMap $count;
 
     public function __construct()
     {
+        $this->count = new WeakMap();
         $this->dbFh = new WeakMap();
         $this->index = new WeakMap();
-        $this->count = new WeakMap();
 
         foreach (Ip::cases() as $version) {
             $this->dbFh[$version] = fopen(Ip2AsnUpdater::getDbPath($version), 'r');
