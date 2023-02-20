@@ -3,6 +3,7 @@
 set -e
 set -u
 
+export CHROME_BIN=/usr/bin/chromium
 export YARN_CACHE_FOLDER=/app/.docker/.yarn
 export COMPOSER_HOME=/app/.docker/.composer
 
