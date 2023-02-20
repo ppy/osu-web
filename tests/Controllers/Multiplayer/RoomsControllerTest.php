@@ -61,7 +61,7 @@ class RoomsControllerTest extends TestCase
 
         $params['playlist'][0]['allowed_mods'] = [];
         $params['playlist'][0]['required_mods'] = [];
-        $params['playlist'][0]["${modType}_mods"][] = ['acronym' => 'AT', 'settings' => []];
+        $params['playlist'][0]["{$modType}_mods"][] = ['acronym' => 'AT', 'settings' => []];
 
         $response = $this
             ->actingWithToken($token)

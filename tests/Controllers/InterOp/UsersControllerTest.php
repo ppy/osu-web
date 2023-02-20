@@ -118,7 +118,7 @@ class UsersControllerTest extends TestCase
             $this->assertSame($sourceUser->$copiedAttribute, $user->$copiedAttribute, $copiedAttribute);
         }
 
-        $this->assertStringContainsString("+${username}@", $user->user_email);
+        $this->assertStringContainsString("+{$username}@", $user->user_email);
         $this->assertTrue($user->isGroup(app('groups')->byIdentifier($group)));
     }
 
