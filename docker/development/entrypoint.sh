@@ -42,7 +42,7 @@ _migrate() {
 }
 
 _octane() {
-  exec /app/artisan octane:start --host=0.0.0.0 "$@"
+  _rexec /app/artisan octane:start --host=0.0.0.0 "$@"
 }
 
 _schedule() {
