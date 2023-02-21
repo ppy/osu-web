@@ -7,7 +7,7 @@ import add from './add';
 
 type DisabledType = 'chat' | 'default';
 
-export interface Options {
+interface Options {
   type?: DisabledType;
 }
 
