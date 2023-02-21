@@ -40,10 +40,6 @@ export default class MessageGroup extends React.Component<Props> {
         </div>
         <div className='chat-message-group__bubble'>
           {messages.map((message: Message, key: number) => {
-            if (message.parsedContent == null) {
-              return;
-            }
-
             const timestamp = moment(message.timestamp).format('LT');
             const showTimestamp: boolean =
               // show timestamp if this is the last message in the group
