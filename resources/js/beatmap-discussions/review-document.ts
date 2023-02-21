@@ -3,13 +3,13 @@
 
 import { BeatmapsetDiscussionJsonForBundle, BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
 import remarkParse from 'remark-parse';
+import disableConstructs from 'remark-plugins/disable-constructs';
 import { Element, Text } from 'slate';
 import { unified } from 'unified';
 import type { Parent, Node as UnistNode } from 'unist';
 import { formatTimestamp, startingPost } from 'utils/beatmapset-discussion-helper';
 import { present } from 'utils/string';
 import { BeatmapDiscussionReview, isBeatmapReviewDiscussionType, PersistedDocumentIssueEmbed } from '../interfaces/beatmap-discussion-review';
-import disableConstructs from './plugins/disable-constructs';
 
 interface ParsedDocumentNode extends UnistNode {
   children: UnistNode[];
