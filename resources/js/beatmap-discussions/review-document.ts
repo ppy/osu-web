@@ -11,7 +11,6 @@ import { formatTimestamp, startingPost } from 'utils/beatmapset-discussion-helpe
 import { present } from 'utils/string';
 import { BeatmapDiscussionReview, isBeatmapReviewDiscussionType, PersistedDocumentIssueEmbed } from '../interfaces/beatmap-discussion-review';
 
-
 interface ParsedDocumentNode extends UnistNode {
   children: UnistNode[];
   // position: we don't care about position
