@@ -21,7 +21,8 @@ export function linkRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLPr
 }
 
 export function paragraphRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement>) {
-  return <div className='beatmapset-discussion-message'>{astProps.children.map(timestampDecorator)}</div>;
+  // TODO: remove need for wrapping div (should just return <>);
+  return <div>{astProps.children.map(timestampDecorator)}</div>;
 }
 
 export function strongRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) {
