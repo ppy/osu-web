@@ -161,7 +161,6 @@ export default class InputBox extends React.Component<Props> {
       }
     }
 
-
     const message = new Message();
     message.senderId = core.currentUserOrFail.id;
     message.channelId = this.currentChannel.channelId;
