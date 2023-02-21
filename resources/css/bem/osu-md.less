@@ -60,7 +60,9 @@
   &--chat {
     --code-background-colour: hsl(var(--hsl-b3));
     flex: 1;
-    overflow-wrap: anywhere; // chat-message-item__content
+    // match the overflow-wrap on chat-message-item__content so that every markdown message
+    // doesn't need another wrapper container.
+    overflow-wrap: anywhere;
 
     h1, h2, h3, h4, h5, h6 {
       font-size: revert;
