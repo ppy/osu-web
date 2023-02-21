@@ -178,7 +178,7 @@ function isNearbyDiscussion<T extends BeatmapsetDiscussionJson>(discussion: T): 
   return discussion.deleted_at == null
     && discussion.timestamp != null
     && nearbyDiscussionsMessageTypes.has(discussion.message_type)
-    && (discussion.user_id !== core.currentUserOrFail.id || moment(discussion.updated_at).diff(moment(), 'hour') < -24);
+    && (discussion.user_id !== core.currentUserOrFail.id || moment(discussion.updated_at).diff(moment(), 'hour') <= -24);
 }
 
 export function linkTimestamp(text: string, classNames: string[] = []) {
