@@ -1,14 +1,14 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import autolink from 'beatmap-discussions/plugins/autolink';
-import disableConstructs from 'beatmap-discussions/plugins/disable-constructs';
 import { Spinner } from 'components/spinner';
 import { escape } from 'lodash';
 import { observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as React from 'react';
 import ReactMarkdown from 'react-markdown';
+import autolink from 'remark-plugins/autolink';
+import disableConstructs from 'remark-plugins/disable-constructs';
 import { classWithModifiers } from 'utils/css';
 import { linkify } from 'utils/url';
 
