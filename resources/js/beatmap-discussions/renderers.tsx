@@ -13,15 +13,6 @@ export function emphasisRenderer(astProps: ReactMarkdownProps & React.DetailedHT
   return <em>{astProps.children.map(timestampDecorator)}</em>;
 }
 
-export function imageRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>) {
-  // FIXME: need to proxy image
-  return (
-    <a href={astProps.src} rel='nofollow noreferrer' target='_blank'>
-      <img {...astProps.node.properties} />
-    </a>
-  );
-}
-
 export function linkRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>) {
   // TODO: handle extra nodes in astProps.children
   const props = propsFromHref(astProps.href ?? '');
