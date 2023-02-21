@@ -161,8 +161,9 @@
 
     .@{_top}--horizontal-desktop & {
       @media @desktop {
-        grid-template-areas: "user message actions";
-        grid-template-columns: auto 1fr auto;
+        grid-template-areas: "user actions" "user message";
+        grid-template-columns: auto 1fr;
+        row-gap: 0;
       }
     }
 
@@ -189,6 +190,7 @@
     grid-area: actions;
     display: flex;
     align-items: center;
+    justify-self: end;
     height: 40px;
   }
 
@@ -204,6 +206,7 @@
   }
 
   &__top-user {
+    grid-area: user;
     margin-top: @_top-padding-y;
     margin-left: @_top-padding-x;
 
