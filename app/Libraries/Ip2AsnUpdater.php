@@ -11,26 +11,39 @@ use Log;
 
 class Ip2AsnUpdater
 {
-    public static function getDbPath()
+    public static function getDbPath(Ip $version): string
     {
-        return database_path('ip2asn.tsv');
+        return database_path("ip2asn/{$version->value}.tsv");
     }
 
-    public static function getIndexPath()
+    public static function getIndexPath(Ip $version): string
     {
-        return database_path('ip2asn.idx');
+        return database_path("ip2asn/{$version->value}.idx");
     }
 
     public function run(?callable $logger = null): void
     {
-        $logger ??= function (string $message) {
-            Log::info("ip2asn: {$message}");
-        };
+        foreach (Ip::cases() as $version) {
+            $prefixedLogger = function (string $message) use ($logger, $version): void {
+                $prefixedMessage = "[{$version->value}] $message";
 
+                if (isset($logger)) {
+                    $logger($prefixedMessage);
+                } else {
+                    Log::info("ip2asn: {$prefixedMessage}");
+                }
+            };
+
+            $this->update($version, $prefixedLogger);
+        }
+    }
+
+    private function update(Ip $version, callable $logger): void
+    {
         $logger('Checking db for updates');
 
-        $dbPath = static::getDbPath();
-        $indexPath = static::getIndexPath();
+        $dbPath = static::getDbPath($version);
+        $indexPath = static::getIndexPath($version);
 
         $dbExists = file_exists($dbPath);
 
@@ -46,7 +59,7 @@ class Ip2AsnUpdater
 
         if ($newDb) {
             $logger('Db file is outdated. Downloading');
-            $tsv = gzdecode(file_get_contents('https://iptoasn.com/data/ip2asn-combined.tsv.gz'));
+            $tsv = gzdecode(file_get_contents("https://iptoasn.com/data/ip2asn-{$version->value}.tsv.gz"));
         } else {
             $tsv = file_get_contents($dbPath);
         }
