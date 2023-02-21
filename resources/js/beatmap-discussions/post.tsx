@@ -24,7 +24,6 @@ import { disposeOnUnmount, observer } from 'mobx-react';
 import { deletedUser } from 'models/user';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import TextareaAutosize from 'react-autosize-textarea';
 import { onError } from 'utils/ajax';
 import { badgeGroup, canModeratePosts, makeUrl, validMessageLength } from 'utils/beatmapset-discussion-helper';
 import { downloadLimited } from 'utils/beatmapset-helper';
@@ -32,7 +31,7 @@ import { classWithModifiers } from 'utils/css';
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
 import { trans } from 'utils/lang';
 import DiscussionMessage from './discussion-message';
-import DiscussionMessageLengthCounter from './discussion-message-length-counter';
+import MarkdownEditor from './markdown-editor';
 import { UserCard } from './user-card';
 
 const bn = 'beatmap-discussion-post';
@@ -192,7 +191,7 @@ export default class Post extends React.Component<Props> {
     this.canSave = validMessageLength(this.message, this.isTimeline);
   };
 
-  private readonly handleTextareaKeyDownCallback = (type: InputEventType) => {
+  private readonly handleTextareaKeyDownCallback = (type: InputEventType | null) => {
     if (type === InputEventType.Submit) {
       this.updatePost();
     }
@@ -288,18 +287,15 @@ export default class Post extends React.Component<Props> {
             )}
           </DiscussionsContext.Consumer>
         ) : (
-          <>
-            <TextareaAutosize
-              ref={this.textareaRef}
-              className={`${bn}__message ${bn}__message--editor`}
-              disabled={this.isPosting}
-              onChange={this.handleTextareaChange}
-              onKeyDown={this.handleTextareaKeyDown}
-              style={{ minHeight: this.textareaMinHeight }}
-              value={this.message}
-            />
-            <DiscussionMessageLengthCounter isTimeline={this.isTimeline} message={this.message} />
-          </>
+          <MarkdownEditor
+            disabled={this.isPosting}
+            isTimeline={this.isTimeline}
+            onChange={this.handleTextareaChange}
+            onKeyDown={this.handleTextareaKeyDown}
+            style={{ minHeight: this.textareaMinHeight }}
+            textareaClassName={`${bn}__message ${bn}__message--editor`}
+            value={this.message}
+          />
         )}
         <div className={`${bn}__actions`}>
           <div className={`${bn}__actions-group`}>
