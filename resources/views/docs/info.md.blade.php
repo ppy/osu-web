@@ -20,7 +20,7 @@ Current rate limit is set at an insanely high 1200 requests per minute, with bur
 
 # Wrappers
 
-There are community maintained wrappers for the api:
+Below is a list of some language-specific wrappers maintained by the community. Your mileage may vary when using them – please report any issues to the wrapper first before reporting back to us.
 
 - [ossapi](https://github.com/circleguard/ossapi) (python)
 - [osu-api-extended](https://github.com/cyperdark/osu-api-extended) (javascript)
