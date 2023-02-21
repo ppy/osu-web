@@ -175,7 +175,8 @@ function isFilter(value: string): value is Filter {
 }
 
 function isNearbyDiscussion<T extends BeatmapsetDiscussionJson>(discussion: T): discussion is NearbyDiscussion<T> {
-  return !(discussion.timestamp == null
+  return !(discussion.deleted_at != null
+    || discussion.timestamp == null
     || !nearbyDiscussionsMessageTypes.has(discussion.message_type)
     || (discussion.user_id === core.currentUserOrFail.id && moment(discussion.updated_at).diff(moment(), 'hour') > -24));
 }
