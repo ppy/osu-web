@@ -1,50 +1,71 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import * as React from 'react'
-import { div } from 'react-dom-factories'
-import { trans } from 'utils/lang'
-el = React.createElement
+import { computed, makeObservable } from 'mobx';
+import { observer } from 'mobx-react';
+import * as moment from 'moment';
+import * as React from 'react';
+import { trans } from 'utils/lang';
 
-bn = 'countdown-timer'
+const bn = 'countdown-timer';
+const secondsPerDay = 60 * 60 * 24;
+const secondsPerHour = 60 * 60;
 
-export class CountdownTimer extends React.Component
-  constructor: (props) ->
-    super props
+interface Props {
+  deadline: string;
+}
 
-    deadline = moment(@props.deadline)
+@observer
+export default class CountdownTimer extends React.Component<Props> {
+  private timer?: number;
 
-    @state =
-      deadline: deadline
-      diff: Math.max(deadline.diff(), 0)
+  @computed
+  private get deadline() {
+    return moment(this.props.deadline).valueOf();
+  }
 
-  componentDidMount: ->
-    @timer = setInterval @updateTimer, 1000
+  private get diff() {
+    return Math.max(this.deadline - (new Date()).valueOf(), 0) / 1000;
+  }
 
-  componentWillUnmount: ->
-    clearInterval @timer
+  constructor(props: Props) {
+    super(props);
 
-  updateTimer: =>
-    diff = Math.max(@state.deadline.diff(), 0)
+    makeObservable(this);
+  }
 
-    clearInterval @timer if diff == 0
+  componentWillUnmount() {
+    window.clearTimeout(this.timer);
+  }
 
-    @setState
-      diff: diff
+  render() {
+    const diff = this.diff;
+    const fields = {
+      days: Math.floor(diff / (secondsPerDay)),
+      hours: Math.floor((diff / (secondsPerHour)) % 24),
+      minutes: Math.floor((diff / 60) % 60),
+      seconds: Math.floor(diff % 60),
+    };
+    if (diff !== 0) {
+      this.setTimeout();
+    }
 
-  render: =>
-    diff = @state.diff / 1000
+    return (
+      <div className={bn}>
+        <div className={`${bn}__header`}>{`${trans('common.time.remaining')}:`}</div>
+        {Object.entries(fields).map(([field, value]) => (
+          <div key={field} className={`${bn}__field`}>
+            <div className={`${bn}__digit`}>
+              {value < 10 ? `0${value}` : value}
+            </div>
+            <div className={`${bn}__label`}>{trans(`common.countdown.${field}`)}</div>
+          </div>
+        ))}
+      </div>
+    );
+  }
 
-    fields =
-      days: Math.floor(diff / (60 * 60 * 24))
-      hours: Math.floor((diff / (60 * 60)) % 24)
-      minutes: Math.floor((diff / 60) % 60)
-      seconds: Math.floor(diff % 60)
-
-    div className: bn,
-      div className: "#{bn}__header", "#{trans('common.time.remaining')}:"
-      for field, value of fields
-        div key: field, className: "#{bn}__field",
-          div className: "#{bn}__digit",
-            if value < 10 then "0#{value}" else value
-          div className: "#{bn}__label", trans("common.countdown.#{field}")
+  private setTimeout() {
+    this.timer = window.setTimeout(() => this.forceUpdate(), 1000);
+  }
+}
