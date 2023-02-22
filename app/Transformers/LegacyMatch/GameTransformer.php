@@ -21,8 +21,8 @@ class GameTransformer extends TransformerAbstract
     {
         return [
             'id' => $game->game_id,
-            'start_time' => json_time($game->start_time),
-            'end_time' => json_time($game->end_time),
+            'start_time' => $game->start_time_json,
+            'end_time' => $game->end_time_json,
             'mode' => $game->mode,
             'mode_int' => $game->play_mode,
             'scoring_type' => $game->scoring_type,
@@ -33,8 +33,10 @@ class GameTransformer extends TransformerAbstract
 
     public function includeBeatmap(Game $game)
     {
-        if ($game->beatmap) {
-            return $this->item($game->beatmap, new BeatmapCompactTransformer());
+        $beatmap = $game->beatmap;
+
+        if ($beatmap !== null) {
+            return $this->item($beatmap, new BeatmapCompactTransformer());
         }
     }
 
