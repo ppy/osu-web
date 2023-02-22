@@ -42,9 +42,12 @@
             </a>
 
             <div>
-                {!! osu_trans("forum.topic.latest_post", [
-                    "when" => timeago($lastTopic->topic_last_post_time),
-                    "user" => link_to_user(
+                {!! osu_trans('forum.topic.latest_post', [
+                    'when' => timeago($lastTopic->topic_last_post_time),
+                    'user' => tag('span', [
+                        'class' => 'forum-user-icon',
+                        'style' => user_color_style($lastTopic->topic_last_poster_colour, 'background-color'),
+                    ]).' '.link_to_user(
                         $lastTopic->topic_last_poster_id,
                         $lastTopic->topic_last_poster_name,
                         null,
