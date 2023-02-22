@@ -74,11 +74,7 @@ class UserStatisticsTransformer extends TransformerAbstract
             $stats = new UserStatistics\Osu();
         }
 
-        return $this->item($stats, function ($stats) {
-            return [
-                'country' => $stats->countryRank(),
-            ];
-        });
+        return $this->primitive(['country' => $stats->countryRank()]);
     }
 
     public function includeUser(UserStatistics\Model $stats = null)
