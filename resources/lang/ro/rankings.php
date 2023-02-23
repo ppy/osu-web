@@ -23,14 +23,14 @@ return [
         'multiplayer' => 'multiplayer',
         'performance' => 'performanță',
         'score' => 'scor',
-        'seasons' => '',
+        'seasons' => 'sezoane',
     ],
 
     'seasons' => [
-        'empty' => '',
-        'ongoing' => '',
-        'room_count' => '',
-        'url' => '',
+        'empty' => 'Nu există camere încă în acest sezon.',
+        'ongoing' => 'Acest sezon este în curs de desfășurare (vor fi adăugate mai multe playlist-uri).',
+        'room_count' => 'Număr playlist-uri',
+        'url' => 'Afișează mai multe informații despre acel sezon.',
     ],
 
     'spotlight' => [

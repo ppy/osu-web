@@ -60,6 +60,11 @@ return [
     'show' => [
         'discussion' => 'ディスカッション',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
             'by_artist' => 'by :artist',
             'favourite' => 'このビートマップをお気に入りに登録する',

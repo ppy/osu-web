@@ -158,7 +158,7 @@ return [
     'restricted_banner' => [
         'title' => '¡Su cuenta ha sido restringida!',
         'message' => 'Mientras estás restringido, no podrás interactuar con otros jugadores y tus puntuaciones solo las podrás ver tú. Esto es, normalmente, el resultado de un proceso automatizado, y se levanta normalmente dentro de 24 horas. Si deseas apelar a tu restricción, por favor <a href="mailto:accounts@ppy.sh">contacta con el soporte</a>.',
-        'message_link' => '',
+        'message_link' => 'Consulte esta página para obtener más información.',
     ],
     'show' => [
         'age' => ':age años',
@@ -392,7 +392,7 @@ return [
                     'actions' => [
                         'restriction' => 'Restringir',
                         'silence' => 'Silenciado',
-                        'tournament_ban' => 'Excluído de torneos',
+                        'tournament_ban' => 'Prohibición de torneo',
                         'note' => 'Nota',
                     ],
                 ],

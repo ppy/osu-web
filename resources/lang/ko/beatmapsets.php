@@ -60,6 +60,11 @@ return [
     'show' => [
         'discussion' => '토론',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
             'by_artist' => 'by :artist',
             'favourite' => '즐겨찾기',

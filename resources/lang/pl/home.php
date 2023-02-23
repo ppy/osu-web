@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'przeszukaj fora',
                 'forum_children' => 'uwzględnij podfora',
+                'include_deleted' => '',
                 'topic_id' => 'wątek #',
                 'username' => 'autor',
             ],
@@ -83,6 +84,7 @@ return [
         'macos-fallback' => 'użytkownicy macOS',
         'mirror' => 'serwer lustrzany',
         'or' => 'lub',
+        'os_version_or_later' => '',
         'other_os' => 'inne platformy',
         'quick_start_guide' => 'krótki przewodnik',
         'tagline' => "rozpocznij swoją<br>przygodę z osu!",

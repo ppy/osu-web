@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => '',
                 'forum_children' => '',
+                'include_deleted' => '',
                 'topic_id' => '',
                 'username' => '',
             ],
@@ -83,6 +84,7 @@ return [
         'macos-fallback' => '',
         'mirror' => '',
         'or' => '',
+        'os_version_or_later' => '',
         'other_os' => '',
         'quick_start_guide' => '',
         'tagline' => "",

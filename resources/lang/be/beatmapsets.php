@@ -60,6 +60,11 @@ return [
     'show' => [
         'discussion' => 'Абмеркаванне',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
             'by_artist' => 'ад :artist',
             'favourite' => 'Дадаць да абраных',

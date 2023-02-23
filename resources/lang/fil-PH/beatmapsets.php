@@ -60,6 +60,11 @@ return [
     'show' => [
         'discussion' => 'Diskusyon',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
             'by_artist' => 'ni/nina :artist',
             'favourite' => 'I-paborito ang beatmapset na ito',

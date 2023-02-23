@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'hledat ve fórech',
                 'forum_children' => 'zahrnout subfóra',
+                'include_deleted' => '',
                 'topic_id' => 'téma #',
                 'username' => 'autor',
             ],
@@ -83,6 +84,7 @@ return [
         'macos-fallback' => 'macOS uživatelé',
         'mirror' => 'mirror',
         'or' => 'nebo',
+        'os_version_or_later' => '',
         'other_os' => 'ostatní platformy',
         'quick_start_guide' => 'příručka pro začátečníky',
         'tagline' => "pusťme se<br>do toho!",

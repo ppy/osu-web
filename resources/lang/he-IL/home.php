@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'חפש בפורומים',
                 'forum_children' => 'כלול תתי פורום',
+                'include_deleted' => '',
                 'topic_id' => 'מספר נושא',
                 'username' => 'מחבר',
             ],
@@ -83,6 +84,7 @@ return [
         'macos-fallback' => 'משתמשי macOS',
         'mirror' => 'מראה',
         'or' => '',
+        'os_version_or_later' => '',
         'other_os' => '',
         'quick_start_guide' => '',
         'tagline' => "בוא<br>נתחיל!",

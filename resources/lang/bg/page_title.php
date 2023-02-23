@@ -101,7 +101,7 @@ return [
             '_' => 'представяне',
         ],
         'seasons_controller' => [
-            '_' => '',
+            '_' => 'класации',
         ],
         'tournaments_controller' => [
             '_' => 'турнири',

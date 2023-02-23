@@ -60,6 +60,11 @@ return [
     'show' => [
         'discussion' => '討論',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
             'by_artist' => '作者：:artist',
             'favourite' => '收藏這張圖譜',

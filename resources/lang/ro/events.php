@@ -15,7 +15,7 @@ return [
     'rank' => '<strong><em>:user</em></strong> a obținut locul #:rank pe <em>:beatmap</em> (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> a pierdut primul loc pe <em>:beatmap</em> (:mode)',
     'user_support_again' => '<strong>:user</strong> a ales din nou să sprijine osu! - mulțumim pentru generozitatea ta!',
-    'user_support_first' => '<strong>:user</strong> a devenit un suporter osu! - mulțumim pentru generozitatea ta!',
+    'user_support_first' => '<strong>:user</strong> a sprijinit osu! - mulțumim pentru generozitatea ta!',
     'user_support_gift' => '<strong>:user</strong> a primit darul de suporter osu!',
     'username_change' => '<strong>:previousUsername</strong> și-a schimbat numele de utilizator la <strong><em>:user</strong></em>!',
 

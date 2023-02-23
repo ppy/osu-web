@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'ค้นหาในฟอรั่ม',
                 'forum_children' => 'รวมฟอรั่มย่อย',
+                'include_deleted' => '',
                 'topic_id' => 'หัวข้อ #',
                 'username' => 'ผู้แต่ง',
             ],
@@ -83,6 +84,7 @@ return [
         'macos-fallback' => 'ผู้ใช้ macOS',
         'mirror' => 'เซิร์ฟเวอร์อื่น',
         'or' => '',
+        'os_version_or_later' => '',
         'other_os' => '',
         'quick_start_guide' => '',
         'tagline' => "เรามา<br>เริ่มกันเถอะ",

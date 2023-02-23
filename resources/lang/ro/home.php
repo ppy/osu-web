@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'căutare în forum-uri',
                 'forum_children' => 'include subforum-uri',
+                'include_deleted' => '',
                 'topic_id' => 'subiect #',
                 'username' => 'autor',
             ],
@@ -83,6 +84,7 @@ return [
         'macos-fallback' => 'utilizatori macOS',
         'mirror' => 'sursă alternativă',
         'or' => 'sau',
+        'os_version_or_later' => '',
         'other_os' => 'alte platforme',
         'quick_start_guide' => 'ghid de pornire rapidă',
         'tagline' => "să<br>începem!",

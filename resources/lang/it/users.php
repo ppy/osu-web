@@ -157,8 +157,8 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Il tuo account è stato limitato!',
-        'message' => 'Quando sei limitato, non sarai in grado di interagire con gli altri giocatori e i tuoi punteggi saranno visibili solo a te. Solitamente questo è il risultato di un processo automatico e verrà risolto solitamente entro 24 ore. Se desideri fare appello contro la tua restrizione, <a href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
-        'message_link' => '',
+        'message' => 'Quando sei limitato, non sarai in grado di interagire con gli altri giocatori e i tuoi punteggi saranno visibili solo a te. Di solito questo è il risultato di un processo automatico e dovrebbe risolversi entro 24 ore. :link',
+        'message_link' => 'Controlla questa pagina per saperne di più.',
     ],
     'show' => [
         'age' => ':age anni',

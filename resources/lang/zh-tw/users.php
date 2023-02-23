@@ -54,7 +54,7 @@ return [
 
     'create' => [
         'form' => [
-            'password' => '',
+            'password' => '密碼',
             'password_confirmation' => '',
             'submit' => '',
             'user_email' => '',

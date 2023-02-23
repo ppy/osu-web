@@ -60,6 +60,11 @@ return [
     'show' => [
         'discussion' => 'Keskustelu',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
             'by_artist' => '',
             'favourite' => 'Lisää tämä beatmap-setti suosikkeihin',

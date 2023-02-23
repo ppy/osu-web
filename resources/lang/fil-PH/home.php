@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'hanapin ang paksang ito',
                 'forum_children' => 'isama ang mga subforum',
+                'include_deleted' => '',
                 'topic_id' => 'paksa #',
                 'username' => 'may-akda',
             ],
@@ -84,6 +85,7 @@ return [
         'macos-fallback' => 'mga gumagamit ng macOS',
         'mirror' => 'mirror',
         'or' => 'o',
+        'os_version_or_later' => '',
         'other_os' => 'iba pang mga platform',
         'quick_start_guide' => 'gabay sa mabilis na pagsisimula',
         'tagline' => "tayo nang<br>simulan ito!",

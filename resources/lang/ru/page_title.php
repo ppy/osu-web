@@ -101,7 +101,7 @@ return [
             '_' => 'рекорд',
         ],
         'seasons_controller' => [
-            '_' => '',
+            '_' => 'рейтинг',
         ],
         'tournaments_controller' => [
             '_' => 'турниры',

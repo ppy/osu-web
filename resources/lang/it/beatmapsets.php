@@ -60,6 +60,11 @@ return [
     'show' => [
         'discussion' => 'Discussione',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
             'by_artist' => 'di :artist',
             'favourite' => 'Mi piace questa beatmap',
