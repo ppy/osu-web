@@ -54,15 +54,15 @@ return [
 
     'create' => [
         'form' => [
-            'password' => '',
-            'password_confirmation' => '',
-            'submit' => '',
-            'user_email' => '',
-            'user_email_confirmation' => '',
-            'username' => '',
+            'password' => 'adgangskode',
+            'password_confirmation' => 'bekræftelse af adgangskode',
+            'submit' => 'opret konto',
+            'user_email' => 'e-mail',
+            'user_email_confirmation' => 'e-mail bekræftelse',
+            'username' => 'brugernavn',
 
             'tos_notice' => [
-                '_' => '',
+                '_' => 'ved at oprette konto accepterer du :link',
                 'link' => '',
             ],
         ],
@@ -157,8 +157,8 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Du konto er blevet begrænset!',
-        'message' => 'Når du er begrænset, kan du ikke interagere med andre spillere, og dine scores vil kun være synlige for dig. Dette er som regel en automatisk proces, og begrænsningen vil blive fjernet indenfor 24 timer. Hvis du ønsker at appellere din begrænsning, <a href="mailto:accounts@ppy.sh">kontakt supporten</a>.',
-        'message_link' => '',
+        'message' => 'Når du er begrænset, kan du ikke interagere med andre spillere, og dine scores vil kun være synlige for dig. Dette er som regel en automatisk proces, og begrænsningen vil blive fjernet indenfor 24 timer. :link',
+        'message_link' => 'Tjek denne side for at lære mere.',
     ],
     'show' => [
         'age' => ':age år gammel',

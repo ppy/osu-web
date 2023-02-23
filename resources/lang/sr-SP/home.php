@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'тражите на форуму',
                 'forum_children' => 'укључујући субфоруме',
+                'include_deleted' => '',
                 'topic_id' => 'тема #',
                 'username' => 'аутор',
             ],
@@ -83,6 +84,7 @@ return [
         'macos-fallback' => 'macOS корисници',
         'mirror' => 'алтернативни линк',
         'or' => 'или',
+        'os_version_or_later' => '',
         'other_os' => 'друге платформе',
         'quick_start_guide' => 'водич за брзи почетак',
         'tagline' => "Почнимо!",

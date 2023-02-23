@@ -60,6 +60,11 @@ return [
     'show' => [
         'discussion' => 'Discusión',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
             'by_artist' => 'por :artist',
             'favourite' => 'Marcar como favorito',

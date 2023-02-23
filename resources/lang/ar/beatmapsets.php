@@ -60,6 +60,11 @@ return [
     'show' => [
         'discussion' => 'مناقشة',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
             'by_artist' => 'بواسطة :artist',
             'favourite' => 'تفضيل هذه الخريطة',

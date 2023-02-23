@@ -102,7 +102,7 @@ return [
             '_' => 'hiệu suất',
         ],
         'seasons_controller' => [
-            '_' => '',
+            '_' => 'xếp hạng',
         ],
         'tournaments_controller' => [
             '_' => 'giải đấu',

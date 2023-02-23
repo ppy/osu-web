@@ -60,6 +60,11 @@ return [
     'show' => [
         'discussion' => 'Diskusia',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
             'by_artist' => 'od :artist',
             'favourite' => 'Pridať do mojich obľúbených',

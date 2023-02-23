@@ -158,7 +158,7 @@ return [
     'restricted_banner' => [
         'title' => '계정이 제한되어 있습니다!',
         'message' => '계정이 제한되어있으면 다른 플레이어와 소통할 수 없으며 점수가 본인에게만 표시됩니다. 계정 제한은 보통 자동적으로 처리되며, 24시간 이내에 철회될 수 있습니다. 제한에 대한 항소를 원하시면 <a href="mailto:accounts@ppy.sh">지원팀에 연락</a>해주시기 바랍니다.',
-        'message_link' => '',
+        'message_link' => '이 페이지에서 자세히 알아보세요.',
     ],
     'show' => [
         'age' => '만 :age세',

@@ -23,14 +23,14 @@ return [
         'multiplayer' => 'multiplayer',
         'performance' => 'performa',
         'score' => 'skor',
-        'seasons' => '',
+        'seasons' => 'musim',
     ],
 
     'seasons' => [
-        'empty' => '',
-        'ongoing' => '',
-        'room_count' => '',
-        'url' => '',
+        'empty' => 'Musim ini belum memiliki ruangan.',
+        'ongoing' => 'Musim ini sedang berlangsung (ke depannya, akan terdapat lebih banyak playlist untuk dimainkan)',
+        'room_count' => 'Jumlah playlist',
+        'url' => 'Menampilkan informasi lebih lanjut seputar musim yang dipilih.',
     ],
 
     'spotlight' => [

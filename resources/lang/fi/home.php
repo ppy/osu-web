@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'etsi foorumeista',
                 'forum_children' => 'etsi myös alafoorumeilta',
+                'include_deleted' => '',
                 'topic_id' => 'aihe #',
                 'username' => 'tekijä',
             ],
@@ -83,6 +84,7 @@ return [
         'macos-fallback' => 'macOS-käyttäjät',
         'mirror' => 'vaihtoehtoinen lataus',
         'or' => '',
+        'os_version_or_later' => '',
         'other_os' => '',
         'quick_start_guide' => '',
         'tagline' => "laitetaan sinut<br>liikkeelle!",

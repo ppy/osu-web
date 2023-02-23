@@ -60,6 +60,11 @@ return [
     'show' => [
         'discussion' => 'การสนทนา',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
             'by_artist' => 'โดย :artist',
             'favourite' => 'กดชื่นชอบ beatmapset นี้',

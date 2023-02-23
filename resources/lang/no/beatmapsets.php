@@ -60,6 +60,11 @@ return [
     'show' => [
         'discussion' => 'Diskusjon',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
             'by_artist' => 'av :artist',
             'favourite' => 'Marker dette beatmapsettet som en favoritt',

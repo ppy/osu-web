@@ -157,8 +157,8 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Dein Account wurde restricted!',
-        'message' => 'Während du restricted bist, kannst du nicht mit anderen Spielern interagieren und deine Ranglistenscores sind nur für dich sichtbar. Dies passiert normalerweise durch einen automatischen Prozess und wird üblicherweise innerhalb von 24 Stunden aufgehoben. Wenn du Einspruch gegen deine Restriction erheben möchtest, wende dich bitte an <a href="mailto:accounts@ppy.sh">den Support</a>.',
-        'message_link' => '',
+        'message' => 'Während einer Sperrung kannst du nicht mit anderen Spielern interagieren und deine Ranglistenscores sind nur für dich sichtbar. Dies passiert normalerweise durch einen automatischen Prozess und wird üblicherweise innerhalb von 24 Stunden aufgehoben. :link',
+        'message_link' => 'Siehe hier für weitere Informationen.',
     ],
     'show' => [
         'age' => ':age Jahre alt',

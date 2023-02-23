@@ -97,7 +97,7 @@ return [
             'php' => 'MMMM y',
         ],
         'year_month_short' => [
-            'moment' => 'MMMM [de] YYYY',
+            'moment' => 'MMM YYYY',
         ],
     ],
 

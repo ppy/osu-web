@@ -23,14 +23,14 @@ return [
         'multiplayer' => 'çok oyunculu',
         'performance' => 'Performans',
         'score' => 'Skor',
-        'seasons' => '',
+        'seasons' => 'sezonlar',
     ],
 
     'seasons' => [
-        'empty' => '',
-        'ongoing' => '',
-        'room_count' => '',
-        'url' => '',
+        'empty' => 'Bu sezonda henüz oda bulunmamaktadır.',
+        'ongoing' => 'Bu sezon hala devam etmektedir (daha fazla çalma listesi eklenecektir).',
+        'room_count' => 'Oynatma listesi sayısı',
+        'url' => 'Bu sezon hakkında daha fazla bilgi görüntüleyin.',
     ],
 
     'spotlight' => [

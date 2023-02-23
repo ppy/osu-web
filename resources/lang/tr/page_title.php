@@ -101,7 +101,7 @@ return [
             '_' => 'performans',
         ],
         'seasons_controller' => [
-            '_' => '',
+            '_' => 'sıralamalar',
         ],
         'tournaments_controller' => [
             '_' => 'turnuvalar',

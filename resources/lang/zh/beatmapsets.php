@@ -60,6 +60,11 @@ return [
     'show' => [
         'discussion' => '讨论',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
             'by_artist' => 'by :artist',
             'favourite' => '收藏这张谱面',

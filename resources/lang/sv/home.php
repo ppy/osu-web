@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'sök i forumen',
                 'forum_children' => 'inkludera subforum',
+                'include_deleted' => '',
                 'topic_id' => 'ämne #',
                 'username' => 'författare',
             ],
@@ -83,6 +84,7 @@ return [
         'macos-fallback' => 'macOS-användare',
         'mirror' => 'mirror',
         'or' => 'eller',
+        'os_version_or_later' => '',
         'other_os' => 'andra plattformar',
         'quick_start_guide' => 'snabbstartsguide',
         'tagline' => "låt oss<br>få dig igång!",

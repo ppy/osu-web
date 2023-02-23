@@ -60,6 +60,11 @@ return [
     'show' => [
         'discussion' => 'Обсуждение',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
             'by_artist' => 'от :artist',
             'favourite' => 'Добавить в избранное',
@@ -130,10 +135,10 @@ return [
             'offset' => 'Онлайн-оффсет',
             'points-of-failure' => 'Диаграмма провалов',
             'source' => 'Источник',
-            'storyboard' => 'Эта карта содержит сториборд',
+            'storyboard' => 'Эта карта со сторибордом',
             'success-rate' => 'Процент успешных прохождений',
             'tags' => 'Теги',
-            'video' => 'Эта карта содержит видео',
+            'video' => 'Эта карта с видео',
         ],
 
         'nsfw_warning' => [

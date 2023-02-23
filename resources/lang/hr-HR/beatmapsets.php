@@ -60,6 +60,11 @@ return [
     'show' => [
         'discussion' => 'Rasprava',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
             'by_artist' => 'od :artist',
             'favourite' => 'Označi beatmapu kao omiljenu',

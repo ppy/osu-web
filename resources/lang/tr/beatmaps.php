@@ -67,7 +67,7 @@ return [
         ],
 
         'message_type' => [
-            'disqualify' => 'Diskalifiye',
+            'disqualify' => 'Diskalifiye et',
             'hype' => 'Gazla!',
             'mapper_note' => 'Not',
             'nomination_reset' => 'Adaylığı Sıfırla',

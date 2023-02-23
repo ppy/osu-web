@@ -101,7 +101,7 @@ return [
             '_' => 'výkon',
         ],
         'seasons_controller' => [
-            '_' => '',
+            '_' => 'hodnocení',
         ],
         'tournaments_controller' => [
             '_' => 'turnaje',
