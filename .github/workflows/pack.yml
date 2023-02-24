@@ -74,6 +74,7 @@ jobs:
           token: ${{ secrets.KUBERNETES_CONFIG_REPO_ACCESS_TOKEN }}
           repository: ppy/osu-kubernetes-config
           event-type: osu-web-deploy
+          client-payload: '{ "dockerTag": "${{ github.ref_name }}" }'
       -
         name: Create Sentry release
         uses: getsentry/action-release@v1
