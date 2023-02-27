@@ -7,7 +7,15 @@
 @section('ranking-header')
     <div
         class="osu-page osu-page--description js-react--spotlight-select-options"
-    ></div>
+    >
+        <div class="select-options select-options--spotlight">
+            <div class="select-options__select">
+                <span class="select-options__option">
+                    {{ $spotlight->name }}
+                </span>
+            </div>
+        </div>
+    </div>
 
     <script id="json-spotlight-select-options" type="application/json">
         {!! json_encode($selectOptions) !!}
