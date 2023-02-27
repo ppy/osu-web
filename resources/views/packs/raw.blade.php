@@ -3,7 +3,10 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
+    use Ds\Set;
+
     $currentUser = Auth::user();
+    $userCompletedBeatmapIds = new Set($userCompletionData['beatmapset_ids']);
 @endphp
 <div class="beatmap-pack-description">
     @if($currentUser === null)
@@ -27,10 +30,11 @@
 <ul class="beatmap-pack-items">
     @foreach ($sets as $set)
         @php
-            $cleared = in_array($set->getKey(), $userCompletionData['beatmapset_ids'], true)
+            $cleared = $userCompletedBeatmapIds->contains($set->getKey());
+            $iconClass = class_with_modifiers('beatmap-pack-items__icon', ['cleared' => $cleared]);
         @endphp
         <li class="beatmap-pack-items__set">
-            <span class="fal fa-extra-mode-{{$mode}} beatmap-pack-items__icon {{ $cleared ? 'beatmap-pack-items__icon--cleared' : '' }}"
+            <span class="fal fa-extra-mode-{{ $mode }} {{ $iconClass }}"
                   title="{{ $cleared ? osu_trans('beatmappacks.show.item.cleared') : osu_trans('beatmappacks.show.item.not_cleared') }}"
             ></span>
             <a href="{{ route('beatmapsets.show', ['beatmapset' => $set->getKey()]) }}" class="beatmap-pack-items__link">
