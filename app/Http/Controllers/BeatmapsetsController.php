@@ -352,7 +352,7 @@ class BeatmapsetsController extends Controller
                 'beatmapsets' => json_collection(
                     $records,
                     new BeatmapsetTransformer(),
-                    'beatmaps.max_combo'
+                    ['beatmaps.max_combo', 'pack_tags']
                 ),
                 'search' => [
                     'sort' => $search->getParams()->getSort(),
@@ -393,6 +393,7 @@ class BeatmapsetsController extends Controller
             'description',
             'genre',
             'language',
+            'pack_tags',
             'ratings',
             'recent_favourites',
             'related_users',
