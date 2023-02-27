@@ -19,6 +19,8 @@ import { trans } from 'utils/lang';
 import { DiscussionType, discussionTypeIcons } from './discussion-type';
 import DiscussionVoteButtons from './discussion-vote-buttons';
 import DiscussionsStateContext from './discussions-state-context';
+import { Mode } from './markdown-editor';
+import MarkdownEditorSwitcher from './markdown-editor-switcher';
 import { NewReply } from './new-reply';
 import Post from './post';
 import SystemPost from './system-post';
@@ -154,7 +156,7 @@ export class Discussion extends React.Component<Props> {
             <div className={`${bn}__top-message`}>
               {this.renderPost(firstPost, 'discussion')}
             </div>
-            {this.renderPostButtons()}
+            {this.renderPostButtons(firstPost.id)}
           </div>
           {this.postFooter()}
           <div className={lineClasses} />
@@ -166,6 +168,11 @@ export class Discussion extends React.Component<Props> {
   @action
   private readonly handleCollapseClick = () => {
     this.context.discussionCollapsed.set(this.props.discussion.id, !this.collapsed);
+  };
+
+  @action
+  private readonly handleModeChange = (id: number, mode: Mode) => {
+    this.context.editorMode.set(id, mode);
   };
 
   @action
@@ -235,13 +242,20 @@ export class Discussion extends React.Component<Props> {
     );
   }
 
-  private renderPostButtons() {
+  private renderPostButtons(postId: number) {
     if (this.props.preview) return null;
 
     const user = this.props.users[this.props.discussion.user_id];
 
     return (
       <div className={`${bn}__top-actions`}>
+        {this.context.postEditing.has(postId) && (
+          <MarkdownEditorSwitcher
+            id={postId}
+            mode={this.context.editorMode.get(postId)}
+            onModeChange={this.handleModeChange}
+          />
+        )}
         <div className={`${bn}__actions`}>
           {this.props.parentDiscussion != null && (
             <a

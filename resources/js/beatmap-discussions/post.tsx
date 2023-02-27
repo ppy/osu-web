@@ -31,7 +31,8 @@ import { classWithModifiers } from 'utils/css';
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
 import { trans } from 'utils/lang';
 import DiscussionMessage from './discussion-message';
-import MarkdownEditor, { Mode } from './markdown-editor';
+import DiscussionsStateContext from './discussions-state-context';
+import MarkdownEditor from './markdown-editor';
 import { UserCard } from './user-card';
 
 const bn = 'beatmap-discussion-post';
@@ -50,12 +51,13 @@ interface Props {
 
 @observer
 export default class Post extends React.Component<Props> {
+  static contextType = DiscussionsStateContext;
+  declare context: React.ContextType<typeof DiscussionsStateContext>;
+
   @observable private canSave = true; // this isn't computed because Editor's onChange doesn't provide anything to react to.
-  @observable private editing = false;
   private readonly handleTextareaKeyDown;
   @observable private message = '';
   private readonly messageBodyRef = React.createRef<HTMLDivElement>();
-  @observable private mode: Mode = 'write';
   private readonly reviewEditorRef = React.createRef<Editor>();
   @observable private textareaMinHeight = '0';
   private readonly textareaRef = React.createRef<HTMLTextAreaElement>();
@@ -84,6 +86,18 @@ export default class Post extends React.Component<Props> {
   @computed
   private get isAdmin() {
     return core.currentUser?.is_admin ?? false;
+  }
+
+  private get editing() {
+    return this.context.postEditing.has(this.props.post.id);
+  }
+
+  private set editing(value: boolean) {
+    if (value) {
+      this.context.postEditing.add(this.props.post.id);
+    } else {
+      this.context.postEditing.delete(this.props.post.id);
+    }
   }
 
   @computed
@@ -187,11 +201,6 @@ export default class Post extends React.Component<Props> {
   };
 
   @action
-  private handleModeClick = (event: React.SyntheticEvent<HTMLButtonElement>) => {
-    this.mode = event.currentTarget.dataset.mode ?? 'write';
-  };
-
-  @action
   private readonly handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     this.message = e.target.value;
     this.canSave = validMessageLength(this.message, this.isTimeline);
@@ -269,7 +278,6 @@ export default class Post extends React.Component<Props> {
     const canPost = !this.isPosting && this.canSave;
 
     const document = this.props.post.message;
-
     return (
       <div className={`${bn}__message-container`}>
         {this.isReview ? (
@@ -293,31 +301,16 @@ export default class Post extends React.Component<Props> {
             )}
           </DiscussionsContext.Consumer>
         ) : (
-          <>
-            <ul className='header-nav-v4 header-nav-v4--list'>
-              {['write', 'preview'].map((mode) => (
-                <li key={mode} className='header-nav-v4__item'>
-                  <button
-                    className={classWithModifiers('header-nav-v4__link', { active: mode === this.mode })}
-                    data-mode={mode}
-                    onClick={this.handleModeClick}
-                  >
-                    {mode}
-                  </button>
-                </li>
-              ))}
-            </ul>
-            <MarkdownEditor
-              disabled={this.isPosting}
-              isTimeline={this.isTimeline}
-              mode={this.mode}
-              onChange={this.handleTextareaChange}
-              onKeyDown={this.handleTextareaKeyDown}
-              style={{ minHeight: this.textareaMinHeight }}
-              textareaClassName={`${bn}__message ${bn}__message--editor`}
-              value={this.message}
-            />
-          </>
+          <MarkdownEditor
+            disabled={this.isPosting}
+            isTimeline={this.isTimeline}
+            mode={this.context.editorMode.get(this.props.post.id)}
+            onChange={this.handleTextareaChange}
+            onKeyDown={this.handleTextareaKeyDown}
+            style={{ minHeight: this.textareaMinHeight }}
+            textareaClassName={`${bn}__message ${bn}__message--editor`}
+            value={this.message}
+          />
         )}
         <div className={`${bn}__actions`}>
           <div className={`${bn}__actions-group`}>
