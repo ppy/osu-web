@@ -13,7 +13,7 @@
     if (isset($pack)) {
         $links[] = [
             'title' => $pack->name,
-            'url' => route('packs.show', $pack),
+            'url' => route('packs.show', ['pack' => $pack->tag]),
         ];
     }
 @endphp
