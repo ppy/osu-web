@@ -40,7 +40,7 @@ interface Props {
 
 @observer
 export default class Header extends React.Component<Props> {
-  @observable private readonly favouriteIconRef = React.createRef<HTMLSpanElement>();
+  private readonly favouriteIconRef = React.createRef<HTMLSpanElement>();
   @observable private hoveredFavouriteIcon = false;
 
   private get controller() {
