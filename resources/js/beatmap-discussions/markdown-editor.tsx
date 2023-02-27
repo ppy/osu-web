@@ -9,11 +9,12 @@ import { classWithModifiers } from 'utils/css';
 import DiscussionMessage from './discussion-message';
 import DiscussionMessageLengthCounter from './discussion-message-length-counter';
 
-type Mode = 'preview' | 'write';
+export type Mode = 'preview' | 'write';
 
 interface Props {
   disabled?: boolean;
   isTimeline: boolean;
+  mode: Mode;
   onChange?: React.FormEventHandler<HTMLTextAreaElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLTextAreaElement>;
   style?: React.CSSProperties;
@@ -24,12 +25,8 @@ interface Props {
 
 @observer
 export default class MarkdownEditor extends React.Component<Props> {
-  @observable private mode: Mode = 'write';
-
   constructor(props: Props) {
     super(props);
-
-    makeObservable(this);
   }
 
   render() {
@@ -37,19 +34,7 @@ export default class MarkdownEditor extends React.Component<Props> {
 
     return (
       <div className='markdown-editor'>
-        <div className='page-tabs'>
-          {['write', 'preview'].map((mode) => (
-            <button
-              key={mode}
-              className={classWithModifiers('page-tabs__tab', { active: mode === this.mode })}
-              data-mode={mode}
-              onClick={this.handleClick}
-            >
-              {mode}
-            </button>
-          ))}
-        </div>
-        {this.mode === 'write' ? (
+        {this.props.mode === 'write' ? (
           <>
             <TextareaAutosize
               ref={textareaRef}
@@ -64,9 +49,4 @@ export default class MarkdownEditor extends React.Component<Props> {
       </div>
     );
   }
-
-  @action
-  private handleClick = (event: React.SyntheticEvent<HTMLButtonElement>) => {
-    this.mode = event.currentTarget.dataset.mode ?? 'write';
-  };
 }

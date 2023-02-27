@@ -31,7 +31,7 @@ import { classWithModifiers } from 'utils/css';
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
 import { trans } from 'utils/lang';
 import DiscussionMessage from './discussion-message';
-import MarkdownEditor from './markdown-editor';
+import MarkdownEditor, { Mode } from './markdown-editor';
 import { UserCard } from './user-card';
 
 const bn = 'beatmap-discussion-post';
@@ -55,6 +55,7 @@ export default class Post extends React.Component<Props> {
   private readonly handleTextareaKeyDown;
   @observable private message = '';
   private readonly messageBodyRef = React.createRef<HTMLDivElement>();
+  @observable private mode: Mode = 'write';
   private readonly reviewEditorRef = React.createRef<Editor>();
   @observable private textareaMinHeight = '0';
   private readonly textareaRef = React.createRef<HTMLTextAreaElement>();
@@ -186,6 +187,11 @@ export default class Post extends React.Component<Props> {
   };
 
   @action
+  private handleModeClick = (event: React.SyntheticEvent<HTMLButtonElement>) => {
+    this.mode = event.currentTarget.dataset.mode ?? 'write';
+  };
+
+  @action
   private readonly handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     this.message = e.target.value;
     this.canSave = validMessageLength(this.message, this.isTimeline);
@@ -287,15 +293,31 @@ export default class Post extends React.Component<Props> {
             )}
           </DiscussionsContext.Consumer>
         ) : (
-          <MarkdownEditor
-            disabled={this.isPosting}
-            isTimeline={this.isTimeline}
-            onChange={this.handleTextareaChange}
-            onKeyDown={this.handleTextareaKeyDown}
-            style={{ minHeight: this.textareaMinHeight }}
-            textareaClassName={`${bn}__message ${bn}__message--editor`}
-            value={this.message}
-          />
+          <>
+            <ul className='header-nav-v4 header-nav-v4--list'>
+              {['write', 'preview'].map((mode) => (
+                <li key={mode} className='header-nav-v4__item'>
+                  <button
+                    className={classWithModifiers('header-nav-v4__link', { active: mode === this.mode })}
+                    data-mode={mode}
+                    onClick={this.handleModeClick}
+                  >
+                    {mode}
+                  </button>
+                </li>
+              ))}
+            </ul>
+            <MarkdownEditor
+              disabled={this.isPosting}
+              isTimeline={this.isTimeline}
+              mode={this.mode}
+              onChange={this.handleTextareaChange}
+              onKeyDown={this.handleTextareaKeyDown}
+              style={{ minHeight: this.textareaMinHeight }}
+              textareaClassName={`${bn}__message ${bn}__message--editor`}
+              value={this.message}
+            />
+          </>
         )}
         <div className={`${bn}__actions`}>
           <div className={`${bn}__actions-group`}>
