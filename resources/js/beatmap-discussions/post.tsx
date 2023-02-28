@@ -314,14 +314,12 @@ export default class Post extends React.Component<Props> {
         )}
         <div className={`${bn}__actions`}>
           <div className={`${bn}__actions-group`}>
-            <div className={`${bn}__actions-group`}>
-              <div className={`${bn}__action`}>
-                <BigButton
-                  disabled={this.isPosting}
-                  props={{ onClick: this.editCancel }}
-                  text={trans('common.buttons.cancel')}
-                />
-              </div>
+            <div className={`${bn}__action`}>
+              <BigButton
+                disabled={this.isPosting}
+                props={{ onClick: this.editCancel }}
+                text={trans('common.buttons.cancel')}
+              />
             </div>
             <div className={`${bn}__action`}>
               <BigButton
