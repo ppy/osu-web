@@ -5,24 +5,32 @@
 
 return [
     'countries' => [
-        'all' => '',
-        'title' => '',
+        'all' => 'Kaikki',
+        'title' => 'Maa',
     ],
 
     'filter' => [
-        'title' => '',
+        'title' => 'Näytä',
 
         'variant' => [
-            'title' => '',
+            'title' => 'Variantti',
         ],
     ],
 
     'type' => [
         'charts' => 'Valokeilassa',
         'country' => 'Maa',
-        'multiplayer' => '',
+        'multiplayer' => 'moninpeli',
         'performance' => 'Suorituskyky',
         'score' => 'Piste',
+        'seasons' => '',
+    ],
+
+    'seasons' => [
+        'empty' => '',
+        'ongoing' => '',
+        'room_count' => '',
+        'url' => '',
     ],
 
     'spotlight' => [

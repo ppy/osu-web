@@ -19,6 +19,9 @@ class CommentableMetaTransformer extends TransformerAbstract
             }
 
             return [
+                'current_user_attributes' => [
+                    'can_new_comment_reason' => priv_check('CommentStore', $commentable)->message(),
+                ],
                 'id' => $commentable->getKey(),
                 'type' => $commentable->getMorphClass(),
                 'title' => $commentable->commentableTitle(),
@@ -28,7 +31,7 @@ class CommentableMetaTransformer extends TransformerAbstract
             ];
         } else {
             return [
-                'title' => trans('comments.commentable_name._deleted'),
+                'title' => osu_trans('comments.commentable_name._deleted'),
             ];
         }
     }

@@ -13,6 +13,8 @@ return [
 
     'error' => [
         'contact_support' => 'Please contact support to recover account.',
+        'expired' => 'Verification code has expired.',
+        'invalid' => 'Unexpected error in verification code.',
         'is_privileged' => 'Please contact a high level admin to recover account.',
         'missing_key' => 'Required.',
         'too_many_tries' => 'Too many failed attempts.',

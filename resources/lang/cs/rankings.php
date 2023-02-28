@@ -5,24 +5,32 @@
 
 return [
     'countries' => [
-        'all' => '',
-        'title' => '',
+        'all' => 'Vše',
+        'title' => 'Stát',
     ],
 
     'filter' => [
-        'title' => '',
+        'title' => 'Zobrazit',
 
         'variant' => [
-            'title' => '',
+            'title' => 'Varianta',
         ],
     ],
 
     'type' => [
-        'charts' => 'Výběry',
-        'country' => 'Stát',
-        'multiplayer' => '',
-        'performance' => 'Výkon',
-        'score' => 'Skóre',
+        'charts' => 'výběry',
+        'country' => 'stát',
+        'multiplayer' => 'hra pro více hráčů',
+        'performance' => 'výkon',
+        'score' => 'skóre',
+        'seasons' => 'sezóny',
+    ],
+
+    'seasons' => [
+        'empty' => 'V této sezóně nejsou žádné místnosti.',
+        'ongoing' => 'Tato sezóna stále probíhá (více playlistů bude přidáno průběhem času).',
+        'room_count' => 'Počet playlistů',
+        'url' => 'Zobrazit více informací pro tuto sezónu.',
     ],
 
     'spotlight' => [

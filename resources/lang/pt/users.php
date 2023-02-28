@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Tu bloqueaste este utilizador.',
+        'comment_text' => 'Este comentário está oculto.',
         'blocked_count' => 'utilizadores bloqueados (:count)',
         'hide_profile' => 'Ocultar perfil',
+        'hide_comment' => 'ocultar',
         'not_blocked' => 'Esse utilizador não está bloqueado.',
         'show_profile' => 'Mostrar perfil',
+        'show_comment' => 'mostrar',
         'too_many' => 'Limite de bloqueios atingido.',
         'button' => [
             'block' => 'Bloquear',
@@ -47,6 +50,22 @@ return [
     'card' => [
         'loading' => 'A carregar...',
         'send_message' => 'Enviar mensagem',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => 'palavra-passe',
+            'password_confirmation' => 'confirmação da palavra-passe',
+            'submit' => 'criar conta',
+            'user_email' => 'email',
+            'user_email_confirmation' => 'confirmação do email',
+            'username' => 'nome de utilizador',
+
+            'tos_notice' => [
+                '_' => 'ao criar uma conta, tu concordas com :link',
+                'link' => 'termos de serviço',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -112,7 +131,7 @@ return [
         'username' => 'Convidado',
         'error' => 'Precisas de ter sessão iniciada para fazer isto.',
     ],
-    'logout_confirm' => 'Tens a certeza que queres terminar a sessão? :(',
+    'logout_confirm' => 'Tens a certeza de que queres terminar a sessão? :(',
     'report' => [
         'button_text' => 'denunciar',
         'comments' => 'Comentários adicionais',
@@ -128,6 +147,7 @@ return [
 
         'options' => [
             'cheating' => 'Jogada suja / Fazer batota',
+            'multiple_accounts' => 'Utilização de contas múltiplas',
             'insults' => 'Insulto a mim ou a outros',
             'spam' => 'Spam',
             'unwanted_content' => 'Enviar ligações com conteúdo impróprio',
@@ -138,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'A tua conta foi restrita!',
         'message' => 'Enquanto restrito(a), estarás incapaz de interagir com outros jogadores e as tuas pontuações só serão visíveis para ti. Isto é habitualmente o resultado dum processo automático e irá ser levantado geralmente em 24 horas. Se quiseres apelar a tua restrição, por favor <a href="mailto:accounts@ppy.sh">contacta a assistência</a>.',
+        'message_link' => 'Consulta esta página para saberes mais.',
     ],
     'show' => [
         'age' => ':age anos',
@@ -157,6 +178,10 @@ return [
         'comments_count' => [
             '_' => 'Publicou :link',
             'count' => ':count_delimited comentário|:count_delimited comentários',
+        ],
+        'cover' => [
+            'to_0' => 'Ocultar capa',
+            'to_1' => 'Mostrar capa',
         ],
         'edit' => [
             'cover' => [
@@ -203,14 +228,20 @@ return [
                 'graveyard' => [
                     'title' => 'Beatmaps no cemitério',
                 ],
+                'guest' => [
+                    'title' => 'Beatmaps onde participaram convidados',
+                ],
                 'loved' => [
                     'title' => 'Beatmaps adorados',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Beatmaps classificados e aprovados',
+                'nominated' => [
+                    'title' => 'Beatmaps classificados nomeados',
                 ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Beatmaps pendentes',
+                ],
+                'ranked' => [
+                    'title' => 'Beatmaps classificados e aprovados',
                 ],
             ],
             'discussions' => [
@@ -300,6 +331,9 @@ return [
                 'recent' => 'As mais recentes',
                 'title' => 'Medalhas',
             ],
+            'playlists' => [
+                'title' => 'Playlist de partidas',
+            ],
             'posts' => [
                 'title' => 'Publicações',
                 'title_longer' => 'Publicações recentes',
@@ -307,6 +341,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Recente',
+            ],
+            'realtime' => [
+                'title' => 'Jogos multijogador',
             ],
             'top_ranks' => [
                 'download_replay' => 'Transferir repetição',
@@ -320,6 +357,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Classificações de primeiro lugar',
+                ],
+                'pin' => [
+                    'to_0' => 'Desafixar',
+                    'to_0_done' => 'Pontuação desafixada',
+                    'to_1' => 'Afixar',
+                    'to_1_done' => 'Pontuação fixada',
+                ],
+                'pinned' => [
+                    'title' => 'Pontuações fixadas',
                 ],
             ],
             'votes' => [
@@ -346,6 +392,7 @@ return [
                     'actions' => [
                         'restriction' => 'Banido',
                         'silence' => 'Silenciado',
+                        'tournament_ban' => 'Exclusão do torneio',
                         'note' => 'Notificado',
                     ],
                 ],
@@ -387,11 +434,12 @@ return [
             'country_simple' => 'Classificação nacional',
             'global' => 'Classificação global para :mode',
             'global_simple' => 'Classificação global',
+            'highest' => 'Classificação mais alta: :rank em :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisão de acertos',
             'level' => 'Nível :level',
-            'level_progress' => 'Progresso para o próximo nível',
+            'level_progress' => 'Progresso ao próximo nível',
             'maximum_combo' => 'Combo máximo',
             'medals' => 'Medalhas',
             'play_count' => 'Número de partidas',
@@ -402,10 +450,10 @@ return [
             'total_hits' => 'Acertos totais',
             'total_score' => 'Pontuação total',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Beatmaps classificados e aprovados',
-            'loved_beatmapset_count' => 'Beatmaps adorados',
-            'unranked_beatmapset_count' => 'Beatmaps pendentes',
             'graveyard_beatmapset_count' => 'Beatmaps no cemitério',
+            'loved_beatmapset_count' => 'Beatmaps adorados',
+            'pending_beatmapset_count' => 'Beatmaps pendentes',
+            'ranked_beatmapset_count' => 'Beatmaps classificados e aprovados',
         ],
     ],
 
@@ -420,6 +468,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => 'por favor regista-te através do cliente do jogo!',
+        'from_web' => 'por favor regista-te através do sítio web',
         'saved' => 'Criado por utilizadores',
     ],
     'verify' => [

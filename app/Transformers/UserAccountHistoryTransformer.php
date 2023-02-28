@@ -9,7 +9,7 @@ use App\Models\UserAccountHistory;
 
 class UserAccountHistoryTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'actor',
         'supporting_url',
     ];
@@ -23,9 +23,11 @@ class UserAccountHistoryTransformer extends TransformerAbstract
     {
         return [
             'description' => $h->reason,
-            'type' => $h->type,
-            'timestamp' => json_time($h->timestamp),
+            'id' => $h->getKey(),
             'length' => $h->period,
+            'permanent' => $h->permanent,
+            'timestamp' => json_time($h->timestamp),
+            'type' => $h->type,
         ];
     }
 

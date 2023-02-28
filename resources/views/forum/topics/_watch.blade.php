@@ -51,7 +51,7 @@
                 data-remote="1"
                 data-method="PUT"
             >
-                {{ trans("forum.topics.watch.to_{$newState}") }}
+                {{ osu_trans("forum.topics.watch.to_{$newState}") }}
                 <span class="simple-menu__item-loading-spinner">
                     {!! spinner() !!}
                 </span>

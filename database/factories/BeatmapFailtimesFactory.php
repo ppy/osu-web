@@ -13,14 +13,6 @@ $factory->define(App\Models\BeatmapFailtimes::class, function (Faker\Generator $
     return $array;
 });
 
-$factory->defineAs(App\Models\BeatmapFailtimes::class, 'fail', function (Faker\Generator $faker) use ($factory) {
-    $array = $factory->raw(App\Models\BeatmapFailtimes::class);
+$factory->state(App\Models\BeatmapFailtimes::class, 'fail', ['type' => 'fail']);
 
-    return array_merge($array, ['type' => 'fail']);
-});
-
-$factory->defineAs(App\Models\BeatmapFailtimes::class, 'retry', function (Faker\Generator $faker) use ($factory) {
-    $array = $factory->raw(App\Models\BeatmapFailtimes::class);
-
-    return array_merge($array, ['type' => 'exit']);
-});
+$factory->state(App\Models\BeatmapFailtimes::class, 'retry', ['type' => 'exit']);

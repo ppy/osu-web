@@ -15,15 +15,19 @@ return [
     'header' => [
         'admin' => [
             'beatmapset' => 'beatmap seti',
-            'beatmapset_covers' => 'beatmapset kapakları',
+            'beatmapset_covers' => 'beatmap seti kapakları',
             'contest' => 'yarışma',
             'contests' => 'yarışmalar',
             'root' => 'konsol',
-            'store_orders' => 'mağaza yöneticisi',
         ],
 
         'artists' => [
-            'index' => 'liste',
+            'index' => 'katalog',
+        ],
+
+        'beatmapsets' => [
+            'show' => 'bilgi',
+            'discussions' => 'tartışma',
         ],
 
         'changelog' => [
@@ -31,8 +35,8 @@ return [
         ],
 
         'help' => [
-            'index' => 'index',
-            'sitemap' => 'Site Haritası',
+            'index' => 'dizin',
+            'sitemap' => 'Site haritası',
         ],
 
         'store' => [
@@ -46,7 +50,9 @@ return [
         ],
 
         'users' => [
-            'modding' => 'modding',
+            'modding' => 'modlama',
+            'playlists' => 'oynatma listeleri',
+            'realtime' => 'çok oyunculu',
             'show' => 'bilgi',
         ],
     ],
@@ -62,18 +68,10 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmapler',
-            'artists' => 'featured artist\'ler',
-            'index' => 'listeleme',
-            'packs' => 'paketler',
         ],
         'community' => [
             '_' => 'topluluk',
-            'chat' => 'sohbet',
-            'contests' => 'yarışmalar',
             'dev' => 'geliştirme',
-            'forum-forums-index' => 'forumlar',
-            'getLive' => 'canlı',
-            'tournaments' => 'turnuvalar',
         ],
         'help' => [
             '_' => 'yardım',
@@ -81,30 +79,17 @@ return [
             'getFaq' => 'sss',
             'getRules' => 'kurallar',
             'getSupport' => 'hayır, gerçekten, yardıma ihtiyacım var!',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'anasayfa',
-            'changelog-index' => 'değişiklikler',
-            'getDownload' => 'indir',
-            'news-index' => 'haberler',
-            'search' => 'ara',
-            'team' => 'takım',
+            'team' => 'ekip',
         ],
         'rankings' => [
             '_' => 'sıralama',
-            'charts' => 'öne çıkanlar',
-            'country' => 'ülke',
-            'index' => 'performans',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'çok oyunculu',
-            'score' => 'skor',
         ],
         'store' => [
             '_' => 'mağaza',
-            'cart-show' => 'sepet',
-            'getListing' => 'liste',
-            'orders-index' => 'sipariş geçmişi',
         ],
     ],
 
@@ -112,8 +97,8 @@ return [
         'general' => [
             '_' => 'Genel',
             'home' => 'Anasayfa',
-            'changelog-index' => 'Sürüm notları',
-            'beatmaps' => 'Beatmap Listesi',
+            'changelog-index' => 'Değişiklikler',
+            'beatmaps' => 'Beatmap Kataloğu',
             'download' => 'osu!\'yu indir!',
         ],
         'help' => [
@@ -122,7 +107,7 @@ return [
             'forum' => 'Topluluk Forumları',
             'livestreams' => 'Canlı Yayınlar',
             'report' => 'Bir Sorun Bildir',
-            'wiki' => 'Viki',
+            'wiki' => 'Wiki',
         ],
         'legal' => [
             '_' => 'Yasal & Durum',
@@ -130,7 +115,7 @@ return [
             'privacy' => 'Gizlilik',
             'server_status' => 'Sunucu Durumu',
             'source_code' => 'Kaynak Kodu',
-            'terms' => 'Hizmet Kullanım Şartları',
+            'terms' => 'Koşullar',
         ],
     ],
 
@@ -140,15 +125,15 @@ return [
             'description' => '',
         ],
         '404' => [
-            'error' => 'Sayfa Kayıp',
-            'description' => "Üzgünüm, istediğiniz sayfa burada değil!",
+            'error' => 'Sayfa Bulunamıyor',
+            'description' => "Üzgünüz, ama ulaşmaya çalıştığınız sayfa burada değil!",
         ],
         '403' => [
             'error' => "Burada olmamalısın.",
             'description' => 'Geri dönmeyi deneyebilirsin.',
         ],
         '401' => [
-            'error' => "Burada olmamalısın.",
+            'error' => "Burada olmamalısınız.",
             'description' => 'Geri dönmeyi deneyebilirsiniz. Ya da giriş yapmayı.',
         ],
         '405' => [
@@ -200,7 +185,7 @@ return [
 
         'register' => [
             'download' => 'İndir',
-            'info' => 'Bir hesaba ihtiyacınız var, efendim. Neden hemen bir tane oluşturmuyorsunuz?',
+            'info' => 'Hesabınızı oluşturmak için osu!\'yu indirin!',
             'title' => "Hesabın yok mu?",
         ],
     ],

@@ -24,7 +24,7 @@ class BlocksController extends Controller
             ],
         ]);
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function store()
@@ -32,7 +32,7 @@ class BlocksController extends Controller
         $currentUser = Auth::user();
 
         if ($currentUser->blocks()->count() >= $currentUser->maxBlocks()) {
-            return error_popup(trans('users.blocks.too_many'));
+            return error_popup(osu_trans('users.blocks.too_many'));
         }
 
         $targetId = get_int(Request::input('target'));
@@ -64,7 +64,7 @@ class BlocksController extends Controller
         }
 
         return json_collection(
-            $currentUser->relations()->visible()->get(),
+            $currentUser->relations()->visible()->withMutual()->get(),
             'UserRelation'
         );
     }
@@ -78,13 +78,13 @@ class BlocksController extends Controller
             ->first();
 
         if (!$block) {
-            abort(404, trans('users.blocks.not_blocked'));
+            abort(404, osu_trans('users.blocks.not_blocked'));
         }
 
         $user->blocks()->detach($block);
 
         return json_collection(
-            $user->relations()->visible()->get(),
+            $user->relations()->visible()->withMutual()->get(),
             'UserRelation'
         );
     }

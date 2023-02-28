@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => 'Nem sikerült betölteni az adatokat.',
+    'missing_route' => 'Helytelen url vagy lekérési mód.',
+    'no_restricted_access' => 'Felfüggesztett állapot erre nem vagy alkalmas.',
+    'supporter_only' => 'Támogatónak kell lenned a funkció használatához.',
+    'unknown' => 'Ismeretlen hiba történt.',
+
     'codes' => [
         'http-401' => 'Kérlek jelentkezz be a folytatáshoz.',
         'http-403' => 'Hozzáférés megtagadva.',
@@ -24,10 +30,7 @@ return [
     ],
     'search' => [
         'default' => 'Nem sikerült bármi eredményt kapni, kérlek próbáld meg később.',
+        'invalid_cursor_exception' => 'Érvénytelen kurzorparaméter van megadva.',
         'operation_timeout_exception' => 'A keresés a szokásosnál jobban leterhelt, kérlek próbáld meg később.',
     ],
-
-    'supporter_only' => 'Támogatónak kell lenned a funkció használatához.',
-    'no_restricted_access' => 'Felfüggesztett állapot erre nem vagy alkalmas.',
-    'unknown' => 'Ismeretlen hiba történt.',
 ];

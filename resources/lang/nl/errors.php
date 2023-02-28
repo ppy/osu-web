@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => 'Laden van gegevens mislukt.',
+    'missing_route' => 'Ongeldige Url of onjuiste aanvraagmethode.',
+    'no_restricted_access' => 'Je mag dit niet doen terwijl je account beperkt is.',
+    'supporter_only' => 'Je moet een supporter zijn om dit te gebruiken.',
+    'unknown' => 'Een onbekende fout trad op.',
+
     'codes' => [
         'http-401' => 'Log in om verder te gaan.',
         'http-403' => 'Toegang geweigerd.',
@@ -24,10 +30,7 @@ return [
     ],
     'search' => [
         'default' => 'Kan geen resultaten krijgen, probeer het later opnieuw.',
+        'invalid_cursor_exception' => 'Ongeldige cursorwaarde opgegeven.',
         'operation_timeout_exception' => 'Zoeken is momenteel drukker dan gebruikelijk, probeer het later opnieuw.',
     ],
-
-    'supporter_only' => 'Je moet een supporter zijn om dit te gebruiken.',
-    'no_restricted_access' => 'Je mag dit niet doen terwijl je account de restricted status heeft.',
-    'unknown' => 'Een onbekende fout trad op.',
 ];

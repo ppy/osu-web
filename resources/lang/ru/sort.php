@@ -4,20 +4,31 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    '_' => 'Сортировать по',
+    '_' => 'Отсортировать по',
 
-    'all' => 'Все',
-    'friends' => 'Друзья',
+    'all' => 'Всех',
+    'friends' => 'Друзей',
     'last_visit' => 'Недавно активным',
-    'new' => 'свежие',
-    'old' => 'старые',
+    'new' => 'Последним',
+    'old' => 'Старым',
     'rank' => 'Рейтингу',
-    'top' => 'популярные',
+    'top' => 'Популярным',
     'username' => 'Имени пользователя',
 
+    'artist_tracks' => [
+        'album' => 'Альбому',
+        'artist' => 'Исполнителю',
+        'bpm' => 'BPM',
+        'genre' => 'Жанру',
+        'length' => 'Длительности',
+        'relevance' => 'Релевантности',
+        'title' => 'Названию',
+        'update' => 'Дате обновления',
+    ],
+
     'forum_posts' => [
-        'created' => 'Время публикации',
-        'relevance' => 'Релевантность',
+        'created' => 'Времени публикации',
+        'relevance' => 'Релевантности',
     ],
 
     'forum_topics' => [
@@ -26,7 +37,7 @@ return [
     ],
 
     'users' => [
-        'relevance' => 'Релевантность',
-        'username' => 'Имя',
+        'relevance' => 'Релевантности',
+        'username' => 'Имени',
     ],
 ];

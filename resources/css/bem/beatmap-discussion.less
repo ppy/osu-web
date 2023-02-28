@@ -1,0 +1,217 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.beatmap-discussion {
+  @_top: beatmap-discussion;
+
+  @_top-padding-y: 10px;
+  @_top-padding-x: 15px;
+
+  --base-bg: hsl(var(--hsl-b4));
+  .own-layer();
+  display: flex;
+
+  &--deleted {
+    opacity: 0.5;
+  }
+
+  &--modding-profile {
+    --base-bg: hsl(var(--hsl-b3));
+  }
+
+  &--preview {
+    flex-grow: 1;
+    overflow: hidden;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__action {
+    .reset-input();
+    display: flex;
+
+    &--with-line {
+      position: relative;
+
+      &::before {
+        .full-size();
+        content: ' ';
+        width: 1px;
+        right: 100%;
+        background-image: linear-gradient(to bottom, hsla(var(--hsl-b1), 0), @osu-colour-b1 50%, hsla(var(--hsl-b1), 0));
+      }
+    }
+  }
+
+  &__discussion {
+    .default-box-shadow();
+
+    flex: 1;
+    min-width: 0;
+    margin: 5px 0;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--base-bg);
+    overflow: hidden;
+    position: relative;
+
+    // hightlighted will override ::after
+    &::before {
+      @media @mobile {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 3px;
+        height: 100%;
+        background-color: var(--discussion-colour);
+      }
+    }
+
+    .@{_top}--highlighted & {
+      .thicker-box-shadow();
+      &::after {
+        .full-size();
+        content: ' ';
+        background: fade(white, 15%);
+        pointer-events: none;
+        opacity: 0.5;
+        animation: flash .5s;
+        @keyframes flash {
+          0% { opacity: 1; }
+          100% { opacity: 0.5; }
+        }
+      }
+    }
+
+    @media @desktop {
+      .default-border-radius();
+    }
+  }
+
+  &__expanded {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__line {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 5px;
+    height: 100%;
+
+    @media @desktop {
+      border-radius: @border-radius-base 0 0 @border-radius-base;
+    }
+
+    &--resolved {
+      background-color: @osu-colour-lime-3;
+    }
+  }
+
+  &__link-to-parent {
+    margin: 10px;
+    margin-right: 15px;
+
+    color: @osu-colour-f1;
+    .link-hover({
+      color: @osu-colour-c1;
+    });
+    .link-plain();
+  }
+
+  &__replies {
+    .inner-shadow-top();
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__resolved {
+    text-align: center;
+    color: @green-dark;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: lowercase;
+    margin: 5px 0;
+  }
+
+  &__timestamp {
+    flex: none;
+
+    // hopefully enough for type and resolve status icons.
+    width: 50px;
+
+    .@{_top}--timeline &, .@{_top}--preview & {
+      // with timestamp, timeline's line and dot.
+      width: 110px;
+    }
+  }
+
+  &__top {
+    background-color: @osu-colour-b3;
+    display: grid;
+    grid-template-areas: "user actions" "message message";
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+
+    .@{_top}--horizontal-desktop & {
+      @media @desktop {
+        grid-template-areas: "user message actions";
+        grid-template-columns: auto 1fr auto;
+      }
+    }
+
+    .@{_top}--unread & {
+      &::before {
+        .full-size();
+        content: ' ';
+        background-color: @blue-darker;
+        width: 5px;
+      }
+    }
+
+    .@{_top}--review & {
+      border-top: 2px solid var(--group-colour, transparent);
+    }
+
+    .@{_top}--single & {
+      display: block;
+      padding: @_top-padding-y @_top-padding-x;
+    }
+  }
+
+  &__top-actions {
+    grid-area: actions;
+    display: flex;
+    align-items: center;
+    height: 40px;
+  }
+
+  &__top-message {
+    grid-area: message;
+    margin: 0 @_top-padding-x @_top-padding-y;
+
+    .@{_top}--horizontal-desktop & {
+      @media @desktop {
+        margin: @_top-padding-y 0;
+      }
+    }
+  }
+
+  &__top-user {
+    margin-top: @_top-padding-y;
+    margin-left: @_top-padding-x;
+
+    .@{_top}--horizontal-desktop & {
+      @media @desktop {
+        margin-bottom: @_top-padding-y;
+        border-right: 2px solid var(--group-colour, hsl(var(--hsl-b5)));
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.user-cards {
+  .own-layer();
+
+  display: grid;
+  gap: 10px;
+  // auto-fit centres if there's only 1 card
+  grid-template-columns: repeat(auto-fill, minmax(@user-card-width-min, @user-card-width));
+
+  justify-content: center;
+
+  .search-result--user & {
+    gap: 5px;
+  }
+
+  &--list {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  &--brick {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 4px;
+    font-size: @font-size--normal-2;
+  }
+}

@@ -8,6 +8,6 @@
     </div>
 
     <div class="account-edit-status__content account-edit-status__content--saved">
-        {{ trans('common.saved') }}
+        {{ osu_trans('common.saved') }}
     </div>
 </div>

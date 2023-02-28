@@ -10,7 +10,9 @@ use App\Models\Beatmapset;
 
 class ImageProcessorService
 {
-    public function __construct($endpoint = null)
+    private string $endpoint;
+
+    public function __construct(?string $endpoint = null)
     {
         $this->endpoint = $endpoint ?? config('osu.beatmap_processor.thumbnailer');
     }
@@ -37,7 +39,7 @@ class ImageProcessorService
     // returns a handle instead of a filename to keep tmpfile alive
     public function process($method, $src)
     {
-        $src = preg_replace("/https?:\/\//", '', $src);
+        $src = preg_replace('/https?:\/\//', '', $src);
         try {
             $tmpFile = tmpfile();
             $bytesWritten = fwrite($tmpFile, file_get_contents($this->endpoint."/{$method}/{$src}"));

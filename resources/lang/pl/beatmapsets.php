@@ -11,8 +11,16 @@ return [
         'rule_violation' => 'Część zawartości tej beatmapy została usunięta po uznaniu jej za nieodpowiednią do użycia w osu!.',
     ],
 
+    'cover' => [
+        'deleted' => 'Usunięta beatmapa',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Zwolnij, pograj więcej!',
+    ],
+
+    'featured_artist_badge' => [
+        'label' => 'Wyróżniony artysta',
     ],
 
     'index' => [
@@ -32,7 +40,7 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => '',
+        'hybrid_requires_modes' => 'Beatmapa hybrydowa wymaga wybrania przynajmniej jednego trybu gry, dla którego chcesz ją nominować.',
         'incorrect_mode' => 'Nie posiadasz uprawnień do nominowania beatmap dla tych trybów (:mode)',
         'full_bn_required' => 'Musisz posiadać pełne uprawnienia nominatora, by zakwalifikować tę beatmapę.',
         'too_many' => 'Osiągnięto już wystarczającą liczbę nominacji.',
@@ -40,7 +48,7 @@ return [
         'dialog' => [
             'confirmation' => 'Czy na pewno chcesz nominować tę beatmapę?',
             'header' => 'Nominuj beatmapę',
-            'hybrid_warning' => '',
+            'hybrid_warning' => 'Uwaga: możesz nominować tylko raz, więc upewnij się, że nominujesz ją dla wszystkich pożądanych trybów gry.',
             'which_modes' => 'Dla jakich trybów chcesz nominować tę beatmapę?',
         ],
     ],
@@ -52,12 +60,18 @@ return [
     'show' => [
         'discussion' => 'Dyskusja',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
-            'by_artist' => '',
+            'by_artist' => ':artist',
             'favourite' => 'Dodaj do ulubionych',
-            'favourite_login' => '',
+            'favourite_login' => 'Zaloguj się, by dodać tę beatmapę do ulubionych',
             'logged-out' => 'Zaloguj się, aby zacząć pobierać beatmapy!',
             'mapped_by' => 'autorstwa :mapper',
+            'mapped_by_guest' => 'gościnny poziom trudności autorstwa :mapper',
             'unfavourite' => 'Usuń z ulubionych',
             'updated_timeago' => 'ostatnio zaktualizowana :timeago',
 
@@ -116,17 +130,19 @@ return [
             'genre' => 'Gatunek',
             'language' => 'Język',
             'no_scores' => 'Dane są nadal ładowane...',
+            'nominators' => 'Nominatorzy',
             'nsfw' => 'Treść dla pełnoletnich',
+            'offset' => 'Opóźnienie',
             'points-of-failure' => 'Wykres porażek',
             'source' => 'Źródło',
             'storyboard' => 'Ta beatmapa zawiera scenorys',
             'success-rate' => 'Wskaźnik ukończonych zagrań',
             'tags' => 'Tagi',
-            'video' => '',
+            'video' => 'Ta beatmapa zawiera wideo w tle',
         ],
 
         'nsfw_warning' => [
-            'details' => '',
+            'details' => 'Ta beatmapa zawiera niedwuznaczne, obraźliwe lub niepokojące treści. Czy chcesz ją zobaczyć mimo to?',
             'title' => 'Treść dla pełnoletnich',
 
             'buttons' => [
@@ -139,10 +155,11 @@ return [
         'scoreboard' => [
             'achieved' => 'osiągnięte :when',
             'country' => 'Ranking krajowy',
+            'error' => 'Nie udało się załadować rankingu',
             'friend' => 'Ranking znajomych',
             'global' => 'Ranking globalny',
             'supporter-link' => 'Kliknij <a href=":link">tutaj</a>, aby zobaczyć, jakie jeszcze funkcje otrzymasz w zamian za zakup statusu donatora!',
-            'supporter-only' => 'Musisz posiadać status donatora, aby uzyskać dostęp do rankingu krajowego i znajomych!',
+            'supporter-only' => 'Musisz posiadać status donatora, by uzyskać dostęp do rankingu krajowego, znajomych i odrębnych dla modyfikatorów!',
             'title' => 'Tabela wyników',
 
             'headers' => [
@@ -150,11 +167,12 @@ return [
                 'combo' => 'Combo',
                 'miss' => 'Pudła',
                 'mods' => 'Modyfikatory',
+                'pin' => 'Przypnij',
                 'player' => 'Gracz',
                 'pp' => '',
                 'rank' => 'Pozycja',
-                'score_total' => 'Wynik',
                 'score' => 'Wynik',
+                'score_total' => 'Wynik',
                 'time' => 'Data',
             ],
 
@@ -169,6 +187,10 @@ return [
                 'first' => 'Najlepszy wynik',
                 'own' => 'Twój wynik',
             ],
+            'supporter_link' => [
+                '_' => 'Kliknij :here, aby zobaczyć, jakie jeszcze funkcje otrzymasz!',
+                'here' => 'tutaj',
+            ],
         ],
 
         'stats' => [
@@ -182,6 +204,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Liczba kółek',
             'count_sliders' => 'Liczba sliderów',
+            'offset' => 'Opóźnienie: :offset',
             'user-rating' => 'Oceny użytkowników',
             'rating-spread' => 'Wykres ocen',
             'nominations' => 'Nominacje',
@@ -197,5 +220,9 @@ return [
             'pending' => 'Oczekująca',
             'graveyard' => 'Porzucona',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => 'Wyróżniona',
     ],
 ];

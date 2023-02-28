@@ -27,6 +27,12 @@ return [
         'beatmapset' => [
             '_' => 'Beatmap',
 
+            'beatmap_owner_change' => [
+                '_' => 'Guest difficulty',
+                'beatmap_owner_change' => 'You\'re now owner of difficulty ":beatmap" for beatmap ":title"',
+                'beatmap_owner_change_compact' => 'You\'re now owner of difficulty ":beatmap"',
+            ],
+
             'beatmapset_discussion' => [
                 '_' => 'Beatmap discussion',
                 'beatmapset_discussion_lock' => 'Discussion on ":title" has been locked',
@@ -80,8 +86,19 @@ return [
         'channel' => [
             '_' => 'Chat',
 
+            'announcement' => [
+                '_' => 'New announcement',
+
+                'announce' => [
+                    'channel_announcement' => ':username says ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Announcement from :username',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'New message',
+
                 'pm' => [
                     'channel_message' => ':username says ":title"',
                     'channel_message_compact' => ':title',
@@ -142,6 +159,9 @@ return [
                 'user_beatmapset_new' => 'New beatmap ":title" by :username',
                 'user_beatmapset_new_compact' => 'New beatmap ":title"',
                 'user_beatmapset_new_group' => 'New beatmaps by :username',
+
+                'user_beatmapset_revive' => 'Beatmap ":title" revived by :username',
+                'user_beatmapset_revive_compact' => 'Beatmap ":title" revived',
             ],
         ],
 
@@ -159,6 +179,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => 'You\'re now guest of beatmap ":title"',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'The discussion on ":title" has been locked',
                 'beatmapset_discussion_post_new' => 'The discussion on ":title" has new updates',
@@ -185,6 +209,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'There is a new annoucement in ":name"',
+            ],
+
             'channel' => [
                 'pm' => 'You\'ve received a new message from :username',
             ],
@@ -216,6 +244,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username has created new beatmaps',
+                'user_beatmapset_revive' => ':username has revived beatmaps',
             ],
         ],
     ],

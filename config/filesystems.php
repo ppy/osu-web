@@ -73,6 +73,11 @@ return [
             'base_url' => env('APP_URL', 'http://localhost').'/uploads-avatar',
         ],
 
+        'local-solo-replay' => [
+            'driver' => 'local',
+            'root' => public_path().'/uploads-solo-replay/',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('S3_KEY'),
@@ -90,6 +95,14 @@ return [
             'region' => env('S3_AVATAR_REGION'),
             'bucket' => env('S3_AVATAR_BUCKET'),
             'base_url' => env('S3_AVATAR_BASE_URL'),
+        ],
+
+        's3-solo-replay' => [
+            'driver' => 's3',
+            'key' => env('S3_KEY'),
+            'secret' => env('S3_SECRET'),
+            'region' => env('S3_REGION'),
+            'bucket' => 'solo-scores-replay',
         ],
     ],
 

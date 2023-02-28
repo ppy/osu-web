@@ -1,0 +1,120 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.beatmap-playcount {
+  @_top: beatmap-playcount;
+
+  --border-radius: @border-radius-large 0 0 @border-radius-large;
+  color: #fff;
+  background-color: #000;
+  border-radius: @border-radius-large;
+  display: flex;
+  margin-bottom: 2px;
+  line-height: normal;
+
+  &__artist {
+    margin-right: 10px;
+
+    @media @desktop {
+      display: none;
+    }
+  }
+
+  &__count {
+    color: @yellow;
+    font-size: @font-size--large;
+    display: flex;
+    align-items: center;
+  }
+
+  &__count-icon {
+    font-size: 0.6em; // icon size
+    margin-right: 5px;
+    margin-top: 0.2em; // manual adjustment to align with the numbers
+  }
+
+  &__cover {
+    flex: none;
+    width: 70px;
+    height: 60px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+  }
+
+  &__cover-count {
+    .full-size();
+    .center-content();
+    padding-right: @border-radius-large;
+    background-color: fade(#000, 75%);
+    border-radius: var(--border-radius);
+
+    @media @desktop {
+      display: none;
+    }
+  }
+
+  &__detail {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    background-color: hsl(var(--hsl-b3));
+    border-radius: @border-radius-large;
+    margin-left: -@border-radius-large;
+    padding: 0 10px;
+    position: relative;
+
+    .@{_top}:hover & {
+      background-color: hsl(var(--hsl-b2));
+    }
+  }
+
+  &__detail-count {
+    display: none;
+    align-items: center;
+
+    @media @desktop {
+      display: flex;
+    }
+  }
+
+  &__info {
+    min-width: 0;
+    flex: 1;
+  }
+
+  &__info-row {
+    font-size: @font-size--normal;
+  }
+
+  &__mapper {
+    color: @osu-colour-f1;
+  }
+
+  &__mapper-link {
+    font-weight: bold;
+    color: @osu-colour-f1;
+
+    .link-hover({
+      color: @osu-colour-l1;
+    });
+  }
+
+  &__title {
+    .link-white();
+    font-size: @font-size--title-small-3;
+    font-weight: bold;
+    min-width: 0;
+  }
+
+  &__title-artist {
+    display: none;
+    font-weight: normal;
+
+    @media @desktop {
+      display: inline;
+    }
+  }
+}

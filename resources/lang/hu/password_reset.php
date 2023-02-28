@@ -13,6 +13,8 @@ return [
 
     'error' => [
         'contact_support' => 'Fiókod visszaszerzéséhez kérlek vedd fel a kapcsolatot az ügyfélszolgálattal.',
+        'expired' => 'Hitelesítő kód lejárt.',
+        'invalid' => 'Váratlan hiba a hitelesítő kódban.',
         'is_privileged' => 'Nyaggasd peppy-t lol.',
         'missing_key' => 'Kötelező.',
         'too_many_tries' => 'Túl sok sikertelen próbálkozás.',

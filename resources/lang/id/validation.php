@@ -4,6 +4,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'mixture' => ':attribute tidak mengandung angka atau huruf',
+    'mixture' => 'Terdapat angka atau huruf yang hilang pada :attribute',
     'required' => ':attribute diperlukan',
 ];

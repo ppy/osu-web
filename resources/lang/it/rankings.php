@@ -18,18 +18,26 @@ return [
     ],
 
     'type' => [
-        'charts' => 'Spotlight',
-        'country' => 'Paese',
+        'charts' => 'spotlight',
+        'country' => 'paese',
         'multiplayer' => 'multigiocatore',
-        'performance' => 'Performance',
-        'score' => 'Punteggio',
+        'performance' => 'performance',
+        'score' => 'punteggio',
+        'seasons' => 'stagioni',
+    ],
+
+    'seasons' => [
+        'empty' => 'Non ci sono ancora posti per questa stagione.',
+        'ongoing' => 'Questa stagione è ancora in corso (verranno aggiunte altre playlist).',
+        'room_count' => 'Conteggio playlist',
+        'url' => 'Mostra ulteriori informazioni su quella stagione.',
     ],
 
     'spotlight' => [
-        'end_date' => 'Data Inizio',
+        'end_date' => 'Data Fine',
         'map_count' => 'N° Beatmap',
         'participants' => 'Partecipanti',
-        'start_date' => 'Data Fine',
+        'start_date' => 'Data Inizio',
     ],
 
     'stat' => [

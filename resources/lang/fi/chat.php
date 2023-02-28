@@ -4,29 +4,57 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'talking_in' => 'keskustellaan :channel:ssa',
+    'loading_users' => '',
+    'talking_in' => 'keskustellaan kanavalla :channel',
     'talking_with' => 'keskustelu :name:n kanssa',
     'title_compact' => 'viestit',
+    'unread_messages' => '',
 
     'cannot_send' => [
         'channel' => 'Et voi lähettää tälle kanavalle viestejä juuri nyt, koska',
         'user' => 'Et voi lähettää tälle käyttäjälle viestejä, koska',
-        'reasons' => [
-            'blocked' => 'Viestin vastaanottaja on estänyt sinut',
-            'channel_moderated' => 'Tämä kanava on moderoitu',
-            'friends_only' => 'Vastaanottaja sallii viestit vain hänen kavereiltaan',
-            'not_enough_plays' => '',
-            'not_verified' => '',
-            'restricted' => 'Käyttäjätilisi on rajoitetussa tilassa',
-            'silenced' => '',
-            'target_restricted' => 'Vastaanottaja on rajoitetussa tilassa',
+    ],
+
+    'channels' => [
+        'confirm_part' => '',
+        'create' => '',
+
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => 'Tiedotukset',
+                'GROUP' => 'Ryhmät',
+                'PM' => 'Yksityisviestit',
+                'PUBLIC' => 'Kanavat',
+            ],
         ],
     ],
+
+    'form' => [
+        'title' => [
+            'announcement' => '',
+        ],
+
+        'labels' => [
+            'description' => '',
+            'message' => '',
+            'name' => '',
+            'users' => '',
+        ],
+    ],
+
+    'not_found' => [
+        'message' => '',
+        'title' => 'kanavaa ei löydetty',
+    ],
+
     'input' => [
+        'create' => '',
         'disabled' => 'viestiä ei voida lähettää...',
+        'disconnected' => 'Yhteys katkaistu',
         'placeholder' => 'kirjoita viesti...',
         'send' => 'Lähetä',
     ],
+
     'no-conversations' => [
         'howto' => "Aloita keskusteluja käyttäjän profiilista tai käyttäjäkortti-ikkunasta.",
         'lazer' => 'Julkiset kanavat joihin olet liittynyt <a href=":link">osu!lazerilla</a> näkyvät myös täällä.',

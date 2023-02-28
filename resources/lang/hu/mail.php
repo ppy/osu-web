@@ -5,8 +5,8 @@
 
 return [
     'beatmapset_update_notice' => [
-        'new' => 'Értesíts, ha a legutóbbi látogatásom óta, frissítés történt ezen a mapon: ":title".',
-        'subject' => 'Új frissítés a ":title" beatmap-hez',
+        'new' => 'Értesíts, ha a legutóbbi látogatásom óta frissítés történt ":title" beatmapon.',
+        'subject' => 'Új frissítés a ":title" beatmaphez',
         'unwatch' => 'Ha már nem szeretnéd nézni ezt a beatmapet, akkor kattints a "Figyelés abbahagyása" linkre az oldalon, vagy a modding nézési lista oldalra:',
         'visit' => 'Látogasd meg a beszélgetői oldalt itt:',
     ],
@@ -15,6 +15,7 @@ return [
         'closing' => 'Üdvözlettel',
         'hello' => 'Üdvözöllek :user',
         'report' => 'Kérlek válaszolj erre az emailre AZZONAL, ha nem szeretnéd ezt a változást.',
+        'ignore' => 'Ha nem te kérted ezt, nyugodtan figyelmen kívül hagyhatod ezt az e-mailt.',
     ],
 
     'donation_thanks' => [
@@ -66,6 +67,7 @@ return [
         'duration' => 'Nekik köszönhetően, hozzáférésed van az osu!directhez és egyéb támogatói előnyökhöz egészen :duration-ig.',
         'features' => 'További adatokat itt találhatsz:',
         'gifted' => 'Valaki ajándékba adott egy osu!támogatói címet!',
+        'gift_message' => 'Az ajándékozód ezt az üzenetet hagyta: ',
         'subject' => 'osu!támogatói címet kaptál!',
     ],
 

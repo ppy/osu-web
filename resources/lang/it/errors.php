@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => 'Impossibile caricare i dati.',
+    'missing_route' => 'Url non valido o metodo di richiesta non corretto.',
+    'no_restricted_access' => 'Non puoi fare questa azione mentre il tuo account è limitato.',
+    'supporter_only' => 'Devi essere un supporter per poter usare questa funzionalità.',
+    'unknown' => 'Si è verificato un errore sconosciuto.',
+
     'codes' => [
         'http-401' => 'Per favore effettua il login per poter continuare.',
         'http-403' => 'Accesso Negato.',
@@ -24,10 +30,7 @@ return [
     ],
     'search' => [
         'default' => 'Impossibile ottenere alcun risultato, riprova più tardi.',
+        'invalid_cursor_exception' => 'Parametro del cursore specificato non valido.',
         'operation_timeout_exception' => 'Attualmente la ricerca è più occupata del solito, riprova più tardi.',
     ],
-
-    'supporter_only' => 'Devi essere un supporter per poter usare questa funzionalità.',
-    'no_restricted_access' => 'Non puoi fare questa azione mentre il tuo account è limitato.',
-    'unknown' => 'Si è verificato un errore sconosciuto.',
 ];

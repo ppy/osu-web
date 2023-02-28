@@ -19,10 +19,10 @@ class OrderNotModifiableException extends Exception
     public function __construct(Order $order)
     {
         $key = "store.order.not_modifiable_exception.{$order->status}";
-        $trans = trans($key);
+        $trans = osu_trans($key);
 
         parent::__construct(
-            $trans === $key ? trans('store.order.not_modifiable_exception.default') : $trans
+            $trans === $key ? osu_trans('store.order.not_modifiable_exception.default') : $trans
         );
 
         $this->order = $order;

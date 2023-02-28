@@ -20,8 +20,8 @@ class OrderCheckoutTest extends TestCase
 {
     public function testTournamentBannerWhenAvailable()
     {
-        $tournament = factory(Tournament::class)->create();
-        $product = $this->createTournamentProduct($tournament, Carbon::now()->addDay(1));
+        $tournament = Tournament::factory()->create();
+        $product = $this->createTournamentProduct($tournament, Carbon::now()->addDays(1));
         $orderItem = factory(OrderItem::class)->create([
             'product_id' => $product->product_id,
             'extra_data' => [
@@ -37,7 +37,7 @@ class OrderCheckoutTest extends TestCase
 
     public function testTournamentBannerWhenNoEndDate()
     {
-        $tournament = factory(Tournament::class)->create();
+        $tournament = Tournament::factory()->create();
         $product = $this->createTournamentProduct($tournament);
         $orderItem = factory(OrderItem::class)->create([
             'product_id' => $product->product_id,
@@ -54,8 +54,8 @@ class OrderCheckoutTest extends TestCase
 
     public function testTournamentBannerWhenNotAvailable()
     {
-        $tournament = factory(Tournament::class)->create();
-        $product = $this->createTournamentProduct($tournament, Carbon::now()->subDay(1));
+        $tournament = Tournament::factory()->create();
+        $product = $this->createTournamentProduct($tournament, Carbon::now()->subDays(1));
         $orderItem = factory(OrderItem::class)->create([
             'product_id' => $product->product_id,
             'extra_data' => [
@@ -91,7 +91,7 @@ class OrderCheckoutTest extends TestCase
         $result = $checkout->validate();
 
         $this->assertSame(
-            [trans('model_validation/store/product.must_separate')],
+            [osu_trans('model_validation/store/product.must_separate')],
             array_get($result, "orderItems.{$orderItem2->getKey()}")
         );
     }
@@ -139,9 +139,9 @@ class OrderCheckoutTest extends TestCase
 
     private function createTournamentProduct(Tournament $tournament, Carbon $availableUntil = null)
     {
-        $country = Country::inRandomOrder()->first() ?? factory(Country::class)->create();
+        $country = Country::inRandomOrder()->first() ?? Country::factory()->create();
 
-        $product = factory(Product::class, 'child_banners')->create([
+        $product = factory(Product::class)->states('child_banners')->create([
             'available_until' => $availableUntil,
             'name' => "{$tournament->name} Support Banner ({$country->name})",
         ]);

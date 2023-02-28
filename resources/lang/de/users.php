@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Du hast diesen Benutzer geblockt.',
-        'blocked_count' => '(:count) geblockte Benutzer ',
+        'comment_text' => 'Dieser Kommentar ist ausgeblendet.',
+        'blocked_count' => 'geblockte benutzer (:count)',
         'hide_profile' => 'Profil verbergen',
+        'hide_comment' => 'ausblenden',
         'not_blocked' => 'Dieser Benutzer ist nicht geblockt.',
         'show_profile' => 'Profil anzeigen',
+        'show_comment' => 'anzeigen',
         'too_many' => 'Block-Limit erreicht.',
         'button' => [
             'block' => 'Blocken',
@@ -47,6 +50,22 @@ return [
     'card' => [
         'loading' => 'Lädt...',
         'send_message' => 'Nachricht senden',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => 'passwort',
+            'password_confirmation' => 'passwort bestätigen',
+            'submit' => 'account erstellen',
+            'user_email' => 'e-mail',
+            'user_email_confirmation' => 'e-mail bestätigen',
+            'username' => 'benutzername',
+
+            'tos_notice' => [
+                '_' => 'durch die erstellung eines accounts bist du mit den :link einverstanden',
+                'link' => 'nutzungsbedingungen',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -83,7 +102,7 @@ return [
     'login' => [
         '_' => 'Login',
         'button' => 'Einloggen',
-        'button_posting' => 'Einloggen...',
+        'button_posting' => 'Logge ein...',
         'email_login_disabled' => 'Das Anmelden per E-Mail ist derzeit deaktiviert. Bitte benutze stattdessen Deinen Benutzernamen.',
         'failed' => 'Falscher Login',
         'forgot' => 'Passwort vergessen?',
@@ -128,6 +147,7 @@ return [
 
         'options' => [
             'cheating' => 'Cheating',
+            'multiple_accounts' => 'Verwendet mehrere Konten',
             'insults' => 'Beleidigt mich / andere',
             'spam' => 'Spamming',
             'unwanted_content' => 'Verlinkt unangemessene Inhalte',
@@ -137,7 +157,8 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Dein Account wurde restricted!',
-        'message' => 'Während du restricted bist, kannst du nicht mit anderen Spielern interagieren und deine Ranglistenscores sind nur für dich sichtbar. Dies passiert normalerweise durch einen automatischen Prozess und wird üblicherweise innerhalb von 24 Stunden aufgehoben. Wenn du Einspruch gegen deine Restriction erheben möchtest, wende dich bitte an <a href="mailto:accounts@ppy.sh">den Support</a>.',
+        'message' => 'Während einer Sperrung kannst du nicht mit anderen Spielern interagieren und deine Ranglistenscores sind nur für dich sichtbar. Dies passiert normalerweise durch einen automatischen Prozess und wird üblicherweise innerhalb von 24 Stunden aufgehoben. :link',
+        'message_link' => 'Siehe hier für weitere Informationen.',
     ],
     'show' => [
         'age' => ':age Jahre alt',
@@ -157,6 +178,10 @@ return [
         'comments_count' => [
             '_' => ':link abgegeben',
             'count' => ':count_delimited Kommentar|:count_delimited Kommentare',
+        ],
+        'cover' => [
+            'to_0' => 'Cover verbergen',
+            'to_1' => 'Cover anzeigen',
         ],
         'edit' => [
             'cover' => [
@@ -203,14 +228,20 @@ return [
                 'graveyard' => [
                     'title' => 'Begrabene Beatmaps',
                 ],
+                'guest' => [
+                    'title' => 'Als Gast beigetragene Beatmaps',
+                ],
                 'loved' => [
                     'title' => 'Loved Beatmaps',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved Beatmaps',
+                'nominated' => [
+                    'title' => 'Nominierte Ranked Beatmaps',
                 ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Ausstehende Beatmaps',
+                ],
+                'ranked' => [
+                    'title' => 'Ranked & Approved Beatmaps',
                 ],
             ],
             'discussions' => [
@@ -227,7 +258,7 @@ return [
                 'title' => 'Historisch',
 
                 'monthly_playcounts' => [
-                    'title' => 'Play-Verlauf',
+                    'title' => 'Spielverlauf',
                     'count_label' => 'Spiele',
                 ],
                 'most_played' => [
@@ -300,6 +331,9 @@ return [
                 'recent' => 'Neueste',
                 'title' => 'Medaillen',
             ],
+            'playlists' => [
+                'title' => 'Playlist-Spiele',
+            ],
             'posts' => [
                 'title' => 'Beiträge',
                 'title_longer' => 'Neueste Beiträge',
@@ -307,6 +341,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Neulich',
+            ],
+            'realtime' => [
+                'title' => 'Mehrspieler-Spiele',
             ],
             'top_ranks' => [
                 'download_replay' => 'Replay herunterladen',
@@ -320,6 +357,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Erster Platz',
+                ],
+                'pin' => [
+                    'to_0' => 'Ablösen',
+                    'to_0_done' => 'Score abgelöst',
+                    'to_1' => 'Anpinnen',
+                    'to_1_done' => 'Score angepinnt',
+                ],
+                'pinned' => [
+                    'title' => 'Angepinnte Scores',
                 ],
             ],
             'votes' => [
@@ -346,6 +392,7 @@ return [
                     'actions' => [
                         'restriction' => 'Bann',
                         'silence' => 'Silence',
+                        'tournament_ban' => 'Turniersperre',
                         'note' => 'Warnung',
                     ],
                 ],
@@ -374,7 +421,7 @@ return [
             'placeholder' => 'Seiteninhalt hier eingeben',
 
             'restriction_info' => [
-                '_' => 'Sie müssen ein :link sein, um diese Funktion freizuschalten.',
+                '_' => 'Du musst ein :link sein, um diese Funktion freizuschalten.',
                 'link' => 'osu!supporter',
             ],
         ],
@@ -387,6 +434,7 @@ return [
             'country_simple' => 'Landesrangliste',
             'global' => 'Globaler Rang im Modus :mode',
             'global_simple' => 'Globale Rangliste',
+            'highest' => 'Höchster Rang: :rank am :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Genauigkeit',
@@ -402,16 +450,16 @@ return [
             'total_hits' => 'Anzahl Treffer',
             'total_score' => 'Gesamtpunktzahl',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Ranked & Approved Beatmaps',
+            'graveyard_beatmapset_count' => 'Begrabene Beatmaps',
             'loved_beatmapset_count' => 'Loved Beatmaps',
-            'unranked_beatmapset_count' => 'Ausstehende Beatmaps',
-            'graveyard_beatmapset_count' => 'Begrabende Beatmaps',
+            'pending_beatmapset_count' => 'Ausstehende Beatmaps',
+            'ranked_beatmapset_count' => 'Ranked & Approved Beatmaps',
         ],
     ],
 
     'silenced_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'Du bist derzeit stumm.',
+        'message' => 'Einige Aktionen sind möglicherweise nicht verfügbar.',
     ],
 
     'status' => [
@@ -420,6 +468,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => 'Bitte registriere dich stattdessen über den Spiel-Client!',
+        'from_web' => 'Bitte melde dich über die osu!-Webseite an',
         'saved' => 'Benutzer erstellt',
     ],
     'verify' => [

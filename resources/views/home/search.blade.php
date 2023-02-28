@@ -26,7 +26,7 @@
                     class="search-header__input js-search--input"
                     name="query"
                     value="{{ request('query') }}"
-                    placeholder="{{ trans('home.search.placeholder') }}"
+                    placeholder="{{ osu_trans('home.search.placeholder') }}"
                     data-search-current="{{ request('query') }}"
                     data-turbolinks-permanent
                     id="search-input"
@@ -47,7 +47,7 @@
             @include('home._search_page_tabs', compact('allSearch'))
 
             @if ($searchMode === 'forum_post')
-                @include('objects.search._forum_options')
+                @include('objects.search._forum_options', compact('fields'))
             @endif
 
             @if ($allSearch->hasQuery())
@@ -69,7 +69,7 @@
             @else
                 <div class="search-result">
                     <div class="search-result__row search-result__row--notice">
-                        {{ trans('home.search.keyword_required') }}
+                        {{ osu_trans('home.search.keyword_required') }}
                     </div>
                 </div>
             @endif

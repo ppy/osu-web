@@ -24,12 +24,12 @@
         @foreach ($pollSummary['options'] as $pollOptionId => $pollOption)
             <label class="forum-poll-option">
                 <div class="forum-poll-option__input">
-                    @include('objects._switch', [
+                    @include('objects._switch', ['locals' => [
                         'checked' => $pollOption['voted_by_user'],
                         'name' => 'forum_topic_vote[option_ids][]',
                         'type' => $topic->poll_max_options === 1 ? 'radio' : 'checkbox',
                         'value' => $pollOptionId,
-                    ])
+                    ]])
                 </div>
                 <div class="forum-poll-option__label">
                     {!! $pollOption['textHTML'] !!}
@@ -46,7 +46,7 @@
                         class="js-checkbox-validation--submit btn-osu-big btn-osu-big--forum-primary"
                         disabled
                     >
-                        {{ trans('forum.topics.show.poll.vote') }}
+                        {{ osu_trans('forum.topics.show.poll.vote') }}
                     </button>
                 </div>
             @endif
@@ -58,7 +58,7 @@
                         data-target-page="results"
                         type="button"
                     >
-                        {{ trans('forum.topics.show.poll.button.view_results') }}
+                        {{ osu_trans('forum.topics.show.poll.button.view_results') }}
                     </button>
                 </div>
             @endif
@@ -69,7 +69,7 @@
                         type="button"
                         class="js-forum-poll--switch-edit btn-osu-big btn-osu-big--forum-secondary"
                     >
-                        {{ trans('forum.topics.show.poll.button.edit') }}
+                        {{ osu_trans('forum.topics.show.poll.button.edit') }}
                     </button>
                 </div>
             @endif

@@ -6,7 +6,7 @@
 $factory->define(App\Models\UserDonation::class, function (Faker\Generator $faker) {
     return [
         'user_id' => function () {
-            return factory(App\Models\User::class)->create()->user_id;
+            return App\Models\User::factory()->create()->user_id;
         },
         'target_user_id' => function (array $self) {
             return $self['user_id'];

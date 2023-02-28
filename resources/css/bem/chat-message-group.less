@@ -1,0 +1,57 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.chat-message-group {
+  @top: chat-message-group;
+
+  margin: 10px;
+  margin-left: 0;
+  margin-right: 120px;
+  color: white;
+  display: flex;
+
+  &--own {
+    margin-left: 120px;
+    margin-right: 0;
+    flex-direction: row-reverse;
+  }
+
+  &__avatar {
+    width: 35px;
+    height: 35px;
+    margin-bottom: 5px;
+  }
+
+  &__bubble {
+    background: @osu-colour-b6;
+    .default-border-radius();
+    padding: 5px 8px;
+    max-width: 400px;
+    overflow-x: auto;
+
+    .chat-conversation--ANNOUNCE & {
+      max-width: unset;
+    }
+  }
+
+  &__sender {
+    width: 80px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-size: @font-size--small;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  &__timestamp {
+    font-family: @font-content;
+    color: @osu-colour-f1;
+    font-size: @font-size--small;
+    margin: 5px;
+  }
+
+  &__username {
+    max-width: 60px;
+  }
+}

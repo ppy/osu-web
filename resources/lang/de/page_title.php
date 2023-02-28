@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'admin',
     ],
-    'admin_forum' => [
-        '_' => 'admin',
-    ],
-    'admin_store' => [
-        '_' => 'admin',
-    ],
     'error' => [
         'error' => [
             '400' => 'ungültige Anfrage',
@@ -29,13 +23,12 @@ return [
     ],
     'forum' => [
         '_' => 'forum',
-        'topic_watches_controller' => [
-            'index' => 'dashboard',
+        'topic_logs_controller' => [
+            'index' => 'thread-protokolle',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'dashboard',
             'verify_link' => 'accountverifizierung',
         ],
         'artists_controller' => [
@@ -56,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'beatmap-verlauf',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'dashboard',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'beatmap-diskussion',
             'index' => 'beatmap-auflistung',
@@ -75,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => 'wettbewerbe',
-        ],
-        'follows_controller' => [
-            'index' => 'dashboard',
-        ],
-        'friends_controller' => [
-            'index' => 'dashboard',
         ],
         'groups_controller' => [
             'show' => 'gruppen',
@@ -111,36 +95,40 @@ return [
             '_' => 'passwort zurücksetzen',
         ],
         'ranking_controller' => [
-            '_' => 'rangliste',
+            '_' => 'ranglisten',
         ],
         'scores_controller' => [
             '_' => 'performance',
         ],
-        'store_controller' => [
-            '_' => 'osu!store',
+        'seasons_controller' => [
+            '_' => '',
         ],
         'tournaments_controller' => [
             '_' => 'turniere',
         ],
         'users_controller' => [
             '_' => 'spieler-info',
+            'create' => 'account erstellen',
             'disabled' => 'notiz',
         ],
         'wiki_controller' => [
-            '_' => 'Hilfebereich',
+            '_' => 'wiki',
         ],
     ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'rangliste',
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'App authorisieren',
         ],
     ],
     'store' => [
-        '_' => 'osu!store',
+        '_' => 'shop',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => 'modder info',
+        ],
+        'multiplayer_controller' => [
+            '_' => 'mehrspielerverlauf',
         ],
     ],
 ];

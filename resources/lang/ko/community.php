@@ -8,7 +8,7 @@ return [
         'convinced' => [
             'title' => '납득하셨나요? :D',
             'support' => 'osu! 지원하기',
-            'gift' => '아니면 osu!를 지원하여 다른 플레이어에게 선물할 수도 있습니다.',
+            'gift' => '아니면 서포터 태그를 다른 플레이어에게 선물할 수도 있습니다.',
             'instructions' => '하트 버튼을 누르면 osu!store로 이동합니다.',
         ],
         'why-support' => [
@@ -76,7 +76,7 @@ return [
 
             'early_access' => [
                 'title' => '얼리 엑세스',
-                'description' => 'osu!에 새 기능을 패치하기 전에, 미리 기능을 체험해 볼 수 있습니다!',
+                'description' => '새로운 기능이 패치되기 전에 미리 체험해 볼 수 있어요!<br/><br/>이는 웹사이트에 적용되는 새로운 기능도 포함됩니다!',
             ],
 
             'customisation' => [
@@ -140,9 +140,9 @@ return [
         'supporter_status' => [
             'contribution' => '지금까지 지원해 주셔서 감사합니다! 총 :tags번의 결제로 :dollars를 후원하셨습니다.',
             'gifted' => "총 :giftedTags번 서포터 태그를 선물하셨습니다. (총 :giftedDollars 달러 어치), 관대의 끝판왕이시네요!",
-            'not_yet' => "아직 osu!서포터 태그를 다셔보신 적이 없으시네요 :(",
-            'valid_until' => '현재 서포터 태그는 :date까지 유효합니다!',
-            'was_valid_until' => '지난 서포터 태그는 :date까지였습니다.',
+            'not_yet' => "아직 osu! 서포터 태그를 가지신 적이 없으시네요 :(",
+            'valid_until' => '현재 osu! 서포터 태그는 :date까지 유효합니다!',
+            'was_valid_until' => '지난 osu! 서포터 태그는 :date까지 유효했습니다.',
         ],
     ],
 ];

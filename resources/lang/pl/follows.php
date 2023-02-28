@@ -25,7 +25,7 @@ return [
 
     'mapping' => [
         'empty' => 'Brak obserwowanych twórców.',
-        'followers' => 'obserwujący twórczości',
+        'followers' => 'obserwujący mapy tego użytkownika',
         'page_title' => 'lista obserwowanych twórców',
         'title' => 'twórcy',
         'to_0' => 'przestań powiadamiać mnie o nowych beatmapach tego użytkownika',

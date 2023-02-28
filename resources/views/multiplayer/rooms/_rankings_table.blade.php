@@ -8,13 +8,13 @@
             <th class="ranking-page-table__heading"></th>
             <th class="ranking-page-table__heading ranking-page-table__heading--main"></th>
             <th class="ranking-page-table__heading">
-                {{ trans('rankings.stat.accuracy') }}
+                {{ osu_trans('rankings.stat.accuracy') }}
             </th>
             <th class="ranking-page-table__heading">
-                {{ trans('rankings.stat.play_count') }}
+                {{ osu_trans('rankings.stat.play_count') }}
             </th>
             <th class="ranking-page-table__heading ranking-page-table__heading--focused">
-                {{ trans('rankings.stat.total_score') }}
+                {{ osu_trans('rankings.stat.total_score') }}
             </th>
         </tr>
     </thead>
@@ -32,7 +32,7 @@
                             'modifiers' => ['medium'],
                         ])
                         <a
-                            href="{{ route('users.show', ['user' => $score->user_id, 'mode' => $mode]) }}"
+                            href="{{ route('users.show', ['user' => $score->user_id, 'mode' => $mode ?? null]) }}"
                             class="ranking-page-table__user-link-text js-usercard"
                             data-user-id="{{ $score->user_id }}"
                             data-tooltip-position="right center"

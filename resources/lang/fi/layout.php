@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Toista seuraava kappale automaattisesti',
     ],
 
     'defaults' => [
@@ -14,25 +14,29 @@ return [
 
     'header' => [
         'admin' => [
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
-            'contest' => '',
-            'contests' => '',
-            'root' => '',
-            'store_orders' => '',
+            'beatmapset' => 'beatmapsetti',
+            'beatmapset_covers' => 'beatmapsettien kannet',
+            'contest' => 'kilpailu',
+            'contests' => 'kilpailuja',
+            'root' => 'konsoli',
         ],
 
         'artists' => [
-            'index' => '',
+            'index' => 'listaus',
+        ],
+
+        'beatmapsets' => [
+            'show' => '',
+            'discussions' => '',
         ],
 
         'changelog' => [
-            'index' => '',
+            'index' => 'listaus',
         ],
 
         'help' => [
-            'index' => '',
-            'sitemap' => '',
+            'index' => 'indeksi',
+            'sitemap' => 'Sivustokartta',
         ],
 
         'store' => [
@@ -47,6 +51,8 @@ return [
 
         'users' => [
             'modding' => 'modaus',
+            'playlists' => '',
+            'realtime' => '',
             'show' => 'tiedot',
         ],
     ],
@@ -62,49 +68,28 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmapit',
-            'artists' => 'suositellut artistit',
-            'index' => 'listaus',
-            'packs' => 'kokoelmat',
         ],
         'community' => [
             '_' => 'yhteisö',
-            'chat' => 'viestit',
-            'contests' => 'kilpailut',
             'dev' => 'kehitystyö',
-            'forum-forums-index' => 'foorumit',
-            'getLive' => 'suorat',
-            'tournaments' => 'turnaukset',
         ],
         'help' => [
             '_' => 'apua',
-            'getAbuse' => '',
+            'getAbuse' => 'ilmoita väärinkäyttöstä',
             'getFaq' => 'ukk',
             'getRules' => 'säännöt',
             'getSupport' => 'tarvitsen siis oikeasti apua!',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'etusivu',
-            'changelog-index' => 'muutosloki',
-            'getDownload' => 'lataa',
-            'news-index' => 'uutiset',
-            'search' => 'haku',
             'team' => 'tiimi',
         ],
         'rankings' => [
             '_' => 'tilastot',
-            'charts' => 'valokeilassa',
-            'country' => 'maa',
-            'index' => 'suorituskyky',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'moninpeli',
-            'score' => 'pisteet',
         ],
         'store' => [
             '_' => 'kauppa',
-            'cart-show' => 'ostoskori',
-            'getListing' => 'listaus',
-            'orders-index' => 'tilaushistoria',
         ],
     ],
 
@@ -160,7 +145,7 @@ return [
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => 'Pyyntöraja ylitetty',
             'description' => '',
         ],
         '500' => [
@@ -184,13 +169,13 @@ return [
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => 'kirjaudu sisään / rekisteröidy',
 
         'login' => [
             'forgot' => "Olen unohtanut tietoni",
             'password' => 'salasana',
             'title' => 'Kirjaudu sisään jatkaaksesi',
-            'username' => '',
+            'username' => 'käyttäjänimi',
 
             'error' => [
                 'email' => "Käyttäjänimeä tai sähköpostia ei ole",
@@ -208,7 +193,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Asetukset',
-            'follows' => '',
+            'follows' => 'Seurantalistat',
             'friends' => 'Kaverit',
             'logout' => 'Kirjaudu ulos',
             'profile' => 'Profiilini',

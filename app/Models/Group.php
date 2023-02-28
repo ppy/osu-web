@@ -8,14 +8,14 @@ namespace App\Models;
 use App\Libraries\Transactions\AfterCommit;
 
 /**
- * @property string $colour
+ * @property string|null $colour
  * @property int $display_order
  * @property string $group_avatar
  * @property int $group_avatar_height
  * @property int $group_avatar_type
  * @property int $group_avatar_width
  * @property string $group_colour
- * @property string $group_desc
+ * @property string|null $group_desc
  * @property string $group_desc_bitfield
  * @property int $group_desc_options
  * @property string $group_desc_uid
@@ -35,40 +35,66 @@ use App\Libraries\Transactions\AfterCommit;
  */
 class Group extends Model implements AfterCommit
 {
-    protected $table = 'phpbb_groups';
-    protected $primaryKey = 'group_id';
     public $timestamps = false;
+
     protected $casts = [
         'has_playmodes' => 'boolean',
     ];
+    protected $primaryKey = 'group_id';
+    protected $table = 'phpbb_groups';
 
-    public function scopeVisible($query)
+    public function getAttribute($key)
     {
-        return $query->where('group_type', 1);
+        return match ($key) {
+            'display_order',
+            'group_avatar',
+            'group_avatar_height',
+            'group_avatar_type',
+            'group_avatar_width',
+            'group_colour',
+            'group_desc_bitfield',
+            'group_desc_options',
+            'group_desc_uid',
+            'group_display',
+            'group_founder_manage',
+            'group_id',
+            'group_legend',
+            'group_message_limit',
+            'group_name',
+            'group_rank',
+            'group_receive_pm',
+            'group_sig_chars',
+            'group_type',
+            'identifier',
+            'short_name' => $this->getRawAttribute($key),
+
+            'has_playmodes' => (bool) $this->getRawAttribute($key),
+
+            'colour' => $this->getColour(),
+
+            'group_desc' => presence($this->getRawAttribute($key)),
+        };
     }
 
-    public function getColourAttribute($value)
+    public function descriptionHtml(): ?string
     {
-        if (!present($value)) {
-            return;
-        }
+        return $this->group_desc === null ? null : markdown($this->group_desc, 'group');
+    }
 
-        if (strlen($value) === 6 || strlen($value) === 3 && ctype_xdigit($value)) {
-            return "#{$value}";
-        }
+    public function hasBadge(): bool
+    {
+        return $this->display_order !== null;
+    }
 
-        return $value;
+    public function hasListing(): bool
+    {
+        return $this->group_type === 1;
     }
 
     public function isProbationary(): bool
     {
         // TODO: move this to a DB field or something if other groups end up needing 'probation'
         return $this->identifier === 'bng_limited';
-    }
-
-    public function isVisible(): bool
-    {
-        return $this->group_type === 1;
     }
 
     public function users()
@@ -93,6 +119,13 @@ class Group extends Model implements AfterCommit
 
     public function afterCommit()
     {
-        app('groups')->resetCache();
+        app('groups')->resetMemoized();
+    }
+
+    private function getColour(): ?string
+    {
+        $value = $this->getRawAttribute('colour');
+
+        return $value === null ? null : "#{$value}";
     }
 }

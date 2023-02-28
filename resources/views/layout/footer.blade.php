@@ -7,7 +7,7 @@
         <div class="footer__row">
             @foreach (footer_legal_links() as $action => $link)
                 <a class="footer__link" href="{{ $link }}">
-                    {{ trans("layout.footer.legal.{$action}") }}
+                    {{ osu_trans("layout.footer.legal.{$action}") }}
                 </a>
             @endforeach
 

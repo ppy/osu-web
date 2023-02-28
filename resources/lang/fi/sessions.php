@@ -5,8 +5,8 @@
 
 return [
     'create' => [
-        'download' => '',
-        'label' => '',
-        'title' => '',
+        'download' => 'Lataa peli ja luo tili klikkaamalla tästä',
+        'label' => 'Ensiksi, kirjaudutaan tilillesi!',
+        'title' => 'Kirjaudu sisään',
     ],
 ];

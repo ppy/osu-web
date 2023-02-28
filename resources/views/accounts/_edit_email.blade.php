@@ -11,7 +11,7 @@
 ]) !!}
     <div class="account-edit__section">
         <h2 class="account-edit__section-title">
-            {{ trans('accounts.edit.email.title') }}
+            {{ osu_trans('accounts.edit.email.title') }}
         </h2>
     </div>
 
@@ -26,7 +26,7 @@
                 >
 
                 <div class="account-edit-entry__label">
-                    {{ trans('accounts.edit.password.current') }}
+                    {{ osu_trans('accounts.edit.password.current') }}
                 </div>
 
                 <div class="account-edit-entry__error js-form-error--error"></div>
@@ -42,7 +42,7 @@
                 >
 
                 <div class="account-edit-entry__label">
-                    {{ trans('accounts.edit.email.new') }}
+                    {{ osu_trans('accounts.edit.email.new') }}
                 </div>
 
                 <div class="account-edit-entry__error js-form-error--error"></div>
@@ -56,7 +56,7 @@
                 >
 
                 <div class="account-edit-entry__label">
-                    {{ trans('accounts.edit.email.new_confirmation') }}
+                    {{ osu_trans('accounts.edit.email.new_confirmation') }}
                 </div>
 
                 <div class="account-edit-entry__error js-form-error--error"></div>
@@ -65,10 +65,10 @@
 
         <div class="account-edit__input-group">
             <div class="account-edit-entry account-edit-entry--no-label">
-                <button class="btn-osu-big btn-osu-big--account-edit" type="submit" data-disable-with="{{ trans('common.buttons.saving') }}">
+                <button class="btn-osu-big btn-osu-big--account-edit" type="submit" data-disable-with="{{ osu_trans('common.buttons.saving') }}">
                     <div class="btn-osu-big__content">
                         <div class="btn-osu-big__left">
-                            {{ trans('accounts.update_email.update') }}
+                            {{ osu_trans('accounts.update_email.update') }}
                         </div>
 
                         <div class="btn-osu-big__icon">

@@ -6,5 +6,5 @@
     @if (isset($countryName))
         title="{{ $countryName }}"
     @endif
-    style="background-image: url('/images/flags/{{ $countryCode }}.png');"
+    style="background-image: url('{{ flag_url($countryCode) }}');"
 ></div>

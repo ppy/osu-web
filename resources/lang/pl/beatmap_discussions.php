@@ -24,7 +24,7 @@ return [
         'form' => [
             '_' => 'Szukaj',
             'deleted' => 'Uwzględnij usunięte dyskusje',
-            'mode' => '',
+            'mode' => 'Tryb beatmapy',
             'only_unresolved' => 'Pokaż tylko nierozwiązane dyskusje',
             'types' => 'Rodzaj wiadomości',
             'username' => 'Nazwa użytkownika',
@@ -55,7 +55,14 @@ return [
     'nearby_posts' => [
         'confirm' => 'Żaden z tych postów nie jest istotny',
         'notice' => 'Istnieją posty dotyczące :timestamp (:existing_timestamps). Sprawdź je przed opublikowaniem posta.',
-        'unsaved' => '',
+        'unsaved' => ':count w tej recenzji',
+    ],
+
+    'owner_editor' => [
+        'button' => 'Twórca poziomu trudności',
+        'reset_confirm' => 'Zresetować twórcę dla tego poziomu trudności?',
+        'user' => 'Twórca',
+        'version' => 'Poziom trudności',
     ],
 
     'reply' => [
@@ -74,6 +81,7 @@ return [
             'external_references' => 'recenzja zawiera odniesienia do problemów, które do niej nie należą',
             'invalid_block_type' => 'nieprawidłowy typ bloku',
             'invalid_document' => 'nieprawidłowa recenzja',
+            'invalid_discussion_type' => 'nieprawidłowy rodzaj dyskusji',
             'minimum_issues' => 'recenzja musi zawierać przynajmniej :count problem|recenzja musi zawierać przynajmniej :count problemy|recenzja musi zawierać przynajmniej :count problemów',
             'missing_text' => 'blok nie zawiera tekstu',
             'too_many_blocks' => 'recenzje mogą zawierać wyłącznie :count akapit/problem|recenzje mogą zawierać do :count akapitów/problemów|recenzje mogą zawierać do :count akapitów/problemów',

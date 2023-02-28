@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Ten użytkownik został zablokowany.',
+        'comment_text' => 'Ten komentarz został ukryty.',
         'blocked_count' => 'zablokowani użytkownicy (:count)',
         'hide_profile' => 'ukryj profil',
+        'hide_comment' => 'ukryj',
         'not_blocked' => 'Ten użytkownik nie jest zablokowany.',
         'show_profile' => 'pokaż profil',
+        'show_comment' => 'pokaż',
         'too_many' => 'Osiągnięto limit zablokowanych użytkowników.',
         'button' => [
             'block' => 'zablokuj',
@@ -47,6 +50,22 @@ return [
     'card' => [
         'loading' => 'Ładowanie...',
         'send_message' => 'Wyślij wiadomość',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => 'hasło',
+            'password_confirmation' => 'potwierdź hasło',
+            'submit' => 'utwórz konto',
+            'user_email' => 'e-mail',
+            'user_email_confirmation' => 'potwierdź e-mail',
+            'username' => 'nazwa użytkownika',
+
+            'tos_notice' => [
+                '_' => 'tworząc konto, wyrażasz zgodę na :link',
+                'link' => 'warunki świadczenia usług',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -114,8 +133,8 @@ return [
     ],
     'logout_confirm' => 'Na pewno chcesz się wylogować? :(',
     'report' => [
-        'button_text' => 'zgłoś',
-        'comments' => 'Dodatkowe informacje',
+        'button_text' => 'Zgłoś',
+        'comments' => 'Opis',
         'placeholder' => 'Podaj wszystkie informacje, które mogą okazać się przydatne.',
         'reason' => 'Powód',
         'thanks' => 'Dziękujemy za zgłoszenie!',
@@ -128,6 +147,7 @@ return [
 
         'options' => [
             'cheating' => 'Oszukiwanie',
+            'multiple_accounts' => 'Korzystanie z wielu kont',
             'insults' => 'Obrażanie mnie lub innych',
             'spam' => 'Spamowanie',
             'unwanted_content' => 'Zamieszczanie nieodpowiednich treści',
@@ -137,7 +157,8 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Twoje konto zostało zablokowane!',
-        'message' => 'Podczas blokady konta interakcja z innymi użytkownikami nie będzie możliwa, a twoje wyniki będą widoczne tylko dla ciebie. Zazwyczaj nałożenie blokady jest rezultatem zautomatyzowanego procesu, a jej usunięcie powinno nastąpić w ciągu 24 godzin. Jeżeli chcesz odwołać się od blokady, skontaktuj się z <a href="mailto:accounts@ppy.sh">pomocą techniczną</a>.',
+        'message' => 'Podczas blokady konta interakcja z innymi użytkownikami nie będzie możliwa, a twoje wyniki będą widoczne tylko dla ciebie. Zazwyczaj nałożenie blokady jest rezultatem zautomatyzowanego procesu, a jej usunięcie powinno nastąpić w ciągu 24 godzin. :link',
+        'message_link' => 'Kliknij tutaj, by dowiedzieć się więcej.',
     ],
     'show' => [
         'age' => 'Ma :age lat',
@@ -157,6 +178,10 @@ return [
         'comments_count' => [
             '_' => ':link',
             'count' => ':count_delimited komentarz|:count_delimited komentarze|:count_delimited komentarzy',
+        ],
+        'cover' => [
+            'to_0' => 'Ukryj tło',
+            'to_1' => 'Pokaż tło',
         ],
         'edit' => [
             'cover' => [
@@ -203,14 +228,20 @@ return [
                 'graveyard' => [
                     'title' => 'Porzucone beatmapy',
                 ],
+                'guest' => [
+                    'title' => 'Współtworzone beatmapy',
+                ],
                 'loved' => [
                     'title' => 'Ulubione beatmapy społeczności',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Rankingowe i zatwierdzone beatmapy',
+                'nominated' => [
+                    'title' => 'Nominowane beatmapy do sekcji rankingowej',
                 ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Oczekujące beatmapy',
+                ],
+                'ranked' => [
+                    'title' => 'Rankingowe beatmapy',
                 ],
             ],
             'discussions' => [
@@ -300,6 +331,9 @@ return [
                 'recent' => 'Ostatnie',
                 'title' => 'Medale',
             ],
+            'playlists' => [
+                'title' => 'Gry w trybie asynchronicznym',
+            ],
             'posts' => [
                 'title' => 'Posty',
                 'title_longer' => 'Ostatnie posty',
@@ -307,6 +341,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Ostatnie',
+            ],
+            'realtime' => [
+                'title' => 'Gry w trybie wieloosobowym',
             ],
             'top_ranks' => [
                 'download_replay' => 'Pobierz powtórkę',
@@ -321,6 +358,15 @@ return [
                 'first' => [
                     'title' => 'Pierwsze miejsca',
                 ],
+                'pin' => [
+                    'to_0' => 'Odepnij',
+                    'to_0_done' => 'Odpięto wynik',
+                    'to_1' => 'Przypnij',
+                    'to_1_done' => 'Przypięto wynik',
+                ],
+                'pinned' => [
+                    'title' => 'Przypięte wyniki',
+                ],
             ],
             'votes' => [
                 'given' => 'Oddane głosy (ostatnie 3 miesiące)',
@@ -331,8 +377,8 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Stan konta',
-                'bad_standing' => "Konto użytkownika <strong>:username</strong> nie jest w dobrym stanie :(",
-                'remaining_silence' => 'Użytkownik <strong>:username</strong> będzie mógł pisać na czacie :duration.',
+                'bad_standing' => "Konto użytkownika :username nie jest w dobrym stanie :(",
+                'remaining_silence' => 'Użytkownik :username będzie mógł pisać na czacie :duration.',
 
                 'recent_infringements' => [
                     'title' => 'Ostatnie przewinienia',
@@ -346,6 +392,7 @@ return [
                     'actions' => [
                         'restriction' => 'Blokada',
                         'silence' => 'Uciszenie',
+                        'tournament_ban' => 'Blokada turniejowa',
                         'note' => 'Adnotacja',
                     ],
                 ],
@@ -387,6 +434,7 @@ return [
             'country_simple' => 'Ranking krajowy',
             'global' => 'Pozycja w rankingu globalnym dla :mode',
             'global_simple' => 'Ranking globalny',
+            'highest' => 'Najwyższa pozycja: :rank (osiągnięta :date)',
         ],
         'stats' => [
             'hit_accuracy' => 'Celność',
@@ -402,15 +450,15 @@ return [
             'total_hits' => 'Łączna liczba uderzeń',
             'total_score' => 'Łączny wynik',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Rankingowe i zatwierdzone beatmapy',
-            'loved_beatmapset_count' => 'Ulubione beatmapy społeczności',
-            'unranked_beatmapset_count' => 'Oczekujące beatmapy',
             'graveyard_beatmapset_count' => 'Porzucone beatmapy',
+            'loved_beatmapset_count' => 'Ulubione beatmapy społeczności',
+            'pending_beatmapset_count' => 'Oczekujące beatmapy',
+            'ranked_beatmapset_count' => 'Rankingowe beatmapy',
         ],
     ],
 
     'silenced_banner' => [
-        'title' => 'Twoje konto jest obecnie wyciszone.',
+        'title' => 'Twoje konto jest obecnie uciszone.',
         'message' => 'Niektóre działania mogą być niedostępne.',
     ],
 
@@ -420,6 +468,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => 'zarejestruj się poprzez klient gry!',
+        'from_web' => 'ukończ proces rejestracji poprzez stronę osu!',
         'saved' => 'Użytkownik utworzony',
     ],
     'verify' => [

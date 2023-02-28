@@ -18,6 +18,7 @@ return [
         'deny_kudosu' => 'kudosu 박탈하기',
         'edit' => '수정',
         'edited' => ':update_time에 :editor님에 의해 마지막으로 수정됨',
+        'guest' => ':user의 게스트 난이도',
         'kudosu_denied' => 'kudosu 획득이 불가능합니다.',
         'message_placeholder_deleted_beatmap' => '제거된 난이도이므로 더 이상의 토론이 불가능합니다.',
         'message_placeholder_locked' => '이 비트맵에 대한 토론이 비활성화되었습니다.',
@@ -72,6 +73,7 @@ return [
             'nomination_reset' => '추천 초기화',
             'praise' => '칭찬',
             'problem' => '문제',
+            'problem_warning' => '문제 신고',
             'review' => '검토',
             'suggestion' => '제안',
         ],
@@ -116,7 +118,7 @@ return [
         ],
 
         'show' => [
-            'title' => ':title, :mapper님이 ',
+            'title' => ':mapper 님이 제작한 :title',
         ],
 
         'sort' => [
@@ -129,7 +131,7 @@ return [
             'deleted' => '삭제됨',
             'mapper_notes' => '노트',
             'mine' => '내 글',
-            'pending' => 'Pending',
+            'pending' => '보류 중',
             'praises' => '칭찬',
             'resolved' => '해결됨',
             'total' => '모두',
@@ -140,7 +142,7 @@ return [
             'graveyard' => "이 비트맵은 :date 이후로 업데이트되지 않았고, 제작자에게 버려진 것 같습니다..",
             'loved' => '이 비트맵은 :date에 Loved 되었습니다!',
             'ranked' => '이 비트맵은 :date에 Ranked 되었습니다!',
-            'wip' => '안내: 이 비트맵은 제작자가 \'미완성\'으로 표시한 맵입니다.',
+            'wip' => '안내: 이 비트맵은 제작자가 \'제작 중\'으로 표시한 맵입니다.',
         ],
 
         'votes' => [
@@ -182,6 +184,7 @@ return [
         'disqualify' => 'Disqualify',
         'incorrect_state' => '해당 작업을 수행하는 중 오류가 발생했습니다, 페이지를 새로 고쳐보세요.',
         'love' => '하트',
+        'love_choose' => 'Loved 비트맵의 난이도 선택',
         'love_confirm' => '이 비트맵이 마음에 드시나요?',
         'nominate' => '추천',
         'nominate_confirm' => '이 비트맵을 추천하시겠습니까?',
@@ -206,8 +209,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => '확실한가요? 새로운 문제를 제기하는 것은 추천 상태를 초기화시킵니다.',
             'disqualify' => '확실한가요? 이 작업은 비트맵을 qualify 상태에서 제거하고 추천 상태를 초기화합니다.',
+            'nomination_reset' => '확실한가요? 새로운 문제를 제기하는 것은 추천 상태를 초기화시킵니다.',
+            'problem_warning' => '정말로 이 비트맵의 문제를 신고할까요? 비트맵 Nominator에게 알림이 전송됩니다.',
         ],
     ],
 
@@ -216,7 +220,7 @@ return [
             'prompt' => '검색어를 입력하세요...',
             'login_required' => '검색하려면 로그인하세요.',
             'options' => '검색 옵션 더 보기',
-            'supporter_filter' => ':filters로 검색하려면 osu! 서포터 권한이 필요합니다.',
+            'supporter_filter' => ':filters로 검색하려면 osu! 서포터 태그가 필요합니다.',
             'not-found' => '결과 없음',
             'not-found-quote' => '... 없네요, 아무것도 못 찾았습니다.',
             'filters' => [
@@ -250,8 +254,10 @@ return [
     ],
     'general' => [
         'converts' => '변환된 비트맵 포함',
+        'featured_artists' => '공식 아티스트',
         'follows' => '구독한 비트맵 제작자',
         'recommended' => '권장 난이도',
+        'spotlights' => '스포트라이트 비트맵',
     ],
     'mode' => [
         'all' => '전체',
@@ -270,6 +276,7 @@ return [
         'loved' => 'Loved',
         'mine' => '내 비트맵',
         'pending' => '보류 중 & 작업 중',
+        'wip' => '제작 중',
         'qualified' => 'Qualified',
         'ranked' => 'Ranked',
     ],
@@ -288,32 +295,6 @@ return [
         'classical' => '클래식',
         'folk' => '포크',
         'jazz' => '재즈',
-    ],
-    'mods' => [
-        '4K' => '',
-        '5K' => '',
-        '6K' => '',
-        '7K' => '',
-        '8K' => '',
-        '9K' => '',
-        'AP' => '',
-        'DT' => '',
-        'EZ' => '',
-        'FI' => '',
-        'FL' => '',
-        'HD' => '',
-        'HR' => '',
-        'HT' => '',
-        'MR' => '',
-        'NC' => '',
-        'NF' => '',
-        'NM' => '',
-        'PF' => '',
-        'Relax' => '',
-        'SD' => '',
-        'SO' => '',
-        'TD' => '',
-        'V2' => 'Score V2',
     ],
     'language' => [
         'any' => '모두',

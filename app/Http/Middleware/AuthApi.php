@@ -10,11 +10,8 @@ use Illuminate\Auth\AuthenticationException;
 use Laravel\Passport\ClientRepository;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\ResourceServer;
+use Nyholm\Psr7\Factory\Psr17Factory;
 use Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory;
-use Zend\Diactoros\ResponseFactory;
-use Zend\Diactoros\ServerRequestFactory;
-use Zend\Diactoros\StreamFactory;
-use Zend\Diactoros\UploadedFileFactory;
 
 class AuthApi
 {
@@ -50,11 +47,13 @@ class AuthApi
 
     private function validateRequest($request)
     {
+        $psr17Factory = new Psr17Factory();
+
         $psr = (new PsrHttpFactory(
-            new ServerRequestFactory(),
-            new StreamFactory(),
-            new UploadedFileFactory(),
-            new ResponseFactory()
+            $psr17Factory,
+            $psr17Factory,
+            $psr17Factory,
+            $psr17Factory,
         ))->createRequest($request);
 
         try {
@@ -84,17 +83,20 @@ class AuthApi
 
         $user = $token->getResourceOwner();
 
-        if ($token->isClientCredentials() && $psrUserId !== null) {
-            throw new AuthenticationException();
-        }
-
-        if (!$token->isClientCredentials() && $user->getKey() !== $psrUserId) {
-            throw new AuthenticationException();
+        if ($token->isClientCredentials()) {
+            if ($psrUserId !== null) {
+                throw new AuthenticationException();
+            }
+        } else {
+            if ($user === null || $user->getKey() !== $psrUserId) {
+                throw new AuthenticationException();
+            }
         }
 
         if ($user !== null) {
             auth()->setUser($user);
             $user->withAccessToken($token);
+            // this should match osu-notification-server OAuthVerifier
             $user->markSessionVerified();
         }
 

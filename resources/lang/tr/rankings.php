@@ -5,7 +5,7 @@
 
 return [
     'countries' => [
-        'all' => 'Hepsi',
+        'all' => 'Tümü',
         'title' => 'Ülke',
     ],
 
@@ -23,6 +23,14 @@ return [
         'multiplayer' => 'çok oyunculu',
         'performance' => 'Performans',
         'score' => 'Skor',
+        'seasons' => 'sezonlar',
+    ],
+
+    'seasons' => [
+        'empty' => 'Bu sezonda henüz oda bulunmamaktadır.',
+        'ongoing' => 'Bu sezon hala devam etmektedir (daha fazla çalma listesi eklenecektir).',
+        'room_count' => 'Oynatma listesi sayısı',
+        'url' => 'Bu sezon hakkında daha fazla bilgi görüntüleyin.',
     ],
 
     'spotlight' => [

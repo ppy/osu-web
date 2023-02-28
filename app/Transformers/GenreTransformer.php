@@ -13,7 +13,7 @@ class GenreTransformer extends TransformerAbstract
     {
         return [
             'id' => $genre->genre_id === 0 ? null : $genre->genre_id,
-            'name' => trans('beatmaps.genre.'.str_replace(' ', '-', strtolower($genre->name))),
+            'name' => osu_trans('beatmaps.genre.'.str_replace(' ', '-', strtolower($genre->name))),
         ];
     }
 }

@@ -4,13 +4,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'admin' => [
-        'warehouse' => 'Varasto',
-    ],
-
     'cart' => [
         'checkout' => 'Kassa',
-        'info' => '',
+        'info' => ':count_delimited tuote ostoskorissa ($:subtotal)|:count_delimited tuotteet ostoskorissa ($:subtotal)',
         'more_goodies' => 'Tarkastelisin vielä muita tuotteita ennen tilauksen tekemistä',
         'shipping_fees' => 'toimituskulut',
         'title' => 'Ostoskori',
@@ -35,9 +31,10 @@ return [
         'cart_problems_edit' => 'Napsauta tästä muokataksesi sitä.',
         'declined' => 'Maksu peruutettiin.',
         'delayed_shipping' => 'Olemme tällä hetkellä hukkumassa tilauksiin! Olet vapaa tilaamaan, mutta ole valmis odottamaan **1-2 viikkoa lisää** kunnes olemme saaneet nykyiset tilaukset lähetettyä.',
+        'hide_from_activity' => '',
         'old_cart' => 'Korisi näyttää olevan vanhentunut ja on ladattu uudestaan, yritä uudelleen.',
         'pay' => 'Maksa Paypalilla',
-        'title_compact' => '',
+        'title_compact' => 'kassa',
 
         'has_pending' => [
             '_' => 'Sinulla on keskeneräisiä ostoksia, klikkaa :link nähdäksesi ne.',
@@ -54,7 +51,8 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Koska maksusi oli eCheck, anna maksimissaan 10 päivää että maksu pääsee PayPalin läpi!',
-        'title_compact' => '',
+        'hide_from_activity' => '',
+        'title_compact' => 'lasku',
 
         'status' => [
             'processing' => [
@@ -69,20 +67,25 @@ return [
     ],
 
     'order' => [
-        'cancel' => '',
-        'cancel_confirm' => '',
-        'cancel_not_allowed' => '',
+        'cancel' => 'Peruuta tilaus',
+        'cancel_confirm' => 'Tämä tilaus peruutetaan ja maksua ei hyväksytä siitä. Maksupalveluntarjoaja ei ehkä vapauta varattuja varoja välittömästi. Oletko varma?',
+        'cancel_not_allowed' => 'Tätä tilausta ei voi peruuttaa tällä hetkellä.',
         'invoice' => 'Näytä lasku',
         'no_orders' => 'Ei tilauksia katsottavissa.',
         'paid_on' => 'Tilaus laitettu :date',
         'resume' => 'Jatka Kassalle',
-        'shopify_expired' => '',
+        'shopify_expired' => 'Tämän tilauksen kassalinkki on vanhentunut.',
 
         'item' => [
+            'quantity' => 'Määrä',
+
             'display_name' => [
                 'supporter_tag' => ':name käyttäjälle :username (:duration)',
             ],
-            'quantity' => 'Määrä',
+
+            'subtext' => [
+                'supporter_tag' => '',
+            ],
         ],
 
         'not_modifiable_exception' => [
@@ -124,6 +127,8 @@ return [
 
     'supporter_tag' => [
         'gift' => 'lahjoita pelaajalle',
+        'gift_message' => '',
+
         'require_login' => [
             '_' => 'Sinun pitää olla :link saadaksesi osu!tukijan!',
             'link_text' => 'kirjautunut sisään',

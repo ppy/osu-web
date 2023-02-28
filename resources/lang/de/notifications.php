@@ -27,6 +27,12 @@ return [
         'beatmapset' => [
             '_' => 'Beatmap',
 
+            'beatmap_owner_change' => [
+                '_' => 'Gastschwierigkeitsstufe',
+                'beatmap_owner_change' => 'Du bist jetzt Besitzer der Schwierigkeit ":beatmap" für Beatmap ":title"',
+                'beatmap_owner_change_compact' => 'Du bist jetzt Besitzer der Schwierigkeit ":beatmap"',
+            ],
+
             'beatmapset_discussion' => [
                 '_' => 'Beatmap-Diskussion',
                 'beatmapset_discussion_lock' => 'Die Diskussion der Beatmap ":title" wurde gesperrt.',
@@ -80,8 +86,19 @@ return [
         'channel' => [
             '_' => 'Chat',
 
+            'announcement' => [
+                '_' => 'Neue Ankündigung',
+
+                'announce' => [
+                    'channel_announcement' => ':username sagt ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Ankündigung von :username',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Neue Mitteilung',
+
                 'pm' => [
                     'channel_message' => ':username sagt ":title"',
                     'channel_message_compact' => ':title',
@@ -91,7 +108,7 @@ return [
         ],
 
         'build' => [
-            '_' => 'Änderungsprotokoll',
+            '_' => 'Changelog',
 
             'comment' => [
                 '_' => 'Neuer Kommentar',
@@ -142,6 +159,9 @@ return [
                 'user_beatmapset_new' => 'Neue Beatmap ":title" von :username',
                 'user_beatmapset_new_compact' => 'Neue Beatmap ":title"',
                 'user_beatmapset_new_group' => 'Neue Beatmaps von :username',
+
+                'user_beatmapset_revive' => 'Beatmap ":title" wiederbelebt von :username',
+                'user_beatmapset_revive_compact' => 'Beatmap ":title" wiederbelebt',
             ],
         ],
 
@@ -159,6 +179,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => 'Du bist jetzt Gast der Beatmap ":title"',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'Die Diskussion über ":title" wurde gesperrt',
                 'beatmapset_discussion_post_new' => 'Die Diskussion über ":title" hat neue Updates',
@@ -185,6 +209,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Es gibt eine neue Ankündigung in ":name"',
+            ],
+
             'channel' => [
                 'pm' => 'Du hast eine neue Nachricht von :username erhalten',
             ],
@@ -216,6 +244,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username hat neue Beatmaps erstellt',
+                'user_beatmapset_revive' => ':username hat Beatmaps wiederbelebt',
             ],
         ],
     ],

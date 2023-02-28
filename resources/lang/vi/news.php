@@ -5,7 +5,7 @@
 
 return [
     'index' => [
-        'title_page' => 'osu!news',
+        'title_page' => 'osu!tin_mới',
 
         'nav' => [
             'newer' => 'Bài đăng mới hơn',
@@ -13,8 +13,8 @@ return [
         ],
 
         'title' => [
-            '_' => ':info Tin Tức',
-            'info' => 'Trang Nhất',
+            '_' => 'tin tức',
+            'info' => 'trang nhất',
         ],
     ],
 
@@ -27,8 +27,8 @@ return [
         ],
 
         'title' => [
-            '_' => ':info Tin Tức',
-            'info' => 'Bài Đăng',
+            '_' => 'tin tức',
+            'info' => 'bài đăng',
         ],
     ],
 

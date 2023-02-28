@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'administrátor',
     ],
-    'admin_forum' => [
-        '_' => 'administrátor',
-    ],
-    'admin_store' => [
-        '_' => 'administrátor',
-    ],
     'error' => [
         'error' => [
             '400' => 'neplatná požiadavka',
@@ -29,13 +23,12 @@ return [
     ],
     'forum' => [
         '_' => 'fórum',
-        'topic_watches_controller' => [
+        'topic_logs_controller' => [
             'index' => '',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => '',
             'verify_link' => '',
         ],
         'artists_controller' => [
@@ -56,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => '',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'nástenka',
-        ],
         'beatmapsets_controller' => [
             'discussion' => '',
             'index' => '',
@@ -75,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => '',
-        ],
-        'follows_controller' => [
-            'index' => '',
-        ],
-        'friends_controller' => [
-            'index' => 'nástenka',
         ],
         'groups_controller' => [
             'show' => 'skupiny',
@@ -111,12 +95,12 @@ return [
             '_' => '',
         ],
         'ranking_controller' => [
-            '_' => '',
+            '_' => 'rebríčky',
         ],
         'scores_controller' => [
             '_' => '',
         ],
-        'store_controller' => [
+        'seasons_controller' => [
             '_' => '',
         ],
         'tournaments_controller' => [
@@ -124,22 +108,26 @@ return [
         ],
         'users_controller' => [
             '_' => '',
+            'create' => '',
             'disabled' => '',
         ],
         'wiki_controller' => [
-            '_' => '',
+            '_' => 'wiki',
         ],
     ],
-    'multiplayer' => [
-        'rooms_controller' => [
+    'passport' => [
+        'authorization_controller' => [
             '_' => '',
         ],
     ],
     'store' => [
-        '_' => '',
+        '_' => 'obchod',
     ],
     'users' => [
         'modding_history_controller' => [
+            '_' => '',
+        ],
+        'multiplayer_controller' => [
             '_' => '',
         ],
     ],

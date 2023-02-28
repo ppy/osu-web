@@ -71,14 +71,6 @@ class BeatmapDiscussionPostsTest extends DuskTestCase
             ]);
     }
 
-    protected function createUserCapableOfDiscussing(): User
-    {
-        $user = factory(User::class)->create();
-        $user->statisticsOsu()->create(['playcount' => $this->minPlays]);
-
-        return $user;
-    }
-
     protected function deleteUser(User $user): void
     {
         $user->userProfileCustomization()->forceDelete();
@@ -101,22 +93,22 @@ class BeatmapDiscussionPostsTest extends DuskTestCase
     {
         parent::setUp();
 
-        $this->minPlays = config('osu.user.min_plays_for_posting');
+        $this->mapper = User::factory()->withPlays()->create();
+        $this->user = User::factory()->withPlays()->create();
 
-        $this->mapper = $this->createUserCapableOfDiscussing();
-        $this->user = $this->createUserCapableOfDiscussing();
-
-        $this->beatmapset = factory(Beatmapset::class)->create([
-            'user_id' => $this->mapper->getKey(),
+        $this->beatmapset = Beatmapset::factory()->create([
+            'user_id' => $this->mapper,
         ]);
-        $this->beatmap = $this->beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
-        $this->beatmapDiscussion = factory(BeatmapDiscussion::class, 'timeline')->create([
-            'beatmapset_id' => $this->beatmapset->getKey(),
-            'beatmap_id' => $this->beatmap->getKey(),
-            'user_id' => $this->user->getKey(),
+        $this->beatmap = $this->beatmapset->beatmaps()->save(Beatmap::factory()->make([
+            'user_id' => $this->mapper,
+        ]));
+        $this->beatmapDiscussion = BeatmapDiscussion::factory()->timeline()->create([
+            'beatmapset_id' => $this->beatmapset,
+            'beatmap_id' => $this->beatmap,
+            'user_id' => $this->user,
         ]);
-        $post = factory(BeatmapDiscussionPost::class, 'timeline')->make([
-            'user_id' => $this->user->getKey(),
+        $post = BeatmapDiscussionPost::factory()->timeline()->make([
+            'user_id' => $this->user,
         ]);
         $this->beatmapDiscussionPost = $this->beatmapDiscussion->beatmapDiscussionPosts()->save($post);
 

@@ -27,6 +27,16 @@ return [
             'remove' => 'إزالة التصويت',
             'used_up' => 'لقد استنفذت كافة اصواتك',
         ],
+
+        'progress' => [
+            '_' => ':used \ :max اصوات مستخدمة',
+        ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => '',
+            ],
+        ],
     ],
     'entry' => [
         '_' => 'مشاركة',
@@ -40,6 +50,7 @@ return [
             'beatmap' => 'تُقبل ملفات .osu فقط لهذه المسابقة.',
             'music' => 'تُقبل ملفات .mp3 فقط لهذه المسابقة.',
         ],
+        'wrong_dimensions' => '',
         'too_big' => 'مشاركات هذه المسابقة يمكن ان تصل الى :limit.',
     ],
     'beatmaps' => [

@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Έχετε μπλοκάρει αυτόν τον χρήστη.',
+        'comment_text' => '',
         'blocked_count' => 'μπλοκαρισμένοι χρήστες (:count)',
         'hide_profile' => 'απόκρυψη προφίλ',
+        'hide_comment' => '',
         'not_blocked' => 'Αυτός ο χρήστης δεν είναι μπλοκαρισμένος.',
         'show_profile' => 'εμφάνιση προφίλ',
+        'show_comment' => '',
         'too_many' => 'Φτάσατε το όριο μπλοκαρισμάτων.',
         'button' => [
             'block' => 'μπλοκάρισμα',
@@ -47,6 +50,22 @@ return [
     'card' => [
         'loading' => 'Φόρτωση...',
         'send_message' => 'αποστολή μηνύματος',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => 'κωδικός',
+            'password_confirmation' => 'επιβεβαίωση κωδικού',
+            'submit' => 'δημιούργησε λογαριασμό',
+            'user_email' => '',
+            'user_email_confirmation' => 'επιβεβαίωση email',
+            'username' => 'όνομα χρήστη',
+
+            'tos_notice' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -128,6 +147,7 @@ return [
 
         'options' => [
             'cheating' => 'Παράτυπος τρόπος παιχνιδιού / Κλέψιμο',
+            'multiple_accounts' => '',
             'insults' => 'Προσβάλει εμένα / άλλους',
             'spam' => 'Spamming',
             'unwanted_content' => 'Δημοσίευση links με ακατάλληλο περιεχόμενο',
@@ -138,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'Ο λογαριασμός σας έχει περιοριστεί!',
         'message' => 'Όσο βρίσκεστε υπό περιορισμό, δεν θα είστε σε θέση να αλληλεπιδράσετε με άλλους χρήστες και τα score σας θα είναι ορατά μόνο σε εσάς. Αυτό είναι αποτέλεσμα μιας αυτόματης διαδικασίας που συνήθως διαρκεί 24 ώρες. Εάν επιθυμείτε την αναίρεση του περιορισμού, παρακαλώ <a href="mailto:accounts@ppy.sh">επικοινωνήστε με την ομάδα υποστήριξης</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age ετών',
@@ -157,6 +178,10 @@ return [
         'comments_count' => [
             '_' => '',
             'count' => '',
+        ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
         ],
         'edit' => [
             'cover' => [
@@ -203,14 +228,20 @@ return [
                 'graveyard' => [
                     'title' => 'Παρατημένα Beatmaps',
                 ],
+                'guest' => [
+                    'title' => '',
+                ],
                 'loved' => [
                     'title' => 'Loved Beatmaps',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved Beatmaps',
+                'nominated' => [
+                    'title' => '',
                 ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Εκκρεμή Beatmaps',
+                ],
+                'ranked' => [
+                    'title' => 'Ranked & Approved Beatmaps',
                 ],
             ],
             'discussions' => [
@@ -300,6 +331,9 @@ return [
                 'recent' => 'Πρόσφατα',
                 'title' => 'Μετάλλια',
             ],
+            'playlists' => [
+                'title' => '',
+            ],
             'posts' => [
                 'title' => '',
                 'title_longer' => '',
@@ -307,6 +341,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Πρόσφατα',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'Λήψη Επανάληψης',
@@ -320,6 +357,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Πρώτες Θέσεις',
+                ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
                 ],
             ],
             'votes' => [
@@ -346,6 +392,7 @@ return [
                     'actions' => [
                         'restriction' => 'Αποκλεισμός',
                         'silence' => 'Σίγαση',
+                        'tournament_ban' => '',
                         'note' => 'Σημείωση',
                     ],
                 ],
@@ -387,6 +434,7 @@ return [
             'country_simple' => 'Εθνική Κατάταξη',
             'global' => 'Παγκόσμια κατάταξη για το :mode',
             'global_simple' => 'Παγκόσμια Κατάταξη',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Ακρίβεια Ευστοχίας',
@@ -402,10 +450,10 @@ return [
             'total_hits' => 'Συνολικά Hits',
             'total_score' => 'Συνολική Βαθμολογία',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => '',
-            'loved_beatmapset_count' => '',
-            'unranked_beatmapset_count' => '',
             'graveyard_beatmapset_count' => '',
+            'loved_beatmapset_count' => '',
+            'pending_beatmapset_count' => '',
+            'ranked_beatmapset_count' => '',
         ],
     ],
 
@@ -420,6 +468,8 @@ return [
         'offline' => 'Αποσυνδεδεμένοι',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => 'παρακαλώ ολοκληρώστε την εγγραφή μέσω της ιστοσελίδας του osu!',
         'saved' => 'Ο χρήστης δημιουργήθηκε',
     ],
     'verify' => [

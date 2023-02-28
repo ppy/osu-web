@@ -6,5 +6,8 @@
 return [
     'instrument_declined' => 'Die gewählte Zahlungsart wurde von Paypal abgelehnt.',
     'invalid_resource_id' => 'Es wurden keine Zahlungsinformationen gefunden.',
+    'invalid_token' => 'Beim komplettieren deiner Zahlung ist ein Fehler aufgetreten.',
+    'old_format' => 'Der Zahlungslink ist abgelaufen, bitte versuchen Sie es erneut.',
+    'resource_not_found' => 'Es wurden keine Zahlungsinformationen gefunden.',
     'unknown' => "Die Zahlung wurde aus unbekannten Gründen abgelehnt.",
 ];

@@ -5,14 +5,17 @@
 @php
     $headerLinks = [
         [
-            'title' => trans('layout.header.artists.index'),
+            'active' => true,
+            'title' => osu_trans('layout.header.artists.index'),
             'url' => route('artists.index'),
         ],
         [
-            'title' => $artist->name,
-            'url' => route('artists.show', $artist),
+            'title' => osu_trans('artist.tracks.index._'),
+            'url' => route('artists.tracks.index'),
         ],
     ];
+
+    $artistJsonId = "json-artist-{$json['artist']['id']}";
 @endphp
 
 @extends('master', [
@@ -34,38 +37,36 @@
 
     @include('layout._page_header_v4', ['params' => [
         'links' => $headerLinks,
-        'linksBreadcrumb' => true,
         'theme' => 'artist',
     ]])
     <div class="osu-page osu-page--artist">
         <div class="page-contents page-contents--artist">
             <div class="page-contents__artist-left">
                 @if (!$artist->visible)
-                    <div class="artist__admin-note">{{ trans('artist.admin.hidden') }}</div>
+                    <div class="artist__admin-note">{{ osu_trans('artist.admin.hidden') }}</div>
                 @endif
                 <div class="artist__description">
                     <h1>{{ $artist->name }}</h1>
 
                     {!! markdown($artist->description) !!}
                 </div>
-                @if (count($albums) > 0)
+                @if (count($json['albums']) > 0)
                     <div class="artist__albums">
-                        @foreach ($albums as $album)
-                            <div class="artist-album js-audio--group">
-                                <a class="fragment-target" name="album-{{$album['id']}}" id="album-{{$album['id']}}"></a>
+                        @foreach ($json['albums'] as $album)
+                            <div class="artist-album" id="album-{{ $album['id'] }}">
                                 <div class="artist-album__header">
-                                    <div class="artist-album__header-overlay{{$album['is_new'] ? ' artist-album__header-overlay--new' : ''}}" style="background-image: url({{$album['cover_url']}});"></div>
+                                    <div class="artist-album__header-overlay{{$album['is_new'] ? ' artist-album__header-overlay--new' : ''}}" style="background-image: url('{{ $album['cover_url'] }}');"></div>
                                     <img class="artist-album__cover" src="{{$album['cover_url']}}">
                                     <span class="artist-album__title">{{$album['title']}}</span>
                                     @if ($album['is_new'])
                                         <span class="artist-album__badge">
                                             <span class="pill-badge pill-badge--yellow pill-badge--with-shadow">
-                                                {{trans('common.badges.new')}}
+                                                {{osu_trans('common.badges.new')}}
                                             </span>
                                         </span>
                                     @endif
                                 </div>
-                                <div class="js-react--artistTracklist" data-src="album-json-{{$album['id']}}"></div>
+                                <div class="js-react--artistTracklist" data-artist-src="{{ $artistJsonId }}" data-src="album-json-{{$album['id']}}"></div>
                                 <script id="album-json-{{$album['id']}}" type="application/json">
                                     {!! json_encode($album['tracks']) !!}
                                 </script>
@@ -73,15 +74,15 @@
                         @endforeach
                     </div>
                 @endif
-                @if (count($tracks) > 0)
+                @if (count($json['tracks']) > 0)
                     <div class="artist-album">
                         <div class="artist-album__header">
-                            <div class="artist-album__header-overlay" style="background-image: url({{$images['header_url']}});"></div>
-                            <span class="artist-album__title">{{trans('artist.songs._')}}</span>
+                            <div class="artist-album__header-overlay" style="background-image: url('{{ $images['header_url'] }}');"></div>
+                            <span class="artist-album__title">{{osu_trans('artist.songs._')}}</span>
                         </div>
-                        <div class="js-react--artistTracklist" data-src="singles-json-{{$artist->id}}"></div>
+                        <div class="js-react--artistTracklist" data-artist-src="{{ $artistJsonId }}" data-src="singles-json-{{$artist->id}}"></div>
                         <script id="singles-json-{{$artist->id}}" type="application/json">
-                            {!! json_encode($tracks) !!}
+                            {!! json_encode($json['tracks']) !!}
                         </script>
                     </div>
                 @endif
@@ -102,16 +103,16 @@
                         </a>
                     @endforeach
                 </div>
-                @if (count($albums) > 0)
+                @if (count($json['albums']) > 0)
                     <div class="artist__links-area artist__links-area--albums">
-                        @foreach ($albums as $album)
+                        @foreach ($json['albums'] as $album)
                             <a class="artist-sidebar-album{{$album['is_new'] ? ' artist-sidebar-album--new' : ''}}" href="#album-{{$album['id']}}" data-turbolinks="false">
                                 <div class="artist-sidebar-album__cover-wrapper">
-                                    <div class="artist-sidebar-album__glow" style="background-image: url({{$album['cover_url']}});"></div>
+                                    <div class="artist-sidebar-album__glow" style="background-image: url('{{ $album['cover_url'] }}');"></div>
                                     <img class="artist-sidebar-album__cover" src="{{$album['cover_url']}}">
                                     @if ($album['is_new'])
                                         <span class="artist__badge-wrapper">
-                                            <span class="pill-badge pill-badge--yellow pill-badge--with-shadow">{{trans('common.badges.new')}}</span>
+                                            <span class="pill-badge pill-badge--yellow pill-badge--with-shadow">{{osu_trans('common.badges.new')}}</span>
                                         </span>
                                     @endif
                                 </div>
@@ -123,10 +124,14 @@
             </div>
         </div>
     </div>
+
+    <script id="{{ $artistJsonId }}" type="application/json">
+        {!! json_encode($json['artist']) !!}
+    </script>
 @endsection
 
 @section("script")
   @parent
 
-  @include('layout._extra_js', ['src' => 'js/react/artist-page.js'])
+  @include('layout._react_js', ['src' => 'js/artist-page.js'])
 @stop

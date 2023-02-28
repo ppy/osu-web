@@ -6,13 +6,21 @@
 return [
     'availability' => [
         'disabled' => 'Denna beatmap är för närvarande inte tillgänglig för nedladdning.',
-        'parts-removed' => 'Portioner av denna beatmap har blivit borttagna på förfrågan av skaparen eller en tredje-parts rättighets hållare.',
+        'parts-removed' => 'Delar av denna beatmap har tagits bort på begäran av skaparen eller en innehavare av tredjeparts-rättigheter.',
         'more-info' => 'Klicka här för mer information.',
         'rule_violation' => 'Vissa delar av denna map har tagits bort då de anses vara olämpliga i osu!.',
     ],
 
+    'cover' => [
+        'deleted' => 'Raderad beatmap',
+    ],
+
     'download' => [
         'limit_exceeded' => 'Sakta ner, spela mer.',
+    ],
+
+    'featured_artist_badge' => [
+        'label' => 'Utvald artist',
     ],
 
     'index' => [
@@ -32,16 +40,16 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => '',
+        'hybrid_requires_modes' => 'En hybrid beatmap kräver att du väljer minst ett spelläge att nominera för.',
         'incorrect_mode' => 'Du har inte behörighet att nominera för läge: :mode',
-        'full_bn_required' => '',
-        'too_many' => '',
+        'full_bn_required' => 'Du måste vara en fullständig nominerare för att utföra denna kvalificerande nominering.',
+        'too_many' => 'Nomineringskravet är redan uppfyllt.',
 
         'dialog' => [
-            'confirmation' => 'Är du säker på att du vill nominera denna Beatmap?',
-            'header' => 'Nominera Beatmap',
-            'hybrid_warning' => '',
-            'which_modes' => '',
+            'confirmation' => 'Är du säker på att du vill nominera denna beatmap?',
+            'header' => 'Nominera beatmap',
+            'hybrid_warning' => 'notera: du kan bara nominera en gång, så se till att du nominerar för alla spellägen som du tänker nominera för',
+            'which_modes' => 'Nominera för vilka spellägen?',
         ],
     ],
 
@@ -52,20 +60,26 @@ return [
     'show' => [
         'discussion' => 'Diskussion',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
-            'by_artist' => '',
-            'favourite' => 'Favorisera denna beatmapset',
-            'favourite_login' => '',
+            'by_artist' => 'av :artist',
+            'favourite' => 'Favoritmarkera detta beatmapset',
+            'favourite_login' => 'Logga in för att favoritmarkera denna beatmap',
             'logged-out' => 'Du behöver logga in innan du laddar ner beatmaps!',
             'mapped_by' => 'skapad av :mapper',
-            'unfavourite' => 'Ta bort favorisering på denna beatmapset',
+            'mapped_by_guest' => '',
+            'unfavourite' => 'Ta bort favoritmarkering på detta beatmapset',
             'updated_timeago' => 'senast ändrad :timeago',
 
             'download' => [
-                '_' => 'Ladda Ner',
+                '_' => 'Ladda ner',
                 'direct' => '',
-                'no-video' => 'utan Video',
-                'video' => 'med Video',
+                'no-video' => 'utan video',
+                'video' => 'med video',
             ],
 
             'login_required' => [
@@ -77,18 +91,18 @@ return [
         'details_date' => [
             'approved' => 'godkänd :timeago',
             'loved' => 'älskad :timeago',
-            'qualified' => 'kvalificerat :timeago',
+            'qualified' => 'kvalificerad :timeago',
             'ranked' => 'rankad :timeago',
             'submitted' => 'skickad :timeago',
             'updated' => 'senast uppdaterat :timeago',
         ],
 
         'favourites' => [
-            'limit_reached' => 'Du har för många favoriserade beatmaps! Var vänlig ta bort en favorit innan du fortsätter.',
+            'limit_reached' => 'Du har för många favoritmarkerade beatmaps! Var vänlig ta bort en favorit innan du fortsätter.',
         ],
 
         'hype' => [
-            'action' => 'Hypa denna map om du gillade att spela den för att hjälpa den att utvecklas till <strong>Rankad</strong> status.',
+            'action' => 'Hype denna map om du gillade att spela den för att hjälpa den på vägen till <strong>rankad</strong> status.',
 
             'current' => [
                 '_' => 'Denna map är för närvarande :status.',
@@ -101,11 +115,11 @@ return [
             ],
 
             'disqualify' => [
-                '_' => 'Om du hittar ett problem med denna beatmap, diskvalificera den :link.',
+                '_' => 'Om du hittar ett problem med denna beatmap, vänligen diskvalificera den :link.',
             ],
 
             'report' => [
-                '_' => 'Om du hittar ett problem med denna beatmap, vänligen rapportera det :link för att varna laget.',
+                '_' => 'Om du hittar ett problem med denna beatmap, vänligen rapportera det :link för att varna teamet.',
                 'button' => 'Rapportera problem',
                 'link' => 'här',
             ],
@@ -116,13 +130,15 @@ return [
             'genre' => 'Genre',
             'language' => 'Språk',
             'no_scores' => 'Data beräknas...',
+            'nominators' => 'Nominatorer',
             'nsfw' => 'Explicit innehåll',
+            'offset' => 'Online-förskjutning',
             'points-of-failure' => 'Punkter av Misslyckande',
             'source' => 'Källa',
-            'storyboard' => '',
+            'storyboard' => 'Denna beatmap innehåller storyboard',
             'success-rate' => 'Genomsnittig Succe',
             'tags' => 'Taggar',
-            'video' => '',
+            'video' => 'Denna beatmap innehåller video',
         ],
 
         'nsfw_warning' => [
@@ -139,22 +155,24 @@ return [
         'scoreboard' => [
             'achieved' => 'uppnått :when',
             'country' => 'Nationell rankning',
+            'error' => 'Det gick inte att ladda ranking',
             'friend' => 'Rankning bland vänner',
             'global' => 'Global rankning',
             'supporter-link' => 'Klicka <a href=":link">här</a> för att se alla fina funktioner du kommer få!',
-            'supporter-only' => 'Du behöver vara en supporter för att komma åt vän och land rankningar!',
-            'title' => 'Resultattavla',
+            'supporter-only' => 'Du behöver vara en supporter för att komma åt vän-, land-, och modspecifika rankningar!',
+            'title' => 'Poängtavla',
 
             'headers' => [
                 'accuracy' => 'Precision',
-                'combo' => 'Högsta Kombo',
+                'combo' => 'Högsta kombo',
                 'miss' => 'Missar',
                 'mods' => 'Tillägg',
+                'pin' => 'Fäst',
                 'player' => 'Spelare',
                 'pp' => '',
                 'rank' => 'Rank',
-                'score_total' => 'Total Poäng',
                 'score' => 'Poäng',
+                'score_total' => 'Total poäng',
                 'time' => 'Tid',
             ],
 
@@ -167,25 +185,30 @@ return [
             ],
             'score' => [
                 'first' => 'Leder',
-                'own' => 'Ditt Bästa',
+                'own' => 'Ditt bästa',
+            ],
+            'supporter_link' => [
+                '_' => 'Klicka :here för att se alla fina förmåner som du får!',
+                'here' => 'här',
             ],
         ],
 
         'stats' => [
-            'cs' => 'Cirkel Storlek',
-            'cs-mania' => 'Antal Tangenter',
-            'drain' => 'HP Tömning',
+            'cs' => 'Cirkelstorlek',
+            'cs-mania' => 'Antal tangenter',
+            'drain' => 'HP-tömning',
             'accuracy' => 'Precision',
-            'ar' => 'Approach Hastighet',
-            'stars' => 'Stjärn Svårighetsgrad',
-            'total_length' => 'Längd',
+            'ar' => 'Närmningshastighet',
+            'stars' => 'Stjärn-svårighetsgrad',
+            'total_length' => 'Längd (tömningslängd: :hit_length)',
             'bpm' => 'BPM',
-            'count_circles' => 'Antal Cirklar',
-            'count_sliders' => 'Antal Sliders',
-            'user-rating' => 'Användar Betyg',
-            'rating-spread' => 'Betyg Spridning',
+            'count_circles' => 'Cirkelantal',
+            'count_sliders' => 'Sliderantal',
+            'offset' => 'Online-förskjutning: :offset',
+            'user-rating' => 'Användarbetyg',
+            'rating-spread' => 'Betygsspridning',
             'nominations' => 'Nomineringar',
-            'playcount' => 'Speltid',
+            'playcount' => 'Antal gånger spelad',
         ],
 
         'status' => [
@@ -197,5 +220,9 @@ return [
             'pending' => 'Väntande',
             'graveyard' => 'Kyrkogård',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => 'I rampljuset',
     ],
 ];

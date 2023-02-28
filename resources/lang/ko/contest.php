@@ -27,11 +27,21 @@ return [
             'remove' => '투표 제거',
             'used_up' => '모든 투표권을 사용했습니다',
         ],
+
+        'progress' => [
+            '_' => ':max개 중 :used개의 투표권 사용됨',
+        ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => '투표하기 전에 지정한 플레이리스트에 있는 모든 비트맵을 플레이하셔야 합니다.',
+            ],
+        ],
     ],
     'entry' => [
         '_' => '참가',
         'login_required' => '콘테스트에 참가하려면 로그인해주세요.',
-        'silenced_or_restricted' => '제한 또는 침묵 상태에서는 콘테스트에 참가할 수 없습니다.',
+        'silenced_or_restricted' => '침묵, 제한 상태에서는 콘테스트에 참가할 수 없습니다.',
         'preparation' => '현재 콘테스트가 준비중에 있습니다. 인내심을 갖고 조금만 더 기다려주세요!',
         'drop_here' => '참가할 작품을 이곳에 끌어넣어주세요.',
         'download' => '.osz 파일 다운로드',
@@ -40,6 +50,7 @@ return [
             'beatmap' => '이 콘테스트에서는 .osu 파일만 등록할 수 있습니다.',
             'music' => '이 콘테스트에서는 .mp3 파일만 등록할 수 있습니다.',
         ],
+        'wrong_dimensions' => '이 콘테스트의 출품작은 반드시 :widthx:height 여야 합니다.',
         'too_big' => '이 콘테스트의 최대 참가 가능한 작품 수는 :limit개 입니다.',
     ],
     'beatmaps' => [

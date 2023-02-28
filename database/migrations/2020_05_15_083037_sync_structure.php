@@ -447,6 +447,6 @@ class SyncStructure extends Migration
      */
     public function down()
     {
-        // no going back =)
+        throw new Exception('no rolling back from this migration =)');
     }
 }

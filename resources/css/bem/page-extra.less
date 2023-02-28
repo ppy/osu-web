@@ -1,0 +1,105 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.page-extra {
+  --dragdrop-margin: 0;
+  --gutter-desktop: @gutter-v2-desktop;
+  --gutter: @gutter-v2;
+  --inner-gutter: calc(var(--gutter) - var(--outer-gutter));
+  --outer-gutter-desktop: 10px;
+  --outer-gutter: 2px;
+  --padding-vertical: 20px; // also used by profile page bbcode-editor
+
+  .own-layer();
+  .default-box-shadow();
+  padding: var(--padding-vertical) var(--inner-gutter);
+  margin: 0 var(--outer-gutter);
+  position: relative;
+  background-color: hsl(var(--hsl-b4));
+  font-size: @font-size--title-small;
+  border-radius: @border-radius--large;
+
+  @media @desktop {
+    --gutter: var(--gutter-desktop);
+    --outer-gutter: var(--outer-gutter-desktop);
+  }
+
+  &--compact {
+    padding: 0;
+  }
+
+  &--userpage {
+    padding-right: 0;
+    padding-bottom: 0;
+    --dragdrop-margin: var(--inner-gutter);
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    position: absolute;
+
+    width: auto;
+    right: var(--inner-gutter);
+    top: var(--padding-vertical);
+
+    @media @desktop {
+      width: var(--inner-gutter);
+      right: 0;
+    }
+  }
+
+  &__alert {
+    width: 100%;
+    min-height: 30px;
+    border-radius: 40px;
+
+    margin-bottom: 5px;
+    padding: 5px 20px;
+
+    &--info {
+      background-color: @yellow;
+      color: #000;
+    }
+
+    &--warning {
+      background-color: @red-dark;
+      color: #fff;
+    }
+  }
+
+  &__chart {
+    height: 250px;
+    width: 100%;
+    position: relative;
+  }
+
+  &__content-overflow-wrapper-inner {
+    padding-right: var(--gutter);
+    padding-bottom: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  &__content-overflow-wrapper-outer {
+    max-height: 400px;
+  }
+
+  &__recent-medals {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    height: 1em;
+    font-size: 90px; // icon size
+    gap: 10px;
+  }
+
+  &__recent-medals-box {
+    background-color: hsl(var(--hsl-b3));
+    margin: 0 calc(-1 * var(--inner-gutter)) 20px;
+    padding: 0 var(--inner-gutter) 20px;
+  }
+}

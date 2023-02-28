@@ -6,7 +6,7 @@
     $links = [
         [
             'url' => route('contests.index'),
-            'title' => trans('contest.index.nav_title'),
+            'title' => osu_trans('contest.index.nav_title'),
         ],
         [
             'url' => $contestMeta->url(),

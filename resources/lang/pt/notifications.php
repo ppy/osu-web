@@ -27,6 +27,12 @@ return [
         'beatmapset' => [
             '_' => 'Beatmap',
 
+            'beatmap_owner_change' => [
+                '_' => 'Dificuldade de convidado',
+                'beatmap_owner_change' => 'És agora o dono da dificuldade ":beatmap" para o mapa ":title"',
+                'beatmap_owner_change_compact' => 'És agora o dono da dificuldade ":beatmap"',
+            ],
+
             'beatmapset_discussion' => [
                 '_' => 'Discussão do beatmap',
                 'beatmapset_discussion_lock' => 'A discussão em ":title" foi encerrada',
@@ -80,8 +86,19 @@ return [
         'channel' => [
             '_' => 'Chat',
 
+            'announcement' => [
+                '_' => 'Novo comunicado',
+
+                'announce' => [
+                    'channel_announcement' => ':username diz ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Comunicado de :username',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Nova mensagem',
+
                 'pm' => [
                     'channel_message' => ':username diz ":title"',
                     'channel_message_compact' => ':title',
@@ -142,6 +159,9 @@ return [
                 'user_beatmapset_new' => 'Novo beatmap ":title" por :username',
                 'user_beatmapset_new_compact' => 'Novo beatmap ":title"',
                 'user_beatmapset_new_group' => 'Novos beatmaps por :username',
+
+                'user_beatmapset_revive' => 'O beatmap ":title", foi restaurado por :username',
+                'user_beatmapset_revive_compact' => 'O beatmap ":title", foi restaurado',
             ],
         ],
 
@@ -159,6 +179,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => 'És agora convidado do mapa ":title"',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'A conversa sobre ":title" foi bloqueada',
                 'beatmapset_discussion_post_new' => 'A conversa sobre ":title" tem novas atualizações ',
@@ -185,6 +209,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Há um novo comunicado em ":name"',
+            ],
+
             'channel' => [
                 'pm' => 'Tu recebeste uma nova mensagem de :username',
             ],
@@ -216,6 +244,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username criou novos beatmaps',
+                'user_beatmapset_revive' => ':username ressuscitou beatmaps',
             ],
         ],
     ],

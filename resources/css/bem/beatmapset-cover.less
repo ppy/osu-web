@@ -1,0 +1,42 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.beatmapset-cover {
+  .center-content();
+  position: relative;
+  width: 45px;
+  height: 30px;
+  border-radius: var(--border-radius, 6px);
+  .at2x('~@images/layout/beatmaps/default-bg.png');
+  background-position: center;
+  background-size: cover;
+  vertical-align: middle;
+  flex: none;
+
+  &::before {
+    .full-size();
+    content: '';
+    border-radius: inherit;
+    background-image: var(--bg);
+    background-position: center;
+    background-size: cover;
+
+    @media @highdpi {
+      background-image: var(--bg-2x, var(--bg));
+    }
+  }
+
+  &--full {
+    .full-size();
+  }
+
+  &--home {
+    width: 70px;
+    height: 60px;
+  }
+
+  &--search {
+    width: 50px;
+    height: 50px;
+  }
+}

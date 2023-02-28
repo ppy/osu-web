@@ -15,6 +15,7 @@ return [
         'closing' => 'Mvh,',
         'hello' => 'Hej :user,',
         'report' => 'Svar venligst på denne mail MED DET SAMME hvis du ikke anmodede om denne ændring.',
+        'ignore' => 'Hvis du ikke udførte anmodningen, så er det sikkert for dig at ignorere e-mailen.',
     ],
 
     'donation_thanks' => [
@@ -66,6 +67,7 @@ return [
         'duration' => 'Takket være dem har du nu adgang til osu!direct og andre osu!supporter goder i de næste :duration.',
         'features' => 'Du kan finde flere detaljer omkring disse goder her:',
         'gifted' => 'Nogen har givet dig et osu!supporter tag!',
+        'gift_message' => '',
         'subject' => 'Du er blevet givet et osu!supporter tag!',
     ],
 

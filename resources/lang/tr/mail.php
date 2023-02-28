@@ -15,6 +15,7 @@ return [
         'closing' => 'Saygılarımızla,',
         'hello' => 'Selam :user,',
         'report' => 'Eğer böyle bir değişiklik talep etmediyseniz lütfen DERHAL bu e-postayı yanıtlayın.',
+        'ignore' => 'Eğer bunu isteyen siz değilseniz, bu mesajı görmezden gelebilirsiniz.',
     ],
 
     'donation_thanks' => [
@@ -66,6 +67,7 @@ return [
         'duration' => 'Onun sayesinde, sonraki :duration boyunca osu!direct\'e ve diğer osu!supporter ayrıcalıklarına sahip olacaksın.',
         'features' => 'Bu avantajlar hakkında daha fazla detaylı bilgiye buradan ulaşabilirsiniz:',
         'gifted' => 'Birisi size az önce bir osu!supporter etiketi hediye etti!',
+        'gift_message' => 'Bu etiketi hediye eden kişi size bir mesaj bıraktı:',
         'subject' => 'Size bir osu! Destekçisi etiketi verildi!',
     ],
 

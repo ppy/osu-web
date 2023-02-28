@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => '',
+    'missing_route' => 'Virheellinen URL-osoite tai virheellinen pyyntötapa.',
+    'no_restricted_access' => 'Et voi suorittaa tätä toimintoa tilisi ollessa rajoitetussa tilassa.',
+    'supporter_only' => 'Sinun täytyy olla Tukija käyttääksesi tätä ominaisuutta.',
+    'unknown' => 'Tuntematon virhe.',
+
     'codes' => [
         'http-401' => 'Kirjaudu sisään jatkaaksesi.',
         'http-403' => 'Pääsy evätty.',
@@ -24,10 +30,7 @@ return [
     ],
     'search' => [
         'default' => 'Tuloksia ei saatu, yritä myöhemmin uudelleen.',
-        'operation_timeout_exception' => '',
+        'invalid_cursor_exception' => '',
+        'operation_timeout_exception' => 'Haku on tavallista aktiivisempi. Yritä uudelleen myöhemmin.',
     ],
-
-    'supporter_only' => 'Sinun täytyy olla Tukija käyttääksesi tätä ominaisuutta.',
-    'no_restricted_access' => 'Et voi suorittaa tätä toimintoa tilisi ollessa rajoitetussa tilassa.',
-    'unknown' => 'Tuntematon virhe.',
 ];

@@ -10,7 +10,7 @@ use App\Models\DeletedUser;
 
 class ContestEntryTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'results',
         'artMeta',
     ];
@@ -32,36 +32,30 @@ class ContestEntryTransformer extends TransformerAbstract
 
     public function includeResults(ContestEntry $entry)
     {
-        return $this->item($entry, function ($entry) {
-            return [
-                'actual_name' => $entry->name,
-                'user_id' => $entry->user_id,
-                'username' => ($entry->user ?? (new DeletedUser()))->username,
-                'votes' => (int) $entry->votes_count,
-            ];
-        });
+        return $this->primitive([
+            'actual_name' => $entry->name,
+            'user_id' => $entry->user_id,
+            'username' => ($entry->user ?? (new DeletedUser()))->username,
+            'votes' => (int) $entry->votes_count,
+        ]);
     }
 
     public function includeArtMeta(ContestEntry $entry)
     {
         if (!$entry->contest->hasThumbnails() || !presence($entry->entry_url)) {
-            return $this->item($entry, function ($entry) {
-                return [];
-            });
+            return $this->primitive([]);
         }
 
-        return $this->item($entry, function ($entry) {
-            // suffix urls when contests are made live to ensure image dimensions are forcibly rechecked
-            if ($entry->contest->visible) {
-                $urlSuffix = str_contains($entry->thumbnail(), '?') ? '&live' : '?live';
-            }
+        // suffix urls when contests are made live to ensure image dimensions are forcibly rechecked
+        if ($entry->contest->visible) {
+            $urlSuffix = str_contains($entry->thumbnail(), '?') ? '&live' : '?live';
+        }
 
-            $size = fast_imagesize($entry->thumbnail().($urlSuffix ?? ''));
+        $size = fast_imagesize($entry->thumbnail().($urlSuffix ?? ''));
 
-            return [
-                'width' => $size[0],
-                'height' => $size[1],
-            ];
-        });
+        return $this->primitive([
+            'width' => $size[0] ?? 0,
+            'height' => $size[1] ?? 0,
+        ]);
     }
 }

@@ -15,7 +15,6 @@ return [
         ],
 
         'email' => [
-            'current' => 'aktuelle e-mail',
             'new' => 'neue e-mail',
             'new_confirmation' => 'e-mail bestätigen',
             'title' => 'E-Mail',
@@ -50,12 +49,13 @@ return [
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'erhalte benachrichtigungen für neue probleme auf qualifizierten beatmaps der folgenden modi',
         'beatmapset_disqualify' => 'erhalte benachrichtigungen, wenn beatmaps der folgenden modi disqualifiziert werden',
-        'comment_reply' => 'erhalte benachrichtigungen für antworten auf deine kommentare',
+        'comment_reply' => 'Erhalte Benachrichtigungen für Antworten auf deine Kommentare',
         'title' => 'Benachrichtigungen',
         'topic_auto_subscribe' => 'automatisch benachrichtigungen zu den von dir erstellten forenthreads aktivieren',
 
         'options' => [
             '_' => 'zustelloptionen',
+            'beatmap_owner_change' => 'gastschwierigkeitsstufe',
             'beatmapset:modding' => 'beatmap-modding',
             'channel_message' => 'private chatnachrichten',
             'comment_new' => 'neue kommentare',
@@ -63,7 +63,7 @@ return [
             'mail' => 'mail',
             'mapping' => 'beatmap-mapper',
             'push' => 'push',
-            'user_achievement_unlock' => 'medaille freigeschaltet',
+            'user_achievement_unlock' => 'Medaille freigeschaltet',
         ],
     ],
 
@@ -74,13 +74,13 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => 'warnungen für expliziten inhalt in beatmaps ausblenden',
+        'beatmapset_show_nsfw' => 'Warnungen für expliziten Inhalt in Beatmaps ausblenden',
         'beatmapset_title_show_original' => 'beatmap-metadaten in originalsprache anzeigen',
         'title' => 'Optionen',
 
         'beatmapset_download' => [
-            '_' => 'bevorzuge beatmap-download',
-            'all' => 'mit video, falls verfügbar',
+            '_' => 'bevorzugter beatmap-download typ',
+            'all' => 'mit Video, falls verfügbar',
             'direct' => 'in osu!direct öffnen',
             'no_video' => 'ohne video',
         ],

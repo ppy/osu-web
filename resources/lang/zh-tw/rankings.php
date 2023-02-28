@@ -13,7 +13,7 @@ return [
         'title' => '顯示',
 
         'variant' => [
-            'title' => '',
+            'title' => '篩選',
         ],
     ],
 
@@ -23,6 +23,14 @@ return [
         'multiplayer' => '多人遊戲',
         'performance' => '成績',
         'score' => '總分',
+        'seasons' => '',
+    ],
+
+    'seasons' => [
+        'empty' => '',
+        'ongoing' => '',
+        'room_count' => '',
+        'url' => '',
     ],
 
     'spotlight' => [

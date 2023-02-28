@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'このユーザーをブロックしています',
+        'comment_text' => 'このコメントは非表示になっています。',
         'blocked_count' => 'ブロックしたユーザー(:count)',
         'hide_profile' => 'プロフィールを隠す',
+        'hide_comment' => '隠す',
         'not_blocked' => 'このユーザーはブロックされていません。',
         'show_profile' => 'プロフィールを表示',
+        'show_comment' => '表示',
         'too_many' => 'ブロックできる上限に達しました。',
         'button' => [
             'block' => 'ブロック',
@@ -47,6 +50,22 @@ return [
     'card' => [
         'loading' => '読み込み中・・・',
         'send_message' => 'メッセージの送信',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => 'パスワード',
+            'password_confirmation' => 'パスワードの確認',
+            'submit' => 'アカウント作成',
+            'user_email' => 'メールアドレス',
+            'user_email_confirmation' => 'メールアドレスの確認',
+            'username' => 'ユーザー名',
+
+            'tos_notice' => [
+                '_' => 'アカウントを作成することにより、:link に同意したことになります',
+                'link' => '利用規約',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -89,7 +108,7 @@ return [
         'forgot' => 'パスワードを忘れましたか？',
         'info' => 'ログインして続行してください',
         'invalid_captcha' => 'Captcha が無効です。ページを更新して再度お試し下さい。',
-        'locked_ip' => 'あなたのIPアドレスはロックされています。数分後もう一度お試しください。',
+        'locked_ip' => 'あなたのIPアドレスは規制されています。数分後もう一度お試しください。',
         'password' => 'パスワード',
         'register' => "osu!アカウントを持っていませんか？新しいアカウントを作るにはこちらから",
         'remember' => 'ログイン状態を保持する',
@@ -127,7 +146,8 @@ return [
         ],
 
         'options' => [
-            'cheating' => '不正行為/チート',
+            'cheating' => 'チート',
+            'multiple_accounts' => '複数のアカウントを管理している',
             'insults' => 'あなた/他の人への侮辱',
             'spam' => 'スパム',
             'unwanted_content' => '不適切なコンテンツへのリンク',
@@ -138,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'アカウントが制限されました！',
         'message' => '制限中は他のプレイヤーと交流ができなくなり、スコアが他人には表示されなくなります。ほとんどの場合、自動的に行われた処理で通常２４時間以内に解除されます。この制限に異議を申し立てたい場合は<a href="mailto:accounts@ppy.sh">サポート</a>に問い合わせて下さい。',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age歳',
@@ -157,6 +178,10 @@ return [
         'comments_count' => [
             '_' => '投稿 :link',
             'count' => ':count_delimited コメント',
+        ],
+        'cover' => [
+            'to_0' => 'カバー画像を隠す',
+            'to_1' => 'カバー画像を表示',
         ],
         'edit' => [
             'cover' => [
@@ -203,14 +228,20 @@ return [
                 'graveyard' => [
                     'title' => 'Graveyardのビートマップ',
                 ],
+                'guest' => [
+                    'title' => 'ゲスト難易度のビートマップ',
+                ],
                 'loved' => [
                     'title' => 'Lovedされたビートマップ',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked & Approvedのビートマップ',
+                'nominated' => [
+                    'title' => 'ノミネートしたRankedビートマップ',
                 ],
-                'unranked' => [
-                    'title' => '保留中のビートマップ',
+                'pending' => [
+                    'title' => 'Pendingビートマップ',
+                ],
+                'ranked' => [
+                    'title' => 'Ranked & Approvedのビートマップ',
                 ],
             ],
             'discussions' => [
@@ -300,6 +331,9 @@ return [
                 'recent' => '最新',
                 'title' => 'メダル',
             ],
+            'playlists' => [
+                'title' => 'プレイリスト',
+            ],
             'posts' => [
                 'title' => '投稿',
                 'title_longer' => '最近の投稿',
@@ -308,11 +342,14 @@ return [
             'recent_activity' => [
                 'title' => '最近のアクティビティ',
             ],
+            'realtime' => [
+                'title' => 'マルチプレイ',
+            ],
             'top_ranks' => [
                 'download_replay' => 'リプレイをダウンロード',
                 'not_ranked' => 'Rankedビートマップのみがppを与えます。',
                 'pp_weight' => '割合 :percentage',
-                'view_details' => '詳細の表示',
+                'view_details' => '詳細を表示',
                 'title' => 'ランク',
 
                 'best' => [
@@ -320,6 +357,15 @@ return [
                 ],
                 'first' => [
                     'title' => '1位の記録',
+                ],
+                'pin' => [
+                    'to_0' => 'ピン留め解除',
+                    'to_0_done' => 'スコアのピン留めを解除しました',
+                    'to_1' => 'ピン留め',
+                    'to_1_done' => 'スコアをピン留めしました',
+                ],
+                'pinned' => [
+                    'title' => 'ピン留めされたスコア',
                 ],
             ],
             'votes' => [
@@ -346,6 +392,7 @@ return [
                     'actions' => [
                         'restriction' => 'BAN',
                         'silence' => 'サイレンス',
+                        'tournament_ban' => 'トーナメントBAN',
                         'note' => 'メモ',
                     ],
                 ],
@@ -387,6 +434,7 @@ return [
             'country_simple' => '国別ランキング',
             'global' => ':modeの世界ランク',
             'global_simple' => '世界ランキング',
+            'highest' => '最高ランク: :rank (:dateに取得)',
         ],
         'stats' => [
             'hit_accuracy' => '精度',
@@ -402,16 +450,16 @@ return [
             'total_hits' => '合計ヒット数',
             'total_score' => '合計スコア',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Ranked & Approvedのビートマップ',
-            'loved_beatmapset_count' => 'Lovedされたビートマップ',
-            'unranked_beatmapset_count' => '保留中のビートマップ',
             'graveyard_beatmapset_count' => 'Graveyardのビートマップ',
+            'loved_beatmapset_count' => 'Lovedされたビートマップ',
+            'pending_beatmapset_count' => 'Pendingビートマップ',
+            'ranked_beatmapset_count' => 'Ranked & Approvedのビートマップ',
         ],
     ],
 
     'silenced_banner' => [
         'title' => 'あなたは現在サイレンス中です。',
-        'message' => 'いくつかのアクションが利用できない可能性があります。',
+        'message' => 'いくつかの機能が利用できない可能性があります。',
     ],
 
     'status' => [
@@ -420,6 +468,8 @@ return [
         'offline' => 'オフライン',
     ],
     'store' => [
+        'from_client' => '代わりにゲームクライアントから登録してください！',
+        'from_web' => 'osu!のウェブサイトで登録を完了してください',
         'saved' => 'ユーザーが作成されました',
     ],
     'verify' => [
@@ -427,7 +477,7 @@ return [
     ],
 
     'view_mode' => [
-        'brick' => 'ブリックビュー',
+        'brick' => '簡易表示',
         'card' => 'カードビュー',
         'list' => '一覧表示',
     ],

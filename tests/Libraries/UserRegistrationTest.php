@@ -7,6 +7,7 @@ namespace Tests\Libraries;
 
 use App\Exceptions\ValidationException;
 use App\Libraries\UserRegistration;
+use App\Models\Count;
 use App\Models\User;
 use Tests\TestCase;
 
@@ -17,6 +18,7 @@ class UserRegistrationTest extends TestCase
         $attrs = $this->basicAttributes();
 
         $origCount = User::count();
+        $origCountCache = Count::totalUsers()->count;
         $reg = new UserRegistration($attrs);
         $thrown = $this->runSubject($reg);
 
@@ -25,6 +27,7 @@ class UserRegistrationTest extends TestCase
         $this->assertTrue($reg->user()->userGroups->every(function ($userGroup) {
             return $userGroup->user_pending === false;
         }));
+        $this->assertSame($origCountCache + 1, Count::totalUsers()->count);
     }
 
     public function testRequiresUsername()
@@ -40,8 +43,8 @@ class UserRegistrationTest extends TestCase
         $this->assertArraySubset(
             $reg->user()->validationErrors()->all(),
             [
-                'username' => [trans('model_validation.required', [
-                    'attribute' => trans('model_validation.user.attributes.username'),
+                'username' => [osu_trans('model_validation.required', [
+                    'attribute' => osu_trans('model_validation.user.attributes.username'),
                 ])],
             ]
         );
@@ -61,8 +64,8 @@ class UserRegistrationTest extends TestCase
         $this->assertArraySubset(
             $reg->user()->validationErrors()->all(),
             [
-                'user_email' => [trans('model_validation.required', [
-                    'attribute' => trans('model_validation.user.attributes.user_email'),
+                'user_email' => [osu_trans('model_validation.required', [
+                    'attribute' => osu_trans('model_validation.user.attributes.user_email'),
                 ])],
             ]
         );
@@ -82,8 +85,8 @@ class UserRegistrationTest extends TestCase
         $this->assertArraySubset(
             $reg->user()->validationErrors()->all(),
             [
-                'password' => [trans('model_validation.required', [
-                    'attribute' => trans('model_validation.user.attributes.password'),
+                'password' => [osu_trans('model_validation.required', [
+                    'attribute' => osu_trans('model_validation.user.attributes.password'),
                 ])],
             ]
         );

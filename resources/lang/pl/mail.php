@@ -15,6 +15,7 @@ return [
         'closing' => 'Z wyrazami szacunku,',
         'hello' => 'Witaj, :user!',
         'report' => 'Odpowiedz na ten e-mail NATYCHMIAST, jeżeli to działanie nie zostało wykonane przez Ciebie.',
+        'ignore' => 'Jeśli to nie Ty o to poprosiłeś(aś), zignoruj tę wiadomość.',
     ],
 
     'donation_thanks' => [
@@ -66,6 +67,7 @@ return [
         'duration' => 'Dzięki tej osobie otrzymasz dostęp do osu!direct i innych korzyści przeznaczonych dla donatorów osu! przez następne :duration.',
         'features' => 'Więcej informacji na temat korzyści wynikających z posiadania statusu donatora osu! znajdziesz tutaj:',
         'gifted' => 'Ktoś podarował Ci status donatora osu!',
+        'gift_message' => 'Użytkownik, który podarował Ci ten status donatora, pozostawił następującą wiadomość:',
         'subject' => 'Otrzymujesz status donatora osu!',
     ],
 

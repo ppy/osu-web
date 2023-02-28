@@ -23,6 +23,14 @@ return [
         'multiplayer' => 'متعدد اللاعبين',
         'performance' => 'الأداء',
         'score' => 'النقاط',
+        'seasons' => '',
+    ],
+
+    'seasons' => [
+        'empty' => '',
+        'ongoing' => '',
+        'room_count' => '',
+        'url' => '',
     ],
 
     'spotlight' => [
@@ -39,7 +47,7 @@ return [
         'play_count' => 'مرات اللعب',
         'performance' => 'الأداء',
         'total_score' => 'مجموع النقاط',
-        'ranked_score' => 'نقاط الترتيب',
+        'ranked_score' => 'نتيجة Ranked',
         'average_score' => 'متوسط النقاط',
         'average_performance' => 'متوسط الاداء.',
         'ss' => '',

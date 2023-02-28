@@ -24,8 +24,8 @@ return [
         'form' => [
             '_' => 'Hae',
             'deleted' => 'Sisällytä poistetut keskustelut',
-            'mode' => '',
-            'only_unresolved' => '',
+            'mode' => 'Beatmap-tila',
+            'only_unresolved' => 'Näytä vain ratkaisemattomat keskustelut',
             'types' => 'Viestityypit',
             'username' => 'Käyttäjänimi',
 
@@ -33,9 +33,9 @@ return [
                 '_' => 'Beatmapin tila',
                 'all' => 'Kaikki',
                 'disqualified' => 'Hylätty',
-                'never_qualified' => '',
+                'never_qualified' => 'Ei koskaan kelpuutettu',
                 'qualified' => 'Hyväksytty',
-                'ranked' => '',
+                'ranked' => 'Hyväksytty',
             ],
 
             'user' => [
@@ -55,7 +55,14 @@ return [
     'nearby_posts' => [
         'confirm' => 'Mikään viesteistä ei käsittele aihettani',
         'notice' => 'Aikajanalta :timestamp (:existing_timestamps) löytyy viestejä. Tarkista ne ennen viestin lähettämistä.',
-        'unsaved' => '',
+        'unsaved' => ':count tässä arviossa',
+    ],
+
+    'owner_editor' => [
+        'button' => 'Vaikeustason Omistaja',
+        'reset_confirm' => 'Nollaa tämän vaikeustason omistaja?',
+        'user' => 'Omistaja',
+        'version' => 'Vaikeustaso',
     ],
 
     'reply' => [
@@ -66,17 +73,18 @@ return [
     ],
 
     'review' => [
-        'block_count' => '',
-        'go_to_parent' => '',
-        'go_to_child' => '',
+        'block_count' => ':used / :max lohkoa käytetty',
+        'go_to_parent' => 'Näytä arvosteluviesti',
+        'go_to_child' => 'Näytä keskustelu',
         'validation' => [
-            'block_too_large' => '',
-            'external_references' => '',
-            'invalid_block_type' => '',
-            'invalid_document' => '',
-            'minimum_issues' => '',
-            'missing_text' => '',
-            'too_many_blocks' => '',
+            'block_too_large' => 'jokainen lohko voi sisältää enintään :limit merkkiä',
+            'external_references' => 'arvostelu sisältää viittauksia ongelmiin, jotka eivät kuulu tähän arvosteluun',
+            'invalid_block_type' => 'virheellinen lohkotyyppi',
+            'invalid_document' => 'virheellinen arvostelu',
+            'invalid_discussion_type' => 'virheellinen keskustelutyyppi',
+            'minimum_issues' => 'arvostelun täytyy sisältää vähintään :count ongelma|arvostelun täytyy sisältää vähintään :count ongelmaa',
+            'missing_text' => 'lohkosta puuttuu teksti',
+            'too_many_blocks' => 'arvostelut saavat sisältää vain :count kappale/ongelma|arvostelut saavat sisältää vain :count kappaletta/ongelmaa',
         ],
     ],
 

@@ -52,7 +52,7 @@ return [
         'actions' => [
             'destroy' => 'Eliminar publicación',
             'edit' => 'Editar publicación',
-            'report' => 'Denunciar publicación',
+            'report' => 'Reportar publicación',
             'restore' => 'Restaurar publicación',
         ],
 
@@ -105,7 +105,7 @@ return [
             'submit' => 'Publicar',
 
             'necropost' => [
-                'default' => 'Este tema ha estado inactivo durante mucho tiempo. Sólo publique aquí si tiene una razón específica para hacerlo.',
+                'default' => 'Este tema ha estado inactivo durante mucho tiempo. Solo publique aquí si tiene una razón específica para hacerlo.',
 
                 'new_topic' => [
                     '_' => "Este tema ha estado inactivo durante mucho tiempo. Si no tiene una razón específica para publicar aquí, por favor :create en su lugar.",
@@ -125,6 +125,55 @@ return [
             'last' => 'ir a la última publicación',
             'next' => 'saltarse las siguientes 10 publicaciones',
             'previous' => 'ir 10 publicaciones atrás',
+        ],
+
+        'logs' => [
+            '_' => 'Registros de temas',
+            'button' => 'Buscar registros de temas',
+
+            'columns' => [
+                'action' => 'Acción',
+                'date' => 'Fecha',
+                'user' => 'Usuario',
+            ],
+
+            'data' => [
+                'add_tag' => 'etiqueta ":tag" agregada',
+                'announcement' => 'tema anclado y marcado como anuncio',
+                'edit_topic' => 'a :title',
+                'fork' => 'de :topic',
+                'pin' => 'tema anclado',
+                'post_operation' => 'publicado por :username',
+                'remove_tag' => 'etiqueta removida ":tag"',
+                'source_forum_operation' => 'de :forum',
+                'unpin' => 'tema sin fijar',
+            ],
+
+            'no_results' => 'no se encontraron registros...',
+
+            'operations' => [
+                'delete_post' => 'Publicación eliminada',
+                'delete_topic' => 'Tema eliminado',
+                'edit_topic' => 'Título del tema cambiado',
+                'edit_poll' => 'Encuesta del tema editada',
+                'fork' => 'Tema copiado',
+                'issue_tag' => 'Etiqueta emitida',
+                'lock' => 'Tema bloqueado',
+                'merge' => 'Publicaciones unidas dentro de este tema',
+                'move' => 'Tema movido',
+                'pin' => 'Tema anclado',
+                'post_edited' => 'Publicación editada',
+                'restore_post' => 'Publicación restaurada',
+                'restore_topic' => 'Tema restaurado',
+                'split_destination' => 'Publicaciones separadas movidas',
+                'split_source' => 'Separar publicaciones',
+                'topic_type' => 'Establecer el tipo de tema',
+                'topic_type_changed' => 'Tipo de tema cambiado',
+                'unlock' => 'Tema desbloqueado',
+                'unpin' => 'Tema sin anclar',
+                'user_lock' => 'Tema propio bloqueado',
+                'user_unlock' => 'Tema propio desbloqueado',
+            ],
         ],
 
         'post_edit' => [
@@ -185,7 +234,7 @@ return [
                 'max_options' => 'Opciones por usuario',
                 'max_options_info' => 'Este es el número de opciones que un usuario puede seleccionar al votar.',
                 'options' => 'Opciones',
-                'options_info' => 'Escriba cada opción en una nueva línea. Puede añadir hasta 10 opciones.',
+                'options_info' => 'Escriba cada opción en una nueva línea. Puede introducir hasta 10 opciones.',
                 'title' => 'Pregunta',
                 'vote_change' => 'Permitir volver a votar.',
                 'vote_change_info' => 'Si está activado, los usuarios podrán cambiar su voto.',

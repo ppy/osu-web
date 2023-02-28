@@ -6,7 +6,7 @@
 return [
     'countries' => [
         'all' => 'Усе',
-        'title' => '',
+        'title' => 'Краіна',
     ],
 
     'filter' => [
@@ -18,11 +18,19 @@ return [
     ],
 
     'type' => [
-        'charts' => 'Чартам',
-        'country' => 'Краіна',
-        'multiplayer' => '',
-        'performance' => 'Прадукцыйнасць',
-        'score' => 'Ачкі',
+        'charts' => 'па чартам',
+        'country' => 'па краінам',
+        'multiplayer' => 'мультыплэер',
+        'performance' => 'па прадукцыйнасці',
+        'score' => 'па ачках',
+        'seasons' => '',
+    ],
+
+    'seasons' => [
+        'empty' => '',
+        'ongoing' => '',
+        'room_count' => '',
+        'url' => '',
     ],
 
     'spotlight' => [

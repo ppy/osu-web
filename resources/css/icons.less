@@ -1,0 +1,29 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+// main: compiled.less
+
+// lists all of the extra fonts under FontAwesome's namespace.
+@fa-extra-prefix: ~"@{fa-css-prefix}-extra";
+
+.fab, .fas, .far, .fal {
+  // ensure correct sizing even inside flex boxes
+  flex: none;
+}
+
+[class^="@{fa-extra-prefix}-"], [class*=" @{fa-extra-prefix}-"] {
+  font-family: "FontAwesomeExtra";
+  font-weight: normal;
+}
+
+// gamemode icons
+.@{fa-extra-prefix}-mode-osu::before { content: '\e800'; }
+.@{fa-extra-prefix}-mode-fruits::before { content: '\e801'; }
+.@{fa-extra-prefix}-mode-mania::before { content: '\e802'; }
+.@{fa-extra-prefix}-mode-taiko::before { content: '\e803'; }
+
+// other icons
+.@{fa-extra-prefix}-social-patreon::before { content: '\e804'; }
+
+// osu icon
+.@{fa-extra-prefix}-osu::before { content: '\e805'; }

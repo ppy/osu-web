@@ -46,7 +46,7 @@ class CheckUserBanStatus
             logout();
 
             if (is_api_request()) {
-                abort(403, trans('users.disabled.title'));
+                abort(403, osu_trans('users.disabled.title'));
             } else {
                 return ujs_redirect(route('users.disabled'));
             }

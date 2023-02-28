@@ -1,0 +1,134 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.profile-extra-entries {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: -2px 0;
+  @item-height: 22px;
+
+  &--kudosu {
+    margin-top: 20px;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin: 2px 0;
+    line-height: @item-height;
+
+    &--top-ranks {
+      height: auto;
+      border-bottom: 1px solid #eee;
+      margin: 0;
+      padding: 10px 0;
+
+      &::before {
+        .full-size();
+        content: ' ';
+        margin: 0 -10px;
+        width: calc(100% + 20px);
+        pointer-events: none;
+        will-change: opacity;
+        transition: all 25ms ease-out;
+        opacity: 0;
+
+        background-color: #eee;
+        .default-box-shadow();
+      }
+
+      &:hover::before {
+        opacity: 1;
+        transition: all 50ms ease-out;
+      }
+    }
+  }
+
+  &__kudosu-amount {
+    font-weight: inherit;
+    color: @osu-colour-l1;
+  }
+
+  &__detail {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: baseline;
+
+    &--vertical {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+
+  &__detail-column {
+    flex: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &--full {
+      min-width: 0;
+      flex: 1;
+    }
+  }
+
+  &__text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 20px;
+
+    // FIXME: remove <em> in translation. Or any tags, even.
+    em {
+      font-style: normal;
+    }
+  }
+
+  &__icon {
+    .center-content();
+    align-self: flex-start;
+    flex: none;
+    width: 28px;
+    height: @item-height;
+    margin-right: 5px;
+    font-size: 14px; // icon size
+
+    &--ranked {
+      color: hsl(var(--beatmapset-ranked-bg-hsl));
+    }
+
+    &--qualified {
+      color: hsl(var(--beatmapset-qualified-bg-hsl));
+    }
+
+    &--loved {
+      color: hsl(var(--beatmapset-loved-bg-hsl));
+    }
+
+    &--approved {
+      color: hsl(var(--beatmapset-approved-bg-hsl));
+    }
+
+    &--danger {
+      color: hsl(var(--hsl-red-1));
+    }
+
+    &--green {
+      color: hsl(var(--hsl-green-1));
+    }
+
+    &--orange {
+      color: hsl(var(--hsl-orange-1));
+    }
+
+    &--pink {
+      color: hsl(var(--hsl-pink-1));
+    }
+  }
+
+  &__time {
+    color: @osu-colour-f1;
+  }
+}

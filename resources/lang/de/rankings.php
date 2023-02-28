@@ -18,11 +18,19 @@ return [
     ],
 
     'type' => [
-        'charts' => 'charts',
+        'charts' => 'spotlights',
         'country' => 'länder',
         'multiplayer' => 'mehrspieler',
         'performance' => 'performance',
         'score' => 'punktzahl',
+        'seasons' => '',
+    ],
+
+    'seasons' => [
+        'empty' => '',
+        'ongoing' => '',
+        'room_count' => '',
+        'url' => '',
     ],
 
     'spotlight' => [

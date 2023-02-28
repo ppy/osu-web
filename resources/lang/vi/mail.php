@@ -15,6 +15,7 @@ return [
         'closing' => 'Trân trọng,',
         'hello' => 'Chào :user,',
         'report' => 'Hãy phản hồi email này NGAY LẬP TỨC nếu như bạn không yêu cầu sự thay đổi này.',
+        'ignore' => 'Nếu bạn không yêu cầu việc này, bạn có thể an toàn bỏ qua email này.',
     ],
 
     'donation_thanks' => [
@@ -54,7 +55,7 @@ return [
         'prepare_shipping' => 'Chúng tôi đã nhận được thanh toán của bạn và đang chuẩn bị đơn hàng để giao hàng. Có thể mất một vài ngày để chúng tôi gửi đi, phụ thuộc vào số lượng của các đơn hàng. Bạn có thể theo dõi tiến trình đơn hàng của bạn tại đây, bao gồm cả các chi tiết theo dõi nếu có:',
         'processing' => 'Chúng tôi đã nhận được thanh toán của bạn và đang xử lý đơn hàng của bạn. Bạn có thể theo dõi tiến trình đơn hàng của bạn tại đây:',
         'questions' => "Nếu như bạn có bất kì thắc mắc gì, đừng ngần ngại phản hồi email này.",
-        'shipping' => '',
+        'shipping' => 'Vận chuyển',
         'subject' => 'Chúng tôi đã nhận được đơn hàng osu!store của bạn!',
         'thank_you' => 'Cảm ơn vì đơn hàng osu!store của bạn!',
         'total' => 'Tổng cộng',
@@ -66,6 +67,7 @@ return [
         'duration' => 'Nhờ họ, bạn có quyền truy cập osu!direct và các quyền lợi osu!supporter khác trong :duration tiếp theo.',
         'features' => 'Bạn có thể tìm thêm thông tin về những tính năng này tại đây:',
         'gifted' => 'Ai đó vừa mới tặng bạn một osu!supporter tag!',
+        'gift_message' => 'Người đã tặng bạn cái thẻ này để lại một tin nhắn:',
         'subject' => 'Bạn đã được tặng một osu!supporter tag!',
     ],
 

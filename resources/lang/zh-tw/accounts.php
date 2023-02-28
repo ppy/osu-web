@@ -15,7 +15,6 @@ return [
         ],
 
         'email' => [
-            'current' => '目前電子郵件地址',
             'new' => '新電子郵件地址',
             'new_confirmation' => '再次輸入電子郵件地址',
             'title' => '電子郵件',
@@ -29,7 +28,7 @@ return [
         ],
 
         'profile' => [
-            'title' => '編輯個人簡介',
+            'title' => '個人資料',
 
             'user' => [
                 'user_discord' => '',
@@ -56,6 +55,7 @@ return [
 
         'options' => [
             '_' => '傳送選項',
+            'beatmap_owner_change' => '客串難度',
             'beatmapset:modding' => '圖譜製作',
             'channel_message' => '私人訊息',
             'comment_new' => '新評論',

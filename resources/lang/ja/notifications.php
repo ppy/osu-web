@@ -4,9 +4,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'all_read' => '通知は全て既読です！',
+    'all_read' => '通知を全て既読にする！',
     'delete' => ':type を削除',
-    'loading' => '通知を読み込み中...',
+    'loading' => '未読通知を読み込み中...',
     'mark_read' => '消去 :type',
     'none' => '通知なし',
     'see_all' => 'すべての通知を見る',
@@ -26,6 +26,12 @@ return [
     'item' => [
         'beatmapset' => [
             '_' => 'ビートマップ',
+
+            'beatmap_owner_change' => [
+                '_' => 'ゲスト難易度',
+                'beatmap_owner_change' => 'ビートマップ":title"の難易度":beatmap"の所有者になりました',
+                'beatmap_owner_change_compact' => '難易度":beatmap”の所有者になりました',
+            ],
 
             'beatmapset_discussion' => [
                 '_' => 'ビートマップディスカッション',
@@ -59,8 +65,8 @@ return [
                 'beatmapset_nominate_compact' => 'ビートマップがノミネートされました。',
                 'beatmapset_qualify' => '「:title」は十分なノミネートを受けたのでランキングに入れられました。',
                 'beatmapset_qualify_compact' => 'ビートマップがランキングのキューに入りました',
-                'beatmapset_rank' => '「:title」はrankedされました。',
-                'beatmapset_rank_compact' => 'ビートマップがrankedされました。',
+                'beatmapset_rank' => '「:title」はrankedになりました。',
+                'beatmapset_rank_compact' => 'ビートマップがrankedになりました。',
                 'beatmapset_remove_from_loved' => '「:title」はlovedから削除されました',
                 'beatmapset_remove_from_loved_compact' => 'ビートマップはlovedから削除されました',
                 'beatmapset_reset_nominations' => ':usernameの問題点投稿によりビートマップ「:title」のノミネーションがリセットされました。 ',
@@ -80,8 +86,19 @@ return [
         'channel' => [
             '_' => 'チャット',
 
+            'announcement' => [
+                '_' => '新しいお知らせ',
+
+                'announce' => [
+                    'channel_announcement' => ':usernameが":title"で発言',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => ':username からのお知らせ',
+                ],
+            ],
+
             'channel' => [
                 '_' => '新しいメッセージ',
+
                 'pm' => [
                     'channel_message' => ':usernameが「:title」で発言',
                     'channel_message_compact' => ':title',
@@ -142,6 +159,9 @@ return [
                 'user_beatmapset_new' => ':username による新しいビートマップ「:title」',
                 'user_beatmapset_new_compact' => '新しいビートマップ「:title」',
                 'user_beatmapset_new_group' => ':username の新しいビートマップ',
+
+                'user_beatmapset_revive' => '":title"が :usernameによって復活しました',
+                'user_beatmapset_revive_compact' => '":title"が復活しました',
             ],
         ],
 
@@ -159,6 +179,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => 'ビートマップ":title"のゲストになりました',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'ディスカッション「:title」はロックされています',
                 'beatmapset_discussion_post_new' => 'ディスカッション「:title」に新しい更新があります',
@@ -170,7 +194,7 @@ return [
             ],
 
             'beatmapset_state' => [
-                'beatmapset_disqualify' => '「:title」はdisqualifyされました',
+                'beatmapset_disqualify' => '「:title」はqualifiedではなくなりました',
                 'beatmapset_love' => '「:title」はlovedになりました',
                 'beatmapset_nominate' => '「:title」はノミネートされました',
                 'beatmapset_qualify' => '「:title」は十分なノミネートを獲得し、ランキングキューに入りました',
@@ -185,6 +209,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => ':name に新しいお知らせがあります',
+            ],
+
             'channel' => [
                 'pm' => ':usernameから新しいメッセージを受信しました',
             ],
@@ -216,6 +244,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':usernameがビートマップを作成しました',
+                'user_beatmapset_revive' => ':username がビートマップを復活させました',
             ],
         ],
     ],

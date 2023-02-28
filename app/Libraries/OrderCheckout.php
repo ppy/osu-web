@@ -94,14 +94,6 @@ class OrderCheckout
         return config('payments.centili.widget_url').'?'.http_build_query($params);
     }
 
-    /**
-     * @return bool
-     */
-    public function isShippingDelayed()
-    {
-        return Order::where('orders.status', 'paid')->count() > config('osu.store.delayed_shipping_order_threshold');
-    }
-
     public function beginCheckout()
     {
         // something that shouldn't happen just happened.
@@ -117,7 +109,7 @@ class OrderCheckout
                 );
             }
 
-            $order->status = 'processing';
+            $order->status = Order::STATUS_PAYMENT_REQUESTED;
             $order->transaction_id = $this->newOrderTransactionId();
             $order->reserveItems();
 
@@ -134,8 +126,8 @@ class OrderCheckout
             // processing -> if user hits the callback first.
             // paid -> if payment provider hits the callback first.
             // any other state should be considered invalid.
-            if ($order->isProcessing()) {
-                $order->status = 'checkout';
+            if ($order->isPaymentRequested()) {
+                $order->status = Order::STATUS_PAYMENT_APPROVED;
                 $order->saveorExplode();
             } elseif (!$order->isPaidOrDelivered()) {
                 // TODO: use validation errors instead?
@@ -152,7 +144,7 @@ class OrderCheckout
     {
         return DB::connection('mysql-store')->transaction(function () {
             $order = $this->order->lockSelf();
-            if ($order->isProcessing() === false) {
+            if ($order->isPaymentRequested() === false) {
                 throw new InvalidOrderStateException(
                     "`Order {$order->order_id}` failed checkout but is not processing"
                 );
@@ -184,19 +176,19 @@ class OrderCheckout
 
             // Checkout process level validations, should not be part of OrderItem validation.
             if ($item->product === null || !$item->product->isAvailable()) {
-                $messages[] = trans('model_validation/store/product.not_available');
+                $messages[] = osu_trans('model_validation/store/product.not_available');
             }
 
             if (!$item->product->inStock($item->quantity)) {
-                $messages[] = trans('model_validation/store/product.insufficient_stock');
+                $messages[] = osu_trans('model_validation/store/product.insufficient_stock');
             }
 
             if ($item->quantity > $item->product->max_quantity) {
-                $messages[] = trans('model_validation/store/product.too_many', ['count' => $item->product->max_quantity]);
+                $messages[] = osu_trans('model_validation/store/product.too_many', ['count' => $item->product->max_quantity]);
             }
 
             if ($shouldShopify && !$item->product->isShopify()) {
-                $messages[] = trans('model_validation/store/product.must_separate');
+                $messages[] = osu_trans('model_validation/store/product.must_separate');
             }
 
             $customClass = $item->getCustomClassInstance();

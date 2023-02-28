@@ -15,6 +15,17 @@ return [
     'top' => 'Top',
     'username' => 'Nume de utilizator',
 
+    'artist_tracks' => [
+        'album' => 'Album',
+        'artist' => 'Artist',
+        'bpm' => 'BPM',
+        'genre' => 'Gen',
+        'length' => 'Durată',
+        'relevance' => 'Relevanţă',
+        'title' => 'Titlu',
+        'update' => 'Actualizare',
+    ],
+
     'forum_posts' => [
         'created' => 'Data postării',
         'relevance' => 'Relevanţă',
@@ -26,7 +37,7 @@ return [
     ],
 
     'users' => [
-        'relevance' => '',
-        'username' => '',
+        'relevance' => 'Relevanţă',
+        'username' => 'Nume',
     ],
 ];

@@ -6,12 +6,12 @@
 return [
     'all_read' => 'อ่านการแจ้งเตือนทั้งหมดแล้ว!',
     'delete' => 'ลบ :type',
-    'loading' => '',
+    'loading' => 'กำลังโหลดการแจ้งเตือนที่ยังไม่ได้อ่าน...',
     'mark_read' => 'ล้าง :type',
     'none' => 'ไม่มีการแจ้งเตือนใดๆ',
     'see_all' => 'ดูการแจ้งเตือนทั้งหมด',
     'see_channel' => 'ไปที่แชท',
-    'verifying' => '',
+    'verifying' => 'โปรดยืนยันเซสชันเพื่อดูการแจ้งเตือน',
 
     'filters' => [
         '_' => 'ทั้งหมด',
@@ -26,6 +26,12 @@ return [
     'item' => [
         'beatmapset' => [
             '_' => 'Beatmap',
+
+            'beatmap_owner_change' => [
+                '_' => 'ระดับความยากของแขก',
+                'beatmap_owner_change' => 'ตอนนี้คุณเป็นเจ้าของระดับความยาก ":beatmap" สําหรับบีทแมพ ":title"',
+                'beatmap_owner_change_compact' => 'ตอนนี้คุณเป็นเจ้าของระดับความยาก ":beatmap"',
+            ],
 
             'beatmapset_discussion' => [
                 '_' => 'การสนทนาบีทแมพ',
@@ -80,8 +86,19 @@ return [
         'channel' => [
             '_' => 'ห้องสนทนา',
 
+            'announcement' => [
+                '_' => 'ประกาศใหม่',
+
+                'announce' => [
+                    'channel_announcement' => '',
+                    'channel_announcement_compact' => '',
+                    'channel_announcement_group' => 'ประกาศจาก :username',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'ข้อความใหม่',
+
                 'pm' => [
                     'channel_message' => ':username พูดถึง ":title"',
                     'channel_message_compact' => ':title',
@@ -137,11 +154,14 @@ return [
 
         'user' => [
             'user_beatmapset_new' => [
-                '_' => '',
+                '_' => 'บีทแมพใหม่',
 
-                'user_beatmapset_new' => '',
-                'user_beatmapset_new_compact' => '',
-                'user_beatmapset_new_group' => '',
+                'user_beatmapset_new' => 'บีทแมพใหม่ ":title" โดย :username',
+                'user_beatmapset_new_compact' => 'บีทแมพใหม่ ":title"',
+                'user_beatmapset_new_group' => 'บีทแมพใหม่โดย :username',
+
+                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive_compact' => '',
             ],
         ],
 
@@ -159,6 +179,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => 'ตอนนี้คุณเป็นแขกของบีทแมพ ":title"',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'การพูดคุยใน ":title:" ได้ถูกล็อก',
                 'beatmapset_discussion_post_new' => 'การพูดคุยใน ":title:" มีอัปเดตใหม่',
@@ -185,6 +209,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => '',
+            ],
+
             'channel' => [
                 'pm' => 'คุณได้รับข้อความจาก :username',
             ],
@@ -215,7 +243,8 @@ return [
             ],
 
             'user_beatmapset_new' => [
-                'user_beatmapset_new' => '',
+                'user_beatmapset_new' => ':username ได้สร้างบีทแมพใหม่',
+                'user_beatmapset_revive' => '',
             ],
         ],
     ],

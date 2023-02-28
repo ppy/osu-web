@@ -13,11 +13,11 @@ return [
 
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => 'Non è possibile annullare l\'hyping.',
+            'is_hype' => 'Non è possibile rimuovere l\'Hype.',
             'has_reply' => 'Impossibile eliminare una discussione con risposte',
         ],
         'nominate' => [
-            'exhausted' => 'Hai raggiunto il limite di nomine per questa giornata, per favore riprova domani.',
+            'exhausted' => 'Hai raggiunto il limite di nomine per oggi, per favore riprova domani.',
             'incorrect_state' => 'Errore nell\'eseguire questa azione, prova a ricaricare la pagina.',
             'owner' => "Non puoi nominare la tua beatmap.",
             'set_metadata' => 'Devi impostare il genere e la lingua prima di nominarla.',
@@ -34,7 +34,7 @@ return [
             'bot' => "Non puoi votare in una discussione creata da un bot",
             'limit_exceeded' => 'Per favore attendi un po\' prima di esprimere altri voti',
             'owner' => "Non puoi votare la tua discussione.",
-            'wrong_beatmapset_state' => 'Puoi votare solo su discussioni di beatmap in sospeso.',
+            'wrong_beatmapset_state' => 'Puoi votare solo su discussioni di beatmap in attesa.',
         ],
     ],
 
@@ -63,15 +63,20 @@ return [
     ],
 
     'chat' => [
+        'annnonce_only' => 'Questo canale è solamente per gli annunci.',
         'blocked' => 'Non puoi inviare messaggi ad un utente che ti sta bloccando o che hai bloccato.',
         'friends_only' => 'L\'utente sta bloccando i messaggi da chi non è nella sua lista amici.',
-        'moderated' => 'Quel canale è attualmente moderato.',
+        'moderated' => 'Questo canale è attualmente moderato.',
         'no_access' => 'Non hai accesso a quel canale.',
+        'receive_friends_only' => 'L\'utente potrebbe non essere in grado di rispondere perché stai accettando messaggi solo da persone della tua lista amici.',
         'restricted' => 'Non puoi inviare messaggi mentre sei silenziato, limitato o bannato.',
         'silenced' => 'Non puoi inviare messaggi mentre sei silenziato, limitato o bannato.',
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => 'I commenti sono disabilitati',
+        ],
         'update' => [
             'deleted' => "Non puoi modificare un post eliminato.",
         ],
@@ -163,6 +168,13 @@ return [
 
         'view' => [
             'admin_only' => 'Solo gli amministratori possono vedere questo forum.',
+        ],
+    ],
+
+    'score' => [
+        'pin' => [
+            'not_owner' => 'Solo il proprietario del punteggio può fissarlo.',
+            'too_many' => 'Hai già fissato troppi punteggi.',
         ],
     ],
 

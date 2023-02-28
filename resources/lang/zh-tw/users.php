@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => '您已經封鎖這位使用者。',
+        'comment_text' => '這則留言已被隱藏。',
         'blocked_count' => '被封鎖的使用者 (:count)',
         'hide_profile' => '隱藏用戶資料',
+        'hide_comment' => '隱藏',
         'not_blocked' => '這位使用者未被封鎖。',
         'show_profile' => '顯示用戶資料',
+        'show_comment' => '顯示',
         'too_many' => '已達到封鎖上限。',
         'button' => [
             'block' => '封鎖',
@@ -49,18 +52,34 @@ return [
         'send_message' => '傳送訊息',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => '密碼',
+            'password_confirmation' => '',
+            'submit' => '',
+            'user_email' => '',
+            'user_email_confirmation' => '',
+            'username' => '',
+
+            'tos_notice' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'disabled' => [
         'title' => '哎唷！看起來你的帳號已被禁用。',
         'warning' => "若你沒有遵守規則，我們原則上在一個月的期限以內不會考慮解禁您的帳號。在此之後，您如有需要，可以隨時聯絡我們。請注意，在一個帳號被封禁後創建新帳號會<strong>使您的封禁期限被延長</strong>。而且<strong>每當您創建一個新帳號，您都是在更嚴重地破壞規則</strong>。我們強烈建議您不要誤入歧途。",
 
         'if_mistake' => [
-            '_' => '',
-            'email' => '電子郵件',
+            '_' => '如果您認為這是一個錯誤，歡迎您與我們聯繫（通過 :email 或點擊本頁右下角的"？"）。請注意：我們對於我們的作為充滿信心，因為它是基於非常可靠的資料證據。如果我們認為您是故意不誠實，我們有可能無視您的請求。',
+            'email' => '電郵',
         ],
 
         'reasons' => [
-            'compromised' => '',
-            'opening' => '',
+            'compromised' => '您的帳戶已被視為盜用。在身份確認前，它可能將會被暫時停用。',
+            'opening' => '有以下原因，會導致您的帳戶被停用：',
 
             'tos' => [
                 '_' => '您已違反一條或多條:community_rules或:tos',
@@ -71,7 +90,7 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => '',
+        'by_game_mode' => '成員按遊戲模式篩選',
     ],
 
     'force_reactivation' => [
@@ -84,11 +103,11 @@ return [
         '_' => '登入',
         'button' => '登入',
         'button_posting' => '登入中...',
-        'email_login_disabled' => '目前沒辦法使用Email登入了，請使用使用者名稱登入。',
+        'email_login_disabled' => '目前沒辦法使用電郵登入，請使用使用者名稱登入。',
         'failed' => '登入失敗',
         'forgot' => '忘記密碼？',
         'info' => '請先登入以繼續',
-        'invalid_captcha' => '登入失敗的次數過多，請完成Captcha挑戰後再試。 (如果看不見Captcha請重新載入頁面)',
+        'invalid_captcha' => '登入失敗的次數過多，請完成 Captcha 挑戰後再試。（如果看不見 Captcha 請重新載入頁面）',
         'locked_ip' => '您的 IP 位址已被鎖定。請稍候幾分鐘。',
         'password' => '密碼',
         'register' => "沒有 osu! 帳號嗎？現在就註冊一個吧！",
@@ -128,6 +147,7 @@ return [
 
         'options' => [
             'cheating' => '違規 / 作弊',
+            'multiple_accounts' => '使用多個帳號',
             'insults' => '侮辱我 / 其他人',
             'spam' => '垃圾訊息',
             'unwanted_content' => '鏈接不適當的內容',
@@ -138,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => '您的帳號已受到限制!',
         'message' => '當您的帳號受到系統自動限制時，您將無法與其他玩家互動，且您的遊戲分數僅供自己查閱。系統將在24小時內解除限制。如果您需要申訴？請<a href="mailto:accounts@ppy.sh">聯繫支援服務</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age 歲',
@@ -156,7 +177,11 @@ return [
 
         'comments_count' => [
             '_' => '發表了 :link',
-            'count' => '',
+            'count' => ':count_delimited 則留言|:count_delimited 則留言',
+        ],
+        'cover' => [
+            'to_0' => '隱藏封面',
+            'to_1' => '顯示封面',
         ],
         'edit' => [
             'cover' => [
@@ -203,14 +228,20 @@ return [
                 'graveyard' => [
                     'title' => '已拋棄的圖譜',
                 ],
+                'guest' => [
+                    'title' => '客串圖譜',
+                ],
                 'loved' => [
                     'title' => '喜歡的圖譜',
                 ],
-                'ranked_and_approved' => [
-                    'title' => '已進榜和批准的譜面',
+                'nominated' => [
+                    'title' => '',
                 ],
-                'unranked' => [
+                'pending' => [
                     'title' => '待處理的圖譜',
+                ],
+                'ranked' => [
+                    'title' => '已進榜 & 批准的圖譜',
                 ],
             ],
             'discussions' => [
@@ -300,6 +331,9 @@ return [
                 'recent' => '最新',
                 'title' => '成就',
             ],
+            'playlists' => [
+                'title' => '歌單遊戲',
+            ],
             'posts' => [
                 'title' => '貼文',
                 'title_longer' => '最新貼文',
@@ -307,6 +341,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => '最近活動',
+            ],
+            'realtime' => [
+                'title' => '多人遊戲',
             ],
             'top_ranks' => [
                 'download_replay' => '下載重播',
@@ -320,6 +357,15 @@ return [
                 ],
                 'first' => [
                     'title' => '第一名',
+                ],
+                'pin' => [
+                    'to_0' => '取消置頂',
+                    'to_0_done' => '成績已取消置頂',
+                    'to_1' => '置頂',
+                    'to_1_done' => '已置頂成績',
+                ],
+                'pinned' => [
+                    'title' => '已置頂成績',
                 ],
             ],
             'votes' => [
@@ -346,6 +392,7 @@ return [
                     'actions' => [
                         'restriction' => '封鎖',
                         'silence' => '禁言',
+                        'tournament_ban' => '錦標賽封禁',
                         'note' => '備註',
                     ],
                 ],
@@ -387,6 +434,7 @@ return [
             'country_simple' => '國內排名',
             'global' => ':mode 模式的全球排名',
             'global_simple' => '全球排名',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => '準確率',
@@ -402,10 +450,10 @@ return [
             'total_hits' => '總命中次數',
             'total_score' => '總分',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => '已進榜 & 批准的圖譜',
-            'loved_beatmapset_count' => 'Loved 圖譜',
-            'unranked_beatmapset_count' => '待處理的圖譜',
             'graveyard_beatmapset_count' => '已拋棄的圖譜',
+            'loved_beatmapset_count' => 'Loved 圖譜',
+            'pending_beatmapset_count' => '待處理的圖譜',
+            'ranked_beatmapset_count' => '已進榜 & 批准的圖譜',
         ],
     ],
 
@@ -420,6 +468,8 @@ return [
         'offline' => '離線',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => '帳號已註冊',
     ],
     'verify' => [

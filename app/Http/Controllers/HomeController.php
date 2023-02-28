@@ -15,8 +15,12 @@ use App\Models\Forum\Post;
 use App\Models\NewsPost;
 use App\Models\UserDonation;
 use Auth;
+use Jenssegers\Agent\Agent;
 use Request;
 
+/**
+ * @group Home
+ */
 class HomeController extends Controller
 {
     public function __construct()
@@ -30,7 +34,7 @@ class HomeController extends Controller
 
         $this->middleware('require-scopes:public', ['only' => 'search']);
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function bbcodePreview()
@@ -40,6 +44,9 @@ class HomeController extends Controller
         return $post->bodyHTML();
     }
 
+    /**
+     * @group Undocumented
+     */
     public function downloadQuotaCheck()
     {
         return [
@@ -49,7 +56,40 @@ class HomeController extends Controller
 
     public function getDownload()
     {
-        return ext_view('home.download');
+        static $lazerPlatformNames;
+        $lazerPlatformNames ??= [
+            'android' => osu_trans('home.download.os_version_or_later', ['os_version' => 'Android 5']),
+            'ios' => osu_trans('home.download.os_version_or_later', ['os_version' => 'iOS 13.4']),
+            'linux_x64' => 'Linux (x64)',
+            'macos_as' => osu_trans('home.download.os_version_or_later', ['os_version' => 'macOS 10.15']).' (Apple Silicon)',
+            'windows_x64' => osu_trans('home.download.os_version_or_later', ['os_version' => 'Windows 8.1']).' (x64)',
+        ];
+
+        $httpHeaders = [];
+        // format headers to what Agent is expecting
+        foreach (request()->headers->all() as $key => $values) {
+            $headerKey = 'HTTP_'.strtoupper(strtr($key, '-', '_'));
+            $httpHeaders[$headerKey] = $values[0];
+        }
+        $agent = new Agent($httpHeaders);
+
+        $platform = match (true) {
+            // Try matching most likely platform first
+            $agent->is('Windows') => 'windows_x64',
+            // iPadOS detection apparently doesn't work on newer version
+            // and detected as macOS instead.
+            ($agent->isiOS() || $agent->isiPadOS()) => $platform = 'ios',
+            // FIXME: Figure out a way to differentiate Intel and Apple Silicon.
+            $agent->is('OS X') => 'macos_as',
+            $agent->isAndroidOS() => 'android',
+            $agent->is('Linux') => 'linux_x64',
+            default => 'windows_x64',
+        };
+
+        return ext_view('home.download', [
+            'lazerUrl' => config("osu.urls.lazer_dl.{$platform}"),
+            'lazerPlatformName' => $lazerPlatformNames[$platform],
+        ]);
     }
 
     public function index()
@@ -65,7 +105,7 @@ class HomeController extends Controller
         $news = NewsPost::default()->limit($newsLimit)->get();
 
         if (Auth::check()) {
-            $newBeatmapsets = Beatmapset::latestRankedOrApproved();
+            $newBeatmapsets = Beatmapset::latestRanked();
             $popularBeatmapsets = Beatmapset::popular()->get();
 
             return ext_view('home.user', compact(
@@ -83,11 +123,6 @@ class HomeController extends Controller
     public function messageUser($user)
     {
         return ujs_redirect(route('chat.index', ['sendto' => $user]));
-    }
-
-    public function osuSupportPopup()
-    {
-        return ext_view('objects._popup_support_osu');
     }
 
     public function quickSearch()
@@ -141,8 +176,6 @@ class HomeController extends Controller
      * @queryParam mode Either `all`, `user`, or `wiki_page`. Default is `all`. Example: all
      * @queryParam query Search keyword. Example: hello
      * @queryParam page Search result page. Ignored for mode `all`. Example: 1
-     *
-     * @group Home
      */
     public function search()
     {
@@ -157,7 +190,9 @@ class HomeController extends Controller
             return response()->json($allSearch->toJson());
         }
 
-        return ext_view('home.search', compact('allSearch', 'isSearchPage'));
+        $fields = Auth::user()?->isModerator() ?? false ? [] : ['includeDeleted' => null];
+
+        return ext_view('home.search', compact('allSearch', 'fields', 'isSearchPage'));
     }
 
     public function setLocale()
@@ -177,12 +212,12 @@ class HomeController extends Controller
 
     public function supportTheGame()
     {
-        if (Auth::check()) {
-            $user = Auth::user();
+        $user = auth()->user();
 
+        if ($user !== null) {
             // current status
-            $expiration = optional($user->osu_subscriptionexpiry)->addDays(1);
-            $current = $expiration !== null ? $expiration->isFuture() : false;
+            $expiration = $user->osu_subscriptionexpiry?->addDays(1);
+            $current = $expiration?->isFuture() ?? false;
 
             // purchased
             $tagPurchases = $user->supporterTagPurchases;
@@ -214,14 +249,12 @@ class HomeController extends Controller
                     ->pluck('timestamp')
                     ->first();
 
-                if ($lastTagPurchaseDate === null) {
-                    $lastTagPurchaseDate = $expiration->copy()->subMonths(1);
-                }
+                $lastTagPurchaseDate ??= $expiration->copy()->subMonths(1);
 
-                $total = $expiration->diffInDays($lastTagPurchaseDate);
+                $total = max(1, $expiration->diffInDays($lastTagPurchaseDate));
                 $used = $lastTagPurchaseDate->diffInDays();
 
-                $supporterStatus['remainingRatio'] = 100 - round($used / $total * 100, 2);
+                $supporterStatus['remainingPercent'] = 100 - round($used / $total * 100, 2);
             }
         }
 

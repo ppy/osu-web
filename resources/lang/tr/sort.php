@@ -12,8 +12,19 @@ return [
     'new' => 'En son',
     'old' => 'En eski',
     'rank' => 'Sıralama',
-    'top' => 'En üst',
+    'top' => 'En çok oy',
     'username' => 'Kullanıcı adı',
+
+    'artist_tracks' => [
+        'album' => 'Albüm',
+        'artist' => 'Sanatçı',
+        'bpm' => 'BPM',
+        'genre' => 'Tür',
+        'length' => 'Uzunluk',
+        'relevance' => 'Alaka Düzeyi',
+        'title' => 'Başlık',
+        'update' => 'Güncelle',
+    ],
 
     'forum_posts' => [
         'created' => 'Gönderi tarihi',

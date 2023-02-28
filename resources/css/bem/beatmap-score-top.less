@@ -1,0 +1,167 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.beatmap-score-top {
+  @_top: beatmap-score-top;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  &__achieved {
+    margin: 2px 0;
+    font-size: @font-size--small;
+  }
+
+  &__avatar {
+    flex: none;
+    margin: 0px 10px;
+  }
+
+  &__link-container {
+    .full-size();
+  }
+
+  &__position {
+    text-align: right;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  &__position-number {
+    .link-white();
+    .link-plain();
+    display: block;
+    padding-bottom: 5px;
+  }
+
+  &__section {
+    position: relative;
+    pointer-events: none;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+
+    background-color: hsl(var(--hsl-b3));
+    .default-border-radius();
+    .default-box-shadow();
+
+    align-items: center;
+    justify-content: space-between;
+
+    @media @mobile {
+      flex-direction: column;
+    }
+  }
+
+  &__stat {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+
+    @media @mobile {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  }
+
+  &__stat-header {
+    font-size: 10px;
+    font-weight: 700;
+    color: @osu-colour-f1;
+
+    padding-bottom: 2px;
+
+    border-bottom: 2px solid @osu-colour-b3;
+    text-transform: uppercase;
+
+    min-width: 50px;
+    white-space: nowrap;
+
+    &--wider {
+      min-width: 80px;
+      width: 100%;
+    }
+
+    &--mods {
+      width: 100%;
+      min-width: 30px;
+    }
+  }
+
+  &__stat-value {
+    font-size: 22px;
+    font-weight: 300;
+    color: white;
+    margin-top: 4px;
+
+    line-height: 0.9;
+
+    &--mods {
+      display: flex;
+      --mod-height: @mod-height-small;
+    }
+
+    &--perfect {
+      color: hsl(@beatmap-score--hsl-perfect);
+    }
+
+    &--smaller {
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
+
+  &__stats {
+    display: flex;
+    flex-shrink: 1;
+    justify-content: space-around;
+
+    @media @desktop {
+      margin: 5px 10px 5px 0px;
+      justify-content: flex-end;
+    }
+
+    &--wrappable {
+      flex-wrap: wrap;
+    }
+  }
+
+  &__user-box {
+    flex: none;
+
+    @media @desktop {
+      margin-right: 10px;
+    }
+  }
+
+  &__username {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 2px;
+    display: block;
+    .link-inverted();
+  }
+
+  &__wrapping-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    &--left {
+      flex-shrink: 0;
+    }
+
+    &--right {
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      align-items: flex-start;
+      width: 100%; // 'cuz ie is a poop
+
+      @media @mobile {
+        justify-content: space-around;
+      }
+    }
+  }
+}

@@ -8,13 +8,15 @@ namespace App\Http\Controllers\Multiplayer\Rooms\Playlist;
 use App\Exceptions\InvariantException;
 use App\Http\Controllers\Controller as BaseController;
 use App\Libraries\ClientCheck;
-use App\Libraries\Multiplayer\Mod;
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\PlaylistItemUserHighScore;
 use App\Models\Multiplayer\Room;
 use App\Transformers\Multiplayer\ScoreTransformer;
 use Carbon\Carbon;
 
+/**
+ * @group Multiplayer
+ */
 class ScoresController extends BaseController
 {
     public function __construct()
@@ -26,8 +28,6 @@ class ScoresController extends BaseController
     /**
      * Get Scores
      *
-     * @group Multiplayer
-     *
      * Returns a list of scores for specified playlist item.
      *
      * ---
@@ -36,12 +36,12 @@ class ScoresController extends BaseController
      *
      * Returns [MultiplayerScores](#multiplayerscores) object.
      *
-     * @urlParam room required Id of the room.
-     * @urlParam playlist required Id of the playlist item.
+     * @urlParam room integer required Id of the room.
+     * @urlParam playlist integer required Id of the playlist item.
      *
      * @queryParam limit Number of scores to be returned.
      * @queryParam sort [MultiplayerScoresSort](#multiplayerscoressort) parameter.
-     * @queryParam cursor [MultiplayerScoresCursor](#multiplayerscorescursor) parameter.
+     * @queryParam cursor_string [CursorString](#cursorstring) parameter.
      */
     public function index($roomId, $playlistId)
     {
@@ -50,17 +50,13 @@ class ScoresController extends BaseController
         $limit = clamp(get_int($params['limit'] ?? null) ?? 50, 1, 50);
         $cursorHelper = PlaylistItemUserHighScore::makeDbCursorHelper($params['sort'] ?? null);
 
-        $highScores = $playlist
+        [$highScores, $hasMore] = $playlist
             ->highScores()
-            ->cursorSort($cursorHelper, $params['cursor'] ?? null)
+            ->cursorSort($cursorHelper, cursor_from_params($params))
             ->with(ScoreTransformer::BASE_PRELOAD)
-            ->limit($limit + 1) // an extra to check for pagination
-            ->get();
+            ->limit($limit)
+            ->getWithHasMore();
 
-        $hasMore = count($highScores) === $limit + 1;
-        if ($hasMore) {
-            $highScores->pop();
-        }
         $scoresJson = json_collection(
             $highScores->pluck('score'),
             'Multiplayer\Score',
@@ -78,19 +74,18 @@ class ScoresController extends BaseController
             }
         }
 
-        return [
-            'cursor' => $hasMore ? $cursorHelper->next($highScores) : null,
+        $nextCursor = $hasMore ? $cursorHelper->next($highScores) : null;
+
+        return array_merge([
             'params' => ['limit' => $limit, 'sort' => $cursorHelper->getSortName()],
             'scores' => $scoresJson,
             'total' => $total,
             'user_score' => $userScoreJson ?? null,
-        ];
+        ], cursor_for_response($nextCursor));
     }
 
     /**
      * Get a Score
-     *
-     * @group Multiplayer
      *
      * Returns detail of specified score and the surrounding scores.
      *
@@ -100,9 +95,9 @@ class ScoresController extends BaseController
      *
      * Returns [MultiplayerScore](#multiplayerscore) object.
      *
-     * @urlParam room required Id of the room.
-     * @urlParam playlist required Id of the playlist item.
-     * @urlParam score required Id of the score.
+     * @urlParam room integer required Id of the room.
+     * @urlParam playlist integer required Id of the playlist item.
+     * @urlParam score integer required Id of the score.
      */
     public function show($roomId, $playlistId, $id)
     {
@@ -120,8 +115,6 @@ class ScoresController extends BaseController
     /**
      * Get User High Score
      *
-     * @group Multiplayer
-     *
      * Returns detail of highest score of specified user and the surrounding scores.
      *
      * ---
@@ -130,9 +123,9 @@ class ScoresController extends BaseController
      *
      * Returns [MultiplayerScore](#multiplayerscore) object.
      *
-     * @urlParam room required Id of the room.
-     * @urlParam playlist required Id of the playlist item.
-     * @urlParam user required User id.
+     * @urlParam room integer required Id of the room.
+     * @urlParam playlist integer required Id of the playlist item.
+     * @urlParam user integer required User id.
      */
     public function showUser($roomId, $playlistId, $userId)
     {
@@ -147,6 +140,9 @@ class ScoresController extends BaseController
         );
     }
 
+    /**
+     * @group Undocumented
+     */
     public function store($roomId, $playlistId)
     {
         $room = Room::findOrFail($roomId);
@@ -154,7 +150,7 @@ class ScoresController extends BaseController
         $user = auth()->user();
         $params = request()->all();
 
-        ClientCheck::assert($user, $params);
+        ClientCheck::findBuild($user, $params);
 
         $score = $room->startPlay($user, $playlistItem);
 
@@ -164,6 +160,9 @@ class ScoresController extends BaseController
         );
     }
 
+    /**
+     * @group Undocumented
+     */
     public function update($roomId, $playlistId, $scoreId)
     {
         $room = Room::findOrFail($roomId);
@@ -195,9 +194,9 @@ class ScoresController extends BaseController
 
     private function extractScoreParams(array $params, PlaylistItem $playlistItem)
     {
-        $mods = Mod::parseInputArray(
+        $mods = app('mods')->parseInputArray(
+            $playlistItem->ruleset_id,
             $params['mods'] ?? [],
-            $playlistItem->ruleset_id
         );
 
         return [

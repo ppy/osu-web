@@ -10,17 +10,17 @@
     <div class="osu-layout__row osu-layout__row--page">
         <div class="beatmapset-activities">
             @if (isset($user))
-                <h2>{{ trans('users.beatmapset_activities.title', ['user' => $user->username]) }}</h2>
+                <h2>{{ osu_trans('users.beatmapset_activities.title', ['user' => $user->username]) }}</h2>
             @endif
 
             <form class="simple-form simple-form--search-box">
                 <h2 class="simple-form__row simple-form__row--title">
-                    {{ trans('beatmap_discussions.index.form._') }}
+                    {{ osu_trans('beatmap_discussions.index.form._') }}
                 </h2>
 
                 <label class="simple-form__row">
                     <div class="simple-form__label">
-                        {{ trans('beatmap_discussions.index.form.username') }}
+                        {{ osu_trans('beatmap_discussions.index.form.username') }}
                     </div>
 
                     <input
@@ -32,7 +32,7 @@
 
                 <div class="simple-form__row">
                     <div class="simple-form__label">
-                        {{ trans('beatmapset_events.index.form.types') }}
+                        {{ osu_trans('beatmapset_events.index.form.types') }}
                     </div>
                     <div class="simple-form__checkboxes-overflow">
                         @php
@@ -47,17 +47,18 @@
                             } else {
                                 $types = App\Models\BeatmapsetEvent::types('all');
                             }
+                            $selectedTypes = new Ds\Set($params['types']);
                         @endphp
                         @foreach ($types as $type)
                             <div class="simple-form__checkbox-overflow-container">
                                 <label class="simple-form__checkbox simple-form__checkbox--overflow">
-                                    @include('objects._switch', [
-                                        'checked' => in_array($type, $params['types'], true),
+                                    @include('objects._switch', ['locals' => [
+                                        'checked' => $selectedTypes->contains($type),
                                         'name' => 'types[]',
                                         'type' => 'checkbox',
                                         'value' => $type,
-                                    ])
-                                    {{ trans("beatmapset_events.type.{$type}") }}
+                                    ]])
+                                    {{ osu_trans("beatmapset_events.type.{$type}") }}
                                 </label>
                             </div>
                         @endforeach
@@ -66,7 +67,7 @@
 
                 <div class="simple-form__row">
                     <div class="simple-form__label">
-                        {{ trans('beatmapset_events.index.form.period') }}
+                        {{ osu_trans('beatmapset_events.index.form.period') }}
                     </div>
 
                     <input
@@ -96,7 +97,7 @@
                     <button class="btn-osu-big btn-osu-big--rounded" type="submit">
                         <span class="btn-osu-big__content">
                             <span class="btn-osu-big__left">
-                                {{ trans('common.buttons.search') }}
+                                {{ osu_trans('common.buttons.search') }}
                             </span>
                             <span class="btn-osu-big__icon btn-osu-big__icon--normal">
                                 <i class="fas fa-search"></i>
@@ -106,10 +107,7 @@
                 </div>
             </form>
 
-            <div class='beatmapset-events' id="events">
-                <div class='beatmapset-events__title'></div>
-                <div class='js-react--beatmap-discussion-events'></div>
-            </div>
+            <div class="js-react--beatmap-discussion-events" id="events"></div>
             @include('objects._pagination_v2', ['object' => $paginator->fragment('events')])
         </div>
     </div>

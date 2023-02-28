@@ -15,7 +15,6 @@ return [
         ],
 
         'email' => [
-            'current' => 'nykyinen sähköpostiosoite',
             'new' => 'uusi sähköpostiosoite',
             'new_confirmation' => 'sähköpostivahvistus',
             'title' => 'Sähköposti',
@@ -56,12 +55,13 @@ return [
 
         'options' => [
             '_' => 'toimitusvaihtoehdot',
+            'beatmap_owner_change' => 'vieraileva vaikeustaso',
             'beatmapset:modding' => 'beatmapin modaus',
             'channel_message' => 'yksityisviestit',
             'comment_new' => 'uudet kommentit',
             'forum_topic_reply' => 'aihevastaus',
             'mail' => 'posti',
-            'mapping' => '',
+            'mapping' => 'beatmapin kartoittaja',
             'push' => 'push',
             'user_achievement_unlock' => 'käyttäjämitali avattu',
         ],
@@ -74,7 +74,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '',
+        'beatmapset_show_nsfw' => 'piilota varoitukset sopimattomattomasta sisällöstä beatmapeissa',
         'beatmapset_title_show_original' => 'näytä beatmap-metadata alkuperäisellä kielellä',
         'title' => 'Asetukset',
 

@@ -12,6 +12,7 @@ return [
         'missing_translation' => 'Die angeforderte Seite konnte für die ausgewählte Sprache nicht gefunden werden.',
         'needs_cleanup_or_rewrite' => 'Diese Seite entspricht nicht den Standards des osu! Wikis und muss neu strukturiert oder umgeschrieben werden. Wenn Du helfen kannst, überlege bitte, den Artikel zu aktualisieren!',
         'search' => 'Existierende Seiten nach :link durchsuchen.',
+        'stub' => 'Dieser Artikel ist unvollständig und wartet auf jemanden, der ihn erweitert.',
         'toc' => 'Inhalt',
 
         'edit' => [
@@ -20,8 +21,8 @@ return [
         ],
 
         'translation' => [
-            'legal' => 'Diese Übersetzung wird nur für die Bequemlichkeit bereitgestellt. Das original :default ist die einzige grundlegende und tadellose Version dieses Textes.',
-            'outdated' => 'Diese Seite enthält eine veraltete Übersetzung des ursprünglichen Inhalts. Bitte schaue dir :default für genauere Informationen an (und überlege die Übersetzung zu aktualisieren, wenn du die Möglichkeit dazu hast)!',
+            'legal' => 'Diese Übersetzung wird nur aus Gründen der Bequemlichkeit zur Verfügung gestellt. Das Original (:default) ist die einzige rechtlich bindende Version dieses Textes.',
+            'outdated' => 'Diese Seite enthält eine veraltete Übersetzung des ursprünglichen Inhalts. Bitte schaue dir die :default für genauere Informationen an (und überlege die Übersetzung zu aktualisieren, wenn du die Möglichkeit dazu hast)!',
 
             'default' => 'Englische Version',
         ],

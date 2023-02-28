@@ -13,10 +13,12 @@ return [
 
     'error' => [
         'contact_support' => 'Hesabınızı kurtarmak için lütfen destek ile iletişime geçin.',
+        'expired' => 'Doğrulama kodunun süresi doldu.',
+        'invalid' => 'Doğrulama koduyla ilgili beklenmeyen bir hata oluştu.',
         'is_privileged' => 'Hesabınızı kurtarmak için lütfen üst düzey bir yönetici ile iletişime geçin.',
         'missing_key' => 'Gerekli.',
-        'too_many_tries' => 'Çok fazla başarısız deneme.',
-        'user_not_found' => 'İstenen kullanıcı mevcut değil.',
+        'too_many_tries' => 'Çok fazla sayıda başarısız deneme yapıldı.',
+        'user_not_found' => 'Böyle bir kullanıcı mevcut değil.',
         'wrong_key' => 'Yanlış kod.',
     ],
 
@@ -36,8 +38,8 @@ return [
         'username' => 'E-posta adresi veya kullanıcı adı girin',
 
         'support' => [
-            '_' => 'Daha fazla yardım mı lazım? :button tuşuna basarak bizimle iletişime geçebilirsiniz.',
-            'button' => 'Destek Sistemi',
+            '_' => 'Yardıma mı ihtiyacınız var? :button üzerinden bizimle iletişime geçin.',
+            'button' => 'Destek sistemimiz',
         ],
     ],
 ];

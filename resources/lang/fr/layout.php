@@ -5,11 +5,11 @@
 
 return [
     'audio' => [
-        'autoplay' => 'Jouer automatiquement le titre suivant',
+        'autoplay' => 'Jouer automatiquement la musique suivante',
     ],
 
     'defaults' => [
-        'page_description' => 'osu! - Le rythme est à un seul *clic* !  Avec Ouendan/EBA, Taiko et les modes originaux de gameplay, avec un éditeur de niveau complet.',
+        'page_description' => 'osu! - Rhythm is just a *click* away! Avec les modes de jeu Ouendan/EBA, Taiko et d\'autres modes de jeu originaux, ainsi qu\'un éditeur de niveaux entièrement fonctionnel.',
     ],
 
     'header' => [
@@ -19,11 +19,15 @@ return [
             'contest' => 'concours',
             'contests' => 'concours',
             'root' => 'console',
-            'store_orders' => 'administration de la boutique',
         ],
 
         'artists' => [
             'index' => 'liste',
+        ],
+
+        'beatmapsets' => [
+            'show' => 'informations',
+            'discussions' => 'discussion',
         ],
 
         'changelog' => [
@@ -32,13 +36,13 @@ return [
 
         'help' => [
             'index' => 'index',
-            'sitemap' => 'Plan du site',
+            'sitemap' => 'Aide à la navigation',
         ],
 
         'store' => [
             'cart' => 'panier',
             'orders' => 'historique des commandes',
-            'products' => 'produits',
+            'products' => 'articles',
         ],
 
         'tournaments' => [
@@ -47,13 +51,15 @@ return [
 
         'users' => [
             'modding' => 'modding',
+            'playlists' => 'playlists',
+            'realtime' => 'multijoueur',
             'show' => 'infos',
         ],
     ],
 
     'gallery' => [
         'close' => 'Fermer (Échap)',
-        'fullscreen' => 'Plein écran',
+        'fullscreen' => 'Basculer en plein écran',
         'zoom' => 'Zoom avant/arrière',
         'previous' => 'Précédent (flèche gauche)',
         'next' => 'Suivant (flèche droite)',
@@ -62,18 +68,10 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmaps',
-            'artists' => 'artistes plébiscités',
-            'index' => 'index',
-            'packs' => 'collections',
         ],
         'community' => [
             '_' => 'communauté',
-            'chat' => 'chat',
-            'contests' => 'concours',
             'dev' => 'développement',
-            'forum-forums-index' => 'forums',
-            'getLive' => 'direct',
-            'tournaments' => 'tournois',
         ],
         'help' => [
             '_' => 'aide',
@@ -81,30 +79,17 @@ return [
             'getFaq' => 'faq',
             'getRules' => 'règles',
             'getSupport' => 'non, vraiment, j\'ai besoin d\'aide !',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'accueil',
-            'changelog-index' => 'notes de MàJ',
-            'getDownload' => 'télécharger',
-            'news-index' => 'actualités',
-            'search' => 'rechercher',
             'team' => 'équipe',
         ],
         'rankings' => [
-            '_' => 'rankings',
-            'charts' => 'classements',
-            'country' => 'pays',
-            'index' => 'performance',
+            '_' => 'classements',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'multijoueur',
-            'score' => 'score',
         ],
         'store' => [
             '_' => 'magasin',
-            'cart-show' => 'panier',
-            'getListing' => 'liste',
-            'orders-index' => 'historique des commandes',
         ],
     ],
 
@@ -112,14 +97,14 @@ return [
         'general' => [
             '_' => 'Général',
             'home' => 'Accueil',
-            'changelog-index' => 'Notes de MàJ',
+            'changelog-index' => 'Changelog',
             'beatmaps' => 'Liste des beatmaps',
             'download' => 'Télécharger osu!',
         ],
         'help' => [
             '_' => 'Aide & Communauté',
-            'faq' => 'Foire aux Questions',
-            'forum' => 'Forums',
+            'faq' => 'Questions fréquemment posées',
+            'forum' => 'Forums communautaire',
             'livestreams' => 'Streams en direct',
             'report' => 'Signaler une erreur',
             'wiki' => 'Wiki',
@@ -130,7 +115,7 @@ return [
             'privacy' => 'Confidentialité',
             'server_status' => 'Statut du serveur',
             'source_code' => 'Code source',
-            'terms' => 'Conditions du service',
+            'terms' => 'Conditions d\'utilisation',
         ],
     ],
 
@@ -144,11 +129,11 @@ return [
             'description' => "Désolé, mais la page demandée n'est pas ici !",
         ],
         '403' => [
-            'error' => "Vous ne devriez pas être ici",
+            'error' => "Vous ne devriez pas être ici.",
             'description' => 'Vous pouvez essayer de revenir en arrière.',
         ],
         '401' => [
-            'error' => "Vous ne devriez pas être ici",
+            'error' => "Vous ne devriez pas être ici.",
             'description' => 'Vous pouvez essayer de revenir en arrière. Ou peut-être vous connecter.',
         ],
         '405' => [
@@ -169,7 +154,7 @@ return [
         ],
         'fatal' => [
             'error' => 'Oh non ! Quelque chose s\'est cassé ! (gravement) ;_;',
-            'description' => "Nous avons été notifié automatiquement de cette erreur.",
+            'description' => "Nous avons été automatiquement notifié de cette erreur.",
         ],
         '503' => [
             'error' => 'Maintenance en cours!',
@@ -200,7 +185,7 @@ return [
 
         'register' => [
             'download' => 'Télécharger',
-            'info' => 'Téléchargez osu! pour créer votre propre compte!',
+            'info' => 'Téléchargez osu! pour créer votre propre compte !',
             'title' => "Vous n'avez pas de compte ?",
         ],
     ],
@@ -216,7 +201,7 @@ return [
     ],
 
     'popup_search' => [
-        'initial' => 'Écrivez pour rechercher!',
+        'initial' => 'Écrivez pour rechercher !',
         'retry' => 'La recherche a échouée. Cliquez pour réessayer.',
     ],
 ];

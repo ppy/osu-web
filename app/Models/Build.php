@@ -6,7 +6,6 @@
 namespace App\Models;
 
 use App\Libraries\Commentable;
-use App\Traits\CommentableDefaults;
 use Carbon\Carbon;
 
 /**
@@ -15,6 +14,7 @@ use Carbon\Carbon;
  * @property int $build_id
  * @property \Illuminate\Database\Eloquent\Collection $changelogEntries ChangelogEntry
  * @property \Illuminate\Database\Eloquent\Collection $changelogs Changelog
+ * @property string $commentable_identifier
  * @property Comment $comments
  * @property \Carbon\Carbon $date
  * @property mixed|null $hash
@@ -28,28 +28,25 @@ use Carbon\Carbon;
  */
 class Build extends Model implements Commentable
 {
-    use CommentableDefaults;
+    use Traits\CommentableDefaults;
 
     public $timestamps = false;
 
     protected $table = 'osu_builds';
     protected $primaryKey = 'build_id';
 
-    protected $dates = [
-        'date',
-    ];
-
     protected $casts = [
         'allow_bancho' => 'boolean',
+        'date' => 'datetime',
     ];
 
     private $cache = [];
 
-    public static function importFromGithubNewTag($data)
+    public static function importFromGithubNewRelease($data)
     {
         $repository = Repository::where([
             'name' => $data['repository']['full_name'],
-            'build_on_tag' => true,
+            'build_on_release' => true,
         ])->first();
 
         // abort on unknown or non-auto build repository
@@ -57,7 +54,7 @@ class Build extends Model implements Commentable
             return;
         }
 
-        $tag = explode('-', substr($data['ref'], strlen('refs/tags/')));
+        $tag = explode('-', $data['release']['tag_name']);
         $version = $tag[0];
         $streamName = $tag[1] ?? null;
 
@@ -77,7 +74,7 @@ class Build extends Model implements Commentable
             'version' => $version,
         ]);
 
-        $lastChange = Carbon::parse($data['head_commit']['timestamp']);
+        $lastChange = Carbon::parse($data['release']['created_at']);
 
         $changelogEntry = new ChangelogEntry();
 
@@ -180,6 +177,11 @@ class Build extends Model implements Commentable
         if (isset($params['limit'])) {
             $query->limit($params['limit']);
         }
+    }
+
+    public function commentLocked(): bool
+    {
+        return false;
     }
 
     public function commentableTitle()

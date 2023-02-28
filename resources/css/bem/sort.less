@@ -1,0 +1,88 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.sort {
+  @_top: sort;
+  @_item-margin: 5px;
+
+  --item-hover-bg: hsl(var(--hsl-b3));
+  padding: 0;
+  display: flex;
+  font-size: @font-size--normal;
+
+  &--beatmapset-discussions {
+    padding: 0;
+  }
+
+  &--beatmapsets {
+    padding: 10px 0;
+  }
+
+  &--default-padding {
+    .default-gutter-v2();
+  }
+
+  &--forum-topics {
+    margin-top: 10px;
+  }
+
+  &--page-extra {
+    --item-hover-bg: hsl(var(--hsl-b2));
+  }
+
+  &--user-list {
+    padding: 0;
+  }
+
+  &__item {
+    .reset-input();
+    margin: @_item-margin;
+    color: white;
+    padding: 5px 10px;
+    .default-border-radius();
+
+    &--button {
+      .link-plain();
+      .link-white();
+
+      &:hover {
+        background-color: var(--item-hover-bg);
+      };
+    }
+
+    &--title {
+      padding: 0;
+    }
+
+    // overrides --button
+    &--active {
+      background-color: var(--item-hover-bg);
+      color: @osu-colour-l1;
+      font-weight: 600;
+    }
+  }
+
+  &__item-arrow {
+    margin-left: 5px;
+    opacity: 0;
+
+    .@{_top}__item:hover & {
+      opacity: 1;
+    }
+
+    .@{_top}__item--active & {
+      opacity: 1;
+    }
+  }
+
+  &__item-icon {
+    margin-right: 5px;
+  }
+
+  &__items {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: -@_item-margin;
+  }
+}

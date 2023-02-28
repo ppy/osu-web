@@ -65,12 +65,16 @@
                     'checkout' => false,
                     'forShipping' => $forShipping,
                 ])
+
+                @if ($order->isHideSupporterFromActivity())
+                    {{ osu_trans('store.invoice.hide_from_activity') }}
+                @endif
             </div>
         </div>
 
         @if ($order->address !== null)
             @php
-                $showTrackingCode = ($order->status === 'shipped' || $order->status === 'delivered' || Auth::user()->isAdmin()) && $order->tracking_code;
+                $showTrackingCode = ($order->isShipped() || $order->isDelivered() || Auth::user()->isAdmin()) && $order->tracking_code;
 
                 $transactionDetails = [
                     'Salesperson' => "{$sentViaAddress->first_name} {$sentViaAddress->last_name}",

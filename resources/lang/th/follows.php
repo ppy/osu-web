@@ -5,34 +5,34 @@
 
 return [
     'comment' => [
-        'empty' => '',
-        'page_title' => '',
-        'title' => '',
+        'empty' => 'ไม่มีความคิดเห็นที่ติดตามไว้',
+        'page_title' => 'รายชื่อการติดตามความคิดเห็น',
+        'title' => 'ความคิดเห็น',
 
         'table' => [
-            'latest_comment_empty' => '',
-            'latest_comment_value' => '',
+            'latest_comment_empty' => 'ไม่มีความเห็น',
+            'latest_comment_value' => ':time โดย :username',
         ],
     ],
 
     'forum_topic' => [
-        'title' => '',
+        'title' => 'หัวข้อของฟอรัม',
     ],
 
     'index' => [
-        'title_compact' => '',
+        'title_compact' => 'รายการการติดตาม',
     ],
 
     'mapping' => [
-        'empty' => '',
-        'followers' => '',
-        'page_title' => '',
-        'title' => '',
-        'to_0' => '',
-        'to_1' => '',
+        'empty' => 'ไม่มีผู้สร้างบีทแมพที่ติดตามอยู่',
+        'followers' => 'ผู้ติดตามการแมพ',
+        'page_title' => 'รายการการติดตามผู้สร้างบีทแมพ',
+        'title' => 'ผู้สร้างบีทแมพ',
+        'to_0' => 'หยุดเตือนเมื่อผู้เล่นคนนี้อัปโหลดบีทแมพใหม่',
+        'to_1' => 'เตือนฉันเมื่อผู้เล่นคนนี้อัปโหลดบีทแมพใหม่',
     ],
 
     'modding' => [
-        'title' => '',
+        'title' => 'การสนทนาบีทแมพ',
     ],
 ];

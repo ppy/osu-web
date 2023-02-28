@@ -6,95 +6,94 @@
 namespace App\Libraries;
 
 use App\Models\Group;
+use App\Traits\Memoizes;
+use Exception;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class Groups
 {
-    private $groups;
-    private $groupsById;
-    private $groupsByIdentifier;
+    use Memoizes;
 
-    public function all()
+    /**
+     * Get all groups.
+     */
+    public function all(): Collection
     {
-        if (!isset($this->groups)) {
-            $this->fetch();
-        }
-
-        return $this->groups;
+        return $this->memoize(__FUNCTION__, fn () => $this->fetch());
     }
 
-    public function byId($id)
+    /**
+     * Get all groups keyed by ID.
+     */
+    public function allById(): Collection
     {
-        if (!isset($this->groupsById)) {
-            $this->groupsById = $this->all()->keyBy('group_id');
-        }
-
-        return $this->groupsById[$id] ?? null;
+        return $this->memoize(__FUNCTION__, fn () => $this->all()->keyBy('group_id'));
     }
 
-    public function byIdentifier($id)
+    /**
+     * Get all groups keyed by identifier (e.g. "admin").
+     */
+    public function allByIdentifier(): Collection
     {
-        if (!isset($this->groupsByIdentifier)) {
-            $this->groupsByIdentifier = $this->all()->keyBy('identifier');
-        }
+        return $this->memoize(__FUNCTION__, fn () => $this->all()->keyBy('identifier'));
+    }
 
-        $group = $this->groupsByIdentifier[$id] ?? null;
+    /**
+     * Get a group by its ID.
+     */
+    public function byId(int|string|null $id): ?Group
+    {
+        return $this->allById()->get($id);
+    }
+
+    /**
+     * Get a group by its ID or throw an exception.
+     *
+     * @throws ModelNotFoundException
+     */
+    public function byIdOrFail(int|string|null $id): Group
+    {
+        return $this->byId($id)
+            ?? throw (new ModelNotFoundException())->setModel(Group::class, (int) $id);
+    }
+
+    /**
+     * Get a group by its identifier (e.g. "admin").
+     *
+     * If the requested group doesn't exist, a new one is created.
+     */
+    public function byIdentifier(string $id): Group
+    {
+        $group = $this->allByIdentifier()->get($id);
 
         if ($group === null) {
-            Group::create([
-                'identifier' => $id,
-                'group_name' => $id,
-                'group_desc' => $id,
-                'short_name' => $id,
-            ]);
+            try {
+                $group = Group::create([
+                    'group_desc' => '',
+                    'group_name' => $id,
+                    'group_type' => 2,
+                    'identifier' => $id,
+                    'short_name' => $id,
+                ])->fresh();
+            } catch (Exception $ex) {
+                if (!is_sql_unique_exception($ex)) {
+                    throw $ex;
+                }
+                $group = Group::firstWhere(['identifier' => $id]);
+            }
 
-            $this->resetCache();
-
-            return $this->byIdentifier($id);
+            // TODO: This shouldn't have to be called here, since it's already
+            // called by `Group::afterCommit`, but `Group::afterCommit` isn't
+            // running in tests when creating/saving `Group`s.
+            $this->resetMemoized();
         }
 
         return $group;
     }
 
-    /**
-     * Fetch groups data
-     *
-     * This data is being used on every request so fetching them directly
-     * from external database will cause unnecessary load on network.
-     *
-     * Store the data locally on each servers and use normal shared cache
-     * to indicate the servers whether or not to reset the local cache.
-     *
-     * Expiration doesn't really exist on file storage cache so in some rare
-     * cases (like testing) using file storage for local cache will generate
-     * lots of files. Array storage should be used in those cases.
-     * In normal use where groups don't change there shouldn't be too many
-     * files generated.
-     */
-    public function fetch()
+    protected function fetch(): Collection
     {
-        $localCacheVersion = cache()->get('groups_local_cache_version');
-        $localStorage = config('cache.local');
-
-        if ($localCacheVersion === null) {
-            $localCacheVersion = hrtime(true);
-            cache()->forever('groups_local_cache_version', $localCacheVersion);
-        }
-
-        $localCacheKey = "groups:v{$localCacheVersion}";
-        $this->groups = cache()->store($localStorage)->get($localCacheKey);
-
-        if ($this->groups === null) {
-            $this->groups = Group::orderBy('display_order')->get();
-            cache()->store($localStorage)->forever($localCacheKey, $this->groups);
-        }
-    }
-
-    public function resetCache()
-    {
-        cache()->put('groups_local_cache_version', hrtime(true));
-
-        $this->groups = null;
-        $this->groupsById = null;
-        $this->groupsByIdentifier = null;
+        return Group::orderBy('display_order')->get();
     }
 }

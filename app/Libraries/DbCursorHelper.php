@@ -6,6 +6,7 @@
 namespace App\Libraries;
 
 use App\Models\Model;
+use Illuminate\Support\Collection;
 
 class DbCursorHelper
 {
@@ -76,6 +77,14 @@ class DbCursorHelper
 
     public function next($items)
     {
-        return $this->itemToCursor(array_last($items));
+        if (is_array($items)) {
+            $lastItem = array_last($items);
+        } elseif ($items instanceof Collection) {
+            $lastItem = $items->last();
+        }
+
+        if (isset($lastItem)) {
+            return $this->itemToCursor($lastItem);
+        }
     }
 }

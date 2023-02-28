@@ -27,6 +27,12 @@ return [
         'beatmapset' => [
             '_' => 'Beatmapa',
 
+            'beatmap_owner_change' => [
+                '_' => 'Gościnny poziom trudności',
+                'beatmap_owner_change' => 'Od teraz jesteś twórcą poziomu trudności „:beatmap” dla beatmapy „:title”',
+                'beatmap_owner_change_compact' => 'Od teraz jesteś twórcą poziomu trudności „:beatmap”',
+            ],
+
             'beatmapset_discussion' => [
                 '_' => 'Dyskusja beatmapy',
                 'beatmapset_discussion_lock' => 'Tworzenie dyskusji dla beatmapy „:title” zostało zablokowane.',
@@ -72,7 +78,7 @@ return [
 
                 'comment_new' => 'Użytkownik :username napisał komentarz pod „:title”: „:content”',
                 'comment_new_compact' => 'Użytkownik :username napisał komentarz: „:content”',
-                'comment_reply' => ':username odpowiedział: ":content" na ":title"',
+                'comment_reply' => 'Użytkownik :username odpowiedział: „:content” na „:title”',
                 'comment_reply_compact' => 'Użytkownik :username odpowiedział: „:content”',
             ],
         ],
@@ -80,8 +86,19 @@ return [
         'channel' => [
             '_' => 'Czat',
 
+            'announcement' => [
+                '_' => 'Nowe ogłoszenie',
+
+                'announce' => [
+                    'channel_announcement' => ':username pisze: „:title”',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Ogłoszenie od użytkownika :username',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Nowa wiadomość',
+
                 'pm' => [
                     'channel_message' => ':username pisze: „:title”',
                     'channel_message_compact' => ':title',
@@ -98,8 +115,8 @@ return [
 
                 'comment_new' => 'Użytkownik :username napisał komentarz pod „:title”: „:content”',
                 'comment_new_compact' => 'Użytkownik :username napisał komentarz: „:content”',
-                'comment_reply' => ':username odpowiedział: ":content" na ":title"',
-                'comment_reply_compact' => 'Użytkownik :username odpowiedział ":content"',
+                'comment_reply' => 'Użytkownik :username odpowiedział: „:content” na „:title”',
+                'comment_reply_compact' => 'Użytkownik :username odpowiedział: „:content”',
             ],
         ],
 
@@ -142,6 +159,9 @@ return [
                 'user_beatmapset_new' => 'Nowa beatmapa od użytkownika :username: „:title”',
                 'user_beatmapset_new_compact' => 'Nowa beatmapa: „:title”',
                 'user_beatmapset_new_group' => 'Nowe beatmapy od użytkownika :username',
+
+                'user_beatmapset_revive' => 'Beatmapa „:title” została ożywiona przez użytkownika :username',
+                'user_beatmapset_revive_compact' => 'Beatmapa „:title” została ożywiona',
             ],
         ],
 
@@ -159,6 +179,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => 'Od teraz jesteś gościem dla beatmapy „:title”',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => 'Dyskusja do beatmapy „:title” została zamknięta',
                 'beatmapset_discussion_post_new' => 'W dyskusji do beatmapy „:title” pojawiły się nowe aktualizacje',
@@ -176,7 +200,7 @@ return [
                 'beatmapset_qualify' => 'Beatmapa „:title” uzyskała wystarczającą liczbę nominacji i została zakwalifikowana',
                 'beatmapset_rank' => 'Beatmapa „:title” uzyskała status rankingowy',
                 'beatmapset_remove_from_loved' => 'Beatmapa „:title” została usunięta z kategorii ulubionych społeczności',
-                'beatmapset_reset_nominations' => 'Nominacja beatmapy ":title" została zresetowana',
+                'beatmapset_reset_nominations' => 'Nominacja beatmapy „:title” została zresetowana',
             ],
 
             'comment' => [
@@ -185,6 +209,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Nowe ogłoszenie w pokoju „:name” ',
+            ],
+
             'channel' => [
                 'pm' => 'Otrzymujesz nową wiadomość od użytkownika :username',
             ],
@@ -215,7 +243,8 @@ return [
             ],
 
             'user_beatmapset_new' => [
-                'user_beatmapset_new' => ':username przesyła nowe beatmapy',
+                'user_beatmapset_new' => 'Użytkownik :username przesłał nowe beatmapy',
+                'user_beatmapset_revive' => 'Użytkownik :username ożywił beatmapy',
             ],
         ],
     ],

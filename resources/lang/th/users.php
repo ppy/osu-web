@@ -7,7 +7,7 @@ return [
     'deleted' => '[ผู้ใช้ที่ถูกลบ]',
 
     'beatmapset_activities' => [
-        'title' => ":user's ประวัติการมอด",
+        'title' => "ประวัติการมอดของ :user",
         'title_compact' => 'การวิจารณ์บีทแมพ',
 
         'discussions' => [
@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'คุณได้บล็อกผู้ใช้รายนี้แล้ว',
+        'comment_text' => 'ความคิดเห็นนี้ถูกซ่อนไว้',
         'blocked_count' => 'บล็อกผู้ใช้งาน (:count)',
         'hide_profile' => 'ซ่อนโปรไฟล์',
+        'hide_comment' => 'ซ่อน',
         'not_blocked' => 'ผู้ใช้นี้ไม่ได้ถูกบล็อก',
         'show_profile' => 'แสดงโปรไฟล์',
+        'show_comment' => 'แสดง',
         'too_many' => 'จำนวนการบล็อกถึงขีดจำกัดแล้ว',
         'button' => [
             'block' => 'บล็อก',
@@ -49,8 +52,24 @@ return [
         'send_message' => 'ส่งข้อความ',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => '',
+            'password_confirmation' => '',
+            'submit' => '',
+            'user_email' => '',
+            'user_email_confirmation' => '',
+            'username' => '',
+
+            'tos_notice' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'disabled' => [
-        'title' => 'โอ๊ะโอ บัญชีของคุณถูกระงับ',
+        'title' => 'โอ๊ะโอ ดูเหมือนว่าบัญชีของคุณถูกระงับ',
         'warning' => "ถ้าคุณทำผิดกฎ เราจะบอกว่ามีระยะเวลาเว้นช่วง (Cool-down) หนึ่งเดือน ซึ่งระหว่างนี้เราจะไม่รับคำขอยกโทษ และหลังจากผ่านไปแล้วหนึ่งเดือน คุณค่อยติดต่อเรากลับมา (ถ้าจำเป็น) อีกอย่างคือถ้าสร้างบัญชีเพิ่มอีก (หลังจากอันเก่าโดนระงับ) ก็<strong>จะโดนอีกหนึ่งเดือน</strong> และจะบอกว่า<strong>ยิ่งสร้างบัญชีเพิ่ม ยิ่งทำผิดกฎมากขึ้น</strong> ขอร้องล่ะนะ",
 
         'if_mistake' => [
@@ -129,6 +148,7 @@ return [
 
         'options' => [
             'cheating' => 'เล่นผิดกติกา / โกง',
+            'multiple_accounts' => 'การใช้หลายบัญชี',
             'insults' => 'ดูหมิ่น เหยียดหยามตนเอง / ผู้อื่น',
             'spam' => 'สแปม',
             'unwanted_content' => 'ส่งลิงก์ที่มีเนื้อหาที่ไม่เหมาะสม',
@@ -138,7 +158,8 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'บัญชีผู้ใช้ของคุณได้ถูกจำกัดการใช้งาน!',
-        'message' => 'เมื่อถูกจำกัดการใช้งาน, คุณจะไม่สามารถโต้ตอบกับผู้เล่นคนอื่น ๆ ได้ และคะแนนของคุณจะเห็นได้แค่คุณเท่านั้น นี่น่าจะเป็นผลของกระบวนการอัตโนมัติและจะถูกปลดภายใน 24 ชั่วโมง ถ้าคุณประสงค์จะอุทธรณ์การจำกัดการใช้งานแอคเคาท์ของคุณ โปรดติดต่อที่<a href="mailto:accounts@ppy.sh">ความช่วยเหลือผู้เล่น</a>.',
+        'message' => 'ในขณะที่คุณถูกจำกัดการใช้งาน คุณจะไม่สามารถโต้ตอบกับผู้เล่นคนอื่น ๆ ได้ และคะแนนของคุณจะถูกมองเห็นได้เฉพาะคุณเท่านั้น นี่มักจะเป็นผลของกระบวนการอัตโนมัติและมักจะถูกปลดภายใน 24 ชั่วโมง :link',
+        'message_link' => 'ตรวจสอบหน้านี้เพื่อเรียนรู้เพิ่มเติม',
     ],
     'show' => [
         'age' => ':age ปี',
@@ -156,8 +177,12 @@ return [
         'title' => "โปรไฟล์ของ :username",
 
         'comments_count' => [
-            '_' => '',
-            'count' => '',
+            '_' => 'โพสต์ :link',
+            'count' => ':count_delimited ความคิดเห็น|:count_delimited ความคิดเห็น',
+        ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
         ],
         'edit' => [
             'cover' => [
@@ -204,14 +229,20 @@ return [
                 'graveyard' => [
                     'title' => 'สุสานบีทแมพ',
                 ],
+                'guest' => [
+                    'title' => '',
+                ],
                 'loved' => [
                     'title' => 'บีทแมพที่ Loved',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'แรงค์บีทแมพ & บีทแมพที่ได้รับการยอมรับ',
+                'nominated' => [
+                    'title' => '',
                 ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'บีทแมพที่กำลังทำ',
+                ],
+                'ranked' => [
+                    'title' => 'บีทแมพที่จัดอันดับแล้ว',
                 ],
             ],
             'discussions' => [
@@ -301,6 +332,9 @@ return [
                 'recent' => 'ล่าสุด',
                 'title' => 'เหรียญตรา',
             ],
+            'playlists' => [
+                'title' => '',
+            ],
             'posts' => [
                 'title' => 'โพสต์',
                 'title_longer' => 'โพสต์ล่าสุด',
@@ -309,9 +343,12 @@ return [
             'recent_activity' => [
                 'title' => 'ล่า​สุด',
             ],
+            'realtime' => [
+                'title' => '',
+            ],
             'top_ranks' => [
                 'download_replay' => 'ดาวน์โหลดรีเพลย์',
-                'not_ranked' => 'บีทแมพแรงค์เท่านั้นที่ให้พีพี',
+                'not_ranked' => 'บีทแมพแรงค์เท่านั้นที่ให้ pp',
                 'pp_weight' => 'weighted :percentage',
                 'view_details' => 'ดูรายละเอียดเพิ่มเติม',
                 'title' => 'อันดับ',
@@ -321,6 +358,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'First Place Ranks',
+                ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => 'ปักหมุด',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => 'คะแนนที่ปักหมุดไว้',
                 ],
             ],
             'votes' => [
@@ -347,6 +393,7 @@ return [
                     'actions' => [
                         'restriction' => 'แบน',
                         'silence' => 'ถูกใบ้',
+                        'tournament_ban' => '',
                         'note' => 'หมายเหตุ',
                     ],
                 ],
@@ -364,8 +411,8 @@ return [
         'not_found' => [
             'reason_1' => 'ผู้ใช้นั้นอาจเปลี่ยนชื่อ',
             'reason_2' => 'ชื่อผู้ใช้อาจไม่สามารถเข้าถึงได้ชั่วคราวเนื่องจากปัญหาเกี่ยวกับความปลอดภัยหรือ abuse',
-            'reason_3' => 'โปรตรวจสอบว่ามีข้อผิดพลาดหรือไม่!',
-            'reason_header' => 'ขอเหตุผลสักสองสามข้อ สำหรับสิ่งที่เกิดขึ้น:',
+            'reason_3' => 'คุณอาจสะกดผิด!',
+            'reason_header' => 'สิ่งนี้เกิดจากเหตุผลบางข้อ:',
             'title' => 'ไม่พบผู้ใช้นี้',
         ],
         'page' => [
@@ -388,6 +435,7 @@ return [
             'country_simple' => 'อันดับในประเทศ',
             'global' => 'อันดับทั่วโลกของ :mode',
             'global_simple' => 'อันดับทั่วโลก',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'ความแม่นยำเฉลี่ย',
@@ -403,16 +451,16 @@ return [
             'total_hits' => 'Total Hits',
             'total_score' => 'คะแนนรวมทั้งหมด',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'แรงค์บีทแมพ & บีทแมพที่ได้รับการยอมรับ',
-            'loved_beatmapset_count' => 'บีทแมพที่ Loved',
-            'unranked_beatmapset_count' => 'บีทเเมพที่กำลังทำ',
             'graveyard_beatmapset_count' => 'สุสานบีทแมพ',
+            'loved_beatmapset_count' => 'บีทแมพที่ Loved',
+            'pending_beatmapset_count' => 'บีทเเมพที่กำลังทำ',
+            'ranked_beatmapset_count' => 'บีทแมพที่จัดอันดับแล้ว',
         ],
     ],
 
     'silenced_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'คุณกำลังถูกใบ้อยู่',
+        'message' => 'การกระทำบางอย่างอาจใช้ไม่ได้',
     ],
 
     'status' => [
@@ -421,6 +469,8 @@ return [
         'offline' => 'ออฟไลน์',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => 'ผู้ใช้ถูกสร้างขึ้น',
     ],
     'verify' => [

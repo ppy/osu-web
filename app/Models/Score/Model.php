@@ -6,11 +6,12 @@
 namespace App\Models\Score;
 
 use App\Exceptions\ClassNotFoundException;
-use App\Libraries\ModsHelper;
+use App\Libraries\Mods;
 use App\Models\Beatmap;
 use App\Models\Model as BaseModel;
+use App\Models\Solo\ScoreData;
+use App\Models\Traits\Scoreable;
 use App\Models\User;
-use App\Traits\Scoreable;
 
 /**
  * @property Beatmap $beatmap
@@ -20,45 +21,40 @@ abstract class Model extends BaseModel
 {
     use Scoreable;
 
-    protected $primaryKey = 'score_id';
-
-    protected $casts = [
-        'perfect' => 'boolean',
-        'replay' => 'boolean',
-    ];
-    protected $dates = ['date'];
-
-    protected $guarded = [];
-
     public $timestamps = false;
 
-    public static function getClass($modeInt)
-    {
-        $modeStr = Beatmap::modeStr($modeInt);
+    protected $casts = [
+        'date' => 'datetime',
+        'pass' => 'bool',
+        'perfect' => 'bool',
+        'replay' => 'bool',
+    ];
+    protected $primaryKey = 'score_id';
 
-        if ($modeStr !== null) {
-            return static::getClassByString($modeStr);
+    public static function getClassByRulesetId(int $rulesetId): ?string
+    {
+        $ruleset = Beatmap::modeStr($rulesetId);
+
+        if ($ruleset !== null) {
+            return static::getClass($ruleset);
         }
+
+        return null;
     }
 
-    public static function getClassByString(string $mode)
+    public static function getClass(string $ruleset): string
     {
-        if (!Beatmap::isModeValid($mode)) {
+        if (!Beatmap::isModeValid($ruleset)) {
             throw new ClassNotFoundException();
         }
 
-        return get_class_namespace(static::class).'\\'.studly_case($mode);
-    }
-
-    public static function getMode(): string
-    {
-        return snake_case(get_class_basename(static::class));
+        return get_class_namespace(static::class).'\\'.studly_case($ruleset);
     }
 
     public function scopeDefault($query)
     {
         return $query
-            ->whereHas('beatmap')
+            ->whereHas('beatmap.beatmapset')
             ->orderBy('score_id', 'desc');
     }
 
@@ -67,34 +63,13 @@ abstract class Model extends BaseModel
         return $query->where('user_id', $user->user_id);
     }
 
-    public function scopeIncludeFails($query, bool $include = false)
+    public function scopeIncludeFails($query, bool $include)
     {
         if ($include) {
             return $query;
         }
 
-        // FIXME: on mysql 8.0.22, character set (coercibility?) difference causes query error.
-        //
-        // The error itself doesn't manifest if only doing `Score\Osu::where('rank', '<>', 'F')`.
-        // It's when having more conditions like `Score\Osu::where('user_id', 1)->where('rank', '<>', 'F')`
-        // then mysql spits out error.
-        //
-        // One alternative is using CONVERT: `whereRaw('`rank` <> CONVERT(? USING latin1)', ['F'])`.
-        // The character set for CONVERT() doesn't actually matter - doing this at all allows
-        // mysql to coerce the value to the column's character set. Presumably. The writer of this
-        // comment isn't sure either why this works.
-        //
-        // Skipping variable binding altogether and using literal query also works (used here).
-        //
-        // Also note the error only happens when using prepared statement with binding value.
-        //
-        // Original error:
-        // General error: 1267 Illegal mix of collations (latin1_swedish_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,COERCIBLE) for operation '<>'
-        //
-        // Maybe references:
-        // - https://dev.mysql.com/doc/relnotes/mysql/8.0/en/news-8-0-22.html#mysqld-8-0-22-optimizer
-        // - https://dev.mysql.com/doc/refman/8.0/en/type-conversion.html
-        return $query->whereRaw("`rank` <> 'F'");
+        return $query->where('pass', true);
     }
 
     public function scopeVisibleUsers($query)
@@ -107,8 +82,8 @@ abstract class Model extends BaseModel
     public function scopeWithMods($query, $modsArray)
     {
         return $query->where(function ($q) use ($modsArray) {
-            $bitset = ModsHelper::toBitset($modsArray);
-            $preferenceMask = ~ModsHelper::PREFERENCE_MODS_BITSET;
+            $bitset = app('mods')->idsToBitset($modsArray);
+            $preferenceMask = ~Mods::LEGACY_PREFERENCE_MODS_BITSET;
 
             if (in_array('NM', $modsArray, true)) {
                 $q->orWhereRaw('enabled_mods & ? = 0', [$preferenceMask]);
@@ -122,7 +97,7 @@ abstract class Model extends BaseModel
 
     public function scopeWithoutMods($query, $modsArray)
     {
-        $bitset = ModsHelper::toBitset($modsArray);
+        $bitset = app('mods')->idsToBitset($modsArray);
 
         return $query->whereRaw('enabled_mods & ? = 0', $bitset);
     }
@@ -144,13 +119,89 @@ abstract class Model extends BaseModel
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function getBestIdAttribute()
+    public function getAttribute($key)
     {
-        return $this->high_score_id;
+        return match ($key) {
+            'beatmap_id',
+            'beatmapset_id',
+            'count100',
+            'count300',
+            'count50',
+            'countgeki',
+            'countkatu',
+            'countmiss',
+            'high_score_id',
+            'maxcombo',
+            'rank',
+            'score',
+            'score_id',
+            'scorechecksum',
+            'user_id' => $this->getRawAttribute($key),
+
+            'hidden',
+            'pass',
+            'perfect' => (bool) $this->getRawAttribute($key),
+
+            'date' => $this->getTimeFast($key),
+
+            'date_json' => $this->getJsonTimeFast($key),
+
+            'data' => $this->getData(),
+            'enabled_mods' => $this->getEnabledModsAttribute($this->getRawAttribute('enabled_mods')),
+
+            'beatmap',
+            'best',
+            'replayViewCount',
+            'user' => $this->getRelationValue($key),
+        };
     }
 
-    public function url()
+    public function getMode(): string
     {
-        return route('scores.show', ['mode' => static::getMode(), 'score' => $this->getKey()]);
+        return snake_case(get_class_basename(static::class));
+    }
+
+    protected function getData()
+    {
+        $mods = array_map(fn ($m) => ['acronym' => $m, 'settings' => []], $this->enabled_mods);
+        $statistics = [
+            'miss' => $this->countmiss,
+            'great' => $this->count300,
+        ];
+        $ruleset = $this->getMode();
+        switch ($ruleset) {
+            case 'osu':
+                $statistics['ok'] = $this->count100;
+                $statistics['meh'] = $this->count50;
+                break;
+            case 'taiko':
+                $statistics['ok'] = $this->count100;
+                break;
+            case 'fruits':
+                $statistics['large_tick_hit'] = $this->count100;
+                $statistics['small_tick_hit'] = $this->count50;
+                $statistics['small_tick_miss'] = $this->countkatu;
+                break;
+            case 'mania':
+                $statistics['perfect'] = $this->countgeki;
+                $statistics['good'] = $this->countkatu;
+                $statistics['ok'] = $this->count100;
+                $statistics['meh'] = $this->count50;
+                break;
+        }
+
+        return new ScoreData([
+            'accuracy' => $this->accuracy(),
+            'beatmap_id' => $this->beatmap_id,
+            'ended_at' => $this->date_json,
+            'max_combo' => $this->maxcombo,
+            'mods' => $mods,
+            'passed' => $this->pass,
+            'rank' => $this->rank,
+            'ruleset_id' => Beatmap::modeInt($ruleset),
+            'statistics' => $statistics,
+            'total_score' => $this->score,
+            'user_id' => $this->user_id,
+        ]);
     }
 }

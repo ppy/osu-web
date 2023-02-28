@@ -6,14 +6,9 @@
 namespace App\Libraries\Payments;
 
 use App\Models\Store\Order;
-use App\Traits\StoreNotifiable;
-use DB;
-use PayPal\Api\Amount;
-use PayPal\Api\Details;
-use PayPal\Api\Payment;
-use PayPal\Api\PaymentExecution;
-use PayPal\Api\Transaction;
-use PayPal\Exception\PayPalConnectionException;
+use Log;
+use PayPalCheckoutSdk\Orders\OrdersCaptureRequest;
+use Throwable;
 
 /**
  * Executes an approved Paypal Payment for a store Order.
@@ -24,70 +19,38 @@ use PayPal\Exception\PayPalConnectionException;
  */
 class PaypalExecutePayment
 {
-    use StoreNotifiable;
-
-    private $execution;
-    private $order;
-    private $params;
-
-    public function __construct(Order $order, array $params)
+    public function __construct(private Order $order)
     {
-        $this->params = $params;
-
-        $this->order = $order;
-
-        $this->execution = (new PaymentExecution())
-            ->setPayerId($params['payerId'])
-            ->addTransaction($this->getTransaction());
     }
 
     public function run()
     {
-        return DB::connection('mysql-store')->transaction(function () {
-            $context = PaypalApiContext::get();
-
+        $this->order->getConnection()->transaction(function () {
             // prevent concurrent updates
             $order = $this->order->lockSelf();
-            if ($order->isProcessing() === false) {
+            if ($order->isPaymentRequested() === false) {
                 throw new InvalidOrderStateException(
                     "`Order {$order->order_id}` in wrong state: `{$order->status}`"
                 );
             }
 
-            $order->status = 'checkout';
+            $order->status = Order::STATUS_PAYMENT_APPROVED;
             $order->saveOrExplode();
 
-            try {
-                // Tell Paypal to complete the transaction so we can finally clear the cart.
-                $payment = Payment::get($this->params['paymentId'], $context);
+            $client = PaypalApiContext::client();
+            $request = new OrdersCaptureRequest($order->reference);
 
-                return $payment->execute($this->execution, $context);
-            } catch (PayPalConnectionException $e) {
-                \Log::error($e->getData());
-                // TODO: get more context data
-                $this->notifyError($e, $this->order);
-                throw $e;
+            $response = $client->execute($request);
+
+            // This block is just extra information for now, errors here should not cause the transaction to fail.
+            try {
+                Log::debug('PaypalExecutePayment::run complete', (array) $response);
+                // This should match the incoming IPN transaction id.
+                $transactionId = $response->result->purchase_units[0]->payments->captures[0]->id;
+                $order->update(['transaction_id' => "paypal-{$transactionId}"]);
+            } catch (Throwable $e) {
+                app('sentry')->getClient()->captureException($e);
             }
         });
-    }
-
-    private function getAmount()
-    {
-        return (new Amount())
-            ->setCurrency('USD')
-            ->setTotal($this->order->getTotal())
-            ->setDetails($this->getDetails());
-    }
-
-    private function getDetails()
-    {
-        return (new Details())
-            ->setShipping($this->order->shipping)
-            ->setSubtotal($this->order->getSubTotal());
-    }
-
-    private function getTransaction()
-    {
-        return (new Transaction())->setAmount($this->getAmount());
     }
 }

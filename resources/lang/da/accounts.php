@@ -9,13 +9,12 @@ return [
         'username' => 'brugernavn',
 
         'avatar' => [
-            'title' => 'Avatar',
+            'title' => 'Profilbillede',
             'rules' => 'Vær sikker på at din avatar overholder :link.<br/>Dette betyder at den skal være <strong>passende for alle aldre</strong>. Det betyder ingen nøgenhed, skælsord eller suggestivt indhold.',
             'rules_link' => 'fællesskabs-reglerne',
         ],
 
         'email' => [
-            'current' => 'nuværende email-adresse',
             'new' => 'ny email',
             'new_confirmation' => 'email bekræftelse',
             'title' => 'Email',
@@ -56,6 +55,7 @@ return [
 
         'options' => [
             '_' => 'leveringsmuligheder',
+            'beatmap_owner_change' => 'gæst sværhedsgrad',
             'beatmapset:modding' => 'beatmap modding',
             'channel_message' => 'privat beskeder',
             'comment_new' => 'nye kommentarer',

@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Aprobado.',
+        'beatmap_owner_change' => 'El dueño de la dificultad :beatmap ha sido cambiado a :new_user.',
         'discussion_delete' => 'Un moderador eliminó la discusión :discussion.',
         'discussion_lock' => 'La discusión para este mapa ha sido desactivada. (:text)',
         'discussion_post_delete' => 'Un moderador eliminó una publicación en la discusión :discussion.',
@@ -27,6 +28,9 @@ return [
         'nominate' => 'Nominado por :user.',
         'nominate_modes' => 'Nominado por :user (:modes).',
         'nomination_reset' => 'Un nuevo problema :discussion (:text) ha restablecido las nominaciones.',
+        'nomination_reset_received' => 'La nominación por parte de :user ha sido restablecida por :source_user (:text)',
+        'nomination_reset_received_profile' => 'Nominación restablecida por :user (:text)',
+        'offset_edit' => 'La compensación en línea ha cambiado de :old a :new.',
         'qualify' => 'Este mapa ha alcanzado el número requerido de nominaciones y ha sido calificado.',
         'rank' => 'Clasificado.',
         'remove_from_loved' => 'Removido de Amados por :user. (:text)',
@@ -54,6 +58,7 @@ return [
 
     'type' => [
         'approve' => 'Aprobación',
+        'beatmap_owner_change' => 'Cambio de dueño de la dificultad',
         'discussion_delete' => 'Eliminación de discusión',
         'discussion_post_delete' => 'Eliminación de respuesta a discusión',
         'discussion_post_restore' => 'Restauración de respuesta a discusión',
@@ -71,7 +76,9 @@ return [
         'love' => 'Amor',
         'nominate' => 'Nominación',
         'nomination_reset' => 'Restablecimiento de nominación',
+        'nomination_reset_received' => 'Restablecimiento de nominación recibida',
         'nsfw_toggle' => 'Marca explícita',
+        'offset_edit' => 'Edición de compensación',
         'qualify' => 'Calificación',
         'rank' => 'Clasificación',
         'remove_from_loved' => 'Remoción de Amados',

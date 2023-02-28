@@ -25,10 +25,10 @@ class ChangeUsername
     {
         $link = link_to(
             route('support-the-game'),
-            trans('model_validation.user.change_username.supporter_required.link_text')
+            osu_trans('model_validation.user.change_username.supporter_required.link_text')
         );
 
-        return trans('model_validation.user.change_username.supporter_required._', ['link' => $link]);
+        return osu_trans('model_validation.user.change_username.supporter_required._', ['link' => $link]);
     }
 
     public function __construct(User $user, string $newUsername, string $type = 'paid')

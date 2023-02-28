@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'beatmapset' => [
+        'button' => 'Паскардзіцца',
+        'title' => 'Паскардзіцца на бітмапу :username?',
+    ],
+
     'beatmapset_discussion_post' => [
         'button' => 'Паскардзіцца',
         'title' => 'Паскардзіцца на допіс :username?',
@@ -15,13 +20,13 @@ return [
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Справаздача',
+        'title' => 'Паскардзіцца на пост :username?',
     ],
 
     'scores' => [
-        'button' => 'Справаздача выніку',
-        'title' => 'Справаздача выніку :username?',
+        'button' => 'Паскардзіцца на скор',
+        'title' => 'Паскардзіцца на скор :username?',
     ],
 
     'user' => [

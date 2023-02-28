@@ -1,0 +1,47 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.beatmapset-watches {
+  margin-top: 10px;
+  font-size: @font-size--title-small;
+
+  &__table-container {
+    overflow-x: auto;
+  }
+
+  &__col {
+    // bootstrap override
+    && {
+      vertical-align: middle;
+      border-top: 2px solid @osu-colour-b4;
+    }
+
+    // bootstrap override
+    &&--cover {
+      width: 70px;
+      padding: 0;
+    }
+  }
+
+  &__cover {
+    .default-border-radius();
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+  }
+
+  &__description {
+    margin-bottom: 10px;
+  }
+
+  &__heading {
+    border-top: none !important;
+  }
+
+  &__link {
+    color: @osu-colour-l1;
+    .link-hover({ color: white });
+  }
+}

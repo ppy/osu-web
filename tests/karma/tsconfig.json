@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "baseUrl": "../../resources/assets/lib",
+    "baseUrl": "../../resources/js",
     "experimentalDecorators": true,
     "sourceMap": true,
     "jsx": "react",
-    "lib": ["es2017", "dom", "dom.iterable"],
-    "module": "es2015",
+    "lib": ["es2020", "dom", "dom.iterable"],
+    "module": "es2020",
     "moduleResolution": "node",
     "noImplicitAny": true,
     "noUnusedLocals": true,
@@ -14,7 +14,7 @@
     "target": "es2015",
   },
   "include": [
-    "../../resources/assets/lib",
+    "../../resources/js",
     ".",
   ]
 }

@@ -7,7 +7,7 @@ return [
     'deleted' => '[törölt felhasználó]',
 
     'beatmapset_activities' => [
-        'title' => ":user Modolási Történelme",
+        'title' => ":user modolási történelme",
         'title_compact' => 'Modolás',
 
         'discussions' => [
@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Blokkoltad ezt a felhasználót.',
+        'comment_text' => 'Ez a hozzászólás rejtett.',
         'blocked_count' => '(:count) blokkolt felhasználók',
         'hide_profile' => 'profil elrejtése',
+        'hide_comment' => 'elrejtés',
         'not_blocked' => 'Ez a felhasználó nincs blokkolva.',
         'show_profile' => 'profil megjelenítése',
+        'show_comment' => 'mutatás',
         'too_many' => 'Blokkolási limit elérve.',
         'button' => [
             'block' => 'tiltás',
@@ -47,6 +50,22 @@ return [
     'card' => [
         'loading' => 'Betöltés...',
         'send_message' => 'üzenet küldése',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => 'jelszó',
+            'password_confirmation' => 'jelszó megerősítése',
+            'submit' => 'fiók létrehozása',
+            'user_email' => 'email',
+            'user_email_confirmation' => 'e-mail cím megerősítése',
+            'username' => 'felhasználónév',
+
+            'tos_notice' => [
+                '_' => 'felhasználói fiók létrehozásával elfogadod a(z) :link -t',
+                'link' => 'felhasználási feltételek',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -128,6 +147,7 @@ return [
 
         'options' => [
             'cheating' => 'Tisztességtelen játék / Csalás',
+            'multiple_accounts' => 'Több fiók használata',
             'insults' => 'Engem / másokat sérteget',
             'spam' => 'Spam',
             'unwanted_content' => 'Nem megfelelő tartalom linkelése',
@@ -138,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'A felhasználói fiókod korlátozva lett!',
         'message' => 'Korlátozva nem leszel képes más játékosokkal kapcsolatba lépni és a pontjaid csak neked lesznek láthatóak. Ez az eredménye egy automatikus folyamatnak és általában fel lesz oldva 24 órán belül. Amennyiben fellebbezni szeretnél, légyszíves lépj kapcsolatba a <a href="mailto:accounts@ppy.sh">support</a>-al.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age éves',
@@ -157,6 +178,10 @@ return [
         'comments_count' => [
             '_' => ':link posztolva',
             'count' => ':count_delimited komment|:count_delimited komment',
+        ],
+        'cover' => [
+            'to_0' => 'Lefedés',
+            'to_1' => 'Felfedés',
         ],
         'edit' => [
             'cover' => [
@@ -195,22 +220,28 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => ':artist által',
-                'title' => 'Beatmap-ek',
+                'title' => 'Beatmapek',
 
                 'favourite' => [
-                    'title' => 'Kedvenc Beatmapek',
+                    'title' => 'Kedvenc beatmapek',
                 ],
                 'graveyard' => [
-                    'title' => 'Eltemetett Beatmap-ek',
+                    'title' => 'Eltemetett beatmapek',
+                ],
+                'guest' => [
+                    'title' => 'Vendég részvételi beatmapek',
                 ],
                 'loved' => [
-                    'title' => 'Szeretett Beatmap-ek',
+                    'title' => 'Szeretett beatmapek',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved Beatmap-ek',
+                'nominated' => [
+                    'title' => 'Nominált rangsorolt beatmapek',
                 ],
-                'unranked' => [
-                    'title' => 'Pending Beatmap-ek',
+                'pending' => [
+                    'title' => 'Függő beatmapek',
+                ],
+                'ranked' => [
+                    'title' => 'Rangsorolt beatmapek',
                 ],
             ],
             'discussions' => [
@@ -232,7 +263,7 @@ return [
                 ],
                 'most_played' => [
                     'count' => 'alkalommal lejátszva',
-                    'title' => 'Legtöbbet Játszott Beatmap-ek',
+                    'title' => 'Legtöbbet játszott beatmapek',
                 ],
                 'recent_plays' => [
                     'accuracy' => 'pontosság: :percentage',
@@ -300,6 +331,9 @@ return [
                 'recent' => 'Legújabb',
                 'title' => 'Medálok',
             ],
+            'playlists' => [
+                'title' => 'Játéklistás játékok',
+            ],
             'posts' => [
                 'title' => 'Bejegyzések',
                 'title_longer' => 'Legutóbbi bejegyzések',
@@ -308,9 +342,12 @@ return [
             'recent_activity' => [
                 'title' => 'Legutóbbi',
             ],
+            'realtime' => [
+                'title' => 'Többjátékos játékok',
+            ],
             'top_ranks' => [
                 'download_replay' => 'Replay letöltése',
-                'not_ranked' => 'Kizárólag rangsorolt beatmap adhat pp-t.',
+                'not_ranked' => 'pp csak rangsorolt beatmapktől száramzik',
                 'pp_weight' => 'súlyozott :percentage',
                 'view_details' => 'Részletek mutatása',
                 'title' => 'Rangok',
@@ -320,6 +357,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Első Helyezéses Eredmények',
+                ],
+                'pin' => [
+                    'to_0' => 'Rögzítés feloldása',
+                    'to_0_done' => 'Nem rögzített eredmény',
+                    'to_1' => 'Rögzítés',
+                    'to_1_done' => 'Rögzített eredmény',
+                ],
+                'pinned' => [
+                    'title' => 'Rögzített eredmények',
                 ],
             ],
             'votes' => [
@@ -346,6 +392,7 @@ return [
                     'actions' => [
                         'restriction' => 'Kitiltás',
                         'silence' => 'Némítás',
+                        'tournament_ban' => 'Bajnoksági kitiltás',
                         'note' => 'Megjegyzés',
                     ],
                 ],
@@ -387,6 +434,7 @@ return [
             'country_simple' => 'Országos Rangsor',
             'global' => 'Globális rank a :mode-ra/re',
             'global_simple' => 'Globális Rangsor',
+            'highest' => 'Legnagyobb rank: :rank elérve :date dátumkor',
         ],
         'stats' => [
             'hit_accuracy' => 'Találati Pontosság',
@@ -402,10 +450,10 @@ return [
             'total_hits' => 'Találatok Száma',
             'total_score' => 'Összpontszám',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Rankedelt & jóváhagyott beatmapek',
-            'loved_beatmapset_count' => 'Kedvelt beatmapek',
-            'unranked_beatmapset_count' => 'Függőben lévő beatmapek',
             'graveyard_beatmapset_count' => 'Eltemetett beatmapek',
+            'loved_beatmapset_count' => 'Szeretett beatmapek',
+            'pending_beatmapset_count' => 'Függő beatmapek',
+            'ranked_beatmapset_count' => 'Rangsorolt beatmapek',
         ],
     ],
 
@@ -420,6 +468,8 @@ return [
         'offline' => 'Nem elérhető',
     ],
     'store' => [
+        'from_client' => 'kérlek regisztrálj inkább a játék klienssel!',
+        'from_web' => 'kérlek fejezd be a regisztrációt az osu! weboldalon',
         'saved' => 'Felhasználó létrehozva',
     ],
     'verify' => [

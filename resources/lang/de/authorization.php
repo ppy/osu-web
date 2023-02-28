@@ -63,15 +63,20 @@ return [
     ],
 
     'chat' => [
+        'annnonce_only' => 'Dieser Kanal ist nur für Ankündigungen.',
         'blocked' => 'Du kannst keine Nachrichten an einen Benutzer senden, der dich oder den du blockiert hast.',
         'friends_only' => 'Der Benutzer blockiert alle Nachrichten von Personen, die nicht auf seiner Freundesliste sind.',
         'moderated' => 'Dieser Kanal wird derzeit moderiert.',
         'no_access' => 'Du hast kein Zugriff auf diesen Kanal.',
+        'receive_friends_only' => 'Der Benutzer kann möglicherweise nicht antworten, da du nur Nachrichten von Personen auf deiner Freundesliste akzeptierst.',
         'restricted' => 'Du kannst keine Nachrichten senden, während du stummgeschaltet, eingeschränkt oder gebannt bist.',
-        'silenced' => '',
+        'silenced' => 'Du kannst keine Nachrichten senden, während du stummgeschaltet, eingeschränkt oder gebannt bist.',
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => 'Kommentare sind deaktiviert',
+        ],
         'update' => [
             'deleted' => "Der gelöschte Beitrag kann nicht bearbeitet werden.",
         ],
@@ -163,6 +168,13 @@ return [
 
         'view' => [
             'admin_only' => 'Nur Administratoren können dieses Forum sehen.',
+        ],
+    ],
+
+    'score' => [
+        'pin' => [
+            'not_owner' => 'Nur der Eigentümer kann den Score anpinnen.',
+            'too_many' => 'Zu viele Scores angepinnt.',
         ],
     ],
 

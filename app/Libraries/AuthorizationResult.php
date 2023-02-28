@@ -49,7 +49,7 @@ class AuthorizationResult
             return;
         }
 
-        return trans('authorization.'.$this->rawMessage());
+        return osu_trans('authorization.'.$this->rawMessage());
     }
 
     public function ensureCan()

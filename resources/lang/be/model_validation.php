@@ -73,8 +73,8 @@ return [
         'post' => [
             'beatmapset_post_no_delete' => 'Выдаленне метададзеных допіса бітмапы недазволена.',
             'beatmapset_post_no_edit' => 'Рэдагаванне метададзеных допіса бітмапы недазволена.',
-            'first_post_no_delete' => '',
-            'missing_topic' => '',
+            'first_post_no_delete' => 'Нельга выдаліць пачатковую публікацыю',
+            'missing_topic' => 'У пасту адсутнічае тэма',
             'only_quote' => 'Ваш адказ змяшчае толькі цытату.',
 
             'attributes' => [
@@ -123,7 +123,7 @@ return [
     'user' => [
         'contains_username' => 'Пароль не павінен змяшчаць імя карыстальніка.',
         'email_already_used' => 'Эл. пошта ўжо выкарыстоўваецца.',
-        'email_not_allowed' => '',
+        'email_not_allowed' => 'Адрас электроннай пошты не дапускаецца.',
         'invalid_country' => 'Краіны няма ў базедадзеных.',
         'invalid_discord' => 'Няправільнае імя карыстальніка Discord.',
         'invalid_email' => "Не падобна на дзейны адрас эл. пошты.",
@@ -163,6 +163,7 @@ return [
     ],
 
     'user_report' => [
+        'no_ranked_beatmapset' => 'Нельга скардзіцца на ранкаваныя бітмапы',
         'reason_not_valid' => ':reason не падыходзіць для дадзенага тыпу дакладу.',
         'self' => "Вы не можаце паскардзіцца на самога сябе!",
     ],

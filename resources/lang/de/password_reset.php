@@ -13,6 +13,8 @@ return [
 
     'error' => [
         'contact_support' => 'Bitte wende dich zur Accountwiederherstellung an den Support.',
+        'expired' => 'Bestätigungscode ist abgelaufen.',
+        'invalid' => 'Unerwarteter Fehler im Bestätigungscode.',
         'is_privileged' => 'Kontaktiere peppy lulz.',
         'missing_key' => 'Erforderlich.',
         'too_many_tries' => 'Zu viele fehlgeschlagene Versuche.',

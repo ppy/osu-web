@@ -6,6 +6,7 @@
 namespace Tests\Controllers\Payments;
 
 use App\Libraries\Payments\ShopifySignature;
+use App\Models\Country;
 use App\Models\Store\Order;
 use App\Models\Store\Payment;
 use Tests\TestCase;
@@ -14,11 +15,11 @@ class ShopifyControllerTest extends TestCase
 {
     public function testWebhookOrdersCancelled()
     {
-        $order = factory(Order::class, 'paid')->states('shopify')->create();
+        $order = factory(Order::class)->states('paid')->states('shopify')->create();
         $payment = new Payment([
             'provider' => Order::PROVIDER_SHOPIFY,
             'transaction_id' => $order->getProviderReference(),
-            'country_code' => 'XX',
+            'country_code' => Country::UNKNOWN,
             'paid_at' => now(),
         ]);
         $order->payments()->save($payment);
@@ -33,7 +34,7 @@ class ShopifyControllerTest extends TestCase
         $order->refresh();
         $response->assertStatus(204);
 
-        $this->assertTrue($order->status === 'cancelled');
+        $this->assertTrue($order->isCancelled());
         $this->assertTrue(Payment::where('order_id', $order->getKey())->where('cancelled', true)->exists());
     }
 
@@ -62,7 +63,7 @@ class ShopifyControllerTest extends TestCase
 
         $order->refresh();
         $response->assertStatus(204);
-        $this->assertTrue($order->status === 'shipped');
+        $this->assertTrue($order->isShipped());
         $this->assertNotNull($order->shipped_at);
     }
 

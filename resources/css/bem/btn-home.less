@@ -1,0 +1,71 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.btn-home {
+  .link-plain();
+  .link-white();
+
+  border-radius: @border-radius-large;
+  background-image: url('~@images/backgrounds/button.svg');
+  background-size: 175%;
+  background-position: center;
+
+  font-size: @font-size--title-small;
+  font-weight: bold;
+
+  margin-bottom: var(--border-size);
+  padding: 10px 20px;
+
+  display: flex;
+  align-items: center;
+
+  transition: all 120ms ease-in-out;
+  .own-layer();
+  --colour-h: var(--colour-blue-hue);
+  --colour-s: var(--c-saturation-3);
+  --colour-l: var(--c-lightness-3);
+  --bg-l-adjust: 0%;
+  --bg-move: 0px;
+  --border-size: 3px;
+  --move: 0px;
+  --inset-colour: hsl(var(--colour-h), var(--colour-s), calc(var(--colour-l) - 10%));
+
+  transform: translate(0, var(--move));
+  background-color: hsl(var(--colour-h), var(--colour-s), calc(var(--colour-l) + var(--bg-l-adjust)));
+  background-position: calc(50% + var(--bg-move)) 50%;
+
+  box-shadow:
+    0 calc(var(--border-size) - var(--move)) var(--inset-colour),
+    0 calc(var(--border-size) + @box-shadow-y - var(--move)) @box-shadow-radius @box-shadow-color;
+
+  &:focus {
+    --bg-move: -10px;
+    --bg-l-adjust: 5%;
+  }
+
+  &:hover {
+    --bg-move: -20px;
+    --bg-l-adjust: 10%;
+  }
+
+  &:active {
+    --move: 2px;
+  }
+
+  &--c-darkorange {
+    --colour-h: var(--colour-darkorange-hue);
+  }
+
+  &--c-pink-darker {
+    --colour-h: var(--colour-pink-hue);
+  }
+
+  &__text {
+    flex: 1;
+  }
+
+  &__icon {
+    font-size: 150%;
+    flex: none;
+  }
+}

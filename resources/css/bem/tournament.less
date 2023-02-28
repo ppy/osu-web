@@ -1,0 +1,63 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.tournament {
+  @_top: tournament;
+  background-color: @osu-colour-b5;
+
+  @media @desktop {
+    margin-bottom: 10px;
+  }
+
+  &__body {
+    .center-content();
+    .default-gutter-v2();
+    display: flex;
+    color: white;
+    flex-direction: column;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  &__countdown-timer {
+    background: @osu-colour-b4;
+    padding-bottom: 20px;
+    margin-top: -10px;
+  }
+
+  &__description {
+    .content-font();
+
+    font-size: 14px;
+
+    > h1, h2, h3, h4, h5, h6 {
+      color: white;
+    }
+    a {
+      color: @osu-colour-l1;
+    }
+  }
+
+  &__description-md-extra {
+    margin-top: @md-paragraph-space;
+  }
+
+  &__banner {
+    height: 450px;
+    background-size: cover;
+    background-position: center center;
+  }
+
+  &__links {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  &__page {
+    background-color: @osu-colour-b4;
+    .default-box-shadow();
+    .default-gutter-v2();
+    padding-top: 20px;
+    padding-bottom: $padding-top;
+  }
+}

@@ -16,7 +16,7 @@ class Stream
 
     public function url()
     {
-        return "https://twitch.tv/{$this->data['user_name']}";
+        return "https://twitch.tv/{$this->data['user_login']}";
     }
 
     public function preview($width, $height)

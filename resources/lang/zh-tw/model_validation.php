@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => '',
+    'invalid' => '所指定的 :attribute 無效。',
     'not_negative' => ':attribute 不能為負數。',
     'required' => '需要 :attribute 。',
     'too_long' => ':attribute 超出最大長度——最多允許 :limit 個字符。',
@@ -24,7 +24,7 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "",
+            'discussion_locked' => "該圖譜目前為鎖定討論狀態，無法被推薦",
             'guest' => '登錄後才能推薦',
             'hyped' => '你已經推薦了這張譜面',
             'limit_exceeded' => '你已經用光了推薦次數',
@@ -49,7 +49,7 @@ return [
 
     'comment' => [
         'deleted_parent' => '無法回覆給已刪除評論。',
-        'top_only' => '',
+        'top_only' => '不允許回覆置頂評論。',
 
         'attributes' => [
             'message' => '訊息',
@@ -122,14 +122,14 @@ return [
 
     'user' => [
         'contains_username' => '密碼不能包含使用者名稱。',
-        'email_already_used' => '郵箱已被使用。',
-        'email_not_allowed' => '電子郵件地址不允許。',
+        'email_already_used' => '電郵地址已被使用。',
+        'email_not_allowed' => '電郵地址不允許。',
         'invalid_country' => '國家未被數據庫收錄。',
         'invalid_discord' => 'Discord 用户名無效。',
-        'invalid_email' => "無效的郵箱地址。",
+        'invalid_email' => "無效的電郵地址。",
         'invalid_twitter' => 'Twitter帳戶名無效',
         'too_short' => '新密碼太短。',
-        'unknown_duplicate' => '用戶名或郵箱已被使用。',
+        'unknown_duplicate' => '用戶名或電郵地址已被使用。',
         'username_available_in' => '該用戶名將在 :duration 後可用。',
         'username_available_soon' => '該用戶名即將可用！',
         'username_invalid_characters' => '用戶名中包含非法字符。',
@@ -142,13 +142,13 @@ return [
         'username_too_long' => '用戶名太長。',
         'weak' => '弱密碼。',
         'wrong_current_password' => '密碼不正確.',
-        'wrong_email_confirmation' => '重複新郵箱與新郵箱不一致。',
+        'wrong_email_confirmation' => '新電郵地址不一致。',
         'wrong_password_confirmation' => '重複新密碼與新密碼不一致。',
         'too_long' => '超出長度限制——最多為 :limit 個字符。',
 
         'attributes' => [
             'username' => '使用者名稱',
-            'user_email' => '電子郵件地址',
+            'user_email' => '電郵地址',
             'password' => '密碼',
         ],
 
@@ -163,6 +163,7 @@ return [
     ],
 
     'user_report' => [
+        'no_ranked_beatmapset' => '無法檢舉已進榜的圖譜',
         'reason_not_valid' => ':reason 不符合此報告類型。',
         'self' => "您不能檢舉你自己！",
     ],

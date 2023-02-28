@@ -2,7 +2,7 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-@extends('store.layout', ['titlePrepend' => trans('layout.header.store.cart')])
+@extends('store.layout', ['titlePrepend' => osu_trans('layout.header.store.cart')])
 
 @php
     // always ignore empty keys.
@@ -17,19 +17,19 @@
         @if(!$order || !count($order->items))
             <div class="store-page">
                 <h1 class="store-text store-text--title">
-                    {{ trans('store.cart.title') }}
+                    {{ osu_trans('store.cart.title') }}
                 </h1>
 
-                <p>{{ trans('store.cart.empty.text') }}</p>
-                <p>{!! trans('store.cart.empty.return_link._', [
-                    'link' => Html::link(route('store.products.index'), trans('store.cart.empty.return_link.link_text')),
+                <p>{{ osu_trans('store.cart.empty.text') }}</p>
+                <p>{!! osu_trans('store.cart.empty.return_link._', [
+                    'link' => Html::link(route('store.products.index'), osu_trans('store.cart.empty.return_link.link_text')),
                     ]) !!}
                 </p>
             </div>
         @else
             <div class="store-page">
                 <h1 class="store-text store-text--title">
-                    {{ trans('store.cart.title') }}
+                    {{ osu_trans('store.cart.title') }}
                 </h1>
 
                 <ul class="cart-items">
@@ -42,11 +42,11 @@
 
                 <div class="store-cart-footer">
                     <p>
-                        <a href="{{ route('store.products.index') }}">{{ trans('store.cart.more_goodies') }}</a>
+                        <a href="{{ route('store.products.index') }}">{{ osu_trans('store.cart.more_goodies') }}</a>
                     </p>
 
                     <div class="store-cart-footer__total-box store-cart-footer__total-box--padded">
-                        <p class="store-cart-footer__text">{{ trans('store.cart.total') }}</p>
+                        <p class="store-cart-footer__text">{{ osu_trans('store.cart.total') }}</p>
 
                         <p class="store-cart-footer__text store-cart-footer__text--amount">
                             {{ currency($order->getSubtotal()) }}
@@ -54,7 +54,7 @@
 
                         @if($order->requiresShipping())
                             <p class="store-cart-footer__text store-cart-footer__text--shipping">
-                                + {{ trans('store.cart.shipping_fees') }}
+                                + {{ osu_trans('store.cart.shipping_fees') }}
                             </p>
                         @endif
                     </div>
@@ -64,7 +64,7 @@
             <div class="store-page store-page--footer">
                 @if ($hasErrors)
                     <ul class="store-page__alert">
-                        @foreach (trans('store.cart.errors_no_checkout') as $_k => $v)
+                        @foreach (osu_trans('store.cart.errors_no_checkout') as $_k => $v)
                             <li>{{ $v }}</li>
                         @endforeach
                     </ul>
@@ -75,7 +75,7 @@
                         data-shopify="{{ $order->isShouldShopify() }}"
                         disabled
                     >
-                        {{ trans('store.cart.checkout' ) }}
+                        {{ osu_trans('store.cart.checkout' ) }}
                     </button>
                 @endif
             </div>

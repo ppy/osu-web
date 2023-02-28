@@ -30,11 +30,11 @@
 
                 <div class="pswp__counter"></div>
 
-                <button type="button" class="pswp__button pswp__button--close" title="{{ trans('layout.gallery.close') }}"></button>
+                <button type="button" class="pswp__button pswp__button--close" title="{{ osu_trans('layout.gallery.close') }}"></button>
 
-                <button type="button" class="pswp__button pswp__button--fs" title="{{ trans('layout.gallery.fullscreen') }}"></button>
+                <button type="button" class="pswp__button pswp__button--fs" title="{{ osu_trans('layout.gallery.fullscreen') }}"></button>
 
-                <button type="button" class="pswp__button pswp__button--zoom" title="{{ trans('layout.gallery.zoom') }}"></button>
+                <button type="button" class="pswp__button pswp__button--zoom" title="{{ osu_trans('layout.gallery.zoom') }}"></button>
 
                 <div class="js-pswp-buttons"></div>
 
@@ -53,10 +53,10 @@
                 <div class="pswp__share-tooltip"></div>
             </div>
 
-            <button type="button" class="pswp__button pswp__button--arrow--left" title="{{ trans('layout.gallery.previous') }}">
+            <button type="button" class="pswp__button pswp__button--arrow--left" title="{{ osu_trans('layout.gallery.previous') }}">
             </button>
 
-            <button type="button" class="pswp__button pswp__button--arrow--right" title="{{ trans('layout.gallery.next') }}">
+            <button type="button" class="pswp__button pswp__button--arrow--right" title="{{ osu_trans('layout.gallery.next') }}">
             </button>
 
             <div class="pswp__caption">

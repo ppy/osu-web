@@ -16,7 +16,7 @@
     data-url="{{ route('forum.posts.raw', ['post' => $post, 'quote' => 1]) }}"
     data-remote="1"
     @if ($type === 'circle')
-        title="{{ trans('forum.topics.actions.reply_with_quote') }}"
+        title="{{ osu_trans('forum.topics.actions.reply_with_quote') }}"
     @endif
 >
     @if ($type === 'circle')
@@ -24,6 +24,6 @@
             <i class="fas fa-comment"></i>
         </span>
     @else
-        {{ trans('forum.topics.actions.reply_with_quote') }}
+        {{ osu_trans('forum.topics.actions.reply_with_quote') }}
     @endif
 </button>

@@ -4,32 +4,60 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'loading_users' => 'se incarcă utilizatorii...',
     'talking_in' => 'vorbești în :channel',
     'talking_with' => 'vorbești cu :name',
     'title_compact' => 'chat',
+    'unread_messages' => 'mesaje necitite',
 
     'cannot_send' => [
-        'channel' => 'Nu poți trimite mesaje în acest canal chiar acum. Acest lucru poate fi din cauza următoarelor motive:',
-        'user' => 'Nu poți trimite mesaje acestui utilizator chiar acum. Acest lucru poate fi din cauza următoarelor motive:',
-        'reasons' => [
-            'blocked' => 'Ai fost blocat de către destinatar',
-            'channel_moderated' => 'Acest canal a fost moderat',
-            'friends_only' => 'Destinatarul acceptă mesaje doar de la persoane din lista lui de prieteni',
-            'not_enough_plays' => 'Nu ai jucat jocul destul',
-            'not_verified' => 'Sesiunea dvs. nu a fost verificată',
-            'restricted' => 'Ești restricționat în prezent',
-            'silenced' => '',
-            'target_restricted' => 'Destinatarul este restricționat în prezent',
+        'channel' => 'Nu poți trimite mesaje în acest canal momentan.',
+        'user' => 'Nu poți trimite mesaje acestui utilizator momentan.',
+    ],
+
+    'channels' => [
+        'confirm_part' => 'Dorești să ascunzi acest canal? Vei primi în continuare mesaje de pe acest canal.',
+        'create' => 'creează anunţ',
+
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => 'Anunțuri',
+                'GROUP' => 'Grupuri',
+                'PM' => 'Mesaje directe ',
+                'PUBLIC' => 'Canale',
+            ],
         ],
     ],
+
+    'form' => [
+        'title' => [
+            'announcement' => 'Creați Anunț Nou',
+        ],
+
+        'labels' => [
+            'description' => 'descriere',
+            'message' => 'mesaj',
+            'name' => 'numele camerei',
+            'users' => 'jucători de adăugat',
+        ],
+    ],
+
+    'not_found' => [
+        'message' => 'Nu este nimic aici. Poate ai părăsit canalul sau nu există...',
+        'title' => 'canalul nu a fost găsit',
+    ],
+
     'input' => [
-        'disabled' => 'nu poți trimite mesaje...',
+        'create' => 'Creează',
+        'disabled' => 'mesajul nu a putut fi trimis...',
+        'disconnected' => 'Deconectat',
         'placeholder' => 'scrie un mesaj...',
         'send' => 'Trimite',
     ],
+
     'no-conversations' => [
-        'howto' => "Începe conversații din profilul unui utilizator sau dintr-un pop-up de pe cartea de utilizator.",
-        'lazer' => 'Canalele publice în care te alături prin intermediul <a href=":link">osu!lazer</a> vor fi vizibile aici.',
+        'howto' => "Începe conversații din profilul unui utilizator sau din fereastra unui utilizator.",
+        'lazer' => 'Canalele publice cărora li te alături prin <a href=":link">osu!lazer</a> vor fi vizibile aici.',
         'title' => 'nu sunt conversații încă',
     ],
 ];

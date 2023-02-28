@@ -5,7 +5,7 @@
 
 return [
     'create' => [
-        'download' => '',
+        'download' => 'Nhấn vào đây để tải trò chơi và tạo tài khoản',
         'label' => 'Đầu tiên, hãy đăng nhập vào tài khoản của bạn!',
         'title' => 'Đăng Nhập Tài Khoản',
     ],

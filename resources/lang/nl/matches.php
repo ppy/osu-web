@@ -8,7 +8,7 @@ return [
         'beatmap-deleted' => 'verwijderde beatmap',
         'difference' => 'met :difference',
         'failed' => 'GEFAALD',
-        'header' => 'Multiplayer Spellen',
+        'header' => 'Multiplayer Wedstrijden',
         'in-progress' => '(spel is al bezig)',
         'in_progress_spinner_label' => 'match is bezig',
         'loading-events' => 'Gebeurtenissen laden...',

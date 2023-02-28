@@ -21,7 +21,7 @@ return [
         ],
 
         'forum' => [
-            'write' => '',
+            'write' => 'Skapa och redigera forumämnen och inlägg åt dig.',
         ],
 
         'friends' => [

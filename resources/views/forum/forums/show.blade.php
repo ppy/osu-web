@@ -31,7 +31,7 @@
 
         @if ($forum->subforums()->exists())
             <div class="forum-list">
-                <h2 class="title title--no-margin">{{ trans("forum.subforums") }}</h2>
+                <h2 class="title title--no-margin">{{ osu_trans("forum.subforums") }}</h2>
 
                 <ul class="forum-list__items">
                     @foreach ($forum->subforums as $subforum)
@@ -45,7 +45,7 @@
             <div class="forum-list">
                 <div class="forum-list__header">
                     <h2 class="title title--no-margin">
-                        {{ trans('forum.pinned_topics') }}
+                        {{ osu_trans('forum.pinned_topics') }}
                     </h2>
                 </div>
 
@@ -59,7 +59,7 @@
             <div id="topics" class="forum-list">
                 <div class="forum-list__header">
                     <h2 class="title title--no-margin">
-                        {{ trans('forum.topics._') }}
+                        {{ osu_trans('forum.topics._') }}
                     </h2>
 
                     <div class="forum-list__menu">

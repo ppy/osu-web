@@ -12,7 +12,7 @@
 >
     <button
         class="btn-circle btn-circle--bbcode js-bbcode-btn--bold"
-        title="{{ trans("bbcode.bold") }}"
+        title="{{ osu_trans("bbcode.bold") }}"
         type="button"
     >
         <span class="btn-circle__content">
@@ -22,7 +22,7 @@
 
     <button
         class="btn-circle btn-circle--bbcode js-bbcode-btn--italic"
-        title="{{ trans("bbcode.italic") }}"
+        title="{{ osu_trans("bbcode.italic") }}"
         type="button"
     >
         <span class="btn-circle__content">
@@ -32,7 +32,7 @@
 
     <button
         class="btn-circle btn-circle--bbcode js-bbcode-btn--strikethrough"
-        title="{{ trans("bbcode.strikethrough") }}"
+        title="{{ osu_trans("bbcode.strikethrough") }}"
         type="button"
     >
         <span class="btn-circle__content">
@@ -42,7 +42,7 @@
 
     <button
         class="btn-circle btn-circle--bbcode js-bbcode-btn--heading"
-        title="{{ trans("bbcode.heading") }}"
+        title="{{ osu_trans("bbcode.heading") }}"
         type="button"
     >
         <span class="btn-circle__content">
@@ -52,7 +52,7 @@
 
     <button
         class="btn-circle btn-circle--bbcode js-bbcode-btn--link"
-        title="{{ trans("bbcode.link") }}"
+        title="{{ osu_trans("bbcode.link") }}"
         type="button"
     >
         <span class="btn-circle__content">
@@ -62,7 +62,7 @@
 
     <button
         class="btn-circle btn-circle--bbcode js-bbcode-btn--spoilerbox"
-        title="{{ trans("bbcode.spoilerbox") }}"
+        title="{{ osu_trans("bbcode.spoilerbox") }}"
         type="button"
     >
         <i class="fas fa-barcode"></i>
@@ -70,7 +70,7 @@
 
     <button
         class="btn-circle btn-circle--bbcode js-bbcode-btn--list-numbered"
-        title="{{ trans("bbcode.list_numbered") }}"
+        title="{{ osu_trans("bbcode.list_numbered") }}"
         type="button"
     >
         <span class="btn-circle__content">
@@ -80,7 +80,7 @@
 
     <button
         class="btn-circle btn-circle--bbcode js-bbcode-btn--list"
-        title="{{ trans("bbcode.list") }}"
+        title="{{ osu_trans("bbcode.list") }}"
         type="button"
     >
         <span class="btn-circle__content">
@@ -90,7 +90,7 @@
 
     <button
         class="btn-circle btn-circle--bbcode js-bbcode-btn--image"
-        title="{{ trans("bbcode.image") }}"
+        title="{{ osu_trans("bbcode.image") }}"
         type="button"
     >
         <span class="btn-circle__content">
@@ -98,17 +98,17 @@
         </span>
     </button>
 
-    <label class="bbcode-size-select" title="{{ trans("bbcode.size._") }}">
+    <label class="bbcode-size-select" title="{{ osu_trans("bbcode.size._") }}">
         <span class="bbcode-size-select__label">
-            {{ trans("bbcode.size._") }}
+            {{ osu_trans("bbcode.size._") }}
         </span>
         <i class="fas fa-chevron-down"></i>
 
         <select class="bbcode-size-select__select js-bbcode-btn--size">
-            <option value="50">{{ trans("bbcode.size.tiny") }}</option>
-            <option value="85">{{ trans("bbcode.size.small") }}</option>
-            <option value="100" selected>{{ trans("bbcode.size.normal") }}</option>
-            <option value="150">{{ trans("bbcode.size.large") }}</option>
+            <option value="50">{{ osu_trans("bbcode.size.tiny") }}</option>
+            <option value="85">{{ osu_trans("bbcode.size.small") }}</option>
+            <option value="100" selected>{{ osu_trans("bbcode.size.normal") }}</option>
+            <option value="150">{{ osu_trans("bbcode.size.large") }}</option>
         </select>
     </label>
 </div>

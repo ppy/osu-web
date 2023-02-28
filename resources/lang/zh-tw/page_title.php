@@ -7,20 +7,14 @@ return [
     'admin' => [
         '_' => '管理員',
     ],
-    'admin_forum' => [
-        '_' => '管理',
-    ],
-    'admin_store' => [
-        '_' => '管理員',
-    ],
     'error' => [
         'error' => [
-            '400' => '',
+            '400' => '請求無效',
             '404' => '頁面不存在',
             '403' => '拒絕存取',
-            '401' => '',
+            '401' => '權限不足',
             '401-verification' => '帳號驗證',
-            '405' => '',
+            '405' => '請求方法不允許',
             '422' => '請求無效',
             '429' => '要求數過多',
             '500' => '伺服器發生了一些問題...',
@@ -29,20 +23,19 @@ return [
     ],
     'forum' => [
         '_' => '論壇',
-        'topic_watches_controller' => [
-            'index' => '主頁',
+        'topic_logs_controller' => [
+            'index' => '主題日誌',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => '主頁',
             'verify_link' => '帳戶驗證',
         ],
         'artists_controller' => [
             '_' => '精選藝術家',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => '',
+            '_' => '圖譜討論文',
         ],
         'beatmap_discussions_controller' => [
             '_' => '圖譜討論',
@@ -55,9 +48,6 @@ return [
         ],
         'beatmapset_events_controller' => [
             '_' => '圖譜歷史',
-        ],
-        'beatmapset_watches_controller' => [
-            'index' => '主頁',
         ],
         'beatmapsets_controller' => [
             'discussion' => '圖譜討論',
@@ -75,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => '評選',
-        ],
-        'follows_controller' => [
-            'index' => '看板',
-        ],
-        'friends_controller' => [
-            'index' => '主頁',
         ],
         'groups_controller' => [
             'show' => '群組',
@@ -111,36 +95,40 @@ return [
             '_' => '重置密碼',
         ],
         'ranking_controller' => [
-            '_' => '排名',
+            '_' => '排行榜',
         ],
         'scores_controller' => [
             '_' => '成績',
         ],
-        'store_controller' => [
-            '_' => 'osu!商店',
+        'seasons_controller' => [
+            '_' => '排行榜',
         ],
         'tournaments_controller' => [
             '_' => '官方比賽',
         ],
         'users_controller' => [
             '_' => '玩家資訊',
+            'create' => '註冊帳號',
             'disabled' => '通知',
         ],
         'wiki_controller' => [
-            '_' => '知識庫',
+            '_' => 'wiki',
         ],
     ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => '排名',
+    'passport' => [
+        'authorization_controller' => [
+            '_' => '授權應用程式',
         ],
     ],
     'store' => [
-        '_' => 'osu!商店',
+        '_' => '商店',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => '摸圖者資訊',
+        ],
+        'multiplayer_controller' => [
+            '_' => '多人遊戲遊玩紀錄',
         ],
     ],
 ];

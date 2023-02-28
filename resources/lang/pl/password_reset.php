@@ -13,6 +13,8 @@ return [
 
     'error' => [
         'contact_support' => 'Skontaktuj się z pomocą techniczną, aby odzyskać konto.',
+        'expired' => 'Kod weryfikacyjny wygasł.',
+        'invalid' => 'Wystąpił nieoczekiwany błąd z kodem weryfikacyjnym.',
         'is_privileged' => 'Skontaktuj się administratorem, by odzyskać konto.',
         'missing_key' => 'Wymagane.',
         'too_many_tries' => 'Za dużo błędnych prób.',

@@ -19,7 +19,7 @@ $factory->define(Score::class, function (Faker\Generator $faker) {
             return PlaylistItem::find($self['playlist_item_id'])->room_id;
         },
         'user_id' => function () {
-            return factory(User::class)->create()->getKey();
+            return User::factory()->create()->getKey();
         },
         'total_score' => 1,
         'started_at' => now()->subMinutes(5),

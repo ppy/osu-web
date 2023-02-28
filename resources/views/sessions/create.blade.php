@@ -17,18 +17,18 @@
 
             <div class="dialog-form__row dialog-form__row--title">
                 <div class="dialog-form__logo"></div>
-                <h1 class="dialog-form__title">{{ trans('sessions.create.title') }}</h1>
+                <h1 class="dialog-form__title">{{ osu_trans('sessions.create.title') }}</h1>
             </div>
 
             <div class="dialog-form__row dialog-form__row--label">
-                {{ trans('sessions.create.label') }}
+                {{ osu_trans('sessions.create.label') }}
             </div>
 
             <div class="dialog-form__row dialog-form__row--input">
                 <input
                     class="dialog-form__input js-login-form-input"
                     name="username"
-                    placeholder="{{ trans('layout.popup_login.login.username') }}"
+                    placeholder="{{ osu_trans('layout.popup_login.login.username') }}"
                     required
                     autofocus
                 />
@@ -39,7 +39,7 @@
                     class="dialog-form__input js-login-form-input"
                     name="password"
                     type="password"
-                    placeholder="{{ trans('layout.popup_login.login.password') }}"
+                    placeholder="{{ osu_trans('layout.popup_login.login.password') }}"
                     required
                 />
             </div>
@@ -56,30 +56,30 @@
 
             <div class="dialog-form__row dialog-form__row--extra-link">
                 <a href="{{ route('password-reset') }}" class="dialog-form__extra-link">
-                    {{ trans('layout.popup_login.login.forgot') }}
+                    {{ osu_trans('layout.popup_login.login.forgot') }}
                 </a>
             </div>
 
             <div class="dialog-form__row dialog-form__row--extra-link">
-                {{ trans('layout.popup_login.register.title') }}
+                {{ osu_trans('layout.popup_login.register.title') }}
                 <a href="{{ route('download') }}" class="dialog-form__extra-link">
-                    {{ trans('sessions.create.download') }}
+                    {{ osu_trans('sessions.create.download') }}
                 </a>
             </div>
 
             <div class="dialog-form__row dialog-form__row--buttons">
                 <button
                     class="dialog-form__button js-captcha--submit-button"
-                    data-disable-with="{{ trans('users.login.button_posting') }}"
+                    data-disable-with="{{ osu_trans('users.login.button_posting') }}"
                 >
-                    {{ trans('users.login._') }}
+                    {{ osu_trans('users.login._') }}
                 </button>
 
                 <a
                     href="{{ $cancelUrl ?? route('home') }}"
                     class="dialog-form__button dialog-form__button--cancel"
                 >
-                    {{ trans('common.buttons.cancel') }}
+                    {{ osu_trans('common.buttons.cancel') }}
                 </a>
             </div>
         </div>

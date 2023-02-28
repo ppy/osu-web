@@ -1,0 +1,146 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.notification-popup-item {
+  @_top: notification-popup-item;
+
+  display: flex;
+  width: 100%;
+  background-color: hsl(var(--hsl-b3));
+  border-radius: @border-radius-large;
+  position: relative;
+
+  &:hover {
+    background-color: hsl(var(--hsl-b1));
+  }
+
+  &--compact {
+    background-color: transparent;
+    margin-left: 10px;
+    width: calc(100% - $margin-left);
+
+    &:hover {
+      background-color: hsl(var(--hsl-b4));
+    }
+  }
+
+  &--group {
+    background-color: hsl(var(--hsl-b3));
+
+    &:hover {
+      background-color: hsl(var(--hsl-b2));
+    }
+  }
+
+  &__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    // prevent thin single row item
+    min-height: 36px;
+    justify-content: center;
+    padding: 3px 0 3px 10px;
+  }
+
+  &__cover {
+    border-radius: @border-radius-large 0 0 @border-radius-large;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: hsl(var(--hsl-b2));
+    width: 60px;
+    flex: none;
+    position: relative;
+    pointer-events: none;
+
+    .@{_top}--compact & {
+      width: 50px;
+    }
+
+    .@{_top}--user_achievement_unlock & {
+      background-size: 70%;
+    }
+
+    .@{_top}--group.@{_top}--user_achievement_unlock & {
+      background-size: 0;
+    }
+  }
+
+  &__cover-icon {
+    margin: 0 1px;
+  }
+
+  &__cover-overlay {
+    .full-size();
+    .center-content();
+    border-radius: @border-radius-large 0 0 @border-radius-large;
+    background-color: fade(#000, 60%);
+
+    .@{_top}--compact.@{_top}--user_achievement_unlock & {
+      background-color: transparent;
+    }
+  }
+
+  &__link {
+    .full-size();
+  }
+
+  &__main {
+    position: relative;
+    border-radius: 0 @border-radius-large @border-radius-large 0;
+    flex: 1;
+    display: flex;
+    min-width: 0;
+    pointer-events: none;
+  }
+
+  &__row {
+    margin: 2px 0;
+
+    &--category {
+      font-weight: bold;
+      font-size: @font-size--small;
+      text-transform: uppercase;
+    }
+
+    &--expand {
+      margin-top: 10px;
+    }
+
+    &--message {
+      .link-plain();
+      .link-white();
+      font-size: @font-size--title-small;
+      word-wrap: break-word;
+    }
+
+    &--time {
+      .link-plain();
+      .link-hover({
+        color: hsl(var(--hsl-f1));
+      });
+
+      font-size: @font-size--small;
+      color: hsl(var(--hsl-f1));
+    }
+
+    .@{_top}:hover & {
+      .show-more-link {
+         background-color: hsl(var(--hsl-b1));
+         &:hover {
+           background-color: hsl(var(--hsl-b3));
+         }
+      }
+    }
+  }
+
+  &__unread-stripe {
+    position: absolute;
+    width: @border-radius-large;
+    height: 100%;
+    border-radius: @border-radius-large 0 0 @border-radius-large;
+    box-shadow: inset 2px 0 hsl(var(--hsl-h1));
+    pointer-events: none;
+  }
+}

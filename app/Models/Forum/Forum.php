@@ -60,19 +60,18 @@ use Carbon\Carbon;
  */
 class Forum extends Model
 {
-    protected $table = 'phpbb_forums';
-    protected $primaryKey = 'forum_id';
-
-    protected $dates = ['forum_last_post_time'];
-    protected $dateFormat = 'U';
     public $timestamps = false;
 
     protected $casts = [
         'allow_topic_covers' => 'boolean',
         'enable_indexing' => 'boolean',
         'enable_sigs' => 'boolean',
+        'forum_last_post_time' => 'datetime',
         'moderator_groups' => 'array',
     ];
+    protected $dateFormat = 'U';
+    protected $primaryKey = 'forum_id';
+    protected $table = 'phpbb_forums';
 
     public static function lastTopics($forum = null)
     {
@@ -371,7 +370,7 @@ class Forum extends Model
 
     public function toMetaDescription()
     {
-        $stack = [trans('forum.title')];
+        $stack = [osu_trans('forum.title')];
         foreach ($this->forum_parents as $forumId => $forumData) {
             $stack[] = $forumData[0];
         }

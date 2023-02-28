@@ -37,7 +37,12 @@ _job() {
 }
 
 _migrate() {
-    _rexec /app/bin/wait_for.sh db:3306 -- php /app/artisan migrate:fresh-or-run
+    _run php /app/artisan db:create
+    _rexec php /app/artisan migrate:fresh-or-run
+}
+
+_octane() {
+  _rexec /app/artisan octane:start --host=0.0.0.0 "$@"
 }
 
 _schedule() {
@@ -45,10 +50,6 @@ _schedule() {
         _run php /app/artisan schedule:run &
         echo 'Sleeping for 5 minutes'
     done
-}
-
-_serve() {
-    exec php-fpm7.4 -R -y docker/development/php-fpm.conf
 }
 
 _test() {
@@ -60,18 +61,18 @@ _test() {
 
     case "$command" in
         browser) _rexec php /app/artisan dusk --verbose "$@";;
-        js) _rexec yarnpkg karma start --single-run --browsers ChromeHeadless "$@";;
+        js) _rexec yarn karma start --single-run --browsers ChromeHeadless "$@";;
         phpunit) _rexec ./bin/phpunit.sh "$@";;
     esac
 }
 
 _watch() {
-    _run yarnpkg --network-timeout 100000
-    _rexec yarnpkg watch
+    _run yarn --network-timeout 100000
+    _rexec yarn watch
 }
 
 case "$command" in
     artisan) _rexec php /app/artisan "$@";;
-    job|migrate|schedule|serve|test|watch) "_$command" "$@";;
+    job|migrate|octane|schedule|test|watch) "_$command" "$@";;
     *) _rexec "$command" "$@";;
 esac

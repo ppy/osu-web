@@ -20,10 +20,16 @@ class BBCodeForDB
 
     public function extraEscapes($text)
     {
-        return str_replace(
-            ['[', ']', '.', ':', "\n"],
-            ['&#91;', '&#93;', '&#46;', '&#58;', '&#10;'],
-            $text
+        return strtr(
+            $text,
+            [
+                '[' => '&#91;',
+                ']' => '&#93;',
+                '.' => '&#46;',
+                ':' => '&#58;',
+                "\n" => '&#10;',
+                '@' => '&#64;',
+            ],
         );
     }
 
@@ -35,7 +41,7 @@ class BBCodeForDB
 
     public function parseAudio($text)
     {
-        preg_match_all("#\[audio\](?<url>.*?)\[/audio\]#", $text, $audio, PREG_SET_ORDER);
+        preg_match_all('#\[audio\](?<url>.*?)\[/audio\]#', $text, $audio, PREG_SET_ORDER);
 
         foreach ($audio as $a) {
             $escapedUrl = $this->extraEscapes($a['url']);
@@ -66,7 +72,7 @@ class BBCodeForDB
 
     public function parseBox($text)
     {
-        $text = preg_replace("#\[box=([^]]*?)\]#s", "[box=\\1:{$this->uid}]", $text);
+        $text = preg_replace('#\[box=([^]]*?)\]#s', "[box=\\1:{$this->uid}]", $text);
         $text = str_replace('[/box]', "[/box:{$this->uid}]", $text);
         $text = str_replace('[spoilerbox]', "[spoilerbox:{$this->uid}]", $text);
         $text = str_replace('[/spoilerbox]', "[/spoilerbox:{$this->uid}]", $text);
@@ -90,7 +96,7 @@ class BBCodeForDB
     public function parseColour($text)
     {
         return preg_replace(
-            ",\[(color=(?:#[[:xdigit:]]{6}|[[:alpha:]]+))\](.*?)\[(/color)\],s",
+            ',\[(color=(?:#[[:xdigit:]]{6}|[[:alpha:]]+))\](.*?)\[(/color)\],s',
             "[\\1:{$this->uid}]\\2[\\3:{$this->uid}]",
             $text
         );
@@ -98,15 +104,16 @@ class BBCodeForDB
 
     public function parseEmail($text)
     {
-        $emailPattern = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z-]+";
-        $text = preg_replace(
+        $emailPattern = '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z-]+';
+
+        $text = preg_replace_callback(
             "#\[email\]({$emailPattern})\[/email\]#",
-            "[email:{$this->uid}]\\1[/email:{$this->uid}]",
+            fn (array $m): string => "[email:{$this->uid}]{$this->extraEscapes($m[1])}[/email:{$this->uid}]",
             $text
         );
-        $text = preg_replace(
+        $text = preg_replace_callback(
             "#\[email=({$emailPattern})\](.+?)\[/email\]#",
-            "[email=\\1:{$this->uid}]\\2[/email:{$this->uid}]",
+            fn (array $m): string => "[email={$this->extraEscapes($m[1])}:{$this->uid}]{$this->extraEscapes($m[2])}[/email:{$this->uid}]",
             $text
         );
 
@@ -115,7 +122,7 @@ class BBCodeForDB
 
     public function parseImage($text)
     {
-        preg_match_all("#\[img\](?<url>.*?)\[/img\]#", $text, $images, PREG_SET_ORDER);
+        preg_match_all('#\[img\](?<url>.*?)\[/img\]#', $text, $images, PREG_SET_ORDER);
 
         foreach ($images as $i) {
             $escapedUrl = $this->extraEscapes($i['url']);
@@ -127,19 +134,16 @@ class BBCodeForDB
         return $text;
     }
 
-    /*
-    * Handles:
-    * - Bold (b)
-    * - Italic (i)
-    * - Strike (strike, s)
-    * - Underline (u)
-    * - Spoiler (spoiler)
-    */
-    public function parseInlineSimple($text)
+    /**
+     * Handles:
+     * - Code (c)
+     * - Heading (heading)
+     */
+    public function parseInlineSimple(string $text): string
     {
-        foreach (['b', 'i', 'strike', 's', 'u', 'spoiler'] as $tag) {
+        foreach (['c', 'heading'] as $tag) {
             $text = preg_replace(
-                "#\[{$tag}](.*?)\[/{$tag}\]#s",
+                "#\[{$tag}](.*?)\[/{$tag}\]#",
                 "[{$tag}:{$this->uid}]\\1[/{$tag}:{$this->uid}]",
                 $text
             );
@@ -148,20 +152,9 @@ class BBCodeForDB
         return $text;
     }
 
-    public function parseHeading($text)
-    {
-        $text = preg_replace(
-            "#\[heading](.*?)\[/heading\]#",
-            "[heading:{$this->uid}]\\1[/heading:{$this->uid}]",
-            $text
-        );
-
-        return $text;
-    }
-
     public function parseLinks($text)
     {
-        $spaces = ["(^|\[.+?\]|\s(?:&lt;|[.:([])*)", "((?:\[.+?\]|&gt;|[.:)\]])*(?:$|\s|\n|\r))"];
+        $spaces = ['(^|\[.+?\]|\s(?:&lt;|[.:([])*)', "((?:\[.+?\]|&gt;|[.:)\]])*(?:$|\s|\n|\r))"];
         $internalUrl = rtrim(preg_quote(config('app.url'), '#'), '/');
 
         // internal url
@@ -200,7 +193,7 @@ class BBCodeForDB
 
     public function parseList($text)
     {
-        $patterns = ["/\[(list(?:=.+?)?)\]/", '[/list]'];
+        $patterns = ['/\[(list(?:=.+?)?)\]/', '[/list]'];
         $counts = [preg_match_all($patterns[0], $text), substr_count($text, $patterns[1])];
         $limit = min($counts);
 
@@ -209,6 +202,27 @@ class BBCodeForDB
 
         $text = preg_replace($patterns[0], "[\\1:{$this->uid}]", $text, $limit);
         $text = preg_replace('/'.preg_quote($patterns[1], '/').'/', "[/list:o:{$this->uid}]", $text, $limit);
+
+        return $text;
+    }
+
+    /**
+     * Handles:
+     * - Bold (b)
+     * - Italic (i)
+     * - Strike (strike, s)
+     * - Underline (u)
+     * - Spoiler (spoiler)
+     */
+    public function parseMultilineSimple($text)
+    {
+        foreach (['b', 'i', 'strike', 's', 'u', 'spoiler'] as $tag) {
+            $text = preg_replace(
+                "#\[{$tag}](.*?)\[/{$tag}\]#s",
+                "[{$tag}:{$this->uid}]\\1[/{$tag}:{$this->uid}]",
+                $text
+            );
+        }
 
         return $text;
     }
@@ -271,7 +285,7 @@ class BBCodeForDB
 
     public function parseQuote($text)
     {
-        $patterns = ["/\[(quote(?:=&quot;.+?&quot;)?)\]/", '[/quote]'];
+        $patterns = ['/\[(quote(?:=&quot;.+?&quot;)?)\]/', '[/quote]'];
         $counts = [preg_match_all($patterns[0], $text), substr_count($text, $patterns[1])];
         $limit = min($counts);
 
@@ -284,7 +298,7 @@ class BBCodeForDB
     public function parseSize($text)
     {
         return preg_replace(
-            "#\[(size=(?:\d+))\](.*?)\[(/size)\]#s",
+            '#\[(size=(?:\d+))\](.*?)\[(/size)\]#s',
             "[\\1:{$this->uid}]\\2[\\3:{$this->uid}]",
             $text
         );
@@ -340,7 +354,7 @@ class BBCodeForDB
     public function parseYoutube($text)
     {
         return preg_replace_callback(
-            "#\[youtube\](.+?)\[/youtube\]#",
+            '#\[youtube\](.+?)\[/youtube\]#',
             function ($m) {
                 $videoId = preg_replace('/\?.*/', '', $this->extraEscapes($m[1]));
 
@@ -364,8 +378,8 @@ class BBCodeForDB
         $text = $this->parseBlockSimple($text);
         $text = $this->parseProfile($text);
         $text = $this->parseImage($text);
+        $text = $this->parseMultilineSimple($text);
         $text = $this->parseInlineSimple($text);
-        $text = $this->parseHeading($text);
         $text = $this->parseAudio($text);
         $text = $this->parseEmail($text);
         $text = $this->parseUrl($text);

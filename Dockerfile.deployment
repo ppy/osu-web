@@ -1,48 +1,64 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 RUN apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y software-properties-common
+
+RUN add-apt-repository ppa:ondrej/php
+
+RUN apt-get update
+# jpegtran is not included in `jhead` dependencies in this version of Ubuntu. Revisit when upgrading/changing distro. See https://github.com/ppy/osu-web/pull/9673
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    composer \
+    build-essential \
+    curl \
+    git \
     jhead \
     nginx \
-    php-common \
-    php-curl \
-    php-fpm \
-    php-gd \
-    php-intl \
-    php-json \
-    php-mbstring \
-    php-mysql \
-    php-redis \
-    php-sqlite3 \
-    php-tokenizer \
-    php-xml \
-    php-zip \
-    yarnpkg \
-    zip
+    php8.1-common \
+    php8.1-curl \
+    php8.1-ds \
+    php8.1-gd \
+    php8.1-intl \
+    php8.1-mbstring \
+    php8.1-mysql \
+    php8.1-redis \
+    php8.1-sqlite3 \
+    php8.1-swoole \
+    php8.1-tokenizer \
+    php8.1-xml \
+    php8.1-zip \
+    php8.1 \
+    zip \
+    libjpeg-turbo-progs
 
 WORKDIR /app
+
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
+RUN apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs
+RUN npm install -g yarn
+
+RUN curl -L "https://getcomposer.org/download/latest-2.x/composer.phar" > /usr/local/bin/composer && chmod 755 /usr/local/bin/composer
 
 COPY composer.json composer.lock ./
 RUN composer install --no-autoloader --no-dev
 
 COPY package.json yarn.lock ./
-RUN yarnpkg
+RUN yarn --prod --ignore-optional --frozen-lockfile
 
 RUN rm -f /var/log/nginx/access.log /var/log/nginx/error.log && \
     ln -s /dev/stdout /var/log/nginx/access.log && \
     ln -s /dev/stderr /var/log/nginx/error.log
 
 COPY . .
-RUN mkdir -p bootstrap/cache storage/framework/views
+RUN mkdir -p bootstrap/cache storage/logs storage/framework/cache storage/framework/views storage/framework/sessions public/uploads public/uploads-avatar public/uploads-replay
 RUN composer dump-autoload
 
 ARG APP_URL
 ARG DOCS_URL
-ARG PAYMENT_SANDBOX
-ARG SHOPIFY_DOMAIN
-ARG SHOPIFY_STOREFRONT_TOKEN
-RUN yarnpkg production
+RUN yarn production
+
+RUN php artisan ip2asn:update
+RUN php artisan scribe:generate
 
 RUN rm -rf node_modules
 
@@ -50,12 +66,12 @@ ARG GIT_SHA
 RUN printf "%s" "$GIT_SHA" > version
 
 RUN useradd -m osuweb
-RUN chown -R osuweb bootstrap/cache storage /var/lib/nginx
+RUN chown -R osuweb /var/lib/nginx bootstrap/cache storage
 USER osuweb
 ENV LOG_CHANNEL stderr
 
 EXPOSE 8000
-EXPOSE 9000
+EXPOSE 8080
 
 ENTRYPOINT ["/app/docker/deployment/entrypoint.sh"]
-CMD ["php"]
+CMD ["octane"]

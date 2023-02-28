@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Du har blokkerte denne brukeren.',
+        'comment_text' => '',
         'blocked_count' => 'blokkerte brukere (:count)',
         'hide_profile' => 'Skjul profil',
+        'hide_comment' => 'skjul',
         'not_blocked' => 'Den brukeren er ikke blokkert.',
         'show_profile' => 'Vis profil',
+        'show_comment' => 'vis',
         'too_many' => 'Maks antall blokkerte personer nådd.',
         'button' => [
             'block' => 'Blokker',
@@ -47,6 +50,22 @@ return [
     'card' => [
         'loading' => 'Laster...',
         'send_message' => 'send melding',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => '',
+            'password_confirmation' => '',
+            'submit' => '',
+            'user_email' => '',
+            'user_email_confirmation' => '',
+            'username' => '',
+
+            'tos_notice' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -127,7 +146,8 @@ return [
         ],
 
         'options' => [
-            'cheating' => 'Lureri / Juks',
+            'cheating' => 'Juksing',
+            'multiple_accounts' => 'Bruker flere kontoer',
             'insults' => 'Fornærmer meg / andre',
             'spam' => 'Spamming',
             'unwanted_content' => 'Deling av upassende innhold',
@@ -138,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'Kontoen din har blitt begrenset!',
         'message' => 'Mens du er begrenset vil du ikke være i stand til å samhandle med andre spillere, og poengresultatene dine vil kun være synlige for deg selv. Dette er vanligvis resultatet av en automatisert prosess og vil normalt bli hevet innen 24 timer. Hvis du ønsker å appellere begrensningen, vennligst <a href="mailto:accounts@ppy.sh">kontakt støtteteamet</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age år gammel',
@@ -157,6 +178,10 @@ return [
         'comments_count' => [
             '_' => '',
             'count' => '',
+        ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
         ],
         'edit' => [
             'cover' => [
@@ -203,14 +228,20 @@ return [
                 'graveyard' => [
                     'title' => 'Gravlagte Beatmaps',
                 ],
+                'guest' => [
+                    'title' => '',
+                ],
                 'loved' => [
                     'title' => 'Elskede Beatmaps',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Rangerte & Godkjente Beatmaps',
+                'nominated' => [
+                    'title' => '',
                 ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Ventende Beatmaps',
+                ],
+                'ranked' => [
+                    'title' => 'Rangerte & Godkjente Beatmaps',
                 ],
             ],
             'discussions' => [
@@ -300,6 +331,9 @@ return [
                 'recent' => 'Nyeste',
                 'title' => 'Medaljer',
             ],
+            'playlists' => [
+                'title' => '',
+            ],
             'posts' => [
                 'title' => 'Innlegg',
                 'title_longer' => 'Nylige Innlegg',
@@ -307,6 +341,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Nylige',
+            ],
+            'realtime' => [
+                'title' => '',
             ],
             'top_ranks' => [
                 'download_replay' => 'Last ned Reprise',
@@ -320,6 +357,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Førsteplasser',
+                ],
+                'pin' => [
+                    'to_0' => 'Løsne',
+                    'to_0_done' => '',
+                    'to_1' => 'Fest',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
+                    'title' => '',
                 ],
             ],
             'votes' => [
@@ -346,6 +392,7 @@ return [
                     'actions' => [
                         'restriction' => 'Utestengelse',
                         'silence' => 'Forstummet',
+                        'tournament_ban' => '',
                         'note' => 'Merknad',
                     ],
                 ],
@@ -387,6 +434,7 @@ return [
             'country_simple' => 'Landsrangering',
             'global' => 'Global rangering for :mode',
             'global_simple' => 'Global Rangering',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Presisjon',
@@ -402,16 +450,16 @@ return [
             'total_hits' => 'Totale Treff',
             'total_score' => 'Samlet Poengsum',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Rangerte & Godkjente Beatmaps',
-            'loved_beatmapset_count' => 'Elskede Beatmaps',
-            'unranked_beatmapset_count' => 'Ventende Beatmaps',
             'graveyard_beatmapset_count' => 'Gravlagte Beatmaps',
+            'loved_beatmapset_count' => 'Elskede Beatmaps',
+            'pending_beatmapset_count' => 'Ventende Beatmaps',
+            'ranked_beatmapset_count' => 'Rangerte & Godkjente Beatmaps',
         ],
     ],
 
     'silenced_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'Du er øyeblikkelig forstummet.',
+        'message' => 'Noen handlinger kan være utilgjengelige.',
     ],
 
     'status' => [
@@ -420,6 +468,8 @@ return [
         'offline' => 'Frakoblet',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => 'Bruker opprettet',
     ],
     'verify' => [

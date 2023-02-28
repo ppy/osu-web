@@ -35,7 +35,8 @@ class ForumTopicCoversCleanup extends Command
         $this->line("This will delete unused topic covers before {$createdBefore}.");
 
         if (!$this->option('yes') && !$this->confirm('Proceed?')) {
-            return $this->error('Aborted.');
+            $this->error('Aborted.');
+            return;
         }
 
         $progress = $this->output->createProgressBar();
@@ -54,6 +55,7 @@ class ForumTopicCoversCleanup extends Command
             }
         });
 
+        $progress->finish();
         $this->line('');
         $this->info("Done. Deleted {$deleted} cover(s).");
     }

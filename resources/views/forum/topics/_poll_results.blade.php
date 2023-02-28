@@ -17,21 +17,21 @@
 
     <div class="forum-poll__row forum-poll__row--details">
         <div class="forum-poll__detail">
-            {{ trans('forum.topics.show.poll.detail.total', ['count' => $pollSummary['total']]) }}
+            {{ osu_trans('forum.topics.show.poll.detail.total', ['count' => $pollSummary['total']]) }}
         </div>
 
         @if ($topic->pollEnd() !== null)
             <div class="forum-poll__detail forum-poll__detail--sub">
                 @if ($topic->pollEnd()->isFuture())
-                    {!! trans('forum.topics.show.poll.detail.end_time', ['time' => js_localtime($topic->pollEnd())]) !!}
+                    {!! osu_trans('forum.topics.show.poll.detail.end_time', ['time' => js_localtime($topic->pollEnd())]) !!}
                 @else
-                    {!! trans('forum.topics.show.poll.detail.ended', ['time' => js_localtime($topic->pollEnd())]) !!}
+                    {!! osu_trans('forum.topics.show.poll.detail.ended', ['time' => js_localtime($topic->pollEnd())]) !!}
                 @endif
             </div>
 
             @if (!$canViewResults)
                 <div class="forum-poll__detail forum-poll__detail--sub">
-                    {{ trans('forum.topics.show.poll.detail.results_hidden') }}
+                    {{ osu_trans('forum.topics.show.poll.detail.results_hidden') }}
                 </div>
             @endif
         @endif
@@ -47,9 +47,9 @@
                         data-target-page="form"
                     >
                         @if ($buttons['changeVote'])
-                            {{ trans('forum.topics.show.poll.button.change_vote') }}
+                            {{ osu_trans('forum.topics.show.poll.button.change_vote') }}
                         @else
-                            {{ trans('forum.topics.show.poll.button.vote') }}
+                            {{ osu_trans('forum.topics.show.poll.button.vote') }}
                         @endif
                     </button>
                 </div>
@@ -61,7 +61,7 @@
                         type="button"
                         class="js-forum-poll--switch-edit btn-osu-big btn-osu-big--forum-secondary"
                     >
-                        {{ trans('forum.topics.show.poll.button.edit') }}
+                        {{ osu_trans('forum.topics.show.poll.button.edit') }}
                     </button>
                 </div>
             @endif

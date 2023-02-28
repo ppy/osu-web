@@ -1,0 +1,96 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.page-mode-link {
+  @top: page-mode-link;
+  .link-plain();
+  .link-gray-light();
+  padding: 5px 0 10px;
+  display: flex;
+  position: relative;
+
+  @media @mobile {
+    white-space: nowrap;
+  }
+
+  &.js-is-active, &--is-active {
+    font-weight: 600;
+    color: #fff;
+
+    &.@{top}--profile-page {
+      color: hsl(var(--hsl-c1));
+    }
+  }
+
+  &--white {
+    .link-white();
+  }
+
+  &--is-disabled {
+    color: @osu-colour-f1;
+    cursor: default;
+
+    .link-hover({
+      color: @osu-colour-f1;
+    });
+
+    &.@{top}--white {
+      .link-white();
+      opacity: 0.5;
+    }
+  }
+
+  &--profile-page {
+    .link-default();
+    padding: 0;
+    margin: 0;
+  }
+
+  &__badge {
+    .default-border-radius();
+    padding: 2px 5px;
+    font-size: 80%;
+    font-weight: bold;
+    margin-left: 5px;
+    background-color: @osu-colour-b6;
+    color: @osu-colour-f1;
+  }
+
+  &__stripe {
+    position: absolute;
+    width: 100%;
+    display: block;
+    bottom: 0;
+    left: 0;
+    height: 5px;
+    transform: translateY(5px) scaleY(0);
+    transition: transform 120ms ease-in-out;
+    background-color: @osu-colour-h1;
+
+    &--black {
+      background-color: @osu-colour-b6;
+    }
+
+    .@{top}--profile-page & {
+      background-color: @osu-colour-h1;
+      height: 10px;
+      bottom: -6px;
+      border-radius: 10000px;
+      transform: translateY(0) scaleY(0);
+    }
+
+    .@{top}.js-is-active &,
+    .@{top}--is-active &,
+    .@{top}:hover & {
+      transform: translateY(0) scaleY(1);
+    }
+
+    .@{top}--is-disabled & {
+      opacity: 0;
+    }
+  }
+
+  &__subtitle {
+    font-size: 11px;
+  }
+}

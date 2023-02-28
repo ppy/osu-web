@@ -1,11 +1,15 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-const path = require('path');
 const { spawnSync } = require('child_process');
+const path = require('path');
 const Watchpack = require('watchpack');
+const generateLocalizations = require('./resources/js/cli/generate-localizations');
+const modNamesGenerator = require('./resources/js/cli/mod-names-generator');
+
 const spawnOptions = { stdio: 'inherit' };
 
+const modsFile = path.resolve(__dirname, 'database/mods.json');
 const routesFile = path.resolve(__dirname, 'routes/web.php');
 const langDir = path.resolve(__dirname, 'resources/lang');
 
@@ -15,18 +19,23 @@ let resolved = false;
 
 const watches = [
   {
+    callback: modNamesGenerator,
+    path: modsFile,
+    type: 'file',
+  },
+  {
     callback: () => {
-      spawnSync('php', ['artisan', 'ziggy:generate', 'resources/assets/js/ziggy.js'], spawnOptions);
+      spawnSync('php', ['artisan', 'ziggy:generate', 'resources/builds/ziggy.js'], spawnOptions);
     },
     path: routesFile,
     type: 'file',
   },
   {
     callback: () => {
-      spawnSync('yarn', ['generate-localizations'], spawnOptions);
+      generateLocalizations();
       // touching the file on first build might cause karma's watchers to fire after tests start.
       if (resolved) {
-        spawnSync('touch', [path.resolve(__dirname, 'resources/assets/coffee/main.coffee')], spawnOptions);
+        spawnSync('touch', [path.resolve(__dirname, 'resources/js/main.coffee')], spawnOptions);
       }
     },
     path: langDir,

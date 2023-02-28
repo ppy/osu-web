@@ -10,7 +10,7 @@
 <div class="sort sort--default-padding">
     <div class="sort__items">
         <span class="sort__item sort__item--title">
-            {{ trans('sort._') }}
+            {{ osu_trans('sort._') }}
         </span>
         @foreach (App\Libraries\Search\ForumSearchParams::VALID_SORT_FIELDS as $field)
             @php
@@ -30,7 +30,7 @@
                 class="{{ class_with_modifiers('sort__item', ['active' => $active, 'button' => true]) }}"
                 href="{{ route('search', array_merge($query, compact('sort'))) }}"
             >
-                {{ trans("sort.forum_posts.{$field}") }}
+                {{ osu_trans("sort.forum_posts.{$field}") }}
 
                 <span class="sort__item-arrow">
                     <i class="{{ $arrowClass }}"></i>

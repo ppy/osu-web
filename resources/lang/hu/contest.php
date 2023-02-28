@@ -16,16 +16,26 @@ return [
     'voting' => [
         'login_required' => 'Kérlek jelentkezz be a szavazáshoz.',
         'over' => 'Erre a versenyre már véget ért a szavazás',
-        'show_voted_only' => '',
+        'show_voted_only' => 'Szavazottak mutatása',
 
         'best_of' => [
-            'none_played' => "Úgy tűnik, hogy egyetlen beatmap-et sem játszottál ami megfelelne ennek a versenynek!",
+            'none_played' => "Úgy tünik, hogy egyetlen beatmapet sem játszottál ami megfelelne ennek a versenynek!",
         ],
 
         'button' => [
             'add' => 'Szavazás',
             'remove' => 'Szavazat eltávolítása',
             'used_up' => 'Felhasználtad az összes szavazatodat',
+        ],
+
+        'progress' => [
+            '_' => ':used / :max szavazás használva',
+        ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => 'Szavazás előtt, először játszanod kell az összes beatmappel a kiválasztott játéklistákban',
+            ],
         ],
     ],
     'entry' => [
@@ -40,6 +50,7 @@ return [
             'beatmap' => 'Csak .osu kiterjesztésű fájlok engedélyezettek erre a versenyre.',
             'music' => 'Csak .mp3 kiterjesztésű fájlok engedélyezettek erre a versenyre.',
         ],
+        'wrong_dimensions' => 'A beküldéseknek erre a versenyre :widthx:height méretűnek kell lennie',
         'too_big' => 'A jelentkezések száma erre a versenyre csak :limit lehet.',
     ],
     'beatmaps' => [

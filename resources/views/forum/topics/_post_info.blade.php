@@ -49,28 +49,22 @@
     @endif
 
     @php
-        $group = $user->visibleGroups()[0] ?? null;
+        $userGroup = $user->userGroupsForBadges()->first();
     @endphp
-    @if (isset($group))
+    @if ($userGroup !== null)
         <div class="forum-post-info__row forum-post-info__row--group-badge">
-            <div
-                class="user-group-badge user-group-badge--t-forum"
-                data-label="{{ $group->short_name }}"
-                title="{{ $group->group_name }}"
-                style="{!! css_group_colour($group) !!}"
-            >
-                @if ($group->playmodes && count($group->playmodes) > 0)
-                    <div class="user-group-badge__modes">
-                        @foreach($group->playmodes as $mode)
-                            <i class="fal fa-extra-mode-{{$mode}}"></i>
-                        @endforeach
-                    </div>
-                @endif
-            </div>
-            @if ($group->playmodes && count($group->playmodes) > 0)
+            @include('objects._user_group_badge', [
+                'modifiers' => ['t-forum'],
+                'userGroup' => $userGroup,
+            ])
+
+            @php
+                $playmodes = $userGroup->playmodes;
+            @endphp
+            @if ($playmodes !== null && count($playmodes) > 0)
                 <div class="forum-post-info__row forum-post-info__row--group-badge-playmodes">
-                    @foreach($group->playmodes as $mode)
-                        <i class="fal fa-extra-mode-{{$mode}}"></i>
+                    @foreach ($playmodes as $playmode)
+                        <i class="fal fa-extra-mode-{{$playmode}}"></i>
                     @endforeach
                 </div>
             @endif
@@ -96,7 +90,7 @@
     @if ($user->getKey() !== null)
         <div class="forum-post-info__row forum-post-info__row--posts">
             <a href="{{ route("users.posts", $user) }}">
-                {{ trans_choice('forum.post.info.post_count', $user->user_posts) }}
+                {{ osu_trans_choice('forum.post.info.post_count', $user->user_posts) }}
             </a>
         </div>
 

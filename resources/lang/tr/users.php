@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Bu kullanıcıyı engelledin.',
+        'comment_text' => 'Bu yorum gizlenmiş.',
         'blocked_count' => 'engellenen kullanıcılar (:count)',
         'hide_profile' => 'profili gizle',
+        'hide_comment' => 'gizle',
         'not_blocked' => 'Bu kullanıcı engellenmemiş.',
         'show_profile' => 'profili göster',
+        'show_comment' => 'göster',
         'too_many' => 'Engelleme sınırına ulaşıldı.',
         'button' => [
             'block' => 'engelle',
@@ -47,6 +50,22 @@ return [
     'card' => [
         'loading' => 'Yükleniyor...',
         'send_message' => 'mesaj gönder',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => 'şifre',
+            'password_confirmation' => 'şifre onayı',
+            'submit' => 'hesap oluştur',
+            'user_email' => 'e-posta',
+            'user_email_confirmation' => 'e-posta onayı',
+            'username' => 'kullanıcı adı',
+
+            'tos_notice' => [
+                '_' => 'hesap oluşturarak :link kabul edersiniz',
+                'link' => 'hizmet şartları\'nı',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -128,6 +147,7 @@ return [
 
         'options' => [
             'cheating' => 'Kuraldışı oyun / Hile',
+            'multiple_accounts' => 'Birden fazla hesap kullanımı',
             'insults' => 'Bana / başkalarına hakaret',
             'spam' => 'Spam yapmak',
             'unwanted_content' => 'Uygunsuz içerik paylaşma',
@@ -138,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'Hesabınız kısıtlandı!',
         'message' => 'Kısıtlanmışken, diğer oyuncularla etkileşime geçemeyecek ve skorlarınızı sadece siz görebileceksiniz. Bu genellikle otomatik olan bir işlemin sonucudur ve 24 saat içerisinde kalkabilir. Kısıtlamanızın açılması için başvurmak istiyorsanız, lütfen <a href="mailto:accounts@ppy.sh">destek hattıyla</a> iletişime geçin.',
+        'message_link' => 'Daha fazla bilgi için bu sayfaya göz atın.',
     ],
     'show' => [
         'age' => ':age yaşında',
@@ -157,6 +178,10 @@ return [
         'comments_count' => [
             '_' => ':link gönderdi',
             'count' => ':count_delimited yorum|:count_delimited yorum',
+        ],
+        'cover' => [
+            'to_0' => 'Kapağı gizle',
+            'to_1' => 'Kapağı göster',
         ],
         'edit' => [
             'cover' => [
@@ -203,14 +228,20 @@ return [
                 'graveyard' => [
                     'title' => 'Mezarlıktaki Beatmapler',
                 ],
+                'guest' => [
+                    'title' => 'Konuk Olarak Katıldığı Beatmapler',
+                ],
                 'loved' => [
                     'title' => 'Sevilen Beatmapler',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Dereceli & Onaylı Beatmapler',
+                'nominated' => [
+                    'title' => 'Aday Gösterilen Dereceli Beatmapler',
                 ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Beklemedeki Beatmapler',
+                ],
+                'ranked' => [
+                    'title' => 'Dereceli & Onaylı Beatmapler',
                 ],
             ],
             'discussions' => [
@@ -300,6 +331,9 @@ return [
                 'recent' => 'En Son',
                 'title' => 'Madalyalar',
             ],
+            'playlists' => [
+                'title' => 'Oynama listesi Oyunları',
+            ],
             'posts' => [
                 'title' => 'Gönderiler',
                 'title_longer' => 'Son Gönderiler',
@@ -307,6 +341,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Son',
+            ],
+            'realtime' => [
+                'title' => 'Çok Oyunculu Oyunlar',
             ],
             'top_ranks' => [
                 'download_replay' => 'Tekrarı İndir',
@@ -321,6 +358,15 @@ return [
                 'first' => [
                     'title' => 'Birincilikler',
                 ],
+                'pin' => [
+                    'to_0' => 'Sabitlemeyi kaldır',
+                    'to_0_done' => 'Skoru sabitlemeyi kaldır',
+                    'to_1' => 'Sabitle',
+                    'to_1_done' => 'Sabitlenmiş skor',
+                ],
+                'pinned' => [
+                    'title' => 'Sabitlenen Skorlar',
+                ],
             ],
             'votes' => [
                 'given' => 'Verilen Oylar (son 3 ayda)',
@@ -331,7 +377,7 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Hesap Durumu',
-                'bad_standing' => "<strong>:username'in</strong> hesabı iyi durumda değil :(",
+                'bad_standing' => "<strong>:username</strong> kullanıcısının hesabı iyi durumda değil :(",
                 'remaining_silence' => '<strong>:username</strong> :duration sonra konuşabilecek.',
 
                 'recent_infringements' => [
@@ -346,6 +392,7 @@ return [
                     'actions' => [
                         'restriction' => 'Ban',
                         'silence' => 'Susturma',
+                        'tournament_ban' => 'Turnuva banı',
                         'note' => 'Not',
                     ],
                 ],
@@ -387,6 +434,7 @@ return [
             'country_simple' => 'Ülkesel Sıralama',
             'global' => ':mode için Dünya sıralaması',
             'global_simple' => 'Küresel Sıralama',
+            'highest' => ':date tarihinde en yüksek rank: :rank',
         ],
         'stats' => [
             'hit_accuracy' => 'Vuruş İsabeti',
@@ -402,10 +450,10 @@ return [
             'total_hits' => 'Toplam Vuruş',
             'total_score' => 'Toplam Skor',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Dereceli ve Onaylanmış Beatmapler',
-            'loved_beatmapset_count' => 'Sevilen Beatmapler',
-            'unranked_beatmapset_count' => 'Onay Bekleyen Beatmapler',
             'graveyard_beatmapset_count' => 'Mezarlıktaki Beatmapler',
+            'loved_beatmapset_count' => 'Sevilen Beatmapler',
+            'pending_beatmapset_count' => 'Onay Bekleyen Beatmapler',
+            'ranked_beatmapset_count' => 'Dereceli ve Onaylanmış Beatmapler',
         ],
     ],
 
@@ -420,6 +468,8 @@ return [
         'offline' => 'Çevrimdışı',
     ],
     'store' => [
+        'from_client' => 'lütfen bunun yerine oyun istemcisi ile kaydolun!',
+        'from_web' => 'lütfen kayıt işleminizi osu! web sitesinde tamamlayın',
         'saved' => 'Kullanıcı oluşturuldu',
     ],
     'verify' => [

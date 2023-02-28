@@ -1,0 +1,52 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.pswp {
+  z-index: 9000;
+
+  &__bg {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  &__button {
+    opacity: 0.75;
+    color: #fff;
+
+    &--contest-vote {
+      /*
+       * Overrides original sytle.
+       * The second selector is needed to override retina version that is slightly
+       * different than what we use.
+       */
+      && {
+        background-image: none;
+      }
+    }
+
+    &--contest-vote-active {
+      opacity: 0.9;
+      color: @contest-selected-colour;
+    }
+
+    &--vote-progress {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 1;
+      cursor: default;
+
+      && {
+        background-image: none;
+      }
+    }
+
+    // last so it overrides everything else
+    &--disabled {
+      cursor: default;
+
+      .link-hover({
+        opacity: 0.75;
+      });
+    }
+  }
+}

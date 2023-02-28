@@ -8,11 +8,19 @@ return [
         'disabled' => 'บีทแมพนี้ยังไม่สามารถดาวน์โหลดได้',
         'parts-removed' => 'บางส่วนของบีทแมพนี้ถูกลบตามคำขอของผู้แต่งหรือผู้ถือสิทธิ์บุคคลสาม',
         'more-info' => 'เช็คที่นี่เพื่อดูรายละเอียดเพิ่มเติม',
-        'rule_violation' => '',
+        'rule_violation' => 'เนื้อหาบางส่วนในแมพนี้ได้ถูกนำออกเนื่องจากถูกตัดสินว่าไม่เหมาะสมใน osu!',
+    ],
+
+    'cover' => [
+        'deleted' => '',
     ],
 
     'download' => [
-        'limit_exceeded' => '',
+        'limit_exceeded' => 'ช้าลงหน่อย เล่นมากขึ้น',
+    ],
+
+    'featured_artist_badge' => [
+        'label' => '',
     ],
 
     'index' => [
@@ -21,7 +29,7 @@ return [
     ],
 
     'panel' => [
-        'empty' => '',
+        'empty' => 'ไม่มีบีทแมพ',
 
         'download' => [
             'all' => 'ดาวน์โหลด',
@@ -32,32 +40,38 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => '',
-        'incorrect_mode' => '',
-        'full_bn_required' => '',
-        'too_many' => '',
+        'hybrid_requires_modes' => 'เซ็ตบีทแมพที่เป็นแบบไฮบริดจะต้องเลือกโหมดการเล่นอย่างน้อยหนึ่งโหมดที่จะเสนอชื่อให้',
+        'incorrect_mode' => 'คุณไม่มีสิทธิในการเสนอชื่อในโหมด :mode',
+        'full_bn_required' => 'คุณต้องเป็นผู้เสนอชื่อก่อนที่จะดำเนินการคุณสมบัตินี้ได้',
+        'too_many' => 'ความต้องการเสนอชื่อได้สำเร็จแล้ว',
 
         'dialog' => [
-            'confirmation' => '',
-            'header' => '',
-            'hybrid_warning' => '',
-            'which_modes' => '',
+            'confirmation' => 'คุณแน่ใจที่จะเสนอชื่อแมพนี้ใช่ไหม',
+            'header' => 'เสนอชื่อบีทแมพ',
+            'hybrid_warning' => 'โน้ต: คุณสามารถเสนอชื่อได้เพียงแค่ครั้งเดียว ดังนั้นโปรดตรวจสอบให้แน่ใจว่าคุณเสนอชื่อในเกมโหมดทั้งหมดที่คุณต้องการจะเสนอชื่อ',
+            'which_modes' => 'เสนอชื่อให้โหมดไหน',
         ],
     ],
 
     'nsfw_badge' => [
-        'label' => '',
+        'label' => 'ไม่เหมาะสม',
     ],
 
     'show' => [
         'discussion' => 'การสนทนา',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
-            'by_artist' => '',
+            'by_artist' => 'โดย :artist',
             'favourite' => 'กดชื่นชอบ beatmapset นี้',
-            'favourite_login' => '',
+            'favourite_login' => 'ลงชื่อบีทแมพนี้เป็นรายการโปรด',
             'logged-out' => 'คุณต้องเข้าสู่ระบบก่อนที่จะดาวน์โหลดบีทแมพ',
             'mapped_by' => 'แมพโดย :mapper',
+            'mapped_by_guest' => '',
             'unfavourite' => 'เลิก Favourite beatmapset นี้',
             'updated_timeago' => 'อัปเดตล่าสุดเมื่อ :timeago',
 
@@ -116,29 +130,32 @@ return [
             'genre' => 'ประเภท',
             'language' => 'ภาษา',
             'no_scores' => 'ข้อมูลกำลังถูกคำนวณ...',
-            'nsfw' => '',
+            'nominators' => '',
+            'nsfw' => 'เนื้อหาไม่เหมาะสม',
+            'offset' => '',
             'points-of-failure' => 'ความล้มเหลว',
             'source' => 'แหล่งที่มา',
-            'storyboard' => '',
+            'storyboard' => 'บีทแมพนี้มี storyboard',
             'success-rate' => 'อัตราการผ่าน',
             'tags' => 'แท็ก',
-            'video' => '',
+            'video' => 'บีทแมพนี้มีวิดีโอ',
         ],
 
         'nsfw_warning' => [
-            'details' => '',
-            'title' => '',
+            'details' => 'บีทแมพนี้มีเนื้อหาไม่เหมาะสม, รุนแรง, หรือรบกวนใจ คุณยังจะต้องการดูมันไหม',
+            'title' => 'เนื้อหาไม่เหมาะสม',
 
             'buttons' => [
-                'disable' => '',
-                'listing' => '',
-                'show' => '',
+                'disable' => 'ปิดการแจ้งเตือน',
+                'listing' => 'รายชื่อบีทแมพ',
+                'show' => 'แสดง',
             ],
         ],
 
         'scoreboard' => [
             'achieved' => 'ได้รับ :when',
             'country' => 'อันดับประเทศ',
+            'error' => '',
             'friend' => 'อันดับเพื่อน',
             'global' => 'อันดับโลก',
             'supporter-link' => 'คลิก <a href=":link">ที่นี่</a> เพื่อดูสิ่งสวยงามทั้งหมดที่คุณได้รับ!',
@@ -150,11 +167,12 @@ return [
                 'combo' => 'คอมโบสูงสุด',
                 'miss' => 'Miss',
                 'mods' => 'ม็อด',
+                'pin' => '',
                 'player' => 'ผู้เล่น',
                 'pp' => '',
                 'rank' => 'อันดับ',
-                'score_total' => 'คะแนนรวม',
                 'score' => 'คะแนน',
+                'score_total' => 'คะแนนรวม',
                 'time' => 'เวลา',
             ],
 
@@ -169,6 +187,10 @@ return [
                 'first' => 'นำ',
                 'own' => 'คะแนนดีที่สุดของคุณ',
             ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
+            ],
         ],
 
         'stats' => [
@@ -182,6 +204,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'จำนวนวงกลม',
             'count_sliders' => 'จำนวนสไลเดอร์',
+            'offset' => '',
             'user-rating' => 'คะแนน',
             'rating-spread' => 'การกระจายคะแนนโหวต',
             'nominations' => 'การเสนอชื่อ',
@@ -197,5 +220,9 @@ return [
             'pending' => 'อยู่ระหว่างดำเนินการ',
             'graveyard' => 'สุสาน',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

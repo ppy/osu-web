@@ -7,23 +7,17 @@
 const fs = require('fs');
 const path = require('path');
 
-// #region plugin imports
 const Autoprefixer = require('autoprefixer');
-const CopyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const SentryPlugin = require('webpack-sentry-plugin');
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-
-// #endregion
-
-// #region non-plugin imports
 const dotenv = require('dotenv');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const webpack = require('webpack');
-
-// #endregion
+const SentryPlugin = require('webpack-sentry-plugin');
 
 // #region env
 const env = process.env.NODE_ENV || 'development';
@@ -31,9 +25,6 @@ dotenv.config({ path: `.env.${env}` });
 dotenv.config();
 
 const inProduction = env === 'production' || process.argv.includes('-p');
-const paymentSandbox = !(process.env.PAYMENT_SANDBOX === '0'
-                         || process.env.PAYMENT_SANDBOX === 'false'
-                         || !process.env.PAYMENT_SANDBOX);
 
 const writeManifest = !(process.env.SKIP_MANIFEST === '1'
                         || process.env.SKIP_MANIFEST === 'true'
@@ -112,51 +103,28 @@ class Manifest {
 // #endregion
 
 // #region entrypoints and output
-const entry = {
-  app: [
-    './resources/assets/app.ts',
-    './resources/assets/less/app.less',
-  ],
-};
-
-const coffeeReactComponents = [
-  'artist-page',
-  'beatmap-discussions',
-  'beatmap-discussions-history',
-  'beatmapset-page',
-  'changelog-build',
-  'changelog-index',
-  'comments-index',
-  'comments-show',
-  'mp-history',
-  'modding-profile',
-  'profile-page',
-  'admin/contest',
-  'contest-entry',
-  'contest-voting',
+const entry = {};
+const entrypointDirs = [
+  'resources/css/entrypoints',
+  'resources/js/entrypoints',
 ];
+const supportedExts = new Set(['.coffee', '.less', '.ts', '.tsx']);
+for (const entrypointsPath of entrypointDirs) {
+  fs.readdirSync(resolvePath(entrypointsPath), { withFileTypes: true }).forEach((item) => {
+    if (item.isFile()) {
+      const filename = item.name;
+      const ext = path.extname(filename);
 
-const tsReactComponents = [
-  'account-edit',
-  'beatmaps',
-  'chat',
-  'follows-comment',
-  'follows-mapping',
-  'friends-index',
-  'groups-show',
-  'news-index',
-  'news-show',
-  'notifications-index',
-  'scores-show',
-  'store-bootstrap',
-];
+      if (supportedExts.has(ext)) {
+        const entryName = path.basename(filename, ext);
 
-for (const name of coffeeReactComponents) {
-  entry[`react/${name}`] = [resolvePath(`resources/assets/coffee/react/${name}.coffee`)];
-}
-
-for (const name of tsReactComponents) {
-  entry[`react/${name}`] = [resolvePath(`resources/assets/lib/${name}.ts`)];
+        if (entry[entryName] == null) {
+          entry[entryName] = [];
+        }
+        entry[entryName].push(resolvePath(entrypointsPath, filename));
+      }
+    }
+  });
 }
 
 const output = {
@@ -169,10 +137,10 @@ const output = {
 
 // #region plugin list
 const plugins = [
+  new ForkTsCheckerWebpackPlugin(),
   new webpack.ProvidePlugin({
     $: 'jquery',
     _: 'lodash',
-    Cookies: 'js-cookie',
     d3: 'd3', // TODO: d3 is fat and probably should have it's own chunk
     jQuery: 'jquery',
     moment: 'moment',
@@ -182,9 +150,6 @@ const plugins = [
   }),
   new webpack.DefinePlugin({
     'process.env.DOCS_URL': JSON.stringify(process.env.DOCS_URL || 'https://docs.ppy.sh'),
-    'process.env.PAYMENT_SANDBOX': JSON.stringify(paymentSandbox),
-    'process.env.SHOPIFY_DOMAIN': JSON.stringify(process.env.SHOPIFY_DOMAIN),
-    'process.env.SHOPIFY_STOREFRONT_TOKEN': JSON.stringify(process.env.SHOPIFY_STOREFRONT_TOKEN),
   }),
   new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // don't add moment locales to bundle.
   new MiniCssExtractPlugin({
@@ -192,8 +157,9 @@ const plugins = [
   }),
   new CopyPlugin({
     patterns: [
-      { from: 'resources/assets/build/locales', to: outputFilename('js/locales/[name]') },
+      { from: 'resources/builds/locales', to: outputFilename('js/locales/[name]') },
       { from: 'node_modules/moment/locale', to: outputFilename('js/moment-locales/[name]') },
+      { from: 'node_modules/@discordapp/twemoji/dist/svg/*-*.svg', to: 'images/flags/[name].[ext]' },
     ],
   }),
 ];
@@ -225,38 +191,25 @@ if (process.env.SENTRY_RELEASE === '1') {
   );
 }
 
+const notifierConfigPath = resolvePath('.webpack-build-notifier-config.js');
+if (fs.existsSync(notifierConfigPath)) {
+  const WebpackBuildNotifierPlugin = require('webpack-build-notifier');
+  plugins.push(new WebpackBuildNotifierPlugin(require(notifierConfigPath)));
+}
+
 // #endregion
 
 // #region Loader rules
 const rules = [
   {
-    enforce: 'pre',
-    exclude: /(node_modules)/,
-    loader: 'import-glob-loader',
-    test: /\.(js|ts|coffee)$/,
-  },
-  {
     exclude: /node_modules/,
     loader: 'ts-loader',
+    options: {
+      transpileOnly: true,
+    },
     test: /\.tsx?$/,
   },
   {
-    // loader for preexisting global coffeescript
-    exclude: [
-      resolvePath('resources/assets/coffee/react'),
-    ],
-    include: [
-      resolvePath('resources/assets/coffee'),
-    ],
-    test: /\.coffee$/,
-    use: ['imports-loader?jQuery=jquery,$=jquery,this=>window', 'coffee-loader'],
-  },
-  {
-    // loader for import-based coffeescript
-    include: [
-      resolvePath('resources/assets/coffee/react'),
-      resolvePath('resources/assets/lib'),
-    ],
     test: /\.coffee$/,
     use: ['coffee-loader'],
   },
@@ -309,17 +262,14 @@ const rules = [
 // #region resolvers
 const resolve = {
   alias: {
-    '@fonts': path.resolve(__dirname, 'resources/assets/fonts'),
+    '@fonts': path.resolve(__dirname, 'resources/fonts'),
     '@images': path.resolve(__dirname, 'public/images'),
-    'layzr': resolvePath('node_modules/layzr.js/dist/layzr.module.js'),
-    'ziggy': resolvePath('resources/assets/js/ziggy.js'),
-    'ziggy-route': resolvePath('vendor/tightenco/ziggy/dist'),
+    'ziggy-route': resolvePath('vendor/tightenco/ziggy/dist/index.es.js'),
   },
   extensions: ['*', '.js', '.coffee', '.ts', '.tsx'],
   modules: [
-    resolvePath('resources/assets/coffee'),
-    resolvePath('resources/assets/lib'),
-    resolvePath('resources/assets/coffee/react/_components'),
+    resolvePath('resources/builds'),
+    resolvePath('resources/js'),
     resolvePath('node_modules'),
   ],
   plugins: [new TsconfigPathsPlugin()],
@@ -328,6 +278,15 @@ const resolve = {
 // #endregion
 
 // #region optimization and chunk splitting settings
+function partialPathCheck(pathCheck, partialPathArray) {
+  return pathCheck.includes(['', ...partialPathArray, ''].join(path.sep));
+}
+
+const docsOnlyLibraries = [
+  ['node_modules', 'highlight.js'],
+  ['node_modules', 'jets'],
+];
+
 const cacheGroups = {
   commons: {
     chunks: 'initial',
@@ -341,7 +300,10 @@ const cacheGroups = {
     priority: -10,
     reuseExistingChunk: true,
     // Doing it this way doesn't split the css imported via app.less from the main css bundle.
-    test: (module) => module.resource && module.resource.includes(`${path.sep}node_modules${path.sep}`),
+    test: (module) => module.resource && (
+      partialPathCheck(module.resource, ['node_modules'])
+      && docsOnlyLibraries.every((p) => !partialPathCheck(module.resource, p))
+    ),
   },
 };
 

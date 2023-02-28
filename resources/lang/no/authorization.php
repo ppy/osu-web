@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => '',
+    'play_more' => 'Hva med å spille litt osu! i stedet?',
     'require_login' => 'Vennligst logg inn for å fortsette.',
     'require_verification' => 'Vennligst verifiser deg for å fortsette.',
     'restricted' => "Kan ikke gjøre det mens kontoen din er begrenset.",
@@ -31,7 +31,7 @@ return [
         ],
 
         'vote' => [
-            'bot' => "",
+            'bot' => "Kan ikke stemme på diskusjon lagd av bot",
             'limit_exceeded' => 'Vennligst vent en stund før du avgir flere stemmer',
             'owner' => "Du kan ikke stemme på ditt eget diskusjonsinnlegg.",
             'wrong_beatmapset_state' => 'Kan bare stemme på diskusjoner der beatmappet er ventende.',
@@ -63,15 +63,20 @@ return [
     ],
 
     'chat' => [
+        'annnonce_only' => 'Denne kanalen er bare beregnet på kunngjøringer.',
         'blocked' => 'Kan ikke sende en melding til en bruker som blokkerer deg eller som du har blokkert.',
         'friends_only' => 'Brukeren blokkerer meldinger fra personer som ikke er på deres venneliste.',
         'moderated' => 'Denne kanalen er for tiden moderert.',
         'no_access' => 'Du har ingen adgang til denne kanalen.',
+        'receive_friends_only' => 'Brukeren kan ikke svare fordi du bare godtar meldinger fra personer på vennelisten din.',
         'restricted' => 'Du kan ikke sende meldinger mens du er stum, begrenset eller bannlyst.',
-        'silenced' => '',
+        'silenced' => 'Du kan ikke sende meldinger mens du er stum, begrenset eller bannlyst.',
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => 'Kommentarer er deaktivert',
+        ],
         'update' => [
             'deleted' => "Kan ikke redigere slettet innlegg.",
         ],
@@ -163,6 +168,13 @@ return [
 
         'view' => [
             'admin_only' => 'Bare administrator kan se dette forumet.',
+        ],
+    ],
+
+    'score' => [
+        'pin' => [
+            'not_owner' => 'Kun resultateieren kan festeresultat.',
+            'too_many' => 'Festet for mange resultater.',
         ],
     ],
 

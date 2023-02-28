@@ -7,7 +7,7 @@ return [
     'pinned_topics' => 'Topic Fissati',
     'slogan' => "è pericoloso giocare da soli.",
     'subforums' => 'Subforum',
-    'title' => 'forum osu!',
+    'title' => 'Forum',
 
     'covers' => [
         'edit' => 'Modifica la copertina',
@@ -75,8 +75,8 @@ return [
     ],
 
     'topic' => [
-        'confirm_destroy' => 'Vuoi davvero eliminare l\'argomento?',
-        'confirm_restore' => 'Vuoi veramente ripristinare l\'argomento?',
+        'confirm_destroy' => 'Vuoi veramente eliminare il topic?',
+        'confirm_restore' => 'Vuoi veramente ripristinare il topic?',
         'deleted' => 'discussione eliminata',
         'go_to_latest' => 'guarda l\'ultimo post',
         'has_replied' => 'Hai risposto a questo topic',
@@ -92,8 +92,8 @@ return [
         'started_by_verbose' => 'postato da :user',
 
         'actions' => [
-            'destroy' => 'Elimina argomento',
-            'restore' => 'Ripristina argomento',
+            'destroy' => 'Elimina topic',
+            'restore' => 'Ripristina topic',
         ],
 
         'create' => [
@@ -125,6 +125,55 @@ return [
             'last' => 'vai all\'ultimo post',
             'next' => 'salta i prossimi 10 post',
             'previous' => 'vai indietro di 10 post',
+        ],
+
+        'logs' => [
+            '_' => 'Log del topic',
+            'button' => 'Sfoglia log dei topic',
+
+            'columns' => [
+                'action' => 'Azione',
+                'date' => 'Data',
+                'user' => 'Utente',
+            ],
+
+            'data' => [
+                'add_tag' => 'aggiunto il tag ":tag"',
+                'announcement' => 'argomento fissato e segnato come annuncio',
+                'edit_topic' => 'a :title',
+                'fork' => 'da :topic',
+                'pin' => 'argomento fissato',
+                'post_operation' => 'postato da :username',
+                'remove_tag' => 'rimosso il tag ":tag"',
+                'source_forum_operation' => 'da :forum',
+                'unpin' => 'topic non fissato',
+            ],
+
+            'no_results' => 'nessun log trovato...',
+
+            'operations' => [
+                'delete_post' => 'Post cancellato',
+                'delete_topic' => 'Topic eliminato',
+                'edit_topic' => 'Titolo dell\'argomento modificato',
+                'edit_poll' => 'Sondaggio del topic modificato',
+                'fork' => 'Argomento copiato',
+                'issue_tag' => 'Tag del ticket',
+                'lock' => 'Topic bloccato',
+                'merge' => 'Post uniti in questo topic',
+                'move' => 'Argomento spostato',
+                'pin' => 'Argomento fissato ',
+                'post_edited' => 'Post modificato',
+                'restore_post' => 'Post ripristinato',
+                'restore_topic' => 'Argomento ripristinato',
+                'split_destination' => 'Post divisi spostati',
+                'split_source' => 'Dividi i post',
+                'topic_type' => 'Tipo di topic impostato',
+                'topic_type_changed' => 'Tipo del topic modificato',
+                'unlock' => 'Argomento sbloccato',
+                'unpin' => 'Argomento fissato rimosso',
+                'user_lock' => 'Argomento personale chiuso',
+                'user_unlock' => 'Topic proprio sbloccato',
+            ],
         ],
 
         'post_edit' => [
@@ -321,8 +370,8 @@ return [
             'to_not_watching' => 'Non preferito',
             'to_watching' => 'Preferito',
             'to_watching_mail' => 'Preferito con notifica',
-            'tooltip_mail_disable' => 'Le notifiche sono abilitate. Premi per disabilitarle',
-            'tooltip_mail_enable' => 'Le notifiche sono disabilitate. Premi per abilitarle',
+            'tooltip_mail_disable' => 'Notifica abilitata. Clicca per disattivarla',
+            'tooltip_mail_enable' => 'Notifica disabilitata. Clicca per attivarla',
         ],
     ],
 ];

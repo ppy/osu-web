@@ -36,8 +36,8 @@
         ]) }}"
         data-remote="1"
         data-method="post"
-        data-confirm="{{ trans("forum.topics.moderate_pin.to_{$actionInt}_confirm") }}"
-        title="{{ trans("forum.topics.moderate_pin.to_{$actionInt}") }}"
+        data-confirm="{{ osu_trans("forum.topics.moderate_pin.to_{$actionInt}_confirm") }}"
+        title="{{ osu_trans("forum.topics.moderate_pin.to_{$actionInt}") }}"
     >
         <span class="btn-circle__content">
             <i class="fas fa-{{ $attrs['icon'] }}"></i>

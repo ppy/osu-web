@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'ผู้ดูแล',
     ],
-    'admin_forum' => [
-        '_' => 'ผู้ดูแล',
-    ],
-    'admin_store' => [
-        '_' => 'ผู้ดูแล',
-    ],
     'error' => [
         'error' => [
             '400' => 'คำร้องขอไม่ถูกต้อง',
@@ -22,20 +16,19 @@ return [
             '401-verification' => 'ยืนยันตัวตนบัญชี',
             '405' => 'สิ่งที่ท่านร้องขอไม่มีอยู่',
             '422' => 'คำร้องขอไม่ถูกต้อง',
-            '429' => '',
+            '429' => 'มีคำขอมากเกินไป',
             '500' => 'อะไรบางอย่างพัง',
             '503' => 'การบำรุงรักษาระบบ',
         ],
     ],
     'forum' => [
         '_' => 'ฟอรัม',
-        'topic_watches_controller' => [
-            'index' => 'หน้าหลัก',
+        'topic_logs_controller' => [
+            'index' => '',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'หน้าหลัก',
             'verify_link' => 'การยืนยันบัญชี',
         ],
         'artists_controller' => [
@@ -56,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'ประวัติ Beatmap',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'หน้าหลัก',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'การสนทนาเกี่ยวกับ Beatmap',
             'index' => 'รายการ Beatmap',
@@ -75,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => 'การแข่งขัน',
-        ],
-        'follows_controller' => [
-            'index' => '',
-        ],
-        'friends_controller' => [
-            'index' => 'หน้าหลัก',
         ],
         'groups_controller' => [
             'show' => 'กลุ่ม',
@@ -116,8 +100,8 @@ return [
         'scores_controller' => [
             '_' => 'ค่าศักยภาพ',
         ],
-        'store_controller' => [
-            '_' => 'osu!store',
+        'seasons_controller' => [
+            '_' => 'การจัดอันดับ',
         ],
         'tournaments_controller' => [
             '_' => '
@@ -125,23 +109,27 @@ return [
         ],
         'users_controller' => [
             '_' => 'ข้อมูลผู้เล่น',
+            'create' => '',
             'disabled' => 'การแจ้งเตือน',
         ],
         'wiki_controller' => [
-            '_' => 'ฐานความรู้',
+            '_' => 'วิกิ',
         ],
     ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'การจัดอันดับ',
+    'passport' => [
+        'authorization_controller' => [
+            '_' => 'อนุญาตแอป',
         ],
     ],
     'store' => [
-        '_' => 'osu!store',
+        '_' => 'ร้านค้า',
     ],
     'users' => [
         'modding_history_controller' => [
             '_' => 'ข้อมูลผู้ให้คำวิจารณ์',
+        ],
+        'multiplayer_controller' => [
+            '_' => 'ประวัติโหมดการเล่นหลายคน',
         ],
     ],
 ];

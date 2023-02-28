@@ -5,7 +5,7 @@
 
 return [
     'header' => [
-        'small' => 'Rivalisez avec d\'autres moyens que juste cliquer sur des cercles',
+        'small' => 'Rivalisez avec d\'autres moyens que juste cliquer sur des cercles.',
         'large' => 'Concours Communautaires',
     ],
 
@@ -27,19 +27,30 @@ return [
             'remove' => 'Supprimer le vote',
             'used_up' => 'Vous avez utilisé tous vos votes',
         ],
+
+        'progress' => [
+            '_' => ':used / :max votes utilisés',
+        ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => 'Doit jouer toutes les beatmaps dans les playlists spécifiées avant de voter',
+            ],
+        ],
     ],
     'entry' => [
         '_' => 'inscription',
-        'login_required' => 'Merci de vous connecter pour participer.',
+        'login_required' => 'Veuillez vous connecter pour participer au concours.',
         'silenced_or_restricted' => 'Vous ne pouvez pas entrer dans un concours quand vous êtes réduit au silence ou restreint.',
         'preparation' => 'Nous sommes en train de préparer le concours. Merci de patienter !',
-        'drop_here' => '"Droppez" votre entrée ici',
+        'drop_here' => 'Déposez votre entrée ici',
         'download' => 'Télécharger .osz',
         'wrong_type' => [
             'art' => 'Seuls les fichiers .jpg et .png sont acceptés pour ce concours.',
             'beatmap' => 'Seuls les fichiers .osu sont acceptés pour ce concours.',
             'music' => 'Seuls les fichiers .mp3 sont acceptés pour ce concours.',
         ],
+        'wrong_dimensions' => 'Les participations à ce concours doivent être de :widthx:height',
         'too_big' => 'Les entrées pour le concours sont limitées à :limit.',
     ],
     'beatmaps' => [
@@ -47,8 +58,8 @@ return [
     ],
     'vote' => [
         'list' => 'votes',
-        'count' => ':count vote | :count: votes',
-        'points' => ':count point|:count points',
+        'count' => ':count_delimited vote|:count_delimited votes',
+        'points' => ':count_delimited point|:count_delimited points',
     ],
     'dates' => [
         'ended' => 'Terminé le :date',
@@ -61,7 +72,7 @@ return [
     ],
     'states' => [
         'entry' => 'Entrée ouverte',
-        'voting' => 'Vote démarré',
+        'voting' => 'En cours de vote',
         'results' => 'Résultats tombés',
     ],
 ];

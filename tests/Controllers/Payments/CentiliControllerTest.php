@@ -28,7 +28,7 @@ class CentiliControllerTest extends TestCase
 
     public function testWhenPaymentIsInsufficient()
     {
-        $orderItem = factory(OrderItem::class, 'supporter_tag')->create(['order_id' => $this->order->order_id]);
+        $orderItem = factory(OrderItem::class)->states('supporter_tag')->create(['order_id' => $this->order->order_id]);
 
         $data = $this->getPostData(['enduserprice' => '479.000']);
 

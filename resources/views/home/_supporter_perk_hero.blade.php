@@ -19,10 +19,10 @@
         </div>
         <div class="supporter-perk-list-hero__text">
             <h4 class="supporter-perk-list-hero__title">
-                {{ trans("community.support.perks.{$group['name']}.title") }}
+                {{ osu_trans("community.support.perks.{$group['name']}.title") }}
             </h4>
             <p class="supporter-perk-list-hero__content">
-                {{ trans("community.support.perks.{$group['name']}.description") }}
+                {{ osu_trans("community.support.perks.{$group['name']}.description") }}
             </p>
         </div>
     </div>

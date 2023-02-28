@@ -5,6 +5,8 @@
 
 return [
     'deleted' => 'usunięte',
+    'deleted_by' => 'usunięte :timeago przez :user',
+    'deleted_by_system' => 'system',
     'deleted_count' => ':count_delimited usunięty komentarz|:count_delimited usunięte komentarze|:count_delimited usuniętych komentarzy',
     'edited' => 'ostatnio edytowane :timeago przez :user',
     'pinned' => 'przypięty',

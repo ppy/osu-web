@@ -27,6 +27,12 @@ return [
         'beatmapset' => [
             '_' => 'Beatmap',
 
+            'beatmap_owner_change' => [
+                '_' => '',
+                'beatmap_owner_change' => '',
+                'beatmap_owner_change_compact' => '',
+            ],
+
             'beatmapset_discussion' => [
                 '_' => 'Συζήτηση για το beatmap',
                 'beatmapset_discussion_lock' => 'Η συζήτηση για το beatmap ":title" έχει κλειδώσει.',
@@ -80,8 +86,19 @@ return [
         'channel' => [
             '_' => '',
 
+            'announcement' => [
+                '_' => '',
+
+                'announce' => [
+                    'channel_announcement' => '',
+                    'channel_announcement_compact' => '',
+                    'channel_announcement_group' => '',
+                ],
+            ],
+
             'channel' => [
                 '_' => '',
+
                 'pm' => [
                     'channel_message' => '',
                     'channel_message_compact' => '',
@@ -142,6 +159,9 @@ return [
                 'user_beatmapset_new' => '',
                 'user_beatmapset_new_compact' => '',
                 'user_beatmapset_new_group' => '',
+
+                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive_compact' => '',
             ],
         ],
 
@@ -159,6 +179,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => '',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => '',
                 'beatmapset_discussion_post_new' => '',
@@ -185,6 +209,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => '',
+            ],
+
             'channel' => [
                 'pm' => '',
             ],
@@ -216,6 +244,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => '',
+                'user_beatmapset_revive' => '',
             ],
         ],
     ],

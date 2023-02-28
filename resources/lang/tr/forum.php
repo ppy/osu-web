@@ -127,6 +127,55 @@ return [
             'previous' => '10 gönderi geriye git',
         ],
 
+        'logs' => [
+            '_' => 'Konu kayıtları',
+            'button' => 'Konu kayıtlarına göz atın',
+
+            'columns' => [
+                'action' => 'Eylem',
+                'date' => 'Tarih',
+                'user' => 'Kullanıcı',
+            ],
+
+            'data' => [
+                'add_tag' => '":tag" etiketi eklendi',
+                'announcement' => 'konu sabitlendi ve duyuru olarak işaretlendi',
+                'edit_topic' => ':title',
+                'fork' => ':topic den',
+                'pin' => 'sabitlenmiş konu',
+                'post_operation' => ':username tarafından paylaşıldı',
+                'remove_tag' => '":tag" etiketi kaldırıldı',
+                'source_forum_operation' => ':forum dan',
+                'unpin' => 'sabitlenmemiş konu',
+            ],
+
+            'no_results' => 'kayıt bulunamadı...',
+
+            'operations' => [
+                'delete_post' => 'Silinen paylaşım',
+                'delete_topic' => 'Silinen konu',
+                'edit_topic' => 'Konu başlığı değiştirildi',
+                'edit_poll' => 'Konu anketi düzenlendi',
+                'fork' => 'Kopyalanan konu',
+                'issue_tag' => 'Verilen etiket',
+                'lock' => 'Kilitli konu',
+                'merge' => 'Gönderiler bu konuda birleştirildi',
+                'move' => 'Taşınan konu',
+                'pin' => 'Sabitlenen konu',
+                'post_edited' => 'Düzenlenmiş gönderi',
+                'restore_post' => 'Geri yüklenen gönderi',
+                'restore_topic' => 'Geri yüklenen konu',
+                'split_destination' => 'Bölünmüş gönderiler taşındı',
+                'split_source' => 'Gönderileri böl',
+                'topic_type' => 'Konu türünü ayarla',
+                'topic_type_changed' => 'Konu türü değiştirildi',
+                'unlock' => 'Kilitlenmeyen konu',
+                'unpin' => 'Sabitlenmeyen konu',
+                'user_lock' => 'Sahibi tarafından kilitlenmiş konu',
+                'user_unlock' => 'Sahibi tarafından konu kilidi açıldı',
+            ],
+        ],
+
         'post_edit' => [
             'cancel' => 'İptal',
             'post' => 'Kaydet',

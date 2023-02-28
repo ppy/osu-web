@@ -15,7 +15,6 @@ return [
         ],
 
         'email' => [
-            'current' => 'obecny e-mail',
             'new' => 'nowy e-mail',
             'new_confirmation' => 'potwierdź e-mail',
             'title' => 'E-mail',
@@ -56,6 +55,7 @@ return [
 
         'options' => [
             '_' => 'opcje wysyłania',
+            'beatmap_owner_change' => 'gościnny poziom trudności',
             'beatmapset:modding' => 'dyskusje beatmap',
             'channel_message' => 'wiadomości prywatne na czacie',
             'comment_new' => 'nowe komentarze',
@@ -88,7 +88,7 @@ return [
 
     'playstyles' => [
         'keyboard' => 'klawiatura',
-        'mouse' => 'myszka',
+        'mouse' => 'mysz',
         'tablet' => 'tablet',
         'title' => 'Style gry',
         'touch' => 'ekran dotykowy',

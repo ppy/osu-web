@@ -4,10 +4,15 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'promote' => [
+        'pin' => 'Är du säker på att du vill gynna denna livestream?',
+        'unpin' => "Är du säker på att du vill sluta gynna denna livestream?",
+    ],
+
     'top-headers' => [
         'headline' => 'Direktsändningar',
-        'description' => 'Data hämtas från twitch.tv var femte minut baserad på kataloglistan. Känn dig fri att börja strömma och bli inlagd i listan! För mer information om hur du sätter igång, var vänlig att kolla in wikisidan om liveströmning.',
+        'description' => 'Data hämtas från twitch.tv var femte minut baserad på kataloglistan. Känn dig fri att börja streama och bli tillagd till listan! För mer information om hur du sätter igång, var vänlig se :link.',
 
-        'link' => 'wiki-sidan på livesändning',
+        'link' => 'wiki-sidan om livesändning',
     ],
 ];

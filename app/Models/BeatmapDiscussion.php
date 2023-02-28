@@ -17,6 +17,7 @@ use Exception;
  * @property \Illuminate\Database\Eloquent\Collection $beatmapDiscussionVotes BeatmapDiscussionVote
  * @property int|null $beatmap_id
  * @property int $beatmapset_id
+ * @property Beatmapset $beatmapset
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $deleted_at
  * @property int|null $deleted_by_id
@@ -39,12 +40,16 @@ class BeatmapDiscussion extends Model
 {
     use Validatable;
 
-    protected $casts = [
-        'kudosu_denied' => 'boolean',
-        'resolved' => 'boolean',
+    protected $attributes = [
+        'resolved' => false,
     ];
 
-    protected $dates = ['deleted_at', 'last_post_at'];
+    protected $casts = [
+        'deleted_at' => 'datetime',
+        'kudosu_denied' => 'boolean',
+        'last_post_at' => 'datetime',
+        'resolved' => 'boolean',
+    ];
 
     const KUDOSU_STEPS = [1, 2, 5];
 
@@ -66,7 +71,7 @@ class BeatmapDiscussion extends Model
     // FIXME: This and other static search functions should be extracted out.
     public static function search($rawParams = [])
     {
-        $pagination = pagination($rawParams);
+        $pagination = pagination(cursor_from_params($rawParams) ?? $rawParams);
 
         $params = [
             'limit' => $pagination['limit'],
@@ -74,10 +79,12 @@ class BeatmapDiscussion extends Model
         ];
 
         $query = static::limit($params['limit'])->offset($pagination['offset']);
+        $isModerator = $rawParams['is_moderator'] ?? false;
 
         if (present($rawParams['user'] ?? null)) {
             $params['user'] = $rawParams['user'];
-            $user = User::lookup($params['user']);
+            $findAll = $isModerator || (($rawParams['current_user_id'] ?? null) === $rawParams['user']);
+            $user = User::lookup($params['user'], null, $findAll);
 
             if ($user === null) {
                 $query->none();
@@ -246,6 +253,11 @@ class BeatmapDiscussion extends Model
             $this->user_id !== $this->beatmapset->user_id &&
             !$this->trashed() &&
             !$this->kudosu_denied;
+    }
+
+    public function isProblem()
+    {
+        return $this->message_type === 'problem';
     }
 
     public function refreshKudosu($event, $eventExtraData = [])
@@ -619,6 +631,14 @@ class BeatmapDiscussion extends Model
         });
     }
 
+    public function managedBy(User $user): bool
+    {
+        $id = $user->getKey();
+
+        return $this->beatmapset->user_id === $id
+            || ($this->beatmap !== null && $this->beatmap->user_id === $id);
+    }
+
     public function userRecentVotesCount($user, $increment = false)
     {
         $key = "beatmapDiscussion:{$this->getKey()}:votes:{$user->getKey()}";
@@ -639,6 +659,7 @@ class BeatmapDiscussion extends Model
                 BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_RESTORE, $restoredBy, $this)->saveOrExplode();
             }
 
+            $this->beatmapDiscussionPosts()->where('deleted_at', $this->deleted_at)->update(['deleted_at' => null]);
             $this->update(['deleted_at' => null]);
             $this->refreshKudosu('restore');
         });
@@ -665,10 +686,12 @@ class BeatmapDiscussion extends Model
                 BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_DELETE, $deletedBy, $this)->saveOrExplode();
             }
 
-            $this->fill([
+            $deleteAttributes = [
                 'deleted_by_id' => $deletedBy->user_id ?? null,
                 'deleted_at' => Carbon::now(),
-            ])->saveOrExplode();
+            ];
+            $this->fill($deleteAttributes)->saveOrExplode();
+            $this->beatmapDiscussionPosts()->whereNull('deleted_at')->update($deleteAttributes);
             $this->refreshKudosu('delete');
         });
     }

@@ -18,7 +18,7 @@ class FulfillmentFactoryTest extends TestCase
 {
     public function testCustomClassSupporterTag()
     {
-        $orderItem = factory(OrderItem::class, 'supporter_tag')->create();
+        $orderItem = factory(OrderItem::class)->states('supporter_tag')->create();
         $order = $orderItem->order;
 
         $fulfillers = FulfillmentFactory::createFulfillersFor($order);
@@ -28,7 +28,7 @@ class FulfillmentFactoryTest extends TestCase
 
     public function testCustomClassUsernameChange()
     {
-        $orderItem = factory(OrderItem::class, 'username_change')->create();
+        $orderItem = factory(OrderItem::class)->states('username_change')->create();
         $order = $orderItem->order;
 
         $fulfillers = FulfillmentFactory::createFulfillersFor($order);

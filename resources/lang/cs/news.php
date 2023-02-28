@@ -13,8 +13,8 @@ return [
         ],
 
         'title' => [
-            '_' => 'Novinky » :info',
-            'info' => 'Hlávní stránka',
+            '_' => 'novinky',
+            'info' => 'hlavní stránka',
         ],
     ],
 
@@ -27,13 +27,13 @@ return [
         ],
 
         'title' => [
-            '_' => 'Novinky » :info',
-            'info' => 'Článek',
+            '_' => 'novinky',
+            'info' => 'příspěvek',
         ],
     ],
 
     'sidebar' => [
-        'archive' => '',
+        'archive' => 'Archiv novinek',
     ],
 
     'store' => [

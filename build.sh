@@ -3,6 +3,9 @@
 set -u
 set -e
 
+export COMPOSER_ALLOW_SUPERUSER=1
+export COMPOSER_NO_INTERACTION=1
+
 # The user when provisioning is different than the user running actual php workers (in production).
 if [ -z "${OSU_SKIP_CACHE_PERMISSION_OVERRIDE:-}" ]; then
     # Don't fail if permissions don't get set on all files.
@@ -13,9 +16,9 @@ if [ -z "${OSU_USE_SYSTEM_COMPOSER:-}" ]; then
   COMPOSER="php composer.phar"
 
   if [ -f composer.phar ]; then
-    php composer.phar self-update --1
+    php composer.phar self-update --2
   else
-    curl -sL https://getcomposer.org/composer-1.phar > composer.phar
+    curl -sL "https://getcomposer.org/download/latest-2.x/composer.phar" > composer.phar
   fi
 else
   COMPOSER="composer"
@@ -35,6 +38,10 @@ fi
 
 php artisan view:clear
 
+if [ -n "${OSU_DB_CREATE:-}" ]; then
+  php artisan db:create
+fi
+
 # e.g. OSU_SKIP_DB_MIGRATION=1 ./build.sh to bypass running migrations
 if [ -z "${OSU_SKIP_DB_MIGRATION:-}" ]; then
   php artisan migrate --force
@@ -42,7 +49,9 @@ else
   echo "OSU_SKIP_DB_MIGRATION set, skipping DB migration."
 fi
 
-php artisan passport:keys
+if [ -z "${PASSPORT_PUBLIC_KEY:-}" ]; then
+  php artisan passport:keys
+fi
 
 # e.g. OSU_SKIP_ASSET_BUILD=1 ./build.sh to bypass building javascript assets
 if [ -z "${OSU_SKIP_ASSET_BUILD:-}" ]; then
@@ -52,8 +61,14 @@ if [ -z "${OSU_SKIP_ASSET_BUILD:-}" ]; then
   fi
 
   command -v yarn || npm install -g yarn
-  yarn
+  if [ -z "${OSU_INSTALL_DEV:-}" ]; then
+    yarn --prod --ignore-optional --frozen-lockfile
+  else
+    yarn
+  fi
   yarn run production
 else
   echo "OSU_SKIP_ASSET_BUILD set, skipping javascript asset build."
 fi
+
+php artisan ip2asn:update

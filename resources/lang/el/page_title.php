@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => '',
     ],
-    'admin_forum' => [
-        '_' => '',
-    ],
-    'admin_store' => [
-        '_' => '',
-    ],
     'error' => [
         'error' => [
             '400' => '',
@@ -29,13 +23,12 @@ return [
     ],
     'forum' => [
         '_' => '',
-        'topic_watches_controller' => [
+        'topic_logs_controller' => [
             'index' => '',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => '',
             'verify_link' => '',
         ],
         'artists_controller' => [
@@ -56,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => '',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => '',
-        ],
         'beatmapsets_controller' => [
             'discussion' => '',
             'index' => '',
@@ -75,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => '',
-        ],
-        'follows_controller' => [
-            'index' => '',
-        ],
-        'friends_controller' => [
-            'index' => '',
         ],
         'groups_controller' => [
             'show' => '',
@@ -111,12 +95,12 @@ return [
             '_' => '',
         ],
         'ranking_controller' => [
-            '_' => '',
+            '_' => 'κατατάξεις',
         ],
         'scores_controller' => [
             '_' => '',
         ],
-        'store_controller' => [
+        'seasons_controller' => [
             '_' => '',
         ],
         'tournaments_controller' => [
@@ -124,22 +108,26 @@ return [
         ],
         'users_controller' => [
             '_' => '',
+            'create' => 'δημιούργησε λογαριασμό',
             'disabled' => '',
         ],
         'wiki_controller' => [
-            '_' => '',
+            '_' => 'wiki',
         ],
     ],
-    'multiplayer' => [
-        'rooms_controller' => [
+    'passport' => [
+        'authorization_controller' => [
             '_' => '',
         ],
     ],
     'store' => [
-        '_' => '',
+        '_' => 'κατάστημα',
     ],
     'users' => [
         'modding_history_controller' => [
+            '_' => '',
+        ],
+        'multiplayer_controller' => [
             '_' => '',
         ],
     ],

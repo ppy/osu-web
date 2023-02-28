@@ -13,6 +13,8 @@ return [
 
     'error' => [
         'contact_support' => 'Kontakt venligst support for at genoprette denne konto.',
+        'expired' => 'Bekræftelseskode er udløbet.',
+        'invalid' => 'Uventet fejl i verifikationskode.',
         'is_privileged' => 'Kontakt peppy lulz.',
         'missing_key' => 'Krævet.',
         'too_many_tries' => 'For mange mislykkede forsøg.',

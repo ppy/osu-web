@@ -13,15 +13,15 @@ return [
     ],
 
     'scopes' => [
-        'bot' => '',
+        'bot' => 'Fungere som en chattbot.',
         'identify' => 'Identifiser deg selv og les din offentlige profil.',
 
         'chat' => [
-            'write' => '',
+            'write' => 'Send meldinger på dine vegne.',
         ],
 
         'forum' => [
-            'write' => '',
+            'write' => 'Opprett og rediger forumemner og innlegg på dine vegne.',
         ],
 
         'friends' => [

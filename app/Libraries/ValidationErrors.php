@@ -11,10 +11,8 @@ class ValidationErrors
 {
     private $errors = [];
 
-    public function __construct($prefix, $keyBase = 'model_validation.')
+    public function __construct(private string $prefix, private string $keyBase = 'model_validation.')
     {
-        $this->prefix = $prefix;
-        $this->keyBase = $keyBase;
     }
 
     public function add($column, $rawMessage, $params = null): self
@@ -29,9 +27,9 @@ class ValidationErrors
         $rawMessage = $this->keyBase.$rawMessage;
 
         $attributeKey = $this->keyBase.$this->prefix.'.attributes.'.$column;
-        $params['attribute'] = Lang::has($attributeKey) ? trans($attributeKey) : $column;
+        $params['attribute'] = Lang::has($attributeKey) ? osu_trans($attributeKey) : $column;
 
-        $this->errors[$column][] = trans($rawMessage, $params);
+        $this->errors[$column][] = osu_trans($rawMessage, $params);
 
         return $this;
     }

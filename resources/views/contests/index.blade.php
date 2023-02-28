@@ -7,7 +7,7 @@
 
 @section('content')
     @include('layout._page_header_v4', ['params' => [
-        'links' => [['url' => route('contests.index'), 'title' => trans('contest.index.nav_title')]],
+        'links' => [['url' => route('contests.index'), 'title' => osu_trans('contest.index.nav_title')]],
         'linksBreadcrumb' => true,
         'theme' => 'contests',
     ]])
@@ -16,7 +16,7 @@
         <div class="contest-list">
             <div class="contest-list-legend">
                 @foreach (['entry', 'voting', 'results'] as $state)
-                    <div class="contest-list-legend__item contest-list-legend__item--{{$state}}">{{trans("contest.states.$state")}}</div>
+                    <div class="contest-list-legend__item contest-list-legend__item--{{$state}}">{{osu_trans("contest.states.$state")}}</div>
                 @endforeach
             </div>
             @foreach ($contests as $contest)

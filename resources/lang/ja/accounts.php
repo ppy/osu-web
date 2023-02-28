@@ -15,7 +15,6 @@ return [
         ],
 
         'email' => [
-            'current' => '現在のメールアドレス',
             'new' => '新しいメールアドレス',
             'new_confirmation' => '新しいメールアドレス（再入力）',
             'title' => 'メールアドレス',
@@ -56,6 +55,7 @@ return [
 
         'options' => [
             '_' => '配送設定',
+            'beatmap_owner_change' => 'ゲスト難易度',
             'beatmapset:modding' => 'ビートマップmodding',
             'channel_message' => 'プライベートチャットメッセージ',
             'comment_new' => '新しいコメント',
@@ -79,7 +79,7 @@ return [
         'title' => 'オプション',
 
         'beatmapset_download' => [
-            '_' => 'デフォルトのビートマップダウンロートタイプ',
+            '_' => 'デフォルトのビートマップダウンロードタイプ',
             'all' => '可能であれば動画付き',
             'direct' => 'osu!directで開く',
             'no_video' => '動画なし',

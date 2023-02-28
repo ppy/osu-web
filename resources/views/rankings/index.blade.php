@@ -3,16 +3,20 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
+    $mode ??= default_mode();
     $selectorParams = [
         'type' => $type,
         'mode' => $mode,
         'route' => function($routeMode, $routeType) use ($country, $spotlight) {
+            if ($routeType === 'country') {
+                return route('rankings', ['mode' => $routeMode, 'type' => $routeType]);
+            }
+
             if ($routeType === 'multiplayer') {
                 return route('multiplayer.rooms.show', ['room' => 'latest']);
             }
-
-            if ($routeType === 'country') {
-                return route('rankings', ['mode' => $routeMode, 'type' => $routeType]);
+            if ($routeType === 'seasons') {
+                return route('seasons.show', ['season' => 'latest']);
             }
 
             return trim(route('rankings', [
@@ -25,10 +29,10 @@
     ];
 
     $links = [];
-    foreach (['performance', 'charts', 'score', 'country', 'multiplayer'] as $tab) {
+    foreach (['performance', 'charts', 'score', 'country', 'multiplayer', 'seasons'] as $tab) {
         $links[] = [
             'active' => $tab === $type,
-            'title' => trans("rankings.type.{$tab}"),
+            'title' => osu_trans("rankings.type.{$tab}"),
             'url' => $selectorParams['route']($mode, $tab),
         ];
     }
@@ -43,20 +47,23 @@
 
     $hasMode = $hasMode ?? true;
     $hasFilter = $hasFilter ?? true;
+    $hasScores = $hasScores ?? true;
 @endphp
 
-@extends('master', ['titlePrepend' => $titlePrepend ?? trans("rankings.type.{$type}")])
+@extends('master', ['titlePrepend' => $titlePrepend ?? osu_trans("rankings.type.{$type}")])
 
 @section('content')
     @component('layout._page_header_v4', ['params' => [
         'links' => $links,
         'theme' => 'rankings',
     ]])
-        @if ($hasMode)
-            @slot('titleAppend')
+        @slot('linksAppend')
+            @if($hasMode)
                 @include('rankings._mode_selector', $selectorParams)
-            @endslot
-        @endif
+            @endif
+
+            @yield('additionalHeaderLinks')
+        @endslot
     @endcomponent
 
     @yield('ranking-header')
@@ -74,11 +81,11 @@
                     <div class="ranking-filter__item ranking-filter__item--full">
                         @if ($type === 'performance')
                             <div class="ranking-filter__item--title">
-                                {{ trans('rankings.countries.title') }}
+                                {{ osu_trans('rankings.countries.title') }}
                             </div>
-                            <div class="ranking-select-options">
-                                <div class="ranking-select-options__select">
-                                    <div class="ranking-select-options__option">{{ optional($country)->name ?? trans('rankings.countries.all') }}</div>
+                            <div class="select-options select-options--ranking">
+                                <div class="select-options__select">
+                                    <div class="select-options__option">{{ $country?->name ?? osu_trans('rankings.countries.all') }}</div>
                                 </div>
                             </div>
                         @endif
@@ -86,12 +93,12 @@
                     @if (auth()->check())
                         <div class="ranking-filter__item">
                             <div class="ranking-filter__item--title">
-                                {{ trans('rankings.filter.title') }}
+                                {{ osu_trans('rankings.filter.title') }}
                             </div>
                             <div class="sort">
                                 <div class="sort__items">
-                                    <button class="sort__item sort__item--button">{{ trans('sort.all') }}</button>
-                                    <button class="sort__item sort__item--button">{{ trans('sort.friends')}}</button>
+                                    <button class="sort__item sort__item--button">{{ osu_trans('sort.all') }}</button>
+                                    <button class="sort__item sort__item--button">{{ osu_trans('sort.friends')}}</button>
                                 </div>
                             </div>
                         </div>
@@ -99,13 +106,13 @@
                     @if (isset($variants))
                         <div class="ranking-filter__item">
                             <div class="ranking-filter__item--title">
-                                {{ trans('rankings.filter.variant.title') }}
+                                {{ osu_trans('rankings.filter.variant.title') }}
                             </div>
                             <div class="sort">
                                 <div class="sort__items">
                                     @foreach ($variants as $v)
                                         <button class="sort__item sort__item--button">
-                                            {{ trans("beatmaps.variant.{$mode}.{$v}") }}
+                                            {{ osu_trans("beatmaps.variant.{$mode}.{$v}") }}
                                         </button>
                                     @endforeach
                                 </div>
@@ -117,31 +124,31 @@
         </div>
     @endif
 
-    <div class="osu-page osu-page--generic">
-        @if ($hasPager)
-            @include('objects._pagination_v2', [
-                'object' => $scores
-                    ->appends(['country' => $country['acronym'] ?? null])
-                    ->fragment('scores')
-            ])
-        @endif
+    @if ($hasScores)
+        <div class="osu-page osu-page--generic" id="scores">
+            @if ($hasPager)
+                @include('objects._pagination_v2', [
+                    'object' => $scores
+                        ->appends(['country' => $country['acronym'] ?? null])
+                        ->fragment('scores')
+                ])
+            @endif
 
-        <div class="ranking-page">
-            <div class="ranking-page__jump-target" id="scores"></div>
-            @yield('scores')
+            <div class="ranking-page">
+                @yield('scores')
+            </div>
+
+            @yield('ranking-footer')
+
+            @if ($hasPager)
+                @include('objects._pagination_v2', [
+                    'object' => $scores
+                        ->appends(['country' => $country['acronym'] ?? null])
+                        ->fragment('scores')
+                ])
+            @endif
         </div>
-
-        @yield('ranking-footer')
-
-        @if ($hasPager)
-            @include('objects._pagination_v2', [
-                'object' => $scores
-                    ->appends(['country' => $country['acronym'] ?? null])
-                    ->fragment('scores')
-            ])
-        @endif
-    </div>
-
+    @endif
 @endsection
 
 @section("script")

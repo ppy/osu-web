@@ -10,7 +10,7 @@
     <div class="osu-page osu-page--generic">
         <div class="beatmapset-activities">
             @if (isset($user))
-                <h2>{{ trans('users.beatmapset_activities.title', ['user' => $user->username]) }}</h2>
+                <h2>{{ osu_trans('users.beatmapset_activities.title', ['user' => $user->username]) }}</h2>
             @endif
 
             <div>

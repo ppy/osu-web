@@ -16,7 +16,7 @@ class ScoreTransformer extends TransformerAbstract
     const BASE_PRELOAD = ['score.user.userProfileCustomization', 'score.user.country'];
     const BASE_INCLUDES = ['user.country', 'user.cover'];
 
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'position',
         'scores_around',
         'user',
@@ -66,24 +66,19 @@ class ScoreTransformer extends TransformerAbstract
 
         foreach ($typeOptions as $type => $sortName) {
             $cursorHelper = PlaylistItemUserHighScore::makeDbCursorHelper($sortName);
-            $highScores = PlaylistItemUserHighScore
+            [$highScores, $hasMore] = PlaylistItemUserHighScore
                 ::cursorSort($cursorHelper, $highScorePlaceholder)
                 ->with(static::BASE_PRELOAD)
                 ->where('playlist_item_id', $score->playlist_item_id)
                 ->where('user_id', '<>', $score->user_id)
-                ->limit($limit + 1)
-                ->get();
+                ->limit($limit)
+                ->getWithHasMore();
 
-            $hasMore = count($highScores) === $limit + 1;
-            if ($hasMore) {
-                $highScores->pop();
-            }
-
-            $ret[$type] = [
+            $nextCursor = $hasMore ? $cursorHelper->next($highScores) : null;
+            $ret[$type] = array_merge([
                 'scores' => json_collection($highScores->pluck('score'), new static(), static::BASE_INCLUDES),
                 'params' => ['limit' => $limit, 'sort' => $cursorHelper->getSortName()],
-                'cursor' => $hasMore ? $cursorHelper->next($highScores) : null,
-            ];
+            ], cursor_for_response($nextCursor));
         }
 
         return $this->primitive($ret);

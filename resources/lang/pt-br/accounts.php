@@ -15,7 +15,6 @@ return [
         ],
 
         'email' => [
-            'current' => 'email atual',
             'new' => 'novo email',
             'new_confirmation' => 'confirmar email',
             'title' => 'Email',
@@ -56,6 +55,7 @@ return [
 
         'options' => [
             '_' => 'opções de entrega',
+            'beatmap_owner_change' => 'dificuldade do convidado',
             'beatmapset:modding' => 'modding em beatmap',
             'channel_message' => 'mensagens privadas',
             'comment_new' => 'novos comentários',

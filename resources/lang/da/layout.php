@@ -19,11 +19,15 @@ return [
             'contest' => 'konkurrence',
             'contests' => 'konkurrencer',
             'root' => 'konsol',
-            'store_orders' => 'butik admin',
         ],
 
         'artists' => [
             'index' => 'katalog',
+        ],
+
+        'beatmapsets' => [
+            'show' => 'info',
+            'discussions' => 'diskussion',
         ],
 
         'changelog' => [
@@ -47,6 +51,8 @@ return [
 
         'users' => [
             'modding' => 'modding',
+            'playlists' => 'playlister',
+            'realtime' => 'multiplayer',
             'show' => 'info',
         ],
     ],
@@ -62,18 +68,10 @@ return [
     'menu' => [
         'beatmaps' => [
             '_' => 'beatmaps',
-            'artists' => 'udvalgte kunstnere',
-            'index' => 'liste',
-            'packs' => 'pakker',
         ],
         'community' => [
             '_' => 'fællesskab',
-            'chat' => 'chat',
-            'contests' => 'konkurrencer',
             'dev' => 'udvikling',
-            'forum-forums-index' => 'forummer',
-            'getLive' => 'live',
-            'tournaments' => 'turneringer',
         ],
         'help' => [
             '_' => 'hjælp',
@@ -81,30 +79,17 @@ return [
             'getFaq' => 'faq',
             'getRules' => 'regler',
             'getSupport' => 'nej, jeg behøver virkelig noget hjælp!',
-            'getWiki' => 'wiki',
         ],
         'home' => [
             '_' => 'hjem',
-            'changelog-index' => 'ændringsoversigt',
-            'getDownload' => 'download',
-            'news-index' => 'nyheder',
-            'search' => 'søg',
             'team' => 'team',
         ],
         'rankings' => [
             '_' => 'rangering',
-            'charts' => 'spotlights',
-            'country' => 'land',
-            'index' => 'præstation',
             'kudosu' => 'kudosu',
-            'multiplayer' => 'multiplayer',
-            'score' => 'score',
         ],
         'store' => [
             '_' => 'butik',
-            'cart-show' => 'indkøbskurv',
-            'getListing' => 'katalog',
-            'orders-index' => 'ordrehistorik',
         ],
     ],
 
@@ -160,7 +145,7 @@ return [
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => 'Grænsen er overskredet',
             'description' => '',
         ],
         '500' => [

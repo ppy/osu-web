@@ -27,6 +27,16 @@ return [
             'remove' => 'Rimuovi voto',
             'used_up' => 'Hai usato tutti i tuoi voti',
         ],
+
+        'progress' => [
+            '_' => ':used / :max voti utilizzati',
+        ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => 'È necessario giocare tutte le beatmap nelle playlist specificate prima di votare',
+            ],
+        ],
     ],
     'entry' => [
         '_' => 'iscrizione',
@@ -40,6 +50,7 @@ return [
             'beatmap' => 'Solo file .osu sono accettati per questo contest.',
             'music' => 'Solo file .mp3 sono accettati per questo contest.',
         ],
+        'wrong_dimensions' => 'Le iscrizioni per questo concorso devono essere :widthx:height',
         'too_big' => 'Le iscrizioni per questo contest non possono essere più grandi di :limit.',
     ],
     'beatmaps' => [

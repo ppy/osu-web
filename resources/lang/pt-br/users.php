@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Você bloqueou este usuário.',
+        'comment_text' => 'Este comentário está oculto.',
         'blocked_count' => 'usuários bloqueados: (:count)',
         'hide_profile' => 'Ocultar perfil',
+        'hide_comment' => 'ocultar',
         'not_blocked' => 'Este usuário não está bloqueado.',
         'show_profile' => 'Exibir perfil',
+        'show_comment' => 'exibir',
         'too_many' => 'Limite de bloqueios atingido.',
         'button' => [
             'block' => 'Bloquear',
@@ -47,6 +50,22 @@ return [
     'card' => [
         'loading' => 'Carregando...',
         'send_message' => 'enviar mensagem',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => 'senha',
+            'password_confirmation' => 'confirmar senha',
+            'submit' => 'criar conta',
+            'user_email' => 'email',
+            'user_email_confirmation' => 'confirmar email',
+            'username' => 'nome de usuário',
+
+            'tos_notice' => [
+                '_' => 'ao criar a conta você concorda com :link',
+                'link' => 'termos de serviço',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -97,7 +116,7 @@ return [
         'username' => 'Nome de Usuário',
 
         'beta' => [
-            'main' => 'Acesso Beta está restrito apenas para usuários privilegiados.',
+            'main' => 'Acesso beta está restrito apenas para usuários privilegiados.',
             'small' => '(osu!supporters terão acesso em breve)',
         ],
     ],
@@ -128,6 +147,7 @@ return [
 
         'options' => [
             'cheating' => 'Jogando sujo / Trapaceando',
+            'multiple_accounts' => 'Usando diversas contas',
             'insults' => 'Me insultando / outros',
             'spam' => 'Spam',
             'unwanted_content' => 'Enviando links com conteúdo inapropriado',
@@ -137,7 +157,8 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Sua conta foi restrita!',
-        'message' => 'Enquanto restrito, você será impossibilitado de interagir com outros jogadores e suas pontuações serão visíveis apenas para você. Isso é geralmente causado por um processo automático e provavelmente será resolvido em até 24 horas. Caso tenha interesse em recorrer da sua restrição, por favor, <a href="mailto:accounts@ppy.sh">entre em contato com o suporte</a>.',
+        'message' => 'Enquanto restrito, você será impossibilitado de interagir com outros jogadores e suas pontuações serão visíveis apenas para você. Isso é geralmente causado por um processo automático e provavelmente será resolvido em até 24 horas. Caso tenha interesse em recorrer contra sua restrição, por favor, <a href="mailto:accounts@ppy.sh">entre em contato com o suporte</a>.',
+        'message_link' => 'Veja esta página para saber mais.',
     ],
     'show' => [
         'age' => ':age anos',
@@ -157,6 +178,10 @@ return [
         'comments_count' => [
             '_' => 'Publicado :link',
             'count' => ':count_delimited comentário|:count_delimited comentários',
+        ],
+        'cover' => [
+            'to_0' => 'Ocultar capa',
+            'to_1' => 'Mostrar capa',
         ],
         'edit' => [
             'cover' => [
@@ -203,14 +228,20 @@ return [
                 'graveyard' => [
                     'title' => 'Beatmaps no Cemitério',
                 ],
+                'guest' => [
+                    'title' => 'Beatmaps de Participação de Visitantes',
+                ],
                 'loved' => [
                     'title' => 'Beatmaps Loved',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Beatmaps Ranqueados & Aprovados',
+                'nominated' => [
+                    'title' => 'Beatmaps Ranqueados Nominados',
                 ],
-                'unranked' => [
+                'pending' => [
                     'title' => 'Beatmaps Pendentes',
+                ],
+                'ranked' => [
+                    'title' => 'Beatmaps Ranqueados & Aprovados',
                 ],
             ],
             'discussions' => [
@@ -300,6 +331,9 @@ return [
                 'recent' => 'Recente',
                 'title' => 'Medalhas',
             ],
+            'playlists' => [
+                'title' => 'Jogos da Seleção de Música',
+            ],
             'posts' => [
                 'title' => 'Publicações',
                 'title_longer' => 'Publicações Recentes',
@@ -307,6 +341,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => 'Recente',
+            ],
+            'realtime' => [
+                'title' => 'Jogos em Multiplayer',
             ],
             'top_ranks' => [
                 'download_replay' => 'Baixar Replay',
@@ -320,6 +357,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Primeiros Lugares',
+                ],
+                'pin' => [
+                    'to_0' => 'Desafixar',
+                    'to_0_done' => 'Pontuação desafixada',
+                    'to_1' => 'Fixar',
+                    'to_1_done' => 'Pontuação fixada',
+                ],
+                'pinned' => [
+                    'title' => 'Pontuações fixadas',
                 ],
             ],
             'votes' => [
@@ -346,6 +392,7 @@ return [
                     'actions' => [
                         'restriction' => 'Banimento',
                         'silence' => 'Silenciamento',
+                        'tournament_ban' => 'Ban do torneio',
                         'note' => 'Nota',
                     ],
                 ],
@@ -387,6 +434,7 @@ return [
             'country_simple' => 'Ranking Nacional',
             'global' => 'Ranking global de :mode',
             'global_simple' => 'Ranking Global',
+            'highest' => 'Maior classificação: :rank em :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisão',
@@ -402,10 +450,10 @@ return [
             'total_hits' => 'Acertos Totais',
             'total_score' => 'Pontuação Total',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Beatmaps Ranqueados e Aprovados',
-            'loved_beatmapset_count' => 'Beatmaps Loved',
-            'unranked_beatmapset_count' => 'Beatmaps Pendentes',
             'graveyard_beatmapset_count' => 'Beatmaps no Cemitério',
+            'loved_beatmapset_count' => 'Beatmaps Loved',
+            'pending_beatmapset_count' => 'Beatmaps Pendentes',
+            'ranked_beatmapset_count' => 'Beatmaps Ranqueados e Aprovados',
         ],
     ],
 
@@ -420,6 +468,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => 'por favor registre-se através do cliente do jogo!',
+        'from_web' => 'por favor registre-se através do site',
         'saved' => 'Usuário criado',
     ],
     'verify' => [

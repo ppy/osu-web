@@ -18,10 +18,11 @@ return [
         'deny_kudosu' => 'kudosu megtagadása',
         'edit' => 'szerkesztés',
         'edited' => 'Utoljára frissítve :editor által, :update_time-kor.',
+        'guest' => 'Vendég nehézség :user által',
         'kudosu_denied' => 'Kudosu szerzéstől megtagadva.',
         'message_placeholder_deleted_beatmap' => 'Ez a nehézség törölve lett, ezért a beszélgetés nem lehetséges.',
         'message_placeholder_locked' => 'A beatmap megbeszélése meg lett tiltva.',
-        'message_placeholder_silenced' => "Nem posztolhatsz beszélgetést, amíg némítva vagy.",
+        'message_placeholder_silenced' => "Nem hozhatsz létre beszélgetést, amíg némítva vagy.",
         'message_type_select' => 'Komment-típus választása',
         'reply_notice' => 'Nyomj entert a válaszoláshoz.',
         'reply_placeholder' => 'Ide írd a válaszod',
@@ -54,13 +55,13 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'Ez a poszt be fog kerülni az általános beatmap szett megbeszélésébe. A beatmap modolásához időbélyeggel kezdd az üzenetet (pl.: 00:12:345).',
+            'in_general' => 'Ez a hozzászólás be fog kerülni az általános beatmap megbeszélésébe. A beatmap modolásához időbélyeggel kezdd az üzenetet (pl.: 00:12:345).',
             'in_timeline' => 'Több időbélyeg modolásához több poszt szükséges (egy poszt egy időbélyeghez).',
         ],
 
         'message_placeholder' => [
             'general' => 'Írj ide az Általános (:version) részlegbe való posztoláshoz',
-            'generalAll' => 'Ide írj az Általánosba posztoláshoz (Összes nehézség)',
+            'generalAll' => 'Ide írj az Általánosba való hozzászóláshoz (Összes nehézség)',
             'review' => 'Ide írj, hogy hozzászólj',
             'timeline' => 'Írj ide az Idővonalra (:version) való posztoláshoz',
         ],
@@ -72,6 +73,7 @@ return [
             'nomination_reset' => 'Nominálás Visszaállítása',
             'praise' => 'Dicséret',
             'problem' => 'Probléma',
+            'problem_warning' => 'Probléma jelentése',
             'review' => 'Összegzés',
             'suggestion' => 'Javaslat',
         ],
@@ -103,8 +105,8 @@ return [
                 'unlink' => 'Leválasztás',
                 'unsaved' => 'Mentetlen',
                 'timestamp' => [
-                    'all-diff' => 'Az összes nehézséget tartalmazó posztra posztolni, nem lehet időjelölni.',
-                    'diff' => 'Ha a :type-al fog kezdődni, akkor az idővonal alatt fog megjelenni.',
+                    'all-diff' => 'Az "All difficulties"-ban lévő hozzászólásokat nem lehet időbélyegezni.',
+                    'diff' => 'Ha :type típussal fog kezdődni, akkor az idővonal alatt fog megjelenni.',
                 ],
             ],
             'insert-block' => [
@@ -138,7 +140,7 @@ return [
         'status-messages' => [
             'approved' => 'Beatmap jóváhagyásának ideje: :date!',
             'graveyard' => "A beatmap :date óta nem kapott frissítést, valószínűleg el lett hanyagolva a készítő által...",
-            'loved' => 'Ez a beatmap :date-kor lett loved!',
+            'loved' => 'Ez a beatmap :date-kor hozzá lett adva a szeretettek közé!',
             'ranked' => 'Ez a beatmap :date-kor lett rangsorolt!',
             'wip' => 'Megjegyzés: Ez a beatmap még készítés alatt áll.',
         ],
@@ -182,6 +184,7 @@ return [
         'disqualify' => 'Diszkvalifikálás',
         'incorrect_state' => 'Hiba a művelet végrehajtása közben, próbáld meg újratölteni az oldalt.',
         'love' => 'Love',
+        'love_choose' => 'Nehézség választása a szeretettnek',
         'love_confirm' => 'Love-olod ezt a beatmap-et?',
         'nominate' => 'Nominálás',
         'nominate_confirm' => 'Nominálod ezt a beatmapot?',
@@ -195,7 +198,7 @@ return [
         'unresolved_issues' => 'Még mindig vannak megoldatlan problémák amelyeket először kezelni kell.',
 
         'rank_estimate' => [
-            '_' => 'Ez a pálya ranglistázott lesz :date napján, ha további problémák nem merülnek fel. Jelenleg a :position. helyen áll a :queue.',
+            '_' => 'Ez a pálya rangsorolt lesz :date napján, ha további problémák nem merülnek fel. Jelenleg a :position. helyen áll a :queue.',
             'queue' => 'ranglistázási sorban',
             'soon' => 'a közeljövő egy',
         ],
@@ -206,8 +209,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => 'Biztos vagy ebben? Egy új probléma posztolása alaphelyzetbe állítja a nominálási folyamatot.',
             'disqualify' => 'Biztos vagy benne? Ezzel kizárod a beatmap-et a kvalifikálásból és alaphelyzetbe áll a nominálás.',
+            'nomination_reset' => 'Biztos vagy ebben? Egy új probléma posztolása alaphelyzetbe állítja a nominálási folyamatot.',
+            'problem_warning' => 'Biztos, hogy jelenteni fogja a hibát ezen a beatmap-en? Ez figyelmezteti a Beatmap nominálókat.',
         ],
     ],
 
@@ -220,7 +224,7 @@ return [
             'not-found' => 'nincs találat',
             'not-found-quote' => '... nope, semmit sem találtam.',
             'filters' => [
-                'extra' => 'extra',
+                'extra' => 'Extra',
                 'general' => 'Általános',
                 'genre' => 'Műfaj',
                 'language' => 'Nyelv',
@@ -250,8 +254,10 @@ return [
     ],
     'general' => [
         'converts' => 'Konvertált beatmap-ek tartalmazása',
+        'featured_artists' => 'Kiemelt előadók',
         'follows' => 'Követett készítők',
         'recommended' => 'Ajánlott nehézség',
+        'spotlights' => 'Reflektorfényezett beatmapek',
     ],
     'mode' => [
         'all' => 'Összes',
@@ -266,10 +272,11 @@ return [
         'approved' => 'Jóváhagyott',
         'favourites' => 'Kedvencek',
         'graveyard' => 'Temető',
-        'leaderboard' => 'Van Ranglistája',
-        'loved' => 'Loved',
+        'leaderboard' => 'Ranglistás',
+        'loved' => 'Szeretett',
         'mine' => 'Saját mapjaim',
         'pending' => 'Függőben lévő & WIP',
+        'wip' => 'Készítés alatt',
         'qualified' => 'Kvalifikált',
         'ranked' => 'Rangsorolt',
     ],
@@ -288,32 +295,6 @@ return [
         'classical' => 'Klasszikus',
         'folk' => 'Népi',
         'jazz' => 'Jazz',
-    ],
-    'mods' => [
-        '4K' => '',
-        '5K' => '',
-        '6K' => '',
-        '7K' => '',
-        '8K' => '',
-        '9K' => '',
-        'AP' => '',
-        'DT' => '',
-        'EZ' => '',
-        'FI' => '',
-        'FL' => '',
-        'HD' => '',
-        'HR' => '',
-        'HT' => '',
-        'MR' => '',
-        'NC' => '',
-        'NF' => '',
-        'NM' => '',
-        'PF' => '',
-        'Relax' => '',
-        'SD' => '',
-        'SO' => '',
-        'TD' => '',
-        'V2' => 'Score V2',
     ],
     'language' => [
         'any' => 'Összes',
@@ -335,7 +316,7 @@ return [
 
     'nsfw' => [
         'exclude' => 'Elrejtés',
-        'include' => 'Mutasson',
+        'include' => 'Mutatás',
     ],
 
     'played' => [

@@ -6,7 +6,7 @@
 namespace App\Models\Forum;
 
 use App\Exceptions\ModelNotSavedException;
-use App\Jobs\EsIndexDocument;
+use App\Jobs\EsDocument;
 use App\Jobs\MarkNotificationsRead;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\BBCodeFromDB;
@@ -14,11 +14,9 @@ use App\Libraries\Elasticsearch\Indexable;
 use App\Libraries\Transactions\AfterCommit;
 use App\Models\Beatmapset;
 use App\Models\DeletedUser;
-use App\Models\Elasticsearch;
-use App\Models\Reportable;
+use App\Models\Traits;
 use App\Models\User;
 use App\Traits\Validatable;
-use App\Traits\WithDbCursorHelper;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -59,9 +57,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $topic_id
  * @property User $user
  */
-class Post extends Model implements AfterCommit, Indexable
+class Post extends Model implements AfterCommit, Indexable, Traits\ReportableInterface
 {
-    use Elasticsearch\PostTrait, Reportable, Validatable, WithDbCursorHelper;
+    use Traits\Es\ForumPostSearch, Traits\Reportable, Traits\WithDbCursorHelper, Validatable;
     use SoftDeletes {
         restore as private origRestore;
     }
@@ -419,7 +417,7 @@ class Post extends Model implements AfterCommit, Indexable
     public function afterCommit()
     {
         if ($this->exists) {
-            dispatch(new EsIndexDocument($this));
+            dispatch(new EsDocument($this));
         }
     }
 

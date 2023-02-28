@@ -7,7 +7,7 @@
     class="js-click-menu btn-osu-big btn-osu-big--forum-secondary"
     data-click-menu-target="forum-cover-edit"
 >
-    {{ trans('forum.covers.edit') }}
+    {{ osu_trans('forum.covers.edit') }}
 </button>
 
 <div
@@ -33,7 +33,7 @@
             <span class="btn-osu-big__loading-spinner">
                 {!! spinner(['center-inline']) !!}
             </span>
-            {{ trans('forum.covers.create.button') }}
+            {{ osu_trans('forum.covers.create.button') }}
             <input class="fileupload" type="file" />
         </label>
 
@@ -44,23 +44,23 @@
                 btn-osu-big btn-osu-big--forum-cover
                 btn-osu-big--forum-cover-edit
             "
-            data-destroy-confirm="{{ trans('forum.covers.destroy.confirm') }}"
+            data-destroy-confirm="{{ osu_trans('forum.covers.destroy.confirm') }}"
         >
             <span class="btn-osu-big__loading-spinner">
                 {!! spinner(['center-inline']) !!}
             </span>
 
-            {{ trans('forum.covers.destroy._') }}
+            {{ osu_trans('forum.covers.destroy._') }}
         </button>
     </div>
 
     <p class="forum-cover-edit__info">
-        {{ trans('forum.covers.create.info', ['dimensions' => implode('x', $cover['dimensions'])]) }}
+        {{ osu_trans('forum.covers.create.info', ['dimensions' => implode('x', $cover['dimensions'])]) }}
     </p>
 
     <div
         class="forum-cover-edit__overlay js-forum-cover--overlay"
         data-state="hidden">
-            {{ trans('common.dropzone.target') }}
+            {{ osu_trans('common.dropzone.target') }}
     </div>
 </div>

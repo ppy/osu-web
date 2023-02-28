@@ -37,7 +37,7 @@
                 @if (isset($topic) && $topic->topic_poster === $post->poster_id)
                     <div class="forum-post__header-content-item">
                         <span class="forum-user-badge">
-                            {{ trans('forum.post.info.topic_starter') }}
+                            {{ osu_trans('forum.post.info.topic_starter') }}
                         </span>
                     </div>
                 @endif
@@ -86,7 +86,7 @@
         @if($post->post_edit_count > 0)
             <div class="forum-post__content forum-post__content--footer">
                 {!!
-                    trans_choice('forum.post.edited', $post->post_edit_count, [
+                    osu_trans_choice('forum.post.edited', $post->post_edit_count, [
                         'user' => link_to_user($post->lastEditorNormalized(), null, '', []),
                         'when' => timeago($post->post_edit_time),
                     ])
@@ -102,13 +102,9 @@
 
         @if (count($buttons) > 0)
             <div class="forum-post__actions">
-                <div class="forum-post-actions">
-                    @foreach ($buttons as $button)
-                        <div class="forum-post-actions__action">
-                            @include("forum.posts._button_{$button}", ['post' => $post, 'type' => 'circle'])
-                        </div>
-                    @endforeach
-                </div>
+                @foreach ($buttons as $button)
+                    @include("forum.posts._button_{$button}", ['post' => $post, 'type' => 'circle'])
+                @endforeach
             </div>
         @endif
     </div>

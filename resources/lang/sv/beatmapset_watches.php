@@ -5,18 +5,18 @@
 
 return [
     'index' => [
-        'description' => 'Detta är beatmap diskussioner du följer. Du kommer bli notifierad när det finns nya inlägg eller uppdateringar.',
+        'description' => 'Detta är beatmap-diskussionerna du följer. Du kommer bli notifierad när det finns nya inlägg eller uppdateringar.',
         'title_compact' => 'modding bevakningslista',
 
         'counts' => [
-            'total' => '',
+            'total' => 'Beatmaps bevakade',
             'unread' => 'Beatmaps med ny aktivitet',
         ],
 
         'table' => [
-            'empty' => 'Inga beatmap diskussioner bevakade.',
+            'empty' => 'Inga beatmapdiskussioner bevakade.',
             'last_update' => 'Senaste uppdatering',
-            'open_issues' => 'Öppna Problem',
+            'open_issues' => 'Öppna problem',
             'state' => 'Tillstånd',
             'title' => 'Titel',
         ],

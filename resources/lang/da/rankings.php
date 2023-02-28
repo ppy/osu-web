@@ -5,24 +5,32 @@
 
 return [
     'countries' => [
-        'all' => '',
-        'title' => '',
+        'all' => 'Alle',
+        'title' => 'Land',
     ],
 
     'filter' => [
-        'title' => '',
+        'title' => 'Vis',
 
         'variant' => [
-            'title' => '',
+            'title' => 'Variant',
         ],
     ],
 
     'type' => [
         'charts' => 'Baner',
         'country' => 'Land',
-        'multiplayer' => '',
+        'multiplayer' => 'multiplayer',
         'performance' => 'Præstation',
         'score' => 'Score',
+        'seasons' => '',
+    ],
+
+    'seasons' => [
+        'empty' => '',
+        'ongoing' => '',
+        'room_count' => '',
+        'url' => '',
     ],
 
     'spotlight' => [

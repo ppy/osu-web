@@ -49,7 +49,7 @@ class UserNotificationDigest implements ShouldQueue
         }
 
         // TODO: catch and log errors?
-        Mail::to($this->user)->sendNow(new UserNotificationDigestMail($notifications, $this->user));
+        Mail::to($this->user)->send(new UserNotificationDigestMail($notifications, $this->user));
     }
 
     private function filterNotifications(Collection $notifications)

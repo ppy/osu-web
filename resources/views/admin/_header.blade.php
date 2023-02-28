@@ -5,13 +5,13 @@
 @php
     $links = [[
         'url' => route('admin.root'),
-        'title' => trans('layout.header.admin.root'),
+        'title' => osu_trans('layout.header.admin.root'),
     ]];
 
     if (isset($title)) {
         $links[] = compact('title');
     } else {
-        $title = trans('layout.header.admin.root');
+        $title = osu_trans('layout.header.admin.root');
     }
 @endphp
 @include('layout._page_header_v4', ['params' => [

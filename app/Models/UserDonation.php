@@ -22,15 +22,16 @@ use Log;
  */
 class UserDonation extends Model
 {
-    protected $table = 'osu_user_donations';
-
-    protected $dates = ['timestamp'];
-
+    public $incrementing = false;
     public $timestamps = false;
 
     protected $casts = [
         'cancel' => 'boolean',
+        'timestamp' => 'datetime',
     ];
+    protected $primaryKey = ':composite';
+    protected $primaryKeys = ['user_id', 'transaction_id'];
+    protected $table = 'osu_user_donations';
 
     public static function totalLength($userId)
     {

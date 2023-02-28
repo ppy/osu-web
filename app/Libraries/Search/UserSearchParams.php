@@ -14,7 +14,6 @@ class UserSearchParams extends SearchParams
 
     // all public because lazy.
 
-    public $queryString = null;
     public $recentOnly = false;
 
     public $sortField = 'relevance';
@@ -31,17 +30,6 @@ class UserSearchParams extends SearchParams
             default:
                 return 'desc';
         }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCacheKey(): string
-    {
-        $vars = get_object_vars($this);
-        ksort($vars);
-
-        return 'user-search:'.json_encode($vars);
     }
 
     /**

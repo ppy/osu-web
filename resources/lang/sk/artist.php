@@ -22,6 +22,7 @@ return [
     ],
 
     'links' => [
+        'beatmaps' => 'osu! Beatmapy',
         'osu' => 'osu! profil',
         'site' => 'Oficiálna Webstránka',
     ],
@@ -29,7 +30,8 @@ return [
     'songs' => [
         '_' => 'Skladby',
         'count' => ':count skladba|:count skladby',
-        'exclusive' => 'osu! exkluzívne',
+        'original' => 'osu! originál',
+        'original_badge' => 'ORIGINÁL',
     ],
 
     'tracklist' => [
@@ -37,5 +39,24 @@ return [
         'length' => 'dĺžka',
         'bpm' => 'bpm',
         'genre' => 'žáner',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => 'vyhľadávanie skladieb',
+
+            'form' => [
+                'advanced' => 'Rozšírené Vyhľadávanie',
+                'album' => 'Album',
+                'artist' => 'Umelec',
+                'bpm_gte' => 'Minimálne BPM',
+                'bpm_lte' => 'MaximálneBPM',
+                'empty' => 'Nenašli sa žiadne skladby zodpovedajúce kritériám vyhľadávania.',
+                'genre' => 'Žáner',
+                'genre_all' => 'Všetko',
+                'length_gte' => 'Minimálna dĺžka',
+                'length_lte' => 'Maximálna dĺžka',
+            ],
+        ],
     ],
 ];

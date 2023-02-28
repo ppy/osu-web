@@ -9,14 +9,14 @@
     if ($isIndex) {
         $links = [
             [
-                'title' => trans('forum.forums.index.title'),
+                'title' => osu_trans('forum.forums.index.title'),
                 'url' => route('forum.forums.index'),
             ]
         ];
     } else {
         $links = [];
         $links[] = [
-            'title' => trans('forum.title'),
+            'title' => osu_trans('forum.title'),
             'url' => route('forum.forums.index'),
         ];
 
@@ -33,6 +33,10 @@
             'title' => $forum->forum_name,
             'url' => route("forum.forums.show", $forum->forum_id),
         ];
+
+        if (isset($additionalLinks)) {
+            $links = array_merge($links, $additionalLinks);
+        }
     }
 @endphp
 @include('layout._page_header_v4', ['params' => [

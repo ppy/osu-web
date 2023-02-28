@@ -1,0 +1,63 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.page-nav-fancy {
+  @_top: page-nav-fancy;
+
+  .at2x-simple('~@images/headers/news-show-default.jpg');
+  .link-plain();
+  .link-white();
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 20px @gutter-v2;
+  margin: 0 -@gutter-v2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+
+  @media @desktop {
+    margin-left: -@gutter-sidebar-desktop;
+    margin-right: -@gutter-v2-desktop;
+    padding-left: -$margin-left;
+    padding-right: -$margin-right;
+  }
+
+  &::before {
+    .full-size();
+    .fade-element(120ms);
+    will-change: opacity;
+    content: '';
+    background-color: @osu-colour-b6;
+    opacity: 0.75;
+  }
+
+  &:hover::before {
+    opacity: 0.6;
+  }
+
+  &__label {
+    order: 1;
+    position: relative;
+
+    .@{_top}--prev & {
+      text-align: right;
+    }
+  }
+
+  &__subtitle {
+    font-weight: 600;
+    font-size: @font-size--normal;
+  }
+
+  &__icon {
+    order: 1;
+    position: relative;
+
+    .@{_top}--prev & {
+      transform: rotate(0.5turn);
+      order: 0;
+    }
+  }
+}

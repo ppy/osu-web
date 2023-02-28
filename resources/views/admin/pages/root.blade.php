@@ -7,11 +7,11 @@
 @section('content')
     @include('admin._header')
     <div class="osu-page osu-page--admin">
-        <h2 class="title">{{ trans('admin.pages.root.sections.general') }}</h2>
+        <h2 class="title">{{ osu_trans('admin.pages.root.sections.general') }}</h2>
         <ul>
             <li>
                 <a href="{{ route('admin.logs.index') }}">
-                    {{ trans('admin.logs.index.title') }}
+                    {{ osu_trans('admin.logs.index.title') }}
                 </a>
             </li>
             <li>
@@ -19,20 +19,11 @@
             </li>
         </ul>
 
-        <h2 class="title">{{ trans('admin.pages.root.sections.store') }}</h2>
-        <ul>
-            <li>
-                <a href="{{ route('admin.store.orders.index') }}">
-                    {{ trans('admin.store.orders.index.title') }}
-                </a>
-            </li>
-        </ul>
-
-        <h2 class="title">{{ trans('admin.pages.root.sections.forum') }}</h2>
+        <h2 class="title">{{ osu_trans('admin.pages.root.sections.forum') }}</h2>
         <ul>
             <li>
                 <a href="{{ route('admin.forum.forum-covers.index') }}">
-                    {{ trans('admin.forum.forum-covers.index.title') }}
+                    {{ osu_trans('admin.forum.forum-covers.index.title') }}
                 </a>
             </li>
         </ul>

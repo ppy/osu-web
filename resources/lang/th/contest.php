@@ -16,7 +16,7 @@ return [
     'voting' => [
         'login_required' => 'กรุณาเข้าสู่ระบบเพื่อทำการโหวต',
         'over' => 'การโหวตนั้นได้สิ้นสุดลงแล้ว',
-        'show_voted_only' => '',
+        'show_voted_only' => 'แสดงโหวต',
 
         'best_of' => [
             'none_played' => "ดูเหมือนคุณจะไม่ได้เล่น beatmap ที่เข้าประกวดอยู่นะ",
@@ -26,6 +26,16 @@ return [
             'add' => 'โหวต',
             'remove' => 'ลบโหวต',
             'used_up' => 'คุณได้ใช้คะแนนโหวตหมดแล้ว',
+        ],
+
+        'progress' => [
+            '_' => 'โหวตแล้ว :used / :max',
+        ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => '',
+            ],
         ],
     ],
     'entry' => [
@@ -40,6 +50,7 @@ return [
             'beatmap' => 'เฉพาะไฟล์นามสกุล .osu เท่านั้นที่สามารถส่งเข้าประกวดได้',
             'music' => 'เฉพาะไฟล์นามสกุล .mp3 เท่านั้นที่สามารถส่งเข้าประกวดได้',
         ],
+        'wrong_dimensions' => '',
         'too_big' => 'งานประกวดครั้งนี้สามารถส่งได้มากสุด :limit งาน',
     ],
     'beatmaps' => [

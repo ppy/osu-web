@@ -4,6 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'promote' => [
+        'pin' => 'Bist du sicher, dass du diesen Livestream promoten möchtest?',
+        'unpin' => "Bist du sicher, dass du die Promotion dieses Livestreams entfernen möchtest?",
+    ],
+
     'top-headers' => [
         'headline' => 'Livestreams',
         'description' => 'Die Daten werden alle fünf Minuten von twitch.tv geladen und basieren auf dem "Durchsuchen"-Verzeichnis. Fang\' ruhig selber an zu streamen und komm auf diese Liste! Wenn du mehr Informationen brauchst, schau\' dir die Wiki-Seite zu Livestreaming an.',

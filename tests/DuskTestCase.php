@@ -9,6 +9,7 @@ use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Facebook\WebDriver\WebDriverDimension;
+use Laravel\Dusk\Browser;
 use Laravel\Dusk\TestCase as BaseTestCase;
 
 abstract class DuskTestCase extends BaseTestCase
@@ -26,6 +27,17 @@ abstract class DuskTestCase extends BaseTestCase
         if (!present(env('DUSK_WEBDRIVER_URL'))) {
             static::startChromeDriver();
         }
+    }
+
+    /**
+     * Resets passed browser session.
+     * Currently only clears existing cookies.
+     *
+     * @return void
+     */
+    protected static function resetSession(Browser $browser): void
+    {
+        $browser->driver->manage()->deleteAllCookies();
     }
 
     /**
@@ -53,16 +65,5 @@ abstract class DuskTestCase extends BaseTestCase
             ->setSize(new WebDriverDimension(1920, 1080)); // ensure we get desktop layout
 
         return $driver;
-    }
-
-    /**
-     * Create a new Browser instance.
-     *
-     * @param  \Facebook\WebDriver\Remote\RemoteWebDriver  $driver
-     * @return \Tests\Browser
-     */
-    protected function newBrowser($driver)
-    {
-        return new Browser($driver);
     }
 }

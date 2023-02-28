@@ -23,13 +23,13 @@ class BeatmapDiscussionVote extends Model
 
     public static function recentlyReceivedByUser($userId, $timeframeMonths = 3)
     {
-        return static::where('beatmap_discussion_votes.created_at', '>', Carbon::now()->subMonth($timeframeMonths))
+        return static::where('beatmap_discussion_votes.created_at', '>', Carbon::now()->subMonths($timeframeMonths))
             ->join('beatmap_discussions', 'beatmap_discussion_votes.beatmap_discussion_id', 'beatmap_discussions.id')
             ->select('beatmap_discussion_votes.user_id')
             ->selectRaw('sum(beatmap_discussion_votes.score) as score')
             ->selectRaw('count(beatmap_discussion_votes.score) as count')
             ->where('beatmap_discussions.user_id', $userId)
-            ->where('beatmap_discussions.updated_at', '>', Carbon::now()->subMonth($timeframeMonths))
+            ->where('beatmap_discussions.updated_at', '>', Carbon::now()->subMonths($timeframeMonths))
             ->whereHas('user', function ($userQuery) {
                 $userQuery->default();
             })
@@ -40,13 +40,13 @@ class BeatmapDiscussionVote extends Model
 
     public static function recentlyGivenByUser($userId, $timeframeMonths = 3)
     {
-        return static::where('beatmap_discussion_votes.created_at', '>', Carbon::now()->subMonth($timeframeMonths))
+        return static::where('beatmap_discussion_votes.created_at', '>', Carbon::now()->subMonths($timeframeMonths))
             ->join('beatmap_discussions', 'beatmap_discussion_votes.beatmap_discussion_id', 'beatmap_discussions.id')
             ->select('beatmap_discussions.user_id')
             ->selectRaw('sum(beatmap_discussion_votes.score) as score')
             ->selectRaw('count(beatmap_discussion_votes.score) as count')
             ->where('beatmap_discussion_votes.user_id', $userId)
-            ->where('beatmap_discussions.updated_at', '>', Carbon::now()->subMonth($timeframeMonths))
+            ->where('beatmap_discussions.updated_at', '>', Carbon::now()->subMonths($timeframeMonths))
             ->whereHas('beatmapDiscussion.user', function ($userQuery) {
                 $userQuery->default();
             })
@@ -57,7 +57,7 @@ class BeatmapDiscussionVote extends Model
 
     public static function search($rawParams = [])
     {
-        $pagination = pagination($rawParams);
+        $pagination = pagination(cursor_from_params($rawParams) ?? $rawParams);
 
         $params = [
             'limit' => $pagination['limit'],
@@ -65,10 +65,12 @@ class BeatmapDiscussionVote extends Model
         ];
 
         $query = static::limit($params['limit'])->offset($pagination['offset']);
+        $isModerator = $rawParams['is_moderator'] ?? false;
 
         if (isset($rawParams['user'])) {
             $params['user'] = $rawParams['user'];
-            $user = User::lookup($params['user']);
+            $findAll = $isModerator || (($rawParams['current_user_id'] ?? null) === $rawParams['user']);
+            $user = User::lookup($params['user'], null, $findAll);
 
             if ($user === null) {
                 $query->none();
@@ -120,7 +122,7 @@ class BeatmapDiscussionVote extends Model
         }
 
         // TODO: normalize with main beatmapset discussion behaviour (needs React-side fixing)
-        if (!($rawParams['is_moderator'] ?? false)) {
+        if (!isset($user) && !$isModerator) {
             $query->whereHas('user', function ($userQuery) {
                 $userQuery->default();
             });

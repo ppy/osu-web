@@ -20,7 +20,7 @@ class BeatmapsetWatchesController extends Controller
 
     public function update($beatmapsetId)
     {
-        $beatmapset = Beatmapset::where('discussion_enabled', '=', true)->findOrFail($beatmapsetId);
+        $beatmapset = Beatmapset::findOrFail($beatmapsetId);
 
         try {
             $beatmapset->watches()->create(['user_id' => Auth::user()->getKey()]);

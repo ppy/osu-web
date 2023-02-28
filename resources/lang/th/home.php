@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'ค้นหาในฟอรั่ม',
                 'forum_children' => 'รวมฟอรั่มย่อย',
+                'include_deleted' => '',
                 'topic_id' => 'หัวข้อ #',
                 'username' => 'ผู้แต่ง',
             ],
@@ -72,8 +73,22 @@ return [
     ],
 
     'download' => [
-        'tagline' => "เรามา<br>เริ่มกันเถอะ",
         'action' => 'ดาวน์โหลด osu!',
+        'action_lazer' => '',
+        'action_lazer_description' => '',
+        'action_lazer_info' => '',
+        'action_lazer_title' => '',
+        'action_title' => '',
+        'for_os' => '',
+        'lazer_note' => '',
+        'macos-fallback' => 'ผู้ใช้ macOS',
+        'mirror' => 'เซิร์ฟเวอร์อื่น',
+        'or' => '',
+        'os_version_or_later' => '',
+        'other_os' => '',
+        'quick_start_guide' => '',
+        'tagline' => "เรามา<br>เริ่มกันเถอะ",
+        'video-guide' => 'ไกด์วิดิโอ',
 
         'help' => [
             '_' => 'ถ้ามีปัญหาในการเข้าเกมหรือสมัครบัญชีสามารถหาความช่วยเหลือได้ที่ :help_forum_link หรือ :support_button',
@@ -86,8 +101,6 @@ return [
             'macos' => 'สำหรับ macOS',
             'linux' => 'สำหรับ Linux',
         ],
-        'mirror' => 'เซิร์ฟเวอร์อื่น',
-        'macos-fallback' => 'ผู้ใช้ macOS',
         'steps' => [
             'register' => [
                 'title' => 'สร้างบัญชี',
@@ -105,7 +118,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'ไกด์วิดิโอ',
     ],
 
     'user' => [
@@ -131,16 +143,5 @@ return [
             'support' => 'สนับสนุน osu!',
             'store' => 'osu!store',
         ],
-    ],
-
-    'support-osu' => [
-        'title' => 'ว้าว!',
-        'subtitle' => 'ดูเหมือนว่าคุณกำลังสนุกอยู่ :D',
-        'body' => [
-            'part-1' => 'รู้หรือไม่ว่า osu! อยู่ได้โดยไม่มีโฆษณาเลย และขึ้นกับการสนับสนุนของผู้เล่นทุกคนซึ่งช่วยเรื่องการพัฒนาและค่าใช้จ่ายต่าง ๆ',
-            'part-2' => 'รู้หรือไม่ว่าคุณจะได้สิทธิพิเศษเพียบเมื่อสนับสนุน osu! เช่น <strong>การดาวน์โหลดในเกม</strong> เอาไว้ใช้อย่างอัตโนมัติตอนที่ดูคนอื่นเล่นหรือเข้าห้องเล่นหลายคน',
-        ],
-        'find-out-more' => 'คลิกที่นี่เพื่อดูรายละเอียดเพิ่มเติม!',
-        'download-starting' => "โอ้ ไม่ต้องกังวล - ดาวน์โหลดของคุณได้เริ่มต้นขึ้นแล้ว :)",
     ],
 ];

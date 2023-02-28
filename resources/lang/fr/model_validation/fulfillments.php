@@ -10,6 +10,6 @@ return [
         'reverting_username_mismatch' => '',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => 'Le don est insuffisant pour offrir un supporter tag (:actual > :expected)',
+        'insufficient_paid' => 'Le don est insuffisant pour offrir un tag osu!supporter (:actual > :expected)',
     ],
 ];

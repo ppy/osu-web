@@ -7,14 +7,14 @@
 @section('content')
     @include('layout._page_header_v4')
     <div class="osu-page osu-page--generic">
-        <h1>{{ trans('users.show.not_found.title') }}</h1>
+        <h1>{{ osu_trans('users.show.not_found.title') }}</h1>
 
-        <p>{{ trans('users.show.not_found.reason_header') }}</p>
+        <p>{{ osu_trans('users.show.not_found.reason_header') }}</p>
 
         <ul>
-            <li>{{ trans('users.show.not_found.reason_1') }}
-            <li>{{ trans('users.show.not_found.reason_2') }}
-            <li>{{ trans('users.show.not_found.reason_3') }}
+            <li>{{ osu_trans('users.show.not_found.reason_1') }}
+            <li>{{ osu_trans('users.show.not_found.reason_2') }}
+            <li>{{ osu_trans('users.show.not_found.reason_3') }}
         </ul>
     </div>
 @endsection

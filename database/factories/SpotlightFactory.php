@@ -18,7 +18,7 @@ $factory->define(App\Models\Spotlight::class, function (Faker\Generator $faker) 
     ];
 });
 
-$factory->defineAs(App\Models\Spotlight::class, 'monthly', function (Faker\Generator $faker) {
+$factory->state(App\Models\Spotlight::class, 'monthly', function (Faker\Generator $faker) {
     $chartDate = Carbon\Carbon::instance($faker->dateTimeBetween('-6 years', 'now'))->startOfMonth();
 
     return [
@@ -41,7 +41,7 @@ $factory->defineAs(App\Models\Spotlight::class, 'monthly', function (Faker\Gener
     ];
 });
 
-$factory->defineAs(App\Models\Spotlight::class, 'bestof', function (Faker\Generator $faker) {
+$factory->state(App\Models\Spotlight::class, 'bestof', function (Faker\Generator $faker) {
     $chartDate = Carbon\Carbon::instance($faker->dateTimeBetween('-6 years', 'now'))->endOfYear();
 
     return [

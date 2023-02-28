@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'البحث في المنتديات',
                 'forum_children' => 'تضمين المنتديات الفرعية',
+                'include_deleted' => '',
                 'topic_id' => 'الموضوع #',
                 'username' => 'الكاتب',
             ],
@@ -72,8 +73,22 @@ return [
     ],
 
     'download' => [
-        'tagline' => "لنجعلك<br>مستعداََ!",
         'action' => 'حمل osu!',
+        'action_lazer' => '',
+        'action_lazer_description' => '',
+        'action_lazer_info' => '',
+        'action_lazer_title' => '',
+        'action_title' => '',
+        'for_os' => '',
+        'lazer_note' => '',
+        'macos-fallback' => 'مستخدمين MacOS',
+        'mirror' => 'مُباشر',
+        'or' => '',
+        'os_version_or_later' => '',
+        'other_os' => '',
+        'quick_start_guide' => '',
+        'tagline' => "لنجعلك<br>مستعداََ!",
+        'video-guide' => 'دليل الفديو',
 
         'help' => [
             '_' => 'إذا كان لديك مشكلة في بدء اللعبة أو انشاء حساب، :help_forum_link أو :support_button.',
@@ -86,8 +101,6 @@ return [
             'macos' => 'لنظام التشغل MacOS',
             'linux' => 'لنظام التشغيل Linux',
         ],
-        'mirror' => 'مُباشر',
-        'macos-fallback' => 'مستخدمين MacOS',
         'steps' => [
             'register' => [
                 'title' => 'احصل على حساب',
@@ -105,7 +118,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'دليل الفديو',
     ],
 
     'user' => [
@@ -122,7 +134,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'خرائط مصفوفة جديدة',
+            'new' => 'خرائط Ranked جديدة',
             'popular' => 'خرائط شعبية',
             'by_user' => 'بواسطة :user',
         ],
@@ -131,16 +143,5 @@ return [
             'support' => 'اِدعم osu!',
             'store' => 'osu!store',
         ],
-    ],
-
-    'support-osu' => [
-        'title' => 'واو!',
-        'subtitle' => 'يبدو انك تستمع بوقتك! :D',
-        'body' => [
-            'part-1' => 'هل تعلم ان osu! تعمل بدون اعلانات, وتعتمد على اللاعبين لدعم التطوير وتكاليف العمل؟',
-            'part-2' => 'هل تعلم ايضا انه بدعم لـ osu! فستحصل على فائض من المميزات الجيدة, مثل <strong>التحميل داخل اللعبة</strong> الذي يعمل تلقائيا عند المشاهدين وغرف اللعب المتعدد؟',
-        ],
-        'find-out-more' => 'اضغط هنا لمعرفة المزيد!',
-        'download-starting' => "اوه, ولا تقلق - تحميلك قد بدأ بالفعل الان ;)",
     ],
 ];

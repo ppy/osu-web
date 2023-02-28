@@ -29,7 +29,7 @@ class AddIndexToBeatmapsetEvents extends Migration
     public function down()
     {
         Schema::table('beatmapset_events', function (Blueprint $table) {
-            $table->dropIndex('user_id');
+            $table->dropIndex(['user_id']);
         });
     }
 }

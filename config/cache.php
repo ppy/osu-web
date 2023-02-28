@@ -14,7 +14,6 @@ return [
     */
 
     'default' => env('CACHE_DRIVER', 'file'),
-    'local' => env('CACHE_DRIVER_LOCAL', 'file'),
 
     /*
     |--------------------------------------------------------------------------
@@ -60,6 +59,10 @@ return [
         'redis' => [
             'driver' => 'redis',
             'connection' => 'cache',
+        ],
+
+        'octane' => [
+            'driver' => 'octane',
         ],
     ],
 

@@ -19,7 +19,7 @@ use App\Models\User;
 $factory->define(App\Models\Changelog::class, function (Faker\Generator $faker) {
     return [
         'user_id' => function () {
-            $u = User::orderByRaw('RAND()')->first() ?? factory(User::class)->create();
+            $u = User::inRandomOrder()->first() ?? User::factory()->create();
 
             return $u->getKey();
         },

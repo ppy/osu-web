@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => 'Wat dacht je anders van osu! ?',
+    'play_more' => 'Misschien eerst wat osu! spelen?',
     'require_login' => 'Log in om verder te gaan.',
     'require_verification' => 'Gelieve te verifiëren om verder te gaan.',
     'restricted' => "Je kan dit niet doen terwijl je restricted bent.",
@@ -63,15 +63,20 @@ return [
     ],
 
     'chat' => [
+        'annnonce_only' => 'Dit kanaal is enkel voor aankondigingen bestemd.',
         'blocked' => 'Kan geen bericht versturen naar een gebruiker die jou blokkeert of die jij geblokkeerd hebt.',
         'friends_only' => 'Gebruiker blokkeert berichten van mensen die niet op de vriendenlijst staan.',
         'moderated' => 'Dat kanaal wordt op dit moment gemodereerd.',
         'no_access' => 'Je hebt geen toegang tot dat kanaal.',
+        'receive_friends_only' => 'Het is mogelijk dat de gebruiker niet zal kunnen antwoorden omdat je enkel berichten van mensen op je vriendenlijst aanvaardt.',
         'restricted' => 'Je kunt geen berichten versturen wanneer je het zwijgen is opgelegd, wanneer je bent beperkt of verbannen.',
         'silenced' => 'Je kunt geen berichten verzenden als je op stil staat, bent beperkt of bent verbannen.',
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => 'Reacties zijn uitgeschakeld',
+        ],
         'update' => [
             'deleted' => "Je kunt geen verwijderde berichten bewerken.",
         ],
@@ -163,6 +168,13 @@ return [
 
         'view' => [
             'admin_only' => 'Alleen admins kunnen dit forum zien.',
+        ],
+    ],
+
+    'score' => [
+        'pin' => [
+            'not_owner' => 'Enkel de eigenaar van de score kan deze vastzetten.',
+            'too_many' => 'Te veel scores vastgezet.',
         ],
     ],
 

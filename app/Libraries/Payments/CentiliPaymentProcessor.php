@@ -83,7 +83,7 @@ class CentiliPaymentProcessor extends PaymentProcessor
         // order should be in the correct state
         if (
             $this->getNotificationType() === NotificationType::PAYMENT
-            && $order->isAwaitingPayment() === false
+            && $order->isPendingPaymentCapture() === false
         ) {
             $this->validationErrors()->add('order.status', '.order.status.not_checkout', ['state' => $order->status]);
         }

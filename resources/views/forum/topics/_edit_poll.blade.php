@@ -11,11 +11,11 @@
 ]) !!}
     <div class="forum-poll__row forum-poll__row--title">
         <h2 class="forum-poll__title">
-            {{ trans('forum.topics.show.poll.edit') }}
+            {{ osu_trans('forum.topics.show.poll.edit') }}
         </h2>
 
         <span class="forum-poll__warning">
-            {{ trans('forum.topics.show.poll.edit_warning') }}
+            {{ osu_trans('forum.topics.show.poll.edit_warning') }}
         </span>
     </div>
 
@@ -26,9 +26,9 @@
             <button
                 class="btn-osu-big btn-osu-big--forum-primary"
                 type="submit"
-                data-disable-with="{{ trans('common.buttons.saving') }}"
+                data-disable-with="{{ osu_trans('common.buttons.saving') }}"
             >
-                {{ trans('common.buttons.save') }}
+                {{ osu_trans('common.buttons.save') }}
             </button>
         </div>
 
@@ -37,7 +37,7 @@
                 class="js-forum-poll--switch-edit btn-osu-big btn-osu-big--forum-secondary"
                 type="button"
             >
-                {{ trans('common.buttons.cancel') }}
+                {{ osu_trans('common.buttons.cancel') }}
             </button>
         </div>
     </div>

@@ -12,21 +12,7 @@ class WikiSearchParams extends SearchParams
     // all public because lazy.
 
     /** @var string|null */
-    public $queryString = null;
-
-    /** @var string|null */
     public $locale = null;
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCacheKey(): string
-    {
-        $vars = get_object_vars($this);
-        ksort($vars);
-
-        return 'wiki-search:'.json_encode($vars);
-    }
 
     /**
      * {@inheritdoc}

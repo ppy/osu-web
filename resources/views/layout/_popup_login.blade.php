@@ -24,27 +24,30 @@
             ',
             'data-remote' => true,
         ]) !!}
-            <h2 class="login-box__row login-box__row--title">{{ trans('layout.popup_login.login.title') }}</h2>
+            <h2 class="login-box__row login-box__row--title">{{ osu_trans('layout.popup_login.login.title') }}</h2>
 
             <div class="login-box__row login-box__row--inputs">
                 <input
                     class="login-box__form-input js-login-form-input js-nav2--autofocus"
                     name="username"
-                    placeholder="{{ trans('layout.popup_login.login.username') }}"
+                    placeholder="{{ osu_trans('layout.popup_login.login.username') }}"
                     required
                 />
                 <input
                     class="login-box__form-input js-login-form-input"
                     name="password"
                     type="password"
-                    placeholder="{{ trans('layout.popup_login.login.password') }}"
+                    placeholder="{{ osu_trans('layout.popup_login.login.password') }}"
                     required
                 />
             </div>
 
             @if (captcha_enabled())
                 <div class="login-box__row">
-                    <div class='js-captcha--container'></div>
+                    <div
+                        class="js-captcha--container"
+                        data-captcha-triggered="{{ captcha_login_triggered() ? '1' : '' }}"
+                    ></div>
                 </div>
                 @include('objects._captcha_script')
             @endif
@@ -53,7 +56,7 @@
 
             <div class="login-box__row">
                 <a href="{{ route('password-reset') }}" class="login-box__link js-nav--hide">
-                    {{ trans('layout.popup_login.login.forgot') }}
+                    {{ osu_trans('layout.popup_login.login.forgot') }}
                 </a>
             </div>
 
@@ -61,11 +64,11 @@
                 <div class="login-box__action">
                     <button
                         class="btn-osu-big btn-osu-big--nav-popup js-captcha--submit-button"
-                        data-disable-with="{{ trans('users.login.button_posting') }}"
+                        data-disable-with="{{ osu_trans('users.login.button_posting') }}"
                     >
                         <div class="btn-osu-big__content">
                             <span class="btn-osu-big__left">
-                                {{ trans('users.login._') }}
+                                {{ osu_trans('users.login._') }}
                             </span>
 
                             <span class="fas fa-fw fa-sign-in-alt"></span>
@@ -77,11 +80,11 @@
 
         <div class="login-box__section login-box__section--register">
             <h2 class="login-box__row login-box__row--title">
-                {{ trans('layout.popup_login.register.title') }}
+                {{ osu_trans('layout.popup_login.register.title') }}
             </h2>
 
             <div class="login-box__row">
-                {{ trans('layout.popup_login.register.info') }}
+                {{ osu_trans('layout.popup_login.register.info') }}
             </div>
 
             <div class="login-box__row login-box__row--actions">
@@ -89,7 +92,7 @@
                     <a href="{{ route('download') }}" class="btn-osu-big btn-osu-big--nav-popup">
                         <div class="btn-osu-big__content">
                             <span class="btn-osu-big__left">
-                                {{ trans('layout.popup_login.register.download') }}
+                                {{ osu_trans('layout.popup_login.register.download') }}
                             </span>
 
                             <span class="fas fa-fw fa-download"></span>

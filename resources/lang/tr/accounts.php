@@ -10,12 +10,11 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
-            'rules' => 'Avatarının :link\'na uyduğundan emin ol.<br/>Bu avatarının <strong>her yaş grubuna</strong> uygun olması gerektiği anlamına gelir. Yani çıplaklık, küfür veya müstehcen içerik olmamalıdır.',
-            'rules_link' => 'topluluk kuralları',
+            'rules' => 'Lütfen avatarınızın :link uyduğundan emin olun.<br/>Bu, avatarın <strong>her yaş grubuna uygun olması</strong> gerektiği anlamına gelir. Yani çıplaklık, küfür veya müstehcen içerik bulunmamalıdır.',
+            'rules_link' => 'topluluk kurallarına',
         ],
 
         'email' => [
-            'current' => 'mevcut e-posta',
             'new' => 'yeni e-posta',
             'new_confirmation' => 'e-posta onayı',
             'title' => 'E-posta',
@@ -49,13 +48,14 @@ return [
 
     'notifications' => [
         'beatmapset_discussion_qualified_problem' => 'belirtilen modlardaki nitelikli maplerin yeni sorunlarında bildirim al ',
-        'beatmapset_disqualify' => 'belirtilen modlardaki beatmapler diskalifiye olduğunda bildirim al',
-        'comment_reply' => 'yorumlarınıza yapılan yanıtlar için bildirim al',
+        'beatmapset_disqualify' => 'belirtilen modların beatmapleri diskalifiye edildiğinde bildirim al',
+        'comment_reply' => 'yorumlarına yapılan yanıtlar için bildirim al',
         'title' => 'Bildirimler',
         'topic_auto_subscribe' => 'oluşturduğunuz yeni forum başlıklarında bildirimleri otomatik olarak etkinleştir',
 
         'options' => [
             '_' => 'bildirim seçenekleri',
+            'beatmap_owner_change' => 'konuk zorluk',
             'beatmapset:modding' => 'beatmap modlama',
             'channel_message' => 'özel sohbet mesajları',
             'comment_new' => 'yeni yorumlar',
@@ -74,9 +74,9 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => 'beatmaplerdeki müstehcen içerik için uyarıları gizle',
+        'beatmapset_show_nsfw' => 'beatmaplerdeki müstehcen içerikler için uyarıları gizle',
         'beatmapset_title_show_original' => 'beatmap metaverisini orijinal dilinde göster',
-        'title' => 'Ayarlar',
+        'title' => 'Seçenekler',
 
         'beatmapset_download' => [
             '_' => 'varsayılan beatmap indirme tipi',
@@ -95,7 +95,7 @@ return [
     ],
 
     'privacy' => [
-        'friends_only' => 'Arkadaş listende olmayan kişilerden gelen mesajları engelle',
+        'friends_only' => 'arkadaş listende olmayan kişilerden gelen mesajları engelle',
         'hide_online' => 'çevrimiçi durumunu gizle',
         'title' => 'Gizlilik',
     ],
@@ -103,7 +103,7 @@ return [
     'security' => [
         'current_session' => 'şu anki',
         'end_session' => 'Oturumu Sonlandır',
-        'end_session_confirmation' => 'Bu oturumunuzu o cihazda hemen sonlandırır. Emin misiniz?',
+        'end_session_confirmation' => 'Bu, o cihazdaki oturumunuzu hemen sonlandırır. Emin misiniz?',
         'last_active' => 'Son etkinlik:',
         'title' => 'Güvenlik',
         'web_sessions' => 'web oturumları',

@@ -33,10 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => '해당 유저를 차단했습니다.',
+        'comment_text' => '이 댓글은 숨겨진 상태입니다.',
         'blocked_count' => '차단된 유저 (:count)',
         'hide_profile' => '프로필 숨기기',
+        'hide_comment' => '숨기기',
         'not_blocked' => '해당 유저는 차단되어있지 않습니다.',
         'show_profile' => '프로필 표시',
+        'show_comment' => '보기',
         'too_many' => '차단 한계치에 도달했습니다.',
         'button' => [
             'block' => '차단',
@@ -47,6 +50,22 @@ return [
     'card' => [
         'loading' => '로딩 중...',
         'send_message' => '메시지 보내기',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => '비밀번호',
+            'password_confirmation' => '비밀번호 확인',
+            'submit' => '계정 만들기',
+            'user_email' => '이메일',
+            'user_email_confirmation' => '이메일 확인',
+            'username' => '사용자 이름',
+
+            'tos_notice' => [
+                '_' => '계정을 만듦으로써 :link에 동의하는 것으로 간주됩니다.',
+                'link' => '이용 약관',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -128,6 +147,7 @@ return [
 
         'options' => [
             'cheating' => '부정 행위 / 치트 사용',
+            'multiple_accounts' => '다중 계정 사용',
             'insults' => '자신 / 다른 사람을 모욕 함',
             'spam' => '도배',
             'unwanted_content' => '부적절한 콘텐츠에 링크 걸기',
@@ -138,13 +158,14 @@ return [
     'restricted_banner' => [
         'title' => '계정이 제한되어 있습니다!',
         'message' => '계정이 제한되어있으면 다른 플레이어와 소통할 수 없으며 점수가 본인에게만 표시됩니다. 계정 제한은 보통 자동적으로 처리되며, 24시간 이내에 철회될 수 있습니다. 제한에 대한 항소를 원하시면 <a href="mailto:accounts@ppy.sh">지원팀에 연락</a>해주시기 바랍니다.',
+        'message_link' => '이 페이지에서 자세히 알아보세요.',
     ],
     'show' => [
         'age' => '만 :age세',
         'change_avatar' => '아바타를 바꾸세요!',
         'first_members' => 'osu!의 초창기부터 함께한 유저',
         'is_developer' => 'osu!developer',
-        'is_supporter' => 'osu!supporter',
+        'is_supporter' => 'osu! 서포터',
         'joined_at' => ':date에 가입',
         'lastvisit' => ':date에 마지막으로 접속',
         'lastvisit_online' => '현재 온라인',
@@ -157,6 +178,10 @@ return [
         'comments_count' => [
             '_' => ':link 작성됨',
             'count' => '댓글 :count_delimited개',
+        ],
+        'cover' => [
+            'to_0' => '커버 숨기기',
+            'to_1' => '커버 표시',
         ],
         'edit' => [
             'cover' => [
@@ -203,14 +228,20 @@ return [
                 'graveyard' => [
                     'title' => '무덤에 간 비트맵',
                 ],
+                'guest' => [
+                    'title' => '게스트 참여 비트맵',
+                ],
                 'loved' => [
                     'title' => 'Loved 비트맵',
                 ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked 및 Approved 상태의 비트맵',
+                'nominated' => [
+                    'title' => '추천된 Ranked 비트맵',
                 ],
-                'unranked' => [
-                    'title' => 'Pending 비트맵',
+                'pending' => [
+                    'title' => '대기 중인 비트맵',
+                ],
+                'ranked' => [
+                    'title' => '새로 랭크된 비트맵',
                 ],
             ],
             'discussions' => [
@@ -300,6 +331,9 @@ return [
                 'recent' => '최근 획득',
                 'title' => '메달',
             ],
+            'playlists' => [
+                'title' => '플레이리스트 게임',
+            ],
             'posts' => [
                 'title' => '게시글',
                 'title_longer' => '최근 게시글',
@@ -307,6 +341,9 @@ return [
             ],
             'recent_activity' => [
                 'title' => '최근 활동',
+            ],
+            'realtime' => [
+                'title' => '멀티플레이어 게임',
             ],
             'top_ranks' => [
                 'download_replay' => '리플레이 다운로드',
@@ -321,13 +358,22 @@ return [
                 'first' => [
                     'title' => '1위 달성 맵',
                 ],
+                'pin' => [
+                    'to_0' => '고정 해제',
+                    'to_0_done' => '고정되지 않은 점수',
+                    'to_1' => '고정',
+                    'to_1_done' => '고정 점수',
+                ],
+                'pinned' => [
+                    'title' => '고정 점수',
+                ],
             ],
             'votes' => [
                 'given' => '투표 참여 수 (지난 3개월 간)',
                 'received' => '받은 투표수 (지난 3개월 간)',
                 'title' => '투표',
                 'title_longer' => '최근 투표',
-                'vote_count' => ':count_delimited 투표',
+                'vote_count' => ':count_delimited개의 투표',
             ],
             'account_standing' => [
                 'title' => '계정 상태',
@@ -346,6 +392,7 @@ return [
                     'actions' => [
                         'restriction' => 'Ban',
                         'silence' => '침묵',
+                        'tournament_ban' => '토너먼트 차단',
                         'note' => '알림',
                     ],
                 ],
@@ -364,7 +411,7 @@ return [
             'reason_1' => '사용자명이 변경되었을 가능성이 있습니다.',
             'reason_2' => '보안 혹은 남용 문제 때문에 일시적으로 이 계정을 사용할 수 없습니다.',
             'reason_3' => '오타가 있나봐요!',
-            'reason_header' => '이에 대한 몇 가지 이유가 있습니다:',
+            'reason_header' => '아래 이유로 인해 발생했을 가능성이 있어요:',
             'title' => '사용자를 찾을 수 없습니다! ;_;',
         ],
         'page' => [
@@ -387,6 +434,7 @@ return [
             'country_simple' => '국가 순위',
             'global' => ':mode 세계 순위',
             'global_simple' => '세계 순위',
+            'highest' => '최고 순위: :rank, :date에 달성',
         ],
         'stats' => [
             'hit_accuracy' => '정확도',
@@ -402,10 +450,10 @@ return [
             'total_hits' => '총 타격 횟수',
             'total_score' => '총 점수',
             // modding stats
-            'ranked_and_approved_beatmapset_count' => 'Ranked 및 Approved 상태의 비트맵',
-            'loved_beatmapset_count' => 'Loved 비트맵',
-            'unranked_beatmapset_count' => '대기 중인 비트맵',
             'graveyard_beatmapset_count' => '묻힌 비트맵',
+            'loved_beatmapset_count' => 'Loved 비트맵',
+            'pending_beatmapset_count' => '대기 중인 비트맵',
+            'ranked_beatmapset_count' => '랭크된 비트맵',
         ],
     ],
 
@@ -420,6 +468,8 @@ return [
         'offline' => '오프라인',
     ],
     'store' => [
+        'from_client' => '게임 클라이언트에서 가입해주세요!',
+        'from_web' => 'osu! 웹사이트를 통해 가입해주세요!',
         'saved' => '사용자 계정 생성됨',
     ],
     'verify' => [

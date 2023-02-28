@@ -26,6 +26,7 @@ class PaymentSubscribers
 
     public function onPaymentCompleted($eventName, $data)
     {
+        /** @var \App\Events\Fulfillments\PaymentEvent $event */
         $event = $data[0] ?? null;
         $fulfillers = FulfillmentFactory::createFulfillersFor($event->order);
         $count = count($fulfillers);

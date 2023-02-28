@@ -7,11 +7,11 @@ return [
     'match' => [
         'beatmap-deleted' => 'beatmap supprimée',
         'difference' => 'de :difference points',
-        'failed' => 'Échec',
+        'failed' => 'ÉCHEC',
         'header' => 'Match multijoueur',
         'in-progress' => '(match en cours)',
         'in_progress_spinner_label' => 'match en cours',
-        'loading-events' => 'Chargement des évènements...',
+        'loading-events' => 'Chargement des événements...',
         'winner' => ':team gagne',
 
         'events' => [
@@ -19,7 +19,7 @@ return [
             'player-joined' => ':user a rejoint le match',
             'player-kicked' => ':user a été exclu du match',
             'match-created' => ':user a créé le match',
-            'match-disbanded' => ':user a dissous le match',
+            'match-disbanded' => 'le match a été dissous',
             'host-changed' => ':user a pris le contrôle de la salle',
 
             'player-left-no-user' => 'un joueur a quitté le match',
@@ -39,10 +39,10 @@ return [
         ],
 
         'team-types' => [
-            'head-to-head' => 'Chacun pour soi',
-            'tag-coop' => 'Tag en coopération',
-            'team-vs' => 'Équipes en versus',
-            'tag-team-vs' => 'Tag en versus (2 équipes)',
+            'head-to-head' => 'Head-to-head',
+            'tag-coop' => 'Tag Co-op',
+            'team-vs' => 'Team VS',
+            'tag-team-vs' => 'Tag Team VS',
         ],
 
         'teams' => [

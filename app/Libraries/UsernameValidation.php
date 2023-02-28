@@ -5,6 +5,7 @@
 
 namespace App\Libraries;
 
+use App\Models\RankHighest;
 use App\Models\User;
 use App\Models\UsernameChangeHistory;
 use Carbon\Carbon;
@@ -28,13 +29,13 @@ class UsernameValidation
                 $errors->add(
                     'username',
                     '.username_available_in',
-                    ['duration' => trans_choice('common.count.days', $remaining->days + 1)]
+                    ['duration' => osu_trans_choice('common.count.days', $remaining->days + 1)]
                 );
             } elseif ($remaining->h > 0) {
                 $errors->add(
                     'username',
                     '.username_available_in',
-                    ['duration' => trans_choice('common.count.hours', $remaining->h + 1)]
+                    ['duration' => osu_trans_choice('common.count.hours', $remaining->h + 1)]
                 );
             } else {
                 $errors->add('username', '.username_available_soon');
@@ -83,6 +84,15 @@ class UsernameValidation
         $errors = new ValidationErrors('user');
 
         $users = static::usersOfUsername($username);
+
+        // top 100
+        // Queried directly on model because User::rankHighests is disabled
+        // when experimental rank is set as default.
+        $highestRank = RankHighest::whereIn('user_id', $users->pluck('user_id'))->min('rank');
+        if ($highestRank !== null && $highestRank <= 100) {
+            return $errors->add('username', '.username_locked');
+        }
+
         foreach ($users as $user) {
             // has badges
             if ($user->badges()->exists()) {
@@ -90,7 +100,7 @@ class UsernameValidation
             }
 
             // ranked beatmaps
-            if ($user->beatmapsets()->rankedOrApproved()->exists()) {
+            if ($user->profileBeatmapsetsRanked()->exists()) {
                 return $errors->add('username', '.username_locked');
             }
         }

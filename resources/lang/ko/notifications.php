@@ -27,6 +27,12 @@ return [
         'beatmapset' => [
             '_' => '비트맵',
 
+            'beatmap_owner_change' => [
+                '_' => '게스트 난이도',
+                'beatmap_owner_change' => '당신은 이제 비트맵 ":title"에 대한 ":beatmap" 난이도의 주인이 되었습니다.',
+                'beatmap_owner_change_compact' => '당신은 이제 ":beatmap" 난이도의 주인이 되었습니다.',
+            ],
+
             'beatmapset_discussion' => [
                 '_' => '비트맵 토론',
                 'beatmapset_discussion_lock' => '비트맵 ":title"의 토론이 잠겼습니다.',
@@ -80,8 +86,19 @@ return [
         'channel' => [
             '_' => '채팅',
 
+            'announcement' => [
+                '_' => '새 공지',
+
+                'announce' => [
+                    'channel_announcement' => ':username 님이 ":title" 라고 말합니다',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => ':username 님의 공지',
+                ],
+            ],
+
             'channel' => [
                 '_' => '새 메시지',
+
                 'pm' => [
                     'channel_message' => ':username 님이 ":title" 라고 하셨습니다.',
                     'channel_message_compact' => ':title',
@@ -142,6 +159,9 @@ return [
                 'user_beatmapset_new' => ':username 님의 새로운 비트맵 ":title"',
                 'user_beatmapset_new_compact' => '새 비트맵 ":title"',
                 'user_beatmapset_new_group' => ':username 님의 새 비트맵',
+
+                'user_beatmapset_revive' => '비트맵 ":title" 이(가) :username 님에 의해 부활함',
+                'user_beatmapset_revive_compact' => '비트맵 ":title" 이(가) 부활함',
             ],
         ],
 
@@ -159,6 +179,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => '당신은 이제 비트맵 ":title"의 게스트가 되었습니다.',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => '토론 ":title" 의 토론이 잠겼습니다.',
                 'beatmapset_discussion_post_new' => '토론 ":title" 에 새로운 업데이트가 있습니다.',
@@ -185,6 +209,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => '":name"에 새로운 공지가 있습니다',
+            ],
+
             'channel' => [
                 'pm' => ':username 님에게 새로운 메시지를 받았습니다.',
             ],
@@ -216,6 +244,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username 님이 새 비트맵을 제작했습니다',
+                'user_beatmapset_revive' => ':username 님이 비트맵을 되살렸습니다',
             ],
         ],
     ],

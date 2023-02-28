@@ -4,11 +4,11 @@
 --}}
 <div class="user-verification">
     <h1 class="user-verification__row user-verification__row--title">
-        {{ trans('user_verification.box.title') }}
+        {{ osu_trans('user_verification.box.title') }}
     </h1>
 
     <p class="user-verification__row user-verification__row--info">
-        {!! trans('user_verification.box.sent', ['mail' => '<strong>'.obscure_email($email).'</strong>']) !!}
+        {!! osu_trans('user_verification.box.sent', ['mail' => '<strong>'.obscure_email($email).'</strong>']) !!}
     </p>
 
     <div class="user-verification__row user-verification__row--key">
@@ -30,21 +30,21 @@
     </div>
 
     <p class="user-verification__row user-verification__row--info">
-        {{ trans('user_verification.box.info.check_spam') }}
+        {{ osu_trans('user_verification.box.info.check_spam') }}
     </p>
 
     <p class="user-verification__row user-verification__row--info">
-        {!! trans('user_verification.box.info.recover', [
+        {!! osu_trans('user_verification.box.info.recover', [
             'link' => link_to(
                 osu_url('user.recover'),
-                trans('user_verification.box.info.recover_link'),
+                osu_trans('user_verification.box.info.recover_link'),
                 ['class' => 'user-verification__link']
             ),
         ]) !!}
-        {!! trans('user_verification.box.info.reissue', [
+        {!! osu_trans('user_verification.box.info.reissue', [
             'reissue_link' => link_to_route(
                 'account.reissue-code',
-                trans('user_verification.box.info.reissue_link'),
+                osu_trans('user_verification.box.info.reissue_link'),
                 [],
                 ['class' => 'js-user-verification--reissue user-verification__link']
             ),
@@ -55,7 +55,7 @@
                     data-method='delete'
                     data-remote='1'
                     data-url='".route('logout')."'
-                >".trans('user_verification.box.info.logout_link')."
+                >".osu_trans('user_verification.box.info.logout_link')."
                 </button>",
         ]) !!}
     </p>

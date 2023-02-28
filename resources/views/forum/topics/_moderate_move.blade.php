@@ -7,7 +7,7 @@
     data-target="#forum-topic-move-modal"
     data-toggle="modal"
     type="button"
-    title="{{ trans('forum.topics.moderate_move.title') }}"
+    title="{{ osu_trans('forum.topics.moderate_move.title') }}"
 >
     <span class="btn-circle__content">
         <i class="fas fa-arrows-alt"></i>
@@ -23,7 +23,7 @@
                 <div class="modal-body modal-body--page">
                     {!! Form::open(['url' => route('forum.topics.move', $topic->topic_id), 'data-remote' => true]) !!}
                         <h1 class="modal-body__title">
-                            {{ trans('forum.topics.moderate_move.title') }}
+                            {{ osu_trans('forum.topics.moderate_move.title') }}
                         </h1>
 
                         <p>
@@ -43,7 +43,7 @@
                         </p>
 
                         <p class="text-right">
-                            <button class="btn-osu-big btn-osu-big--forum-primary">{{ trans('common.buttons.save') }}</button>
+                            <button class="btn-osu-big btn-osu-big--forum-primary">{{ osu_trans('common.buttons.save') }}</button>
                         </p>
                     {!! Form::close() !!}
                 </div>

@@ -9,7 +9,7 @@ use App\Models\Beatmapset;
 
 class BeatmapsetDescriptionTransformer extends TransformerAbstract
 {
-    protected $defaultIncludes = [
+    protected array $defaultIncludes = [
         'bbcode',
     ];
 

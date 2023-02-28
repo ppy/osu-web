@@ -5,7 +5,6 @@
 
 namespace App\Models;
 
-use App\Libraries\ModsHelper;
 use Exception;
 
 /**
@@ -33,11 +32,11 @@ class BeatmapPack extends Model
     protected $primaryKey = 'pack_id';
 
     protected $casts = [
+        'date' => 'datetime',
         'hidden' => 'boolean',
         'no_diff_reduction' => 'boolean',
     ];
 
-    protected $dates = ['date'];
     public $timestamps = false;
 
     public static function getPacks($type)
@@ -108,7 +107,7 @@ class BeatmapPack extends Model
                                     $scoreQuery->where('user_id', '=', $userId);
 
                                     if ($this->no_diff_reduction) {
-                                        $scoreQuery->withoutMods(ModsHelper::DIFFICULTY_REDUCTION_MODS);
+                                        $scoreQuery->withoutMods(app('mods')->difficultyReductionIds->toArray());
                                     }
                                 });
                         });
@@ -127,7 +126,7 @@ class BeatmapPack extends Model
                     $query->where('user_id', '=', $userId);
 
                     if ($this->no_diff_reduction) {
-                        $query->withoutMods(ModsHelper::DIFFICULTY_REDUCTION_MODS);
+                        $query->withoutMods(app('mods')->difficultyReductionIds->toArray());
                     }
                 });
             }

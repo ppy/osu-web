@@ -5,11 +5,13 @@
 
 namespace App\Models;
 
+use App\Exceptions\InvariantException;
 use App\Traits\Memoizes;
 use App\Transformers\ContestEntryTransformer;
 use App\Transformers\ContestTransformer;
 use App\Transformers\UserContestEntryTransformer;
 use Cache;
+use Exception;
 
 /**
  * @property \Carbon\Carbon|null $created_at
@@ -29,6 +31,7 @@ use Cache;
  * @property int $show_votes
  * @property mixed $type
  * @property mixed $unmasked
+ * @property bool $show_names
  * @property \Carbon\Carbon|null $updated_at
  * @property bool $visible
  * @property \Illuminate\Database\Eloquent\Collection $votes ContestVote
@@ -39,10 +42,13 @@ class Contest extends Model
 {
     use Memoizes;
 
-    protected $dates = ['entry_starts_at', 'entry_ends_at', 'voting_starts_at', 'voting_ends_at'];
     protected $casts = [
+        'entry_ends_at' => 'datetime',
+        'entry_starts_at' => 'datetime',
         'extra_options' => 'array',
         'visible' => 'boolean',
+        'voting_ends_at' => 'datetime',
+        'voting_starts_at' => 'datetime',
     ];
 
     public function entries()
@@ -60,9 +66,52 @@ class Contest extends Model
         return $this->hasMany(ContestVote::class);
     }
 
-    public function isBestOf()
+    public function assertVoteRequirement(?User $user): void
+    {
+        $requirement = $this->getExtraOptions()['requirement'] ?? null;
+
+        if ($requirement === null) {
+            return;
+        }
+
+        if ($user === null) {
+            throw new InvariantException(osu_trans('authorization.require_login'));
+        }
+
+        switch ($requirement['name']) {
+            // requires playing (and optionally passing) all the beatmapsets in the specified room ids
+            case 'playlist_beatmapsets':
+                $roomIds = $requirement['room_ids'];
+                $mustPass = $requirement['must_pass'] ?? true;
+                $beatmapIdsQuery = Multiplayer\PlaylistItem::whereIn('room_id', $roomIds)->select('beatmap_id');
+                $requiredBeatmapsetCount = Beatmap::whereIn('beatmap_id', $beatmapIdsQuery)->distinct('beatmapset_id')->count();
+                $playedBeatmapIdsQuery = Multiplayer\Score
+                    ::whereIn('room_id', $roomIds)
+                    ->where(['user_id' => $user->getKey()])
+                    ->completed()
+                    ->select('beatmap_id');
+                if ($mustPass) {
+                    $playedBeatmapIdsQuery->where('passed', true);
+                }
+                $playedBeatmapsetCount = Beatmap::whereIn('beatmap_id', $playedBeatmapIdsQuery)->distinct('beatmapset_id')->count();
+
+                if ($playedBeatmapsetCount !== $requiredBeatmapsetCount) {
+                    throw new InvariantException(osu_trans('contest.voting.requirement.playlist_beatmapsets.incomplete_play'));
+                }
+                break;
+            default:
+                throw new Exception('unknown requirement');
+        }
+    }
+
+    public function isBestOf(): bool
     {
         return isset($this->getExtraOptions()['best_of']);
+    }
+
+    public function isSubmittedBeatmaps(): bool
+    {
+        return $this->isBestOf() || ($this->getExtraOptions()['submitted_beatmaps'] ?? false);
     }
 
     public function isSubmissionOpen()
@@ -124,6 +173,11 @@ class Contest extends Model
         return $this->getExtraOptions()['unmasked'] ?? false;
     }
 
+    public function getShowNamesAttribute()
+    {
+        return $this->getExtraOptions()['show_names'] ?? false;
+    }
+
     public function getLinkIconAttribute()
     {
         return $this->getExtraOptions()['link_icon'] ?? 'download';
@@ -144,19 +198,19 @@ class Contest extends Model
         switch ($this->state()) {
             case 'preparing':
                 $date = $this->entry_starts_at === null
-                    ? trans('contest.dates.starts.soon')
+                    ? osu_trans('contest.dates.starts.soon')
                     : i18n_date($this->entry_starts_at);
 
-                return trans('contest.dates.starts._', ['date' => $date]);
+                return osu_trans('contest.dates.starts._', ['date' => $date]);
             case 'entry':
                 return i18n_date($this->entry_starts_at).' - '.i18n_date($this->entry_ends_at);
             case 'voting':
                 return i18n_date($this->voting_starts_at).' - '.i18n_date($this->voting_ends_at);
             default:
                 if ($this->voting_ends_at === null) {
-                    return trans('contest.dates.ended_no_date');
+                    return osu_trans('contest.dates.ended_no_date');
                 } else {
-                    return trans('contest.dates.ended', ['date' => i18n_date($this->voting_ends_at)]);
+                    return osu_trans('contest.dates.ended', ['date' => i18n_date($this->voting_ends_at)]);
                 }
         }
     }
@@ -176,6 +230,7 @@ class Contest extends Model
         if ($vote->exists()) {
             $vote->delete();
         } else {
+            $this->assertVoteRequirement($user);
             // there's probably a race-condition here, but abusing this just results in the user diluting their vote... so *shrug*
             if ($this->votes()->where('user_id', $user->user_id)->count() < $this->max_votes) {
                 $this->votes()->create(['user_id' => $user->user_id, 'contest_entry_id' => $entry->id]);
@@ -238,7 +293,11 @@ class Contest extends Model
             $includes[] = 'results';
         }
 
-        $contestJson = json_item($this, new ContestTransformer());
+        $contestJson = json_item(
+            $this,
+            new ContestTransformer(),
+            $this->show_votes ? ['users_voted_count'] : null,
+        );
         if ($this->isVotingStarted()) {
             $contestJson['entries'] = json_collection($this->entriesByType($user), new ContestEntryTransformer(), $includes);
         }
@@ -291,6 +350,15 @@ class Contest extends Model
         );
     }
 
+    public function usersVotedCount(): int
+    {
+        return cache()->remember(
+            static::class.':'.__FUNCTION__.':'.$this->getKey(),
+            300,
+            fn () => $this->votes()->distinct('user_id')->count(),
+        );
+    }
+
     public function url()
     {
         return route('contests.show', $this->id);
@@ -307,5 +375,15 @@ class Contest extends Model
         return $this->memoize(__FUNCTION__, function () {
             return $this->extra_options;
         });
+    }
+
+    public function getForcedWidth()
+    {
+        return $this->getExtraOptions()['forced_width'] ?? null;
+    }
+
+    public function getForcedHeight()
+    {
+        return $this->getExtraOptions()['forced_height'] ?? null;
     }
 }

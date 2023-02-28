@@ -6,6 +6,7 @@
 return [
     'event' => [
         'approve' => 'Approved.',
+        'beatmap_owner_change' => 'Owner of difficulty :beatmap changed to :new_user.',
         'discussion_delete' => 'Moderator deleted discussion :discussion.',
         'discussion_lock' => 'Discussion for this beatmap has been disabled. (:text)',
         'discussion_post_delete' => 'Moderator deleted post from discussion :discussion.',
@@ -27,6 +28,9 @@ return [
         'nominate' => 'Nominated by :user.',
         'nominate_modes' => 'Nominated by :user (:modes).',
         'nomination_reset' => 'New problem :discussion (:text) triggered a nomination reset.',
+        'nomination_reset_received' => 'Nomination by :user was reset by :source_user (:text)',
+        'nomination_reset_received_profile' => 'Nomination was reset by :user (:text)',
+        'offset_edit' => 'Online offset changed from :old to :new.',
         'qualify' => 'This beatmap has reached the required number of nominations and has been qualified.',
         'rank' => 'Ranked.',
         'remove_from_loved' => 'Removed from Loved by :user. (:text)',
@@ -54,6 +58,7 @@ return [
 
     'type' => [
         'approve' => 'Approval',
+        'beatmap_owner_change' => 'Difficulty owner change',
         'discussion_delete' => 'Discussion deletion',
         'discussion_post_delete' => 'Discussion reply deletion',
         'discussion_post_restore' => 'Discussion reply restoration',
@@ -71,7 +76,9 @@ return [
         'love' => 'Love',
         'nominate' => 'Nomination',
         'nomination_reset' => 'Nomination resetting',
+        'nomination_reset_received' => 'Nomination reset received',
         'nsfw_toggle' => 'Explicit mark',
+        'offset_edit' => 'Offset edit',
         'qualify' => 'Qualification',
         'rank' => 'Ranking',
         'remove_from_loved' => 'Loved removal',

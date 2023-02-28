@@ -19,11 +19,10 @@ class ForumSearchParams extends SearchParams
     /** @var int|null */
     public $forumId = null;
 
+    public bool $includeDeleted = false;
+
     /** @var bool */
     public $includeSubforums = false;
-
-    /** @var string|null */
-    public $queryString = null;
 
     /** {@inheritdoc} */
     public $size = 20;
@@ -39,17 +38,6 @@ class ForumSearchParams extends SearchParams
 
     /** @var string */
     public $sortOrder = self::DEFAULT_SORT_ORDER;
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCacheKey(): string
-    {
-        $vars = get_object_vars($this);
-        ksort($vars);
-
-        return 'forum-search:'.json_encode($vars);
-    }
 
     /**
      * {@inheritdoc}

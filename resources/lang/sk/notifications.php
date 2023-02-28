@@ -5,32 +5,38 @@
 
 return [
     'all_read' => 'Všetky upozornenia prečítané!',
-    'delete' => '',
-    'loading' => '',
-    'mark_read' => '',
-    'none' => '',
-    'see_all' => '',
-    'see_channel' => '',
+    'delete' => 'Vymazať :type',
+    'loading' => 'Načítavanie neprečítaných notifikácií...',
+    'mark_read' => 'Vyčistiť :type',
+    'none' => 'Žiadne upozornenia',
+    'see_all' => 'zobraziť všetky upozornenia',
+    'see_channel' => 'prejsť ku konverzáciám',
     'verifying' => '',
 
     'filters' => [
-        '_' => '',
-        'user' => '',
-        'beatmapset' => '',
-        'forum_topic' => '',
-        'news_post' => '',
+        '_' => 'všetko',
+        'user' => 'profil',
+        'beatmapset' => 'beatmapy',
+        'forum_topic' => 'fórum',
+        'news_post' => 'novinky',
         'build' => '',
-        'channel' => '',
+        'channel' => 'konverzácie',
     ],
 
     'item' => [
         'beatmapset' => [
             '_' => '',
 
+            'beatmap_owner_change' => [
+                '_' => 'Obtiažnosť hosťa',
+                'beatmap_owner_change' => 'Stali ste sa majiteľom obtiažnosti ":beatmap" pre beatmapu ":title"',
+                'beatmap_owner_change_compact' => 'Stali ste sa majiteľom obtiažnosti ":beatmap"',
+            ],
+
             'beatmapset_discussion' => [
-                '_' => '',
-                'beatmapset_discussion_lock' => '',
-                'beatmapset_discussion_lock_compact' => '',
+                '_' => 'Diskusia o beatmape',
+                'beatmapset_discussion_lock' => 'Diskusia o ":title" bola uzamknutá',
+                'beatmapset_discussion_lock_compact' => 'Diskusia bola uzamknutá',
                 'beatmapset_discussion_post_new' => '',
                 'beatmapset_discussion_post_new_empty' => '',
                 'beatmapset_discussion_post_new_compact' => '',
@@ -80,8 +86,19 @@ return [
         'channel' => [
             '_' => 'Konverzácia',
 
+            'announcement' => [
+                '_' => '',
+
+                'announce' => [
+                    'channel_announcement' => '',
+                    'channel_announcement_compact' => '',
+                    'channel_announcement_group' => '',
+                ],
+            ],
+
             'channel' => [
                 '_' => '',
+
                 'pm' => [
                     'channel_message' => '',
                     'channel_message_compact' => '',
@@ -142,6 +159,9 @@ return [
                 'user_beatmapset_new' => '',
                 'user_beatmapset_new_compact' => '',
                 'user_beatmapset_new_group' => '',
+
+                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive_compact' => '',
             ],
         ],
 
@@ -159,6 +179,10 @@ return [
 
     'mail' => [
         'beatmapset' => [
+            'beatmap_owner_change' => [
+                'beatmap_owner_change' => '',
+            ],
+
             'beatmapset_discussion' => [
                 'beatmapset_discussion_lock' => '',
                 'beatmapset_discussion_post_new' => '',
@@ -185,6 +209,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => '',
+            ],
+
             'channel' => [
                 'pm' => '',
             ],
@@ -216,6 +244,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => '',
+                'user_beatmapset_revive' => '',
             ],
         ],
     ],

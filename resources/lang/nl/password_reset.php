@@ -13,6 +13,8 @@ return [
 
     'error' => [
         'contact_support' => 'Contakteer support om je account te herstellen.',
+        'expired' => 'Verificatiecode is verlopen.',
+        'invalid' => 'Onverwachte fout in verificatiecode.',
         'is_privileged' => 'Contacteer peppy lol.',
         'missing_key' => 'Vereist.',
         'too_many_tries' => 'Te veel mislukte pogingen.',

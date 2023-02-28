@@ -13,6 +13,7 @@ use Carbon\Carbon;
  * @property int|null $ban_status
  * @property int|null $banner_id
  * @property int $period
+ * @property bool $permanent
  * @property string|null $reason
  * @property string|null $supporting_url
  * @property \Carbon\Carbon|null $timestamp
@@ -22,17 +23,21 @@ use Carbon\Carbon;
  */
 class UserAccountHistory extends Model
 {
-    protected $table = 'osu_user_banhistory';
-    protected $primaryKey = 'ban_id';
-
-    protected $dates = ['timestamp'];
-    public $timestamps = false;
-
     const TYPES = [
         'note' => 0,
         'restriction' => 1,
         'silence' => 2,
+        'tournament_ban' => 3,
     ];
+
+    public $timestamps = false;
+
+    protected $casts = [
+        'permanent' => 'boolean',
+        'timestamp' => 'datetime',
+    ];
+    protected $primaryKey = 'ban_id';
+    protected $table = 'osu_user_banhistory';
 
     public static function addNote($user, $message, $actor = null)
     {
@@ -68,19 +73,25 @@ class UserAccountHistory extends Model
 
     public function scopeBans($query)
     {
-        return $query->where('ban_status', '<>', static::TYPES['note'])->orderBy('timestamp', 'desc');
+        return $query->whereIn('ban_status', [static::TYPES['restriction'], static::TYPES['silence']])->orderBy('timestamp', 'desc');
     }
 
     public function scopeDefault($query)
     {
-        return $query->where('ban_status', static::TYPES['silence']);
+        return $query->whereIn('ban_status', [static::TYPES['silence'], static::TYPES['tournament_ban']]);
     }
 
     public function scopeRecent($query)
     {
         return $query
             ->where('timestamp', '>', Carbon::now()->subDays(config('osu.user.ban_persist_days')))
+            ->orWhere('permanent', true)
             ->orderBy('timestamp', 'desc');
+    }
+
+    public function scopeRecentForChat($query)
+    {
+        return $query->where('timestamp', '>', Carbon::now()->subHours(1));
     }
 
     public function actor()

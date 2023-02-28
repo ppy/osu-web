@@ -18,12 +18,13 @@ class BBCodeFromDB
     public $refId;
     public $withGallery;
 
+    private array $options;
+
     public function __construct($text, $uid = '', $options = [])
     {
         $defaultOptions = [
             'withGallery' => false,
             'ignoreLineHeight' => false,
-            'withoutImageDimensions' => false,
             'extraClasses' => '',
             'modifiers' => [],
         ];
@@ -39,7 +40,7 @@ class BBCodeFromDB
 
     public function clearSpacesBetweenTags($text)
     {
-        return preg_replace("/([^-][^-]>)\s*</", '\1<', $text);
+        return preg_replace('/([^-][^-]>)\s*</', '\1<', $text);
     }
 
     public function parseAudio($text)
@@ -119,7 +120,7 @@ class BBCodeFromDB
             "<a rel='nofollow' href='mailto:\\1'>\\1</a>",
             $text
         );
-        $text = preg_replace("#\[email=(.+?):{$this->uid}\]#", "<a rel='nofollow' href='mailto:\\1'>", $text);
+        $text = preg_replace("#\[email=([^\]]+):{$this->uid}\]#", "<a rel='nofollow' href='mailto:\\1'>", $text);
         $text = str_replace("[/email:{$this->uid}]", '</a>', $text);
 
         return $text;
@@ -151,12 +152,9 @@ class BBCodeFromDB
             $proxiedSrc = proxy_media(html_entity_decode_better($i['url']));
 
             $imageTag = $galleryAttributes = '';
+            $imageSize = fast_imagesize($proxiedSrc);
 
-            if (!$this->options['withoutImageDimensions']) {
-                $imageSize = fast_imagesize($proxiedSrc);
-            }
-
-            if (!$this->options['withoutImageDimensions'] && $imageSize !== null && $imageSize[0] !== 0) {
+            if ($imageSize !== null && $imageSize[0] !== 0) {
                 $heightPercentage = $imageSize[1] / $imageSize[0] * 100;
 
                 $topClass = 'proportional-container';
@@ -180,6 +178,14 @@ class BBCodeFromDB
         }
 
         return $text;
+    }
+
+    public function parseInlineCode(string $text): string
+    {
+        return strtr($text, [
+            "[c:{$this->uid}]" => '<code>',
+            "[/c:{$this->uid}]" => '</code>',
+        ]);
     }
 
     public function parseList($text)
@@ -279,7 +285,7 @@ class BBCodeFromDB
     public function parseUrl($text)
     {
         $text = preg_replace("#\[url:{$this->uid}\](.+?)\[/url:{$this->uid}\]#", "<a rel='nofollow' href='\\1'>\\1</a>", $text);
-        $text = preg_replace("#\[url=(.+?):{$this->uid}\]#", "<a rel='nofollow' href='\\1'>", $text);
+        $text = preg_replace("#\[url=([^\]]+):{$this->uid}\]#", "<a rel='nofollow' href='\\1'>", $text);
         $text = str_replace("[/url:{$this->uid}]", '</a>', $text);
 
         return $text;
@@ -310,6 +316,7 @@ class BBCodeFromDB
         $text = $this->parseAudio($text);
         $text = $this->parseBold($text);
         $text = $this->parseCentre($text);
+        $text = $this->parseInlineCode($text);
         $text = $this->parseColour($text);
         $text = $this->parseEmail($text);
         $text = $this->parseImage($text);
@@ -324,7 +331,7 @@ class BBCodeFromDB
         $text = $this->parseProfile($text);
 
         $text = str_replace("\n", '<br />', $text);
-        $text = CleanHTML::purify($text);
+        $text = app('clean-html')->purify($text);
 
         $className = class_with_modifiers('bbcode', $this->options['modifiers']);
 
