@@ -1,117 +1,153 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import BeatmapsetEvents from 'components/beatmapset-events'
-import BeatmapsetPanel from 'components/beatmapset-panel'
-import BlockButton from 'components/block-button'
-import ChatIcon from 'components/chat-icon'
-import { Comments } from 'components/comments'
-import { CommentsManager } from 'components/comments-manager'
-import CountdownTimer from 'components/countdown-timer'
-import { LandingNews } from 'components/landing-news'
-import MainNotificationIcon from 'components/main-notification-icon'
-import QuickSearchButton from 'components/quick-search-button'
-import RankingFilter from 'components/ranking-filter'
-import RankingSelectOptions from 'components/ranking-select-options'
-import SpotlightSelectOptions from 'components/spotlight-select-options'
-import { UserCard } from 'components/user-card'
-import { UserCardStore } from 'components/user-card-store'
-import { startListening, UserCardTooltip } from 'components/user-card-tooltip'
-import { UserCards } from 'components/user-cards'
-import { WikiSearch } from 'components/wiki-search'
-import { keyBy } from 'lodash'
-import { observable } from 'mobx'
-import { deletedUser } from 'models/user'
-import NotificationWidget from 'notification-widget/main'
-import NotificationWorker from 'notifications/worker'
-import QuickSearch from 'quick-search/main'
-import QuickSearchWorker from 'quick-search/worker'
-import SocketWorker from 'socket-worker'
-import core from 'osu-core-singleton'
-import { createElement } from 'react'
-import { parseJson, parseJsonNullable } from 'utils/json'
+import BeatmapsetEvents, { Props as BeatmapsetEventsProps } from 'components/beatmapset-events';
+import BeatmapsetPanel, { Props as BeatmapsetPanelProps } from 'components/beatmapset-panel';
+import BlockButton from 'components/block-button';
+import ChatIcon from 'components/chat-icon';
+import { Comments } from 'components/comments';
+import { CommentsManager, Props as CommentsManagerProps } from 'components/comments-manager';
+import CountdownTimer from 'components/countdown-timer';
+import { LandingNews } from 'components/landing-news';
+import MainNotificationIcon from 'components/main-notification-icon';
+import QuickSearchButton from 'components/quick-search-button';
+import RankingFilter from 'components/ranking-filter';
+import { RankingType } from 'components/ranking-filter';
+import RankingSelectOptions from 'components/ranking-select-options';
+import SpotlightSelectOptions from 'components/spotlight-select-options';
+import { UserCard } from 'components/user-card';
+import { UserCardStore } from 'components/user-card-store';
+import { startListening, UserCardTooltip } from 'components/user-card-tooltip';
+import { UserCards } from 'components/user-cards';
+import { WikiSearch } from 'components/wiki-search';
+import GameMode from 'interfaces/game-mode';
+import { keyBy } from 'lodash';
+import { observable } from 'mobx';
+import { deletedUser } from 'models/user';
+import NotificationWidget from 'notification-widget/main';
+import core from 'osu-core-singleton';
+import QuickSearch from 'quick-search/main';
+import QuickSearchWorker from 'quick-search/worker';
+import * as React from 'react';
+import { parseJson, parseJsonNullable } from 'utils/json';
 
-# Globally init countdown timers
-core.reactTurbolinks.register 'countdownTimer', (container) ->
-  createElement CountdownTimer, deadline: container.dataset.deadline
+function reqJson<T>(input: string|undefined): T {
+  // This will throw when input is missing and thus parsing empty string.
+  return JSON.parse(input ?? '') as T;
+}
 
-# Globally init block buttons
-core.reactTurbolinks.register 'blockButton', (container) ->
-  createElement BlockButton,
-    userId: parseInt(container.dataset.target)
-
-core.reactTurbolinks.register 'beatmap-discussion-events', (container) ->
-  props = {
-    events: parseJson('json-events')
-    mode: 'list'
+function reqStr(input: string|undefined) {
+  if (input == null) {
+    throw new Error('unexpected undefined value');
   }
 
-  # TODO: move to store?
-  users = parseJson('json-users')
-  props.users = _.keyBy(users, 'id')
-  props.users[null] = props.users[undefined] = deletedUser.toJson()
+  return input;
+}
 
-  createElement BeatmapsetEvents, props
+core.reactTurbolinks.register('countdownTimer', (container) => (
+  <CountdownTimer deadline={reqStr(container.dataset.deadline)} />
+));
 
+core.reactTurbolinks.register('blockButton', (container) => (
+  <BlockButton userId={parseInt(reqStr(container.dataset.target), 10)} />
+));
 
-core.reactTurbolinks.register 'beatmapset-panel', (container) ->
-  createElement BeatmapsetPanel, observable(JSON.parse(container.dataset.beatmapsetPanel))
+core.reactTurbolinks.register('beatmap-discussion-events', () => {
+  const props: BeatmapsetEventsProps = {
+    events: parseJson('json-events'),
+    mode: 'list',
+    users: keyBy(parseJson('json-users'), 'id'),
+  };
 
-core.reactTurbolinks.register 'ranking-select-options', ->
-  createElement RankingSelectOptions, parseJson('json-ranking-select-options')
+  // TODO: move to store?
+  // eslint-disable-next-line id-blacklist
+  props.users.null = props.users.undefined = deletedUser.toJson();
 
-core.reactTurbolinks.register 'spotlight-select-options', ->
-  createElement SpotlightSelectOptions, parseJson('json-spotlight-select-options')
+  return <BeatmapsetEvents {...props} />;
+});
 
-core.reactTurbolinks.register 'comments', (container) ->
-  props = JSON.parse(container.dataset.props)
-  props.component = Comments
+core.reactTurbolinks.register('beatmapset-panel', (container) => {
+  const props: BeatmapsetPanelProps = reqJson(container.dataset.beatmapsetPanel);
 
-  createElement CommentsManager, props
+  return <BeatmapsetPanel {...observable(props)} />;
+});
 
-core.reactTurbolinks.register 'chat-icon', (container) ->
-  createElement ChatIcon, type: container.dataset.type
+core.reactTurbolinks.register('ranking-select-options', () => (
+  <RankingSelectOptions {...parseJson('json-ranking-select-options')} />
+));
 
-core.reactTurbolinks.register 'main-notification-icon', (container) ->
-  createElement MainNotificationIcon, type: container.dataset.type
+core.reactTurbolinks.register('spotlight-select-options', () => (
+  <SpotlightSelectOptions {...parseJson('json-spotlight-select-options')} />
+));
 
-core.reactTurbolinks.register 'notification-widget', (container) ->
-  createElement NotificationWidget, (try JSON.parse(container.dataset.notificationWidget))
+core.reactTurbolinks.register('comments', (container) => {
+  const props: CommentsManagerProps = {
+    component: Comments,
+    ...reqJson<Omit<CommentsManagerProps, 'component'>>(container.dataset.props),
+  };
 
-quickSearchWorker = new QuickSearchWorker()
-core.reactTurbolinks.register 'quick-search', ->
-  createElement QuickSearch, worker: quickSearchWorker
+  return <CommentsManager {...props} />;
+});
 
-core.reactTurbolinks.register 'quick-search-button', ->
-  createElement QuickSearchButton, worker: quickSearchWorker
+core.reactTurbolinks.register('chat-icon', (container) => (
+  <ChatIcon type={container.dataset.type} />
+));
 
-core.reactTurbolinks.register 'ranking-filter', (container) ->
-  createElement RankingFilter,
-    countries: parseJsonNullable 'json-countries'
-    gameMode: container.dataset.gameMode
-    type: container.dataset.type
-    variants: try JSON.parse(container.dataset.variants)
+core.reactTurbolinks.register('main-notification-icon', (container) => (
+  <MainNotificationIcon type={container.dataset.type} />
+));
 
-core.reactTurbolinks.register 'user-card', (container) ->
-  createElement UserCard,
-    modifiers: try JSON.parse(container.dataset.modifiers)
-    user: if container.dataset.isCurrentUser then currentUser else try JSON.parse(container.dataset.user)
+core.reactTurbolinks.register('notification-widget', (container) => (
+  <NotificationWidget {...reqJson(container.dataset.notificationWidget)} />
+));
 
-core.reactTurbolinks.register 'user-card-store', (container) ->
-  createElement UserCardStore, user: JSON.parse(container.dataset.user)
+const quickSearchWorker = new QuickSearchWorker();
+core.reactTurbolinks.register('quick-search', () => (
+  <QuickSearch worker={quickSearchWorker} />
+));
 
-core.reactTurbolinks.register 'user-card-tooltip', (container) ->
-  createElement UserCardTooltip,
-    container: container
-    lookup: container.dataset.lookup
+core.reactTurbolinks.register('quick-search-button', () => (
+  <QuickSearchButton worker={quickSearchWorker} />
+));
 
-$(document).ready startListening
-core.reactTurbolinks.register 'user-cards', (container) ->
-  createElement UserCards,
-    modifiers: try JSON.parse(container.dataset.modifiers)
-    users: try JSON.parse(container.dataset.users)
+core.reactTurbolinks.register('ranking-filter', (container) => (
+  <RankingFilter
+    countries={parseJsonNullable('json-countries')}
+    gameMode={container.dataset.gameMode as GameMode}
+    type={container.dataset.type as RankingType}
+    variants={reqJson(container.dataset.variants)}
+  />
+));
 
-core.reactTurbolinks.register 'wiki-search', -> createElement(WikiSearch)
+core.reactTurbolinks.register('user-card', (container) => (
+  <UserCard
+    modifiers={reqJson(container.dataset.modifiers ?? 'null')}
+    user={container.dataset.isCurrentUser === '1' ? core.currentUser : reqJson(container.dataset.user ?? 'null')}
+  />
+));
 
-core.reactTurbolinks.register 'landing-news', ->
-  createElement LandingNews, posts: parseJson('json-posts')
+core.reactTurbolinks.register('user-card-store', (container) => (
+  <UserCardStore user={reqJson(container.dataset.user)} />
+));
+
+core.reactTurbolinks.register('user-card-tooltip', (container) => (
+  <UserCardTooltip
+    container={container}
+    lookup={reqStr(container.dataset.lookup)}
+  />
+));
+
+$(document).ready(startListening);
+core.reactTurbolinks.register('user-cards', (container) => (
+  <UserCards
+    modifiers={reqJson(container.dataset.modifiers ?? 'null')}
+    users={reqJson(container.dataset.users ?? '[]')}
+    viewMode='card'
+  />
+));
+
+core.reactTurbolinks.register('wiki-search', () => <WikiSearch />);
+
+core.reactTurbolinks.register('landing-news', () => (
+  <LandingNews posts={parseJson('json-posts')} />
+));
