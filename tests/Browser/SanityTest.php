@@ -430,9 +430,6 @@ class SanityTest extends DuskTestCase
                 'locale' => 'en',
                 'path' => 'Terms',
             ],
-            'packs.show' => [
-                'pack' => self::$scaffolding['pack']->tag,
-            ],
             'wiki.image' => [
                 'path' => 'shared/mode/osu.png',
             ],
@@ -453,7 +450,7 @@ class SanityTest extends DuskTestCase
                 static::output($params[$paramName]." \e[30;1m(override)\e[0m\n");
             } else {
                 if (isset(self::$scaffolding[$paramName])) {
-                    $params[$paramName] = self::$scaffolding[$paramName]->getKey();
+                    $params[$paramName] = self::$scaffolding[$paramName]->getRouteKey();
                     static::output($params[$paramName]."\n");
                 } else {
                     static::output("\e[30;1m¯\_(ツ)_/¯\e[0m\n");
