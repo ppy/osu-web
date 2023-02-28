@@ -430,6 +430,9 @@ class SanityTest extends DuskTestCase
                 'locale' => 'en',
                 'path' => 'Terms',
             ],
+            'packs.show' => [
+                'pack' => self::$scaffolding['pack']->tag,
+            ],
             'wiki.image' => [
                 'path' => 'shared/mode/osu.png',
             ],
