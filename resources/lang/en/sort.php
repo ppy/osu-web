@@ -32,6 +32,7 @@ return [
     ],
 
     'forum_topics' => [
+        'created' => 'Created',
         'feature_votes' => 'Star priority',
         'new' => 'Last reply',
     ],
