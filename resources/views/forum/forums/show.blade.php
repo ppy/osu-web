@@ -11,6 +11,9 @@
     'titlePrepend' => $forum->forum_name,
 ])
 
+@php
+    $currentUserId = Auth::user()?->getKey();
+@endphp
 @section('content')
     @include('forum._header', [
         'background' => $cover['fileUrl'] ?? null,
@@ -35,7 +38,7 @@
 
                 <ul class="forum-list__items">
                     @foreach ($forum->subforums as $subforum)
-                        @include('forum.forums._forum', ['forum' => $subforum])
+                        @include('forum.forums._forum', ['currentUserId' => $currentUserId, 'forum' => $subforum])
                     @endforeach
                 </ul>
             </div>

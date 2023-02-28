@@ -7,6 +7,9 @@
     'searchParams' => ['mode' => 'forum_post'],
 ])
 
+@php
+    $currentUserId = Auth::user()?->getKey();
+@endphp
 @section('content')
     @include('forum._header')
 
@@ -49,7 +52,7 @@
 
                 <ul class="forum-list__items">
                     @foreach ($category->subforums as $forum)
-                        @include('forum.forums._forum', compact('forum'))
+                        @include('forum.forums._forum', compact('currentUserId', 'forum'))
                     @endforeach
                 </ul>
             </div>
