@@ -10,7 +10,7 @@
     <div class="osu-page">
         <div class="beatmap-packs">
             <div class="beatmap-pack beatmap-pack--expanded">
-                <a href="{{ route('packs.show', ['pack' => $pack->tag]) }}" class="beatmap-pack__header">
+                <a href="{{ route('packs.show', $pack) }}" class="beatmap-pack__header">
                     <div class="beatmap-pack__name">{{ $pack->name }}</div>
                     <div class="beatmap-pack__details">
                         <span class="beatmap-pack__date">{{ json_date($pack->date) }}</span>

@@ -72,6 +72,11 @@ class BeatmapPack extends Model
         );
     }
 
+    public function getRouteKeyName(): string
+    {
+        return 'tag';
+    }
+
     public function userCompletionData($user)
     {
         if ($user !== null) {

@@ -35,7 +35,7 @@ class BeatmapPacksController extends Controller
         if (ctype_digit($idOrTag)) {
             $pack = $query->findOrFail($idOrTag);
 
-            return ujs_redirect(route('packs.show', ['pack' => $pack->tag]));
+            return ujs_redirect(route('packs.show', $pack));
         }
 
         $pack = $query->where('tag', $idOrTag)->firstOrFail();
