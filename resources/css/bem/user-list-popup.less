@@ -2,11 +2,16 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .user-list-popup {
+  background-color: hsla(var(--hsl-b6), 0.75);
   color: hsl(var(--hsl-c1));
   font-size: @font-size--normal;
   display: grid;
   gap: 10px;
+  padding: 5px 10px;
   --columns: 5;
+
+  .default-border-radius();
+  .default-box-shadow();
 
   @media @desktop  {
     --columns: 10;
