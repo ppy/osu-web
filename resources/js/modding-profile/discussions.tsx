@@ -5,10 +5,11 @@ import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context';
 import { BeatmapsetsContext } from 'beatmap-discussions/beatmapsets-context';
 import { Discussion } from 'beatmap-discussions/discussion';
 import BeatmapsetCover from 'components/beatmapset-cover';
+import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import { BeatmapsetDiscussionJsonForBundle } from 'interfaces/beatmapset-discussion-json';
+import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import core from 'osu-core-singleton';
 import React from 'react';
 import { makeUrl } from 'utils/beatmapset-discussion-helper';
 import { trans } from 'utils/lang';
@@ -34,23 +35,7 @@ export class Discussions extends React.Component<Props> {
                 <BeatmapsContext.Consumer>
                   {(beatmaps) => (
                     <>
-                      {this.props.discussions.map((discussion) => (
-                        <div key={discussion.id} className='modding-profile-list__row'>
-                          <a className='modding-profile-list__thumbnail' href={makeUrl({ discussion })}>
-                            <BeatmapsetCover beatmapset={beatmapsets[discussion.beatmapset_id]} size='list' />
-                          </a>
-                          <Discussion
-                            beatmapset={beatmapsets[discussion.beatmapset_id]}
-                            currentBeatmap={beatmaps[discussion.beatmap_id]}
-                            currentUser={core.currentUser}
-                            discussion={discussion}
-                            isTimelineVisible={false}
-                            preview
-                            showDeleted
-                            users={this.props.users}
-                          />
-                        </div>
-                      ))}
+                      {this.props.discussions.map((discussion) => this.renderDiscussion(discussion, beatmapsets, beatmaps))}
                       <a className='modding-profile-list__show-more' href={route('beatmapsets.discussions.index', { user: this.props.user.id })}>
                         {trans('users.show.extra.discussions.show_more')}
                       </a>
@@ -63,5 +48,31 @@ export class Discussions extends React.Component<Props> {
         </div>
       </div>
     );
+  }
+
+  private renderDiscussion(discussion: BeatmapsetDiscussionJsonForBundle, beatmapsets: Partial<Record<number, BeatmapsetExtendedJson>>, beatmaps: Partial<Record<number, BeatmapExtendedJson>>) {
+    if (discussion.beatmap_id == null) return null;
+
+    const beatmapset = beatmapsets[discussion.beatmapset_id];
+    const currentBeatmap = beatmaps[discussion.beatmap_id];
+
+    if (beatmapset == null || currentBeatmap == null) return null;
+
+    return (
+      <div key={discussion.id} className='modding-profile-list__row'>
+        <a className='modding-profile-list__thumbnail' href={makeUrl({ discussion })}>
+          <BeatmapsetCover beatmapset={beatmapsets[discussion.beatmapset_id]} size='list' />
+        </a>
+        <Discussion
+          beatmapset={beatmapset}
+          currentBeatmap={currentBeatmap}
+          discussion={discussion}
+          isTimelineVisible={false}
+          preview
+          showDeleted
+          users={this.props.users}
+        />
+      </div>
+    )
   }
 }
