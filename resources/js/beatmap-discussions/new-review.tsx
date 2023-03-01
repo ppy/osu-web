@@ -3,17 +3,18 @@
 
 import { DiscussionsContext } from 'beatmap-discussions/discussions-context';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
-import BeatmapsetJson from 'interfaces/beatmapset-json';
+import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import UserJson from 'interfaces/user-json';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import { hasAvailabilityInfo } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import Editor from './editor';
 
 interface Props {
   beatmaps: BeatmapExtendedJson[];
-  beatmapset: BeatmapsetJson;
+  beatmapset: BeatmapsetExtendedJson;
   currentBeatmap: BeatmapExtendedJson;
   currentUser: UserJson;
   pinned?: boolean;
@@ -84,20 +85,21 @@ export default class NewReview extends React.Component<Props, State> {
                   </span>
                 </div>
                 {
-                  this.props.currentUser.id ?
-                    <DiscussionsContext.Consumer>
-                      {
-                        (discussions) => (<Editor
-                          beatmaps={this.props.beatmaps}
-                          beatmapset={this.props.beatmapset}
-                          currentBeatmap={this.props.currentBeatmap}
-                          discussions={discussions}
-                          onFocus={this.onFocus}
-                        />)
-                      }
-                    </DiscussionsContext.Consumer>
-                    :
-                    <div className='beatmap-discussion-new__login-required'>{trans('beatmaps.discussions.require-login')}</div>
+                  this.props.currentUser.id ? (
+                    !hasAvailabilityInfo(this.props.beatmapset) ? (
+                      <DiscussionsContext.Consumer>
+                        {
+                          (discussions) => (<Editor
+                            beatmaps={this.props.beatmaps}
+                            beatmapset={this.props.beatmapset}
+                            currentBeatmap={this.props.currentBeatmap}
+                            discussions={discussions}
+                            onFocus={this.onFocus}
+                          />)
+                        }
+                      </DiscussionsContext.Consumer>
+                    ) : <div className='beatmap-discussion-new__login-required'>{trans('beatmaps.discussions.message_placeholder_locked')}</div>
+                  ) : <div className='beatmap-discussion-new__login-required'>{trans('beatmaps.discussions.require-login')}</div>
                 }
               </div>
             </div>

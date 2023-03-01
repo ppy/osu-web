@@ -13,6 +13,7 @@ import { deletedUser } from 'models/user';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { badgeGroup, canModeratePosts, formatTimestamp, makeUrl, startingPost } from 'utils/beatmapset-discussion-helper';
+import { hasAvailabilityInfo } from 'utils/beatmapset-helper';
 import { classWithModifiers, groupColour } from 'utils/css';
 import { trans } from 'utils/lang';
 import { DiscussionType, discussionTypeIcons } from './discussion-type';
@@ -77,7 +78,8 @@ export class Discussion extends React.Component<Props> {
 
   @computed
   private get canBeRepliedTo() {
-    return (!this.props.beatmapset.discussion_locked || canModeratePosts())
+    return !hasAvailabilityInfo(this.props.beatmapset)
+      && (!this.props.beatmapset.discussion_locked || canModeratePosts())
       && (this.props.discussion.beatmap_id == null || this.props.currentBeatmap.deleted_at == null);
   }
 
