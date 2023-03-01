@@ -10,6 +10,7 @@
   font-size: @font-size--normal;
   display: flex;
   align-items: center;
+  --active-bg: @osu-colour-h1;
 
   @media @desktop {
     padding-left: 10px;
@@ -17,6 +18,7 @@
   }
 
   &--forum {
+    --active-bg: var(--forum-bg);
     margin-bottom: -2px;
   }
 
@@ -45,7 +47,7 @@
     &--active {
       font-weight: 600;
       color: @osu-colour-b5;
-      background-color: @osu-colour-h1;
+      background-color: var(--active-bg);
     }
 
     &--disabled {
