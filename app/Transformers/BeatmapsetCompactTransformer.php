@@ -78,7 +78,8 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         ];
     }
 
-    public function includeAvailability(Beatmapset $beatmapset) {
+    public function includeAvailability(Beatmapset $beatmapset)
+    {
         return $this->primitive([
             'download_disabled' => $beatmapset->download_disabled,
             'more_information' => $beatmapset->download_disabled_url,
