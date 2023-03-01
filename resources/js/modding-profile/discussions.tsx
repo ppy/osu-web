@@ -21,7 +21,7 @@ interface Props {
   users: Partial<Record<number, UserJson>>;
 }
 
-export class Discussions extends React.Component<Props> {
+export default class Discussions extends React.Component<Props> {
   render() {
     return (
       <div className='page-extra'>
