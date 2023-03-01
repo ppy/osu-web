@@ -603,7 +603,7 @@ class OsuAuthorize
 
         // Moderators can't reply if download limited.
         if ($beatmapset->downloadLimited()) {
-            'beatmap_discussion.discussion_locked';
+            return 'beatmap_discussion.discussion_locked';
         }
 
         if ($user->isModerator()) {
