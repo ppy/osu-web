@@ -313,7 +313,7 @@ class OsuAuthorize
         $this->ensureCleanRecord($user);
         $this->ensureHasPlayed($user);
 
-        if ($beatmapset->discussion_locked) {
+        if ($beatmapset->discussion_locked || $beatmapset->downloadLimited()) {
             return 'beatmap_discussion.discussion_locked';
         }
 
