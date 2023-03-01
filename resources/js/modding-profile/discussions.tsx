@@ -14,7 +14,6 @@ import React from 'react';
 import { makeUrl } from 'utils/beatmapset-discussion-helper';
 import { trans } from 'utils/lang';
 
-
 interface Props {
   discussions: BeatmapsetDiscussionJsonForBundle[];
   user: UserJson;
@@ -73,6 +72,6 @@ export default class Discussions extends React.Component<Props> {
           users={this.props.users}
         />
       </div>
-    )
+    );
   }
 }
