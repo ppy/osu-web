@@ -491,6 +491,10 @@ class OsuAuthorize
             return 'beatmap_discussion_post.store.beatmapset_locked';
         }
 
+        if ($post->beatmapDiscussion->beatmapset->downloadLimited()) {
+            return 'beatmap_discussion.discussion_locked';
+        }
+
         return 'ok';
     }
 
@@ -599,6 +603,11 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
         $this->ensureHasPlayed($user);
+
+        // Moderators can't reply if download limited.
+        if ($beatmapset->downloadLimited()) {
+            'beatmap_discussion.discussion_locked';
+        }
 
         if ($user->isModerator()) {
             return 'ok';

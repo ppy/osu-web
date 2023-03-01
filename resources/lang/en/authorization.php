@@ -12,6 +12,8 @@ return [
     'unauthorized' => 'Access denied.',
 
     'beatmap_discussion' => [
+        'discussion_locked' => 'This beatmap is locked for discussion.',
+
         'destroy' => [
             'is_hype' => 'Can not undo hyping.',
             'has_reply' => 'Can not delete discussion with replies',
