@@ -50,12 +50,10 @@ export default class Discussions extends React.Component<Props> {
   }
 
   private renderDiscussion(discussion: BeatmapsetDiscussionJsonForBundle, beatmapsets: Partial<Record<number, BeatmapsetExtendedJson>>, beatmaps: Partial<Record<number, BeatmapExtendedJson>>) {
-    if (discussion.beatmap_id == null) return null;
-
     const beatmapset = beatmapsets[discussion.beatmapset_id];
-    const currentBeatmap = beatmaps[discussion.beatmap_id];
+    const currentBeatmap = discussion.beatmap_id != null ? beatmaps[discussion.beatmap_id] : null;
 
-    if (beatmapset == null || currentBeatmap == null) return null;
+    if (beatmapset == null) return null;
 
     return (
       <div key={discussion.id} className='modding-profile-list__row'>
@@ -64,7 +62,7 @@ export default class Discussions extends React.Component<Props> {
         </a>
         <Discussion
           beatmapset={beatmapset}
-          currentBeatmap={currentBeatmap}
+          currentBeatmap={currentBeatmap ?? null}
           discussion={discussion}
           isTimelineVisible={false}
           preview

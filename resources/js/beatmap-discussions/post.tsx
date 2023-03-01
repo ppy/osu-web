@@ -36,7 +36,7 @@ import { UserCard } from './user-card';
 const bn = 'beatmap-discussion-post';
 
 interface Props {
-  beatmap: BeatmapExtendedJson;
+  beatmap: BeatmapExtendedJson | null;
   beatmapset: BeatmapsetExtendedJson;
   discussion: BeatmapsetDiscussionJson;
   post: BeatmapsetDiscussionMessagePostJson;
