@@ -52,10 +52,6 @@ return [
             'resolved' => 'You can not edit a post of a resolved discussion.',
             'system_generated' => 'Automatically generated post can not be edited.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'This beatmap is locked for discussion.',
-        ],
     ],
 
     'beatmapset' => [

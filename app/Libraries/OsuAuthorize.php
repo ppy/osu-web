@@ -314,7 +314,7 @@ class OsuAuthorize
         $this->ensureHasPlayed($user);
 
         if ($beatmapset->discussion_locked) {
-            return 'beatmap_discussion_post.store.beatmapset_locked';
+            return 'beatmap_discussion.discussion_locked';
         }
 
         return 'ok';
@@ -456,7 +456,7 @@ class OsuAuthorize
         }
 
         if ($post->beatmapDiscussion->beatmapset->discussion_locked) {
-            return 'beatmap_discussion_post.store.beatmapset_locked';
+            return 'beatmap_discussion.discussion_locked';
         }
 
         return 'ok';
@@ -487,11 +487,8 @@ class OsuAuthorize
             return $prefix.'resolved';
         }
 
-        if ($post->beatmapDiscussion->beatmapset->discussion_locked) {
-            return 'beatmap_discussion_post.store.beatmapset_locked';
-        }
-
-        if ($post->beatmapDiscussion->beatmapset->downloadLimited()) {
+        $beatmapset = $post->beatmapDiscussion->beatmapset;
+        if ($beatmapset->discussion_locked || $beatmapset->downloadLimited()) {
             return 'beatmap_discussion.discussion_locked';
         }
 
@@ -614,8 +611,7 @@ class OsuAuthorize
         }
 
         if ($beatmapset->discussion_locked) {
-            // TODO: key should be changed.
-            return 'beatmap_discussion_post.store.beatmapset_locked';
+            return 'beatmap_discussion.discussion_locked';
         }
 
         return 'ok';
