@@ -19,7 +19,7 @@ import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
 import { onError } from 'utils/ajax';
 import { canModeratePosts, formatTimestamp, makeUrl, NearbyDiscussion, nearbyDiscussions, parseTimestamp, validMessageLength } from 'utils/beatmapset-discussion-helper';
-import { nominationsCount } from 'utils/beatmapset-helper';
+import { downloadLimited, nominationsCount } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
 import { joinComponents, trans } from 'utils/lang';
@@ -63,6 +63,7 @@ export class NewDiscussion extends React.Component<Props> {
 
   private get canPost() {
     if (core.currentUser == null) return false;
+    if (downloadLimited(this.props.beatmapset)) return false;
 
     return !core.currentUser.is_silenced
       && (!this.props.beatmapset.discussion_locked || canModeratePosts())
@@ -111,7 +112,7 @@ export class NewDiscussion extends React.Component<Props> {
 
     if (core.currentUser.is_silenced) {
       return trans('beatmaps.discussions.message_placeholder_silenced');
-    } else if (this.props.beatmapset.discussion_locked) {
+    } else if (this.props.beatmapset.discussion_locked || downloadLimited(this.props.beatmapset)) {
       return trans('beatmaps.discussions.message_placeholder_locked');
     } else {
       return trans('beatmaps.discussions.message_placeholder_deleted_beatmap');

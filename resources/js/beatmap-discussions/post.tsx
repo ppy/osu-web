@@ -27,6 +27,7 @@ import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
 import { onError } from 'utils/ajax';
 import { badgeGroup, canModeratePosts, format, makeUrl, validMessageLength } from 'utils/beatmapset-discussion-helper';
+import { downloadLimited } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
 import { trans } from 'utils/lang';
@@ -61,7 +62,12 @@ export default class Post extends React.Component<Props> {
 
   @computed
   private get canEdit() {
-    return this.isAdmin || this.isOwn && this.props.post.id > this.props.resolvedSystemPostId && !this.props.beatmapset.discussion_locked;
+    return this.isAdmin
+      || (!downloadLimited(this.props.beatmapset)
+        && this.isOwn
+        && this.props.post.id > this.props.resolvedSystemPostId
+        && !this.props.beatmapset.discussion_locked
+      );
   }
 
   @computed
