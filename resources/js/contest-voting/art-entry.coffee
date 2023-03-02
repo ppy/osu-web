@@ -1,7 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { route } from 'laroute'
+import UserLink from 'components/user-link'
 import * as React from 'react'
 import { div, span, a, i } from 'react-dom-factories'
 import { classWithModifiers, urlPresence } from 'utils/css'
@@ -79,25 +79,29 @@ export class ArtEntry extends React.Component
             target: '_blank'
 
             @props.entry.title
+          @renderUserLink()
 
-      if showVotes
+      else if showVotes
         div className: "#{bn}__result",
           div className: "#{bn}__result-ranking",
             div className: "#{bn}__result-place",
               if top3
                 i className: "fas fa-fw fa-trophy #{bn}__trophy"
               span {}, "##{place}"
-            if @props.entry.results.user_id
-              a
-                className: "#{bn}__entrant js-usercard",
-                'data-user-id': @props.entry.results.user_id,
-                href: route('users.show', user: @props.entry.results.user_id),
-                  @props.entry.results.username
-            else
-              span className: "#{bn}__entrant", @props.entry.results.actual_name
+            @renderUserLink() ? span className: "#{bn}__entrant", @props.entry.results.actual_name
           div className: "#{bn}__result-pane",
             span className: "#{bn}__result-votes",
               transChoice 'contest.vote.count', @props.entry.results.votes
             if Number.isFinite usersVotedPercentage
               span className: "#{bn}__result-votes #{bn}__result-votes--percentage",
                 " (#{formatNumber(usersVotedPercentage)}%)"
+      else if @props.entry.user?.id?
+        div className: "#{bn}__result", @renderUserLink()
+
+
+  renderUserLink: ->
+    return null unless @props.entry.user?.id?
+
+    el UserLink,
+      className: "#{bn}__entrant"
+      user: @props.entry.user
