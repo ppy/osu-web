@@ -10,7 +10,7 @@ import ClickToCopy from 'components/click-to-copy';
 import { ReportReportable } from 'components/report-reportable';
 import StringWithComponent from 'components/string-with-component';
 import TimeWithTooltip from 'components/time-with-tooltip';
-import { UserLink } from 'components/user-link';
+import UserLink from 'components/user-link';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import { BeatmapsetDiscussionMessagePostJson } from 'interfaces/beatmapset-discussion-post-json';

@@ -6,7 +6,7 @@ import BeatmapsetCover from 'components/beatmapset-cover';
 import BeatmapsetMapping from 'components/beatmapset-mapping';
 import BigButton from 'components/big-button';
 import StringWithComponent from 'components/string-with-component';
-import { UserLink } from 'components/user-link';
+import UserLink from 'components/user-link';
 import UserListPopup, { createTooltip } from 'components/user-list-popup';
 import { route } from 'laroute';
 import { action, computed, makeObservable } from 'mobx';
