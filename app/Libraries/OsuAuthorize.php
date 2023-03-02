@@ -314,7 +314,7 @@ class OsuAuthorize
         $this->ensureHasPlayed($user);
 
         if ($beatmapset->discussion_locked || $beatmapset->downloadLimited()) {
-            return 'beatmap_discussion.discussion_locked';
+            return 'beatmapset.discussion_locked';
         }
 
         return 'ok';
@@ -456,7 +456,7 @@ class OsuAuthorize
         }
 
         if ($post->beatmapDiscussion->beatmapset->discussion_locked) {
-            return 'beatmap_discussion.discussion_locked';
+            return 'beatmapset.discussion_locked';
         }
 
         return 'ok';
@@ -489,7 +489,7 @@ class OsuAuthorize
 
         $beatmapset = $post->beatmapDiscussion->beatmapset;
         if ($beatmapset->discussion_locked || $beatmapset->downloadLimited()) {
-            return 'beatmap_discussion.discussion_locked';
+            return 'beatmapset.discussion_locked';
         }
 
         return 'ok';
@@ -603,7 +603,7 @@ class OsuAuthorize
 
         // Moderators can't reply if download limited.
         if ($beatmapset->downloadLimited()) {
-            return 'beatmap_discussion.discussion_locked';
+            return 'beatmapset.discussion_locked';
         }
 
         if ($user->isModerator()) {
@@ -611,7 +611,7 @@ class OsuAuthorize
         }
 
         if ($beatmapset->discussion_locked) {
-            return 'beatmap_discussion.discussion_locked';
+            return 'beatmapset.discussion_locked';
         }
 
         return 'ok';
