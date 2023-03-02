@@ -7,7 +7,7 @@ import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import UserJson from 'interfaces/user-json';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { hasAvailabilityInfo } from 'utils/beatmapset-helper';
+import { downloadLimited } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import Editor from './editor';
@@ -86,7 +86,7 @@ export default class NewReview extends React.Component<Props, State> {
                 </div>
                 {
                   this.props.currentUser.id ? (
-                    !hasAvailabilityInfo(this.props.beatmapset) ? (
+                    !downloadLimited(this.props.beatmapset) ? (
                       <DiscussionsContext.Consumer>
                         {
                           (discussions) => (<Editor

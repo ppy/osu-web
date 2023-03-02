@@ -13,7 +13,7 @@ interface FavouriteResponse {
   favourite_count: number;
 }
 
-export function hasAvailabilityInfo(beatmapset: BeatmapsetExtendedJson) {
+export function downloadLimited(beatmapset: BeatmapsetExtendedJson) {
   return beatmapset.availability.download_disabled || beatmapset.availability.more_information != null;
 }
 
