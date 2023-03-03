@@ -1,0 +1,7 @@
+[box=[color=red]colored box title[/color]]box content[/box]
+
+[size=50]other content[/size]
+
+[box="[color=red]colored "box" title[/color]"]box content[/box]
+
+[size=50]other content[/size]
