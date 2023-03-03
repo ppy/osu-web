@@ -162,6 +162,7 @@ export class SearchPanel extends React.Component<Props> {
             onChange={this.onChange}
             onKeyUp={this.onKeyUp}
             placeholder={trans('beatmaps.listing.search.prompt')}
+            type='search'
             value={this.query}
           />
           <div className='beatmapsets-search__icon'>
@@ -193,6 +194,7 @@ export class SearchPanel extends React.Component<Props> {
             onChange={this.onChange}
             onKeyUp={this.onKeyUp}
             placeholder={trans('beatmaps.listing.search.prompt')}
+            type='search'
             value={this.query}
           />
           <div className='beatmapsets-search__icon'>

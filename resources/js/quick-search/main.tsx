@@ -56,6 +56,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
               onChange={this.updateQuery}
               onKeyDown={this.onInputKeyDown}
               placeholder={trans('home.search.placeholder')}
+              type='search'
               value={this.props.worker.query}
             />
           </div>
