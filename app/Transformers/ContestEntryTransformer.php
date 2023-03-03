@@ -41,11 +41,9 @@ class ContestEntryTransformer extends TransformerAbstract
 
     public function includeUser(ContestEntry $entry)
     {
-        $user = $entry->user ?? (new DeletedUser());
-
         return $this->primitive([
-            'id' => $user->getKey(),
-            'username' => $user->username,
+            'id' => $entry->user_id
+            'username' => ($entry->user ?? (new DeletedUser()))->username,
         ]);
     }
 
