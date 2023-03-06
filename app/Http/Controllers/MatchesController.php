@@ -30,9 +30,9 @@ class MatchesController extends Controller
             ->getWithHasMore();
 
         return [
-            'cursor' => $hasMore ? $cursorHelper->next($matches) : null,
             'matches' => json_collection($matches, 'LegacyMatch\LegacyMatch'),
             'params' => ['limit' => $limit, 'sort' => $cursorHelper->getSortName()],
+            ...cursor_for_response($cursorHelper->next($matches, $hasMore)),
         ];
     }
 

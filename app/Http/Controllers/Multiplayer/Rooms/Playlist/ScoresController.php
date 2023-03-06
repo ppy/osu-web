@@ -74,14 +74,13 @@ class ScoresController extends BaseController
             }
         }
 
-        $nextCursor = $hasMore ? $cursorHelper->next($highScores) : null;
-
-        return array_merge([
+        return [
             'params' => ['limit' => $limit, 'sort' => $cursorHelper->getSortName()],
             'scores' => $scoresJson,
             'total' => $total,
             'user_score' => $userScoreJson ?? null,
-        ], cursor_for_response($nextCursor));
+            ...cursor_for_response($cursorHelper->next($highScores, $hasMore)),
+        ];
     }
 
     /**
