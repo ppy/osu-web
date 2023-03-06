@@ -21,11 +21,14 @@ use Exception;
 class BeatmapPack extends Model
 {
     const DEFAULT_TYPE = 'standard';
-    private static $tagMappings = [
+
+    // also display order for listing page
+    const TAG_MAPPINGS = [
         'standard' => 'S',
+        'featured' => 'F',
+        'chart' => 'R',
         'theme' => 'T',
         'artist' => 'A',
-        'chart' => 'R',
     ];
 
     protected $table = 'osu_beatmappacks';
@@ -41,11 +44,11 @@ class BeatmapPack extends Model
 
     public static function getPacks($type)
     {
-        if (!in_array($type, array_keys(static::$tagMappings), true)) {
-            return;
-        }
+        $tag = static::TAG_MAPPINGS[$type] ?? null;
 
-        $tag = static::$tagMappings[$type];
+        if ($tag === null) {
+            return null;
+        }
 
         return static::default()->where('tag', 'like', "{$tag}%")->orderBy('pack_id', 'desc');
     }
