@@ -61,7 +61,7 @@ function createTooltipOptions(card: HTMLElement) {
   };
 }
 
-let blankCardCache: HTMLElement|undefined;
+let blankCardCache: HTMLElement | undefined;
 function blankCard() {
   if (blankCardCache == null) {
     const container = document.createElement('div');

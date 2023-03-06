@@ -128,9 +128,10 @@ class Room extends Model
             $response['type_group'] = $typeGroup;
         }
 
-        $nextCursor = $hasMore ? $search['cursorHelper']->next($rooms) : null;
-
-        return array_merge($response, cursor_for_response($nextCursor));
+        return [
+            ...$response,
+            ...cursor_for_response($search['cursorHelper']->next($rooms, $hasMore)),
+        ];
     }
 
     public static function search(array $rawParams, ?int $maxLimit = null)

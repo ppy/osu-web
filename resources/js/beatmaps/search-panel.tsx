@@ -10,6 +10,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { htmlElementOrNull } from 'utils/html';
 import { trans } from 'utils/lang';
 import AvailableFilters, { FilterOption } from './available-filters';
 import { SearchFilter } from './search-filter';
@@ -102,6 +103,12 @@ export class SearchPanel extends React.Component<Props> {
     this.controller.filters.update('query', this.query);
   };
 
+  private readonly onKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      htmlElementOrNull(event.target)?.blur();
+    }
+  };
+
   private renderBreadcrumbs() {
     if (!this.controller.advancedSearch) return null;
 
@@ -153,7 +160,9 @@ export class SearchPanel extends React.Component<Props> {
             className='beatmapsets-search__input js-beatmapsets-search-input'
             name='search'
             onChange={this.onChange}
+            onKeyUp={this.onKeyUp}
             placeholder={trans('beatmaps.listing.search.prompt')}
+            type='search'
             value={this.query}
           />
           <div className='beatmapsets-search__icon'>
@@ -183,7 +192,9 @@ export class SearchPanel extends React.Component<Props> {
             className='beatmapsets-search__input js-beatmapsets-search-input'
             name='search'
             onChange={this.onChange}
+            onKeyUp={this.onKeyUp}
             placeholder={trans('beatmaps.listing.search.prompt')}
+            type='search'
             value={this.query}
           />
           <div className='beatmapsets-search__icon'>

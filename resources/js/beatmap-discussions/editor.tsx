@@ -47,7 +47,7 @@ interface CacheInterface {
 interface Props {
   beatmaps: Partial<Record<number, BeatmapExtendedJson>>;
   beatmapset: BeatmapsetJson;
-  currentBeatmap: BeatmapExtendedJson;
+  currentBeatmap: BeatmapExtendedJson | null;
   discussion?: BeatmapsetDiscussionJson;
   discussions: Partial<Record<number, BeatmapsetDiscussionJsonForBundle | BeatmapsetDiscussionJsonForShow>>; // passed in via context at parent
   document?: string;
@@ -371,7 +371,6 @@ export default class Editor extends React.Component<Props, State> {
           <EditorDiscussionComponent
             beatmaps={this.sortedBeatmaps()}
             beatmapset={this.props.beatmapset}
-            currentBeatmap={this.props.currentBeatmap}
             discussions={this.props.discussions}
             editMode={this.editMode}
             element={element}

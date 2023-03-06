@@ -61,7 +61,7 @@ export class Main extends React.PureComponent
           callback: @showMore
           hasMore: @state.hasMore
           loading: @state.loading
-          modifiers: ['t-greyviolet-darker', 'changelog-index']
+          modifiers: 'changelog-index'
 
 
   headerLinks: =>

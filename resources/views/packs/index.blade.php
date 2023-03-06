@@ -11,7 +11,7 @@
 
     <div class="osu-page">
         <ul class="page-mode">
-            @foreach(['standard', 'chart', 'theme', 'artist'] as $mode)
+            @foreach(App\Models\BeatmapPack::TAG_MAPPINGS as $mode => $tagPrefix)
                 <li class="page-mode__item">
                     @include('packs._type', ['current' => $type, 'type' => $mode, 'title' => osu_trans("beatmappacks.mode.{$mode}")])
             @endforeach

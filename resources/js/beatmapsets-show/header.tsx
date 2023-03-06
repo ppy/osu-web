@@ -15,7 +15,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { getArtist, getTitle } from 'utils/beatmap-helper';
-import { toggleFavourite } from 'utils/beatmapset-helper';
+import { downloadLimited, toggleFavourite } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
@@ -65,11 +65,6 @@ export default class Header extends React.Component<Props> {
     }
 
     return ret.slice(0, favouritesToShow);
-  }
-
-  private get hasAvailabilityInfo() {
-    return this.controller.beatmapset.availability.download_disabled
-      || this.controller.beatmapset.availability.more_information != null;
   }
 
   constructor(props: Props) {
@@ -243,7 +238,7 @@ export default class Header extends React.Component<Props> {
   };
 
   private renderAvailabilityInfo() {
-    if (core.currentUser == null || !this.hasAvailabilityInfo) return;
+    if (!downloadLimited(this.controller.beatmapset)) return;
 
     let label: string;
     let href: string | null;
