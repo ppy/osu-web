@@ -22,7 +22,7 @@
     </script>
 
     <div class="osu-page osu-page--info-bar">
-        <div class="grid-items">
+        <div class="grid-items grid-items--spotlights">
             <div class="counter-box counter-box--info">
                 <div class="counter-box__title">
                     {{ osu_trans('rankings.spotlight.start_date') }}
@@ -54,6 +54,10 @@
                 <div class="counter-box__count">
                     {{ i18n_number_format($scoreCount) }}
                 </div>
+            </div>
+
+            <div class="grid-items__item grid-items__item--spotlight-user-filter">
+                @include('rankings._user_filter')
             </div>
         </div>
     </div>

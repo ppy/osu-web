@@ -11,8 +11,10 @@ import CountdownTimer from 'components/countdown-timer'
 import { LandingNews } from 'components/landing-news'
 import MainNotificationIcon from 'components/main-notification-icon'
 import QuickSearchButton from 'components/quick-search-button'
-import RankingFilter from 'components/ranking-filter'
+import RankingCountryFilter from 'components/ranking-country-filter'
 import RankingSelectOptions from 'components/ranking-select-options'
+import RankingUserFilter from 'components/ranking-user-filter'
+import RankingVariantFilter from 'components/ranking-variant-filter'
 import SpotlightSelectOptions from 'components/spotlight-select-options'
 import { UserCard } from 'components/user-card'
 import { UserCardStore } from 'components/user-card-store'
@@ -85,12 +87,14 @@ core.reactTurbolinks.register 'quick-search', ->
 core.reactTurbolinks.register 'quick-search-button', ->
   createElement QuickSearchButton, worker: quickSearchWorker
 
-core.reactTurbolinks.register 'ranking-filter', (container) ->
-  createElement RankingFilter,
-    countries: parseJsonNullable 'json-countries'
-    gameMode: container.dataset.gameMode
-    type: container.dataset.type
-    variants: try JSON.parse(container.dataset.variants)
+core.reactTurbolinks.register 'ranking-country-filter', ->
+  createElement RankingCountryFilter, parseJsonNullable('json-country-filter')
+
+core.reactTurbolinks.register 'ranking-user-filter', ->
+  createElement RankingUserFilter, parseJsonNullable('json-user-filter')
+
+core.reactTurbolinks.register 'ranking-variant-filter', ->
+  createElement RankingVariantFilter, parseJsonNullable('json-variant-filter')
 
 core.reactTurbolinks.register 'user-card', (container) ->
   createElement UserCard,
