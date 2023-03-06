@@ -12,10 +12,9 @@ import StringWithComponent from 'components/string-with-component';
 import TimeWithTooltip from 'components/time-with-tooltip';
 import { UserLink } from 'components/user-link';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
-import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
-import { BeatmapsetDiscussionMessagePostJson } from 'interfaces/beatmapset-discussion-post-json';
+import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
+import BeatmapsetDiscussionPostJson, { BeatmapsetDiscussionMessagePostJson } from 'interfaces/beatmapset-discussion-post-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
-import { BeatmapsetWithDiscussionsJson } from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { isEqual } from 'lodash';
@@ -35,6 +34,11 @@ import DiscussionMessageLengthCounter from './discussion-message-length-counter'
 import { UserCard } from './user-card';
 
 const bn = 'beatmap-discussion-post';
+
+interface DiscussionPostUpdateResponse {
+  beatmapset: BeatmapsetDiscussionJsonForShow;
+  post: BeatmapsetDiscussionPostJson;
+}
 
 interface Props {
   beatmap: BeatmapExtendedJson | null;
@@ -58,7 +62,7 @@ export default class Post extends React.Component<Props> {
   private readonly reviewEditorRef = React.createRef<Editor>();
   @observable private textareaMinHeight = '0';
   private readonly textareaRef = React.createRef<HTMLTextAreaElement>();
-  @observable private xhr: JQuery.jqXHR<BeatmapsetWithDiscussionsJson> | null = null;
+  @observable private xhr: JQuery.jqXHR<DiscussionPostUpdateResponse> | null = null;
 
   @computed
   private get canEdit() {
@@ -465,9 +469,9 @@ export default class Post extends React.Component<Props> {
       method: 'PUT',
     });
 
-    this.xhr.done((beatmapset) => runInAction(() => {
+    this.xhr.done((response) => runInAction(() => {
       this.editing = false;
-      $.publish('beatmapsetDiscussions:update', { beatmapset });
+      $.publish('beatmapsetDiscussions:update', response);
     }))
       .fail(onError)
       .always(action(() => this.xhr = null));

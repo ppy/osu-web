@@ -15,6 +15,7 @@ use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetWatch;
 use App\Models\User;
+use App\Transformers\BeatmapDiscussionPostTransformer;
 
 /**
  * @group Beatmapset Discussions
@@ -167,6 +168,10 @@ class BeatmapDiscussionPostsController extends Controller
             $post->fill($params)->saveOrExplode();
         }
 
-        return $post->beatmapset->defaultDiscussionJson();
+        // TODO: return post only; currently returns both to simplify handling in the beatmap-discussions component.
+        return [
+            'post' => json_item($post, new BeatmapDiscussionPostTransformer()),
+            'beatmapset' => $post->beatmapset->defaultDiscussionJson()
+        ];
     }
 }

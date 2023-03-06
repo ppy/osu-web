@@ -20,6 +20,7 @@ import headerLinks from 'profile-page/header-links'
 import * as React from 'react'
 import { a, button, div, i, span } from 'react-dom-factories'
 import { bottomPage } from 'utils/html'
+import { jsonClone } from 'utils/json'
 import { pageChange } from 'utils/page-change'
 import { nextVal } from 'utils/seq'
 import { currentUrl, currentUrlRelative } from 'utils/turbolinks'
@@ -92,45 +93,39 @@ export class Main extends React.PureComponent
 
 
   discussionUpdate: (_e, options) =>
-    {beatmapset} = options
-    return unless beatmapset?
+    # modding profile only updates post
+    { post } = options
+    return unless post?
 
-    discussions = @state.discussions
-    posts = @state.posts
-    users = @state.users
+    # update posts
+    existingPostIndex = @state.posts.findIndex (x) -> x.id == post.id
+    existingPosts = jsonClone(@state.posts)
 
-    discussionIds = _.map discussions, 'id'
-    postIds = _.map posts, 'id'
-    userIds = _.map users, 'id'
+    if existingPostIndex > -1
+      existingPost = existingPosts[existingPostIndex]
 
-    # Due to the entire hierarchy of discussions being sent back when a post is updated (instead of just the modified post),
-    #   we need to iterate over each discussion and their posts to extract the updates we want.
-    _.each beatmapset.discussions, (newDiscussion) ->
-      if discussionIds.includes(newDiscussion.id)
-        discussion = _.find discussions, id: newDiscussion.id
-        discussions = _.reject discussions, id: newDiscussion.id
-        newDiscussion = _.merge(discussion, newDiscussion)
+      # merge with any existing data added from anywhere else.
+      existingPosts[existingPostIndex] = Object.assign({}, existingPost, post)
 
-      newDiscussion.starting_post = newDiscussion.posts[0]
-      discussions.push(newDiscussion)
+    # update if in discussion.starting_post
+    existingDiscussions = null
+    existingDiscussionIndex = @state.discussions.findIndex (x) -> x.id == post.beatmapset_discussion_id
 
-      _.each newDiscussion.posts, (newPost) ->
-        if postIds.includes(newPost.id)
-          post = _.find posts, id: newPost.id
-          posts = _.reject posts, id: newPost.id
-          posts.push(_.merge(post, newPost))
+    if existingDiscussionIndex > -1
+      existingDiscussion = @state.discussions[existingDiscussionIndex]
 
-    _.each beatmapset.related_users, (newUser) ->
-      if userIds.includes(newUser.id)
-        users = _.reject users, id: newUser.id
+      if existingDiscussion.starting_post.id == post.id
+        existingDiscussions = jsonClone(@state.discussions)
+        existingDiscussion.starting_post = Object.assign({}, existingDiscussion.starting_post, post)
+        existingDiscussions[existingDiscussionIndex] = existingDiscussion
+        @cache = {}
 
-      users.push(newUser)
+    newState =
+      posts: existingPosts
 
-    @cache.users = @cache.discussions = @cache.userDiscussions = @cache.beatmaps = @cache.beatmapsets = null
-    @setState
-      discussions: _.reverse(_.sortBy(discussions, (d) -> Date.parse(d.starting_post.created_at)))
-      posts: _.reverse(_.sortBy(posts, (p) -> Date.parse(p.created_at)))
-      users: users
+    newState.discussions = existingDiscussions if existingDiscussions?
+
+    @setState newState
 
 
   discussions: =>
