@@ -81,9 +81,9 @@ core.reactTurbolinks.register('spotlight-select-options', () => (
 ));
 
 core.reactTurbolinks.register('comments', (container) => {
-  const props: CommentsManagerProps = {
-    component: Comments,
+  const props = {
     ...reqJson<Omit<CommentsManagerProps, 'component'>>(container.dataset.props),
+    component: Comments,
   };
 
   return <CommentsManager {...props} />;
