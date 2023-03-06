@@ -238,7 +238,7 @@ export default class Header extends React.Component<Props> {
   };
 
   private renderAvailabilityInfo() {
-    if (core.currentUser == null || !downloadLimited(this.controller.beatmapset)) return;
+    if (!downloadLimited(this.controller.beatmapset)) return;
 
     let label: string;
     let href: string | null;
