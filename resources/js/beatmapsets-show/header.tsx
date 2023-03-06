@@ -9,8 +9,8 @@ import StringWithComponent from 'components/string-with-component';
 import UserLink from 'components/user-link';
 import UserListPopup, { createTooltip } from 'components/user-list-popup';
 import { route } from 'laroute';
-import { action, computed, makeObservable } from 'mobx';
-import { observer } from 'mobx-react';
+import { action, autorun, computed, makeObservable, observable } from 'mobx';
+import { disposeOnUnmount, observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -40,6 +40,9 @@ interface Props {
 
 @observer
 export default class Header extends React.Component<Props> {
+  private readonly favouriteIconRef = React.createRef<HTMLSpanElement>();
+  @observable private hoveredFavouriteIcon = false;
+
   private get controller() {
     return this.props.controller;
   }
@@ -71,6 +74,10 @@ export default class Header extends React.Component<Props> {
     super(props);
 
     makeObservable(this);
+  }
+
+  componentDidMount() {
+    disposeOnUnmount(this, autorun(this.updateFavouritePopup));
   }
 
   render() {
@@ -117,6 +124,7 @@ export default class Header extends React.Component<Props> {
                 }
 
                 <span
+                  ref={this.favouriteIconRef}
                   className={classWithModifiers('beatmapset-header__value', { 'has-favourites': this.controller.beatmapset.favourite_count > 0 })}
                   onMouseOver={this.onEnterFavouriteIcon}
                   onTouchStart={this.onEnterFavouriteIcon}
@@ -222,19 +230,8 @@ export default class Header extends React.Component<Props> {
   };
 
   @action
-  private readonly onEnterFavouriteIcon = (event: React.MouseEvent<HTMLSpanElement> | React.TouchEvent<HTMLSpanElement>) => {
-    const target = event.currentTarget;
-
-    if (this.filteredFavourites.length < 1) {
-      if (target._tooltip === '1') {
-        target._tooltip = '';
-        $(target).qtip('destroy', true);
-      }
-
-      return;
-    }
-
-    createTooltip(target, 'right center', action(() => this.favouritePopup));
+  private readonly onEnterFavouriteIcon = () => {
+    this.hoveredFavouriteIcon = true;
   };
 
   private renderAvailabilityInfo() {
@@ -364,4 +361,28 @@ export default class Header extends React.Component<Props> {
       </div>
     );
   }
+
+  private readonly updateFavouritePopup = () => {
+    if (!this.hoveredFavouriteIcon) {
+      return;
+    }
+
+    const target = this.favouriteIconRef.current;
+
+    if (target == null) {
+      throw new Error('favourite icon is missing');
+    }
+
+    if (this.filteredFavourites.length < 1) {
+      if (target._tooltip === '1') {
+        target._tooltip = '';
+        $(target).qtip('destroy', true);
+      }
+
+      return;
+    }
+
+    createTooltip(target, 'right center', '');
+    $(target).qtip('set', { 'content.text': this.favouritePopup });
+  };
 }

@@ -21,4 +21,4 @@ import 'turbolinks-overrides.coffee';
 import 'osu-core-singleton';
 import 'main.coffee';
 
-import 'register-components.coffee';
+import 'register-components';

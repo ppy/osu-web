@@ -780,6 +780,21 @@ function from_app_url()
     return starts_with(request()->headers->get('referer'), config('app.url').'/');
 }
 
+function forum_user_link(int $id, string $username, string|null $colour, int|null $currentUserId): string
+{
+    $icon = tag('span', [
+        'class' => 'forum-user-icon',
+        'style' => user_color_style($colour, 'background-color'),
+    ]);
+
+    $link = link_to_user($id, $username, null, []);
+    if ($currentUserId === $id) {
+        $link = tag('strong', null, $link);
+    }
+
+    return "{$icon} {$link}";
+}
+
 function is_api_request()
 {
     return request()->is('api/*');
