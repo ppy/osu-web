@@ -72,15 +72,12 @@
 
                 <span class="forum-topic-entry__detail">
                     {!! osu_trans('forum.topic.started_by', [
-                        'user' => tag('span', [
-                            'class' => 'forum-user-icon',
-                            'style' => user_color_style($topic->topic_first_poster_colour, 'background-color'),
-                        ]).' '.link_to_user(
+                        'user' => forum_user_link(
                             $topic->topic_poster,
                             $topic->topic_first_poster_name,
-                            null,
-                            []
-                        )
+                            $topic->topic_first_poster_colour,
+                            $currentUserId,
+                        ),
                     ]) !!}
                 </span>
             </div>
@@ -133,15 +130,14 @@
             <div class="u-ellipsis-overflow">
                 {!! osu_trans(
                     $topic->topic_replies === 0 ? 'forum.topic.started_by_verbose' : 'forum.topic.latest_reply_by',
-                    ['user' => tag('span', [
-                        'class' => 'forum-user-icon',
-                        'style' => user_color_style($topic->topic_last_poster_colour, 'background-color'),
-                    ]).' '.link_to_user(
-                        $topic->topic_last_poster_id,
-                        $topic->topic_last_poster_name,
-                        null,
-                        []
-                    )]
+                    [
+                        'user' => forum_user_link(
+                            $topic->topic_last_poster_id,
+                            $topic->topic_last_poster_name,
+                            $topic->topic_last_poster_colour,
+                            $currentUserId,
+                        ),
+                    ]
                 ) !!}
             </div>
 
