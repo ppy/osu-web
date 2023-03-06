@@ -505,7 +505,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         }
 
         if (!$findAll) {
-            $user->where('user_type', 0)->where('user_warnings', 0);
+            $user->default();
         }
 
         $user = $user->first();
