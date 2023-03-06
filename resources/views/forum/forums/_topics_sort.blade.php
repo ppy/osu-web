@@ -31,11 +31,7 @@
 
         @foreach ($menu as $menuSort => $menuItem)
             <a
-                class="
-                    sort__item
-                    sort__item--button
-                    {{ ($sort ?? null) === $menuSort ? 'sort__item--active u-forum--link-text' : '' }}
-                "
+                class="{{ class_with_modifiers('sort__item', 'button', ['active' => $sort === $menuSort]) }}"
                 href="{{ $menuItem['url'] }}#topics"
             >{{ $menuItem['title'] }}
             </a>

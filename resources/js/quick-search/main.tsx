@@ -7,7 +7,7 @@ import { route } from 'laroute';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
-import { formatNumber } from 'utils/html';
+import { formatNumber, htmlElementOrNull } from 'utils/html';
 import { trans, transArray } from 'utils/lang';
 import { navigate } from 'utils/turbolinks';
 import Beatmapset from './beatmapset';
@@ -56,6 +56,7 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
               onChange={this.updateQuery}
               onKeyDown={this.onInputKeyDown}
               placeholder={trans('home.search.placeholder')}
+              type='search'
               value={this.props.worker.query}
             />
           </div>
@@ -99,6 +100,8 @@ const otherModes: ResultMode[] = ['forum_post', 'wiki_page'];
   private onInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     const key = event.key;
     if (key === 'Enter') {
+      // this will prevent keyboard arrow navigation
+      htmlElementOrNull(event.target)?.blur();
       this.props.worker.debouncedSearch.flush();
       this.navigateToSelected();
     }

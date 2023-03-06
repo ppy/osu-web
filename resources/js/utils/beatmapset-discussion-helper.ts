@@ -21,7 +21,7 @@ import { getInt } from './math';
 
 interface BadgeGroupParams {
   beatmapset: BeatmapsetJson;
-  currentBeatmap: BeatmapJson;
+  currentBeatmap: BeatmapJson | null;
   discussion: BeatmapsetDiscussionJson;
   user?: UserJson;
 }

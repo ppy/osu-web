@@ -28,7 +28,7 @@ const bn = 'beatmap-discussion';
 
 interface PropsBase {
   beatmapset: BeatmapsetExtendedJson;
-  currentBeatmap: BeatmapExtendedJson;
+  currentBeatmap: BeatmapExtendedJson | null;
   isTimelineVisible: boolean;
   parentDiscussion?: BeatmapsetDiscussionJson | null;
   readPostIds?: Set<number>;
@@ -80,7 +80,7 @@ export class Discussion extends React.Component<Props> {
   private get canBeRepliedTo() {
     return !downloadLimited(this.props.beatmapset)
       && (!this.props.beatmapset.discussion_locked || canModeratePosts())
-      && (this.props.discussion.beatmap_id == null || this.props.currentBeatmap.deleted_at == null);
+      && (this.props.discussion.beatmap_id == null || this.props.currentBeatmap?.deleted_at == null);
   }
 
   @computed

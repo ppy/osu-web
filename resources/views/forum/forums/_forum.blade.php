@@ -2,8 +2,8 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-<li class="clickable-row forum-item t-forum-{{ $forum->categorySlug() }}">
-    <div class="forum-item-stripe u-forum--before-bg"><span class="u-relative fas fa-angle-right"></span></div>
+<li class="clickable-row forum-item">
+    <div class="forum-item-stripe"><span class="u-relative fas fa-angle-right"></span></div>
 
     <div class="forum-item__details">
         {!! link_to(

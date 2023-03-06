@@ -31,8 +31,6 @@ interface Cache {
 interface Props extends RenderElementProps {
   beatmaps: BeatmapExtendedJson[];
   beatmapset: BeatmapsetJson;
-  currentBeatmap: BeatmapExtendedJson;
-  discussionId?: number;
   discussions: Partial<Record<number, BeatmapsetDiscussionJson>>;
   editMode?: boolean;
   element: EmbedElement;
