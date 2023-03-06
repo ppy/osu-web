@@ -29,7 +29,7 @@ import { UserLink } from './user-link';
 export const beatmapsetCardSizes = ['normal', 'extra'] as const;
 export type BeatmapsetCardSize = typeof beatmapsetCardSizes[number];
 
-interface Props {
+export interface Props {
   beatmapset: BeatmapsetExtendedJson;
 }
 
