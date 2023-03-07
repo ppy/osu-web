@@ -16,8 +16,10 @@ import { formatNumber } from 'utils/html';
 import { trans, transArray } from 'utils/lang';
 import { linkHtml } from 'utils/url';
 
-function simpleKebab(str: string) {
-  return str.toLowerCase().replace(/ /g, '-');
+function simpleKebab(str: string | number | undefined) {
+  return typeof str === 'string'
+    ? str.toLowerCase().replace(/ /g, '-')
+    : '';
 }
 
 export type EventViewMode = 'discussions' | 'profile' | 'list';
