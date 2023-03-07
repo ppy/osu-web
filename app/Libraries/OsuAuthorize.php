@@ -313,8 +313,8 @@ class OsuAuthorize
         $this->ensureCleanRecord($user);
         $this->ensureHasPlayed($user);
 
-        if ($beatmapset->discussion_locked) {
-            return 'beatmap_discussion_post.store.beatmapset_locked';
+        if ($beatmapset->discussion_locked || $beatmapset->downloadLimited()) {
+            return 'beatmapset.discussion_locked';
         }
 
         return 'ok';
@@ -384,7 +384,7 @@ class OsuAuthorize
         // rate limit
         $recentVotesCount = $user
             ->beatmapDiscussionVotes()
-            ->where('created_at', '>', Carbon::now()->subHour())
+            ->where('created_at', '>', Carbon::now()->subHours())
             ->count();
 
         if ($recentVotesCount > 60) {
@@ -456,7 +456,7 @@ class OsuAuthorize
         }
 
         if ($post->beatmapDiscussion->beatmapset->discussion_locked) {
-            return 'beatmap_discussion_post.store.beatmapset_locked';
+            return 'beatmapset.discussion_locked';
         }
 
         return 'ok';
@@ -487,8 +487,9 @@ class OsuAuthorize
             return $prefix.'resolved';
         }
 
-        if ($post->beatmapDiscussion->beatmapset->discussion_locked) {
-            return 'beatmap_discussion_post.store.beatmapset_locked';
+        $beatmapset = $post->beatmapDiscussion->beatmapset;
+        if ($beatmapset->discussion_locked || $beatmapset->downloadLimited()) {
+            return 'beatmapset.discussion_locked';
         }
 
         return 'ok';
@@ -556,10 +557,6 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if (!$beatmapset->isScoreable() && $user->isModerator()) {
-            return 'ok';
-        }
-
         return 'unauthorized';
     }
 
@@ -604,13 +601,17 @@ class OsuAuthorize
         $this->ensureCleanRecord($user);
         $this->ensureHasPlayed($user);
 
+        // Moderators can't reply if download limited.
+        if ($beatmapset->downloadLimited()) {
+            return 'beatmapset.discussion_locked';
+        }
+
         if ($user->isModerator()) {
             return 'ok';
         }
 
         if ($beatmapset->discussion_locked) {
-            // TODO: key should be changed.
-            return 'beatmap_discussion_post.store.beatmapset_locked';
+            return 'beatmapset.discussion_locked';
         }
 
         return 'ok';
@@ -730,6 +731,15 @@ class OsuAuthorize
         return 'unauthorized';
     }
 
+    public function checkBeatmapsetShowDeleted(?User $user): string
+    {
+        if ($user !== null && $user->isModerator()) {
+            return 'ok';
+        }
+
+        return 'unauthorized';
+    }
+
     /**
      * @param User|null $user
      * @param Beatmapset $beatmapset
@@ -739,6 +749,7 @@ class OsuAuthorize
     public function checkBeatmapsetDescriptionEdit(?User $user, Beatmapset $beatmapset): string
     {
         $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         if ((!$beatmapset->downloadLimited() && $user->getKey() === $beatmapset->user_id) || $user->isModerator()) {
             return 'ok';
@@ -818,6 +829,7 @@ class OsuAuthorize
     public function checkBeatmapsetMetadataEdit(?User $user, Beatmapset $beatmapset): string
     {
         $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         if ($user->isModerator()) {
             return 'ok';
@@ -2036,7 +2048,7 @@ class OsuAuthorize
      */
     public function ensureHasPlayed(?User $user): void
     {
-        if ($user === null) {
+        if ($user === null || $user->isBot()) {
             return;
         }
 

@@ -20,7 +20,7 @@ class SessionsController extends Controller
             'store',
         ]]);
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function store()
@@ -44,7 +44,7 @@ class SessionsController extends Controller
             abort(422);
         }
 
-        if (captcha_triggered()) {
+        if (captcha_login_triggered()) {
             $token = presence($params['g-recaptcha-response'] ?? null);
             $validCaptcha = false;
 
@@ -91,7 +91,7 @@ class SessionsController extends Controller
             ];
         }
 
-        if (captcha_triggered()) {
+        if (captcha_login_triggered()) {
             return $this->triggerCaptcha($authError);
         }
 

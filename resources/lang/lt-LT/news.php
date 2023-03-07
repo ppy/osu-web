@@ -13,13 +13,13 @@ return [
         ],
 
         'title' => [
-            '_' => 'Naujienos :info',
-            'info' => 'Pagrindinis puslapis',
+            '_' => 'naujienos',
+            'info' => 'pagrindinis puslapis',
         ],
     ],
 
     'show' => [
-        'by' => 'nuo :user',
+        'by' => ':user',
 
         'nav' => [
             'newer' => 'Naujesnis įrašas',
@@ -27,13 +27,13 @@ return [
         ],
 
         'title' => [
-            '_' => 'Naujienos :info',
+            '_' => 'naujienos',
             'info' => 'Įrašas',
         ],
     ],
 
     'sidebar' => [
-        'archive' => '',
+        'archive' => 'Naujienų Archyvas',
     ],
 
     'store' => [
@@ -43,6 +43,6 @@ return [
 
     'update' => [
         'button' => 'Atnaujinti',
-        'ok' => 'Pranešimas atnaujintas.',
+        'ok' => 'Įrašas atnaujintas.',
     ],
 ];

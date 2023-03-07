@@ -4,9 +4,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => 'Què tal si en comptes d\'això juguem una mica d\'osu!?',
-    'require_login' => 'Si us plau, inicia sessió per continuar.',
-    'require_verification' => 'Si us plau, verifiqueu per continuar.',
+    'play_more' => 'Què et sembla jugar a l\'osu! en comptes d\'això?',
+    'require_login' => 'Inicieu la sessió per continuar.',
+    'require_verification' => 'Verifiqueu per a continuar.',
     'restricted' => "No es pot fer mentre estigui restringit.",
     'silenced' => "No es pot fer mentre estigui silenciat.",
     'unauthorized' => 'Accés denegat.',
@@ -14,27 +14,27 @@ return [
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => 'No es pot desfer el hyping.',
-            'has_reply' => 'No es pot suprimir una discussió amb respostes',
+            'has_reply' => 'No es pot eliminar una discussió amb respostes',
         ],
         'nominate' => [
-            'exhausted' => 'Has aconseguit el teu límit de nominacions diàries, si us plau torna-ho a intentar demà.',
+            'exhausted' => 'Has assolit el teu límit de nominacions diàries, si us plau torna-ho a intentar demà.',
             'incorrect_state' => 'Error en realitzar aquesta acció, intenteu actualitzar la pàgina.',
-            'owner' => "No podeu nominar el vostre propi mapa.",
+            'owner' => "No pots nominar el teu propi beatmap.",
             'set_metadata' => 'Heu d\'establir el gènere i l\'idioma abans de nominar.',
         ],
         'resolve' => [
-            'not_owner' => 'Només el creador del fil i el propietari del mapa poden resoldre una discussió.',
+            'not_owner' => 'Només el creador del tema i el propietari del beatmap poden resoldre una discussió.',
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Només el propietari del mapa o el nominador/membre del grup NAT pot publicar notes de mapping.',
+            'mapper_note_wrong_user' => 'Només el propietari del beatmap o el nominador/membre del grup NAT pot publicar notes de mapatge.',
         ],
 
         'vote' => [
             'bot' => "No podeu votar en una discussió feta per un bot",
             'limit_exceeded' => 'Espera una mica abans de continuar votant',
             'owner' => "No pots votar les teves discussions.",
-            'wrong_beatmapset_state' => 'Només podeu votar en discussions de mapes pendents.',
+            'wrong_beatmapset_state' => 'Només podeu votar en discussions de beatmaps pendents.',
         ],
     ],
 
@@ -52,21 +52,21 @@ return [
         ],
 
         'store' => [
-            'beatmapset_locked' => 'Aquest mapa està bloquejat per a discussió.',
+            'beatmapset_locked' => 'Aquest beatmap està bloquejat per a discussió.',
         ],
     ],
 
     'beatmapset' => [
         'metadata' => [
-            'nominated' => 'No podeu canviar les metadades d\'un mapa nominat. Contacta amb un membre dels BN o del NAT si creus que estan establerts incorrectament.',
+            'nominated' => 'No podeu canviar les metadades d\'un beatmap nominat. Contacta amb un membre dels BN o NAT si creus que estan establerts incorrectament.',
         ],
     ],
 
     'chat' => [
         'annnonce_only' => 'Aquest canal només és per a anuncis.',
-        'blocked' => 'No pots enviar missatges a un usuari que vas bloquejar o que t\'hagi bloquejat.',
-        'friends_only' => 'Aquest usuari està bloquejant els missatges de persones que no són a la llista d\'amics.',
-        'moderated' => 'Aquest canal està actualment sent moderat.',
+        'blocked' => 'No es pot enviar un missatge a un usuari que us està bloquejant o que heu bloquejat.',
+        'friends_only' => 'L\'usuari està bloquejant missatges de persones que no estan a la seva llista d\'amics.',
+        'moderated' => 'Aquest canal està actualment moderat.',
         'no_access' => 'No tens accés a aquest canal.',
         'receive_friends_only' => 'És possible que l\'usuari no pugui respondre perquè només accepta missatges de persones de la llista d\'amics.',
         'restricted' => 'No podeu enviar missatges mentre estigui silenciat, restringit o banejat.',
@@ -78,7 +78,7 @@ return [
             'disabled' => 'Els comentaris estan desactivats',
         ],
         'update' => [
-            'deleted' => "No podeu editar una publicació eliminada.",
+            'deleted' => "No es pot editar la publicació suprimida.",
         ],
     ],
 
@@ -98,14 +98,14 @@ return [
 
         'post' => [
             'delete' => [
-                'only_last_post' => 'Només es pot suprimir la darrera publicació.',
-                'locked' => 'No es pot suprimir la publicació d\'un tema tancat.',
-                'no_forum_access' => 'Cal accés al fòrum sol·licitat.',
-                'not_owner' => 'Només el creador pot suprimir la publicació.',
+                'only_last_post' => 'Només es pot eliminar l\'última publicació.',
+                'locked' => 'No es pot eliminar la publicació d\'un tema bloquejat.',
+                'no_forum_access' => 'Es requereix l\'accés al fòrum sol·licitat.',
+                'not_owner' => 'Només el creador pot eliminar la publicació.',
             ],
 
             'edit' => [
-                'deleted' => 'No podeu editar una publicació eliminada.',
+                'deleted' => 'No es pot editar la publicació eliminada.',
                 'locked' => 'L\'edició de la publicació està bloquejada.',
                 'no_forum_access' => 'Cal accés al fòrum sol·licitat.',
                 'not_owner' => 'Només el creador pot suprimir la publicació.',
@@ -142,7 +142,7 @@ return [
                 'no_forum_access' => 'Cal accés al fòrum sol·licitat.',
                 'over' => 'L\'enquesta va acabar i ja no es pot votar.',
                 'play_more' => 'Necessites jugar més abans de votar al fòrum.',
-                'voted' => 'Canviar el vot no està permès.',
+                'voted' => 'Canviar el vot no és permès.',
 
                 'user' => [
                     'require_login' => 'Si us plau, inicieu la sessió per votar.',

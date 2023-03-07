@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'ylläpitäjä',
     ],
-    'admin_forum' => [
-        '_' => 'ylläpitäjä',
-    ],
-    'admin_store' => [
-        '_' => 'ylläpitäjä',
-    ],
     'error' => [
         'error' => [
             '400' => 'virheellinen pyyntö',
@@ -32,17 +26,10 @@ return [
         'topic_logs_controller' => [
             'index' => '',
         ],
-        'topic_watches_controller' => [
-            'index' => 'yleiskatsaus',
-        ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'yleiskatsaus',
             'verify_link' => 'tilin vahvistaminen',
-        ],
-        'artist_tracks_controller' => [
-            '_' => '',
         ],
         'artists_controller' => [
             '_' => '',
@@ -62,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'beatmap-historiikki',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'yleiskatsaus',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'beatmap-keskustelu',
             'index' => 'beatmap-listaus',
@@ -81,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => 'kilpailut',
-        ],
-        'follows_controller' => [
-            'index' => 'yleiskatsaus',
-        ],
-        'friends_controller' => [
-            'index' => 'yleiskatsaus',
         ],
         'groups_controller' => [
             'show' => 'ryhmät',
@@ -122,23 +100,19 @@ return [
         'scores_controller' => [
             '_' => 'suorituskyky',
         ],
-        'store_controller' => [
-            '_' => 'kauppa',
+        'seasons_controller' => [
+            '_' => '',
         ],
         'tournaments_controller' => [
             '_' => 'turnaukset',
         ],
         'users_controller' => [
             '_' => 'pelaajatiedot',
+            'create' => '',
             'disabled' => 'ilmoitus',
         ],
         'wiki_controller' => [
             '_' => 'wiki',
-        ],
-    ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'sijoitukset',
         ],
     ],
     'passport' => [

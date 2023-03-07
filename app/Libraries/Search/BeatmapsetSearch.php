@@ -114,6 +114,7 @@ class BeatmapsetSearch extends RecordSearch
         return $this
             ->response()
             ->records()
+            ->withPackTags()
             ->with(['beatmaps' => function ($q) {
                 return $q->withMaxCombo();
             }])->get();

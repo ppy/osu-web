@@ -10,6 +10,6 @@ return [
         'reverting_username_mismatch' => '',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => '',
+        'insufficient_paid' => 'Donacija je manjša od zahtevane za darilo z oznako osu!supporter (:actual > :expected)',
     ],
 ];

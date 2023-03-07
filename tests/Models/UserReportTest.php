@@ -22,18 +22,8 @@ class UserReportTest extends TestCase
 {
     private static function makeReportable(string $class): ReportableInterface
     {
-        $user = User::factory()->create();
-
-        switch ($class) {
-            case Forum\Post::class:
-                $modelFactory = factory(Forum\Post::class);
-                $userColumn = 'poster_id';
-                break;
-            default:
-                $modelFactory = $class::factory();
-                $userColumn = 'user_id';
-                break;
-        }
+        $modelFactory = $class::factory();
+        $userColumn = 'user_id';
 
         if ($class === Beatmapset::class) {
             $modelFactory = $modelFactory->pending();
@@ -47,7 +37,11 @@ class UserReportTest extends TestCase
             ]);
         }
 
-        return $modelFactory->create([$userColumn => $user->getKey()]);
+        if ($class === Forum\Post::class) {
+            $userColumn = 'poster_id';
+        }
+
+        return $modelFactory->create([$userColumn => User::factory()]);
     }
 
     private static function reportParams(array $additionalParams = []): array

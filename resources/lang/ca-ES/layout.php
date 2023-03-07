@@ -5,97 +5,97 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Reprodueix la següent pista automàticament',
     ],
 
     'defaults' => [
-        'page_description' => '',
+        'page_description' => 'osu! - El ritme només a un sol *clic*! Amb Ouendan/EBA, Taiko i modes de joc originals, així com un editor de nivells totalment funcional.',
     ],
 
     'header' => [
         'admin' => [
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
-            'contest' => '',
-            'contests' => '',
-            'root' => '',
+            'beatmapset' => 'beatmapset',
+            'beatmapset_covers' => 'portades de beatmapsets',
+            'contest' => 'concurs',
+            'contests' => 'concursos',
+            'root' => 'consola',
         ],
 
         'artists' => [
-            'index' => '',
+            'index' => 'llistat',
         ],
 
         'beatmapsets' => [
-            'show' => '',
-            'discussions' => '',
+            'show' => 'info',
+            'discussions' => 'discussió',
         ],
 
         'changelog' => [
-            'index' => '',
+            'index' => 'llistat',
         ],
 
         'help' => [
-            'index' => '',
-            'sitemap' => '',
+            'index' => 'índex',
+            'sitemap' => 'Mapa del lloc',
         ],
 
         'store' => [
-            'cart' => '',
-            'orders' => '',
-            'products' => '',
+            'cart' => 'cistella',
+            'orders' => 'historial de compres',
+            'products' => 'productes',
         ],
 
         'tournaments' => [
-            'index' => '',
+            'index' => 'llistat',
         ],
 
         'users' => [
-            'modding' => '',
-            'playlists' => '',
-            'realtime' => '',
-            'show' => '',
+            'modding' => 'modding',
+            'playlists' => 'llistes de joc',
+            'realtime' => 'multijugador',
+            'show' => 'info',
         ],
     ],
 
     'gallery' => [
-        'close' => '',
-        'fullscreen' => '',
-        'zoom' => '',
-        'previous' => '',
-        'next' => '',
+        'close' => 'Tancar (Esc)',
+        'fullscreen' => 'Alternar pantalla completa',
+        'zoom' => 'Apropar/reduir',
+        'previous' => 'Anterior (fletxa esquerra)',
+        'next' => 'Següent (fletxa dreta)',
     ],
 
     'menu' => [
         'beatmaps' => [
-            '_' => '',
+            '_' => 'beatmaps',
         ],
         'community' => [
-            '_' => '',
-            'dev' => '',
+            '_' => 'comunitat',
+            'dev' => 'desenvolupament',
         ],
         'help' => [
-            '_' => '',
-            'getAbuse' => '',
-            'getFaq' => '',
-            'getRules' => '',
-            'getSupport' => '',
+            '_' => 'ajuda',
+            'getAbuse' => 'informar abús',
+            'getFaq' => 'preguntes freqüents',
+            'getRules' => 'normes',
+            'getSupport' => 'no, de debò, necessito ajuda!',
         ],
         'home' => [
-            '_' => '',
-            'team' => '',
+            '_' => 'inici',
+            'team' => 'equip',
         ],
         'rankings' => [
-            '_' => '',
-            'kudosu' => '',
+            '_' => 'classificacions',
+            'kudosu' => 'kudosu',
         ],
         'store' => [
-            '_' => '',
+            '_' => 'botiga',
         ],
     ],
 
     'footer' => [
         'general' => [
-            '_' => '',
+            '_' => 'General',
             'home' => 'Casa',
             'changelog-index' => 'Registre de canvis',
             'beatmaps' => 'Llistat de beatmaps',
@@ -106,7 +106,7 @@ return [
             'faq' => 'Preguntes freqüents',
             'forum' => 'Fòrums de la comunitat',
             'livestreams' => 'Transmissions en directe',
-            'report' => '',
+            'report' => 'Informa d\'un problema',
             'wiki' => 'Wiki',
         ],
         'legal' => [
@@ -121,87 +121,87 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => 'Paràmetre de sol·licitud no vàlid',
             'description' => '',
         ],
         '404' => [
             'error' => 'Falta la pàgina',
-            'description' => "",
+            'description' => "Ho sentim, però la pàgina que has sol·licitat no és aquí!",
         ],
         '403' => [
-            'error' => "",
-            'description' => '',
+            'error' => "No hauries d'estar aquí.",
+            'description' => 'Però pots intentar tornar enrere.',
         ],
         '401' => [
-            'error' => "",
-            'description' => '',
+            'error' => "No hauries de ser aquí.",
+            'description' => 'Pots intentar tornar enrere, o bé iniciar sessió. ',
         ],
         '405' => [
-            'error' => '',
-            'description' => "",
+            'error' => 'Pàgina no trobada',
+            'description' => "Ho sentim, però la pàgina que sol·licites no és aquí!",
         ],
         '422' => [
-            'error' => '',
+            'error' => 'Paràmetre de sol·licitud no vàlid',
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => 'Límit de freqüència superat',
             'description' => '',
         ],
         '500' => [
             'error' => 'Oh no! Alguna cosa s\'ha trencat! ;_;',
-            'description' => "",
+            'description' => "Som notificats automàticament de cada error.",
         ],
         'fatal' => [
-            'error' => '',
-            'description' => "",
+            'error' => 'Oh no! Alguna cosa ha fallat (de manera greu)! ;_;',
+            'description' => "Som notificats automàticament de cada error.",
         ],
         '503' => [
-            'error' => '',
-            'description' => "",
+            'error' => 'Fora de servei per manteniment!',
+            'description' => "El manteniment normalment triga entre 5 segons i 10 minuts. Si continueu passat aquest temps, veieu :link per a més informació.",
             'link' => [
                 'text' => '',
                 'href' => '',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => "",
+        'reference' => "Per si de cas, aquí tens un codi que pots enviar a l'equip de suport!",
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => 'inicia sessió / registra\'t',
 
         'login' => [
-            'forgot' => "",
+            'forgot' => "He oblidat les meves dades",
             'password' => 'contrasenya',
             'title' => 'Inicia sessió per continuar',
-            'username' => '',
+            'username' => 'nom d\'usuari',
 
             'error' => [
-                'email' => "",
-                'password' => '',
+                'email' => "El nom d'usuari o l'adreça de correu no existeixen",
+                'password' => 'Contrasenya incorrecta',
             ],
         ],
 
         'register' => [
-            'download' => '',
-            'info' => '',
-            'title' => "",
+            'download' => 'Descarregar',
+            'info' => 'Descarrega osu! per crear el teu propi compte!',
+            'title' => "No tens un compte?",
         ],
     ],
 
     'popup_user' => [
         'links' => [
-            'account-edit' => '',
-            'follows' => '',
-            'friends' => '',
-            'logout' => '',
-            'profile' => '',
+            'account-edit' => 'Configuració',
+            'follows' => 'Llistes de seguiment',
+            'friends' => 'Amics',
+            'logout' => 'Tanca la sessió',
+            'profile' => 'El meu perfil',
         ],
     ],
 
     'popup_search' => [
-        'initial' => '',
-        'retry' => '',
+        'initial' => 'Escriu per cercar!',
+        'retry' => 'Cerca fallada. Clica per tornar-ho a intentar.',
     ],
 ];

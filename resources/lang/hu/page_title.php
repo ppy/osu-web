@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'admin',
     ],
-    'admin_forum' => [
-        '_' => 'admin',
-    ],
-    'admin_store' => [
-        '_' => 'admin',
-    ],
     'error' => [
         'error' => [
             '400' => 'Érvénytelen lekérés',
@@ -32,17 +26,10 @@ return [
         'topic_logs_controller' => [
             'index' => 'téma napló',
         ],
-        'topic_watches_controller' => [
-            'index' => 'írányítópult',
-        ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'irányítópult',
             'verify_link' => 'Fiók hitelesítése',
-        ],
-        'artist_tracks_controller' => [
-            '_' => 'kiemelt előadók',
         ],
         'artists_controller' => [
             '_' => 'kiemelt előadók',
@@ -62,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'beatmap előzmények',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'irányítópult',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'beatmap beszélgetések',
             'index' => 'beatmap lista',
@@ -81,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => 'versenyek',
-        ],
-        'follows_controller' => [
-            'index' => 'áttekintés',
-        ],
-        'friends_controller' => [
-            'index' => 'irányítópult',
         ],
         'groups_controller' => [
             'show' => 'csoportok',
@@ -122,23 +100,19 @@ return [
         'scores_controller' => [
             '_' => 'teljesítmény',
         ],
-        'store_controller' => [
-            '_' => 'áruház',
+        'seasons_controller' => [
+            '_' => '',
         ],
         'tournaments_controller' => [
             '_' => 'bajnokságok',
         ],
         'users_controller' => [
             '_' => 'játékos információi',
+            'create' => 'fiók létrehozása',
             'disabled' => 'értesítés',
         ],
         'wiki_controller' => [
             '_' => 'wiki',
-        ],
-    ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'rangsorolás',
         ],
     ],
     'passport' => [

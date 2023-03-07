@@ -10,15 +10,10 @@ use Symfony\Component\Console\Input\InputOption;
 
 class MigrateFreshAllCommand extends FreshCommand
 {
-    /**
-     * Execute the console command.
-     *
-     * @return void
-     */
     public function handle()
     {
         if (!$this->confirmToProceed()) {
-            return;
+            return 1;
         }
 
         $connections = config('database.connections');
@@ -31,7 +26,8 @@ class MigrateFreshAllCommand extends FreshCommand
 
         $continue = $this->option('yes') || $this->confirm('continue?');
         if (!$continue) {
-            return $this->error('User aborted!');
+            $this->error('User aborted!');
+            return 1;
         }
 
         foreach (array_keys($connections) as $database) {
@@ -65,6 +61,8 @@ class MigrateFreshAllCommand extends FreshCommand
         if ($this->needsSeeding()) {
             $this->runSeeder(null);
         }
+
+        return 0;
     }
 
     /**

@@ -20,13 +20,13 @@ return [
     ],
 
     'index' => [
-        'title_compact' => '',
+        'title_compact' => 'opazovani seznami',
     ],
 
     'mapping' => [
         'empty' => 'Nobenih gledanih mapperjev.',
         'followers' => 'mapperjevi naročniki',
-        'page_title' => '',
+        'page_title' => 'seznam opazovanih mapperjev',
         'title' => 'mapper',
         'to_0' => 'ne obveščaj me, ko ta igralec objavi novo beatmapo',
         'to_1' => 'obveščaj me, ko ta igralec objavi novo beatmapo',

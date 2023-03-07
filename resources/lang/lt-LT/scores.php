@@ -5,14 +5,14 @@
 
 return [
     'show' => [
-        'title' => '',
+        'title' => ':username ant :title [:version]',
 
         'beatmap' => [
-            'by' => 'pagal :artist',
+            'by' => ':artist',
         ],
 
         'player' => [
-            'by' => '',
+            'by' => 'Žaidė',
             'submitted_on' => 'Pateikta',
 
             'rank' => [
@@ -23,8 +23,8 @@ return [
     ],
 
     'status' => [
-        'non_best' => 'Tik jūsų didžiausi taškai duoda pp',
-        'non_passing' => '',
-        'processing' => '',
+        'non_best' => 'Tik jūsų geriausi rezultatai duoda pp',
+        'non_passing' => 'Tik įveikimų rezultatai duoda pp',
+        'processing' => 'Šis reultatas dar apskaičiuojamas ir netrukus bus parodytas',
     ],
 ];

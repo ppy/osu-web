@@ -5,43 +5,51 @@
 
 return [
     'countries' => [
-        'all' => '',
-        'title' => '',
+        'all' => 'Semua',
+        'title' => 'Negara',
     ],
 
     'filter' => [
-        'title' => '',
+        'title' => 'Paparkan',
 
         'variant' => [
-            'title' => '',
+            'title' => 'Pelbagai',
         ],
     ],
 
     'type' => [
-        'charts' => '',
-        'country' => '',
-        'multiplayer' => '',
-        'performance' => '',
-        'score' => '',
+        'charts' => 'sorotan',
+        'country' => 'Negara',
+        'multiplayer' => 'pemainan beramai',
+        'performance' => 'Prestasi',
+        'score' => 'skor',
+        'seasons' => '',
+    ],
+
+    'seasons' => [
+        'empty' => '',
+        'ongoing' => '',
+        'room_count' => '',
+        'url' => '',
     ],
 
     'spotlight' => [
-        'end_date' => '',
-        'map_count' => '',
-        'participants' => '',
-        'start_date' => '',
+        'end_date' => 'Tarikh Akhir',
+        'map_count' => 'Kiraan Map',
+        'participants' => 'Peserta',
+        'start_date' => 'Tarikh Mula',
     ],
 
     'stat' => [
-        'accuracy' => '',
-        'active_users' => '',
-        'country' => '',
-        'play_count' => '',
-        'performance' => '',
-        'total_score' => '',
-        'ranked_score' => '',
-        'average_score' => '',
-        'average_performance' => '',
+        'accuracy' => 'Ketepatan',
+        'active_users' => 'Pengguna aktif',
+        'country' => 'Negara',
+        'play_count' => 'Kiraan Main',
+        'performance' => 'Prestasi',
+        'total_score' => 'Jumlah Skor',
+        'ranked_score' => 'Skor Ranked',
+        'average_score' => 'Skor Purata',
+        'average_performance' => 'Prestasi Purata. ',
         'ss' => '',
         's' => '',
         'a' => '',

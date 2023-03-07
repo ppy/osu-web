@@ -52,6 +52,22 @@ return [
         'send_message' => 'メッセージの送信',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => 'パスワード',
+            'password_confirmation' => 'パスワードの確認',
+            'submit' => 'アカウント作成',
+            'user_email' => 'メールアドレス',
+            'user_email_confirmation' => 'メールアドレスの確認',
+            'username' => 'ユーザー名',
+
+            'tos_notice' => [
+                '_' => 'アカウントを作成することにより、:link に同意したことになります',
+                'link' => '利用規約',
+            ],
+        ],
+    ],
+
     'disabled' => [
         'title' => 'ああ！アカウントが無効になっているようです。',
         'warning' => "ルールに違反した場合は、通常１か月のクールダウン期間があり、その間のリクエストは考慮されません。この期間の後、必要と思われる場合はお気軽にお問い合わせください。無効にしたアカウントを1つ作成した後に新しいアカウントを作成すると、<strong>１か月のクールダウンが延長される</strong>ことに注意してください。また、<strong>作成するすべてのアカウントが、さらなる規則に違反することに注意してください</strong>。この道をたどらないでください！",
@@ -142,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'アカウントが制限されました！',
         'message' => '制限中は他のプレイヤーと交流ができなくなり、スコアが他人には表示されなくなります。ほとんどの場合、自動的に行われた処理で通常２４時間以内に解除されます。この制限に異議を申し立てたい場合は<a href="mailto:accounts@ppy.sh">サポート</a>に問い合わせて下さい。',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age歳',
@@ -216,6 +233,9 @@ return [
                 ],
                 'loved' => [
                     'title' => 'Lovedされたビートマップ',
+                ],
+                'nominated' => [
+                    'title' => 'ノミネートしたRankedビートマップ',
                 ],
                 'pending' => [
                     'title' => 'Pendingビートマップ',
@@ -414,6 +434,7 @@ return [
             'country_simple' => '国別ランキング',
             'global' => ':modeの世界ランク',
             'global_simple' => '世界ランキング',
+            'highest' => '最高ランク: :rank (:dateに取得)',
         ],
         'stats' => [
             'hit_accuracy' => '精度',
@@ -447,6 +468,8 @@ return [
         'offline' => 'オフライン',
     ],
     'store' => [
+        'from_client' => '代わりにゲームクライアントから登録してください！',
+        'from_web' => 'osu!のウェブサイトで登録を完了してください',
         'saved' => 'ユーザーが作成されました',
     ],
     'verify' => [

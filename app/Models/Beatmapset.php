@@ -31,6 +31,8 @@ use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\QueryException;
 
@@ -112,24 +114,21 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     protected $casts = [
         'active' => 'boolean',
+        'approved_date' => 'datetime',
         'comment_locked' => 'boolean',
+        'cover_updated_at' => 'datetime',
+        'deleted_at' => 'datetime',
         'discussion_locked' => 'boolean',
         'download_disabled' => 'boolean',
         'epilepsy' => 'boolean',
+        'last_update' => 'datetime',
         'nsfw' => 'boolean',
+        'queued_at' => 'datetime',
         'spotlight' => 'boolean',
         'storyboard' => 'boolean',
+        'submit_date' => 'datetime',
+        'thread_icon_date' => 'datetime',
         'video' => 'boolean',
-    ];
-
-    protected $dates = [
-        'approved_date',
-        'cover_updated_at',
-        'deleted_at',
-        'last_update',
-        'queued_at',
-        'submit_date',
-        'thread_icon_date',
     ];
 
     public $timestamps = false;
@@ -218,6 +217,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return $this->hasMany(BssProcessQueue::class);
     }
 
+    public function packs(): BelongsToMany
+    {
+        return $this->belongsToMany(BeatmapPack::class, BeatmapPackItem::class);
+    }
+
     public function recentFavourites($limit = 50)
     {
         $favourites = FavouriteBeatmapset::where('beatmapset_id', $this->beatmapset_id)
@@ -287,6 +291,24 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     public function scopeNeverQualified($query)
     {
         return $query->withStates(['pending', 'wip'])->where('previous_queue_duration', 0);
+    }
+
+    public function scopeWithPackTags(Builder $query): Builder
+    {
+        $idColumn = $this->qualifyColumn('beatmapset_id');
+        $packTagColumn = (new BeatmapPack())->qualifyColumn('tag');
+        $packItemBeatmapsetIdColumn = (new BeatmapPackItem())->qualifyColumn('beatmapset_id');
+        $packQuery = BeatmapPack
+            ::selectRaw("GROUP_CONCAT({$packTagColumn} SEPARATOR ',')")
+            ->whereRelation(
+                'items',
+                DB::raw("{$packItemBeatmapsetIdColumn}"),
+                DB::raw("{$idColumn}"),
+            )->toSql();
+
+        return $query
+            ->select('*')
+            ->selectRaw("({$packQuery}) as pack_tags");
     }
 
     public function scopeWithStates($query, $states)
@@ -901,6 +923,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return $this->hasMany(BeatmapsetNomination::class);
     }
 
+    public function beatmapsetNominationsCurrent()
+    {
+        return $this->beatmapsetNominations()->current();
+    }
+
     public function events()
     {
         return $this->hasMany(BeatmapsetEvent::class);
@@ -983,6 +1010,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
             'artist_unicode' => $this->getArtistUnicode(),
             'commentable_identifier' => $this->getCommentableIdentifierAttribute(),
+            'pack_tags' => $this->getPackTags(),
             'title_unicode' => $this->getTitleUnicode(),
 
             'allBeatmaps',
@@ -990,13 +1018,16 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             'beatmapDiscussions',
             'beatmaps',
             'beatmapsetNominations',
+            'beatmapsetNominationsCurrent',
             'bssProcessQueues',
             'comments',
             'defaultBeatmaps',
+            'descriptionPost',
             'events',
             'favourites',
             'genre',
             'language',
+            'packs',
             'reportedIn',
             'topic',
             'track',
@@ -1272,6 +1303,18 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return $this->belongsTo(User::class, 'approvedby_id');
     }
 
+    public function descriptionPost()
+    {
+        return $this->hasOneThrough(
+            Forum\Post::class,
+            Forum\Topic::class,
+            'topic_id',
+            'post_id',
+            'thread_id',
+            'topic_first_post_id',
+        );
+    }
+
     public function topic()
     {
         return $this->belongsTo(Forum\Topic::class, 'thread_id');
@@ -1320,21 +1363,17 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     public function description()
     {
-        $bbcode = $this->getBBCode();
-
-        return $bbcode ? $bbcode->toHTML() : null;
+        return $this->getBBCode()?->toHTML();
     }
 
     public function editableDescription()
     {
-        $bbcode = $this->getBBCode();
-
-        return $bbcode ? $bbcode->toEditor() : null;
+        return $this->getBBCode()?->toEditor();
     }
 
     public function updateDescription($bbcode, $user)
     {
-        $post = $this->getPost();
+        $post = $this->descriptionPost;
         if ($post === null) {
             return;
         }
@@ -1378,7 +1417,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     private function getBBCode()
     {
-        $post = $this->getPost();
+        $post = $this->descriptionPost;
 
         if ($post === null) {
             return;
@@ -1412,17 +1451,6 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         }
 
         return $this->title;
-    }
-
-    public function getPost()
-    {
-        $topic = $this->topic;
-
-        if ($topic === null) {
-            return;
-        }
-
-        return Forum\Post::find($topic->topic_first_post_id);
     }
 
     public function freshHype()
@@ -1507,6 +1535,19 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     private function getArtistUnicode()
     {
         return $this->getRawAttribute('artist_unicode') ?? $this->artist;
+    }
+
+    private function getPackTags(): array
+    {
+        if (array_key_exists('pack_tags', $this->attributes)) {
+            $rawValue = $this->attributes['pack_tags'];
+
+            return $rawValue === null
+                ? []
+                : explode(',', $rawValue);
+        }
+
+        return $this->packs()->pluck('tag')->all();
     }
 
     private function getTitleUnicode()

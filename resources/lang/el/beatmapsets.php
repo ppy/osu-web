@@ -60,12 +60,18 @@ return [
     'show' => [
         'discussion' => 'Συζήτηση',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
             'by_artist' => '',
             'favourite' => 'Προσθέστε αυτό το beatmapset στα αγαπημένα',
             'favourite_login' => '',
             'logged-out' => 'Πρέπει να συνδεθείτε πριν κάνετε λήψη κάποιου beatmap!',
             'mapped_by' => 'δημιουργήθηκε από :mapper',
+            'mapped_by_guest' => '',
             'unfavourite' => 'Αφαιρέστε αυτό το beatmapset από τα αγαπημένα',
             'updated_timeago' => 'τελευταία ενημέρωση :timeago',
 
@@ -124,6 +130,7 @@ return [
             'genre' => 'Είδος',
             'language' => 'Γλώσσα',
             'no_scores' => 'Τα δεδομένα ακόμα υπολογίζονται...',
+            'nominators' => '',
             'nsfw' => '',
             'offset' => '',
             'points-of-failure' => 'Σημεία Αποτυχίας',

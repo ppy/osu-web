@@ -27,7 +27,7 @@ return [
     'client' => [
         'id' => 'ID del client',
         'name' => 'Nom de l\'aplicació',
-        'redirect' => 'URL de devolució de trucada de l\'aplicació',
+        'redirect' => 'URL de trucada d\'Aplicació',
         'reset' => 'Restablir secret de client',
         'reset_failed' => 'No s\'ha pogut restablir el secret de client',
         'secret' => 'Secret del client',
@@ -48,8 +48,8 @@ return [
     ],
 
     'own_clients' => [
-        'confirm_delete' => 'Esteu segur que voleu suprimir aquest client?',
-        'confirm_reset' => 'Esteu segur que voleu restablir el secret de client? Això revocarà tots els tokens existents.',
+        'confirm_delete' => 'Esteu segur que voleu eliminar aquest client?',
+        'confirm_reset' => 'Esteu segur que voleu restablir el client secret? Això revocarà tots els tokens existents.',
         'new' => 'Nova aplicació OAuth',
         'none' => 'Cap client',
 

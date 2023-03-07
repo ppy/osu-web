@@ -77,7 +77,7 @@ return [
     ],
     'chat' => [
         'channel_limit' => get_int(env('CHAT_CHANNEL_LIMIT')) ?? 10000,
-        'message_length_limit' => get_int(env('CHAT_MESSAGE_LENGTH_LIMIT')) ?? 100,
+        'message_length_limit' => get_int(env('CHAT_MESSAGE_LENGTH_LIMIT')) ?? 450,
         'public_backlog_limit' => get_int(env('CHAT_PUBLIC_BACKLOG_LIMIT_HOURS')) ?? 24,
         'rate_limits' => [
             'public' => [
@@ -92,6 +92,7 @@ return [
     ],
     'client' => [
         'check_version' => get_bool(env('CLIENT_CHECK_VERSION')) ?? true,
+        'default_build_id' => get_int(env('DEFAULT_BUILD_ID')) ?? 0,
         'user_agent' => env('CLIENT_USER_AGENT', 'osu!'),
     ],
     'elasticsearch' => [
@@ -143,7 +144,7 @@ return [
         ],
     ],
     'oauth' => [
-        'retain_expired_tokens_days' => abs(get_int(env('OAUTH_RETAIN_EXPIRED_TOKENS_DAYS'))) ?? 30,
+        'retain_expired_tokens_days' => abs(get_int(env('OAUTH_RETAIN_EXPIRED_TOKENS_DAYS')) ?? 30),
         'max_user_clients' => get_int(env('OAUTH_MAX_USER_CLIENTS')) ?? 1,
     ],
     'octane' => [
@@ -164,6 +165,8 @@ return [
     ],
     'scores' => [
         'es_cache_duration' => 60 * (get_float(env('SCORES_ES_CACHE_DURATION')) ?? 0.5), // in minutes, converted to seconds
+        'experimental_rank_as_default' => get_bool(env('SCORES_EXPERIMENTAL_RANK_AS_DEFAULT')) ?? false,
+        'experimental_rank_as_extra' => get_bool(env('SCORES_EXPERIMENTAL_RANK_AS_EXTRA')) ?? false,
         'rank_cache' => [
             'local_server' => get_bool(env('SCORES_RANK_CACHE_LOCAL_SERVER')) ?? false,
             'min_users' => get_int(env('SCORES_RANK_CACHE_MIN_USERS')) ?? 35000,
@@ -178,7 +181,7 @@ return [
     ],
 
     'store' => [
-        'notice' => presence(str_replace('\n', "\n", env('STORE_NOTICE'))),
+        'notice' => presence(str_replace('\n', "\n", env('STORE_NOTICE') ?? '')),
     ],
     'twitch_client_id' => presence(env('TWITCH_CLIENT_ID')),
     'twitch_client_secret' => presence(env('TWITCH_CLIENT_SECRET')),
@@ -197,19 +200,30 @@ return [
         'base' => 'https://osu.ppy.sh',
         'bounty-form' => env('OS_BOUNTY_URL'),
         'dev' => 'https://discord.gg/ppy',
+        'experimental_host' => presence(env('OSU_EXPERIMENTAL_HOST')),
         'installer' => 'https://m1.ppy.sh/r/osu!install.exe',
         'installer-mirror' => 'https://m2.ppy.sh/r/osu!install.exe',
+        'lazer_dl_other' => presence(env('OSU_URL_LAZER_OTHER')) ?? 'https://github.com/ppy/osu/#running-osu',
+        'lazer_info' => presence(env('OSU_URL_LAZER_INFO')),
         'osx' => 'https://osx.ppy.sh',
         'server_status' => 'https://status.ppy.sh',
         'smilies' => '/forum/images/smilies',
         'source_code' => 'https://github.com/ppy',
         'youtube-tutorial-playlist' => 'PLmWVQsxi34bMYwAawZtzuptfMmszUa_tl',
 
+        'lazer_dl' => [
+            'android' => presence(env('OSU_URL_LAZER_ANDROID')) ?? 'https://github.com/ppy/osu/releases/latest/download/sh.ppy.osulazer.apk',
+            'ios' => presence(env('OSU_URL_LAZER_IOS')) ?? '/home/testflight',
+            'linux_x64' => presence(env('OSU_URL_LAZER_LINUX_X64')) ?? 'https://github.com/ppy/osu/releases/latest/download/osu.AppImage',
+            'macos_as' => presence(env('OSU_URL_LAZER_MACOS_AS')) ?? 'https://github.com/ppy/osu/releases/latest/download/osu.app.Apple.Silicon.zip',
+            'windows_x64' => presence(env('OSU_URL_LAZER_WINDOWS_X64')) ?? 'https://github.com/ppy/osu/releases/latest/download/install.exe',
+        ],
         'social' => [
             'twitter' => '/wiki/Twitter',
         ],
         'user' => [
             'recover' => '/wiki/Help_centre/Account#sign-in',
+            'restriction' => presence(env('OSU_URL_USER_RESTRICTION')) ?? '/wiki/Help_centre/Account_restrictions',
             'rules' => '/wiki/Osu!:Rules',
         ],
         'rankings' => [
@@ -225,6 +239,7 @@ return [
         'allow_registration' => get_bool(env('ALLOW_REGISTRATION')) ?? true,
         'allowed_rename_groups' => explode(' ', env('USER_ALLOWED_RENAME_GROUPS', 'default')),
         'bypass_verification' => get_bool(env('USER_BYPASS_VERIFICATION')) ?? false,
+        'hide_pinned_solo_scores' => get_bool(env('USER_HIDE_PINNED_SOLO_SCORES')) ?? true,
         'inactive_days_verification' => get_int(env('USER_INACTIVE_DAYS_VERIFICATION')) ?? 180,
         'min_plays_for_posting' => get_int(env('USER_MIN_PLAYS_FOR_POSTING')) ?? 10,
         'min_plays_allow_verified_bypass' => get_bool(env('USER_MIN_PLAYS_ALLOW_VERIFIED_BYPASS')) ?? true,
@@ -233,8 +248,8 @@ return [
         'user_page_forum_id' => intval(env('USER_PAGE_FORUM_ID', 70)),
         'verification_key_length_hex' => 8,
         'verification_key_tries_limit' => 8,
-        'max_friends' => 250,
-        'max_friends_supporter' => 500,
+        'max_friends' => get_int(env('USER_MAX_FRIENDS')) ?? 250,
+        'max_friends_supporter' => get_int(env('USER_MAX_FRIENDS_SUPPORTER')) ?? 500,
         'max_login_attempts' => get_int(env('USER_MAX_LOGIN_ATTEMPTS')) ?? 10,
         'max_multiplayer_duration' => get_int(env('USER_MAX_MULTIPLAYER_DURATION')) ?? 14,
         // see https://github.com/ppy/osu/pull/16024/files#diff-d5f8d0eb0eac5cfd6d2f486d34c4168e036b83b622c7a3c5bfce5205d67bf52bR327-R330
@@ -249,6 +264,7 @@ return [
             'key_length' => 8,
             'tries' => 8,
         ],
+        'registration_mode' => presence(env('REGISTRATION_MODE')) ?? 'client',
         'super_friendly' => array_map('intval', explode(' ', env('SUPER_FRIENDLY', '3'))),
         'ban_persist_days' => get_int(env('BAN_PERSIST_DAYS')) ?? 28,
     ],

@@ -9,6 +9,7 @@ use App\Libraries\MorphMap;
 use App\Models\Beatmap;
 use App\Models\User;
 use App\Models\UserProfileCustomization;
+use League\Fractal\Resource\ResourceInterface;
 
 class UserCompactTransformer extends TransformerAbstract
 {
@@ -43,7 +44,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     protected string $mode;
 
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'account_history',
         'active_tournament_banner',
         'badges',
@@ -71,9 +72,11 @@ class UserCompactTransformer extends TransformerAbstract
         'loved_beatmapset_count',
         'mapping_follower_count',
         'monthly_playcounts',
+        'nominated_beatmapset_count',
         'page',
         'pending_beatmapset_count',
         'previous_usernames',
+        'rank_highest',
         'ranked_beatmapset_count',
         'replays_watched_counts',
         'scores_best_count',
@@ -300,6 +303,11 @@ class UserCompactTransformer extends TransformerAbstract
         );
     }
 
+    public function includeNominatedBeatmapsetCount(User $user)
+    {
+        return $this->primitive($user->profileBeatmapsetsNominated()->count());
+    }
+
     public function includePage(User $user)
     {
         return $this->primitive(
@@ -320,6 +328,17 @@ class UserCompactTransformer extends TransformerAbstract
     public function includePreviousUsernames(User $user)
     {
         return $this->primitive($user->previousUsernames()->unique()->values()->toArray());
+    }
+
+    public function includeRankHighest(User $user): ResourceInterface
+    {
+        $rankHighest = $user->rankHighests()
+            ->where('mode', Beatmap::modeInt($this->mode))
+            ->first();
+
+        return $rankHighest === null
+            ? $this->null()
+            : $this->item($rankHighest, new RankHighestTransformer());
     }
 
     public function includeRankHistory(User $user)

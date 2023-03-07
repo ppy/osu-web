@@ -7,11 +7,13 @@ namespace App\Transformers;
 
 use App\Models\Contest;
 use Auth;
+use League\Fractal\Resource\ResourceInterface;
 
 class ContestTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'entries',
+        'users_voted_count',
     ];
 
     public function transform(Contest $contest)
@@ -32,6 +34,8 @@ class ContestTransformer extends TransformerAbstract
             'submitted_beatmaps' => $contest->isSubmittedBeatmaps(),
             'thumbnail_shape' => $contest->thumbnail_shape,
             'type' => $contest->type,
+            'forced_width' => $contest->getForcedWidth(),
+            'forced_height' => $contest->getForcedHeight(),
             'voting_ends_at' => json_time($contest->voting_ends_at),
         ];
     }
@@ -39,5 +43,10 @@ class ContestTransformer extends TransformerAbstract
     public function includeEntries(Contest $contest)
     {
         return $this->collection($contest->entriesByType(Auth::user()), new ContestEntryTransformer());
+    }
+
+    public function includeUsersVotedCount(Contest $contest): ResourceInterface
+    {
+        return $this->primitive($contest->usersVotedCount());
     }
 }

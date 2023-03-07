@@ -33,13 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Blokirao/la si ovog korisnika.',
-        'comment_text' => '',
+        'comment_text' => 'Ovaj komentar je skriven.',
         'blocked_count' => 'blokirani korisnici (:count)',
         'hide_profile' => 'Sakrij profil',
-        'hide_comment' => '',
+        'hide_comment' => 'sakrij',
         'not_blocked' => 'Taj korisnik nije blokiran.',
         'show_profile' => 'Prikaži profil',
-        'show_comment' => '',
+        'show_comment' => 'prikaži',
         'too_many' => 'Dosegnuto je ograničenje blokiranja.',
         'button' => [
             'block' => 'Blokiraj',
@@ -50,6 +50,22 @@ return [
     'card' => [
         'loading' => 'Učitavanje...',
         'send_message' => 'Pošalji poruku',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => '',
+            'password_confirmation' => '',
+            'submit' => '',
+            'user_email' => '',
+            'user_email_confirmation' => '',
+            'username' => '',
+
+            'tos_notice' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -142,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'Vaš račun je organičen!',
         'message' => 'Dok ste ograničeni, nećete moći komunicirati s drugim igračima i vaši rezultati će biti vidljivi samo Vama. To je obični rezultat automatskog procesa i obično će se ukloniti u roku od 24 sata. Ako se želite apelovati na Vaše ograničenje, molimo <a href="mailto:accounts@ppy.sh">kontaktirajte podršku</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age godina',
@@ -216,6 +233,9 @@ return [
                 ],
                 'loved' => [
                     'title' => 'Voljene beatmape',
+                ],
+                'nominated' => [
+                    'title' => '',
                 ],
                 'pending' => [
                     'title' => 'Beatmape na čekanju',
@@ -372,7 +392,7 @@ return [
                     'actions' => [
                         'restriction' => 'Zabrana',
                         'silence' => 'Utišanje',
-                        'tournament_ban' => '',
+                        'tournament_ban' => 'Zabrana turnira',
                         'note' => 'Bilješka',
                     ],
                 ],
@@ -414,6 +434,7 @@ return [
             'country_simple' => 'Rang u državi',
             'global' => 'Globalni rang za :mode',
             'global_simple' => 'Globalni rang',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Preciznost pogodaka',
@@ -447,6 +468,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => 'Stvoreno od strane korisnika',
     ],
     'verify' => [

@@ -52,6 +52,22 @@ return [
         'send_message' => 'Wyślij wiadomość',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => 'hasło',
+            'password_confirmation' => 'potwierdź hasło',
+            'submit' => 'utwórz konto',
+            'user_email' => 'e-mail',
+            'user_email_confirmation' => 'potwierdź e-mail',
+            'username' => 'nazwa użytkownika',
+
+            'tos_notice' => [
+                '_' => 'tworząc konto, wyrażasz zgodę na :link',
+                'link' => 'warunki świadczenia usług',
+            ],
+        ],
+    ],
+
     'disabled' => [
         'title' => 'Och! Wygląda na to, że Twoje konto zostało zdezaktywowane.',
         'warning' => "Jeżeli złamiesz zasady, pamiętaj o tym, że zwyczajowo obowiązuje okres oczekiwania o długości 1 miesiąca, podczas którego nie będziemy przyjmować żadnych próśb o amnestię. Po tym czasie możesz skontaktować się z nami, jeśli uznasz to za konieczne. Miej na uwadze, że tworzenie nowych kont po otrzymaniu blokady na jedno z nich poskutkuje <strong>przedłużeniem tego miesięcznego okresu oczekiwania</strong>. Pamiętaj także, że <strong>każdorazowe utworzenie nowego konta jest dalszym łamaniem zasad</strong>. Stanowczo zalecamy nieobieranie tej ścieżki!",
@@ -141,7 +157,8 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Twoje konto zostało zablokowane!',
-        'message' => 'Podczas blokady konta interakcja z innymi użytkownikami nie będzie możliwa, a twoje wyniki będą widoczne tylko dla ciebie. Zazwyczaj nałożenie blokady jest rezultatem zautomatyzowanego procesu, a jej usunięcie powinno nastąpić w ciągu 24 godzin. Jeżeli chcesz odwołać się od blokady, skontaktuj się z <a href="mailto:accounts@ppy.sh">pomocą techniczną</a>.',
+        'message' => 'Podczas blokady konta interakcja z innymi użytkownikami nie będzie możliwa, a twoje wyniki będą widoczne tylko dla ciebie. Zazwyczaj nałożenie blokady jest rezultatem zautomatyzowanego procesu, a jej usunięcie powinno nastąpić w ciągu 24 godzin. :link',
+        'message_link' => 'Kliknij tutaj, by dowiedzieć się więcej.',
     ],
     'show' => [
         'age' => 'Ma :age lat',
@@ -216,6 +233,9 @@ return [
                 ],
                 'loved' => [
                     'title' => 'Ulubione beatmapy społeczności',
+                ],
+                'nominated' => [
+                    'title' => 'Nominowane beatmapy do sekcji rankingowej',
                 ],
                 'pending' => [
                     'title' => 'Oczekujące beatmapy',
@@ -414,6 +434,7 @@ return [
             'country_simple' => 'Ranking krajowy',
             'global' => 'Pozycja w rankingu globalnym dla :mode',
             'global_simple' => 'Ranking globalny',
+            'highest' => 'Najwyższa pozycja: :rank (osiągnięta :date)',
         ],
         'stats' => [
             'hit_accuracy' => 'Celność',
@@ -447,6 +468,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => 'zarejestruj się poprzez klient gry!',
+        'from_web' => 'ukończ proces rejestracji poprzez stronę osu!',
         'saved' => 'Użytkownik utworzony',
     ],
     'verify' => [

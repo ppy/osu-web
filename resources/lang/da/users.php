@@ -52,6 +52,22 @@ return [
         'send_message' => 'Send besked',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => 'adgangskode',
+            'password_confirmation' => 'bekræftelse af adgangskode',
+            'submit' => 'opret konto',
+            'user_email' => 'e-mail',
+            'user_email_confirmation' => 'e-mail bekræftelse',
+            'username' => 'brugernavn',
+
+            'tos_notice' => [
+                '_' => 'ved at oprette konto accepterer du :link',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'disabled' => [
         'title' => 'Uh-oh! Det ser ud som om din account er blevet midlertidigt lukket.',
         'warning' => "I tilfælde af at du har brudt en regel, bør du vide at der er en cool-down periode på en måned hvori vi ikke vil overveje nogen former for forespørgsler om lempelser eller ophævninger. Efter denne periode kan du kontakte os igen hvis du føler det er nødvendigt. Bemærk, hvis du laver flere konti efter at have fået en lukket vil det resultere i en <strong>forlængelse af din ene måneds cool-down</strong>. Bemærk også at for <strong>hver account du laver, bryder du reglerne yderligere</strong>. Vi anbefaler stærkt at du ikke gør dette!",
@@ -141,7 +157,8 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Du konto er blevet begrænset!',
-        'message' => 'Når du er begrænset, kan du ikke interagere med andre spillere, og dine scores vil kun være synlige for dig. Dette er som regel en automatisk proces, og begrænsningen vil blive fjernet indenfor 24 timer. Hvis du ønsker at appellere din begrænsning, <a href="mailto:accounts@ppy.sh">kontakt supporten</a>.',
+        'message' => 'Når du er begrænset, kan du ikke interagere med andre spillere, og dine scores vil kun være synlige for dig. Dette er som regel en automatisk proces, og begrænsningen vil blive fjernet indenfor 24 timer. :link',
+        'message_link' => 'Tjek denne side for at lære mere.',
     ],
     'show' => [
         'age' => ':age år gammel',
@@ -216,6 +233,9 @@ return [
                 ],
                 'loved' => [
                     'title' => 'Elskede beatmaps',
+                ],
+                'nominated' => [
+                    'title' => '',
                 ],
                 'pending' => [
                     'title' => 'Afventende Beatmaps',
@@ -304,7 +324,7 @@ return [
                 ],
             ],
             'me' => [
-                'title' => 'me!',
+                'title' => 'mig!',
             ],
             'medals' => [
                 'empty' => "Denne bruger har ikke fået nogle endnu. ;_;",
@@ -414,6 +434,7 @@ return [
             'country_simple' => 'Lande Rang',
             'global' => 'Global rang for :mode',
             'global_simple' => 'Global Rang',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Præcision',
@@ -447,6 +468,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => 'Bruger Oprettet',
     ],
     'verify' => [

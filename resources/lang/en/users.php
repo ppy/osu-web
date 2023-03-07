@@ -52,6 +52,22 @@ return [
         'send_message' => 'Send message',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => 'password',
+            'password_confirmation' => 'password confirmation',
+            'submit' => 'create account',
+            'user_email' => 'email',
+            'user_email_confirmation' => 'email confirmation',
+            'username' => 'username',
+
+            'tos_notice' => [
+                '_' => 'by creating account you agree to the :link',
+                'link' => 'terms of service',
+            ],
+        ],
+    ],
+
     'disabled' => [
         'title' => 'Uh-oh! It looks like your account has been disabled.',
         'warning' => "In the case you have broken a rule, please note that there is generally a cool-down period of one month during which we will not consider any amnesty requests. After this period, you are free to contact us should you deem it necessary. Please note that creating new accounts after you have had one disabled will result in an <strong>extension of this one month cool-down</strong>. Please also note that for <strong>every account you create, you are further breaking rules</strong>. We highly suggest you don't go down this path!",
@@ -141,7 +157,8 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Your account has been restricted!',
-        'message' => 'While restricted, you will be unable to interact with other players and your scores will only be visible to you. This is usually the result of an automated process and will usually be lifted within 24 hours. If you wish to appeal your restriction, please <a href="mailto:accounts@ppy.sh">contact support</a>.',
+        'message' => 'While restricted, you will be unable to interact with other players and your scores will only be visible to you. This is usually the result of an automated process and will usually be lifted within 24 hours. :link',
+        'message_link' => 'Check this page to learn more.',
     ],
     'show' => [
         'age' => ':age years old',
@@ -216,6 +233,9 @@ return [
                 ],
                 'loved' => [
                     'title' => 'Loved Beatmaps',
+                ],
+                'nominated' => [
+                    'title' => 'Nominated Ranked Beatmaps',
                 ],
                 'pending' => [
                     'title' => 'Pending Beatmaps',
@@ -414,6 +434,7 @@ return [
             'country_simple' => 'Country Ranking',
             'global' => 'Global rank for :mode',
             'global_simple' => 'Global Ranking',
+            'highest' => 'Highest rank: :rank on :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Hit Accuracy',
@@ -447,6 +468,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => 'please register via the game client instead!',
+        'from_web' => 'please complete registration using the osu! website',
         'saved' => 'User created',
     ],
     'verify' => [

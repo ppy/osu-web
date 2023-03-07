@@ -23,11 +23,11 @@ return [
         ],
 
         'votes_received' => [
-            'title_most' => '得赞最多（最近三个月）',
+            'title_most' => '最多获赞（最近三个月）',
         ],
 
         'votes_made' => [
-            'title_most' => '赞数最多（最近三个月）',
+            'title_most' => '最多点赞（最近三个月）',
         ],
     ],
 
@@ -50,6 +50,22 @@ return [
     'card' => [
         'loading' => '加载中...',
         'send_message' => '发送消息',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => '密码',
+            'password_confirmation' => '确认密码',
+            'submit' => '注册新账户',
+            'user_email' => '邮箱地址',
+            'user_email_confirmation' => '确认邮箱地址',
+            'username' => '用户名',
+
+            'tos_notice' => [
+                '_' => '完成注册，即视为您同意了 :link',
+                'link' => '服务协议',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -141,7 +157,8 @@ return [
     ],
     'restricted_banner' => [
         'title' => '账户进入限制模式！',
-        'message' => '在被限制时，无法与其他玩家互动，分数只有自己可见。该限制通常由系统自动给予，并将在24小时内解除。需要申诉？请<a href="mailto:accounts@ppy.sh">联系支持团队</a>.',
+        'message' => '处于被限制状态时，你将不能与其他玩家互动，分数只有你自己可见。限制通常是系统自动给予，通常会在 24 小时内解除。:link',
+        'message_link' => '点击此页了解更多。',
     ],
     'show' => [
         'age' => ':age 岁',
@@ -194,10 +211,10 @@ return [
 
         'extra' => [
             'none' => '无',
-            'unranked' => '最近没有玩过',
+            'unranked' => '最近没玩过',
 
             'achievements' => [
-                'achieved-on' => '达成于 :date',
+                'achieved-on' => ':date 达成',
                 'locked' => '锁定',
                 'title' => '成就',
             ],
@@ -212,16 +229,19 @@ return [
                     'title' => '已停更的谱面',
                 ],
                 'guest' => [
-                    'title' => '参与客串制作的谱面',
+                    'title' => '客串制作的谱面',
                 ],
                 'loved' => [
-                    'title' => 'Loved 的谱面',
+                    'title' => '社区喜爱 (Loved) 谱面',
+                ],
+                'nominated' => [
+                    'title' => '提名并上架 (Ranked) 的谱面',
                 ],
                 'pending' => [
-                    'title' => 'Pending 谱面',
+                    'title' => '待定 (Pending) 谱面',
                 ],
                 'ranked' => [
-                    'title' => 'Ranked 谱面',
+                    'title' => '上架 (Ranked) 谱面',
                 ],
             ],
             'discussions' => [
@@ -243,7 +263,7 @@ return [
                 ],
                 'most_played' => [
                     'count' => '游玩次数',
-                    'title' => '最多游玩的谱面',
+                    'title' => '玩得最多的谱面',
                 ],
                 'recent_plays' => [
                     'accuracy' => '准确率：:percentage',
@@ -312,7 +332,7 @@ return [
                 'title' => '成就',
             ],
             'playlists' => [
-                'title' => '课题模式游戏',
+                'title' => '歌单游戏',
             ],
             'posts' => [
                 'title' => '回复',
@@ -327,7 +347,7 @@ return [
             ],
             'top_ranks' => [
                 'download_replay' => '下载回放',
-                'not_ranked' => '只有 ranked 谱面才能得到 pp。',
+                'not_ranked' => '只能在上架 (Ranked) 谱面中获得 pp。',
                 'pp_weight' => '权重：:percentage',
                 'view_details' => '查看详情',
                 'title' => '成绩',
@@ -407,13 +427,14 @@ return [
         ],
         'post_count' => [
             '_' => '发表了 :link',
-            'count' => ':count 篇帖子',
+            'count' => ':count_delimited 篇帖子|:count_delimited 篇帖子',
         ],
         'rank' => [
-            'country' => ':mode 模式的国内/区内排名',
-            'country_simple' => '国内/区内排名',
+            'country' => ':mode 模式的地区排名',
+            'country_simple' => '地区排名',
             'global' => ':mode 模式的全球排名',
             'global_simple' => '全球排名',
+            'highest' => ':date 达成生涯最高排名 :rank',
         ],
         'stats' => [
             'hit_accuracy' => '准确率',
@@ -423,16 +444,16 @@ return [
             'medals' => '奖章',
             'play_count' => '游戏次数',
             'play_time' => '游戏时间',
-            'ranked_score' => 'Ranked 谱面总分',
+            'ranked_score' => '进榜总分',
             'replays_watched_by_others' => '回放被观看次数',
             'score_ranks' => '得分等级',
             'total_hits' => '总命中次数',
             'total_score' => '总分',
             // modding stats
             'graveyard_beatmapset_count' => '坟场里的谱面',
-            'loved_beatmapset_count' => 'Loved 的谱面',
-            'pending_beatmapset_count' => 'Pending 的谱面',
-            'ranked_beatmapset_count' => 'Ranked 的谱面',
+            'loved_beatmapset_count' => '社区喜爱 (Loved) 谱面',
+            'pending_beatmapset_count' => '待定 (Pending) 谱面',
+            'ranked_beatmapset_count' => '上架 (Ranked) 谱面',
         ],
     ],
 
@@ -447,6 +468,8 @@ return [
         'offline' => '离线',
     ],
     'store' => [
+        'from_client' => '请使用游戏客户端注册！',
+        'from_web' => '请通过网页完成注册',
         'saved' => '账户已创建',
     ],
     'verify' => [

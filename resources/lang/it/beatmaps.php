@@ -18,7 +18,7 @@ return [
         'deny_kudosu' => 'nega kudosu',
         'edit' => 'modifica',
         'edited' => 'Ultima modifica di :editor :update_time',
-        'guest' => 'Guest difficulty di :user',
+        'guest' => 'Difficoltà guest di :user',
         'kudosu_denied' => 'Negato dall\'ottenimento di kudosu.',
         'message_placeholder_deleted_beatmap' => 'Questa difficoltà è stata eliminata, quindi non può più essere discussa.',
         'message_placeholder_locked' => 'La discussione per questa beatmap è stata disabilitata.',

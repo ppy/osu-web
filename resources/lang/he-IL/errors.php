@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => '',
     'missing_route' => '',
     'no_restricted_access' => 'אינך יכול לבצע את הפעולה הזאת כאשר החשבון שלך במצב מוגבל.',
     'supporter_only' => 'אתה חייב להיות osu!supporter כדי להשתמש בתכונה זו.',

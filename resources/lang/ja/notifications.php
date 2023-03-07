@@ -209,6 +209,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => ':name に新しいお知らせがあります',
+            ],
+
             'channel' => [
                 'pm' => ':usernameから新しいメッセージを受信しました',
             ],

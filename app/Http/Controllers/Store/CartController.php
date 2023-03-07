@@ -23,7 +23,7 @@ class CartController extends Controller
             ]]);
         }
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function show()
@@ -36,8 +36,13 @@ class CartController extends Controller
 
     public function store()
     {
-        $add = present(request()->input('add'));
-        $error = $this->userCart()->updateItem(request()->input('item', []), $add);
+        $params = get_params(request()->all(), null, [
+            'add:bool',
+            'item:array',
+        ]);
+
+        $add = $params['add'] ?? false;
+        $error = $this->userCart()->updateItem($params['item'] ?? [], $add);
 
         if ($error === null) {
             return $add ? ujs_redirect(route('store.cart.show')) : ext_view('layout.ujs-reload', [], 'js');

@@ -269,12 +269,17 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::resource('reports', 'ReportsController', ['only' => ['store']]);
 
+    Route::resource('seasons', 'SeasonsController', ['only' => 'show']);
+    Route::get('seasons/{season}/rooms', 'SeasonsController@rooms')->name('seasons.rooms');
+
     Route::post('session', 'SessionsController@store')->name('login');
     Route::delete('session', 'SessionsController@destroy')->name('logout');
 
     Route::post('users/check-username-availability', 'UsersController@checkUsernameAvailability')->name('users.check-username-availability');
     Route::post('users/check-username-exists', 'UsersController@checkUsernameExists')->name('users.check-username-exists');
     Route::get('users/disabled', 'UsersController@disabled')->name('users.disabled');
+    Route::get('users/create', 'UsersController@create')->name('users.create');
+    Route::post('users/store-web', 'UsersController@storeWeb')->name('users.store-web');
 
     Route::group(['as' => 'users.', 'prefix' => 'users/{user}'], function () {
         Route::get('card', 'UsersController@card')->name('card');
@@ -431,6 +436,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
         Route::delete('comments/{comment}/vote', 'CommentsController@voteDestroy');
 
         Route::group(['as' => 'chat.', 'prefix' => 'chat', 'namespace' => 'Chat'], function () {
+            Route::post('ack', 'ChatController@ack')->name('ack');
             Route::post('new', 'ChatController@newConversation')->name('new');
             Route::get('updates', 'ChatController@updates')->name('updates');
             Route::get('presence', 'ChatController@presence')->name('presence');

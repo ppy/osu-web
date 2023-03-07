@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => 'Ni bilo mogoče naložiti podatkov.',
     'missing_route' => 'Neveljaven url ali napačna metoda prošnje.',
     'no_restricted_access' => 'Ni mogoče opraviti tega dejanja medtem, ko je tvoj račun v omejenem stanju.',
     'supporter_only' => 'Za uporabo te funkcije moraš biti osu!supporter.',

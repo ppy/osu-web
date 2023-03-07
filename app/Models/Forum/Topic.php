@@ -424,12 +424,15 @@ class Topic extends Model implements AfterCommit
         $tieBreakerOrder = 'desc';
 
         switch ($sort) {
+            case 'created':
+                $query->orderBy('topic_time', 'desc');
+                break;
             case 'feature-votes':
                 $query->orderBy('osu_starpriority', 'desc');
                 break;
         }
 
-        $query->orderBy('topic_last_post_time', $tieBreakerOrder);
+        return $query->orderBy('topic_last_post_time', $tieBreakerOrder);
     }
 
     public function scopeRecent($query, $params = null)
@@ -530,7 +533,8 @@ class Topic extends Model implements AfterCommit
                 // Duplicate entry.
                 // Retry, hoping $status now contains something.
                 if (is_sql_unique_exception($ex)) {
-                    return $this->markRead($user, $markTime);
+                    $this->markRead($user, $markTime);
+                    return;
                 }
 
                 throw $ex;

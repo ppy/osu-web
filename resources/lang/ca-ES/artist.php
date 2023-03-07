@@ -5,16 +5,16 @@
 
 return [
     'page_description' => 'Artistes destacats a osu!',
-    'title' => 'Artistes Destacats',
+    'title' => 'Artistes destacats',
 
     'admin' => [
         'hidden' => 'L\'ARTISTA ESTÀ ACTUALMENT OCULT',
     ],
 
     'beatmaps' => [
-        '_' => 'Mapes',
-        'download' => 'Descarregar plantilla del mapa',
-        'download-na' => 'La plantilla del mapa encara no està disponible',
+        '_' => 'Beatmaps',
+        'download' => 'Descarrega la plantilla de beatmap',
+        'download-na' => 'La plantilla del beatmap encara no està disponible',
     ],
 
     'index' => [
@@ -22,7 +22,7 @@ return [
     ],
 
     'links' => [
-        'beatmaps' => 'Mapes d\'osu!',
+        'beatmaps' => 'Beatmaps d\'osu!',
         'osu' => 'Perfil d\'osu!',
         'site' => 'Lloc web oficial',
     ],
@@ -30,7 +30,7 @@ return [
     'songs' => [
         '_' => 'Cançons',
         'count' => ':count_delimited cançó|:count_delimited cançons',
-        'original' => 'original d\'osu!',
+        'original' => 'Original d\'osu!',
         'original_badge' => 'ORIGINAL',
     ],
 
@@ -46,16 +46,16 @@ return [
             '_' => 'cerca de pistes',
 
             'form' => [
-                'advanced' => 'Cerca Avançada',
+                'advanced' => 'Cerca avançada',
                 'album' => 'Àlbum',
                 'artist' => 'Artista',
-                'bpm_gte' => 'BPM Mínim',
-                'bpm_lte' => 'BPM Màxim',
-                'empty' => 'No s\'ha trobat cap pista que coincideixi amb els criteris de cerca.',
+                'bpm_gte' => 'BPM mínim',
+                'bpm_lte' => 'BPM màxim',
+                'empty' => 'No se encontraron pistas que coincidieran con ese criterio de búsqueda.',
                 'genre' => 'Gènere',
                 'genre_all' => 'Tots',
-                'length_gte' => 'Durada Mínima',
-                'length_lte' => 'Durada Màxima',
+                'length_gte' => 'Durada mínima',
+                'length_lte' => 'Longitud màxima',
             ],
         ],
     ],

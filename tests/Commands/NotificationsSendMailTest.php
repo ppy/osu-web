@@ -69,7 +69,7 @@ class NotificationsSendMailTest extends TestCase
 
         foreach ($beatmapsets as $beatmapset) {
             $beatmapset->watches()->create([
-                'last_read' => now()->subSecond(),
+                'last_read' => now()->subSeconds(),
                 'user_id' => $user->getKey(),
             ]);
             $this

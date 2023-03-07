@@ -37,7 +37,12 @@ _job() {
 }
 
 _migrate() {
-    _rexec /app/bin/wait_for.sh db:3306 -t 60 -- php /app/artisan migrate:fresh-or-run
+    _run php /app/artisan db:create
+    _rexec php /app/artisan migrate:fresh-or-run
+}
+
+_octane() {
+  _rexec /app/artisan octane:start --host=0.0.0.0 "$@"
 }
 
 _schedule() {
@@ -45,10 +50,6 @@ _schedule() {
         _run php /app/artisan schedule:run &
         echo 'Sleeping for 5 minutes'
     done
-}
-
-_serve() {
-    exec php-fpm8.0 -R -y docker/development/php-fpm.conf
 }
 
 _test() {
@@ -72,6 +73,6 @@ _watch() {
 
 case "$command" in
     artisan) _rexec php /app/artisan "$@";;
-    job|migrate|schedule|serve|test|watch) "_$command" "$@";;
+    job|migrate|octane|schedule|test|watch) "_$command" "$@";;
     *) _rexec "$command" "$@";;
 esac

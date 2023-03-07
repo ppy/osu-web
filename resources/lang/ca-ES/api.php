@@ -6,15 +6,15 @@
 return [
     'error' => [
         'chat' => [
-            'empty' => 'No es pot enviar un missatge buit.',
-            'limit_exceeded' => 'Estàs enviant missatges massa ràpid, espera una mica i intenta-ho de nou.',
-            'too_long' => 'El missatge que intentes enviar és massa llarg.',
+            'empty' => 'No es pot enviar un missatge en blanc.',
+            'limit_exceeded' => 'Esteu enviant missatges massa ràpid, espereu una mica abans de tornar-ho a provar.',
+            'too_long' => 'El missatge que intenteu enviar és massa llarg.',
         ],
     ],
 
     'scopes' => [
-        'bot' => 'Actuar com un bot de xat.',
-        'identify' => 'Identifiqueu-vos i llegiu el vostre perfil públic.',
+        'bot' => 'Actuar com a bot de xat.',
+        'identify' => 'Identificar-te i llegir el teu perfil públic.',
 
         'chat' => [
             'write' => 'Enviar missatges en nom vostre.',

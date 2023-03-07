@@ -23,6 +23,14 @@ return [
         'multiplayer' => 'multigiocatore',
         'performance' => 'performance',
         'score' => 'punteggio',
+        'seasons' => 'stagioni',
+    ],
+
+    'seasons' => [
+        'empty' => 'Non ci sono ancora posti per questa stagione.',
+        'ongoing' => 'Questa stagione è ancora in corso (verranno aggiunte altre playlist).',
+        'room_count' => 'Conteggio playlist',
+        'url' => 'Mostra ulteriori informazioni su quella stagione.',
     ],
 
     'spotlight' => [

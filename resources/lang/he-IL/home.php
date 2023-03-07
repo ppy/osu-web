@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'חפש בפורומים',
                 'forum_children' => 'כלול תתי פורום',
+                'include_deleted' => '',
                 'topic_id' => 'מספר נושא',
                 'username' => 'מחבר',
             ],
@@ -72,8 +73,22 @@ return [
     ],
 
     'download' => [
-        'tagline' => "בוא<br>נתחיל!",
         'action' => 'הורד osu!',
+        'action_lazer' => '',
+        'action_lazer_description' => '',
+        'action_lazer_info' => '',
+        'action_lazer_title' => '',
+        'action_title' => '',
+        'for_os' => '',
+        'lazer_note' => '',
+        'macos-fallback' => 'משתמשי macOS',
+        'mirror' => 'מראה',
+        'or' => '',
+        'os_version_or_later' => '',
+        'other_os' => '',
+        'quick_start_guide' => '',
+        'tagline' => "בוא<br>נתחיל!",
+        'video-guide' => 'מדריך וידאו',
 
         'help' => [
             '_' => 'אם ישנה בעיה עם הרצת המשחק או ההרשמה למשתמש, :help_forum_link או :support_button.',
@@ -86,8 +101,6 @@ return [
             'macos' => 'עבור macOS',
             'linux' => 'עבור Linux',
         ],
-        'mirror' => 'מראה',
-        'macos-fallback' => 'משתמשי macOS',
         'steps' => [
             'register' => [
                 'title' => 'השג חשבון',
@@ -105,7 +118,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'מדריך וידאו',
     ],
 
     'user' => [

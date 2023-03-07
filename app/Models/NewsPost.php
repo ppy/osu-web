@@ -51,10 +51,7 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
 
     protected $casts = [
         'page' => 'array',
-    ];
-
-    protected $dates = [
-        'published_at',
+        'published_at' => 'datetime',
     ];
 
     public static function lookup($slug)
@@ -74,7 +71,7 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
         $limit = clamp(get_int($params['limit'] ?? null) ?? 20, 1, 21);
 
         $cursorHelper = static::makeDbCursorHelper();
-        $cursor = get_arr($params['cursor'] ?? null);
+        $cursor = cursor_from_params($params);
         $query->cursorSort($cursorHelper, $cursor);
 
         $year = get_int($params['year'] ?? null);
@@ -270,14 +267,14 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
     public function newer()
     {
         return $this->memoize(__FUNCTION__, function () {
-            return static::cursorSort('published_asc', $this)->first();
+            return static::default()->cursorSort('published_asc', $this)->first();
         });
     }
 
     public function older()
     {
         return $this->memoize(__FUNCTION__, function () {
-            return static::cursorSort('published_desc', $this)->first();
+            return static::default()->cursorSort('published_desc', $this)->first();
         });
     }
 

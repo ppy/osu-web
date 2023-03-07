@@ -66,8 +66,9 @@ return [
         'anonymous_gift_maybe_not' => '',
         'duration' => '',
         'features' => '',
-        'gifted' => '',
-        'subject' => '',
+        'gifted' => 'Kāds jums tikko uzdāvināja osu!supporter!',
+        'gift_message' => '',
+        'subject' => 'Jums ir uzdāvināts osu!supporter!',
     ],
 
     'user_email_updated' => [

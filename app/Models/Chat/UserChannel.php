@@ -14,32 +14,23 @@ use Illuminate\Database\Query\Expression;
 /**
  * @property Channel $channel
  * @property int $channel_id
- * @property bool $hidden
  * @property int|null $last_read_id
  * @property User $user
- * @property User $userScoped
  * @property int $user_id
  */
 class UserChannel extends Model
 {
+    public $incrementing = false;
+    public $timestamps = false;
+
+    protected $primaryKey = ':composite';
     protected $primaryKeys = ['user_id', 'channel_id'];
 
     private ?int $lastReadIdToSet;
 
-    public function getLastReadIdAttribute($value): ?int
-    {
-        // return the value we tried to set it to, not the query expression.
-        return $value instanceof Expression ? $this->lastReadIdToSet : $value;
-    }
-
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function userScoped()
-    {
-        return $this->belongsTo(User::class, 'user_id')->default();
     }
 
     public function channel()
@@ -47,10 +38,24 @@ class UserChannel extends Model
         return $this->belongsTo(Channel::class, 'channel_id');
     }
 
+    public function getAttribute($key)
+    {
+        return match ($key) {
+            'channel_id',
+            'user_id' => $this->getRawAttribute($key),
+
+            'last_read_id' => $this->getLastReadId(),
+
+            'channel',
+            'user' => $this->getRelationValue($key),
+        };
+    }
+
     // Laravel has own hidden property
+    // TODO: https://github.com/ppy/osu-web/pull/9486#discussion_r1017831112
     public function isHidden()
     {
-        return (bool) $this->getAttribute('hidden');
+        return (bool) $this->getRawAttribute('hidden');
     }
 
     public function markAsRead($messageId = null)
@@ -73,5 +78,13 @@ class UserChannel extends Model
                 ],
             ],
         ]));
+    }
+
+    private function getLastReadId(): ?int
+    {
+        $value = $this->getRawAttribute('last_read_id');
+
+        // return the value we tried to set it to, not the query expression.
+        return $value instanceof Expression ? $this->lastReadIdToSet : $value;
     }
 }

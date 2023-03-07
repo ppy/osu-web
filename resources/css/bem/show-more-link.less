@@ -1,0 +1,134 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.show-more-link {
+  @_top: show-more-link;
+
+  .link-plain();
+  .reset-input();
+  display: block;
+  align-self: center;
+  justify-self: center;
+  text-align: center;
+  font-size: @font-size--normal;
+  color: white;
+  padding: 5px 20px;
+  border-radius: 10000px;
+  width: max-content;
+  line-height: normal;
+
+  background-color: @osu-colour-b2;
+  cursor: pointer;
+  position: relative;
+
+  .link-hover({
+    color: white;
+    background-color: @osu-colour-b1;
+  });
+
+  &--beatmapsets {
+    margin-bottom: 10px;
+  }
+
+  &--centre-10 {
+    margin: 10px auto 0;
+  }
+
+  &--changelog-index {
+    margin: 40px 0;
+  }
+
+  &--chat-conversation-earlier-messages {
+    margin: 20px auto 0;
+  }
+
+  &--comment-replies {
+    text-align: left;
+    padding-left: 10px;
+    padding-right: $padding-left;
+    font-weight: normal;
+  }
+
+  &--comments {
+    margin: 10px auto;
+  }
+
+  &--forum-topic {
+    margin: 5px auto;
+
+    .link-hover({
+      background-color: @osu-colour-b3;
+    });
+  }
+
+  &--notification-group {
+    font-size: @font-size--small;
+  }
+
+  &--notification-list {
+    margin: 8px auto 0;
+  }
+
+  &--profile-page {
+    margin: 5px auto 0;
+  }
+
+  &[data-disabled='1'], &.js-disabled {
+    background-color: @osu-colour-b2;
+  }
+
+  &__spinner {
+    .center-content();
+    .full-size();
+    position: absolute;
+    display: none;
+
+    .@{_top}[data-disabled='1'] &, .@{_top}.js-disabled & {
+      display: flex;
+    }
+  }
+
+  &__label {
+    opacity: 1;
+    margin: 0 -5px;
+    display: flex;
+    align-items: center;
+
+    .@{_top}[data-disabled='1'] &, .@{_top}.js-disabled & {
+      opacity: 0;
+    }
+  }
+
+  &__label-icon {
+    color: @osu-colour-f1;
+    margin: 0 5px;
+
+    .@{_top}:hover & {
+      color: @osu-colour-l1;
+    }
+
+    .@{_top}--notification-group & {
+      color: #fff;
+    }
+
+    .@{_top}--no-icon & {
+      display: none;
+    }
+
+    &--left {
+      .@{_top}--comment-replies & {
+        display: none;
+      }
+    }
+  }
+
+  &__label-text {
+    margin: 0 5px;
+    text-transform: uppercase;
+
+    .@{_top}--comment-replies & {
+      padding-right: 10px;
+      text-transform: none;
+    }
+  }
+}

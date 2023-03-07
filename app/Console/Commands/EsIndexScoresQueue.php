@@ -54,13 +54,7 @@ class EsIndexScoresQueue extends Command
     {
         $this->search = new ScoreSearch();
 
-        try {
-            $this->parseOptions();
-        } catch (InvariantException $e) {
-            $this->error($e->getMessage());
-
-            return 1;
-        }
+        $this->parseOptions();
 
         if (!$this->confirm('This will queue scores for indexing to schema '.implode(', ', $this->schemas).', continue?', true)) {
             return $this->info('User aborted');
@@ -81,8 +75,6 @@ class EsIndexScoresQueue extends Command
                 $this->queueIds(array_map(fn (Score $score): int => $score->getKey(), $scores->all()));
             });
         }
-
-        $this->search->refresh();
 
         $this->bar->finish();
         $this->line('');

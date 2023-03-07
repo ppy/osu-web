@@ -36,10 +36,10 @@ return [
         'comment_text' => '',
         'blocked_count' => 'blokkerte brukere (:count)',
         'hide_profile' => 'Skjul profil',
-        'hide_comment' => '',
+        'hide_comment' => 'skjul',
         'not_blocked' => 'Den brukeren er ikke blokkert.',
         'show_profile' => 'Vis profil',
-        'show_comment' => '',
+        'show_comment' => 'vis',
         'too_many' => 'Maks antall blokkerte personer nådd.',
         'button' => [
             'block' => 'Blokker',
@@ -50,6 +50,22 @@ return [
     'card' => [
         'loading' => 'Laster...',
         'send_message' => 'send melding',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => '',
+            'password_confirmation' => '',
+            'submit' => '',
+            'user_email' => '',
+            'user_email_confirmation' => '',
+            'username' => '',
+
+            'tos_notice' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -130,8 +146,8 @@ return [
         ],
 
         'options' => [
-            'cheating' => 'Lureri / Juks',
-            'multiple_accounts' => '',
+            'cheating' => 'Juksing',
+            'multiple_accounts' => 'Bruker flere kontoer',
             'insults' => 'Fornærmer meg / andre',
             'spam' => 'Spamming',
             'unwanted_content' => 'Deling av upassende innhold',
@@ -142,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'Kontoen din har blitt begrenset!',
         'message' => 'Mens du er begrenset vil du ikke være i stand til å samhandle med andre spillere, og poengresultatene dine vil kun være synlige for deg selv. Dette er vanligvis resultatet av en automatisert prosess og vil normalt bli hevet innen 24 timer. Hvis du ønsker å appellere begrensningen, vennligst <a href="mailto:accounts@ppy.sh">kontakt støtteteamet</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age år gammel',
@@ -216,6 +233,9 @@ return [
                 ],
                 'loved' => [
                     'title' => 'Elskede Beatmaps',
+                ],
+                'nominated' => [
+                    'title' => '',
                 ],
                 'pending' => [
                     'title' => 'Ventende Beatmaps',
@@ -339,9 +359,9 @@ return [
                     'title' => 'Førsteplasser',
                 ],
                 'pin' => [
-                    'to_0' => '',
+                    'to_0' => 'Løsne',
                     'to_0_done' => '',
-                    'to_1' => '',
+                    'to_1' => 'Fest',
                     'to_1_done' => '',
                 ],
                 'pinned' => [
@@ -414,6 +434,7 @@ return [
             'country_simple' => 'Landsrangering',
             'global' => 'Global rangering for :mode',
             'global_simple' => 'Global Rangering',
+            'highest' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Presisjon',
@@ -437,8 +458,8 @@ return [
     ],
 
     'silenced_banner' => [
-        'title' => '',
-        'message' => '',
+        'title' => 'Du er øyeblikkelig forstummet.',
+        'message' => 'Noen handlinger kan være utilgjengelige.',
     ],
 
     'status' => [
@@ -447,6 +468,8 @@ return [
         'offline' => 'Frakoblet',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => 'Bruker opprettet',
     ],
     'verify' => [

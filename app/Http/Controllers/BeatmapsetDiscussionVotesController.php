@@ -8,7 +8,7 @@ namespace App\Http\Controllers;
 use App\Libraries\BeatmapsetDiscussionVotesBundle;
 
 /**
- @group Beatmapset Discussions
+ * @group Beatmapset Discussions
  */
 class BeatmapsetDiscussionVotesController extends Controller
 {
@@ -16,7 +16,7 @@ class BeatmapsetDiscussionVotesController extends Controller
     {
         $this->middleware('require-scopes:public');
 
-        return parent::__construct();
+        parent::__construct();
     }
 
     /**

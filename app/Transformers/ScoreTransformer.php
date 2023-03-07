@@ -20,6 +20,7 @@ class ScoreTransformer extends TransformerAbstract
     const TYPE_LEGACY = 'legacy';
     const TYPE_SOLO = 'solo';
 
+    // TODO: user include is deprecated.
     const USER_PROFILE_INCLUDES = ['beatmap', 'beatmapset', 'user'];
     const USER_PROFILE_INCLUDES_PRELOAD = [
         'beatmap',
@@ -28,7 +29,7 @@ class ScoreTransformer extends TransformerAbstract
         // 'user',
     ];
 
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'beatmap',
         'beatmapset',
         'current_user_attributes',
@@ -39,7 +40,7 @@ class ScoreTransformer extends TransformerAbstract
         'weight',
     ];
 
-    protected $defaultIncludes = [
+    protected array $defaultIncludes = [
         'current_user_attributes',
     ];
 
@@ -97,10 +98,10 @@ class ScoreTransformer extends TransformerAbstract
     public function transformLegacy(LegacyMatch\Score|ScoreModel|SoloScore $score)
     {
         if ($score instanceof ScoreModel) {
+            $createdAt = $score->date_json;
+
             // this `best` relation is also used by `current_user_attributes` include.
             $best = $score->best;
-
-            $createdAt = $score->date;
 
             if ($best !== null) {
                 $bestId = $best->getKey();
@@ -111,12 +112,12 @@ class ScoreTransformer extends TransformerAbstract
             $soloScore = $score;
             $score = $soloScore->makeLegacyEntry();
             $score->score_id = $soloScore->getKey();
-            $createdAt = $soloScore->created_at;
+            $createdAt = $soloScore->created_at_json;
             $type = $soloScore->getMorphClass();
-            $pp = $soloScore->performance?->pp;
+            $pp = $soloScore->pp;
         } else {
             // LegacyMatch\Score
-            $createdAt = $score->game->start_time;
+            $createdAt = json_time($score->game->start_time);
         }
 
         $mode = $score->getMode();
@@ -133,7 +134,7 @@ class ScoreTransformer extends TransformerAbstract
         return [
             'accuracy' => $score->accuracy(),
             'best_id' => $bestId ?? null,
-            'created_at' => json_time($createdAt),
+            'created_at' => $createdAt,
             'id' => $score->getKey(),
             'max_combo' => $score->maxcombo,
             'mode' => $mode,
@@ -183,12 +184,12 @@ class ScoreTransformer extends TransformerAbstract
         ]);
     }
 
-    public function includeRankCountry(ScoreModel $score)
+    public function includeRankCountry(ScoreBest|SoloScore $score)
     {
         return $this->primitive($score->userRank(['type' => 'country']));
     }
 
-    public function includeRankGlobal(ScoreModel|SoloScore $score)
+    public function includeRankGlobal(ScoreBest|SoloScore $score)
     {
         return $this->primitive($score->userRank([]));
     }

@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'hľadať vo fóroch',
                 'forum_children' => 'zahrnúť subfóra',
+                'include_deleted' => '',
                 'topic_id' => 'téma #',
                 'username' => 'autor',
             ],
@@ -72,8 +73,22 @@ return [
     ],
 
     'download' => [
-        'tagline' => "poďme začať!",
         'action' => 'Sťahovať!',
+        'action_lazer' => '',
+        'action_lazer_description' => '',
+        'action_lazer_info' => '',
+        'action_lazer_title' => '',
+        'action_title' => '',
+        'for_os' => '',
+        'lazer_note' => '',
+        'macos-fallback' => 'macOS užívateľ',
+        'mirror' => 'mirror',
+        'or' => '',
+        'os_version_or_later' => '',
+        'other_os' => '',
+        'quick_start_guide' => '',
+        'tagline' => "poďme začať!",
+        'video-guide' => 'video návod',
 
         'help' => [
             '_' => '',
@@ -86,8 +101,6 @@ return [
             'macos' => 'pre macOS',
             'linux' => 'pre Linux',
         ],
-        'mirror' => 'mirror',
-        'macos-fallback' => 'macOS užívateľ',
         'steps' => [
             'register' => [
                 'title' => 'vytvorte si účet',
@@ -105,7 +118,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'video návod',
     ],
 
     'user' => [

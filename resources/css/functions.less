@@ -1,0 +1,330 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+@import "app";
+
+// Generate a circle of any width.
+.circle(@diameter) {
+  border-radius: 50%;
+  width: @diameter;
+  height: @diameter;
+}
+
+.fade-element(@duration, @type: ease-in-out, @target: all) {
+  transition: @target @duration @type;
+}
+
+.fancy-scrollbar() {
+  @_scrollbar-track: rgba(255, 255, 255, 0.025);
+  @_scrollbar-thumb: rgba(255,255,255,0.5);
+
+  scrollbar-color: @_scrollbar-thumb @_scrollbar-track;
+  scrollbar-width: thin;
+
+  // scrollbar-width isn't inherited
+  * {
+    scrollbar-width: thin;
+  }
+
+  /* Turn on custom 8px wide scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px; /* 1px wider than Lion. */
+    /* This is more usable for users trying to click it. */
+    background-color: @_scrollbar-track;
+    -webkit-border-radius: 100px;
+  }
+  /* hover effect for both scrollbar area, and scrollbar 'thumb' */
+  ::-webkit-scrollbar:hover {
+    background-color: rgba(0, 0, 0, 0.09);
+  }
+
+  ::-webkit-scrollbar:horizontal {
+    height: 10px;
+  }
+
+  /* The scrollbar 'thumb' ...that marque oval shape in a scrollbar */
+  ::-webkit-scrollbar-thumb {
+    background: @_scrollbar-thumb;
+    -webkit-border-radius: 100px;
+    background-clip: padding-box;
+    border: 2px solid rgba(255, 255, 255, 0);
+    min-height: 10px; /*Prevent it from getting too small */
+  }
+  ::-webkit-scrollbar-thumb:active {
+    background: rgba(255,255,255,0.61); /* Some darker color when you click it */
+    -webkit-border-radius: 100px;
+  }
+}
+
+.page-width(@extra-margin: 0px) {
+  width: calc(100% - (@extra-margin * 2));
+  max-width: (@container-sm - @extra-margin * 2);
+}
+
+.page-width-default() {
+  .page-width();
+
+  @media @desktop {
+    .page-width-desktop();
+  }
+}
+
+.page-width-desktop(@extra-margin: 0px) {
+  width: calc(100% - ((@extra-margin + @grid-gutter-width) * 2));
+  max-width: (@container-sm - @extra-margin * 2);
+}
+
+.default-border-radius() {
+  border-radius: @border-radius-base;
+}
+
+.default-box-shadow() {
+  box-shadow+: 0 1px @box-shadow-radius @box-shadow-color;
+}
+
+.default-bar-transition(@property: width, @duration: 0.25s, @function: cubic-bezier(0.645, 0.045, 0.355, 1)) {
+  transition: @property @duration @function;
+}
+
+.default-gutter-v2(@adjustment: 0) {
+  padding-left: (@gutter-v2 + @adjustment);
+  padding-right: (@gutter-v2 + @adjustment);
+
+  @media @desktop {
+    padding-left: (@gutter-v2-desktop + @adjustment);
+    padding-right: (@gutter-v2-desktop + @adjustment);
+  }
+}
+
+.light-header-overlay() {
+  &::after {
+    .full-size();
+    content: '';
+    background-color: hsla(var(--hsl-b5), 60%);
+  }
+}
+
+.inner-shadow-top() {
+  box-shadow+: inset 0 (@box-shadow-radius - 1px) @box-shadow-radius -1px @box-shadow-color;
+}
+
+.inset-box-shadow() {
+  box-shadow: inset 0 1px 3px fade(#000, 30%);
+}
+
+.link-blue-dark() {
+  color: @blue-dark;
+
+  .link-hover({
+    color: @blue;
+  });
+}
+
+// This style is for the remaining un-restyled sections,
+// nuke this when the entire site is correctly restyled
+.link-old() {
+  color: #2299bb;
+  .link-hover({ color: #6cf; });
+}
+
+.link-default() {
+  color: @osu-colour-l2;
+
+  .link-hover({
+    color: @osu-colour-l1;
+  });
+}
+
+.link-inverted() {
+  color: white;
+
+  .link-hover({
+    color: @osu-colour-l1;
+  });
+}
+
+.link-gray-dark() {
+  color: #555;
+
+  .link-hover({
+    color: #777;
+  });
+}
+
+.link-gray-light() {
+  color: @link-gray-light;
+
+  .link-hover({
+    color: @link-gray-light-hover;
+  });
+}
+
+.link-hover(@rules) {
+  &:hover,
+  &:focus,
+  &:active {
+    @rules();
+  }
+}
+
+// still used by store
+.link-pink() {
+  color: @pink;
+
+  .link-hover({
+    color: @pink-text;
+  });
+}
+
+.link-plain() {
+  text-decoration: none;
+
+  .link-hover({
+    text-decoration: none;
+  });
+}
+
+.link-white() {
+  color: #fff;
+
+  .link-hover({
+    color: #fff;
+  });
+}
+
+// used in notification banner
+.link-yellow() {
+  color: @yellow;
+
+  .link-hover({
+    color: @yellow-light;
+  });
+}
+
+.thick-box-shadow() {
+  box-shadow: 0 2px 10px fade(#000, 50%);
+}
+
+.thicker-box-shadow() {
+  box-shadow: 0 10px 20px fade(#000, 25%);
+}
+
+.solid-text-shadow() {
+  text-shadow: 0 1px 1px fade(#000, 75%);
+}
+
+.default-text-shadow() {
+  text-shadow: 0 1px 3px fade(#000, 75%);
+}
+
+.thick-text-shadow() {
+  text-shadow: 0 2px 4px fade(#000, 75%);
+}
+
+.default-line() {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  padding: 0;
+}
+
+.center-content() {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.at2x(@url, @w: auto, @h: auto) {
+  .at2x-simple(@url);
+  background-size: @w @h;
+}
+
+.at2x-simple(@url) {
+  @url2x: replace(@url, "(\.[^.]+)$", "@2x$1");
+  background-image: url(@url);
+
+  @media @highdpi {
+    background-image: url(@url2x);
+  }
+}
+
+.at2x-fallback(@var, @fallback) {
+  @fallback2x: replace(@fallback, "(\.[^.]+)$", "@2x$1");
+  background-image: var(@var, url(@fallback));
+
+  @media @highdpi {
+    background-image: var(~"@{var}-2x", url(@fallback2x));
+  }
+}
+
+.at2x-var(@key, @url) {
+  @url2x: replace(@url, "(\.[^.]+)$", "@2x$1");
+  @{key}: url(@url);
+  @{key}-2x: url(@url2x);
+}
+
+// Will force the element to be rendered in its own layer
+// in hardware accelerated mode.
+// Be careful that elements using this will have z-index context applied.
+.own-layer() {
+  transform: translateZ(0);
+}
+
+.full-size() {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
+// used to account rounding error in chrome where 100% is few pixels short to the actual 100%.
+.full-size-overflow() {
+  position: absolute;
+  left: -10px;
+  top: -10px;
+  right: -10px;
+  bottom: -10px;
+}
+
+.btn-bg() {
+  background-image: url("~@images/backgrounds/button.svg");
+  background-size: 200px;
+  background-position: 50% 50%;
+}
+
+.icon-bg() {
+  .btn-bg();
+  background-size: cover;
+}
+
+.reset-input() {
+  outline: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.content-font() {
+  font-family: var(--font-content-override, var(--font-content));
+  line-height: 1.35;
+}
+
+.default-font() {
+  font-family: var(--font-default-override, var(--font-default));
+}
+
+.webkit-line-clamp(@lines) {
+  // Magic line-clamping on webkit browsers (safari, chrome, etc).
+  // Other browsers won't show ellipses.
+  display: -webkit-box;
+  -webkit-line-clamp: @lines;
+  // It's required to tell autoprefixer to ignore the following line.
+  // Reference: https://github.com/postcss/autoprefixer/issues/1141
+  /* autoprefixer: ignore next */
+  -webkit-box-orient: vertical;
+}

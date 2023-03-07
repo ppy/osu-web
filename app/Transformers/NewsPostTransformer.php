@@ -9,7 +9,7 @@ use App\Models\NewsPost;
 
 class NewsPostTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'content',
         'navigation',
         'preview',
@@ -32,30 +32,28 @@ class NewsPostTransformer extends TransformerAbstract
 
     public function includeContent(NewsPost $post)
     {
-        return $this->primitive($post->bodyHtml(), function ($html) {
-            return $html;
-        });
+        return $this->primitive($post->bodyHtml());
     }
 
     public function includeNavigation(NewsPost $post)
     {
-        return $this->item($post, function ($post) {
-            $ret = [];
-            if ($post->newer() !== null) {
-                $ret['newer'] = json_item($post->newer(), 'NewsPost');
-            }
-            if ($post->older() !== null) {
-                $ret['older'] = json_item($post->older(), 'NewsPost');
-            }
+        $ret = [];
 
-            return $ret;
-        });
+        $newer = $post->newer();
+        if ($newer !== null) {
+            $ret['newer'] = json_item($newer, $this);
+        }
+
+        $older = $post->older();
+        if ($older !== null) {
+            $ret['older'] = json_item($older, $this);
+        }
+
+        return $this->primitive($ret);
     }
 
     public function includePreview(NewsPost $post)
     {
-        return $this->primitive($post->previewText(), function ($text) {
-            return $text;
-        });
+        return $this->primitive($post->previewText());
     }
 }

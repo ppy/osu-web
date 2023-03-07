@@ -19,10 +19,18 @@ return [
 
     'type' => [
         'charts' => '高光',
-        'country' => '国家或地区',
+        'country' => '国家/地区',
         'multiplayer' => '多人游戏',
         'performance' => '表现',
         'score' => '总分',
+        'seasons' => '季',
+    ],
+
+    'seasons' => [
+        'empty' => '这一季还没有房间。',
+        'ongoing' => '这一季仍在进行中（将加入更多歌单）。',
+        'room_count' => '歌单数量',
+        'url' => '显示该季更多信息。',
     ],
 
     'spotlight' => [
@@ -35,11 +43,11 @@ return [
     'stat' => [
         'accuracy' => '准确率',
         'active_users' => '活跃用户',
-        'country' => '国家或地区',
+        'country' => '国家/地区',
         'play_count' => '游戏次数',
         'performance' => '表现',
         'total_score' => '总分',
-        'ranked_score' => 'Ranked 总分',
+        'ranked_score' => '进榜总分',
         'average_score' => '平均得分',
         'average_performance' => '平均表现',
         'ss' => '',

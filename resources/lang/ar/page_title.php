@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'المشرف',
     ],
-    'admin_forum' => [
-        '_' => 'المشرف',
-    ],
-    'admin_store' => [
-        '_' => 'المشرف',
-    ],
     'error' => [
         'error' => [
             '400' => 'طلب غير صالح',
@@ -32,17 +26,10 @@ return [
         'topic_logs_controller' => [
             'index' => 'سجلات الموضوع',
         ],
-        'topic_watches_controller' => [
-            'index' => 'لوحة التحكم',
-        ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'لوحة التحكم',
             'verify_link' => 'التحقق من الحساب',
-        ],
-        'artist_tracks_controller' => [
-            '_' => 'الفنانين المميزين',
         ],
         'artists_controller' => [
             '_' => 'الفنانين المميزين',
@@ -62,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'تاريخ الخريطة',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'لوحة التحكم',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'مناقشة الخريطة',
             'index' => 'قائمة الخرائط',
@@ -81,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => 'المسابقات',
-        ],
-        'follows_controller' => [
-            'index' => 'لوحة التحكم',
-        ],
-        'friends_controller' => [
-            'index' => 'لوحة التحكم',
         ],
         'groups_controller' => [
             'show' => 'المجموعات',
@@ -122,23 +100,19 @@ return [
         'scores_controller' => [
             '_' => 'الأداء',
         ],
-        'store_controller' => [
-            '_' => 'المتجر',
+        'seasons_controller' => [
+            '_' => '',
         ],
         'tournaments_controller' => [
             '_' => 'البطولات',
         ],
         'users_controller' => [
             '_' => 'معلومات اللاعب',
+            'create' => '',
             'disabled' => 'ملحوظة',
         ],
         'wiki_controller' => [
             '_' => 'ويكي',
-        ],
-    ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'التصنيف',
         ],
     ],
     'passport' => [

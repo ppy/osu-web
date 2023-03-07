@@ -25,9 +25,28 @@ class ChatController extends Controller
         $this->middleware('require-scopes:chat.write', ['only' => 'newConversation']);
         $this->middleware('auth');
 
-        return parent::__construct();
+        parent::__construct();
     }
 
+    /**
+     * Chat Keepalive
+     *
+     * Request periodically to reset chat activity timeout. Also returns an updated list of recent silences.
+     *
+     * See [Public channels and activity timeout](#public-channels-and-activity-timeout)
+     *
+     * ---
+     *
+     * ### Response Format
+     *
+     * Field            | Type
+     * ---------------- | -----------------
+     * silences         | [UserSilence](#usersilence)[]
+     *
+     * @queryParam history_since integer [UserSilence](#usersilence)s after the specified id to return.
+     * This field is preferred and takes precedence over `since`.
+     * @queryParam since integer [UserSilence](#usersilence)s after the specified [ChatMessage.message_id](#chatmessage) to return. No-example
+     */
     public function ack()
     {
         Chat::ack(auth()->user());
@@ -38,7 +57,7 @@ class ChatController extends Controller
         ], ['null_missing' => true]);
 
         return [
-            'silences' => json_collection($this->getSilences($params['history_since'], $params['since']), new UserSilenceTransformer()),
+            'silences' => json_collection($this->getSilences($params['history_since'], $params['since'] ?? 0), new UserSilenceTransformer()),
         ];
     }
 
@@ -53,9 +72,9 @@ class ChatController extends Controller
      *
      * Field            | Type
      * ---------------- | -----------------
-     * new_channel_id   | `channel_id` of newly created [ChatChannel](#chatchannel)
-     * presence         | array of [ChatChannel](#chatchannel)
+     * channel          | The new [ChatChannel](#chatchannel)
      * message          | the sent [ChatMessage](#chatmessage)
+     * new_channel_id   | Deprecated; `channel_id` of newly created [ChatChannel](#chatchannel)
      *
      * <aside class="notice">
      *   This endpoint will only allow the creation of PMs initially, group chat support will come later.
@@ -64,6 +83,7 @@ class ChatController extends Controller
      * @bodyParam target_id integer required `user_id` of user to start PM with
      * @bodyParam message string required message to send
      * @bodyParam is_action boolean required whether the message is an action
+     * @bodyParam uuid string client-side message identifier which will be sent back in response and websocket json. Example: some-uuid-string
      *
      * @response {
      *   "channel": [
@@ -87,7 +107,8 @@ class ChatController extends Controller
      *     "channel_id": 1234,
      *     "timestamp": "2018-07-06T06:33:42+00:00",
      *     "content": "i can haz featured artist plz?",
-     *     "is_action": 0,
+     *     "is_action": false,
+     *     "uuid": "some-uuid-string",
      *     "sender": {
      *       "id": 102,
      *       "username": "nekodex",
@@ -109,6 +130,7 @@ class ChatController extends Controller
             'is_action:bool',
             'message',
             'target_id:int',
+            'uuid',
         ], ['null_missing' => true]);
 
         $target = User::lookup($params['target_id'], 'id');
@@ -123,7 +145,8 @@ class ChatController extends Controller
             $sender,
             $target,
             $params['message'],
-            $params['is_action']
+            $params['is_action'],
+            $params['uuid']
         );
 
         $channelJson = json_item($message->channel, ChannelTransformer::forUser($sender), ChannelTransformer::CONVERSATION_INCLUDES);
@@ -135,7 +158,7 @@ class ChatController extends Controller
                 new MessageTransformer(),
                 ['sender']
             ),
-            'new_channel_id' => $message->channel_id,
+            'new_channel_id' => $message->channel_id, // TODO: remove, there's channel already.
         ];
     }
 
@@ -152,7 +175,7 @@ class ChatController extends Controller
     /**
      * Get Updates
      *
-     * This endpoint returns new messages since the given `message_id` along with updated channel 'presence' data.
+     * Returns the list of channels the current User is in along with an updated list of [UserSilence](#usersilence)s.
      *
      * ---
      *
@@ -160,19 +183,14 @@ class ChatController extends Controller
      *
      * Field            | Type
      * ---------------- | -----------------
-     * messages         | [ChatMessage](#chatmessage)[]?
+     * messages         | This field is not used and will be removed.
      * presence         | [ChatChannel](#chatchannel)[]?
      * silences         | [UserSilence](#usersilence)[]?
      *
-     * <aside class="notice">
-     *   Note that this returns messages for all channels the user has joined unless specified.
-     * </aside>
-     *
-     * @queryParam channel_id integer If provided, will only return messages for the given channel the user is in.
-     * @queryParam history_since integer [UserSilence](#usersilence) after the specified id to return.
-     * @queryParam includes string[] List of `presence`, `messages`, `silences` fields to include in the response. Returns all if not specified.
-     * @queryParam limit integer Maximum number of messages to return (max of 50).
-     * @queryParam since integer required Messages after the specified `message_id` to return.
+     * @queryParam history_since integer [UserSilence](#usersilence)s after the specified id to return.
+     * This field is preferred and takes precedence over `since`.
+     * @queryParam includes string[] List of fields from `presence`, `silences` to include in the response. Returns all if not specified. No-example
+     * @queryParam since integer [UserSilence](#usersilence)s after the specified [ChatMessage.message_id](#chatmessage) to return. No-example
      *
      * @response {
      *   "presence": [
@@ -207,46 +225,6 @@ class ChatController extends Controller
      *       "last_message_id": 9150001234
      *     }
      *   ],
-     *   "messages": [
-     *     {
-     *       "message_id": 9150005004,
-     *       "sender_id": 2,
-     *       "channel_id": 5,
-     *       "timestamp": "2018-07-06T06:33:34+00:00",
-     *       "content": "i am a lazerface",
-     *       "is_action": 0,
-     *       "sender": {
-     *         "id": 2,
-     *         "username": "peppy",
-     *         "profile_colour": "#3366FF",
-     *         "avatar_url": "https://a.ppy.sh/2?1519081077.png",
-     *         "country_code": "AU",
-     *         "is_active": true,
-     *         "is_bot": false,
-     *         "is_online": true,
-     *         "is_supporter": true
-     *       }
-     *     },
-     *     {
-     *       "message_id": 9150005005,
-     *       "sender_id": 102,
-     *       "channel_id": 5,
-     *       "timestamp": "2018-07-06T06:33:42+00:00",
-     *       "content": "uh ok then",
-     *       "is_action": 0,
-     *       "sender": {
-     *         "id": 102,
-     *         "username": "nekodex",
-     *         "profile_colour": "#333333",
-     *         "avatar_url": "https://a.ppy.sh/102?1500537068",
-     *         "country_code": "AU",
-     *         "is_active": true,
-     *         "is_bot": false,
-     *         "is_online": true,
-     *         "is_supporter": true
-     *       }
-     *     }
-     *   ],
      *   "silences": [
      *      {
      *        "id": 1,
@@ -261,10 +239,8 @@ class ChatController extends Controller
         $availableIncludes ??= new Set(['messages', 'presence', 'silences']);
 
         $params = get_params(request()->all(), null, [
-            'channel_id:int',
             'history_since:int',
             'includes:array',
-            'limit:int',
             'since:int',
         ], ['null_missing' => true]);
 
@@ -276,64 +252,21 @@ class ChatController extends Controller
             ? $availableIncludes->intersect(new Set($params['includes']))
             : $availableIncludes;
 
-        $includeMessages = $includes->contains('messages');
-        $includePresence = $includes->contains('presence');
-        $includeSilences = $includes->contains('silences');
-
-        $since = $params['since'];
-        $limit = clamp($params['limit'] ?? 50, 1, 50);
-
         $response = [];
 
-        // messages need presence
-        if ($includeMessages || $includePresence) {
-            $presence = (new UserChannelList(auth()->user()))->get();
+        if ($includes->contains('presence')) {
+            $userChannelList = new UserChannelList(auth()->user());
+            $response['presence'] = $userChannelList->get();
         }
 
-        if ($includeMessages) {
-            $channelIds = array_pluck($presence, 'channel_id');
-            if ($params['channel_id'] !== null) {
-                $channelIds = array_values(array_intersect($channelIds, [$params['channel_id']]));
-            }
-
-            $messages = Message
-                ::with('sender')
-                ->whereIn('channel_id', $channelIds)
-                ->since($since)
-                ->limit($limit)
-                ->orderBy('message_id', 'DESC')
-                ->get()
-                ->reverse();
-
-            $response['messages'] = json_collection($messages, new MessageTransformer(), ['sender']);
-        }
-
-        if ($includeSilences) {
-            $silenceQuery = UserAccountHistory::bans()->limit(100);
-            $lastHistoryId = $params['history_since'];
-
-            if ($lastHistoryId === null) {
-                $previousMessage = Message::where('message_id', '<=', $since)->last();
-
-                if ($previousMessage === null) {
-                    $silenceQuery->none();
-                } else {
-                    $silenceQuery->where('timestamp', '>', $previousMessage->timestamp);
-                }
-            } else {
-                $silenceQuery->where('ban_id', '>', $lastHistoryId)->reorderBy('ban_id', 'DESC');
-            }
-
-            $silences = $silenceQuery->get();
-
+        if ($includes->contains('silences')) {
+            $silences = $this->getSilences($params['history_since'], $params['since']);
             $response['silences'] = json_collection($silences, new UserSilenceTransformer());
         }
 
-        if ($includePresence) {
-            // to match old behaviour (204 when no messages and no silences); doesn't apply if messages not requested.
-            $response['presence'] = $includeMessages && $messages->isEmpty() && $includeSilences && $silences->isEmpty()
-                ? []
-                : $presence;
+        // FIXME: empty array for compatibility with old lazer versions
+        if ($includes->contains('messages')) {
+            $response['messages'] = [];
         }
 
         $hasAny = array_first($response, fn ($val) => count($val) > 0) !== null;
@@ -343,7 +276,7 @@ class ChatController extends Controller
 
     private function getSilences(?int $lastHistoryId, ?int $since)
     {
-        $silenceQuery = UserAccountHistory::bans()->limit(100);
+        $silenceQuery = UserAccountHistory::bans()->recentForChat()->limit(100);
 
         if ($lastHistoryId === null) {
             $previousMessage = Message::where('message_id', '<=', $since)->last();

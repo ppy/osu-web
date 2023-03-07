@@ -6,7 +6,7 @@
 return [
     'edit' => [
         'title_compact' => 'configuració del compte',
-        'username' => 'nom d\'usuari',
+        'username' => 'nom d’usuari',
 
         'avatar' => [
             'title' => 'Avatar',
@@ -16,7 +16,7 @@ return [
 
         'email' => [
             'new' => 'nou correu electrònic',
-            'new_confirmation' => 'confirmació de correu electrònic',
+            'new_confirmation' => 'confirmació per correu electrònic',
             'title' => 'Correu electrònic',
         ],
 
@@ -47,8 +47,8 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'rebre notificacions per problemes nous en mapes qualificats dels següents modes',
-        'beatmapset_disqualify' => 'rebre notificacions per quan els mapes dels següents modes siguin desqualificats',
+        'beatmapset_discussion_qualified_problem' => 'rebre notificacions de nous problemes en beatmaps qualificats dels següents modes',
+        'beatmapset_disqualify' => 'rebre notificacions per quan els beatmaps dels següents modes siguin desqualificats',
         'comment_reply' => 'rebre notificacions de respostes als vostres comentaris',
         'title' => 'Notificacions',
         'topic_auto_subscribe' => 'habilita automàticament les notificacions en els nous temes de fòrum que creeu',
@@ -56,14 +56,14 @@ return [
         'options' => [
             '_' => 'opcions d\'entrega',
             'beatmap_owner_change' => 'dificultat de convidat',
-            'beatmapset:modding' => 'modding de mapa',
+            'beatmapset:modding' => 'modding de beatmaps',
             'channel_message' => 'missatges de xat privats',
-            'comment_new' => 'nous comentaris',
+            'comment_new' => 'comentaris nous',
             'forum_topic_reply' => 'resposta del tema',
             'mail' => 'correu',
-            'mapping' => 'creador de mapes',
+            'mapping' => 'creador de beatmaps',
             'push' => 'push',
-            'user_achievement_unlock' => 'medalles desbloquejades',
+            'user_achievement_unlock' => 'medalla d\'usuari desbloquejada',
         ],
     ],
 
@@ -74,14 +74,14 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => 'oculta els avisos per al contingut explícit en mapes',
-        'beatmapset_title_show_original' => 'mostra les metadades del mapa en l\'idioma original',
+        'beatmapset_show_nsfw' => 'amagar advertiments per a contingut explícit en beatmaps',
+        'beatmapset_title_show_original' => 'mostra les metadades del beatmap en l\'idioma original',
         'title' => 'Opcions',
 
         'beatmapset_download' => [
             '_' => 'tipus de baixada de mapa predeterminat',
             'all' => 'amb vídeo si està disponible',
-            'direct' => 'obre en osu!direct',
+            'direct' => 'obrir a osu!direct',
             'no_video' => 'sense vídeo',
         ],
     ],
@@ -91,20 +91,20 @@ return [
         'mouse' => 'ratolí',
         'tablet' => 'tauleta',
         'title' => 'Estils de joc',
-        'touch' => 'tàctil',
+        'touch' => 'tocar',
     ],
 
     'privacy' => [
         'friends_only' => 'bloquejar els missatges privats de persones que no són a la llista d\'amics',
-        'hide_online' => 'oculta la teva presència en línia',
+        'hide_online' => 'amaga la teva presència en línia',
         'title' => 'Privadesa',
     ],
 
     'security' => [
         'current_session' => 'actual',
-        'end_session' => 'Finalitza la sessió',
-        'end_session_confirmation' => 'Això finalitzarà immediatament la sessió en aquest dispositiu. N\'estàs segur?',
-        'last_active' => 'Actiu per última vegada:',
+        'end_session' => 'Finalitzar sessió',
+        'end_session_confirmation' => 'Això finalitzarà immediatament la sessió en aquest dispositiu. Estàs segur?',
+        'last_active' => 'Última connexió:',
         'title' => 'Seguretat',
         'web_sessions' => 'sessions web',
     ],
@@ -118,8 +118,8 @@ return [
     ],
 
     'verification_completed' => [
-        'text' => 'Ja pots tancar la pestanya/finestra',
-        'title' => 'La verificació s\'ha completat',
+        'text' => 'Ja pots tancar aquesta pestanya/finestra',
+        'title' => 'Verificació completada',
     ],
 
     'verification_invalid' => [

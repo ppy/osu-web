@@ -24,7 +24,9 @@ use Sentry\State\Scope;
  */
 class Event extends Model
 {
+    public ?array $details = null;
     public $parsed = false;
+    public ?string $type = null;
 
     public $patterns = [
         'achievement' => "!^(?:<b>)+<a href='(?<userUrl>.+?)'>(?<userName>.+?)</a>(?:</b>)+ unlocked the \"<b>(?<achievementName>.+?)</b>\" achievement\!$!",
@@ -43,11 +45,11 @@ class Event extends Model
         'usernameChange' => "!^<b><a href='(?<userUrl>.+?)'>(?<previousUsername>.+?)</a></b> has changed their username to (?<userName>.+)\!$!",
     ];
 
-    protected $table = 'osu_events';
-    protected $primaryKey = 'event_id';
-
-    protected $dates = ['date'];
     public $timestamps = false;
+
+    protected $casts = ['date' => 'datetime'];
+    protected $primaryKey = 'event_id';
+    protected $table = 'osu_events';
 
     public static function generate($type, $options)
     {
@@ -254,7 +256,7 @@ class Event extends Model
 
     public function parseMatchesAchievement($matches)
     {
-        $achievement = Achievement::where(['name' => $matches['achievementName']])->first();
+        $achievement = app('medals')->byNameIncludeDisabled($matches['achievementName']);
         if ($achievement === null) {
             return $this->parseFailure("unknown achievement ({$matches['achievementName']})");
         }

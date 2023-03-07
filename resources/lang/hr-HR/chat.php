@@ -8,6 +8,7 @@ return [
     'talking_in' => 'razgovaranje u :channel',
     'talking_with' => 'razgovaranje sa :name',
     'title_compact' => 'razgovor',
+    'unread_messages' => '',
 
     'cannot_send' => [
         'channel' => 'Trenutno ne možeš slati poruke u ovom kanalu.',
@@ -15,7 +16,7 @@ return [
     ],
 
     'channels' => [
-        'confirm_part' => '',
+        'confirm_part' => 'Želiš li sakriti ovaj kanal? I dalje ćeš primati poruke iz ovog kanala.',
         'create' => 'napravi obavijest',
 
         'list' => [
@@ -35,6 +36,7 @@ return [
 
         'labels' => [
             'description' => 'opis',
+            'message' => '',
             'name' => 'ime sobe',
             'users' => 'igrači za dodavanje',
         ],

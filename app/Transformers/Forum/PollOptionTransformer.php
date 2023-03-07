@@ -11,11 +11,11 @@ use League\Fractal\Resource\ResourceInterface;
 
 class PollOptionTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'vote_count',
     ];
 
-    protected $defaultIncludes = [
+    protected array $defaultIncludes = [
         'vote_count',
     ];
 

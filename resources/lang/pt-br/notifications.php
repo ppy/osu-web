@@ -209,6 +209,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Há um novo anúncio em ":name"',
+            ],
+
             'channel' => [
                 'pm' => 'Você recebeu uma nova mensagem de :username',
             ],
@@ -240,7 +244,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username criou novos beatmaps',
-                'user_beatmapset_revive' => ':username reativou beatmaps',
+                'user_beatmapset_revive' => ':username reviveu beatmaps',
             ],
         ],
     ],

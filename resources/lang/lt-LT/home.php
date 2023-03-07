@@ -6,58 +6,59 @@
 return [
     'landing' => [
         'download' => 'Atsisiųskite dabar',
-        'online' => '',
-        'peak' => '',
-        'players' => '',
-        'title' => 'Sveiki!',
+        'online' => '<strong>:players</strong> dabar tinkle tarp <strong>:games</strong> žaidimų',
+        'peak' => 'Daugiausiai pasiekta :count prisijungusių vartotojų',
+        'players' => '<strong>:count</strong> registruoti žaidėjai',
+        'title' => 'sveiki',
         'see_more_news' => 'pažiūrėti daugiau naujienų',
 
         'slogan' => [
             'main' => 'geriausias nemokamas laimėti ritmo žaidimas',
-            'sub' => 'ritmas yra tik už kelių paspaudimų',
+            'sub' => 'ritmas yra tik per vieną paspaudimą nuo tavęs',
         ],
     ],
 
     'search' => [
-        'advanced_link' => 'Detali paieška',
-        'button' => 'Paieška',
+        'advanced_link' => 'Išplėstinė paieška',
+        'button' => 'Ieškoti',
         'empty_result' => 'Nieko nerasta!',
-        'keyword_required' => '',
-        'placeholder' => 'įveskite paiešką',
+        'keyword_required' => 'Reikalingas paieškos raktažodis',
+        'placeholder' => 'rašykite, kad ieškoti',
         'title' => 'paieška',
 
         'beatmapset' => [
-            'login_required' => '',
-            'more' => '',
-            'more_simple' => ' Žiūrėti daugiau beatmap paieškos rezultatų',
-            'title' => 'Beatmaps',
+            'login_required' => 'Prisijunkite, kad ieškoti bitmapų',
+            'more' => ':count dar bitmapų paieškos rezultatų',
+            'more_simple' => ' Žiūrėti daugiau bitmapų paieškos rezultatų',
+            'title' => 'Bitmapai',
         ],
 
         'forum_post' => [
             'all' => 'Visi forumai',
-            'link' => '',
-            'login_required' => '',
-            'more_simple' => '',
+            'link' => 'Ieškoti forume',
+            'login_required' => 'Prisijunkite, kad ieškoti forume',
+            'more_simple' => ' Žiūrėti daugiau forumo paieškos rezultatų',
             'title' => 'Forumas',
 
             'label' => [
                 'forum' => 'ieškoti forumuose',
-                'forum_children' => '',
-                'topic_id' => '',
+                'forum_children' => 'įtraukti poforumius',
+                'include_deleted' => '',
+                'topic_id' => 'tema #',
                 'username' => 'autorius',
             ],
         ],
 
         'mode' => [
             'all' => 'visi',
-            'beatmapset' => 'beatmap',
+            'beatmapset' => 'bitmapas',
             'forum_post' => 'forumas',
             'user' => 'žaidėjas',
             'wiki_page' => 'wiki',
         ],
 
         'user' => [
-            'login_required' => 'Prisijunkite norint ieškot naudotojus',
+            'login_required' => 'Prisijunkite, kad ieškot vartotojus',
             'more' => ':count daugiau žaidėjų paieškos rezultatų',
             'more_simple' => ' Žiūrėti daugiau žaidėjų paieškos rezultatų',
             'more_hidden' => 'Žaidėjo paieškos yra limituotos :max žaidėjų. Pabandykite išgryninti paieškos užklausa.',
@@ -65,71 +66,82 @@ return [
         ],
 
         'wiki_page' => [
-            'link' => '',
-            'more_simple' => '',
+            'link' => 'Ieškoti tarp wiki',
+            'more_simple' => ' Žiūrėti daugiau wiki paieškos rezultatų',
             'title' => 'Wiki',
         ],
     ],
 
     'download' => [
-        'tagline' => "",
         'action' => 'Atsisiųsti osu!',
+        'action_lazer' => 'Atsisiųsti osu!(lazer)',
+        'action_lazer_description' => 'kitas didesnis osu! atnaujinimas.',
+        'action_lazer_info' => 'peržiūrėk šį puslapį dėl papildomos informacijos',
+        'action_lazer_title' => 'išbandyk osu!(lazer)',
+        'action_title' => 'atsisiųsti osu!',
+        'for_os' => 'skirtas :os',
+        'lazer_note' => 'pastaba: rezultatų lentos atstatymai galioja',
+        'macos-fallback' => 'macOS vartotojams',
+        'mirror' => 'dubliavimas',
+        'or' => 'arba',
+        'os_version_or_later' => '',
+        'other_os' => 'kitos platformos',
+        'quick_start_guide' => 'pagalba pradedančiam',
+        'tagline' => "gaukime <br> ko jums reikia pradžiai!",
+        'video-guide' => 'vaizdo gidas',
 
         'help' => [
-            '_' => '',
+            '_' => 'jei patiriate problemas paleidžiant žaidimą ar registruojantis paskyrai, :help_forum_link arba :support_button.',
             'help_forum_link' => 'pažiūrėti pagalbos foruma',
             'support_button' => 'susisiekti su pagalba',
         ],
 
         'os' => [
-            'windows' => 'skirta „Windows“',
-            'macos' => 'skirta  „MacOS“',
-            'linux' => 'skirta „Linux“',
+            'windows' => 'Windows sistemai',
+            'macos' => 'MacOS sistemai',
+            'linux' => 'Linux sistemai',
         ],
-        'mirror' => 'mirror',
-        'macos-fallback' => '„macOS“ vartotojai',
         'steps' => [
             'register' => [
                 'title' => 'susikurk paskyrą',
-                'description' => '',
+                'description' => 'sek instrukcijas paleidus žaidimą, kad prisijungti ar susikurti naują paskyra',
             ],
             'download' => [
                 'title' => 'atsisiųsk žaidimą',
-                'description' => '',
+                'description' => 'paspauskt mygtyką viršuje, kad atsisiųsti diegimo programa, ir paleisk!',
             ],
             'beatmaps' => [
-                'title' => 'gauk beatmaps',
+                'title' => 'gauk bitmapų',
                 'description' => [
-                    '_' => ':browse žaidėjų sukurtus beatmapus ir pradėk juos žaisti!',
+                    '_' => ':browse žaidėjų sukurtus bitmapus ir pradėk juos žaisti!',
                     'browse' => 'naršyti',
                 ],
             ],
         ],
-        'video-guide' => 'vaizdo gidas',
     ],
 
     'user' => [
-        'title' => '',
+        'title' => 'ataskaitų sritis',
         'news' => [
             'title' => 'Naujienos',
-            'error' => 'Buvo klaida kraunant naujienas, pabandykite perkrauti puslapį?...',
+            'error' => 'Klaida kraunant naujienas, pabandykite perkrauti puslapį?...',
         ],
         'header' => [
             'stats' => [
                 'friends' => 'Prisijungę Draugai',
-                'games' => '',
+                'games' => 'Žaidimai',
                 'online' => 'Prisijungę vartotojai',
             ],
         ],
         'beatmaps' => [
-            'new' => 'Nauji Ranked Beatmapai',
-            'popular' => 'Populiarūs Beatmapai',
-            'by_user' => 'pagal :user',
+            'new' => 'Nauji Reitinguoti Bitmapai',
+            'popular' => 'Populiarūs Bitmapai',
+            'by_user' => 'sukūrė :user',
         ],
         'buttons' => [
-            'download' => 'Atsisiūsti osu!',
+            'download' => 'Atsisiųsti osu!',
             'support' => 'Paremti osu!',
-            'store' => 'osu!store',
+            'store' => 'osu!parduotuvė',
         ],
     ],
 ];

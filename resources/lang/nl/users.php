@@ -49,7 +49,23 @@ return [
 
     'card' => [
         'loading' => 'Bezig met laden...',
-        'send_message' => 'stuur bericht',
+        'send_message' => 'Bericht sturen',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => 'wachtwoord',
+            'password_confirmation' => 'wacthwoordbevestiging',
+            'submit' => 'account aanmaken',
+            'user_email' => 'e-mail',
+            'user_email_confirmation' => 'e-mailadres bevestigen',
+            'username' => 'gebruikersnaam',
+
+            'tos_notice' => [
+                '_' => 'door een account aan te maken ga je akkoord met de :link',
+                'link' => 'gebruiksvoorwaarden',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -141,7 +157,8 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Je account is gerestrict!',
-        'message' => 'Zolang je gerestrict bent, kan je niet communiceren met andere spelers en kan enkel jij je scores zien. Meestal is dit het resultaat van een geautomatiseerd proces en wordt het binnen 24 uur verwijderd. Als je in beroep wil gaan, <a href="mailto:accounts@ppy.sh">contacteer dan support</a>.',
+        'message' => 'Zolang je gerestrict bent, kun je niet communiceren met andere spelers en zijn je scores enkel voor jou zichtbaar. Meestal gebeurt deze restrictie automatisch en wordt ze opgeheven binnen 24 uur. :link',
+        'message_link' => 'Check deze pagina voor meer informatie.',
     ],
     'show' => [
         'age' => ':age jaar oud',
@@ -216,6 +233,9 @@ return [
                 ],
                 'loved' => [
                     'title' => 'Loved Beatmaps',
+                ],
+                'nominated' => [
+                    'title' => 'Genomineerde Ranked Beatmaps',
                 ],
                 'pending' => [
                     'title' => 'Afwachtende Beatmaps',
@@ -414,6 +434,7 @@ return [
             'country_simple' => 'Landelijke Ranking',
             'global' => 'Globale rank voor :mode',
             'global_simple' => 'Wereldwijde Ranking',
+            'highest' => 'Hoogste rank: :rank op :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Hit Precisie',
@@ -447,6 +468,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => 'registreer je alsjeblieft via de game client!',
+        'from_web' => 'voltooi alsjeblieft de registratie via de osu! website',
         'saved' => 'Door gebruiker gemaakt',
     ],
     'verify' => [

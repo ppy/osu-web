@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'admin',
     ],
-    'admin_forum' => [
-        '_' => 'admin',
-    ],
-    'admin_store' => [
-        '_' => 'admin',
-    ],
     'error' => [
         'error' => [
             '400' => 'cerere invalidă',
@@ -32,17 +26,10 @@ return [
         'topic_logs_controller' => [
             'index' => 'istoric subiect',
         ],
-        'topic_watches_controller' => [
-            'index' => 'tablou de comenzi',
-        ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'tablou de comenzi',
             'verify_link' => 'verificare cont',
-        ],
-        'artist_tracks_controller' => [
-            '_' => 'artiști oficiali',
         ],
         'artists_controller' => [
             '_' => 'artiști oficiali',
@@ -62,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'istoric beatmap',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'tablou de comenzi',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'discuție beatmap',
             'index' => 'lista beatmap-uri',
@@ -82,12 +66,6 @@ return [
         'contests_controller' => [
             '_' => 'concursuri',
         ],
-        'follows_controller' => [
-            'index' => 'tablou de comenzi',
-        ],
-        'friends_controller' => [
-            'index' => 'tablou de comenzi',
-        ],
         'groups_controller' => [
             'show' => 'grupuri',
         ],
@@ -96,7 +74,7 @@ return [
             'index' => 'tablou de comenzi',
             'search' => 'caută',
             'support_the_game' => 'sprijină jocul',
-            'testflight' => 'test de zbor',
+            'testflight' => 'testflight',
         ],
         'legal_controller' => [
             '_' => 'informație',
@@ -122,23 +100,19 @@ return [
         'scores_controller' => [
             '_' => 'performanță',
         ],
-        'store_controller' => [
-            '_' => 'magazin',
+        'seasons_controller' => [
+            '_' => 'clasamente',
         ],
         'tournaments_controller' => [
             '_' => 'turnee',
         ],
         'users_controller' => [
             '_' => 'info jucător',
+            'create' => 'creează cont',
             'disabled' => 'observație',
         ],
         'wiki_controller' => [
             '_' => 'wiki',
-        ],
-    ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'clasament',
         ],
     ],
     'passport' => [

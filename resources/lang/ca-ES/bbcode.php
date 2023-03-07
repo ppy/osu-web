@@ -10,14 +10,14 @@ return [
     'italic' => 'Cursiva',
     'link' => 'Enllaç',
     'list' => 'Llista',
-    'list_numbered' => 'Llista Numerada',
+    'list_numbered' => 'Llista ordenada',
     'size' => [
-        '_' => 'Mida de Lletra',
+        '_' => 'Mida de la lletra',
         'tiny' => 'Molt petita',
         'small' => 'Petita',
         'normal' => 'Normal',
         'large' => 'Gran',
     ],
-    'spoilerbox' => 'Caixa de Spoiler',
-    'strikethrough' => 'Ratllar',
+    'spoilerbox' => 'Caixa Spoiler',
+    'strikethrough' => 'Barrat',
 ];

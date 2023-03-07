@@ -68,9 +68,9 @@ return [
         'friends_only' => 'Brukeren blokkerer meldinger fra personer som ikke er på deres venneliste.',
         'moderated' => 'Denne kanalen er for tiden moderert.',
         'no_access' => 'Du har ingen adgang til denne kanalen.',
-        'receive_friends_only' => '',
+        'receive_friends_only' => 'Brukeren kan ikke svare fordi du bare godtar meldinger fra personer på vennelisten din.',
         'restricted' => 'Du kan ikke sende meldinger mens du er stum, begrenset eller bannlyst.',
-        'silenced' => '',
+        'silenced' => 'Du kan ikke sende meldinger mens du er stum, begrenset eller bannlyst.',
     ],
 
     'comment' => [

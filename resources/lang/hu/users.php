@@ -33,13 +33,13 @@ return [
 
     'blocks' => [
         'banner_text' => 'Blokkoltad ezt a felhasználót.',
-        'comment_text' => '',
+        'comment_text' => 'Ez a hozzászólás rejtett.',
         'blocked_count' => '(:count) blokkolt felhasználók',
         'hide_profile' => 'profil elrejtése',
-        'hide_comment' => '',
+        'hide_comment' => 'elrejtés',
         'not_blocked' => 'Ez a felhasználó nincs blokkolva.',
         'show_profile' => 'profil megjelenítése',
-        'show_comment' => '',
+        'show_comment' => 'mutatás',
         'too_many' => 'Blokkolási limit elérve.',
         'button' => [
             'block' => 'tiltás',
@@ -50,6 +50,22 @@ return [
     'card' => [
         'loading' => 'Betöltés...',
         'send_message' => 'üzenet küldése',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => 'jelszó',
+            'password_confirmation' => 'jelszó megerősítése',
+            'submit' => 'fiók létrehozása',
+            'user_email' => 'email',
+            'user_email_confirmation' => 'e-mail cím megerősítése',
+            'username' => 'felhasználónév',
+
+            'tos_notice' => [
+                '_' => 'felhasználói fiók létrehozásával elfogadod a(z) :link -t',
+                'link' => 'felhasználási feltételek',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -142,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'A felhasználói fiókod korlátozva lett!',
         'message' => 'Korlátozva nem leszel képes más játékosokkal kapcsolatba lépni és a pontjaid csak neked lesznek láthatóak. Ez az eredménye egy automatikus folyamatnak és általában fel lesz oldva 24 órán belül. Amennyiben fellebbezni szeretnél, légyszíves lépj kapcsolatba a <a href="mailto:accounts@ppy.sh">support</a>-al.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age éves',
@@ -216,6 +233,9 @@ return [
                 ],
                 'loved' => [
                     'title' => 'Szeretett beatmapek',
+                ],
+                'nominated' => [
+                    'title' => 'Nominált rangsorolt beatmapek',
                 ],
                 'pending' => [
                     'title' => 'Függő beatmapek',
@@ -312,7 +332,7 @@ return [
                 'title' => 'Medálok',
             ],
             'playlists' => [
-                'title' => 'Lejátszási listás játékok',
+                'title' => 'Játéklistás játékok',
             ],
             'posts' => [
                 'title' => 'Bejegyzések',
@@ -372,7 +392,7 @@ return [
                     'actions' => [
                         'restriction' => 'Kitiltás',
                         'silence' => 'Némítás',
-                        'tournament_ban' => '',
+                        'tournament_ban' => 'Bajnoksági kitiltás',
                         'note' => 'Megjegyzés',
                     ],
                 ],
@@ -414,6 +434,7 @@ return [
             'country_simple' => 'Országos Rangsor',
             'global' => 'Globális rank a :mode-ra/re',
             'global_simple' => 'Globális Rangsor',
+            'highest' => 'Legnagyobb rank: :rank elérve :date dátumkor',
         ],
         'stats' => [
             'hit_accuracy' => 'Találati Pontosság',
@@ -447,6 +468,8 @@ return [
         'offline' => 'Nem elérhető',
     ],
     'store' => [
+        'from_client' => 'kérlek regisztrálj inkább a játék klienssel!',
+        'from_web' => 'kérlek fejezd be a regisztrációt az osu! weboldalon',
         'saved' => 'Felhasználó létrehozva',
     ],
     'verify' => [

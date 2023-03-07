@@ -21,7 +21,12 @@ use App\Models\Comment;
 use App\Models\Contest;
 use App\Models\Count;
 use App\Models\Country;
-use App\Models\Forum;
+use App\Models\Forum\AuthOption;
+use App\Models\Forum\Authorize;
+use App\Models\Forum\Forum;
+use App\Models\Forum\Post;
+use App\Models\Forum\Topic;
+use App\Models\Forum\TopicTrack;
 use App\Models\Genre;
 use App\Models\Group;
 use App\Models\Language;
@@ -31,6 +36,7 @@ use App\Models\Multiplayer\Room;
 use App\Models\NewsPost;
 use App\Models\Notification;
 use App\Models\Score;
+use App\Models\Season;
 use App\Models\Store;
 use App\Models\Tournament;
 use App\Models\UpdateStream;
@@ -90,9 +96,9 @@ class SanityTest extends DuskTestCase
         Beatmapset::truncate();
         Channel::truncate();
         Count::truncate();
-        Forum\AuthOption::truncate();
-        Forum\Authorize::truncate();
-        Forum\TopicTrack::truncate();
+        AuthOption::truncate();
+        Authorize::truncate();
+        TopicTrack::truncate();
         Genre::truncate();
         Group::truncate();
         Language::truncate();
@@ -106,7 +112,7 @@ class SanityTest extends DuskTestCase
         UserProfileCustomization::truncate();
         UserStatistics\Osu::truncate();
 
-        app('groups')->resetCache();
+        app('groups')->resetMemoized();
     }
 
     private static function createScaffolding()
@@ -153,7 +159,7 @@ class SanityTest extends DuskTestCase
         self::$scaffolding['contest'] = factory(Contest::class)->states('entry')->create();
 
         // factories for /community/tournaments/*
-        self::$scaffolding['tournament'] = factory(Tournament::class)->create();
+        self::$scaffolding['tournament'] = Tournament::factory()->create();
 
         // factories for /beatmaps/artists/*
         self::$scaffolding['artist'] = factory(Artist::class)->create();
@@ -172,41 +178,33 @@ class SanityTest extends DuskTestCase
         ]);
 
         // factories for /community/forums/*
-        self::$scaffolding['forum_parent'] = factory(Forum\Forum::class)->states('parent')->create();
-        self::$scaffolding['forum'] = factory(Forum\Forum::class)->states('child')->create([
-            'parent_id' => self::$scaffolding['forum_parent']->getKey(),
+        self::$scaffolding['forum_parent'] = Forum::factory()->closed()->create();
+        self::$scaffolding['forum'] = Forum::factory()->create([
+            'parent_id' => self::$scaffolding['forum_parent'],
         ]);
         // satisfy group permissions required for posting in forum
         self::$scaffolding['_group'] = app('groups')->byIdentifier('default');
-        self::$scaffolding['_forum_acl_post'] = factory(Forum\Authorize::class)->states('post')->create([
-            'forum_id' => self::$scaffolding['forum']->getKey(),
-            'group_id' => self::$scaffolding['_group']->getKey(),
+        self::$scaffolding['_forum_acl_post'] = Authorize::factory()->post()->create([
+            'forum_id' => self::$scaffolding['forum'],
+            'group_id' => self::$scaffolding['_group'],
         ]);
-        self::$scaffolding['_forum_acl_reply'] = factory(Forum\Authorize::class)->states('reply')->create([
-            'forum_id' => self::$scaffolding['forum']->getKey(),
-            'group_id' => self::$scaffolding['_group']->getKey(),
+        self::$scaffolding['_forum_acl_reply'] = Authorize::factory()->reply()->create([
+            'forum_id' => self::$scaffolding['forum'],
+            'group_id' => self::$scaffolding['_group'],
         ]);
         self::$scaffolding['_user_group'] = UserGroup::first();
 
         // satisfy minimum playcount for forum posting
         self::$scaffolding['user']->statisticsOsu()->save(factory(UserStatistics\Osu::class)->make(['playcount' => config('osu.forum.minimum_plays')]));
 
-        self::$scaffolding['topic'] = factory(Forum\Topic::class)->create([
-            'topic_poster' => self::$scaffolding['user']->getKey(),
-            'topic_first_poster_name' => self::$scaffolding['user']->username,
-            'topic_last_poster_id' => self::$scaffolding['user']->getKey(),
-            'topic_last_poster_name' => self::$scaffolding['user']->username,
-            'forum_id' => self::$scaffolding['forum']->getKey(),
+        self::$scaffolding['topic'] = Topic::factory()->create([
+            'forum_id' => self::$scaffolding['forum'],
+            'topic_poster' => self::$scaffolding['user'],
         ]);
-
-        self::$scaffolding['post'] = factory(Forum\Post::class)->create([
-            'poster_id' => self::$scaffolding['user']->getKey(),
-            'post_username' => self::$scaffolding['user']->username,
-            'forum_id' => self::$scaffolding['forum']->getKey(),
-            'topic_id' => self::$scaffolding['topic']->getKey(),
+        self::$scaffolding['post'] = Post::factory()->create([
+            'poster_id' => self::$scaffolding['user'],
+            'topic_id' => self::$scaffolding['topic'],
         ]);
-        // TODO: make this part of post factory callback
-        self::$scaffolding['topic']->refreshCache();
 
         // factories for /community/chat/*
         self::$scaffolding['channel'] = Channel::factory()->type('public')->create();
@@ -217,6 +215,9 @@ class SanityTest extends DuskTestCase
 
         // dummy for game mode param
         self::$scaffolding['mode'] = new ScaffoldDummy('osu');
+
+        // factory for /seasons/*
+        self::$scaffolding['season'] = Season::factory()->create();
 
         // factory for /home/changelog/*
         self::$scaffolding['stream'] = factory(UpdateStream::class)->create();
@@ -254,7 +255,7 @@ class SanityTest extends DuskTestCase
 
         self::$scaffolding['room'] = factory(Room::class)->create(['category' => 'spotlight']);
 
-        app('groups')->resetCache();
+        app('groups')->resetMemoized();
     }
 
     private static function filterLog(array $log)

@@ -67,7 +67,7 @@ return [
                 'beatmapset_qualify_compact' => 'Карта вошла очередь ранка',
                 'beatmapset_rank' => 'Карта ":title" стала Рейтинговой',
                 'beatmapset_rank_compact' => 'Карта стала Рейтинговой',
-                'beatmapset_remove_from_loved' => 'Карта ":title" потеряла категорию Любимая',
+                'beatmapset_remove_from_loved' => '":title" была удалена из категории Любимая',
                 'beatmapset_remove_from_loved_compact' => 'Карта была удалена из категории Любимая',
                 'beatmapset_reset_nominations' => 'Номинации карты ":title"  была сброшена',
                 'beatmapset_reset_nominations_compact' => 'Номинация была сброшена',
@@ -148,7 +148,7 @@ return [
 
             'legacy_pm' => [
                 '_' => '',
-                'legacy_pm' => ':count_delimited непрочитанное сообщение|:count_delimited непрочитанных сообщения',
+                'legacy_pm' => ':count_delimited непрочитанное сообщение|:count_delimited непрочитанных сообщения|:count_delimited непрочитанных сообщений',
             ],
         ],
 
@@ -199,7 +199,7 @@ return [
                 'beatmapset_nominate' => 'Карта ":title" номинирована',
                 'beatmapset_qualify' => '":title" получило достаточно номинаций и вступило в очередь ранка',
                 'beatmapset_rank' => 'Карта ":title" получила категорию Рейтинговая',
-                'beatmapset_remove_from_loved' => '":title" был удален из Любимых',
+                'beatmapset_remove_from_loved' => '":title" была удалена из категории Любимая',
                 'beatmapset_reset_nominations' => 'Номинация ":title" была сброшена',
             ],
 
@@ -209,6 +209,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Новое объявление в ":name"',
+            ],
+
             'channel' => [
                 'pm' => 'Вы получили новое сообщение от :username',
             ],

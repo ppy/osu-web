@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'админ',
     ],
-    'admin_forum' => [
-        '_' => 'админ',
-    ],
-    'admin_store' => [
-        '_' => 'админ',
-    ],
     'error' => [
         'error' => [
             '400' => 'неверный запрос',
@@ -32,17 +26,10 @@ return [
         'topic_logs_controller' => [
             'index' => 'статистика темы',
         ],
-        'topic_watches_controller' => [
-            'index' => 'инфопанель',
-        ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'настройки',
             'verify_link' => 'верификация аккаунта',
-        ],
-        'artist_tracks_controller' => [
-            '_' => 'избранные исполнители',
         ],
         'artists_controller' => [
             '_' => 'избранные исполнители',
@@ -62,9 +49,6 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'история карты',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'главная страница',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'обсуждение карты',
             'index' => 'библиотека карт',
@@ -81,12 +65,6 @@ return [
         ],
         'contests_controller' => [
             '_' => 'конкурсы',
-        ],
-        'follows_controller' => [
-            'index' => 'настройки',
-        ],
-        'friends_controller' => [
-            'index' => 'друзья',
         ],
         'groups_controller' => [
             'show' => 'группы',
@@ -120,25 +98,21 @@ return [
             '_' => 'рейтинг',
         ],
         'scores_controller' => [
-            '_' => 'производительность',
+            '_' => 'рекорд',
         ],
-        'store_controller' => [
-            '_' => 'магазин',
+        'seasons_controller' => [
+            '_' => 'рейтинг',
         ],
         'tournaments_controller' => [
             '_' => 'турниры',
         ],
         'users_controller' => [
             '_' => 'информация об игроке',
+            'create' => 'создать аккаунт',
             'disabled' => 'обратите внимание',
         ],
         'wiki_controller' => [
             '_' => 'вики',
-        ],
-    ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'рейтинг',
         ],
     ],
     'passport' => [

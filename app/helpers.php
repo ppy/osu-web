@@ -5,6 +5,7 @@
 
 use App\Libraries\LocaleMeta;
 use App\Models\LoginAttempt;
+use Illuminate\Support\Arr;
 use Illuminate\Support\HtmlString;
 
 function api_version(): int
@@ -17,6 +18,18 @@ function api_version(): int
     }
 
     return $version;
+}
+
+function array_reject_null(iterable $array): array
+{
+    $ret = [];
+    foreach ($array as $item) {
+        if ($item !== null) {
+            $ret[] = $item;
+        }
+    }
+
+    return $ret;
 }
 
 /*
@@ -153,7 +166,7 @@ function cache_expire_with_fallback(string $key, int $duration = 2592000)
         return;
     }
 
-    $data['expires_at'] = now()->addHour(-1);
+    $data['expires_at'] = now()->addHours(-1);
     Cache::put($fullKey, $data, $duration);
 }
 
@@ -168,7 +181,7 @@ function captcha_enabled()
     return config('captcha.sitekey') !== '' && config('captcha.secret') !== '';
 }
 
-function captcha_triggered()
+function captcha_login_triggered()
 {
     if (!captcha_enabled()) {
         return false;
@@ -485,11 +498,15 @@ function markdown_chat($input)
         $converter = new League\CommonMark\MarkdownConverter($environment);
     }
 
-    return $converter->convertToHtml($input)->getContent();
+    return $converter->convert($input)->getContent();
 }
 
-function markdown_plain($input)
+function markdown_plain(?string $input): string
 {
+    if ($input === null) {
+        return '';
+    }
+
     static $converter;
 
     if (!isset($converter)) {
@@ -499,7 +516,7 @@ function markdown_plain($input)
         ]);
     }
 
-    return $converter->convertToHtml($input)->getContent();
+    return $converter->convert($input)->getContent();
 }
 
 function max_offset($page, $limit)
@@ -576,15 +593,6 @@ function pagination($params, $defaults = null)
     $page = 1 + $offset / $limit;
 
     return compact('limit', 'page', 'offset');
-}
-
-function param_string_simple($value)
-{
-    if (is_array($value)) {
-        $value = implode(',', $value);
-    }
-
-    return presence($value);
 }
 
 function product_quantity_options($product, $selected = null)
@@ -683,20 +691,6 @@ function tag($element, $attributes = [], $content = null)
     return '<'.$element.$attributeString.'>'.($content ?? '').'</'.$element.'>';
 }
 
-function to_sentence($array, $key = 'common.array_and')
-{
-    switch (count($array)) {
-        case 0:
-            return '';
-        case 1:
-            return (string) $array[0];
-        case 2:
-            return implode(osu_trans("{$key}.two_words_connector"), $array);
-        default:
-            return implode(osu_trans("{$key}.words_connector"), array_slice($array, 0, -1)).osu_trans("{$key}.last_word_connector").array_last($array);
-    }
-}
-
 // Handles case where crowdin fills in untranslated key with empty string.
 function trans_exists($key, $locale)
 {
@@ -786,6 +780,21 @@ function from_app_url()
     return starts_with(request()->headers->get('referer'), config('app.url').'/');
 }
 
+function forum_user_link(int $id, string $username, string|null $colour, int|null $currentUserId): string
+{
+    $icon = tag('span', [
+        'class' => 'forum-user-icon',
+        'style' => user_color_style($colour, 'background-color'),
+    ]);
+
+    $link = link_to_user($id, $username, null, []);
+    if ($currentUserId === $id) {
+        $link = tag('strong', null, $link);
+    }
+
+    return "{$icon} {$link}";
+}
+
 function is_api_request()
 {
     return request()->is('api/*');
@@ -822,14 +831,37 @@ function page_description($extra)
     return blade_safe(implode(' » ', array_map('e', $parts)));
 }
 
+// sync with pageTitleMap in header-v4.tsx
 function page_title()
 {
     $currentRoute = app('route-section')->getCurrent();
     $checkLocale = config('app.fallback_locale');
+
+    $actionKey = "{$currentRoute['namespace']}.{$currentRoute['controller']}.{$currentRoute['action']}";
+    $actionKey = match ($actionKey) {
+        'forum.topic_watches_controller.index' => 'main.home_controller.index',
+        'main.account_controller.edit' => 'main.home_controller.index',
+        'main.beatmapset_watches_controller.index' => 'main.home_controller.index',
+        'main.follows_controller.index' => 'main.home_controller.index',
+        'main.friends_controller.index' => 'main.home_controller.index',
+        default => $actionKey,
+    };
+    $controllerKey = "{$currentRoute['namespace']}.{$currentRoute['controller']}._";
+    $controllerKey = match ($controllerKey) {
+        'main.artist_tracks_controller._' => 'main.artists_controller._',
+        'main.store_controller._' => 'store._',
+        'multiplayer.rooms_controller._' => 'main.ranking_controller._',
+        default => $controllerKey,
+    };
+    $namespaceKey = "{$currentRoute['namespace']}._";
+    $namespaceKey = match ($namespaceKey) {
+        'admin_forum._' => 'admin._',
+        default => $namespaceKey,
+    };
     $keys = [
-        "page_title.{$currentRoute['namespace']}.{$currentRoute['controller']}.{$currentRoute['action']}",
-        "page_title.{$currentRoute['namespace']}.{$currentRoute['controller']}._",
-        "page_title.{$currentRoute['namespace']}._",
+        "page_title.{$actionKey}",
+        "page_title.{$controllerKey}",
+        "page_title.{$namespaceKey}",
     ];
 
     foreach ($keys as $key) {
@@ -884,7 +916,7 @@ function link_to_user($id, $username = null, $color = null, $classNames = null)
         $color ?? ($color = $id->user_colour);
         $id = $id->getKey();
     }
-    $id = e($id);
+    $id = presence(e($id));
     $username = e($username);
     $style = user_color_style($color, 'color');
 
@@ -1030,9 +1062,7 @@ function proxy_media($url)
 
 function lazy_load_image($url, $class = '', $alt = '')
 {
-    $url = e($url);
-
-    return "<img class='{$class}' src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' data-normal='{$url}' alt='{$alt}' />";
+    return "<img class='{$class}' src='{$url}' alt='{$alt}' loading='lazy' />";
 }
 
 function nav_links()
@@ -1059,6 +1089,7 @@ function nav_links()
         'rankings.type.score' => route('rankings', ['mode' => $defaultMode, 'type' => 'score']),
         'rankings.type.country' => route('rankings', ['mode' => $defaultMode, 'type' => 'country']),
         'rankings.type.multiplayer' => route('multiplayer.rooms.show', ['room' => 'latest']),
+        'rankings.type.seasons' => route('seasons.show', ['season' => 'latest']),
         'layout.menu.rankings.kudosu' => osu_url('rankings.kudosu'),
     ];
     $links['community'] = [
@@ -1267,7 +1298,7 @@ function json_item($model, $transformer, $includes = null)
 
 function fast_imagesize($url)
 {
-    $result = Cache::remember("imageSize:{$url}", Carbon\Carbon::now()->addMonth(1), function () use ($url) {
+    $result = Cache::remember("imageSize:{$url}", Carbon\Carbon::now()->addMonths(1), function () use ($url) {
         $curl = curl_init($url);
         curl_setopt_array($curl, [
             CURLOPT_HTTPHEADER => [
@@ -1404,9 +1435,10 @@ function get_string($input)
 
 function get_string_split($input)
 {
-    return get_arr(explode("\r\n", get_string($input)), function ($item) {
-        return presence(trim_unicode($item));
-    });
+    return get_arr(
+        explode("\n", strtr(get_string($input), ["\r\n" => "\n", "\r" => "\n"])),
+        fn ($item) => presence(trim_unicode($item)),
+    );
 }
 
 function get_class_basename($className)
@@ -1497,7 +1529,7 @@ function get_params($input, $namespace, $keys, $options = [])
 
     $params = [];
 
-    if (is_array($input) || ($input instanceof ArrayAccess)) {
+    if (Arr::accessible($input)) {
         $options['null_missing'] = $options['null_missing'] ?? false;
 
         foreach ($keys as $keyAndType) {
@@ -1584,7 +1616,11 @@ function parse_time_to_carbon($value)
     }
 
     if (is_numeric($value)) {
-        return Carbon\Carbon::createFromTimestamp($value);
+        try {
+            return Carbon\Carbon::createFromTimestamp($value);
+        } catch (Carbon\Exceptions\InvalidFormatException $_e) {
+            return;
+        }
     }
 
     if (is_string($value)) {
@@ -1604,9 +1640,9 @@ function parse_time_to_carbon($value)
     }
 }
 
-function format_duration_for_display($seconds)
+function format_duration_for_display(int $seconds)
 {
-    return floor($seconds / 60).':'.str_pad($seconds % 60, 2, '0', STR_PAD_LEFT);
+    return floor($seconds / 60).':'.str_pad((string) ($seconds % 60), 2, '0', STR_PAD_LEFT);
 }
 
 // Converts a standard image url to a retina one
@@ -1791,7 +1827,7 @@ function search_error_message(?Exception $e): ?string
     }
 
     $basename = snake_case(get_class_basename(get_class($e)));
-    $key = "errors.search.${basename}";
+    $key = "errors.search.{$basename}";
     $text = osu_trans($key);
 
     return $text === $key ? osu_trans('errors.search.default') : $text;
@@ -1800,13 +1836,9 @@ function search_error_message(?Exception $e): ?string
 /**
  * Gets the path to a versioned resource.
  *
- * @param string $resource
- * @param string $manifest
- * @return HtmlString
- *
  * @throws Exception
  */
-function unmix(string $resource)
+function unmix(string $resource): HtmlString
 {
     return app('assets-manifest')->src($resource);
 }

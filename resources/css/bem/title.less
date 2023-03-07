@@ -1,0 +1,71 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.title {
+  @_top: title;
+  width: max-content;
+  max-width: 100%;
+  margin: 0 0 10px;
+  padding-bottom: 5px;
+
+  font-size: @font-size--title-small-3;
+  font-style: normal;
+  color: hsl(var(--hsl-c1));
+
+  border-bottom: 2px solid @osu-colour-h1;
+
+  &--artist-track-search-advanced {
+    border: none;
+    margin: 15px 0;
+    padding: 0;
+  }
+
+  &--forum {
+    margin-bottom: 0;
+    border-bottom-color: var(--forum-bg);
+  }
+
+  &--page-extra {
+    font-weight: bold;
+
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+
+  &--page-extra-small {
+    font-weight: bold;
+    font-size: @font-size--title-small;
+    border-bottom: none;
+    margin: 0;
+    padding: 10px 0;
+
+    &::before {
+      content: '';
+      height: 0.65em;
+      margin-top: 0.3em;
+      margin-left: -6px;
+      width: 3px;
+      border-radius: 10000px;
+      position: absolute;
+      background-color: hsl(var(--hsl-h1));
+
+      @media @desktop {
+        margin-left: -10px;
+      }
+    }
+  }
+
+  &__count {
+    color: @osu-colour-f1;
+    background-color: @osu-colour-b6;
+    margin-left: 10px;
+    padding: 5px 10px;
+    border-radius: 10000px;
+
+    .@{_top}--page-extra-small & {
+      font-size: 0.8em;
+      padding-top: 0;
+      padding-bottom: 1px;
+    }
+  }
+}

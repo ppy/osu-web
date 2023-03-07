@@ -5,10 +5,12 @@
 
 namespace App\Models;
 
+use App\Exceptions\InvariantException;
+
 class SupporterTag
 {
+    const MAX_DONATION = 1 << 16; // 65k-ish
     const MIN_DONATION = 4;
-    const PRODUCT_CUSTOM_CLASS = 'supporter-tag';
 
     /**
      * Gets the duration for a donated amount.
@@ -17,13 +19,16 @@ class SupporterTag
      *
      * @param int $amount Amount to get the duration for.
      * @return int duration in months.
-     * @throws Exception
+     * @throws App\Exceptions\InvariantException
      **/
-    public static function getDuration(int $amount)
+    public static function getDuration(int $amount): int
     {
-        if ($amount < self::MIN_DONATION) {
-            $minDonation = self::MIN_DONATION; // can't interpolate const :D
-            throw new \Exception("amount must be >= {$minDonation}");
+        if ($amount < static::MIN_DONATION) {
+            throw new InvariantException('amount must be >= '.static::MIN_DONATION);
+        }
+
+        if ($amount > static::MAX_DONATION) {
+            throw new InvariantException('amount must be <= '.static::MAX_DONATION);
         }
 
         switch (true) {
@@ -85,16 +90,15 @@ class SupporterTag
     {
         static $transKey = 'store.order.item.display_name.supporter_tag';
 
-        $durationText = static::getDurationText((int) $item->extra_data['duration']);
-
-        // test data didn't include username, so ?? ''
-        $username = $item->extra_data['username'] ?? '';
+        $extraData = $item->extra_data;
+        $durationText = static::getDurationText($extraData->duration);
+        $username = $extraData->username;
 
         return $html
             ? blade_safe(osu_trans($transKey, [
                 'duration' => e($durationText),
                 'name' => e($item->product->name),
-                'username' => link_to_user($item->extra_data['target_id'], $username),
+                'username' => link_to_user($extraData->targetId, $username),
             ])) : osu_trans($transKey, [
                 'duration' => $durationText,
                 'name' => $item->product->name,

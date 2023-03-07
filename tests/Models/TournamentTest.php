@@ -17,7 +17,7 @@ class TournamentTest extends TestCase
     {
         $user = User::factory()->create();
         $playModeInt = Beatmap::MODES['osu'];
-        $tournament = factory(Tournament::class)->create([
+        $tournament = Tournament::factory()->create([
             'play_mode' => $playModeInt,
             'rank_min' => 1,
             'rank_max' => 100,
@@ -40,7 +40,7 @@ class TournamentTest extends TestCase
         $user = User::factory()->create();
         $playModeInt = Beatmap::MODES['mania'];
         $playModeVariant = Beatmap::VARIANTS['mania'][0];
-        $tournament = factory(Tournament::class)->create([
+        $tournament = Tournament::factory()->create([
             'play_mode' => $playModeInt,
             'play_mode_variant' => $playModeVariant,
             'rank_min' => 1,

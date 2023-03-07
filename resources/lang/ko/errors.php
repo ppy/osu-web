@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => '데이터를 로드할 수 없습니다.',
     'missing_route' => 'URL이 잘못되었거나 잘못된 요청 메서드입니다.',
     'no_restricted_access' => '계정이 제한된 상태에서는 이 작업을 수행할 수 없습니다.',
     'supporter_only' => '이 기능을 사용하려면 osu! 서포터가 되셔야 합니다.',

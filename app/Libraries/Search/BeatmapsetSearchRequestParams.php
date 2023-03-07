@@ -182,6 +182,8 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
         if ($this->sortField !== null && $this->sortOrder !== null) {
             return "{$this->sortField}_{$this->sortOrder}";
         }
+
+        return null;
     }
 
     public function isLoginRequired(): bool
@@ -240,7 +242,7 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 
     private function parseSort(?string $value): void
     {
-        $array = explode('_', $value);
+        $array = explode('_', $value ?? '');
         $this->sortField = $array[0];
         $this->sortOrder = $array[1] ?? null;
 

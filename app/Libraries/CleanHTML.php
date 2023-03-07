@@ -44,7 +44,7 @@ class CleanHTML
 
         $def->addAttribute('audio', 'preload', 'Text');
 
-        $def->addAttribute('img', 'data-normal', 'Text');
+        $def->addAttribute('img', 'loading', 'Text');
         $def->addAttribute('img', 'src', 'Text');
 
         $def->addAttribute('span', 'data-src', 'Text');

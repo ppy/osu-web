@@ -60,12 +60,18 @@ return [
     'show' => [
         'discussion' => 'Discussione',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
             'by_artist' => 'di :artist',
             'favourite' => 'Mi piace questa beatmap',
             'favourite_login' => 'Accedi per aggiungere questa beatmap ai preferiti',
             'logged-out' => 'Devi avere effettuato il login prima di scaricare qualsiasi beatmap!',
             'mapped_by' => 'mappata da :mapper',
+            'mapped_by_guest' => 'difficoltà guest di :mapper',
             'unfavourite' => 'Non mi piace questa beatmap',
             'updated_timeago' => 'ultimo aggiornamento :timeago',
 
@@ -124,6 +130,7 @@ return [
             'genre' => 'Genere',
             'language' => 'Lingua',
             'no_scores' => 'Dati ancora in elaborazione...',
+            'nominators' => 'Nominatori',
             'nsfw' => 'Contenuto esplicito',
             'offset' => 'Offset online',
             'points-of-failure' => 'Punti di Fallimento',
@@ -189,10 +196,10 @@ return [
         'stats' => [
             'cs' => 'Dimensione Cerchi',
             'cs-mania' => 'Numero di Tasti',
-            'drain' => 'Drenaggio HP',
+            'drain' => 'Perdita HP',
             'accuracy' => 'Precisione',
-            'ar' => 'Approach Rate',
-            'stars' => 'Stelle di Difficoltà',
+            'ar' => 'Velocità Approccio',
+            'stars' => 'Difficoltà',
             'total_length' => 'Durata (Lunghezza drenaggio: :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => 'Numero di Cerchi',

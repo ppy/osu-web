@@ -1,0 +1,118 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.download-page-header {
+  .default-gutter-v2();
+  padding-bottom: 20px;
+
+  &__action-description {
+    flex: 1;
+    display: grid;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  &__action-title {
+    font-size: @font-size--title;
+    font-weight: inherit;
+    margin: 0;
+  }
+
+  &__choice {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    @media @desktop {
+      gap: 20px;
+      padding: 40px 0;
+    }
+  }
+
+  &__choices {
+    display: grid;
+    gap: 10px;
+    font-weight: 300;
+
+    @media @desktop {
+      grid-template-columns: 1fr auto 1fr;
+    }
+  }
+
+  &__extra-link {
+    .link-white();
+    font-size: @font-size--title-small;
+
+    &--separator {
+      pointer-events: none;
+
+      &::before {
+        content: '•';
+      }
+    }
+  }
+
+  &__extra-links {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  &__separator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: @font-size--title;
+    width: 100%;
+    height: auto;
+    --separator-thickness: 2px;
+    --separator-width: auto;
+    --separator-height: var(--separator-thickness);
+
+    @media @desktop {
+      flex-direction: column;
+      height: 100%;
+      width: auto;
+      --separator-width: var(--separator-thickness);
+      --separator-height: auto;
+
+      &::after {
+        padding-top: 5px; // balances line-height of separator text
+      }
+    }
+
+    &::after, &::before {
+      content: '';
+      display: block;
+      flex: 1;
+      background-color: hsl(var(--hsl-b2));
+      width: var(--separator-width);
+      height: var(--separator-height);
+    }
+  }
+
+  &__note {
+    font-size: @font-size--title-small;
+    color: hsl(var(--hsl-red-1));
+
+    @media @desktop {
+      position: absolute;
+      bottom: 0;
+    }
+  }
+
+  &__tagline {
+    display: block;
+    text-align: center;
+    font-size: @font-size--large-3;
+    font-weight: 300;
+    padding: 20px 0;
+    margin: 0;
+  }
+}

@@ -52,6 +52,22 @@ return [
         'send_message' => 'skicka meddelande',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => '',
+            'password_confirmation' => '',
+            'submit' => '',
+            'user_email' => '',
+            'user_email_confirmation' => '',
+            'username' => '',
+
+            'tos_notice' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'disabled' => [
         'title' => 'Hoppsan! Det verkar som att ditt konto har inaktiverats.',
         'warning' => "Om du har brutit mot en regel, vänligen notera att det generellt finns en cool-down-period á en månad under vilken vi inte kommer att överväga några amnestiförfrågningar. Efter denna period är du välkommen att kontakta oss om du anser det nödvändigt. Vänligen notera att skapandet av nya konton efter att du haft ett inaktiverat kommer att resultera i en <strong>förlängning av denna en månads cool-down</strong>. Vänligen notera även att för <strong>varje konto du skapar, bryter du mot reglerna ytterligare</strong>. Vi rekommenderar starkt att du inte tar denna vägen!",
@@ -142,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'Ditt konto har blivit begränsat!',
         'message' => 'När du är begränsad, kommer du inte kunna interagera med andra spelare och dina poäng kommer endast vara synliga för dig. Detta är oftast ett resultat av en automatiserad process och kommer troligen lyftas inom 24 timmar. Om du vill överklaga din begränsning, var vänlig <a href="mailto:accounts@ppy.sh">kontakta support</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age år gammal',
@@ -216,6 +233,9 @@ return [
                 ],
                 'loved' => [
                     'title' => 'Älskade beatmaps',
+                ],
+                'nominated' => [
+                    'title' => 'Nominerade rankade beatmaps',
                 ],
                 'pending' => [
                     'title' => 'Väntande beatmaps',
@@ -414,6 +434,7 @@ return [
             'country_simple' => 'Nationell rankning',
             'global' => 'Global rank för :mode',
             'global_simple' => 'Global rankning',
+            'highest' => 'Högsta rank: :rank den :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Träffsäkerhet',
@@ -447,6 +468,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => 'Användare skapad',
     ],
     'verify' => [

@@ -1,0 +1,40 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.nav-button {
+  .reset-input();
+  .center-content();
+  .link-plain();
+  color: hsl(var(--hsl-c1));
+
+  padding: 10px;
+  border-radius: 10000px;
+  transition: none;
+
+  &.js-click-menu--active, &:hover {
+    background-color: hsla(var(--hsl-c1), 0.2);
+  }
+
+  &--mobile {
+    .default-border-radius();
+    margin: 0 10px 0 0;
+    border: none;
+  }
+
+  &--notifications {
+    padding: 7px 10px;
+  }
+
+  &--support {
+    &:hover {
+      color: @pink;
+    }
+  }
+
+  &--twitter {
+    &:hover {
+      // twitter blue doesn't work with coloured background
+      color: hsl(var(--hsl-c1));
+    }
+  }
+}

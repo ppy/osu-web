@@ -1,0 +1,96 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.beatmap-list {
+  @top: beatmap-list;
+  color: #fff;
+  min-width: 0;
+  position: relative;
+
+  &--selecting {
+    z-index: @z-index--blackout-visible;
+  }
+
+  &__body {
+    height: var(--box-height);
+    min-width: 0;
+  }
+
+  &__item {
+    .link-plain();
+    .link-white();
+
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    padding: 3px 10px;
+    gap: 10px;
+    font-size: @font-size--title-small;
+
+    &:hover {
+      background-color: @osu-colour-b6;
+    }
+
+    &--selected {
+      .default-box-shadow();
+      .default-border-radius();
+      background-color: @osu-colour-b5;
+      box-shadow: 0 0 0 2px fade(#000, 25%);
+      height: 100%;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      min-width: 0;
+      font-size: inherit;
+
+      &:hover {
+        background-color: @osu-colour-b6;
+      }
+    }
+
+    &--current {
+      background-color: @osu-colour-b6;
+    }
+  }
+
+  &__item-count {
+    .default-border-radius();
+    padding: 2px 5px;
+    font-size: 0.7em;
+    font-weight: bold;
+    margin-left: 10px;
+    background-color: hsl(var(--hsl-b2));
+    color: hsl(var(--hsl-b5));
+  }
+
+  &__item-selector-button {
+    margin-left: auto;
+  }
+
+  &__selector {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    max-height: 70vh;
+  }
+
+  &__selector-container {
+    .default-box-shadow();
+    .default-border-radius();
+    .fancy-scrollbar();
+    background-color: @osu-colour-b5;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 5px;
+    padding: 10px 0;
+    min-width: 100%;
+    width: max-content;
+    max-width: ~"max(90vw, 100%)";
+
+    display: none;
+    .@{top}--selecting & {
+      display: grid;
+    }
+  }
+}

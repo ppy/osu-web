@@ -8,6 +8,7 @@ return [
     'talking_in' => 'מדבר ב- :channel',
     'talking_with' => 'מדבר עם :name',
     'title_compact' => 'צ\'אט',
+    'unread_messages' => '',
 
     'cannot_send' => [
         'channel' => 'אתה לא יכול לשלוח הודעה בערוץ הזה כרגע. זה יכול להיות בגלל הסיבות הבאות:',
@@ -35,6 +36,7 @@ return [
 
         'labels' => [
             'description' => '',
+            'message' => '',
             'name' => '',
             'users' => '',
         ],

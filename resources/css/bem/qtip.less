@@ -1,0 +1,50 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.qtip {
+  &--achievement {
+    border-radius: 30px;
+    background-color: @osu-colour-b6;
+    border: 0 solid transparent;
+    width: 200px;
+    line-height: normal;
+
+    .qtip-content {
+      overflow: visible;
+      padding: 0;
+    }
+  }
+
+  &--tooltip-beatmap {
+    min-width: 110px;
+    max-width: none;
+
+    .default-border-radius();
+
+    background-color: @osu-colour-b6;
+    border: 0 solid transparent;
+
+    .qtip-content {
+      padding: 0;
+    }
+  }
+
+  &--user-card {
+    z-index: @z-index--user-card-tooltip !important;
+    max-width: unset;
+    min-width: unset;
+    font-size: unset;
+    line-height: unset;
+  }
+
+  &--user-list {
+    z-index: @z-index--user-card-tooltip !important;
+    max-width: unset;
+    padding: 5px;
+
+    > .qtip-content {
+      overflow: unset;
+      padding: 0;
+    }
+  }
+}

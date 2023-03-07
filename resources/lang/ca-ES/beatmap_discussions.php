@@ -19,21 +19,21 @@ return [
     'index' => [
         'deleted_beatmap' => 'eliminat',
         'none_found' => 'No s\'ha trobat cap discussió que coincideixi amb aquests criteris de cerca.',
-        'title' => 'Discussions del mapa',
+        'title' => 'Discussions del beatmap',
 
         'form' => [
-            '_' => 'Cercar',
-            'deleted' => 'Incloure discussions eliminades',
-            'mode' => 'Mode del mapa',
+            '_' => 'Cerca',
+            'deleted' => 'Inclou discussions eliminades',
+            'mode' => 'Mode del beatmap',
             'only_unresolved' => 'Mostra només discussions no resoltes',
             'types' => 'Tipus de missatges',
             'username' => 'Nom d\'usuari',
 
             'beatmapset_status' => [
-                '_' => 'Estat del mapa',
+                '_' => 'Estat del beatmap',
                 'all' => 'Tots',
                 'disqualified' => 'Desqualificat',
-                'never_qualified' => 'No qualificat',
+                'never_qualified' => 'Mai qualificat',
                 'qualified' => 'Qualificat',
                 'ranked' => 'Classificat',
             ],
@@ -54,7 +54,7 @@ return [
 
     'nearby_posts' => [
         'confirm' => 'Cap de les publicacions aborda el meu assumpte',
-        'notice' => 'Ja hi ha publicacions a prop de :timestamp (:existing_timestamps). Si us plau reviseu-la abans de publicar.',
+        'notice' => 'Ja hi ha publicacions a prop de :timestamp (:existing_timestamps). Si us plau reviseu-les abans de publicar.',
         'unsaved' => ':count en aquesta revisió',
     ],
 
@@ -97,7 +97,7 @@ return [
 
     'timestamp_display' => [
         'general' => 'general',
-        'general_all' => 'general (tots)',
+        'general_all' => 'general (tot)',
     ],
 
     'user_filter' => [

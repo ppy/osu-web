@@ -7,74 +7,58 @@ return [
     'admin' => [
         '_' => 'administratorius',
     ],
-    'admin_forum' => [
-        '_' => 'administratorius',
-    ],
-    'admin_store' => [
-        '_' => '',
-    ],
     'error' => [
         'error' => [
-            '400' => '',
-            '404' => 'dingęs',
+            '400' => 'negaliojanti užklausa',
+            '404' => 'nerasta',
             '403' => 'draudžiamas',
-            '401' => '',
-            '401-verification' => '',
-            '405' => '',
-            '422' => '',
-            '429' => '',
-            '500' => '',
-            '503' => '',
+            '401' => 'neįgaliotas',
+            '401-verification' => 'paskyros patvirtinimas',
+            '405' => 'nerasta',
+            '422' => 'negaliojanti užklausa',
+            '429' => 'per daug užklausų',
+            '500' => 'kažkas nesuveikė',
+            '503' => 'priežiūra',
         ],
     ],
     'forum' => [
         '_' => 'forumas',
         'topic_logs_controller' => [
-            'index' => '',
-        ],
-        'topic_watches_controller' => [
-            'index' => '',
+            'index' => 'temos žurnalas',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => '',
-            'verify_link' => '',
-        ],
-        'artist_tracks_controller' => [
-            '_' => '',
+            'verify_link' => 'paskyros patvirtinimas',
         ],
         'artists_controller' => [
-            '_' => '',
+            '_' => 'rekomenduojami atlikėjai',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => '',
+            '_' => 'bitmapo diskusijos Įrašai',
         ],
         'beatmap_discussions_controller' => [
-            '_' => '',
+            '_' => 'bitmapo diskusijos',
         ],
         'beatmap_packs_controller' => [
-            '_' => '',
+            '_' => 'bitmapų rinkiniai',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => '',
+            '_' => 'bitmapo diskusijos balsai',
         ],
         'beatmapset_events_controller' => [
-            '_' => '',
-        ],
-        'beatmapset_watches_controller' => [
-            'index' => '',
+            '_' => 'bitmapo istorija',
         ],
         'beatmapsets_controller' => [
-            'discussion' => '',
-            'index' => '',
-            'show' => '',
+            'discussion' => 'bitmapo diskusija',
+            'index' => 'bitmapų sąrašas',
+            'show' => 'bitmapo info',
         ],
         'changelog_controller' => [
-            '_' => '',
+            '_' => 'pakeitimų sąrašas',
         ],
         'chat_controller' => [
-            '_' => 'pokalbis',
+            '_' => 'pokalbiai',
         ],
         'comments_controller' => [
             '_' => 'komentarai',
@@ -82,47 +66,41 @@ return [
         'contests_controller' => [
             '_' => 'konkursai',
         ],
-        'follows_controller' => [
-            'index' => '',
-        ],
-        'friends_controller' => [
-            'index' => '',
-        ],
         'groups_controller' => [
             'show' => 'grupės',
         ],
         'home_controller' => [
             'get_download' => 'atsisiųsti',
-            'index' => '',
+            'index' => 'ataskaitų sritis',
             'search' => 'ieškoti',
             'support_the_game' => 'paremk žaidimą',
-            'testflight' => '',
+            'testflight' => 'testflight',
         ],
         'legal_controller' => [
             '_' => 'informacija',
         ],
         'livestreams_controller' => [
-            '_' => '',
+            '_' => 'tiesoginės transliacijos',
         ],
         'matches_controller' => [
-            '_' => '',
+            '_' => 'mačai',
         ],
         'news_controller' => [
             '_' => 'naujienos',
         ],
         'notifications_controller' => [
-            '_' => '',
+            '_' => 'pranešimų istorija',
         ],
         'password_reset_controller' => [
-            '_' => '',
+            '_' => 'slaptažodžio atkūrimas',
         ],
         'ranking_controller' => [
-            '_' => '',
+            '_' => 'reitingai',
         ],
         'scores_controller' => [
-            '_' => '',
+            '_' => 'našumas',
         ],
-        'store_controller' => [
+        'seasons_controller' => [
             '_' => '',
         ],
         'tournaments_controller' => [
@@ -130,31 +108,27 @@ return [
         ],
         'users_controller' => [
             '_' => 'žaidėjo informacija',
+            'create' => 'kurti paskyrą',
             'disabled' => 'pastaba',
         ],
         'wiki_controller' => [
-            '_' => '',
-        ],
-    ],
-    'multiplayer' => [
-        'rooms_controller' => [
-            '_' => 'reitingai',
+            '_' => 'wiki',
         ],
     ],
     'passport' => [
         'authorization_controller' => [
-            '_' => '',
+            '_' => 'įgalioti aplikaciją',
         ],
     ],
     'store' => [
-        '_' => '',
+        '_' => 'parduotuvė',
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => '',
+            '_' => 'taisytojo info',
         ],
         'multiplayer_controller' => [
-            '_' => '',
+            '_' => 'tinklo žaidimų istorija',
         ],
     ],
 ];

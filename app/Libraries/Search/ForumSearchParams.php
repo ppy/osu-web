@@ -19,11 +19,10 @@ class ForumSearchParams extends SearchParams
     /** @var int|null */
     public $forumId = null;
 
+    public bool $includeDeleted = false;
+
     /** @var bool */
     public $includeSubforums = false;
-
-    /** @var string|null */
-    public $queryString = null;
 
     /** {@inheritdoc} */
     public $size = 20;
