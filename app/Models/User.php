@@ -489,6 +489,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             case 'username':
                 $searchUsername = (string) $usernameOrId;
                 $searchUsernames = [
+                    $searchUsername,
                     strtr($searchUsername, ' ', '_'),
                     strtr($searchUsername, '_', ' '),
                 ];
