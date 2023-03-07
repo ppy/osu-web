@@ -23,13 +23,31 @@
   }
 
   &__item {
+    --colour: hsl(var(--hsl-l2));
+    --colour-hover: hsl(var(--hsl-l1));
+    color: var(--colour);
+
     &--active {
-      color: @osu-colour-c1;
       font-weight: 600;
+      --colour: hsl(var(--hsl-c1));
+      --colour-hover: var(--colour);
     }
 
     &--featured-artists {
-      color: hsl(var(--hsl-orange-1));
+      --colour: hsl(var(--hsl-orange-1));
+      --colour-hover: var(--colour);
+    }
+
+    &:focus {
+      color: var(--colour);
+    }
+
+    &:hover {
+      color: var(--colour-hover);
+    }
+
+    &:active {
+      color: var(--colour-hover);
     }
   }
 
