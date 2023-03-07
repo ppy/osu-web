@@ -16,6 +16,10 @@ import { formatNumber } from 'utils/html';
 import { trans, transArray } from 'utils/lang';
 import { linkHtml } from 'utils/url';
 
+function simpleKebab(str: string) {
+  return str.toLowerCase().replace(/ /g, '-');
+}
+
 export type EventViewMode = 'discussions' | 'profile' | 'list';
 
 interface Props {
@@ -176,6 +180,14 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
         if (typeof this.props.event.comment === 'string') {
           eventType = 'disqualify_legacy';
         }
+        break;
+      case 'genre_edit':
+          params.new = trans(`beatmaps.genre.${simpleKebab(params.new)}`);
+          params.old = trans(`beatmaps.genre.${simpleKebab(params.old)}`);
+        break;
+      case 'language_edit':
+          params.new = trans(`beatmaps.language.${simpleKebab(params.new)}`);
+          params.old = trans(`beatmaps.language.${simpleKebab(params.old)}`);
         break;
       case 'nominate': {
         const modes = this.props.event.comment?.modes;
