@@ -15,7 +15,7 @@ class LanguageTransformer extends TransformerAbstract
 
         return [
             'id' => $id === 0 ? null : $id,
-            'name' => osu_trans('beatmaps.language.'.str_replace(' ', '-', strtolower($language->name))),
+            'name' => osu_trans('beatmaps.language.'.strtr(strtolower($language->name), ' ', '-')),
         ];
     }
 }
