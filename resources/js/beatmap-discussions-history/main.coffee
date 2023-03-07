@@ -10,8 +10,7 @@ import BeatmapsetCover from 'components/beatmapset-cover'
 import { deletedUser } from 'models/user'
 import * as React from 'react'
 import { a, div, img } from 'react-dom-factories'
-import { makeUrl } from 'utils/beatmapset-discussion-helper'
-import { jsonClone } from 'utils/json'
+import { makeUrl, updateDiscussionsWithPost } from 'utils/beatmapset-discussion-helper'
 import { trans } from 'utils/lang'
 import { nextVal } from 'utils/seq'
 el = React.createElement
@@ -50,19 +49,17 @@ export class Main extends React.PureComponent
     { post } = options
     return unless post?
 
-    existingDiscussionIndex = @state.relatedDiscussions.findIndex (x) -> x.id == post.beatmapset_discussion_id
+    updatedDiscussions = updateDiscussionsWithPost @state.discussions, post
+    updatedRelatedDiscussions = updateDiscussionsWithPost @state.relatedDiscussions, post
 
-    if existingDiscussionIndex > -1
-      existingDiscussion = @state.relatedDiscussions[existingDiscussionIndex]
+    @cache = {}
 
-      if existingDiscussion.starting_post.id == post.id
-        existingDiscussions = jsonClone(@state.relatedDiscussions)
-        existingDiscussion.starting_post = Object.assign({}, existingDiscussion.starting_post, post)
-        existingDiscussions[existingDiscussionIndex] = existingDiscussion
-        @cache = {}
+    # don't assign null/undefined to state key
+    newState = {}
+    newState.updatedDiscussions = updatedDiscussions if updatedDiscussions?
+    newState.updatedRelatedDiscussions = updatedRelatedDiscussions if updatedRelatedDiscussions?
 
-      @setState
-        relatedDiscussions: existingDiscussions
+    @setState newState
 
 
   discussions: =>
@@ -99,7 +96,7 @@ export class Main extends React.PureComponent
               if @props.discussions.length == 0
                 div className: 'modding-profile-list__empty', trans('beatmap_discussions.index.none_found')
               else
-                for discussion in @props.discussions when discussion?
+                for discussion in @state.discussions when discussion?
                   div
                     className: 'modding-profile-list__row'
                     key: discussion.id,

@@ -19,6 +19,7 @@ import DetailBar from 'profile-page/detail-bar'
 import headerLinks from 'profile-page/header-links'
 import * as React from 'react'
 import { a, button, div, i, span } from 'react-dom-factories'
+import { updateDiscussionsWithPost } from 'utils/beatmapset-discussion-helper'
 import { bottomPage } from 'utils/html'
 import { jsonClone } from 'utils/json'
 import { pageChange } from 'utils/page-change'
@@ -99,31 +100,22 @@ export class Main extends React.PureComponent
 
     # update posts
     existingPostIndex = @state.posts.findIndex (x) -> x.id == post.id
-    existingPosts = jsonClone(@state.posts)
 
     if existingPostIndex > -1
-      existingPost = existingPosts[existingPostIndex]
+      updatedPosts = jsonClone(@state.posts)
+      existingPost = updatedPosts[existingPostIndex]
 
       # merge with any existing data added from anywhere else.
-      existingPosts[existingPostIndex] = Object.assign({}, existingPost, post)
+      updatedPosts[existingPostIndex] = Object.assign({}, existingPost, post)
 
     # update if in discussion.starting_post
-    existingDiscussions = null
-    existingDiscussionIndex = @state.discussions.findIndex (x) -> x.id == post.beatmapset_discussion_id
+    updatedDiscussions = updateDiscussionsWithPost(@state.discussions, post)
 
-    if existingDiscussionIndex > -1
-      existingDiscussion = @state.discussions[existingDiscussionIndex]
+    @cache = {}
 
-      if existingDiscussion.starting_post.id == post.id
-        existingDiscussions = jsonClone(@state.discussions)
-        existingDiscussion.starting_post = Object.assign({}, existingDiscussion.starting_post, post)
-        existingDiscussions[existingDiscussionIndex] = existingDiscussion
-        @cache = {}
-
-    newState =
-      posts: existingPosts
-
-    newState.discussions = existingDiscussions if existingDiscussions?
+    newState = {}
+    newState.posts = updatedPosts if updatedPosts?
+    newState.discussions = updatedDiscussions if updatedDiscussions?
 
     @setState newState
 

@@ -417,6 +417,24 @@ export function stateFromDiscussion(discussion: BeatmapsetDiscussionJson) {
   };
 }
 
+export function updateDiscussionsWithPost(discussions: BeatmapsetDiscussionJsonForBundle[], post: BeatmapsetDiscussionPostJson) {
+  const existingDiscussionIndex = discussions.findIndex((x) => x.id === post.beatmapset_discussion_id);
+  let updatedDiscussions: BeatmapsetDiscussionJson[] | null = null;
+
+  if (existingDiscussionIndex > -1) {
+    const existingDiscussion = discussions[existingDiscussionIndex];
+
+    if (existingDiscussion.starting_post.id === post.id) {
+      updatedDiscussions = [...discussions];
+      existingDiscussion.starting_post = { ...existingDiscussion.starting_post, ...post };
+      updatedDiscussions[existingDiscussionIndex] = existingDiscussion;
+    }
+  }
+
+  return updatedDiscussions;
+}
+
+
 export function validMessageLength(message?: string | null, isTimeline = false) {
   if (!message?.length) return false;
 
