@@ -14,6 +14,7 @@ use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Follow;
 use App\Models\Score;
+use App\Models\User;
 
 class BeatmapsetSearch extends RecordSearch
 {
@@ -85,8 +86,8 @@ class BeatmapsetSearch extends RecordSearch
         $this->addRecommendedFilter($nested);
 
         $this->addSimpleFilters($query, $nested);
+        $this->addCreatorFilter($query, $nested);
         $this->addTextFilter($query, 'artist', ['artist', 'artist_unicode']);
-        $this->addTextFilter($query, 'creator', ['creator']);
 
         $query->filter([
             'nested' => [
@@ -146,6 +147,23 @@ class BeatmapsetSearch extends RecordSearch
     private function addBlockedUsersFilter($query)
     {
         $query->mustNot(['terms' => ['user_id' => $this->params->blockedUserIds()]]);
+    }
+
+    private function addCreatorFilter(BoolQuery $query, BoolQuery $nested): void
+    {
+        $value = $this->params->creator;
+
+        if (!present($value)) {
+            return;
+        }
+
+        $user = User::lookup($value);
+
+        if ($user === null) {
+            $this->addTextFilter($query, 'creator', ['creator']);
+        } else {
+            $nested->filter(['term' => ['beatmaps.user_id' => $user->getKey()]]);
+        }
     }
 
     private function addExtraFilter($query)
