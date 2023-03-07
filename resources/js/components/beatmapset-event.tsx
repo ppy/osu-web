@@ -182,12 +182,12 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
         }
         break;
       case 'genre_edit':
-          params.new = trans(`beatmaps.genre.${simpleKebab(params.new)}`);
-          params.old = trans(`beatmaps.genre.${simpleKebab(params.old)}`);
+        params.new = trans(`beatmaps.genre.${simpleKebab(params.new)}`);
+        params.old = trans(`beatmaps.genre.${simpleKebab(params.old)}`);
         break;
       case 'language_edit':
-          params.new = trans(`beatmaps.language.${simpleKebab(params.new)}`);
-          params.old = trans(`beatmaps.language.${simpleKebab(params.old)}`);
+        params.new = trans(`beatmaps.language.${simpleKebab(params.new)}`);
+        params.old = trans(`beatmaps.language.${simpleKebab(params.old)}`);
         break;
       case 'nominate': {
         const modes = this.props.event.comment?.modes;
