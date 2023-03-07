@@ -28,9 +28,6 @@
 
     <div class="forum-item__latest-post">
         @if (($lastTopic = $lastTopics[$forum->getKey()] ?? null) !== null)
-            <span class="forum-item__latest-post-label">
-                {{ osu_trans('forum.forums.latest_post') }}
-            </span>
             <a
                 class="u-ellipsis-overflow"
                 href="{{ post_url($lastTopic->topic_id, "unread", false) }}"
