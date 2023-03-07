@@ -11,6 +11,7 @@ import { deletedUser } from 'models/user'
 import * as React from 'react'
 import { a, div, img } from 'react-dom-factories'
 import { makeUrl } from 'utils/beatmapset-discussion-helper'
+import { jsonClone } from 'utils/json'
 import { trans } from 'utils/lang'
 import { nextVal } from 'utils/seq'
 el = React.createElement
@@ -46,40 +47,22 @@ export class Main extends React.PureComponent
 
 
   discussionUpdate: (_e, options) =>
-    {beatmapset} = options
-    return unless beatmapset?
+    { post } = options
+    return unless post?
 
-    discussions = [@state.discussions...]
-    users = [@state.users...]
-    relatedDiscussions = [@state.relatedDiscussions...]
+    existingDiscussionIndex = @state.relatedDiscussions.findIndex (x) -> x.id == post.beatmapset_discussion_id
 
-    discussionIds = _.map discussions, 'id'
-    userIds = _.map users, 'id'
+    if existingDiscussionIndex > -1
+      existingDiscussion = @state.relatedDiscussions[existingDiscussionIndex]
 
-    # Due to the entire hierarchy of discussions being sent back when a post is updated (instead of just the modified post),
-    #   we need to iterate over each discussion and their posts to extract the updates we want.
-    _.each beatmapset.discussions, (newDiscussion) ->
-      if discussionIds.includes(newDiscussion.id)
-        discussion = _.find discussions, id: newDiscussion.id
-        discussions = _.reject discussions, id: newDiscussion.id
-        newDiscussion = _.merge(discussion, newDiscussion)
-        # The discussion list shows discussions started by the current user, so it can be assumed that the first post is theirs
-        newDiscussion.starting_post = newDiscussion.posts[0]
-        discussions.push(newDiscussion)
-      else
-        relatedDiscussions.push(newDiscussion)
+      if existingDiscussion.starting_post.id == post.id
+        existingDiscussions = jsonClone(@state.relatedDiscussions)
+        existingDiscussion.starting_post = Object.assign({}, existingDiscussion.starting_post, post)
+        existingDiscussions[existingDiscussionIndex] = existingDiscussion
+        @cache = {}
 
-    _.each beatmapset.related_users, (newUser) ->
-      if userIds.includes(newUser.id)
-        users = _.reject users, id: newUser.id
-
-      users.push(newUser)
-
-    @cache.users = @cache.discussions = @cache.beatmaps = @cache.beatmapsets = @state.relatedDiscussions = null
-    @setState
-      discussions: _.reverse(_.sortBy(discussions, (d) -> Date.parse(d.starting_post.created_at)))
-      users: users
-      relatedDiscussions: relatedDiscussions
+      @setState
+        relatedDiscussions: existingDiscussions
 
 
   discussions: =>
