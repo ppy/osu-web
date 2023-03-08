@@ -60,6 +60,11 @@ return [
     'show' => [
         'discussion' => 'Обговорення',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
             'by_artist' => 'від :artist',
             'favourite' => 'Додати мапу до вподобаних',

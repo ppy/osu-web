@@ -48,7 +48,13 @@ class EsDocument implements ShouldQueue
         }
 
         $class = $this->modelMeta['class'];
-        $model = $class::find($id);
+        $query = $class::query();
+
+        if ($class::hasMacro('withTrashed')) {
+            $query->withTrashed();
+        }
+
+        $model = $query->find($id);
 
         if ($model !== null) {
             $model->esIndexDocument();

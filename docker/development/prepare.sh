@@ -69,7 +69,7 @@ if [ ! -f .docker/.my.cnf ]; then
     cp .docker/.my.cnf.example .docker/.my.cnf
 fi
 
-if [ ! -f database/ip2asn.tsv ]; then
+if [ ! -f database/ip2asn/v6.tsv ]; then
     _run artisan ip2asn:update
 fi
 

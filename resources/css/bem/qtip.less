@@ -40,10 +40,11 @@
   &--user-list {
     z-index: @z-index--user-card-tooltip !important;
     max-width: unset;
-    background-color: hsla(var(--hsl-b6), 0.75);
-    padding: 5px 1px; // combined with .qtip-content's 5px 9px
+    padding: 5px;
 
-    .default-border-radius();
-    .default-box-shadow();
+    > .qtip-content {
+      overflow: unset;
+      padding: 0;
+    }
   }
 }

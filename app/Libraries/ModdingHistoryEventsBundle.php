@@ -121,7 +121,8 @@ class ModdingHistoryEventsBundle
                 $array['posts'] = json_collection(
                     $this->getPosts(),
                     'BeatmapDiscussionPost',
-                    ['beatmap_discussion.beatmapset']
+                    // TODO: should get beatmapset from top level beatmapset key instead of embedded property.
+                    ['beatmap_discussion.beatmapset.availability']
                 );
 
                 $array['votes'] = $this->getVotes();

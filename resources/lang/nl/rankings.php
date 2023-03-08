@@ -23,14 +23,14 @@ return [
         'multiplayer' => 'multiplayer',
         'performance' => 'prestatie',
         'score' => 'score',
-        'seasons' => '',
+        'seasons' => 'seizoenen',
     ],
 
     'seasons' => [
-        'empty' => '',
-        'ongoing' => '',
-        'room_count' => '',
-        'url' => '',
+        'empty' => 'Er zijn nog geen ruimtes in dit seizoen.',
+        'ongoing' => 'Dit seizoen is nog steeds gaande (er zullen meer afspeellijsten toegevoegd worden).',
+        'room_count' => 'Aantal afspeellijsten',
+        'url' => 'Geef meer informatie weer over dat seizoen.',
     ],
 
     'spotlight' => [

@@ -23,14 +23,14 @@ return [
         'multiplayer' => '멀티플레이어',
         'performance' => '퍼포먼스',
         'score' => '점수',
-        'seasons' => '',
+        'seasons' => '시즌',
     ],
 
     'seasons' => [
-        'empty' => '',
-        'ongoing' => '',
-        'room_count' => '',
-        'url' => '',
+        'empty' => '이 시즌에는 등록된 방이 없습니다.',
+        'ongoing' => '시즌이 진행 중입니다 (더 많은 플레이리스트가 추가될 예정이에요).',
+        'room_count' => '플레이리스트 갯수',
+        'url' => '해당 시즌의 자세한 정보를 표시합니다.',
     ],
 
     'spotlight' => [

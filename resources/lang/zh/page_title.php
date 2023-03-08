@@ -101,7 +101,7 @@ return [
             '_' => '表现',
         ],
         'seasons_controller' => [
-            '_' => '',
+            '_' => '排名',
         ],
         'tournaments_controller' => [
             '_' => '比赛',

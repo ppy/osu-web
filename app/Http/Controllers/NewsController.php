@@ -93,12 +93,12 @@ class NewsController extends Controller
             return ext_view("news.index-{$format}", compact('posts'), $format);
         }
 
-        $nextCursor = $hasMore ? $search['cursorHelper']->next($posts) : null;
-        $postsJson = array_merge([
+        $postsJson = [
             'news_posts' => json_collection($posts, 'NewsPost', ['preview']),
             'news_sidebar' => $this->sidebarMeta($posts[0] ?? null),
             'search' => $search['params'],
-        ], cursor_for_response($nextCursor));
+            ...cursor_for_response($search['cursorHelper']->next($posts, $hasMore)),
+        ];
 
         if (is_json_request()) {
             return $postsJson;

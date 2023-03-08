@@ -37,20 +37,14 @@ export class CommentShowMore extends React.PureComponent
 
     blockClass = classWithModifiers bn, @props.modifiers
 
+    # TODO: pass as props instead of checking modifiers
     if 'top' in @props.modifiers
-      remaining = @props.total - @props.comments.length
-      modifiers = ['comments']
-      if 'changelog' in @props.modifiers
-        modifiers.push('t-greyviolet-darker')
-      else
-        modifiers.push('t-ddd')
-
       el ShowMoreLink,
         loading: @state.loading
         hasMore: true
         callback: @load
-        modifiers: modifiers
-        remaining: remaining
+        modifiers: 'comments'
+        remaining: @props.total - @props.comments.length
     else
       div className: blockClass,
         if @state.loading

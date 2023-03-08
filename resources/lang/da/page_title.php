@@ -108,7 +108,7 @@ return [
         ],
         'users_controller' => [
             '_' => 'spiller info',
-            'create' => '',
+            'create' => 'opret konto',
             'disabled' => 'notits',
         ],
         'wiki_controller' => [

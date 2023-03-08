@@ -157,8 +157,8 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Contul tău a fost restricționat!',
-        'message' => 'Când ești restricționat, nu vei putea să interacționezi cu alți jucători și scorurile tale vor fi vizibile doar pentru tine. Acesta este de obicei rezultatul unui proces automat și, de obicei, în termen de 24 de ore. Dacă dorești să contești, te rugăm să <a href="mailto:accounts@ppy.sh">contactezi asistența</a>.',
-        'message_link' => '',
+        'message' => 'Cât timp ești restricționat, nu vei putea să interacționezi cu alți jucători și scorurile tale vor fi vizibile doar pentru tine. Acesta este, de obicei, rezultatul unui proces automat și, de obicei, se rezolvă în termen de 24 de ore. :link',
+        'message_link' => 'Verificați această pagină pentru a afla mai multe.',
     ],
     'show' => [
         'age' => ':age ani',
@@ -271,7 +271,7 @@ return [
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Istoricul reluărilor vizionate',
-                    'count_label' => 'Reluări vizionate',
+                    'count_label' => 'Reluări Vizionate',
                 ],
             ],
             'kudosu' => [
@@ -346,10 +346,10 @@ return [
                 'title' => 'Meciuri multiplayer',
             ],
             'top_ranks' => [
-                'download_replay' => 'Descarcă reluarea',
+                'download_replay' => 'Descarcă Reluarea',
                 'not_ranked' => 'Numai beatmap-uri clasate acordă pp',
                 'pp_weight' => 'ponderat :percentage',
-                'view_details' => 'Vezi detalii',
+                'view_details' => 'Vezi Detalii',
                 'title' => 'Clasamente',
 
                 'best' => [

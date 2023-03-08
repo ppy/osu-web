@@ -401,6 +401,10 @@
           {
             "Name": "always_play_tail_sample",
             "Type": "boolean"
+          },
+          {
+            "Name": "fade_hit_circle_early",
+            "Type": "boolean"
           }
         ],
         "IncompatibleMods": [
@@ -1369,7 +1373,7 @@
       {
         "Acronym": "RX",
         "Name": "Relax",
-        "Description": "No ninja-like spinners, demanding drumrolls or unexpected katu's.",
+        "Description": "No ninja-like spinners, demanding drumrolls or unexpected katus.",
         "Type": "Automation",
         "Settings": [],
         "IncompatibleMods": [

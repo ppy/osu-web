@@ -101,7 +101,7 @@ return [
             '_' => 'перформансе',
         ],
         'seasons_controller' => [
-            '_' => '',
+            '_' => 'рангови',
         ],
         'tournaments_controller' => [
             '_' => 'турнири',

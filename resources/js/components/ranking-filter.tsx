@@ -11,7 +11,7 @@ import { currentUrlParams, navigate } from 'utils/turbolinks';
 import { updateQueryString } from 'utils/url';
 import { Sort } from './sort';
 
-type RankingTypes = 'performance' | 'charts' | 'scores' | 'country';
+export type RankingType = 'performance' | 'charts' | 'scores' | 'country';
 
 interface CountryOption extends Option {
   id: string | null;
@@ -20,7 +20,7 @@ interface CountryOption extends Option {
 interface Props {
   countries?: Required<CountryJson>[];
   gameMode: GameMode;
-  type: RankingTypes;
+  type: RankingType;
   variants?: string[];
 }
 

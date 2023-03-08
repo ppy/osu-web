@@ -11,7 +11,7 @@
 
     <div class="osu-page">
         <ul class="page-mode">
-            @foreach(['standard', 'chart', 'theme', 'artist'] as $mode)
+            @foreach(App\Models\BeatmapPack::TAG_MAPPINGS as $mode => $tagPrefix)
                 <li class="page-mode__item">
                     @include('packs._type', ['current' => $type, 'type' => $mode, 'title' => osu_trans("beatmappacks.mode.{$mode}")])
             @endforeach
@@ -19,11 +19,11 @@
 
         <div class="beatmap-packs js-accordion">
             @foreach ($packs as $pack)
-                <div class="beatmap-pack js-beatmap-pack js-accordion__item" data-pack-id="{{ $pack->getKey() }}">
+                <div class="beatmap-pack js-beatmap-pack js-accordion__item" data-pack-tag="{{ $pack->tag }}">
                     <a href="{{ route('packs.show', $pack) }}" class="beatmap-pack__header js-accordion__item-header">
                         <div class="beatmap-pack__name">{{ $pack->name }}</div>
                         <div class="beatmap-pack__details">
-                            <span class="beatmap-pack__date">{{ $pack->date->formatLocalized('%Y-%m-%d') }}</span>
+                            <span class="beatmap-pack__date">{{ json_date($pack->date) }}</span>
                             <span class="beatmap-pack__author">by </span>
                             <span class="beatmap-pack__author beatmap-pack__author--bold">{{ $pack->author }}</span>
                         </div>

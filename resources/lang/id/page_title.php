@@ -101,7 +101,7 @@ return [
             '_' => 'performa',
         ],
         'seasons_controller' => [
-            '_' => '',
+            '_' => 'peringkat',
         ],
         'tournaments_controller' => [
             '_' => 'turnamen',

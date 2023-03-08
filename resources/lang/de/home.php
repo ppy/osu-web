@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'in foren suchen',
                 'forum_children' => 'subforen einbeziehen',
+                'include_deleted' => '',
                 'topic_id' => 'Thread #',
                 'username' => 'autor',
             ],
@@ -83,6 +84,7 @@ return [
         'macos-fallback' => 'macOS-benutzer',
         'mirror' => 'mirror',
         'or' => 'oder',
+        'os_version_or_later' => '',
         'other_os' => 'andere Plattformen',
         'quick_start_guide' => 'schnellstart',
         'tagline' => "lass uns<br>loslegen!",

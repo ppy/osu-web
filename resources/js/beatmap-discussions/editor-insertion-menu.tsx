@@ -13,7 +13,7 @@ import { nextVal } from 'utils/seq';
 import { SlateContext } from './slate-context';
 
 interface Props {
-  currentBeatmap: BeatmapExtendedJson;
+  currentBeatmap: BeatmapExtendedJson | null;
 }
 
 export class EditorInsertionMenu extends React.Component<Props> {

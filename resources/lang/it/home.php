@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'cerca nel forum',
                 'forum_children' => 'includi subforum',
+                'include_deleted' => '',
                 'topic_id' => 'discussione #',
                 'username' => 'autore',
             ],
@@ -83,6 +84,7 @@ return [
         'macos-fallback' => 'utenti macOS',
         'mirror' => 'mirror',
         'or' => 'oppure',
+        'os_version_or_later' => '',
         'other_os' => 'altre piattaforme',
         'quick_start_guide' => 'guida iniziale',
         'tagline' => "iniziamo<br>subito!",

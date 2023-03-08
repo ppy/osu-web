@@ -57,18 +57,18 @@ class BuildTransformer extends TransformerAbstract
 
     public function includeVersions(Build $build)
     {
-        return $this->item($build, function ($build) {
-            $versions = [];
+        $versions = [];
 
-            if ($build->versionNext() !== null) {
-                $versions['next'] = json_item($build->versionNext(), 'Build');
-            }
+        $next = $build->versionNext();
+        if ($next !== null) {
+            $versions['next'] = json_item($next, $this);
+        }
 
-            if ($build->versionPrevious() !== null) {
-                $versions['previous'] = json_item($build->versionPrevious(), 'Build');
-            }
+        $previous = $build->versionPrevious();
+        if ($previous !== null) {
+            $versions['previous'] = json_item($previous, $this);
+        }
 
-            return $versions;
-        });
+        return $this->primitive($versions);
     }
 }

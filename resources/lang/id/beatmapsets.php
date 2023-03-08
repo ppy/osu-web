@@ -60,6 +60,11 @@ return [
     'show' => [
         'discussion' => 'Diskusi',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
             'by_artist' => 'oleh :artist',
             'favourite' => 'Tambahkan beatmap ini ke dalam daftar Beatmap Favorit',

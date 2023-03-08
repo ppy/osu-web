@@ -157,8 +157,8 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Je account is gerestrict!',
-        'message' => 'Zolang je gerestrict bent, kan je niet communiceren met andere spelers en kan enkel jij je scores zien. Meestal is dit het resultaat van een geautomatiseerd proces en wordt het binnen 24 uur verwijderd. Als je in beroep wil gaan, <a href="mailto:accounts@ppy.sh">contacteer dan support</a>.',
-        'message_link' => '',
+        'message' => 'Zolang je gerestrict bent, kun je niet communiceren met andere spelers en zijn je scores enkel voor jou zichtbaar. Meestal gebeurt deze restrictie automatisch en wordt ze opgeheven binnen 24 uur. :link',
+        'message_link' => 'Check deze pagina voor meer informatie.',
     ],
     'show' => [
         'age' => ':age jaar oud',

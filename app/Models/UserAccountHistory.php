@@ -23,19 +23,21 @@ use Carbon\Carbon;
  */
 class UserAccountHistory extends Model
 {
-    protected $table = 'osu_user_banhistory';
-    protected $primaryKey = 'ban_id';
-
-    protected $casts = ['permanent' => 'boolean'];
-    protected $dates = ['timestamp'];
-    public $timestamps = false;
-
     const TYPES = [
         'note' => 0,
         'restriction' => 1,
         'silence' => 2,
         'tournament_ban' => 3,
     ];
+
+    public $timestamps = false;
+
+    protected $casts = [
+        'permanent' => 'boolean',
+        'timestamp' => 'datetime',
+    ];
+    protected $primaryKey = 'ban_id';
+    protected $table = 'osu_user_banhistory';
 
     public static function addNote($user, $message, $actor = null)
     {

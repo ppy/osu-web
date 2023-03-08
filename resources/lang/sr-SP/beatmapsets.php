@@ -65,6 +65,11 @@ return [
     'show' => [
         'discussion' => 'Дискусија',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
             'by_artist' => 'од :artist',
             'favourite' => 'Означите ову мапу као омиљену',

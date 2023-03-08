@@ -313,8 +313,8 @@ class OsuAuthorize
         $this->ensureCleanRecord($user);
         $this->ensureHasPlayed($user);
 
-        if ($beatmapset->discussion_locked) {
-            return 'beatmap_discussion_post.store.beatmapset_locked';
+        if ($beatmapset->discussion_locked || $beatmapset->downloadLimited()) {
+            return 'beatmapset.discussion_locked';
         }
 
         return 'ok';
@@ -456,7 +456,7 @@ class OsuAuthorize
         }
 
         if ($post->beatmapDiscussion->beatmapset->discussion_locked) {
-            return 'beatmap_discussion_post.store.beatmapset_locked';
+            return 'beatmapset.discussion_locked';
         }
 
         return 'ok';
@@ -487,8 +487,9 @@ class OsuAuthorize
             return $prefix.'resolved';
         }
 
-        if ($post->beatmapDiscussion->beatmapset->discussion_locked) {
-            return 'beatmap_discussion_post.store.beatmapset_locked';
+        $beatmapset = $post->beatmapDiscussion->beatmapset;
+        if ($beatmapset->discussion_locked || $beatmapset->downloadLimited()) {
+            return 'beatmapset.discussion_locked';
         }
 
         return 'ok';
@@ -600,13 +601,17 @@ class OsuAuthorize
         $this->ensureCleanRecord($user);
         $this->ensureHasPlayed($user);
 
+        // Moderators can't reply if download limited.
+        if ($beatmapset->downloadLimited()) {
+            return 'beatmapset.discussion_locked';
+        }
+
         if ($user->isModerator()) {
             return 'ok';
         }
 
         if ($beatmapset->discussion_locked) {
-            // TODO: key should be changed.
-            return 'beatmap_discussion_post.store.beatmapset_locked';
+            return 'beatmapset.discussion_locked';
         }
 
         return 'ok';
@@ -721,6 +726,15 @@ class OsuAuthorize
             if ($user->getKey() === $beatmapset->user_id) {
                 return 'ok';
             }
+        }
+
+        return 'unauthorized';
+    }
+
+    public function checkBeatmapsetShowDeleted(?User $user): string
+    {
+        if ($user !== null && $user->isModerator()) {
+            return 'ok';
         }
 
         return 'unauthorized';

@@ -83,7 +83,10 @@
         @if (!isset($blank))
             @include("layout.header")
 
-            <div class="osu-page osu-page--notification-banners js-notification-banners">
+            <div
+                class="osu-page osu-page--notification-banners js-notification-banners js-sync-height--reference"
+                data-sync-height-target="notification-banners"
+            >
                 @stack('notification_banners')
             </div>
         @endif

@@ -127,7 +127,7 @@ export class Main extends React.Component {
       <NotificationDeleteButton
         isDeleting={type.isDeleting}
         onDelete={this.handleDelete}
-        text={trans('notifications.delete', { type: trans(`notifications.filters.${type.name ?? '_'}`) })}
+        text={trans('notifications.delete', { type: trans(`notifications.action_type.${type.name ?? '_'}`) })}
       />
     );
   }
@@ -141,7 +141,7 @@ export class Main extends React.Component {
       <NotificationReadButton
         isMarkingAsRead={type.isMarkingAsRead}
         onMarkAsRead={this.handleMarkAsRead}
-        text={trans('notifications.mark_read', { type: trans(`notifications.filters.${type.name ?? '_'}`) })}
+        text={trans('notifications.mark_read', { type: trans(`notifications.action_type.${type.name ?? '_'}`) })}
       />
     );
   }

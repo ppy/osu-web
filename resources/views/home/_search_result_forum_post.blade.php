@@ -22,7 +22,7 @@
             $title = $search->getHighlights($entry, 'topic_title') ?? $topic->topic_title;
         }
     @endphp
-    <div class="search-entry">
+    <div class="{{ class_with_modifiers('search-entry', ['deleted' => $entry->source('is_deleted')]) }}">
         @include('objects.search._forum_post', [
             'user' => $user,
             'title' => $title,

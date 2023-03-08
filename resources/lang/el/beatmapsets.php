@@ -60,6 +60,11 @@ return [
     'show' => [
         'discussion' => 'Συζήτηση',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
             'by_artist' => '',
             'favourite' => 'Προσθέστε αυτό το beatmapset στα αγαπημένα',

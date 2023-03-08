@@ -53,11 +53,22 @@ export default class HeaderV4 extends React.Component<Props> {
     linksBreadcrumb: false,
   };
 
-  render(): React.ReactNode {
+  private cancelSyncHeight?: () => void;
+
+  componentDidMount() {
+    this.cancelSyncHeight = core.reactTurbolinks.runAfterPageLoad(() => {
+      $.publish('sync-height:force');
+    });
+  }
+
+  componentWillUnmount() {
+    this.cancelSyncHeight?.();
+  }
+
+  render() {
     const classNames = classWithModifiers(
       'header-v4',
       presence(this.props.theme),
-      { restricted: core.currentUser?.is_restricted ?? false },
       this.props.modifiers,
     );
 
@@ -70,6 +81,11 @@ export default class HeaderV4 extends React.Component<Props> {
               style={{ backgroundImage: urlPresence(this.props.backgroundImage) }}
             />
           </div>
+
+          <div
+            className='hidden-xs js-sync-height--target'
+            data-sync-height-id='notification-banners'
+          />
 
           <div className='header-v4__content'>
             {this.props.contentPrepend}

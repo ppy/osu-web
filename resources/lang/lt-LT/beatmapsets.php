@@ -60,6 +60,11 @@ return [
     'show' => [
         'discussion' => 'Diskusija',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
             'by_artist' => ':artist',
             'favourite' => 'Pridėti bitmapą į mėgstamus',

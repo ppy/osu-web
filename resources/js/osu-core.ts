@@ -13,7 +13,6 @@ import ForumPostReport from 'core/forum/forum-post-report';
 import Localtime from 'core/localtime';
 import MobileToggle from 'core/mobile-toggle';
 import OsuAudio from 'core/osu-audio/main';
-import OsuLayzr from 'core/osu-layzr';
 import ReactTurbolinks from 'core/react-turbolinks';
 import StickyHeader from 'core/sticky-header';
 import Timeago from 'core/timeago';
@@ -51,7 +50,6 @@ export default class OsuCore {
   readonly mobileToggle = new MobileToggle();
   notificationsWorker: NotificationsWorker;
   readonly osuAudio: OsuAudio;
-  readonly osuLayzr = new OsuLayzr();
   readonly reactTurbolinks: ReactTurbolinks;
   readonly referenceLinkTooltip = new ReferenceLinkTooltip();
   readonly scorePins = new ScorePins();

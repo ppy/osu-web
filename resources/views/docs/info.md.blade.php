@@ -25,6 +25,9 @@ For a full list of changes, see the
 
 ## Breaking Changes
 
+### 2023-02-17
+- `content_html` in [ChatMessage](#chatmessage) has been deprecated; pre-rendered markdown will be removed.
+
 ### 2023-01-05
 - `new_channel_id` in [Create New PM](#create-new-pm) response has been deprecated, use `channel.channel_id` instead.
 

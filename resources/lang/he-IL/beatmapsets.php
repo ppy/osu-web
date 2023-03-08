@@ -60,6 +60,11 @@ return [
     'show' => [
         'discussion' => 'דיון',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
             'by_artist' => '',
             'favourite' => 'הוסף מפה למועדפות',

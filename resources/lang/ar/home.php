@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'البحث في المنتديات',
                 'forum_children' => 'تضمين المنتديات الفرعية',
+                'include_deleted' => '',
                 'topic_id' => 'الموضوع #',
                 'username' => 'الكاتب',
             ],
@@ -83,6 +84,7 @@ return [
         'macos-fallback' => 'مستخدمين MacOS',
         'mirror' => 'مُباشر',
         'or' => '',
+        'os_version_or_later' => '',
         'other_os' => '',
         'quick_start_guide' => '',
         'tagline' => "لنجعلك<br>مستعداََ!",

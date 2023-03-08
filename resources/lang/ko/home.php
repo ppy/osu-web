@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => '포럼에서 검색하기',
                 'forum_children' => '서브포럼을 포함하여 검색',
+                'include_deleted' => '',
                 'topic_id' => '주제 #',
                 'username' => '글쓴이',
             ],
@@ -83,6 +84,7 @@ return [
         'macos-fallback' => 'macOS 사용자',
         'mirror' => '미러',
         'or' => '혹은',
+        'os_version_or_later' => '',
         'other_os' => '다른 플랫폼',
         'quick_start_guide' => '빠른 시작 안내',
         'tagline' => "시작해봐요!",

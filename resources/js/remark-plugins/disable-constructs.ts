@@ -5,7 +5,7 @@ import type Constructs from 'micromark-core-commonmark';
 import type { Processor } from 'unified';
 import add from './add';
 
-type DisabledType = 'default' | 'editor' | 'reviews';
+type DisabledType = 'chat' | 'default' | 'editor' | 'reviews';
 
 interface Options {
   type?: DisabledType;
@@ -28,6 +28,13 @@ const defaultDisabled: Construct[] = [
 
 // list of constructs to disable
 const disabled: Record<DisabledType, Construct[]> = {
+  chat: [
+    'definition',
+    'htmlFlow',
+    'htmlText',
+    'labelStartImage',
+    'setextUnderline',
+  ],
   default: defaultDisabled,
   // Editor has to disable nearly everything to show mostly text.
   editor: [
@@ -48,7 +55,6 @@ const disabled: Record<DisabledType, Construct[]> = {
   ],
 };
 
-// Limit the types allowed for reviews.
 export default function disableConstructs(this: Processor, options?: Options) {
   add(
     this,

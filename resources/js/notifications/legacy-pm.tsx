@@ -10,7 +10,6 @@ import { transChoice } from 'utils/lang';
 
 @observer
 export default class LegacyPm extends React.Component {
-  handleMarkAsRead: any;
   render() {
     const item = new LegacyPmNotification();
 

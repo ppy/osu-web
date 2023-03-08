@@ -23,14 +23,14 @@ return [
         'multiplayer' => 'hra pro více hráčů',
         'performance' => 'výkon',
         'score' => 'skóre',
-        'seasons' => '',
+        'seasons' => 'sezóny',
     ],
 
     'seasons' => [
-        'empty' => '',
-        'ongoing' => '',
-        'room_count' => '',
-        'url' => '',
+        'empty' => 'V této sezóně nejsou žádné místnosti.',
+        'ongoing' => 'Tato sezóna stále probíhá (více playlistů bude přidáno průběhem času).',
+        'room_count' => 'Počet playlistů',
+        'url' => 'Zobrazit více informací pro tuto sezónu.',
     ],
 
     'spotlight' => [

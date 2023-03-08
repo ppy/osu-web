@@ -54,16 +54,16 @@ return [
 
     'create' => [
         'form' => [
-            'password' => '',
-            'password_confirmation' => '',
-            'submit' => '',
-            'user_email' => '',
-            'user_email_confirmation' => '',
-            'username' => '',
+            'password' => 'geslo',
+            'password_confirmation' => 'potrditev gesla',
+            'submit' => 'ustvari račun',
+            'user_email' => 'e-pošta',
+            'user_email_confirmation' => 'potrditev e-pošte',
+            'username' => 'uporabniško ime',
 
             'tos_notice' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'z ustvarjanjem računa se strinjate z :link',
+                'link' => 'pogoji storitve',
             ],
         ],
     ],
@@ -158,7 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'Tvoj račun je omejen!',
         'message' => 'Med omejitvijo ne bo možna komunikacija z drugimi igralci, tvoji rezultati pa bodo vidni samo tebi. To je običajno rezultat samodejnega postopka in se običajno odpravi v 24 urah. Če se želiš pritožiti na omejitev, se obrni na <a href="mailto:accounts@ppy.sh">podporo</a>.',
-        'message_link' => '',
+        'message_link' => 'Preverite to stran, če želite izvedeti več.',
     ],
     'show' => [
         'age' => ':age let',
@@ -468,8 +468,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
-        'from_client' => '',
-        'from_web' => '',
+        'from_client' => 'namesto tega se registrirajte prek odjemalca igre!',
+        'from_web' => 'prosimo dokončajte registracijo z osu! spletno stranjo',
         'saved' => 'Uporabnik ustvarjen',
     ],
     'verify' => [

@@ -121,7 +121,7 @@
     }
 
     &--unread {
-      border: 2px solid @osu-colour-h1;
+      border: 2px solid var(--forum-bg);
     }
   }
 
@@ -158,7 +158,7 @@
     width: var(--diameter);
     height: var(--diameter);
     border-radius: 50%;
-    background-color: hsl(var(--hsl-h1));
+    background-color: var(--forum-bg);
     top: calc(100% + 2px);
     right: calc(50% - var(--diameter) / 2);
 
@@ -179,13 +179,5 @@
     .link-hover({
       color: @osu-colour-c1;
     });
-  }
-
-  &__user-icon {
-    background-color: @user-color-default;
-    height: 0.6em;
-    width: 0.6em;
-    display: inline-block;
-    border-radius: 10000px;
   }
 }

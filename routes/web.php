@@ -36,7 +36,6 @@ Route::group(['middleware' => ['web']], function () {
         Route::resource('artists/tracks', 'ArtistTracksController', ['only' => 'show']);
 
         Route::resource('packs', 'BeatmapPacksController', ['only' => ['index', 'show']]);
-        Route::get('packs/{pack}/raw', 'BeatmapPacksController@raw')->name('packs.raw');
 
         Route::group(['as' => 'beatmaps.', 'prefix' => '{beatmap}'], function () {
             Route::get('scores/users/{user}', 'BeatmapsController@userScore');
@@ -581,4 +580,5 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
     });
 });
 
+Route::get('opensearch.xml', 'HomeController@opensearch');
 Route::any('{catchall}', 'FallbackController@index')->where('catchall', '.*')->fallback();

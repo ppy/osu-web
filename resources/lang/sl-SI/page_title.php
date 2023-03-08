@@ -101,14 +101,14 @@ return [
             '_' => 'moč',
         ],
         'seasons_controller' => [
-            '_' => '',
+            '_' => 'uvrstitve',
         ],
         'tournaments_controller' => [
             '_' => 'turnirji',
         ],
         'users_controller' => [
             '_' => 'informacije o igralcu',
-            'create' => '',
+            'create' => 'ustvari račun',
             'disabled' => 'obvestilo',
         ],
         'wiki_controller' => [

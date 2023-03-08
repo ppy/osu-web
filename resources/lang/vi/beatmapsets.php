@@ -60,6 +60,11 @@ return [
     'show' => [
         'discussion' => 'Góc Thảo Luận',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
             'by_artist' => 'bởi :artist',
             'favourite' => 'Yêu thích beatmapset này',
