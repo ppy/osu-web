@@ -761,6 +761,7 @@ function ext_view($view, $data = null, $type = null, $status = null)
         'html' => 'text/html',
         'js' => 'application/javascript',
         'json' => 'application/json',
+        'opensearch' => 'application/opensearchdescription+xml',
         'rss' => 'application/rss+xml',
     ];
 
