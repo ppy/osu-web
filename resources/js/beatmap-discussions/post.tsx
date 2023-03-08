@@ -51,7 +51,7 @@ interface Props {
 }
 
 @observer
-export default class Post extends React.Component<Props> {
+export default class Post extends React.Component<React.PropsWithChildren<Props>> {
   static contextType = DiscussionsStateContext;
   declare context: React.ContextType<typeof DiscussionsStateContext>;
 
@@ -163,6 +163,7 @@ export default class Post extends React.Component<Props> {
               user={this.props.user}
             />
           )}
+          {this.props.children}
           {this.editing ? this.renderMessageEditor() : this.renderMessageViewer()}
         </div>
       </div>

@@ -156,7 +156,6 @@ export class Discussion extends React.Component<Props> {
             <div className={`${bn}__top-message`}>
               {this.renderPost(firstPost, 'discussion')}
             </div>
-            {this.renderPostButtons(firstPost.id)}
           </div>
           {this.postFooter()}
           <div className={lineClasses} />
@@ -238,7 +237,10 @@ export class Discussion extends React.Component<Props> {
         type={type}
         user={user}
         users={this.props.users}
-      />
+      >
+
+        {type === 'discussion' && this.renderPostButtons(post.id)}
+      </Post>
     );
   }
 
@@ -249,13 +251,6 @@ export class Discussion extends React.Component<Props> {
 
     return (
       <div className={`${bn}__top-actions`}>
-        {this.context.postEditing.has(postId) && (
-          <MarkdownEditorSwitcher
-            id={postId}
-            mode={this.context.editorMode.get(postId)}
-            onModeChange={this.handleModeChange}
-          />
-        )}
         <div className={`${bn}__actions`}>
           {this.props.parentDiscussion != null && (
             <a
