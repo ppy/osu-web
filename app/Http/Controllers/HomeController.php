@@ -64,13 +64,7 @@ class HomeController extends Controller
             'windows_x64' => osu_trans('home.download.os_version_or_later', ['os_version' => 'Windows 8.1']).' (x64)',
         ];
 
-        $httpHeaders = [];
-        // format headers to what Agent is expecting
-        foreach (request()->headers->all() as $key => $values) {
-            $headerKey = 'HTTP_'.strtoupper(strtr($key, '-', '_'));
-            $httpHeaders[$headerKey] = $values[0];
-        }
-        $agent = new Agent($httpHeaders);
+        $agent = new Agent(Request::server());
 
         $platform = match (true) {
             // Try matching most likely platform first
