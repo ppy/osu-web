@@ -46,8 +46,7 @@ class SetLocale
 
     private function localeFromHeader(Request $request): string
     {
-        $accept = $request->server('HTTP_ACCEPT_LANGUAGE');
-        $parser = new Parser($accept);
+        $parser = new Parser($request->server('HTTP_ACCEPT_LANGUAGE'));
 
         return $parser->languageRegionCompatibleFrom(config('app.available_locales')) ?? config('app.fallback_locale');
     }
