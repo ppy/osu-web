@@ -32,7 +32,8 @@ import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
 import { trans } from 'utils/lang';
 import DiscussionMessage from './discussion-message';
 import DiscussionsStateContext from './discussions-state-context';
-import MarkdownEditor from './markdown-editor';
+import MarkdownEditor, { Mode } from './markdown-editor';
+import MarkdownEditorSwitcher from './markdown-editor-switcher';
 import { UserCard } from './user-card';
 
 const bn = 'beatmap-discussion-post';
@@ -201,6 +202,11 @@ export default class Post extends React.Component<Props> {
   };
 
   @action
+  private readonly handleModeChange = (id: number, mode: Mode) => {
+    this.context.editorMode.set(id, mode);
+  };
+
+  @action
   private readonly handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     this.message = e.target.value;
     this.canSave = validMessageLength(this.message, this.isTimeline);
@@ -301,16 +307,25 @@ export default class Post extends React.Component<Props> {
             )}
           </DiscussionsContext.Consumer>
         ) : (
-          <MarkdownEditor
-            disabled={this.isPosting}
-            isTimeline={this.isTimeline}
-            mode={this.context.editorMode.get(this.props.post.id)}
-            onChange={this.handleTextareaChange}
-            onKeyDown={this.handleTextareaKeyDown}
-            style={{ minHeight: this.textareaMinHeight }}
-            textareaClassName={`${bn}__message ${bn}__message--editor`}
-            value={this.message}
-          />
+          <>
+            {this.props.type === 'reply' && this.context.postEditing.has(this.props.post.id) && (
+              <MarkdownEditorSwitcher
+                id={this.props.post.id}
+                mode={this.context.editorMode.get(this.props.post.id)}
+                onModeChange={this.handleModeChange}
+              />
+            )}
+            <MarkdownEditor
+              disabled={this.isPosting}
+              isTimeline={this.isTimeline}
+              mode={this.context.editorMode.get(this.props.post.id)}
+              onChange={this.handleTextareaChange}
+              onKeyDown={this.handleTextareaKeyDown}
+              style={{ minHeight: this.textareaMinHeight }}
+              textareaClassName={`${bn}__message ${bn}__message--editor`}
+              value={this.message}
+            />
+          </>
         )}
         <div className={`${bn}__actions`}>
           <div className={`${bn}__actions-group`}>

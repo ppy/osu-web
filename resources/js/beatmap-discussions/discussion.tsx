@@ -227,28 +227,18 @@ export class Discussion extends React.Component<Props> {
     }
 
     return (
-      <>
-        {type === 'reply' && this.context.postEditing.has(post.id) && (
-          <MarkdownEditorSwitcher
-            id={post.id}
-            mode={this.context.editorMode.get(post.id)}
-            onModeChange={this.handleModeChange}
-          />
-        )}
-
-        <Post
-          key={post.id}
-          beatmap={this.props.currentBeatmap}
-          beatmapset={this.props.beatmapset}
-          discussion={this.props.discussion}
-          post={post}
-          read={this.isRead(post)}
-          resolvedSystemPostId={this.resolvedSystemPostId}
-          type={type}
-          user={user}
-          users={this.props.users}
-        />
-      </>
+      <Post
+        key={post.id}
+        beatmap={this.props.currentBeatmap}
+        beatmapset={this.props.beatmapset}
+        discussion={this.props.discussion}
+        post={post}
+        read={this.isRead(post)}
+        resolvedSystemPostId={this.resolvedSystemPostId}
+        type={type}
+        user={user}
+        users={this.props.users}
+      />
     );
   }
 
