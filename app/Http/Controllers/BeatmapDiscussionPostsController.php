@@ -172,7 +172,7 @@ class BeatmapDiscussionPostsController extends Controller
         // TODO: return post + relevant updates only; currently returns both to simplify handling in the beatmap-discussions component.
         return [
             'post' => json_item($post, new BeatmapDiscussionPostTransformer()),
-            'beatmapset' => $post->beatmapset->defaultDiscussionJson()
+            'beatmapset' => $post->beatmapset->defaultDiscussionJson(),
         ];
     }
 }
