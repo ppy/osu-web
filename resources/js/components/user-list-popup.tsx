@@ -65,6 +65,7 @@ export default function UserListPopup(props: Props) {
             <UserLink
               key={user.id}
               className='user-list-popup__user'
+              tooltipPosition='top right'
               user={user}
             >
               <UserAvatar modifiers='full' user={user} />
