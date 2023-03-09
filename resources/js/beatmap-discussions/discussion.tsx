@@ -19,8 +19,6 @@ import { trans } from 'utils/lang';
 import { DiscussionType, discussionTypeIcons } from './discussion-type';
 import DiscussionVoteButtons from './discussion-vote-buttons';
 import DiscussionsStateContext from './discussions-state-context';
-import { Mode } from './markdown-editor';
-import MarkdownEditorSwitcher from './markdown-editor-switcher';
 import { NewReply } from './new-reply';
 import Post from './post';
 import SystemPost from './system-post';
@@ -150,12 +148,7 @@ export class Discussion extends React.Component<Props> {
             className={`${bn}__top`}
             style={groupColour(group)}
           >
-            <div className={`${bn}__top-user`}>
-              <UserCard group={group} hideStripe user={user} />
-            </div>
-            <div className={`${bn}__top-message`}>
-              {this.renderPost(firstPost, 'discussion')}
-            </div>
+            {this.renderPost(firstPost, 'discussion')}
           </div>
           {this.postFooter()}
           <div className={lineClasses} />
@@ -167,11 +160,6 @@ export class Discussion extends React.Component<Props> {
   @action
   private readonly handleCollapseClick = () => {
     this.context.discussionCollapsed.set(this.props.discussion.id, !this.collapsed);
-  };
-
-  @action
-  private readonly handleModeChange = (id: number, mode: Mode) => {
-    this.context.editorMode.set(id, mode);
   };
 
   @action
@@ -238,7 +226,6 @@ export class Discussion extends React.Component<Props> {
         user={user}
         users={this.props.users}
       >
-
         {type === 'discussion' && this.renderPostButtons(post.id)}
       </Post>
     );

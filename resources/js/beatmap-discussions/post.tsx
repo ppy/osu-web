@@ -152,7 +152,7 @@ export default class Post extends React.Component<React.PropsWithChildren<Props>
         onClick={this.handleMarkRead}
       >
         <div className={`${bn}__content`}>
-          {this.props.type === 'reply' && (
+          <div className={`${bn}__user`}>
             <UserCard
               group={badgeGroup({
                 beatmapset: this.props.beatmapset,
@@ -160,11 +160,14 @@ export default class Post extends React.Component<React.PropsWithChildren<Props>
                 discussion: this.props.discussion,
                 user: this.props.user,
               })}
+              hideStripe
               user={this.props.user}
             />
-          )}
-          {this.props.children}
-          {this.editing ? this.renderMessageEditor() : this.renderMessageViewer()}
+          </div>
+          <div className={`${bn}__message`}>
+            {this.editing ? this.renderMessageEditor() : this.renderMessageViewer()}
+          </div>
+          {/* {this.props.children} */}
         </div>
       </div>
     );
@@ -309,7 +312,7 @@ export default class Post extends React.Component<React.PropsWithChildren<Props>
           </DiscussionsContext.Consumer>
         ) : (
           <>
-            {this.props.type === 'reply' && this.context.postEditing.has(this.props.post.id) && (
+            {this.context.postEditing.has(this.props.post.id) && (
               <MarkdownEditorSwitcher
                 id={this.props.post.id}
                 mode={this.context.editorMode.get(this.props.post.id)}

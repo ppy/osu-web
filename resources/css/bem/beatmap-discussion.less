@@ -154,18 +154,18 @@
 
   &__top {
     background-color: @osu-colour-b3;
-    display: grid;
-    grid-template-areas: "user actions" "message message";
-    grid-template-columns: 1fr auto;
-    gap: 10px;
+    // display: grid;
+    // grid-template-areas: "user actions" "message message";
+    // grid-template-columns: 1fr auto;
+    // gap: 10px;
 
-    .@{_top}--horizontal-desktop & {
-      @media @desktop {
-        grid-template-areas: "user actions" "user message";
-        grid-template-columns: auto 1fr;
-        row-gap: 0;
-      }
-    }
+    // .@{_top}--horizontal-desktop & {
+    //   @media @desktop {
+    //     grid-template-areas: "user actions" "user message";
+    //     grid-template-columns: auto 1fr;
+    //     row-gap: 0;
+    //   }
+    // }
 
     .@{_top}--unread & {
       &::before {
