@@ -65,12 +65,19 @@ class BeatmapPack extends Model
 
     public function beatmapsets()
     {
-        $setsTable = (new Beatmapset())->getTable();
-        $itemsTable = (new BeatmapPackItem())->getTable();
+        return $this->hasManyThrough(
+            Beatmapset::class,
+            BeatmapPackItem::class,
+            'pack_id',
+            'beatmapset_id',
+            null,
+            'beatmapset_id',
+        );
+    }
 
-        return Beatmapset::query()
-            ->join($itemsTable, "{$itemsTable}.beatmapset_id", '=', "{$setsTable}.beatmapset_id")
-            ->where("{$itemsTable}.pack_id", '=', $this->pack_id);
+    public function getRouteKeyName(): string
+    {
+        return 'tag';
     }
 
     public function userCompletionData($user)

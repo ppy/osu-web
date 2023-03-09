@@ -125,6 +125,11 @@ class HomeController extends Controller
         return ujs_redirect(route('chat.index', ['sendto' => $user]));
     }
 
+    public function opensearch()
+    {
+        return ext_view('home.opensearch', null, 'opensearch')->header('Cache-Control', 'max-age=86400');
+    }
+
     public function quickSearch()
     {
         $quickSearch = new QuickSearch(request(), ['user' => auth()->user()]);

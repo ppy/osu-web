@@ -10,7 +10,7 @@ export default class BeatmapPack
 
   constructor: (rootElement) ->
     @el = rootElement
-    @packId = rootElement.dataset.packId
+    @packTag = rootElement.dataset.packTag
     @packBody = @el.querySelector('.js-accordion__item-body')
     @expander = @el.querySelector('.js-accordion__item-header')
     @busy = false
@@ -19,11 +19,11 @@ export default class BeatmapPack
     $('.js-accordion').on 'beatmappack:clicked', @onClick
     $(@expander).on 'click', (event) =>
       event.preventDefault()
-      $(@el).trigger 'beatmappack:clicked', @packId
+      $(@el).trigger 'beatmappack:clicked', @packTag
 
-  onClick: (e, id) =>
+  onClick: (e, tag) =>
     e.stopPropagation()
-    if @isCurrent || @packId != id
+    if @isCurrent || @packTag != tag
       @close()
     else
       @open()
@@ -39,7 +39,7 @@ export default class BeatmapPack
       @slideDown() if @isCurrent
     else
       @busy = true
-      @getBeatmapPackItem(@packId)
+      @getBeatmapPackItem(@packTag)
       .done (data) =>
         @nextFrame =>
           @packBody.innerHTML = data
@@ -59,8 +59,8 @@ export default class BeatmapPack
       $(@el).removeClass('js-accordion__item--expanded')
 
   # TODO: move out.
-  getBeatmapPackItem: (packId) ->
-    $.get route('packs.raw', pack: packId)
+  getBeatmapPackItem: (packTag) ->
+    $.get route('packs.show', pack: packTag, format: 'raw')
 
   slideDown: =>
     @packBody.style.height = ''
