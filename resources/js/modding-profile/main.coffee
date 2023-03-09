@@ -46,6 +46,7 @@ export class Main extends React.PureComponent
     @cache = {}
     @tabs = React.createRef()
     @pages = React.createRef()
+    @reviewsConfig = Object.assign({}, props.reviewsConfig, disableInsert: true)
     @state = JSON.parse(props.container.dataset.profilePageState ? null)
     @restoredState = @state?
 
@@ -141,7 +142,7 @@ export class Main extends React.PureComponent
   render: =>
     profileOrder = @state.profileOrder
 
-    el ReviewEditorConfigContext.Provider, value: @props.reviewsConfig,
+    el ReviewEditorConfigContext.Provider, value: @reviewsConfig,
       el DiscussionsContext.Provider, value: @discussions(),
         el BeatmapsetsContext.Provider, value: @beatmapsets(),
           el BeatmapsContext.Provider, value: @beatmaps(),
