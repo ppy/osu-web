@@ -140,7 +140,7 @@ class BBCodeFromDB
             '#(\[imagemap\].+?\[/imagemap\])#',
             function ($m) {
                 return preg_replace_callback(
-                    '#\[imagemap\]\n(?<imageUrl>http?s://.+)\n(?<links>(?:(?:[0-9.]+ ){4}(?:\#|http?s://[^ ]+|mailto:[^ ]+)(?: .+)?\n)+)\[/imagemap\]#',
+                    '#\[imagemap\]\n(?<imageUrl>https?://.+)\n(?<links>(?:(?:[0-9.]+ ){4}(?:\#|https?://[^ ]+|mailto:[^ ]+)(?: .+)?\n)+)\[/imagemap\]#',
                     function ($map) {
                         $links = array_map(
                             fn ($rawLink) => explode(' ', $rawLink, 6),
