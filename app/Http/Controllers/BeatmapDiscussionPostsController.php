@@ -161,6 +161,7 @@ class BeatmapDiscussionPostsController extends Controller
             try {
                 $document = json_decode($params['message'], true);
                 Review::update($post->beatmapDiscussion, $document, auth()->user());
+                $post->refresh();
             } catch (\Exception $e) {
                 throw new ModelNotSavedException($e->getMessage());
             }
@@ -168,7 +169,7 @@ class BeatmapDiscussionPostsController extends Controller
             $post->fill($params)->saveOrExplode();
         }
 
-        // TODO: return post only; currently returns both to simplify handling in the beatmap-discussions component.
+        // TODO: return post + relevant updates only; currently returns both to simplify handling in the beatmap-discussions component.
         return [
             'post' => json_item($post, new BeatmapDiscussionPostTransformer()),
             'beatmapset' => $post->beatmapset->defaultDiscussionJson()
