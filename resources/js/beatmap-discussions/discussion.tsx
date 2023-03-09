@@ -112,14 +112,6 @@ export class Discussion extends React.Component<Props> {
 
     this.lastResolvedState = false;
 
-    const user = this.props.users[this.props.discussion.user_id] ?? deletedUser.toJson();
-    const group = badgeGroup({
-      beatmapset: this.props.beatmapset,
-      currentBeatmap: this.props.currentBeatmap,
-      discussion: this.props.discussion,
-      user,
-    });
-
     const topClasses = classWithModifiers(bn, {
       deleted: this.props.discussion.deleted_at != null,
       highlighted: this.highlighted,
@@ -146,7 +138,6 @@ export class Discussion extends React.Component<Props> {
         <div className={`${bn}__discussion`}>
           <div
             className={`${bn}__top`}
-            style={groupColour(group)}
           >
             {this.renderPost(firstPost, 'discussion')}
           </div>
@@ -231,7 +222,7 @@ export class Discussion extends React.Component<Props> {
     );
   }
 
-  private renderPostButtons(postId: number) {
+  private renderPostButtons() {
     if (this.props.preview) return null;
 
     const user = this.props.users[this.props.discussion.user_id];

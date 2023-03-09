@@ -27,7 +27,7 @@ import * as React from 'react';
 import { onError } from 'utils/ajax';
 import { badgeGroup, canModeratePosts, makeUrl, validMessageLength } from 'utils/beatmapset-discussion-helper';
 import { downloadLimited } from 'utils/beatmapset-helper';
-import { classWithModifiers } from 'utils/css';
+import { classWithModifiers, groupColour } from 'utils/css';
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
 import { trans } from 'utils/lang';
 import DiscussionMessage from './discussion-message';
@@ -145,11 +145,19 @@ export default class Post extends React.Component<React.PropsWithChildren<Props>
       unread: !this.props.read && this.props.type !== 'discussion',
     });
 
+    const group = badgeGroup({
+      beatmapset: this.props.beatmapset,
+      currentBeatmap: this.props.beatmap,
+      discussion: this.props.discussion,
+      user: this.props.user,
+    });
+
     return (
       <div
         className={`${topClasses} js-beatmap-discussion-jump`}
         data-post-id={this.props.post.id}
         onClick={this.handleMarkRead}
+        style={groupColour(group)}
       >
         <div className={`${bn}__content`}>
           <div className={`${bn}__user`}>
@@ -167,7 +175,16 @@ export default class Post extends React.Component<React.PropsWithChildren<Props>
           <div className={`${bn}__message`}>
             {this.editing ? this.renderMessageEditor() : this.renderMessageViewer()}
           </div>
-          {/* {this.props.children} */}
+          <div className={`${bn}__actions-grid`}>
+            {this.props.children}
+            {this.context.postEditing.has(this.props.post.id) && (
+              <MarkdownEditorSwitcher
+                id={this.props.post.id}
+                mode={this.context.editorMode.get(this.props.post.id)}
+                onModeChange={this.handleModeChange}
+              />
+            )}
+          </div>
         </div>
       </div>
     );
@@ -289,7 +306,7 @@ export default class Post extends React.Component<React.PropsWithChildren<Props>
 
     const document = this.props.post.message;
     return (
-      <div className={`${bn}__message-container`}>
+      <>
         {this.isReview ? (
           <DiscussionsContext.Consumer>
             {(discussions) => (
@@ -312,13 +329,6 @@ export default class Post extends React.Component<React.PropsWithChildren<Props>
           </DiscussionsContext.Consumer>
         ) : (
           <>
-            {this.context.postEditing.has(this.props.post.id) && (
-              <MarkdownEditorSwitcher
-                id={this.props.post.id}
-                mode={this.context.editorMode.get(this.props.post.id)}
-                onModeChange={this.handleModeChange}
-              />
-            )}
             <MarkdownEditor
               disabled={this.isPosting}
               isTimeline={this.isTimeline}
@@ -349,7 +359,7 @@ export default class Post extends React.Component<React.PropsWithChildren<Props>
             </div>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 
