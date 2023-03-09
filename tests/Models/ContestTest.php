@@ -97,6 +97,21 @@ class ContestTest extends TestCase
         $this->assertTrue(true, 'no exception');
     }
 
+    /**
+     * @dataProvider dataProviderForTestShowEntryUser
+     */
+    public function testShowEntryUser(bool $showVotes, ?bool $showEntryUserOption, bool $result): void
+    {
+        $extraOptions = $showEntryUserOption === null
+            ? null
+            : ['show_entry_user' => $showEntryUserOption];
+        $contest = factory(Contest::class)->create([
+            'show_votes' => $showVotes,
+            'extra_options' => $extraOptions,
+        ]);
+        $this->assertSame($result, $contest->showEntryUser());
+    }
+
     public function dataProviderForTestAssertVoteRequirementPlaylistBeatmapsets(): array
     {
         return [
@@ -115,6 +130,18 @@ class ContestTest extends TestCase
             [true, true, false, false, true],
             [true, false, false, false, false],
             [false, false, false, false, false],
+        ];
+    }
+
+    public function dataProviderForTestShowEntryUser(): array
+    {
+        return [
+            [false, null, false],
+            [true, null, true],
+            [false, false, false],
+            [true, false, true],
+            [false, true, true],
+            [true, true, true],
         ];
     }
 }

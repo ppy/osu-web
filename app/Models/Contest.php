@@ -391,7 +391,7 @@ class Contest extends Model
         return $this->getExtraOptions()['forced_height'] ?? null;
     }
 
-    private function showEntryUser(): bool
+    public function showEntryUser(): bool
     {
         return $this->show_votes || ($this->getExtraOptions()['show_entry_user'] ?? false);
     }
