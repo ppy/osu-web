@@ -134,6 +134,54 @@ class BBCodeFromDB
         return $text;
     }
 
+    public function parseImagemap($text)
+    {
+        return preg_replace_callback(
+            '#(\[imagemap\].+?\[/imagemap\])#',
+            function ($m) {
+                return preg_replace_callback(
+                    '#\[imagemap\]\n(?<imageUrl>http?s://.+)\n(?<links>(?:(?:[0-9.]+ ){4}(?:http?s://[^ ]+|mailto:[^ ]+)(?: .+)?\n)+)\[/imagemap\]#',
+                    function ($map) {
+                        $links = array_map(
+                            fn ($rawLink) => explode(' ', $rawLink, 6),
+                            explode("\n", $map['links']),
+                        );
+                        array_pop($links); // remove the empty string from last newline
+
+                        $linksHtml = implode('', array_map(
+                            fn ($link) => tag('a', [
+                                'class' => 'imagemap__link',
+                                'href' => $link[4],
+                                'style' => implode(';', [
+                                    "left: {$link[0]}%",
+                                    "top: {$link[1]}%",
+                                    "width: {$link[2]}%",
+                                    "height: {$link[3]}%",
+                                ]),
+                                'title' => $link[5] ?? '',
+                            ]),
+                            $links,
+                        ));
+
+                        $imageUrl = proxy_media($map['imageUrl']);
+                        $imageSize = fast_imagesize($imageUrl) ?? [0, 0];
+                        $imageHeightInWidthPercent = 100 * $imageSize[1] / max(1, $imageSize[0]);
+                        $divStyle = implode(';', [
+                            'height: 0',
+                            "background-image: url('{$imageUrl}')",
+                            "width: {$imageSize[0]}px",
+                            "padding-bottom: {$imageHeightInWidthPercent}%",
+                        ]);
+
+                        return tag('div', ['class' => 'imagemap', 'style' => $divStyle], $linksHtml);
+                    },
+                    html_entity_decode_better(BBCodeForDB::extraUnescape($m[1])),
+                );
+            },
+            $text,
+        );
+    }
+
     public function parseItalic($text)
     {
         $text = str_replace("[i:{$this->uid}]", '<em>', $text);
@@ -304,6 +352,7 @@ class BBCodeFromDB
         $text = $this->text;
 
         // block
+        $text = $this->parseImagemap($text);
         $text = $this->parseBox($text);
         $text = $this->parseCode($text);
         $text = $this->parseList($text);
