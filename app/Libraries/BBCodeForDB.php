@@ -144,7 +144,7 @@ class BBCodeForDB
     public function parseImagemap($text)
     {
         return preg_replace_callback(
-            "#\[imagemap\](.+?)\[/imagemap\]#s",
+            '#\[imagemap\](.+?)\[/imagemap\]#s',
             function ($m) {
                 $escapedMap = $this->extraEscapes($m[1]);
 
