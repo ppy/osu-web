@@ -140,7 +140,7 @@ class BBCodeFromDB
             '#(\[imagemap\].+?\[/imagemap\])#',
             function ($m) {
                 return preg_replace_callback(
-                    '#\[imagemap\]\n(?<imageUrl>http?s://.+)\n(?<links>(?:(?:[0-9.]+ ){4}(?:http?s://[^ ]+|mailto:[^ ]+)(?: .+)?\n)+)\[/imagemap\]#',
+                    '#\[imagemap\]\n(?<imageUrl>http?s://.+)\n(?<links>(?:(?:[0-9.]+ ){4}(?:\#|http?s://[^ ]+|mailto:[^ ]+)(?: .+)?\n)+)\[/imagemap\]#',
                     function ($map) {
                         $links = array_map(
                             fn ($rawLink) => explode(' ', $rawLink, 6),
@@ -149,7 +149,7 @@ class BBCodeFromDB
                         array_pop($links); // remove the empty string from last newline
 
                         $linksHtml = implode('', array_map(
-                            fn ($link) => tag('a', [
+                            fn ($link) => tag($link[4] === '#' ? 'span' : 'a', [
                                 'class' => 'imagemap__link',
                                 'href' => $link[4],
                                 'style' => implode(';', [
