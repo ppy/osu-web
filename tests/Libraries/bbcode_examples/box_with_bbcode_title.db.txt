@@ -1,7 +1,3 @@
-[box=[color=red:1]colored box title[/color:1]]box content[/box:1]
-
-[size=50:1]other content[/size:1]
-
-[box="[color=red:1]colored &quot;box&quot; title[/color:1]":1]box content[/box:1]
+[box=[color=red:1]colored box title[/color:1]:1]box content[/box:1]
 
 [size=50:1]other content[/size:1]
