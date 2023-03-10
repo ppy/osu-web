@@ -7,15 +7,21 @@
   @_gutter-x-list: 10px;
   @_gutter-y: 4px;
   @_gutter-y-desktop: 15px;
+
+  --header-nav-item-padding-x: 5px;
+  --header-nav-item-padding-y: 4px;
+
   list-style: none;
   display: none;
   flex-wrap: wrap;
-  margin: 0 -@_gutter-x;
-  padding: (10px - @_gutter-y) 0;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
   font-size: @font-size--normal;
   position: relative;
 
   @media @desktop {
+    --header-nav-item-padding-y: 15px;
     font-size: @font-size--title-small;
     padding-top: 0;
     padding-bottom: 0;
@@ -23,27 +29,34 @@
   }
 
   &--breadcrumb {
+    --header-nav-item-padding-y: 10px;
     display: flex;
   }
 
   &--list {
-    margin-left: -@_gutter-x-list;
-    margin-right: -@_gutter-x-list;
+    gap: 20px;
 
     &::before {
       content: '';
       position: absolute;
-      left: @_gutter-x-list;
+      left: 0;
       bottom: 0;
-      width: calc(100% - (@_gutter-x-list * 2));
+      width: 100%;
       height: 1px;
       background-color: @osu-colour-h1;
     }
   }
 
+  &--wide {
+    --header-nav-item-padding-y: 8px;
+    display: flex;
+    flex: 1;
+    margin-bottom: 10px;
+  }
+
   &__item {
     margin: 0;
-    padding: @_gutter-y @_gutter-x;
+    padding: var(--header-nav-item-padding-y) 0;
     display: flex; // remove space between ::before and content
     align-items: baseline;
 
@@ -58,11 +71,6 @@
 
       padding-right: (@_gutter-x * 2);
     }
-
-    .@{_top}--list & {
-      padding-left: @_gutter-x-list;
-      padding-right: @_gutter-x-list;
-    }
   }
 
   &__link {
@@ -75,8 +83,8 @@
     }
 
     @media @desktop {
-      padding-top: @_gutter-y-desktop;
-      padding-bottom: @_gutter-y-desktop;
+      padding-top: var(--header-nav-item-padding-y);
+      padding-bottom: var(--header-nav-item-padding-y);
 
       &::before {
         content: '';
@@ -120,5 +128,4 @@
       padding-bottom: @_gutter-y-desktop;
     }
   }
-
 }
