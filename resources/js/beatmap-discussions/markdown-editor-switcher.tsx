@@ -20,7 +20,7 @@ export default class MarkdownEditorSwitcher extends React.Component<Props> {
     const currentMode = this.props.mode ?? 'write';
 
     return (
-      <ul className='header-nav-v4 header-nav-v4--list'>
+      <ul className='header-nav-v4 header-nav-v4--list header-nav-v4--wide'>
         {['write', 'preview'].map((mode) => (
           <li key={mode} className='header-nav-v4__item'>
             <button

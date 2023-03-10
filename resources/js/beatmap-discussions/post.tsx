@@ -172,18 +172,11 @@ export default class Post extends React.Component<React.PropsWithChildren<Props>
               user={this.props.user}
             />
           </div>
-          <div className={`${bn}__message`}>
-            {this.editing ? this.renderMessageEditor() : this.renderMessageViewer()}
-          </div>
-          <div className={`${bn}__actions-grid`}>
+          <div className={`${bn}__message-grid`}>
             {this.props.children}
-            {this.context.postEditing.has(this.props.post.id) && (
-              <MarkdownEditorSwitcher
-                id={this.props.post.id}
-                mode={this.context.editorMode.get(this.props.post.id)}
-                onModeChange={this.handleModeChange}
-              />
-            )}
+            <div className={classWithModifiers(`${bn}__message-container`, { review: this.isReview })}>
+              {this.editing ? this.renderMessageEditor() : this.renderMessageViewer()}
+            </div>
           </div>
         </div>
       </div>
@@ -289,7 +282,7 @@ export default class Post extends React.Component<React.PropsWithChildren<Props>
   private renderKudosuAction(op: 'allow' | 'deny') {
     return (
       <a
-        className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
+        className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--plain`}
         data-confirm={trans('common.confirmation')}
         data-method='POST'
         data-remote
@@ -329,6 +322,11 @@ export default class Post extends React.Component<React.PropsWithChildren<Props>
           </DiscussionsContext.Consumer>
         ) : (
           <>
+            <MarkdownEditorSwitcher
+              id={this.props.post.id}
+              mode={this.context.editorMode.get(this.props.post.id)}
+              onModeChange={this.handleModeChange}
+            />
             <MarkdownEditor
               disabled={this.isPosting}
               isTimeline={this.isTimeline}
@@ -342,21 +340,19 @@ export default class Post extends React.Component<React.PropsWithChildren<Props>
           </>
         )}
         <div className={`${bn}__actions`}>
-          <div className={`${bn}__actions-group`}>
-            <div className={`${bn}__action`}>
-              <BigButton
-                disabled={this.isPosting}
-                props={{ onClick: this.editCancel }}
-                text={trans('common.buttons.cancel')}
-              />
-            </div>
-            <div className={`${bn}__action`}>
-              <BigButton
-                disabled={!canPost}
-                props={{ onClick: this.updatePost }}
-                text={trans('common.buttons.save')}
-              />
-            </div>
+          <div className={`${bn}__action`}>
+            <BigButton
+              disabled={this.isPosting}
+              props={{ onClick: this.editCancel }}
+              text={trans('common.buttons.cancel')}
+            />
+          </div>
+          <div className={`${bn}__action`}>
+            <BigButton
+              disabled={!canPost}
+              props={{ onClick: this.updatePost }}
+              text={trans('common.buttons.save')}
+            />
           </div>
         </div>
       </>
@@ -365,7 +361,7 @@ export default class Post extends React.Component<React.PropsWithChildren<Props>
 
   private renderMessageViewer() {
     return (
-      <div className={`${bn}__message-container`}>
+      <>
         {this.isReview ? (
           <div className={`${bn}__message`}>
             <ReviewPost post={this.props.post} />
@@ -390,7 +386,7 @@ export default class Post extends React.Component<React.PropsWithChildren<Props>
         </div>
 
         {this.renderMessageViewerActions()}
-      </div>
+      </>
     );
   }
 
@@ -401,62 +397,60 @@ export default class Post extends React.Component<React.PropsWithChildren<Props>
 
     return (
       <div className={`${bn}__actions`}>
-        <div className={`${bn}__actions-group`}>
-          <span className={`${bn}__action ${bn}__action--button`}>
-            <ClickToCopy
-              label={trans('common.buttons.permalink')}
-              value={makeUrl({ discussion: this.props.discussion, post: this.props.type === 'reply' ? this.props.post : undefined })}
-              valueAsUrl
-            />
-          </span>
-          {this.canEdit && (
-            <button
-              className={`${bn}__action ${bn}__action--button`}
-              onClick={this.editStart}
-            >
-              {trans('beatmaps.discussions.edit')}
-            </button>
-          )}
+        <span className={`${bn}__action ${bn}__action--plain`}>
+          <ClickToCopy
+            label={trans('common.buttons.permalink')}
+            value={makeUrl({ discussion: this.props.discussion, post: this.props.type === 'reply' ? this.props.post : undefined })}
+            valueAsUrl
+          />
+        </span>
+        {this.canEdit && (
+          <button
+            className={`${bn}__action ${bn}__action--plain`}
+            onClick={this.editStart}
+          >
+            {trans('beatmaps.discussions.edit')}
+          </button>
+        )}
 
-          {this.deleteModel.deleted_at == null && canDelete && (
-            <a
-              className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
-              data-confirm={trans('common.confirmation')}
-              data-method='DELETE'
-              data-remote
-              href={this.deleteHref('destroy')}
-            >
-              {trans('beatmaps.discussions.delete')}
-            </a>
-          )}
+        {this.deleteModel.deleted_at == null && canDelete && (
+          <a
+            className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--plain`}
+            data-confirm={trans('common.confirmation')}
+            data-method='DELETE'
+            data-remote
+            href={this.deleteHref('destroy')}
+          >
+            {trans('beatmaps.discussions.delete')}
+          </a>
+        )}
 
-          {this.deleteModel.deleted_at != null && canModerate && (
-            <a
-              className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
-              data-confirm={trans('common.confirmation')}
-              data-method='POST'
-              data-remote
-              href={this.deleteHref('restore')}
-            >
-              {trans('beatmaps.discussions.restore')}
-            </a>
-          )}
+        {this.deleteModel.deleted_at != null && canModerate && (
+          <a
+            className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--plain`}
+            data-confirm={trans('common.confirmation')}
+            data-method='POST'
+            data-remote
+            href={this.deleteHref('restore')}
+          >
+            {trans('beatmaps.discussions.restore')}
+          </a>
+        )}
 
-          {this.props.type === 'discussion' && this.props.discussion.current_user_attributes?.can_moderate_kudosu && (
-            this.props.discussion.can_grant_kudosu
-              ? this.renderKudosuAction('deny')
-              : this.props.discussion.kudosu_denied && this.renderKudosuAction('allow')
-          )}
+        {this.props.type === 'discussion' && this.props.discussion.current_user_attributes?.can_moderate_kudosu && (
+          this.props.discussion.can_grant_kudosu
+            ? this.renderKudosuAction('deny')
+            : this.props.discussion.kudosu_denied && this.renderKudosuAction('allow')
+        )}
 
-          {this.canReport && (
-            <ReportReportable
-              className={`${bn}__action ${bn}__action--button`}
-              reportableId={this.props.post.id.toString()}
-              reportableType='beatmapset_discussion_post'
-              user={this.props.user}
-            />
-          )}
-        </div>
+        {this.canReport && (
+          <ReportReportable
+            className={`${bn}__action ${bn}__action--plain`}
+            reportableId={this.props.post.id.toString()}
+            reportableType='beatmapset_discussion_post'
+            user={this.props.user}
+          />
+        )}
       </div>
     );
   }
