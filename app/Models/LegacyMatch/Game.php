@@ -98,8 +98,7 @@ class Game extends Model
             'beatmap_id',
             'game_id',
             'match_id',
-            'match_type',
-            'play_mode' => $this->getRawAttribute($key),
+            'match_type' => $this->getRawAttribute($key),
 
             'mode' => Beatmap::modeStr($this->play_mode),
             'mods' => app('mods')->bitsetToIds($this->getRawAttribute($key)),
@@ -112,10 +111,26 @@ class Game extends Model
             'end_time_json',
             'start_time_json' => $this->getJsonTimeFast($key),
 
+            'play_mode' => $this->getRulesetId(),
+
             'beatmap',
             'events',
             'legacyMatch',
             'scores' => $this->getRelationValue($key),
         };
+    }
+
+    private function getRulesetId(): int
+    {
+        $gameRulesetId = $this->getRawAttribute('play_mode') ?? Beatmap::MODES['osu'];
+        $beatmapRulesetId = $this->beatmap?->playmode;
+
+        // ruleset set at this model is incorrect when playing ruleset
+        // specific map with a different selected ruleset.
+        if ($beatmapRulesetId !== null && $beatmapRulesetId !== $gameRulesetId && $beatmapRulesetId !== Beatmap::MODES['osu']) {
+            return $beatmapRulesetId;
+        }
+
+        return $gameRulesetId;
     }
 }
