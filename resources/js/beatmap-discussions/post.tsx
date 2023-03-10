@@ -60,7 +60,6 @@ export default class Post extends React.Component<React.PropsWithChildren<Props>
   @observable private message = '';
   private readonly messageBodyRef = React.createRef<HTMLDivElement>();
   private readonly reviewEditorRef = React.createRef<Editor>();
-  @observable private textareaMinHeight = '0';
   private readonly textareaRef = React.createRef<HTMLTextAreaElement>();
   @observable private xhr: JQuery.jqXHR<BeatmapsetWithDiscussionsJson> | null = null;
 
@@ -196,10 +195,6 @@ export default class Post extends React.Component<React.PropsWithChildren<Props>
 
   @action
   private readonly editStart = () => {
-    this.textareaMinHeight = this.messageBodyRef.current != null
-      ? `${this.messageBodyRef.current.getBoundingClientRect().height + 50}px`
-      : '0';
-
     this.editing = true;
     this.message = this.props.post.message;
   };
@@ -331,7 +326,6 @@ export default class Post extends React.Component<React.PropsWithChildren<Props>
               mode={this.context.editorMode.get(this.props.post.id)}
               onChange={this.handleTextareaChange}
               onKeyDown={this.handleTextareaKeyDown}
-              style={{ minHeight: this.textareaMinHeight }}
               textareaClassName={`${bn}__message ${bn}__message--editor`}
               value={this.message}
             />
