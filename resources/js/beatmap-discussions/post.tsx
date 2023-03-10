@@ -159,24 +159,22 @@ export default class Post extends React.Component<React.PropsWithChildren<Props>
         onClick={this.handleMarkRead}
         style={groupColour(group)}
       >
-        <div className={`${bn}__content`}>
-          <div className={`${bn}__user`}>
-            <UserCard
-              group={badgeGroup({
-                beatmapset: this.props.beatmapset,
-                currentBeatmap: this.props.beatmap,
-                discussion: this.props.discussion,
-                user: this.props.user,
-              })}
-              hideStripe
-              user={this.props.user}
-            />
-          </div>
-          <div className={`${bn}__message-grid`}>
-            {this.props.children}
-            <div className={classWithModifiers(`${bn}__message-container`, { review: this.isReview })}>
-              {this.editing ? this.renderMessageEditor() : this.renderMessageViewer()}
-            </div>
+        <div className={`${bn}__user`}>
+          <UserCard
+            group={badgeGroup({
+              beatmapset: this.props.beatmapset,
+              currentBeatmap: this.props.beatmap,
+              discussion: this.props.discussion,
+              user: this.props.user,
+            })}
+            hideStripe
+            user={this.props.user}
+          />
+        </div>
+        <div className={`${bn}__container`}>
+          {this.props.children}
+          <div className={classWithModifiers(`${bn}__message-container`, { review: this.isReview })}>
+            {this.editing ? this.renderMessageEditor() : this.renderMessageViewer()}
           </div>
         </div>
       </div>

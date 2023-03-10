@@ -10,6 +10,18 @@
   @_reply-text-size: @font-size--normal-2;
 
   @_content-gutter-base: 15px;
+
+  display: grid;
+  grid-template-areas: "user actions" "message message";
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+
+  @media @desktop {
+    grid-template-areas: "user container";
+    grid-template-columns: auto 1fr;
+    row-gap: 0;
+  }
+
   padding: 10px;
   transition: background-color .1s ease-in-out;
 
@@ -86,13 +98,6 @@
     }
   }
 
-  &__actions-top {
-    grid-area: actions;
-    display: flex;
-    // reversed to put discussion buttons on the right when only element rendered.
-    flex-direction: row-reverse;
-    justify-content: space-between;
-  }
 
   &__avatar {
     flex: none;
@@ -106,16 +111,12 @@
     }
   }
 
-  &__content {
-    display: grid;
-    grid-template-areas: "user actions" "message message";
-    grid-template-columns: 1fr auto;
-    gap: 10px;
+  &__container {
+    grid-area: container;
 
-    @media @desktop {
-      grid-template-areas: "user actions" "user message";
-      grid-template-columns: auto 1fr;
-      row-gap: 0;
+    @media @mobile {
+      grid-area: unset;
+      display: contents;
     }
   }
 
@@ -204,11 +205,9 @@
     }
   }
 
-  &__message-grid {
-    grid-area: message; // TODO: not needed?
-  }
-
   &__message-container {
+    grid-area: message;
+
     &--review {
       clear: both;
     }
@@ -216,6 +215,9 @@
 
   &__user {
     grid-area: user;
-    border-right: 2px solid var(--group-colour, hsl(var(--hsl-b5)));
+
+    @media @desktop {
+      border-right: 2px solid var(--group-colour, hsl(var(--hsl-b5)));
+    }
   }
 }

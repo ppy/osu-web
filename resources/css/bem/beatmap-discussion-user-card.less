@@ -12,7 +12,6 @@
 
   @media @desktop {
     margin-bottom: 0;
-    // margin-right: 10px;
   }
 
   &__avatar {
@@ -71,19 +70,5 @@
   &__user-row {
     display: flex;
     align-items: baseline;
-  }
-
-  &__user-stripe {
-    align-self: stretch;
-    background-color: var(--group-colour, @osu-colour-b5);
-    border-radius: 1px;
-    flex: none;
-    width: 2px;
-
-    .beatmap-discussion-post--discussion & {
-      @media @mobile {
-        display: none;
-      }
-    }
   }
 }
