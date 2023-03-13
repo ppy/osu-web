@@ -172,7 +172,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     public static function popularIds()
     {
         $recentIds = static::ranked()
-            ->where('approved_date', '>', now()->subDays(360))
+            ->where('approved_date', '>', now()->subDays(30))
             ->where('nsfw', false)
             ->select('beatmapset_id');
 
