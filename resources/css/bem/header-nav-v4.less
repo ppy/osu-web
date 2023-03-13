@@ -3,12 +3,13 @@
 
 .header-nav-v4 {
   @_top: header-nav-v4;
+  @header-nav-gap: 10px;
   --header-nav-item-padding-y: 4px;
 
   list-style: none;
   display: none;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: @header-nav-gap;
   margin: 0;
   padding: 0;
   font-size: @font-size--normal;
@@ -57,7 +58,7 @@
       .fas();
       content: "\f105"; // fa-angle-right
 
-      padding-right: $gap;
+      padding-right: @header-nav-gap;
     }
   }
 
