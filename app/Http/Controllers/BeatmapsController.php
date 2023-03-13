@@ -280,10 +280,12 @@ class BeatmapsController extends Controller
         $type = presence($params['type'] ?? null, 'global');
         $currentUser = auth()->user();
 
-        if ($type !== 'global' || !empty($mods)) {
-            if ($currentUser === null || !$currentUser->isSupporter()) {
-                throw new InvariantException(osu_trans('errors.supporter_only'));
-            }
+        $isSupporter = $currentUser?->isSupporter() ?? false;
+        if ($type !== 'global' && !$isSupporter) {
+            throw new InvariantException(osu_trans('errors.supporter_only'));
+        }
+        if (!empty($mods) && !is_api_request() && !$isSupporter) {
+            throw new InvariantException(osu_trans('errors.supporter_only'));
         }
 
         $query = static::baseScoreQuery($beatmap, $mode, $mods, $type);
