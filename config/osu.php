@@ -35,7 +35,7 @@ return [
     ],
     'beatmaps' => [
         'max' => 50,
-        'max-scores' => 50,
+        'max_scores' => 100,
 
         'difficulty_cache' => [
             'server_url' => presence(env('BEATMAPS_DIFFICULTY_CACHE_SERVER_URL')) ?? 'http://localhost:5000',

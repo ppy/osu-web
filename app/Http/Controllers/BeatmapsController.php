@@ -270,14 +270,15 @@ class BeatmapsController extends Controller
         }
 
         $params = get_params(request()->all(), null, [
+            'limit:int',
             'mode:string',
             'mods:string[]',
             'type:string',
-        ]);
+        ], ['null_missing' => true]);
 
-        $mode = presence($params['mode'] ?? null, $beatmap->mode);
+        $mode = presence($params['mode']) ?? $beatmap->mode;
         $mods = array_values(array_filter($params['mods'] ?? []));
-        $type = presence($params['type'] ?? null, 'global');
+        $type = presence($params['type']) ?? 'global';
         $currentUser = auth()->user();
 
         $isSupporter = $currentUser?->isSupporter() ?? false;
@@ -299,7 +300,7 @@ class BeatmapsController extends Controller
 
         $results = [
             'scores' => json_collection(
-                $query->visibleUsers()->forListing(),
+                $query->visibleUsers()->forListing($params['limit']),
                 $scoreTransformer,
                 static::DEFAULT_SCORE_INCLUDES
             ),
@@ -344,6 +345,7 @@ class BeatmapsController extends Controller
         }
 
         $params = get_params(request()->all(), null, [
+            'limit:int',
             'mode',
             'mods:string[]',
             'type:string',
