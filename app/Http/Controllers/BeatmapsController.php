@@ -12,6 +12,7 @@ use App\Libraries\Score\BeatmapScores;
 use App\Models\Beatmap;
 use App\Models\BeatmapsetEvent;
 use App\Models\Score\Best\Model as BestModel;
+use App\Models\User;
 use App\Transformers\BeatmapTransformer;
 use App\Transformers\ScoreTransformer;
 
@@ -280,13 +281,7 @@ class BeatmapsController extends Controller
         $type = presence($params['type'] ?? null, 'global');
         $currentUser = auth()->user();
 
-        $isSupporter = $currentUser?->isSupporter() ?? false;
-        if ($type !== 'global' && !$isSupporter) {
-            throw new InvariantException(osu_trans('errors.supporter_only'));
-        }
-        if (!empty($mods) && !is_api_request() && !$isSupporter) {
-            throw new InvariantException(osu_trans('errors.supporter_only'));
-        }
+        $this->assertSupporterOnlyOptions($currentUser, $type, $mods);
 
         $query = static::baseScoreQuery($beatmap, $mode, $mods, $type);
 
@@ -360,11 +355,7 @@ class BeatmapsController extends Controller
         $type = presence($params['type'], 'global');
         $currentUser = auth()->user();
 
-        if ($type !== 'global' || !empty($mods)) {
-            if ($currentUser === null || !$currentUser->isSupporter()) {
-                throw new InvariantException(osu_trans('errors.supporter_only'));
-            }
-        }
+        $this->assertSupporterOnlyOptions($currentUser, $type, $mods);
 
         $esFetch = new BeatmapScores([
             'beatmap_ids' => [$beatmap->getKey()],
@@ -518,5 +509,16 @@ class BeatmapsController extends Controller
         }
 
         return $query;
+    }
+
+    private function assertSupporterOnlyOptions(?User $currentUser, string $type, array $mods): void
+    {
+        $isSupporter = $currentUser?->isSupporter() ?? false;
+        if ($type !== 'global' && !$isSupporter) {
+            throw new InvariantException(osu_trans('errors.supporter_only'));
+        }
+        if (!empty($mods) && !is_api_request() && !$isSupporter) {
+            throw new InvariantException(osu_trans('errors.supporter_only'));
+        }
     }
 }
