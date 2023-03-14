@@ -1,81 +1,114 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import { route } from 'laroute'
-import core from 'osu-core-singleton'
-import * as React from 'react'
-import { button, div, span } from 'react-dom-factories'
-import { classWithModifiers } from 'utils/css'
-import { trans } from 'utils/lang'
-import ShowMoreLink from './show-more-link'
-import { Spinner } from './spinner'
+import { CommentableMetaJson } from 'interfaces/comment-json';
+import { route } from 'laroute';
+import { last } from 'lodash';
+import { action, makeObservable, observable } from 'mobx';
+import { observer } from 'mobx-react';
+import { Comment } from 'models/comment';
+import core from 'osu-core-singleton';
+import * as React from 'react';
+import { classWithModifiers, Modifiers } from 'utils/css';
+import { trans } from 'utils/lang';
+import ShowMoreLink from './show-more-link';
+import { Spinner } from './spinner';
 
-el = React.createElement
+const uiState = core.dataStore.uiState;
+const bn = 'comment-show-more';
 
-uiState = core.dataStore.uiState
+interface Props {
+  commentableMeta?: CommentableMetaJson;
+  comments: Comment[];
+  label?: string;
+  modifiers?: Modifiers;
+  parent?: Comment;
+  top?: boolean;
+  total: number;
+}
 
-bn = 'comment-show-more'
+@observer
+export default class CommentShowMore extends React.Component<Props> {
+  @observable private loading = false;
+  private xhr?: JQuery.jqXHR<void>;
 
-export class CommentShowMore extends React.PureComponent
-  @defaultProps = modifiers: []
+  private get hasMoreComments() {
+    return uiState.comments.hasMoreComments[this.props.parent?.id ?? 'null'] ?? true;
+  }
 
+  constructor(props: Props) {
+    super(props);
+    makeObservable(this);
+  }
 
-  constructor: (props) ->
-    super props
+  componentWillUnmount() {
+    this.xhr?.abort();
+  }
 
-    @state =
-      loading: false
+  render() {
+    if (this.props.comments.length >= this.props.total) {
+      return null;
+    }
+    if (!this.hasMoreComments) {
+      return null;
+    }
 
+    return this.props.top ?? false
+      ? (
+        <ShowMoreLink
+          callback={this.load}
+          hasMore
+          loading={this.loading}
+          modifiers='comments'
+          remaining={this.props.total - this.props.comments.length}
+        />
+      ) : (
+        <div className={classWithModifiers(bn, this.props.modifiers)}>
+          {this.loading ?
+            <Spinner />
+            :
+            <button className={`${bn}__link`} onClick={this.load}>
+              {this.props.label ?? trans('common.buttons.show_more')}
+            </button>
+          }
+        </div>
+      );
+  }
 
-  componentWillUnmount: =>
-    @xhr?.abort()
+  @action
+  private readonly load = () => {
+    if (this.loading) return;
 
+    this.loading = true;
 
-  render: =>
-    return null if @props.comments.length >= @props.total
-    return null unless (uiState.comments.hasMoreComments[@props.parent?.id ? null] ? true)
+    const commentableMeta = this.props.commentableMeta != null && ('id' in this.props.commentableMeta)
+      ? this.props.commentableMeta
+      : {
+        id: undefined,
+        type: undefined,
+      };
+    const params: Partial<Record<string, unknown>> = {
+      commentable_id: this.props.parent?.commentableId ?? commentableMeta.id,
+      commentable_type: this.props.parent?.commentableType ?? commentableMeta.type,
+      parent_id: this.props.parent?.id ?? 0,
+      sort: uiState.comments.currentSort,
+    };
 
-    blockClass = classWithModifiers bn, @props.modifiers
+    const lastComment = last(this.props.comments);
+    if (lastComment != null) {
+      // TODO: convert to plain after_id params of some sort instead of cursor
+      params.cursor = {
+        created_at: lastComment.createdAt,
+        id: lastComment.id,
+        votes_count: lastComment.votesCount,
+      };
+    }
 
-    # TODO: pass as props instead of checking modifiers
-    if 'top' in @props.modifiers
-      el ShowMoreLink,
-        loading: @state.loading
-        hasMore: true
-        callback: @load
-        modifiers: 'comments'
-        remaining: @props.total - @props.comments.length
-    else
-      div className: blockClass,
-        if @state.loading
-          el Spinner
-        else
-          button
-            className: "#{bn}__link"
-            onClick: @load
-            @props.label ? trans('common.buttons.show_more')
-
-
-  load: =>
-    @setState loading: true
-
-    params =
-      commentable_type: @props.parent?.commentableType ? @props.commentableMeta.type
-      commentable_id: @props.parent?.commentableId ? @props.commentableMeta.id
-      parent_id: @props.parent?.id ? 0
-      sort: uiState.comments.currentSort
-
-    lastComment = _.last(@props.comments)
-    if lastComment?
-      params.cursor =
-        id: lastComment.id
-        created_at: lastComment.createdAt
-        votes_count: lastComment.votesCount
-
-    @xhr = $.ajax route('comments.index'),
-      data: params
-      dataType: 'json'
-    .done (data) =>
-      $.publish 'comments:added', data
-    .always =>
-      @setState loading: false
+    this.xhr = $.ajax(route('comments.index'), { data: params, dataType: 'json' });
+    this.xhr.done((data) => {
+      $.publish('comments:added', data);
+    }).always(action(() => {
+      this.loading = false;
+    }));
+  };
+}
