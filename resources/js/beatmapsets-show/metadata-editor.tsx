@@ -124,6 +124,7 @@ export default class MetadataEditor extends React.Component<Props> {
 
           <textarea
             className='simple-form__input'
+            maxLength={1000}
             name='beatmapset[tags]'
             onChange={this.setTags}
             value={this.tags}
