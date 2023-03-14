@@ -39,7 +39,7 @@
                                 'href' => route('forum.forums.show', ['forum' => $topic->forum_id]),
                                 'class' => 'search-forum-post__sub-link',
                             ],
-                            $topic->forum?->forum_name ?? '[deleted forum]',
+                            $topic->forum->forum_name,
                         ),
                     ],
                 ) !!}
