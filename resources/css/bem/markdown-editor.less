@@ -2,4 +2,21 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .markdown-editor {
+  &__textarea {
+    .reset-input();
+
+    &::placeholder {
+      color: @osu-colour-f1;
+    }
+
+    width: 100%;
+    resize: vertical;
+    min-height: 3em;
+
+    font-size: @font-size--phone-input;
+
+    @media @desktop {
+      font-size: @font-size--normal-2;
+    }
+  }
 }

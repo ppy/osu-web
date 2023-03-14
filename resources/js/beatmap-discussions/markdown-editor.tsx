@@ -41,7 +41,7 @@ export default class MarkdownEditor extends React.Component<Props> {
           <>
             <TextareaAutosize
               ref={textareaRef}
-              className={textareaClassName}
+              className='markdown-editor__textarea'
               {...otherProps}
             />
             <DiscussionMessageLengthCounter isTimeline={isTimeline} message={this.props.value} />
