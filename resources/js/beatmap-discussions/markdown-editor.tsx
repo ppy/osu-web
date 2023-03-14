@@ -16,14 +16,15 @@ export function isValidMode(value: unknown): value is Mode {
   return modeLookup.has(value);
 }
 
+// TODO: figure out inheriting TextareaAutosize props withtout long syntax.
 interface Props {
   disabled?: boolean;
   isTimeline: boolean;
   mode?: Mode;
   onChange?: React.FormEventHandler<HTMLTextAreaElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLTextAreaElement>;
+  placeholder?: string;
   style?: React.CSSProperties;
-  textareaClassName?: string;
   textareaRef?: React.RefObject<HTMLTextAreaElement>;
   value: string;
 }
@@ -31,7 +32,7 @@ interface Props {
 @observer
 export default class MarkdownEditor extends React.Component<Props> {
   render() {
-    const { isTimeline, mode, textareaClassName, textareaRef, ...otherProps } = this.props;
+    const { isTimeline, mode, textareaRef, ...otherProps } = this.props;
 
     return (
       <div className='markdown-editor'>

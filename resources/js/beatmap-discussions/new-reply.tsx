@@ -3,29 +3,26 @@
 
 import BigButton from 'components/big-button';
 import UserAvatar from 'components/user-avatar';
-import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import { BeatmapsetDiscussionPostStoreResponseJson } from 'interfaces/beatmapset-discussion-post-responses';
-import BeatmapsetJson from 'interfaces/beatmapset-json';
 import { route } from 'laroute';
 import { action, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import TextareaAutosize from 'react-autosize-textarea';
 import { onError } from 'utils/ajax';
 import { validMessageLength } from 'utils/beatmapset-discussion-helper';
+import { classWithModifiers } from 'utils/css';
 import { InputEventType, makeTextAreaHandler, TextAreaCallback } from 'utils/input-handler';
 import { trans } from 'utils/lang';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import { present } from 'utils/string';
-import DiscussionMessageLengthCounter from './discussion-message-length-counter';
+import MarkdownEditor, { Mode } from './markdown-editor';
+import MarkdownEditorSwitcher from './markdown-editor-switcher';
 
-const bn = 'beatmap-discussion-post';
+const bn = 'beatmap-discussion-new-reply';
 
 interface Props {
-  beatmapset: BeatmapsetJson;
-  currentBeatmap: BeatmapJson | null;
   discussion: BeatmapsetDiscussionJson;
 }
 
@@ -46,6 +43,7 @@ export class NewReply extends React.Component<Props> {
   @observable private editing = present(this.storedMessage);
   private readonly handleKeyDown;
   @observable private message = this.storedMessage;
+  @observable private mode: Mode = 'write';
   @observable private posting: string | null = null;
   private postXhr: JQuery.jqXHR<BeatmapsetDiscussionPostStoreResponseJson> | null = null;
   private startEditing = false;
@@ -99,7 +97,11 @@ export class NewReply extends React.Component<Props> {
   }
 
   render() {
-    return this.editing ? this.renderBox() : this.renderPlaceholder();
+    return (
+      <div className={classWithModifiers(`${bn}`, { editing: this.editing })}>
+        {this.editing ? this.renderBox() : this.renderPlaceholder()}
+      </div>
+    );
   }
 
   @action
@@ -123,6 +125,11 @@ export class NewReply extends React.Component<Props> {
         this.post(event);
         break;
     }
+  };
+
+  @action
+  private readonly handleModeChange = (_id: number, mode: Mode) => {
+    this.mode = mode;
   };
 
   @action
@@ -174,49 +181,49 @@ export class NewReply extends React.Component<Props> {
 
   private renderBox() {
     return (
-      <div className={`${bn} ${bn}--reply ${bn}--new-reply`}>
-        {this.renderCancelButton()}
-        <div className={`${bn}__content`}>
-          <div className={`${bn}__avatar`}>
-            <UserAvatar modifiers='full-rounded' user={core.currentUser} />
-          </div>
-          <div className={`${bn}__message-container`}>
-            <TextareaAutosize
-              ref={this.box}
-              className={`${bn}__message ${bn}__message--editor`}
+      <>
+        <div className={`${bn}__avatar`}>
+          <UserAvatar modifiers='full-rounded' user={core.currentUser} />
+        </div>
+        <div className={`${bn}__container`}>
+          {this.renderCancelButton()}
+          <div className={classWithModifiers(`${bn}__message-container`)}>
+            <MarkdownEditorSwitcher
+              id={0}
+              mode={this.mode}
+              onModeChange={this.handleModeChange}
+            />
+            <MarkdownEditor
               disabled={this.posting != null}
+              isTimeline={this.isTimeline}
+              mode={this.mode}
               onChange={this.handleChange}
               onKeyDown={this.handleKeyDown}
               placeholder={trans('beatmaps.discussions.reply_placeholder')}
               value={this.message}
             />
-          </div>
-        </div>
+            <div className={`${bn}__footer`}>
+              <div className={`${bn}__notice`}>
+                {trans('beatmaps.discussions.reply_notice')}
+              </div>
+              <div className={`${bn}__actions`}>
+                {this.canResolve && !this.props.discussion.resolved && this.renderReplyButton('reply_resolve')}
 
-        <div className={`${bn}__footer ${bn}__footer--notice`}>
-          {trans('beatmaps.discussions.reply_notice')}
-          <DiscussionMessageLengthCounter isTimeline={this.isTimeline} message={this.message} />
-        </div>
+                {this.canReopen && this.props.discussion.resolved && this.renderReplyButton('reply_reopen')}
 
-        <div className={`${bn}__footer`}>
-          <div className={`${bn}__actions`}>
-            <div className={`${bn}__actions-group`}>
-              {this.canResolve && !this.props.discussion.resolved && this.renderReplyButton('reply_resolve')}
-
-              {this.canReopen && this.props.discussion.resolved && this.renderReplyButton('reply_reopen')}
-
-              {this.renderReplyButton('reply')}
+                {this.renderReplyButton('reply')}
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 
   private renderCancelButton() {
     return (
       <button
-        className={`${bn}__action ${bn}__action--cancel`}
+        className={`${bn}__cancel`}
         disabled={this.posting != null}
         onClick={this.onCancelClick}
       >
@@ -231,7 +238,7 @@ export class NewReply extends React.Component<Props> {
       : [trans('beatmap_discussions.reply.open.guest'), 'fas fa-sign-in-alt', false];
 
     return (
-      <div className={`${bn} ${bn}--reply ${bn}--new-reply ${bn}--new-reply-placeholder`}>
+      <div className={`${bn}__placeholder`}>
         <BigButton
           disabled={disabled}
           icon={icon}

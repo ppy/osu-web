@@ -45,7 +45,7 @@ interface Props {
   post: BeatmapsetDiscussionMessagePostJson;
   read: boolean;
   resolvedSystemPostId: number;
-  type: string;
+  type: 'discussion' | 'reply';
   user: UserJson;
   users: Partial<Record<number, UserJson>>;
 }
@@ -138,7 +138,7 @@ export default class Post extends React.Component<React.PropsWithChildren<Props>
   }
 
   render() {
-    const topClasses = classWithModifiers(bn, this.props.type, {
+    const topClasses = classWithModifiers(bn, {
       deleted: this.props.post.deleted_at != null,
       editing: this.editing,
       unread: !this.props.read && this.props.type !== 'discussion',
@@ -326,7 +326,6 @@ export default class Post extends React.Component<React.PropsWithChildren<Props>
               mode={this.context.editorMode.get(this.props.post.id)}
               onChange={this.handleTextareaChange}
               onKeyDown={this.handleTextareaKeyDown}
-              textareaClassName={`${bn}__message ${bn}__message--editor`}
               value={this.message}
             />
           </>

@@ -29,14 +29,6 @@
     opacity: 0.5;
   }
 
-  &--discussion {
-    min-width: 0;
-
-    @media @desktop {
-      flex: 1;
-    }
-  }
-
   &--new-reply {
     background-color: @osu-colour-b5;
     border-radius: 0 0 @border-radius-base @border-radius-base;
@@ -63,15 +55,6 @@
   &__action {
     text-transform: lowercase;
 
-    &--cancel {
-      .reset-input();
-      position: absolute;
-      color: @osu-colour-f1;
-      right: 0;
-      width: @beatmap-discussion--reply-padding;
-      height: @beatmap-discussion--reply-padding;
-    }
-
     &--plain {
       .reset-input();
       .link-plain();
@@ -87,14 +70,6 @@
 
     .@{_top}--editing & {
       justify-content: flex-end;
-    }
-
-    .@{_top}--new-reply & {
-      justify-content: flex-end;
-    }
-
-    .@{_top}--editing.@{_top}--reply & {
-      margin-top: 5px;
     }
   }
 
@@ -120,30 +95,6 @@
     }
   }
 
-  &__footer {
-    padding: 10px;
-
-    &--notice {
-      padding-top: 0;
-      padding-bottom: 0;
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      font-size: @font-size--normal;
-      color: @osu-colour-f1;
-    }
-
-    .@{_top}--reply & {
-      padding-left: @_content-gutter-base;
-      padding-right: @_content-gutter-base;
-
-      @media @desktop {
-        padding-left: @beatmap-discussion--reply-padding;
-        padding-right: @beatmap-discussion--reply-padding;
-      }
-    }
-  }
-
   &__info {
     font-size: @_info-text-size;
     margin-right: 10px;
@@ -155,14 +106,6 @@
     flex-wrap: wrap;
     margin-top: 10px;
 
-    .@{_top}--reply & {
-      &::after {
-        content: '';
-        height: 1px;
-        align-self: center;
-        flex: 1;
-      }
-    }
   }
 
   &__info-user {
@@ -186,22 +129,6 @@
 
     &::placeholder {
       color: @osu-colour-f1;
-    }
-
-    &--editor {
-      .reset-input();
-      width: 100%;
-      resize: vertical;
-      min-height: 3em;
-
-      // --reply part to override top modifier
-      &, .@{_top}--reply & {
-        font-size: @font-size--phone-input;
-
-        @media @desktop {
-          font-size: @_reply-text-size;
-        }
-      }
     }
   }
 

@@ -251,11 +251,7 @@ export class Discussion extends React.Component<Props> {
           {this.props.discussion.posts.slice(1).map(this.renderReply)}
         </div>
         {this.canBeRepliedTo && (
-          <NewReply
-            beatmapset={this.props.beatmapset}
-            currentBeatmap={this.props.currentBeatmap}
-            discussion={this.props.discussion}
-          />
+          <NewReply discussion={this.props.discussion} />
         )}
       </div>
     );
