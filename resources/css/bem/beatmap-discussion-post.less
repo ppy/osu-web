@@ -29,18 +29,6 @@
     opacity: 0.5;
   }
 
-  &--new-reply {
-    background-color: @osu-colour-b5;
-    border-radius: 0 0 @border-radius-base @border-radius-base;
-  }
-
-  &--new-reply-placeholder {
-    padding: 10px;
-    display: flex;
-    justify-content: flex-end;
-    background-color: transparent;
-  }
-
   &--unread {
     position: relative;
 
@@ -73,7 +61,6 @@
     }
   }
 
-
   &__avatar {
     flex: none;
     width: @beatmap-discussion--avatar-size;
@@ -105,7 +92,6 @@
     display: flex;
     flex-wrap: wrap;
     margin-top: 10px;
-
   }
 
   &__info-user {
@@ -118,18 +104,7 @@
     grid-area: message;
     word-break: break-word;
     color: white;
-
-    .@{_top}--discussion & {
-      font-size: @_discussion-text-size;
-    }
-
-    .@{_top}--reply & {
-      font-size: @_reply-text-size;
-    }
-
-    &::placeholder {
-      color: @osu-colour-f1;
-    }
+    font-size: @_discussion-text-size;
   }
 
   &__message-container {

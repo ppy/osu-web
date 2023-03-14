@@ -127,7 +127,8 @@ export default class Post extends React.Component<React.PropsWithChildren<Props>
     this.handleTextareaKeyDown = makeTextAreaHandler(this.handleTextareaKeyDownCallback);
 
     disposeOnUnmount(this, autorun(() => {
-      if (this.editing) {
+      // TODO: something (context?) triggers this autorun before unmount when navigating away
+      if (this.context != null && this.editing) {
         setTimeout(() => this.textareaRef.current?.focus(), 0);
       }
     }));
