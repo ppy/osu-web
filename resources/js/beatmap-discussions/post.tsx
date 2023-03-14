@@ -134,6 +134,7 @@ export default class Post extends React.Component<React.PropsWithChildren<Props>
   }
 
   componentWillUnmount() {
+    this.editing = false;
     this.xhr?.abort();
   }
 
