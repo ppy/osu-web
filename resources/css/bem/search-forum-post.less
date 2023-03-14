@@ -44,14 +44,18 @@
   &__poster {
     display: inline-block;
     margin-right: 1em;
-    pointer-events: auto;
-    position: relative;
 
     color: @osu-colour-f1;
 
     @media @mobile {
       display: block;
     }
+  }
+
+  &__sub-link {
+    font-weight: bold;
+    pointer-events: auto;
+    position: relative;
   }
 
   &__text {
@@ -90,9 +94,5 @@
     @media @mobile {
       display: none;
     }
-  }
-
-  &__username {
-    font-weight: bold;
   }
 }
