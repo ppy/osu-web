@@ -24,7 +24,6 @@ interface Props {
   onChange?: React.FormEventHandler<HTMLTextAreaElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLTextAreaElement>;
   placeholder?: string;
-  style?: React.CSSProperties;
   textareaRef?: React.RefObject<HTMLTextAreaElement>;
   value: string;
 }

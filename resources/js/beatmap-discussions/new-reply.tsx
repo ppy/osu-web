@@ -252,18 +252,16 @@ export class NewReply extends React.Component<Props> {
 
   private renderReplyButton(postAction: keyof typeof actionIcons) {
     return (
-      <div className={`${bn}__action`}>
-        <BigButton
-          disabled={!this.validPost || this.posting != null}
-          icon={actionIcons[postAction]}
-          isBusy={this.posting === postAction}
-          props={{
-            'data-action': postAction,
-            onClick: this.post,
-          }}
-          text={trans(`common.buttons.${postAction}`)}
-        />
-      </div>
+      <BigButton
+        disabled={!this.validPost || this.posting != null}
+        icon={actionIcons[postAction]}
+        isBusy={this.posting === postAction}
+        props={{
+          'data-action': postAction,
+          onClick: this.post,
+        }}
+        text={trans(`common.buttons.${postAction}`)}
+      />
     );
   }
 
