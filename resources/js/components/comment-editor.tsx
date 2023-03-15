@@ -1,196 +1,267 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import BigButton from './big-button'
-import { Spinner } from './spinner'
-import UserAvatar from './user-avatar'
-import { route } from 'laroute'
-import core from 'osu-core-singleton'
-import * as React from 'react'
-import TextareaAutosize from 'react-autosize-textarea'
-import { button, div, span } from 'react-dom-factories'
-import { onErrorWithCallback } from 'utils/ajax'
-import { classWithModifiers } from 'utils/css'
-import { InputEventType, makeTextAreaHandler } from 'utils/input-handler'
-import { trans } from 'utils/lang'
+import { CommentableMetaJson } from 'interfaces/comment-json';
+import { route } from 'laroute';
+import { action, computed, makeObservable, observable, runInAction } from 'mobx';
+import { observer } from 'mobx-react';
+import { Comment } from 'models/comment';
+import core from 'osu-core-singleton';
+import * as React from 'react';
+import TextareaAutosize from 'react-autosize-textarea';
+import { onErrorWithCallback } from 'utils/ajax';
+import { classWithModifiers, Modifiers } from 'utils/css';
+import { InputEventType, makeTextAreaHandler, TextAreaCallback } from 'utils/input-handler';
+import { trans } from 'utils/lang';
+import { switchNever } from 'utils/switch-never';
+import BigButton from './big-button';
+import { Spinner } from './spinner';
+import UserAvatar from './user-avatar';
 
-el = React.createElement
+type Mode = 'edit' | 'new' | 'reply';
 
-bn = 'comment-editor'
+interface CommentPostParams {
+  comment: {
+    commentable_id?: number;
+    commentable_type?: string;
+    message: string;
+    parent_id?: number;
+  };
+}
 
-export class CommentEditor extends React.PureComponent
-  constructor: (props) ->
-    super props
+interface Props {
+  close?: () => void;
+  commentableMeta?: CommentableMetaJson;
+  focus?: boolean;
+  id?: number;
+  message?: string;
+  modifiers?: Modifiers;
+  onPosted?: (mode: Mode) => void;
+  parent?: Comment;
+}
 
-    @textarea = React.createRef()
+const bn = 'comment-editor';
 
-    @handleKeyDown = makeTextAreaHandler @handleKeyDownCallback
+const buttonTextKey: Record<Mode, string> = {
+  edit: 'save',
+  new: 'post',
+  reply: 'reply',
+};
 
-    @state =
-      message: @props.message ? ''
-      posting: false
+@observer
+export class CommentEditor extends React.Component<Props> {
+  private readonly handleKeyDown;
+  @observable private message: string;
+  @observable private posting = false;
+  private readonly textarea = React.createRef<HTMLTextAreaElement>();
+  private xhr: JQuery.jqXHR<unknown> | null = null;
 
+  @computed
+  private get canComment() {
+    if (core.currentUser == null) return false;
 
-  componentDidMount: =>
-    if @props.focus ? true
-      @textarea.current?.selectionStart = -1
-      @textarea.current?.focus()
+    return this.mode === 'edit' || this.canNewCommentReason == null;
+  }
 
+  private get canNewCommentReason() {
+    return this.props.commentableMeta == null
+      ? null
+      : 'current_user_attributes' in this.props.commentableMeta
+        ? this.props.commentableMeta.current_user_attributes.can_new_comment_reason
+        : trans('authorization.comment.store.disabled');
+  }
 
-  componentWillUnmount: =>
-    @xhr?.abort()
+  private get isValid() {
+    return this.message.length > 0;
+  }
 
+  @computed
+  private get mode() {
+    return this.props.parent != null
+      ? 'reply'
+      : this.props.id != null
+        ? 'edit'
+        : 'new';
+  }
 
-  render: =>
-    mode = @mode()
-    canComment = @canComment()
+  @computed
+  private get placeholder() {
+    return this.canComment
+      ? trans(`comments.placeholder.${this.mode}`)
+      : (this.canNewCommentReason ?? undefined);
+  }
 
-    placeholder =
-      if mode in ['new', 'reply'] && !canComment
-        @props.commentableMeta.current_user_attributes?.can_new_comment_reason ? trans('authorization.comment.store.disabled')
-      else
-        trans("comments.placeholder.#{mode}")
+  constructor(props: Props) {
+    super(props);
 
-    blockClass = classWithModifiers bn, @props.modifiers, fancy: mode == 'new'
+    this.handleKeyDown = makeTextAreaHandler(this.handleKeyDownCallback);
+    this.message = this.props.message ?? '';
 
-    div className: blockClass,
-      if mode == 'new'
-        div className: "#{bn}__avatar",
-          el UserAvatar, user: currentUser, modifiers: ['full-circle']
+    makeObservable(this);
+  }
 
-      el TextareaAutosize,
-        className: "#{bn}__message"
-        ref: @textarea
-        value: @state.message
-        placeholder: placeholder
-        onChange: @onChange
-        onKeyDown: @handleKeyDown
-        disabled: !canComment || @state.posting
-      div
-        className: "#{bn}__footer"
-        div className: "#{bn}__footer-item #{bn}__footer-item--notice hidden-xs",
-          if canComment
-            trans 'comments.editor.textarea_hint._',
-              action: trans("comments.editor.textarea_hint.#{mode}")
+  componentDidMount() {
+    if ((this.props.focus ?? true) && this.textarea.current != null) {
+      this.textarea.current.selectionStart = -1;
+      this.textarea.current.focus();
+    }
+  }
 
-        if @props.close?
-          div className: "#{bn}__footer-item",
-            el BigButton,
-              disabled: @state.posting
-              modifiers: 'comment-editor'
-              props:
-                onClick: @props.close
-              text: trans('common.buttons.cancel')
+  componentWillUnmount() {
+    this.xhr?.abort();
+  }
 
-        if currentUser.id?
-          div className: "#{bn}__footer-item",
-            el BigButton,
-              disabled: @state.posting || !@isValid()
-              isBusy: @state.posting
-              modifiers: 'comment-editor'
-              props:
-                onClick: @post
-              text:
-                top:
-                  if @state.posting
-                    el Spinner, modifiers: 'center-inline'
-                  else
-                    @buttonText()
-        else
-          div className: "#{bn}__footer-item",
-            el BigButton,
-              extraClasses: ['js-user-link']
-              modifiers: 'comment-editor'
-              text: trans("comments.guest_button.#{mode}")
+  render() {
+    const blockClass = classWithModifiers(bn, this.props.modifiers, { fancy: this.mode === 'new' });
 
+    return (
+      <div className={blockClass}>
+        {this.mode === 'new' &&
+          <div className={`${bn}__avatar`}>
+            <UserAvatar modifiers='full-circle' user={core.currentUser} />
+          </div>
+        }
 
-  buttonText: =>
-    key =
-      switch @mode()
-        when 'reply' then 'reply'
-        when 'edit' then 'save'
-        when 'new' then 'post'
+        <TextareaAutosize
+          ref={this.textarea}
+          className={`${bn}__message`}
+          disabled={!this.canComment || this.posting}
+          onChange={this.onChange}
+          onKeyDown={this.handleKeyDown}
+          placeholder={this.placeholder}
+          value={this.message}
+        />
+        <div className={`${bn}__footer`}>
+          <div className={`${bn}__footer-item ${bn}__footer-item--notice hidden-xs`}>
+            {this.canComment && trans('comments.editor.textarea_hint._', {
+              action: trans(`comments.editor.textarea_hint.${this.mode}`),
+            })}
+          </div>
 
-    trans("common.buttons.#{key}")
+          {this.props.close != null &&
+            <div className={`${bn}__footer-item`}>
+              <BigButton
+                disabled={this.posting}
+                modifiers='comment-editor'
+                props={{ onClick: this.props.close }}
+                text={trans('common.buttons.cancel')}
+              />
+            </div>
+          }
 
+          {core.currentUser != null
+            ? (
+              <div className={`${bn}__footer-item`}>
+                <BigButton
+                  disabled={this.posting || !this.isValid}
+                  isBusy={this.posting}
+                  modifiers='comment-editor'
+                  props={{ onClick: this.post }}
+                  text={{
+                    top: this.posting
+                      ? <Spinner modifiers='center-inline' />
+                      : trans(`common.buttons.${buttonTextKey[this.mode]}`),
+                  }}
+                />
+              </div>
+            ) : (
+              <div className={`${bn}__footer-item`}>
+                <BigButton
+                  extraClasses={['js-user-link']}
+                  modifiers='comment-editor'
+                  text={trans(`comments.guest_button.${this.mode}`)}
+                />
+              </div>
+            )
+          }
+        </div>
+      </div>
+    );
+  }
 
-  canComment: =>
-    return false if !core.currentUser?
+  private readonly close = () => {
+    if (this.props.close == null) return;
 
-    if @mode() in ['new', 'reply']
-      @props.commentableMeta.current_user_attributes? && !@props.commentableMeta.current_user_attributes?.can_new_comment_reason?
-    else
-      true
+    const initialMessage = this.props.message ?? '';
 
+    if (initialMessage !== this.message && !confirm(trans('common.confirmation_unsaved'))) return;
 
-  close: =>
-    return unless @props.close?
+    this.props.close();
+  };
 
-    initialMessage = @props.message ? ''
+  private readonly handleKeyDownCallback: TextAreaCallback = (type) => {
+    if (type === InputEventType.Cancel) {
+      this.close();
+    } else if (type === InputEventType.Submit) {
+      this.post();
+    }
+  };
 
-    return if initialMessage != @state.message && !confirm(trans('common.confirmation_unsaved'))
+  @action
+  private readonly onChange = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    this.message = e.currentTarget.value;
+  };
 
-    @props.close()
+  private readonly post = () => {
+    if (this.posting) return;
 
+    if (this.mode === 'edit' && this.message === (this.props.message ?? '')) {
+      this.props.close?.();
 
-  handleKeyDownCallback: (type, event) =>
-    switch type
-      when InputEventType.Cancel
-        @close()
-      when InputEventType.Submit
-        @post()
+      return;
+    }
 
+    this.posting = true;
+    const params: CommentPostParams = {
+      comment: { message: this.message },
+    };
 
-  isValid: =>
-    @state.message? && @state.message.length > 0
+    let url = route('comments.store');
+    let method = 'POST';
+    let resetMessage = true;
+    let publishEvent = 'comments:new';
 
+    switch (this.mode) {
+      case 'edit':
+        if (this.props.id == null) {
+          throw new Error('missing post id in edit mode');
+        }
+        url = route('comments.update', { comment: this.props.id });
+        method = 'PUT';
+        resetMessage = false;
+        publishEvent = 'comment:updated';
+        break;
 
-  mode: =>
-    if @props.parent?
-      'reply'
-    else if @props.id?
-      'edit'
-    else
-      'new'
+      case 'new':
+        if (this.props.commentableMeta == null || !('id' in this.props.commentableMeta)) {
+          throw new Error('missing commentable meta in new mode');
+        }
+        params.comment.commentable_type = this.props.commentableMeta.type;
+        params.comment.commentable_id = this.props.commentableMeta.id;
+        break;
 
+      case 'reply':
+        if (this.props.parent == null) {
+          throw new Error('missing parent in reply mode');
+        }
+        params.comment.parent_id = this.props.parent.id;
+        break;
 
-  onChange: (e) =>
-    @setState message: e.target.value
+      default:
+        switchNever(this.mode);
+    }
 
-
-  post: =>
-    return if @xhr?
-    return @props.close?() if @mode() == 'edit' && @state.message == @props.message
-
-    @setState posting: true
-
-    data = comment: message: @state.message
-
-    switch @mode()
-      when 'reply', 'new'
-        url = route 'comments.store'
-        method = 'POST'
-        data.comment.commentable_type = @props.commentableMeta.type
-        data.comment.commentable_id = @props.commentableMeta.id
-        data.comment.parent_id = @props.parent?.id
-
-        onDone = (data) =>
-          @setState message: ''
-          $.publish 'comments:new', data
-      when 'edit'
-        url = route 'comments.update', comment: @props.id
-        method = 'PUT'
-
-        onDone = (data) ->
-          $.publish 'comment:updated', data
-
-    @xhr = $.ajax url, {method, data}
-    .always =>
-      @setState posting: false
-    .done (data) =>
-      onDone(data)
-      @props.onPosted?(@mode())
-      @props.close?()
-    .fail onErrorWithCallback(@post)
-    .always =>
-      @xhr = null
+    this.xhr = $.ajax(url, { data: params, method });
+    this.xhr
+      .always(action(() => {
+        this.posting = false;
+      })).done((data) => runInAction(() => {
+        if (resetMessage) {
+          this.message = '';
+        }
+        $.publish(publishEvent, data);
+        this.props.onPosted?.(this.mode);
+        this.props.close?.();
+      })).fail(onErrorWithCallback(this.post));
+  };
+}
