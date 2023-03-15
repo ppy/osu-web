@@ -16,7 +16,6 @@ import { action, computed, makeObservable, observable, runInAction } from 'mobx'
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import TextareaAutosize from 'react-autosize-textarea';
 import { onError } from 'utils/ajax';
 import { canModeratePosts, formatTimestamp, makeUrl, NearbyDiscussion, nearbyDiscussions, parseTimestamp, validMessageLength } from 'utils/beatmapset-discussion-helper';
 import { downloadLimited, nominationsCount } from 'utils/beatmapset-helper';
@@ -26,8 +25,9 @@ import { joinComponents, trans } from 'utils/lang';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 import { present } from 'utils/string';
 import CurrentDiscussions from './current-discussions';
-import DiscussionMessageLengthCounter from './discussion-message-length-counter';
 import DiscussionMode from './discussion-mode';
+import MarkdownEditor, { Mode } from './markdown-editor';
+import MarkdownEditorSwitcher from './markdown-editor-switcher';
 
 const bn = 'beatmap-discussion-new';
 
@@ -55,6 +55,7 @@ export class NewDiscussion extends React.Component<Props> {
   private readonly handleKeyDown;
   private readonly inputBox = React.createRef<HTMLTextAreaElement>();
   @observable private message = this.storedMessage;
+  @observable private mode: Mode = 'write';
   @observable private mounted = false;
   private nearbyDiscussionsCache: DiscussionsCache | null = null;
   @observable private posting: string | null = null;
@@ -177,6 +178,11 @@ export class NewDiscussion extends React.Component<Props> {
     if (type === InputEventType.Cancel) {
       this.setSticky(false);
     }
+  };
+
+  @action
+  private readonly handleModeChange = (_id: number, mode: Mode) => {
+    this.mode = mode;
   };
 
   private readonly onFocus = () => this.setSticky(true);
@@ -383,20 +389,21 @@ export class NewDiscussion extends React.Component<Props> {
 
     return (
       <>
-        <TextareaAutosize
-          ref={this.inputBox}
-          className={`${bn}__message-area js-hype--input`}
-          disabled={this.posting != null || !this.canPost}
+        <MarkdownEditorSwitcher
+          id={0}
+          mode={this.mode}
+          onModeChange={this.handleModeChange}
+        />
+        <MarkdownEditor
+          disabled={this.posting != null}
+          isTimeline={this.isTimeline}
+          mode={this.mode}
+          modifiers='new-discussion'
           onChange={this.setMessage}
           onFocus={this.onFocus}
           onKeyDown={this.handleKeyDown}
           placeholder={this.textareaPlaceholder}
-          value={this.canPost ? this.message : ''}
-        />
-
-        <DiscussionMessageLengthCounter
-          isTimeline={this.isTimeline}
-          message={this.message}
+          value={this.message}
         />
       </>
     );

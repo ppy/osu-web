@@ -4,6 +4,7 @@
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea/lib';
+import { classWithModifiers, Modifiers } from 'utils/css';
 import DiscussionMessage from './discussion-message';
 import DiscussionMessageLengthCounter from './discussion-message-length-counter';
 
@@ -21,7 +22,9 @@ interface Props {
   disabled?: boolean;
   isTimeline: boolean;
   mode?: Mode;
+  modifiers?: Modifiers;
   onChange?: React.FormEventHandler<HTMLTextAreaElement>;
+  onFocus?: React.FocusEventHandler<HTMLTextAreaElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLTextAreaElement>;
   placeholder?: string;
   textareaRef?: React.RefObject<HTMLTextAreaElement>;
@@ -41,7 +44,7 @@ export default class MarkdownEditor extends React.Component<Props> {
           <>
             <TextareaAutosize
               ref={textareaRef}
-              className='markdown-editor__textarea'
+              className={classWithModifiers('markdown-editor__textarea', this.props.modifiers)}
               {...otherProps}
             />
             <DiscussionMessageLengthCounter isTimeline={isTimeline} message={this.props.value} />
