@@ -81,18 +81,19 @@ export default class CommentShowMore extends React.Component<Props> {
 
     this.loading = true;
 
-    const commentableMeta = this.props.commentableMeta != null && ('id' in this.props.commentableMeta)
-      ? this.props.commentableMeta
-      : {
-        id: undefined,
-        type: undefined,
-      };
-    const params: Partial<Record<string, unknown>> = {
-      commentable_id: this.props.parent?.commentableId ?? commentableMeta.id,
-      commentable_type: this.props.parent?.commentableType ?? commentableMeta.type,
-      parent_id: this.props.parent?.id ?? 0,
-      sort: uiState.comments.currentSort,
-    };
+    const params: Partial<Record<string, unknown>> = { sort: uiState.comments.currentSort };
+    if (this.props.parent == null) {
+      params.parent_id = 0;
+
+      if (this.props.commentableMeta != null && ('id' in this.props.commentableMeta)) {
+        params.commentable_id = this.props.commentableMeta.id;
+        params.commentable_type = this.props.commentableMeta.type;
+      }
+    } else {
+      params.commentable_id = this.props.parent.commentableId;
+      params.commentable_type = this.props.parent.commentableType;
+      params.parent_id = this.props.parent.id;
+    }
 
     const lastComment = last(this.props.comments);
     if (lastComment != null) {
