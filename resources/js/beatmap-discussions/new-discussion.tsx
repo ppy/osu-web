@@ -104,11 +104,13 @@ export class NewDiscussion extends React.Component<Props> {
     return localStorage.getItem(this.storageKey) ?? '';
   }
 
-  private get textareaPlaceholder() {
-    if (core.currentUser == null) return;
-
+  private get placeholderText() {
     if (this.canPost) {
       return trans(`beatmaps.discussions.message_placeholder.${this.props.mode}`, { version: this.props.currentBeatmap.version });
+    }
+
+    if (core.currentUser == null) {
+      return trans('beatmaps.discussions.require-login');
     }
 
     if (core.currentUser.is_silenced) {
@@ -385,15 +387,15 @@ export class NewDiscussion extends React.Component<Props> {
   }
 
   private renderTextarea() {
-    if (core.currentUser == null) return trans('beatmaps.discussions.require-login');
-
-    return (
+    return this.canPost ? (
       <>
-        <MarkdownEditorSwitcher
-          id={0}
-          mode={this.mode}
-          onModeChange={this.handleModeChange}
-        />
+        {this.canPost && (
+          <MarkdownEditorSwitcher
+            id={0}
+            mode={this.mode}
+            onModeChange={this.handleModeChange}
+          />
+        )}
         <MarkdownEditor
           disabled={this.posting != null}
           isTimeline={this.isTimeline}
@@ -402,11 +404,11 @@ export class NewDiscussion extends React.Component<Props> {
           onChange={this.setMessage}
           onFocus={this.onFocus}
           onKeyDown={this.handleKeyDown}
-          placeholder={this.textareaPlaceholder}
+          placeholder={this.placeholderText}
           value={this.message}
         />
       </>
-    );
+    ) : this.placeholderText;
   }
 
   private renderTimestamp() {
