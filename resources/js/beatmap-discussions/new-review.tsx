@@ -27,6 +27,17 @@ interface State {
 }
 
 export default class NewReview extends React.Component<Props, State> {
+  private get noPermissionText() {
+    if (downloadLimited(this.props.beatmapset)) {
+      return trans('beatmaps.discussions.message_placeholder_locked');
+    }
+
+    if (core.currentUser == null) {
+      return trans('beatmaps.discussions.require-login');
+    }
+
+    return null;
+  }
 
   constructor(props: Props) {
     super(props);
@@ -57,17 +68,10 @@ export default class NewReview extends React.Component<Props, State> {
 
   render(): React.ReactNode {
     const floatClass = 'beatmap-discussion-new-float';
-    const floatMods = [];
-    if (this.props.pinned) {
-      floatMods.push('pinned');
-    }
-    let buttonCssClasses = 'btn-circle';
-    if (this.props.pinned) {
-      buttonCssClasses += ' btn-circle--activated';
-    }
+    const placeholder = this.noPermissionText;
 
     return (
-      <div className={classWithModifiers(floatClass, floatMods)} style={{ top: this.state.cssTop }}>
+      <div className={classWithModifiers(floatClass, { pinned: this.props.pinned })} style={{ top: this.state.cssTop }}>
         <div className={`${floatClass}__floatable ${floatClass}__floatable--pinned`}>
           <div className={`${floatClass}__content`}>
             <div className='osu-page osu-page--small'>
@@ -76,7 +80,7 @@ export default class NewReview extends React.Component<Props, State> {
                   {trans('beatmaps.discussions.review.new')}
                   <span className='page-title__button'>
                     <span
-                      className={buttonCssClasses}
+                      className={classWithModifiers('btn-circle', { activated: this.props.pinned })}
                       onClick={this.toggleSticky}
                       title={trans(`beatmaps.discussions.new.${this.props.pinned ? 'unpin' : 'pin'}`)}
                     >
@@ -84,23 +88,19 @@ export default class NewReview extends React.Component<Props, State> {
                     </span>
                   </span>
                 </div>
-                {
-                  this.props.currentUser.id ? (
-                    !downloadLimited(this.props.beatmapset) ? (
-                      <DiscussionsContext.Consumer>
-                        {
-                          (discussions) => (<Editor
-                            beatmaps={this.props.beatmaps}
-                            beatmapset={this.props.beatmapset}
-                            currentBeatmap={this.props.currentBeatmap}
-                            discussions={discussions}
-                            onFocus={this.onFocus}
-                          />)
-                        }
-                      </DiscussionsContext.Consumer>
-                    ) : <div className='beatmap-discussion-new__login-required'>{trans('beatmaps.discussions.message_placeholder_locked')}</div>
-                  ) : <div className='beatmap-discussion-new__login-required'>{trans('beatmaps.discussions.require-login')}</div>
-                }
+                {placeholder == null ? (
+                  <DiscussionsContext.Consumer>
+                    {
+                      (discussions) => (<Editor
+                        beatmaps={this.props.beatmaps}
+                        beatmapset={this.props.beatmapset}
+                        currentBeatmap={this.props.currentBeatmap}
+                        discussions={discussions}
+                        onFocus={this.onFocus}
+                      />)
+                    }
+                  </DiscussionsContext.Consumer>
+                ) : <div className='beatmap-discussion-new__login-required'>{placeholder}</div>}
               </div>
             </div>
           </div>
