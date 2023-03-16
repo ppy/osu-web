@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { Spinner } from 'components/spinner';
+import { route } from 'laroute';
 import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import React from 'react';
@@ -13,7 +14,6 @@ type Props = ReactMarkdownProps & React.DetailedHTMLProps<React.ImgHTMLAttribute
 @observer
 export default class ImageLink extends React.Component<Props> {
   static contextType = DiscussionsStateContext;
-  declare context: React.ContextType<typeof DiscussionsStateContext>;
   @observable private loaded = false;
 
   constructor(props: Props) {
@@ -22,17 +22,9 @@ export default class ImageLink extends React.Component<Props> {
     makeObservable(this);
   }
 
-  @action
-  componentDidMount(): void {
-    if (this.props.src != null) {
-      this.context.addUrl(this.props.src);
-    }
-  }
-
   render() {
-    const url = this.props.src != null ? this.context.mediaUrls.get(this.props.src) : null;
-
-    if (url == null) {
+    const src = this.props.src != null ? route('beatmapsets.discussions.media-url', { url: this.props.src }) : null;
+    if (src == null) {
       return (
         <span className='beatmapset-discussion-image-link'>
           {this.renderSpinner()}
@@ -42,9 +34,9 @@ export default class ImageLink extends React.Component<Props> {
 
     // TODO: render something else on fail?
     return (
-      <a className='beatmapset-discussion-image-link' href={url} rel='nofollow noreferrer' target='_blank'>
+      <a className='beatmapset-discussion-image-link' href={src} rel='nofollow noreferrer' target='_blank'>
         {!this.loaded && this.renderSpinner()}
-        <img {...this.props.node.properties} loading="lazy" onLoad={this.handleOnLoad} src={url} />
+        <img {...this.props.node.properties} loading="lazy" onLoad={this.handleOnLoad} src={src} />
       </a>
     );
   }

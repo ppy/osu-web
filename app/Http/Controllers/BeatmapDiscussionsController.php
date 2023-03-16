@@ -20,7 +20,7 @@ class BeatmapDiscussionsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'mediaUrls', 'show']]);
+        $this->middleware('auth', ['except' => ['index', 'mediaUrl', 'show']]);
         $this->middleware('require-scopes:public', ['only' => ['index']]);
 
         parent::__construct();
@@ -117,24 +117,12 @@ class BeatmapDiscussionsController extends Controller
         return ext_view('beatmap_discussions.index', compact('json', 'search', 'paginator'));
     }
 
-    public function mediaUrls()
+    public function mediaUrl()
     {
-        ['urls' => $urls] = get_params(request()->all(), null, [
-            'urls:string[]',
-        ], ['null_missing' => true]);
+        $url = get_string(request('url'));
 
-        if ($urls === null) {
-            return (object) [];
-        }
-
-        // limit to 100 urls.
-        $urls = array_slice($urls, 0, 100);
-        $ret = [];
-        foreach ($urls as $url) {
-            $ret[$url] = proxy_media($url);
-        }
-
-        return $ret;
+        // Tell browser not to request url for a while.
+        return redirect(proxy_media($url))->header('Cache-Control', 'max-age=600');
     }
 
     public function restore($id)
