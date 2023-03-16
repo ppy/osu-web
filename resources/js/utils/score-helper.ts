@@ -123,7 +123,11 @@ export function scoreUrl(score: SoloScoreJson) {
 }
 
 export function totalScore(score: SoloScoreJson) {
-  return score.legacy_score_id == null
-    ? score.total_score
-    : score.legacy_total_score;
+  if (core.userPreferences.get('legacy_score_only')) {
+    return score.legacy_score_id == null
+      ? score.total_score
+      : score.legacy_total_score;
+  }
+
+  return score.total_score;
 }
