@@ -36,6 +36,9 @@ class ScoreSearch extends RecordSearch
     {
         $query = new BoolQuery();
 
+        if ($this->params->excludeConverts) {
+            $query->filter(['term' => ['convert' => false]]);
+        }
         if (config('osu.scores.es_enable_legacy_filter') && $this->params->isLegacy !== null) {
             $query->filter(['term' => ['is_legacy' => $this->params->isLegacy]]);
         }
