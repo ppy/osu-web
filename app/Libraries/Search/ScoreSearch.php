@@ -36,7 +36,7 @@ class ScoreSearch extends RecordSearch
     {
         $query = new BoolQuery();
 
-        if ($this->params->isLegacy !== null) {
+        if ($GLOBALS['cfg']['osu']['scores']['es_enable_legacy_filter'] && $this->params->isLegacy !== null) {
             $query->filter(['term' => ['is_legacy' => $this->params->isLegacy]]);
         }
         if ($this->params->rulesetId !== null) {
@@ -67,19 +67,20 @@ class ScoreSearch extends RecordSearch
 
         $beforeTotalScore = $this->params->beforeTotalScore;
         if ($beforeTotalScore === null && $this->params->beforeScore !== null) {
-            $beforeTotalScore = $this->params->beforeScore->isLegacy()
+            $beforeTotalScore = $this->params->isLegacy
                 ? $this->params->beforeScore->data->legacyTotalScore
                 : $this->params->beforeScore->data->totalScore;
         }
         if ($beforeTotalScore !== null) {
             $scoreQuery = (new BoolQuery())->shouldMatch(1);
+            $scoreField = $this->params->isLegacy ? 'legacy_total_score' : 'total_score';
             $scoreQuery->should((new BoolQuery())->filter(['range' => [
-                'total_score' => ['gt' => $beforeTotalScore],
+                $scoreField => ['gt' => $beforeTotalScore],
             ]]));
             if ($this->params->beforeScore !== null) {
                 $scoreQuery->should((new BoolQuery())
                     ->filter(['range' => ['id' => ['lt' => $this->params->beforeScore->getKey()]]])
-                    ->filter(['term' => ['total_score' => $beforeTotalScore]]));
+                    ->filter(['term' => [$scoreField => $beforeTotalScore]]));
             }
 
             $query->must($scoreQuery);
@@ -142,7 +143,8 @@ class ScoreSearch extends RecordSearch
         $allMods = $this->params->rulesetId === null
             ? $modsHelper->allIds
             : new Set(array_keys($modsHelper->mods[$this->params->rulesetId]));
-        $allMods->remove('PF', 'SD', 'MR');
+        // CL is currently considered a "preference" mod
+        $allMods->remove('CL', 'PF', 'SD', 'MR');
 
         $allSearchMods = [];
         foreach ($mods as $mod) {
