@@ -693,7 +693,7 @@
   dependencies:
     source-map "^0.6.1"
 
-"@types/unist@*", "@types/unist@^2.0.0":
+"@types/unist@*", "@types/unist@^2.0.0", "@types/unist@^2.0.6":
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/@types/unist/-/unist-2.0.6.tgz#250a7b16c3b91f672a24552ec64678eeb1d3a08d"
   integrity sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==
@@ -8572,11 +8572,6 @@ unist-util-visit@^4.0.0:
     "@types/unist" "^2.0.0"
     unist-util-is "^5.0.0"
     unist-util-visit-parents "^5.1.1"
-
-unist@^8.0.11:
-  version "8.0.11"
-  resolved "https://registry.yarnpkg.com/unist/-/unist-8.0.11.tgz#585964c67807e341b878d7f8cff1bb8c0dbeae34"
-  integrity sha512-qnWJT2X2zv8UVrAFAxz83rRek9NBdzNLEM5+EKSP0kbZeEGVWuxwKbVwoi2GvgBoIrQLsZ0xLok6+q7VEv4ERw==
 
 universalify@^0.1.0, universalify@^0.1.2:
   version "0.1.2"
