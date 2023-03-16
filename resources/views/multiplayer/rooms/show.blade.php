@@ -43,7 +43,7 @@
                     {{ osu_trans('rankings.spotlight.start_date') }}
                 </div>
                 <div class="counter-box__count">
-                    {{ $room->starts_at->formatLocalized('%Y-%m-%d') }}
+                    {{ json_date($room->starts_at) }}
                 </div>
             </div>
             @if ($room->ends_at !== null)
@@ -52,7 +52,7 @@
                         {{ osu_trans('rankings.spotlight.end_date') }}
                     </div>
                     <div class="counter-box__count">
-                        {{ $room->ends_at->formatLocalized('%Y-%m-%d') }}
+                        {{ json_date($room->ends_at) }}
                     </div>
                 </div>
             @endif
