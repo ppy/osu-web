@@ -129,6 +129,10 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
     const HYPEABLE_STATES = [-1, 0, 3];
 
+    const MAX_FIELD_LENGTHS = [
+        'tags' => 1000,
+    ];
+
     const STATES = [
         'graveyard' => -2,
         'wip' => -1,
@@ -1499,6 +1503,8 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         if ($this->isDirty('genre_id') && ($this->genre === null || $this->genre_id === 0)) {
             $this->validationErrors()->add('genre_id', 'invalid');
         }
+
+        $this->validateDbFieldLengths();
 
         return $this->validationErrors()->isEmpty();
     }
