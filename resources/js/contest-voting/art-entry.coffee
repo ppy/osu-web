@@ -79,7 +79,7 @@ export class ArtEntry extends React.Component
             target: '_blank'
 
             @props.entry.title
-          @renderUserLink()
+          div null, @renderUserLink()
 
       else if showVotes
         div className: "#{bn}__result",
