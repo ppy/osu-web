@@ -36,7 +36,7 @@ class ScoreSearch extends RecordSearch
     {
         $query = new BoolQuery();
 
-        if ($this->params->isLegacy !== null) {
+        if ($GLOBALS['cfg']['osu']['scores']['es_enable_legacy_filter'] && $this->params->isLegacy !== null) {
             $query->filter(['term' => ['is_legacy' => $this->params->isLegacy]]);
         }
         if ($this->params->rulesetId !== null) {
@@ -142,7 +142,8 @@ class ScoreSearch extends RecordSearch
         $allMods = $this->params->rulesetId === null
             ? $modsHelper->allIds
             : new Set(array_keys($modsHelper->mods[$this->params->rulesetId]));
-        $allMods->remove('PF', 'SD', 'MR');
+        // CL is currently considered a "preference" mod
+        $allMods->remove('CL', 'PF', 'SD', 'MR');
 
         $allSearchMods = [];
         foreach ($mods as $mod) {
