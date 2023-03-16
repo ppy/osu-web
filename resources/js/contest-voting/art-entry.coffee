@@ -18,7 +18,8 @@ export class ArtEntry extends React.Component
 
     votingOver = moment(@props.contest.voting_ends_at).diff() <= 0
     showVotes = @props.contest.show_votes
-    showNames = @props.contest.show_names
+    showName = @props.contest.show_names
+    showUserLink = @props.entry.user?.id?
     thumbnailShape = @props.contest.thumbnail_shape
     galleryId = "contest-#{@props.contest.id}"
     buttonId = "#{galleryId}:#{@props.displayIndex}"
@@ -49,7 +50,7 @@ export class ArtEntry extends React.Component
         "#{thumbnailShape}": thumbnailShape?
         result: showVotes
         selected: isSelected
-        'show-name': showNames && !showVotes
+        'show-name': showName && !showVotes
         placed: showVotes && top3
         "placed-#{place}": showVotes && top3
         smaller: showVotes && !top3
@@ -71,37 +72,40 @@ export class ArtEntry extends React.Component
             theme: 'art'
             buttonId: buttonId
 
-      if showNames
+      if showName || showVotes || showUserLink
         div className: "#{bn}__result",
-          a
-            href: @props.entry.preview
-            rel: 'nofollow noreferrer'
-            target: '_blank'
+          if showName
+            a
+              href: @props.entry.preview
+              rel: 'nofollow noreferrer'
+              target: '_blank'
 
-            @props.entry.title
-          div null, @renderUserLink()
+              @props.entry.title
 
-      else if showVotes
-        div className: "#{bn}__result",
-          div className: "#{bn}__result-ranking",
-            div className: "#{bn}__result-place",
-              if top3
-                i className: "fas fa-fw fa-trophy #{bn}__trophy"
-              span {}, "##{place}"
-            @renderUserLink() ? span className: "#{bn}__entrant", @props.entry.results.actual_name
-          div className: "#{bn}__result-pane",
-            span className: "#{bn}__result-votes",
-              transChoice 'contest.vote.count', @props.entry.results.votes
-            if Number.isFinite usersVotedPercentage
-              span className: "#{bn}__result-votes #{bn}__result-votes--percentage",
-                " (#{formatNumber(usersVotedPercentage)}%)"
-      else if @props.entry.user?.id?
-        div className: "#{bn}__result", @renderUserLink()
+          if showUserLink && !showVotes
+            div null, @renderUserLink()
+
+          if showVotes
+            el React.Fragment, null,
+              div className: "#{bn}__result-ranking",
+                div className: "#{bn}__result-place",
+                  if top3
+                    i className: "fas fa-fw fa-trophy #{bn}__trophy"
+                  span {}, "##{place}"
+                if showUserLink
+                  @renderUserLink()
+                else
+                  span className: "#{bn}__entrant", @props.entry.results.actual_name
+
+              div className: "#{bn}__result-pane",
+                span className: "#{bn}__result-votes",
+                  transChoice 'contest.vote.count', @props.entry.results.votes
+                if Number.isFinite usersVotedPercentage
+                  span className: "#{bn}__result-votes #{bn}__result-votes--percentage",
+                    " (#{formatNumber(usersVotedPercentage)}%)"
 
 
   renderUserLink: ->
-    return null unless @props.entry.user?.id?
-
     el UserLink,
       className: "#{bn}__entrant"
       user: @props.entry.user
