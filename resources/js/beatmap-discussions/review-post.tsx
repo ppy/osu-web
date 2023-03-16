@@ -27,7 +27,7 @@ export class ReviewPost extends React.Component<Props> {
           }
           case 'embed':
             if (block.discussion_id) {
-              docBlocks.push(<ReviewPostEmbed key={block.discussion_id} data={{ discussion_id: block.discussion_id }} />);
+              docBlocks.push(<ReviewPostEmbed key={index} data={{ discussion_id: block.discussion_id }} />);
             }
             break;
         }
