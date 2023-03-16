@@ -48,6 +48,9 @@ class ScoreSearch extends RecordSearch
         if ($this->params->userId !== null) {
             $query->filter(['term' => ['user_id' => $this->params->userId]]);
         }
+        if ($this->params->excludeConverts) {
+            $query->filter(['term' => ['convert' => false]]);
+        }
         if ($this->params->excludeMods !== null && count($this->params->excludeMods) > 0) {
             foreach ($this->params->excludeMods as $excludedMod) {
                 $query->mustNot(['term' => ['mods' => $excludedMod]]);
