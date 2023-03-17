@@ -151,7 +151,11 @@ jobs:
       - name: Run PHPUnit
         run: ./bin/phpunit.sh
 
-      # TODO: workaround things (beatmaps) being indexed during test above and not cleaned up
+      # TODO: workaround things (beatmaps) being indexed during test above and not cleaned up.
+      # This results in:
+      # 1. ranked beatmapset with null approved date being indexed
+      # 2. ES then returns Long.MIN_VALUE for null dates cursor
+      # 3. and finally ES parser fails when parsing the Long.MIN_VALUE back when passed as cursor
       - name: Clean indexes
         run: php artisan es:index-documents --yes
 
