@@ -13,6 +13,16 @@ return [
     'see_channel' => 'accesați chat-ul',
     'verifying' => 'Verificați sesiunea pentru a vizualiza notificările',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => '',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
     'filters' => [
         '_' => 'tot',
         'user' => 'profil',

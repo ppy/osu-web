@@ -13,6 +13,16 @@ return [
     'see_channel' => 'eiti į pokalbių langą',
     'verifying' => 'Prašom patvirtinti sesiją, kad matyti pranešimus',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => '',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
     'filters' => [
         '_' => 'visi',
         'user' => 'profilis',

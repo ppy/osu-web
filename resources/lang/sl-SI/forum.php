@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => '',
         'latest_post' => 'Zadnja objava',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => 'Res želiš povrniti objavo?',
         'edited' => 'Nazadnje uredil :user :when, uredil skupno :count_delimited-krat.|Nazadnje uredil :user :when, uredil skupno :count_delimited-krat.',
         'posted_at' => 'objavljeno :when',
-        'posted_by' => 'objavil :username',
+        'posted_by_in' => '',
 
         'actions' => [
             'destroy' => 'Odstrani objavo',

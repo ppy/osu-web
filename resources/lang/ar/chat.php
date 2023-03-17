@@ -8,7 +8,7 @@ return [
     'talking_in' => 'يتحدث في :channel',
     'talking_with' => 'يتحدث مع :name',
     'title_compact' => 'محادثة',
-    'unread_messages' => '',
+    'unread_messages' => 'رسائل غير مقروءة',
 
     'cannot_send' => [
         'channel' => 'لا يمكنك الاِرسال في هذه القناة حاليا. قد يكون هذا سبب لأي من الأسباب التالية:',
@@ -36,7 +36,7 @@ return [
 
         'labels' => [
             'description' => 'الوصف',
-            'message' => '',
+            'message' => 'رسالة',
             'name' => 'اسم الغرفة',
             'users' => 'لاعبين للإضافة',
         ],

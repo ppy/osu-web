@@ -34,6 +34,7 @@ return [
     'mode' => [
         'artist' => 'Artiest/Album',
         'chart' => 'In de schijnwerpers',
+        'featured' => '',
         'standard' => 'Standaard',
         'theme' => 'Thema',
     ],

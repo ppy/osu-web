@@ -21,7 +21,7 @@ return [
         ],
 
         'forum' => [
-            'write' => 'Forenthreads und -beiträge in deinem Namen erstellen und bearbeiten.',
+            'write' => 'Forenposts und Beiträge in deinem Namen erstellen und bearbeiten.',
         ],
 
         'friends' => [

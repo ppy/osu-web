@@ -158,7 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'A felhasználói fiókod korlátozva lett!',
         'message' => 'Korlátozva nem leszel képes más játékosokkal kapcsolatba lépni és a pontjaid csak neked lesznek láthatóak. Ez az eredménye egy automatikus folyamatnak és általában fel lesz oldva 24 órán belül. Amennyiben fellebbezni szeretnél, légyszíves lépj kapcsolatba a <a href="mailto:accounts@ppy.sh">support</a>-al.',
-        'message_link' => '',
+        'message_link' => 'Nézd meg ezt az oldalt, hogy többet megtudj.',
     ],
     'show' => [
         'age' => ':age éves',

@@ -13,6 +13,16 @@ return [
     'see_channel' => 'přejít na chat',
     'verifying' => 'Prosím ověřte relaci pro zobrazení oznámení',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => '',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
     'filters' => [
         '_' => 'vše',
         'user' => 'profil',

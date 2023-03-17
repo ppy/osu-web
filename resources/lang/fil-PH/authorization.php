@@ -50,13 +50,11 @@ return [
             'resolved' => 'Hindi mo maaaring i-edit ang isang post ng naresolbang talakayan.',
             'system_generated' => 'Ang awtomatikong post na nabuo ay hindi maaaring i-edit.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Naka-lock ang beatmap na ito para sa talakayan.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => '',
+
         'metadata' => [
             'nominated' => 'Hindi maaaring baguhin ang metadata ng isang nominadong beatmap. Makipag-ugnayan sa isang miyembro ng BN o NAT kung sa palagay mo ay mali ang pagkakatakda nito.',
         ],

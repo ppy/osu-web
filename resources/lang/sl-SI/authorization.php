@@ -50,13 +50,11 @@ return [
             'resolved' => 'Objavo, ki je bila rešena, ni možno urejati.',
             'system_generated' => 'Samodejno generirane objave ni mogoče urejati.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Ta beatmapa je zaklenjena za razpravo.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => '',
+
         'metadata' => [
             'nominated' => 'Urejanje metadata nominirane beatmape ni mogoče. Kontaktiraj člana BN ali NAT če misliš, da je ta narobe nastavljen.',
         ],
