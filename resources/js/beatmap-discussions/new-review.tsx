@@ -28,11 +28,12 @@ interface Props {
 export default class NewReview extends React.Component<Props> {
   private readonly disposers = new Set<((() => void) | undefined)>();
   @observable private mounted = false;
+  @observable private stickToHeight: number | undefined;
 
   @computed
   private get cssTop() {
-    if (this.mounted && this.props.pinned && this.props.stickTo?.current != null) {
-      return core.stickyHeader.headerHeight + this.props.stickTo.current.getBoundingClientRect().height;
+    if (this.mounted && this.props.pinned && this.stickToHeight != null) {
+      return core.stickyHeader.headerHeight + this.stickToHeight;
     }
   }
 
@@ -55,10 +56,13 @@ export default class NewReview extends React.Component<Props> {
   }
 
   componentDidMount(): void {
+    // watching for height changes on the stickTo element to handle horizontal scrollbars when they appear.
+    $(window).on('resize', this.updateStickToHeight);
     this.disposers.add(core.reactTurbolinks.runAfterPageLoad(action(() => this.mounted = true)));
   }
 
   componentWillUnmount(): void {
+    $(window).off('resize', this.updateStickToHeight);
     this.disposers.forEach((disposer) => disposer?.());
   }
 
@@ -107,11 +111,16 @@ export default class NewReview extends React.Component<Props> {
 
   private readonly handleFocus = () => this.setSticky(true);
 
+  @action
   private setSticky(sticky: boolean) {
     this.props.setPinned?.(sticky);
+    this.updateStickToHeight();
   }
 
   private readonly toggleSticky = () => {
     this.setSticky(!this.props.pinned);
   };
+
+  @action
+  private readonly updateStickToHeight = () => this.stickToHeight = this.props.stickTo?.current?.getBoundingClientRect().height;
 }
