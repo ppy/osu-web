@@ -108,11 +108,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 {
     use Memoizes, SoftDeletes, Traits\CommentableDefaults, Traits\Es\BeatmapsetSearch, Traits\Reportable, Validatable;
 
-    protected $_storage = null;
-    protected $table = 'osu_beatmapsets';
-    protected $primaryKey = 'beatmapset_id';
-
-    protected $casts = [
+    const CASTS = [
         'active' => 'boolean',
         'approved_date' => 'datetime',
         'comment_locked' => 'boolean',
@@ -131,7 +127,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         'video' => 'boolean',
     ];
 
-    public $timestamps = false;
+    const HYPEABLE_STATES = [-1, 0, 3];
 
     const STATES = [
         'graveyard' => -2,
@@ -142,7 +138,13 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         'qualified' => 3,
         'loved' => 4,
     ];
-    const HYPEABLE_STATES = [-1, 0, 3];
+
+    public $timestamps = false;
+
+    protected $_storage = null;
+    protected $casts = self::CASTS;
+    protected $primaryKey = 'beatmapset_id';
+    protected $table = 'osu_beatmapsets';
 
     public static function coverSizes()
     {
