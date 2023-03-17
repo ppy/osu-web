@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import DifficultyBadge from 'components/difficulty-badge';
-import { UserLink } from 'components/user-link';
+import UserLink from 'components/user-link';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';

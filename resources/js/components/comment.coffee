@@ -21,7 +21,7 @@ import { Spinner } from './spinner'
 import StringWithComponent from './string-with-component'
 import TimeWithTooltip from './time-with-tooltip'
 import UserAvatar from './user-avatar'
-import { UserLink } from './user-link'
+import UserLink from './user-link'
 
 el = React.createElement
 

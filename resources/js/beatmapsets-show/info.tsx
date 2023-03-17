@@ -4,7 +4,7 @@
 import Bar from 'components/bar';
 import BbcodeEditor, { OnChangeProps } from 'components/bbcode-editor';
 import Modal from 'components/modal';
-import { UserLink } from 'components/user-link';
+import UserLink from 'components/user-link';
 import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
