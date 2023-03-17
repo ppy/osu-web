@@ -46,7 +46,7 @@ export class Main extends React.PureComponent
     @cache = {}
     @tabs = React.createRef()
     @pages = React.createRef()
-    @reviewsConfig = Object.assign({}, props.reviewsConfig, disableInsert: true)
+    @reviewsConfig = Object.assign({}, props.reviewsConfig, disableNewEmbeds: true)
     @state = JSON.parse(props.container.dataset.profilePageState ? null)
     @restoredState = @state?
 

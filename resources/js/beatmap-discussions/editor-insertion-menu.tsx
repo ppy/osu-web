@@ -14,6 +14,7 @@ import { SlateContext } from './slate-context';
 
 interface Props {
   currentBeatmap: BeatmapExtendedJson | null;
+  disableNewEmbeds?: boolean;
 }
 
 export class EditorInsertionMenu extends React.Component<Props> {
@@ -228,6 +229,9 @@ export class EditorInsertionMenu extends React.Component<Props> {
       case 'praise':
       case 'problem':
       case 'suggestion':
+        if (this.props.disableNewEmbeds) {
+          return null;
+        }
         icon = discussionTypeIcons[type];
         break;
       case 'paragraph':

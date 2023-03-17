@@ -298,7 +298,7 @@ export default class Editor extends React.Component<Props, State> {
             >
               <div ref={this.scrollContainerRef} className={`${editorClass}__input-area`}>
                 <EditorToolbar ref={this.toolbarRef} />
-                {!this.context.disableInsert && <EditorInsertionMenu ref={this.insertMenuRef} currentBeatmap={this.props.currentBeatmap} />}
+                {<EditorInsertionMenu ref={this.insertMenuRef} currentBeatmap={this.props.currentBeatmap} disableNewEmbeds={this.context.disableNewEmbeds} />}
                 <DraftsContext.Provider value={this.cache.draftEmbeds || []}>
                   <Editable
                     decorate={this.decorateTimestamps}
@@ -469,7 +469,7 @@ export default class Editor extends React.Component<Props, State> {
     const { insertData, normalizeNode } = editor;
 
     editor.insertData = (data) => {
-      if (insideEmbed(this.slateEditor)) {
+      if (insideEmbed(this.slateEditor) || this.context.disableNewEmbeds) {
         editor.insertText(data.getData('text/plain'));
       } else {
         insertData(data);

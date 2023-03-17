@@ -21,7 +21,7 @@ export class Main extends React.PureComponent
 
     @eventId = "beatmapset-discussions-history-#{nextVal()}"
     @cache = {}
-    @reviewsConfig = Object.assign({}, props.reviewsConfig, disableInsert: true)
+    @reviewsConfig = Object.assign({}, props.reviewsConfig, disableNewEmbeds: true)
     @state = JSON.parse(props.container.dataset.discussionsState ? null)
     @restoredState = @state?
 
