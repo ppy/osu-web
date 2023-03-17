@@ -105,13 +105,13 @@ export default class NewReview extends React.Component<Props> {
     );
   }
 
-  private handleFocus = () => this.setSticky(true);
+  private readonly handleFocus = () => this.setSticky(true);
 
   private setSticky(sticky: boolean) {
     this.props.setPinned?.(sticky);
   }
 
-  private toggleSticky = () => {
+  private readonly toggleSticky = () => {
     this.setSticky(!this.props.pinned);
   };
 }
