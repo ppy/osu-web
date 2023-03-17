@@ -57,8 +57,8 @@ export class Main extends React.PureComponent
 
     # don't assign null/undefined to state key
     newState = {}
-    newState.updatedDiscussions = updatedDiscussions if updatedDiscussions?
-    newState.updatedRelatedDiscussions = updatedRelatedDiscussions if updatedRelatedDiscussions?
+    newState.discussions = updatedDiscussions if updatedDiscussions?
+    newState.relatedDiscussions = updatedRelatedDiscussions if updatedRelatedDiscussions?
 
     @setState newState
 
