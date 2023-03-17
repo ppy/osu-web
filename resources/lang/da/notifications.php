@@ -13,6 +13,16 @@ return [
     'see_channel' => 'gå til chat',
     'verifying' => 'Bekræft venligst session for at se notifikationer',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => '',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
     'filters' => [
         '_' => 'alle',
         'user' => 'profil',

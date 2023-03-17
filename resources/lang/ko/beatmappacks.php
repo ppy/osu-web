@@ -34,6 +34,7 @@ return [
     'mode' => [
         'artist' => '아티스트/앨범',
         'chart' => '스포트라이트',
+        'featured' => '',
         'standard' => '표준',
         'theme' => '테마',
     ],

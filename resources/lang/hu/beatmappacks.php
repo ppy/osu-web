@@ -34,6 +34,7 @@ return [
     'mode' => [
         'artist' => 'Előadó/Album',
         'chart' => 'Reflektorfény',
+        'featured' => '',
         'standard' => 'Standard',
         'theme' => 'Téma',
     ],

@@ -34,6 +34,7 @@ return [
     'mode' => [
         'artist' => 'Artist/Album',
         'chart' => 'I rampelyset',
+        'featured' => '',
         'standard' => 'Standard',
         'theme' => 'Tema',
     ],

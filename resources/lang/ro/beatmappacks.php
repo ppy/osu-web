@@ -34,6 +34,7 @@ return [
     'mode' => [
         'artist' => 'Artist/Album',
         'chart' => 'Promovări',
+        'featured' => '',
         'standard' => 'Standard',
         'theme' => 'Temă',
     ],

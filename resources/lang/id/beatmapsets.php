@@ -61,8 +61,8 @@ return [
         'discussion' => 'Diskusi',
 
         'deleted_banner' => [
-            'title' => '',
-            'message' => '',
+            'title' => 'Beatmap ini telah dihapus.',
+            'message' => '(hanya moderator yang dapat melihat ini)',
         ],
 
         'details' => [

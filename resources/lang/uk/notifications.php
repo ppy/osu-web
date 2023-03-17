@@ -13,6 +13,16 @@ return [
     'see_channel' => 'перейти до чату',
     'verifying' => 'Будь ласка, перевірте сеанс, щоб переглянути сповіщення',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => '',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
     'filters' => [
         '_' => 'усе',
         'user' => 'профіль',

@@ -34,6 +34,7 @@ return [
     'mode' => [
         'artist' => 'آلبوم/هنرمند',
         'chart' => 'برجسته ها',
+        'featured' => '',
         'standard' => 'استاندارد',
         'theme' => 'تم',
     ],

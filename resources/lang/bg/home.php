@@ -42,8 +42,8 @@ return [
 
             'label' => [
                 'forum' => 'търси във форум',
-                'forum_children' => 'включи и подфоруми',
-                'include_deleted' => '',
+                'forum_children' => 'включително и подфоруми',
+                'include_deleted' => 'включително изтрити теми',
                 'topic_id' => 'тема #',
                 'username' => 'автор',
             ],
@@ -84,7 +84,7 @@ return [
         'macos-fallback' => 'macOS потребители',
         'mirror' => 'алтернативна връзка',
         'or' => 'или',
-        'os_version_or_later' => '',
+        'os_version_or_later' => ':os_version и нагоре',
         'other_os' => 'други устройства',
         'quick_start_guide' => 'ръководство за започване',
         'tagline' => "нека ви помогнем<br>

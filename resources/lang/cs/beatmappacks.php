@@ -34,6 +34,7 @@ return [
     'mode' => [
         'artist' => 'Interpret/Album',
         'chart' => 'V záři reflektorů',
+        'featured' => '',
         'standard' => 'Klasické',
         'theme' => 'Tématické',
     ],

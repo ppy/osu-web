@@ -34,6 +34,7 @@ return [
     'mode' => [
         'artist' => 'Interpret/Album',
         'chart' => 'Oslňujúce',
+        'featured' => '',
         'standard' => 'Obyčajné',
         'theme' => 'Témy',
     ],
