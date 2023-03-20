@@ -31,15 +31,18 @@
     }
   }
 
-  &--spotlights {
+  &--ranking-info-bar {
     width: 100%;
-    gap: 0 20px;
+    gap: 20px;
+
+    @media @desktop {
+      align-items: flex-end;
+    }
   }
 
   &__item {
     &--spotlight-user-filter {
       width: 100%;
-      padding: 15px 0;
 
       @media @desktop {
         width: auto;
