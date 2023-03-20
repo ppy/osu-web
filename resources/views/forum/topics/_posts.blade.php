@@ -5,10 +5,11 @@
 @php
     use App\Libraries\User\UserSignatures;
 
-    $postPosition = $firstPostPosition;
     $currentUser = Auth::user();
     $currentUserId = $currentUser->getKey();
     $userSignatures = new UserSignatures();
+
+    $postPosition = $firstPostPosition;
 @endphp
 
 @foreach($posts as $post)
@@ -27,6 +28,7 @@
         $isBeatmapsetPost = $postPosition === 1 && $post->isBeatmapsetPost();
     @endphp
     @include('forum.topics._post', [
+        'currentUser' => $currentUser,
         'currentUserId' => $currentUserId,
         'post' => $post,
         'userSignatures' => $userSignatures,
