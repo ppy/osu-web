@@ -172,8 +172,8 @@ services:
         condition: service_healthy
     environment:
       <<: *x-env
-      DB_CONNECTION_STRING: Server=db;Database=osu_test;Uid=osuweb;
       # match with .env.testing.example
+      DB_CONNECTION_STRING: Server=db;Database=osu_test;Uid=osuweb;
       ES_INDEX_PREFIX: test_
       SCHEMA: test
 
