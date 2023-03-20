@@ -9,7 +9,7 @@
     $options['buttons']['delete'] = $options['buttons']['delete'] ?? false;
     $options['buttons']['edit'] = $options['buttons']['edit'] ?? false;
     $options['buttons']['quote'] = $options['buttons']['quote'] ?? false;
-    $options['buttons']['report'] = auth()->check() && $post->poster_id !== auth()->user()->getKey();
+    $options['buttons']['report'] = $currentUserId !== null && $post->poster_id !== $currentUserId;
 
     $buttons = [];
 

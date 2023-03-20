@@ -4,6 +4,8 @@
 --}}
 @php
     $postPosition = $firstPostPosition;
+    $currentUser = Auth::user();
+    $currentUserId = $currentUser->getKey();
 @endphp
 
 @foreach($posts as $post)
@@ -22,6 +24,7 @@
         $isBeatmapsetPost = $postPosition === 1 && $post->isBeatmapsetPost();
     @endphp
     @include('forum.topics._post', [
+        'currentUserId' => $currentUserId,
         'post' => $post,
         'options' => [
             'postPosition' => $postPosition,
