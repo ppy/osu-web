@@ -3,9 +3,12 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
+    use App\Libraries\User\UserSignatures;
+
     $postPosition = $firstPostPosition;
     $currentUser = Auth::user();
     $currentUserId = $currentUser->getKey();
+    $userSignatures = new UserSignatures();
 @endphp
 
 @foreach($posts as $post)
@@ -26,6 +29,7 @@
     @include('forum.topics._post', [
         'currentUserId' => $currentUserId,
         'post' => $post,
+        'userSignatures' => $userSignatures,
         'options' => [
             'postPosition' => $postPosition,
             'signature' => $topic->forum->enable_sigs,

@@ -94,9 +94,9 @@
             </div>
         @endif
 
-        @if($options["signature"] !== false && present($user->user_sig))
+        @if($options["signature"] !== false && null !== ($signature = $userSignatures->get($user)))
             <div class="forum-post__content forum-post__content--signature js-audio--group hidden-xs">
-                {!! bbcode($user->user_sig, $user->user_sig_bbcode_uid) !!}
+                {!! $signature !!}
             </div>
         @endif
 
