@@ -71,7 +71,7 @@ _test() {
 _test_browser() {
     export APP_ENV=dusk.local
     export OCTANE_STATE_FILE=/app/storage/logs/octane-server-state-dusk.json
-    _rexec ./bin/run_dusk.sh --verbose "$@"
+    _rexec ./bin/run_dusk.sh "$@"
 }
 
 
