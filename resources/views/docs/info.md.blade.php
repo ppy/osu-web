@@ -102,7 +102,7 @@ This is combined with the base endpoint to determine where requests should be se
 
 Version | Status
 ------- | ---------------------------------------------------------------
-v2      | current _(not yet public, consider unstable and expect breaking changes)_
+v2      | current
 v1      | _legacy api provided by the old site, will be deprecated soon_
 
 ## Language
