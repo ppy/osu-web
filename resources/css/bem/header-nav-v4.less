@@ -3,22 +3,21 @@
 
 .header-nav-v4 {
   @_top: header-nav-v4;
-  @_gutter-x: 5px;
-  @_gutter-x-list: 10px;
-  @_gutter-y: 4px;
-  @_gutter-y-desktop: 15px;
+  @header-nav-gap: 10px;
+  --header-nav-item-padding-y: 10px;
+
   list-style: none;
   display: none;
   flex-wrap: wrap;
-  margin: 0 -@_gutter-x;
-  padding: (10px - @_gutter-y) 0;
+  gap: @header-nav-gap;
+  margin: 0;
+  padding: 0;
   font-size: @font-size--normal;
   position: relative;
 
   @media @desktop {
+    --header-nav-item-padding-y: 15px;
     font-size: @font-size--title-small;
-    padding-top: 0;
-    padding-bottom: 0;
     display: flex;
   }
 
@@ -27,46 +26,33 @@
   }
 
   &--list {
-    margin-left: -@_gutter-x-list;
-    margin-right: -@_gutter-x-list;
+    gap: 20px;
 
     &::before {
       content: '';
       position: absolute;
-      left: @_gutter-x-list;
       bottom: 0;
-      width: calc(100% - (@_gutter-x-list * 2));
+      width: 100%;
       height: 1px;
-      background-color: @osu-colour-h1;
+      background-color: hsl(var(--hsl-h1));
     }
   }
 
   &__item {
-    margin: 0;
-    padding: @_gutter-y @_gutter-x;
     display: flex; // remove space between ::before and content
     align-items: baseline;
-
-    @media @desktop {
-      padding-top: 0;
-      padding-bottom: 0;
-    }
 
     .@{_top}--breadcrumb & + &::before {
       .fas();
       content: "\f105"; // fa-angle-right
 
-      padding-right: (@_gutter-x * 2);
-    }
-
-    .@{_top}--list & {
-      padding-left: @_gutter-x-list;
-      padding-right: @_gutter-x-list;
+      padding-right: @header-nav-gap;
     }
   }
 
   &__link {
     position: relative;
+    padding: var(--header-nav-item-padding-y) 0;
 
     &::before {
       display: none;
@@ -74,9 +60,6 @@
     }
 
     @media @desktop {
-      padding-top: @_gutter-y-desktop;
-      padding-bottom: @_gutter-y-desktop;
-
       &::before {
         content: '';
         position: absolute;
@@ -84,7 +67,7 @@
         height: 5px;
         width: 100%;
         border-radius: 10000px;
-        background-color: @osu-colour-h1;
+        background-color: hsl(var(--hsl-h1));
         z-index: @z-index--header-nav-v4-active;
         transition: inherit;
         display: block;
@@ -114,10 +97,6 @@
   }
 
   &__text {
-    @media @desktop {
-      padding-top: @_gutter-y-desktop;
-      padding-bottom: @_gutter-y-desktop;
-    }
+    padding: var(--header-nav-item-padding-y) 0;
   }
-
 }

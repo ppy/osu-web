@@ -61,8 +61,8 @@ return [
         'discussion' => 'Tartışma',
 
         'deleted_banner' => [
-            'title' => '',
-            'message' => '',
+            'title' => 'Bu beatmap silindi.',
+            'message' => '(bunu sadece moderatörler görebilir)',
         ],
 
         'details' => [

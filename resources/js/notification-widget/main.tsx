@@ -158,7 +158,7 @@ export default class Main extends React.Component<Props, State> {
       <NotificationReadButton
         isMarkingAsRead={type.isMarkingAsRead}
         onMarkAsRead={this.handleMarkAsRead}
-        text={trans('notifications.mark_read', { type: trans(`notifications.filters.${type.name ?? '_'}`) })}
+        text={trans('notifications.mark_read', { type: trans(`notifications.action_type.${type.name ?? '_'}`) })}
       />
     );
   }

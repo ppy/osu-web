@@ -33,10 +33,6 @@ services:
       restart_policy:
         condition: on-failure
     shm_size: '2gb' # for chromium
-    # For running sandboxed chromium (default) with minimal privileges.
-    # reference: https://ndportmann.com/chrome-in-docker/
-    security_opt:
-      - seccomp=docker/development/chromium-seccomp.json
 
   assets:
     <<: *x-web

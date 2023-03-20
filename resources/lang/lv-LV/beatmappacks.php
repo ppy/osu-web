@@ -34,6 +34,7 @@ return [
     'mode' => [
         'artist' => 'Mākslinieks/Albums',
         'chart' => 'Uzmanības Centrā',
+        'featured' => '',
         'standard' => 'Standarta',
         'theme' => 'Tēma',
     ],

@@ -43,7 +43,7 @@ return [
             'label' => [
                 'forum' => 'forumokban keresés',
                 'forum_children' => 'alforumok tartalmazása',
-                'include_deleted' => '',
+                'include_deleted' => 'törölt hozzászólásokat tartalmaz',
                 'topic_id' => 'témák #',
                 'username' => 'szerző',
             ],
@@ -84,7 +84,7 @@ return [
         'macos-fallback' => 'macOS használók',
         'mirror' => 'tükör',
         'or' => 'vagy',
-        'os_version_or_later' => '',
+        'os_version_or_later' => ':os_version vagy újabb',
         'other_os' => 'egyéb platoformok',
         'quick_start_guide' => 'gyors útmutató',
         'tagline' => "vágjunk<br>bele!",

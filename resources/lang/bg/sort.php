@@ -32,6 +32,7 @@ return [
     ],
 
     'forum_topics' => [
+        'created' => '',
         'feature_votes' => 'Приоритет по звезди',
         'new' => 'Последен отговор',
     ],

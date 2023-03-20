@@ -43,7 +43,7 @@ return [
             'label' => [
                 'forum' => 'przeszukaj fora',
                 'forum_children' => 'uwzględnij podfora',
-                'include_deleted' => '',
+                'include_deleted' => 'uwzględnij usunięte posty',
                 'topic_id' => 'wątek #',
                 'username' => 'autor',
             ],
@@ -84,14 +84,14 @@ return [
         'macos-fallback' => 'użytkownicy macOS',
         'mirror' => 'serwer lustrzany',
         'or' => 'lub',
-        'os_version_or_later' => '',
+        'os_version_or_later' => ':os_version lub nowszych',
         'other_os' => 'inne platformy',
         'quick_start_guide' => 'krótki przewodnik',
         'tagline' => "rozpocznij swoją<br>przygodę z osu!",
         'video-guide' => 'poradnik',
 
         'help' => [
-            '_' => 'jeżeli masz problem z uruchomieniem gry bądź utworzeniem konta, :help_forum_link lub :support_button.',
+            '_' => 'jeżeli masz problem z uruchomieniem gry lub utworzeniem konta, :help_forum_link albo :support_button.',
             'help_forum_link' => 'sprawdź forum pomocy',
             'support_button' => 'skontaktuj się z pomocą techniczną',
         ],

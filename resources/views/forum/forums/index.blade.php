@@ -51,6 +51,14 @@
                 </div>
 
                 <ul class="forum-list__items">
+                    <li class="forum-item forum-item--header">
+                        <div class="forum-item__details">
+                            {{ osu_trans('forum.forums.forums') }}
+                        </div>
+                        <div class="forum-item__latest-post">
+                            {{ osu_trans('forum.forums.latest_post') }}
+                        </div>
+                    </li>
                     @foreach ($category->subforums as $forum)
                         @include('forum.forums._forum', compact('currentUserId', 'forum'))
                     @endforeach

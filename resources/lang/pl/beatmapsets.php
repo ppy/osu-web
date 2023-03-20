@@ -61,8 +61,8 @@ return [
         'discussion' => 'Dyskusja',
 
         'deleted_banner' => [
-            'title' => '',
-            'message' => '',
+            'title' => 'Ta beatmapa została usunięta.',
+            'message' => '(widoczne tylko dla moderatorów)',
         ],
 
         'details' => [

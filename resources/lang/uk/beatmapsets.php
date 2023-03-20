@@ -61,8 +61,8 @@ return [
         'discussion' => 'Обговорення',
 
         'deleted_banner' => [
-            'title' => '',
-            'message' => '',
+            'title' => 'Ця мапа була видалена.',
+            'message' => '(лише модератори можуть це бачити)',
         ],
 
         'details' => [

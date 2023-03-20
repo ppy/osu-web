@@ -61,8 +61,8 @@ return [
         'discussion' => 'Góc Thảo Luận',
 
         'deleted_banner' => [
-            'title' => '',
-            'message' => '',
+            'title' => 'Beatmap này đã bị xoá.',
+            'message' => '(chỉ điều phối viên mới có thể thấy cái này)',
         ],
 
         'details' => [

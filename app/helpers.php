@@ -761,6 +761,7 @@ function ext_view($view, $data = null, $type = null, $status = null)
         'html' => 'text/html',
         'js' => 'application/javascript',
         'json' => 'application/json',
+        'opensearch' => 'application/opensearchdescription+xml',
         'rss' => 'application/rss+xml',
     ];
 
@@ -963,18 +964,16 @@ function build_url($build)
 
 function post_url($topicId, $postId, $jumpHash = true, $tail = false)
 {
+    if ($topicId === null) {
+        return null;
+    }
+
     $postIdParamKey = 'start';
     if ($tail === true) {
         $postIdParamKey = 'end';
     }
 
-    if ($topicId === null) {
-        return;
-    }
-
-    $url = route('forum.topics.show', ['topic' => $topicId, $postIdParamKey => $postId]);
-
-    return $url;
+    return route('forum.topics.show', ['topic' => $topicId, $postIdParamKey => $postId]);
 }
 
 function wiki_image_url(string $path, bool $fullUrl = true)

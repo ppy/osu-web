@@ -14,46 +14,46 @@ return [
 
     'header' => [
         'admin' => [
-            'beatmapset' => 'beatmapset',
-            'beatmapset_covers' => 'beatmapset covers',
-            'contest' => 'wettbewerb',
-            'contests' => 'wettbewerbe',
-            'root' => 'konsole',
+            'beatmapset' => 'Beatmap-Sets',
+            'beatmapset_covers' => 'Beatmap-Set-Cover',
+            'contest' => 'Wettbewerb',
+            'contests' => 'Wettbewerbe',
+            'root' => 'Konsole',
         ],
 
         'artists' => [
-            'index' => 'liste',
+            'index' => 'Liste',
         ],
 
         'beatmapsets' => [
-            'show' => 'info',
-            'discussions' => 'diskussion',
+            'show' => 'Info',
+            'discussions' => 'Diskussion',
         ],
 
         'changelog' => [
-            'index' => 'liste',
+            'index' => 'Liste',
         ],
 
         'help' => [
-            'index' => 'index',
+            'index' => 'Index',
             'sitemap' => 'Sitemap',
         ],
 
         'store' => [
-            'cart' => 'warenkorb',
-            'orders' => 'bestellverlauf',
-            'products' => 'produkte',
+            'cart' => 'Warenkorb',
+            'orders' => 'Bestellverlauf',
+            'products' => 'Produkte',
         ],
 
         'tournaments' => [
-            'index' => 'liste',
+            'index' => 'Liste',
         ],
 
         'users' => [
-            'modding' => 'modding',
-            'playlists' => 'playlists',
-            'realtime' => 'multiplayer',
-            'show' => 'info',
+            'modding' => 'Modding',
+            'playlists' => 'Playlists',
+            'realtime' => 'Mehrspieler',
+            'show' => 'Info',
         ],
     ],
 
@@ -67,29 +67,29 @@ return [
 
     'menu' => [
         'beatmaps' => [
-            '_' => 'beatmaps',
+            '_' => 'Beatmaps',
         ],
         'community' => [
-            '_' => 'community',
-            'dev' => 'entwicklung',
+            '_' => 'Community',
+            'dev' => 'Entwicklung',
         ],
         'help' => [
-            '_' => 'hilfe',
-            'getAbuse' => 'missbrauch melden',
-            'getFaq' => 'faq',
-            'getRules' => 'regeln',
-            'getSupport' => 'ich brauche wirklich hilfe!',
+            '_' => 'Hilfe',
+            'getAbuse' => 'Missbrauch melden',
+            'getFaq' => 'FAQ',
+            'getRules' => 'Regeln',
+            'getSupport' => 'Ich brauche wirklich Hilfe!',
         ],
         'home' => [
-            '_' => 'home',
-            'team' => 'team',
+            '_' => 'Home',
+            'team' => 'Team',
         ],
         'rankings' => [
-            '_' => 'ranglisten',
-            'kudosu' => 'kudosu',
+            '_' => 'Ranglisten',
+            'kudosu' => 'Kudosu',
         ],
         'store' => [
-            '_' => 'shop',
+            '_' => 'Store',
         ],
     ],
 
@@ -173,7 +173,7 @@ return [
 
         'login' => [
             'forgot' => "Passwort vergessen",
-            'password' => 'passwort',
+            'password' => 'Passwort',
             'title' => 'Zum Fortfahren einloggen',
             'username' => 'Benutzername',
 
@@ -185,15 +185,15 @@ return [
 
         'register' => [
             'download' => 'Herunterladen',
-            'info' => 'Sie brauchen einen Account, Sir. Warum besitzen Sie noch keinen?',
-            'title' => "Kein Account?",
+            'info' => 'Lade dir osu! herunter, um dir einen eigenen Account zu erstellen!',
+            'title' => "Noch keinen Account?",
         ],
     ],
 
     'popup_user' => [
         'links' => [
             'account-edit' => 'Einstellungen',
-            'follows' => 'Beobachtungslisten',
+            'follows' => 'Merklisten',
             'friends' => 'Freunde',
             'logout' => 'Ausloggen',
             'profile' => 'Mein Profil',
@@ -201,7 +201,7 @@ return [
     ],
 
     'popup_search' => [
-        'initial' => 'Zum Suchen Text eingeben!',
+        'initial' => 'Tippe, um zu suchen!',
         'retry' => 'Suche fehlgeschlagen. Klicke, um es erneut zu versuchen.',
     ],
 ];

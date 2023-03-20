@@ -13,6 +13,16 @@ return [
     'see_channel' => '채팅으로 이동',
     'verifying' => '알림을 보려면 세션을 검증해주세요.',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => '',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
     'filters' => [
         '_' => '전체',
         'user' => '프로필',

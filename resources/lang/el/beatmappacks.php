@@ -34,6 +34,7 @@ return [
     'mode' => [
         'artist' => 'Καλλιτέχνης/Άλμπουμ',
         'chart' => 'Spotlights',
+        'featured' => '',
         'standard' => 'Standard',
         'theme' => 'Θέμα',
     ],

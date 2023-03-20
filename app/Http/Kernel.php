@@ -21,7 +21,7 @@ class Kernel extends HttpKernel
     protected $middlewareGroups = [
         'api' => [
             Middleware\AuthApi::class,
-            Middleware\SetLocale::class,
+            Middleware\SetLocaleApi::class,
             Middleware\CheckUserBanStatus::class,
         ],
         'web' => [

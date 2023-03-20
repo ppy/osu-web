@@ -3,7 +3,7 @@
 
 import { Spinner } from 'components/spinner';
 import UserAvatar from 'components/user-avatar';
-import { UserLink } from 'components/user-link';
+import UserLink from 'components/user-link';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import UserJson from 'interfaces/user-json';

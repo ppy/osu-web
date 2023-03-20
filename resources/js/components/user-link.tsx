@@ -14,7 +14,7 @@ interface Props {
   user: Partial<Pick<UserJson, 'id' | 'username'>>;
 }
 
-export class UserLink extends React.PureComponent<Props> {
+export default class UserLink extends React.PureComponent<Props> {
   render() {
     let className = 'js-usercard';
     if (this.props.className != null) {

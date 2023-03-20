@@ -34,6 +34,7 @@ return [
     'mode' => [
         'artist' => 'Выканавец/Альбом',
         'chart' => 'Чарты',
+        'featured' => '',
         'standard' => 'Стандартная',
         'theme' => 'Тэма',
     ],
