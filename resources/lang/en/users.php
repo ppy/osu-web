@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'blocked users (:count)',
         'hide_profile' => 'Hide profile',
         'hide_comment' => 'hide',
+        'forum_post_text' => 'This post is hidden.',
         'not_blocked' => 'That user is not blocked.',
         'show_profile' => 'Show profile',
         'show_comment' => 'show',
