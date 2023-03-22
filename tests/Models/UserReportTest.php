@@ -145,7 +145,7 @@ class UserReportTest extends TestCase
         $reportables = [];
 
         foreach (MorphMap::MAP as $class => $_name) {
-            if ((new $class()) instanceof ReportableInterface) {
+            if (isset(class_implements($class)[ReportableInterface::class])) {
                 $reportables[] = [$class];
             }
         }
