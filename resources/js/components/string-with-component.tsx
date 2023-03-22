@@ -15,7 +15,7 @@ export default function StringWithComponent(props: Props) {
     return <>{props.pattern}</>;
   }
 
-  const regex = new RegExp(`(:${keys.join('|:')})`);
+  const regex = new RegExp(`(:${keys.join('|:')})(?!_)`);
   const parts = props.pattern.split(regex);
 
   return (

@@ -11,12 +11,13 @@ import BeatmapsetDiscussionPostJson from 'interfaces/beatmapset-discussion-post-
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import { assign, escape, padStart, sortBy, truncate } from 'lodash';
+import { assign, padStart, sortBy, truncate } from 'lodash';
+import { fromMarkdown } from 'mdast-util-from-markdown';
+import { toString } from 'mdast-util-to-string';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import { currentUrl } from 'utils/turbolinks';
-import { linkHtml, openBeatmapEditor, urlRegex } from 'utils/url';
-import { classWithModifiers, Modifiers } from './css';
+import { linkHtml, openBeatmapEditor } from 'utils/url';
 import { getInt } from './math';
 
 interface BadgeGroupParams {
@@ -24,11 +25,6 @@ interface BadgeGroupParams {
   currentBeatmap: BeatmapJson | null;
   discussion: BeatmapsetDiscussionJson;
   user?: UserJson;
-}
-
-interface FormatOptions {
-  modifiers?: Modifiers;
-  newlines?: boolean;
 }
 
 type MakeUrlOptions = {
@@ -79,11 +75,10 @@ const pageLookup = new Set<unknown>(discussionPages);
 
 const defaultBeatmapId = '-';
 
-const lineBreakRegex = /(?:<br>){2,}/g;
 const linkTimestampRegex = /\b((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\)|\b))/g;
 export const timestampRegex = /\b(((\d{2,}):([0-5]\d)[:.](\d{3}))(\s\((?:\d+[,|])*\d+\))?)/;
-const maxMessagePreviewLength = 100;
 export const maxLengthTimeline = 750;
+const maxMessagePreviewLength = 100;
 
 export type NearbyDiscussion<T extends BeatmapsetDiscussionJson> = T & { timestamp: number };
 type NearbyDiscussionsCategory = 'd0' | 'd100' | 'd1000' | 'other';
@@ -116,16 +111,6 @@ export function defaultMode(beatmapId?: number | string | null) {
   return beatmapId != null && beatmapId !== defaultBeatmapId ? 'timeline' : 'generalAll';
 }
 
-function discussionLinkify(text: string) {
-  // text should be pre-escaped.
-  return text.replace(urlRegex, (match, url: string) => {
-    const { children, ...props } = propsFromHref(url);
-    // React types it as ReactNode but it can be a string.
-    const displayUrl = typeof children === 'string' ? children : url;
-    return linkHtml(url, displayUrl, { props, unescape: true });
-  });
-}
-
 export function discussionMode(discussion: BeatmapsetDiscussionJson): DiscussionMode {
   return discussion.message_type === 'review'
     ? 'reviews'
@@ -134,26 +119,6 @@ export function discussionMode(discussion: BeatmapsetDiscussionJson): Discussion
         ? 'timeline'
         : 'general'
       : 'generalAll';
-}
-
-export function format(text: string, options: FormatOptions = {}) {
-  text = linkTimestamp(discussionLinkify(escape(text).trim()), ['beatmap-discussion-timestamp-decoration']);
-
-  if (options.newlines ?? true) {
-    // replace newlines with <br>
-    // - trim trailing spaces
-    // - then join with <br>
-    // - limit to 2 consecutive <br>s
-    text = text
-      .split('\n')
-      .map((x) => x.trim())
-      .join('<br>')
-      .replace(lineBreakRegex, '<br><br>');
-  }
-
-  const blockClass = classWithModifiers('beatmapset-discussion-message', options.modifiers);
-
-  return `<div class='${blockClass}'>${text}</div>`;
 }
 
 export function formatTimestamp(value: number) {
@@ -353,11 +318,11 @@ export function parseUrl(urlString?: string | null, discussions?: BeatmapsetDisc
 }
 
 export function previewMessage(message: string) {
-  if (message.length > maxMessagePreviewLength) {
-    return escape(truncate(message, { length: maxMessagePreviewLength }));
-  }
+  const text = toString(fromMarkdown(message));
 
-  return format(message, { newlines: false });
+  return text.length > maxMessagePreviewLength
+    ? truncate(text, { length: maxMessagePreviewLength })
+    : text;
 }
 
 export function propsFromHref(href: string) {
