@@ -17,6 +17,7 @@ use App\Models\Forum;
 use App\Models\Traits\ReportableInterface;
 use App\Models\User;
 use App\Models\UserReport;
+use Exception;
 use Tests\TestCase;
 
 class UserReportTest extends TestCase
@@ -148,6 +149,11 @@ class UserReportTest extends TestCase
             if (isset(class_implements($class)[ReportableInterface::class])) {
                 $reportables[] = [$class];
             }
+        }
+
+        // Sanity check to make sure it's not randomly testing 0 models or anything weird like that.
+        if (count($reportables) !== 11) {
+            throw new Exception('Please update reportables count: '.count($reportables));
         }
 
         return $reportables;
