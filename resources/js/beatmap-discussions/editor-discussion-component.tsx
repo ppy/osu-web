@@ -262,10 +262,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     const classMods = canEdit ? [] : ['read-only'];
 
     const timestampTooltipType = this.props.element.beatmapId != null ? 'diff' : 'all-diff';
-
-    const timestampTooltip = trans(`beatmaps.discussions.review.embed.timestamp.${timestampTooltipType}`, {
-      type: trans(`beatmaps.discussions.message_type.${this.discussionType()}`),
-    });
+    const timestampTooltip = trans(`beatmaps.discussions.review.embed.timestamp.${timestampTooltipType}`);
 
     const deleteButton =
       (
