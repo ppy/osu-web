@@ -73,6 +73,7 @@ export class SearchSort extends React.Component<Props> {
 
   private readonly renderField = (field: Sort) => {
     const active = this.filters.searchSort.field === field;
+    const arrow = active && this.filters.searchSort.order === 'asc' ? 'up' : 'down';
 
     return (
       <a
@@ -84,7 +85,7 @@ export class SearchSort extends React.Component<Props> {
       >
         {trans(`beatmaps.listing.search.sorting.${field}`)}
         <span className='sort__item-arrow'>
-          <i className={`fas fa-caret-${this.filters.searchSort.order === 'asc' ? 'up' : 'down'}`} />
+          <i className={`fas fa-caret-${arrow}`} />
         </span>
       </a>
     );
