@@ -12,6 +12,7 @@ use App\Libraries\MorphMap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
+use App\Models\Chat\Message;
 use App\Models\Forum;
 use App\Models\Traits\ReportableInterface;
 use App\Models\User;
@@ -20,6 +21,15 @@ use Tests\TestCase;
 
 class UserReportTest extends TestCase
 {
+    private static function getReportableUser(ReportableInterface $reportable)
+    {
+        return match ($reportable::class) {
+            Message::class => $reportable->sender,
+            User::class => $reportable,
+            default => $reportable->user,
+        };
+    }
+
     private static function makeReportable(string $class): ReportableInterface
     {
         $modelFactory = $class::factory();
@@ -41,7 +51,9 @@ class UserReportTest extends TestCase
             $userColumn = 'poster_id';
         }
 
-        return $modelFactory->create([$userColumn => User::factory()]);
+        return $class === User::class
+            ? $modelFactory->create()
+            : $modelFactory->create([$userColumn => User::factory()]);
     }
 
     private static function reportParams(array $additionalParams = []): array
@@ -61,7 +73,7 @@ class UserReportTest extends TestCase
         $reportable = static::makeReportable($class);
 
         $this->expectException(ValidationException::class);
-        $reportable->reportBy($reportable->user, static::reportParams());
+        $reportable->reportBy(static::getReportableUser($reportable), static::reportParams());
     }
 
     public function testCannotReportScoreableBeatmapset()
@@ -130,9 +142,14 @@ class UserReportTest extends TestCase
 
     public function reportableClasses(): array
     {
-        return array_map(
-            fn (string $morphName): array => [MorphMap::getClass($morphName)],
-            array_keys(UserReport::ALLOWED_REASONS),
-        );
+        $reportables = [];
+
+        foreach (MorphMap::MAP as $class => $_name) {
+            if ((new $class()) instanceof ReportableInterface) {
+                $reportables[] = [$class];
+            }
+        }
+
+        return $reportables;
     }
 }
