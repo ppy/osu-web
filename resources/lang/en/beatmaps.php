@@ -199,6 +199,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'This map is estimated to be ranked :date if no issues are found. It is #:position in the :queue.',
+            'on' => 'on :date',
             'queue' => 'ranking queue',
             'soon' => 'soon',
         ],
