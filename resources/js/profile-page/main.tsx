@@ -205,7 +205,7 @@ export default class Main extends React.Component<Props> {
             <Detail controller={this.controller} />
           </div>
 
-          <div ref={this.pagesOffsetRef} className='hidden-xs page-extra-tabs'>
+          <div ref={this.pagesOffsetRef} className='page-extra-tabs'>
             {this.displayExtraTabs &&
               <div ref={this.tabs} className='page-mode page-mode--profile-page-extra'>
                 {this.displayedExtraPages.map((m) => (
