@@ -100,12 +100,9 @@ export class Main extends React.Component {
   }
 
   renderStacks() {
-    const nodes: React.ReactNode[] = [];
-    for (const stack of this.controller.stacks) {
-      nodes.push(<Stack key={stack.id} stack={stack} />);
-    }
-
-    return nodes;
+    return this.controller.stacks.map((stack) => (
+      <Stack key={stack.id} stack={stack} />
+    ));
   }
 
   private handleDelete = () => {
