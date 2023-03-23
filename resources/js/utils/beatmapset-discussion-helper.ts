@@ -11,9 +11,7 @@ import BeatmapsetDiscussionPostJson from 'interfaces/beatmapset-discussion-post-
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import { assign, padStart, sortBy, truncate } from 'lodash';
-import { fromMarkdown } from 'mdast-util-from-markdown';
-import { toString } from 'mdast-util-to-string';
+import { assign, padStart, sortBy } from 'lodash';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import { currentUrl } from 'utils/turbolinks';
@@ -79,7 +77,7 @@ const linkTimestampRegex = /\b((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\)|\b))/g;
 export const timestampRegex = /\b(((\d{2,}):([0-5]\d)[:.](\d{3}))(\s\((?:\d+[,|])*\d+\))?)/;
 export const timestampRegexGlobal = new RegExp(timestampRegex, 'g');
 export const maxLengthTimeline = 750;
-const maxMessagePreviewLength = 100;
+export const maxMessagePreviewLength = 100;
 
 export type NearbyDiscussion<T extends BeatmapsetDiscussionJson> = T & { timestamp: number };
 type NearbyDiscussionsCategory = 'd0' | 'd100' | 'd1000' | 'other';
@@ -316,14 +314,6 @@ export function parseUrl(urlString?: string | null, discussions?: BeatmapsetDisc
   }
 
   return ret;
-}
-
-export function previewMessage(message: string) {
-  const text = toString(fromMarkdown(message));
-
-  return text.length > maxMessagePreviewLength
-    ? truncate(text, { length: maxMessagePreviewLength })
-    : text;
 }
 
 export function propsFromHref(href: string) {

@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import PlainTextPreview from 'beatmap-discussions/plain-text-preview';
 import BeatmapsetCover from 'components/beatmapset-cover';
 import TimeWithTooltip from 'components/time-with-tooltip';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
@@ -10,7 +11,7 @@ import { route } from 'laroute';
 import { kebabCase } from 'lodash';
 import { deletedUser } from 'models/user';
 import * as React from 'react';
-import { makeUrl, previewMessage } from 'utils/beatmapset-discussion-helper';
+import { makeUrl } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans, transArray } from 'utils/lang';
@@ -126,7 +127,7 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
       } else {
         const firstPostMessage = this.firstPost?.message;
         url = makeUrl({ discussion: this.discussion });
-        text = firstPostMessage != null ? previewMessage(firstPostMessage) : '[no preview]';
+        text = firstPostMessage != null ? <PlainTextPreview markdown={firstPostMessage} /> : '[no preview]';
 
         const discussionUser = this.props.users[this.discussion.user_id];
 

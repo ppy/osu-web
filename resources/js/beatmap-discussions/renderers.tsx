@@ -27,7 +27,7 @@ export function strongRenderer(astProps: ReactMarkdownProps & React.DetailedHTML
   return <strong>{astProps.children.map(timestampDecorator)}</strong>;
 }
 
-function timestampDecorator(reactNode: React.ReactNode) {
+export function timestampDecorator(reactNode: React.ReactNode) {
   if (typeof reactNode === 'string') {
     const matches = [...reactNode.matchAll(timestampRegexGlobal)];
 
