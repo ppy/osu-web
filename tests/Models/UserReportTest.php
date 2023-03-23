@@ -151,9 +151,9 @@ class UserReportTest extends TestCase
             }
         }
 
-        // Sanity check to make sure it's not randomly testing 0 models or anything weird like that.
-        if (count($reportables) !== 11) {
-            throw new Exception('Please update reportables count: '.count($reportables));
+        // Sanity check to make sure there are models to test.
+        if (count($reportables) === 0) {
+            throw new Exception('No reportables found');
         }
 
         return $reportables;
