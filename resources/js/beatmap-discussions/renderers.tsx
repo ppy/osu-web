@@ -4,10 +4,8 @@
 import * as React from 'react';
 import { uriTransformer } from 'react-markdown';
 import { ReactMarkdownProps } from 'react-markdown/lib/complex-types';
-import { propsFromHref, timestampRegex } from 'utils/beatmapset-discussion-helper';
+import { propsFromHref, timestampRegexGlobal } from 'utils/beatmapset-discussion-helper';
 import { openBeatmapEditor } from 'utils/url';
-
-export const timestampRegexGlobal = new RegExp(timestampRegex, 'g');
 
 export function emphasisRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) {
   return <em>{astProps.children.map(timestampDecorator)}</em>;

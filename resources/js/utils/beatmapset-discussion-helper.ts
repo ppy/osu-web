@@ -77,6 +77,7 @@ const defaultBeatmapId = '-';
 
 const linkTimestampRegex = /\b((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\)|\b))/g;
 export const timestampRegex = /\b(((\d{2,}):([0-5]\d)[:.](\d{3}))(\s\((?:\d+[,|])*\d+\))?)/;
+export const timestampRegexGlobal = new RegExp(timestampRegex, 'g');
 export const maxLengthTimeline = 750;
 const maxMessagePreviewLength = 100;
 
