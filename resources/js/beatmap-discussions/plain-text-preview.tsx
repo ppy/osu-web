@@ -18,13 +18,14 @@ interface Props {
 }
 
 function imageRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>) {
+  // render something besides image url.
   return <>{presence(astProps.alt) ?? '[image]'}</>;
 }
 
 export function linkRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>) {
-  // TODO: handle extra nodes in astProps.children
   const props = propsFromHref(astProps.href ?? '');
 
+  // Using the fact that target gets unset for discussions on the same beatmapset page.
   return props.target == null
     ? <a href={astProps.href} {...props} />
     : <>{astProps.href}</>;
