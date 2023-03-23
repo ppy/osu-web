@@ -5,7 +5,7 @@ import type Constructs from 'micromark-core-commonmark';
 import type { Processor } from 'unified';
 import add from './add';
 
-type DisabledType = 'chat' | 'default' | 'editor' | 'reviews';
+export type DisabledType = 'chat' | 'default' | 'editor' | 'reviews';
 
 interface Options {
   type?: DisabledType;

@@ -4,13 +4,13 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import autolink from 'remark-plugins/autolink';
-import disableConstructs from 'remark-plugins/disable-constructs';
+import disableConstructs, { DisabledType } from 'remark-plugins/disable-constructs';
 import ImageLink from './image-link';
 import { emphasisRenderer, linkRenderer, paragraphRenderer, strongRenderer, transformLinkUri } from './renderers';
 
 interface Props {
   markdown: string;
-  type?: 'reviews';
+  type?: DisabledType;
 }
 
 export default class DiscussionMessage extends React.Component<Props> {
