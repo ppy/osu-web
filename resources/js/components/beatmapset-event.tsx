@@ -16,7 +16,7 @@ import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans, transArray } from 'utils/lang';
 import StringWithComponent from './string-with-component';
-import { UserLink } from './user-link';
+import UserLink from './user-link';
 
 function simpleKebab(str: string | number | undefined) {
   return typeof str === 'string'
