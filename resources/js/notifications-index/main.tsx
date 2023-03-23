@@ -35,6 +35,10 @@ export class Main extends React.Component {
     }));
   }
 
+  private get type() {
+    return this.controller.type;
+  }
+
   constructor(props: Record<string, never>, context: NotificationContextData) {
     super(props);
 
@@ -54,17 +58,24 @@ export class Main extends React.Component {
 
         <div className='osu-page osu-page--generic-compact'>
           <div className='notification-index'>
-            <div className='notification-index__actions'>
-              {this.renderMarkAsReadButton()}
-              {this.renderDeleteButton()}
-            </div>
+            {!this.type.isEmpty &&
+              <div className='notification-index__actions'>
+                {this.renderMarkAsReadButton()}
+                {this.renderDeleteButton()}
+              </div>
+            }
 
             {this.renderLegacyPm()}
 
-            <div className='notification-stacks'>
-              {this.renderStacks()}
-              {this.renderShowMore()}
-            </div>
+            {this.type.isEmpty && !this.type.isLoading
+              ? trans('notifications.none')
+              : (
+                <div className='notification-stacks'>
+                  {this.renderStacks()}
+                  {this.renderShowMore()}
+                </div>
+              )
+            }
           </div>
         </div>
       </div>
@@ -78,13 +89,11 @@ export class Main extends React.Component {
   }
 
   renderShowMore() {
-    const type = this.controller.type;
-
     return (
       <ShowMoreLink
         callback={this.handleShowMore}
-        hasMore={type?.hasMore}
-        loading={type?.isLoading}
+        hasMore={this.type.hasMore}
+        loading={this.type.isLoading}
         modifiers={['notification-group', 'notification-list']}
       />
     );
@@ -100,7 +109,7 @@ export class Main extends React.Component {
   }
 
   private handleDelete = () => {
-    this.controller.type.delete();
+    this.type.delete();
   };
 
   private handleLinkClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
@@ -119,29 +128,21 @@ export class Main extends React.Component {
   };
 
   private renderDeleteButton() {
-    const type = this.controller.type;
-
-    if (type.isEmpty) return null;
-
     return (
       <NotificationDeleteButton
-        isDeleting={type.isDeleting}
+        isDeleting={this.type.isDeleting}
         onDelete={this.handleDelete}
-        text={trans('notifications.delete', { type: trans(`notifications.action_type.${type.name ?? '_'}`) })}
+        text={trans('notifications.delete', { type: trans(`notifications.action_type.${this.type.name ?? '_'}`) })}
       />
     );
   }
 
   private renderMarkAsReadButton() {
-    const type = this.controller.type;
-
-    if (type.isEmpty) return null;
-
     return (
       <NotificationReadButton
-        isMarkingAsRead={type.isMarkingAsRead}
+        isMarkingAsRead={this.type.isMarkingAsRead}
         onMarkAsRead={this.handleMarkAsRead}
-        text={trans('notifications.mark_read', { type: trans(`notifications.action_type.${type.name ?? '_'}`) })}
+        text={trans('notifications.mark_read', { type: trans(`notifications.action_type.${this.type.name ?? '_'}`) })}
       />
     );
   }
