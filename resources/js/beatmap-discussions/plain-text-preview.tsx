@@ -26,9 +26,10 @@ export function linkRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLPr
   const props = propsFromHref(astProps.href ?? '');
 
   // Using the fact that target gets unset for discussions on the same beatmapset page.
+  // Basically, it gets a link if it doesn't open a new tab.
   return props.target == null
     ? <a href={astProps.href} {...props} />
-    : <>{astProps.href}</>;
+    : <>{props.children}</>;
 }
 
 function textRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) {
