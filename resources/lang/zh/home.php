@@ -43,7 +43,7 @@ return [
             'label' => [
                 'forum' => '在论坛中搜索',
                 'forum_children' => '包括子版块',
-                'include_deleted' => '',
+                'include_deleted' => '包括已删除的帖子',
                 'topic_id' => '主题 #',
                 'username' => '作者',
             ],
@@ -84,7 +84,7 @@ return [
         'macos-fallback' => 'macOS 用户',
         'mirror' => '从镜像服务器下载',
         'or' => '或',
-        'os_version_or_later' => '',
+        'os_version_or_later' => ':os_version 或更高版本',
         'other_os' => '其他平台',
         'quick_start_guide' => '快速入门指南',
         'tagline' => "让我们<br>开始吧！",

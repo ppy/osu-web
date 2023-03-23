@@ -28,7 +28,7 @@ return [
 
     'seasons' => [
         'empty' => 'Brak gier w tym sezonie.',
-        'ongoing' => '',
+        'ongoing' => 'Ten sezon nadal trwa - w przyszłości zostanie dodanych więcej gier.',
         'room_count' => 'Liczba gier',
         'url' => 'Dowiedz się więcej o tym sezonie.',
     ],

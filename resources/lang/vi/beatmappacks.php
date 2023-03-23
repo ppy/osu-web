@@ -34,6 +34,7 @@ return [
     'mode' => [
         'artist' => 'Nghệ Sĩ/Album',
         'chart' => 'Tiêu điểm',
+        'featured' => '',
         'standard' => 'Tiêu Chuẩn',
         'theme' => 'Chủ Đề',
     ],

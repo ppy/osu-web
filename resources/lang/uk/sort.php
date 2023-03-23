@@ -32,6 +32,7 @@ return [
     ],
 
     'forum_topics' => [
+        'created' => '',
         'feature_votes' => 'Кількість голосів',
         'new' => 'Остання відповідь',
     ],

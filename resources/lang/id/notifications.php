@@ -13,6 +13,16 @@ return [
     'see_channel' => 'Buka jendela chat',
     'verifying' => 'Harap verifikasi sesi untuk melihat notifikasi',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => '',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
     'filters' => [
         '_' => 'semua notifikasi',
         'user' => 'profil',

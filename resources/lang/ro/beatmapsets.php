@@ -61,8 +61,8 @@ return [
         'discussion' => 'Discuție',
 
         'deleted_banner' => [
-            'title' => '',
-            'message' => '',
+            'title' => 'Acest beatmap a fost șters.',
+            'message' => '(doar moderatorii pot vedea asta)',
         ],
 
         'details' => [

@@ -13,7 +13,7 @@ import { createClickCallback, formatNumberSuffixed } from 'utils/html'
 import { trans, transChoice } from 'utils/lang'
 import ClickToCopy from './click-to-copy'
 import { CommentEditor } from './comment-editor'
-import { CommentShowMore } from './comment-show-more'
+import CommentShowMore from './comment-show-more'
 import DeletedCommentsCount from './deleted-comments-count'
 import { ReportReportable } from './report-reportable'
 import ShowMoreLink from './show-more-link'
@@ -21,7 +21,7 @@ import { Spinner } from './spinner'
 import StringWithComponent from './string-with-component'
 import TimeWithTooltip from './time-with-tooltip'
 import UserAvatar from './user-avatar'
-import { UserLink } from './user-link'
+import UserLink from './user-link'
 
 el = React.createElement
 

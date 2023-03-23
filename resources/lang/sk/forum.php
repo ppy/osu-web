@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => '',
         'latest_post' => 'Posledný príspevok',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => 'Naozaj chceš tento príspevok obnoviť?',
         'edited' => 'Naposledy upravil :user :when, celkový počet úprav :count.',
         'posted_at' => 'publikované :when',
-        'posted_by' => '',
+        'posted_by_in' => '',
 
         'actions' => [
             'destroy' => 'Odstraniť príspevok',

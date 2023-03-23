@@ -43,7 +43,7 @@ return [
             'label' => [
                 'forum' => 'искать на форуме',
                 'forum_children' => 'включая подфорумы',
-                'include_deleted' => '',
+                'include_deleted' => 'включая удалённые посты',
                 'topic_id' => 'тема #',
                 'username' => 'автор',
             ],
@@ -84,7 +84,7 @@ return [
         'macos-fallback' => 'для macOS',
         'mirror' => 'зеркало',
         'or' => 'или',
-        'os_version_or_later' => '',
+        'os_version_or_later' => ':os_version или новее',
         'other_os' => 'другие платформы',
         'quick_start_guide' => 'краткая инструкция',
         'tagline' => "давайте<br>начнём!",
