@@ -7,9 +7,9 @@ import { ReactMarkdownProps } from 'react-markdown/lib/complex-types';
 import rehypeTruncate from 'rehype-truncate';
 import autolink from 'remark-plugins/autolink';
 import disableConstructs, { DisabledType } from 'remark-plugins/disable-constructs';
-import { maxMessagePreviewLength } from 'utils/beatmapset-discussion-helper';
+import { maxMessagePreviewLength, propsFromHref } from 'utils/beatmapset-discussion-helper';
 import { presence } from 'utils/string';
-import { linkRenderer, timestampDecorator, transformLinkUri } from './renderers';
+import { timestampDecorator, transformLinkUri } from './renderers';
 
 interface Props {
   markdown: string;
@@ -19,6 +19,15 @@ interface Props {
 
 function imageRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>) {
   return <>{presence(astProps.alt) ?? '[image]'}</>;
+}
+
+export function linkRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>) {
+  // TODO: handle extra nodes in astProps.children
+  const props = propsFromHref(astProps.href ?? '');
+
+  return props.target == null
+    ? <a href={astProps.href} {...props} />
+    : <>{astProps.href}</>;
 }
 
 function textRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) {
