@@ -67,15 +67,14 @@ export class Main extends React.Component {
 
             {this.renderLegacyPm()}
 
-            {this.type.isEmpty && !this.type.isLoading
-              ? trans('notifications.none')
-              : (
-                <div className='notification-stacks'>
-                  {this.renderStacks()}
-                  {this.renderShowMore()}
-                </div>
-              )
+            {this.type.isEmpty
+              ? this.type.isLoading
+                ? null
+                : trans('notifications.none')
+              : this.renderStacks()
             }
+
+            {this.renderShowMore()}
           </div>
         </div>
       </div>
@@ -94,15 +93,19 @@ export class Main extends React.Component {
         callback={this.handleShowMore}
         hasMore={this.type.hasMore}
         loading={this.type.isLoading}
-        modifiers={['notification-group', 'notification-list']}
+        modifiers='notification-group'
       />
     );
   }
 
   renderStacks() {
-    return this.controller.stacks.map((stack) => (
-      <Stack key={stack.id} stack={stack} />
-    ));
+    return (
+      <div className='notification-stacks'>
+        {this.controller.stacks.map((stack) => (
+          <Stack key={stack.id} stack={stack} />
+        ))}
+      </div>
+    );
   }
 
   private handleDelete = () => {
