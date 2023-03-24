@@ -16,7 +16,7 @@ return [
         'toc' => 'Contents',
 
         'edit' => [
-            'link' => 'show on GitHub',
+            'link' => 'Show on GitHub',
             'refresh' => 'Refresh',
         ],
 

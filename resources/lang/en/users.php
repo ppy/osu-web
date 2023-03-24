@@ -49,7 +49,7 @@ return [
 
     'card' => [
         'loading' => 'Loading...',
-        'send_message' => 'send message',
+        'send_message' => 'Send message',
     ],
 
     'create' => [
