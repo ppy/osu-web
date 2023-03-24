@@ -42,6 +42,7 @@ interface Props {
   discussion: BeatmapsetDiscussionJson;
   post: BeatmapsetDiscussionMessagePostJson;
   read: boolean;
+  readonly: boolean;
   resolvedSystemPostId: number;
   type: string;
   user: UserJson;
@@ -62,12 +63,26 @@ export default class Post extends React.Component<Props> {
 
   @computed
   private get canEdit() {
+    if (this.props.readonly) return false;
+
     return this.isAdmin
       || (!downloadLimited(this.props.beatmapset)
         && this.isOwn
         && this.props.post.id > this.props.resolvedSystemPostId
         && !this.props.beatmapset.discussion_locked
       );
+  }
+
+  private get canDelete() {
+    if (this.props.readonly) return false;
+
+    return this.props.type === 'discussion'
+      ? this.props.discussion.current_user_attributes?.can_destroy
+      : this.canModerate || this.canEdit;
+  }
+
+  private get canModerate() {
+    return !this.props.readonly && canModeratePosts();
   }
 
   @computed
@@ -363,9 +378,6 @@ export default class Post extends React.Component<Props> {
 
 
   private renderMessageViewerActions() {
-    const canModerate = canModeratePosts();
-    const canDelete = this.props.type === 'discussion' ? this.props.discussion.current_user_attributes?.can_destroy : canModerate || this.canEdit;
-
     return (
       <div className={`${bn}__actions`}>
         <div className={`${bn}__actions-group`}>
@@ -385,7 +397,7 @@ export default class Post extends React.Component<Props> {
             </button>
           )}
 
-          {this.deleteModel.deleted_at == null && canDelete && (
+          {this.deleteModel.deleted_at == null && this.canDelete && (
             <a
               className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
               data-confirm={trans('common.confirmation')}
@@ -397,7 +409,7 @@ export default class Post extends React.Component<Props> {
             </a>
           )}
 
-          {this.deleteModel.deleted_at != null && canModerate && (
+          {this.deleteModel.deleted_at != null && this.canModerate && (
             <a
               className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
               data-confirm={trans('common.confirmation')}

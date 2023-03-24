@@ -136,7 +136,7 @@ export class Main extends React.PureComponent
                       currentUser: currentUser
                       beatmapset: beatmapsets[discussion.beatmapset_id]
                       isTimelineVisible: false
-                      visible: false
+                      readonly: true
                       showDeleted: true
                       preview: true
 
