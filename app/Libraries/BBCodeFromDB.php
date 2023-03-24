@@ -38,11 +38,6 @@ class BBCodeFromDB
         }
     }
 
-    public function clearSpacesBetweenTags($text)
-    {
-        return preg_replace('/([^-][^-]>)\s*</', '\1<', $text);
-    }
-
     public function parseAudio($text)
     {
         preg_match_all("#\[audio:{$this->uid}\](?<url>[^[]+)\[/audio:{$this->uid}\]#", $text, $matches, PREG_SET_ORDER);
@@ -67,7 +62,7 @@ class BBCodeFromDB
 
     public function parseBox($text)
     {
-        $text = preg_replace("#\[box=([^]]*?):{$this->uid}\]\n*#s", $this->parseBoxHelperPrefix('\\1'), $text);
+        $text = preg_replace("#\[box=((\\\[\[\]]|[^][]|\[(\\\[\[\]]|[^][]|(?R))*\])*?):{$this->uid}\]\n*#s", $this->parseBoxHelperPrefix('\\1'), $text);
         $text = preg_replace("#\n*\[/box:{$this->uid}]\n?#s", $this->parseBoxHelperSuffix(), $text);
 
         $text = preg_replace("#\[spoilerbox:{$this->uid}\]\n*#s", $this->parseBoxHelperPrefix(), $text);
@@ -129,7 +124,7 @@ class BBCodeFromDB
     public function parseHeading($text)
     {
         $text = str_replace("[heading:{$this->uid}]", '<h2>', $text);
-        $text = str_replace("[/heading:{$this->uid}]", '</h2>', $text);
+        $text = preg_replace("#\[/heading:{$this->uid}\]\n?#", '</h2>', $text);
 
         return $text;
     }
@@ -196,11 +191,11 @@ class BBCodeFromDB
 
         // convert list items.
         $text = preg_replace("#\[/\*(:m)?:{$this->uid}\]\n?#", '</li>', $text);
-        $text = str_replace("[*:{$this->uid}]", '<li>', $text);
+        $text = preg_replace("#\s*\[\*:{$this->uid}\]#", '<li>', $text);
 
         // close list tags.
-        $text = str_replace("[/list:o:{$this->uid}]", '</ol>', $text);
-        $text = str_replace("[/list:u:{$this->uid}]", '</ol>', $text);
+        $text = preg_replace("#\s*\[/list:o:{$this->uid}\]\n?#", '</ol>', $text);
+        $text = preg_replace("#\s*\[/list:u:{$this->uid}\]\n?#", '</ol>', $text);
 
         // list with "title", with it being just a list without style.
         $text = preg_replace("#\[list=[^]]+:{$this->uid}\](.+?)(<li>|</ol>)#s", '<ul class="bbcode__list-title"><li>$1</li></ul><ol>$2', $text);
@@ -236,13 +231,12 @@ class BBCodeFromDB
     {
         $text = preg_replace("#\[quote=&quot;([^:]+)&quot;:{$this->uid}\]\s*#", '<blockquote><h4>\\1 wrote:</h4>', $text);
         $text = preg_replace("#\[quote:{$this->uid}\]\s*#", '<blockquote>', $text);
-        $text = preg_replace("#\s*\[/quote:{$this->uid}\]\s*#", '</blockquote>', $text);
+        $text = preg_replace("#\s*\[/quote:{$this->uid}\]\n?#", '</blockquote>', $text);
 
         return $text;
     }
 
     // stolen from: www/forum/includes/functions.php:2845
-
     public function parseSmilies($text)
     {
         return preg_replace('#<!\-\- s(.*?) \-\-><img src="\{SMILIES_PATH\}\/(.*?) \/><!\-\- s\1 \-\->#', '<img class="smiley" src="'.osu_url('smilies').'/\2 />', $text);
@@ -310,7 +304,6 @@ class BBCodeFromDB
         $text = $this->parseNotice($text);
         $text = $this->parseQuote($text);
         $text = $this->parseHeading($text);
-        $text = $this->clearSpacesBetweenTags($text);
 
         // inline
         $text = $this->parseAudio($text);
