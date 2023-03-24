@@ -4,9 +4,9 @@
 import { PersistedBeatmapDiscussionReview } from 'interfaces/beatmap-discussion-review';
 import * as React from 'react';
 import ReactMarkdown from 'react-markdown';
+import autolink from 'remark-plugins/autolink';
+import disableConstructs from 'remark-plugins/disable-constructs';
 import { uuid } from 'utils/seq';
-import autolink from './plugins/autolink';
-import disableConstructs from './plugins/disable-constructs';
 import { emphasisRenderer, linkRenderer, paragraphRenderer, strongRenderer, transformLinkUri } from './renderers';
 import { ReviewPostEmbed } from './review-post-embed';
 

@@ -32,19 +32,19 @@ class ScorePinsController extends Controller
         $rawParams = request()->all();
         $targetParams = $this->getScoreParams($rawParams);
 
-        $pinsQuery = auth()->user()->scorePins()->where('score_type', $targetParams['score_type']);
-        $target = $pinsQuery->clone()->where('score_id', $targetParams['score_id'])->firstOrFail();
+        $pinsQuery = auth()->user()->scorePins();
+        $target = $pinsQuery->clone()->where($targetParams)->firstOrFail();
 
-        $adjacentIds = get_params($rawParams, null, [
-            'order1_score_id:int',
-            'order3_score_id:int',
-        ], ['null_missing' => true]);
+        $adjacentScores = [];
+        foreach (['order1', 'order3'] as $position) {
+            $adjacentScores[$position] = $this->getScoreParams(get_arr($rawParams[$position] ?? null) ?? []);
+        }
 
-        $order1Item = isset($adjacentIds['order1_score_id'])
-            ? $pinsQuery->clone()->where('score_id', $adjacentIds['order1_score_id'])->first()
+        $order1Item = isset($adjacentScores['order1']['score_id'])
+            ? $pinsQuery->clone()->where($adjacentScores['order1'])->first()
             : null;
-        $order3Item = $order1Item === null && isset($adjacentIds['order3_score_id'])
-            ? $pinsQuery->clone()->where('score_id', $adjacentIds['order3_score_id'])->first()
+        $order3Item = $order1Item === null && isset($adjacentScores['order3']['score_id'])
+            ? $pinsQuery->clone()->where($adjacentScores['order3'])->first()
             : null;
 
         abort_if($order1Item === null && $order3Item === null, 422, 'no valid pinned score reference is specified');

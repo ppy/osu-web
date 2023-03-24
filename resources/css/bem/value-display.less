@@ -12,25 +12,11 @@
   display: flex;
   flex-direction: column;
   min-width: 60px;
-
-  &::before {
-    height: 2px;
-    display: block;
-    content: '';
-    background-color: @osu-colour-h1;
-    border-radius: 10000px;
-    margin-bottom: 2px;
-  }
+  flex: 1;
 
   &--kudosu {
     --value-font-size-desktop: @font-size--large-3;
     --value-font-size: @font-size--large-3;
-
-    flex: 1;
-
-    &::before {
-      background-color: @osu-colour-h1;
-    }
   }
 
   &--plain {
@@ -40,11 +26,6 @@
     --value-color: hsl(var(--hsl-c2));
     --value-font-size-desktop: @font-size--title-small-3;
     --value-font-size: @font-size--title-small-3;
-    flex: 1;
-
-    &::before {
-      display: none;
-    }
   }
 
   &--plain-wide {
@@ -59,11 +40,6 @@
     --value-font-size-desktop: @font-size--new-header-title;
     --value-font-size: @font-size--large;
     line-height: 1;
-    flex: 1;
-
-    &::before {
-      display: none;
-    }
 
     @media @desktop {
       flex: none;
@@ -77,7 +53,8 @@
 
   &__description {
     font-size: @font-size--title-small;
-    color: white;
+    color: hsl(var(--hsl-c1));
+    margin-top: 0.1em;
   }
 
   &__label {

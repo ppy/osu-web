@@ -4,7 +4,7 @@
 import BeatmapsetCover from 'components/beatmapset-cover';
 import DifficultyBadge from 'components/difficulty-badge';
 import StringWithComponent from 'components/string-with-component';
-import { UserLink } from 'components/user-link';
+import UserLink from 'components/user-link';
 import { EndpointRoomJson } from 'interfaces/room-list-json';
 import { route } from 'laroute';
 import { computed, makeObservable } from 'mobx';

@@ -32,6 +32,7 @@ return [
     ],
 
     'forum_topics' => [
+        'created' => '',
         'feature_votes' => '별 평점 순위',
         'new' => '최근 응답',
     ],

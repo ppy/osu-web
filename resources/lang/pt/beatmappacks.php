@@ -34,6 +34,7 @@ return [
     'mode' => [
         'artist' => 'Artista/Álbum',
         'chart' => 'Em destaque',
+        'featured' => '',
         'standard' => 'Padrão',
         'theme' => 'Tema',
     ],

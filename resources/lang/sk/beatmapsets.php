@@ -60,6 +60,11 @@ return [
     'show' => [
         'discussion' => 'Diskusia',
 
+        'deleted_banner' => [
+            'title' => 'Táto beatmapa bola odstránená. ',
+            'message' => '(toto môžu vidieť len moderátori)',
+        ],
+
         'details' => [
             'by_artist' => 'od :artist',
             'favourite' => 'Pridať do mojich obľúbených',

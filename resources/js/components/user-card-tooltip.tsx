@@ -7,6 +7,7 @@ import * as _ from 'lodash';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { unmountComponentAtNode } from 'react-dom';
+import { renderToStaticMarkup } from 'react-dom/server';
 import { activeKeyDidChange as contextActiveKeyDidChange, ContainerContext, KeyContext, State as ActiveKeyState } from 'stateful-activation-context';
 import { TooltipContext } from 'tooltip-context';
 import { presence } from 'utils/string';
@@ -60,12 +61,28 @@ function createTooltipOptions(card: HTMLElement) {
   };
 }
 
+let blankCardCache: HTMLElement | undefined;
+function blankCard() {
+  if (blankCardCache == null) {
+    const container = document.createElement('div');
+    container.innerHTML = renderToStaticMarkup(<UserCard />);
+    const card = container.children[0];
+    if (!(card instanceof HTMLElement)) {
+      throw new Error('expected render of UserCard to be HTMLElement but got something else');
+    }
+    blankCardCache = card;
+  }
+
+  return blankCardCache;
+}
+
 function createTooltip(element: HTMLElement) {
   const userId = element.dataset.userId;
   element._tooltip = userId;
 
-  // react should override the existing content after mounting
-  const card = $('#js-usercard__loading-template').children().clone()[0];
+  // React should override the existing content after mounting.
+  // Casting because cloneNode returns Node by default.
+  const card = blankCard().cloneNode(true) as HTMLElement;
   card.classList.remove('js-react--user-card');
   card.classList.add('js-react--user-card-tooltip');
   card.dataset.lookup = userId;
@@ -80,6 +97,8 @@ function my(at: string) {
   switch (at) {
     case 'top center':
       return 'bottom center';
+    case 'top right':
+      return 'bottom left';
     case 'left center':
       return 'right center';
     case 'bottom center':

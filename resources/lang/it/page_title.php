@@ -101,7 +101,7 @@ return [
             '_' => 'performance',
         ],
         'seasons_controller' => [
-            '_' => '',
+            '_' => 'classifiche',
         ],
         'tournaments_controller' => [
             '_' => 'tornei',

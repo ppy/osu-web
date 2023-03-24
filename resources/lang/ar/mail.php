@@ -67,7 +67,7 @@ return [
         'duration' => 'بفضلِهِم, لديك وصول الى osu!direct و فوائِد osu!supporter الأخرى لمدة :duration.',
         'features' => 'يمكنك معرفة مزيد من التفاصيل عن هذهِ المميزات هنا:',
         'gifted' => 'قام احدُهٌم بهِبتِكَ شارة osu!supporter للتو!',
-        'gift_message' => '',
+        'gift_message' => 'الشخص الذي قام بإهدائك ترك لك رسالة:',
         'subject' => 'لقد حصلت على شارة osu!supporter كهدية!',
     ],
 

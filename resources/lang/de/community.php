@@ -9,7 +9,7 @@ return [
             'title' => 'Ich bin überzeugt! :D',
             'support' => 'unterstütze osu!',
             'gift' => 'oder verschenke \'Supporter\' an andere Spieler',
-            'instructions' => 'klick auf das herz, um zum osu!store zu gelangen',
+            'instructions' => 'klick auf das Herz, um zum osu!store zu gelangen',
         ],
         'why-support' => [
             'title' => 'Warum sollte ich osu! unterstützen? Wohin fließt das Geld?',
@@ -24,7 +24,7 @@ return [
             ],
             'featured-artists' => [
                 'title' => 'Featured Artists',
-                'description' => 'Mit Deiner Unterstützung können wir noch mehr großartige Künstler ansprechen und noch mehr großartige Musik für den Einsatz in osu! lizenzieren!',
+                'description' => 'Mit deiner Unterstützung können wir noch mehr großartige Künstler ansprechen und somit mehr gute Musik in osu! lizenzieren!',
                 'link_text' => 'Sieh Dir die aktuelle Liste an &raquo;',
             ],
             'ads' => [

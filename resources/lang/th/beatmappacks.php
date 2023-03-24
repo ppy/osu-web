@@ -34,6 +34,7 @@ return [
     'mode' => [
         'artist' => 'ศิลปิน/ผู้แต่ง',
         'chart' => 'โดดเด่น',
+        'featured' => '',
         'standard' => 'ทั่วไป',
         'theme' => 'ธีม',
     ],

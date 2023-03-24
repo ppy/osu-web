@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => '',
         'latest_post' => 'โพสต์ล่าสุด',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => 'ต้องการกู้คืนโพสต์จริงหรอ?',
         'edited' => 'แก้ไขล่าสุดโดย :user :when ถูกแก้ไขทั้งหมด :count ครั้ง',
         'posted_at' => 'โพสต์เมื่อ :when',
-        'posted_by' => 'โพสต์โดย :username',
+        'posted_by_in' => '',
 
         'actions' => [
             'destroy' => 'ลบโพสต์',

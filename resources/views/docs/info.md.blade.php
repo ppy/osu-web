@@ -33,6 +33,9 @@ For a full list of changes, see the
 
 ## Breaking Changes
 
+### 2023-02-17
+- `content_html` in [ChatMessage](#chatmessage) has been deprecated; pre-rendered markdown will be removed.
+
 ### 2023-01-05
 - `new_channel_id` in [Create New PM](#create-new-pm) response has been deprecated, use `channel.channel_id` instead.
 
@@ -107,5 +110,9 @@ This is combined with the base endpoint to determine where requests should be se
 
 Version | Status
 ------- | ---------------------------------------------------------------
-v2      | current _(not yet public, consider unstable and expect breaking changes)_
+v2      | current
 v1      | _legacy api provided by the old site, will be deprecated soon_
+
+## Language
+
+Language for the response is determined by `Accept-Language` header when specified. Specifying `*` or not setting the header will set the language to user configured language when accessing API as a user.

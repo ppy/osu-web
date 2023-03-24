@@ -60,6 +60,11 @@ return [
     'show' => [
         'discussion' => 'Дискусия',
 
+        'deleted_banner' => [
+            'title' => 'Този бийтмап беше изтрит.',
+            'message' => '(само модератори могат да видят това)',
+        ],
+
         'details' => [
             'by_artist' => '- :artist',
             'favourite' => 'добавяне в Любими',

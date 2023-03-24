@@ -78,9 +78,9 @@ return [
         'plus_others' => '+ :count_delimited ďalší!|+ :count_delimited ďalší!|+ :count_delimited ďalších!',
         'post' => ':count_delimited príspevok|:count_delimited príspevky|:count_delimited príspevkov',
         'second_short_unit' => 'sek',
-        'star_priority' => '',
-        'update' => '',
-        'view' => '',
+        'star_priority' => ':count_delimited priorita hviezdičiek|:count_delimited priority hviezdičiek ',
+        'update' => ':count_delimited aktualizácia|:count_delimited aktualizácie',
+        'view' => ':count_delimited zhliadnutí|:count_delimited zhliadnutí ',
         'years' => ':count rok|:count roky',
     ],
 
@@ -131,18 +131,18 @@ return [
     ],
 
     'scoreboard_time' => [
-        'd' => '',
-        'dd' => '',
-        'h' => '',
-        'hh' => '',
-        'm' => '',
-        'mm' => '',
-        'month' => '',
-        'months' => '',
+        'd' => '%dd',
+        'dd' => '%dd',
+        'h' => '%dh',
+        'hh' => '%dh',
+        'm' => 'teraz',
+        'mm' => 'teraz',
+        'month' => '%dm',
+        'months' => '%dm',
         'past' => '',
-        's' => '',
-        'y' => '',
-        'yy' => '',
+        's' => 'teraz',
+        'y' => '%dy',
+        'yy' => '%dy',
     ],
 
     'time' => [
@@ -157,7 +157,7 @@ return [
     ],
 
     'wrong_user' => [
-        '_' => '',
-        'logout_link' => '',
+        '_' => 'Ste prihlásení ako :user. :logout_link.',
+        'logout_link' => 'Kliknite tu pre prihlásení za iného užívateľa ',
     ],
 ];

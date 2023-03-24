@@ -28,21 +28,24 @@
             </span>
         </div>
         <div class="search-forum-post__text search-forum-post__text--footer">
-            <a class="search-forum-post__poster js-usercard"
-               @if ($userLink !== null) href="{{ $userLink }}" @endif
-               data-user-id="{{ $user->user_id }}"
-            >
+            <span class="search-forum-post__poster">
                 {!! osu_trans(
-                    'forum.post.posted_by',
-                    ['username' => tag(
-                        'span',
-                        ['class' => 'search-forum-post__username'],
-                        $user->username
-                    )]
+                    'forum.post.posted_by_in',
+                    [
+                        'username' => link_to_user($user, null, null, ['search-forum-post__sub-link']),
+                        'forum' => tag(
+                            'a',
+                            [
+                                'href' => route('forum.forums.show', ['forum' => $topic->forum_id]),
+                                'class' => 'search-forum-post__sub-link',
+                            ],
+                            $topic->forum->forum_name,
+                        ),
+                    ],
                 ) !!}
-            </a>
+            </span>
             <div class="search-forum-post__url">
-                {{ $link }}
+                #{{ $postId }}
             </div>
             <time class="search-forum-post__time js-timeago" datetime="{{ $time }}">
                 {{ $time }}

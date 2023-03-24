@@ -60,6 +60,11 @@ return [
     'show' => [
         'discussion' => 'Абмеркаванне',
 
+        'deleted_banner' => [
+            'title' => 'Гэта бітмапа была выдалена.',
+            'message' => '(гэта бачаць толькі мадэратары) ',
+        ],
+
         'details' => [
             'by_artist' => 'ад :artist',
             'favourite' => 'Дадаць да абраных',

@@ -4,26 +4,24 @@
 import UserJson from 'interfaces/user-json';
 import * as React from 'react';
 import { activeKeyDidChange, ContainerContext, KeyContext, State as ActiveKeyState } from 'stateful-activation-context';
-import { classWithModifiers } from 'utils/css';
+import { classWithModifiers, mergeModifiers, Modifiers } from 'utils/css';
 import { UserCard, ViewMode } from './user-card';
 
 interface Props {
-  modifiers: string[];
+  modifiers?: Modifiers;
   users: UserJson[];
   viewMode: ViewMode;
 }
 
 export class UserCards extends React.PureComponent<Props> {
-  static defaultProps = {
-    modifiers: [],
-  };
-
   readonly activeKeyDidChange = activeKeyDidChange.bind(this);
   readonly state: ActiveKeyState = {};
 
   render() {
-    const classMods = this.state.activeKey != null ? ['menu-active'] : [];
-    classMods.push(this.props.viewMode);
+    const classMods = {
+      'menu-active': this.state.activeKey != null,
+      [this.props.viewMode]: true,
+    };
 
     return (
       <ContainerContext.Provider value={{ activeKeyDidChange: this.activeKeyDidChange }}>
@@ -37,7 +35,7 @@ export class UserCards extends React.PureComponent<Props> {
                   <UserCard
                     activated={activated}
                     mode={this.props.viewMode}
-                    modifiers={['has-outline', ...this.props.modifiers]}
+                    modifiers={mergeModifiers('has-outline', this.props.modifiers)}
                     user={user}
                   />
                 </KeyContext.Provider>

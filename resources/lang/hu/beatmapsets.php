@@ -60,6 +60,11 @@ return [
     'show' => [
         'discussion' => 'Beszélgetés',
 
+        'deleted_banner' => [
+            'title' => 'Ez a beatmap törlésre került.',
+            'message' => '(ezt csak a moderátorok láthatják)',
+        ],
+
         'details' => [
             'by_artist' => ':artist által',
             'favourite' => 'A beatmap kedvencek közé tétele',

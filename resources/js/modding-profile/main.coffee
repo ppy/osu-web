@@ -24,10 +24,10 @@ import { pageChange } from 'utils/page-change'
 import { nextVal } from 'utils/seq'
 import { currentUrl, currentUrlRelative } from 'utils/turbolinks'
 import { updateQueryString } from 'utils/url'
-import { Discussions } from './discussions'
+import Discussions from './discussions'
 import { Events } from './events'
 import { Posts } from './posts'
-import { Stats } from './stats'
+import Stats from './stats'
 import { Votes } from './votes'
 
 el = React.createElement

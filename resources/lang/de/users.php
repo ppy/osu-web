@@ -34,7 +34,7 @@ return [
     'blocks' => [
         'banner_text' => 'Du hast diesen Benutzer geblockt.',
         'comment_text' => 'Dieser Kommentar ist ausgeblendet.',
-        'blocked_count' => 'geblockte benutzer (:count)',
+        'blocked_count' => 'blockierte Benutzer (:count)',
         'hide_profile' => 'Profil verbergen',
         'hide_comment' => 'ausblenden',
         'not_blocked' => 'Dieser Benutzer ist nicht geblockt.',
@@ -42,7 +42,7 @@ return [
         'show_comment' => 'anzeigen',
         'too_many' => 'Block-Limit erreicht.',
         'button' => [
-            'block' => 'Blocken',
+            'block' => 'Blockieren',
             'unblock' => 'Entblocken',
         ],
     ],
@@ -54,16 +54,16 @@ return [
 
     'create' => [
         'form' => [
-            'password' => 'passwort',
-            'password_confirmation' => 'passwort bestätigen',
-            'submit' => 'account erstellen',
-            'user_email' => 'e-mail',
-            'user_email_confirmation' => 'e-mail bestätigen',
-            'username' => 'benutzername',
+            'password' => 'Passwort',
+            'password_confirmation' => 'Passwort bestätigen',
+            'submit' => 'Account erstellen',
+            'user_email' => 'E-Mail',
+            'user_email_confirmation' => 'E-Mail bestätigen',
+            'username' => 'Benutzername',
 
             'tos_notice' => [
-                '_' => 'durch die erstellung eines accounts bist du mit den :link einverstanden',
-                'link' => 'nutzungsbedingungen',
+                '_' => 'durch die Erstellung eines Accounts bist du mit den :link einverstanden',
+                'link' => 'Nutzungsbedingungen',
             ],
         ],
     ],
@@ -157,8 +157,8 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Dein Account wurde restricted!',
-        'message' => 'Während du restricted bist, kannst du nicht mit anderen Spielern interagieren und deine Ranglistenscores sind nur für dich sichtbar. Dies passiert normalerweise durch einen automatischen Prozess und wird üblicherweise innerhalb von 24 Stunden aufgehoben. Wenn du Einspruch gegen deine Restriction erheben möchtest, wende dich bitte an <a href="mailto:accounts@ppy.sh">den Support</a>.',
-        'message_link' => '',
+        'message' => 'Während einer Sperrung kannst du nicht mit anderen Spielern interagieren und deine Ranglistenscores sind nur für dich sichtbar. Dies passiert normalerweise durch einen automatischen Prozess und wird üblicherweise innerhalb von 24 Stunden aufgehoben. :link',
+        'message_link' => 'Siehe hier für weitere Informationen.',
     ],
     'show' => [
         'age' => ':age Jahre alt',
@@ -270,8 +270,8 @@ return [
                     'title' => 'Neuliche Plays (24h)',
                 ],
                 'replays_watched_counts' => [
-                    'title' => 'Angeschaute Wiederholungen',
-                    'count_label' => 'Wiederholungen angeschaut',
+                    'title' => 'Angeschaute Replays',
+                    'count_label' => 'Replays angeschaut',
                 ],
             ],
             'kudosu' => [
@@ -445,7 +445,7 @@ return [
             'play_count' => 'Anzahl Spiele',
             'play_time' => 'Gesamtspielzeit',
             'ranked_score' => 'Punktzahl auf Ranglisten',
-            'replays_watched_by_others' => 'Von anderen angeschaute Wiederholungen',
+            'replays_watched_by_others' => 'Von anderen angesehene Replays',
             'score_ranks' => 'Ränge durch Punkte',
             'total_hits' => 'Anzahl Treffer',
             'total_score' => 'Gesamtpunktzahl',

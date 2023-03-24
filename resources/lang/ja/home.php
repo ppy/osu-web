@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'フォーラム内を検索',
                 'forum_children' => 'サブフォーラムを含む',
+                'include_deleted' => '',
                 'topic_id' => 'トピック #',
                 'username' => '投稿者',
             ],
@@ -83,6 +84,7 @@ return [
         'macos-fallback' => 'macOSユーザー',
         'mirror' => 'ミラー',
         'or' => 'または',
+        'os_version_or_later' => '',
         'other_os' => '他のプラットフォーム',
         'quick_start_guide' => 'クイックスタートガイド',
         'tagline' => "さぁ、<br>始めよう！",

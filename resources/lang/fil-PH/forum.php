@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => '',
         'latest_post' => 'Pinakabagong Post',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => 'Talagang ibalik ang post na ito?',
         'edited' => 'Huling na-edit ni pamamagitan ni :user noong :when, in-edit nang :count_delimited na beses sa kabuuan.|Huling na-edit ni pamamagitan ni :user noong :when, in-edit nang :count_delimited na beses sa kabuuan.',
         'posted_at' => 'nai-post noong :when',
-        'posted_by' => 'nai-post ni :username',
+        'posted_by_in' => '',
 
         'actions' => [
             'destroy' => 'Burahin ang post na ito',

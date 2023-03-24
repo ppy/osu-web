@@ -60,6 +60,11 @@ return [
     'show' => [
         'discussion' => 'Discusión',
 
+        'deleted_banner' => [
+            'title' => 'Este mapa ha sido eliminado.',
+            'message' => '(solo los moderadores pueden ver esto)',
+        ],
+
         'details' => [
             'by_artist' => 'por :artist',
             'favourite' => 'Marcar como favorito',

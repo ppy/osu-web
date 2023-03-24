@@ -5,8 +5,8 @@
 
 return [
     'index' => [
-        'description' => '',
-        'nav_title' => '',
+        'description' => 'مجموعه بیتمپ های از پیش بسته بندی شده در مورد یک سبک/ژانر محبوب.',
+        'nav_title' => 'فهرست',
         'title' => 'بسته بیت مپ ها',
 
         'blurb' => [
@@ -22,24 +22,25 @@ return [
     'show' => [
         'download' => 'دانلود',
         'item' => [
-            'cleared' => '',
-            'not_cleared' => '',
+            'cleared' => 'پاک شده',
+            'not_cleared' => 'پاک نشده',
         ],
         'no_diff_reduction' => [
-            '_' => '',
-            'link' => '',
+            '_' => 'ممکن است :link برای پاکسازی این پک استفاده نشود.',
+            'link' => 'ماد های کاهش سختی',
         ],
     ],
 
     'mode' => [
-        'artist' => '',
-        'chart' => '',
-        'standard' => '',
-        'theme' => '',
+        'artist' => 'آلبوم/هنرمند',
+        'chart' => 'برجسته ها',
+        'featured' => '',
+        'standard' => 'استاندارد',
+        'theme' => 'تم',
     ],
 
     'require_login' => [
-        '_' => '',
-        'link_text' => '',
+        '_' => 'شما باید :link تا بتوانید دانلود کنید',
+        'link_text' => 'وارد شده باشید',
     ],
 ];

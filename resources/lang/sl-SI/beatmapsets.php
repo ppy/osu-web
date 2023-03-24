@@ -60,13 +60,18 @@ return [
     'show' => [
         'discussion' => 'Razprava',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
             'by_artist' => 'od :artist',
             'favourite' => 'Dodaj beatmapo med priljubljene',
             'favourite_login' => 'Vpiši se za dodajanje beatmape med priljubljene',
             'logged-out' => 'Preden lahko preneseš beatmapo moraš biti vpisan!',
             'mapped_by' => 'mappal :mapper',
-            'mapped_by_guest' => '',
+            'mapped_by_guest' => 'gostiteljeva težavnost od :mapper',
             'unfavourite' => 'Odstrani beatmapo iz priljubljenih',
             'updated_timeago' => 'zadnje posodobljeno :timeago',
 

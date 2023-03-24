@@ -21,6 +21,7 @@ use League\Fractal\Resource\Collection;
 class BeatmapsetCompactTransformer extends TransformerAbstract
 {
     protected array $availableIncludes = [
+        'availability',
         'beatmaps',
         'converts',
         'current_nominations',
@@ -31,6 +32,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         'genre',
         'has_favourited',
         'language',
+        'pack_tags',
         'nominations',
         'ratings',
         'recent_favourites',
@@ -74,6 +76,14 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
             'user_id' => $beatmapset->user_id,
             'video' => $beatmapset->video,
         ];
+    }
+
+    public function includeAvailability(Beatmapset $beatmapset)
+    {
+        return $this->primitive([
+            'download_disabled' => $beatmapset->download_disabled,
+            'more_information' => $beatmapset->download_disabled_url,
+        ]);
     }
 
     public function includeBeatmaps(Beatmapset $beatmapset, Fractal\ParamBag $params)
@@ -201,6 +211,11 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
         }
 
         return $this->primitive($result);
+    }
+
+    public function includePackTags(Beatmapset $beatmapset)
+    {
+        return $this->primitive($beatmapset->pack_tags);
     }
 
     public function includeUser(Beatmapset $beatmapset)

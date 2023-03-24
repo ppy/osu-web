@@ -113,7 +113,7 @@
 
     @media @desktop {
       --icon-height: var(--icon-height-desktop);
-      margin-top: 0;
+      margin-top: 5px;
     }
   }
 
@@ -153,6 +153,7 @@
   }
 
   &__info {
+    .default-text-shadow();
     margin-left: var(--info-margin);
     display: flex;
     flex-direction: column;
@@ -215,7 +216,6 @@
   &__title {
     .link-white();
     line-height: normal;
-    margin: 0 0 5px;
     font-size: @font-size--title-small;
 
     @media @desktop {

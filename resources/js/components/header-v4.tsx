@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import HeaderLink from 'interfaces/header-link';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers, Modifiers, urlPresence } from 'utils/css';
 import { parseJson } from 'utils/json';
@@ -52,8 +53,16 @@ export default class HeaderV4 extends React.Component<Props> {
     linksBreadcrumb: false,
   };
 
+  private cancelSyncHeight?: () => void;
+
   componentDidMount() {
-    $.publish('osu:page:change');
+    this.cancelSyncHeight = core.reactTurbolinks.runAfterPageLoad(() => {
+      $.publish('sync-height:force');
+    });
+  }
+
+  componentWillUnmount() {
+    this.cancelSyncHeight?.();
   }
 
   render() {

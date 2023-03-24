@@ -13,6 +13,16 @@ return [
     'see_channel' => '前往聊天',
     'verifying' => '請驗證此工作階段以查看通知',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => '',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
     'filters' => [
         '_' => '全部',
         'user' => '個人簡介',

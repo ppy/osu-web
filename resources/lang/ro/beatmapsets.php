@@ -60,6 +60,11 @@ return [
     'show' => [
         'discussion' => 'Discuție',
 
+        'deleted_banner' => [
+            'title' => 'Acest beatmap a fost șters.',
+            'message' => '(doar moderatorii pot vedea asta)',
+        ],
+
         'details' => [
             'by_artist' => 'de :artist',
             'favourite' => 'Adaugă acest beatmap la favorite',

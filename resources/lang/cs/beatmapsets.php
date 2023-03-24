@@ -60,6 +60,11 @@ return [
     'show' => [
         'discussion' => 'Diskuze',
 
+        'deleted_banner' => [
+            'title' => 'Tato beatmapa byla odstraněna.',
+            'message' => '(toto můžou vidět jen moderátoři)',
+        ],
+
         'details' => [
             'by_artist' => 'od :artist',
             'favourite' => 'Přidat do mých oblíbených',

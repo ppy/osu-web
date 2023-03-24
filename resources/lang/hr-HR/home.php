@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'pretrži u forumima',
                 'forum_children' => 'uključi podforume',
+                'include_deleted' => '',
                 'topic_id' => 'tema #',
                 'username' => 'autor',
             ],
@@ -83,6 +84,7 @@ return [
         'macos-fallback' => 'macOS korisnici',
         'mirror' => 'mirror',
         'or' => '',
+        'os_version_or_later' => '',
         'other_os' => '',
         'quick_start_guide' => '',
         'tagline' => "idemo<br>započeti!",

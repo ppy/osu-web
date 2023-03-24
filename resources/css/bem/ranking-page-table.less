@@ -30,6 +30,7 @@
   }
 
   &__column {
+    background: var(--bg);
     padding: 6px 0px;
 
     &--dimmed {
@@ -54,15 +55,14 @@
   }
 
   &__row {
-    background: @osu-colour-b4;
-    .default-border-radius();
+    --bg: hsl(var(--hsl-b4));
 
     &--inactive {
       opacity: 0.5;
     }
 
     &:hover {
-      background: @osu-colour-b3;
+      --bg: hsl(var(--hsl-b3));
     }
   }
 

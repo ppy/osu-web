@@ -101,7 +101,7 @@ return [
             '_' => 'ค่าศักยภาพ',
         ],
         'seasons_controller' => [
-            '_' => '',
+            '_' => 'การจัดอันดับ',
         ],
         'tournaments_controller' => [
             '_' => '

@@ -50,13 +50,11 @@ return [
             'resolved' => 'Jūs nevarat rediģēt atrisinātas diskusijas rakstu.',
             'system_generated' => 'Automātiski ģenerētu rakstu nevar rediģēt.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Šī bītmape ir aizslēgta diskusijai.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => '',
+
         'metadata' => [
             'nominated' => 'Nominētas mapes metadatus mainīt nevar. Sazinieties ar BN vai NAT locekli, ja uzskatāt, ka tā ir iestatīta nepareizi.',
         ],

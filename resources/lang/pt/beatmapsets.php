@@ -60,6 +60,11 @@ return [
     'show' => [
         'discussion' => 'Discussão',
 
+        'deleted_banner' => [
+            'title' => 'Este beatmap foi apagado.',
+            'message' => '(apenas os moderadores podem ver isto)',
+        ],
+
         'details' => [
             'by_artist' => 'por :artist',
             'favourite' => 'Marcar este beatmapset como favorito',

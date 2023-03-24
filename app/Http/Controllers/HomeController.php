@@ -56,8 +56,7 @@ class HomeController extends Controller
 
     public function getDownload()
     {
-        static $lazerPlatformNames;
-        $lazerPlatformNames ??= [
+        $lazerPlatformNames = [
             'android' => osu_trans('home.download.os_version_or_later', ['os_version' => 'Android 5']),
             'ios' => osu_trans('home.download.os_version_or_later', ['os_version' => 'iOS 13.4']),
             'linux_x64' => 'Linux (x64)',
@@ -65,13 +64,7 @@ class HomeController extends Controller
             'windows_x64' => osu_trans('home.download.os_version_or_later', ['os_version' => 'Windows 8.1']).' (x64)',
         ];
 
-        $httpHeaders = [];
-        // format headers to what Agent is expecting
-        foreach (request()->headers->all() as $key => $values) {
-            $headerKey = 'HTTP_'.strtoupper(strtr($key, '-', '_'));
-            $httpHeaders[$headerKey] = $values[0];
-        }
-        $agent = new Agent($httpHeaders);
+        $agent = new Agent(Request::server());
 
         $platform = match (true) {
             // Try matching most likely platform first
@@ -123,6 +116,11 @@ class HomeController extends Controller
     public function messageUser($user)
     {
         return ujs_redirect(route('chat.index', ['sendto' => $user]));
+    }
+
+    public function opensearch()
+    {
+        return ext_view('home.opensearch', null, 'opensearch')->header('Cache-Control', 'max-age=86400');
     }
 
     public function quickSearch()

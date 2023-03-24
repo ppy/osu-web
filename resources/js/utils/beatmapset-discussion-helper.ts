@@ -21,7 +21,7 @@ import { getInt } from './math';
 
 interface BadgeGroupParams {
   beatmapset: BeatmapsetJson;
-  currentBeatmap: BeatmapJson;
+  currentBeatmap: BeatmapJson | null;
   discussion: BeatmapsetDiscussionJson;
   user?: UserJson;
 }
@@ -175,9 +175,10 @@ function isFilter(value: string): value is Filter {
 }
 
 function isNearbyDiscussion<T extends BeatmapsetDiscussionJson>(discussion: T): discussion is NearbyDiscussion<T> {
-  return !(discussion.timestamp == null
-    || !nearbyDiscussionsMessageTypes.has(discussion.message_type)
-    || (discussion.user_id === core.currentUserOrFail.id && moment(discussion.updated_at).diff(moment(), 'hour') > -24));
+  return discussion.deleted_at == null
+    && discussion.timestamp != null
+    && nearbyDiscussionsMessageTypes.has(discussion.message_type)
+    && (discussion.user_id !== core.currentUserOrFail.id || moment(discussion.updated_at).diff(moment(), 'hour') <= -24);
 }
 
 export function linkTimestamp(text: string, classNames: string[] = []) {

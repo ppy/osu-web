@@ -80,7 +80,7 @@ return [
             '_' => 'informationen',
         ],
         'livestreams_controller' => [
-            '_' => 'liveübertragung',
+            '_' => 'Liveübertragung',
         ],
         'matches_controller' => [
             '_' => 'spiele',

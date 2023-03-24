@@ -60,6 +60,11 @@ return [
     'show' => [
         'discussion' => 'Diskusi',
 
+        'deleted_banner' => [
+            'title' => 'Beatmap ini telah dihapus.',
+            'message' => '(hanya moderator yang dapat melihat ini)',
+        ],
+
         'details' => [
             'by_artist' => 'oleh :artist',
             'favourite' => 'Tambahkan beatmap ini ke dalam daftar Beatmap Favorit',

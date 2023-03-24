@@ -8,7 +8,7 @@ return [
     'talking_in' => 'tipkaš v :channel',
     'talking_with' => 'pogovor z :name',
     'title_compact' => 'klepet',
-    'unread_messages' => '',
+    'unread_messages' => 'neprebrana sporočila',
 
     'cannot_send' => [
         'channel' => 'Trenutno ne moreš poslati sporočil v tem kanalu.',
@@ -36,7 +36,7 @@ return [
 
         'labels' => [
             'description' => 'opis',
-            'message' => '',
+            'message' => 'sporočilo',
             'name' => 'ime sobe',
             'users' => 'igralci, ki jih želiš dodati',
         ],

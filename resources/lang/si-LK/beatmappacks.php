@@ -34,6 +34,7 @@ return [
     'mode' => [
         'artist' => '',
         'chart' => '',
+        'featured' => '',
         'standard' => '',
         'theme' => '',
     ],

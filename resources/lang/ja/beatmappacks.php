@@ -34,6 +34,7 @@ return [
     'mode' => [
         'artist' => 'アーティスト/アルバム',
         'chart' => 'スポットライト',
+        'featured' => '',
         'standard' => 'スタンダードパック',
         'theme' => 'テーマ',
     ],

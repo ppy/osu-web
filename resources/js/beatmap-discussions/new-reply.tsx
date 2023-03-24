@@ -25,7 +25,7 @@ const bn = 'beatmap-discussion-post';
 
 interface Props {
   beatmapset: BeatmapsetJson;
-  currentBeatmap: BeatmapJson;
+  currentBeatmap: BeatmapJson | null;
   discussion: BeatmapsetDiscussionJson;
 }
 

@@ -12,7 +12,7 @@ use Request;
 
 class BeatmapPacksController extends Controller
 {
-    private const PER_PAGE = 20;
+    private const PER_PAGE = 100;
 
     public function index()
     {
@@ -32,30 +32,19 @@ class BeatmapPacksController extends Controller
     {
         $query = BeatmapPack::default();
 
-        if (!ctype_digit($idOrTag)) {
-            $pack = $query->where('tag', $idOrTag)->firstOrFail();
+        if (ctype_digit($idOrTag)) {
+            $pack = $query->findOrFail($idOrTag);
 
             return ujs_redirect(route('packs.show', $pack));
         }
 
-        $pack = $query->findOrFail($idOrTag);
-
-        return ext_view('packs.show', $this->packData($pack));
-    }
-
-    public function raw($id)
-    {
-        $pack = BeatmapPack::default()->findOrFail($id);
-
-        return ext_view('packs.raw', $this->packData($pack));
-    }
-
-    private function packData($pack)
-    {
+        $pack = $query->where('tag', $idOrTag)->firstOrFail();
         $mode = Beatmap::modeStr($pack->playmode ?? 0);
-        $sets = $pack->beatmapsets()->select()->get();
+        $sets = $pack->beatmapsets;
         $userCompletionData = $pack->userCompletionData(Auth::user());
 
-        return compact('mode', 'pack', 'sets', 'userCompletionData');
+        $view = request('format') === 'raw' ? 'packs.raw' : 'packs.show';
+
+        return ext_view($view, compact('mode', 'pack', 'sets', 'userCompletionData'));
     }
 }

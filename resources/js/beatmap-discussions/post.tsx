@@ -10,7 +10,7 @@ import ClickToCopy from 'components/click-to-copy';
 import { ReportReportable } from 'components/report-reportable';
 import StringWithComponent from 'components/string-with-component';
 import TimeWithTooltip from 'components/time-with-tooltip';
-import { UserLink } from 'components/user-link';
+import UserLink from 'components/user-link';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import { BeatmapsetDiscussionMessagePostJson } from 'interfaces/beatmapset-discussion-post-json';
@@ -27,6 +27,7 @@ import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
 import { onError } from 'utils/ajax';
 import { badgeGroup, canModeratePosts, format, makeUrl, validMessageLength } from 'utils/beatmapset-discussion-helper';
+import { downloadLimited } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
 import { trans } from 'utils/lang';
@@ -36,7 +37,7 @@ import { UserCard } from './user-card';
 const bn = 'beatmap-discussion-post';
 
 interface Props {
-  beatmap: BeatmapExtendedJson;
+  beatmap: BeatmapExtendedJson | null;
   beatmapset: BeatmapsetExtendedJson;
   discussion: BeatmapsetDiscussionJson;
   post: BeatmapsetDiscussionMessagePostJson;
@@ -61,7 +62,12 @@ export default class Post extends React.Component<Props> {
 
   @computed
   private get canEdit() {
-    return this.isAdmin || this.isOwn && this.props.post.id > this.props.resolvedSystemPostId && !this.props.beatmapset.discussion_locked;
+    return this.isAdmin
+      || (!downloadLimited(this.props.beatmapset)
+        && this.isOwn
+        && this.props.post.id > this.props.resolvedSystemPostId
+        && !this.props.beatmapset.discussion_locked
+      );
   }
 
   @computed

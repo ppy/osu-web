@@ -101,14 +101,14 @@ return [
             '_' => '成績',
         ],
         'seasons_controller' => [
-            '_' => '',
+            '_' => '排行榜',
         ],
         'tournaments_controller' => [
             '_' => '官方比賽',
         ],
         'users_controller' => [
             '_' => '玩家資訊',
-            'create' => '',
+            'create' => '註冊帳號',
             'disabled' => '通知',
         ],
         'wiki_controller' => [

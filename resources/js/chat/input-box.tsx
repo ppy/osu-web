@@ -57,7 +57,7 @@ export default class InputBox extends React.Component<Props> {
 
     disposeOnUnmount(
       this,
-      reaction(() => core.dataStore.chatState.selectedChannel, (newValue, oldValue) => {
+      reaction(() => this.currentChannel, (newValue, oldValue) => {
         if (newValue != null && newValue !== oldValue && core.windowSize.isDesktop) {
           this.focusInput();
         }
@@ -137,7 +137,7 @@ export default class InputBox extends React.Component<Props> {
   // TODO: move to channel?
   @action
   sendMessage(messageText?: string) {
-    if (core.dataStore.chatState.selectedChannel == null
+    if (this.currentChannel == null
       || messageText == null
       || !present(trim(messageText))) {
       return;
@@ -163,12 +163,15 @@ export default class InputBox extends React.Component<Props> {
 
     const message = new Message();
     message.senderId = core.currentUserOrFail.id;
-    message.channelId = core.dataStore.chatState.selectedChannel.channelId;
+    message.channelId = this.currentChannel.channelId;
     message.content = messageText;
 
     // Technically we don't need to check command here, but doing so in case we add more commands
     if (isCommand && command === 'me') {
       message.isAction = true;
+      message.type = 'action';
+    } else {
+      message.type = this.currentChannel.type === 'ANNOUNCE' ? 'markdown' : 'plain';
     }
 
     if (this.currentChannel != null) {

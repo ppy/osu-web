@@ -60,6 +60,11 @@ return [
     'show' => [
         'discussion' => 'Обговорення',
 
+        'deleted_banner' => [
+            'title' => 'Ця мапа була видалена.',
+            'message' => '(лише модератори можуть це бачити)',
+        ],
+
         'details' => [
             'by_artist' => 'від :artist',
             'favourite' => 'Додати мапу до вподобаних',

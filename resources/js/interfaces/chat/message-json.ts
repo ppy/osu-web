@@ -3,14 +3,16 @@
 
 import UserJson from 'interfaces/user-json';
 
+export type MessageType = 'action' | 'markdown' | 'plain';
+
 export default interface MessageJson {
   channel_id: number;
   content: string;
-  content_html?: string;
   is_action: boolean;
   message_id: number;
   sender?: UserJson;
   sender_id: number;
   timestamp: string;
+  type: MessageType;
   uuid?: string | null;
 }

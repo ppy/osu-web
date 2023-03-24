@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'αναζήτηση στο φόρουμ',
                 'forum_children' => 'συμπεριλάμβανε υπο-φόρουμ',
+                'include_deleted' => '',
                 'topic_id' => 'θέμα #',
                 'username' => 'συντάκτης',
             ],
@@ -83,6 +84,7 @@ return [
         'macos-fallback' => 'χρήστες macOS',
         'mirror' => 'mirror',
         'or' => 'ή',
+        'os_version_or_later' => '',
         'other_os' => 'άλλες πλατφόρμες',
         'quick_start_guide' => '',
         'tagline' => "ας<br>αρχίσουμε!",

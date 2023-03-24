@@ -9,6 +9,7 @@ use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\Sort;
 use App\Libraries\Elasticsearch\Utils\SearchAfterParam;
 use App\Models\Beatmap;
+use App\Models\Beatmapset;
 use App\Models\Genre;
 use App\Models\Language;
 use App\Models\User;
@@ -308,5 +309,11 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
 
         // generic tie-breaker.
         $this->sorts[] = new Sort('id', $sort->order);
+
+        foreach ($this->sorts as $sort) {
+            if ((Beatmapset::CASTS[$sort->field] ?? null) === 'datetime') {
+                $sort->extras['missing'] = 0;
+            }
+        }
     }
 }

@@ -58,7 +58,11 @@
     }
 
     .@{_top}--forum & {
-      .at2x-simple('~@images/headers/forum-topic-covers/forum-cover-category-osu.jpg');
+      background-image: var(--forum-cover);
+
+      @media @highdpi {
+        background-image: var(--forum-cover-2x);
+      }
     }
 
     .@{_top}--forums-index & {
@@ -148,7 +152,6 @@
 
   &__icon {
     background-image: url('~@images/icons/home.svg');
-    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     align-self: stretch;

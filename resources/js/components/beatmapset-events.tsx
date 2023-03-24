@@ -6,7 +6,7 @@ import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
 import UserJson from 'interfaces/user-json';
 import * as React from 'react';
 
-interface Props {
+export interface Props {
   events: BeatmapsetEventJson[];
   mode: EventViewMode;
   users: Partial<Record<string, UserJson>>;

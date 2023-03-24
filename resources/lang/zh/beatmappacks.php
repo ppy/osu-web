@@ -34,6 +34,7 @@ return [
     'mode' => [
         'artist' => '艺术家/专辑',
         'chart' => '聚光灯',
+        'featured' => '',
         'standard' => '常规',
         'theme' => '主题',
     ],
