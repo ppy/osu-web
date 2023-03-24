@@ -63,8 +63,6 @@ export default class Post extends React.Component<Props> {
 
   @computed
   private get canEdit() {
-    if (this.props.readonly) return false;
-
     return this.isAdmin
       || (!downloadLimited(this.props.beatmapset)
         && this.isOwn
@@ -74,15 +72,13 @@ export default class Post extends React.Component<Props> {
   }
 
   private get canDelete() {
-    if (this.props.readonly) return false;
-
     return this.props.type === 'discussion'
       ? this.props.discussion.current_user_attributes?.can_destroy
       : this.canModerate || this.canEdit;
   }
 
   private get canModerate() {
-    return !this.props.readonly && canModeratePosts();
+    return canModeratePosts();
   }
 
   @computed
@@ -260,8 +256,6 @@ export default class Post extends React.Component<Props> {
   }
 
   private renderKudosuAction(op: 'allow' | 'deny') {
-    if (this.props.readonly) return null;
-
     return (
       <a
         className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
@@ -390,43 +384,48 @@ export default class Post extends React.Component<Props> {
               valueAsUrl
             />
           </span>
-          {this.canEdit && (
-            <button
-              className={`${bn}__action ${bn}__action--button`}
-              onClick={this.editStart}
-            >
-              {trans('beatmaps.discussions.edit')}
-            </button>
-          )}
 
-          {this.deleteModel.deleted_at == null && this.canDelete && (
-            <a
-              className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
-              data-confirm={trans('common.confirmation')}
-              data-method='DELETE'
-              data-remote
-              href={this.deleteHref('destroy')}
-            >
-              {trans('beatmaps.discussions.delete')}
-            </a>
-          )}
+          {!this.props.readonly && (
+            <>
+              {this.canEdit && (
+                <button
+                  className={`${bn}__action ${bn}__action--button`}
+                  onClick={this.editStart}
+                >
+                  {trans('beatmaps.discussions.edit')}
+                </button>
+              )}
 
-          {this.deleteModel.deleted_at != null && this.canModerate && (
-            <a
-              className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
-              data-confirm={trans('common.confirmation')}
-              data-method='POST'
-              data-remote
-              href={this.deleteHref('restore')}
-            >
-              {trans('beatmaps.discussions.restore')}
-            </a>
-          )}
+              {this.deleteModel.deleted_at == null && this.canDelete && (
+                <a
+                  className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
+                  data-confirm={trans('common.confirmation')}
+                  data-method='DELETE'
+                  data-remote
+                  href={this.deleteHref('destroy')}
+                >
+                  {trans('beatmaps.discussions.delete')}
+                </a>
+              )}
 
-          {this.props.type === 'discussion' && this.props.discussion.current_user_attributes?.can_moderate_kudosu && (
-            this.props.discussion.can_grant_kudosu
-              ? this.renderKudosuAction('deny')
-              : this.props.discussion.kudosu_denied && this.renderKudosuAction('allow')
+              {this.deleteModel.deleted_at != null && this.canModerate && (
+                <a
+                  className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
+                  data-confirm={trans('common.confirmation')}
+                  data-method='POST'
+                  data-remote
+                  href={this.deleteHref('restore')}
+                >
+                  {trans('beatmaps.discussions.restore')}
+                </a>
+              )}
+
+              {this.props.type === 'discussion' && this.props.discussion.current_user_attributes?.can_moderate_kudosu && (
+                this.props.discussion.can_grant_kudosu
+                  ? this.renderKudosuAction('deny')
+                  : this.props.discussion.kudosu_denied && this.renderKudosuAction('allow')
+              )}
+            </>
           )}
 
           {this.canReport && (
