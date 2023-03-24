@@ -10,26 +10,22 @@
   @header-margin--bottom: 5px;
 
   font-size: @font-size--normal;
-  color: white;
 
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  gap: 20px;
 
-  padding: 0 30px 0;
+  padding: 10px @gutter-beatmapset 0;
   background-color: hsl(var(--hsl-b4));
 
   @media @desktop {
-    flex-direction: row;
+    padding: 15px @gutter-beatmapset-desktop 0;
     min-height: @min-height;
     max-height: @max-height;
+    grid-template-columns: 1fr 175px @beatmapset-float-box-width;
   }
 
   &__box {
-    margin: @box-margin--top 10px 0;
-    flex: none;
-
     &--description {
-      flex: 1;
       min-width: 0;
       display: flex;
       flex-direction: column;
@@ -40,15 +36,8 @@
       position: relative;
 
       @media @desktop {
-        width: 175px;
         overflow: hidden;
         margin-bottom: 10px;
-      }
-    }
-
-    &--success-rate {
-      @media @desktop {
-        width: @beatmapset-float-box-width;
       }
     }
   }
