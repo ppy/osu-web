@@ -3,6 +3,12 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @php
+    use App\Libraries\User\UserSignatures;
+
+    $currentUser = Auth::user();
+    $currentUserId = $currentUser?->getKey();
+    $userSignatures = new UserSignatures();
+
     $postPosition = $firstPostPosition;
 @endphp
 
@@ -22,7 +28,9 @@
         $isBeatmapsetPost = $postPosition === 1 && $post->isBeatmapsetPost();
     @endphp
     @include('forum.topics._post', [
+        'currentUserId' => $currentUserId,
         'post' => $post,
+        'userSignatures' => $userSignatures,
         'options' => [
             'postPosition' => $postPosition,
             'signature' => $topic->forum->enable_sigs,

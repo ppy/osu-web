@@ -3,13 +3,13 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 <?php
-    $options['postPosition'] = $options['postPosition'] ?? 1;
-    $options['signature'] = $options['signature'] ?? true;
+    $options['postPosition'] ??= 1;
+    $options['signature'] ??= true;
 
-    $options['buttons']['delete'] = $options['buttons']['delete'] ?? false;
-    $options['buttons']['edit'] = $options['buttons']['edit'] ?? false;
-    $options['buttons']['quote'] = $options['buttons']['quote'] ?? false;
-    $options['buttons']['report'] = auth()->check() && $post->poster_id !== auth()->user()->getKey();
+    $options['buttons']['delete'] ??= false;
+    $options['buttons']['edit'] ??= false;
+    $options['buttons']['quote'] ??= false;
+    $options['buttons']['report'] = $currentUserId !== null && $post->poster_id !== $currentUserId;
 
     $buttons = [];
 
@@ -94,9 +94,9 @@
             </div>
         @endif
 
-        @if($options["signature"] !== false && present($post->userNormalized()->user_sig))
+        @if($options["signature"] !== false && null !== ($signature = $userSignatures->get($user)))
             <div class="forum-post__content forum-post__content--signature js-audio--group hidden-xs">
-                {!! bbcode($post->userNormalized()->user_sig, $post->userNormalized()->user_sig_bbcode_uid) !!}
+                {!! $signature !!}
             </div>
         @endif
 
