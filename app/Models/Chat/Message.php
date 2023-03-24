@@ -5,6 +5,8 @@
 
 namespace App\Models\Chat;
 
+use App\Models\Traits\Reportable;
+use App\Models\Traits\ReportableInterface;
 use App\Models\User;
 
 /**
@@ -17,8 +19,10 @@ use App\Models\User;
  * @property \Carbon\Carbon $timestamp
  * @property int $user_id
  */
-class Message extends Model
+class Message extends Model implements ReportableInterface
 {
+    use Reportable;
+
     public ?string $uuid = null;
 
     protected $primaryKey = 'message_id';
@@ -57,7 +61,21 @@ class Message extends Model
             'timestamp_json' => $this->getJsonTimeFast($key),
 
             'channel',
+            'reportedIn',
             'sender' => $this->getRelationValue($key),
         };
+    }
+
+    public function trashed(): bool
+    {
+        return false;
+    }
+
+    protected function newReportableExtraParams(): array
+    {
+        return [
+            'reason' => 'Spam',
+            'user_id' => $this->user_id,
+        ];
     }
 }

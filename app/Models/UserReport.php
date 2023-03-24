@@ -104,15 +104,18 @@ class UserReport extends Model
             );
         }
 
-        $allowedReasons = static::ALLOWED_REASONS[$this->reportable_type] ?? null;
-        if ($allowedReasons !== null) {
-            if (!in_array($this->reason, $allowedReasons, true)) {
-                $this->validationErrors()->add(
-                    'reason',
-                    '.reason_not_valid',
-                    ['reason' => $this->reason]
-                );
-            }
+        $allowedReasons = static::ALLOWED_REASONS[$this->reportable_type] ?? [
+            ...static::BEATMAPSET_TYPE_REASONS,
+            ...static::POST_TYPE_REASONS,
+            ...static::SCORE_TYPE_REASONS,
+        ];
+
+        if (!in_array($this->reason, $allowedReasons, true)) {
+            $this->validationErrors()->add(
+                'reason',
+                '.reason_not_valid',
+                ['reason' => $this->reason]
+            );
         }
 
         if ($this->reportable instanceof Beatmapset && $this->reportable->isScoreable()) {
