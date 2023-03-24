@@ -106,7 +106,7 @@ return [
                 'unsaved' => 'Unsaved',
                 'timestamp' => [
                     'all-diff' => 'Posts on "All difficulties" can\'t be timestamped.',
-                    'diff' => 'If this :type starts with a timestamp, it will be shown under Timeline.',
+                    'diff' => 'If this post starts with a timestamp, it will be shown under Timeline.',
                 ],
             ],
             'insert-block' => [
