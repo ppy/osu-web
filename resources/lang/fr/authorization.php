@@ -50,13 +50,11 @@ return [
             'resolved' => 'Vous ne pouvez pas modifier un message d\'une discussion résolue.',
             'system_generated' => 'Un sujet posté automatiquement ne peut être édité.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'La discussion de cette beatmap a été bloquée.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => '',
+
         'metadata' => [
             'nominated' => 'Vous ne pouvez pas modifier les métadonnées d\'une beatmap nominée. Contactez un Beatmap Nominator ou un membre de la NAT si vous pensez qu\'elles sont mal définies.',
         ],

@@ -23,6 +23,14 @@ return [
         'multiplayer' => 'večigralski način',
         'performance' => 'moč',
         'score' => 'rezultat',
+        'seasons' => 'sezone',
+    ],
+
+    'seasons' => [
+        'empty' => 'V tej sezoni še ni nobenih sob.',
+        'ongoing' => 'Trenutna sezona je še v teku (več seznamov bo dodanih kmalu).',
+        'room_count' => 'Število seznamov',
+        'url' => 'Prikaži več informacij o tej sezoni.',
     ],
 
     'spotlight' => [

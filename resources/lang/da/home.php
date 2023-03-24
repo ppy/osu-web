@@ -44,6 +44,7 @@ return [
             'label' => [
                 'forum' => 'søg i forummerne',
                 'forum_children' => 'inkluder subforummer',
+                'include_deleted' => '',
                 'topic_id' => 'emne #',
                 'username' => 'forfatter',
             ],
@@ -74,8 +75,22 @@ return [
     ],
 
     'download' => [
-        'tagline' => "lad os få<br>dig i gang!",
         'action' => 'Download osu!',
+        'action_lazer' => 'Hent osu!(lazer)',
+        'action_lazer_description' => 'den næste store opdatering til osu!',
+        'action_lazer_info' => 'tjek denne side for mere information',
+        'action_lazer_title' => 'prøv osu!(lazer)',
+        'action_title' => 'hent osu!',
+        'for_os' => 'for :os',
+        'lazer_note' => '',
+        'macos-fallback' => 'macOS brugere',
+        'mirror' => 'mirror',
+        'or' => 'eller',
+        'os_version_or_later' => '',
+        'other_os' => 'andre platforme',
+        'quick_start_guide' => '',
+        'tagline' => "lad os få<br>dig i gang!",
+        'video-guide' => 'video-guide',
 
         'help' => [
             '_' => 'hvis du har problemer med at starte spillet eller registrere dig for konto, :help_forum_link eller :support_button.',
@@ -88,8 +103,6 @@ return [
             'macos' => 'til macOS',
             'linux' => 'til Linux',
         ],
-        'mirror' => 'mirror',
-        'macos-fallback' => 'macOS brugere',
         'steps' => [
             'register' => [
                 'title' => 'opret en bruger',
@@ -107,7 +120,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'video-guide',
     ],
 
     'user' => [

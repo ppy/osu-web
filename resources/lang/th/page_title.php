@@ -100,12 +100,16 @@ return [
         'scores_controller' => [
             '_' => 'ค่าศักยภาพ',
         ],
+        'seasons_controller' => [
+            '_' => 'การจัดอันดับ',
+        ],
         'tournaments_controller' => [
             '_' => '
 ทัวร์นาเมนต์',
         ],
         'users_controller' => [
             '_' => 'ข้อมูลผู้เล่น',
+            'create' => '',
             'disabled' => 'การแจ้งเตือน',
         ],
         'wiki_controller' => [

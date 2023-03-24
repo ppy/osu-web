@@ -60,12 +60,18 @@ return [
     'show' => [
         'discussion' => 'דיון',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
             'by_artist' => '',
             'favourite' => 'הוסף מפה למועדפות',
             'favourite_login' => '',
             'logged-out' => 'אתה צריך להתחבר לפני הורדת מפות כלשהן!',
             'mapped_by' => 'נוצרה על ידי :mapper',
+            'mapped_by_guest' => '',
             'unfavourite' => 'הסר מפה ממועדפות',
             'updated_timeago' => 'עודכנה לאחרונה :timeago',
 

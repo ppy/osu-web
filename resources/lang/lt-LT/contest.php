@@ -58,8 +58,8 @@ return [
     ],
     'vote' => [
         'list' => 'balsai',
-        'count' => ':count_delimited balsas|:count_delimited balsai(-ų)',
-        'points' => ':count_delimited taškas|:count_delimited taškai(-ų)',
+        'count' => ':count_delimited balsas|:count_delimited balsų',
+        'points' => ':count_delimited taškas|:count_delimited taškų',
     ],
     'dates' => [
         'ended' => 'Baigėsi :date',

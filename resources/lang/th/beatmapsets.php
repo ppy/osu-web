@@ -60,12 +60,18 @@ return [
     'show' => [
         'discussion' => 'การสนทนา',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
             'by_artist' => 'โดย :artist',
             'favourite' => 'กดชื่นชอบ beatmapset นี้',
             'favourite_login' => 'ลงชื่อบีทแมพนี้เป็นรายการโปรด',
             'logged-out' => 'คุณต้องเข้าสู่ระบบก่อนที่จะดาวน์โหลดบีทแมพ',
             'mapped_by' => 'แมพโดย :mapper',
+            'mapped_by_guest' => '',
             'unfavourite' => 'เลิก Favourite beatmapset นี้',
             'updated_timeago' => 'อัปเดตล่าสุดเมื่อ :timeago',
 

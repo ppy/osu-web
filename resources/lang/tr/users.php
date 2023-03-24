@@ -52,6 +52,22 @@ return [
         'send_message' => 'mesaj gönder',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => 'şifre',
+            'password_confirmation' => 'şifre onayı',
+            'submit' => 'hesap oluştur',
+            'user_email' => 'e-posta',
+            'user_email_confirmation' => 'e-posta onayı',
+            'username' => 'kullanıcı adı',
+
+            'tos_notice' => [
+                '_' => 'hesap oluşturarak :link kabul edersiniz',
+                'link' => 'hizmet şartları\'nı',
+            ],
+        ],
+    ],
+
     'disabled' => [
         'title' => 'Olamaz! Görünüşe bakılırsa hesabın kilitlenmiş.',
         'warning' => "Bir kuralı ihlal etmeniz durumunda, genellikle herhangi bir af(veya itiraz) talebini dikkate almayacağımız bir aylık bekleme süresinin olduğunu unutmayın.  Bu süreden sonra, gerekli olması halinde bizimle iletişime geçmekte özgürsünüz. Bir hesabı devre dışı bıraktıktan sonra yeni hesap oluşturmanın <strong>bu bir aylık bekleme süresinin uzatılmasına</strong> neden olacağını lütfen unutmayın. Ayrıca <strong> oluşturduğunuz her hesap için kuralları daha fazla ihlal ettiğinizi </strong> unutmayın. Bu yolda gitmemenizi önemle tavsiye ederiz!",
@@ -142,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'Hesabınız kısıtlandı!',
         'message' => 'Kısıtlanmışken, diğer oyuncularla etkileşime geçemeyecek ve skorlarınızı sadece siz görebileceksiniz. Bu genellikle otomatik olan bir işlemin sonucudur ve 24 saat içerisinde kalkabilir. Kısıtlamanızın açılması için başvurmak istiyorsanız, lütfen <a href="mailto:accounts@ppy.sh">destek hattıyla</a> iletişime geçin.',
+        'message_link' => 'Daha fazla bilgi için bu sayfaya göz atın.',
     ],
     'show' => [
         'age' => ':age yaşında',
@@ -212,7 +229,7 @@ return [
                     'title' => 'Mezarlıktaki Beatmapler',
                 ],
                 'guest' => [
-                    'title' => 'Beatmap\'e misafir olarak katıl',
+                    'title' => 'Konuk Olarak Katıldığı Beatmapler',
                 ],
                 'loved' => [
                     'title' => 'Sevilen Beatmapler',
@@ -348,7 +365,7 @@ return [
                     'to_1_done' => 'Sabitlenmiş skor',
                 ],
                 'pinned' => [
-                    'title' => 'Sabitlenmiş skorlar',
+                    'title' => 'Sabitlenen Skorlar',
                 ],
             ],
             'votes' => [
@@ -451,6 +468,8 @@ return [
         'offline' => 'Çevrimdışı',
     ],
     'store' => [
+        'from_client' => 'lütfen bunun yerine oyun istemcisi ile kaydolun!',
+        'from_web' => 'lütfen kayıt işleminizi osu! web sitesinde tamamlayın',
         'saved' => 'Kullanıcı oluşturuldu',
     ],
     'verify' => [

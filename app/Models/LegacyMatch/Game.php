@@ -26,17 +26,6 @@ use App\Models\Beatmap;
  */
 class Game extends Model
 {
-    protected $primaryKey = 'game_id';
-
-    protected $hidden = ['match_id'];
-
-    protected $dates = [
-        'start_time',
-        'end_time',
-    ];
-
-    public $timestamps = false;
-
     const SCORING_TYPES = [
         'score' => 0,
         'accuracy' => 1,
@@ -51,7 +40,37 @@ class Game extends Model
         'tag-team-vs' => 3,
     ];
 
-    protected $_mods = null;
+    public static function scoringTypeStr(?int $scoringType): ?string
+    {
+        if ($scoringType === null) {
+            return null;
+        }
+
+        static $map;
+        $map ??= array_flip(static::SCORING_TYPES);
+
+        return $map[$scoringType] ?? null;
+    }
+
+    public static function teamTypeStr(?int $teamType): ?string
+    {
+        if ($teamType === null) {
+            return null;
+        }
+
+        static $map;
+        $map ??= array_flip(static::TEAM_TYPES);
+
+        return $map[$teamType] ?? null;
+    }
+
+    public $timestamps = false;
+
+    protected $casts = [
+        'end_time' => 'datetime',
+        'start_time' => 'datetime',
+    ];
+    protected $primaryKey = 'game_id';
 
     public function scores()
     {
@@ -73,23 +92,45 @@ class Game extends Model
         return $this->belongsTo(Beatmap::class, 'beatmap_id');
     }
 
-    public function getModsAttribute($value)
+    public function getAttribute($key)
     {
-        return $this->_mods ??= app('mods')->bitsetToIds($value);
+        return match ($key) {
+            'beatmap_id',
+            'game_id',
+            'match_id',
+            'match_type' => $this->getRawAttribute($key),
+
+            'mode' => Beatmap::modeStr($this->play_mode),
+            'mods' => app('mods')->bitsetToIds($this->getRawAttribute($key)),
+            'scoring_type' => static::scoringTypeStr($this->getRawAttribute($key)),
+            'team_type' => static::teamTypeStr($this->getRawAttribute($key)),
+
+            'end_time',
+            'start_time' => $this->getTimeFast($key),
+
+            'end_time_json',
+            'start_time_json' => $this->getJsonTimeFast($key),
+
+            'play_mode' => $this->getRulesetId(),
+
+            'beatmap',
+            'events',
+            'legacyMatch',
+            'scores' => $this->getRelationValue($key),
+        };
     }
 
-    public function getModeAttribute()
+    private function getRulesetId(): int
     {
-        return Beatmap::modeStr($this->play_mode);
-    }
+        $gameRulesetId = $this->getRawAttribute('play_mode') ?? Beatmap::MODES['osu'];
+        $beatmapRulesetId = $this->beatmap?->playmode;
 
-    public function getScoringTypeAttribute($value)
-    {
-        return array_search_null($value, self::SCORING_TYPES);
-    }
+        // ruleset set at this model is incorrect when playing ruleset
+        // specific map with a different selected ruleset.
+        if ($beatmapRulesetId !== null && $beatmapRulesetId !== $gameRulesetId && $beatmapRulesetId !== Beatmap::MODES['osu']) {
+            return $beatmapRulesetId;
+        }
 
-    public function getTeamTypeAttribute($value)
-    {
-        return array_search_null($value, self::TEAM_TYPES);
+        return $gameRulesetId;
     }
 }

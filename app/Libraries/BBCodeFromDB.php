@@ -67,7 +67,7 @@ class BBCodeFromDB
 
     public function parseBox($text)
     {
-        $text = preg_replace("#\[box=([^]]*?):{$this->uid}\]\n*#s", $this->parseBoxHelperPrefix('\\1'), $text);
+        $text = preg_replace("#\[box=((\\\[\[\]]|[^][]|\[(\\\[\[\]]|[^][]|(?R))*\])*?):{$this->uid}\]\n*#s", $this->parseBoxHelperPrefix('\\1'), $text);
         $text = preg_replace("#\n*\[/box:{$this->uid}]\n?#s", $this->parseBoxHelperSuffix(), $text);
 
         $text = preg_replace("#\[spoilerbox:{$this->uid}\]\n*#s", $this->parseBoxHelperPrefix(), $text);
@@ -178,6 +178,14 @@ class BBCodeFromDB
         }
 
         return $text;
+    }
+
+    public function parseInlineCode(string $text): string
+    {
+        return strtr($text, [
+            "[c:{$this->uid}]" => '<code>',
+            "[/c:{$this->uid}]" => '</code>',
+        ]);
     }
 
     public function parseList($text)
@@ -308,6 +316,7 @@ class BBCodeFromDB
         $text = $this->parseAudio($text);
         $text = $this->parseBold($text);
         $text = $this->parseCentre($text);
+        $text = $this->parseInlineCode($text);
         $text = $this->parseColour($text);
         $text = $this->parseEmail($text);
         $text = $this->parseImage($text);

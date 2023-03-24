@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'căutare în forum-uri',
                 'forum_children' => 'include subforum-uri',
+                'include_deleted' => 'include postările șterse',
                 'topic_id' => 'subiect #',
                 'username' => 'autor',
             ],
@@ -72,8 +73,22 @@ return [
     ],
 
     'download' => [
-        'tagline' => "să<br>începem!",
         'action' => 'Descarcă osu!',
+        'action_lazer' => 'Descarcă osu!(lazer)',
+        'action_lazer_description' => 'următoarea actualizare majoră pentru osu!',
+        'action_lazer_info' => 'verificați această pagină pentru mai multe informații',
+        'action_lazer_title' => 'încearcă osu!(lazer)',
+        'action_title' => 'descarcă osu!',
+        'for_os' => 'pentru :os',
+        'lazer_note' => 'observație: resetarea clasamentului este posibilă',
+        'macos-fallback' => 'utilizatori macOS',
+        'mirror' => 'sursă alternativă',
+        'or' => 'sau',
+        'os_version_or_later' => ':os_version sau mai nou',
+        'other_os' => 'alte platforme',
+        'quick_start_guide' => 'ghid de pornire rapidă',
+        'tagline' => "să<br>începem!",
+        'video-guide' => 'ghid video',
 
         'help' => [
             '_' => 'dacă ai o problemă la pornirea jocului sau la înregistrarea contului, :help_forum_link sau :support_button.',
@@ -86,8 +101,6 @@ return [
             'macos' => 'pentru macOS',
             'linux' => 'pentru Linux',
         ],
-        'mirror' => 'sursă alternativă',
-        'macos-fallback' => 'utilizatori macOS',
         'steps' => [
             'register' => [
                 'title' => 'creează un cont',
@@ -105,7 +118,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'ghid video',
     ],
 
     'user' => [

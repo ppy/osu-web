@@ -1,0 +1,176 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.mp-history-player-score {
+  @width: 1000px;
+
+  display: flex;
+
+  &__shapes {
+    flex: none;
+    width: 10px;
+    background-size: cover;
+
+    border-radius: @border-radius-base 0 0 @border-radius-base;
+
+    @media @desktop {
+      width: 50px;
+    }
+  }
+
+  &__main {
+    flex-grow: 1;
+
+    padding: 5px 20px 15px 7.5px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @media @desktop {
+      flex-direction: row;
+    }
+  }
+
+  &__info-box {
+    display: flex;
+    flex-direction: column;
+
+    height: 100%;
+
+    &--user {
+      align-items: flex-start;
+      flex-direction: row;
+
+      @media @desktop {
+        flex-direction: column;
+      }
+    }
+
+    &--stats {
+      align-items: flex-end;
+      flex-direction: row;
+
+      @media @desktop {
+        flex-direction: column;
+      }
+    }
+  }
+
+  &__username-box {
+    display: flex;
+    align-items: baseline;
+    flex-direction: column;
+
+    padding-bottom: 5px;
+
+    @media @desktop {
+      flex-direction: row;
+    }
+  }
+
+  &__username {
+    font-weight: 700;
+    font-size: 18px;
+
+    padding-right: 5px;
+
+    @media @desktop {
+      padding-right: 20px;
+    }
+  }
+
+  &__stat-row {
+    &--first {
+      margin-right: 10px;
+      @media @desktop {
+        margin: 2px;
+      }
+      @media (min-width: @width) {
+        width: 530px;
+      }
+    }
+
+    margin: 2px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: baseline;
+    flex-direction: column;
+    flex-grow: 1;
+
+    @media @desktop {
+      flex-direction: row;
+    }
+  }
+
+  &__failed {
+    font-size: 15px;
+    color: @osu-colour-red-1;
+    font-weight: 700;
+
+    padding-right: 20px;
+  }
+
+  &__mods {
+    padding-right: 20px;
+    display: flex;
+  }
+
+  &__stat {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-end;
+
+    padding-right: 40px;
+
+    &--small {
+      padding-right: 20px;
+    }
+
+    &--combo {
+      margin-right: auto;
+    }
+
+    &:last-child {
+      padding: 0;
+    }
+  }
+
+  &__stat-label {
+    font-weight: 600;
+
+    padding-right: 3px;
+
+    color: @osu-colour-c2;
+
+    &--small {
+      font-size: 10px;
+    }
+
+    &--large {
+      font-size: 12px;
+    }
+  }
+
+  &__stat-number {
+    font-weight: 700;
+    color: @osu-colour-c1;
+
+    &--small {
+      font-size: 12px;
+    }
+
+    &--medium {
+      font-size: 14px;
+    }
+
+    &--large {
+      font-size: 20px;
+      color: @osu-colour-pink-1;
+
+      @media @desktop {
+        font-size: 25px;
+      }
+    }
+  }
+}

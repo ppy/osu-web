@@ -13,6 +13,16 @@ return [
     'see_channel' => 'accéder au tchat',
     'verifying' => 'Veuillez vérifier votre session pour voir les notifications',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => '',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
     'filters' => [
         '_' => 'tout',
         'user' => 'profil',
@@ -209,6 +219,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Il y a une nouvelle annonce dans ":name"',
+            ],
+
             'channel' => [
                 'pm' => 'Vous avez reçu un nouveau message de :username',
             ],

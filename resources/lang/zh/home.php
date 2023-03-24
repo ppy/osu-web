@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => '在论坛中搜索',
                 'forum_children' => '包括子版块',
+                'include_deleted' => '包括已删除的帖子',
                 'topic_id' => '主题 #',
                 'username' => '作者',
             ],
@@ -72,8 +73,22 @@ return [
     ],
 
     'download' => [
-        'tagline' => "让我们<br>开始吧！",
         'action' => '下载 osu!',
+        'action_lazer' => '下载 osu!(lazer)',
+        'action_lazer_description' => 'osu! 的下一个主要更新',
+        'action_lazer_info' => '详情请查阅这个页面',
+        'action_lazer_title' => '尝试 osu!(lazer)',
+        'action_title' => '下载 osu!',
+        'for_os' => '适用于 :os',
+        'lazer_note' => '注意：排行榜将重置',
+        'macos-fallback' => 'macOS 用户',
+        'mirror' => '从镜像服务器下载',
+        'or' => '或',
+        'os_version_or_later' => ':os_version 或更高版本',
+        'other_os' => '其他平台',
+        'quick_start_guide' => '快速入门指南',
+        'tagline' => "让我们<br>开始吧！",
+        'video-guide' => '视频教程',
 
         'help' => [
             '_' => '如果您在开始游戏或注册账户时遇到问题，请 :help_forum_link 或 :support_button。',
@@ -86,8 +101,6 @@ return [
             'macos' => 'macOS 版',
             'linux' => 'Linux 版',
         ],
-        'mirror' => '从镜像服务器下载',
-        'macos-fallback' => 'macOS 用户',
         'steps' => [
             'register' => [
                 'title' => '注册账号',
@@ -105,7 +118,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => '视频教程',
     ],
 
     'user' => [

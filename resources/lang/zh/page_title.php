@@ -100,11 +100,15 @@ return [
         'scores_controller' => [
             '_' => '表现',
         ],
+        'seasons_controller' => [
+            '_' => '排名',
+        ],
         'tournaments_controller' => [
             '_' => '比赛',
         ],
         'users_controller' => [
             '_' => '玩家信息',
+            'create' => '创建账户',
             'disabled' => '通知',
         ],
         'wiki_controller' => [

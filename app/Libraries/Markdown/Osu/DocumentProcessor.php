@@ -49,7 +49,8 @@ class DocumentProcessor
 
         // The config value should come from route() call which means it's percent encoded
         // but it'll be reused as parameter for another route() call so decode it here.
-        $this->relativeUrlRoot = urldecode($this->config->get('osu_extension/relative_url_root'));
+        $relativeUrlRoot = $this->config->get('osu_extension/relative_url_root');
+        $this->relativeUrlRoot = $relativeUrlRoot === null ? null : urldecode($relativeUrlRoot);
         $fixWikiUrl = $this->config->get('osu_extension/fix_wiki_url');
         $generateToc = $this->config->get('osu_extension/generate_toc');
         $recordFirstImage = $this->config->get('osu_extension/record_first_image');

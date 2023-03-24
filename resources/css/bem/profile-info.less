@@ -1,0 +1,225 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.profile-info {
+  --content-height: 65px;
+  --cover-radius-extended-desktop: 40px;
+  --cover-radius-extended: 20px;
+  --cover-radius: 20px;
+  --cover-size-extended-desktop: @profile-avatar-size;
+  --cover-size-extended: var(--content-height);
+  --cover-size: var(--content-height);
+  --info-margin-extended-desktop: 20px;
+  --info-margin-extended: 10px;
+  --info-margin: 10px;
+  --vertical-padding: 10px;
+  display: flex;
+  flex-direction: column;
+  flex: none;
+  width: 100%;
+  background-color: hsl(var(--hsl-b4));
+
+  &--cover {
+    --cover-radius: var(--cover-radius-extended);
+    --cover-size: var(--cover-size-extended);
+    --info-margin: var(--info-margin-extended);
+  }
+
+  @media @desktop {
+    --cover-radius-extended: var(--cover-radius-extended-desktop);
+    --cover-size-extended: var(--cover-size-extended-desktop);
+    --info-margin-extended: var(--info-margin-extended-desktop);
+  }
+
+  &__avatar {
+    .own-layer(); // required by safari for border-radius to be applied correctly
+    flex: none;
+    width: var(--cover-size);
+    height: var(--cover-size);
+    border-radius: var(--cover-radius);
+    overflow: hidden;
+    align-self: flex-end;
+    margin-bottom: var(--vertical-padding);
+    .default-box-shadow();
+  }
+
+  &__bg {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    height: 100px;
+
+    @media @desktop {
+      height: 250px;
+    }
+  }
+
+  &__cover-toggle {
+    .center-content();
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: var(--gutter-size);
+
+    @media @desktop {
+      width: var(--gutter-size);
+      right: 0;
+    }
+  }
+
+  &__details {
+    --gutter-size: @gutter-v2;
+    --gutter-size-desktop: @gutter-v2-desktop;
+    padding: 0 var(--gutter-size);
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: calc(var(--content-height) + var(--vertical-padding) * 2);
+
+    @media @desktop {
+      --gutter-size: var(--gutter-size-desktop);
+    }
+  }
+
+  &__flag {
+    .link-plain();
+    .link-white();
+    display: flex;
+    align-items: center;
+  }
+
+  &__flag-flag {
+    font-size: var(--icon-height); // icon size
+  }
+
+  &__flag-text {
+    display: none;
+
+    @media @desktop {
+      display: block;
+      padding-left: 4px;
+      font-size: @font-size--title-small;
+    }
+  }
+
+  &__flags {
+    --icon-font-size: @font-size--small;
+    --icon-height-desktop: 20px;
+    --icon-height: 15px;
+
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+
+    @media @desktop {
+      --icon-height: var(--icon-height-desktop);
+      margin-top: 5px;
+    }
+  }
+
+  &__icon {
+    font-size: var(--icon-font-size); // icon size
+    height: var(--icon-height);
+    color: @osu-colour-c1;
+    display: flex;
+    text-shadow: none;
+
+    &--supporter {
+      .center-content();
+      border-radius: 10000px;
+      background-color: @osu-colour-h1;
+      padding: 0 10px;
+    }
+  }
+
+  &__icons {
+    align-items: baseline;
+    gap: 2px;
+    margin-left: 5px;
+
+    &--flag-inline {
+      display: contents;
+      @media @desktop {
+        display: none;
+      }
+    }
+
+    &--name-inline {
+      display: none;
+      @media @desktop {
+        display: flex;
+      }
+    }
+  }
+
+  &__info {
+    .default-text-shadow();
+    margin-left: var(--info-margin);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+  }
+
+  &__level {
+    flex: none;
+  }
+
+  &__name {
+    --icon-height: 15px;
+    --icon-font-size: @font-size--small;
+
+    padding: 0;
+    margin: -5px 0 0;
+    font-weight: normal;
+    font-style: normal;
+    line-height: normal; // prevent text clipping by u-ellipsis-overflow
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    font-size: @font-size--large;
+
+    @media @desktop {
+      font-size: @font-size--title;
+    }
+  }
+
+  &__previous-usernames {
+    transform: translateY(-0.3em);
+    display: inline-block;
+    pointer-events: none;
+
+    @media @desktop {
+      transform: translateY(0);
+      position: absolute;
+      left: 100%;
+      top: -16px;
+
+      &:hover {
+        z-index: @z-index--profile-previous-usernames;
+      }
+    }
+  }
+
+  &__spinner {
+    display: none;
+
+    @media @desktop {
+      .center-content();
+      .full-size();
+      font-size: 60px;
+      background-color: hsla(var(--hsl-b6), 0.5);
+    }
+  }
+
+  &__title {
+    .link-white();
+    line-height: normal;
+    font-size: @font-size--title-small;
+
+    @media @desktop {
+      font-size: @font-size--title-small-3;
+    }
+  }
+}

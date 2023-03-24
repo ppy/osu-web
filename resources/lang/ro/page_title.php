@@ -74,7 +74,7 @@ return [
             'index' => 'tablou de comenzi',
             'search' => 'caută',
             'support_the_game' => 'sprijină jocul',
-            'testflight' => 'test de zbor',
+            'testflight' => 'testflight',
         ],
         'legal_controller' => [
             '_' => 'informație',
@@ -100,11 +100,15 @@ return [
         'scores_controller' => [
             '_' => 'performanță',
         ],
+        'seasons_controller' => [
+            '_' => 'clasamente',
+        ],
         'tournaments_controller' => [
             '_' => 'turnee',
         ],
         'users_controller' => [
             '_' => 'info jucător',
+            'create' => 'creează cont',
             'disabled' => 'observație',
         ],
         'wiki_controller' => [

@@ -67,7 +67,7 @@ return [
         'duration' => 'Gràcies a aquesta persona, vostè té accés a osu!direct i altres beneficis d\'osu!supporter durant :duration.',
         'features' => 'Pots trobar més detalls sobre aquests beneficis aquí:',
         'gifted' => 'Algú t\'ha regalat l\'etiqueta d\'osu!supporter!',
-        'gift_message' => '',
+        'gift_message' => 'La persona que t\'ha regalat aquesta etiqueta t\'ha deixat un missatge:',
         'subject' => 'Algú t\'ha regalat l\'etiqueta d\'osu!supporter!',
     ],
 

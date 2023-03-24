@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => '',
     'missing_route' => '',
     'no_restricted_access' => 'Nie ste schopní vykonať túto akciu, zatiaľ čo váš účet je v obmedzenom stave.',
     'supporter_only' => 'Musíte byť osu! supporter pre použitie tejto funkcie.',

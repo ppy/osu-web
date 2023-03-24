@@ -13,6 +13,16 @@ return [
     'see_channel' => 'pumunta sa chat',
     'verifying' => 'I-verify ang iyong session upang makita ang mga notipikasyon',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => '',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
     'filters' => [
         '_' => 'lahat',
         'user' => 'profile',
@@ -209,6 +219,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'May bagong anunsyo sa ":name"',
+            ],
+
             'channel' => [
                 'pm' => 'Nakatanggap ka ng bagong mensahe mula kay :username',
             ],

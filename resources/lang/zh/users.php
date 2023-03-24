@@ -52,6 +52,22 @@ return [
         'send_message' => '发送消息',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => '密码',
+            'password_confirmation' => '确认密码',
+            'submit' => '注册新账户',
+            'user_email' => '邮箱地址',
+            'user_email_confirmation' => '确认邮箱地址',
+            'username' => '用户名',
+
+            'tos_notice' => [
+                '_' => '完成注册，即视为您同意了 :link',
+                'link' => '服务协议',
+            ],
+        ],
+    ],
+
     'disabled' => [
         'title' => '哎呀！看起来您的账户已被禁用。',
         'warning' => "如果您违反了规则，原则上在一个月的期限以内我们不会考虑解禁您的账户。在此之后，您如果需要，可以随时联系我们。请注意，在一个账户被封后创建新账户会<strong>使您的封禁期限被延长</strong>。您更需要注意<strong>您每创建一个新账户都会更严重地违反规则</strong>。我们强烈建议您不要误入歧途。",
@@ -141,7 +157,8 @@ return [
     ],
     'restricted_banner' => [
         'title' => '账户进入限制模式！',
-        'message' => '在被限制时，无法与其他玩家互动，分数只有自己可见。该限制通常由系统自动给予，并将在24小时内解除。需要申诉？请<a href="mailto:accounts@ppy.sh">联系支持团队</a>.',
+        'message' => '处于被限制状态时，你将不能与其他玩家互动，分数只有你自己可见。限制通常是系统自动给予，通常会在 24 小时内解除。:link',
+        'message_link' => '点击此页了解更多。',
     ],
     'show' => [
         'age' => ':age 岁',
@@ -212,16 +229,16 @@ return [
                     'title' => '已停更的谱面',
                 ],
                 'guest' => [
-                    'title' => '参与客串制作的谱面',
+                    'title' => '客串制作的谱面',
                 ],
                 'loved' => [
                     'title' => '社区喜爱 (Loved) 谱面',
                 ],
                 'nominated' => [
-                    'title' => '提名过的上架 (Ranked) 谱面',
+                    'title' => '提名并上架 (Ranked) 的谱面',
                 ],
                 'pending' => [
-                    'title' => 'Pending 谱面',
+                    'title' => '待定 (Pending) 谱面',
                 ],
                 'ranked' => [
                     'title' => '上架 (Ranked) 谱面',
@@ -451,6 +468,8 @@ return [
         'offline' => '离线',
     ],
     'store' => [
+        'from_client' => '请使用游戏客户端注册！',
+        'from_web' => '请通过网页完成注册',
         'saved' => '账户已创建',
     ],
     'verify' => [

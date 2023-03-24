@@ -13,6 +13,16 @@ return [
     'see_channel' => 'уђите у чет',
     'verifying' => 'Молимо Вас да верификујете сесију да би сте видели нотификације',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => '',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
     'filters' => [
         '_' => 'све',
         'user' => 'профил',
@@ -209,6 +219,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Постоји нова најава у ":name"',
+            ],
+
             'channel' => [
                 'pm' => 'Примили сте нову поруку од корисника :username',
             ],

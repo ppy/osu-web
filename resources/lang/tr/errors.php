@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => 'Veri yüklenemedi.',
     'missing_route' => 'Geçersiz URL ya da hatalı istek metodu.',
     'no_restricted_access' => 'Hesabınız kısıtlanmış durumdayken bu işlemi gerçekleştiremezsiniz.',
     'supporter_only' => 'Bu özelliği kullanabilmeniz için supporter olmanız gerekmektedir.',

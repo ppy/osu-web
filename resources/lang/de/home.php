@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'in foren suchen',
                 'forum_children' => 'subforen einbeziehen',
+                'include_deleted' => 'Gelöschte Beiträge miteinbeziehen',
                 'topic_id' => 'Thread #',
                 'username' => 'autor',
             ],
@@ -72,13 +73,27 @@ return [
     ],
 
     'download' => [
-        'tagline' => "lass uns<br>loslegen!",
         'action' => 'osu! herunterladen',
+        'action_lazer' => 'Lade osu!(lazer) herunter',
+        'action_lazer_description' => 'die nächste Hauptversion von osu!',
+        'action_lazer_info' => 'siehe hier für weitere Informationen',
+        'action_lazer_title' => 'osu!(lazer) ausprobieren',
+        'action_title' => 'Lade osu! herunter',
+        'for_os' => 'für :os',
+        'lazer_note' => 'Anmerkung: Rücksetzungen der Rangliste möglich',
+        'macos-fallback' => 'macOS-Benutzer',
+        'mirror' => 'mirror',
+        'or' => 'oder',
+        'os_version_or_later' => ':os_version oder höher',
+        'other_os' => 'andere Plattformen',
+        'quick_start_guide' => 'Schnellstart',
+        'tagline' => "lass uns<br>loslegen!",
+        'video-guide' => 'Videoanleitung (Englisch)',
 
         'help' => [
-            '_' => 'wenn du probleme mit dem starten des spiels oder der registrierung deines accounts hast, :help_forum_link oder :support_button.',
-            'help_forum_link' => 'schau im hilfeforum nach',
-            'support_button' => 'kontaktiere den support',
+            '_' => 'Wenn du Probleme mit dem Starten des Spiels oder der Registrierung deines Accounts hast, :help_forum_link oder :support_button.',
+            'help_forum_link' => 'schau im Hilfeforum nach',
+            'support_button' => 'kontaktiere den Support',
         ],
 
         'os' => [
@@ -86,26 +101,23 @@ return [
             'macos' => 'für macOS',
             'linux' => 'für Linux',
         ],
-        'mirror' => 'mirror',
-        'macos-fallback' => 'macOS-benutzer',
         'steps' => [
             'register' => [
-                'title' => 'erstell einen account',
-                'description' => 'folge den aufforderungen beim spielstart, um dich einzuloggen oder einen account zu erstellen',
+                'title' => 'Erstelle einen Account',
+                'description' => 'Folge den Anweisungen beim Spielstart, um dich einzuloggen oder einen Account zu erstellen.',
             ],
             'download' => [
-                'title' => 'lade das spiel herunter',
-                'description' => 'klick den knopf da oben zum herunterladen und führ die installationsdatei aus!',
+                'title' => 'Lade das Spiel herunter',
+                'description' => 'Klicke zum Herunterladen oben auf den Button und führe die Installationsdatei aus!',
             ],
             'beatmaps' => [
                 'title' => 'hol\' dir beatmaps',
                 'description' => [
-                    '_' => ':browse durch die enorme bibliothek an von nutzern erstellten beatmaps und fang an zu spielen!',
-                    'browse' => 'stöbere',
+                    '_' => ':browse durch die enorme Bibliothek an von Nutzern erstellten Beatmaps und fang an zu spielen!',
+                    'browse' => 'Stöbere',
                 ],
             ],
         ],
-        'video-guide' => 'Videoanleitung (Englisch)',
     ],
 
     'user' => [

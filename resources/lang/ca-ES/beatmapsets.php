@@ -60,12 +60,18 @@ return [
     'show' => [
         'discussion' => 'Discussió',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
             'by_artist' => 'per :artist',
             'favourite' => 'Marcar com a favorit',
             'favourite_login' => 'Inicia sessió per a guardar el beatmap a favorits',
             'logged-out' => 'Necessites iniciar sessió abans de descarregar qualsevol beatmap!',
             'mapped_by' => 'mapejat per :mapper',
+            'mapped_by_guest' => 'dificultat de convidat per :mapper',
             'unfavourite' => 'Desmarcar com a favorit',
             'updated_timeago' => 'actualitzat per últim cop :timeago',
 

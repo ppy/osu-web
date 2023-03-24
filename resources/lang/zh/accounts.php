@@ -5,7 +5,7 @@
 
 return [
     'edit' => [
-        'title_compact' => '设置',
+        'title_compact' => '账户设置',
         'username' => '用户名',
 
         'avatar' => [

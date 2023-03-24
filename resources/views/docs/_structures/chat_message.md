@@ -1,12 +1,13 @@
 ## ChatMessage
 ```json
 {
-  "message_id": 9150005004,
-  "sender_id": 2,
   "channel_id": 5,
-  "timestamp": "2018-07-06T06:33:34+00:00",
   "content": "i am a lazerface",
   "is_action": false,
+  "message_id": 9150005004,
+  "sender_id": 2,
+  "timestamp": "2018-07-06T06:33:34+00:00",
+  "type": "plain",
   "uuid": "some-uuid-string",
   "sender": {
     "id": 2,
@@ -24,13 +25,20 @@
 
 Represents an individual Message within a [ChatChannel](#chatchannel).
 
+Field        | Type                         | Description
+------------ | ---------------------------- | ------------------------------------------------------------
+channel_id   | number                       | `channel_id` of where the message was sent
+content      | string                       | message content
+content_html | string?                      | Deprecated. Markdown message content as HTML
+is_action    | boolean                      | was this an action? i.e. `/me dances`
+message_id   | number                       | unique identifier for message
+sender_id    | number                       | `user_id` of the sender
+timestamp    | string                       | when the message was sent, ISO-8601
+type         | string                       | type of message; 'action', 'markdown' or 'plain'
+uuid         | string?                      | message identifier originally sent by client
+
+Optional attributes:
+
 Field      | Type                         | Description
 ---------- | ---------------------------- | ------------------------------------------------------------
-message_id | number                       | unique identifier for message
-sender_id  | number                       | `user_id` of the sender
-channel_id | number                       | `channel_id` of where the message was sent
-timestamp  | string                       | when the message was sent, ISO-8601
-content    | string                       | message content
-is_action  | boolean                      | was this an action? i.e. `/me dances`
 sender     | [UserCompact](#usercompact)  | embedded UserCompact object to save additional api lookups
-uuid       | ?string                      | message identifier originally sent by client

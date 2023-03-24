@@ -60,12 +60,18 @@ return [
     'show' => [
         'discussion' => 'Góc Thảo Luận',
 
+        'deleted_banner' => [
+            'title' => 'Beatmap này đã bị xoá.',
+            'message' => '(chỉ điều phối viên mới có thể thấy cái này)',
+        ],
+
         'details' => [
             'by_artist' => 'bởi :artist',
             'favourite' => 'Yêu thích beatmapset này',
             'favourite_login' => 'Đăng nhập để yêu thích beatmap này',
             'logged-out' => 'Bạn cần phải đăng nhập trước khi tải xuống beatmap!',
             'mapped_by' => 'được tạo bởi :mapper',
+            'mapped_by_guest' => 'độ khó khách bởi :mapper',
             'unfavourite' => 'Bỏ yêu thích beatmapset này',
             'updated_timeago' => 'cập nhật lần cuối vào :timeago',
 

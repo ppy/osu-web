@@ -23,6 +23,14 @@ return [
         'multiplayer' => 'multijugador',
         'performance' => 'rendiment',
         'score' => 'puntuació',
+        'seasons' => 'temporades',
+    ],
+
+    'seasons' => [
+        'empty' => 'Encara no hi ha sales en aquesta temporada.',
+        'ongoing' => 'Aquesta temporada encara està en curs (s\'afegiran més llistes de reproducció).',
+        'room_count' => 'Nombre de llistes de reproducció',
+        'url' => 'Mostra més informació sobre la temporada.',
     ],
 
     'spotlight' => [

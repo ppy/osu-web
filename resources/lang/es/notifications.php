@@ -13,6 +13,16 @@ return [
     'see_channel' => 'ir al chat',
     'verifying' => 'Verifique la sesión para ver las notificaciones',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => '',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
     'filters' => [
         '_' => 'todas',
         'user' => 'perfil',
@@ -209,6 +219,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Hay un nuevo anuncio en ":name"',
+            ],
+
             'channel' => [
                 'pm' => 'Ha recibido un nuevo mensaje de :username',
             ],

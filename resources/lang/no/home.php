@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'søk i forumet',
                 'forum_children' => 'inkluder underkategorier',
+                'include_deleted' => '',
                 'topic_id' => 'emne #',
                 'username' => 'forfatter',
             ],
@@ -72,8 +73,22 @@ return [
     ],
 
     'download' => [
-        'tagline' => "la oss<br>få deg i gang!",
         'action' => 'Last ned osu!',
+        'action_lazer' => 'Last ned osu!(lazer)',
+        'action_lazer_description' => '',
+        'action_lazer_info' => '',
+        'action_lazer_title' => 'prøv osu!(lazer)',
+        'action_title' => '',
+        'for_os' => '',
+        'lazer_note' => '',
+        'macos-fallback' => 'macOS brukere',
+        'mirror' => 'alternativ link',
+        'or' => '',
+        'os_version_or_later' => '',
+        'other_os' => '',
+        'quick_start_guide' => '',
+        'tagline' => "la oss<br>få deg i gang!",
+        'video-guide' => 'video veiledning',
 
         'help' => [
             '_' => '',
@@ -86,8 +101,6 @@ return [
             'macos' => 'for macOS',
             'linux' => 'for Linux',
         ],
-        'mirror' => 'alternativ link',
-        'macos-fallback' => 'macOS brukere',
         'steps' => [
             'register' => [
                 'title' => 'opprett en konto',
@@ -105,7 +118,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'video veiledning',
     ],
 
     'user' => [

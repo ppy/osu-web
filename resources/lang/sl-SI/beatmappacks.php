@@ -34,6 +34,7 @@ return [
     'mode' => [
         'artist' => 'Glasbenik/Album',
         'chart' => 'Pod žarometi',
+        'featured' => '',
         'standard' => 'Standardni',
         'theme' => 'Tema',
     ],

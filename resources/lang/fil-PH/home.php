@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'hanapin ang paksang ito',
                 'forum_children' => 'isama ang mga subforum',
+                'include_deleted' => '',
                 'topic_id' => 'paksa #',
                 'username' => 'may-akda',
             ],
@@ -72,8 +73,23 @@ return [
     ],
 
     'download' => [
-        'tagline' => "tayo nang<br>simulan ito!",
         'action' => 'I-download ang osu!',
+        'action_lazer' => 'I-download ang osu!(lazer)',
+        'action_lazer_description' => 'ang susunod na major update sa osu!',
+        'action_lazer_info' => 'tingnan ang pahinang ito para sa karagdagang impormasyon',
+        'action_lazer_title' => 'subukan ang osu!(lazer)',
+        'action_title' => 'i-download ang osu!
+',
+        'for_os' => 'para sa :os',
+        'lazer_note' => 'tandaan: ang mga pag-reset ng leaderboard ay nalalapat',
+        'macos-fallback' => 'mga gumagamit ng macOS',
+        'mirror' => 'mirror',
+        'or' => 'o',
+        'os_version_or_later' => '',
+        'other_os' => 'iba pang mga platform',
+        'quick_start_guide' => 'gabay sa mabilis na pagsisimula',
+        'tagline' => "tayo nang<br>simulan ito!",
+        'video-guide' => 'video na panggabay',
 
         'help' => [
             '_' => 'kung may problema ka sa pagbukas ng laro o sa paggawa ng account, :help_forum_link o :support_button.',
@@ -86,8 +102,6 @@ return [
             'macos' => 'para sa macOS',
             'linux' => 'para sa Linux',
         ],
-        'mirror' => 'mirror',
-        'macos-fallback' => 'mga gumagamit ng macOS',
         'steps' => [
             'register' => [
                 'title' => 'gumawa ng account',
@@ -105,7 +119,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'video na panggabay',
     ],
 
     'user' => [

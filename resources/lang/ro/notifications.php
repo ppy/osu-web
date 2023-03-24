@@ -13,6 +13,16 @@ return [
     'see_channel' => 'accesați chat-ul',
     'verifying' => 'Verificați sesiunea pentru a vizualiza notificările',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => '',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
     'filters' => [
         '_' => 'tot',
         'user' => 'profil',
@@ -209,6 +219,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Există un anunț nou în „:name”',
+            ],
+
             'channel' => [
                 'pm' => 'Ai primit un mesaj nou de la :username',
             ],

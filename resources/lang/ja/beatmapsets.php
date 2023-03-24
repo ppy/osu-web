@@ -60,12 +60,18 @@ return [
     'show' => [
         'discussion' => 'ディスカッション',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
             'by_artist' => 'by :artist',
             'favourite' => 'このビートマップをお気に入りに登録する',
             'favourite_login' => 'ログインしてこのビートマップをお気に入りに登録する',
             'logged-out' => 'ビートマップをダウンロードするにはログインが必要です！',
             'mapped_by' => '作者 :mapper',
+            'mapped_by_guest' => ':mapper によるゲスト難易度',
             'unfavourite' => 'このビートマップをお気に入りから削除する',
             'updated_timeago' => '最終更新 :timeago',
 
@@ -124,7 +130,7 @@ return [
             'genre' => 'ジャンル',
             'language' => '言語',
             'no_scores' => 'データはまだ計算中です・・・',
-            'nominators' => '推薦者',
+            'nominators' => 'ノミネーター',
             'nsfw' => '過激な表現を含むコンテンツ',
             'offset' => 'オンラインオフセット',
             'points-of-failure' => '失敗地点',

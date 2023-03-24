@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => 'Не удалось загрузить данные.',
     'missing_route' => 'Неверный url или неправильный метод запроса.',
     'no_restricted_access' => 'Вы не можете использовать данную функцию пока ваши права ограничены.',
     'supporter_only' => 'Вы должны иметь тег osu!supporter для использования этой возможности.',

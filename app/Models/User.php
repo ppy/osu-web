@@ -212,25 +212,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 {
     use Authenticatable, HasApiTokens, Memoizes, Traits\Es\UserSearch, Traits\Reportable, Traits\UserAvatar, Traits\UserScoreable, Traits\UserStore, Validatable;
 
-    protected $table = 'phpbb_users';
-    protected $primaryKey = 'user_id';
-
-    protected $dates = ['user_regdate', 'user_lastmark', 'user_lastvisit', 'user_lastpost_time'];
-    protected $dateFormat = 'U';
-    public $timestamps = false;
-
-    protected $attributes = [
-        'user_allow_pm' => true,
-    ];
-
-    protected $casts = [
-        'osu_subscriber' => 'boolean',
-        'user_allow_pm' => 'boolean',
-        'user_allow_viewonline' => 'boolean',
-        'user_notify' => 'boolean',
-        'user_timezone' => 'float',
-    ];
-
     const PLAYSTYLES = [
         'mouse' => 1,
         'keyboard' => 2,
@@ -261,9 +242,29 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         'user_website' => 200,
     ];
 
+    public $password = null;
+    public $timestamps = false;
+
+    protected $attributes = [
+        'user_allow_pm' => true,
+    ];
+    protected $casts = [
+        'osu_subscriber' => 'boolean',
+        'user_allow_pm' => 'boolean',
+        'user_allow_viewonline' => 'boolean',
+        'user_lastmark' => 'datetime',
+        'user_lastpost_time' => 'datetime',
+        'user_lastvisit' => 'datetime',
+        'user_notify' => 'boolean',
+        'user_regdate' => 'datetime',
+        'user_timezone' => 'float',
+    ];
+    protected $dateFormat = 'U';
+    protected $primaryKey = 'user_id';
+    protected $table = 'phpbb_users';
+
     private $validateCurrentPassword = false;
     private $validatePasswordConfirmation = false;
-    public $password = null;
     private $passwordConfirmation = null;
     private $currentPassword = null;
 
@@ -486,9 +487,16 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
         switch ($type) {
             case 'username':
-                $user = static::where(function ($query) use ($usernameOrId) {
-                    $query->where('username', (string) $usernameOrId)->orWhere('username_clean', '=', (string) $usernameOrId);
-                });
+                $searchUsername = (string) $usernameOrId;
+                $searchUsernames = [
+                    $searchUsername,
+                    strtr($searchUsername, ' ', '_'),
+                    strtr($searchUsername, '_', ' '),
+                ];
+
+                $user = static::where(fn ($query) => $query
+                    ->whereIn('username', $searchUsernames)
+                    ->orWhereIn('username_clean', $searchUsernames));
                 break;
 
             case 'id':
@@ -504,7 +512,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         }
 
         if (!$findAll) {
-            $user->where('user_type', 0)->where('user_warnings', 0);
+            $user->default();
         }
 
         $user = $user->first();
@@ -736,11 +744,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         $this->attributes['user_colour'] = ltrim($value, '#');
     }
 
-    public function setOsuSubscriptionexpiryAttribute($value)
-    {
-        $this->attributes['osu_subscriptionexpiry'] = $value?->format('Y-m-d');
-    }
-
     public function getAttribute($key)
     {
         return match ($key) {
@@ -816,16 +819,18 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             // float
             'user_timezone' => (float) $this->getRawAttribute($key),
 
-            // datetime
+            // datetime but unix timestamp
             'user_lastmark',
             'user_lastpost_time',
             'user_lastvisit',
             'user_regdate' => Carbon::createFromTimestamp($this->getRawAttribute($key)),
 
+            // datetime
+            'osu_subscriptionexpiry' => $this->getTimeFast($key),
+
             // custom cast
             'displayed_last_visit' => $this->getDisplayedLastVisit(),
             'osu_playstyle' => $this->getOsuPlaystyle(),
-            'osu_subscriptionexpiry' => $this->getOsuSubscriptionexpiry(),
             'playmode' => $this->getPlaymode(),
             'user_avatar' => $this->getUserAvatar(),
             'user_colour' => $this->getUserColour(),
@@ -2354,15 +2359,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     private function getDisplayedLastVisit()
     {
         return $this->hide_presence ? null : $this->user_lastvisit;
-    }
-
-    private function getOsuSubscriptionexpiry()
-    {
-        $value = $this->getRawAttribute('osu_subscriptionexpiry');
-
-        return $value === null
-            ? null
-            : Carbon::createFromFormat('Y-m-d H:i:s', "{$value} 00:00:00");
     }
 
     private function getOsuPlaystyle()

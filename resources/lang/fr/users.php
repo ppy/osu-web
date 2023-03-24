@@ -52,6 +52,22 @@ return [
         'send_message' => 'envoyer un message',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => 'mot de passe',
+            'password_confirmation' => 'confirmation du mot de passe',
+            'submit' => 'créer un compte',
+            'user_email' => 'mail',
+            'user_email_confirmation' => 'confirmation de l\'adresse mail',
+            'username' => 'nom d\'utilisateur',
+
+            'tos_notice' => [
+                '_' => 'en créant un compte, vous acceptez les :link',
+                'link' => 'conditions générales d\'utilisation',
+            ],
+        ],
+    ],
+
     'disabled' => [
         'title' => 'Oh-oh ! Il semble que votre compte ait été désactivé.',
         'warning' => "Dans le cas où vous avez enfreint une règle, veuillez noter qu'il y a généralement une période d'un mois pendant laquelle nous n'accepterons aucune demande de réactivation. Après cette période, vous êtes libre de nous contacter si vous le jugez nécessaire. Veuillez noter que la création de nouveaux comptes entraînera une prolongation <strong>de ce délai de récupération d'un mois</strong>. Veuillez également noter que pour <strong>chaque compte que vous créez, vous enfreignez à nouveau les règles</strong>. Nous vous suggérons fortement de ne pas suivre cette voie !",
@@ -142,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'Votre compte a été restreint !',
         'message' => 'Quand vous êtes restreint, vous ne pouvez pas interagir avec les autres joueurs et vos scores ne seront visibles que par vous. Cette restriction est souvent le résultat d\'un processus automatique et sera en général levée dans les 24 heures. Si vous souhaitez faire appel de votre restriction, merci de <a href="mailto:accounts@ppy.sh">contacter le support</a>.',
+        'message_link' => 'Consultez cette page pour en savoir plus.',
     ],
     'show' => [
         'age' => ':age ans',
@@ -451,6 +468,8 @@ return [
         'offline' => 'Hors-ligne',
     ],
     'store' => [
+        'from_client' => 'veuillez vous inscrire via le client du jeu à la place !',
+        'from_web' => 'veuillez compléter votre inscription en utilisant le site Web d\'osu!',
         'saved' => 'Utilisateur créé',
     ],
     'verify' => [

@@ -52,6 +52,22 @@ return [
         'send_message' => 'Pošlji sporočilo',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => 'geslo',
+            'password_confirmation' => 'potrditev gesla',
+            'submit' => 'ustvari račun',
+            'user_email' => 'e-pošta',
+            'user_email_confirmation' => 'potrditev e-pošte',
+            'username' => 'uporabniško ime',
+
+            'tos_notice' => [
+                '_' => 'z ustvarjanjem računa se strinjate z :link',
+                'link' => 'pogoji storitve',
+            ],
+        ],
+    ],
+
     'disabled' => [
         'title' => 'Oh ne! Tvoj račun je bil onemogočen.',
         'warning' => "V primeru, da si prekršil pravilo, upoštevaj, da na splošno obstaja enomesečno obdobje mirovanja, v tem času ne bomo upoštevali nobenih pomilostilnih zahtev. Po tem obdobju nas lahko kontaktiraš, če se ti zdi pomembno. Upoštevaj, da ustvarjanje novih računov kot izogib onemogočenemu računu, bo pomenilo <strong>podaljšanje tega enomesečnega mirovanja</strong>. Upoštevaj tudi, da <strong>z vsakim novim računom, nadaljno kršiš pravila</strong>. Zelo ti priporočamo, da ne greš po tej poti!",
@@ -142,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'Tvoj račun je omejen!',
         'message' => 'Med omejitvijo ne bo možna komunikacija z drugimi igralci, tvoji rezultati pa bodo vidni samo tebi. To je običajno rezultat samodejnega postopka in se običajno odpravi v 24 urah. Če se želiš pritožiti na omejitev, se obrni na <a href="mailto:accounts@ppy.sh">podporo</a>.',
+        'message_link' => 'Preverite to stran, če želite izvedeti več.',
     ],
     'show' => [
         'age' => ':age let',
@@ -451,6 +468,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => 'namesto tega se registrirajte prek odjemalca igre!',
+        'from_web' => 'prosimo dokončajte registracijo z osu! spletno stranjo',
         'saved' => 'Uporabnik ustvarjen',
     ],
     'verify' => [

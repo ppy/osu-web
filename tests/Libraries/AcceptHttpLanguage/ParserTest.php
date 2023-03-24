@@ -15,71 +15,68 @@ use Tests\TestCase;
 
 class ParserTest extends TestCase
 {
-    /** @var Parser */
-    private $parser;
+    private const DEFAULT_HEADER = 'en-us,en-gb;q=0.8,en;q=0.6,es-419';
 
     public function testShouldReturnEmptyArray()
     {
-        $this->parser->header = null;
-        $this->assertSame([], $this->parser->userPreferredLanguages());
+        $this->assertSame([], Parser::parseHeader(null));
     }
 
     public function testShouldProperlySplit()
     {
-        $this->assertSame(['en-US', 'es-419', 'en-GB', 'en'], $this->parser->userPreferredLanguages());
+        $this->assertSame(
+            ['en-us', 'es-419', 'en-gb', 'en'],
+            Parser::parseHeader('en-us,en-gb;q=0.8,en;q=0.6,es-419'),
+        );
     }
 
     public function testShouldIgnoreJambledHeader()
     {
-        $this->parser->header = 'odkhjf89fioma098jq .,.,';
-        $this->assertSame([], $this->parser->userPreferredLanguages());
+        $this->assertSame([], Parser::parseHeader('odkhjf89fioma098jq .,.,'));
     }
 
     public function testShouldProperlyRespectWhitespace()
     {
-        $this->parser->header = 'en-us, en-gb; q=0.8,en;q = 0.6,es-419';
-        $this->assertSame(['en-US', 'es-419', 'en-GB', 'en'], $this->parser->userPreferredLanguages());
-    }
-
-    public function testShouldFindFirstAvailableLanguage()
-    {
-        $this->assertSame('en-GB', $this->parser->preferredLanguageFrom(['en', 'en-GB']));
+        $this->assertSame(
+            ['en-us', 'es-419', 'en-gb', 'en'],
+            Parser::parseHeader('en-us, en-gb; q=0.8,en;q = 0.6,es-419'),
+        );
     }
 
     public function testShouldFindFirstCompatibleLanguage()
     {
-        $this->assertSame('en-hk', $this->parser->compatibleLanguageFrom(['en-hk']));
-        $this->assertSame('en', $this->parser->compatibleLanguageFrom(['en']));
+        $this->assertSame(
+            'en-hk',
+            (new Parser(['en-hk']))->languageRegionCompatibleFor(static::DEFAULT_HEADER),
+        );
+
+        $this->assertSame(
+            'en',
+            (new Parser(['en']))->languageRegionCompatibleFor(static::DEFAULT_HEADER),
+        );
     }
 
     public function testShouldfindFirstCompatibleFromUserPreferred()
     {
-        $this->parser->header = 'en-us,de-de';
-        $this->assertSame('en', $this->parser->compatibleLanguageFrom(['de', 'en']));
+        $this->assertSame(
+            'en',
+            (new Parser(['de', 'en']))->languageRegionCompatibleFor('en-us,de-de'),
+        );
     }
 
     public function testShouldAcceptAndIgnoreWildcards()
     {
-        $this->parser->header = 'en-US,en,*';
-        $this->assertSame('en-US', $this->parser->compatibleLanguageFrom(['en-US']));
-    }
-
-    public function testShouldSanitizeAvailableLanguageNames()
-    {
         $this->assertSame(
-            ['en-UK', 'en-US', 'ja-JP', 'pt-BR', 'es-419'],
-            $this->parser->sanitizeAvailableLocales(['en_UK-x3', 'en-US-x1', 'ja_JP-x2', 'pt-BR-x5', 'es-419-x4'])
+            'en-us',
+            (new Parser(['en-us']))->languageRegionCompatibleFor('en-US,en,*'),
         );
     }
 
     public function testShouldFindMostCompatibleLanguageFromUserPreferred()
     {
-        $this->parser->header = 'ja,en-gb,en-us,fr-fr';
-        $this->assertSame('ja-JP', $this->parser->languageRegionCompatibleFrom(['en-UK', 'en-US', 'ja-JP']));
-    }
-
-    protected function setUp(): void
-    {
-        $this->parser = new Parser('en-us,en-gb;q=0.8,en;q=0.6,es-419');
+        $this->assertSame(
+            'ja-jp',
+            (new Parser(['en-uk', 'en-us', 'ja-jp']))->languageRegionCompatibleFor('ja,en-gb,en-us,fr-fr'),
+        );
     }
 }

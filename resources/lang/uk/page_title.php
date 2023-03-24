@@ -41,7 +41,7 @@ return [
             '_' => 'обговорення біткарти',
         ],
         'beatmap_packs_controller' => [
-            '_' => 'збірки карт',
+            '_' => 'збірки мап',
         ],
         'beatmapset_discussion_votes_controller' => [
             '_' => 'голоса в обговоренні бітмапи',
@@ -100,11 +100,15 @@ return [
         'scores_controller' => [
             '_' => 'продуктивність',
         ],
+        'seasons_controller' => [
+            '_' => 'рейтинги',
+        ],
         'tournaments_controller' => [
             '_' => 'турніри',
         ],
         'users_controller' => [
             '_' => 'інформація про гравця',
+            'create' => 'створити обліковий запис',
             'disabled' => 'увага',
         ],
         'wiki_controller' => [

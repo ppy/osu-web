@@ -52,6 +52,22 @@ return [
         'send_message' => '傳送訊息',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => '密碼',
+            'password_confirmation' => '',
+            'submit' => '',
+            'user_email' => '',
+            'user_email_confirmation' => '',
+            'username' => '',
+
+            'tos_notice' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
+    ],
+
     'disabled' => [
         'title' => '哎唷！看起來你的帳號已被禁用。',
         'warning' => "若你沒有遵守規則，我們原則上在一個月的期限以內不會考慮解禁您的帳號。在此之後，您如有需要，可以隨時聯絡我們。請注意，在一個帳號被封禁後創建新帳號會<strong>使您的封禁期限被延長</strong>。而且<strong>每當您創建一個新帳號，您都是在更嚴重地破壞規則</strong>。我們強烈建議您不要誤入歧途。",
@@ -142,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => '您的帳號已受到限制!',
         'message' => '當您的帳號受到系統自動限制時，您將無法與其他玩家互動，且您的遊戲分數僅供自己查閱。系統將在24小時內解除限制。如果您需要申訴？請<a href="mailto:accounts@ppy.sh">聯繫支援服務</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age 歲',
@@ -451,6 +468,8 @@ return [
         'offline' => '離線',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => '帳號已註冊',
     ],
     'verify' => [

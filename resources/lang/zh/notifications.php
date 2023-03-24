@@ -13,6 +13,16 @@ return [
     'see_channel' => '前往聊天',
     'verifying' => '请验证会话以查看通知',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => '',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
     'filters' => [
         '_' => '所有',
         'user' => '个人资料',
@@ -212,6 +222,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => '“:name” 中有一条新通知',
+            ],
+
             'channel' => [
                 'pm' => '您收到了来自 :username 的新消息',
             ],

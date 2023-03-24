@@ -27,13 +27,14 @@ return [
         ],
         'no_diff_reduction' => [
             '_' => '若要解锁成就，则不能使用:link游玩谱面。',
-            'link' => '降低难度的 Mod',
+            'link' => '降低难度的模组',
         ],
     ],
 
     'mode' => [
         'artist' => '艺术家/专辑',
         'chart' => '聚光灯',
+        'featured' => '',
         'standard' => '常规',
         'theme' => '主题',
     ],

@@ -13,6 +13,16 @@ return [
     'see_channel' => 'menjen a csevegéshez',
     'verifying' => 'Az értesítések megtekintéséhez hitelesítse a munkamenetet',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => '',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
     'filters' => [
         '_' => 'összes',
         'user' => 'profil',
@@ -210,6 +220,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Új hirdetmény van ":name" csatornában',
+            ],
+
             'channel' => [
                 'pm' => 'Új üzenetet kaptál tőle::username',
             ],
@@ -241,7 +255,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username új beatmapeket hozott létre',
-                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive' => ':username újraélesztett beatmepeket',
             ],
         ],
     ],

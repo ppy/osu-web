@@ -1,0 +1,84 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.profile-previous-usernames {
+  @_top: profile-previous-usernames;
+  @_spacing: 10px;
+  @_line-spacing: 0px;
+  @_icon-size: @font-size--title-small;
+
+  border-radius: @border-radius-large;
+  display: flex;
+  align-items: baseline;
+  transition: all 200ms cubic-bezier(.22,.61,.36,1);
+  text-shadow: initial;
+
+  @media @desktop {
+    width: 300px;
+    pointer-events: none;
+    margin: 5px;
+  }
+
+  &:hover {
+    @media @desktop {
+      background-color: @osu-colour-b6;
+      transform: translateY(-(@_icon-size + @_line-spacing));
+      pointer-events: auto;
+    }
+  }
+
+  &__content {
+    padding-left: 0;
+    opacity: 0;
+    will-change: opacity;
+    transition: inherit;
+    display: none;
+
+    @media @desktop {
+      display: block;
+      padding: @_spacing;
+    }
+
+    .@{_top}:hover & {
+      opacity: 1;
+    }
+  }
+
+  &__icon {
+    .reset-input();
+    .link-white();
+    .link-plain();
+    pointer-events: auto;
+    flex: none;
+    font-size: @_icon-size;
+
+    &--plain {
+      padding: @_spacing; // easier hover targeting
+      display: none;
+
+      @media @desktop {
+        display: block;
+      }
+    }
+
+    &--with-title {
+      margin-left: @_spacing; // better tooltip positioning
+
+      @media @desktop {
+        display: none;
+      }
+    }
+  }
+
+  &__names {
+    margin-top: @_line-spacing;
+    font-weight: bold;
+    font-size: @font-size--normal;
+    line-height: 1.2;
+    white-space: pre-wrap;
+  }
+
+  &__title {
+    font-size: @font-size--small;
+  }
+}

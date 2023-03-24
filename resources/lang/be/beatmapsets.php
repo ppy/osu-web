@@ -60,12 +60,18 @@ return [
     'show' => [
         'discussion' => 'Абмеркаванне',
 
+        'deleted_banner' => [
+            'title' => 'Гэта бітмапа была выдалена.',
+            'message' => '(гэта бачаць толькі мадэратары) ',
+        ],
+
         'details' => [
             'by_artist' => 'ад :artist',
             'favourite' => 'Дадаць да абраных',
             'favourite_login' => 'Увайдзіце, каб дадаць бітмапу ў абраныя',
             'logged-out' => 'Каб спампаваць нейкую бітмапу, вам трэба ўвайсці!',
             'mapped_by' => 'створана :mapper',
+            'mapped_by_guest' => 'гасцявая складанасць ад :mapper',
             'unfavourite' => 'Выдаліць з абраных',
             'updated_timeago' => 'абноўлены :timeago',
 
@@ -124,7 +130,7 @@ return [
             'genre' => 'Жанр',
             'language' => 'Мова',
             'no_scores' => 'Усё яшчэ ідзе падлік даных...',
-            'nominators' => '',
+            'nominators' => 'Намінатары',
             'nsfw' => 'Непрыстойны змест',
             'offset' => 'Анлайн аўсэт',
             'points-of-failure' => 'Колькасць правалаў',

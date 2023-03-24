@@ -1,0 +1,320 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.osu-page {
+  @_default-bg-hsl: var(--hsl-b5);
+  @_default-bg: hsl(@_default-bg-hsl);
+  @_default-fg: @osu-colour-c1;
+
+  align-self: center;
+  margin-left: auto;
+  margin-right: auto;
+  flex: none;
+
+  .default {
+    background-color: @_default-bg;
+    color: @_default-fg;
+    .default-box-shadow();
+    margin-bottom: 10px;
+  }
+
+  .page-width();
+  @media @desktop {
+    .page-width-desktop();
+  }
+
+  &--account-edit-header {
+    .default-box-shadow();
+  }
+
+  &--admin {
+    .default();
+    .default-gutter-v2();
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+    color: @osu-colour-c1;
+
+    h1, h3, h4 {
+      font-style: normal;
+      color: white;
+    }
+
+    h1 {
+      font-size: 28px;
+    }
+
+    h3 {
+      font-size: 14px;
+    }
+
+    h4 {
+      font-size: 12px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    pre {
+      background-color: @osu-colour-b6;
+      border: none;
+      color: white;
+    }
+
+    small {
+      color: @osu-colour-f1;
+    }
+
+    // bootstrap override
+    .label-default {
+      color: @osu-colour-f1;
+      background-color: @osu-colour-b6;
+    }
+  }
+
+  &--artist {
+    @media @desktop {
+      margin-top: 10px;
+    }
+  }
+
+  &--artist-track-search-result {
+    .default();
+    .default-gutter-v2();
+    padding-top: 10px;
+    padding-bottom: $padding-top;
+  }
+
+  &--artists {
+    margin-bottom: 10px;
+  }
+
+  &--beatmapsets-search-header {
+    .default-box-shadow();
+    margin-bottom: 10px;
+  }
+
+  &--changelog {
+    .default;
+    background-color: @osu-colour-b4;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+  }
+
+  &--comment {
+    .default();
+    --comments-bg-hsl: @_default-bg-hsl;
+    --comments-fg: @_default-fg;
+    background-color: hsl(var(--comments-bg-hsl));
+    color: var(--comments-fg);
+    padding: 10px 0 0;
+    margin-bottom: 0;
+  }
+
+  &--comments {
+    .default();
+    --comments-bg-hsl: @_default-bg-hsl;
+    --comments-fg: @_default-fg;
+    background-color: hsl(var(--comments-bg-hsl));
+    color: var(--comments-fg);
+    padding: 10px 0;
+  }
+
+  &--contests {
+    .default;
+  }
+
+  &--description {
+    .default-gutter-v2();
+    background-color: @osu-colour-d3;
+    color: @osu-colour-c1;
+    font-size: @font-size--title-small;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  &--download {
+    .page-width(20px);
+    .default;
+
+    display: flex;
+    flex-direction: column;
+
+    @media @desktop {
+      .page-width-desktop(20px);
+    }
+  }
+
+  &--forum {
+    background-color: @osu-colour-b5;
+    color: @osu-colour-c1;
+    margin-bottom: 10px;
+  }
+
+  &--forum-topic {
+    background-color: @osu-colour-b4;
+    color: @osu-colour-c1;
+  }
+
+  &--forum-topic-feature-vote {
+    .default-box-shadow();
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 5px;
+  }
+
+  &--forum-topic-reply {
+    background-color: @osu-colour-b2;
+    color: @osu-colour-c1;
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+
+    &.js-forum-topic-reply-flash {
+      animation: forum-topic-reply-flash 500ms ease-in-out;
+
+      @keyframes forum-topic-reply-flash {
+        50% { background-color: @osu-colour-b1; }
+      }
+    }
+
+    &[data-state=stick] {
+      position: fixed;
+      z-index: @z-index--forum-topic-reply-stick;
+      bottom: 0; // weird flashing in firefox android on certain scroll if using top
+      height: calc(var(--vh, 1vh) * 100 - @navbar-height);
+
+      @media @desktop {
+        position: relative;
+        top: auto;
+        z-index: auto;
+        height: auto;
+      }
+    }
+  }
+
+  &--forum-topic-watches-list {
+    .default();
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  &--full {
+    flex: 1 0 auto;
+  }
+
+  &--generic {
+    .default();
+    .default-gutter-v2();
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  &--generic-compact {
+    .default;
+  }
+
+  &--header {
+    .default;
+    margin-bottom: 0;
+  }
+
+  &--header-news, &--groups {
+    .default-box-shadow();
+    background-color: #333;
+  }
+
+  &--info-bar {
+    .default-gutter-v2();
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: @osu-colour-d3;
+    display: flex;
+  }
+
+  &--notification-banners {
+    @media @desktop {
+      position: absolute;
+      top: (@nav2-height + 10px);
+      display: grid;
+      gap: 4px;
+    }
+  }
+
+  &--ranking-info {
+    .default-gutter-v2();
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: hsl(var(--hsl-d3));
+    font-size: @font-size--title-small;
+    display: grid;
+    gap: 20px;
+  }
+
+  &--small {
+    @media @desktop {
+      .page-width-desktop(@gutter-small-desktop);
+    }
+  }
+
+  &--store {
+    .default-box-shadow();
+    background-color: @osu-colour-b5;
+    color: @osu-colour-c1;
+
+    @media @desktop {
+      margin-bottom: 10px;
+    }
+  }
+
+  &--store-product {
+    .default-gutter-v2();
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: @osu-colour-b5;
+    color: @osu-colour-c1;
+  }
+
+  &--supporter {
+    .default;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &--users {
+    .default();
+    background-color: hsl(var(--hsl-b3));
+    margin-bottom: 0;
+  }
+
+  &--users-show-header {
+    .default-box-shadow();
+  }
+
+  &--wiki {
+    .default();
+    font-size: @font-size--wiki;
+  }
+
+  &--wiki-main {
+    .default-gutter-v2();
+    padding-top: 20px;
+    padding-bottom: $padding-top;
+  }
+
+  &--chat {
+    .default;
+
+    flex: 1 0 auto;
+    display: flex;
+    height: calc((var(--vh, 1vh) * 100) - (@nav2-height + 70px + 50px)); // viewport height - compact header+footer
+    margin-bottom: 0;
+
+    @media @mobile {
+      height: calc((var(--vh, 1vh) * 100) - 90px);
+    }
+  }
+}

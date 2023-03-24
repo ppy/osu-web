@@ -1,0 +1,90 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.mod {
+  height: var(--mod-height, @mod-height-normal);
+  width: calc($height * unit(@mod-width) / unit(@mod-height));
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  position: relative;
+  --generic-display: flex;
+
+  .all(@name, @filename) {
+    &--@{name} {
+      .at2x-simple("~@images/badges/mods/mod_@{filename}.png");
+      --generic-display: none;
+    }
+  }
+
+  .type-bg(@name) {
+    &--type-@{name} {
+      .at2x-var(--type-bg, "~@images/badges/mods/blanks/@{name}.png");
+    }
+  }
+
+  .all(4K, '4K');
+  .all(5K, '5K');
+  .all(6K, '6K');
+  .all(7K, '7K');
+  .all(8K, '8K');
+  .all(9K, '9K');
+  .all(AP, 'autopilot');
+  .all(CL, 'classic');
+  .all(DT, 'double-time');
+  .all(EZ, 'easy');
+  .all(FI, 'fader');
+  .all(FL, 'flashlight');
+  .all(HD, 'hidden');
+  .all(HR, 'hard-rock');
+  .all(HT, 'half');
+  .all(MR, 'mirror');
+  .all(NC, 'nightcore');
+  .all(NF, 'no-fail');
+  .all(NM, 'no-mod');
+  .all(PF, 'perfect');
+  .all(RD, 'random');
+  .all(RX, 'relax');
+  .all(SD, 'sudden-death');
+  .all(SO, 'spun-out');
+  .all(TD, 'touchdevice');
+  .all(V2, 'v2');
+
+  .type-bg(Automation);
+  .type-bg(Conversion);
+  .type-bg(DifficultyIncrease);
+  .type-bg(DifficultyReduction);
+  .type-bg(Fun);
+
+  &::before {
+    .full-size();
+    background-image: var(--type-bg);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    content: '';
+    display: var(--generic-display);
+
+    @media @highdpi {
+      background-image: var(--type-bg-2x);
+    }
+  }
+
+  &::after {
+    .full-size();
+    content: attr(data-acronym);
+    display: var(--generic-display);
+    align-items: center;
+    justify-content: center;
+    color: #545454;
+    padding-top: 1px; // slightly more centered?
+    padding-right: 1px; // slightly more centered?
+    font-family: @font-grade;
+    font-size: 8px; // icon size
+
+    @media @highdpi {
+      font-size: 9px; // icon size
+    }
+  }
+}

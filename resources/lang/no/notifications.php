@@ -13,6 +13,16 @@ return [
     'see_channel' => 'gå til chat',
     'verifying' => 'Vennligst verifiser økten for å se varsler',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => '',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
     'filters' => [
         '_' => 'alle',
         'user' => 'profil',
@@ -210,6 +220,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => '',
+            ],
+
             'channel' => [
                 'pm' => 'Du fått en ny melding fra :username',
             ],

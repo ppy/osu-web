@@ -60,12 +60,18 @@ return [
     'show' => [
         'discussion' => 'Discuție',
 
+        'deleted_banner' => [
+            'title' => 'Acest beatmap a fost șters.',
+            'message' => '(doar moderatorii pot vedea asta)',
+        ],
+
         'details' => [
             'by_artist' => 'de :artist',
             'favourite' => 'Adaugă acest beatmap la favorite',
             'favourite_login' => 'Autentifică-te pentru a adăuga acest beatmap la preferate',
             'logged-out' => 'Trebuie să te autentifici înainte de a descărca vreun beatmap!',
             'mapped_by' => 'creat de :mapper',
+            'mapped_by_guest' => 'dificultate cu participare ca oaspete de :mapper',
             'unfavourite' => 'Elimină acest beatmapset de la favorite',
             'updated_timeago' => 'ultima actualizare :timeago',
 
@@ -104,7 +110,7 @@ return [
                 'status' => [
                     'pending' => 'în așteptare',
                     'qualified' => 'calificată',
-                    'wip' => 'muncă în desfășurare',
+                    'wip' => 'în lucru',
                 ],
             ],
 
@@ -130,7 +136,7 @@ return [
             'points-of-failure' => 'Puncte de eșec',
             'source' => 'Sursă',
             'storyboard' => 'Acest beatmap conține un storyboard',
-            'success-rate' => 'Rata de succes',
+            'success-rate' => 'Rată de succes',
             'tags' => 'Tag-uri',
             'video' => 'Acest beatmap conține un video',
         ],
@@ -211,7 +217,7 @@ Viață',
             'approved' => 'Aprobat',
             'loved' => 'Iubit',
             'qualified' => 'Calificat',
-            'wip' => 'WIP',
+            'wip' => 'În lucru',
             'pending' => 'În Așteptare',
             'graveyard' => 'Inactiv',
         ],

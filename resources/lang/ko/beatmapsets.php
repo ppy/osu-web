@@ -60,12 +60,18 @@ return [
     'show' => [
         'discussion' => '토론',
 
+        'deleted_banner' => [
+            'title' => '이 비트맵은 삭제되었습니다.',
+            'message' => '(관리자만 볼 수 있습니다)',
+        ],
+
         'details' => [
             'by_artist' => 'by :artist',
             'favourite' => '즐겨찾기',
             'favourite_login' => '로그인하여 이 비트맵을 즐겨찾기 하세요.',
             'logged-out' => '로그인 후 비트맵을 다운로드하세요!',
             'mapped_by' => ':mapper 님의 맵',
+            'mapped_by_guest' => ':mapper 님의 게스트 난이도',
             'unfavourite' => '즐겨찾기 해제',
             'updated_timeago' => ':timeago에 마지막으로 수정',
 

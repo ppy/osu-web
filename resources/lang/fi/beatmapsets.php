@@ -60,12 +60,18 @@ return [
     'show' => [
         'discussion' => 'Keskustelu',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
             'by_artist' => '',
             'favourite' => 'Lisää tämä beatmap-setti suosikkeihin',
             'favourite_login' => '',
             'logged-out' => 'Sinun täytyy kirjautua sisään ladataksesi beatmappeja!',
             'mapped_by' => 'luonut: :mapper',
+            'mapped_by_guest' => '',
             'unfavourite' => 'Poista tämä beatmapkokoelma suosikeista',
             'updated_timeago' => 'päivitetty viimeksi :timeago',
 

@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => '',
         'latest_post' => 'Најновији Постови',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => 'Стварно вратити пост?',
         'edited' => 'Последње измењено од :user :when, измењено :count_delimited пута и укупно.|Последње измењено од :user :when, измењено :count_delimited пута укупно.',
         'posted_at' => 'постовао :when',
-        'posted_by' => 'аутор поста :username',
+        'posted_by_in' => '',
 
         'actions' => [
             'destroy' => 'Обриши пост',
@@ -108,27 +109,27 @@ return [
                 'default' => 'Ова тема је била неактивна неко време. Објављујте овде само ако имате конкретан разлог за то.',
 
                 'new_topic' => [
-                    '_' => "",
+                    '_' => "Ова тема је била неактивна неко време. Ако немате конкретан разлог да објавите овде, :create уместо тога.",
                     'create' => 'направиte нову тему',
                 ],
             ],
 
             'placeholder' => [
-                'body' => '',
+                'body' => 'Упишите садржај поста овде',
                 'title' => 'Кликни овде да поставиш наслов',
             ],
         ],
 
         'jump' => [
-            'enter' => '',
-            'first' => '',
-            'last' => '',
-            'next' => '',
-            'previous' => '',
+            'enter' => 'кликните да унесете одређени број поста',
+            'first' => 'иди на први пост',
+            'last' => 'иди на последњи пост',
+            'next' => 'прескочи следећих 10 постова',
+            'previous' => 'врати се 10 постова уназад',
         ],
 
         'logs' => [
-            '_' => '',
+            '_' => 'Логови за теме',
             'button' => '',
 
             'columns' => [
@@ -143,7 +144,7 @@ return [
                 'edit_topic' => '',
                 'fork' => '',
                 'pin' => 'закачена тема',
-                'post_operation' => '',
+                'post_operation' => 'поставио :username',
                 'remove_tag' => '',
                 'source_forum_operation' => '',
                 'unpin' => '',
@@ -156,23 +157,23 @@ return [
                 'delete_topic' => 'Обрисана тема',
                 'edit_topic' => '',
                 'edit_poll' => '',
-                'fork' => '',
+                'fork' => 'Копирана тема',
                 'issue_tag' => '',
                 'lock' => 'Закључана тема',
-                'merge' => '',
+                'merge' => 'Спојени постови у овој теми',
                 'move' => '',
                 'pin' => 'Закачена тема',
                 'post_edited' => '',
                 'restore_post' => '',
-                'restore_topic' => '',
+                'restore_topic' => 'Враћена тема',
                 'split_destination' => '',
                 'split_source' => '',
                 'topic_type' => '',
-                'topic_type_changed' => '',
+                'topic_type_changed' => 'Промењен тип теме',
                 'unlock' => 'Откључана тема',
                 'unpin' => 'Откачена тема',
-                'user_lock' => '',
-                'user_unlock' => '',
+                'user_lock' => 'Закључана сопствена тема',
+                'user_unlock' => 'Откључана сопствена тема',
             ],
         ],
 
@@ -184,15 +185,15 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => '',
+            'title_compact' => 'листа претплате на теме форума',
 
             'box' => [
                 'total' => 'Претплаћене теме',
-                'unread' => '',
+                'unread' => 'Теме са новим одговорима',
             ],
 
             'info' => [
-                'total' => '',
+                'total' => 'Пратите укупно :total тема.',
                 'unread' => '',
             ],
         ],
@@ -200,7 +201,7 @@ return [
         'topic_buttons' => [
             'remove' => [
                 'confirmation' => '',
-                'title' => '',
+                'title' => 'Откажи претплату',
             ],
         ],
     ],
@@ -246,7 +247,7 @@ return [
         ],
 
         'index' => [
-            'feature_votes' => '',
+            'feature_votes' => 'приоритет по звездицама',
             'replies' => 'одговори',
             'views' => 'приказа',
         ],
@@ -289,8 +290,8 @@ return [
         'issue_tag_resolved' => [
             'to_0' => '',
             'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
+            'to_1' => 'Додај ознаку "решено"',
+            'to_1_done' => 'Додата ознака "решено"',
         ],
 
         'lock' => [
@@ -346,12 +347,12 @@ return [
             ],
 
             'poll' => [
-                'edit' => '',
+                'edit' => 'Уређивач Анкете',
                 'edit_warning' => 'Уређивање анкете ће уклонити тренутне резултате!',
                 'vote' => 'Гласај',
 
                 'button' => [
-                    'change_vote' => '',
+                    'change_vote' => 'Промени глас',
                     'edit' => 'Измени анкету',
                     'view_results' => 'Пређи на резултате',
                     'vote' => 'Гласај',

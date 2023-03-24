@@ -23,6 +23,14 @@ return [
         'multiplayer' => 'žaidimas tinkle',
         'performance' => 'našumo',
         'score' => 'Taškai',
+        'seasons' => '',
+    ],
+
+    'seasons' => [
+        'empty' => '',
+        'ongoing' => '',
+        'room_count' => '',
+        'url' => '',
     ],
 
     'spotlight' => [
@@ -33,7 +41,7 @@ return [
     ],
 
     'stat' => [
-        'accuracy' => 'Taiklumas',
+        'accuracy' => 'Tikslumas',
         'active_users' => 'Aktyvūs Vartotojai',
         'country' => 'Šalis',
         'play_count' => 'Sužaidimų Skaičius',

@@ -36,6 +36,7 @@ use App\Models\Multiplayer\Room;
 use App\Models\NewsPost;
 use App\Models\Notification;
 use App\Models\Score;
+use App\Models\Season;
 use App\Models\Store;
 use App\Models\Tournament;
 use App\Models\UpdateStream;
@@ -214,6 +215,9 @@ class SanityTest extends DuskTestCase
 
         // dummy for game mode param
         self::$scaffolding['mode'] = new ScaffoldDummy('osu');
+
+        // factory for /seasons/*
+        self::$scaffolding['season'] = Season::factory()->create();
 
         // factory for /home/changelog/*
         self::$scaffolding['stream'] = factory(UpdateStream::class)->create();
@@ -446,7 +450,7 @@ class SanityTest extends DuskTestCase
                 static::output($params[$paramName]." \e[30;1m(override)\e[0m\n");
             } else {
                 if (isset(self::$scaffolding[$paramName])) {
-                    $params[$paramName] = self::$scaffolding[$paramName]->getKey();
+                    $params[$paramName] = self::$scaffolding[$paramName]->getRouteKey();
                     static::output($params[$paramName]."\n");
                 } else {
                     static::output("\e[30;1m¯\_(ツ)_/¯\e[0m\n");

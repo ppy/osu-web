@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'cerca en fòrums',
                 'forum_children' => 'inclou subfòrums',
+                'include_deleted' => '',
                 'topic_id' => 'tema #',
                 'username' => 'autor',
             ],
@@ -72,8 +73,22 @@ return [
     ],
 
     'download' => [
-        'tagline' => "endavant<br>comencem!",
         'action' => 'Descarrega l\'osu!',
+        'action_lazer' => 'Descarregar osu!(lazer)',
+        'action_lazer_description' => 'la propera gran actualització d\'osu!',
+        'action_lazer_info' => 'consulteu aquesta pàgina per obtenir més informació',
+        'action_lazer_title' => 'prova osu!(lazer)',
+        'action_title' => 'descarrega osu!',
+        'for_os' => 'per :os',
+        'lazer_note' => 'nota: s\'apliquen restabliments de les taules de classificació',
+        'macos-fallback' => 'usuaris de macOS',
+        'mirror' => 'enllaç alternatiu',
+        'or' => 'o',
+        'os_version_or_later' => '',
+        'other_os' => 'altres plataformes',
+        'quick_start_guide' => 'guia d\'inici ràpid',
+        'tagline' => "endavant<br>comencem!",
+        'video-guide' => 'guia en vídeo',
 
         'help' => [
             '_' => 'si trobes un problema començant el joc o registrant un compte, :help_forum_link o :support_button.',
@@ -86,8 +101,6 @@ return [
             'macos' => 'per a macOS',
             'linux' => 'per a Linux',
         ],
-        'mirror' => 'enllaç alternatiu',
-        'macos-fallback' => 'usuaris de macOS',
         'steps' => [
             'register' => [
                 'title' => 'crea un compte',
@@ -105,7 +118,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'guia en vídeo',
     ],
 
     'user' => [

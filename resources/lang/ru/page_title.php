@@ -98,13 +98,17 @@ return [
             '_' => 'рейтинг',
         ],
         'scores_controller' => [
-            '_' => 'результат',
+            '_' => 'рекорд',
+        ],
+        'seasons_controller' => [
+            '_' => 'рейтинг',
         ],
         'tournaments_controller' => [
             '_' => 'турниры',
         ],
         'users_controller' => [
             '_' => 'информация об игроке',
+            'create' => 'создать аккаунт',
             'disabled' => 'обратите внимание',
         ],
         'wiki_controller' => [

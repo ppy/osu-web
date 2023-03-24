@@ -13,6 +13,16 @@ return [
     'see_channel' => 'vés al xat',
     'verifying' => 'Verifica la sessió per a veure les notificacions',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => '',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
     'filters' => [
         '_' => 'totes',
         'user' => 'perfil',
@@ -209,6 +219,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Hi ha un nou anunci a ":name"',
+            ],
+
             'channel' => [
                 'pm' => 'Has rebut un nou missatge de :username',
             ],

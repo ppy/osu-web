@@ -52,6 +52,22 @@ return [
         'send_message' => 'Enviar mensagem',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => 'palavra-passe',
+            'password_confirmation' => 'confirmação da palavra-passe',
+            'submit' => 'criar conta',
+            'user_email' => 'email',
+            'user_email_confirmation' => 'confirmação do email',
+            'username' => 'nome de utilizador',
+
+            'tos_notice' => [
+                '_' => 'ao criar uma conta, tu concordas com :link',
+                'link' => 'termos de serviço',
+            ],
+        ],
+    ],
+
     'disabled' => [
         'title' => 'Oh não! Parece que a tua conta foi desativada.',
         'warning' => "No caso de teres desrespeitado uma regra, por favor nota que geralmente há um período de espera de 1 mês durante o qual não iremos considerar nenhum pedido de amnistia. Após este período, podes entrar em contacto connosco caso aches necessário. Por favor nota que a criação de novas contas após teres tido uma desativada resultará numa <strong>extensão deste período de espera de 1 mês </strong>. Por favor nota também que para <strong>cada conta que cries, estás a violar ainda mais as regras</strong>. Sugerimos muito que não sigas este caminho!",
@@ -142,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => 'A tua conta foi restrita!',
         'message' => 'Enquanto restrito(a), estarás incapaz de interagir com outros jogadores e as tuas pontuações só serão visíveis para ti. Isto é habitualmente o resultado dum processo automático e irá ser levantado geralmente em 24 horas. Se quiseres apelar a tua restrição, por favor <a href="mailto:accounts@ppy.sh">contacta a assistência</a>.',
+        'message_link' => 'Consulta esta página para saberes mais.',
     ],
     'show' => [
         'age' => ':age anos',
@@ -451,6 +468,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => 'por favor regista-te através do cliente do jogo!',
+        'from_web' => 'por favor regista-te através do sítio web',
         'saved' => 'Criado por utilizadores',
     ],
     'verify' => [

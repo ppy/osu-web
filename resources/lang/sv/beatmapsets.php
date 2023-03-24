@@ -60,12 +60,18 @@ return [
     'show' => [
         'discussion' => 'Diskussion',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
             'by_artist' => 'av :artist',
             'favourite' => 'Favoritmarkera detta beatmapset',
             'favourite_login' => 'Logga in för att favoritmarkera denna beatmap',
             'logged-out' => 'Du behöver logga in innan du laddar ner beatmaps!',
             'mapped_by' => 'skapad av :mapper',
+            'mapped_by_guest' => '',
             'unfavourite' => 'Ta bort favoritmarkering på detta beatmapset',
             'updated_timeago' => 'senast ändrad :timeago',
 

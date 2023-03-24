@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => '포럼에서 검색하기',
                 'forum_children' => '서브포럼을 포함하여 검색',
+                'include_deleted' => '삭제된 글 포함',
                 'topic_id' => '주제 #',
                 'username' => '글쓴이',
             ],
@@ -72,8 +73,22 @@ return [
     ],
 
     'download' => [
-        'tagline' => "시작해봐요!",
         'action' => 'osu! 다운로드',
+        'action_lazer' => 'osu!(lazer) 다운로드',
+        'action_lazer_description' => 'osu!의 다음 메이저 업데이트',
+        'action_lazer_info' => '이 페이지에서 자세한 정보를 확인해보세요.',
+        'action_lazer_title' => 'osu!(lazer) 체험하기',
+        'action_title' => 'osu! 다운로드',
+        'for_os' => ':os 전용',
+        'lazer_note' => '참고: 점수가 초기화될 수 있습니다',
+        'macos-fallback' => 'macOS 사용자',
+        'mirror' => '미러',
+        'or' => '혹은',
+        'os_version_or_later' => ':os_version 이상',
+        'other_os' => '다른 플랫폼',
+        'quick_start_guide' => '빠른 시작 안내',
+        'tagline' => "시작해봐요!",
+        'video-guide' => '영상 가이드',
 
         'help' => [
             '_' => '게임을 시작하거나 계정을 등록하는데 문제가 있다면, :help_forum_link 하거나 :support_button 해보세요.',
@@ -86,8 +101,6 @@ return [
             'macos' => 'macOS 용',
             'linux' => 'Linux 용',
         ],
-        'mirror' => '미러',
-        'macos-fallback' => 'macOS 사용자',
         'steps' => [
             'register' => [
                 'title' => '계정 만들기',
@@ -105,7 +118,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => '영상 가이드',
     ],
 
     'user' => [

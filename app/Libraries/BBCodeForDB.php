@@ -72,12 +72,13 @@ class BBCodeForDB
 
     public function parseBox($text)
     {
-        $text = preg_replace('#\[box=([^]]*?)\]#s', "[box=\\1:{$this->uid}]", $text);
-        $text = str_replace('[/box]', "[/box:{$this->uid}]", $text);
-        $text = str_replace('[spoilerbox]', "[spoilerbox:{$this->uid}]", $text);
-        $text = str_replace('[/spoilerbox]', "[/spoilerbox:{$this->uid}]", $text);
+        $text = preg_replace('#\[box=((\\\[\[\]]|[^][]|\[(\\\[\[\]]|[^][]|(?R))*\])*?)\]#s', "[box=\\1:{$this->uid}]", $text);
 
-        return $text;
+        return strtr($text, [
+            '[/box]' => "[/box:{$this->uid}]",
+            '[spoilerbox]' => "[spoilerbox:{$this->uid}]",
+            '[/spoilerbox]' => "[/spoilerbox:{$this->uid}]",
+        ]);
     }
 
     public function parseCode($text)
@@ -134,34 +135,20 @@ class BBCodeForDB
         return $text;
     }
 
-    /*
-    * Handles:
-    * - Bold (b)
-    * - Italic (i)
-    * - Strike (strike, s)
-    * - Underline (u)
-    * - Spoiler (spoiler)
-    */
-    public function parseInlineSimple($text)
+    /**
+     * Handles:
+     * - Code (c)
+     * - Heading (heading)
+     */
+    public function parseInlineSimple(string $text): string
     {
-        foreach (['b', 'i', 'strike', 's', 'u', 'spoiler'] as $tag) {
+        foreach (['c', 'heading'] as $tag) {
             $text = preg_replace(
-                "#\[{$tag}](.*?)\[/{$tag}\]#s",
+                "#\[{$tag}](.*?)\[/{$tag}\]#",
                 "[{$tag}:{$this->uid}]\\1[/{$tag}:{$this->uid}]",
                 $text
             );
         }
-
-        return $text;
-    }
-
-    public function parseHeading($text)
-    {
-        $text = preg_replace(
-            '#\[heading](.*?)\[/heading\]#',
-            "[heading:{$this->uid}]\\1[/heading:{$this->uid}]",
-            $text
-        );
 
         return $text;
     }
@@ -216,6 +203,27 @@ class BBCodeForDB
 
         $text = preg_replace($patterns[0], "[\\1:{$this->uid}]", $text, $limit);
         $text = preg_replace('/'.preg_quote($patterns[1], '/').'/', "[/list:o:{$this->uid}]", $text, $limit);
+
+        return $text;
+    }
+
+    /**
+     * Handles:
+     * - Bold (b)
+     * - Italic (i)
+     * - Strike (strike, s)
+     * - Underline (u)
+     * - Spoiler (spoiler)
+     */
+    public function parseMultilineSimple($text)
+    {
+        foreach (['b', 'i', 'strike', 's', 'u', 'spoiler'] as $tag) {
+            $text = preg_replace(
+                "#\[{$tag}](.*?)\[/{$tag}\]#s",
+                "[{$tag}:{$this->uid}]\\1[/{$tag}:{$this->uid}]",
+                $text
+            );
+        }
 
         return $text;
     }
@@ -371,8 +379,8 @@ class BBCodeForDB
         $text = $this->parseBlockSimple($text);
         $text = $this->parseProfile($text);
         $text = $this->parseImage($text);
+        $text = $this->parseMultilineSimple($text);
         $text = $this->parseInlineSimple($text);
-        $text = $this->parseHeading($text);
         $text = $this->parseAudio($text);
         $text = $this->parseEmail($text);
         $text = $this->parseUrl($text);

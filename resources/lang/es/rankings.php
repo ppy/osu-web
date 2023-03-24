@@ -23,6 +23,14 @@ return [
         'multiplayer' => 'multijugador',
         'performance' => 'rendimiento',
         'score' => 'puntuación',
+        'seasons' => 'temporadas',
+    ],
+
+    'seasons' => [
+        'empty' => 'Todavía no hay salas en esta temporada.',
+        'ongoing' => 'Esta temporada aún está en curso (se agregarán más listas de juego).',
+        'room_count' => 'Número de listas de juego',
+        'url' => 'Mostrar más información sobre esa temporada.',
     ],
 
     'spotlight' => [

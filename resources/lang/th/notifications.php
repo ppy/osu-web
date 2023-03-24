@@ -13,6 +13,16 @@ return [
     'see_channel' => 'ไปที่แชท',
     'verifying' => 'โปรดยืนยันเซสชันเพื่อดูการแจ้งเตือน',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => '',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
     'filters' => [
         '_' => 'ทั้งหมด',
         'user' => 'โปรไฟล์',
@@ -209,6 +219,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => '',
+            ],
+
             'channel' => [
                 'pm' => 'คุณได้รับข้อความจาก :username',
             ],

@@ -120,26 +120,6 @@ git config core.eol lf
 git config core.filemode false
 ```
 
-### ARM-based CPUs
-
-Tests that require the use of Chrome (both Karma and Dusk tests) will not work inside Docker when running on ARM-based CPUs (e.g. Macs running Apple Silicon). In this scenario, these tests should be run outside of a container.
-
-Dusk tests can make use of an external Chrome driver instance by setting the following environment variables:
-- `DUSK_WEBDRIVER_URL` the url of the Chrome driver accessible from the container.
-- `APP_URL` the url that will be used to access the app running in the container from Chrome.
-
-e.g. If Docker Desktop and the default networking are used and `chromedriver` is running on the host:
-
-    docker compose run --rm -e DUSK_WEBDRIVER_URL=host.docker.internal:9515 -e APP_URL=http://127.0.0.1:8080 php test browser
-
-The host `chromedriver` will need to allow connections from the container:
-
-    chromedriver --whitelisted-ips --allowed-origins='host.docker.internal'
-
-Other custom configurations to run the tests within the container are currently not supported.
-
----
-
 ### Docker hints
 
 #### Services

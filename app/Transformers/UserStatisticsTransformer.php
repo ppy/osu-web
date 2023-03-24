@@ -10,7 +10,7 @@ use App\Models\UserStatistics;
 
 class UserStatisticsTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'country_rank',
         'rank',
         'user',
@@ -29,11 +29,14 @@ class UserStatisticsTransformer extends TransformerAbstract
         }
 
         return [
+            'count_100' => $stats->count100,
+            'count_300' => $stats->count300,
+            'count_50' => $stats->count50,
+            'count_miss' => $stats->countMiss,
             'level' => [
                 'current' => $stats->currentLevel(),
                 'progress' => $stats->currentLevelProgressPercent(),
             ],
-
             'global_rank' => $stats->globalRank(),
             'global_rank_exp' => $globalRankExp ?? null,
             'pp' => $stats->pp(),
@@ -71,11 +74,7 @@ class UserStatisticsTransformer extends TransformerAbstract
             $stats = new UserStatistics\Osu();
         }
 
-        return $this->item($stats, function ($stats) {
-            return [
-                'country' => $stats->countryRank(),
-            ];
-        });
+        return $this->primitive(['country' => $stats->countryRank()]);
     }
 
     public function includeUser(UserStatistics\Model $stats = null)

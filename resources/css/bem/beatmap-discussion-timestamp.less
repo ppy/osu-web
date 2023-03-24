@@ -1,0 +1,41 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.beatmap-discussion-timestamp {
+  @_text-size: 9px;
+
+  @_line-total-width: 15px;
+  @_point-diameter: 7px;
+  @_line-width: 3px;
+  @_line-color: @osu-colour-b6;
+
+  // avatar + paddings + margins
+  height: (@beatmap-discussion--avatar-size + 20px + 10px);
+
+  align-items: center;
+
+  display: flex;
+
+  &__icons {
+    display: flex;
+    gap: 5px;
+  }
+
+  &__icons-container {
+    margin-left: 5px;
+  }
+
+  &__text {
+    color: @osu-colour-f1;
+    font-size: @_text-size;
+    // To prevent the height being included when calculating vertical center
+    // position of the icons.
+    height: 0;
+  }
+
+  &__point {
+    .circle(@_point-diameter);
+    margin: 0 ((@_line-total-width - @_point-diameter) / 2);
+    background-color: @_line-color;
+  }
+}

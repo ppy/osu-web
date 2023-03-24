@@ -1,0 +1,183 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.forum-topic-entry {
+  @_top: forum-topic-entry;
+
+  font-size: @font-size--normal;
+  display: flex;
+  margin: 2px -@forum-item-overflow;
+  background-color: @forum-item-background-color;
+  .default-border-radius();
+  padding: 7px 0 7px @forum-item-overflow;
+  color: @osu-colour-c2;
+  transition: @forum-item-animate;
+  position: relative;
+
+  &:hover {
+    background-color: @forum-item-background-color-hover;
+  }
+
+  @media @desktop {
+    margin-left: -@forum-item-overflow-desktop;
+    margin-right: -@forum-item-overflow-desktop;
+    padding-left: @forum-item-overflow-desktop;
+  }
+
+  &--deleted {
+    opacity: 0.5;
+  }
+
+  &__col {
+    .center-content();
+    flex: none;
+
+    &--buttons {
+      margin: -2px 18px -2px -2px;
+    }
+
+    &--icon {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      align-self: center;
+      position: relative;
+    }
+
+    &--last-link {
+      .link-plain();
+      font-size: 14px; // icon size
+      width: 30px;
+    }
+
+    &--main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: normal;
+      word-break: break-word;
+      min-width: 0;
+
+      @media @desktop {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+  }
+
+  &__content {
+    flex: none;
+    padding: 0 10px;
+
+    &--counts {
+      min-width: 150px;
+      white-space: nowrap;
+    }
+
+    &--left {
+      flex: 1;
+      min-width: 0;
+    }
+
+    &--right {
+      margin-top: 10px;
+      width: 100%;
+
+      @media @desktop {
+        margin-top: 0;
+        width: 200px;
+      }
+    }
+  }
+
+  &__count {
+    font-weight: 600;
+  }
+
+  &__detail + &__detail {
+    padding-left: 10px;
+  }
+
+  &__icon {
+    .center-content();
+    min-width: 46px;
+    height: 36px;
+    border-radius: 10000px;
+    font-size: 14px; // icon size
+    background-color: @osu-colour-b6;
+    color: @osu-colour-c1;
+
+    .link-hover({
+      color: @osu-colour-c1;
+      text-decoration: none;
+    });
+
+    @media @desktop {
+      align-self: center;
+    }
+
+    &--small {
+      font-size: 12px; // icon size
+    }
+
+    &--unread {
+      border: 2px solid var(--forum-bg);
+    }
+  }
+
+  &__issue-icons {
+    flex: none;
+    display: flex;
+    padding: 5px 5px 0;
+    order: 1;
+
+    @media @desktop {
+      align-self: center;
+      order: 0;
+      padding-top: 0;
+    }
+  }
+
+  &__lock {
+    color: @osu-colour-c2;
+    font-size: 10px; // icon size
+    margin-top: 5px;
+
+    @media @desktop {
+      position: absolute;
+      margin-top: 0;
+      top: 0;
+      right: 100%;
+      margin-right: 5px;
+    }
+  }
+
+  &__replied {
+    --diameter: 6px;
+    position: absolute;
+    width: var(--diameter);
+    height: var(--diameter);
+    border-radius: 50%;
+    background-color: var(--forum-bg);
+    top: calc(100% + 2px);
+    right: calc(50% - var(--diameter) / 2);
+
+    @media @desktop {
+      top: calc(50% - var(--diameter) / 2);
+      right: calc(100% + 2px);
+    }
+  }
+
+  &__title {
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    font-size: @font-size--title-small;
+    color: @osu-colour-c1;
+    word-wrap: break-word;
+
+    .link-hover({
+      color: @osu-colour-c1;
+    });
+  }
+}

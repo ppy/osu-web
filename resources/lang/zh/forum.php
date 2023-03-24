@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => '',
         'latest_post' => '最新帖子',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => '恢复此回复？',
         'edited' => '最后一次由 :user 在 :when 编辑，总共编辑了 :count_delimited 次。',
         'posted_at' => '发表于 :when',
-        'posted_by' => '发帖人：:username',
+        'posted_by_in' => '',
 
         'actions' => [
             'destroy' => '删除回复',

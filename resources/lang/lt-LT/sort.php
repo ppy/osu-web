@@ -32,7 +32,8 @@ return [
     ],
 
     'forum_topics' => [
-        'feature_votes' => 'Žvaigždžių piemenybė',
+        'created' => '',
+        'feature_votes' => 'Žvaigždžių pirmenybė',
         'new' => 'Paskutinis atsakymas',
     ],
 

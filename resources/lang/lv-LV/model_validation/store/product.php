@@ -4,8 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'insufficient_stock' => 'Šeit nav pietiekami daudz preču!',
-    'must_separate' => 'Šī prece ir jāpārbauda atsevišķi no citām',
+    'insufficient_stock' => 'Šīs preces vairs nav pietiekami daudz!',
+    'must_separate' => 'Šī prece ir jāreģistrē atsevišķi no citām precēm',
     'not_available' => 'Šī prece nav pieejama.',
-    'too_many' => 'Jūs variet pasūtīt tikai :count preces priekš šī pasūtījuma.',
+    'too_many' => 'Vienā pasūtījumā jūs varat pasūtīt tikai :count no šīs preces.',
 ];

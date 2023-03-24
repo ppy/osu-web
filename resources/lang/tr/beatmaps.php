@@ -67,7 +67,7 @@ return [
         ],
 
         'message_type' => [
-            'disqualify' => 'Diskalifiye',
+            'disqualify' => 'Diskalifiye et',
             'hype' => 'Gazla!',
             'mapper_note' => 'Not',
             'nomination_reset' => 'Adaylığı Sıfırla',
@@ -257,7 +257,7 @@ return [
         'featured_artists' => 'Featured artist\'ler',
         'follows' => 'Abone olunan mapperlar',
         'recommended' => 'Önerilen zorluk seviyesi',
-        'spotlights' => 'Öne çıkan beatmap\'ler',
+        'spotlights' => 'Öne çıkan beatmapler',
     ],
     'mode' => [
         'all' => 'Hepsi',

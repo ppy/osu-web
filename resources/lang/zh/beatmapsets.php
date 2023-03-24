@@ -5,8 +5,8 @@
 
 return [
     'availability' => [
-        'disabled' => '谱面无法下载。',
-        'parts-removed' => '应歌曲作者或第三方版权持有者的要求，这张谱面已无法下载。',
+        'disabled' => '该谱面现在无法下载。',
+        'parts-removed' => '应歌曲作者或第三方版权持有者的要求，已移除这张谱面的部分内容。',
         'more-info' => '点击这里查看更多信息。',
         'rule_violation' => '已在审核后移除了谱面中不适合于 osu! 展示的内容。',
     ],
@@ -60,12 +60,18 @@ return [
     'show' => [
         'discussion' => '讨论',
 
+        'deleted_banner' => [
+            'title' => '已删除此谱面。',
+            'message' => '（仅管理员可见）',
+        ],
+
         'details' => [
             'by_artist' => 'by :artist',
             'favourite' => '收藏这张谱面',
             'favourite_login' => '登录以收藏这张谱面',
             'logged-out' => '下载谱面前请先登录！',
             'mapped_by' => '谱师：:mapper',
+            'mapped_by_guest' => ':mapper 的客串难度',
             'unfavourite' => '取消收藏',
             'updated_timeago' => ':timeago 更新',
 
@@ -160,7 +166,7 @@ return [
                 'accuracy' => '准确率',
                 'combo' => '最大连击',
                 'miss' => 'Miss',
-                'mods' => 'Mods',
+                'mods' => '模组',
                 'pin' => '置顶',
                 'player' => '玩家',
                 'pp' => '',

@@ -4,108 +4,106 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => '',
-    'require_login' => 'Lūdzu pierakstieties, lai turpinātu.',
-    'require_verification' => '',
-    'restricted' => "Nevar izpildīt darbību, kamēr esiet ierobežots.",
-    'silenced' => "Nevar izpildīt darbību, kamēr esiet apklusināts.",
+    'play_more' => 'Kā tā vietā nedaudz paspēlēt osu!?',
+    'require_login' => 'Lūdzu, pierakstieties, lai turpinātu.',
+    'require_verification' => 'Lūdzu, verificēt, lai turpinātu.',
+    'restricted' => "Nevar veikt darbību, kamēr esat ierobežots.",
+    'silenced' => "Nevar veikt darbību, kamēr esat apklusināts.",
     'unauthorized' => 'Piekļuve liegta.',
 
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => 'Nevar atsaukt publicizēšanu.',
-            'has_reply' => 'Nevar izdzēst diskusijas ar atbildēm',
+            'is_hype' => 'Nevar atsaukt atbalstīšanu.',
+            'has_reply' => 'Nevar dzēst diskusijas ar atbildēm',
         ],
         'nominate' => [
-            'exhausted' => 'Jūs esat sasniedzis savu šodienas nominēšanas limitu. Lūdzu mēģiniet atkal rītdien.',
+            'exhausted' => 'Jūs esat sasniedzis šīs dienas nomināciju limitu, lūdzu, mēģiniet vēlreiz rīt.',
             'incorrect_state' => 'Kļūda, veicot šo darbību, mēģiniet atsvaidzināt lapu.',
-            'owner' => "Nevar nominēt savu bītkarti.",
-            'set_metadata' => '',
+            'owner' => "Nevar nominēt savu bītmapi.",
+            'set_metadata' => 'Jums pirms nominēšanas ir jānosaka žanrs un valoda.',
         ],
         'resolve' => [
             'not_owner' => 'Tikai diskusijas sācējs un bītmapes īpašnieks var atrisināt diskusiju.',
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Tikai bītmapes īpašnieks vai tās izvirzītais/NAT grupas loceklis var publicēt veidotāja piezīmes.',
+            'mapper_note_wrong_user' => 'Tikai bītmapes īpašnieks vai tās nominētājs/NAT grupas loceklis var publicēt veidotāja piezīmes.',
         ],
 
         'vote' => [
-            'bot' => "",
-            'limit_exceeded' => 'Lūdzu, uzgaidiet, pirms vēlreiz balsojat',
-            'owner' => "Nevarat balsot paša diskusijā.",
-            'wrong_beatmapset_state' => 'Diskusijās var vērtēt tikai vēl nepabeigtās bītmapēs.',
+            'bot' => "Nevar balsot par diskusiju, ko izveidojis bots",
+            'limit_exceeded' => 'Lūdzu, uzgaidiet kādu laiku, pirms balsojat vēlreiz',
+            'owner' => "Nevar balsot par savu diskusiju.",
+            'wrong_beatmapset_state' => 'Var balsot tikai par gaidāmajām bītmapju diskusijām.',
         ],
     ],
 
     'beatmap_discussion_post' => [
         'destroy' => [
-            'not_owner' => 'Tu vari dzēst tikai savus rakstus.',
-            'resolved' => 'Tu nevari izdzēst atrisināto diskusiju rakstus.',
-            'system_generated' => 'Automātiski ģenerētie raksti nevar tikt dzēsti.',
+            'not_owner' => 'Jūs varat dzēst tikai savus rakstus.',
+            'resolved' => 'Jūs nevarat dzēst atrisināto diskusiju rakstus.',
+            'system_generated' => 'Automātiski ģenerēto rakstu nevar dzēst.',
         ],
 
         'edit' => [
-            'not_owner' => 'Tikai publicētājs var rediģēt ziņojumu.',
-            'resolved' => 'Tu nevari rediģēt atrisināto diskusiju rakstu.',
-            'system_generated' => 'Automātiski ģenerēts ziņojums nevar tikt izmainīts.',
-        ],
-
-        'store' => [
-            'beatmapset_locked' => 'Šī bītmape ir aizslēgta diskusiju pēc.',
+            'not_owner' => 'Tikai publicētājs var rediģēt rakstu.',
+            'resolved' => 'Jūs nevarat rediģēt atrisinātas diskusijas rakstu.',
+            'system_generated' => 'Automātiski ģenerētu rakstu nevar rediģēt.',
         ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => '',
+
         'metadata' => [
-            'nominated' => '',
+            'nominated' => 'Nominētas mapes metadatus mainīt nevar. Sazinieties ar BN vai NAT locekli, ja uzskatāt, ka tā ir iestatīta nepareizi.',
         ],
     ],
 
     'chat' => [
-        'annnonce_only' => '',
-        'blocked' => 'Nevar nosūtīt ziņojumu lietotājam, kas jūs ir nobloķējis vai kuru jūs esiet nobloķējis.',
-        'friends_only' => 'Lietotājs ir bloķējis ziņojumus no cilvēkiem, kas nav viņa draugu sarakstā.',
-        'moderated' => 'Šis kanāls pašlaik tiek regulēts.',
+        'annnonce_only' => 'Šis kanāls ir paredzēts tikai paziņojumiem.',
+        'blocked' => 'Nevar nosūtīt ziņu lietotājam, kurš nobloķējis jūs vai kuru jūs esat nobloķējis.',
+        'friends_only' => 'Lietotājs bloķē ziņas no cilvēkiem, kas nav viņa draugu sarakstā.',
+        'moderated' => 'Šis kanāls pašlaik tiek moderēts.',
         'no_access' => 'Jums nav piekļuves tiesības uz šo kanālu.',
-        'receive_friends_only' => '',
-        'restricted' => 'Jūs nevarat sūtīt ziņas, kamēr jūs esat apklusināts, ierobežots vai zem aizlieguma.',
-        'silenced' => '',
+        'receive_friends_only' => 'Lietotājs nevarēs atbildēt, jo jūs pieņemat ziņas tikai no cilvēkiem, kas ir jūsu draugu sarakstā.',
+        'restricted' => 'Jūs nevarat sūtīt ziņas, kamēr esat klusināts, ierobežots vai bloķēts.',
+        'silenced' => 'Jūs nevarat sūtīt ziņas, kamēr esat klusināts, ierobežots vai bloķēts.',
     ],
 
     'comment' => [
         'store' => [
-            'disabled' => '',
+            'disabled' => 'Komentāri ir atspējoti',
         ],
         'update' => [
-            'deleted' => "Nevar rediģēt izdzēstās ziņas.",
+            'deleted' => "Nevar rediģēt izdzēstu rakstu.",
         ],
     ],
 
     'contest' => [
-        'voting_over' => 'Jūs nevarat nomainīt savu balsojumu pēc šī konkursa balsošanas perioda beigām.',
+        'voting_over' => 'Jūs nevarat mainīt savu balsojumu pēc šī konkursa balsošanas perioda beigām.',
 
         'entry' => [
-            'limit_reached' => '',
-            'over' => '',
+            'limit_reached' => 'Jūs esat sasniedzis šī konkursa dalības limitu',
+            'over' => 'Paldies par jūsu pieteikumiem! Iesniegumi šim konkursam ir slēgti, un drīzumā sāksies balsošana.',
         ],
     ],
 
     'forum' => [
         'moderate' => [
-            'no_permission' => 'Nav atļaujas vadīt šo forumu.',
+            'no_permission' => 'Nav atļaujas moderēt šo forumu.',
         ],
 
         'post' => [
             'delete' => [
-                'only_last_post' => 'Var izdzēst tikai pēdējo ziņu.',
-                'locked' => 'Nevar dzēst ziņojumus slēgtā tēmā.',
+                'only_last_post' => 'Izdzēst var tikai pēdējo ziņu.',
+                'locked' => 'Nevar dzēst slēgtas tēmas rakstu.',
                 'no_forum_access' => 'Ir nepieciešama piekļuve pieprasītajam forumam.',
                 'not_owner' => 'Tikai publicētājs var izdzēst rakstu.',
             ],
 
             'edit' => [
-                'deleted' => 'Nevar rediģēt izdzēsto rakstu.',
+                'deleted' => 'Nevar rediģēt izdzēstu rakstu.',
                 'locked' => 'Ziņai ir bloķēta rediģēšana.',
                 'no_forum_access' => 'Ir nepieciešama piekļuve pieprasītajam forumam.',
                 'not_owner' => 'Tikai publicētājs var rediģēt rakstu.',
@@ -114,76 +112,76 @@ return [
 
             'store' => [
                 'play_more' => 'Pamēģiniet uzspēlēt spēli pirms rakstāt forumos, lūdzu! Ja rodas problēmas ar spēli, lūdzu, sūtiet ziņu palīdzības in atbalsta forumam.',
-                'too_many_help_posts' => "Jums nepieciešams izspēlēt vairāk spēles pirms jūs varat izveidot papildus ziņojumus. Ja joprojām ir problēmas spēlējot spēli, rakstiet e-pastam support@ppy.sh", // FIXME: unhardcode email address.
+                'too_many_help_posts' => "Jums nepieciešams izspēlēt vairāk spēles pirms jūs varat publicēt papildus rakstus. Ja joprojām ir problēmas ar spēlēšanu, rakstiet uz support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Lūdzu, rediģējiet jūsu pēdējo rakstu nevis publicējat vēlreiz.',
+                'double_post' => 'Lūdzu, rediģējiet savu pēdējo rakstu, nevis publicējiet to vēlreiz.',
                 'locked' => 'Nevar atbildēt uz slēgtu tematu.',
                 'no_forum_access' => 'Ir nepieciešama piekļuve pieprasītajam forumam.',
                 'no_permission' => 'Nav atļauts atbildēt.',
 
                 'user' => [
                     'require_login' => 'Lūdzu, pierakstieties, lai atbildētu.',
-                    'restricted' => "Nevar atbildēt, kamēr esiet ierobežots.",
-                    'silenced' => "Nevarat atbildēt, kamēr apklusināts.",
+                    'restricted' => "Nevar atbildēt, kamēr esat ierobežots.",
+                    'silenced' => "Nevarat atbildēt, kamēr esat apklusināts.",
                 ],
             ],
 
             'store' => [
                 'no_forum_access' => 'Ir nepieciešama piekļuve pieprasītajam forumam.',
-                'no_permission' => 'Nav atļauts veidot jaunas tēmas.',
-                'forum_closed' => 'Forums ir slēgts, un tajā nevar rakstīt ziņas.',
+                'no_permission' => 'Nav atļaujas izveidot jaunu tēmu.',
+                'forum_closed' => 'Forums ir aizvērts, un tajā nevar publicēt.',
             ],
 
             'vote' => [
-                'no_forum_access' => 'Nepieciešama noteikta piekļuve uz izvēlēto forumu.',
-                'over' => 'Aptauja ir beigusies un vairs nav iespējams balsot.',
-                'play_more' => 'Jums vēl ir nepieciešams spēlēt vairāk, pirms variet balsot forumā.',
+                'no_forum_access' => 'Ir nepieciešama piekļuve pieprasītajam forumam.',
+                'over' => 'Aptauja ir beigusies, un tajā vairs nevar balsot.',
+                'play_more' => 'Jums ir nepieciešams spēlēt vairāk, pirms varat balsot forumā.',
                 'voted' => 'Mainīt balsojumu nav atļauts.',
 
                 'user' => [
-                    'require_login' => 'Lūdzu pierakstieties lai balsotu.',
-                    'restricted' => "Nav iespējams balsot, kamēr esiet ierobežots.",
-                    'silenced' => "Nevariet balsot, kamēr esiet apklusināts.",
+                    'require_login' => 'Lūdzu, pierakstieties, lai balsotu.',
+                    'restricted' => "Nevar balsot, kamēr esat ierobežots.",
+                    'silenced' => "Nevar balsot, kamēr esat apklusināts.",
                 ],
             ],
 
             'watch' => [
-                'no_forum_access' => 'Nepieciešama noteikta piekļuve uz izvēlēto forumu.',
+                'no_forum_access' => 'Ir nepieciešama piekļuve pieprasītajam forumam.',
             ],
         ],
 
         'topic_cover' => [
             'edit' => [
-                'uneditable' => 'Norādītā metode ir nederīga.',
-                'not_owner' => 'Tikai īpašnieks var rediģēt metodi.',
+                'uneditable' => 'Norādītais vāks ir nederīgs.',
+                'not_owner' => 'Tikai īpašnieks var rediģēt vāku.',
             ],
             'store' => [
-                'forum_not_allowed' => 'Šis forums nepieņem tēmu aizsegšanu.',
+                'forum_not_allowed' => 'Šis forums nepieņem tēmu vākus.',
             ],
         ],
 
         'view' => [
-            'admin_only' => 'Tikai admins var skatīt šo forumu.',
+            'admin_only' => 'Tikai administrators var skatīt šo forumu.',
         ],
     ],
 
     'score' => [
         'pin' => [
-            'not_owner' => '',
-            'too_many' => '',
+            'not_owner' => 'Rezultātu var piespraust tikai rezultāta īpašnieks.',
+            'too_many' => 'Piesprausti pārāk daudz rezultāti.',
         ],
     ],
 
     'user' => [
         'page' => [
             'edit' => [
-                'locked' => 'Lietotāja profila lapa ir bloķēta.',
-                'not_owner' => 'Rediģēt var tikai savu lietotāja profila lapu.',
-                'require_supporter_tag' => 'ir nepieciešams osu!supporter.',
+                'locked' => 'Lietotāja lapa ir slēgta.',
+                'not_owner' => 'Rediģēt var tikai savu lietotāja lapu.',
+                'require_supporter_tag' => 'Ir nepieciešams osu!supporter.',
             ],
         ],
     ],

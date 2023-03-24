@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'hledat ve fórech',
                 'forum_children' => 'zahrnout subfóra',
+                'include_deleted' => 'zahrnout smazané příspěvky',
                 'topic_id' => 'téma #',
                 'username' => 'autor',
             ],
@@ -72,8 +73,22 @@ return [
     ],
 
     'download' => [
-        'tagline' => "pusťme se<br>do toho!",
         'action' => 'Stáhnout osu!',
+        'action_lazer' => 'Stáhnout osu!(lazer)',
+        'action_lazer_description' => 'další velká aktualizace pro osu!',
+        'action_lazer_info' => 'více informací naleznete na této stránce',
+        'action_lazer_title' => 'zkusit osu!(lazer)',
+        'action_title' => 'stáhnout osu!',
+        'for_os' => 'pro :os',
+        'lazer_note' => 'poznámka: resetuje žebříčky',
+        'macos-fallback' => 'macOS uživatelé',
+        'mirror' => 'mirror',
+        'or' => 'nebo',
+        'os_version_or_later' => ':os_version nebo novější ',
+        'other_os' => 'ostatní platformy',
+        'quick_start_guide' => 'příručka pro začátečníky',
+        'tagline' => "pusťme se<br>do toho!",
+        'video-guide' => 'videonávod',
 
         'help' => [
             '_' => 'pokud máš problém se spuštěním hry nebo registrací účtu, tak :help_forum_link nebo :support_button.',
@@ -86,8 +101,6 @@ return [
             'macos' => 'pro macOS',
             'linux' => 'pro Linux',
         ],
-        'mirror' => 'mirror',
-        'macos-fallback' => 'macOS uživatelé',
         'steps' => [
             'register' => [
                 'title' => 'založte si účet',
@@ -105,7 +118,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'videonávod',
     ],
 
     'user' => [

@@ -1,0 +1,98 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.search-forum-post {
+  @avatar-size: 50px;
+  @margin: 5px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  word-wrap: break-word;
+  line-height: 1.5;
+  pointer-events: none;
+
+  &__avatar {
+    flex: none;
+    width: @avatar-size;
+    height: @avatar-size;
+    margin: @margin;
+    pointer-events: auto;
+    position: relative;
+  }
+
+  &__avatar-image {
+    .full-size();
+    border-radius: 50%;
+  }
+
+  &__content {
+    flex: 1;
+    margin-left: @margin;
+    min-width: 0;
+  }
+
+  &__link {
+    // make link element take the full size of the element.
+    .full-size();
+    pointer-events: auto;
+  }
+
+  &__more {
+    display: flex;
+  }
+
+  &__poster {
+    display: inline-block;
+    margin-right: 1em;
+
+    color: @osu-colour-f1;
+
+    @media @mobile {
+      display: block;
+    }
+  }
+
+  &__sub-link {
+    font-weight: bold;
+    pointer-events: auto;
+    position: relative;
+  }
+
+  &__text {
+    color: white;
+
+    &--excerpt {
+      .content-font();
+      font-size: @font-size--small-2;
+    }
+
+    &--footer {
+      color: @osu-colour-f1;
+      font-size: @font-size--small;
+    }
+
+    &--title {
+      font-size: @font-size--title-small-2;
+      margin-bottom: @margin;
+    }
+  }
+
+  &__time {
+    display: inline-block;
+    pointer-events: auto;
+    position: relative;
+
+    @media @mobile {
+      display: block;
+    }
+  }
+
+  &__url {
+    display: inline-block;
+    margin-right: 1em;
+
+    @media @mobile {
+      display: none;
+    }
+  }
+}

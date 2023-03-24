@@ -52,6 +52,22 @@ return [
         'send_message' => 'Enviar mensaje',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => 'contraseña',
+            'password_confirmation' => 'confirmar contraseña',
+            'submit' => 'crear cuenta',
+            'user_email' => 'correo',
+            'user_email_confirmation' => 'confirmar correo',
+            'username' => 'nombre de usuario',
+
+            'tos_notice' => [
+                '_' => 'al crear una cuenta aceptas los :link',
+                'link' => 'términos de servicio',
+            ],
+        ],
+    ],
+
     'disabled' => [
         'title' => '¡Oh, oh! Parece que su cuenta ha sido desactivada.',
         'warning' => "En el caso de que haya roto una regla, tenga en cuenta que generalmente hay un período de espera de un mes durante el cual no consideraremos ninguna solicitud de amnistía. Después de este período, puede contactar con nosotros si lo considera necesario. Tenga en cuenta que la creación de nuevas cuentas después de haber tenido una desactivada resultará en una <strong>extensión de este período de espera de un mes</strong>. Por favor, también tenga en cuenta que por <strong>cada cuenta que cree, estará violando más reglas</strong>. ¡Le sugerimos que no siga este camino!",
@@ -142,6 +158,7 @@ return [
     'restricted_banner' => [
         'title' => '¡Su cuenta ha sido restringida!',
         'message' => 'Mientras estás restringido, no podrás interactuar con otros jugadores y tus puntuaciones solo las podrás ver tú. Esto es, normalmente, el resultado de un proceso automatizado, y se levanta normalmente dentro de 24 horas. Si deseas apelar a tu restricción, por favor <a href="mailto:accounts@ppy.sh">contacta con el soporte</a>.',
+        'message_link' => 'Consulte esta página para obtener más información.',
     ],
     'show' => [
         'age' => ':age años',
@@ -375,7 +392,7 @@ return [
                     'actions' => [
                         'restriction' => 'Restringir',
                         'silence' => 'Silenciado',
-                        'tournament_ban' => 'Excluído de torneos',
+                        'tournament_ban' => 'Prohibición de torneo',
                         'note' => 'Nota',
                     ],
                 ],
@@ -451,6 +468,8 @@ return [
         'offline' => 'Sin conexión',
     ],
     'store' => [
+        'from_client' => '¡por favor regístrese a través del cliente del juego en su lugar!',
+        'from_web' => 'por favor complete el registro usando el sitio web de osu!',
         'saved' => 'Usuario creado',
     ],
     'verify' => [

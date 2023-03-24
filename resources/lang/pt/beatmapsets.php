@@ -60,12 +60,18 @@ return [
     'show' => [
         'discussion' => 'Discussão',
 
+        'deleted_banner' => [
+            'title' => 'Este beatmap foi apagado.',
+            'message' => '(apenas os moderadores podem ver isto)',
+        ],
+
         'details' => [
             'by_artist' => 'por :artist',
             'favourite' => 'Marcar este beatmapset como favorito',
             'favourite_login' => 'Inicia sessão para pôr este beatmap nos favoritos',
             'logged-out' => 'Precisas de iniciar sessão antes de transferir quaisquer beatmaps!',
             'mapped_by' => 'mapeado por :mapper',
+            'mapped_by_guest' => 'dificuldade de convidado por :mapper',
             'unfavourite' => 'Desmarcar este beatmapset como favorito',
             'updated_timeago' => 'atualizado há :timeago',
 

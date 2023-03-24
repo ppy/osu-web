@@ -42,10 +42,13 @@ class Contest extends Model
 {
     use Memoizes;
 
-    protected $dates = ['entry_starts_at', 'entry_ends_at', 'voting_starts_at', 'voting_ends_at'];
     protected $casts = [
+        'entry_ends_at' => 'datetime',
+        'entry_starts_at' => 'datetime',
         'extra_options' => 'array',
         'visible' => 'boolean',
+        'voting_ends_at' => 'datetime',
+        'voting_starts_at' => 'datetime',
     ];
 
     public function entries()
@@ -286,21 +289,25 @@ class Contest extends Model
             $includes[] = 'artMeta';
         }
 
-        if ($this->show_votes) {
+        $showVotes = $this->show_votes;
+        if ($showVotes) {
             $includes[] = 'results';
+        }
+        if ($this->showEntryUser()) {
+            $includes[] = 'user';
         }
 
         $contestJson = json_item(
             $this,
             new ContestTransformer(),
-            $this->show_votes ? ['users_voted_count'] : null,
+            $showVotes ? ['users_voted_count'] : null,
         );
         if ($this->isVotingStarted()) {
             $contestJson['entries'] = json_collection($this->entriesByType($user), new ContestEntryTransformer(), $includes);
         }
 
         if (!empty($contestJson['entries'])) {
-            if (!$this->show_votes) {
+            if (!$showVotes) {
                 if ($this->unmasked) {
                     // For unmasked contests, we sort alphabetically.
                     usort($contestJson['entries'], function ($a, $b) {
@@ -382,5 +389,10 @@ class Contest extends Model
     public function getForcedHeight()
     {
         return $this->getExtraOptions()['forced_height'] ?? null;
+    }
+
+    public function showEntryUser(): bool
+    {
+        return $this->show_votes || ($this->getExtraOptions()['show_entry_user'] ?? false);
     }
 }

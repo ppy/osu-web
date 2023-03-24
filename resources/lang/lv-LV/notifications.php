@@ -13,6 +13,16 @@ return [
     'see_channel' => '',
     'verifying' => '',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => '',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
     'filters' => [
         '_' => '',
         'user' => '',
@@ -59,16 +69,16 @@ return [
                 '_' => '',
                 'beatmapset_disqualify' => '',
                 'beatmapset_disqualify_compact' => '',
-                'beatmapset_love' => '',
-                'beatmapset_love_compact' => '',
+                'beatmapset_love' => '":title" tika paaugstināta uz loved',
+                'beatmapset_love_compact' => 'Bītmape tika paaugstināta uz loved',
                 'beatmapset_nominate' => '',
                 'beatmapset_nominate_compact' => '',
                 'beatmapset_qualify' => '',
                 'beatmapset_qualify_compact' => '',
                 'beatmapset_rank' => '',
                 'beatmapset_rank_compact' => '',
-                'beatmapset_remove_from_loved' => '',
-                'beatmapset_remove_from_loved_compact' => '',
+                'beatmapset_remove_from_loved' => '":title" tika noņemta no Loved',
+                'beatmapset_remove_from_loved_compact' => 'Bītmape tika noņemta no Loved',
                 'beatmapset_reset_nominations' => '',
                 'beatmapset_reset_nominations_compact' => '',
             ],
@@ -195,11 +205,11 @@ return [
 
             'beatmapset_state' => [
                 'beatmapset_disqualify' => '',
-                'beatmapset_love' => '',
+                'beatmapset_love' => '":title" tika paaugstināta uz loved',
                 'beatmapset_nominate' => '',
                 'beatmapset_qualify' => '',
                 'beatmapset_rank' => '',
-                'beatmapset_remove_from_loved' => '',
+                'beatmapset_remove_from_loved' => '":title" tika noņemta no Loved',
                 'beatmapset_reset_nominations' => '',
             ],
 
@@ -209,6 +219,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => '',
+            ],
+
             'channel' => [
                 'pm' => '',
             ],

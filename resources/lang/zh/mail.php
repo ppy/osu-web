@@ -67,7 +67,7 @@ return [
         'duration' => '因此，您可以在接下来的 :duration 内享受到 osu!direct 等 osu! 支持者所享有的特权。',
         'features' => '您可以在此处找到更多关于特权的信息：',
         'gifted' => '有人刚刚赠予您 osu! 支持者标签！',
-        'gift_message' => '',
+        'gift_message' => '把这份支持者标签赠送给你的人还附上了以下留言：',
         'subject' => '你收到了一份礼物：osu! 支持者标签。',
     ],
 

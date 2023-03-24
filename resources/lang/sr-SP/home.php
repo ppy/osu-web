@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'тражите на форуму',
                 'forum_children' => 'укључујући субфоруме',
+                'include_deleted' => '',
                 'topic_id' => 'тема #',
                 'username' => 'аутор',
             ],
@@ -72,8 +73,22 @@ return [
     ],
 
     'download' => [
-        'tagline' => "Почнимо!",
         'action' => 'Преузмите osu!',
+        'action_lazer' => 'Преузми osu!(lazer) ',
+        'action_lazer_description' => 'следеће глобално ажурирање osu!',
+        'action_lazer_info' => 'погледај ову страницу за више информација',
+        'action_lazer_title' => 'пробај osu!(lazer)',
+        'action_title' => 'преузмите osu!',
+        'for_os' => 'за :os',
+        'lazer_note' => 'напомена: постоје ресетовања ранг листе',
+        'macos-fallback' => 'macOS корисници',
+        'mirror' => 'алтернативни линк',
+        'or' => 'или',
+        'os_version_or_later' => '',
+        'other_os' => 'друге платформе',
+        'quick_start_guide' => 'водич за брзи почетак',
+        'tagline' => "Почнимо!",
+        'video-guide' => 'видео водич',
 
         'help' => [
             '_' => 'ако имате проблем са отварањем игрице или регистрације налога, :help_forum_link или :support_button.',
@@ -86,8 +101,6 @@ return [
             'macos' => 'за macOS',
             'linux' => 'за Linux',
         ],
-        'mirror' => 'алтернативни линк',
-        'macos-fallback' => 'macOS корисници',
         'steps' => [
             'register' => [
                 'title' => 'направите налог',
@@ -105,7 +118,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'видео водич',
     ],
 
     'user' => [

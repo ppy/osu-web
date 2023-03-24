@@ -31,7 +31,7 @@ return [
         'cart_problems_edit' => 'Klick hier, um ihn zu bearbeiten.',
         'declined' => 'Der Bezahlvorgang wurde abgebrochen.',
         'delayed_shipping' => 'Wir sind momentan etwas mit Bestellungen überfordert! Wir nehmen weiterhin Bestellungen an, allerdings muss mit **zusätzlichen 1-2 Wochen Verzögerung** gerechnet werden, während die aktuellen Bestellungen aufgearbeitet werden.',
-        'hide_from_activity' => '',
+        'hide_from_activity' => 'Alle osu!supporter-Tags in dieser Bestellung aus meiner Aktivität ausblenden',
         'old_cart' => 'Dein Warenkorb war nicht aktuell und wurde erneut geladen, bitte versuche es erneut.',
         'pay' => 'Mit Paypal bezahlen',
         'title_compact' => 'zur Kasse',
@@ -51,7 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Da es sich bei deiner Zahlung um einen eCheck handelt, kannst du bis zu 10 zusätzliche Tage einplanen, um die Zahlung über PayPal abzuwickeln!',
-        'hide_from_activity' => '',
+        'hide_from_activity' => 'osu!supporter-Tags in dieser Bestellung werden nicht in deinen letzten Aktivitäten angezeigt.',
         'title_compact' => 'rechnung',
 
         'status' => [
@@ -84,7 +84,7 @@ return [
             ],
 
             'subtext' => [
-                'supporter_tag' => '',
+                'supporter_tag' => 'Nachricht: :message',
             ],
         ],
 
@@ -127,7 +127,7 @@ return [
 
     'supporter_tag' => [
         'gift' => 'an jemanden verschenken',
-        'gift_message' => '',
+        'gift_message' => 'füge eine optionale Nachricht zu deinem Geschenk hinzu! (bis zu :length Zeichen)',
 
         'require_login' => [
             '_' => 'Du musst :link sein, um ein osu!supporter-Tag zu erhalten!',

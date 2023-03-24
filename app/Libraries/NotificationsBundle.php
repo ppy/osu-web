@@ -9,26 +9,32 @@ use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotification;
 use DB;
+use Illuminate\Database\Eloquent\Collection;
 
 class NotificationsBundle
 {
     const PER_STACK_LIMIT = 50;
     const STACK_LIMIT = 50;
 
+    private static function stackKey(string $objectType, int $objectId, string $category): string
+    {
+        return "{$objectType}-{$objectId}-{$category}";
+    }
+
     private $category;
     private $cursorId;
-    private $notifications;
     private $objectId;
     private $objectType;
     private $stacks = [];
     private $types = [];
     private $unreadOnly;
     private $user;
+    private Collection $userNotifications;
 
     public function __construct(User $user, array $request)
     {
         $this->user = $user;
-        $this->notifications = collect();
+        $this->userNotifications = new Collection();
         $this->unreadOnly = get_bool($request['unread'] ?? false);
         $this->cursorId = get_int($request['cursor']['id'] ?? null);
 
@@ -45,8 +51,10 @@ class NotificationsBundle
             $this->fillTypes($this->objectType);
         }
 
+        $this->fillStackTotal();
+
         $response = [
-            'notifications' => json_collection($this->notifications, 'Notification'),
+            'notifications' => json_collection($this->userNotifications->load('notification'), 'Notification'),
             'stacks' => array_values($this->stacks),
             'timestamp' => json_time(now()),
             'types' => array_values($this->types),
@@ -61,13 +69,13 @@ class NotificationsBundle
 
     private function fillStacks(string $objectType, int $objectId, string $category)
     {
-        $key = "{$objectType}-{$objectId}-{$category}";
+        $key = static::stackKey($objectType, $objectId, $category);
         // skip multiple notification names mapped to the same category.
         if (isset($this->stacks[$key])) {
             return;
         }
 
-        $query = $this->user->userNotifications()->with('notification')->hasPushDelivery()->whereHas('notification', function ($q) use ($objectId, $objectType, $category) {
+        $query = $this->user->userNotifications()->hasPushDelivery()->whereHas('notification', function ($q) use ($objectId, $objectType, $category) {
             $names = Notification::namesInCategory($category);
             $q
                 ->where('notifiable_type', $objectType)
@@ -79,8 +87,6 @@ class NotificationsBundle
             $query->where('is_read', false);
         }
 
-        $total = $query->count();
-
         $query->orderBy('id', 'desc')->limit(static::PER_STACK_LIMIT);
 
         if ($this->cursorId !== null) {
@@ -89,11 +95,70 @@ class NotificationsBundle
 
         $stack = $query->get();
 
-        $json = $this->stackToJson($stack);
+        $json = $this->stackToJson($stack, $objectType, $objectId, $category);
         if ($json !== null) {
-            $json['total'] = $total;
             $this->stacks[$key] = $json;
-            $this->notifications = $this->notifications->merge($stack);
+            $this->userNotifications = $this->userNotifications->merge($stack);
+        }
+    }
+
+    private function fillStackTotal(): void
+    {
+        if (empty($this->stacks)) {
+            return;
+        }
+
+        $binds = [];
+        $bindValues = [];
+        foreach ($this->stacks as $key => $stackJson) {
+            foreach (Notification::namesInCategory($stackJson['category']) as $name) {
+                $bindValues[] = $stackJson['object_type'];
+                $bindValues[] = $stackJson['object_id'];
+                $bindValues[] = $name;
+                $binds[] = '(?, ?, ?)';
+            }
+        }
+
+        $notificationModel = new Notification();
+        $userNotificationModel = new UserNotification();
+
+        $groupColumns = [
+            'type' => $notificationModel->qualifyColumn('notifiable_type'),
+            'id' => $notificationModel->qualifyColumn('notifiable_id'),
+            'name' => $notificationModel->qualifyColumn('name'),
+        ];
+
+        $bindsString = implode(', ', $binds);
+        $whereString = "({$groupColumns['type']}, {$groupColumns['id']}, {$groupColumns['name']}) IN ({$bindsString})";
+
+        $query = $this
+            ->user
+            ->userNotifications()
+            ->hasPushDelivery()
+            ->join(
+                $notificationModel->getTable(),
+                $notificationModel->qualifyColumn('id'),
+                '=',
+                $userNotificationModel->qualifyColumn('notification_id')
+            )
+            ->selectRaw("
+                COUNT(*) as count,
+                {$groupColumns['type']},
+                {$groupColumns['id']},
+                {$groupColumns['name']}")
+            ->whereRaw($whereString, $bindValues)
+            ->groupBy(array_values($groupColumns));
+
+        if ($this->unreadOnly) {
+            $query->where('is_read', false);
+        }
+
+        foreach ($query->get() as $row) {
+            $name = $row->getRawAttribute('name');
+            $category = Notification::NAME_TO_CATEGORY[$name] ?? $name;
+            $key = static::stackKey($row->getRawAttribute('notifiable_type'), $row->getRawAttribute('notifiable_id'), $category);
+            $this->stacks[$key]['total'] ??= 0;
+            $this->stacks[$key]['total'] += $row->getRawAttribute('count');
         }
     }
 
@@ -173,24 +238,26 @@ class NotificationsBundle
         }
     }
 
-    private function stackToJson($stack)
+    private function stackToJson($stack, string $objectType, int $objectId, string $category)
     {
         $last = $stack->last();
         if ($last === null) {
             return;
         }
 
-        $last = $last instanceof UserNotification ? $last->notification : $last;
         $cursor = $stack->count() < static::PER_STACK_LIMIT ? null : [
-            'id' => $last->id,
+            'id' => $last->notification_id,
         ];
 
         return [
-            'category' => $last->category,
+            'category' => $category,
             'cursor' => $cursor,
-            'name' => $last->name,
-            'object_type' => $last->notifiable_type,
-            'object_id' => $last->notifiable_id,
+            // TODO: deprecated. Actual value isn't used by osu-web and it's
+            // expensive to obtain at the point this function is called.
+            // Remove when not used by anything else.
+            'name' => Notification::namesInCategory($category)[0],
+            'object_type' => $objectType,
+            'object_id' => $objectId,
         ];
     }
 }

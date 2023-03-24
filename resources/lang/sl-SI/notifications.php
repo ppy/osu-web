@@ -13,6 +13,16 @@ return [
     'see_channel' => 'pojdi v klepet',
     'verifying' => 'Za ogled obvestil te prosimo za verifikacijo seje',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => '',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
     'filters' => [
         '_' => 'vse',
         'user' => 'profil',
@@ -209,6 +219,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Nova objava v ":name"',
+            ],
+
             'channel' => [
                 'pm' => 'Prejel si novo sporočilo od :username',
             ],

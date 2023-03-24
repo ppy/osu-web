@@ -6,10 +6,11 @@
 namespace App\Libraries\Search;
 
 use App\Libraries\Elasticsearch\Sort;
+use App\Models\User;
 
 class ForumSearchRequestParams extends ForumSearchParams
 {
-    public function __construct(array $request)
+    public function __construct(array $request, ?User $user)
     {
         parent::__construct();
 
@@ -21,6 +22,10 @@ class ForumSearchRequestParams extends ForumSearchParams
         $this->forumId = get_int($request['forum_id'] ?? null);
         $this->topicId = get_int($request['topic_id'] ?? null);
         $this->parseSort(get_string($request['sort'] ?? null));
+
+        if ($user?->isModerator() ?? false) {
+            $this->includeDeleted = get_bool($request['include_deleted'] ?? false);
+        }
     }
 
     public function isLoginRequired(): bool
