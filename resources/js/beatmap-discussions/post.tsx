@@ -260,6 +260,8 @@ export default class Post extends React.Component<Props> {
   }
 
   private renderKudosuAction(op: 'allow' | 'deny') {
+    if (this.props.readonly) return null;
+
     return (
       <a
         className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
