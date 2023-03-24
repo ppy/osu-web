@@ -160,29 +160,29 @@ class BBCodeForDB
 
         // internal url
         $text = preg_replace(
-            "#{$spaces[0]}({$internalUrl}/([^\s]+?)){$spaces[1]}#",
-            "\\1<!-- m --><a href='\\2' rel='nofollow'>\\3</a><!-- m -->\\4",
+            "#{$spaces[0]}({$internalUrl}/([^\s]+?))(?={$spaces[1]})#",
+            "\\1<!-- m --><a href='\\2' rel='nofollow'>\\3</a><!-- m -->",
             $text
         );
 
         // plain http/https/ftp
         $text = preg_replace(
-            "#{$spaces[0]}((?:https?|ftp)://[^\s]+?){$spaces[1]}#",
-            "\\1<!-- m --><a href='\\2' rel='nofollow'>\\2</a><!-- m -->\\3",
+            "#{$spaces[0]}((?:https?|ftp)://[^\s]+?)(?={$spaces[1]})#",
+            "\\1<!-- m --><a href='\\2' rel='nofollow'>\\2</a><!-- m -->",
             $text
         );
 
         // www
         $text = preg_replace(
-            "#{$spaces[0]}(www\.[^\s]+){$spaces[1]}#",
-            "\\1<!-- w --><a href='http://\\2' rel='nofollow'>\\2</a><!-- w -->\\3",
+            "#{$spaces[0]}(www\.[^\s]+)(?={$spaces[1]})#",
+            "\\1<!-- w --><a href='http://\\2' rel='nofollow'>\\2</a><!-- w -->",
             $text
         );
 
         // emails
         $text = preg_replace(
-            "#{$spaces[0]}([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z-]+){$spaces[1]}#",
-            "\\1<!-- e --><a href='mailto:\\2' rel='nofollow'>\\2</a><!-- e -->\\3",
+            "#{$spaces[0]}([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z-]+)(?={$spaces[1]})#",
+            "\\1<!-- e --><a href='mailto:\\2' rel='nofollow'>\\2</a><!-- e -->",
             $text
         );
 
