@@ -23,9 +23,7 @@ Current rate limit is set at an insanely high 1200 requests per minute, with bur
 Below is a list of some language-specific wrappers maintained by the community. Your mileage may vary when using them – please report any issues to the wrapper first before reporting back to us.
 
 - [ossapi](https://github.com/circleguard/ossapi) (python)
-- [osu.py](https://github.com/Sheepposu/osu.py) (python)
 - [aiosu](https://github.com/NiceAesth/aiosu) (python)
-- [osu-api-extended](https://github.com/cyperdark/osu-api-extended) (javascript)
 - [rosu-v2](https://github.com/MaxOhn/rosu-v2) (rust)
 
 # Changelog
