@@ -6,10 +6,10 @@
 return [
     'play_more' => 'Wie wäre es, stattdessen ein bisschen osu! zu spielen?',
     'require_login' => 'Zum Fortfahren bitte einloggen.',
-    'require_verification' => 'Bitte verifiziere Dich, um fortzufahren.',
+    'require_verification' => 'Bitte verifiziere dich, um fortzufahren.',
     'restricted' => "Nicht möglich, während man restricted ist.",
-    'silenced' => "Nicht möglich, während man stummgeschaltet ist.",
-    'unauthorized' => 'Zugang verwehrt.',
+    'silenced' => "Nicht möglich, während du stumm geschaltet bist.",
+    'unauthorized' => 'Zugriff verweigert.',
 
     'beatmap_discussion' => [
         'destroy' => [
@@ -20,14 +20,14 @@ return [
             'exhausted' => 'Dein Nominierungslimit für heute wurde erreicht, bitte versuche es morgen erneut.',
             'incorrect_state' => 'Beim Ausführen dieser Aktion ist ein Fehler aufgetreten. Bitte Seite neu laden.',
             'owner' => "Eigene Beatmaps können nicht nominiert werden.",
-            'set_metadata' => 'Vor der Nominierung müssen Genre und Sprache festgelegt werden.',
+            'set_metadata' => 'Du musst den Genre und die Sprache einstellen, bevor nominiert werden kann.',
         ],
         'resolve' => [
-            'not_owner' => 'Nur der Thread- oder Beatmapersteller kann die Diskussion beilegen.',
+            'not_owner' => 'Nur der Thread- oder Beatmapersteller kann die Diskussion für gelöst erklären.',
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Nur der Beatmapersteller oder ein Nominator/QAT Mitglied kann Notizen erstellen.',
+            'mapper_note_wrong_user' => 'Nur der Beatmapersteller oder ein BN-/NAT-Mitglied kann Notizen erstellen.',
         ],
 
         'vote' => [
@@ -41,7 +41,7 @@ return [
     'beatmap_discussion_post' => [
         'destroy' => [
             'not_owner' => 'Du kannst nur deine eigenen Beiträge löschen.',
-            'resolved' => 'Du kannst keinen Beitrag einer gelösten Diskussion löschen.',
+            'resolved' => 'Du kannst einen Beitrag einer vollendeten Diskussion nicht löschen.',
             'system_generated' => 'Automatisch generierter Beitrag kann nicht gelöscht werden.',
         ],
 
@@ -50,13 +50,11 @@ return [
             'resolved' => 'Du kannst keinen Beitrag einer gelösten Diskussion bearbeiten.',
             'system_generated' => 'Automatisch erzeugte Beiträge können nicht bearbeitet werden.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Diese Beatmap Diskussion ist gesperrt.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => '',
+
         'metadata' => [
             'nominated' => 'Du kannst die Metadaten einer nominierten Map nicht ändern. Wenn du glaubst, dass sie falsch sind, wende dich an ein BN- oder NAT-Mitglied.',
         ],
@@ -69,8 +67,8 @@ return [
         'moderated' => 'Dieser Kanal wird derzeit moderiert.',
         'no_access' => 'Du hast kein Zugriff auf diesen Kanal.',
         'receive_friends_only' => 'Der Benutzer kann möglicherweise nicht antworten, da du nur Nachrichten von Personen auf deiner Freundesliste akzeptierst.',
-        'restricted' => 'Du kannst keine Nachrichten senden, während du stummgeschaltet, eingeschränkt oder gebannt bist.',
-        'silenced' => 'Du kannst keine Nachrichten senden, während du stummgeschaltet, eingeschränkt oder gebannt bist.',
+        'restricted' => 'Du kannst keine Nachrichten senden, während du stummgeschaltet oder gesperrt bist.',
+        'silenced' => 'Du kannst keine Nachrichten senden, während du stummgeschaltet oder gesperrt bist.',
     ],
 
     'comment' => [
@@ -87,7 +85,7 @@ return [
 
         'entry' => [
             'limit_reached' => 'Du hast das Einsendelimit für diesen Wettbewerb erreicht',
-            'over' => 'Vielen Dank für eure Einsendungen! Der Einsendezeitraum ist vorbei, die Abstimmungen werden bald beginnen.',
+            'over' => 'Vielen Dank für deine Einsendungen! Der Einsendezeitraum ist vorbei und die Abstimmungen werden bald beginnen.',
         ],
     ],
 
@@ -100,14 +98,14 @@ return [
             'delete' => [
                 'only_last_post' => 'Nur der letzte Beitrag kann gelöscht werden.',
                 'locked' => 'Beiträge in gesperrten Threads können nicht gelöscht werden.',
-                'no_forum_access' => 'Zugang zum angeforderten Forum wurde verwehrt.',
+                'no_forum_access' => 'Zugriff zum angeforderten Forum verweigert.',
                 'not_owner' => 'Nur der Autor kann den Beitrag löschen.',
             ],
 
             'edit' => [
                 'deleted' => 'Gelöschte Beiträge können nicht bearbeitet werden.',
                 'locked' => 'Dieser Beitrag ist gesperrt und kann nicht bearbeitet werden.',
-                'no_forum_access' => 'Zugang zum angeforderten Forum wurde verwehrt.',
+                'no_forum_access' => 'Zugang zum angeforderten Forum ist erforderlich.',
                 'not_owner' => 'Nur der Autor kann den Beitrag bearbeiten.',
                 'topic_locked' => 'Beiträge in gesperrten Threads können nicht bearbeitet werden.',
             ],
@@ -120,7 +118,7 @@ return [
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Bitte bearbeite deinen letzten Beitrag, anstatt ihn erneut zu posten.',
+                'double_post' => 'Bitte bearbeite deinen letzten Beitrag, anstatt erneut zu posten.',
                 'locked' => 'Auf gesperrte Threads kann nicht geantwortet werden.',
                 'no_forum_access' => 'Zugang zum angeforderten Forum wurde verwehrt.',
                 'no_permission' => 'Keine Berechtigung zum Antworten.',
@@ -133,15 +131,15 @@ return [
             ],
 
             'store' => [
-                'no_forum_access' => 'Zugang zum angeforderten Forum wurde verwehrt.',
+                'no_forum_access' => 'Zugang zum angeforderten Forum ist erforderlich.',
                 'no_permission' => 'Keine Berechtigung, einen neuen Thread zu erstellen.',
                 'forum_closed' => 'Das Forum ist geschlossen. Man kann keine Beiträge mehr posten.',
             ],
 
             'vote' => [
-                'no_forum_access' => 'Zugang zum angeforderten Forum wurde verwehrt.',
+                'no_forum_access' => 'Zugang zum angeforderten Forum ist erforderlich.',
                 'over' => 'Die Abstimmung ist vorbei. Es kann nicht mehr abgestimmt werden.',
-                'play_more' => 'Du musst mehr spielen bevor du im Forum abstimmen kannst.',
+                'play_more' => 'Du musst mehr spielen, bevor du im Forum abstimmen kannst.',
                 'voted' => 'Es ist nicht erlaubt, die Stimme zu ändern.',
 
                 'user' => [
@@ -152,7 +150,7 @@ return [
             ],
 
             'watch' => [
-                'no_forum_access' => 'Zugang zum angeforderten Forum wurde verwehrt.',
+                'no_forum_access' => 'Zugang zum angeforderten Forum ist erforderlich.',
             ],
         ],
 
@@ -173,7 +171,7 @@ return [
 
     'score' => [
         'pin' => [
-            'not_owner' => 'Nur der Eigentümer kann den Score anpinnen.',
+            'not_owner' => 'Nur der Spieler, der den Score eingereicht hat, kann ihn anpinnen.',
             'too_many' => 'Zu viele Scores angepinnt.',
         ],
     ],

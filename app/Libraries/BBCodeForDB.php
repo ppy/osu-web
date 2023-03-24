@@ -79,12 +79,13 @@ class BBCodeForDB
 
     public function parseBox($text)
     {
-        $text = preg_replace('#\[box=([^]]*?)\]#s', "[box=\\1:{$this->uid}]", $text);
-        $text = str_replace('[/box]', "[/box:{$this->uid}]", $text);
-        $text = str_replace('[spoilerbox]', "[spoilerbox:{$this->uid}]", $text);
-        $text = str_replace('[/spoilerbox]', "[/spoilerbox:{$this->uid}]", $text);
+        $text = preg_replace('#\[box=((\\\[\[\]]|[^][]|\[(\\\[\[\]]|[^][]|(?R))*\])*?)\]#s', "[box=\\1:{$this->uid}]", $text);
 
-        return $text;
+        return strtr($text, [
+            '[/box]' => "[/box:{$this->uid}]",
+            '[spoilerbox]' => "[spoilerbox:{$this->uid}]",
+            '[/spoilerbox]' => "[/spoilerbox:{$this->uid}]",
+        ]);
     }
 
     public function parseCode($text)

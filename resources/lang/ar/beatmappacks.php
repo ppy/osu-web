@@ -34,6 +34,7 @@ return [
     'mode' => [
         'artist' => 'ألبوم/الفنان',
         'chart' => 'تسليط الأضواء',
+        'featured' => '',
         'standard' => 'أساسي',
         'theme' => 'مظهر',
     ],

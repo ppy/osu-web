@@ -18,6 +18,9 @@
         </ul>
 
         <div class="beatmap-packs js-accordion">
+            @if (count($packs) === 0)
+                {{ osu_trans('beatmappacks.index.empty') }}
+            @endif
             @foreach ($packs as $pack)
                 <div class="beatmap-pack js-beatmap-pack js-accordion__item" data-pack-tag="{{ $pack->tag }}">
                     <a href="{{ route('packs.show', $pack) }}" class="beatmap-pack__header js-accordion__item-header">

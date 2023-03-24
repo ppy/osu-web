@@ -4,7 +4,7 @@
 import ProfilePageExtraSectionTitle from 'components/profile-page-extra-section-title';
 import StringWithComponent from 'components/string-with-component';
 import TimeWithTooltip from 'components/time-with-tooltip';
-import { UserLink } from 'components/user-link';
+import UserLink from 'components/user-link';
 import UserAccountHistoryJson from 'interfaces/user-account-history-json';
 import { computed } from 'mobx';
 import { observer } from 'mobx-react';

@@ -34,14 +34,30 @@ export default class DetailBar extends React.Component<Props> {
           userId={this.props.user.id}
         />
 
-        {this.renderNonBotButtons()}
+        {this.props.user.is_bot ? this.renderMessageButton() : this.renderNonBotButtons()}
+      </div>
+    );
+  }
+
+  private renderMessageButton() {
+    if (!this.showMessageButton) return null;
+
+    return (
+      // extra div to allow using same user-action-button--profile-page
+      // like other buttons without resorting to additional styling
+      <div>
+        <a
+          className='user-action-button user-action-button--profile-page'
+          href={route('messages.users.show', { user: this.props.user.id })}
+          title={trans('users.card.send_message')}
+        >
+          <i className='fas fa-envelope' />
+        </a>
       </div>
     );
   }
 
   private renderNonBotButtons() {
-    if (this.props.user.is_bot) return null;
-
     return (
       <>
         <FollowUserMappingButton
@@ -52,19 +68,7 @@ export default class DetailBar extends React.Component<Props> {
           userId={this.props.user.id}
         />
 
-        {this.showMessageButton &&
-          // extra div to allow using same user-action-button--profile-page
-          // like other buttons without resorting to additional styling
-          <div>
-            <a
-              className='user-action-button user-action-button--profile-page'
-              href={route('messages.users.show', { user: this.props.user.id })}
-              title={trans('users.card.send_message')}
-            >
-              <i className='fas fa-envelope' />
-            </a>
-          </div>
-        }
+        {this.renderMessageButton()}
 
         {showExtraMenu(this.props.user) && <ExtraMenu user={this.props.user} />}
 

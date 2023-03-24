@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => '',
         'latest_post' => 'Најновији Постови',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => 'Стварно вратити пост?',
         'edited' => 'Последње измењено од :user :when, измењено :count_delimited пута и укупно.|Последње измењено од :user :when, измењено :count_delimited пута укупно.',
         'posted_at' => 'постовао :when',
-        'posted_by' => 'аутор поста :username',
+        'posted_by_in' => '',
 
         'actions' => [
             'destroy' => 'Обриши пост',

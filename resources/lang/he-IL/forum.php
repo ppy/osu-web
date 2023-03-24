@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => '',
         'latest_post' => 'פוסט אחרון',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => 'באמת לשחזר פוסט?',
         'edited' => 'נערך לאחרונה על-ידי :user :when, נערך :count פעמים.',
         'posted_at' => 'פורסם :when',
-        'posted_by' => '',
+        'posted_by_in' => '',
 
         'actions' => [
             'destroy' => 'מחק פוסט',

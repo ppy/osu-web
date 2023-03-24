@@ -54,12 +54,12 @@ class NewForumTopic
         ]);
     }
 
-    public function titlePlaceholder()
+    public function titlePlaceholder(): ?string
     {
-        if ($this->forum->isHelpForum()) {
+        return $this->forum->isHelpForum()
             // In English language forum, no localization.
-            return 'What is your problem (50 characters)';
-        }
+            ? 'What is your problem (50 characters)'
+            : null;
     }
 
     public function toArray()

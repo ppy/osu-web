@@ -34,6 +34,7 @@ return [
     'mode' => [
         'artist' => 'Sanatçı/Albüm',
         'chart' => 'Öne Çıkanlar',
+        'featured' => '',
         'standard' => 'Standart',
         'theme' => 'Tema',
     ],

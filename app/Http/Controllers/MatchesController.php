@@ -64,9 +64,7 @@ class MatchesController extends Controller
         $events = $match->events()
             ->with([
                 'game.beatmap.beatmapset',
-                'game.scores' => function ($query) {
-                    $query->with('game')->default();
-                },
+                'game.scores' => fn ($q) => $q->default(),
             ])->limit($limit);
 
         if (isset($after)) {
@@ -83,6 +81,14 @@ class MatchesController extends Controller
         }
 
         $events = $events->get();
+        foreach ($events as $event) {
+            $game = $event->game;
+            if ($game !== null) {
+                foreach ($game->scores as $score) {
+                    $score->setRelation('game', $game);
+                }
+            }
+        }
 
         if ($reverseOrder ?? false) {
             $events = $events->reverse();

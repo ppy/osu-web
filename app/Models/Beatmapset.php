@@ -108,11 +108,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 {
     use Memoizes, SoftDeletes, Traits\CommentableDefaults, Traits\Es\BeatmapsetSearch, Traits\Reportable, Validatable;
 
-    protected $_storage = null;
-    protected $table = 'osu_beatmapsets';
-    protected $primaryKey = 'beatmapset_id';
-
-    protected $casts = [
+    const CASTS = [
         'active' => 'boolean',
         'approved_date' => 'datetime',
         'comment_locked' => 'boolean',
@@ -131,7 +127,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         'video' => 'boolean',
     ];
 
-    public $timestamps = false;
+    const HYPEABLE_STATES = [-1, 0, 3];
 
     const STATES = [
         'graveyard' => -2,
@@ -142,7 +138,13 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         'qualified' => 3,
         'loved' => 4,
     ];
-    const HYPEABLE_STATES = [-1, 0, 3];
+
+    public $timestamps = false;
+
+    protected $_storage = null;
+    protected $casts = self::CASTS;
+    protected $primaryKey = 'beatmapset_id';
+    protected $table = 'osu_beatmapsets';
 
     public static function coverSizes()
     {
@@ -173,6 +175,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     {
         $recentIds = static::ranked()
             ->where('approved_date', '>', now()->subDays(30))
+            ->where('nsfw', false)
             ->select('beatmapset_id');
 
         return FavouriteBeatmapset::select('beatmapset_id')
@@ -191,8 +194,8 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
         return Cache::remember("beatmapsets_latest_{$count}", 3600, function () use ($count) {
             // We union here so mysql can use indexes to speed this up
-            $ranked = self::ranked()->active()->orderBy('approved_date', 'desc')->limit($count);
-            $approved = self::approved()->active()->orderBy('approved_date', 'desc')->limit($count);
+            $ranked = self::ranked()->active()->where('nsfw', false)->orderBy('approved_date', 'desc')->limit($count);
+            $approved = self::approved()->active()->where('nsfw', false)->orderBy('approved_date', 'desc')->limit($count);
 
             return $ranked->union($approved)->orderBy('approved_date', 'desc')->limit($count)->get();
         });

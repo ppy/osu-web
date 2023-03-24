@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => '',
         'latest_post' => '',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => '',
         'edited' => '',
         'posted_at' => '',
-        'posted_by' => '',
+        'posted_by_in' => '',
 
         'actions' => [
             'destroy' => '',

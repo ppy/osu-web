@@ -32,6 +32,7 @@ return [
     ],
 
     'forum_topics' => [
+        'created' => '',
         'feature_votes' => 'Prioritat de l\'estrella',
         'new' => 'Última resposta',
     ],

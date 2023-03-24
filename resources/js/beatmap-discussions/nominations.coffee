@@ -9,14 +9,14 @@ import DiscreteBar from 'components/discrete-bar'
 import Modal from 'components/modal'
 import StringWithComponent from 'components/string-with-component'
 import TimeWithTooltip from 'components/time-with-tooltip'
-import { UserLink } from 'components/user-link'
+import UserLink from 'components/user-link'
 import { route } from 'laroute'
 import * as React from 'react'
 import { a, div, i, span } from 'react-dom-factories'
 import { onError } from 'utils/ajax'
 import { canModeratePosts, format, makeUrl, previewMessage } from 'utils/beatmapset-discussion-helper'
 import { nominationsCount } from 'utils/beatmapset-helper'
-import { joinComponents, trans } from 'utils/lang'
+import { joinComponents, trans, transExists } from 'utils/lang'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
 import { pageChange } from 'utils/page-change'
 import { presence } from 'utils/string'
@@ -299,7 +299,12 @@ export class Nominations extends React.PureComponent
         rankingETA = @props.beatmapset.nominations.ranking_eta
         date =
           if rankingETA?
-            moment(rankingETA).format(dateFormat)
+            # TODO: remove after translations are updated
+            if transExists 'beatmaps.nominations.rank_estimate.on'
+              trans 'beatmaps.nominations.rank_estimate.on',
+                date: moment(rankingETA).format(dateFormat)
+            else
+              moment(rankingETA).format(dateFormat)
           else
             trans 'beatmaps.nominations.rank_estimate.soon'
 

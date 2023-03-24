@@ -13,6 +13,16 @@ return [
     'see_channel' => 'לך לצ\'אט',
     'verifying' => '',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => '',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
     'filters' => [
         '_' => 'הכל',
         'user' => 'פרופיל',

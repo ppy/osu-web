@@ -28,8 +28,8 @@ return [
 
     'seasons' => [
         'empty' => 'Ainda não há salas nessa temporada.',
-        'ongoing' => 'Esta temporada ainda está em andamento (haverá mais playlists adicionadas).',
-        'room_count' => 'Contagem de playlist',
+        'ongoing' => 'Esta temporada ainda está em progresso (mais playlists serão adicionadas).',
+        'room_count' => 'Contagem de playlists',
         'url' => 'Exibir mais informações sobre essa temporada.',
     ],
 

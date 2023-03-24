@@ -34,6 +34,7 @@ return [
     'mode' => [
         'artist' => '藝術家/專輯',
         'chart' => '頭條',
+        'featured' => '',
         'standard' => '標準',
         'theme' => '主題',
     ],
