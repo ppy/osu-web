@@ -132,10 +132,10 @@ class BBCodeFromDB
     public function parseImagemap($text)
     {
         return preg_replace_callback(
-            '#(\[imagemap\].+?\[/imagemap\])#',
+            '#(\[imagemap\].+?\[/imagemap\]\n?)#',
             function ($m) {
                 return preg_replace_callback(
-                    '#\[imagemap\]\n(?<imageUrl>https?://.+)\n(?<links>(?:(?:[0-9.]+ ){4}(?:\#|https?://[^ ]+|mailto:[^ ]+)(?: .+)?\n)+)\[/imagemap\]#',
+                    '#\[imagemap\]\n(?<imageUrl>https?://.+)\n(?<links>(?:(?:[0-9.]+ ){4}(?:\#|https?://[^ ]+|mailto:[^ ]+)(?: .+)?\n)+)\[/imagemap\]\n?#',
                     function ($map) {
                         $links = array_map(
                             fn ($rawLink) => explode(' ', $rawLink, 6),
