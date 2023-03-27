@@ -1330,6 +1330,22 @@
         "ValidForMultiplayerAsFreeMod": true
       },
       {
+        "Acronym": "SG",
+        "Name": "Single Tap",
+        "Description": "One key for dons, one key for kats.",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [
+          "AT",
+          "CN",
+          "RX"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
         "Acronym": "AT",
         "Name": "Autoplay",
         "Description": "Watch a perfect automated play through the song.",
@@ -1340,6 +1356,7 @@
           "SD",
           "PF",
           "AC",
+          "SG",
           "CN",
           "RX",
           "AS"
@@ -1360,6 +1377,7 @@
           "SD",
           "PF",
           "AC",
+          "SG",
           "AT",
           "CN",
           "RX",
@@ -1381,6 +1399,7 @@
           "SD",
           "PF",
           "AC",
+          "SG",
           "AT",
           "CN"
         ],
