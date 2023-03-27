@@ -80,7 +80,17 @@ class UserReport extends Model
         ) {
             return config('osu.user_report_notification.endpoint_cheating');
         } else {
-            return config('osu.user_report_notification.endpoint_moderation');
+            $type = match ($reportableModel::class) {
+                BeatmapDiscussionPost::class => 'beatmapset_discussion',
+                Beatmapset::class => 'beatmapset',
+                Chat\Message::class => 'chat',
+                Comment::class => 'comment',
+                Forum\Post::class => 'forum',
+                User::class => 'user',
+            };
+
+            return config("osu.user_report_notification.endpoint.{$type}")
+                ?? config('osu.user_report_notification.endpoint_moderation');
         }
     }
 
