@@ -141,6 +141,20 @@ class UserReportTest extends TestCase
         $this->assertTrue($report->reportable->is($reportable));
     }
 
+    /**
+     * @dataProvider reportableClasses
+     */
+    public function testReportableNotificationEndpoint(string $class): void
+    {
+        $reportable = static::makeReportable($class);
+        $reporter = User::factory()->create();
+        $report = $reportable->reportBy($reporter, static::reportParams());
+
+        $report->routeNotificationForSlack(null);
+
+        $this->assertTrue(true, 'should not fail getting notification routing url');
+    }
+
     public function reportableClasses(): array
     {
         $reportables = [];
