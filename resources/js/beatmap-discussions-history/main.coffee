@@ -33,53 +33,8 @@ export class Main extends React.PureComponent
         relatedDiscussions: props.relatedDiscussions
 
 
-  componentDidMount: =>
-    $.subscribe "beatmapsetDiscussions:update.#{@eventId}", @discussionUpdate
-    $(document).on "ajax:success.#{@eventId}", '.js-beatmapset-discussion-update', @ujsDiscussionUpdate
-
-
   componentWillUnmount: =>
-    $.unsubscribe ".#{@eventId}"
-    $(window).off ".#{@eventId}"
-
     $(window).stop()
-
-
-  discussionUpdate: (_e, options) =>
-    {beatmapset} = options
-    return unless beatmapset?
-
-    discussions = [@state.discussions...]
-    users = [@state.users...]
-    relatedDiscussions = [@state.relatedDiscussions...]
-
-    discussionIds = _.map discussions, 'id'
-    userIds = _.map users, 'id'
-
-    # Due to the entire hierarchy of discussions being sent back when a post is updated (instead of just the modified post),
-    #   we need to iterate over each discussion and their posts to extract the updates we want.
-    _.each beatmapset.discussions, (newDiscussion) ->
-      if discussionIds.includes(newDiscussion.id)
-        discussion = _.find discussions, id: newDiscussion.id
-        discussions = _.reject discussions, id: newDiscussion.id
-        newDiscussion = _.merge(discussion, newDiscussion)
-        # The discussion list shows discussions started by the current user, so it can be assumed that the first post is theirs
-        newDiscussion.starting_post = newDiscussion.posts[0]
-        discussions.push(newDiscussion)
-      else
-        relatedDiscussions.push(newDiscussion)
-
-    _.each beatmapset.related_users, (newUser) ->
-      if userIds.includes(newUser.id)
-        users = _.reject users, id: newUser.id
-
-      users.push(newUser)
-
-    @cache.users = @cache.discussions = @cache.beatmaps = @cache.beatmapsets = @state.relatedDiscussions = null
-    @setState
-      discussions: _.reverse(_.sortBy(discussions, (d) -> Date.parse(d.starting_post.created_at)))
-      users: users
-      relatedDiscussions: relatedDiscussions
 
 
   discussions: =>
@@ -136,7 +91,7 @@ export class Main extends React.PureComponent
                       currentUser: currentUser
                       beatmapset: beatmapsets[discussion.beatmapset_id]
                       isTimelineVisible: false
-                      visible: false
+                      readonly: true
                       showDeleted: true
                       preview: true
 
@@ -147,8 +102,3 @@ export class Main extends React.PureComponent
       @cache.users[null] = @cache.users[undefined] = deletedUser.toJson()
 
     @cache.users
-
-
-  ujsDiscussionUpdate: (_e, data) =>
-    # to allow ajax:complete to be run
-    Timeout.set 0, => @discussionUpdate(null, beatmapset: data)

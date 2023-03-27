@@ -66,6 +66,7 @@ export default class Discussions extends React.Component<Props> {
           discussion={discussion}
           isTimelineVisible={false}
           preview
+          readonly
           showDeleted
           users={this.props.users}
         />
