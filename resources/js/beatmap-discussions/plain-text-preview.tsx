@@ -23,13 +23,9 @@ function imageRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<Re
 }
 
 export function linkRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>) {
-  const props = propsFromHref(astProps.href ?? '');
+  const { sameHost, ...props } = propsFromHref(astProps.href ?? '', true);
 
-  // Using the fact that target gets unset for discussions on the same beatmapset page.
-  // Basically, it gets a link if it doesn't open a new tab.
-  return props.target == null
-    ? <a href={astProps.href} {...props} />
-    : <>{props.children}</>;
+  return sameHost ? <a href={astProps.href} {...props} /> : <>{props.children}</>;
 }
 
 function textRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) {

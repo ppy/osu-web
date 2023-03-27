@@ -57,10 +57,10 @@ type ParsedUrlParams =
   & Required<Pick<MakeUrlOptions, 'beatmapsetId' | 'filter' | 'mode'>>;
 
 interface PropsFromHrefValue {
-  [key: string]: string | undefined;
   children: string;
   className?: string;
   rel: 'nofollow noreferrer';
+  sameHost?: boolean;
   target?: '_blank';
 }
 
@@ -316,7 +316,7 @@ export function parseUrl(urlString?: string | null, discussions?: BeatmapsetDisc
   return ret;
 }
 
-export function propsFromHref(href: string) {
+export function propsFromHref(href: string, returnExtraMetadata = false) {
   const current = parseUrl();
 
   const props: PropsFromHrefValue = {
@@ -349,6 +349,10 @@ export function propsFromHref(href: string) {
         // different beatmapset, format: 1234#567
         props.children = `${target.beatmapsetId}#${hash}`;
       }
+    }
+
+    if (returnExtraMetadata) {
+      props.sameHost = true;
     }
   }
 
