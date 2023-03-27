@@ -1,10 +1,12 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import BeatmapsPopup from 'beatmapset-panel/beatmaps-popup';
 import BeatmapsetBadge from 'components/beatmapset-badge';
 import BeatmapsetCover from 'components/beatmapset-cover';
 import { CircularProgress } from 'components/circular-progress';
+import StringWithComponent from 'components/string-with-component';
+import TimeWithTooltip from 'components/time-with-tooltip';
+import UserLink from 'components/user-link';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import BeatmapsetJson, { BeatmapsetStatus } from 'interfaces/beatmapset-json';
@@ -22,9 +24,7 @@ import { classWithModifiers } from 'utils/css';
 import { formatNumber, formatNumberSuffixed } from 'utils/html';
 import { trans } from 'utils/lang';
 import { beatmapsetDownloadDirect } from 'utils/url';
-import StringWithComponent from './string-with-component';
-import TimeWithTooltip from './time-with-tooltip';
-import UserLink from './user-link';
+import BeatmapsPopup from './beatmaps-popup';
 
 export const beatmapsetCardSizes = ['normal', 'extra'] as const;
 export type BeatmapsetCardSize = typeof beatmapsetCardSizes[number];

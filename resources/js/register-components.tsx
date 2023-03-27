@@ -1,8 +1,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import BeatmapsetPanel, { Props as BeatmapsetPanelProps } from 'beatmapset-panel';
 import BeatmapsetEvents, { Props as BeatmapsetEventsProps } from 'components/beatmapset-events';
-import BeatmapsetPanel, { Props as BeatmapsetPanelProps } from 'components/beatmapset-panel';
 import BlockButton from 'components/block-button';
 import ChatIcon from 'components/chat-icon';
 import { Comments } from 'components/comments';
