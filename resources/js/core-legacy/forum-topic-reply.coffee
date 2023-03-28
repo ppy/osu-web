@@ -71,7 +71,7 @@ export default class ForumTopicReply
     $input = @$input()
 
     currentInput = $input.val()
-    data = "#{currentInput}\n\n#{data}" if currentInput
+    data = "#{currentInput}\n#{data}" if currentInput
 
     $input.val(data).trigger('input')
     $input[0].selectionStart = data.length
