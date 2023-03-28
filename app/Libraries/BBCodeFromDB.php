@@ -190,12 +190,11 @@ class BBCodeFromDB
         $text = preg_replace("#\[list:{$this->uid}\]\s*\[\*:{$this->uid}\]#", '<ol class="unordered"><li>', $text);
 
         // convert list items.
-        $text = preg_replace("#\[/\*(:m)?:{$this->uid}\]\n?#", '</li>', $text);
+        $text = preg_replace("#\[/\*(:m)?:{$this->uid}\]\n?\n?#", '</li>', $text);
         $text = preg_replace("#\s*\[\*:{$this->uid}\]#", '<li>', $text);
 
         // close list tags.
-        $text = preg_replace("#\s*\[/list:o:{$this->uid}\]\n?#", '</ol>', $text);
-        $text = preg_replace("#\s*\[/list:u:{$this->uid}\]\n?#", '</ol>', $text);
+        $text = preg_replace("#\s*\[/list:(o|u):{$this->uid}\]\n?\n?#", '</ol>', $text);
 
         // list with "title", with it being just a list without style.
         $text = preg_replace("#\[list=[^]]+:{$this->uid}\](.+?)(<li>|</ol>)#s", '<ul class="bbcode__list-title"><li>$1</li></ul><ol>$2', $text);
@@ -231,7 +230,7 @@ class BBCodeFromDB
     {
         $text = preg_replace("#\[quote=&quot;([^:]+)&quot;:{$this->uid}\]\s*#", '<blockquote><h4>\\1 wrote:</h4>', $text);
         $text = preg_replace("#\[quote:{$this->uid}\]\s*#", '<blockquote>', $text);
-        $text = preg_replace("#\s*\[/quote:{$this->uid}\]\n?#", '</blockquote>', $text);
+        $text = preg_replace("#\s*\[/quote:{$this->uid}\]\n?\n?#", '</blockquote>', $text);
 
         return $text;
     }
