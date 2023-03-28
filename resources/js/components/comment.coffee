@@ -443,7 +443,7 @@ export class Comment extends React.PureComponent
       onClick: @voteToggle
       disabled: @state.postingVote || !@props.comment.canVote
       span className: 'comment-vote__text',
-        "+#{formatNumberSuffixed(@props.comment.votesCount, null, maximumFractionDigits: 1)}"
+        "+#{formatNumberSuffixed(@props.comment.votesCount)}"
       if @state.postingVote
         span className: 'comment-vote__spinner', el Spinner
       hover
