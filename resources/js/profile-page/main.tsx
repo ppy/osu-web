@@ -97,9 +97,7 @@ export default class Main extends React.Component<Props> {
   }
 
   private get stickyHeaderOffset() {
-    return core.windowSize.isDesktop
-      ? core.stickyHeader.headerHeight + (this.pagesOffset?.getBoundingClientRect().height ?? 0)
-      : core.stickyHeader.headerHeight;
+    return core.stickyHeader.headerHeight + (this.pagesOffset?.getBoundingClientRect().height ?? 0);
   }
 
   constructor(props: Props) {
