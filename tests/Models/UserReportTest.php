@@ -104,7 +104,21 @@ class UserReportTest extends TestCase
     /**
      * @dataProvider reportableClasses
      */
-    public function testNoComments(string $class)
+    public function testNoComments(string $class): void
+    {
+        $reportable = static::makeReportable($class);
+        $reporter = User::factory()->create();
+
+        $this->expectCountChange(fn () => UserReport::count(), 1);
+        $reportable->reportBy($reporter, static::reportParams([
+            'comments' => null,
+        ]));
+    }
+
+    /**
+     * @dataProvider reportableClasses
+     */
+    public function testNoCommentsReasonOther(string $class): void
     {
         $reportable = static::makeReportable($class);
         $reporter = User::factory()->create();
@@ -112,6 +126,7 @@ class UserReportTest extends TestCase
         $this->expectException(ValidationException::class);
         $reportable->reportBy($reporter, static::reportParams([
             'comments' => null,
+            'reason' => 'Other',
         ]));
     }
 

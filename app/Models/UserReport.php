@@ -35,6 +35,7 @@ class UserReport extends Model
     const BEATMAPSET_TYPE_REASONS = ['UnwantedContent', 'Other'];
     const MAX_LENGTH = 2000;
     const POST_TYPE_REASONS = ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'];
+    const REASON_WITH_REQUIRED_COMMENTS = 'Other';
     const SCORE_TYPE_REASONS = ['Cheating', 'MultipleAccounts', 'Other'];
 
     const ALLOWED_REASONS = [
@@ -103,7 +104,7 @@ class UserReport extends Model
     {
         $this->validationErrors()->reset();
 
-        if (!present(trim($this->comments))) {
+        if ($this->reason === static::REASON_WITH_REQUIRED_COMMENTS && !present(trim($this->comments))) {
             $this->validationErrors()->add('comments', 'required');
         }
 
