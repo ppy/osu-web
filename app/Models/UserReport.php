@@ -35,7 +35,6 @@ class UserReport extends Model
     const BEATMAPSET_TYPE_REASONS = ['UnwantedContent', 'Other'];
     const MAX_LENGTH = 2000;
     const POST_TYPE_REASONS = ['Insults', 'Spam', 'UnwantedContent', 'Nonsense', 'Other'];
-    const REASON_WITH_REQUIRED_COMMENTS = 'Other';
     const SCORE_TYPE_REASONS = ['Cheating', 'MultipleAccounts', 'Other'];
 
     const ALLOWED_REASONS = [
@@ -45,6 +44,7 @@ class UserReport extends Model
         MorphMap::MAP[Best\Mania::class] => self::SCORE_TYPE_REASONS,
         MorphMap::MAP[Best\Osu::class] => self::SCORE_TYPE_REASONS,
         MorphMap::MAP[Best\Taiko::class] => self::SCORE_TYPE_REASONS,
+        MorphMap::MAP[Chat\Message::class] => self::POST_TYPE_REASONS,
         MorphMap::MAP[Comment::class] => self::POST_TYPE_REASONS,
         MorphMap::MAP[Forum\Post::class] => self::POST_TYPE_REASONS,
         MorphMap::MAP[Solo\Score::class] => self::SCORE_TYPE_REASONS,
@@ -104,7 +104,7 @@ class UserReport extends Model
     {
         $this->validationErrors()->reset();
 
-        if ($this->reason === static::REASON_WITH_REQUIRED_COMMENTS && !present(trim($this->comments))) {
+        if (!present(trim($this->comments)) && (!($this->reportable instanceof Chat\Message) || $this->reason === 'Other')) {
             $this->validationErrors()->add('comments', 'required');
         }
 
