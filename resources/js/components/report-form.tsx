@@ -83,7 +83,7 @@ export default class ReportForm extends React.Component<Props> {
   private timeout: number | undefined;
 
   private get canSubmit() {
-    return !this.disabled && (this.selectedReason.id !== 'Other' || this.comments.length > 0);
+    return !this.disabled && this.comments.length > 0;
   }
 
   private get groupKey() {

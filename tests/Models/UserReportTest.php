@@ -109,7 +109,11 @@ class UserReportTest extends TestCase
         $reportable = static::makeReportable($class);
         $reporter = User::factory()->create();
 
-        $this->expectCountChange(fn () => UserReport::count(), 1);
+        if ($class === Message::class) {
+            $this->expectCountChange(fn () => UserReport::count(), 1);
+        } else {
+            $this->expectException(ValidationException::class);
+        }
         $reportable->reportBy($reporter, static::reportParams([
             'comments' => null,
         ]));
