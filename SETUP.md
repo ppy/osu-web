@@ -7,7 +7,7 @@ There are a few different options to get started:
 ### Install prerequisites
 
 - MySQL 8.0+
-- PHP 8.0+ (with curl, gd, intl, json, mbstring, mcrypt, mysql, xml and zip extensions)
+- PHP 8.0+ (with ctype, dom, fileinfo, filter, hash, openssl, pcre, pdo, session, tokenizer, curl, gd, intl, json, mbstring, mcrypt, mysql, xml and zip extensions)
 - nginx (or other webserver)
 - Node.js 16
 - elasticsearch 6+
@@ -36,7 +36,27 @@ location / {
 }
 ```
 
-Consult the [laravel documentation](https://laravel.com/docs/6.x/installation#web-server-configuration) for non-nginx
+### Additional NGINX settings
+```nginx
+add_header X-Frame-Options "SAMEORIGIN";
+add_header X-Content-Type-Options "nosniff";
+
+charset utf-8;
+
+error_page 404 /index.php;
+
+location ~ \.php$ {
+    fastcgi_pass unix:/run/php-fpm/www.sock; # if you have a different php-fpm socket path, enter it here
+    fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+    include fastcgi_params;
+}
+
+location ~ /\.(?!well-known).* {
+    deny all;
+}
+```
+
+See [this guide](https://statuslist.app/nginx/laravel-setup-guide/) for nginx and php-fpm setup tutorial. Consult the [laravel documentation](https://laravel.com/docs/6.x/installation#web-server-configuration) for non-nginx
 
 ### Initialize database
 
