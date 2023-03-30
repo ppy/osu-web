@@ -49,7 +49,7 @@ const buttonTextKey: Record<Mode, string> = {
 };
 
 @observer
-export class CommentEditor extends React.Component<Props> {
+export default class CommentEditor extends React.Component<Props> {
   private readonly handleKeyDown;
   @observable private message: string;
   @observable private posting = false;
