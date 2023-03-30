@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => 'Collezioni pre-confezionate di beatmap con un tema comune.',
+        'empty' => '',
         'nav_title' => 'lista',
         'title' => 'Pacchetti Beatmap',
 
@@ -34,7 +35,7 @@ return [
     'mode' => [
         'artist' => 'Artista/Album',
         'chart' => 'Spotlight',
-        'featured' => '',
+        'featured' => 'Artista in primo piano',
         'standard' => 'Standard',
         'theme' => 'Tema',
     ],

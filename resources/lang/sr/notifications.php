@@ -14,13 +14,13 @@ return [
     'verifying' => 'Молимо Вас да верификујете сесију да би сте видели нотификације',
 
     'action_type' => [
-        '_' => '',
-        'beatmapset' => '',
-        'build' => '',
-        'channel' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'user' => '',
+        '_' => 'све',
+        'beatmapset' => 'мапе',
+        'build' => 'верзије',
+        'channel' => 'ћаскање',
+        'forum_topic' => 'форум',
+        'news_post' => 'новости',
+        'user' => 'профил',
     ],
 
     'filters' => [

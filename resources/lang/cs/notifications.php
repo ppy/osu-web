@@ -15,12 +15,12 @@ return [
 
     'action_type' => [
         '_' => '',
-        'beatmapset' => '',
+        'beatmapset' => 'beatmapy',
         'build' => '',
         'channel' => '',
         'forum_topic' => '',
         'news_post' => '',
-        'user' => '',
+        'user' => 'profil',
     ],
 
     'filters' => [

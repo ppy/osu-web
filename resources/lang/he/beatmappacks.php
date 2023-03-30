@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => 'אוספים ארוזים מראש של beatmaps המבוססים סביב נושא משותף.',
+        'empty' => '',
         'nav_title' => 'רשימה',
         'title' => 'חבילות Beatmap',
 

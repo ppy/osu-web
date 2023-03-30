@@ -25,7 +25,7 @@ return [
     ],
 
     'forums' => [
-        'forums' => '',
+        'forums' => 'Forums',
         'latest_post' => 'Dernier message',
 
         'index' => [
@@ -48,7 +48,7 @@ return [
         'confirm_restore' => 'Voulez-vous vraiment restaurer ce post ?',
         'edited' => 'Dernière édition par :user :when, modifié :count_delimited fois au total.|Dernière édition par :user :when, modifié :count_delimited fois au total.',
         'posted_at' => 'posté le :when',
-        'posted_by_in' => '',
+        'posted_by_in' => 'posté par :username dans :forum',
 
         'actions' => [
             'destroy' => 'Supprimer le post',

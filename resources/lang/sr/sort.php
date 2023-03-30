@@ -32,7 +32,7 @@ return [
     ],
 
     'forum_topics' => [
-        'created' => '',
+        'created' => 'Креирано',
         'feature_votes' => 'Приоритет по звездицама',
         'new' => 'Последњи одговор',
     ],

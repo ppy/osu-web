@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => 'Nakaimpakeng koleksyon ng mga beatmaps base sa magkatulad na tema.',
+        'empty' => '',
         'nav_title' => 'listahan',
         'title' => 'Beatmap Packs',
 

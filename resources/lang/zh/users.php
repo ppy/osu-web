@@ -166,7 +166,7 @@ return [
         'first_members' => '元老玩家',
         'is_developer' => 'osu! 开发者',
         'is_supporter' => 'osu! 支持者',
-        'joined_at' => '注册时间：:date',
+        'joined_at' => '注册于 :date',
         'lastvisit' => '最后活跃：:date',
         'lastvisit_online' => '当前在线',
         'missingtext' => '你可能打错字了！（或者该用户已经被封禁）',

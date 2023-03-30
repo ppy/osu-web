@@ -53,7 +53,7 @@ return [
     ],
 
     'beatmapset' => [
-        'discussion_locked' => '',
+        'discussion_locked' => 'Tworzenie dyskusji dla tej beatmapy zostało zablokowane.',
 
         'metadata' => [
             'nominated' => 'Nie możesz zmienić metadanych nominowanej mapy. Skontaktuj się z członkiem BN lub NAT, jeśli uważasz, że są one ustawione nieprawidłowo.',

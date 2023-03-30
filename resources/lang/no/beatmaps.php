@@ -199,6 +199,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Dette kartet er estimert til å bli rangert som :date hvis ingen problemer er funnet. Det er #:position i :queue.',
+            'on' => '',
             'queue' => 'rangerings kø ',
             'soon' => 'snart',
         ],

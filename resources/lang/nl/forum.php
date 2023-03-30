@@ -25,7 +25,7 @@ return [
     ],
 
     'forums' => [
-        'forums' => '',
+        'forums' => 'Forums',
         'latest_post' => 'Laatste bericht',
 
         'index' => [
@@ -48,7 +48,7 @@ return [
         'confirm_restore' => 'Will je deze post echt terugzetten?',
         'edited' => 'Laatst bewerkt door :user op :when. :count keer bewerkt in totaal.',
         'posted_at' => 'gepost op :when',
-        'posted_by_in' => '',
+        'posted_by_in' => 'gepost door :username in :forum',
 
         'actions' => [
             'destroy' => 'Verwijder bericht',

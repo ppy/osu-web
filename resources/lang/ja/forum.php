@@ -25,7 +25,7 @@ return [
     ],
 
     'forums' => [
-        'forums' => '',
+        'forums' => 'フォーラム',
         'latest_post' => '最新の投稿',
 
         'index' => [

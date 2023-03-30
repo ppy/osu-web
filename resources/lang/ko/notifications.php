@@ -14,13 +14,13 @@ return [
     'verifying' => '알림을 보려면 세션을 검증해주세요.',
 
     'action_type' => [
-        '_' => '',
-        'beatmapset' => '',
-        'build' => '',
-        'channel' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'user' => '',
+        '_' => '모두',
+        'beatmapset' => '비트맵',
+        'build' => '빌드',
+        'channel' => '채팅',
+        'forum_topic' => '포럼',
+        'news_post' => '소식',
+        'user' => '프로필',
     ],
 
     'filters' => [

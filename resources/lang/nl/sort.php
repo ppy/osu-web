@@ -32,7 +32,7 @@ return [
     ],
 
     'forum_topics' => [
-        'created' => '',
+        'created' => 'Aangemaakt',
         'feature_votes' => 'Ster prioriteit',
         'new' => 'Laatste antwoord',
     ],

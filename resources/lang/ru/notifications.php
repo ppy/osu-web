@@ -14,13 +14,13 @@ return [
     'verifying' => 'Пожалуйста, проверьте сессию для просмотра уведомлений',
 
     'action_type' => [
-        '_' => '',
-        'beatmapset' => '',
-        'build' => '',
-        'channel' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'user' => '',
+        '_' => 'все',
+        'beatmapset' => 'карты',
+        'build' => 'билды',
+        'channel' => 'чат',
+        'forum_topic' => 'форум',
+        'news_post' => 'новости',
+        'user' => 'профиль',
     ],
 
     'filters' => [

@@ -15,12 +15,12 @@ return [
 
     'action_type' => [
         '_' => '',
-        'beatmapset' => '',
+        'beatmapset' => 'beatmaps',
         'build' => '',
         'channel' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'user' => '',
+        'forum_topic' => 'fórum',
+        'news_post' => 'notícias',
+        'user' => 'perfil',
     ],
 
     'filters' => [

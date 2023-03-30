@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => 'Unaprijed zapakirane zbirke beatmapa temeljenih na zajedničkoj temi.',
+        'empty' => '',
         'nav_title' => 'popis',
         'title' => 'Paketi beatmapa',
 

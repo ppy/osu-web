@@ -66,8 +66,8 @@ return [
         'discussion' => 'Дискусија',
 
         'deleted_banner' => [
-            'title' => '',
-            'message' => '',
+            'title' => 'Ова мапа је избрисана.',
+            'message' => '(ово могу да виде само модератори)',
         ],
 
         'details' => [

@@ -53,7 +53,7 @@ return [
     ],
 
     'beatmapset' => [
-        'discussion_locked' => '',
+        'discussion_locked' => 'Naka-lock ang beatmap na ito para sa talakayan.',
 
         'metadata' => [
             'nominated' => 'Hindi maaaring baguhin ang metadata ng isang nominadong beatmap. Makipag-ugnayan sa isang miyembro ng BN o NAT kung sa palagay mo ay mali ang pagkakatakda nito.',

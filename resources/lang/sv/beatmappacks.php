@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => 'Färdigförpackade samlingar med beatmaps som är baserade på ett gemensamt tema.',
+        'empty' => '',
         'nav_title' => 'listning',
         'title' => 'Beatmap-samlingar',
 

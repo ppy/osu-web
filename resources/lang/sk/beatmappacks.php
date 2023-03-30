@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => 'Kolekcie beatmáp s podobnou tématikou.',
+        'empty' => '',
         'nav_title' => 'výpis',
         'title' => 'Balíky beatmáp',
 

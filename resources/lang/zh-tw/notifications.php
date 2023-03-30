@@ -15,12 +15,12 @@ return [
 
     'action_type' => [
         '_' => '',
-        'beatmapset' => '',
-        'build' => '',
-        'channel' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'user' => '',
+        'beatmapset' => '圖譜',
+        'build' => '版本',
+        'channel' => '聊天',
+        'forum_topic' => '論壇',
+        'news_post' => '新聞',
+        'user' => '個人資料',
     ],
 
     'filters' => [

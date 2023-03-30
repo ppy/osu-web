@@ -53,7 +53,7 @@ return [
     ],
 
     'beatmapset' => [
-        'discussion_locked' => '',
+        'discussion_locked' => '谱面已上锁，以供讨论。',
 
         'metadata' => [
             'nominated' => '您不能更改已提名谱面的信息。如果您认为其不正确，请联系谱面审核成员 (BN) 或审核评估团队 (NAT) 更改。',

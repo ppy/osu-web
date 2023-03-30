@@ -199,6 +199,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Tämän beatmapin arvioidaan tulla hyväksytyksi :date, jos mitään ongelmia ei löydy. Se on #:position :queue.',
+            'on' => '',
             'queue' => 'hyväksytysjonossa',
             'soon' => 'pian',
         ],

@@ -32,7 +32,7 @@ return [
     ],
 
     'forum_topics' => [
-        'created' => '',
+        'created' => 'Nilikha',
         'feature_votes' => 'Prayoridad ayon sa bilang ng bituin',
         'new' => 'Huling tugon',
     ],

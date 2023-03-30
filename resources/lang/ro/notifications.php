@@ -14,13 +14,13 @@ return [
     'verifying' => 'Verificați sesiunea pentru a vizualiza notificările',
 
     'action_type' => [
-        '_' => '',
-        'beatmapset' => '',
-        'build' => '',
-        'channel' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'user' => '',
+        '_' => 'tot',
+        'beatmapset' => 'beatmap-uri',
+        'build' => 'versiuni',
+        'channel' => 'chat',
+        'forum_topic' => 'forum',
+        'news_post' => 'știri',
+        'user' => 'profil',
     ],
 
     'filters' => [

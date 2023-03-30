@@ -53,7 +53,7 @@ return [
     ],
 
     'beatmapset' => [
-        'discussion_locked' => '',
+        'discussion_locked' => 'Ta beatmapa je zaklenjena za razpravo.',
 
         'metadata' => [
             'nominated' => 'Urejanje metadata nominirane beatmape ni mogoče. Kontaktiraj člana BN ali NAT če misliš, da je ta narobe nastavljen.',
