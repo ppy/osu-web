@@ -13,6 +13,16 @@ return [
     'see_channel' => 'перейти в чат',
     'verifying' => 'Пожалуйста, проверьте сессию для просмотра уведомлений',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => '',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
     'filters' => [
         '_' => 'все',
         'user' => 'профиль',
@@ -63,8 +73,8 @@ return [
                 'beatmapset_love_compact' => 'Карте была присвоена категория Любимая',
                 'beatmapset_nominate' => 'Карта ":title" была номинирована',
                 'beatmapset_nominate_compact' => 'Карта была номинирована',
-                'beatmapset_qualify' => 'Карте ":title" было присвоено достаточно номинаций для вхождения в очередь ранка',
-                'beatmapset_qualify_compact' => 'Карта вошла очередь ранка',
+                'beatmapset_qualify' => 'Карта ":title" получила достаточно номинаций и вошла в очередь ранкинга',
+                'beatmapset_qualify_compact' => 'Карта поставлена в очередь ранкинга',
                 'beatmapset_rank' => 'Карта ":title" стала Рейтинговой',
                 'beatmapset_rank_compact' => 'Карта стала Рейтинговой',
                 'beatmapset_remove_from_loved' => '":title" была удалена из категории Любимая',
@@ -197,7 +207,7 @@ return [
                 'beatmapset_disqualify' => 'Карта ":title" дисквалифицирована',
                 'beatmapset_love' => '":title" был повышен до любимого',
                 'beatmapset_nominate' => 'Карта ":title" номинирована',
-                'beatmapset_qualify' => '":title" получило достаточно номинаций и вступило в очередь ранка',
+                'beatmapset_qualify' => 'Карта ":title" получила достаточно номинаций и вошла в очередь ранкинга',
                 'beatmapset_rank' => 'Карта ":title" получила категорию Рейтинговая',
                 'beatmapset_remove_from_loved' => '":title" была удалена из категории Любимая',
                 'beatmapset_reset_nominations' => 'Номинация ":title" была сброшена',

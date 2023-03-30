@@ -151,6 +151,14 @@ jobs:
       - name: Run PHPUnit
         run: ./bin/phpunit.sh
 
+      # TODO: workaround things (beatmaps) being indexed during test above and not cleaned up.
+      # This used to cause beatmap listing returning cursor with Long.MIN_VALUE for null timetamp
+      # and errors out when trying to get the next page (es can't parse such value for timestamp)
+      # but has since been fixed.
+      # Something should still be done regarding es index between tests though.
+      - name: Clean indexes
+        run: php artisan es:index-documents --yes
+
       - name: Run Dusk
         run: ./bin/run_dusk.sh
 

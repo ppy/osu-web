@@ -50,13 +50,11 @@ return [
             'resolved' => 'Jūs negalite redaguoti įrašo kuris priklauso išspręstai diskusijai.',
             'system_generated' => 'Automatiškai sugeneruoti įrašai negali būti redaguojami.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Ši bitmapo diskusiją užrakintą.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => '',
+
         'metadata' => [
             'nominated' => 'Jūs negalite pakeisti nominuoto bitmapo metaduomenų. Susisiekite su BN arba NAT nariu jeigu jūs manote, kad jie buvo nustatyti neteisingai.',
         ],

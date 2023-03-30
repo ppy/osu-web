@@ -61,8 +61,8 @@ return [
         'discussion' => 'Discusión',
 
         'deleted_banner' => [
-            'title' => '',
-            'message' => '',
+            'title' => 'Este mapa ha sido eliminado.',
+            'message' => '(solo los moderadores pueden ver esto)',
         ],
 
         'details' => [

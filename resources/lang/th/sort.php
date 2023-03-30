@@ -32,6 +32,7 @@ return [
     ],
 
     'forum_topics' => [
+        'created' => '',
         'feature_votes' => 'ลำดับความสำคัญ',
         'new' => 'ตอบกลับครั้งล่าสุด',
     ],

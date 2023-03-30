@@ -964,18 +964,16 @@ function build_url($build)
 
 function post_url($topicId, $postId, $jumpHash = true, $tail = false)
 {
+    if ($topicId === null) {
+        return null;
+    }
+
     $postIdParamKey = 'start';
     if ($tail === true) {
         $postIdParamKey = 'end';
     }
 
-    if ($topicId === null) {
-        return;
-    }
-
-    $url = route('forum.topics.show', ['topic' => $topicId, $postIdParamKey => $postId]);
-
-    return $url;
+    return route('forum.topics.show', ['topic' => $topicId, $postIdParamKey => $postId]);
 }
 
 function wiki_image_url(string $path, bool $fullUrl = true)
@@ -1716,18 +1714,18 @@ function clamp($number, $min, $max)
 }
 
 // e.g. 100634983048665 -> 100.63 trillion
-function suffixed_number_format($number)
+function suffixed_number_format(float|int $number, ?string $locale = null): string
 {
-    $suffixes = ['', 'k', 'million', 'billion', 'trillion']; // TODO: localize
-    $k = 1000;
+    $locale ??= App::getLocale();
 
-    if ($number < $k) {
-        return $number;
+    static $formatters = [];
+
+    if (!isset($formatters[$locale])) {
+        $formatters[$locale] = new NumberFormatter($locale, NumberFormatter::PADDING_POSITION);
+        $formatters[$locale]->setAttribute(NumberFormatter::FRACTION_DIGITS, 2);
     }
 
-    $i = floor(log($number) / log($k));
-
-    return number_format($number / pow($k, $i), 2).' '.$suffixes[$i];
+    return $formatters[$locale]->format($number);
 }
 
 function suffixed_number_format_tag($number)

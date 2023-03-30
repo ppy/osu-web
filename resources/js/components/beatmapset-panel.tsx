@@ -24,7 +24,7 @@ import { trans } from 'utils/lang';
 import { beatmapsetDownloadDirect } from 'utils/url';
 import StringWithComponent from './string-with-component';
 import TimeWithTooltip from './time-with-tooltip';
-import { UserLink } from './user-link';
+import UserLink from './user-link';
 
 export const beatmapsetCardSizes = ['normal', 'extra'] as const;
 export type BeatmapsetCardSize = typeof beatmapsetCardSizes[number];
@@ -100,7 +100,7 @@ const StatsItem = ({ icon, title, type, value }: StatsItemProps) => (
     <span className='beatmapset-panel__stats-item-icon'>
       <i className={`fa-fw ${icon}`} />
     </span>
-    <span>{formatNumberSuffixed(value, undefined, { maximumFractionDigits: 1, minimumFractionDigits: 0 })}</span>
+    <span>{formatNumberSuffixed(value)}</span>
   </div>
 );
 

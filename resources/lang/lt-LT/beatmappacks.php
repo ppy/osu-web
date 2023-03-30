@@ -34,6 +34,7 @@ return [
     'mode' => [
         'artist' => 'Atlikėjas/Albumas',
         'chart' => 'Verti dėmesio',
+        'featured' => '',
         'standard' => 'Įprasti',
         'theme' => 'Teminiai',
     ],

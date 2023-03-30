@@ -43,7 +43,7 @@ return [
             'label' => [
                 'forum' => 'tìm trong diễn đần',
                 'forum_children' => 'bao gồm diễn đàn con',
-                'include_deleted' => '',
+                'include_deleted' => 'bao gồm các bài đăng bị xoá',
                 'topic_id' => '# chủ đề',
                 'username' => 'người đăng',
             ],
@@ -84,7 +84,7 @@ return [
         'macos-fallback' => 'người dùng macOS',
         'mirror' => 'liên kết phụ',
         'or' => 'hoặc',
-        'os_version_or_later' => '',
+        'os_version_or_later' => ':os_version trở lên',
         'other_os' => 'nền tảng khác',
         'quick_start_guide' => 'hướng dẫn nhanh',
         'tagline' => "hãy<br>bắt đầu!",

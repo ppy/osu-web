@@ -1,0 +1,11 @@
+[box=[color=red]colored box title[/color]]box content[/box]
+
+[size=50]other content[/size]
+
+[box=[\[] weird \[ title]box content[/box]
+
+[size=50]other content 2[/size]
+
+[box=[weird title]broken box content[/box]
+
+[size=50]other content 3[/size]

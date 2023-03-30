@@ -71,7 +71,7 @@
                         {{ osu_trans('home.search.forum_post.all') }}
                     </option>
 
-                    @foreach (App\Models\Forum\Forum::displayList()->get() as $forum)
+                    @foreach (App\Models\Forum\Forum::searchable()->displayList()->get() as $forum)
                         @if (priv_check('ForumView', $forum)->can())
                             <option
                                 value="{{ $forum->getKey() }}"

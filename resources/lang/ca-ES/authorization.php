@@ -50,13 +50,11 @@ return [
             'resolved' => 'No podeu editar una publicació d\'una discussió resolta.',
             'system_generated' => 'No es pot editar una publicació generada automàticament.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Aquest beatmap està bloquejat per a discussió.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => '',
+
         'metadata' => [
             'nominated' => 'No podeu canviar les metadades d\'un beatmap nominat. Contacta amb un membre dels BN o NAT si creus que estan establerts incorrectament.',
         ],

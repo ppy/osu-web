@@ -13,6 +13,16 @@ return [
     'see_channel' => 'accéder au tchat',
     'verifying' => 'Veuillez vérifier votre session pour voir les notifications',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => '',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
     'filters' => [
         '_' => 'tout',
         'user' => 'profil',

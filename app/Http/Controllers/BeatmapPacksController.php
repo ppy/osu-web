@@ -12,7 +12,7 @@ use Request;
 
 class BeatmapPacksController extends Controller
 {
-    private const PER_PAGE = 20;
+    private const PER_PAGE = 100;
 
     public function index()
     {

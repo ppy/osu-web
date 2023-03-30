@@ -34,6 +34,7 @@ return [
     'mode' => [
         'artist' => 'Artist/Album',
         'chart' => 'I rampljuset',
+        'featured' => '',
         'standard' => 'Standard',
         'theme' => 'Tema',
     ],

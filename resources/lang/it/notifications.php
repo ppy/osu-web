@@ -13,6 +13,16 @@ return [
     'see_channel' => 'vai alla chat',
     'verifying' => 'Verifica la sessione per visualizzare le notifiche',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => '',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
     'filters' => [
         '_' => 'tutto',
         'user' => 'profilo',

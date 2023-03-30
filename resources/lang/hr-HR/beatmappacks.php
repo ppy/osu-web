@@ -34,6 +34,7 @@ return [
     'mode' => [
         'artist' => 'Izvođač/Album',
         'chart' => 'Istaknuto',
+        'featured' => '',
         'standard' => 'Standardni',
         'theme' => 'Tema',
     ],

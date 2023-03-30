@@ -13,6 +13,16 @@ return [
     'see_channel' => 'ir para a conversa',
     'verifying' => 'Por favor verifica a sessão para ver as notificações',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => '',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
     'filters' => [
         '_' => 'todas',
         'user' => 'perfil',

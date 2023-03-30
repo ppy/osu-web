@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => '',
         'latest_post' => 'Beidzamais Raksts',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => 'Vai tiešām atjaunot rakstu?',
         'edited' => 'Beidzamo reizi rediģēts pēc :user :when, rediģējot :count reizes kopumā.',
         'posted_at' => 'publicēts :when',
-        'posted_by' => 'publicēja :username',
+        'posted_by_in' => '',
 
         'actions' => [
             'destroy' => 'Izdzēst rakstu',

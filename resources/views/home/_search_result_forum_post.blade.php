@@ -13,6 +13,7 @@
     @php
         // $entry should be of type App\Libraries\Elasticsearch\Hit
         $postUrl = post_url($entry->source('topic_id'), $entry->source('post_id'));
+        $postId = $entry->source('post_id');
         $topic = $topics[$entry->source('topic_id')] ?? new App\Models\Forum\Topic();
         $user = $users[$entry->source('poster_id')] ?? new App\Models\DeletedUser();
 
@@ -28,7 +29,9 @@
             'title' => $title,
             'link' => $postUrl,
             'excerpt' => $search->getHighlights($entry, 'search_content') ?? str_limit($entry->source('search_content'), 100),
+            'postId' => $postId,
             'time' => $entry->source('post_time'),
+            'topic' => $topic,
         ])
     </div>
 @endforeach
