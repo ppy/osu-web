@@ -230,12 +230,7 @@ export default class Editor extends React.Component<Props, State> {
 
   onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     const nativeEvent = event.nativeEvent;
-    if (nativeEvent.key === 'ArrowDown') {
-      // TODO: only move to editable lines?
-      Transforms.move(this.slateEditor, { unit: 'line' });
-    } else if (nativeEvent.key === 'ArrowUp') {
-      Transforms.move(this.slateEditor, { distance: -1, unit: 'line' });
-    } else if (isHotkey('mod+b', nativeEvent)) {
+    if (isHotkey('mod+b', nativeEvent)) {
       event.preventDefault();
       toggleFormat(this.slateEditor, 'bold');
     } else if (isHotkey('mod+i', nativeEvent)) {
