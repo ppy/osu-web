@@ -7,13 +7,11 @@ import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import React from 'react';
 import { ReactMarkdownProps } from 'react-markdown/lib/complex-types';
-import DiscussionsStateContext from './discussions-state-context';
 
 type Props = ReactMarkdownProps & React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>;
 
 @observer
 export default class ImageLink extends React.Component<Props> {
-  static contextType = DiscussionsStateContext;
   @observable private loaded = false;
 
   constructor(props: Props) {
