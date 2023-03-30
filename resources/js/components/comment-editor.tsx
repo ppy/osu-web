@@ -75,6 +75,10 @@ export class CommentEditor extends React.Component<Props> {
     return this.message.length > 0;
   }
 
+  private get initialMessage() {
+    return this.props.message ?? '';
+  }
+
   @computed
   private get mode() {
     return this.props.parent != null
@@ -95,7 +99,7 @@ export class CommentEditor extends React.Component<Props> {
     super(props);
 
     this.handleKeyDown = makeTextAreaHandler(this.handleKeyDownCallback);
-    this.message = this.props.message ?? '';
+    this.message = this.initialMessage;
 
     makeObservable(this);
   }
@@ -182,9 +186,7 @@ export class CommentEditor extends React.Component<Props> {
   private readonly close = () => {
     if (this.props.close == null) return;
 
-    const initialMessage = this.props.message ?? '';
-
-    if (initialMessage !== this.message && !confirm(trans('common.confirmation_unsaved'))) return;
+    if (this.initialMessage !== this.message && !confirm(trans('common.confirmation_unsaved'))) return;
 
     this.props.close();
   };
