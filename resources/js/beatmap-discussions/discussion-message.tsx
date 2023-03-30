@@ -16,23 +16,21 @@ interface Props {
 export default class DiscussionMessage extends React.Component<Props> {
   render() {
     return (
-      <div className='beatmapset-discussion-message'>
-        <ReactMarkdown
-          className='osu-md osu-md--discussions'
-          components={{
-            a: linkRenderer,
-            em: emphasisRenderer,
-            img: ImageLink,
-            p: paragraphRenderer,
-            strong: strongRenderer,
-          }}
-          remarkPlugins={[autolink, [disableConstructs, { type: this.props.type }]]}
-          transformLinkUri={transformLinkUri}
-          unwrapDisallowed
-        >
-          {this.props.markdown}
-        </ReactMarkdown>
-      </div>
+      <ReactMarkdown
+        className='osu-md osu-md--discussions'
+        components={{
+          a: linkRenderer,
+          em: emphasisRenderer,
+          img: ImageLink,
+          p: paragraphRenderer,
+          strong: strongRenderer,
+        }}
+        remarkPlugins={[autolink, [disableConstructs, { type: this.props.type }]]}
+        transformLinkUri={transformLinkUri}
+        unwrapDisallowed
+      >
+        {this.props.markdown}
+      </ReactMarkdown>
     );
   }
 }

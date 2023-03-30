@@ -339,7 +339,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
               contentEditable={false}
             />
             <div className={`${bn}__message-container`}>
-              <div className='beatmapset-discussion-message'>{this.props.children}</div>
+              {this.props.children}
             </div>
             {unsavedIndicator}
             {nearbyIndicator}
