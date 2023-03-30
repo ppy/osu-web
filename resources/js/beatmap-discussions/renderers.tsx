@@ -19,8 +19,7 @@ export function linkRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLPr
 }
 
 export function paragraphRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement>) {
-  // TODO: remove need for wrapping div (should just return <>);
-  return <div>{astProps.children.map(timestampDecorator)}</div>;
+  return <p>{astProps.children.map(timestampDecorator)}</p>;
 }
 
 export function strongRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) {
