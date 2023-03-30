@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => 'Col·leccions preempaquetades de beatmaps basades en un tema comú.',
+        'empty' => '',
         'nav_title' => 'llistat',
         'title' => 'Paquets de beatmaps',
 

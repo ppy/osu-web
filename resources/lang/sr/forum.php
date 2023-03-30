@@ -25,7 +25,7 @@ return [
     ],
 
     'forums' => [
-        'forums' => '',
+        'forums' => 'Форуми',
         'latest_post' => 'Најновији Постови',
 
         'index' => [

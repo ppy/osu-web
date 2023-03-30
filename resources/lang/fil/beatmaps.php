@@ -199,6 +199,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Ang mapa na ito ay tatantiyahin na maging ranked sa :date kapag walang isyu ang nahanap. Nasa ika-#:position  ng :queue.',
+            'on' => '',
             'queue' => 'pila ng ranking',
             'soon' => 'malapit na',
         ],

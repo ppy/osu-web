@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => 'Iepriekš sagatavotas bītmapju kolekcijas ar savstarpēji kopīgu tēmu.',
+        'empty' => '',
         'nav_title' => 'saraksts',
         'title' => 'Bītmapju Pakas',
 

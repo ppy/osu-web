@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => 'Zapakirane zbirke beatmapov na skupno temo.',
+        'empty' => '',
         'nav_title' => 'seznam',
         'title' => 'Paketi beatmapov',
 

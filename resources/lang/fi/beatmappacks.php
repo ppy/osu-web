@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => 'Valmiiksi kasattuja beatmap kokoelmia, joissa yhdistyy tietty teema.',
+        'empty' => '',
         'nav_title' => 'listaus',
         'title' => 'Beatmap-Kokoelmat',
 

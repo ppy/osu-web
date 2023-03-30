@@ -200,6 +200,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'S\'estima que aquest mapa es classificarà en :date si no es troben problemes. És el número :position a la :queue.',
+            'on' => '',
             'queue' => 'cua de classificació',
             'soon' => 'aviat',
         ],

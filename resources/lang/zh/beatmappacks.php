@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => '围绕某个相同主题打包好的曲包',
+        'empty' => '',
         'nav_title' => '列表',
         'title' => '曲包',
 
@@ -34,7 +35,7 @@ return [
     'mode' => [
         'artist' => '艺术家/专辑',
         'chart' => '聚光灯',
-        'featured' => '',
+        'featured' => '精选艺术家',
         'standard' => '常规',
         'theme' => '主题',
     ],

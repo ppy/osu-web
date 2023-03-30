@@ -25,7 +25,7 @@ return [
     ],
 
     'forums' => [
-        'forums' => '',
+        'forums' => 'Forum',
         'latest_post' => 'Post più recente',
 
         'index' => [

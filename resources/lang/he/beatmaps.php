@@ -199,6 +199,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'מפה זאת תקבל סטטוס Ranked ב:date במידה ולא ימצאו שגיעות. המפה נמצא ב#:position ב:queue.',
+            'on' => '',
             'queue' => 'נבדקת לקבלת Ranking',
             'soon' => 'בקרוב',
         ],

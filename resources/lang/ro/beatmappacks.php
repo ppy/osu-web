@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => 'Colecțiile preambalate de beatmap-uri sunt bazate în jurul unei teme comune.',
+        'empty' => '',
         'nav_title' => 'listare',
         'title' => 'Pachete Beatmap',
 
@@ -34,7 +35,7 @@ return [
     'mode' => [
         'artist' => 'Artist/Album',
         'chart' => 'Promovări',
-        'featured' => '',
+        'featured' => 'Artist Oficial',
         'standard' => 'Standard',
         'theme' => 'Temă',
     ],

@@ -14,13 +14,13 @@ return [
     'verifying' => 'Zweryfikuj sesję, by wyświetlić powiadomienia',
 
     'action_type' => [
-        '_' => '',
-        'beatmapset' => '',
-        'build' => '',
-        'channel' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'user' => '',
+        '_' => 'wszystkie',
+        'beatmapset' => 'beatmapy',
+        'build' => 'zmiany',
+        'channel' => 'czat',
+        'forum_topic' => 'forum',
+        'news_post' => 'aktualności',
+        'user' => 'profil',
     ],
 
     'filters' => [

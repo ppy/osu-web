@@ -14,7 +14,7 @@ return [
     'verifying' => 'I-verify ang iyong session upang makita ang mga notipikasyon',
 
     'action_type' => [
-        '_' => '',
+        '_' => 'lahat',
         'beatmapset' => '',
         'build' => '',
         'channel' => '',

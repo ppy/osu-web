@@ -32,7 +32,7 @@ return [
     ],
 
     'forum_topics' => [
-        'created' => '',
+        'created' => 'Створено',
         'feature_votes' => 'Кількість голосів',
         'new' => 'Остання відповідь',
     ],

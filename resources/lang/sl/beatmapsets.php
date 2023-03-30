@@ -61,8 +61,8 @@ return [
         'discussion' => 'Razprava',
 
         'deleted_banner' => [
-            'title' => '',
-            'message' => '',
+            'title' => 'Ta beatmapa je bila izbrisana.',
+            'message' => '(to lahko vidijo samo moderatorji)',
         ],
 
         'details' => [

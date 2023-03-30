@@ -199,6 +199,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Tiek paredzēts, ka šī mape tiks ierindota :date, ja netiks konstatētas problēmas. Tā ir #:position :queue.',
+            'on' => '',
             'queue' => 'ierindošanas rinda',
             'soon' => 'drīz',
         ],

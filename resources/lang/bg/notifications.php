@@ -14,13 +14,13 @@ return [
     'verifying' => 'Моля, потвърдете сесията, за преглед на известия',
 
     'action_type' => [
-        '_' => '',
-        'beatmapset' => '',
-        'build' => '',
-        'channel' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'user' => '',
+        '_' => 'всички',
+        'beatmapset' => 'бийтмапове',
+        'build' => 'промени',
+        'channel' => 'чат',
+        'forum_topic' => 'форум',
+        'news_post' => 'новини',
+        'user' => 'профил',
     ],
 
     'filters' => [

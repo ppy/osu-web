@@ -14,13 +14,13 @@ return [
     'verifying' => 'Por favor verifique a sessão para ver as notificações',
 
     'action_type' => [
-        '_' => '',
-        'beatmapset' => '',
-        'build' => '',
-        'channel' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'user' => '',
+        '_' => 'todas',
+        'beatmapset' => 'beatmaps',
+        'build' => 'versões',
+        'channel' => 'chat',
+        'forum_topic' => 'fórum',
+        'news_post' => 'notícias',
+        'user' => 'perfil',
     ],
 
     'filters' => [

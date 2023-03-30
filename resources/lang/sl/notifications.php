@@ -14,13 +14,13 @@ return [
     'verifying' => 'Za ogled obvestil te prosimo za verifikacijo seje',
 
     'action_type' => [
-        '_' => '',
-        'beatmapset' => '',
+        '_' => 'vse',
+        'beatmapset' => 'beatmape',
         'build' => '',
         'channel' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'user' => '',
+        'forum_topic' => 'forum',
+        'news_post' => 'novice',
+        'user' => 'profil',
     ],
 
     'filters' => [

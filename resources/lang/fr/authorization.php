@@ -53,7 +53,7 @@ return [
     ],
 
     'beatmapset' => [
-        'discussion_locked' => '',
+        'discussion_locked' => 'La discussion de cette beatmap est verrouillée.',
 
         'metadata' => [
             'nominated' => 'Vous ne pouvez pas modifier les métadonnées d\'une beatmap nominée. Contactez un Beatmap Nominator ou un membre de la NAT si vous pensez qu\'elles sont mal définies.',
@@ -64,8 +64,8 @@ return [
         'annnonce_only' => 'Ce canal est uniquement pour les annonces.',
         'blocked' => 'Vous ne pouvez pas envoyer un message à un utilisateur qui vous a bloqué ou que vous avez bloqué.',
         'friends_only' => 'Cet utilisateur bloque les messages des personnes qui ne sont pas dans sa liste d’amis.',
-        'moderated' => 'Ce salon est actuellement restreint par un modérateur.',
-        'no_access' => 'Vous n’avez pas accès à ce salon.',
+        'moderated' => 'Ce canal est actuellement restreint par un modérateur.',
+        'no_access' => 'Vous n’avez pas accès à ce canal.',
         'receive_friends_only' => 'L\'utilisateur n\'est peut-être pas en mesure de répondre parce que vous n\'acceptez que les messages des personnes de votre liste d\'amis.',
         'restricted' => 'Vous ne pouvez pas envoyer de messages en étant réduit au silence, restreint ou banni.',
         'silenced' => 'Vous ne pouvez pas envoyer de messages en étant réduit au silence, restreint ou banni.',
