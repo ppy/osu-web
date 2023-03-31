@@ -62,11 +62,18 @@ _test() {
     fi
 
     case "$command" in
-        browser) _rexec php /app/artisan dusk --verbose "$@";;
+        browser) _test_browser "$@";;
         js) _rexec yarn karma start --single-run --browsers ChromeHeadless "$@";;
         phpunit) _rexec ./bin/phpunit.sh "$@";;
     esac
 }
+
+_test_browser() {
+    export APP_ENV=dusk.local
+    export OCTANE_STATE_FILE=/app/storage/logs/octane-server-state-dusk.json
+    _rexec ./bin/run_dusk.sh "$@"
+}
+
 
 _watch() {
     _run yarn --network-timeout 100000
