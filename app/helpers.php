@@ -1216,6 +1216,15 @@ function i18n_date($datetime, $format = IntlDateFormatter::LONG, $pattern = null
     return $formatter->format($datetime);
 }
 
+function i18n_date_auto(DateTimeInterface $date, string $skeleton): string
+{
+    $locale = App::getLocale();
+    $generator = new IntlDatePatternGenerator($locale);
+    $pattern = $generator->getBestPattern($skeleton);
+
+    return IntlDateFormatter::formatObject($date, $pattern, $locale);
+}
+
 function i18n_number_format($number, $style = null, $pattern = null, $precision = null, $locale = null)
 {
     if ($style === null && $pattern === null && $precision === null) {
