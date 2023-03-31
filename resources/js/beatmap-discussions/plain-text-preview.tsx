@@ -23,9 +23,9 @@ function imageRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<Re
 }
 
 export function linkRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>) {
-  const { sameHost, ...props } = propsFromHref(astProps.href ?? '', true);
+  const props = propsFromHref(astProps.href);
 
-  return sameHost ? <a href={astProps.href} {...props} /> : <>{props.children}</>;
+  return props.children != null ? <a {...props} /> : <>{astProps.children}</>;
 }
 
 function textRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) {
