@@ -3,6 +3,7 @@
 
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
+import remarkBreaks from 'remark-breaks';
 import autolink from 'remark-plugins/autolink';
 import disableConstructs, { DisabledType } from 'remark-plugins/disable-constructs';
 import ImageLink from './image-link';
@@ -25,7 +26,7 @@ export default class DiscussionMessage extends React.Component<Props> {
           p: paragraphRenderer,
           strong: strongRenderer,
         }}
-        remarkPlugins={[autolink, [disableConstructs, { type: this.props.type }]]}
+        remarkPlugins={[autolink, [disableConstructs, { type: this.props.type }], remarkBreaks]}
         transformLinkUri={transformLinkUri}
         unwrapDisallowed
       >
