@@ -129,7 +129,7 @@ class SanityTest extends DuskTestCase
         ]);
 
         // factories for /beatmapsets/*
-        self::$scaffolding['beatmap_mirror'] = factory(BeatmapMirror::class)->create();
+        self::$scaffolding['beatmap_mirror'] = BeatmapMirror::factory()->create();
         self::$scaffolding['genre'] = Genre::factory()->create();
         self::$scaffolding['language'] = Language::factory()->create();
         self::$scaffolding['beatmapset'] = Beatmapset::factory()->create([
