@@ -156,7 +156,7 @@ class SanityTest extends DuskTestCase
         self::$scaffolding['pack'] = BeatmapPack::factory()->create();
 
         // factories for /community/contests/*
-        self::$scaffolding['contest'] = factory(Contest::class)->states('entry')->create();
+        self::$scaffolding['contest'] = Contest::factory()->entry()->create();
 
         // factories for /community/tournaments/*
         self::$scaffolding['tournament'] = Tournament::factory()->create();
