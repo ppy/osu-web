@@ -12,10 +12,9 @@ export function emphasisRenderer(astProps: ReactMarkdownProps & React.DetailedHT
 }
 
 export function linkRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>) {
-  // TODO: handle extra nodes in astProps.children
-  const props = propsFromHref(astProps.href ?? '');
+  const { sameHost, ...props } = propsFromHref(astProps.href ?? '', true);
 
-  return <a href={astProps.href} {...props} />;
+  return <a href={astProps.href} {...props}>{sameHost ? props.children : astProps.children}</a>;
 }
 
 export function paragraphRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement>) {
