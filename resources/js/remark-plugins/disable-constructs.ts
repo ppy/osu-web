@@ -5,10 +5,38 @@ import type Constructs from 'micromark-core-commonmark';
 import type { Processor } from 'unified';
 import add from './add';
 
-export type DisabledType = 'chat' | 'default' | 'editor' | 'reviews';
+export type DisabledType = 'chat' | 'chatPlain' | 'default' | 'editor' | 'reviews';
 
 interface Options {
   type?: DisabledType;
+}
+
+function makeDisabledListFromAllowlist(allowlist: Construct[]) {
+  return ([
+    // 'characterEscape', // escaping things is always useful
+    // 'content', // not sure what this is
+
+    'attention',
+    'autolink',
+    'blankLine',
+    'blockQuote',
+    'characterReference',
+    'codeFenced',
+    'codeIndented',
+    'codeText',
+    'definition',
+    'hardBreakEscape',
+    'headingAtx',
+    'htmlFlow',
+    'htmlText',
+    'labelEnd',
+    'labelStartImage',
+    'labelStartLink',
+    'lineEnding',
+    'list',
+    'setextUnderline',
+    'thematicBreak',
+  ] as Construct[]).filter((item) => !allowlist.includes(item));
 }
 
 type Construct = keyof typeof Constructs;
@@ -42,6 +70,11 @@ const disabled: Record<DisabledType, Construct[]> = {
     'labelStartImage',
     'setextUnderline',
   ],
+  chatPlain: makeDisabledListFromAllowlist([
+    'autolink',
+    'labelEnd',
+    'labelStartLink',
+  ]),
   default: defaultDisabled,
   // Editor has to disable nearly everything to show mostly text.
   editor: [
