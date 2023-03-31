@@ -30,7 +30,8 @@
   }
 
   &__post-date {
-    flex: 0 0 60px;
+    flex: none;
+    width: 70px;
     border-right: 1px solid @osu-colour-l1;
     margin: 10px;
     display: flex;
@@ -38,7 +39,6 @@
     align-items: flex-end;
     color: @osu-colour-l1;
     padding-right: 10px;
-    overflow: hidden;
     text-align: right;
 
     .@{top}--collapsed & {
@@ -46,7 +46,7 @@
       justify-content: flex-end;
       align-items: baseline;
       margin: 0px 10px;
-      padding: 5px 10px;
+      padding: 5px 10px 5px 0;
     }
   }
 
