@@ -45,7 +45,7 @@ class RouteScopesTest extends TestCase
             'stream_id' => 1, // Changelog stream_id is tinyint, autoincrement makes test fail too soon.
         ]);
 
-        factory(Changelog::class)->create([
+        Changelog::factory()->create([
             'stream_id' => $stream->getKey(),
             'user_id' => 1, // user doesn't need to exist and not having to create a user makes the test much faster
         ]);
