@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => 'Coleções temáticas pré-compactadas.',
+        'empty' => '',
         'nav_title' => 'listagem',
         'title' => 'Pacotes de Beatmaps',
 
@@ -34,7 +35,7 @@ return [
     'mode' => [
         'artist' => 'Artista/Álbum',
         'chart' => 'Destaques',
-        'featured' => '',
+        'featured' => 'Artista em Destaque',
         'standard' => 'Standard',
         'theme' => 'Tema',
     ],

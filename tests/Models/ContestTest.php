@@ -45,7 +45,7 @@ class ContestTest extends TestCase
                 ]);
             }
         }
-        $contest = factory(Contest::class)->create([
+        $contest = Contest::factory()->create([
             'extra_options' => [
                 'requirement' => [
                     'must_pass' => $mustPass,
@@ -54,7 +54,7 @@ class ContestTest extends TestCase
                 ],
             ],
         ]);
-        $entries = factory(ContestEntry::class, 2)->create(['contest_id' => $contest->getKey()]);
+        $entries = ContestEntry::factory()->count(2)->create(['contest_id' => $contest->getKey()]);
 
         if (!$canVote) {
             $this->expectException(InvariantException::class);
@@ -89,8 +89,8 @@ class ContestTest extends TestCase
 
     public function testAssertVoteRequirementNoRequirement(): void
     {
-        $contest = factory(Contest::class)->create();
-        $entry = factory(ContestEntry::class)->create(['contest_id' => $contest->getKey()]);
+        $contest = Contest::factory()->create();
+        $entry = ContestEntry::factory()->create(['contest_id' => $contest->getKey()]);
         $user = User::factory()->create();
 
         $contest->assertVoteRequirement($user, $entry);
@@ -105,7 +105,7 @@ class ContestTest extends TestCase
         $extraOptions = $showEntryUserOption === null
             ? null
             : ['show_entry_user' => $showEntryUserOption];
-        $contest = factory(Contest::class)->create([
+        $contest = Contest::factory()->create([
             'show_votes' => $showVotes,
             'extra_options' => $extraOptions,
         ]);

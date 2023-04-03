@@ -44,6 +44,7 @@ class UserReport extends Model
         MorphMap::MAP[Best\Mania::class] => self::SCORE_TYPE_REASONS,
         MorphMap::MAP[Best\Osu::class] => self::SCORE_TYPE_REASONS,
         MorphMap::MAP[Best\Taiko::class] => self::SCORE_TYPE_REASONS,
+        MorphMap::MAP[Chat\Message::class] => self::POST_TYPE_REASONS,
         MorphMap::MAP[Comment::class] => self::POST_TYPE_REASONS,
         MorphMap::MAP[Forum\Post::class] => self::POST_TYPE_REASONS,
         MorphMap::MAP[Solo\Score::class] => self::SCORE_TYPE_REASONS,
@@ -80,7 +81,17 @@ class UserReport extends Model
         ) {
             return config('osu.user_report_notification.endpoint_cheating');
         } else {
-            return config('osu.user_report_notification.endpoint_moderation');
+            $type = match ($reportableModel::class) {
+                BeatmapDiscussionPost::class => 'beatmapset_discussion',
+                Beatmapset::class => 'beatmapset',
+                Chat\Message::class => 'chat',
+                Comment::class => 'comment',
+                Forum\Post::class => 'forum',
+                User::class => 'user',
+            };
+
+            return config("osu.user_report_notification.endpoint.{$type}")
+                ?? config('osu.user_report_notification.endpoint_moderation');
         }
     }
 
@@ -93,7 +104,7 @@ class UserReport extends Model
     {
         $this->validationErrors()->reset();
 
-        if (!present(trim($this->comments))) {
+        if (!present(trim($this->comments)) && (!($this->reportable instanceof Chat\Message) || $this->reason === 'Other')) {
             $this->validationErrors()->add('comments', 'required');
         }
 

@@ -25,7 +25,7 @@ return [
     ],
 
     'forums' => [
-        'forums' => '',
+        'forums' => 'Форумы',
         'latest_post' => 'Последний пост',
 
         'index' => [
@@ -48,7 +48,7 @@ return [
         'confirm_restore' => 'Восстановить ответ?',
         'edited' => 'Последний раз редактировал :user :when, всего правок: :count_delimited.',
         'posted_at' => 'создана :when',
-        'posted_by_in' => '',
+        'posted_by_in' => 'опубликовано :username в :forum',
 
         'actions' => [
             'destroy' => 'Удалить ответ',

@@ -23,12 +23,12 @@ return [
         'multiplayer' => 'flerspelarläge',
         'performance' => 'prestation',
         'score' => 'poäng',
-        'seasons' => '',
+        'seasons' => 'säsonger',
     ],
 
     'seasons' => [
-        'empty' => '',
-        'ongoing' => '',
+        'empty' => 'Det finns inga rum i denna säsong ännu.',
+        'ongoing' => 'Denna säsong pågår fortfarande (det kommer läggas till fler spellistor).',
         'room_count' => '',
         'url' => '',
     ],

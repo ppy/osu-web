@@ -20,7 +20,7 @@ return [
             'exhausted' => 'Dein Nominierungslimit für heute wurde erreicht, bitte versuche es morgen erneut.',
             'incorrect_state' => 'Beim Ausführen dieser Aktion ist ein Fehler aufgetreten. Bitte Seite neu laden.',
             'owner' => "Eigene Beatmaps können nicht nominiert werden.",
-            'set_metadata' => 'Du musst den Genre und die Sprache einstellen, bevor nominiert werden kann.',
+            'set_metadata' => 'Vor der Nominierung müssen Genre und Sprache festgelegt werden.',
         ],
         'resolve' => [
             'not_owner' => 'Nur der Thread- oder Beatmapersteller kann die Diskussion für gelöst erklären.',
@@ -53,7 +53,7 @@ return [
     ],
 
     'beatmapset' => [
-        'discussion_locked' => '',
+        'discussion_locked' => 'Diese Beatmap-Diskussion ist gesperrt.',
 
         'metadata' => [
             'nominated' => 'Du kannst die Metadaten einer nominierten Map nicht ändern. Wenn du glaubst, dass sie falsch sind, wende dich an ein BN- oder NAT-Mitglied.',

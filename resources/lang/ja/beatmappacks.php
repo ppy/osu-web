@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => '共通のテーマを有するビートマップを集めたパックです。',
+        'empty' => '',
         'nav_title' => '一覧',
         'title' => 'ビートマップパック',
 
@@ -34,7 +35,7 @@ return [
     'mode' => [
         'artist' => 'アーティスト/アルバム',
         'chart' => 'スポットライト',
-        'featured' => '',
+        'featured' => '注目アーティスト',
         'standard' => 'スタンダードパック',
         'theme' => 'テーマ',
     ],

@@ -104,7 +104,25 @@ class UserReportTest extends TestCase
     /**
      * @dataProvider reportableClasses
      */
-    public function testNoComments(string $class)
+    public function testNoComments(string $class): void
+    {
+        $reportable = static::makeReportable($class);
+        $reporter = User::factory()->create();
+
+        if ($class === Message::class) {
+            $this->expectCountChange(fn () => UserReport::count(), 1);
+        } else {
+            $this->expectException(ValidationException::class);
+        }
+        $reportable->reportBy($reporter, static::reportParams([
+            'comments' => null,
+        ]));
+    }
+
+    /**
+     * @dataProvider reportableClasses
+     */
+    public function testNoCommentsReasonOther(string $class): void
     {
         $reportable = static::makeReportable($class);
         $reporter = User::factory()->create();
@@ -112,6 +130,7 @@ class UserReportTest extends TestCase
         $this->expectException(ValidationException::class);
         $reportable->reportBy($reporter, static::reportParams([
             'comments' => null,
+            'reason' => 'Other',
         ]));
     }
 
@@ -139,6 +158,20 @@ class UserReportTest extends TestCase
             : $reportable->user_id;
         $this->assertSame($reportableUserId, $report->user_id);
         $this->assertTrue($report->reportable->is($reportable));
+    }
+
+    /**
+     * @dataProvider reportableClasses
+     */
+    public function testReportableNotificationEndpoint(string $class): void
+    {
+        $reportable = static::makeReportable($class);
+        $reporter = User::factory()->create();
+        $report = $reportable->reportBy($reporter, static::reportParams());
+
+        $report->routeNotificationForSlack(null);
+
+        $this->assertTrue(true, 'should not fail getting notification routing url');
     }
 
     public function reportableClasses(): array

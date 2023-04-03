@@ -25,7 +25,7 @@ return [
     ],
 
     'forums' => [
-        'forums' => '',
+        'forums' => 'Forum-uri',
         'latest_post' => 'Ultima Postare',
 
         'index' => [
@@ -48,7 +48,7 @@ return [
         'confirm_restore' => 'Sigur dorești să restaurezi postarea?',
         'edited' => 'Editat ultima dată de către :user :when, editat o dată în total.|Editat ultima dată de către :user :when, editat de :count_delimited ori în total.',
         'posted_at' => 'postat :when',
-        'posted_by_in' => '',
+        'posted_by_in' => 'postat de :username în :forum',
 
         'actions' => [
             'destroy' => 'Șterge postarea',

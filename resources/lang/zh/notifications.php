@@ -14,13 +14,13 @@ return [
     'verifying' => '请验证会话以查看通知',
 
     'action_type' => [
-        '_' => '',
-        'beatmapset' => '',
-        'build' => '',
-        'channel' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'user' => '',
+        '_' => '全部',
+        'beatmapset' => '谱面',
+        'build' => '版本',
+        'channel' => '聊天',
+        'forum_topic' => '论坛',
+        'news_post' => '新闻',
+        'user' => '个人资料',
     ],
 
     'filters' => [

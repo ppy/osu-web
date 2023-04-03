@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => 'Sưu tầm những map được đóng gói sẵn dựa trên chủ đề chung.',
+        'empty' => '',
         'nav_title' => 'danh sách',
         'title' => 'Gói Beatmap',
 

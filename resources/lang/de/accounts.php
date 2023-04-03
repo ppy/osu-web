@@ -6,7 +6,7 @@
 return [
     'edit' => [
         'title_compact' => 'Einstellungen',
-        'username' => 'benutzername',
+        'username' => 'Benutzername',
 
         'avatar' => [
             'title' => 'Avatar',
@@ -15,7 +15,7 @@ return [
         ],
 
         'email' => [
-            'new' => 'neue e-mail',
+            'new' => 'Neue E-Mail',
             'new_confirmation' => 'E-Mail bestätigen',
             'title' => 'E-Mail',
         ],
@@ -23,7 +23,7 @@ return [
         'password' => [
             'current' => 'Aktuelles Passwort',
             'new' => 'neues passwort',
-            'new_confirmation' => 'Passwort bestätigen',
+            'new_confirmation' => 'passwort bestätigen',
             'title' => 'Passwort',
         ],
 
@@ -32,11 +32,11 @@ return [
 
             'user' => [
                 'user_discord' => '',
-                'user_from' => 'aktueller standort',
+                'user_from' => 'Aktueller Standort',
                 'user_interests' => 'Interessen',
                 'user_occ' => 'Beschäftigung',
                 'user_twitter' => '',
-                'user_website' => 'Webseite',
+                'user_website' => 'webseite',
             ],
         ],
 
@@ -82,7 +82,7 @@ return [
             '_' => 'Bevorzugter Betmap-Download Typ',
             'all' => 'mit Video, falls verfügbar',
             'direct' => 'in osu!direct öffnen',
-            'no_video' => 'ohne Video',
+            'no_video' => 'ohne video',
         ],
     ],
 

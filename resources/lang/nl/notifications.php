@@ -14,13 +14,13 @@ return [
     'verifying' => 'Verifieer de sessie om meldingen te bekijken',
 
     'action_type' => [
-        '_' => '',
-        'beatmapset' => '',
-        'build' => '',
-        'channel' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'user' => '',
+        '_' => 'alle',
+        'beatmapset' => 'beatmaps',
+        'build' => 'versies',
+        'channel' => 'chat',
+        'forum_topic' => 'forum',
+        'news_post' => 'nieuws',
+        'user' => 'profiel',
     ],
 
     'filters' => [
