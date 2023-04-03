@@ -6,15 +6,25 @@ import { uriTransformer } from 'react-markdown';
 import { ReactMarkdownProps } from 'react-markdown/lib/complex-types';
 import { propsFromHref, timestampRegexGlobal } from 'utils/beatmapset-discussion-helper';
 import { openBeatmapEditor } from 'utils/url';
+import ImageLink from './image-link';
+
+interface ImageNodeWithMarkdownProps extends React.ReactElement {
+  props: ReactMarkdownProps & React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>;
+}
 
 export function emphasisRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) {
   return <em>{astProps.children.map(timestampDecorator)}</em>;
 }
 
+function isImageLink(node: React.ReactNode): node is ImageNodeWithMarkdownProps {
+  return node != null && typeof node === 'object' && 'props' in node && node.type === ImageLink;
+}
+
 export function linkRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>) {
   const props = propsFromHref(astProps.href);
 
-  return <a {...props}>{props.children ?? astProps.children}</a>;
+  // unwrap ImageLink because <a> in <a> is not valid.
+  return <a {...props}>{props.children ?? astProps.children.map(unwrapImageLink)}</a>;
 }
 
 export function paragraphRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement>) {
@@ -67,4 +77,12 @@ export function transformLinkUri(uri: string) {
   }
 
   return uriTransformer(uri);
+}
+
+function unwrapImageLink(node: React.ReactNode) {
+  if (!isImageLink(node)) return node;
+
+  // remove the ReactMarkdown node prop; we're not using the other options, so they're not included.
+  const { node: _propsNode, ...props } = node.props;
+  return <img key={node.key} {...props} />;
 }
