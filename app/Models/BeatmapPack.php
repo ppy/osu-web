@@ -26,6 +26,7 @@ class BeatmapPack extends Model
     const TAG_MAPPINGS = [
         'standard' => 'S',
         'featured' => 'F',
+        'tournament' => 'P', // since 'T' is taken and 'P' goes for 'pool'
         'chart' => 'R',
         'theme' => 'T',
         'artist' => 'A',
