@@ -159,16 +159,19 @@ class BBCodeFromDB
                         ));
 
                         $imageUrl = proxy_media($map['imageUrl']);
-                        $imageSize = fast_imagesize($imageUrl) ?? [0, 0];
-                        $imageHeightInWidthPercent = 100 * $imageSize[1] / max(1, $imageSize[0]);
-                        $divStyle = implode(';', [
-                            'height: 0',
-                            "background-image: url('{$imageUrl}')",
-                            "width: {$imageSize[0]}px",
-                            "padding-bottom: {$imageHeightInWidthPercent}%",
-                        ]);
+                        $imageAttributes = [
+                            'class' => 'imagemap__image',
+                            'loading' => 'lazy',
+                            'src' => $imageUrl,
+                        ];
+                        $imageSize = fast_imagesize($imageUrl);
+                        if ($imageSize !== null) {
+                            $imageAttributes['width'] = $imageSize[0];
+                            $imageAttributes['height'] = $imageSize[1];
+                        }
+                        $imageHtml = tag('img', $imageAttributes);
 
-                        return tag('div', ['class' => 'imagemap', 'style' => $divStyle], $linksHtml);
+                        return tag('div', ['class' => 'imagemap'], $imageHtml.$linksHtml);
                     },
                     html_entity_decode_better(BBCodeForDB::extraUnescape($m[1])),
                 );
