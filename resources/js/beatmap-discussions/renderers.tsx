@@ -82,7 +82,7 @@ export function transformLinkUri(uri: string) {
 function unwrapImageLink(node: React.ReactNode) {
   if (!isImageLink(node)) return node;
 
-  // remove the ReactMarkdown node prop; we're not using the other options, so they're not included.
-  const { node: _propsNode, ...props } = node.props;
-  return <img key={node.key} {...props} />;
+  // ref defined as LegacyRef by react markdown.
+  const { ref, ...props } = node.props;
+  return <ImageLink key={node.key} noLink {...props} />;
 }

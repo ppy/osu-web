@@ -8,7 +8,9 @@ import { observer } from 'mobx-react';
 import React from 'react';
 import { ReactMarkdownProps } from 'react-markdown/lib/complex-types';
 
-type Props = ReactMarkdownProps & React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>;
+type Props = ReactMarkdownProps & React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> & {
+  noLink?: boolean;
+};
 
 @observer
 export default class ImageLink extends React.Component<Props> {
@@ -21,11 +23,20 @@ export default class ImageLink extends React.Component<Props> {
   }
 
   render() {
-    const src = this.props.src != null ? route('beatmapsets.discussions.media-url', { url: this.props.src }) : null;
-    if (src == null) {
+    if (this.props.src == null) return null;
+
+    const src = route('beatmapsets.discussions.media-url', { url: this.props.src });
+    const content = (
+      <>
+        {!this.loaded && this.renderSpinner()}
+        <img {...this.props.node.properties} loading='lazy' onLoad={this.handleOnLoad} src={src} />
+      </>
+    );
+
+    if (this.props.noLink) {
       return (
         <span className='beatmapset-discussion-image-link'>
-          {this.renderSpinner()}
+          {content}
         </span>
       );
     }
@@ -33,8 +44,7 @@ export default class ImageLink extends React.Component<Props> {
     // TODO: render something else on fail?
     return (
       <a className='beatmapset-discussion-image-link' href={src} rel='nofollow noreferrer' target='_blank'>
-        {!this.loaded && this.renderSpinner()}
-        <img {...this.props.node.properties} loading="lazy" onLoad={this.handleOnLoad} src={src} />
+        {content}
       </a>
     );
   }
