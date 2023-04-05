@@ -31,6 +31,17 @@ export default class BbcodeEditor extends React.Component<Props> {
   private readonly bodyRef = React.createRef<HTMLTextAreaElement>();
   private readonly sizeSelectRef = React.createRef<HTMLSelectElement>();
 
+  readonly cancel = (event?: React.SyntheticEvent) => {
+    if (this.bodyRef.current?.value !== this.props.rawValue && !confirm(trans('common.confirmation_unsaved'))) {
+      return;
+    }
+
+    if (this.bodyRef.current != null) {
+      this.bodyRef.current.value = this.props.rawValue;
+    }
+    this.sendOnChange({ event, type: 'cancel' });
+  };
+
   componentDidMount() {
     if (this.sizeSelectRef.current != null) {
       this.sizeSelectRef.current.value = '';
@@ -103,17 +114,6 @@ export default class BbcodeEditor extends React.Component<Props> {
       </button>
     );
   }
-
-  private cancel = (event?: React.SyntheticEvent) => {
-    if (this.bodyRef.current?.value !== this.props.rawValue && !confirm(trans('common.confirmation_unsaved'))) {
-      return;
-    }
-
-    if (this.bodyRef.current != null) {
-      this.bodyRef.current.value = this.props.rawValue;
-    }
-    this.sendOnChange({ event, type: 'cancel' });
-  };
 
   private onKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Escape') {
