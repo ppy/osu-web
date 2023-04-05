@@ -3,7 +3,13 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace App\Models;
+
+use App\Traits\Validatable;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property string $api_key
@@ -18,7 +24,61 @@ namespace App\Models;
  */
 class ApiKey extends Model
 {
+    use Validatable;
+
+    const MAX_FIELD_LENGTHS = [
+        'app_name' => 100,
+        'app_url' => 512,
+    ];
+
+    public $casts = [
+        'revoked' => 'boolean',
+    ];
+    public $timestamps = false;
+
     protected $table = 'osu_apikeys';
     protected $primaryKey = 'key';
-    public $timestamps = false;
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function scopeAvailable(Builder $query): Builder
+    {
+        return $query->where('revoked', false);
+    }
+
+    public function isValid(): bool
+    {
+        $this->validationErrors()->reset();
+
+        $this->validateDbFieldLengths();
+
+        foreach (['app_name', 'api_key'] as $field) {
+            if (!present($this->$field)) {
+                $this->validationErrors()->add($field, 'required');
+            }
+        }
+
+        if (!filter_var($this->app_url ?? '', FILTER_VALIDATE_URL)) {
+            $this->validationErrors()->add($field, 'url');
+        }
+
+        if (static::where(['user_id' => $this->user_id])->available()->exists()) {
+            $this->validationErrors()->add('base', '.exists');
+        }
+
+        return $this->validationErrors()->isEmpty();
+    }
+
+    public function save(array $options = [])
+    {
+        return $this->isValid() && parent::save($options);
+    }
+
+    public function validationErrorsTranslationPrefix()
+    {
+        return 'legacy_api_key';
+    }
 }
