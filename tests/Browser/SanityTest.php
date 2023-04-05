@@ -229,7 +229,7 @@ class SanityTest extends DuskTestCase
         ]);
 
         // factory for /g/*
-        self::$scaffolding['group'] = factory(Group::class)->create();
+        self::$scaffolding['group'] = Group::factory()->create();
 
         // factory for comments
         self::$scaffolding['comment'] = Comment::factory()->create([
