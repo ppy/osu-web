@@ -129,6 +129,57 @@ class BBCodeFromDB
         return $text;
     }
 
+    public function parseImagemap($text)
+    {
+        return preg_replace_callback(
+            '#(\[imagemap\].+?\[/imagemap\]\n?)#',
+            function ($m) {
+                return preg_replace_callback(
+                    '#\[imagemap\]\n(?<imageUrl>https?://.+)\n(?<links>(?:(?:[0-9.]+ ){4}(?:\#|https?://[^ ]+|mailto:[^ ]+)(?: .+)?\n)+)\[/imagemap\]\n?#',
+                    function ($map) {
+                        $links = array_map(
+                            fn ($rawLink) => explode(' ', $rawLink, 6),
+                            explode("\n", $map['links']),
+                        );
+                        array_pop($links); // remove the empty string from last newline
+
+                        $linksHtml = implode('', array_map(
+                            fn ($link) => tag($link[4] === '#' ? 'span' : 'a', [
+                                'class' => 'imagemap__link',
+                                'href' => $link[4],
+                                'style' => implode(';', [
+                                    "left: {$link[0]}%",
+                                    "top: {$link[1]}%",
+                                    "width: {$link[2]}%",
+                                    "height: {$link[3]}%",
+                                ]),
+                                'title' => $link[5] ?? '',
+                            ]),
+                            $links,
+                        ));
+
+                        $imageUrl = proxy_media($map['imageUrl']);
+                        $imageAttributes = [
+                            'class' => 'imagemap__image',
+                            'loading' => 'lazy',
+                            'src' => $imageUrl,
+                        ];
+                        $imageSize = fast_imagesize($imageUrl);
+                        if ($imageSize !== null) {
+                            $imageAttributes['width'] = $imageSize[0];
+                            $imageAttributes['height'] = $imageSize[1];
+                        }
+                        $imageHtml = tag('img', $imageAttributes);
+
+                        return tag('div', ['class' => 'imagemap'], $imageHtml.$linksHtml);
+                    },
+                    html_entity_decode_better(BBCodeForDB::extraUnescape($m[1])),
+                );
+            },
+            $text,
+        );
+    }
+
     public function parseItalic($text)
     {
         $text = str_replace("[i:{$this->uid}]", '<em>', $text);
@@ -297,6 +348,7 @@ class BBCodeFromDB
         $text = $this->text;
 
         // block
+        $text = $this->parseImagemap($text);
         $text = $this->parseBox($text);
         $text = $this->parseCode($text);
         $text = $this->parseList($text);
