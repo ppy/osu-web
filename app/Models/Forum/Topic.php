@@ -333,15 +333,7 @@ class Topic extends Model implements AfterCommit
             $this->validationErrors()->add('topic_title', 'required');
         }
 
-        foreach (static::MAX_FIELD_LENGTHS as $field => $limit) {
-            if ($this->isDirty($field)) {
-                $val = $this->$field;
-
-                if (mb_strlen($val) > $limit) {
-                    $this->validationErrors()->add($field, 'too_long', ['limit' => $limit]);
-                }
-            }
-        }
+        $this->validateDbFieldLengths();
 
         return $this->validationErrors()->isEmpty();
     }
