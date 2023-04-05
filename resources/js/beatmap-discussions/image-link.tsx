@@ -7,10 +7,9 @@ import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import React from 'react';
 import { ReactMarkdownProps } from 'react-markdown/lib/complex-types';
+import { LinkContext } from './renderers';
 
-type Props = ReactMarkdownProps & React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> & {
-  noLink?: boolean;
-};
+type Props = ReactMarkdownProps & React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>;
 
 @observer
 export default class ImageLink extends React.Component<Props> {
@@ -33,19 +32,22 @@ export default class ImageLink extends React.Component<Props> {
       </>
     );
 
-    if (this.props.noLink) {
-      return (
-        <span className='beatmapset-discussion-image-link'>
-          {content}
-        </span>
-      );
-    }
-
-    // TODO: render something else on fail?
     return (
-      <a className='beatmapset-discussion-image-link' href={src} rel='nofollow noreferrer' target='_blank'>
-        {content}
-      </a>
+      // declaring the context at the class level causes the component to be undefined when used by ReactMarkdown.
+      // TODO: render something else on fail?
+      <LinkContext.Consumer>
+        {({ inLink }) => (
+          inLink ? (
+            <span className='beatmapset-discussion-image-link'>
+              {content}
+            </span>
+          ) : (
+            <a className='beatmapset-discussion-image-link' href={src} rel='nofollow noreferrer' target='_blank'>
+              {content}
+            </a>
+          )
+        )}
+      </LinkContext.Consumer>
     );
   }
 

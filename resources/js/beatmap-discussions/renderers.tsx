@@ -6,25 +6,23 @@ import { uriTransformer } from 'react-markdown';
 import { ReactMarkdownProps } from 'react-markdown/lib/complex-types';
 import { propsFromHref, timestampRegexGlobal } from 'utils/beatmapset-discussion-helper';
 import { openBeatmapEditor } from 'utils/url';
-import ImageLink from './image-link';
 
-interface ImageNodeWithMarkdownProps extends React.ReactElement {
-  props: ReactMarkdownProps & React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>;
-}
+export const LinkContext = React.createContext({ inLink: false });
 
 export function emphasisRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) {
   return <em>{astProps.children.map(timestampDecorator)}</em>;
 }
 
-function isImageLink(node: React.ReactNode): node is ImageNodeWithMarkdownProps {
-  return node != null && typeof node === 'object' && 'props' in node && node.type === ImageLink;
-}
-
 export function linkRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>) {
   const props = propsFromHref(astProps.href);
 
-  // unwrap ImageLink because <a> in <a> is not valid.
-  return <a {...props}>{props.children ?? astProps.children.map(unwrapImageLink)}</a>;
+  return (
+    <>
+      <LinkContext.Provider value={{ inLink: true }}>
+        <a {...props}>{props.children ?? astProps.children}</a>
+      </LinkContext.Provider>
+    </>
+  );
 }
 
 export function paragraphRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement>) {
@@ -77,12 +75,4 @@ export function transformLinkUri(uri: string) {
   }
 
   return uriTransformer(uri);
-}
-
-function unwrapImageLink(node: React.ReactNode) {
-  if (!isImageLink(node)) return node;
-
-  // ref defined as LegacyRef by react markdown.
-  const { ref, ...props } = node.props;
-  return <ImageLink key={node.key} noLink {...props} />;
 }
