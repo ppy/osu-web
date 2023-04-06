@@ -78,6 +78,8 @@
     "react-dom-factories": "^1.0.0",
     "react-markdown": "^8.0.5",
     "react-transition-group": "^4.4.2",
+    "rehype-truncate": "^1.2.2",
+    "remark-breaks": "^3.0.2",
     "remark-parse": "^10.0.1",
     "shopify-buy": "^2.6.1",
     "slate": "^0.82.1",
