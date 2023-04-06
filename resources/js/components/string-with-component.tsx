@@ -9,13 +9,13 @@ export interface Props {
 }
 
 export default function StringWithComponent(props: Props) {
-  const keys = Object.keys(props.mappings);
+  const keys = Object.keys(props.mappings).sort((a, b) => a < b ? 1 : -1);
 
   if (keys.length === 0) {
     return <>{props.pattern}</>;
   }
 
-  const regex = new RegExp(`(:${keys.join('|:')})(?!_)`);
+  const regex = new RegExp(`(:${keys.join('|:')})`);
   const parts = props.pattern.split(regex);
 
   return (
