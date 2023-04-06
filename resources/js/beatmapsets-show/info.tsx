@@ -97,6 +97,7 @@ export default class Info extends React.Component<Props> {
                 key={this.controller.beatmapset.id /* ensure component is reset if beatmapset changes */}
                 ref={this.descriptionEditorRef}
                 disabled={this.saveDescriptionXhr != null}
+                ignoreEsc
                 modifiers='beatmapset-description-editor'
                 onChange={this.handleEditorChange}
                 rawValue={this.controller.beatmapset.description.bbcode ?? ''}

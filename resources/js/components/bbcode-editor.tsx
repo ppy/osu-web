@@ -17,6 +17,7 @@ export interface OnChangeProps {
 
 interface Props {
   disabled: boolean;
+  ignoreEsc: boolean;
   modifiers?: Modifiers;
   onChange: (props: OnChangeProps) => void;
   placeholder?: string;
@@ -26,6 +27,7 @@ interface Props {
 export default class BbcodeEditor extends React.Component<Props> {
   static readonly defaultProps = {
     disabled: false,
+    ignoreEsc: false,
   };
 
   private readonly bodyRef = React.createRef<HTMLTextAreaElement>();
@@ -116,7 +118,7 @@ export default class BbcodeEditor extends React.Component<Props> {
   }
 
   private onKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === 'Escape') {
+    if (!this.props.ignoreEsc && e.key === 'Escape') {
       this.cancel();
     }
   };
