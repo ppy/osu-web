@@ -6,7 +6,7 @@
 return [
     'all_read' => 'Alle Benachrichtigungen gelesen!',
     'delete' => ':type löschen',
-    'loading' => 'Ungelesene Benachrichtigungen werden geladen...',
+    'loading' => 'Ungelesene Benachrichtigungen werden geladen ...',
     'mark_read' => ':type als gelesen markieren',
     'none' => 'Keine Benachrichtigungen',
     'see_all' => 'alle benachrichtigungen ansehen',
@@ -14,13 +14,13 @@ return [
     'verifying' => 'Bitte verifiziere deine Sitzung, um Benachrichtigungen anzuzeigen',
 
     'action_type' => [
-        '_' => '',
-        'beatmapset' => '',
-        'build' => '',
-        'channel' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'user' => '',
+        '_' => 'Alle',
+        'beatmapset' => 'Beatmaps',
+        'build' => 'Versionen',
+        'channel' => 'Chat',
+        'forum_topic' => 'Forum',
+        'news_post' => 'Neuigkeiten',
+        'user' => 'Profil',
     ],
 
     'filters' => [

@@ -18,7 +18,7 @@ return [
     ],
 
     'index' => [
-        'description' => 'Featured Artists sind Künstler, mit denen wir zusammenarbeiten, um neue und einzigartige Musik für osu! zur Verfügung zu stellen. Ihrer Lieder wurden vom osu!-Team handverlesen, weil sie großartige Werke sind und sich wunderbar für das Mapping eignen. Einige dieser Lieder wurden sogar exklusiv für osu! geschaffen.<br><br>Für alle Lieder steht eine Vorlage mit fertigem Timing als .osz Datei zum Download bereit. Außerdem sind sie offiziell für die Verwendung in osu! und für dazu in Bezug stehenden Inhalten lizenziert.',
+        'description' => 'Featured Artists sind Künstler, mit denen wir zusammenarbeiten, um neue und einzigartige Musik für osu! zur Verfügung zu stellen. Ihre Lieder wurden vom osu!-Team handverlesen, weil sie großartige Werke sind und sich wunderbar für das Mapping eignen. Einige dieser Lieder wurden sogar exklusiv für osu! geschaffen.<br><br>Für alle Lieder steht eine Vorlage mit fertigem Timing als .osz-Datei zum Download bereit. Außerdem sind sie offiziell für die Verwendung in osu! und für dazu in Bezug stehenden Inhalten lizenziert.',
     ],
 
     'links' => [
@@ -29,7 +29,7 @@ return [
 
     'songs' => [
         '_' => 'Songs',
-        'count' => ':count_delimited Songs|:count_delimited Songs',
+        'count' => ':count_delimited Song|:count_delimited Songs',
         'original' => 'osu! original',
         'original_badge' => 'ORIGINAL',
     ],

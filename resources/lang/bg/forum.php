@@ -25,7 +25,7 @@ return [
     ],
 
     'forums' => [
-        'forums' => '',
+        'forums' => 'Форуми',
         'latest_post' => 'Последна публикация',
 
         'index' => [
@@ -48,7 +48,7 @@ return [
         'confirm_restore' => 'Наистина ли искате да възстановите публикацията?',
         'edited' => 'Последно редактирано от :user :when, общо :count_delimited път.|Последно редактирано от :user :when, общо :count_delimited пъти.',
         'posted_at' => 'публикувано :when',
-        'posted_by_in' => '',
+        'posted_by_in' => 'публикувано от :username в :forum',
 
         'actions' => [
             'destroy' => 'Изтриване на публикация',

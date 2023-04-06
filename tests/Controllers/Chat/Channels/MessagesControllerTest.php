@@ -166,7 +166,7 @@ class MessagesControllerTest extends TestCase
             'user' => $this->user->getKey(),
         ]));
 
-        $filter = factory(ChatFilter::class)->create();
+        $filter = ChatFilter::factory()->create();
 
         $this->json(
             'POST',

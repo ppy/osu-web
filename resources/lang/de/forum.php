@@ -25,7 +25,7 @@ return [
     ],
 
     'forums' => [
-        'forums' => '',
+        'forums' => 'Foren',
         'latest_post' => 'Neuester Beitrag',
 
         'index' => [
@@ -48,7 +48,7 @@ return [
         'confirm_restore' => 'Beitrag wirklich wiederherstellen?',
         'edited' => 'Zuletzt von :user :when bearbeitet, insgesamt :count_delimited Mal bearbeitet.',
         'posted_at' => 'erstellt :when',
-        'posted_by_in' => '',
+        'posted_by_in' => 'gepostet von :username in :forum',
 
         'actions' => [
             'destroy' => 'Beitrag löschen',

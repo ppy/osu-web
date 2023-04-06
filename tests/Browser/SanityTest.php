@@ -129,7 +129,7 @@ class SanityTest extends DuskTestCase
         ]);
 
         // factories for /beatmapsets/*
-        self::$scaffolding['beatmap_mirror'] = factory(BeatmapMirror::class)->create();
+        self::$scaffolding['beatmap_mirror'] = BeatmapMirror::factory()->create();
         self::$scaffolding['genre'] = Genre::factory()->create();
         self::$scaffolding['language'] = Language::factory()->create();
         self::$scaffolding['beatmapset'] = Beatmapset::factory()->create([
@@ -156,13 +156,13 @@ class SanityTest extends DuskTestCase
         self::$scaffolding['pack'] = BeatmapPack::factory()->create();
 
         // factories for /community/contests/*
-        self::$scaffolding['contest'] = factory(Contest::class)->states('entry')->create();
+        self::$scaffolding['contest'] = Contest::factory()->entry()->create();
 
         // factories for /community/tournaments/*
         self::$scaffolding['tournament'] = Tournament::factory()->create();
 
         // factories for /beatmaps/artists/*
-        self::$scaffolding['artist'] = factory(Artist::class)->create();
+        self::$scaffolding['artist'] = Artist::factory()->create();
         self::$scaffolding['track'] = ArtistTrack::factory()->create([
             'artist_id' => self::$scaffolding['artist']->getKey(),
         ]);
@@ -221,7 +221,7 @@ class SanityTest extends DuskTestCase
 
         // factory for /home/changelog/*
         self::$scaffolding['stream'] = factory(UpdateStream::class)->create();
-        self::$scaffolding['changelog'] = factory(Changelog::class)->create([
+        self::$scaffolding['changelog'] = Changelog::factory()->create([
             'stream_id' => self::$scaffolding['stream']->stream_id,
         ]);
         self::$scaffolding['build'] = Build::factory()->create([
@@ -229,7 +229,7 @@ class SanityTest extends DuskTestCase
         ]);
 
         // factory for /g/*
-        self::$scaffolding['group'] = factory(Group::class)->create();
+        self::$scaffolding['group'] = Group::factory()->create();
 
         // factory for comments
         self::$scaffolding['comment'] = Comment::factory()->create([

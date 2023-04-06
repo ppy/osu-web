@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => 'Kolekce beatmap s podobnou tématikou.',
+        'empty' => '',
         'nav_title' => 'seznam',
         'title' => 'Balíčky beatmap',
 

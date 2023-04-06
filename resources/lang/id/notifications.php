@@ -14,13 +14,13 @@ return [
     'verifying' => 'Harap verifikasi sesi untuk melihat notifikasi',
 
     'action_type' => [
-        '_' => '',
-        'beatmapset' => '',
-        'build' => '',
-        'channel' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'user' => '',
+        '_' => 'semua',
+        'beatmapset' => 'beatmap',
+        'build' => 'versi rilis',
+        'channel' => 'percakapan',
+        'forum_topic' => 'forum',
+        'news_post' => 'berita',
+        'user' => 'profil',
     ],
 
     'filters' => [

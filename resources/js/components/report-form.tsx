@@ -82,6 +82,10 @@ export default class ReportForm extends React.Component<Props> {
   @observable private selectedReason = this.options[0];
   private timeout: number | undefined;
 
+  private get canSubmit() {
+    return !this.disabled && this.comments.length > 0;
+  }
+
   private get groupKey() {
     return reportableTypeToGroupKey[this.props.reportableType];
   }
@@ -208,7 +212,7 @@ export default class ReportForm extends React.Component<Props> {
         <div className={`${bn}__row ${bn}__row--buttons`}>
           <button
             className={`${bn}__button ${bn}__button--report`}
-            disabled={this.disabled || this.comments.length === 0}
+            disabled={!this.canSubmit}
             onClick={this.handleSubmit}
             type='button'
           >

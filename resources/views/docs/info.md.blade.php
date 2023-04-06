@@ -18,6 +18,14 @@ Use the API for good. Don't overdo it. If in doubt, ask before (ab)using :). _th
 
 Current rate limit is set at an insanely high 1200 requests per minute, with burst capability of up to 200 beyond that. If you require more, you probably fall into the above category of abuse. If you are doing more than 60 requests a minute, you should probably give [peppy](mailto:pe@ppy.sh) a yell.
 
+# Wrappers
+
+Below is a list of some language-specific wrappers maintained by the community. Your mileage may vary when using them – please report any issues to the wrapper first before reporting back to us.
+
+- [ossapi](https://github.com/circleguard/ossapi) (python)
+- [aiosu](https://github.com/NiceAesth/aiosu) (python)
+- [rosu-v2](https://github.com/MaxOhn/rosu-v2) (rust)
+
 # Changelog
 
 For a full list of changes, see the

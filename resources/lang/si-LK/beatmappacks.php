@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => '',
+        'empty' => '',
         'nav_title' => '',
         'title' => '',
 
