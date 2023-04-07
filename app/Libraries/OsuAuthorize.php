@@ -1788,6 +1788,19 @@ class OsuAuthorize
         return 'unauthorized';
     }
 
+    public function checkLegacyIrcKeyStore(?User $user): string
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        // isBot checks user primary group
+        if (!$user->isGroup(app('groups')->byIdentifier('bot'))) {
+            $this->ensureHasPlayed($user);
+        }
+
+        return 'ok';
+    }
+
     /**
      * @param User|null $user
      * @return string
