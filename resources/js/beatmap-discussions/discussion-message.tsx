@@ -7,7 +7,7 @@ import remarkBreaks from 'remark-breaks';
 import autolink from 'remark-plugins/autolink';
 import disableConstructs, { DisabledType } from 'remark-plugins/disable-constructs';
 import ImageLink from './image-link';
-import { emphasisRenderer, linkRenderer, paragraphRenderer, strongRenderer, transformLinkUri } from './renderers';
+import { emphasisRenderer, linkRenderer, listItemRenderer, paragraphRenderer, strongRenderer, transformLinkUri } from './renderers';
 
 interface Props {
   markdown: string;
@@ -23,6 +23,7 @@ export default class DiscussionMessage extends React.Component<Props> {
           a: linkRenderer,
           em: emphasisRenderer,
           img: ImageLink,
+          li: listItemRenderer,
           p: paragraphRenderer,
           strong: strongRenderer,
         }}
