@@ -27,7 +27,7 @@ export function linkRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLPr
 }
 
 export function listItemRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) {
-  return <li>{astProps.children.map(timestampDecorator)}</li>;
+  return <li>{astProps.children?.map(timestampDecorator)}</li>;
 }
 
 export function paragraphRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement>) {
