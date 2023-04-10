@@ -9,7 +9,7 @@ import { openBeatmapEditor } from 'utils/url';
 export const LinkContext = React.createContext({ inLink: false });
 
 export function createRenderer(ElementType: React.ElementType) {
-  return function defaultRenderer(astProps: JSX.IntrinsicElements[keyof JSX.IntrinsicElements]) {
+  return function defaultRenderer(astProps: { children: React.ReactNode }) {
     return <ElementType>{timestampDecorator(astProps.children)}</ElementType>;
   };
 }
