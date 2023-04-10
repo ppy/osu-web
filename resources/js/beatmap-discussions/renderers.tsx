@@ -3,19 +3,18 @@
 
 import * as React from 'react';
 import { uriTransformer } from 'react-markdown';
-import { ReactMarkdownProps } from 'react-markdown/lib/complex-types';
 import { propsFromHref, timestampRegexGlobal } from 'utils/beatmapset-discussion-helper';
 import { openBeatmapEditor } from 'utils/url';
 
 export const LinkContext = React.createContext({ inLink: false });
 
 export function createRenderer(ElementType: React.ElementType) {
-  return function defaultRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) {
-    return <ElementType>{astProps.children?.map(timestampDecorator)}</ElementType>;
+  return function defaultRenderer(astProps: JSX.IntrinsicElements[keyof JSX.IntrinsicElements]) {
+    return <ElementType>{timestampDecorator(astProps.children)}</ElementType>;
   };
 }
 
-export function linkRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>) {
+export function linkRenderer(astProps: JSX.IntrinsicElements['a']) {
   const props = propsFromHref(astProps.href);
 
   return (
@@ -27,7 +26,7 @@ export function linkRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLPr
   );
 }
 
-export function timestampDecorator(reactNode: React.ReactNode) {
+export function timestampDecorator(reactNode: React.ReactNode): React.ReactNode {
   if (typeof reactNode === 'string') {
     const matches = [...reactNode.matchAll(timestampRegexGlobal)];
 
@@ -57,6 +56,8 @@ export function timestampDecorator(reactNode: React.ReactNode) {
 
       return nodes;
     }
+  } else if (Array.isArray(reactNode)) {
+    return reactNode.map(timestampDecorator);
   }
 
   return reactNode;

@@ -3,7 +3,6 @@
 
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
-import { ReactMarkdownProps } from 'react-markdown/lib/complex-types';
 import rehypeTruncate from 'rehype-truncate';
 import autolink from 'remark-plugins/autolink';
 import disableConstructs, { DisabledType } from 'remark-plugins/disable-constructs';
@@ -27,19 +26,19 @@ interface Props {
   type?: DisabledType;
 }
 
-function imageRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>) {
+function imageRenderer(astProps: JSX.IntrinsicElements['img']) {
   // render something besides image url.
   return <>{presence(astProps.alt) ?? '[image]'}</>;
 }
 
-export function linkRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>) {
+export function linkRenderer(astProps: JSX.IntrinsicElements['a']) {
   const props = propsFromHref(astProps.href);
 
   return props.children != null ? <a {...props} /> : <>{astProps.children}</>;
 }
 
-function textRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) {
-  return <>{astProps.children?.map(timestampDecorator)}</>;
+function textRenderer(astProps: JSX.IntrinsicElements[keyof JSX.IntrinsicElements]) {
+  return <>{timestampDecorator(astProps.children)}</>;
 }
 
 export default class PlainTextPreview extends React.Component<Props> {

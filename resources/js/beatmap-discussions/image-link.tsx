@@ -9,7 +9,7 @@ import React from 'react';
 import { ReactMarkdownProps } from 'react-markdown/lib/complex-types';
 import { LinkContext } from './renderers';
 
-type Props = ReactMarkdownProps & React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>;
+type Props = ReactMarkdownProps & JSX.IntrinsicElements['img'];
 
 @observer
 export default class ImageLink extends React.Component<Props> {
