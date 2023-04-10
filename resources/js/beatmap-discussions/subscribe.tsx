@@ -16,7 +16,7 @@ interface Props {
 
 @observer
 export class Subscribe extends React.Component<Props> {
-  @observable xhr: JQuery.jqXHR | null = null;
+  @observable private xhr: JQuery.jqXHR<void> | null = null;
 
   constructor(props: Props) {
     super(props);
@@ -28,7 +28,7 @@ export class Subscribe extends React.Component<Props> {
     return this.props.beatmapset.current_user_attributes?.is_watching ?? false;
   }
 
-  private get loading() {
+  private get busy() {
     return this.xhr != null;
   }
 
@@ -39,9 +39,9 @@ export class Subscribe extends React.Component<Props> {
   render() {
     return (
       <BigButton
-        disabled={this.loading}
+        disabled={this.busy}
         icon={this.isWatching ? 'fas fa-eye-slash' : 'fas fa-eye'}
-        isBusy={this.loading}
+        isBusy={this.busy}
         modifiers='full'
         props={{
           onClick: this.toggleWatch,
@@ -53,6 +53,8 @@ export class Subscribe extends React.Component<Props> {
 
   @action
   private readonly toggleWatch = () => {
+    if (this.busy) return;
+
     this.xhr = $.ajax(route('beatmapsets.watches.update', { watch: this.props.beatmapset.id }), {
       dataType: 'json',
       type: this.isWatching ? 'DELETE' : 'PUT',
