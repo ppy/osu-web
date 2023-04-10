@@ -9,9 +9,10 @@ import { openBeatmapEditor } from 'utils/url';
 
 export const LinkContext = React.createContext({ inLink: false });
 
-// FIXME: use a factory
-export function emphasisRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) {
-  return <em>{astProps.children.map(timestampDecorator)}</em>;
+export function createRenderer(ElementType: React.ElementType) {
+  return function defaultRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) {
+    return <ElementType>{astProps.children?.map(timestampDecorator)}</ElementType>;
+  };
 }
 
 export function linkRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>) {
@@ -24,18 +25,6 @@ export function linkRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLPr
       </LinkContext.Provider>
     </>
   );
-}
-
-export function listItemRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) {
-  return <li>{astProps.children?.map(timestampDecorator)}</li>;
-}
-
-export function paragraphRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement>) {
-  return <p>{astProps.children.map(timestampDecorator)}</p>;
-}
-
-export function strongRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) {
-  return <strong>{astProps.children.map(timestampDecorator)}</strong>;
 }
 
 export function timestampDecorator(reactNode: React.ReactNode) {

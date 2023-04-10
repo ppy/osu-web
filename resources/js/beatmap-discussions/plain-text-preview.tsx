@@ -29,7 +29,7 @@ export function linkRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLPr
 }
 
 function textRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) {
-  return <>{astProps.children.map(timestampDecorator)}</>;
+  return <>{astProps.children?.map(timestampDecorator)}</>;
 }
 
 export default class PlainTextPreview extends React.Component<Props> {
