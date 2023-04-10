@@ -18,18 +18,18 @@ interface Props {
 export class Subscribe extends React.Component<Props> {
   @observable private xhr: JQuery.jqXHR<void> | null = null;
 
-  constructor(props: Props) {
-    super(props);
-
-    makeObservable(this);
+  private get busy() {
+    return this.xhr != null;
   }
 
   private get isWatching() {
     return this.props.beatmapset.current_user_attributes?.is_watching ?? false;
   }
 
-  private get busy() {
-    return this.xhr != null;
+  constructor(props: Props) {
+    super(props);
+
+    makeObservable(this);
   }
 
   componentWillUnmount() {
