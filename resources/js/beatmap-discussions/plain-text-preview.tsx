@@ -11,6 +11,16 @@ import { maxMessagePreviewLength, propsFromHref } from 'utils/beatmapset-discuss
 import { presence } from 'utils/string';
 import { timestampDecorator, transformLinkUri } from './renderers';
 
+const components = Object.freeze({
+  a: linkRenderer,
+  code: textRenderer,
+  em: textRenderer,
+  img: imageRenderer,
+  p: textRenderer,
+  pre: textRenderer,
+  strong: textRenderer,
+});
+
 interface Props {
   markdown: string;
   maxLength?: number;
@@ -37,15 +47,7 @@ export default class PlainTextPreview extends React.Component<Props> {
     return (
       <ReactMarkdown
         className='plain-text-preview'
-        components={{
-          a: linkRenderer,
-          code: textRenderer,
-          em: textRenderer,
-          img: imageRenderer,
-          p: textRenderer,
-          pre: textRenderer,
-          strong: textRenderer,
-        }}
+        components={components}
         rehypePlugins={[[rehypeTruncate, { maxChars: this.props.maxLength ?? maxMessagePreviewLength }]]}
         remarkPlugins={[autolink, [disableConstructs, { type: this.props.type }]]}
         transformLinkUri={transformLinkUri}
