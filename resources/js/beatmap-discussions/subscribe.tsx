@@ -7,7 +7,7 @@ import { route } from 'laroute';
 import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import { emitError } from 'utils/ajax';
+import { onError } from 'utils/ajax';
 import { trans } from 'utils/lang';
 
 interface Props {
@@ -61,7 +61,7 @@ export class Subscribe extends React.Component<Props> {
     this.xhr.done(() => {
       $.publish('beatmapsetDiscussions:update', { watching: !this.isWatching });
     })
-      .fail(emitError())
+      .fail(onError)
       .always(action(() => this.xhr = null));
   };
 }
