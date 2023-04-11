@@ -70,6 +70,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::resource('watches', 'BeatmapsetWatchesController', ['only' => ['update', 'destroy']]);
 
         Route::group(['prefix' => 'discussions', 'as' => 'discussions.'], function () {
+            Route::get('media-url', 'BeatmapDiscussionsController@mediaUrl')->name('media-url');
             Route::put('{discussion}/vote', 'BeatmapDiscussionsController@vote')->name('vote');
             Route::post('{discussion}/restore', 'BeatmapDiscussionsController@restore')->name('restore');
             Route::post('{discussion}/deny-kudosu', 'BeatmapDiscussionsController@denyKudosu')->name('deny-kudosu');

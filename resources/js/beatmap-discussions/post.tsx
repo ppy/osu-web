@@ -26,11 +26,12 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
 import { onError } from 'utils/ajax';
-import { badgeGroup, canModeratePosts, format, makeUrl, validMessageLength } from 'utils/beatmapset-discussion-helper';
+import { badgeGroup, canModeratePosts, makeUrl, validMessageLength } from 'utils/beatmapset-discussion-helper';
 import { downloadLimited } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
 import { trans } from 'utils/lang';
+import DiscussionMessage from './discussion-message';
 import DiscussionMessageLengthCounter from './discussion-message-length-counter';
 import { UserCard } from './user-card';
 
@@ -340,18 +341,12 @@ export default class Post extends React.Component<Props> {
       <div className={`${bn}__message-container`}>
         {this.isReview ? (
           <div className={`${bn}__message`}>
-            <ReviewPost
-              message={this.props.post.message}
-            />
+            <ReviewPost post={this.props.post} />
           </div>
         ) : (
-          <div
-            ref={this.messageBodyRef}
-            className={`${bn}__message`}
-            dangerouslySetInnerHTML={{
-              __html: format(this.props.post.message),
-            }}
-          />
+          <div ref={this.messageBodyRef} className={`${bn}__message`}>
+            <DiscussionMessage markdown={this.props.post.message} />
+          </div>
         )}
         <div className={`${bn}__info-container`}>
           <span className={`${bn}__info`}>

@@ -4,6 +4,7 @@
 import BeatmapsOwnerEditor from 'beatmap-discussions/beatmaps-owner-editor'
 import LoveBeatmapModal from 'beatmap-discussions/love-beatmap-modal'
 import { Nominator } from 'beatmap-discussions/nominator'
+import PlainTextPreview from 'beatmap-discussions/plain-text-preview'
 import BigButton from 'components/big-button'
 import DiscreteBar from 'components/discrete-bar'
 import Modal from 'components/modal'
@@ -14,7 +15,7 @@ import { route } from 'laroute'
 import * as React from 'react'
 import { a, div, i, span } from 'react-dom-factories'
 import { onError } from 'utils/ajax'
-import { canModeratePosts, format, makeUrl, previewMessage } from 'utils/beatmapset-discussion-helper'
+import { canModeratePosts, makeUrl } from 'utils/beatmapset-discussion-helper'
 import { nominationsCount } from 'utils/beatmapset-helper'
 import { joinComponents, trans, transExists } from 'utils/lang'
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay'
@@ -240,8 +241,7 @@ export class Nominations extends React.PureComponent
         href: makeUrl(discussion: discussion)
         "##{discussion.id}"
 
-      message = span dangerouslySetInnerHTML:
-        __html: previewMessage(discussion.posts[0].message)
+      message = el PlainTextPreview, markdown: discussion.posts[0].message
     else
       link = "##{event.comment.beatmap_discussion_id}"
       message = trans('beatmaps.nominations.reset_message_deleted')
@@ -253,10 +253,7 @@ export class Nominations extends React.PureComponent
     if event.type == 'disqualify' && typeof event.comment != 'object'
       reason =
         if event.comment?
-          span dangerouslySetInnerHTML:
-            __html: format event.comment,
-              modifiers: ['white']
-              newlines: false
+          el PlainTextPreview, markdown: event.comment
         else
           trans('beatmaps.nominations.disqualified_no_reason')
 
@@ -411,9 +408,10 @@ export class Nominations extends React.PureComponent
 
     return null unless lockEvent?
 
-    div dangerouslySetInnerHTML:
-      __html: trans 'beatmapset_events.event.discussion_lock',
-        text: format(lockEvent.comment.reason, newlines: false)
+    el StringWithComponent,
+      mappings:
+        text: lockEvent.comment.reason
+      pattern: trans('beatmapset_events.event.discussion_lock')
 
 
   feedbackButton: =>

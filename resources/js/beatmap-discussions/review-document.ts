@@ -43,7 +43,7 @@ export function parseFromJson(json: string, discussions: Partial<Record<number, 
 
   const processor = unified()
     .use(remarkParse)
-    .use(disableConstructs);
+    .use(disableConstructs, { type: 'editor' });
 
   const doc: Element[] = [];
   srcDoc.forEach((block) => {
@@ -66,10 +66,21 @@ export function parseFromJson(json: string, discussions: Partial<Record<number, 
             break;
           }
 
-          doc.push({
-            children: squash(parsed.children),
-            type: 'paragraph',
-          });
+          const squashed = squash(parsed.children);
+
+          if (squashed.length > 0) {
+            doc.push({
+              children: squashed,
+              type: 'paragraph',
+            });
+          } else {
+            doc.push({
+              children: [{
+                text: '',
+              }],
+              type: 'paragraph',
+            });
+          }
         }
         break;
       }
