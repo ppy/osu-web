@@ -50,13 +50,11 @@ return [
             'resolved' => 'Kamu tidak dapat menyunting postingan pada topik diskusi yang telah terjawab.',
             'system_generated' => 'Post yang dihasilkan secara otomatis tidak dapat disunting.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Diskusi pada beatmap ini telah dikunci.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'Diskusi pada beatmap ini telah dikunci.',
+
         'metadata' => [
             'nominated' => 'Kamu tidak dapat mengubah pengaturan metadata pada beatmap yang telah dinominasikan. Harap hubungi BN atau NAT apabila kamu merasa ada suatu hal yang perlu diubah.',
         ],

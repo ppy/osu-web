@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => '비슷한 테마를 기준으로 모아놓은 비트맵 모음집입니다.',
+        'empty' => '',
         'nav_title' => '목록',
         'title' => '비트맵 팩',
 
@@ -34,6 +35,7 @@ return [
     'mode' => [
         'artist' => '아티스트/앨범',
         'chart' => '스포트라이트',
+        'featured' => '공식 아티스트',
         'standard' => '표준',
         'theme' => '테마',
     ],

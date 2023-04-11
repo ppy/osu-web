@@ -43,7 +43,7 @@ return [
             'label' => [
                 'forum' => 'cari di forum',
                 'forum_children' => 'sertakan subforum',
-                'include_deleted' => '',
+                'include_deleted' => 'sertakan postingan yang telah dihapus',
                 'topic_id' => 'topik #',
                 'username' => 'pembuat post',
             ],
@@ -84,7 +84,7 @@ return [
         'macos-fallback' => 'osu! versi macOS',
         'mirror' => 'tautan alternatif',
         'or' => 'atau',
-        'os_version_or_later' => '',
+        'os_version_or_later' => ':os_version atau lebih tinggi',
         'other_os' => 'platform lainnya',
         'quick_start_guide' => 'panduan singkat',
         'tagline' => "mari persiapkan<br>dirimu!",

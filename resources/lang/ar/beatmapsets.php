@@ -61,8 +61,8 @@ return [
         'discussion' => 'مناقشة',
 
         'deleted_banner' => [
-            'title' => '',
-            'message' => '',
+            'title' => 'تم حذف هذه الخريطة.',
+            'message' => '(يمكن للمشرفين فقط رؤية هذا)',
         ],
 
         'details' => [
@@ -71,7 +71,7 @@ return [
             'favourite_login' => 'قم بتسجيل الدخول لتفضيل هذه الخريطة',
             'logged-out' => 'تحتاج إلى تسجيل الدخول قبل تنزيل أي خريطة!',
             'mapped_by' => 'نشأت بواسطة :mapper',
-            'mapped_by_guest' => '',
+            'mapped_by_guest' => 'صعوبة إضافية بواسطة :mapper',
             'unfavourite' => 'إلغاء تفضيل هذه الخريطة',
             'updated_timeago' => 'آخر تحديث :timeago',
 
@@ -130,7 +130,7 @@ return [
             'genre' => 'النوع',
             'language' => 'اللغة',
             'no_scores' => 'لا تزال البيانات تُحسب...',
-            'nominators' => '',
+            'nominators' => 'المُرَشِحون',
             'nsfw' => 'محتوى حساس',
             'offset' => 'الإزاحة عبر الإنترنت',
             'points-of-failure' => 'نقاط الفشل',

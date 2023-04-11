@@ -32,6 +32,7 @@ return [
     ],
 
     'forum_topics' => [
+        'created' => '已创建',
         'feature_votes' => '星级优先级',
         'new' => '最后回复',
     ],

@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => 'Voorverpakte collecties van beatmaps rond een bepaald thema.',
+        'empty' => '',
         'nav_title' => 'lijst',
         'title' => 'Beatmap Packs',
 
@@ -34,6 +35,7 @@ return [
     'mode' => [
         'artist' => 'Artiest/Album',
         'chart' => 'In de schijnwerpers',
+        'featured' => 'Uitgelichte Artiest',
         'standard' => 'Standaard',
         'theme' => 'Thema',
     ],

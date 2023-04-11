@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => 'Sưu tầm những map được đóng gói sẵn dựa trên chủ đề chung.',
+        'empty' => '',
         'nav_title' => 'danh sách',
         'title' => 'Gói Beatmap',
 
@@ -34,6 +35,7 @@ return [
     'mode' => [
         'artist' => 'Nghệ Sĩ/Album',
         'chart' => 'Tiêu điểm',
+        'featured' => '',
         'standard' => 'Tiêu Chuẩn',
         'theme' => 'Chủ Đề',
     ],

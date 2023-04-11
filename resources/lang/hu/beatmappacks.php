@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => 'Előre csomagolt, általános témákat körbeölelő beatmap gyűjtemények.',
+        'empty' => '',
         'nav_title' => 'listázás',
         'title' => 'Beatmap Csomagok',
 
@@ -34,6 +35,7 @@ return [
     'mode' => [
         'artist' => 'Előadó/Album',
         'chart' => 'Reflektorfény',
+        'featured' => '',
         'standard' => 'Standard',
         'theme' => 'Téma',
     ],

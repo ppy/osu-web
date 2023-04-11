@@ -9,7 +9,7 @@ return [
         'info' => ':count_delimited articolo nel carrello ($:subtotal)|:count_delimited articoli nel carrello ($:subtotal)',
         'more_goodies' => 'Voglio dare un\'occhiata ad altri elementi prima di completare l\'ordine',
         'shipping_fees' => 'costi di spedizione',
-        'title' => 'Carrello della spesa',
+        'title' => 'Carrello',
         'total' => 'totale',
 
         'errors_no_checkout' => [

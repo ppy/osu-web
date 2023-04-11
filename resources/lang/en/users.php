@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'blocked users (:count)',
         'hide_profile' => 'Hide profile',
         'hide_comment' => 'hide',
+        'forum_post_text' => 'This post is hidden.',
         'not_blocked' => 'That user is not blocked.',
         'show_profile' => 'Show profile',
         'show_comment' => 'show',
@@ -415,7 +416,7 @@ return [
             'title' => 'User not found! ;_;',
         ],
         'page' => [
-            'button' => 'Edit profile page',
+            'button' => 'edit profile page',
             'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
             'edit_big' => 'Edit me!',
             'placeholder' => 'Type page content here',
@@ -439,7 +440,7 @@ return [
         'stats' => [
             'hit_accuracy' => 'Hit Accuracy',
             'level' => 'Level :level',
-            'level_progress' => 'Progress to next level',
+            'level_progress' => 'progress to next level',
             'maximum_combo' => 'Maximum Combo',
             'medals' => 'Medals',
             'play_count' => 'Play Count',

@@ -2,9 +2,17 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-@extends("rankings.index")
+@extends('rankings.index')
 
-@section("scores")
+@section('ranking-header')
+    <div class="osu-page osu-page--ranking-info">
+        <div class="grid-items grid-items--ranking-filter">
+            @include('rankings._user_filter')
+        </div>
+    </div>
+@endsection
+
+@section('scores')
     <table class="ranking-page-table">
         <thead>
             <tr>

@@ -10,7 +10,7 @@ interface Props {
 
 export function Spinner(props: Props) {
   return (
-    <div
+    <span
       className={classWithModifiers('la-ball-clip-rotate', props.modifiers)}
     />
   );

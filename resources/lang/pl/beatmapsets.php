@@ -61,14 +61,14 @@ return [
         'discussion' => 'Dyskusja',
 
         'deleted_banner' => [
-            'title' => '',
-            'message' => '',
+            'title' => 'Ta beatmapa została usunięta.',
+            'message' => '(widoczne tylko dla moderatorów)',
         ],
 
         'details' => [
             'by_artist' => ':artist',
             'favourite' => 'Dodaj do ulubionych',
-            'favourite_login' => 'Zaloguj się, by dodać tę beatmapę do ulubionych',
+            'favourite_login' => 'Zaloguj się, by dodać tę beatmapę do ulubionych.',
             'logged-out' => 'Zaloguj się, aby zacząć pobierać beatmapy!',
             'mapped_by' => 'autorstwa :mapper',
             'mapped_by_guest' => 'gościnny poziom trudności autorstwa :mapper',

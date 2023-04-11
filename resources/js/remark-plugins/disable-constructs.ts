@@ -5,7 +5,7 @@ import type Constructs from 'micromark-core-commonmark';
 import type { Processor } from 'unified';
 import add from './add';
 
-type DisabledType = 'chat' | 'default' | 'editor' | 'reviews';
+export type DisabledType = 'chat' | 'default' | 'editor' | 'reviews';
 
 interface Options {
   type?: DisabledType;
@@ -15,15 +15,22 @@ type Construct = keyof typeof Constructs;
 
 const defaultDisabled: Construct[] = [
   'autolink',
-  'blockQuote',
   'definition',
   'hardBreakEscape',
   'headingAtx',
   'htmlFlow',
   'htmlText',
-  'list',
   'setextUnderline',
   'thematicBreak',
+];
+
+const reviewsDisabled: Construct[] = [
+  ...defaultDisabled,
+  'blockQuote',
+  'codeFenced',
+  'codeIndented',
+  'codeText',
+  'list',
 ];
 
 // list of constructs to disable
@@ -38,7 +45,7 @@ const disabled: Record<DisabledType, Construct[]> = {
   default: defaultDisabled,
   // Editor has to disable nearly everything to show mostly text.
   editor: [
-    ...defaultDisabled,
+    ...reviewsDisabled,
     'codeFenced',
     'codeIndented',
     'codeText',
@@ -47,12 +54,7 @@ const disabled: Record<DisabledType, Construct[]> = {
     'labelStartLink',
   ],
   // code blocks (any multiline construct in general) may cause review editing to break.
-  reviews: [
-    ...defaultDisabled,
-    'codeFenced',
-    'codeIndented',
-    'codeText',
-  ],
+  reviews: reviewsDisabled,
 };
 
 export default function disableConstructs(this: Processor, options?: Options) {

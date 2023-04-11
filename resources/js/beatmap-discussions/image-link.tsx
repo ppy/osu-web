@@ -7,13 +7,12 @@ import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import React from 'react';
 import { ReactMarkdownProps } from 'react-markdown/lib/complex-types';
-import DiscussionsStateContext from './discussions-state-context';
+import { LinkContext } from './renderers';
 
 type Props = ReactMarkdownProps & React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>;
 
 @observer
 export default class ImageLink extends React.Component<Props> {
-  static contextType = DiscussionsStateContext;
   @observable private loaded = false;
 
   constructor(props: Props) {
@@ -23,21 +22,32 @@ export default class ImageLink extends React.Component<Props> {
   }
 
   render() {
-    const src = this.props.src != null ? route('beatmapsets.discussions.media-url', { url: this.props.src }) : null;
-    if (src == null) {
-      return (
-        <span className='beatmapset-discussion-image-link'>
-          {this.renderSpinner()}
-        </span>
-      );
-    }
+    if (this.props.src == null) return null;
 
-    // TODO: render something else on fail?
-    return (
-      <a className='beatmapset-discussion-image-link' href={src} rel='nofollow noreferrer' target='_blank'>
+    const src = route('beatmapsets.discussions.media-url', { url: this.props.src });
+    const content = (
+      <>
         {!this.loaded && this.renderSpinner()}
-        <img {...this.props.node.properties} loading="lazy" onLoad={this.handleOnLoad} src={src} />
-      </a>
+        <img {...this.props.node.properties} loading='lazy' onLoad={this.handleOnLoad} src={src} />
+      </>
+    );
+
+    return (
+      // declaring the context at the class level causes the component to be undefined when used by ReactMarkdown.
+      // TODO: render something else on fail?
+      <LinkContext.Consumer>
+        {({ inLink }) => (
+          inLink ? (
+            <span className='beatmapset-discussion-image-link'>
+              {content}
+            </span>
+          ) : (
+            <a className='beatmapset-discussion-image-link' href={src} rel='nofollow noreferrer' target='_blank'>
+              {content}
+            </a>
+          )
+        )}
+      </LinkContext.Consumer>
     );
   }
 

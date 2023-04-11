@@ -264,8 +264,8 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
     const classMods = canEdit ? [] : ['read-only'];
 
     const timestampTooltipType = this.props.element.beatmapId != null ? 'diff' : 'all-diff';
-
     const timestampTooltip = trans(`beatmaps.discussions.review.embed.timestamp.${timestampTooltipType}`, {
+      // TODO: remove after translations are updated without the key
       type: trans(`beatmaps.discussions.message_type.${this.discussionType()}`),
     });
 
@@ -339,7 +339,7 @@ export default class EditorDiscussionComponent extends React.Component<Props> {
               contentEditable={false}
             />
             <div className={`${bn}__message-container`}>
-              <div className='beatmapset-discussion-message'>{this.props.children}</div>
+              {this.props.children}
             </div>
             {unsavedIndicator}
             {nearbyIndicator}

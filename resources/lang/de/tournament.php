@@ -17,7 +17,7 @@ return [
         ],
 
         'state' => [
-            'current' => 'Aktive Turniere',
+            'current' => 'Laufende Turniere',
             'previous' => 'Vergangene Turniere',
         ],
     ],

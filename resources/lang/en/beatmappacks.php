@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => 'Pre-packaged collections of beatmaps based around a common theme.',
+        'empty' => 'Coming soon!',
         'nav_title' => 'listing',
         'title' => 'Beatmap Packs',
 
@@ -37,6 +38,7 @@ return [
         'featured' => 'Featured Artist',
         'standard' => 'Standard',
         'theme' => 'Theme',
+        'tournament' => 'Tournament',
     ],
 
     'require_login' => [

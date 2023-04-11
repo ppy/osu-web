@@ -36,23 +36,24 @@ class MultiSearch
     private $options;
     private $query;
     private $searches;
-    private $request;
+    private array $request;
 
     public function __construct(Request $request, array $options = [])
     {
-        $this->query = trim($request['query']);
+        $this->request = $request->all();
+        $this->query = trim(get_string($this->request['query'] ?? null) ?? '');
         $this->options = $options;
-        $this->request = $request;
     }
 
     public function getMode()
     {
-        return presence($this->request['mode']) ?? 'all';
+        return presence($this->request['mode'] ?? null) ?? 'all';
     }
 
     public function hasQuery()
     {
-        return present($this->query);
+        return present($this->query)
+            || ($this->getMode() === 'forum_post' && present(get_string($this->request['username'] ?? null)));
     }
 
     public function searches()
@@ -70,7 +71,7 @@ class MultiSearch
                 $class = $settings['type'];
                 $paramsClass = $settings['paramsType'];
 
-                $params = new $paramsClass($this->request->all(), $this->options['user']);
+                $params = new $paramsClass($this->request, $this->options['user']);
                 $search = new $class($params);
                 if ($search instanceof BeatmapsetSearch) {
                     $search->source(false);

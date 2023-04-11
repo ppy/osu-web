@@ -487,9 +487,16 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
         switch ($type) {
             case 'username':
-                $user = static::where(function ($query) use ($usernameOrId) {
-                    $query->where('username', (string) $usernameOrId)->orWhere('username_clean', '=', (string) $usernameOrId);
-                });
+                $searchUsername = (string) $usernameOrId;
+                $searchUsernames = [
+                    $searchUsername,
+                    strtr($searchUsername, ' ', '_'),
+                    strtr($searchUsername, '_', ' '),
+                ];
+
+                $user = static::where(fn ($query) => $query
+                    ->whereIn('username', $searchUsernames)
+                    ->orWhereIn('username_clean', $searchUsernames));
                 break;
 
             case 'id':
@@ -2268,14 +2275,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             }
         }
 
-        foreach (self::MAX_FIELD_LENGTHS as $field => $limit) {
-            if ($this->isDirty($field)) {
-                $val = $this->$field;
-                if ($val && mb_strlen($val) > $limit) {
-                    $this->validationErrors()->add($field, '.too_long', ['limit' => $limit]);
-                }
-            }
-        }
+        $this->validateDbFieldLengths();
 
         if ($this->isDirty('group_id') && app('groups')->byId($this->group_id) === null) {
             $this->validationErrors()->add('group_id', 'invalid');

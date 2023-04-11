@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => '',
+        'empty' => '',
         'nav_title' => '',
         'title' => '',
 
@@ -34,6 +35,7 @@ return [
     'mode' => [
         'artist' => '',
         'chart' => '',
+        'featured' => '',
         'standard' => '',
         'theme' => '',
     ],

@@ -1,0 +1,16 @@
+[imagemap]
+https://assets.ppy.sh/osu-web-test-resources/placeholder-1280x720.jpg
+0 6.9 20 30 https://osu.ppy.sh link 1
+40 50 60 70 https://osu.ppy.sh/home
+8 8 8 8 #
+9 9 9 9 # some title
+[/imagemap]
+
+[imagemap]
+https://assets.ppy.sh/osu-web-test-resources/placeholder-1280x720.jpg
+40 50 60 70 https://osu.ppy.sh/users/2
+[/imagemap]
+
+[imagemap]
+https://assets.ppy.sh/osu-web-test-resources/placeholder-1280x720.jpg
+[/imagemap]

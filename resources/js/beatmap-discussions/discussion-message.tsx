@@ -3,36 +3,36 @@
 
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
+import remarkBreaks from 'remark-breaks';
 import autolink from 'remark-plugins/autolink';
-import disableConstructs from 'remark-plugins/disable-constructs';
+import disableConstructs, { DisabledType } from 'remark-plugins/disable-constructs';
 import ImageLink from './image-link';
-import { emphasisRenderer, linkRenderer, paragraphRenderer, strongRenderer, transformLinkUri } from './renderers';
+import { emphasisRenderer, linkRenderer, listItemRenderer, paragraphRenderer, strongRenderer, transformLinkUri } from './renderers';
 
 interface Props {
   markdown: string;
-  type?: 'reviews';
+  type?: DisabledType;
 }
 
 export default class DiscussionMessage extends React.Component<Props> {
   render() {
     return (
-      <div className='beatmapset-discussion-message'>
-        <ReactMarkdown
-          className='osu-md osu-md--discussions'
-          components={{
-            a: linkRenderer,
-            em: emphasisRenderer,
-            img: ImageLink,
-            p: paragraphRenderer,
-            strong: strongRenderer,
-          }}
-          remarkPlugins={[autolink, [disableConstructs, { type: this.props.type }]]}
-          transformLinkUri={transformLinkUri}
-          unwrapDisallowed
-        >
-          {this.props.markdown}
-        </ReactMarkdown>
-      </div>
+      <ReactMarkdown
+        className='osu-md osu-md--discussions'
+        components={{
+          a: linkRenderer,
+          em: emphasisRenderer,
+          img: ImageLink,
+          li: listItemRenderer,
+          p: paragraphRenderer,
+          strong: strongRenderer,
+        }}
+        remarkPlugins={[autolink, [disableConstructs, { type: this.props.type }], remarkBreaks]}
+        transformLinkUri={transformLinkUri}
+        unwrapDisallowed
+      >
+        {this.props.markdown}
+      </ReactMarkdown>
     );
   }
 }

@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => 'Iepriekš sagatavotas bītmapju kolekcijas ar savstarpēji kopīgu tēmu.',
+        'empty' => '',
         'nav_title' => 'saraksts',
         'title' => 'Bītmapju Pakas',
 
@@ -34,6 +35,7 @@ return [
     'mode' => [
         'artist' => 'Mākslinieks/Albums',
         'chart' => 'Uzmanības Centrā',
+        'featured' => '',
         'standard' => 'Standarta',
         'theme' => 'Tēma',
     ],

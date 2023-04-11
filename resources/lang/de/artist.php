@@ -18,32 +18,32 @@ return [
     ],
 
     'index' => [
-        'description' => 'Featured Artists sind Künstler, mit denen wir zusammenarbeiten, um neue und originelle Musik ins Spiel zu bringen. Diese Künstler und eine Auswahl ihrer Lieder wurden vom osu!-Team handverlesen, da sie erstklassig sind und sich gut fürs Mapping eignen. Einige der Künstler haben sogar neue Lieder exklusiv zur Verwendung in osu! erstellt.<br><br>Alle Lieder in diesem Abschnitt werden als vorgefertigte .osz-Dateien zur Verfügung gestellt und sind offiziell für die Verwendung in osu! und osu!-bezogenen Inhalten lizenziert.',
+        'description' => 'Featured Artists sind Künstler, mit denen wir zusammenarbeiten, um neue und einzigartige Musik für osu! zur Verfügung zu stellen. Ihre Lieder wurden vom osu!-Team handverlesen, weil sie großartige Werke sind und sich wunderbar für das Mapping eignen. Einige dieser Lieder wurden sogar exklusiv für osu! geschaffen.<br><br>Für alle Lieder steht eine Vorlage mit fertigem Timing als .osz-Datei zum Download bereit. Außerdem sind sie offiziell für die Verwendung in osu! und für dazu in Bezug stehenden Inhalten lizenziert.',
     ],
 
     'links' => [
-        'beatmaps' => 'osu! Beatmaps',
+        'beatmaps' => 'osu!-Beatmaps',
         'osu' => 'osu!-Profil',
         'site' => 'Offizielle Webseite',
     ],
 
     'songs' => [
-        '_' => 'Lieder',
-        'count' => ':count_delimited Lied|:count_delimited Lieder',
-        'original' => 'osu! Original',
+        '_' => 'Songs',
+        'count' => ':count_delimited Song|:count_delimited Songs',
+        'original' => 'osu! original',
         'original_badge' => 'ORIGINAL',
     ],
 
     'tracklist' => [
         'title' => 'Titel',
         'length' => 'Länge',
-        'bpm' => 'bpm',
+        'bpm' => 'BPM',
         'genre' => 'Genre',
     ],
 
     'tracks' => [
         'index' => [
-            '_' => 'liedersuche',
+            '_' => 'Liedersuche',
 
             'form' => [
                 'advanced' => 'Erweiterte Suche',

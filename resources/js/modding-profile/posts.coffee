@@ -58,12 +58,8 @@ export class Posts extends React.Component
                       users: @props.users
                       user: @props.users[post.user_id]
                       read: true
+                      readonly: true
                       lastEditor: @props.users[post.last_editor_id] ? @props.users[null] if post.last_editor_id?
-                      # FIXME: These permissions are more restrictive than the correct ones in discussion
-                      # because they don't have the right data to check.
-                      canBeEdited: currentUser.is_admin
-                      canBeDeleted: canModerate
-                      canBeRestored: canModerate
                       currentUser: currentUser
             a
               key: 'show-more'
