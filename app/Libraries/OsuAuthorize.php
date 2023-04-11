@@ -1808,6 +1808,14 @@ class OsuAuthorize
         return 'unauthorized';
     }
 
+    public function checkLegacyApiKeyStore(?User $user): string
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        return 'ok';
+    }
+
     /**
      * @param User|null $user
      * @return string

@@ -29,6 +29,8 @@ class LegacyApiKeyController extends Controller
 
     public function store()
     {
+        priv_check('LegacyApiKeyStore')->ensureCan();
+
         $user = Auth::user();
         $lock = Cache::lock("legacy_api_key_store:{$user->getKey()}", 600);
 
