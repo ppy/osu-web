@@ -20,10 +20,11 @@ class GameFactory extends Factory
     {
         return [
             'beatmap_id' => Beatmap::factory(),
-            'start_time' => fn(array $attributes) => Carbon::now()->subSeconds(Beatmap::find($attributes['beatmap_id'])->total_length),
-            'play_mode' => fn(array $attributes) => Beatmap::find($attributes['beatmap_id'])->playmode,
             'scoring_type' => fn() => $this->faker->numberBetween(0, 3),
             'team_type' => fn() => $this->faker->numberBetween(0, 3),
+
+            'play_mode' => fn(array $attributes) => Beatmap::find($attributes['beatmap_id'])->playmode,
+            'start_time' => fn(array $attributes) => Carbon::now()->subSeconds(Beatmap::find($attributes['beatmap_id'])->total_length),
         ];
     }
 
