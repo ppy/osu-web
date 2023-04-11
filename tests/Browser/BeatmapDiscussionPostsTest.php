@@ -19,11 +19,9 @@ class BeatmapDiscussionPostsTest extends DuskTestCase
 
     private Beatmap $beatmap;
     private BeatmapDiscussion $beatmapDiscussion;
-    private BeatmapDiscussionPost $beatmapDiscussionPost;
     private Beatmapset $beatmapset;
     private User $mapper;
     private User $user;
-
 
     public function testConcurrentPostAfterResolve()
     {
@@ -49,8 +47,8 @@ class BeatmapDiscussionPostsTest extends DuskTestCase
 
     protected function writeReply(Browser $browser, $reply)
     {
-        $browser->with(static::NEW_REPLY_SELECTOR, function ($new_reply) use ($reply) {
-            $new_reply->press('Respond')
+        $browser->with(static::NEW_REPLY_SELECTOR, function ($newReply) use ($reply) {
+            $newReply->press('Respond')
                 ->waitFor('textarea')
                 ->type('textarea', $reply);
         });
@@ -58,13 +56,13 @@ class BeatmapDiscussionPostsTest extends DuskTestCase
 
     protected function postReply(Browser $browser, $action)
     {
-        $browser->with(static::NEW_REPLY_SELECTOR, function ($new_reply) use ($action) {
+        $browser->with(static::NEW_REPLY_SELECTOR, function ($newReply) use ($action) {
             switch ($action) {
                 case 'resolve':
-                    $new_reply->press('Reply and Resolve');
+                    $newReply->press('Reply and Resolve');
                     break;
                 default:
-                    $new_reply->keys('textarea', '{enter}');
+                    $newReply->keys('textarea', '{enter}');
                     break;
             }
         });
@@ -118,7 +116,7 @@ class BeatmapDiscussionPostsTest extends DuskTestCase
         $post = BeatmapDiscussionPost::factory()->timeline()->make([
             'user_id' => $this->user,
         ]);
-        $this->beatmapDiscussionPost = $this->beatmapDiscussion->beatmapDiscussionPosts()->save($post);
+        $this->beatmapDiscussion->beatmapDiscussionPosts()->save($post);
 
         $this->beforeApplicationDestroyed(function () {
             // Similar case to SanityTest, cleanup the models we created during the test.
