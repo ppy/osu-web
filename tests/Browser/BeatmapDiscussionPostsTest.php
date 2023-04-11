@@ -16,6 +16,7 @@ use Tests\DuskTestCase;
 class BeatmapDiscussionPostsTest extends DuskTestCase
 {
     private const NEW_REPLY_SELECTOR = '.beatmap-discussion-new-reply';
+    private const RESOLVE_BUTTON_SELECTOR = '.btn-osu-big[data-action=reply_resolve]';
 
     private Beatmap $beatmap;
     private BeatmapDiscussion $beatmapDiscussion;
@@ -47,7 +48,7 @@ class BeatmapDiscussionPostsTest extends DuskTestCase
 
     protected function writeReply(Browser $browser, $reply)
     {
-        $browser->with(static::NEW_REPLY_SELECTOR, function ($newReply) use ($reply) {
+        $browser->with(static::NEW_REPLY_SELECTOR, function (Browser $newReply) use ($reply) {
             $newReply->press(trans('beatmap_discussions.reply.open.user'))
                 ->waitFor('textarea')
                 ->type('textarea', $reply);
@@ -56,10 +57,13 @@ class BeatmapDiscussionPostsTest extends DuskTestCase
 
     protected function postReply(Browser $browser, $action)
     {
-        $browser->with(static::NEW_REPLY_SELECTOR, function ($newReply) use ($action) {
+        $browser->with(static::NEW_REPLY_SELECTOR, function (Browser $newReply) use ($action) {
             switch ($action) {
                 case 'resolve':
-                    $newReply->press(trans('common.buttons.reply_resolve'));
+                    // button may be covered by dev banner;
+                    // ->element->($selector)->getLocationOnScreenOnceScrolledIntoView() uses { block: 'end', inline: 'nearest' } which isn't enough.
+                    $newReply->scrollIntoView(static::RESOLVE_BUTTON_SELECTOR);
+                    $newReply->element(static::RESOLVE_BUTTON_SELECTOR)->click();
                     break;
                 default:
                     $newReply->keys('textarea', '{enter}');
