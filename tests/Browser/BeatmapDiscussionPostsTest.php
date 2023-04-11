@@ -48,7 +48,7 @@ class BeatmapDiscussionPostsTest extends DuskTestCase
     protected function writeReply(Browser $browser, $reply)
     {
         $browser->with(static::NEW_REPLY_SELECTOR, function ($newReply) use ($reply) {
-            $newReply->press('Respond')
+            $newReply->press(trans('beatmap_discussions.reply.open.user'))
                 ->waitFor('textarea')
                 ->type('textarea', $reply);
         });
@@ -59,7 +59,7 @@ class BeatmapDiscussionPostsTest extends DuskTestCase
         $browser->with(static::NEW_REPLY_SELECTOR, function ($newReply) use ($action) {
             switch ($action) {
                 case 'resolve':
-                    $newReply->press('Reply and Resolve');
+                    $newReply->press(trans('common.buttons.reply_resolve'));
                     break;
                 default:
                     $newReply->keys('textarea', '{enter}');
