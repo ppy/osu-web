@@ -17,8 +17,8 @@ class LegacyMatchFactory extends Factory
     {
         return [
             'name' => fn() => $this->faker->sentence(),
-            'start_time' => fn() => Carbon::now(),
             'private' => 0,
+            'start_time' => fn() => Carbon::now(),
         ];
     }
 

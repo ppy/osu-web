@@ -36,12 +36,12 @@ class ContestTest extends TestCase
         // extra beatmap
         Beatmap::factory()->create();
 
-        $rooms = factory(Room::class, 2)->create();
+        $rooms = Room::factory()->count(2)->create();
         foreach ($rooms as $i => $room) {
             foreach ($beatmapsets as $beatmapset) {
-                $playlistItems[] = factory(PlaylistItem::class)->create([
-                    'room_id' => $room->getKey(),
-                    'beatmap_id' => $beatmapset->beatmaps[$i]->getKey(),
+                $playlistItems[] = PlaylistItem::factory()->create([
+                    'room_id' => $room,
+                    'beatmap_id' => $beatmapset->beatmaps[$i],
                 ]);
             }
         }
@@ -71,10 +71,10 @@ class ContestTest extends TestCase
                     ->playlist()
                     ->whereIn('beatmap_id', array_column($beatmapset->beatmaps->all(), 'beatmap_id'))
                     ->first();
-                factory(MultiplayerScore::class)->create([
+                MultiplayerScore::factory()->create([
                     'ended_at' => $endedAt,
                     'passed' => $passed,
-                    'playlist_item_id' => $playlistItem->getKey(),
+                    'playlist_item_id' => $playlistItem,
                     'user_id' => $userId,
                 ]);
             }
