@@ -17,10 +17,10 @@ class NotificationFactory extends Factory
     public function definition(): array
     {
         return [
-            'notifiable_type' => array_rand_val(MorphMap::MAP),
-            'notifiable_id' => rand(),
-            'name' => array_rand(Notification::NAME_TO_CATEGORY),
             'details' => [],
+            'name' => array_rand(Notification::NAME_TO_CATEGORY),
+            'notifiable_id' => rand(),
+            'notifiable_type' => array_rand_val(MorphMap::MAP),
         ];
     }
 }
