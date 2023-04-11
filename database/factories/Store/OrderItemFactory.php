@@ -3,45 +3,52 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
+namespace Database\Factories\Store;
+
 use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
 use App\Models\Store\Product;
+use Database\Factories\Factory;
 
-$factory->define(App\Models\Store\OrderItem::class, function (Faker\Generator $faker) {
-    return [
-        'order_id' => function () {
-            return factory(Order::class)->create()->order_id;
-        },
-        'product_id' => function () {
-            return factory(Product::class)->create()->product_id;
-        },
-        'quantity' => 1,
-        'cost' => 12.0,
-    ];
-});
+class OrderItemFactory extends Factory
+{
+    protected $model = OrderItem::class;
 
-$factory->state(OrderItem::class, 'supporter_tag', function (Faker\Generator $faker) use ($factory) {
-    return [
-        'product_id' => Product::customClass(Product::SUPPORTER_TAG_NAME)->first(),
-        'cost' => 4,
-        'extra_data' => function (array $self) {
-            // find the user for the generated item's order
-            $order = Order::find($self['order_id']);
-            $user = $order->user;
+    public function definition(): array
+    {
+        return [
+            'cost' => 12.0,
+            'order_id' => Order::factory(),
+            'product_id' => Product::factory(),
+            'quantity' => 1,
+        ];
+    }
 
-            return [
-                'target_id' => $user->getKey(),
-                'username' => $user->username,
-                'duration' => 1,
-            ];
-        },
-    ];
-});
+    public function supporterTag(): static
+    {
+        return $this->state([
+            'cost' => 4,
+            'extra_data' => function (array $attributes) {
+                $user = Order::find($attributes['order_id'])->user;
 
-$factory->state(OrderItem::class, 'username_change', function (Faker\Generator $faker) use ($factory) {
-    return [
-        'product_id' => Product::customClass('username-change')->first(),
-        'cost' => 0,
-        'extra_info' => 'new_username',
-    ];
-});
+                return [
+                    'duration' => 1,
+                    'target_id' => (string) $user->getKey(),
+                    'username' => $user->username,
+                ];
+            },
+            'product_id' => Product::customClass('supporter-tag')->first(),
+        ]);
+    }
+
+    public function usernameChange(): static
+    {
+        return $this->state([
+            'cost' => 0,
+            'extra_info' => 'new_username',
+            'product_id' => Product::customClass('username-change')->first(),
+        ]);
+    }
+}

@@ -168,13 +168,13 @@ class SanityTest extends DuskTestCase
         ]);
 
         // factories for /store/*
-        self::$scaffolding['product'] = factory(Store\Product::class)->states('master_tshirt')->create();
-        self::$scaffolding['order'] = factory(Store\Order::class)->states('checkout')->create([
-            'user_id' => self::$scaffolding['user']->getKey(),
+        self::$scaffolding['product'] = Store\Product::factory()->masterTshirt()->create();
+        self::$scaffolding['order'] = Store\Order::factory()->checkout()->create([
+            'user_id' => self::$scaffolding['user'],
         ]);
         self::$scaffolding['checkout'] = new ScaffoldDummy(self::$scaffolding['order']->getKey());
-        self::$scaffolding['invoice'] = factory(Store\Order::class)->states('paid')->create([
-            'user_id' => self::$scaffolding['user']->getKey(),
+        self::$scaffolding['invoice'] = Store\Order::factory()->paid()->create([
+            'user_id' => self::$scaffolding['user'],
         ]);
 
         // factories for /community/forums/*

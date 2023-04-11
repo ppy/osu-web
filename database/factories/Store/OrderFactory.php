@@ -3,51 +3,62 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-$factory->define(App\Models\Store\Order::class, function (Faker\Generator $faker) {
-    return [
-        'user_id' => function () {
-            return App\Models\User::factory()->create(['user_sig' => ''])->user_id;
-        },
-    ];
-});
+declare(strict_types=1);
 
-$factory->state(App\Models\Store\Order::class, 'paid', function (Faker\Generator $faker) use ($factory) {
-    $date = Carbon\Carbon::now();
+namespace Database\Factories\Store;
 
-    return [
-        'paid_at' => $date,
-        'status' => 'paid',
-        'transaction_id' => "test-{$date->timestamp}",
-    ];
-});
+use App\Models\Store\Order;
+use App\Models\User;
+use Carbon\Carbon;
+use Database\Factories\Factory;
 
-$factory->state(App\Models\Store\Order::class, 'incart', function (Faker\Generator $faker) {
-    return [
-        'status' => 'incart',
-    ];
-});
+class OrderFactory extends Factory
+{
+    protected $model = Order::class;
 
-$factory->state(App\Models\Store\Order::class, 'processing', function (Faker\Generator $faker) {
-    return [
-        'status' => 'processing',
-    ];
-});
+    public function checkout(): static
+    {
+        return $this->state(['status' => 'checkout']);
+    }
 
-$factory->state(App\Models\Store\Order::class, 'checkout', function (Faker\Generator $faker) {
-    return [
-        'status' => 'checkout',
-    ];
-});
+    public function definition(): array
+    {
+        return [
+            'user_id' => User::factory(),
+        ];
+    }
 
-$factory->state(App\Models\Store\Order::class, 'shipped', function (Faker\Generator $faker) {
-    return [
-        'status' => 'shipped',
-    ];
-});
+    public function paid(): static
+    {
+        $date = Carbon::now();
 
-$factory->state(App\Models\Store\Order::class, 'shopify', function (Faker\Generator $faker) {
-    return [
-        // Doesn't need to be a gid for tests.
-        'transaction_id' => App\Models\Store\Order::PROVIDER_SHOPIFY.'-'.now()->timestamp,
-    ];
-});
+        return $this->state([
+            'paid_at' => $date,
+            'status' => 'paid',
+            'transaction_id' => "test-{$date->timestamp}",
+        ]);
+    }
+
+    public function incart(): static
+    {
+        return $this->state(['status' => 'incart']);
+    }
+
+    public function processing(): static
+    {
+        return $this->state(['status' => 'processing']);
+    }
+
+    public function shipped(): static
+    {
+        return $this->state(['status' => 'shipped']);
+    }
+
+    public function shopify(): static
+    {
+        return $this->state([
+            // Doesn't need to be a gid for tests.
+            'transaction_id' => Order::PROVIDER_SHOPIFY.'-'.time(),
+        ]);
+    }
+}
