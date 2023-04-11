@@ -20,12 +20,13 @@ class PlaylistItemFactory extends Factory
     public function definition(): array
     {
         return [
-            'beatmap_id' => Beatmap::factory(),
-            'room_id' => Room::factory(),
-            'ruleset_id' => fn(array $attributes) => Beatmap::find($attributes['beatmap_id'])->playmode,
             'allowed_mods' => [],
-            'required_mods' => [],
+            'beatmap_id' => Beatmap::factory(),
             'owner_id' => User::factory(),
+            'required_mods' => [],
+            'room_id' => Room::factory(),
+
+            'ruleset_id' => fn(array $attributes) => Beatmap::find($attributes['beatmap_id'])->playmode,
         ];
     }
 }

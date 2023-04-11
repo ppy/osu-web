@@ -25,14 +25,15 @@ class ScoreFactory extends Factory
     public function definition(): array
     {
         return [
+            'accuracy' => 0.5,
             'playlist_item_id' => PlaylistItem::factory(),
+            'pp' => 1,
+            'started_at' => fn() => Carbon::now()->subMinutes(5),
+            'total_score' => 1,
+            'user_id' => User::factory(),
+
             'beatmap_id' => fn(array $attributes) => PlaylistItem::find($attributes['playlist_item_id'])->beatmap_id,
             'room_id' => fn(array $attributes) => PlaylistItem::find($attributes['playlist_item_id'])->room_id,
-            'user_id' => User::factory(),
-            'total_score' => 1,
-            'started_at' => fn() => Carbon::now()->subMinutes(5),
-            'accuracy' => 0.5,
-            'pp' => 1,
         ];
     }
 

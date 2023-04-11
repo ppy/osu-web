@@ -29,10 +29,10 @@ class RoomFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
+            'ends_at' => fn() => Carbon::now()->addHours(1),
             'name' => fn() => $this->faker->realText(20),
             'starts_at' => fn() => Carbon::now()->subHours(1),
-            'ends_at' => fn() => Carbon::now()->addHours(1),
+            'user_id' => User::factory(),
         ];
     }
 
