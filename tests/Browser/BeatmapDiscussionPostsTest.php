@@ -15,7 +15,15 @@ use Tests\DuskTestCase;
 
 class BeatmapDiscussionPostsTest extends DuskTestCase
 {
-    private $new_reply_widget_selector = '.beatmap-discussion-post--new-reply';
+    private const NEW_REPLY_SELECTOR = '.beatmap-discussion-new-reply';
+
+    private Beatmap $beatmap;
+    private BeatmapDiscussion $beatmapDiscussion;
+    private BeatmapDiscussionPost $beatmapDiscussionPost;
+    private Beatmapset $beatmapset;
+    private User $mapper;
+    private User $user;
+
 
     public function testConcurrentPostAfterResolve()
     {
@@ -41,7 +49,7 @@ class BeatmapDiscussionPostsTest extends DuskTestCase
 
     protected function writeReply(Browser $browser, $reply)
     {
-        $browser->with($this->new_reply_widget_selector, function ($new_reply) use ($reply) {
+        $browser->with(static::NEW_REPLY_SELECTOR, function ($new_reply) use ($reply) {
             $new_reply->press('Respond')
                 ->waitFor('textarea')
                 ->type('textarea', $reply);
@@ -50,7 +58,7 @@ class BeatmapDiscussionPostsTest extends DuskTestCase
 
     protected function postReply(Browser $browser, $action)
     {
-        $browser->with($this->new_reply_widget_selector, function ($new_reply) use ($action) {
+        $browser->with(static::NEW_REPLY_SELECTOR, function ($new_reply) use ($action) {
             switch ($action) {
                 case 'resolve':
                     $new_reply->press('Reply and Resolve');
