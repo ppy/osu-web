@@ -3,6 +3,8 @@
 
 import { ClientJson } from 'interfaces/client-json';
 import { OwnClientJson } from 'interfaces/own-client-json';
+import LegacyApiKey from 'legacy-api-key';
+import LegacyIrcKey from 'legacy-irc-key';
 import { AuthorizedClients } from 'oauth/authorized-clients';
 import { OwnClients } from 'oauth/own-clients';
 import core from 'osu-core-singleton';
@@ -17,6 +19,14 @@ core.reactTurbolinks.register('authorized-clients', () => {
 
   return <AuthorizedClients />;
 });
+
+core.reactTurbolinks.register('legacy-api-key', (container: HTMLElement) => (
+  <LegacyApiKey container={container} />
+));
+
+core.reactTurbolinks.register('legacy-irc-key', (container: HTMLElement) => (
+  <LegacyIrcKey container={container} />
+));
 
 core.reactTurbolinks.register('own-clients', () => {
   const json = parseJsonNullable<OwnClientJson[]>('json-own-clients', true);
