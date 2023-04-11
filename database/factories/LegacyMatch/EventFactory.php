@@ -22,24 +22,24 @@ class EventFactory extends Factory
     {
         return [
             'match_id' => LegacyMatch::factory(),
-            'user_id' => User::factory(),
             'timestamp' => fn() => Carbon::now(),
+            'user_id' => User::factory(),
         ];
     }
 
     public function stateCreate(): static
     {
         return $this->state([
-            'user_id' => null,
             'text' => 'CREATE',
+            'user_id' => null,
         ]);
     }
 
     public function disband(): static
     {
         return $this->state([
-            'user_id' => null,
             'text' => 'DISBAND',
+            'user_id' => null,
         ]);
     }
 
@@ -56,9 +56,9 @@ class EventFactory extends Factory
     public function game(): static
     {
         return $this->state([
+            'game_id' => Game::factory()->inProgress(),
             'text' => 'test game',
             'user_id' => null,
-            'game_id' => Game::factory()->inProgress(),
         ]);
     }
 }
