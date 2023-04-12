@@ -1,64 +1,92 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import mapperGroup from 'beatmap-discussions/mapper-group'
-import SelectOptions from 'components/select-options'
-import * as React from 'react'
-import { a } from 'react-dom-factories'
-import { makeUrl, parseUrl } from 'utils/beatmapset-discussion-helper'
-import { groupColour } from 'utils/css'
-import { trans } from 'utils/lang'
+import mapperGroup from 'beatmap-discussions/mapper-group';
+import SelectOptions, { OptionRenderProps } from 'components/select-options';
+import UserJson from 'interfaces/user-json';
+import * as React from 'react';
+import { makeUrl, parseUrl } from 'utils/beatmapset-discussion-helper';
+import { groupColour } from 'utils/css';
+import { trans } from 'utils/lang';
 
-el = React.createElement
-
-allUsers =
+const allUsers = Object.freeze({
   id: null,
-  text: trans('beatmap_discussions.user_filter.everyone')
+  text: trans('beatmap_discussions.user_filter.everyone'),
+});
 
-export class UserFilter extends React.PureComponent
-  mapUserProperties: (user) ->
-    groups: user.groups
-    id: user.id
-    text: user.username
+const noSelection = Object.freeze({
+  id: null,
+  text: trans('beatmap_discussions.user_filter.label'),
+});
 
+interface Option {
+  groups: UserJson['groups'];
+  id: UserJson['id'];
+  text: UserJson['username'];
+}
 
-  handleChange: (option) =>
-    $.publish 'beatmapsetDiscussions:update', selectedUserId: option.id
+interface Props {
+  ownerId: number;
+  selectedUser?: UserJson | null;
+  users: UserJson[];
+}
 
+function mapUserProperties(user: UserJson): Option {
+  return {
+    groups: user.groups,
+    id: user.id,
+    text: user.username,
+  };
+}
 
-  isOwner: (user) =>
-    user? && user.id == @props.ownerId
+export class UserFilter extends React.Component<Props> {
+  render() {
+    const options = [allUsers, ...this.props.users.map(mapUserProperties)];
 
+    const selected = this.props.selectedUser != null
+      ? mapUserProperties(this.props.selectedUser)
+      : noSelection;
 
-  render: =>
-    options = for own _id, user of @props.users when user.id?
-      @mapUserProperties(user)
-    options.unshift(allUsers)
+    return (
+      <SelectOptions
+        modifiers='beatmap-discussions-user-filter'
+        onChange={this.handleChange}
+        options={options}
+        renderOption={this.renderOption}
+        selected={selected}
+      />
+    );
+  }
 
-    selected = if @props.selectedUser?
-                 @mapUserProperties(@props.selectedUser)
-               else
-                 id: null, text: trans('beatmap_discussions.user_filter.label')
+  private readonly handleChange = (option: Option) => {
+    $.publish('beatmapsetDiscussions:update', { selectedUserId: option.id });
+  };
 
-    el SelectOptions,
-      modifiers: 'beatmap-discussions-user-filter'
-      renderOption: @renderOption
-      onChange: @handleChange
-      options: options
-      selected: selected
+  private isOwner(user?: Option) {
+    return user != null && user.id === this.props.ownerId;
+  }
 
+  private renderOption = ({ cssClasses, children, onClick, option }: OptionRenderProps<Option>) => {
+    const group = this.isOwner(option) ? mapperGroup : option.groups?.[0];
+    const style = groupColour(group);
 
-  renderOption: ({ cssClasses, children, onClick, option }) =>
-    group = if @isOwner(option) then mapperGroup else option.groups?[0]
-    style = groupColour(group)
+    const urlOptions = parseUrl();
+    // means it doesn't work on non-beatmapset discussion paths
+    if (urlOptions == null) return null;
 
-    urlOptions = parseUrl(null)
-    urlOptions.user = option?.id
+    urlOptions.user = option?.id;
 
-    a
-      className: cssClasses
-      href: makeUrl(urlOptions)
-      key: option?.id
-      onClick: onClick
-      style: style
-      children
+    return (
+      <a
+        key={option?.id}
+        className={cssClasses}
+        href={makeUrl(urlOptions)}
+
+        onClick={onClick}
+        style={style}
+      >
+        {children}
+      </a>
+    );
+  };
+}
