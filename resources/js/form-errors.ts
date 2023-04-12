@@ -42,10 +42,10 @@ export class FormErrors {
   }
 
   @action
-  handleResponse = (xhr: JQueryXHR) => {
+  handleResponse = (xhr: JQuery.jqXHR<unknown>) => {
     // TODO: extra checks
     // this is also only valid if there aren't more nested keys, which is fine for the current usages.
-    const errors = xhr.responseJSON.form_error as Record<string, string[]> | undefined;
+    const errors = xhr.responseJSON?.form_error as Record<string, string[]> | undefined;
     // only handle responses with form_error
     if (errors == null) return;
 
