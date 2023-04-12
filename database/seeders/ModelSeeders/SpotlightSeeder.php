@@ -96,7 +96,7 @@ class SpotlightSeeder extends Seeder
 
                 foreach ($users as $user) {
                     // user_stats
-                    $stats = factory(UserStatisticsModel::getClass($ruleset))->make(['user_id' => $user->user_id]);
+                    $stats = UserStatisticsModel::getClass($ruleset)::factory()->make(['user_id' => $user]);
                     $stats->setTable($spotlight->userStatsTableName($ruleset));
 
                     $stats->save();

@@ -5,9 +5,9 @@
 
 declare(strict_types=1);
 
-namespace Database\Factories\UserStatistics;
+namespace Database\Factories\UserStatistics\Spotlight;
 
-use App\Models\UserStatistics\Fruits;
+use App\Models\UserStatistics\Spotlight\Fruits;
 
 class FruitsFactory extends ModelFactory
 {

@@ -195,7 +195,10 @@ class SanityTest extends DuskTestCase
         self::$scaffolding['_user_group'] = UserGroup::first();
 
         // satisfy minimum playcount for forum posting
-        self::$scaffolding['user']->statisticsOsu()->save(factory(UserStatistics\Osu::class)->make(['playcount' => config('osu.forum.minimum_plays')]));
+        UserStatistics\Osu::factory()->create([
+            'playcount' => config('osu.forum.minimum_plays'),
+            'user_id' => self::$scaffolding['user'],
+        ]);
 
         self::$scaffolding['topic'] = Topic::factory()->create([
             'forum_id' => self::$scaffolding['forum'],
