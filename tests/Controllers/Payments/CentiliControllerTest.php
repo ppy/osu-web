@@ -28,7 +28,7 @@ class CentiliControllerTest extends TestCase
 
     public function testWhenPaymentIsInsufficient()
     {
-        $orderItem = factory(OrderItem::class)->states('supporter_tag')->create(['order_id' => $this->order->order_id]);
+        $orderItem = OrderItem::factory()->supporterTag()->create(['order_id' => $this->order]);
 
         $data = $this->getPostData(['enduserprice' => '479.000']);
 
@@ -47,7 +47,7 @@ class CentiliControllerTest extends TestCase
         Config::set('payments.centili.secret_key', 'secret_key');
         Config::set('payments.centili.api_key', 'api_key');
         Config::set('payments.centili.conversion_rate', 120.00);
-        $this->order = factory(Order::class)->states('checkout')->create();
+        $this->order = Order::factory()->checkout()->create();
     }
 
     private function getPostData(array $overrides = [])

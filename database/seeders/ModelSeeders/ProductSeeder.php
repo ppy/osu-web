@@ -28,9 +28,9 @@ class ProductSeeder extends Seeder
         $this->product_ids = [];
         $this->count = 0;
 
-        $master_tshirt = factory(Product::class)->states('master_tshirt')->create();
-        $child_shirts = factory(Product::class, 7)->states('child_tshirt')->create([
-            'master_product_id' => $master_tshirt->product_id,
+        $master_tshirt = Product::factory()->masterTshirt()->create();
+        $child_shirts = Product::factory()->count(7)->childTshirt()->create([
+            'master_product_id' => $master_tshirt,
         ])->each(function ($s) {
             $this->product_ids[] = $s->product_id;
             $this->count++;
@@ -69,12 +69,12 @@ class ProductSeeder extends Seeder
         $countries = Country::limit(6)->get()->toArray();
         $master_country = array_shift($countries);
 
-        $master = factory(Product::class)->states('child_banners')->create([
-            'name' => "{$tournament->name} Support Banner ({$master_country['name']})",
+        $master = Product::factory()->childBanners()->create([
             'description' => ':)',
-            'header_description' => "# {$tournament->name} Support Banners\nYayifications",
-            'promoted' => true,
             'display_order' => 0,
+            'header_description' => "# {$tournament->name} Support Banners\nYayifications",
+            'name' => "{$tournament->name} Support Banner ({$master_country['name']})",
+            'promoted' => true,
         ]);
 
         $type_mappings_json = [
@@ -85,9 +85,9 @@ class ProductSeeder extends Seeder
         ];
 
         foreach ($countries as $country) {
-            $product = factory(Product::class)->states('child_banners')->create([
+            $product = Product::factory()->childBanners()->create([
+                'master_product_id' => $master,
                 'name' => "{$tournament->name} Support Banner ({$country['name']})",
-                'master_product_id' => $master->product_id,
             ]);
 
             $type_mappings_json[$product->product_id] = [

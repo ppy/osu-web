@@ -66,7 +66,7 @@ class XsollaControllerTest extends TestCase
     {
         parent::setUp();
         Config::set('payments.xsolla.secret_key', 'magic');
-        $this->order = factory(Order::class)->states('checkout')->create();
+        $this->order = Order::factory()->checkout()->create();
     }
 
     private function getPostData(array $overrides = [])
