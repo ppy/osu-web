@@ -5,13 +5,13 @@
 
 declare(strict_types=1);
 
-namespace Database\Factories\UserStatistics;
+namespace Database\Factories\UserStatistics\Spotlight;
 
-use App\Models\UserStatistics\Fruits;
+use App\Models\UserStatistics\Spotlight\Osu;
 
-class FruitsFactory extends ModelFactory
+class OsuFactory extends ModelFactory
 {
-    protected $model = Fruits::class;
+    protected $model = Osu::class;
 
     // TODO: remove following line after removing legacy-factories
     // fooling legacy-factories' "isLegacyFactory" check: class Hello extends Factory
