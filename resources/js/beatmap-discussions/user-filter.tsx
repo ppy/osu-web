@@ -66,7 +66,7 @@ export class UserFilter extends React.Component<Props> {
     return user != null && user.id === this.props.ownerId;
   }
 
-  private renderOption = ({ cssClasses, children, onClick, option }: OptionRenderProps<Option>) => {
+  private readonly renderOption = ({ cssClasses, children, onClick, option }: OptionRenderProps<Option>) => {
     const group = this.isOwner(option) ? mapperGroup : option.groups?.[0];
     const style = groupColour(group);
 
@@ -81,7 +81,6 @@ export class UserFilter extends React.Component<Props> {
         key={option?.id}
         className={cssClasses}
         href={makeUrl(urlOptions)}
-
         onClick={onClick}
         style={style}
       >
