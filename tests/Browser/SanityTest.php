@@ -239,8 +239,8 @@ class SanityTest extends DuskTestCase
         ]);
 
         // factory for matches
-        self::$scaffolding['match'] = factory(LegacyMatch\LegacyMatch::class)->create();
-        self::$scaffolding['event'] = factory(LegacyMatch\Event::class)->states('join')->create([
+        self::$scaffolding['match'] = LegacyMatch\LegacyMatch::factory()->create();
+        self::$scaffolding['event'] = LegacyMatch\Event::factory()->join()->create([
             'match_id' => self::$scaffolding['match']->getKey(),
         ]);
 
@@ -253,7 +253,7 @@ class SanityTest extends DuskTestCase
         // score factory
         self::$scaffolding['score'] = Score\Best\Osu::factory()->withReplay()->create();
 
-        self::$scaffolding['room'] = factory(Room::class)->create(['category' => 'spotlight']);
+        self::$scaffolding['room'] = Room::factory()->create(['category' => 'spotlight']);
 
         app('groups')->resetMemoized();
     }

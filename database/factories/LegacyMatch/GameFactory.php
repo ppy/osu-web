@@ -3,29 +3,38 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
+namespace Database\Factories\LegacyMatch;
+
+use App\Models\Beatmap;
 use App\Models\LegacyMatch\Game;
 use Carbon\Carbon;
+use Database\Factories\Factory;
 
-$factory->define(Game::class, function (Faker\Generator $faker) {
-    $beatmap = App\Models\Beatmap::inRandomOrder()->first();
+class GameFactory extends Factory
+{
+    protected $model = Game::class;
 
-    return [
-        'beatmap_id' => $beatmap->beatmap_id,
-        'start_time' => Carbon::now()->subSeconds($beatmap->total_length),
-        'play_mode' => $beatmap->playmode,
-        'scoring_type' => $faker->numberBetween(0, 3),
-        'team_type' => $faker->numberBetween(0, 3),
-    ];
-});
+    public function definition(): array
+    {
+        return [
+            'beatmap_id' => Beatmap::factory(),
+            'scoring_type' => fn() => $this->faker->numberBetween(0, 3),
+            'team_type' => fn() => $this->faker->numberBetween(0, 3),
 
-$factory->state(Game::class, 'in_progress', function (Faker\Generator $faker) {
-    return [
-        'end_time' => null,
-    ];
-});
+            'play_mode' => fn(array $attributes) => Beatmap::find($attributes['beatmap_id'])->playmode,
+            'start_time' => fn(array $attributes) => Carbon::now()->subSeconds(Beatmap::find($attributes['beatmap_id'])->total_length),
+        ];
+    }
 
-$factory->state(Game::class, 'complete', function (Faker\Generator $faker) {
-    return [
-        'end_time' => Carbon::now(),
-    ];
-});
+    public function inProgress(): static
+    {
+        return $this->state(['end_time' => null]);
+    }
+
+    public function complete(): static
+    {
+        return $this->state(['end_time' => fn() => Carbon::now()]);
+    }
+}

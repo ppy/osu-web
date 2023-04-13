@@ -25,6 +25,7 @@ interface Props {
 
 @observer
 export default class Info extends React.Component<Props> {
+  private descriptionEditorRef = React.createRef<BbcodeEditor>();
   @observable private isEditingDescription = false;
   @observable private isEditingMetadata = false;
   @observable private saveDescriptionXhr: JQuery.jqXHR<BeatmapsetJsonForShow> | null = null;
@@ -94,7 +95,9 @@ export default class Info extends React.Component<Props> {
             <div className='osu-page'>
               <BbcodeEditor
                 key={this.controller.beatmapset.id /* ensure component is reset if beatmapset changes */}
+                ref={this.descriptionEditorRef}
                 disabled={this.saveDescriptionXhr != null}
+                ignoreEsc
                 modifiers='beatmapset-description-editor'
                 onChange={this.handleEditorChange}
                 rawValue={this.controller.beatmapset.description.bbcode ?? ''}
@@ -219,7 +222,11 @@ export default class Info extends React.Component<Props> {
 
   @action
   private readonly handleCloseDescriptionEditor = () => {
-    this.isEditingDescription = false;
+    if (this.descriptionEditorRef.current == null) {
+      this.isEditingDescription = false;
+    } else {
+      this.descriptionEditorRef.current.cancel();
+    }
   };
 
   @action

@@ -277,6 +277,7 @@ class BeatmapsetsController extends Controller
             'genre_id:int',
             'language_id:int',
             'nsfw:bool',
+            'tags:string',
         ]);
 
         $offsetParams = get_params($params, 'beatmapset', [
@@ -299,6 +300,7 @@ class BeatmapsetsController extends Controller
                 $oldLanguageId = $beatmapset->language_id;
                 $oldNsfw = $beatmapset->nsfw;
                 $oldOffset = $beatmapset->offset;
+                $oldTags = $beatmapset->tags;
                 $user = auth()->user();
 
                 $beatmapset->fill($updateParams)->saveOrExplode();
@@ -328,6 +330,13 @@ class BeatmapsetsController extends Controller
                     BeatmapsetEvent::log(BeatmapsetEvent::OFFSET_EDIT, $user, $beatmapset, [
                         'old' => $oldOffset,
                         'new' => $beatmapset->offset,
+                    ])->saveOrExplode();
+                }
+
+                if ($oldTags !== $beatmapset->tags) {
+                    BeatmapsetEvent::log(BeatmapsetEvent::TAGS_EDIT, $user, $beatmapset, [
+                        'old' => $oldTags,
+                        'new' => $beatmapset->tags,
                     ])->saveOrExplode();
                 }
             });
