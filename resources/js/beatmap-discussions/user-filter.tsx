@@ -40,20 +40,24 @@ function mapUserProperties(user: UserJson): Option {
 }
 
 export class UserFilter extends React.Component<Props> {
-  render() {
-    const options = [allUsers, ...this.props.users.map(mapUserProperties)];
-
-    const selected = this.props.selectedUser != null
+  private get selected() {
+    return this.props.selectedUser != null
       ? mapUserProperties(this.props.selectedUser)
       : noSelection;
+  }
 
+  private get options() {
+    return [allUsers, ...this.props.users.map(mapUserProperties)];
+  }
+
+  render() {
     return (
       <SelectOptions
         modifiers='beatmap-discussions-user-filter'
         onChange={this.handleChange}
-        options={options}
+        options={this.options}
         renderOption={this.renderOption}
-        selected={selected}
+        selected={this.selected}
       />
     );
   }
