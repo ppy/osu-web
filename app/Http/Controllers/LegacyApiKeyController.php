@@ -50,9 +50,9 @@ class LegacyApiKeyController extends Controller
             $apiKey->saveOrExplode();
         } catch (ModelNotSavedException $e) {
             return ModelNotSavedException::makeResponse($e, ['legacy_api_key' => $apiKey]);
+        } finally {
+            $lock->release();
         }
-
-        $lock->release();
 
         return json_item($apiKey, new LegacyApiKeyTransformer());
     }
