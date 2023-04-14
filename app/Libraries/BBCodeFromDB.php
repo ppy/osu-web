@@ -320,8 +320,12 @@ class BBCodeFromDB
 
     public function parseSize($text)
     {
-        $text = preg_replace("#\[size=(\d+):{$this->uid}\]#", "<span class='size-\\1'>", $text);
-        $text = str_replace("[/size:{$this->uid}]", '</span>', $text);
+        $text = preg_replace_callback(
+            "#\[size=(\d+):{$this->uid}\]#",
+            fn ($m) => '<span style="font-size:'.clamp((int) $m[1], 30, 200).'%;">',
+            $text,
+        );
+        $text = strtr($text, ["[/size:{$this->uid}]" => '</span>']);
 
         return $text;
     }
