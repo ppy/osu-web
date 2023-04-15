@@ -333,10 +333,10 @@ class SupporterTagFulfillmentTest extends TestCase
     {
         $donor = $orderItem->order->user;
 
-        return factory(UserDonation::class)->create([
+        return UserDonation::factory()->create([
             'transaction_id' => "{$orderItem->order->transaction_id}-{$orderItem->id}".($cancelled ? '-cancel' : ''),
-            'user_id' => $donor->user_id,
-            'target_user_id' => $giftee->user_id,
+            'user_id' => $donor,
+            'target_user_id' => $giftee,
         ]);
     }
 
