@@ -10,10 +10,14 @@
 
   &__actions {
     flex: none;
+    gap: 5px 10px;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
 
-    @media @mobile {
-      display: flex;
-      flex-direction: column;
+    @media @desktop {
+      align-items: baseline;
+      flex-direction: row;
     }
   }
 
