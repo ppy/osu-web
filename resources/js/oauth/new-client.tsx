@@ -28,6 +28,7 @@ export class NewClient extends React.Component {
     makeObservable(this);
   }
 
+  @action
   handleCancel = () => {
     uiState.account.newClientVisible = false;
     uiState.account.isCreatingNewClient = false;
@@ -54,14 +55,14 @@ export class NewClient extends React.Component {
       data: this.state,
       method: 'POST',
       url: route('oauth.clients.store'),
-    }).then((data: OwnClientJson) => {
+    }).then(action((data: OwnClientJson) => {
       const client = store.updateWithJson(data);
       uiState.account.newClientVisible = false;
       uiState.account.client = client;
-    }).catch(this.errors.handleResponse)
-      .always(() => {
+    })).catch(this.errors.handleResponse)
+      .always(action(() => {
         uiState.account.isCreatingNewClient = false;
-      });
+      }));
   };
 
   render() {

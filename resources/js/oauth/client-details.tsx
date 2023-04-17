@@ -50,9 +50,9 @@ export class ClientDetails extends React.Component<Props, State> {
     if (this.props.client.isRevoking) return;
     if (!confirm(trans('oauth.own_clients.confirm_delete'))) return;
 
-    this.props.client.delete().then(() => {
+    this.props.client.delete().then(action(() => {
       uiState.account.client = null;
-    });
+    }));
   };
 
   @action
