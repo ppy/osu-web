@@ -13,8 +13,8 @@ return [
 
     'beatmaps' => [
         '_' => 'Mapas',
-        'download' => 'Descargar plantilla del mapa',
-        'download-na' => 'La plantilla del mapa no está disponible aún',
+        'download' => 'descargar plantilla del mapa',
+        'download-na' => 'plantilla del mapa aún no disponible',
     ],
 
     'index' => [

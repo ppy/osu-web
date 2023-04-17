@@ -34,6 +34,7 @@ return [
         'qualify' => 'Tämä beatmap sai vaaditun määrän suosituksia hyväksymisvaihetta varten.',
         'rank' => 'Hyväksytty.',
         'remove_from_loved' => '',
+        'tags_edit' => '',
 
         'nsfw_toggle' => [
             'to_0' => '',

@@ -61,8 +61,8 @@ return [
         'discussion' => 'Diskussion',
 
         'deleted_banner' => [
-            'title' => '',
-            'message' => '',
+            'title' => 'Denna beatmap har blivit borttagen.',
+            'message' => '(endast moderatorer kan se detta)',
         ],
 
         'details' => [
@@ -71,7 +71,7 @@ return [
             'favourite_login' => 'Logga in för att favoritmarkera denna beatmap',
             'logged-out' => 'Du behöver logga in innan du laddar ner beatmaps!',
             'mapped_by' => 'skapad av :mapper',
-            'mapped_by_guest' => '',
+            'mapped_by_guest' => 'gästsvårighetsgrad av :mapper',
             'unfavourite' => 'Ta bort favoritmarkering på detta beatmapset',
             'updated_timeago' => 'senast ändrad :timeago',
 

@@ -46,7 +46,7 @@ return [
             'title' => 'Cool! Was bekommt man denn?',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'Schneller und einfacher Zugriff zum Suchen und Downloaden von Beatmaps, ohne das Spiel verlassen zu müssen.',
+                'description' => 'Schneller und einfacher Zugriff zum Suchen und Herunterladen von Beatmaps, ohne das Spiel verlassen zu müssen.',
             ],
 
             'friend_ranking' => [
@@ -121,11 +121,11 @@ return [
 
             'more_favourites' => [
                 'title' => 'Mehr Favoriten',
-                'description' => 'Die maximale Anzahl von Beatmaps, die Du als Favoriten festlegen kannst, wird erhöht von :normally &rarr; :supporter',
+                'description' => 'Die maximale Anzahl von Beatmaps, die du als Favoriten festlegen kannst, wird von :normally auf :supporter erhöht.',
             ],
             'more_friends' => [
                 'title' => 'Mehr Freunde',
-                'description' => 'Die maximale Anzahl von Freunden, die du haben kannst, wurde von erhöht :normally &rarr; :supporter',
+                'description' => 'Die maximale Anzahl von Freunden, die du haben kannst, wird von :normally auf :supporter erhöht.',
             ],
             'more_beatmaps' => [
                 'title' => 'Mehr Beatmaps hochladen',
@@ -133,7 +133,7 @@ return [
             ],
             'friend_filtering' => [
                 'title' => 'Freundes-Ranglisten',
-                'description' => 'Kokurriere dich mit deinen Freunden und sieh dir an, wie du dich gegen sie behauptest!',
+                'description' => 'Konkurriere dich mit deinen Freunden und sieh dir an, wie du dich gegen sie behauptest!',
             ],
 
         ],

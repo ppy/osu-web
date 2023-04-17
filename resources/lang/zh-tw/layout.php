@@ -52,7 +52,7 @@ return [
         'users' => [
             'modding' => '摸圖',
             'playlists' => '歌單',
-            'realtime' => '多人',
+            'realtime' => '多人遊戲',
             'show' => '資訊',
         ],
     ],

@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'blokirani korisnici (:count)',
         'hide_profile' => 'Sakrij profil',
         'hide_comment' => 'sakrij',
+        'forum_post_text' => '',
         'not_blocked' => 'Taj korisnik nije blokiran.',
         'show_profile' => 'Prikaži profil',
         'show_comment' => 'prikaži',

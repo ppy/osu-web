@@ -34,6 +34,7 @@ return [
         'qualify' => 'Αυτό το beatmap έχει φτάσει των απαραίτητο αριθμό nominations και είναι πλέον qualified.',
         'rank' => 'Ranked.',
         'remove_from_loved' => '',
+        'tags_edit' => '',
 
         'nsfw_toggle' => [
             'to_0' => '',

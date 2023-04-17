@@ -38,6 +38,7 @@ return [
         'featured' => '',
         'standard' => 'Tavallinen',
         'theme' => 'Teema',
+        'tournament' => '',
     ],
 
     'require_login' => [

@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'generic' => 'Исравке грешака и мања побољшања',
+    'generic' => 'Исправке грешака и мања побољшања',
 
     'build' => [
         'title' => 'промене у верзији :version',
@@ -15,8 +15,7 @@ return [
     ],
 
     'entry' => [
-        'by' => 'од корисника :user
-',
+        'by' => 'од корисника :user',
     ],
 
     'index' => [
