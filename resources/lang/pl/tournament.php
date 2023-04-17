@@ -13,7 +13,7 @@ return [
         ],
 
         'item' => [
-            'registered' => 'Zarejestrowani użytkownicy',
+            'registered' => 'zarejestrowani użytkownicy',
         ],
 
         'state' => [

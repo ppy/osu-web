@@ -101,14 +101,14 @@ return [
             '_' => 'prestation',
         ],
         'seasons_controller' => [
-            '_' => '',
+            '_' => 'rankningar',
         ],
         'tournaments_controller' => [
             '_' => 'turneringar',
         ],
         'users_controller' => [
             '_' => 'spelarinformation',
-            'create' => '',
+            'create' => 'skapa konto',
             'disabled' => 'notera',
         ],
         'wiki_controller' => [

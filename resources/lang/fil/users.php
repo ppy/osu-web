@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'mga na-block na user (:count)',
         'hide_profile' => 'Itago ang profile',
         'hide_comment' => 'itago',
+        'forum_post_text' => '',
         'not_blocked' => 'Hindi naka-block ang user na ito.',
         'show_profile' => 'Ipakita ang profile',
         'show_comment' => 'ipakita',

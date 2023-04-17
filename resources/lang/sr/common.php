@@ -127,7 +127,7 @@ return [
         'count_50' => '50',
         'count_geki' => '',
         'count_katu' => '200',
-        'count_miss' => 'Госпођица',
+        'count_miss' => 'Промашај/а',
     ],
 
     'scoreboard_time' => [
@@ -147,7 +147,7 @@ return [
 
     'time' => [
         'days_ago' => ':count_delimited пре један дан|:count_delimited пре пар дана',
-        'hours_ago' => ':count_delimited пре сат времена|пре :count_delimited сати',
+        'hours_ago' => 'пре :count_delimited сат|пре :count_delimited сати',
         'now' => 'сада',
         'remaining' => 'Преостало време',
     ],

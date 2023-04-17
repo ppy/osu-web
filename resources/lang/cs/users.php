@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'blokovaných uživatelů (:count)',
         'hide_profile' => 'Skrýt profil',
         'hide_comment' => 'skrýt',
+        'forum_post_text' => '',
         'not_blocked' => 'Tento uživatel není blokován.',
         'show_profile' => 'Zobrazit profil',
         'show_comment' => 'zobrazit',

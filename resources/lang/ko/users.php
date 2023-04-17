@@ -37,6 +37,7 @@ return [
         'blocked_count' => '차단된 유저 (:count)',
         'hide_profile' => '프로필 숨기기',
         'hide_comment' => '숨기기',
+        'forum_post_text' => '',
         'not_blocked' => '해당 유저는 차단되어있지 않습니다.',
         'show_profile' => '프로필 표시',
         'show_comment' => '보기',

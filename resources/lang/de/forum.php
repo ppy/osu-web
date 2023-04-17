@@ -15,7 +15,7 @@ return [
         'create' => [
             '_' => 'Banner festlegen',
             'button' => 'Bild hochladen',
-            'info' => 'Das Bild sollte :dimensions groß sein. Hier kannst du es auch ablegen, um es hochzuladen.',
+            'info' => 'Das Banner sollte :dimensions groß sein. Du kannst dein Bild auch hier ablegen, um es hochzuladen.',
         ],
 
         'destroy' => [
@@ -72,25 +72,25 @@ return [
     'search' => [
         'go_to_post' => 'Gehe zu Beitrag',
         'post_number_input' => 'beitragsnummer hier eingeben',
-        'total_posts' => 'Insgesamt :posts_count Beiträge',
+        'total_posts' => 'insgesamt :posts_count Beiträge',
     ],
 
     'topic' => [
         'confirm_destroy' => 'Thread wirklich löschen?',
         'confirm_restore' => 'Thread wirklich wiederherstellen?',
         'deleted' => 'gelöschter Thread',
-        'go_to_latest' => 'letzten beitrag anschauen',
+        'go_to_latest' => 'letzte Antwort anschauen',
         'has_replied' => 'Du hast auf diesen Thread geantwortet',
         'in_forum' => 'in :forum',
         'latest_post' => ':when von :user',
-        'latest_reply_by' => 'letzte antwort von :user',
+        'latest_reply_by' => 'letzte Antwort von :user',
         'new_topic' => 'Neuen Thread erstellen',
         'new_topic_login' => 'Melde dich an, um einen neuen Thread zu erstellen',
         'post_reply' => 'Antworten',
         'reply_box_placeholder' => 'Zum Antworten hier Text eingeben',
         'reply_title_prefix' => 'Re',
         'started_by' => 'von :user',
-        'started_by_verbose' => 'gestartet von :user',
+        'started_by_verbose' => 'gepostet von :user',
 
         'actions' => [
             'destroy' => 'Thread löschen',
@@ -109,53 +109,53 @@ return [
                 'default' => 'Dieser Thread ist seit längerer Zeit inaktiv. Poste nur, wenn du einen wichtigen Grund dazu hast.',
 
                 'new_topic' => [
-                    '_' => "Dieser Thread ist seit längerer Zeit inaktiv. Wenn du keinen wichtigen Grund zum Posten hast, :create stattdessen.",
-                    'create' => 'erstelle einen neuen Thread',
+                    '_' => "Dieser Thread ist seit längerer Zeit inaktiv. :create, wenn du keinen wichtigen Grund zum Antworten hast.",
+                    'create' => 'Erstelle einen neuen Thread',
                 ],
             ],
 
             'placeholder' => [
                 'body' => 'Inhalt hier eingeben',
-                'title' => 'Hier klicken, um den Titel festzulegen',
+                'title' => 'Hier klicken, um eine Überschrift festzulegen',
             ],
         ],
 
         'jump' => [
-            'enter' => 'hier klicken, um eine beitragsnummer einzugeben',
-            'first' => 'zum ersten beitrag',
-            'last' => 'zum letzten beitrag',
-            'next' => '10 beiträge überspringen',
-            'previous' => '10 beiträge zurückgehen',
+            'enter' => 'klicke, um die Nummer eines bestimmten Beitrags einzugeben',
+            'first' => 'zum ersten Beitrag',
+            'last' => 'zur letzten Antwort',
+            'next' => '10 Antworten überspringen',
+            'previous' => '10 Antworten zurückgehen',
         ],
 
         'logs' => [
-            '_' => 'Thread-Protokolle',
-            'button' => 'Thread-Protokolle durchsuchen',
+            '_' => 'Thread-Logs',
+            'button' => 'Thread-Logs durchsuchen',
 
             'columns' => [
-                'action' => 'Maßnahme',
+                'action' => 'Action',
                 'date' => 'Datum',
-                'user' => 'Benutzer',
+                'user' => 'User',
             ],
 
             'data' => [
-                'add_tag' => 'tag ":tag" hinzugefügt',
-                'announcement' => 'thread angeheftet und als ankündigung markiert',
+                'add_tag' => 'Tag ":tag" hinzugefügt',
+                'announcement' => 'Thread wurde angeheftet und als Ankündigung markiert',
                 'edit_topic' => 'nach :title',
                 'fork' => 'von :topic',
-                'pin' => 'thread angeheftet',
+                'pin' => 'Thread angeheftet',
                 'post_operation' => 'gepostet von :username',
-                'remove_tag' => 'tag ":tag" entfernt',
+                'remove_tag' => 'Tag ":tag" entfernt',
                 'source_forum_operation' => 'von :forum',
-                'unpin' => 'thread losgelöst',
+                'unpin' => 'Thread gelöst',
             ],
 
-            'no_results' => 'keine protokolle gefunden...',
+            'no_results' => 'keine Logs gefunden...',
 
             'operations' => [
                 'delete_post' => 'Beitrag gelöscht',
                 'delete_topic' => 'Thread gelöscht',
-                'edit_topic' => 'Thread-Titel geändert',
+                'edit_topic' => 'Thread-Überschrift geändert',
                 'edit_poll' => 'Thread-Umfrage bearbeitet',
                 'fork' => 'Thread kopiert',
                 'issue_tag' => 'Tag erstellt',
@@ -171,7 +171,7 @@ return [
                 'topic_type' => 'Thread-Typ festgelegt',
                 'topic_type_changed' => 'Thread-Typ geändert',
                 'unlock' => 'Thread entsperrt',
-                'unpin' => 'Thread losgelöst',
+                'unpin' => 'Thread gelöst',
                 'user_lock' => 'Eigenen Thread gesperrt',
                 'user_unlock' => 'Eigenen Thread entsperrt',
             ],
@@ -185,11 +185,11 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title_compact' => 'forenabos',
+            'title_compact' => 'Foren-Threads Merkliste',
 
             'box' => [
                 'total' => 'Abonnierte Threads',
-                'unread' => 'Threads mit ungelesenen Antworten',
+                'unread' => 'Threads mit neuen Antworten',
             ],
 
             'info' => [
@@ -200,8 +200,8 @@ return [
 
         'topic_buttons' => [
             'remove' => [
-                'confirmation' => 'Thread deabonnieren?',
-                'title' => 'Deabonnieren',
+                'confirmation' => 'Thread nicht mehr abonnieren?',
+                'title' => 'Nicht mehr abonnieren',
             ],
         ],
     ],
@@ -223,7 +223,7 @@ return [
 
             'create_poll_button' => [
                 'add' => 'Erstelle eine Abstimmung',
-                'remove' => 'Brich die Abstimmungserstellung ab',
+                'remove' => 'Abstimmungs-Erstellung abbrechen',
             ],
 
             'poll' => [
@@ -232,12 +232,12 @@ return [
                 'length' => 'Abstimmung offen für',
                 'length_days_suffix' => 'Tage',
                 'length_info' => 'Nichts eingeben für eine nie endende Abstimmung',
-                'max_options' => 'Antworten pro Benutzer',
-                'max_options_info' => 'Dies ist die Anzahl an Antworten, die jeder maximal Benutzer wählen kann.',
+                'max_options' => 'Antworten pro User',
+                'max_options_info' => 'Dies ist die Anzahl an Antworten, die jeder User maximal wählen kann.',
                 'options' => 'Antworten',
                 'options_info' => 'Platziere jede Antwort in einer neuen Zeile. Du kannst maximal 10 Antworten eingeben.',
                 'title' => 'Frage',
-                'vote_change' => 'Erlaube Antwortänderungen.',
+                'vote_change' => 'Erlaube wiederholte Abstimmungen.',
                 'vote_change_info' => 'Wenn aktiv, können Benutzer ihre Antworten ändern.',
             ],
         ],
@@ -247,7 +247,7 @@ return [
         ],
 
         'index' => [
-            'feature_votes' => 'Sternpriorität',
+            'feature_votes' => 'Stern-Priorität',
             'replies' => 'Antworten',
             'views' => 'Aufrufe',
         ],
@@ -305,7 +305,7 @@ return [
         ],
 
         'moderate_move' => [
-            'title' => 'In ein anderes Forum bewegen',
+            'title' => 'In ein anderes Forum verschieben',
         ],
 
         'moderate_pin' => [
@@ -331,12 +331,12 @@ return [
 
             'feature_vote' => [
                 'current' => 'Aktuelle Priorität: +:count',
-                'do' => 'Priorität hinzufügen',
+                'do' => 'Bringe dieses Request voran',
 
                 'info' => [
-                    '_' => 'Dies ist ein :feature_request. Über Funktionsvorschläge können nur :supporters abstimmen.',
-                    'feature_request' => 'Funktionsvorschlag',
-                    'supporters' => 'Unterstützer',
+                    '_' => 'Dies ist ein :feature_request. Feature Requests können nur von :supporters unterstützt werden.',
+                    'feature_request' => 'Feature Request',
+                    'supporters' => 'Supportern',
                 ],
 
                 'user' => [
@@ -360,7 +360,7 @@ return [
 
                 'detail' => [
                     'end_time' => 'Abstimmung endet am :time',
-                    'ended' => 'Abstimmung beendet am :time',
+                    'ended' => 'Abstimmung wurde am :time beendet',
                     'results_hidden' => 'Ergebnisse werden nach dem Abstimmungsende angezeigt.',
                     'total' => 'Stimmen insgesamt: :count',
                 ],
@@ -370,7 +370,7 @@ return [
         'watch' => [
             'to_not_watching' => 'Kein Lesezeichen gesetzt',
             'to_watching' => 'Lesezeichen setzen',
-            'to_watching_mail' => 'Lesezeichen setzen und benachrichtigt werden',
+            'to_watching_mail' => 'Lesezeichen mit Benachrichtigung',
             'tooltip_mail_disable' => 'Benachrichtigungen sind aktiviert. Klicken zum Deaktivieren',
             'tooltip_mail_enable' => 'Benachrichtigungen sind deaktiviert. Klicken zum Aktivieren',
         ],

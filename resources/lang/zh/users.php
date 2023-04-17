@@ -37,6 +37,7 @@ return [
         'blocked_count' => '被屏蔽的用户 (:count)',
         'hide_profile' => '隐藏用户资料',
         'hide_comment' => '隐藏',
+        'forum_post_text' => '',
         'not_blocked' => '此用户未被屏蔽。',
         'show_profile' => '显示用户资料',
         'show_comment' => '展开',

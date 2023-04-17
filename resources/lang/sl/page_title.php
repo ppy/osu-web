@@ -32,7 +32,7 @@ return [
             'verify_link' => 'verifikacija računa',
         ],
         'artists_controller' => [
-            '_' => 'priznani ustvarjalci',
+            '_' => 'predstavljeni ustvarjalci',
         ],
         'beatmap_discussion_posts_controller' => [
             '_' => 'objave beatmap razprav',
@@ -98,7 +98,7 @@ return [
             '_' => 'uvrstitve',
         ],
         'scores_controller' => [
-            '_' => 'moč',
+            '_' => 'uspešnost',
         ],
         'seasons_controller' => [
             '_' => 'uvrstitve',

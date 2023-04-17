@@ -49,7 +49,7 @@ return [
 
     'input' => [
         'create' => 'Buat',
-        'disabled' => 'gagal mengirim pesan...',
+        'disabled' => 'pesan tidak dapat dikirim...',
         'disconnected' => 'Terputus',
         'placeholder' => 'ketik pesan...',
         'send' => 'Kirim',

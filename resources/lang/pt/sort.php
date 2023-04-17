@@ -32,7 +32,7 @@ return [
     ],
 
     'forum_topics' => [
-        'created' => '',
+        'created' => 'Criado',
         'feature_votes' => 'Prioridade estrela',
         'new' => 'Última resposta',
     ],
