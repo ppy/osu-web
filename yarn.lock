@@ -7669,10 +7669,10 @@ shellwords@^0.1.1:
   resolved "https://registry.yarnpkg.com/shellwords/-/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
   integrity sha512-vFwSUfQvqybiICwZY5+DAWIPLKsWO31Q91JSKl3UYv+K5c2QRPzn0qzec6QPu1Qc9eHYItiP3NdJqNVqetYAww==
 
-shopify-buy@^2.6.1:
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/shopify-buy/-/shopify-buy-2.6.1.tgz#c6b7996dff98899c6f7e28151a5be701d4978884"
-  integrity sha512-eYC9nMxTdgN0qJ3VQOzec3i3NuOZwujkqv4wb75XVDtwiV5OzXUgdyxra/f9T1G7il/LWAIY4GvNkfS2PJQlLg==
+shopify-buy@^2.19.0:
+  version "2.19.0"
+  resolved "https://registry.yarnpkg.com/shopify-buy/-/shopify-buy-2.19.0.tgz#5c1e0f9fd0fb91266f467c7a8fca1ec7100d983a"
+  integrity sha512-XCkQDG9DokhWUiRTOh+6K9I2w3uMys+R1mCt8h3l4le/9TjVxVJ1jbWD7ioyPf1Bc+fPLR6KX62JT1K6NE/S8A==
 
 side-channel@^1.0.4:
   version "1.0.4"
