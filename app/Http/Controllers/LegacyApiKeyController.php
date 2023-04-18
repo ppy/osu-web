@@ -10,7 +10,6 @@ namespace App\Http\Controllers;
 use App\Exceptions\ModelNotSavedException;
 use App\Transformers\LegacyApiKeyTransformer;
 use Auth;
-use Cache;
 use Request;
 
 class LegacyApiKeyController extends Controller
@@ -33,10 +32,6 @@ class LegacyApiKeyController extends Controller
         priv_check('LegacyApiKeyStore')->ensureCan();
 
         $user = Auth::user();
-        $lock = Cache::lock("legacy_api_key_store:{$user->getKey()}", 600);
-
-        $lock->block(5);
-
         $params = get_params(Request::all(), 'legacy_api_key', [
             'app_name',
             'app_url',
@@ -50,8 +45,6 @@ class LegacyApiKeyController extends Controller
             $apiKey->saveOrExplode();
         } catch (ModelNotSavedException $e) {
             return ModelNotSavedException::makeResponse($e, ['legacy_api_key' => $apiKey]);
-        } finally {
-            $lock->release();
         }
 
         return json_item($apiKey, new LegacyApiKeyTransformer());

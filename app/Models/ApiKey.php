@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Traits\Validatable;
+use Cache;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -74,7 +75,18 @@ class ApiKey extends Model
 
     public function save(array $options = [])
     {
-        return $this->isValid() && parent::save($options);
+        // Prevent multiple isValid check from running simultaneously
+        // as it checks for some sort of uniqueness without database
+        // constraint.
+        $lock = Cache::lock("legacy_api_key_store:{$this->user_id}", 600);
+
+        try {
+            $lock->block(5);
+
+            return $this->isValid() && parent::save($options);
+        } finally {
+            $lock->release();
+        }
     }
 
     public function validationErrorsTranslationPrefix()
