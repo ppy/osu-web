@@ -45,7 +45,7 @@ class LegacyIrcKeyControllerTest extends TestCase
 
     public function testStore(): void
     {
-        $user = User::factory()->create();
+        $user = User::factory()->withPlays(100)->create();
 
         $this->expectCountChange(fn () => $user->legacyIrcKey()->count(), 1);
 
@@ -55,10 +55,22 @@ class LegacyIrcKeyControllerTest extends TestCase
             ->assertSuccessful();
     }
 
+    public function testStoreNotEnoughPlaycount(): void
+    {
+        $user = User::factory()->withPlays(10)->create();
+
+        $this->expectCountChange(fn () => $user->legacyIrcKey()->count(), 0);
+
+        $this
+            ->actingAsVerified($user)
+            ->post(route('legacy-irc-key.store'))
+            ->assertStatus(403);
+    }
+
     public function testStoreWithExisting(): void
     {
-        $key = LegacyIrcKey::factory()->create();
-        $user = $key->user;
+        $user = User::factory()->withPlays(100)->create();
+        $key = LegacyIrcKey::factory()->create(['user_id' => $user]);
 
         $this->expectCountChange(fn () => $user->legacyIrcKey()->count(), 0);
 

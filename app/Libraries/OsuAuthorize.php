@@ -1794,8 +1794,8 @@ class OsuAuthorize
         $this->ensureCleanRecord($user);
 
         // isBot checks user primary group
-        if (!$user->isGroup(app('groups')->byIdentifier('bot'))) {
-            $this->ensureHasPlayed($user);
+        if (!$user->isGroup(app('groups')->byIdentifier('bot')) && $user->playCount() < 100) {
+            return 'play_more';
         }
 
         return 'ok';
