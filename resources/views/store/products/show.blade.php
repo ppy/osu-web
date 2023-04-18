@@ -84,7 +84,7 @@
                                 <input type="hidden" name="item[extra_data][{{ $type }}]" value="{{ array_keys($values)[0] }}" />
                             @else
                                 <div class="form-group">
-                                    <label for="select-product-{{ $type }}">{{ $type }}</label>
+                                    <label class="u-uppercase" for="select-product-{{ $type }}">{{ $type }}</label>
 
                                     <div class="form-select">
                                         <select id="select-product-{{ $type }}" class="form-select__input js-url-selector" data-keep-scroll="1">
@@ -106,7 +106,11 @@
                     @if($product->inStock())
                         <div class='form-group'>
                             <input type="hidden" name="item[product_id]" value="{{ $product->product_id }}" />
-                            {!! Form::label('item[quantity]', 'Quantity') !!}
+                            {!! Form::label(
+                                'item[quantity]',
+                                osu_trans('store.order.item.quantity'),
+                                ['class' => 'u-uppercase']
+                            ) !!}
 
                             <div class="form-select">
                                 {!! Form::select(
