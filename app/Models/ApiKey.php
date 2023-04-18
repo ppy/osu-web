@@ -66,7 +66,7 @@ class ApiKey extends Model
             $this->validationErrors()->add($field, 'url');
         }
 
-        if (static::where(['user_id' => $this->user_id])->available()->exists()) {
+        if (!$this->exists && static::where(['user_id' => $this->user_id])->available()->exists()) {
             $this->validationErrors()->add('base', '.exists');
         }
 
