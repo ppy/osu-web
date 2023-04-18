@@ -6,6 +6,7 @@
 return [
     'bold' => 'Bold',
     'heading' => 'Header',
+    'help' => 'Help',
     'image' => 'Image',
     'italic' => 'Italic',
     'link' => 'Link',
