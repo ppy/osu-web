@@ -31,12 +31,11 @@ class LegacyApiKeyController extends Controller
     {
         priv_check('LegacyApiKeyStore')->ensureCan();
 
-        $user = Auth::user();
         $params = get_params(Request::all(), 'legacy_api_key', [
             'app_name',
             'app_url',
         ]);
-        $apiKey = $user->apiKeys()->make([
+        $apiKey = Auth::user()->apiKeys()->make([
             ...$params,
             'api_key' => bin2hex(random_bytes(20)),
         ]);
