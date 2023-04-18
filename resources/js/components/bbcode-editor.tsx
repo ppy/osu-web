@@ -159,6 +159,7 @@ export default class BbcodeEditor extends React.Component<Props> {
         {this.toolbarButton('list-numbered', <i className='fas fa-list-ol' />)}
         {this.toolbarButton('list', <i className='fas fa-list' />)}
         {this.toolbarButton('image', <i className='fas fa-image' />)}
+        {this.toolbarButton('imagemap', <i className='fas fa-map' />)}
 
         {this.toolbarSizeSelect()}
       </div>
