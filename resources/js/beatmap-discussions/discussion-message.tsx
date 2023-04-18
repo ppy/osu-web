@@ -7,7 +7,16 @@ import remarkBreaks from 'remark-breaks';
 import autolink from 'remark-plugins/autolink';
 import disableConstructs, { DisabledType } from 'remark-plugins/disable-constructs';
 import ImageLink from './image-link';
-import { emphasisRenderer, linkRenderer, paragraphRenderer, strongRenderer, transformLinkUri } from './renderers';
+import { createRenderer, linkRenderer, transformLinkUri } from './renderers';
+
+const components = Object.freeze({
+  a: linkRenderer,
+  em: createRenderer('em'),
+  img: ImageLink,
+  li: createRenderer('li'),
+  p: createRenderer('p'),
+  strong: createRenderer('strong'),
+});
 
 interface Props {
   markdown: string;
@@ -19,13 +28,7 @@ export default class DiscussionMessage extends React.Component<Props> {
     return (
       <ReactMarkdown
         className='osu-md osu-md--discussions'
-        components={{
-          a: linkRenderer,
-          em: emphasisRenderer,
-          img: ImageLink,
-          p: paragraphRenderer,
-          strong: strongRenderer,
-        }}
+        components={components}
         remarkPlugins={[autolink, [disableConstructs, { type: this.props.type }], remarkBreaks]}
         transformLinkUri={transformLinkUri}
         unwrapDisallowed

@@ -150,9 +150,9 @@ class ChatControllerTest extends TestCase
 
     public function testCreatePMWhenBlocked() // fail
     {
-        factory(UserRelation::class)->states('block')->create([
-            'user_id' => $this->anotherUser->user_id,
-            'zebra_id' => $this->user->user_id,
+        UserRelation::factory()->block()->create([
+            'user_id' => $this->anotherUser,
+            'zebra_id' => $this->user,
         ]);
 
         $this->actAsScopedUser($this->user, ['*']);
@@ -242,9 +242,9 @@ class ChatControllerTest extends TestCase
     public function testCreatePMWhenFriendsOnlyAndFriended() // success
     {
         $privateUser = User::factory()->create(['pm_friends_only' => true]);
-        factory(UserRelation::class)->states('friend')->create([
-            'user_id' => $privateUser->user_id,
-            'zebra_id' => $this->user->user_id,
+        UserRelation::factory()->friend()->create([
+            'user_id' => $privateUser,
+            'zebra_id' => $this->user,
         ]);
 
         $this->actAsScopedUser($this->user, ['*']);

@@ -38,6 +38,7 @@ return [
         'featured' => '',
         'standard' => 'Įprasti',
         'theme' => 'Teminiai',
+        'tournament' => '',
     ],
 
     'require_login' => [

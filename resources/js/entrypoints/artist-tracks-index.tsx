@@ -6,8 +6,5 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 
 core.reactTurbolinks.register('artist-tracks-index', (container: HTMLElement) => (
-  <Main
-    {...JSON.parse(container.dataset.props ?? '')}
-    container={container}
-  />
+  <Main container={container} />
 ));

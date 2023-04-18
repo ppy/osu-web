@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'bloķētie lietotāji (:count)',
         'hide_profile' => 'Slēpt profilu',
         'hide_comment' => '',
+        'forum_post_text' => '',
         'not_blocked' => 'Šis lietotājs nav bloķēts.',
         'show_profile' => 'Rādīt profilu',
         'show_comment' => '',

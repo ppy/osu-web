@@ -33,7 +33,7 @@ interface Props<T extends Option> {
   modifiers?: Modifiers;
   onChange: (option: T) => void;
   options: T[];
-  renderOption?(props: OptionRenderProps<T>): JSX.Element;
+  renderOption?(props: OptionRenderProps<T>): React.ReactNode;
   selected: T;
 }
 

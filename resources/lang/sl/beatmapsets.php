@@ -20,7 +20,7 @@ return [
     ],
 
     'featured_artist_badge' => [
-        'label' => 'Priznani ustvarjalec',
+        'label' => 'Predstavljeni ustvarjalec',
     ],
 
     'index' => [
@@ -181,7 +181,7 @@ return [
                 'friend' => 'Nihče od tvojih prijateljev še ni dosegel rezultata na tej beatmapi!',
                 'global' => 'Ni še rezultatov. Mogoče lahko ti poskusiš za rezultat?',
                 'loading' => 'Nalaganje rezultatov...',
-                'unranked' => 'Nerankirana beatmapa.',
+                'unranked' => 'Neuvrščena beatmapa.',
             ],
             'score' => [
                 'first' => 'V vodstvu',
@@ -223,6 +223,6 @@ return [
     ],
 
     'spotlight_badge' => [
-        'label' => 'Osrednja pozornost',
+        'label' => 'Spotlight',
     ],
 ];

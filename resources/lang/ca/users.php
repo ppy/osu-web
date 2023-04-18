@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'usuaris bloquejats (:count)',
         'hide_profile' => 'Oculta el perfil',
         'hide_comment' => 'ocultar',
+        'forum_post_text' => '',
         'not_blocked' => 'Aquest usuari no està blocat.',
         'show_profile' => 'Mostra el perfil',
         'show_comment' => 'mostra',
@@ -176,7 +177,7 @@ return [
         'title' => "Perfil de :username",
 
         'comments_count' => [
-            '_' => 'Va publicar :link',
+            '_' => 'Ha publicat :link',
             'count' => ':count_delimited comentari|:count_delimited comentaris',
         ],
         'cover' => [

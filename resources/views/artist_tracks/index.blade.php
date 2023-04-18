@@ -9,7 +9,7 @@
 @section('content')
     <div
         class="js-react--artist-tracks-index"
-        data-props="{{ json_encode(compact('availableGenres', 'data')) }}"
+        data-data="{{ json_encode(compact('availableGenres', 'index')) }}"
     ></div>
 
     @include('layout._react_js', ['src' => 'js/artist-tracks-index.js'])

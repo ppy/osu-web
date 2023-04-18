@@ -245,6 +245,9 @@ Route::group(['middleware' => ['web']], function () {
         Route::delete('follows', 'FollowsController@destroy')->name('follows.destroy');
     });
 
+    Route::resource('legacy-api-key', 'LegacyApiKeyController', ['only' => ['store']]);
+    Route::delete('legacy-api-key', 'LegacyApiKeyController@destroy')->name('legacy-api-key.destroy');
+
     Route::resource('legacy-irc-key', 'LegacyIrcKeyController', ['only' => ['store']]);
     Route::delete('legacy-irc-key', 'LegacyIrcKeyController@destroy')->name('legacy-irc-key.destroy');
 

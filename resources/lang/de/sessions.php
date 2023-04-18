@@ -6,7 +6,7 @@
 return [
     'create' => [
         'download' => 'Klicke hier, um das Spiel herunterzuladen und ein Konto zu erstellen',
-        'label' => 'Lass und zuerst mit deinem Konto anmelden!',
+        'label' => 'Melde dich zuerst mit deinem Konto an!',
         'title' => 'Konto-Anmeldung',
     ],
 ];

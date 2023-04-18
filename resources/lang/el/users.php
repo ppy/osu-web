@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'μπλοκαρισμένοι χρήστες (:count)',
         'hide_profile' => 'απόκρυψη προφίλ',
         'hide_comment' => '',
+        'forum_post_text' => '',
         'not_blocked' => 'Αυτός ο χρήστης δεν είναι μπλοκαρισμένος.',
         'show_profile' => 'εμφάνιση προφίλ',
         'show_comment' => '',

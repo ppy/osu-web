@@ -94,9 +94,9 @@ class RoomTest extends TestCase
     public function testRoomHasEnded()
     {
         $user = User::factory()->create();
-        $room = factory(Room::class)->states('ended')->create();
-        $playlistItem = factory(PlaylistItem::class)->create([
-            'room_id' => $room->getKey(),
+        $room = Room::factory()->ended()->create();
+        $playlistItem = PlaylistItem::factory()->create([
+            'room_id' => $room,
         ]);
 
         $this->expectException(InvariantException::class);
@@ -106,13 +106,9 @@ class RoomTest extends TestCase
     public function testMaxAttemptsReached()
     {
         $user = User::factory()->create();
-        $room = factory(Room::class)->create(['max_attempts' => 2]);
-        $playlistItem1 = factory(PlaylistItem::class)->create([
-            'room_id' => $room->getKey(),
-        ]);
-        $playlistItem2 = factory(PlaylistItem::class)->create([
-            'room_id' => $room->getKey(),
-        ]);
+        $room = Room::factory()->create(['max_attempts' => 2]);
+        $playlistItem1 = PlaylistItem::factory()->create(['room_id' => $room]);
+        $playlistItem2 = PlaylistItem::factory()->create(['room_id' => $room]);
 
         $room->startPlay($user, $playlistItem1);
         $this->assertTrue(true);
@@ -127,13 +123,13 @@ class RoomTest extends TestCase
     public function testMaxAttemptsForItemReached()
     {
         $user = User::factory()->create();
-        $room = factory(Room::class)->create();
-        $playlistItem1 = factory(PlaylistItem::class)->create([
-            'room_id' => $room->getKey(),
+        $room = Room::factory()->create();
+        $playlistItem1 = PlaylistItem::factory()->create([
+            'room_id' => $room,
             'max_attempts' => 1,
         ]);
-        $playlistItem2 = factory(PlaylistItem::class)->create([
-            'room_id' => $room->getKey(),
+        $playlistItem2 = PlaylistItem::factory()->create([
+            'room_id' => $room,
             'max_attempts' => 1,
         ]);
 

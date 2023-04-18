@@ -8,7 +8,7 @@ return [
     'title' => 'Artiști Oficiali',
 
     'admin' => [
-        'hidden' => 'ARTISTUL ESTE ASCUNS DEOCAMDATĂ',
+        'hidden' => 'ARTISTUL ESTE MOMENTAN ASCUNS',
     ],
 
     'beatmaps' => [

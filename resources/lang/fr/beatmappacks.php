@@ -6,7 +6,7 @@
 return [
     'index' => [
         'description' => 'Des collections pré-packagées de beatmaps autour d\'un thème commun.',
-        'empty' => '',
+        'empty' => 'Arrive prochainement !',
         'nav_title' => 'liste',
         'title' => 'Collections de Beatmaps',
 
@@ -38,6 +38,7 @@ return [
         'featured' => 'Featured Artist',
         'standard' => 'Standard',
         'theme' => 'Thème',
+        'tournament' => '',
     ],
 
     'require_login' => [

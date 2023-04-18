@@ -6,12 +6,11 @@ import ShowMoreLink from 'components/show-more-link';
 import TracklistTrack from 'components/tracklist-track';
 import { ArtistTrackWithArtistJson } from 'interfaces/artist-track-json';
 import { route } from 'laroute';
-import { action, makeObservable, observable, runInAction } from 'mobx';
-import { observer } from 'mobx-react';
+import { action, makeObservable, observable, reaction, runInAction } from 'mobx';
+import { disposeOnUnmount, observer } from 'mobx-react';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
 import { classWithModifiers } from 'utils/css';
-import { jsonClone } from 'utils/json';
 import { trans } from 'utils/lang';
 import { navigate } from 'utils/turbolinks';
 import SearchForm, { ArtistTrackSearch } from './search-form';
@@ -24,9 +23,12 @@ export interface ArtistTracksIndex {
 }
 
 interface Props {
-  availableGenres: string[];
   container: HTMLElement;
-  data: ArtistTracksIndex;
+}
+
+interface Data {
+  availableGenres: string[];
+  index: ArtistTracksIndex;
 }
 
 const headerLinks = [
@@ -43,7 +45,7 @@ const headerLinks = [
 
 @observer
 export default class Main extends React.Component<Props> {
-  @observable private data = jsonClone(this.props.data);
+  @observable private data = JSON.parse(this.props.container.dataset.data ?? '') as Data;
   @observable private isNavigating = false;
   @observable private loadingXhr?: JQuery.jqXHR<ArtistTracksIndex> | null = null;
 
@@ -51,6 +53,13 @@ export default class Main extends React.Component<Props> {
     super(props);
 
     makeObservable(this);
+
+    disposeOnUnmount(this, reaction(
+      () => JSON.stringify(this.data),
+      (newDataString) => {
+        this.props.container.dataset.data = newDataString;
+      },
+    ));
   }
 
   componentWillUnmount() {
@@ -64,14 +73,14 @@ export default class Main extends React.Component<Props> {
 
         <div className='osu-page osu-page--header'>
           <SearchForm
-            availableGenres={this.props.availableGenres}
-            initialParams={this.props.data.search}
+            availableGenres={this.data.availableGenres}
+            initialParams={this.data.index.search}
             onNewSearch={this.onNewSearch}
           />
         </div>
 
         <div className='osu-page osu-page--artist-track-search-result'>
-          {this.data.artist_tracks.length === 0 ? (
+          {this.data.index.artist_tracks.length === 0 ? (
             <div>
               {trans('artist.tracks.index.form.empty')}
             </div>
@@ -79,17 +88,17 @@ export default class Main extends React.Component<Props> {
             <>
               <Sort
                 onNewSearch={this.onNewSearch}
-                params={this.props.data.search}
+                params={this.data.index.search}
               />
 
               <div className={classWithModifiers('grid-items', '2', { 'fade-out': this.isNavigating })}>
-                {this.data.artist_tracks.map((t) => (
+                {this.data.index.artist_tracks.map((t) => (
                   <TracklistTrack key={t.id} modifiers='large' showAlbum track={t} />
                 ))}
 
                 <ShowMoreLink
                   callback={this.handleShowMore}
-                  hasMore={this.data.cursor_string != null}
+                  hasMore={this.data.index.cursor_string != null}
                   loading={this.loadingXhr != null}
                   modifiers='centre-10'
                 />
@@ -103,13 +112,11 @@ export default class Main extends React.Component<Props> {
 
   @action
   private readonly handleShowMore = () => {
-    this.loadingXhr = $.getJSON(route('artists.tracks.index'), { ...this.data.search, cursor_string: this.data.cursor_string });
+    this.loadingXhr = $.getJSON(route('artists.tracks.index'), { ...this.data.index.search, cursor_string: this.data.index.cursor_string });
 
-    this.loadingXhr.done((newData) => runInAction(() => {
-      const { container, ...prevProps } = this.props;
-      newData.artist_tracks = this.data.artist_tracks.concat(newData.artist_tracks);
-      this.data = newData;
-      this.props.container.dataset.props = JSON.stringify({ ...prevProps, data: this.data });
+    this.loadingXhr.done((newIndex) => runInAction(() => {
+      newIndex.artist_tracks = this.data.index.artist_tracks.concat(newIndex.artist_tracks);
+      this.data.index = newIndex;
     })).fail(onError).always(action(() => {
       this.loadingXhr = null;
     }));

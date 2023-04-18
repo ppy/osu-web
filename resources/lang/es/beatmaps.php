@@ -106,7 +106,7 @@ return [
                 'unsaved' => 'No guardado',
                 'timestamp' => [
                     'all-diff' => 'Las publicaciones en "Todas las dificultades" no pueden tener marcas de tiempo.',
-                    'diff' => 'Si el comentario de :type empieza con una marca de tiempo, se mostrará en la Línea de tiempo.',
+                    'diff' => 'Si esta publicación empieza con una marca de tiempo, se mostrará en la Línea de tiempo.',
                 ],
             ],
             'insert-block' => [
@@ -199,7 +199,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Se estima que este mapa se clasificará :date si no se encuentran problemas. Es el número :position en la :queue.',
-            'on' => '',
+            'on' => 'el :date',
             'queue' => 'cola de clasificación',
             'soon' => 'pronto',
         ],

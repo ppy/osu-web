@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'người dùng đã bị chặn (:count)',
         'hide_profile' => 'Ẩn trang cá nhân',
         'hide_comment' => 'ẩn',
+        'forum_post_text' => '',
         'not_blocked' => 'Người dùng này chưa bị chặn.',
         'show_profile' => 'Hiển thị trang cá nhân',
         'show_comment' => 'hiện',

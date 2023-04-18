@@ -18,7 +18,7 @@ class FulfillmentFactoryTest extends TestCase
 {
     public function testCustomClassSupporterTag()
     {
-        $orderItem = factory(OrderItem::class)->states('supporter_tag')->create();
+        $orderItem = OrderItem::factory()->supporterTag()->create();
         $order = $orderItem->order;
 
         $fulfillers = FulfillmentFactory::createFulfillersFor($order);
@@ -28,7 +28,7 @@ class FulfillmentFactoryTest extends TestCase
 
     public function testCustomClassUsernameChange()
     {
-        $orderItem = factory(OrderItem::class)->states('username_change')->create();
+        $orderItem = OrderItem::factory()->usernameChange()->create();
         $order = $orderItem->order;
 
         $fulfillers = FulfillmentFactory::createFulfillersFor($order);
@@ -38,8 +38,8 @@ class FulfillmentFactoryTest extends TestCase
 
     public function testCustomClassBanner()
     {
-        $orderItem = factory(OrderItem::class)->create([
-            'product_id' => factory(Product::class)->create(['custom_class' => 'mwc7-supporter'])->product_id,
+        $orderItem = OrderItem::factory()->create([
+            'product_id' => Product::factory()->create(['custom_class' => 'mwc7-supporter']),
         ]);
         $order = $orderItem->order;
 
@@ -50,8 +50,8 @@ class FulfillmentFactoryTest extends TestCase
 
     public function testCustomClassDoesNotExist()
     {
-        $orderItem = factory(OrderItem::class)->create([
-            'product_id' => factory(Product::class)->create(['custom_class' => 'derp-derp'])->product_id,
+        $orderItem = OrderItem::factory()->create([
+            'product_id' => Product::factory()->create(['custom_class' => 'derp-derp']),
         ]);
         $order = $orderItem->order;
 

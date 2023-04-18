@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'užblokuoti vartotojai (:count)',
         'hide_profile' => 'Slėpti profilį',
         'hide_comment' => 'slėpti',
+        'forum_post_text' => '',
         'not_blocked' => 'Šis vartotojas nėra užblokuotas.',
         'show_profile' => 'Rodyti profilį',
         'show_comment' => 'rodyti',
