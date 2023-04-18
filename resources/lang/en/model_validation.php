@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute cannot be negative.',
     'required' => ':attribute is required.',
     'too_long' => ':attribute exceeded maximum length - can only be up to :limit characters.',
+    'url' => 'Please enter a valid URL.',
     'wrong_confirmation' => 'Confirmation does not match.',
 
     'beatmapset_discussion' => [
@@ -106,6 +107,10 @@ return [
             'required' => 'Select an option when voting.',
             'too_many' => 'Selected more options than allowed.',
         ],
+    ],
+
+    'legacy_api_key' => [
+        'exists' => 'Only one API key is provided per user for the moment.',
     ],
 
     'oauth' => [
