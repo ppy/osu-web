@@ -104,22 +104,18 @@
                     @endif
 
                     @if($product->inStock())
-                    <div class="grid">
-                        <div class="grid-cell grid-cell--fill">
-                            <div class='form-group'>
-                                <input type="hidden" name="item[product_id]" value="{{ $product->product_id }}" />
-                                {!! Form::label('item[quantity]', 'Quantity') !!}
+                        <div class='form-group'>
+                            <input type="hidden" name="item[product_id]" value="{{ $product->product_id }}" />
+                            {!! Form::label('item[quantity]', 'Quantity') !!}
 
-                                <div class="form-select">
-                                    {!! Form::select(
-                                        "item[quantity]",
-                                        product_quantity_options($product), 1,
-                                        ['class' => 'js-store-item-quantity form-select__input']
-                                    ) !!}
-                                </div>
+                            <div class="form-select">
+                                {!! Form::select(
+                                    "item[quantity]",
+                                    product_quantity_options($product), 1,
+                                    ['class' => 'js-store-item-quantity form-select__input']
+                                ) !!}
                             </div>
                         </div>
-                    </div>
                     @elseif($product->inStock(1, true))
                     <div class="grid">
                         <div class="grid-cell grid-cell--fill">
