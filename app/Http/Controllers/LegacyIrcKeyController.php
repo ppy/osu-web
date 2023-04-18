@@ -9,6 +9,7 @@ namespace App\Http\Controllers;
 
 use App\Transformers\LegacyIrcKeyTransformer;
 use Auth;
+use Exception;
 
 class LegacyIrcKeyController extends Controller
 {
