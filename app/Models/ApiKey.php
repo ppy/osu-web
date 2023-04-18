@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $key
  * @property int $miss_count
  * @property int $revoked
+ * @property-read User|null $user
  * @property int $user_id
  */
 class ApiKey extends Model
