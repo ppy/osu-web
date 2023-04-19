@@ -16,17 +16,12 @@ import { trans } from 'utils/lang';
 const store = core.dataStore.ownClientStore;
 const uiState = core.dataStore.uiState;
 
-interface Params {
-  name: string;
-  redirect: string;
-}
-
 @observer
 export class NewClient extends React.Component {
   private static readonly inputFields = ['name', 'redirect'] as const;
 
   private errors = new FormErrors();
-  @observable private params: Params = {
+  @observable private params = {
     name: '',
     redirect: '',
   };
