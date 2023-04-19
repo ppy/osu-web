@@ -354,22 +354,22 @@ abstract class PaymentProcessor implements \ArrayAccess
     /**
      * implements ArrayAccess.
      */
-    public function offsetExists($key)
+    public function offsetExists($key): bool
     {
         return array_has($this->params, $key);
     }
 
-    public function offsetGet($key)
+    public function offsetGet($key): mixed
     {
         return data_get($this->params, $key);
     }
 
-    public function offsetSet($key, $value)
+    public function offsetSet($key, $value): void
     {
         throw new \BadMethodCallException('not supported');
     }
 
-    public function offsetUnset($key)
+    public function offsetUnset($key): void
     {
         throw new \BadMethodCallException('not supported');
     }
