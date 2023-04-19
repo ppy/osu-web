@@ -118,13 +118,13 @@ class BroadcastNotificationTest extends TestCase
     {
         // TODO: move notification names to different class instead of filtering
         $constants = collect((new ReflectionClass(Notification::class))->getReflectionConstants())
-            ->filter(fn (ReflectionClassConstant $constant) => $constant->getDeclaringClass()->name === Notification::class)
-            ->except(['NAME_TO_CATEGORY', 'NOTIFIABLE_CLASSES', 'SUBTYPES'])
+            ->filter(fn (ReflectionClassConstant $constant) => (
+                $constant->getDeclaringClass()->name === Notification::class
+                    && !in_array($constant->name, ['NAME_TO_CATEGORY', 'NOTIFIABLE_CLASSES', 'SUBTYPES'], true)
+            ))
             ->values();
 
-        return $constants->map(function (ReflectionClassConstant $constant) {
-            return [$constant->getValue()];
-        });
+        return $constants->map(fn (ReflectionClassConstant $constant) => [$constant->getValue()])->all();
     }
 
     public function userNotificationDetailsDataProvider()
