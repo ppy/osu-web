@@ -21,6 +21,8 @@ abstract class PaymentProcessor implements \ArrayAccess
 {
     use Memoizes, Validatable;
 
+    const MAX_FIELD_LENGTHS = [];
+
     protected $params;
     protected $signature;
 

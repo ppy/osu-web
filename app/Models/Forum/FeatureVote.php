@@ -22,6 +22,8 @@ class FeatureVote extends Model
 {
     use Validatable;
 
+    const MAX_FIELD_LENGTHS = [];
+
     public $timestamps = false;
 
     protected $casts = ['date' => 'datetime'];

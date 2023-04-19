@@ -13,6 +13,7 @@ class ChangeUsername
     use Validatable;
 
     const LESS_VALIDATION_TYPES = ['admin', 'revert', 'support'];
+    const MAX_FIELD_LENGTHS = [];
 
     protected $type;
 

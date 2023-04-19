@@ -21,6 +21,8 @@ abstract class Model extends BaseModel
 {
     use HasFactory;
 
+    const MAX_FIELD_LENGTHS = [];
+
     protected $connection = 'mysql';
     protected $guarded = [];
     protected $macros;

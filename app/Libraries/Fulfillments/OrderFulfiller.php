@@ -13,6 +13,8 @@ abstract class OrderFulfiller implements Fulfillable
 {
     use Validatable;
 
+    const MAX_FIELD_LENGTHS = [];
+
     const TAGGED_NAME = 'order-fulfiller';
 
     /** @var Order */

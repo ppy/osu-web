@@ -13,6 +13,8 @@ class TopicPoll
 {
     use Validatable;
 
+    const MAX_FIELD_LENGTHS = [];
+
     private $topic;
     private $validated = false;
     private $params;
