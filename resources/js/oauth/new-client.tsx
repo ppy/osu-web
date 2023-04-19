@@ -7,7 +7,7 @@ import { ValidatingInput } from 'components/validating-input';
 import { FormErrors } from 'form-errors';
 import { OwnClientJson } from 'interfaces/own-client-json';
 import { route } from 'laroute';
-import { action, makeObservable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -18,51 +18,19 @@ const uiState = core.dataStore.uiState;
 
 @observer
 export class NewClient extends React.Component {
-  private static readonly inputFields = ['name', 'redirect'];
+  private static readonly inputFields = ['name', 'redirect'] as const;
 
   private errors = new FormErrors();
+  @observable private params = {
+    name: '',
+    redirect: '',
+  };
 
   constructor(props: Record<string, never>) {
     super(props);
 
     makeObservable(this);
   }
-
-  handleCancel = () => {
-    uiState.account.newClientVisible = false;
-    uiState.account.isCreatingNewClient = false;
-  };
-
-  handleInputChange = (event: React.SyntheticEvent<HTMLInputElement>) => {
-    const target = event.target as HTMLInputElement;
-    const { name, value } = target;
-
-    this.setState({
-      [name]: value,
-    });
-  };
-
-  @action
-  handleSubmit = () => {
-    if (uiState.account.isCreatingNewClient) {
-      return;
-    }
-
-    uiState.account.isCreatingNewClient = true;
-
-    $.ajax({
-      data: this.state,
-      method: 'POST',
-      url: route('oauth.clients.store'),
-    }).then((data: OwnClientJson) => {
-      const client = store.updateWithJson(data);
-      uiState.account.newClientVisible = false;
-      uiState.account.client = client;
-    }).catch(this.errors.handleResponse)
-      .always(() => {
-        uiState.account.isCreatingNewClient = false;
-      });
-  };
 
   render() {
     return (
@@ -75,16 +43,17 @@ export class NewClient extends React.Component {
           {this.renderRemainingErrors()}
 
           {NewClient.inputFields.map((name) => (
-            <div key={name} className='oauth-client-details__group'>
+            <label key={name} className='oauth-client-details__group'>
               <div className='oauth-client-details__label'>{trans(`oauth.client.${name}`)}</div>
               <ValidatingInput
                 blockName='oauth-client-details'
                 errors={this.errors}
                 name={name}
-                onChange={this.handleInputChange}
+                onInput={this.handleInput}
                 type='text'
+                value={this.params[name]}
               />
-            </div>
+            </label>
           ))}
 
           <div>
@@ -109,7 +78,47 @@ export class NewClient extends React.Component {
     );
   }
 
-  renderRemainingErrors() {
-    return this.errors.except(NewClient.inputFields).map((error, index) => <div key={index} className='oauth-client-details__error'>{error}</div>);
+  @action
+  private readonly handleCancel = () => {
+    uiState.account.newClientVisible = false;
+    uiState.account.isCreatingNewClient = false;
+  };
+
+  @action
+  private readonly handleInput = (event: React.SyntheticEvent<HTMLInputElement>) => {
+    const target = event.currentTarget;
+    const { name, value } = target;
+
+    if (name === 'name' || name === 'redirect') {
+      this.params[name] = value;
+    }
+  };
+
+  @action
+  private readonly handleSubmit = () => {
+    if (uiState.account.isCreatingNewClient) {
+      return;
+    }
+
+    uiState.account.isCreatingNewClient = true;
+
+    $.ajax({
+      data: this.params,
+      method: 'POST',
+      url: route('oauth.clients.store'),
+    }).then(action((data: OwnClientJson) => {
+      const client = store.updateWithJson(data);
+      uiState.account.newClientVisible = false;
+      uiState.account.client = client;
+    })).catch(this.errors.handleResponse)
+      .always(action(() => {
+        uiState.account.isCreatingNewClient = false;
+      }));
+  };
+
+  private renderRemainingErrors() {
+    return this.errors.except(NewClient.inputFields as readonly string[]).map((error, index) => (
+      <div key={index} className='oauth-client-details__error'>{error}</div>
+    ));
   }
 }
