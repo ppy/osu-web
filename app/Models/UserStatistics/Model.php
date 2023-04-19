@@ -41,16 +41,6 @@ abstract class Model extends BaseModel
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function setCreatedAt($value)
-    {
-        // Do nothing.
-    }
-
-    public function getCreatedAtColumn()
-    {
-        // Do nothing.
-    }
-
     public function getCountryAcronymAttribute($value)
     {
         return presence($value);
