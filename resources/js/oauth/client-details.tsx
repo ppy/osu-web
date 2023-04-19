@@ -127,7 +127,7 @@ export class ClientDetails extends React.Component<Props, State> {
           </div>
         </div>
 
-        <div className='oauth-client-details__group'>
+        <label className='oauth-client-details__group'>
           <div className='oauth-client-details__label'>{trans('oauth.client.redirect')}</div>
           <ValidatingInput
             blockName='oauth-client-details'
@@ -137,7 +137,7 @@ export class ClientDetails extends React.Component<Props, State> {
             type='text'
             value={this.state.redirect}
           />
-        </div>
+        </label>
 
         <div className='oauth-client-details__buttons'>
           <button

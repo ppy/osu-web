@@ -76,7 +76,7 @@ export class NewClient extends React.Component {
           {this.renderRemainingErrors()}
 
           {NewClient.inputFields.map((name) => (
-            <div key={name} className='oauth-client-details__group'>
+            <label key={name} className='oauth-client-details__group'>
               <div className='oauth-client-details__label'>{trans(`oauth.client.${name}`)}</div>
               <ValidatingInput
                 blockName='oauth-client-details'
@@ -85,7 +85,7 @@ export class NewClient extends React.Component {
                 onChange={this.handleInputChange}
                 type='text'
               />
-            </div>
+            </label>
           ))}
 
           <div>
