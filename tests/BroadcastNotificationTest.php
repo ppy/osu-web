@@ -122,8 +122,8 @@ class BroadcastNotificationTest extends TestCase
             ->except(['NAME_TO_CATEGORY', 'NOTIFIABLE_CLASSES', 'SUBTYPES'])
             ->values();
 
-        return $constants->map(function ($name) {
-            return [$name];
+        return $constants->map(function (ReflectionClassConstant $constant) {
+            return [$constant->getValue()];
         });
     }
 
