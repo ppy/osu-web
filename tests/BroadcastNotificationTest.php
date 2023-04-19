@@ -18,6 +18,7 @@ use Event;
 use Mail;
 use Queue;
 use ReflectionClass;
+use ReflectionClassConstant;
 use Symfony\Component\Finder\Finder;
 
 class BroadcastNotificationTest extends TestCase
@@ -116,8 +117,9 @@ class BroadcastNotificationTest extends TestCase
     public function notificationNamesDataProvider()
     {
         // TODO: move notification names to different class instead of filtering
-        $constants = collect((new ReflectionClass(Notification::class))->getConstants())
-            ->except(['MAX_FIELD_LENGTHS', 'NAME_TO_CATEGORY', 'NOTIFIABLE_CLASSES', 'SUBTYPES', 'CREATED_AT', 'UPDATED_AT'])
+        $constants = collect((new ReflectionClass(Notification::class))->getReflectionConstants())
+            ->filter(fn (ReflectionClassConstant $constant) => $constant->getDeclaringClass()->name === Notification::class)
+            ->except(['NAME_TO_CATEGORY', 'NOTIFIABLE_CLASSES', 'SUBTYPES'])
             ->values();
 
         return $constants->map(function ($name) {
