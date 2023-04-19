@@ -117,7 +117,7 @@ export class NewClient extends React.Component {
   };
 
   private renderRemainingErrors() {
-    return this.errors.except(NewClient.inputFields as unknown as string[]).map((error, index) => (
+    return this.errors.except(NewClient.inputFields as readonly string[]).map((error, index) => (
       <div key={index} className='oauth-client-details__error'>{error}</div>
     ));
   }
