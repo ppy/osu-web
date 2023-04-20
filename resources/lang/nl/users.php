@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'geblokkeerde gebruikers (:count)',
         'hide_profile' => 'profiel verbergen',
         'hide_comment' => 'verbergen',
+        'forum_post_text' => '',
         'not_blocked' => 'Deze gebruiker is niet geblokkeerd.',
         'show_profile' => 'profiel weergeven',
         'show_comment' => 'tonen',

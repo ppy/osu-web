@@ -16,7 +16,7 @@ return [
     'rank_lost' => '<strong><em>:user</em></strong> 失去了 <em>:beatmap</em> （:mode）的第一名',
     'user_support_again' => '<strong>:user</strong> 又一次支持了 osu! - 感谢您的慷慨捐赠！',
     'user_support_first' => '<strong>:user</strong> 支持了 osu! - 感谢您的慷慨捐赠！',
-    'user_support_gift' => '<strong>:user</strong> 收到了匿名玩家赠送的 osu! 支持者标签！',
+    'user_support_gift' => '<strong>:user</strong> 收到了礼物：osu! 支持者！',
     'username_change' => '<strong>:previousUsername</strong> 已将名字改为 <strong><em>:user</em></strong>！',
 
     'beatmapset_status' => [

@@ -9,7 +9,7 @@ return [
     ],
 
     'defaults' => [
-        'page_description' => 'osu! - Der Rhythmus ist nur einen *Klick* entfernt!  Mit Ouendan/EBA, Taiko und eigenen Spielmodi, zusätzlich zu einem voll funktionalen Leveleditor',
+        'page_description' => 'osu! - Rhythmus ist nur ein *Klick* entfernt! Mit Ouendan/EBA, Taiko und originalen Spielmodi, zusätzlich zu einem voll funktionalen Level-Editor.',
     ],
 
     'header' => [
@@ -111,7 +111,7 @@ return [
         ],
         'legal' => [
             '_' => 'Rechtliches & Status',
-            'copyright' => 'Copyright (DMCA)',
+            'copyright' => 'Urheberrecht (DMCA)',
             'privacy' => 'Privatsphäre',
             'server_status' => 'Serverstatus',
             'source_code' => 'Quellcode',
@@ -121,12 +121,12 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => 'Ungültige Anforderungsparameter',
+            'error' => 'Ungültige Anfrageparameter',
             'description' => '',
         ],
         '404' => [
             'error' => 'Seite fehlt',
-            'description' => "Sorry, aber die angeforderte Seite existiert nicht!",
+            'description' => "Entschuldigung, aber die angeforderte Seite existiert nicht!",
         ],
         '403' => [
             'error' => "Du solltest nicht hier sein.",
@@ -138,10 +138,10 @@ return [
         ],
         '405' => [
             'error' => 'Seite fehlt',
-            'description' => "Sorry, aber die angeforderte Seite existiert nicht!",
+            'description' => "Entschuldigung, aber die angeforderte Seite existiert nicht!",
         ],
         '422' => [
-            'error' => 'Ungültige Anforderungsparameter',
+            'error' => 'Ungültige Anfrageparameter',
             'description' => '',
         ],
         '429' => [
@@ -169,16 +169,16 @@ return [
     ],
 
     'popup_login' => [
-        'button' => 'Einloggen / Registrieren',
+        'button' => 'einloggen / registrieren',
 
         'login' => [
             'forgot' => "Passwort vergessen",
             'password' => 'Passwort',
-            'title' => 'Zum Fortfahren einloggen',
+            'title' => 'Einloggen, um fortzufahren',
             'username' => 'Benutzername',
 
             'error' => [
-                'email' => "Nutzername oder E-Mail-Adresse existiert nicht",
+                'email' => "Benutzername oder E-Mail-Adresse existiert nicht",
                 'password' => 'Falsches Passwort',
             ],
         ],

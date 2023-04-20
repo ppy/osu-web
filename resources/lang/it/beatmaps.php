@@ -199,7 +199,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'È stimato che questa mappa verrà classificata in data :date se non vengono trovati problemi. È in posizione #:position nella :queue.',
-            'on' => '',
+            'on' => 'il giorno :date',
             'queue' => 'coda per la classifica',
             'soon' => 'molto vicina',
         ],

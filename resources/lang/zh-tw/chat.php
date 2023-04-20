@@ -36,7 +36,7 @@ return [
 
         'labels' => [
             'description' => '詳情',
-            'message' => '',
+            'message' => '訊息',
             'name' => '房間名稱',
             'users' => '要新增的玩家',
         ],

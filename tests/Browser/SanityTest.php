@@ -223,7 +223,7 @@ class SanityTest extends DuskTestCase
         self::$scaffolding['season'] = Season::factory()->create();
 
         // factory for /home/changelog/*
-        self::$scaffolding['stream'] = factory(UpdateStream::class)->create();
+        self::$scaffolding['stream'] = UpdateStream::factory()->create();
         self::$scaffolding['changelog'] = Changelog::factory()->create([
             'stream_id' => self::$scaffolding['stream']->stream_id,
         ]);

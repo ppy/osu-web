@@ -29,8 +29,8 @@ return [
     'seasons' => [
         'empty' => 'Det finns inga rum i denna säsong ännu.',
         'ongoing' => 'Denna säsong pågår fortfarande (det kommer läggas till fler spellistor).',
-        'room_count' => '',
-        'url' => '',
+        'room_count' => 'Antal spellistor',
+        'url' => 'Visa mer information om den säsongen.',
     ],
 
     'spotlight' => [

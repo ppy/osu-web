@@ -140,7 +140,7 @@ class AccountController extends Controller
         try {
             $user->fill($params)->saveOrExplode();
         } catch (ModelNotSavedException $e) {
-            return $this->errorResponse($user, $e);
+            return ModelNotSavedException::makeResponse($e, compact('user'));
         }
 
         return json_item($user, new CurrentUserTransformer());
@@ -165,7 +165,7 @@ class AccountController extends Controller
 
             return response([], 204);
         } else {
-            return $this->errorResponse($user);
+            return ModelNotSavedException::makeResponse(null, compact('user'));
         }
     }
 
@@ -240,7 +240,10 @@ class AccountController extends Controller
                 $user->profileCustomization()->fill($profileParams)->saveOrExplode();
             }
         } catch (ModelNotSavedException $e) {
-            return $this->errorResponse($user, $e);
+            return ModelNotSavedException::makeResponse($e, [
+                'user' => $user,
+                'user_profile_customization' => $user->profileCustomization(),
+            ]);
         }
 
         return json_item($user, new CurrentUserTransformer());
@@ -262,7 +265,7 @@ class AccountController extends Controller
 
             return response([], 204);
         } else {
-            return $this->errorResponse($user);
+            return ModelNotSavedException::makeResponse(null, compact('user'));
         }
     }
 
@@ -290,13 +293,5 @@ class AccountController extends Controller
     public function reissueCode()
     {
         return UserVerification::fromCurrentRequest()->reissue();
-    }
-
-    private function errorResponse($user, $exception = null)
-    {
-        return response([
-            'form_error' => ['user' => $user->validationErrors()->all()],
-            'error' => optional($exception)->getMessage(),
-        ], 422);
     }
 }

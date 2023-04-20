@@ -6,7 +6,7 @@
 return [
     'index' => [
         'description' => 'Voorverpakte collecties van beatmaps rond een bepaald thema.',
-        'empty' => '',
+        'empty' => 'Binnenkort beschikbaar!',
         'nav_title' => 'lijst',
         'title' => 'Beatmap Packs',
 
@@ -38,6 +38,7 @@ return [
         'featured' => 'Uitgelichte Artiest',
         'standard' => 'Standaard',
         'theme' => 'Thema',
+        'tournament' => '',
     ],
 
     'require_login' => [

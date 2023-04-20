@@ -61,7 +61,7 @@ return [
             'login_required' => 'Пријавите се да тражите играче',
             'more' => ':count додатних резултата за играче',
             'more_simple' => 'Видите још резултата за мапе',
-            'more_hidden' => 'Тражење играча је ограничено на :max. Пробајте да побољшате Вашу претрагу.',
+            'more_hidden' => 'Тражење играча је ограничено на :max. Пробајте да побољшате вашу претрагу.',
             'title' => 'Играчи',
         ],
 
@@ -74,10 +74,10 @@ return [
 
     'download' => [
         'action' => 'Преузмите osu!',
-        'action_lazer' => 'Преузми osu!(lazer) ',
+        'action_lazer' => 'Преузмите osu!(lazer)',
         'action_lazer_description' => 'следеће глобално ажурирање osu!',
         'action_lazer_info' => 'погледај ову страницу за више информација',
-        'action_lazer_title' => 'пробај osu!(lazer)',
+        'action_lazer_title' => 'пробајте osu!(lazer)',
         'action_title' => 'преузмите osu!',
         'for_os' => 'за :os',
         'lazer_note' => 'напомена: постоје ресетовања ранг листе',
@@ -130,7 +130,7 @@ return [
             'stats' => [
                 'friends' => 'Онлајн Пријатељи',
                 'games' => 'Игре',
-                'online' => 'Онлајн Корисника',
+                'online' => 'Онлајн Корисници',
             ],
         ],
         'beatmaps' => [

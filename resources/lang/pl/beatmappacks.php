@@ -6,7 +6,7 @@
 return [
     'index' => [
         'description' => 'Kolekcje beatmap o wspólnej tematyce.',
-        'empty' => '',
+        'empty' => 'Dostępne wkrótce!',
         'nav_title' => 'lista',
         'title' => 'Paczki beatmap',
 
@@ -38,6 +38,7 @@ return [
         'featured' => 'Wyróżnieni artyści',
         'standard' => 'Standardowe',
         'theme' => 'Tematyczne',
+        'tournament' => '',
     ],
 
     'require_login' => [

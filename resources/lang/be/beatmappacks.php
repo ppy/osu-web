@@ -38,6 +38,7 @@ return [
         'featured' => '',
         'standard' => 'Стандартная',
         'theme' => 'Тэма',
+        'tournament' => '',
     ],
 
     'require_login' => [
