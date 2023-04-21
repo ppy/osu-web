@@ -189,7 +189,7 @@ export class Nominations extends React.PureComponent<Props> {
       .always(hideLoadingOverlay);
   };
 
-  private focusHypeInput() {
+  private readonly focusHypeInput = () => {
     // switch to generalAll tab, set current filter to praises
     $.publish('beatmapsetDiscussions:update', {
       filter: 'praises',
@@ -205,9 +205,9 @@ export class Nominations extends React.PureComponent<Props> {
         }, 1000);
       });
     }, 0);
-  }
+  };
 
-  private focusNewDiscussion(callback: () => void) {
+  private focusNewDiscussion(this: void, callback: () => void) {
     const inputBox = $('.js-hype--input');
     inputBox.focus();
 
@@ -219,7 +219,7 @@ export class Nominations extends React.PureComponent<Props> {
     });
   }
 
-  private focusNewDiscussionWithModeSwitch() {
+  private focusNewDiscussionWithModeSwitch = () => {
     // Switch to generalAll tab just in case currently in event tab
     // and thus new discussion box isn't visible.
     $.publish('beatmapsetDiscussions:update', {
@@ -227,7 +227,7 @@ export class Nominations extends React.PureComponent<Props> {
       mode: 'generalAll',
       modeIf: 'events',
     });
-  }
+  };
 
   @action
   private readonly handleChangeOwnerClick = () => this.changeOwnerModal = !this.changeOwnerModal;
