@@ -584,7 +584,7 @@ export class Nominations extends React.PureComponent<Props> {
   }
 
   private renderResetReason(event: BeatmapsetEventJson) {
-    if (event.type == 'disqualify' && typeof event.comment != 'object') {
+    if (event.type === 'disqualify' && typeof event.comment !== 'object') {
       const reason = event.comment != null
         ? <PlainTextPreview markdown={event.comment} />
         : trans('beatmaps.nominations.disqualified_no_reason');
