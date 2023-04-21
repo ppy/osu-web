@@ -14,7 +14,7 @@ import UserLink from 'components/user-link';
 import { BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
-import { BeatmapsetNominationsInterface } from 'interfaces/beatmapset-json';
+import { BeatmapsetNominationsInterface, BeatmapsetWithDiscussionsJson } from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { find, findLast, keys } from 'lodash';
@@ -55,7 +55,7 @@ export class Nominations extends React.PureComponent<Props> {
   private hypeFocusTimeout: number | undefined;
   @observable private loveBeatmapModal = false;
 
-  private xhr: Partial<Record<XhrType, JQueryXHR>> = {};
+  private xhr: Partial<Record<XhrType, JQuery.jqXHR<BeatmapsetWithDiscussionsJson>>> = {};
 
   private get isHybridMode() {
     return keys(this.props.beatmapset.nominations?.required).length > 1;
@@ -159,7 +159,9 @@ export class Nominations extends React.PureComponent<Props> {
     this.xhr.discussionLock = $.ajax(
       route('beatmapsets.discussion-lock', { beatmapset: this.props.beatmapset.id }),
       { data: { reason }, method: 'POST' },
-    )
+    );
+
+    this.xhr.discussionLock
       .done((beatmapset) => {
         $.publish('beatmapsetDiscussions:update', { beatmapset });
       })
@@ -177,7 +179,9 @@ export class Nominations extends React.PureComponent<Props> {
     this.xhr.discussionLock = $.ajax(
       route('beatmapsets.discussion-unlock', { beatmapset: this.props.beatmapset.id }),
       { method: 'POST' },
-    )
+    );
+
+    this.xhr.discussionLock
       .done((beatmapset) =>{
         $.publish('beatmapsetDiscussions:update', { beatmapset });
       })
@@ -263,7 +267,9 @@ export class Nominations extends React.PureComponent<Props> {
     this.xhr.removeFromLoved = $.ajax(
       route('beatmapsets.remove-from-loved', { beatmapset: this.props.beatmapset.id }),
       { data: { reason }, method: 'DELETE' },
-    )
+    );
+
+    this.xhr.removeFromLoved
       .done((beatmapset) =>
         $.publish('beatmapsetDiscussions:update', { beatmapset }),
       )
