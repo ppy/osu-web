@@ -18,9 +18,9 @@ import { trans } from 'utils/lang';
 interface Props {
   beatmapset: BeatmapsetExtendedJson;
   currentHype: number;
-  currentUser: UserExtendedJson;
+  currentUser?: UserExtendedJson;
   unresolvedIssues: number;
-  users: UserJson[];
+  users: Partial<Record<number, UserJson>>;
 }
 
 interface State {
