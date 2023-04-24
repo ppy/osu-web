@@ -53,7 +53,12 @@ export class Nominator extends React.PureComponent<Props, State> {
         return false;
       }
 
-      return _.some(this.props.users[event.user_id].groups, (group) => {
+      const user = this.props.users[event.user_id];
+      if (user == null) {
+        return false;
+      }
+
+      return _.some(user.groups, (group) => {
         if (gameMode !== undefined) {
           return (group.identifier === 'bng' || group.identifier === 'nat') && group.playmodes?.includes(gameMode);
         } else {
@@ -274,7 +279,7 @@ export class Nominator extends React.PureComponent<Props, State> {
     const userId = core.currentUserOrFail.id;
 
     return userId === this.props.beatmapset.user_id
-      || (this.props.beatmapset.beatmaps).some((beatmap) => beatmap.deleted_at == null && userId === beatmap.user_id);
+      || this.props.beatmapset.beatmaps.some((beatmap) => beatmap.deleted_at == null && userId === beatmap.user_id);
   };
 
   userNominatableModes = () => {
