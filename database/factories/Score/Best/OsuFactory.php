@@ -12,7 +12,4 @@ use App\Models\Score\Best\Osu;
 class OsuFactory extends ModelFactory
 {
     protected $model = Osu::class;
-
-    // TODO: remove following line after removing legacy-factories
-    // fooling legacy-factories' "isLegacyFactory" check: class Hello extends Factory
 }

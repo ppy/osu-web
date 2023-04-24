@@ -7,18 +7,18 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Models\UpdateStream;
+use App\Models\LegacyIrcKey;
+use App\Models\User;
 
-class UpdateStreamFactory extends Factory
+class LegacyIrcKeyFactory extends Factory
 {
-    protected $model = UpdateStream::class;
+    protected $model = LegacyIrcKey::class;
 
     public function definition(): array
     {
         return [
-            'name' => $this->faker->colorName(),
-
-            'pretty_name' => fn (array $attr) => $attr['name'],
+            'token' => bin2hex(random_bytes(4)),
+            'user_id' => User::factory(),
         ];
     }
 }
