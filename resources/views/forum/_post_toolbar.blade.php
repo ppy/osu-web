@@ -98,6 +98,16 @@
         </span>
     </button>
 
+    <button
+        class="btn-circle btn-circle--bbcode js-bbcode-btn--imagemap"
+        title="{{ osu_trans("bbcode.imagemap") }}"
+        type="button"
+    >
+        <span class="btn-circle__content">
+            <i class="fas fa-map"></i>
+        </span>
+    </button>
+
     <label class="bbcode-size-select" title="{{ osu_trans("bbcode.size._") }}">
         <span class="bbcode-size-select__label">
             {{ osu_trans("bbcode.size._") }}

@@ -8,6 +8,7 @@ return [
     'heading' => 'Header',
     'help' => 'Help',
     'image' => 'Image',
+    'imagemap' => 'Image Map',
     'italic' => 'Italic',
     'link' => 'Link',
     'list' => 'List',
