@@ -49,17 +49,30 @@ export class Nominator extends React.PureComponent<Props, State> {
     return this.props.beatmapset.status === 'pending' && this.props.currentHype >= this.props.beatmapset.hype.required;
   }
 
+  private get nominationEvents() {
+    const nominations: BeatmapsetEventJson[] = [];
+
+    forEachRight(this.props.beatmapset.events ?? [], (event) => {
+      if (event.type === 'nomination_reset') {
+        return false;
+      }
+
+      if (event.type === 'nominate') {
+        nominations.push(event);
+      }
+    });
+
+    return nominations;
+  }
+
   private get userCanNominate() {
     if (!this.userHasNominatePermission) {
       return false;
     }
 
-    let nominationModes;
-    if (this.legacyMode) {
-      nominationModes = uniq(this.props.beatmapset.beatmaps?.map((bm) => bm.mode));
-    } else {
-      nominationModes = Object.keys(this.props.beatmapset.nominations.required) as GameMode[];
-    }
+    const nominationModes = this.legacyMode
+      ? uniq(this.props.beatmapset.beatmaps?.map((bm) => bm.mode))
+      : Object.keys(this.props.beatmapset.nominations.required) as GameMode[];
 
     return some(nominationModes, (mode) => this.userCanNominateMode(mode));
   }
@@ -109,34 +122,15 @@ export class Nominator extends React.PureComponent<Props, State> {
     );
   }
 
-  private hasFullNomination = (mode: GameMode) => {
-    const eventUserIsFullNominator = (event: BeatmapsetEventJson, gameMode?: GameMode) => {
-      if (!event.user_id) {
-        return false;
-      }
+  private hasFullNomination(mode: GameMode) {
+    return some(this.nominationEvents, (event) => {
+      const user = event.user_id != null ? this.props.users[event.user_id] : null;
 
-      const user = this.props.users[event.user_id];
-      if (user == null) {
-        return false;
-      }
-
-      return some(user.groups, (group) => {
-        if (gameMode !== undefined) {
-          return (group.identifier === 'bng' || group.identifier === 'nat') && group.playmodes?.includes(gameMode);
-        } else {
-          return (group.identifier === 'bng' || group.identifier === 'nat');
-        }
-      });
-    };
-
-    return some(this.nominationEvents(), (event) => {
-      if (event.type === 'nominate' && event.comment != null) {
-        return event.comment.modes.includes(mode) && eventUserIsFullNominator(event, mode);
-      } else {
-        return eventUserIsFullNominator(event);
-      }
+      return event.type === 'nominate' && event.comment != null
+        ? event.comment.modes.includes(mode) && this.userIsFullNominator(user, mode)
+        : this.userIsFullNominator(user);
     });
-  };
+  }
 
   private hideNominationModal = () => {
     this.setState({
@@ -185,23 +179,6 @@ export class Nominator extends React.PureComponent<Props, State> {
 
     return curr >= req;
   };
-
-  private nominationEvents = () => {
-    const nominations: BeatmapsetEventJson[] = [];
-
-    forEachRight(this.props.beatmapset.events ?? [], (event) => {
-      if (event.type === 'nomination_reset') {
-        return false;
-      }
-
-      if (event.type === 'nominate') {
-        nominations.push(event);
-      }
-    });
-
-    return nominations;
-  };
-
 
   private renderButton = () => {
     if (!this.mapCanBeNominated || !this.userHasNominatePermission) {
@@ -340,5 +317,15 @@ export class Nominator extends React.PureComponent<Props, State> {
 
     return userNominatable[mode] === 'full'
       || (userNominatable[mode] === 'limited' && !this.requiresFullNomination(mode));
+  }
+
+  private userIsFullNominator(user?: UserJson | null, gameMode?: GameMode) {
+    return user != null && some(user.groups, (group) => {
+      if (gameMode != null) {
+        return (group.identifier === 'bng' || group.identifier === 'nat') && group.playmodes?.includes(gameMode);
+      } else {
+        return (group.identifier === 'bng' || group.identifier === 'nat');
+      }
+    });
   }
 }
