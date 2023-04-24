@@ -5,7 +5,7 @@ import IconExpand from 'components/icon-expand';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
-import { BeatmapsetWithDiscussionsJson } from 'interfaces/beatmapset-json';
+import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import UserJson from 'interfaces/user-json';
 import { size } from 'lodash';
 import { action, computed, makeObservable, observable } from 'mobx';
