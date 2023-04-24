@@ -111,4 +111,12 @@
             <option value="150">{{ osu_trans("bbcode.size.large") }}</option>
         </select>
     </label>
+
+    <a
+        class="post-box-toolbar__help"
+        href="{{ wiki_url('BBCode') }}"
+        target="_blank"
+    >
+        {{ osu_trans('bbcode.help') }}
+    </a>
 </div>
