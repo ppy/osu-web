@@ -48,6 +48,14 @@ interface Props {
 
 type XhrType = 'delete' | 'discussionLock' | 'removeFromLoved';
 
+function discussionIdFromEvent(event: BeatmapsetEventJson) {
+  return event.comment != null
+    && typeof event.comment === 'object'
+    && 'beatmap_discussion_id' in event.comment
+    ? event.comment.beatmap_discussion_id
+    : null;
+}
+
 @observer
 export class Nominations extends React.PureComponent<Props> {
   @observable private changeOwnerModal = false;
@@ -235,8 +243,9 @@ export class Nominations extends React.PureComponent<Props> {
   private readonly handleLoveBeatmapModal = () => this.loveBeatmapModal = !this.loveBeatmapModal;
 
   private parseEventData(event: BeatmapsetEventJson) {
-    const user = this.props.users[event.user_id];
-    const discussion = this.props.discussions[event.comment.beatmap_discussion_id];
+    const user = event.user_id != null ? this.props.users[event.user_id] : null;
+    const discussionId = discussionIdFromEvent(event);
+    const discussion = discussionId != null ? this.props.discussions[discussionId] : null;
     const post = discussion?.posts[0];
 
     let link: React.ReactNode;
@@ -247,11 +256,11 @@ export class Nominations extends React.PureComponent<Props> {
       link = <a className='js-beatmap-discussion--jump' href={makeUrl({ discussion })}>{`#${discussion.id}`}</a>;
       message = <PlainTextPreview markdown={post.message} />;
     } else {
-      link = `#${event.comment.beatmap_discussion_id}`;
+      link = discussionId != null ? `#${discussionId}` : null;
       message = trans('beatmaps.nominations.reset_message_deleted');
     }
 
-    return { user, discussion, link, message };
+    return { discussion, link, message, user };
   }
 
   private readonly removeFromLoved = () => {
