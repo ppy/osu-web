@@ -33,12 +33,63 @@ export class Nominator extends React.PureComponent<Props, State> {
   private checkboxContainerRef = React.createRef<HTMLDivElement>();
   private xhr?: JQuery.jqXHR<BeatmapsetWithDiscussionsJson>;
 
+  private get hybridMode() {
+    return keys(this.props.beatmapset.nominations?.required).length > 1;
+  }
+
+  private get legacyMode() {
+    return this.props.beatmapset.nominations?.legacy_mode;
+  }
+
+  private get mapCanBeNominated() {
+    if (this.props.beatmapset.hype == null) {
+      return false;
+    }
+
+    return this.props.beatmapset.status === 'pending' && this.props.currentHype >= this.props.beatmapset.hype.required;
+  }
+
+  private get userCanNominate() {
+    if (!this.userHasNominatePermission) {
+      return false;
+    }
+
+    let nominationModes;
+    if (this.legacyMode) {
+      nominationModes = uniq(this.props.beatmapset.beatmaps?.map((bm) => bm.mode));
+    } else {
+      nominationModes = Object.keys(this.props.beatmapset.nominations.required) as GameMode[];
+    }
+
+    return some(nominationModes, (mode) => this.userCanNominateMode(mode));
+  }
+
+  private get userHasNominatePermission() {
+    const currentUser = core.currentUserOrFail;
+    return currentUser.is_admin || (!this.userIsOwner && (currentUser.is_bng || currentUser.is_nat));
+  }
+
+  private get userIsOwner() {
+    const userId = core.currentUserOrFail.id;
+
+    return userId === this.props.beatmapset.user_id
+      || this.props.beatmapset.beatmaps.some((beatmap) => beatmap.deleted_at == null && userId === beatmap.user_id);
+  }
+
+  private get userNominatableModes() {
+    if (!this.mapCanBeNominated || !this.userHasNominatePermission) {
+      return {};
+    }
+
+    return this.props.beatmapset.current_user_attributes?.nomination_modes ?? {};
+  }
+
   constructor(props: Props) {
     super(props);
 
     this.state = {
       loading: false,
-      selectedModes: this.hybridMode() ? [] : [keys(this.props.beatmapset.nominations?.required)[0] as GameMode],
+      selectedModes: this.hybridMode ? [] : [keys(this.props.beatmapset.nominations?.required)[0] as GameMode],
       visible: false,
     };
   }
@@ -79,21 +130,9 @@ export class Nominator extends React.PureComponent<Props, State> {
   hideNominationModal = () => {
     this.setState({
       loading: false,
-      selectedModes: this.hybridMode() ? [] : this.state.selectedModes,
+      selectedModes: this.hybridMode ? [] : this.state.selectedModes,
       visible: false,
     });
-  };
-
-  hybridMode = () => keys(this.props.beatmapset.nominations?.required).length > 1;
-
-  legacyMode = () => this.props.beatmapset.nominations?.legacy_mode;
-
-  mapCanBeNominated = () => {
-    if (this.props.beatmapset.hype == null) {
-      return false;
-    }
-
-    return this.props.beatmapset.status === 'pending' && this.props.currentHype >= this.props.beatmapset.hype.required;
   };
 
   nominate = () => {
@@ -164,7 +203,7 @@ export class Nominator extends React.PureComponent<Props, State> {
   }
 
   renderButton = () => {
-    if (!this.mapCanBeNominated() || !this.userHasNominatePermission()) {
+    if (!this.mapCanBeNominated || !this.userHasNominatePermission) {
       return;
     }
 
@@ -187,12 +226,12 @@ export class Nominator extends React.PureComponent<Props, State> {
         </div>
       );
     } else {
-      return button(this.props.beatmapset.nominations?.nominated || !this.userCanNominate());
+      return button(this.props.beatmapset.nominations?.nominated || !this.userCanNominate);
     }
   };
 
   renderModal = () => {
-    const content = this.hybridMode() ? this.modalContentHybrid() : this.modalContentNormal();
+    const content = this.hybridMode ? this.modalContentHybrid() : this.modalContentNormal();
 
     return (
       <Modal onClose={this.hideNominationModal}>
@@ -201,7 +240,7 @@ export class Nominator extends React.PureComponent<Props, State> {
           {content}
           <div className={`${this.bn}__buttons`}>
             <BigButton
-              disabled={(this.hybridMode() && this.state.selectedModes.length < 1) || this.state.loading}
+              disabled={(this.hybridMode && this.state.selectedModes.length < 1) || this.state.loading}
               icon='fas fa-thumbs-up'
               isBusy={this.state.loading}
               props={{
@@ -243,52 +282,6 @@ export class Nominator extends React.PureComponent<Props, State> {
   updateCheckboxes = () => {
     const checkedBoxes = map(this.checkboxContainerRef.current?.querySelectorAll<HTMLInputElement>('input[type=checkbox]:checked'), (node) => node.value);
     this.setState({ selectedModes: checkedBoxes as GameMode[] });
-  };
-
-  userCanNominate = () => {
-    if (!this.userHasNominatePermission()) {
-      return false;
-    }
-
-    let nominationModes;
-    if (this.legacyMode()) {
-      nominationModes = uniq(this.props.beatmapset.beatmaps?.map((bm) => bm.mode));
-    } else {
-      nominationModes = Object.keys(this.props.beatmapset.nominations.required) as GameMode[];
-    }
-
-    return some(nominationModes, (mode) => this.userCanNominateMode(mode));
-  };
-
-  userCanNominateMode = (mode: GameMode) => {
-    if (!this.userHasNominatePermission() || this.nominationCountMet(mode)) {
-      return false;
-    }
-
-    const userNominatable = this.userNominatableModes();
-
-    return userNominatable[mode] === 'full' ||
-      (userNominatable[mode] === 'limited' && !this.requiresFullNomination(mode));
-  };
-
-  userHasNominatePermission() {
-    const currentUser = core.currentUserOrFail;
-    return currentUser.is_admin || (!this.userIsOwner() && (currentUser.is_bng || currentUser.is_nat));
-  }
-
-  userIsOwner = () => {
-    const userId = core.currentUserOrFail.id;
-
-    return userId === this.props.beatmapset.user_id
-      || this.props.beatmapset.beatmaps.some((beatmap) => beatmap.deleted_at == null && userId === beatmap.user_id);
-  };
-
-  userNominatableModes = () => {
-    if (!this.mapCanBeNominated() || !this.userHasNominatePermission()) {
-      return {};
-    }
-
-    return this.props.beatmapset.current_user_attributes?.nomination_modes ?? {};
   };
 
   private modalContentHybrid = () => {
@@ -335,5 +328,16 @@ export class Nominator extends React.PureComponent<Props, State> {
 
   private modalContentNormal() {
     return trans('beatmapsets.nominate.dialog.confirmation');
+  }
+
+  private userCanNominateMode(mode: GameMode) {
+    if (!this.userHasNominatePermission || this.nominationCountMet(mode)) {
+      return false;
+    }
+
+    const userNominatable = this.userNominatableModes;
+
+    return userNominatable[mode] === 'full'
+      || (userNominatable[mode] === 'limited' && !this.requiresFullNomination(mode));
   }
 }
