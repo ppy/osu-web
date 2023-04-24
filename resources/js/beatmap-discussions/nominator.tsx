@@ -28,8 +28,9 @@ interface State {
   visible: boolean;
 }
 
+const bn = 'nomination-dialog';
+
 export class Nominator extends React.PureComponent<Props, State> {
-  private bn = 'nomination-dialog';
   private checkboxContainerRef = React.createRef<HTMLDivElement>();
   private xhr?: JQuery.jqXHR<BeatmapsetWithDiscussionsJson>;
 
@@ -38,7 +39,7 @@ export class Nominator extends React.PureComponent<Props, State> {
   }
 
   private get legacyMode() {
-    return this.props.beatmapset.nominations?.legacy_mode;
+    return this.props.beatmapset.nominations.legacy_mode;
   }
 
   private get mapCanBeNominated() {
@@ -52,7 +53,7 @@ export class Nominator extends React.PureComponent<Props, State> {
   private get nominationEvents() {
     const nominations: BeatmapsetEventJson[] = [];
 
-    forEachRight(this.props.beatmapset.events ?? [], (event) => {
+    forEachRight(this.props.beatmapset.events, (event) => {
       if (event.type === 'nomination_reset') {
         return false;
       }
@@ -132,7 +133,7 @@ export class Nominator extends React.PureComponent<Props, State> {
     });
   }
 
-  private hideNominationModal = () => {
+  private readonly hideNominationModal = () => {
     this.setState({
       loading: false,
       selectedModes: this.hybridMode ? [] : this.state.selectedModes,
@@ -140,7 +141,7 @@ export class Nominator extends React.PureComponent<Props, State> {
     });
   };
 
-  private nominate = () => {
+  private readonly nominate = () => {
     this.xhr?.abort();
 
     this.setState({ loading: true }, () => {
@@ -161,25 +162,22 @@ export class Nominator extends React.PureComponent<Props, State> {
     });
   };
 
-  private nominationCountMet = (mode: GameMode) => {
-    if (
-      this.props.beatmapset.nominations?.legacy_mode ||
-      !this.props.beatmapset.nominations?.required[mode]
-    ) {
+  private nominationCountMet(mode: GameMode) {
+    if (this.props.beatmapset.nominations.legacy_mode || this.props.beatmapset.nominations.required[mode] === 0) {
       return false;
     }
 
     const req = this.props.beatmapset.nominations.required[mode];
-    const curr = this.props.beatmapset.nominations.current[mode] || 0;
+    const curr = this.props.beatmapset.nominations.current[mode] ?? 0;
 
     if (!req) {
       return false;
     }
 
     return curr >= req;
-  };
+  }
 
-  private renderButton = () => {
+  private renderButton() {
     if (!this.mapCanBeNominated || !this.userHasNominatePermission) {
       return;
     }
@@ -205,17 +203,17 @@ export class Nominator extends React.PureComponent<Props, State> {
     } else {
       return button(this.props.beatmapset.nominations?.nominated || !this.userCanNominate);
     }
-  };
+  }
 
-  private renderModal = () => {
+  private renderModal() {
     const content = this.hybridMode ? this.renderModalContentHybrid() : this.renderModalContentNormal();
 
     return (
       <Modal onClose={this.hideNominationModal}>
-        <div className={this.bn}>
-          <div className={`${this.bn}__header`}>{trans('beatmapsets.nominate.dialog.header')}</div>
+        <div className={bn}>
+          <div className={`${bn}__header`}>{trans('beatmapsets.nominate.dialog.header')}</div>
           {content}
-          <div className={`${this.bn}__buttons`}>
+          <div className={`${bn}__buttons`}>
             <BigButton
               disabled={(this.hybridMode && this.state.selectedModes.length < 1) || this.state.loading}
               icon='fas fa-thumbs-up'
@@ -237,7 +235,7 @@ export class Nominator extends React.PureComponent<Props, State> {
         </div>
       </Modal>
     );
-  };
+  }
 
   private renderModalContentHybrid() {
     const playmodes = keys(this.props.beatmapset.nominations?.required);
@@ -260,7 +258,7 @@ export class Nominator extends React.PureComponent<Props, State> {
           />
           <span className='osu-switch-v2__content' />
           <div
-            className={classWithModifiers(`${this.bn}__label`, { disabled })}
+            className={classWithModifiers(`${bn}__label`, { disabled })}
           >
             <i className={`fal fa-extra-mode-${mode}`} /> {trans(`beatmaps.mode.${mode}`)}
           </div>
@@ -271,10 +269,10 @@ export class Nominator extends React.PureComponent<Props, State> {
     return (
       <>
         {trans('beatmapsets.nominate.dialog.which_modes')}
-        <div ref={this.checkboxContainerRef} className={`${this.bn}__checkboxes`}>
+        <div ref={this.checkboxContainerRef} className={`${bn}__checkboxes`}>
           {renderPlaymodes}
         </div>
-        <div className={`${this.bn}__warn`}>
+        <div className={`${bn}__warn`}>
           {trans('beatmapsets.nominate.dialog.hybrid_warning')}
         </div>
       </>
@@ -289,7 +287,7 @@ export class Nominator extends React.PureComponent<Props, State> {
     let req;
     let curr;
 
-    if (this.props.beatmapset.nominations?.legacy_mode) {
+    if (this.props.beatmapset.nominations.legacy_mode) {
       req = this.props.beatmapset.nominations?.required;
       curr = this.props.beatmapset.nominations?.current;
     } else {
@@ -302,7 +300,7 @@ export class Nominator extends React.PureComponent<Props, State> {
 
   private showNominationModal = () => this.setState({ visible: true });
 
-  private updateCheckboxes = () => {
+  private readonly updateCheckboxes = () => {
     const checkedBoxes = map(this.checkboxContainerRef.current?.querySelectorAll<HTMLInputElement>('input[type=checkbox]:checked'), (node) => node.value);
     this.setState({ selectedModes: checkedBoxes as GameMode[] });
   };
