@@ -13,6 +13,7 @@ interface BeatmapFailTimesArray {
 interface BeatmapJsonAvailableIncludes {
   beatmapset: BeatmapsetJson | null;
   checksum: string | null;
+  deleted_at: string | null; // FIXME: this is part of BeatmapTransformer
   failtimes: BeatmapFailTimesArray;
   max_combo: number;
   user: UserJson;
