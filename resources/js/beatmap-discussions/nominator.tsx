@@ -30,7 +30,8 @@ interface State {
 
 const bn = 'nomination-dialog';
 
-export class Nominator extends React.PureComponent<Props, State> {
+@observer
+export class Nominator extends React.Component<Props, State> {
   private checkboxContainerRef = React.createRef<HTMLDivElement>();
   private xhr?: JQuery.jqXHR<BeatmapsetWithDiscussionsJson>;
 
