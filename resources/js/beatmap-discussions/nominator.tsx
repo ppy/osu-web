@@ -6,10 +6,10 @@ import Modal from 'components/modal';
 import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import GameMode from 'interfaces/game-mode';
-import UserExtendedJson from 'interfaces/user-extended-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import * as _ from 'lodash';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
 import { classWithModifiers } from 'utils/css';
@@ -18,7 +18,6 @@ import { trans } from 'utils/lang';
 interface Props {
   beatmapset: BeatmapsetWithDiscussionsJson;
   currentHype: number;
-  currentUser?: UserExtendedJson;
   unresolvedIssues: number;
   users: Partial<Record<number, UserJson>>;
 }
@@ -149,6 +148,8 @@ export class Nominator extends React.PureComponent<Props, State> {
   };
 
   render(): React.ReactNode {
+    if (core.currentUser == null) return null;
+
     return (
       <>
         {this.renderButton()}
@@ -265,15 +266,16 @@ export class Nominator extends React.PureComponent<Props, State> {
       (userNominatable[mode] === 'limited' && !this.requiresFullNomination(mode));
   };
 
-  userHasNominatePermission = () => this.props.currentUser.is_admin || (!this.userIsOwner() && (this.props.currentUser.is_bng || this.props.currentUser.is_nat));
+  userHasNominatePermission() {
+    const currentUser = core.currentUserOrFail;
+    return currentUser.is_admin || (!this.userIsOwner() && (currentUser.is_bng || currentUser.is_nat));
+  }
 
   userIsOwner = () => {
-    const userId = this.props.currentUser?.id;
+    const userId = core.currentUserOrFail.id;
 
-    return (userId != null && (
-      userId === this.props.beatmapset.user_id
-      || (this.props.beatmapset.beatmaps ?? []).some((beatmap) => beatmap.deleted_at == null && userId === beatmap.user_id)
-    ));
+    return userId === this.props.beatmapset.user_id
+      || (this.props.beatmapset.beatmaps).some((beatmap) => beatmap.deleted_at == null && userId === beatmap.user_id);
   };
 
   userNominatableModes = () => {
