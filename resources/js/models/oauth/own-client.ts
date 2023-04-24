@@ -9,7 +9,7 @@ import { Client } from 'models/oauth/client';
 export class OwnClient extends Client {
   @observable isResetting = false;
   @observable isUpdating = false;
-  redirect: string;
+  @observable redirect: string;
   secret: string;
 
   constructor(client: OwnClientJson) {

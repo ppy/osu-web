@@ -73,11 +73,16 @@ export function transChoice(key: string, count: number, replacements: Replacemen
 
 // Handles case where crowdin fills in untranslated key with empty string.
 export function transExists(key: string, locale?: string) {
+  locale ??= window.currentLocale;
+  window.Lang.setFallback(locale);
+
   const translated = window.Lang.get(key, undefined, locale);
+  const ret = present(translated) && translated !== key;
 
-  return present(translated) && translated !== key;
+  window.Lang.setFallback(window.fallbackLocale);
+
+  return ret;
 }
-
 
 // re-export Lang so we can use our version of the types;
 // default export doesn't support declaration https://github.com/microsoft/TypeScript/issues/14080

@@ -4,7 +4,7 @@
 --}}
 @foreach ($search->data() as $entry)
     <div
-        class="js-react--beatmapset-panel"
+        class="js-react--beatmapset-panel u-contents"
         data-beatmapset-panel="{{ json_encode(['beatmapset' => json_item($entry, 'Beatmapset', ['beatmaps'])]) }}"
     ></div>
 @endforeach

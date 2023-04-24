@@ -5,6 +5,7 @@ import { snakeCase } from 'lodash';
 import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { trans } from 'utils/lang';
+import { wikiUrl } from 'utils/url';
 
 type ChangeType = 'cancel' | 'save';
 
@@ -162,6 +163,15 @@ export default class BbcodeEditor extends React.Component<Props> {
         {this.toolbarButton('imagemap', 'fas fa-map')}
 
         {this.toolbarSizeSelect()}
+
+        <a
+          className='post-box-toolbar__help'
+          href={wikiUrl('BBCode')}
+          rel="noreferrer"
+          target='_blank'
+        >
+          {trans('bbcode.help')}
+        </a>
       </div>
     );
   }
