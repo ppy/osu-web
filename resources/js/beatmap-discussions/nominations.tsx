@@ -354,7 +354,7 @@ export class Nominations extends React.PureComponent<Props> {
 
     const lockEvent = findLast(this.props.events, { type: 'discussion_lock' });
 
-    if (lockEvent == null) return null;
+    if (lockEvent == null || lockEvent.type !== 'discussion_lock') return null;
 
     return (
       <StringWithComponent
@@ -369,9 +369,9 @@ export class Nominations extends React.PureComponent<Props> {
   private renderDisqualificationMessage() {
     const showHype = this.props.beatmapset.can_be_hyped;
     const disqualification = this.props.beatmapset.nominations.disqualification;
-    const mapIsQualified = this.props.beatmapset.status == 'qualified';
+    const mapIsQualified = this.props.beatmapset.status === 'qualified';
 
-    if (!showHype || mapIsQualified || disqualification != null) return null;
+    if (!showHype || mapIsQualified || disqualification == null) return null;
 
     return <div>{this.renderResetReason(disqualification)}</div>;
   }
@@ -517,8 +517,8 @@ export class Nominations extends React.PureComponent<Props> {
   private renderNominationBar() {
     const requiredHype = this.props.beatmapset.hype?.required ?? 0; // TODO: skip if null?
     const hypeRaw = this.props.currentDiscussions.totalHype;
-    const mapCanBeNominated = this.props.beatmapset.status == 'pending' && hypeRaw >= requiredHype;
-    const mapIsQualified = this.props.beatmapset.status == 'qualified';
+    const mapCanBeNominated = this.props.beatmapset.status === 'pending' && hypeRaw >= requiredHype;
+    const mapIsQualified = this.props.beatmapset.status === 'qualified';
 
     if (!(mapCanBeNominated || mapIsQualified)) return null;
 
@@ -540,7 +540,7 @@ export class Nominations extends React.PureComponent<Props> {
     const nominationReset = this.props.beatmapset.nominations.nomination_reset;
     const mapIsQualified = this.props.beatmapset.status === 'qualified';
 
-    if (!showHype || mapIsQualified || nominationReset) return null;
+    if (!showHype || mapIsQualified || nominationReset == null) return null;
 
     return <div>{this.renderResetReason(nominationReset)}</div>;
   }
