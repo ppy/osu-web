@@ -4,7 +4,7 @@
 import BigButton from 'components/big-button';
 import Modal from 'components/modal';
 import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
-import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
+import { BeatmapsetWithDiscussionsJson } from 'interfaces/beatmapset-json';
 import GameMode from 'interfaces/game-mode';
 import UserExtendedJson from 'interfaces/user-extended-json';
 import UserJson from 'interfaces/user-json';
@@ -16,7 +16,7 @@ import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 
 interface Props {
-  beatmapset: BeatmapsetExtendedJson;
+  beatmapset: BeatmapsetWithDiscussionsJson;
   currentHype: number;
   currentUser: UserExtendedJson;
   unresolvedIssues: number;
@@ -32,7 +32,7 @@ interface State {
 export class Nominator extends React.PureComponent<Props, State> {
   private bn = 'nomination-dialog';
   private checkboxContainerRef = React.createRef<HTMLDivElement>();
-  private xhr?: JQuery.jqXHR;
+  private xhr?: JQuery.jqXHR<BeatmapsetWithDiscussionsJson>;
 
   constructor(props: Props) {
     super(props);
@@ -104,7 +104,8 @@ export class Nominator extends React.PureComponent<Props, State> {
         method: 'PUT',
       };
 
-      this.xhr = $.ajax(url, params)
+      this.xhr = $.ajax(url, params);
+      this.xhr
         .done((response) => {
           $.publish('beatmapsetDiscussions:update', { beatmapset: response });
         })
@@ -247,7 +248,7 @@ export class Nominator extends React.PureComponent<Props, State> {
     if (this.legacyMode()) {
       nominationModes = _.uniq(this.props.beatmapset.beatmaps?.map((bm) => bm.mode));
     } else {
-      nominationModes = Object.keys(this.props.beatmapset.nominations!.required) as GameMode[];
+      nominationModes = Object.keys(this.props.beatmapset.nominations.required) as GameMode[];
     }
 
     return _.some(nominationModes, (mode) => this.userCanNominateMode(mode));

@@ -13,8 +13,8 @@ import TimeWithTooltip from 'components/time-with-tooltip';
 import UserLink from 'components/user-link';
 import { BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
-import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import { BeatmapsetNominationsInterface, BeatmapsetWithDiscussionsJson } from 'interfaces/beatmapset-json';
+import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { find, findLast, keys } from 'lodash';
@@ -39,8 +39,7 @@ const flashClass = 'js-flash-border--on';
 const hypeMessage = '.js-hype--explanation';
 
 interface Props {
-
-  beatmapset: BeatmapsetExtendedJson;
+  beatmapset: BeatmapsetWithDiscussionsJson;
   currentDiscussions: CurrentDiscussions;
   discussions: Partial<Record<number, BeatmapsetDiscussionJsonForShow>>;
   events: BeatmapsetEventJson[];
@@ -445,27 +444,27 @@ export class Nominations extends React.PureComponent<Props> {
   private renderLightsForNominations(nominations?: BeatmapsetNominationsInterface) {
     if (nominations == null) return null;
 
-    let current;
-    let required;
-    let mode;
     if (nominations.legacy_mode || !this.isHybridMode) {
+      let current: number;
+      let required: number;
+
       if (nominations.legacy_mode) {
         current = nominations.current;
         required = nominations.required;
       } else {
-        mode = keys(nominations.required)[0];
-        current = nominations.current[mode];
-        required = nominations.required[mode];
+        const mode = Object.keys(nominations.required)[0] as GameMode;
+        current = nominations.current[mode] ?? 0;
+        required = nominations.required[mode] ?? 0;
       }
 
       return <DiscreteBar current={current} modifiers='beatmapset-hype' total={required} />;
     } else {
       return (
         <div className={`${bn}__discrete-bar-group`}>
-          {Object.entries(nominations.required).map(([ruleset, required]) => (
+          {Object.entries(nominations.required).map(([ruleset, required]: [GameMode, number]) => (
             <DiscreteBar
               key={ruleset}
-              current={nominations.current[ruleset]}
+              current={nominations.current[ruleset] ?? 0}
               label={<i className={`fal fa-extra-mode-${ruleset}`} />}
               modifiers='beatmapset-nomination-hybrid'
               total={required}
