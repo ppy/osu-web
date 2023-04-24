@@ -14,6 +14,18 @@ interface Props {
   message: Message;
 }
 
+function linkRenderer(astProps: JSX.IntrinsicElements['a']) {
+  return (
+    <a href={astProps.href} rel='nofollow noreferrer' target='_blank'>
+      {astProps.children}
+    </a>
+  );
+}
+
+const components = Object.freeze({
+  a: linkRenderer,
+});
+
 @observer
 export default class MessageItem extends React.Component<Props> {
   render() {
@@ -45,6 +57,7 @@ export default class MessageItem extends React.Component<Props> {
           'chat-action': this.props.message.type === 'action',
           'chat-plain': remarkType === 'chatPlain',
         })}
+        components={components}
         remarkPlugins={[autolink, [disableConstructs, { type: remarkType }]]}
         unwrapDisallowed
       >
