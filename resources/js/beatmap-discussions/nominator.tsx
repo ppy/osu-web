@@ -8,7 +8,7 @@ import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussion
 import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import * as _ from 'lodash';
+import { forEachRight, keys, map, some, uniq } from 'lodash';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
@@ -38,7 +38,7 @@ export class Nominator extends React.PureComponent<Props, State> {
 
     this.state = {
       loading: false,
-      selectedModes: this.hybridMode() ? [] : [_.keys(this.props.beatmapset.nominations?.required)[0] as GameMode],
+      selectedModes: this.hybridMode() ? [] : [keys(this.props.beatmapset.nominations?.required)[0] as GameMode],
       visible: false,
     };
   }
@@ -58,7 +58,7 @@ export class Nominator extends React.PureComponent<Props, State> {
         return false;
       }
 
-      return _.some(user.groups, (group) => {
+      return some(user.groups, (group) => {
         if (gameMode !== undefined) {
           return (group.identifier === 'bng' || group.identifier === 'nat') && group.playmodes?.includes(gameMode);
         } else {
@@ -67,7 +67,7 @@ export class Nominator extends React.PureComponent<Props, State> {
       });
     };
 
-    return _.some(this.nominationEvents(), (event) => {
+    return some(this.nominationEvents(), (event) => {
       if (event.type === 'nominate' && event.comment != null) {
         return event.comment.modes.includes(mode) && eventUserIsFullNominator(event, mode);
       } else {
@@ -84,7 +84,7 @@ export class Nominator extends React.PureComponent<Props, State> {
     });
   };
 
-  hybridMode = () => _.keys(this.props.beatmapset.nominations?.required).length > 1;
+  hybridMode = () => keys(this.props.beatmapset.nominations?.required).length > 1;
 
   legacyMode = () => this.props.beatmapset.nominations?.legacy_mode;
 
@@ -138,7 +138,7 @@ export class Nominator extends React.PureComponent<Props, State> {
   nominationEvents = () => {
     const nominations: BeatmapsetEventJson[] = [];
 
-    _.forEachRight(this.props.beatmapset.events ?? [], (event) => {
+    forEachRight(this.props.beatmapset.events ?? [], (event) => {
       if (event.type === 'nomination_reset') {
         return false;
       }
@@ -240,7 +240,7 @@ export class Nominator extends React.PureComponent<Props, State> {
   showNominationModal = () => this.setState({ visible: true });
 
   updateCheckboxes = () => {
-    const checkedBoxes = _.map(this.checkboxContainerRef.current?.querySelectorAll<HTMLInputElement>('input[type=checkbox]:checked'), (node) => node.value);
+    const checkedBoxes = map(this.checkboxContainerRef.current?.querySelectorAll<HTMLInputElement>('input[type=checkbox]:checked'), (node) => node.value);
     this.setState({ selectedModes: checkedBoxes as GameMode[] });
   };
 
@@ -251,12 +251,12 @@ export class Nominator extends React.PureComponent<Props, State> {
 
     let nominationModes;
     if (this.legacyMode()) {
-      nominationModes = _.uniq(this.props.beatmapset.beatmaps?.map((bm) => bm.mode));
+      nominationModes = uniq(this.props.beatmapset.beatmaps?.map((bm) => bm.mode));
     } else {
       nominationModes = Object.keys(this.props.beatmapset.nominations!.required) as GameMode[];
     }
 
-    return _.some(nominationModes, (mode) => this.userCanNominateMode(mode));
+    return some(nominationModes, (mode) => this.userCanNominateMode(mode));
   };
 
   userCanNominateMode = (mode: GameMode) => {
@@ -291,9 +291,9 @@ export class Nominator extends React.PureComponent<Props, State> {
   };
 
   private modalContentHybrid = () => {
-    const playmodes = _.keys(this.props.beatmapset.nominations?.required);
+    const playmodes = keys(this.props.beatmapset.nominations?.required);
 
-    const renderPlaymodes = _.map(playmodes, (mode: GameMode) => {
+    const renderPlaymodes = map(playmodes, (mode: GameMode) => {
       const disabled = !this.userCanNominateMode(mode);
       return (
         <label
