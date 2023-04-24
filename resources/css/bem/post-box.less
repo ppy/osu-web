@@ -5,7 +5,7 @@
 .post-box-toolbar {
   display: flex;
   flex-wrap: wrap;
-  margin: -2px;
+  gap: 2px;
   justify-content: center;
 
   &--disabled {
@@ -14,5 +14,11 @@
 
   @media @desktop {
     justify-content: flex-start;
+  }
+
+  &__help {
+    font-size: @font-size--title-small;
+    align-self: center;
+    margin: 0 10px;
   }
 }
