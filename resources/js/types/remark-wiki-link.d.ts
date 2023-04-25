@@ -4,6 +4,13 @@
 declare module 'remark-wiki-link' {
   import { Plugin } from 'unified';
 
-  const remarkWikiLink: Plugin;
+  interface WikiLinkOptions {
+    hrefTemplate(url: string): string;
+  }
+
+  const remarkWikiLink: Plugin<[WikiLinkOptions?]>;
+
+  export type RemarkWikiLinkPlugin = [typeof remarkWikiLink, WikiLinkOptions];
+
   export default remarkWikiLink;
 }
