@@ -195,16 +195,24 @@ export class Nominator extends React.Component<Props, State> {
       />
     );
 
+    let tooltipText: string | null = null;
     if (this.props.unresolvedIssues > 0) {
-      // add a wrapper for the tooltip (because titles on a disabled button don't show)
+      tooltipText = trans('beatmaps.nominations.unresolved_issues');
+    } else if (this.props.beatmapset.nominations.nominated) {
+      tooltipText = trans('beatmaps.nominations.already_nominated');
+    } else if (!this.userCanNominate) {
+      tooltipText = trans('beatmaps.nominations.cannot_nominate');
+    }
+
+    if (tooltipText != null) {
       return (
-        <div title={trans('beatmaps.nominations.unresolved_issues')}>
+        <div title={tooltipText}>
           {button(true)}
         </div>
       );
-    } else {
-      return button(this.props.beatmapset.nominations?.nominated || !this.userCanNominate);
     }
+
+    return button();
   }
 
   private renderModal() {
