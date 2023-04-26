@@ -39,7 +39,7 @@ export function formatMessage(item: Notification, compact = false) {
   }
 
   const emptyKey = `${key}_empty`;
-  if (item.details.content == null && transExists(emptyKey)) {
+  if (item.details.content == null && transExists(emptyKey, window.fallbackLocale)) {
     key = emptyKey;
   }
 

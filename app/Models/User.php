@@ -731,12 +731,12 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function setUserTwitterAttribute($value)
     {
-        $this->attributes['user_twitter'] = ltrim($value, '@');
+        $this->attributes['user_twitter'] = trim(ltrim($value, '@'));
     }
 
     public function setUserDiscordAttribute($value)
     {
-        $this->attributes['user_jabber'] = $value;
+        $this->attributes['user_jabber'] = trim($value);
     }
 
     public function setUserColourAttribute($value)
@@ -1773,7 +1773,10 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function resetSessions(): void
     {
         SessionStore::destroy($this->getKey());
-        $this->tokens()->with('refreshToken')->get()->each->revokeRecursive();
+        $this
+            ->tokens()
+            ->with('refreshToken')
+            ->chunkById(1000, fn ($tokens) => $tokens->each->revokeRecursive());
     }
 
     public function title(): ?string
