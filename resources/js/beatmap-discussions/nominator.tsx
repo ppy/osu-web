@@ -9,6 +9,7 @@ import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { forEachRight, keys, map, some, uniq } from 'lodash';
+import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
