@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BigButton from 'components/big-button';
+import { action, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import { OwnClient as Client } from 'models/oauth/own-client';
 import core from 'osu-core-singleton';
@@ -17,6 +18,12 @@ interface Props {
 
 @observer
 export class OwnClient extends React.Component<Props> {
+  constructor(props: Props) {
+    super(props);
+
+    makeObservable(this);
+  }
+
   deleteClicked = () => {
     if (!confirm(trans('oauth.own_clients.confirm_delete'))) return;
 
@@ -57,6 +64,7 @@ export class OwnClient extends React.Component<Props> {
     );
   }
 
+  @action
   showClientDetails = () => {
     uiState.account.client = this.props.client;
   };

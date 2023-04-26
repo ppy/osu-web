@@ -731,12 +731,12 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function setUserTwitterAttribute($value)
     {
-        $this->attributes['user_twitter'] = ltrim($value, '@');
+        $this->attributes['user_twitter'] = trim(ltrim($value, '@'));
     }
 
     public function setUserDiscordAttribute($value)
     {
-        $this->attributes['user_jabber'] = $value;
+        $this->attributes['user_jabber'] = trim($value);
     }
 
     public function setUserColourAttribute($value)
