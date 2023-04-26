@@ -184,18 +184,7 @@ export class Nominator extends React.Component<Props, State> {
       return;
     }
 
-    const button = (disabled = false) => (
-      <BigButton
-        disabled={disabled}
-        icon='fas fa-thumbs-up'
-        props={{
-          onClick: this.showNominationModal,
-        }}
-        text={trans('beatmaps.nominations.nominate')}
-      />
-    );
-
-    let tooltipText: string | null = null;
+    let tooltipText: string | undefined;
     if (this.props.unresolvedIssues > 0) {
       tooltipText = trans('beatmaps.nominations.unresolved_issues');
     } else if (this.props.beatmapset.nominations.nominated) {
@@ -204,15 +193,18 @@ export class Nominator extends React.Component<Props, State> {
       tooltipText = trans('beatmaps.nominations.cannot_nominate');
     }
 
-    if (tooltipText != null) {
-      return (
-        <div title={tooltipText}>
-          {button(true)}
-        </div>
-      );
-    }
-
-    return button();
+    return (
+      <div title={tooltipText}>
+        <BigButton
+          disabled={tooltipText != null}
+          icon='fas fa-thumbs-up'
+          props={{
+            onClick: this.showNominationModal,
+          }}
+          text={trans('beatmaps.nominations.nominate')}
+        />
+      </div>
+    );
   }
 
   private renderModal() {
