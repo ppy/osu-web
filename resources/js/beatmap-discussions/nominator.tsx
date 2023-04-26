@@ -286,18 +286,18 @@ export class Nominator extends React.Component<Props, State> {
   }
 
   private requiresFullNomination = (mode: GameMode) => {
-    let req;
-    let curr;
+    let req: number;
+    let curr: number;
 
     if (this.props.beatmapset.nominations.legacy_mode) {
-      req = this.props.beatmapset.nominations?.required;
-      curr = this.props.beatmapset.nominations?.current;
+      req = this.props.beatmapset.nominations.required;
+      curr = this.props.beatmapset.nominations.current;
     } else {
-      req = this.props.beatmapset.nominations?.required[mode];
-      curr = this.props.beatmapset.nominations?.current[mode];
+      req = this.props.beatmapset.nominations.required[mode] ?? 0;
+      curr = this.props.beatmapset.nominations.current[mode] ?? 0;
     }
 
-    return (curr === (req ?? 0) - 1) && !this.hasFullNomination(mode);
+    return (curr === req - 1) && !this.hasFullNomination(mode);
   };
 
   private showNominationModal = () => this.setState({ visible: true });
