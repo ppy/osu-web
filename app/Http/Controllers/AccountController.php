@@ -112,8 +112,9 @@ class AccountController extends Controller
 
         $authorizedClients = json_collection(Client::forUser($user), 'OAuth\Client', 'user');
         $ownClients = json_collection($user->oauthClients()->where('revoked', false)->get(), 'OAuth\Client', ['redirect', 'secret']);
+
         $legacyApiKey = $user->apiKeys()->available()->first();
-        $legacyApiKeyJson = $legacyApiKey === null || $legacyApiKey->revoked ? null : json_item($legacyApiKey, new LegacyApiKeyTransformer());
+        $legacyApiKeyJson = $legacyApiKey === null ? null : json_item($legacyApiKey, new LegacyApiKeyTransformer());
 
         $legacyIrcKey = $user->legacyIrcKey;
         $legacyIrcKeyJson = $legacyIrcKey === null ? null : json_item($legacyIrcKey, new LegacyIrcKeyTransformer());
