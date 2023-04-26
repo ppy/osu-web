@@ -1,20 +1,28 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import PlainTextPreview from 'beatmap-discussions/plain-text-preview';
 import BeatmapsetCover from 'components/beatmapset-cover';
 import TimeWithTooltip from 'components/time-with-tooltip';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import { escape, kebabCase } from 'lodash';
+import { kebabCase } from 'lodash';
 import { deletedUser } from 'models/user';
 import * as React from 'react';
-import { format, previewMessage } from 'utils/beatmapset-discussion-helper';
+import { makeUrl } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans, transArray } from 'utils/lang';
-import { linkHtml } from 'utils/url';
+import StringWithComponent from './string-with-component';
+import UserLink from './user-link';
+
+function simpleKebab(str: string | number | undefined) {
+  return typeof str === 'string'
+    ? str.toLowerCase().replace(/ /g, '-')
+    : '';
+}
 
 export type EventViewMode = 'discussions' | 'profile' | 'list';
 
@@ -63,12 +71,9 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
         <div className='beatmapset-event__time'>
           <TimeWithTooltip dateTime={eventTime} format='LT' />
         </div>
-        <div
-          className={'beatmapset-event__content'}
-          dangerouslySetInnerHTML={{
-            __html: this.contentText(),
-          }}
-        />
+        <div className='beatmapset-event__content'>
+          {this.content()}
+        </div>
       </div>
     );
   }
@@ -97,12 +102,9 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
         />
 
         <div>
-          <div
-            className='beatmapset-event__content'
-            dangerouslySetInnerHTML={{
-              __html: this.contentText(),
-            }}
-          />
+          <div className='beatmapset-event__content'>
+            {this.content()}
+          </div>
           <div className='beatmap-discussion-post__info'>
             <TimeWithTooltip dateTime={this.props.event.created_at} relative />
           </div>
@@ -111,12 +113,12 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
     );
   }
 
-  private contentText() {
-    let discussionLink = '';
-    let discussionUserLink = '[unknown user]';
-    let text = '';
+  private content() {
+    let discussionLink: React.ReactChild = '';
+    let discussionUserLink: React.ReactChild = '[unknown user]';
+    let text: React.ReactChild = '';
     let url = '';
-    let user: string | undefined;
+    let user: React.ReactChild | undefined;
 
     if (this.discussionId != null) {
       if (this.discussion == null) {
@@ -124,43 +126,39 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
         text = trans('beatmapset_events.item.discussion_deleted');
       } else {
         const firstPostMessage = this.firstPost?.message;
-        url = BeatmapDiscussionHelper.url({ discussion: this.discussion });
-        text = firstPostMessage != null ? previewMessage(firstPostMessage) : '[no preview]';
+        url = makeUrl({ discussion: this.discussion });
+        text = firstPostMessage != null ? <PlainTextPreview markdown={firstPostMessage} /> : '[no preview]';
 
         const discussionUser = this.props.users[this.discussion.user_id];
 
         if (discussionUser != null) {
-          discussionUserLink = linkHtml(route('users.show', { user: discussionUser.id }), discussionUser.username);
+          discussionUserLink = <UserLink user={discussionUser} />;
         }
       }
 
-      discussionLink = linkHtml(url, `#${this.discussionId}`, { classNames: ['js-beatmap-discussion--jump'] });
+      discussionLink = <a className='js-beatmap-discussion--jump' href={url}>{`#${this.discussionId}`}</a>;
     } else {
       if (typeof this.props.event.comment === 'string') {
-        text = format(this.props.event.comment, { newlines: false });
+        text = this.props.event.comment;
       }
     }
 
     if (this.props.event.type === 'discussion_lock' || this.props.event.type === 'remove_from_loved') {
-      text = format(this.props.event.comment.reason, { newlines: false });
+      text = this.props.event.comment.reason;
     }
 
     if (this.props.event.user_id != null) {
       const userData = this.props.users[this.props.event.user_id];
-
-      if (userData == null) {
-        user = escape(deletedUser.username);
-      } else {
-        user = linkHtml(route('users.show', { user: userData.id }), userData.username);
-      }
+      user = userData != null ? <UserLink user={userData} /> : deletedUser.username;
     }
 
-    const params: Partial<Record<string, number | string>> = {
+    const params: Partial<Record<string, React.ReactNode>> = {
       discussion: discussionLink,
       discussion_user: discussionUserLink,
       text,
       user,
     };
+
     if (this.props.event.comment != null && typeof this.props.event.comment === 'object') {
       for (const [commentKey, commentValue] of Object.entries(this.props.event.comment)) {
         if (typeof commentValue === 'number' || typeof commentValue === 'string') {
@@ -176,6 +174,14 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
         if (typeof this.props.event.comment === 'string') {
           eventType = 'disqualify_legacy';
         }
+        break;
+      case 'genre_edit':
+        params.new = trans(`beatmaps.genre.${simpleKebab(this.props.event.comment.new)}`);
+        params.old = trans(`beatmaps.genre.${simpleKebab(this.props.event.comment.old)}`);
+        break;
+      case 'language_edit':
+        params.new = trans(`beatmaps.language.${simpleKebab(this.props.event.comment.new)}`);
+        params.old = trans(`beatmaps.language.${simpleKebab(this.props.event.comment.old)}`);
         break;
       case 'nominate': {
         const modes = this.props.event.comment?.modes;
@@ -193,17 +199,17 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
       }
       case 'beatmap_owner_change': {
         const data = this.props.event.comment;
-        params.new_user = linkHtml(route('users.show', { user: data.new_user_id }), data.new_user_username);
-        params.beatmap = linkHtml(route('beatmaps.show', { beatmap: data.beatmap_id }), data.beatmap_version);
+        params.new_user = <a href={route('users.show', { user: data.new_user_id })}>{data.new_user_username}</a>;
+        params.beatmap = <a href={route('beatmaps.show', { beatmap: data.beatmap_id })}>{data.beatmap_version}</a>;
         break;
       }
       case 'nomination_reset_received': {
         const data = this.props.event.comment;
         if (this.props.mode === 'profile') {
           eventType += '_profile';
-          params.user = linkHtml(route('users.show', { user: data.source_user_id }), data.source_user_username);
+          params.user = <a href={route('users.show', { user: data.source_user_id })}>{data.source_user_username}</a>;
         } else {
-          params.source_user = linkHtml(route('users.show', { user: data.source_user_id }), data.source_user_username);
+          params.source_user = <a href={route('users.show', { user: data.source_user_id })}>{data.source_user_username}</a>;
         }
         break;
       }
@@ -214,15 +220,15 @@ export default class BeatmapsetEvent extends React.PureComponent<Props> {
     }
 
     const key = `beatmapset_events.event.${eventType}`;
-    let message = trans(key, params);
+    let message = trans(key);
 
     // append owner of the event if not already included in main message
     // naive check; we don't use anything other than :user
     if (user != null && !trans(key).includes(':user')) {
-      message += ` (${user})`;
+      message += ' (:user)';
     }
 
-    return message;
+    return <StringWithComponent mappings={params} pattern={message} />;
   }
 
   private iconStyle() {

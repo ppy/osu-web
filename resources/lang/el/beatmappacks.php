@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => 'Προ-πακεταρισμένες συλλογές beatmaps βασισμένες σε ένα κοινό θέμα.',
+        'empty' => '',
         'nav_title' => 'λίστα',
         'title' => 'Πακέτα Beatmaps',
 
@@ -34,8 +35,10 @@ return [
     'mode' => [
         'artist' => 'Καλλιτέχνης/Άλμπουμ',
         'chart' => 'Spotlights',
+        'featured' => '',
         'standard' => 'Standard',
         'theme' => 'Θέμα',
+        'tournament' => '',
     ],
 
     'require_login' => [

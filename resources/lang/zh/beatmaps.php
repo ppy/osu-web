@@ -131,7 +131,7 @@ return [
             'deleted' => '已删除',
             'mapper_notes' => '备注',
             'mine' => '我的',
-            'pending' => '待定 (Pending)',
+            'pending' => '待处理',
             'praises' => '赞',
             'resolved' => '已解决',
             'total' => '所有',
@@ -199,6 +199,7 @@ return [
 
         'rank_estimate' => [
             '_' => '谱面正位于 :queue 中第 :position 位。如果没有问题，谱面将在 :date 上架 (Ranked)。',
+            'on' => '在 :date',
             'queue' => '谱面上架队列',
             'soon' => '不久后',
         ],

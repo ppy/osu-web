@@ -8,7 +8,7 @@ return [
     'title' => 'Artiști Oficiali',
 
     'admin' => [
-        'hidden' => 'ARTISTUL ESTE ASCUNS DEOCAMDATĂ',
+        'hidden' => 'ARTISTUL ESTE MOMENTAN ASCUNS',
     ],
 
     'beatmaps' => [
@@ -18,7 +18,7 @@ return [
     ],
 
     'index' => [
-        'description' => 'Artiștii oficiali sunt artiștii care muncesc în colaborare cu noi pentru a aduce muzică nouă și originală în osu!. Acești artiști și lista lor de melodii au fost selecționate manual de către echipa osu! fiind speciale și potrivite pentru crearea de beatmap-uri. Unii dintre acești artiști oficiali, de asemenea, au creat melodii exclusive noi pentru a le folosi in osu!.<br><br>Toate melodiile din această categorie au asigurate fișiere .osz cu timing prestabilit și sunt licențiate în mod oficial pentru a fi utilizate în osu! și în conținut legat de osu!.',
+        'description' => 'Artiștii oficiali sunt cei care muncesc în colaborare cu noi pentru a aduce muzică nouă și originală în osu!. Acești artiști și lista lor de melodii au fost selecționate manual de către echipa osu! fiind speciale și potrivite pentru crearea de beatmap-uri. Unii dintre acești artiști oficiali, de asemenea, au creat melodii exclusive noi pentru a le folosi in osu!.<br><br>Toate melodiile din această categorie au asigurate fișiere .osz cu măsura prestabilită și sunt licențiate în mod oficial pentru a fi utilizate în osu! și în conținut legat de osu!.',
     ],
 
     'links' => [

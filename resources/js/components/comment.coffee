@@ -12,8 +12,8 @@ import { estimateMinLines } from 'utils/estimate-min-lines'
 import { createClickCallback, formatNumberSuffixed } from 'utils/html'
 import { trans, transChoice } from 'utils/lang'
 import ClickToCopy from './click-to-copy'
-import { CommentEditor } from './comment-editor'
-import { CommentShowMore } from './comment-show-more'
+import CommentEditor from './comment-editor'
+import CommentShowMore from './comment-show-more'
 import DeletedCommentsCount from './deleted-comments-count'
 import { ReportReportable } from './report-reportable'
 import ShowMoreLink from './show-more-link'
@@ -21,7 +21,7 @@ import { Spinner } from './spinner'
 import StringWithComponent from './string-with-component'
 import TimeWithTooltip from './time-with-tooltip'
 import UserAvatar from './user-avatar'
-import { UserLink } from './user-link'
+import UserLink from './user-link'
 
 el = React.createElement
 
@@ -443,7 +443,7 @@ export class Comment extends React.PureComponent
       onClick: @voteToggle
       disabled: @state.postingVote || !@props.comment.canVote
       span className: 'comment-vote__text',
-        "+#{formatNumberSuffixed(@props.comment.votesCount, null, maximumFractionDigits: 1)}"
+        "+#{formatNumberSuffixed(@props.comment.votesCount)}"
       if @state.postingVote
         span className: 'comment-vote__spinner', el Spinner
       hover

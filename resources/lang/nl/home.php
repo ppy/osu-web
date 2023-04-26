@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'doorzoek het forum',
                 'forum_children' => 'tel subforums mee',
+                'include_deleted' => 'zoek ook naar verwijderde posts',
                 'topic_id' => 'onderwerp #',
                 'username' => 'auteur',
             ],
@@ -83,6 +84,7 @@ return [
         'macos-fallback' => 'macOS gebruikers',
         'mirror' => 'mirror',
         'or' => 'of',
+        'os_version_or_later' => ':os_version of nieuwer',
         'other_os' => 'andere platformen',
         'quick_start_guide' => 'snelstartgids',
         'tagline' => "laten we<br>beginnen!",
@@ -138,7 +140,7 @@ return [
         ],
         'buttons' => [
             'download' => 'Download osu!',
-            'support' => 'Support osu!',
+            'support' => 'Ondersteun osu!',
             'store' => 'osu!store',
         ],
     ],

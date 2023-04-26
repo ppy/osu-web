@@ -51,7 +51,7 @@ return [
                 'artist' => 'Artiste',
                 'bpm_gte' => 'BPM Minimum',
                 'bpm_lte' => 'BPM Maximum',
-                'empty' => 'Aucune musique correspondant aux critères de recherche n\'a été trouvé.',
+                'empty' => 'Aucune musique correspondant aux critères de recherche n\'a été trouvée.',
                 'genre' => 'Genre',
                 'genre_all' => 'Tous',
                 'length_gte' => 'Durée minimale',

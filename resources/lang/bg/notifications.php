@@ -13,6 +13,16 @@ return [
     'see_channel' => 'към чат',
     'verifying' => 'Моля, потвърдете сесията, за преглед на известия',
 
+    'action_type' => [
+        '_' => 'всички',
+        'beatmapset' => 'бийтмапове',
+        'build' => 'промени',
+        'channel' => 'чат',
+        'forum_topic' => 'форум',
+        'news_post' => 'новини',
+        'user' => 'профил',
+    ],
+
     'filters' => [
         '_' => 'всички',
         'user' => 'профил',
@@ -210,7 +220,7 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => '',
+                'announce' => 'Има ново съобщение в ":name"',
             ],
 
             'channel' => [

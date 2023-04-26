@@ -761,6 +761,7 @@ function ext_view($view, $data = null, $type = null, $status = null)
         'html' => 'text/html',
         'js' => 'application/javascript',
         'json' => 'application/json',
+        'opensearch' => 'application/opensearchdescription+xml',
         'rss' => 'application/rss+xml',
     ];
 
@@ -778,6 +779,21 @@ function from_app_url()
     // to bypass https://osu.web referrer check.
     // This assumes app.url doesn't contain trailing slash.
     return starts_with(request()->headers->get('referer'), config('app.url').'/');
+}
+
+function forum_user_link(int $id, string $username, string|null $colour, int|null $currentUserId): string
+{
+    $icon = tag('span', [
+        'class' => 'forum-user-icon',
+        'style' => user_color_style($colour, 'background-color'),
+    ]);
+
+    $link = link_to_user($id, $username, null, []);
+    if ($currentUserId === $id) {
+        $link = tag('strong', null, $link);
+    }
+
+    return "{$icon} {$link}";
 }
 
 function is_api_request()
@@ -948,18 +964,16 @@ function build_url($build)
 
 function post_url($topicId, $postId, $jumpHash = true, $tail = false)
 {
+    if ($topicId === null) {
+        return null;
+    }
+
     $postIdParamKey = 'start';
     if ($tail === true) {
         $postIdParamKey = 'end';
     }
 
-    if ($topicId === null) {
-        return;
-    }
-
-    $url = route('forum.topics.show', ['topic' => $topicId, $postIdParamKey => $postId]);
-
-    return $url;
+    return route('forum.topics.show', ['topic' => $topicId, $postIdParamKey => $postId]);
 }
 
 function wiki_image_url(string $path, bool $fullUrl = true)
@@ -1047,9 +1061,7 @@ function proxy_media($url)
 
 function lazy_load_image($url, $class = '', $alt = '')
 {
-    $url = e($url);
-
-    return "<img class='{$class}' src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' data-normal='{$url}' alt='{$alt}' />";
+    return "<img class='{$class}' src='{$url}' alt='{$alt}' loading='lazy' />";
 }
 
 function nav_links()
@@ -1076,6 +1088,7 @@ function nav_links()
         'rankings.type.score' => route('rankings', ['mode' => $defaultMode, 'type' => 'score']),
         'rankings.type.country' => route('rankings', ['mode' => $defaultMode, 'type' => 'country']),
         'rankings.type.multiplayer' => route('multiplayer.rooms.show', ['room' => 'latest']),
+        'rankings.type.seasons' => route('seasons.show', ['season' => 'latest']),
         'layout.menu.rankings.kudosu' => osu_url('rankings.kudosu'),
     ];
     $links['community'] = [
@@ -1201,6 +1214,15 @@ function i18n_date($datetime, $format = IntlDateFormatter::LONG, $pattern = null
     }
 
     return $formatter->format($datetime);
+}
+
+function i18n_date_auto(DateTimeInterface $date, string $skeleton): string
+{
+    $locale = App::getLocale();
+    $generator = new IntlDatePatternGenerator($locale);
+    $pattern = $generator->getBestPattern($skeleton);
+
+    return IntlDateFormatter::formatObject($date, $pattern, $locale);
 }
 
 function i18n_number_format($number, $style = null, $pattern = null, $precision = null, $locale = null)
@@ -1701,18 +1723,18 @@ function clamp($number, $min, $max)
 }
 
 // e.g. 100634983048665 -> 100.63 trillion
-function suffixed_number_format($number)
+function suffixed_number_format(float|int $number, ?string $locale = null): string
 {
-    $suffixes = ['', 'k', 'million', 'billion', 'trillion']; // TODO: localize
-    $k = 1000;
+    $locale ??= App::getLocale();
 
-    if ($number < $k) {
-        return $number;
+    static $formatters = [];
+
+    if (!isset($formatters[$locale])) {
+        $formatters[$locale] = new NumberFormatter($locale, NumberFormatter::PADDING_POSITION);
+        $formatters[$locale]->setAttribute(NumberFormatter::FRACTION_DIGITS, 2);
     }
 
-    $i = floor(log($number) / log($k));
-
-    return number_format($number / pow($k, $i), 2).' '.$suffixes[$i];
+    return $formatters[$locale]->format($number);
 }
 
 function suffixed_number_format_tag($number)
@@ -1813,7 +1835,7 @@ function search_error_message(?Exception $e): ?string
     }
 
     $basename = snake_case(get_class_basename(get_class($e)));
-    $key = "errors.search.${basename}";
+    $key = "errors.search.{$basename}";
     $text = osu_trans($key);
 
     return $text === $key ? osu_trans('errors.search.default') : $text;

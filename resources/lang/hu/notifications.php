@@ -13,6 +13,16 @@ return [
     'see_channel' => 'menjen a csevegéshez',
     'verifying' => 'Az értesítések megtekintéséhez hitelesítse a munkamenetet',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => '',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
     'filters' => [
         '_' => 'összes',
         'user' => 'profil',
@@ -211,7 +221,7 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => '',
+                'announce' => 'Új hirdetmény van ":name" csatornában',
             ],
 
             'channel' => [

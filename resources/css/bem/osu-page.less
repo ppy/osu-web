@@ -237,10 +237,21 @@
 
   &--notification-banners {
     @media @desktop {
-      position: relative;
-      height: 0;
+      position: absolute;
       top: (@nav2-height + 10px);
+      display: grid;
+      gap: 4px;
     }
+  }
+
+  &--ranking-info {
+    .default-gutter-v2();
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: hsl(var(--hsl-d3));
+    font-size: @font-size--title-small;
+    display: grid;
+    gap: 20px;
   }
 
   &--small {

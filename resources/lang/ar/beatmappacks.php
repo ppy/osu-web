@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => 'مجموعات خرائط محزومة-مسبقا مبنية على اساس موضوع مشهور.',
+        'empty' => 'قادم قريبًا!',
         'nav_title' => 'القائمة',
         'title' => 'حُزَم الخرائِط',
 
@@ -34,8 +35,10 @@ return [
     'mode' => [
         'artist' => 'ألبوم/الفنان',
         'chart' => 'تسليط الأضواء',
+        'featured' => 'فنان متميز',
         'standard' => 'أساسي',
         'theme' => 'مظهر',
+        'tournament' => '',
     ],
 
     'require_login' => [

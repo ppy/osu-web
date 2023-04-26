@@ -6,7 +6,7 @@ import { Spinner } from 'components/spinner';
 import StringWithComponent from 'components/string-with-component';
 import UserAvatar from 'components/user-avatar';
 import UserCardBrick from 'components/user-card-brick';
-import { route } from 'laroute';
+import UserLink from 'components/user-link';
 import { each, isEmpty, last, throttle } from 'lodash';
 import { action, computed, makeObservable, reaction } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';
@@ -195,31 +195,36 @@ export default class ConversationView extends React.Component<Props> {
 
     const renderInput = channel.canMessage || channel.type !== 'ANNOUNCE';
     const className = classWithModifiers('chat-conversation', channel.type, { 'no-input': !renderInput });
+    const pmTargetJson = channel.pmTarget == null
+      ? null
+      : {
+        avatar_url: channel.icon,
+        id: channel.pmTarget,
+        username: channel.name,
+      };
 
     return (
       <>
         <div ref={this.chatViewRef} className={className} onScroll={this.handleOnScroll}>
           <div className='chat-conversation__new-chat-avatar'>
-            <UserAvatar user={{ avatar_url: channel.icon }} />
+            {pmTargetJson == null ? (
+              <UserAvatar user={{ avatar_url: channel.icon }} />
+            ) : (
+              <UserLink user={pmTargetJson}>
+                <UserAvatar user={pmTargetJson} />
+              </UserLink>
+            )}
           </div>
           {this.renderUsers()}
           <div className='chat-conversation__chat-label'>
-            {channel.pmTarget != null ? (
+            {pmTargetJson == null ? (
+              trans('chat.talking_in', { channel: channel.name })
+            ) : (
               <StringWithComponent
-                mappings={{ name: (
-                  <a
-                    className='js-usercard'
-                    data-user-id={channel.pmTarget}
-                    href={route('users.show', { user: channel.pmTarget })}
-                  >
-                    {channel.name}
-                  </a>
-                ) }}
+                mappings={{ name: <UserLink user={pmTargetJson} /> }}
                 // TODO: rework this once the user class situation is resolved
                 pattern={trans('chat.talking_with')}
               />
-            ) : (
-              trans('chat.talking_in', { channel: channel.name })
             )}
           </div>
           {channel.description &&

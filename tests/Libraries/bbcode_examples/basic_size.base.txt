@@ -1,5 +1,9 @@
+[size=5]Too Tiny size[/size]
+
 [size=50]Tiny size[/size]
 
 [size=85]Small size[/size]
 
 [size=150]Large size[/size]
+
+[size=1500]Too Large size[/size]

@@ -106,7 +106,7 @@ return [
                 'unsaved' => 'Niezapisana',
                 'timestamp' => [
                     'all-diff' => 'Posty dla wszystkich poziomów trudności nie mogą zawierać znaczników czasu.',
-                    'diff' => 'Jeżeli ten post typu „:type” rozpoczyna się od znacznika czasu, zostanie on wyświetlony w zakładce osi czasu.',
+                    'diff' => 'Jeżeli ten post rozpoczyna się od znacznika czasu, zostanie on wyświetlony w zakładce osi czasu.',
                 ],
             ],
             'insert-block' => [
@@ -199,6 +199,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Ta beatmapa uzyska status rankingowy :date, jeżeli nie zostaną zgłoszone żadne problemy. Obecnie jest ona na :position. miejscu w :queue.',
+            'on' => ':date',
             'queue' => 'kolejce rankingowej',
             'soon' => 'wkrótce',
         ],

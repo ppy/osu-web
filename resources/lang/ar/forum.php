@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => 'المنتديات',
         'latest_post' => 'اخر المنشورات',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => 'اتريد حقاََ اِسترجاع المنشور؟',
         'edited' => 'التعديل الأخير تم بواسطة :user :when، عُدِلَ ::count_delimited مرة في المجموع.|التعديل الأخير تم بواسطة :user:when, عُدِلَ ::count_delimited مرات في المجموع.',
         'posted_at' => 'نُشِر :when',
-        'posted_by' => 'منشور بواسطة :username',
+        'posted_by_in' => '',
 
         'actions' => [
             'destroy' => 'منشور محذوف',

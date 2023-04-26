@@ -13,6 +13,16 @@ return [
     'see_channel' => 'přejít na chat',
     'verifying' => 'Prosím ověřte relaci pro zobrazení oznámení',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => 'beatmapy',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => 'profil',
+    ],
+
     'filters' => [
         '_' => 'vše',
         'user' => 'profil',
@@ -210,7 +220,7 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => '',
+                'announce' => 'Nové oznámení v „:name“',
             ],
 
             'channel' => [

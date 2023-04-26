@@ -18,8 +18,8 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
 import { onError } from 'utils/ajax';
-import { canModeratePosts, formatTimestamp, NearbyDiscussion, nearbyDiscussions, parseTimestamp, validMessageLength } from 'utils/beatmapset-discussion-helper';
-import { nominationsCount } from 'utils/beatmapset-helper';
+import { canModeratePosts, formatTimestamp, makeUrl, NearbyDiscussion, nearbyDiscussions, parseTimestamp, validMessageLength } from 'utils/beatmapset-discussion-helper';
+import { downloadLimited, nominationsCount } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
 import { joinComponents, trans } from 'utils/lang';
@@ -59,10 +59,12 @@ export class NewDiscussion extends React.Component<Props> {
   private nearbyDiscussionsCache: DiscussionsCache | null = null;
   @observable private posting: string | null = null;
   private postXhr: JQuery.jqXHR<BeatmapsetDiscussionPostStoreResponseJson> | null = null;
+  @observable private stickToHeight: number | undefined;
   @observable private timestampConfirmed = false;
 
   private get canPost() {
     if (core.currentUser == null) return false;
+    if (downloadLimited(this.props.beatmapset)) return false;
 
     return !core.currentUser.is_silenced
       && (!this.props.beatmapset.discussion_locked || canModeratePosts())
@@ -71,8 +73,9 @@ export class NewDiscussion extends React.Component<Props> {
 
   @computed
   private get cssTop() {
-    if (!this.mounted || !this.props.pinned || this.props.stickTo?.current == null) return;
-    return core.stickyHeader.headerHeight + this.props.stickTo.current.getBoundingClientRect().height;
+    if (this.mounted && this.props.pinned && this.stickToHeight != null) {
+      return core.stickyHeader.headerHeight + this.stickToHeight;
+    }
   }
 
   private get isTimeline() {
@@ -111,7 +114,7 @@ export class NewDiscussion extends React.Component<Props> {
 
     if (core.currentUser.is_silenced) {
       return trans('beatmaps.discussions.message_placeholder_silenced');
-    } else if (this.props.beatmapset.discussion_locked) {
+    } else if (this.props.beatmapset.discussion_locked || downloadLimited(this.props.beatmapset)) {
       return trans('beatmaps.discussions.message_placeholder_locked');
     } else {
       return trans('beatmaps.discussions.message_placeholder_deleted_beatmap');
@@ -132,6 +135,8 @@ export class NewDiscussion extends React.Component<Props> {
   }
 
   componentDidMount() {
+    // watching for height changes on the stickTo element to handle horizontal scrollbars when they appear.
+    $(window).on('resize', this.updateStickToHeight);
     this.disposers.add(core.reactTurbolinks.runAfterPageLoad(action(() => this.mounted = true)));
     if (this.props.autoFocus) {
       this.disposers.add(core.reactTurbolinks.runAfterPageLoad(() => this.inputBox.current?.focus()));
@@ -147,6 +152,7 @@ export class NewDiscussion extends React.Component<Props> {
   }
 
   componentWillUnmount() {
+    $(window).off('resize', this.updateStickToHeight);
     this.postXhr?.abort();
     this.disposers.forEach((disposer) => disposer?.());
   }
@@ -346,7 +352,7 @@ export class NewDiscussion extends React.Component<Props> {
       <a
         key={discussion.id}
         className='js-beatmap-discussion--jump'
-        href={BeatmapDiscussionHelper.url({ discussion })}
+        href={makeUrl({ discussion })}
       >
         {formatTimestamp(discussion.timestamp)}
       </a>
@@ -424,8 +430,9 @@ export class NewDiscussion extends React.Component<Props> {
   };
 
   @action
-  private readonly setSticky = (sticky = true) => {
+  private readonly setSticky = (sticky: boolean) => {
     this.props.setPinned(sticky);
+    this.updateStickToHeight();
   };
 
   private storeMessage() {
@@ -461,6 +468,9 @@ export class NewDiscussion extends React.Component<Props> {
   private readonly toggleTimestampConfirmation = () => {
     this.timestampConfirmed = !this.timestampConfirmed;
   };
+
+  @action
+  private readonly updateStickToHeight = () => this.stickToHeight = this.props.stickTo?.current?.getBoundingClientRect().height;
 
   private validPost(type: string): type is DiscussionType {
     if (!(discussionTypes as Readonly<string[]>).includes(type)) return false;

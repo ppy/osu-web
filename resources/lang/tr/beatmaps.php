@@ -67,7 +67,7 @@ return [
         ],
 
         'message_type' => [
-            'disqualify' => 'Diskalifiye',
+            'disqualify' => 'Diskalifiye et',
             'hype' => 'Gazla!',
             'mapper_note' => 'Not',
             'nomination_reset' => 'Adaylığı Sıfırla',
@@ -199,6 +199,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Herhangi bir sorun bulunmazsa mapin tahminen dereceli olacağı vakit :date. :queue :position. sırada bulunuyor.',
+            'on' => '',
             'queue' => 'Derecelendirme sırasında',
             'soon' => 'çok yakın',
         ],

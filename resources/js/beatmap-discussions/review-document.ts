@@ -2,14 +2,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { BeatmapsetDiscussionJsonForBundle, BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
-import * as markdown from 'remark-parse';
+import remarkParse from 'remark-parse';
+import disableConstructs from 'remark-plugins/disable-constructs';
 import { Element, Text } from 'slate';
-import * as unified from 'unified';
+import { unified } from 'unified';
 import type { Parent, Node as UnistNode } from 'unist';
 import { formatTimestamp, startingPost } from 'utils/beatmapset-discussion-helper';
 import { present } from 'utils/string';
 import { BeatmapDiscussionReview, isBeatmapReviewDiscussionType, PersistedDocumentIssueEmbed } from '../interfaces/beatmap-discussion-review';
-import { disableTokenizersPlugin } from './disable-tokenizers-plugin';
 
 interface ParsedDocumentNode extends UnistNode {
   children: UnistNode[];
@@ -22,8 +22,8 @@ interface TextNode extends UnistNode {
   value: string;
 }
 
-function isParentNode(node: UnistNode): node is Parent {
-  return Array.isArray(node.children);
+function isParentNode(node: UnistNode | Parent): node is Parent {
+  return ('children' in node) && Array.isArray(node.children);
 }
 
 function isText(node: UnistNode): node is TextNode {
@@ -42,12 +42,8 @@ export function parseFromJson(json: string, discussions: Partial<Record<number, 
   }
 
   const processor = unified()
-    .use(markdown)
-    .use(disableTokenizersPlugin,
-      {
-        allowedBlocks: ['paragraph'],
-        allowedInlines: ['emphasis', 'strong'],
-      });
+    .use(remarkParse)
+    .use(disableConstructs, { type: 'editor' });
 
   const doc: Element[] = [];
   srcDoc.forEach((block) => {
@@ -70,10 +66,21 @@ export function parseFromJson(json: string, discussions: Partial<Record<number, 
             break;
           }
 
-          doc.push({
-            children: squash(parsed.children),
-            type: 'paragraph',
-          });
+          const squashed = squash(parsed.children);
+
+          if (squashed.length > 0) {
+            doc.push({
+              children: squashed,
+              type: 'paragraph',
+            });
+          } else {
+            doc.push({
+              children: [{
+                text: '',
+              }],
+              type: 'paragraph',
+            });
+          }
         }
         break;
       }

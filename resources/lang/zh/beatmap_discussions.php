@@ -13,7 +13,7 @@ return [
     ],
 
     'events' => [
-        'empty' => '还没有什么时间呢......目前为止。',
+        'empty' => '目前还没有什么事件……呢。',
     ],
 
     'index' => [
@@ -90,7 +90,7 @@ return [
 
     'system' => [
         'resolved' => [
-            'true' => '被 :user 标记为 “已解决”',
+            'true' => ':user 标记为已解决',
             'false' => ':user 要求重审',
         ],
     ],

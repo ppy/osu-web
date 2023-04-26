@@ -14,6 +14,7 @@
   background-color: @forum-item-background-color;
   font-size: @font-size--normal;
   position: relative;
+  --latest-post-colour: hsl(var(--hsl-c2));
 
   &:hover {
     background-color: @forum-item-background-color-hover;
@@ -24,6 +25,17 @@
     margin-right: -@forum-item-overflow-desktop;
     padding-left: (@forum-item-overflow-desktop - @_content-margin);
     padding-right: (@forum-item-overflow-desktop - @_content-margin);
+  }
+
+  &--header {
+    background: initial;
+    padding-top: 0;
+    padding-bottom: 0;
+    --latest-post-colour: inherit;
+
+    &:hover {
+      background: initial;
+    }
   }
 
   &__arrow {
@@ -59,7 +71,7 @@
     margin: @_content-margin;
     flex-direction: column;
     justify-content: center;
-    color: @osu-colour-c2;
+    color: var(--latest-post-colour);
     flex: none;
     width: 300px;
     display: none;
@@ -67,10 +79,6 @@
     @media @desktop {
       display: flex;
     }
-  }
-
-  &__latest-post-label {
-    font-weight: 600;
   }
 
   &__name {

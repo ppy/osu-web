@@ -60,6 +60,11 @@ return [
     'show' => [
         'discussion' => '討論',
 
+        'deleted_banner' => [
+            'title' => '此圖譜已被刪除。',
+            'message' => '(僅審核者可見)',
+        ],
+
         'details' => [
             'by_artist' => '作者：:artist',
             'favourite' => '收藏這張圖譜',
@@ -125,7 +130,7 @@ return [
             'genre' => '曲風',
             'language' => '語言',
             'no_scores' => '資料還在計算中...',
-            'nominators' => '',
+            'nominators' => '提名者',
             'nsfw' => '成人內容',
             'offset' => '線上偏移調整',
             'points-of-failure' => '失敗位置',

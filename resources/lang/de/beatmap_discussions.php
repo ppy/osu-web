@@ -59,10 +59,10 @@ return [
     ],
 
     'owner_editor' => [
-        'button' => 'Schwierigkeitsstufenbesitzer',
-        'reset_confirm' => 'Besitzer für diese Schwierigkeit zurücksetzen?',
+        'button' => 'Difficulty-Besitzer',
+        'reset_confirm' => 'Besitzer für diese Difficulty zurücksetzen?',
         'user' => 'Besitzer',
-        'version' => 'Schwierigkeit',
+        'version' => 'Difficulty',
     ],
 
     'reply' => [
@@ -74,17 +74,17 @@ return [
 
     'review' => [
         'block_count' => ':used / :max Blöcke verwendet',
-        'go_to_parent' => 'Rezensionsbeitrag anzeigen',
+        'go_to_parent' => 'Kurzfassungs-Beitrag anzeigen',
         'go_to_child' => 'Diskussion anzeigen',
         'validation' => [
-            'block_too_large' => 'jeder block darf höchstens :limit zeichen enthalten',
-            'external_references' => 'rezension enthält verweise auf probleme, die nicht zu dieser rezension gehören',
+            'block_too_large' => 'jeder Block darf höchstens :limit Zeichen enthalten',
+            'external_references' => 'Kurzfassung enthält Verweise auf Probleme, die nicht zu dieser Kurzfassung gehören',
             'invalid_block_type' => 'ungültiger Block-Typ',
-            'invalid_document' => 'ungültige Rezension',
+            'invalid_document' => 'ungültige Kurzfassung',
             'invalid_discussion_type' => 'ungültiger Diskussionstyp',
-            'minimum_issues' => 'Rezension muss ein Minimum von :count Problem beinhalten|Rezensionen müssen ein Minimum von :count Problemen beinhalten',
-            'missing_text' => 'block fehlt Text',
-            'too_many_blocks' => 'Rezensionen dürfen nur :count Paragraph/Problem enthalten|Rezensionen dürfen nur bis zu :count Paragraphen/Probleme enthalten',
+            'minimum_issues' => 'Kurzfassung muss ein Minimum von :count Problem beinhalten|Kurzfassungen müssen ein Minimum von :count Problemen beinhalten',
+            'missing_text' => 'Block fehlt Text',
+            'too_many_blocks' => 'Kurzfassungen dürfen nur :count Paragraph/Problem enthalten|Kurzfassungen dürfen nur bis zu :count Paragraphen/Probleme enthalten',
         ],
     ],
 
@@ -96,8 +96,8 @@ return [
     ],
 
     'timestamp_display' => [
-        'general' => 'allgemein',
-        'general_all' => 'allgemein (alle)',
+        'general' => 'Allgemein',
+        'general_all' => 'Allgemein (alle)',
     ],
 
     'user_filter' => [

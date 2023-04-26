@@ -308,8 +308,8 @@ class SupporterTagFulfillmentTest extends TestCase
             'osu_subscriptionexpiry' => Carbon::now(),
         ]);
 
-        $this->order = factory(Order::class)->states('paid')->create([
-            'user_id' => $this->user->user_id,
+        $this->order = Order::factory()->paid()->create([
+            'user_id' => $this->user,
         ]);
     }
 
@@ -333,17 +333,17 @@ class SupporterTagFulfillmentTest extends TestCase
     {
         $donor = $orderItem->order->user;
 
-        return factory(UserDonation::class)->create([
+        return UserDonation::factory()->create([
             'transaction_id' => "{$orderItem->order->transaction_id}-{$orderItem->id}".($cancelled ? '-cancel' : ''),
-            'user_id' => $donor->user_id,
-            'target_user_id' => $giftee->user_id,
+            'user_id' => $donor,
+            'target_user_id' => $giftee,
         ]);
     }
 
     private function createOrderItem(User $user, int $duration, int $amount, bool $hidden = false)
     {
-        return factory(OrderItem::class)->states('supporter_tag')->create([
-            'order_id' => $this->order->order_id,
+        return OrderItem::factory()->supporterTag()->create([
+            'order_id' => $this->order,
             'cost' => $amount,
             'extra_data' => [
                 'duration' => $duration,

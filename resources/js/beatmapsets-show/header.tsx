@@ -1,20 +1,21 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import BeatmapsetBadge from 'components/beatmapset-badge';
 import BeatmapsetCover from 'components/beatmapset-cover';
 import BeatmapsetMapping from 'components/beatmapset-mapping';
 import BigButton from 'components/big-button';
 import StringWithComponent from 'components/string-with-component';
-import { UserLink } from 'components/user-link';
+import UserLink from 'components/user-link';
 import UserListPopup, { createTooltip } from 'components/user-list-popup';
 import { route } from 'laroute';
-import { action, computed, makeObservable } from 'mobx';
-import { observer } from 'mobx-react';
+import { action, autorun, computed, makeObservable, observable } from 'mobx';
+import { disposeOnUnmount, observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { getArtist, getTitle } from 'utils/beatmap-helper';
-import { toggleFavourite } from 'utils/beatmapset-helper';
+import { downloadLimited, toggleFavourite } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
@@ -39,6 +40,9 @@ interface Props {
 
 @observer
 export default class Header extends React.Component<Props> {
+  private readonly favouriteIconRef = React.createRef<HTMLSpanElement>();
+  @observable private hoveredFavouriteIcon = false;
+
   private get controller() {
     return this.props.controller;
   }
@@ -66,15 +70,14 @@ export default class Header extends React.Component<Props> {
     return ret.slice(0, favouritesToShow);
   }
 
-  private get hasAvailabilityInfo() {
-    return this.controller.beatmapset.availability.download_disabled
-      || this.controller.beatmapset.availability.more_information != null;
-  }
-
   constructor(props: Props) {
     super(props);
 
     makeObservable(this);
+  }
+
+  componentDidMount() {
+    disposeOnUnmount(this, autorun(this.updateFavouritePopup));
   }
 
   render() {
@@ -89,123 +92,115 @@ export default class Header extends React.Component<Props> {
 
     return (
       <div className='beatmapset-header'>
-        <div className='beatmapset-header__content'>
-          <div className='beatmapset-header__cover'>
-            <BeatmapsetCover
-              beatmapset={this.controller.beatmapset}
-              forceShowVisual // check already covered by parent component
-              modifiers='full'
-              size='cover'
-            />
-          </div>
+        <div className='beatmapset-header__cover'>
+          <BeatmapsetCover
+            beatmapset={this.controller.beatmapset}
+            forceShowVisual // check already covered by parent component
+            modifiers='full'
+            size='cover'
+          />
+        </div>
 
-          <div className='beatmapset-header__box beatmapset-header__box--main'>
-            <div className='beatmapset-header__beatmap-picker-box'>
-              <BeatmapPicker controller={this.controller} />
+        <div className='beatmapset-header__box beatmapset-header__box--main'>
+          <div className='beatmapset-header__beatmap-picker-box'>
+            <BeatmapPicker controller={this.controller} />
 
-              {this.renderBeatmapVersion()}
+            {this.renderBeatmapVersion()}
 
-              <div>
-                <span className='beatmapset-header__value' title={trans('beatmapsets.show.stats.playcount')}>
-                  <span className='beatmapset-header__value-icon'><span className='fas fa-play-circle' /></span>
-                  <span className='beatmapset-header__value-name'>{formatNumber(this.controller.beatmapset.play_count)}</span>
-                </span>
+            <div>
+              <span className='beatmapset-header__value' title={trans('beatmapsets.show.stats.playcount')}>
+                <span className='beatmapset-header__value-icon'><span className='fas fa-play-circle' /></span>
+                <span className='beatmapset-header__value-name'>{formatNumber(this.controller.beatmapset.play_count)}</span>
+              </span>
 
-                {this.controller.beatmapset.status === 'pending' &&
-                  <span className='beatmapset-header__value' title={trans('beatmapsets.show.stats.nominations')}>
-                    <span className='beatmapset-header__value-icon'><span className='fas fa-thumbs-up' /></span>
-                    <span className='beatmapset-header__value-name'>
-                      {formatNumber(this.controller.beatmapset.nominations_summary.current)}
-                    </span>
-                  </span>
-                }
-
-                <span
-                  className={classWithModifiers('beatmapset-header__value', { 'has-favourites': this.controller.beatmapset.favourite_count > 0 })}
-                  onMouseOver={this.onEnterFavouriteIcon}
-                  onTouchStart={this.onEnterFavouriteIcon}
-                >
-                  <span className='beatmapset-header__value-icon'>
-                    <span className='fas fa-heart' />
-                  </span>
+              {this.controller.beatmapset.status === 'pending' &&
+                <span className='beatmapset-header__value' title={trans('beatmapsets.show.stats.nominations')}>
+                  <span className='beatmapset-header__value-icon'><span className='fas fa-thumbs-up' /></span>
                   <span className='beatmapset-header__value-name'>
-                    {formatNumber(this.controller.beatmapset.favourite_count)}
+                    {formatNumber(this.controller.beatmapset.nominations_summary.current)}
                   </span>
                 </span>
-              </div>
+              }
+
+              <span
+                ref={this.favouriteIconRef}
+                className={classWithModifiers('beatmapset-header__value', { 'has-favourites': this.controller.beatmapset.favourite_count > 0 })}
+                onMouseOver={this.onEnterFavouriteIcon}
+                onTouchStart={this.onEnterFavouriteIcon}
+              >
+                <span className='beatmapset-header__value-icon'>
+                  <span className='fas fa-heart' />
+                </span>
+                <span className='beatmapset-header__value-name'>
+                  {formatNumber(this.controller.beatmapset.favourite_count)}
+                </span>
+              </span>
             </div>
+          </div>
 
-            <span className='beatmapset-header__details-text beatmapset-header__details-text--title'>
-              <a
-                className='beatmapset-header__details-text-link'
-                href={route('beatmapsets.index', { q: getTitle(this.controller.beatmapset) })}
-              >
-                {getTitle(this.controller.beatmapset)}
-              </a>
-              {this.controller.beatmapset.nsfw &&
-                <span className='beatmapset-badge beatmapset-badge--nsfw'>{trans('beatmapsets.nsfw_badge.label')}</span>
-              }
-              {this.controller.beatmapset.spotlight &&
-                <a
-                  className='beatmapset-badge beatmapset-badge--spotlight'
-                  href={wikiUrl('Beatmap_Spotlights')}
-                >
-                  {trans('beatmapsets.spotlight_badge.label')}
-                </a>
-              }
-            </span>
+          <span className='beatmapset-header__details-text beatmapset-header__details-text--title'>
+            <a
+              className='beatmapset-header__details-text-link'
+              href={route('beatmapsets.index', { q: getTitle(this.controller.beatmapset) })}
+            >
+              {getTitle(this.controller.beatmapset)}
+            </a>
+            <BeatmapsetBadge
+              beatmapset={this.controller.beatmapset}
+              type='nsfw'
+            />
+            <BeatmapsetBadge
+              beatmapset={this.controller.beatmapset}
+              type='spotlight'
+            />
+          </span>
 
-            <span className='beatmapset-header__details-text beatmapset-header__details-text--artist'>
-              <a
-                className='beatmapset-header__details-text-link'
-                href={route('beatmapsets.index', { q: getArtist(this.controller.beatmapset) })}
-              >
-                {getArtist(this.controller.beatmapset)}
-              </a>
-              {this.controller.beatmapset.track_id != null &&
-                <a
-                  className='beatmapset-badge beatmapset-badge--featured-artist'
-                  href={route('tracks.show', { track: this.controller.beatmapset.track_id })}
-                >
-                  {trans('beatmapsets.featured_artist_badge.label')}
-                </a>
-              }
-            </span>
+          <span className='beatmapset-header__details-text beatmapset-header__details-text--artist'>
+            <a
+              className='beatmapset-header__details-text-link'
+              href={route('beatmapsets.index', { q: getArtist(this.controller.beatmapset) })}
+            >
+              {getArtist(this.controller.beatmapset)}
+            </a>
+            <BeatmapsetBadge
+              beatmapset={this.controller.beatmapset}
+              type='featured_artist'
+            />
+          </span>
 
-            <BeatmapsetMapping beatmapset={this.controller.beatmapset} />
+          <BeatmapsetMapping beatmapset={this.controller.beatmapset} />
 
-            {this.renderAvailabilityInfo()}
+          {this.renderAvailabilityInfo()}
 
-            <div className='beatmapset-header__buttons'>
-              {core.currentUser != null &&
-                <BigButton
-                  icon={favouriteButton.icon}
-                  modifiers={['beatmapset-header-square', `beatmapset-header-square-${favouriteButton.action}`]}
-                  props={{
-                    onClick: this.onClickFavourite,
-                    title: trans(`beatmapsets.show.details.${favouriteButton.action}`),
-                  }}
-                />
-              }
+          <div className='beatmapset-header__buttons'>
+            {core.currentUser != null &&
+              <BigButton
+                icon={favouriteButton.icon}
+                modifiers={['beatmapset-header-square', `beatmapset-header-square-${favouriteButton.action}`]}
+                props={{
+                  onClick: this.onClickFavourite,
+                  title: trans(`beatmapsets.show.details.${favouriteButton.action}`),
+                }}
+              />
+            }
 
-              {this.renderDownloadButtons()}
-              {this.renderLoginButton()}
+            {this.renderDownloadButtons()}
+            {this.renderLoginButton()}
 
-              {!this.controller.beatmapset.is_scoreable && core.currentUser != null && core.currentUser.id !== this.controller.beatmapset.user_id &&
-                <div className='beatmapset-header__more'>
-                  <div className='btn-circle btn-circle--page-toggle btn-circle--page-toggle-detail'>
-                    <BeatmapsetMenu beatmapset={this.controller.beatmapset} />
-                  </div>
+            {!this.controller.beatmapset.is_scoreable && core.currentUser != null && core.currentUser.id !== this.controller.beatmapset.user_id &&
+              <div className='beatmapset-header__more'>
+                <div className='btn-circle btn-circle--page-toggle btn-circle--page-toggle-detail'>
+                  <BeatmapsetMenu beatmapset={this.controller.beatmapset} />
                 </div>
-              }
-            </div>
+              </div>
+            }
           </div>
+        </div>
 
-          <div className='beatmapset-header__box beatmapset-header__box--stats'>
-            {this.renderStatusBar()}
+        <div className='beatmapset-header__box beatmapset-header__box--stats'>
+          {this.renderStatusBar()}
 
-            <Stats controller={this.controller} />
-          </div>
+          <Stats controller={this.controller} />
         </div>
       </div>
     );
@@ -233,23 +228,12 @@ export default class Header extends React.Component<Props> {
   };
 
   @action
-  private readonly onEnterFavouriteIcon = (event: React.MouseEvent<HTMLSpanElement> | React.TouchEvent<HTMLSpanElement>) => {
-    const target = event.currentTarget;
-
-    if (this.filteredFavourites.length < 1) {
-      if (target._tooltip === '1') {
-        target._tooltip = '';
-        $(target).qtip('destroy', true);
-      }
-
-      return;
-    }
-
-    createTooltip(target, 'right center', action(() => this.favouritePopup));
+  private readonly onEnterFavouriteIcon = () => {
+    this.hoveredFavouriteIcon = true;
   };
 
   private renderAvailabilityInfo() {
-    if (core.currentUser == null || !this.hasAvailabilityInfo) return;
+    if (!downloadLimited(this.controller.beatmapset)) return;
 
     let label: string;
     let href: string | null;
@@ -375,4 +359,28 @@ export default class Header extends React.Component<Props> {
       </div>
     );
   }
+
+  private readonly updateFavouritePopup = () => {
+    if (!this.hoveredFavouriteIcon) {
+      return;
+    }
+
+    const target = this.favouriteIconRef.current;
+
+    if (target == null) {
+      throw new Error('favourite icon is missing');
+    }
+
+    if (this.filteredFavourites.length < 1) {
+      if (target._tooltip === '1') {
+        target._tooltip = '';
+        $(target).qtip('destroy', true);
+      }
+
+      return;
+    }
+
+    createTooltip(target, 'right center', '');
+    $(target).qtip('set', { 'content.text': this.favouritePopup });
+  };
 }

@@ -35,6 +35,7 @@ use Illuminate\Contracts\Translation\HasLocalePreference;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\QueryException;
 use Laravel\Passport\HasApiTokens;
 use League\OAuth2\Server\Exception\OAuthServerException;
@@ -42,7 +43,7 @@ use Request;
 
 /**
  * @property-read Collection<UserAccountHistory> $accountHistories
- * @property-read ApiKey|null $apiKey
+ * @property-read Collection<ApiKey> $apiKeys
  * @property-read Collection<UserBadge> $badges
  * @property-read Collection<BeatmapDiscussionVote> $beatmapDiscussionVotes
  * @property-read Collection<BeatmapDiscussion> $beatmapDiscussions
@@ -212,25 +213,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 {
     use Authenticatable, HasApiTokens, Memoizes, Traits\Es\UserSearch, Traits\Reportable, Traits\UserAvatar, Traits\UserScoreable, Traits\UserStore, Validatable;
 
-    protected $table = 'phpbb_users';
-    protected $primaryKey = 'user_id';
-
-    protected $dates = ['user_regdate', 'user_lastmark', 'user_lastvisit', 'user_lastpost_time'];
-    protected $dateFormat = 'U';
-    public $timestamps = false;
-
-    protected $attributes = [
-        'user_allow_pm' => true,
-    ];
-
-    protected $casts = [
-        'osu_subscriber' => 'boolean',
-        'user_allow_pm' => 'boolean',
-        'user_allow_viewonline' => 'boolean',
-        'user_notify' => 'boolean',
-        'user_timezone' => 'float',
-    ];
-
     const PLAYSTYLES = [
         'mouse' => 1,
         'keyboard' => 2,
@@ -261,9 +243,29 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         'user_website' => 200,
     ];
 
+    public $password = null;
+    public $timestamps = false;
+
+    protected $attributes = [
+        'user_allow_pm' => true,
+    ];
+    protected $casts = [
+        'osu_subscriber' => 'boolean',
+        'user_allow_pm' => 'boolean',
+        'user_allow_viewonline' => 'boolean',
+        'user_lastmark' => 'datetime',
+        'user_lastpost_time' => 'datetime',
+        'user_lastvisit' => 'datetime',
+        'user_notify' => 'boolean',
+        'user_regdate' => 'datetime',
+        'user_timezone' => 'float',
+    ];
+    protected $dateFormat = 'U';
+    protected $primaryKey = 'user_id';
+    protected $table = 'phpbb_users';
+
     private $validateCurrentPassword = false;
     private $validatePasswordConfirmation = false;
-    public $password = null;
     private $passwordConfirmation = null;
     private $currentPassword = null;
 
@@ -486,9 +488,16 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
         switch ($type) {
             case 'username':
-                $user = static::where(function ($query) use ($usernameOrId) {
-                    $query->where('username', (string) $usernameOrId)->orWhere('username_clean', '=', (string) $usernameOrId);
-                });
+                $searchUsername = (string) $usernameOrId;
+                $searchUsernames = [
+                    $searchUsername,
+                    strtr($searchUsername, ' ', '_'),
+                    strtr($searchUsername, '_', ' '),
+                ];
+
+                $user = static::where(fn ($query) => $query
+                    ->whereIn('username', $searchUsernames)
+                    ->orWhereIn('username_clean', $searchUsernames));
                 break;
 
             case 'id':
@@ -504,7 +513,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         }
 
         if (!$findAll) {
-            $user->where('user_type', 0)->where('user_warnings', 0);
+            $user->default();
         }
 
         $user = $user->first();
@@ -722,12 +731,12 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function setUserTwitterAttribute($value)
     {
-        $this->attributes['user_twitter'] = ltrim($value, '@');
+        $this->attributes['user_twitter'] = trim(ltrim($value, '@'));
     }
 
     public function setUserDiscordAttribute($value)
     {
-        $this->attributes['user_jabber'] = $value;
+        $this->attributes['user_jabber'] = trim($value);
     }
 
     public function setUserColourAttribute($value)
@@ -847,7 +856,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
             // relations
             'accountHistories',
-            'apiKey',
+            'apiKeys',
             'badges',
             'beatmapDiscussionVotes',
             'beatmapDiscussions',
@@ -870,6 +879,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'friends',
             'githubUsers',
             'givenKudosu',
+            'legacyIrcKey',
             'monthlyPlaycounts',
             'notificationOptions',
             'oauthClients',
@@ -1154,6 +1164,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->hasMany(GithubUser::class);
     }
 
+    public function legacyIrcKey(): HasOne
+    {
+        return $this->hasOne(LegacyIrcKey::class);
+    }
+
     public function monthlyPlaycounts()
     {
         return $this->hasMany(UserMonthlyPlaycount::class);
@@ -1245,9 +1260,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->hasMany(BeatmapPlaycount::class);
     }
 
-    public function apiKey()
+    public function apiKeys()
     {
-        return $this->hasOne(ApiKey::class);
+        return $this->hasMany(ApiKey::class);
     }
 
     public function profileBanners()
@@ -2267,14 +2282,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             }
         }
 
-        foreach (self::MAX_FIELD_LENGTHS as $field => $limit) {
-            if ($this->isDirty($field)) {
-                $val = $this->$field;
-                if ($val && mb_strlen($val) > $limit) {
-                    $this->validationErrors()->add($field, '.too_long', ['limit' => $limit]);
-                }
-            }
-        }
+        $this->validateDbFieldLengths();
 
         if ($this->isDirty('group_id') && app('groups')->byId($this->group_id) === null) {
             $this->validationErrors()->add('group_id', 'invalid');

@@ -23,6 +23,7 @@ export default class Search
     return if e.key != 'Enter'
 
     e.preventDefault()
+    e.target.blur()
     @submitInput(e)
 
 

@@ -20,6 +20,10 @@ use Illuminate\Database\Query\Expression;
  */
 class UserChannel extends Model
 {
+    public $incrementing = false;
+    public $timestamps = false;
+
+    protected $primaryKey = ':composite';
     protected $primaryKeys = ['user_id', 'channel_id'];
 
     private ?int $lastReadIdToSet;

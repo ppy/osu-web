@@ -35,6 +35,12 @@
       min-height: 1em;
       max-height: 6em;
     }
+
+    .@{_top}--discussions& {
+      object-fit: contain;
+      min-height: 1em;
+      max-height: 480px; // most landscape images will be limited by width of the discussions area.
+    }
   }
 
   video {
@@ -60,11 +66,35 @@
   &--chat {
     --code-background-colour: hsl(var(--hsl-b3));
     flex: 1;
+    overflow-wrap: anywhere;
 
     h1, h2, h3, h4, h5, h6 {
       font-size: revert;
       border-bottom: 1px solid hsl(var(--hsl-b3));
     }
+  }
+
+  &--chat-action {
+    color: hsl(var(--hsl-l1));
+    font-style: italic;
+
+    &::before {
+      content: '* ';
+    }
+    &::after {
+      content: ' *';
+    }
+  }
+
+  &--chat-plain {
+    p {
+      display: inline;
+    }
+  }
+
+  &--discussions {
+    font: inherit;
+    font-size: inherit;
   }
 
   &--group {

@@ -166,7 +166,7 @@ class MessagesControllerTest extends TestCase
             'user' => $this->user->getKey(),
         ]));
 
-        $filter = factory(ChatFilter::class)->create();
+        $filter = ChatFilter::factory()->create();
 
         $this->json(
             'POST',
@@ -233,9 +233,9 @@ class MessagesControllerTest extends TestCase
     public function testChannelSendWhenBlocking() // fail
     {
         $pmChannel = Channel::factory()->type('pm', [$this->user, $this->anotherUser])->create();
-        factory(UserRelation::class)->states('block')->create([
-            'user_id' => $this->user->user_id,
-            'zebra_id' => $this->anotherUser->user_id,
+        UserRelation::factory()->block()->create([
+            'user_id' => $this->user,
+            'zebra_id' => $this->anotherUser,
         ]);
 
         $this->actAsScopedUser($this->user, ['*']);
@@ -250,9 +250,9 @@ class MessagesControllerTest extends TestCase
     public function testChannelSendWhenBlocked() // fail
     {
         $pmChannel = Channel::factory()->type('pm', [$this->user, $this->anotherUser])->create();
-        factory(UserRelation::class)->states('block')->create([
-            'user_id' => $this->anotherUser->user_id,
-            'zebra_id' => $this->user->user_id,
+        UserRelation::factory()->block()->create([
+            'user_id' => $this->anotherUser,
+            'zebra_id' => $this->user,
         ]);
 
         $this->actAsScopedUser($this->user, ['*']);

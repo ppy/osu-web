@@ -15,7 +15,7 @@ class ModelTest extends TestCase
 {
     public function testGetWithHasMore()
     {
-        factory(Artist::class, 5)->create();
+        Artist::factory()->count(5)->create();
         $count = Artist::count();
 
         $limit = $count - 1;

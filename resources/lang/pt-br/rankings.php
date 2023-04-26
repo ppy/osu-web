@@ -19,17 +19,25 @@ return [
 
     'type' => [
         'charts' => 'Destaques',
-        'country' => 'País',
-        'multiplayer' => 'multiplayer',
-        'performance' => 'Desempenho',
-        'score' => 'Pontuação',
+        'country' => 'país',
+        'multiplayer' => 'multijogador',
+        'performance' => 'desempenho',
+        'score' => 'pontuação',
+        'seasons' => 'temporadas',
+    ],
+
+    'seasons' => [
+        'empty' => 'Ainda não há salas nessa temporada.',
+        'ongoing' => 'Esta temporada ainda está em progresso (mais playlists serão adicionadas).',
+        'room_count' => 'Contagem de playlists',
+        'url' => 'Exibir mais informações sobre essa temporada.',
     ],
 
     'spotlight' => [
         'end_date' => 'Data de Término',
-        'map_count' => 'Contagem de Map',
+        'map_count' => 'Contagem de Mapas',
         'participants' => 'Participantes',
-        'start_date' => 'Data de Ínicio',
+        'start_date' => 'Data de Início',
     ],
 
     'stat' => [

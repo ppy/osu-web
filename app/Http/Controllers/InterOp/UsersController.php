@@ -5,39 +5,27 @@
 
 namespace App\Http\Controllers\InterOp;
 
+use App\Exceptions\ModelNotSavedException;
 use App\Exceptions\ValidationException;
 use App\Http\Controllers\Controller;
-use App\Jobs\Notifications\UserAchievementUnlock;
 use App\Libraries\UserRegistration;
-use App\Models\Achievement;
-use App\Models\Event;
+use App\Models\Beatmap;
 use App\Models\User;
+use App\Models\UserAchievement;
 use App\Transformers\CurrentUserTransformer;
-use Exception;
 
 class UsersController extends Controller
 {
     public function achievement($id, $achievementId, $beatmapId = null)
     {
-        $user = User::findOrFail($id);
-        $achievement = Achievement::findOrFail($achievementId);
+        $achievement = app('medals')->byIdOrFail($achievementId);
+        $unlocked = UserAchievement::unlock(
+            User::findOrFail($id),
+            $achievement,
+            Beatmap::find($beatmapId),
+        );
 
-        try {
-            $userAchievement = $user->userAchievements()->create([
-                'achievement_id' => $achievement->getKey(),
-                'beatmap_id' => $beatmapId,
-            ]);
-        } catch (Exception $e) {
-            if (is_sql_unique_exception($e)) {
-                return error_popup('user already unlocked the specified achievement');
-            }
-
-            throw $e;
-        }
-
-        Event::generate('achievement', compact('achievement', 'user'));
-
-        (new UserAchievementUnlock($achievement, $user))->dispatch();
+        abort_unless($unlocked, 422, 'user already unlocked the specified achievement');
 
         return $achievement->getKey();
     }
@@ -72,9 +60,9 @@ class UsersController extends Controller
 
             return json_item($registration->user()->fresh(), new CurrentUserTransformer());
         } catch (ValidationException $ex) {
-            return response(['form_error' => [
-                'user' => $registration->user()->validationErrors()->all(),
-            ]], 422);
+            return ModelNotSavedException::makeResponse($ex, [
+                'user' => $registration->user(),
+            ]);
         }
     }
 }

@@ -10,7 +10,7 @@ import ClickToCopy from 'components/click-to-copy';
 import { ReportReportable } from 'components/report-reportable';
 import StringWithComponent from 'components/string-with-component';
 import TimeWithTooltip from 'components/time-with-tooltip';
-import { UserLink } from 'components/user-link';
+import UserLink from 'components/user-link';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import { BeatmapsetDiscussionMessagePostJson } from 'interfaces/beatmapset-discussion-post-json';
@@ -26,21 +26,24 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
 import { onError } from 'utils/ajax';
-import { badgeGroup, canModeratePosts, format, validMessageLength } from 'utils/beatmapset-discussion-helper';
+import { badgeGroup, canModeratePosts, makeUrl, validMessageLength } from 'utils/beatmapset-discussion-helper';
+import { downloadLimited } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
 import { trans } from 'utils/lang';
+import DiscussionMessage from './discussion-message';
 import DiscussionMessageLengthCounter from './discussion-message-length-counter';
 import { UserCard } from './user-card';
 
 const bn = 'beatmap-discussion-post';
 
 interface Props {
-  beatmap: BeatmapExtendedJson;
+  beatmap: BeatmapExtendedJson | null;
   beatmapset: BeatmapsetExtendedJson;
   discussion: BeatmapsetDiscussionJson;
   post: BeatmapsetDiscussionMessagePostJson;
   read: boolean;
+  readonly: boolean;
   resolvedSystemPostId: number;
   type: string;
   user: UserJson;
@@ -61,7 +64,22 @@ export default class Post extends React.Component<Props> {
 
   @computed
   private get canEdit() {
-    return this.isAdmin || this.isOwn && this.props.post.id > this.props.resolvedSystemPostId && !this.props.beatmapset.discussion_locked;
+    return this.isAdmin
+      || (!downloadLimited(this.props.beatmapset)
+        && this.isOwn
+        && this.props.post.id > this.props.resolvedSystemPostId
+        && !this.props.beatmapset.discussion_locked
+      );
+  }
+
+  private get canDelete() {
+    return this.props.type === 'discussion'
+      ? this.props.discussion.current_user_attributes?.can_destroy
+      : this.canModerate || this.canEdit;
+  }
+
+  private get canModerate() {
+    return canModeratePosts();
   }
 
   @computed
@@ -323,18 +341,12 @@ export default class Post extends React.Component<Props> {
       <div className={`${bn}__message-container`}>
         {this.isReview ? (
           <div className={`${bn}__message`}>
-            <ReviewPost
-              message={this.props.post.message}
-            />
+            <ReviewPost post={this.props.post} />
           </div>
         ) : (
-          <div
-            ref={this.messageBodyRef}
-            className={`${bn}__message`}
-            dangerouslySetInnerHTML={{
-              __html: format(this.props.post.message),
-            }}
-          />
+          <div ref={this.messageBodyRef} className={`${bn}__message`}>
+            <DiscussionMessage markdown={this.props.post.message} />
+          </div>
         )}
         <div className={`${bn}__info-container`}>
           <span className={`${bn}__info`}>
@@ -357,56 +369,58 @@ export default class Post extends React.Component<Props> {
 
 
   private renderMessageViewerActions() {
-    const canModerate = canModeratePosts();
-    const canDelete = this.props.type === 'discussion' ? this.props.discussion.current_user_attributes?.can_destroy : canModerate || this.canEdit;
-
     return (
       <div className={`${bn}__actions`}>
         <div className={`${bn}__actions-group`}>
           <span className={`${bn}__action ${bn}__action--button`}>
             <ClickToCopy
               label={trans('common.buttons.permalink')}
-              value={BeatmapDiscussionHelper.url({ discussion: this.props.discussion, post: this.props.type === 'reply' ? this.props.post : null })}
+              value={makeUrl({ discussion: this.props.discussion, post: this.props.type === 'reply' ? this.props.post : undefined })}
               valueAsUrl
             />
           </span>
-          {this.canEdit && (
-            <button
-              className={`${bn}__action ${bn}__action--button`}
-              onClick={this.editStart}
-            >
-              {trans('beatmaps.discussions.edit')}
-            </button>
-          )}
 
-          {this.deleteModel.deleted_at == null && canDelete && (
-            <a
-              className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
-              data-confirm={trans('common.confirmation')}
-              data-method='DELETE'
-              data-remote
-              href={this.deleteHref('destroy')}
-            >
-              {trans('beatmaps.discussions.delete')}
-            </a>
-          )}
+          {!this.props.readonly && (
+            <>
+              {this.canEdit && (
+                <button
+                  className={`${bn}__action ${bn}__action--button`}
+                  onClick={this.editStart}
+                >
+                  {trans('beatmaps.discussions.edit')}
+                </button>
+              )}
 
-          {this.deleteModel.deleted_at != null && canModerate && (
-            <a
-              className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
-              data-confirm={trans('common.confirmation')}
-              data-method='POST'
-              data-remote
-              href={this.deleteHref('restore')}
-            >
-              {trans('beatmaps.discussions.restore')}
-            </a>
-          )}
+              {this.deleteModel.deleted_at == null && this.canDelete && (
+                <a
+                  className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
+                  data-confirm={trans('common.confirmation')}
+                  data-method='DELETE'
+                  data-remote
+                  href={this.deleteHref('destroy')}
+                >
+                  {trans('beatmaps.discussions.delete')}
+                </a>
+              )}
 
-          {this.props.type === 'discussion' && this.props.discussion.current_user_attributes?.can_moderate_kudosu && (
-            this.props.discussion.can_grant_kudosu
-              ? this.renderKudosuAction('deny')
-              : this.props.discussion.kudosu_denied && this.renderKudosuAction('allow')
+              {this.deleteModel.deleted_at != null && this.canModerate && (
+                <a
+                  className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
+                  data-confirm={trans('common.confirmation')}
+                  data-method='POST'
+                  data-remote
+                  href={this.deleteHref('restore')}
+                >
+                  {trans('beatmaps.discussions.restore')}
+                </a>
+              )}
+
+              {this.props.type === 'discussion' && this.props.discussion.current_user_attributes?.can_moderate_kudosu && (
+                this.props.discussion.can_grant_kudosu
+                  ? this.renderKudosuAction('deny')
+                  : this.props.discussion.kudosu_denied && this.renderKudosuAction('allow')
+              )}
+            </>
           )}
 
           {this.canReport && (

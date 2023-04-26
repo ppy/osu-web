@@ -37,6 +37,7 @@ return [
         'blocked_count' => '被屏蔽的用户 (:count)',
         'hide_profile' => '隐藏用户资料',
         'hide_comment' => '隐藏',
+        'forum_post_text' => '',
         'not_blocked' => '此用户未被屏蔽。',
         'show_profile' => '显示用户资料',
         'show_comment' => '展开',
@@ -157,7 +158,8 @@ return [
     ],
     'restricted_banner' => [
         'title' => '账户进入限制模式！',
-        'message' => '在被限制时，无法与其他玩家互动，分数只有自己可见。该限制通常由系统自动给予，并将在24小时内解除。需要申诉？请<a href="mailto:accounts@ppy.sh">联系支持团队</a>.',
+        'message' => '处于被限制状态时，你将不能与其他玩家互动，分数只有你自己可见。限制通常是系统自动给予，通常会在 24 小时内解除。:link',
+        'message_link' => '点击此页了解更多。',
     ],
     'show' => [
         'age' => ':age 岁',
@@ -165,7 +167,7 @@ return [
         'first_members' => '元老玩家',
         'is_developer' => 'osu! 开发者',
         'is_supporter' => 'osu! 支持者',
-        'joined_at' => '注册时间：:date',
+        'joined_at' => '注册于 :date',
         'lastvisit' => '最后活跃：:date',
         'lastvisit_online' => '当前在线',
         'missingtext' => '你可能打错字了！（或者该用户已经被封禁）',
@@ -228,13 +230,13 @@ return [
                     'title' => '已停更的谱面',
                 ],
                 'guest' => [
-                    'title' => '参与客串制作的谱面',
+                    'title' => '客串制作的谱面',
                 ],
                 'loved' => [
                     'title' => '社区喜爱 (Loved) 谱面',
                 ],
                 'nominated' => [
-                    'title' => '提名过的上架 (Ranked) 谱面',
+                    'title' => '提名并上架 (Ranked) 的谱面',
                 ],
                 'pending' => [
                     'title' => '待定 (Pending) 谱面',
@@ -468,7 +470,7 @@ return [
     ],
     'store' => [
         'from_client' => '请使用游戏客户端注册！',
-        'from_web' => '请通过网页注册',
+        'from_web' => '请通过网页完成注册',
         'saved' => '账户已创建',
     ],
     'verify' => [

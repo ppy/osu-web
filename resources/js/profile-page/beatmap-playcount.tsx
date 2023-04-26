@@ -3,7 +3,7 @@
 
 import BeatmapsetCover from 'components/beatmapset-cover';
 import StringWithComponent from 'components/string-with-component';
-import { UserLink } from 'components/user-link';
+import UserLink from 'components/user-link';
 import BeatmapPlaycountJson from 'interfaces/beatmap-playcount-json';
 import GameMode from 'interfaces/game-mode';
 import * as React from 'react';

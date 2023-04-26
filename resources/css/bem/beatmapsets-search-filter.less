@@ -2,55 +2,60 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .beatmapsets-search-filter {
-  @gutter-mobile: 6px;
   position: relative;
+  margin: 2px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
 
-  @media @desktop {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
+  &--grid {
+    display: contents;
   }
 
   &__header {
     display: block;
-
     color: @osu-colour-c1;
-
     margin: 15px 0 5px;
 
     @media @desktop {
-      width: 105px;
       margin-top: 5px;
     }
   }
 
   &__item {
-    margin: 2px @gutter-mobile;
-
-    @media @desktop {
-      margin-left: 5px;
-      margin-right: 5px;
-    }
+    --colour: hsl(var(--hsl-l2));
+    --colour-hover: hsl(var(--hsl-l1));
+    color: var(--colour);
 
     &--active {
-      color: @osu-colour-c1;
       font-weight: 600;
+      --colour: hsl(var(--hsl-c1));
+      --colour-hover: var(--colour);
     }
 
     &--featured-artists {
-      color: hsl(var(--hsl-orange-1));
+      --colour: hsl(var(--hsl-orange-1));
+      --colour-hover: var(--colour);
+    }
+
+    &:focus {
+      color: var(--colour);
+    }
+
+    &:hover {
+      color: var(--colour-hover);
+    }
+
+    &:active {
+      color: var(--colour-hover);
     }
   }
 
   &__items {
     flex: 1;
     display: flex;
+    gap: 2px 10px;
     flex-wrap: wrap;
     align-items: baseline;
-    margin: 0 (-@gutter-mobile);
-
-    .beatmapsets-search--sticky & {
-      margin: 0 -4px; // should be -5px but the A character seems to leak out 1px on the left.
-    }
   }
 }

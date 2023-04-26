@@ -100,6 +100,9 @@ return [
         'scores_controller' => [
             '_' => 'performanță',
         ],
+        'seasons_controller' => [
+            '_' => 'clasamente',
+        ],
         'tournaments_controller' => [
             '_' => 'turnee',
         ],

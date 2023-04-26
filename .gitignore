@@ -1,6 +1,7 @@
 # Local configuration.
 /.env*
 !/.env*.example
+/.webpack-build-notifier-config.js
 
 # ignore _ide_helper.php
 _ide_helper.php
@@ -82,5 +83,5 @@ composer-installer
 /storage/htmlpurifier/
 /storage/paypal_auth.cache
 
-/database/ip2asn.idx
-/database/ip2asn.tsv
+/database/ip2asn/*.idx
+/database/ip2asn/*.tsv

@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => 'Kolekce beatmap s podobnou tématikou.',
+        'empty' => '',
         'nav_title' => 'seznam',
         'title' => 'Balíčky beatmap',
 
@@ -34,8 +35,10 @@ return [
     'mode' => [
         'artist' => 'Interpret/Album',
         'chart' => 'V záři reflektorů',
+        'featured' => '',
         'standard' => 'Klasické',
         'theme' => 'Tématické',
+        'tournament' => '',
     ],
 
     'require_login' => [

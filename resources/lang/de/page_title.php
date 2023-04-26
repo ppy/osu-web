@@ -11,7 +11,7 @@ return [
         'error' => [
             '400' => 'ungültige Anfrage',
             '404' => 'nicht gefunden',
-            '403' => 'verboten',
+            '403' => 'nicht berechtigt',
             '401' => 'nicht authorisiert',
             '401-verification' => 'accountverifizierung',
             '405' => 'nicht gefunden',
@@ -55,24 +55,24 @@ return [
             'show' => 'beatmap-info',
         ],
         'changelog_controller' => [
-            '_' => 'änderungsprotokoll',
+            '_' => 'Änderungsprotokoll',
         ],
         'chat_controller' => [
-            '_' => 'chat',
+            '_' => 'Chat',
         ],
         'comments_controller' => [
             '_' => 'kommentare',
         ],
         'contests_controller' => [
-            '_' => 'wettbewerbe',
+            '_' => 'Wettbewerbe',
         ],
         'groups_controller' => [
             'show' => 'gruppen',
         ],
         'home_controller' => [
-            'get_download' => 'herunterladen',
+            'get_download' => 'Herunterladen',
             'index' => 'dashboard',
-            'search' => 'suchen',
+            'search' => 'Suchen',
             'support_the_game' => 'Das Spiel unterstützen',
             'testflight' => 'testflight',
         ],
@@ -80,13 +80,13 @@ return [
             '_' => 'informationen',
         ],
         'livestreams_controller' => [
-            '_' => 'liveübertragung',
+            '_' => 'Liveübertragung',
         ],
         'matches_controller' => [
             '_' => 'spiele',
         ],
         'news_controller' => [
-            '_' => 'neuigkeiten',
+            '_' => 'Neuigkeiten',
         ],
         'notifications_controller' => [
             '_' => 'benachrichtigungsverlauf',
@@ -100,6 +100,9 @@ return [
         'scores_controller' => [
             '_' => 'performance',
         ],
+        'seasons_controller' => [
+            '_' => 'Ranglisten',
+        ],
         'tournaments_controller' => [
             '_' => 'turniere',
         ],
@@ -109,7 +112,7 @@ return [
             'disabled' => 'notiz',
         ],
         'wiki_controller' => [
-            '_' => 'wiki',
+            '_' => 'Wiki',
         ],
     ],
     'passport' => [

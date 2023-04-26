@@ -8,7 +8,7 @@ return [
     'talking_in' => ':channelで会話中',
     'talking_with' => ':nameと会話中',
     'title_compact' => 'チャット',
-    'unread_messages' => '',
+    'unread_messages' => '未読メッセージ',
 
     'cannot_send' => [
         'channel' => '現在このチャンネルでメッセージを送信できません。次の理由のいずれかである可能性があります：',
@@ -36,7 +36,7 @@ return [
 
         'labels' => [
             'description' => '概要',
-            'message' => '',
+            'message' => 'メッセージ',
             'name' => 'ルーム名',
             'users' => '追加するプレイヤー',
         ],

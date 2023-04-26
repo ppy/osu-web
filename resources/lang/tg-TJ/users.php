@@ -37,6 +37,7 @@ return [
         'blocked_count' => '',
         'hide_profile' => '',
         'hide_comment' => '',
+        'forum_post_text' => '',
         'not_blocked' => '',
         'show_profile' => '',
         'show_comment' => '',
@@ -158,6 +159,7 @@ return [
     'restricted_banner' => [
         'title' => '',
         'message' => '',
+        'message_link' => '',
     ],
     'show' => [
         'age' => '',

@@ -2,78 +2,38 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { PersistedBeatmapDiscussionReview } from 'interfaces/beatmap-discussion-review';
+import { BeatmapsetDiscussionMessagePostJson } from 'interfaces/beatmapset-discussion-post-json';
 import * as React from 'react';
-import * as ReactMarkdown from 'react-markdown';
-import { propsFromHref } from 'utils/beatmapset-discussion-helper';
-import { uuid } from 'utils/seq';
-import { autolinkPlugin } from './autolink-plugin';
-import { disableTokenizersPlugin } from './disable-tokenizers-plugin';
+import DiscussionMessage from './discussion-message';
 import { ReviewPostEmbed } from './review-post-embed';
-import { timestampPlugin } from './timestamp-plugin';
 
 interface Props {
-  message: string;
+  post: BeatmapsetDiscussionMessagePostJson;
 }
 
 export class ReviewPost extends React.Component<Props> {
-  embed(id: number) {
-    return (
-      <div key={uuid()} className='beatmap-discussion-review-post__block'>
-        <ReviewPostEmbed data={{ discussion_id: id }} />
-      </div>
-    );
-  }
-
-  paragraph(source: string) {
-    return (
-      <ReactMarkdown
-        key={uuid()}
-        plugins={[
-          [
-            disableTokenizersPlugin,
-            {
-              allowedBlocks: ['paragraph'],
-              allowedInlines: ['emphasis', 'strong'],
-            },
-          ],
-          autolinkPlugin,
-          timestampPlugin,
-        ]}
-        renderers={{
-          link: this.linkRenderer,
-          paragraph: (props) => (<div className='beatmap-discussion-review-post__block'>
-            <div className='beatmapset-discussion-message' {...props} />
-          </div>),
-          timestamp: (props) => <a className='beatmap-discussion-timestamp-decoration' {...props} />,
-        }}
-        source={source}
-        unwrapDisallowed
-      />
-    );
-  }
-
   render() {
     const docBlocks: JSX.Element[] = [];
 
     try {
-      const doc: PersistedBeatmapDiscussionReview = JSON.parse(this.props.message);
+      const doc = JSON.parse(this.props.post.message) as PersistedBeatmapDiscussionReview;
 
-      doc.forEach((block) => {
+      doc.forEach((block, index) => {
         switch (block.type) {
           case 'paragraph': {
             const content = block.text.trim() === '' ? '&nbsp;' : block.text;
-            docBlocks.push(this.paragraph(content));
+            docBlocks.push(<DiscussionMessage key={index} markdown={content} type='reviews' />);
             break;
           }
           case 'embed':
             if (block.discussion_id) {
-              docBlocks.push(this.embed(block.discussion_id));
+              docBlocks.push(<ReviewPostEmbed key={index} data={{ discussion_id: block.discussion_id }} />);
             }
             break;
         }
       });
     } catch (e) {
-      docBlocks.push(<div key={uuid()}>[error parsing review]</div>);
+      docBlocks.push(<div key={null}>[error parsing review]</div>);
     }
 
     return (
@@ -82,11 +42,4 @@ export class ReviewPost extends React.Component<Props> {
       </div>
     );
   }
-
-  // not sure if any additional props besides href and children are included.
-  private linkRenderer = (props: Readonly<ReactMarkdown.ReactMarkdownProps> & { href: string }) => {
-    const extraProps = propsFromHref(props.href);
-
-    return <a {...props} {...extraProps} />;
-  };
 }

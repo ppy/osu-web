@@ -14,6 +14,7 @@ use App\Libraries\Groups;
 use App\Libraries\Ip2Asn;
 use App\Libraries\LayoutCache;
 use App\Libraries\LocalCacheManager;
+use App\Libraries\Medals;
 use App\Libraries\Mods;
 use App\Libraries\MorphMap;
 use App\Libraries\OsuAuthorize;
@@ -41,6 +42,7 @@ class AppServiceProvider extends ServiceProvider
         'chat-filters' => ChatFilters::class,
         'groups' => Groups::class,
         'layout-cache' => LayoutCache::class,
+        'medals' => Medals::class,
     ];
 
     const SINGLETONS = [
@@ -96,18 +98,12 @@ class AppServiceProvider extends ServiceProvider
      * Register any application services.
      *
      * This service provider is a great spot to register your various container
-     * bindings with the application. As you can see, we are registering our
-     * "Registrar" implementation here. You can add your own bindings too!
+     * bindings with the application.
      *
      * @return void
      */
     public function register()
     {
-        $this->app->bind(
-            'Illuminate\Contracts\Auth\Registrar',
-            'App\Services\Registrar'
-        );
-
         foreach (array_merge(static::SINGLETONS, static::LOCAL_CACHE_SINGLETONS) as $name => $class) {
             $this->app->singleton($name, fn () => new $class());
         }
@@ -147,9 +143,10 @@ class AppServiceProvider extends ServiceProvider
             fn ($app) => $app->bound(Server::class) ? new SwooleTaskDispatcher() : new SequentialTaskDispatcher()
         );
 
-        if ($this->app->environment('testing')) {
+        $env = $this->app->environment();
+        if ($env === 'testing' || $env === 'dusk.local') {
             // This is needed for testing with Dusk.
-            $this->app->register('\App\Providers\AdditionalDuskServiceProvider');
+            $this->app->register(AdditionalDuskServiceProvider::class);
 
             // This is for testing after commit broadcastable events.
             $this->app->singleton(BroadcastsPendingForTests::class, fn () => new BroadcastsPendingForTests());

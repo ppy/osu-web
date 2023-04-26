@@ -13,6 +13,16 @@ return [
     'see_channel' => 'przejdź do czatu',
     'verifying' => 'Zweryfikuj sesję, by wyświetlić powiadomienia',
 
+    'action_type' => [
+        '_' => 'wszystkie',
+        'beatmapset' => 'beatmapy',
+        'build' => 'zmiany',
+        'channel' => 'czat',
+        'forum_topic' => 'forum',
+        'news_post' => 'aktualności',
+        'user' => 'profil',
+    ],
+
     'filters' => [
         '_' => 'wszystkie',
         'user' => 'profil',
@@ -210,7 +220,7 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => '',
+                'announce' => 'Nowe ogłoszenie w pokoju „:name” ',
             ],
 
             'channel' => [

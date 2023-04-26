@@ -199,6 +199,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Cette beatmap devrait être classée le :date si aucun problème n\'est trouvé. Elle est #:position dans la :queue.',
+            'on' => 'le :date',
             'queue' => 'file d\'attente de classement',
             'soon' => 'bientôt',
         ],

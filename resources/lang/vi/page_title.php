@@ -101,6 +101,9 @@ return [
         'scores_controller' => [
             '_' => 'hiệu suất',
         ],
+        'seasons_controller' => [
+            '_' => 'xếp hạng',
+        ],
         'tournaments_controller' => [
             '_' => 'giải đấu',
         ],

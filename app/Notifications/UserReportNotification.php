@@ -52,9 +52,9 @@ class UserReportNotification extends Notification implements ShouldQueue
                     ->color('warning')
                     ->content($notifiable->comments)
                     ->fields([
-                        'Reporter' => "<{$this->reporter->url()}|{$this->reporter->username}>",
+                        'Reporter' => $this->discordMarkdownLink($this->reporter->url(), $this->reporter->username),
                         'Reported' => $reportedText,
-                        'User' => "<{$userUrl}|{$user}>",
+                        'User' => $this->discordMarkdownLink($userUrl, $user),
                         'Reason' => $notifiable->reason,
                     ]);
             });
@@ -63,5 +63,14 @@ class UserReportNotification extends Notification implements ShouldQueue
     public function via($notifiable)
     {
         return ['slack'];
+    }
+
+    private function discordMarkdownLink(string $url, string $text): string
+    {
+        // I couldn't find any way to escape them so this seems to be the next best thing.
+        // The alternative characters were taken from https://github.com/python-discord/sir-lancebot/pull/820
+        $text = strtr($text, ['[' => '⦋', ']' => '⦌']);
+
+        return "[{$text}]({$url})";
     }
 }

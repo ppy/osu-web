@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => 'Forhåndspakkede samlinger av beatmaps basert rundt et felles tema.',
+        'empty' => '',
         'nav_title' => 'liste',
         'title' => 'Beatmappakker',
 
@@ -34,8 +35,10 @@ return [
     'mode' => [
         'artist' => 'Artist/Album',
         'chart' => 'I rampelyset',
+        'featured' => '',
         'standard' => 'Standard',
         'theme' => 'Tema',
+        'tournament' => '',
     ],
 
     'require_login' => [

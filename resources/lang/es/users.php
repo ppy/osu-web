@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'usuarios bloqueados (:count)',
         'hide_profile' => 'Ocultar perfil',
         'hide_comment' => 'ocultar',
+        'forum_post_text' => '',
         'not_blocked' => 'Ese usuario no está bloqueado.',
         'show_profile' => 'Mostrar perfil',
         'show_comment' => 'mostrar',
@@ -158,6 +159,7 @@ return [
     'restricted_banner' => [
         'title' => '¡Su cuenta ha sido restringida!',
         'message' => 'Mientras estás restringido, no podrás interactuar con otros jugadores y tus puntuaciones solo las podrás ver tú. Esto es, normalmente, el resultado de un proceso automatizado, y se levanta normalmente dentro de 24 horas. Si deseas apelar a tu restricción, por favor <a href="mailto:accounts@ppy.sh">contacta con el soporte</a>.',
+        'message_link' => 'Consulte esta página para obtener más información.',
     ],
     'show' => [
         'age' => ':age años',
@@ -391,7 +393,7 @@ return [
                     'actions' => [
                         'restriction' => 'Restringir',
                         'silence' => 'Silenciado',
-                        'tournament_ban' => 'Excluído de torneos',
+                        'tournament_ban' => 'Prohibición de torneo',
                         'note' => 'Nota',
                     ],
                 ],
@@ -414,7 +416,7 @@ return [
             'title' => '¡Usuario no encontrado! ;_;',
         ],
         'page' => [
-            'button' => 'Editar página de perfil',
+            'button' => 'editar página de perfil',
             'description' => '<strong>¡yo!</strong> es una área personal y personalizable en tu perfil.',
             'edit_big' => 'Editar ¡yo!',
             'placeholder' => 'Escriba el contenido de la página aquí',
@@ -438,7 +440,7 @@ return [
         'stats' => [
             'hit_accuracy' => 'Precisión',
             'level' => 'Nivel :level',
-            'level_progress' => 'Progreso al siguiente nivel',
+            'level_progress' => 'progreso al siguiente nivel',
             'maximum_combo' => 'Combo máximo',
             'medals' => 'Medallas',
             'play_count' => 'Conteo de jugadas',
@@ -468,7 +470,7 @@ return [
     ],
     'store' => [
         'from_client' => '¡por favor regístrese a través del cliente del juego en su lugar!',
-        'from_web' => 'por favor regístrese a través de la web',
+        'from_web' => 'por favor complete el registro usando el sitio web de osu!',
         'saved' => 'Usuario creado',
     ],
     'verify' => [

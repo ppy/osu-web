@@ -5,7 +5,7 @@ import BeatmapsetCover from 'components/beatmapset-cover'
 import { route } from 'laroute'
 import * as React from 'react'
 import { div, h2, a, img, span } from 'react-dom-factories'
-import { canModeratePosts } from 'utils/beatmapset-discussion-helper'
+import { canModeratePosts, makeUrl } from 'utils/beatmapset-discussion-helper'
 import { trans } from 'utils/lang'
 import Post from "../beatmap-discussions/post"
 
@@ -34,7 +34,7 @@ export class Posts extends React.Component
 
                 a
                   className: 'modding-profile-list__thumbnail'
-                  href: BeatmapDiscussionHelper.url(discussion: post.beatmap_discussion),
+                  href: makeUrl(discussion: post.beatmap_discussion),
 
                   el BeatmapsetCover,
                     beatmapset: post.beatmap_discussion.beatmapset
@@ -58,12 +58,8 @@ export class Posts extends React.Component
                       users: @props.users
                       user: @props.users[post.user_id]
                       read: true
+                      readonly: true
                       lastEditor: @props.users[post.last_editor_id] ? @props.users[null] if post.last_editor_id?
-                      # FIXME: These permissions are more restrictive than the correct ones in discussion
-                      # because they don't have the right data to check.
-                      canBeEdited: currentUser.is_admin
-                      canBeDeleted: canModerate
-                      canBeRestored: canModerate
                       currentUser: currentUser
             a
               key: 'show-more'

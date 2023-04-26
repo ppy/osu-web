@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'pengguna yang diblokir (:count)',
         'hide_profile' => 'Sembunyikan profil',
         'hide_comment' => 'sembunyikan',
+        'forum_post_text' => '',
         'not_blocked' => 'Pengguna ini tidak diblokir.',
         'show_profile' => 'Tampilkan profil',
         'show_comment' => 'tampilkan',
@@ -157,7 +158,8 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Akun Anda telah di-restrict!',
-        'message' => 'Selama di-restrict, kamu tidak dapat berinteraksi dengan pengguna lain dan skormu hanya akan dapat dilihat oleh dirimu sendiri. Hal ini biasanya terproses secara otomatis dan akan diangkat dalam 24 jam. Apabila kamu ingin mengajukan banding, mohon <a href="mailto:accounts@ppy.sh">hubungi layanan dukungan</a>.',
+        'message' => 'Selama di-restrict, kamu tidak dapat berinteraksi dengan pengguna lain dan skormu hanya akan dapat dilihat oleh dirimu sendiri. Hal ini biasanya terproses secara otomatis dan akan diangkat dalam 24 jam. :link',
+        'message_link' => 'Kunjungi laman ini untuk keterangan lebih lanjut.',
     ],
     'show' => [
         'age' => ':age tahun',
@@ -468,7 +470,7 @@ return [
     ],
     'store' => [
         'from_client' => 'mohon untuk mendaftarkan diri melalui klien permainan!',
-        'from_web' => 'silakan mendaftarkan diri melalui situs web',
+        'from_web' => 'mohon selesaikan pendaftaran melalui situs web osu!',
         'saved' => 'Pengguna dibuat',
     ],
     'verify' => [

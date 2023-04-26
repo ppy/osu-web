@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'utilisateurs bloqués (:count)',
         'hide_profile' => 'Masquer le profil',
         'hide_comment' => 'masquer',
+        'forum_post_text' => '',
         'not_blocked' => 'Cet utilisateur n’est pas bloqué.',
         'show_profile' => 'Afficher le profil',
         'show_comment' => 'afficher',
@@ -158,6 +159,7 @@ return [
     'restricted_banner' => [
         'title' => 'Votre compte a été restreint !',
         'message' => 'Quand vous êtes restreint, vous ne pouvez pas interagir avec les autres joueurs et vos scores ne seront visibles que par vous. Cette restriction est souvent le résultat d\'un processus automatique et sera en général levée dans les 24 heures. Si vous souhaitez faire appel de votre restriction, merci de <a href="mailto:accounts@ppy.sh">contacter le support</a>.',
+        'message_link' => 'Consultez cette page pour en savoir plus.',
     ],
     'show' => [
         'age' => ':age ans',
@@ -234,7 +236,7 @@ return [
                     'title' => 'Beatmaps loved',
                 ],
                 'nominated' => [
-                    'title' => 'Beatmaps classées nommées',
+                    'title' => 'Beatmaps classées nominées',
                 ],
                 'pending' => [
                     'title' => 'Beatmaps en attente',
@@ -468,7 +470,7 @@ return [
     ],
     'store' => [
         'from_client' => 'veuillez vous inscrire via le client du jeu à la place !',
-        'from_web' => 'veuillez vous inscrire via le site web',
+        'from_web' => 'veuillez compléter votre inscription en utilisant le site Web d\'osu!',
         'saved' => 'Utilisateur créé',
     ],
     'verify' => [

@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'người dùng đã bị chặn (:count)',
         'hide_profile' => 'Ẩn trang cá nhân',
         'hide_comment' => 'ẩn',
+        'forum_post_text' => '',
         'not_blocked' => 'Người dùng này chưa bị chặn.',
         'show_profile' => 'Hiển thị trang cá nhân',
         'show_comment' => 'hiện',
@@ -158,6 +159,7 @@ return [
     'restricted_banner' => [
         'title' => 'Tài khoản của bạn đã bị hạn chế!',
         'message' => 'Trong khi bị hạn chế, Bạn sẽ không thể tương tác với những người chơi khác và chỉ có bạn thấy được điểm của bạn. Đây thường là kết quả của một quá trình tự động và thường sẽ được gỡ bỏ trong vòng 24 giờ. Nếu bạn muốn kháng nghị về sự hạn chế này, vui lòng <a href="mailto:accounts@ppy.sh">liên hệ hỗ trợ</a>.',
+        'message_link' => 'Kiểm tra trang này để biết thêm chi tiết.',
     ],
     'show' => [
         'age' => ':age tuổi',
@@ -468,7 +470,7 @@ return [
     ],
     'store' => [
         'from_client' => 'vui lòng đăng kí thông qua game!',
-        'from_web' => 'vui lòng đăng kí thông qua web',
+        'from_web' => 'vui lòng hoàn thành đăng kí thông qua trang web osu!',
         'saved' => 'Đã tạo người dùng',
     ],
     'verify' => [

@@ -12,7 +12,4 @@ use App\Models\Score\Best\Mania;
 class ManiaFactory extends ModelFactory
 {
     protected $model = Mania::class;
-
-    // TODO: remove following line after removing legacy-factories
-    // fooling legacy-factories' "isLegacyFactory" check: class Hello extends Factory
 }

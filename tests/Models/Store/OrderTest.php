@@ -14,18 +14,18 @@ class OrderTest extends TestCase
 {
     public function testContainsSupporterTag()
     {
-        $order = factory(Order::class)->create();
-        $product = factory(Product::class)->create();
-        factory(OrderItem::class)->create(['order_id' => $order, 'product_id' => $product]);
-        factory(OrderItem::class)->states('supporter_tag')->create(['order_id' => $order]);
+        $order = Order::factory()->create();
+        $product = Product::factory()->create();
+        OrderItem::factory()->create(['order_id' => $order, 'product_id' => $product]);
+        OrderItem::factory()->supporterTag()->create(['order_id' => $order]);
 
         $this->assertTrue($order->containsSupporterTag());
     }
 
     public function testIsHideSupporterFromActivity()
     {
-        $order = factory(Order::class)->create();
-        factory(OrderItem::class, 2)->states('supporter_tag')->create(['order_id' => $order]);
+        $order = Order::factory()->create();
+        OrderItem::factory()->count(2)->supporterTag()->create(['order_id' => $order]);
 
         $this->assertFalse($order->isHideSupporterFromActivity());
 
@@ -37,8 +37,8 @@ class OrderTest extends TestCase
 
     public function testSetGiftsHidden()
     {
-        $order = factory(Order::class)->create();
-        factory(OrderItem::class, 2)->states('supporter_tag')->create(['order_id' => $order]);
+        $order = Order::factory()->create();
+        OrderItem::factory()->count(2)->supporterTag()->create(['order_id' => $order]);
 
         $order->setGiftsHidden(true);
         OrderItem::each(fn ($item) => $this->assertTrue($item->extra_data->hidden));
@@ -49,10 +49,10 @@ class OrderTest extends TestCase
 
     public function testSwitchOrderItemReservation()
     {
-        $product1 = factory(Product::class)->create(['stock' => 5, 'max_quantity' => 5]);
-        $product2 = factory(Product::class)->create(['stock' => 5, 'max_quantity' => 5]);
-        $orderItem = factory(OrderItem::class)->create([
-            'product_id' => $product1->product_id,
+        $product1 = Product::factory()->create(['stock' => 5, 'max_quantity' => 5]);
+        $product2 = Product::factory()->create(['stock' => 5, 'max_quantity' => 5]);
+        $orderItem = OrderItem::factory()->create([
+            'product_id' => $product1,
             'quantity' => 2,
             'reserved' => true,
         ]);

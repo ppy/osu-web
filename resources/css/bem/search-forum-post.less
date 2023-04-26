@@ -4,17 +4,12 @@
 .search-forum-post {
   @avatar-size: 50px;
   @margin: 5px;
-  position: relative;
-
-  &__actual {
-    // the actual content of the element.
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    word-wrap: break-word;
-    line-height: 1.5;
-    pointer-events: none;
-  }
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  word-wrap: break-word;
+  line-height: 1.5;
+  pointer-events: none;
 
   &__avatar {
     flex: none;
@@ -38,11 +33,8 @@
 
   &__link {
     // make link element take the full size of the element.
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
+    .full-size();
+    pointer-events: auto;
   }
 
   &__more {
@@ -52,14 +44,18 @@
   &__poster {
     display: inline-block;
     margin-right: 1em;
-    pointer-events: auto;
-    position: relative;
 
     color: @osu-colour-f1;
 
     @media @mobile {
       display: block;
     }
+  }
+
+  &__sub-link {
+    font-weight: bold;
+    pointer-events: auto;
+    position: relative;
   }
 
   &__text {
@@ -98,9 +94,5 @@
     @media @mobile {
       display: none;
     }
-  }
-
-  &__username {
-    font-weight: bold;
   }
 }

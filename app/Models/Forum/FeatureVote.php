@@ -22,11 +22,11 @@ class FeatureVote extends Model
 {
     use Validatable;
 
+    public $timestamps = false;
+
+    protected $casts = ['date' => 'datetime'];
     protected $table = 'phpbb_topics_stars';
     protected $primaryKey = 'star_id';
-
-    public $timestamps = false;
-    protected $dates = ['date'];
 
     const COST = 1;
 

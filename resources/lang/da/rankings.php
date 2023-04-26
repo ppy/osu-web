@@ -23,13 +23,21 @@ return [
         'multiplayer' => 'multiplayer',
         'performance' => 'Præstation',
         'score' => 'Score',
+        'seasons' => 'sæsoner',
+    ],
+
+    'seasons' => [
+        'empty' => 'Der er ingen rum i denne sæson endnu.',
+        'ongoing' => 'Denne sæson er stadig i gang (der vil være flere playlister tilføjet).',
+        'room_count' => 'Playlist-antal',
+        'url' => 'Vis flere oplysninger om den sæson.',
     ],
 
     'spotlight' => [
         'end_date' => 'Slutdato',
         'map_count' => 'Map Antal',
         'participants' => 'Deltagere',
-        'start_date' => 'Start Dato',
+        'start_date' => 'Startdato',
     ],
 
     'stat' => [

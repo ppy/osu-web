@@ -81,10 +81,10 @@ class PaymentProcessorTest extends TestCase
 
         config()->set('store.order.prefix', 'test');
 
-        $this->order = factory(Order::class)->states('checkout')->create([
+        $this->order = Order::factory()->checkout()->create([
             'transaction_id' => 'test-123',
         ]);
-        factory(OrderItem::class)->states('supporter_tag')->create(['order_id' => $this->order->getKey()]);
+        OrderItem::factory()->supporterTag()->create(['order_id' => $this->order]);
 
         $this->subject = new PaymentProcessor([
             'countryCode' => 'CC',

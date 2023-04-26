@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => 'Forum',
         'latest_post' => 'Post più recente',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => 'Vuoi veramente ripristinare il post?',
         'edited' => 'Ultima modifica di :user :when, modificato :count_delimited volta in totale.|Ultima modifica di :user :when, modificato :count_delimited volte in totale.',
         'posted_at' => 'postato :when',
-        'posted_by' => 'postato da :username',
+        'posted_by_in' => '',
 
         'actions' => [
             'destroy' => 'Elimina post',

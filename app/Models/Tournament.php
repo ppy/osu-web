@@ -5,6 +5,7 @@
 
 namespace App\Models;
 
+use App\Exceptions\InvariantException;
 use App\Models\Store\Product;
 use Carbon\Carbon;
 
@@ -31,7 +32,12 @@ class Tournament extends Model
 {
     protected $primaryKey = 'tournament_id';
 
-    protected $dates = ['signup_open', 'signup_close', 'start_date', 'end_date'];
+    protected $casts = [
+        'end_date' => 'datetime',
+        'signup_close' => 'datetime',
+        'signup_open' => 'datetime',
+        'start_date' => 'datetime',
+    ];
 
     public static function getGroupedListing()
     {
@@ -117,7 +123,7 @@ class Tournament extends Model
     {
         //sanity check: we shouldn't be touching users once the tournament is already in action.
         if ($this->isTournamentRunning()) {
-            return;
+            throw new InvariantException('tournament is already running');
         }
 
         $this->registrations()->where('user_id', '=', $user->user_id)->delete();
@@ -131,7 +137,7 @@ class Tournament extends Model
 
         //sanity check: we shouldn't be touching users once the tournament is already in action.
         if ($this->isTournamentRunning()) {
-            return;
+            throw new InvariantException('tournament is already running');
         }
 
         $reg = new TournamentRegistration();

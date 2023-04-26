@@ -37,6 +37,7 @@ return [
         'blocked_count' => '(:count) blokkolt felhasználók',
         'hide_profile' => 'profil elrejtése',
         'hide_comment' => 'elrejtés',
+        'forum_post_text' => '',
         'not_blocked' => 'Ez a felhasználó nincs blokkolva.',
         'show_profile' => 'profil megjelenítése',
         'show_comment' => 'mutatás',
@@ -54,16 +55,16 @@ return [
 
     'create' => [
         'form' => [
-            'password' => '',
-            'password_confirmation' => '',
-            'submit' => '',
-            'user_email' => '',
-            'user_email_confirmation' => '',
-            'username' => '',
+            'password' => 'jelszó',
+            'password_confirmation' => 'jelszó megerősítése',
+            'submit' => 'fiók létrehozása',
+            'user_email' => 'email',
+            'user_email_confirmation' => 'e-mail cím megerősítése',
+            'username' => 'felhasználónév',
 
             'tos_notice' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'felhasználói fiók létrehozásával elfogadod a(z) :link -t',
+                'link' => 'felhasználási feltételek',
             ],
         ],
     ],
@@ -158,6 +159,7 @@ return [
     'restricted_banner' => [
         'title' => 'A felhasználói fiókod korlátozva lett!',
         'message' => 'Korlátozva nem leszel képes más játékosokkal kapcsolatba lépni és a pontjaid csak neked lesznek láthatóak. Ez az eredménye egy automatikus folyamatnak és általában fel lesz oldva 24 órán belül. Amennyiben fellebbezni szeretnél, légyszíves lépj kapcsolatba a <a href="mailto:accounts@ppy.sh">support</a>-al.',
+        'message_link' => 'Nézd meg ezt az oldalt, hogy többet megtudj.',
     ],
     'show' => [
         'age' => ':age éves',
@@ -467,8 +469,8 @@ return [
         'offline' => 'Nem elérhető',
     ],
     'store' => [
-        'from_client' => '',
-        'from_web' => '',
+        'from_client' => 'kérlek regisztrálj inkább a játék klienssel!',
+        'from_web' => 'kérlek fejezd be a regisztrációt az osu! weboldalon',
         'saved' => 'Felhasználó létrehozva',
     ],
     'verify' => [

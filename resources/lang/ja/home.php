@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'フォーラム内を検索',
                 'forum_children' => 'サブフォーラムを含む',
+                'include_deleted' => '',
                 'topic_id' => 'トピック #',
                 'username' => '投稿者',
             ],
@@ -82,9 +83,10 @@ return [
         'lazer_note' => '注意: リーダーボードのリセットが適用されます',
         'macos-fallback' => 'macOSユーザー',
         'mirror' => 'ミラー',
-        'or' => '',
-        'other_os' => '',
-        'quick_start_guide' => '',
+        'or' => 'または',
+        'os_version_or_later' => '',
+        'other_os' => '他のプラットフォーム',
+        'quick_start_guide' => 'クイックスタートガイド',
         'tagline' => "さぁ、<br>始めよう！",
         'video-guide' => '説明動画',
 

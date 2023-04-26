@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => 'Fóruns',
         'latest_post' => 'Última publicação',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => 'Queres mesmo restaurar a publicação?',
         'edited' => 'Editado pela última vez por :user :when, editado :count vezes no total.',
         'posted_at' => 'publicado :when',
-        'posted_by' => 'publicado por :username',
+        'posted_by_in' => 'publicado por :username em :forum',
 
         'actions' => [
             'destroy' => 'Eliminar publicação',

@@ -48,8 +48,11 @@
   }
 
   &__score {
-    font-size: @font-size--extra-large;
+    font-size: @font-size--large-4;
     font-weight: 300;
     margin-bottom: -10px;
+    @media @desktop {
+      font-size: @font-size--extra-large;
+    }
   }
 }

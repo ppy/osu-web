@@ -204,7 +204,7 @@ class ChangelogController extends Controller
     {
         $token = config('osu.changelog.github_token');
 
-        $signatureHeader = explode('=', request()->header('X-Hub-Signature'));
+        $signatureHeader = explode('=', request()->header('X-Hub-Signature') ?? '');
 
         if (count($signatureHeader) !== 2) {
             abort(422, 'invalid signature header');

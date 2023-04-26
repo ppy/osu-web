@@ -15,7 +15,7 @@ class ShopifyControllerTest extends TestCase
 {
     public function testWebhookOrdersCancelled()
     {
-        $order = factory(Order::class)->states('paid')->states('shopify')->create();
+        $order = Order::factory()->paid()->shopify()->create();
         $payment = new Payment([
             'provider' => Order::PROVIDER_SHOPIFY,
             'transaction_id' => $order->getProviderReference(),
@@ -40,7 +40,7 @@ class ShopifyControllerTest extends TestCase
 
     public function testWebhookOrdersCreate()
     {
-        $order = factory(Order::class)->states('shopify', 'processing')->create();
+        $order = Order::factory()->shopify()->processing()->create();
         $this->setShopifyPayload([
             'note_attributes' => [['name' => 'orderId', 'value' => $order->getKey()]],
         ]);
@@ -54,7 +54,7 @@ class ShopifyControllerTest extends TestCase
 
     public function testWebhookOrdersFulfilled()
     {
-        $order = factory(Order::class)->states('shopify', 'checkout')->create();
+        $order = Order::factory()->shopify()->checkout()->create();
         $this->setShopifyPayload([
             'note_attributes' => [['name' => 'orderId', 'value' => $order->getKey()]],
         ]);
@@ -69,7 +69,7 @@ class ShopifyControllerTest extends TestCase
 
     public function testWebhookOrdersPaid()
     {
-        $order = factory(Order::class)->states('shopify', 'processing')->create();
+        $order = Order::factory()->shopify()->processing()->create();
         $this->setShopifyPayload([
             'note_attributes' => [['name' => 'orderId', 'value' => $order->getKey()]],
         ]);
@@ -100,7 +100,7 @@ class ShopifyControllerTest extends TestCase
     public function testReplacementOrdersCreatedByDuplicatingShopifyOrderShouldBeIgnored()
     {
         // Orders are already shipped when the replacement gets created.
-        $order = factory(Order::class)->states('shopify', 'shipped')->create();
+        $order = Order::factory()->shopify()->shipped()->create();
         $oldUpdatedAt = $order->updated_at->copy();
 
         $this->setShopifyPayload([

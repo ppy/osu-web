@@ -199,6 +199,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Este mapa é estimado a ser ranqueado em :date se nenhum problema for encontrado. É o #:position na :queue.',
+            'on' => 'em :date',
             'queue' => 'fila de ranqueamento',
             'soon' => 'em breve',
         ],

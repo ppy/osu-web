@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => '相同主題的圖譜合集壓縮檔',
+        'empty' => '敬請期待!',
         'nav_title' => '列表',
         'title' => '曲包',
 
@@ -34,8 +35,10 @@ return [
     'mode' => [
         'artist' => '藝術家/專輯',
         'chart' => '頭條',
+        'featured' => '精選藝術家',
         'standard' => '標準',
         'theme' => '主題',
+        'tournament' => '',
     ],
 
     'require_login' => [

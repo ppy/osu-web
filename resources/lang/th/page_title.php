@@ -100,6 +100,9 @@ return [
         'scores_controller' => [
             '_' => 'ค่าศักยภาพ',
         ],
+        'seasons_controller' => [
+            '_' => 'การจัดอันดับ',
+        ],
         'tournaments_controller' => [
             '_' => '
 ทัวร์นาเมนต์',

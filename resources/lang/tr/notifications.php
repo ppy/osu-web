@@ -13,10 +13,20 @@ return [
     'see_channel' => 'sohbete git',
     'verifying' => 'Bildirimleri görüntülemek için lütfen oturumunuzu doğrulayın',
 
+    'action_type' => [
+        '_' => 'hepsi',
+        'beatmapset' => 'haritalar',
+        'build' => 'sürümler',
+        'channel' => 'sohbet',
+        'forum_topic' => 'forum',
+        'news_post' => 'haberler',
+        'user' => 'profil',
+    ],
+
     'filters' => [
         '_' => 'hepsi',
         'user' => 'profil',
-        'beatmapset' => 'beatmapler',
+        'beatmapset' => 'haritalar',
         'forum_topic' => 'forum',
         'news_post' => 'gelişmeler',
         'build' => 'sürümler',
@@ -210,7 +220,7 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => '',
+                'announce' => '":name" içinde yeni bir duyuru var',
             ],
 
             'channel' => [

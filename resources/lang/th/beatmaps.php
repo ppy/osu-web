@@ -199,6 +199,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'แมพนี้จะถูก ranked  ใน :date ถ้าไม่พบเจอปัญหาเพิ่มเติม แมพนี้อยู่ที่ #:position ใน :queue',
+            'on' => '',
             'queue' => 'คิวการ rank',
             'soon' => 'เร็ว ๆ นี้',
         ],

@@ -8,7 +8,7 @@ return [
     'talking_in' => 'กำลังสนทนาใน :channel',
     'talking_with' => 'กำลังสนทนากับ :name',
     'title_compact' => 'ห้องสนทนา',
-    'unread_messages' => '',
+    'unread_messages' => 'ข้อความที่ยังไม่ได้อ่าน',
 
     'cannot_send' => [
         'channel' => 'คุณไม่สามารถส่งข้อความผ่านช่องทางนี้ได้ในเวลานี้ อาจเนื่องมาจากสาเหตุต่อไปนี้',
@@ -36,7 +36,7 @@ return [
 
         'labels' => [
             'description' => 'รายละเอียด',
-            'message' => '',
+            'message' => 'ข้อความ',
             'name' => 'ชื่อห้อง',
             'users' => '',
         ],

@@ -100,12 +100,15 @@ return [
         'scores_controller' => [
             '_' => 'الأداء',
         ],
+        'seasons_controller' => [
+            '_' => 'الترتيب',
+        ],
         'tournaments_controller' => [
             '_' => 'البطولات',
         ],
         'users_controller' => [
             '_' => 'معلومات اللاعب',
-            'create' => '',
+            'create' => 'إنشاء حساب',
             'disabled' => 'ملحوظة',
         ],
         'wiki_controller' => [

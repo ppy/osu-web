@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'utilizadores bloqueados (:count)',
         'hide_profile' => 'Ocultar perfil',
         'hide_comment' => 'ocultar',
+        'forum_post_text' => '',
         'not_blocked' => 'Esse utilizador não está bloqueado.',
         'show_profile' => 'Mostrar perfil',
         'show_comment' => 'mostrar',
@@ -158,6 +159,7 @@ return [
     'restricted_banner' => [
         'title' => 'A tua conta foi restrita!',
         'message' => 'Enquanto restrito(a), estarás incapaz de interagir com outros jogadores e as tuas pontuações só serão visíveis para ti. Isto é habitualmente o resultado dum processo automático e irá ser levantado geralmente em 24 horas. Se quiseres apelar a tua restrição, por favor <a href="mailto:accounts@ppy.sh">contacta a assistência</a>.',
+        'message_link' => 'Consulta esta página para saberes mais.',
     ],
     'show' => [
         'age' => ':age anos',

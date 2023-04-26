@@ -56,21 +56,15 @@ class HomeController extends Controller
 
     public function getDownload()
     {
-        static $lazerPlatformNames = [
-            'android' => 'Android 5 or later',
-            'ios' => 'iOS 10 or later',
+        $lazerPlatformNames = [
+            'android' => osu_trans('home.download.os_version_or_later', ['os_version' => 'Android 5']),
+            'ios' => osu_trans('home.download.os_version_or_later', ['os_version' => 'iOS 13.4']),
             'linux_x64' => 'Linux (x64)',
-            'macos_as' => 'macOS 10.15 or later (Apple Silicon)',
-            'windows_x64' => 'Windows 8.1 or later (x64)',
+            'macos_as' => osu_trans('home.download.os_version_or_later', ['os_version' => 'macOS 10.15']).' (Apple Silicon)',
+            'windows_x64' => osu_trans('home.download.os_version_or_later', ['os_version' => 'Windows 8.1']).' (x64)',
         ];
 
-        $httpHeaders = [];
-        // format headers to what Agent is expecting
-        foreach (request()->headers->all() as $key => $values) {
-            $headerKey = 'HTTP_'.strtoupper(strtr($key, '-', '_'));
-            $httpHeaders[$headerKey] = $values[0];
-        }
-        $agent = new Agent($httpHeaders);
+        $agent = new Agent(Request::server());
 
         $platform = match (true) {
             // Try matching most likely platform first
@@ -122,6 +116,11 @@ class HomeController extends Controller
     public function messageUser($user)
     {
         return ujs_redirect(route('chat.index', ['sendto' => $user]));
+    }
+
+    public function opensearch()
+    {
+        return ext_view('home.opensearch', null, 'opensearch')->header('Cache-Control', 'max-age=86400');
     }
 
     public function quickSearch()
@@ -189,7 +188,9 @@ class HomeController extends Controller
             return response()->json($allSearch->toJson());
         }
 
-        return ext_view('home.search', compact('allSearch', 'isSearchPage'));
+        $fields = Auth::user()?->isModerator() ?? false ? [] : ['includeDeleted' => null];
+
+        return ext_view('home.search', compact('allSearch', 'fields', 'isSearchPage'));
     }
 
     public function setLocale()

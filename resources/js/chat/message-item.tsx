@@ -5,11 +5,26 @@ import { Spinner } from 'components/spinner';
 import { observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as React from 'react';
+import ReactMarkdown from 'react-markdown';
+import autolink from 'remark-plugins/autolink';
+import disableConstructs from 'remark-plugins/disable-constructs';
 import { classWithModifiers } from 'utils/css';
 
 interface Props {
   message: Message;
 }
+
+function linkRenderer(astProps: JSX.IntrinsicElements['a']) {
+  return (
+    <a href={astProps.href} rel='nofollow noreferrer' target='_blank'>
+      {astProps.children}
+    </a>
+  );
+}
+
+const components = Object.freeze({
+  a: linkRenderer,
+});
 
 @observer
 export default class MessageItem extends React.Component<Props> {
@@ -17,11 +32,7 @@ export default class MessageItem extends React.Component<Props> {
     return (
       <div className={classWithModifiers('chat-message-item', { sending: !this.props.message.persisted })}>
         <div className='chat-message-item__entry'>
-          {this.props.message.isHtml ? (
-            <div className='osu-md osu-md--chat'>
-              {this.renderContent()}
-            </div>
-          ) : this.renderContent()}
+          {this.renderMarkdown()}
           {!this.props.message.persisted && !this.props.message.errored &&
             <div className='chat-message-item__status'>
               <Spinner />
@@ -37,12 +48,21 @@ export default class MessageItem extends React.Component<Props> {
     );
   }
 
-  private renderContent() {
+  private renderMarkdown() {
+    const remarkType = this.props.message.type === 'markdown' ? 'chat' : 'chatPlain';
+
     return (
-      <span
-        className={classWithModifiers('chat-message-item__content', { action: this.props.message.isAction })}
-        dangerouslySetInnerHTML={{ __html: this.props.message.parsedContent }}
-      />
+      <ReactMarkdown
+        className={classWithModifiers('osu-md', 'chat', {
+          'chat-action': this.props.message.type === 'action',
+          'chat-plain': remarkType === 'chatPlain',
+        })}
+        components={components}
+        remarkPlugins={[autolink, [disableConstructs, { type: remarkType }]]}
+        unwrapDisallowed
+      >
+        {this.props.message.content}
+      </ReactMarkdown>
     );
   }
 }

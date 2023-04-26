@@ -6,7 +6,7 @@
 return [
     'event' => [
         'approve' => 'Godkjent.',
-        'beatmap_owner_change' => '',
+        'beatmap_owner_change' => 'Eier av vanskelighetsgrad :beatmap endret til :new_user.',
         'discussion_delete' => 'Moderator slettet diskusjonen :discussion.',
         'discussion_lock' => 'Diskusjon for dette beatmappet har blitt deaktivert. (:text)',
         'discussion_post_delete' => 'Moderator slettet innlegg fra diskusjonen :discussion.',
@@ -28,12 +28,13 @@ return [
         'nominate' => 'Nominert av :user.',
         'nominate_modes' => 'Nominert av :user (:modes).',
         'nomination_reset' => 'Nytt problem :discussion (:text) utløste en tilbakestilling av nominasjonen.',
-        'nomination_reset_received' => '',
+        'nomination_reset_received' => 'Nominasjon av :user ble tilbakestilt av :source_user (:text)',
         'nomination_reset_received_profile' => '',
         'offset_edit' => '',
         'qualify' => 'Dette beatmappet har nådd det nødvendige antallet med nominasjoner og har nå blitt kvalifisert.',
         'rank' => 'Rangert.',
         'remove_from_loved' => '',
+        'tags_edit' => '',
 
         'nsfw_toggle' => [
             'to_0' => '',

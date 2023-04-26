@@ -199,6 +199,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Map ini akan berstatus Ranked pada :date apabila tidak terdapat masalah baru yang ditemukan. Map ini berada pada urutan ke-:position dalam :queue yang ada.',
+            'on' => 'pada :date',
             'queue' => 'antrian ranking',
             'soon' => 'segera',
         ],
@@ -229,7 +230,7 @@ return [
                 'genre' => 'Aliran',
                 'language' => 'Bahasa',
                 'mode' => 'Mode',
-                'nsfw' => 'Beatmap Berkonten Eksplisit',
+                'nsfw' => 'Konten Eksplisit',
                 'played' => 'Riwayat Permainan',
                 'rank' => 'Torehan Peringkat',
                 'status' => 'Status',

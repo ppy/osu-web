@@ -34,7 +34,7 @@ return [
             'bot' => "不能对机器人的讨论投票",
             'limit_exceeded' => '请稍等后再投票。',
             'owner' => "不能为自己的讨论投票！",
-            'wrong_beatmapset_state' => '只能给 pending 谱面的讨论投票。',
+            'wrong_beatmapset_state' => '只能给待定 (Pending) 谱面的讨论投票。',
         ],
     ],
 
@@ -50,13 +50,11 @@ return [
             'resolved' => '你不能编辑已解决讨论里的帖子。',
             'system_generated' => '自动生成的帖子无法被编辑。',
         ],
-
-        'store' => [
-            'beatmapset_locked' => '该谱面因需要探讨而被锁定。',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => '谱面已上锁，以供讨论。',
+
         'metadata' => [
             'nominated' => '您不能更改已提名谱面的信息。如果您认为其不正确，请联系谱面审核成员 (BN) 或审核评估团队 (NAT) 更改。',
         ],

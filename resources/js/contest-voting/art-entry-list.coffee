@@ -12,26 +12,26 @@ export class ArtEntryList extends BaseEntryList
   render: ->
     return null unless @state.contest.entries.length > 0
 
-    entries = @state.contest.entries
     selected = new Set(@state.selected)
 
-    if @state.showVotedOnly
-      entries = entries.filter (entry) -> selected.has(entry.id)
+    entries = @state.contest.entries.map (entry, index) =>
+      isSelected = selected.has(entry.id)
 
-    entries = entries.map (entry, index) =>
+      return null if @state.showVotedOnly && !isSelected
+
       el ArtEntry,
         key: index,
         contest: @state.contest,
         displayIndex: index,
         entry: entry,
-        isSelected: selected.has(entry.id)
+        isSelected: isSelected
         options: @state.options,
         selected: @state.selected,
         waitingForResponse: @state.waitingForResponse,
 
     if @state.contest.show_votes
       partitions = _.partition entries, (i) ->
-        i.props.displayIndex < 3
+        i != null && i.props.displayIndex < 3
 
     div className: 'contest__art-list',
       div className: 'contest__vote-summary--art',

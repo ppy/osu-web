@@ -64,6 +64,8 @@ export default class Forum
 
 
   topicMeta: ->
+    # FIXME: this should probably use document instead of newBody as
+    # everything else in this class use document.
     newBody.querySelector('.js-forum--topic-meta')?.dataset
 
 

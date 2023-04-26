@@ -8,7 +8,7 @@ return [
     'talking_in' => ':channel에서 대화 중',
     'talking_with' => ':name님과 대화 중',
     'title_compact' => '채팅',
-    'unread_messages' => '',
+    'unread_messages' => '읽지 않은 메시지',
 
     'cannot_send' => [
         'channel' => '이 채널에서 메시지를 보낼 수 없습니다. 다음과 같은 이유 때문일 수도 있습니다:',
@@ -36,7 +36,7 @@ return [
 
         'labels' => [
             'description' => '설명',
-            'message' => '',
+            'message' => '메시지',
             'name' => '방 이름',
             'users' => '추가할 플레이어',
         ],

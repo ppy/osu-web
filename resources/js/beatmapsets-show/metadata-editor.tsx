@@ -35,6 +35,7 @@ export default class MetadataEditor extends React.Component<Props> {
   @observable private languageId: number;
   @observable private nsfw: boolean;
   @observable private offset: string;
+  @observable private tags: string;
   @observable private xhr: JQuery.jqXHR<BeatmapsetJsonForShow> | null = null;
 
   private get controller() {
@@ -53,12 +54,14 @@ export default class MetadataEditor extends React.Component<Props> {
       languageId: this.controller.beatmapset.language.id ?? 0,
       nsfw: this.controller.beatmapset.nsfw ?? false,
       offset: this.controller.beatmapset.offset.toString(),
+      tags: this.controller.beatmapset.tags,
     }));
 
     this.genreId = initialState.genreId;
     this.languageId = initialState.languageId;
     this.nsfw = initialState.nsfw;
     this.offset = initialState.offset;
+    this.tags = initialState.tags;
 
     makeObservable(this);
   }
@@ -112,6 +115,20 @@ export default class MetadataEditor extends React.Component<Props> {
               ))}
             </select>
           </div>
+        </label>
+
+        <label className='simple-form__row'>
+          <div className='simple-form__label'>
+            {trans('beatmapsets.show.info.tags')}
+          </div>
+
+          <textarea
+            className='simple-form__input'
+            maxLength={1000}
+            name='beatmapset[tags]'
+            onChange={this.setTags}
+            value={this.tags}
+          />
         </label>
 
         {this.canEditOffset &&
@@ -185,6 +202,7 @@ export default class MetadataEditor extends React.Component<Props> {
         language_id: this.languageId,
         nsfw: this.nsfw,
         offset: this.canEditOffset ? getInt(this.offset) : undefined,
+        tags: this.tags,
       } },
       method: 'PATCH',
     });
@@ -219,5 +237,10 @@ export default class MetadataEditor extends React.Component<Props> {
     if (/^-?\d*$/.test(value)) {
       this.offset = value;
     }
+  };
+
+  @action
+  private readonly setTags = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    this.tags = e.currentTarget.value;
   };
 }

@@ -9,8 +9,8 @@ import { classWithModifiers, mergeModifiers } from 'utils/css'
 import { formatNumber } from 'utils/html'
 import { trans } from 'utils/lang'
 import { Comment } from './comment'
-import { CommentEditor } from './comment-editor'
-import { CommentShowMore } from './comment-show-more'
+import CommentEditor from './comment-editor'
+import CommentShowMore from './comment-show-more'
 import { CommentsSort } from './comments-sort'
 import DeletedCommentsCount from './deleted-comments-count'
 import { Spinner } from './spinner'
@@ -59,9 +59,10 @@ export class Comments extends React.PureComponent
             el CommentShowMore,
               commentableMeta: @props.commentableMeta
               comments: comments
-              total: uiState.comments.topLevelCount
-              sort: uiState.comments.currentSort
               modifiers: mergeModifiers 'top', @props.modifiers
+              sort: uiState.comments.currentSort
+              top: true
+              total: uiState.comments.topLevelCount
         else
           div
             className: 'comments__items comments__items--empty'

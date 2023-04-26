@@ -23,14 +23,15 @@
         <div class="search-header js-search--header">
             <div class="search-header__box">
                 <input
+                    autofocus
                     class="search-header__input js-search--input"
-                    name="query"
-                    value="{{ request('query') }}"
-                    placeholder="{{ osu_trans('home.search.placeholder') }}"
                     data-search-current="{{ request('query') }}"
                     data-turbolinks-permanent
                     id="search-input"
-                    autofocus
+                    name="query"
+                    placeholder="{{ osu_trans('home.search.placeholder') }}"
+                    type="search"
+                    value="{{ request('query') }}"
                 />
 
                 <button class="search-header__icon search-header__icon--normal">
@@ -47,7 +48,7 @@
             @include('home._search_page_tabs', compact('allSearch'))
 
             @if ($searchMode === 'forum_post')
-                @include('objects.search._forum_options')
+                @include('objects.search._forum_options', compact('fields'))
             @endif
 
             @if ($allSearch->hasQuery())

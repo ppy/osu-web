@@ -191,6 +191,12 @@ if (process.env.SENTRY_RELEASE === '1') {
   );
 }
 
+const notifierConfigPath = resolvePath('.webpack-build-notifier-config.js');
+if (fs.existsSync(notifierConfigPath)) {
+  const WebpackBuildNotifierPlugin = require('webpack-build-notifier');
+  plugins.push(new WebpackBuildNotifierPlugin(require(notifierConfigPath)));
+}
+
 // #endregion
 
 // #region Loader rules
@@ -258,7 +264,6 @@ const resolve = {
   alias: {
     '@fonts': path.resolve(__dirname, 'resources/fonts'),
     '@images': path.resolve(__dirname, 'public/images'),
-    layzr: resolvePath('node_modules/layzr.js/dist/layzr.module.js'),
     'ziggy-route': resolvePath('vendor/tightenco/ziggy/dist/index.es.js'),
   },
   extensions: ['*', '.js', '.coffee', '.ts', '.tsx'],

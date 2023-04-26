@@ -11,9 +11,11 @@ class GenreTransformer extends TransformerAbstract
 {
     public function transform(Genre $genre)
     {
+        $id = $genre->getKey();
+
         return [
-            'id' => $genre->genre_id === 0 ? null : $genre->genre_id,
-            'name' => osu_trans('beatmaps.genre.'.str_replace(' ', '-', strtolower($genre->name))),
+            'id' => $id === 0 ? null : $id,
+            'name' => osu_trans('beatmaps.genre.'.strtr(strtolower($genre->name), ' ', '-')),
         ];
     }
 }

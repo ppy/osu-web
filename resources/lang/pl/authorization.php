@@ -50,13 +50,11 @@ return [
             'resolved' => 'Nie możesz edytować posta z rozwiązanej dyskusji.',
             'system_generated' => 'Nie możesz edytować automatycznie wygenerowanego posta.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Tworzenie dyskusji dla tej beatmapy zostało zablokowane.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'Tworzenie dyskusji dla tej beatmapy zostało zablokowane.',
+
         'metadata' => [
             'nominated' => 'Nie możesz zmienić metadanych nominowanej mapy. Skontaktuj się z członkiem BN lub NAT, jeśli uważasz, że są one ustawione nieprawidłowo.',
         ],

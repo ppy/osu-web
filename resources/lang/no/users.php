@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'blokkerte brukere (:count)',
         'hide_profile' => 'Skjul profil',
         'hide_comment' => 'skjul',
+        'forum_post_text' => '',
         'not_blocked' => 'Den brukeren er ikke blokkert.',
         'show_profile' => 'Vis profil',
         'show_comment' => 'vis',
@@ -158,6 +159,7 @@ return [
     'restricted_banner' => [
         'title' => 'Kontoen din har blitt begrenset!',
         'message' => 'Mens du er begrenset vil du ikke være i stand til å samhandle med andre spillere, og poengresultatene dine vil kun være synlige for deg selv. Dette er vanligvis resultatet av en automatisert prosess og vil normalt bli hevet innen 24 timer. Hvis du ønsker å appellere begrensningen, vennligst <a href="mailto:accounts@ppy.sh">kontakt støtteteamet</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age år gammel',

@@ -23,10 +23,9 @@
 
   &__advanced {
     display: none;
-    position: relative;
 
     .@{_top}--expanded & {
-      display: block;
+      display: contents;
     }
   }
 
@@ -43,12 +42,13 @@
   }
 
   &__expand-link {
+    grid-column: 1 / span 2;
     display: block;
+    width: 100%;
+    margin-top: 10px;
     text-align: center;
     font-size: @font-size--small;
-    margin-top: 10px;
-    color: #fff;
-    position: relative;
+    color: hsl(var(--hsl-c1));
 
     &:hover,
     &:active,
@@ -58,6 +58,19 @@
 
     .@{_top}--expanded & {
       display: none;
+    }
+  }
+
+  &__filter-grid {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: baseline;
+
+    @media @desktop {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0 10px;
     }
   }
 

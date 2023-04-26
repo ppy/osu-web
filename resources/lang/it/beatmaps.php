@@ -141,7 +141,7 @@ return [
             'approved' => 'Questa beatmap è stata approvata il :date!',
             'graveyard' => "Questa beatmap non è stata aggiornata dal :date ed è stata molto probabilmente abbandonata...",
             'loved' => 'Questa beatmap è stata aggiunta a quelle amate il :date!',
-            'ranked' => 'Questa beatmap è stata classificata il :date!',
+            'ranked' => 'Questa beatmap è stata classificata il giorno :date!',
             'wip' => 'Nota: Questa beatmap è contrassegnata come work-in-progress dal creatore.',
         ],
 
@@ -199,6 +199,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'È stimato che questa mappa verrà classificata in data :date se non vengono trovati problemi. È in posizione #:position nella :queue.',
+            'on' => 'il giorno :date',
             'queue' => 'coda per la classifica',
             'soon' => 'molto vicina',
         ],

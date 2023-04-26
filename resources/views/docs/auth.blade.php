@@ -243,6 +243,94 @@ Restricted users can grant authorization like anyone else. If your client should
     'showRequestTitle' => false,
 ])
 
+<h3>Refresh access token</h3>
+
+@php
+    $description = <<<EOT
+        Access token expires after some time as per `expires_in` field. Refresh the token to get new access token without going through authorization process again.
+
+        Use `refresh_token` received during previous access token request:
+
+        ---
+
+        ### Response Format
+
+        Successful requests will be issued an access token and a new refresh token:
+
+        Name          | Type   | Description
+        --------------|--------|-----------------------------
+        token_type    | string | The type of token, this should always be `Bearer`.
+        expires_in    | number | The number of seconds the token will be valid for.
+        access_token  | string | The access token.
+        refresh_token | string | The refresh token.
+        EOT;
+    $uri = route('oauth.passport.token', null, false);
+    $endpoint = new OutputEndpointData([
+        'bodyParameters' => [
+            'client_id' => [
+                'description' => 'The Client ID you received when you [registered]('.route('account.edit').'#new-oauth-application).',
+                'name' => 'client_id',
+                'required' => true,
+                'type' => 'number',
+                'example' => 1,
+            ],
+            'client_secret' => [
+                'description' => 'The client secret of your application.',
+                'name' => 'client_secret',
+                'required' => true,
+                'type' => 'string',
+                'example' => 'clientsecret',
+            ],
+            'grant_type' => [
+                'description' => 'This must always be `refresh_token`.',
+                'name' => 'grant_type',
+                'required' => true,
+                'type' => 'string',
+                'example' => 'refresh_token',
+            ],
+            'refresh_token' => [
+                'description' => 'Value of refresh token received from previous access token request.',
+                'name' => 'refresh_token',
+                'required' => true,
+                'type' => 'string',
+                'example' => 'longstring',
+            ],
+            'scope' => [
+                'description' => "A space-delimited string of [scopes](#scopes). Specifying fewer scopes than existing access token is allowed but subsequent refresh tokens can't re-add removed scopes. If this isn't specified, existing access token scopes will be used.",
+                'name' => 'scope',
+                'required' => false,
+                'example' => 'public identify',
+            ],
+        ],
+        'boundUri' => $uri,
+        'cleanQueryParameters' => [],
+        'fileParameters' => [],
+        'headers' => $defaultHeaders,
+        'metadata' => ['authenticated' => false, 'description' => $description],
+        'httpMethods' => ['POST'],
+        'queryParameters' => [],
+        'responses' => [
+            [
+                'content' => [
+                    'access_token' => 'verylongstring',
+                    'expires_in' => 86400,
+                    'refresh_token' => 'anotherlongstring',
+                    'token_type' => 'Bearer',
+                ],
+                'status' => 200,
+            ],
+        ],
+        'showresponse' => true,
+        'uri' => $uri,
+        'urlParameters' => [],
+    ]);
+@endphp
+@include('docs.endpoint', [
+    'endpoint' => $endpoint,
+    'showEndpointTitle' => false,
+    'showRequestTitle' => false,
+])
+
 <h2>Client Credentials Grant</h2>
 
 @php

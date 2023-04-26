@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'utenti bloccati (:count)',
         'hide_profile' => 'Nascondi profilo',
         'hide_comment' => 'nascondi',
+        'forum_post_text' => '',
         'not_blocked' => 'Questo utente non è bloccato.',
         'show_profile' => 'Visualizza profilo',
         'show_comment' => 'mostra',
@@ -157,7 +158,8 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Il tuo account è stato limitato!',
-        'message' => 'Quando sei limitato, non sarai in grado di interagire con gli altri giocatori e i tuoi punteggi saranno visibili solo a te. Solitamente questo è il risultato di un processo automatico e verrà risolto solitamente entro 24 ore. Se desideri fare appello contro la tua restrizione, <a href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
+        'message' => 'Quando sei limitato, non sarai in grado di interagire con gli altri giocatori e i tuoi punteggi saranno visibili solo a te. Di solito questo è il risultato di un processo automatico e dovrebbe risolversi entro 24 ore. :link',
+        'message_link' => 'Controlla questa pagina per saperne di più.',
     ],
     'show' => [
         'age' => ':age anni',
@@ -468,7 +470,7 @@ return [
     ],
     'store' => [
         'from_client' => 'registrati attraverso il gioco!',
-        'from_web' => 'per favore registrati tramite web',
+        'from_web' => 'si prega di completare la registrazione utilizzando il sito osu!',
         'saved' => 'Utente creato',
     ],
     'verify' => [

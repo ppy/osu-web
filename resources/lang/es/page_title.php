@@ -100,6 +100,9 @@ return [
         'scores_controller' => [
             '_' => 'rendimiento',
         ],
+        'seasons_controller' => [
+            '_' => 'clasificaciones',
+        ],
         'tournaments_controller' => [
             '_' => 'torneos',
         ],

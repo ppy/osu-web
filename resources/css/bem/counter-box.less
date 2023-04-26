@@ -5,7 +5,7 @@
   @top: counter-box;
 
   @color-deleted: black;
-  @color-mapper-notes: @beatmap-discussion--color-mapper-note;
+  @color-mapper-notes: var(--beatmapset-discussion-colour--mapper_note);
   @color-mine: @yellow-darker;
   @color-pending: @pink-darker;
   @color-praises: @blue-darker;
@@ -49,6 +49,14 @@
 
   &--info {
     padding: 10px 0;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    flex-direction: column;
+  }
+
+  &--ranking {
+    padding: 0;
     background-color: transparent;
     border: none;
     box-shadow: none;

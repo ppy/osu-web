@@ -32,6 +32,7 @@ return [
     ],
 
     'forum_topics' => [
+        'created' => 'تم الإنشاء',
         'feature_votes' => 'تفضيل النجمة',
         'new' => 'الرد الأخير',
     ],

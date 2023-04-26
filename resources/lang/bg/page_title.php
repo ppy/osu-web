@@ -100,6 +100,9 @@ return [
         'scores_controller' => [
             '_' => 'представяне',
         ],
+        'seasons_controller' => [
+            '_' => 'класации',
+        ],
         'tournaments_controller' => [
             '_' => 'турнири',
         ],

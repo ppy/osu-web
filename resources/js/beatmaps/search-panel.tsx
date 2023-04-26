@@ -10,6 +10,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { classWithModifiers } from 'utils/css';
+import { htmlElementOrNull } from 'utils/html';
 import { trans } from 'utils/lang';
 import AvailableFilters, { FilterOption } from './available-filters';
 import { SearchFilter } from './search-filter';
@@ -21,17 +22,18 @@ interface Props {
 }
 
 interface FilterProps {
+  grid?: boolean;
   multiselect?: boolean;
   name: FilterKey;
   options: FilterOption[];
-  showTitle?: boolean;
 }
 
-const Filter = observer(({ multiselect = false, name, options, showTitle = true }: FilterProps) => {
-  const title = showTitle ? trans(`beatmaps.listing.search.filters.${name}`) : undefined;
+const Filter = observer(({ multiselect = false, name, options, grid = false }: FilterProps) => {
+  const title = grid ? trans(`beatmaps.listing.search.filters.${name}`) : undefined;
 
   return (
     <SearchFilter
+      modifiers={{ grid }}
       multiselect={multiselect}
       name={name}
       options={options}
@@ -101,6 +103,12 @@ export class SearchPanel extends React.Component<Props> {
     this.controller.filters.update('query', this.query);
   };
 
+  private readonly onKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      htmlElementOrNull(event.target)?.blur();
+    }
+  };
+
   private renderBreadcrumbs() {
     if (!this.controller.advancedSearch) return null;
 
@@ -152,7 +160,9 @@ export class SearchPanel extends React.Component<Props> {
             className='beatmapsets-search__input js-beatmapsets-search-input'
             name='search'
             onChange={this.onChange}
+            onKeyUp={this.onKeyUp}
             placeholder={trans('beatmaps.listing.search.prompt')}
+            type='search'
             value={this.query}
           />
           <div className='beatmapsets-search__icon'>
@@ -160,8 +170,8 @@ export class SearchPanel extends React.Component<Props> {
           </div>
         </div>
         <div className='beatmapsets-search__filters'>
-          <Filter name='status' options={this.props.availableFilters.statuses} showTitle={false} />
-          <Filter name='mode' options={this.props.availableFilters.modes} showTitle={false} />
+          <Filter name='status' options={this.props.availableFilters.statuses} />
+          <Filter name='mode' options={this.props.availableFilters.modes} />
         </div>
       </div>
     );
@@ -182,27 +192,31 @@ export class SearchPanel extends React.Component<Props> {
             className='beatmapsets-search__input js-beatmapsets-search-input'
             name='search'
             onChange={this.onChange}
+            onKeyUp={this.onKeyUp}
             placeholder={trans('beatmaps.listing.search.prompt')}
+            type='search'
             value={this.query}
           />
           <div className='beatmapsets-search__icon'>
             <i className='fas fa-search' />
           </div>
         </div>
-        <Filter multiselect name='general' options={filters.general} />
-        <Filter name='mode' options={filters.modes} />
-        <Filter name='status' options={filters.statuses} />
-        <Filter name='nsfw' options={filters.nsfw} />
-        <a className='beatmapsets-search__expand-link' href='#' onClick={this.expand}>
-          <div>{trans('beatmaps.listing.search.options')}</div>
-          <div><i className='fas fa-angle-down' /></div>
-        </a>
-        <div className='beatmapsets-search__advanced'>
-          <Filter name='genre' options={filters.genres} />
-          <Filter name='language' options={filters.languages} />
-          <Filter multiselect name='extra' options={filters.extras} />
-          <Filter multiselect name='rank' options={filters.ranks} />
-          <Filter name='played' options={filters.played} />
+        <div className='beatmapsets-search__filter-grid'>
+          <Filter grid multiselect name='general' options={filters.general} />
+          <Filter grid name='mode' options={filters.modes} />
+          <Filter grid name='status' options={filters.statuses} />
+          <Filter grid name='nsfw' options={filters.nsfw} />
+          <a className='beatmapsets-search__expand-link' href='#' onClick={this.expand}>
+            <div>{trans('beatmaps.listing.search.options')}</div>
+            <div><i className='fas fa-angle-down' /></div>
+          </a>
+          <div className='beatmapsets-search__advanced'>
+            <Filter grid name='genre' options={filters.genres} />
+            <Filter grid name='language' options={filters.languages} />
+            <Filter grid multiselect name='extra' options={filters.extras} />
+            <Filter grid multiselect name='rank' options={filters.ranks} />
+            <Filter grid name='played' options={filters.played} />
+          </div>
         </div>
       </div>
     );

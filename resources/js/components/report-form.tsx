@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { SelectOptions } from 'components/select-options';
+import SelectOptions from 'components/select-options';
 import { route } from 'laroute';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
@@ -81,6 +81,10 @@ export default class ReportForm extends React.Component<Props> {
   @observable private disabled = false;
   @observable private selectedReason = this.options[0];
   private timeout: number | undefined;
+
+  private get canSubmit() {
+    return !this.disabled && this.comments.length > 0;
+  }
 
   private get groupKey() {
     return reportableTypeToGroupKey[this.props.reportableType];
@@ -208,7 +212,7 @@ export default class ReportForm extends React.Component<Props> {
         <div className={`${bn}__row ${bn}__row--buttons`}>
           <button
             className={`${bn}__button ${bn}__button--report`}
-            disabled={this.disabled || this.comments.length === 0}
+            disabled={!this.canSubmit}
             onClick={this.handleSubmit}
             type='button'
           >

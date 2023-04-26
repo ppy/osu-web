@@ -20,7 +20,7 @@ return [
 
     'index' => [
         'page_title' => [
-            '_' => 'Changelog Eintrag',
+            '_' => 'Changelog-Auflistung',
             '_from' => 'Änderungen seit :from',
             '_from_to' => 'Änderungen zwischen :from und :to',
             '_stream' => 'Änderungen in :stream',
@@ -32,9 +32,9 @@ return [
     ],
 
     'support' => [
-        'heading' => 'Dir gefällt, was du siehst?',
+        'heading' => 'Gefällt dir dieses Update?',
         'text_1' => 'Unterstütze die weitere Entwicklung von osu! und :link!',
-        'text_1_link' => 'werde noch heute Supporter',
-        'text_2' => 'Damit treibst du nicht nur die Entwicklung schneller voran, sondern erhältst auch einige coole Features und besondere Anpassungsmöglichkeiten!',
+        'text_1_link' => 'werde noch heute osu!supporter',
+        'text_2' => 'Damit treibst du nicht nur die Entwicklung schneller voran, sondern erhältst auch einige zusätzliche Features und Anpassungsmöglichkeiten!',
     ],
 ];

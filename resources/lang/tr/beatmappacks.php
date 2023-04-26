@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => 'Benzer bir tema etrafında toplanmış, önceden paketlenmiş beatmap paketleri.',
+        'empty' => 'Yakında geliyor!',
         'nav_title' => 'katalog',
         'title' => 'Beatmap Paketleri',
 
@@ -27,15 +28,17 @@ return [
         ],
         'no_diff_reduction' => [
             '_' => ':link bu paketi tamamlamak için kullanılamaz.',
-            'link' => 'Zorluk düşürme modları',
+            'link' => 'Kolaylaştırıcı modifikasyonlar',
         ],
     ],
 
     'mode' => [
         'artist' => 'Sanatçı/Albüm',
         'chart' => 'Öne Çıkanlar',
+        'featured' => 'Öne çıkan sanatçılar',
         'standard' => 'Standart',
         'theme' => 'Tema',
+        'tournament' => '',
     ],
 
     'require_login' => [

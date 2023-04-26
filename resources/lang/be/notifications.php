@@ -13,6 +13,16 @@ return [
     'see_channel' => 'схадзіць у чат',
     'verifying' => 'Калі ласка, пацвердзіце сеанс для прагляду апавяшчэнняў',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => '',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
     'filters' => [
         '_' => 'усе',
         'user' => 'профіль',
@@ -210,7 +220,7 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => '',
+                'announce' => 'Новая аб\'ява ў ":name"',
             ],
 
             'channel' => [
@@ -244,7 +254,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username стварыў новыя бітмапы',
-                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive' => ':username абнавіў карты',
             ],
         ],
     ],

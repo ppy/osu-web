@@ -1,13 +1,14 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import Bar from 'components/bar';
 import BbcodeEditor, { OnChangeProps } from 'components/bbcode-editor';
 import Modal from 'components/modal';
-import { UserLink } from 'components/user-link';
+import UserLink from 'components/user-link';
 import { BeatmapsetJsonForShow } from 'interfaces/beatmapset-extended-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import { round, sum } from 'lodash';
+import { sum } from 'lodash';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
@@ -24,6 +25,7 @@ interface Props {
 
 @observer
 export default class Info extends React.Component<Props> {
+  private descriptionEditorRef = React.createRef<BbcodeEditor>();
   @observable private isEditingDescription = false;
   @observable private isEditingMetadata = false;
   @observable private saveDescriptionXhr: JQuery.jqXHR<BeatmapsetJsonForShow> | null = null;
@@ -84,23 +86,18 @@ export default class Info extends React.Component<Props> {
   render() {
     const tags = this.controller.beatmapset.tags
       .split(' ')
-      .filter(present)
-      .slice(0, 21);
-
-    const tagsOverload = tags.length === 21;
-
-    if (tagsOverload) {
-      tags.pop();
-    }
+      .filter(present);
 
     return (
-      <div className='beatmapset-info'>
+      <div className='beatmapset-info u-fancy-scrollbar'>
         {this.isEditingDescription &&
           <Modal onClose={this.handleCloseDescriptionEditor}>
             <div className='osu-page'>
               <BbcodeEditor
                 key={this.controller.beatmapset.id /* ensure component is reset if beatmapset changes */}
+                ref={this.descriptionEditorRef}
                 disabled={this.saveDescriptionXhr != null}
+                ignoreEsc
                 modifiers='beatmapset-description-editor'
                 onChange={this.handleEditorChange}
                 rawValue={this.controller.beatmapset.description.bbcode ?? ''}
@@ -115,16 +112,16 @@ export default class Info extends React.Component<Props> {
           </Modal>
         }
 
-        <div className='beatmapset-info__box beatmapset-info__box--description'>
+        <div className='beatmapset-info__box'>
           {this.withEditDescription && this.renderEditDescriptionButton()}
 
-          <h3 className='beatmapset-info__header'>
-            {trans('beatmapsets.show.info.description')}
-          </h3>
+          <div className='beatmapset-info__row beatmapset-info__row--value-overflow'>
+            <h3 className='beatmapset-info__header'>
+              {trans('beatmapsets.show.info.description')}
+            </h3>
 
-          <div className='beatmapset-info__description-container u-fancy-scrollbar'>
             <div
-              className='beatmapset-info__description'
+              className='beatmapset-info__value-overflow'
               dangerouslySetInnerHTML={{
                 __html: this.controller.beatmapset.description.description ?? '',
               }}
@@ -132,11 +129,11 @@ export default class Info extends React.Component<Props> {
           </div>
         </div>
 
-        <div className='beatmapset-info__box beatmapset-info__box--meta'>
+        <div className='beatmapset-info__box'>
           {this.withEditMetadata && this.renderEditMetadataButton()}
 
           {this.nominators.length > 0 &&
-            <>
+            <div className='beatmapset-info__row'>
               <h3 className='beatmapset-info__header'>
                 {trans('beatmapsets.show.info.nominators')}
               </h3>
@@ -151,11 +148,11 @@ export default class Info extends React.Component<Props> {
                   </React.Fragment>
                 ))}
               </div>
-            </>
+            </div>
           }
 
           {present(this.controller.beatmapset.source) &&
-            <>
+            <div className='beatmapset-info__row'>
               <h3 className='beatmapset-info__header'>
                 {trans('beatmapsets.show.info.source')}
               </h3>
@@ -165,10 +162,10 @@ export default class Info extends React.Component<Props> {
               >
                 {this.controller.beatmapset.source}
               </a>
-            </>
+            </div>
           }
 
-          <div className='beatmapset-info__half-box'>
+          <div className='beatmapset-info__row beatmapset-info__row--half'>
             <div className='beatmapset-info__half-entry'>
               <h3 className='beatmapset-info__header'>
                 {trans('beatmapsets.show.info.genre')}
@@ -195,11 +192,11 @@ export default class Info extends React.Component<Props> {
           </div>
 
           {tags.length > 0 &&
-            <>
+            <div className='beatmapset-info__row beatmapset-info__row--value-overflow'>
               <h3 className='beatmapset-info__header'>
                 {trans('beatmapsets.show.info.tags')}
               </h3>
-              <div>
+              <div className='beatmapset-info__value-overflow'>
                 {tags.map((tag, i) => (
                   <React.Fragment key={`${tag}-${i}`}>
                     <a
@@ -211,9 +208,8 @@ export default class Info extends React.Component<Props> {
                     {' '}
                   </React.Fragment>
                 ))}
-                {tagsOverload && '...'}
               </div>
-            </>
+            </div>
           }
         </div>
 
@@ -226,7 +222,11 @@ export default class Info extends React.Component<Props> {
 
   @action
   private readonly handleCloseDescriptionEditor = () => {
-    this.isEditingDescription = false;
+    if (this.descriptionEditorRef.current == null) {
+      this.isEditingDescription = false;
+    } else {
+      this.descriptionEditorRef.current.cancel();
+    }
   };
 
   @action
@@ -325,33 +325,19 @@ export default class Info extends React.Component<Props> {
       );
     }
 
-    const percentage = round((this.controller.currentBeatmap.passcount / this.controller.currentBeatmap.playcount) * 100, 1);
-
     return (
       <div className='beatmap-success-rate'>
         <h3 className='beatmap-success-rate__header'>
           {trans('beatmapsets.show.info.success-rate')}
         </h3>
 
-        <div className='bar bar--beatmap-success-rate'>
-          <div
-            className='bar__fill'
-            style={{
-              width: `${percentage}%`,
-            }}
-          />
-        </div>
-
-        <div
-          className='beatmap-success-rate__percentage'
-          data-tooltip-position='bottom center'
-          style={{
-            marginLeft: `${percentage}%`,
-          }}
+        <Bar
+          current={this.controller.currentBeatmap.passcount}
+          modifiers='beatmap-success-rate'
+          textPrecision={1}
           title={`${formatNumber(this.controller.currentBeatmap.passcount)} / ${formatNumber(this.controller.currentBeatmap.playcount)}`}
-        >
-          {`${percentage}%`}
-        </div>
+          total={this.controller.currentBeatmap.playcount}
+        />
 
         <h3 className='beatmap-success-rate__header'>
           {trans('beatmapsets.show.info.points-of-failure')}

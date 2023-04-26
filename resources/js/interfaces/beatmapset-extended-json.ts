@@ -18,6 +18,7 @@ interface BeatmapsetExtendedJsonAdditionalAttributes {
   availability: Availability;
   bpm: number;
   can_be_hyped: boolean;
+  deleted_at: string | null;
   discussion_locked: boolean;
   is_scoreable: boolean;
   last_updated: string;

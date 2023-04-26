@@ -60,7 +60,7 @@ return [
             ],
 
             'mod_filtering' => [
-                'title' => '按 Mod 筛选',
+                'title' => '按模组筛选',
                 'description' => '只和玩 HDHR 的玩家打？没问题！',
             ],
 

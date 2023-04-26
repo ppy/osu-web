@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'engellenen kullanıcılar (:count)',
         'hide_profile' => 'profili gizle',
         'hide_comment' => 'gizle',
+        'forum_post_text' => '',
         'not_blocked' => 'Bu kullanıcı engellenmemiş.',
         'show_profile' => 'profili göster',
         'show_comment' => 'göster',
@@ -158,6 +159,7 @@ return [
     'restricted_banner' => [
         'title' => 'Hesabınız kısıtlandı!',
         'message' => 'Kısıtlanmışken, diğer oyuncularla etkileşime geçemeyecek ve skorlarınızı sadece siz görebileceksiniz. Bu genellikle otomatik olan bir işlemin sonucudur ve 24 saat içerisinde kalkabilir. Kısıtlamanızın açılması için başvurmak istiyorsanız, lütfen <a href="mailto:accounts@ppy.sh">destek hattıyla</a> iletişime geçin.',
+        'message_link' => 'Daha fazla bilgi için bu sayfaya göz atın.',
     ],
     'show' => [
         'age' => ':age yaşında',
@@ -468,7 +470,7 @@ return [
     ],
     'store' => [
         'from_client' => 'lütfen bunun yerine oyun istemcisi ile kaydolun!',
-        'from_web' => 'lütfen web üzerinden kaydolun',
+        'from_web' => 'lütfen kayıt işleminizi osu! web sitesinde tamamlayın',
         'saved' => 'Kullanıcı oluşturuldu',
     ],
     'verify' => [
