@@ -8,7 +8,9 @@ import * as React from 'react';
 import ReactMarkdown from 'react-markdown';
 import autolink from 'remark-plugins/autolink';
 import disableConstructs from 'remark-plugins/disable-constructs';
+import wikiLink, { RemarkWikiLinkPlugin } from 'remark-wiki-link';
 import { classWithModifiers } from 'utils/css';
+import { wikiUrl } from 'utils/url';
 
 interface Props {
   message: Message;
@@ -50,6 +52,7 @@ export default class MessageItem extends React.Component<Props> {
 
   private renderMarkdown() {
     const remarkType = this.props.message.type === 'markdown' ? 'chat' : 'chatPlain';
+    const wikiLinkPlugin: RemarkWikiLinkPlugin = [wikiLink, { hrefTemplate: wikiUrl }];
 
     return (
       <ReactMarkdown
@@ -58,7 +61,7 @@ export default class MessageItem extends React.Component<Props> {
           'chat-plain': remarkType === 'chatPlain',
         })}
         components={components}
-        remarkPlugins={[autolink, [disableConstructs, { type: remarkType }]]}
+        remarkPlugins={[autolink, [disableConstructs, { type: remarkType }], wikiLinkPlugin]}
         unwrapDisallowed
       >
         {this.props.message.content}
