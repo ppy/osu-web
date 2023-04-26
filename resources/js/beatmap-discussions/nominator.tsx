@@ -17,7 +17,7 @@ import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 
 interface Props {
-  beatmapset: BeatmapsetExtendedJson;
+  beatmapset: BeatmapsetWithDiscussionsJson;
   currentHype: number;
   unresolvedIssues: number;
   users: Partial<Record<number, UserJson>>;
@@ -155,10 +155,10 @@ export class Nominator extends React.Component<Props, State> {
         method: 'PUT',
       };
 
-      this.xhr = $.ajax(url, params)
-        .done((response) => {
-          $.publish('beatmapsetDiscussions:update', { beatmapset: response });
-        })
+      this.xhr = $.ajax(url, params);
+      this.xhr.done((response) => {
+        $.publish('beatmapsetDiscussions:update', { beatmapset: response });
+      })
         .fail(onError)
         .always(this.hideNominationModal);
     });
