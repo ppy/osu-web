@@ -30,11 +30,7 @@ function tokenize(effects: Effects, ok: State, nok: State) {
   }
 
   function consumeUrl(code: Code): State | void {
-    if (isEol(code)) {
-      effects.exit('legacyLink');
-
-      return nok(code);
-    }
+    if (isEol(code)) return nok(code);
 
     if (!foundUrl) {
       if (foundUrlColon) {
@@ -72,13 +68,7 @@ function tokenize(effects: Effects, ok: State, nok: State) {
   }
 
   function consumeTitle(code: Code): State | void {
-    if (isEol(code)) {
-      effects.exit('chunkString');
-      effects.exit('legacyLinkTitle');
-      effects.exit('legacyLink');
-
-      return nok(code);
-    }
+    if (isEol(code)) return nok(code);
 
     if (code === codes.backslash) {
       effects.consume(code);
