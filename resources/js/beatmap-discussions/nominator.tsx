@@ -97,7 +97,7 @@ export class Nominator extends React.Component<Props, State> {
       return {};
     }
 
-    return this.props.beatmapset.current_user_attributes?.nomination_modes ?? {};
+    return this.props.beatmapset.current_user_attributes.nomination_modes ?? {};
   }
 
   constructor(props: Props) {
@@ -105,7 +105,7 @@ export class Nominator extends React.Component<Props, State> {
 
     this.state = {
       loading: false,
-      selectedModes: this.hybridMode ? [] : [keys(this.props.beatmapset.nominations?.required)[0] as GameMode],
+      selectedModes: this.hybridMode ? [] : [keys(this.props.beatmapset.nominations.required)[0] as GameMode],
       visible: false,
     };
   }
