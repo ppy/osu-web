@@ -30,7 +30,7 @@ trait Validatable
         return $this->_validationErrors;
     }
 
-    public function validateFieldLength(int $limit, string $field, ?string $checkField = null): void
+    protected function validateFieldLength(int $limit, string $field, ?string $checkField = null): void
     {
         $checkField ??= $field;
         $val = $this->$checkField;

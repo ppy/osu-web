@@ -216,24 +216,6 @@ abstract class Model extends BaseModel
         return ($includeDbPrefix ? $this->dbName().'.' : '').$this->getTable();
     }
 
-    public function validateDbFieldLength(int $limit, string $dbField, ?string $checkField = null): void
-    {
-        if ($this->isDirty($dbField)) {
-            $this->validateFieldLength($limit, $dbField, $checkField);
-        }
-    }
-
-    public function validateDbFieldLengths(): void
-    {
-        foreach (static::MAX_FIELD_LENGTHS as $field => $limit) {
-            $this->validateDbFieldLength($limit, $field, $field);
-        }
-    }
-
-    public function validationErrorsTranslationPrefix(): string {
-        return '';
-    }
-
     /**
      * Fast Time Attribute Getter (kind of)
      *
@@ -289,6 +271,24 @@ abstract class Model extends BaseModel
     protected function setKeysForSelectQuery($query)
     {
         return $this->setKeysForSaveQuery($query);
+    }
+
+    protected function validateDbFieldLength(int $limit, string $dbField, ?string $checkField = null): void
+    {
+        if ($this->isDirty($dbField)) {
+            $this->validateFieldLength($limit, $dbField, $checkField);
+        }
+    }
+
+    protected function validateDbFieldLengths(): void
+    {
+        foreach (static::MAX_FIELD_LENGTHS as $field => $limit) {
+            $this->validateDbFieldLength($limit, $field, $field);
+        }
+    }
+
+    protected function validationErrorsTranslationPrefix(): string {
+        return '';
     }
 
     private function enlistCallbacks($model, $connection)
