@@ -287,7 +287,7 @@ export class Nominator extends React.Component<Props, State> {
     return trans('beatmapsets.nominate.dialog.confirmation');
   }
 
-  private requiresFullNomination = (mode: GameMode) => {
+  private requiresFullNomination(mode: GameMode) {
     let req: number;
     let curr: number;
 
@@ -300,7 +300,7 @@ export class Nominator extends React.Component<Props, State> {
     }
 
     return (curr === req - 1) && !this.hasFullNomination(mode);
-  };
+  }
 
   private showNominationModal = () => this.setState({ visible: true });
 
