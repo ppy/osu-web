@@ -16,8 +16,6 @@ class Client extends PassportClient
 {
     use Validatable;
 
-    const MAX_FIELD_LENGTHS = [];
-
     public static function forUser(User $user)
     {
         // Get clients matching non-revoked tokens. Expired tokens should be included.

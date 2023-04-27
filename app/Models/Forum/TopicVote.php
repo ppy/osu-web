@@ -13,8 +13,6 @@ class TopicVote
 {
     use Validatable;
 
-    const MAX_FIELD_LENGTHS = [];
-
     private array $params = [];
     private $topic;
     private $validated = false;
