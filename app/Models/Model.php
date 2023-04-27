@@ -193,7 +193,8 @@ abstract class Model extends BaseModel implements ValidatableInterface
             $result = $this->save($options);
 
             if ($result === false) {
-                $message = $this->validationErrors()?->toSentence() ?? 'failed saving model';
+                $errors = $this->validationErrors();
+                $message = $errors->isEmpty() ? 'failed saving model' : $errors->toSentence();
 
                 throw new ModelNotSavedException($message);
             }
