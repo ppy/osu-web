@@ -41,6 +41,8 @@ function tokenize(effects: Effects, ok: State, nok: State) {
         if (urlSlashCount < 2) {
           if (code === codes.slash) {
             urlSlashCount++;
+          } else {
+            return nok(code);
           }
         } else {
           foundUrl = true;
