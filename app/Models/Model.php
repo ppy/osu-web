@@ -10,7 +10,6 @@ use App\Libraries\MorphMap;
 use App\Libraries\Transactions\AfterCommit;
 use App\Libraries\Transactions\AfterRollback;
 use App\Libraries\TransactionStateManager;
-use App\Libraries\ValidatableInterface;
 use App\Scopes\MacroableModelScope;
 use App\Traits\Validatable;
 use Carbon\Carbon;
@@ -19,9 +18,11 @@ use Illuminate\Database\ClassMorphViolationException;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model as BaseModel;
 
-abstract class Model extends BaseModel implements ValidatableInterface
+abstract class Model extends BaseModel
 {
     use HasFactory, Validatable;
+
+    const MAX_FIELD_LENGTHS = [];
 
     protected $connection = 'mysql';
     protected $guarded = [];
