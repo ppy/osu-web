@@ -12,7 +12,7 @@ import BeatmapsetJson from 'interfaces/beatmapset-json';
 import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import { assign, padStart, some, sortBy } from 'lodash';
+import { assign, padStart, sortBy } from 'lodash';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import { currentUrl } from 'utils/turbolinks';
@@ -147,7 +147,7 @@ function isNearbyDiscussion<T extends BeatmapsetDiscussionJson>(discussion: T): 
 }
 
 export function isUserFullNominator(user?: UserJson | null, gameMode?: GameMode) {
-  return user != null && some(user.groups, (group) => {
+  return user != null && user.groups != null && user.groups.some((group) => {
     if (gameMode != null) {
       return (group.identifier === 'bng' || group.identifier === 'nat') && group.playmodes?.includes(gameMode);
     } else {

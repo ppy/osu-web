@@ -8,7 +8,7 @@ import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussion
 import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import { forEachRight, keys, map, some, uniq } from 'lodash';
+import { forEachRight, keys, map, uniq } from 'lodash';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -78,7 +78,7 @@ export class Nominator extends React.Component<Props, State> {
       ? uniq(this.props.beatmapset.beatmaps?.map((bm) => bm.mode))
       : Object.keys(this.props.beatmapset.nominations.required) as GameMode[];
 
-    return some(nominationModes, (mode) => this.userCanNominateMode(mode));
+    return nominationModes.some((mode) => this.userCanNominateMode(mode));
   }
 
   private get userHasNominatePermission() {
@@ -127,7 +127,7 @@ export class Nominator extends React.Component<Props, State> {
   }
 
   private hasFullNomination(mode: GameMode) {
-    return some(this.nominationEvents, (event) => {
+    return this.nominationEvents.some((event) => {
       const user = event.user_id != null ? this.props.users[event.user_id] : null;
 
       return event.type === 'nominate' && event.comment != null
