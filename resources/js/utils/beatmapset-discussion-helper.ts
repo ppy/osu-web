@@ -11,12 +11,13 @@ import BeatmapsetDiscussionPostJson from 'interfaces/beatmapset-discussion-post-
 import BeatmapsetJson from 'interfaces/beatmapset-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import { assign, padStart, sortBy } from 'lodash';
+import { assign, padStart, some, sortBy } from 'lodash';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import { currentUrl } from 'utils/turbolinks';
 import { linkHtml, openBeatmapEditor } from 'utils/url';
 import { getInt } from './math';
+import GameMode from 'interfaces/game-mode';
 
 interface BadgeGroupParams {
   beatmapset: BeatmapsetJson;
@@ -371,6 +372,16 @@ export function stateFromDiscussion(discussion: BeatmapsetDiscussionJson) {
     discussionId: discussion.id,
     mode: discussionMode(discussion),
   };
+}
+
+export function userIsFullNominator(user?: UserJson | null, gameMode?: GameMode) {
+  return user != null && some(user.groups, (group) => {
+    if (gameMode != null) {
+      return (group.identifier === 'bng' || group.identifier === 'nat') && group.playmodes?.includes(gameMode);
+    } else {
+      return (group.identifier === 'bng' || group.identifier === 'nat');
+    }
+  });
 }
 
 export function validMessageLength(message?: string | null, isTimeline = false) {

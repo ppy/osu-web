@@ -13,6 +13,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
+import { userIsFullNominator } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 
@@ -130,8 +131,8 @@ export class Nominator extends React.Component<Props, State> {
       const user = event.user_id != null ? this.props.users[event.user_id] : null;
 
       return event.type === 'nominate' && event.comment != null
-        ? event.comment.modes.includes(mode) && this.userIsFullNominator(user, mode)
-        : this.userIsFullNominator(user);
+        ? event.comment.modes.includes(mode) && userIsFullNominator(user, mode)
+        : userIsFullNominator(user);
     });
   }
 
@@ -317,15 +318,5 @@ export class Nominator extends React.Component<Props, State> {
 
     return userNominatable[mode] === 'full'
       || (userNominatable[mode] === 'limited' && !this.requiresFullNomination(mode));
-  }
-
-  private userIsFullNominator(user?: UserJson | null, gameMode?: GameMode) {
-    return user != null && some(user.groups, (group) => {
-      if (gameMode != null) {
-        return (group.identifier === 'bng' || group.identifier === 'nat') && group.playmodes?.includes(gameMode);
-      } else {
-        return (group.identifier === 'bng' || group.identifier === 'nat');
-      }
-    });
   }
 }
