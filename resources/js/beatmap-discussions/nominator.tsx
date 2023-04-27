@@ -13,7 +13,7 @@ import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
-import { userIsFullNominator } from 'utils/beatmapset-discussion-helper';
+import { isUserFullNominator } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 
@@ -131,8 +131,8 @@ export class Nominator extends React.Component<Props, State> {
       const user = event.user_id != null ? this.props.users[event.user_id] : null;
 
       return event.type === 'nominate' && event.comment != null
-        ? event.comment.modes.includes(mode) && userIsFullNominator(user, mode)
-        : userIsFullNominator(user);
+        ? event.comment.modes.includes(mode) && isUserFullNominator(user, mode)
+        : isUserFullNominator(user);
     });
   }
 

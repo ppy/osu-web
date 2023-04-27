@@ -146,6 +146,16 @@ function isNearbyDiscussion<T extends BeatmapsetDiscussionJson>(discussion: T): 
     && (discussion.user_id !== core.currentUserOrFail.id || moment(discussion.updated_at).diff(moment(), 'hour') <= -24);
 }
 
+export function isUserFullNominator(user?: UserJson | null, gameMode?: GameMode) {
+  return user != null && some(user.groups, (group) => {
+    if (gameMode != null) {
+      return (group.identifier === 'bng' || group.identifier === 'nat') && group.playmodes?.includes(gameMode);
+    } else {
+      return (group.identifier === 'bng' || group.identifier === 'nat');
+    }
+  });
+}
+
 export function linkTimestamp(text: string, classNames: string[] = []) {
   return text.replace(
     linkTimestampRegex,
@@ -372,16 +382,6 @@ export function stateFromDiscussion(discussion: BeatmapsetDiscussionJson) {
     discussionId: discussion.id,
     mode: discussionMode(discussion),
   };
-}
-
-export function userIsFullNominator(user?: UserJson | null, gameMode?: GameMode) {
-  return user != null && some(user.groups, (group) => {
-    if (gameMode != null) {
-      return (group.identifier === 'bng' || group.identifier === 'nat') && group.playmodes?.includes(gameMode);
-    } else {
-      return (group.identifier === 'bng' || group.identifier === 'nat');
-    }
-  });
 }
 
 export function validMessageLength(message?: string | null, isTimeline = false) {
