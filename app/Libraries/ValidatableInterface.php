@@ -11,7 +11,7 @@ interface ValidatableInterface
 {
     const MAX_FIELD_LENGTHS = [];
 
-    public function validationErrorsKeyBase();
+    public function validationErrorsKeyBase(): string;
     public function validationErrors(): ValidationErrors;
     public function validateDbFieldLength(int $limit, string $dbField, ?string $checkField = null): void;
     public function validateDbFieldLengths(): void;

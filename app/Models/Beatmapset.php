@@ -1487,7 +1487,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return $this->coverURL('card');
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'beatmapset';
     }

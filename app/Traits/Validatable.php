@@ -11,9 +11,9 @@ trait Validatable
 {
     protected $_validationErrors = null;
 
-    abstract public function validationErrorsTranslationPrefix();
+    abstract public function validationErrorsTranslationPrefix(): string;
 
-    public function validationErrorsKeyBase()
+    public function validationErrorsKeyBase(): string
     {
         return 'model_validation.';
     }

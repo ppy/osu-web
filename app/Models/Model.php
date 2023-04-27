@@ -228,7 +228,7 @@ abstract class Model extends BaseModel implements ValidatableInterface
         }
     }
 
-    public function validationErrorsTranslationPrefix() {
+    public function validationErrorsTranslationPrefix(): string {
         return '';
     }
 

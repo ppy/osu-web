@@ -2329,7 +2329,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return route('users.show', ['user' => $this->getKey()]);
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'user';
     }

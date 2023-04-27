@@ -125,7 +125,7 @@ class FeatureVote extends Model
         return $star;
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'forum.feature_vote';
     }
