@@ -287,7 +287,8 @@ abstract class Model extends BaseModel
         }
     }
 
-    protected function validationErrorsTranslationPrefix(): string {
+    protected function validationErrorsTranslationPrefix(): string
+    {
         return '';
     }
 
