@@ -9,6 +9,7 @@ import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { forEachRight, keys, map, uniq } from 'lodash';
+import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -24,21 +25,18 @@ interface Props {
   users: Partial<Record<number, UserJson>>;
 }
 
-interface State {
-  loading: boolean;
-  selectedModes: GameMode[];
-  visible: boolean;
-}
-
 const bn = 'nomination-dialog';
 
 @observer
-export class Nominator extends React.Component<Props, State> {
+export class Nominator extends React.Component<Props> {
   private checkboxContainerRef = React.createRef<HTMLDivElement>();
+  @observable private loading = false;
+  @observable private selectedModes = this.hybridMode ? [] : [keys(this.props.beatmapset.nominations.required)[0] as GameMode];
+  @observable private visible = false;
   private xhr?: JQuery.jqXHR<BeatmapsetWithDiscussionsJson>;
 
   private get hybridMode() {
-    return keys(this.props.beatmapset.nominations?.required).length > 1;
+    return keys(this.props.beatmapset.nominations.required).length > 1;
   }
 
   private get legacyMode() {
@@ -75,7 +73,7 @@ export class Nominator extends React.Component<Props, State> {
     }
 
     const nominationModes = this.legacyMode
-      ? uniq(this.props.beatmapset.beatmaps?.map((bm) => bm.mode))
+      ? uniq(this.props.beatmapset.beatmaps.map((bm) => bm.mode))
       : Object.keys(this.props.beatmapset.nominations.required) as GameMode[];
 
     return nominationModes.some((mode) => this.userCanNominateMode(mode));
@@ -104,11 +102,7 @@ export class Nominator extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    this.state = {
-      loading: false,
-      selectedModes: this.hybridMode ? [] : [keys(this.props.beatmapset.nominations?.required)[0] as GameMode],
-      visible: false,
-    };
+    makeObservable(this);
   }
 
   componentWillUnmount() {
@@ -121,7 +115,7 @@ export class Nominator extends React.Component<Props, State> {
     return (
       <>
         {this.renderButton()}
-        {this.state.visible && this.renderModal()}
+        {this.visible && this.renderModal()}
       </>
     );
   }
@@ -136,34 +130,31 @@ export class Nominator extends React.Component<Props, State> {
     });
   }
 
+  @action
   private readonly hideNominationModal = () => {
-    this.setState({
-      loading: false,
-      selectedModes: this.hybridMode ? [] : this.state.selectedModes,
-      visible: false,
-    });
+    this.loading = false;
+    this.visible = false;
   };
 
+  @action
   private readonly nominate = () => {
     this.xhr?.abort();
+    this.loading = true;
 
-    this.setState({ loading: true }, () => {
-      const url = route('beatmapsets.nominate', { beatmapset: this.props.beatmapset.id });
-      const params = {
-        data: {
-          playmodes: this.state.selectedModes,
-        },
-        method: 'PUT',
-      };
+    const url = route('beatmapsets.nominate', { beatmapset: this.props.beatmapset.id });
+    const params = {
+      data: {
+        playmodes: this.selectedModes,
+      },
+      method: 'PUT',
+    };
 
-      this.xhr = $.ajax(url, params);
-      this.xhr
-        .done((response) => {
-          $.publish('beatmapsetDiscussions:update', { beatmapset: response });
-        })
-        .fail(onError)
-        .always(this.hideNominationModal);
-    });
+    this.xhr = $.ajax(url, params);
+    this.xhr.done((response) => {
+      $.publish('beatmapsetDiscussions:update', { beatmapset: response });
+    })
+      .fail(onError)
+      .always(this.hideNominationModal);
   };
 
   private nominationCountMet(mode: GameMode) {
@@ -219,16 +210,16 @@ export class Nominator extends React.Component<Props, State> {
           {content}
           <div className={`${bn}__buttons`}>
             <BigButton
-              disabled={(this.hybridMode && this.state.selectedModes.length < 1) || this.state.loading}
+              disabled={(this.hybridMode && this.selectedModes.length < 1) || this.loading}
               icon='fas fa-thumbs-up'
-              isBusy={this.state.loading}
+              isBusy={this.loading}
               props={{
                 onClick: this.nominate,
               }}
               text={trans('beatmaps.nominations.nominate')}
             />
             <BigButton
-              disabled={this.state.loading}
+              disabled={this.loading}
               icon='fas fa-times'
               props={{
                 onClick: this.hideNominationModal,
@@ -242,7 +233,7 @@ export class Nominator extends React.Component<Props, State> {
   }
 
   private renderModalContentHybrid() {
-    const playmodes = keys(this.props.beatmapset.nominations?.required);
+    const playmodes = keys(this.props.beatmapset.nominations.required);
 
     const renderPlaymodes = map(playmodes, (mode: GameMode) => {
       const disabled = !this.userCanNominateMode(mode);
@@ -252,7 +243,7 @@ export class Nominator extends React.Component<Props, State> {
           className={classWithModifiers('osu-switch-v2', { disabled })}
         >
           <input
-            checked={this.state.selectedModes.includes(mode)}
+            checked={this.selectedModes.includes(mode)}
             className='osu-switch-v2__input'
             disabled={disabled}
             name='nomination_modes'
@@ -302,11 +293,13 @@ export class Nominator extends React.Component<Props, State> {
     return (curr === req - 1) && !this.hasFullNomination(mode);
   }
 
-  private showNominationModal = () => this.setState({ visible: true });
+  @action
+  private showNominationModal = () => this.visible = true;
 
+  @action
   private readonly updateCheckboxes = () => {
     const checkedBoxes = map(this.checkboxContainerRef.current?.querySelectorAll<HTMLInputElement>('input[type=checkbox]:checked'), (node) => node.value);
-    this.setState({ selectedModes: checkedBoxes as GameMode[] });
+    this.selectedModes = checkedBoxes as GameMode[];
   };
 
   private userCanNominateMode(mode: GameMode) {
