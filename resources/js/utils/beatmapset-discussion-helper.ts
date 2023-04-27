@@ -9,6 +9,7 @@ import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForBundle, BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetDiscussionPostJson from 'interfaces/beatmapset-discussion-post-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
+import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { assign, padStart, some, sortBy } from 'lodash';
@@ -17,7 +18,6 @@ import core from 'osu-core-singleton';
 import { currentUrl } from 'utils/turbolinks';
 import { linkHtml, openBeatmapEditor } from 'utils/url';
 import { getInt } from './math';
-import GameMode from 'interfaces/game-mode';
 
 interface BadgeGroupParams {
   beatmapset: BeatmapsetJson;
