@@ -1,0 +1,68 @@
+name: Update mod definitions
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        type: string
+        description: The name of the ref to check out. Will default to latest `master`.
+
+jobs:
+  update-mod-definitions:
+    name: Update mod definitions
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout ppy/osu-web
+      uses: actions/checkout@v3
+      with:
+        path: osu-web
+
+    - name: Install .NET 6.0.x
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: "6.0.x"
+
+    - name: Checkout ppy/osu
+      uses: actions/checkout@v3
+      with:
+        repository: ppy/osu
+        ref: ${{ github.event.inputs.ref }}
+        path: osu
+
+    - name: Store ppy/osu commit hash
+      id: store-osu-hash
+      run: echo commit-hash=`git rev-parse HEAD` >> "$GITHUB_OUTPUT"
+      working-directory: ./osu
+
+    - name: Checkout ppy/osu-tools
+      uses: actions/checkout@v3
+      with:
+        repository: ppy/osu-tools
+        path: osu-tools
+
+    - name: Setup local game checkout for tools
+      run: ./UseLocalOsu.sh
+      working-directory: ./osu-tools
+
+    - name: Regenerate mod definitions
+      run: dotnet run --project PerformanceCalculator -- mods > ../osu-web/database/mods.json
+      working-directory: ./osu-tools
+
+    - name: Check if anything changed
+      id: check-changes
+      # by default, github runs `bash -e`, which will stop the run script below if `git diff` returns nonzero.
+      # to circumvent this, we turn that option off, since we want the first command to fail gracefully and store its exit code.
+      shell: bash {0}
+      run: |
+        git diff --exit-code
+        echo "has-changes=$?" >> "$GITHUB_OUTPUT"
+      working-directory: ./osu-web
+
+    - name: Create pull request with changes
+      if: ${{ steps.check-changes.outputs.has-changes == '1' }}
+      uses: peter-evans/create-pull-request@v5
+      with:
+        title: Update mod definitions
+        body: "This PR has been auto-generated to update the mod definitions to match ppy/osu@${{ steps.store-osu-hash.outputs.commit-hash }}."
+        branch: update-mod-definitions
+        commit-message: Update mod definitions
+        path: osu-web
