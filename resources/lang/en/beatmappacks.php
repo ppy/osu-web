@@ -39,6 +39,7 @@ return [
         'standard' => 'Standard',
         'theme' => 'Theme',
         'tournament' => 'Tournament',
+        'loved' => 'Project Loved',
     ],
 
     'require_login' => [
