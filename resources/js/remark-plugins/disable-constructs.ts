@@ -11,35 +11,37 @@ interface Options {
   type?: DisabledType;
 }
 
-function makeDisabledListFromAllowlist(allowlist: Construct[]) {
-  return ([
-    // 'characterEscape', // escaping things is always useful
-    // 'content', // not sure what this is
-
-    'attention',
-    'autolink',
-    'blankLine',
-    'blockQuote',
-    'characterReference',
-    'codeFenced',
-    'codeIndented',
-    'codeText',
-    'definition',
-    'hardBreakEscape',
-    'headingAtx',
-    'htmlFlow',
-    'htmlText',
-    'labelEnd',
-    'labelStartImage',
-    'labelStartLink',
-    'lineEnding',
-    'list',
-    'setextUnderline',
-    'thematicBreak',
-  ] as Construct[]).filter((item) => !allowlist.includes(item));
-}
-
 type Construct = keyof typeof Constructs;
+
+const allDisabledList: Construct[] = [
+  // 'characterEscape', // escaping things is always useful
+  // 'content', // not sure what this is
+
+  'attention',
+  'autolink',
+  'blankLine',
+  'blockQuote',
+  'characterReference',
+  'codeFenced',
+  'codeIndented',
+  'codeText',
+  'definition',
+  'hardBreakEscape',
+  'headingAtx',
+  'htmlFlow',
+  'htmlText',
+  'labelEnd',
+  'labelStartImage',
+  'labelStartLink',
+  'lineEnding',
+  'list',
+  'setextUnderline',
+  'thematicBreak',
+];
+
+function makeDisabledListFromAllowList(allowList: Construct[]): Construct[] {
+  return allDisabledList.filter((item) => !allowList.includes(item));
+}
 
 const defaultDisabled: Construct[] = [
   'autolink',
@@ -70,7 +72,7 @@ const disabled: Record<DisabledType, Construct[]> = {
     'labelStartImage',
     'setextUnderline',
   ],
-  chatPlain: makeDisabledListFromAllowlist([
+  chatPlain: makeDisabledListFromAllowList([
     'autolink',
     'labelEnd',
     'labelStartLink',
