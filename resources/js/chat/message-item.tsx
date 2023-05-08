@@ -8,6 +8,7 @@ import * as React from 'react';
 import ReactMarkdown from 'react-markdown';
 import autolink from 'remark-plugins/autolink';
 import disableConstructs from 'remark-plugins/disable-constructs';
+import legacyLink from 'remark-plugins/legacy-link';
 import wikiLink, { RemarkWikiLinkPlugin } from 'remark-wiki-link';
 import { classWithModifiers } from 'utils/css';
 import { wikiUrl } from 'utils/url';
@@ -61,7 +62,7 @@ export default class MessageItem extends React.Component<Props> {
           'chat-plain': remarkType === 'chatPlain',
         })}
         components={components}
-        remarkPlugins={[autolink, [disableConstructs, { type: remarkType }], wikiLinkPlugin]}
+        remarkPlugins={[autolink, [disableConstructs, { type: remarkType }], legacyLink, wikiLinkPlugin]}
         unwrapDisallowed
       >
         {this.props.message.content}
