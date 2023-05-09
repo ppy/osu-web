@@ -405,7 +405,6 @@ export class NewDiscussion extends React.Component<Props> {
           disabled={this.posting != null}
           isTimeline={this.isTimeline}
           mode={this.mode}
-          modifiers='new-discussion'
           onChange={this.setMessage}
           onFocus={this.onFocus}
           onKeyDown={this.handleKeyDown}
