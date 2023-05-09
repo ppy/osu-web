@@ -138,7 +138,8 @@ export class Nominator extends React.Component<Props> {
 
   @action
   private readonly nominate = () => {
-    this.xhr?.abort();
+    if (this.loading) return;
+
     this.loading = true;
 
     const url = route('beatmapsets.nominate', { beatmapset: this.props.beatmapset.id });
