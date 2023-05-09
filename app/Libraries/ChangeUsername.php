@@ -68,7 +68,7 @@ class ChangeUsername
         return $this->validationErrors()->merge(UsernameValidation::validateAvailability($this->username));
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'user';
     }

@@ -230,7 +230,7 @@ class Comment extends Model implements Traits\ReportableInterface
         return route('comments.show', ['comment' => $this->getKey()]);
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'comment';
     }
