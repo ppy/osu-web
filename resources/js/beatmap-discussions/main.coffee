@@ -150,6 +150,7 @@ export class Main extends React.PureComponent
                   beatmaps: @beatmaps()
                   currentBeatmap: @currentBeatmap()
                   currentUser: @state.currentUser
+                  innerRef: @newDiscussionRef
                   pinned: @state.pinnedNewDiscussion
                   setPinned: @setPinnedNewDiscussion
                   stickTo: @modeSwitcherRef
@@ -378,7 +379,6 @@ export class Main extends React.PureComponent
 
     newState.callback = =>
       $.publish 'beatmapset-discussions:highlight', discussionId: discussion.id
-
 
       attribute = if postId? then "data-post-id='#{postId}'" else "data-id='#{id}'"
       target = $(".js-beatmap-discussion-jump[#{attribute}]")
