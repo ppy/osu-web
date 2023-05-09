@@ -90,7 +90,7 @@ class ApiKey extends Model
         }
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'legacy_api_key';
     }

@@ -234,7 +234,7 @@ class BeatmapDiscussionPost extends Model implements Traits\ReportableInterface
         return $this->validationErrors()->isEmpty();
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'beatmapset_discussion_post';
     }
