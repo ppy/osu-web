@@ -34,6 +34,7 @@ insert = (event, tagOpen, tagClose = '') ->
   ['bold', '[b]', '[/b]']
   ['heading', '[heading]', '[/heading]']
   ['image', '[img]', '[/img]']
+  ['imagemap', '[imagemap]\nhttps://example.com/image.jpg\n0 10 10 50 https://example.com example\n', '[/imagemap]']
   ['italic', '[i]', '[/i]']
   ['link', '[url]', '[/url]']
   ['list', '[list]\n[*]', '[/list]']

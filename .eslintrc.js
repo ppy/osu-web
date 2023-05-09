@@ -17,7 +17,7 @@ module.exports = {
         'plugin:react-hooks/recommended',
         'plugin:react/recommended',
       ],
-      files: ['resources/js/**/*.{ts,tsx}', 'tests/karma/**/*.ts'],
+      files: ['resources/js/**/*.{ts,tsx}', 'tests/karma/**/*.{ts,tsx}'],
       parser: '@typescript-eslint/parser',
       plugins: [
         '@typescript-eslint',
@@ -181,7 +181,7 @@ module.exports = {
         browser: false,
         node: true,
       },
-      files: ['tests/karma/**/*.ts'],
+      files: ['tests/karma/**/*.{ts,tsx}'],
       parserOptions: {
         project: 'tests/karma/tsconfig.json',
         sourceType: 'module',
