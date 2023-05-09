@@ -35,36 +35,36 @@ import { parseJsonNullable } from 'utils/json';
 
 // will this replace main.coffee eventually?
 export default class OsuCore {
-  beatmapsetSearchController: BeatmapsetSearchController;
-  readonly captcha = new Captcha();
-  readonly chatWorker = new ChatWorker();
-  readonly clickMenu = new ClickMenu();
+  readonly beatmapsetSearchController;
+  readonly captcha;
+  readonly chatWorker;
+  readonly clickMenu;
   @observable currentUser?: CurrentUserJson;
-  readonly currentUserModel = new UserModel(this);
-  dataStore: RootDataStore;
-  readonly enchant: Enchant;
-  readonly forumPoll = new ForumPoll();
-  readonly forumPostEdit = new ForumPostEdit();
-  readonly forumPostInput = new ForumPostInput();
-  readonly forumPostReport = new ForumPostReport();
-  readonly localtime = new Localtime();
-  readonly mobileToggle = new MobileToggle();
-  notificationsWorker: NotificationsWorker;
-  readonly osuAudio: OsuAudio;
-  readonly reactTurbolinks: ReactTurbolinks;
-  readonly referenceLinkTooltip = new ReferenceLinkTooltip();
-  readonly scorePins = new ScorePins();
+  readonly currentUserModel;
+  readonly dataStore;
+  readonly enchant;
+  readonly forumPoll;
+  readonly forumPostEdit;
+  readonly forumPostInput;
+  readonly forumPostReport;
+  readonly localtime;
+  readonly mobileToggle;
+  readonly notificationsWorker;
+  readonly osuAudio;
+  readonly reactTurbolinks;
+  readonly referenceLinkTooltip;
+  readonly scorePins;
   @observable scrolling = false;
-  socketWorker: SocketWorker;
-  readonly stickyHeader = new StickyHeader();
-  readonly timeago = new Timeago();
-  readonly turbolinksReload = new TurbolinksReload();
-  readonly userLogin: UserLogin;
-  userLoginObserver: UserLoginObserver;
-  readonly userPreferences = new UserPreferences();
-  readonly userVerification = new UserVerification();
-  windowFocusObserver: WindowFocusObserver;
-  readonly windowSize = new WindowSize();
+  readonly socketWorker;
+  readonly stickyHeader;
+  readonly timeago;
+  readonly turbolinksReload;
+  readonly userLogin;
+  readonly userLoginObserver;
+  readonly userPreferences;
+  readonly userVerification;
+  readonly windowFocusObserver;
+  readonly windowSize;
 
   @computed
   get currentUserOrFail() {
@@ -79,12 +79,30 @@ export default class OsuCore {
     // Set current user on first page load. Further updates are done in
     // reactTurbolinks before the new page is rendered.
     // This needs to be fired before everything else (turbolinks:load etc).
-    if (document.readyState === 'loading') {
+    const isLoading = document.readyState === 'loading';
+    if (isLoading) {
       document.addEventListener('DOMContentLoaded', this.updateCurrentUser);
-    } else {
-      this.updateCurrentUser();
     }
     $.subscribe('user:update', this.onCurrentUserUpdate);
+
+    this.captcha = new Captcha();
+    this.chatWorker = new ChatWorker();
+    this.clickMenu = new ClickMenu();
+    this.currentUserModel = new UserModel(this);
+    this.forumPoll = new ForumPoll();
+    this.forumPostEdit = new ForumPostEdit();
+    this.forumPostInput = new ForumPostInput();
+    this.forumPostReport = new ForumPostReport();
+    this.localtime = new Localtime();
+    this.mobileToggle = new MobileToggle();
+    this.referenceLinkTooltip = new ReferenceLinkTooltip();
+    this.scorePins = new ScorePins();
+    this.stickyHeader = new StickyHeader();
+    this.timeago = new Timeago();
+    this.turbolinksReload = new TurbolinksReload();
+    this.userPreferences = new UserPreferences();
+    this.userVerification = new UserVerification();
+    this.windowSize = new WindowSize();
 
     this.enchant = new Enchant(this.turbolinksReload);
     this.osuAudio = new OsuAudio(this.userPreferences);
@@ -102,6 +120,10 @@ export default class OsuCore {
     this.notificationsWorker = new NotificationsWorker(this.socketWorker);
 
     makeObservable(this);
+
+    if (!isLoading) {
+      this.updateCurrentUser();
+    }
   }
 
   readonly updateCurrentUser = () => {
