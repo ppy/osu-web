@@ -23,6 +23,8 @@ use Symfony\Component\Finder\Finder;
 
 class BroadcastNotificationTest extends TestCase
 {
+    private const IGNORED_CONST_NAMES = ['NAME_TO_CATEGORY', 'NOTIFIABLE_CLASSES', 'SUBTYPES'];
+
     protected $sender;
 
     public function testNoNotificationForBotUser()
@@ -120,7 +122,7 @@ class BroadcastNotificationTest extends TestCase
         $constants = collect((new ReflectionClass(Notification::class))->getReflectionConstants())
             ->filter(fn (ReflectionClassConstant $constant) => (
                 $constant->getDeclaringClass()->name === Notification::class
-                    && !in_array($constant->name, ['NAME_TO_CATEGORY', 'NOTIFIABLE_CLASSES', 'SUBTYPES'], true)
+                    && !in_array($constant->name, static::IGNORED_CONST_NAMES, true)
             ))
             ->values();
 
