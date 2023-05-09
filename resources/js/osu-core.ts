@@ -31,6 +31,7 @@ import { action, computed, makeObservable, observable } from 'mobx';
 import NotificationsWorker from 'notifications/worker';
 import SocketWorker from 'socket-worker';
 import RootDataStore from 'stores/root-data-store';
+import { parseJsonNullable } from 'utils/json';
 
 // will this replace main.coffee eventually?
 export default class OsuCore {
@@ -75,13 +76,19 @@ export default class OsuCore {
   }
 
   constructor() {
-    // refresh current user on page reload (and initial page load)
-    $(document).on('turbolinks:load.osu-core', this.onPageLoad);
+    // Set current user on first page load. Further updates are done in
+    // reactTurbolinks before the new page is rendered.
+    // This needs to be fired before everything else (turbolinks:load etc).
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', this.updateCurrentUser);
+    } else {
+      this.updateCurrentUser();
+    }
     $.subscribe('user:update', this.onCurrentUserUpdate);
 
     this.enchant = new Enchant(this.turbolinksReload);
     this.osuAudio = new OsuAudio(this.userPreferences);
-    this.reactTurbolinks = new ReactTurbolinks(this.turbolinksReload);
+    this.reactTurbolinks = new ReactTurbolinks(this, this.turbolinksReload);
     this.userLogin = new UserLogin(this.captcha);
     // should probably figure how to conditionally or lazy initialize these so they don't all init when not needed.
     // TODO: requires dynamic imports to lazy load modules.
@@ -97,12 +104,14 @@ export default class OsuCore {
     makeObservable(this);
   }
 
-  private onCurrentUserUpdate = (event: unknown, user: CurrentUserJson) => {
-    this.setCurrentUser(user);
+  readonly updateCurrentUser = () => {
+    // Remove from DOM so only new data is parsed on navigation.
+    window.currentUser = parseJsonNullable('json-current-user', true) ?? { id: undefined };
+    this.setCurrentUser(window.currentUser);
   };
 
-  private onPageLoad = () => {
-    this.setCurrentUser(window.currentUser);
+  private onCurrentUserUpdate = (event: unknown, user: CurrentUserJson) => {
+    this.setCurrentUser(user);
   };
 
   @action

@@ -4,6 +4,7 @@
 import { removeLeftoverPortalContainers } from 'components/portal';
 import TurbolinksReload from 'core/turbolinks-reload';
 import { runInAction } from 'mobx';
+import OsuCore from 'osu-core';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { currentUrl } from 'utils/turbolinks';
@@ -18,7 +19,7 @@ export default class ReactTurbolinks {
   private scrolled = false;
   private timeoutScroll?: number;
 
-  constructor(private turbolinksReload: TurbolinksReload) {
+  constructor(private core: OsuCore, private turbolinksReload: TurbolinksReload) {
     $(document).on('turbolinks:before-cache', this.handleBeforeCache);
     $(document).on('turbolinks:before-visit', this.handleBeforeVisit);
     $(document).on('turbolinks:load', this.handleLoad);
@@ -84,6 +85,7 @@ export default class ReactTurbolinks {
     this.setNewUrl();
     this.pageReady = true;
     removeLeftoverPortalContainers();
+    this.core.updateCurrentUser();
     this.loadScripts(false);
     this.boot();
   };
