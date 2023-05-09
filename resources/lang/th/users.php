@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'บล็อกผู้ใช้งาน (:count)',
         'hide_profile' => 'ซ่อนโปรไฟล์',
         'hide_comment' => 'ซ่อน',
+        'forum_post_text' => '',
         'not_blocked' => 'ผู้ใช้นี้ไม่ได้ถูกบล็อก',
         'show_profile' => 'แสดงโปรไฟล์',
         'show_comment' => 'แสดง',

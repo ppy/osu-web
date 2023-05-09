@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import { onError } from 'utils/ajax'
+import { flattenFormErrorJson } from 'utils/json'
 
 export default class FormError
   constructor: ->
@@ -13,49 +14,23 @@ export default class FormError
     @setError e.target
 
 
-  flattenData: (data, prefixes = []) =>
-    flat = {}
-
-    for own key, value of data
-      if Array.isArray(value)
-        flatKey = ''
-
-        for prefix, i in prefixes
-          flatKey +=
-            if i == 0
-              prefix
-            else
-              "[#{prefix}]"
-
-        flatKey +=
-          if flatKey == ''
-            key
-          else
-            "[#{key}]"
-
-        flat[flatKey] = value
-      else if value instanceof Object
-        _.merge flat, @flattenData(value, prefixes.concat(key))
-
-    flat
-
-
   showError: (e, xhr) =>
     data = xhr.responseJSON?.form_error
 
     return onError(xhr) if !data?
 
-    @setError e.target, @flattenData(data)
+    @setError e.target, flattenFormErrorJson(data)
 
 
-  setError: (form, data = {}) =>
+  setError: (form, data) =>
     $(form)
       .find '[name]'
       .each (_i, el) =>
-        @setOneError el, data[el.name]
+        @setOneError el, data?.get(el.name)
 
 
-  setOneError: (el, errors = []) =>
+  setOneError: (el, errors) =>
+    errors ?= []
     state = if errors.length > 0 then 'error' else ''
 
     $(el)

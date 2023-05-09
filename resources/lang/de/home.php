@@ -130,7 +130,7 @@ return [
             'stats' => [
                 'friends' => 'Freunde online',
                 'games' => 'Mehrspielerräume',
-                'online' => 'Benutzer online',
+                'online' => 'User online',
             ],
         ],
         'beatmaps' => [

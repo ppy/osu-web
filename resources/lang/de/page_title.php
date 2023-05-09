@@ -11,7 +11,7 @@ return [
         'error' => [
             '400' => 'ungültige Anfrage',
             '404' => 'nicht gefunden',
-            '403' => 'verboten',
+            '403' => 'nicht berechtigt',
             '401' => 'nicht authorisiert',
             '401-verification' => 'accountverifizierung',
             '405' => 'nicht gefunden',

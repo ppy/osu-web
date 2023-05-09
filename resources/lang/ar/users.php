@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'المستخدمون المحظورون (:count)',
         'hide_profile' => 'إخفاء الملف الشخصي',
         'hide_comment' => 'إخفاء',
+        'forum_post_text' => '',
         'not_blocked' => 'هذا المستخدم ليس محظوراََ.',
         'show_profile' => 'عرض الملف الشخصي',
         'show_comment' => 'إظهار',

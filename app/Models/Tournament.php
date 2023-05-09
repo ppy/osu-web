@@ -5,6 +5,7 @@
 
 namespace App\Models;
 
+use App\Exceptions\InvariantException;
 use App\Models\Store\Product;
 use Carbon\Carbon;
 
@@ -122,7 +123,7 @@ class Tournament extends Model
     {
         //sanity check: we shouldn't be touching users once the tournament is already in action.
         if ($this->isTournamentRunning()) {
-            return;
+            throw new InvariantException('tournament is already running');
         }
 
         $this->registrations()->where('user_id', '=', $user->user_id)->delete();
@@ -136,7 +137,7 @@ class Tournament extends Model
 
         //sanity check: we shouldn't be touching users once the tournament is already in action.
         if ($this->isTournamentRunning()) {
-            return;
+            throw new InvariantException('tournament is already running');
         }
 
         $reg = new TournamentRegistration();

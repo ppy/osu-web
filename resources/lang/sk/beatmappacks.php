@@ -38,6 +38,7 @@ return [
         'featured' => '',
         'standard' => 'Obyčajné',
         'theme' => 'Témy',
+        'tournament' => '',
     ],
 
     'require_login' => [

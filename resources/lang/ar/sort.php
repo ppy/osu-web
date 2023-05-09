@@ -32,7 +32,7 @@ return [
     ],
 
     'forum_topics' => [
-        'created' => '',
+        'created' => 'تم الإنشاء',
         'feature_votes' => 'تفضيل النجمة',
         'new' => 'الرد الأخير',
     ],

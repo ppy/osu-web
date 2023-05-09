@@ -982,9 +982,9 @@ class UsersController extends Controller
                 return json_item($user->fresh(), new CurrentUserTransformer());
             }
         } catch (ValidationException $e) {
-            return response(['form_error' => [
-                'user' => $registration->user()->validationErrors()->all(),
-            ]], 422);
+            return ModelNotSavedException::makeResponse($e, [
+                'user' => $registration->user(),
+            ]);
         }
     }
 }

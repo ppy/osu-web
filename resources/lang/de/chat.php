@@ -38,7 +38,7 @@ return [
             'description' => 'Beschreibung',
             'message' => 'Nachricht',
             'name' => 'Raumname',
-            'users' => 'Spieler zum Hinzufügen',
+            'users' => 'Spieler hinzufügen',
         ],
     ],
 

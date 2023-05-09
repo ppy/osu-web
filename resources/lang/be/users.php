@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'заблакаваныя карыстальнікі (:count)',
         'hide_profile' => 'схаваць профіль',
         'hide_comment' => 'схаваць',
+        'forum_post_text' => '',
         'not_blocked' => 'Гэты карыстальнік не заблакаваны.',
         'show_profile' => 'паказаць профіль',
         'show_comment' => 'паказаць',

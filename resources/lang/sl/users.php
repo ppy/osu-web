@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'blokirani uporabniki (:count)',
         'hide_profile' => 'Skrij profil',
         'hide_comment' => 'skrij',
+        'forum_post_text' => '',
         'not_blocked' => 'Ta igralec ni blokiran.',
         'show_profile' => 'Prikaži profil',
         'show_comment' => 'prikaži',
@@ -353,7 +354,7 @@ return [
                 'title' => 'Uvrstitve',
 
                 'best' => [
-                    'title' => 'Najboljša igranja',
+                    'title' => 'Najboljša izvedba',
                 ],
                 'first' => [
                     'title' => 'Uvrstitve na prvo mesto',
@@ -444,10 +445,10 @@ return [
             'medals' => 'Medalje',
             'play_count' => 'Število igranj',
             'play_time' => 'Skupni čas igranja',
-            'ranked_score' => 'Rangirana uvrstitev',
-            'replays_watched_by_others' => 'Replayi, ki so jih drugi gledali',
+            'ranked_score' => 'Število rangiranih točk',
+            'replays_watched_by_others' => 'Ogledi',
             'score_ranks' => 'Razvrstitev po točkah',
-            'total_hits' => 'Skupno udarcev',
+            'total_hits' => 'Skupno število udarcev',
             'total_score' => 'Skupaj točk',
             // modding stats
             'graveyard_beatmapset_count' => 'Graveyarded beatmape',

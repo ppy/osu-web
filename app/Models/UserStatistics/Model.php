@@ -41,16 +41,6 @@ abstract class Model extends BaseModel
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function setCreatedAt($value)
-    {
-        // Do nothing.
-    }
-
-    public function getCreatedAtColumn()
-    {
-        // Do nothing.
-    }
-
     public function getCountryAcronymAttribute($value)
     {
         return presence($value);
@@ -84,7 +74,10 @@ abstract class Model extends BaseModel
     public static function calculateRecommendedStarDifficulty(?self $stats)
     {
         if ($stats !== null && $stats->rank_score > 0) {
-            return pow($stats->rank_score, 0.4) * 0.195;
+            return match ($stats->getMode()) {
+                'taiko' => pow($stats->rank_score, 0.35) * 0.27,
+                default => pow($stats->rank_score, 0.4) * 0.195,
+            };
         }
 
         return 1.0;

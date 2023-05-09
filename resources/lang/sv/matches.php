@@ -5,8 +5,8 @@
 
 return [
     'match' => [
-        'beatmap-deleted' => 'raderad beatmap',
-        'difference' => 'med :difference',
+        'beatmap-deleted' => 'borttagen beatmap',
+        'difference' => 'av :difference',
         'failed' => 'MISSLYCKADES',
         'header' => 'Flerspelarmatcher',
         'in-progress' => '(pågående match)',

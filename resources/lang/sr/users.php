@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'блокирани корисници (:count)',
         'hide_profile' => 'Сакријте профил',
         'hide_comment' => 'сакријте',
+        'forum_post_text' => '',
         'not_blocked' => 'Овај корисник није блокиран.',
         'show_profile' => 'Прикажи профил',
         'show_comment' => 'прикажи',
@@ -417,8 +418,8 @@ return [
             'title' => 'Корисник није пронађен! ;_;',
         ],
         'page' => [
-            'button' => 'Уредите страницу налога',
-            'description' => '<strong>Ја!</strong> је лично прилагодљив део на Вашој страници профила.',
+            'button' => 'уредите страницу налога',
+            'description' => '<strong>ја!</strong> је лично прилагодљив део на вашој страници профила.',
             'edit_big' => 'Измени ме!',
             'placeholder' => 'Упишите садржај странице овде',
 
@@ -429,7 +430,7 @@ return [
         ],
         'post_count' => [
             '_' => 'Допринели :link',
-            'count' => ':count_delimited форум објава:count_delimited форум објава',
+            'count' => ':count_delimited форум објава|:count_delimited форум објава',
         ],
         'rank' => [
             'country' => 'Државни ранг за :mode',
@@ -439,12 +440,12 @@ return [
             'highest' => 'Највиши ранг: :rank на :date',
         ],
         'stats' => [
-            'hit_accuracy' => 'Прецизност ',
+            'hit_accuracy' => 'Прецизност',
             'level' => ':level ниво',
-            'level_progress' => 'Напредак до следећег нивоа',
+            'level_progress' => 'напредак до следећег нивоа',
             'maximum_combo' => 'Максимални комбо постигнут',
             'medals' => 'Медаље',
-            'play_count' => 'Број играња',
+            'play_count' => 'Број Играња',
             'play_time' => 'Укупно време играња',
             'ranked_score' => 'Ранкован резултат',
             'replays_watched_by_others' => 'Број одгледаних снимака резултата',
@@ -454,7 +455,7 @@ return [
             // modding stats
             'graveyard_beatmapset_count' => 'Запуштене Мапе',
             'loved_beatmapset_count' => 'Loved Мапе',
-            'pending_beatmapset_count' => 'Нерешене Мапе',
+            'pending_beatmapset_count' => 'Мапе на чекању',
             'ranked_beatmapset_count' => 'Ранговане Мапе',
         ],
     ],

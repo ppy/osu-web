@@ -2,16 +2,29 @@
 
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
+
+declare(strict_types=1);
+
+namespace Database\Factories;
+
 use App\Models\UserRelation;
 
-$factory->define(UserRelation::class, function (Faker\Generator $faker) {
-    return [];
-});
+class UserRelationFactory extends Factory
+{
+    protected $model = UserRelation::class;
 
-$factory->state(UserRelation::class, 'friend', function (Faker\Generator $faker) {
-    return ['friend' => true];
-});
+    public function block(): static
+    {
+        return $this->state(['foe' => true]);
+    }
 
-$factory->state(UserRelation::class, 'block', function (Faker\Generator $faker) {
-    return ['foe' => true];
-});
+    public function definition(): array
+    {
+        return [];
+    }
+
+    public function friend(): static
+    {
+        return $this->state(['friend' => true]);
+    }
+}

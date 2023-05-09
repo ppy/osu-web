@@ -3,6 +3,7 @@
 
 .oauth-client {
   display: flex;
+  gap: 10px;
   flex-direction: row;
   justify-content: space-between;
   font-size: @font-size--title-small;
@@ -10,14 +11,20 @@
 
   &__actions {
     flex: none;
+    gap: 5px 10px;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
 
-    @media @mobile {
-      display: flex;
-      flex-direction: column;
+    @media @desktop {
+      align-items: baseline;
+      flex-direction: row;
     }
   }
 
   &__details {
+    overflow-wrap: anywhere;
+
     &--button {
       .reset-input();
       text-align: left;

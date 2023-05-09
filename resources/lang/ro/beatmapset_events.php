@@ -34,6 +34,7 @@ return [
         'qualify' => 'Acest beatmap a atins numărul limită de nominalizări și s-a calificat.',
         'rank' => 'Clasat.',
         'remove_from_loved' => 'Eliminat din Iubit de :user. (:text)',
+        'tags_edit' => '',
 
         'nsfw_toggle' => [
             'to_0' => 'Marcaj conținut obscen șters',

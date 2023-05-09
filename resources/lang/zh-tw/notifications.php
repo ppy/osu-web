@@ -14,7 +14,7 @@ return [
     'verifying' => '請驗證此工作階段以查看通知',
 
     'action_type' => [
-        '_' => '',
+        '_' => '全部',
         'beatmapset' => '圖譜',
         'build' => '版本',
         'channel' => '聊天',

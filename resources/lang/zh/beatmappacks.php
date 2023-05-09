@@ -6,7 +6,7 @@
 return [
     'index' => [
         'description' => '围绕某个相同主题打包好的曲包',
-        'empty' => '',
+        'empty' => '敬请期待！',
         'nav_title' => '列表',
         'title' => '曲包',
 
@@ -38,6 +38,7 @@ return [
         'featured' => '精选艺术家',
         'standard' => '常规',
         'theme' => '主题',
+        'tournament' => '',
     ],
 
     'require_login' => [

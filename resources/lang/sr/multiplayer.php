@@ -13,8 +13,7 @@ return [
     'room' => [
         'hosted_by' => 'хост је :user',
         'invalid_password' => 'Неисправна лозинка',
-        'map_count' => ':count_delimited мапа|:count_delimited мапе
-',
+        'map_count' => ':count_delimited мапа|:count_delimited мапе',
         'player_count' => ':count_delimited мапа|:count_delimited мапе',
         'time_left' => ':time је преостало',
 

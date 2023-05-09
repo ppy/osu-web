@@ -34,6 +34,7 @@ return [
         'qualify' => 'บีทแมพนี้ได้รับจำนวนการเสนอชื่อครบแล้ว และได้ถูก Qualified',
         'rank' => 'จัดอันดับ',
         'remove_from_loved' => 'ถูกนำออกจาก Loved โดย :user (:text)',
+        'tags_edit' => '',
 
         'nsfw_toggle' => [
             'to_0' => 'นำเครื่องหมายเนื้อหาล่อแหลมออก',

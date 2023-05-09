@@ -34,6 +34,7 @@ return [
         'qualify' => 'מפה זו הגיעה למספר הנדרש של מינויים והוסמכה.',
         'rank' => 'מדורגת.',
         'remove_from_loved' => 'הוסר מ-Loved על ידי :user. (:text)',
+        'tags_edit' => '',
 
         'nsfw_toggle' => [
             'to_0' => '',

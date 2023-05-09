@@ -14,14 +14,14 @@ return [
     'empty' => "Овај корисник није урадио/ла ништа значајно скоро!",
     'rank' => '<strong><em>:user</em></strong> је достигао/ла #:rank на <em>:beatmap</em> (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> је изгубио/ла прво место на <em>:beatmap</em> (:mode)',
-    'user_support_again' => '<strong>:user</strong> је поново одлучио/ла да подржи osu! - хвала Вам на вашој великодушности!',
-    'user_support_first' => '<strong>:user</strong> је постао/ла osu!supporter - хвала Вам на вашој великодушности!',
+    'user_support_again' => '<strong>:user</strong> је поново одлучио/ла да подржи osu! - хвала вам на вашој великодушности!',
+    'user_support_first' => '<strong>:user</strong> је постао/ла osu!supporter - хвала вам на вашој великодушности!',
     'user_support_gift' => '<strong>:user</strong> је добио/ла osu!supporter поклон!',
     'username_change' => '<strong>:previousUsername</strong> је променио/ла име у <strong><em>:user</em></strong>!',
 
     'beatmapset_status' => [
         'approved' => 'одобрено',
-        'loved' => '"loved"',
+        'loved' => 'loved',
         'qualified' => 'квалификовано',
         'ranked' => 'рангирано',
     ],

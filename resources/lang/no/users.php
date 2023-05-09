@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'blokkerte brukere (:count)',
         'hide_profile' => 'Skjul profil',
         'hide_comment' => 'skjul',
+        'forum_post_text' => '',
         'not_blocked' => 'Den brukeren er ikke blokkert.',
         'show_profile' => 'Vis profil',
         'show_comment' => 'vis',

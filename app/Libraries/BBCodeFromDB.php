@@ -135,7 +135,7 @@ class BBCodeFromDB
             '#(\[imagemap\].+?\[/imagemap\]\n?)#',
             function ($m) {
                 return preg_replace_callback(
-                    '#\[imagemap\]\n(?<imageUrl>https?://.+)\n(?<links>(?:(?:[0-9.]+ ){4}(?:\#|https?://[^ ]+|mailto:[^ ]+)(?: .+)?\n)+)\[/imagemap\]\n?#',
+                    '#\[imagemap\]\n(?<imageUrl>https?://.+)\n(?<links>(?:(?:[0-9.]+ ){4}(?:\#|https?://[^\s]+|mailto:[^\s]+)(?: .*)?\n)+)\[/imagemap\]\n?#',
                     function ($map) {
                         $links = array_map(
                             fn ($rawLink) => explode(' ', $rawLink, 6),
@@ -320,8 +320,12 @@ class BBCodeFromDB
 
     public function parseSize($text)
     {
-        $text = preg_replace("#\[size=(\d+):{$this->uid}\]#", "<span class='size-\\1'>", $text);
-        $text = str_replace("[/size:{$this->uid}]", '</span>', $text);
+        $text = preg_replace_callback(
+            "#\[size=(\d+):{$this->uid}\]#",
+            fn ($m) => '<span style="font-size:'.clamp((int) $m[1], 30, 200).'%;">',
+            $text,
+        );
+        $text = strtr($text, ["[/size:{$this->uid}]" => '</span>']);
 
         return $text;
     }

@@ -68,11 +68,11 @@ return [
         'details' => [
             'by_artist' => 'por :artist',
             'favourite' => 'Marcar como favorito',
-            'favourite_login' => 'Inicie sesión para marcar este mapa como favorito',
-            'logged-out' => '¡Necesitas iniciar sesión antes de descargar cualquier mapa!',
+            'favourite_login' => 'inicie sesión para marcar este mapa como favorito',
+            'logged-out' => '¡debe iniciar sesión para descargar cualquier mapa!',
             'mapped_by' => 'mapeado por :mapper',
             'mapped_by_guest' => 'dificultad de invitado por :mapper',
-            'unfavourite' => 'Desmarcar como favorito',
+            'unfavourite' => 'desmarcar como favorito',
             'updated_timeago' => 'actualizado por última vez :timeago',
 
             'download' => [

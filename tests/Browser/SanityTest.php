@@ -168,13 +168,13 @@ class SanityTest extends DuskTestCase
         ]);
 
         // factories for /store/*
-        self::$scaffolding['product'] = factory(Store\Product::class)->states('master_tshirt')->create();
-        self::$scaffolding['order'] = factory(Store\Order::class)->states('checkout')->create([
-            'user_id' => self::$scaffolding['user']->getKey(),
+        self::$scaffolding['product'] = Store\Product::factory()->masterTshirt()->create();
+        self::$scaffolding['order'] = Store\Order::factory()->checkout()->create([
+            'user_id' => self::$scaffolding['user'],
         ]);
         self::$scaffolding['checkout'] = new ScaffoldDummy(self::$scaffolding['order']->getKey());
-        self::$scaffolding['invoice'] = factory(Store\Order::class)->states('paid')->create([
-            'user_id' => self::$scaffolding['user']->getKey(),
+        self::$scaffolding['invoice'] = Store\Order::factory()->paid()->create([
+            'user_id' => self::$scaffolding['user'],
         ]);
 
         // factories for /community/forums/*
@@ -195,7 +195,10 @@ class SanityTest extends DuskTestCase
         self::$scaffolding['_user_group'] = UserGroup::first();
 
         // satisfy minimum playcount for forum posting
-        self::$scaffolding['user']->statisticsOsu()->save(factory(UserStatistics\Osu::class)->make(['playcount' => config('osu.forum.minimum_plays')]));
+        UserStatistics\Osu::factory()->create([
+            'playcount' => config('osu.forum.minimum_plays'),
+            'user_id' => self::$scaffolding['user'],
+        ]);
 
         self::$scaffolding['topic'] = Topic::factory()->create([
             'forum_id' => self::$scaffolding['forum'],
@@ -220,7 +223,7 @@ class SanityTest extends DuskTestCase
         self::$scaffolding['season'] = Season::factory()->create();
 
         // factory for /home/changelog/*
-        self::$scaffolding['stream'] = factory(UpdateStream::class)->create();
+        self::$scaffolding['stream'] = UpdateStream::factory()->create();
         self::$scaffolding['changelog'] = Changelog::factory()->create([
             'stream_id' => self::$scaffolding['stream']->stream_id,
         ]);

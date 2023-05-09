@@ -6,7 +6,7 @@
 return [
     'index' => [
         'description' => 'Sưu tầm những map được đóng gói sẵn dựa trên chủ đề chung.',
-        'empty' => '',
+        'empty' => 'Sắp ra mắt!',
         'nav_title' => 'danh sách',
         'title' => 'Gói Beatmap',
 
@@ -35,9 +35,10 @@ return [
     'mode' => [
         'artist' => 'Nghệ Sĩ/Album',
         'chart' => 'Tiêu điểm',
-        'featured' => '',
+        'featured' => 'Nghệ sĩ tiêu biểu',
         'standard' => 'Tiêu Chuẩn',
         'theme' => 'Chủ Đề',
+        'tournament' => '',
     ],
 
     'require_login' => [

@@ -29,7 +29,6 @@
     "knuckleswtf/scribe": "^4.0",
     "laravel/framework": "^8.58",
     "laravel/helpers": "^1.1",
-    "laravel/legacy-factories": "^1.1",
     "laravel/octane": "^1.3",
     "laravel/passport": "*",
     "laravel/slack-notification-channel": "^2.0",

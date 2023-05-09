@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'заблоковані користувачі (:count)',
         'hide_profile' => 'Приховати профіль',
         'hide_comment' => 'сховати',
+        'forum_post_text' => '',
         'not_blocked' => 'Користувач не заблокований.',
         'show_profile' => 'Показати профіль',
         'show_comment' => 'показати',

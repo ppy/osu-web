@@ -5,11 +5,11 @@
 
 return [
     'deleted' => 'обрисано',
-    'deleted_by' => 'обрисано у :timeago од стране :user',
+    'deleted_by' => 'обрисано :timeago од стране :user',
     'deleted_by_system' => 'систем',
     'deleted_count' => ':count_delimited обрисан коментар|:count_delimited обрисани коментари',
     'edited' => 'измењено :timeago од стране :user',
-    'pinned' => 'прикачено',
+    'pinned' => 'закачено',
     'empty' => 'Нема коментара.',
     'load_replies' => 'учитајте одговоре',
     'replies_count' => ':count_delimited одговор|:count_delimited одговори',
@@ -19,14 +19,14 @@ return [
         'beatmapset' => 'Мапе',
         'build' => 'Списак измена',
         'news_post' => 'Новости',
-        '_deleted' => 'Обришите ставку',
+        '_deleted' => 'Избрисана ставка',
     ],
 
     'editor' => [
         'textarea_hint' => [
             '_' => 'Пристисните ентер за :action. Користите shift+enter за нову линију.',
-            'edit' => 'сачувајте',
-            'new' => 'објавите',
+            'edit' => 'сачувај',
+            'new' => 'објава',
             'reply' => 'одговорите',
         ],
     ],
@@ -45,7 +45,7 @@ return [
     'placeholder' => [
         'edit' => 'Измените коментар овде',
         'new' => 'Упишите нови коментар овде',
-        'reply' => 'Овде унесите Ваш одговор',
+        'reply' => 'Овде унесите ваш одговор',
     ],
 
     'show' => [

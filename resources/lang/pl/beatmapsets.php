@@ -67,12 +67,12 @@ return [
 
         'details' => [
             'by_artist' => ':artist',
-            'favourite' => 'Dodaj do ulubionych',
-            'favourite_login' => 'Zaloguj się, by dodać tę beatmapę do ulubionych.',
-            'logged-out' => 'Zaloguj się, aby zacząć pobierać beatmapy!',
+            'favourite' => 'dodaj do ulubionych',
+            'favourite_login' => 'zaloguj się, by dodać tę beatmapę do ulubionych',
+            'logged-out' => 'zaloguj się, aby zacząć pobierać beatmapy!',
             'mapped_by' => 'autorstwa :mapper',
             'mapped_by_guest' => 'gościnny poziom trudności autorstwa :mapper',
-            'unfavourite' => 'Usuń z ulubionych',
+            'unfavourite' => 'usuń z ulubionych',
             'updated_timeago' => 'ostatnio zaktualizowana :timeago',
 
             'download' => [
@@ -155,7 +155,7 @@ return [
         'scoreboard' => [
             'achieved' => 'osiągnięte :when',
             'country' => 'Ranking krajowy',
-            'error' => 'Nie udało się załadować rankingu',
+            'error' => 'Nie udało się załadować tabeli wyników',
             'friend' => 'Ranking znajomych',
             'global' => 'Ranking globalny',
             'supporter-link' => 'Kliknij <a href=":link">tutaj</a>, aby zobaczyć, jakie jeszcze funkcje otrzymasz w zamian za zakup statusu donatora!',

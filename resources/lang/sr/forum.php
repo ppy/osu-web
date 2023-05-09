@@ -48,7 +48,7 @@ return [
         'confirm_restore' => 'Стварно вратити пост?',
         'edited' => 'Последње измењено од :user :when, измењено :count_delimited пута и укупно.|Последње измењено од :user :when, измењено :count_delimited пута укупно.',
         'posted_at' => 'постовао :when',
-        'posted_by_in' => '',
+        'posted_by_in' => 'поставио :username у :forum',
 
         'actions' => [
             'destroy' => 'Обриши пост',
@@ -102,7 +102,7 @@ return [
             'preview' => 'Преглед',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
-            'preview_hide' => 'Напиши',
+            'preview_hide' => 'Измени',
             'submit' => 'Пост',
 
             'necropost' => [
@@ -130,7 +130,7 @@ return [
 
         'logs' => [
             '_' => 'Логови за теме',
-            'button' => '',
+            'button' => 'Прегледај дневнике тема',
 
             'columns' => [
                 'action' => 'Радња',
@@ -139,36 +139,36 @@ return [
             ],
 
             'data' => [
-                'add_tag' => '',
+                'add_tag' => 'додата ":tag" ознака',
                 'announcement' => 'закачена тема и означена као најава',
-                'edit_topic' => '',
-                'fork' => '',
+                'edit_topic' => 'на :title',
+                'fork' => 'из :topic',
                 'pin' => 'закачена тема',
                 'post_operation' => 'поставио :username',
-                'remove_tag' => '',
-                'source_forum_operation' => '',
-                'unpin' => '',
+                'remove_tag' => 'уклоњена ":tag" ознака',
+                'source_forum_operation' => 'из :forum',
+                'unpin' => 'откачена тема',
             ],
 
-            'no_results' => '',
+            'no_results' => 'није пронађен ниједан дневник...',
 
             'operations' => [
                 'delete_post' => 'Обрисан пост',
                 'delete_topic' => 'Обрисана тема',
-                'edit_topic' => '',
-                'edit_poll' => '',
+                'edit_topic' => 'Промењен наслов теме',
+                'edit_poll' => 'Уређена анкета за тему',
                 'fork' => 'Копирана тема',
                 'issue_tag' => '',
                 'lock' => 'Закључана тема',
                 'merge' => 'Спојени постови у овој теми',
-                'move' => '',
+                'move' => 'Премештена тема',
                 'pin' => 'Закачена тема',
-                'post_edited' => '',
-                'restore_post' => '',
+                'post_edited' => 'Измењен пост',
+                'restore_post' => 'Враћен пост',
                 'restore_topic' => 'Враћена тема',
-                'split_destination' => '',
-                'split_source' => '',
-                'topic_type' => '',
+                'split_destination' => 'Премештени подељени постови',
+                'split_source' => 'Подељени постови',
+                'topic_type' => 'Подесите тип теме',
                 'topic_type_changed' => 'Промењен тип теме',
                 'unlock' => 'Откључана тема',
                 'unpin' => 'Откачена тема',
@@ -194,13 +194,13 @@ return [
 
             'info' => [
                 'total' => 'Пратите укупно :total тема.',
-                'unread' => '',
+                'unread' => 'Имате :unread непрочитаних одговора на претплаћене теме.',
             ],
         ],
 
         'topic_buttons' => [
             'remove' => [
-                'confirmation' => '',
+                'confirmation' => 'Отказати претплату на тему?',
                 'title' => 'Откажи претплату',
             ],
         ],
@@ -212,26 +212,26 @@ return [
         'actions' => [
             'login_reply' => 'Пријави се да би сте одговорили',
             'reply' => 'Одговори',
-            'reply_with_quote' => '',
+            'reply_with_quote' => 'Цитирајте пост за одговор',
             'search' => 'Претражи',
         ],
 
         'create' => [
-            'create_poll' => '',
+            'create_poll' => 'Креирање анкете',
 
-            'preview' => '',
+            'preview' => 'Преглед поста',
 
             'create_poll_button' => [
-                'add' => '',
-                'remove' => '',
+                'add' => 'Направите анкету',
+                'remove' => 'Откажите прављење анкете',
             ],
 
             'poll' => [
-                'hide_results' => '',
-                'hide_results_info' => '',
+                'hide_results' => 'Сакријте резултате анкета.',
+                'hide_results_info' => 'Они ће бити приказани тек по завршетку анкете.',
                 'length' => 'Покрени анкету за',
                 'length_days_suffix' => 'дана',
-                'length_info' => '',
+                'length_info' => 'Оставите празно за анкету без краја',
                 'max_options' => 'Опције по кориснику',
                 'max_options_info' => 'Ово је број опција које сваки корисник може изабрати приликом гласања.',
                 'options' => 'Опције',
@@ -331,7 +331,7 @@ return [
 
             'feature_vote' => [
                 'current' => '',
-                'do' => '',
+                'do' => 'Промовишите овај захтев',
 
                 'info' => [
                     '_' => '',

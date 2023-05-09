@@ -14,13 +14,13 @@ return [
     'verifying' => 'Vänligen verifiera sessionen för att visa aviseringar',
 
     'action_type' => [
-        '_' => '',
-        'beatmapset' => '',
-        'build' => '',
-        'channel' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'user' => '',
+        '_' => 'alla',
+        'beatmapset' => 'beatmaps',
+        'build' => 'builds',
+        'channel' => 'chatt',
+        'forum_topic' => 'forum',
+        'news_post' => 'nyheter',
+        'user' => 'profil',
     ],
 
     'filters' => [
@@ -220,7 +220,7 @@ return [
 
         'channel' => [
             'announcement' => [
-                'announce' => '',
+                'announce' => 'Det finns ett nytt meddelande i ":name"',
             ],
 
             'channel' => [

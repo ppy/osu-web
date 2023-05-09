@@ -14,10 +14,10 @@ return [
     'verifying' => 'Por favor verifica a sessão para ver as notificações',
 
     'action_type' => [
-        '_' => '',
+        '_' => 'tudo',
         'beatmapset' => 'beatmaps',
-        'build' => '',
-        'channel' => '',
+        'build' => 'compilações',
+        'channel' => 'conversa',
         'forum_topic' => 'fórum',
         'news_post' => 'notícias',
         'user' => 'perfil',

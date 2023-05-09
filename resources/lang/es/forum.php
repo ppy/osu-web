@@ -102,7 +102,7 @@ return [
             'preview' => 'Previsualizar',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
-            'preview_hide' => 'Escribir',
+            'preview_hide' => 'Editar',
             'submit' => 'Publicar',
 
             'necropost' => [

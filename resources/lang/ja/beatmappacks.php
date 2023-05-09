@@ -38,6 +38,7 @@ return [
         'featured' => '注目アーティスト',
         'standard' => 'スタンダードパック',
         'theme' => 'テーマ',
+        'tournament' => '',
     ],
 
     'require_login' => [

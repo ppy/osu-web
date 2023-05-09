@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'utilizatori blocați (:count)',
         'hide_profile' => 'ascunde profilul',
         'hide_comment' => 'ascunde',
+        'forum_post_text' => '',
         'not_blocked' => 'Acest utilizator nu este blocat.',
         'show_profile' => 'arată profilul',
         'show_comment' => 'arată',

@@ -23,7 +23,7 @@ return [
                 'description' => 'Prispevki so namenjeni strežnikom za poganjanje spletne strani, večigralskih sistemov, online lestvic najboljših itd.',
             ],
             'featured-artists' => [
-                'title' => 'Priznani Ustvarjalci',
+                'title' => 'Predstavljeni Ustvarjalci',
                 'description' => 'S tvojo podporo se lahko približamo še bolj super ustvarjalcem in licensiramo več super glasbe za uporabo v osu!',
                 'link_text' => 'Poglej trenutni seznam &raquo;',
             ],
@@ -71,7 +71,7 @@ return [
 
             'upload_more' => [
                 'title' => 'Naloži več',
-                'description' => 'Dodatna mesta za beatmape, ki so v čakanju (na posamezno rankirano beatmapo) na največ 10.',
+                'description' => 'Dodatna mesta za beatmape, ki so v čakanju (na posamezno rangirano beatmapo) na največ 10.',
             ],
 
             'early_access' => [
@@ -129,7 +129,7 @@ return [
             ],
             'more_beatmaps' => [
                 'title' => 'Naloži Več Beatmap',
-                'description' => 'Koliko čakajočih beatmap imaš lahko naenkrat se izračuna iz osnovne vrednosti in dodatnega bonusa za vsako rankirano beatmapo ki jo trenutno imaš (vse do omejitve).<br/><br/>Ponavadi je to :base plus :bonus na rankirano beatmapo (vse do :bonus_max). S supporter-jem se ta poveča na :supporter_base plus :supporter_bonus na rankirano beatmapo (vse do :supporter_bonus_max).',
+                'description' => 'Koliko čakajočih beatmap imaš lahko naenkrat se izračuna iz osnovne vrednosti in dodatnega bonusa za vsako rangirano beatmapo ki jo trenutno imaš (vse do omejitve).<br/><br/>Ponavadi je to :base plus :bonus na rangirano beatmapo (vse do :bonus_max). S supporter-jem se ta poveča na :supporter_base plus :supporter_bonus na rangirano beatmapo (vse do :supporter_bonus_max).',
             ],
             'friend_filtering' => [
                 'title' => 'Prijateljska lestvica',
