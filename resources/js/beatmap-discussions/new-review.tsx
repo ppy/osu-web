@@ -73,7 +73,7 @@ export default class NewReview extends React.Component<Props> {
 
     return (
       <div className={classWithModifiers(floatClass, { pinned: this.props.pinned })} style={{ top: this.cssTop }}>
-        <div className={`${floatClass}__floatable ${floatClass}__floatable--pinned`}>
+        <div className={`${floatClass}__floatable`}>
           <div ref={this.props.innerRef} className={`${floatClass}__content`}>
             <div className='osu-page osu-page--small'>
               <div className='beatmap-discussion-new'>
