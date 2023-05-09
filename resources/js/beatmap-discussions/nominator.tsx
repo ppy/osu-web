@@ -8,8 +8,8 @@ import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussion
 import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import { forEachRight, keys, map, uniq } from 'lodash';
-import { action, makeObservable, observable } from 'mobx';
+import { forEachRight, map, uniq } from 'lodash';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -31,12 +31,12 @@ const bn = 'nomination-dialog';
 export class Nominator extends React.Component<Props> {
   private checkboxContainerRef = React.createRef<HTMLDivElement>();
   @observable private loading = false;
-  @observable private selectedModes = this.hybridMode ? [] : [keys(this.props.beatmapset.nominations.required)[0] as GameMode];
+  @observable private selectedModes = this.hybridMode ? [] : [this.playmodes[0]];
   @observable private visible = false;
   private xhr?: JQuery.jqXHR<BeatmapsetWithDiscussionsJson>;
 
   private get hybridMode() {
-    return keys(this.props.beatmapset.nominations.required).length > 1;
+    return this.playmodes.length > 1;
   }
 
   private get legacyMode() {
@@ -67,6 +67,11 @@ export class Nominator extends React.Component<Props> {
     return nominations;
   }
 
+  @computed
+  private get playmodes() {
+    return Object.keys(this.props.beatmapset.nominations.required) as GameMode[];
+  }
+
   private get userCanNominate() {
     if (!this.userHasNominatePermission) {
       return false;
@@ -74,7 +79,7 @@ export class Nominator extends React.Component<Props> {
 
     const nominationModes = this.legacyMode
       ? uniq(this.props.beatmapset.beatmaps.map((bm) => bm.mode))
-      : Object.keys(this.props.beatmapset.nominations.required) as GameMode[];
+      : this.playmodes;
 
     return nominationModes.some((mode) => this.userCanNominateMode(mode));
   }
@@ -234,9 +239,7 @@ export class Nominator extends React.Component<Props> {
   }
 
   private renderModalContentHybrid() {
-    const playmodes = keys(this.props.beatmapset.nominations.required);
-
-    const renderPlaymodes = map(playmodes, (mode: GameMode) => {
+    const renderPlaymodes = map(this.playmodes, (mode: GameMode) => {
       const disabled = !this.userCanNominateMode(mode);
       return (
         <label
