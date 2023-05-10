@@ -4,7 +4,7 @@
 import type { Link } from 'mdast';
 import type { CompileContext, Extension, Token } from 'mdast-util-from-markdown';
 
-function enterLegacyLink(this: CompileContext, token: Token) {
+function enterOldLink(this: CompileContext, token: Token) {
   this.enter({
     children: [],
     type: 'link',
@@ -12,11 +12,11 @@ function enterLegacyLink(this: CompileContext, token: Token) {
   }, token);
 }
 
-function enterLegacyLinkTitle(this: CompileContext) {
+function enterOldLinkTitle(this: CompileContext) {
   this.buffer();
 }
 
-function exitLegacyLinkTitle(this: CompileContext) {
+function exitOldLinkTitle(this: CompileContext) {
   const title = this.resume();
   (top(this.stack) as Link).children = [{
     type: 'text',
@@ -24,11 +24,11 @@ function exitLegacyLinkTitle(this: CompileContext) {
   }];
 }
 
-function exitLegacyLinkUrl(this: CompileContext, token: Token) {
+function exitOldLinkUrl(this: CompileContext, token: Token) {
   (top(this.stack) as Link).url = this.sliceSerialize(token);
 }
 
-function exitLegacyLink(this: CompileContext, token: Token) {
+function exitOldLink(this: CompileContext, token: Token) {
   this.exit(token);
 }
 
@@ -38,13 +38,13 @@ function top(stack: CompileContext['stack']) {
 
 const fromMarkdown: Extension = {
   enter: {
-    legacyLink: enterLegacyLink,
-    legacyLinkTitle: enterLegacyLinkTitle,
+    oldLink: enterOldLink,
+    oldLinkTitle: enterOldLinkTitle,
   },
   exit: {
-    legacyLink: exitLegacyLink,
-    legacyLinkTitle: exitLegacyLinkTitle,
-    legacyLinkUrl: exitLegacyLinkUrl,
+    oldLink: exitOldLink,
+    oldLinkTitle: exitOldLinkTitle,
+    oldLinkUrl: exitOldLinkUrl,
   },
 };
 export default fromMarkdown;

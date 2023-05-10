@@ -6,7 +6,7 @@ import type { Processor } from 'unified';
 import fromMarkdown from './from-markdown';
 import micromark from './micromark';
 
-export default function legacyLink(this: Processor) {
+export default function oldLink(this: Processor) {
   add(this, 'micromarkExtensions', [micromark]);
   add(this, 'fromMarkdownExtensions', [fromMarkdown]);
 }
