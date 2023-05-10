@@ -9,8 +9,6 @@
         ? '{}'
         : json_encode(json_item($user, new App\Transformers\CurrentUserTransformer()));
 @endphp
-<script class="js-current-user">
-    var currentUser = {!! $userJson !!};
-    // self-destruct to avoid rerun by turbolinks
-    $('.js-current-user').remove();
+<script id="json-current-user" type="application/json">
+    {!! $userJson !!}
 </script>
