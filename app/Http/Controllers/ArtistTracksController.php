@@ -18,13 +18,14 @@ class ArtistTracksController extends Controller
         $search = new ArtistTrackSearch($params);
 
         $tracks = $search->records();
-        $data = array_merge([
+        $index = [
             'artist_tracks' => json_collection($tracks, new ArtistTrackTransformer(), ['artist', 'album']),
             'search' => ArtistTrackSearchParamsFromRequest::toArray($params),
-        ], cursor_for_response($search->getSortCursor()));
+            ...cursor_for_response($search->getSortCursor()),
+        ];
 
         if (is_json_request()) {
-            return $data;
+            return $index;
         }
 
         $availableGenres = cache_remember_mutexed(
@@ -34,7 +35,7 @@ class ArtistTracksController extends Controller
             fn () => ArtistTrack::distinct()->pluck('genre')->sort()->values(),
         );
 
-        return ext_view('artist_tracks.index', compact('availableGenres', 'data'));
+        return ext_view('artist_tracks.index', compact('availableGenres', 'index'));
     }
 
     public function show($id)

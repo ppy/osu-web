@@ -24,7 +24,4 @@ abstract class ModelFactory extends BaseFactory
 
         return $definition;
     }
-
-    // TODO: remove following line after removing legacy-factories
-    // fooling legacy-factories' "isLegacyFactory" check: class Hello extends Factory
 }

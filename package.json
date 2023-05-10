@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "yarn run development",
     "development": "cross-env NODE_ENV=development webpack --progress --hide-modules --config=webpack.config.js",
-    "lint": "eslint --cache 'resources/js/**/*.{js,ts,tsx}' 'tests/karma/**/*.ts' '*.js'",
+    "lint": "eslint --cache 'resources/js/**/*.{js,ts,tsx}' 'tests/karma/**/*.{ts,tsx}' '*.js'",
     "localize": "yarn run generate-localizations",
     "prod": "yarn run production",
     "production": "cross-env NODE_ENV=production webpack --hide-modules --config=webpack.config.js",
@@ -81,7 +81,8 @@
     "rehype-truncate": "^1.2.2",
     "remark-breaks": "^3.0.2",
     "remark-parse": "^10.0.1",
-    "shopify-buy": "^2.6.1",
+    "remark-wiki-link": "^1.0.4",
+    "shopify-buy": "^2.19.0",
     "slate": "^0.82.1",
     "slate-history": "^0.66.0",
     "slate-react": "^0.83.0",

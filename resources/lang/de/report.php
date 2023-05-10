@@ -6,12 +6,12 @@
 return [
     'beatmapset' => [
         'button' => 'Melden',
-        'title' => ':username\'s Beatmap melden?',
+        'title' => 'Die Beatmap von :username melden?',
     ],
 
     'beatmapset_discussion_post' => [
         'button' => 'Melden',
-        'title' => ':username\'s Beitrag melden?',
+        'title' => 'Den Beitrag von :username melden?',
     ],
 
     'comment' => [
@@ -21,12 +21,12 @@ return [
 
     'forum_post' => [
         'button' => 'Melden',
-        'title' => ':usernames Beitrag melden?',
+        'title' => 'Den Beitrag von :username melden?',
     ],
 
     'scores' => [
         'button' => 'Score melden',
-        'title' => ':username\'s Score melden?',
+        'title' => 'Den Score von :username melden?',
     ],
 
     'user' => [

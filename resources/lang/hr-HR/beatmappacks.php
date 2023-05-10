@@ -38,6 +38,7 @@ return [
         'featured' => '',
         'standard' => 'Standardni',
         'theme' => 'Tema',
+        'tournament' => '',
     ],
 
     'require_login' => [

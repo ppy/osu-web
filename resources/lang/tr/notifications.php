@@ -14,13 +14,13 @@ return [
     'verifying' => 'Bildirimleri görüntülemek için lütfen oturumunuzu doğrulayın',
 
     'action_type' => [
-        '_' => '',
-        'beatmapset' => '',
-        'build' => '',
-        'channel' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'user' => '',
+        '_' => 'hepsi',
+        'beatmapset' => 'haritalar',
+        'build' => 'sürümler',
+        'channel' => 'sohbet',
+        'forum_topic' => 'forum',
+        'news_post' => 'haberler',
+        'user' => 'profil',
     ],
 
     'filters' => [

@@ -206,7 +206,7 @@ return [
             'count_sliders' => 'Slider-Anzahl',
             'offset' => 'Online-Offset: :offset',
             'user-rating' => 'User-Bewertungen',
-            'rating-spread' => 'Bewertungs-Spread',
+            'rating-spread' => 'Bewertungsverteilung',
             'nominations' => 'Nominierungen',
             'playcount' => 'Playcount',
         ],

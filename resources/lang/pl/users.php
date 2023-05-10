@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'zablokowani użytkownicy (:count)',
         'hide_profile' => 'ukryj profil',
         'hide_comment' => 'ukryj',
+        'forum_post_text' => 'Ten post został ukryty.',
         'not_blocked' => 'Ten użytkownik nie jest zablokowany.',
         'show_profile' => 'pokaż profil',
         'show_comment' => 'pokaż',
@@ -415,7 +416,7 @@ return [
             'title' => 'Nie znaleziono użytkownika! ;_;',
         ],
         'page' => [
-            'button' => 'Edytuj stronę użytkownika',
+            'button' => 'edytuj stronę użytkownika',
             'description' => '<strong>O mnie</strong> to twoje osobiste miejsce, które możesz dowolnie dostosować.',
             'edit_big' => 'Edytuj mnie!',
             'placeholder' => 'Pisz tutaj',
@@ -439,7 +440,7 @@ return [
         'stats' => [
             'hit_accuracy' => 'Celność',
             'level' => 'Poziom :level',
-            'level_progress' => 'Postęp do następnego poziomu',
+            'level_progress' => 'postęp do następnego poziomu',
             'maximum_combo' => 'Maksymalne combo',
             'medals' => 'Medale',
             'play_count' => 'Liczba zagrań',

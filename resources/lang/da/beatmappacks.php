@@ -38,6 +38,7 @@ return [
         'featured' => '',
         'standard' => 'Standard',
         'theme' => 'Tema',
+        'tournament' => 'Turnering',
     ],
 
     'require_login' => [

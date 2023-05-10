@@ -6,7 +6,7 @@
 return [
     'index' => [
         'description' => 'Paket beatmap yang tersusun atas satu tema tertentu.',
-        'empty' => '',
+        'empty' => 'Segera hadir!',
         'nav_title' => 'daftar',
         'title' => 'Paket Beatmap',
 
@@ -38,6 +38,7 @@ return [
         'featured' => 'Featured Artist',
         'standard' => 'Standar',
         'theme' => 'Tematik',
+        'tournament' => 'Turnamen',
     ],
 
     'require_login' => [

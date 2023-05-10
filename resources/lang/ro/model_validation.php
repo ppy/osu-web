@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute nu poate fi negativ.',
     'required' => ':attribute este necesar.',
     'too_long' => ':attribute depășește lungimea maximă - poate fi doar până la :limit de caractere.',
+    'url' => '',
     'wrong_confirmation' => 'Confirmarea nu se potrivește.',
 
     'beatmapset_discussion' => [
@@ -106,6 +107,10 @@ return [
             'required' => 'Selectează o opțiune când votezi.',
             'too_many' => 'Ai selectat mai multe opțiuni decât este permis.',
         ],
+    ],
+
+    'legacy_api_key' => [
+        'exists' => '',
     ],
 
     'oauth' => [

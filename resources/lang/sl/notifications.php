@@ -16,8 +16,8 @@ return [
     'action_type' => [
         '_' => 'vse',
         'beatmapset' => 'beatmape',
-        'build' => '',
-        'channel' => '',
+        'build' => 'buildi',
+        'channel' => 'klepet',
         'forum_topic' => 'forum',
         'news_post' => 'novice',
         'user' => 'profil',

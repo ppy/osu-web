@@ -121,7 +121,7 @@ return [
 
             'more_favourites' => [
                 'title' => 'Больше избранных карт',
-                'description' => 'Максимальное число карт, которое вы сможете добавить в избранное, увеличится с :normally &rarr; :supporter',
+                'description' => 'Максимальное число карт, которое вы сможете добавить в избранные, увеличится с :normally &rarr; :supporter',
             ],
             'more_friends' => [
                 'title' => 'Больше друзей',

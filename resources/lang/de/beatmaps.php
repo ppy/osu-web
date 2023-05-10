@@ -106,7 +106,7 @@ return [
                 'unsaved' => 'Nicht gespeichert',
                 'timestamp' => [
                     'all-diff' => 'Beiträge zu "Alle Schwierigkeitsstufen" können nicht mit einem Zeitstempel versehen werden.',
-                    'diff' => 'Falls dieser/dieses :type mit einem Zeitstempel beginnt, wird er/es unter Timeline angezeigt.',
+                    'diff' => 'Falls dieser Beitrag mit einem Zeitstempel beginnt, wird er unter Timeline angezeigt.',
                 ],
             ],
             'insert-block' => [
@@ -199,7 +199,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Diese Map wird voraussichtlich am :date ranked. Sie befindet sich aktuell an Position :position der :queue.',
-            'on' => '',
+            'on' => 'am :date',
             'queue' => 'Warteschlange',
             'soon' => 'bald',
         ],
@@ -210,7 +210,7 @@ return [
         ],
 
         'reset_confirm' => [
-            'disqualify' => 'Bist du sicher? Das wird die Beatmap von der Qualifiezierung entfernen und den Nominierungsprozess zurücksetzen.',
+            'disqualify' => 'Bist du sicher? Das wird die Beatmap von der Qualifizierung entfernen und den Nominierungsprozess zurücksetzen.',
             'nomination_reset' => 'Bist du dir sicher? Der Nominierungsprozess wird durch das neue Problem zurückgesetzt.',
             'problem_warning' => 'Bist du sicher, dass du ein Problem in dieser Beatmap melden möchtest? Dies wird die Beatmap Nominators alarmieren.',
         ],

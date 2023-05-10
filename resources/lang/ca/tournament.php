@@ -48,5 +48,5 @@ return [
             'running' => 'Aquest torneig està actualment en curs. Consulteu la pàgina d\'informació per a més detalls.',
         ],
     ],
-    'tournament_period' => ':start a :end',
+    'tournament_period' => 'Des del :start al :end',
 ];

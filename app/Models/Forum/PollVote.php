@@ -35,7 +35,7 @@ class PollVote extends Model
         return $this->belongsTo(User::class, 'vote_user_id');
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'forum.poll_vote';
     }

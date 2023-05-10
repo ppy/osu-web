@@ -5,9 +5,9 @@
 
 return [
     'loading_users' => 'учитавање корисника...',
-    'talking_in' => 'причате у :channel',
-    'talking_with' => 'причате са :name',
-    'title_compact' => 'чет',
+    'talking_in' => 'разговарање у :channel',
+    'talking_with' => 'разговарање са :name',
+    'title_compact' => 'ћаскање',
     'unread_messages' => 'непрочитане поруке',
 
     'cannot_send' => [
@@ -31,7 +31,7 @@ return [
 
     'form' => [
         'title' => [
-            'announcement' => 'Креирај најаву',
+            'announcement' => 'Креирај Нову Најаву',
         ],
 
         'labels' => [

@@ -6,12 +6,12 @@
 return [
     'all_read' => 'Све нотификације су прочитане!',
     'delete' => 'Избриши :type',
-    'loading' => 'Учитавање непрочитаних нотификација...',
+    'loading' => 'Учитавање непрочитаних обавештења...',
     'mark_read' => 'Очисти :type',
     'none' => 'Нема обавештења',
     'see_all' => 'погледајте сва обавештења',
     'see_channel' => 'уђите у чет',
-    'verifying' => 'Молимо Вас да верификујете сесију да би сте видели нотификације',
+    'verifying' => 'Молимо вас да верификујете сесију да би сте видели нотификације',
 
     'action_type' => [
         '_' => 'све',
@@ -48,10 +48,10 @@ return [
                 'beatmapset_discussion_lock' => 'Дискусија за ":title" је закључана',
                 'beatmapset_discussion_lock_compact' => 'Дискусија је закључана',
                 'beatmapset_discussion_post_new' => 'Нова објава на ":title" од стране корисника :username: ":content"',
-                'beatmapset_discussion_post_new_empty' => 'Нова објава у" :title" од стране корисника :username',
+                'beatmapset_discussion_post_new_empty' => 'Нова објава на ":title" од стране корисника :username',
                 'beatmapset_discussion_post_new_compact' => 'Нова објава од стране корисника :username: ":content"',
                 'beatmapset_discussion_post_new_compact_empty' => 'Нова објава од стране корисника :username',
-                'beatmapset_discussion_review_new' => 'Нова рецензија у ":title" од  корисника :username садржи проблеме: :problems, сугестије: :suggestions, похвале: :praises',
+                'beatmapset_discussion_review_new' => 'Нова рецензија у ":title" од корисника :username садржи проблеме: :problems, сугестије: :suggestions, похвале: :praises',
                 'beatmapset_discussion_review_new_compact' => 'Нова рецензија од корисника :username садржи проблеме: :problems, сугестије: :suggestions, похвале: :praises',
                 'beatmapset_discussion_unlock' => 'Дискусија за ":title" је откључана',
                 'beatmapset_discussion_unlock_compact' => 'Дискусија је откључана',
@@ -71,15 +71,15 @@ return [
                 'beatmapset_disqualify_compact' => 'Мапа је дисквалификована',
                 'beatmapset_love' => '":title" је унапређен у loved',
                 'beatmapset_love_compact' => 'Мапа је унапређена у loved',
-                'beatmapset_nominate' => '":title" је номинован',
-                'beatmapset_nominate_compact' => 'Мапа је номинована',
+                'beatmapset_nominate' => '":title" је номиниран',
+                'beatmapset_nominate_compact' => 'Мапа је номинирана',
                 'beatmapset_qualify' => '":title" је добила довољно номинација и ушла је у ред за рангирање',
                 'beatmapset_qualify_compact' => 'Мапа је ушла у ред за рангирање',
                 'beatmapset_rank' => '":title" је рангирана',
                 'beatmapset_rank_compact' => 'Мапа је рангирана',
                 'beatmapset_remove_from_loved' => '":title" је уклоњена из Loved',
                 'beatmapset_remove_from_loved_compact' => 'Мапа је уклоњена из Loved',
-                'beatmapset_reset_nominations' => 'Номинација ":title" је ресетована',
+                'beatmapset_reset_nominations' => 'Номинација за ":title" је ресетована',
                 'beatmapset_reset_nominations_compact' => 'Номинација је ресетована',
             ],
 
@@ -123,9 +123,9 @@ return [
             'comment' => [
                 '_' => 'Нови коментар',
 
-                'comment_new' => ':username је коментарисао/ла ":content" у ":title"',
+                'comment_new' => ':username је коментарисао/ла ":content" на ":title"',
                 'comment_new_compact' => ':username је коментарисао/ла ":content"',
-                'comment_reply' => ':username је одговорио/ла ":content" у ":title"',
+                'comment_reply' => ':username је одговорио/ла ":content" на ":title"',
                 'comment_reply_compact' => ':username је одговорио/ла ":content"',
             ],
         ],
@@ -136,9 +136,9 @@ return [
             'comment' => [
                 '_' => 'Нови коментар',
 
-                'comment_new' => ':username је коментарисао/ла ":content" у ":title"',
+                'comment_new' => ':username је коментарисао/ла ":content" на ":title"',
                 'comment_new_compact' => ':username је коментарисао/ла ":content"',
-                'comment_reply' => ':username је одговорио/ла ":content" у ":title"',
+                'comment_reply' => ':username је одговорио/ла ":content" на ":title"',
                 'comment_reply_compact' => ':username је одговорио/ла ":content"',
             ],
         ],
@@ -168,7 +168,7 @@ return [
 
                 'user_beatmapset_new' => 'Нова мапа ":title" од корисника :username',
                 'user_beatmapset_new_compact' => 'Нова мапа ":title"',
-                'user_beatmapset_new_group' => 'Нова мапа од стране корисника :username',
+                'user_beatmapset_new_group' => 'Нове мапе од стране корисника :username',
 
                 'user_beatmapset_revive' => 'Мапа ":title" је оживљена од стране корисника :username',
                 'user_beatmapset_revive_compact' => 'Мапа ":title" оживљена',
@@ -194,19 +194,19 @@ return [
             ],
 
             'beatmapset_discussion' => [
-                'beatmapset_discussion_lock' => 'Дискусија за ":title" је закључана',
-                'beatmapset_discussion_post_new' => 'Дискусија за ":title" је ажурирана',
+                'beatmapset_discussion_lock' => 'Дискусија на ":title" је закључана',
+                'beatmapset_discussion_post_new' => 'Дискусија на ":title" има нових ажурирана',
                 'beatmapset_discussion_unlock' => 'Дискусија за ":title" је откључана',
             ],
 
             'beatmapset_problem' => [
-                'beatmapset_discussion_qualified_problem' => 'Нови проблем је пријављен у ":title"',
+                'beatmapset_discussion_qualified_problem' => 'Нови проблем је пријављен на ":title"',
             ],
 
             'beatmapset_state' => [
                 'beatmapset_disqualify' => '":title" је дисквалификован',
                 'beatmapset_love' => '":title" је унапређен у loved',
-                'beatmapset_nominate' => '":title" је номинован',
+                'beatmapset_nominate' => '":title" је номиниран',
                 'beatmapset_qualify' => '":title" је добила довољно номинација и ушла је у ред за рангирање',
                 'beatmapset_rank' => '":title" је рангирана',
                 'beatmapset_remove_from_loved' => '":title" је уклоњена из Loved',
@@ -236,7 +236,7 @@ return [
 
         'news_post' => [
             'comment' => [
-                'comment_new' => 'Вест ":title" има нове коментаре',
+                'comment_new' => 'Вести ":title" има нове коментаре',
             ],
         ],
 

@@ -146,7 +146,7 @@ return [
     ],
 
     'time' => [
-        'days_ago' => 'vor :count Tag|vor :count Tagen',
+        'days_ago' => 'vor :count_delimited Tag|vor :count_delimited Tagen',
         'hours_ago' => 'vor :count Stunde|vor :count Stunden',
         'now' => 'jetzt',
         'remaining' => 'Verbleibende Zeit',

@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute ei voi olla negatiivinen.',
     'required' => ':attribute on pakollinen.',
     'too_long' => ':attribute ylittää maksimipituuden - voi olla enintään :limit merkkiä.',
+    'url' => '',
     'wrong_confirmation' => 'Tarkistus ei täsmää.',
 
     'beatmapset_discussion' => [
@@ -106,6 +107,10 @@ return [
             'required' => 'Valitse jotain äänestäessäsi.',
             'too_many' => 'Enemmän valintoja kuin sallittu.',
         ],
+    ],
+
+    'legacy_api_key' => [
+        'exists' => '',
     ],
 
     'oauth' => [

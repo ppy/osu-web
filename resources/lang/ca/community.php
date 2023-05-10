@@ -32,7 +32,7 @@ return [
                 'description' => 'Les teves contribucions ajuden a mantenir el joc independent i de manera completament lliure d\'anuncis o patrocinadors externs.',
             ],
             'tournaments' => [
-                'title' => 'Tornejos Oficials',
+                'title' => 'Tornejos oficials',
                 'description' => 'Ajuda a finançar el funcionament (i els premis) de la Copa del Món oficial de l\'osu!.',
                 'link_text' => 'Explora tornejos &raquo;',
             ],

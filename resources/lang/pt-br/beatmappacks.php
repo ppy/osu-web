@@ -6,7 +6,7 @@
 return [
     'index' => [
         'description' => 'Coleções temáticas pré-compactadas.',
-        'empty' => '',
+        'empty' => 'Em breve!',
         'nav_title' => 'listagem',
         'title' => 'Pacotes de Beatmaps',
 
@@ -38,6 +38,7 @@ return [
         'featured' => 'Artista em Destaque',
         'standard' => 'Standard',
         'theme' => 'Tema',
+        'tournament' => 'Torneio',
     ],
 
     'require_login' => [

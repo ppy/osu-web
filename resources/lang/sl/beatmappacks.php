@@ -6,7 +6,7 @@
 return [
     'index' => [
         'description' => 'Zapakirane zbirke beatmapov na skupno temo.',
-        'empty' => '',
+        'empty' => 'Kmalu na voljo!',
         'nav_title' => 'seznam',
         'title' => 'Paketi beatmapov',
 
@@ -35,9 +35,10 @@ return [
     'mode' => [
         'artist' => 'Glasbenik/Album',
         'chart' => 'Pod žarometi',
-        'featured' => '',
+        'featured' => 'Predstavljeni ustvarjalec',
         'standard' => 'Standardni',
         'theme' => 'Tema',
+        'tournament' => 'Turnir',
     ],
 
     'require_login' => [

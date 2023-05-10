@@ -14,13 +14,13 @@ return [
     'verifying' => 'Vui lòng xác minh phiên để xem thông báo',
 
     'action_type' => [
-        '_' => '',
-        'beatmapset' => '',
-        'build' => '',
-        'channel' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'user' => '',
+        '_' => 'tất cả',
+        'beatmapset' => 'beatmap',
+        'build' => 'xây dựng',
+        'channel' => 'trò chuyện',
+        'forum_topic' => 'diễn đàn',
+        'news_post' => 'tin tức',
+        'user' => 'hồ sơ',
     ],
 
     'filters' => [

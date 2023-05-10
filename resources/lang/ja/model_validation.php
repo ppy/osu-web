@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attributeに負の数は使用できません',
     'required' => ':attributeが必須です',
     'too_long' => ':attributeの使用文字数の制限を超えています。上限は:limit文字です。',
+    'url' => '',
     'wrong_confirmation' => '認証が一致しません。',
 
     'beatmapset_discussion' => [
@@ -107,6 +108,10 @@ return [
             'required' => '投票する選択肢を選んでください。',
             'too_many' => '許可されている選択肢より多くを選択しました。',
         ],
+    ],
+
+    'legacy_api_key' => [
+        'exists' => '',
     ],
 
     'oauth' => [

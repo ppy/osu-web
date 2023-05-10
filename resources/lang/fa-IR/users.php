@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'کاربران مسدود شده (:count)',
         'hide_profile' => 'مخفی کردن پروفایل',
         'hide_comment' => 'پنهان کردن',
+        'forum_post_text' => '',
         'not_blocked' => 'آن کاربر مسدود نشده است.',
         'show_profile' => 'نمایش نمایه',
         'show_comment' => 'نمایش دادن',

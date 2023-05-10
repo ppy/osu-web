@@ -30,14 +30,15 @@ return [
         'nomination_reset' => 'Uusi ongelma :discussion (:text) nollasi suositukset.',
         'nomination_reset_received' => 'Käyttäjän :user suosituksen oli nollannut :source_user (:text)',
         'nomination_reset_received_profile' => 'Suosituksen oli nollannut :user (:text)',
-        'offset_edit' => '',
+        'offset_edit' => 'Siirtymä verkossa oli :old ja muutettiin :new.',
         'qualify' => 'Tämä beatmap sai vaaditun määrän suosituksia hyväksymisvaihetta varten.',
         'rank' => 'Hyväksytty.',
-        'remove_from_loved' => '',
+        'remove_from_loved' => ':user poisti Rakastetuista. (:text)',
+        'tags_edit' => 'Tunnisteet olivat ":old" ja muutettu nyt ":new".',
 
         'nsfw_toggle' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'Poistettiin sopimattoman sisällön merkki',
+            'to_1' => 'Merkittiin sopimattomaksi sisällöksi',
         ],
     ],
 
@@ -58,7 +59,7 @@ return [
 
     'type' => [
         'approve' => 'Hyväksyntä',
-        'beatmap_owner_change' => '',
+        'beatmap_owner_change' => 'Vaikeustason omistajan muutos',
         'discussion_delete' => 'Poista keskustelu',
         'discussion_post_delete' => 'Keskustelun vastauksen poistaminen',
         'discussion_post_restore' => 'Keskustelun vastauksen palautus',
@@ -76,11 +77,11 @@ return [
         'love' => 'Rakkaus',
         'nominate' => 'Äänestetty',
         'nomination_reset' => 'Äänestyksen resetointi',
-        'nomination_reset_received' => '',
-        'nsfw_toggle' => '',
-        'offset_edit' => '',
+        'nomination_reset_received' => 'Suosituksen nollaus vastaanotettu',
+        'nsfw_toggle' => 'Sopimattoman sisällön merkki',
+        'offset_edit' => 'Siirtymän muokkaus',
         'qualify' => 'Hyväksyntä',
         'rank' => 'Luokittelu',
-        'remove_from_loved' => '',
+        'remove_from_loved' => 'Rakastetun poisto',
     ],
 ];

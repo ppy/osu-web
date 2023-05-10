@@ -64,7 +64,7 @@ return [
             '_' => 'comentaris',
         ],
         'contests_controller' => [
-            '_' => 'tornejos',
+            '_' => 'concursos',
         ],
         'groups_controller' => [
             'show' => 'grups',

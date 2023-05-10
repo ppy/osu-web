@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute ay bawal maging negatibo.',
     'required' => ':attribute ay kinakailangan.',
     'too_long' => ':attribute ay lumampas sa maksimum na haba - maaaring lamang maging hanggang :limit na character.',
+    'url' => '',
     'wrong_confirmation' => 'Ang kumpirmasyon ay hindi tugma.',
 
     'beatmapset_discussion' => [
@@ -106,6 +107,10 @@ return [
             'required' => 'Pumili ng opsyon kapag bumoboto.',
             'too_many' => 'Nakapali ng nakahihigit na opsyon na pinahihintulutan.',
         ],
+    ],
+
+    'legacy_api_key' => [
+        'exists' => '',
     ],
 
     'oauth' => [

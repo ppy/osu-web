@@ -61,7 +61,7 @@ return [
         'discussion' => '讨论',
 
         'deleted_banner' => [
-            'title' => '已删除此谱面。',
+            'title' => '此谱面已删除。',
             'message' => '（仅管理员可见）',
         ],
 

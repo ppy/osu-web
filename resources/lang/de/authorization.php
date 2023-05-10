@@ -47,7 +47,7 @@ return [
 
         'edit' => [
             'not_owner' => 'Nur der Autor des Beitrages kann den Beitrag bearbeiten.',
-            'resolved' => 'Du kannst keinen Beitrag einer gelösten Diskussion bearbeiten.',
+            'resolved' => 'Du kannst einen Beitrag einer vollendeten Diskussion nicht bearbeiten.',
             'system_generated' => 'Automatisch erzeugte Beiträge können nicht bearbeitet werden.',
         ],
     ],
@@ -65,7 +65,7 @@ return [
         'blocked' => 'Du kannst keine Nachrichten an einen Benutzer senden, der dich oder den du blockiert hast.',
         'friends_only' => 'Der Benutzer blockiert alle Nachrichten von Personen, die nicht auf seiner Freundesliste sind.',
         'moderated' => 'Dieser Kanal wird derzeit moderiert.',
-        'no_access' => 'Du hast kein Zugriff auf diesen Kanal.',
+        'no_access' => 'Du hast keinen Zugriff auf diesen Kanal.',
         'receive_friends_only' => 'Der Benutzer kann möglicherweise nicht antworten, da du nur Nachrichten von Personen auf deiner Freundesliste akzeptierst.',
         'restricted' => 'Du kannst keine Nachrichten senden, während du stummgeschaltet oder gesperrt bist.',
         'silenced' => 'Du kannst keine Nachrichten senden, während du stummgeschaltet oder gesperrt bist.',

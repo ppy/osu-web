@@ -6,27 +6,27 @@
 return [
     'match' => [
         'beatmap-deleted' => 'обрисана мапа',
-        'difference' => 'разлика :difference',
         'failed' => 'НИЈЕ УСПЕО',
-        'header' => 'Мулти мечеви',
-        'in-progress' => '(меч се игра)',
-        'in_progress_spinner_label' => 'меч се игра',
+        'header' => 'Мулти Мечеви',
+        'in-progress' => '(меч у току)',
+        'in_progress_spinner_label' => 'меч у току',
         'loading-events' => 'Учитавање догађаја...',
         'winner' => ':team је победио',
+        'winner_by' => '',
 
         'events' => [
             'player-left' => ':user је напустио меч',
             'player-joined' => ':user се придружио мечу',
             'player-kicked' => ':user је избачен из меча',
             'match-created' => ':user је направио меч',
-            'match-disbanded' => 'меч је распуштен',
+            'match-disbanded' => 'меч је прекинут',
             'host-changed' => ':user је постао водитељ',
 
             'player-left-no-user' => 'играч је изашао из меча',
             'player-joined-no-user' => 'играч је ушао у меч',
             'player-kicked-no-user' => 'играч је избачен из меча',
             'match-created-no-user' => 'меч је био направљен',
-            'match-disbanded-no-user' => 'меч је био распуштен',
+            'match-disbanded-no-user' => 'меч је био прекинут',
             'host-changed-no-user' => 'водитељ је био промењен',
         ],
 
@@ -42,7 +42,7 @@ return [
             'head-to-head' => 'Директно такмичење',
             'tag-coop' => 'Tag Co-op',
             'team-vs' => 'Тим против тима',
-            'tag-team-vs' => 'Tag тим VS ',
+            'tag-team-vs' => 'Tag Тим VS',
         ],
 
         'teams' => [
@@ -52,10 +52,10 @@ return [
     ],
     'game' => [
         'scoring-type' => [
-            'score' => 'Највећи резултат',
-            'accuracy' => 'Највећа прецизност',
-            'combo' => 'Највећи комбо',
-            'scorev2' => 'Скор V2',
+            'score' => 'Највећи Резултат',
+            'accuracy' => 'Највећа Прецизност',
+            'combo' => 'Највећи Комбо',
+            'scorev2' => 'Резултат V2',
         ],
     ],
 ];

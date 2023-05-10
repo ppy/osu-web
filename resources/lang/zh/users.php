@@ -37,6 +37,7 @@ return [
         'blocked_count' => '被屏蔽的用户 (:count)',
         'hide_profile' => '隐藏用户资料',
         'hide_comment' => '隐藏',
+        'forum_post_text' => '此帖子已被隐藏。',
         'not_blocked' => '此用户未被屏蔽。',
         'show_profile' => '显示用户资料',
         'show_comment' => '展开',
@@ -377,8 +378,8 @@ return [
             ],
             'account_standing' => [
                 'title' => '账号状态',
-                'bad_standing' => "<strong>:username</strong> 的账号存在不良记录 :(",
-                'remaining_silence' => '<strong>:username</strong> 的禁言将在 :duration 解除',
+                'bad_standing' => ":username 的账号存在不良记录 :(",
+                'remaining_silence' => ':username的禁言将在 :duration 解除',
 
                 'recent_infringements' => [
                     'title' => '最近记录',
@@ -387,7 +388,7 @@ return [
                     'length' => '时长',
                     'length_permanent' => '永久',
                     'description' => '原因',
-                    'actor' => '执行人： :username',
+                    'actor' => '裁决者： :username',
 
                     'actions' => [
                         'restriction' => '封禁',

@@ -10,7 +10,7 @@ return [
     ],
 
     'filter' => [
-        'title' => 'Прикажите',
+        'title' => 'Прикажи',
 
         'variant' => [
             'title' => 'Варијанта',

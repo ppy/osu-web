@@ -18,10 +18,13 @@ use Event;
 use Mail;
 use Queue;
 use ReflectionClass;
+use ReflectionClassConstant;
 use Symfony\Component\Finder\Finder;
 
 class BroadcastNotificationTest extends TestCase
 {
+    private const IGNORED_CONST_NAMES = ['NAME_TO_CATEGORY', 'NOTIFIABLE_CLASSES', 'SUBTYPES'];
+
     protected $sender;
 
     public function testNoNotificationForBotUser()
@@ -116,13 +119,14 @@ class BroadcastNotificationTest extends TestCase
     public function notificationNamesDataProvider()
     {
         // TODO: move notification names to different class instead of filtering
-        $constants = collect((new ReflectionClass(Notification::class))->getConstants())
-            ->except(['NAME_TO_CATEGORY', 'NOTIFIABLE_CLASSES', 'SUBTYPES', 'CREATED_AT', 'UPDATED_AT'])
+        $constants = collect((new ReflectionClass(Notification::class))->getReflectionConstants())
+            ->filter(fn (ReflectionClassConstant $constant) => (
+                $constant->getDeclaringClass()->name === Notification::class
+                    && !in_array($constant->name, static::IGNORED_CONST_NAMES, true)
+            ))
             ->values();
 
-        return $constants->map(function ($name) {
-            return [$name];
-        });
+        return $constants->map(fn (ReflectionClassConstant $constant) => [$constant->getValue()])->all();
     }
 
     public function userNotificationDetailsDataProvider()

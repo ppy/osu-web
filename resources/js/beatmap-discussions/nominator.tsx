@@ -8,8 +8,8 @@ import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussion
 import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import { forEachRight, keys, map, uniq } from 'lodash';
-import { action, makeObservable, observable } from 'mobx';
+import { forEachRight, map, uniq } from 'lodash';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -31,17 +31,9 @@ const bn = 'nomination-dialog';
 export class Nominator extends React.Component<Props> {
   private checkboxContainerRef = React.createRef<HTMLDivElement>();
   @observable private loading = false;
-  @observable private selectedModes = this.hybridMode ? [] : [keys(this.props.beatmapset.nominations.required)[0] as GameMode];
+  @observable private selectedModes: GameMode[] = [];
   @observable private visible = false;
   private xhr?: JQuery.jqXHR<BeatmapsetWithDiscussionsJson>;
-
-  private get hybridMode() {
-    return keys(this.props.beatmapset.nominations.required).length > 1;
-  }
-
-  private get legacyMode() {
-    return this.props.beatmapset.nominations.legacy_mode;
-  }
 
   private get mapCanBeNominated() {
     if (this.props.beatmapset.hype == null) {
@@ -67,14 +59,19 @@ export class Nominator extends React.Component<Props> {
     return nominations;
   }
 
+  @computed
+  private get playmodes() {
+    return this.props.beatmapset.nominations.legacy_mode
+      ? null
+      : Object.keys(this.props.beatmapset.nominations.required) as GameMode[];
+  }
+
   private get userCanNominate() {
     if (!this.userHasNominatePermission) {
       return false;
     }
 
-    const nominationModes = this.legacyMode
-      ? uniq(this.props.beatmapset.beatmaps.map((bm) => bm.mode))
-      : Object.keys(this.props.beatmapset.nominations.required) as GameMode[];
+    const nominationModes = this.playmodes ?? uniq(this.props.beatmapset.beatmaps.map((bm) => bm.mode));
 
     return nominationModes.some((mode) => this.userCanNominateMode(mode));
   }
@@ -96,7 +93,7 @@ export class Nominator extends React.Component<Props> {
       return {};
     }
 
-    return this.props.beatmapset.current_user_attributes?.nomination_modes ?? {};
+    return this.props.beatmapset.current_user_attributes.nomination_modes ?? {};
   }
 
   constructor(props: Props) {
@@ -132,13 +129,13 @@ export class Nominator extends React.Component<Props> {
 
   @action
   private readonly hideNominationModal = () => {
-    this.loading = false;
     this.visible = false;
   };
 
   @action
   private readonly nominate = () => {
-    this.xhr?.abort();
+    if (this.loading) return;
+
     this.loading = true;
 
     const url = route('beatmapsets.nominate', { beatmapset: this.props.beatmapset.id });
@@ -152,9 +149,10 @@ export class Nominator extends React.Component<Props> {
     this.xhr = $.ajax(url, params);
     this.xhr.done((response) => {
       $.publish('beatmapsetDiscussions:update', { beatmapset: response });
+      this.hideNominationModal();
     })
       .fail(onError)
-      .always(this.hideNominationModal);
+      .always(action(() => this.loading = false));
   };
 
   private nominationCountMet(mode: GameMode) {
@@ -201,16 +199,16 @@ export class Nominator extends React.Component<Props> {
   }
 
   private renderModal() {
-    const content = this.hybridMode ? this.renderModalContentHybrid() : this.renderModalContentNormal();
+    const isHybrid = this.playmodes != null;
 
     return (
       <Modal onClose={this.hideNominationModal}>
         <div className={bn}>
           <div className={`${bn}__header`}>{trans('beatmapsets.nominate.dialog.header')}</div>
-          {content}
+          {isHybrid ? this.renderModalContentHybrid() : this.renderModalContentNormal()}
           <div className={`${bn}__buttons`}>
             <BigButton
-              disabled={(this.hybridMode && this.selectedModes.length < 1) || this.loading}
+              disabled={(isHybrid && this.selectedModes.length < 1) || this.loading}
               icon='fas fa-thumbs-up'
               isBusy={this.loading}
               props={{
@@ -233,39 +231,37 @@ export class Nominator extends React.Component<Props> {
   }
 
   private renderModalContentHybrid() {
-    const playmodes = keys(this.props.beatmapset.nominations.required);
-
-    const renderPlaymodes = map(playmodes, (mode: GameMode) => {
-      const disabled = !this.userCanNominateMode(mode);
-      return (
-        <label
-          key={mode}
-          className={classWithModifiers('osu-switch-v2', { disabled })}
-        >
-          <input
-            checked={this.selectedModes.includes(mode)}
-            className='osu-switch-v2__input'
-            disabled={disabled}
-            name='nomination_modes'
-            onChange={this.updateCheckboxes}
-            type='checkbox'
-            value={mode}
-          />
-          <span className='osu-switch-v2__content' />
-          <div
-            className={classWithModifiers(`${bn}__label`, { disabled })}
-          >
-            <i className={`fal fa-extra-mode-${mode}`} /> {trans(`beatmaps.mode.${mode}`)}
-          </div>
-        </label>
-      );
-    });
+    if (this.playmodes == null) return null;
 
     return (
       <>
         {trans('beatmapsets.nominate.dialog.which_modes')}
         <div ref={this.checkboxContainerRef} className={`${bn}__checkboxes`}>
-          {renderPlaymodes}
+          {this.playmodes.map((mode: GameMode) => {
+            const disabled = !this.userCanNominateMode(mode);
+            return (
+              <label
+                key={mode}
+                className={classWithModifiers('osu-switch-v2', { disabled })}
+              >
+                <input
+                  checked={this.selectedModes.includes(mode)}
+                  className='osu-switch-v2__input'
+                  disabled={disabled}
+                  name='nomination_modes'
+                  onChange={this.updateCheckboxes}
+                  type='checkbox'
+                  value={mode}
+                />
+                <span className='osu-switch-v2__content' />
+                <div
+                  className={classWithModifiers(`${bn}__label`, { disabled })}
+                >
+                  <i className={`fal fa-extra-mode-${mode}`} /> {trans(`beatmaps.mode.${mode}`)}
+                </div>
+              </label>
+            );
+          })}
         </div>
         <div className={`${bn}__warn`}>
           {trans('beatmapsets.nominate.dialog.hybrid_warning')}
@@ -294,7 +290,7 @@ export class Nominator extends React.Component<Props> {
   }
 
   @action
-  private showNominationModal = () => this.visible = true;
+  private readonly showNominationModal = () => this.visible = true;
 
   @action
   private readonly updateCheckboxes = () => {

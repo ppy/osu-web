@@ -19,6 +19,7 @@ interface Props {
   beatmapset: BeatmapsetExtendedJson;
   currentBeatmap: BeatmapExtendedJson;
   currentUser: UserJson;
+  innerRef: React.RefObject<HTMLDivElement>;
   pinned?: boolean;
   setPinned?: (sticky: boolean) => void;
   stickTo?: React.RefObject<HTMLDivElement>;
@@ -56,6 +57,7 @@ export default class NewReview extends React.Component<Props> {
   }
 
   componentDidMount(): void {
+    this.updateStickToHeight();
     // watching for height changes on the stickTo element to handle horizontal scrollbars when they appear.
     $(window).on('resize', this.updateStickToHeight);
     this.disposers.add(core.reactTurbolinks.runAfterPageLoad(action(() => this.mounted = true)));
@@ -72,8 +74,8 @@ export default class NewReview extends React.Component<Props> {
 
     return (
       <div className={classWithModifiers(floatClass, { pinned: this.props.pinned })} style={{ top: this.cssTop }}>
-        <div className={`${floatClass}__floatable ${floatClass}__floatable--pinned`}>
-          <div className={`${floatClass}__content`}>
+        <div className={`${floatClass}__floatable`}>
+          <div ref={this.props.innerRef} className={`${floatClass}__content`}>
             <div className='osu-page osu-page--small'>
               <div className='beatmap-discussion-new'>
                 <div className='page-title'>

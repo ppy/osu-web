@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute לא יכול להיות שלילי.',
     'required' => ':attribute נדרש.',
     'too_long' => ':attribute חרג מהאורך המקסימלי - יכול להיות רק עד :limit תווים.',
+    'url' => '',
     'wrong_confirmation' => 'האימות אינו תואם.',
 
     'beatmapset_discussion' => [
@@ -106,6 +107,10 @@ return [
             'required' => 'בחר אפשרות בעת ההצבעה.',
             'too_many' => 'נבחרו יותר אפשרויות מהמותר.',
         ],
+    ],
+
+    'legacy_api_key' => [
+        'exists' => '',
     ],
 
     'oauth' => [

@@ -6,7 +6,7 @@
 return [
     'index' => [
         'description' => 'แพ็คคอลเล็คชั่นของเพลงที่อยู่ในประเภทเดียวกัน',
-        'empty' => '',
+        'empty' => 'เร็วๆ นี้!',
         'nav_title' => 'รายการ',
         'title' => 'แพ็คเกจบีทแมพ',
 
@@ -35,9 +35,10 @@ return [
     'mode' => [
         'artist' => 'ศิลปิน/ผู้แต่ง',
         'chart' => 'โดดเด่น',
-        'featured' => '',
+        'featured' => 'ศิลปินโดดเด่น',
         'standard' => 'ทั่วไป',
         'theme' => 'ธีม',
+        'tournament' => 'การแข่งขัน',
     ],
 
     'require_login' => [

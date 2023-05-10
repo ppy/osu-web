@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'utilizatori blocați (:count)',
         'hide_profile' => 'ascunde profilul',
         'hide_comment' => 'ascunde',
+        'forum_post_text' => 'Această postare este ascunsă.',
         'not_blocked' => 'Acest utilizator nu este blocat.',
         'show_profile' => 'arată profilul',
         'show_comment' => 'arată',
@@ -377,8 +378,8 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Starea contului',
-                'bad_standing' => "Contul lui <strong>:username</strong> nu este într-o stare prea bună :(",
-                'remaining_silence' => '<strong>:username</strong> va putea să vorbească din nou în :duration.',
+                'bad_standing' => "Contul lui :username nu este într-o stare prea bună :(",
+                'remaining_silence' => ':username va putea să vorbească din nou în :duration.',
 
                 'recent_infringements' => [
                     'title' => 'Sancțiuni recente',

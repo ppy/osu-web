@@ -37,6 +37,7 @@ return [
         'blocked_count' => '(:count) blokkolt felhasználók',
         'hide_profile' => 'profil elrejtése',
         'hide_comment' => 'elrejtés',
+        'forum_post_text' => 'Ez a poszt rejtett.',
         'not_blocked' => 'Ez a felhasználó nincs blokkolva.',
         'show_profile' => 'profil megjelenítése',
         'show_comment' => 'mutatás',

@@ -6,7 +6,9 @@
 return [
     'bold' => 'Kalın',
     'heading' => 'Başlık',
+    'help' => '',
     'image' => 'Görüntü',
+    'imagemap' => '',
     'italic' => 'İtalik',
     'link' => 'Bağlantı',
     'list' => 'Liste',

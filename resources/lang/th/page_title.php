@@ -24,7 +24,7 @@ return [
     'forum' => [
         '_' => 'ฟอรัม',
         'topic_logs_controller' => [
-            'index' => '',
+            'index' => 'บันทึกหัวข้อ',
         ],
     ],
     'main' => [
@@ -109,7 +109,7 @@ return [
         ],
         'users_controller' => [
             '_' => 'ข้อมูลผู้เล่น',
-            'create' => '',
+            'create' => 'สร้างบัญชี',
             'disabled' => 'การแจ้งเตือน',
         ],
         'wiki_controller' => [

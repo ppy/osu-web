@@ -25,7 +25,7 @@ return [
         'back_to_previous' => 'Повратак на претходни приказ',
         'back_to_top' => 'Назад на врх',
         'cancel' => 'Откажите',
-        'change' => 'измените',
+        'change' => 'промени',
         'clear' => 'Очисти',
         'click_to_copy' => 'кликни да копираш у привремену меморију',
         'click_to_copy_copied' => 'копирано у привремену меморију!',
@@ -57,7 +57,7 @@ return [
         'submit' => 'Пошаљите',
         'unpin' => 'откачите',
         'update' => 'Ажурирајте',
-        'upload_image' => 'пошаљите слику',
+        'upload_image' => 'додај профилну слику',
 
         'watch' => [
             'to_0' => 'Престани пратити',
@@ -127,7 +127,7 @@ return [
         'count_50' => '50',
         'count_geki' => '',
         'count_katu' => '200',
-        'count_miss' => 'Госпођица',
+        'count_miss' => 'Промашај/а',
     ],
 
     'scoreboard_time' => [
@@ -147,7 +147,7 @@ return [
 
     'time' => [
         'days_ago' => ':count_delimited пре један дан|:count_delimited пре пар дана',
-        'hours_ago' => ':count_delimited пре сат времена|пре :count_delimited сати',
+        'hours_ago' => 'пре :count_delimited сат|пре :count_delimited сати',
         'now' => 'сада',
         'remaining' => 'Преостало време',
     ],

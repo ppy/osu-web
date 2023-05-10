@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'משתמשים חסומים (:count)',
         'hide_profile' => 'הסתר פרופיל',
         'hide_comment' => '',
+        'forum_post_text' => '',
         'not_blocked' => 'משתמש זה אינו חסום.',
         'show_profile' => 'הצג פרופיל',
         'show_comment' => '',

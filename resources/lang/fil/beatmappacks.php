@@ -6,7 +6,7 @@
 return [
     'index' => [
         'description' => 'Nakaimpakeng koleksyon ng mga beatmaps base sa magkatulad na tema.',
-        'empty' => '',
+        'empty' => 'Paparating balang araw!',
         'nav_title' => 'listahan',
         'title' => 'Beatmap Packs',
 
@@ -35,9 +35,10 @@ return [
     'mode' => [
         'artist' => 'Artista/Album',
         'chart' => 'Spotlights',
-        'featured' => '',
+        'featured' => 'Mga Tampok na Artista',
         'standard' => 'Standard',
         'theme' => 'Tema',
+        'tournament' => '',
     ],
 
     'require_login' => [

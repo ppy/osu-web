@@ -5,44 +5,44 @@
 
 return [
     'edit' => [
-        'title_compact' => '',
-        'username' => '',
+        'title_compact' => 'tetapan akaun',
+        'username' => 'nama pengguna',
 
         'avatar' => [
             'title' => '',
-            'rules' => '',
-            'rules_link' => '',
+            'rules' => 'Pastikan avatarmu akur pada :link yang berlaku.<br/>Dengan kata lain, avatarmu mestilah <strong>sesuai untuk segala usia</strong> tanpa mengandung unsur apa pun yang tidak dibenarkan seperti cacian, hinaan, atau hal yang tidak senonoh.',
+            'rules_link' => 'peraturan komuniti',
         ],
 
         'email' => [
-            'new' => '',
-            'new_confirmation' => '',
-            'title' => '',
+            'new' => 'e-mel baharu',
+            'new_confirmation' => 'pengesahan e-mel',
+            'title' => 'E-mel',
         ],
 
         'password' => [
-            'current' => '',
-            'new' => '',
-            'new_confirmation' => '',
-            'title' => '',
+            'current' => 'kata laluan terkini',
+            'new' => 'kata laluan baharu',
+            'new_confirmation' => 'pengesahan kata laluan',
+            'title' => 'Kata laluan',
         ],
 
         'profile' => [
-            'title' => '',
+            'title' => 'Profil',
 
             'user' => [
                 'user_discord' => '',
-                'user_from' => '',
-                'user_interests' => '',
-                'user_occ' => '',
+                'user_from' => 'kedudukan semasa',
+                'user_interests' => 'minat',
+                'user_occ' => 'pekerjaan',
                 'user_twitter' => '',
-                'user_website' => '',
+                'user_website' => 'laman web',
             ],
         ],
 
         'signature' => [
-            'title' => '',
-            'update' => '',
+            'title' => 'Tanda Tangan',
+            'update' => 'kemas kini',
         ],
     ],
 
@@ -54,75 +54,75 @@ return [
         'topic_auto_subscribe' => '',
 
         'options' => [
-            '_' => '',
-            'beatmap_owner_change' => '',
+            '_' => 'hantarkan pemberitahuan melalui',
+            'beatmap_owner_change' => 'kesukaran tamu',
             'beatmapset:modding' => '',
-            'channel_message' => '',
-            'comment_new' => '',
-            'forum_topic_reply' => '',
-            'mail' => '',
-            'mapping' => '',
-            'push' => '',
-            'user_achievement_unlock' => '',
+            'channel_message' => 'pesanan peribadi',
+            'comment_new' => 'ulasan baharu',
+            'forum_topic_reply' => 'balasan pada topik',
+            'mail' => 'e-mel',
+            'mapping' => 'pembuat beatmap',
+            'push' => 'web',
+            'user_achievement_unlock' => 'pingat baharu terbuka',
         ],
     ],
 
     'oauth' => [
-        'authorized_clients' => '',
-        'own_clients' => '',
-        'title' => '',
+        'authorized_clients' => 'klien yang dibenarkan',
+        'own_clients' => 'klien yang dimiliki',
+        'title' => 'OAuth',
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => '',
-        'beatmapset_title_show_original' => '',
-        'title' => '',
+        'beatmapset_show_nsfw' => 'matikan peringatan untuk beatmap yang mengandungi kandungan eksplisit',
+        'beatmapset_title_show_original' => 'paparkan metadata beatmap dalam bahasa aslinya',
+        'title' => 'Pengaturan',
 
         'beatmapset_download' => [
-            '_' => '',
-            'all' => '',
-            'direct' => '',
-            'no_video' => '',
+            '_' => 'jenis lalai beatmap yang dimuat turun',
+            'all' => 'dengan video (jika tersedia)',
+            'direct' => 'buka melalui osu!direct',
+            'no_video' => 'tanpa video',
         ],
     ],
 
     'playstyles' => [
-        'keyboard' => '',
-        'mouse' => '',
-        'tablet' => '',
-        'title' => '',
-        'touch' => '',
+        'keyboard' => 'kekunci',
+        'mouse' => 'tetikus',
+        'tablet' => 'tablet',
+        'title' => 'Gaya Bermain',
+        'touch' => 'layar sentuh',
     ],
 
     'privacy' => [
-        'friends_only' => '',
-        'hide_online' => '',
-        'title' => '',
+        'friends_only' => 'sekat pesanan peribadi dari orang yang tiada dalam senarai kawan kamu',
+        'hide_online' => 'sembunyikan keberadaan dalam talian kamu',
+        'title' => 'Privasi',
     ],
 
     'security' => [
-        'current_session' => '',
-        'end_session' => '',
-        'end_session_confirmation' => '',
-        'last_active' => '',
-        'title' => '',
-        'web_sessions' => '',
+        'current_session' => 'semasa',
+        'end_session' => 'Akhiri Sesi',
+        'end_session_confirmation' => 'Tindakan ini akan menamatkan sesi kamu pada peranti yang disangkutkan. Adakah kamu pasti?',
+        'last_active' => 'Terakhir aktif:',
+        'title' => 'Keselamatan',
+        'web_sessions' => 'sesi web',
     ],
 
     'update_email' => [
-        'update' => '',
+        'update' => 'kemas kini',
     ],
 
     'update_password' => [
-        'update' => '',
+        'update' => 'kemas kini',
     ],
 
     'verification_completed' => [
-        'text' => '',
-        'title' => '',
+        'text' => 'Kamu boleh tutup tab/tetingkap ini sekarang',
+        'title' => 'Pengesahan selesai',
     ],
 
     'verification_invalid' => [
-        'title' => '',
+        'title' => 'Pautan pengesahan tidak sah atau sudah luput',
     ],
 ];

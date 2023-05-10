@@ -67,12 +67,12 @@ return [
 
         'details' => [
             'by_artist' => 'от :artist',
-            'favourite' => 'Добавить в избранное',
-            'favourite_login' => 'Войдите, чтобы добавить эту карту в избранное',
-            'logged-out' => 'Вы должны войти для загрузки карты!',
+            'favourite' => 'добавить в избранные',
+            'favourite_login' => 'войдите, чтобы добавить эту карту в избранные',
+            'logged-out' => 'вы должны войти, чтобы начать скачивать карты!',
             'mapped_by' => 'автор :mapper',
             'mapped_by_guest' => 'гостевая сложность от :mapper',
-            'unfavourite' => 'Удалить из избранного',
+            'unfavourite' => 'удалить из избранных',
             'updated_timeago' => 'обновлена :timeago',
 
             'download' => [

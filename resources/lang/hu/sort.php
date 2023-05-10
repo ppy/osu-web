@@ -32,7 +32,7 @@ return [
     ],
 
     'forum_topics' => [
-        'created' => '',
+        'created' => 'Létrehozva',
         'feature_votes' => 'Csillag prioritás',
         'new' => 'Legutóbbi válasz',
     ],

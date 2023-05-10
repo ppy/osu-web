@@ -159,7 +159,7 @@ class TopicPoll
             : 0;
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'forum.topic_poll';
     }

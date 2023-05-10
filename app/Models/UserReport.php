@@ -152,7 +152,7 @@ class UserReport extends Model
         return parent::save();
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'user_report';
     }

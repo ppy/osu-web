@@ -158,7 +158,7 @@ class Topic extends Model implements AfterCommit
         }
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'forum.topic';
     }

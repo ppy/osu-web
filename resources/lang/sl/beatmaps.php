@@ -141,7 +141,7 @@ return [
             'approved' => 'Ta beatmapa je bila sprejeta dne :date!',
             'graveyard' => "Ta beatmapa je bila postavljena v grob, ker ni bila posodobljena od :date...",
             'loved' => 'Ta beatmapa je bila dodana v loved dne :date!',
-            'ranked' => 'Ta beatmapa je bila rankirana dne :date!',
+            'ranked' => 'Ta beatmapa je bila rangirana dne :date!',
             'wip' => 'Opomba: Lastnik je označil to beatmapo kot delo v teku.',
         ],
 
@@ -199,7 +199,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Ta beatmapa bo približno rankirana :date če ne bo najdenih težav. Trenutno je #:position v :queue.',
-            'on' => '',
+            'on' => 'na :date',
             'queue' => 'čakalna vrsta rankiranja',
             'soon' => 'kmalu',
         ],
@@ -255,10 +255,10 @@ return [
     ],
     'general' => [
         'converts' => 'Vključi pretvorjene beatmape',
-        'featured_artists' => 'Priznani ustvarjalci',
+        'featured_artists' => 'Predstavljeni ustvarjalci',
         'follows' => 'Naročeni mapperji',
         'recommended' => 'Priporočena težavnost',
-        'spotlights' => 'Beatmapa v središču pozornosti',
+        'spotlights' => 'Beatmape v ospredju',
     ],
     'mode' => [
         'all' => 'Vse',

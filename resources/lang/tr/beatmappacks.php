@@ -6,7 +6,7 @@
 return [
     'index' => [
         'description' => 'Benzer bir tema etrafında toplanmış, önceden paketlenmiş beatmap paketleri.',
-        'empty' => '',
+        'empty' => 'Yakında geliyor!',
         'nav_title' => 'katalog',
         'title' => 'Beatmap Paketleri',
 
@@ -35,9 +35,10 @@ return [
     'mode' => [
         'artist' => 'Sanatçı/Albüm',
         'chart' => 'Öne Çıkanlar',
-        'featured' => '',
+        'featured' => 'Featured Artist',
         'standard' => 'Standart',
         'theme' => 'Tema',
+        'tournament' => 'Turnuva',
     ],
 
     'require_login' => [

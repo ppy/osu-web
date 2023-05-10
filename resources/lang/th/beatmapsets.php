@@ -12,7 +12,7 @@ return [
     ],
 
     'cover' => [
-        'deleted' => '',
+        'deleted' => 'บีทแมปที่ถูกลบ',
     ],
 
     'download' => [
@@ -20,7 +20,7 @@ return [
     ],
 
     'featured_artist_badge' => [
-        'label' => '',
+        'label' => 'ศิลปินที่โดดเด่น',
     ],
 
     'index' => [
@@ -61,8 +61,8 @@ return [
         'discussion' => 'การสนทนา',
 
         'deleted_banner' => [
-            'title' => '',
-            'message' => '',
+            'title' => 'บีทแมปนี้ถูกลบไปแล้ว',
+            'message' => '(ผู้ดูแลเท่านั้นที่สามารถเห็นสิ่งนี้)',
         ],
 
         'details' => [
@@ -71,7 +71,7 @@ return [
             'favourite_login' => 'ลงชื่อบีทแมพนี้เป็นรายการโปรด',
             'logged-out' => 'คุณต้องเข้าสู่ระบบก่อนที่จะดาวน์โหลดบีทแมพ',
             'mapped_by' => 'แมพโดย :mapper',
-            'mapped_by_guest' => '',
+            'mapped_by_guest' => 'ความยากของแขกโดย :mapper',
             'unfavourite' => 'เลิก Favourite beatmapset นี้',
             'updated_timeago' => 'อัปเดตล่าสุดเมื่อ :timeago',
 
@@ -90,8 +90,8 @@ return [
 
         'details_date' => [
             'approved' => 'อนุมัติ :timeago',
-            'loved' => 'loved เมื่อ :timeago',
-            'qualified' => 'qualified :timeago',
+            'loved' => 'รักแล้ว :timeago',
+            'qualified' => 'ผ่านการรับรอง :timeago',
             'ranked' => 'จัดอันดับแล้วเมื่อ :timeago',
             'submitted' => 'ส่งเมื่อ :timeago',
             'updated' => 'อัปเดตครั้งล่าสุดเมื่อ :timeago',
@@ -109,7 +109,7 @@ return [
 
                 'status' => [
                     'pending' => 'อยู่ระหว่างดำเนินการ',
-                    'qualified' => 'qualified',
+                    'qualified' => 'ผ่านการรับรอง',
                     'wip' => 'อยู่ระหว่างดำเนินการ',
                 ],
             ],
@@ -130,9 +130,9 @@ return [
             'genre' => 'ประเภท',
             'language' => 'ภาษา',
             'no_scores' => 'ข้อมูลกำลังถูกคำนวณ...',
-            'nominators' => '',
+            'nominators' => 'ผู้เสนอชื่อ',
             'nsfw' => 'เนื้อหาไม่เหมาะสม',
-            'offset' => '',
+            'offset' => 'ออฟเซ็ตออนไลน์',
             'points-of-failure' => 'ความล้มเหลว',
             'source' => 'แหล่งที่มา',
             'storyboard' => 'บีทแมพนี้มี storyboard',
@@ -155,7 +155,7 @@ return [
         'scoreboard' => [
             'achieved' => 'ได้รับ :when',
             'country' => 'อันดับประเทศ',
-            'error' => '',
+            'error' => 'โหลดอันดับไม่สำเร็จ',
             'friend' => 'อันดับเพื่อน',
             'global' => 'อันดับโลก',
             'supporter-link' => 'คลิก <a href=":link">ที่นี่</a> เพื่อดูสิ่งสวยงามทั้งหมดที่คุณได้รับ!',
@@ -167,7 +167,7 @@ return [
                 'combo' => 'คอมโบสูงสุด',
                 'miss' => 'Miss',
                 'mods' => 'ม็อด',
-                'pin' => '',
+                'pin' => 'ปักหมุด',
                 'player' => 'ผู้เล่น',
                 'pp' => '',
                 'rank' => 'อันดับ',
@@ -188,8 +188,8 @@ return [
                 'own' => 'คะแนนดีที่สุดของคุณ',
             ],
             'supporter_link' => [
-                '_' => '',
-                'here' => '',
+                '_' => 'คลิก :here เพื่อดูคุณสมบัติแฟนซีทั้งหมดที่คุณได้รับ!',
+                'here' => 'ที่นี่',
             ],
         ],
 
@@ -204,7 +204,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'จำนวนวงกลม',
             'count_sliders' => 'จำนวนสไลเดอร์',
-            'offset' => '',
+            'offset' => 'ออฟเซ็ตออนไลน์: :offset',
             'user-rating' => 'คะแนน',
             'rating-spread' => 'การกระจายคะแนนโหวต',
             'nominations' => 'การเสนอชื่อ',
@@ -214,8 +214,8 @@ return [
         'status' => [
             'ranked' => 'จัดอันดับแล้ว',
             'approved' => 'อนุมัติ',
-            'loved' => 'Loved',
-            'qualified' => 'Qualified',
+            'loved' => 'รักเลย',
+            'qualified' => 'ผ่านการรับรอง',
             'wip' => 'WIP',
             'pending' => 'อยู่ระหว่างดำเนินการ',
             'graveyard' => 'สุสาน',
@@ -223,6 +223,6 @@ return [
     ],
 
     'spotlight_badge' => [
-        'label' => '',
+        'label' => 'สปอร์ตไลท์',
     ],
 ];

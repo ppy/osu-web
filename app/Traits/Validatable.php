@@ -11,9 +11,9 @@ trait Validatable
 {
     protected $_validationErrors = null;
 
-    abstract public function validationErrorsTranslationPrefix();
+    abstract public function validationErrorsTranslationPrefix(): string;
 
-    public function validationErrorsKeyBase()
+    public function validationErrorsKeyBase(): string
     {
         return 'model_validation.';
     }
@@ -30,21 +30,7 @@ trait Validatable
         return $this->_validationErrors;
     }
 
-    private function validateDbFieldLength(int $limit, string $dbField, ?string $checkField = null): void
-    {
-        if ($this->isDirty($dbField)) {
-            $this->validateFieldLength($limit, $dbField, $checkField);
-        }
-    }
-
-    private function validateDbFieldLengths(): void
-    {
-        foreach (static::MAX_FIELD_LENGTHS as $field => $limit) {
-            $this->validateDbFieldLength($limit, $field, $field);
-        }
-    }
-
-    private function validateFieldLength(int $limit, string $field, ?string $checkField = null): void
+    protected function validateFieldLength(int $limit, string $field, ?string $checkField = null): void
     {
         $checkField ??= $field;
         $val = $this->$checkField;

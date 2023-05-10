@@ -127,6 +127,13 @@ return [
     'flush' => [
     ],
 
+    'swoole' => [
+        'options' => [
+            // default of 10mb is too low for beatmap contest uploads
+            'package_max_length' => 32 * 1024 * 1024,
+        ],
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Octane Cache Table

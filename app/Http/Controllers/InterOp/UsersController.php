@@ -5,6 +5,7 @@
 
 namespace App\Http\Controllers\InterOp;
 
+use App\Exceptions\ModelNotSavedException;
 use App\Exceptions\ValidationException;
 use App\Http\Controllers\Controller;
 use App\Libraries\UserRegistration;
@@ -59,9 +60,9 @@ class UsersController extends Controller
 
             return json_item($registration->user()->fresh(), new CurrentUserTransformer());
         } catch (ValidationException $ex) {
-            return response(['form_error' => [
-                'user' => $registration->user()->validationErrors()->all(),
-            ]], 422);
+            return ModelNotSavedException::makeResponse($ex, [
+                'user' => $registration->user(),
+            ]);
         }
     }
 }

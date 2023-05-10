@@ -20,12 +20,12 @@ return [
         'channel' => 'чат',
         'forum_topic' => 'форум',
         'news_post' => 'новости',
-        'user' => 'профиль',
+        'user' => 'игроки',
     ],
 
     'filters' => [
         '_' => 'все',
-        'user' => 'профиль',
+        'user' => 'игроки',
         'beatmapset' => 'карты',
         'forum_topic' => 'форум',
         'news_post' => 'новости',

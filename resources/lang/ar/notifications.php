@@ -14,13 +14,13 @@ return [
     'verifying' => 'الرجاء التحقق من الجلسة لعرض الإشعارات',
 
     'action_type' => [
-        '_' => '',
-        'beatmapset' => '',
+        '_' => 'الكل',
+        'beatmapset' => 'خرائط الموسيقى',
         'build' => '',
-        'channel' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'user' => '',
+        'channel' => 'المحادثة',
+        'forum_topic' => 'منتدى',
+        'news_post' => 'الأخبار',
+        'user' => 'الملف الشخصي',
     ],
 
     'filters' => [

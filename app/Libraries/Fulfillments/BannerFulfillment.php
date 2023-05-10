@@ -87,12 +87,12 @@ abstract class BannerFulfillment extends OrderFulfiller
     //================
     // Validatable
     //================
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'fulfillments.banner-supporter';
     }
 
-    public function validationErrorsKeyBase()
+    public function validationErrorsKeyBase(): string
     {
         return 'model_validation/';
     }

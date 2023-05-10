@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'blockierte Benutzer (:count)',
         'hide_profile' => 'Profil verbergen',
         'hide_comment' => 'ausblenden',
+        'forum_post_text' => 'Dieser Beitrag wird ausgeblendet.',
         'not_blocked' => 'Dieser Benutzer ist nicht geblockt.',
         'show_profile' => 'Profil anzeigen',
         'show_comment' => 'anzeigen',
@@ -82,9 +83,9 @@ return [
             'opening' => 'Es gibt eine Reihe von Gründen, die dazu führen können, dass Dein Konto deaktiviert wird:',
 
             'tos' => [
-                '_' => 'Du hast eine oder mehr von unseren :community_rules oder :tos gebrochen.',
-                'community_rules' => 'Communityregeln',
-                'tos' => 'Nutzungsbedinungen',
+                '_' => 'Du hast eine oder mehrere von unseren :community_rules oder :tos gebrochen.',
+                'community_rules' => 'Community-Regeln',
+                'tos' => 'Nutzungsbedingungen',
             ],
         ],
     ],
@@ -138,7 +139,7 @@ return [
         'placeholder' => 'Bitte stelle jegliche Infomationen zur Verfügung, die nützlich sein könnten.',
         'reason' => 'Grund',
         'thanks' => 'Danke für deine Meldung!',
-        'title' => 'Meldung :username?',
+        'title' => ':username melden?',
 
         'actions' => [
             'send' => 'Meldung abschicken',
@@ -192,7 +193,7 @@ return [
                     'button' => 'Bild hochladen',
                     'dropzone' => 'Zum Hochladen hier ablegen',
                     'dropzone_info' => 'Du kannst das Bild auch hier ablegen, um es hochzuladen',
-                    'size_info' => 'Banner sollte 2400x620 groß sein',
+                    'size_info' => 'Banner sollte 2400x640 groß sein',
                     'too_large' => 'Datei ist zu groß.',
                     'unsupported_format' => 'Format wird nicht unterstützt.',
 
@@ -241,7 +242,7 @@ return [
                     'title' => 'Ausstehende Beatmaps',
                 ],
                 'ranked' => [
-                    'title' => 'Ranked & Approved Beatmaps',
+                    'title' => 'Ranked Beatmaps',
                 ],
             ],
             'discussions' => [
@@ -267,7 +268,7 @@ return [
                 ],
                 'recent_plays' => [
                     'accuracy' => 'genauigkeit: :percentage',
-                    'title' => 'Neuliche Plays (24h)',
+                    'title' => 'Neuliche Spiele (24h)',
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Angeschaute Replays',
@@ -377,16 +378,16 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Accountstatus',
-                'bad_standing' => "Der Account von <strong>:username</strong> ist zurzeit eingeschränkt :(",
+                'bad_standing' => "Der Account von :username ist zurzeit eingeschränkt :(",
                 'remaining_silence' => '<strong>:username</strong> kann in :duration wieder sprechen.',
 
                 'recent_infringements' => [
                     'title' => 'Neuliche Verstöße',
-                    'date' => 'datum',
-                    'action' => 'maßnahme',
-                    'length' => 'länge',
+                    'date' => 'Datum',
+                    'action' => 'Maßnahme',
+                    'length' => 'Dauer',
                     'length_permanent' => 'Permanent',
-                    'description' => 'beschreibung',
+                    'description' => 'Beschreibung',
                     'actor' => 'von :username',
 
                     'actions' => [

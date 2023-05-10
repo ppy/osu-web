@@ -6,7 +6,9 @@
 return [
     'bold' => 'Félkövér',
     'heading' => 'Fejléc',
+    'help' => '',
     'image' => 'Kép',
+    'imagemap' => '',
     'italic' => 'Dőlt',
     'link' => 'Link',
     'list' => 'Lista',

@@ -35,6 +35,7 @@ use Illuminate\Contracts\Translation\HasLocalePreference;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\QueryException;
 use Laravel\Passport\HasApiTokens;
 use League\OAuth2\Server\Exception\OAuthServerException;
@@ -42,7 +43,7 @@ use Request;
 
 /**
  * @property-read Collection<UserAccountHistory> $accountHistories
- * @property-read ApiKey|null $apiKey
+ * @property-read Collection<ApiKey> $apiKeys
  * @property-read Collection<UserBadge> $badges
  * @property-read Collection<BeatmapDiscussionVote> $beatmapDiscussionVotes
  * @property-read Collection<BeatmapDiscussion> $beatmapDiscussions
@@ -730,12 +731,12 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function setUserTwitterAttribute($value)
     {
-        $this->attributes['user_twitter'] = ltrim($value, '@');
+        $this->attributes['user_twitter'] = trim(ltrim($value, '@'));
     }
 
     public function setUserDiscordAttribute($value)
     {
-        $this->attributes['user_jabber'] = $value;
+        $this->attributes['user_jabber'] = trim($value);
     }
 
     public function setUserColourAttribute($value)
@@ -855,7 +856,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
             // relations
             'accountHistories',
-            'apiKey',
+            'apiKeys',
             'badges',
             'beatmapDiscussionVotes',
             'beatmapDiscussions',
@@ -878,6 +879,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'friends',
             'githubUsers',
             'givenKudosu',
+            'legacyIrcKey',
             'monthlyPlaycounts',
             'notificationOptions',
             'oauthClients',
@@ -1162,6 +1164,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->hasMany(GithubUser::class);
     }
 
+    public function legacyIrcKey(): HasOne
+    {
+        return $this->hasOne(LegacyIrcKey::class);
+    }
+
     public function monthlyPlaycounts()
     {
         return $this->hasMany(UserMonthlyPlaycount::class);
@@ -1253,9 +1260,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->hasMany(BeatmapPlaycount::class);
     }
 
-    public function apiKey()
+    public function apiKeys()
     {
-        return $this->hasOne(ApiKey::class);
+        return $this->hasMany(ApiKey::class);
     }
 
     public function profileBanners()
@@ -1766,7 +1773,10 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function resetSessions(): void
     {
         SessionStore::destroy($this->getKey());
-        $this->tokens()->with('refreshToken')->get()->each->revokeRecursive();
+        $this
+            ->tokens()
+            ->with('refreshToken')
+            ->chunkById(1000, fn ($tokens) => $tokens->each->revokeRecursive());
     }
 
     public function title(): ?string
@@ -2322,7 +2332,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return route('users.show', ['user' => $this->getKey()]);
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'user';
     }
