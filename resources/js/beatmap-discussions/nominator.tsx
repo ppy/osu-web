@@ -129,7 +129,6 @@ export class Nominator extends React.Component<Props> {
 
   @action
   private readonly hideNominationModal = () => {
-    this.loading = false;
     this.visible = false;
   };
 
@@ -150,9 +149,10 @@ export class Nominator extends React.Component<Props> {
     this.xhr = $.ajax(url, params);
     this.xhr.done((response) => {
       $.publish('beatmapsetDiscussions:update', { beatmapset: response });
+      this.hideNominationModal();
     })
       .fail(onError)
-      .always(this.hideNominationModal);
+      .always(action(() => this.loading = false));
   };
 
   private nominationCountMet(mode: GameMode) {
