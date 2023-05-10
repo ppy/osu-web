@@ -31,17 +31,9 @@ const bn = 'nomination-dialog';
 export class Nominator extends React.Component<Props> {
   private checkboxContainerRef = React.createRef<HTMLDivElement>();
   @observable private loading = false;
-  @observable private selectedModes = this.hybridMode ? [] : [this.playmodes[0]];
+  @observable private selectedModes: GameMode[] = [];
   @observable private visible = false;
   private xhr?: JQuery.jqXHR<BeatmapsetWithDiscussionsJson>;
-
-  private get hybridMode() {
-    return this.playmodes.length > 1;
-  }
-
-  private get legacyMode() {
-    return this.props.beatmapset.nominations.legacy_mode;
-  }
 
   private get mapCanBeNominated() {
     if (this.props.beatmapset.hype == null) {
@@ -69,7 +61,9 @@ export class Nominator extends React.Component<Props> {
 
   @computed
   private get playmodes() {
-    return Object.keys(this.props.beatmapset.nominations.required) as GameMode[];
+    return this.props.beatmapset.nominations.legacy_mode
+      ? null
+      : Object.keys(this.props.beatmapset.nominations.required) as GameMode[];
   }
 
   private get userCanNominate() {
@@ -77,9 +71,7 @@ export class Nominator extends React.Component<Props> {
       return false;
     }
 
-    const nominationModes = this.legacyMode
-      ? uniq(this.props.beatmapset.beatmaps.map((bm) => bm.mode))
-      : this.playmodes;
+    const nominationModes = this.playmodes ?? uniq(this.props.beatmapset.beatmaps.map((bm) => bm.mode));
 
     return nominationModes.some((mode) => this.userCanNominateMode(mode));
   }
@@ -207,7 +199,8 @@ export class Nominator extends React.Component<Props> {
   }
 
   private renderModal() {
-    const content = this.hybridMode ? this.renderModalContentHybrid() : this.renderModalContentNormal();
+    const isHybrid = this.playmodes != null;
+    const content = isHybrid ? this.renderModalContentHybrid() : this.renderModalContentNormal();
 
     return (
       <Modal onClose={this.hideNominationModal}>
@@ -216,7 +209,7 @@ export class Nominator extends React.Component<Props> {
           {content}
           <div className={`${bn}__buttons`}>
             <BigButton
-              disabled={(this.hybridMode && this.selectedModes.length < 1) || this.loading}
+              disabled={(isHybrid && this.selectedModes.length < 1) || this.loading}
               icon='fas fa-thumbs-up'
               isBusy={this.loading}
               props={{
@@ -239,7 +232,7 @@ export class Nominator extends React.Component<Props> {
   }
 
   private renderModalContentHybrid() {
-    const renderPlaymodes = map(this.playmodes, (mode: GameMode) => {
+    const renderPlaymodes = map(this.playmodes ?? [], (mode: GameMode) => {
       const disabled = !this.userCanNominateMode(mode);
       return (
         <label
