@@ -290,7 +290,7 @@ export class Nominator extends React.Component<Props> {
   }
 
   @action
-  private showNominationModal = () => this.visible = true;
+  private readonly showNominationModal = () => this.visible = true;
 
   @action
   private readonly updateCheckboxes = () => {
