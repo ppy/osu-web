@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute 不能为负数。',
     'required' => '需要 :attribute 。',
     'too_long' => ':attribute 超出最大长度——最多允许 :limit 个字符。',
+    'url' => '',
     'wrong_confirmation' => '确认信息不匹配。',
 
     'beatmapset_discussion' => [
@@ -106,6 +107,10 @@ return [
             'required' => '投票时至少选择一项。',
             'too_many' => '选项数量超出限制。',
         ],
+    ],
+
+    'legacy_api_key' => [
+        'exists' => '',
     ],
 
     'oauth' => [

@@ -28,17 +28,17 @@ return [
         ],
         'no_diff_reduction' => [
             '_' => ':link bu paketi tamamlamak için kullanılamaz.',
-            'link' => 'Kolaylaştırıcı modifikasyonlar',
+            'link' => 'Zorluk düşürme modları',
         ],
     ],
 
     'mode' => [
         'artist' => 'Sanatçı/Albüm',
         'chart' => 'Öne Çıkanlar',
-        'featured' => 'Öne çıkan sanatçılar',
+        'featured' => 'Featured Artist',
         'standard' => 'Standart',
         'theme' => 'Tema',
-        'tournament' => '',
+        'tournament' => 'Turnuva',
     ],
 
     'require_login' => [

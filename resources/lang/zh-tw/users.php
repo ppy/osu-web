@@ -37,7 +37,7 @@ return [
         'blocked_count' => '被封鎖的使用者 (:count)',
         'hide_profile' => '隱藏用戶資料',
         'hide_comment' => '隱藏',
-        'forum_post_text' => '',
+        'forum_post_text' => '此文章已隱藏。',
         'not_blocked' => '這位使用者未被封鎖。',
         'show_profile' => '顯示用戶資料',
         'show_comment' => '顯示',

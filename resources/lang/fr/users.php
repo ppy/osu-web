@@ -37,7 +37,7 @@ return [
         'blocked_count' => 'utilisateurs bloqués (:count)',
         'hide_profile' => 'Masquer le profil',
         'hide_comment' => 'masquer',
-        'forum_post_text' => '',
+        'forum_post_text' => 'Ce post est masqué.',
         'not_blocked' => 'Cet utilisateur n’est pas bloqué.',
         'show_profile' => 'Afficher le profil',
         'show_comment' => 'afficher',
@@ -378,7 +378,7 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Statut du compte',
-                'bad_standing' => "Le compte de <strong>:username</strong> n'est pas dans un bon statut :(",
+                'bad_standing' => "Le compte de :username ne se tient pas bien :(",
                 'remaining_silence' => '<strong>:username</strong> pourra de nouveau parler dans :duration.',
 
                 'recent_infringements' => [

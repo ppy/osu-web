@@ -23,7 +23,7 @@ return [
         'multiplayer' => 'multiplayer',
         'performance' => 'Performance',
         'score' => 'Iskor',
-        'seasons' => '',
+        'seasons' => 'Mga panahon',
     ],
 
     'seasons' => [

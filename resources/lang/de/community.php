@@ -115,7 +115,7 @@ return [
             ],
 
             'sort_options' => [
-                'title' => 'Sortier-Optionen',
+                'title' => 'Sortieroptionen',
                 'description' => 'Länder-, Freundes- und modspezifische Ranglisten im Spiel einsehen!',
             ],
 

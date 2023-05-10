@@ -34,7 +34,7 @@ return [
                 'all' => 'Све',
                 'disqualified' => 'Дисквалификован',
                 'never_qualified' => 'Никад квалификовано',
-                'qualified' => 'Квалификовано',
+                'qualified' => 'Квалификован',
                 'ranked' => 'Рангирано',
             ],
 

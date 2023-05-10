@@ -37,7 +37,7 @@ return [
         'blocked_count' => 'zablokowani użytkownicy (:count)',
         'hide_profile' => 'ukryj profil',
         'hide_comment' => 'ukryj',
-        'forum_post_text' => '',
+        'forum_post_text' => 'Ten post został ukryty.',
         'not_blocked' => 'Ten użytkownik nie jest zablokowany.',
         'show_profile' => 'pokaż profil',
         'show_comment' => 'pokaż',

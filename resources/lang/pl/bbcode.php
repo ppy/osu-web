@@ -6,7 +6,9 @@
 return [
     'bold' => 'Pogrubienie',
     'heading' => 'Nagłówek',
+    'help' => '',
     'image' => 'Obraz',
+    'imagemap' => '',
     'italic' => 'Kursywa',
     'link' => 'Łącze',
     'list' => 'Lista punktowana',

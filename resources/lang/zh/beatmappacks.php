@@ -38,7 +38,7 @@ return [
         'featured' => '精选艺术家',
         'standard' => '常规',
         'theme' => '主题',
-        'tournament' => '',
+        'tournament' => '锦标赛',
     ],
 
     'require_login' => [

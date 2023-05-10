@@ -38,7 +38,7 @@ return [
         'featured' => 'Nghệ sĩ tiêu biểu',
         'standard' => 'Tiêu Chuẩn',
         'theme' => 'Chủ Đề',
-        'tournament' => '',
+        'tournament' => 'Giải đấu',
     ],
 
     'require_login' => [

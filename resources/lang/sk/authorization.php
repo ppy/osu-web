@@ -53,7 +53,7 @@ return [
     ],
 
     'beatmapset' => [
-        'discussion_locked' => '',
+        'discussion_locked' => 'Táto beatmapa je k diskusii zamknutá.',
 
         'metadata' => [
             'nominated' => 'Nemôžete zmeniť metadáta nominovanej mapy. Kontaktujte člena BN alebo NAT, ak si myslíte, že to je nastavené nesprávne.',

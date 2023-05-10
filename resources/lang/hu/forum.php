@@ -25,7 +25,7 @@ return [
     ],
 
     'forums' => [
-        'forums' => '',
+        'forums' => 'Fórumok',
         'latest_post' => 'Legújabb hozzászólás',
 
         'index' => [
@@ -48,7 +48,7 @@ return [
         'confirm_restore' => 'Biztosan visszaállítod a hozzászólást?',
         'edited' => 'Utoljára módosítva :user által :when, módosítva :count alkalommal.',
         'posted_at' => 'hozzászólva :when',
-        'posted_by_in' => '',
+        'posted_by_in' => 'közzétéve :username által, itt: :forum',
 
         'actions' => [
             'destroy' => 'Hozzászólás törlése',

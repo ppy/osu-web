@@ -6,13 +6,13 @@
 return [
     'match' => [
         'beatmap-deleted' => 'διαγραμμένο beatmap',
-        'difference' => 'με :difference',
         'failed' => 'ΑΠΈΤΥΧΕ',
         'header' => 'Παιχνίδια πολλών παικτών',
         'in-progress' => '(ματς σε εξέλιξη)',
         'in_progress_spinner_label' => 'ματς σε εξέλιξη',
         'loading-events' => 'Φόρτωση events...',
         'winner' => 'Η :team νίκησε',
+        'winner_by' => '',
 
         'events' => [
             'player-left' => 'Ο :user έφυγε από το ματς',

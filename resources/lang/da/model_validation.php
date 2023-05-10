@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute kan ikke være negativ.',
     'required' => ':attribute er påkrævet.',
     'too_long' => ':attribute overskrider maksimal længde - kan højest være op til :limit karakterer.',
+    'url' => '',
     'wrong_confirmation' => 'Bekræftelseskoden matchede ikke.',
 
     'beatmapset_discussion' => [
@@ -106,6 +107,10 @@ return [
             'required' => 'Vælg mindst en valgmulighed før du stemmer.',
             'too_many' => 'Valgte flere valgmuliheder end tilladt.',
         ],
+    ],
+
+    'legacy_api_key' => [
+        'exists' => '',
     ],
 
     'oauth' => [
