@@ -21,6 +21,7 @@ import { route } from 'laroute';
 import { find, findLast, keys } from 'lodash';
 import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
+import { deletedUser } from 'models/user';
 import moment from 'moment';
 import core from 'osu-core-singleton';
 import * as React from 'react';
@@ -119,7 +120,6 @@ export class Nominations extends React.PureComponent<Props> {
               <Nominator
                 beatmapset={this.props.beatmapset}
                 currentHype={this.props.currentDiscussions.totalHype}
-                currentUser={core.currentUser}
                 unresolvedIssues={this.props.currentDiscussions.unresolvedIssues}
                 users={this.props.users}
               />
@@ -617,7 +617,7 @@ export class Nominations extends React.PureComponent<Props> {
           discussion: parsedEvent.link,
           message: parsedEvent.message,
           time_ago: <TimeWithTooltip dateTime={event.created_at} relative />,
-          user: <UserLink user={parsedEvent.user} />,
+          user: <UserLink user={parsedEvent.user ?? deletedUser} />,
         }}
         pattern={trans(`beatmaps.nominations.reset_at.${event.type}`)}
       />
