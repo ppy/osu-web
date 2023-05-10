@@ -64,7 +64,7 @@ class ApiKey extends Model
         }
 
         if (!filter_var($this->app_url ?? '', FILTER_VALIDATE_URL)) {
-            $this->validationErrors()->add($field, 'url');
+            $this->validationErrors()->add('app_url', 'url');
         }
 
         if (!$this->exists && static::where(['user_id' => $this->user_id])->available()->exists()) {
