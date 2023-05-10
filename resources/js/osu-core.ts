@@ -131,12 +131,12 @@ export default class OsuCore {
     this.setCurrentUser(window.currentUser);
   };
 
-  private onCurrentUserUpdate = (event: unknown, user: CurrentUserJson) => {
+  private readonly onCurrentUserUpdate = (event: unknown, user: CurrentUserJson) => {
     this.setCurrentUser(user);
   };
 
   @action
-  private setCurrentUser = (userOrEmpty: typeof window.currentUser) => {
+  private readonly setCurrentUser = (userOrEmpty: typeof window.currentUser) => {
     const user = userOrEmpty.id == null ? undefined : userOrEmpty;
 
     if (user != null) {
