@@ -6,13 +6,13 @@
 return [
     'match' => [
         'beatmap-deleted' => 'beatmap eliminat',
-        'difference' => 'per :difference',
         'failed' => 'FRACASSAT',
         'header' => 'Partides Multijugador',
         'in-progress' => '(partida en progrés)',
         'in_progress_spinner_label' => 'partida en progrés',
         'loading-events' => 'Carregant esdeveniments...',
         'winner' => 'guanya :team',
+        'winner_by' => '',
 
         'events' => [
             'player-left' => ':user ha abandonat la partida',

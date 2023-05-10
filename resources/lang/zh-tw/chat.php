@@ -8,7 +8,7 @@ return [
     'talking_in' => '在 :channel 聊天',
     'talking_with' => '與 :name 聊天',
     'title_compact' => '聊天',
-    'unread_messages' => '',
+    'unread_messages' => '未讀訊息',
 
     'cannot_send' => [
         'channel' => '您現在無法在頻道中發送訊息。可能是Bug或是以下原因:',

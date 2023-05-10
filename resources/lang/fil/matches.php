@@ -6,13 +6,13 @@
 return [
     'match' => [
         'beatmap-deleted' => 'tinanggal na beatmap',
-        'difference' => 'ng :difference',
         'failed' => 'NABIGO',
         'header' => 'Mga Multiplayer na Laban',
         'in-progress' => '(laban na nag-uunlad)',
         'in_progress_spinner_label' => 'laban na nag-uunlad',
         'loading-events' => 'Naglo-load ng mga pangyayari...',
         'winner' => 'Nanalo ang :team',
+        'winner_by' => '',
 
         'events' => [
             'player-left' => 'Umalis si:user sa laro',

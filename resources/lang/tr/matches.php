@@ -6,13 +6,13 @@
 return [
     'match' => [
         'beatmap-deleted' => 'silinmiş beatmap',
-        'difference' => ':difference puan farkla kazandı',
         'failed' => 'BAŞARISIZ',
         'header' => 'Çok Oyunculu Maçlar',
         'in-progress' => '(devam eden maç)',
         'in_progress_spinner_label' => 'devam eden maç',
         'loading-events' => 'Olaylar yükleniyor...',
         'winner' => ':team',
+        'winner_by' => '',
 
         'events' => [
             'player-left' => ':user maçtan ayrıldı',

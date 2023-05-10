@@ -6,7 +6,9 @@
 return [
     'bold' => 'Подебљано',
     'heading' => 'Заглавље',
+    'help' => '',
     'image' => 'Слика',
+    'imagemap' => '',
     'italic' => 'Курзив',
     'link' => 'Линк',
     'list' => 'Списак',

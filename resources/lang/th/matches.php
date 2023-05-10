@@ -6,13 +6,13 @@
 return [
     'match' => [
         'beatmap-deleted' => 'beatmap ที่ถูกลบ',
-        'difference' => 'ผลต่าง :difference',
         'failed' => 'ล้มเหลว',
         'header' => 'แข่งขันแบบหลายคน',
         'in-progress' => '(การแข่งขันกำลังดำเนินการ)',
         'in_progress_spinner_label' => 'การแข่งขันกำลังดำเนินการ',
         'loading-events' => 'กำลังโหลดสิ่งที่เกิดขึ้น...',
         'winner' => ':team ชนะ',
+        'winner_by' => '',
 
         'events' => [
             'player-left' => ':user ออกจากแมตช์',
@@ -40,9 +40,9 @@ return [
 
         'team-types' => [
             'head-to-head' => 'ตัว ต่อ ตัว',
-            'tag-coop' => 'Tag Co-op',
+            'tag-coop' => 'แท็ก Co-op',
             'team-vs' => 'ทีม VS',
-            'tag-team-vs' => 'Tag Team VS',
+            'tag-team-vs' => 'แท็กทีม VS',
         ],
 
         'teams' => [
