@@ -35,7 +35,7 @@ export default class LegacyIrcKey extends React.Component<Props> {
 
   @action
   private readonly onNewKeyClick = () => {
-    if (!confirm('legacy_irc_key.confirm_new')) return;
+    if (!confirm(trans('legacy_irc_key.confirm_new'))) return;
 
     this.controller.createKey();
   };
