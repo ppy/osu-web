@@ -15,7 +15,7 @@ import { assign, padStart, sortBy } from 'lodash';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import { currentUrl } from 'utils/turbolinks';
-import { linkHtml, openBeatmapEditor } from 'utils/url';
+import { linkHtml, openBeatmapEditor, safeUrl } from 'utils/url';
 import { getInt } from './math';
 
 interface BadgeGroupParams {
@@ -325,18 +325,14 @@ export function propsFromHref(href = '') {
     target: '_blank',
   };
 
-  let targetUrl: URL | undefined;
+  // TODO: The regexp used sometimes catches invalid URL like "https://example.com]".
+  // Either accept that as fact of life or a better regexp is needed which is
+  // probably rather difficult especially if we're going to support parsing IDN.
+  const targetUrl = safeUrl(href);
 
-  try {
-    // TODO: The regexp used sometimes catches invalid URL like "https://example.com]".
-    // Either accept that as fact of life or a better regexp is needed which is
-    // probably rather difficult especially if we're going to support parsing IDN.
-    targetUrl = new URL(href);
-  } catch (e: unknown) {
-    // ignore error
-  }
-
-  if (targetUrl != null && targetUrl.host === currentUrl().host) {
+  if (targetUrl == null) {
+    props.href = '';
+  } else if (targetUrl.host === currentUrl().host) {
     const target = parseUrl(targetUrl.href);
     if (target?.discussionId != null && target.beatmapsetId != null) {
       const hash = [target.discussionId, target.postId].filter(Number.isFinite).join('/');

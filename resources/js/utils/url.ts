@@ -117,6 +117,20 @@ export function linkHtml(url: string, text: string, options?: OsuLinkOptions): s
   return el.outerHTML;
 }
 
+export function safeUrl(urlString: string | null | undefined) {
+  if (urlString == null) return;
+
+  try {
+    const url = new URL(urlString, currentUrl().href);
+
+    if (url.protocol !== 'javascript:') {
+      return url;
+    }
+  } catch (e: unknown) {
+    // do nothing
+  }
+}
+
 export function updateQueryString(url: string | null, params: Record<string, string | null | undefined>, hash?: string) {
   const docUrl = currentUrl();
   const urlObj = new URL(url ?? docUrl.href, docUrl.origin);
