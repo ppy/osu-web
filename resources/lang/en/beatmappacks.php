@@ -36,10 +36,10 @@ return [
         'artist' => 'Artist/Album',
         'chart' => 'Spotlights',
         'featured' => 'Featured Artist',
+        'loved' => 'Project Loved',
         'standard' => 'Standard',
         'theme' => 'Theme',
         'tournament' => 'Tournament',
-        'loved' => 'Project Loved',
     ],
 
     'require_login' => [
