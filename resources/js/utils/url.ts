@@ -117,17 +117,11 @@ export function linkHtml(url: string, text: string, options?: OsuLinkOptions): s
   return el.outerHTML;
 }
 
-export function safeUrl(urlString: string | null | undefined) {
-  if (urlString == null) return;
-
-  try {
-    const url = new URL(urlString, currentUrl().href);
-
-    if (url.protocol !== 'javascript:') {
-      return url;
-    }
-  } catch (e: unknown) {
-    // do nothing
+// Default url transformer changes non-conforming url to javascript:void(0)
+// which causes warning from React.
+export function safeReactMarkdownUrl(url: string | undefined) {
+  if (url !== 'javascript:void(0)') {
+    return url;
   }
 }
 

@@ -9,13 +9,14 @@ import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetDiscussionJson, { BeatmapsetDiscussionJsonForBundle, BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetDiscussionPostJson from 'interfaces/beatmapset-discussion-post-json';
 import BeatmapsetJson from 'interfaces/beatmapset-json';
+import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
 import { assign, padStart, sortBy } from 'lodash';
 import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import { currentUrl } from 'utils/turbolinks';
-import { linkHtml, openBeatmapEditor, safeUrl } from 'utils/url';
+import { linkHtml, openBeatmapEditor } from 'utils/url';
 import { getInt } from './math';
 
 interface BadgeGroupParams {
@@ -143,6 +144,16 @@ function isNearbyDiscussion<T extends BeatmapsetDiscussionJson>(discussion: T): 
     && discussion.timestamp != null
     && nearbyDiscussionsMessageTypes.has(discussion.message_type)
     && (discussion.user_id !== core.currentUserOrFail.id || moment(discussion.updated_at).diff(moment(), 'hour') <= -24);
+}
+
+export function isUserFullNominator(user?: UserJson | null, gameMode?: GameMode) {
+  return user != null && user.groups != null && user.groups.some((group) => {
+    if (gameMode != null) {
+      return (group.identifier === 'bng' || group.identifier === 'nat') && group.playmodes?.includes(gameMode);
+    } else {
+      return (group.identifier === 'bng' || group.identifier === 'nat');
+    }
+  });
 }
 
 export function linkTimestamp(text: string, classNames: string[] = []) {
@@ -325,14 +336,18 @@ export function propsFromHref(href = '') {
     target: '_blank',
   };
 
-  // TODO: The regexp used sometimes catches invalid URL like "https://example.com]".
-  // Either accept that as fact of life or a better regexp is needed which is
-  // probably rather difficult especially if we're going to support parsing IDN.
-  const targetUrl = safeUrl(href);
+  let targetUrl: URL | undefined;
 
-  if (targetUrl == null) {
-    props.href = '';
-  } else if (targetUrl.host === currentUrl().host) {
+  try {
+    // TODO: The regexp used sometimes catches invalid URL like "https://example.com]".
+    // Either accept that as fact of life or a better regexp is needed which is
+    // probably rather difficult especially if we're going to support parsing IDN.
+    targetUrl = new URL(href);
+  } catch (e: unknown) {
+    // ignore error
+  }
+
+  if (targetUrl != null && targetUrl.host === currentUrl().host) {
     const target = parseUrl(targetUrl.href);
     if (target?.discussionId != null && target.beatmapsetId != null) {
       const hash = [target.discussionId, target.postId].filter(Number.isFinite).join('/');
