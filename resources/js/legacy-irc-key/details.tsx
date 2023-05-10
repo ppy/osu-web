@@ -106,7 +106,7 @@ export default class Details extends React.Component<Props> {
   };
 
   @action
-  private onClickToggleKeyVisibility = () => {
+  private readonly onClickToggleKeyVisibility = () => {
     this.keyVisible = !this.keyVisible;
   };
 }
