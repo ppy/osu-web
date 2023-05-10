@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute tidak dapat bernilai negatif.',
     'required' => ':attribute diwajibkan.',
     'too_long' => ':attribute melebihi batas maksimum - hanya bisa hingga :limit karakter.',
+    'url' => '',
     'wrong_confirmation' => 'Konfirmasi tidak cocok.',
 
     'beatmapset_discussion' => [
@@ -106,6 +107,10 @@ return [
             'required' => 'Pilih opsi saat memilih.',
             'too_many' => 'Jumlah pilihan yang dipilih lebih banyak dari yang diizinkan.',
         ],
+    ],
+
+    'legacy_api_key' => [
+        'exists' => '',
     ],
 
     'oauth' => [

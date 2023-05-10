@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute negali būti neigiamas.',
     'required' => ':attribute yra privalomas.',
     'too_long' => ':attribute yra per ilgas - gali būti daugiausiai :limit simbolių.',
+    'url' => '',
     'wrong_confirmation' => 'Patvirtinimas nesutampa.',
 
     'beatmapset_discussion' => [
@@ -106,6 +107,10 @@ return [
             'required' => 'Pažymėk pasirinkimą, kai balsuoji.',
             'too_many' => 'Pasirinkta daugiau nei galima.',
         ],
+    ],
+
+    'legacy_api_key' => [
+        'exists' => '',
     ],
 
     'oauth' => [

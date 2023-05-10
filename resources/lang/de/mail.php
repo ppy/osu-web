@@ -41,13 +41,13 @@ return [
     'forum_new_reply' => [
         'new' => 'Wir wollten dich nur eben wissen lassen, dass seit deinem letzten Besuch eine neue Antwort in ":title" eingegangen ist.',
         'subject' => '[osu!] Neue Antwort auf Thread ":title"',
-        'unwatch' => 'Wenn du dir diesen Beitrag nicht mehr merken möchtest kannst du entweder auf den Link "Beitrag deabonnieren" am unteren Rand des obigen Beitrags oder auf der Beitrag-Abonnent-Verwaltungsseite klicken:',
+        'unwatch' => 'Wenn du dir diesen Beitrag nicht mehr merken möchtest, kannst du entweder auf den Link "Beitrag deabonnieren" am unteren Rand des obigen Beitrags oder auf der Verwaltungsseite für Beitragsabonnements klicken:',
         'visit' => 'Über den folgenden Link gelangst du direkt zur neuesten Antwort:',
     ],
 
     'password_reset' => [
         'code' => 'Dein Bestätigungscode ist:',
-        'requested' => 'Entweder du oder jemand, der vorgibt, du zu sein, hat ein Zurücksetzen des Passworts für dein osu!-Account angefordert.',
+        'requested' => 'Entweder du oder jemand, der vorgibt, du zu sein, hat ein Zurücksetzen des Passworts für deinen osu!-Account angefordert.',
         'subject' => 'osu!-Accountwiederherstellung',
     ],
 
@@ -72,17 +72,17 @@ return [
     ],
 
     'user_email_updated' => [
-        'changed_to' => 'Dies ist eine Bestätigungs-E-Mail, um Dich darüber zu informieren, dass Deine osu!-E-Mail-Adresse in: ":email" geändert wurde.',
-        'check' => 'Bitte stelle sicher, dass Du diese E-Mail an Deiner neuen Adresse erhalten hast, um zu verhindern, dass Du in Zukunft den Zugriff auf Dein osu!-Konto verlierst.',
-        'sent' => 'Aus Sicherheitsgründen wurde diese E-Mail sowohl an Deine neue als auch an Deine alte E-Mail-Adresse gesendet.',
+        'changed_to' => 'Dies ist eine Bestätigungs-E-Mail, um dich darüber zu informieren, dass deine osu!-E-Mail-Adresse in: ":email" geändert wurde.',
+        'check' => 'Bitte stelle sicher, dass diese E-Mail an deine neue Adresse gesendet wurde, um zu verhindern, dass du in Zukunft den Zugriff auf dein osu!-Konto verlierst.',
+        'sent' => 'Aus Sicherheitsgründen wurde diese E-Mail sowohl an deine neue als auch an deine alte E-Mail-Adresse gesendet.',
         'subject' => 'Bestätigung der neuen E-Mail-Adresse für osu!',
     ],
 
     'user_force_reactivation' => [
-        'main' => 'Dein Konto steht im Verdacht, manipuliert zu sein, kürzlich verdächtige Aktivitäten ausgeführt zu haben oder ein SEHR schwaches Passwort zu haben. Aus diesem Grund musst Du ein neues Passwort festlegen. Bitte achte darauf, ein SICHERES Passwort zu wählen.',
+        'main' => 'Dein Konto steht im Verdacht manipuliert zu sein, kürzlich verdächtige Aktivitäten ausgeführt zu haben oder ein SEHR schwaches Passwort zu haben. Aus diesem Grund musst du ein neues Passwort festlegen. Bitte achte darauf, ein SICHERES Passwort zu wählen.',
         'perform_reset' => 'Du kannst das Zurücksetzen von :url ausführen',
         'reason' => 'Grund:',
-        'subject' => 'Reaktivierung des osu!-Kontos erforderlich',
+        'subject' => 'Reaktivierung des osu!-Accounts erforderlich',
     ],
 
     'user_notification_digest' => [

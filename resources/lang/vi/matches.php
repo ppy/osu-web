@@ -6,13 +6,13 @@
 return [
     'match' => [
         'beatmap-deleted' => 'beatmap đã bị xóa',
-        'difference' => 'với :difference',
         'failed' => 'THẤT BẠI',
         'header' => 'Những trận đấu Multiplayer',
         'in-progress' => '(trận đấu đang diễn ra)',
         'in_progress_spinner_label' => 'trận đấu đang diễn ra',
         'loading-events' => 'Đang tải các sự kiện...',
         'winner' => ':team thắng',
+        'winner_by' => '',
 
         'events' => [
             'player-left' => ':user đã rời khỏi trận đấu',

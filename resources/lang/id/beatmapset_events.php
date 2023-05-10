@@ -34,7 +34,7 @@ return [
         'qualify' => 'Beatmap ini telah memperoleh jumlah nominasi yang dibutuhkan untuk dapat menyandang status Qualified.',
         'rank' => 'Ranked.',
         'remove_from_loved' => 'Dilepas dari Loved oleh :user. (:text)',
-        'tags_edit' => '',
+        'tags_edit' => 'Tag beatmap diubah dari ":old:" menjadi ":new".',
 
         'nsfw_toggle' => [
             'to_0' => 'Tanda eksplisit dilepas',

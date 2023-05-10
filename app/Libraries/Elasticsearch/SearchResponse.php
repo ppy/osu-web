@@ -30,7 +30,7 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
             : $this->raw['aggregations'][$name] ?? [];
     }
 
-    public function count()
+    public function count(): int
     {
         return count($this->hits());
     }
@@ -136,22 +136,22 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
     // ArrayAccess
     //================
 
-    public function offsetExists($key)
+    public function offsetExists($key): bool
     {
         return array_has($this->hits(), $key);
     }
 
-    public function offsetGet($key)
+    public function offsetGet($key): mixed
     {
         return new Hit(data_get($this->hits(), $key));
     }
 
-    public function offsetSet($key, $value)
+    public function offsetSet($key, $value): void
     {
         throw new \BadMethodCallException('not supported');
     }
 
-    public function offsetUnset($key)
+    public function offsetUnset($key): void
     {
         throw new \BadMethodCallException('not supported');
     }
@@ -160,27 +160,27 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
     // Iterator
     //================
 
-    public function current()
+    public function current(): mixed
     {
         return $this[$this->index];
     }
 
-    public function key()
+    public function key(): mixed
     {
         return $this->index;
     }
 
-    public function next()
+    public function next(): void
     {
         $this->index++;
     }
 
-    public function rewind()
+    public function rewind(): void
     {
         $this->index = 0;
     }
 
-    public function valid()
+    public function valid(): bool
     {
         return $this->offsetExists($this->index);
     }

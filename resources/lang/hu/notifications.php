@@ -14,13 +14,13 @@ return [
     'verifying' => 'Az értesítések megtekintéséhez hitelesítse a munkamenetet',
 
     'action_type' => [
-        '_' => '',
-        'beatmapset' => '',
-        'build' => '',
-        'channel' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'user' => '',
+        '_' => 'összes',
+        'beatmapset' => 'beatmapek',
+        'build' => 'verziók',
+        'channel' => 'csevegés',
+        'forum_topic' => 'fórum',
+        'news_post' => 'újdonságok',
+        'user' => 'profil',
     ],
 
     'filters' => [

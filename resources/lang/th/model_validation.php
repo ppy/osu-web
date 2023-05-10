@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute เป็นค่าลบไม่ได้',
     'required' => 'ต้องมี :attribute',
     'too_long' => ':attribute เกินความยาวสูงสุด - สามารถใส่ได้ถึงแค่ :limit ตัวอักษร',
+    'url' => '',
     'wrong_confirmation' => 'การยืนยันไม่ตรงกัน',
 
     'beatmapset_discussion' => [
@@ -15,7 +16,7 @@ return [
         'beatmapset_no_hype' => "Beatmap นี้ไม่สามารถ hype ได้",
         'hype_requires_null_beatmap' => 'การ Hype ต้องทำในส่วนของ General (all difficulties) เท่านั้น',
         'invalid_beatmap_id' => 'ระดับความยากไม่ได้เลือกอย่างถูกต้อง',
-        'invalid_beatmapset_id' => 'Beatmap ไม่ได้เลือกอย่างถูกต้อง',
+        'invalid_beatmapset_id' => 'บีทแมปไม่ได้เลือกอย่างถูกต้อง',
         'locked' => 'การสนทนาได้ถูกล็อกไว้',
 
         'attributes' => [
@@ -28,12 +29,12 @@ return [
             'guest' => 'ต้องเข้าสู่ระบบก่อนถึงจะ hype ได้',
             'hyped' => 'คุณได้ hype Beatmap นี้ไปแล้ว',
             'limit_exceeded' => 'คุณใช้จำนวน hype หมดแล้ว',
-            'not_hypeable' => 'Beatmap นี้ไม่สามารถ hype ได้',
-            'owner' => 'ห้าม hype Beatmap ของคุณเอง',
+            'not_hypeable' => 'บีทแมปนี้ไม่สามารถ hype ได้',
+            'owner' => 'ห้าม hype ในบีทแมปของคุณเอง',
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => 'ช่วงเวลาที่กำหนดไว้เกินเวลาของ Beatmap',
+            'exceeds_beatmapset_length' => 'ช่วงเวลาที่กำหนดไว้เกินเวลาของบีทแมป',
             'negative' => "ช่วงเวลาไม่สามารถติดลบได้",
         ],
     ],
@@ -108,6 +109,10 @@ return [
         ],
     ],
 
+    'legacy_api_key' => [
+        'exists' => '',
+    ],
+
     'oauth' => [
         'client' => [
             'too_many' => 'OAuth applications เกินขีดจำกัดที่ทางเราอนุญาต',
@@ -148,7 +153,7 @@ return [
 
         'attributes' => [
             'username' => 'ชื่อผู้ใช้',
-            'user_email' => 'อีเมล์',
+            'user_email' => 'ที่อยู่อีเมล',
             'password' => 'รหัสผ่าน',
         ],
 
@@ -163,7 +168,7 @@ return [
     ],
 
     'user_report' => [
-        'no_ranked_beatmapset' => '',
+        'no_ranked_beatmapset' => 'ไม่สามารถรายงานบีทแมปที่จัดอันดับแล้วได้',
         'reason_not_valid' => ':reason ไม่สามารถใช้ได้กับการรายงานประเภทนี้',
         'self' => "เดี๋ยว คุณรายงานตัวเองไม่ได้",
     ],

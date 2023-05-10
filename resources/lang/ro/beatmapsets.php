@@ -137,7 +137,7 @@ return [
             'source' => 'Sursă',
             'storyboard' => 'Acest beatmap conține un storyboard',
             'success-rate' => 'Rată de succes',
-            'tags' => 'Tag-uri',
+            'tags' => 'Etichete',
             'video' => 'Acest beatmap conține un video',
         ],
 

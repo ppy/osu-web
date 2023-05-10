@@ -6,7 +6,7 @@
 return [
     'index' => [
         'description' => 'Valmiiksi kasattuja beatmap kokoelmia, joissa yhdistyy tietty teema.',
-        'empty' => '',
+        'empty' => 'Tulossa pian!',
         'nav_title' => 'listaus',
         'title' => 'Beatmap-Kokoelmat',
 
@@ -35,10 +35,10 @@ return [
     'mode' => [
         'artist' => 'Esittäjä/Albumi',
         'chart' => 'Valokeilassa',
-        'featured' => '',
+        'featured' => 'Suositeltu esittäjä',
         'standard' => 'Tavallinen',
         'theme' => 'Teema',
-        'tournament' => '',
+        'tournament' => 'Turnaus',
     ],
 
     'require_login' => [

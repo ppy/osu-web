@@ -38,7 +38,7 @@ return [
         'featured' => 'Artista in primo piano',
         'standard' => 'Standard',
         'theme' => 'Tema',
-        'tournament' => '',
+        'tournament' => 'Torneo',
     ],
 
     'require_login' => [

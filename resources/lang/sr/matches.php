@@ -6,13 +6,13 @@
 return [
     'match' => [
         'beatmap-deleted' => 'обрисана мапа',
-        'difference' => 'од :difference',
         'failed' => 'НИЈЕ УСПЕО',
         'header' => 'Мулти Мечеви',
         'in-progress' => '(меч у току)',
         'in_progress_spinner_label' => 'меч у току',
         'loading-events' => 'Учитавање догађаја...',
         'winner' => ':team је победио',
+        'winner_by' => '',
 
         'events' => [
             'player-left' => ':user је напустио меч',

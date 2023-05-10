@@ -53,7 +53,7 @@ return [
     ],
 
     'beatmapset' => [
-        'discussion_locked' => '',
+        'discussion_locked' => 'บีทแมปนี้ถูกล็อคไว้สำหรับการสนทนา',
 
         'metadata' => [
             'nominated' => 'คุณไม่สามารถเปลี่ยน metadata ของบีทแมพที่ทำการเสนอชื่อเป็นที่เรียบร้อยแล้ว ติดต่อ BN หรือ NAT หากคุณคิดว่ามีข้อผิดพลาดประการใด',
@@ -179,7 +179,7 @@ return [
     'user' => [
         'page' => [
             'edit' => [
-                'locked' => 'Userpage ถูกล็อก',
+                'locked' => 'หน้าผู้ใช้ถูกล็อก',
                 'not_owner' => 'สามารถแก้ไขได้แค่ Userpage ของตนเอง',
                 'require_supporter_tag' => 'จำเป็นต้องมี Supporter Tag',
             ],

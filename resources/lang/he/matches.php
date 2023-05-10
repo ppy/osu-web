@@ -6,13 +6,13 @@
 return [
     'match' => [
         'beatmap-deleted' => 'מפה שנמחקה',
-        'difference' => 'על ידי :difference',
         'failed' => 'נכשל',
         'header' => 'משחקים מרובי משתתפים',
         'in-progress' => '(משחק בתהליך)',
         'in_progress_spinner_label' => 'משחק בתהליך',
         'loading-events' => 'טוען אירועים...',
         'winner' => ':team ניצחו',
+        'winner_by' => '',
 
         'events' => [
             'player-left' => ':user עזב את המשחק',

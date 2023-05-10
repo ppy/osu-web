@@ -8,6 +8,7 @@ return [
     'not_negative' => '',
     'required' => '',
     'too_long' => '',
+    'url' => '',
     'wrong_confirmation' => '',
 
     'beatmapset_discussion' => [
@@ -106,6 +107,10 @@ return [
             'required' => '',
             'too_many' => '',
         ],
+    ],
+
+    'legacy_api_key' => [
+        'exists' => '',
     ],
 
     'oauth' => [

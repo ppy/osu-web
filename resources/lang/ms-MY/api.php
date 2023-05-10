@@ -6,28 +6,28 @@
 return [
     'error' => [
         'chat' => [
-            'empty' => '',
-            'limit_exceeded' => '',
-            'too_long' => '',
+            'empty' => 'Tidak dapat mengirim pesanan kosong.',
+            'limit_exceeded' => 'Kamu mengirim pesanan terlalu cepat, sila tunggu sebentar sebelum mencubanya lagi.',
+            'too_long' => 'Pesanan yang ingin dikirim terlalu panjang.',
         ],
     ],
 
     'scopes' => [
-        'bot' => '',
-        'identify' => '',
+        'bot' => 'Bertindak selaku bot bual.',
+        'identify' => 'Mengenali dirimu dan membaca profil awam milik kamu.',
 
         'chat' => [
-            'write' => '',
+            'write' => 'Mengirim pesan atas nama akaun kamu.',
         ],
 
         'forum' => [
-            'write' => '',
+            'write' => 'Membuat dan menyunting topik forum serta kiriman forum atas nama akaun kamu.',
         ],
 
         'friends' => [
-            'read' => '',
+            'read' => 'Melihat siapa saja yang kamu ikuti.',
         ],
 
-        'public' => '',
+        'public' => 'Membaca data yang bersifat awam atas nama akaun kamu.',
     ],
 ];

@@ -5,17 +5,17 @@
 
 return [
     'mode' => [
-        'beatmapset' => '',
-        'forum_post' => '',
-        'other' => '',
-        'user' => '',
-        'wiki_page' => '',
+        'beatmapset' => 'Beatmap',
+        'forum_post' => 'Forum',
+        'other' => 'Lainnya',
+        'user' => 'Pemain',
+        'wiki_page' => 'Wiki',
     ],
 
     'result' => [
-        'empty' => '',
-        'empty_for' => '',
-        'more' => '',
-        'title' => '',
+        'empty' => 'Tiada hasil ditemukan',
+        'empty_for' => 'Tiada hasil pencarian :modes ditemukan',
+        'more' => 'Muat Lebih Banyak Hasil Pencarian :mode',
+        'title' => 'Hasil Carian :mode',
     ],
 ];

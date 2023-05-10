@@ -38,7 +38,7 @@ return [
         'featured' => 'Представени автори',
         'standard' => 'Стандартни',
         'theme' => 'Тема',
-        'tournament' => '',
+        'tournament' => 'Турнир',
     ],
 
     'require_login' => [

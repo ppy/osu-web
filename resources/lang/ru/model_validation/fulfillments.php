@@ -5,9 +5,9 @@
 
 return [
     'username_change' => [
-        'only_one' => '',
-        'insufficient_paid' => '',
-        'reverting_username_mismatch' => '',
+        'only_one' => 'ник в рамках одного заказа можно поменять только один раз.',
+        'insufficient_paid' => 'Суммы платежа недостаточно для оплаты смены ника (:expected > :actual)',
+        'reverting_username_mismatch' => 'Текущий ник (:current) не совпадает с ником, который нужно откатить (:username)',
     ],
     'supporter_tag' => [
         'insufficient_paid' => 'Суммы платежа недостаточно для приобретения тега osu!supporter (:actual вместо :expected)',

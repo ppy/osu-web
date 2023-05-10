@@ -6,11 +6,11 @@
 return [
     'show' => [
         'fallback_translation' => 'Die angeforderte Seite wurde noch nicht in die ausgewählte Sprache übersetzt (:language). Die englische Version wird angezeigt.',
-        'incomplete_or_outdated' => 'Der Inhalt dieser Seite ist unvollständig oder veraltet. Wenn Du helfen kannst, erwäge bitte, den Artikel zu aktualisieren!',
+        'incomplete_or_outdated' => 'Der Inhalt dieser Seite ist unvollständig oder veraltet. Wenn du helfen kannst, erwäge bitte, den Artikel zu aktualisieren!',
         'missing' => 'Die angeforderte Seite ":keyword" konnte nicht gefunden werden.',
         'missing_title' => 'Nicht gefunden',
         'missing_translation' => 'Die angeforderte Seite konnte für die ausgewählte Sprache nicht gefunden werden.',
-        'needs_cleanup_or_rewrite' => 'Diese Seite entspricht nicht den Standards des osu! Wikis und muss neu strukturiert oder umgeschrieben werden. Wenn Du helfen kannst, überlege bitte, den Artikel zu aktualisieren!',
+        'needs_cleanup_or_rewrite' => 'Diese Seite entspricht nicht den Standards des osu!-Wikis und muss neu strukturiert oder umgeschrieben werden. Wenn du helfen kannst, überlege bitte, den Artikel zu aktualisieren!',
         'search' => 'Existierende Seiten nach :link durchsuchen.',
         'stub' => 'Dieser Artikel ist unvollständig und wartet auf jemanden, der ihn erweitert.',
         'toc' => 'Inhalt',
@@ -21,10 +21,10 @@ return [
         ],
 
         'translation' => [
-            'legal' => 'Diese Übersetzung wird nur aus Gründen der Bequemlichkeit zur Verfügung gestellt. Das Original (:default) ist die einzige rechtlich bindende Version dieses Textes.',
+            'legal' => 'Diese Übersetzung wird nur aus Gründen der Bequemlichkeit zur Verfügung gestellt. Die originale :default ist die einzige rechtlich bindende Version dieses Textes.',
             'outdated' => 'Diese Seite enthält eine veraltete Übersetzung des ursprünglichen Inhalts. Bitte schaue dir die :default für genauere Informationen an (und überlege die Übersetzung zu aktualisieren, wenn du die Möglichkeit dazu hast)!',
 
-            'default' => 'Englische Version',
+            'default' => 'englische Version',
         ],
     ],
 ];

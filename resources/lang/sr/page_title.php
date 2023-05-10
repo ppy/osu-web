@@ -80,7 +80,7 @@ return [
             '_' => 'информације',
         ],
         'livestreams_controller' => [
-            '_' => 'streams Уживо ',
+            '_' => 'стримови уживо',
         ],
         'matches_controller' => [
             '_' => 'мечеви',

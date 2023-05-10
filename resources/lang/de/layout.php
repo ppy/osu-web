@@ -97,13 +97,13 @@ return [
         'general' => [
             '_' => 'Allgemein',
             'home' => 'Home',
-            'changelog-index' => 'Changelog',
+            'changelog-index' => 'Änderungsprotokoll',
             'beatmaps' => 'Beatmap-Auflistung',
             'download' => 'osu! herunterladen',
         ],
         'help' => [
             '_' => 'Hilfe & Community',
-            'faq' => '\'Frequently Asked Questions\'',
+            'faq' => 'Häufig gestellte Fragen',
             'forum' => 'Community-Foren',
             'livestreams' => 'Livestreams',
             'report' => 'Einen Fehler melden',
