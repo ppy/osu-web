@@ -45,7 +45,7 @@ export default class Form extends React.Component<Props> {
 
         <form className='oauth-client-details__content'>
           <label className='oauth-client-details__group'>
-            <div className='oauth-client-details__label'>{trans('legacy_api_key.form.app_name')}</div>
+            <div className='oauth-client-details__label'>{trans('model_validation.legacy_api_key.attributes.app_name')}</div>
             <ValidatingInput
               blockName='oauth-client-details'
               errors={this.errors}
@@ -57,7 +57,7 @@ export default class Form extends React.Component<Props> {
           </label>
 
           <label className='oauth-client-details__group'>
-            <div className='oauth-client-details__label'>{trans('legacy_api_key.form.app_url')}</div>
+            <div className='oauth-client-details__label'>{trans('model_validation.legacy_api_key.attributes.app_url')}</div>
             <ValidatingInput
               blockName='oauth-client-details'
               errors={this.errors}

@@ -37,7 +37,7 @@ export default class Details extends React.Component<Props> {
         <div className='legacy-api-details__content'>
           <div className='legacy-api-details__entry'>
             <div className='legacy-api-details__label'>
-              {trans('legacy_api_key.form.app_name')}
+              {trans('model_validation.legacy_api_key.attributes.app_name')}
             </div>
             <div className='legacy-api-details__value'>
               {key.app_name}
@@ -45,7 +45,7 @@ export default class Details extends React.Component<Props> {
           </div>
           <div className='legacy-api-details__entry'>
             <div className='legacy-api-details__label'>
-              {trans('legacy_api_key.form.app_url')}
+              {trans('model_validation.legacy_api_key.attributes.app_url')}
             </div>
             <div className='legacy-api-details__value'>
               {key.app_url}
@@ -53,7 +53,7 @@ export default class Details extends React.Component<Props> {
           </div>
           <div className='legacy-api-details__entry'>
             <div className='legacy-api-details__label'>
-              {trans('legacy_api_key.form.api_key')}
+              {trans('model_validation.legacy_api_key.attributes.api_key')}
             </div>
             <div className='legacy-api-details__value'>
               {this.keyVisible ? key.api_key : '***'}

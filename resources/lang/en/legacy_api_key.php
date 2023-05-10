@@ -13,9 +13,6 @@ return [
     ],
 
     'form' => [
-        'api_key' => 'api key',
-        'app_name' => 'application name',
-        'app_url' => 'application url',
         'create' => 'Create Key',
     ],
 
