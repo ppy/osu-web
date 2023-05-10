@@ -38,7 +38,7 @@ return [
         'featured' => '공식 아티스트',
         'standard' => '표준',
         'theme' => '테마',
-        'tournament' => '',
+        'tournament' => '토너먼트',
     ],
 
     'require_login' => [

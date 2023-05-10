@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute 속성은 음수가 될 수 없습니다.',
     'required' => ':attribute 속성이 필요합니다.',
     'too_long' => ':attribute의 최대 길이를 초과 했습니다 - :limit자 까지만 쓸 수 있습니다.',
+    'url' => '',
     'wrong_confirmation' => '확인란이 일치하지 않습니다.',
 
     'beatmapset_discussion' => [
@@ -106,6 +107,10 @@ return [
             'required' => '투표할 때 항목을 선택해 주세요.',
             'too_many' => '허용된 것 보다 많은 항목을 선택하셨습니다.',
         ],
+    ],
+
+    'legacy_api_key' => [
+        'exists' => '',
     ],
 
     'oauth' => [

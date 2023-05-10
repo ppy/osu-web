@@ -32,7 +32,7 @@ return [
     ],
 
     'forum_topics' => [
-        'created' => '',
+        'created' => 'Vytvořeno',
         'feature_votes' => 'Počet hvězd',
         'new' => 'Poslední odpověď',
     ],

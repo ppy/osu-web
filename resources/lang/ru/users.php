@@ -37,7 +37,7 @@ return [
         'blocked_count' => 'чёрный список (:count)',
         'hide_profile' => 'Скрыть профиль',
         'hide_comment' => 'скрыть',
-        'forum_post_text' => '',
+        'forum_post_text' => 'Этот пост скрыт.',
         'not_blocked' => 'Этот пользователь не заблокирован.',
         'show_profile' => 'Показать профиль',
         'show_comment' => 'показать',

@@ -8,12 +8,12 @@ return [
     'title' => '',
 
     'admin' => [
-        'hidden' => '',
+        'hidden' => 'ARTIS SAAT INI TERSEMBUNYI',
     ],
 
     'beatmaps' => [
-        '_' => '',
-        'download' => '',
+        '_' => 'Beatmaps',
+        'download' => 'muat turun templat beatmap',
         'download-na' => '',
     ],
 
@@ -22,40 +22,40 @@ return [
     ],
 
     'links' => [
-        'beatmaps' => '',
-        'osu' => '',
-        'site' => '',
+        'beatmaps' => 'Daftar Beatmap',
+        'osu' => 'Profil osu!',
+        'site' => 'Laman Web Rasmi',
     ],
 
     'songs' => [
-        '_' => '',
+        '_' => 'Lagu',
         'count' => '',
         'original' => '',
-        'original_badge' => '',
+        'original_badge' => 'ASLI',
     ],
 
     'tracklist' => [
-        'title' => '',
-        'length' => '',
-        'bpm' => '',
-        'genre' => '',
+        'title' => 'tajuk',
+        'length' => 'tempoh',
+        'bpm' => 'bpm',
+        'genre' => 'aliran',
     ],
 
     'tracks' => [
         'index' => [
-            '_' => '',
+            '_' => 'carian lagu',
 
             'form' => [
-                'advanced' => '',
-                'album' => '',
-                'artist' => '',
-                'bpm_gte' => '',
-                'bpm_lte' => '',
-                'empty' => '',
-                'genre' => '',
-                'genre_all' => '',
-                'length_gte' => '',
-                'length_lte' => '',
+                'advanced' => 'Carian Lanjutan',
+                'album' => 'Album',
+                'artist' => 'Artis',
+                'bpm_gte' => 'BPM Minimum',
+                'bpm_lte' => 'BPM Maksimum',
+                'empty' => 'Tiada lagu yang sesuai dengan ukur tara pencarian yang ditentukan.',
+                'genre' => 'Aliran',
+                'genre_all' => 'Semua',
+                'length_gte' => 'Tempoh Minimum',
+                'length_lte' => 'Tempoh Maksimum',
             ],
         ],
     ],

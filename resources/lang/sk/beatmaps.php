@@ -199,7 +199,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Táto mapa je predpokladaná k hodnotení :date, pokud sa nenájdu žiadne chyby. Mapa je momentálne v pozícii číslo :position ve fronte :queue.',
-            'on' => '',
+            'on' => 'dňa :date',
             'queue' => 'fronta hodnotení ',
             'soon' => 'neskôr ',
         ],

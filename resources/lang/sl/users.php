@@ -37,7 +37,7 @@ return [
         'blocked_count' => 'blokirani uporabniki (:count)',
         'hide_profile' => 'Skrij profil',
         'hide_comment' => 'skrij',
-        'forum_post_text' => '',
+        'forum_post_text' => 'Ta objava je skrita.',
         'not_blocked' => 'Ta igralec ni blokiran.',
         'show_profile' => 'Prikaži profil',
         'show_comment' => 'prikaži',
@@ -63,7 +63,7 @@ return [
             'username' => 'uporabniško ime',
 
             'tos_notice' => [
-                '_' => 'z ustvarjanjem računa se strinjate z :link',
+                '_' => 'z ustvarjanjem računa se strinjaš z :link',
                 'link' => 'pogoji storitve',
             ],
         ],
@@ -158,8 +158,8 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Tvoj račun je omejen!',
-        'message' => 'Med omejitvijo ne bo možna komunikacija z drugimi igralci, tvoji rezultati pa bodo vidni samo tebi. To je običajno rezultat samodejnega postopka in se običajno odpravi v 24 urah. Če se želiš pritožiti na omejitev, se obrni na <a href="mailto:accounts@ppy.sh">podporo</a>.',
-        'message_link' => 'Preverite to stran, če želite izvedeti več.',
+        'message' => 'Med omejitvijo ne boš mogel ustvarjati interakcije z drugimi igralci, tvoji rezultati pa bodo vidni samo tebi. To je običajno posledica samodejnega postopka in se odpravi v 24 urah. :link',
+        'message_link' => 'Obišči to stran, če želiš izvedeti več.',
     ],
     'show' => [
         'age' => ':age let',
@@ -469,8 +469,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
-        'from_client' => 'namesto tega se registrirajte prek odjemalca igre!',
-        'from_web' => 'prosimo dokončajte registracijo z osu! spletno stranjo',
+        'from_client' => 'namesto tega se registriraj prek odjemalca igre!',
+        'from_web' => 'prosimo dokončaj registracijo s pomočjo osu! spletne strani',
         'saved' => 'Uporabnik ustvarjen',
     ],
     'verify' => [

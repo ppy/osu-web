@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute не можа быць адмоўным.',
     'required' => ':attribute ёсць неабходны.',
     'too_long' => ':attribute максімальная колькасць сімвалаў перавышана - абмежаванне на :limit сімвалаў.',
+    'url' => '',
     'wrong_confirmation' => 'Пацверджання не супадае.',
 
     'beatmapset_discussion' => [
@@ -106,6 +107,10 @@ return [
             'required' => 'Выберыце параметр падчас галасавання.',
             'too_many' => 'Выбрана больш параметраў, чым дазволена.',
         ],
+    ],
+
+    'legacy_api_key' => [
+        'exists' => '',
     ],
 
     'oauth' => [

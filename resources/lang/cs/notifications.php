@@ -14,12 +14,12 @@ return [
     'verifying' => 'Prosím ověřte relaci pro zobrazení oznámení',
 
     'action_type' => [
-        '_' => '',
+        '_' => 'vše ',
         'beatmapset' => 'beatmapy',
-        'build' => '',
-        'channel' => '',
-        'forum_topic' => '',
-        'news_post' => '',
+        'build' => 'buildy',
+        'channel' => 'chat',
+        'forum_topic' => 'fórum',
+        'news_post' => 'novinky',
         'user' => 'profil',
     ],
 

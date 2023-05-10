@@ -34,7 +34,7 @@ return [
         'qualify' => 'Aquest beatmap ha aconseguit el nombre requerit de nominacions i ha estat qualificat.',
         'rank' => 'Classificat.',
         'remove_from_loved' => 'Remogut d\'Estimats per :user. (:text)',
-        'tags_edit' => '',
+        'tags_edit' => 'L\'idioma ha canviat de ":old" a ":new".',
 
         'nsfw_toggle' => [
             'to_0' => 'Marca explícita remoguda',

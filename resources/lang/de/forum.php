@@ -64,7 +64,7 @@ return [
         ],
 
         'info' => [
-            'post_count' => ':count_delimited Beitrag | :count_delimited Beiträge',
+            'post_count' => ':count_delimited Beitrag|:count_delimited Beiträge',
             'topic_starter' => 'Thread-Starter',
         ],
     ],
@@ -334,9 +334,9 @@ return [
                 'do' => 'Bringe dieses Request voran',
 
                 'info' => [
-                    '_' => 'Dies ist ein :feature_request. Feature Requests können nur von :supporters unterstützt werden.',
-                    'feature_request' => 'Feature Request',
-                    'supporters' => 'Supportern',
+                    '_' => 'Dies ist ein :feature_request. Über Funktionsvorschläge können nur :supporters abstimmen.',
+                    'feature_request' => 'Funktionsvorschlag',
+                    'supporters' => 'Supporter',
                 ],
 
                 'user' => [
@@ -372,7 +372,7 @@ return [
             'to_watching' => 'Lesezeichen setzen',
             'to_watching_mail' => 'Lesezeichen mit Benachrichtigung',
             'tooltip_mail_disable' => 'Benachrichtigungen sind aktiviert. Klicken zum Deaktivieren',
-            'tooltip_mail_enable' => 'Benachrichtigungen sind deaktiviert. Klicken zum Aktivieren',
+            'tooltip_mail_enable' => 'Benachrichtigungen sind deaktiviert. Zum Aktivieren klicken',
         ],
     ],
 ];

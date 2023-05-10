@@ -14,7 +14,7 @@ return [
 
         'slogan' => [
             'main' => 'เกมดนตรีเล่นฟรีที่เริศที่สุดในสามโลก',
-            'sub' => 'rhythm is just a click away',
+            'sub' => 'จังหวะเป็นเพียงไม่กี่คลิก',
         ],
     ],
 
@@ -43,7 +43,7 @@ return [
             'label' => [
                 'forum' => 'ค้นหาในฟอรั่ม',
                 'forum_children' => 'รวมฟอรั่มย่อย',
-                'include_deleted' => '',
+                'include_deleted' => 'รวมโพสต์ที่ถูกลบ',
                 'topic_id' => 'หัวข้อ #',
                 'username' => 'ผู้แต่ง',
             ],
@@ -74,19 +74,19 @@ return [
 
     'download' => [
         'action' => 'ดาวน์โหลด osu!',
-        'action_lazer' => '',
-        'action_lazer_description' => '',
-        'action_lazer_info' => '',
-        'action_lazer_title' => '',
-        'action_title' => '',
-        'for_os' => '',
-        'lazer_note' => '',
+        'action_lazer' => 'ดาวน์โหลด osu!(lazer)',
+        'action_lazer_description' => 'การอัปเดตครั้งใหญ่ครั้งต่อไปของ osu!',
+        'action_lazer_info' => 'ตรวจสอบหน้านี้สำหรับข้อมูลเพิ่มเติม',
+        'action_lazer_title' => 'ลอง osu!(lazer)',
+        'action_title' => 'ดาวน์โหลด osu!',
+        'for_os' => 'สำหรับ :os',
+        'lazer_note' => 'หมายเหตุ: ใช้การรีเซ็ตกระดานอันดับ',
         'macos-fallback' => 'ผู้ใช้ macOS',
         'mirror' => 'เซิร์ฟเวอร์อื่น',
-        'or' => '',
-        'os_version_or_later' => '',
-        'other_os' => '',
-        'quick_start_guide' => '',
+        'or' => 'หรือ',
+        'os_version_or_later' => ':os_version หรือสูงกว่า',
+        'other_os' => 'แพลตฟอร์มอื่นๆ',
+        'quick_start_guide' => 'คู่มือการใช้งานเริ่มต้น',
         'tagline' => "เรามา<br>เริ่มกันเถอะ",
         'video-guide' => 'ไกด์วิดิโอ',
 

@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute negatif olamaz.',
     'required' => ':attribute gereklidir.',
     'too_long' => ':attribute azami uzunluğu aştı - sadece :limit karakter olabilir.',
+    'url' => '',
     'wrong_confirmation' => 'Doğrulama eşleşmiyor.',
 
     'beatmapset_discussion' => [
@@ -106,6 +107,10 @@ return [
             'required' => 'Oy verirken bir seçenek seçin.',
             'too_many' => 'İzin verilenden fazla seçenek seçildi.',
         ],
+    ],
+
+    'legacy_api_key' => [
+        'exists' => '',
     ],
 
     'oauth' => [

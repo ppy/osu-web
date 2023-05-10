@@ -37,7 +37,7 @@ return [
         'blocked_count' => 'engellenen kullanıcılar (:count)',
         'hide_profile' => 'profili gizle',
         'hide_comment' => 'gizle',
-        'forum_post_text' => '',
+        'forum_post_text' => 'Bu başlık gizli.',
         'not_blocked' => 'Bu kullanıcı engellenmemiş.',
         'show_profile' => 'profili göster',
         'show_comment' => 'göster',

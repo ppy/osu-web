@@ -37,7 +37,7 @@ return [
         'blocked_count' => 'blockerade användare (:count)',
         'hide_profile' => 'dölj profil',
         'hide_comment' => 'dölj',
-        'forum_post_text' => '',
+        'forum_post_text' => 'Denna kommentar är dold.',
         'not_blocked' => 'Användaren är inte blockerad.',
         'show_profile' => 'visa profil',
         'show_comment' => 'visa',

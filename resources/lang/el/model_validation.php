@@ -8,6 +8,7 @@ return [
     'not_negative' => 'το :attribute δε μπορεί να δοθεί.',
     'required' => 'το :attribute απαιτείται.',
     'too_long' => 'το :attribute υπερβαίνει το μέγιστο όριο χαρακτήρων - μπορεί να είναι μέχρι :limit χαρακτήρες.',
+    'url' => '',
     'wrong_confirmation' => 'Η βεβαίωση δεν ταιριάζει.',
 
     'beatmapset_discussion' => [
@@ -106,6 +107,10 @@ return [
             'required' => 'Επιλέξτε μία επιλογή όταν ψηφίζετε.',
             'too_many' => 'Επιλέχθηκαν περισσότερες επιλογές από το επιτρεπόμενο όριο.',
         ],
+    ],
+
+    'legacy_api_key' => [
+        'exists' => '',
     ],
 
     'oauth' => [
