@@ -200,13 +200,12 @@ export class Nominator extends React.Component<Props> {
 
   private renderModal() {
     const isHybrid = this.playmodes != null;
-    const content = isHybrid ? this.renderModalContentHybrid() : this.renderModalContentNormal();
 
     return (
       <Modal onClose={this.hideNominationModal}>
         <div className={bn}>
           <div className={`${bn}__header`}>{trans('beatmapsets.nominate.dialog.header')}</div>
-          {content}
+          {isHybrid ? this.renderModalContentHybrid() : this.renderModalContentNormal()}
           <div className={`${bn}__buttons`}>
             <BigButton
               disabled={(isHybrid && this.selectedModes.length < 1) || this.loading}
@@ -232,37 +231,37 @@ export class Nominator extends React.Component<Props> {
   }
 
   private renderModalContentHybrid() {
-    const renderPlaymodes = map(this.playmodes ?? [], (mode: GameMode) => {
-      const disabled = !this.userCanNominateMode(mode);
-      return (
-        <label
-          key={mode}
-          className={classWithModifiers('osu-switch-v2', { disabled })}
-        >
-          <input
-            checked={this.selectedModes.includes(mode)}
-            className='osu-switch-v2__input'
-            disabled={disabled}
-            name='nomination_modes'
-            onChange={this.updateCheckboxes}
-            type='checkbox'
-            value={mode}
-          />
-          <span className='osu-switch-v2__content' />
-          <div
-            className={classWithModifiers(`${bn}__label`, { disabled })}
-          >
-            <i className={`fal fa-extra-mode-${mode}`} /> {trans(`beatmaps.mode.${mode}`)}
-          </div>
-        </label>
-      );
-    });
+    if (this.playmodes == null) return null;
 
     return (
       <>
         {trans('beatmapsets.nominate.dialog.which_modes')}
         <div ref={this.checkboxContainerRef} className={`${bn}__checkboxes`}>
-          {renderPlaymodes}
+          {map(this.playmodes, (mode: GameMode) => {
+            const disabled = !this.userCanNominateMode(mode);
+            return (
+              <label
+                key={mode}
+                className={classWithModifiers('osu-switch-v2', { disabled })}
+              >
+                <input
+                  checked={this.selectedModes.includes(mode)}
+                  className='osu-switch-v2__input'
+                  disabled={disabled}
+                  name='nomination_modes'
+                  onChange={this.updateCheckboxes}
+                  type='checkbox'
+                  value={mode}
+                />
+                <span className='osu-switch-v2__content' />
+                <div
+                  className={classWithModifiers(`${bn}__label`, { disabled })}
+                >
+                  <i className={`fal fa-extra-mode-${mode}`} /> {trans(`beatmaps.mode.${mode}`)}
+                </div>
+              </label>
+            );
+          })}
         </div>
         <div className={`${bn}__warn`}>
           {trans('beatmapsets.nominate.dialog.hybrid_warning')}
