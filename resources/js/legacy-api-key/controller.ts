@@ -16,8 +16,8 @@ type DatasetState = Partial<State> & Required<Pick<State, 'legacy_api_key'>>;
 export default class Controller {
   @observable state;
   private stateSyncDisposer;
-  private xhrCreate?: JQuery.jqXHR<LegacyApiKeyJson>;
-  private xhrDelete?: JQuery.jqXHR<void>;
+  @observable private xhrCreate?: JQuery.jqXHR<LegacyApiKeyJson>;
+  @observable private xhrDelete?: JQuery.jqXHR<void>;
 
   get isCreating() {
     return this.xhrCreate != null;
@@ -45,6 +45,7 @@ export default class Controller {
     );
   }
 
+  @action
   createKey(appName: string, appUrl: string) {
     this.xhrCreate = $.ajax(route('legacy-api-key.store'), {
       data: {
@@ -65,6 +66,7 @@ export default class Controller {
     return this.xhrCreate;
   }
 
+  @action
   deleteKey() {
     this.xhrDelete = $.ajax(route('legacy-api-key.destroy'), { method: 'DELETE' })
       .fail(onError)
