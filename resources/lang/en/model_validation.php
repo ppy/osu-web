@@ -122,7 +122,7 @@ return [
     'oauth' => [
         'client' => [
             'too_many' => 'Exceeded maximum number of allowed OAuth applications.',
-            'url' => 'Please enter a valid URL.',
+            'url' => 'Please enter valid URL.',
 
             'attributes' => [
                 'name' => 'Application Name',

@@ -9,6 +9,7 @@ use App\Exceptions\InvariantException;
 use App\Models\User;
 use App\Traits\Validatable;
 use DB;
+use Ds\Set;
 use Laravel\Passport\Client as PassportClient;
 use Laravel\Passport\RefreshToken;
 
@@ -56,6 +57,26 @@ class Client extends PassportClient
         );
     }
 
+    public function setRedirectAttribute($value)
+    {
+        if (is_string($value) && present($value)) {
+            $baseString = preg_replace("/[\r\n]+/", ',', $value);
+            $baseEntries = explode(',', $baseString);
+            $entries = new Set();
+            foreach ($baseEntries as $entry) {
+                $entry = presence(trim($entry));
+                if ($entry !== null) {
+                    $entries->add($entry);
+                }
+            }
+            if (!$entries->isEmpty()) {
+                $cleanValue = $entries->join(',');
+            }
+        }
+
+        $this->attributes['redirect'] = $cleanValue ?? null;
+    }
+
     public function isValid()
     {
         $this->validationErrors()->reset();
@@ -71,10 +92,13 @@ class Client extends PassportClient
             $this->validationErrors()->add('name', 'required');
         }
 
-        $redirect = trim($this->redirect);
-        // TODO: this url validation is not very good.
-        if (present($redirect) && !filter_var($redirect, FILTER_VALIDATE_URL)) {
-            $this->validationErrors()->add('redirect', '.url');
+        $redirects = explode(',', $this->redirect ?? '');
+        foreach ($redirects as $redirect) {
+            // TODO: this url validation is not very good.
+            if (present($redirect) && !filter_var($redirect, FILTER_VALIDATE_URL)) {
+                $this->validationErrors()->add('redirect', '.url');
+                break;
+            }
         }
 
         return $this->validationErrors()->isEmpty();
