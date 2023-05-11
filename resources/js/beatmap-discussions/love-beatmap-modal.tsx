@@ -128,8 +128,8 @@ export default class LoveConfirmation extends React.Component<Props> {
     };
 
     this.xhr = $.ajax(url, params);
-    this.xhr.done((response) => {
-      $.publish('beatmapsetDiscussions:update', { beatmapset: response });
+    this.xhr.done((beatmapset) => {
+      $.publish('beatmapsetDiscussions:update', { beatmapset });
       this.props.onClose();
     }).fail(onError)
       .always(action(() => {
