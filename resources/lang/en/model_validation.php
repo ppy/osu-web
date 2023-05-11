@@ -111,6 +111,12 @@ return [
 
     'legacy_api_key' => [
         'exists' => 'Only one API key is provided per user for the moment.',
+
+        'attributes' => [
+            'api_key' => 'api key',
+            'app_name' => 'application name',
+            'app_url' => 'application url',
+        ],
     ],
 
     'oauth' => [
