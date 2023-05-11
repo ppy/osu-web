@@ -15,7 +15,7 @@ import { trans } from 'utils/lang';
 import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
 
 interface Props {
-  beatmapset: BeatmapsetExtendedJson;
+  beatmapset: BeatmapsetExtendedJson & Required<Pick<BeatmapsetExtendedJson, 'beatmaps'>>;
   onClose: () => void;
 }
 
@@ -26,7 +26,7 @@ export default class LoveConfirmation extends React.Component<Props> {
 
   @computed
   private get beatmaps() {
-    return this.props.beatmapset.beatmaps?.filter((beatmap) => beatmap.deleted_at === null) ?? [];
+    return this.props.beatmapset.beatmaps.filter((beatmap) => beatmap.deleted_at === null);
   }
 
   @computed
