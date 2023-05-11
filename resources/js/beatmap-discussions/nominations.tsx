@@ -138,6 +138,8 @@ export class Nominations extends React.PureComponent<Props> {
   }
 
   private readonly delete = () => {
+    if (this.xhr.delete != null) return;
+
     const message = this.userIsOwner
       ? trans('beatmaps.nominations.delete_own_confirm')
       : trans('beatmaps.nominations.delete_other_confirm');
@@ -145,8 +147,7 @@ export class Nominations extends React.PureComponent<Props> {
     if (!confirm(message)) return;
 
     showLoadingOverlay();
-
-    this.xhr.delete?.abort();
+    showLoadingOverlay.flush();
 
     this.xhr.delete = $.ajax(
       route('beatmapsets.destroy', { beatmapset: this.props.beatmapset.id }),
@@ -154,15 +155,18 @@ export class Nominations extends React.PureComponent<Props> {
     )
       .done(() => Turbolinks.visit(route('users.show', { user: this.props.beatmapset.user_id })))
       .fail(onError)
-      .always(hideLoadingOverlay);
+      .always(action(() => {
+        this.xhr.delete = undefined;
+        hideLoadingOverlay();
+      }));
   };
 
   private readonly discussionLock = () =>{
+    if (this.xhr.discussionLock != null) return;
+
     const reason = presence(prompt(trans('beatmaps.discussions.lock.prompt.lock')));
 
     if (reason == null) return;
-
-    this.xhr.discussionLock?.abort();
 
     this.xhr.discussionLock = $.ajax(
       route('beatmapsets.discussion-lock', { beatmapset: this.props.beatmapset.id }),
@@ -174,15 +178,19 @@ export class Nominations extends React.PureComponent<Props> {
         $.publish('beatmapsetDiscussions:update', { beatmapset });
       })
       .fail(onError)
-      .always(hideLoadingOverlay);
+      .always(action(() => {
+        this.xhr.discussionLock = undefined;
+        hideLoadingOverlay();
+      }));
   };
 
   private readonly discussionUnlock = () =>{
+    if (this.xhr.discussionLock != null) return;
+
     if (!confirm(trans('beatmaps.discussions.lock.prompt.unlock'))) return;
 
     showLoadingOverlay();
-
-    this.xhr.discussionLock?.abort();
+    showLoadingOverlay.flush();
 
     this.xhr.discussionLock = $.ajax(
       route('beatmapsets.discussion-unlock', { beatmapset: this.props.beatmapset.id }),
@@ -194,7 +202,10 @@ export class Nominations extends React.PureComponent<Props> {
         $.publish('beatmapsetDiscussions:update', { beatmapset });
       })
       .fail(onError)
-      .always(hideLoadingOverlay);
+      .always(action(() => {
+        this.xhr.discussionLock = undefined;
+        hideLoadingOverlay();
+      }));
   };
 
   private readonly focusHypeInput = () => {
@@ -270,8 +281,7 @@ export class Nominations extends React.PureComponent<Props> {
     if (reason == null) return;
 
     showLoadingOverlay();
-
-    this.xhr.removeFromLoved?.abort();
+    showLoadingOverlay.flush();
 
     this.xhr.removeFromLoved = $.ajax(
       route('beatmapsets.remove-from-loved', { beatmapset: this.props.beatmapset.id }),
@@ -283,7 +293,10 @@ export class Nominations extends React.PureComponent<Props> {
         $.publish('beatmapsetDiscussions:update', { beatmapset }),
       )
       .fail(onError)
-      .always(hideLoadingOverlay);
+      .always(action(() => {
+        this.xhr.removeFromLoved = undefined;
+        hideLoadingOverlay();
+      }));
   };
 
   private renderChangeOwnerButton() {
@@ -318,6 +331,7 @@ export class Nominations extends React.PureComponent<Props> {
 
     return (
       <BigButton
+        disabled={this.xhr.delete != null}
         icon='fas fa-trash'
         modifiers='danger'
         props={{
@@ -346,7 +360,7 @@ export class Nominations extends React.PureComponent<Props> {
         },
       };
 
-    return <BigButton {...buttonProps} text={trans('beatmaps.nominations.disqualify')} />;
+    return <BigButton {...buttonProps} disabled={this.xhr.discussionLock != null} text={trans('beatmaps.nominations.disqualify')} />;
   }
 
   private renderDiscussionLockMessage() {
@@ -582,6 +596,7 @@ export class Nominations extends React.PureComponent<Props> {
 
     return (
       <BigButton
+        disabled={this.xhr.removeFromLoved != null}
         icon='fas fa-heart-broken'
         modifiers='pink'
         props={{
