@@ -43,7 +43,7 @@ return [
             'label' => [
                 'forum' => 'hanapin ang paksang ito',
                 'forum_children' => 'isama ang mga subforum',
-                'include_deleted' => '',
+                'include_deleted' => 'Isama ang mga tinanggal na mga post',
                 'topic_id' => 'paksa #',
                 'username' => 'may-akda',
             ],

@@ -33,8 +33,8 @@ return [
                 '_' => 'สถานะบีทแมพ',
                 'all' => 'ทั้งหมด',
                 'disqualified' => 'ถูกตัดสิทธิ์',
-                'never_qualified' => 'ไม่เคยถูก Qualified',
-                'qualified' => 'Qualified',
+                'never_qualified' => 'ไม่เคยผ่านการรับรอง',
+                'qualified' => 'ผ่านการรับรอง',
                 'ranked' => 'จัดอันดับแล้ว',
             ],
 

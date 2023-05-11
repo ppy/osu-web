@@ -38,7 +38,7 @@ return [
         'featured' => 'Artist Oficial',
         'standard' => 'Standard',
         'theme' => 'Temă',
-        'tournament' => '',
+        'tournament' => 'Turneu',
     ],
 
     'require_login' => [

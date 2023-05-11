@@ -6,7 +6,7 @@
 return [
     'index' => [
         'description' => 'Kolekce beatmap s podobnou tématikou.',
-        'empty' => '',
+        'empty' => 'Již brzy!',
         'nav_title' => 'seznam',
         'title' => 'Balíčky beatmap',
 
@@ -35,14 +35,14 @@ return [
     'mode' => [
         'artist' => 'Interpret/Album',
         'chart' => 'V záři reflektorů',
-        'featured' => '',
+        'featured' => 'Vybraní umělci',
         'standard' => 'Klasické',
         'theme' => 'Tématické',
-        'tournament' => '',
+        'tournament' => 'Turnaj',
     ],
 
     'require_login' => [
         '_' => 'Pro stažení musíte být :link',
-        'link_text' => 'příhlášený',
+        'link_text' => 'přihlášený',
     ],
 ];

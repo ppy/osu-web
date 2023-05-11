@@ -38,7 +38,7 @@ return [
         'featured' => 'Uitgelichte Artiest',
         'standard' => 'Standaard',
         'theme' => 'Thema',
-        'tournament' => '',
+        'tournament' => 'Toernooi',
     ],
 
     'require_login' => [

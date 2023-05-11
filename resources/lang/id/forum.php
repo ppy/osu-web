@@ -361,7 +361,7 @@ return [
                 'detail' => [
                     'end_time' => 'Jajak pendapat akan berakhir pada :time',
                     'ended' => 'Jajak pendapat telah berakhir pada :time',
-                    'results_hidden' => 'Hasil jajak pendapat baru akan tersedia setelah pemungutan suara berakhir.',
+                    'results_hidden' => 'Hasil jajak pendapat akan ditampilkan setelah pemungutan suara berakhir.',
                     'total' => 'Jumlah suara: :count',
                 ],
             ],

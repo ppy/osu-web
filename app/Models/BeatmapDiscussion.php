@@ -497,7 +497,7 @@ class BeatmapDiscussion extends Model
         return $this->validationErrors()->isEmpty();
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'beatmapset_discussion';
     }

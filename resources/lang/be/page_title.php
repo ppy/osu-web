@@ -101,7 +101,7 @@ return [
             '_' => 'па прадукцыйнасці',
         ],
         'seasons_controller' => [
-            '_' => '',
+            '_' => 'рэйтынг',
         ],
         'tournaments_controller' => [
             '_' => 'турніры',

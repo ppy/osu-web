@@ -6,7 +6,9 @@
 return [
     'bold' => 'عريض',
     'heading' => 'عنوان',
+    'help' => '',
     'image' => 'صورة',
+    'imagemap' => '',
     'italic' => 'مائل',
     'link' => 'الرابط',
     'list' => 'قائمة',

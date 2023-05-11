@@ -22,7 +22,7 @@ return [
         ],
     ],
     'forum' => [
-        '_' => 'forum',
+        '_' => 'Forum',
         'topic_logs_controller' => [
             'index' => 'thread-protokolle',
         ],
@@ -32,7 +32,7 @@ return [
             'verify_link' => 'accountverifizierung',
         ],
         'artists_controller' => [
-            '_' => 'featured artists',
+            '_' => 'Featured Artists',
         ],
         'beatmap_discussion_posts_controller' => [
             '_' => 'beatmap-diskussion-beiträge',
@@ -41,7 +41,7 @@ return [
             '_' => 'beatmap-diskussionen',
         ],
         'beatmap_packs_controller' => [
-            '_' => 'beatmap-pakete',
+            '_' => 'Beatmap-Pakete',
         ],
         'beatmapset_discussion_votes_controller' => [
             '_' => 'beatmap-diskussion-stimmen',
@@ -51,7 +51,7 @@ return [
         ],
         'beatmapsets_controller' => [
             'discussion' => 'beatmap-diskussion',
-            'index' => 'beatmap-auflistung',
+            'index' => 'Beatmap-Auflistung',
             'show' => 'beatmap-info',
         ],
         'changelog_controller' => [
@@ -71,7 +71,7 @@ return [
         ],
         'home_controller' => [
             'get_download' => 'Herunterladen',
-            'index' => 'dashboard',
+            'index' => 'Dashboard',
             'search' => 'Suchen',
             'support_the_game' => 'Das Spiel unterstützen',
             'testflight' => 'testflight',
@@ -95,16 +95,16 @@ return [
             '_' => 'passwort zurücksetzen',
         ],
         'ranking_controller' => [
-            '_' => 'ranglisten',
+            '_' => 'Ranglisten',
         ],
         'scores_controller' => [
-            '_' => 'performance',
+            '_' => 'Performance',
         ],
         'seasons_controller' => [
             '_' => 'Ranglisten',
         ],
         'tournaments_controller' => [
-            '_' => 'turniere',
+            '_' => 'Turniere',
         ],
         'users_controller' => [
             '_' => 'spieler-info',
@@ -128,7 +128,7 @@ return [
             '_' => 'modder info',
         ],
         'multiplayer_controller' => [
-            '_' => 'mehrspielerverlauf',
+            '_' => 'Mehrspielerverlauf',
         ],
     ],
 ];

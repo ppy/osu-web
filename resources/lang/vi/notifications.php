@@ -16,7 +16,7 @@ return [
     'action_type' => [
         '_' => 'tất cả',
         'beatmapset' => 'beatmap',
-        'build' => '',
+        'build' => 'xây dựng',
         'channel' => 'trò chuyện',
         'forum_topic' => 'diễn đàn',
         'news_post' => 'tin tức',

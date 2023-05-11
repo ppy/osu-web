@@ -38,7 +38,7 @@ return [
         'featured' => 'Избранные исполнители',
         'standard' => 'Стандартные',
         'theme' => 'Тематические',
-        'tournament' => '',
+        'tournament' => 'Турнирные',
     ],
 
     'require_login' => [

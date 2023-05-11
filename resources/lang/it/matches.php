@@ -6,13 +6,13 @@
 return [
     'match' => [
         'beatmap-deleted' => 'beatmap cancellata',
-        'difference' => 'di :difference',
         'failed' => 'FALLITO',
         'header' => 'Partite Multigiocatore',
         'in-progress' => '(partita in corso)',
         'in_progress_spinner_label' => 'partita in corso',
         'loading-events' => 'Caricamento eventi...',
         'winner' => ':team vince',
+        'winner_by' => '',
 
         'events' => [
             'player-left' => ':user ha lasciato la partita',

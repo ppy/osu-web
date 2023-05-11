@@ -6,7 +6,9 @@
 return [
     'bold' => 'Bold',
     'heading' => 'Header',
+    'help' => '',
     'image' => 'Larawan',
+    'imagemap' => '',
     'italic' => 'Italiko',
     'link' => 'Link',
     'list' => 'Listahan',

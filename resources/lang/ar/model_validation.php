@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute لا يمكن ان يكون سلبياََ.',
     'required' => ':attribute مطلوب.',
     'too_long' => ':attribute تجاوز الحد المطلوب - يمكن ان يصل حد :limit حروف فقط.',
+    'url' => '',
     'wrong_confirmation' => 'التأكيد لا يتطابق.',
 
     'beatmapset_discussion' => [
@@ -106,6 +107,10 @@ return [
             'required' => 'حدد أحد الخيارات اثناء التصويت.',
             'too_many' => 'اخترت خيارات اكثر من المطلوب.',
         ],
+    ],
+
+    'legacy_api_key' => [
+        'exists' => '',
     ],
 
     'oauth' => [

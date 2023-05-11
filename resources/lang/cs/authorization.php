@@ -53,7 +53,7 @@ return [
     ],
 
     'beatmapset' => [
-        'discussion_locked' => '',
+        'discussion_locked' => 'Tato beatmapa je k diskuzi uzamčena.',
 
         'metadata' => [
             'nominated' => 'Nemůžete změnit metadata nominované beatmapy. Pokud si myslíte, že jsou nastavena nesprávně, kontaktujte člena BN nebo NAT.',

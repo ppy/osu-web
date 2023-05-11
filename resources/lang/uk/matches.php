@@ -6,13 +6,13 @@
 return [
     'match' => [
         'beatmap-deleted' => 'видалена мапа',
-        'difference' => 'з різницею в :difference очок',
         'failed' => 'ПРОГРАШ',
         'header' => 'Багатокористувацька гра',
         'in-progress' => '(гра в процесі)',
         'in_progress_spinner_label' => 'гра в процесі',
         'loading-events' => 'Завантаження подій...',
         'winner' => ':team перемогла,',
+        'winner_by' => '',
 
         'events' => [
             'player-left' => ':user покинув гру',

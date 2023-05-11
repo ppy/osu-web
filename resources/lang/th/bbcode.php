@@ -6,7 +6,9 @@
 return [
     'bold' => 'ตัวหนา',
     'heading' => 'หัวข้อ',
+    'help' => '',
     'image' => 'รูปภาพ',
+    'imagemap' => '',
     'italic' => 'ตัวเอียง',
     'link' => 'ลิงก์',
     'list' => 'รายการ',

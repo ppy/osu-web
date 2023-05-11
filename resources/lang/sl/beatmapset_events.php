@@ -34,7 +34,7 @@ return [
         'qualify' => 'Ta beatmapa je dosegla zahtevano število nominacij in se uvrstila med kvalificiranimi beatmapami.',
         'rank' => 'Rankirano.',
         'remove_from_loved' => ':user je odstranil beatmapo iz Loved. (:text)',
-        'tags_edit' => '',
+        'tags_edit' => 'Oznake spremenjene iz ":old" v ":new".',
 
         'nsfw_toggle' => [
             'to_0' => 'Eksplicitna oznaka odstranjena',

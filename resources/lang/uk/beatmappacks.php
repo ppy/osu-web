@@ -38,7 +38,7 @@ return [
         'featured' => 'Обраний виконавець',
         'standard' => 'Стандартні',
         'theme' => 'Тематичні',
-        'tournament' => '',
+        'tournament' => 'Турнір',
     ],
 
     'require_login' => [
