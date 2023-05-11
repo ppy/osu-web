@@ -26,7 +26,7 @@ export default class LoveConfirmation extends React.Component<Props> {
 
   @computed
   private get beatmaps() {
-    return this.props.beatmapset.beatmaps.filter((beatmap) => beatmap.deleted_at === null);
+    return this.props.beatmapset.beatmaps.filter((beatmap) => beatmap.deleted_at == null);
   }
 
   @computed
@@ -153,7 +153,7 @@ export default class LoveConfirmation extends React.Component<Props> {
               <input
                 checked={isModeSelected !== false}
                 className='osu-switch-v2__input'
-                data-indeterminate={isModeSelected === null}
+                data-indeterminate={isModeSelected == null}
                 onChange={this.handleCheckboxMode}
                 type='checkbox'
                 value={mode}
