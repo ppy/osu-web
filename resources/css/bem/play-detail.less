@@ -65,11 +65,15 @@
   }
 
   &__beatmap {
+    .u-ellipsis-overflow();
     color: @yellow-dark;
   }
 
   &__beatmap-and-time {
     margin-top: 2px;
+    white-space: nowrap;
+    display: flex;
+    gap: 15px;
   }
 
   &__detail {
@@ -217,7 +221,7 @@
 
   &__time {
     color: @osu-colour-f1;
-    margin-left: 15px;
+    flex: none;
   }
 
   &__title {
