@@ -305,9 +305,10 @@ export class Nominations extends React.PureComponent<Props> {
 
     return (
       <Modal>
-        <LoveBeatmapModal
+        <BeatmapsOwnerEditor
           beatmapset={this.props.beatmapset}
-          onClose={this.handleLoveBeatmapModal}
+          onClose={this.handleChangeOwnerClick}
+          users={this.props.users}
         />
       </Modal>
     );
@@ -490,10 +491,9 @@ export class Nominations extends React.PureComponent<Props> {
 
     return (
       <Modal>
-        <BeatmapsOwnerEditor
+        <LoveBeatmapModal
           beatmapset={this.props.beatmapset}
-          onClose={this.handleChangeOwnerClick}
-          users={this.props.users}
+          onClose={this.handleLoveBeatmapModal}
         />
       </Modal>
     );
