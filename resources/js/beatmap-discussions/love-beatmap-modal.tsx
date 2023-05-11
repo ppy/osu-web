@@ -119,6 +119,7 @@ export default class LoveConfirmation extends React.Component<Props> {
     }
 
     showLoadingOverlay();
+    showLoadingOverlay.flush();
 
     const url = route('beatmapsets.love', { beatmapset: this.props.beatmapset.id });
     const params = {
