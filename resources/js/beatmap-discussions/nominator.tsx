@@ -31,7 +31,7 @@ const bn = 'nomination-dialog';
 export class Nominator extends React.Component<Props> {
   private checkboxContainerRef = React.createRef<HTMLDivElement>();
   @observable private loading = false;
-  @observable private selectedModes: GameMode[] = [];
+  @observable private selectedModes: GameMode[] = this.playmodes != null && this.playmodes.length === 1 ? [this.playmodes[0]] : [];
   @observable private visible = false;
   private xhr?: JQuery.jqXHR<BeatmapsetWithDiscussionsJson>;
 
