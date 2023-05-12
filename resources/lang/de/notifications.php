@@ -27,7 +27,7 @@ return [
         '_' => 'alle',
         'user' => 'profil',
         'beatmapset' => 'beatmaps',
-        'forum_topic' => 'forum',
+        'forum_topic' => 'Forum',
         'news_post' => 'neuigkeiten',
         'build' => 'versionen',
         'channel' => 'chat',

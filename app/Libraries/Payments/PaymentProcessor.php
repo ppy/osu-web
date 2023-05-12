@@ -377,12 +377,12 @@ abstract class PaymentProcessor implements \ArrayAccess
     /**
      * Validatable.
      */
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'payments';
     }
 
-    public function validationErrorsKeyBase()
+    public function validationErrorsKeyBase(): string
     {
         return 'model_validation/';
     }

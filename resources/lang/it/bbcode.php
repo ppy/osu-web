@@ -6,7 +6,9 @@
 return [
     'bold' => 'Grassetto',
     'heading' => 'Intestazione',
+    'help' => '',
     'image' => 'Immagine',
+    'imagemap' => '',
     'italic' => 'Corsivo',
     'link' => 'Link',
     'list' => 'Lista',

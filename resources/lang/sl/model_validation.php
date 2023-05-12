@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute ne sme biti negativen.',
     'required' => ':attribute je obvezen.',
     'too_long' => 'Dosežen največja dolžina za :attribute - lahko vsebuje samo do :limit znakov.',
+    'url' => '',
     'wrong_confirmation' => 'Potrditev se ne ujema.',
 
     'beatmapset_discussion' => [
@@ -106,6 +107,10 @@ return [
             'required' => 'Izberi možnost, ko glasuješ.',
             'too_many' => 'Izbranih več možnosti kot je dovoljeno.',
         ],
+    ],
+
+    'legacy_api_key' => [
+        'exists' => '',
     ],
 
     'oauth' => [

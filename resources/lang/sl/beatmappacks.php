@@ -38,7 +38,7 @@ return [
         'featured' => 'Predstavljeni ustvarjalec',
         'standard' => 'Standardni',
         'theme' => 'Tema',
-        'tournament' => '',
+        'tournament' => 'Turnir',
     ],
 
     'require_login' => [

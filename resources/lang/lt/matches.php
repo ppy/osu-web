@@ -6,13 +6,13 @@
 return [
     'match' => [
         'beatmap-deleted' => 'bitmapas ištrintas',
-        'difference' => ':difference skirtumu',
         'failed' => 'NEPRAĖJO',
         'header' => 'Keli Mačai',
         'in-progress' => '(vyksta mačas)',
         'in_progress_spinner_label' => 'vyksta mačas',
         'loading-events' => 'Įvykiai keliami...',
         'winner' => ':team laimėjo',
+        'winner_by' => '',
 
         'events' => [
             'player-left' => ':user išėjo iš mačo',

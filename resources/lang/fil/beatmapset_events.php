@@ -34,7 +34,7 @@ return [
         'qualify' => 'Ang beatmap ay umabot na ng kinakailangang bilang ng nominasyon at naging kwalipikado.',
         'rank' => 'Nakaranggo.',
         'remove_from_loved' => 'Tinanggal sa Loved ni :user. (:text)',
-        'tags_edit' => '',
+        'tags_edit' => 'Ang mga tag ay napalitan galing ":old", naging ":new".',
 
         'nsfw_toggle' => [
             'to_0' => 'Tinanggal ang markang maselan',

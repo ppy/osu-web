@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute не может быть отрицательным.',
     'required' => 'Поле :attribute обязательно для заполнения.',
     'too_long' => ':attribute превышает максимальное количество символов - можно использовать только до :limit characters символов.',
+    'url' => '',
     'wrong_confirmation' => 'Поля не совпадают.',
 
     'beatmapset_discussion' => [
@@ -106,6 +107,10 @@ return [
             'required' => 'Выберите вариант, за который хотите проголосовать.',
             'too_many' => 'Выбрано больше вариантов, чем разрешено.',
         ],
+    ],
+
+    'legacy_api_key' => [
+        'exists' => '',
     ],
 
     'oauth' => [

@@ -6,7 +6,9 @@
 return [
     'bold' => 'Тоўсты',
     'heading' => 'Загаловак',
+    'help' => '',
     'image' => 'Выява',
+    'imagemap' => '',
     'italic' => 'Курсіў',
     'link' => 'Спасылка',
     'list' => 'Спіс',

@@ -6,7 +6,7 @@
 return [
     'index' => [
         'description' => 'Папярэднія запакаваныя калекцыі бітмап, створаныя на агульных тэмах.',
-        'empty' => '',
+        'empty' => 'Неўзабаве!',
         'nav_title' => 'спіс',
         'title' => 'Пакет бітмап',
 
@@ -35,10 +35,10 @@ return [
     'mode' => [
         'artist' => 'Выканавец/Альбом',
         'chart' => 'Чарты',
-        'featured' => '',
+        'featured' => 'Ліцэнзаваны Мастак',
         'standard' => 'Стандартная',
         'theme' => 'Тэма',
-        'tournament' => '',
+        'tournament' => 'Турнір',
     ],
 
     'require_login' => [

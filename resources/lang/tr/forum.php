@@ -25,7 +25,7 @@ return [
     ],
 
     'forums' => [
-        'forums' => '',
+        'forums' => 'Forumlar',
         'latest_post' => 'Son Gönderi',
 
         'index' => [

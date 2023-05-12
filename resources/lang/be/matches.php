@@ -6,13 +6,13 @@
 return [
     'match' => [
         'beatmap-deleted' => 'выдаленая бітмапа',
-        'difference' => 'з розніцай у :difference ачкоў',
         'failed' => 'ПРОЙГРЫШ',
         'header' => 'Шматкарыстальніцкая гульня',
         'in-progress' => '(матч ў працэсе)',
         'in_progress_spinner_label' => 'матч ў працэсе',
         'loading-events' => 'Загрузка падзей...',
         'winner' => ':team перамагла,',
+        'winner_by' => '',
 
         'events' => [
             'player-left' => ':user пакінуў гульню',

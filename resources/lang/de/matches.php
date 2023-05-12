@@ -5,29 +5,29 @@
 
 return [
     'match' => [
-        'beatmap-deleted' => 'gelöschte beatmap',
-        'difference' => 'um :difference punkte',
-        'failed' => 'FAILED',
+        'beatmap-deleted' => 'gelöschte Beatmap',
+        'failed' => 'GESCHEITERT',
         'header' => 'Mehrspieler-Matches',
-        'in-progress' => '(match läuft)',
+        'in-progress' => '(Match im Gange)',
         'in_progress_spinner_label' => 'Match im Gange',
         'loading-events' => 'Lade Events...',
         'winner' => ':team gewinnt',
+        'winner_by' => '',
 
         'events' => [
-            'player-left' => ':user hat das match verlassen',
-            'player-joined' => ':user ist dem match beigetreten',
-            'player-kicked' => ':user wurde aus dem match entfernt',
-            'match-created' => ':user hat das match erstellt',
-            'match-disbanded' => 'das match wurde aufgelöst',
-            'host-changed' => ':user wurde zum host',
+            'player-left' => ':user hat das Match verlassen',
+            'player-joined' => ':user ist dem Match beigetreten',
+            'player-kicked' => ':user wurde aus dem Match entfernt',
+            'match-created' => ':user hat das Match erstellt',
+            'match-disbanded' => 'das Match wurde aufgelöst',
+            'host-changed' => ':user wurde zum Host',
 
-            'player-left-no-user' => 'ein spieler hat das match verlassen',
-            'player-joined-no-user' => 'ein spieler ist dem match beigetreten',
-            'player-kicked-no-user' => 'ein spieler wurde aus dem match entfernt',
-            'match-created-no-user' => 'das match wurde erstellt',
-            'match-disbanded-no-user' => 'das match wurde aufgelöst',
-            'host-changed-no-user' => 'der host wurde gewechselt',
+            'player-left-no-user' => 'ein Spieler hat das Match verlassen',
+            'player-joined-no-user' => 'ein Spieler ist dem Match beigetreten',
+            'player-kicked-no-user' => 'ein Spieler wurde aus dem Match entfernt',
+            'match-created-no-user' => 'das Match wurde erstellt',
+            'match-disbanded-no-user' => 'das Match wurde aufgelöst',
+            'host-changed-no-user' => 'der Host wurde gewechselt',
         ],
 
         'score' => [

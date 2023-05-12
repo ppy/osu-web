@@ -6,13 +6,13 @@
 return [
     'match' => [
         'beatmap-deleted' => 'odstranjena beatmapa',
-        'difference' => 'za :difference',
         'failed' => 'NEUSPEŠNO',
         'header' => 'Večigralske tekme',
         'in-progress' => '(tekma v teku)',
         'in_progress_spinner_label' => 'tekma v teku',
         'loading-events' => 'Nalaganje dogodkov...',
         'winner' => ':team je zmagovalec',
+        'winner_by' => '',
 
         'events' => [
             'player-left' => ':user je zapustil sobo',

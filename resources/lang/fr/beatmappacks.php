@@ -38,7 +38,7 @@ return [
         'featured' => 'Featured Artist',
         'standard' => 'Standard',
         'theme' => 'Thème',
-        'tournament' => '',
+        'tournament' => 'Tournoi',
     ],
 
     'require_login' => [

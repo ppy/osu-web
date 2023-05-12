@@ -805,7 +805,9 @@
             "Type": "string"
           }
         ],
-        "IncompatibleMods": [],
+        "IncompatibleMods": [
+          "BU"
+        ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
@@ -903,7 +905,8 @@
           "AP",
           "TR",
           "WG",
-          "RP"
+          "RP",
+          "BU"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -927,7 +930,8 @@
           "AP",
           "TR",
           "WG",
-          "MG"
+          "MG",
+          "BU"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -972,6 +976,22 @@
         "Settings": [],
         "IncompatibleMods": [
           "AD"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "BU",
+        "Name": "Bubbles",
+        "Description": "Don't let their popping distract you!",
+        "Type": "Fun",
+        "Settings": [],
+        "IncompatibleMods": [
+          "BR",
+          "MG",
+          "RP"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,

@@ -37,7 +37,7 @@ return [
         'blocked_count' => 'pengguna yang diblokir (:count)',
         'hide_profile' => 'Sembunyikan profil',
         'hide_comment' => 'sembunyikan',
-        'forum_post_text' => '',
+        'forum_post_text' => 'Postingan ini disembunyikan.',
         'not_blocked' => 'Pengguna ini tidak diblokir.',
         'show_profile' => 'Tampilkan profil',
         'show_comment' => 'tampilkan',

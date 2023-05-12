@@ -38,7 +38,7 @@ return [
         'featured' => '',
         'standard' => 'Standard',
         'theme' => 'Tema',
-        'tournament' => '',
+        'tournament' => 'Torneig',
     ],
 
     'require_login' => [

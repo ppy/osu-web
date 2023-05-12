@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute kan niet negatief zijn.',
     'required' => ':attribute is nodig.',
     'too_long' => ':attribute heeft de maximum lengte overschreden - kan enkel tot :limit karakters gebruiken.',
+    'url' => '',
     'wrong_confirmation' => 'Bevestiging komt niet overeen.',
 
     'beatmapset_discussion' => [
@@ -106,6 +107,10 @@ return [
             'required' => 'Selecteer een optie om te stemmen.',
             'too_many' => 'Meer opties selecteren is niet toegestaan.',
         ],
+    ],
+
+    'legacy_api_key' => [
+        'exists' => '',
     ],
 
     'oauth' => [

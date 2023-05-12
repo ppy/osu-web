@@ -181,7 +181,7 @@ return [
             'edit' => [
                 'locked' => 'Користувацька сторінка заблокована.',
                 'not_owner' => 'Можна редагувати лише власну сторінку.',
-                'require_supporter_tag' => 'необхідний osu!supporter.',
+                'require_supporter_tag' => 'необхідний тег osu!прихильника.',
             ],
         ],
     ],

@@ -172,12 +172,12 @@ class SupporterTagFulfillment extends OrderFulfiller
     //================
     // Validatable
     //================
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'fulfillments.supporter_tag';
     }
 
-    public function validationErrorsKeyBase()
+    public function validationErrorsKeyBase(): string
     {
         return 'model_validation/';
     }

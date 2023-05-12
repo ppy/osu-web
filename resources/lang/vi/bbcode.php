@@ -6,7 +6,9 @@
 return [
     'bold' => 'In đậm',
     'heading' => 'Tiêu Đề',
+    'help' => '',
     'image' => 'Hình Ảnh',
+    'imagemap' => '',
     'italic' => 'Nghiêng',
     'link' => 'Liên kết',
     'list' => 'Danh Sách',

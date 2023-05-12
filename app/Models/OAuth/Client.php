@@ -144,7 +144,7 @@ class Client extends PassportClient
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'oauth.client';
     }

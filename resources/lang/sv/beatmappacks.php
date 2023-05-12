@@ -38,7 +38,7 @@ return [
         'featured' => 'Utvald artist',
         'standard' => 'Standard',
         'theme' => 'Tema',
-        'tournament' => '',
+        'tournament' => 'Turnering',
     ],
 
     'require_login' => [

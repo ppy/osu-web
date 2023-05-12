@@ -340,9 +340,9 @@ return [
                 ],
 
                 'user' => [
-                    'count' => '',
-                    'current' => '',
-                    'not_enough' => "",
+                    'count' => '{0} нема гласова|{1} :count_delimited глас|[2,*] :count_delimited гласа',
+                    'current' => 'Преостало још :votes гласова.',
+                    'not_enough' => "Немате више гласова",
                 ],
             ],
 
@@ -359,7 +359,7 @@ return [
                 ],
 
                 'detail' => [
-                    'end_time' => '',
+                    'end_time' => 'Гласање ће се завршити у :time',
                     'ended' => 'Гласање је завршено :time',
                     'results_hidden' => 'Резултати ће бити приказани након завршетка гласања.',
                     'total' => 'Укупно гласова :count',
@@ -368,9 +368,9 @@ return [
         ],
 
         'watch' => [
-            'to_not_watching' => '',
-            'to_watching' => '',
-            'to_watching_mail' => '',
+            'to_not_watching' => 'Није Обележено',
+            'to_watching' => 'Обележивач',
+            'to_watching_mail' => 'Обележивач са обавештењем',
             'tooltip_mail_disable' => 'Обавештење је омогућено. Кликните да бисте онемогућили
 ',
             'tooltip_mail_enable' => 'Обавештење је онемогућено. Кликните да бисте омогућили',

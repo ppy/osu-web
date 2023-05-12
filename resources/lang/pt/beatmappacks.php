@@ -38,7 +38,7 @@ return [
         'featured' => 'Artista Destacado',
         'standard' => 'Padrão',
         'theme' => 'Tema',
-        'tournament' => '',
+        'tournament' => 'Torneio',
     ],
 
     'require_login' => [

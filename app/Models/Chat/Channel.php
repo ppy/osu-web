@@ -610,7 +610,7 @@ class Channel extends Model
         }
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'chat.channel';
     }

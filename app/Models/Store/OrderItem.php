@@ -157,7 +157,7 @@ class OrderItem extends Model
         }
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'store.order_item';
     }

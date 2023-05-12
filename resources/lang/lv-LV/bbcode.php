@@ -6,7 +6,9 @@
 return [
     'bold' => 'Treknraksts',
     'heading' => 'Galvene',
+    'help' => '',
     'image' => 'Attēls',
+    'imagemap' => '',
     'italic' => 'Slīprraksts',
     'link' => 'Saite',
     'list' => 'Saraksts',

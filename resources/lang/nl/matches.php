@@ -6,13 +6,13 @@
 return [
     'match' => [
         'beatmap-deleted' => 'verwijderde beatmap',
-        'difference' => 'met :difference',
         'failed' => 'GEFAALD',
         'header' => 'Multiplayer Wedstrijden',
         'in-progress' => '(spel is al bezig)',
         'in_progress_spinner_label' => 'match is bezig',
         'loading-events' => 'Gebeurtenissen laden...',
         'winner' => ':team heeft gewonnen',
+        'winner_by' => '',
 
         'events' => [
             'player-left' => ':user heeft het spel verlaten',

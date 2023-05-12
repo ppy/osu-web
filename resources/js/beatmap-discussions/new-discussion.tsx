@@ -10,7 +10,7 @@ import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import { BeatmapsetDiscussionPostStoreResponseJson } from 'interfaces/beatmapset-discussion-post-responses';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
-import { BeatmapsetWithDiscussionsJson } from 'interfaces/beatmapset-json';
+import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import { route } from 'laroute';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
@@ -135,6 +135,7 @@ export class NewDiscussion extends React.Component<Props> {
   }
 
   componentDidMount() {
+    this.updateStickToHeight();
     // watching for height changes on the stickTo element to handle horizontal scrollbars when they appear.
     $(window).on('resize', this.updateStickToHeight);
     this.disposers.add(core.reactTurbolinks.runAfterPageLoad(action(() => this.mounted = true)));

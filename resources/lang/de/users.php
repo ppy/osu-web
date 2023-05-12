@@ -37,7 +37,7 @@ return [
         'blocked_count' => 'blockierte Benutzer (:count)',
         'hide_profile' => 'Profil verbergen',
         'hide_comment' => 'ausblenden',
-        'forum_post_text' => '',
+        'forum_post_text' => 'Dieser Beitrag wird ausgeblendet.',
         'not_blocked' => 'Dieser Benutzer ist nicht geblockt.',
         'show_profile' => 'Profil anzeigen',
         'show_comment' => 'anzeigen',
@@ -268,7 +268,7 @@ return [
                 ],
                 'recent_plays' => [
                     'accuracy' => 'genauigkeit: :percentage',
-                    'title' => 'Neuliche Plays (24h)',
+                    'title' => 'Neuliche Spiele (24h)',
                 ],
                 'replays_watched_counts' => [
                     'title' => 'Angeschaute Replays',
@@ -378,7 +378,7 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Accountstatus',
-                'bad_standing' => "Der Account von <strong>:username</strong> ist zurzeit eingeschränkt :(",
+                'bad_standing' => "Der Account von :username ist zurzeit eingeschränkt :(",
                 'remaining_silence' => '<strong>:username</strong> kann in :duration wieder sprechen.',
 
                 'recent_infringements' => [

@@ -6,7 +6,9 @@
 return [
     'bold' => '粗體',
     'heading' => '標題',
+    'help' => '',
     'image' => '圖片',
+    'imagemap' => '',
     'italic' => '斜體',
     'link' => '超連結',
     'list' => '無序列表',

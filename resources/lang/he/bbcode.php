@@ -6,7 +6,9 @@
 return [
     'bold' => 'מודגש',
     'heading' => 'כותרת',
+    'help' => '',
     'image' => 'תמונה',
+    'imagemap' => '',
     'italic' => 'נטוי',
     'link' => 'קישור',
     'list' => 'רשימה',

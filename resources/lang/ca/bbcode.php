@@ -6,7 +6,9 @@
 return [
     'bold' => 'Negreta',
     'heading' => 'Capçalera',
+    'help' => '',
     'image' => 'Imatge',
+    'imagemap' => '',
     'italic' => 'Cursiva',
     'link' => 'Enllaç',
     'list' => 'Llista',

@@ -72,7 +72,7 @@ export function parseJson<T>(id: string): T {
  * @param remove true to remove the element after parsing; false, otherwise.
  */
 export function parseJsonNullable<T>(id: string, remove = false): T | undefined {
-  const element = window.newBody?.querySelector(`#${id}`);
+  const element = (window.newBody ?? document.body).querySelector(`#${id}`);
   if (!(element instanceof HTMLScriptElement)) return undefined;
   const json = JSON.parse(element.text) as T;
 

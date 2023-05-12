@@ -26,7 +26,7 @@ return [
     'filters' => [
         '_' => 'hepsi',
         'user' => 'profil',
-        'beatmapset' => 'haritalar',
+        'beatmapset' => 'beatmapler',
         'forum_topic' => 'forum',
         'news_post' => 'gelişmeler',
         'build' => 'sürümler',

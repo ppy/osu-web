@@ -6,7 +6,7 @@
 return [
     'index' => [
         'description' => 'Kolekcie beatmáp s podobnou tématikou.',
-        'empty' => '',
+        'empty' => 'Už čoskoro!',
         'nav_title' => 'výpis',
         'title' => 'Balíky beatmáp',
 
@@ -35,10 +35,10 @@ return [
     'mode' => [
         'artist' => 'Interpret/Album',
         'chart' => 'Oslňujúce',
-        'featured' => '',
+        'featured' => 'Vybraní umelci',
         'standard' => 'Obyčajné',
         'theme' => 'Témy',
-        'tournament' => '',
+        'tournament' => 'Turnaj',
     ],
 
     'require_login' => [

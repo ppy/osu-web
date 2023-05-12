@@ -14,13 +14,13 @@ return [
     'verifying' => 'Калі ласка, пацвердзіце сеанс для прагляду апавяшчэнняў',
 
     'action_type' => [
-        '_' => '',
-        'beatmapset' => '',
-        'build' => '',
-        'channel' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'user' => '',
+        '_' => 'усё',
+        'beatmapset' => 'бітмапы',
+        'build' => 'зборкі',
+        'channel' => 'чат',
+        'forum_topic' => 'форум',
+        'news_post' => 'навіны',
+        'user' => 'профіль',
     ],
 
     'filters' => [
