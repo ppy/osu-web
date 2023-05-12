@@ -50,6 +50,7 @@ export interface CurrentUserAttributes {
   can_delete: boolean;
   can_edit_metadata: boolean;
   can_edit_offset: boolean;
+  can_edit_tags: boolean;
   can_hype: boolean;
   can_hype_reason: string;
   can_love: boolean;
