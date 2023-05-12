@@ -18,7 +18,7 @@ import BigButton from './big-button';
 import { Spinner } from './spinner';
 import UserAvatar from './user-avatar';
 
-type Mode = 'edit' | 'new' | 'reply';
+export type CommentEditMode = 'edit' | 'new' | 'reply';
 
 interface CommentPostParams {
   comment: {
@@ -36,13 +36,13 @@ interface Props {
   id?: number;
   message?: string;
   modifiers?: Modifiers;
-  onPosted?: (mode: Mode) => void;
+  onPosted?: (mode: CommentEditMode) => void;
   parent?: Comment;
 }
 
 const bn = 'comment-editor';
 
-const buttonTextKey: Record<Mode, string> = {
+const buttonTextKey: Record<CommentEditMode, string> = {
   edit: 'save',
   new: 'post',
   reply: 'reply',
