@@ -31,7 +31,7 @@ const bn = 'nomination-dialog';
 export class Nominator extends React.Component<Props> {
   private checkboxContainerRef = React.createRef<HTMLDivElement>();
   @observable private loading = false;
-  @observable private selectedModes: GameMode[] = this.playmodes != null && this.playmodes.length === 1 ? [this.playmodes[0]] : [];
+  @observable private selectedModes: GameMode[] = [];
   @observable private visible = false;
   private xhr?: JQuery.jqXHR<BeatmapsetWithDiscussionsJson>;
 
@@ -141,7 +141,7 @@ export class Nominator extends React.Component<Props> {
     const url = route('beatmapsets.nominate', { beatmapset: this.props.beatmapset.id });
     const params = {
       data: {
-        playmodes: this.selectedModes,
+        playmodes: this.playmodes != null && this.playmodes.length === 1 ? this.playmodes : this.selectedModes,
       },
       method: 'PUT',
     };
