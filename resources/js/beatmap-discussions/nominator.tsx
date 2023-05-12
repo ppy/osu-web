@@ -199,7 +199,7 @@ export class Nominator extends React.Component<Props> {
   }
 
   private renderModal() {
-    const isHybrid = this.playmodes != null;
+    const isHybrid = this.playmodes != null && this.playmodes.length > 1;
 
     return (
       <Modal onClose={this.hideNominationModal}>
@@ -231,13 +231,11 @@ export class Nominator extends React.Component<Props> {
   }
 
   private renderModalContentHybrid() {
-    if (this.playmodes == null) return null;
-
     return (
       <>
         {trans('beatmapsets.nominate.dialog.which_modes')}
         <div ref={this.checkboxContainerRef} className={`${bn}__checkboxes`}>
-          {this.playmodes.map((mode: GameMode) => {
+          {this.playmodes?.map((mode: GameMode) => {
             const disabled = !this.userCanNominateMode(mode);
             return (
               <label
