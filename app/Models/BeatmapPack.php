@@ -27,6 +27,7 @@ class BeatmapPack extends Model
         'standard' => 'S',
         'featured' => 'F',
         'tournament' => 'P', // since 'T' is taken and 'P' goes for 'pool'
+        'loved' => 'L',
         'chart' => 'R',
         'theme' => 'T',
         'artist' => 'A',
