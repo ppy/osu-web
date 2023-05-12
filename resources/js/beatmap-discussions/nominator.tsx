@@ -141,7 +141,7 @@ export class Nominator extends React.Component<Props> {
     const url = route('beatmapsets.nominate', { beatmapset: this.props.beatmapset.id });
     const params = {
       data: {
-        playmodes: this.selectedModes,
+        playmodes: this.playmodes != null && this.playmodes.length === 1 ? this.playmodes : this.selectedModes,
       },
       method: 'PUT',
     };
