@@ -4,7 +4,7 @@
 import * as React from 'react';
 import { uriTransformer } from 'react-markdown';
 import { propsFromHref, timestampRegexGlobal } from 'utils/beatmapset-discussion-helper';
-import { openBeatmapEditor } from 'utils/url';
+import { openBeatmapEditor, safeReactMarkdownUrl } from 'utils/url';
 
 export const LinkContext = React.createContext({ inLink: false });
 
@@ -16,11 +16,12 @@ export function createRenderer(ElementType: React.ElementType) {
 
 export function linkRenderer(astProps: JSX.IntrinsicElements['a']) {
   const props = propsFromHref(astProps.href);
+  const href = safeReactMarkdownUrl(props.href);
 
   return (
     <>
       <LinkContext.Provider value={{ inLink: true }}>
-        <a {...props}>{props.children ?? astProps.children}</a>
+        <a {...props} href={href}>{props.children ?? astProps.children}</a>
       </LinkContext.Provider>
     </>
   );
