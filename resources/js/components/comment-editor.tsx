@@ -204,6 +204,7 @@ export default class CommentEditor extends React.Component<Props> {
     this.message = e.currentTarget.value;
   };
 
+  @action
   private readonly post = () => {
     if (this.posting) return;
 
