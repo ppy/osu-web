@@ -28,7 +28,9 @@ export const error = (xhr: JQuery.jqXHR, status: string, callback?: () => void) 
 };
 
 export const fileuploadFailCallback = (event: unknown, data: JQueryFileUploadDone) => {
-  error(data.jqXHR, data.textStatus, () => data.submit?.());
+  error(data.jqXHR, data.textStatus, () => {
+    data.submit?.();
+  });
 };
 
 export function isJqXHR(obj: unknown): obj is JQuery.jqXHR {
