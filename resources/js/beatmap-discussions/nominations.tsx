@@ -29,7 +29,7 @@ import { onError } from 'utils/ajax';
 import { canModeratePosts, makeUrl } from 'utils/beatmapset-discussion-helper';
 import { nominationsCount } from 'utils/beatmapset-helper';
 import { joinComponents, trans, transExists } from 'utils/lang';
-import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
+import { hideLoadingOverlay, showImmediateLoadingOverlay } from 'utils/loading-overlay';
 import { pageChange } from 'utils/page-change';
 import { presence } from 'utils/string';
 import { wikiUrl } from 'utils/url';
@@ -146,8 +146,7 @@ export class Nominations extends React.PureComponent<Props> {
 
     if (!confirm(message)) return;
 
-    showLoadingOverlay();
-    showLoadingOverlay.flush();
+    showImmediateLoadingOverlay();
 
     this.xhr.delete = $.ajax(
       route('beatmapsets.destroy', { beatmapset: this.props.beatmapset.id }),
@@ -189,8 +188,7 @@ export class Nominations extends React.PureComponent<Props> {
 
     if (!confirm(trans('beatmaps.discussions.lock.prompt.unlock'))) return;
 
-    showLoadingOverlay();
-    showLoadingOverlay.flush();
+    showImmediateLoadingOverlay();
 
     this.xhr.discussionLock = $.ajax(
       route('beatmapsets.discussion-unlock', { beatmapset: this.props.beatmapset.id }),
@@ -280,8 +278,7 @@ export class Nominations extends React.PureComponent<Props> {
 
     if (reason == null) return;
 
-    showLoadingOverlay();
-    showLoadingOverlay.flush();
+    showImmediateLoadingOverlay();
 
     this.xhr.removeFromLoved = $.ajax(
       route('beatmapsets.remove-from-loved', { beatmapset: this.props.beatmapset.id }),
