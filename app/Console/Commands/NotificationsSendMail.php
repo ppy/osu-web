@@ -61,7 +61,14 @@ class NotificationsSendMail extends Command
         foreach ($userIds->chunk($chunkSize) as $chunk) {
             $users = User::whereIn('user_id', $chunk)->get();
             foreach ($users as $user) {
-                dispatch(new UserNotificationDigest($user, $fromId, $toId));
+                $job = new UserNotificationDigest($user, $fromId, $toId);
+                try {
+                    $job->handle();
+                } catch (\Exception $e) {
+                    // catch exception and queue job to be rerun to avoid job exploding and preventing other notifications from being processed.
+                    log_error($e);
+                    dispatch($job);
+                }
             }
         }
 
