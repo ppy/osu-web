@@ -159,7 +159,9 @@ export default class LoveConfirmation extends React.Component<Props> {
               />
               <span className='osu-switch-v2__content' />
             </div>
-            {trans(`beatmaps.mode.${mode}`)}
+            <span className='love-beatmap-modal__diff-mode-title-label'>
+              {trans(`beatmaps.mode.${mode}`)}
+            </span>
           </label>
         </div>
         <ul className='love-beatmap-modal__diff-list'>
