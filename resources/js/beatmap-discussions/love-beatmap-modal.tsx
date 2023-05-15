@@ -3,24 +3,36 @@
 
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
+import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
-import { computed, makeObservable, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
 import { group as groupBeatmaps } from 'utils/beatmap-helper';
 import { trans } from 'utils/lang';
-import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
+import { hideLoadingOverlay, showImmediateLoadingOverlay } from 'utils/loading-overlay';
 
 interface Props {
-  beatmapset: BeatmapsetExtendedJson;
+  beatmapset: BeatmapsetExtendedJson & Required<Pick<BeatmapsetExtendedJson, 'beatmaps'>>;
   onClose: () => void;
 }
 
 @observer
 export default class LoveConfirmation extends React.Component<Props> {
   @observable private selectedBeatmapIds: Set<number>;
+  @observable private xhr: JQuery.jqXHR<BeatmapsetWithDiscussionsJson> | null = null;
+
+  @computed
+  private get beatmaps() {
+    return this.props.beatmapset.beatmaps.filter((beatmap) => beatmap.deleted_at == null);
+  }
+
+  @computed
+  private get groupedBeatmaps() {
+    return groupBeatmaps(this.beatmaps);
+  }
 
   constructor(props: Props) {
     super(props);
@@ -30,14 +42,8 @@ export default class LoveConfirmation extends React.Component<Props> {
     makeObservable(this);
   }
 
-  @computed
-  private get beatmaps() {
-    return this.props.beatmapset.beatmaps?.filter((beatmap) => beatmap.deleted_at === null) ?? [];
-  }
-
-  @computed
-  private get groupedBeatmaps() {
-    return groupBeatmaps(this.beatmaps);
+  componentWillUnmount() {
+    this.xhr?.abort();
   }
 
   render() {
@@ -62,7 +68,7 @@ export default class LoveConfirmation extends React.Component<Props> {
 
           <button
             className='btn-osu-big btn-osu-big--rounded-thin'
-            disabled={this.selectedBeatmapIds.size === 0}
+            disabled={this.xhr != null || this.selectedBeatmapIds.size === 0}
             onClick={this.handleSubmit}
             type='button'
           >
@@ -85,6 +91,7 @@ export default class LoveConfirmation extends React.Component<Props> {
     return isAllSelected;
   };
 
+  @action
   private handleCheckboxDifficulty = (e: React.ChangeEvent<HTMLInputElement>) => {
     const beatmapId = parseInt(e.target.value, 10);
 
@@ -99,20 +106,19 @@ export default class LoveConfirmation extends React.Component<Props> {
     const mode = e.target.value as GameMode;
     const modeBeatmaps = this.groupedBeatmaps.get(mode) ?? [];
 
-    const action = this.checkIsModeSelected(mode) ? 'delete' : 'add';
-    modeBeatmaps.forEach((beatmap) => this.selectedBeatmapIds[action](beatmap.id));
+    const op = this.checkIsModeSelected(mode) ? 'delete' : 'add';
+    modeBeatmaps.forEach((beatmap) => this.selectedBeatmapIds[op](beatmap.id));
   };
 
+  @action
   private handleSubmit = () => {
-    if (!confirm(trans('beatmaps.nominations.love_confirm'))) {
+    if (this.xhr != null
+      || this.selectedBeatmapIds.size === 0
+      || !confirm(trans('beatmaps.nominations.love_confirm'))) {
       return;
     }
 
-    if (this.selectedBeatmapIds.size === 0) {
-      return;
-    }
-
-    showLoadingOverlay();
+    showImmediateLoadingOverlay();
 
     const url = route('beatmapsets.love', { beatmapset: this.props.beatmapset.id });
     const params = {
@@ -120,11 +126,15 @@ export default class LoveConfirmation extends React.Component<Props> {
       method: 'PUT',
     };
 
-    $.ajax(url, params).done((response) => {
-      $.publish('beatmapsetDiscussions:update', { beatmapset: response });
+    this.xhr = $.ajax(url, params);
+    this.xhr.done((beatmapset) => {
+      $.publish('beatmapsetDiscussions:update', { beatmapset });
       this.props.onClose();
     }).fail(onError)
-      .always(hideLoadingOverlay);
+      .always(action(() => {
+        this.xhr = null;
+        hideLoadingOverlay();
+      }));
   };
 
   private renderDiffMode(mode: GameMode, beatmaps: BeatmapJson[]) {
@@ -142,7 +152,7 @@ export default class LoveConfirmation extends React.Component<Props> {
               <input
                 checked={isModeSelected !== false}
                 className='osu-switch-v2__input'
-                data-indeterminate={isModeSelected === null}
+                data-indeterminate={isModeSelected == null}
                 onChange={this.handleCheckboxMode}
                 type='checkbox'
                 value={mode}
