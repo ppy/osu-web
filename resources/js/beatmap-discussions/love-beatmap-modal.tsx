@@ -12,7 +12,7 @@ import * as React from 'react';
 import { onError } from 'utils/ajax';
 import { group as groupBeatmaps } from 'utils/beatmap-helper';
 import { trans } from 'utils/lang';
-import { hideLoadingOverlay, showLoadingOverlay } from 'utils/loading-overlay';
+import { hideLoadingOverlay, showImmediateLoadingOverlay } from 'utils/loading-overlay';
 
 interface Props {
   beatmapset: BeatmapsetExtendedJson & Required<Pick<BeatmapsetExtendedJson, 'beatmaps'>>;
@@ -118,8 +118,7 @@ export default class LoveConfirmation extends React.Component<Props> {
       return;
     }
 
-    showLoadingOverlay();
-    showLoadingOverlay.flush();
+    showImmediateLoadingOverlay();
 
     const url = route('beatmapsets.love', { beatmapset: this.props.beatmapset.id });
     const params = {
