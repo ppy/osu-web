@@ -1,4 +1,4 @@
-// Copyright (c) ppy Pty Ltd <contact@.ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
 import headerLinks from 'beatmapsets-show/header-links';
@@ -13,9 +13,9 @@ import StringWithComponent from 'components/string-with-component';
 import UserLink from 'components/user-link';
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapJson from 'interfaces/beatmap-json';
-import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
+import { BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
-import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
+import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import GameMode, { gameModes } from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
@@ -36,11 +36,11 @@ import { UserFilter } from './user-filter';
 
 interface Props {
   beatmaps: Map<GameMode, BeatmapExtendedJson[]>;
-  beatmapset: BeatmapsetExtendedJson;
+  beatmapset: BeatmapsetWithDiscussionsJson;
   currentBeatmap: BeatmapExtendedJson;
   currentDiscussions: CurrentDiscussions;
   currentFilter: Filter;
-  discussions: Partial<Record<number, BeatmapsetDiscussionJson>>;
+  discussions: Partial<Record<number, BeatmapsetDiscussionJsonForShow>>;
   discussionStarters: UserJson[];
   events: BeatmapsetEventJson[];
   mode: DiscussionPage;
@@ -118,7 +118,6 @@ export class Header extends React.Component<Props> {
           <Nominations
             beatmapset={this.props.beatmapset}
             currentDiscussions={this.props.currentDiscussions}
-            currentUser={core.currentUser}
             discussions={this.props.discussions}
             events={this.props.events}
             users={this.props.users}
