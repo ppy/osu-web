@@ -226,7 +226,7 @@ export class Nominations extends React.PureComponent<Props> {
 
   private focusNewDiscussion(this: void, callback: () => void) {
     const inputBox = $('.js-hype--input');
-    inputBox.focus();
+    inputBox.trigger('focus');
 
     // ensure input box is in view and focus it
     $.scrollTo(inputBox, 200, {
