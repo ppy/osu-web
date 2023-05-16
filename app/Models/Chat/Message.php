@@ -66,6 +66,24 @@ class Message extends Model implements ReportableInterface
         };
     }
 
+    public function reportableAdditionalInfo(): ?string
+    {
+        $messages = static
+            ::where('message_id', '<=', $this->getKey())
+            ->where(fn ($q) => $q
+                ->whereHas('channel', fn ($ch) => $ch->public())
+                ->orWhere('channel_id', $this->channel_id))
+            ->orderBy('message_id', 'DESC')
+            ->with('channel')
+            ->limit(5)
+            ->get();
+
+        return $messages
+            ->map(fn ($m) => "**{$m->timestamp_json} {$m->channel->name}:**\n{$m->content}\n")
+            ->reverse()
+            ->join("\n");
+    }
+
     public function trashed(): bool
     {
         return false;
