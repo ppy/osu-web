@@ -8,6 +8,7 @@ import { OwnClient as Client } from 'models/oauth/own-client';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
+import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
 
 const uiState = core.dataStore.uiState;
@@ -32,12 +33,17 @@ export class OwnClient extends React.Component<Props> {
 
   render() {
     const client = this.props.client;
+    const redirects = client.redirect.split('\r\n');
 
     return (
       <div className='oauth-client'>
         <button className='oauth-client__details oauth-client__details--button' onClick={this.showClientDetails}>
           <div className='oauth-client__name'>{client.name}</div>
-          <div className='oauth-client__redirect'>{client.redirect}</div>
+          <div className='oauth-client__redirect'>
+            {redirects[0]}
+            {' '}
+            {redirects.length > 1 ? <small>(+{formatNumber(redirects.length - 1)})</small> : null}
+          </div>
         </button>
         <div className='oauth-client__actions'>
           <BigButton

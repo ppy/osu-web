@@ -56,6 +56,18 @@ class Client extends PassportClient
         );
     }
 
+    public function setRedirectAttribute($value)
+    {
+        if (is_string($value) && present($value)) {
+            $entries = array_unique(preg_split('/[\s,]+/', $value, 0, PREG_SPLIT_NO_EMPTY));
+            if (count($entries) > 0) {
+                $cleanValue = implode(',', $entries);
+            }
+        }
+
+        $this->attributes['redirect'] = $cleanValue ?? null;
+    }
+
     public function isValid()
     {
         $this->validationErrors()->reset();
@@ -71,10 +83,13 @@ class Client extends PassportClient
             $this->validationErrors()->add('name', 'required');
         }
 
-        $redirect = trim($this->redirect);
-        // TODO: this url validation is not very good.
-        if (present($redirect) && !filter_var($redirect, FILTER_VALIDATE_URL)) {
-            $this->validationErrors()->add('redirect', '.url');
+        $redirects = explode(',', $this->redirect ?? '');
+        foreach ($redirects as $redirect) {
+            // TODO: this url validation is not very good.
+            if (present($redirect) && !filter_var($redirect, FILTER_VALIDATE_URL)) {
+                $this->validationErrors()->add('redirect', '.url');
+                break;
+            }
         }
 
         return $this->validationErrors()->isEmpty();
