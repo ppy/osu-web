@@ -887,6 +887,17 @@ class OsuAuthorize
         return 'unauthorized';
     }
 
+    public function checkBeatmapsetTagsEdit(?User $user): string
+    {
+        $this->ensureLoggedIn($user);
+
+        if ($user->isModerator()) {
+            return 'ok';
+        }
+
+        return 'unauthorized';
+    }
+
     /**
      * @param User|null $user
      * @return string

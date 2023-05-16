@@ -46,6 +46,10 @@ export default class MetadataEditor extends React.Component<Props> {
     return this.controller.beatmapset.current_user_attributes.can_edit_offset;
   }
 
+  private get canEditTags() {
+    return this.controller.beatmapset.current_user_attributes.can_edit_tags;
+  }
+
   constructor(props: Props) {
     super(props);
 
@@ -117,19 +121,21 @@ export default class MetadataEditor extends React.Component<Props> {
           </div>
         </label>
 
-        <label className='simple-form__row'>
-          <div className='simple-form__label'>
-            {trans('beatmapsets.show.info.tags')}
-          </div>
+        {this.canEditTags &&
+          <label className='simple-form__row'>
+            <div className='simple-form__label'>
+              {trans('beatmapsets.show.info.tags')}
+            </div>
 
-          <textarea
-            className='simple-form__input'
-            maxLength={1000}
-            name='beatmapset[tags]'
-            onChange={this.setTags}
-            value={this.tags}
-          />
-        </label>
+            <textarea
+              className='simple-form__input'
+              maxLength={1000}
+              name='beatmapset[tags]'
+              onChange={this.setTags}
+              value={this.tags}
+            />
+          </label>
+        }
 
         {this.canEditOffset &&
           <label className='simple-form__row'>
@@ -202,7 +208,7 @@ export default class MetadataEditor extends React.Component<Props> {
         language_id: this.languageId,
         nsfw: this.nsfw,
         offset: this.canEditOffset ? getInt(this.offset) : undefined,
-        tags: this.tags,
+        tags: this.canEditTags ? this.tags : undefined,
       } },
       method: 'PATCH',
     });
