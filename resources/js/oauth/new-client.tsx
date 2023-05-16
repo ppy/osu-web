@@ -63,6 +63,7 @@ export class NewClient extends React.Component {
               {trans('oauth.client.redirect')}
             </div>
             <TextareaAutosize
+              async
               className={classWithModifiers(
                 'oauth-client-details__input',
                 'textarea',
