@@ -138,6 +138,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
             'can_delete' => !$beatmapset->isScoreable() && priv_check('BeatmapsetDelete', $beatmapset)->can(),
             'can_edit_metadata' => priv_check('BeatmapsetMetadataEdit', $beatmapset)->can(),
             'can_edit_offset' => priv_check('BeatmapsetOffsetEdit')->can(),
+            'can_edit_tags' => priv_check('BeatmapsetTagsEdit')->can(),
             'can_hype' => $hypeValidation['result'],
             'can_hype_reason' => $hypeValidation['message'] ?? null,
             'can_love' => $beatmapset->isLoveable() && priv_check('BeatmapsetLove')->can(),
