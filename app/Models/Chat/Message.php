@@ -66,8 +66,12 @@ class Message extends Model implements ReportableInterface
         };
     }
 
-    public function reportableAdditionalInfo(): ?string
+    public function reportableAdditionalInfo(?User $reporter): ?string
     {
+        if (!priv_check_user($reporter, 'ChatChannelRead', $this->channel)->can()) {
+            return "reporter doesn't actually have access to the reported message";
+        }
+
         $messages = static
             ::where('message_id', '<=', $this->getKey())
             ->where(fn ($q) => $q

@@ -17,7 +17,7 @@ trait Reportable
 {
     abstract protected function newReportableExtraParams(): array;
 
-    public function reportableAdditionalInfo(): ?string
+    public function reportableAdditionalInfo(User $reporter): ?string
     {
         return null;
     }
