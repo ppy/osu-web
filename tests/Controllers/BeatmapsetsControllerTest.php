@@ -233,11 +233,11 @@ class BeatmapsetsControllerTest extends TestCase
      */
     public function testBeatmapsetUpdateMetadataAsProjectLoved(string $state): void
     {
-        $owner = User::factory()->create();
         $beatmapset = Beatmapset::factory()->create([
             'approved' => Beatmapset::STATES[$state],
-            'user_id' => $owner,
+            'user_id' => User::factory(),
         ]);
+        $owner = $beatmapset->user;
         $newGenre = Genre::factory()->create();
         $newLanguage = Language::factory()->create();
 
@@ -277,6 +277,7 @@ class BeatmapsetsControllerTest extends TestCase
     {
         $beatmapset = Beatmapset::factory()->create([
             'approved' => Beatmapset::STATES['ranked'],
+            'user_id' => User::factory(),
         ]);
 
         $user = $userGroupOrOwner === 'owner'
@@ -300,6 +301,35 @@ class BeatmapsetsControllerTest extends TestCase
         $this->assertSame($expectedOffset, $beatmapset->offset);
     }
 
+    /**
+     * @dataProvider dataProviderForTestBeatmapsetUpdateTags
+     */
+    public function testBeatmapsetUpdateTags(string $userGroupOrOwner, bool $ok): void
+    {
+        $beatmapset = Beatmapset::factory()->create([
+            'approved' => Beatmapset::STATES['ranked'],
+            'user_id' => User::factory(),
+        ]);
+
+        $user = $userGroupOrOwner === 'owner'
+            ? $beatmapset->user
+            : User::factory()->withGroup($userGroupOrOwner)->create();
+
+        $newTags = "{$beatmapset->tags} more_tag";
+        $expectedTags = $ok ? $newTags : $beatmapset->tags;
+
+        $this->expectCountChange(fn () => BeatmapsetEvent::count(), $ok ? 1 : 0);
+
+        $this->actingAsVerified($user)
+            ->put(route('beatmapsets.update', ['beatmapset' => $beatmapset->getKey()]), [
+                'beatmapset' => [
+                    'tags' => $newTags,
+                ],
+            ])->assertStatus($ok ? 200 : 403);
+
+        $this->assertSame($expectedTags, $beatmapset->fresh()->tags);
+    }
+
     public function beatmapsetStatesDataProvider()
     {
         return array_map(function ($state) {
@@ -315,6 +345,18 @@ class BeatmapsetsControllerTest extends TestCase
             ['default', false],
             ['gmt', false],
             ['nat', false],
+            ['owner', false],
+        ];
+    }
+
+    public function dataProviderForTestBeatmapsetUpdateTags(): array
+    {
+        return [
+            ['admin', true],
+            ['bng', false],
+            ['default', false],
+            ['gmt', true],
+            ['nat', true],
             ['owner', false],
         ];
     }

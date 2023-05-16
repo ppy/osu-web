@@ -277,21 +277,26 @@ class BeatmapsetsController extends Controller
             'genre_id:int',
             'language_id:int',
             'nsfw:bool',
-            'tags:string',
         ]);
-
-        $offsetParams = get_params($params, 'beatmapset', [
-            'offset:int',
-        ]);
-
-        $updateParams = array_merge($metadataParams, $offsetParams);
 
         if (count($metadataParams) > 0) {
             priv_check('BeatmapsetMetadataEdit', $beatmapset)->ensureCan();
         }
 
-        if (count($offsetParams) > 0) {
+        $updateParams = [
+            ...$metadataParams,
+            ...get_params($params, 'beatmapset', [
+                'offset:int',
+                'tags:string',
+            ]),
+        ];
+
+        if (array_key_exists('offset', $updateParams)) {
             priv_check('BeatmapsetOffsetEdit')->ensureCan();
+        }
+
+        if (array_key_exists('tags', $updateParams)) {
+            priv_check('BeatmapsetTagsEdit')->ensureCan();
         }
 
         if (count($updateParams) > 0) {

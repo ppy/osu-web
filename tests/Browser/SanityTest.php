@@ -283,6 +283,9 @@ class SanityTest extends DuskTestCase
                         continue;
                     }
                 }
+            } elseif ($line['message'] === "security - Error with Permissions-Policy header: Unrecognized feature: 'ch-ua-form-factor'.") {
+                // we don't use ch-ua-* crap and this error is thrown by youtube.com as of 2023-05-16
+                continue;
             }
 
             $return[] = $line;
