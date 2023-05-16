@@ -151,9 +151,7 @@ export class Comment extends React.Component<Props> {
   }
 
   componentWillUnmount() {
-    for (const xhr of Object.values(this.xhr)) {
-      xhr?.abort();
-    }
+    Object.values(this.xhr).forEach((xhr) => xhr?.abort());
   }
 
   render() {
