@@ -9,7 +9,6 @@ use App\Exceptions\InvariantException;
 use App\Models\User;
 use App\Traits\Validatable;
 use DB;
-use Ds\Set;
 use Laravel\Passport\Client as PassportClient;
 use Laravel\Passport\RefreshToken;
 
@@ -60,17 +59,9 @@ class Client extends PassportClient
     public function setRedirectAttribute($value)
     {
         if (is_string($value) && present($value)) {
-            $baseString = preg_replace("/[\r\n]+/", ',', $value);
-            $baseEntries = explode(',', $baseString);
-            $entries = new Set();
-            foreach ($baseEntries as $entry) {
-                $entry = presence(trim($entry));
-                if ($entry !== null) {
-                    $entries->add($entry);
-                }
-            }
-            if (!$entries->isEmpty()) {
-                $cleanValue = $entries->join(',');
+            $entries = array_unique(preg_split('/[\s,]+/', $value, 0, PREG_SPLIT_NO_EMPTY));
+            if (count($entries) > 0) {
+                $cleanValue = implode(',', $entries);
             }
         }
 
