@@ -65,7 +65,7 @@ class Client extends PassportClient
             }
         }
 
-        $this->attributes['redirect'] = $cleanValue ?? null;
+        $this->attributes['redirect'] = $cleanValue ?? '';
     }
 
     public function isValid()
