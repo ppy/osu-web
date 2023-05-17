@@ -58,8 +58,7 @@ class Client extends PassportClient
 
     public function setRedirectAttribute(string $value)
     {
-        $entries = array_unique(preg_split('/[\s,]+/', $value, 0, PREG_SPLIT_NO_EMPTY));
-        $this->attributes['redirect'] = implode(',', $entries);
+        $this->attributes['redirect'] = implode(',', array_unique(preg_split('/[\s,]+/', $value, 0, PREG_SPLIT_NO_EMPTY)));
     }
 
     public function isValid()
