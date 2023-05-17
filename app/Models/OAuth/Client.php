@@ -56,16 +56,9 @@ class Client extends PassportClient
         );
     }
 
-    public function setRedirectAttribute($value)
+    public function setRedirectAttribute(string $value)
     {
-        if (is_string($value) && present($value)) {
-            $entries = array_unique(preg_split('/[\s,]+/', $value, 0, PREG_SPLIT_NO_EMPTY));
-            if (count($entries) > 0) {
-                $cleanValue = implode(',', $entries);
-            }
-        }
-
-        $this->attributes['redirect'] = $cleanValue ?? null;
+        $this->attributes['redirect'] = implode(',', array_unique(preg_split('/[\s,]+/', $value, 0, PREG_SPLIT_NO_EMPTY)));
     }
 
     public function isValid()
