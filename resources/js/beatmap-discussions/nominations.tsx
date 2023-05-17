@@ -346,22 +346,27 @@ export class Nominations extends React.PureComponent<Props> {
   private renderDiscussionLockButton() {
     if (!canModeratePosts()) return null;
 
-    const buttonProps = this.props.beatmapset.discussion_locked
+    const { buttonProps, lockAction } = this.props.beatmapset.discussion_locked
       ? {
-        action: 'unlock',
-        icon: 'fas fa-unlock',
-        props: {
-          onClick: this.discussionUnlock,
+        buttonProps: {
+          icon: 'fas fa-unlock',
+          props: {
+            onClick: this.discussionUnlock,
+          },
         },
+        lockAction: 'unlock',
       } : {
-        action: 'lock',
-        icon: 'fas fa-lock',
-        props: {
-          onClick: this.discussionLock,
+        buttonProps: {
+          action: 'lock',
+          icon: 'fas fa-lock',
+          props: {
+            onClick: this.discussionLock,
+          },
         },
+        lockAction: 'lock',
       };
 
-    return <BigButton {...buttonProps} disabled={this.xhr.discussionLock != null} text={trans('beatmaps.nominations.disqualify')} />;
+    return <BigButton {...buttonProps} disabled={this.xhr.discussionLock != null} text={trans(`beatmaps.nominations.${lockAction}`)} />;
   }
 
   private renderDiscussionLockMessage() {
