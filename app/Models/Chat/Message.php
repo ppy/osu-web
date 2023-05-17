@@ -66,29 +66,24 @@ class Message extends Model implements ReportableInterface
         };
     }
 
-    public function reportableAdditionalInfo(?User $reporter): ?string
+    public function reportableAdditionalInfo(): ?string
     {
-        if (
-            !priv_check_user($reporter, 'ChatChannelRead', $this->channel)->can()
-            && !priv_check_user($reporter, 'ChatChannelJoin', $this->channel)->can()
-        ) {
-            return "reporter doesn't actually have access to the reported message";
-        }
-
-        $messages = static
+        $history = static
             ::where('message_id', '<=', $this->getKey())
-            ->where(fn ($q) => $q
-                ->whereHas('channel', fn ($ch) => $ch->public())
-                ->orWhere('channel_id', $this->channel_id))
-            ->orderBy('message_id', 'DESC')
+            ->whereHas('channel', fn ($ch) => $ch->where('type', '<>', Channel::TYPES['pm']))
+            ->where('user_id', $this->user_id)
+            ->orderBy('timestamp', 'DESC')
             ->with('channel')
             ->limit(5)
-            ->get();
-
-        return $messages
+            ->get()
             ->map(fn ($m) => "**{$m->timestamp_json} {$m->channel->name}:**\n{$m->content}\n")
             ->reverse()
             ->join("\n");
+
+        $channel = $this->channel;
+        $header = 'Reported in: '.($channel->isPM() ? 'pm' : '**'.$channel->name.'** ('.strtolower($channel->type).')');
+
+        return "{$header}\n\n{$history}";
     }
 
     public function trashed(): bool

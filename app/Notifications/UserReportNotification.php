@@ -55,7 +55,7 @@ class UserReportNotification extends Notification implements ShouldQueue
                     'Reason' => $notifiable->reason,
                 ];
 
-                $additionalInfo = $reportable->reportableAdditionalInfo($notifiable->reporter);
+                $additionalInfo = $reportable->reportableAdditionalInfo();
                 if ($additionalInfo !== null) {
                     $fields['Additional Info'] = $additionalInfo;
                 }
