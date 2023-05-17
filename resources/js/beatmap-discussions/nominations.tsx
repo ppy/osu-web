@@ -247,10 +247,14 @@ export class Nominations extends React.PureComponent<Props> {
   };
 
   @action
-  private readonly handleChangeOwnerClick = () => this.changeOwnerModal = !this.changeOwnerModal;
+  private readonly handleChangeOwnerClick = () => {
+    this.changeOwnerModal = !this.changeOwnerModal;
+  };
 
   @action
-  private readonly handleLoveBeatmapModal = () => this.loveBeatmapModal = !this.loveBeatmapModal;
+  private readonly handleLoveBeatmapModal = () => {
+    this.loveBeatmapModal = !this.loveBeatmapModal;
+  };
 
   private parseEventData(event: BeatmapsetEventJson) {
     const user = event.user_id != null ? this.props.users[event.user_id] : null;
