@@ -18,7 +18,7 @@ import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussion
 import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
-import { find, findLast, keys } from 'lodash';
+import { findLast } from 'lodash';
 import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { deletedUser } from 'models/user';
@@ -67,7 +67,7 @@ export class Nominations extends React.PureComponent<Props> {
   private xhr: Partial<Record<XhrType, JQuery.jqXHR<BeatmapsetWithDiscussionsJson>>> = {};
 
   private get isHybridMode() {
-    return keys(this.props.beatmapset.nominations?.required).length > 1;
+    return Object.keys(this.props.beatmapset.nominations.required).length > 1;
   }
 
   private get userCanDisqualify() {
@@ -372,6 +372,7 @@ export class Nominations extends React.PureComponent<Props> {
   private renderDiscussionLockMessage() {
     if (!this.props.beatmapset.discussion_locked) return null;
 
+    // TODO: use Array.findLast when it becomes less new?
     const lockEvent = findLast(this.props.events, { type: 'discussion_lock' });
 
     if (lockEvent == null || lockEvent.type !== 'discussion_lock') return null;
@@ -454,7 +455,9 @@ export class Nominations extends React.PureComponent<Props> {
   private renderHypeButton() {
     if (!this.props.beatmapset.can_be_hyped || core.currentUser == null || this.userIsOwner) return null;
 
-    const userAlreadyHyped = find(this.props.currentDiscussions.byFilter.hype.generalAll, { user_id: core.currentUser.id }) != null;
+    const currentUser = core.currentUser; // core.currentUser check below doesn't make the inferrence that it's not nullable after the check.
+    const discussions = Object.values(this.props.currentDiscussions.byFilter.hype.generalAll);
+    const userAlreadyHyped = currentUser != null && discussions.some((discussion) => discussion?.user_id === currentUser.id);
 
     return (
       <BigButton
