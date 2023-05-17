@@ -8,10 +8,27 @@ namespace App\Models\OAuth;
 use App\Exceptions\InvariantException;
 use App\Models\User;
 use App\Traits\Validatable;
+use Carbon\Carbon;
 use DB;
 use Laravel\Passport\Client as PassportClient;
 use Laravel\Passport\RefreshToken;
 
+/**
+ * @property Carbon|null $created_at
+ * @property int $id
+ * @property string $name
+ * @property bool $password_client
+ * @property bool $personal_access_client
+ * @property string $provider
+ * @property string $redirect
+ * @property-read Collection<RefreshToken> refreshTokens
+ * @property bool $revoked
+ * @property string $secret
+ * @property-read Collection<Token> tokens
+ * @property Carbon|null $updated_at
+ * @property-read User|null $user
+ * @property int|null $user_id
+ */
 class Client extends PassportClient
 {
     use Validatable;
