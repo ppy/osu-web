@@ -8,6 +8,7 @@ import { trans } from 'utils/lang';
 import MessageLengthCounter from './message-length-counter';
 
 interface CommonProps {
+  extras?: React.ReactNode;
   for?: string;
   labelKey?: string;
   modifiers?: Modifiers;
@@ -34,7 +35,10 @@ const InputContainer = observer(<T extends string>(props: React.PropsWithChildre
     <label className={classWithModifiers('input-container', { error }, props.modifiers)} htmlFor={props.for}>
       {props.labelKey != null && (
         <div className='input-container__label'>
-          {trans(props.labelKey)}
+          <span>
+            {trans(props.labelKey)}
+            {props.extras != null && <span> {props.extras}</span>}
+          </span>
           {props.model != null && props.maxLength != null && (
             <MessageLengthCounter maxLength={props.maxLength} message={props.model.inputs[props.name]} />
           )}

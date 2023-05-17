@@ -12,6 +12,7 @@ import { isInputKey, maxLengths } from 'models/chat/create-announcement';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { trans } from 'utils/lang';
+import MarkdownHelp from './markdown-help';
 
 type Props = Record<string, never>;
 
@@ -104,6 +105,8 @@ export default class CreateAnnouncement extends React.Component<Props> {
             </div>
           </InputContainer>
           <InputContainer
+            extras={<MarkdownHelp />}
+            for='chat-form-message'
             labelKey='chat.form.labels.message'
             maxLength={maxLengths.message}
             model={this.model}
@@ -114,6 +117,7 @@ export default class CreateAnnouncement extends React.Component<Props> {
               autoComplete='off'
               className='chat-form__input chat-form__input--box'
               defaultValue={this.model.inputs.message}
+              id='chat-form-message'
               name='message'
               onBlur={this.handleBlur}
               onChange={this.handleInput}
