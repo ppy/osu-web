@@ -37,7 +37,6 @@ import { wikiUrl } from 'utils/url';
 import CurrentDiscussions from './current-discussions';
 
 const bn = 'beatmap-discussion-nomination';
-const dateFormat = 'LL';
 const flashClass = 'js-flash-border--on';
 export const hypeExplanationClass = 'js-hype--explanation';
 const nominatorsVisibleBeatmapStatuses: Readonly<BeatmapsetStatus[]> = Object.freeze(['wip', 'pending', 'ranked', 'qualified']);
@@ -58,6 +57,10 @@ function discussionIdFromEvent(event: BeatmapsetEventJson) {
     && 'beatmap_discussion_id' in event.comment
     ? event.comment.beatmap_discussion_id
     : null;
+}
+
+function formatDate(date: string | null) {
+  return moment(date).format('LL');
 }
 
 @observer
@@ -640,17 +643,17 @@ export class Nominations extends React.PureComponent<Props> {
       case 'approved':
       case 'loved':
       case 'ranked':
-        return trans(`beatmaps.discussions.status-messages.${this.props.beatmapset.status}`, { date: moment(this.props.beatmapset.ranked_date).format(dateFormat) });
+        return trans(`beatmaps.discussions.status-messages.${this.props.beatmapset.status}`, { date: formatDate(this.props.beatmapset.ranked_date) });
       case 'graveyard':
-        return trans('beatmaps.discussions.status-messages.graveyard', { date: moment(this.props.beatmapset.last_updated).format(dateFormat) });
+        return trans('beatmaps.discussions.status-messages.graveyard', { date: formatDate(this.props.beatmapset.last_updated) });
       case 'wip':
         return trans('beatmaps.discussions.status-messages.wip');
       case 'qualified': {
         const rankingEta = this.props.beatmapset.nominations.ranking_eta;
         const date = rankingEta != null
           ? transExists('beatmaps.nominations.rank_estimate.on')
-            ? trans('beatmaps.nominations.rank_estimate.on', { date: moment(rankingEta).format(dateFormat) })
-            : moment(rankingEta).format(dateFormat)
+            ? trans('beatmaps.nominations.rank_estimate.on', { date: formatDate(rankingEta) })
+            : formatDate(rankingEta)
           : trans('beatmaps.nominations.rank_estimate.soon');
 
         return (
