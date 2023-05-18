@@ -55,7 +55,7 @@ interface XhrCollection {
 }
 
 @observer
-export class Comment extends React.Component<Props> {
+export default class Comment extends React.Component<Props> {
   static readonly defaultProps = {
     linkParent: false,
     showCommentableMeta: false,
