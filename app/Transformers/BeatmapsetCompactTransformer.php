@@ -127,6 +127,7 @@ class BeatmapsetCompactTransformer extends TransformerAbstract
     {
         $currentUser = Auth::user();
 
+        // TODO: return defaults or empty object instead of null
         if ($currentUser === null) {
             return;
         }
