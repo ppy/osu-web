@@ -24,15 +24,16 @@ import { disposeOnUnmount, observer } from 'mobx-react';
 import { deletedUser } from 'models/user';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import TextareaAutosize from 'react-autosize-textarea';
 import { onError } from 'utils/ajax';
 import { badgeGroup, canModeratePosts, makeUrl, validMessageLength } from 'utils/beatmapset-discussion-helper';
 import { downloadLimited } from 'utils/beatmapset-helper';
-import { classWithModifiers } from 'utils/css';
+import { classWithModifiers, groupColour } from 'utils/css';
 import { InputEventType, makeTextAreaHandler } from 'utils/input-handler';
 import { trans } from 'utils/lang';
 import DiscussionMessage from './discussion-message';
-import DiscussionMessageLengthCounter from './discussion-message-length-counter';
+import DiscussionsStateContext from './discussions-state-context';
+import MarkdownEditor, { Mode } from './markdown-editor';
+import MarkdownEditorSwitcher from './markdown-editor-switcher';
 import { UserCard } from './user-card';
 
 const bn = 'beatmap-discussion-post';
@@ -45,20 +46,21 @@ interface Props {
   read: boolean;
   readonly: boolean;
   resolvedSystemPostId: number;
-  type: string;
+  type: 'discussion' | 'reply';
   user: UserJson;
   users: Partial<Record<number, UserJson>>;
 }
 
 @observer
-export default class Post extends React.Component<Props> {
+export default class Post extends React.Component<React.PropsWithChildren<Props>> {
+  static contextType = DiscussionsStateContext;
+  declare context: React.ContextType<typeof DiscussionsStateContext>;
+
   @observable private canSave = true; // this isn't computed because Editor's onChange doesn't provide anything to react to.
-  @observable private editing = false;
   private readonly handleTextareaKeyDown;
   @observable private message = '';
   private readonly messageBodyRef = React.createRef<HTMLDivElement>();
   private readonly reviewEditorRef = React.createRef<Editor>();
-  @observable private textareaMinHeight = '0';
   private readonly textareaRef = React.createRef<HTMLTextAreaElement>();
   @observable private xhr: JQuery.jqXHR<BeatmapsetWithDiscussionsJson> | null = null;
 
@@ -97,6 +99,18 @@ export default class Post extends React.Component<Props> {
     return core.currentUser?.is_admin ?? false;
   }
 
+  private get editing() {
+    return this.context.postEditing.has(this.props.post.id);
+  }
+
+  private set editing(value: boolean) {
+    if (value) {
+      this.context.postEditing.add(this.props.post.id);
+    } else {
+      this.context.postEditing.delete(this.props.post.id);
+    }
+  }
+
   @computed
   private get isOwn() {
     return core.currentUser != null && core.currentUser.id === this.props.post.user_id;
@@ -124,21 +138,30 @@ export default class Post extends React.Component<Props> {
     this.handleTextareaKeyDown = makeTextAreaHandler(this.handleTextareaKeyDownCallback);
 
     disposeOnUnmount(this, autorun(() => {
-      if (this.editing) {
+      // TODO: something (context?) triggers this autorun before unmount when navigating away
+      if (this.context != null && this.editing) {
         setTimeout(() => this.textareaRef.current?.focus(), 0);
       }
     }));
   }
 
   componentWillUnmount() {
+    this.editing = false;
     this.xhr?.abort();
   }
 
   render() {
-    const topClasses = classWithModifiers(bn, this.props.type, {
+    const topClasses = classWithModifiers(bn, {
       deleted: this.props.post.deleted_at != null,
       editing: this.editing,
       unread: !this.props.read && this.props.type !== 'discussion',
+    });
+
+    const group = badgeGroup({
+      beatmapset: this.props.beatmapset,
+      currentBeatmap: this.props.beatmap,
+      discussion: this.props.discussion,
+      user: this.props.user,
     });
 
     return (
@@ -146,20 +169,25 @@ export default class Post extends React.Component<Props> {
         className={`${topClasses} js-beatmap-discussion-jump`}
         data-post-id={this.props.post.id}
         onClick={this.handleMarkRead}
+        style={groupColour(group)}
       >
-        <div className={`${bn}__content`}>
-          {this.props.type === 'reply' && (
-            <UserCard
-              group={badgeGroup({
-                beatmapset: this.props.beatmapset,
-                currentBeatmap: this.props.beatmap,
-                discussion: this.props.discussion,
-                user: this.props.user,
-              })}
-              user={this.props.user}
-            />
-          )}
-          {this.editing ? this.renderMessageEditor() : this.renderMessageViewer()}
+        <div className={`${bn}__user`}>
+          <UserCard
+            group={badgeGroup({
+              beatmapset: this.props.beatmapset,
+              currentBeatmap: this.props.beatmap,
+              discussion: this.props.discussion,
+              user: this.props.user,
+            })}
+            hideStripe
+            user={this.props.user}
+          />
+        </div>
+        <div className={`${bn}__container`}>
+          {this.props.children}
+          <div className={classWithModifiers(`${bn}__message-container`, { review: this.isReview })}>
+            {this.editing ? this.renderMessageEditor() : this.renderMessageViewer()}
+          </div>
         </div>
       </div>
     );
@@ -180,10 +208,6 @@ export default class Post extends React.Component<Props> {
 
   @action
   private readonly editStart = () => {
-    this.textareaMinHeight = this.messageBodyRef.current != null
-      ? `${this.messageBodyRef.current.getBoundingClientRect().height + 50}px`
-      : '0';
-
     this.editing = true;
     this.message = this.props.post.message;
   };
@@ -198,12 +222,17 @@ export default class Post extends React.Component<Props> {
   };
 
   @action
+  private readonly handleModeChange = (id: number, mode: Mode) => {
+    this.context.editorMode.set(id, mode);
+  };
+
+  @action
   private readonly handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     this.message = e.target.value;
     this.canSave = validMessageLength(this.message, this.isTimeline);
   };
 
-  private readonly handleTextareaKeyDownCallback = (type: InputEventType) => {
+  private readonly handleTextareaKeyDownCallback = (type: InputEventType | null) => {
     if (type === InputEventType.Submit) {
       this.updatePost();
     }
@@ -259,7 +288,7 @@ export default class Post extends React.Component<Props> {
   private renderKudosuAction(op: 'allow' | 'deny') {
     return (
       <a
-        className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
+        className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--plain`}
         data-confirm={trans('common.confirmation')}
         data-method='POST'
         data-remote
@@ -275,9 +304,8 @@ export default class Post extends React.Component<Props> {
     const canPost = !this.isPosting && this.canSave;
 
     const document = this.props.post.message;
-
     return (
-      <div className={`${bn}__message-container`}>
+      <>
         {this.isReview ? (
           <DiscussionsContext.Consumer>
             {(discussions) => (
@@ -300,45 +328,44 @@ export default class Post extends React.Component<Props> {
           </DiscussionsContext.Consumer>
         ) : (
           <>
-            <TextareaAutosize
-              ref={this.textareaRef}
-              className={`${bn}__message ${bn}__message--editor`}
+            <MarkdownEditorSwitcher
+              id={this.props.post.id}
+              mode={this.context.editorMode.get(this.props.post.id)}
+              onModeChange={this.handleModeChange}
+            />
+            <MarkdownEditor
               disabled={this.isPosting}
+              isTimeline={this.isTimeline}
+              mode={this.context.editorMode.get(this.props.post.id)}
               onChange={this.handleTextareaChange}
               onKeyDown={this.handleTextareaKeyDown}
-              style={{ minHeight: this.textareaMinHeight }}
               value={this.message}
             />
-            <DiscussionMessageLengthCounter isTimeline={this.isTimeline} message={this.message} />
           </>
         )}
         <div className={`${bn}__actions`}>
-          <div className={`${bn}__actions-group`}>
-            <div className={`${bn}__actions-group`}>
-              <div className={`${bn}__action`}>
-                <BigButton
-                  disabled={this.isPosting}
-                  props={{ onClick: this.editCancel }}
-                  text={trans('common.buttons.cancel')}
-                />
-              </div>
-            </div>
-            <div className={`${bn}__action`}>
-              <BigButton
-                disabled={!canPost}
-                props={{ onClick: this.updatePost }}
-                text={trans('common.buttons.save')}
-              />
-            </div>
+          <div className={`${bn}__action`}>
+            <BigButton
+              disabled={this.isPosting}
+              props={{ onClick: this.editCancel }}
+              text={trans('common.buttons.cancel')}
+            />
+          </div>
+          <div className={`${bn}__action`}>
+            <BigButton
+              disabled={!canPost}
+              props={{ onClick: this.updatePost }}
+              text={trans('common.buttons.save')}
+            />
           </div>
         </div>
-      </div>
+      </>
     );
   }
 
   private renderMessageViewer() {
     return (
-      <div className={`${bn}__message-container`}>
+      <>
         {this.isReview ? (
           <div className={`${bn}__message`}>
             <ReviewPost post={this.props.post} />
@@ -363,7 +390,7 @@ export default class Post extends React.Component<Props> {
         </div>
 
         {this.renderMessageViewerActions()}
-      </div>
+      </>
     );
   }
 
@@ -371,67 +398,65 @@ export default class Post extends React.Component<Props> {
   private renderMessageViewerActions() {
     return (
       <div className={`${bn}__actions`}>
-        <div className={`${bn}__actions-group`}>
-          <span className={`${bn}__action ${bn}__action--button`}>
-            <ClickToCopy
-              label={trans('common.buttons.permalink')}
-              value={makeUrl({ discussion: this.props.discussion, post: this.props.type === 'reply' ? this.props.post : undefined })}
-              valueAsUrl
-            />
-          </span>
+        <span className={`${bn}__action ${bn}__action--plain`}>
+          <ClickToCopy
+            label={trans('common.buttons.permalink')}
+            value={makeUrl({ discussion: this.props.discussion, post: this.props.type === 'reply' ? this.props.post : undefined })}
+            valueAsUrl
+          />
+        </span>
 
-          {!this.props.readonly && (
-            <>
-              {this.canEdit && (
-                <button
-                  className={`${bn}__action ${bn}__action--button`}
-                  onClick={this.editStart}
-                >
-                  {trans('beatmaps.discussions.edit')}
-                </button>
-              )}
+        {!this.props.readonly && (
+          <>
+            {this.canEdit && (
+              <button
+                className={`${bn}__action ${bn}__action--plain`}
+                onClick={this.editStart}
+              >
+                {trans('beatmaps.discussions.edit')}
+              </button>
+            )}
 
-              {this.deleteModel.deleted_at == null && this.canDelete && (
-                <a
-                  className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
-                  data-confirm={trans('common.confirmation')}
-                  data-method='DELETE'
-                  data-remote
-                  href={this.deleteHref('destroy')}
-                >
-                  {trans('beatmaps.discussions.delete')}
-                </a>
-              )}
+            {this.deleteModel.deleted_at == null && this.canDelete && (
+              <a
+                className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--plain`}
+                data-confirm={trans('common.confirmation')}
+                data-method='DELETE'
+                data-remote
+                href={this.deleteHref('destroy')}
+              >
+                {trans('beatmaps.discussions.delete')}
+              </a>
+            )}
 
-              {this.deleteModel.deleted_at != null && this.canModerate && (
-                <a
-                  className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--button`}
-                  data-confirm={trans('common.confirmation')}
-                  data-method='POST'
-                  data-remote
-                  href={this.deleteHref('restore')}
-                >
-                  {trans('beatmaps.discussions.restore')}
-                </a>
-              )}
+            {this.deleteModel.deleted_at != null && this.canModerate && (
+              <a
+                className={`js-beatmapset-discussion-update ${bn}__action ${bn}__action--plain`}
+                data-confirm={trans('common.confirmation')}
+                data-method='POST'
+                data-remote
+                href={this.deleteHref('restore')}
+              >
+                {trans('beatmaps.discussions.restore')}
+              </a>
+            )}
 
-              {this.props.type === 'discussion' && this.props.discussion.current_user_attributes?.can_moderate_kudosu && (
-                this.props.discussion.can_grant_kudosu
-                  ? this.renderKudosuAction('deny')
-                  : this.props.discussion.kudosu_denied && this.renderKudosuAction('allow')
-              )}
-            </>
-          )}
+            {this.props.type === 'discussion' && this.props.discussion.current_user_attributes?.can_moderate_kudosu && (
+              this.props.discussion.can_grant_kudosu
+                ? this.renderKudosuAction('deny')
+                : this.props.discussion.kudosu_denied && this.renderKudosuAction('allow')
+            )}
+          </>
+        )}
 
-          {this.canReport && (
-            <ReportReportable
-              className={`${bn}__action ${bn}__action--button`}
-              reportableId={this.props.post.id.toString()}
-              reportableType='beatmapset_discussion_post'
-              user={this.props.user}
-            />
-          )}
-        </div>
+        {this.canReport && (
+          <ReportReportable
+            className={`${bn}__action ${bn}__action--plain`}
+            reportableId={this.props.post.id.toString()}
+            reportableType='beatmapset_discussion_post'
+            user={this.props.user}
+          />
+        )}
       </div>
     );
   }

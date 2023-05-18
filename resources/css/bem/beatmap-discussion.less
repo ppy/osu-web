@@ -154,17 +154,6 @@
 
   &__top {
     background-color: @osu-colour-b3;
-    display: grid;
-    grid-template-areas: "user actions" "message message";
-    grid-template-columns: 1fr auto;
-    gap: 10px;
-
-    .@{_top}--horizontal-desktop & {
-      @media @desktop {
-        grid-template-areas: "user message actions";
-        grid-template-columns: auto 1fr auto;
-      }
-    }
 
     .@{_top}--unread & {
       &::before {
@@ -186,10 +175,9 @@
   }
 
   &__top-actions {
+    float: right;
     grid-area: actions;
-    display: flex;
-    align-items: center;
-    height: 40px;
+    padding: 0 0 10px 10px;
   }
 
   &__top-message {
@@ -204,6 +192,7 @@
   }
 
   &__top-user {
+    grid-area: user;
     margin-top: @_top-padding-y;
     margin-left: @_top-padding-x;
 

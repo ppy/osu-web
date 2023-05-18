@@ -17,7 +17,7 @@ export function makeTextAreaHandler(callback: TextAreaCallback) {
 
     if (event.key === 'Escape') {
       type = InputEventType.Cancel;
-    } else if (event.key === 'Enter' && !event.shiftKey && core.windowSize.isDesktop) {
+    } else if (event.key === 'Enter' && event.shiftKey && core.windowSize.isDesktop) {
       event.preventDefault();
       type = InputEventType.Submit;
     }

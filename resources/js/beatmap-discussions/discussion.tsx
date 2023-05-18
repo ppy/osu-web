@@ -12,9 +12,9 @@ import { observer } from 'mobx-react';
 import { deletedUser } from 'models/user';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import { badgeGroup, canModeratePosts, formatTimestamp, makeUrl, startingPost } from 'utils/beatmapset-discussion-helper';
+import { canModeratePosts, formatTimestamp, makeUrl, startingPost } from 'utils/beatmapset-discussion-helper';
 import { downloadLimited } from 'utils/beatmapset-helper';
-import { classWithModifiers, groupColour } from 'utils/css';
+import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import { DiscussionType, discussionTypeIcons } from './discussion-type';
 import DiscussionVoteButtons from './discussion-vote-buttons';
@@ -22,7 +22,6 @@ import DiscussionsStateContext from './discussions-state-context';
 import { NewReply } from './new-reply';
 import Post from './post';
 import SystemPost from './system-post';
-import { UserCard } from './user-card';
 
 const bn = 'beatmap-discussion';
 
@@ -114,14 +113,6 @@ export class Discussion extends React.Component<Props> {
 
     this.lastResolvedState = false;
 
-    const user = this.props.users[this.props.discussion.user_id] ?? deletedUser.toJson();
-    const group = badgeGroup({
-      beatmapset: this.props.beatmapset,
-      currentBeatmap: this.props.currentBeatmap,
-      discussion: this.props.discussion,
-      user,
-    });
-
     const topClasses = classWithModifiers(bn, {
       deleted: this.props.discussion.deleted_at != null,
       highlighted: this.highlighted,
@@ -148,17 +139,10 @@ export class Discussion extends React.Component<Props> {
         <div className={`${bn}__discussion`}>
           <div
             className={`${bn}__top`}
-            style={groupColour(group)}
           >
-            <div className={`${bn}__top-user`}>
-              <UserCard group={group} hideStripe user={user} />
-            </div>
-            <div className={`${bn}__top-message`}>
-              {this.renderPost(firstPost, 'discussion')}
-            </div>
-            {this.renderPostButtons()}
+            {this.renderPost(firstPost, 'discussion')}
           </div>
-          {this.postFooter()}
+          {this.renderPostFooter()}
           <div className={lineClasses} />
         </div>
       </div>
@@ -188,57 +172,7 @@ export class Discussion extends React.Component<Props> {
     return object != null && (this.props.showDeleted || object.deleted_at == null);
   }
 
-  private postFooter() {
-    if (this.props.preview) return null;
-
-    let cssClasses = `${bn}__expanded`;
-    if (this.collapsed) {
-      cssClasses += ' hidden';
-    }
-
-    return (
-      <div className={cssClasses}>
-        <div className={`${bn}__replies`}>
-          {this.props.discussion.posts.slice(1).map(this.renderReply)}
-        </div>
-        {this.canBeRepliedTo && (
-          <NewReply
-            beatmapset={this.props.beatmapset}
-            currentBeatmap={this.props.currentBeatmap}
-            discussion={this.props.discussion}
-          />
-        )}
-      </div>
-    );
-  }
-
-  private renderPost(post: BeatmapsetDiscussionPostJson, type: 'discussion' | 'reply') {
-    const user = this.props.users[post.user_id] ?? deletedUser.toJson();
-
-    if (post.system) {
-      return (
-        <SystemPost key={post.id} post={post} user={user} />
-      );
-    }
-
-    return (
-      <Post
-        key={post.id}
-        beatmap={this.props.currentBeatmap}
-        beatmapset={this.props.beatmapset}
-        discussion={this.props.discussion}
-        post={post}
-        read={this.isRead(post)}
-        readonly={this.props.readonly}
-        resolvedSystemPostId={this.resolvedSystemPostId}
-        type={type}
-        user={user}
-        users={this.props.users}
-      />
-    );
-  }
-
-  private renderPostButtons() {
+  private renderFirstPostButtons() {
     if (this.props.preview) return null;
 
     const user = this.props.users[this.props.discussion.user_id];
@@ -274,6 +208,54 @@ export class Discussion extends React.Component<Props> {
             </div>
           </button>
         </div>
+      </div>
+    );
+  }
+
+  private renderPost(post: BeatmapsetDiscussionPostJson, type: 'discussion' | 'reply') {
+    const user = this.props.users[post.user_id] ?? deletedUser.toJson();
+
+    if (post.system) {
+      return (
+        <SystemPost key={post.id} post={post} user={user} />
+      );
+    }
+
+    return (
+      <Post
+        key={post.id}
+        beatmap={this.props.currentBeatmap}
+        beatmapset={this.props.beatmapset}
+        discussion={this.props.discussion}
+        post={post}
+        read={this.isRead(post)}
+        readonly={this.props.readonly}
+        resolvedSystemPostId={this.resolvedSystemPostId}
+        type={type}
+        user={user}
+        users={this.props.users}
+      >
+        {type === 'discussion' && this.renderFirstPostButtons()}
+      </Post>
+    );
+  }
+
+  private renderPostFooter() {
+    if (this.props.preview) return null;
+
+    let cssClasses = `${bn}__expanded`;
+    if (this.collapsed) {
+      cssClasses += ' hidden';
+    }
+
+    return (
+      <div className={cssClasses}>
+        <div className={`${bn}__replies`}>
+          {this.props.discussion.posts.slice(1).map(this.renderReply)}
+        </div>
+        {this.canBeRepliedTo && (
+          <NewReply discussion={this.props.discussion} />
+        )}
       </div>
     );
   }

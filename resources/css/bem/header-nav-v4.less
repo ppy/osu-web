@@ -22,6 +22,7 @@
   }
 
   &--breadcrumb {
+    --header-nav-item-padding-y: 10px;
     display: flex;
   }
 
@@ -38,6 +39,13 @@
     }
   }
 
+  &--wide {
+    --header-nav-item-padding-y: 8px;
+    display: flex;
+    flex: 1;
+    margin-bottom: 10px;
+  }
+
   &__item {
     display: flex; // remove space between ::before and content
     align-items: baseline;
@@ -51,6 +59,7 @@
   }
 
   &__link {
+    .reset-input();
     position: relative;
     padding: var(--header-nav-item-padding-y) 0;
 

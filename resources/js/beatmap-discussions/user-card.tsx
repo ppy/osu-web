@@ -71,8 +71,6 @@ export class UserCard extends React.PureComponent<Props> {
             <UserGroupBadge group={this.props.group} />
           </div>
         </div>
-
-        {!this.props.hideStripe && <div className={`${bn}__user-stripe`} />}
       </div>
     );
   }
