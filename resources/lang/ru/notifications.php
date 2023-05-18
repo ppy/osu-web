@@ -13,9 +13,19 @@ return [
     'see_channel' => 'перейти в чат',
     'verifying' => 'Пожалуйста, проверьте сессию для просмотра уведомлений',
 
+    'action_type' => [
+        '_' => 'все',
+        'beatmapset' => 'карты',
+        'build' => 'билды',
+        'channel' => 'чат',
+        'forum_topic' => 'форум',
+        'news_post' => 'новости',
+        'user' => 'игроки',
+    ],
+
     'filters' => [
         '_' => 'все',
-        'user' => 'профиль',
+        'user' => 'игроки',
         'beatmapset' => 'карты',
         'forum_topic' => 'форум',
         'news_post' => 'новости',
@@ -63,8 +73,8 @@ return [
                 'beatmapset_love_compact' => 'Карте была присвоена категория Любимая',
                 'beatmapset_nominate' => 'Карта ":title" была номинирована',
                 'beatmapset_nominate_compact' => 'Карта была номинирована',
-                'beatmapset_qualify' => 'Карте ":title" было присвоено достаточно номинаций для вхождения в очередь ранка',
-                'beatmapset_qualify_compact' => 'Карта вошла очередь ранка',
+                'beatmapset_qualify' => 'Карта ":title" получила достаточно номинаций и вошла в очередь ранкинга',
+                'beatmapset_qualify_compact' => 'Карта поставлена в очередь ранкинга',
                 'beatmapset_rank' => 'Карта ":title" стала Рейтинговой',
                 'beatmapset_rank_compact' => 'Карта стала Рейтинговой',
                 'beatmapset_remove_from_loved' => '":title" была удалена из категории Любимая',
@@ -148,7 +158,7 @@ return [
 
             'legacy_pm' => [
                 '_' => '',
-                'legacy_pm' => ':count_delimited непрочитанное сообщение|:count_delimited непрочитанных сообщения',
+                'legacy_pm' => ':count_delimited непрочитанное сообщение|:count_delimited непрочитанных сообщения|:count_delimited непрочитанных сообщений',
             ],
         ],
 
@@ -197,7 +207,7 @@ return [
                 'beatmapset_disqualify' => 'Карта ":title" дисквалифицирована',
                 'beatmapset_love' => '":title" был повышен до любимого',
                 'beatmapset_nominate' => 'Карта ":title" номинирована',
-                'beatmapset_qualify' => '":title" получило достаточно номинаций и вступило в очередь ранка',
+                'beatmapset_qualify' => 'Карта ":title" получила достаточно номинаций и вошла в очередь ранкинга',
                 'beatmapset_rank' => 'Карта ":title" получила категорию Рейтинговая',
                 'beatmapset_remove_from_loved' => '":title" была удалена из категории Любимая',
                 'beatmapset_reset_nominations' => 'Номинация ":title" была сброшена',
@@ -209,6 +219,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Новое объявление в ":name"',
+            ],
+
             'channel' => [
                 'pm' => 'Вы получили новое сообщение от :username',
             ],

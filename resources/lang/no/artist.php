@@ -30,8 +30,8 @@ return [
     'songs' => [
         '_' => 'Sanger',
         'count' => ':count sang|:count sanger',
-        'original' => '',
-        'original_badge' => '',
+        'original' => 'osu! original',
+        'original_badge' => 'ORIGINAL',
     ],
 
     'tracklist' => [

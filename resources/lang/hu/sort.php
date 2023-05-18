@@ -32,6 +32,7 @@ return [
     ],
 
     'forum_topics' => [
+        'created' => 'Létrehozva',
         'feature_votes' => 'Csillag prioritás',
         'new' => 'Legutóbbi válasz',
     ],

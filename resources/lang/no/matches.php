@@ -6,13 +6,13 @@
 return [
     'match' => [
         'beatmap-deleted' => 'slettet beatmap',
-        'difference' => 'med :difference',
         'failed' => 'MISLYKTES',
         'header' => 'Flerspillerkamper',
         'in-progress' => '(spill pågår)',
         'in_progress_spinner_label' => 'spill pågår',
         'loading-events' => 'Laster hendelser...',
         'winner' => ':team vinner',
+        'winner_by' => '',
 
         'events' => [
             'player-left' => ':user forlot spillet',

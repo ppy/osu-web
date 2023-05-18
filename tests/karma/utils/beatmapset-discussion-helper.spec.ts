@@ -1,10 +1,18 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { BeatmapsetDiscussionJson } from 'legacy-modules';
+import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
+import GameMode from 'interfaces/game-mode';
+import UserGroupJson from 'interfaces/user-group-json';
+import UserJson from 'interfaces/user-json';
 import User from 'models/user';
 import * as moment from 'moment';
-import { discussionMode, maxLengthTimeline, nearbyDiscussions, validMessageLength } from 'utils/beatmapset-discussion-helper';
+import { discussionMode, isUserFullNominator, maxLengthTimeline, nearbyDiscussions, validMessageLength } from 'utils/beatmapset-discussion-helper';
+
+interface TestCase<T> {
+  description: string;
+  expected: T;
+}
 
 const template: BeatmapsetDiscussionJson = Object.freeze({
   beatmap_id: 1,
@@ -76,6 +84,86 @@ describe('utils/beatmapset-discussion-helper', () => {
     cases.forEach((test) => {
       it(test.description, () => {
         expect(discussionMode(test.json)).toBe(test.expected);
+      });
+    });
+  });
+
+  describe('.isUserFullNominator', () => {
+    const userTemplate = currentUser.toJson();
+    const groupsTemplate: UserGroupJson = {
+      colour: null,
+      has_listing: true,
+      has_playmodes: true,
+      id: 1,
+      identifier: 'placeholder',
+      is_probationary: false,
+      name: 'test',
+      short_name: 'test',
+    };
+
+    const allowedGroups = ['bng', 'nat'];
+    const unallowedGroups = ['admin', 'bng_limited', 'bot', 'dev', 'loved'];
+
+    describe('with no gameMode', () => {
+      const cases = [];
+      for (const identifier of allowedGroups) {
+        cases.push({
+          description: `${identifier} is full nominator`,
+          expected: true,
+          user: { ...userTemplate, groups: [{ ...groupsTemplate, identifier }] },
+        });
+      }
+
+      for (const identifier of unallowedGroups) {
+        cases.push({
+          description: `${identifier} is not full nominator`,
+          expected: false,
+          user: { ...userTemplate, groups: [{ ...groupsTemplate, identifier }] },
+        });
+      }
+
+      cases.push({
+        description: 'groupless is not full nominator',
+        expected: false,
+        user: { ...userTemplate },
+      });
+
+      cases.forEach((test) => {
+        it(test.description, () => {
+          expect(isUserFullNominator(test.user)).toBe(test.expected);
+        });
+      });
+    });
+
+    describe('with gameMode', () => {
+      const cases: (TestCase<boolean> & { gameMode: GameMode; user: UserJson })[] = [];
+      for (const identifier of allowedGroups) {
+        cases.push({
+          description: `${identifier} with matching playmode is full nominator`,
+          expected: true,
+          gameMode: 'osu',
+          user: { ...userTemplate, groups: [{ ...groupsTemplate, identifier, playmodes: ['osu'] }] },
+        });
+
+        cases.push({
+          description: `${identifier} without matching playmode is not full nominator`,
+          expected: false,
+          gameMode: 'osu',
+          user: { ...userTemplate, groups: [{ ...groupsTemplate, identifier, playmodes: ['taiko'] }] },
+        });
+
+        cases.push({
+          description: `${identifier} without playmodes is not full nominator`,
+          expected: false,
+          gameMode: 'osu',
+          user: { ...userTemplate, groups: [{ ...groupsTemplate, identifier }] },
+        });
+      }
+
+      cases.forEach((test) => {
+        it(test.description, () => {
+          expect(isUserFullNominator(test.user, test.gameMode)).toBe(test.expected);
+        });
       });
     });
   });

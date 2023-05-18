@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'ブロックしたユーザー(:count)',
         'hide_profile' => 'プロフィールを隠す',
         'hide_comment' => '隠す',
+        'forum_post_text' => '',
         'not_blocked' => 'このユーザーはブロックされていません。',
         'show_profile' => 'プロフィールを表示',
         'show_comment' => '表示',
@@ -50,6 +51,22 @@ return [
     'card' => [
         'loading' => '読み込み中・・・',
         'send_message' => 'メッセージの送信',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => 'パスワード',
+            'password_confirmation' => 'パスワードの確認',
+            'submit' => 'アカウント作成',
+            'user_email' => 'メールアドレス',
+            'user_email_confirmation' => 'メールアドレスの確認',
+            'username' => 'ユーザー名',
+
+            'tos_notice' => [
+                '_' => 'アカウントを作成することにより、:link に同意したことになります',
+                'link' => '利用規約',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -142,6 +159,7 @@ return [
     'restricted_banner' => [
         'title' => 'アカウントが制限されました！',
         'message' => '制限中は他のプレイヤーと交流ができなくなり、スコアが他人には表示されなくなります。ほとんどの場合、自動的に行われた処理で通常２４時間以内に解除されます。この制限に異議を申し立てたい場合は<a href="mailto:accounts@ppy.sh">サポート</a>に問い合わせて下さい。',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age歳',
@@ -218,7 +236,7 @@ return [
                     'title' => 'Lovedされたビートマップ',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => 'ノミネートしたRankedビートマップ',
                 ],
                 'pending' => [
                     'title' => 'Pendingビートマップ',
@@ -451,6 +469,8 @@ return [
         'offline' => 'オフライン',
     ],
     'store' => [
+        'from_client' => '代わりにゲームクライアントから登録してください！',
+        'from_web' => 'osu!のウェブサイトで登録を完了してください',
         'saved' => 'ユーザーが作成されました',
     ],
     'verify' => [

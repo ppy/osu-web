@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => 'Forum',
         'latest_post' => 'Senaste inlägg',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => 'Vill du verkligen återställa inlägget?',
         'edited' => 'Senast redigerad av :user :when, redigerad :count_delimited gånger totalt.|Senast redigerad av :user :when, redigerad :count_delimited gånger totalt.',
         'posted_at' => 'upplagd :when',
-        'posted_by' => 'upplagd av :username',
+        'posted_by_in' => 'inlagd av :username i :forum',
 
         'actions' => [
             'destroy' => 'Radera inlägg',

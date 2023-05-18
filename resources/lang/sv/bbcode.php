@@ -6,7 +6,9 @@
 return [
     'bold' => 'Fetstil',
     'heading' => 'Rubrik',
+    'help' => '',
     'image' => 'Bild',
+    'imagemap' => '',
     'italic' => 'Kursiv',
     'link' => 'Länk',
     'list' => 'Lista',

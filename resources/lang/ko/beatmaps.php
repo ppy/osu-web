@@ -198,7 +198,8 @@ return [
         'unresolved_issues' => '먼저 해결되지 않은 토론을 마무리지어야 합니다.',
 
         'rank_estimate' => [
-            '_' => '이 맵에 아무런 문제가 발견되지 않으면 :date 에 랭크될 예정입니다. :queue의 #:position번째 순서입니다.',
+            '_' => '이 맵에서 문제가 발견되지 않으면 :date 랭크될 예정입니다. 현재 :queue의 #:position번째 순서입니다.',
+            'on' => ':date에',
             'queue' => '랭킹 대기열',
             'soon' => '곧',
         ],

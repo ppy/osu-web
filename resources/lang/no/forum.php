@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => '',
         'latest_post' => 'Siste Innlegg',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => 'Vil du virkelig gjenopprette innlegget?',
         'edited' => 'Sist endret av :user :when, redigert :count ganger totalt.',
         'posted_at' => 'lagt ut :when',
-        'posted_by' => '',
+        'posted_by_in' => '',
 
         'actions' => [
             'destroy' => 'Slett innlegg',
@@ -92,8 +93,8 @@ return [
         'started_by_verbose' => 'startet av :user',
 
         'actions' => [
-            'destroy' => '',
-            'restore' => '',
+            'destroy' => 'Slett emne',
+            'restore' => 'Gjenopprett emne',
         ],
 
         'create' => [
@@ -160,9 +161,9 @@ return [
                 'issue_tag' => '',
                 'lock' => '',
                 'merge' => '',
-                'move' => '',
-                'pin' => '',
-                'post_edited' => '',
+                'move' => 'Flyttet emne',
+                'pin' => 'Festet emne',
+                'post_edited' => 'Redigerte innlegget',
                 'restore_post' => '',
                 'restore_topic' => '',
                 'split_destination' => '',

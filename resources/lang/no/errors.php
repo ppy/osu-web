@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => '',
     'missing_route' => '',
     'no_restricted_access' => 'Du kan ikke utføre denne handlingen mens kontoen din er i begrenset tilstand.',
     'supporter_only' => 'Du må være en osu!supporter for å bruke denne funksjonen.',

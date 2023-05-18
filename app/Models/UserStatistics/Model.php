@@ -20,6 +20,15 @@ abstract class Model extends BaseModel
 {
     use Memoizes;
 
+    public static function ppColumn()
+    {
+        static $ret;
+
+        return $ret ??= config('osu.scores.experimental_rank_as_default')
+            ? 'rank_score_exp'
+            : 'rank_score';
+    }
+
     protected $primaryKey = 'user_id';
 
     public $timestamps = false;
@@ -30,16 +39,6 @@ abstract class Model extends BaseModel
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function setCreatedAt($value)
-    {
-        // Do nothing.
-    }
-
-    public function getCreatedAtColumn()
-    {
-        // Do nothing.
     }
 
     public function getCountryAcronymAttribute($value)
@@ -75,7 +74,10 @@ abstract class Model extends BaseModel
     public static function calculateRecommendedStarDifficulty(?self $stats)
     {
         if ($stats !== null && $stats->rank_score > 0) {
-            return pow($stats->rank_score, 0.4) * 0.195;
+            return match ($stats->getMode()) {
+                'taiko' => pow($stats->rank_score, 0.35) * 0.27,
+                default => pow($stats->rank_score, 0.4) * 0.195,
+            };
         }
 
         return 1.0;
@@ -129,7 +131,9 @@ abstract class Model extends BaseModel
                 'playcount' => 0,
                 'rank' => 0,
                 'rank_score' => 0,
+                'rank_score_exp' => 0,
                 'rank_score_index' => 0,
+                'rank_score_index_exp' => 0,
                 'ranked_score' => 0,
                 'replay_popularity' => 0,
                 'total_score' => 0,
@@ -170,26 +174,43 @@ abstract class Model extends BaseModel
             // There's this alternative
             //   rank_score_index < $this->rank_score_index AND rank_score_index > 0 AND rank_score > 0
             // but it is slower.
+            $ppColumn = static::ppColumn();
+
             return static::where('country_acronym', $this->country_acronym)
-                ->where('rank_score', '>', function ($q) {
-                    $q->from($this->table)->where('user_id', $this->user_id)->select('rank_score');
-                })
+                ->where($ppColumn, '>', fn ($q) =>
+                    $q->from($this->table)->where('user_id', $this->user_id)->select($ppColumn))
                 ->count() + 1;
         });
     }
 
-    public function globalRank()
+    public function globalRank(): ?int
     {
-        if (!$this->isRanked()) {
-            return;
-        }
+        $column = config('osu.scores.experimental_rank_as_default')
+            ? 'rank_score_index_exp'
+            : 'rank_score_index';
 
-        return $this->rank_score_index;
+        $value = $this->$column;
+
+        return $value === 0 || $this->pp() === 0.0 ? null : $value;
+    }
+
+    public function globalRankExp(): ?int
+    {
+        $value = $this->rank_score_index_exp;
+
+        return $value === 0 || $this->rank_score_exp === 0.0 ? null : $value;
     }
 
     public function isRanked()
     {
-        return $this->rank_score !== 0.0 && $this->rank_score_index !== 0;
+        return $this->globalRank() !== null;
+    }
+
+    public function pp()
+    {
+        $column = static::ppColumn();
+
+        return $this->$column;
     }
 
     public function scopeFriendsOf($query, $user)

@@ -127,6 +127,13 @@ return [
     'flush' => [
     ],
 
+    'swoole' => [
+        'options' => [
+            // default of 10mb is too low for beatmap contest uploads
+            'package_max_length' => 32 * 1024 * 1024,
+        ],
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Octane Cache Table
@@ -213,4 +220,5 @@ return [
 
     'max_execution_time' => 180,
 
+    'state_file' => presence(env('OCTANE_STATE_FILE')) ?? storage_path('logs/octane-server-state.json'),
 ];

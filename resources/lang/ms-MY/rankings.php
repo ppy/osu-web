@@ -18,11 +18,19 @@ return [
     ],
 
     'type' => [
-        'charts' => '',
-        'country' => 'Negara',
-        'multiplayer' => 'pemain beramai',
-        'performance' => 'Prestasi',
-        'score' => 'skor',
+        'charts' => 'sorotan',
+        'country' => 'negara',
+        'multiplayer' => 'pemainan beramai',
+        'performance' => 'pencapaian',
+        'score' => 'markah',
+        'seasons' => 'musim',
+    ],
+
+    'seasons' => [
+        'empty' => 'Musim ini belum memiliki ruangan.',
+        'ongoing' => 'Musim ini sedang berlangsung (ke depannya, akan terdapat lebih banyak senarai untuk dimainkan).',
+        'room_count' => 'Jumlah senarai main',
+        'url' => 'Menampilkan maklumat lebih lanjut seputar musim yang dipilih.',
     ],
 
     'spotlight' => [
@@ -37,9 +45,9 @@ return [
         'active_users' => 'Pengguna aktif',
         'country' => 'Negara',
         'play_count' => 'Kiraan Main',
-        'performance' => 'Prestasi',
+        'performance' => 'Pencapaian',
         'total_score' => 'Jumlah Skor',
-        'ranked_score' => 'Skor Pengelasan',
+        'ranked_score' => 'Skor Ranked',
         'average_score' => 'Skor Purata',
         'average_performance' => 'Prestasi Purata. ',
         'ss' => '',

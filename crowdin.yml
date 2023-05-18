@@ -8,6 +8,7 @@ files:
         ar: ar
         be: be
         bg: bg
+        ca: ca
         cs: cs
         da: da
         de: de
@@ -15,12 +16,15 @@ files:
         es-ES: es
         fi-FI: fi
         fi: fi
+        fil: fil
         fr: fr
+        he: he
         hu: hu
         id: id
         it: it
         ja: ja
         ko: ko
+        lt: lt
         nl: nl
         'no': 'no'
         pl: pl
@@ -29,6 +33,8 @@ files:
         ro: ro
         ru: ru
         sk: sk
+        sl: sl
+        sr: sr
         sv-SE: sv
         th: th
         tr: tr

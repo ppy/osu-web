@@ -50,13 +50,11 @@ return [
             'resolved' => 'Nem szerkeszthetsz bejegyzést egy megbeszélt témában.',
             'system_generated' => 'Automatikusan generált posztot nem lehet szerkeszteni.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Ez a beatmap megbeszélés miatt zárolva.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'Ez a beatmap megbeszélés miatt zárolva van.',
+
         'metadata' => [
             'nominated' => 'Nem változtathatod meg egy nominált map metaadatait. Ha úgy gondolod valami nincs rendben, lépj kapcsolatba egy BN vagy egy NAT taggal.',
         ],

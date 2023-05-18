@@ -53,9 +53,9 @@ class UserChannelListTest extends TestCase
         $message = Chat::sendPrivateMessage($this->user, $this->target, 'message', false);
 
         // block $this->target
-        $block = factory(UserRelation::class)->states('block')->create([
-            'user_id' => $this->user->getKey(),
-            'zebra_id' => $this->target->getKey(),
+        $block = UserRelation::factory()->block()->create([
+            'user_id' => $this->user,
+            'zebra_id' => $this->target,
         ]);
         $this->resetCache();
 

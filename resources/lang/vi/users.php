@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'người dùng đã bị chặn (:count)',
         'hide_profile' => 'Ẩn trang cá nhân',
         'hide_comment' => 'ẩn',
+        'forum_post_text' => 'Bài viết này được ẩn.',
         'not_blocked' => 'Người dùng này chưa bị chặn.',
         'show_profile' => 'Hiển thị trang cá nhân',
         'show_comment' => 'hiện',
@@ -52,21 +53,37 @@ return [
         'send_message' => 'Gửi tin nhắn',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => 'mật khẩu',
+            'password_confirmation' => 'xác nhận mật khẩu',
+            'submit' => 'tạo tài khoản',
+            'user_email' => 'email',
+            'user_email_confirmation' => 'xác nhận email',
+            'username' => 'tên người dùng',
+
+            'tos_notice' => [
+                '_' => 'khi tạo tài khoản bạn đồng ý với :link',
+                'link' => 'điều khoản dịch vụ',
+            ],
+        ],
+    ],
+
     'disabled' => [
         'title' => 'Ôi không! Có vẻ tài khoản của bạn đã bị vô hiệu hóa.',
-        'warning' => "",
+        'warning' => "Trong trường hợp bạn đã vi phạm luật, lưu ý sẽ có một khoảng thời gian trung bình một tháng chúng tôi sẽ không tiếp nhận mọi nhu cầu hối lỗi. Sau khoảng thời gian này, bạn hoàn toàn có thể thoải mái liên lạc chúng tôi nếu cần thiết. Lưu ý: tạo thêm tài khoản mới sau khi bạn đã bị ban sẽ <strong>gia tăng khoảng thời gian nói trên</strong>. Đồng thời hãy lưu ý rằng <strong>mỗi tài khoản tạo thêm là một lần bạn tiếp tục vi phạm luật</strong>. Chúng tôi khuyên bạn không nên theo con đường này!",
 
         'if_mistake' => [
-            '_' => '',
+            '_' => 'Nếu bạn cảm thấy nó không đúng, bạn được chào đón để liên hệ với chúng tôi (thông qua :email hoặc nhấn vào dấu "?" ở góc dưới bên phải của trang này). Làm ơn nhớ rằng chúng tôi luôn hoàn toàn chắc chắn với hành động của mình, vì chúng dựa trên dữ liệu rất chắc chắn. Chúng tôi có quyền bỏ qua yêu cầu của bạn nếu chúng tôi cảm thấy bạn đang cố tình không trung thực.',
             'email' => 'email',
         ],
 
         'reasons' => [
-            'compromised' => '',
-            'opening' => '',
+            'compromised' => 'Tài khoản của bạn bị xâm phạm. Tài khoản của bạn có thể bị vô hiệu hóa tạm thời trong khi danh tính của chủ nhân tài khoản được xác nhận.',
+            'opening' => 'Đây là một số lí do mà có thể dẫn đến tài khoản của bạn bị vô hiệu hoá:',
 
             'tos' => [
-                '_' => '',
+                '_' => 'Bạn đã vi phạm một hoặc nhiều :community_rules hoặc :tos của chúng tôi.',
                 'community_rules' => 'tiêu chuẩn cộng đồng',
                 'tos' => 'điều khoản dịch vụ',
             ],
@@ -142,6 +159,7 @@ return [
     'restricted_banner' => [
         'title' => 'Tài khoản của bạn đã bị hạn chế!',
         'message' => 'Trong khi bị hạn chế, Bạn sẽ không thể tương tác với những người chơi khác và chỉ có bạn thấy được điểm của bạn. Đây thường là kết quả của một quá trình tự động và thường sẽ được gỡ bỏ trong vòng 24 giờ. Nếu bạn muốn kháng nghị về sự hạn chế này, vui lòng <a href="mailto:accounts@ppy.sh">liên hệ hỗ trợ</a>.',
+        'message_link' => 'Kiểm tra trang này để biết thêm chi tiết.',
     ],
     'show' => [
         'age' => ':age tuổi',
@@ -212,13 +230,13 @@ return [
                     'title' => 'Graveyarded Beatmaps',
                 ],
                 'guest' => [
-                    'title' => '',
+                    'title' => 'Beatmap khách mời',
                 ],
                 'loved' => [
                     'title' => 'Loved Beatmaps',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => 'Beatmap Xếp hạng được đề cử',
                 ],
                 'pending' => [
                     'title' => 'Beatmap Đang Chờ',
@@ -315,7 +333,7 @@ return [
                 'title' => 'Huy Chương',
             ],
             'playlists' => [
-                'title' => '',
+                'title' => 'Danh sách phát trò chơi',
             ],
             'posts' => [
                 'title' => 'Bài viết',
@@ -352,8 +370,8 @@ return [
                 ],
             ],
             'votes' => [
-                'given' => '',
-                'received' => '',
+                'given' => 'Bình chọn đã cho (3 tháng qua)',
+                'received' => 'Bình chọn đã nhận (3 tháng qua)',
                 'title' => 'Phiếu',
                 'title_longer' => 'Phiếu gần đây',
                 'vote_count' => ':count_delimited bình chọn|:count_delimited bình chọn',
@@ -417,7 +435,7 @@ return [
             'country_simple' => 'Hạng Quốc Gia',
             'global' => 'Hạng quốc tế cho :mode',
             'global_simple' => 'Hạng Toàn Cầu',
-            'highest' => '',
+            'highest' => 'Hạng cao nhất: :rank vào :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Độ Chính Xác',
@@ -451,6 +469,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => 'vui lòng đăng kí thông qua game!',
+        'from_web' => 'vui lòng hoàn thành đăng kí thông qua trang web osu!',
         'saved' => 'Đã tạo người dùng',
     ],
     'verify' => [

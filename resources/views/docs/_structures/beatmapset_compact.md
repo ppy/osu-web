@@ -34,6 +34,7 @@ genre                   |                       | |
 has_favourited          | boolean               | |
 language                |                       | |
 nominations             |                       | |
+pack_tags               | string[]              | |
 ratings                 |                       | |
 recent_favourites       |                       | |
 related_users           |                       | |

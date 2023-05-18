@@ -55,7 +55,7 @@ return [
 
         'options' => [
             '_' => 'opzioni di notifica',
-            'beatmap_owner_change' => 'guest difficulty',
+            'beatmap_owner_change' => 'difficoltà guest',
             'beatmapset:modding' => 'modding delle beatmap',
             'channel_message' => 'messaggi privati',
             'comment_new' => 'nuovi commenti',

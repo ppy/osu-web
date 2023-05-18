@@ -5,7 +5,7 @@
 
 return [
     'beatmapset' => [
-        'button' => '',
+        'button' => 'Laporkan',
         'title' => '',
     ],
 

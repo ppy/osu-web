@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute nemôže byť negatívny.',
     'required' => ':attribute je vyžadovaný.',
     'too_long' => ':attribute presiahol maximálnu dĺžku - môže mať maximálne :limit znakov.',
+    'url' => '',
     'wrong_confirmation' => 'Potvrdenie sa nezhoduje.',
 
     'beatmapset_discussion' => [
@@ -106,6 +107,10 @@ return [
             'required' => 'Vyber možnosť pri hlasovaní.',
             'too_many' => 'Vybral si viacej možností, než je povolené.',
         ],
+    ],
+
+    'legacy_api_key' => [
+        'exists' => '',
     ],
 
     'oauth' => [

@@ -34,6 +34,7 @@ return [
         'qualify' => 'Bu beatmap gerekli aday gösterilme miktarına ulaştı ve nitelikli oldu.',
         'rank' => 'Dereceli.',
         'remove_from_loved' => ':user tarafından Sevilenlerden çıkarıldı (:text)',
+        'tags_edit' => 'Etiketler ":old" dan ":new" ile değiştirildi.',
 
         'nsfw_toggle' => [
             'to_0' => 'Müstehcen işareti kaldırıldı',

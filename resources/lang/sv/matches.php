@@ -5,14 +5,14 @@
 
 return [
     'match' => [
-        'beatmap-deleted' => 'raderad beatmap',
-        'difference' => 'med :difference',
+        'beatmap-deleted' => 'borttagen beatmap',
         'failed' => 'MISSLYCKADES',
         'header' => 'Flerspelarmatcher',
         'in-progress' => '(pågående match)',
         'in_progress_spinner_label' => 'matchen är pågående',
         'loading-events' => 'Laddar händelser...',
         'winner' => ':team vann',
+        'winner_by' => '',
 
         'events' => [
             'player-left' => ':user lämnade matchen',

@@ -35,12 +35,9 @@ class Build extends Model implements Commentable
     protected $table = 'osu_builds';
     protected $primaryKey = 'build_id';
 
-    protected $dates = [
-        'date',
-    ];
-
     protected $casts = [
         'allow_bancho' => 'boolean',
+        'date' => 'datetime',
     ];
 
     private $cache = [];

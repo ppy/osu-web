@@ -189,7 +189,7 @@ class ChannelsControllerTest extends TestCase
 
     public function testChannelJoinMultiplayerWhenNotParticipated()
     {
-        $score = factory(Score::class)->create();
+        $score = Score::factory()->create();
 
         $this->actAsScopedUser($this->user, ['*']);
         $request = $this->json('PUT', route('api.chat.channels.join', [
@@ -202,7 +202,7 @@ class ChannelsControllerTest extends TestCase
 
     public function testChannelJoinMultiplayerWhenParticipated()
     {
-        $score = factory(Score::class)->create(['user_id' => $this->user->getKey()]);
+        $score = Score::factory()->create(['user_id' => $this->user]);
 
         $this->actAsScopedUser($this->user, ['*']);
         $request = $this->json('PUT', route('api.chat.channels.join', [
@@ -269,7 +269,7 @@ class ChannelsControllerTest extends TestCase
 
     public function testChannelMarkAsReadBackwards() // success (with no change)
     {
-        $newerPublicMessage = Message::factory()->create(['channel_id' => $this->publicChannel->channel_id]);
+        $newerPublicMessage = Message::factory()->create(['channel_id' => $this->publicChannel]);
 
         $this->actAsScopedUser($this->user, ['*']);
         $this->json('PUT', route('api.chat.channels.join', [
@@ -401,7 +401,7 @@ class ChannelsControllerTest extends TestCase
         $this->publicChannel = Channel::factory()->type('public')->create();
         $this->privateChannel = Channel::factory()->type('private')->create();
         $this->pmChannel = Channel::factory()->type('pm')->create();
-        $this->publicMessage = Message::factory()->create(['channel_id' => $this->publicChannel->channel_id]);
+        $this->publicMessage = Message::factory()->create(['channel_id' => $this->publicChannel]);
     }
 
     private function getAssertableChannelList(User $user): AssertableJsonString

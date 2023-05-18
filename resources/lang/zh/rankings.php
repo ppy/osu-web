@@ -23,6 +23,14 @@ return [
         'multiplayer' => '多人游戏',
         'performance' => '表现',
         'score' => '总分',
+        'seasons' => '季赛',
+    ],
+
+    'seasons' => [
+        'empty' => '本季赛暂无可用房间。',
+        'ongoing' => '本季赛仍在进行中（将加入更多歌单）。',
+        'room_count' => '歌单数量',
+        'url' => '显示该季赛更多信息。',
     ],
 
     'spotlight' => [

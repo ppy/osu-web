@@ -23,13 +23,13 @@ return [
         'message_placeholder_deleted_beatmap' => 'Difficulty này đã bị xóa nên nó có thể sẽ không còn được thảo luận nữa.',
         'message_placeholder_locked' => 'Chức năng bàn luận của beatmap này đã bị vô hiệu hóa.',
         'message_placeholder_silenced' => "Không thể đăng thảo luận khi bị khoá mõm.",
-        'message_type_select' => 'Chọn Loại Nhận Xét',
+        'message_type_select' => 'Chọn Kiểu Bình Luận',
         'reply_notice' => 'Nhấn enter để trả lời.',
         'reply_placeholder' => 'Nhập câu trả lời của bạn tại đây',
         'require-login' => 'Hãy đăng nhập để đăng hoặc trả lời',
         'resolved' => 'Đã giải quyết',
-        'restore' => 'hoàn lại',
-        'show_deleted' => 'Hiển thị đã bị xóa',
+        'restore' => 'khôi phục',
+        'show_deleted' => 'Hiển thị bình luận đã xóa',
         'title' => 'Góc Thảo Luận',
 
         'collapse' => [
@@ -50,7 +50,7 @@ return [
 
             'prompt' => [
                 'lock' => 'Lí do khóa',
-                'unlock' => 'Bạn có chắc chắn muốn mở khóa không ?',
+                'unlock' => 'Bạn có chắc chắn muốn mở khóa không?',
             ],
         ],
 
@@ -199,6 +199,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Map này ước tính sẽ được Xếp Hạng :date nếu không tìm ra lỗi nào. Nó đang ở #:position trong :queue.',
+            'on' => 'vào ngày :date',
             'queue' => 'hàng chờ xếp hạng',
             'soon' => 'sớm',
         ],
@@ -277,7 +278,7 @@ return [
         'mine' => 'Map của tôi',
         'pending' => 'Đang chờ',
         'wip' => 'Chưa xong',
-        'qualified' => 'Qualified',
+        'qualified' => 'Đủ tư cách',
         'ranked' => 'Đã được xếp hạng',
     ],
     'genre' => [

@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => 'โหลดข้อมูลไม่สำเร็จ',
     'missing_route' => 'ลิงก์ไม่ถูกต้อง หรือวิธีการขอที่ไม่ถูกต้อง',
     'no_restricted_access' => 'คุณไม่สามารถทำสิ่งนี้ได้ระหว่างที่บัญชีคุณกำลังอยู่ในสถานะจำกัดสิทธิ์',
     'supporter_only' => 'คุณต้องเป็นผู้สนับสนุนถึงจะเข้าใช้งานได้',
@@ -29,7 +30,7 @@ return [
     ],
     'search' => [
         'default' => 'ไม่สามารถแสดงผลลัพธ์ใด ๆได้ ลองอีกครั้งในภายหลัง',
-        'invalid_cursor_exception' => '',
+        'invalid_cursor_exception' => 'ระบุพารามิเตอร์ของเคอร์เซอร์ไม่ถูกต้อง',
         'operation_timeout_exception' => 'การค้นหายุ่งกว่าปกติ โปรดลองอีกครั้งในภายหลัง',
     ],
 ];

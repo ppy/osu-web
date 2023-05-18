@@ -67,6 +67,7 @@ return [
         'duration' => 'Takket være dem har du nu adgang til osu!direct og andre osu!supporter goder i de næste :duration.',
         'features' => 'Du kan finde flere detaljer omkring disse goder her:',
         'gifted' => 'Nogen har givet dig et osu!supporter tag!',
+        'gift_message' => '',
         'subject' => 'Du er blevet givet et osu!supporter tag!',
     ],
 

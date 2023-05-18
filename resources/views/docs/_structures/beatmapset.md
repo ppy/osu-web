@@ -9,6 +9,7 @@ availability.more_information  | string?                  | |
 bpm                            | float                    | |
 can_be_hyped                   | boolean                  | |
 creator                        | string                   | Username of the mapper at the time of beatmapset creation.
+deleted_at                     | string?                  | |
 discussion_locked              | boolean                  | |
 hype.current                   | integer                  | |
 hype.required                  | integer                  | |

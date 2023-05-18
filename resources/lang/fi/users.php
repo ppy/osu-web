@@ -33,13 +33,14 @@ return [
 
     'blocks' => [
         'banner_text' => 'Olet estänyt tämän käyttäjän.',
-        'comment_text' => '',
+        'comment_text' => 'Tämä kommentti on piilotettu.',
         'blocked_count' => 'Estetyt käyttäjät (:count)',
         'hide_profile' => 'piilota profiili',
-        'hide_comment' => '',
+        'hide_comment' => 'piilota',
+        'forum_post_text' => '',
         'not_blocked' => 'Tämä käyttäjä ei ole estetty.',
         'show_profile' => 'näytä profiili',
-        'show_comment' => '',
+        'show_comment' => 'näytä',
         'too_many' => 'Estoraja saavutettu.',
         'button' => [
             'block' => 'estä',
@@ -50,6 +51,22 @@ return [
     'card' => [
         'loading' => 'Ladataan...',
         'send_message' => 'lähetä viesti',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => 'salasana',
+            'password_confirmation' => 'salasanan vahvistus',
+            'submit' => 'luo tili',
+            'user_email' => 'sähköposti',
+            'user_email_confirmation' => 'sähköpostivahvistus',
+            'username' => 'käyttäjänimi',
+
+            'tos_notice' => [
+                '_' => 'luomalla tilin hyäksyt :link',
+                'link' => 'käyttöehdot',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -142,6 +159,7 @@ return [
     'restricted_banner' => [
         'title' => 'Tilisi on rajoitettu!',
         'message' => 'Kun olet rajoitetussa tilassa, et näe muita pelaajia ja tuloksesi ovat näkyvissä vain sinulle. Tämä on yleensä automatisoitu prosessi ja poistuu useimmiten 24 tunnin sisällä. Jos haluat tehdä valituksen <a href="mailto:accounts@ppy.sh">ota yhteyttä tukeen</a>.',
+        'message_link' => 'Katso tämä sivu saadaksesi lisätietoja.',
     ],
     'show' => [
         'age' => ':age vuotta vanha',
@@ -315,7 +333,7 @@ return [
                 'title' => 'Mitalit',
             ],
             'playlists' => [
-                'title' => '',
+                'title' => 'Soittolista Pelit',
             ],
             'posts' => [
                 'title' => 'Julkaisut',
@@ -342,13 +360,13 @@ return [
                     'title' => 'Kärkisijat',
                 ],
                 'pin' => [
-                    'to_0' => '',
+                    'to_0' => 'Poista kiinnitys',
                     'to_0_done' => '',
-                    'to_1' => '',
-                    'to_1_done' => '',
+                    'to_1' => 'Kiinnitä',
+                    'to_1_done' => 'Kiinnitetty tulos',
                 ],
                 'pinned' => [
-                    'title' => '',
+                    'title' => 'Kiinnitetyt Tulokset',
                 ],
             ],
             'votes' => [
@@ -375,7 +393,7 @@ return [
                     'actions' => [
                         'restriction' => 'Porttikielto',
                         'silence' => 'Mykistys',
-                        'tournament_ban' => '',
+                        'tournament_ban' => 'Turnaus kielto',
                         'note' => 'Muistutus',
                     ],
                 ],
@@ -417,7 +435,7 @@ return [
             'country_simple' => 'Maakohtainen sijoitus',
             'global' => 'Maailmanlaajuinen sijoitus pelimuodossa :mode',
             'global_simple' => 'Maailmanlaajuinen sijoitus',
-            'highest' => '',
+            'highest' => 'Korkein sija :rank oli :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Tarkkuus',
@@ -451,6 +469,8 @@ return [
         'offline' => 'Poissa',
     ],
     'store' => [
+        'from_client' => 'rekisteröidy pelin kautta!',
+        'from_web' => 'suorita rekisteröinti käyttämällä osu! nettisivua',
         'saved' => 'Käyttäjä luotu',
     ],
     'verify' => [

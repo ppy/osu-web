@@ -6,13 +6,13 @@
 return [
     'match' => [
         'beatmap-deleted' => 'törölt beatmap',
-        'difference' => ':difference különbséggel',
         'failed' => 'ELBUKOTT',
         'header' => 'Többjátékos meccsek',
         'in-progress' => '(a meccs folyamatban)',
         'in_progress_spinner_label' => 'a meccs folyamatban',
         'loading-events' => 'Események betöltése...',
         'winner' => ':team nyer',
+        'winner_by' => '',
 
         'events' => [
             'player-left' => ':user elhagyta a mérkőzést',

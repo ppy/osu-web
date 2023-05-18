@@ -40,13 +40,14 @@ class Score extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'multiplayer_scores';
-    protected $dates = ['started_at', 'ended_at'];
     protected $casts = [
-        'passed' => 'boolean',
+        'ended_at' => 'datetime',
         'mods' => 'object',
+        'passed' => 'boolean',
+        'started_at' => 'datetime',
         'statistics' => 'object',
     ];
+    protected $table = 'multiplayer_scores';
 
     public static function start(array $params)
     {

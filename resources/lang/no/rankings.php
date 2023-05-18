@@ -23,6 +23,14 @@ return [
         'multiplayer' => 'flerspiller',
         'performance' => 'Prestasjon',
         'score' => 'Poengsum',
+        'seasons' => '',
+    ],
+
+    'seasons' => [
+        'empty' => '',
+        'ongoing' => '',
+        'room_count' => '',
+        'url' => '',
     ],
 
     'spotlight' => [

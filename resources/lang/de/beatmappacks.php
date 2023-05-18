@@ -6,40 +6,43 @@
 return [
     'index' => [
         'description' => 'Fertig gepackte Sammlungen an Beatmaps, die auf einem gemeinsamen Thema basieren.',
-        'nav_title' => 'liste',
-        'title' => 'Beatmap-Pakete',
+        'empty' => 'Demnächst verfügbar!',
+        'nav_title' => 'Liste',
+        'title' => 'Beatmap-Packs',
 
         'blurb' => [
             'important' => 'VOR DEM HERUNTERLADEN BITTE LESEN',
-            'install_instruction' => 'Installation: Sobald ein Paket heruntergeladen wurde, entpacke den Inhalt des Pakets in dein osu! Songs-Verzeichnis und osu! wird den Rest erledigen.',
+            'install_instruction' => 'Installation: Sobald ein Beatmap-Pack heruntergeladen wurde, entpacke den Inhalt des Packs in dein osu! Songs-Verzeichnis und osu! wird den Rest erledigen.',
             'note' => [
-                '_' => 'Außerdem ist es sehr empfehlenswert, :scary, weil die älteren Beatmaps qualitativ wesentlich schlechter sind als aktuellere Beatmaps.',
-                'scary' => 'die neuesten Pakete zuerst herunterzuladen',
+                '_' => 'Außerdem ist es sehr empfehlenswert dir :scary, weil ältere Beatmaps eine geringere Qualität aufweisen als aktuellere Beatmaps.',
+                'scary' => 'die neusten Beatmap-Packs zuerst herunterzuladen',
             ],
         ],
     ],
 
     'show' => [
-        'download' => 'Download',
+        'download' => 'Herunterladen',
         'item' => [
             'cleared' => 'geschafft',
             'not_cleared' => 'nicht geschafft',
         ],
         'no_diff_reduction' => [
-            '_' => ':link darf zum Absolvieren dieses Pakets nicht verwendet werden.',
-            'link' => 'Schwierigkeitsverringerungsmods',
+            '_' => ':link darf zum Absolvieren dieses Beatmap-Packs nicht verwendet werden.',
+            'link' => 'Mods zur Vereinfachung der Schwierigkeit',
         ],
     ],
 
     'mode' => [
         'artist' => 'Künstler/Album',
-        'chart' => 'Im Spotlight',
+        'chart' => 'Spotlights',
+        'featured' => 'Featured Artist',
         'standard' => 'Standard',
         'theme' => 'Thema',
+        'tournament' => 'Turnier',
     ],
 
     'require_login' => [
-        '_' => 'Zum Herunterladen muss man :link sein',
+        '_' => 'Du musst :link sein, um dies herunterladen zu können',
         'link_text' => 'eingeloggt',
     ],
 ];

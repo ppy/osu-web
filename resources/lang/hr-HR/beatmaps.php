@@ -199,6 +199,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Procjenjuje se da će ova beatmapa biti rangirana :date ako nema problema. To je :position. u :queue.',
+            'on' => '',
             'queue' => 'red čekanja na rangiranje',
             'soon' => 'uskoro',
         ],

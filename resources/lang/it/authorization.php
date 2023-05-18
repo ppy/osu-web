@@ -50,13 +50,11 @@ return [
             'resolved' => 'Non puoi modificare un post di una discussione risolta.',
             'system_generated' => 'I post generati automaticamente non possono essere modificati.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Questa beatmap è bloccata per la discussione.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => '',
+
         'metadata' => [
             'nominated' => 'Non puoi modificare i metadata di una mappa nominata. Contatta un membro di BN o NAT se pensi che siano stati impostati in modo errato.',
         ],

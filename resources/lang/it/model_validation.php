@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute non può essere negativo.',
     'required' => ':attribute è richiesto.',
     'too_long' => ':attribute ha superato la lunghezza massima - può essere solo fino a :limit caratteri.',
+    'url' => '',
     'wrong_confirmation' => 'La conferma non corrisponde.',
 
     'beatmapset_discussion' => [
@@ -106,6 +107,10 @@ return [
             'required' => 'Seleziona un\'opzione quando voti.',
             'too_many' => 'Sono state selezionate più opzioni del consentito.',
         ],
+    ],
+
+    'legacy_api_key' => [
+        'exists' => '',
     ],
 
     'oauth' => [

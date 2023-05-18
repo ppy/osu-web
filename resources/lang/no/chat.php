@@ -8,6 +8,7 @@ return [
     'talking_in' => 'snakker i :channel',
     'talking_with' => 'snakker med :name',
     'title_compact' => 'chat',
+    'unread_messages' => '',
 
     'cannot_send' => [
         'channel' => 'Du kan ikke sende meldinger i denne kanalen akkurat nå. Dette kan være en av følgende grunner:',
@@ -35,6 +36,7 @@ return [
 
         'labels' => [
             'description' => 'beskrivelse',
+            'message' => '',
             'name' => '',
             'users' => '',
         ],

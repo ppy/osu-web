@@ -36,7 +36,6 @@ Route::group(['middleware' => ['web']], function () {
         Route::resource('artists/tracks', 'ArtistTracksController', ['only' => 'show']);
 
         Route::resource('packs', 'BeatmapPacksController', ['only' => ['index', 'show']]);
-        Route::get('packs/{pack}/raw', 'BeatmapPacksController@raw')->name('packs.raw');
 
         Route::group(['as' => 'beatmaps.', 'prefix' => '{beatmap}'], function () {
             Route::get('scores/users/{user}', 'BeatmapsController@userScore');
@@ -71,6 +70,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::resource('watches', 'BeatmapsetWatchesController', ['only' => ['update', 'destroy']]);
 
         Route::group(['prefix' => 'discussions', 'as' => 'discussions.'], function () {
+            Route::get('media-url', 'BeatmapDiscussionsController@mediaUrl')->name('media-url');
             Route::put('{discussion}/vote', 'BeatmapDiscussionsController@vote')->name('vote');
             Route::post('{discussion}/restore', 'BeatmapDiscussionsController@restore')->name('restore');
             Route::post('{discussion}/deny-kudosu', 'BeatmapDiscussionsController@denyKudosu')->name('deny-kudosu');
@@ -245,6 +245,12 @@ Route::group(['middleware' => ['web']], function () {
         Route::delete('follows', 'FollowsController@destroy')->name('follows.destroy');
     });
 
+    Route::resource('legacy-api-key', 'LegacyApiKeyController', ['only' => ['store']]);
+    Route::delete('legacy-api-key', 'LegacyApiKeyController@destroy')->name('legacy-api-key.destroy');
+
+    Route::resource('legacy-irc-key', 'LegacyIrcKeyController', ['only' => ['store']]);
+    Route::delete('legacy-irc-key', 'LegacyIrcKeyController@destroy')->name('legacy-irc-key.destroy');
+
     Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);
     Route::get('notifications/endpoint', 'NotificationsController@endpoint')->name('notifications.endpoint');
     Route::post('notifications/mark-read', 'NotificationsController@markRead')->name('notifications.mark-read');
@@ -269,12 +275,17 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::resource('reports', 'ReportsController', ['only' => ['store']]);
 
+    Route::resource('seasons', 'SeasonsController', ['only' => 'show']);
+    Route::get('seasons/{season}/rooms', 'SeasonsController@rooms')->name('seasons.rooms');
+
     Route::post('session', 'SessionsController@store')->name('login');
     Route::delete('session', 'SessionsController@destroy')->name('logout');
 
     Route::post('users/check-username-availability', 'UsersController@checkUsernameAvailability')->name('users.check-username-availability');
     Route::post('users/check-username-exists', 'UsersController@checkUsernameExists')->name('users.check-username-exists');
     Route::get('users/disabled', 'UsersController@disabled')->name('users.disabled');
+    Route::get('users/create', 'UsersController@create')->name('users.create');
+    Route::post('users/store-web', 'UsersController@storeWeb')->name('users.store-web');
 
     Route::group(['as' => 'users.', 'prefix' => 'users/{user}'], function () {
         Route::get('card', 'UsersController@card')->name('card');
@@ -575,4 +586,5 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio', 'as' => 'interop.'], fu
     });
 });
 
+Route::get('opensearch.xml', 'HomeController@opensearch');
 Route::any('{catchall}', 'FallbackController@index')->where('catchall', '.*')->fallback();

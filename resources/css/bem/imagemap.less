@@ -1,0 +1,20 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.imagemap {
+  position: relative;
+  overflow: hidden;
+  max-width: max-content;
+
+  &__image {
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    max-width: 100%;
+  }
+
+  &__link {
+    display: block;
+    position: absolute;
+  }
+}

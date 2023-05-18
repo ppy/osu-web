@@ -87,6 +87,9 @@
           "total_length": {
             "type": "long"
           },
+          "user_id": {
+            "type": "long"
+          },
           "version": {
             "type": "text"
           }

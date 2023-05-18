@@ -199,6 +199,7 @@ return [
 
         'rank_estimate' => [
             '_' => '',
+            'on' => '',
             'queue' => '',
             'soon' => '',
         ],

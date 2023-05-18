@@ -5,41 +5,44 @@
 
 return [
     'index' => [
-        'description' => 'Iepriekš pakotas bītmapju kolekcijas ir pamatā balstītas uz kopīgu tēmu.',
-        'nav_title' => '',
+        'description' => 'Iepriekš sagatavotas bītmapju kolekcijas ar savstarpēji kopīgu tēmu.',
+        'empty' => '',
+        'nav_title' => 'saraksts',
         'title' => 'Bītmapju Pakas',
 
         'blurb' => [
-            'important' => 'IZLASIET PIRMS LEJUPLĀDĒJIET',
-            'install_instruction' => '',
+            'important' => 'IZLASIET ŠO PIRMS LEJUPIELĀDES',
+            'install_instruction' => 'Instalācija: Kad paka ir lejupielādēta, izvelciet tās saturu savā osu! Songs direktorijā, un osu! izdarīs visu pārējo.',
             'note' => [
-                '_' => 'Ir vērts atcerēties :scary, jo vecās mapes ir daudz zemākas kvalitātes kā lielākā daļa jauno mapju.',
-                'scary' => 'lejuplādēt pakas secībā no jaunākajām līdz vecākajām',
+                '_' => 'Ņemiet vērā, ka ir ļoti ieteicams :scary, jo vecākas mapes parasti ir daudz zemākas kvalitātes nekā jaunākas.',
+                'scary' => 'lejupielādēt pakas secībā no jaunākās līdz agrākajai',
             ],
         ],
     ],
 
     'show' => [
-        'download' => 'Lejuplādēt',
+        'download' => 'Lejupielādēt',
         'item' => [
             'cleared' => 'nokārtots',
             'not_cleared' => 'nav nokārtots',
         ],
         'no_diff_reduction' => [
-            '_' => '',
-            'link' => '',
+            '_' => ':link nevar izmantot, lai nokārtotu šo paku.',
+            'link' => 'Grūtības samazināšanas modi',
         ],
     ],
 
     'mode' => [
-        'artist' => 'Izpildītājs/Albums',
-        'chart' => 'Uzmanības centrā',
-        'standard' => 'Standarts',
+        'artist' => 'Mākslinieks/Albums',
+        'chart' => 'Uzmanības Centrā',
+        'featured' => '',
+        'standard' => 'Standarta',
         'theme' => 'Tēma',
+        'tournament' => '',
     ],
 
     'require_login' => [
-        '_' => 'Jums ir nepieciešama :link lai lejuplādētu',
-        'link_text' => 'ierakstījies',
+        '_' => 'Jums ir jābūt :link, lai lejupielādētu',
+        'link_text' => 'pierakstījies',
     ],
 ];

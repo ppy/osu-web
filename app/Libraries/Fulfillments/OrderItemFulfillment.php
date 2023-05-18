@@ -5,13 +5,13 @@
 
 namespace App\Libraries\Fulfillments;
 
+use App\Models\Store\OrderItem;
+
+// TODO: remove since this isn't really needed anymore
 abstract class OrderItemFulfillment implements Fulfillable
 {
-    protected $orderItem;
-
-    public function __construct($orderItem)
+    public function __construct(protected OrderItem $orderItem)
     {
-        $this->orderItem = $orderItem;
     }
 
     public function getTransactionId()

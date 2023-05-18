@@ -83,12 +83,14 @@ class AuthApi
 
         $user = $token->getResourceOwner();
 
-        if ($token->isClientCredentials() && $psrUserId !== null) {
-            throw new AuthenticationException();
-        }
-
-        if (!$token->isClientCredentials() && $user->getKey() !== $psrUserId) {
-            throw new AuthenticationException();
+        if ($token->isClientCredentials()) {
+            if ($psrUserId !== null) {
+                throw new AuthenticationException();
+            }
+        } else {
+            if ($user === null || $user->getKey() !== $psrUserId) {
+                throw new AuthenticationException();
+            }
         }
 
         if ($user !== null) {

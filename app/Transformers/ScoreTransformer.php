@@ -29,7 +29,7 @@ class ScoreTransformer extends TransformerAbstract
         // 'user',
     ];
 
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'beatmap',
         'beatmapset',
         'current_user_attributes',
@@ -40,7 +40,7 @@ class ScoreTransformer extends TransformerAbstract
         'weight',
     ];
 
-    protected $defaultIncludes = [
+    protected array $defaultIncludes = [
         'current_user_attributes',
     ];
 

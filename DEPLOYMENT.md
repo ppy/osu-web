@@ -26,7 +26,7 @@ Note that as the actual process is run as non-root user, the files must be world
 
 ## Services
 
-The image built serves multiple purposes, each can be run by passing the parameter when starting docker (or as command if using orchestration tools like docker-compose).
+The image built serves multiple purposes, each can be run by passing the parameter when starting docker (or as command if using orchestration tools like docker compose).
 
 There are three main commands:
 

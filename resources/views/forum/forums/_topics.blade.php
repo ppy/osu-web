@@ -7,7 +7,10 @@
         {{ osu_trans('forum.forums.topics.empty') }}
     </li>
 @else
+    @php
+        $currentUserId = Auth::user()?->getKey();
+    @endphp
     @foreach($topics as $topic)
-        @include($row ?? 'forum.forums._topic')
+        @include($row ?? 'forum.forums._topic', compact('currentUserId'))
     @endforeach
 @endif

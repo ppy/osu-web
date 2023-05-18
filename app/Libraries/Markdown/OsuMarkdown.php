@@ -208,7 +208,7 @@ class OsuMarkdown
                 $this->osuExtensionConfig['block_name'],
                 $this->osuMarkdownConfig['block_modifiers'],
             );
-            $converted = $converter->convertToHtml($this->document)->getContent();
+            $converted = $converter->convert($this->document)->getContent();
             $processor = $osuExtension->processor;
 
             if ($this->osuExtensionConfig['title_from_document']) {
@@ -257,7 +257,7 @@ class OsuMarkdown
     public function toIndexable(): string
     {
         return $this->memoize(__FUNCTION__, function () {
-            return $this->getIndexableConverter()->convertToHtml($this->document)->getContent();
+            return $this->getIndexableConverter()->convert($this->document)->getContent();
         });
     }
 

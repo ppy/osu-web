@@ -68,8 +68,8 @@ return [
     ],
 
     'oauth' => [
-        'authorized_clients' => 'client ที่ได้รับการยืนยัน',
-        'own_clients' => 'client ของตนเอง',
+        'authorized_clients' => 'ไคลเอนต์ที่ได้รับการยืนยัน',
+        'own_clients' => 'ไคลเอนต์ของตนเอง',
         'title' => 'OAuth',
     ],
 

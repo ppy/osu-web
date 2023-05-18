@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => 'Misslyckades att ladda data.',
     'missing_route' => 'Ogiltig url eller felaktig metod av begäran.',
     'no_restricted_access' => 'Du kan inte utföra denna åtgärd medan ditt konto är begränsat.',
     'supporter_only' => 'Du måste vara en osu!supporter för att använda denna funktion.',

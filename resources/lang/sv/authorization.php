@@ -50,13 +50,11 @@ return [
             'resolved' => 'Du kan inte redigera ett inlägg i en löst diskussion.',
             'system_generated' => 'Automatiskt genererade inlägg kan inte redigeras.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Denna beatmap är låst för diskussion.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'Denna beatmap är låst för diskussion.',
+
         'metadata' => [
             'nominated' => 'Du kan inte ändra metadata för en nominerad beatmap. Kontakta en BN eller NAT-medlem om du tror att det är felaktigt inställt.',
         ],

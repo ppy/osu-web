@@ -20,6 +20,8 @@
 <meta name="keywords" content="osu, peppy, ouendan, elite, beat, agents, ds, windows, game, taiko, tatsujin, simulator, sim, xna, ddr, beatmania, osu!, osume">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<link rel="search" type="application/opensearchdescription+xml" title="osu! search" href="{{ config('app.url') }}/opensearch.xml">
+
 @if (isset($opengraph))
     <meta property="og:site_name" content="osu! » {{ page_title() }}">
     <meta property="og:type" content="website">
@@ -83,6 +85,7 @@
 <script>
     var currentLocale = {!! json_encode($currentLocale) !!};
     var fallbackLocale = {!! json_encode($fallbackLocale) !!};
+    var experimentalHost = {!! json_encode(config('osu.urls.experimental_host')) !!}
 </script>
 
 <script src="{{ unmix('js/runtime.js') }}" data-turbolinks-track="reload"></script>

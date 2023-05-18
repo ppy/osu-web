@@ -44,7 +44,10 @@
 
             @if (captcha_enabled())
                 <div class="login-box__row">
-                    <div class='js-captcha--container'></div>
+                    <div
+                        class="js-captcha--container"
+                        data-captcha-triggered="{{ captcha_login_triggered() ? '1' : '' }}"
+                    ></div>
                 </div>
                 @include('objects._captcha_script')
             @endif

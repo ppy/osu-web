@@ -34,6 +34,7 @@ return [
         'qualify' => '',
         'rank' => '',
         'remove_from_loved' => '',
+        'tags_edit' => '',
 
         'nsfw_toggle' => [
             'to_0' => '',

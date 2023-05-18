@@ -25,7 +25,7 @@ class UserAchievement extends Model
     public $incrementing = false;
     public $timestamps = false;
 
-    protected $dates = ['date'];
+    protected $casts = ['date' => 'datetime'];
     protected $primaryKey = ':composite';
     protected $primaryKeys = ['user_id', 'achievement_id'];
     protected $table = 'osu_user_achievements';

@@ -34,15 +34,16 @@ return [
     'blocks' => [
         'banner_text' => 'Du hast diesen Benutzer geblockt.',
         'comment_text' => 'Dieser Kommentar ist ausgeblendet.',
-        'blocked_count' => 'geblockte benutzer (:count)',
+        'blocked_count' => 'blockierte Benutzer (:count)',
         'hide_profile' => 'Profil verbergen',
         'hide_comment' => 'ausblenden',
+        'forum_post_text' => 'Dieser Beitrag wird ausgeblendet.',
         'not_blocked' => 'Dieser Benutzer ist nicht geblockt.',
         'show_profile' => 'Profil anzeigen',
         'show_comment' => 'anzeigen',
         'too_many' => 'Block-Limit erreicht.',
         'button' => [
-            'block' => 'Blocken',
+            'block' => 'Blockieren',
             'unblock' => 'Entblocken',
         ],
     ],
@@ -50,6 +51,22 @@ return [
     'card' => [
         'loading' => 'Lädt...',
         'send_message' => 'Nachricht senden',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => 'Passwort',
+            'password_confirmation' => 'Passwort bestätigen',
+            'submit' => 'Account erstellen',
+            'user_email' => 'E-Mail',
+            'user_email_confirmation' => 'E-Mail bestätigen',
+            'username' => 'Benutzername',
+
+            'tos_notice' => [
+                '_' => 'durch die Erstellung eines Accounts bist du mit den :link einverstanden',
+                'link' => 'Nutzungsbedingungen',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -66,9 +83,9 @@ return [
             'opening' => 'Es gibt eine Reihe von Gründen, die dazu führen können, dass Dein Konto deaktiviert wird:',
 
             'tos' => [
-                '_' => 'Du hast eine oder mehr von unseren :community_rules oder :tos gebrochen.',
-                'community_rules' => 'Communityregeln',
-                'tos' => 'Nutzungsbedinungen',
+                '_' => 'Du hast eine oder mehrere von unseren :community_rules oder :tos gebrochen.',
+                'community_rules' => 'Community-Regeln',
+                'tos' => 'Nutzungsbedingungen',
             ],
         ],
     ],
@@ -122,7 +139,7 @@ return [
         'placeholder' => 'Bitte stelle jegliche Infomationen zur Verfügung, die nützlich sein könnten.',
         'reason' => 'Grund',
         'thanks' => 'Danke für deine Meldung!',
-        'title' => 'Meldung :username?',
+        'title' => ':username melden?',
 
         'actions' => [
             'send' => 'Meldung abschicken',
@@ -141,7 +158,8 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Dein Account wurde restricted!',
-        'message' => 'Während du restricted bist, kannst du nicht mit anderen Spielern interagieren und deine Ranglistenscores sind nur für dich sichtbar. Dies passiert normalerweise durch einen automatischen Prozess und wird üblicherweise innerhalb von 24 Stunden aufgehoben. Wenn du Einspruch gegen deine Restriction erheben möchtest, wende dich bitte an <a href="mailto:accounts@ppy.sh">den Support</a>.',
+        'message' => 'Während einer Sperrung kannst du nicht mit anderen Spielern interagieren und deine Ranglistenscores sind nur für dich sichtbar. Dies passiert normalerweise durch einen automatischen Prozess und wird üblicherweise innerhalb von 24 Stunden aufgehoben. :link',
+        'message_link' => 'Siehe hier für weitere Informationen.',
     ],
     'show' => [
         'age' => ':age Jahre alt',
@@ -175,7 +193,7 @@ return [
                     'button' => 'Bild hochladen',
                     'dropzone' => 'Zum Hochladen hier ablegen',
                     'dropzone_info' => 'Du kannst das Bild auch hier ablegen, um es hochzuladen',
-                    'size_info' => 'Banner sollte 2400x620 groß sein',
+                    'size_info' => 'Banner sollte 2400x640 groß sein',
                     'too_large' => 'Datei ist zu groß.',
                     'unsupported_format' => 'Format wird nicht unterstützt.',
 
@@ -218,13 +236,13 @@ return [
                     'title' => 'Loved Beatmaps',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => 'Nominierte Ranked Beatmaps',
                 ],
                 'pending' => [
                     'title' => 'Ausstehende Beatmaps',
                 ],
                 'ranked' => [
-                    'title' => 'Ranked & Approved Beatmaps',
+                    'title' => 'Ranked Beatmaps',
                 ],
             ],
             'discussions' => [
@@ -250,11 +268,11 @@ return [
                 ],
                 'recent_plays' => [
                     'accuracy' => 'genauigkeit: :percentage',
-                    'title' => 'Neuliche Plays (24h)',
+                    'title' => 'Neuliche Spiele (24h)',
                 ],
                 'replays_watched_counts' => [
-                    'title' => 'Angeschaute Wiederholungen',
-                    'count_label' => 'Wiederholungen angeschaut',
+                    'title' => 'Angeschaute Replays',
+                    'count_label' => 'Replays angeschaut',
                 ],
             ],
             'kudosu' => [
@@ -360,16 +378,16 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Accountstatus',
-                'bad_standing' => "Der Account von <strong>:username</strong> ist zurzeit eingeschränkt :(",
+                'bad_standing' => "Der Account von :username ist zurzeit eingeschränkt :(",
                 'remaining_silence' => '<strong>:username</strong> kann in :duration wieder sprechen.',
 
                 'recent_infringements' => [
                     'title' => 'Neuliche Verstöße',
-                    'date' => 'datum',
-                    'action' => 'maßnahme',
-                    'length' => 'länge',
+                    'date' => 'Datum',
+                    'action' => 'Maßnahme',
+                    'length' => 'Dauer',
                     'length_permanent' => 'Permanent',
-                    'description' => 'beschreibung',
+                    'description' => 'Beschreibung',
                     'actor' => 'von :username',
 
                     'actions' => [
@@ -428,7 +446,7 @@ return [
             'play_count' => 'Anzahl Spiele',
             'play_time' => 'Gesamtspielzeit',
             'ranked_score' => 'Punktzahl auf Ranglisten',
-            'replays_watched_by_others' => 'Von anderen angeschaute Wiederholungen',
+            'replays_watched_by_others' => 'Von anderen angesehene Replays',
             'score_ranks' => 'Ränge durch Punkte',
             'total_hits' => 'Anzahl Treffer',
             'total_score' => 'Gesamtpunktzahl',
@@ -451,6 +469,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => 'Bitte registriere dich stattdessen über den Spiel-Client!',
+        'from_web' => 'Bitte melde dich über die osu!-Webseite an',
         'saved' => 'Benutzer erstellt',
     ],
     'verify' => [

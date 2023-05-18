@@ -6,21 +6,21 @@
 return [
     'availability' => [
         'disabled' => 'Šīs bītkartes lejupielāde šobrīd nav iespējama.',
-        'parts-removed' => '',
+        'parts-removed' => 'Daļas no šīs bītmapes ir noņemtas pēc autora vai trešās puses tiesību īpašnieka pieprasījuma.',
         'more-info' => 'Lai iegūtu papildu informāciju, noklikšķiniet šeit.',
-        'rule_violation' => '',
+        'rule_violation' => 'Daži šajā bītmapē ietvertie resursi ir izņemti pēc tam, kad tie tika novērtēti kā nepiemēroti izmantošanai osu!.',
     ],
 
     'cover' => [
-        'deleted' => '',
+        'deleted' => 'Izdzēstā bītmape',
     ],
 
     'download' => [
-        'limit_exceeded' => '',
+        'limit_exceeded' => 'Piebremzējiet, spēlējiet vairāk.',
     ],
 
     'featured_artist_badge' => [
-        'label' => '',
+        'label' => 'Attēlotais mākslinieks',
     ],
 
     'index' => [
@@ -29,93 +29,99 @@ return [
     ],
 
     'panel' => [
-        'empty' => '',
+        'empty' => 'nav bītmapju',
 
         'download' => [
-            'all' => '',
-            'video' => '',
-            'no_video' => '',
-            'direct' => '',
+            'all' => 'lejupielādēt',
+            'video' => 'lejupielādēt ar video',
+            'no_video' => 'lejupielādēt bez video',
+            'direct' => 'atvērt ar osu!direct',
         ],
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => '',
-        'incorrect_mode' => '',
-        'full_bn_required' => '',
-        'too_many' => '',
+        'hybrid_requires_modes' => 'Hibrīda bītmapei ir jāizvēlas vismaz viens spēles režīms, kuram veikt nomināciju.',
+        'incorrect_mode' => 'Jums nav atļaujas nominēt modam: :mode',
+        'full_bn_required' => 'Jums ir jābūt pilntiesīgam nominētājam, lai veiktu šo kvalifikācijas nomināciju.',
+        'too_many' => 'Nominācijas prasība jau ir izpildīta.',
 
         'dialog' => [
-            'confirmation' => '',
-            'header' => '',
-            'hybrid_warning' => '',
-            'which_modes' => '',
+            'confirmation' => 'Vai esat pārliecināts, ka vēlaties nominēt šo bītmapi?',
+            'header' => 'Nominēt Bītmapi',
+            'hybrid_warning' => 'piezīme: jūs varat nominēt tikai vienu reizi, tāpēc, lūdzu, pārliecinieties, ka nominējat visus plānotos spēles režīmus (modus)',
+            'which_modes' => 'Kādiem modiem nominēt?',
         ],
     ],
 
     'nsfw_badge' => [
-        'label' => '',
+        'label' => 'Nepiemērota satura',
     ],
 
     'show' => [
         'discussion' => 'Diskusija',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
-            'by_artist' => '',
-            'favourite' => '',
-            'favourite_login' => '',
+            'by_artist' => ':artist',
+            'favourite' => 'Favorizēt šo bītmapi',
+            'favourite_login' => 'Pierakstieties, lai favorizētu šo bītmapi',
             'logged-out' => 'Jums nepieciešams pierakstīties pirms lejupielādēt jebkuru bītkarti!',
             'mapped_by' => 'kartēja :mapper',
-            'unfavourite' => '',
+            'mapped_by_guest' => 'viesa grūtības līmenis: :mapper',
+            'unfavourite' => 'Noņemt favorizāciju šai bītmapei',
             'updated_timeago' => 'pēdējo reizi atjaonots :timeago',
 
             'download' => [
-                '_' => 'Lejuplādēt',
+                '_' => 'Lejupielādēt',
                 'direct' => '',
                 'no-video' => 'bez Video',
                 'video' => 'ar Video',
             ],
 
             'login_required' => [
-                'bottom' => '',
-                'top' => '',
+                'bottom' => 'lai piekļūtu vairāk funkcijām',
+                'top' => 'Pierakstīties',
             ],
         ],
 
         'details_date' => [
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'ranked' => '',
-            'submitted' => '',
-            'updated' => '',
+            'approved' => 'apstiprināja :timeago',
+            'loved' => 'loved :timeago',
+            'qualified' => 'kvalificēja :timeago',
+            'ranked' => 'ierindoja :timeago',
+            'submitted' => 'iesniedza :timeago',
+            'updated' => 'pēdējais atjauninājums :timeago',
         ],
 
         'favourites' => [
-            'limit_reached' => '',
+            'limit_reached' => 'Jums ir pārāk daudz favorizētu bītmapju! Pirms mēģināt vēlreiz, lūdzu, noņemiet dažas mapes no favorītiem.',
         ],
 
         'hype' => [
-            'action' => '',
+            'action' => 'Atbalstiet šo mapi, ja jums patika to spēlēt, palīdziet tai sasniegt <strong>Ierindota</strong> statusu.',
 
             'current' => [
-                '_' => '',
+                '_' => 'Pašlaik šī mape ir :status.',
 
                 'status' => [
-                    'pending' => '',
-                    'qualified' => '',
-                    'wip' => '',
+                    'pending' => 'procesā',
+                    'qualified' => 'kvalificēta',
+                    'wip' => 'izstrādes stadijā',
                 ],
             ],
 
             'disqualify' => [
-                '_' => '',
+                '_' => 'Ja atrodat problēmu ar šo bītmapi, lūdzu, diskvalificējiet to :link.',
             ],
 
             'report' => [
-                '_' => '',
-                'button' => '',
-                'link' => '',
+                '_' => 'Ja atrodat problēmu ar šo ritma karti, lūdzu, ziņojiet par to :link, lai brīdinātu komandu.',
+                'button' => 'Ziņot par problēmu',
+                'link' => 'šeit',
             ],
         ],
 
@@ -124,99 +130,99 @@ return [
             'genre' => 'Žanrs',
             'language' => 'Valoda',
             'no_scores' => 'Rezultāti joprojām tiek aprēķināti...',
-            'nominators' => '',
-            'nsfw' => '',
-            'offset' => '',
+            'nominators' => 'Nominētāji',
+            'nsfw' => 'Nepiemērots saturs',
+            'offset' => 'Tiešsaistes nobīde',
             'points-of-failure' => 'Izkrišanas punkti',
             'source' => 'Avots',
-            'storyboard' => '',
+            'storyboard' => 'Šī bītmape satur montāžu',
             'success-rate' => 'Izdošanās līmenis',
             'tags' => 'Birkas',
-            'video' => '',
+            'video' => 'Šī bītmape satur video',
         ],
 
         'nsfw_warning' => [
-            'details' => '',
-            'title' => '',
+            'details' => 'Šajā bītmapē ir atklāts, aizskarošs vai satraucošs saturs. Vai tomēr vēlaties to skatīt?',
+            'title' => 'Nepiemērots Saturs',
 
             'buttons' => [
-                'disable' => '',
-                'listing' => '',
-                'show' => '',
+                'disable' => 'Atspējot brīdinājumu',
+                'listing' => 'Bītmapju saraksts',
+                'show' => 'Rādīt',
             ],
         ],
 
         'scoreboard' => [
             'achieved' => 'sasniegts :when',
             'country' => 'Valsts rangi',
-            'error' => '',
+            'error' => 'Neizdevās ielādēt rangus',
             'friend' => 'Draugu rangi',
             'global' => 'Pasaules rangi',
-            'supporter-link' => '',
+            'supporter-link' => 'Klikšķiniet <a href=":link">šeit</a>, lai redzētu visas modernās funkcijas, ko saņemat!',
             'supporter-only' => 'Jums nepieciešams būt atbalstītājam, lai redzētu draugu un valsts rangus!',
             'title' => 'Rezultātu apkopojums',
 
             'headers' => [
                 'accuracy' => 'Precizitāte',
-                'combo' => '',
+                'combo' => 'Max Kombo',
                 'miss' => 'Netrāpījumi',
                 'mods' => 'Modifikācijas',
-                'pin' => '',
+                'pin' => 'Piespraust',
                 'player' => 'Spēlētājs',
                 'pp' => '',
                 'rank' => 'Rangs',
                 'score' => 'Rezultāts',
-                'score_total' => 'Kopējais punktu skaits',
-                'time' => '',
+                'score_total' => 'Kopējie Punkti',
+                'time' => 'Laiks',
             ],
 
             'no_scores' => [
-                'country' => 'Neviens no jūsu valsts vēl nav ieguvuši rezultātu šajā bītkartē!',
-                'friend' => 'Neviens no jūsu draugiem vēl nav ieguvuši rezultātu šajā bītkartē!',
-                'global' => 'Vēl neviena rezultāta. varbūt pamēģini kādu uztaisīt?',
-                'loading' => '',
-                'unranked' => 'Neranžēta bītkarte.',
+                'country' => 'Neviens no jūsu valsts vēl nav uzstādījis rezultātu šajā mapē!',
+                'friend' => 'Neviens no jūsu draugiem vēl nav uzstādījis rezultātu šajā mapē!',
+                'global' => 'Pagaidām nav rezultātu. Varbūt pamēģināt kādu uzstādīt?',
+                'loading' => 'Ielādē rezultātus...',
+                'unranked' => 'Neierindota bītmape.',
             ],
             'score' => [
                 'first' => 'Vadībā',
-                'own' => 'Tavs labākais',
+                'own' => 'Jūsu Labākais',
             ],
             'supporter_link' => [
-                '_' => '',
-                'here' => '',
+                '_' => 'Klikšķiniet :here, lai redzētu visas modernās funkcijas, ko saņemat!',
+                'here' => 'šeit',
             ],
         ],
 
         'stats' => [
-            'cs' => 'Apļu lielums',
-            'cs-mania' => 'Taustiņu skaits',
-            'drain' => 'HP notece',
-            'accuracy' => 'Precizināte',
-            'ar' => 'Tuvošanās ātrums',
-            'stars' => 'Grūtība zvaigznēs',
-            'total_length' => 'Garums',
+            'cs' => 'Apļu Lielums',
+            'cs-mania' => 'Taustiņu Skaits',
+            'drain' => 'HP Izsīkšana',
+            'accuracy' => 'Precizitāte',
+            'ar' => 'Pietuvināšanās Ātrums',
+            'stars' => 'Grūtība Zvaigznēs',
+            'total_length' => 'Garums (Izsīkšanas garums: :hit_length)',
             'bpm' => 'BPM',
-            'count_circles' => 'Apļu skaits',
-            'count_sliders' => 'Slīdņu skaits',
-            'offset' => '',
-            'user-rating' => 'Lietotāju vērtējums',
-            'rating-spread' => 'Vērtējumu izplatījums',
+            'count_circles' => 'Apļu Skaits',
+            'count_sliders' => 'Slīdņu Skaits',
+            'offset' => 'Tiešsaistes nobīde: :offset',
+            'user-rating' => 'Lietotāju Vērtējums',
+            'rating-spread' => 'Vērtējumu Diapazons',
             'nominations' => 'Nominācijas',
             'playcount' => 'Reizes spēlēts',
         ],
 
         'status' => [
-            'ranked' => '',
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'wip' => '',
-            'pending' => '',
-            'graveyard' => '',
+            'ranked' => 'Ierindota',
+            'approved' => 'Apstiprināta',
+            'loved' => 'Loved',
+            'qualified' => 'Kvalificēta',
+            'wip' => 'WIP',
+            'pending' => 'Procesā',
+            'graveyard' => 'Pamesta',
         ],
     ],
 
     'spotlight_badge' => [
-        'label' => '',
+        'label' => 'Uzmanības Centrā',
     ],
 ];

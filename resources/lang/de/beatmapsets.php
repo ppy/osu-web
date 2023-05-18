@@ -24,12 +24,12 @@ return [
     ],
 
     'index' => [
-        'title' => 'Beatmaps: Liste',
+        'title' => 'Beatmap-Auflistung',
         'guest_title' => 'Beatmaps',
     ],
 
     'panel' => [
-        'empty' => 'keine beatmaps',
+        'empty' => 'keine Beatmaps',
 
         'download' => [
             'all' => 'herunterladen',
@@ -40,16 +40,16 @@ return [
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => 'Für ein Hybrid-Beatmapset musst du mindestens einen Spielmodus auswählen, für den du nominieren möchtest.',
-        'incorrect_mode' => 'Du hast keine Berechtigung, für diesen Modus zu nominieren: :mode',
-        'full_bn_required' => 'Du musst ein vollwertiger Nominator sein, um diese qualifizierende Nominierung durchzuführen.',
+        'hybrid_requires_modes' => 'Für ein Hybrid-Beatmapset musst du mindestens einen Spielmodus auswählen, den du nominieren möchtest.',
+        'incorrect_mode' => 'Du hast keine Berechtigung diesen Modus zu nominieren: :mode',
+        'full_bn_required' => 'Du musst ein vollständiger Nominator sein, um diese qualifizierende Nominierung durchzuführen.',
         'too_many' => 'Nominierungsvoraussetzung bereits erfüllt.',
 
         'dialog' => [
             'confirmation' => 'Bist du sicher, dass du diese Beatmap nominieren möchtest?',
             'header' => 'Beatmap nominieren',
-            'hybrid_warning' => 'hinweis: du kannst nur einmal nominieren, also stelle bitte sicher, dass du für alle spielmodi nominierst, die du beabsichtigst',
-            'which_modes' => 'Für welche Modi nominieren?',
+            'hybrid_warning' => 'Hinweis: du kannst nur einmalig nominieren, also stelle bitte sicher, dass du für alle Spielmodi nominierst, die du beabsichtigst',
+            'which_modes' => 'Für welche Modi willst du nominieren?',
         ],
     ],
 
@@ -60,14 +60,20 @@ return [
     'show' => [
         'discussion' => 'Diskussion',
 
+        'deleted_banner' => [
+            'title' => 'Diese Beatmap wurde gelöscht.',
+            'message' => '(nur Moderatoren können dies sehen)',
+        ],
+
         'details' => [
             'by_artist' => 'von :artist',
-            'favourite' => 'Dieses Beatmapset zu deinen Favoriten hinzufügen',
+            'favourite' => 'Diese Beatmap zu deinen Favoriten hinzufügen',
             'favourite_login' => 'Melde dich an, um diese Beatmap zu favorisieren',
-            'logged-out' => 'Zum Herunterladen von Beatmaps muss man eingeloggt sein!',
+            'logged-out' => 'Du musst eingeloggt sein, bevor du Beatmaps herunterladen kannst!',
             'mapped_by' => 'erstellt von :mapper',
-            'unfavourite' => 'Dieses Beatmapset von deinen Favoriten entfernen',
-            'updated_timeago' => 'zuletzt aktualisiert :timeago',
+            'mapped_by_guest' => 'Guest-Difficulty von :mapper',
+            'unfavourite' => 'Diese Beatmap von deinen Favoriten entfernen',
+            'updated_timeago' => 'zuletzt aktualisiert vor :timeago',
 
             'download' => [
                 '_' => 'Herunterladen',
@@ -77,26 +83,26 @@ return [
             ],
 
             'login_required' => [
-                'bottom' => 'für mehr Features',
+                'bottom' => 'für Zugriff auf mehr Features',
                 'top' => 'Einloggen',
             ],
         ],
 
         'details_date' => [
-            'approved' => 'approved :timeago',
-            'loved' => 'loved :timeago',
-            'qualified' => 'qualifiziert :timeago',
-            'ranked' => 'ranked :timeago',
-            'submitted' => 'hochgeladen :timeago',
-            'updated' => 'zuletzt aktualisiert :timeago',
+            'approved' => 'vor :timeago approved',
+            'loved' => 'vor :timeago loved',
+            'qualified' => 'vor :timeago qualifiziert',
+            'ranked' => 'vor :timeago ranked',
+            'submitted' => 'vor :timeago hochgeladen',
+            'updated' => 'vor :timeago zuletzt aktualisiert',
         ],
 
         'favourites' => [
-            'limit_reached' => 'Du hast zu viele favorisierte Beatmaps! Bitte entferne welche, bevor du es nochmal versuchst.',
+            'limit_reached' => 'Du hast zu viele Beatmaps favorisiert! Bitte entferne welche, bevor du es nochmal versuchst.',
         ],
 
         'hype' => [
-            'action' => 'Wenn es dir Spaß gemacht hat, diese Map zu spielen, dann hype sie, um bei ihrem Fortschritt zum <strong>Ranked</strong>-Status zu helfen.',
+            'action' => 'Hat dir die Map Spaß gemacht? Hype sie, um bei ihrem Fortschritt zum <strong>Ranked</strong>-Status zu helfen.',
 
             'current' => [
                 '_' => 'Die Map ist zurzeit :status.',
@@ -104,16 +110,16 @@ return [
                 'status' => [
                     'pending' => 'ausstehend',
                     'qualified' => 'qualifiziert',
-                    'wip' => 'work-in-progress',
+                    'wip' => 'Work-in-Progress',
                 ],
             ],
 
             'disqualify' => [
-                '_' => 'Wenn du ein Problem mit dieser Beatmap findest, disqualifiziere diese bitte :link.',
+                '_' => 'Bitte disqualifizieren, falls du ein Problem in dieser Beatmap findest :link.',
             ],
 
             'report' => [
-                '_' => 'Wenn du ein Problem mit dieser Beatmap findest, melde es bitte :link, um das Team zu informieren.',
+                '_' => 'Wenn du ein Problem in dieser Beatmap findest, melde es bitte :link, um das Team zu informieren.',
                 'button' => 'Problem melden',
                 'link' => 'hier',
             ],
@@ -124,7 +130,7 @@ return [
             'genre' => 'Genre',
             'language' => 'Sprache',
             'no_scores' => 'Die Daten werden noch verarbeitet...',
-            'nominators' => '',
+            'nominators' => 'Nominatoren',
             'nsfw' => 'Expliziter Inhalt',
             'offset' => 'Online-Offset',
             'points-of-failure' => 'Stellen, an denen Spieler gescheitert sind',
@@ -148,17 +154,17 @@ return [
 
         'scoreboard' => [
             'achieved' => 'erreicht :when',
-            'country' => 'Landesrangliste',
+            'country' => 'Länder-Rangliste',
             'error' => 'Die Rangliste konnte nicht geladen werden',
-            'friend' => 'Freundesrangliste',
+            'friend' => 'Freundes-Rangliste',
             'global' => 'Globale Rangliste',
-            'supporter-link' => '<a href=":link">Hier</a> klicken, um alle tollen Features zu entdecken!',
-            'supporter-only' => 'Du musst Supporter sein, um Freundes- und Landesranglisten zu sehen!',
-            'title' => 'Ranglisten',
+            'supporter-link' => '<a href=":link">Hier</a> klicken, um all die tollen Features zu entdecken!',
+            'supporter-only' => 'Du musst osu!supporter sein, um Freundes-, Länder-, oder Mod-Ranglisten zu sehen!',
+            'title' => 'Punkte-Anzeige',
 
             'headers' => [
-                'accuracy' => 'Genauigkeit',
-                'combo' => 'Combo',
+                'accuracy' => 'Präzision',
+                'combo' => 'Maximale Combo',
                 'miss' => 'Miss',
                 'mods' => 'Mods',
                 'pin' => 'Anpinnen',
@@ -179,27 +185,27 @@ return [
             ],
             'score' => [
                 'first' => 'An der Spitze',
-                'own' => 'Dein bester Rang',
+                'own' => 'Deine Bestleistung',
             ],
             'supporter_link' => [
-                '_' => 'Klicke :here um alle schönen Features zu sehen, die du bekommst!',
+                '_' => 'Klicke :here, um all die tollen Features zu entdecken, die du bekommst!',
                 'here' => 'hier',
             ],
         ],
 
         'stats' => [
-            'cs' => 'Circle Size',
-            'cs-mania' => 'Tastenanzahl',
-            'drain' => 'HP Drain',
-            'accuracy' => 'Genauigkeit',
-            'ar' => 'Approach Rate',
-            'stars' => 'Star Difficulty',
-            'total_length' => 'Länge',
+            'cs' => 'Circle-Size',
+            'cs-mania' => 'Tasten-Anzahl',
+            'drain' => 'HP-Drain',
+            'accuracy' => 'Präzision',
+            'ar' => 'Approach-Rate',
+            'stars' => 'Star-Difficulty',
+            'total_length' => 'Länge (Drain length: :hit_length)',
             'bpm' => 'BPM',
             'count_circles' => 'Circle-Anzahl',
             'count_sliders' => 'Slider-Anzahl',
             'offset' => 'Online-Offset: :offset',
-            'user-rating' => 'Benutzerbewertungen',
+            'user-rating' => 'User-Bewertungen',
             'rating-spread' => 'Bewertungsverteilung',
             'nominations' => 'Nominierungen',
             'playcount' => 'Playcount',
@@ -212,7 +218,7 @@ return [
             'qualified' => 'Qualifiziert',
             'wip' => 'WIP',
             'pending' => 'Ausstehend',
-            'graveyard' => 'Friedhof',
+            'graveyard' => 'Graveyard',
         ],
     ],
 

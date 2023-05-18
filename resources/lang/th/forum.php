@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => 'ฟอรั่ม',
         'latest_post' => 'โพสต์ล่าสุด',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => 'ต้องการกู้คืนโพสต์จริงหรอ?',
         'edited' => 'แก้ไขล่าสุดโดย :user :when ถูกแก้ไขทั้งหมด :count ครั้ง',
         'posted_at' => 'โพสต์เมื่อ :when',
-        'posted_by' => 'โพสต์โดย :username',
+        'posted_by_in' => 'โพสต์โดย :username ใน :forum',
 
         'actions' => [
             'destroy' => 'ลบโพสต์',
@@ -98,7 +99,7 @@ return [
 
         'create' => [
             'close' => 'ปิด',
-            'preview' => 'Preview',
+            'preview' => 'ดูตัวอย่าง',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'เขียน',
@@ -120,26 +121,26 @@ return [
         ],
 
         'jump' => [
-            'enter' => 'click to enter specific post number',
+            'enter' => 'คลิกเพื่อป้อนหมายเลขโพสต์ที่ต้องการ',
             'first' => 'ไปที่โพสต์แรก',
             'last' => 'ไปที่โพสต์ล่าสุด',
-            'next' => 'skip next 10 posts',
-            'previous' => 'go back 10 posts',
+            'next' => 'ข้ามไป 10 โพสต์',
+            'previous' => 'ย้อนกลับไป 10 โพสต์',
         ],
 
         'logs' => [
-            '_' => '',
-            'button' => '',
+            '_' => 'บันทึกหัวข้อ',
+            'button' => 'เรียกดูบันทึกหัวข้อ',
 
             'columns' => [
-                'action' => '',
+                'action' => 'จัดการ',
                 'date' => 'วันที่',
                 'user' => 'ผู้ใช้',
             ],
 
             'data' => [
                 'add_tag' => 'เพิ่มแท็ก ":tag" แล้ว',
-                'announcement' => '',
+                'announcement' => 'ปักหมุดหัวข้อและทำเครื่องหมายเป็นประกาศ',
                 'edit_topic' => 'ถึง :title',
                 'fork' => 'จาก :topic',
                 'pin' => 'หัวข้อที่ปักหมุดไว้',
@@ -149,30 +150,30 @@ return [
                 'unpin' => 'หัวข้อที่ไม่ปักหมุดไว้',
             ],
 
-            'no_results' => '',
+            'no_results' => 'ไม่พบบันทึก...',
 
             'operations' => [
-                'delete_post' => '',
-                'delete_topic' => '',
-                'edit_topic' => '',
-                'edit_poll' => '',
-                'fork' => '',
-                'issue_tag' => '',
-                'lock' => '',
-                'merge' => '',
-                'move' => '',
-                'pin' => '',
-                'post_edited' => '',
-                'restore_post' => '',
-                'restore_topic' => '',
-                'split_destination' => '',
-                'split_source' => '',
-                'topic_type' => '',
-                'topic_type_changed' => '',
-                'unlock' => '',
-                'unpin' => '',
-                'user_lock' => '',
-                'user_unlock' => '',
+                'delete_post' => 'โพสต์ที่ถูกลบ',
+                'delete_topic' => 'หัวข้อที่ถูกลบ',
+                'edit_topic' => 'เปลี่ยนชื่อหัวข้อแล้ว',
+                'edit_poll' => 'แก้ไขโพลล์ของหัวข้อ',
+                'fork' => 'คัดลอกหัวข้อแล้ว',
+                'issue_tag' => 'แท็กที่มีปัญหาอยู่',
+                'lock' => 'หัวข้อที่ถูกล็อค',
+                'merge' => 'รวมโพสต์ในหัวข้อนี้แล้ว',
+                'move' => 'หัวข้อที่ย้าย',
+                'pin' => 'หัวข้อที่ปักหมุดไว้',
+                'post_edited' => 'แก้ไขโพสต์แล้ว',
+                'restore_post' => 'กู้คืนโพสต์แล้ว',
+                'restore_topic' => 'กู้คืนหัวข้อแล้ว',
+                'split_destination' => 'ย้ายโพสต์แยกแล้ว',
+                'split_source' => 'แยกโพสต์',
+                'topic_type' => 'กำหนดประเภทหัวข้อ',
+                'topic_type_changed' => 'เปลี่ยนประเภทหัวข้อแล้ว',
+                'unlock' => 'หัวข้อที่ปลดล็อค',
+                'unpin' => 'หัวข้อเลิกปักหมุดแล้ว',
+                'user_lock' => 'ล็อคหัวข้อของตัวเองแล้ว',
+                'user_unlock' => 'ปลดล็อคหัวข้อของตัวเองแล้ว',
             ],
         ],
 
@@ -211,44 +212,44 @@ return [
         'actions' => [
             'login_reply' => 'เข้าสู่ระบบเพื่อตอบกลับ',
             'reply' => 'แสดงหน้าต่างตอบกลับ',
-            'reply_with_quote' => 'Quote post for reply',
+            'reply_with_quote' => 'โพสต์อ้างอิงสำหรับการตอบกลับ',
             'search' => 'ค้นหา',
         ],
 
         'create' => [
-            'create_poll' => 'Poll Creation',
+            'create_poll' => 'การสร้างแบบสำรวจความคิดเห็น',
 
             'preview' => 'ตัวอย่างโพสต์',
 
             'create_poll_button' => [
-                'add' => 'Create a poll',
-                'remove' => 'Cancel creating a poll',
+                'add' => 'สร้างการสำรวจความคิดเห็น',
+                'remove' => 'ยกเลิกการสร้างแบบสำรวจความคิดเห็น',
             ],
 
             'poll' => [
                 'hide_results' => 'ซ่อนผลลัพท์ของโพลล์',
                 'hide_results_info' => 'จะแสดงหลังจากโพลล์สิ้นสุดเท่านั้น',
-                'length' => 'Run poll for',
-                'length_days_suffix' => 'days',
-                'length_info' => 'Leave blank for a never ending poll',
-                'max_options' => 'Options per user',
-                'max_options_info' => 'This is the number of options each user may select when voting.',
-                'options' => 'Options',
-                'options_info' => 'Place each options on a new line. You may enter up to 10 options.',
-                'title' => 'Question',
-                'vote_change' => 'Allow re-voting.',
-                'vote_change_info' => 'If enabled, users are able to change their vote.',
+                'length' => 'เรียกใช้แบบสำรวจสำหรับ',
+                'length_days_suffix' => 'วัน',
+                'length_info' => 'เว้นว่างไว้สำหรับโพลล์ที่ไม่มีวันสิ้นสุด',
+                'max_options' => 'ตัวเลือกต่อผู้ใช้',
+                'max_options_info' => 'นี่คือจำนวนตัวเลือกที่ผู้ใช้แต่ละคนอาจเลือกเมื่อลงคะแนน',
+                'options' => 'ตัวเลือก',
+                'options_info' => 'วางแต่ละตัวเลือกในบรรทัดใหม่ คุณสามารถป้อนได้สูงสุด 10 ตัวเลือก',
+                'title' => 'คำถาม',
+                'vote_change' => 'อนุญาตให้ลงคะแนนใหม่',
+                'vote_change_info' => 'หากเปิดใช้งาน ผู้ใช้จะสามารถเปลี่ยนการลงคะแนนของตนได้',
             ],
         ],
 
         'edit_title' => [
-            'start' => 'Edit title',
+            'start' => 'แก้ไขชื่อเรื่อง',
         ],
 
         'index' => [
             'feature_votes' => 'ลำดับความสำคัญ',
-            'replies' => 'replies',
-            'views' => 'views',
+            'replies' => 'ตอบกลับ',
+            'views' => 'ดู',
         ],
 
         'issue_tag_added' => [
@@ -294,7 +295,7 @@ return [
         ],
 
         'lock' => [
-            'is_locked' => 'This topic is locked and can not be replied to',
+            'is_locked' => 'หัวข้อนี้ถูกล็อกและไม่สามารถตอบกลับได้',
             'to_0' => 'ปลดล็อกหัวข้อ',
             'to_0_confirm' => 'จะปลดล็อกกระทู้หรือไม่',
             'to_0_done' => 'หัวข้อถูกปลดล็อกแล้ว',
@@ -304,7 +305,7 @@ return [
         ],
 
         'moderate_move' => [
-            'title' => 'Move to another forum',
+            'title' => 'ย้ายไปฟอรัมอื่น',
         ],
 
         'moderate_pin' => [
@@ -325,12 +326,12 @@ return [
         ],
 
         'show' => [
-            'deleted-posts' => 'Deleted Posts',
-            'total_posts' => 'Total Posts',
+            'deleted-posts' => 'โพสต์ที่ถูกลบ',
+            'total_posts' => 'โพสต์ทั้งหมด',
 
             'feature_vote' => [
-                'current' => 'Current Priority: +:count',
-                'do' => 'Promote this request',
+                'current' => 'ลำดับความสำคัญปัจจุบัน: +:count',
+                'do' => 'ส่งเสริมคำขอนี้',
 
                 'info' => [
                     '_' => 'นี่คือ :feature_request คำขอคุณสมบัติสามารถลงคะแนนได้โดย :supporters',
@@ -339,16 +340,16 @@ return [
                 ],
 
                 'user' => [
-                    'count' => '{0} no vote|{1} :count vote|[2,*] :count votes',
-                    'current' => 'You have :votes remaining.',
-                    'not_enough' => "You don't have any more votes remaining",
+                    'count' => '{0} ไม่โหวต|{1}  :count_delimited โหวต|[2,*] :count_delimited โหวต',
+                    'current' => 'คุณมี :votes ที่เหลืออยู่',
+                    'not_enough' => "คุณไม่มีคะแนนโหวตเหลืออยู่",
                 ],
             ],
 
             'poll' => [
                 'edit' => 'แก้ไขโพลล์',
                 'edit_warning' => 'ถ้าแก้ไขโพลล์แล้วผลโหวตจะหายนะ',
-                'vote' => 'Vote',
+                'vote' => 'โหวต',
 
                 'button' => [
                     'change_vote' => 'เปลี่ยนตัวเลือกโหวต',
@@ -358,10 +359,10 @@ return [
                 ],
 
                 'detail' => [
-                    'end_time' => 'Polling will end at :time',
-                    'ended' => 'Polling ended :time',
+                    'end_time' => 'การลงคะแนนจะสิ้นสุดลงที่ :time',
+                    'ended' => 'การสำรวจสิ้นสุดลง :time',
                     'results_hidden' => 'ผลลัพท์จะถูกแสดงหลังจากโพลล์สิ้นสุดลง',
-                    'total' => 'Total votes: :count',
+                    'total' => 'คะแนนโหวตทั้งหมด: :count',
                 ],
             ],
         ],

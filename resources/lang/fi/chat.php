@@ -8,6 +8,7 @@ return [
     'talking_in' => 'keskustellaan kanavalla :channel',
     'talking_with' => 'keskustelu :name:n kanssa',
     'title_compact' => 'viestit',
+    'unread_messages' => '',
 
     'cannot_send' => [
         'channel' => 'Et voi lähettää tälle kanavalle viestejä juuri nyt, koska',
@@ -35,6 +36,7 @@ return [
 
         'labels' => [
             'description' => '',
+            'message' => '',
             'name' => '',
             'users' => '',
         ],

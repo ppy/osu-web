@@ -24,7 +24,7 @@ return [
 
     'editor' => [
         'textarea_hint' => [
-            '_' => 'Tekan enter untuk mengirimkan :action Anda. Gunakan shift+enter untuk memulai baris baru.',
+            '_' => 'Tekan enter untuk mengirimkan :action. Gunakan shift+enter untuk memulai baris baru.',
             'edit' => 'simpan',
             'new' => 'komentar',
             'reply' => 'balas',
@@ -45,7 +45,7 @@ return [
     'placeholder' => [
         'edit' => 'Sunting komentar di sini',
         'new' => 'Ketik komentar baru di sini',
-        'reply' => 'Ketik balasan Anda di sini',
+        'reply' => 'Ketik balasanmu di sini',
     ],
 
     'show' => [

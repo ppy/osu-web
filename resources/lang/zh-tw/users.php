@@ -37,6 +37,7 @@ return [
         'blocked_count' => '被封鎖的使用者 (:count)',
         'hide_profile' => '隱藏用戶資料',
         'hide_comment' => '隱藏',
+        'forum_post_text' => '此文章已隱藏。',
         'not_blocked' => '這位使用者未被封鎖。',
         'show_profile' => '顯示用戶資料',
         'show_comment' => '顯示',
@@ -50,6 +51,22 @@ return [
     'card' => [
         'loading' => '載入中...',
         'send_message' => '傳送訊息',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => '密碼',
+            'password_confirmation' => '確認密碼',
+            'submit' => '註冊帳號',
+            'user_email' => '電子郵件',
+            'user_email_confirmation' => '再次輸入電子郵件地址',
+            'username' => '使用者名稱',
+
+            'tos_notice' => [
+                '_' => '註冊帳號您必須同意 :link',
+                'link' => '服務條款',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -142,6 +159,7 @@ return [
     'restricted_banner' => [
         'title' => '您的帳號已受到限制!',
         'message' => '當您的帳號受到系統自動限制時，您將無法與其他玩家互動，且您的遊戲分數僅供自己查閱。系統將在24小時內解除限制。如果您需要申訴？請<a href="mailto:accounts@ppy.sh">聯繫支援服務</a>.',
+        'message_link' => '點擊此頁了解更多',
     ],
     'show' => [
         'age' => ':age 歲',
@@ -451,6 +469,8 @@ return [
         'offline' => '離線',
     ],
     'store' => [
+        'from_client' => '請透過遊戲客戶端註冊!',
+        'from_web' => '',
         'saved' => '帳號已註冊',
     ],
     'verify' => [

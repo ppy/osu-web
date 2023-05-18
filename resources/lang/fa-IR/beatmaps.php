@@ -6,56 +6,56 @@
 return [
     'discussion-votes' => [
         'update' => [
-            'error' => '',
+            'error' => 'شکست در بروز کردن رای',
         ],
     ],
 
     'discussions' => [
-        'allow_kudosu' => '',
-        'beatmap_information' => '',
-        'delete' => '',
-        'deleted' => '',
-        'deny_kudosu' => '',
-        'edit' => '',
-        'edited' => '',
-        'guest' => '',
-        'kudosu_denied' => '',
-        'message_placeholder_deleted_beatmap' => '',
-        'message_placeholder_locked' => '',
-        'message_placeholder_silenced' => "",
-        'message_type_select' => '',
-        'reply_notice' => '',
-        'reply_placeholder' => '',
-        'require-login' => '',
-        'resolved' => '',
-        'restore' => '',
-        'show_deleted' => '',
-        'title' => '',
+        'allow_kudosu' => 'مجاز کردن kudosu',
+        'beatmap_information' => 'صفحه بیت مپ',
+        'delete' => 'حذف',
+        'deleted' => 'حذف شده توسط :editor در :delete_time.',
+        'deny_kudosu' => 'غیرمجاز کردن kudosu',
+        'edit' => 'ویرایش',
+        'edited' => 'آخرین بار ویرایش شده توسط :editor در :update_time.',
+        'guest' => 'درجه سختی میهمان توسط :user',
+        'kudosu_denied' => 'منع شده از دریافت kudosu.',
+        'message_placeholder_deleted_beatmap' => 'این درجه سختی پاک شده است و دیگر در مورد آن گفتگویی نمی شود.',
+        'message_placeholder_locked' => 'گفتگو در مورد این بیت مپ غیرفعال شده است.',
+        'message_placeholder_silenced' => "نمی توانید در حالتی که ساکت شده اید رای بدهید.",
+        'message_type_select' => 'انتخاب حالت نظر',
+        'reply_notice' => 'برای پاسخ اینتر بزنید.',
+        'reply_placeholder' => 'پاسخ خود را اینجا تایپ کنید',
+        'require-login' => 'برای پست کردن یا پاسخ دادن وارد شوید',
+        'resolved' => 'حل شده',
+        'restore' => 'بازگردانی',
+        'show_deleted' => 'نمایش پاک شده ها',
+        'title' => 'گفتگو ها',
 
         'collapse' => [
-            'all-collapse' => '',
-            'all-expand' => '',
+            'all-collapse' => 'جمع کردن همه',
+            'all-expand' => 'باز کردن همه',
         ],
 
         'empty' => [
-            'empty' => '',
-            'hidden' => '',
+            'empty' => 'هیچ گفتگویی نیست هنوز!',
+            'hidden' => 'هیچ گفتگویی با فیلتر انتخاب شده یافت نشد.',
         ],
 
         'lock' => [
             'button' => [
-                'lock' => '',
-                'unlock' => '',
+                'lock' => 'قفل کردن گفتگو',
+                'unlock' => 'باز کردن گفتگو',
             ],
 
             'prompt' => [
-                'lock' => '',
-                'unlock' => '',
+                'lock' => 'علت قفل کردن',
+                'unlock' => 'آیا مطمئنید که میخواهید گفتگو را باز کنید؟',
             ],
         ],
 
         'message_hint' => [
-            'in_general' => '',
+            'in_general' => 'این پست به قسمت گفتگوی کلی بیت مپ ها میرود. برای ماد کردن این درجه ساختی، پیام را با مهرزمان آغاز کنید (مثلا 00:12:345).',
             'in_timeline' => '',
         ],
 
@@ -67,19 +67,19 @@ return [
         ],
 
         'message_type' => [
-            'disqualify' => '',
-            'hype' => '',
-            'mapper_note' => '',
-            'nomination_reset' => '',
-            'praise' => '',
-            'problem' => '',
+            'disqualify' => 'رد صلاحیت',
+            'hype' => 'هایپ کردن!',
+            'mapper_note' => 'یادداشت',
+            'nomination_reset' => 'بازگردانی نامزدی',
+            'praise' => 'تمجید',
+            'problem' => 'مشکل',
             'problem_warning' => 'گزارش مشکل',
-            'review' => '',
-            'suggestion' => '',
+            'review' => 'بررسی',
+            'suggestion' => 'پیشنهاد',
         ],
 
         'mode' => [
-            'events' => '',
+            'events' => 'تاریخچه',
             'general' => '',
             'reviews' => '',
             'timeline' => '',
@@ -199,6 +199,7 @@ return [
 
         'rank_estimate' => [
             '_' => '',
+            'on' => '',
             'queue' => '',
             'soon' => '',
         ],

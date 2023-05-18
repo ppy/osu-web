@@ -50,13 +50,11 @@ return [
             'resolved' => 'Et voi muokata ratkaistun keskustelun viestiä.',
             'system_generated' => 'Automaattisesti luotua viestiä ei voi muokata.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Tämä beatmap on lukittu keskustelulta.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'Tämän rytmikartan keskustelu on lukittu.',
+
         'metadata' => [
             'nominated' => 'Et voi muuttaa ehdolle asetetun kartan metatietoja. Ota yhteyttä BN- tai NAT-jäseneen, jos luulet sen olevan virheellinen.',
         ],

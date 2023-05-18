@@ -50,12 +50,12 @@ return [
             ],
 
             'friend_ranking' => [
-                'title' => 'Clasificación entre Amigos',
+                'title' => 'Clasificación entre amigos',
                 'description' => "Vea cómo se compara con sus amigos en la tabla de clasificación de un mapa, tanto dentro del juego como en el sitio web.",
             ],
 
             'country_ranking' => [
-                'title' => 'Clasificación Nacional',
+                'title' => 'Clasificación nacional',
                 'description' => 'Conquiste su país antes de conquistar el mundo.',
             ],
 
