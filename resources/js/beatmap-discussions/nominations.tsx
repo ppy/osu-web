@@ -100,7 +100,7 @@ export class Nominations extends React.PureComponent<Props> {
   render() {
     return (
       <div className={bn}>
-        {this.renderChangeOwnerModal()}
+        {this.renderBeatmapsOwnerEditorModal()}
         {this.renderLoveBeatmapModal()}
         <div className={`${bn}__items ${bn}__items--messages`}>
           <div className={`${bn}__item`}>{this.renderStatusMessage()}</div>
@@ -130,7 +130,7 @@ export class Nominations extends React.PureComponent<Props> {
             <div className={`${bn}__item`}>{this.renderLoveButton()}</div>
             <div className={`${bn}__item`}>{this.renderRemoveFromLovedButton()}</div>
             <div className={`${bn}__item`}>{this.renderDeleteButton()}</div>
-            <div className={`${bn}__item`}>{this.renderChangeOwnerButton()}</div>
+            <div className={`${bn}__item`}>{this.renderBeatmapsOwnerEditorButton()}</div>
           </div>
         </div>
       </div>
@@ -248,12 +248,12 @@ export class Nominations extends React.PureComponent<Props> {
   };
 
   @action
-  private readonly handleChangeOwnerClick = () => {
+  private readonly handleToggleBeatmapsOwnerEditor = () => {
     this.changeOwnerModal = !this.changeOwnerModal;
   };
 
   @action
-  private readonly handleLoveBeatmapModal = () => {
+  private readonly handleToggleLoveBeatmapModal = () => {
     this.loveBeatmapModal = !this.loveBeatmapModal;
   };
 
@@ -301,28 +301,28 @@ export class Nominations extends React.PureComponent<Props> {
       }));
   };
 
-  private renderChangeOwnerButton() {
+  private renderBeatmapsOwnerEditorButton() {
     if (!this.props.beatmapset.current_user_attributes?.can_beatmap_update_owner) return null;
 
     return (
       <BigButton
         icon='fas fa-pen'
         props={{
-          onClick: this.handleChangeOwnerClick,
+          onClick: this.handleToggleBeatmapsOwnerEditor,
         }}
         text={trans('beatmap_discussions.owner_editor.button')}
       />
     );
   }
 
-  private renderChangeOwnerModal() {
+  private renderBeatmapsOwnerEditorModal() {
     if (!this.changeOwnerModal) return null;
 
     return (
       <Modal>
         <BeatmapsOwnerEditor
           beatmapset={this.props.beatmapset}
-          onClose={this.handleChangeOwnerClick}
+          onClose={this.handleToggleBeatmapsOwnerEditor}
           users={this.props.users}
         />
       </Modal>
@@ -517,7 +517,7 @@ export class Nominations extends React.PureComponent<Props> {
       <Modal>
         <LoveBeatmapModal
           beatmapset={this.props.beatmapset}
-          onClose={this.handleLoveBeatmapModal}
+          onClose={this.handleToggleLoveBeatmapModal}
         />
       </Modal>
     );
@@ -531,7 +531,7 @@ export class Nominations extends React.PureComponent<Props> {
         icon='fas fa-heart'
         modifiers='pink'
         props={{
-          onClick: this.handleLoveBeatmapModal,
+          onClick: this.handleToggleLoveBeatmapModal,
         }}
         text={trans('beatmaps.nominations.love')}
       />
