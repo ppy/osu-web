@@ -38,7 +38,7 @@ import CurrentDiscussions from './current-discussions';
 const bn = 'beatmap-discussion-nomination';
 const dateFormat = 'LL';
 const flashClass = 'js-flash-border--on';
-const hypeMessage = '.js-hype--explanation';
+export const hypeExplanationClass = 'js-hype--explanation';
 
 interface Props {
   beatmapset: BeatmapsetWithDiscussionsJson;
@@ -215,10 +215,11 @@ export class Nominations extends React.PureComponent<Props> {
 
     this.hypeFocusTimeout = window.setTimeout(() => {
       this.focusNewDiscussion(() => {
+        const selector = `.${hypeExplanationClass}`;
+        document.querySelector(selector)?.classList.add(flashClass);
         // flash border of hype description to emphasize input is required
-        $(hypeMessage).addClass(flashClass);
         this.hypeFocusTimeout = window.setTimeout(() => {
-          $(hypeMessage).removeClass(flashClass);
+          document.querySelector(selector)?.classList.remove(flashClass);
         }, 1000);
       });
     }, 0);
