@@ -13,7 +13,7 @@ import TimeWithTooltip from 'components/time-with-tooltip';
 import UserLink from 'components/user-link';
 import { BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
-import { BeatmapsetNominationsInterface } from 'interfaces/beatmapset-json';
+import { BeatmapsetNominationsInterface, BeatmapsetStatus } from 'interfaces/beatmapset-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
@@ -40,6 +40,7 @@ const bn = 'beatmap-discussion-nomination';
 const dateFormat = 'LL';
 const flashClass = 'js-flash-border--on';
 export const hypeExplanationClass = 'js-hype--explanation';
+const nominatorsVisibleBeatmapStatuses: Readonly<BeatmapsetStatus[]> = Object.freeze(['wip', 'pending', 'ranked', 'qualified']);
 
 interface Props {
   beatmapset: BeatmapsetWithDiscussionsJson;
@@ -555,7 +556,7 @@ export class Nominations extends React.PureComponent<Props> {
   }
 
   private renderNominatorsList() {
-    if (!['wip', 'pending', 'ranked', 'qualified'].includes(this.props.beatmapset.status)) return null;
+    if (!nominatorsVisibleBeatmapStatuses.includes(this.props.beatmapset.status)) return null;
 
     const nominators: UserJson[] = [];
     for (let i = this.props.events.length - 1; i >= 0; i--) {
