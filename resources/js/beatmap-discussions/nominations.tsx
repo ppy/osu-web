@@ -65,7 +65,7 @@ export class Nominations extends React.PureComponent<Props> {
   private hypeFocusTimeout: number | undefined;
   @observable private loveBeatmapModal = false;
 
-  private xhr: Partial<Record<XhrType, JQuery.jqXHR<BeatmapsetWithDiscussionsJson>>> = {};
+  @observable private readonly xhr: Partial<Record<XhrType, JQuery.jqXHR<BeatmapsetWithDiscussionsJson>>> = {};
 
   private get userCanDisqualify() {
     return core.currentUser != null && (core.currentUser.is_admin || core.currentUser.is_moderator || core.currentUser.is_full_bn);
@@ -134,6 +134,7 @@ export class Nominations extends React.PureComponent<Props> {
     );
   }
 
+  @action
   private readonly delete = () => {
     if (this.xhr.delete != null) return;
 
@@ -157,6 +158,7 @@ export class Nominations extends React.PureComponent<Props> {
       }));
   };
 
+  @action
   private readonly discussionLock = () =>{
     if (this.xhr.discussionLock != null) return;
 
@@ -180,6 +182,7 @@ export class Nominations extends React.PureComponent<Props> {
       }));
   };
 
+  @action
   private readonly discussionUnlock = () =>{
     if (this.xhr.discussionLock != null) return;
 
@@ -275,7 +278,10 @@ export class Nominations extends React.PureComponent<Props> {
     return { discussion, link, message, user };
   }
 
+  @action
   private readonly removeFromLoved = () => {
+    if (this.xhr.removeFromLoved != null) return;
+
     const reason = presence(prompt(trans('beatmaps.nominations.remove_from_loved_prompt')));
 
     if (reason == null) return;
