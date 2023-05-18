@@ -30,7 +30,6 @@ import { canModeratePosts, makeUrl } from 'utils/beatmapset-discussion-helper';
 import { nominationsCount } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
 import { joinComponents, trans, transExists } from 'utils/lang';
-import { hideLoadingOverlay, showImmediateLoadingOverlay } from 'utils/loading-overlay';
 import { pageChange } from 'utils/page-change';
 import { presence } from 'utils/string';
 import { wikiUrl } from 'utils/url';
@@ -157,8 +156,6 @@ export class Nominations extends React.PureComponent<Props> {
 
     if (!confirm(message)) return;
 
-    showImmediateLoadingOverlay();
-
     this.xhr.delete = $.ajax(
       route('beatmapsets.destroy', { beatmapset: this.props.beatmapset.id }),
       { method: 'DELETE' },
@@ -167,7 +164,6 @@ export class Nominations extends React.PureComponent<Props> {
       .fail(onError)
       .always(action(() => {
         this.xhr.delete = undefined;
-        hideLoadingOverlay();
       }));
   };
 
@@ -191,7 +187,6 @@ export class Nominations extends React.PureComponent<Props> {
       .fail(onError)
       .always(action(() => {
         this.xhr.discussionLock = undefined;
-        hideLoadingOverlay();
       }));
   };
 
@@ -200,8 +195,6 @@ export class Nominations extends React.PureComponent<Props> {
     if (this.xhr.discussionLock != null) return;
 
     if (!confirm(trans('beatmaps.discussions.lock.prompt.unlock'))) return;
-
-    showImmediateLoadingOverlay();
 
     this.xhr.discussionLock = $.ajax(
       route('beatmapsets.discussion-unlock', { beatmapset: this.props.beatmapset.id }),
@@ -215,7 +208,6 @@ export class Nominations extends React.PureComponent<Props> {
       .fail(onError)
       .always(action(() => {
         this.xhr.discussionLock = undefined;
-        hideLoadingOverlay();
       }));
   };
 
@@ -299,8 +291,6 @@ export class Nominations extends React.PureComponent<Props> {
 
     if (reason == null) return;
 
-    showImmediateLoadingOverlay();
-
     this.xhr.removeFromLoved = $.ajax(
       route('beatmapsets.remove-from-loved', { beatmapset: this.props.beatmapset.id }),
       { data: { reason }, method: 'DELETE' },
@@ -313,7 +303,6 @@ export class Nominations extends React.PureComponent<Props> {
       .fail(onError)
       .always(action(() => {
         this.xhr.removeFromLoved = undefined;
-        hideLoadingOverlay();
       }));
   };
 
@@ -352,6 +341,7 @@ export class Nominations extends React.PureComponent<Props> {
       <BigButton
         disabled={this.xhr.delete != null}
         icon='fas fa-trash'
+        isBusy={this.xhr.delete != null}
         modifiers='danger'
         props={{
           onClick: this.delete,
@@ -384,7 +374,14 @@ export class Nominations extends React.PureComponent<Props> {
         lockAction: 'lock',
       };
 
-    return <BigButton {...buttonProps} disabled={this.xhr.discussionLock != null} text={trans(`beatmaps.discussions.lock.button.${lockAction}`)} />;
+    return (
+      <BigButton
+        {...buttonProps}
+        disabled={this.xhr.discussionLock != null}
+        isBusy={this.xhr.discussionLock != null}
+        text={trans(`beatmaps.discussions.lock.button.${lockAction}`)}
+      />
+    );
   }
 
   private renderDiscussionLockMessage() {
@@ -603,6 +600,7 @@ export class Nominations extends React.PureComponent<Props> {
       <BigButton
         disabled={this.xhr.removeFromLoved != null}
         icon='fas fa-heart-broken'
+        isBusy={this.xhr.removeFromLoved != null}
         modifiers='pink'
         props={{
           onClick: this.removeFromLoved,
