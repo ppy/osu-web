@@ -371,7 +371,7 @@ export class Nominations extends React.PureComponent<Props> {
         lockAction: 'lock',
       };
 
-    return <BigButton {...buttonProps} disabled={this.xhr.discussionLock != null} text={trans(`beatmaps.nominations.${lockAction}`)} />;
+    return <BigButton {...buttonProps} disabled={this.xhr.discussionLock != null} text={trans(`beatmaps.discussions.lock.button.${lockAction}`)} />;
   }
 
   private renderDiscussionLockMessage() {
