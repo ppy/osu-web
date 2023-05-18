@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsOwnerEditor from 'beatmap-discussions/beatmaps-owner-editor';
-import LoveBeatmapModal from 'beatmap-discussions/love-beatmap-dialog';
+import LoveBeatmapDialog from 'beatmap-discussions/love-beatmap-dialog';
 import { Nominator } from 'beatmap-discussions/nominator';
 import PlainTextPreview from 'beatmap-discussions/plain-text-preview';
 import BigButton from 'components/big-button';
@@ -61,10 +61,9 @@ function discussionIdFromEvent(event: BeatmapsetEventJson) {
 
 @observer
 export class Nominations extends React.PureComponent<Props> {
-  @observable private changeOwnerModal = false;
   private hypeFocusTimeout: number | undefined;
-  @observable private loveBeatmapModal = false;
-
+  @observable private showBeatmapsOwnerEditor = false;
+  @observable private showLoveBeatmapDialog = false;
   @observable private readonly xhr: Partial<Record<XhrType, JQuery.jqXHR<BeatmapsetWithDiscussionsJson>>> = {};
 
   private get userCanDisqualify() {
@@ -97,8 +96,8 @@ export class Nominations extends React.PureComponent<Props> {
   render() {
     return (
       <div className={bn}>
-        {this.renderBeatmapsOwnerEditorModal()}
-        {this.renderLoveBeatmapModal()}
+        {this.renderBeatmapsOwnerEditor()}
+        {this.renderLoveBeatmapDialog()}
         <div className={`${bn}__items ${bn}__items--messages`}>
           <div className={`${bn}__item`}>{this.renderStatusMessage()}</div>
           <div className={`${bn}__item`}>{this.renderHypeBar()}</div>
@@ -249,12 +248,12 @@ export class Nominations extends React.PureComponent<Props> {
 
   @action
   private readonly handleToggleBeatmapsOwnerEditor = () => {
-    this.changeOwnerModal = !this.changeOwnerModal;
+    this.showBeatmapsOwnerEditor = !this.showBeatmapsOwnerEditor;
   };
 
   @action
-  private readonly handleToggleLoveBeatmapModal = () => {
-    this.loveBeatmapModal = !this.loveBeatmapModal;
+  private readonly handleToggleLoveBeatmapDialog = () => {
+    this.showLoveBeatmapDialog = !this.showLoveBeatmapDialog;
   };
 
   private parseEventData(event: BeatmapsetEventJson) {
@@ -304,6 +303,20 @@ export class Nominations extends React.PureComponent<Props> {
       }));
   };
 
+  private renderBeatmapsOwnerEditor() {
+    if (!this.showBeatmapsOwnerEditor) return null;
+
+    return (
+      <Modal>
+        <BeatmapsOwnerEditor
+          beatmapset={this.props.beatmapset}
+          onClose={this.handleToggleBeatmapsOwnerEditor}
+          users={this.props.users}
+        />
+      </Modal>
+    );
+  }
+
   private renderBeatmapsOwnerEditorButton() {
     if (!this.props.beatmapset.current_user_attributes?.can_beatmap_update_owner) return null;
 
@@ -315,20 +328,6 @@ export class Nominations extends React.PureComponent<Props> {
         }}
         text={trans('beatmap_discussions.owner_editor.button')}
       />
-    );
-  }
-
-  private renderBeatmapsOwnerEditorModal() {
-    if (!this.changeOwnerModal) return null;
-
-    return (
-      <Modal>
-        <BeatmapsOwnerEditor
-          beatmapset={this.props.beatmapset}
-          onClose={this.handleToggleBeatmapsOwnerEditor}
-          users={this.props.users}
-        />
-      </Modal>
     );
   }
 
@@ -498,14 +497,14 @@ export class Nominations extends React.PureComponent<Props> {
     );
   }
 
-  private renderLoveBeatmapModal() {
-    if (!this.loveBeatmapModal) return null;
+  private renderLoveBeatmapDialog() {
+    if (!this.showLoveBeatmapDialog) return null;
 
     return (
       <Modal>
-        <LoveBeatmapModal
+        <LoveBeatmapDialog
           beatmapset={this.props.beatmapset}
-          onClose={this.handleToggleLoveBeatmapModal}
+          onClose={this.handleToggleLoveBeatmapDialog}
         />
       </Modal>
     );
@@ -519,7 +518,7 @@ export class Nominations extends React.PureComponent<Props> {
         icon='fas fa-heart'
         modifiers='pink'
         props={{
-          onClick: this.handleToggleLoveBeatmapModal,
+          onClick: this.handleToggleLoveBeatmapDialog,
         }}
         text={trans('beatmaps.nominations.love')}
       />
