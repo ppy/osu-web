@@ -1,125 +1,203 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import { Observer } from 'mobx-react'
-import core from 'osu-core-singleton'
-import * as React from 'react'
-import { button, div, h2, span } from 'react-dom-factories'
-import { classWithModifiers, mergeModifiers } from 'utils/css'
-import { formatNumber } from 'utils/html'
-import { trans } from 'utils/lang'
-import Comment from './comment'
-import CommentEditor from './comment-editor'
-import CommentShowMore from './comment-show-more'
-import CommentsSort from './comments-sort'
-import DeletedCommentsCount from './deleted-comments-count'
-import { Spinner } from './spinner'
+import { CommentableMetaJson } from 'interfaces/comment-json';
+import { computed, makeObservable } from 'mobx';
+import { observer } from 'mobx-react';
+import { Comment as CommentModel } from 'models/comment';
+import core from 'osu-core-singleton';
+import * as React from 'react';
+import { classWithModifiers, mergeModifiers, Modifiers } from 'utils/css';
+import { formatNumber } from 'utils/html';
+import { trans } from 'utils/lang';
+import Comment from './comment';
+import CommentEditor from './comment-editor';
+import CommentShowMore from './comment-show-more';
+import CommentsSort from './comments-sort';
+import DeletedCommentsCount from './deleted-comments-count';
+import { Spinner } from './spinner';
 
-el = React.createElement
+const store = core.dataStore.commentStore;
+const uiState = core.dataStore.uiState;
 
-store = core.dataStore.commentStore
-uiState = core.dataStore.uiState
+interface Props {
+  commentableMeta: CommentableMetaJson;
+  modifiers?: Modifiers;
+}
 
-export class Comments extends React.PureComponent
-  render: =>
-    el Observer, null, () =>
-      # TODO: comments should be passed in as props?
-      comments = uiState.comments.topLevelCommentIds.map (id) -> store.comments.get(id)
-      pinnedComments = uiState.comments.pinnedCommentIds.map (id) -> store.comments.get(id)
+@observer
+export class Comments extends React.Component<Props> {
+  @computed
+  private get comments() {
+    const ret = [];
+    for (const id of uiState.comments.topLevelCommentIds) {
+      const comment = store.comments.get(id);
 
-      div className: classWithModifiers('comments', @props.modifiers), id: 'comments',
-        h2 className: 'comments__title',
-          trans('comments.title')
-          span className: 'comments__count', formatNumber(uiState.comments.total)
+      if (comment != null && !comment.pinned) {
+        ret.push(comment);
+      }
+    }
 
-        if pinnedComments.length > 0
-          div className: "comments__items comments__items--pinned",
-            @renderComments pinnedComments, true
+    return ret;
+  }
 
-        div className: 'comments__new',
-          el CommentEditor,
-            commentableMeta: @props.commentableMeta
-            focus: false
-            modifiers: @props.modifiers
+  @computed
+  private get pinnedComments() {
+    const ret = [];
+    for (const id of uiState.comments.pinnedCommentIds) {
+      const comment = store.comments.get(id);
 
-        div className: 'comments__items comments__items--toolbar',
-          el CommentsSort,
-            modifiers: @props.modifiers
-          div className: classWithModifiers('sort', @props.modifiers),
-            div className: 'sort__items',
-              @renderFollowToggle()
-              @renderShowDeletedToggle()
+      if (comment != null) {
+        ret.push(comment);
+      }
+    }
 
-        if comments.length > 0
-          div className: "comments__items #{if uiState.comments.loadingSort? then 'comments__items--loading' else ''}",
-            @renderComments comments, false
+    return ret;
+  }
 
-            el DeletedCommentsCount, { comments, modifiers: 'top' }
+  constructor(props: Props) {
+    super(props);
 
-            el CommentShowMore,
-              commentableMeta: @props.commentableMeta
-              comments: comments
-              modifiers: mergeModifiers 'top', @props.modifiers
-              sort: uiState.comments.currentSort
-              top: true
-              total: uiState.comments.topLevelCount
-        else
-          div
-            className: 'comments__items comments__items--empty'
-            trans('comments.empty')
+    makeObservable(this);
+  }
 
+  render() {
+    const comments = this.comments;
+    const pinnedComments = this.pinnedComments;
 
-  renderComment: (comment, pinned = false) =>
-    return null if comment.isDeleted && !core.userPreferences.get('comments_show_deleted')
+    return (
+      <div
+        className={classWithModifiers('comments', this.props.modifiers)}
+        id='comments'
+      >
+        <h2 className='comments__title'>
+          {trans('comments.title')}
+          <span className='comments__count'>{formatNumber(uiState.comments.total)}</span>
+        </h2>
 
-    el Comment,
-      key: comment.id
-      comment: comment
-      depth: 0
-      modifiers: @props.modifiers
-      expandReplies: if pinned then false else null
+        {pinnedComments.length > 0 &&
+          <div className='comments__items comments__items--pinned'>
+            {this.renderComments(pinnedComments, true)}
+          </div>
+        }
 
+        <div className='comments__new'>
+          <CommentEditor
+            commentableMeta={this.props.commentableMeta}
+            focus={false}
+            modifiers={this.props.modifiers}
+          />
+        </div>
 
-  renderComments: (comments, pinned) =>
-    @renderComment(comment, pinned) for comment in comments when comment.pinned == pinned
+        <div className='comments__items comments__items--toolbar'>
+          <CommentsSort modifiers={this.props.modifiers} />
+          <div className={classWithModifiers('sort', this.props.modifiers)}>
+            <div className='sort__items'>
+              {this.renderFollowToggle()}
+              {this.renderShowDeletedToggle()}
+            </div>
+          </div>
+        </div>
 
+        {comments.length > 0
+          ? (
+            <div className={classWithModifiers('comments__items', { loading: uiState.comments.loadingSort != null })}>
+              {this.renderComments(comments, false)}
 
-  renderShowDeletedToggle: =>
-    button
-      type: 'button'
-      className: 'sort__item sort__item--button'
-      onClick: @toggleShowDeleted
-      span className: 'sort__item-icon',
-        span className: if core.userPreferences.get('comments_show_deleted') then 'fas fa-check-square' else 'far fa-square'
-      trans('common.buttons.show_deleted')
+              <DeletedCommentsCount comments={comments} modifiers='top' />
 
+              <CommentShowMore
+                commentableMeta={this.props.commentableMeta}
+                comments={comments}
+                modifiers={mergeModifiers('top', this.props.modifiers)}
+                top
+                total={uiState.comments.topLevelCount}
+              />
+            </div>
+          ) : (
+            <div className='comments__items comments__items--empty'>
+              {pinnedComments.length === 0 ? trans('comments.empty') : trans('comments.empty_other')}
+            </div>
+          )}
+      </div>
+    );
+  }
 
-  renderFollowToggle: =>
-    if uiState.comments.userFollow
-      icon = 'fas fa-eye-slash'
-      label = trans('common.buttons.watch.to_0')
-    else
-      icon = 'fas fa-eye'
-      label = trans('common.buttons.watch.to_1')
+  private renderComment(comment: CommentModel, expandReplies?: boolean) {
+    if (comment.isDeleted && !core.userPreferences.get('comments_show_deleted')) {
+      return;
+    }
 
-    iconEl =
-      if @props.loadingFollow
-        el Spinner, modifiers: ['center-inline']
-      else
-        span className: icon
+    return (
+      <Comment
+        key={comment.id}
+        comment={comment}
+        depth={0}
+        expandReplies={expandReplies}
+        modifiers={this.props.modifiers}
+      />
+    );
+  }
 
-    button
-      type: 'button'
-      className: 'sort__item sort__item--button'
-      onClick: @toggleFollow
-      disabled: @props.loadingFollow
-      span className: 'sort__item-icon', iconEl
-      label
+  private renderComments(comments: CommentModel[], pinned: boolean) {
+    const expandReplies = pinned ? false : undefined;
 
+    return comments.map((comment) => this.renderComment(comment, expandReplies));
+  }
 
-  toggleShowDeleted: ->
-    core.userPreferences.set('comments_show_deleted', !core.userPreferences.get('comments_show_deleted'))
+  private renderFollowToggle() {
+    let icon: React.ReactNode;
+    let label: string;
 
+    if (uiState.comments.loadingFollow != null) {
+      icon = <Spinner modifiers='center-inline' />;
+    }
 
-  toggleFollow: ->
-    $.publish 'comments:toggle-follow'
+    if (uiState.comments.userFollow) {
+      icon ??= <span className='fas fa-eye-slash' />;
+      label = trans('common.buttons.watch.to_0');
+    } else {
+      icon ??= <span className='fas fa-eye' />;
+      label = trans('common.buttons.watch.to_1');
+    }
+
+    return (
+      <button
+        className='sort__item sort__item--button'
+        disabled={uiState.comments.loadingFollow != null}
+        onClick={this.toggleFollow}
+        type='button'
+      >
+        <span className='sort__item-icon'>{icon}</span>
+        {label}
+      </button>
+    );
+  }
+
+  private renderShowDeletedToggle() {
+    const iconClass = core.userPreferences.get('comments_show_deleted')
+      ? 'fas fa-check-square'
+      : 'far fa-square';
+
+    return (
+      <button
+        className='sort__item sort__item--button'
+        onClick={this.toggleShowDeleted}
+        type='button'
+      >
+        <span className='sort__item-icon'>
+          <span className={iconClass} />
+        </span>
+        {trans('common.buttons.show_deleted')}
+      </button>
+    );
+  }
+
+  private toggleFollow(this: void) {
+    $.publish('comments:toggle-follow');
+  }
+
+  private toggleShowDeleted(this: void) {
+    core.userPreferences.set('comments_show_deleted', !core.userPreferences.get('comments_show_deleted'));
+  }
+}

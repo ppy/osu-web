@@ -15,10 +15,6 @@ declare module 'components/back-to-top' {
   }
 }
 
-declare module 'components/comments' {
-  class Comments extends React.PureComponent<any> {}
-}
-
 declare module 'components/comments-manager' {
   interface Props {
     commentableId?: number;
