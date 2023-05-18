@@ -28,6 +28,7 @@ import * as React from 'react';
 import { onError } from 'utils/ajax';
 import { canModeratePosts, makeUrl } from 'utils/beatmapset-discussion-helper';
 import { nominationsCount } from 'utils/beatmapset-helper';
+import { classWithModifiers } from 'utils/css';
 import { joinComponents, trans, transExists } from 'utils/lang';
 import { hideLoadingOverlay, showImmediateLoadingOverlay } from 'utils/loading-overlay';
 import { pageChange } from 'utils/page-change';
@@ -65,10 +66,6 @@ export class Nominations extends React.PureComponent<Props> {
   @observable private loveBeatmapModal = false;
 
   private xhr: Partial<Record<XhrType, JQuery.jqXHR<BeatmapsetWithDiscussionsJson>>> = {};
-
-  private get isHybridMode() {
-    return Object.keys(this.props.beatmapset.nominations.required).length > 1;
-  }
 
   private get userCanDisqualify() {
     return core.currentUser != null && (core.currentUser.is_admin || core.currentUser.is_moderator || core.currentUser.is_full_bn);
@@ -445,11 +442,9 @@ export class Nominations extends React.PureComponent<Props> {
           <span className={`${bn}__title`}>{trans('beatmaps.hype.section_title')}</span>
           <span>{`${hypeRaw} / ${requiredHype}`}</span>
         </div>
-        <DiscreteBar
-          current={hype}
-          modifiers='beatmapset-hype'
-          total={requiredHype}
-        />
+        <div className={`${bn}__discrete-bar-group`}>
+          <DiscreteBar current={hype} total={requiredHype} />
+        </div>
       </div>
     );
   }
@@ -475,39 +470,26 @@ export class Nominations extends React.PureComponent<Props> {
     );
   }
 
-  // nominations = { 'current': { 'osu': 1, 'taiko': 0, ... }, 'required': { 'osu': 2, 'taiko': 2, ... }, ... };
   private renderLightsForNominations(nominations?: BeatmapsetNominationsInterface) {
     if (nominations == null) return null;
 
-    if (nominations.legacy_mode || !this.isHybridMode) {
-      let current: number;
-      let required: number;
+    const hybrid = Object.keys(this.props.beatmapset.nominations.required).length > 1;
 
-      if (nominations.legacy_mode) {
-        current = nominations.current;
-        required = nominations.required;
-      } else {
-        const mode = Object.keys(nominations.required)[0] as GameMode;
-        current = nominations.current[mode] ?? 0;
-        required = nominations.required[mode] ?? 0;
-      }
-
-      return <DiscreteBar current={current} modifiers='beatmapset-hype' total={required} />;
-    } else {
-      return (
-        <div className={`${bn}__discrete-bar-group`}>
-          {Object.entries(nominations.required).map(([ruleset, required]: [GameMode, number]) => (
-            <DiscreteBar
-              key={ruleset}
-              current={nominations.current[ruleset] ?? 0}
-              label={<i className={`fal fa-extra-mode-${ruleset}`} />}
-              modifiers='beatmapset-nomination-hybrid'
-              total={required}
-            />
-          ))}
-        </div>
-      );
-    }
+    return (
+      <div className={classWithModifiers(`${bn}__discrete-bar-group`, { hybrid })}>
+        {nominations.legacy_mode ? (
+          <DiscreteBar current={nominations.current} total={nominations.required} />
+        ) : Object.entries(nominations.required).map(([ruleset, required]: [GameMode, number]) => (
+          <DiscreteBar
+            key={ruleset}
+            current={nominations.current[ruleset] ?? 0}
+            label={hybrid ? <i className={`fal fa-extra-mode-${ruleset}`} /> : null}
+            modifiers={{ 'beatmapset-nomination-hybrid' : hybrid }}
+            total={required}
+          />
+        ))}
+      </div>
+    );
   }
 
   private renderLoveBeatmapModal() {
