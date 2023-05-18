@@ -547,10 +547,9 @@ export class Nominations extends React.PureComponent<Props> {
   }
 
   private renderNominationResetMessage() {
-    const showHype = this.props.beatmapset.can_be_hyped;
     const nominationReset = this.props.beatmapset.nominations.nomination_reset;
 
-    if (!showHype || this.isQualified || nominationReset == null) return null;
+    if (!this.props.beatmapset.can_be_hyped || this.isQualified || nominationReset == null) return null;
 
     return <div>{this.renderResetReason(nominationReset)}</div>;
   }
