@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapsOwnerEditor from 'beatmap-discussions/beatmaps-owner-editor';
-import LoveBeatmapModal from 'beatmap-discussions/love-beatmap-modal';
+import LoveBeatmapModal from 'beatmap-discussions/love-beatmap-dialog';
 import { Nominator } from 'beatmap-discussions/nominator';
 import PlainTextPreview from 'beatmap-discussions/plain-text-preview';
 import BigButton from 'components/big-button';
