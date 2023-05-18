@@ -66,6 +66,10 @@ export class Nominations extends React.PureComponent<Props> {
   @observable private showLoveBeatmapDialog = false;
   @observable private readonly xhr: Partial<Record<XhrType, JQuery.jqXHR<BeatmapsetWithDiscussionsJson>>> = {};
 
+  private get isQualified() {
+    return this.props.beatmapset.status === 'qualified';
+  }
+
   private get userCanDisqualify() {
     return core.currentUser != null && (core.currentUser.is_admin || core.currentUser.is_moderator || core.currentUser.is_full_bn);
   }
@@ -394,17 +398,14 @@ export class Nominations extends React.PureComponent<Props> {
   private renderDisqualificationMessage() {
     const showHype = this.props.beatmapset.can_be_hyped;
     const disqualification = this.props.beatmapset.nominations.disqualification;
-    const mapIsQualified = this.props.beatmapset.status === 'qualified';
 
-    if (!showHype || mapIsQualified || disqualification == null) return null;
+    if (!showHype || this.isQualified || disqualification == null) return null;
 
     return <div>{this.renderResetReason(disqualification)}</div>;
   }
 
   private renderDisqualifyButton() {
-    const mapIsQualified = this.props.beatmapset.status === 'qualified';
-
-    if (!(mapIsQualified && this.userCanDisqualify)) return null;
+    if (!(this.isQualified && this.userCanDisqualify)) return null;
 
     return (
       <BigButton
@@ -529,9 +530,8 @@ export class Nominations extends React.PureComponent<Props> {
     const requiredHype = this.props.beatmapset.hype?.required ?? 0; // TODO: skip if null?
     const hypeRaw = this.props.currentDiscussions.totalHype;
     const mapCanBeNominated = this.props.beatmapset.status === 'pending' && hypeRaw >= requiredHype;
-    const mapIsQualified = this.props.beatmapset.status === 'qualified';
 
-    if (!(mapCanBeNominated || mapIsQualified)) return null;
+    if (!(mapCanBeNominated || this.isQualified)) return null;
 
     const nominations = this.props.beatmapset.nominations;
 
@@ -549,9 +549,8 @@ export class Nominations extends React.PureComponent<Props> {
   private renderNominationResetMessage() {
     const showHype = this.props.beatmapset.can_be_hyped;
     const nominationReset = this.props.beatmapset.nominations.nomination_reset;
-    const mapIsQualified = this.props.beatmapset.status === 'qualified';
 
-    if (!showHype || mapIsQualified || nominationReset == null) return null;
+    if (!showHype || this.isQualified || nominationReset == null) return null;
 
     return <div>{this.renderResetReason(nominationReset)}</div>;
   }
