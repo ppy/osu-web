@@ -322,7 +322,7 @@ export class Nominations extends React.PureComponent<Props> {
   }
 
   private renderBeatmapsOwnerEditorButton() {
-    if (!this.props.beatmapset.current_user_attributes?.can_beatmap_update_owner) return null;
+    if (!this.props.beatmapset.current_user_attributes.can_beatmap_update_owner) return null;
 
     return (
       <BigButton
@@ -336,7 +336,7 @@ export class Nominations extends React.PureComponent<Props> {
   }
 
   private renderDeleteButton() {
-    if (!this.props.beatmapset.current_user_attributes?.can_delete) return null;
+    if (!this.props.beatmapset.current_user_attributes.can_delete) return null;
 
     return (
       <BigButton
@@ -469,7 +469,7 @@ export class Nominations extends React.PureComponent<Props> {
         modifiers='warning'
         props={{
           onClick: this.focusHypeInput,
-          title: this.props.beatmapset.current_user_attributes?.can_hype_reason,
+          title: this.props.beatmapset.current_user_attributes.can_hype_reason,
         }}
         text={userAlreadyHyped ? trans('beatmaps.hype.button_done') : trans('beatmaps.hype.button')}
       />
@@ -512,7 +512,7 @@ export class Nominations extends React.PureComponent<Props> {
   }
 
   private renderLoveButton() {
-    if (!this.props.beatmapset.current_user_attributes?.can_love) return null;
+    if (!this.props.beatmapset.current_user_attributes.can_love) return null;
 
     return (
       <BigButton
@@ -588,7 +588,7 @@ export class Nominations extends React.PureComponent<Props> {
   }
 
   private renderRemoveFromLovedButton() {
-    if (!this.props.beatmapset.current_user_attributes?.can_remove_from_loved) return null;
+    if (!this.props.beatmapset.current_user_attributes.can_remove_from_loved) return null;
 
     return (
       <BigButton
