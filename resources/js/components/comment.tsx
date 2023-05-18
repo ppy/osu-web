@@ -42,7 +42,6 @@ interface Props {
   expandReplies?: boolean;
   linkParent: boolean;
   modifiers: Modifiers;
-  parent: CommentModel;
   showCommentableMeta: boolean;
   showToolbar: boolean;
 }
@@ -343,7 +342,6 @@ export default class Comment extends React.Component<Props> {
         depth={this.props.depth + 1}
         expandReplies={this.props.expandReplies}
         modifiers={this.props.modifiers}
-        parent={this.props.comment}
       />
     );
   };
