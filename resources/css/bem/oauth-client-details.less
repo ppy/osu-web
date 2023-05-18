@@ -36,6 +36,7 @@
   }
 
   &__group {
+    .fancy-scrollbar();
     display: inline-flex;
     flex-direction: column;
     margin: 10px 0;
@@ -50,8 +51,6 @@
     .reset-input();
     .default-border-radius();
 
-    flex: 1;
-    align-self: stretch;
     background-color: @osu-colour-b3;
     border: 2px solid transparent;
     padding: 5px;
@@ -69,6 +68,12 @@
 
     &--has-error {
       border-color: @osu-colour-red-1;
+    }
+
+    &--textarea {
+      min-height: 5em;
+      max-height: 50vh;
+      resize: none;
     }
   }
 

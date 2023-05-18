@@ -685,7 +685,7 @@ class UsersController extends Controller
             abort(404);
         }
 
-        $this->offset = get_int(Request::input('offset')) ?? 0;
+        $this->offset = max(0, get_int(Request::input('offset')) ?? 0);
 
         if ($this->offset >= $this->maxResults) {
             $this->perPage = 0;
