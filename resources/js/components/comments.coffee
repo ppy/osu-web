@@ -11,7 +11,7 @@ import { trans } from 'utils/lang'
 import { Comment } from './comment'
 import CommentEditor from './comment-editor'
 import CommentShowMore from './comment-show-more'
-import { CommentsSort } from './comments-sort'
+import CommentsSort from './comments-sort'
 import DeletedCommentsCount from './deleted-comments-count'
 import { Spinner } from './spinner'
 
