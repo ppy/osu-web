@@ -45,38 +45,8 @@ export default class CommentShowMore extends React.Component<Props> {
     this.xhr?.abort();
   }
 
-  render() {
-    if (this.props.comments.length >= this.props.total) {
-      return null;
-    }
-    if (!this.hasMoreComments) {
-      return null;
-    }
-
-    return this.props.top ?? false
-      ? (
-        <ShowMoreLink
-          callback={this.load}
-          hasMore
-          loading={this.loading}
-          modifiers='comments'
-          remaining={this.props.total - this.props.comments.length}
-        />
-      ) : (
-        <div className={classWithModifiers(bn, this.props.modifiers)}>
-          {this.loading ?
-            <Spinner />
-            :
-            <button className={`${bn}__link`} onClick={this.load}>
-              {this.props.label ?? trans('common.buttons.show_more')}
-            </button>
-          }
-        </div>
-      );
-  }
-
   @action
-  private readonly load = () => {
+  readonly load = () => {
     if (this.loading) return;
 
     this.loading = true;
@@ -112,4 +82,34 @@ export default class CommentShowMore extends React.Component<Props> {
       this.loading = false;
     }));
   };
+
+  render() {
+    if (this.props.comments.length >= this.props.total) {
+      return null;
+    }
+    if (!this.hasMoreComments) {
+      return null;
+    }
+
+    return this.props.top ?? false
+      ? (
+        <ShowMoreLink
+          callback={this.load}
+          hasMore
+          loading={this.loading}
+          modifiers='comments'
+          remaining={this.props.total - this.props.comments.length}
+        />
+      ) : (
+        <div className={classWithModifiers(bn, this.props.modifiers)}>
+          {this.loading ?
+            <Spinner />
+            :
+            <button className={`${bn}__link`} onClick={this.load}>
+              {this.props.label ?? trans('common.buttons.show_more')}
+            </button>
+          }
+        </div>
+      );
+  }
 }

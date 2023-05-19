@@ -1,7 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { Comment } from 'components/comment'
+import Comment from 'components/comment'
 import HeaderV4 from 'components/header-v4'
 import { route } from 'laroute'
 import { Observer } from 'mobx-react'
