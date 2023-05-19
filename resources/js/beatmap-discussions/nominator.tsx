@@ -4,7 +4,7 @@
 import BigButton from 'components/big-button';
 import Modal from 'components/modal';
 import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
-import BeatmapsetWithDiscussionsJson, { BeatmapsetWithDiscussionsLoggedInJson } from 'interfaces/beatmapset-with-discussions-json';
+import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
@@ -19,7 +19,7 @@ import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 
 interface Props {
-  beatmapset: BeatmapsetWithDiscussionsLoggedInJson;
+  beatmapset: BeatmapsetWithDiscussionsJson;
   currentHype: number;
   unresolvedIssues: number;
   users: Partial<Record<number, UserJson>>;

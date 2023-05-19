@@ -14,7 +14,7 @@ import UserLink from 'components/user-link';
 import { BeatmapsetDiscussionJsonForShow } from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetEventJson from 'interfaces/beatmapset-event-json';
 import { BeatmapsetNominationsInterface, BeatmapsetStatus } from 'interfaces/beatmapset-json';
-import BeatmapsetWithDiscussionsJson, { BeatmapsetWithDiscussionsLoggedInJson } from 'interfaces/beatmapset-with-discussions-json';
+import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import GameMode from 'interfaces/game-mode';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
@@ -60,10 +60,6 @@ function discussionIdFromEvent(event: BeatmapsetEventJson) {
 
 function formatDate(date: string | null) {
   return moment(date).format('LL');
-}
-
-function isLoggedInBeatmapsetJson(value: BeatmapsetWithDiscussionsJson): value is BeatmapsetWithDiscussionsLoggedInJson {
-  return value.current_user_attributes != null;
 }
 
 @observer
@@ -123,16 +119,14 @@ export class Nominations extends React.PureComponent<Props> {
             <div className={`${bn}__item`}>{this.renderFeedbackButton()}</div>
             <div className={`${bn}__item`}>{this.renderHypeButton()}</div>
             <div className={`${bn}__item`}>{this.renderDisqualifyButton()}</div>
-            {isLoggedInBeatmapsetJson(this.props.beatmapset) && (
-              <div className={`${bn}__item`}>
-                <Nominator
-                  beatmapset={this.props.beatmapset}
-                  currentHype={this.props.currentDiscussions.totalHype}
-                  unresolvedIssues={this.props.currentDiscussions.unresolvedIssues}
-                  users={this.props.users}
-                />
-              </div>
-            )}
+            <div className={`${bn}__item`}>
+              <Nominator
+                beatmapset={this.props.beatmapset}
+                currentHype={this.props.currentDiscussions.totalHype}
+                unresolvedIssues={this.props.currentDiscussions.unresolvedIssues}
+                users={this.props.users}
+              />
+            </div>
           </div>
           <div className={`${bn}__items-grouping`}>
             <div className={`${bn}__item`}>{this.renderDiscussionLockButton()}</div>
@@ -321,7 +315,7 @@ export class Nominations extends React.PureComponent<Props> {
   }
 
   private renderBeatmapsOwnerEditorButton() {
-    if (!this.props.beatmapset.current_user_attributes?.can_beatmap_update_owner) return null;
+    if (!this.props.beatmapset.current_user_attributes.can_beatmap_update_owner) return null;
 
     return (
       <BigButton
@@ -335,7 +329,7 @@ export class Nominations extends React.PureComponent<Props> {
   }
 
   private renderDeleteButton() {
-    if (!this.props.beatmapset.current_user_attributes?.can_delete) return null;
+    if (!this.props.beatmapset.current_user_attributes.can_delete) return null;
 
     return (
       <BigButton
@@ -471,12 +465,12 @@ export class Nominations extends React.PureComponent<Props> {
 
     return (
       <BigButton
-        disabled={!this.props.beatmapset.current_user_attributes?.can_hype}
+        disabled={!this.props.beatmapset.current_user_attributes.can_hype}
         icon='fas fa-bullhorn'
         modifiers='warning'
         props={{
           onClick: this.focusHypeInput,
-          title: this.props.beatmapset.current_user_attributes?.can_hype_reason,
+          title: this.props.beatmapset.current_user_attributes.can_hype_reason,
         }}
         text={userAlreadyHyped ? trans('beatmaps.hype.button_done') : trans('beatmaps.hype.button')}
       />
@@ -519,7 +513,7 @@ export class Nominations extends React.PureComponent<Props> {
   }
 
   private renderLoveButton() {
-    if (!this.props.beatmapset.current_user_attributes?.can_love) return null;
+    if (!this.props.beatmapset.current_user_attributes.can_love) return null;
 
     return (
       <BigButton
@@ -594,7 +588,7 @@ export class Nominations extends React.PureComponent<Props> {
   }
 
   private renderRemoveFromLovedButton() {
-    if (!this.props.beatmapset.current_user_attributes?.can_remove_from_loved) return null;
+    if (!this.props.beatmapset.current_user_attributes.can_remove_from_loved) return null;
 
     return (
       <BigButton
