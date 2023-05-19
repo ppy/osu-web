@@ -65,7 +65,7 @@ export default class Comment extends React.Component<Props> {
   @observable private editing = false;
   @observable private expandReplies: boolean;
   @observable private forceShow = false;
-  private readonly loadMoreRef = React.createRef<CommentShowMore>();
+  private readonly showMoreRef = React.createRef<CommentShowMore>();
   @observable private showNewReply = false;
   @observable private xhr: Partial<XhrCollection> = {};
 
@@ -205,7 +205,7 @@ export default class Comment extends React.Component<Props> {
   };
 
   private readonly onLoadReplies = () => {
-    this.loadMoreRef.current?.load();
+    this.showMoreRef.current?.load();
     this.onToggleReplies();
   };
 
@@ -582,7 +582,7 @@ export default class Comment extends React.Component<Props> {
             <DeletedCommentsCount comments={this.replies} />
 
             <CommentShowMore
-              ref={this.loadMoreRef}
+              ref={this.showMoreRef}
               comments={this.replies}
               label={this.replies.length === 0 ? trans('comments.load_replies') : undefined}
               modifiers={this.props.modifiers}
