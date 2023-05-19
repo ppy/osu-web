@@ -26,6 +26,7 @@ export class Comments extends React.PureComponent
       # TODO: comments should be passed in as props?
       comments = uiState.comments.topLevelCommentIds.map (id) -> store.comments.get(id)
       pinnedComments = uiState.comments.pinnedCommentIds.map (id) -> store.comments.get(id)
+      allPinned = comments.every (comment) => comment.pinned
 
       div className: classWithModifiers('comments', @props.modifiers), id: 'comments',
         h2 className: 'comments__title',
@@ -50,7 +51,7 @@ export class Comments extends React.PureComponent
               @renderFollowToggle()
               @renderShowDeletedToggle()
 
-        if comments.length > 0
+        if comments.length > 0 && !allPinned
           div className: "comments__items #{if uiState.comments.loadingSort? then 'comments__items--loading' else ''}",
             @renderComments comments, false
 
@@ -66,7 +67,10 @@ export class Comments extends React.PureComponent
         else
           div
             className: 'comments__items comments__items--empty'
-            trans('comments.empty')
+            if allPinned
+              trans('comments.only_pinned')
+            else
+              trans('comments.empty')
 
 
   renderComment: (comment, pinned = false) =>
