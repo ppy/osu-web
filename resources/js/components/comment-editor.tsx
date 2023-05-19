@@ -157,7 +157,7 @@ export default class CommentEditor extends React.Component<Props> {
             ? (
               <div className={`${bn}__footer-item`}>
                 <BigButton
-                  disabled={this.posting || !this.isValid}
+                  disabled={!this.isValid}
                   isBusy={this.posting}
                   modifiers='comment-editor'
                   props={{ onClick: this.post }}

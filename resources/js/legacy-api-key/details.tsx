@@ -91,7 +91,6 @@ export default class Details extends React.Component<Props> {
             text={trans(`legacy_api_key.view.${this.keyVisible ? 'hide' : 'show'}`)}
           />
           <BigButton
-            disabled={this.props.controller.isDeleting}
             icon='fas fa-trash'
             isBusy={this.props.controller.isDeleting}
             modifiers={['account-edit', 'danger', 'settings-oauth']}
