@@ -123,6 +123,14 @@ export class Comments extends React.Component<Props> {
     );
   }
 
+  private onToggleFollow(this: void) {
+    $.publish('comments:toggle-follow');
+  }
+
+  private onToggleShowDeleted(this: void) {
+    core.userPreferences.set('comments_show_deleted', !core.userPreferences.get('comments_show_deleted'));
+  }
+
   private renderComment(comment: CommentModel, expandReplies?: boolean) {
     if (comment.isDeleted && !core.userPreferences.get('comments_show_deleted')) {
       return;
@@ -165,7 +173,7 @@ export class Comments extends React.Component<Props> {
       <button
         className='sort__item sort__item--button'
         disabled={uiState.comments.loadingFollow != null}
-        onClick={this.toggleFollow}
+        onClick={this.onToggleFollow}
         type='button'
       >
         <span className='sort__item-icon'>{icon}</span>
@@ -182,7 +190,7 @@ export class Comments extends React.Component<Props> {
     return (
       <button
         className='sort__item sort__item--button'
-        onClick={this.toggleShowDeleted}
+        onClick={this.onToggleShowDeleted}
         type='button'
       >
         <span className='sort__item-icon'>
@@ -191,13 +199,5 @@ export class Comments extends React.Component<Props> {
         {trans('common.buttons.show_deleted')}
       </button>
     );
-  }
-
-  private toggleFollow(this: void) {
-    $.publish('comments:toggle-follow');
-  }
-
-  private toggleShowDeleted(this: void) {
-    core.userPreferences.set('comments_show_deleted', !core.userPreferences.get('comments_show_deleted'));
   }
 }
