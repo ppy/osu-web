@@ -12,11 +12,11 @@ use League\Fractal\Resource\ResourceInterface;
 
 class UserGroupEventTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'actor',
     ];
 
-    protected $defaultIncludes = [
+    protected array $defaultIncludes = [
         'actor',
     ];
 
