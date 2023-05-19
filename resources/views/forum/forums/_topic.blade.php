@@ -9,6 +9,7 @@
     class="
         forum-topic-entry
         {{ $topic->trashed() ? 'forum-topic-entry--deleted' : '' }}
+        {{ $topic->isOld() ? 'forum-topic-entry--old' : '' }}
         clickable-row
         js-forum-topic-entry
     "

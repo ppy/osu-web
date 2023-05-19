@@ -23,6 +23,10 @@
     margin-right: -@forum-item-overflow-desktop;
     padding-left: @forum-item-overflow-desktop;
   }
+  
+  &--old {
+    color: darkgray;
+  }
 
   &--deleted {
     opacity: 0.5;
@@ -176,6 +180,9 @@
     color: @osu-colour-c1;
     word-wrap: break-word;
 
+    .@{_top}--old & {
+      color: grey;
+    }
     .link-hover({
       color: @osu-colour-c1;
     });

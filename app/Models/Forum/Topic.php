@@ -482,6 +482,11 @@ class Topic extends Model implements AfterCommit
         });
     }
 
+    public function isOld()
+    {
+        return $this->topic_last_post_time < Carbon::now()->subMonths(config('osu.forum.old_months'));
+    }
+
     public function isLocked()
     {
         // not checking STATUS_LOCK because there's another
