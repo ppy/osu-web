@@ -26,7 +26,7 @@ interface Props {
 }
 
 @observer
-export class Comments extends React.Component<Props> {
+export default class Comments extends React.Component<Props> {
   @computed
   private get comments() {
     const ret = [];
