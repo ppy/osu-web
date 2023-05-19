@@ -47,8 +47,7 @@ class RequireScopes
         }
 
         if (!$this->requestHasScopedMiddleware(request())) {
-            // use a non-existent scope; only '*' should pass.
-            if (!$token->can('invalid')) {
+            if (!$token->can('*')) {
                 throw new MissingScopeException();
             }
         } else {

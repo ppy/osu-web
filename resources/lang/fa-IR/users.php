@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'کاربران مسدود شده (:count)',
         'hide_profile' => 'مخفی کردن پروفایل',
         'hide_comment' => 'پنهان کردن',
+        'forum_post_text' => '',
         'not_blocked' => 'آن کاربر مسدود نشده است.',
         'show_profile' => 'نمایش نمایه',
         'show_comment' => 'نمایش دادن',
@@ -50,6 +51,22 @@ return [
     'card' => [
         'loading' => 'در حال بارگیری...',
         'send_message' => 'ارسال پیام',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => '',
+            'password_confirmation' => '',
+            'submit' => '',
+            'user_email' => '',
+            'user_email_confirmation' => '',
+            'username' => '',
+
+            'tos_notice' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -142,6 +159,7 @@ return [
     'restricted_banner' => [
         'title' => 'حساب شما محدود شده است!',
         'message' => 'هنگامی که حساب شما محدود شده است، نمیتوانید با بازیکنان دیگر تعامل داشته باشید و امتیاز های شما فقط برای خودتان قابل مشاهده خواهد بود. این معمولا حاصل یک فرایند خودکار است و معمولا در عرض کمتر از 24 ساعت برداشته میشود. اگر درخواست تجدید نظر در محدودیت حسابتان دارید، <a href="mailto:accounts@ppy.sh"> با پشتیبانی تماس بگیرید </a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age سال',
@@ -451,6 +469,8 @@ return [
         'offline' => 'آفلاین',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => 'کاربر ایجاد شده',
     ],
     'verify' => [

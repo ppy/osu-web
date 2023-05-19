@@ -16,6 +16,8 @@ use App\Models\OAuth\Client;
 use App\Models\UserAccountHistory;
 use App\Models\UserNotificationOption;
 use App\Transformers\CurrentUserTransformer;
+use App\Transformers\LegacyApiKeyTransformer;
+use App\Transformers\LegacyIrcKeyTransformer;
 use Auth;
 use DB;
 use Mail;
@@ -112,6 +114,12 @@ class AccountController extends Controller
         $authorizedClients = json_collection(Client::forUser($user), 'OAuth\Client', 'user');
         $ownClients = json_collection($user->oauthClients()->where('revoked', false)->get(), 'OAuth\Client', ['redirect', 'secret']);
 
+        $legacyApiKey = $user->apiKeys()->available()->first();
+        $legacyApiKeyJson = $legacyApiKey === null ? null : json_item($legacyApiKey, new LegacyApiKeyTransformer());
+
+        $legacyIrcKey = $user->legacyIrcKey;
+        $legacyIrcKeyJson = $legacyIrcKey === null ? null : json_item($legacyIrcKey, new LegacyIrcKeyTransformer());
+
         $notificationOptions = $user->notificationOptions->keyBy('name');
 
         $githubUser = GithubUser::canAuthenticate() && $user->githubUser !== null
@@ -123,6 +131,8 @@ class AccountController extends Controller
             'blocks',
             'currentSessionId',
             'githubUser',
+            'legacyApiKeyJson',
+            'legacyIrcKeyJson',
             'notificationOptions',
             'ownClients',
             'sessions'
@@ -146,7 +156,7 @@ class AccountController extends Controller
         try {
             $user->fill($params)->saveOrExplode();
         } catch (ModelNotSavedException $e) {
-            return $this->errorResponse($user, $e);
+            return ModelNotSavedException::makeResponse($e, compact('user'));
         }
 
         return json_item($user, new CurrentUserTransformer());
@@ -171,7 +181,7 @@ class AccountController extends Controller
 
             return response([], 204);
         } else {
-            return $this->errorResponse($user);
+            return ModelNotSavedException::makeResponse(null, compact('user'));
         }
     }
 
@@ -246,7 +256,10 @@ class AccountController extends Controller
                 $user->profileCustomization()->fill($profileParams)->saveOrExplode();
             }
         } catch (ModelNotSavedException $e) {
-            return $this->errorResponse($user, $e);
+            return ModelNotSavedException::makeResponse($e, [
+                'user' => $user,
+                'user_profile_customization' => $user->profileCustomization(),
+            ]);
         }
 
         return json_item($user, new CurrentUserTransformer());
@@ -268,7 +281,7 @@ class AccountController extends Controller
 
             return response([], 204);
         } else {
-            return $this->errorResponse($user);
+            return ModelNotSavedException::makeResponse(null, compact('user'));
         }
     }
 
@@ -296,13 +309,5 @@ class AccountController extends Controller
     public function reissueCode()
     {
         return UserVerification::fromCurrentRequest()->reissue();
-    }
-
-    private function errorResponse($user, $exception = null)
-    {
-        return response([
-            'form_error' => ['user' => $user->validationErrors()->all()],
-            'error' => optional($exception)->getMessage(),
-        ], 422);
     }
 }

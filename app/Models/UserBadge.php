@@ -14,11 +14,12 @@ namespace App\Models;
  */
 class UserBadge extends Model
 {
-    protected $table = 'osu_badges';
-    protected $primaryKey = 'user_id';
-
-    protected $dates = ['awarded'];
+    public $incrementing = false;
     public $timestamps = false;
+
+    protected $casts = ['awarded' => 'datetime'];
+    protected $primaryKey = 'user_id';
+    protected $table = 'osu_badges';
 
     public function imageUrl()
     {

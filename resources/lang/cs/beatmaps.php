@@ -199,6 +199,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Odhaduje se, že tato mapa bude schválena :date, pokud nejsou nalezeny žádné problémy. Aktuálně je #:position ve :queue.',
+            'on' => 'dne :date',
             'queue' => 'frontě schválení',
             'soon' => 'brzy',
         ],

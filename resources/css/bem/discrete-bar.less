@@ -1,0 +1,33 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.discrete-bar {
+  display: flex;
+  flex: 1;
+  gap: 5px;
+  min-height: @bar-size;
+
+  &--beatmapset-nomination-hybrid {
+    min-height: 20px;
+    margin: 5px 0;
+    gap: var(--nomination-hybrid-bar-gap);
+  }
+
+  &--beatmapset-hype {
+    min-height: 5px;
+    margin: 5px 0;
+  }
+
+  &__item {
+    .center-content();
+    background: hsl(var(--hsl-b6));
+    color: hsl(var(--hsl-f1));
+    flex: 1;
+    border-radius: 10000px;
+
+    &--on {
+      background: hsl(var(--hsl-lime-3));
+      color: hsl(var(--hsl-b6));
+    }
+  }
+}

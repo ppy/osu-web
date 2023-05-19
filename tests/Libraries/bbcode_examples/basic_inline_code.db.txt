@@ -1,0 +1,1 @@
+test [c:1]inline code[/c:1] rendering.

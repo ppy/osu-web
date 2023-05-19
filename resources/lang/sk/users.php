@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'zablokovaný užívatelia (:count)',
         'hide_profile' => 'skryť profil',
         'hide_comment' => '',
+        'forum_post_text' => '',
         'not_blocked' => 'Tento užívateľ nie je zablokovaný.',
         'show_profile' => 'zobraziť profil',
         'show_comment' => '',
@@ -50,6 +51,22 @@ return [
     'card' => [
         'loading' => 'Načitávanie...',
         'send_message' => 'poslať správu',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => '',
+            'password_confirmation' => '',
+            'submit' => '',
+            'user_email' => '',
+            'user_email_confirmation' => '',
+            'username' => '',
+
+            'tos_notice' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -142,6 +159,7 @@ return [
     'restricted_banner' => [
         'title' => 'Tvoj účet bol zablokovaný!',
         'message' => 'Zatial čo si v zablokovanom režime, nebudeš môcť komunikovať s ostatnými hráčmi a tvoje skóre budu viditeľné iba pre teba. Toto je obvykle výsledkom automatického procesu, ktorý by sa mal vyriešit do 24 hodín. Pokiaľ si praješ odvolať tvoj blokovaný režim, prosím <a href="mailto:accounts@ppy.sh">kontaktuj podporu</a>.',
+        'message_link' => '',
     ],
     'show' => [
         'age' => ':age rokov',
@@ -451,6 +469,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => 'Vytvorený používateľom',
     ],
     'verify' => [

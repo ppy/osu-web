@@ -1,0 +1,67 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.beatmapset-hype {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+  font-size: @font-size--normal;
+
+  @media @desktop {
+    flex-direction: row;
+  }
+
+  &__box {
+    display: flex;
+    flex-direction: column;
+    padding: 15px 0;
+
+    @media @desktop {
+      flex: 1;
+      margin: 0 10px;
+    }
+
+    &--float {
+      display: grid;
+      grid-gap: 5px;
+      padding-left: 15px;
+      padding-right: 15px;
+      background-color: hsl(var(--hsl-b3));
+
+      @media @desktop {
+        flex: none;
+        width: @beatmapset-float-box-width;
+      }
+    }
+  }
+
+  &__button {
+    display: flex;
+  }
+
+  &__description-row {
+    &--action {
+      margin-bottom: 0;
+    }
+
+    &--current {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    &--status {
+      align-self: flex-start;
+      margin-bottom: 10px;
+    }
+  }
+
+  &__lights-header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__lights-title {
+    font-weight: bold;
+  }
+}

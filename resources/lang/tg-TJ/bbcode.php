@@ -6,7 +6,9 @@
 return [
     'bold' => '',
     'heading' => '',
+    'help' => '',
     'image' => '',
+    'imagemap' => '',
     'italic' => '',
     'link' => '',
     'list' => '',

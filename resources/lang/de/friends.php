@@ -4,12 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'title_compact' => 'freunde',
+    'title_compact' => 'Freunde',
     'too_many' => 'Freundelimit erreicht.',
 
     'buttons' => [
-        'add' => 'freund hinzufügen',
-        'disabled' => 'freunde',
-        'remove' => 'freund entfernen',
+        'add' => 'Freund hinzufügen',
+        'disabled' => 'Follower',
+        'remove' => 'Freund entfernen',
     ],
 ];

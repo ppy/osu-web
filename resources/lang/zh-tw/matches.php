@@ -6,13 +6,13 @@
 return [
     'match' => [
         'beatmap-deleted' => '刪除圖譜',
-        'difference' => '，領先 :difference 分',
         'failed' => '失敗',
         'header' => '多人遊戲',
         'in-progress' => '遊戲中...',
         'in_progress_spinner_label' => '房間正在進行中',
         'loading-events' => '正在載入事件...',
         'winner' => ':team 勝利',
+        'winner_by' => '',
 
         'events' => [
             'player-left' => ':user 離開了房間',

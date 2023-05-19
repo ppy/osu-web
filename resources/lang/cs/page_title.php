@@ -100,11 +100,15 @@ return [
         'scores_controller' => [
             '_' => 'výkon',
         ],
+        'seasons_controller' => [
+            '_' => 'hodnocení',
+        ],
         'tournaments_controller' => [
             '_' => 'turnaje',
         ],
         'users_controller' => [
             '_' => 'informace o hráči',
+            'create' => 'vytvořit účet',
             'disabled' => 'oznámení',
         ],
         'wiki_controller' => [

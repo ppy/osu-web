@@ -70,7 +70,7 @@
         <div class="nav2__col js-nav-button--item">
             <a
                 href="{{ osu_url('social.twitter') }}"
-                class="nav-button nav-button--social"
+                class="nav-button nav-button--twitter"
                 title="Twitter"
                 data-tooltip-position="bottom center"
             >

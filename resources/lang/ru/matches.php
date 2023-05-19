@@ -6,13 +6,13 @@
 return [
     'match' => [
         'beatmap-deleted' => 'удалённая карта',
-        'difference' => 'с разницей в :difference очков',
         'failed' => 'НЕ ПРОШЁЛ',
         'header' => 'Многопользовательская игра',
         'in-progress' => '(матч в процессе)',
         'in_progress_spinner_label' => 'матч в процессе',
         'loading-events' => 'Загрузка событий...',
         'winner' => ':team победила',
+        'winner_by' => '',
 
         'events' => [
             'player-left' => ':user покинул комнату',
@@ -40,9 +40,9 @@ return [
 
         'team-types' => [
             'head-to-head' => 'Каждый сам за себя',
-            'tag-coop' => 'Прохождение по секциям',
+            'tag-coop' => 'Совместное прохождение',
             'team-vs' => 'Противостояние команд',
-            'tag-team-vs' => 'Секционное противостояние команд',
+            'tag-team-vs' => 'Совместное прохождение по командам',
         ],
 
         'teams' => [

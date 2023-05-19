@@ -3,8 +3,11 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace App\Mail;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -23,12 +26,13 @@ class SupporterGift extends Mailable implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($donor, $giftee, $duration)
+    public function __construct(User $donor, User $giftee, int $duration, ?iterable $messages = null)
     {
         $this->params = [
             'donor' => $donor,
-            'giftee' => $giftee,
             'duration' => $duration,
+            'giftee' => $giftee,
+            'messages' => $messages,
         ];
     }
 

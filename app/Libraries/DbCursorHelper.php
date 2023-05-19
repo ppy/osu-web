@@ -75,8 +75,12 @@ class DbCursorHelper
         return $ret;
     }
 
-    public function next($items)
+    public function next($items, bool $hasMore = true)
     {
+        if (!$hasMore) {
+            return null;
+        }
+
         if (is_array($items)) {
             $lastItem = array_last($items);
         } elseif ($items instanceof Collection) {

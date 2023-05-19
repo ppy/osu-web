@@ -65,11 +65,11 @@ class BannerFulfillmentTest extends TestCase
         static $customClasses = BannerFulfillment::ALLOWED_TAGGED_NAMES;
         foreach ($customClasses as $customClass) {
             // only need the custom_class
-            $product = factory(Product::class)->create(['custom_class' => $customClass]);
-            $orderItem = factory(OrderItem::class)->create([
-                'product_id' => $product->product_id,
-                'order_id' => $this->order->order_id,
-                'cost' => $product->cost,
+            $product = Product::factory()->create(['custom_class' => $customClass]);
+            $orderItem = OrderItem::factory()->create([
+                'product_id' => $product,
+                'order_id' => $this->order,
+                'cost' => $product,
             ]);
         }
 
@@ -80,10 +80,10 @@ class BannerFulfillmentTest extends TestCase
 
     public function testInvalidBannerCustomClasss()
     {
-        $product = factory(Product::class)->create(['custom_class' => 'invalid-supporter']);
-        $orderItem = factory(OrderItem::class)->create([
-            'product_id' => $product->product_id,
-            'order_id' => $this->order->order_id,
+        $product = Product::factory()->create(['custom_class' => 'invalid-supporter']);
+        $orderItem = OrderItem::factory()->create([
+            'product_id' => $product,
+            'order_id' => $this->order,
             'cost' => $product->cost,
         ]);
 
@@ -100,21 +100,21 @@ class BannerFulfillmentTest extends TestCase
             'osu_subscriptionexpiry' => Carbon::now(),
         ]);
 
-        $this->order = factory(Order::class)->states('paid')->create([
-            'user_id' => $this->user->user_id,
+        $this->order = Order::factory()->paid()->create([
+            'user_id' => $this->user,
         ]);
 
         // crap test
-        $this->tournament = factory(Tournament::class)->create();
+        $this->tournament = Tournament::factory()->create();
         $this->product = Product::customClass('mwc7-supporter')->orderBy('product_id', 'desc')->first();
         $this->findOrSeed();
     }
 
     private function createOrderItem($product)
     {
-        return factory(OrderItem::class)->create([
-            'product_id' => $product->product_id,
-            'order_id' => $this->order->order_id,
+        return OrderItem::factory()->create([
+            'product_id' => $product,
+            'order_id' => $this->order,
             'cost' => $product->cost,
             'extra_data' => [
                 'tournament_id' => $this->tournament->tournament_id,

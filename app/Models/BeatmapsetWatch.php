@@ -20,7 +20,10 @@ use Carbon\Carbon;
  */
 class BeatmapsetWatch extends Model
 {
-    protected $dates = ['last_read', 'last_notified'];
+    protected $casts = [
+        'last_notified' => 'datetime',
+        'last_read' => 'datetime',
+    ];
 
     public static function check($beatmapset, $user)
     {

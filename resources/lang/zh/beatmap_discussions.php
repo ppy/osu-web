@@ -90,7 +90,7 @@ return [
 
     'system' => [
         'resolved' => [
-            'true' => ':user 已解决',
+            'true' => ':user 标记为已解决',
             'false' => ':user 要求重审',
         ],
     ],

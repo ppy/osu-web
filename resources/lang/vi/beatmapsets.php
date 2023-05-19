@@ -60,12 +60,18 @@ return [
     'show' => [
         'discussion' => 'Góc Thảo Luận',
 
+        'deleted_banner' => [
+            'title' => 'Beatmap này đã bị xoá.',
+            'message' => '(chỉ điều phối viên mới có thể thấy cái này)',
+        ],
+
         'details' => [
             'by_artist' => 'bởi :artist',
             'favourite' => 'Yêu thích beatmapset này',
             'favourite_login' => 'Đăng nhập để yêu thích beatmap này',
             'logged-out' => 'Bạn cần phải đăng nhập trước khi tải xuống beatmap!',
             'mapped_by' => 'được tạo bởi :mapper',
+            'mapped_by_guest' => 'độ khó khách bởi :mapper',
             'unfavourite' => 'Bỏ yêu thích beatmapset này',
             'updated_timeago' => 'cập nhật lần cuối vào :timeago',
 
@@ -124,9 +130,9 @@ return [
             'genre' => 'Thể Loại',
             'language' => 'Ngôn Ngữ',
             'no_scores' => 'Vẫn đang tính toán dữ liệu...',
-            'nominators' => '',
+            'nominators' => 'Người đề cử',
             'nsfw' => 'Nội dung không lành mạnh',
-            'offset' => '',
+            'offset' => 'Offset online',
             'points-of-failure' => 'Tỉ Lệ Thất Bại',
             'source' => 'Nguồn',
             'storyboard' => 'Beatmap này chứa storyboard',
@@ -198,7 +204,7 @@ return [
             'bpm' => 'BPM',
             'count_circles' => 'Số Nốt Bấm',
             'count_sliders' => 'Số Nốt Trượt',
-            'offset' => '',
+            'offset' => 'Offset online: :offset',
             'user-rating' => 'Đánh Giá',
             'rating-spread' => 'Phân Loại Đánh Giá',
             'nominations' => 'Đề cử',

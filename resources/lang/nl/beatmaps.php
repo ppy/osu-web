@@ -199,6 +199,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Deze map staat gepland om ranked te worden op :date als er geen problemen worden gevonden. Het is #:position in de :queue.',
+            'on' => 'op :date',
             'queue' => 'ranking wachtlijst',
             'soon' => 'binnenkort',
         ],
@@ -254,7 +255,7 @@ return [
     ],
     'general' => [
         'converts' => 'Tel geconverteerde beatmaps mee',
-        'featured_artists' => 'Aanbevolen artiesten',
+        'featured_artists' => 'Uitgelichte artiesten',
         'follows' => 'Geabonneerde mappers',
         'recommended' => 'Aanbevolen moeilijkheid',
         'spotlights' => 'Uitgelichte beatmaps',

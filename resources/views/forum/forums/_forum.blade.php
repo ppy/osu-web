@@ -2,8 +2,8 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-<li class="clickable-row forum-item t-forum-{{ $forum->categorySlug() }}">
-    <div class="forum-item-stripe u-forum--before-bg"><span class="u-relative fas fa-angle-right"></span></div>
+<li class="clickable-row forum-item">
+    <div class="forum-item-stripe"><span class="u-relative fas fa-angle-right"></span></div>
 
     <div class="forum-item__details">
         {!! link_to(
@@ -28,9 +28,6 @@
 
     <div class="forum-item__latest-post">
         @if (($lastTopic = $lastTopics[$forum->getKey()] ?? null) !== null)
-            <span class="forum-item__latest-post-label">
-                {{ osu_trans('forum.forums.latest_post') }}
-            </span>
             <a
                 class="u-ellipsis-overflow"
                 href="{{ post_url($lastTopic->topic_id, "unread", false) }}"
@@ -42,13 +39,13 @@
             </a>
 
             <div>
-                {!! osu_trans("forum.topic.latest_post", [
-                    "when" => timeago($lastTopic->topic_last_post_time),
-                    "user" => link_to_user(
+                {!! osu_trans('forum.topic.latest_post', [
+                    'when' => timeago($lastTopic->topic_last_post_time),
+                    'user' => forum_user_link(
                         $lastTopic->topic_last_poster_id,
                         $lastTopic->topic_last_poster_name,
-                        null,
-                        []
+                        $lastTopic->topic_last_poster_colour,
+                        $currentUserId,
                     ),
                 ]) !!}
             </div>

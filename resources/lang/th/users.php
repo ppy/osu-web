@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'บล็อกผู้ใช้งาน (:count)',
         'hide_profile' => 'ซ่อนโปรไฟล์',
         'hide_comment' => 'ซ่อน',
+        'forum_post_text' => 'โพสต์นี้ถูกซ่อนไว้',
         'not_blocked' => 'ผู้ใช้นี้ไม่ได้ถูกบล็อก',
         'show_profile' => 'แสดงโปรไฟล์',
         'show_comment' => 'แสดง',
@@ -50,6 +51,22 @@ return [
     'card' => [
         'loading' => 'กำลังโหลด....',
         'send_message' => 'ส่งข้อความ',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => 'รหัสผ่าน',
+            'password_confirmation' => 'ยืนยันรหัสผ่าน',
+            'submit' => 'สร้างบัญชี',
+            'user_email' => 'อีเมล',
+            'user_email_confirmation' => 'ยืนยันอีเมล',
+            'username' => 'ชื่อผู้ใช้',
+
+            'tos_notice' => [
+                '_' => 'โดยการสร้างบัญชีคุณได้ยอมรับ :link',
+                'link' => 'เงื่อนไขการให้บริการ',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -142,7 +159,8 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'บัญชีผู้ใช้ของคุณได้ถูกจำกัดการใช้งาน!',
-        'message' => 'เมื่อถูกจำกัดการใช้งาน, คุณจะไม่สามารถโต้ตอบกับผู้เล่นคนอื่น ๆ ได้ และคะแนนของคุณจะเห็นได้แค่คุณเท่านั้น นี่น่าจะเป็นผลของกระบวนการอัตโนมัติและจะถูกปลดภายใน 24 ชั่วโมง ถ้าคุณประสงค์จะอุทธรณ์การจำกัดการใช้งานแอคเคาท์ของคุณ โปรดติดต่อที่<a href="mailto:accounts@ppy.sh">ความช่วยเหลือผู้เล่น</a>.',
+        'message' => 'ในขณะที่คุณถูกจำกัดการใช้งาน คุณจะไม่สามารถโต้ตอบกับผู้เล่นคนอื่น ๆ ได้ และคะแนนของคุณจะถูกมองเห็นได้เฉพาะคุณเท่านั้น นี่มักจะเป็นผลของกระบวนการอัตโนมัติและมักจะถูกปลดภายใน 24 ชั่วโมง :link',
+        'message_link' => 'ตรวจสอบหน้านี้เพื่อเรียนรู้เพิ่มเติม',
     ],
     'show' => [
         'age' => ':age ปี',
@@ -164,8 +182,8 @@ return [
             'count' => ':count_delimited ความคิดเห็น|:count_delimited ความคิดเห็น',
         ],
         'cover' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'ซ่อนปก',
+            'to_1' => 'แสดงปก',
         ],
         'edit' => [
             'cover' => [
@@ -213,13 +231,13 @@ return [
                     'title' => 'สุสานบีทแมพ',
                 ],
                 'guest' => [
-                    'title' => '',
+                    'title' => 'ผู้ที่มีส่วนร่วมบีทแมป',
                 ],
                 'loved' => [
                     'title' => 'บีทแมพที่ Loved',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => 'เสนอชื่อเข้าชิงอันดับบีทแมป',
                 ],
                 'pending' => [
                     'title' => 'บีทแมพที่กำลังทำ',
@@ -297,8 +315,8 @@ return [
 
                     'forum_post' => [
                         'give' => 'ได้รับ :amount จาก :giver ให้ผู้โพสต์ :post',
-                        'reset' => 'Kudosu reset by :giver for the post :post',
-                        'revoke' => 'Denied kudosu by :giver for the post :post',
+                        'reset' => 'รีเซ็ต Kudosu โดย :giver สำหรับโพสต์ :post',
+                        'revoke' => 'ปฏิเสธ Kudosu โดย :giver สำหรับโพสต์ :post',
                     ],
                 ],
 
@@ -316,7 +334,7 @@ return [
                 'title' => 'เหรียญตรา',
             ],
             'playlists' => [
-                'title' => '',
+                'title' => 'เพลย์ลิสต์เกมส์',
             ],
             'posts' => [
                 'title' => 'โพสต์',
@@ -327,33 +345,33 @@ return [
                 'title' => 'ล่า​สุด',
             ],
             'realtime' => [
-                'title' => '',
+                'title' => 'เกมผู้เล่นหลายคน',
             ],
             'top_ranks' => [
                 'download_replay' => 'ดาวน์โหลดรีเพลย์',
                 'not_ranked' => 'บีทแมพแรงค์เท่านั้นที่ให้ pp',
-                'pp_weight' => 'weighted :percentage',
+                'pp_weight' => 'น้ำหนัก :percentage',
                 'view_details' => 'ดูรายละเอียดเพิ่มเติม',
                 'title' => 'อันดับ',
 
                 'best' => [
-                    'title' => 'Performance ที่ดีที่สุด',
+                    'title' => 'ประสิทธิภาพที่ดีที่สุด',
                 ],
                 'first' => [
-                    'title' => 'First Place Ranks',
+                    'title' => 'อันดับที่หนึ่ง',
                 ],
                 'pin' => [
-                    'to_0' => '',
-                    'to_0_done' => '',
+                    'to_0' => 'เลิกปักหมุด',
+                    'to_0_done' => 'คะแนนที่ไม่ได้ปักหมุด',
                     'to_1' => 'ปักหมุด',
-                    'to_1_done' => '',
+                    'to_1_done' => 'คะแนนที่ปักหมุดไว้',
                 ],
                 'pinned' => [
                     'title' => 'คะแนนที่ปักหมุดไว้',
                 ],
             ],
             'votes' => [
-                'given' => 'จำนวน Votes ที่ได้ให้ (เมื่อสามเดือนที่แล้ว)',
+                'given' => 'ผลโหวตที่ให้ (เมื่อสามเดือนที่แล้ว)',
                 'received' => 'ผลโหวตที่ได้รับ (เมื่อสามเดือนที่แล้ว)',
                 'title' => 'โหวต',
                 'title_longer' => 'โหวตล่าสุด',
@@ -371,12 +389,12 @@ return [
                     'length' => 'ระยะเวลา',
                     'length_permanent' => 'ถาวร',
                     'description' => 'คำอธิบาย',
-                    'actor' => 'โดย {username}',
+                    'actor' => 'โดย :username',
 
                     'actions' => [
                         'restriction' => 'แบน',
                         'silence' => 'ถูกใบ้',
-                        'tournament_ban' => '',
+                        'tournament_ban' => 'แบนการแข่งขัน',
                         'note' => 'หมายเหตุ',
                     ],
                 ],
@@ -400,9 +418,9 @@ return [
         ],
         'page' => [
             'button' => 'แก้ไขโปรไฟล์',
-            'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
-            'edit_big' => 'Edit me!',
-            'placeholder' => 'Type page content here',
+            'description' => '<strong>ฉัน!</strong> เป็นพื้นที่ส่วนบุคคลที่สามารถปรับแต่งได้ในหน้าโปรไฟล์ของคุณ',
+            'edit_big' => 'แก้ไขฉัน!',
+            'placeholder' => 'พิมพ์เนื้อหาของหน้าที่นี่',
 
             'restriction_info' => [
                 '_' => 'คุณจำเป็นจะต้อง :link เพื่อที่จะปลดล็อกสิ่งนี้',
@@ -418,7 +436,7 @@ return [
             'country_simple' => 'อันดับในประเทศ',
             'global' => 'อันดับทั่วโลกของ :mode',
             'global_simple' => 'อันดับทั่วโลก',
-            'highest' => '',
+            'highest' => 'อันดับสูงสุด: :rank เมื่อ :date',
         ],
         'stats' => [
             'hit_accuracy' => 'ความแม่นยำเฉลี่ย',
@@ -430,8 +448,8 @@ return [
             'play_time' => 'เวลาการเล่นทั้งหมด',
             'ranked_score' => 'คะแนนแรงค์',
             'replays_watched_by_others' => 'ดูรีเพลย์โดยผู้อื่น',
-            'score_ranks' => 'Score Ranks',
-            'total_hits' => 'Total Hits',
+            'score_ranks' => 'อันดับคะแนน',
+            'total_hits' => 'Hit รวม',
             'total_score' => 'คะแนนรวมทั้งหมด',
             // modding stats
             'graveyard_beatmapset_count' => 'สุสานบีทแมพ',
@@ -452,6 +470,8 @@ return [
         'offline' => 'ออฟไลน์',
     ],
     'store' => [
+        'from_client' => 'โปรดลงทะเบียนผ่านในเกมแทน!',
+        'from_web' => 'กรุณาลงทะเบียนโดยใช้เว็บไซต์ osu! ',
         'saved' => 'ผู้ใช้ถูกสร้างขึ้น',
     ],
     'verify' => [

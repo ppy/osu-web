@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute nem lehet negatív.',
     'required' => ':attribute kötelező.',
     'too_long' => ':attribute elérte a maximális hosszt - csak :limit karakter hosszú lehet.',
+    'url' => '',
     'wrong_confirmation' => 'A megerősítés nem egyezik.',
 
     'beatmapset_discussion' => [
@@ -106,6 +107,10 @@ return [
             'required' => 'Válassz egy opciót szavazásnál.',
             'too_many' => 'Az engedélyezettnél több opciót választottál.',
         ],
+    ],
+
+    'legacy_api_key' => [
+        'exists' => '',
     ],
 
     'oauth' => [

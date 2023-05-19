@@ -5,7 +5,7 @@
 
 return [
     'confirmation' => '确定？',
-    'confirmation_unsaved' => '未保存的更改将会丢失，是否确定？',
+    'confirmation_unsaved' => '未保存的更改将丢失。您确定吗？',
     'saved' => '已保存',
 
     'array_and' => [
@@ -71,7 +71,7 @@ return [
         'hour_short_unit' => '小时',
         'hours' => ':count_delimited 小时',
         'item' => ':count_delimited 个',
-        'minute_short_unit' => '分钟',
+        'minute_short_unit' => '分钟|分钟',
         'minutes' => ':count_delimited 分钟',
         'months' => ':count_delimited 个月',
         'notifications' => ':count_delimited 个通知',

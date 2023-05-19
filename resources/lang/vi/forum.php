@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => 'Diễn đàn',
         'latest_post' => 'Bài viết mới nhất',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => 'Bạn muốn phục hồi bài viết?',
         'edited' => 'Lần chỉnh sửa cuối cùng bởi :user :when, chỉnh sửa :count_delimited tổng thời gian.|Lần chỉnh sửa cuối cùng bởi :user :when, chỉnh sửa :count_delimited tổng thời gian.',
         'posted_at' => 'đã đăng vào :when',
-        'posted_by' => 'đã đăng bởi :username',
+        'posted_by_in' => 'được :username đăng lên :forum',
 
         'actions' => [
             'destroy' => 'Xóa bài viết',
@@ -157,22 +158,22 @@ return [
                 'edit_topic' => 'Tiêu đề chủ đề đã được thay đổi',
                 'edit_poll' => 'Cuộc thăm dò chủ đề đã được chỉnh sửa',
                 'fork' => 'Chủ đề đã được sao chép',
-                'issue_tag' => '',
+                'issue_tag' => 'Thẻ được phát hành',
                 'lock' => 'Chủ đề bị khóa',
-                'merge' => '',
-                'move' => '',
+                'merge' => 'Các bài viết đã được gộp vào chủ đề này',
+                'move' => 'Di chuyển chủ đề',
                 'pin' => 'Chủ đề được ghim',
                 'post_edited' => 'Bài  viết  đã  được  chỉnh sửa',
                 'restore_post' => 'Khôi phục bài viết',
                 'restore_topic' => 'Khôi phục chủ đề',
-                'split_destination' => '',
+                'split_destination' => 'Các bài viết tách rời đã được di chuyển ',
                 'split_source' => 'Tách bài đăng',
                 'topic_type' => 'Đặt loại chủ đề',
                 'topic_type_changed' => 'Đổi loại chủ đề',
-                'unlock' => '',
+                'unlock' => 'Mở khóa chủ đề',
                 'unpin' => 'Bỏ ghim chủ đề',
-                'user_lock' => '',
-                'user_unlock' => '',
+                'user_lock' => 'Khoá chủ đề của tôi',
+                'user_unlock' => 'Mở khoá chủ đề của tôi',
             ],
         ],
 

@@ -34,7 +34,7 @@ return [
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => '',
+                'incomplete_play' => 'Неабходна сыграць усе карты з плэйліста перад галасаваннем',
             ],
         ],
     ],
@@ -50,7 +50,7 @@ return [
             'beatmap' => 'Толькі .osu файлы дазволены для гэтага конкурсу.',
             'music' => 'Толькі .mp3 файлы дазволены для гэтага конкурсу.',
         ],
-        'wrong_dimensions' => '',
+        'wrong_dimensions' => 'Памеры заяўкі для гэтага конкурсу павінны быць :widthx:height',
         'too_big' => 'Памеры файлаў для гэтага конкурсу не могуць быць вышэй за :limit.',
     ],
     'beatmaps' => [

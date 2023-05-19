@@ -74,7 +74,7 @@ return [
             'praise' => '赞',
             'problem' => '问题',
             'problem_warning' => '报告问题',
-            'review' => '审核',
+            'review' => '审阅',
             'suggestion' => '建议',
         ],
 
@@ -199,6 +199,7 @@ return [
 
         'rank_estimate' => [
             '_' => '谱面正位于 :queue 中第 :position 位。如果没有问题，谱面将在 :date 上架 (Ranked)。',
+            'on' => '在 :date',
             'queue' => '谱面上架队列',
             'soon' => '不久后',
         ],
@@ -311,7 +312,7 @@ return [
         'polish' => '波兰语',
         'instrumental' => '器乐',
         'other' => '其他',
-        'unspecified' => '未指定',
+        'unspecified' => '尚未指定',
     ],
 
     'nsfw' => [

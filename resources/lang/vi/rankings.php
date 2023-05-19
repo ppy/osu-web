@@ -23,6 +23,14 @@ return [
         'multiplayer' => 'nhiều người chơi',
         'performance' => 'thành tích',
         'score' => 'số điểm',
+        'seasons' => 'mùa',
+    ],
+
+    'seasons' => [
+        'empty' => 'Hiện tại chưa có phòng nào ở mùa này.',
+        'ongoing' => 'Mùa đang diễn ra (sẽ có nhiều playlist được thêm vào).',
+        'room_count' => 'Số playlist',
+        'url' => 'Hiện thêm thông tin về mùa đó.',
     ],
 
     'spotlight' => [

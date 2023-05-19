@@ -4,8 +4,8 @@
 const { spawnSync } = require('child_process');
 const path = require('path');
 const Watchpack = require('watchpack');
-const generateLocalizations = require('./resources/assets/lib/cli/generate-localizations');
-const modNamesGenerator = require('./resources/assets/lib/cli/mod-names-generator');
+const generateLocalizations = require('./resources/js/cli/generate-localizations');
+const modNamesGenerator = require('./resources/js/cli/mod-names-generator');
 
 const spawnOptions = { stdio: 'inherit' };
 
@@ -25,7 +25,7 @@ const watches = [
   },
   {
     callback: () => {
-      spawnSync('php', ['artisan', 'ziggy:generate', 'resources/assets/build/ziggy.js'], spawnOptions);
+      spawnSync('php', ['artisan', 'ziggy:generate', 'resources/builds/ziggy.js'], spawnOptions);
     },
     path: routesFile,
     type: 'file',
@@ -35,7 +35,7 @@ const watches = [
       generateLocalizations();
       // touching the file on first build might cause karma's watchers to fire after tests start.
       if (resolved) {
-        spawnSync('touch', [path.resolve(__dirname, 'resources/assets/coffee/main.coffee')], spawnOptions);
+        spawnSync('touch', [path.resolve(__dirname, 'resources/js/main.coffee')], spawnOptions);
       }
     },
     path: langDir,

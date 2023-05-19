@@ -50,13 +50,11 @@ return [
             'resolved' => 'Ne možeš urediti objavu riješene rasprave.',
             'system_generated' => 'Automatski generirana objava se ne može uređivati.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Ova beatmapa je zaključena za raspravu.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => '',
+
         'metadata' => [
             'nominated' => 'Ne možeš promijeniti metapodatke nominirane mape. Obratite se BN ili NAT članu ako mislite da su pogrešno postavljeni.',
         ],

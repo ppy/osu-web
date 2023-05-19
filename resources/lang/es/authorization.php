@@ -50,13 +50,11 @@ return [
             'resolved' => 'No puedes editar una publicación de una discusión resuelta.',
             'system_generated' => 'Una publicación generada automáticamente no se puede editar.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Este mapa está bloqueado para discusión.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'La discusión de este mapa está bloqueada.',
+
         'metadata' => [
             'nominated' => 'No puedes cambiar los metadatos de un mapa nominado. Contacta con un miembro de los BN o del NAT si crees que están establecidos incorrectamente.',
         ],

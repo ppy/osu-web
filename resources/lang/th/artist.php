@@ -30,8 +30,8 @@ return [
     'songs' => [
         '_' => 'เพลง',
         'count' => ':count_delimited เพลง|:count_delimited เพลง',
-        'original' => 'osu! ออริจินัล',
-        'original_badge' => 'ออริจินัล',
+        'original' => 'osu! ต้นฉบับ',
+        'original_badge' => 'ต้นฉบับ',
     ],
 
     'tracklist' => [

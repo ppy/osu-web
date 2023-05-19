@@ -106,7 +106,13 @@ class NotificationsController extends Controller
      *
      * _empty response_
      *
-     * @bodyParam ids integer[] required `id` of notifications to be marked as read  Example: [1, 2, 3]
+     * @bodyParam identities[].category string Notification category. Example: beatmapset_state
+     * @bodyParam identities[].object_id string Id of the object triggered the notification. Example: 1
+     * @bodyParam identities[].object_type string Type of the object triggered the notification. Example: beatmapset
+     * @bodyParam notifications[].category string Notification category. Example: beatmapset_state
+     * @bodyParam notifications[].id integer Id of notifications to be marked as read. Example: 1
+     * @bodyParam notifications[].object_id string Id of the object triggered the notification. Example: 1
+     * @bodyParam notifications[].object_type string Type of the object triggered the notification. Example: beatmapset
      *
      * @response 204
      */

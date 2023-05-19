@@ -23,6 +23,14 @@ return [
         'multiplayer' => 'multijoueur',
         'performance' => 'performance',
         'score' => 'score',
+        'seasons' => 'saisons',
+    ],
+
+    'seasons' => [
+        'empty' => 'Il n\'y a pas encore de salons pour cette saison.',
+        'ongoing' => 'Cette saison est toujours en cours (il y aura plus de playlists ajoutées).',
+        'room_count' => 'Nombre de playlists',
+        'url' => 'Afficher plus d\'informations sur cette saison.',
     ],
 
     'spotlight' => [

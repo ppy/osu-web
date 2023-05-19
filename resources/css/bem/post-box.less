@@ -1,0 +1,24 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+// TODO: remove after finished migrating to bbcode editor
+.post-box-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  justify-content: center;
+
+  &--disabled {
+    pointer-events: none;
+  }
+
+  @media @desktop {
+    justify-content: flex-start;
+  }
+
+  &__help {
+    font-size: @font-size--title-small;
+    align-self: center;
+    margin: 0 10px;
+  }
+}

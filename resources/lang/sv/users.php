@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'blockerade användare (:count)',
         'hide_profile' => 'dölj profil',
         'hide_comment' => 'dölj',
+        'forum_post_text' => 'Denna kommentar är dold.',
         'not_blocked' => 'Användaren är inte blockerad.',
         'show_profile' => 'visa profil',
         'show_comment' => 'visa',
@@ -50,6 +51,22 @@ return [
     'card' => [
         'loading' => 'Laddar...',
         'send_message' => 'skicka meddelande',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => 'lösenord',
+            'password_confirmation' => 'lösenordsbekräftelse',
+            'submit' => 'skapa konto',
+            'user_email' => 'email',
+            'user_email_confirmation' => 'e-postbekräftelse',
+            'username' => 'användarnamn',
+
+            'tos_notice' => [
+                '_' => 'genom att skapa konto godkänner du :link',
+                'link' => 'användarvillkor',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -142,6 +159,7 @@ return [
     'restricted_banner' => [
         'title' => 'Ditt konto har blivit begränsat!',
         'message' => 'När du är begränsad, kommer du inte kunna interagera med andra spelare och dina poäng kommer endast vara synliga för dig. Detta är oftast ett resultat av en automatiserad process och kommer troligen lyftas inom 24 timmar. Om du vill överklaga din begränsning, var vänlig <a href="mailto:accounts@ppy.sh">kontakta support</a>.',
+        'message_link' => 'Kolla in den här sidan för att lära dig mer.',
     ],
     'show' => [
         'age' => ':age år gammal',
@@ -218,7 +236,7 @@ return [
                     'title' => 'Älskade beatmaps',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => 'Nominerade rankade beatmaps',
                 ],
                 'pending' => [
                     'title' => 'Väntande beatmaps',
@@ -417,7 +435,7 @@ return [
             'country_simple' => 'Nationell rankning',
             'global' => 'Global rank för :mode',
             'global_simple' => 'Global rankning',
-            'highest' => '',
+            'highest' => 'Högsta rank: :rank den :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Träffsäkerhet',
@@ -451,6 +469,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => 'vänligen registrera dig via spelklienten istället!',
+        'from_web' => 'var snäll och slutför registreringen med hjälp av osu! webbplatsen',
         'saved' => 'Användare skapad',
     ],
     'verify' => [

@@ -50,13 +50,11 @@ return [
             'resolved' => '',
             'system_generated' => '',
         ],
-
-        'store' => [
-            'beatmapset_locked' => '',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => '',
+
         'metadata' => [
             'nominated' => '',
         ],

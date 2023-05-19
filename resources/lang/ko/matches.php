@@ -6,13 +6,13 @@
 return [
     'match' => [
         'beatmap-deleted' => '삭제된 비트맵',
-        'difference' => '(점수 차: :difference)',
         'failed' => '실패',
         'header' => '멀티플레이 게임',
         'in-progress' => '(게임이 진행중입니다.)',
         'in_progress_spinner_label' => '게임이 진행중입니다',
         'loading-events' => '기록 불러오는 중...',
         'winner' => ':team 승리',
+        'winner_by' => '',
 
         'events' => [
             'player-left' => ':user님이 게임을 떠났습니다.',

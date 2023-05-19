@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => '',
         'latest_post' => 'Beidzamais Raksts',
 
         'index' => [
@@ -47,12 +48,12 @@ return [
         'confirm_restore' => 'Vai tiešām atjaunot rakstu?',
         'edited' => 'Beidzamo reizi rediģēts pēc :user :when, rediģējot :count reizes kopumā.',
         'posted_at' => 'publicēts :when',
-        'posted_by' => '',
+        'posted_by_in' => '',
 
         'actions' => [
             'destroy' => 'Izdzēst rakstu',
             'edit' => 'Rediģēt rakstu',
-            'report' => '',
+            'report' => 'Ziņot rakstu',
             'restore' => 'Atjaunot rakstu',
         ],
 
@@ -75,12 +76,12 @@ return [
     ],
 
     'topic' => [
-        'confirm_destroy' => '',
-        'confirm_restore' => '',
+        'confirm_destroy' => 'Vai tiešām dzēst tēmu?',
+        'confirm_restore' => 'Vai tiešām atjaunot tēmu?',
         'deleted' => 'izdzēstā tēma',
         'go_to_latest' => 'skatīt beidzamo rakstu',
-        'has_replied' => '',
-        'in_forum' => '',
+        'has_replied' => 'Jūs atbildējāt uz šo tēmu',
+        'in_forum' => 'iekš :forum',
         'latest_post' => ':when no :user',
         'latest_reply_by' => 'beidzamā atbilde no :user',
         'new_topic' => 'Jauna tēma',
@@ -88,72 +89,72 @@ return [
         'post_reply' => 'Publicēt',
         'reply_box_placeholder' => 'Rakstiet šeit, lai atbildētu',
         'reply_title_prefix' => 'Re',
-        'started_by' => '',
-        'started_by_verbose' => '',
+        'started_by' => 'autors: :user',
+        'started_by_verbose' => 'iesāka :user',
 
         'actions' => [
-            'destroy' => '',
-            'restore' => '',
+            'destroy' => 'Dzēst tēmu',
+            'restore' => 'Atjaunot tēmu',
         ],
 
         'create' => [
             'close' => 'Aizslēgts',
-            'preview' => '',
+            'preview' => 'Priekšskatījums',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
-            'preview_hide' => '',
-            'submit' => '',
+            'preview_hide' => 'Rakstīt',
+            'submit' => 'Publicēt',
 
             'necropost' => [
-                'default' => '',
+                'default' => 'Šī tēma jau kādu laiku ir neaktīva. Publicējiet šeit tikai tad, ja jums ir konkrēts iemesls to darīt.',
 
                 'new_topic' => [
-                    '_' => "",
-                    'create' => '',
+                    '_' => "Šī tēma jau kādu laiku ir neaktīva. Ja jums nav konkrēta iemesla šeit rakstīt, lūdzu, tā vietā: :create",
+                    'create' => 'izveidot jaunu tēmu',
                 ],
             ],
 
             'placeholder' => [
-                'body' => '',
-                'title' => '',
+                'body' => 'Ievadiet raksta saturu šeit',
+                'title' => 'Klikšķiniet šeit, lai iestatītu nosaukumu',
             ],
         ],
 
         'jump' => [
-            'enter' => '',
-            'first' => '',
-            'last' => '',
-            'next' => '',
-            'previous' => '',
+            'enter' => 'noklikšķiniet, lai ievadītu konkrētu raksta numuru',
+            'first' => 'doties uz pirmo rakstu',
+            'last' => 'doties uz pēdējo rakstu',
+            'next' => 'izlaist nākamos 10 rakstus',
+            'previous' => 'atgriezties 10 rakstus atpakaļ',
         ],
 
         'logs' => [
-            '_' => '',
-            'button' => '',
+            '_' => 'Tēmas žurnāli',
+            'button' => 'Pārlūkot tēmas žurnālus',
 
             'columns' => [
-                'action' => '',
-                'date' => '',
-                'user' => '',
+                'action' => 'Darbība',
+                'date' => 'Datums',
+                'user' => 'Lietotājs',
             ],
 
             'data' => [
-                'add_tag' => '',
-                'announcement' => '',
-                'edit_topic' => '',
-                'fork' => '',
-                'pin' => '',
-                'post_operation' => '',
-                'remove_tag' => '',
-                'source_forum_operation' => '',
-                'unpin' => '',
+                'add_tag' => 'pievienots ":tag" tags',
+                'announcement' => 'tēma ir piesprausta un atzīmēta kā paziņojums',
+                'edit_topic' => 'uz :title',
+                'fork' => 'no :topic',
+                'pin' => 'piesprausta tēma',
+                'post_operation' => 'publicēja :username',
+                'remove_tag' => 'noņemts ":tag" tags',
+                'source_forum_operation' => 'no :forum',
+                'unpin' => 'atsprausta tēma',
             ],
 
-            'no_results' => '',
+            'no_results' => 'žurnāli nav atrasti...',
 
             'operations' => [
-                'delete_post' => '',
-                'delete_topic' => '',
+                'delete_post' => 'Izdzēsts raksts',
+                'delete_topic' => 'Izdzēsta tēma',
                 'edit_topic' => '',
                 'edit_poll' => '',
                 'fork' => '',

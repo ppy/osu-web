@@ -23,6 +23,14 @@ return [
         'multiplayer' => 'Daudzspēlētāju režīms',
         'performance' => 'Veiktspēja',
         'score' => 'Punktu skaits',
+        'seasons' => '',
+    ],
+
+    'seasons' => [
+        'empty' => '',
+        'ongoing' => '',
+        'room_count' => '',
+        'url' => '',
     ],
 
     'spotlight' => [

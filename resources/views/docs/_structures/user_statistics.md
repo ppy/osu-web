@@ -1,6 +1,10 @@
 ## UserStatistics
 ```json
 {
+  "count_100": 0,
+  "count_300": 0,
+  "count_50": 0,
+  "count_miss": 0,
   "grade_counts": {
       "a": 3,
       "s": 2,
@@ -53,6 +57,10 @@ A summary of various gameplay statistics for a [User](#user). Specific to a [Gam
 
 Field                     | Type                        | Description
 ------------------------- | --------------------------- | -------------------------------------------
+count_100                 | number                      | |
+count_300                 | number                      | |
+count_50                  | number                      | |
+count_miss                | number                      | |
 grade_counts.a            | number                      | Number of A ranked scores.
 grade_counts.s            | number                      | Number of S ranked scores.
 grade_counts.sh           | number                      | Number of Silver S ranked scores.

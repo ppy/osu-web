@@ -4,16 +4,17 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'missing_route' => '',
-    'no_restricted_access' => '',
-    'supporter_only' => '',
+    'load_failed' => '',
+    'missing_route' => 'Nederīgs url vai nepareiza pieprasījuma metode.',
+    'no_restricted_access' => 'Jūs nevarat veikt šo darbību, kamēr jūsu konts ir ierobežojuma stāvoklī.',
+    'supporter_only' => 'Lai izmantotu šo funkciju, jums jābūt osu!supporter.',
     'unknown' => 'Notika nezināma kļūda.',
 
     'codes' => [
-        'http-401' => 'Lūdzu pierakstieties, lai turpinātu.',
+        'http-401' => 'Lūdzu, pierakstieties, lai turpinātu.',
         'http-403' => 'Piekļuve liegta.',
-        'http-404' => '',
-        'http-429' => 'Pārāk daudz mēģinājumu. Vēlāk mēģiniet vēlreiz.',
+        'http-404' => 'Nav atrasts.',
+        'http-429' => 'Pārāk daudz mēģinājumu. Mēģiniet vēlreiz vēlāk.',
     ],
     'account' => [
         'profile-order' => [
@@ -21,15 +22,15 @@ return [
         ],
     ],
     'beatmaps' => [
-        'invalid_mode' => '',
-        'standard_converts_only' => '',
+        'invalid_mode' => 'Norādīts nederīgs mods.',
+        'standard_converts_only' => 'Pieprasītajam modam šajā bītmapes grūtībā nav pieejami nekādi rezultāti.',
     ],
     'checkout' => [
-        'generic' => '',
+        'generic' => 'Jūsu pirkuma pārbaudes sagatavošanas laikā notikusi kļūda.',
     ],
     'search' => [
-        'default' => '',
-        'invalid_cursor_exception' => '',
-        'operation_timeout_exception' => '',
+        'default' => 'Nezidevās iegūt rezultātus, mēģiniet vēlreiz vēlāk.',
+        'invalid_cursor_exception' => 'Norādīts nepareizs kursora parametrs.',
+        'operation_timeout_exception' => 'Meklēšana pašlaik ir aizņemtāka nekā parasti, mēģiniet vēlreiz vēlāk.',
     ],
 ];

@@ -31,6 +31,8 @@ use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\QueryException;
 
@@ -106,33 +108,30 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 {
     use Memoizes, SoftDeletes, Traits\CommentableDefaults, Traits\Es\BeatmapsetSearch, Traits\Reportable, Validatable;
 
-    protected $_storage = null;
-    protected $table = 'osu_beatmapsets';
-    protected $primaryKey = 'beatmapset_id';
-
-    protected $casts = [
+    const CASTS = [
         'active' => 'boolean',
+        'approved_date' => 'datetime',
         'comment_locked' => 'boolean',
+        'cover_updated_at' => 'datetime',
+        'deleted_at' => 'datetime',
         'discussion_locked' => 'boolean',
         'download_disabled' => 'boolean',
         'epilepsy' => 'boolean',
+        'last_update' => 'datetime',
         'nsfw' => 'boolean',
+        'queued_at' => 'datetime',
         'spotlight' => 'boolean',
         'storyboard' => 'boolean',
+        'submit_date' => 'datetime',
+        'thread_icon_date' => 'datetime',
         'video' => 'boolean',
     ];
 
-    protected $dates = [
-        'approved_date',
-        'cover_updated_at',
-        'deleted_at',
-        'last_update',
-        'queued_at',
-        'submit_date',
-        'thread_icon_date',
-    ];
+    const HYPEABLE_STATES = [-1, 0, 3];
 
-    public $timestamps = false;
+    const MAX_FIELD_LENGTHS = [
+        'tags' => 1000,
+    ];
 
     const STATES = [
         'graveyard' => -2,
@@ -143,7 +142,13 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         'qualified' => 3,
         'loved' => 4,
     ];
-    const HYPEABLE_STATES = [-1, 0, 3];
+
+    public $timestamps = false;
+
+    protected $_storage = null;
+    protected $casts = self::CASTS;
+    protected $primaryKey = 'beatmapset_id';
+    protected $table = 'osu_beatmapsets';
 
     public static function coverSizes()
     {
@@ -174,6 +179,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     {
         $recentIds = static::ranked()
             ->where('approved_date', '>', now()->subDays(30))
+            ->where('nsfw', false)
             ->select('beatmapset_id');
 
         return FavouriteBeatmapset::select('beatmapset_id')
@@ -192,8 +198,8 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
         return Cache::remember("beatmapsets_latest_{$count}", 3600, function () use ($count) {
             // We union here so mysql can use indexes to speed this up
-            $ranked = self::ranked()->active()->orderBy('approved_date', 'desc')->limit($count);
-            $approved = self::approved()->active()->orderBy('approved_date', 'desc')->limit($count);
+            $ranked = self::ranked()->active()->where('nsfw', false)->orderBy('approved_date', 'desc')->limit($count);
+            $approved = self::approved()->active()->where('nsfw', false)->orderBy('approved_date', 'desc')->limit($count);
 
             return $ranked->union($approved)->orderBy('approved_date', 'desc')->limit($count)->get();
         });
@@ -216,6 +222,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     public function bssProcessQueues()
     {
         return $this->hasMany(BssProcessQueue::class);
+    }
+
+    public function packs(): BelongsToMany
+    {
+        return $this->belongsToMany(BeatmapPack::class, BeatmapPackItem::class);
     }
 
     public function recentFavourites($limit = 50)
@@ -287,6 +298,24 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     public function scopeNeverQualified($query)
     {
         return $query->withStates(['pending', 'wip'])->where('previous_queue_duration', 0);
+    }
+
+    public function scopeWithPackTags(Builder $query): Builder
+    {
+        $idColumn = $this->qualifyColumn('beatmapset_id');
+        $packTagColumn = (new BeatmapPack())->qualifyColumn('tag');
+        $packItemBeatmapsetIdColumn = (new BeatmapPackItem())->qualifyColumn('beatmapset_id');
+        $packQuery = BeatmapPack
+            ::selectRaw("GROUP_CONCAT({$packTagColumn} SEPARATOR ',')")
+            ->whereRelation(
+                'items',
+                DB::raw("{$packItemBeatmapsetIdColumn}"),
+                DB::raw("{$idColumn}"),
+            )->toSql();
+
+        return $query
+            ->select('*')
+            ->selectRaw("({$packQuery}) as pack_tags");
     }
 
     public function scopeWithStates($query, $states)
@@ -988,6 +1017,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 
             'artist_unicode' => $this->getArtistUnicode(),
             'commentable_identifier' => $this->getCommentableIdentifierAttribute(),
+            'pack_tags' => $this->getPackTags(),
             'title_unicode' => $this->getTitleUnicode(),
 
             'allBeatmaps',
@@ -1004,6 +1034,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             'favourites',
             'genre',
             'language',
+            'packs',
             'reportedIn',
             'topic',
             'track',
@@ -1456,7 +1487,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return $this->coverURL('card');
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'beatmapset';
     }
@@ -1472,6 +1503,8 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         if ($this->isDirty('genre_id') && ($this->genre === null || $this->genre_id === 0)) {
             $this->validationErrors()->add('genre_id', 'invalid');
         }
+
+        $this->validateDbFieldLengths();
 
         return $this->validationErrors()->isEmpty();
     }
@@ -1511,6 +1544,19 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
     private function getArtistUnicode()
     {
         return $this->getRawAttribute('artist_unicode') ?? $this->artist;
+    }
+
+    private function getPackTags(): array
+    {
+        if (array_key_exists('pack_tags', $this->attributes)) {
+            $rawValue = $this->attributes['pack_tags'];
+
+            return $rawValue === null
+                ? []
+                : explode(',', $rawValue);
+        }
+
+        return $this->packs()->pluck('tag')->all();
     }
 
     private function getTitleUnicode()

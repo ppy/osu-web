@@ -7,11 +7,11 @@ return [
     'comment' => [
         'empty' => '',
         'page_title' => '',
-        'title' => '',
+        'title' => 'σχόλιο',
 
         'table' => [
-            'latest_comment_empty' => '',
-            'latest_comment_value' => '',
+            'latest_comment_empty' => 'δεν υπάρχουν σχόλια',
+            'latest_comment_value' => ':time από :username',
         ],
     ],
 
@@ -20,7 +20,7 @@ return [
     ],
 
     'index' => [
-        'title_compact' => '',
+        'title_compact' => 'λίστες παρακολούθησης',
     ],
 
     'mapping' => [
@@ -28,8 +28,8 @@ return [
         'followers' => '',
         'page_title' => '',
         'title' => '',
-        'to_0' => '',
-        'to_1' => '',
+        'to_0' => 'σταμάτα να με ειδοποιείς όταν αυτός ο χρήστης ανεβάζει νέο beatmap',
+        'to_1' => 'ειδοποίησέ με όταν αυτός ο χρήστης ανεβάζει νέο beatmap',
     ],
 
     'modding' => [

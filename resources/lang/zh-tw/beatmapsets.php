@@ -60,12 +60,18 @@ return [
     'show' => [
         'discussion' => '討論',
 
+        'deleted_banner' => [
+            'title' => '此圖譜已被刪除。',
+            'message' => '(僅審核者可見)',
+        ],
+
         'details' => [
             'by_artist' => '作者：:artist',
             'favourite' => '收藏這張圖譜',
             'favourite_login' => '登入後才能把這張圖譜加到最愛',
             'logged-out' => '下載圖譜前請先登入！',
             'mapped_by' => '由 :mapper 製作',
+            'mapped_by_guest' => '',
             'unfavourite' => '取消收藏',
             'updated_timeago' => '最後更新時間 :timeago',
 
@@ -124,7 +130,7 @@ return [
             'genre' => '曲風',
             'language' => '語言',
             'no_scores' => '資料還在計算中...',
-            'nominators' => '',
+            'nominators' => '提名者',
             'nsfw' => '成人內容',
             'offset' => '線上偏移調整',
             'points-of-failure' => '失敗位置',

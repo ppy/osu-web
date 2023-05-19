@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'المستخدمون المحظورون (:count)',
         'hide_profile' => 'إخفاء الملف الشخصي',
         'hide_comment' => 'إخفاء',
+        'forum_post_text' => '',
         'not_blocked' => 'هذا المستخدم ليس محظوراََ.',
         'show_profile' => 'عرض الملف الشخصي',
         'show_comment' => 'إظهار',
@@ -50,6 +51,22 @@ return [
     'card' => [
         'loading' => 'جاري التحميل...',
         'send_message' => 'إرسال رسالة',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => 'كلمة السر',
+            'password_confirmation' => 'تأكيد كلمة السر',
+            'submit' => 'إنشاء حساب',
+            'user_email' => 'الايميل',
+            'user_email_confirmation' => 'تأكيد الأيميل',
+            'username' => 'اسم المستخدم',
+
+            'tos_notice' => [
+                '_' => 'من خلال إنشاء الحساب أنت توافق على :link',
+                'link' => 'شروط الخدمة',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -142,6 +159,7 @@ return [
     'restricted_banner' => [
         'title' => 'تم تقييد حسابك!',
         'message' => 'عندما تكون مقيداََ, سوف تمنع من مراسلة الاخرين ونتائج ستكون ظاهرة لك فقط. هذه عادة نتيجة تلقائية وسوف تختفي خلال 24 ساعة. اذا كنت تريد الغاء تقييدك, ارجوك <a href="mailto:accounts@ppy.sh">اتصل بالدعم</a>.',
+        'message_link' => 'تحقق من هذه الصفحة لمعرفة المزيد.',
     ],
     'show' => [
         'age' => ':age سنة',
@@ -218,7 +236,7 @@ return [
                     'title' => 'خرائط Loved',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => 'خرائط Ranked جديدة',
                 ],
                 'pending' => [
                     'title' => 'الخرائط المعلقة',
@@ -417,7 +435,7 @@ return [
             'country_simple' => 'ترتيب الدولة',
             'global' => 'الترتيب العالمي لـ :mode',
             'global_simple' => 'الترتيب العالمي',
-            'highest' => '',
+            'highest' => 'أعلى ترتيب: :rank في :date',
         ],
         'stats' => [
             'hit_accuracy' => 'دقة التصويب',
@@ -451,6 +469,8 @@ return [
         'offline' => 'غير متصل',
     ],
     'store' => [
+        'from_client' => 'الرجاء التسجيل داخل اللعبة بدلاً من هنا!',
+        'from_web' => 'يرجى إكمال التسجيل عبر موقع osu!',
         'saved' => 'انشأ المستخدم',
     ],
     'verify' => [

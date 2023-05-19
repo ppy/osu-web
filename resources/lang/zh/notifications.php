@@ -6,12 +6,22 @@
 return [
     'all_read' => '已经阅读所有通知！',
     'delete' => '删除 :type',
-    'loading' => '加载未读通知……',
+    'loading' => '正在加载未读通知……',
     'mark_read' => '清除 :type 类型的通知',
     'none' => '没有新通知',
     'see_all' => '显示所有通知',
     'see_channel' => '前往聊天',
     'verifying' => '请验证会话以查看通知',
+
+    'action_type' => [
+        '_' => '全部',
+        'beatmapset' => '谱面',
+        'build' => '版本',
+        'channel' => '聊天',
+        'forum_topic' => '论坛',
+        'news_post' => '新闻',
+        'user' => '个人资料',
+    ],
 
     'filters' => [
         '_' => '所有',
@@ -37,15 +47,15 @@ return [
 
             'beatmapset_discussion' => [
                 '_' => '谱面讨论',
-                'beatmapset_discussion_lock' => '谱面 :title 已被锁定以供讨论。',
-                'beatmapset_discussion_lock_compact' => '评论被锁定',
+                'beatmapset_discussion_lock' => '谱面 “:title” 的讨论已锁定',
+                'beatmapset_discussion_lock_compact' => '评论已锁定',
                 'beatmapset_discussion_post_new' => ':username 在谱面 :title 的讨论中发布了新消息：“:content”',
                 'beatmapset_discussion_post_new_empty' => ':username 发布了主题为 “:title” 的新帖子',
                 'beatmapset_discussion_post_new_compact' => ':username 的新主题：“:content”',
                 'beatmapset_discussion_post_new_compact_empty' => ':username 发布了新的帖子',
                 'beatmapset_discussion_review_new' => ':username 在 “:title” 上发表了新的审阅，问题：:problems，建议：:suggestions，赞：:praises',
                 'beatmapset_discussion_review_new_compact' => ':username 发表了新的审阅，问题：:problems，建议：:suggestions，赞：:praises',
-                'beatmapset_discussion_unlock' => '谱面 :title 已被解锁以供讨论。',
+                'beatmapset_discussion_unlock' => '谱面 “:title” 的讨论已解锁。',
                 'beatmapset_discussion_unlock_compact' => '评论已解锁',
             ],
 
@@ -58,15 +68,15 @@ return [
             ],
 
             'beatmapset_state' => [
-                '_' => '谱面状态已改变',
+                '_' => '谱面状态更改',
                 'beatmapset_disqualify' => '谱面 “:title” 已下架 (DQ)。',
                 'beatmapset_disqualify_compact' => '谱面已下架 (DQ)',
                 'beatmapset_love' => '谱面 “:title” 已推荐进入社区喜爱 (Loved)',
                 'beatmapset_love_compact' => '谱面已推荐进入社区喜爱 (Loved)',
                 'beatmapset_nominate' => '谱面 “:title” 已提名。',
                 'beatmapset_nominate_compact' => '谱面已提名',
-                'beatmapset_qualify' => '谱面 “:title” 已经得到足够数量的提名，并进入谱面上架队列',
-                'beatmapset_qualify_compact' => '谱面已进入谱面上架队列',
+                'beatmapset_qualify' => '谱面 “:title” 已经得到足够数量的提名，并进入上架队列',
+                'beatmapset_qualify_compact' => '谱面已进入上架队列',
                 'beatmapset_rank' => '谱面 “:title” 已上架 (Ranked)。',
                 'beatmapset_rank_compact' => '谱面已上架 (Ranked)',
                 'beatmapset_remove_from_loved' => '谱面 “:title” 已移出社区喜爱 (Loved)',
@@ -162,7 +172,7 @@ return [
                 'user_beatmapset_new_compact' => '新谱面 “:title”',
                 'user_beatmapset_new_group' => ':username 的新谱面',
 
-                'user_beatmapset_revive' => '谱面 ":title" 已由 :username 恢复',
+                'user_beatmapset_revive' => ':username 已恢复谱面 “:title”',
                 'user_beatmapset_revive_compact' => '谱面 ":title" 已恢复',
             ],
         ],
@@ -200,7 +210,7 @@ return [
                 'beatmapset_disqualify' => '谱面 “:title” 已下架 (DQ)。',
                 'beatmapset_love' => '谱面 “:title” 已推荐进入社区喜爱 (Loved)',
                 'beatmapset_nominate' => '谱面 “:title” 已提名。',
-                'beatmapset_qualify' => '谱面 “:title” 已经得到足够数量的提名，并进入谱面上架队列',
+                'beatmapset_qualify' => '谱面 “:title” 已经得到足够数量的提名，并进入上架队列',
                 'beatmapset_rank' => '谱面 “:title” 已上架 (Ranked)。',
                 'beatmapset_remove_from_loved' => '谱面 “:title” 已移出社区喜爱 (Loved)',
                 'beatmapset_reset_nominations' => '谱面 “:title” 的提名已重置',
@@ -212,6 +222,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => '“:name” 中有一条新通知',
+            ],
+
             'channel' => [
                 'pm' => '您收到了来自 :username 的新消息',
             ],

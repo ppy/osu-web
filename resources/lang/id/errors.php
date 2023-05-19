@@ -4,9 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => 'Data gagal dimuat.',
     'missing_route' => 'URL yang dituju tidak valid, atau terdapat suatu masalah dalam proses pengambilan data dari server.',
-    'no_restricted_access' => 'Anda tidak dapat melakukan tindakan ini ketika akun Anda sedang di-restrict.',
-    'supporter_only' => 'Anda harus menjadi seorang osu!supporter untuk dapat menggunakan fitur ini.',
+    'no_restricted_access' => 'Kamu tidak dapat melakukan tindakan ini ketika akunmu sedang di-restrict.',
+    'supporter_only' => 'Kamu harus menjadi seorang osu!supporter untuk dapat menggunakan fitur ini.',
     'unknown' => 'Terdapat masalah yang tidak diketahui.',
 
     'codes' => [
@@ -21,7 +22,7 @@ return [
         ],
     ],
     'beatmaps' => [
-        'invalid_mode' => 'Mode permainan yang dikehendaki tidak valid.',
+        'invalid_mode' => 'Mode permainan yang ditentukan tidak valid.',
         'standard_converts_only' => 'Tidak ada skor yang tercatat pada mode permainan yang dikehendaki di tingkat kesulitan ini.',
     ],
     'checkout' => [

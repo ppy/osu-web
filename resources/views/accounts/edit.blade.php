@@ -169,6 +169,10 @@
             @include('accounts._edit_github_user')
         </div>
     @endif
+
+    <div class="osu-page" id="legacy-api">
+        @include('accounts._edit_legacy_api')
+    </div>
 @endsection
 
 @section("script")

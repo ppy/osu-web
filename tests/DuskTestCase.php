@@ -24,6 +24,11 @@ abstract class DuskTestCase extends BaseTestCase
      */
     public static function prepare()
     {
+        $chromeDriver = presence(env('DUSK_WEBDRIVER_BIN'));
+        if ($chromeDriver !== null) {
+            static::$chromeDriver = $chromeDriver;
+        }
+
         if (!present(env('DUSK_WEBDRIVER_URL'))) {
             static::startChromeDriver();
         }

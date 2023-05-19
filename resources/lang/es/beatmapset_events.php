@@ -34,6 +34,7 @@ return [
         'qualify' => 'Este mapa ha alcanzado el número requerido de nominaciones y ha sido calificado.',
         'rank' => 'Clasificado.',
         'remove_from_loved' => 'Removido de Amados por :user. (:text)',
+        'tags_edit' => 'Las etiquetas cambiaron de ":old" a ":new".',
 
         'nsfw_toggle' => [
             'to_0' => 'Marca explícita removida',

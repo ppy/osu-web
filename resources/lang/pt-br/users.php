@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'usuários bloqueados: (:count)',
         'hide_profile' => 'Ocultar perfil',
         'hide_comment' => 'ocultar',
+        'forum_post_text' => 'Essa publicação está oculta.',
         'not_blocked' => 'Este usuário não está bloqueado.',
         'show_profile' => 'Exibir perfil',
         'show_comment' => 'exibir',
@@ -52,6 +53,22 @@ return [
         'send_message' => 'enviar mensagem',
     ],
 
+    'create' => [
+        'form' => [
+            'password' => 'senha',
+            'password_confirmation' => 'confirmar senha',
+            'submit' => 'criar conta',
+            'user_email' => 'email',
+            'user_email_confirmation' => 'confirmar email',
+            'username' => 'nome de usuário',
+
+            'tos_notice' => [
+                '_' => 'ao criar a conta você concorda com :link',
+                'link' => 'termos de serviço',
+            ],
+        ],
+    ],
+
     'disabled' => [
         'title' => 'Oh não! Parece que a sua conta foi desativada.',
         'warning' => "No caso de você ter infringido uma regra, observe que geralmente há um período de espera de um mês durante o qual não consideraremos nenhum pedido de anistia. Após esse período, você pode entrar em contato conosco caso julgue necessário. Observe que a criação de novas contas após a desativação de uma conta resultará em uma <strong> extensão desse período de espera de um mês </strong>. Observe também que, para <strong> todas as contas criadas, você está violando ainda mais as regras </strong>. É altamente recomendável que você não siga esse caminho!",
@@ -62,7 +79,7 @@ return [
         ],
 
         'reasons' => [
-            'compromised' => 'Sua conta foi considerada comprometida. Ela pode estar desativada temporariamente enquanto sua identidade for confirmada.',
+            'compromised' => 'Sua conta foi considerada comprometida. Ela pode estar desativada temporariamente enquanto sua identidade está sendo confirmada.',
             'opening' => 'Há vários motivos que podem resultar na desativação da sua conta:',
 
             'tos' => [
@@ -100,7 +117,7 @@ return [
         'username' => 'Nome de Usuário',
 
         'beta' => [
-            'main' => 'Acesso beta está restrito apenas para usuários privilegiados.',
+            'main' => 'Acesso Beta está restrito apenas para usuários privilegiados.',
             'small' => '(osu!supporters terão acesso em breve)',
         ],
     ],
@@ -142,6 +159,7 @@ return [
     'restricted_banner' => [
         'title' => 'Sua conta foi restrita!',
         'message' => 'Enquanto restrito, você será impossibilitado de interagir com outros jogadores e suas pontuações serão visíveis apenas para você. Isso é geralmente causado por um processo automático e provavelmente será resolvido em até 24 horas. Caso tenha interesse em recorrer contra sua restrição, por favor, <a href="mailto:accounts@ppy.sh">entre em contato com o suporte</a>.',
+        'message_link' => 'Veja esta página para saber mais.',
     ],
     'show' => [
         'age' => ':age anos',
@@ -218,7 +236,7 @@ return [
                     'title' => 'Beatmaps Loved',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => 'Beatmaps Ranqueados Nominados',
                 ],
                 'pending' => [
                     'title' => 'Beatmaps Pendentes',
@@ -451,6 +469,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => 'por favor registre-se através do cliente do jogo!',
+        'from_web' => 'por favor registre-se através do site',
         'saved' => 'Usuário criado',
     ],
     'verify' => [

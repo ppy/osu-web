@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute kan inte vara negativt.',
     'required' => ':attribute behövs.',
     'too_long' => ':attribute överskred maximal längd - kan endast vara upp till :limit tecken.',
+    'url' => '',
     'wrong_confirmation' => 'Bekräftelsen matchar inte.',
 
     'beatmapset_discussion' => [
@@ -106,6 +107,10 @@ return [
             'required' => 'Välj ett alternativ att rösta på.',
             'too_many' => 'Valde mer val än vad som är tillåtet.',
         ],
+    ],
+
+    'legacy_api_key' => [
+        'exists' => '',
     ],
 
     'oauth' => [

@@ -16,8 +16,8 @@ return [
             'submitted_on' => 'Enviado el',
 
             'rank' => [
-                'country' => 'Clasificación Nacional',
-                'global' => 'Clasificación Global',
+                'country' => 'Clasificación nacional',
+                'global' => 'Clasificación global',
             ],
         ],
     ],

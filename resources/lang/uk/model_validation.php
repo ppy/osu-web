@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute не може бути від\'ємним.',
     'required' => ':attribute є обов\'язковим.',
     'too_long' => ':attribute перевищує максимальну кількість символів - можна використовувати тільки до :limit символів.',
+    'url' => '',
     'wrong_confirmation' => 'Повтори не збігаються.',
 
     'beatmapset_discussion' => [
@@ -106,6 +107,10 @@ return [
             'required' => 'Виберіть варіант, за який хочете проголосувати.',
             'too_many' => 'Обрано більше варіантів, ніж дозволено.',
         ],
+    ],
+
+    'legacy_api_key' => [
+        'exists' => '',
     ],
 
     'oauth' => [

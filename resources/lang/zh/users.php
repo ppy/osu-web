@@ -23,11 +23,11 @@ return [
         ],
 
         'votes_received' => [
-            'title_most' => '得赞最多（最近三个月）',
+            'title_most' => '最多获赞（最近三个月）',
         ],
 
         'votes_made' => [
-            'title_most' => '赞数最多（最近三个月）',
+            'title_most' => '最多点赞（最近三个月）',
         ],
     ],
 
@@ -37,6 +37,7 @@ return [
         'blocked_count' => '被屏蔽的用户 (:count)',
         'hide_profile' => '隐藏用户资料',
         'hide_comment' => '隐藏',
+        'forum_post_text' => '此帖子已被隐藏。',
         'not_blocked' => '此用户未被屏蔽。',
         'show_profile' => '显示用户资料',
         'show_comment' => '展开',
@@ -50,6 +51,22 @@ return [
     'card' => [
         'loading' => '加载中...',
         'send_message' => '发送消息',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => '密码',
+            'password_confirmation' => '确认密码',
+            'submit' => '注册新账户',
+            'user_email' => '邮箱地址',
+            'user_email_confirmation' => '确认邮箱地址',
+            'username' => '用户名',
+
+            'tos_notice' => [
+                '_' => '完成注册，即视为您同意了 :link',
+                'link' => '服务协议',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -141,7 +158,8 @@ return [
     ],
     'restricted_banner' => [
         'title' => '账户进入限制模式！',
-        'message' => '在被限制时，无法与其他玩家互动，分数只有自己可见。该限制通常由系统自动给予，并将在24小时内解除。需要申诉？请<a href="mailto:accounts@ppy.sh">联系支持团队</a>.',
+        'message' => '处于被限制状态时，你将不能与其他玩家互动，分数只有你自己可见。限制通常是系统自动给予，通常会在 24 小时内解除。:link',
+        'message_link' => '点击此页了解更多。',
     ],
     'show' => [
         'age' => ':age 岁',
@@ -149,7 +167,7 @@ return [
         'first_members' => '元老玩家',
         'is_developer' => 'osu! 开发者',
         'is_supporter' => 'osu! 支持者',
-        'joined_at' => '注册时间：:date',
+        'joined_at' => '注册于 :date',
         'lastvisit' => '最后活跃：:date',
         'lastvisit_online' => '当前在线',
         'missingtext' => '你可能打错字了！（或者该用户已经被封禁）',
@@ -212,16 +230,16 @@ return [
                     'title' => '已停更的谱面',
                 ],
                 'guest' => [
-                    'title' => '参与客串制作的谱面',
+                    'title' => '客串制作的谱面',
                 ],
                 'loved' => [
                     'title' => '社区喜爱 (Loved) 谱面',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => '提名并上架 (Ranked) 的谱面',
                 ],
                 'pending' => [
-                    'title' => 'Pending 谱面',
+                    'title' => '待定 (Pending) 谱面',
                 ],
                 'ranked' => [
                     'title' => '上架 (Ranked) 谱面',
@@ -246,7 +264,7 @@ return [
                 ],
                 'most_played' => [
                     'count' => '游玩次数',
-                    'title' => '最多游玩的谱面',
+                    'title' => '玩得最多的谱面',
                 ],
                 'recent_plays' => [
                     'accuracy' => '准确率：:percentage',
@@ -360,8 +378,8 @@ return [
             ],
             'account_standing' => [
                 'title' => '账号状态',
-                'bad_standing' => "<strong>:username</strong> 的账号存在不良记录 :(",
-                'remaining_silence' => '<strong>:username</strong> 的禁言将在 :duration 解除',
+                'bad_standing' => ":username 的账号存在不良记录 :(",
+                'remaining_silence' => ':username的禁言将在 :duration 解除',
 
                 'recent_infringements' => [
                     'title' => '最近记录',
@@ -370,7 +388,7 @@ return [
                     'length' => '时长',
                     'length_permanent' => '永久',
                     'description' => '原因',
-                    'actor' => '执行人： :username',
+                    'actor' => '裁决者： :username',
 
                     'actions' => [
                         'restriction' => '封禁',
@@ -410,7 +428,7 @@ return [
         ],
         'post_count' => [
             '_' => '发表了 :link',
-            'count' => ':count 篇帖子',
+            'count' => ':count_delimited 篇帖子|:count_delimited 篇帖子',
         ],
         'rank' => [
             'country' => ':mode 模式的地区排名',
@@ -435,7 +453,7 @@ return [
             // modding stats
             'graveyard_beatmapset_count' => '坟场里的谱面',
             'loved_beatmapset_count' => '社区喜爱 (Loved) 谱面',
-            'pending_beatmapset_count' => 'Pending 的谱面',
+            'pending_beatmapset_count' => '待定 (Pending) 谱面',
             'ranked_beatmapset_count' => '上架 (Ranked) 谱面',
         ],
     ],
@@ -451,6 +469,8 @@ return [
         'offline' => '离线',
     ],
     'store' => [
+        'from_client' => '请使用游戏客户端注册！',
+        'from_web' => '请通过网页完成注册',
         'saved' => '账户已创建',
     ],
     'verify' => [

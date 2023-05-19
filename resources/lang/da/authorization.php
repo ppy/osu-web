@@ -50,13 +50,11 @@ return [
             'resolved' => 'Du kan ikke redigere et opslag fra en løst diskussion.',
             'system_generated' => 'Automatisk genererede opslag kan ikke redigeres.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Dette beatmap er låst for diskussion.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => '',
+
         'metadata' => [
             'nominated' => 'Du kan ikke ændre metadata for et nomineret map. Kontakt et BAT- eller NAT-medlem, hvis du mener, at det er angivet forkert.',
         ],

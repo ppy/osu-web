@@ -15,7 +15,7 @@ return [
         'discussion_unlock' => 'Η συζήτηση για αυτό το beatmap έχει ενεργοποιηθεί.',
         'disqualify' => 'Disqualified από :user. Αιτία: :discussion (:text).',
         'disqualify_legacy' => 'Disqualified από :user. Αιτία: :text.',
-        'genre_edit' => '',
+        'genre_edit' => 'Το είδος άλλαξε από :old σε :new.',
         'issue_reopen' => 'Το ζήτημα επιλύθηκε, η συζήτηση :discussion ξανάνοιξε.',
         'issue_resolve' => 'Ζήτημα :discussion σημάνθηκε ως επιλυμένο.',
         'kudosu_allow' => 'Άρνηση kudosu για τη συζήτηση :discussion που αφαιρέθηκε.',
@@ -23,7 +23,7 @@ return [
         'kudosu_gain' => 'Η συζήτηση :discussion από τον :user έλαβε αρκετές ψήφους για kudosu.',
         'kudosu_lost' => 'Η συζήτηση :discussion από τον :user έχασε ψήφους και τα kudosu που είχαν δοθεί αφαιρέθηκαν.',
         'kudosu_recalculate' => 'Τα κέρδη kudosu για τη συζήτηση :discussion επαναϋπολογίστηκαν.',
-        'language_edit' => '',
+        'language_edit' => 'Η γλώσσα άλλαξε από :old σε :new.',
         'love' => 'Loved από :user',
         'nominate' => 'Nominated από :user.',
         'nominate_modes' => '',
@@ -34,6 +34,7 @@ return [
         'qualify' => 'Αυτό το beatmap έχει φτάσει των απαραίτητο αριθμό nominations και είναι πλέον qualified.',
         'rank' => 'Ranked.',
         'remove_from_loved' => '',
+        'tags_edit' => '',
 
         'nsfw_toggle' => [
             'to_0' => '',

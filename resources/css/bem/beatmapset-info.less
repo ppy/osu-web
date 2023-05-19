@@ -1,0 +1,97 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.beatmapset-info {
+  @_top: beatmapset-info;
+  @min-height: 200px;
+  @max-height: 300px;
+  @box-margin--top: 15px;
+
+  font-size: @font-size--normal;
+
+  display: grid;
+  gap: 20px;
+
+  padding: 10px @gutter-beatmapset 0;
+  background-color: hsl(var(--hsl-b4));
+  -webkit-overflow-scrolling: touch;
+
+  @media @desktop {
+    padding: 15px @gutter-beatmapset-desktop 0;
+    grid-template-columns: 1fr 175px @beatmapset-float-box-width;
+  }
+
+  &__box {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-top: 10px;
+
+    @media @desktop {
+      min-height: @min-height;
+      max-height: @max-height;
+    }
+
+    &--success-rate {
+      padding-top: 0;
+    }
+  }
+
+  &__edit-button {
+    position: absolute;
+    top: 5px;
+    right: 0;
+
+    opacity: 0;
+    transition: opacity 120ms;
+    z-index: 1; // place above sibling elements
+
+    .@{_top}__box:hover & {
+      opacity: 1;
+    }
+  }
+
+  &__row {
+    display: flex;
+    flex-direction: column;
+    padding-top: 5px;
+    padding-bottom: 10px;
+
+    &--half {
+      flex-direction: row;
+    }
+
+    &--value-overflow {
+      padding-bottom: 0;
+      min-height: 0;
+    }
+  }
+
+  &__half-entry {
+    flex: none;
+    width: 50%;
+  }
+
+  &__header {
+    font-size: @font-size--title-small;
+    color: inherit;
+    font-weight: bold;
+    font-style: normal;
+    padding: 0;
+    margin: 0 0 5px;
+  }
+
+  &__link {
+    overflow-wrap: break-word;
+  }
+
+  &__value-overflow {
+    min-height: 0;
+    max-height: @max-height;
+    flex: 1;
+
+    overflow-y: auto;
+    padding-bottom: 10px;
+  }
+}

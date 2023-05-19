@@ -11,7 +11,17 @@ return [
     'none' => 'Tidak ada notifikasi',
     'see_all' => 'Lihat riwayat notifikasi',
     'see_channel' => 'Buka jendela chat',
-    'verifying' => 'Harap verifikasi sesi Anda untuk dapat melihat notifikasi',
+    'verifying' => 'Harap verifikasi sesi untuk melihat notifikasi',
+
+    'action_type' => [
+        '_' => 'semua',
+        'beatmapset' => 'beatmap',
+        'build' => 'versi rilis',
+        'channel' => 'percakapan',
+        'forum_topic' => 'forum',
+        'news_post' => 'berita',
+        'user' => 'profil',
+    ],
 
     'filters' => [
         '_' => 'semua notifikasi',
@@ -29,8 +39,8 @@ return [
 
             'beatmap_owner_change' => [
                 '_' => 'Guest difficulty',
-                'beatmap_owner_change' => 'Anda telah terdaftar sebagai pemilik tingkat kesulitan ":beatmap" pada beatmap ":title"',
-                'beatmap_owner_change_compact' => 'Anda telah terdaftar sebagai pemilik dari tingkat kesulitan ":beatmap"',
+                'beatmap_owner_change' => 'Kamu telah terdaftar sebagai pemilik tingkat kesulitan ":beatmap" pada beatmap ":title"',
+                'beatmap_owner_change_compact' => 'Kamu telah terdaftar sebagai pemilik dari tingkat kesulitan ":beatmap"',
             ],
 
             'beatmapset_discussion' => [
@@ -78,8 +88,8 @@ return [
 
                 'comment_new' => ':username berkomentar ":content" pada ":title"',
                 'comment_new_compact' => ':username berkomentar ":content"',
-                'comment_reply' => ':username membalas komentar yang Anda tulis pada ":title" dengan ":content"',
-                'comment_reply_compact' => ':username membalas komentar Anda dengan ":content"',
+                'comment_reply' => ':username membalas komentar yang kamu tulis pada ":title" dengan ":content"',
+                'comment_reply_compact' => ':username membalas komentarmu dengan ":content"',
             ],
         ],
 
@@ -115,8 +125,8 @@ return [
 
                 'comment_new' => ':username berkomentar ":content" pada ":title"',
                 'comment_new_compact' => ':username berkomentar ":content"',
-                'comment_reply' => ':username membalas komentar yang Anda tulis pada ":title" dengan ":content"',
-                'comment_reply_compact' => ':username membalas komentar Anda dengan ":content"',
+                'comment_reply' => ':username membalas komentar yang kamu tulis pada ":title" dengan ":content"',
+                'comment_reply_compact' => ':username membalas komentarmu dengan ":content"',
             ],
         ],
 
@@ -128,8 +138,8 @@ return [
 
                 'comment_new' => ':username berkomentar ":content" pada ":title"',
                 'comment_new_compact' => ':username berkomentar ":content"',
-                'comment_reply' => ':username membalas komentar yang Anda tulis pada ":title" dengan ":content"',
-                'comment_reply_compact' => ':username membalas komentar Anda dengan ":content"',
+                'comment_reply' => ':username membalas komentar yang kamu tulis pada ":title" dengan ":content"',
+                'comment_reply_compact' => ':username membalas komentarmu dengan ":content"',
             ],
         ],
 
@@ -138,8 +148,8 @@ return [
 
             'forum_topic_reply' => [
                 '_' => 'Balasan baru pada topik forum',
-                'forum_topic_reply' => ':username membalas postingan Anda pada utas forum ":title"',
-                'forum_topic_reply_compact' => ':username membalas postingan Anda',
+                'forum_topic_reply' => ':username membalas postinganmu pada utas forum ":title"',
+                'forum_topic_reply_compact' => ':username membalas postinganmu',
             ],
         ],
 
@@ -171,7 +181,7 @@ return [
             'user_achievement_unlock' => [
                 '_' => 'Medali baru',
                 'user_achievement_unlock' => '":title" terbuka!',
-                'user_achievement_unlock_compact' => 'Anda berhasil mendapatkan medali ":title"!',
+                'user_achievement_unlock_compact' => 'Medali ":title" terbuka!',
                 'user_achievement_unlock_group' => 'Medali terbuka!',
             ],
         ],
@@ -180,7 +190,7 @@ return [
     'mail' => [
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => 'Anda telah terdaftar sebagai pembuat guest difficulty pada beatmap ":title"',
+                'beatmap_owner_change' => 'Kamu telah terdaftar sebagai pemilik guest difficulty pada beatmap ":title"',
             ],
 
             'beatmapset_discussion' => [
@@ -209,8 +219,12 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Terdapat pengumuman baru pada ":name"',
+            ],
+
             'channel' => [
-                'pm' => 'Anda menerima pesan baru dari :username',
+                'pm' => 'Kamu menerima pesan baru dari :username',
             ],
         ],
 
@@ -235,7 +249,7 @@ return [
         'user' => [
             'user_achievement_unlock' => [
                 'user_achievement_unlock' => ':username telah mendapatkan medali baru, ":title"!',
-                'user_achievement_unlock_self' => 'Anda telah mendapatkan medali baru, ":title"!',
+                'user_achievement_unlock_self' => 'Kamu telah membuka medali baru, ":title"!',
             ],
 
             'user_beatmapset_new' => [

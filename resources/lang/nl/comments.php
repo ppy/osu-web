@@ -26,7 +26,7 @@ return [
         'textarea_hint' => [
             '_' => 'Druk op enter om te :action. Gebruik shift+enter voor een nieuwe regel.',
             'edit' => 'bewaar',
-            'new' => 'plaats',
+            'new' => 'plaatsen',
             'reply' => 'reageer',
         ],
     ],
@@ -44,7 +44,7 @@ return [
 
     'placeholder' => [
         'edit' => 'Wijzig de opmerking hier',
-        'new' => 'Plaats een nieuwe opmerking hier',
+        'new' => 'Typ hier een nieuwe reactie',
         'reply' => 'Type hier je reactie',
     ],
 

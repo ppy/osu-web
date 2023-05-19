@@ -57,11 +57,47 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
+  notify_pending_production_deploy:
+    if: ${{ github.ref_type == 'tag' }}
+    runs-on: ubuntu-latest
+    needs:
+      - push_to_registry
+    steps:
+      -
+        name: Submit pending deployment notification
+        run: |
+          export TITLE="Pending osu-web Production Deployment: $GITHUB_REF_NAME"
+          export URL="https://github.com/ppy/osu-web/actions/runs/$GITHUB_RUN_ID"
+          export DESCRIPTION="Docker image was built for tag $GITHUB_REF_NAME and awaiting approval for production deployment:  
+          [View Workflow Run]($URL)"
+          export ACTOR_ICON="https://avatars.githubusercontent.com/u/$GITHUB_ACTOR_ID"
+
+          BODY="$(jq --null-input '{
+            "embeds": [
+              {
+                "title": env.TITLE,
+                "color": 15098112,
+                "description": env.DESCRIPTION,
+                "url": env.URL,
+                "author": {
+                  "name": env.GITHUB_ACTOR,
+                  "icon_url": env.ACTOR_ICON
+                }
+              }
+            ]
+          }')"
+
+          curl \
+            -H "Content-Type: application/json" \
+            -d "$BODY" \
+            "${{ secrets.DISCORD_INFRA_WEBHOOK_URL }}"
+
   push_to_production:
     if: ${{ github.ref_type == 'tag' }}
     runs-on: ubuntu-latest
     needs:
       - push_to_registry
+    environment: production
     steps:
       -
         name: Checkout
@@ -73,6 +109,7 @@ jobs:
           token: ${{ secrets.KUBERNETES_CONFIG_REPO_ACCESS_TOKEN }}
           repository: ppy/osu-kubernetes-config
           event-type: osu-web-deploy
+          client-payload: '{ "dockerTag": "${{ github.ref_name }}" }'
       -
         name: Create Sentry release
         uses: getsentry/action-release@v1
@@ -90,6 +127,7 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - push_to_registry
+    environment: staging
     steps:
       -
         name: Checkout

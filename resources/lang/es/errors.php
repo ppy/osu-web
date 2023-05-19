@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => 'Error al cargar los datos.',
     'missing_route' => 'URL no válida o método de solicitud incorrecto.',
     'no_restricted_access' => 'No puede realizar esta acción mientras su cuenta esté en un estado restringido.',
     'supporter_only' => 'Debes ser un osu!supporter para usar esta característica.',

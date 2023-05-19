@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => 'フォーラム',
         'latest_post' => '最新の投稿',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => '投稿を本当に復元しますか？',
         'edited' => ':userが:whenに最終編集、合計:count_delimited回の編集',
         'posted_at' => '投稿日時 :when',
-        'posted_by' => ':username による投稿',
+        'posted_by_in' => '',
 
         'actions' => [
             'destroy' => '投稿を削除',

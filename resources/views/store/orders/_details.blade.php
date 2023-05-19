@@ -65,6 +65,10 @@
                     'checkout' => false,
                     'forShipping' => $forShipping,
                 ])
+
+                @if ($order->isHideSupporterFromActivity())
+                    {{ osu_trans('store.invoice.hide_from_activity') }}
+                @endif
             </div>
         </div>
 

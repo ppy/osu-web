@@ -9,7 +9,7 @@ use App\Models\UpdateStream;
 
 class UpdateStreamTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'latest_build',
         'user_count',
     ];

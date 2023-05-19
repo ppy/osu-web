@@ -50,13 +50,11 @@ return [
             'resolved' => '',
             'system_generated' => 'Οι δημοσιεύσεις που έχουν δημιουργηθεί αυτόματα δεν μπορούν να επεξεργαστούν.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Αυτό το beatmap είναι κλειδωμένο προς συζήτηση.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => '',
+
         'metadata' => [
             'nominated' => '',
         ],
