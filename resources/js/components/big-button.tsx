@@ -30,6 +30,10 @@ export default class BigButton extends React.Component<Props> {
     props: {},
   };
 
+  get disabled() {
+    return this.props.disabled || this.props.isBusy;
+  }
+
   get text() {
     if (this.props.text == null) {
       return null;
@@ -45,13 +49,13 @@ export default class BigButton extends React.Component<Props> {
   }
 
   render() {
-    let blockClass = classWithModifiers('btn-osu-big', this.props.modifiers, { disabled: this.props.disabled });
+    let blockClass = classWithModifiers('btn-osu-big', this.props.modifiers, { disabled: this.disabled });
     if (this.props.extraClasses != null) {
       blockClass += ` ${this.props.extraClasses.join(' ')}`;
     }
 
     if (present(this.props.href)) {
-      if (this.props.disabled) {
+      if (this.disabled) {
         return (
           <span className={blockClass} {...this.props.props}>
             {this.renderChildren()}
@@ -73,7 +77,7 @@ export default class BigButton extends React.Component<Props> {
     return (
       <button
         className={blockClass}
-        disabled={this.props.disabled}
+        disabled={this.disabled}
         type={this.props.isSubmit ? 'submit' : 'button'}
         {...this.props.props}
       >
