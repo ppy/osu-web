@@ -69,39 +69,39 @@ return [
         'message_type' => [
             'disqualify' => [
                 'text' => 'Disqualify',
-                'title' => 'Post Disqualification',
+                'action_title' => 'Post Disqualification',
             ],
             'hype' => [
                 'text' => 'Hype!',
-                'title' => 'Post Hype!',
+                'action_title' => 'Post Hype!',
             ],
             'mapper_note' => [
                 'text' => 'Note',
-                'title' => 'Post Note',
+                'action_title' => 'Post Note',
             ],
             'nomination_reset' => [
                 'text' => 'Reset Nomination',
-                'title' => 'Remove all Nominations',
+                'action_title' => 'Remove all Nominations',
             ],
             'praise' => [
                 'text' => 'Praise',
-                'title' => 'Post Praise',
+                'action_title' => 'Post Praise',
             ],
             'problem' => [
                 'text' => 'Problem',
-                'title' => 'Post Problem',
+                'action_title' => 'Post Problem',
             ],
             'problem_warning' => [
                 'text' => 'Report Problem',
-                'title' => 'Post Problem',
+                'action_title' => 'Post Problem',
             ],
             'review' => [
                 'text' => 'Review',
-                'title' => 'Post Review',
+                'action_title' => 'Post Review',
             ],
             'suggestion' => [
                 'text' => 'Suggestion',
-                'title' => 'Post Suggestion',
+                'action_title' => 'Post Suggestion',
             ],
         ],
 
