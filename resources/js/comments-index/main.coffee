@@ -20,7 +20,7 @@ class BaseMain extends React.Component
     comments = uiState.comments.topLevelCommentIds.map (id) -> store.comments.get(id)
     if comments.length < 1
       div className: 'comments',
-        div className: 'comments__empty',
+        div className: 'comments__items comments__items--empty',
           trans 'comments.index.no_comments'
     else
       for comment in comments
