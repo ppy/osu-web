@@ -27,7 +27,7 @@
                     <span
                         class="{{ $postTypeToIcon[$discussion->message_type] }}"
                         style="color: var(--beatmapset-discussion-colour--{{ $discussion->message_type }})"
-                        title="{{ osu_trans("beatmaps.discussions.message_type.{$discussion->message_type}") }}"
+                        title="{{ osu_trans("beatmaps.discussions.message_type.{$discussion->message_type}.text") }}"
                     ></span>
                 </div>
             </div>

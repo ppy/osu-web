@@ -51,7 +51,7 @@ type Props = PropsBase & ({
 function DiscussionTypeIcon({ type }: { type: DiscussionType | 'resolved' }) {
   const titleKey = type === 'resolved'
     ? 'beatmaps.discussions.resolved'
-    : `beatmaps.discussions.message_type.${type}`;
+    : `beatmaps.discussions.message_type.${type}.text`;
 
   return (
     <span

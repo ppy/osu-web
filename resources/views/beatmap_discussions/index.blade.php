@@ -91,7 +91,7 @@
                                     'name' => 'message_types[]',
                                     'value' => $messageType,
                                 ]])
-                                {{ osu_trans("beatmaps.discussions.message_type.{$messageType}") }}
+                                {{ osu_trans("beatmaps.discussions.message_type.{$messageType}.text") }}
                             </label>
                         @endforeach
                     </div>
