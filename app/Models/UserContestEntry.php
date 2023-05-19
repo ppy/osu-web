@@ -29,7 +29,7 @@ class UserContestEntry extends Model
     use SoftDeletes;
     use Uploadable;
 
-    protected $dates = ['deleted_at'];
+    protected $casts = ['deleted_at' => 'datetime'];
 
     public function getFileRoot()
     {

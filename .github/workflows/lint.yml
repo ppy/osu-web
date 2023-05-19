@@ -27,14 +27,14 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           tools: composer:v2
-          php-version: '8.0'
+          php-version: '8.1'
 
       - name: Get composer cache directory
         id: composercache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
       - name: Cache composer
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ steps.composercache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
@@ -48,7 +48,7 @@ jobs:
       - name: Install js dependencies
         run: yarn --frozen-lockfile
 
-      - run: 'yarn lint --max-warnings 177 > /dev/null'
+      - run: 'yarn lint --max-warnings 123 > /dev/null'
 
       - run: ./bin/update_licence.sh -nf
 

@@ -23,8 +23,8 @@ class Payment extends Model
 {
     protected $casts = [
         'cancelled' => 'boolean',
+        'paid_at' => 'datetime',
     ];
-    protected $dates = ['paid_at'];
 
     public function order()
     {

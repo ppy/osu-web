@@ -50,13 +50,11 @@ return [
             'resolved' => '해결된 토론의 게시글은 수정할 수 없습니다.',
             'system_generated' => '자동으로 생성된 글은 수정할 수 없습니다.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => '이 비트맵은 토론을 할 수 없도록 잠겨 있습니다.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => '이 비트맵은 토론을 할 수 없도록 잠겨 있습니다.',
+
         'metadata' => [
             'nominated' => '추천된 맵의 메타데이터를 변경할 수는 없습니다. 잘못 지정된 것 같으시면 BN이나 NAT 멤버에게 알려주세요.',
         ],

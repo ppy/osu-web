@@ -105,9 +105,9 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
 
     public function macroForListing()
     {
-        return function ($query) {
-            $limit = config('osu.beatmaps.max-scores');
-            $newQuery = (clone $query)->with('user')->limit($limit * 3);
+        return function ($query, $limit) {
+            $limit = clamp($limit ?? 50, 1, config('osu.beatmaps.max_scores'));
+            $newQuery = (clone $query)->with('user')->limit($limit + 100);
 
             $result = [];
             $offset = 0;
@@ -141,6 +141,11 @@ abstract class Model extends BaseModel implements Traits\ReportableInterface
 
             return $finalize($result);
         };
+    }
+
+    public function url(): string
+    {
+        return route('scores.show-legacy', ['mode' => $this->getMode(), 'score' => $this->getKey()]);
     }
 
     public function userRank($options)

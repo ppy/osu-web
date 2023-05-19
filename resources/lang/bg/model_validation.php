@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute не може да бъде отрицателно.',
     'required' => ':attribute е задължително.',
     'too_long' => ':attribute превишена максимална дължина - може да бъде само до :limit символа.',
+    'url' => '',
     'wrong_confirmation' => 'Потвърждението не съвпада.',
 
     'beatmapset_discussion' => [
@@ -106,6 +107,10 @@ return [
             'required' => 'Изберете отговор, когато гласувате.',
             'too_many' => 'Избрани са повече отговора от разрешените.',
         ],
+    ],
+
+    'legacy_api_key' => [
+        'exists' => '',
     ],
 
     'oauth' => [

@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'forumokban keresés',
                 'forum_children' => 'alforumok tartalmazása',
+                'include_deleted' => 'törölt hozzászólásokat tartalmaz',
                 'topic_id' => 'témák #',
                 'username' => 'szerző',
             ],
@@ -72,8 +73,22 @@ return [
     ],
 
     'download' => [
-        'tagline' => "vágjunk<br>bele!",
         'action' => 'osu! letöltése',
+        'action_lazer' => 'Töltsd le osu!(lazer)-t',
+        'action_lazer_description' => 'az új nagy frissítése osu!-nak',
+        'action_lazer_info' => 'lásd ezt az oldalt több információért',
+        'action_lazer_title' => 'próbáld ki osu!lazer-t',
+        'action_title' => 'osu! letöltése',
+        'for_os' => ':os operációs rendszerhez',
+        'lazer_note' => 'megjegyzés: ranglista visszaállítások történnek',
+        'macos-fallback' => 'macOS használók',
+        'mirror' => 'tükör',
+        'or' => 'vagy',
+        'os_version_or_later' => ':os_version vagy újabb',
+        'other_os' => 'egyéb platoformok',
+        'quick_start_guide' => 'gyors útmutató',
+        'tagline' => "vágjunk<br>bele!",
+        'video-guide' => 'videó útmutató',
 
         'help' => [
             '_' => 'ha meccs indításakor vagy fiók létrehozásánál problémába ütközöl, :help_forum_link vagy :support_button.',
@@ -86,8 +101,6 @@ return [
             'macos' => 'macOS rendszerre',
             'linux' => 'Linux rendszerre',
         ],
-        'mirror' => 'tükör',
-        'macos-fallback' => 'macOS használók',
         'steps' => [
             'register' => [
                 'title' => 'hozz létre fiókot',
@@ -105,7 +118,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'videó útmutató',
     ],
 
     'user' => [

@@ -4,10 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'loading_users' => '',
+    'loading_users' => 'กำลังโหลดผู้ใช้...',
     'talking_in' => 'กำลังสนทนาใน :channel',
     'talking_with' => 'กำลังสนทนากับ :name',
     'title_compact' => 'ห้องสนทนา',
+    'unread_messages' => 'ข้อความที่ยังไม่ได้อ่าน',
 
     'cannot_send' => [
         'channel' => 'คุณไม่สามารถส่งข้อความผ่านช่องทางนี้ได้ในเวลานี้ อาจเนื่องมาจากสาเหตุต่อไปนี้',
@@ -16,13 +17,13 @@ return [
 
     'channels' => [
         'confirm_part' => 'คุณต้องการที่จะซ่อนช่องนี้หรือไม่ คุณจะยังคงได้รับข้อความจากช่องนี้',
-        'create' => '',
+        'create' => 'สร้างการประกาศ',
 
         'list' => [
             'title' => [
                 'ANNOUNCE' => 'ประกาศ',
                 'GROUP' => 'กลุ่ม',
-                'PM' => '',
+                'PM' => 'ข้อความโดยตรง',
                 'PUBLIC' => 'ช่อง',
             ],
         ],
@@ -35,20 +36,21 @@ return [
 
         'labels' => [
             'description' => 'รายละเอียด',
+            'message' => 'ข้อความ',
             'name' => 'ชื่อห้อง',
-            'users' => '',
+            'users' => 'ผู้เล่นที่จะเพิ่ม',
         ],
     ],
 
     'not_found' => [
-        'message' => '',
+        'message' => 'ไม่มีอะไรที่นี่ บางทีคุณอาจออกจากช่องหรือไม่มีใครอยู่...',
         'title' => 'ไม่พบช่อง',
     ],
 
     'input' => [
         'create' => 'สร้าง',
         'disabled' => 'ไม่สามารถส่งข้อความได้...',
-        'disconnected' => '',
+        'disconnected' => 'ตัดการเชื่อมต่อแล้ว',
         'placeholder' => 'พิมพ์ข้อความ...',
         'send' => 'ส่ง',
     ],

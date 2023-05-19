@@ -8,6 +8,7 @@ return [
     'talking_in' => '在 :channel 中聊天',
     'talking_with' => '与 :name 聊天',
     'title_compact' => '聊天',
+    'unread_messages' => '未读消息',
 
     'cannot_send' => [
         'channel' => '现在你无法在此频道发送消息，这可能是由于以下原因：',
@@ -35,6 +36,7 @@ return [
 
         'labels' => [
             'description' => '介绍',
+            'message' => '消息',
             'name' => '房间名',
             'users' => '要添加的玩家',
         ],

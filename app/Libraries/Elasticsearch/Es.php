@@ -40,6 +40,6 @@ class Es
     {
         static $clients = [];
 
-        return $clients[$name] ??= ClientBuilder::fromConfig(config("elasticsearch.connections.${name}"));
+        return $clients[$name] ??= ClientBuilder::fromConfig(config("elasticsearch.connections.{$name}"));
     }
 }

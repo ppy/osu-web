@@ -24,12 +24,12 @@ return [
 
     'show' => [
         'banner' => 'Dukung Tim Anda',
-        'entered' => 'Anda telah mendaftarkan diri Anda pada turnamen ini.<br><br>Harap dicatat bahwa hal ini <b>tidak</b> berarti bahwa Anda telah secara otomatis terdaftar sebagai peserta pada turnamen yang bersangkutan. <br><br>Kami akan mengirimkan Anda instruksi lebih lanjut melalui email beberapa saat sebelum turnamen resmi dimulai, jadi pastikan alamat email yang terhubung dengan akun osu! Anda aktif dan valid!',
+        'entered' => 'Kamu telah mendaftarkan diri pada turnamen ini.<br><br>Harap dicatat bahwa hal ini <b>tidak</b> berarti bahwa kamu telah ditempatkan ke dalam tim tertentu. <br><br>Kami akan mengirimkanmu instruksi lebih lanjut melalui email sebelum turnamen dimulai, jadi pastikan alamat email yang terhubung dengan akun osu! milikmu aktif dan valid!',
         'info_page' => 'Laman Informasi',
         'login_to_register' => 'Harap :login untuk melihat rincian pendaftaran!',
-        'not_yet_entered' => 'Anda tidak terdaftar pada turnamen ini.',
-        'rank_too_low' => 'Maaf, Anda tidak berada dalam rentang peringkat yang dipersyaratkan oleh turnamen ini!',
-        'registration_ends' => 'Pendaftaran ditutup pada tanggal :date',
+        'not_yet_entered' => 'Kamu tidak terdaftar pada turnamen ini.',
+        'rank_too_low' => 'Maaf, kamu tidak berada dalam rentang peringkat yang dipersyaratkan oleh turnamen ini!',
+        'registration_ends' => 'Pendaftaran akan ditutup pada tanggal :date',
 
         'button' => [
             'cancel' => 'Batalkan Pendaftaran',

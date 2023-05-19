@@ -11,9 +11,9 @@ trait Validatable
 {
     protected $_validationErrors = null;
 
-    abstract public function validationErrorsTranslationPrefix();
+    abstract public function validationErrorsTranslationPrefix(): string;
 
-    public function validationErrorsKeyBase()
+    public function validationErrorsKeyBase(): string
     {
         return 'model_validation.';
     }
@@ -28,5 +28,14 @@ trait Validatable
         }
 
         return $this->_validationErrors;
+    }
+
+    protected function validateFieldLength(int $limit, string $field, ?string $checkField = null): void
+    {
+        $checkField ??= $field;
+        $val = $this->$checkField;
+        if ($val !== null && mb_strlen($val) > $limit) {
+            $this->validationErrors()->add($field, 'too_long', ['limit' => $limit]);
+        }
     }
 }

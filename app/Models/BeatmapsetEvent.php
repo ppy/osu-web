@@ -53,6 +53,7 @@ class BeatmapsetEvent extends Model
     const LANGUAGE_EDIT = 'language_edit';
     const NSFW_TOGGLE = 'nsfw_toggle';
     const OFFSET_EDIT = 'offset_edit';
+    const TAGS_EDIT = 'tags_edit';
 
     const BEATMAP_OWNER_CHANGE = 'beatmap_owner_change';
 

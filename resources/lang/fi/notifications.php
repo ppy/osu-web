@@ -13,6 +13,16 @@ return [
     'see_channel' => 'siirry keskusteluun',
     'verifying' => 'Vahvista istuntosi nähdäksesi ilmoitukset',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => '',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
     'filters' => [
         '_' => 'kaikki',
         'user' => 'profiili',
@@ -209,6 +219,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => '',
+            ],
+
             'channel' => [
                 'pm' => 'Olet saanut uuden viestin käyttäjältä :username',
             ],

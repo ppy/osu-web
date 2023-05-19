@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => '',
         'latest_post' => '',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => 'Σίγουρα επαναφορά της δημοσίευσης;',
         'edited' => 'Τελευταία τροποποίηση από τον χρήστη :user :when, τροποποιήθηκε :count φορές συνολικά.',
         'posted_at' => 'δημοσιεύτηκε :when',
-        'posted_by' => '',
+        'posted_by_in' => '',
 
         'actions' => [
             'destroy' => 'Διαγραφή δημοσίευσης',

@@ -69,7 +69,7 @@ return [
         'message_type' => [
             'disqualify' => 'Hylkää',
             'hype' => 'Hurraus!',
-            'mapper_note' => 'Huomautus',
+            'mapper_note' => 'Muistiinpano',
             'nomination_reset' => 'Nollaa Suositus',
             'praise' => 'Kehu',
             'problem' => 'Ongelma',
@@ -199,6 +199,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Tämän beatmapin arvioidaan tulla hyväksytyksi :date, jos mitään ongelmia ei löydy. Se on #:position :queue.',
+            'on' => ':date',
             'queue' => 'hyväksytysjonossa',
             'soon' => 'pian',
         ],

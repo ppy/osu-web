@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute cannot be negative.',
     'required' => ':attribute is required.',
     'too_long' => ':attribute exceeded maximum length - can only be up to :limit characters.',
+    'url' => 'Please enter a valid URL.',
     'wrong_confirmation' => 'Confirmation does not match.',
 
     'beatmapset_discussion' => [
@@ -108,10 +109,20 @@ return [
         ],
     ],
 
+    'legacy_api_key' => [
+        'exists' => 'Only one API key is provided per user for the moment.',
+
+        'attributes' => [
+            'api_key' => 'api key',
+            'app_name' => 'application name',
+            'app_url' => 'application url',
+        ],
+    ],
+
     'oauth' => [
         'client' => [
             'too_many' => 'Exceeded maximum number of allowed OAuth applications.',
-            'url' => 'Please enter a valid URL.',
+            'url' => 'Please enter valid URLs.',
 
             'attributes' => [
                 'name' => 'Application Name',

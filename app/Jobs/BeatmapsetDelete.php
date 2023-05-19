@@ -75,8 +75,6 @@ class BeatmapsetDelete implements ShouldQueue
             if ($this->beatmapset->topic !== null) {
                 $this->beatmapset->topic->delete();
             }
-
-            $this->beatmapset->removeCovers();
         });
     }
 }

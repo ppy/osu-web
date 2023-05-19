@@ -25,7 +25,7 @@ return [
             '_' => 'Buscar',
             'deleted' => 'Incluir discusiones eliminadas',
             'mode' => 'Modo del mapa',
-            'only_unresolved' => 'Mostrar sólo discusiones no resueltas',
+            'only_unresolved' => 'Mostrar solo discusiones no resueltas',
             'types' => 'Tipos de mensaje',
             'username' => 'Nombre de usuario',
 
@@ -77,14 +77,14 @@ return [
         'go_to_parent' => 'Ver publicación de revisión',
         'go_to_child' => 'Ver discusión',
         'validation' => [
-            'block_too_large' => 'cada bloque sólo puede contener hasta :limit caracteres',
+            'block_too_large' => 'cada bloque solo puede contener hasta :limit caracteres',
             'external_references' => 'la revisión contiene referencias a problemas que no pertenecen a esta revisión',
             'invalid_block_type' => 'tipo de bloque no válido',
             'invalid_document' => 'revisión no válida',
             'invalid_discussion_type' => 'tipo de discusión no válida',
             'minimum_issues' => 'la revisión debe contener un mínimo de :count problema|la revisión debe contener un mínimo de :count problemas',
             'missing_text' => 'le falta texto al bloque',
-            'too_many_blocks' => 'las revisiones sólo pueden contener :count párrafo/problema|las revisiones sólo pueden contener hasta :count párrafos/problemas',
+            'too_many_blocks' => 'las revisiones solo pueden contener :count párrafo/problema|las revisiones solo pueden contener hasta :count párrafos/problemas',
         ],
     ],
 

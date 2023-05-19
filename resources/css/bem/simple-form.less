@@ -1,0 +1,247 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.simple-form {
+  @_base-column-width: 150px;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: @font-size--normal;
+  --input-bg: hsl(var(--hsl-b4));
+
+  &--modal {
+    .default-border-radius();
+    background-color: @osu-colour-b5;
+    padding: 20px 20px 10px;
+    max-width: 400px;
+    --input-bg: hsl(var(--hsl-b6));
+  }
+
+  &--search-box {
+    .default-border-radius();
+    background-color: @osu-colour-b2;
+    padding: 10px 10px 0;
+    margin: 10px 0;
+  }
+
+  &--user-create {
+    max-width: 500px;
+    margin: auto;
+  }
+
+  &__buttons {
+    margin: -5px;
+    display: flex;
+  }
+
+  &__button {
+    margin: 5px;
+    flex: none;
+  }
+
+  &__captcha {
+    min-height: 78px;
+
+    &:empty {
+      &::before {
+      content: '\a0';
+      }
+    }
+  }
+
+  &__checkbox {
+    text-transform: none;
+    cursor: pointer;
+    font-weight: normal;
+    margin: 0;
+
+    &--inline {
+      flex: none;
+      margin: 5px 10px;
+    }
+
+    &--overflow {
+      padding: 5px 10px;
+    }
+  }
+
+  &__checkbox-overflow-container {
+    flex: none;
+    width: 100%;
+
+    @media @desktop {
+      width: 33%;
+    }
+  }
+
+  &__checkboxes-inline {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -5px -10px;
+  }
+
+  &__checkboxes-overflow {
+    max-height: 300px;
+    overflow-y: auto;
+    // Fancier scrolling and visible scroll bar on safari ios.
+    // Doesn't seem to work with `display: flex` though.
+    -webkit-overflow-scrolling: touch;
+    margin: -5px -10px;
+    width: 100%;
+
+    @media @desktop {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+
+  &__error {
+    color: hsl(var(--hsl-red-1));
+    width: 100%;
+    margin-top: 5px;
+
+    &:empty {
+      &::before {
+      content: '\a0';
+      }
+    }
+
+    @media @desktop {
+      padding-left: @_base-column-width;
+    }
+  }
+
+  &__info {
+    margin: 0;
+    font-weight: normal;
+    color: @osu-colour-c2;
+  }
+
+  &__input {
+    .default-border-radius();
+    flex: 1 0 auto;
+    display: inline-flex;
+
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+
+    resize: vertical;
+    background-color: var(--input-bg);
+    color: @osu-colour-c1;
+    font-weight: normal;
+    font-size: @font-size--phone-input;
+    width: 100%;
+
+    @media @desktop {
+      width: auto;
+      font-size: inherit;
+    }
+
+    &:focus {
+      border: none;
+      outline: none;
+    }
+
+    &[type="date"] {
+      // for some reason resizable in chrome
+      resize: none;
+    }
+
+    &--equal-width {
+      flex: 1;
+    }
+
+    &--small {
+      max-width: (@_base-column-width / 2);
+    }
+
+    &--full-height {
+      align-self: stretch;
+    }
+  }
+
+  &__input-arrow-next {
+    width: 100%;
+    display: inline-block;
+    padding: 10px;
+    text-align: center;
+
+    @media @desktop {
+      width: auto;
+      padding-top: 0;
+      padding-bottom: 0;
+      transform: rotate(-90deg);
+    }
+  }
+
+  &__input-group {
+    display: flex;
+    align-items: center;
+  }
+
+  &__input-group-label {
+    font-weight: normal;
+
+    &--suffix {
+      margin-left: 5px;
+    }
+  }
+
+  &__label {
+    width: @_base-column-width;
+    flex: none;
+    font-weight: normal;
+
+    margin: 0 0 10px;
+    @media @desktop {
+      margin: 0;
+      padding-right: 10px;
+    }
+
+    &--full {
+      width: auto;
+    }
+  }
+
+  &__row {
+    flex: 1 0 auto;
+    width: 100%;
+    display: flex;
+    margin-bottom: 10px;
+    text-transform: none;
+    flex-direction: column;
+
+    @media @desktop {
+      flex-direction: row;
+      align-items: baseline;
+    }
+
+    &--no-label {
+      margin-top: 10px;
+
+      @media @desktop {
+        margin-top: 0;
+        padding-left: @_base-column-width;
+      }
+    }
+
+    &--half {
+      flex: 50%;
+    }
+
+    &--title {
+      color: inherit;
+      font-weight: normal;
+      font-size: @font-size--title-small-2;
+      font-style: normal;
+    }
+
+    &.js-form-error--field {
+      flex-wrap: wrap;
+    }
+  }
+
+  &__select {
+    min-width: 200px;
+  }
+}

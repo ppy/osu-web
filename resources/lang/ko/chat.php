@@ -8,6 +8,7 @@ return [
     'talking_in' => ':channel에서 대화 중',
     'talking_with' => ':name님과 대화 중',
     'title_compact' => '채팅',
+    'unread_messages' => '읽지 않은 메시지',
 
     'cannot_send' => [
         'channel' => '이 채널에서 메시지를 보낼 수 없습니다. 다음과 같은 이유 때문일 수도 있습니다:',
@@ -16,7 +17,7 @@ return [
 
     'channels' => [
         'confirm_part' => '이 채널을 숨길까요? 채널을 숨기더라도 메시지는 계속 수신받습니다.',
-        'create' => '공자사항 작성',
+        'create' => '공지사항 작성',
 
         'list' => [
             'title' => [
@@ -35,6 +36,7 @@ return [
 
         'labels' => [
             'description' => '설명',
+            'message' => '메시지',
             'name' => '방 이름',
             'users' => '추가할 플레이어',
         ],

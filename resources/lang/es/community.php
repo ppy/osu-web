@@ -50,18 +50,18 @@ return [
             ],
 
             'friend_ranking' => [
-                'title' => 'Clasificación entre Amigos',
+                'title' => 'Clasificación entre amigos',
                 'description' => "Vea cómo se compara con sus amigos en la tabla de clasificación de un mapa, tanto dentro del juego como en el sitio web.",
             ],
 
             'country_ranking' => [
-                'title' => 'Clasificación Nacional',
+                'title' => 'Clasificación nacional',
                 'description' => 'Conquiste su país antes de conquistar el mundo.',
             ],
 
             'mod_filtering' => [
                 'title' => 'Filtrar por Mods',
-                'description' => '¿Asociarse sólo con personas que juegan con mods HDHR? ¡No hay problema!',
+                'description' => '¿Asociarse solo con personas que juegan con mods HDHR? ¡No hay problema!',
             ],
 
             'auto_downloads' => [

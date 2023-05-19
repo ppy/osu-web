@@ -18,7 +18,7 @@ return [
         'deny_kudosu' => 'odmietnuť kudosu',
         'edit' => 'upraviť',
         'edited' => 'Naposledy upravené uživateľom :editor :update_time.',
-        'guest' => '',
+        'guest' => 'Obtiažnosť hosťa od :user',
         'kudosu_denied' => 'Odopretý od získania kudosu.',
         'message_placeholder_deleted_beatmap' => 'Táto obtiažnosť bola vymazaná, takže už nemôže byť diskutovaná.',
         'message_placeholder_locked' => 'Diskusia o tejto mape boli vypnuté.',
@@ -103,10 +103,10 @@ return [
                 'delete' => 'Zmazať ',
                 'missing' => '[DISKUSIA ZMAZANA]',
                 'unlink' => 'Zrušiť pripojenie',
-                'unsaved' => '',
+                'unsaved' => 'Neuložené',
                 'timestamp' => [
-                    'all-diff' => '',
-                    'diff' => '',
+                    'all-diff' => 'Príspevky na tému „Všetky obtiažnosti“ nemožno označiť časovou pečiatkou.',
+                    'diff' => 'Pokiaľ tento :type začína časovou značkou, zobrazí sa v časovej ose.',
                 ],
             ],
             'insert-block' => [
@@ -199,6 +199,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Táto mapa je predpokladaná k hodnotení :date, pokud sa nenájdu žiadne chyby. Mapa je momentálne v pozícii číslo :position ve fronte :queue.',
+            'on' => 'dňa :date',
             'queue' => 'fronta hodnotení ',
             'soon' => 'neskôr ',
         ],
@@ -229,7 +230,7 @@ return [
                 'genre' => 'Žáner',
                 'language' => 'Jazyk',
                 'mode' => 'Mód',
-                'nsfw' => '',
+                'nsfw' => 'Explicitný obsah',
                 'played' => 'Hrané',
                 'rank' => 'Dosiahnuté Hodnotenie',
                 'status' => 'Kategórie',
@@ -254,10 +255,10 @@ return [
     ],
     'general' => [
         'converts' => 'Zahrnúť konvertované beatmapy',
-        'featured_artists' => '',
-        'follows' => '',
+        'featured_artists' => 'Významní skladatelia',
+        'follows' => 'Odoberaní maperi',
         'recommended' => 'Odporúčaná obtiažnosť',
-        'spotlights' => '',
+        'spotlights' => 'Zvýraznené beatmapy',
     ],
     'mode' => [
         'all' => 'Všetko ',

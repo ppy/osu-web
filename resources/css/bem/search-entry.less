@@ -1,0 +1,32 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.search-entry {
+  .link-plain();
+  .default-border-radius();
+  background-color: @osu-colour-b5;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 10px 15px;
+  position: relative; // for entries which link is full-sized child element
+  box-shadow: inset 0 0 0 var(--border-size) var(--border-colour);
+  min-width: 0;
+  --border-colour: hsl(var(--hsl-l1));
+  --border-size: 0;
+
+  .search-result--forum_post & {
+    --border-colour: @yellow-dark;
+  }
+
+  .search-result--wiki_page & {
+    --border-colour: @purple-dark;
+  }
+
+  &--deleted {
+    opacity: 0.5;
+  }
+
+  &:hover {
+    --border-size: 2px;
+  }
+}

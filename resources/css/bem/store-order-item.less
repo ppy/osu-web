@@ -1,0 +1,59 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.store-order-item {
+  .default-border-radius();
+  .default-box-shadow();
+  padding: 10px;
+  background-color: @osu-colour-b4;
+  display: grid;
+  gap: 10px;
+  align-items: baseline;
+  grid-template-areas: "name name" "quantity delete" "subtotal subtotal";
+  grid-template-columns: 1fr auto;
+  font-size: @font-size--title-small;
+
+  @media @narrow-up {
+    grid-template-areas: "name quantity subtotal delete";
+    grid-template-columns: 1fr 150px 100px 35px;
+    grid-template-rows: auto;
+  }
+
+  @media @desktop {
+    font-size: inherit;
+  }
+
+  &__errors {
+    color: @red;
+    list-style: none;
+    grid-column-start: 1;
+    grid-column-end: -1;
+    order: 10;
+  }
+
+  &__delete {
+    grid-area: delete;
+    text-align: right;
+  }
+
+  &__quantity {
+    grid-area: quantity;
+  }
+
+  &__name {
+    grid-area: name;
+  }
+
+  &__subtext {
+    color: hsl(var(--hsl-c2));
+    font-size: 80%;
+  }
+
+  &__subtotal {
+    grid-area: subtotal;
+
+    @media @desktop {
+      text-align: right;
+    }
+  }
+}

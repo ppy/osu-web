@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => 'Färdigförpackade samlingar med beatmaps som är baserade på ett gemensamt tema.',
+        'empty' => 'Kommer snart!',
         'nav_title' => 'listning',
         'title' => 'Beatmap-samlingar',
 
@@ -34,8 +35,10 @@ return [
     'mode' => [
         'artist' => 'Artist/Album',
         'chart' => 'I rampljuset',
+        'featured' => 'Utvald artist',
         'standard' => 'Standard',
         'theme' => 'Tema',
+        'tournament' => 'Turnering',
     ],
 
     'require_login' => [

@@ -7,12 +7,12 @@ return [
     'completed' => [
         'home' => 'Zum Dashboard gehen',
         'logout' => 'Abmelden',
-        'text' => 'Du kannst diesen Tab/dieses Fenster nun schließen',
+        'text' => 'Du kannst dieses Fenster nun schließen',
         'title' => 'osu! Client-Verifizierung wurde abgeschlossen',
     ],
 
     'create' => [
-        'confirm' => 'Klicke unten auf den Autorisierungs-Button, um die Client-Überprüfung abzuschließen.',
+        'confirm' => 'Klicke unten auf den Autorisierungs-Button, um die Client-Verifizierung abzuschließen.',
         'title' => 'osu! Client-Verifizierung',
     ],
 ];

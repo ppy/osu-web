@@ -28,6 +28,7 @@ class CleanHTML
         $config->set('Cache.SerializerPath', $cachePath);
         $config->set('Attr.AllowedRel', ['nofollow']);
         $config->set('HTML.Trusted', true);
+        $config->set('CSS.Trusted', true);
 
         $def = $config->getHTMLDefinition(true);
 
@@ -44,7 +45,7 @@ class CleanHTML
 
         $def->addAttribute('audio', 'preload', 'Text');
 
-        $def->addAttribute('img', 'data-normal', 'Text');
+        $def->addAttribute('img', 'loading', 'Text');
         $def->addAttribute('img', 'src', 'Text');
 
         $def->addAttribute('span', 'data-src', 'Text');

@@ -23,7 +23,7 @@ return [
     ],
 
     'notice' => [
-        'sent' => 'Periksa email Anda untuk kode verifikasi.',
+        'sent' => 'Periksa emailmu untuk menerima kode verifikasi.',
         'saved' => 'Kata sandi baru berhasil disimpan!',
     ],
 

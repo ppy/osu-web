@@ -13,6 +13,16 @@ return [
     'see_channel' => 'انتقل للمُحادثة',
     'verifying' => 'الرجاء التحقق من الجلسة لعرض الإشعارات',
 
+    'action_type' => [
+        '_' => 'الكل',
+        'beatmapset' => 'خرائط الموسيقى',
+        'build' => '',
+        'channel' => 'المحادثة',
+        'forum_topic' => 'منتدى',
+        'news_post' => 'الأخبار',
+        'user' => 'الملف الشخصي',
+    ],
+
     'filters' => [
         '_' => 'الكل',
         'user' => 'الملف الشخصي',
@@ -209,6 +219,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'هناك إعلان جديد في ":name"',
+            ],
+
             'channel' => [
                 'pm' => 'لقد تلقيت رسالة جديدة من :username',
             ],
@@ -240,7 +254,7 @@ return [
 
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => 'قام :username بإنشاء خرائط جديدة',
-                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive' => ':username قام بإحياء الخرائط',
             ],
         ],
     ],

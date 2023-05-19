@@ -1,0 +1,400 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.osu-md {
+  @_top: osu-md;
+
+  .content-font();
+  color: inherit;
+  font-size: @font-size--wiki;
+  word-wrap: break-word;
+
+  --code-background-colour: hsl(var(--hsl-b6));
+  --paragraph-space: @md-paragraph-space;
+
+  code {
+    .default-border-radius();
+    background-color: var(--code-background-colour);
+    color: @osu-colour-l1;
+    padding: 1px 4px;
+  }
+
+  hr {
+    border-color: @osu-colour-b3;
+  }
+
+  iframe {
+    max-width: 100%;
+  }
+
+  img {
+    max-width: 100%;
+
+    .@{_top}--comment& {
+      object-fit: contain;
+      min-height: 1em;
+      max-height: 6em;
+    }
+
+    .@{_top}--discussions& {
+      object-fit: contain;
+      min-height: 1em;
+      max-height: 480px; // most landscape images will be limited by width of the discussions area.
+    }
+  }
+
+  video {
+    max-width: 100%;
+  }
+
+  pre {
+    background-color: var(--code-background-colour);
+    color: @osu-colour-l1;
+    border: none;
+    border-radius: 0;
+
+    > code {
+      border: none;
+      padding: 0;
+    }
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+
+  &--chat {
+    --code-background-colour: hsl(var(--hsl-b3));
+    flex: 1;
+    overflow-wrap: anywhere;
+
+    h1, h2, h3, h4, h5, h6 {
+      font-size: revert;
+      border-bottom: 1px solid hsl(var(--hsl-b3));
+    }
+  }
+
+  &--chat-action {
+    color: hsl(var(--hsl-l1));
+    font-style: italic;
+
+    &::before {
+      content: '* ';
+    }
+    &::after {
+      content: ' *';
+    }
+  }
+
+  &--chat-plain {
+    p {
+      display: inline;
+    }
+  }
+
+  &--discussions {
+    font: inherit;
+    font-size: inherit;
+  }
+
+  &--group {
+    --paragraph-space: 10px;
+  }
+
+  &--news {
+    padding: 0;
+    color: @osu-colour-c1;
+    font-size: @font-size--wiki;
+  }
+
+  &--store-product {
+    .default-text-shadow();
+    .default-font();
+    font-size: @font-size--title-small-4;
+  }
+
+  &__figure-caption {
+    margin-top: 5px;
+    font-style: normal;
+    display: inline-block;
+  }
+
+  &__figure-container {
+    margin: var(--paragraph-space) 0;
+    text-align: center;
+
+    .@{_top}--comment & {
+      text-align: inherit;
+    }
+  }
+
+  &__figure-image {
+    display: block;
+    margin: 0 auto;
+
+    &--gallery {
+      cursor: pointer;
+    }
+
+    .@{_top}--comment & {
+      margin: 0;
+    }
+  }
+
+  &__footnote-container {
+    > ol {
+      padding-left: 0;
+      list-style: none;
+      counter-reset: c 0;
+    }
+  }
+
+  &__header {
+    .default-font();
+    clear: both;
+
+    font-weight: bold;
+    font-style: normal;
+    color: @osu-colour-c1;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &--1 {
+      margin-top: 40px;
+      font-weight: 600;
+
+      .@{_top}--comment & {
+        font-size: 1.2em;
+      }
+
+      .@{_top}--store-product & {
+        font-weight: 200;
+        font-size: @font-size--large-3;
+        margin: 0;
+      }
+
+      .@{_top}--store-product-small & {
+        font-size: @font-size--header-title;
+      }
+
+      .@{_top}--wiki & {
+        margin-right: 0;
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid hsl(var(--hsl-b3));
+      }
+    }
+
+    &--2 {
+      font-size: @font-size--header-wiki-2;
+      font-weight: 600;
+      margin: 20px 0 10px;
+
+      .@{_top}--comment & {
+        font-size: 1.1em;
+      }
+
+      .@{_top}--news & {
+        font-size: @font-size--title;
+        padding-bottom: 5px;
+        border-bottom: 1px solid hsl(var(--hsl-b3));
+      }
+
+      .@{_top}--wiki & {
+        padding-bottom: 5px;
+        border-bottom: 1px solid hsl(var(--hsl-b3));
+      }
+    }
+
+    &--3 {
+      font-size: @font-size--header-wiki-3;
+      margin: 30px 0 10px;
+
+      .@{_top}--comment & {
+        font-size: 1em;
+      }
+
+      .@{_top}--news & {
+        font-size: @font-size--title-small-4;
+      }
+    }
+
+    &--4 {
+      font-size: @font-size--header-wiki-4;
+      margin: 30px 0 10px;
+
+      .@{_top}--comment & {
+        font-size: 1em;
+      }
+
+      .@{_top}--news & {
+        font-size: inherit;
+        color: inherit;
+      }
+    }
+
+    &--5 {
+      font-size: @font-size--header-wiki-5;
+      margin-top: 20px;
+
+      .@{_top}--comment & {
+        font-size: 1em;
+      }
+    }
+
+    &--6 {
+      font-size: @font-size--header-wiki-6;
+      margin-top: 20px;
+
+      .@{_top}--comment & {
+        font-size: 1em;
+      }
+    }
+  }
+
+  &__infobox {
+    padding: 10px;
+    margin: var(--paragraph-space) 0;
+    border: 1px solid hsl(var(--hsl-b4));
+    .default-border-radius();
+    text-align: center;
+
+    @media (min-width: 300px * 2 + @gutter-v2 * 2) {
+      float: right;
+      clear: right;
+      width: 50%;
+      max-width: 300px;
+      margin: 0 0 5px 10px;
+    }
+
+    > :first-child {
+      margin-top: 0;
+    }
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+
+    thead {
+      display: none;
+    }
+
+    tbody > tr:first-child > td {
+      border-top: none;
+    }
+
+    td {
+      vertical-align: top;
+    }
+  }
+
+  &__link {
+    &--footnote-ref {
+      font-size: @font-size--small-2;
+
+      &::after {
+        content: "]";
+      }
+
+      &::before {
+        content: "[";
+      }
+    }
+  }
+
+  &__list {
+    padding-left: 20px;
+
+    &--ordered {
+      list-style: none;
+      padding-left: 0;
+      counter-reset: c var(--list-start);
+    }
+  }
+
+  &__list-item {
+    margin: 5px 0;
+
+    .@{_top}--store & {
+      margin-left: 10px;
+    }
+
+    .@{_top}__list--ordered > &,
+    .@{_top}__footnote-container & {
+      counter-increment: c;
+      display: flex;
+
+      &::before {
+        content: counter(c) ". ";
+        min-width: 30px;
+        padding-right: 5px;
+        flex: none;
+      }
+
+      // can't have class due to how it's rendered
+      > div {
+        flex: 1;
+        min-width: 0;
+      }
+    }
+  }
+
+  &__paragraph {
+    margin-bottom: var(--paragraph-space);
+    line-height: 1.5;
+
+    .@{_top}--store & {
+      margin-bottom: 10px;
+    }
+
+    .@{_top}--store-product-small & {
+      display: none;
+    }
+
+    .@{_top}__list-item--footnote & {
+      margin-bottom: 0;
+      flex: 1;
+      min-width: 0;
+      line-height: inherit;
+    }
+  }
+
+  // not actual table but its container
+  &__table {
+    overflow-x: auto;
+    margin-bottom: 20px;
+
+    .@{_top}--store & {
+      table {
+        width: 100%;
+      }
+    }
+  }
+
+  &__table-data {
+    border-top: 1px solid @osu-colour-b4;
+    padding: 5px;
+    min-width: 30px;
+
+    &--center {
+      text-align: center;
+    }
+
+    &--header {
+      .default-font();
+      border-top: none;
+      border-bottom: 2px solid @osu-colour-b3;
+      font-weight: bold;
+    }
+
+    &--left {
+      text-align: left;
+    }
+
+    &--right {
+      text-align: right;
+    }
+  }
+}

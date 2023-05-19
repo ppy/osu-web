@@ -10,7 +10,7 @@ use App\Models\GithubUser;
 
 class ChangelogEntryTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'github_user',
         'message',
         'message_html',

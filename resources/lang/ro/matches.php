@@ -6,13 +6,13 @@
 return [
     'match' => [
         'beatmap-deleted' => 'beatmap șters',
-        'difference' => 'cu :difference puncte',
         'failed' => 'EȘUAT',
         'header' => 'Meciuri Multiplayer',
         'in-progress' => '(meci în desfășurare)',
         'in_progress_spinner_label' => 'meci în desfășurare',
         'loading-events' => 'Se încarcă evenimentele...',
         'winner' => ':team câștigă',
+        'winner_by' => '',
 
         'events' => [
             'player-left' => ':user a părăsit meciul',

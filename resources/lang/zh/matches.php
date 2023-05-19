@@ -6,13 +6,13 @@
 return [
     'match' => [
         'beatmap-deleted' => '删除谱面',
-        'difference' => '，领先 :difference 分',
         'failed' => '失败',
         'header' => '多人游戏',
         'in-progress' => '（游戏进行中）',
         'in_progress_spinner_label' => '游戏进行中',
         'loading-events' => '加载事件...',
         'winner' => ':team 胜利',
+        'winner_by' => '',
 
         'events' => [
             'player-left' => ':user 离开房间',

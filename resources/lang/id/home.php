@@ -43,8 +43,9 @@ return [
             'label' => [
                 'forum' => 'cari di forum',
                 'forum_children' => 'sertakan subforum',
+                'include_deleted' => 'sertakan postingan yang telah dihapus',
                 'topic_id' => 'topik #',
-                'username' => 'pemilik',
+                'username' => 'pembuat post',
             ],
         ],
 
@@ -60,7 +61,7 @@ return [
             'login_required' => 'Masuk untuk mencari pengguna',
             'more' => ':count hasil pencarian pengguna lainnya',
             'more_simple' => 'Lihat hasil pencarian pengguna lainnya',
-            'more_hidden' => 'Pencarian pengguna terbatas hanya untuk :max pengguna. Cobalah untuk mempersempit kriteria pencarian Anda.',
+            'more_hidden' => 'Pencarian pengguna terbatas hanya untuk :max pengguna. Cobalah untuk mempersempit kriteria pencarian.',
             'title' => 'Pengguna',
         ],
 
@@ -72,11 +73,25 @@ return [
     ],
 
     'download' => [
-        'tagline' => "mari persiapkan<br>diri Anda!",
         'action' => 'Unduh osu!',
+        'action_lazer' => 'Unduh osu!(lazer)',
+        'action_lazer_description' => 'versi utama osu! yang akan datang',
+        'action_lazer_info' => 'kunjungi laman ini untuk informasi lebih lanjut',
+        'action_lazer_title' => 'coba osu!(lazer)',
+        'action_title' => 'unduh osu!',
+        'for_os' => 'untuk :os',
+        'lazer_note' => 'catatan: papan peringkat dapat diatur ulang sewaktu-waktu',
+        'macos-fallback' => 'osu! versi macOS',
+        'mirror' => 'tautan alternatif',
+        'or' => 'atau',
+        'os_version_or_later' => ':os_version atau lebih tinggi',
+        'other_os' => 'platform lainnya',
+        'quick_start_guide' => 'panduan singkat',
+        'tagline' => "mari persiapkan<br>dirimu!",
+        'video-guide' => 'panduan video',
 
         'help' => [
-            '_' => 'apabila Anda menemui suatu masalah di saat Anda hendak memulai permainan atau mendaftarkan akun, harap :help_forum_link atau :support_button.',
+            '_' => 'apabila kamu menemui masalah pada saat kamu ingin memulai permainan atau mendaftarkan akun, harap :help_forum_link atau :support_button.',
             'help_forum_link' => 'kunjungi sub-forum Help',
             'support_button' => 'hubungi layanan dukungan kami',
         ],
@@ -86,8 +101,6 @@ return [
             'macos' => 'untuk macOS',
             'linux' => 'untuk Linux',
         ],
-        'mirror' => 'tautan alternatif',
-        'macos-fallback' => 'osu! untuk pengguna macOS',
         'steps' => [
             'register' => [
                 'title' => 'buat akun',
@@ -105,7 +118,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'panduan video',
     ],
 
     'user' => [

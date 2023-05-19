@@ -27,7 +27,7 @@ class XsollaPaymentProcessorTest extends TestCase
 
     public function testWhenPaymentIsInsufficient()
     {
-        $orderItem = factory(OrderItem::class)->states('supporter_tag')->create(['order_id' => $this->order->order_id]);
+        $orderItem = OrderItem::factory()->supporterTag()->create(['order_id' => $this->order]);
 
         $params = $this->getTestParams([
             'purchase' => [
@@ -97,7 +97,7 @@ class XsollaPaymentProcessorTest extends TestCase
 
     public function testWhenOrderProcessingState()
     {
-        $this->order = factory(Order::class)->states('processing')->create();
+        $this->order = Order::factory()->processing()->create();
         $params = $this->getTestParams();
         $subject = new XsollaPaymentProcessor($params, $this->validSignature());
         $subject->run();
@@ -107,7 +107,7 @@ class XsollaPaymentProcessorTest extends TestCase
 
     public function testWhenOrderHasPhysicalItems()
     {
-        $orderItem = factory(OrderItem::class)->create(['order_id' => $this->order->order_id]);
+        $orderItem = OrderItem::factory()->create(['order_id' => $this->order]);
 
         $params = $this->getTestParams();
         $subject = new XsollaPaymentProcessor($params, $this->validSignature());
@@ -124,7 +124,7 @@ class XsollaPaymentProcessorTest extends TestCase
     {
         parent::setUp();
         Config::set('payments.xsolla.api_key', 'api_key');
-        $this->order = factory(Order::class)->states('checkout')->create();
+        $this->order = Order::factory()->checkout()->create();
     }
 
     private function getTestParams(array $overrides = [])

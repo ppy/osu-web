@@ -54,7 +54,7 @@ return [
         'topic_auto_subscribe' => 'az általad létrehozott új fórum témák értesítéseinek automatikus bekapcsolása',
 
         'options' => [
-            '_' => 'Szállítási lehetőségek',
+            '_' => 'szállítási lehetőségek',
             'beatmap_owner_change' => 'vendég nehézség',
             'beatmapset:modding' => 'beatmap modolás',
             'channel_message' => 'Privát üzenetek',
@@ -63,7 +63,7 @@ return [
             'mail' => 'e-mail',
             'mapping' => 'beatmap készítő',
             'push' => 'Elöjövő',
-            'user_achievement_unlock' => 'Medál feloldva',
+            'user_achievement_unlock' => 'felhasználói medál feloldva',
         ],
     ],
 

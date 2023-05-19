@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => 'Форуми',
         'latest_post' => 'Останній пост',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => 'Відновити відповідь?',
         'edited' => 'Востаннє відредаговано :user :when, загалом відредаговано :count_delimited раз.|Востаннє відредаговано :user :when, загалом відредаговано :count_delimited разів.',
         'posted_at' => 'написано :when',
-        'posted_by' => 'опубліковано :username',
+        'posted_by_in' => 'опубліковано :username у :forum',
 
         'actions' => [
             'destroy' => 'Видалити відповідь',

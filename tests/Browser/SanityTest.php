@@ -36,6 +36,7 @@ use App\Models\Multiplayer\Room;
 use App\Models\NewsPost;
 use App\Models\Notification;
 use App\Models\Score;
+use App\Models\Season;
 use App\Models\Store;
 use App\Models\Tournament;
 use App\Models\UpdateStream;
@@ -111,7 +112,7 @@ class SanityTest extends DuskTestCase
         UserProfileCustomization::truncate();
         UserStatistics\Osu::truncate();
 
-        app('groups')->resetCache();
+        app('groups')->resetMemoized();
     }
 
     private static function createScaffolding()
@@ -128,7 +129,7 @@ class SanityTest extends DuskTestCase
         ]);
 
         // factories for /beatmapsets/*
-        self::$scaffolding['beatmap_mirror'] = factory(BeatmapMirror::class)->create();
+        self::$scaffolding['beatmap_mirror'] = BeatmapMirror::factory()->create();
         self::$scaffolding['genre'] = Genre::factory()->create();
         self::$scaffolding['language'] = Language::factory()->create();
         self::$scaffolding['beatmapset'] = Beatmapset::factory()->create([
@@ -155,25 +156,25 @@ class SanityTest extends DuskTestCase
         self::$scaffolding['pack'] = BeatmapPack::factory()->create();
 
         // factories for /community/contests/*
-        self::$scaffolding['contest'] = factory(Contest::class)->states('entry')->create();
+        self::$scaffolding['contest'] = Contest::factory()->entry()->create();
 
         // factories for /community/tournaments/*
-        self::$scaffolding['tournament'] = factory(Tournament::class)->create();
+        self::$scaffolding['tournament'] = Tournament::factory()->create();
 
         // factories for /beatmaps/artists/*
-        self::$scaffolding['artist'] = factory(Artist::class)->create();
+        self::$scaffolding['artist'] = Artist::factory()->create();
         self::$scaffolding['track'] = ArtistTrack::factory()->create([
             'artist_id' => self::$scaffolding['artist']->getKey(),
         ]);
 
         // factories for /store/*
-        self::$scaffolding['product'] = factory(Store\Product::class)->states('master_tshirt')->create();
-        self::$scaffolding['order'] = factory(Store\Order::class)->states('checkout')->create([
-            'user_id' => self::$scaffolding['user']->getKey(),
+        self::$scaffolding['product'] = Store\Product::factory()->masterTshirt()->create();
+        self::$scaffolding['order'] = Store\Order::factory()->checkout()->create([
+            'user_id' => self::$scaffolding['user'],
         ]);
         self::$scaffolding['checkout'] = new ScaffoldDummy(self::$scaffolding['order']->getKey());
-        self::$scaffolding['invoice'] = factory(Store\Order::class)->states('paid')->create([
-            'user_id' => self::$scaffolding['user']->getKey(),
+        self::$scaffolding['invoice'] = Store\Order::factory()->paid()->create([
+            'user_id' => self::$scaffolding['user'],
         ]);
 
         // factories for /community/forums/*
@@ -194,7 +195,10 @@ class SanityTest extends DuskTestCase
         self::$scaffolding['_user_group'] = UserGroup::first();
 
         // satisfy minimum playcount for forum posting
-        self::$scaffolding['user']->statisticsOsu()->save(factory(UserStatistics\Osu::class)->make(['playcount' => config('osu.forum.minimum_plays')]));
+        UserStatistics\Osu::factory()->create([
+            'playcount' => config('osu.forum.minimum_plays'),
+            'user_id' => self::$scaffolding['user'],
+        ]);
 
         self::$scaffolding['topic'] = Topic::factory()->create([
             'forum_id' => self::$scaffolding['forum'],
@@ -215,9 +219,12 @@ class SanityTest extends DuskTestCase
         // dummy for game mode param
         self::$scaffolding['mode'] = new ScaffoldDummy('osu');
 
+        // factory for /seasons/*
+        self::$scaffolding['season'] = Season::factory()->create();
+
         // factory for /home/changelog/*
-        self::$scaffolding['stream'] = factory(UpdateStream::class)->create();
-        self::$scaffolding['changelog'] = factory(Changelog::class)->create([
+        self::$scaffolding['stream'] = UpdateStream::factory()->create();
+        self::$scaffolding['changelog'] = Changelog::factory()->create([
             'stream_id' => self::$scaffolding['stream']->stream_id,
         ]);
         self::$scaffolding['build'] = Build::factory()->create([
@@ -225,7 +232,7 @@ class SanityTest extends DuskTestCase
         ]);
 
         // factory for /g/*
-        self::$scaffolding['group'] = factory(Group::class)->create();
+        self::$scaffolding['group'] = Group::factory()->create();
 
         // factory for comments
         self::$scaffolding['comment'] = Comment::factory()->create([
@@ -235,8 +242,8 @@ class SanityTest extends DuskTestCase
         ]);
 
         // factory for matches
-        self::$scaffolding['match'] = factory(LegacyMatch\LegacyMatch::class)->create();
-        self::$scaffolding['event'] = factory(LegacyMatch\Event::class)->states('join')->create([
+        self::$scaffolding['match'] = LegacyMatch\LegacyMatch::factory()->create();
+        self::$scaffolding['event'] = LegacyMatch\Event::factory()->join()->create([
             'match_id' => self::$scaffolding['match']->getKey(),
         ]);
 
@@ -249,9 +256,9 @@ class SanityTest extends DuskTestCase
         // score factory
         self::$scaffolding['score'] = Score\Best\Osu::factory()->withReplay()->create();
 
-        self::$scaffolding['room'] = factory(Room::class)->create(['category' => 'spotlight']);
+        self::$scaffolding['room'] = Room::factory()->create(['category' => 'spotlight']);
 
-        app('groups')->resetCache();
+        app('groups')->resetMemoized();
     }
 
     private static function filterLog(array $log)
@@ -276,6 +283,9 @@ class SanityTest extends DuskTestCase
                         continue;
                     }
                 }
+            } elseif ($line['message'] === "security - Error with Permissions-Policy header: Unrecognized feature: 'ch-ua-form-factor'.") {
+                // we don't use ch-ua-* crap and this error is thrown by youtube.com as of 2023-05-16
+                continue;
             }
 
             $return[] = $line;
@@ -446,7 +456,7 @@ class SanityTest extends DuskTestCase
                 static::output($params[$paramName]." \e[30;1m(override)\e[0m\n");
             } else {
                 if (isset(self::$scaffolding[$paramName])) {
-                    $params[$paramName] = self::$scaffolding[$paramName]->getKey();
+                    $params[$paramName] = self::$scaffolding[$paramName]->getRouteKey();
                     static::output($params[$paramName]."\n");
                 } else {
                     static::output("\e[30;1m¯\_(ツ)_/¯\e[0m\n");

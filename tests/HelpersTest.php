@@ -3,19 +3,29 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 namespace Tests;
 
 class HelpersTest extends TestCase
 {
     /**
-     * @dataProvider dataClassWithModifiers
+     * @dataProvider dataForGetStringSplit
      */
-    public function testClassWithModifiers($class, $modifiers, $expected)
+    public function testGetStringSplit(string $input, array $expected): void
+    {
+        $this->assertSame($expected, get_string_split($input));
+    }
+
+    /**
+     * @dataProvider dataForClassWithModifiers
+     */
+    public function testClassWithModifiers($class, $modifiers, $expected): void
     {
         $this->assertSame($expected, class_with_modifiers($class, ...$modifiers));
     }
 
-    public function dataClassWithModifiers()
+    public function dataForClassWithModifiers(): array
     {
         return [
             'no modifiers' =>
@@ -40,6 +50,18 @@ class HelpersTest extends TestCase
                 ['cl', [['hello' => true, 'world' => false], ['foo' => false, 'bar' => true]], 'cl cl--hello cl--bar'],
             'mixed' =>
                 ['cl', ['hello', ['world' => true, 'foo' => false], ['bar', null]], 'cl cl--hello cl--world cl--bar'],
+        ];
+    }
+
+    public function dataForGetStringSplit(): array
+    {
+        return [
+            ["hello\nworld\n!", ['hello', 'world', '!']],
+            ["hello\rworld\n!", ['hello', 'world', '!']],
+            ["hello\r\nworld\r!", ['hello', 'world', '!']],
+            [" hello \r\n world \n ! ", ['hello', 'world', '!']],
+            ['hello world', ['hello world']],
+            ["\nhello world\n\n\r", ['hello world']],
         ];
     }
 }

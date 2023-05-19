@@ -34,6 +34,7 @@ return [
         'qualify' => 'Ta beatmapa osiągnęła wystarczającą liczbę nominacji i została zakwalifikowana.',
         'rank' => 'Rankingowa.',
         'remove_from_loved' => 'Usunięta z ulubionych beatmap społeczności przez użytkownika :user (:text).',
+        'tags_edit' => 'Zmieniono tagi z „:old” na „:new”.  ',
 
         'nsfw_toggle' => [
             'to_0' => 'Usunięto oznaczenie jako treść dla pełnoletnich',

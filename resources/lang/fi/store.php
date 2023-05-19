@@ -31,6 +31,7 @@ return [
         'cart_problems_edit' => 'Napsauta tästä muokataksesi sitä.',
         'declined' => 'Maksu peruutettiin.',
         'delayed_shipping' => 'Olemme tällä hetkellä hukkumassa tilauksiin! Olet vapaa tilaamaan, mutta ole valmis odottamaan **1-2 viikkoa lisää** kunnes olemme saaneet nykyiset tilaukset lähetettyä.',
+        'hide_from_activity' => '',
         'old_cart' => 'Korisi näyttää olevan vanhentunut ja on ladattu uudestaan, yritä uudelleen.',
         'pay' => 'Maksa Paypalilla',
         'title_compact' => 'kassa',
@@ -50,6 +51,7 @@ return [
 
     'invoice' => [
         'echeck_delay' => 'Koska maksusi oli eCheck, anna maksimissaan 10 päivää että maksu pääsee PayPalin läpi!',
+        'hide_from_activity' => '',
         'title_compact' => 'lasku',
 
         'status' => [
@@ -75,10 +77,15 @@ return [
         'shopify_expired' => 'Tämän tilauksen kassalinkki on vanhentunut.',
 
         'item' => [
+            'quantity' => 'Määrä',
+
             'display_name' => [
                 'supporter_tag' => ':name käyttäjälle :username (:duration)',
             ],
-            'quantity' => 'Määrä',
+
+            'subtext' => [
+                'supporter_tag' => '',
+            ],
         ],
 
         'not_modifiable_exception' => [
@@ -120,6 +127,8 @@ return [
 
     'supporter_tag' => [
         'gift' => 'lahjoita pelaajalle',
+        'gift_message' => '',
+
         'require_login' => [
             '_' => 'Sinun pitää olla :link saadaksesi osu!tukijan!',
             'link_text' => 'kirjautunut sisään',

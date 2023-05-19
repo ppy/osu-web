@@ -315,8 +315,8 @@ class OsuAuthorize
         $this->ensureCleanRecord($user);
         $this->ensureHasPlayed($user);
 
-        if ($beatmapset->discussion_locked) {
-            return 'beatmap_discussion_post.store.beatmapset_locked';
+        if ($beatmapset->discussion_locked || $beatmapset->downloadLimited()) {
+            return 'beatmapset.discussion_locked';
         }
 
         return 'ok';
@@ -458,7 +458,7 @@ class OsuAuthorize
         }
 
         if ($post->beatmapDiscussion->beatmapset->discussion_locked) {
-            return 'beatmap_discussion_post.store.beatmapset_locked';
+            return 'beatmapset.discussion_locked';
         }
 
         return 'ok';
@@ -489,8 +489,9 @@ class OsuAuthorize
             return $prefix.'resolved';
         }
 
-        if ($post->beatmapDiscussion->beatmapset->discussion_locked) {
-            return 'beatmap_discussion_post.store.beatmapset_locked';
+        $beatmapset = $post->beatmapDiscussion->beatmapset;
+        if ($beatmapset->discussion_locked || $beatmapset->downloadLimited()) {
+            return 'beatmapset.discussion_locked';
         }
 
         return 'ok';
@@ -558,10 +559,6 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if (!$beatmapset->isScoreable() && $user->isModerator()) {
-            return 'ok';
-        }
-
         return 'unauthorized';
     }
 
@@ -606,13 +603,17 @@ class OsuAuthorize
         $this->ensureCleanRecord($user);
         $this->ensureHasPlayed($user);
 
+        // Moderators can't reply if download limited.
+        if ($beatmapset->downloadLimited()) {
+            return 'beatmapset.discussion_locked';
+        }
+
         if ($user->isModerator()) {
             return 'ok';
         }
 
         if ($beatmapset->discussion_locked) {
-            // TODO: key should be changed.
-            return 'beatmap_discussion_post.store.beatmapset_locked';
+            return 'beatmapset.discussion_locked';
         }
 
         return 'ok';
@@ -732,6 +733,15 @@ class OsuAuthorize
         return 'unauthorized';
     }
 
+    public function checkBeatmapsetShowDeleted(?User $user): string
+    {
+        if ($user !== null && $user->isModerator()) {
+            return 'ok';
+        }
+
+        return 'unauthorized';
+    }
+
     /**
      * @param User|null $user
      * @param Beatmapset $beatmapset
@@ -741,6 +751,7 @@ class OsuAuthorize
     public function checkBeatmapsetDescriptionEdit(?User $user, Beatmapset $beatmapset): string
     {
         $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         if ((!$beatmapset->downloadLimited() && $user->getKey() === $beatmapset->user_id) || $user->isModerator()) {
             return 'ok';
@@ -820,6 +831,7 @@ class OsuAuthorize
     public function checkBeatmapsetMetadataEdit(?User $user, Beatmapset $beatmapset): string
     {
         $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
 
         if ($user->isModerator()) {
             return 'ok';
@@ -874,6 +886,17 @@ class OsuAuthorize
 
     public function checkBeatmapsetOffsetEdit(): string
     {
+        return 'unauthorized';
+    }
+
+    public function checkBeatmapsetTagsEdit(?User $user): string
+    {
+        $this->ensureLoggedIn($user);
+
+        if ($user->isModerator()) {
+            return 'ok';
+        }
+
         return 'unauthorized';
     }
 
@@ -1787,6 +1810,19 @@ class OsuAuthorize
         return 'unauthorized';
     }
 
+    public function checkLegacyIrcKeyStore(?User $user): string
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        // isBot checks user primary group
+        if (!$user->isGroup(app('groups')->byIdentifier('bot')) && $user->playCount() < 100) {
+            return 'play_more';
+        }
+
+        return 'ok';
+    }
+
     /**
      * @param User|null $user
      * @return string
@@ -1805,6 +1841,14 @@ class OsuAuthorize
     {
         // yet another admin only =D
         return 'unauthorized';
+    }
+
+    public function checkLegacyApiKeyStore(?User $user): string
+    {
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        return 'ok';
     }
 
     /**
@@ -2061,7 +2105,7 @@ class OsuAuthorize
      */
     public function ensureHasPlayed(?User $user): void
     {
-        if ($user === null) {
+        if ($user === null || $user->isBot()) {
             return;
         }
 

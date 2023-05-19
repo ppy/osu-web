@@ -8,10 +8,11 @@ return [
     'talking_in' => 'conversando em :channel',
     'talking_with' => 'conversando com :name',
     'title_compact' => 'chat',
+    'unread_messages' => 'mensagens não lidas',
 
     'cannot_send' => [
-        'channel' => 'Você não pode conversar neste canal no momento. Isso pode ter ocorrido pelos seguintes motivos:',
-        'user' => 'Você não pode conversar com este usuário no momento. Isso pode ter ocorrido pelos seguintes motivos:',
+        'channel' => 'Você não pode conversar neste canal no momento.',
+        'user' => 'Você não pode conversar com este usuário no momento.',
     ],
 
     'channels' => [
@@ -20,7 +21,7 @@ return [
 
         'list' => [
             'title' => [
-                'ANNOUNCE' => 'Comunicados',
+                'ANNOUNCE' => 'Anúncios',
                 'GROUP' => 'Grupos',
                 'PM' => 'Mensagens diretas',
                 'PUBLIC' => 'Canais',
@@ -35,6 +36,7 @@ return [
 
         'labels' => [
             'description' => 'descrição',
+            'message' => 'mensagem',
             'name' => 'nome da sala',
             'users' => 'jogadores para adicionar',
         ],

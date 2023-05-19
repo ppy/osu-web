@@ -13,8 +13,8 @@ return [
 
     'beatmaps' => [
         '_' => 'Карты',
-        'download' => 'Скачать шаблон карты',
-        'download-na' => 'Шаблон карты ещё не доступен',
+        'download' => 'скачать шаблон карты',
+        'download-na' => 'шаблон карты пока недоступен',
     ],
 
     'index' => [
@@ -29,7 +29,7 @@ return [
 
     'songs' => [
         '_' => 'Песни',
-        'count' => ':count песня|:count песни|:count песен',
+        'count' => ':count_delimited песня|:count_delimited песни|:count_delimited песен',
         'original' => 'исключительно для osu!',
         'original_badge' => 'ORIGINAL',
     ],

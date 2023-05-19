@@ -11,10 +11,10 @@ return [
         'issuing' => 'Meminta kode baru...',
 
         'info' => [
-            'check_spam' => "Pastikan untuk memeriksa folder spam apabila Anda tidak menemukan email yang dimaksud.",
-            'recover' => "Apabila Anda tidak dapat mengakses email Anda atau sudah tidak lagi ingat alamat email yang Anda gunakan untuk mendaftar, mohon ikuti :link.",
+            'check_spam' => "Pastikan untuk memeriksa folder spam apabila kamu tidak menemukan email yang dimaksud.",
+            'recover' => "Apabila kamu tidak dapat mengakses emailmu atau sudah tidak lagi ingat alamat email yang kamu gunakan untuk mendaftar, silakan ikuti :link.",
             'recover_link' => 'protokol pemulihan email berikut',
-            'reissue' => 'Anda juga dapat :reissue_link atau :logout_link.',
+            'reissue' => 'Kamu juga dapat :reissue_link atau :logout_link.',
             'reissue_link' => 'meminta kode baru',
             'logout_link' => 'keluar',
         ],

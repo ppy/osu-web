@@ -9,51 +9,51 @@ return [
     ],
 
     'defaults' => [
-        'page_description' => 'osu! - Der Rhythmus ist nur einen *Klick* entfernt!  Mit Ouendan/EBA, Taiko und eigenen Spielmodi, zusätzlich zu einem voll funktionalen Leveleditor',
+        'page_description' => 'osu! - Rhythmus ist nur ein *Klick* entfernt! Mit Ouendan/EBA, Taiko und originalen Spielmodi, zusätzlich zu einem voll funktionalen Level-Editor.',
     ],
 
     'header' => [
         'admin' => [
-            'beatmapset' => 'beatmapset',
-            'beatmapset_covers' => 'beatmapset covers',
-            'contest' => 'wettbewerb',
-            'contests' => 'wettbewerbe',
-            'root' => 'konsole',
+            'beatmapset' => 'Beatmap-Sets',
+            'beatmapset_covers' => 'Beatmap-Set-Cover',
+            'contest' => 'Wettbewerb',
+            'contests' => 'Wettbewerbe',
+            'root' => 'Konsole',
         ],
 
         'artists' => [
-            'index' => 'liste',
+            'index' => 'Liste',
         ],
 
         'beatmapsets' => [
-            'show' => 'info',
-            'discussions' => 'diskussion',
+            'show' => 'Info',
+            'discussions' => 'Diskussion',
         ],
 
         'changelog' => [
-            'index' => 'liste',
+            'index' => 'Liste',
         ],
 
         'help' => [
-            'index' => 'index',
+            'index' => 'Index',
             'sitemap' => 'Sitemap',
         ],
 
         'store' => [
-            'cart' => 'warenkorb',
-            'orders' => 'bestellverlauf',
-            'products' => 'produkte',
+            'cart' => 'Warenkorb',
+            'orders' => 'Bestellverlauf',
+            'products' => 'Produkte',
         ],
 
         'tournaments' => [
-            'index' => 'liste',
+            'index' => 'Liste',
         ],
 
         'users' => [
-            'modding' => 'modding',
-            'playlists' => 'playlists',
-            'realtime' => 'multiplayer',
-            'show' => 'info',
+            'modding' => 'Modding',
+            'playlists' => 'Playlists',
+            'realtime' => 'Mehrspieler',
+            'show' => 'Info',
         ],
     ],
 
@@ -67,29 +67,29 @@ return [
 
     'menu' => [
         'beatmaps' => [
-            '_' => 'beatmaps',
+            '_' => 'Beatmaps',
         ],
         'community' => [
-            '_' => 'community',
-            'dev' => 'entwicklung',
+            '_' => 'Community',
+            'dev' => 'Entwicklung',
         ],
         'help' => [
-            '_' => 'hilfe',
-            'getAbuse' => 'missbrauch melden',
-            'getFaq' => 'faq',
-            'getRules' => 'regeln',
-            'getSupport' => 'ich brauche wirklich hilfe!',
+            '_' => 'Hilfe',
+            'getAbuse' => 'Missbrauch melden',
+            'getFaq' => 'FAQ',
+            'getRules' => 'Regeln',
+            'getSupport' => 'Ich brauche wirklich Hilfe!',
         ],
         'home' => [
-            '_' => 'home',
-            'team' => 'team',
+            '_' => 'Home',
+            'team' => 'Team',
         ],
         'rankings' => [
-            '_' => 'ranglisten',
-            'kudosu' => 'kudosu',
+            '_' => 'Ranglisten',
+            'kudosu' => 'Kudosu',
         ],
         'store' => [
-            '_' => 'shop',
+            '_' => 'Store',
         ],
     ],
 
@@ -97,13 +97,13 @@ return [
         'general' => [
             '_' => 'Allgemein',
             'home' => 'Home',
-            'changelog-index' => 'Changelog',
+            'changelog-index' => 'Änderungsprotokoll',
             'beatmaps' => 'Beatmap-Auflistung',
             'download' => 'osu! herunterladen',
         ],
         'help' => [
             '_' => 'Hilfe & Community',
-            'faq' => '\'Frequently Asked Questions\'',
+            'faq' => 'Häufig gestellte Fragen',
             'forum' => 'Community-Foren',
             'livestreams' => 'Livestreams',
             'report' => 'Einen Fehler melden',
@@ -111,7 +111,7 @@ return [
         ],
         'legal' => [
             '_' => 'Rechtliches & Status',
-            'copyright' => 'Copyright (DMCA)',
+            'copyright' => 'Urheberrecht (DMCA)',
             'privacy' => 'Privatsphäre',
             'server_status' => 'Serverstatus',
             'source_code' => 'Quellcode',
@@ -121,12 +121,12 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => 'Ungültige Anforderungsparameter',
+            'error' => 'Ungültige Anfrageparameter',
             'description' => '',
         ],
         '404' => [
             'error' => 'Seite fehlt',
-            'description' => "Sorry, aber die angeforderte Seite existiert nicht!",
+            'description' => "Entschuldigung, aber die angeforderte Seite existiert nicht!",
         ],
         '403' => [
             'error' => "Du solltest nicht hier sein.",
@@ -138,10 +138,10 @@ return [
         ],
         '405' => [
             'error' => 'Seite fehlt',
-            'description' => "Sorry, aber die angeforderte Seite existiert nicht!",
+            'description' => "Entschuldigung, aber die angeforderte Seite existiert nicht!",
         ],
         '422' => [
-            'error' => 'Ungültige Anforderungsparameter',
+            'error' => 'Ungültige Anfrageparameter',
             'description' => '',
         ],
         '429' => [
@@ -169,31 +169,31 @@ return [
     ],
 
     'popup_login' => [
-        'button' => 'Einloggen / Registrieren',
+        'button' => 'einloggen / registrieren',
 
         'login' => [
             'forgot' => "Passwort vergessen",
-            'password' => 'passwort',
-            'title' => 'Zum Fortfahren einloggen',
+            'password' => 'Passwort',
+            'title' => 'Einloggen, um fortzufahren',
             'username' => 'Benutzername',
 
             'error' => [
-                'email' => "Nutzername oder E-Mail-Adresse existiert nicht",
+                'email' => "Benutzername oder E-Mail-Adresse existiert nicht",
                 'password' => 'Falsches Passwort',
             ],
         ],
 
         'register' => [
             'download' => 'Herunterladen',
-            'info' => 'Sie brauchen einen Account, Sir. Warum besitzen Sie noch keinen?',
-            'title' => "Kein Account?",
+            'info' => 'Lade dir osu! herunter, um dir einen eigenen Account zu erstellen!',
+            'title' => "Noch keinen Account?",
         ],
     ],
 
     'popup_user' => [
         'links' => [
             'account-edit' => 'Einstellungen',
-            'follows' => 'Beobachtungslisten',
+            'follows' => 'Merklisten',
             'friends' => 'Freunde',
             'logout' => 'Ausloggen',
             'profile' => 'Mein Profil',
@@ -201,7 +201,7 @@ return [
     ],
 
     'popup_search' => [
-        'initial' => 'Zum Suchen Text eingeben!',
+        'initial' => 'Tippe, um zu suchen!',
         'retry' => 'Suche fehlgeschlagen. Klicke, um es erneut zu versuchen.',
     ],
 ];

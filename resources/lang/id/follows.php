@@ -5,7 +5,7 @@
 
 return [
     'comment' => [
-        'empty' => 'Anda tidak sedang mengikuti komentar apapun.',
+        'empty' => 'Tidak ada komentar yang diikuti.',
         'page_title' => 'komentar yang diikuti',
         'title' => 'komentar',
 
@@ -24,11 +24,11 @@ return [
     ],
 
     'mapping' => [
-        'empty' => 'Anda tidak sedang mengikuti siapapun.',
+        'empty' => 'Kamu tidak sedang mengikuti siapapun.',
         'followers' => 'pengikut mapping',
         'page_title' => 'mapper yang diikuti',
         'title' => 'mapper',
-        'to_0' => 'hentikan penerimaan notifikasi setiap kali pengguna ini mengunggah beatmap baru',
+        'to_0' => 'hentikan notifikasi setiap kali pengguna ini mengunggah beatmap baru',
         'to_1' => 'kirimkan saya notifikasi setiap kali pengguna ini mengunggah beatmap baru',
     ],
 

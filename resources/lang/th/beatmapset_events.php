@@ -30,10 +30,11 @@ return [
         'nomination_reset' => 'ปัญหาใหม่ :discussion (:text) ทำให้เกิดการรีเซทการเสนอชื่อ',
         'nomination_reset_received' => 'การ nominate โดย :user ถูกรีเซ็ตโดย :source_user (:text)',
         'nomination_reset_received_profile' => 'การ nominate ถูกรีเซ็ตโดย :user (:text)',
-        'offset_edit' => '',
+        'offset_edit' => 'ออฟเซ็ตออนไลน์เปลี่ยนจาก :old เป็น :new.',
         'qualify' => 'บีทแมพนี้ได้รับจำนวนการเสนอชื่อครบแล้ว และได้ถูก Qualified',
         'rank' => 'จัดอันดับ',
         'remove_from_loved' => 'ถูกนำออกจาก Loved โดย :user (:text)',
+        'tags_edit' => 'แท็กเปลี่ยนจาก ":old" เป็น ":new".',
 
         'nsfw_toggle' => [
             'to_0' => 'นำเครื่องหมายเนื้อหาล่อแหลมออก',
@@ -78,7 +79,7 @@ return [
         'nomination_reset' => 'กำลังตั้งค่าการเสนอชื่อใหม่',
         'nomination_reset_received' => 'ได้รับการรีเซ็ต nomination แล้ว',
         'nsfw_toggle' => 'เครื่องหมายเนื้อหาล่อแหลม',
-        'offset_edit' => '',
+        'offset_edit' => 'การแก้ไขออฟเซ็ต',
         'qualify' => 'คุณสมบัติ',
         'rank' => 'อันดับ',
         'remove_from_loved' => 'ถูกนำออกจาก Loved',

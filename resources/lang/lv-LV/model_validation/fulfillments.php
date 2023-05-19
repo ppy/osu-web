@@ -10,6 +10,6 @@ return [
         'reverting_username_mismatch' => '',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => 'Ziedojums ir zemāks par nepieciešamo, lai saņemtu osu!supporter etiķeti kā dāvanu (:actual > :expected)',
+        'insufficient_paid' => 'Ziedojums ir mazāks nekā nepieciešams osu!supporter taga dāvanai (:actual > :expected)',
     ],
 ];

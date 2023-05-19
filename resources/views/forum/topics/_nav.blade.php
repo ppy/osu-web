@@ -29,14 +29,12 @@
         <div class="
             forum-topic-nav__seek-bar
             forum-topic-nav__seek-bar--all
-            u-forum--bg-link
         "></div>
 
         <div
             class="
                 js-forum__posts-progress
                 forum-topic-nav__seek-bar
-                u-forum--bg-link
             "
         >
         </div>

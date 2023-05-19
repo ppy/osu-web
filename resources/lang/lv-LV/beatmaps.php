@@ -12,57 +12,57 @@ return [
 
     'discussions' => [
         'allow_kudosu' => 'atļaut kudosu',
-        'beatmap_information' => '',
+        'beatmap_information' => 'Bītmapes Lapa',
         'delete' => 'dzēst',
         'deleted' => 'Izdzēsa: :editor :delete_time.',
         'deny_kudosu' => 'neatļaut kudosu',
         'edit' => 'rediģēt',
-        'edited' => 'Pēdējo reizi rediģēts :editor :update_time.',
-        'guest' => '',
+        'edited' => 'Pēdējo reizi rediģēja :editor :update_time.',
+        'guest' => 'Viesa grūtības līmenis: :user',
         'kudosu_denied' => 'Liegts saņemt kudosu.',
-        'message_placeholder_deleted_beatmap' => 'Šis grūtības līmenis ir izdzēsts, tādēļ to vairs nav iespējas apspriest.',
-        'message_placeholder_locked' => 'Šīs bītmapes diskusijas tika atspējotas.',
-        'message_placeholder_silenced' => "",
+        'message_placeholder_deleted_beatmap' => 'Šis grūtības līmenis ir izdzēsts, tāpēc to vairs nevar apspriest.',
+        'message_placeholder_locked' => 'Šīs bītmapes diskusijas ir atspējotas.',
+        'message_placeholder_silenced' => "Nevar publicēt diskusiju, kamēr apklusināts.",
         'message_type_select' => 'Atlasiet Komentāra Tipu',
         'reply_notice' => 'Nospiediet enter, lai atbildētu.',
         'reply_placeholder' => 'Raksiet atbildi šeit',
-        'require-login' => 'Lūdzu ierakstieties lai pievienotu ziņojumu vai atbildētu',
+        'require-login' => 'Lūdzu, pierakstieties, lai publicētu vai atbildētu',
         'resolved' => 'Atrisināts',
         'restore' => 'atjaunot',
         'show_deleted' => 'Rādīt dzēstos',
         'title' => 'Diskusijas',
 
         'collapse' => [
-            'all-collapse' => 'Samazināt visu',
-            'all-expand' => 'Palielināt visu',
+            'all-collapse' => 'Sakļaut visu',
+            'all-expand' => 'Izvērst visu',
         ],
 
         'empty' => [
-            'empty' => 'Nav diskusiju!',
+            'empty' => 'Pagaidām nav diskusiju!',
             'hidden' => 'Neviena diskusija neatbilst atlasītajam filtram.',
         ],
 
         'lock' => [
             'button' => [
-                'lock' => 'Aizslēgt diskusiju',
-                'unlock' => 'Atvērt diskusiju',
+                'lock' => 'Slēgt diskusiju',
+                'unlock' => 'Atslēgt diskusiju',
             ],
 
             'prompt' => [
                 'lock' => 'Iemesls slēgšanai',
-                'unlock' => 'Vai tiešām vēlaties atvērt?',
+                'unlock' => 'Vai tiešām vēlaties atslēgt?',
             ],
         ],
 
         'message_hint' => [
-            'in_general' => 'Šis ziņojums tiks pārvietots uz vispārējo bītmapesset diskusiju. Lai pārveidotu šo bītmapi, izveidojat ziņojumu ar noteiktu laiku (piem. 00:12:345).',
-            'in_timeline' => 'Lai pārveidotu vairākus laikus, ziņojat vairākas reizes (viens ziņojums = viens laiks).',
+            'in_general' => 'Šis raksts tiks nodots vispārējai bītmapes diskusijai. Lai modificētu šo grūtības pakāpi, sāciet ziņojumu ar laika zīmogu (piem., 00:12:345).',
+            'in_timeline' => 'Lai modificētu vairākus laikus, ziņojiet vairākas reizes (viens ziņojums uz vienu laika vienību).',
         ],
 
         'message_placeholder' => [
             'general' => 'Rakstiet šeit, lai publicētu uz Vispārīgi (:version)',
             'generalAll' => 'Rakstiet šeit, lai publicētu uz Vispārīgi (Visas grūtības)',
-            'review' => '',
+            'review' => 'Rakstiet šeit, lai publicētu atsauksmi',
             'timeline' => 'Rakstiet šeit, lai publicētu uz Laika skalu (:version)',
         ],
 
@@ -71,18 +71,18 @@ return [
             'hype' => 'Atbalstīt!',
             'mapper_note' => 'Piezīme',
             'nomination_reset' => 'Atiestatīt Nomināciju',
-            'praise' => 'Uzslavināt',
+            'praise' => 'Uzslavēt',
             'problem' => 'Problēma',
-            'problem_warning' => '',
-            'review' => '',
+            'problem_warning' => 'Ziņot par problēmu',
+            'review' => 'Atsauksme',
             'suggestion' => 'Ieteikums',
         ],
 
         'mode' => [
             'events' => 'Vēsture',
             'general' => 'Vispārējā :scope',
-            'reviews' => '',
-            'timeline' => 'Laika līnija',
+            'reviews' => 'Atsauksmes',
+            'timeline' => 'Laika skala',
             'scopes' => [
                 'general' => 'Šis grūtības līmenis',
                 'generalAll' => 'Visi grūtības līmeņi',
@@ -91,30 +91,29 @@ return [
 
         'new' => [
             'pin' => 'Piespraust',
-            'timestamp' => 'Ieraksta laiks',
-            'timestamp_missing' => 'uzspiežiet ctrl-c rediģēšanas režimā un ielīmējiet savu ziņojumu, lai pievienotu ieraksta laiku!',
+            'timestamp' => 'Laika zīmogs',
+            'timestamp_missing' => 'ctrl-c rediģēšanas režīmā un ielīmējiet ziņu, lai pievienotu laika zīmogu!',
             'title' => 'Jauna Diskusija',
-            'unpin' => 'Nospraust',
+            'unpin' => 'Atspraust',
         ],
 
         'review' => [
-            'new' => '',
+            'new' => 'Jauna Atsauksme',
             'embed' => [
-                'delete' => 'Izdzēst
-',
-                'missing' => '',
+                'delete' => 'Izdzēst',
+                'missing' => '[DISKUSIJA DZĒSTA]',
                 'unlink' => 'Atvienot',
-                'unsaved' => '',
+                'unsaved' => 'Nesaglabāts',
                 'timestamp' => [
-                    'all-diff' => '',
-                    'diff' => '',
+                    'all-diff' => 'Rakstiem uz "Visas grūtības" nevar pievienot laika zīmogu.',
+                    'diff' => 'Ja šis :type sākas ar laika zīmogu, tas tiks parādīts zem Laika skalas.',
                 ],
             ],
             'insert-block' => [
-                'paragraph' => 'ievietot paragrāfu',
-                'praise' => '',
-                'problem' => '',
-                'suggestion' => '',
+                'paragraph' => 'ievietot rindkopu',
+                'praise' => 'ievietot uzslavu',
+                'problem' => 'ievietot problēmu',
+                'suggestion' => 'ievietot ieteikumu',
             ],
         ],
 
@@ -125,23 +124,23 @@ return [
         'sort' => [
             'created_at' => 'Izveidošanas laiks',
             'timeline' => 'Laika skala',
-            'updated_at' => 'Beidzamais atjauninājums',
+            'updated_at' => 'Pēdējais atjauninājums',
         ],
 
         'stats' => [
             'deleted' => 'Dzēsts',
             'mapper_notes' => 'Piezīmes',
-            'mine' => 'Iegūt',
+            'mine' => 'Mans',
             'pending' => 'Procesā',
-            'praises' => 'Uzslavinājumi',
+            'praises' => 'Uzslavas',
             'resolved' => 'Atrisināts',
-            'total' => 'Visi',
+            'total' => 'Viss',
         ],
 
         'status-messages' => [
             'approved' => 'Šī bītmape tika apstiprināta: :date!',
-            'graveyard' => "Šī bītmape nav atjaunināta kopš :date un visticamāk veidotājs to ir pametis...",
-            'loved' => 'Šī bītmape tika pievienota Mīlēts kopš :date!',
+            'graveyard' => "Šī bītmape nav atjaunināta kopš :date, tāpēc tā ir pamesta...",
+            'loved' => 'Šī bītmape tika pievienota loved datumā :date!',
             'ranked' => 'Šī bītmape tika pieņemta: :date!',
             'wip' => 'Piezīme: Šī bītmape ir atzīmēta kā izveide procesā pēc izveidotāja pieprasījuma.',
         ],
@@ -185,22 +184,23 @@ return [
         'disqualify' => 'Diskvalificēt',
         'incorrect_state' => 'Kļūda veicot šo darbību, mēģiniet atsvaidzināt lapu.',
         'love' => 'Mīļš',
-        'love_choose' => '',
+        'love_choose' => 'Izvēlieties grūtību loved mapei',
         'love_confirm' => 'Vai mīli šo bītmapi?',
         'nominate' => 'Nominēt',
         'nominate_confirm' => 'Nominēt šo bītkarti?',
         'nominated_by' => 'nominēja: :users',
-        'not_enough_hype' => "",
-        'remove_from_loved' => '',
-        'remove_from_loved_prompt' => '',
+        'not_enough_hype' => "Nav pietiekami daudz atbalsta.",
+        'remove_from_loved' => 'Noņemt no Loved',
+        'remove_from_loved_prompt' => 'Iemesls noņemšanai no Iemīļota:',
         'required_text' => 'Nominācijas: current/:required',
         'reset_message_deleted' => 'dzēsts',
         'title' => 'Nominācijas status',
         'unresolved_issues' => 'Ir vēljoprojām neatrisinātas problēmas, kuras ir nepieciešams adresēt.',
 
         'rank_estimate' => [
-            '_' => '',
-            'queue' => '',
+            '_' => 'Tiek paredzēts, ka šī mape tiks ierindota :date, ja netiks konstatētas problēmas. Tā ir #:position :queue.',
+            'on' => '',
+            'queue' => 'ierindošanas rinda',
             'soon' => 'drīz',
         ],
 
@@ -212,7 +212,7 @@ return [
         'reset_confirm' => [
             'disqualify' => 'Vai esiet pārliecināts? Šis noņems bītmapi no kvalificēšanās un atiestatīs tās izvirzīšanu.',
             'nomination_reset' => 'Esiet pārliecināts? Ziņojot jaunu problēmu tiks atiestatīts nominācijas process.',
-            'problem_warning' => '',
+            'problem_warning' => 'Vai esat pārliecināts, ka jāziņo par problēmu ar šo bītmapi? Tas brīdinās Bītmapju Nominatorus.',
         ],
     ],
 
@@ -221,7 +221,7 @@ return [
             'prompt' => 'rakstiet atslēgas vārdus...',
             'login_required' => 'Ieiet, lai meklētu.',
             'options' => 'Vairāk Meklēšanas Opcijas',
-            'supporter_filter' => 'Filtrēšana pēc :filters pieprasa aktīvu osu!atbalsta piespraudni',
+            'supporter_filter' => 'Filtrēšanai pēc :filters ir nepieciešams aktīvs osu!supporter',
             'not-found' => 'nav rezultātu',
             'not-found-quote' => '... puis, nekas netika atrasts.',
             'filters' => [
@@ -230,7 +230,7 @@ return [
                 'genre' => 'Žanrs',
                 'language' => 'Valoda',
                 'mode' => 'Režīms',
-                'nsfw' => '',
+                'nsfw' => 'Nepiemērots Saturs',
                 'played' => 'Spēlēts',
                 'rank' => 'Rangs Sasniegts',
                 'status' => 'Kategorijas',
@@ -241,27 +241,27 @@ return [
                 'difficulty' => 'Sarežģītība',
                 'favourites' => 'Iemīļotākās',
                 'updated' => 'Atjaunināt',
-                'ranked' => '',
+                'ranked' => 'Ierindota',
                 'rating' => 'Reitingi',
                 'plays' => 'Spēles',
-                'relevance' => '',
-                'nominations' => '',
+                'relevance' => 'Atbilstība',
+                'nominations' => 'Nominācijas',
             ],
             'supporter_filter_quote' => [
-                '_' => '',
-                'link_text' => '',
+                '_' => 'Filtrēšanai pēc :filters ir nepieciešams aktīvs :link',
+                'link_text' => 'osu!supporter tags',
             ],
         ],
     ],
     'general' => [
-        'converts' => 'Iekļaut parveidotas bītmapes',
-        'featured_artists' => '',
-        'follows' => '',
+        'converts' => 'Iekļaut pārveidotās bītmapes',
+        'featured_artists' => 'Attēlotie mākslinieki',
+        'follows' => 'Abonētie kartētāji',
         'recommended' => 'Ieteiktais grūtības līmenis',
-        'spotlights' => '',
+        'spotlights' => 'Bītmapes uzmanības centrā',
     ],
     'mode' => [
-        'all' => '',
+        'all' => 'Viss',
         'any' => 'Viss',
         'osu' => '',
         'taiko' => '',
@@ -273,13 +273,13 @@ return [
         'approved' => 'Apstiprināts',
         'favourites' => 'Favorīti',
         'graveyard' => 'Kapsēta',
-        'leaderboard' => '',
-        'loved' => 'Mīlēts',
+        'leaderboard' => 'Ir Līderu Saraksts',
+        'loved' => 'Loved',
         'mine' => 'Manas kartes',
-        'pending' => '',
-        'wip' => '',
+        'pending' => 'Procesā',
+        'wip' => 'WIP',
         'qualified' => 'Kvalificēts',
-        'ranked' => '',
+        'ranked' => 'Rangots',
     ],
     'genre' => [
         'any' => 'Viss',
@@ -298,7 +298,7 @@ return [
         'jazz' => 'Džezs',
     ],
     'language' => [
-        'any' => '',
+        'any' => 'Jebkura',
         'english' => 'Angļu',
         'chinese' => 'Ķīniešu',
         'french' => 'Franču',
@@ -312,12 +312,12 @@ return [
         'polish' => 'Poļu',
         'instrumental' => 'Instrumentālā',
         'other' => 'Citi',
-        'unspecified' => '',
+        'unspecified' => 'Nenorādīts',
     ],
 
     'nsfw' => [
-        'exclude' => '',
-        'include' => '',
+        'exclude' => 'Slēpt',
+        'include' => 'Rādīt',
     ],
 
     'played' => [
@@ -341,8 +341,8 @@ return [
         'D' => '',
     ],
     'panel' => [
-        'playcount' => '',
-        'favourites' => '',
+        'playcount' => 'Spēlējumu skaits: :count',
+        'favourites' => 'Patīk: :count',
     ],
     'variant' => [
         'mania' => [

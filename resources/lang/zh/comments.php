@@ -5,10 +5,10 @@
 
 return [
     'deleted' => '已删除',
-    'deleted_by' => '被 :user 删除于 :timeago',
+    'deleted_by' => ':user 在 :timeago 删除',
     'deleted_by_system' => '系统',
     'deleted_count' => ':count_delimited 条已删除评论',
-    'edited' => ':user 编辑于 :timeago',
+    'edited' => ':user 在 :timeago 编辑',
     'pinned' => '已置顶',
     'empty' => '暂无评论。',
     'load_replies' => '加载回复',

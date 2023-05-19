@@ -1,0 +1,110 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.page-mode {
+  @_top: page-mode;
+  @_gutter: 10px;
+
+  background-color: @osu-colour-b5;
+  color: #ccc;
+
+  display: block;
+  text-align: center;
+
+  padding: 20px 10px 0;
+  list-style: none;
+  margin: 0;
+  font-size: 15px;
+  overflow: hidden;
+
+  @media @mobile {
+    font-size: 12px;
+    padding: 0px;
+    padding-top: 5px;
+  }
+
+  &--page-extra-tabs {
+    padding-top: 5px;
+    border-bottom: 1px solid @osu-colour-h1;
+
+    @media @mobile {
+      display: flex;
+      align-items: center;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+
+  &--profile-page-extra {
+    .default-gutter-v2();
+    padding-top: 10px;
+    padding-bottom: $padding-top;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: @font-size--title-small;
+    overflow-x: auto;
+  }
+
+  &--ranking {
+    background-color: transparent;
+    padding: 0;
+    text-align: inherit;
+    font-size: inherit;
+  }
+
+  &--search {
+    background: transparent;
+    border-image: linear-gradient(to right, transparent, #fff, transparent) 1;
+    border-bottom: 1px solid;
+    border-top-width: 0;
+    padding-top: 0;
+    margin: 10px 0;
+  }
+
+  &__item {
+    .link-plain();
+    display: inline-flex;
+    vertical-align: bottom;
+    line-height: 1;
+
+    margin: 0 @_gutter;
+
+    .@{_top}--breadcrumb & {
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+
+    // pls halp
+    .@{_top}--breadcrumb & + &::before {
+      content: '»';
+      margin-right: 10px;
+      margin-top: 5px;
+      vertical-align: middle;
+    }
+
+    .@{_top}--profile-page-extra & {
+      margin: 0;
+    }
+
+    @media @mobile {
+      &:last-child {
+        padding-right: 10px;
+      }
+    }
+  }
+
+  &__item-icon {
+    // A bit too tall if same as the text.
+    // And looks like crap at other size. Or maybe at this size as well
+    // depending on zoom level and star alignment.
+    font-size: 89%;
+  }
+
+  &__underline {
+    margin-top: 0;
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, transparent, @osu-colour-b6, transparent);
+  }
+}

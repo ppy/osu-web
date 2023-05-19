@@ -4,6 +4,8 @@
 --}}
 @php
     $appUrl = config('app.url');
+    $currentLocale = App::getLocale();
+    $fallbackLocale = config('app.fallback_locale');
 @endphp
 <link rel="apple-touch-icon" sizes="180x180" href="{{ $appUrl }}/images/favicon/apple-touch-icon.png">
 <link rel="icon" sizes="32x32" href="{{ $appUrl }}/images/favicon/favicon-32x32.png">
@@ -17,6 +19,8 @@
 <meta name="description" content="{{ $pageDescription ?? osu_trans('layout.defaults.page_description') }}">
 <meta name="keywords" content="osu, peppy, ouendan, elite, beat, agents, ds, windows, game, taiko, tatsujin, simulator, sim, xna, ddr, beatmania, osu!, osume">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="search" type="application/opensearchdescription+xml" title="osu! search" href="{{ config('app.url') }}/opensearch.xml">
 
 @if (isset($opengraph))
     <meta property="og:site_name" content="osu! » {{ page_title() }}">
@@ -43,39 +47,45 @@
     <meta name="ga-tracking-id" content="{{ config("services.ga.tracking_id") }}">
 @endif
 
-@if (App::getLocale() === 'vi')
-    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,600,700&display=swap&subset=vietnamese" rel="stylesheet">
-    <style>
-        :root {
-            --font-default-override: var(--font-default-vi);
-        }
-    </style>
-@elseif (App::getLocale() === 'zh')
-    <style>
-        :root {
-            --font-default-override: var(--font-default-zh);
-        }
-    </style>
-@elseif (App::getLocale() === 'zh-tw')
-    <style>
-        :root {
-            --font-default-override: var(--font-default-zh-tw);
-        }
-    </style>
-@elseif (App::getLocale() === 'th')
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap&subset=thai" rel="stylesheet">
-    <style>
-        :root {
-            --font-default-override: var(--font-default-th);
-        }
-    </style>
-@endif
+@switch($currentLocale)
+    @case('vi')
+        <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,600,700&display=swap&subset=vietnamese" rel="stylesheet">
+        <style>
+            :root {
+                --font-default-override: var(--font-default-vi);
+            }
+        </style>
+        @break
+    @case('zh')
+        <style>
+            :root {
+                --font-default-override: var(--font-default-zh);
+            }
+        </style>
+        @break
+    @case('zh-tw')
+        <style>
+            :root {
+                --font-default-override: var(--font-default-zh-tw);
+            }
+        </style>
+        @break
+    @case('th')
+        <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap&subset=thai" rel="stylesheet">
+        <style>
+            :root {
+                --font-default-override: var(--font-default-th);
+            }
+        </style>
+        @break
+@endswitch
 
 <link rel="stylesheet" media="all" href="{{ unmix('css/app.css') }}" data-turbolinks-track="reload">
 
 <script>
-    var currentLocale = {!! json_encode(App::getLocale()) !!};
-    var fallbackLocale = {!! json_encode(config('app.fallback_locale')) !!};
+    var currentLocale = {!! json_encode($currentLocale) !!};
+    var fallbackLocale = {!! json_encode($fallbackLocale) !!};
+    var experimentalHost = {!! json_encode(config('osu.urls.experimental_host')) !!}
 </script>
 
 <script src="{{ unmix('js/runtime.js') }}" data-turbolinks-track="reload"></script>
@@ -106,9 +116,9 @@
     </script>
 @endif
 
-<script src="{{ unmix('js/locales/'.app()->getLocale().'.js') }}" data-turbolinks-track="reload"></script>
-@if (config('app.fallback_locale') !== app()->getLocale())
-    <script src="{{ unmix('js/locales/'.config('app.fallback_locale').'.js') }}" data-turbolinks-track="reload"></script>
+<script src="{{ unmix("js/locales/{$currentLocale}.js") }}" data-turbolinks-track="reload"></script>
+@if ($fallbackLocale !== $currentLocale)
+    <script src="{{ unmix("js/locales/{$fallbackLocale}.js") }}" data-turbolinks-track="reload"></script>
 @endif
 
 <script src="{{ unmix('js/commons.js') }}" data-turbolinks-track="reload"></script>

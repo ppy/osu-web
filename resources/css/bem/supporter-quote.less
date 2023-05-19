@@ -1,0 +1,53 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.supporter-quote {
+  .default-box-shadow();
+  .inner-shadow-top();
+  padding: 30px;
+  background-color: @osu-colour-b4;
+  color: white;
+  font-size: @font-size--title-small;
+
+  &__body {
+    display: flex;
+
+    @media @mobile {
+      flex-direction: column;
+    }
+  }
+
+  &__content {
+    margin: 0;
+    padding: 0;
+    border: none;
+    // avoid right quote mark from overlapping the content in rare case
+    position: relative;
+  }
+
+  &__quote-mark {
+    font-size: 50px;
+    color: @osu-colour-b3;
+
+    &--left {
+      align-self: flex-start;
+      padding-right: 20px;
+      @media @mobile {
+        margin-top: -20px;
+      }
+    }
+
+    &--right {
+      align-self: flex-end;
+      padding-left: 20px;
+      @media @mobile {
+        margin-top: -40px;
+      }
+    }
+  }
+
+  &__signature {
+    margin-top: 10px;
+    text-align: right;
+  }
+}

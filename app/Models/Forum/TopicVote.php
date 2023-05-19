@@ -82,7 +82,7 @@ class TopicVote
         });
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'forum.topic_vote';
     }

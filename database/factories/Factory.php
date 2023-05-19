@@ -52,7 +52,4 @@ abstract class Factory extends BaseFactory
 
         return $factory;
     }
-
-    // TODO: remove following line after removing legacy-factories
-    // fooling legacy-factories' "isLegacyFactory" check: class Hello extends Factory
 }

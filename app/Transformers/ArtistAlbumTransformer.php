@@ -9,7 +9,7 @@ use App\Models\ArtistAlbum;
 
 class ArtistAlbumTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'tracks',
     ];
 

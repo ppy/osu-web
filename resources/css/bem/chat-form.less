@@ -1,0 +1,60 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.chat-form {
+  --input-size: @font-size--title-small-3;
+
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background: hsl(var(--hsl-b4));
+
+  &__button-bar {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__fields {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px 20px 10px 20px;
+  }
+
+  &__input {
+    .reset-input();
+    color: hsl(var(--hsl-c1));
+    font-size: var(--input-size);
+
+    &--box {
+      flex: 1;
+      resize: none;
+    }
+
+    &--users {
+      flex: 1;
+      // can't do much about wrapping the input itself...
+      min-width: 40px;
+    }
+  }
+
+  &__spinner {
+    display: inline-flex;
+    align-items: center;
+    min-width: 1em;
+  }
+
+  &__title {
+    font-size: @font-size--title;
+  }
+
+  &__users {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    justify-content: flex-start;
+    min-width: 0; // so user-card-brick overflows properly.
+    font-size: var(--input-size);
+  }
+}

@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'confirmation' => 'Sicher?',
+    'confirmation' => 'Bist du dir sicher?',
     'confirmation_unsaved' => 'Nicht gespeicherte Änderungen gehen verloren. Willst du trotzdem fortfahren?',
     'saved' => 'Gespeichert',
 
@@ -23,12 +23,12 @@ return [
         'authorise' => 'Autorisieren',
         'authorising' => 'Autorisieren...',
         'back_to_previous' => 'Zur vorherigen Position zurückkehren',
-        'back_to_top' => 'Zum Seitenanfang',
+        'back_to_top' => 'Zurück zum Seitenanfang',
         'cancel' => 'Abbrechen',
         'change' => 'ändern',
         'clear' => 'Löschen',
-        'click_to_copy' => 'Zum Speichern in die Zwischenablage klicken',
-        'click_to_copy_copied' => 'In die Zwischenablage kopiert!',
+        'click_to_copy' => 'klicken, um in Zwischenablage zu speichern',
+        'click_to_copy_copied' => 'in Zwischenablage kopiert!',
         'close' => 'Schließen',
         'collapse' => 'einklappen',
         'delete' => 'Löschen',
@@ -50,45 +50,45 @@ return [
         'search' => 'Suchen',
         'see_more' => 'mehr anzeigen',
         'show' => 'anzeigen',
-        'show_deleted' => 'Gelöschte anzeigen',
+        'show_deleted' => 'Zeige gelöschtes',
         'show_less' => 'weniger anzeigen',
         'show_more' => 'mehr anzeigen',
-        'show_more_options' => 'mehr optionen anzeigen',
+        'show_more_options' => 'mehr Optionen anzeigen',
         'submit' => 'Speichern',
         'unpin' => 'lösen',
         'update' => 'Aktualisieren',
-        'upload_image' => 'bild hochladen',
+        'upload_image' => 'Bild hochladen',
 
         'watch' => [
-            'to_0' => 'Nicht mehr beobachten',
-            'to_1' => 'Beobachten',
+            'to_0' => 'Nicht mehr merken',
+            'to_1' => 'Merken',
         ],
     ],
 
     'count' => [
         'badges' => ':count abzeichen|:count abzeichen',
-        'days' => ':count tag|:count tage',
+        'days' => ':count Tag|:count Tage',
         'hour_short_unit' => 'std.|std.',
-        'hours' => ':count stunde|:count stunden',
-        'item' => ':count Artikel',
+        'hours' => ':count Stunde|:count Stunden',
+        'item' => ':count_delimited Artikel|:count_delimited Artikel',
         'minute_short_unit' => 'min.|min.',
         'minutes' => ':count Minute|:count Minuten',
-        'months' => ':count monat|:count monate',
-        'notifications' => ':count_delimited Nachricht|:count_delimited Nachrichten',
+        'months' => ':count Monat|:count Monate',
+        'notifications' => ':count_delimited Benachrichtigung|:count_delimited Benachrichtigungen',
         'plus_others' => '+ :count_delimited anderer!|+ :count_delimited andere!',
-        'post' => ':count_delimited Beitrag|:count_delimited Beiträge',
+        'post' => ':count_delimited Post|:count_delimited Posts',
         'second_short_unit' => 'sek.|sek.',
-        'star_priority' => ':count_delimited Sternpriorität|:count_delimited Sternprioritäten',
-        'update' => ':count_delimited Update|:count_delimited Updates',
+        'star_priority' => ':count_delimited Star-Priorität|:count_delimited Star-Prioritäten',
+        'update' => ':count_delimited Aktualisierung|:count_delimited Aktualisierungen',
         'view' => ':count_delimited Aufruf|:count_delimited Aufrufe',
         'years' => ':count_delimited Jahr|:count_delimited Jahre',
     ],
 
     'countdown' => [
-        'days' => 'tage',
-        'hours' => 'stunden',
-        'minutes' => 'minuten',
-        'seconds' => 'sekunden',
+        'days' => 'Tage',
+        'hours' => 'Stunden',
+        'minutes' => 'Minuten',
+        'seconds' => 'Sekunden',
     ],
 
     'datetime' => [
@@ -109,7 +109,7 @@ return [
     ],
 
     'dropzone' => [
-        'target' => 'zum hochladen hier ablegen',
+        'target' => 'hier fallen lassen, um hochzuladen',
     ],
 
     'input' => [
@@ -117,8 +117,8 @@ return [
     ],
 
     'pagination' => [
-        'previous' => 'vorh.',
-        'next' => 'näch.',
+        'previous' => 'zurück',
+        'next' => 'weiter',
     ],
 
     'score_count' => [
@@ -146,14 +146,14 @@ return [
     ],
 
     'time' => [
-        'days_ago' => 'vor :count Tag|vor :count Tagen',
+        'days_ago' => 'vor :count_delimited Tag|vor :count_delimited Tagen',
         'hours_ago' => 'vor :count Stunde|vor :count Stunden',
         'now' => 'jetzt',
         'remaining' => 'Verbleibende Zeit',
     ],
 
     'title' => [
-        'notice' => 'Anmerkung',
+        'notice' => 'Hinweis',
     ],
 
     'wrong_user' => [

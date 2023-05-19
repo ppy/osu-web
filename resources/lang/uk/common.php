@@ -68,8 +68,8 @@ return [
     'count' => [
         'badges' => ':count_delimited значок|:count_delimited значки|:count_delimited значків',
         'days' => ':count_delimited день|:count_delimited дні|:count_delimited днів',
-        'hour_short_unit' => 'год|год|год',
-        'hours' => ':count_delimited годна|:count_delimited годни|:count_delimited годин',
+        'hour_short_unit' => 'година|години|годин',
+        'hours' => ':count_delimited година|:count_delimited години|:count_delimited годин',
         'item' => ':count_delimited одиниця|:count_delimited одиниці|:count_delimited одиниць',
         'minute_short_unit' => 'хв|хв|хв',
         'minutes' => ':count_delimited хвилина|:count_delimited хвилини|:count_delimited хвилин',

@@ -4,37 +4,37 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'generic' => 'Kļūdu labojumi un nelieli uzlabojumi.',
+    'generic' => 'Kļūdu labojumi un nelieli uzlabojumi',
 
     'build' => [
-        'title' => '',
+        'title' => 'izmaiņas :version',
     ],
 
     'builds' => [
-        'users_online' => '',
+        'users_online' => ':count_delimited lietotājs tiešsaistē|:count_delimited lietotāji tiešsaistē',
     ],
 
     'entry' => [
-        'by' => '',
+        'by' => 'no :user',
     ],
 
     'index' => [
         'page_title' => [
-            '_' => '',
-            '_from' => '',
-            '_from_to' => '',
-            '_stream' => '',
-            '_stream_from' => '',
-            '_stream_from_to' => '',
-            '_stream_to' => '',
-            '_to' => '',
+            '_' => 'izmaiņu žurnāla saraksts',
+            '_from' => 'izmaiņas kopš :from',
+            '_from_to' => 'izmaiņas starp :from un :to',
+            '_stream' => 'izmaiņas :stream',
+            '_stream_from' => 'izmaiņas :stream kopš :from',
+            '_stream_from_to' => 'izmaiņas :stream starp :from un :to',
+            '_stream_to' => 'izmaiņas :stream līdz :to',
+            '_to' => 'izmaiņas līdz :to',
         ],
     ],
 
     'support' => [
-        'heading' => 'Mīli šo atjauninājumu?',
-        'text_1' => 'Atbalsti osu! turpmāko attīstību un :link šodien!',
-        'text_1_link' => 'kļūsti par atbalstītāju',
-        'text_2' => 'Jūs ne tikai paātrināsiet uzlabošanu, bet arī saņemsiet papildu funkcijas un pielāgojumus!',
+        'heading' => 'Patīk šis atjauninājums?',
+        'text_1' => 'Atbalstiet osu! turpmāku attīstību un :link šodien!',
+        'text_1_link' => 'kļūstiet par osu!supporter',
+        'text_2' => 'Jūs ne tikai palīdzēsiet paātrināt izstrādi, bet arī iegūsiet dažas papildu funkcijas un pielāgojumus!',
     ],
 ];

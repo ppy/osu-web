@@ -60,12 +60,12 @@ _fix() {
             database/migrations/2016_03_18_170011_create_oauth_access_tokens_table.php|\
             database/migrations/2016_03_18_170012_create_oauth_access_token_scopes_table.php|\
             database/migrations/2016_03_18_170013_create_oauth_refresh_tokens_table.php|\
-            resources/assets/build/*|\
-            resources/assets/js/ziggy.js|\
-            resources/assets/less/jquery-ui/slider.less|\
-            resources/assets/less/jquery-ui/theme.less|\
-            resources/assets/less/spinner.less|\
-            resources/assets/less/torus.less)
+            resources/builds/*|\
+            resources/css/jquery-ui/slider.less|\
+            resources/css/jquery-ui/theme.less|\
+            resources/css/spinner.less|\
+            resources/css/torus.less|\
+            resources/js/jquery.tocify.js)
                 _debug "S $file"
                 continue
             ;;
@@ -204,12 +204,12 @@ licence_new_php=$(printf "<?php\n\n%s" "$licence_new_c")
 _fix "${licence_old_php}" "${licence_new_php}" '*.php' app/ database/ resources/lang/en/ routes/ tests/
 _fix "${licence_old_blade}" "${licence_new_blade}" '*.blade.php' resources/views/
 
-_fix "${licence_old_c}" "${licence_new_c}" '*.less' resources/assets/
+_fix "${licence_old_c}" "${licence_new_c}" '*.less' resources/css/
 
 _fix "${licence_old_c}" "${licence_new_c}" '*.ts' tests/
-_fix "${licence_old_c}" "${licence_new_c}" '*.ts' resources/assets/
-_fix "${licence_old_c}" "${licence_new_c}" '*.tsx' resources/assets/
-_fix "${licence_old_c}" "${licence_new_c}" '*.js' resources/assets/
+_fix "${licence_old_c}" "${licence_new_c}" '*.ts' resources/js/
+_fix "${licence_old_c}" "${licence_new_c}" '*.tsx' resources/js/
+_fix "${licence_old_c}" "${licence_new_c}" '*.js' resources/js/
 _fix "${licence_old_c}" "${licence_new_c}" '*.js' *.js
 
-_fix "${licence_old_coffee}" "${licence_new_coffee}" '*.coffee' resources/assets/
+_fix "${licence_old_coffee}" "${licence_new_coffee}" '*.coffee' resources/js/

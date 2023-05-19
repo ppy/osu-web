@@ -23,6 +23,14 @@ return [
         'multiplayer' => '',
         'performance' => 'Výkon',
         'score' => 'Skóre',
+        'seasons' => '',
+    ],
+
+    'seasons' => [
+        'empty' => '',
+        'ongoing' => '',
+        'room_count' => '',
+        'url' => '',
     ],
 
     'spotlight' => [

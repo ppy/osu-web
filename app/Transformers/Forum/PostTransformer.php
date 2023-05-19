@@ -10,7 +10,7 @@ use App\Transformers\TransformerAbstract;
 
 class PostTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'body',
     ];
 

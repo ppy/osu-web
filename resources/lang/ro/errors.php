@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => 'Nu s-au putut încărca datele.',
     'missing_route' => 'URL sau metoda de solicitare incorectă.',
     'no_restricted_access' => 'Nu ești capabil să efectuezi această acțiune în timp ce contul tău se află într-un statut restricționat.',
     'supporter_only' => 'Trebuie să fii un suporter pentru a folosi această funcție.',

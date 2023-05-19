@@ -6,13 +6,13 @@
 return [
     'match' => [
         'beatmap-deleted' => '',
-        'difference' => '',
         'failed' => '',
         'header' => '',
         'in-progress' => '',
         'in_progress_spinner_label' => '',
         'loading-events' => '',
         'winner' => '',
+        'winner_by' => '',
 
         'events' => [
             'player-left' => '',

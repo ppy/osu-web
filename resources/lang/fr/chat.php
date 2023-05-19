@@ -8,6 +8,7 @@ return [
     'talking_in' => 'parler dans :channel',
     'talking_with' => 'parler avec :name',
     'title_compact' => 'tchat',
+    'unread_messages' => 'messages non lus',
 
     'cannot_send' => [
         'channel' => 'Vous ne pouvez pas envoyer de messages dans ce canal pour le moment. Cela peut être dû à une des raisons suivantes :',
@@ -35,6 +36,7 @@ return [
 
         'labels' => [
             'description' => 'description',
+            'message' => 'message',
             'name' => 'nom du salon',
             'users' => 'joueurs à ajouter',
         ],
