@@ -455,6 +455,7 @@ export class NewDiscussion extends React.Component<Props> {
         props={{
           'data-type': type,
           onClick: this.post,
+          title: trans(`beatmaps.discussions.message_type.${typeText}_title`),
         }}
         text={trans(`beatmaps.discussions.message_type.${typeText}`)}
       />
