@@ -27,7 +27,7 @@ return [
     'client' => [
         'id' => 'Client ID',
         'name' => 'Application Name',
-        'redirect' => 'Application Callback URL',
+        'redirect' => 'Application Callback URLs',
         'reset' => 'Reset client secret',
         'reset_failed' => 'Failed to reset client secret',
         'secret' => 'Client Secret',

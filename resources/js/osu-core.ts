@@ -127,8 +127,12 @@ export default class OsuCore {
 
   readonly updateCurrentUser = () => {
     // Remove from DOM so only new data is parsed on navigation.
-    window.currentUser = parseJsonNullable('json-current-user', true) ?? { id: undefined };
-    this.setCurrentUser(window.currentUser);
+    const currentUser = parseJsonNullable<typeof window.currentUser>('json-current-user', true);
+
+    if (currentUser != null) {
+      window.currentUser = currentUser;
+      this.setCurrentUser(window.currentUser);
+    }
   };
 
   private readonly onCurrentUserUpdate = (event: unknown, user: CurrentUserJson) => {
