@@ -99,8 +99,12 @@ export class Comments extends React.Component<Props> {
           </div>
         </div>
 
-        {comments.length > 0
+        {comments.length === 0
           ? (
+            <div className='comments__items comments__items--empty'>
+              {pinnedComments.length === 0 ? trans('comments.empty') : trans('comments.empty_other')}
+            </div>
+          ) : (
             <div className={classWithModifiers('comments__items', { loading: uiState.comments.loadingSort != null })}>
               {this.renderComments(comments, false)}
 
@@ -113,10 +117,6 @@ export class Comments extends React.Component<Props> {
                 top
                 total={uiState.comments.topLevelCount}
               />
-            </div>
-          ) : (
-            <div className='comments__items comments__items--empty'>
-              {pinnedComments.length === 0 ? trans('comments.empty') : trans('comments.empty_other')}
             </div>
           )}
       </div>
