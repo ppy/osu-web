@@ -1,36 +1,59 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import Comment from 'components/comment'
-import HeaderV4 from 'components/header-v4'
-import { route } from 'laroute'
-import { observer } from 'mobx-react'
-import core from 'osu-core-singleton'
-import * as React from 'react'
-import { a, button, div, h1, p, span } from 'react-dom-factories'
-import { trans } from 'utils/lang'
+import Comment from 'components/comment';
+import { computed, makeObservable } from 'mobx';
+import { observer } from 'mobx-react';
+import core from 'osu-core-singleton';
+import * as React from 'react';
+import { trans } from 'utils/lang';
 
-el = React.createElement
+const store = core.dataStore.commentStore;
+const uiState = core.dataStore.uiState;
 
-store = core.dataStore.commentStore
-uiState = core.dataStore.uiState
+@observer
+export default class CommentsIndex extends React.Component {
+  @computed
+  private get comments() {
+    const ret = [];
 
-class BaseMain extends React.Component
-  render: =>
-    comments = uiState.comments.topLevelCommentIds.map (id) -> store.comments.get(id)
-    if comments.length < 1
-      div className: 'comments',
-        div className: 'comments__items comments__items--empty',
-          trans 'comments.index.no_comments'
-    else
-      for comment in comments
-        el Comment,
-          key: comment.id
-          comment: comment
-          expandReplies: false
-          showCommentableMeta: true
-          linkParent: true
-          depth: 0
-          modifiers: ['dark']
+    for (const id of uiState.comments.topLevelCommentIds) {
+      const comment = store.comments.get(id);
 
-export default Main = observer(BaseMain)
+      if (comment != null) {
+        ret.push(comment);
+      }
+    }
+
+    return ret;
+  }
+
+  constructor(props: Record<string, never>) {
+    super(props);
+
+    makeObservable(this);
+  }
+
+  render() {
+    const comments = this.comments;
+
+    return comments.length === 0
+      ? (
+        <div className='comments'>
+          <div className='comments__items comments__items--empty'>
+            {trans('comments.index.no_comments')}
+          </div>
+        </div>
+      ) : comments.map((comment) => (
+        <Comment
+          key={comment.id}
+          comment={comment}
+          depth={0}
+          expandReplies={false}
+          linkParent
+          modifiers='dark'
+          showCommentableMeta
+        />
+      ));
+  }
+}
