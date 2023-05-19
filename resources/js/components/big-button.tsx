@@ -11,6 +11,9 @@ interface Props {
   extraClasses: string[];
   href?: string;
   icon?: string;
+  /**
+   * Changes icon to spinner and disables the button (implies `disabled`).
+   */
   isBusy: boolean;
   isSubmit: boolean;
   modifiers?: Modifiers;
