@@ -1,7 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import GithubUser from 'account-edit/github-user';
+import GithubUser from 'github-user';
 import { ClientJson } from 'interfaces/client-json';
 import { OwnClientJson } from 'interfaces/own-client-json';
 import LegacyApiKey from 'legacy-api-key';

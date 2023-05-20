@@ -15,7 +15,7 @@ interface Props {
 }
 
 @observer
-export default class GithubUsers extends React.Component<Props> {
+export default class GithubUser extends React.Component<Props> {
   @observable private deleting = false;
   @observable private user: GithubUserJson | null | undefined;
   private xhr?: JQuery.jqXHR;
