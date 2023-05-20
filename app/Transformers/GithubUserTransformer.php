@@ -14,7 +14,7 @@ class GithubUserTransformer extends TransformerAbstract
     public function transform(GithubUser $githubUser): array
     {
         return [
-            'display_name' => $githubUser->username, // TODO: can be removed
+            'display_name' => $githubUser->displayUsername(),
             'github_url' => $githubUser->githubUrl(),
             'github_username' => $githubUser->username,
             'id' => $githubUser->getKey(),

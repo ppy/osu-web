@@ -11,6 +11,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
+ * Note: `$canonical_id`, `$id`, and `$username` are null when this model is
+ *       created for use in legacy changelog entries.
+ *
  * @property int $canonical_id
  * @property-read \Illuminate\Database\Eloquent\Collection<ChangelogEntry> $changelogEntries
  * @property \Carbon\Carbon|null $created_at
@@ -57,21 +60,28 @@ class GithubUser extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function githubUrl(): string
+    public function displayUsername(): string
     {
-        return "https://github.com/{$this->username}";
+        return $this->username ?? $this->osuUsername() ?? '[no name]';
+    }
+
+    public function githubUrl(): ?string
+    {
+        return $this->username !== null
+            ? "https://github.com/{$this->username}"
+            : null;
+    }
+
+    public function osuUrl(): ?string
+    {
+        return $this->user_id !== null
+            ? route('users.show', $this->user_id)
+            : null;
     }
 
     public function osuUsername(): ?string
     {
         return $this->user?->username;
-    }
-
-    public function userUrl(): ?string
-    {
-        return $this->user_id !== null
-            ? route('users.show', $this->user_id)
-            : null;
     }
 
     public function getAttribute($key)
