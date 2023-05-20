@@ -1,9 +1,32 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { jsonClone } from 'utils/json';
+import { flattenFormErrorJson, jsonClone } from 'utils/json';
 
 describe('utils/json', () => {
+  describe('.flattenFormErrorJson', () => {
+    it('results in map with flatten key', () => {
+      const json = {
+        base: ['base message'],
+        user: {
+          name: ['name message'],
+          url: {
+            home: ['home message'],
+            work: ['work message'],
+          },
+        },
+      };
+      const result = flattenFormErrorJson(json);
+
+      expect([...result]).toEqual([
+        ['base', ['base message']],
+        ['user[name]', ['name message']],
+        ['user[url][home]', ['home message']],
+        ['user[url][work]', ['work message']],
+      ]);
+    });
+  });
+
   describe('.jsonClone', () => {
     it('results in a new object', () => {
       const obj = { test: '1234' };

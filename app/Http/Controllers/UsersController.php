@@ -14,7 +14,6 @@ use App\Libraries\Search\ForumSearch;
 use App\Libraries\Search\ForumSearchRequestParams;
 use App\Libraries\User\FindForProfilePage;
 use App\Libraries\UserRegistration;
-use App\Models\Achievement;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\Country;
@@ -31,6 +30,7 @@ use App\Transformers\UserReplaysWatchedCountTransformer;
 use App\Transformers\UserTransformer;
 use Auth;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use NoCaptcha;
 use Request;
 use Sentry\State\Scope;
 
@@ -70,7 +70,7 @@ class UsersController extends Controller
 
     public function __construct()
     {
-        $this->middleware('guest', ['only' => 'store']);
+        $this->middleware('guest', ['only' => ['create', 'store', 'storeWeb']]);
         $this->middleware('auth', ['only' => [
             'checkUsernameAvailability',
             'checkUsernameExists',
@@ -112,6 +112,15 @@ class UsersController extends Controller
         }
 
         return json_item($user, 'UserCompact', UserCompactTransformer::CARD_INCLUDES);
+    }
+
+    public function create()
+    {
+        if (config('osu.user.registration_mode') !== 'web') {
+            return abort(403, osu_trans('users.store.from_client'));
+        }
+
+        return ext_view('users.create');
     }
 
     public function disabled()
@@ -201,63 +210,56 @@ class UsersController extends Controller
 
     public function store()
     {
-        if (!config('osu.user.allow_registration')) {
-            return abort(403, 'User registration is currently disabled');
+        if (config('osu.user.registration_mode') !== 'client') {
+            return response([
+                'error' => osu_trans('users.store.from_web'),
+                'url' => route('users.create'),
+            ], 403);
         }
 
-        $ip = Request::ip();
-
-        if (IpBan::where('ip', '=', $ip)->exists()) {
-            return error_popup('Banned IP', 403);
-        }
-
-        // Prevents browser-based form submission.
-        // Javascript-side is prevented using CORS.
         if (!starts_with(Request::header('User-Agent'), config('osu.client.user_agent'))) {
-            return error_popup('Wrong client', 403);
+            return error_popup(osu_trans('users.store.from_client'), 403);
         }
 
-        $params = get_params(request()->all(), 'user', ['username', 'user_email', 'password']);
-        $countryCode = request_country();
-        $country = Country::find($countryCode);
-        $params['user_ip'] = $ip;
-        $params['country_acronym'] = $country === null ? '' : $country->getKey();
+        return $this->storeUser(request()->all());
+    }
 
-        $registration = new UserRegistration($params);
-
-        try {
-            $registration->assertValid();
-
-            if (get_bool(request('check'))) {
-                return response(null, 204);
-            }
-
-            $throttleKey = "registration:{$ip}";
-
-            if (app(RateLimiter::class)->tooManyAttempts($throttleKey, 10)) {
-                abort(429);
-            }
-
-            $registration->save();
-            app(RateLimiter::class)->hit($throttleKey, 600);
-
-            if ($country === null) {
-                app('sentry')->getClient()->captureMessage(
-                    'User registered from unknown country: '.$countryCode,
-                    null,
-                    (new Scope())
-                        ->setExtra('country', $countryCode)
-                        ->setExtra('ip', $ip)
-                        ->setExtra('user_id', $registration->user()->getKey())
-                );
-            }
-
-            return json_item($registration->user()->fresh(), new CurrentUserTransformer());
-        } catch (ValidationException $e) {
-            return response(['form_error' => [
-                'user' => $registration->user()->validationErrors()->all(),
-            ]], 422);
+    public function storeWeb()
+    {
+        if (config('osu.user.registration_mode') !== 'web') {
+            return error_popup(osu_trans('users.store.from_client'), 403);
         }
+
+        $rawParams = request()->all();
+
+        if (captcha_enabled()) {
+            static $captchaField = 'g-recaptcha-response';
+            $token = $rawParams[$captchaField] ?? null;
+
+            $validCaptcha = NoCaptcha::verifyResponse($token);
+
+            if (!$validCaptcha) {
+                return abort(422, 'invalid captcha');
+            }
+        }
+
+        $params = get_params($rawParams, 'user', [
+            'password',
+            'password_confirmation',
+            'user_email',
+            'user_email_confirmation',
+        ], ['null_missing' => true]);
+
+        foreach (['user_email', 'password'] as $confirmableField) {
+            $confirmationField = "{$confirmableField}_confirmation";
+            if ($params[$confirmableField] !== $params[$confirmationField]) {
+                return response([
+                    'form_error' => ['user' => [$confirmationField => osu_trans('model_validation.wrong_confirmation')]],
+                ], 422);
+            }
+        }
+
+        return $this->storeUser($rawParams);
     }
 
     /**
@@ -387,9 +389,14 @@ class UsersController extends Controller
 
         $params = request()->all();
         $params['username'] = $id;
-        $search = (new ForumSearch(new ForumSearchRequestParams($params)))->size(50);
+        $search = (new ForumSearch(new ForumSearchRequestParams($params, Auth::user())))->size(50);
 
-        return ext_view('users.posts', compact('search', 'user'));
+        $fields = ['user' => null];
+        if (!(Auth::user()?->isModerator() ?? false)) {
+            $fields['includeDeleted'] = null;
+        }
+
+        return ext_view('users.posts', compact('fields', 'search', 'user'));
     }
 
     /**
@@ -629,14 +636,7 @@ class UsersController extends Controller
         if (is_api_request()) {
             return $userArray;
         } else {
-            $achievements = json_collection(
-                Achievement::achievable()
-                    ->orderBy('grouping')
-                    ->orderBy('ordering')
-                    ->orderBy('progression')
-                    ->get(),
-                'Achievement'
-            );
+            $achievements = json_collection(app('medals')->all(), 'Achievement');
 
             $extras = [];
 
@@ -646,13 +646,6 @@ class UsersController extends Controller
                 'scores_notice' => config('osu.user.profile_scores_notice'),
                 'user' => $userArray,
             ];
-
-            // moved data
-            // TODO: lazy load
-            $this->parsePaginationParams();
-            foreach (static::LAZY_EXTRA_PAGES as $page) {
-                $initialData[$page] = $this->extraPages($id, $page);
-            }
 
             return ext_view('users.show', compact('initialData', 'user'));
         }
@@ -692,7 +685,7 @@ class UsersController extends Controller
             abort(404);
         }
 
-        $this->offset = get_int(Request::input('offset')) ?? 0;
+        $this->offset = max(0, get_int(Request::input('offset')) ?? 0);
 
         if ($this->offset >= $this->maxResults) {
             $this->perPage = 0;
@@ -925,5 +918,73 @@ class UsersController extends Controller
         }
 
         return $userJson;
+    }
+
+    private function storeUser(array $rawParams)
+    {
+        if (!config('osu.user.allow_registration')) {
+            return abort(403, 'User registration is currently disabled');
+        }
+
+        $ip = Request::ip();
+
+        if (IpBan::where('ip', '=', $ip)->exists()) {
+            return error_popup('Banned IP', 403);
+        }
+
+        $params = get_params($rawParams, 'user', [
+            'password',
+            'user_email',
+            'username',
+        ], ['null_missing' => true]);
+        $countryCode = request_country();
+        $country = Country::find($countryCode);
+        $params['user_ip'] = $ip;
+        $params['country_acronym'] = $country === null ? '' : $country->getKey();
+
+        $registration = new UserRegistration($params);
+
+        try {
+            $registration->assertValid();
+
+            if (get_bool($rawParams['check'] ?? null)) {
+                return response(null, 204);
+            }
+
+            $throttleKey = 'registration:asn:'.app('ip2asn')->lookup($ip);
+
+            if (app(RateLimiter::class)->tooManyAttempts($throttleKey, 10)) {
+                abort(429);
+            }
+
+            $registration->save();
+            app(RateLimiter::class)->hit($throttleKey, 600);
+
+            $user = $registration->user();
+
+            if ($country === null) {
+                app('sentry')->getClient()->captureMessage(
+                    'User registered from unknown country: '.$countryCode,
+                    null,
+                    (new Scope())
+                        ->setExtra('country', $countryCode)
+                        ->setExtra('ip', $ip)
+                        ->setExtra('user_id', $user->getKey())
+                );
+            }
+
+            if (config('osu.user.registration_mode') === 'web') {
+                $this->login($user);
+                session()->flash('popup', osu_trans('users.store.saved'));
+
+                return ujs_redirect(route('home'));
+            } else {
+                return json_item($user->fresh(), new CurrentUserTransformer());
+            }
+        } catch (ValidationException $e) {
+            return ModelNotSavedException::makeResponse($e, [
+                'user' => $registration->user(),
+            ]);
+        }
     }
 }

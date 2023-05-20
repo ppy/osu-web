@@ -199,6 +199,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Ez a pálya rangsorolt lesz :date napján, ha további problémák nem merülnek fel. Jelenleg a :position. helyen áll a :queue.',
+            'on' => 'ekkor: :date',
             'queue' => 'ranglistázási sorban',
             'soon' => 'a közeljövő egy',
         ],

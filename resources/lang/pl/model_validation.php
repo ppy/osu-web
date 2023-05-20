@@ -8,6 +8,7 @@ return [
     'not_negative' => 'Atrybut „:attribute” nie może być ujemny.',
     'required' => 'Atrybut „:attribute” jest wymagany.',
     'too_long' => 'Atrybut „:attribute” przekroczył maksymalną liczbę znaków - możliwe jest użycie tylko :limit znaków.',
+    'url' => '',
     'wrong_confirmation' => 'Potwierdzenie się nie zgadza.',
 
     'beatmapset_discussion' => [
@@ -106,6 +107,10 @@ return [
             'required' => 'Wybierz jedną z opcji, aby zagłosować.',
             'too_many' => 'Wybrano więcej opcji, niż jest to dozwolone.',
         ],
+    ],
+
+    'legacy_api_key' => [
+        'exists' => '',
     ],
 
     'oauth' => [

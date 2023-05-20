@@ -51,7 +51,7 @@ return [
 
         'users' => [
             'modding' => 'modolás',
-            'playlists' => 'lejátszási listák',
+            'playlists' => 'játéklisták',
             'realtime' => 'többjátékos',
             'show' => 'információ',
         ],

@@ -6,28 +6,28 @@
 return [
     'error' => [
         'chat' => [
-            'empty' => 'Nevar nosūtīt tukšu ziņojumu.',
-            'limit_exceeded' => 'Jūs sūtāt ziņojumus pārāk ātri, lūdzu, nedaudz pagaidiet, pirms mēģināt vēlreiz.',
-            'too_long' => 'Ziņojums, kuru jūs mēģināt nosūtīt, ir pārāk garš.',
+            'empty' => 'Nevar nosūtīt tukšu ziņu.',
+            'limit_exceeded' => 'Jūs pārāk ātri sūtāt ziņas, lūdzu, nedaudz uzgaidiet, pirms mēģināt vēlreiz.',
+            'too_long' => 'Ziņa, ko mēģināt nosūtīt, ir pārāk gara.',
         ],
     ],
 
     'scopes' => [
-        'bot' => '',
+        'bot' => 'Darboties kā čata bots.',
         'identify' => 'Identificēt sevi un lasīt savu publisko profilu.',
 
         'chat' => [
-            'write' => '',
+            'write' => 'Sūtīt ziņas jūsu vārdā.',
         ],
 
         'forum' => [
-            'write' => '',
+            'write' => 'Jūsu vārdā izveidot un rediģēt foruma tēmas un ziņojumus.',
         ],
 
         'friends' => [
-            'read' => 'Apskaties, kam tu seko.',
+            'read' => 'Skatīt, kam jūs sekojat.',
         ],
 
-        'public' => '',
+        'public' => 'Lasīt publiskos datus jūsu vārdā.',
     ],
 ];

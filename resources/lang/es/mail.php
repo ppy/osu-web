@@ -5,9 +5,9 @@
 
 return [
     'beatmapset_update_notice' => [
-        'new' => 'Sólo informándole de que ha habido una nueva actualización en el mapa ":title" desde su última visita.',
+        'new' => 'Solo informándole de que ha habido una nueva actualización en el mapa ":title" desde su última visita.',
         'subject' => 'Nueva actualización para el mapa ":title"',
-        'unwatch' => 'Si no deseas seguir viendo este mapa, puedes hacer clic en en enlace "Dejar de ver" que se encuentra en la página de arriba, o desde la página de lista de seguimiento de modding:',
+        'unwatch' => 'Si no deseas seguir viendo este mapa, puedes hacer clic en el enlace "Dejar de ver" que se encuentra en la página de arriba, o desde la página de lista de seguimiento de modding:',
         'visit' => 'Visita la página de discusión aquí:',
     ],
 
@@ -39,7 +39,7 @@ return [
     ],
 
     'forum_new_reply' => [
-        'new' => 'Sólo informándole de que ha habido una nueva respuesta en ":title" desde su última visita.',
+        'new' => 'Solo informándole de que ha habido una nueva respuesta en ":title" desde su última visita.',
         'subject' => '[osu!] Nueva respuesta para el tema ":title"',
         'unwatch' => 'Si no deseas seguir viendo este tema, puedes hacer clic en el enlace "Cancelar suscripción al tema" que se encuentra en la parte inferior del tema de arriba, o desde la página de gestión de suscripciones al tema:',
         'visit' => 'Salte directamente a la última respuesta usando el siguiente enlace:',
@@ -62,11 +62,12 @@ return [
     ],
 
     'supporter_gift' => [
-        'anonymous_gift' => 'La persona que le regaló este tag puede optar por permanecer en el anonimato, por lo que no se ha mencionado en esta notificación.',
+        'anonymous_gift' => 'La persona que le regaló este tag puede optar por permanecer en el anonimato, por lo que no se le ha mencionado en esta notificación.',
         'anonymous_gift_maybe_not' => 'Pero es probable que ya sepas quién es ;).',
         'duration' => 'Gracias a esa persona, usted tiene acceso a osu!direct y a otros beneficios de osu!supporter durante :duration.',
         'features' => 'Puede encontrar más detalles sobre estas características aquí:',
         'gifted' => '¡Alguien le acaba de regalar un tag de osu!supporter!',
+        'gift_message' => 'La persona que le regaló este tag le dejó un mensaje:',
         'subject' => '¡Le han regalado un tag de osu!supporter!',
     ],
 
@@ -85,13 +86,13 @@ return [
     ],
 
     'user_notification_digest' => [
-        'new' => 'Sólo informándole de que hay nuevas actualizaciones en los elementos que está viendo.',
+        'new' => 'Solo informándole de que hay nuevas actualizaciones en los elementos que está viendo.',
         'settings' => 'Cambiar las preferencias de notificaciones por correo:',
         'subject' => 'Nuevas notificaciones de osu!',
     ],
 
     'user_password_updated' => [
-        'confirmation' => 'Esto es sólo una confirmación de que su contraseña de osu! ha sido cambiada.',
+        'confirmation' => 'Esto es solo una confirmación de que su contraseña de osu! ha sido cambiada.',
         'subject' => 'Confirmación de cambio de contraseña de osu!',
     ],
 

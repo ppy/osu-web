@@ -6,13 +6,13 @@
 return [
     'match' => [
         'beatmap-deleted' => 'beatmap supprimée',
-        'difference' => 'de :difference points',
         'failed' => 'ÉCHEC',
         'header' => 'Match multijoueur',
         'in-progress' => '(match en cours)',
         'in_progress_spinner_label' => 'match en cours',
         'loading-events' => 'Chargement des événements...',
         'winner' => ':team gagne',
+        'winner_by' => '',
 
         'events' => [
             'player-left' => ':user a quitté le match',

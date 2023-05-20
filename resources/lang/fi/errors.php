@@ -4,6 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => '',
     'missing_route' => 'Virheellinen URL-osoite tai virheellinen pyyntötapa.',
     'no_restricted_access' => 'Et voi suorittaa tätä toimintoa tilisi ollessa rajoitetussa tilassa.',
     'supporter_only' => 'Sinun täytyy olla Tukija käyttääksesi tätä ominaisuutta.',

@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => 'Forums',
         'latest_post' => 'Latest Post',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => 'Really restore post?',
         'edited' => 'Last edited by :user :when, edited :count_delimited time in total.|Last edited by :user :when, edited :count_delimited times in total.',
         'posted_at' => 'posted :when',
-        'posted_by' => 'posted by :username',
+        'posted_by_in' => 'posted by :username in :forum',
 
         'actions' => [
             'destroy' => 'Delete post',
@@ -101,7 +102,7 @@ return [
             'preview' => 'Preview',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
-            'preview_hide' => 'Write',
+            'preview_hide' => 'Edit',
             'submit' => 'Post',
 
             'necropost' => [

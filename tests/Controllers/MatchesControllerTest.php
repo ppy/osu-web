@@ -35,7 +35,7 @@ class MatchesControllerTest extends TestCase
 
     public function testPublicMatchLoggedInParticipated() // OK
     {
-        factory(Event::class)->states('join')->create([
+        Event::factory()->join()->create([
             'user_id' => $this->user->user_id,
             'match_id' => $this->publicMatch->match_id,
         ]);
@@ -64,7 +64,7 @@ class MatchesControllerTest extends TestCase
 
     public function testPrivateMatchLoggedInHost() // OK
     {
-        factory(Event::class)->states('create')->create([
+        Event::factory()->stateCreate()->create([
             'user_id' => $this->user->user_id,
             'match_id' => $this->privateMatch->match_id,
         ]);
@@ -77,7 +77,7 @@ class MatchesControllerTest extends TestCase
 
     public function testPrivateMatchLoggedInParticipated() // OK
     {
-        factory(Event::class)->states('join')->create([
+        Event::factory()->join()->create([
             'user_id' => $this->user->user_id,
             'match_id' => $this->privateMatch->match_id,
         ]);
@@ -94,14 +94,14 @@ class MatchesControllerTest extends TestCase
 
         $this->user = User::factory()->create();
 
-        $this->publicMatch = factory(LegacyMatch::class)->create();
-        factory(Event::class)->states('create')->create([
+        $this->publicMatch = LegacyMatch::factory()->create();
+        Event::factory()->stateCreate()->create([
             'match_id' => $this->publicMatch->match_id,
         ]);
         $this->publicMatchRoute = route('matches.show', $this->publicMatch->match_id);
 
-        $this->privateMatch = factory(LegacyMatch::class)->states('private')->create();
-        factory(Event::class)->states('create')->create([
+        $this->privateMatch = LegacyMatch::factory()->private()->create();
+        Event::factory()->stateCreate()->create([
             'match_id' => $this->privateMatch->match_id,
         ]);
         $this->privateMatchRoute = route('matches.show', $this->privateMatch->match_id);

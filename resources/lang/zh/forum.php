@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => '论坛',
         'latest_post' => '最新帖子',
 
         'index' => [
@@ -45,9 +46,9 @@ return [
     'post' => [
         'confirm_destroy' => '删除此回复？',
         'confirm_restore' => '恢复此回复？',
-        'edited' => '最后由 :user 于 :when 编辑，总共编辑了 :count_delimited 次。',
+        'edited' => '最后一次由 :user 在 :when 编辑，总共编辑了 :count_delimited 次。',
         'posted_at' => '发表于 :when',
-        'posted_by' => '发帖人：:username',
+        'posted_by_in' => ':username 在 “:forum” 下发帖',
 
         'actions' => [
             'destroy' => '删除回复',
@@ -287,10 +288,10 @@ return [
         ],
 
         'issue_tag_resolved' => [
-            'to_0' => '移除 "resolved" 标签',
-            'to_0_done' => '已移除 "resolved" 标签',
-            'to_1' => '添加 "resolved" 标签',
-            'to_1_done' => '已添加 "resolved" 标签',
+            'to_0' => '移除“已解决”标签',
+            'to_0_done' => '已移除“已解决”标签',
+            'to_1' => '添加 "已解决" 标签',
+            'to_1_done' => '已添加 "已解决" 标签',
         ],
 
         'lock' => [
@@ -339,7 +340,7 @@ return [
                 ],
 
                 'user' => [
-                    'count' => '{0} 0票|{1} :count_delimited 票|[2,*] :count_delimited 票',
+                    'count' => '{0} 0 票|{1} :count_delimited 票|[2,*] :count_delimited 票',
                     'current' => '还有 :votes 张选票。',
                     'not_enough' => "没有票了",
                 ],
@@ -358,8 +359,8 @@ return [
                 ],
 
                 'detail' => [
-                    'end_time' => '将于 :time 结束',
-                    'ended' => '结束于 :time',
+                    'end_time' => ':time 结束',
+                    'ended' => ':time 结束',
                     'results_hidden' => '投票结束后才显示结果。',
                     'total' => '总票数: :count',
                 ],

@@ -22,18 +22,16 @@ class UserClient extends Model
 {
     const CREATED_AT = 'timestamp';
 
-    protected $casts = [
-        'verified' => 'boolean',
-    ];
-
-    protected $table = 'osu_user_security';
-
-    protected $dates = ['timestamp'];
-
-    protected $primaryKeys = ['user_id', 'osu_md5', 'unique_md5'];
-
     public $incrementing = false;
     public $timestamps = false;
+
+    protected $casts = [
+        'timestamp' => 'datetime',
+        'verified' => 'boolean',
+    ];
+    protected $primaryKey = ':composite';
+    protected $primaryKeys = ['user_id', 'osu_md5', 'unique_md5'];
+    protected $table = 'osu_user_security';
 
     public static function lookupOrNew($userId, $hash)
     {

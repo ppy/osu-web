@@ -21,7 +21,7 @@ return [
         ],
 
         'translation' => [
-            'legal' => 'Esta traducción sólo se proporciona para conveniencia. El original :default será la única versión legalmente vinculante de este texto.',
+            'legal' => 'Esta traducción solo se proporciona para conveniencia. El original :default será la única versión legalmente vinculante de este texto.',
             'outdated' => 'Esta página contiene una traducción obsoleta del contenido original. Por favor ¡revise la :default para obtener información más precisa (y considere la posibilidad de actualizar la traducción si puede ayudar)!',
 
             'default' => 'versión en inglés',

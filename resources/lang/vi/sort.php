@@ -32,6 +32,7 @@ return [
     ],
 
     'forum_topics' => [
+        'created' => 'Ngày tạo',
         'feature_votes' => 'Ưu tiên sao',
         'new' => 'Trả lời cuối',
     ],

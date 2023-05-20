@@ -50,7 +50,7 @@ return [
                 'album' => 'Albüm',
                 'artist' => 'Sanatçı',
                 'bpm_gte' => 'Minimum BPM',
-                'bpm_lte' => 'Maximum BPM',
+                'bpm_lte' => 'Maksimum BPM',
                 'empty' => 'Arama kriterine uyan parça bulunamadı.',
                 'genre' => 'Tür',
                 'genre_all' => 'Tümü',

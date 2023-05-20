@@ -1,0 +1,101 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.select-options {
+  @_top: select-options;
+
+  --decoration-colour: inherit;
+  --option-hover-bg: hsl(var(--hsl-b4));
+  --option-padding: 5px 10px;
+  --option-select-padding: 15px 10px;
+  --selector-display: none;
+  --selector-max-height: auto;
+  --selector-overflow-y: auto;
+
+  &--beatmap-discussions-user-filter {
+    --decoration-colour: hsl(var(--hsl-c1));
+
+    @media @desktop {
+      width: 200px;
+    }
+  }
+
+  &--ranking {
+    --selector-max-height: 400px; // arbitrary
+    --selector-overflow-y: scroll;
+    --option-select-padding: 5px 10px;
+  }
+
+  &--report {
+    width: 100%;
+  }
+
+  &--selecting {
+    z-index: @z-index--blackout-visible;
+    position: relative;
+    --selector-display: block;
+  }
+
+  &--spotlight {
+    --selector-max-height: 400px; // arbitrary
+    --selector-overflow-y: scroll;
+  }
+
+  &__decoration {
+    margin-left: 10px;
+    color: var(--decoration-colour);
+  }
+
+  &__option {
+    .reset-input();
+    .link-plain();
+
+    --colour: hsl(var(--hsl-c1));
+    display: flex;
+    justify-content: space-between;
+    padding: var(--option-padding);
+    white-space: nowrap;
+    color: var(--colour);
+
+    &--selected {
+      background-color: @osu-colour-b3;
+    }
+
+    .@{_top}--beatmap-discussions-user-filter & {
+      --colour: var(--group-colour, hsl(var(--hsl-c1)));
+    }
+
+    .link-hover({
+      background-color: var(--option-hover-bg);
+      color: var(--colour);
+    });
+  }
+
+  &__select {
+    .default-box-shadow();
+    .default-border-radius();
+    overflow: hidden;
+
+    font-size: 15px;
+    background-color: hsla(var(--hsl-b6), 0.5);
+    box-shadow: 0 0 0 2px fade(#000, 25%);
+
+    --option-hover-bg: hsla(var(--hsl-b6), 0.6);
+    --option-padding: var(--option-select-padding);
+  }
+
+  &__selector {
+    .default-box-shadow();
+
+    position: absolute;
+    width: 100%;
+    display: var(--selector-display);
+    top: 100%;
+    left: 0;
+    margin-top: 5px;
+    font-size: 12px;
+    background-color: @osu-colour-b5;
+    overflow-y: var(--selector-overflow-y);
+    max-height: var(--selector-max-height);
+  }
+}

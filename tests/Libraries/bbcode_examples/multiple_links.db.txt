@@ -1,0 +1,11 @@
+<!-- m --><a href='https://osu.ppy.sh' rel='nofollow'>https://osu.ppy.sh</a><!-- m --> <!-- m --><a href='https://osu.ppy.sh' rel='nofollow'>https://osu.ppy.sh</a><!-- m -->
+
+<!-- m --><a href='http://localhost/home' rel='nofollow'>home</a><!-- m -->
+<!-- m --><a href='http://localhost/home' rel='nofollow'>home</a><!-- m -->
+<!-- m --><a href='http://localhost/home' rel='nofollow'>home</a><!-- m -->
+
+<!-- w --><a href='http://www.example.com' rel='nofollow'>www.example.com</a><!-- w -->
+<!-- w --><a href='http://www.example.com' rel='nofollow'>www.example.com</a><!-- w -->
+
+<!-- e --><a href='mailto:user@example.com' rel='nofollow'>user@example.com</a><!-- e -->
+<!-- e --><a href='mailto:user@example.com' rel='nofollow'>user@example.com</a><!-- e -->

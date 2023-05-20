@@ -17,16 +17,16 @@ return [
         ],
 
         'state' => [
-            'current' => 'Aktive Turniere',
+            'current' => 'Laufende Turniere',
             'previous' => 'Vergangene Turniere',
         ],
     ],
 
     'show' => [
         'banner' => 'Unterstütze dein Team',
-        'entered' => 'Du bist für dieses Turnier angemeldet',
+        'entered' => 'Du bist für dieses Turnier angemeldet.<br><br>Bitte bedenke, dass dies <b>nicht</b> bedeutet, dass du einem Team zugewiesen wurdest.<br><br>Weitere Anweisungen erhältst du via E-Mail kurz vor dem Turniertermin, also stelle bitte sicher, dass die E-Mail-Adresse deines osu!-Accounts gültig ist!',
         'info_page' => 'Übersicht',
-        'login_to_register' => 'Um die Details zur Anmeldung sehen, :login!',
+        'login_to_register' => 'Um die Details zur Anmeldung zu sehen, :login!',
         'not_yet_entered' => 'Du bist nicht für dieses Turnier angemeldet.',
         'rank_too_low' => 'Sorry, aber dein Rang entspricht nicht den Anforderungen für dieses Turnier!',
         'registration_ends' => 'Die Anmeldungen enden am :date',

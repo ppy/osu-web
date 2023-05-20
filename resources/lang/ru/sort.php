@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    '_' => 'Сортировать по',
+    '_' => 'Отсортировать по',
 
     'all' => 'Всех',
     'friends' => 'Друзей',
@@ -32,8 +32,9 @@ return [
     ],
 
     'forum_topics' => [
+        'created' => 'Дате создания',
         'feature_votes' => 'Количество голосов',
-        'new' => 'Последний ответ',
+        'new' => 'Последнему ответу',
     ],
 
     'users' => [

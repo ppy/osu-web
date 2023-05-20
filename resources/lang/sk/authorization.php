@@ -50,13 +50,11 @@ return [
             'resolved' => 'Nemôžete upravovať príspevky vyriešenej diskusie.',
             'system_generated' => 'Automaticky generovaný príspevok nie je možné upravovať.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Táto beatmapa má zamknutú diskusiu.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'Táto beatmapa je k diskusii zamknutá.',
+
         'metadata' => [
             'nominated' => 'Nemôžete zmeniť metadáta nominovanej mapy. Kontaktujte člena BN alebo NAT, ak si myslíte, že to je nastavené nesprávne.',
         ],

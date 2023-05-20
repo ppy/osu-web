@@ -37,7 +37,7 @@ return [
         'hide' => 'verbergen',
         'permalink' => 'permalink',
         'pin' => 'vastzetten',
-        'post' => 'Post',
+        'post' => 'Plaatsen',
         'read_more' => 'lees meer',
         'reply' => 'Beantwoord',
         'reply_reopen' => 'Beantwoord en Heropen',

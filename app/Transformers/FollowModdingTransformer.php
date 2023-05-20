@@ -9,7 +9,7 @@ use App\Models\Follow;
 
 class FollowModdingTransformer extends FollowTransformer
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'latest_beatmapset',
         'user',
     ];

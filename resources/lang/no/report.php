@@ -5,7 +5,7 @@
 
 return [
     'beatmapset' => [
-        'button' => '',
+        'button' => 'Rapporter',
         'title' => '',
     ],
 
@@ -20,7 +20,7 @@ return [
     ],
 
     'forum_post' => [
-        'button' => '',
+        'button' => 'Rapporter',
         'title' => '',
     ],
 

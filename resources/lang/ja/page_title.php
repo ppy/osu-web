@@ -100,11 +100,15 @@ return [
         'scores_controller' => [
             '_' => 'パフォーマンス',
         ],
+        'seasons_controller' => [
+            '_' => '',
+        ],
         'tournaments_controller' => [
             '_' => 'トーナメント',
         ],
         'users_controller' => [
             '_' => 'プレイヤー情報',
+            'create' => 'アカウント作成',
             'disabled' => '通知',
         ],
         'wiki_controller' => [

@@ -119,7 +119,7 @@ class Group extends Model implements AfterCommit
 
     public function afterCommit()
     {
-        app('groups')->resetCache();
+        app('groups')->resetMemoized();
     }
 
     private function getColour(): ?string

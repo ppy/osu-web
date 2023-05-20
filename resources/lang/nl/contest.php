@@ -50,7 +50,7 @@ return [
             'beatmap' => 'Alleen .osu bestanden worden geaccepteerd voor deze wedstrijd.',
             'music' => 'Alleen .mp3 bestanden worden geaccepteerd voor deze wedstrijd.',
         ],
-        'wrong_dimensions' => '',
+        'wrong_dimensions' => 'Inzendingen voor deze wedstrijd moeten :widthx:height zijn',
         'too_big' => 'Inzendingen voor deze wedstrijd kunnen maar :limit zijn.',
     ],
     'beatmaps' => [

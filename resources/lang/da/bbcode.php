@@ -6,7 +6,9 @@
 return [
     'bold' => 'Fed',
     'heading' => 'Overskrift',
+    'help' => '',
     'image' => 'Billede',
+    'imagemap' => '',
     'italic' => 'Italic',
     'link' => 'Link',
     'list' => 'Liste',

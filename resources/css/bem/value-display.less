@@ -1,0 +1,70 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.value-display {
+  @_top: value-display;
+  --label-font-size-desktop: @font-size--normal;
+  --label-font-size: @font-size--title-small-3;
+  --label-font-weight: bold;
+  --value-color: hsl(var(--hsl-c1));
+  --value-font-size-desktop: @font-size--title-small-4;
+  --value-font-size: @font-size--title;
+  display: flex;
+  flex-direction: column;
+  min-width: 60px;
+  flex: 1;
+
+  &--kudosu {
+    --value-font-size-desktop: @font-size--large-3;
+    --value-font-size: @font-size--large-3;
+  }
+
+  &--plain {
+    --label-font-size-desktop: @font-size--normal;
+    --label-font-size: @font-size--normal;
+    --label-font-weight: normal;
+    --value-color: hsl(var(--hsl-c2));
+    --value-font-size-desktop: @font-size--title-small-3;
+    --value-font-size: @font-size--title-small-3;
+  }
+
+  &--plain-wide {
+    grid-column-end: span 2;
+  }
+
+  &--rank {
+    --label-font-size-desktop: @font-size--normal;
+    --label-font-size: @font-size--small;
+    --label-font-weight: normal;
+    --value-color: hsl(var(--hsl-c2));
+    --value-font-size-desktop: @font-size--new-header-title;
+    --value-font-size: @font-size--large;
+    line-height: 1;
+
+    @media @desktop {
+      flex: none;
+    }
+  }
+
+  @media @desktop {
+    --value-font-size: var(--value-font-size-desktop);
+    --label-font-size: var(--label-font-size-desktop);
+  }
+
+  &__description {
+    font-size: @font-size--title-small;
+    color: hsl(var(--hsl-c1));
+    margin-top: 0.1em;
+  }
+
+  &__label {
+    font-weight: var(--label-font-weight);
+    font-size: var(--label-font-size);
+  }
+
+  &__value {
+    color: var(--value-color);
+    font-size: var(--value-font-size);
+    font-weight: 300;
+  }
+}

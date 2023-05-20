@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute tidak dapat bernilai negatif.',
     'required' => ':attribute diwajibkan.',
     'too_long' => ':attribute melebihi batas maksimum - hanya bisa hingga :limit karakter.',
+    'url' => '',
     'wrong_confirmation' => 'Konfirmasi tidak cocok.',
 
     'beatmapset_discussion' => [
@@ -24,12 +25,12 @@ return [
         ],
 
         'hype' => [
-            'discussion_locked' => "Anda tidak dapat memberikan hype karena laman diskusi beatmap ini tengah dikunci",
-            'guest' => 'Anda harus masuk untuk dapat memberikan hype.',
-            'hyped' => 'Anda telah memberikan hype untuk beatmap ini.',
-            'limit_exceeded' => 'Anda telah mempergunakan seluruh hype yang Anda miliki.',
+            'discussion_locked' => "Beatmap ini tidak dapat di-hype karena laman diskusi beatmap ini tengah dikunci",
+            'guest' => 'Kamu harus masuk untuk memberikan hype.',
+            'hyped' => 'Kamu telah memberikan hype pada beatmap ini.',
+            'limit_exceeded' => 'Kamu telah menggunakan seluruh hype yang kamu miliki.',
             'not_hypeable' => 'Beatmap ini tidak dapat di-hype',
-            'owner' => 'Anda tidak dapat memberikan hype pada beatmap milik sendiri.',
+            'owner' => 'Kamu tidak dapat memberikan hype pada beatmap milik sendiri.',
         ],
 
         'timestamp' => [
@@ -48,7 +49,7 @@ return [
     ],
 
     'comment' => [
-        'deleted_parent' => 'Anda tidak dapat membalas komentar yang telah dihapus.',
+        'deleted_parent' => 'Kamu tidak dapat membalas komentar yang telah dihapus.',
         'top_only' => 'Komentar balasan tidak dapat disematkan.',
 
         'attributes' => [
@@ -75,7 +76,7 @@ return [
             'beatmapset_post_no_edit' => 'Menyunting posting metadata beatmap tidak diizinkan.',
             'first_post_no_delete' => 'Tidak dapat menghapus postingan awal',
             'missing_topic' => 'Postingan ini tidak memiliki topik',
-            'only_quote' => 'Balasan Anda hanya berisi kutipan.',
+            'only_quote' => 'Balasanmu hanya berisi kutipan.',
 
             'attributes' => [
                 'post_text' => 'Isi postingan',
@@ -89,7 +90,7 @@ return [
         ],
 
         'topic_poll' => [
-            'duplicate_options' => 'Opsi ganda tidak diizinkan.',
+            'duplicate_options' => 'Pilihan berganda tidak diizinkan.',
             'grace_period_expired' => 'Tidak dapat menyunting sebuah jajak pendapat setelah melebihi :limit jam',
             'hiding_results_forever' => 'Suara pada polling yang tidak memiliki batasan akhir waktu tidak dapat dirahasiakan.',
             'invalid_max_options' => 'Pilihan per pengguna tidak boleh melebihi jumlah opsi yang tersedia.',
@@ -104,8 +105,12 @@ return [
 
         'topic_vote' => [
             'required' => 'Pilih opsi saat memilih.',
-            'too_many' => 'Jumlah pilihan Anda lebih banyak dari yang diizinkan.',
+            'too_many' => 'Jumlah pilihan yang dipilih lebih banyak dari yang diizinkan.',
         ],
+    ],
+
+    'legacy_api_key' => [
+        'exists' => '',
     ],
 
     'oauth' => [
@@ -153,9 +158,9 @@ return [
         ],
 
         'change_username' => [
-            'restricted' => 'Anda tidak dapat mengubah nama pengguna pada saat akun Anda sedang di-restrict.',
+            'restricted' => 'Kamu tidak dapat mengubah nama pengguna pada saat akunmu sedang di-restrict.',
             'supporter_required' => [
-                '_' => 'Anda harus memiliki :link untuk dapat mengubah nama pengguna Anda!',
+                '_' => 'Kamu harus memiliki :link untuk mengubah nama penggunamu!',
                 'link_text' => 'osu!supporter',
             ],
             'username_is_same' => 'Ini adalah nama penggunamu yang sekarang, duh!',
@@ -163,9 +168,9 @@ return [
     ],
 
     'user_report' => [
-        'no_ranked_beatmapset' => 'Anda tidak dapat melaporkan beatmap yang berstatus Ranked',
+        'no_ranked_beatmapset' => 'Kamu tidak dapat melaporkan beatmap yang berstatus Ranked',
         'reason_not_valid' => ':reason bukan merupakan alasan yang valid untuk jenis laporan ini.',
-        'self' => "Anda tidak dapat melaporkan diri Anda sendiri!",
+        'self' => "Kamu tidak dapat melaporkan diri sendiri!",
     ],
 
     'store' => [

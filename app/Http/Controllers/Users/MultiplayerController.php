@@ -8,8 +8,6 @@ namespace App\Http\Controllers\Users;
 use App\Http\Controllers\Controller;
 use App\Libraries\User\FindForProfilePage;
 use App\Models\Multiplayer\Room;
-use App\Models\User;
-use App\Transformers\Multiplayer\RoomTransformer;
 use App\Transformers\UserTransformer;
 
 class MultiplayerController extends Controller
@@ -22,12 +20,17 @@ class MultiplayerController extends Controller
             return ujs_redirect(route('users.multiplayer.index', ['typeGroup' => 'realtime', 'user' => $userId]));
         }
 
-        $params = get_params(request()->all(), null, [
-            'cursor:array',
-            'limit:int',
-        ], ['null_missing' => true]);
+        $rawParams = request()->all();
+        $params = [
+            'cursor' => cursor_from_params($rawParams),
+            'limit' => get_int($rawParams['limit'] ?? null),
+            'mode' => 'participated',
+            'sort' => 'ended',
+            'type_group' => $typeGroup,
+            'user' => $user,
+        ];
 
-        $json = $this->getJson($user, $params, $typeGroup);
+        $json = Room::responseJson($params);
 
         if (is_json_request()) {
             return $json;
@@ -40,33 +43,5 @@ class MultiplayerController extends Controller
         );
 
         return ext_view('users.multiplayer.index', compact('json', 'jsonUser', 'user'));
-    }
-
-    private function getJson(User $user, array $params, string $typeGroup)
-    {
-        $limit = clamp($params['limit'] ?? 50, 1, 50);
-
-        $search = Room::search([
-            'cursor' => $params['cursor'],
-            'user' => $user,
-            'limit' => $limit,
-            'mode' => 'participated',
-            'sort' => 'ended',
-            'type_group' => $typeGroup,
-        ]);
-
-        [$rooms, $hasMore] = $search['query']->with([
-            'playlist.beatmap',
-            'host',
-        ])->getWithHasMore();
-        $rooms->each->findAndSetCurrentPlaylistItem();
-        $rooms->loadMissing('currentPlaylistItem.beatmap.beatmapset');
-
-        return [
-            'cursor' => $hasMore ? $search['cursorHelper']->next($rooms) : null,
-            'rooms' => json_collection($rooms, new RoomTransformer(), ['current_playlist_item.beatmap.beatmapset', 'difficulty_range', 'host', 'playlist_item_stats']),
-            'search' => $search['search'],
-            'type_group' => $typeGroup,
-        ];
     }
 }

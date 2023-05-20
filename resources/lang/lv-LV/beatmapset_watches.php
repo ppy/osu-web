@@ -5,17 +5,17 @@
 
 return [
     'index' => [
-        'description' => 'Šīs ir bītkaršu diskusijas, kurām jūs sekojat. Jums tiks paziņots, kad tik veikts ieraksts vai atjauninājums.',
-        'title_compact' => '',
+        'description' => 'Šīs ir bītmapju diskusijas, kurām jūs sekojat. Jums tiks paziņots, kad būs jauni raksti vai atjauninājumi.',
+        'title_compact' => 'bītmapes diskusiju saraksts',
 
         'counts' => [
-            'total' => '',
-            'unread' => '',
+            'total' => 'Vērotas bītmapes',
+            'unread' => 'Bītmapes ar jaunu aktivitāti',
         ],
 
         'table' => [
-            'empty' => 'Nevēro nevienu bītkaršu diskusiju.',
-            'last_update' => '',
+            'empty' => 'Netiek vērota neviena bītmapju diskusija.',
+            'last_update' => 'Pēdējais atjauninājums',
             'open_issues' => 'Aktuālās problēmas',
             'state' => 'Stāvoklis',
             'title' => 'Nosaukums',

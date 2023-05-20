@@ -11,7 +11,7 @@ use App\Transformers\UserCompactTransformer;
 
 class ClientTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'redirect',
         'secret',
         'user',

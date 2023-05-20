@@ -19,9 +19,13 @@ class Count extends Model
     protected $primaryKey = 'name';
     protected $table = 'osu_counts';
 
-    public static function currentRankStart(string $mode): static
+    public static function currentRankStart(string $ruleset): static
     {
-        return static::firstOrCreate(['name' => "pp_rank_column_{$mode}"], ['count' => 0]);
+        $column = config('osu.scores.experimental_rank_as_default')
+            ? "pp_rank_column_exp_{$ruleset}"
+            : "pp_rank_column_{$ruleset}";
+
+        return static::firstOrCreate(['name' => $column], ['count' => 0]);
     }
 
     public static function totalUsers(): static

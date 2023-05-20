@@ -355,9 +355,7 @@ class Post extends Model implements AfterCommit, Indexable, Traits\ReportableInt
             }
         }
 
-        if ($this->isDirty('post_text') && mb_strlen($this->body_raw) > config('osu.forum.max_post_length')) {
-            $this->validationErrors()->add('post_text', 'too_long', ['limit' => config('osu.forum.max_post_length')]);
-        }
+        $this->validateDbFieldLength(config('osu.forum.max_post_length'), 'post_text', 'body_raw');
 
         if (!$this->skipBeatmapPostRestrictions) {
             // don't forget to sync with views.forum.topics._posts
@@ -379,10 +377,10 @@ class Post extends Model implements AfterCommit, Indexable, Traits\ReportableInt
 
         // record edit history
         if ($this->exists && $this->isDirty('post_text')) {
-            $this->fill([
-                'post_edit_time' => Carbon::now(),
-                'post_edit_count' => DB::raw('post_edit_count + 1'),
-            ]);
+            $this->post_edit_time = Carbon::now();
+            if ($this->post_edit_count < 64000) {
+                $this->post_edit_count = DB::raw('post_edit_count + 1');
+            }
         }
 
         return parent::save($options);
@@ -397,7 +395,7 @@ class Post extends Model implements AfterCommit, Indexable, Traits\ReportableInt
         }
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'forum.post';
     }

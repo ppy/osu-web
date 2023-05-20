@@ -29,7 +29,7 @@
 
         <div class="osu-page">
             <div class="search">
-                @include('objects.search._forum_options', ['fields' => ['user' => null]])
+                @include('objects.search._forum_options', compact('fields'))
 
                 <div class="search-result search-result--forum_post">
                     @if ($search->total() === 0)

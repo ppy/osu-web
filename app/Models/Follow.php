@@ -66,7 +66,7 @@ class Follow extends Model
         $this->user()->associate($value);
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'follow';
     }

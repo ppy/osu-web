@@ -32,6 +32,7 @@ return [
     ],
 
     'forum_topics' => [
+        'created' => 'Aangemaakt',
         'feature_votes' => 'Ster prioriteit',
         'new' => 'Laatste antwoord',
     ],

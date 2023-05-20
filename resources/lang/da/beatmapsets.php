@@ -60,12 +60,18 @@ return [
     'show' => [
         'discussion' => 'Diskussion',
 
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
+
         'details' => [
             'by_artist' => 'af :artist',
             'favourite' => 'Markér dette beatmapset som favorit',
             'favourite_login' => 'Log ind for at favorisere dette beatmap',
             'logged-out' => 'Du skal være logget ind for at kunne downloade beatmaps!',
             'mapped_by' => 'mappet af :mapper',
+            'mapped_by_guest' => '',
             'unfavourite' => 'Fjern dette beatmapset fra dine favoritter',
             'updated_timeago' => 'sidst opdateret :timeago',
 
@@ -124,6 +130,7 @@ return [
             'genre' => 'Genre',
             'language' => 'Sprog',
             'no_scores' => 'Data er stadig ved at blive beregnet...',
+            'nominators' => '',
             'nsfw' => 'Eksplicit indhold',
             'offset' => 'Online forskydning',
             'points-of-failure' => 'Fejl-steder',

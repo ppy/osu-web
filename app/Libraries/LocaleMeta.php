@@ -22,6 +22,10 @@ class LocaleMeta
             'flag' => 'BG',
             'name' => 'Български',
         ],
+        'ca' => [
+            'flag' => 'AD', // ES-CA in crowdin
+            'name' => 'català',
+        ],
         'cs' => [
             'flag' => 'CZ',
             'name' => 'Česky',
@@ -51,9 +55,17 @@ class LocaleMeta
             'flag' => 'FI',
             'name' => 'Suomi',
         ],
+        'fil' => [
+            'flag' => 'PH',
+            'name' => 'Wikang Filipino',
+        ],
         'fr' => [
             'flag' => 'FR',
             'name' => 'français',
+        ],
+        'he' => [
+            'flag' => 'IL',
+            'name' => 'עִבְרִית‎',
         ],
         'hu' => [
             'flag' => 'HU',
@@ -74,6 +86,10 @@ class LocaleMeta
         'ko' => [
             'flag' => 'KR',
             'name' => '한국어',
+        ],
+        'lt' => [
+            'flag' => 'LT',
+            'name' => 'lietuvių kalba',
         ],
         'nl' => [
             'flag' => 'NL',
@@ -109,6 +125,15 @@ class LocaleMeta
         'sk' => [
             'flag' => 'SK',
             'name' => 'Slovenčina',
+        ],
+        'sl' => [
+            'flag' => 'SI',
+            'name' => 'slovenščina',
+        ],
+        'sr' => [
+            'flag' => 'RS',
+            'moment' => 'sr-cyrl',
+            'name' => 'српски',
         ],
         'sv' => [
             'flag' => 'SE',

@@ -34,6 +34,7 @@ return [
         'qualify' => '이 비트맵은 충분한 추천을 받았고 qualified 상태로 전환되었습니다.',
         'rank' => 'Ranked.',
         'remove_from_loved' => ':user 님에 의해 Loved 상태에서 제거됨 (:text)',
+        'tags_edit' => '태그가 ":old"에서 ":new"으(로) 변경되었습니다.',
 
         'nsfw_toggle' => [
             'to_0' => '부적절한 콘텐츠 표시가 해제됨',

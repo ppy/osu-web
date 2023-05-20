@@ -21,11 +21,12 @@ use App\Models\User;
  */
 class Event extends Model
 {
-    protected $primaryKey = 'event_id';
-    protected $dates = [
-        'timestamp',
-    ];
     public $timestamps = false;
+
+    protected $casts = [
+        'timestamp' => 'datetime',
+    ];
+    protected $primaryKey = 'event_id';
 
     const EVENT_TYPES = [
         'player-left' => 'PART',

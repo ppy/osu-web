@@ -6,13 +6,13 @@
 return [
     'match' => [
         'beatmap-deleted' => 'smazaná mapa',
-        'difference' => 'o :difference',
         'failed' => 'SELHAL',
         'header' => 'Multiplayer zápasy',
         'in-progress' => '(zápas probíhá)',
         'in_progress_spinner_label' => 'probíhá zápas',
         'loading-events' => 'Načítání událostí...',
         'winner' => ':team vyhrává',
+        'winner_by' => '',
 
         'events' => [
             'player-left' => ':user opustil zápas',

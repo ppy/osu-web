@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'engellenen kullanıcılar (:count)',
         'hide_profile' => 'profili gizle',
         'hide_comment' => 'gizle',
+        'forum_post_text' => 'Bu başlık gizli.',
         'not_blocked' => 'Bu kullanıcı engellenmemiş.',
         'show_profile' => 'profili göster',
         'show_comment' => 'göster',
@@ -50,6 +51,22 @@ return [
     'card' => [
         'loading' => 'Yükleniyor...',
         'send_message' => 'mesaj gönder',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => 'şifre',
+            'password_confirmation' => 'şifre onayı',
+            'submit' => 'hesap oluştur',
+            'user_email' => 'e-posta',
+            'user_email_confirmation' => 'e-posta onayı',
+            'username' => 'kullanıcı adı',
+
+            'tos_notice' => [
+                '_' => 'hesap oluşturarak :link kabul edersiniz',
+                'link' => 'hizmet şartları\'nı',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -142,6 +159,7 @@ return [
     'restricted_banner' => [
         'title' => 'Hesabınız kısıtlandı!',
         'message' => 'Kısıtlanmışken, diğer oyuncularla etkileşime geçemeyecek ve skorlarınızı sadece siz görebileceksiniz. Bu genellikle otomatik olan bir işlemin sonucudur ve 24 saat içerisinde kalkabilir. Kısıtlamanızın açılması için başvurmak istiyorsanız, lütfen <a href="mailto:accounts@ppy.sh">destek hattıyla</a> iletişime geçin.',
+        'message_link' => 'Daha fazla bilgi için bu sayfaya göz atın.',
     ],
     'show' => [
         'age' => ':age yaşında',
@@ -212,10 +230,13 @@ return [
                     'title' => 'Mezarlıktaki Beatmapler',
                 ],
                 'guest' => [
-                    'title' => 'Beatmap\'e misafir olarak katıl',
+                    'title' => 'Konuk Olarak Katıldığı Beatmapler',
                 ],
                 'loved' => [
                     'title' => 'Sevilen Beatmapler',
+                ],
+                'nominated' => [
+                    'title' => 'Aday Gösterilen Dereceli Beatmapler',
                 ],
                 'pending' => [
                     'title' => 'Beklemedeki Beatmapler',
@@ -345,7 +366,7 @@ return [
                     'to_1_done' => 'Sabitlenmiş skor',
                 ],
                 'pinned' => [
-                    'title' => 'Sabitlenmiş skorlar',
+                    'title' => 'Sabitlenen Skorlar',
                 ],
             ],
             'votes' => [
@@ -414,7 +435,7 @@ return [
             'country_simple' => 'Ülkesel Sıralama',
             'global' => ':mode için Dünya sıralaması',
             'global_simple' => 'Küresel Sıralama',
-            'highest' => '',
+            'highest' => ':date tarihinde en yüksek rank: :rank',
         ],
         'stats' => [
             'hit_accuracy' => 'Vuruş İsabeti',
@@ -448,6 +469,8 @@ return [
         'offline' => 'Çevrimdışı',
     ],
     'store' => [
+        'from_client' => 'lütfen bunun yerine oyun istemcisi ile kaydolun!',
+        'from_web' => 'lütfen kayıt işleminizi osu! web sitesinde tamamlayın',
         'saved' => 'Kullanıcı oluşturuldu',
     ],
     'verify' => [

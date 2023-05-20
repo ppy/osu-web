@@ -20,7 +20,7 @@ class BeatmapDiscussionsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('auth', ['except' => ['index', 'mediaUrl', 'show']]);
         $this->middleware('require-scopes:public', ['only' => ['index']]);
 
         parent::__construct();
@@ -115,6 +115,14 @@ class BeatmapDiscussionsController extends Controller
         $search = $bundle->getSearchParams();
 
         return ext_view('beatmap_discussions.index', compact('json', 'search', 'paginator'));
+    }
+
+    public function mediaUrl()
+    {
+        $url = get_string(request('url'));
+
+        // Tell browser not to request url for a while.
+        return redirect(proxy_media($url))->header('Cache-Control', 'max-age=600');
     }
 
     public function restore($id)

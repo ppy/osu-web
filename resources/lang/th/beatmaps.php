@@ -6,7 +6,7 @@
 return [
     'discussion-votes' => [
         'update' => [
-            'error' => 'อัปเดตโหวตล้มเหลว',
+            'error' => 'ไม่สามารถอัปเดตการลงคะแนน',
         ],
     ],
 
@@ -18,7 +18,7 @@ return [
         'deny_kudosu' => 'ปฏิเสธการให้ kudosu',
         'edit' => 'แก้ไข',
         'edited' => 'แก้ไขล่าสุดโดย :editor เมื่อเวลา :update_time',
-        'guest' => 'ระดับความยากของแขกโดย:user',
+        'guest' => 'ความยากของผู้มาเยี่ยมโดย :user',
         'kudosu_denied' => 'ถูกปฏิเสธการให้ kudosu',
         'message_placeholder_deleted_beatmap' => 'ระดับความยากนี้ถูกลบแล้วจึงไม่ควรถูกสนทนาถึง',
         'message_placeholder_locked' => 'การสนทนาสำหรับบีทแมพนี้ถูกปิดใช้งาน',
@@ -183,7 +183,7 @@ return [
         'disqualified_no_reason' => 'ไม่มีเหตุผลที่ระบุไว้',
         'disqualify' => 'ตัดสิทธิ์',
         'incorrect_state' => 'เกิดข้อผิดพลาดในการดำเนินการ ลองรีเฟรชหน้าเพจนี้ดู',
-        'love' => 'Love',
+        'love' => 'ชอบ',
         'love_choose' => 'เลือกระดับความยากสำหรับ Loved',
         'love_confirm' => 'ชอบบีทแมพนี้หรือ?',
         'nominate' => 'เสนอชื่อ',
@@ -199,8 +199,9 @@ return [
 
         'rank_estimate' => [
             '_' => 'แมพนี้จะถูก ranked  ใน :date ถ้าไม่พบเจอปัญหาเพิ่มเติม แมพนี้อยู่ที่ #:position ใน :queue',
+            'on' => 'เมื่อ :date',
             'queue' => 'คิวการ rank',
-            'soon' => 'เร็ว ๆ นี้',
+            'soon' => 'เร็วๆ นี้',
         ],
 
         'reset_at' => [
@@ -248,16 +249,16 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => 'กรองโดย :filters ต้องมี :link ทำงานอยู่',
-                'link_text' => 'แท็กสนับสนุน',
+                'link_text' => 'แท็ก osu!supporter',
             ],
         ],
     ],
     'general' => [
-        'converts' => 'รวมแมพคอนเวิรต์ด้วย',
+        'converts' => 'รวมบีทแมปที่แปลงแล้ว',
         'featured_artists' => 'ศิลปินโดดเด่น',
         'follows' => 'ติดตามผู้ทำแมพ',
         'recommended' => 'ระดับความยากที่แนะนำ',
-        'spotlights' => '',
+        'spotlights' => 'บีทแมปที่โดดเด่น',
     ],
     'mode' => [
         'all' => 'ทั้งหมด',
@@ -275,9 +276,9 @@ return [
         'leaderboard' => 'สถิติการจัดลำดับ',
         'loved' => 'Loved',
         'mine' => 'แมพของฉัน',
-        'pending' => 'รอดำเนินการ & WIP',
+        'pending' => 'รอดำเนินการ',
         'wip' => 'WIP',
-        'qualified' => 'Qualified',
+        'qualified' => 'ผ่านการรับรอง',
         'ranked' => 'จัดอันดับแล้ว',
     ],
     'genre' => [
@@ -297,7 +298,7 @@ return [
         'jazz' => 'แจ๊ส',
     ],
     'language' => [
-        'any' => 'Any',
+        'any' => 'ไม่เจาะจง',
         'english' => 'อังกฤษ',
         'chinese' => 'จีน',
         'french' => 'ฝรั่งเศส',
@@ -307,8 +308,8 @@ return [
         'korean' => 'เกาหลี',
         'spanish' => 'สเปน',
         'swedish' => 'สวีเดน',
-        'russian' => 'ภาษารัสเซีย',
-        'polish' => 'ภาษาโปแลนด์',
+        'russian' => 'รัสเซีย',
+        'polish' => 'โปแลนด์',
         'instrumental' => 'เครื่องดนตรี',
         'other' => 'อื่นๆ',
         'unspecified' => 'ไม่ระบุภาษา',

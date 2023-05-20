@@ -50,13 +50,11 @@ return [
             'resolved' => 'You can not edit a post of a resolved discussion.',
             'system_generated' => 'Automatically generated post can not be edited.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'This beatmap is locked for discussion.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'This beatmap is locked for discussion.',
+
         'metadata' => [
             'nominated' => 'You cannot change metadata of a nominated map. Contact a BN or NAT member if you think it is set incorrectly.',
         ],

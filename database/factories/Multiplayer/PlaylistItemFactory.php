@@ -3,21 +3,29 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-$factory->define(App\Models\Multiplayer\PlaylistItem::class, function (Faker\Generator $faker) {
-    return [
-        'beatmap_id' => function () {
-            return App\Models\Beatmap::factory()->create()->getKey();
-        },
-        'room_id' => function () {
-            return factory(App\Models\Multiplayer\Room::class)->create()->getKey();
-        },
-        'ruleset_id' => function (array $self) {
-            return App\Models\Beatmap::find($self['beatmap_id'])->playmode;
-        },
-        'allowed_mods' => [],
-        'required_mods' => [],
-        'owner_id' => function () {
-            return App\Models\User::factory()->create()->getKey();
-        },
-    ];
-});
+declare(strict_types=1);
+
+namespace Database\Factories\Multiplayer;
+
+use App\Models\Beatmap;
+use App\Models\Multiplayer\PlaylistItem;
+use App\Models\Multiplayer\Room;
+use App\Models\User;
+use Database\Factories\Factory;
+
+class PlaylistItemFactory extends Factory
+{
+    protected $model = PlaylistItem::class;
+
+    public function definition(): array
+    {
+        return [
+            'beatmap_id' => Beatmap::factory(),
+            'room_id' => Room::factory(),
+            'ruleset_id' => fn(array $attributes) => Beatmap::find($attributes['beatmap_id'])->playmode,
+            'allowed_mods' => [],
+            'required_mods' => [],
+            'owner_id' => User::factory(),
+        ];
+    }
+}

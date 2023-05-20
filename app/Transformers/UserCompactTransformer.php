@@ -44,7 +44,7 @@ class UserCompactTransformer extends TransformerAbstract
 
     protected string $mode;
 
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'account_history',
         'active_tournament_banner',
         'badges',

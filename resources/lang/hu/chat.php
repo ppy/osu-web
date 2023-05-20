@@ -8,6 +8,7 @@ return [
     'talking_in' => ':channel-ben beszélés',
     'talking_with' => ':name-el beszélés',
     'title_compact' => 'csevegés',
+    'unread_messages' => 'olvasatlan üzenetek',
 
     'cannot_send' => [
         'channel' => 'Nem üzenhetsz jelenleg ebbe a csatornába.',
@@ -35,6 +36,7 @@ return [
 
         'labels' => [
             'description' => 'leírás',
+            'message' => 'üzenet',
             'name' => 'a szoba neve',
             'users' => 'hozzáadandó játékosok',
         ],

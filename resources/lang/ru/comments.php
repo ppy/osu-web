@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'deleted' => 'удалено',
+    'deleted' => 'удалён',
     'deleted_by' => 'удалено :user :timeago',
     'deleted_by_system' => 'системой',
     'deleted_count' => ':count_delimited комментарий удалён|:count_delimited комментария удалено|:count_delimited комментариев удалено',
@@ -45,7 +45,7 @@ return [
     'placeholder' => [
         'edit' => 'Изменить комментарий',
         'new' => 'Оставьте своё мнение',
-        'reply' => 'Введите ответ',
+        'reply' => 'Напишите ответ',
     ],
 
     'show' => [

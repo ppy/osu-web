@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => 'Forum-uri',
         'latest_post' => 'Ultima Postare',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => 'Sigur dorești să restaurezi postarea?',
         'edited' => 'Editat ultima dată de către :user :when, editat o dată în total.|Editat ultima dată de către :user :when, editat de :count_delimited ori în total.',
         'posted_at' => 'postat :when',
-        'posted_by' => 'postat de :username',
+        'posted_by_in' => 'postat de :username în :forum',
 
         'actions' => [
             'destroy' => 'Șterge postarea',
@@ -252,45 +253,45 @@ return [
         ],
 
         'issue_tag_added' => [
-            'to_0' => 'Elimină tagul "added"',
-            'to_0_done' => 'S-a eliminat tagul "added"',
-            'to_1' => 'Adaugă tagul "added"',
-            'to_1_done' => 'S-a adăugat tagul "added"',
+            'to_0' => 'Elimină eticheta "added"',
+            'to_0_done' => 'A fost eliminată eticheta "added"',
+            'to_1' => 'Adaugă eticheta "added"',
+            'to_1_done' => 'A fost adăugată eticheta "added"',
         ],
 
         'issue_tag_assigned' => [
-            'to_0' => 'Elimină tagul "assigned"',
-            'to_0_done' => 'S-a eliminat tagul "assigned"',
-            'to_1' => 'Adaugă tagul "assigned"',
-            'to_1_done' => 'S-a adăugat tagul "assigned"',
+            'to_0' => 'Elimină eticheta "assigned"',
+            'to_0_done' => 'A fost eliminată eticheta "assigned"',
+            'to_1' => 'Adaugă eticheta "assigned"',
+            'to_1_done' => 'A fost adăugată eticheta "assigned"',
         ],
 
         'issue_tag_confirmed' => [
-            'to_0' => 'Elimină tagul "confirmed"',
-            'to_0_done' => 'S-a eliminat tagul "confirmed"',
-            'to_1' => 'Adaugă tagul "confirmed"',
-            'to_1_done' => 'S-a adăugat tagul "confirmed"',
+            'to_0' => 'Elimină eticheta "confirmed"',
+            'to_0_done' => 'A fost eliminată eticheta "confirmed"',
+            'to_1' => 'Adaugă eticheta "confirmed"',
+            'to_1_done' => 'A fost adăugată eticheta "confirmed"',
         ],
 
         'issue_tag_duplicate' => [
-            'to_0' => 'Elimină tagul "duplicate"',
-            'to_0_done' => 'S-a eliminat tagul "duplicate"',
-            'to_1' => 'Adaugă tagul "duplicate"',
-            'to_1_done' => 'S-a adăugat tagul "duplicate"',
+            'to_0' => 'Elimină eticheta "duplicate"',
+            'to_0_done' => 'A fost eliminată eticheta "duplicate"',
+            'to_1' => 'Adaugă eticheta "duplicate"',
+            'to_1_done' => 'A fost adăugată eticheta "duplicate"',
         ],
 
         'issue_tag_invalid' => [
-            'to_0' => 'Elimină tagul "invalid"',
-            'to_0_done' => 'S-a eliminat tagul "invalid"',
-            'to_1' => 'Adaugă tagul "invalid"',
-            'to_1_done' => 'S-a adăugat tagul "invalid"',
+            'to_0' => 'Elimină eticheta "invalid"',
+            'to_0_done' => 'A fost eliminată eticheta "invalid"',
+            'to_1' => 'Adaugă eticheta "invalid"',
+            'to_1_done' => 'A fost adăugată eticheta "invalid"',
         ],
 
         'issue_tag_resolved' => [
-            'to_0' => 'Elimină tagul "resolved"',
-            'to_0_done' => 'S-a eliminat tagul "resolved"',
-            'to_1' => 'Adaugă tagul "resolved"',
-            'to_1_done' => 'S-a adăugat tagul "resolved"',
+            'to_0' => 'Elimină eticheta "resolved"',
+            'to_0_done' => 'A fost eliminată eticheta "resolved"',
+            'to_1' => 'Adaugă eticheta "resolved"',
+            'to_1_done' => 'A fost adăugată eticheta "resolved"',
         ],
 
         'lock' => [

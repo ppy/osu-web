@@ -50,13 +50,11 @@ return [
             'resolved' => 'Nemůžete upravit příspěvek ve vyřešené diskusi.',
             'system_generated' => 'Nelze upravovat automaticky generovaný příspěvek.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Tato beatmapa je zablokována od diskuze.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'Tato beatmapa je k diskuzi uzamčena.',
+
         'metadata' => [
             'nominated' => 'Nemůžete změnit metadata nominované beatmapy. Pokud si myslíte, že jsou nastavena nesprávně, kontaktujte člena BN nebo NAT.',
         ],

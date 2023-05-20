@@ -13,6 +13,16 @@ return [
     'see_channel' => 'gå till chatt',
     'verifying' => 'Vänligen verifiera sessionen för att visa aviseringar',
 
+    'action_type' => [
+        '_' => 'alla',
+        'beatmapset' => 'beatmaps',
+        'build' => 'builds',
+        'channel' => 'chatt',
+        'forum_topic' => 'forum',
+        'news_post' => 'nyheter',
+        'user' => 'profil',
+    ],
+
     'filters' => [
         '_' => 'alla',
         'user' => 'profil',
@@ -209,6 +219,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Det finns ett nytt meddelande i ":name"',
+            ],
+
             'channel' => [
                 'pm' => 'Du har fått ett nytt meddelande från :username',
             ],

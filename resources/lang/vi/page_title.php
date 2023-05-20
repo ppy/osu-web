@@ -24,7 +24,7 @@ return [
     'forum' => [
         '_' => 'diễn đàn',
         'topic_logs_controller' => [
-            'index' => '',
+            'index' => 'nhật kí chủ đề',
         ],
     ],
     'main' => [
@@ -101,11 +101,15 @@ return [
         'scores_controller' => [
             '_' => 'hiệu suất',
         ],
+        'seasons_controller' => [
+            '_' => 'xếp hạng',
+        ],
         'tournaments_controller' => [
             '_' => 'giải đấu',
         ],
         'users_controller' => [
             '_' => 'thông tin người chơi',
+            'create' => 'tạo tài khoản',
             'disabled' => 'để ý',
         ],
         'wiki_controller' => [

@@ -27,14 +27,14 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => '只有谱面作者或谱面管理团队、质量保证团队成员可以发布备注。',
+            'mapper_note_wrong_user' => '只有谱面作者、提名该谱面的谱面审核成员 (BN)、审核评估团队 (NAT) 成员可以在讨论区发送备注。',
         ],
 
         'vote' => [
             'bot' => "不能对机器人的讨论投票",
             'limit_exceeded' => '请稍等后再投票。',
             'owner' => "不能为自己的讨论投票！",
-            'wrong_beatmapset_state' => '只能给 pending 谱面的讨论投票。',
+            'wrong_beatmapset_state' => '只能给待定 (Pending) 谱面的讨论投票。',
         ],
     ],
 
@@ -48,17 +48,15 @@ return [
         'edit' => [
             'not_owner' => '只有作者可以编辑。',
             'resolved' => '你不能编辑已解决讨论里的帖子。',
-            'system_generated' => '无法编辑自动回复。',
-        ],
-
-        'store' => [
-            'beatmapset_locked' => '该谱面因需要探讨而被锁定。',
+            'system_generated' => '自动生成的帖子无法被编辑。',
         ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => '谱面已上锁，以供讨论。',
+
         'metadata' => [
-            'nominated' => '您不能更改已提名的谱面信息。如果您认为其不正确，请联系谱面管理团队或质量保障团队进行更改。',
+            'nominated' => '您不能更改已提名谱面的信息。如果您认为其不正确，请联系谱面审核成员 (BN) 或审核评估团队 (NAT) 更改。',
         ],
     ],
 

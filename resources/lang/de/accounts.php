@@ -5,8 +5,8 @@
 
 return [
     'edit' => [
-        'title_compact' => 'einstellungen',
-        'username' => 'benutzername',
+        'title_compact' => 'Einstellungen',
+        'username' => 'Benutzername',
 
         'avatar' => [
             'title' => 'Avatar',
@@ -15,13 +15,13 @@ return [
         ],
 
         'email' => [
-            'new' => 'neue e-mail',
-            'new_confirmation' => 'e-mail bestätigen',
+            'new' => 'Neue E-Mail',
+            'new_confirmation' => 'E-Mail bestätigen',
             'title' => 'E-Mail',
         ],
 
         'password' => [
-            'current' => 'aktuelles passwort',
+            'current' => 'Aktuelles Passwort',
             'new' => 'neues passwort',
             'new_confirmation' => 'passwort bestätigen',
             'title' => 'Passwort',
@@ -32,9 +32,9 @@ return [
 
             'user' => [
                 'user_discord' => '',
-                'user_from' => 'aktueller standort',
-                'user_interests' => 'interessen',
-                'user_occ' => 'beschäftigung',
+                'user_from' => 'Aktueller Standort',
+                'user_interests' => 'Interessen',
+                'user_occ' => 'Beschäftigung',
                 'user_twitter' => '',
                 'user_website' => 'webseite',
             ],
@@ -47,39 +47,39 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'erhalte benachrichtigungen für neue probleme auf qualifizierten beatmaps der folgenden modi',
-        'beatmapset_disqualify' => 'erhalte benachrichtigungen, wenn beatmaps der folgenden modi disqualifiziert werden',
-        'comment_reply' => 'erhalte Benachrichtigungen für antworten auf deine Kommentare',
+        'beatmapset_discussion_qualified_problem' => 'erhalte Benachrichtigungen für neue Probleme auf qualifizierten Beatmaps von folgenden Modi',
+        'beatmapset_disqualify' => 'erhalte Benachrichtigungen, wenn Beatmaps der folgenden Modi disqualifiziert werden',
+        'comment_reply' => 'erhalte Benachrichtigungen für Antworten auf deine Kommentare',
         'title' => 'Benachrichtigungen',
-        'topic_auto_subscribe' => 'automatisch benachrichtigungen zu den von dir erstellten forenthreads aktivieren',
+        'topic_auto_subscribe' => 'Benachrichtigungen zu den von dir erstellten Forenposts immer aktivieren',
 
         'options' => [
-            '_' => 'zustelloptionen',
-            'beatmap_owner_change' => 'gastschwierigkeitsstufe',
-            'beatmapset:modding' => 'beatmap-modding',
-            'channel_message' => 'private chatnachrichten',
-            'comment_new' => 'neue kommentare',
-            'forum_topic_reply' => 'antwort auf einen thread',
-            'mail' => 'mail',
-            'mapping' => 'beatmap-mapper',
+            '_' => 'Zustelloptionen',
+            'beatmap_owner_change' => 'Guest-Difficulty',
+            'beatmapset:modding' => 'Beatmap-Modding',
+            'channel_message' => 'private Chat-Nachrichten',
+            'comment_new' => 'neue Kommentare',
+            'forum_topic_reply' => 'Antwort zum Thema',
+            'mail' => 'Mail',
+            'mapping' => 'Beatmap-Mapper',
             'push' => 'push',
-            'user_achievement_unlock' => 'medaille freigeschaltet',
+            'user_achievement_unlock' => 'Medaille freigeschaltet',
         ],
     ],
 
     'oauth' => [
-        'authorized_clients' => 'autorisierte clients',
-        'own_clients' => 'eigene clients',
+        'authorized_clients' => 'autorisierte Anwendungen',
+        'own_clients' => 'eigene Anwendungen',
         'title' => 'OAuth',
     ],
 
     'options' => [
         'beatmapset_show_nsfw' => 'Warnungen für expliziten Inhalt in Beatmaps ausblenden',
-        'beatmapset_title_show_original' => 'beatmap-metadaten in originalsprache anzeigen',
+        'beatmapset_title_show_original' => 'Beatmap-Metadaten in Originalsprache anzeigen',
         'title' => 'Optionen',
 
         'beatmapset_download' => [
-            '_' => 'bevorzugter beatmap-download typ',
+            '_' => 'Bevorzugter Betmap-Download Typ',
             'all' => 'mit Video, falls verfügbar',
             'direct' => 'in osu!direct öffnen',
             'no_video' => 'ohne video',
@@ -87,16 +87,16 @@ return [
     ],
 
     'playstyles' => [
-        'keyboard' => 'tastatur',
-        'mouse' => 'maus',
-        'tablet' => 'tablet',
+        'keyboard' => 'Tastatur',
+        'mouse' => 'Maus',
+        'tablet' => 'Tablet',
         'title' => 'Spielstil',
         'touch' => 'touch',
     ],
 
     'privacy' => [
-        'friends_only' => 'blockiere nachrichten von benutzern, die nicht auf deiner freundesliste sind',
-        'hide_online' => 'online-status verbergen',
+        'friends_only' => 'blockiere Nachrichten von Benutzern, die nicht in deiner Freundesliste sind',
+        'hide_online' => 'Online-Status verbergen',
         'title' => 'Privatsphäre',
     ],
 
@@ -106,7 +106,7 @@ return [
         'end_session_confirmation' => 'Das wird deine Sitzung auf diesem Gerät sofort beenden. Bist du sicher?',
         'last_active' => 'Zuletzt aktiv:',
         'title' => 'Sicherheit',
-        'web_sessions' => 'web-sitzungen',
+        'web_sessions' => 'Web-Sitzungen',
     ],
 
     'update_email' => [

@@ -43,6 +43,7 @@ return [
             'label' => [
                 'forum' => 'искать на форуме',
                 'forum_children' => 'включая подфорумы',
+                'include_deleted' => 'включая удалённые посты',
                 'topic_id' => 'тема #',
                 'username' => 'автор',
             ],
@@ -60,7 +61,7 @@ return [
             'login_required' => 'Войдите в аккаунт для поиска по пользователям',
             'more' => 'больше :count результатов поиска среди игроков',
             'more_simple' => 'Посмотреть другие результаты поиска среди игроков',
-            'more_hidden' => 'Результаты поиска игроков сокращены до :max игроков. Попробуйте уточнить запрос.',
+            'more_hidden' => 'Результаты поиска игроков сокращены до :max. Попробуйте уточнить запрос.',
             'title' => 'Игроки',
         ],
 
@@ -72,8 +73,22 @@ return [
     ],
 
     'download' => [
-        'tagline' => "давайте<br>начнём!",
         'action' => 'Скачать osu!',
+        'action_lazer' => 'Скачать osu!(lazer)',
+        'action_lazer_description' => 'следующее глобальное обновление osu!',
+        'action_lazer_info' => 'статья с подробной информацией',
+        'action_lazer_title' => 'попробовать osu!(lazer)',
+        'action_title' => 'скачать osu!',
+        'for_os' => 'для :os',
+        'lazer_note' => 'примечание: ваши рекорды могут быть удалены',
+        'macos-fallback' => 'для macOS',
+        'mirror' => 'зеркало',
+        'or' => 'или',
+        'os_version_or_later' => ':os_version или новее',
+        'other_os' => 'другие платформы',
+        'quick_start_guide' => 'краткая инструкция',
+        'tagline' => "давайте<br>начнём!",
+        'video-guide' => 'видеоинструкция',
 
         'help' => [
             '_' => 'если у вас появились проблемы с запуском игры или регистрацией аккаунта, :help_forum_link или :support_button.',
@@ -86,8 +101,6 @@ return [
             'macos' => 'для macOS',
             'linux' => 'для Linux',
         ],
-        'mirror' => 'зеркало',
-        'macos-fallback' => 'для macOS',
         'steps' => [
             'register' => [
                 'title' => 'создайте аккаунт',
@@ -105,7 +118,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'видеоинструкция',
     ],
 
     'user' => [

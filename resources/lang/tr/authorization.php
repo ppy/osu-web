@@ -50,13 +50,11 @@ return [
             'resolved' => 'Çözülmüş bir tartışmanın gönderisini düzenleyemezsiniz.',
             'system_generated' => 'Otomatik olarak oluşturulmuş gönderiler düzenlenemez.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Bu beatmap tartışmaya kapalı.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'Bu harita tartışma için kilitlenmiştir.',
+
         'metadata' => [
             'nominated' => 'Aday gösterilen bir mapin metaverisini değiştiremezsiniz. Hatalı ayarlandığını düşünüyorsanız bir BN ya da NAT üyesiyle iletişime geçiniz.',
         ],

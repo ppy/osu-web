@@ -13,6 +13,16 @@ return [
     'see_channel' => 'チャットに行く',
     'verifying' => '通知を表示するには、セッションを確認してください。',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => '',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
     'filters' => [
         '_' => '全て',
         'user' => 'プロフィール',
@@ -209,6 +219,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => ':name に新しいお知らせがあります',
+            ],
+
             'channel' => [
                 'pm' => ':usernameから新しいメッセージを受信しました',
             ],

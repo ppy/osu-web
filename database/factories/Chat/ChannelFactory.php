@@ -25,12 +25,12 @@ class ChannelFactory extends Factory
         ];
     }
 
-    public function moderated()
+    public function moderated(): static
     {
         return $this->state(['moderated' => true]);
     }
 
-    public function pm(User ...$users)
+    public function pm(User ...$users): static
     {
         if (empty($users)) {
             $users = User::factory()->count(2)->create();
@@ -47,9 +47,9 @@ class ChannelFactory extends Factory
         ])->withUsers(...$users);
     }
 
-    public function tourney()
+    public function tourney(): static
     {
-        $match = factory(LegacyMatch::class)->states('tourney')->create();
+        $match = LegacyMatch::factory()->tourney()->create();
 
         return $this->state([
             'name' => "#mp_{$match->getKey()}",
@@ -57,7 +57,7 @@ class ChannelFactory extends Factory
         ]);
     }
 
-    public function type(string $type, array $users = [])
+    public function type(string $type, array $users = []): static
     {
         if ($type === 'tourney') {
             return $this->tourney();
@@ -68,7 +68,7 @@ class ChannelFactory extends Factory
         return $this->state(['type' => Channel::TYPES[$type]])->withUsers(...$users);
     }
 
-    public function withUsers(User ...$users)
+    public function withUsers(User ...$users): static
     {
         return $this->afterCreating(function (Channel $channel) use ($users) {
             foreach ($users as $user) {

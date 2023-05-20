@@ -19,11 +19,11 @@ return [
         'album' => 'อัลบั้ม',
         'artist' => 'ศิลปิน',
         'bpm' => 'BPM',
-        'genre' => '',
+        'genre' => 'ประเภท',
         'length' => 'ความยาว',
-        'relevance' => '',
-        'title' => '',
-        'update' => '',
+        'relevance' => 'ความเกี่ยวข้อง',
+        'title' => 'หัวเรื่อง',
+        'update' => 'อัพเดต',
     ],
 
     'forum_posts' => [
@@ -32,6 +32,7 @@ return [
     ],
 
     'forum_topics' => [
+        'created' => 'สร้างแล้ว',
         'feature_votes' => 'ลำดับความสำคัญ',
         'new' => 'ตอบกลับครั้งล่าสุด',
     ],

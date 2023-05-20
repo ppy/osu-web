@@ -2,6 +2,10 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
+@php
+    use App\Models\Store\ExtraDataSupporterTag;
+@endphp
+
 @if(!Auth::user())
 <div class="grid grid--gutters">
     <div class="grid-cell grid-cell--1of2">
@@ -26,6 +30,20 @@
                         'class' => 'js-username-input store-supporter-tag__input',
                         'placeholder' => osu_trans('store.supporter_tag.gift'),
                         'autocomplete' => 'off'
+                    ]
+                )
+            !!}
+        </div>
+        <div class="js-store-supporter-tag-message grid-cell">
+            {!!
+                Form::textarea(
+                    'item[extra_data][message]',
+                    null,
+                    [
+                        'class' => 'store-supporter-tag__input store-supporter-tag__input--message',
+                        'maxlength' => ExtraDataSupporterTag::MAX_MESSAGE_LENGTH,
+                        'placeholder' => osu_trans('store.supporter_tag.gift_message', ['length' => ExtraDataSupporterTag::MAX_MESSAGE_LENGTH]),
+                        'rows' => 3,
                     ]
                 )
             !!}

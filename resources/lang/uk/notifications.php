@@ -13,6 +13,16 @@ return [
     'see_channel' => 'перейти до чату',
     'verifying' => 'Будь ласка, перевірте сеанс, щоб переглянути сповіщення',
 
+    'action_type' => [
+        '_' => 'всі',
+        'beatmapset' => 'мапи',
+        'build' => 'збірки',
+        'channel' => 'чат',
+        'forum_topic' => 'форум',
+        'news_post' => 'новини',
+        'user' => 'профіль',
+    ],
+
     'filters' => [
         '_' => 'усе',
         'user' => 'профіль',
@@ -209,6 +219,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => 'Нове оголошення в ":name"',
+            ],
+
             'channel' => [
                 'pm' => 'Ви отримали нове повідомлення від :username',
             ],

@@ -5,65 +5,65 @@
 
 return [
     'header' => [
-        'small' => 'Sacentieties vairāk veidos, nekā tikai apļu kliskšķināšanā!',
-        'large' => '',
+        'small' => 'Sacensties ne tikai klikšķinot apļus, bet arī citos veidos.',
+        'large' => 'Kopienas Konkursi',
     ],
 
     'index' => [
-        'nav_title' => '',
+        'nav_title' => 'saraksts',
     ],
 
     'voting' => [
-        'login_required' => 'Lūdzu pierakstieties lai balsotu.',
+        'login_required' => 'Lūdzu, pierakstieties, lai balsotu.',
         'over' => 'Balsošana par šo konkursu ir beigusies',
-        'show_voted_only' => '',
+        'show_voted_only' => 'Rādīt balsotos',
 
         'best_of' => [
-            'none_played' => "",
+            'none_played' => "Neizskatās, ka jūs spēlējāt kādu no bītmapēm, kas atbilst šim konkursam!",
         ],
 
         'button' => [
-            'add' => '',
-            'remove' => '',
-            'used_up' => '',
+            'add' => 'Balsot',
+            'remove' => 'Noņemt balsojumu',
+            'used_up' => 'Jūs esat izlietojis visas savas balsis',
         ],
 
         'progress' => [
-            '_' => '',
+            '_' => ':used / :max balsis izmantotas',
         ],
 
         'requirement' => [
             'playlist_beatmapsets' => [
-                'incomplete_play' => '',
+                'incomplete_play' => 'Pirms balsošanas ir jāspēlē visas bītmapes norādītajos sarakstos',
             ],
         ],
     ],
     'entry' => [
-        '_' => 'ieraksts',
-        'login_required' => 'Lūdzu, pierakstieties, lai pieteiktos konkursam.',
-        'silenced_or_restricted' => 'Jūs nevarat pieteikties konkursiem, kamēr esat ierobežots vai apklusināts.',
-        'preparation' => 'Mēs pašlaik gatavojam šo konkursu. Lūdzu, gaidiet pacietīgi!',
-        'drop_here' => 'Ielieciet jūsu ierakstu šeit',
-        'download' => '',
+        '_' => 'pieteikums',
+        'login_required' => 'Lūdzu, pierakstieties, lai piedalītos konkursā.',
+        'silenced_or_restricted' => 'Jūs nevarat piedalīties konkursos, kamēr esat ierobežots vai apklusināts.',
+        'preparation' => 'Mēs pašlaik gatavojam šo konkursu. Lūdzu, pacietīgi gaidiet!',
+        'drop_here' => 'Iemetiet savu pieteikumu šeit',
+        'download' => 'Lejupielādēt .osz',
         'wrong_type' => [
-            'art' => 'Šajā konkursā tiek pieņem tikai jpg, un. png failus.',
-            'beatmap' => 'Šajā konkursā tiek pieņem tikai .osu failus.',
-            'music' => 'Šajā konkursā tiek pieņem tikai .mp3 failus.',
+            'art' => 'Šajā konkursā pieņem tikai .jpg un .png failus.',
+            'beatmap' => 'Šajā konkursā tiek pieņemti tikai .osu faili.',
+            'music' => 'Šajā konkursā tiek pieņemti tikai .mp3 faili.',
         ],
-        'wrong_dimensions' => '',
-        'too_big' => '',
+        'wrong_dimensions' => 'Šajā konkursā pieteikumiem jābūt :widthx:height',
+        'too_big' => 'Dalība šajā konkursā var būt tikai līdz :limit.',
     ],
     'beatmaps' => [
-        'download' => 'Lejupielādēt, ierakstu',
+        'download' => 'Lejupielādēt Pieteikumu',
     ],
     'vote' => [
         'list' => 'balsis',
-        'count' => '',
-        'points' => '',
+        'count' => ':count_delimited balss|:count_delimited balsis',
+        'points' => ':count_delimited punkts|:count_delimited punkti',
     ],
     'dates' => [
         'ended' => 'Beidzās :date',
-        'ended_no_date' => '',
+        'ended_no_date' => 'Beidzās',
 
         'starts' => [
             '_' => 'Sākas :date',
@@ -71,8 +71,8 @@ return [
         ],
     ],
     'states' => [
-        'entry' => '',
-        'voting' => 'Balsošana sākās',
-        'results' => 'Rezultāti ir izlikti',
+        'entry' => 'Pieteikums Atvērts',
+        'voting' => 'Balsošana Sākās',
+        'results' => 'Rezultāti Pieejami',
     ],
 ];

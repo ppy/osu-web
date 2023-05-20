@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute không thể âm.',
     'required' => 'Yêu cầu :attribute.',
     'too_long' => ':attribute vượt quá độ dài cho phép - chỉ có thể lên đến :limit kí tự.',
+    'url' => '',
     'wrong_confirmation' => 'Xác nhận không phù hợp.',
 
     'beatmapset_discussion' => [
@@ -106,6 +107,10 @@ return [
             'required' => 'Chọn một lựa chọn khi đang bỏ phiếu.',
             'too_many' => 'Vượt quá mức cho phép chọn các lựa chọn.',
         ],
+    ],
+
+    'legacy_api_key' => [
+        'exists' => '',
     ],
 
     'oauth' => [

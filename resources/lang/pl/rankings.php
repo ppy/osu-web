@@ -23,6 +23,14 @@ return [
         'multiplayer' => 'wieloosobowy',
         'performance' => 'globalny',
         'score' => 'punktowy',
+        'seasons' => 'sezony',
+    ],
+
+    'seasons' => [
+        'empty' => 'Brak gier w tym sezonie.',
+        'ongoing' => 'Ten sezon nadal trwa - w przyszłości zostanie dodanych więcej gier.',
+        'room_count' => 'Liczba gier',
+        'url' => 'Dowiedz się więcej o tym sezonie.',
     ],
 
     'spotlight' => [

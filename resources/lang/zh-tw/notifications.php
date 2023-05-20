@@ -13,6 +13,16 @@ return [
     'see_channel' => '前往聊天',
     'verifying' => '請驗證此工作階段以查看通知',
 
+    'action_type' => [
+        '_' => '全部',
+        'beatmapset' => '圖譜',
+        'build' => '版本',
+        'channel' => '聊天',
+        'forum_topic' => '論壇',
+        'news_post' => '新聞',
+        'user' => '個人資料',
+    ],
+
     'filters' => [
         '_' => '全部',
         'user' => '個人簡介',
@@ -209,6 +219,10 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'announce' => '',
+            ],
+
             'channel' => [
                 'pm' => '您收到了來自 :username 的新訊息',
             ],

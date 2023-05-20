@@ -9,12 +9,12 @@ use App\Models\BeatmapsetEvent;
 
 class BeatmapsetEventTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'beatmapset',
         'discussion',
     ];
 
-    protected $defaultIncludes = [
+    protected array $defaultIncludes = [
         'user_id',
     ];
 

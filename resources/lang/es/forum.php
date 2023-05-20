@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => 'Foros',
         'latest_post' => 'Último mensaje',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => '¿Realmente desea restaurar la publicación?',
         'edited' => 'Última edición por :user :when, editado :count_delimited vez en total.|Última edición por :user :when, editado :count_delimited veces en total.',
         'posted_at' => 'publicado :when',
-        'posted_by' => 'publicado por :username',
+        'posted_by_in' => 'publicado por :username en :forum',
 
         'actions' => [
             'destroy' => 'Eliminar publicación',
@@ -101,11 +102,11 @@ return [
             'preview' => 'Previsualizar',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
-            'preview_hide' => 'Escribir',
+            'preview_hide' => 'Editar',
             'submit' => 'Publicar',
 
             'necropost' => [
-                'default' => 'Este tema ha estado inactivo durante mucho tiempo. Sólo publique aquí si tiene una razón específica para hacerlo.',
+                'default' => 'Este tema ha estado inactivo durante mucho tiempo. Solo publique aquí si tiene una razón específica para hacerlo.',
 
                 'new_topic' => [
                     '_' => "Este tema ha estado inactivo durante mucho tiempo. Si no tiene una razón específica para publicar aquí, por favor :create en su lugar.",
@@ -144,7 +145,7 @@ return [
                 'fork' => 'de :topic',
                 'pin' => 'tema anclado',
                 'post_operation' => 'publicado por :username',
-                'remove_tag' => 'removida etiqueta ":tag"',
+                'remove_tag' => 'etiqueta removida ":tag"',
                 'source_forum_operation' => 'de :forum',
                 'unpin' => 'tema sin fijar',
             ],
@@ -152,9 +153,9 @@ return [
             'no_results' => 'no se encontraron registros...',
 
             'operations' => [
-                'delete_post' => 'Publicacion eliminada',
+                'delete_post' => 'Publicación eliminada',
                 'delete_topic' => 'Tema eliminado',
-                'edit_topic' => 'Titulo del tema cambiado',
+                'edit_topic' => 'Título del tema cambiado',
                 'edit_poll' => 'Encuesta del tema editada',
                 'fork' => 'Tema copiado',
                 'issue_tag' => 'Etiqueta emitida',

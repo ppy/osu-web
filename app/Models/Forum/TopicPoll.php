@@ -18,6 +18,11 @@ class TopicPoll
     private $params;
     private $votedBy = [];
 
+    public function __get(string $field)
+    {
+        return $this->params[$field];
+    }
+
     public function canEdit()
     {
         return $this->topic->topic_time > Carbon::now()->subHours(config('osu.forum.poll_edit_hours'));
@@ -60,9 +65,7 @@ class TopicPoll
                 $this->validationErrors()->add('title', 'required');
             }
 
-            if (mb_strlen($this->params['title']) > 255) {
-                $this->validationErrors()->add('title', 'too_long', ['limit' => 255]);
-            }
+            $this->validateFieldLength(255, 'title');
 
             if (count($this->params['options']) > count(array_unique($this->params['options']))) {
                 $this->validationErrors()->add('options', '.duplicate_options');
@@ -156,7 +159,7 @@ class TopicPoll
             : 0;
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'forum.topic_poll';
     }

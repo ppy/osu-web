@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'utenti bloccati (:count)',
         'hide_profile' => 'Nascondi profilo',
         'hide_comment' => 'nascondi',
+        'forum_post_text' => 'Questo post è nascosto.',
         'not_blocked' => 'Questo utente non è bloccato.',
         'show_profile' => 'Visualizza profilo',
         'show_comment' => 'mostra',
@@ -50,6 +51,22 @@ return [
     'card' => [
         'loading' => 'Caricamento...',
         'send_message' => 'Invia messaggio',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => 'password',
+            'password_confirmation' => 'conferma password',
+            'submit' => 'crea account',
+            'user_email' => 'email',
+            'user_email_confirmation' => 'conferma email',
+            'username' => 'nome utente',
+
+            'tos_notice' => [
+                '_' => 'creando un account accetti i :link',
+                'link' => 'termini di servizio',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -141,7 +158,8 @@ return [
     ],
     'restricted_banner' => [
         'title' => 'Il tuo account è stato limitato!',
-        'message' => 'Quando sei limitato, non sarai in grado di interagire con gli altri giocatori e i tuoi punteggi saranno visibili solo a te. Solitamente questo è il risultato di un processo automatico e verrà risolto solitamente entro 24 ore. Se desideri fare appello contro la tua restrizione, <a href="mailto:accounts@ppy.sh">contatta il supporto</a>.',
+        'message' => 'Quando sei limitato, non sarai in grado di interagire con gli altri giocatori e i tuoi punteggi saranno visibili solo a te. Di solito questo è il risultato di un processo automatico e dovrebbe risolversi entro 24 ore. :link',
+        'message_link' => 'Controlla questa pagina per saperne di più.',
     ],
     'show' => [
         'age' => ':age anni',
@@ -216,6 +234,9 @@ return [
                 ],
                 'loved' => [
                     'title' => 'Beatmap Amate',
+                ],
+                'nominated' => [
+                    'title' => 'Beatmap Classificate Nominate',
                 ],
                 'pending' => [
                     'title' => 'Beatmap In Attesa',
@@ -414,7 +435,7 @@ return [
             'country_simple' => 'Classifica Nazionale',
             'global' => 'Posto globale per :mode',
             'global_simple' => 'Classifica Globale',
-            'highest' => '',
+            'highest' => 'Grado più alto: :rank il :date',
         ],
         'stats' => [
             'hit_accuracy' => 'Precisione dei Colpi',
@@ -423,7 +444,7 @@ return [
             'maximum_combo' => 'Combo Massima',
             'medals' => 'Medaglie',
             'play_count' => 'Partite Giocate',
-            'play_time' => 'Tempo totale di gioco',
+            'play_time' => 'Tempo di Gioco',
             'ranked_score' => 'Punteggio Classificato',
             'replays_watched_by_others' => 'Replay Guardati da Altri',
             'score_ranks' => 'Rank dei Punteggi',
@@ -448,6 +469,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
+        'from_client' => 'registrati attraverso il gioco!',
+        'from_web' => 'si prega di completare la registrazione utilizzando il sito osu!',
         'saved' => 'Utente creato',
     ],
     'verify' => [

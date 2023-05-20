@@ -16,7 +16,6 @@
         <env name="BEATMAPSET_REQUIRED_HYPE" value="0"/>
         <env name="BROADCAST_DRIVER" value="log"/>
         <env name="CACHE_DRIVER" value="array"/>
-        <env name="CACHE_DRIVER_LOCAL" value="array"/>
         <env name="CHAT_PRIVATE_LIMIT" value="2"/>
         <env name="SESSION_DRIVER" value="array"/>
 
