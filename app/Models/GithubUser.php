@@ -72,16 +72,16 @@ class GithubUser extends Model
             : null;
     }
 
-    public function osuUrl(): ?string
+    public function osuUsername(): ?string
+    {
+        return $this->user?->username;
+    }
+
+    public function userUrl(): ?string
     {
         return $this->user_id !== null
             ? route('users.show', $this->user_id)
             : null;
-    }
-
-    public function osuUsername(): ?string
-    {
-        return $this->user?->username;
     }
 
     public function getAttribute($key)
