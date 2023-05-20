@@ -473,13 +473,13 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         curl_setopt($curl, CURLOPT_FILE, $oszFile);
         curl_exec($curl);
 
-        if(curl_errno($curl) > 0) {
-            throw new BeatmapProcessorException('Failed downloading osz: ' . curl_error($curl));
+        if (curl_errno($curl) > 0) {
+            throw new BeatmapProcessorException('Failed downloading osz: '.curl_error($curl));
         }
 
         $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
         if ($statusCode !== 200) {
-            throw new BeatmapProcessorException('Failed downloading osz: HTTP Error ' . $statusCode);
+            throw new BeatmapProcessorException('Failed downloading osz: HTTP Error '.$statusCode);
         }
 
         curl_close($curl);
