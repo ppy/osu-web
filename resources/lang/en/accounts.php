@@ -54,9 +54,13 @@ return [
 
     'github_user' => [
         'account' => 'account',
-        'error_no_contribution' => 'Cannot link GitHub account without any contribution history in osu! repositories.',
         'link' => 'Link GitHub account',
         'title' => 'GitHub',
+
+        'error' => [
+            'already_linked' => 'This GitHub account is already linked to a different user.',
+            'no_contribution' => 'Cannot link GitHub account without any contribution history in osu! repositories.',
+        ],
     ],
 
     'notifications' => [

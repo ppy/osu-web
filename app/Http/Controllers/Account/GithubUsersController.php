@@ -45,7 +45,9 @@ class GithubUsersController extends Controller
         $apiUser = $client->currentUser()->show();
         $user = GithubUser::firstWhere('canonical_id', $apiUser['id']);
 
-        abort_if($user === null, 422, osu_trans('accounts.github_user.error_no_contribution'));
+        abort_if($user === null, 422, osu_trans('accounts.github_user.error.no_contribution'));
+
+        abort_if($user->user_id !== null, 422, osu_trans('accounts.github_user.error.already_linked'));
 
         $user->update([
             'user_id' => auth()->id(),
