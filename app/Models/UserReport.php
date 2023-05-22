@@ -141,6 +141,7 @@ class UserReport extends Model
 
         if (
             $this->reportable instanceof Message
+            && $this->reportable->channel->isHideable()
             && !$this->reportable->channel->hasUser($this->reporter)
         ) {
             $this->validationErrors()->add(

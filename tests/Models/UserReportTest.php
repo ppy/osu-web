@@ -127,7 +127,6 @@ class UserReportTest extends TestCase
         $reporter = User::factory()->create();
 
         if ($class === Message::class) {
-            $reportable->channel->addUser($reporter);
             $this->expectCountChange(fn () => UserReport::count(), 1);
         } else {
             $this->expectException(ValidationException::class);
@@ -159,9 +158,6 @@ class UserReportTest extends TestCase
     {
         $reportable = static::makeReportable($class);
         $reporter = User::factory()->create();
-        if ($reportable instanceof Message) {
-            $reportable->channel->addUser($reporter);
-        }
 
         $query = UserReport::whereMorphedTo('reportable', $reportable);
         $this->expectCountChange(fn () => $query->count(), 1, 'reportable query');
@@ -188,9 +184,6 @@ class UserReportTest extends TestCase
     {
         $reportable = static::makeReportable($class);
         $reporter = User::factory()->create();
-        if ($reportable instanceof Message) {
-            $reportable->channel->addUser($reporter);
-        }
 
         $report = $reportable->reportBy($reporter, static::reportParams());
 
