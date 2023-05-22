@@ -133,13 +133,11 @@ export default class FriendButton extends React.Component<Props> {
   private readonly clicked = () => {
     if (this.xhr != null) return;
 
-    if (this.friend == null) {
+    this.xhr = this.friend == null
       // friending
-      this.xhr = $.ajax(route('friends.store', { target: this.props.userId }), { type: 'POST' });
-    } else {
+      ? $.ajax(route('friends.store', { target: this.props.userId }), { type: 'POST' })
       // un-friending
-      this.xhr = $.ajax(route('friends.destroy', { friend: this.props.userId }), { type: 'DELETE' });
-    }
+      : $.ajax(route('friends.destroy', { friend: this.props.userId }), { type: 'DELETE' });
 
     this.xhr
       .done(this.updateFriends)
