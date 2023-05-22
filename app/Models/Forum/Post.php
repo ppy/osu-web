@@ -377,10 +377,10 @@ class Post extends Model implements AfterCommit, Indexable, Traits\ReportableInt
 
         // record edit history
         if ($this->exists && $this->isDirty('post_text')) {
-            $this->fill([
-                'post_edit_time' => Carbon::now(),
-                'post_edit_count' => DB::raw('post_edit_count + 1'),
-            ]);
+            $this->post_edit_time = Carbon::now();
+            if ($this->post_edit_count < 64000) {
+                $this->post_edit_count = DB::raw('post_edit_count + 1');
+            }
         }
 
         return parent::save($options);

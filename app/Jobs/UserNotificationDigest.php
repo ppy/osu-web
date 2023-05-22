@@ -11,6 +11,7 @@ use App\Mail\UserNotificationDigest as UserNotificationDigestMail;
 use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserNotification;
+use Datadog;
 use DB;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -50,6 +51,8 @@ class UserNotificationDigest implements ShouldQueue
 
         // TODO: catch and log errors?
         Mail::to($this->user)->send(new UserNotificationDigestMail($notifications, $this->user));
+
+        Datadog::increment(config('datadog-helper.prefix_web').'.user_notification_digest.mail', 1);
     }
 
     private function filterNotifications(Collection $notifications)

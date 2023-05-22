@@ -11,6 +11,8 @@ import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import TextareaAutosize from 'react-autosize-textarea';
+import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 
 const store = core.dataStore.ownClientStore;
@@ -42,19 +44,41 @@ export class NewClient extends React.Component {
         <form autoComplete='off' className='oauth-client-details__content'>
           {this.renderRemainingErrors()}
 
-          {NewClient.inputFields.map((name) => (
-            <label key={name} className='oauth-client-details__group'>
-              <div className='oauth-client-details__label'>{trans(`oauth.client.${name}`)}</div>
-              <ValidatingInput
-                blockName='oauth-client-details'
-                errors={this.errors}
-                name={name}
-                onInput={this.handleInput}
-                type='text'
-                value={this.params[name]}
-              />
-            </label>
-          ))}
+          <label className='oauth-client-details__group'>
+            <div className='oauth-client-details__label'>
+              {trans('oauth.client.name')}
+            </div>
+            <ValidatingInput
+              blockName='oauth-client-details'
+              errors={this.errors}
+              name='name'
+              onChange={this.handleOnChangeName}
+              type='text'
+              value={this.params.name}
+            />
+          </label>
+
+          <label className='oauth-client-details__group'>
+            <div className='oauth-client-details__label'>
+              {trans('oauth.client.redirect')}
+            </div>
+            <TextareaAutosize
+              async
+              className={classWithModifiers(
+                'oauth-client-details__input',
+                'textarea',
+                { 'has-error': (this.errors.get('redirect') ?? []).length > 0 },
+              )}
+              name='redirect'
+              onChange={this.handleOnChangeRedirect}
+              value={this.params.redirect}
+            />
+            {(this.errors.get('redirect') ?? []).map((message, index) => (
+              <div key={index} className='oauth-client-details__error'>
+                {message}
+              </div>
+            ))}
+          </label>
 
           <div>
             <StringWithComponent
@@ -85,13 +109,13 @@ export class NewClient extends React.Component {
   };
 
   @action
-  private readonly handleInput = (event: React.SyntheticEvent<HTMLInputElement>) => {
-    const target = event.currentTarget;
-    const { name, value } = target;
+  private readonly handleOnChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.params.name = event.currentTarget.value;
+  };
 
-    if (name === 'name' || name === 'redirect') {
-      this.params[name] = value;
-    }
+  @action
+  private readonly handleOnChangeRedirect = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    this.params.redirect = event.currentTarget.value;
   };
 
   @action
