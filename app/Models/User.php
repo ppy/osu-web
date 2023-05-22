@@ -2000,6 +2000,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         $this->currentPassword = $value;
     }
 
+    /**
+     * Enables email presence and confirmation field equality check.
+     */
     public function validateEmailConfirmation()
     {
         $this->validateEmailConfirmation = true;
@@ -2246,6 +2249,10 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         }
 
         if ($this->validateEmailConfirmation) {
+            if ($this->user_email === null) {
+                $this->validationErrors()->add('user_email', '.required');
+            }
+
             if ($this->user_email !== $this->emailConfirmation) {
                 $this->validationErrors()->add('user_email_confirmation', '.wrong_email_confirmation');
             }
