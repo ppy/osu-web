@@ -139,7 +139,8 @@ class UserReport extends Model
             );
         }
 
-        if ($this->reportable instanceof Message
+        if (
+            $this->reportable instanceof Message
             && !$this->reportable->channel->hasUser($this->reporter)
         ) {
             $this->validationErrors()->add(
