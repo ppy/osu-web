@@ -39,7 +39,7 @@ export class AuthorizedClient extends React.Component<Props> {
         </div>
         <div>
           <BigButton
-            disabled={client.isRevoking || client.revoked}
+            disabled={client.revoked}
             icon={client.revoked ? 'fas fa-ban' : 'fas fa-trash'}
             isBusy={client.isRevoking}
             modifiers={['account-edit', 'danger', 'settings-oauth']}
