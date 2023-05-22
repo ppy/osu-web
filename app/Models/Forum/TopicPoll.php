@@ -66,7 +66,7 @@ class TopicPoll
             $this->validated = true;
             $this->validationErrors()->reset();
 
-            if (!isset($this->params['title']) || !present($this->params['title'])) {
+            if (!present($this->params['title'])) {
                 $this->validationErrors()->add('title', 'required');
             }
 
