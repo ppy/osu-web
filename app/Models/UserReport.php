@@ -7,6 +7,7 @@ namespace App\Models;
 
 use App\Exceptions\ValidationException;
 use App\Libraries\MorphMap;
+use App\Models\Chat\Message;
 use App\Models\Score\Best;
 use App\Models\Score\Best\Model as BestModel;
 use App\Traits\Validatable;
@@ -135,6 +136,15 @@ class UserReport extends Model
             $this->validationErrors()->add(
                 'reason',
                 '.no_ranked_beatmapset'
+            );
+        }
+
+        if ($this->reportable instanceof Message
+            && !$this->reportable->channel->hasUser($this->reporter)
+        ) {
+            $this->validationErrors()->add(
+                'reportable',
+                '.not_in_channel'
             );
         }
 

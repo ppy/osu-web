@@ -12,6 +12,7 @@ use App\Libraries\MorphMap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
+use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
 use App\Models\Forum;
 use App\Models\Traits\ReportableInterface;
@@ -52,6 +53,12 @@ class UserReportTest extends TestCase
             $userColumn = 'poster_id';
         }
 
+        if ($class === Message::class) {
+            $modelFactory = $modelFactory->state([
+                'channel_id' => Channel::factory()->type('public'),
+            ]);
+        }
+
         return $class === User::class
             ? $modelFactory->create()
             : $modelFactory->create([$userColumn => User::factory()]);
@@ -86,6 +93,16 @@ class UserReportTest extends TestCase
         $beatmapset->reportBy($reporter, static::reportParams());
     }
 
+    public function testCannotReportIfNotInChannel()
+    {
+        $channel = Channel::factory()->type('pm')->create();
+        $message = Message::factory()->create(['channel_id' => $channel, 'user_id' => $channel->users()->first()]);
+        $reporter = User::factory()->create();
+
+        $this->expectException(ValidationException::class);
+        $message->reportBy($reporter, static::reportParams());
+    }
+
     /**
      * @dataProvider reportableClasses
      */
@@ -110,6 +127,7 @@ class UserReportTest extends TestCase
         $reporter = User::factory()->create();
 
         if ($class === Message::class) {
+            $reportable->channel->addUser($reporter);
             $this->expectCountChange(fn () => UserReport::count(), 1);
         } else {
             $this->expectException(ValidationException::class);
@@ -141,6 +159,9 @@ class UserReportTest extends TestCase
     {
         $reportable = static::makeReportable($class);
         $reporter = User::factory()->create();
+        if ($reportable instanceof Message) {
+            $reportable->channel->addUser($reporter);
+        }
 
         $query = UserReport::whereMorphedTo('reportable', $reportable);
         $this->expectCountChange(fn () => $query->count(), 1, 'reportable query');
@@ -167,6 +188,10 @@ class UserReportTest extends TestCase
     {
         $reportable = static::makeReportable($class);
         $reporter = User::factory()->create();
+        if ($reportable instanceof Message) {
+            $reportable->channel->addUser($reporter);
+        }
+
         $report = $reportable->reportBy($reporter, static::reportParams());
 
         $report->routeNotificationForSlack(null);
