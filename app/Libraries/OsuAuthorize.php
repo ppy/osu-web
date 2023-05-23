@@ -1490,7 +1490,7 @@ class OsuAuthorize
                 return $prefix.'too_many_help_posts';
             }
         } else {
-            if ($plays < config('osu.forum.minimum_plays') && $plays < $posts + 1) {
+            if (!$user->isBot() && $plays < config('osu.forum.minimum_plays') && $plays < $posts + 1) {
                 return $prefix.'play_more';
             }
 
