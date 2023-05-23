@@ -19,16 +19,14 @@ export default class CommentsShow extends React.Component {
     }
 
     return (
-      <div className='osu-page osu-page--comment'>
-        <Comment
-          comment={comment}
-          depth={0}
-          linkParent
-          modifiers={['dark', 'single']}
-          showCommentableMeta
-          showToolbar
-        />
-      </div>
+      <Comment
+        comment={comment}
+        depth={0}
+        linkParent
+        modifiers={['dark', 'single']}
+        showCommentableMeta
+        showToolbar
+      />
     );
   }
 }
