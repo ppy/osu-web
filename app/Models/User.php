@@ -25,8 +25,6 @@ use Cache;
 use Carbon\Carbon;
 use DB;
 use Ds\Set;
-use Egulias\EmailValidator\EmailValidator;
-use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
 use Exception;
 use Hash;
 use Illuminate\Auth\Authenticatable;
@@ -2000,6 +1998,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         $this->currentPassword = $value;
     }
 
+    /**
+     * Enables email presence and confirmation field equality check.
+     */
     public function validateEmailConfirmation()
     {
         $this->validateEmailConfirmation = true;
@@ -2246,6 +2247,10 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         }
 
         if ($this->validateEmailConfirmation) {
+            if ($this->user_email === null) {
+                $this->validationErrors()->add('user_email', '.required');
+            }
+
             if ($this->user_email !== $this->emailConfirmation) {
                 $this->validationErrors()->add('user_email_confirmation', '.wrong_email_confirmation');
             }
@@ -2296,8 +2301,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function isValidEmail()
     {
-        $emailValidator = new EmailValidator();
-        if (!$emailValidator->isValid($this->user_email, new NoRFCWarningsValidation())) {
+        if (!is_valid_email_format($this->user_email)) {
             $this->validationErrors()->add('user_email', '.invalid_email');
 
             // no point validating further if address isn't valid.
