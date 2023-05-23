@@ -3,7 +3,7 @@
 
 import { Build } from 'components/build'
 import { ChangelogHeaderStreams } from 'components/changelog-header-streams'
-import { Comments } from 'components/comments'
+import Comments from 'components/comments'
 import { CommentsManager } from 'components/comments-manager'
 import HeaderV4 from 'components/header-v4'
 import { route } from 'laroute'

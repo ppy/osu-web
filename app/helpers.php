@@ -5,6 +5,8 @@
 
 use App\Libraries\LocaleMeta;
 use App\Models\LoginAttempt;
+use Egulias\EmailValidator\EmailValidator;
+use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
 use Illuminate\Support\Arr;
 use Illuminate\Support\HtmlString;
 
@@ -804,6 +806,20 @@ function is_api_request()
 function is_json_request()
 {
     return is_api_request() || request()->expectsJson();
+}
+
+function is_valid_email_format(?string $email): bool
+{
+    if ($email === null) {
+        return false;
+    }
+
+    static $validator;
+    $validator ??= new EmailValidator();
+    static $lexer;
+    $lexer ??= new NoRFCWarningsValidation();
+
+    return $validator->isValid($email, $lexer);
 }
 
 function is_sql_unique_exception($ex)

@@ -25,7 +25,7 @@ class ReportsController extends Controller
             'reason',
             'reportable_id:int',
             'reportable_type',
-        ]);
+        ], ['null_missing' => true]);
 
         $class = MorphMap::getClass($params['reportable_type']);
         if ($class === null) {
