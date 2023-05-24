@@ -1333,7 +1333,6 @@ function fast_imagesize($url)
             CURLOPT_MAXREDIRS => 5,
         ]);
         $data = curl_exec($curl);
-        curl_close($curl);
 
         $result = read_image_properties_from_string($data);
 
@@ -1805,10 +1804,7 @@ function check_url(string $url): bool
     ]);
     curl_exec($ch);
 
-    $errored = curl_errno($ch) > 0 || curl_getinfo($ch, CURLINFO_HTTP_CODE) !== 200;
-    curl_close($ch);
-
-    return !$errored;
+    return curl_errno($ch) === 0 && curl_getinfo($ch, CURLINFO_HTTP_CODE) === 200;
 }
 
 function mini_asset(string $url): string
