@@ -598,7 +598,7 @@ export default class Comment extends React.Component<Props> {
   private renderOwnerBadge() {
     const meta = this.meta;
 
-    if (meta == null || !('owner_id' in meta) || meta.owner_id == null || this.props.comment.userId === meta.owner_id) {
+    if (meta == null || !('owner_id' in meta) || meta.owner_id == null || this.props.comment.userId !== meta.owner_id) {
       return;
     }
 
