@@ -5,6 +5,8 @@
 
 use App\Libraries\LocaleMeta;
 use App\Models\LoginAttempt;
+use Egulias\EmailValidator\EmailValidator;
+use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
 use Illuminate\Support\Arr;
 use Illuminate\Support\HtmlString;
 
@@ -806,6 +808,20 @@ function is_json_request()
     return is_api_request() || request()->expectsJson();
 }
 
+function is_valid_email_format(?string $email): bool
+{
+    if ($email === null) {
+        return false;
+    }
+
+    static $validator;
+    $validator ??= new EmailValidator();
+    static $lexer;
+    $lexer ??= new NoRFCWarningsValidation();
+
+    return $validator->isValid($email, $lexer);
+}
+
 function is_sql_unique_exception($ex)
 {
     return starts_with(
@@ -1317,7 +1333,6 @@ function fast_imagesize($url)
             CURLOPT_MAXREDIRS => 5,
         ]);
         $data = curl_exec($curl);
-        curl_close($curl);
 
         $result = read_image_properties_from_string($data);
 
@@ -1789,10 +1804,7 @@ function check_url(string $url): bool
     ]);
     curl_exec($ch);
 
-    $errored = curl_errno($ch) > 0 || curl_getinfo($ch, CURLINFO_HTTP_CODE) !== 200;
-    curl_close($ch);
-
-    return !$errored;
+    return curl_errno($ch) === 0 && curl_getinfo($ch, CURLINFO_HTTP_CODE) === 200;
 }
 
 function mini_asset(string $url): string

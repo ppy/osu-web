@@ -126,6 +126,9 @@ class PaymentSubscribers
             return;
         }
 
-        Mail::to($order->user)->queue(new StorePaymentCompleted($order));
+        $user = $order->user;
+        if (is_valid_email_format($user->user_email)) {
+            Mail::to($user)->queue(new StorePaymentCompleted($order));
+        }
     }
 }
