@@ -333,7 +333,6 @@ export class Nominations extends React.PureComponent<Props> {
 
     return (
       <BigButton
-        disabled={this.xhr.delete != null}
         icon='fas fa-trash'
         isBusy={this.xhr.delete != null}
         modifiers='danger'
@@ -371,7 +370,6 @@ export class Nominations extends React.PureComponent<Props> {
     return (
       <BigButton
         {...buttonProps}
-        disabled={this.xhr.discussionLock != null}
         isBusy={this.xhr.discussionLock != null}
         text={trans(`beatmaps.discussions.lock.button.${lockAction}`)}
       />
@@ -592,7 +590,6 @@ export class Nominations extends React.PureComponent<Props> {
 
     return (
       <BigButton
-        disabled={this.xhr.removeFromLoved != null}
         icon='fas fa-heart-broken'
         isBusy={this.xhr.removeFromLoved != null}
         modifiers='pink'
