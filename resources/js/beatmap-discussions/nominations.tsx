@@ -358,7 +358,6 @@ export class Nominations extends React.PureComponent<Props> {
         lockAction: 'unlock',
       } : {
         buttonProps: {
-          action: 'lock',
           icon: 'fas fa-lock',
           props: {
             onClick: this.discussionLock,
@@ -592,7 +591,7 @@ export class Nominations extends React.PureComponent<Props> {
       <BigButton
         icon='fas fa-heart-broken'
         isBusy={this.xhr.removeFromLoved != null}
-        modifiers='pink'
+        modifiers='danger'
         props={{
           onClick: this.removeFromLoved,
         }}
