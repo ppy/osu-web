@@ -28,6 +28,7 @@ import { onError } from 'utils/ajax';
 import { canModeratePosts, makeUrl } from 'utils/beatmapset-discussion-helper';
 import { nominationsCount } from 'utils/beatmapset-helper';
 import { classWithModifiers } from 'utils/css';
+import { formatNumber } from 'utils/html';
 import { joinComponents, trans, transExists } from 'utils/lang';
 import { pageChange } from 'utils/page-change';
 import { presence } from 'utils/string';
@@ -435,7 +436,7 @@ export class Nominations extends React.PureComponent<Props> {
       <div>
         <div className={`${bn}__header`}>
           <span className={`${bn}__title`}>{trans('beatmaps.hype.section_title')}</span>
-          <span>{hype} / {requiredHype}</span>
+          <span>{formatNumber(hype)} / {formatNumber(requiredHype)}</span>
         </div>
         <div className={`${bn}__discrete-bar-group`}>
           <DiscreteBar current={hype} total={requiredHype} />
@@ -528,7 +529,7 @@ export class Nominations extends React.PureComponent<Props> {
       <div>
         <div className={`${bn}__header`}>
           <span className={`${bn}__title`}>{trans('beatmaps.nominations.title')}</span>
-          <span>{nominationsCount(nominations, 'current')} / {nominationsCount(nominations, 'required')}</span>
+          <span>{formatNumber(nominationsCount(nominations, 'current'))} / {formatNumber(nominationsCount(nominations, 'required'))}</span>
         </div>
         {this.renderLightsForNominations(nominations)}
       </div>
@@ -636,6 +637,7 @@ export class Nominations extends React.PureComponent<Props> {
       case 'qualified': {
         const rankingEta = this.props.beatmapset.nominations.ranking_eta;
         const date = rankingEta != null
+          // TODO: remove after translations are updated
           ? transExists('beatmaps.nominations.rank_estimate.on')
             ? trans('beatmaps.nominations.rank_estimate.on', { date: formatDate(rankingEta) })
             : formatDate(rankingEta)
@@ -645,7 +647,8 @@ export class Nominations extends React.PureComponent<Props> {
           <StringWithComponent
             mappings={{
               date,
-              position: this.props.beatmapset.nominations.ranking_queue_position,
+              // TODO: ranking_queue_position should not be nullable when status is qualified.
+              position: formatNumber(this.props.beatmapset.nominations.ranking_queue_position ?? 0),
               queue: (
                 <a
                   href={wikiUrl('Beatmap_ranking_procedure/Ranking_queue')}
