@@ -12,6 +12,7 @@ function isEol(code: Code) {
 }
 
 function tokenize(effects: Effects, ok: State, nok: State) {
+  let foundTitle = false;
   let foundUrl = false;
   let foundUrlColon = false;
   let openBrackets = 0;
@@ -97,11 +98,15 @@ function tokenize(effects: Effects, ok: State, nok: State) {
 
     if (code === codes.rightParenthesis) {
       if (openBrackets === 0) {
-        effects.exit('chunkString');
-        effects.exit('oldLinkTitle');
-        effects.consume(code);
+        if (foundTitle) {
+          effects.exit('chunkString');
+          effects.exit('oldLinkTitle');
+          effects.consume(code);
 
-        return consumeUrlStart;
+          return consumeUrlStart;
+        } else {
+          return nok(code);
+        }
       }
 
       openBrackets--;
@@ -112,6 +117,7 @@ function tokenize(effects: Effects, ok: State, nok: State) {
     }
 
     effects.consume(code);
+    foundTitle = true;
 
     return consumeTitle;
   }
