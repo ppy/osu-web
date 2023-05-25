@@ -456,7 +456,6 @@ export class Nominations extends React.PureComponent<Props> {
       <BigButton
         disabled={!this.props.beatmapset.current_user_attributes.can_hype}
         icon='fas fa-bullhorn'
-        modifiers='warning'
         props={{
           onClick: this.focusHypeInput,
           title: this.props.beatmapset.current_user_attributes.can_hype_reason,
