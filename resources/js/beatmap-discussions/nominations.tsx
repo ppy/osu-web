@@ -162,7 +162,7 @@ export class Nominations extends React.PureComponent<Props> {
   };
 
   @action
-  private readonly discussionLock = () =>{
+  private readonly discussionLock = () => {
     if (this.xhr.discussionLock != null) return;
 
     const reason = presence(prompt(trans('beatmaps.discussions.lock.prompt.lock')));
@@ -185,7 +185,7 @@ export class Nominations extends React.PureComponent<Props> {
   };
 
   @action
-  private readonly discussionUnlock = () =>{
+  private readonly discussionUnlock = () => {
     if (this.xhr.discussionLock != null) return;
 
     if (!confirm(trans('beatmaps.discussions.lock.prompt.unlock'))) return;
@@ -196,7 +196,7 @@ export class Nominations extends React.PureComponent<Props> {
     );
 
     this.xhr.discussionLock
-      .done((beatmapset) =>{
+      .done((beatmapset) => {
         $.publish('beatmapsetDiscussions:update', { beatmapset });
       })
       .fail(onError)
