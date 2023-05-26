@@ -12,7 +12,7 @@ import legacyLink from 'remark-plugins/legacy-link';
 import oldLink from 'remark-plugins/old-link';
 import wikiLink, { RemarkWikiLinkPlugin } from 'remark-wiki-link';
 import { classWithModifiers } from 'utils/css';
-import { wikiUrl } from 'utils/url';
+import { safeReactMarkdownUrl, wikiUrl } from 'utils/url';
 
 interface Props {
   message: Message;
@@ -20,7 +20,7 @@ interface Props {
 
 function linkRenderer(astProps: JSX.IntrinsicElements['a']) {
   return (
-    <a href={astProps.href} rel='nofollow noreferrer' target='_blank'>
+    <a href={safeReactMarkdownUrl(astProps.href)} rel='nofollow noreferrer' target='_blank'>
       {astProps.children}
     </a>
   );

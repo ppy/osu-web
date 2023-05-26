@@ -163,6 +163,10 @@
     <div class="osu-page" id="oauth">
         @include('accounts._edit_oauth')
     </div>
+
+    <div class="osu-page" id="legacy-api">
+        @include('accounts._edit_legacy_api')
+    </div>
 @endsection
 
 @section("script")

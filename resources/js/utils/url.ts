@@ -117,6 +117,14 @@ export function linkHtml(url: string, text: string, options?: OsuLinkOptions): s
   return el.outerHTML;
 }
 
+// Default url transformer changes non-conforming url to javascript:void(0)
+// which causes warning from React.
+export function safeReactMarkdownUrl(url: string | undefined) {
+  if (url !== 'javascript:void(0)') {
+    return url;
+  }
+}
+
 export function updateQueryString(url: string | null, params: Record<string, string | null | undefined>, hash?: string) {
   const docUrl = currentUrl();
   const urlObj = new URL(url ?? docUrl.href, docUrl.origin);

@@ -50,12 +50,13 @@ export interface CurrentUserAttributes {
   can_delete: boolean;
   can_edit_metadata: boolean;
   can_edit_offset: boolean;
+  can_edit_tags: boolean;
   can_hype: boolean;
   can_hype_reason: string;
   can_love: boolean;
   can_remove_from_loved: boolean;
   is_watching: boolean;
-  new_hype_time: string;
+  new_hype_time: string | null;
   nomination_modes: Partial<Record<GameMode, 'full' | 'limited'>>;
   remaining_hype: number;
 }
@@ -107,6 +108,3 @@ interface BeatmapsetJsonDefaultAttributes {
 
 type BeatmapsetJson = BeatmapsetJsonDefaultAttributes & Partial<BeatmapsetJsonAvailableIncludes>;
 export default BeatmapsetJson;
-
-type DiscussionsRequiredAttributes = 'beatmaps' | 'current_user_attributes' | 'discussions' | 'events' | 'nominations' | 'related_users';
-export type BeatmapsetWithDiscussionsJson = BeatmapsetJson & Required<Pick<BeatmapsetJson, DiscussionsRequiredAttributes>>;

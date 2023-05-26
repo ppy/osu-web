@@ -887,6 +887,17 @@ class OsuAuthorize
         return 'unauthorized';
     }
 
+    public function checkBeatmapsetTagsEdit(?User $user): string
+    {
+        $this->ensureLoggedIn($user);
+
+        if ($user->isModerator()) {
+            return 'ok';
+        }
+
+        return 'unauthorized';
+    }
+
     /**
      * @param User|null $user
      * @return string
@@ -1470,20 +1481,22 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        $plays = $user->playCount();
-        $posts = $user->user_posts;
-        $forInitialHelpForum = in_array($forum->forum_id, config('osu.forum.initial_help_forum_ids'), true);
+        if (!$user->isBot()) {
+            $plays = $user->playCount();
+            $posts = $user->user_posts;
+            $forInitialHelpForum = in_array($forum->forum_id, config('osu.forum.initial_help_forum_ids'), true);
 
-        if ($forInitialHelpForum) {
-            if ($plays < 10 && $posts > 10) {
-                return $prefix.'too_many_help_posts';
-            }
-        } else {
-            if ($plays < config('osu.forum.minimum_plays') && $plays < $posts + 1) {
-                return $prefix.'play_more';
-            }
+            if ($forInitialHelpForum) {
+                if ($plays < 10 && $posts > 10) {
+                    return $prefix.'too_many_help_posts';
+                }
+            } else {
+                if ($plays < config('osu.forum.minimum_plays') && $plays < $posts + 1) {
+                    return $prefix.'play_more';
+                }
 
-            $this->ensureHasPlayed($user);
+                $this->ensureHasPlayed($user);
+            }
         }
 
         return 'ok';
