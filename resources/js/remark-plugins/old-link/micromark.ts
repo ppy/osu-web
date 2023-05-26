@@ -21,13 +21,14 @@ function tokenize(effects: Effects, ok: State, nok: State) {
   return start;
 
   function start(code: Code): State | void {
-    if (code !== codes.leftSquareBracket) return nok(code);
+    if (code !== codes.leftParenthesis) return nok(code);
 
-    effects.enter('legacyLink');
+    effects.enter('oldLink');
     effects.consume(code);
-    effects.enter('legacyLinkUrl');
+    effects.enter('oldLinkTitle');
+    effects.enter('chunkString', { contentType: 'string' });
 
-    return consumeUrl;
+    return consumeTitle;
   }
 
   function consumeUrl(code: Code): State | void {
@@ -51,21 +52,39 @@ function tokenize(effects: Effects, ok: State, nok: State) {
       }
     }
 
-    if (code === codes.space) {
+    if (code === codes.rightSquareBracket) {
       if (foundUrl) {
-        effects.exit('legacyLinkUrl');
-        effects.consume(code);
-        effects.enter('legacyLinkTitle');
-        effects.enter('chunkString', { contentType: 'string' });
+        if (openBrackets === 0) {
+          effects.exit('oldLinkUrl');
+          effects.consume(code);
+          effects.exit('oldLink');
 
-        return consumeTitle;
+          return ok(code);
+        }
+
+        openBrackets--;
       } else {
         return nok(code);
       }
     }
 
+    if (code === codes.leftSquareBracket) {
+      openBrackets++;
+    }
+
     effects.consume(code);
     return consumeUrl;
+  }
+
+  function consumeUrlStart(code: Code): State | void {
+    if (code === codes.leftSquareBracket) {
+      effects.consume(code);
+      effects.enter('oldLinkUrl');
+
+      return consumeUrl;
+    }
+
+    return nok(code);
   }
 
   function consumeTitle(code: Code): State | void {
@@ -77,24 +96,23 @@ function tokenize(effects: Effects, ok: State, nok: State) {
       return consumeTitleEscape;
     }
 
-    if (code === codes.rightSquareBracket) {
+    if (code === codes.rightParenthesis) {
       if (openBrackets === 0) {
         if (foundTitle) {
           effects.exit('chunkString');
-          effects.exit('legacyLinkTitle');
+          effects.exit('oldLinkTitle');
           effects.consume(code);
-          effects.exit('legacyLink');
 
-          return ok(code);
+          return consumeUrlStart;
+        } else {
+          return nok(code);
         }
-
-        return nok(code);
       }
 
       openBrackets--;
     }
 
-    if (code === codes.leftSquareBracket) {
+    if (code === codes.leftParenthesis) {
       openBrackets++;
     }
 
@@ -105,7 +123,7 @@ function tokenize(effects: Effects, ok: State, nok: State) {
   }
 
   function consumeTitleEscape(code: Code): State | void {
-    if (code === codes.backslash || code === codes.leftSquareBracket || code === codes.rightSquareBracket) {
+    if (code === codes.backslash || code === codes.leftParenthesis || code === codes.rightParenthesis) {
       effects.consume(code);
 
       return consumeTitle;
@@ -116,6 +134,6 @@ function tokenize(effects: Effects, ok: State, nok: State) {
 }
 
 const micromark = {
-  text: { [codes.leftSquareBracket]: { tokenize } },
+  text: { [codes.leftParenthesis]: { tokenize } },
 };
 export default micromark;
