@@ -28,17 +28,22 @@ interface Props {
 @observer
 export default class Comments extends React.Component<Props> {
   @computed
-  private get comments() {
+  private get topLevelComments() {
     const ret = [];
     for (const id of uiState.comments.topLevelCommentIds) {
       const comment = store.comments.get(id);
 
-      if (comment != null && !comment.pinned) {
+      if (comment != null) {
         ret.push(comment);
       }
     }
 
     return ret;
+  }
+
+  @computed
+  private get comments() {
+    return this.topLevelComments.filter((comment) => !comment.pinned);
   }
 
   @computed
@@ -108,11 +113,11 @@ export default class Comments extends React.Component<Props> {
             <div className={classWithModifiers('comments__items', { loading: uiState.comments.loadingSort != null })}>
               {this.renderComments(comments, false)}
 
-              <DeletedCommentsCount comments={comments} modifiers='top' />
+              <DeletedCommentsCount comments={this.topLevelComments} modifiers='top' />
 
               <CommentShowMore
                 commentableMeta={this.props.commentableMeta}
-                comments={comments}
+                comments={this.topLevelComments}
                 modifiers={mergeModifiers('top', this.props.modifiers)}
                 top
                 total={uiState.comments.topLevelCount}
