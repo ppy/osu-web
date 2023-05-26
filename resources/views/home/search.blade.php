@@ -15,7 +15,7 @@
     <form
         action="{{ route('search') }}"
         data-loading-overlay="0"
-        class="js-search osu-page"
+        class="js-search osu-page osu-page--search"
         autocomplete="off"
     >
         <input type="hidden" name="mode" value="{{ request('mode') }}">

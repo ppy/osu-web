@@ -22,7 +22,7 @@
         </div>
     @endif
 
-    <div class="osu-page">
+    <div class="osu-page osu-page--livestreams">
         <div class="livestream-page">
             <div class="livestream-page__items">
                 @foreach ($streams as $stream)
