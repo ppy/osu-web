@@ -1,75 +1,94 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import { createElement as el, createRef, PureComponent } from 'react'
-import * as React from 'react'
-import { button, div, i } from 'react-dom-factories'
-import { trans } from 'utils/lang'
+import { action, makeObservable, observable } from 'mobx';
+import { observer } from 'mobx-react';
+import * as React from 'react';
+import { trans } from 'utils/lang';
 
-export class BackToTop extends PureComponent
-  constructor: (props) ->
-    super props
+interface Props {
+  anchor?: React.RefObject<HTMLElement>;
+}
 
-    @state =
-      lastScrollY: null
+@observer
+export default class BackToTop extends React.Component<Props> {
+  @observable private lastScrollY: number | null = null;
+  private observer: IntersectionObserver | null = null;
 
+  constructor(props: Props) {
+    super(props);
 
-  componentWillUnmount: =>
-    document.removeEventListener 'scroll', @onScroll
-    if @observer?
-      @observer.disconnect()
-      @observer = null
+    makeObservable(this);
+  }
 
+  componentWillUnmount() {
+    document.removeEventListener('scroll', this.onScroll);
+    this.removeObserver();
+  }
 
-  onClick: (_e) =>
-    if @state.lastScrollY?
-      window.scrollTo(window.pageXOffset, @state.lastScrollY)
+  render() {
+    return (
+      <button
+        className='back-to-top'
+        data-tooltip-float='fixed'
+        onClick={this.onClick}
+        title={trans(this.lastScrollY == null ? 'common.buttons.back_to_top' : 'common.buttons.back_to_previous')}
+      >
+        <span className={this.lastScrollY == null ? 'fas fa-angle-up' : 'fas fa-angle-down'} />
+      </button>
+    );
+  }
 
-      @setState lastScrollY: null
-    else
-      scrollY = if @props.anchor?.current? then $(@props.anchor.current).offset().top else 0
-      if window.pageYOffset > scrollY
-        @setState lastScrollY: window.pageYOffset
+  @action
+  readonly reset = () => {
+    this.lastScrollY = null;
+  };
 
-        window.scrollTo(window.pageXOffset, scrollY)
-        @mountObserver()
+  // Workaround Firefox scrollTo and setTimeout(fn, 0) not being dispatched serially.
+  private mountObserver() {
+    // anchor to body if none specified; assumes body's top is 0.
+    const target = this.props.anchor?.current ?? document.body;
 
+    this.observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.target === target && entry.boundingClientRect.top === 0) {
+          document.addEventListener('scroll', this.onScroll);
+          break;
+        }
+      }
+    });
 
-  onScroll: (_e) =>
-    @setState lastScrollY: null
-    document.removeEventListener 'scroll', @onScroll
-    if @observer?
-      @observer.disconnect()
-      @observer = null
+    this.observer.observe(target);
+  }
 
+  @action
+  private readonly onClick = () => {
+    if (this.lastScrollY == null) {
+      const scrollY = this.props.anchor?.current == null ? 0 : ($(this.props.anchor.current).offset()?.top ?? 0);
+      if (window.pageYOffset > scrollY) {
+        this.lastScrollY = window.pageYOffset;
 
-  mountObserver: =>
-    # Workaround Firefox scrollTo and setTimeout(fn, 0) not being dispatched serially.
-    # Browsers without IntersectionObservers don't have this problem :D
-    if window.IntersectionObserver?
-      # anchor to body if none specified; assumes body's top is 0.
-      target = @props.anchor?.current ? document.body
+        window.scrollTo(window.pageXOffset, scrollY);
+        this.mountObserver();
+      }
+    } else {
+      window.scrollTo(window.pageXOffset, this.lastScrollY);
 
-      @observer = new IntersectionObserver (entries) =>
-        for entry in entries
-          if entry.target == target && entry.boundingClientRect.top == 0
-            document.addEventListener 'scroll', @onScroll
-            break
+      this.lastScrollY = null;
+    }
+  };
 
-      @observer.observe(target)
-    else
-      Timeout.set 0, () =>
-        document.addEventListener 'scroll', @onScroll
+  @action
+  private readonly onScroll = () => {
+    this.lastScrollY = null;
+    document.removeEventListener('scroll', this.onScroll);
+    this.removeObserver();
+  };
 
+  private removeObserver() {
+    if (this.observer == null) return;
 
-  render: =>
-    button
-      className: 'back-to-top'
-      'data-tooltip-float': 'fixed'
-      onClick: @onClick
-      title: if @state.lastScrollY? then trans('common.buttons.back_to_previous') else trans('common.buttons.back_to_top')
-      i className: if @state.lastScrollY? then 'fas fa-angle-down' else 'fas fa-angle-up'
-
-
-  reset: () =>
-    @setState lastScrollY: null
+    this.observer.disconnect();
+    this.observer = null;
+  }
+}
