@@ -6,7 +6,65 @@
   width: 50px;
   height: $width;
   font-size: @font-size--large;
-  background-image: url('~@images/backgrounds/level-hexagon.svg');
-  background-position: center;
-  background-repeat: no-repeat;
+  position: relative;
+
+  &__icon {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    .stop-1 {
+      stop-color: var(--level-tier-stop-1, black);
+    }
+
+    .stop-2 {
+      stop-color: var(--level-tier-stop-2, black);
+    }
+  }
+
+  &__level {
+    position: absolute;
+  }
+
+  &--tier {
+    &-iron {
+      --level-tier-stop-1: extract(@level-tier-iron, 1);
+      --level-tier-stop-2: extract(@level-tier-iron, 2);
+    }
+  
+    &-bronze {
+      --level-tier-stop-1: extract(@level-tier-bronze, 1);
+      --level-tier-stop-2: extract(@level-tier-bronze, 2);
+    }
+  
+    &-silver {
+      --level-tier-stop-1: extract(@level-tier-silver, 1);
+      --level-tier-stop-2: extract(@level-tier-silver, 2);
+    }
+  
+    &-gold {
+      --level-tier-stop-1: extract(@level-tier-gold, 1);
+      --level-tier-stop-2: extract(@level-tier-gold, 2);
+    }
+  
+    &-platinum {
+      --level-tier-stop-1: extract(@level-tier-platinum, 1);
+      --level-tier-stop-2: extract(@level-tier-platinum, 2);
+    }
+  
+    &-rhodium {
+      --level-tier-stop-1: extract(@level-tier-rhodium, 1);
+      --level-tier-stop-2: extract(@level-tier-rhodium, 2);
+    }
+  
+    &-radiant {
+      --level-tier-stop-1: extract(@level-tier-radiant, 1);
+      --level-tier-stop-2: extract(@level-tier-radiant, 2);
+    }
+  
+    &-lustrous {
+      --level-tier-stop-1: extract(@level-tier-lustrous, 1);
+      --level-tier-stop-2: extract(@level-tier-lustrous, 2);
+    }
+  }
 }
