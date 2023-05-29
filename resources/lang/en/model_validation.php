@@ -175,6 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Ranked beatmaps cannot be reported',
+        'not_in_channel' => 'You\'re not in this channel.',
         'reason_not_valid' => ':reason is not valid for this report type.',
         'self' => "You can't report yourself!",
     ],

@@ -3,7 +3,7 @@
 
 import AvailableFilters from 'beatmaps/available-filters';
 import { SearchContent } from 'beatmaps/search-content';
-import { BackToTop } from 'components/back-to-top';
+import BackToTop from 'components/back-to-top';
 import HeaderV4 from 'components/header-v4';
 import { isEqual } from 'lodash';
 import { reaction } from 'mobx';
