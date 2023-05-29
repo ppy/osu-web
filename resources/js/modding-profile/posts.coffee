@@ -21,7 +21,7 @@ export class Posts extends React.Component
         else
           [
             for post in @props.posts
-              canModerate = canModeratePosts(currentUser)
+              canModerate = canModeratePosts()
 
               discussionClasses = 'beatmap-discussion beatmap-discussion--preview beatmap-discussion--modding-profile'
 
@@ -60,7 +60,6 @@ export class Posts extends React.Component
                       read: true
                       readonly: true
                       lastEditor: @props.users[post.last_editor_id] ? @props.users[null] if post.last_editor_id?
-                      currentUser: currentUser
             a
               key: 'show-more'
               className: 'modding-profile-list__show-more'
