@@ -78,7 +78,7 @@ class RouteConvert extends Command
         }
 
         if (!$written) {
-            $this->line(json_encode($this->routeScopesHelper->toArray(), JSON_PRETTY_PRINT));
+            $this->line(json_encode($this->routeScopesHelper->toArray(), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
         }
     }
 }
