@@ -140,7 +140,13 @@ class Token extends PassportToken
 
             // only clients owned by bots are allowed to act on behalf of another user.
             // the user's own client can send messages as themselves for authorization code flows.
-            if (($scopes->contains('chat.write') || $scopes->contains('chat.read')) && !($this->isOwnToken() || $this->client->user->isBot())) {
+            static $ownClientScopes;
+            $ownClientScopes ??= new Set([
+                'chat.read',
+                'chat.write',
+                'chat.write_manage',
+            ]);
+            if (!$scopes->intersect($ownClientScopes)->isEmpty() && !($this->isOwnToken() || $this->client->user->isBot())) {
                 throw new InvalidScopeException('This scope is only available for chat bots or your own clients.');
             }
         }
