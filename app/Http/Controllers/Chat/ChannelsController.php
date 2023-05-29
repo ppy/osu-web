@@ -20,7 +20,8 @@ class ChannelsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('require-scopes:chat.write', ['only' => 'store']);
+        $this->middleware('require-scopes:chat.read', ['only' => ['index', 'markAsRead', 'show']]);
+        $this->middleware('require-scopes:chat.write_manage', ['only' => ['part', 'join', 'store']]);
 
         parent::__construct();
     }
