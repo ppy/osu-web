@@ -21,7 +21,7 @@ export class Posts extends React.Component
         else
           [
             for post in @props.posts
-              canModerate = canModeratePosts(currentUser)
+              canModerate = canModeratePosts()
 
               discussionClasses = 'beatmap-discussion beatmap-discussion--preview beatmap-discussion--modding-profile'
 
