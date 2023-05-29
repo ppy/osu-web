@@ -20,7 +20,7 @@ interface Props {
 }
 
 @observer
-export default class LoveConfirmation extends React.Component<Props> {
+export default class LoveBeatmapDialog extends React.Component<Props> {
   @observable private selectedBeatmapIds: Set<number>;
   @observable private xhr: JQuery.jqXHR<BeatmapsetWithDiscussionsJson> | null = null;
 
@@ -48,16 +48,16 @@ export default class LoveConfirmation extends React.Component<Props> {
 
   render() {
     return (
-      <div className='love-beatmap-modal u-fancy-scrollbar'>
-        <div className='love-beatmap-modal__row love-beatmap-modal__row--title'>
+      <div className='love-beatmap-dialog u-fancy-scrollbar'>
+        <div className='love-beatmap-dialog__row love-beatmap-dialog__row--title'>
           {trans('beatmaps.nominations.love_choose')}
         </div>
 
-        <div className='love-beatmap-modal__row love-beatmap-modal__row--content'>
+        <div className='love-beatmap-dialog__row love-beatmap-dialog__row--content'>
           {[...this.groupedBeatmaps].map(([mode, beatmaps]) => this.renderDiffMode(mode, beatmaps))}
         </div>
 
-        <div className='love-beatmap-modal__row love-beatmap-modal__row--footer'>
+        <div className='love-beatmap-dialog__row love-beatmap-dialog__row--footer'>
           <button
             className='btn-osu-big btn-osu-big--rounded-thin btn-osu-big--danger'
             onClick={this.props.onClose}
@@ -145,9 +145,9 @@ export default class LoveConfirmation extends React.Component<Props> {
     const isModeSelected = this.checkIsModeSelected(mode);
 
     return (
-      <div key={mode} className='love-beatmap-modal__diff-mode'>
-        <div className='love-beatmap-modal__diff-mode-title'>
-          <label className='love-beatmap-modal__switch'>
+      <div key={mode} className='love-beatmap-dialog__diff-mode'>
+        <div className='love-beatmap-dialog__diff-mode-title'>
+          <label className='love-beatmap-dialog__switch'>
             <div className='osu-switch-v2'>
               <input
                 checked={isModeSelected !== false}
@@ -159,18 +159,18 @@ export default class LoveConfirmation extends React.Component<Props> {
               />
               <span className='osu-switch-v2__content' />
             </div>
-            <span className='love-beatmap-modal__diff-mode-title-label'>
+            <span className='love-beatmap-dialog__diff-mode-title-label'>
               {trans(`beatmaps.mode.${mode}`)}
             </span>
           </label>
         </div>
-        <ul className='love-beatmap-modal__diff-list'>
+        <ul className='love-beatmap-dialog__diff-list'>
           {beatmaps.map((beatmap) => (
             <li
               key={beatmap.id}
-              className='love-beatmap-modal__diff-list-item'
+              className='love-beatmap-dialog__diff-list-item'
             >
-              <label className='love-beatmap-modal__switch'>
+              <label className='love-beatmap-dialog__switch'>
                 <div className='osu-switch-v2'>
                   <input
                     checked={this.selectedBeatmapIds.has(beatmap.id)}

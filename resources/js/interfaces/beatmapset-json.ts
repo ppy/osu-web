@@ -24,7 +24,11 @@ interface BeatmapsetDescription {
 }
 
 interface BaseNominationsInterface {
+  disqualification?: BeatmapsetEventJson;
   nominated?: boolean;
+  nomination_reset?: BeatmapsetEventJson;
+  ranking_eta?: string;
+  ranking_queue_position?: number;
   required_hype: number;
 }
 
@@ -47,6 +51,7 @@ export type BeatmapsetStatus =
   'graveyard' | 'wip' | 'pending' | 'ranked' | 'approved' | 'qualified' | 'loved';
 
 export interface CurrentUserAttributes {
+  can_beatmap_update_owner: boolean;
   can_delete: boolean;
   can_edit_metadata: boolean;
   can_edit_offset: boolean;
