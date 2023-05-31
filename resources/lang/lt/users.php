@@ -169,7 +169,7 @@ return [
         'is_supporter' => 'osu!rėmėjas',
         'joined_at' => 'Prisijungė :date',
         'lastvisit' => 'Paskutinį kart matytas :date',
-        'lastvisit_online' => 'Prisijungę žaidėjai',
+        'lastvisit_online' => 'Prisijunges',
         'missingtext' => 'Turbūt padarei klaidą! (arba vartotojas buvo užblokuotas)',
         'origin_country' => 'Iš :country',
         'previous_usernames' => 'buvo žinomas kaip',
@@ -227,7 +227,7 @@ return [
                     'title' => 'Mėgstami Bitmapai',
                 ],
                 'graveyard' => [
-                    'title' => 'Palaidoti Bitmapai',
+                    'title' => 'Apleisti Bitmapai',
                 ],
                 'guest' => [
                     'title' => 'Bitmapai sukurti kaip svečio',
@@ -452,7 +452,7 @@ return [
             'total_hits' => 'Visi Pataikymai',
             'total_score' => 'Visi taškai',
             // modding stats
-            'graveyard_beatmapset_count' => 'Palaidoti Bitmapai',
+            'graveyard_beatmapset_count' => 'Apleisti Bitmapai',
             'loved_beatmapset_count' => 'Mylimi Bitmapai',
             'pending_beatmapset_count' => 'Laukiantis Bitmapai',
             'ranked_beatmapset_count' => 'Reitinguoti Bitmapai',

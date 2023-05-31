@@ -8,7 +8,7 @@ return [
     'not_negative' => ':attribute kann nicht negativ sein.',
     'required' => ':attribute ist erforderlich.',
     'too_long' => ':attribute hat die maximale Länge überschritten - höchstens :limit Zeichen.',
-    'url' => '',
+    'url' => 'Bitte gib eine gültige URL ein.',
     'wrong_confirmation' => 'Bestätigung stimmt nicht überein.',
 
     'beatmapset_discussion' => [
@@ -110,7 +110,13 @@ return [
     ],
 
     'legacy_api_key' => [
-        'exists' => '',
+        'exists' => 'Momentan wird pro Benutzer nur ein API-Schlüssel zur Verfügung gestellt.',
+
+        'attributes' => [
+            'api_key' => '',
+            'app_name' => '',
+            'app_url' => '',
+        ],
     ],
 
     'oauth' => [
@@ -169,6 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Beatmaps mit dem Ranked-Status können nicht gemeldet werden',
+        'not_in_channel' => '',
         'reason_not_valid' => ':reason ist für diesen Meldungstyp nicht gültig.',
         'self' => "Du kannst dich nicht selbst melden!",
     ],

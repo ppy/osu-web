@@ -12,7 +12,7 @@ return [
         'in_progress_spinner_label' => 'състезание в ход',
         'loading-events' => 'Зареждане на събитията...',
         'winner' => ':team победи',
-        'winner_by' => '',
+        'winner_by' => ':winner с :difference',
 
         'events' => [
             'player-left' => ':user напусна състезанието',

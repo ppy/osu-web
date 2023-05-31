@@ -175,6 +175,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => '',
+        'cannot_nominate' => '',
         'delete' => 'Izdzēst',
         'delete_own_confirm' => 'Vai esiet pārliecināts? Bītmape tiks izdzēsta un jūs tiksiet atgriezts atpakaļ uz savu profilu.',
         'delete_other_confirm' => 'Vai esiet pārliecināts? Bītmape tiks izdzēsta un jūs tiksiet nogādāts atpakaļ lietotāja profilā.',

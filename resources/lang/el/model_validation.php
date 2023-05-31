@@ -111,6 +111,12 @@ return [
 
     'legacy_api_key' => [
         'exists' => '',
+
+        'attributes' => [
+            'api_key' => '',
+            'app_name' => '',
+            'app_url' => '',
+        ],
     ],
 
     'oauth' => [
@@ -169,6 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => '',
+        'not_in_channel' => '',
         'reason_not_valid' => '',
         'self' => "Δεν μπορείτε να αποκλέισετε τον εαυτό σας!",
     ],

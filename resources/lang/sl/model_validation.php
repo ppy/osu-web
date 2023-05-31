@@ -111,6 +111,12 @@ return [
 
     'legacy_api_key' => [
         'exists' => '',
+
+        'attributes' => [
+            'api_key' => '',
+            'app_name' => '',
+            'app_url' => '',
+        ],
     ],
 
     'oauth' => [
@@ -169,6 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Rankiranih beatmap ni možno prijaviti ',
+        'not_in_channel' => '',
         'reason_not_valid' => ':reason ni veljaven tip prijave.',
         'self' => "Ne moreš prijaviti samega sebe!",
     ],

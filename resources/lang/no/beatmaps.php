@@ -175,6 +175,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => '',
+        'cannot_nominate' => '',
         'delete' => 'Slett',
         'delete_own_confirm' => 'Er du sikker? Beatmappet vil bli slettet og du vil bli omdirigert tilbake til profilen din.',
         'delete_other_confirm' => 'Er du sikker? Beatmappet vil bli slettet og du vil bli omdirigert tilbake til brukeren sin profil.',

@@ -36,6 +36,7 @@ return [
         'artist' => '藝術家/專輯',
         'chart' => '頭條',
         'featured' => '精選藝術家',
+        'loved' => '',
         'standard' => '標準',
         'theme' => '主題',
         'tournament' => '',

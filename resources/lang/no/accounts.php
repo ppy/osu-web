@@ -20,6 +20,12 @@ return [
             'title' => 'E-post',
         ],
 
+        'legacy_api' => [
+            'api' => '',
+            'irc' => '',
+            'title' => '',
+        ],
+
         'password' => [
             'current' => 'nåværende passord',
             'new' => 'nytt passord',

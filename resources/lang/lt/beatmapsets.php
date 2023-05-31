@@ -218,7 +218,7 @@ return [
             'qualified' => 'Kvalifikuotas',
             'wip' => 'WIP',
             'pending' => 'Laukiantis',
-            'graveyard' => 'Kapinės',
+            'graveyard' => 'Apleistas',
         ],
     ],
 

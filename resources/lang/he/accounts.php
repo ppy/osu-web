@@ -20,6 +20,12 @@ return [
             'title' => 'דואר אלקטרוני',
         ],
 
+        'legacy_api' => [
+            'api' => '',
+            'irc' => '',
+            'title' => '',
+        ],
+
         'password' => [
             'current' => 'סיסמא נוכחית',
             'new' => 'סיסמא חדשה',

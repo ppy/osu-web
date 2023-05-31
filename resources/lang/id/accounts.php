@@ -20,6 +20,12 @@ return [
             'title' => 'Email',
         ],
 
+        'legacy_api' => [
+            'api' => '',
+            'irc' => '',
+            'title' => '',
+        ],
+
         'password' => [
             'current' => 'kata sandi saat ini',
             'new' => 'kata sandi baru',
@@ -95,7 +101,7 @@ return [
     ],
 
     'privacy' => [
-        'friends_only' => 'Blokir pesan pribadi dari orang yang tidak ada dalam daftar teman Anda',
+        'friends_only' => 'blokir pesan pribadi dari pengguna yang tidak termasuk dalam daftar teman',
         'hide_online' => 'sembunyikan keberadaan online Anda',
         'title' => 'Kebijakan Privasi',
     ],

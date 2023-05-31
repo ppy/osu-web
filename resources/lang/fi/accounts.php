@@ -20,6 +20,12 @@ return [
             'title' => 'Sähköposti',
         ],
 
+        'legacy_api' => [
+            'api' => '',
+            'irc' => '',
+            'title' => '',
+        ],
+
         'password' => [
             'current' => 'nykyinen salasana',
             'new' => 'uusi salasana',

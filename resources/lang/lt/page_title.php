@@ -98,7 +98,7 @@ return [
             '_' => 'reitingai',
         ],
         'scores_controller' => [
-            '_' => 'našumas',
+            '_' => 'pp',
         ],
         'seasons_controller' => [
             '_' => '',

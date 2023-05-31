@@ -11,12 +11,13 @@ return [
     'edited' => 'แก้ไขเมื่อ :timeago โดย :user',
     'pinned' => 'ปักหมุดแล้ว',
     'empty' => 'ยังไม่มีความคิดเห็นเลย',
+    'empty_other' => '',
     'load_replies' => 'โหลดข้อความตอบกลับ',
     'replies_count' => ':count_delimited ข้อความตอบกลับ|:count_delimited ข้อความตอบกลับ',
     'title' => 'ความคิดเห็น',
 
     'commentable_name' => [
-        'beatmapset' => 'Beatmap',
+        'beatmapset' => 'บีตแม็ป',
         'build' => 'การเปลี่ยนแปลง',
         'news_post' => 'ข่าวสาร',
         '_deleted' => 'รายการที่ถูกลบ',

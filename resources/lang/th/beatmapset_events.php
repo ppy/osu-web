@@ -8,11 +8,11 @@ return [
         'approve' => 'อนุมัติ',
         'beatmap_owner_change' => 'เจ้าของระดับความยาก:beatmapเปลี่ยนเป็น:new_user',
         'discussion_delete' => 'ผู้ดูแลลบการสนทนา :discussion',
-        'discussion_lock' => 'การสนทนาสำหรับบีทแมพนี้ถูกปิดใช้งาน (:text)',
+        'discussion_lock' => 'การสนทนาสำหรับบีตแม็ปนี้ถูกปิดใช้งาน (:text)',
         'discussion_post_delete' => 'ผู้ดูแลลบโพสต์จากการสนทนา:discussion',
         'discussion_post_restore' => 'ผู้ดูแลกู้คืนโพสต์จากการสนทนา :discussion',
         'discussion_restore' => 'ผู้ดูแลกู้คืนการสนทนา :discussion',
-        'discussion_unlock' => 'การสนทนาสำหรับบีทแมพนี้ถูกเปิดใช้งาน',
+        'discussion_unlock' => 'การสนทนาสำหรับบีตแม็ปนี้ถูกเปิดใช้งาน',
         'disqualify' => 'ถูกตัดสิทธิ์โดย :user ด้วยเหตุผล :discussion (:text)',
         'disqualify_legacy' => 'ถูกตัดสิทธิ์โดย :user: ด้วยเหตุผล :text',
         'genre_edit' => 'แก้ไขหมวดจาก :old เป็น :new',
@@ -29,7 +29,7 @@ return [
         'nominate_modes' => 'เสนอชื่อโดย :user (:modes)',
         'nomination_reset' => 'ปัญหาใหม่ :discussion (:text) ทำให้เกิดการรีเซทการเสนอชื่อ',
         'nomination_reset_received' => 'การ nominate โดย :user ถูกรีเซ็ตโดย :source_user (:text)',
-        'nomination_reset_received_profile' => 'การ nominate ถูกรีเซ็ตโดย :user (:text)',
+        'nomination_reset_received_profile' => 'การเสนอชื่อถูกรีเซ็ตโดย :user (:text)',
         'offset_edit' => 'ออฟเซ็ตออนไลน์เปลี่ยนจาก :old เป็น :new.',
         'qualify' => 'บีทแมพนี้ได้รับจำนวนการเสนอชื่อครบแล้ว และได้ถูก Qualified',
         'rank' => 'จัดอันดับ',
@@ -43,7 +43,7 @@ return [
     ],
 
     'index' => [
-        'title' => 'กิจกรรมของ Beatmapset',
+        'title' => 'กิจกรรมของเซ็ทบีตแม็ป',
 
         'form' => [
             'period' => 'ระยะเวลา',
@@ -82,6 +82,6 @@ return [
         'offset_edit' => 'การแก้ไขออฟเซ็ต',
         'qualify' => 'คุณสมบัติ',
         'rank' => 'อันดับ',
-        'remove_from_loved' => 'ถูกนำออกจาก Loved',
+        'remove_from_loved' => 'ถูกนำออกจาก "ชื่นชอบ"',
     ],
 ];

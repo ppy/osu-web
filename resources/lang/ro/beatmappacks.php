@@ -36,6 +36,7 @@ return [
         'artist' => 'Artist/Album',
         'chart' => 'Promovări',
         'featured' => 'Artist Oficial',
+        'loved' => '',
         'standard' => 'Standard',
         'theme' => 'Temă',
         'tournament' => 'Turneu',

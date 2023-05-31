@@ -20,6 +20,12 @@ return [
             'title' => 'メールアドレス',
         ],
 
+        'legacy_api' => [
+            'api' => '',
+            'irc' => '',
+            'title' => '',
+        ],
+
         'password' => [
             'current' => '現在のパスワード',
             'new' => '新しいパスワード',

@@ -181,7 +181,7 @@ return [
             'edit' => [
                 'locked' => 'La página de usuario está bloqueada.',
                 'not_owner' => 'Solo puedes editar tu página de usuario.',
-                'require_supporter_tag' => 'Se requiere el tag de osu!supporter.',
+                'require_supporter_tag' => 'Se requiere la etiqueta osu!supporter.',
             ],
         ],
     ],
