@@ -2278,7 +2278,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             // This is a basic check and not 100% compliant to Discord's spec, only validates that input:
             // - is a 2-32 char username (excluding chars @#:)
             // - (if ending with # char) ends with a # and 4-digit discriminator
-            if (!preg_match('/^[^@#:]{2,32}(#\d{4})?$/i', $this->user_discord)) {
+            if (!preg_match('/^([^@#:]{2,32}#\d{4}|[\w.]{2,32})$/i', $this->user_discord)) {
                 $this->validationErrors()->add('user_discord', '.invalid_discord');
             }
         }
