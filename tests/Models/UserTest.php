@@ -96,11 +96,10 @@ class UserTest extends TestCase
     {
         $user = User::factory()->make();
         $user->user_discord = $username;
-        $user->isValid();
 
-        if ($valid) {
-            $this->assertTrue($user->validationErrors()->isEmpty());
-        } else {
+        $this->assertSame($valid, $user->isValid());
+
+        if (!$valid) {
             $this->assertArrayHasKey('user_discord', $user->validationErrors()->all());
         }
     }
