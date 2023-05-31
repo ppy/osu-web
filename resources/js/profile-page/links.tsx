@@ -39,7 +39,7 @@ interface Props {
 const linkMapping: Record<LinkKey, (user: UserExtendedJson) => LinkProps> = {
   discord: (user: UserExtendedJson) => ({
     icon: 'fab fa-discord',
-    text: <ClickToCopy showIcon value={user.discord ?? ''} />,
+    text: <ClickToCopy showIcon value={user.discord ? (/^[^@#:]{2,32}$/i.test(user.discord) ? `@${user.discord}` : user.discord) : ''} />,
   }),
   interests: (user: UserExtendedJson) => ({
     icon: 'far fa-heart',
