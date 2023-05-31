@@ -175,6 +175,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => '',
+        'cannot_nominate' => '',
         'delete' => 'Ištrinti',
         'delete_own_confirm' => 'Ar jūs užtikrintas? Bitmapas bus pašalintas ir būsite nukreiptas į savo profilį.',
         'delete_other_confirm' => 'Ar jūs užtikrintas? Bitmapas bus pašalintas ir būsite nukreiptas į vartotojo profilį.',
@@ -272,7 +274,7 @@ return [
         'any' => 'Bet kokie',
         'approved' => 'Patvirtintas',
         'favourites' => 'Mėgstami',
-        'graveyard' => 'Kapinės',
+        'graveyard' => 'Apleisti',
         'leaderboard' => 'Turi Rezultatų lentą',
         'loved' => 'Mylimi',
         'mine' => 'Mano Bitmapai',

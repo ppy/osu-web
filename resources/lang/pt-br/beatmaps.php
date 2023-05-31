@@ -175,6 +175,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => '',
+        'cannot_nominate' => '',
         'delete' => 'Excluir',
         'delete_own_confirm' => 'Você tem certeza? Esse beatmap será deletado e você será redirecionado de volta para seu perfil.',
         'delete_other_confirm' => 'Você tem certeza? Esse beatmap será deletado e você será redirecionado de volta para seu perfil de usuário.',

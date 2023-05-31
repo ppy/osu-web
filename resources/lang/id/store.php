@@ -30,7 +30,7 @@ return [
         'cart_problems' => 'Uh oh, terdapat masalah dengan keranjangmu!',
         'cart_problems_edit' => 'Klik di sini untuk menyuntingnya.',
         'declined' => 'Pembayaran dibatalkan.',
-        'delayed_shipping' => 'Kami sedang kebanjiran pesanan! Apabila kamu memesan sekarang, harap beri kami waktu tambahan **selama 1-2 minggu** untuk memproses pesananmu karena kami saat ini masih harus mengurus pesanan yang telah kami terima sebelumnya.',
+        'delayed_shipping' => 'Kami sedang kebanjiran pesanan! Apabila kamu memesan sekarang, mohon beri kami waktu tambahan **selama 1-2 minggu** untuk memproses pesananmu karena kami saat ini masih harus mengurus pesanan yang ada.',
         'hide_from_activity' => 'Sembunyikan seluruh tag osu!supporter pada pesanan ini dari aktivitas saya',
         'old_cart' => 'Keranjangmu sepertinya telah kedaluwarsa dan telah dimuat ulang. Silakan coba lagi.',
         'pay' => 'Checkout melalui Paypal',
@@ -74,7 +74,7 @@ return [
         'no_orders' => 'Tidak ada pesanan yang tercatat.',
         'paid_on' => 'Pemesanan dilangsungkan pada :date',
         'resume' => 'Lanjutkan Proses Checkout',
-        'shopify_expired' => 'Tautan checkout untuk pesanan ini telah kadaluarsa.',
+        'shopify_expired' => 'Tautan checkout untuk pesanan ini telah kedaluwarsa.',
 
         'item' => [
             'quantity' => 'Jumlah',

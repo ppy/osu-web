@@ -111,6 +111,12 @@ return [
 
     'legacy_api_key' => [
         'exists' => '',
+
+        'attributes' => [
+            'api_key' => '',
+            'app_name' => '',
+            'app_url' => '',
+        ],
     ],
 
     'oauth' => [
@@ -169,6 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Reitinguoti bitmapai negali būti pranešti',
+        'not_in_channel' => '',
         'reason_not_valid' => ':reason negalioja šiam pranešimo tipui.',
         'self' => "Negalite pranešti savęs!",
     ],

@@ -175,6 +175,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => '',
+        'cannot_nominate' => '',
         'delete' => '删除',
         'delete_own_confirm' => '你确定要删除吗？删除后你将回到个人资料页。',
         'delete_other_confirm' => '你确定要删除吗？删除后你将回到他的个人资料页。',

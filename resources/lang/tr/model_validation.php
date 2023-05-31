@@ -8,7 +8,7 @@ return [
     'not_negative' => ':attribute negatif olamaz.',
     'required' => ':attribute gereklidir.',
     'too_long' => ':attribute azami uzunluğu aştı - sadece :limit karakter olabilir.',
-    'url' => '',
+    'url' => 'Lütfen geçerli bir URL girin.',
     'wrong_confirmation' => 'Doğrulama eşleşmiyor.',
 
     'beatmapset_discussion' => [
@@ -111,6 +111,12 @@ return [
 
     'legacy_api_key' => [
         'exists' => '',
+
+        'attributes' => [
+            'api_key' => '',
+            'app_name' => '',
+            'app_url' => '',
+        ],
     ],
 
     'oauth' => [
@@ -169,6 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Dereceli beatmapler bildirilemez',
+        'not_in_channel' => '',
         'reason_not_valid' => ':reason sebebi bu rapor türü için geçerli değil.',
         'self' => "Kendinizi raporlayamazsınız!",
     ],

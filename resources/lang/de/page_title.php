@@ -47,7 +47,7 @@ return [
             '_' => 'beatmap-diskussion-stimmen',
         ],
         'beatmapset_events_controller' => [
-            '_' => 'beatmap-verlauf',
+            '_' => 'Beatmap-Verlauf',
         ],
         'beatmapsets_controller' => [
             'discussion' => 'beatmap-diskussion',

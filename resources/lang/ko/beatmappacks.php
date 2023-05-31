@@ -36,6 +36,7 @@ return [
         'artist' => '아티스트/앨범',
         'chart' => '스포트라이트',
         'featured' => '공식 아티스트',
+        'loved' => '',
         'standard' => '표준',
         'theme' => '테마',
         'tournament' => '토너먼트',

@@ -8,7 +8,7 @@ return [
     'not_negative' => ':attribute 不能为负数。',
     'required' => '需要 :attribute 。',
     'too_long' => ':attribute 超出最大长度——最多允许 :limit 个字符。',
-    'url' => '',
+    'url' => '请输入一个有效的 URL。',
     'wrong_confirmation' => '确认信息不匹配。',
 
     'beatmapset_discussion' => [
@@ -110,7 +110,13 @@ return [
     ],
 
     'legacy_api_key' => [
-        'exists' => '',
+        'exists' => '目前只能给每个用户提供一个 API 密钥。',
+
+        'attributes' => [
+            'api_key' => '',
+            'app_name' => '',
+            'app_url' => '',
+        ],
     ],
 
     'oauth' => [
@@ -169,6 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => '无法报告上架 (Ranked) 谱面中的问题',
+        'not_in_channel' => '',
         'reason_not_valid' => ':reason 不符合此报告类型。',
         'self' => "你不能举报你自己！",
     ],

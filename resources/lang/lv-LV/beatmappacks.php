@@ -36,6 +36,7 @@ return [
         'artist' => 'Mākslinieks/Albums',
         'chart' => 'Uzmanības Centrā',
         'featured' => '',
+        'loved' => '',
         'standard' => 'Standarta',
         'theme' => 'Tēma',
         'tournament' => '',

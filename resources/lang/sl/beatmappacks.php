@@ -36,6 +36,7 @@ return [
         'artist' => 'Glasbenik/Album',
         'chart' => 'Pod žarometi',
         'featured' => 'Predstavljeni ustvarjalec',
+        'loved' => '',
         'standard' => 'Standardni',
         'theme' => 'Tema',
         'tournament' => 'Turnir',

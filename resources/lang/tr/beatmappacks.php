@@ -36,6 +36,7 @@ return [
         'artist' => 'Sanatçı/Albüm',
         'chart' => 'Öne Çıkanlar',
         'featured' => 'Featured Artist',
+        'loved' => '',
         'standard' => 'Standart',
         'theme' => 'Tema',
         'tournament' => 'Turnuva',

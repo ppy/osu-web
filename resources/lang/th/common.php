@@ -66,7 +66,7 @@ return [
     ],
 
     'count' => [
-        'badges' => ':count_delimited เหรียญ|:count_delimited เหรียญ',
+        'badges' => ':count_delimited ตรา|:count_delimited ตรา',
         'days' => ':count_delimited วัน|:count_delimited วัน',
         'hour_short_unit' => 'ชั่วโมง|ชั่วโมง',
         'hours' => ':count ชั่วโมง|:count ชั่วโมง',
@@ -75,12 +75,12 @@ return [
         'minutes' => ':count_delimited นาที|:count_delimited นาที',
         'months' => ':count_delimited เดือน|:count_delimited เดือน',
         'notifications' => ':count_delimited การแจ้งเตือน|:count_delimited การแจ้งเตือนทั้งหมด',
-        'plus_others' => 'อีก + :count_delimited อัน!|อีก + :count_delimited อัน!',
+        'plus_others' => '+ :count_delimited อัน!|+ :count_delimited อัน!',
         'post' => ':count_delimited โพสต์|:count_delimited โพสต์',
         'second_short_unit' => 'วินาที|วินาที',
         'star_priority' => ':count_delimited ดาวความสำคัญ|:count_delimited ดาวความสำคัญ',
         'update' => ':count_delimited อัพเดต|:count_delimited อัปเดต',
-        'view' => ':count_delimited วิว|:count_delimited วิว',
+        'view' => ':count_delimited ดู|:count_delimited ดู',
         'years' => ':count_delimited ปี|:count_delimited ปี',
     ],
 

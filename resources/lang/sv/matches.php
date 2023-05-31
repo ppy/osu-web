@@ -12,7 +12,7 @@ return [
         'in_progress_spinner_label' => 'matchen är pågående',
         'loading-events' => 'Laddar händelser...',
         'winner' => ':team vann',
-        'winner_by' => '',
+        'winner_by' => ':winner med :difference',
 
         'events' => [
             'player-left' => ':user lämnade matchen',

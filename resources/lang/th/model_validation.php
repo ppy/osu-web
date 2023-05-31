@@ -8,34 +8,34 @@ return [
     'not_negative' => ':attribute เป็นค่าลบไม่ได้',
     'required' => 'ต้องมี :attribute',
     'too_long' => ':attribute เกินความยาวสูงสุด - สามารถใส่ได้ถึงแค่ :limit ตัวอักษร',
-    'url' => '',
+    'url' => 'กรุณาใส่ URL ที่ถูกต้อง',
     'wrong_confirmation' => 'การยืนยันไม่ตรงกัน',
 
     'beatmapset_discussion' => [
         'beatmap_missing' => 'ช่วงเวลาได้ถูกกำหนดไว้แต่ไม่พบ Beatmap',
-        'beatmapset_no_hype' => "Beatmap นี้ไม่สามารถ hype ได้",
-        'hype_requires_null_beatmap' => 'การ Hype ต้องทำในส่วนของ General (all difficulties) เท่านั้น',
+        'beatmapset_no_hype' => "บีตแม็ปนี้ไม่สามารถ Hype ได้",
+        'hype_requires_null_beatmap' => 'การ Hype ต้องทำในส่วนของทั่วไปเท่านั้น (ความยากทั้งหมด)',
         'invalid_beatmap_id' => 'ระดับความยากไม่ได้เลือกอย่างถูกต้อง',
-        'invalid_beatmapset_id' => 'บีทแมปไม่ได้เลือกอย่างถูกต้อง',
+        'invalid_beatmapset_id' => 'บีตแม็ปไม่ได้เลือกอย่างถูกต้อง',
         'locked' => 'การสนทนาได้ถูกล็อกไว้',
 
         'attributes' => [
             'message_type' => 'ประเภทของข้อความ',
-            'timestamp' => 'ประทับเวลา',
+            'timestamp' => 'เวลาประทับ',
         ],
 
         'hype' => [
-            'discussion_locked' => "บีทแมพนี้ถูกจำกัดสิทธิในการสนทนา และ สิทธิในการ Hype",
-            'guest' => 'ต้องเข้าสู่ระบบก่อนถึงจะ hype ได้',
-            'hyped' => 'คุณได้ hype Beatmap นี้ไปแล้ว',
-            'limit_exceeded' => 'คุณใช้จำนวน hype หมดแล้ว',
-            'not_hypeable' => 'บีทแมปนี้ไม่สามารถ hype ได้',
-            'owner' => 'ห้าม hype ในบีทแมปของคุณเอง',
+            'discussion_locked' => "ขณะนี้บีตแม็ปนี้ถูกล็อกไว้สำหรับการสนทนาและไม่สามารถ Hype ได้",
+            'guest' => 'ต้องเข้าสู่ระบบก่อนถึงจะ Hype ได้',
+            'hyped' => 'คุณได้ Hype บีตแม็ปนี้แล้ว',
+            'limit_exceeded' => 'คุณใช้ Hpye ทั้งหมดของคุณแล้ว',
+            'not_hypeable' => 'บีตแม็ปนี้ไม่สามารถ Hype ได้',
+            'owner' => 'ห้าม Hype ในบีตแม็ปของคุณเอง',
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => 'ช่วงเวลาที่กำหนดไว้เกินเวลาของบีทแมป',
-            'negative' => "ช่วงเวลาไม่สามารถติดลบได้",
+            'exceeds_beatmapset_length' => 'เวลาประทับที่ระบุเกินความยาวของบีตแม็ป',
+            'negative' => "เวลาประทับต้องไม่เป็นค่าลบ",
         ],
     ],
 
@@ -72,8 +72,8 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'ไม่อนุญาตให้ลบโพสต์ Metadata ของบีทแมพ',
-            'beatmapset_post_no_edit' => 'ไม่อนุญาตให้ดัดแปลงโพสต์ Metadata ของบีทแมพ',
+            'beatmapset_post_no_delete' => 'ไม่อนุญาตให้ลบโพสต์ Metadata ของบีตแม็ป',
+            'beatmapset_post_no_edit' => 'ไม่อนุญาตให้ดัดแปลงโพสต์ Metadata ของบีตแม็ป',
             'first_post_no_delete' => 'ไม่สามารถลบโพสต์ที่เริ่มต้นได้',
             'missing_topic' => 'โพสต์ไม่มีหัวข้อ',
             'only_quote' => 'การตอบกลับของคุณมีแค่คำพูด',
@@ -110,7 +110,13 @@ return [
     ],
 
     'legacy_api_key' => [
-        'exists' => '',
+        'exists' => 'หนึ่งคีย์ API ต่อหนึ่งผู้ใช้เท่านั้นในขณะนี้',
+
+        'attributes' => [
+            'api_key' => '',
+            'app_name' => '',
+            'app_url' => '',
+        ],
     ],
 
     'oauth' => [
@@ -168,7 +174,8 @@ return [
     ],
 
     'user_report' => [
-        'no_ranked_beatmapset' => 'ไม่สามารถรายงานบีทแมปที่จัดอันดับแล้วได้',
+        'no_ranked_beatmapset' => 'ไม่สามารถรายงานบีตแม็ปที่จัดอันดับแล้วได้',
+        'not_in_channel' => '',
         'reason_not_valid' => ':reason ไม่สามารถใช้ได้กับการรายงานประเภทนี้',
         'self' => "เดี๋ยว คุณรายงานตัวเองไม่ได้",
     ],

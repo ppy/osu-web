@@ -20,6 +20,12 @@ return [
             'title' => 'อีเมล',
         ],
 
+        'legacy_api' => [
+            'api' => '',
+            'irc' => '',
+            'title' => '',
+        ],
+
         'password' => [
             'current' => 'รหัสผ่านปัจจุบัน',
             'new' => 'รหัสผ่านใหม่',
@@ -47,8 +53,8 @@ return [
     ],
 
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'ได้รับการแจ้งเตือนเกียวกับปัญหาของ Qualified beatmaps กับโหมดต่อไปนี้',
-        'beatmapset_disqualify' => 'ได้รับการแจ้งเตือนเมื่อบีทแมพในโหมดที่ท่านเลือกถูกตัดสิทธิ์',
+        'beatmapset_discussion_qualified_problem' => 'ได้รับการแจ้งเตือนสำหรับปัญหาใหม่เกี่ยวกับบีตแม็ปที่ผ่านการรับรองของโหมดต่อไปนี้',
+        'beatmapset_disqualify' => 'ได้รับการแจ้งเตือนเมื่อบีตแม็ปในโหมดที่ท่านเลือกถูกตัดสิทธิ์',
         'comment_reply' => 'รับการแจ้งเตือนสำหรับการตอบกลับความคิดเห็นของคุณ',
         'title' => 'การแจ้งเตือน',
         'topic_auto_subscribe' => 'เปิดการแจ้งเตือนอัตโนมัติในกระทู้ที่คุณสร้างขึ้น',
@@ -56,12 +62,12 @@ return [
         'options' => [
             '_' => 'วิธีการรับการแจ้งเตือน',
             'beatmap_owner_change' => 'ระดับความยากของแขก',
-            'beatmapset:modding' => 'การวิจารณ์บีทแมพ',
+            'beatmapset:modding' => 'การวิจารณ์บีตแม็ป',
             'channel_message' => 'ข้อความส่วนตัว',
             'comment_new' => 'ความคิดเห็นใหม่',
             'forum_topic_reply' => 'ข้อความตอบกลับในกระทู้',
             'mail' => 'อีเมล',
-            'mapping' => 'ผู้ทำบีทแมพ',
+            'mapping' => 'ผู้ทำบีตแม็ป',
             'push' => 'ส่งการแจ้งเตือน',
             'user_achievement_unlock' => 'ผู้เล่นได้ปลดล็อกเหรียญตรา',
         ],
@@ -74,8 +80,8 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => 'ซ่อนคำเตือนเกี่ยวกับเนื้อหาที่ล่อแหลมในบีทแมพ',
-        'beatmapset_title_show_original' => 'แสดงข้อมูลของ บีทแมพ ในภาษาดั้งเดิม',
+        'beatmapset_show_nsfw' => 'ซ่อนคำเตือนเกี่ยวกับเนื้อหาที่ล่อแหลมในบีตแม็ป',
+        'beatmapset_title_show_original' => 'แสดงข้อมูลของบีตแม็ปในภาษาต้นฉบับ',
         'title' => 'ตัวเลือก',
 
         'beatmapset_download' => [

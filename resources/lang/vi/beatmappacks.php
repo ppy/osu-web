@@ -36,6 +36,7 @@ return [
         'artist' => 'Nghệ Sĩ/Album',
         'chart' => 'Tiêu điểm',
         'featured' => 'Nghệ sĩ tiêu biểu',
+        'loved' => '',
         'standard' => 'Tiêu Chuẩn',
         'theme' => 'Chủ Đề',
         'tournament' => 'Giải đấu',

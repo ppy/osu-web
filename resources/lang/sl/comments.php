@@ -11,6 +11,7 @@ return [
     'edited' => 'urejeno :timeago s strani :user',
     'pinned' => 'pripeto',
     'empty' => 'Ni še komentarjev.',
+    'empty_other' => '',
     'load_replies' => 'naloži odgovore',
     'replies_count' => ':count_delimited odgovor|:count_delimited odgovorov',
     'title' => 'Komentarji',

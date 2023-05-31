@@ -12,7 +12,7 @@ return [
         'in_progress_spinner_label' => 'Match im Gange',
         'loading-events' => 'Lade Events...',
         'winner' => ':team gewinnt',
-        'winner_by' => '',
+        'winner_by' => ':winner mit :difference Punkten Unterschied',
 
         'events' => [
             'player-left' => ':user hat das Match verlassen',

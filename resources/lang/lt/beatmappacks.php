@@ -36,6 +36,7 @@ return [
         'artist' => 'Atlikėjas/Albumas',
         'chart' => 'Verti dėmesio',
         'featured' => '',
+        'loved' => '',
         'standard' => 'Įprasti',
         'theme' => 'Teminiai',
         'tournament' => '',

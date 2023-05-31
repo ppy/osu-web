@@ -11,6 +11,7 @@ return [
     'edited' => 'disunting :timeago oleh :user',
     'pinned' => 'disematkan',
     'empty' => 'Belum ada komentar.',
+    'empty_other' => '',
     'load_replies' => 'muat lebih banyak balasan',
     'replies_count' => ':count_delimited balasan|:count_delimited balasan',
     'title' => 'Komentar',
