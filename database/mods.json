@@ -298,6 +298,10 @@
             "Type": "number"
           },
           {
+            "Name": "accuracy_judge_mode",
+            "Type": "string"
+          },
+          {
             "Name": "restart",
             "Type": "boolean"
           }
@@ -1256,6 +1260,10 @@
             "Type": "number"
           },
           {
+            "Name": "accuracy_judge_mode",
+            "Type": "string"
+          },
+          {
             "Name": "restart",
             "Type": "boolean"
           }
@@ -1799,6 +1807,10 @@
             "Type": "number"
           },
           {
+            "Name": "accuracy_judge_mode",
+            "Type": "string"
+          },
+          {
             "Name": "restart",
             "Type": "boolean"
           }
@@ -2336,6 +2348,10 @@
           {
             "Name": "minimum_accuracy",
             "Type": "number"
+          },
+          {
+            "Name": "accuracy_judge_mode",
+            "Type": "string"
           },
           {
             "Name": "restart",
