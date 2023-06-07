@@ -1,36 +1,27 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-import { DiscussionsContext } from 'beatmap-discussions/discussions-context';
 import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context';
+import { DiscussionsContext } from 'beatmap-discussions/discussions-context';
 import NewReview from 'beatmap-discussions/new-review';
 import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-config-context';
 import BackToTop from 'components/back-to-top';
+import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
+import GameMode from 'interfaces/game-mode';
 import { route } from 'laroute';
-import { deletedUser } from 'models/user';
+import { action, makeObservable, observable } from 'mobx';
+import { observer } from 'mobx-react';
 import core from 'osu-core-singleton';
 import * as React from 'react';
-import * as BeatmapHelper from 'utils/beatmap-helper';
-import { defaultFilter, defaultMode, makeUrl, parseUrl, stateFromDiscussion } from 'utils/beatmapset-discussion-helper';
+import { defaultFilter, parseUrl, stateFromDiscussion } from 'utils/beatmapset-discussion-helper';
 import { nextVal } from 'utils/seq';
 import { currentUrl } from 'utils/turbolinks';
 import { Discussions } from './discussions';
+import DiscussionsState, { UpdateOptions } from './discussions-state';
 import { Events } from './events';
 import { Header } from './header';
 import { ModeSwitcher } from './mode-switcher';
 import { NewDiscussion } from './new-discussion';
-import { action, computed, makeObservable, observable } from 'mobx';
-import { observer } from 'mobx-react';
-import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
-import DiscussionMode, { DiscussionPage, discussionPages } from './discussion-mode';
-import { Filter } from './current-discussions';
-import { isEmpty, keyBy, maxBy } from 'lodash';
-import moment from 'moment';
-import { findDefault } from 'utils/beatmap-helper';
-import { group } from 'utils/beatmap-helper';
-import GameMode from 'interfaces/game-mode';
-import { switchNever } from 'utils/switch-never';
-import DiscussionsState from './discussions-state';
 
 const checkNewTimeoutDefault = 10000;
 const checkNewTimeoutMax = 60000;
@@ -47,33 +38,8 @@ interface Props {
   initial: InitialData;
 }
 
-interface State {
-  beatmapset: BeatmapsetWithDiscussionsJson;
-  currentMode: DiscussionPage;
-  currentFilter: Filter | null;
-  currentBeatmapId: number | null;
-  focusNewDiscussion: boolean;
-  pinnedNewDiscussion: boolean;
-  readPostIds: Set<number>;
-  readPostIdsArray: number[];
-  selectedUserId: number | null;
-  showDeleted: boolean;
-}
-
-interface UpdateOptions {
-  callback: () => void;
-  mode: DiscussionPage;
-  modeIf: DiscussionPage;
-  beatmapId: number;
-  playmode: GameMode;
-  beatmapset: BeatmapsetWithDiscussionsJson;
-  watching: boolean;
-  filter: Filter;
-  selectedUserId: number;
-}
-
 @observer
-export default class Main extends React.Component<Props, State> {
+export default class Main extends React.Component<Props> {
   @observable private readonly discussionsState: DiscussionsState;
   private readonly disposers = new Set<((() => void) | undefined)>();
   private readonly eventId = `beatmap-discussions-${nextVal()}`;
@@ -223,6 +189,7 @@ export default class Main extends React.Component<Props, State> {
     );
   }
 
+  @action
   private readonly checkNew = () => {
     window.clearTimeout(this.timeouts.checkNew);
     this.xhrCheckNew?.abort();
@@ -239,7 +206,7 @@ export default class Main extends React.Component<Props, State> {
       }
 
       this.nextTimeout = checkNewTimeoutDefault;
-      this.update(null, { beatmapset: data.beatmapset });
+      this.discussionsState.update({ beatmapset: data.beatmapset });
     }).always(() => {
       this.nextTimeout = Math.min(this.nextTimeout, checkNewTimeoutMax);
 
@@ -247,42 +214,48 @@ export default class Main extends React.Component<Props, State> {
     });
   };
 
-  private readonly jumpTo = (_e: unknown, { id, postId }: { id: number; postId?: number }) => {
+  @action
+  private readonly jumpTo = (_event: unknown, { id, postId }: { id: number; postId?: number }) => {
     const discussion = this.discussionsState.discussions[id];
 
     if (discussion == null) return;
 
-    const newState = stateFromDiscussion(discussion);
+    const {
+      mode,
+    } = stateFromDiscussion(discussion);
 
-    newState.filter = this.currentDiscussions().byFilter[this.discussionsState.currentFilter][newState.mode][id] != null
-      ? this.discussionsState.currentFilter
-      : defaultFilter
+    // unset filter
+    if (this.discussionsState.discussionsByFilter(this.discussionsState.currentFilter, mode, this.discussionsState.currentBeatmapId).find((d) => d.id === discussion.id) == null) {
+      this.discussionsState.currentFilter = defaultFilter;
+    }
 
+    // unset user filter if new discussion would have been filtered out.
     if (this.discussionsState.selectedUserId != null && this.discussionsState.selectedUserId !== discussion.user_id) {
-      newState.selectedUserId = null; // unsets userid
+      this.discussionsState.selectedUserId = null;
     }
 
-    newState.callback = () => {
-      $.publish('beatmapset-discussions:highlight', { discussionId: discussion.id });
+    this.discussionsState.highlightedDiscussionId = discussion.id;
 
-      const attribute = postId != null ? `data-post-id='${postId}'` : `data-id='${id}'`;
-      const target = $(`.js-beatmap-discussion-jump[${attribute}]`);
+    const attribute = postId != null ? `data-post-id='${postId}'` : `data-id='${id}'`;
+    const target = $(`.js-beatmap-discussion-jump[${attribute}]`);
 
-      if (target.length === 0) return;
+    if (target.length === 0) return;
+    const offset = target.offset();
 
-      let offsetTop = target.offset().top - this.modeSwitcherRef.current.getBoundingClientRect().height;
-      if (this.discussionsState.pinnedNewDiscussion) {
-        offsetTop -= this.newDiscussionRef.current.getBoundingClientRect().height
-      }
+    if (offset == null || this.modeSwitcherRef.current == null || this.newDiscussionRef.current == null) return;
 
-      $(window).stop().scrollTo(core.stickyHeader.scrollOffset(offsetTop), 500);
+    let offsetTop = offset.top - this.modeSwitcherRef.current.getBoundingClientRect().height;
+    if (this.discussionsState.pinnedNewDiscussion) {
+      offsetTop -= this.newDiscussionRef.current.getBoundingClientRect().height;
     }
 
-    this.update(null, newState);
+    $(window).stop().scrollTo(core.stickyHeader.scrollOffset(offsetTop), 500);
   };
 
-  private readonly jumpToClick = (e: React.SyntheticEvent<HTMLLinkElement>) => {
-    const url = e.currentTarget.getAttribute('href');
+  private readonly jumpToClick = (e: JQuery.TriggeredEvent<Document, unknown, HTMLElement, HTMLElement>) => {
+    if (!(e.currentTarget instanceof HTMLLinkElement)) return;
+
+    const url = e.currentTarget.href;
     const parsedUrl = parseUrl(url, this.discussionsState.beatmapset.discussions);
 
     if (parsedUrl == null) return;
@@ -318,8 +291,8 @@ export default class Main extends React.Component<Props, State> {
     this.props.container.dataset.beatmapsetDiscussionState = this.discussionsState.toJsonString();
   };
 
-  private readonly setCurrentPlaymode = (e, { mode }) => {
-    this.update(e, { playmode: mode });
+  private readonly setCurrentPlaymode = (_event: unknown, { mode }: { mode: GameMode }) => {
+    this.discussionsState.update({ playmode: mode });
   };
 
   @action
@@ -332,80 +305,13 @@ export default class Main extends React.Component<Props, State> {
     this.discussionsState.showDeleted = !this.discussionsState.showDeleted;
   };
 
-  private readonly ujsDiscussionUpdate = (_e: unknown, beatmapset: BeatmapsetWithDiscussionsJson) => {
+  private readonly ujsDiscussionUpdate = (_event: unknown, beatmapset: BeatmapsetWithDiscussionsJson) => {
     // to allow ajax:complete to be run
-    window.setTimeout(() => this.update(null, { beatmapset }, 0));
+    window.setTimeout(() => this.discussionsState.update({ beatmapset }), 0);
   };
 
   @action
-  private readonly update = (_e: unknown, options: Partial<UpdateOptions>) => {
-    const {
-      beatmapId,
-      beatmapset,
-      callback,
-      filter,
-      mode,
-      modeIf,
-      playmode,
-      selectedUserId,
-      watching,
-    } = options;
-
-    const newState: Partial<State> = {};
-
-    if (beatmapset != null) {
-      newState.beatmapset = beatmapset;
-    }
-
-    if (watching != null) {
-      newState.beatmapset ??= Object.assign({}, this.discussionsState.beatmapset);
-      newState.beatmapset.current_user_attributes.is_watching = watching;
-    }
-
-    if (playmode != null) {
-      const beatmap = BeatmapHelper.findDefault({ items: this.discussionsState.groupedBeatmaps.get(playmode) });
-      beatmapId = beatmap?.id;
-    }
-
-    if (beatmapId != null && beatmapId !== this.discussionsState.currentBeatmap.id) {
-      newState.currentBeatmapId = beatmapId;
-    }
-
-    if (filter != null) {
-      if (this.discussionsState.currentMode === 'events') {
-        newState.currentMode = this.lastMode ?? defaultMode(newState.currentBeatmapId);
-      }
-
-      if (filter !== this.discussionsState.currentFilter) {
-        newState.currentFilter = filter;
-      }
-    }
-
-    if (mode != null && mode !== this.discussionsState.currentMode) {
-      if (modeIf == null || modeIf === this.discussionsState.currentMode) {
-        newState.currentMode = mode;
-      }
-
-      // switching to events:
-      // - record last filter, to be restored when setMode is called
-      // - record last mode, to be restored when setFilter is called
-      // - set filter to total
-      if (mode === 'events') {
-        this.lastMode = this.discussionsState.currentMode;
-        this.lastFilter = this.discussionsState.currentFilter;
-        newState.currentFilter = 'total';
-      } else if (this.discussionsState.currentMode === 'events') {
-        // switching from events:
-        // - restore whatever last filter set or default to total
-        newState.currentFilter = this.lastFilter ?? 'total'
-      }
-    }
-
-    // need to setState if null
-    if (selectedUserId !== undefined) {
-      newState.selectedUserId = selectedUserId
-    }
-
-    this.setState(newState, callback);
+  private readonly update = (_event: unknown, options: Partial<UpdateOptions>) => {
+    this.discussionsState.update(options);
   };
 }

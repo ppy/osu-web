@@ -113,14 +113,6 @@ export class Discussions extends React.Component<Props> {
     makeObservable(this);
   }
 
-  componentDidMount() {
-    $.subscribe('beatmapset-discussions:highlight', this.handleSetHighlight);
-  }
-
-  componentWillUnmount() {
-    $.unsubscribe('beatmapset-discussions:highlight', this.handleSetHighlight);
-  }
-
   render() {
     return (
       <div className='osu-page osu-page--small osu-page--full'>
@@ -156,12 +148,6 @@ export class Discussions extends React.Component<Props> {
   private handleExpandClick = (e: React.SyntheticEvent<HTMLButtonElement>) => {
     this.discussionsState.discussionDefaultCollapsed = e.currentTarget.dataset.type === 'collapse';
     this.discussionsState.discussionCollapsed.clear();
-  };
-
-  @action
-  private readonly handleSetHighlight = (_event: unknown, { discussionId }: { discussionId: number }) => {
-    // TODO: update main to use context instead of publishing event.
-    this.discussionsState.highlightedDiscussionId = discussionId;
   };
 
   private readonly renderDiscussionPage = (discussion: BeatmapsetDiscussionJsonForShow) => {
