@@ -74,7 +74,7 @@ interface UpdateOptions {
 
 @observer
 export default class Main extends React.Component<Props, State> {
-  private readonly discussionsState: DiscussionsState;
+  @observable private readonly discussionsState: DiscussionsState;
   private readonly disposers = new Set<((() => void) | undefined)>();
   private readonly eventId = `beatmap-discussions-${nextVal()}`;
   // FIXME: update url handler to recognize this instead
@@ -89,25 +89,7 @@ export default class Main extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    const existingState = JSON.parse(props.container.dataset.beatmapsetDiscussionState ?? null) as (BeatmapsetWithDiscussionsJson | null); // TODO: probably wrong
-
-
-    this.discussionsState = new DiscussionsState(props.initial.beatmapset);
-
-    this.discussionsState = JSON.parse(props.container.dataset.beatmapsetDiscussionState ?? null) as (BeatmapsetWithDiscussionsJson | null); // TODO: probably wrong
-    if (this.discussionsState != null) {
-      this.discussionsState.readPostIds = new Set(this.discussionsState.readPostIdsArray);
-      this.pinnedNewDiscussion = this.discussionsState.pinnedNewDiscussion;
-    } else {
-      this.jumpToDiscussion = true;
-      for (const discussion of props.initial.beatmapset.discussions) {
-        if (discussion.posts != null) {
-          for (const post of discussion.posts) {
-            this.discussionsState.readPostIds.add(post.id);
-          }
-        }
-      }
-    }
+    this.discussionsState = new DiscussionsState(props.initial.beatmapset, props.container.dataset.beatmapsetDiscussionState);
 
     makeObservable(this);
   }
@@ -124,13 +106,12 @@ export default class Main extends React.Component<Props, State> {
     $(document).on(`click.${this.eventId}`, '.js-beatmap-discussion--jump', this.jumpToClick);
     $(document).on(`turbolinks:before-cache.${this.eventId}`, this.saveStateToContainer);
 
-    if (this.jumpToDiscussion) {
+    if (this.discussionsState.jumpToDiscussion) {
       this.disposers.add(core.reactTurbolinks.runAfterPageLoad(this.jumpToDiscussionByHash));
     }
 
     this.timeouts.checkNew = window.setTimeout(this.checkNew, checkNewTimeoutDefault);
   }
-
 
   componentDidUpdate(_prevProps, prevState) {
     // TODO: autorun
@@ -317,7 +298,7 @@ export default class Main extends React.Component<Props, State> {
   private readonly jumpToDiscussionByHash = () => {
     const target = parseUrl(null, this.discussionsState.beatmapset.discussions);
 
-    if (target.discussionId != null) {
+    if (target?.discussionId != null) {
       this.jumpTo(null, { id: target.discussionId, postId: target.postId });
     }
   };
@@ -334,9 +315,7 @@ export default class Main extends React.Component<Props, State> {
   };
 
   private readonly saveStateToContainer = () => {
-    // This is only so it can be stored with JSON.stringify.
-    this.discussionsState.readPostIdsArray = Array.from(this.discussionsState.readPostIds);
-    this.props.container.dataset.beatmapsetDiscussionState = JSON.stringify(this.discussionsState);
+    this.props.container.dataset.beatmapsetDiscussionState = this.discussionsState.toJsonString();
   };
 
   private readonly setCurrentPlaymode = (e, { mode }) => {

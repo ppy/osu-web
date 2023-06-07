@@ -1,21 +1,20 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
-import { computed, makeObservable, observable } from 'mobx';
-import core from 'osu-core-singleton';
-import { Filter } from './current-discussions';
-import DiscussionMode, { DiscussionPage } from './discussion-mode';
 import { isEmpty, keyBy, maxBy } from 'lodash';
-import { findDefault, group } from 'utils/beatmap-helper';
+import { computed, makeObservable, observable, toJS } from 'mobx';
+import { deletedUser } from 'models/user';
 import moment from 'moment';
+import core from 'osu-core-singleton';
+import { findDefault, group } from 'utils/beatmap-helper';
 import { parseUrl } from 'utils/beatmapset-discussion-helper';
 import { switchNever } from 'utils/switch-never';
-import { deletedUser } from 'models/user';
-import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
+import { Filter } from './current-discussions';
+import DiscussionMode, { DiscussionPage } from './discussion-mode';
 
 type DiscussionsAlias = BeatmapsetWithDiscussionsJson['discussions'];
-
 
 export function filterDiscusionsByMode(discussions: DiscussionsAlias, mode: DiscussionMode, beatmapId: number) {
   console.log(mode);
@@ -74,14 +73,12 @@ export default class DiscussionsState {
   @observable discussionCollapsed = new Map<number, boolean>();
   @observable discussionDefaultCollapsed = false;
   @observable highlightedDiscussionId: number | null = null;
-
+  @observable jumpToDiscussion = false;
   @observable pinnedNewDiscussion = false;
 
   @observable readPostIds = new Set<number>();
   @observable selectedUserId: number | null = null;
   @observable showDeleted = true;
-
-  private jumpToDiscussion = false;
 
   @computed
   get beatmaps() {
@@ -145,7 +142,6 @@ export default class DiscussionsState {
     return value;
   }
 
-
   @computed
   get nonNullDiscussions() {
     console.log('nonNullDiscussions');
@@ -186,7 +182,36 @@ export default class DiscussionsState {
     return this.presentDiscussions.filter((discussion) => discussion.can_be_resolved && !discussion.resolved);
   }
 
-  constructor(public beatmapset: BeatmapsetWithDiscussionsJson) {
+  constructor(public beatmapset: BeatmapsetWithDiscussionsJson, state?: string) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const existingState = state == null ? null : JSON.parse(state, (key, value) => {
+      if (Array.isArray(value)) {
+        if (key === 'discussionCollapsed') {
+          return new Map(value);
+        }
+
+        if (key === 'readPostIds') {
+          return new Set(value);
+        }
+      }
+
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+      return value;
+    });
+
+    if (existingState != null) {
+      Object.apply(state, existingState);
+      this.jumpToDiscussion = true;
+    } else {
+      for (const discussion of this.beatmapset.discussions) {
+        if (discussion.posts != null) {
+          for (const post of discussion.posts) {
+            this.readPostIds.add(post.id);
+          }
+        }
+      }
+    }
+
     this.currentBeatmapId = (findDefault({ group: this.groupedBeatmaps }) ?? this.beatmaps[0]).id;
 
     // Current url takes priority over saved state.
@@ -214,5 +239,17 @@ export default class DiscussionsState {
 
   discussionsByMode(mode: DiscussionMode, beatmapId: number) {
     return computed(() => filterDiscusionsByMode(this.nonNullDiscussions, mode, beatmapId)).get();
+  }
+
+  toJsonString() {
+    return JSON.stringify(toJS(this), (_key, value) => {
+      if (value instanceof Set || value instanceof Map) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+        return Array.from(value);
+      }
+
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+      return value;
+    });
   }
 }
