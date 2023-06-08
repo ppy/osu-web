@@ -25,6 +25,7 @@ import core from 'osu-core-singleton';
 import * as React from 'react';
 import { getArtist, getTitle } from 'utils/beatmap-helper';
 import { makeUrl } from 'utils/beatmapset-discussion-helper';
+import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import BeatmapList from './beatmap-list';
 import Chart from './chart';
@@ -217,7 +218,7 @@ export class Header extends React.Component<Props> {
 
     const bn = 'counter-box';
 
-    let topClasses = `${bn} ${bn}--beatmap-discussions ${bn}--${kebabCase(type)}`;
+    let topClasses = classWithModifiers(bn, 'beatmap-discussions', kebabCase(type));
     if (this.props.mode !== 'events' && this.props.currentFilter === type) {
       topClasses += ' js-active';
     }
