@@ -48,6 +48,8 @@ interface Props {
   users: Partial<Record<number, UserJson>>;
 }
 
+const statTypes: Filter[] = ['mine', 'mapperNotes', 'resolved', 'pending', 'praises', 'deleted', 'total'];
+
 export class Header extends React.Component<Props> {
   render() {
     return (
@@ -205,7 +207,7 @@ export class Header extends React.Component<Props> {
   }
 
   private renderStats() {
-    return ['mine', 'mapperNotes', 'resolved', 'pending', 'praises', 'deleted', 'total'].map(this.renderType);
+    return statTypes.map(this.renderType);
   }
 
   private readonly renderType = (type: Filter) => {
