@@ -14,7 +14,7 @@ interface Props {
   users: Partial<Record<string, UserJson>>;
 }
 
-export class Events extends React.Component<Props> {
+export default class Events extends React.Component<Props> {
   render() {
     return (
       <div className='page-extra'>
