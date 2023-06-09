@@ -37,7 +37,7 @@ export default class Votes extends React.Component<Props> {
             />
             {this.props.votes[direction].length > 0 && (
               <div className='modding-profile-list modding-profile-list--votes'>
-                {this.props.votes[direction].map((vote) => this.renderUser(this.props.users[vote.user_id], vote.score, vote.count))}
+                {this.props.votes[direction].map((vote) => this.renderUser(vote.score, vote.count, this.props.users[vote.user_id]))}
               </div>
             )}
           </React.Fragment>
@@ -46,7 +46,7 @@ export default class Votes extends React.Component<Props> {
     );
   }
 
-  private renderUser(user?: UserJson, score: number, count: number) {
+  private renderUser(score: number, count: number, user?: UserJson) {
     if (user == null) return;
 
     const userBadge = user.groups?.[0];
