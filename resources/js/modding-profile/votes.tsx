@@ -24,7 +24,7 @@ interface VoteSummary {
   user_id: number;
 }
 
-export class Votes extends React.Component<Props> {
+export default class Votes extends React.Component<Props> {
   render() {
     return (
       <div className='page-extra'>
