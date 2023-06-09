@@ -43,9 +43,9 @@ export class Posts extends React.Component<Props> {
   }
 
   private renderPost = (post: BeatmapsetDiscussionMessagePostJson) => {
-    const discussionClasses = classWithModifiers('beatmap-discussion', ['preview', 'modding-profile'], { deleted: post.deleted_at != null });
+    if (post.beatmap_discussion == null || post.beatmap_discussion.beatmapset == null) return;
 
-    const lastEditor = post.last_editor_id != null ? this.props.users[post.last_editor_id] ?? deletedUser.toJson() : null;
+    const discussionClasses = classWithModifiers('beatmap-discussion', ['preview', 'modding-profile'], { deleted: post.deleted_at != null });
 
     return (
       <div key={post.id} className='modding-profile-list__row'>
@@ -66,12 +66,13 @@ export class Posts extends React.Component<Props> {
           <div className='beatmap-discussion__discussion'>
             <Post
               key={post.id}
+              beatmap={null}
               beatmapset={post.beatmap_discussion.beatmapset}
               discussion={post.beatmap_discussion}
-              lastEditor={lastEditor}
               post={post}
               read
               readonly
+              resolvedSystemPostId={-1} // TODO: Can probably move to context after refactoring state?
               type='reply'
               user={this.props.users[post.user_id] ?? deletedUser.toJson()}
               users={this.props.users}

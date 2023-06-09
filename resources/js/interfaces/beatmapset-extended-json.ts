@@ -2,12 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BeatmapExtendedJson from './beatmap-extended-json';
-import BeatmapsetJson from './beatmapset-json';
-
-interface Availability {
-  download_disabled: boolean;
-  more_information: string | null;
-}
+import BeatmapsetJson, { Availability } from './beatmapset-json';
 
 interface NominationsSummary {
   current: number;
