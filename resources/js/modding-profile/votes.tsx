@@ -1,71 +1,93 @@
-# Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
-# See the LICENCE file in the repository root for full licence text.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
 
-import ProfilePageExtraSectionTitle from 'components/profile-page-extra-section-title'
-import UserAvatar from 'components/user-avatar'
-import UserGroupBadge from 'components/user-group-badge'
-import { route } from 'laroute'
-import * as React from 'react'
-import { a, div, h1, h2, span } from 'react-dom-factories'
-import { groupColour } from 'utils/css'
-import { trans, transChoice } from 'utils/lang'
+import ProfilePageExtraSectionTitle from 'components/profile-page-extra-section-title';
+import UserAvatar from 'components/user-avatar';
+import UserGroupBadge from 'components/user-group-badge';
+import UserJson from 'interfaces/user-json';
+import { route } from 'laroute';
+import * as React from 'react';
+import { groupColour } from 'utils/css';
+import { trans, transChoice } from 'utils/lang';
 
-el = React.createElement
+const bn = 'modding-profile-vote-card';
+const directions = ['received', 'given'] as const;
 
-export class Votes extends React.Component
-  render: =>
+interface Props {
+  users: Partial<Record<number, UserJson>>;
+  votes: Record<'given' | 'received', VoteSummary[]>;
+}
 
-    div className: 'page-extra',
-      h1 className: 'title title--page-extra',
-        trans("users.show.extra.votes.title_longer")
+interface VoteSummary {
+  count: number;
+  score: number;
+  user_id: number;
+}
 
-      for direction in ['received', 'given']
-        el React.Fragment, key: direction,
-          el ProfilePageExtraSectionTitle,
-            count: if @props.votes[direction].length == 0 then 0 else null
-            titleKey: "users.show.extra.votes.#{direction}"
+export class Votes extends React.Component<Props> {
+  render() {
+    return (
+      <div className='page-extra'>
+        <h1 className='title title--page-extra'>{trans('users.show.extra.votes.title_longer')}</h1>
+        {directions.map((direction) => (
+          <React.Fragment key={direction}>
+            <ProfilePageExtraSectionTitle
+              count={this.props.votes[direction].length === 0 ? 0 : null}
+              titleKey={`users.show.extra.votes.${direction}`}
+            />
+            {this.props.votes[direction].length > 0 && (
+              <div className='modding-profile-list modding-profile-list--votes'>
+                {this.props.votes[direction].map((vote) => this.renderUser(this.props.users[vote.user_id], vote.score, vote.count))}
+              </div>
+            )}
+          </React.Fragment>
+        ))}
+      </div>
+    );
+  }
 
-          if @props.votes[direction].length > 0
-            div
-              className: 'modding-profile-list modding-profile-list--votes'
-              for vote in @props.votes[direction]
-                @renderUser(@props.users[vote.user_id], vote.score, vote.count)
+  private renderUser(user?: UserJson, score: number, count: number) {
+    if (user == null) return;
 
+    const userBadge = user.groups?.[0];
+    const style = groupColour(userBadge);
+    const href = route('users.modding.index', { user: user.id }) + '#votes';
 
-  renderUser: (user, score, count) =>
-    bn = 'modding-profile-vote-card'
-    userBadge = user.groups?[0]
-    topClasses = bn
-    style = groupColour(userBadge)
-
-    div
-      key: user.id
-      className: topClasses
-      style: style
-
-      div className: "#{bn}__avatar",
-        a
-          className: "#{bn}__user-link"
-          href: route('users.modding.index', user: user.id) + '#votes'
-          el UserAvatar, user: user, modifiers: ['full-rounded']
-      div
-        className: "#{bn}__user"
-        div
-          className: "#{bn}__user-row"
-          a
-            className: "#{bn}__user-link"
-            href: route('users.modding.index', user: user.id) + '#votes'
-            span
-              className: "#{bn}__user-text u-ellipsis-overflow"
-              user.username
-
-        div
-          className: "#{bn}__user-badge"
-          el UserGroupBadge, badge: userBadge
-
-      div
-        className: "#{bn}__user-stripe"
-
-      div className: "#{bn}__votes-container",
-        div className: "#{bn}__score", if score > 0 then "+#{score}" else score
-        div className: "#{bn}__count", transChoice('users.show.extra.votes.vote_count', count)
+    return (
+      <div
+        key={user.id}
+        className={bn}
+        style={style}
+      >
+        <div className={`${bn}__avatar`}>
+          <a
+            className={`${bn}__user-link`}
+            href={href}
+          >
+            <UserAvatar modifiers='full-rounded' user={user} />
+          </a>
+        </div>
+        <div className={`${bn}__user`}>
+          <div className={`${bn}__user-row`}>
+            <a
+              className={`${bn}__user-link`}
+              href={href}
+            >
+              <span className={`${bn}__user-text u-ellipsis-overflow`}>
+                {user.username}
+              </span>
+            </a>
+          </div>
+          <div className={`${bn}__user-badge`}>
+            <UserGroupBadge group={userBadge} />
+          </div>
+        </div>
+        <div className={`${bn}__user-stripe`} />
+        <div className={`${bn}__votes-container`}>
+          <div className={`${bn}__score`}>{score > 0 && '+'}{score}</div>
+          <div className={`${bn}__count`}>{transChoice('users.show.extra.votes.vote_count', count)}</div>
+        </div>
+      </div>
+    );
+  }
+}
