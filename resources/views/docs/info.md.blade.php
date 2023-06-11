@@ -100,18 +100,14 @@ For a full list of changes, see the
 
 # Endpoint
 
-## Base URL
-
-The base URL is: `{{ config('app.url') }}/api/[version]/`
-
-## API Versions
+## Base URL and API Versions
 
 This is combined with the base endpoint to determine where requests should be sent.
 
-Version | Status
-------- | ---------------------------------------------------------------
-v2      | current
-v1      | _legacy api provided by the old site, will be deprecated soon_
+URL                             | Status
+------------------------------- | ---------------------------------------------------------------
+https://osu.ppy.sh/api/v2/      | current
+https://osu.ppy.sh/api/         | _legacy api provided by the old site, will be deprecated soon_
 
 ## Language
 
