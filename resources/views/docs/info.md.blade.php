@@ -106,8 +106,8 @@ This is combined with the base endpoint to determine where requests should be se
 
 URL                             | Status
 ------------------------------- | ---------------------------------------------------------------
-https://osu.ppy.sh/api/v2/      | current
-https://osu.ppy.sh/api/         | _legacy api provided by the old site, will be deprecated soon_
+{{ config('app.url') }}/api/v2/      | current
+{{ config('app.url') }}/api/         | _legacy api provided by the old site, will be deprecated soon_
 
 ## Language
 
