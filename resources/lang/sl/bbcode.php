@@ -6,9 +6,9 @@
 return [
     'bold' => 'Krepko',
     'heading' => 'Vrh strani',
-    'help' => '',
+    'help' => 'Pomoč',
     'image' => 'Slika',
-    'imagemap' => '',
+    'imagemap' => 'Interaktivna slika',
     'italic' => 'Ležeče',
     'link' => 'Povezava',
     'list' => 'Seznam',

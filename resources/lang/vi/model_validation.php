@@ -113,9 +113,9 @@ return [
         'exists' => 'Mỗi người dùng chỉ được cung cấp một API.',
 
         'attributes' => [
-            'api_key' => '',
-            'app_name' => '',
-            'app_url' => '',
+            'api_key' => 'khoá api',
+            'app_name' => 'tên ứng dụng',
+            'app_url' => 'url ứng dụng',
         ],
     ],
 
@@ -175,7 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Beatmap đã Được Xếp hạng không thể bị báo cáo',
-        'not_in_channel' => '',
+        'not_in_channel' => 'Bạn không ở trong kênh này.',
         'reason_not_valid' => ':reason không phù hợp cho kiểu báo cáo này.',
         'self' => "Bạn không thể báo cáo chính mình!",
     ],

@@ -175,8 +175,8 @@ return [
     ],
 
     'nominations' => [
-        'already_nominated' => '',
-        'cannot_nominate' => '',
+        'already_nominated' => 'Je hebt deze beatmap al genomineerd.',
+        'cannot_nominate' => 'Je kunt deze beatmap spelmodus niet nomineren.',
         'delete' => 'Verwijder',
         'delete_own_confirm' => 'Weet je het zeker? De beatmap zal worden verwijderd en je zult worden terug gestuurd naar je profiel.',
         'delete_other_confirm' => 'Weet je het zeker? De beatmap zal worden verwijderd en je zult worden terug gestuurd naar het profiel van de gebruiker.',

@@ -4,20 +4,20 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'confirm_new' => '',
-    'new' => '',
-    'none' => '',
+    'confirm_new' => 'Sukurti naują IRC slaptažodį?',
+    'new' => 'Naujas Senos IRC Versijos Slaptažodis',
+    'none' => 'IRC Slaptažodis nenustatytas.',
 
     'form' => [
-        'server_host' => '',
-        'server_port' => '',
-        'token' => '',
-        'username' => '',
+        'server_host' => 'serveris',
+        'server_port' => 'prievadas',
+        'token' => 'serverio slaptažodis',
+        'username' => 'vartotojo vardas',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Slėpti Slaptažodį',
+        'show' => 'Rodyti Slaptažodį',
+        'delete' => 'Ištrinti',
     ],
 ];

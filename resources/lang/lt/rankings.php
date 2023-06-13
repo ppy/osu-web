@@ -23,13 +23,13 @@ return [
         'multiplayer' => 'žaidimas tinkle',
         'performance' => 'pp',
         'score' => 'Taškai',
-        'seasons' => '',
+        'seasons' => 'sezonai',
     ],
 
     'seasons' => [
         'empty' => '',
         'ongoing' => '',
-        'room_count' => '',
+        'room_count' => 'Grojaraščių skaičius',
         'url' => '',
     ],
 
