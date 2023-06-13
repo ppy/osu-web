@@ -101,7 +101,7 @@ return [
             '_' => 'pp',
         ],
         'seasons_controller' => [
-            '_' => '',
+            '_' => 'reitingai',
         ],
         'tournaments_controller' => [
             '_' => 'turnyrai',

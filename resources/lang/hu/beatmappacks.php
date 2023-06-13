@@ -36,7 +36,7 @@ return [
         'artist' => 'Előadó/Album',
         'chart' => 'Reflektorfény',
         'featured' => 'Kiemelt Előadó',
-        'loved' => '',
+        'loved' => 'Loved projekt',
         'standard' => 'Standard',
         'theme' => 'Téma',
         'tournament' => 'Bajnokság',

@@ -25,7 +25,7 @@ return [
     ],
 
     'forums' => [
-        'forums' => '',
+        'forums' => 'Forumai',
         'latest_post' => 'Paskutinis Įrašas',
 
         'index' => [
@@ -48,7 +48,7 @@ return [
         'confirm_restore' => 'Tikrai gražinti įrašą?',
         'edited' => 'Paskutini kartą redagavo :user :when, redaguota :count_delimited kartų. |Paskutini kartą redagavo :user :when, redaguota :count_delimited kartų.',
         'posted_at' => 'publikuota :when',
-        'posted_by_in' => '',
+        'posted_by_in' => 'pranešė :username apie ":forum',
 
         'actions' => [
             'destroy' => 'Ištrinti įrašą',

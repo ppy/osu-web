@@ -4,27 +4,27 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'new' => '',
-    'none' => '',
+    'new' => 'Nova chave API Legada',
+    'none' => 'Sem chave.',
 
     'docs' => [
-        '_' => '',
-        'github' => '',
+        '_' => 'A documentação está disponível no :github.',
+        'github' => 'GitHub',
     ],
 
     'form' => [
-        'create' => '',
+        'create' => 'Criar Chave',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Ocultar Chave',
+        'show' => 'Mostrar Chave',
+        'delete' => 'Deletar',
     ],
 
     'warning' => [
-        'line1' => '',
-        'line2' => "",
-        'line3' => '',
+        'line1' => 'Não forneça isso à terceiros.',
+        'line2' => "É o equivalente à dar a sua senha.",
+        'line3' => 'Sua conta pode estar comprometida.',
     ],
 ];

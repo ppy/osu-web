@@ -5,26 +5,26 @@
 
 return [
     'empty' => [
-        '_' => '',
-        'playlists' => '',
-        'realtime' => '',
+        '_' => 'Vēl neviena osu!(lazer) :type_group spēle nav spēlēta!',
+        'playlists' => 'sarakstu',
+        'realtime' => 'daudzspēlētāju režīma',
     ],
 
     'room' => [
-        'hosted_by' => '',
-        'invalid_password' => '',
-        'map_count' => '',
-        'player_count' => '',
-        'time_left' => '',
+        'hosted_by' => 'vadītājs: :user',
+        'invalid_password' => 'Nederīga istabas parole',
+        'map_count' => ':count_delimited mape|:count_delimited mapes',
+        'player_count' => ':count_delimited spēlētājs|:count_delimited spēlētāji',
+        'time_left' => 'atlicis :time',
 
         'errors' => [
-            'duration_too_long' => '',
+            'duration_too_long' => 'Ilgums ir pārāk garš.',
         ],
 
         'status' => [
-            'active' => '',
-            'ended' => '',
-            'soon' => '',
+            'active' => 'aktīvs',
+            'ended' => 'beidzies',
+            'soon' => 'drīz beigsies',
         ],
     ],
 ];
