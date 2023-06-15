@@ -36,6 +36,7 @@ return [
         'artist' => 'Artist/Album',
         'chart' => 'I rampljuset',
         'featured' => 'Utvald artist',
+        'loved' => '',
         'standard' => 'Standard',
         'theme' => 'Tema',
         'tournament' => 'Turnering',

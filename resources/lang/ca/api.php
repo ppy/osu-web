@@ -14,7 +14,7 @@ return [
 
     'scopes' => [
         'bot' => 'Actuar com a bot de xat.',
-        'identify' => 'Identificar-te i llegir el teu perfil públic.',
+        'identify' => 'Identifiqueu-vos i llegiu el vostre perfil públic.',
 
         'chat' => [
             'write' => 'Enviar missatges en nom vostre.',

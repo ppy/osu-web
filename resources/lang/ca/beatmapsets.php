@@ -61,8 +61,8 @@ return [
         'discussion' => 'Discussió',
 
         'deleted_banner' => [
-            'title' => '',
-            'message' => '',
+            'title' => 'Aquest beatmap s\'ha esborrat.',
+            'message' => '(només els moderadors poden veure això)',
         ],
 
         'details' => [

@@ -11,6 +11,7 @@ return [
     'edited' => ':user에 의해 :timeago에 수정됨',
     'pinned' => '고정됨',
     'empty' => '아직 댓글이 없습니다.',
+    'empty_other' => '다른 댓글이 없습니다.',
     'load_replies' => '답글 불러오기',
     'replies_count' => '답글 :count_delimited개',
     'title' => '댓글',

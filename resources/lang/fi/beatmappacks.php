@@ -36,6 +36,7 @@ return [
         'artist' => 'Esittäjä/Albumi',
         'chart' => 'Valokeilassa',
         'featured' => 'Suositeltu esittäjä',
+        'loved' => '',
         'standard' => 'Tavallinen',
         'theme' => 'Teema',
         'tournament' => 'Turnaus',

@@ -20,6 +20,12 @@ return [
             'title' => 'E-pasts',
         ],
 
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Legacy API',
+        ],
+
         'password' => [
             'current' => 'pašreizējā parole',
             'new' => 'jaunā parole',

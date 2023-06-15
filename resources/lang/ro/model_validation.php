@@ -8,7 +8,7 @@ return [
     'not_negative' => ':attribute nu poate fi negativ.',
     'required' => ':attribute este necesar.',
     'too_long' => ':attribute depășește lungimea maximă - poate fi doar până la :limit de caractere.',
-    'url' => '',
+    'url' => 'Te rog introdu un URL valid.',
     'wrong_confirmation' => 'Confirmarea nu se potrivește.',
 
     'beatmapset_discussion' => [
@@ -110,7 +110,13 @@ return [
     ],
 
     'legacy_api_key' => [
-        'exists' => '',
+        'exists' => 'Momentan este furnizată o singură cheie API per utilizator.',
+
+        'attributes' => [
+            'api_key' => 'cheie api',
+            'app_name' => 'numele aplicației',
+            'app_url' => 'url aplicație',
+        ],
     ],
 
     'oauth' => [
@@ -169,6 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Beatmap-urile clasate nu pot fi raportate',
+        'not_in_channel' => 'Nu ești în acest canal.',
         'reason_not_valid' => ':reason nu este valid pentru acest tip de raportare.',
         'self' => "Nu te poți raporta pe tine însuți!",
     ],

@@ -20,6 +20,12 @@ return [
             'title' => 'ایمیل',
         ],
 
+        'legacy_api' => [
+            'api' => '',
+            'irc' => '',
+            'title' => '',
+        ],
+
         'password' => [
             'current' => 'پسورد فعلی',
             'new' => 'پسورد جدید',

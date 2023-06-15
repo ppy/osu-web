@@ -8,7 +8,7 @@ return [
     'not_negative' => ':attribute не може бити негативан.',
     'required' => ':attribute је обавезан.',
     'too_long' => ':attribute је премашио максималну дужину - може имати највише :limit знакова.',
-    'url' => '',
+    'url' => 'Молимо да унесете важећи URL.',
     'wrong_confirmation' => 'Потврда се не подудара.',
 
     'beatmapset_discussion' => [
@@ -110,7 +110,13 @@ return [
     ],
 
     'legacy_api_key' => [
-        'exists' => '',
+        'exists' => 'Тренутно је обезбеђен само један API кључ по кориснику.',
+
+        'attributes' => [
+            'api_key' => '',
+            'app_name' => '',
+            'app_url' => '',
+        ],
     ],
 
     'oauth' => [
@@ -170,6 +176,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Није могуће пријавити рангиране мапе',
+        'not_in_channel' => '',
         'reason_not_valid' => ':reason није важећи за овај тип извештаја.',
         'self' => "Не можете сами да се пријавите!",
     ],

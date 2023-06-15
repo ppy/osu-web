@@ -36,6 +36,7 @@ return [
         'artist' => '艺术家/专辑',
         'chart' => '聚光灯',
         'featured' => '精选艺术家',
+        'loved' => '社区喜爱计划',
         'standard' => '常规',
         'theme' => '主题',
         'tournament' => '锦标赛',

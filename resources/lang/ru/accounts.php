@@ -20,6 +20,12 @@ return [
             'title' => 'Смена почты',
         ],
 
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Устаревший API',
+        ],
+
         'password' => [
             'current' => 'текущий пароль',
             'new' => 'новый пароль',

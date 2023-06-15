@@ -14,8 +14,8 @@ return [
 
     'header' => [
         'admin' => [
-            'beatmapset' => 'บีทแมพเซ็ท',
-            'beatmapset_covers' => 'ปกหลังบีทแมพเซ็ท',
+            'beatmapset' => 'บีตแม็ปเซ็ท',
+            'beatmapset_covers' => 'ปกบีตแม็ปเซ็ท',
             'contest' => 'การแข่งขัน',
             'contests' => 'การแข่งขัน',
             'root' => 'แผงควบคุม',
@@ -50,7 +50,7 @@ return [
         ],
 
         'users' => [
-            'modding' => 'การวิจารณ์บีทแมพ',
+            'modding' => 'การดัดแปลง',
             'playlists' => 'รายการเพลง',
             'realtime' => 'ผู้เล่นหลายคน',
             'show' => 'ข้อมูล',
@@ -67,7 +67,7 @@ return [
 
     'menu' => [
         'beatmaps' => [
-            '_' => 'บีทแมพ',
+            '_' => 'บีตแม็ป',
         ],
         'community' => [
             '_' => 'ชุมชน',
@@ -98,7 +98,7 @@ return [
             '_' => 'ทั่วไป',
             'home' => 'หน้าแรก',
             'changelog-index' => 'บันทึกการเปลี่ยนแปลง',
-            'beatmaps' => 'รายการบีทแมพ',
+            'beatmaps' => 'รายการบีตแม็ป',
             'download' => 'ดาวน์โหลด osu!',
         ],
         'help' => [
@@ -114,7 +114,7 @@ return [
             'copyright' => 'ลิขสิทธิ์ (DMCA)',
             'privacy' => 'ความเป็นส่วนตัว',
             'server_status' => 'สถานะของเซิร์ฟเวอร์',
-            'source_code' => 'ซอร์ซโค้ด',
+            'source_code' => 'ซอร์สโค้ด',
             'terms' => 'เงื่อนไข',
         ],
     ],

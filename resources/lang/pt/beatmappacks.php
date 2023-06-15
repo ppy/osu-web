@@ -36,6 +36,7 @@ return [
         'artist' => 'Artista/Álbum',
         'chart' => 'Em destaque',
         'featured' => 'Artista Destacado',
+        'loved' => '',
         'standard' => 'Padrão',
         'theme' => 'Tema',
         'tournament' => 'Torneio',

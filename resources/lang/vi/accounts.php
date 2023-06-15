@@ -20,6 +20,12 @@ return [
             'title' => 'Email',
         ],
 
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'API cũ',
+        ],
+
         'password' => [
             'current' => 'mật khẩu hiện tại',
             'new' => 'mật khẩu mới',

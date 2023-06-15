@@ -6,7 +6,7 @@
 return [
     'bold' => 'Vetgedrukt',
     'heading' => 'Kop',
-    'help' => '',
+    'help' => 'Help',
     'image' => 'Afbeelding',
     'imagemap' => '',
     'italic' => 'Cursief',
