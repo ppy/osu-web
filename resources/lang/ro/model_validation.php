@@ -113,9 +113,9 @@ return [
         'exists' => 'Momentan este furnizată o singură cheie API per utilizator.',
 
         'attributes' => [
-            'api_key' => '',
-            'app_name' => '',
-            'app_url' => '',
+            'api_key' => 'cheie api',
+            'app_name' => 'numele aplicației',
+            'app_url' => 'url aplicație',
         ],
     ],
 
@@ -175,7 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Beatmap-urile clasate nu pot fi raportate',
-        'not_in_channel' => '',
+        'not_in_channel' => 'Nu ești în acest canal.',
         'reason_not_valid' => ':reason nu este valid pentru acest tip de raportare.',
         'self' => "Nu te poți raporta pe tine însuți!",
     ],

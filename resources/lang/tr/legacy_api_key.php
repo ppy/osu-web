@@ -4,27 +4,27 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'new' => '',
-    'none' => '',
+    'new' => 'Eski API Anahtarı Oluştur',
+    'none' => 'Anahtar yok.',
 
     'docs' => [
-        '_' => '',
-        'github' => '',
+        '_' => 'Belgeler şu adreste mevcuttur :github',
+        'github' => 'GitHub',
     ],
 
     'form' => [
-        'create' => '',
+        'create' => 'Anahtar Oluştur',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Anahtarı Gizle',
+        'show' => 'Anahtarı Göster',
+        'delete' => 'Sil',
     ],
 
     'warning' => [
-        'line1' => '',
-        'line2' => "",
-        'line3' => '',
+        'line1' => 'Bunu başkalarına vermeyin.',
+        'line2' => "Şifrenizi vermek ile aynı şeydir.",
+        'line3' => 'Hesabınız ele geçirilmiş olabilir.',
     ],
 ];

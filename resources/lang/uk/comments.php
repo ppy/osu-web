@@ -11,7 +11,7 @@ return [
     'edited' => ':user відредагував :timeago',
     'pinned' => 'закріплено',
     'empty' => 'Ще немає коментарів.',
-    'empty_other' => '',
+    'empty_other' => 'Поки немає жодних коментарів.',
     'load_replies' => 'завантажити відповіді',
     'replies_count' => ':count_delimited відповідь|:count_delimited відповідей',
     'title' => 'Коментарі',

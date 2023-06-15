@@ -8,7 +8,7 @@ return [
     'not_negative' => ':attribute negali būti neigiamas.',
     'required' => ':attribute yra privalomas.',
     'too_long' => ':attribute yra per ilgas - gali būti daugiausiai :limit simbolių.',
-    'url' => '',
+    'url' => 'Prašome įvesti tinkamą URL.',
     'wrong_confirmation' => 'Patvirtinimas nesutampa.',
 
     'beatmapset_discussion' => [
@@ -110,12 +110,12 @@ return [
     ],
 
     'legacy_api_key' => [
-        'exists' => '',
+        'exists' => 'Tik vienas API raktas yra paskirtas vienam vartotojui šiuo metu.',
 
         'attributes' => [
-            'api_key' => '',
-            'app_name' => '',
-            'app_url' => '',
+            'api_key' => 'api raktas',
+            'app_name' => 'aplikacijos pavadinimas',
+            'app_url' => 'aplikacijos url',
         ],
     ],
 
@@ -175,7 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Reitinguoti bitmapai negali būti pranešti',
-        'not_in_channel' => '',
+        'not_in_channel' => 'Jūs neesate šiame kanale.',
         'reason_not_valid' => ':reason negalioja šiam pranešimo tipui.',
         'self' => "Negalite pranešti savęs!",
     ],

@@ -328,7 +328,7 @@ return [
                 'title' => 'moi !',
             ],
             'medals' => [
-                'empty' => "Cet utilisateur n'en a encore jamais reçue. ;_;",
+                'empty' => "Cet utilisateur n'en a encore jamais reçu. ;_;",
                 'recent' => 'Les plus récentes',
                 'title' => 'Médailles',
             ],
