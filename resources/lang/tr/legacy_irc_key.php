@@ -4,20 +4,20 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'confirm_new' => '',
-    'new' => '',
-    'none' => '',
+    'confirm_new' => 'Yeni IRC şifresi oluşturulsun mu?',
+    'new' => 'Eski IRC Şifresi Oluştur',
+    'none' => 'IRC Şifresi ayarlanmamış.',
 
     'form' => [
-        'server_host' => '',
-        'server_port' => '',
-        'token' => '',
-        'username' => '',
+        'server_host' => 'sunucu',
+        'server_port' => 'port',
+        'token' => 'sunucu şifresi',
+        'username' => 'kullanıcı adı',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Şifreyi Gizle',
+        'show' => 'Şifreyi Göster',
+        'delete' => 'Sil',
     ],
 ];

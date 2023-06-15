@@ -4,27 +4,27 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'new' => '',
-    'none' => '',
+    'new' => 'Cheie API Nouă',
+    'none' => 'Nicio cheie.',
 
     'docs' => [
-        '_' => '',
-        'github' => '',
+        '_' => 'Documentația este disponibilă pe :github.',
+        'github' => 'GitHub',
     ],
 
     'form' => [
-        'create' => '',
+        'create' => 'Creare Cheie',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Ascunde Cheie',
+        'show' => 'Arată Cheie',
+        'delete' => 'Șterge',
     ],
 
     'warning' => [
-        'line1' => '',
-        'line2' => "",
-        'line3' => '',
+        'line1' => 'Nu trimiteți această cheie altor persoane.',
+        'line2' => "Este echivalent cu trimiterea parolei tale.",
+        'line3' => 'Contul tău ar putea fi compromis.',
     ],
 ];

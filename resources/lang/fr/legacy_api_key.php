@@ -4,27 +4,27 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'new' => '',
-    'none' => '',
+    'new' => 'Nouvelle clé d\'API héritée',
+    'none' => 'Aucune clé.',
 
     'docs' => [
-        '_' => '',
-        'github' => '',
+        '_' => 'La documentation est disponible sur :github.',
+        'github' => 'GitHub',
     ],
 
     'form' => [
-        'create' => '',
+        'create' => 'Créer une clé',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Cacher la clé',
+        'show' => 'Afficher la clé',
+        'delete' => 'Supprimer',
     ],
 
     'warning' => [
-        'line1' => '',
-        'line2' => "",
-        'line3' => '',
+        'line1' => 'Ne donnez pas cela aux autres.',
+        'line2' => "Cela équivaut à donner votre mot de passe.",
+        'line3' => 'Votre compte peut être compromis.',
     ],
 ];

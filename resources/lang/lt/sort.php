@@ -32,7 +32,7 @@ return [
     ],
 
     'forum_topics' => [
-        'created' => '',
+        'created' => 'Sukurta',
         'feature_votes' => 'Žvaigždžių pirmenybė',
         'new' => 'Paskutinis atsakymas',
     ],

@@ -11,7 +11,7 @@ return [
     'edited' => 'rediģēja :timeago lietotājs :user',
     'pinned' => 'piesprausts',
     'empty' => 'Pagaidām nav komentāru.',
-    'empty_other' => '',
+    'empty_other' => 'Pagaidām nav citu komentāru.',
     'load_replies' => 'ielādēt atbildes',
     'replies_count' => ':count_delimited atbilde|:count_delimited atbildes',
     'title' => 'Komentāri',

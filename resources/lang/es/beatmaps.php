@@ -175,8 +175,8 @@ return [
     ],
 
     'nominations' => [
-        'already_nominated' => '',
-        'cannot_nominate' => '',
+        'already_nominated' => 'Ya has nominado este mapa.',
+        'cannot_nominate' => 'No puedes nominar este modo de juego del mapa.',
         'delete' => 'Eliminar',
         'delete_own_confirm' => '¿Está seguro? El mapa será eliminado y serás redirigido de vuelta a tu perfil.',
         'delete_other_confirm' => '¿Está seguro? El mapa será eliminado y serás redirigido de vuelta al perfil de usuario.',
@@ -223,7 +223,7 @@ return [
             'prompt' => 'escriba en palabras clave...',
             'login_required' => 'Inicie sesión para buscar.',
             'options' => 'Más opciones de búsqueda',
-            'supporter_filter' => 'Filtrar por :filters requiere una etiqueta osu!supporter activa',
+            'supporter_filter' => 'Filtrar por :filters requiere una etiqueta activa de osu!supporter',
             'not-found' => 'no hay resultados',
             'not-found-quote' => '... nop, nada encontrado.',
             'filters' => [
@@ -251,7 +251,7 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => 'Necesitas un :link activo para filtrar por :filters',
-                'link_text' => 'etiqueta osu!supporter',
+                'link_text' => 'etiqueta de osu!supporter',
             ],
         ],
     ],

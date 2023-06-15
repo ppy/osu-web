@@ -89,7 +89,7 @@ return [
             '_' => 'Neuigkeiten',
         ],
         'notifications_controller' => [
-            '_' => 'benachrichtigungsverlauf',
+            '_' => 'Benachrichtigungsverlauf',
         ],
         'password_reset_controller' => [
             '_' => 'passwort zurücksetzen',

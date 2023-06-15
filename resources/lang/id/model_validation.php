@@ -113,9 +113,9 @@ return [
         'exists' => 'Hanya satu kunci API yang disediakan per pengguna untuk saat ini.',
 
         'attributes' => [
-            'api_key' => '',
-            'app_name' => '',
-            'app_url' => '',
+            'api_key' => 'kunci api',
+            'app_name' => 'nama aplikasi',
+            'app_url' => 'url aplikasi',
         ],
     ],
 
@@ -175,7 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Kamu tidak dapat melaporkan beatmap yang berstatus Ranked',
-        'not_in_channel' => '',
+        'not_in_channel' => 'Kamu tidak tergabung dalam kanal percakapan ini.',
         'reason_not_valid' => ':reason bukan merupakan alasan yang valid untuk jenis laporan ini.',
         'self' => "Kamu tidak dapat melaporkan diri sendiri!",
     ],

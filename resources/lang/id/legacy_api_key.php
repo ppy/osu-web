@@ -4,27 +4,27 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'new' => '',
-    'none' => '',
+    'new' => 'Kunci API Lawas Baru',
+    'none' => 'Tidak ada kunci.',
 
     'docs' => [
-        '_' => '',
-        'github' => '',
+        '_' => 'Dokumentasi lebih lanjut seputar API osu! dapat dilihat pada :github.',
+        'github' => 'GitHub',
     ],
 
     'form' => [
-        'create' => '',
+        'create' => 'Buat Kunci',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Sembunyikan Kunci',
+        'show' => 'Tampilkan Kunci',
+        'delete' => 'Hapus',
     ],
 
     'warning' => [
-        'line1' => '',
-        'line2' => "",
-        'line3' => '',
+        'line1' => 'Jangan berikan informasi ini ke orang lain.',
+        'line2' => "Tindakan ini sama halnya dengan memberikan kata sandimu.",
+        'line3' => 'Akunmu mungkin telah disusupi.',
     ],
 ];

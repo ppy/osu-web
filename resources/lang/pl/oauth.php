@@ -27,7 +27,7 @@ return [
     'client' => [
         'id' => 'Numer ID klienta',
         'name' => 'Nazwa aplikacji',
-        'redirect' => 'Adres URL wywołań zwrotnych aplikacji',
+        'redirect' => 'Adresy URL wywołań zwrotnych aplikacji',
         'reset' => 'Zresetuj klucz klienta',
         'reset_failed' => 'Nie udało się zresetować klucza klienta',
         'secret' => 'Klucz klienta',

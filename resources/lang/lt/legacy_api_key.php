@@ -4,27 +4,27 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'new' => '',
-    'none' => '',
+    'new' => 'Naujas Senos API versijos Raktas',
+    'none' => 'Nėra rakto.',
 
     'docs' => [
-        '_' => '',
-        'github' => '',
+        '_' => 'Dokumentacija yra prieinama :github.',
+        'github' => 'GitHub',
     ],
 
     'form' => [
-        'create' => '',
+        'create' => 'Sukurti Raktą',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Paslėpti Raktą',
+        'show' => 'Rodyti Raktą',
+        'delete' => 'Ištrinti',
     ],
 
     'warning' => [
-        'line1' => '',
-        'line2' => "",
-        'line3' => '',
+        'line1' => 'Neduokite tai kitiems.',
+        'line2' => "Tai yra lygu, kaip atiduoti savo slaptažodį.",
+        'line3' => 'Jūsų paskyra gali buti kompromizuota.',
     ],
 ];
