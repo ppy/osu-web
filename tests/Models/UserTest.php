@@ -122,20 +122,20 @@ class UserTest extends TestCase
             ['user_name', true],
             ['user.name', true],
             ['user2name', true],
-            ['u_sernam.e1337',true],
+            ['u_sernam.e1337', true],
             ['username#', false],
-            ['u',false],
-            ['morethan32characterinthisusername',false], // 33 characters
+            ['u', false],
+            ['morethan32characterinthisusername', false], // 33 characters
 
             // old format
-            ['username#1337',true],
-            ['ユーザー名#1337',true],
-            ['username#1',false],
-            ['username#13bb',false],
-            ['username#abcd',false],
-            ['user@name#1337',false],
-            ['user#name#1337',false],
-            ['user:name#1337',false],
+            ['username#1337', true],
+            ['ユーザー名#1337', true],
+            ['username#1', false],
+            ['username#13bb', false],
+            ['username#abcd', false],
+            ['user@name#1337', false],
+            ['user#name#1337', false],
+            ['user:name#1337', false],
         ];
     }
 }
