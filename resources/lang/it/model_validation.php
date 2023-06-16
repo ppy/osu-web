@@ -113,9 +113,9 @@ return [
         'exists' => 'Per il momento viene fornita una sola chiave API per utente.',
 
         'attributes' => [
-            'api_key' => '',
-            'app_name' => '',
-            'app_url' => '',
+            'api_key' => 'chiave api',
+            'app_name' => 'nome applicazione',
+            'app_url' => 'url applicazione',
         ],
     ],
 
@@ -175,7 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Le beatmap classificate non possono essere segnalate',
-        'not_in_channel' => '',
+        'not_in_channel' => 'Non sei in questo canale.',
         'reason_not_valid' => ':reason non è valido per questo tipo di segnalazione.',
         'self' => "Non puoi segnalare te stesso!",
     ],

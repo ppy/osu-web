@@ -4,20 +4,20 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'confirm_new' => '',
-    'new' => '',
-    'none' => '',
+    'confirm_new' => 'Создать новый пароль IRC?',
+    'new' => 'Новый пароль IRC',
+    'none' => 'Нет пароля IRC.',
 
     'form' => [
-        'server_host' => '',
-        'server_port' => '',
-        'token' => '',
-        'username' => '',
+        'server_host' => 'сервер',
+        'server_port' => 'порт',
+        'token' => 'пароль сервера',
+        'username' => 'ник',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Скрыть пароль',
+        'show' => 'Показать пароль',
+        'delete' => 'Удалить',
     ],
 ];

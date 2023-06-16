@@ -8,7 +8,7 @@ return [
     'heading' => 'Fejléc',
     'help' => 'Segítség',
     'image' => 'Kép',
-    'imagemap' => '',
+    'imagemap' => 'Képtérkép',
     'italic' => 'Dőlt',
     'link' => 'Link',
     'list' => 'Lista',

@@ -6,7 +6,7 @@
 return [
     'index' => [
         'description' => 'Surinktos bitmapų kolekcijos pagal temas.',
-        'empty' => '',
+        'empty' => 'Jau greitai!',
         'nav_title' => 'sąrašas',
         'title' => 'Bitmapų Rinkiniai',
 
@@ -35,11 +35,11 @@ return [
     'mode' => [
         'artist' => 'Atlikėjas/Albumas',
         'chart' => 'Verti dėmesio',
-        'featured' => '',
-        'loved' => '',
+        'featured' => 'Rekomenduojami Atlikėjai',
+        'loved' => 'Projektas Mylimi',
         'standard' => 'Įprasti',
         'theme' => 'Teminiai',
-        'tournament' => '',
+        'tournament' => 'Turnyras',
     ],
 
     'require_login' => [

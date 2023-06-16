@@ -8,7 +8,7 @@ return [
     'heading' => 'Başlık',
     'help' => 'Yardım',
     'image' => 'Görüntü',
-    'imagemap' => '',
+    'imagemap' => 'Görüntü Haritası',
     'italic' => 'İtalik',
     'link' => 'Bağlantı',
     'list' => 'Liste',

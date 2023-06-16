@@ -4,27 +4,27 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'new' => '',
-    'none' => '',
+    'new' => 'คีย์ API แบบดั้งเดิมใหม่',
+    'none' => 'ยังไม่มีคีย์',
 
     'docs' => [
-        '_' => '',
-        'github' => '',
+        '_' => 'มีเอกสารที่พร้อมใช้งานที่ :github',
+        'github' => 'GitHub',
     ],
 
     'form' => [
-        'create' => '',
+        'create' => 'สร้างคีย์',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'ซ่อนคีย์',
+        'show' => 'แสดงคีย์',
+        'delete' => 'ลบ',
     ],
 
     'warning' => [
-        'line1' => '',
-        'line2' => "",
-        'line3' => '',
+        'line1' => 'อย่าให้สิ่งนี้กับผู้อื่น',
+        'line2' => "เหมือนเป็นการให้รหัสผ่านของคุณ",
+        'line3' => 'บัญชีของคุณอาจถูกบุกรุก',
     ],
 ];

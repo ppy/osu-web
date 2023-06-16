@@ -5,11 +5,11 @@
 
 return [
     'new' => '',
-    'none' => '',
+    'none' => 'Ingen nyckel.',
 
     'docs' => [
-        '_' => '',
-        'github' => '',
+        '_' => 'Dokumentation finns tillgänglig på :github.',
+        'github' => 'GitHub',
     ],
 
     'form' => [

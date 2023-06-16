@@ -37,7 +37,7 @@ return [
         'blocked_count' => 'užblokuoti vartotojai (:count)',
         'hide_profile' => 'Slėpti profilį',
         'hide_comment' => 'slėpti',
-        'forum_post_text' => '',
+        'forum_post_text' => 'Šis skelbimas yra paslėptas.',
         'not_blocked' => 'Šis vartotojas nėra užblokuotas.',
         'show_profile' => 'Rodyti profilį',
         'show_comment' => 'rodyti',
@@ -159,7 +159,7 @@ return [
     'restricted_banner' => [
         'title' => 'Tavo vartotojo prieiga buvo apribota!',
         'message' => 'Kol ribotas, negalėsite sąveikauti su kitais žaidėjais ir jūsų rezultatai bus matomi tik jums. Įprastai šis apribojimas įvyksta dėl automatizuoto proceso ir yra atšaukiamas per 24 valandas. Jei norite apeliuoti šį apribojimą, prašome <a href="mailto:accounts@ppy.sh">susisiekti su pagalba</a>.',
-        'message_link' => '',
+        'message_link' => 'Peržiurėkite šį puslapį, kad sužinotumėte daugiau.',
     ],
     'show' => [
         'age' => ':age metų',
