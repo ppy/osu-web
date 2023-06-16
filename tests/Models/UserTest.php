@@ -89,6 +89,21 @@ class UserTest extends TestCase
         $this->assertTrue($refreshToken->fresh()->revoked);
     }
 
+    /**
+     * @dataProvider dataProviderValidDiscordUsername
+     */
+    public function testValidDiscordUsername(string $username, bool $valid)
+    {
+        $user = User::factory()->make();
+        $user->user_discord = $username;
+
+        $this->assertSame($valid, $user->isValid());
+
+        if (!$valid) {
+            $this->assertArrayHasKey('user_discord', $user->validationErrors()->all());
+        }
+    }
+
     public function dataProviderForAttributeTwitter(): array
     {
         return [
@@ -97,6 +112,30 @@ class UserTest extends TestCase
             ['@', null],
             ['', null],
             [null, null],
+        ];
+    }
+
+    public function dataProviderValidDiscordUsername(): array
+    {
+        return [
+            ['username', true],
+            ['user_name', true],
+            ['user.name', true],
+            ['user2name', true],
+            ['u_sernam.e1337', true],
+            ['username#', false],
+            ['u', false],
+            ['morethan32characterinthisusername', false], // 33 characters
+
+            // old format
+            ['username#1337', true],
+            ['ユーザー名#1337', true],
+            ['username#1', false],
+            ['username#13bb', false],
+            ['username#abcd', false],
+            ['user@name#1337', false],
+            ['user#name#1337', false],
+            ['user:name#1337', false],
         ];
     }
 }
