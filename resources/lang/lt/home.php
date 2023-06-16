@@ -43,7 +43,7 @@ return [
             'label' => [
                 'forum' => 'ieškoti forumuose',
                 'forum_children' => 'įtraukti poforumius',
-                'include_deleted' => '',
+                'include_deleted' => 'įtraukti ištrintus įrašus',
                 'topic_id' => 'tema #',
                 'username' => 'autorius',
             ],
@@ -84,7 +84,7 @@ return [
         'macos-fallback' => 'macOS vartotojams',
         'mirror' => 'dubliavimas',
         'or' => 'arba',
-        'os_version_or_later' => '',
+        'os_version_or_later' => ':os_version arba vėlesnė',
         'other_os' => 'kitos platformos',
         'quick_start_guide' => 'pagalba pradedančiam',
         'tagline' => "gaukime <br> ko jums reikia pradžiai!",

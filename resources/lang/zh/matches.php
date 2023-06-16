@@ -12,7 +12,7 @@ return [
         'in_progress_spinner_label' => '游戏进行中',
         'loading-events' => '加载事件...',
         'winner' => ':team 胜利',
-        'winner_by' => '',
+        'winner_by' => ':winner，分差 :difference',
 
         'events' => [
             'player-left' => ':user 离开房间',

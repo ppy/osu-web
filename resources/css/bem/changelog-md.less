@@ -29,4 +29,33 @@
   &__list {
     padding-left: 20px;
   }
+
+  &__table {
+    overflow-x: auto;
+    margin-bottom: 20px;
+  }
+
+  &__table-data {
+    border-top: 1px solid hsl(var(--hsl-b3));
+    padding: 5px;
+    min-width: 30px;
+
+    &--center {
+      text-align: center;
+    }
+
+    &--header {
+      border-top: none;
+      border-bottom: 2px solid hsl(var(--hsl-b2));
+      font-weight: bold;
+    }
+
+    &--left {
+      text-align: left;
+    }
+
+    &--right {
+      text-align: right;
+    }
+  }
 }

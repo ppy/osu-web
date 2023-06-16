@@ -47,7 +47,7 @@ return [
             '_' => 'beatmap-diskussion-stimmen',
         ],
         'beatmapset_events_controller' => [
-            '_' => 'beatmap-verlauf',
+            '_' => 'Beatmap-Verlauf',
         ],
         'beatmapsets_controller' => [
             'discussion' => 'beatmap-diskussion',
@@ -89,7 +89,7 @@ return [
             '_' => 'Neuigkeiten',
         ],
         'notifications_controller' => [
-            '_' => 'benachrichtigungsverlauf',
+            '_' => 'Benachrichtigungsverlauf',
         ],
         'password_reset_controller' => [
             '_' => 'passwort zurücksetzen',

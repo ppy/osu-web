@@ -36,6 +36,7 @@ return [
         'artist' => 'ألبوم/الفنان',
         'chart' => 'تسليط الأضواء',
         'featured' => 'فنان متميز',
+        'loved' => '',
         'standard' => 'أساسي',
         'theme' => 'مظهر',
         'tournament' => '',

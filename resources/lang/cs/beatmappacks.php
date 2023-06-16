@@ -36,6 +36,7 @@ return [
         'artist' => 'Interpret/Album',
         'chart' => 'V záři reflektorů',
         'featured' => 'Vybraní umělci',
+        'loved' => '',
         'standard' => 'Klasické',
         'theme' => 'Tématické',
         'tournament' => 'Turnaj',

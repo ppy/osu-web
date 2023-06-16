@@ -4,9 +4,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'play_more' => 'Què et sembla jugar a l\'osu! en comptes d\'això?',
-    'require_login' => 'Inicieu la sessió per continuar.',
-    'require_verification' => 'Verifiqueu per a continuar.',
+    'play_more' => 'Què tal si en comptes d\'això juguem una mica d\'osu!?',
+    'require_login' => 'Si us plau, inicia sessió per continuar.',
+    'require_verification' => 'Si us plau, verifiqueu per continuar.',
     'restricted' => "No es pot fer mentre estigui restringit.",
     'silenced' => "No es pot fer mentre estigui silenciat.",
     'unauthorized' => 'Accés denegat.',
@@ -27,7 +27,7 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => 'Només el propietari del beatmap o el nominador/membre del grup NAT pot publicar notes de mapatge.',
+            'mapper_note_wrong_user' => 'Només el propietari del beatmap o el nominador/membre del grup NAT pot publicar notes del mapper.',
         ],
 
         'vote' => [
@@ -53,7 +53,7 @@ return [
     ],
 
     'beatmapset' => [
-        'discussion_locked' => '',
+        'discussion_locked' => 'La discussió d\'aquest beatmap està bloquejada.',
 
         'metadata' => [
             'nominated' => 'No podeu canviar les metadades d\'un beatmap nominat. Contacta amb un membre dels BN o NAT si creus que estan establerts incorrectament.',
@@ -76,7 +76,7 @@ return [
             'disabled' => 'Els comentaris estan desactivats',
         ],
         'update' => [
-            'deleted' => "No es pot editar la publicació suprimida.",
+            'deleted' => "No podeu editar una publicació eliminada.",
         ],
     ],
 
@@ -103,7 +103,7 @@ return [
             ],
 
             'edit' => [
-                'deleted' => 'No es pot editar la publicació eliminada.',
+                'deleted' => 'No podeu editar una publicació eliminada.',
                 'locked' => 'L\'edició de la publicació està bloquejada.',
                 'no_forum_access' => 'Cal accés al fòrum sol·licitat.',
                 'not_owner' => 'Només el creador pot suprimir la publicació.',

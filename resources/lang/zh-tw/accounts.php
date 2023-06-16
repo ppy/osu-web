@@ -20,6 +20,12 @@ return [
             'title' => '電子郵件',
         ],
 
+        'legacy_api' => [
+            'api' => '',
+            'irc' => '',
+            'title' => '',
+        ],
+
         'password' => [
             'current' => '目前密碼',
             'new' => '新密碼',

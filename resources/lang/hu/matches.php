@@ -12,7 +12,7 @@ return [
         'in_progress_spinner_label' => 'a meccs folyamatban',
         'loading-events' => 'Események betöltése...',
         'winner' => ':team nyer',
-        'winner_by' => '',
+        'winner_by' => ':winner :difference által',
 
         'events' => [
             'player-left' => ':user elhagyta a mérkőzést',

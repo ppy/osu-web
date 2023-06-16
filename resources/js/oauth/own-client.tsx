@@ -56,7 +56,7 @@ export class OwnClient extends React.Component<Props> {
             text={trans('common.buttons.edit')}
           />
           <BigButton
-            disabled={client.isRevoking || client.revoked}
+            disabled={client.revoked}
             icon={client.revoked ? 'fas fa-ban' : 'fas fa-trash'}
             isBusy={client.isRevoking}
             modifiers={['account-edit', 'danger', 'settings-oauth']}

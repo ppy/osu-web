@@ -3,12 +3,12 @@
 
 import { Comment } from 'models/comment';
 import * as React from 'react';
-import { classWithModifiers } from 'utils/css';
+import { classWithModifiers, Modifiers } from 'utils/css';
 import { transChoice } from 'utils/lang';
 
 interface Props {
   comments: Comment[];
-  modifiers: string[] | undefined;
+  modifiers?: Modifiers;
 }
 
 export default class DeletedCommentsCount extends React.Component<Props> {

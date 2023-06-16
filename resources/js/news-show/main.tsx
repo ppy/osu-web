@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import AdminMenu from 'components/admin-menu';
-import { Comments } from 'components/comments';
+import Comments from 'components/comments';
 import { CommentsManager } from 'components/comments-manager';
 import NewsHeader from 'components/news-header';
 import StringWithComponent from 'components/string-with-component';
