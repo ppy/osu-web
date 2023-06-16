@@ -8,18 +8,18 @@ return [
     'none' => '',
 
     'docs' => [
-        '_' => '',
-        'github' => '',
+        '_' => 'Dokumentacja jest dostępna na :github.',
+        'github' => 'GitHubie',
     ],
 
     'form' => [
-        'create' => '',
+        'create' => 'Utwórz klucz',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Ukryj klucz',
+        'show' => 'Pokaż klucz',
+        'delete' => 'Usuń',
     ],
 
     'warning' => [

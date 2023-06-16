@@ -4,27 +4,27 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'new' => '',
-    'none' => '',
+    'new' => 'Новы ключ старога API',
+    'none' => 'Няма ключа.',
 
     'docs' => [
-        '_' => '',
-        'github' => '',
+        '_' => 'Дакументацыя знаходзіцца на :github.',
+        'github' => 'GitHub',
     ],
 
     'form' => [
-        'create' => '',
+        'create' => 'Стварыць Ключ',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Схаваць Ключ',
+        'show' => 'Паказаць Ключ',
+        'delete' => 'Выдаліць',
     ],
 
     'warning' => [
-        'line1' => '',
-        'line2' => "",
-        'line3' => '',
+        'line1' => 'Не выдавайце гэта іншым.',
+        'line2' => "Гэта тое самае, што выдаць ваш пароль.",
+        'line3' => 'Ваш уліковы запіс можа быць узламаны.',
     ],
 ];

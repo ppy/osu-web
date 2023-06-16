@@ -6,7 +6,7 @@
 return [
     'index' => [
         'description' => 'Iepriekš sagatavotas bītmapju kolekcijas ar savstarpēji kopīgu tēmu.',
-        'empty' => '',
+        'empty' => 'Drīzumā!',
         'nav_title' => 'saraksts',
         'title' => 'Bītmapju Pakas',
 
@@ -35,11 +35,11 @@ return [
     'mode' => [
         'artist' => 'Mākslinieks/Albums',
         'chart' => 'Uzmanības Centrā',
-        'featured' => '',
-        'loved' => '',
+        'featured' => 'Attēlotais Mākslinieks',
+        'loved' => 'Project Loved',
         'standard' => 'Standarta',
         'theme' => 'Tēma',
-        'tournament' => '',
+        'tournament' => 'Turnīrs',
     ],
 
     'require_login' => [

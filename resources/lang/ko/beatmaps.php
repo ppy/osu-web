@@ -175,8 +175,8 @@ return [
     ],
 
     'nominations' => [
-        'already_nominated' => '',
-        'cannot_nominate' => '',
+        'already_nominated' => '이미 이 비트맵을 추천했습니다.',
+        'cannot_nominate' => '이 비트맵 게임 모드를 추천할 수 없습니다.',
         'delete' => '삭제',
         'delete_own_confirm' => '확실한가요? 비트맵을 제거하고 당신의 프로필로 돌아갑니다.',
         'delete_other_confirm' => '확실한가요? 비트맵을 제거하고 해당 유저의 프로필로 돌아갑니다.',

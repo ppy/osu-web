@@ -4,20 +4,20 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'confirm_new' => '',
-    'new' => '',
-    'none' => '',
+    'confirm_new' => 'Új IRC jelszó létrehozása?',
+    'new' => 'Új legacy IRC jelszó',
+    'none' => 'IRC jelszó nincs beállítva.',
 
     'form' => [
-        'server_host' => '',
-        'server_port' => '',
-        'token' => '',
-        'username' => '',
+        'server_host' => 'szerver',
+        'server_port' => 'port',
+        'token' => 'szerver jelszó',
+        'username' => 'felhasználónév',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Jelszó elrejtése',
+        'show' => 'Jelszó mutatása',
+        'delete' => 'Törlés',
     ],
 ];

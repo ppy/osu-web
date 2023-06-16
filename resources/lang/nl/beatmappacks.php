@@ -36,7 +36,7 @@ return [
         'artist' => 'Artiest/Album',
         'chart' => 'In de schijnwerpers',
         'featured' => 'Uitgelichte Artiest',
-        'loved' => '',
+        'loved' => 'Project Loved',
         'standard' => 'Standaard',
         'theme' => 'Thema',
         'tournament' => 'Toernooi',

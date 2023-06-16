@@ -4,27 +4,27 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'new' => '',
-    'none' => '',
+    'new' => 'Nieuwe Legacy API Sleutel',
+    'none' => 'Geen sleutel.',
 
     'docs' => [
-        '_' => '',
-        'github' => '',
+        '_' => 'Documentatie is beschikbaar op :github.',
+        'github' => 'GitHub',
     ],
 
     'form' => [
-        'create' => '',
+        'create' => 'Maak Sleutel',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Verberg Sleutel',
+        'show' => 'Toon Sleutel',
+        'delete' => 'Verwijder',
     ],
 
     'warning' => [
-        'line1' => '',
-        'line2' => "",
-        'line3' => '',
+        'line1' => 'Geef dit niet weg aan anderen.',
+        'line2' => "Het is gelijk aan het weggeven van je wachtwoord.",
+        'line3' => 'Je account kan worden gecompromitteerd.',
     ],
 ];

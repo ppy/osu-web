@@ -72,7 +72,7 @@ return [
         'cancel_not_allowed' => 'Diese Bestellung kann zu diesem Zeitpunkt nicht storniert werden.',
         'invoice' => 'Rechnung anzeigen',
         'no_orders' => 'Keine Bestellungen zum Anzeigen.',
-        'paid_on' => 'Bestellung aufgegeben :date',
+        'paid_on' => 'Bestellung :date aufgegeben',
         'resume' => 'Bezahlung fortsetzen',
         'shopify_expired' => 'Der Zahlungslink für diese Bestellung ist abgelaufen.',
 

@@ -113,9 +113,9 @@ return [
         'exists' => 'Apenas uma chave de API é fornecida por usuário no momento.',
 
         'attributes' => [
-            'api_key' => '',
-            'app_name' => '',
-            'app_url' => '',
+            'api_key' => 'chave de api',
+            'app_name' => 'nome da aplicação ',
+            'app_url' => 'url da aplicação ',
         ],
     ],
 
@@ -175,7 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Beatmaps ranqueados não podem ser reportados',
-        'not_in_channel' => '',
+        'not_in_channel' => 'Você não está nesse canal.',
         'reason_not_valid' => ':reason não é valido para este tipo de denúncia.',
         'self' => "Você não pode se denunciar!",
     ],

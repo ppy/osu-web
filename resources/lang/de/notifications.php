@@ -25,11 +25,11 @@ return [
 
     'filters' => [
         '_' => 'alle',
-        'user' => 'profil',
-        'beatmapset' => 'beatmaps',
+        'user' => 'Profil',
+        'beatmapset' => 'Beatmaps',
         'forum_topic' => 'Forum',
-        'news_post' => 'neuigkeiten',
-        'build' => 'versionen',
+        'news_post' => 'Neuigkeiten',
+        'build' => 'Versionen',
         'channel' => 'chat',
     ],
 

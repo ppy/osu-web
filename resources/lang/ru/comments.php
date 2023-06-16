@@ -11,7 +11,7 @@ return [
     'edited' => ':user отредактировал :timeago',
     'pinned' => 'закреплён',
     'empty' => 'Нет комментариев.',
-    'empty_other' => '',
+    'empty_other' => 'Больше комментариев нет.',
     'load_replies' => 'загрузить ответы',
     'replies_count' => ':count_delimited ответ|:count_delimited ответа|:count_delimited ответов',
     'title' => 'Комментарии',

@@ -113,9 +113,9 @@ return [
         'exists' => 'Op dit moment is er een maximum van één API key per gebruiker.',
 
         'attributes' => [
-            'api_key' => '',
-            'app_name' => '',
-            'app_url' => '',
+            'api_key' => 'api sleutel',
+            'app_name' => 'applicatie naam',
+            'app_url' => 'applicatie url',
         ],
     ],
 
@@ -175,7 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Ranked beatmaps kunnen niet worden gerapporteerd',
-        'not_in_channel' => '',
+        'not_in_channel' => 'Je zit niet in dit kanaal.',
         'reason_not_valid' => ':reason is niet geldig voor dit rapporttype.',
         'self' => "Je kunt jezelf niet rapporteren!",
     ],

@@ -113,9 +113,9 @@ return [
         'exists' => 'Une seule clé d\'API est fournie par utilisateur pour le moment.',
 
         'attributes' => [
-            'api_key' => '',
-            'app_name' => '',
-            'app_url' => '',
+            'api_key' => 'clé d\'api',
+            'app_name' => 'nom de l\'application',
+            'app_url' => 'url de l\'application',
         ],
     ],
 
@@ -175,7 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Les beatmaps classées ne peuvent pas être signalées',
-        'not_in_channel' => '',
+        'not_in_channel' => 'Vous n\'êtes pas dans ce canal.',
         'reason_not_valid' => ':reason n\'est pas valide pour ce type de signalement.',
         'self' => "Vous ne pouvez pas vous signaler vous-même !",
     ],

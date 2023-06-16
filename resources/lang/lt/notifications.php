@@ -14,13 +14,13 @@ return [
     'verifying' => 'Prašom patvirtinti sesiją, kad matyti pranešimus',
 
     'action_type' => [
-        '_' => '',
-        'beatmapset' => '',
-        'build' => '',
-        'channel' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'user' => '',
+        '_' => 'visi',
+        'beatmapset' => 'taktalapiai',
+        'build' => 'versijos',
+        'channel' => 'pokalbiai',
+        'forum_topic' => 'forumas',
+        'news_post' => 'naujienos',
+        'user' => 'profilis',
     ],
 
     'filters' => [
