@@ -34,84 +34,86 @@ class ScoreEsIndexTest extends TestCase
 
     public static function setUpBeforeClass(): void
     {
-        (new static())->refreshApplication();
-        static::$user = User::factory()->create(['osu_subscriber' => true]);
-        $otherUser = User::factory()->create(['country_acronym' => Country::factory()]);
-        static::$beatmap = Beatmap::factory()->qualified()->create();
+        static::withDbAccess(function () {
+            static::$user = User::factory()->create(['osu_subscriber' => true]);
+            $otherUser = User::factory()->create(['country_acronym' => Country::factory()]);
+            static::$beatmap = Beatmap::factory()->qualified()->create();
 
-        $scoreFactory = Score::factory()->state(['preserve' => true]);
-        $defaultData = ['build_id' => 1];
+            $scoreFactory = Score::factory()->state(['preserve' => true]);
+            $defaultData = ['build_id' => 1];
 
-        $mods = [
-            ['acronym' => 'DT', 'settings' => []],
-            ['acronym' => 'HD', 'settings' => []],
-        ];
-        $unrelatedMods = [
-            ['acronym' => 'NC', 'settings' => []],
-        ];
+            $mods = [
+                ['acronym' => 'DT', 'settings' => []],
+                ['acronym' => 'HD', 'settings' => []],
+            ];
+            $unrelatedMods = [
+                ['acronym' => 'NC', 'settings' => []],
+            ];
 
-        static::$scores = [
-            'otherUser' => $scoreFactory->withData($defaultData, [
-                'total_score' => 1150,
-                'mods' => $unrelatedMods,
-            ])->create([
-                'beatmap_id' => static::$beatmap,
-                'user_id' => $otherUser,
-            ]),
-            'otherUserMods' => $scoreFactory->withData($defaultData, [
-                'total_score' => 1140,
-                'mods' => $mods,
-            ])->create([
-                'beatmap_id' => static::$beatmap,
-                'user_id' => $otherUser,
-            ]),
-            'otherUser2' => $scoreFactory->withData($defaultData, [
-                'total_score' => 1150,
-                'mods' => $mods,
-            ])->create([
-                'beatmap_id' => static::$beatmap,
-                'user_id' => User::factory()->state(['country_acronym' => Country::factory()]),
-            ]),
-            'otherUser3SameCountry' => $scoreFactory->withData($defaultData, [
-                'total_score' => 1130,
-                'mods' => $unrelatedMods,
-            ])->create([
-                'beatmap_id' => static::$beatmap,
-                'user_id' => User::factory()->state(['country_acronym' => static::$user->country_acronym]),
-            ]),
-            'user' => $scoreFactory->withData($defaultData, ['total_score' => 1100])->create([
-                'beatmap_id' => static::$beatmap,
-                'user_id' => static::$user,
-            ]),
-            'userMods' => $scoreFactory->withData($defaultData, [
-                'total_score' => 1050,
-                'mods' => $mods,
-            ])->create([
-                'beatmap_id' => static::$beatmap,
-                'user_id' => static::$user,
-            ]),
-        ];
+            static::$scores = [
+                'otherUser' => $scoreFactory->withData($defaultData, [
+                    'total_score' => 1150,
+                    'mods' => $unrelatedMods,
+                ])->create([
+                    'beatmap_id' => static::$beatmap,
+                    'user_id' => $otherUser,
+                ]),
+                'otherUserMods' => $scoreFactory->withData($defaultData, [
+                    'total_score' => 1140,
+                    'mods' => $mods,
+                ])->create([
+                    'beatmap_id' => static::$beatmap,
+                    'user_id' => $otherUser,
+                ]),
+                'otherUser2' => $scoreFactory->withData($defaultData, [
+                    'total_score' => 1150,
+                    'mods' => $mods,
+                ])->create([
+                    'beatmap_id' => static::$beatmap,
+                    'user_id' => User::factory()->state(['country_acronym' => Country::factory()]),
+                ]),
+                'otherUser3SameCountry' => $scoreFactory->withData($defaultData, [
+                    'total_score' => 1130,
+                    'mods' => $unrelatedMods,
+                ])->create([
+                    'beatmap_id' => static::$beatmap,
+                    'user_id' => User::factory()->state(['country_acronym' => static::$user->country_acronym]),
+                ]),
+                'user' => $scoreFactory->withData($defaultData, ['total_score' => 1100])->create([
+                    'beatmap_id' => static::$beatmap,
+                    'user_id' => static::$user,
+                ]),
+                'userMods' => $scoreFactory->withData($defaultData, [
+                    'total_score' => 1050,
+                    'mods' => $mods,
+                ])->create([
+                    'beatmap_id' => static::$beatmap,
+                    'user_id' => static::$user,
+                ]),
+            ];
 
-        static::reindexScores();
+            static::reindexScores();
+        });
     }
 
     public static function tearDownAfterClass(): void
     {
         parent::tearDownAfterClass();
 
-        (new static())->refreshApplication();
-        Beatmap::truncate();
-        Beatmapset::truncate();
-        Country::truncate();
-        Genre::truncate();
-        Group::truncate();
-        Language::truncate();
-        Score::truncate();
-        User::truncate();
-        UserGroup::truncate();
-        UserGroupEvent::truncate();
-        UserRelation::truncate();
-        (new ScoreSearch())->deleteAll();
+        static::withDbAccess(function () {
+            Beatmap::truncate();
+            Beatmapset::truncate();
+            Country::truncate();
+            Genre::truncate();
+            Group::truncate();
+            Language::truncate();
+            Score::truncate();
+            User::truncate();
+            UserGroup::truncate();
+            UserGroupEvent::truncate();
+            UserRelation::truncate();
+            (new ScoreSearch())->deleteAll();
+        });
     }
 
     /**
