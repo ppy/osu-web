@@ -1331,6 +1331,7 @@ function fast_imagesize($url)
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_MAXREDIRS => 5,
+            CURLOPT_TIMEOUT => 10,
         ]);
         $data = curl_exec($curl);
 
