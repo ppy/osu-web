@@ -6,7 +6,7 @@
 return [
     'edit' => [
         'title_compact' => 'asetukset',
-        'username' => 'käyttäjätunnus',
+        'username' => 'käyttäjänimi',
 
         'avatar' => [
             'title' => 'Avatar',
@@ -21,9 +21,9 @@ return [
         ],
 
         'legacy_api' => [
-            'api' => '',
-            'irc' => '',
-            'title' => '',
+            'api' => 'rajapinta',
+            'irc' => 'irc',
+            'title' => 'Vanha rajapinta',
         ],
 
         'password' => [
@@ -69,7 +69,7 @@ return [
             'mail' => 'posti',
             'mapping' => 'beatmapin kartoittaja',
             'push' => 'push',
-            'user_achievement_unlock' => 'käyttäjämitali avattu',
+            'user_achievement_unlock' => 'mitali ansaittu',
         ],
     ],
 
@@ -80,7 +80,7 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => 'piilota varoitukset sopimattomattomasta sisällöstä beatmapeissa',
+        'beatmapset_show_nsfw' => 'piilota varoitukset sopimattomasta sisällöstä rytmikartoissa',
         'beatmapset_title_show_original' => 'näytä beatmap-metadata alkuperäisellä kielellä',
         'title' => 'Asetukset',
 

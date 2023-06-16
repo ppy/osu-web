@@ -110,12 +110,12 @@ return [
     ],
 
     'legacy_api_key' => [
-        'exists' => '',
+        'exists' => 'Şimdilik kullanıcı başına yalnızca bir adet API anahtarı verilir.',
 
         'attributes' => [
-            'api_key' => '',
-            'app_name' => '',
-            'app_url' => '',
+            'api_key' => 'api anahtarı',
+            'app_name' => 'uygulama adı',
+            'app_url' => 'uygulama url\'si',
         ],
     ],
 
@@ -175,7 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Dereceli beatmapler bildirilemez',
-        'not_in_channel' => '',
+        'not_in_channel' => 'Bu kanalda değilsiniz.',
         'reason_not_valid' => ':reason sebebi bu rapor türü için geçerli değil.',
         'self' => "Kendinizi raporlayamazsınız!",
     ],

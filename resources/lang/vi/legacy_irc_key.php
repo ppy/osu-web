@@ -4,20 +4,20 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'confirm_new' => '',
+    'confirm_new' => 'Thiết lập mật khẩu IRC mới?',
     'new' => '',
     'none' => '',
 
     'form' => [
-        'server_host' => '',
-        'server_port' => '',
-        'token' => '',
-        'username' => '',
+        'server_host' => 'server',
+        'server_port' => 'cổng',
+        'token' => 'mật khẩu máy chủ',
+        'username' => 'tên người dùng',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Ẩn Mật Khẩu',
+        'show' => 'Hiện Mật Khẩu',
+        'delete' => 'Xoá',
     ],
 ];

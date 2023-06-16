@@ -33,147 +33,151 @@ class BeatmapsControllerSoloScoresTest extends TestCase
 
     public static function setUpBeforeClass(): void
     {
-        (new static())->refreshApplication();
-        static::$user = User::factory()->create(['osu_subscriber' => true]);
-        static::$otherUser = User::factory()->create(['country_acronym' => Country::factory()]);
-        $friend = User::factory()->create(['country_acronym' => Country::factory()]);
-        static::$beatmap = Beatmap::factory()->qualified()->create();
+        static::withDbAccess(function () {
+            static::$user = User::factory()->create(['osu_subscriber' => true]);
+            static::$otherUser = User::factory()->create(['country_acronym' => Country::factory()]);
+            $friend = User::factory()->create(['country_acronym' => Country::factory()]);
+            static::$beatmap = Beatmap::factory()->qualified()->create();
 
-        $countryAcronym = static::$user->country_acronym;
+            $countryAcronym = static::$user->country_acronym;
 
-        static::$scores = [];
-        $scoreFactory = SoloScore::factory();
-        foreach (['solo' => 0, 'legacy' => null] as $type => $buildId) {
-            $defaultData = ['build_id' => $buildId];
+            static::$scores = [];
+            $scoreFactory = SoloScore::factory();
+            foreach (['solo' => 0, 'legacy' => null] as $type => $buildId) {
+                $defaultData = ['build_id' => $buildId];
 
-            static::$scores = array_merge(static::$scores, [
-                "{$type}:user" => $scoreFactory->withData($defaultData, ['total_score' => 1100])->create([
-                    'beatmap_id' => static::$beatmap,
-                    'preserve' => true,
-                    'user_id' => static::$user,
-                ]),
-                "{$type}:userMods" => $scoreFactory->withData($defaultData, [
-                    'total_score' => 1050,
-                    'mods' => static::defaultMods(['DT', 'HD']),
-                ])->create([
-                    'beatmap_id' => static::$beatmap,
-                    'preserve' => true,
-                    'user_id' => static::$user,
-                ]),
-                "{$type}:userModsNC" => $scoreFactory->withData($defaultData, [
-                    'total_score' => 1050,
-                    'mods' => static::defaultMods(['NC']),
-                ])->create([
-                    'beatmap_id' => static::$beatmap,
-                    'preserve' => true,
-                    'user_id' => static::$user,
-                ]),
-                "{$type}:otherUserModsNCPFHigherScore" => $scoreFactory->withData($defaultData, [
-                    'total_score' => 1010,
-                    'mods' => static::defaultMods(['NC', 'PF']),
-                ])->create([
-                    'beatmap_id' => static::$beatmap,
-                    'preserve' => true,
-                    'user_id' => static::$otherUser,
-                ]),
-                "{$type}:userModsLowerScore" => $scoreFactory->withData($defaultData, [
-                    'total_score' => 1000,
-                    'mods' => static::defaultMods(['DT', 'HD']),
-                ])->create([
-                    'beatmap_id' => static::$beatmap,
-                    'preserve' => true,
-                    'user_id' => static::$user,
-                ]),
-                "{$type}:friend" => $scoreFactory->withData($defaultData, ['total_score' => 1000])->create([
-                    'beatmap_id' => static::$beatmap,
-                    'preserve' => true,
-                    'user_id' => $friend,
-                ]),
-                // With preference mods
-                "{$type}:otherUser" => $scoreFactory->withData($defaultData, [
-                    'total_score' => 1000,
-                    'mods' => static::defaultMods(['PF']),
-                ])->create([
-                    'beatmap_id' => static::$beatmap,
-                    'preserve' => true,
-                    'user_id' => static::$otherUser,
-                ]),
-                "{$type}:otherUserMods" => $scoreFactory->withData($defaultData, [
-                    'total_score' => 1000,
-                    'mods' => static::defaultMods(['HD', 'PF', 'NC']),
-                ])->create([
-                    'beatmap_id' => static::$beatmap,
-                    'preserve' => true,
-                    'user_id' => static::$otherUser,
-                ]),
-                "{$type}:otherUserModsExtraNonPreferences" => $scoreFactory->withData($defaultData, [
-                    'total_score' => 1000,
-                    'mods' => static::defaultMods(['DT', 'HD', 'HR']),
-                ])->create([
-                    'beatmap_id' => static::$beatmap,
-                    'preserve' => true,
-                    'user_id' => static::$otherUser,
-                ]),
-                "{$type}:otherUserModsUnrelated" => $scoreFactory->withData($defaultData, [
-                    'total_score' => 1000,
-                    'mods' => static::defaultMods(['FL']),
-                ])->create([
-                    'beatmap_id' => static::$beatmap,
-                    'preserve' => true,
-                    'user_id' => static::$otherUser,
-                ]),
-                // Same total score but achieved later so it should come up after earlier score
-                "{$type}:otherUser2Later" => $scoreFactory->withData($defaultData, ['total_score' => 1000])->create([
-                    'beatmap_id' => static::$beatmap,
-                    'preserve' => true,
-                    'user_id' => User::factory()->state(['country_acronym' => Country::factory()]),
-                ]),
-                "{$type}:otherUser3SameCountry" => $scoreFactory->withData($defaultData, ['total_score' => 1000])->create([
-                    'beatmap_id' => static::$beatmap,
-                    'preserve' => true,
-                    'user_id' => User::factory()->state(['country_acronym' => $countryAcronym]),
-                ]),
-                // Non-preserved score should be filtered out
-                "{$type}:nonPreserved" => $scoreFactory->withData($defaultData)->create([
-                    'beatmap_id' => static::$beatmap,
-                    'preserve' => false,
-                    'user_id' => User::factory()->state(['country_acronym' => Country::factory()]),
-                ]),
-                // Unrelated score
-                "{$type}:unrelated" => $scoreFactory->withData($defaultData)->create([
-                    'user_id' => User::factory()->state(['country_acronym' => Country::factory()]),
-                ]),
+                static::$scores = array_merge(static::$scores, [
+                    "{$type}:user" => $scoreFactory->withData($defaultData, ['total_score' => 1100])->create([
+                        'beatmap_id' => static::$beatmap,
+                        'preserve' => true,
+                        'user_id' => static::$user,
+                    ]),
+                    "{$type}:userMods" => $scoreFactory->withData($defaultData, [
+                        'total_score' => 1050,
+                        'mods' => static::defaultMods(['DT', 'HD']),
+                    ])->create([
+                        'beatmap_id' => static::$beatmap,
+                        'preserve' => true,
+                        'user_id' => static::$user,
+                    ]),
+                    "{$type}:userModsNC" => $scoreFactory->withData($defaultData, [
+                        'total_score' => 1050,
+                        'mods' => static::defaultMods(['NC']),
+                    ])->create([
+                        'beatmap_id' => static::$beatmap,
+                        'preserve' => true,
+                        'user_id' => static::$user,
+                    ]),
+                    "{$type}:otherUserModsNCPFHigherScore" => $scoreFactory->withData($defaultData, [
+                        'total_score' => 1010,
+                        'mods' => static::defaultMods(['NC', 'PF']),
+                    ])->create([
+                        'beatmap_id' => static::$beatmap,
+                        'preserve' => true,
+                        'user_id' => static::$otherUser,
+                    ]),
+                    "{$type}:userModsLowerScore" => $scoreFactory->withData($defaultData, [
+                        'total_score' => 1000,
+                        'mods' => static::defaultMods(['DT', 'HD']),
+                    ])->create([
+                        'beatmap_id' => static::$beatmap,
+                        'preserve' => true,
+                        'user_id' => static::$user,
+                    ]),
+                    "{$type}:friend" => $scoreFactory->withData($defaultData, ['total_score' => 1000])->create([
+                        'beatmap_id' => static::$beatmap,
+                        'preserve' => true,
+                        'user_id' => $friend,
+                    ]),
+                    // With preference mods
+                    "{$type}:otherUser" => $scoreFactory->withData($defaultData, [
+                        'total_score' => 1000,
+                        'mods' => static::defaultMods(['PF']),
+                    ])->create([
+                        'beatmap_id' => static::$beatmap,
+                        'preserve' => true,
+                        'user_id' => static::$otherUser,
+                    ]),
+                    "{$type}:otherUserMods" => $scoreFactory->withData($defaultData, [
+                        'total_score' => 1000,
+                        'mods' => static::defaultMods(['HD', 'PF', 'NC']),
+                    ])->create([
+                        'beatmap_id' => static::$beatmap,
+                        'preserve' => true,
+                        'user_id' => static::$otherUser,
+                    ]),
+                    "{$type}:otherUserModsExtraNonPreferences" => $scoreFactory->withData($defaultData, [
+                        'total_score' => 1000,
+                        'mods' => static::defaultMods(['DT', 'HD', 'HR']),
+                    ])->create([
+                        'beatmap_id' => static::$beatmap,
+                        'preserve' => true,
+                        'user_id' => static::$otherUser,
+                    ]),
+                    "{$type}:otherUserModsUnrelated" => $scoreFactory->withData($defaultData, [
+                        'total_score' => 1000,
+                        'mods' => static::defaultMods(['FL']),
+                    ])->create([
+                        'beatmap_id' => static::$beatmap,
+                        'preserve' => true,
+                        'user_id' => static::$otherUser,
+                    ]),
+                    // Same total score but achieved later so it should come up after earlier score
+                    "{$type}:otherUser2Later" => $scoreFactory->withData($defaultData, ['total_score' => 1000])->create([
+                        'beatmap_id' => static::$beatmap,
+                        'preserve' => true,
+                        'user_id' => User::factory()->state(['country_acronym' => Country::factory()]),
+                    ]),
+                    "{$type}:otherUser3SameCountry" => $scoreFactory->withData($defaultData, ['total_score' => 1000])->create([
+                        'beatmap_id' => static::$beatmap,
+                        'preserve' => true,
+                        'user_id' => User::factory()->state(['country_acronym' => $countryAcronym]),
+                    ]),
+                    // Non-preserved score should be filtered out
+                    "{$type}:nonPreserved" => $scoreFactory->withData($defaultData)->create([
+                        'beatmap_id' => static::$beatmap,
+                        'preserve' => false,
+                        'user_id' => User::factory()->state(['country_acronym' => Country::factory()]),
+                    ]),
+                    // Unrelated score
+                    "{$type}:unrelated" => $scoreFactory->withData($defaultData)->create([
+                        'user_id' => User::factory()->state(['country_acronym' => Country::factory()]),
+                    ]),
+                ]);
+            }
+
+            UserRelation::create([
+                'friend' => true,
+                'user_id' => static::$user->getKey(),
+                'zebra_id' => $friend->getKey(),
             ]);
-        }
 
-        UserRelation::create([
-            'friend' => true,
-            'user_id' => static::$user->getKey(),
-            'zebra_id' => $friend->getKey(),
-        ]);
-
-        Artisan::call('es:index-scores:queue', [
-            '--all' => true,
-            '--no-interaction' => true,
-        ]);
-        (new ScoreSearch())->indexWait();
+            Artisan::call('es:index-scores:queue', [
+                '--all' => true,
+                '--no-interaction' => true,
+            ]);
+            (new ScoreSearch())->indexWait();
+        });
     }
 
     public static function tearDownAfterClass(): void
     {
-        (new static())->refreshApplication();
-        Beatmap::truncate();
-        Beatmapset::truncate();
-        Country::truncate();
-        Genre::truncate();
-        Group::truncate();
-        Language::truncate();
-        SoloScore::truncate();
-        User::truncate();
-        UserGroup::truncate();
-        UserGroupEvent::truncate();
-        UserRelation::truncate();
-        (new ScoreSearch())->deleteAll();
+        parent::tearDownAfterClass();
+
+        static::withDbAccess(function () {
+            Beatmap::truncate();
+            Beatmapset::truncate();
+            Country::truncate();
+            Genre::truncate();
+            Group::truncate();
+            Language::truncate();
+            SoloScore::truncate();
+            User::truncate();
+            UserGroup::truncate();
+            UserGroupEvent::truncate();
+            UserRelation::truncate();
+            (new ScoreSearch())->deleteAll();
+        });
     }
 
     private static function defaultMods(array $modNames): array

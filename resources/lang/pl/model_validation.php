@@ -113,16 +113,16 @@ return [
         'exists' => '',
 
         'attributes' => [
-            'api_key' => '',
-            'app_name' => '',
-            'app_url' => '',
+            'api_key' => 'klucz api',
+            'app_name' => 'nazwa aplikacji',
+            'app_url' => 'adres url aplikacji',
         ],
     ],
 
     'oauth' => [
         'client' => [
             'too_many' => 'Przekroczono maksymalną liczbę dozwolonych aplikacji OAuth.',
-            'url' => 'Wprowadź prawidłowy adres URL.',
+            'url' => 'Wprowadź prawidłowe adresy URL.',
 
             'attributes' => [
                 'name' => 'Nazwa aplikacji',

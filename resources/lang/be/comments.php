@@ -11,7 +11,7 @@ return [
     'edited' => ':user адрэагаваў :timeago',
     'pinned' => 'прычэплена',
     'empty' => 'Няма каментарыяў.',
-    'empty_other' => '',
+    'empty_other' => 'Больш каментароў няма.',
     'load_replies' => 'запампаваць адказы',
     'replies_count' => ':count_delimited адказ|:count_delimited адказы',
     'title' => 'Каментарыі',

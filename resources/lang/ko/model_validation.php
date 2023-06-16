@@ -113,9 +113,9 @@ return [
         'exists' => '현재는 유저당 오직 한 개의 API 키만 제공됩니다.',
 
         'attributes' => [
-            'api_key' => '',
-            'app_name' => '',
-            'app_url' => '',
+            'api_key' => 'api key',
+            'app_name' => '애플리케이션 이름',
+            'app_url' => '애플리케이션 URL',
         ],
     ],
 
@@ -175,7 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => '랭크된 비트맵은 신고할 수 없습니다.',
-        'not_in_channel' => '',
+        'not_in_channel' => '이 채널에 있지 않습니다.',
         'reason_not_valid' => ':reason 은(는) 이 신고 형식에 맞지 않습니다.',
         'self' => "자기 자신은 신고할 수 없습니다!",
     ],

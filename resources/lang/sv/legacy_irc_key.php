@@ -9,15 +9,15 @@ return [
     'none' => '',
 
     'form' => [
-        'server_host' => '',
-        'server_port' => '',
+        'server_host' => 'server',
+        'server_port' => 'port',
         'token' => '',
-        'username' => '',
+        'username' => 'användarnamn',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
+        'hide' => 'Dölj Lösenord',
+        'show' => 'Visa Lösenord',
         'delete' => '',
     ],
 ];

@@ -113,9 +113,9 @@ return [
         'exists' => 'На цю мить надається лише один ключ API.',
 
         'attributes' => [
-            'api_key' => '',
-            'app_name' => '',
-            'app_url' => '',
+            'api_key' => 'ключ api',
+            'app_name' => 'назва програми',
+            'app_url' => 'url-адреса програми',
         ],
     ],
 
@@ -175,7 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Рейтингові карти не можуть бути оскаржені ',
-        'not_in_channel' => '',
+        'not_in_channel' => 'Ви не в цьому каналі.',
         'reason_not_valid' => ':reason неправильна для даного типу звіту.',
         'self' => "Ви не можете поскаржитися на себе!",
     ],

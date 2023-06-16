@@ -12,7 +12,7 @@ return [
         'in_progress_spinner_label' => 'tekma v teku',
         'loading-events' => 'Nalaganje dogodkov...',
         'winner' => ':team je zmagovalec',
-        'winner_by' => '',
+        'winner_by' => ':winner za :difference',
 
         'events' => [
             'player-left' => ':user je zapustil sobo',
