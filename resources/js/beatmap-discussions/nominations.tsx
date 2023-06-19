@@ -370,6 +370,7 @@ export class Nominations extends React.PureComponent<Props> {
       <BigButton
         {...buttonProps}
         isBusy={this.xhr.discussionLock != null}
+        modifiers='warning'
         text={trans(`beatmaps.discussions.lock.button.${lockAction}`)}
       />
     );
