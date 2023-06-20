@@ -140,7 +140,7 @@ export class Main extends React.Component {
   private renderMarkAsReadButton() {
     return (
       <NotificationReadButton
-        isMarkingAsRead={this.type.isMarkingAsRead}
+        isMarkingAsRead={this.controller.isMarkingCurrentTypeAsRead}
         onMarkAsRead={this.handleMarkAsRead}
         text={trans('notifications.mark_read', { type: trans(`notifications.action_type.${this.type.name ?? '_'}`) })}
       />
