@@ -6,7 +6,9 @@
 return [
     'bold' => 'Îngroșat',
     'heading' => 'Antet',
+    'help' => 'Ajutor',
     'image' => 'Imagine',
+    'imagemap' => 'Harta Imagine',
     'italic' => 'Italic',
     'link' => 'Link',
     'list' => 'Listă',

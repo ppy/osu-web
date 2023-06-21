@@ -8,7 +8,7 @@ return [
 
     'beatmapset_activities' => [
         'title' => "ประวัติการมอดของ :user",
-        'title_compact' => 'การวิจารณ์บีทแมพ',
+        'title_compact' => 'การดัดแปลง',
 
         'discussions' => [
             'title_recent' => 'การสนทนาล่าสุด',
@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'บล็อกผู้ใช้งาน (:count)',
         'hide_profile' => 'ซ่อนโปรไฟล์',
         'hide_comment' => 'ซ่อน',
+        'forum_post_text' => 'โพสต์นี้ถูกซ่อนไว้',
         'not_blocked' => 'ผู้ใช้นี้ไม่ได้ถูกบล็อก',
         'show_profile' => 'แสดงโปรไฟล์',
         'show_comment' => 'แสดง',
@@ -54,16 +55,16 @@ return [
 
     'create' => [
         'form' => [
-            'password' => '',
-            'password_confirmation' => '',
-            'submit' => '',
-            'user_email' => '',
-            'user_email_confirmation' => '',
-            'username' => '',
+            'password' => 'รหัสผ่าน',
+            'password_confirmation' => 'ยืนยันรหัสผ่าน',
+            'submit' => 'สร้างบัญชี',
+            'user_email' => 'อีเมล',
+            'user_email_confirmation' => 'ยืนยันอีเมล',
+            'username' => 'ชื่อผู้ใช้',
 
             'tos_notice' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'โดยการสร้างบัญชีคุณได้ยอมรับ :link',
+                'link' => 'เงื่อนไขการให้บริการ',
             ],
         ],
     ],
@@ -118,7 +119,7 @@ return [
 
         'beta' => [
             'main' => 'การเข้าใช้แบบเบต้าจำกัดเฉพาะผู้ใช้ที่มีสิทธิพิเศษเท่านั้น',
-            'small' => '(osu!supporters จะได้เข้าเร็วๆนี้)',
+            'small' => '(จะได้รับ osu!ผู้สนับสนุน ในเร็วๆ นี้)',
         ],
     ],
 
@@ -142,7 +143,7 @@ return [
         'title' => 'รายงาน :username?',
 
         'actions' => [
-            'send' => 'ส่งการรายงาน',
+            'send' => 'ส่งรายงาน',
             'cancel' => 'ยกเลิก',
         ],
 
@@ -152,8 +153,8 @@ return [
             'insults' => 'ดูหมิ่น เหยียดหยามตนเอง / ผู้อื่น',
             'spam' => 'สแปม',
             'unwanted_content' => 'ส่งลิงก์ที่มีเนื้อหาที่ไม่เหมาะสม',
-            'nonsense' => 'เรื่องไร้สาระ',
-            'other' => 'อื่นๆ (ระบุ)',
+            'nonsense' => 'นอกเรื่อง',
+            'other' => 'อื่นๆ (พิมพ์ด้านล่าง)',
         ],
     ],
     'restricted_banner' => [
@@ -177,12 +178,12 @@ return [
         'title' => "โปรไฟล์ของ :username",
 
         'comments_count' => [
-            '_' => 'โพสต์ :link',
+            '_' => 'โพสต์แล้ว :link',
             'count' => ':count_delimited ความคิดเห็น|:count_delimited ความคิดเห็น',
         ],
         'cover' => [
-            'to_0' => '',
-            'to_1' => '',
+            'to_0' => 'ซ่อนปก',
+            'to_1' => 'แสดงปก',
         ],
         'edit' => [
             'cover' => [
@@ -198,7 +199,7 @@ return [
                     'unsupported_format' => 'ไม่รองรับไฟล์นามสกุลนี้',
 
                     'restriction_info' => [
-                        '_' => 'อัพโหลดได้สำหรับ :link เท่านั้น',
+                        '_' => 'อัพโหลดได้เฉพาะ :link เท่านั้น',
                         'link' => 'ผู้สนับสนุน osu!',
                     ],
                 ],
@@ -221,28 +222,28 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'โดย :artist',
-                'title' => 'บีทแมพ',
+                'title' => 'บีตแม็ป',
 
                 'favourite' => [
-                    'title' => 'บีทแมพที่ชื่นชอบ',
+                    'title' => 'บีตแม็ปรายการโปรด',
                 ],
                 'graveyard' => [
-                    'title' => 'สุสานบีทแมพ',
+                    'title' => 'สุสานบีตแม็ป',
                 ],
                 'guest' => [
-                    'title' => '',
+                    'title' => 'แขกผู้ที่มีส่วนร่วมบีตแม็ป',
                 ],
                 'loved' => [
-                    'title' => 'บีทแมพที่ Loved',
+                    'title' => 'บีตแม็ปที่ชื่นชอบ',
                 ],
                 'nominated' => [
-                    'title' => '',
+                    'title' => 'เสนอชื่อเข้าชิงอันดับบีตแม็ป',
                 ],
                 'pending' => [
-                    'title' => 'บีทแมพที่กำลังทำ',
+                    'title' => 'บีตแม็ปที่กำลังทำ',
                 ],
                 'ranked' => [
-                    'title' => 'บีทแมพที่จัดอันดับแล้ว',
+                    'title' => 'บีตแม็ปที่จัดอันดับแล้ว',
                 ],
             ],
             'discussions' => [
@@ -264,7 +265,7 @@ return [
                 ],
                 'most_played' => [
                     'count' => 'จำนวนครั้งที่เล่น',
-                    'title' => 'บีทแมพที่เล่นมากที่สุด',
+                    'title' => 'บีตแม็ปที่เล่นมากที่สุด',
                 ],
                 'recent_plays' => [
                     'accuracy' => 'ความแม่นยำ: :percentage',
@@ -314,13 +315,13 @@ return [
 
                     'forum_post' => [
                         'give' => 'ได้รับ :amount จาก :giver ให้ผู้โพสต์ :post',
-                        'reset' => 'Kudosu reset by :giver for the post :post',
-                        'revoke' => 'Denied kudosu by :giver for the post :post',
+                        'reset' => 'รีเซ็ต Kudosu โดย :giver สำหรับโพสต์ :post',
+                        'revoke' => 'ปฏิเสธ Kudosu โดย :giver สำหรับโพสต์ :post',
                     ],
                 ],
 
                 'total_info' => [
-                    '_' => 'ขึ้นอยู่กับการดูแลบีทแมพของเจ้าของบีทแมพ ดูรายละเอียดเพิ่มเติมที่นี่ :link',
+                    '_' => 'ขึ้นอยู่กับการดูแลบีตแม็ปของเจ้าของบีตแม็ป ดูรายละเอียดเพิ่มเติมที่นี่ :link',
                     'link' => 'หน้านี้',
                 ],
             ],
@@ -333,7 +334,7 @@ return [
                 'title' => 'เหรียญตรา',
             ],
             'playlists' => [
-                'title' => '',
+                'title' => 'เพลย์ลิสต์เกมส์',
             ],
             'posts' => [
                 'title' => 'โพสต์',
@@ -344,33 +345,33 @@ return [
                 'title' => 'ล่า​สุด',
             ],
             'realtime' => [
-                'title' => '',
+                'title' => 'เกมผู้เล่นหลายคน',
             ],
             'top_ranks' => [
                 'download_replay' => 'ดาวน์โหลดรีเพลย์',
-                'not_ranked' => 'บีทแมพแรงค์เท่านั้นที่ให้ pp',
-                'pp_weight' => 'weighted :percentage',
+                'not_ranked' => 'เฉพาะบีตแม็ปที่จัดอันดับแล้วเท่านั้นที่จะให้ pp',
+                'pp_weight' => 'น้ำหนัก :percentage',
                 'view_details' => 'ดูรายละเอียดเพิ่มเติม',
                 'title' => 'อันดับ',
 
                 'best' => [
-                    'title' => 'Performance ที่ดีที่สุด',
+                    'title' => 'ประสิทธิภาพที่ดีที่สุด',
                 ],
                 'first' => [
-                    'title' => 'First Place Ranks',
+                    'title' => 'อันดับที่หนึ่ง',
                 ],
                 'pin' => [
-                    'to_0' => '',
-                    'to_0_done' => '',
+                    'to_0' => 'เลิกปักหมุด',
+                    'to_0_done' => 'คะแนนที่ไม่ได้ปักหมุด',
                     'to_1' => 'ปักหมุด',
-                    'to_1_done' => '',
+                    'to_1_done' => 'คะแนนที่ปักหมุดไว้',
                 ],
                 'pinned' => [
                     'title' => 'คะแนนที่ปักหมุดไว้',
                 ],
             ],
             'votes' => [
-                'given' => 'จำนวน Votes ที่ได้ให้ (เมื่อสามเดือนที่แล้ว)',
+                'given' => 'ผลโหวตที่ให้ (เมื่อสามเดือนที่แล้ว)',
                 'received' => 'ผลโหวตที่ได้รับ (เมื่อสามเดือนที่แล้ว)',
                 'title' => 'โหวต',
                 'title_longer' => 'โหวตล่าสุด',
@@ -388,12 +389,12 @@ return [
                     'length' => 'ระยะเวลา',
                     'length_permanent' => 'ถาวร',
                     'description' => 'คำอธิบาย',
-                    'actor' => 'โดย {username}',
+                    'actor' => 'โดย :username',
 
                     'actions' => [
                         'restriction' => 'แบน',
                         'silence' => 'ถูกใบ้',
-                        'tournament_ban' => '',
+                        'tournament_ban' => 'แบนการแข่งขัน',
                         'note' => 'หมายเหตุ',
                     ],
                 ],
@@ -409,17 +410,17 @@ return [
             'website' => 'เว็บไซต์',
         ],
         'not_found' => [
-            'reason_1' => 'ผู้ใช้นั้นอาจเปลี่ยนชื่อ',
+            'reason_1' => 'พวกเขาอาจเปลี่ยนชื่อผู้ใช้',
             'reason_2' => 'ชื่อผู้ใช้อาจไม่สามารถเข้าถึงได้ชั่วคราวเนื่องจากปัญหาเกี่ยวกับความปลอดภัยหรือ abuse',
             'reason_3' => 'คุณอาจสะกดผิด!',
-            'reason_header' => 'สิ่งนี้เกิดจากเหตุผลบางข้อ:',
-            'title' => 'ไม่พบผู้ใช้นี้',
+            'reason_header' => 'มีสาเหตุบางประการที่เป็นไปได้สำหรับสิ่งนี้:',
+            'title' => 'ไม่พบชื่อผู้ใช้! ;_;',
         ],
         'page' => [
             'button' => 'แก้ไขโปรไฟล์',
-            'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
-            'edit_big' => 'Edit me!',
-            'placeholder' => 'Type page content here',
+            'description' => '<strong>ฉัน!</strong> เป็นพื้นที่ส่วนบุคคลที่สามารถปรับแต่งได้ในหน้าโปรไฟล์ของคุณ',
+            'edit_big' => 'แก้ไขฉันสิ!',
+            'placeholder' => 'พิมพ์เนื้อหาของหน้าที่นี่',
 
             'restriction_info' => [
                 '_' => 'คุณจำเป็นจะต้อง :link เพื่อที่จะปลดล็อกสิ่งนี้',
@@ -428,14 +429,14 @@ return [
         ],
         'post_count' => [
             '_' => 'การมีส่วนร่วม :link',
-            'count' => ':count ฟอรัมโพสต์|:count โฟรัมโพสต์',
+            'count' => ':count_delimited ฟอรัมโพสต์|:count_delimited ฟอรัมโพสต์',
         ],
         'rank' => [
             'country' => 'อันดับประเทศของ :mode',
             'country_simple' => 'อันดับในประเทศ',
             'global' => 'อันดับทั่วโลกของ :mode',
             'global_simple' => 'อันดับทั่วโลก',
-            'highest' => '',
+            'highest' => 'อันดับสูงสุด: :rank เมื่อ :date',
         ],
         'stats' => [
             'hit_accuracy' => 'ความแม่นยำเฉลี่ย',
@@ -447,14 +448,14 @@ return [
             'play_time' => 'เวลาการเล่นทั้งหมด',
             'ranked_score' => 'คะแนนแรงค์',
             'replays_watched_by_others' => 'ดูรีเพลย์โดยผู้อื่น',
-            'score_ranks' => 'Score Ranks',
-            'total_hits' => 'Total Hits',
+            'score_ranks' => 'อันดับคะแนน',
+            'total_hits' => 'Hit รวม',
             'total_score' => 'คะแนนรวมทั้งหมด',
             // modding stats
-            'graveyard_beatmapset_count' => 'สุสานบีทแมพ',
-            'loved_beatmapset_count' => 'บีทแมพที่ Loved',
+            'graveyard_beatmapset_count' => 'สุสานบีตแม็ป',
+            'loved_beatmapset_count' => 'บีตแม็ปที่ชื่นชอบ',
             'pending_beatmapset_count' => 'บีทเเมพที่กำลังทำ',
-            'ranked_beatmapset_count' => 'บีทแมพที่จัดอันดับแล้ว',
+            'ranked_beatmapset_count' => 'บีตแม็ปที่จัดอันดับแล้ว',
         ],
     ],
 
@@ -466,11 +467,11 @@ return [
     'status' => [
         'all' => 'ทั้งหมด',
         'online' => 'ออนไลน์',
-        'offline' => 'ออฟไลน์',
+        'offline' => 'หายตัว!',
     ],
     'store' => [
-        'from_client' => '',
-        'from_web' => '',
+        'from_client' => 'โปรดลงทะเบียนผ่านในเกมแทน!',
+        'from_web' => 'กรุณาลงทะเบียนโดยใช้เว็บไซต์ osu! ',
         'saved' => 'ผู้ใช้ถูกสร้างขึ้น',
     ],
     'verify' => [

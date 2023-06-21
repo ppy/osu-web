@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute não pode ser negativo.',
     'required' => ':attribute é necessário.',
     'too_long' => ':attribute limite máximo excedido - só pode ser até :limit caracteres.',
+    'url' => '',
     'wrong_confirmation' => 'A confirmação não corresponde.',
 
     'beatmapset_discussion' => [
@@ -108,6 +109,16 @@ return [
         ],
     ],
 
+    'legacy_api_key' => [
+        'exists' => '',
+
+        'attributes' => [
+            'api_key' => '',
+            'app_name' => '',
+            'app_url' => '',
+        ],
+    ],
+
     'oauth' => [
         'client' => [
             'too_many' => 'Excedeste o n.º máximo de aplicações OAuth autorizadas.',
@@ -164,6 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Os beatmaps classificados não podem ser denunciados',
+        'not_in_channel' => '',
         'reason_not_valid' => ':reason não é valida para este tipo de denúncia.',
         'self' => "Não te podes denunciar a ti mesmo!",
     ],

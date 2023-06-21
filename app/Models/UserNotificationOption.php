@@ -129,7 +129,7 @@ class UserNotificationOption extends Model
         return $this->isValid() && parent::save($options);
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'user_notification_option';
     }

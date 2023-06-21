@@ -91,7 +91,7 @@ class RankingController extends Controller
 
             $this->defaultViewVars['country'] = $this->country;
             if ($type === 'performance') {
-                $this->defaultViewVars['countries'] = json_collection($this->getCountries($mode), 'Country', ['display']);
+                $this->defaultViewVars['countries'] = json_collection($this->getCountries($mode), new SelectOptionTransformer());
             }
 
             return $next($request);

@@ -1,13 +1,27 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
+import StringWithComponent from 'components/string-with-component'
+import * as React from 'react'
+import { div, span, strong } from 'react-dom-factories'
+import { formatNumber } from 'utils/html'
+import { trans, transExists } from 'utils/lang'
 import { GameHeader } from './game-header'
 import { Score } from './score'
-import * as React from 'react'
-import { div, span } from 'react-dom-factories'
-import { formatNumber } from 'utils/html'
-import { trans } from 'utils/lang'
+
 el = React.createElement
+
+
+# Prevent partial translation for winner_by's :winner pattern.
+winnerTrans = () ->
+  locale =
+    if transExists('matches.match.winner_by')
+      null
+    else
+      fallbackLocale
+
+  trans('matches.match.winner', {}, locale)
+
 
 export class Game extends React.Component
   render: ->
@@ -50,8 +64,15 @@ export class Game extends React.Component
                 span className: 'mp-history-game__team-score-text mp-history-game__team-score-text--score', formatNumber(@props.teamScores[m])
 
           div className: 'mp-history-game__results',
-            span className: 'mp-history-game__results-text', trans 'matches.match.winner', team: trans "matches.match.teams.#{winningTeam}"
-            span className: 'mp-history-game__results-text mp-history-game__results-text--score', trans 'matches.match.difference', difference: formatNumber(difference)
+            span className: 'mp-history-game__results-text',
+              el StringWithComponent,
+                mappings:
+                  difference: formatNumber(difference)
+                  winner: strong null,
+                    el StringWithComponent,
+                      pattern: winnerTrans()
+                      mappings: team: trans "matches.match.teams.#{winningTeam}"
+                pattern: trans('matches.match.winner_by')
 
   deletedBeatmap:
     id: null

@@ -11,6 +11,7 @@ return [
     'edited' => 'редактирано :timeago от :user',
     'pinned' => 'закачено',
     'empty' => 'Все още няма коментари.',
+    'empty_other' => '',
     'load_replies' => 'зареждане на отговори',
     'replies_count' => ':count_delimited отговор|:count_delimited отговора',
     'title' => 'Коментари',

@@ -11,6 +11,7 @@ return [
     'edited' => 'επεξεργάστηκε :timeago απο :user',
     'pinned' => '',
     'empty' => 'Κανένα σχόλιο ακόμη.',
+    'empty_other' => '',
     'load_replies' => '',
     'replies_count' => '',
     'title' => 'Σχόλια',

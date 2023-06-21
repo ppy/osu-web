@@ -3,7 +3,7 @@
 
 import { Spinner } from 'components/spinner';
 import UserAvatar from 'components/user-avatar';
-import { UserLink } from 'components/user-link';
+import UserLink from 'components/user-link';
 import BeatmapJson from 'interfaces/beatmap-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import UserJson from 'interfaces/user-json';
@@ -20,8 +20,8 @@ import { trans } from 'utils/lang';
 type BeatmapsetWithDiscussionJson = BeatmapsetExtendedJson;
 
 interface XhrCollection {
-  updateOwner?: JQuery.jqXHR<BeatmapsetWithDiscussionJson>;
-  userLookup?: JQuery.jqXHR<UserJson>;
+  updateOwner: JQuery.jqXHR<BeatmapsetWithDiscussionJson>;
+  userLookup: JQuery.jqXHR<UserJson>;
 }
 
 interface Props {
@@ -40,7 +40,7 @@ export default class BeatmapOwnerEditor extends React.Component<Props> {
   private shouldFocusInputOnNextRender = false;
   @observable private updatingOwner = false;
   private userLookupTimeout?: number;
-  private xhr: XhrCollection = {};
+  private xhr: Partial<XhrCollection> = {};
 
   @computed
   private get inputUser() {

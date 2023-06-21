@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute tidak dapat bernilai negatif.',
     'required' => ':attribute diwajibkan.',
     'too_long' => ':attribute melebihi batas maksimum - hanya bisa hingga :limit karakter.',
+    'url' => 'Mohon masukkan URL yang valid.',
     'wrong_confirmation' => 'Konfirmasi tidak cocok.',
 
     'beatmapset_discussion' => [
@@ -39,8 +40,8 @@ return [
     ],
 
     'beatmapset_discussion_post' => [
-        'discussion_locked' => 'Topik diskusi ini terkunci.',
-        'first_post' => 'Tidak dapat menghapus postingan awal.',
+        'discussion_locked' => 'Topik diskusi ini dikunci.',
+        'first_post' => 'Postingan awal tidak dapat dihapus.',
 
         'attributes' => [
             'message' => 'Pesan',
@@ -90,7 +91,7 @@ return [
 
         'topic_poll' => [
             'duplicate_options' => 'Pilihan berganda tidak diizinkan.',
-            'grace_period_expired' => 'Tidak dapat menyunting sebuah jajak pendapat setelah melebihi :limit jam',
+            'grace_period_expired' => 'Jajak pendapat tidak lagi dapat disunting setelah :limit jam.',
             'hiding_results_forever' => 'Suara pada polling yang tidak memiliki batasan akhir waktu tidak dapat dirahasiakan.',
             'invalid_max_options' => 'Pilihan per pengguna tidak boleh melebihi jumlah opsi yang tersedia.',
             'minimum_one_selection' => 'Diperlukan setidaknya satu opsi per pengguna.',
@@ -108,10 +109,20 @@ return [
         ],
     ],
 
+    'legacy_api_key' => [
+        'exists' => 'Hanya satu kunci API yang disediakan per pengguna untuk saat ini.',
+
+        'attributes' => [
+            'api_key' => 'kunci api',
+            'app_name' => 'nama aplikasi',
+            'app_url' => 'url aplikasi',
+        ],
+    ],
+
     'oauth' => [
         'client' => [
             'too_many' => 'Jumlah aplikasi OAuth melebihi batas maksimal.',
-            'url' => 'Harap masukkan URL yang valid.',
+            'url' => 'Mohon masukkan URL yang valid.',
 
             'attributes' => [
                 'name' => 'Nama Aplikasi',
@@ -164,6 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Kamu tidak dapat melaporkan beatmap yang berstatus Ranked',
+        'not_in_channel' => 'Kamu tidak tergabung dalam kanal percakapan ini.',
         'reason_not_valid' => ':reason bukan merupakan alasan yang valid untuk jenis laporan ini.',
         'self' => "Kamu tidak dapat melaporkan diri sendiri!",
     ],

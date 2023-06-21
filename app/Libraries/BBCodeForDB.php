@@ -10,6 +10,15 @@ use App\Models\User;
 
 class BBCodeForDB
 {
+    const EXTRA_ESCAPES = [
+        '[' => '&#91;',
+        ']' => '&#93;',
+        '.' => '&#46;',
+        ':' => '&#58;',
+        "\n" => '&#10;',
+        '@' => '&#64;',
+    ];
+
     public $text;
     public $uid;
 
@@ -20,17 +29,15 @@ class BBCodeForDB
 
     public function extraEscapes($text)
     {
-        return strtr(
-            $text,
-            [
-                '[' => '&#91;',
-                ']' => '&#93;',
-                '.' => '&#46;',
-                ':' => '&#58;',
-                "\n" => '&#10;',
-                '@' => '&#64;',
-            ],
-        );
+        return strtr($text, static::EXTRA_ESCAPES);
+    }
+
+    public static function extraUnescape(string $text): string
+    {
+        static $mapping;
+        $mapping ??= array_flip(static::EXTRA_ESCAPES);
+
+        return strtr($text, $mapping);
     }
 
     public function __construct($text = '')
@@ -72,12 +79,13 @@ class BBCodeForDB
 
     public function parseBox($text)
     {
-        $text = preg_replace('#\[box=([^]]*?)\]#s', "[box=\\1:{$this->uid}]", $text);
-        $text = str_replace('[/box]', "[/box:{$this->uid}]", $text);
-        $text = str_replace('[spoilerbox]', "[spoilerbox:{$this->uid}]", $text);
-        $text = str_replace('[/spoilerbox]', "[/spoilerbox:{$this->uid}]", $text);
+        $text = preg_replace('#\[box=((\\\[\[\]]|[^][]|\[(\\\[\[\]]|[^][]|(?R))*\])*?)\]#s', "[box=\\1:{$this->uid}]", $text);
 
-        return $text;
+        return strtr($text, [
+            '[/box]' => "[/box:{$this->uid}]",
+            '[spoilerbox]' => "[spoilerbox:{$this->uid}]",
+            '[/spoilerbox]' => "[/spoilerbox:{$this->uid}]",
+        ]);
     }
 
     public function parseCode($text)
@@ -134,6 +142,19 @@ class BBCodeForDB
         return $text;
     }
 
+    public function parseImagemap($text)
+    {
+        return preg_replace_callback(
+            '#\[imagemap\](.+?)\[/imagemap\]#s',
+            function ($m) {
+                $escapedMap = $this->extraEscapes($m[1]);
+
+                return "[imagemap]{$escapedMap}[/imagemap]";
+            },
+            $text
+        );
+    }
+
     /**
      * Handles:
      * - Code (c)
@@ -159,29 +180,29 @@ class BBCodeForDB
 
         // internal url
         $text = preg_replace(
-            "#{$spaces[0]}({$internalUrl}/([^\s]+?)){$spaces[1]}#",
-            "\\1<!-- m --><a href='\\2' rel='nofollow'>\\3</a><!-- m -->\\4",
+            "#{$spaces[0]}({$internalUrl}/([^\s]+?))(?={$spaces[1]})#",
+            "\\1<!-- m --><a href='\\2' rel='nofollow'>\\3</a><!-- m -->",
             $text
         );
 
         // plain http/https/ftp
         $text = preg_replace(
-            "#{$spaces[0]}((?:https?|ftp)://[^\s]+?){$spaces[1]}#",
-            "\\1<!-- m --><a href='\\2' rel='nofollow'>\\2</a><!-- m -->\\3",
+            "#{$spaces[0]}((?:https?|ftp)://[^\s]+?)(?={$spaces[1]})#",
+            "\\1<!-- m --><a href='\\2' rel='nofollow'>\\2</a><!-- m -->",
             $text
         );
 
         // www
         $text = preg_replace(
-            "#{$spaces[0]}(www\.[^\s]+){$spaces[1]}#",
-            "\\1<!-- w --><a href='http://\\2' rel='nofollow'>\\2</a><!-- w -->\\3",
+            "#{$spaces[0]}(www\.[^\s]+)(?={$spaces[1]})#",
+            "\\1<!-- w --><a href='http://\\2' rel='nofollow'>\\2</a><!-- w -->",
             $text
         );
 
         // emails
         $text = preg_replace(
-            "#{$spaces[0]}([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z-]+){$spaces[1]}#",
-            "\\1<!-- e --><a href='mailto:\\2' rel='nofollow'>\\2</a><!-- e -->\\3",
+            "#{$spaces[0]}([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z-]+)(?={$spaces[1]})#",
+            "\\1<!-- e --><a href='mailto:\\2' rel='nofollow'>\\2</a><!-- e -->",
             $text
         );
 
@@ -369,6 +390,7 @@ class BBCodeForDB
         $text = htmlentities($this->text, ENT_QUOTES, 'UTF-8', true);
 
         $text = $this->unifyNewline($text);
+        $text = $this->parseImagemap($text);
         $text = $this->parseCode($text);
         $text = $this->parseNotice($text);
         $text = $this->parseBox($text);

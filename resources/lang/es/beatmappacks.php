@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => 'Colecciones preempaquetadas de mapas basadas en un tema común.',
+        'empty' => '¡Próximamente!',
         'nav_title' => 'listado',
         'title' => 'Paquetes de Mapas',
 
@@ -34,8 +35,11 @@ return [
     'mode' => [
         'artist' => 'Artista/Álbum',
         'chart' => 'Destacados',
+        'featured' => 'Artista destacado',
+        'loved' => 'Project Loved',
         'standard' => 'Standard',
         'theme' => 'Tema',
+        'tournament' => 'Torneo',
     ],
 
     'require_login' => [

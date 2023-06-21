@@ -175,6 +175,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'Bu beatmapi zaten aday gösterdiniz.',
+        'cannot_nominate' => 'Bu beatmap oyun modunu aday gösteremezsiniz.',
         'delete' => 'Sil',
         'delete_own_confirm' => 'Emin misin? Beatmap silinecek ve profiline yönlendirileceksin.',
         'delete_other_confirm' => 'Emin misin? Beatmap silinecek ve kullanıcının profiline yönlendirileceksin.',
@@ -199,6 +201,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Herhangi bir sorun bulunmazsa mapin tahminen dereceli olacağı vakit :date. :queue :position. sırada bulunuyor.',
+            'on' => ':date tarihinde',
             'queue' => 'Derecelendirme sırasında',
             'soon' => 'çok yakın',
         ],

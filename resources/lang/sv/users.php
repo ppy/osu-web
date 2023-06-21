@@ -37,6 +37,7 @@ return [
         'blocked_count' => 'blockerade användare (:count)',
         'hide_profile' => 'dölj profil',
         'hide_comment' => 'dölj',
+        'forum_post_text' => 'Denna kommentar är dold.',
         'not_blocked' => 'Användaren är inte blockerad.',
         'show_profile' => 'visa profil',
         'show_comment' => 'visa',
@@ -54,16 +55,16 @@ return [
 
     'create' => [
         'form' => [
-            'password' => '',
-            'password_confirmation' => '',
-            'submit' => '',
-            'user_email' => '',
-            'user_email_confirmation' => '',
-            'username' => '',
+            'password' => 'lösenord',
+            'password_confirmation' => 'lösenordsbekräftelse',
+            'submit' => 'skapa konto',
+            'user_email' => 'email',
+            'user_email_confirmation' => 'e-postbekräftelse',
+            'username' => 'användarnamn',
 
             'tos_notice' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'genom att skapa konto godkänner du :link',
+                'link' => 'användarvillkor',
             ],
         ],
     ],
@@ -158,7 +159,7 @@ return [
     'restricted_banner' => [
         'title' => 'Ditt konto har blivit begränsat!',
         'message' => 'När du är begränsad, kommer du inte kunna interagera med andra spelare och dina poäng kommer endast vara synliga för dig. Detta är oftast ett resultat av en automatiserad process och kommer troligen lyftas inom 24 timmar. Om du vill överklaga din begränsning, var vänlig <a href="mailto:accounts@ppy.sh">kontakta support</a>.',
-        'message_link' => '',
+        'message_link' => 'Kolla in den här sidan för att lära dig mer.',
     ],
     'show' => [
         'age' => ':age år gammal',
@@ -468,8 +469,8 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
-        'from_client' => '',
-        'from_web' => '',
+        'from_client' => 'vänligen registrera dig via spelklienten istället!',
+        'from_web' => 'var snäll och slutför registreringen med hjälp av osu! webbplatsen',
         'saved' => 'Användare skapad',
     ],
     'verify' => [

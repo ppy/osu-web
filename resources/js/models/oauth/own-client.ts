@@ -3,19 +3,25 @@
 
 import { OwnClientJson } from 'interfaces/own-client-json';
 import { route } from 'laroute';
-import { action, makeObservable, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { Client } from 'models/oauth/client';
 
 export class OwnClient extends Client {
   @observable isResetting = false;
   @observable isUpdating = false;
-  redirect: string;
   secret: string;
+
+  @observable private redirectOrig: string;
+
+  @computed
+  get redirect() {
+    return this.redirectOrig.replace(/,/g, '\r\n');
+  }
 
   constructor(client: OwnClientJson) {
     super(client);
 
-    this.redirect = client.redirect;
+    this.redirectOrig = client.redirect;
     this.secret = client.secret;
 
     makeObservable(this);
@@ -64,12 +70,12 @@ export class OwnClient extends Client {
     this.scopes = new Set(json.scopes);
     this.userId = json.user_id;
     this.user = json.user;
-    this.redirect = json.redirect;
+    this.redirectOrig = json.redirect;
     this.secret = json.secret;
   }
 
   @action
-  updateWith(partial: Partial<OwnClient>) {
+  updateWith(partial: Partial<OwnClientJson>) {
     const { redirect } = partial;
     this.isUpdating = true;
 

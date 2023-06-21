@@ -175,6 +175,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'Jūs jau esat nominējuši šo bītmapi.',
+        'cannot_nominate' => 'Jūs nevarat nominēt šīs bītmapes spēles režīmu.',
         'delete' => 'Izdzēst',
         'delete_own_confirm' => 'Vai esiet pārliecināts? Bītmape tiks izdzēsta un jūs tiksiet atgriezts atpakaļ uz savu profilu.',
         'delete_other_confirm' => 'Vai esiet pārliecināts? Bītmape tiks izdzēsta un jūs tiksiet nogādāts atpakaļ lietotāja profilā.',
@@ -199,6 +201,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Tiek paredzēts, ka šī mape tiks ierindota :date, ja netiks konstatētas problēmas. Tā ir #:position :queue.',
+            'on' => ':date',
             'queue' => 'ierindošanas rinda',
             'soon' => 'drīz',
         ],

@@ -175,6 +175,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'Ai nominalizat deja acest beatmap.',
+        'cannot_nominate' => 'Nu puteți nominaliza un beatmap pentru acest mod de joc.',
         'delete' => 'Șterge',
         'delete_own_confirm' => 'Ești sigur? Acest beatmap va fi șters, iar tu vei fi redirecționat înapoi la profilul tău.',
         'delete_other_confirm' => 'Ești sigur? Acest beatmap va fi șters, iar tu vei fi redirecționat înapoi la profilul utilizatorului.',
@@ -199,6 +201,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Acest beatmap este estimat a fi clasificat în data de :date dacă nu sunt găsite probleme. Este #:position în :queue.',
+            'on' => 'pe :date',
             'queue' => 'lista de așteptare pentru clasament',
             'soon' => 'în curând',
         ],

@@ -143,9 +143,10 @@ class AppServiceProvider extends ServiceProvider
             fn ($app) => $app->bound(Server::class) ? new SwooleTaskDispatcher() : new SequentialTaskDispatcher()
         );
 
-        if ($this->app->environment('testing')) {
+        $env = $this->app->environment();
+        if ($env === 'testing' || $env === 'dusk.local') {
             // This is needed for testing with Dusk.
-            $this->app->register('\App\Providers\AdditionalDuskServiceProvider');
+            $this->app->register(AdditionalDuskServiceProvider::class);
 
             // This is for testing after commit broadcastable events.
             $this->app->singleton(BroadcastsPendingForTests::class, fn () => new BroadcastsPendingForTests());

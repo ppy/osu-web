@@ -61,8 +61,8 @@ return [
         'discussion' => 'Diskusia',
 
         'deleted_banner' => [
-            'title' => '',
-            'message' => '',
+            'title' => 'Táto beatmapa bola odstránená. ',
+            'message' => '(toto môžu vidieť len moderátori)',
         ],
 
         'details' => [

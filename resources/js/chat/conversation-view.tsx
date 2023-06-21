@@ -6,7 +6,7 @@ import { Spinner } from 'components/spinner';
 import StringWithComponent from 'components/string-with-component';
 import UserAvatar from 'components/user-avatar';
 import UserCardBrick from 'components/user-card-brick';
-import { UserLink } from 'components/user-link';
+import UserLink from 'components/user-link';
 import { each, isEmpty, last, throttle } from 'lodash';
 import { action, computed, makeObservable, reaction } from 'mobx';
 import { disposeOnUnmount, observer } from 'mobx-react';

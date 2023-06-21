@@ -3,26 +3,32 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+namespace Database\Factories\LegacyMatch;
+
 use App\Models\LegacyMatch\LegacyMatch;
+use Carbon\Carbon;
+use Database\Factories\Factory;
 
-$factory->define(LegacyMatch::class, function (Faker\Generator $faker) {
-    return [
-        'name' => function () use ($faker) {
-            return $faker->sentence();
-        },
-        'start_time' => Carbon\Carbon::now(),
-        'private' => 0,
-    ];
-});
+class LegacyMatchFactory extends Factory
+{
+    protected $model = LegacyMatch::class;
 
-$factory->state(LegacyMatch::class, 'private', function (Faker\Generator $faker) {
-    return [
-        'private' => 1,
-    ];
-});
+    public function definition(): array
+    {
+        return [
+            'name' => fn() => $this->faker->sentence(),
+            'private' => 0,
+            'start_time' => fn() => Carbon::now(),
+        ];
+    }
 
-$factory->state(LegacyMatch::class, 'tourney', function (Faker\Generator $faker) {
-    return [
-        'keep_forever' => 1,
-    ];
-});
+    public function private(): static
+    {
+        return $this->state(['private' => 1]);
+    }
+
+    public function tourney(): static
+    {
+        return $this->state(['keep_forever' => 1]);
+    }
+}

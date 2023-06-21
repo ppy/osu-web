@@ -7,7 +7,6 @@ import { urlPresence } from './css';
 
 const byteSuffixes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 const kilo = 1000;
-const numberSuffixes = ['', 'k', 'm', 'b', 't'];
 
 export function bottomPage() {
   return bottomPageDistance() === 0;
@@ -85,25 +84,17 @@ export function formatNumber(num: number, precision?: number, options?: Intl.Num
   return num.toLocaleString(locale ?? window.currentLocale, options);
 }
 
-export function formatNumberSuffixed(num?: number, precision?: number, options?: Intl.NumberFormatOptions) {
-  if (num == null) return;
+const defaultSuffixedNumberOptions = {
+  maximumFractionDigits: 1,
+  minimumFractionDigits: 0,
+  notation: 'compact',
+} as const;
+const defaultSuffixedNumberFormatter = new Intl.NumberFormat(window.currentLocale, defaultSuffixedNumberOptions);
 
-  const format = (n: number) => {
-    options ??= {};
-
-    if (precision != null) {
-      options.minimumFractionDigits = precision;
-      options.maximumFractionDigits = precision;
-    }
-
-    return n.toLocaleString('en', options);
-  };
-
-  if (num < kilo) return format(num);
-
-  const i = Math.min(numberSuffixes.length - 1, Math.floor(Math.log(num) / Math.log(kilo)));
-
-  return `${format(num / Math.pow(kilo, i))}${numberSuffixes[i]}`;
+export function formatNumberSuffixed(num?: number) {
+  return num == null
+    ? undefined
+    : defaultSuffixedNumberFormatter.format(num);
 }
 
 export function htmlElementOrNull(thing: unknown) {

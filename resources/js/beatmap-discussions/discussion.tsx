@@ -31,6 +31,7 @@ interface PropsBase {
   currentBeatmap: BeatmapExtendedJson | null;
   isTimelineVisible: boolean;
   parentDiscussion?: BeatmapsetDiscussionJson | null;
+  readonly: boolean;
   readPostIds?: Set<number>;
   showDeleted: boolean;
   users: Partial<Record<number | string, UserJson>>;
@@ -66,6 +67,7 @@ export class Discussion extends React.Component<Props> {
   static contextType = DiscussionsStateContext;
   static defaultProps = {
     preview: false,
+    readonly: false,
   };
 
   declare context: React.ContextType<typeof DiscussionsStateContext>;
@@ -227,6 +229,7 @@ export class Discussion extends React.Component<Props> {
         discussion={this.props.discussion}
         post={post}
         read={this.isRead(post)}
+        readonly={this.props.readonly}
         resolvedSystemPostId={this.resolvedSystemPostId}
         type={type}
         user={user}

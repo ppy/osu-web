@@ -6,6 +6,7 @@
 return [
     'index' => [
         'description' => 'مجموعه بیتمپ های از پیش بسته بندی شده در مورد یک سبک/ژانر محبوب.',
+        'empty' => '',
         'nav_title' => 'فهرست',
         'title' => 'بسته بیت مپ ها',
 
@@ -34,8 +35,11 @@ return [
     'mode' => [
         'artist' => 'آلبوم/هنرمند',
         'chart' => 'برجسته ها',
+        'featured' => '',
+        'loved' => '',
         'standard' => 'استاندارد',
         'theme' => 'تم',
+        'tournament' => '',
     ],
 
     'require_login' => [

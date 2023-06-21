@@ -13,6 +13,16 @@ return [
     'see_channel' => 'menjen a csevegéshez',
     'verifying' => 'Az értesítések megtekintéséhez hitelesítse a munkamenetet',
 
+    'action_type' => [
+        '_' => 'összes',
+        'beatmapset' => 'beatmapek',
+        'build' => 'verziók',
+        'channel' => 'csevegés',
+        'forum_topic' => 'fórum',
+        'news_post' => 'újdonságok',
+        'user' => 'profil',
+    ],
+
     'filters' => [
         '_' => 'összes',
         'user' => 'profil',

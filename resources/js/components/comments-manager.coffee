@@ -91,14 +91,16 @@ export class CommentsManager extends React.PureComponent
 
     return if uiState.comments.loadingFollow
 
-    uiState.comments.loadingFollow = true
+    runInAction ->
+      uiState.comments.loadingFollow = !uiState.comments.userFollow
 
     $.ajax route('follows.store'),
       data: params
       dataType: 'json'
       method: if uiState.comments.userFollow then 'DELETE' else 'POST'
     .always =>
-      uiState.comments.loadingFollow = false
+      runInAction ->
+        uiState.comments.loadingFollow = null
     .done =>
       uiState.comments.userFollow = !uiState.comments.userFollow
     .fail (xhr, status) =>

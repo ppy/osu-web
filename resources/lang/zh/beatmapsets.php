@@ -5,8 +5,8 @@
 
 return [
     'availability' => [
-        'disabled' => '谱面无法下载。',
-        'parts-removed' => '应歌曲作者或第三方版权持有者的要求，这张谱面已无法下载。',
+        'disabled' => '该谱面现在无法下载。',
+        'parts-removed' => '应歌曲作者或第三方版权持有者的要求，已移除这张谱面的部分内容。',
         'more-info' => '点击这里查看更多信息。',
         'rule_violation' => '已在审核后移除了谱面中不适合于 osu! 展示的内容。',
     ],
@@ -61,8 +61,8 @@ return [
         'discussion' => '讨论',
 
         'deleted_banner' => [
-            'title' => '',
-            'message' => '',
+            'title' => '此谱面已删除。',
+            'message' => '（仅管理员可见）',
         ],
 
         'details' => [

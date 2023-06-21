@@ -7,13 +7,14 @@ declare(strict_types=1);
 
 namespace App\Transformers;
 
+use App\Models\Country;
 use App\Models\Multiplayer\Room;
 use App\Models\Season;
 use App\Models\Spotlight;
 
 class SelectOptionTransformer extends TransformerAbstract
 {
-    public function transform(Room|Season|Spotlight $item): array
+    public function transform(Country|Room|Season|Spotlight $item): array
     {
         return [
             'id' => $item->getKey(),

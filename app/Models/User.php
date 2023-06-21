@@ -25,8 +25,6 @@ use Cache;
 use Carbon\Carbon;
 use DB;
 use Ds\Set;
-use Egulias\EmailValidator\EmailValidator;
-use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
 use Exception;
 use Hash;
 use Illuminate\Auth\Authenticatable;
@@ -35,6 +33,7 @@ use Illuminate\Contracts\Translation\HasLocalePreference;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\QueryException;
 use Laravel\Passport\HasApiTokens;
 use League\OAuth2\Server\Exception\OAuthServerException;
@@ -42,7 +41,7 @@ use Request;
 
 /**
  * @property-read Collection<UserAccountHistory> $accountHistories
- * @property-read ApiKey|null $apiKey
+ * @property-read Collection<ApiKey> $apiKeys
  * @property-read Collection<UserBadge> $badges
  * @property-read Collection<BeatmapDiscussionVote> $beatmapDiscussionVotes
  * @property-read Collection<BeatmapDiscussion> $beatmapDiscussions
@@ -730,12 +729,12 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function setUserTwitterAttribute($value)
     {
-        $this->attributes['user_twitter'] = ltrim($value, '@');
+        $this->attributes['user_twitter'] = trim(ltrim($value, '@'));
     }
 
     public function setUserDiscordAttribute($value)
     {
-        $this->attributes['user_jabber'] = $value;
+        $this->attributes['user_jabber'] = trim($value);
     }
 
     public function setUserColourAttribute($value)
@@ -855,7 +854,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
             // relations
             'accountHistories',
-            'apiKey',
+            'apiKeys',
             'badges',
             'beatmapDiscussionVotes',
             'beatmapDiscussions',
@@ -878,6 +877,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             'friends',
             'githubUsers',
             'givenKudosu',
+            'legacyIrcKey',
             'monthlyPlaycounts',
             'notificationOptions',
             'oauthClients',
@@ -1162,6 +1162,11 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->hasMany(GithubUser::class);
     }
 
+    public function legacyIrcKey(): HasOne
+    {
+        return $this->hasOne(LegacyIrcKey::class);
+    }
+
     public function monthlyPlaycounts()
     {
         return $this->hasMany(UserMonthlyPlaycount::class);
@@ -1253,9 +1258,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return $this->hasMany(BeatmapPlaycount::class);
     }
 
-    public function apiKey()
+    public function apiKeys()
     {
-        return $this->hasOne(ApiKey::class);
+        return $this->hasMany(ApiKey::class);
     }
 
     public function profileBanners()
@@ -1766,7 +1771,10 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
     public function resetSessions(): void
     {
         SessionStore::destroy($this->getKey());
-        $this->tokens()->with('refreshToken')->get()->each->revokeRecursive();
+        $this
+            ->tokens()
+            ->with('refreshToken')
+            ->chunkById(1000, fn ($tokens) => $tokens->each->revokeRecursive());
     }
 
     public function title(): ?string
@@ -1990,6 +1998,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         $this->currentPassword = $value;
     }
 
+    /**
+     * Enables email presence and confirmation field equality check.
+     */
     public function validateEmailConfirmation()
     {
         $this->validateEmailConfirmation = true;
@@ -2236,6 +2247,10 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         }
 
         if ($this->validateEmailConfirmation) {
+            if ($this->user_email === null) {
+                $this->validationErrors()->add('user_email', '.required');
+            }
+
             if ($this->user_email !== $this->emailConfirmation) {
                 $this->validationErrors()->add('user_email_confirmation', '.wrong_email_confirmation');
             }
@@ -2261,9 +2276,9 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         // user_discord is an accessor for user_jabber
         if ($this->isDirty('user_jabber') && present($this->user_discord)) {
             // This is a basic check and not 100% compliant to Discord's spec, only validates that input:
-            // - is a 2-32 char username (excluding chars @#:)
-            // - ends with a # and 4-digit discriminator
-            if (!preg_match('/^[^@#:]{2,32}#\d{4}$/i', $this->user_discord)) {
+            // - is a 2-32 char username (excluding chars @#:) and 4-digit discriminator for old-style usernames; or,
+            // - 2-32 char alphanumeric + period username for new-style usernames; consecutive periods are not validated.
+            if (!preg_match('/^([^@#:]{2,32}#\d{4}|[\w.]{2,32})$/i', $this->user_discord)) {
                 $this->validationErrors()->add('user_discord', '.invalid_discord');
             }
         }
@@ -2275,14 +2290,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
             }
         }
 
-        foreach (self::MAX_FIELD_LENGTHS as $field => $limit) {
-            if ($this->isDirty($field)) {
-                $val = $this->$field;
-                if ($val && mb_strlen($val) > $limit) {
-                    $this->validationErrors()->add($field, '.too_long', ['limit' => $limit]);
-                }
-            }
-        }
+        $this->validateDbFieldLengths();
 
         if ($this->isDirty('group_id') && app('groups')->byId($this->group_id) === null) {
             $this->validationErrors()->add('group_id', 'invalid');
@@ -2293,8 +2301,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function isValidEmail()
     {
-        $emailValidator = new EmailValidator();
-        if (!$emailValidator->isValid($this->user_email, new NoRFCWarningsValidation())) {
+        if (!is_valid_email_format($this->user_email)) {
             $this->validationErrors()->add('user_email', '.invalid_email');
 
             // no point validating further if address isn't valid.
@@ -2329,7 +2336,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         return route('users.show', ['user' => $this->getKey()]);
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'user';
     }

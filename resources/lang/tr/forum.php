@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => 'Forumlar',
         'latest_post' => 'Son Gönderi',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => 'Gönderiyi geri yükle?',
         'edited' => 'En son :user tarafından :when, toplamda :count_delimited defa düzenlendi.|En son :user tarafından :when, toplamda :count_delimited defa düzenlendi.',
         'posted_at' => ':when gönderildi',
-        'posted_by' => ':username tarafından gönderildi',
+        'posted_by_in' => ':forum\'da :username tarafından yazılmıştır',
 
         'actions' => [
             'destroy' => 'Gönderiyi sil',

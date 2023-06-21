@@ -2,6 +2,7 @@
 # See the LICENCE file in the repository root for full licence text.
 
 import TrackPreview from 'components/track-preview'
+import UserLink from 'components/user-link'
 import { route } from 'laroute'
 import * as React from 'react'
 import { a,i,div,span } from 'react-dom-factories'
@@ -61,13 +62,11 @@ export class Entry extends React.Component
         div className: 'contest-voting-list__title contest-voting-list__title--show-votes',
           div className: 'contest-voting-list__votes-bar', style: { width: "#{relativeVotePercentage}%" }
           div className: 'u-relative u-ellipsis-overflow', entry_title
-          a
-            className: 'contest-voting-list__entrant js-usercard',
-            'data-user-id': @props.entry.results.user_id,
-            href: route('users.show', user: @props.entry.results.user_id),
-              @props.entry.results.username
+          @renderUserLink()
       else
-        div className: 'contest-voting-list__title u-ellipsis-overflow', entry_title
+        div className: 'contest-voting-list__title',
+          div className: 'u-ellipsis-overflow', entry_title
+          @renderUserLink()
 
       div className: "contest__voting-star#{if @props.contest.show_votes then ' contest__voting-star--dark-bg' else ''}",
         el Voter, key: @props.entry.id, entry: @props.entry, waitingForResponse: @props.waitingForResponse, selected: @props.selected, contest: @props.contest
@@ -81,3 +80,11 @@ export class Entry extends React.Component
             transChoice 'contest.vote.count', @props.entry.results.votes
             if Number.isFinite usersVotedPercentage
               " (#{formatNumber(usersVotedPercentage)}%)"
+
+
+  renderUserLink: ->
+    return null unless @props.entry.user?.id?
+
+    el UserLink,
+      user: @props.entry.user
+      className: 'contest-voting-list__entrant'

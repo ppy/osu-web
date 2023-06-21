@@ -2,9 +2,54 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-@extends("rankings.index")
+@extends('rankings.index')
 
-@section("scores")
+@php
+    $variants = App\Models\Beatmap::VARIANTS[$mode] ?? null;
+
+    if ($variants !== null) {
+        array_unshift($variants, 'all');
+    }
+@endphp
+
+@section('ranking-header')
+    <div class="osu-page osu-page--ranking-info">
+        <div class="grid-items grid-items--ranking-filter">
+            @include('rankings._country_filter')
+
+            @include('rankings._user_filter')
+
+            @if ($variants !== null)
+                <div class="js-react--ranking-variant-filter u-contents">
+                    <div class="ranking-filter">
+                        <div class="ranking-filter__title">
+                            {{ osu_trans('rankings.filter.variant.title') }}
+                        </div>
+                        <div class="sort">
+                            <div class="sort__items">
+                                @foreach ($variants as $v)
+                                    <button class="sort__item sort__item--button">
+                                        {{ osu_trans("beatmaps.variant.{$mode}.{$v}") }}
+                                    </button>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script id="json-variant-filter" type="application/json">
+                    {!! json_encode([
+                        'current' => $variant,
+                        'current_ruleset' => $mode,
+                        'items' => $variants,
+                    ]) !!}
+                </script>
+            @endif
+        </div>
+    </div>
+@endsection
+
+@section('scores')
     <table class="ranking-page-table">
         <thead>
             <tr>

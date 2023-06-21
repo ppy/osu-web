@@ -12,8 +12,9 @@ use Sentry\State\Scope;
 class ContestEntryTransformer extends TransformerAbstract
 {
     protected array $availableIncludes = [
-        'results',
         'artMeta',
+        'results',
+        'user',
     ];
 
     public function transform(ContestEntry $entry)
@@ -35,9 +36,15 @@ class ContestEntryTransformer extends TransformerAbstract
     {
         return $this->primitive([
             'actual_name' => $entry->name,
-            'user_id' => $entry->user_id,
-            'username' => ($entry->user ?? (new DeletedUser()))->username,
             'votes' => (int) $entry->votes_count,
+        ]);
+    }
+
+    public function includeUser(ContestEntry $entry)
+    {
+        return $this->primitive([
+            'id' => $entry->user_id,
+            'username' => ($entry->user ?? (new DeletedUser()))->username,
         ]);
     }
 

@@ -34,6 +34,7 @@ return [
         'qualify' => 'Šī bītmape ir sasniegusi nepieciešamo nomināciju skaitu un ir kvalificēta.',
         'rank' => 'Pieņemts.',
         'remove_from_loved' => 'Noņēma no Loved lietotājs :user. (:text)',
+        'tags_edit' => 'Tagi mainīti no ":old" uz ":new".',
 
         'nsfw_toggle' => [
             'to_0' => 'Nepiemērota satura atzīme noņemta',

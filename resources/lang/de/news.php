@@ -13,7 +13,7 @@ return [
         ],
 
         'title' => [
-            '_' => 'Neuigkeiten :info',
+            '_' => 'Neuigkeiten',
             'info' => 'startseite',
         ],
     ],
@@ -27,7 +27,7 @@ return [
         ],
 
         'title' => [
-            '_' => 'Neuigkeiten :info',
+            '_' => 'Neuigkeiten',
             'info' => 'Beitrag',
         ],
     ],

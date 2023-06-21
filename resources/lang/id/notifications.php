@@ -11,7 +11,17 @@ return [
     'none' => 'Tidak ada notifikasi',
     'see_all' => 'Lihat riwayat notifikasi',
     'see_channel' => 'Buka jendela chat',
-    'verifying' => 'Harap verifikasi sesi untuk melihat notifikasi',
+    'verifying' => 'Silakan verifikasi sesi untuk melihat notifikasi',
+
+    'action_type' => [
+        '_' => 'semua',
+        'beatmapset' => 'beatmap',
+        'build' => 'versi rilis',
+        'channel' => 'percakapan',
+        'forum_topic' => 'forum',
+        'news_post' => 'berita',
+        'user' => 'profil',
+    ],
 
     'filters' => [
         '_' => 'semua notifikasi',

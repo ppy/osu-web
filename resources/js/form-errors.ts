@@ -1,7 +1,9 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import FormErrorJson from 'interfaces/form-error-json';
 import { action, makeObservable, observable } from 'mobx';
+import { flattenFormErrorJson } from 'utils/json';
 
 export class FormErrors {
   @observable private errors = new Map<string, string[]>();
@@ -23,7 +25,7 @@ export class FormErrors {
    * @param names field names to filter out.
    * @returns List of error messages.
    */
-  except(names: string[]): string[] {
+  except(names: readonly string[]): string[] {
     const keys = [...this.errors.keys()].filter((key) => names.every((name) => key !== name));
 
     const messages: string[] = [];
@@ -42,16 +44,13 @@ export class FormErrors {
   }
 
   @action
-  handleResponse = (xhr: JQueryXHR) => {
+  handleResponse = (xhr: JQuery.jqXHR<unknown>) => {
     // TODO: extra checks
-    // this is also only valid if there aren't more nested keys, which is fine for the current usages.
-    const errors = xhr.responseJSON.form_error as Record<string, string[]> | undefined;
+    const errors = xhr.responseJSON?.form_error as FormErrorJson | undefined;
+
     // only handle responses with form_error
     if (errors == null) return;
 
-    this.errors.clear();
-    for (const key of Object.keys(errors)) {
-      this.errors.set(key, errors[key]);
-    }
+    this.errors = flattenFormErrorJson(errors);
   };
 }

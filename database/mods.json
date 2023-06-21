@@ -298,6 +298,10 @@
             "Type": "number"
           },
           {
+            "Name": "accuracy_judge_mode",
+            "Type": "string"
+          },
+          {
             "Name": "restart",
             "Type": "boolean"
           }
@@ -805,7 +809,9 @@
             "Type": "string"
           }
         ],
-        "IncompatibleMods": [],
+        "IncompatibleMods": [
+          "BU"
+        ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
@@ -903,7 +909,8 @@
           "AP",
           "TR",
           "WG",
-          "RP"
+          "RP",
+          "BU"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -927,7 +934,8 @@
           "AP",
           "TR",
           "WG",
-          "MG"
+          "MG",
+          "BU"
         ],
         "RequiresConfiguration": false,
         "UserPlayable": true,
@@ -973,6 +981,34 @@
         "IncompatibleMods": [
           "AD"
         ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "BU",
+        "Name": "Bubbles",
+        "Description": "Don't let their popping distract you!",
+        "Type": "Fun",
+        "Settings": [],
+        "IncompatibleMods": [
+          "BR",
+          "MG",
+          "RP"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
+        "Acronym": "SY",
+        "Name": "Synesthesia",
+        "Description": "Colours hit objects based on the rhythm.",
+        "Type": "Fun",
+        "Settings": [],
+        "IncompatibleMods": [],
         "RequiresConfiguration": false,
         "UserPlayable": true,
         "ValidForMultiplayer": true,
@@ -1236,6 +1272,10 @@
             "Type": "number"
           },
           {
+            "Name": "accuracy_judge_mode",
+            "Type": "string"
+          },
+          {
             "Name": "restart",
             "Type": "boolean"
           }
@@ -1330,6 +1370,22 @@
         "ValidForMultiplayerAsFreeMod": true
       },
       {
+        "Acronym": "SG",
+        "Name": "Single Tap",
+        "Description": "One key for dons, one key for kats.",
+        "Type": "Conversion",
+        "Settings": [],
+        "IncompatibleMods": [
+          "AT",
+          "CN",
+          "RX"
+        ],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
         "Acronym": "AT",
         "Name": "Autoplay",
         "Description": "Watch a perfect automated play through the song.",
@@ -1340,6 +1396,7 @@
           "SD",
           "PF",
           "AC",
+          "SG",
           "CN",
           "RX",
           "AS"
@@ -1360,6 +1417,7 @@
           "SD",
           "PF",
           "AC",
+          "SG",
           "AT",
           "CN",
           "RX",
@@ -1381,6 +1439,7 @@
           "SD",
           "PF",
           "AC",
+          "SG",
           "AT",
           "CN"
         ],
@@ -1758,6 +1817,10 @@
           {
             "Name": "minimum_accuracy",
             "Type": "number"
+          },
+          {
+            "Name": "accuracy_judge_mode",
+            "Type": "string"
           },
           {
             "Name": "restart",
@@ -2297,6 +2360,10 @@
           {
             "Name": "minimum_accuracy",
             "Type": "number"
+          },
+          {
+            "Name": "accuracy_judge_mode",
+            "Type": "string"
           },
           {
             "Name": "restart",

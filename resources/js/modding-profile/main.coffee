@@ -25,10 +25,10 @@ import { nextVal } from 'utils/seq'
 import { currentUrl, currentUrlRelative } from 'utils/turbolinks'
 import { updateQueryString } from 'utils/url'
 import Discussions from './discussions'
-import { Events } from './events'
+import Events from './events'
 import { Posts } from './posts'
 import Stats from './stats'
-import { Votes } from './votes'
+import Votes from './votes'
 
 el = React.createElement
 
@@ -66,8 +66,6 @@ export class Main extends React.PureComponent
   componentDidMount: =>
     $.subscribe "user:update.#{@eventId}", @userUpdate
     $.subscribe "profile:page:jump.#{@eventId}", @pageJump
-    $.subscribe "beatmapsetDiscussions:update.#{@eventId}", @discussionUpdate
-    $(document).on "ajax:success.#{@eventId}", '.js-beatmapset-discussion-update', @ujsDiscussionUpdate
     $(window).on "scroll.#{@eventId}", @pageScan
 
     pageChange()
@@ -84,53 +82,10 @@ export class Main extends React.PureComponent
   componentWillUnmount: =>
     $.unsubscribe ".#{@eventId}"
     $(window).off ".#{@eventId}"
-    $(document).off ".#{@eventId}"
 
     $(window).stop()
     Timeout.clear @modeScrollTimeout
     @disposers.forEach (disposer) => disposer?()
-
-
-  discussionUpdate: (_e, options) =>
-    {beatmapset} = options
-    return unless beatmapset?
-
-    discussions = @state.discussions
-    posts = @state.posts
-    users = @state.users
-
-    discussionIds = _.map discussions, 'id'
-    postIds = _.map posts, 'id'
-    userIds = _.map users, 'id'
-
-    # Due to the entire hierarchy of discussions being sent back when a post is updated (instead of just the modified post),
-    #   we need to iterate over each discussion and their posts to extract the updates we want.
-    _.each beatmapset.discussions, (newDiscussion) ->
-      if discussionIds.includes(newDiscussion.id)
-        discussion = _.find discussions, id: newDiscussion.id
-        discussions = _.reject discussions, id: newDiscussion.id
-        newDiscussion = _.merge(discussion, newDiscussion)
-
-      newDiscussion.starting_post = newDiscussion.posts[0]
-      discussions.push(newDiscussion)
-
-      _.each newDiscussion.posts, (newPost) ->
-        if postIds.includes(newPost.id)
-          post = _.find posts, id: newPost.id
-          posts = _.reject posts, id: newPost.id
-          posts.push(_.merge(post, newPost))
-
-    _.each beatmapset.related_users, (newUser) ->
-      if userIds.includes(newUser.id)
-        users = _.reject users, id: newUser.id
-
-      users.push(newUser)
-
-    @cache.users = @cache.discussions = @cache.userDiscussions = @cache.beatmaps = @cache.beatmapsets = null
-    @setState
-      discussions: _.reverse(_.sortBy(discussions, (d) -> Date.parse(d.starting_post.created_at)))
-      posts: _.reverse(_.sortBy(posts, (p) -> Date.parse(p.created_at)))
-      users: users
 
 
   discussions: =>
@@ -354,8 +309,3 @@ export class Main extends React.PureComponent
       @cache.userDiscussions = _.filter @state.discussions, (d) => d.user_id == @state.user.id
 
     @cache.userDiscussions
-
-
-  ujsDiscussionUpdate: (_e, data) =>
-    # to allow ajax:complete to be run
-    Timeout.set 0, => @discussionUpdate(null, beatmapset: data)

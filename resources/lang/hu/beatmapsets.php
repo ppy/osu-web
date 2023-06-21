@@ -61,8 +61,8 @@ return [
         'discussion' => 'Beszélgetés',
 
         'deleted_banner' => [
-            'title' => '',
-            'message' => '',
+            'title' => 'Ez a beatmap törlésre került.',
+            'message' => '(ezt csak a moderátorok láthatják)',
         ],
 
         'details' => [

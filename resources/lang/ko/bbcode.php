@@ -6,7 +6,9 @@
 return [
     'bold' => '굵게',
     'heading' => '제목',
+    'help' => '도움말',
     'image' => '이미지',
+    'imagemap' => '이미지 맵',
     'italic' => '기울임꼴',
     'link' => '링크',
     'list' => '글머리 기호',

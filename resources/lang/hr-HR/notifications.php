@@ -13,6 +13,16 @@ return [
     'see_channel' => 'idi u chat',
     'verifying' => 'Molimo potvrdi sesiju za pregled obavijesti',
 
+    'action_type' => [
+        '_' => '',
+        'beatmapset' => '',
+        'build' => '',
+        'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'user' => '',
+    ],
+
     'filters' => [
         '_' => 'svi',
         'user' => 'profil',

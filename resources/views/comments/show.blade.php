@@ -4,11 +4,33 @@
 --}}
 @extends('master')
 
+@php
+    $json = $commentBundle->toArray();
+    $commentJson = $json['comments'][0];
+@endphp
+
 @section('content')
-    <div class="js-react--comments-show osu-layout osu-layout--full"></div>
+    @include('layout._page_header_v4', ['params' => [
+        'links' => [
+            [
+                'title' => trans('comments.index.nav_title'),
+                'url' => route('comments.index'),
+            ],
+            [
+                'title' => trans('comments.show.nav_title'),
+                'url' => route('comments.show', ['comment' => $commentJson['id']]),
+            ],
+        ],
+        'linksBreadcrumb' => true,
+        'theme' => 'comments',
+    ]])
+
+    <div class="osu-page osu-page--comment">
+        <div class="js-react--comments-show u-contents"></div>
+    </div>
 
     <script id="json-show" type="application/json">
-        {!! json_encode($commentBundle->toArray()) !!}
+        {!! json_encode($json) !!}
     </script>
 
     @include('layout._react_js', ['src' => 'js/comments-show.js'])

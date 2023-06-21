@@ -11,6 +11,7 @@ return [
     'edited' => ':user muokkasi tämän viestin :timeago sitten',
     'pinned' => 'kiinnitetty',
     'empty' => 'Ei vielä kommentteja.',
+    'empty_other' => '',
     'load_replies' => 'lataa vastauksia',
     'replies_count' => ':count_delimited vastaus|:count_delimited vastauksia',
     'title' => 'Kommentit',

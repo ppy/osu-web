@@ -156,7 +156,7 @@ class PostsController extends Controller
         $text = $post->bodyRaw;
 
         if (Request::input('quote') === '1') {
-            $text = sprintf('[quote="%s"]%s[/quote]', $post->userNormalized()->username, $text);
+            $text = sprintf("[quote=\"%s\"]\n%s\n[/quote]\n", $post->userNormalized()->username, $text);
         }
 
         return $text;

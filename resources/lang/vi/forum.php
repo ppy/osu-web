@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => 'Diễn đàn',
         'latest_post' => 'Bài viết mới nhất',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => 'Bạn muốn phục hồi bài viết?',
         'edited' => 'Lần chỉnh sửa cuối cùng bởi :user :when, chỉnh sửa :count_delimited tổng thời gian.|Lần chỉnh sửa cuối cùng bởi :user :when, chỉnh sửa :count_delimited tổng thời gian.',
         'posted_at' => 'đã đăng vào :when',
-        'posted_by' => 'đã đăng bởi :username',
+        'posted_by_in' => 'được :username đăng lên :forum',
 
         'actions' => [
             'destroy' => 'Xóa bài viết',

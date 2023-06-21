@@ -141,7 +141,7 @@ return [
             'approved' => 'Questa beatmap è stata approvata il :date!',
             'graveyard' => "Questa beatmap non è stata aggiornata dal :date ed è stata molto probabilmente abbandonata...",
             'loved' => 'Questa beatmap è stata aggiunta a quelle amate il :date!',
-            'ranked' => 'Questa beatmap è stata classificata il :date!',
+            'ranked' => 'Questa beatmap è stata classificata il giorno :date!',
             'wip' => 'Nota: Questa beatmap è contrassegnata come work-in-progress dal creatore.',
         ],
 
@@ -175,6 +175,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'Hai già nominato questa beatmap.',
+        'cannot_nominate' => 'Non puoi nominare questa modalità di gioco della beatmap.',
         'delete' => 'Elimina',
         'delete_own_confirm' => 'Sei sicuro? La beatmap verrà eliminata e sarai reindirizzato al tuo profilo.',
         'delete_other_confirm' => 'Sei sicuro? La beatmap verrà eliminata e sarai reindirizzato al profilo del creatore.',
@@ -199,6 +201,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'È stimato che questa mappa verrà classificata in data :date se non vengono trovati problemi. È in posizione #:position nella :queue.',
+            'on' => 'il giorno :date',
             'queue' => 'coda per la classifica',
             'soon' => 'molto vicina',
         ],

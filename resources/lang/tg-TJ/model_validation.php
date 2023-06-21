@@ -8,6 +8,7 @@ return [
     'not_negative' => '',
     'required' => '',
     'too_long' => '',
+    'url' => '',
     'wrong_confirmation' => '',
 
     'beatmapset_discussion' => [
@@ -108,6 +109,16 @@ return [
         ],
     ],
 
+    'legacy_api_key' => [
+        'exists' => '',
+
+        'attributes' => [
+            'api_key' => '',
+            'app_name' => '',
+            'app_url' => '',
+        ],
+    ],
+
     'oauth' => [
         'client' => [
             'too_many' => '',
@@ -164,6 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => '',
+        'not_in_channel' => '',
         'reason_not_valid' => '',
         'self' => "",
     ],

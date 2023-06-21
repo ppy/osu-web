@@ -5,6 +5,7 @@
 
 namespace App\Transformers;
 
+use App\Models\DeletedUser;
 use App\Models\UserContestEntry;
 
 class UserContestEntryTransformer extends TransformerAbstract

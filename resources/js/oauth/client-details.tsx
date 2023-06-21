@@ -2,14 +2,15 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import { Spinner } from 'components/spinner';
-import { ValidatingInput } from 'components/validating-input';
 import { FormErrors } from 'form-errors';
-import { action, makeObservable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { OwnClient as Client } from 'models/oauth/own-client';
 import core from 'osu-core-singleton';
 import * as React from 'react';
+import TextareaAutosize from 'react-autosize-textarea';
 import { onError } from 'utils/ajax';
+import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 
 const uiState = core.dataStore.uiState;
@@ -27,66 +28,15 @@ interface State {
 
 @observer
 export class ClientDetails extends React.Component<Props, State> {
-  state: Readonly<State> = {
-    isSecretVisible: false,
-    redirect: this.props.client.redirect,
-  };
-
-  private errors = new FormErrors();
+  private readonly errors = new FormErrors();
+  @observable private isSecretVisible = false;
+  @observable private redirect = this.props.client.redirect.replace(/,/g, '\r\n');
 
   constructor(props: Props) {
     super(props);
 
     makeObservable(this);
   }
-
-  @action
-  handleClose = () => {
-    uiState.account.client = null;
-  };
-
-  @action
-  handleDelete = () => {
-    if (this.props.client.isRevoking) return;
-    if (!confirm(trans('oauth.own_clients.confirm_delete'))) return;
-
-    this.props.client.delete().then(() => {
-      uiState.account.client = null;
-    });
-  };
-
-  @action
-  handleInputChange = (event: React.SyntheticEvent<HTMLInputElement>) => {
-    const target = event.target as HTMLInputElement;
-    const { name, value } = target;
-
-    this.setState({
-      [name]: value,
-    });
-  };
-
-  @action
-  handleReset = () => {
-    if (!confirm(trans('oauth.own_clients.confirm_reset'))) return;
-    if (this.props.client.isResetting) return;
-
-    this.props.client.resetSecret()
-      .done(() => this.setState({ isSecretVisible: true }))
-      .fail(onError);
-  };
-
-  @action
-  handleToggleSecret = () => {
-    this.setState({ isSecretVisible: !this.state.isSecretVisible });
-  };
-
-  @action
-  handleUpdate = () => {
-    if (this.props.client.isUpdating) return;
-    this.props.client.updateWith(this.state).then(() => {
-      this.errors.clear();
-    }).catch(this.errors.handleResponse);
-  };
 
   render() {
     return (
@@ -103,7 +53,7 @@ export class ClientDetails extends React.Component<Props, State> {
           <div className='oauth-client-details__label'>{trans('oauth.client.secret')}</div>
           <div>
             {
-              this.state.isSecretVisible
+              this.isSecretVisible
                 ? this.props.client.secret
                 : 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
             }
@@ -114,7 +64,7 @@ export class ClientDetails extends React.Component<Props, State> {
               onClick={this.handleToggleSecret}
               type='button'
             >
-              {trans(`oauth.client.secret_visible.${this.state.isSecretVisible}`)}
+              {trans(`oauth.client.secret_visible.${this.isSecretVisible}`)}
             </button>
             <button
               className='btn-osu-big btn-osu-big--danger'
@@ -127,17 +77,27 @@ export class ClientDetails extends React.Component<Props, State> {
           </div>
         </div>
 
-        <div className='oauth-client-details__group'>
-          <div className='oauth-client-details__label'>{trans('oauth.client.redirect')}</div>
-          <ValidatingInput
-            blockName='oauth-client-details'
-            errors={this.errors}
+        <label className='oauth-client-details__group'>
+          <div className='oauth-client-details__label'>
+            {trans('oauth.client.redirect')}
+          </div>
+          <TextareaAutosize
+            async
+            className={classWithModifiers(
+              'oauth-client-details__input',
+              'textarea',
+              { 'has-error': (this.errors.get('redirect') ?? []).length > 0 },
+            )}
             name='redirect'
-            onChange={this.handleInputChange}
-            type='text'
-            value={this.state.redirect}
+            onChange={this.handleOnChangeRedirect}
+            value={this.redirect}
           />
-        </div>
+          {(this.errors.get('redirect') ?? []).map((message, index) => (
+            <div key={index} className='oauth-client-details__error'>
+              {message}
+            </div>
+          ))}
+        </label>
 
         <div className='oauth-client-details__buttons'>
           <button
@@ -165,4 +125,49 @@ export class ClientDetails extends React.Component<Props, State> {
       </div>
     );
   }
+
+  @action
+  private readonly handleClose = () => {
+    uiState.account.client = null;
+  };
+
+  @action
+  private readonly handleDelete = () => {
+    if (this.props.client.isRevoking) return;
+    if (!confirm(trans('oauth.own_clients.confirm_delete'))) return;
+
+    this.props.client.delete().then(action(() => {
+      uiState.account.client = null;
+    }));
+  };
+
+  @action
+  private readonly handleOnChangeRedirect = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    this.redirect = event.currentTarget.value;
+  };
+
+  @action
+  private readonly handleReset = () => {
+    if (!confirm(trans('oauth.own_clients.confirm_reset'))) return;
+    if (this.props.client.isResetting) return;
+
+    this.props.client.resetSecret()
+      .done(action(() => {
+        this.isSecretVisible = true;
+      }))
+      .fail(onError);
+  };
+
+  @action
+  private readonly handleToggleSecret = () => {
+    this.isSecretVisible = !this.isSecretVisible;
+  };
+
+  @action
+  private readonly handleUpdate = () => {
+    if (this.props.client.isUpdating) return;
+    this.props.client.updateWith({ redirect: this.redirect }).then(() => {
+      this.errors.clear();
+    }).catch(this.errors.handleResponse);
+  };
 }

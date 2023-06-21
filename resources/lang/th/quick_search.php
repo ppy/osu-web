@@ -6,7 +6,7 @@
 return [
     'mode' => [
         'beatmapset' => 'บีทแมพ',
-        'forum_post' => 'บอร์ดข่าวสาร',
+        'forum_post' => 'ฟอรั่ม',
         'other' => 'อื่นๆ',
         'user' => 'ผู้เล่น',
         'wiki_page' => 'วิกิ',

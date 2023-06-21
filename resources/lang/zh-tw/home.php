@@ -43,7 +43,7 @@ return [
             'label' => [
                 'forum' => '在論壇中搜尋',
                 'forum_children' => '包括小主題',
-                'include_deleted' => '',
+                'include_deleted' => '包括已刪除的貼文',
                 'topic_id' => '主題 #',
                 'username' => '作者',
             ],
@@ -84,7 +84,7 @@ return [
         'macos-fallback' => 'macOS 使用者',
         'mirror' => '鏡像站',
         'or' => '或',
-        'os_version_or_later' => '',
+        'os_version_or_later' => ':os_version或更新版本',
         'other_os' => '其他平台',
         'quick_start_guide' => '三步開始遊玩 osu!',
         'tagline' => "讓我們<br>開始吧！",

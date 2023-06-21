@@ -1,6 +1,44 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import FormErrorJson from 'interfaces/form-error-json';
+
+function appendParamKey(key: string, suffix: string) {
+  return key.length === 0 ? suffix : `${key}[${suffix}]`;
+}
+
+function flattenParamKey(key: string, prefixes: string[]) {
+  let ret = '';
+
+  for (const prefix of prefixes) {
+    ret = appendParamKey(ret, prefix);
+  }
+
+  return appendParamKey(ret, key);
+}
+
+export function flattenFormErrorJson(json: FormErrorJson, prefixes: string[] = []) {
+  const ret = new Map<string, string[]>();
+
+  for (const key of Object.keys(json)) {
+    const value = json[key];
+
+    if (value == null) {
+      continue;
+    }
+
+    if (Array.isArray(value)) {
+      ret.set(flattenParamKey(key, prefixes), value);
+    } else {
+      for (const [k, v] of flattenFormErrorJson(value, prefixes.concat(key))) {
+        ret.set(k, v);
+      }
+    }
+  }
+
+  return ret;
+}
+
 /**
  * Performs a deep clone of a json object.
  * TODO: stop supporting null/undefined?
@@ -34,7 +72,7 @@ export function parseJson<T>(id: string): T {
  * @param remove true to remove the element after parsing; false, otherwise.
  */
 export function parseJsonNullable<T>(id: string, remove = false): T | undefined {
-  const element = window.newBody?.querySelector(`#${id}`);
+  const element = (window.newBody ?? document.body).querySelector(`#${id}`);
   if (!(element instanceof HTMLScriptElement)) return undefined;
   const json = JSON.parse(element.text) as T;
 

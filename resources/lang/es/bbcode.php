@@ -6,7 +6,9 @@
 return [
     'bold' => 'Negrita',
     'heading' => 'Encabezado',
+    'help' => 'Ayuda',
     'image' => 'Imagen',
+    'imagemap' => 'Mapa de imágenes',
     'italic' => 'Cursiva',
     'link' => 'Enlace',
     'list' => 'Lista',

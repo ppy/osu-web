@@ -13,6 +13,16 @@ return [
     'see_channel' => 'đi đến trò chuyện',
     'verifying' => 'Vui lòng xác minh phiên để xem thông báo',
 
+    'action_type' => [
+        '_' => 'tất cả',
+        'beatmapset' => 'beatmap',
+        'build' => 'xây dựng',
+        'channel' => 'trò chuyện',
+        'forum_topic' => 'diễn đàn',
+        'news_post' => 'tin tức',
+        'user' => 'hồ sơ',
+    ],
+
     'filters' => [
         '_' => 'tất cả',
         'user' => 'trang cá nhân',

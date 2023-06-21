@@ -42,13 +42,13 @@ return [
     'nominate' => [
         'hybrid_requires_modes' => 'Pada beatmap hybrid, kamu harus memilih setidaknya satu mode permainan untuk dinominasikan.',
         'incorrect_mode' => 'Kamu tidak memiliki hak untuk memberikan nominasi pada mode permainan: :mode',
-        'full_bn_required' => 'Kmau harus berstatus sebagai nominator penuh (full nominator) untuk menominasikan beatmap ini.',
+        'full_bn_required' => 'Kamu harus berstatus sebagai nominator penuh (full nominator) untuk menominasikan beatmap ini.',
         'too_many' => 'Persyaratan nominasi telah terpenuhi.',
 
         'dialog' => [
             'confirmation' => 'Apakah kamu yakin untuk menominasikan beatmap ini?',
             'header' => 'Nominasikan Beatmap',
-            'hybrid_warning' => 'catatan: kamu hanya dapat memberikan satu nominasi, sehingga pastikan kamu memberikan nominasi pada mode permainan yang memang dikehendaki',
+            'hybrid_warning' => 'catatan: kamu hanya dapat memberikan satu nominasi, sehingga pastikan kamu memberikan nominasi pada mode permainan yang memang kamu kehendaki',
             'which_modes' => 'Mode permainan mana yang ingin dinominasikan?',
         ],
     ],
@@ -61,18 +61,18 @@ return [
         'discussion' => 'Diskusi',
 
         'deleted_banner' => [
-            'title' => '',
-            'message' => '',
+            'title' => 'Beatmap ini telah dihapus.',
+            'message' => '(hanya moderator yang dapat melihat ini)',
         ],
 
         'details' => [
             'by_artist' => 'oleh :artist',
-            'favourite' => 'Tambahkan beatmap ini ke dalam daftar Beatmap Favorit',
-            'favourite_login' => 'Silakan masuk untuk menambahkan beatmap ini ke Beatmap Favorit',
-            'logged-out' => 'Anda harus masuk sebelum mengunduh beatmap!',
+            'favourite' => 'favoritkan beatmap ini',
+            'favourite_login' => 'silakan masuk untuk memfavoritkan beatmap ini',
+            'logged-out' => 'kamu harus masuk untuk mengunduh beatmap!',
             'mapped_by' => 'dibuat oleh :mapper',
             'mapped_by_guest' => 'guest difficulty oleh :mapper',
-            'unfavourite' => 'Hapus beatmap ini dari daftar Beatmap Favorit',
+            'unfavourite' => 'hapus beatmap ini dari daftar beatmap favorit',
             'updated_timeago' => 'terakhir diperbarui :timeago',
 
             'download' => [
@@ -98,7 +98,7 @@ return [
         ],
 
         'favourites' => [
-            'limit_reached' => 'Kamu memiliki terlalu banyak beatmap yang telah difavoritkan! Mohon hapus beberapa beatmap dari daftar favoritmu sebelum melanjutkan.',
+            'limit_reached' => 'Kamu telah memiliki terlalu banyak beatmap yang difavoritkan! Silakan hapus beberapa beatmap dari daftar favoritmu sebelum melanjutkan.',
         ],
 
         'hype' => [

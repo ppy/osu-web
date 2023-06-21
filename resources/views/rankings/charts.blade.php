@@ -5,25 +5,23 @@
 @extends('rankings.index')
 
 @section('ranking-header')
-    <div
-        class="osu-page osu-page--description js-react--spotlight-select-options"
-    >
-        <div class="select-options select-options--spotlight">
-            <div class="select-options__select">
-                <span class="select-options__option">
-                    {{ $spotlight->name }}
-                </span>
+    <div class="osu-page osu-page--ranking-info">
+        <div class="js-react--spotlight-select-options">
+            <div class="select-options select-options--spotlight">
+                <div class="select-options__select">
+                    <span class="select-options__option">
+                        {{ $spotlight->name }}
+                    </span>
+                </div>
             </div>
         </div>
-    </div>
 
-    <script id="json-spotlight-select-options" type="application/json">
-        {!! json_encode($selectOptions) !!}
-    </script>
+        <script id="json-spotlight-select-options" type="application/json">
+            {!! json_encode($selectOptions) !!}
+        </script>
 
-    <div class="osu-page osu-page--info-bar">
-        <div class="grid-items">
-            <div class="counter-box counter-box--info">
+        <div class="grid-items grid-items--ranking-info-bar">
+            <div class="counter-box counter-box--ranking">
                 <div class="counter-box__title">
                     {{ osu_trans('rankings.spotlight.start_date') }}
                 </div>
@@ -31,7 +29,7 @@
                     {{ json_date($spotlight->start_date) }}
                 </div>
             </div>
-            <div class="counter-box counter-box--info">
+            <div class="counter-box counter-box--ranking">
                 <div class="counter-box__title">
                     {{ osu_trans('rankings.spotlight.end_date') }}
                 </div>
@@ -39,7 +37,7 @@
                     {{ json_date($spotlight->end_date) }}
                 </div>
             </div>
-            <div class="counter-box counter-box--info">
+            <div class="counter-box counter-box--ranking">
                 <div class="counter-box__title">
                     {{ osu_trans('rankings.spotlight.map_count') }}
                 </div>
@@ -47,13 +45,17 @@
                     {{ count($beatmapsets) }}
                 </div>
             </div>
-            <div class="counter-box counter-box--info">
+            <div class="counter-box counter-box--ranking">
                 <div class="counter-box__title">
                     {{ osu_trans('rankings.spotlight.participants') }}
                 </div>
                 <div class="counter-box__count">
                     {{ i18n_number_format($scoreCount) }}
                 </div>
+            </div>
+
+            <div class="grid-items__item grid-items__item--spotlight-user-filter">
+                @include('rankings._user_filter')
             </div>
         </div>
     </div>

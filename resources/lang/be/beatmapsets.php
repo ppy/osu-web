@@ -61,8 +61,8 @@ return [
         'discussion' => 'Абмеркаванне',
 
         'deleted_banner' => [
-            'title' => '',
-            'message' => '',
+            'title' => 'Гэта бітмапа была выдалена.',
+            'message' => '(гэта бачаць толькі мадэратары) ',
         ],
 
         'details' => [

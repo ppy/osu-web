@@ -61,8 +61,8 @@ return [
         'discussion' => 'Дискусия',
 
         'deleted_banner' => [
-            'title' => '',
-            'message' => '',
+            'title' => 'Този бийтмап беше изтрит.',
+            'message' => '(само модератори могат да видят това)',
         ],
 
         'details' => [

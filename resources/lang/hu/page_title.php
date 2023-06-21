@@ -101,7 +101,7 @@ return [
             '_' => 'teljesítmény',
         ],
         'seasons_controller' => [
-            '_' => '',
+            '_' => 'rangsorok',
         ],
         'tournaments_controller' => [
             '_' => 'bajnokságok',

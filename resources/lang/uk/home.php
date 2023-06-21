@@ -30,7 +30,7 @@ return [
             'login_required' => 'Увійдіть для пошуку карт',
             'more' => 'більше :count результатів пошуку серед карт',
             'more_simple' => 'Подивитися інші результати пошуку в мапах',
-            'title' => 'Мапи',
+            'title' => 'Бітмапи',
         ],
 
         'forum_post' => [
@@ -43,7 +43,7 @@ return [
             'label' => [
                 'forum' => 'пошук на форумі',
                 'forum_children' => 'включаючи підфоруми',
-                'include_deleted' => '',
+                'include_deleted' => 'включаючи видалені публікації',
                 'topic_id' => 'тема #',
                 'username' => 'автор',
             ],
@@ -84,7 +84,7 @@ return [
         'macos-fallback' => 'для macOS',
         'mirror' => 'дзеркало',
         'or' => 'або',
-        'os_version_or_later' => '',
+        'os_version_or_later' => ':os_version або новіше',
         'other_os' => 'інші платформи',
         'quick_start_guide' => 'короткий посібник',
         'tagline' => "ну ж бо<br>розпочнімо!",

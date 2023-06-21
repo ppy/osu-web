@@ -10,7 +10,7 @@ import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import { BeatmapsetDiscussionPostStoreResponseJson } from 'interfaces/beatmapset-discussion-post-responses';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
-import { BeatmapsetWithDiscussionsJson } from 'interfaces/beatmapset-json';
+import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import { route } from 'laroute';
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
@@ -28,6 +28,7 @@ import { present } from 'utils/string';
 import CurrentDiscussions from './current-discussions';
 import DiscussionMessageLengthCounter from './discussion-message-length-counter';
 import DiscussionMode from './discussion-mode';
+import { hypeExplanationClass } from './nominations';
 
 const bn = 'beatmap-discussion-new';
 
@@ -59,6 +60,7 @@ export class NewDiscussion extends React.Component<Props> {
   private nearbyDiscussionsCache: DiscussionsCache | null = null;
   @observable private posting: string | null = null;
   private postXhr: JQuery.jqXHR<BeatmapsetDiscussionPostStoreResponseJson> | null = null;
+  @observable private stickToHeight: number | undefined;
   @observable private timestampConfirmed = false;
 
   private get canPost() {
@@ -72,8 +74,9 @@ export class NewDiscussion extends React.Component<Props> {
 
   @computed
   private get cssTop() {
-    if (!this.mounted || !this.props.pinned || this.props.stickTo?.current == null) return;
-    return core.stickyHeader.headerHeight + this.props.stickTo.current.getBoundingClientRect().height;
+    if (this.mounted && this.props.pinned && this.stickToHeight != null) {
+      return core.stickyHeader.headerHeight + this.stickToHeight;
+    }
   }
 
   private get isTimeline() {
@@ -133,6 +136,9 @@ export class NewDiscussion extends React.Component<Props> {
   }
 
   componentDidMount() {
+    this.updateStickToHeight();
+    // watching for height changes on the stickTo element to handle horizontal scrollbars when they appear.
+    $(window).on('resize', this.updateStickToHeight);
     this.disposers.add(core.reactTurbolinks.runAfterPageLoad(action(() => this.mounted = true)));
     if (this.props.autoFocus) {
       this.disposers.add(core.reactTurbolinks.runAfterPageLoad(() => this.inputBox.current?.focus()));
@@ -148,6 +154,7 @@ export class NewDiscussion extends React.Component<Props> {
   }
 
   componentWillUnmount() {
+    $(window).off('resize', this.updateStickToHeight);
     this.postXhr?.abort();
     this.disposers.forEach((disposer) => disposer?.());
   }
@@ -309,7 +316,7 @@ export class NewDiscussion extends React.Component<Props> {
     if (!(this.props.mode === 'generalAll' && this.props.beatmapset.can_be_hyped)) return null;
 
     return (
-      <div className={`${bn}__footer-content js-hype--explanation js-flash-border`}>
+      <div className={`${bn}__footer-content ${hypeExplanationClass} js-flash-border`}>
         <div className={`${bn}__footer-message ${bn}__footer-message--label`}>
           {trans('beatmaps.hype.title')}
         </div>
@@ -425,8 +432,9 @@ export class NewDiscussion extends React.Component<Props> {
   };
 
   @action
-  private readonly setSticky = (sticky = true) => {
+  private readonly setSticky = (sticky: boolean) => {
     this.props.setPinned(sticky);
+    this.updateStickToHeight();
   };
 
   private storeMessage() {
@@ -462,6 +470,9 @@ export class NewDiscussion extends React.Component<Props> {
   private readonly toggleTimestampConfirmation = () => {
     this.timestampConfirmed = !this.timestampConfirmed;
   };
+
+  @action
+  private readonly updateStickToHeight = () => this.stickToHeight = this.props.stickTo?.current?.getBoundingClientRect().height;
 
   private validPost(type: string): type is DiscussionType {
     if (!(discussionTypes as Readonly<string[]>).includes(type)) return false;

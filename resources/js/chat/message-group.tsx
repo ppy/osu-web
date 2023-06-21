@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import UserAvatar from 'components/user-avatar';
-import { UserLink } from 'components/user-link';
+import UserLink from 'components/user-link';
 import { observer } from 'mobx-react';
 import Message from 'models/chat/message';
 import * as moment from 'moment';

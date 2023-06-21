@@ -14,14 +14,14 @@ interface Props {
   user: Partial<Pick<UserJson, 'id' | 'username'>>;
 }
 
-export class UserLink extends React.PureComponent<Props> {
+export default class UserLink extends React.PureComponent<Props> {
   render() {
     let className = 'js-usercard';
     if (this.props.className != null) {
       className += ` ${this.props.className}`;
     }
 
-    const href = this.props.user.id
+    const href = (this.props.user.id ?? -1) > 0
       ? route('users.show', { mode: this.props.mode, user: this.props.user.id })
       : undefined;
 

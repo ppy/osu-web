@@ -3,32 +3,31 @@
 
 import * as React from 'react';
 import { uriTransformer } from 'react-markdown';
-import { ReactMarkdownProps } from 'react-markdown/lib/complex-types';
-import { propsFromHref, timestampRegex } from 'utils/beatmapset-discussion-helper';
-import { openBeatmapEditor } from 'utils/url';
+import { propsFromHref, timestampRegexGlobal } from 'utils/beatmapset-discussion-helper';
+import { openBeatmapEditor, safeReactMarkdownUrl } from 'utils/url';
 
-export const timestampRegexGlobal = new RegExp(timestampRegex, 'g');
+export const LinkContext = React.createContext({ inLink: false });
 
-export function emphasisRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) {
-  return <em>{astProps.children.map(timestampDecorator)}</em>;
+export function createRenderer(ElementType: React.ElementType) {
+  return function defaultRenderer(astProps: { children: React.ReactNode }) {
+    return <ElementType>{timestampDecorator(astProps.children)}</ElementType>;
+  };
 }
 
-export function linkRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>) {
-  // TODO: handle extra nodes in astProps.children
-  const props = propsFromHref(astProps.href ?? '');
+export function linkRenderer(astProps: JSX.IntrinsicElements['a']) {
+  const props = propsFromHref(astProps.href);
+  const href = safeReactMarkdownUrl(props.href);
 
-  return <a href={astProps.href} {...props} />;
+  return (
+    <>
+      <LinkContext.Provider value={{ inLink: true }}>
+        <a {...props} href={href}>{props.children ?? astProps.children}</a>
+      </LinkContext.Provider>
+    </>
+  );
 }
 
-export function paragraphRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement>) {
-  return <div className='beatmapset-discussion-message'>{astProps.children.map(timestampDecorator)}</div>;
-}
-
-export function strongRenderer(astProps: ReactMarkdownProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) {
-  return <strong>{astProps.children.map(timestampDecorator)}</strong>;
-}
-
-function timestampDecorator(reactNode: React.ReactNode) {
+export function timestampDecorator(reactNode: React.ReactNode): React.ReactNode {
   if (typeof reactNode === 'string') {
     const matches = [...reactNode.matchAll(timestampRegexGlobal)];
 
@@ -58,6 +57,8 @@ function timestampDecorator(reactNode: React.ReactNode) {
 
       return nodes;
     }
+  } else if (Array.isArray(reactNode)) {
+    return reactNode.map(timestampDecorator);
   }
 
   return reactNode;

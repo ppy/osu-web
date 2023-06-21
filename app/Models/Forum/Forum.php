@@ -7,6 +7,7 @@ namespace App\Models\Forum;
 
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * @property bool $allow_topic_covers
@@ -182,6 +183,11 @@ class Forum extends Model
     public function scopeDisplayList($query)
     {
         $query->orderBy('left_id');
+    }
+
+    public function scopeSearchable(Builder $query): Builder
+    {
+        return $query->where('enable_indexing', true);
     }
 
     public function setForumParentsAttribute($value)

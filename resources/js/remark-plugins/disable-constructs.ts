@@ -5,13 +5,63 @@ import type Constructs from 'micromark-core-commonmark';
 import type { Processor } from 'unified';
 import add from './add';
 
-type DisabledType = 'chat' | 'default';
+export type DisabledType = 'chat' | 'chatPlain' | 'default' | 'editor' | 'reviews';
 
 interface Options {
   type?: DisabledType;
 }
 
 type Construct = keyof typeof Constructs;
+
+const allDisabledList: Construct[] = [
+  // 'characterEscape', // escaping things is always useful
+  // 'content', // not sure what this is
+
+  'attention',
+  'autolink',
+  'blankLine',
+  'blockQuote',
+  'characterReference',
+  'codeFenced',
+  'codeIndented',
+  'codeText',
+  'definition',
+  'hardBreakEscape',
+  'headingAtx',
+  'htmlFlow',
+  'htmlText',
+  'labelEnd',
+  'labelStartImage',
+  'labelStartLink',
+  'lineEnding',
+  'list',
+  'setextUnderline',
+  'thematicBreak',
+];
+
+function makeDisabledListFromAllowList(allowList: Construct[]): Construct[] {
+  return allDisabledList.filter((item) => !allowList.includes(item));
+}
+
+const defaultDisabled: Construct[] = [
+  'autolink',
+  'definition',
+  'hardBreakEscape',
+  'headingAtx',
+  'htmlFlow',
+  'htmlText',
+  'setextUnderline',
+  'thematicBreak',
+];
+
+const reviewsDisabled: Construct[] = [
+  ...defaultDisabled,
+  'blockQuote',
+  'codeFenced',
+  'codeIndented',
+  'codeText',
+  'list',
+];
 
 // list of constructs to disable
 const disabled: Record<DisabledType, Construct[]> = {
@@ -22,24 +72,24 @@ const disabled: Record<DisabledType, Construct[]> = {
     'labelStartImage',
     'setextUnderline',
   ],
-  default: [
+  chatPlain: makeDisabledListFromAllowList([
     'autolink',
-    'blockQuote',
+    'labelEnd',
+    'labelStartLink',
+  ]),
+  default: defaultDisabled,
+  // Editor has to disable nearly everything to show mostly text.
+  editor: [
+    ...reviewsDisabled,
     'codeFenced',
     'codeIndented',
     'codeText',
-    'definition',
-    'hardBreakEscape',
-    'headingAtx',
-    'htmlFlow',
-    'htmlText',
     'labelEnd',
     'labelStartImage',
     'labelStartLink',
-    'list',
-    'setextUnderline',
-    'thematicBreak',
   ],
+  // code blocks (any multiline construct in general) may cause review editing to break.
+  reviews: reviewsDisabled,
 };
 
 export default function disableConstructs(this: Processor, options?: Options) {

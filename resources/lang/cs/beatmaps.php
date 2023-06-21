@@ -175,6 +175,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => '',
+        'cannot_nominate' => '',
         'delete' => 'Vymazat',
         'delete_own_confirm' => 'Jste si jistý? Tahle beatmapa bude smazána a pošleme vás zpátky na váš profil.',
         'delete_other_confirm' => 'Jste si jistý? Tahle beatmapa bude smazána a pošleme vás zpátky na profil uživatele.',
@@ -199,6 +201,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Odhaduje se, že tato mapa bude schválena :date, pokud nejsou nalezeny žádné problémy. Aktuálně je #:position ve :queue.',
+            'on' => 'dne :date',
             'queue' => 'frontě schválení',
             'soon' => 'brzy',
         ],

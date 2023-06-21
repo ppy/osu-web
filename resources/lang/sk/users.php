@@ -33,13 +33,14 @@ return [
 
     'blocks' => [
         'banner_text' => 'Užívateľ bol zablokovaný.',
-        'comment_text' => '',
+        'comment_text' => 'Tento komentár je schovaný.',
         'blocked_count' => 'zablokovaný užívatelia (:count)',
         'hide_profile' => 'skryť profil',
-        'hide_comment' => '',
+        'hide_comment' => 'schovať',
+        'forum_post_text' => 'Tento príspevok je schovaný.',
         'not_blocked' => 'Tento užívateľ nie je zablokovaný.',
         'show_profile' => 'zobraziť profil',
-        'show_comment' => '',
+        'show_comment' => 'zobraziť',
         'too_many' => 'Bol dosiahnutý blokovací limit.',
         'button' => [
             'block' => 'blokovať',
@@ -54,22 +55,22 @@ return [
 
     'create' => [
         'form' => [
-            'password' => '',
-            'password_confirmation' => '',
-            'submit' => '',
-            'user_email' => '',
-            'user_email_confirmation' => '',
-            'username' => '',
+            'password' => 'heslo',
+            'password_confirmation' => 'potvrdiť heslo',
+            'submit' => 'vytvoriť účet',
+            'user_email' => 'email',
+            'user_email_confirmation' => 'potvrdiť email',
+            'username' => 'používateľské meno',
 
             'tos_notice' => [
-                '_' => '',
-                'link' => '',
+                '_' => 'vytvorením účtu súhlasíte s :link',
+                'link' => 'podmienky používania',
             ],
         ],
     ],
 
     'disabled' => [
-        'title' => '',
+        'title' => 'Ups! Vyzerá to tak, že tvoj účet bol zakázaný.',
         'warning' => "",
 
         'if_mistake' => [

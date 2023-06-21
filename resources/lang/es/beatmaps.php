@@ -106,7 +106,7 @@ return [
                 'unsaved' => 'No guardado',
                 'timestamp' => [
                     'all-diff' => 'Las publicaciones en "Todas las dificultades" no pueden tener marcas de tiempo.',
-                    'diff' => 'Si el comentario de :type empieza con una marca de tiempo, se mostrará en la Línea de tiempo.',
+                    'diff' => 'Si esta publicación empieza con una marca de tiempo, se mostrará en la Línea de tiempo.',
                 ],
             ],
             'insert-block' => [
@@ -175,6 +175,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'Ya has nominado este mapa.',
+        'cannot_nominate' => 'No puedes nominar este modo de juego del mapa.',
         'delete' => 'Eliminar',
         'delete_own_confirm' => '¿Está seguro? El mapa será eliminado y serás redirigido de vuelta a tu perfil.',
         'delete_other_confirm' => '¿Está seguro? El mapa será eliminado y serás redirigido de vuelta al perfil de usuario.',
@@ -199,6 +201,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Se estima que este mapa se clasificará :date si no se encuentran problemas. Es el número :position en la :queue.',
+            'on' => 'el :date',
             'queue' => 'cola de clasificación',
             'soon' => 'pronto',
         ],
@@ -220,7 +223,7 @@ return [
             'prompt' => 'escriba en palabras clave...',
             'login_required' => 'Inicie sesión para buscar.',
             'options' => 'Más opciones de búsqueda',
-            'supporter_filter' => 'Filtrar por :filters requiere un tag activo de osu!supporter',
+            'supporter_filter' => 'Filtrar por :filters requiere una etiqueta activa de osu!supporter',
             'not-found' => 'no hay resultados',
             'not-found-quote' => '... nop, nada encontrado.',
             'filters' => [
@@ -248,7 +251,7 @@ return [
             ],
             'supporter_filter_quote' => [
                 '_' => 'Necesitas un :link activo para filtrar por :filters',
-                'link_text' => 'tag de osu!supporter',
+                'link_text' => 'etiqueta de osu!supporter',
             ],
         ],
     ],

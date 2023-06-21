@@ -18,7 +18,7 @@ class RoomsControllerTest extends TestCase
 {
     public function testIndex()
     {
-        $room = factory(Room::class)->create();
+        $room = Room::factory()->create();
         $user = User::factory()->create();
 
         $this->actAsScopedUser($user, ['*']);
@@ -284,7 +284,7 @@ class RoomsControllerTest extends TestCase
         $user = $token->user;
 
         for ($i = 0; $i < $user->maxMultiplayerRooms(); $i++) {
-            factory(Room::class)->create(['user_id' => $user]);
+            Room::factory()->create(['user_id' => $user]);
         }
 
         $roomsCountInitial = Room::count();
@@ -305,7 +305,7 @@ class RoomsControllerTest extends TestCase
     {
         $token = Token::factory()->create(['scopes' => ['*']]);
         $user = $token->user;
-        factory(Room::class)->create(['user_id' => $user, 'type' => Room::REALTIME_DEFAULT_TYPE]);
+        Room::factory()->create(['user_id' => $user, 'type' => Room::REALTIME_DEFAULT_TYPE]);
 
         $roomsCountInitial = Room::count();
         $playlistItemsCountInitial = PlaylistItem::count();
@@ -327,7 +327,7 @@ class RoomsControllerTest extends TestCase
 
         $user = $token->user;
 
-        factory(Room::class)->create(['user_id' => $user, 'type' => Room::REALTIME_DEFAULT_TYPE]);
+        Room::factory()->create(['user_id' => $user, 'type' => Room::REALTIME_DEFAULT_TYPE]);
 
         $roomsCountInitial = Room::count();
         $playlistItemsCountInitial = PlaylistItem::count();
@@ -350,7 +350,7 @@ class RoomsControllerTest extends TestCase
         $user = $token->user;
 
         for ($i = 0; $i < $user->maxMultiplayerRooms(); $i++) {
-            factory(Room::class)->create(['user_id' => $user]);
+            Room::factory()->create(['user_id' => $user]);
         }
 
         $roomsCountInitial = Room::count();
@@ -371,7 +371,7 @@ class RoomsControllerTest extends TestCase
     {
         $token = Token::factory()->create(['scopes' => ['*']]);
         $password = 'hunter2';
-        $room = factory(Room::class)->create(compact('password'));
+        $room = Room::factory()->create(compact('password'));
 
         $initialUserChannelCount = UserChannel::count();
         $url = route('api.rooms.join', ['room' => $room, 'user' => $token->user]);

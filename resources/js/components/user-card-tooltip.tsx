@@ -97,6 +97,8 @@ function my(at: string) {
   switch (at) {
     case 'top center':
       return 'bottom center';
+    case 'top right':
+      return 'bottom left';
     case 'left center':
       return 'right center';
     case 'bottom center':

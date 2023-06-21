@@ -28,6 +28,7 @@ class CleanHTML
         $config->set('Cache.SerializerPath', $cachePath);
         $config->set('Attr.AllowedRel', ['nofollow']);
         $config->set('HTML.Trusted', true);
+        $config->set('CSS.Trusted', true);
 
         $def = $config->getHTMLDefinition(true);
 

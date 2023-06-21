@@ -175,6 +175,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'Már nominálva vagy erre a beatmapre.',
+        'cannot_nominate' => 'Nem nominálhatod ezt a beatmapet ebben a játékmódban.',
         'delete' => 'Törlés',
         'delete_own_confirm' => 'Biztos vagy benne? A beatmap törlésre kerül és vissza leszel irányítva a profilodra.',
         'delete_other_confirm' => 'Biztos vagy benne? A beatmap törlésre kerül és vissza leszel irányítva a felhasználó profiljára.',
@@ -199,6 +201,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Ez a pálya rangsorolt lesz :date napján, ha további problémák nem merülnek fel. Jelenleg a :position. helyen áll a :queue.',
+            'on' => 'ekkor: :date',
             'queue' => 'ranglistázási sorban',
             'soon' => 'a közeljövő egy',
         ],

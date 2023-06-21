@@ -34,6 +34,7 @@ return [
         'qualify' => '谱面已过审 (Qualified)：这张谱面已经获得了足够数量的提名。',
         'rank' => '谱面已上架 (Ranked)。',
         'remove_from_loved' => ':user 已将其从社区喜爱 (Loved) 状态中移除。(:text)',
+        'tags_edit' => '标签由 :old 更改为 :new。',
 
         'nsfw_toggle' => [
             'to_0' => '移除不良内容标识

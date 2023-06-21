@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import EventJson from 'interfaces/event-json';
+import core from 'osu-core-singleton';
 import * as React from 'react';
 import { Modifiers } from 'utils/css';
 import { trans } from 'utils/lang';
@@ -47,14 +48,19 @@ export default function parseEvent(event: EventJson, modifiers: Modifiers): { ba
         },
       };
 
-    case 'beatmapsetDelete':
+    case 'beatmapsetDelete': {
+      const canView = core.currentUser != null && (core.currentUser.is_bng || core.currentUser.is_moderator);
+
       return {
         badge: <span className='far fa-trash-alt' />,
         iconModifiers: 'danger',
         mappings: {
-          beatmapset: event.beatmapset.title,
+          beatmapset: canView
+            ? <a href={event.beatmapset.url}>{event.beatmapset.title}</a>
+            : event.beatmapset.title,
         },
       };
+    }
 
     case 'beatmapsetRevive':
       return {

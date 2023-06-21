@@ -17,7 +17,7 @@ return [
         'disqualify_legacy' => 'Descalificat de :user. Motiv :text.',
         'genre_edit' => 'Genul s-a schimbat de la :old la :new.',
         'issue_reopen' => 'Problema rezolvată :discussion s-a redeschis.',
-        'issue_resolve' => 'Problema :discussion a fost marcată ca rezolvată.',
+        'issue_resolve' => 'Problema :discussion postată de :discussion_user a fost marcată drept rezolvată de către :user.',
         'kudosu_allow' => 'Negocierea de kudosu pentru discuția :discussion a fost eliminată.',
         'kudosu_deny' => 'Discuția :discussion a fost respinsă pentru kudosu.',
         'kudosu_gain' => 'Discuția :discussion de :user a obținut destule voturi pentru kudosu.',
@@ -34,6 +34,7 @@ return [
         'qualify' => 'Acest beatmap a atins numărul limită de nominalizări și s-a calificat.',
         'rank' => 'Clasat.',
         'remove_from_loved' => 'Eliminat din Iubit de :user. (:text)',
+        'tags_edit' => 'Etichetele au fost schimbate din ":old" în ":new".',
 
         'nsfw_toggle' => [
             'to_0' => 'Marcaj conținut obscen șters',

@@ -106,7 +106,7 @@ return [
                 'unsaved' => 'Niezapisana',
                 'timestamp' => [
                     'all-diff' => 'Posty dla wszystkich poziomów trudności nie mogą zawierać znaczników czasu.',
-                    'diff' => 'Jeżeli ten post typu „:type” rozpoczyna się od znacznika czasu, zostanie on wyświetlony w zakładce osi czasu.',
+                    'diff' => 'Jeżeli ten post rozpoczyna się od znacznika czasu, zostanie on wyświetlony w zakładce osi czasu.',
                 ],
             ],
             'insert-block' => [
@@ -175,6 +175,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'Już nominowano tę beatmapę.',
+        'cannot_nominate' => 'Nie możesz nominować beatmapy dla tego trybu gry.',
         'delete' => 'Usuń',
         'delete_own_confirm' => 'Czy na pewno chcesz to zrobić? Ta beatmapa zostanie usunięta i nastąpi przekierowanie do twojego profilu.',
         'delete_other_confirm' => 'Czy na pewno chcesz to zrobić? Ta beatmapa zostanie usunięta i nastąpi przekierowanie do profilu użytkownika.',
@@ -199,6 +201,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Ta beatmapa uzyska status rankingowy :date, jeżeli nie zostaną zgłoszone żadne problemy. Obecnie jest ona na :position. miejscu w :queue.',
+            'on' => ':date',
             'queue' => 'kolejce rankingowej',
             'soon' => 'wkrótce',
         ],

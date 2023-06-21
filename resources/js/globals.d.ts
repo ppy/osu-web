@@ -24,6 +24,11 @@ interface JQueryStatic {
   unsubscribe: (eventName: string, handler?: unknown) => void;
 }
 
+// @types/jquery.scrollto doesn't contain the interrupt option.
+interface ScrollToOptions {
+  interrupt?: boolean;
+}
+
 interface Window {
   newBody?: HTMLElement;
   newUrl?: URL | Location | null;

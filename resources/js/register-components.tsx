@@ -1,26 +1,26 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import BeatmapsetPanel, { Props as BeatmapsetPanelProps } from 'beatmapset-panel';
 import BeatmapsetEvents, { Props as BeatmapsetEventsProps } from 'components/beatmapset-events';
-import BeatmapsetPanel, { Props as BeatmapsetPanelProps } from 'components/beatmapset-panel';
 import BlockButton from 'components/block-button';
 import ChatIcon from 'components/chat-icon';
-import { Comments } from 'components/comments';
+import Comments from 'components/comments';
 import { CommentsManager, Props as CommentsManagerProps } from 'components/comments-manager';
 import CountdownTimer from 'components/countdown-timer';
 import { LandingNews } from 'components/landing-news';
 import MainNotificationIcon from 'components/main-notification-icon';
 import QuickSearchButton from 'components/quick-search-button';
-import RankingFilter from 'components/ranking-filter';
-import { RankingType } from 'components/ranking-filter';
+import RankingCountryFilter from 'components/ranking-country-filter';
 import RankingSelectOptions from 'components/ranking-select-options';
+import RankingUserFilter from 'components/ranking-user-filter';
+import RankingVariantFilter from 'components/ranking-variant-filter';
 import SpotlightSelectOptions from 'components/spotlight-select-options';
 import { UserCard } from 'components/user-card';
 import { UserCardStore } from 'components/user-card-store';
 import { startListening, UserCardTooltip } from 'components/user-card-tooltip';
 import { UserCards } from 'components/user-cards';
 import { WikiSearch } from 'components/wiki-search';
-import GameMode from 'interfaces/game-mode';
 import { keyBy } from 'lodash';
 import { observable } from 'mobx';
 import { deletedUser } from 'models/user';
@@ -29,7 +29,7 @@ import core from 'osu-core-singleton';
 import QuickSearch from 'quick-search/main';
 import QuickSearchWorker from 'quick-search/worker';
 import * as React from 'react';
-import { parseJson, parseJsonNullable } from 'utils/json';
+import { parseJson } from 'utils/json';
 
 function reqJson<T>(input: string|undefined): T {
   // This will throw when input is missing and thus parsing empty string.
@@ -110,13 +110,16 @@ core.reactTurbolinks.register('quick-search-button', () => (
   <QuickSearchButton worker={quickSearchWorker} />
 ));
 
-core.reactTurbolinks.register('ranking-filter', (container) => (
-  <RankingFilter
-    countries={parseJsonNullable('json-countries')}
-    gameMode={container.dataset.gameMode as GameMode}
-    type={container.dataset.type as RankingType}
-    variants={reqJson(container.dataset.variants)}
-  />
+core.reactTurbolinks.register('ranking-country-filter', () => (
+  <RankingCountryFilter {...parseJson('json-country-filter')} />
+));
+
+core.reactTurbolinks.register('ranking-user-filter', () => (
+  <RankingUserFilter {...parseJson('json-user-filter')} />
+));
+
+core.reactTurbolinks.register('ranking-variant-filter', () => (
+  <RankingVariantFilter {...parseJson('json-variant-filter')} />
 ));
 
 core.reactTurbolinks.register('user-card', (container) => (

@@ -5,7 +5,7 @@ import { DiscussionsContext } from 'beatmap-discussions/discussions-context'
 import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context'
 import NewReview from 'beatmap-discussions/new-review'
 import { ReviewEditorConfigContext } from 'beatmap-discussions/review-editor-config-context'
-import { BackToTop } from 'components/back-to-top'
+import BackToTop from 'components/back-to-top'
 import { route } from 'laroute'
 import { deletedUser } from 'models/user'
 import core from 'osu-core-singleton'
@@ -150,6 +150,7 @@ export class Main extends React.PureComponent
                   beatmaps: @beatmaps()
                   currentBeatmap: @currentBeatmap()
                   currentUser: @state.currentUser
+                  innerRef: @newDiscussionRef
                   pinned: @state.pinnedNewDiscussion
                   setPinned: @setPinnedNewDiscussion
                   stickTo: @modeSwitcherRef
@@ -378,7 +379,6 @@ export class Main extends React.PureComponent
 
     newState.callback = =>
       $.publish 'beatmapset-discussions:highlight', discussionId: discussion.id
-
 
       attribute = if postId? then "data-post-id='#{postId}'" else "data-id='#{id}'"
       target = $(".js-beatmap-discussion-jump[#{attribute}]")

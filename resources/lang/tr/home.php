@@ -43,7 +43,7 @@ return [
             'label' => [
                 'forum' => 'forumlarda ara',
                 'forum_children' => 'alt forumları dahil et',
-                'include_deleted' => '',
+                'include_deleted' => 'silinmiş gönderileri dahil et',
                 'topic_id' => 'konu #',
                 'username' => 'yazar',
             ],
@@ -84,7 +84,7 @@ return [
         'macos-fallback' => 'macOS kullanıcıları',
         'mirror' => 'alternatif',
         'or' => 'ya da',
-        'os_version_or_later' => '',
+        'os_version_or_later' => ':os_version ve üzeri',
         'other_os' => 'diğer platformlar',
         'quick_start_guide' => 'hızlı başlangıç kılavuzu',
         'tagline' => "haydi seni<br>oyuna hazırlayalım!",

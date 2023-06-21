@@ -50,13 +50,11 @@ return [
             'resolved' => 'Kamu tidak dapat menyunting postingan pada topik diskusi yang telah terjawab.',
             'system_generated' => 'Post yang dihasilkan secara otomatis tidak dapat disunting.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Diskusi pada beatmap ini telah dikunci.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'Diskusi pada beatmap ini telah dikunci.',
+
         'metadata' => [
             'nominated' => 'Kamu tidak dapat mengubah pengaturan metadata pada beatmap yang telah dinominasikan. Harap hubungi BN atau NAT apabila kamu merasa ada suatu hal yang perlu diubah.',
         ],
@@ -67,7 +65,7 @@ return [
         'blocked' => 'Pesan tidak dapat dikirim kepada pengguna yang kamu blokir atau memblokir dirimu.',
         'friends_only' => 'Pengguna memblokir pesan dari orang yang tidak dalam daftar temannya.',
         'moderated' => 'Kanal percakapan ini sedang dimoderasi.',
-        'no_access' => 'Anda tidak memiliki akses ke kanal percakapan ini.',
+        'no_access' => 'Kamu tidak memiliki akses ke kanal percakapan ini.',
         'receive_friends_only' => 'Pengguna ini tidak akan dapat membalas pesanmu karena kamu hanya menerima pesan dari nama-nama yang tertera pada daftar temanmu.',
         'restricted' => 'Kamu tidak dapat mengirim pesan pada saat akunmu sedang di-silence, di-restrict, atau di-ban.',
         'silenced' => 'Kamu tidak dapat mengirim pesan pada saat akunmu sedang di-silence, di-restrict, atau di-ban.',

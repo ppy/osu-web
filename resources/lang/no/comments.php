@@ -11,6 +11,7 @@ return [
     'edited' => 'redigert for :timeago av :user',
     'pinned' => 'festet',
     'empty' => 'Ingen kommentarer ennå.',
+    'empty_other' => '',
     'load_replies' => 'last inn svar',
     'replies_count' => ':count_delimited reply|:count_delimited kommentarer',
     'title' => 'Kommentarer',

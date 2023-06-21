@@ -2,7 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import UserAvatar from 'components/user-avatar';
-import { UserLink } from 'components/user-link';
+import UserLink from 'components/user-link';
 import UserJson from 'interfaces/user-json';
 import * as React from 'react';
 import { transChoice } from 'utils/lang';
@@ -65,6 +65,7 @@ export default function UserListPopup(props: Props) {
             <UserLink
               key={user.id}
               className='user-list-popup__user'
+              tooltipPosition='top right'
               user={user}
             >
               <UserAvatar modifiers='full' user={user} />

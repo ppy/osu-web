@@ -3,16 +3,27 @@
 
 import { discussionTypeIcons } from 'beatmap-discussions/discussion-type';
 import { BeatmapIcon } from 'components/beatmap-icon';
+import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import * as React from 'react';
-import { format, formatTimestamp, makeUrl, startingPost } from 'utils/beatmapset-discussion-helper';
+import { formatTimestamp, makeUrl, startingPost } from 'utils/beatmapset-discussion-helper';
 import { classWithModifiers } from 'utils/css';
 import { trans } from 'utils/lang';
 import { BeatmapsContext } from './beatmaps-context';
+import DiscussionMessage from './discussion-message';
 import { DiscussionsContext } from './discussions-context';
 
 interface Props {
   data: {
     discussion_id: number;
+  };
+}
+
+export function postEmbedModifiers(discussion: BeatmapsetDiscussionJson) {
+  return {
+    deleted: discussion.deleted_at != null,
+    'general-all': discussion.beatmap_id == null,
+    praise: discussion.message_type === 'praise',
+    resolved: discussion.resolved && discussion.message_type !== 'praise',
   };
 }
 
@@ -38,22 +49,6 @@ export const ReviewPostEmbed = ({ data }: Props) => {
   }
 
   const beatmap = discussion.beatmap_id == null ? undefined : beatmaps[discussion.beatmap_id];
-
-  const additionalClasses = ['lighter'];
-  if (discussion.message_type === 'praise') {
-    additionalClasses.push('praise');
-  } else if (discussion.resolved) {
-    additionalClasses.push('resolved');
-  }
-
-  const hasBeatmap = discussion.beatmap_id !== null;
-  if (!hasBeatmap) {
-    additionalClasses.push('general-all');
-  }
-
-  if (discussion.deleted_at) {
-    additionalClasses.push('deleted');
-  }
 
   const messageTypeIcon = () => {
     const type = discussion.message_type;
@@ -98,7 +93,7 @@ export const ReviewPostEmbed = ({ data }: Props) => {
   };
 
   return (
-    <div className={classWithModifiers(bn, additionalClasses)}>
+    <div className={classWithModifiers(bn, 'lighter', postEmbedModifiers(discussion))}>
       <div className={`${bn}__content`}>
         <div className={`${bn}__selectors`}>
           <div className='icon-dropdown-menu icon-dropdown-menu--disabled'>
@@ -118,7 +113,9 @@ export const ReviewPostEmbed = ({ data }: Props) => {
         </div>
         <div className={`${bn}__stripe`} />
         <div className={`${bn}__message-container`}>
-          <div className={`${bn}__body`} dangerouslySetInnerHTML={{ __html: format(post.message) }} />
+          <div className={`${bn}__body`}>
+            <DiscussionMessage markdown={post.message} />
+          </div>
         </div>
         {parentLink()}
       </div>

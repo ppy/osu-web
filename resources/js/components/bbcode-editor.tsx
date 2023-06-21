@@ -5,6 +5,7 @@ import { snakeCase } from 'lodash';
 import * as React from 'react';
 import { classWithModifiers, Modifiers } from 'utils/css';
 import { trans } from 'utils/lang';
+import { wikiUrl } from 'utils/url';
 
 type ChangeType = 'cancel' | 'save';
 
@@ -17,6 +18,7 @@ export interface OnChangeProps {
 
 interface Props {
   disabled: boolean;
+  ignoreEsc: boolean;
   modifiers?: Modifiers;
   onChange: (props: OnChangeProps) => void;
   placeholder?: string;
@@ -26,10 +28,22 @@ interface Props {
 export default class BbcodeEditor extends React.Component<Props> {
   static readonly defaultProps = {
     disabled: false,
+    ignoreEsc: false,
   };
 
   private readonly bodyRef = React.createRef<HTMLTextAreaElement>();
   private readonly sizeSelectRef = React.createRef<HTMLSelectElement>();
+
+  readonly cancel = (event?: React.SyntheticEvent) => {
+    if (this.bodyRef.current?.value !== this.props.rawValue && !confirm(trans('common.confirmation_unsaved'))) {
+      return;
+    }
+
+    if (this.bodyRef.current != null) {
+      this.bodyRef.current.value = this.props.rawValue;
+    }
+    this.sendOnChange({ event, type: 'cancel' });
+  };
 
   componentDidMount() {
     if (this.sizeSelectRef.current != null) {
@@ -104,19 +118,8 @@ export default class BbcodeEditor extends React.Component<Props> {
     );
   }
 
-  private cancel = (event?: React.SyntheticEvent) => {
-    if (this.bodyRef.current?.value !== this.props.rawValue && !confirm(trans('common.confirmation_unsaved'))) {
-      return;
-    }
-
-    if (this.bodyRef.current != null) {
-      this.bodyRef.current.value = this.props.rawValue;
-    }
-    this.sendOnChange({ event, type: 'cancel' });
-  };
-
   private onKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === 'Escape') {
+    if (!this.props.ignoreEsc && e.key === 'Escape') {
       this.cancel();
     }
   };
@@ -148,17 +151,27 @@ export default class BbcodeEditor extends React.Component<Props> {
   private renderToolbar() {
     return (
       <div className='post-box-toolbar'>
-        {this.toolbarButton('bold', <i className='fas fa-bold' />)}
-        {this.toolbarButton('italic', <i className='fas fa-italic' />)}
-        {this.toolbarButton('strikethrough', <i className='fas fa-strikethrough' />)}
-        {this.toolbarButton('heading', <i className='fas fa-heading' />)}
-        {this.toolbarButton('link', <i className='fas fa-link' />)}
-        {this.toolbarButton('spoilerbox', <i className='fas fa-barcode' />)}
-        {this.toolbarButton('list-numbered', <i className='fas fa-list-ol' />)}
-        {this.toolbarButton('list', <i className='fas fa-list' />)}
-        {this.toolbarButton('image', <i className='fas fa-image' />)}
+        {this.toolbarButton('bold', 'fas fa-bold')}
+        {this.toolbarButton('italic', 'fas fa-italic')}
+        {this.toolbarButton('strikethrough', 'fas fa-strikethrough')}
+        {this.toolbarButton('heading', 'fas fa-heading')}
+        {this.toolbarButton('link', 'fas fa-link')}
+        {this.toolbarButton('spoilerbox', 'fas fa-barcode')}
+        {this.toolbarButton('list-numbered', 'fas fa-list-ol')}
+        {this.toolbarButton('list', 'fas fa-list')}
+        {this.toolbarButton('image', 'fas fa-image')}
+        {this.toolbarButton('imagemap', 'fas fa-map')}
 
         {this.toolbarSizeSelect()}
+
+        <a
+          className='post-box-toolbar__help'
+          href={wikiUrl('BBCode')}
+          rel="noreferrer"
+          target='_blank'
+        >
+          {trans('bbcode.help')}
+        </a>
       </div>
     );
   }
@@ -176,7 +189,7 @@ export default class BbcodeEditor extends React.Component<Props> {
     });
   }
 
-  private toolbarButton(name: string, content: JSX.Element) {
+  private toolbarButton(name: string, iconClass: string) {
     return (
       <button
         className={`btn-circle btn-circle--bbcode js-bbcode-btn--${name}`}
@@ -184,7 +197,9 @@ export default class BbcodeEditor extends React.Component<Props> {
         title={trans(`bbcode.${snakeCase(name)}`)}
         type='button'
       >
-        <span className='btn-circle__content'>{content}</span>
+        <span className='btn-circle__content'>
+          <span className={iconClass} />
+        </span>
       </button>
     );
   }

@@ -1,0 +1,5 @@
+[imagemap]&#10;https&#58;//assets&#46;ppy&#46;sh/osu-web-test-resources/placeholder-1280x720&#46;jpg&#10;0 6&#46;9 20 30 https&#58;//osu&#46;ppy&#46;sh link 1&#10;40 50 60 70 https&#58;//osu&#46;ppy&#46;sh/home&#10;8 8 8 8 #&#10;9 9 9 9 # some title&#10;[/imagemap]
+
+[imagemap]&#10;https&#58;//assets&#46;ppy&#46;sh/osu-web-test-resources/placeholder-1280x720&#46;jpg&#10;40 50 60 70 https&#58;//osu&#46;ppy&#46;sh/users/2&#10;[/imagemap]
+
+[imagemap]&#10;https&#58;//assets&#46;ppy&#46;sh/osu-web-test-resources/placeholder-1280x720&#46;jpg&#10;[/imagemap]

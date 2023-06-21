@@ -226,15 +226,15 @@ class BeatmapDiscussionPost extends Model implements Traits\ReportableInterface
                 $this->validationErrors()->add('message', 'required');
             }
 
-            if (optional($this->beatmapDiscussion)->timestamp !== null && mb_strlen($this->message) > static::MESSAGE_LIMIT_TIMELINE) {
-                $this->validationErrors()->add('message', 'too_long', ['limit' => static::MESSAGE_LIMIT_TIMELINE]);
+            if ($this->beatmapDiscussion?->timestamp !== null) {
+                $this->validateDbFieldLength(static::MESSAGE_LIMIT_TIMELINE, 'message');
             }
         }
 
         return $this->validationErrors()->isEmpty();
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'beatmapset_discussion_post';
     }

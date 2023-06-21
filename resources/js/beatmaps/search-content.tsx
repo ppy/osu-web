@@ -3,7 +3,7 @@
 
 import BeatmapsetCardSizeSelector from 'beatmaps/beatmapset-card-size-selector';
 import VirtualListMeta from 'beatmaps/virtual-list-meta';
-import BeatmapsetPanel, { beatmapsetCardSizes } from 'components/beatmapset-panel';
+import BeatmapsetPanel, { beatmapsetCardSizes } from 'beatmapset-panel';
 import Img2x from 'components/img2x';
 import StringWithComponent from 'components/string-with-component';
 import { route } from 'laroute';

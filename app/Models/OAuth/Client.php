@@ -8,10 +8,27 @@ namespace App\Models\OAuth;
 use App\Exceptions\InvariantException;
 use App\Models\User;
 use App\Traits\Validatable;
+use Carbon\Carbon;
 use DB;
 use Laravel\Passport\Client as PassportClient;
 use Laravel\Passport\RefreshToken;
 
+/**
+ * @property Carbon|null $created_at
+ * @property int $id
+ * @property string $name
+ * @property bool $password_client
+ * @property bool $personal_access_client
+ * @property string $provider
+ * @property string $redirect
+ * @property-read Collection<RefreshToken> refreshTokens
+ * @property bool $revoked
+ * @property string $secret
+ * @property-read Collection<Token> tokens
+ * @property Carbon|null $updated_at
+ * @property-read User|null $user
+ * @property int|null $user_id
+ */
 class Client extends PassportClient
 {
     use Validatable;
@@ -56,6 +73,11 @@ class Client extends PassportClient
         );
     }
 
+    public function setRedirectAttribute(string $value)
+    {
+        $this->attributes['redirect'] = implode(',', array_unique(preg_split('/[\s,]+/', $value, 0, PREG_SPLIT_NO_EMPTY)));
+    }
+
     public function isValid()
     {
         $this->validationErrors()->reset();
@@ -71,10 +93,13 @@ class Client extends PassportClient
             $this->validationErrors()->add('name', 'required');
         }
 
-        $redirect = trim($this->redirect);
-        // TODO: this url validation is not very good.
-        if (present($redirect) && !filter_var($redirect, FILTER_VALIDATE_URL)) {
-            $this->validationErrors()->add('redirect', '.url');
+        $redirects = explode(',', $this->redirect ?? '');
+        foreach ($redirects as $redirect) {
+            // TODO: this url validation is not very good.
+            if (present($redirect) && !filter_var($redirect, FILTER_VALIDATE_URL)) {
+                $this->validationErrors()->add('redirect', '.url');
+                break;
+            }
         }
 
         return $this->validationErrors()->isEmpty();
@@ -144,7 +169,7 @@ class Client extends PassportClient
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'oauth.client';
     }

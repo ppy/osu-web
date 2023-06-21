@@ -14,7 +14,7 @@ return [
 
         'slogan' => [
             'main' => 'เกมดนตรีเล่นฟรีที่เริศที่สุดในสามโลก',
-            'sub' => 'rhythm is just a click away',
+            'sub' => 'จังหวะเป็นเพียงไม่กี่คลิก',
         ],
     ],
 
@@ -27,10 +27,10 @@ return [
         'title' => 'ค้นหา',
 
         'beatmapset' => [
-            'login_required' => 'เข้าสู่ระบบเพื่อค้นหาบีทแมพ',
-            'more' => ':count ผลการค้นหาบีทแมพเพิ่มเติม',
-            'more_simple' => 'ดูผลการค้นหาบีทแมพเพิ่มเติม',
-            'title' => 'บีทแมพ',
+            'login_required' => 'เข้าสู่ระบบเพื่อค้นหาบีตแม็ป',
+            'more' => ':count ผลการค้นหาบีตแม็ปเพิ่มเติม',
+            'more_simple' => 'ดูผลการค้นหาบีตแม็ปเพิ่มเติม',
+            'title' => 'บีตแม็ป',
         ],
 
         'forum_post' => [
@@ -43,7 +43,7 @@ return [
             'label' => [
                 'forum' => 'ค้นหาในฟอรั่ม',
                 'forum_children' => 'รวมฟอรั่มย่อย',
-                'include_deleted' => '',
+                'include_deleted' => 'รวมโพสต์ที่ถูกลบ',
                 'topic_id' => 'หัวข้อ #',
                 'username' => 'ผู้แต่ง',
             ],
@@ -51,7 +51,7 @@ return [
 
         'mode' => [
             'all' => 'ทั้งหมด',
-            'beatmapset' => 'บีทแมพ',
+            'beatmapset' => 'บีตแม็ป',
             'forum_post' => 'ฟอรั่ม',
             'user' => 'ผู้เล่น',
             'wiki_page' => 'วิกิ',
@@ -74,19 +74,19 @@ return [
 
     'download' => [
         'action' => 'ดาวน์โหลด osu!',
-        'action_lazer' => '',
-        'action_lazer_description' => '',
-        'action_lazer_info' => '',
-        'action_lazer_title' => '',
-        'action_title' => '',
-        'for_os' => '',
-        'lazer_note' => '',
+        'action_lazer' => 'ดาวน์โหลด osu!(lazer)',
+        'action_lazer_description' => 'การอัปเดตครั้งใหญ่ครั้งต่อไปของ osu!',
+        'action_lazer_info' => 'ตรวจสอบหน้านี้สำหรับข้อมูลเพิ่มเติม',
+        'action_lazer_title' => 'ลอง osu!(lazer)',
+        'action_title' => 'ดาวน์โหลด osu!',
+        'for_os' => 'สำหรับ :os',
+        'lazer_note' => 'หมายเหตุ: ใช้การรีเซ็ตกระดานอันดับ',
         'macos-fallback' => 'ผู้ใช้ macOS',
-        'mirror' => 'เซิร์ฟเวอร์อื่น',
-        'or' => '',
-        'os_version_or_later' => '',
-        'other_os' => '',
-        'quick_start_guide' => '',
+        'mirror' => 'สำรอง',
+        'or' => 'หรือ',
+        'os_version_or_later' => ':os_version หรือสูงกว่า',
+        'other_os' => 'แพลตฟอร์มอื่นๆ',
+        'quick_start_guide' => 'คู่มือการใช้งานเริ่มต้น',
         'tagline' => "เรามา<br>เริ่มกันเถอะ",
         'video-guide' => 'ไกด์วิดิโอ',
 
@@ -111,9 +111,9 @@ return [
                 'description' => 'กดปุ่มข้างบนเพื่อดาวน์โหลดตัวติดตั้งและรัน',
             ],
             'beatmaps' => [
-                'title' => 'โหลดบีทแมพ',
+                'title' => 'โหลดบีตแม็ป',
                 'description' => [
-                    '_' => ':browse บีทแมพมากมายที่ผู้เล่นต่าง ๆ ได้สร้างขึ้น และเริ่มเล่น!',
+                    '_' => ':browse ห้องสมุดขนาดใหญ่ของบีตแม็ปที่ผู้สร้างสร้างขึ้นและเริ่มเล่นได้เลย!',
                     'browse' => 'ค้นหา',
                 ],
             ],
@@ -134,14 +134,14 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'บีทแมพจัดอันดับใหม่ล่าสุด',
-            'popular' => 'บีทแมพยอดฮิต',
+            'new' => 'บีตแม็ปจัดอันดับใหม่ล่าสุด',
+            'popular' => 'บีตแม็ปยอดฮิต',
             'by_user' => 'โดย :user',
         ],
         'buttons' => [
             'download' => 'ดาวน์โหลด osu!',
             'support' => 'สนับสนุน osu!',
-            'store' => 'osu!store',
+            'store' => 'osu!ร้านค้า',
         ],
     ],
 ];

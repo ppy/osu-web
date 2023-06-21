@@ -4,7 +4,7 @@
 import StringWithComponent from 'components/string-with-component';
 import TimeWithTooltip from 'components/time-with-tooltip';
 import UserAvatar from 'components/user-avatar';
-import { UserLink } from 'components/user-link';
+import UserLink from 'components/user-link';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
 import * as moment from 'moment';
 import * as React from 'react';

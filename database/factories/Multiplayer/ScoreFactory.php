@@ -3,51 +3,51 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
+namespace Database\Factories\Multiplayer;
+
 use App\Models\Multiplayer\PlaylistItem;
 use App\Models\Multiplayer\Score;
 use App\Models\User;
+use Carbon\Carbon;
+use Database\Factories\Factory;
 
-$factory->define(Score::class, function (Faker\Generator $faker) {
-    return [
-        'playlist_item_id' => function () {
-            return factory(PlaylistItem::class)->create()->getKey();
-        },
-        'beatmap_id' => function (array $self) {
-            return PlaylistItem::find($self['playlist_item_id'])->beatmap_id;
-        },
-        'room_id' => function (array $self) {
-            return PlaylistItem::find($self['playlist_item_id'])->room_id;
-        },
-        'user_id' => function () {
-            return User::factory()->create()->getKey();
-        },
-        'total_score' => 1,
-        'started_at' => now()->subMinutes(5),
-        'accuracy' => 0.5,
-        'pp' => 1,
-    ];
-});
+class ScoreFactory extends Factory
+{
+    protected $model = Score::class;
 
-$factory->state(Score::class, 'completed', function (Faker\Generator $faker) {
-    return [
-        'ended_at' => now(),
-    ];
-});
+    public function completed(): static
+    {
+        return $this->state(['ended_at' => Carbon::now()->subMinutes(1)]);
+    }
 
-$factory->state(Score::class, 'passed', function (Faker\Generator $faker) {
-    return [
-        'passed' => true,
-    ];
-});
+    public function definition(): array
+    {
+        return [
+            'playlist_item_id' => PlaylistItem::factory(),
+            'beatmap_id' => fn(array $attributes) => PlaylistItem::find($attributes['playlist_item_id'])->beatmap_id,
+            'room_id' => fn(array $attributes) => PlaylistItem::find($attributes['playlist_item_id'])->room_id,
+            'user_id' => User::factory(),
+            'total_score' => 1,
+            'started_at' => fn() => Carbon::now()->subMinutes(5),
+            'accuracy' => 0.5,
+            'pp' => 1,
+        ];
+    }
 
-$factory->state(Score::class, 'failed', function (Faker\Generator $faker) {
-    return [
-        'passed' => false,
-    ];
-});
+    public function failed(): static
+    {
+        return $this->completed()->state(['passed' => false]);
+    }
 
-$factory->state(Score::class, 'scoreless', function (Faker\Generator $faker) {
-    return [
-        'total_score' => 0,
-    ];
-});
+    public function passed(): static
+    {
+        return $this->completed()->state(['passed' => true]);
+    }
+
+    public function scoreless(): static
+    {
+        return $this->state(['total_score' => 0]);
+    }
+}

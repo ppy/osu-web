@@ -13,8 +13,8 @@ return [
 
     'beatmaps' => [
         '_' => 'Beatmaps',
-        'download' => 'Download Beatmap Template',
-        'download-na' => 'Beatmap Template not yet available',
+        'download' => 'download beatmap template',
+        'download-na' => 'beatmap template not yet available',
     ],
 
     'index' => [

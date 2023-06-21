@@ -32,6 +32,7 @@ return [
     ],
 
     'forum_topics' => [
+        'created' => 'Дата ўтварэння',
         'feature_votes' => 'Зорны прыярытэт',
         'new' => 'Апошні адказ',
     ],

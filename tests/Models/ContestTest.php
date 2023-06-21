@@ -36,16 +36,16 @@ class ContestTest extends TestCase
         // extra beatmap
         Beatmap::factory()->create();
 
-        $rooms = factory(Room::class, 2)->create();
+        $rooms = Room::factory()->count(2)->create();
         foreach ($rooms as $i => $room) {
             foreach ($beatmapsets as $beatmapset) {
-                $playlistItems[] = factory(PlaylistItem::class)->create([
-                    'room_id' => $room->getKey(),
-                    'beatmap_id' => $beatmapset->beatmaps[$i]->getKey(),
+                $playlistItems[] = PlaylistItem::factory()->create([
+                    'room_id' => $room,
+                    'beatmap_id' => $beatmapset->beatmaps[$i],
                 ]);
             }
         }
-        $contest = factory(Contest::class)->create([
+        $contest = Contest::factory()->create([
             'extra_options' => [
                 'requirement' => [
                     'must_pass' => $mustPass,
@@ -54,7 +54,7 @@ class ContestTest extends TestCase
                 ],
             ],
         ]);
-        $entries = factory(ContestEntry::class, 2)->create(['contest_id' => $contest->getKey()]);
+        $entries = ContestEntry::factory()->count(2)->create(['contest_id' => $contest->getKey()]);
 
         if (!$canVote) {
             $this->expectException(InvariantException::class);
@@ -71,10 +71,10 @@ class ContestTest extends TestCase
                     ->playlist()
                     ->whereIn('beatmap_id', array_column($beatmapset->beatmaps->all(), 'beatmap_id'))
                     ->first();
-                factory(MultiplayerScore::class)->create([
+                MultiplayerScore::factory()->create([
                     'ended_at' => $endedAt,
                     'passed' => $passed,
-                    'playlist_item_id' => $playlistItem->getKey(),
+                    'playlist_item_id' => $playlistItem,
                     'user_id' => $userId,
                 ]);
             }
@@ -89,12 +89,27 @@ class ContestTest extends TestCase
 
     public function testAssertVoteRequirementNoRequirement(): void
     {
-        $contest = factory(Contest::class)->create();
-        $entry = factory(ContestEntry::class)->create(['contest_id' => $contest->getKey()]);
+        $contest = Contest::factory()->create();
+        $entry = ContestEntry::factory()->create(['contest_id' => $contest->getKey()]);
         $user = User::factory()->create();
 
         $contest->assertVoteRequirement($user, $entry);
         $this->assertTrue(true, 'no exception');
+    }
+
+    /**
+     * @dataProvider dataProviderForTestShowEntryUser
+     */
+    public function testShowEntryUser(bool $showVotes, ?bool $showEntryUserOption, bool $result): void
+    {
+        $extraOptions = $showEntryUserOption === null
+            ? null
+            : ['show_entry_user' => $showEntryUserOption];
+        $contest = Contest::factory()->create([
+            'show_votes' => $showVotes,
+            'extra_options' => $extraOptions,
+        ]);
+        $this->assertSame($result, $contest->showEntryUser());
     }
 
     public function dataProviderForTestAssertVoteRequirementPlaylistBeatmapsets(): array
@@ -115,6 +130,18 @@ class ContestTest extends TestCase
             [true, true, false, false, true],
             [true, false, false, false, false],
             [false, false, false, false, false],
+        ];
+    }
+
+    public function dataProviderForTestShowEntryUser(): array
+    {
+        return [
+            [false, null, false],
+            [true, null, true],
+            [false, false, false],
+            [true, false, true],
+            [false, true, true],
+            [true, true, true],
         ];
     }
 }

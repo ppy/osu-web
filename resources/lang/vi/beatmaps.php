@@ -175,6 +175,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'Bạn đã đề cử beatmap này rồi.',
+        'cannot_nominate' => 'Bạn không thể đề cử chế độ trò chơi của beatmap này.',
         'delete' => 'Xóa',
         'delete_own_confirm' => 'Bạn có chắc không? Beatmap sẽ bị xóa và bạn sẽ được chuyển hướng quay lại trang cá nhân của bạn.',
         'delete_other_confirm' => 'Bạn có chắc không? Beatmap sẽ bị xóa và bạn sẽ được chuyển hướng quay trở lại trang cá nhân của người dùng.',
@@ -199,6 +201,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Map này ước tính sẽ được Xếp Hạng :date nếu không tìm ra lỗi nào. Nó đang ở #:position trong :queue.',
+            'on' => 'vào ngày :date',
             'queue' => 'hàng chờ xếp hạng',
             'soon' => 'sớm',
         ],

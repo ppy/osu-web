@@ -11,7 +11,7 @@ return [
         'error' => [
             '400' => 'ungültige Anfrage',
             '404' => 'nicht gefunden',
-            '403' => 'verboten',
+            '403' => 'nicht berechtigt',
             '401' => 'nicht authorisiert',
             '401-verification' => 'accountverifizierung',
             '405' => 'nicht gefunden',
@@ -22,7 +22,7 @@ return [
         ],
     ],
     'forum' => [
-        '_' => 'forum',
+        '_' => 'Forum',
         'topic_logs_controller' => [
             'index' => 'thread-protokolle',
         ],
@@ -32,7 +32,7 @@ return [
             'verify_link' => 'accountverifizierung',
         ],
         'artists_controller' => [
-            '_' => 'featured artists',
+            '_' => 'Featured Artists',
         ],
         'beatmap_discussion_posts_controller' => [
             '_' => 'beatmap-diskussion-beiträge',
@@ -41,38 +41,38 @@ return [
             '_' => 'beatmap-diskussionen',
         ],
         'beatmap_packs_controller' => [
-            '_' => 'beatmap-pakete',
+            '_' => 'Beatmap-Pakete',
         ],
         'beatmapset_discussion_votes_controller' => [
             '_' => 'beatmap-diskussion-stimmen',
         ],
         'beatmapset_events_controller' => [
-            '_' => 'beatmap-verlauf',
+            '_' => 'Beatmap-Verlauf',
         ],
         'beatmapsets_controller' => [
             'discussion' => 'beatmap-diskussion',
-            'index' => 'beatmap-auflistung',
+            'index' => 'Beatmap-Auflistung',
             'show' => 'beatmap-info',
         ],
         'changelog_controller' => [
-            '_' => 'änderungsprotokoll',
+            '_' => 'Änderungsprotokoll',
         ],
         'chat_controller' => [
-            '_' => 'chat',
+            '_' => 'Chat',
         ],
         'comments_controller' => [
             '_' => 'kommentare',
         ],
         'contests_controller' => [
-            '_' => 'wettbewerbe',
+            '_' => 'Wettbewerbe',
         ],
         'groups_controller' => [
             'show' => 'gruppen',
         ],
         'home_controller' => [
-            'get_download' => 'herunterladen',
-            'index' => 'dashboard',
-            'search' => 'suchen',
+            'get_download' => 'Herunterladen',
+            'index' => 'Dashboard',
+            'search' => 'Suchen',
             'support_the_game' => 'Das Spiel unterstützen',
             'testflight' => 'testflight',
         ],
@@ -80,31 +80,31 @@ return [
             '_' => 'informationen',
         ],
         'livestreams_controller' => [
-            '_' => 'liveübertragung',
+            '_' => 'Liveübertragung',
         ],
         'matches_controller' => [
             '_' => 'spiele',
         ],
         'news_controller' => [
-            '_' => 'neuigkeiten',
+            '_' => 'Neuigkeiten',
         ],
         'notifications_controller' => [
-            '_' => 'benachrichtigungsverlauf',
+            '_' => 'Benachrichtigungsverlauf',
         ],
         'password_reset_controller' => [
             '_' => 'passwort zurücksetzen',
         ],
         'ranking_controller' => [
-            '_' => 'ranglisten',
+            '_' => 'Ranglisten',
         ],
         'scores_controller' => [
-            '_' => 'performance',
+            '_' => 'Performance',
         ],
         'seasons_controller' => [
-            '_' => '',
+            '_' => 'Ranglisten',
         ],
         'tournaments_controller' => [
-            '_' => 'turniere',
+            '_' => 'Turniere',
         ],
         'users_controller' => [
             '_' => 'spieler-info',
@@ -112,7 +112,7 @@ return [
             'disabled' => 'notiz',
         ],
         'wiki_controller' => [
-            '_' => 'wiki',
+            '_' => 'Wiki',
         ],
     ],
     'passport' => [
@@ -128,7 +128,7 @@ return [
             '_' => 'modder info',
         ],
         'multiplayer_controller' => [
-            '_' => 'mehrspielerverlauf',
+            '_' => 'Mehrspielerverlauf',
         ],
     ],
 ];

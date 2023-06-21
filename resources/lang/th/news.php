@@ -5,7 +5,7 @@
 
 return [
     'index' => [
-        'title_page' => 'ข่าว osu!',
+        'title_page' => 'osu!ข่าวสาร',
 
         'nav' => [
             'newer' => 'โพสต์ใหม่กว่า',

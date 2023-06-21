@@ -175,6 +175,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => '',
+        'cannot_nominate' => '',
         'delete' => 'Fjern',
         'delete_own_confirm' => 'Er du sikker? Dette beatmap vil blive slettet og du vil blive ledt tilbage til din profil.',
         'delete_other_confirm' => 'Er du sikker? Dette beatmap vil blive slettet og du vil blive ledt tilbage til brugerens profil.',
@@ -199,6 +201,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'Dette kort anslås at være rangeret :date , hvis ingen problemer findes. Det er #:position i :queue.',
+            'on' => '',
             'queue' => 'rangering kø',
             'soon' => 'snart',
         ],

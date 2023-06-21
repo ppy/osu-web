@@ -3,75 +3,39 @@
 
 .beatmapset-info {
   @_top: beatmapset-info;
-  @min-height: 220px;
-  @max-height: 320px;
+  @min-height: 200px;
+  @max-height: 300px;
   @box-margin--top: 15px;
-  @header-margin--top: 15px;
-  @header-margin--bottom: 5px;
 
   font-size: @font-size--normal;
-  color: white;
 
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  gap: 20px;
 
-  padding: 0 30px 0;
+  padding: 10px @gutter-beatmapset 0;
   background-color: hsl(var(--hsl-b4));
+  -webkit-overflow-scrolling: touch;
 
   @media @desktop {
-    flex-direction: row;
-    min-height: @min-height;
-    max-height: @max-height;
+    padding: 15px @gutter-beatmapset-desktop 0;
+    grid-template-columns: 1fr 175px @beatmapset-float-box-width;
   }
 
   &__box {
-    margin: @box-margin--top 10px 0;
-    flex: none;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-top: 10px;
 
-    &--description {
-      flex: 1;
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-    }
-
-    &--meta {
-      position: relative;
-
-      @media @desktop {
-        width: 175px;
-        overflow: hidden;
-        margin-bottom: 10px;
-      }
+    @media @desktop {
+      min-height: @min-height;
+      max-height: @max-height;
     }
 
     &--success-rate {
-      @media @desktop {
-        width: @beatmapset-float-box-width;
-      }
+      padding-top: 0;
     }
-  }
-
-  &__description {
-    -webkit-overflow-scrolling: touch;
-    overflow-y: auto;
-    padding-right: 10px;
-
-    // to prevent overflow from extending container box
-    @media @desktop {
-      .full-size();
-    }
-    @media @mobile {
-      max-height: @max-height;
-    }
-  }
-
-  &__description-container {
-    min-height: 0;
-    max-height: @max-height;
-    flex: 1;
-    position: relative;
   }
 
   &__edit-button {
@@ -88,13 +52,25 @@
     }
   }
 
-  &__half-box {
+  &__row {
     display: flex;
+    flex-direction: column;
+    padding-top: 5px;
+    padding-bottom: 10px;
+
+    &--half {
+      flex-direction: row;
+    }
+
+    &--value-overflow {
+      padding-bottom: 0;
+      min-height: 0;
+    }
   }
 
   &__half-entry {
-    flex: 1;
-    max-width: 50%;
+    flex: none;
+    width: 50%;
   }
 
   &__header {
@@ -103,10 +79,19 @@
     font-weight: bold;
     font-style: normal;
     padding: 0;
-    margin: @header-margin--top 0 @header-margin--bottom;
+    margin: 0 0 5px;
   }
 
   &__link {
     overflow-wrap: break-word;
+  }
+
+  &__value-overflow {
+    min-height: 0;
+    max-height: @max-height;
+    flex: 1;
+
+    overflow-y: auto;
+    padding-bottom: 10px;
   }
 }

@@ -2,11 +2,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 import BigButton from 'components/big-button';
+import { action, makeObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import { OwnClient as Client } from 'models/oauth/own-client';
 import core from 'osu-core-singleton';
 import * as React from 'react';
 import { onError } from 'utils/ajax';
+import { formatNumber } from 'utils/html';
 import { trans } from 'utils/lang';
 
 const uiState = core.dataStore.uiState;
@@ -17,6 +19,12 @@ interface Props {
 
 @observer
 export class OwnClient extends React.Component<Props> {
+  constructor(props: Props) {
+    super(props);
+
+    makeObservable(this);
+  }
+
   deleteClicked = () => {
     if (!confirm(trans('oauth.own_clients.confirm_delete'))) return;
 
@@ -25,12 +33,17 @@ export class OwnClient extends React.Component<Props> {
 
   render() {
     const client = this.props.client;
+    const redirects = client.redirect.split('\r\n');
 
     return (
       <div className='oauth-client'>
         <button className='oauth-client__details oauth-client__details--button' onClick={this.showClientDetails}>
           <div className='oauth-client__name'>{client.name}</div>
-          <div className='oauth-client__redirect'>{client.redirect}</div>
+          <div className='oauth-client__redirect'>
+            {redirects[0]}
+            {' '}
+            {redirects.length > 1 ? <small>(+{formatNumber(redirects.length - 1)})</small> : null}
+          </div>
         </button>
         <div className='oauth-client__actions'>
           <BigButton
@@ -43,7 +56,7 @@ export class OwnClient extends React.Component<Props> {
             text={trans('common.buttons.edit')}
           />
           <BigButton
-            disabled={client.isRevoking || client.revoked}
+            disabled={client.revoked}
             icon={client.revoked ? 'fas fa-ban' : 'fas fa-trash'}
             isBusy={client.isRevoking}
             modifiers={['account-edit', 'danger', 'settings-oauth']}
@@ -57,6 +70,7 @@ export class OwnClient extends React.Component<Props> {
     );
   }
 
+  @action
   showClientDetails = () => {
     uiState.account.client = this.props.client;
   };

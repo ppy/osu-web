@@ -34,6 +34,7 @@ return [
         'qualify' => 'Beatmap này đã đạt được số đề cử (nominations) cần thiết và đã qualified.',
         'rank' => 'Đã được xếp hạng (Ranked).',
         'remove_from_loved' => 'Yêu thích bị loại bỏ bởi :user. (:text)',
+        'tags_edit' => 'Thể loại đã được thay đổi từ ":old" sang ":new".',
 
         'nsfw_toggle' => [
             'to_0' => 'Đã xóa đánh dấu nội dung không lành mạnh',

@@ -36,6 +36,7 @@
   }
 
   &__group {
+    .fancy-scrollbar();
     display: inline-flex;
     flex-direction: column;
     margin: 10px 0;
@@ -50,14 +51,15 @@
     .reset-input();
     .default-border-radius();
 
-    flex: 1;
-    align-self: stretch;
     background-color: @osu-colour-b3;
     border: 2px solid transparent;
     padding: 5px;
+    margin-top: 5px;
+    font-weight: normal;
+    font-size: @font-size--phone-input;
 
-    @media @mobile {
-      font-size: @font-size--phone-input;
+    @media @desktop {
+      font-size: @font-size--title-small;
     }
 
     &:focus {
@@ -67,9 +69,17 @@
     &--has-error {
       border-color: @osu-colour-red-1;
     }
+
+    &--textarea {
+      min-height: 5em;
+      max-height: 50vh;
+      resize: none;
+    }
   }
 
   &__label {
     color: @osu-colour-f1;
+    font-weight: 600;
+    font-size: @font-size--normal;
   }
 }

@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => 'Forum',
         'latest_post' => 'Kiriman Terbaru',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => 'Apakah kamu yakin untuk memulihkan post ini?',
         'edited' => 'Terakhir disunting oleh :user :when, dengan total penyuntingan sebanyak :count_delimited kali.|Terakhir disunting oleh :user :when, dengan total penyuntingan sebanyak :count_delimited kali.',
         'posted_at' => 'diposting :when',
-        'posted_by' => 'di-post oleh :username',
+        'posted_by_in' => 'diposting oleh :username pada :forum',
 
         'actions' => [
             'destroy' => 'Hapus post',
@@ -360,7 +361,7 @@ return [
                 'detail' => [
                     'end_time' => 'Jajak pendapat akan berakhir pada :time',
                     'ended' => 'Jajak pendapat telah berakhir pada :time',
-                    'results_hidden' => 'Hasil jajak pendapat baru akan tersedia setelah pemungutan suara berakhir.',
+                    'results_hidden' => 'Hasil jajak pendapat akan ditampilkan setelah pemungutan suara berakhir.',
                     'total' => 'Jumlah suara: :count',
                 ],
             ],

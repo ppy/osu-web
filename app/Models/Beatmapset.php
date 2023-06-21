@@ -108,11 +108,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
 {
     use Memoizes, SoftDeletes, Traits\CommentableDefaults, Traits\Es\BeatmapsetSearch, Traits\Reportable, Validatable;
 
-    protected $_storage = null;
-    protected $table = 'osu_beatmapsets';
-    protected $primaryKey = 'beatmapset_id';
-
-    protected $casts = [
+    const CASTS = [
         'active' => 'boolean',
         'approved_date' => 'datetime',
         'comment_locked' => 'boolean',
@@ -131,7 +127,11 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         'video' => 'boolean',
     ];
 
-    public $timestamps = false;
+    const HYPEABLE_STATES = [-1, 0, 3];
+
+    const MAX_FIELD_LENGTHS = [
+        'tags' => 1000,
+    ];
 
     const STATES = [
         'graveyard' => -2,
@@ -142,7 +142,13 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         'qualified' => 3,
         'loved' => 4,
     ];
-    const HYPEABLE_STATES = [-1, 0, 3];
+
+    public $timestamps = false;
+
+    protected $_storage = null;
+    protected $casts = self::CASTS;
+    protected $primaryKey = 'beatmapset_id';
+    protected $table = 'osu_beatmapsets';
 
     public static function coverSizes()
     {
@@ -463,15 +469,20 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
             return false;
         }
 
-        $contents = file_get_contents($url);
-        if ($contents === false) {
-            throw new BeatmapProcessorException('Error retrieving beatmap');
+        $curl = curl_init($url);
+        curl_setopt_array($curl, [
+            CURLOPT_FILE => $oszFile,
+            CURLOPT_TIMEOUT => 30,
+        ]);
+        curl_exec($curl);
+
+        if (curl_errno($curl) > 0) {
+            throw new BeatmapProcessorException('Failed downloading osz: '.curl_error($curl));
         }
 
-        $bytesWritten = fwrite($oszFile, $contents);
-
-        if ($bytesWritten === false) {
-            throw new BeatmapProcessorException('Failed writing stream');
+        $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        if ($statusCode !== 200) {
+            throw new BeatmapProcessorException('Failed downloading osz: HTTP Error '.$statusCode);
         }
 
         return new BeatmapsetArchive(get_stream_filename($oszFile));
@@ -1481,7 +1492,7 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         return $this->coverURL('card');
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'beatmapset';
     }
@@ -1497,6 +1508,8 @@ class Beatmapset extends Model implements AfterCommit, Commentable, Indexable, T
         if ($this->isDirty('genre_id') && ($this->genre === null || $this->genre_id === 0)) {
             $this->validationErrors()->add('genre_id', 'invalid');
         }
+
+        $this->validateDbFieldLengths();
 
         return $this->validationErrors()->isEmpty();
     }

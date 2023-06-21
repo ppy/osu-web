@@ -20,7 +20,7 @@ interface Props {
 export default function Main(props: Props) {
   return (
     <>
-      <div className='osu-page osu-page--description'>
+      <div className='osu-page osu-page--ranking-info'>
         <RankingSelectOptions
           currentItem={{
             id: props.currentSeason.id,
@@ -29,12 +29,10 @@ export default function Main(props: Props) {
           items={props.seasons}
           type='seasons'
         />
-      </div>
 
-      <div className='osu-page osu-page--info-bar'>
-        <div className='grid-items'>
+        <div className='grid-items grid-items--ranking-info-bar'>
           {props.currentSeason.start_date !== null &&
-            <div className='counter-box counter-box--info'>
+            <div className='counter-box counter-box--ranking'>
               <div className='counter-box__title'>
                 {trans('rankings.spotlight.start_date')}
               </div>
@@ -47,7 +45,7 @@ export default function Main(props: Props) {
             </div>
           }
 
-          <div className='counter-box counter-box--info'>
+          <div className='counter-box counter-box--ranking'>
             <div className='counter-box__title'>
               {trans('rankings.spotlight.end_date')}
             </div>
@@ -62,7 +60,7 @@ export default function Main(props: Props) {
             </div>
           </div>
 
-          <div className='counter-box counter-box--info'>
+          <div className='counter-box counter-box--ranking'>
             <div className='counter-box__title'>
               {trans('rankings.seasons.room_count')}
             </div>

@@ -2,7 +2,7 @@ version: '3.4'
 
 x-env: &x-env
   APP_KEY: "${APP_KEY}"
-  BEATMAPS_DIFFICULTY_CACHE_SERVER_URL: http://beatmap-difficulty-lookup-cache:5000
+  BEATMAPS_DIFFICULTY_CACHE_SERVER_URL: http://beatmap-difficulty-lookup-cache
   BROADCAST_DRIVER: redis
   CACHE_DRIVER: redis
   DB_CONNECTION_STRING: Server=db;Database=osu;Uid=osuweb;
@@ -159,6 +159,23 @@ services:
     environment:
       <<: *x-env
       SCHEMA: "${SCHEMA:-1}"
+
+  score-indexer-test:
+    image: pppy/osu-elastic-indexer
+    command: ["queue", "watch", "--force-version"]
+    depends_on:
+      redis:
+        condition: service_healthy
+      db:
+        condition: service_healthy
+      elasticsearch:
+        condition: service_healthy
+    environment:
+      <<: *x-env
+      # match with .env.testing.example
+      DB_CONNECTION_STRING: Server=db;Database=osu_test;Uid=osuweb;
+      ES_INDEX_PREFIX: test_
+      SCHEMA: test
 
 volumes:
   database:

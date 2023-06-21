@@ -397,14 +397,7 @@ class Channel extends Model
             $this->validationErrors()->add('name', 'required');
         }
 
-        foreach (static::MAX_FIELD_LENGTHS as $field => $limit) {
-            if ($this->isDirty($field)) {
-                $val = $this->$field;
-                if ($val !== null && mb_strlen($val) > $limit) {
-                    $this->validationErrors()->add($field, 'too_long', ['limit' => $limit]);
-                }
-            }
-        }
+        $this->validateDbFieldLengths();
 
         return $this->validationErrors()->isEmpty();
     }
@@ -617,7 +610,7 @@ class Channel extends Model
         }
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'chat.channel';
     }

@@ -61,8 +61,8 @@ return [
         'discussion' => 'Discussion',
 
         'deleted_banner' => [
-            'title' => '',
-            'message' => '',
+            'title' => 'Cette beatmap a été supprimée.',
+            'message' => '(seuls les modérateurs peuvent voir ceci)',
         ],
 
         'details' => [

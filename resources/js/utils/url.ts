@@ -37,8 +37,6 @@ const internalUrls = [
 
 const internalUrlRegExp = RegExp(`^/(?:${internalUrls})(?:$|/|#)`);
 
-export const urlRegex = /(https?:\/\/((?:(?:[a-z0-9]\.|[a-z0-9][a-z0-9-]*[a-z0-9]\.)*[a-z][a-z0-9-]*[a-z0-9](?::\d+)?)(?:(?:(?:\/+(?:[a-z0-9$_.+!*',;:@&=-]|%[0-9a-f]{2})*)*(?:\?(?:[a-z0-9$_.+!*',;:@&=-]|%[0-9a-f]{2})*)?)?(?:#(?:[a-z0-9$_.+!*',;:@&=/?-]|%[0-9a-f]{2})*)?)?(?:[^.,:\s])))/ig;
-
 interface OsuLinkOptions {
   classNames?: string[];
   isRemote?: boolean;
@@ -119,8 +117,12 @@ export function linkHtml(url: string, text: string, options?: OsuLinkOptions): s
   return el.outerHTML;
 }
 
-export function linkify(text: string, newWindow = false) {
-  return text.replace(urlRegex, `<a href="$1" rel="nofollow noreferrer"${newWindow ? ' target="_blank"' : ''}>$2</a>`);
+// Default url transformer changes non-conforming url to javascript:void(0)
+// which causes warning from React.
+export function safeReactMarkdownUrl(url: string | undefined) {
+  if (url !== 'javascript:void(0)') {
+    return url;
+  }
 }
 
 export function updateQueryString(url: string | null, params: Record<string, string | null | undefined>, hash?: string) {

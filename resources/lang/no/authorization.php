@@ -50,13 +50,11 @@ return [
             'resolved' => 'Du kan ikke redigere et innlegg på en besvart tråd.',
             'system_generated' => 'Innlegg som er automatisk generert kan ikke bli endret.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Dette beatmappet har blitt låst for diskusjon.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => '',
+
         'metadata' => [
             'nominated' => 'Du kan ikke endre metadataen av et nominert kart. Kontakt et BN eller NAT medlem hvis du tror det er angitt feil.',
         ],

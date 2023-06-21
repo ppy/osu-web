@@ -50,13 +50,11 @@ return [
             'resolved' => 'No puedes editar una publicación de una discusión resuelta.',
             'system_generated' => 'Una publicación generada automáticamente no se puede editar.',
         ],
-
-        'store' => [
-            'beatmapset_locked' => 'Este mapa está bloqueado para discusión.',
-        ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => 'La discusión de este mapa está bloqueada.',
+
         'metadata' => [
             'nominated' => 'No puedes cambiar los metadatos de un mapa nominado. Contacta con un miembro de los BN o del NAT si crees que están establecidos incorrectamente.',
         ],
@@ -183,7 +181,7 @@ return [
             'edit' => [
                 'locked' => 'La página de usuario está bloqueada.',
                 'not_owner' => 'Solo puedes editar tu página de usuario.',
-                'require_supporter_tag' => 'Se requiere el tag de osu!supporter.',
+                'require_supporter_tag' => 'Se requiere la etiqueta de osu!supporter.',
             ],
         ],
     ],

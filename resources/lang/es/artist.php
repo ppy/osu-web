@@ -13,8 +13,8 @@ return [
 
     'beatmaps' => [
         '_' => 'Mapas',
-        'download' => 'Descargar plantilla del mapa',
-        'download-na' => 'La plantilla del mapa no está disponible aún',
+        'download' => 'descargar plantilla del mapa',
+        'download-na' => 'plantilla del mapa aún no disponible',
     ],
 
     'index' => [
@@ -37,7 +37,7 @@ return [
     'tracklist' => [
         'title' => 'título',
         'length' => 'duración',
-        'bpm' => 'bpm',
+        'bpm' => 'ppm',
         'genre' => 'género',
     ],
 
@@ -49,8 +49,8 @@ return [
                 'advanced' => 'Búsqueda avanzada',
                 'album' => 'Álbum',
                 'artist' => 'Artista',
-                'bpm_gte' => 'BPM mínimo',
-                'bpm_lte' => 'BPM máximo',
+                'bpm_gte' => 'PPM mínimo',
+                'bpm_lte' => 'PPM máximo',
                 'empty' => 'No se encontraron pistas que coincidieran con ese criterio de búsqueda.',
                 'genre' => 'Género',
                 'genre_all' => 'Todos',

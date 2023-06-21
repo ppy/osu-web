@@ -41,7 +41,7 @@ class SetLocale
 
         App::setLocale($locale);
         // Carbon setLocale normalizes the locale
-        Carbon::setLocale($locale);
+        Carbon::setLocale($locale === 'sr' ? 'sr_Cyrl' : $locale);
     }
 
     private function localeFromHeader(Request $request): string

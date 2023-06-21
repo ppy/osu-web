@@ -49,7 +49,7 @@ abstract class OrderFulfiller implements Fulfillable
         }
     }
 
-    abstract public function validationErrorsTranslationPrefix();
+    abstract public function validationErrorsTranslationPrefix(): string;
 
     protected function dispatchValidationFailed()
     {

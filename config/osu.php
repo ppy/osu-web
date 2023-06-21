@@ -270,8 +270,17 @@ return [
         'ban_persist_days' => get_int(env('BAN_PERSIST_DAYS')) ?? 28,
     ],
     'user_report_notification' => [
-        'endpoint_moderation' => presence(env('USER_REPORT_NOTIFICATION_ENDPOINT_MODERATION')),
         'endpoint_cheating' => presence(env('USER_REPORT_NOTIFICATION_ENDPOINT_CHEATING')),
+        'endpoint_moderation' => presence(env('USER_REPORT_NOTIFICATION_ENDPOINT_MODERATION')),
+
+        'endpoint' => [
+            'beatmapset_discussion' => presence(env('USER_REPORT_NOTIFICATION_ENDPOINT_BEATMAPSET_DISCUSSION')),
+            'beatmapset' => presence(env('USER_REPORT_NOTIFICATION_ENDPOINT_BEATMAPSET')),
+            'chat' => presence(env('USER_REPORT_NOTIFICATION_ENDPOINT_CHAT')),
+            'comment' => presence(env('USER_REPORT_NOTIFICATION_ENDPOINT_COMMENT')),
+            'forum' => presence(env('USER_REPORT_NOTIFICATION_ENDPOINT_FORUM')),
+            'user' => presence(env('USER_REPORT_NOTIFICATION_ENDPOINT_USER')),
+        ],
     ],
     'wiki' => [
         'branch' => presence(env('WIKI_BRANCH'), 'master'),

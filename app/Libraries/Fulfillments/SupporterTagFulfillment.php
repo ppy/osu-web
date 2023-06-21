@@ -73,7 +73,7 @@ class SupporterTagFulfillment extends OrderFulfiller
             );
         }
 
-        if (present($donor->user_email)) {
+        if (is_valid_email_format($donor->user_email)) {
             $donationTotal = $items->sum('cost');
             $totalDuration = $isGift ? null : $items->sum('extra_data.duration'); // duration is not relevant for gift.
 
@@ -90,7 +90,7 @@ class SupporterTagFulfillment extends OrderFulfiller
 
             Event::generate('userSupportGift', ['user' => $giftee, 'date' => $this->order->paid_at]);
 
-            if (present($giftee->user_email)) {
+            if (is_valid_email_format($giftee->user_email)) {
                 $duration = 0;
                 $messages = [];
 
@@ -172,12 +172,12 @@ class SupporterTagFulfillment extends OrderFulfiller
     //================
     // Validatable
     //================
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'fulfillments.supporter_tag';
     }
 
-    public function validationErrorsKeyBase()
+    public function validationErrorsKeyBase(): string
     {
         return 'model_validation/';
     }

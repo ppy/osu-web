@@ -15,6 +15,8 @@ use App\Models\OAuth\Client;
 use App\Models\UserAccountHistory;
 use App\Models\UserNotificationOption;
 use App\Transformers\CurrentUserTransformer;
+use App\Transformers\LegacyApiKeyTransformer;
+use App\Transformers\LegacyIrcKeyTransformer;
 use Auth;
 use DB;
 use Mail;
@@ -111,12 +113,20 @@ class AccountController extends Controller
         $authorizedClients = json_collection(Client::forUser($user), 'OAuth\Client', 'user');
         $ownClients = json_collection($user->oauthClients()->where('revoked', false)->get(), 'OAuth\Client', ['redirect', 'secret']);
 
+        $legacyApiKey = $user->apiKeys()->available()->first();
+        $legacyApiKeyJson = $legacyApiKey === null ? null : json_item($legacyApiKey, new LegacyApiKeyTransformer());
+
+        $legacyIrcKey = $user->legacyIrcKey;
+        $legacyIrcKeyJson = $legacyIrcKey === null ? null : json_item($legacyIrcKey, new LegacyIrcKeyTransformer());
+
         $notificationOptions = $user->notificationOptions->keyBy('name');
 
         return ext_view('accounts.edit', compact(
             'authorizedClients',
             'blocks',
             'currentSessionId',
+            'legacyApiKeyJson',
+            'legacyIrcKeyJson',
             'notificationOptions',
             'ownClients',
             'sessions'
@@ -140,7 +150,7 @@ class AccountController extends Controller
         try {
             $user->fill($params)->saveOrExplode();
         } catch (ModelNotSavedException $e) {
-            return $this->errorResponse($user, $e);
+            return ModelNotSavedException::makeResponse($e, compact('user'));
         }
 
         return json_item($user, new CurrentUserTransformer());
@@ -153,19 +163,17 @@ class AccountController extends Controller
         $previousEmail = $user->user_email;
 
         if ($user->update($params) === true) {
-            $addresses = [$user->user_email];
-            if (present($previousEmail)) {
-                $addresses[] = $previousEmail;
-            }
-            foreach ($addresses as $address) {
-                Mail::to($address)->locale($user->preferredLocale())->send(new UserEmailUpdated($user));
+            foreach ([$previousEmail, $user->user_email] as $address) {
+                if (is_valid_email_format($address)) {
+                    Mail::to($address)->locale($user->preferredLocale())->send(new UserEmailUpdated($user));
+                }
             }
 
             UserAccountHistory::logUserUpdateEmail($user, $previousEmail);
 
             return response([], 204);
         } else {
-            return $this->errorResponse($user);
+            return ModelNotSavedException::makeResponse(null, compact('user'));
         }
     }
 
@@ -240,7 +248,10 @@ class AccountController extends Controller
                 $user->profileCustomization()->fill($profileParams)->saveOrExplode();
             }
         } catch (ModelNotSavedException $e) {
-            return $this->errorResponse($user, $e);
+            return ModelNotSavedException::makeResponse($e, [
+                'user' => $user,
+                'user_profile_customization' => $user->profileCustomization(),
+            ]);
         }
 
         return json_item($user, new CurrentUserTransformer());
@@ -252,7 +263,7 @@ class AccountController extends Controller
         $user = Auth::user()->validateCurrentPassword()->validatePasswordConfirmation();
 
         if ($user->update($params) === true) {
-            if (present($user->user_email)) {
+            if (is_valid_email_format($user->user_email)) {
                 Mail::to($user)->send(new UserPasswordUpdated($user));
             }
 
@@ -262,7 +273,7 @@ class AccountController extends Controller
 
             return response([], 204);
         } else {
-            return $this->errorResponse($user);
+            return ModelNotSavedException::makeResponse(null, compact('user'));
         }
     }
 
@@ -290,13 +301,5 @@ class AccountController extends Controller
     public function reissueCode()
     {
         return UserVerification::fromCurrentRequest()->reissue();
-    }
-
-    private function errorResponse($user, $exception = null)
-    {
-        return response([
-            'form_error' => ['user' => $user->validationErrors()->all()],
-            'error' => optional($exception)->getMessage(),
-        ], 422);
     }
 }
