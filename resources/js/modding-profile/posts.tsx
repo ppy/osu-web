@@ -1,6 +1,7 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+import { BeatmapsContext } from 'beatmap-discussions/beatmaps-context';
 import BeatmapsetCover from 'components/beatmapset-cover';
 import { BeatmapsetDiscussionMessagePostJson } from 'interfaces/beatmapset-discussion-post-json';
 import UserJson from 'interfaces/user-json';
@@ -19,6 +20,9 @@ interface Props {
 }
 
 export class Posts extends React.Component<Props> {
+  static contextType = BeatmapsContext;
+  declare context: React.ContextType<typeof BeatmapsContext>;
+
   render() {
     return (
       <div className='page-extra'>
@@ -43,15 +47,22 @@ export class Posts extends React.Component<Props> {
   }
 
   private readonly renderPost = (post: BeatmapsetDiscussionMessagePostJson) => {
-    if (post.beatmap_discussion == null || post.beatmap_discussion.beatmapset == null) return;
+    const discussion = post.beatmap_discussion;
+    if (discussion == null || discussion.beatmapset == null) return;
 
-    const discussionClasses = classWithModifiers('beatmap-discussion', ['preview', 'modding-profile'], { deleted: post.deleted_at != null });
+    const beatmap = (discussion.beatmap_id != null ? this.context[discussion.beatmap_id] : null) ?? null;
+
+    const discussionClasses = classWithModifiers(
+      'beatmap-discussion',
+      ['preview', 'modding-profile'],
+      { deleted: post.deleted_at != null },
+    );
 
     return (
       <div key={post.id} className='modding-profile-list__row'>
-        <a className='modding-profile-list__thumbnail' href={makeUrl({ discussion: post.beatmap_discussion })}>
+        <a className='modding-profile-list__thumbnail' href={makeUrl({ discussion })}>
           <BeatmapsetCover
-            beatmapset={post.beatmap_discussion.beatmapset}
+            beatmapset={discussion.beatmapset}
             size='list'
           />
         </a>
@@ -65,9 +76,9 @@ export class Posts extends React.Component<Props> {
         <div className={discussionClasses}>
           <div className='beatmap-discussion__discussion'>
             <Post
-              beatmap={null}
-              beatmapset={post.beatmap_discussion.beatmapset}
-              discussion={post.beatmap_discussion}
+              beatmap={beatmap}
+              beatmapset={discussion.beatmapset}
+              discussion={discussion}
               post={post}
               read
               readonly
