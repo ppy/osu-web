@@ -65,7 +65,6 @@ export class Posts extends React.Component<Props> {
         <div className={discussionClasses}>
           <div className='beatmap-discussion__discussion'>
             <Post
-              key={post.id}
               beatmap={null}
               beatmapset={post.beatmap_discussion.beatmapset}
               discussion={post.beatmap_discussion}
