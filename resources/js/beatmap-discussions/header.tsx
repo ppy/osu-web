@@ -81,12 +81,12 @@ export class Header extends React.Component<Props> {
 
   private readonly getCount = (beatmap: BeatmapExtendedJson) => beatmap.deleted_at == null ? this.props.currentDiscussions.countsByBeatmap[beatmap.id] : undefined;
 
-  private onClickMode = (event: React.MouseEvent<HTMLAnchorElement>, mode: GameMode) => {
+  private readonly onClickMode = (event: React.MouseEvent<HTMLAnchorElement>, mode: GameMode) => {
     event.preventDefault();
     $.publish('playmode:set', [{ mode }]);
   };
 
-  private onSelectBeatmap = (beatmapId: number) => {
+  private readonly onSelectBeatmap = (beatmapId: number) => {
     $.publish('beatmapsetDiscussions:update', {
       beatmapId,
       mode: 'timeline',
