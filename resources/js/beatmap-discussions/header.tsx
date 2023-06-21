@@ -190,7 +190,7 @@ export class Header extends React.PureComponent<Props> {
             />
             <div className={`${bn}__beatmap-stats`}>
               <div className={`${bn}__guest`}>
-                {this.props.currentBeatmap.user_id !== this.props.beatmapset.user_id ? (
+                {this.props.currentBeatmap.user_id !== this.props.beatmapset.user_id && (
                   <span>
                     <StringWithComponent
                       mappings={{
@@ -199,7 +199,7 @@ export class Header extends React.PureComponent<Props> {
                       pattern={trans('beatmaps.discussions.guest')}
                     />
                   </span>
-                ) : null}
+                )}
               </div>
               <BeatmapBasicStats beatmap={this.props.currentBeatmap} beatmapset={this.props.beatmapset} />
             </div>
