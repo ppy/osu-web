@@ -51,7 +51,7 @@ interface Props {
 
 const statTypes: Filter[] = ['mine', 'mapperNotes', 'resolved', 'pending', 'praises', 'deleted', 'total'];
 
-export class Header extends React.Component<Props> {
+export class Header extends React.PureComponent<Props> {
   render() {
     return (
       <>
