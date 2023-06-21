@@ -175,6 +175,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => '',
+        'cannot_nominate' => '',
         'delete' => 'Eliminar',
         'delete_own_confirm' => 'Estàs segur? El beatmap serà eliminat i se us redirigirà al vostre perfil.',
         'delete_other_confirm' => 'Estàs segur? El beatmap serà eliminat i se us redirigirà al perfil de l\'usuari.
@@ -200,7 +202,7 @@ return [
 
         'rank_estimate' => [
             '_' => 'S\'estima que aquest mapa es classificarà en :date si no es troben problemes. És el número :position a la :queue.',
-            'on' => '',
+            'on' => 'a :date',
             'queue' => 'cua de classificació',
             'soon' => 'aviat',
         ],

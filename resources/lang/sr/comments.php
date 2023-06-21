@@ -11,6 +11,7 @@ return [
     'edited' => 'измењено :timeago од стране :user',
     'pinned' => 'закачено',
     'empty' => 'Нема коментара.',
+    'empty_other' => '',
     'load_replies' => 'учитајте одговоре',
     'replies_count' => ':count_delimited одговор|:count_delimited одговори',
     'title' => 'Коментари',

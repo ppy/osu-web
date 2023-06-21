@@ -11,6 +11,7 @@ return [
     'edited' => 'đã chỉnh sửa :timeago bởi :user',
     'pinned' => 'đã ghim',
     'empty' => 'Chưa có bình luận nào.',
+    'empty_other' => 'Chưa có bình luận nào khác.',
     'load_replies' => 'hiển thị những trả lời',
     'replies_count' => ':count_delimited trả lời',
     'title' => 'Bình luận',

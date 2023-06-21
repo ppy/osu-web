@@ -36,6 +36,7 @@ return [
         'artist' => 'Καλλιτέχνης/Άλμπουμ',
         'chart' => 'Spotlights',
         'featured' => '',
+        'loved' => '',
         'standard' => 'Standard',
         'theme' => 'Θέμα',
         'tournament' => '',

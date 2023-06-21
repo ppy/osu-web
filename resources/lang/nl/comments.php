@@ -11,6 +11,7 @@ return [
     'edited' => 'gewijzigd :timeago door :user',
     'pinned' => 'vastgezet',
     'empty' => 'Nog geen reacties.',
+    'empty_other' => 'Nog geen andere opmerkingen.',
     'load_replies' => 'antwoorden laden',
     'replies_count' => ':count_delimited antwoord|:count_delimited antwoorden',
     'title' => 'Reacties',

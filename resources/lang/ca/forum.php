@@ -25,7 +25,7 @@ return [
     ],
 
     'forums' => [
-        'forums' => '',
+        'forums' => 'Fòrums',
         'latest_post' => 'Última publicació',
 
         'index' => [
@@ -48,7 +48,7 @@ return [
         'confirm_restore' => 'Realment voleu restaurar la publicació?',
         'edited' => 'Editat per últim cop per :user :when, editat :count_delimited vegada en total.|Editat per últim cop per :user :when, editat :count_delimited vegades en total.',
         'posted_at' => 'publicat :when',
-        'posted_by_in' => '',
+        'posted_by_in' => 'publicat per :username a :forum',
 
         'actions' => [
             'destroy' => 'Eliminar publicació',

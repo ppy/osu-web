@@ -20,6 +20,12 @@ return [
             'title' => 'Email',
         ],
 
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'API Legada',
+        ],
+
         'password' => [
             'current' => 'senha atual',
             'new' => 'nova senha',

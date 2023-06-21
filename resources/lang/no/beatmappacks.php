@@ -36,6 +36,7 @@ return [
         'artist' => 'Artist/Album',
         'chart' => 'I rampelyset',
         'featured' => '',
+        'loved' => '',
         'standard' => 'Standard',
         'theme' => 'Tema',
         'tournament' => '',
