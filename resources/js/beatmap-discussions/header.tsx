@@ -79,7 +79,10 @@ export class Header extends React.PureComponent<Props> {
 
   private readonly createLink = (beatmap: BeatmapJson) => makeUrl({ beatmap });
 
-  private readonly getCount = (beatmap: BeatmapExtendedJson) => beatmap.deleted_at == null ? this.props.currentDiscussions.countsByBeatmap[beatmap.id] : undefined;
+  private readonly getCount = (beatmap: BeatmapExtendedJson) =>
+    beatmap.deleted_at == null
+      ? this.props.currentDiscussions.countsByBeatmap[beatmap.id]
+      : undefined;
 
   private readonly onClickMode = (event: React.MouseEvent<HTMLAnchorElement>, mode: GameMode) => {
     event.preventDefault();
