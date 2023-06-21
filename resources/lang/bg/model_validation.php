@@ -8,7 +8,7 @@ return [
     'not_negative' => ':attribute не може да бъде отрицателно.',
     'required' => ':attribute е задължително.',
     'too_long' => ':attribute превишена максимална дължина - може да бъде само до :limit символа.',
-    'url' => '',
+    'url' => 'Моля, въведете съществуващ адрес.',
     'wrong_confirmation' => 'Потвърждението не съвпада.',
 
     'beatmapset_discussion' => [
@@ -110,7 +110,13 @@ return [
     ],
 
     'legacy_api_key' => [
-        'exists' => '',
+        'exists' => 'Само един API ключ се предоставя на потребител за момента.',
+
+        'attributes' => [
+            'api_key' => '',
+            'app_name' => '',
+            'app_url' => '',
+        ],
     ],
 
     'oauth' => [
@@ -169,6 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Класирани бийтмапове не могат да бъдат докладвани',
+        'not_in_channel' => '',
         'reason_not_valid' => ':reason е невалидна причина за този вид доклад.',
         'self' => "Не може да докладвате себе си!",
     ],

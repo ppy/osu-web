@@ -11,6 +11,7 @@ return [
     'edited' => 'editat acum :timeago de :user',
     'pinned' => 'fixat',
     'empty' => 'Niciun comentariu încă.',
+    'empty_other' => 'Nici un alt comentariu încă.',
     'load_replies' => 'încarcă răspunsurile',
     'replies_count' => 'un răspuns|:count_delimited răspunsuri|:count_delimited de răspunsuri',
     'title' => 'Comentarii',

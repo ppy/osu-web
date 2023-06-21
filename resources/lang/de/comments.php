@@ -11,6 +11,7 @@ return [
     'edited' => 'vor :timeago von :user bearbeitet',
     'pinned' => 'angeheftet',
     'empty' => 'Noch keine Kommentare vorhanden.',
+    'empty_other' => 'Keine anderen Kommentare bisher.',
     'load_replies' => 'Antworten laden',
     'replies_count' => ':count_delimited Antwort|:count_delimited Antworten',
     'title' => 'Kommentare',

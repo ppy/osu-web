@@ -39,7 +39,7 @@ class UserNotificationDigest implements ShouldQueue
 
     public function handle()
     {
-        if (!present($this->user->email)) {
+        if (!is_valid_email_format($this->user->user_email)) {
             return;
         }
 

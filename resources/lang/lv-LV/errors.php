@@ -4,7 +4,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'load_failed' => '',
+    'load_failed' => 'Neizdevās ielādēt datus.',
     'missing_route' => 'Nederīgs url vai nepareiza pieprasījuma metode.',
     'no_restricted_access' => 'Jūs nevarat veikt šo darbību, kamēr jūsu konts ir ierobežojuma stāvoklī.',
     'supporter_only' => 'Lai izmantotu šo funkciju, jums jābūt osu!supporter.',

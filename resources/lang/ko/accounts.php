@@ -20,6 +20,12 @@ return [
             'title' => '이메일',
         ],
 
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => '레거시 API',
+        ],
+
         'password' => [
             'current' => '현재 비밀번호',
             'new' => '새 비밀번호',

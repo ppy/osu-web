@@ -30,6 +30,10 @@ const tests: Partial<Record<string, [string, string]>> = {
     'This is not a [https:osu.ppy.sh link].',
     '<p>This is not a [https:osu.ppy.sh link].</p>',
   ],
+  missingLabel: [
+    'This is not a [https://osu.ppy.sh ].',
+    '<p>This is not a [https://osu.ppy.sh ].</p>',
+  ],
 };
 
 describe('legacyLink renders legacy link', () => {

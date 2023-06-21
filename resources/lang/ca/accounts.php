@@ -20,6 +20,12 @@ return [
             'title' => 'Correu electrònic',
         ],
 
+        'legacy_api' => [
+            'api' => '',
+            'irc' => '',
+            'title' => '',
+        ],
+
         'password' => [
             'current' => 'contrasenya actual',
             'new' => 'nova contrasenya',

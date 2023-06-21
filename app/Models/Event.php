@@ -247,7 +247,7 @@ class Event extends Model
             'Failed parsing event',
             null,
             (new Scope())
-                ->setExtra('reason', $reason)
+                ->setTag('reason', $reason)
                 ->setExtra('event', $this->toArray())
         );
 

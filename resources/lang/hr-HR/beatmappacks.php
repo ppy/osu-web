@@ -36,6 +36,7 @@ return [
         'artist' => 'Izvođač/Album',
         'chart' => 'Istaknuto',
         'featured' => '',
+        'loved' => '',
         'standard' => 'Standardni',
         'theme' => 'Tema',
         'tournament' => '',

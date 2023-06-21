@@ -20,6 +20,12 @@ return [
             'title' => 'E-pošta',
         ],
 
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Starejši API',
+        ],
+
         'password' => [
             'current' => 'trenutno geslo',
             'new' => 'novo geslo',

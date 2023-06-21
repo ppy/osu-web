@@ -8,7 +8,7 @@ return [
     'not_negative' => ':attribute не может быть отрицательным.',
     'required' => 'Поле :attribute обязательно для заполнения.',
     'too_long' => ':attribute превышает максимальное количество символов - можно использовать только до :limit characters символов.',
-    'url' => '',
+    'url' => 'Пожалуйста, введите действительный URL.',
     'wrong_confirmation' => 'Поля не совпадают.',
 
     'beatmapset_discussion' => [
@@ -110,7 +110,13 @@ return [
     ],
 
     'legacy_api_key' => [
-        'exists' => '',
+        'exists' => 'Сейчас для каждого пользователя предоставляется только один ключ API.',
+
+        'attributes' => [
+            'api_key' => 'Ключ api',
+            'app_name' => 'Имя приложения',
+            'app_url' => 'URL приложения',
+        ],
     ],
 
     'oauth' => [
@@ -169,6 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'На рейтинговые карты нельзя пожаловаться',
+        'not_in_channel' => 'Вас нет в этом канале.',
         'reason_not_valid' => ':reason не подходит для данного типа отчета.',
         'self' => "Вы не можете пожаловаться на себя!",
     ],

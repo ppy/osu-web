@@ -61,8 +61,8 @@ return [
         'discussion' => 'Diskusija',
 
         'deleted_banner' => [
-            'title' => '',
-            'message' => '',
+            'title' => 'Šī bītmape ir izdzēsta.',
+            'message' => '(šo var redzēt tikai moderatori)',
         ],
 
         'details' => [
@@ -137,7 +137,7 @@ return [
             'source' => 'Avots',
             'storyboard' => 'Šī bītmape satur montāžu',
             'success-rate' => 'Izdošanās līmenis',
-            'tags' => 'Birkas',
+            'tags' => 'Tagi',
             'video' => 'Šī bītmape satur video',
         ],
 

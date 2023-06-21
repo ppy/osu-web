@@ -1,7 +1,7 @@
 # Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 # See the LICENCE file in the repository root for full licence text.
 
-import { Main } from 'comments-index/main'
+import CommentsIndex from 'comments-index'
 import { CommentsManager } from 'components/comments-manager'
 import core from 'osu-core-singleton'
 import { createElement } from 'react'
@@ -13,5 +13,5 @@ core.reactTurbolinks.register 'comments-index', ->
   core.dataStore.uiState.initializeWithCommentBundleJson(commentBundle)
 
   createElement CommentsManager,
-    component: Main
+    component: CommentsIndex
     user: commentBundle.user

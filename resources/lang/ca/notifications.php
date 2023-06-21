@@ -14,13 +14,13 @@ return [
     'verifying' => 'Verifica la sessió per a veure les notificacions',
 
     'action_type' => [
-        '_' => '',
-        'beatmapset' => '',
-        'build' => '',
-        'channel' => '',
-        'forum_topic' => '',
-        'news_post' => '',
-        'user' => '',
+        '_' => 'totes',
+        'beatmapset' => 'beatmaps',
+        'build' => 'versions',
+        'channel' => 'xat',
+        'forum_topic' => 'fòrum',
+        'news_post' => 'novetats',
+        'user' => 'perfil',
     ],
 
     'filters' => [

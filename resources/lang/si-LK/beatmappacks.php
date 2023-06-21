@@ -36,6 +36,7 @@ return [
         'artist' => '',
         'chart' => '',
         'featured' => '',
+        'loved' => '',
         'standard' => '',
         'theme' => '',
         'tournament' => '',

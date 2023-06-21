@@ -34,7 +34,7 @@ return [
         'qualify' => 'Šis bitmapas pasiekė reikiamą nominacijų skaičių ir buvo kvalifikuotas.',
         'rank' => 'Reitinguotas.',
         'remove_from_loved' => 'Pašalino iš mylimų :user. (:text)',
-        'tags_edit' => '',
+        'tags_edit' => 'Žymėjimai pakeisti iš ":old" į ":new".',
 
         'nsfw_toggle' => [
             'to_0' => 'Pašalinta Eksplicitinio žymė',

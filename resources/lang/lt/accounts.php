@@ -20,6 +20,12 @@ return [
             'title' => 'El. Paštas',
         ],
 
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Sena API versija',
+        ],
+
         'password' => [
             'current' => 'dabartinis slaptažodis',
             'new' => 'naujas slaptažodis',
