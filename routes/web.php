@@ -404,8 +404,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => ['api', Throttl
             Route::get('lookup', 'BeatmapsController@lookup')->name('lookup');
 
             Route::group(['prefix' => '{beatmap}'], function () {
-                Route::get('scores/users/{user}', 'BeatmapsController@userScore');
-                Route::get('scores/users/{user}/all', 'BeatmapsController@userScoreAll');
+                Route::get('scores/users/{user}', 'BeatmapsController@userScore')->name('user.score');
+                Route::get('scores/users/{user}/all', 'BeatmapsController@userScoreAll')->name('user.scores');
                 Route::get('scores', 'BeatmapsController@scores')->name('scores');
                 Route::get('solo-scores', 'BeatmapsController@soloScores')->name('solo-scores');
 
