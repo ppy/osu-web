@@ -1003,6 +1003,18 @@
         "ValidForMultiplayerAsFreeMod": true
       },
       {
+        "Acronym": "SY",
+        "Name": "Synesthesia",
+        "Description": "Colours hit objects based on the rhythm.",
+        "Type": "Fun",
+        "Settings": [],
+        "IncompatibleMods": [],
+        "RequiresConfiguration": false,
+        "UserPlayable": true,
+        "ValidForMultiplayer": true,
+        "ValidForMultiplayerAsFreeMod": true
+      },
+      {
         "Acronym": "TD",
         "Name": "Touch Device",
         "Description": "Automatically applied to plays on devices with a touchscreen.",
