@@ -178,7 +178,9 @@ export class Header extends React.Component<Props> {
                 selectedUser={this.props.selectedUserId != null ? this.props.users[this.props.selectedUserId] : null}
                 users={this.props.discussionStarters}
               />
-              <div className={`${bn}__stats`}>{this.renderStats()}</div>
+              <div className={`${bn}__stats`}>
+                {statTypes.map(this.renderType)}
+              </div>
             </div>
           </div>
           <div className='u-relative'>
@@ -205,10 +207,6 @@ export class Header extends React.Component<Props> {
         </div>
       </div>
     );
-  }
-
-  private renderStats() {
-    return statTypes.map(this.renderType);
   }
 
   private readonly renderType = (type: Filter) => {
