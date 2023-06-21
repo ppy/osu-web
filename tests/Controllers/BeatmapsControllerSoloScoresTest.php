@@ -14,6 +14,7 @@ use App\Models\Country;
 use App\Models\Genre;
 use App\Models\Group;
 use App\Models\Language;
+use App\Models\OAuth;
 use App\Models\Solo\Score as SoloScore;
 use App\Models\User;
 use App\Models\UserGroup;
@@ -172,6 +173,8 @@ class BeatmapsControllerSoloScoresTest extends TestCase
             Country::truncate();
             Genre::truncate();
             Language::truncate();
+            OAuth\Client::truncate();
+            OAuth\Token::truncate();
             SoloScore::select()->delete(); // TODO: revert to truncate after the table is actually renamed
             User::truncate();
             UserGroup::truncate();
@@ -207,6 +210,46 @@ class BeatmapsControllerSoloScoresTest extends TestCase
         foreach ($json['scores'] as $i => $jsonScore) {
             $this->assertSame(static::$scores[$scoreKeys[$i]]->getKey(), $jsonScore['id']);
         }
+    }
+
+    /**
+     * @group RequiresScoreIndexer
+     */
+    public function testUserScore()
+    {
+        $url = route('api.beatmaps.user.score', [
+            'beatmap' => static::$beatmap->getKey(),
+            'mods' => ['DT', 'HD'],
+            'user' => static::$user->getKey(),
+        ]);
+        $this->actAsScopedUser(static::$user);
+        $this
+            ->json('GET', $url)
+            ->assertJsonPath('score.id', static::$scores['legacy:userMods']->getKey());
+    }
+
+    /**
+     * @group RequiresScoreIndexer
+     */
+    public function testUserScoreAll()
+    {
+        $url = route('api.beatmaps.user.scores', [
+            'beatmap' => static::$beatmap->getKey(),
+            'user' => static::$user->getKey(),
+        ]);
+        $this->actAsScopedUser(static::$user);
+        $this
+            ->json('GET', $url)
+            ->assertJsonCount(4, 'scores')
+            ->assertJsonPath(
+                'scores.*.id',
+                array_map(fn (string $key): int => static::$scores[$key]->getKey(), [
+                    'legacy:user',
+                    'legacy:userMods',
+                    'legacy:userModsNC',
+                    'legacy:userModsLowerScore',
+                ])
+            );
     }
 
     public static function dataProviderForTestQuery(): array
