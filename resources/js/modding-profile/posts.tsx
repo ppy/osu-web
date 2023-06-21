@@ -42,7 +42,7 @@ export class Posts extends React.Component<Props> {
     );
   }
 
-  private renderPost = (post: BeatmapsetDiscussionMessagePostJson) => {
+  private readonly renderPost = (post: BeatmapsetDiscussionMessagePostJson) => {
     if (post.beatmap_discussion == null || post.beatmap_discussion.beatmapset == null) return;
 
     const discussionClasses = classWithModifiers('beatmap-discussion', ['preview', 'modding-profile'], { deleted: post.deleted_at != null });
