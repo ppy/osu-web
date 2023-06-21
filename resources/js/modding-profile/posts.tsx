@@ -51,7 +51,7 @@ export class Posts extends React.Component<Props> {
       <div key={post.id} className='modding-profile-list__row'>
         <a className='modding-profile-list__thumbnail' href={makeUrl({ discussion: post.beatmap_discussion })}>
           <BeatmapsetCover
-            beatmapset={post.beatmap_discussion?.beatmapset}
+            beatmapset={post.beatmap_discussion.beatmapset}
             size='list'
           />
         </a>
