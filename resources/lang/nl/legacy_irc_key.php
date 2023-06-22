@@ -4,20 +4,20 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'confirm_new' => '',
-    'new' => '',
-    'none' => '',
+    'confirm_new' => 'Maak nieuw IRC wachtwoord?',
+    'new' => 'Nieuw Legacy IRC Wachtwoord',
+    'none' => 'IRC Wachtwoord niet ingesteld.',
 
     'form' => [
-        'server_host' => '',
-        'server_port' => '',
-        'token' => '',
-        'username' => '',
+        'server_host' => 'server',
+        'server_port' => 'poort',
+        'token' => 'server wachtwoord',
+        'username' => 'gebruikersnaam',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Verberg Wachtwoord',
+        'show' => 'Toon Wachtwoord',
+        'delete' => 'Verwijder',
     ],
 ];

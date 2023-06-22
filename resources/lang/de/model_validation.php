@@ -113,16 +113,16 @@ return [
         'exists' => 'Momentan wird pro Benutzer nur ein API-Schlüssel zur Verfügung gestellt.',
 
         'attributes' => [
-            'api_key' => '',
-            'app_name' => '',
-            'app_url' => '',
+            'api_key' => 'API-Schlüssel',
+            'app_name' => 'Anwendungsname',
+            'app_url' => 'Anwendungs-URL',
         ],
     ],
 
     'oauth' => [
         'client' => [
             'too_many' => 'Maximale Anzahl erlaubter OAuth-Anwendungen überschritten.',
-            'url' => 'Bitte gib eine gültige URL ein.',
+            'url' => 'Bitte gib gültige URLs ein.',
 
             'attributes' => [
                 'name' => 'Anwendungsname',
@@ -175,7 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Beatmaps mit dem Ranked-Status können nicht gemeldet werden',
-        'not_in_channel' => '',
+        'not_in_channel' => 'Du bist nicht in diesem Kanal.',
         'reason_not_valid' => ':reason ist für diesen Meldungstyp nicht gültig.',
         'self' => "Du kannst dich nicht selbst melden!",
     ],

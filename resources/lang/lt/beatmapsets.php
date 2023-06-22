@@ -61,8 +61,8 @@ return [
         'discussion' => 'Diskusija',
 
         'deleted_banner' => [
-            'title' => '',
-            'message' => '',
+            'title' => 'Šis taktalapis buvo ištrintas.',
+            'message' => '(tik moderatoriai gali matyti tai)',
         ],
 
         'details' => [

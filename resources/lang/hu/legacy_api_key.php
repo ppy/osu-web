@@ -4,27 +4,27 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'new' => '',
-    'none' => '',
+    'new' => 'Új legacy API kulcs',
+    'none' => 'Nincs kulcs.',
 
     'docs' => [
-        '_' => '',
-        'github' => '',
+        '_' => 'Dokumentáció elérhető a(z) :github oldalon.',
+        'github' => 'GitHub',
     ],
 
     'form' => [
-        'create' => '',
+        'create' => 'Kulcs létrehozása',
     ],
 
     'view' => [
-        'hide' => '',
-        'show' => '',
-        'delete' => '',
+        'hide' => 'Kulcs elrejtése',
+        'show' => 'Kulcs mutatása',
+        'delete' => 'Törlés',
     ],
 
     'warning' => [
-        'line1' => '',
-        'line2' => "",
-        'line3' => '',
+        'line1' => 'Ne add oda másoknak.',
+        'line2' => "Ugyanolyan mintha a jelszódat adnád oda.",
+        'line3' => 'A fiókodat veszélyezteted vele.',
     ],
 ];

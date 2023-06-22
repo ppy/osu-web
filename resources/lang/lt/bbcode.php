@@ -6,7 +6,7 @@
 return [
     'bold' => 'Paryškinti',
     'heading' => 'Antraštė',
-    'help' => '',
+    'help' => 'Pagalba',
     'image' => 'Paveikslėlis',
     'imagemap' => '',
     'italic' => 'Pasviręs',

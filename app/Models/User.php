@@ -2276,8 +2276,8 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
         // user_discord is an accessor for user_jabber
         if ($this->isDirty('user_jabber') && present($this->user_discord)) {
             // This is a basic check and not 100% compliant to Discord's spec, only validates that input:
-            // - is a 2-32 char username (excluding chars @#:)
-            // - (if ending with # char) ends with a # and 4-digit discriminator
+            // - is a 2-32 char username (excluding chars @#:) and 4-digit discriminator for old-style usernames; or,
+            // - 2-32 char alphanumeric + period username for new-style usernames; consecutive periods are not validated.
             if (!preg_match('/^([^@#:]{2,32}#\d{4}|[\w.]{2,32})$/i', $this->user_discord)) {
                 $this->validationErrors()->add('user_discord', '.invalid_discord');
             }

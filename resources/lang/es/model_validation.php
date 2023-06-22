@@ -113,9 +113,9 @@ return [
         'exists' => 'Solo se proporciona una clave API por usuario por el momento.',
 
         'attributes' => [
-            'api_key' => '',
-            'app_name' => '',
-            'app_url' => '',
+            'api_key' => 'clave api',
+            'app_name' => 'nombre de la aplicación',
+            'app_url' => 'url de la aplicación',
         ],
     ],
 
@@ -175,7 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'No se pueden reportar mapas clasificados',
-        'not_in_channel' => '',
+        'not_in_channel' => 'No estás en este canal.',
         'reason_not_valid' => ':reason no válido para este tipo de reporte.',
         'self' => "¡No puedes reportarte a ti mismo!",
     ],

@@ -12,7 +12,7 @@ return [
         'in_progress_spinner_label' => 'devam eden maç',
         'loading-events' => 'Olaylar yükleniyor...',
         'winner' => ':team',
-        'winner_by' => '',
+        'winner_by' => ':difference farkla :winner',
 
         'events' => [
             'player-left' => ':user maçtan ayrıldı',
