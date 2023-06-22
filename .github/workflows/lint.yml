@@ -28,6 +28,7 @@ jobs:
         with:
           tools: composer:v2
           php-version: '8.1'
+          coverage: none
 
       - name: Get composer cache directory
         id: composercache
