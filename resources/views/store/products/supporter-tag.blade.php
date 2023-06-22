@@ -24,7 +24,7 @@
             {!!
                 Form::text(
                     'item[extra_data][username]',
-                    null,
+                    get_string(request('target')),
                     [
                         'id' => 'username',
                         'class' => 'js-username-input store-supporter-tag__input',
