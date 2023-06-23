@@ -44,6 +44,8 @@ export default class StoreSupporterTag
     # force initial values for consistency.
     @updateSearchResult()
 
+    $(@usernameInput).trigger('input') if @usernameInput.value != ''
+
 
   initializeSlider: =>
     # remove leftover from previous initialization
