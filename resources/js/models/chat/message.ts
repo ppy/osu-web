@@ -8,8 +8,6 @@ import * as moment from 'moment';
 import core from 'osu-core-singleton';
 import { uuid } from 'utils/seq';
 
-export const maxLength = 1024;
-
 export default class Message {
   @observable channelId = -1;
   @observable content = '';
