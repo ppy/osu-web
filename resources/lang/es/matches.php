@@ -12,7 +12,7 @@ return [
         'in_progress_spinner_label' => 'partida en progreso',
         'loading-events' => 'Cargando eventos...',
         'winner' => ':team gana',
-        'winner_by' => '',
+        'winner_by' => ':winner por :difference',
 
         'events' => [
             'player-left' => ':user abandonó la partida',

@@ -6,7 +6,7 @@
 return [
     'index' => [
         'description' => 'Col·leccions preempaquetades de beatmaps basades en un tema comú.',
-        'empty' => '',
+        'empty' => 'Pròximament!',
         'nav_title' => 'llistat',
         'title' => 'Paquets de beatmaps',
 
@@ -35,7 +35,8 @@ return [
     'mode' => [
         'artist' => 'Artista/Àlbum',
         'chart' => 'Destacats',
-        'featured' => '',
+        'featured' => 'Artista Destacat',
+        'loved' => '',
         'standard' => 'Standard',
         'theme' => 'Tema',
         'tournament' => 'Torneig',

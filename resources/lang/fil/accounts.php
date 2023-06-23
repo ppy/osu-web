@@ -22,6 +22,12 @@ return [
             'title' => 'Email',
         ],
 
+        'legacy_api' => [
+            'api' => '',
+            'irc' => '',
+            'title' => '',
+        ],
+
         'password' => [
             'current' => 'kasalukuyang password',
             'new' => 'bagong password',

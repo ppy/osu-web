@@ -8,7 +8,7 @@ return [
     'not_negative' => ':attribute 속성은 음수가 될 수 없습니다.',
     'required' => ':attribute 속성이 필요합니다.',
     'too_long' => ':attribute의 최대 길이를 초과 했습니다 - :limit자 까지만 쓸 수 있습니다.',
-    'url' => '',
+    'url' => '유효한 URL을 입력하세요.',
     'wrong_confirmation' => '확인란이 일치하지 않습니다.',
 
     'beatmapset_discussion' => [
@@ -110,7 +110,13 @@ return [
     ],
 
     'legacy_api_key' => [
-        'exists' => '',
+        'exists' => '현재는 유저당 오직 한 개의 API 키만 제공됩니다.',
+
+        'attributes' => [
+            'api_key' => 'api key',
+            'app_name' => '애플리케이션 이름',
+            'app_url' => '애플리케이션 URL',
+        ],
     ],
 
     'oauth' => [
@@ -169,6 +175,7 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => '랭크된 비트맵은 신고할 수 없습니다.',
+        'not_in_channel' => '이 채널에 있지 않습니다.',
         'reason_not_valid' => ':reason 은(는) 이 신고 형식에 맞지 않습니다.',
         'self' => "자기 자신은 신고할 수 없습니다!",
     ],

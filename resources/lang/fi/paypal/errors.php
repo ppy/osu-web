@@ -6,7 +6,7 @@
 return [
     'instrument_declined' => 'Paypal hylkäsi valitun maksutavan.',
     'invalid_resource_id' => 'Maksutietoja ei löytynyt.',
-    'invalid_token' => 'Maksusi suorittamisessa tapahtui virhe.',
+    'invalid_token' => 'Maksun suorittamisessa tapahtui virhe.',
     'old_format' => 'Maksulinkki on vanhentunut, yritä uudelleen.',
     'resource_not_found' => 'Maksutietoja ei löytynyt.',
     'unknown' => "Maksu hylättiin, mutta emme ole varmoja miksi.",

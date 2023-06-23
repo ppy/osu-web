@@ -12,10 +12,10 @@ return [
     ],
 
     'error' => [
-        'contact_support' => 'Harap hubungi layanan dukungan untuk dapat memulihkan akun.',
+        'contact_support' => 'Mohon hubungi layanan dukungan untuk memulihkan akun.',
         'expired' => 'Masa berlaku kode verifikasi telah berakhir.',
         'invalid' => 'Terdapat kesalahan dalam proses pengecekan kode verifikasi.',
-        'is_privileged' => 'Harap hubungi admin yang memiliki akses perizinan tingkat tinggi untuk dapat memulihkan akun.',
+        'is_privileged' => 'Mohon hubungi admin yang memiliki akses perizinan tingkat tinggi untuk memulihkan akun.',
         'missing_key' => 'Wajib.',
         'too_many_tries' => 'Terlalu banyak percobaan yang gagal.',
         'user_not_found' => 'Pengguna yang diminta tidak ditemukan.',

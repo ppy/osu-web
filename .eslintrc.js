@@ -198,6 +198,7 @@ module.exports = {
   rules: {
     'arrow-body-style': 'error',
     'arrow-parens': 'error',
+    'arrow-spacing': 'error',
     'brace-style': 'error',
     'comma-dangle': ['error', 'always-multiline'],
     complexity: 'off',

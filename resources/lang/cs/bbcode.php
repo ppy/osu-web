@@ -6,9 +6,9 @@
 return [
     'bold' => 'Tučně',
     'heading' => 'Nadpis',
-    'help' => '',
+    'help' => 'Nápověda',
     'image' => 'Obrázek',
-    'imagemap' => '',
+    'imagemap' => 'Image Map',
     'italic' => 'Kurzíva',
     'link' => 'Odkaz',
     'list' => 'Seznam',

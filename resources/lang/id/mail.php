@@ -14,7 +14,7 @@ return [
     'common' => [
         'closing' => 'Salam,',
         'hello' => 'Hai :user,',
-        'report' => 'Harap balas email ini DENGAN SEGERA apabila kamu tidak merasa melakukan tindakan ini.',
+        'report' => 'Mohon balas email ini DENGAN SEGERA apabila kamu tidak merasa meminta perubahan ini.',
         'ignore' => 'Apabila kamu tidak mengirim permintaan ini, kamu dapat mengabaikan email ini.',
     ],
 
@@ -73,7 +73,7 @@ return [
 
     'user_email_updated' => [
         'changed_to' => 'Email ini merupakan bukti konfirmasi bahwa alamat email yang terhubung dengan akun osu! milikmu telah diubah menjadi ":email".',
-        'check' => 'Harap pastikan bahwa kamu menerima email ini pada alamat email yang baru agar ke depannya kamu tidak kehilangan akses menuju akun osu! milikmu.',
+        'check' => 'Mohon pastikan bahwa kamu menerima email ini pada alamat email yang baru agar ke depannya kamu tidak kehilangan akses menuju akun osu! milikmu.',
         'sent' => 'Demi alasan keamanan, email ini telah dikirim ke alamat email baru dan lama milikmu.',
         'subject' => 'Konfirmasi perubahan email osu!',
     ],

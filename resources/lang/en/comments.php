@@ -11,6 +11,7 @@ return [
     'edited' => 'edited :timeago by :user',
     'pinned' => 'pinned',
     'empty' => 'No comments yet.',
+    'empty_other' => 'No other comments yet.',
     'load_replies' => 'load replies',
     'replies_count' => ':count_delimited reply|:count_delimited replies',
     'title' => 'Comments',

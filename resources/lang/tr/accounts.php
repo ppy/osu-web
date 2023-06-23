@@ -20,6 +20,12 @@ return [
             'title' => 'E-posta',
         ],
 
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Eski API',
+        ],
+
         'password' => [
             'current' => 'mevcut şifre',
             'new' => 'yeni şifre',

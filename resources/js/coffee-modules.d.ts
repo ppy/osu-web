@@ -3,22 +3,6 @@
 
 /* eslint-disable max-classes-per-file */
 
-// importable coffeescript modules
-declare module 'components/back-to-top' {
-  interface Props {
-    anchor: React.RefObject<HTMLElement>;
-    ref: React.RefObject<BackToTop>;
-  }
-
-  class BackToTop extends React.PureComponent<Props> {
-    reset(): void;
-  }
-}
-
-declare module 'components/comments' {
-  class Comments extends React.PureComponent<any> {}
-}
-
 declare module 'components/comments-manager' {
   interface Props {
     commentableId?: number;

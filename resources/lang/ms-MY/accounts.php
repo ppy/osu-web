@@ -20,6 +20,12 @@ return [
             'title' => 'E-mel',
         ],
 
+        'legacy_api' => [
+            'api' => '',
+            'irc' => '',
+            'title' => '',
+        ],
+
         'password' => [
             'current' => 'kata laluan terkini',
             'new' => 'kata laluan baharu',

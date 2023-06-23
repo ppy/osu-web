@@ -12,7 +12,7 @@ return [
         'in_progress_spinner_label' => 'match is bezig',
         'loading-events' => 'Gebeurtenissen laden...',
         'winner' => ':team heeft gewonnen',
-        'winner_by' => '',
+        'winner_by' => ':winner met :difference punten verschil',
 
         'events' => [
             'player-left' => ':user heeft het spel verlaten',

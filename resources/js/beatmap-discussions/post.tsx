@@ -15,6 +15,7 @@ import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
 import BeatmapsetDiscussionJson from 'interfaces/beatmapset-discussion-json';
 import { BeatmapsetDiscussionMessagePostJson } from 'interfaces/beatmapset-discussion-post-json';
 import BeatmapsetExtendedJson from 'interfaces/beatmapset-extended-json';
+import BeatmapsetJson from 'interfaces/beatmapset-json';
 import BeatmapsetWithDiscussionsJson from 'interfaces/beatmapset-with-discussions-json';
 import UserJson from 'interfaces/user-json';
 import { route } from 'laroute';
@@ -39,7 +40,7 @@ const bn = 'beatmap-discussion-post';
 
 interface Props {
   beatmap: BeatmapExtendedJson | null;
-  beatmapset: BeatmapsetExtendedJson;
+  beatmapset: BeatmapsetJson | BeatmapsetExtendedJson;
   discussion: BeatmapsetDiscussionJson;
   post: BeatmapsetDiscussionMessagePostJson;
   read: boolean;
@@ -64,6 +65,11 @@ export default class Post extends React.Component<Props> {
 
   @computed
   private get canEdit() {
+    // no information available (non-discussion pages), return false.
+    if (!('discussion_locked' in this.props.beatmapset)) {
+      return false;
+    }
+
     return this.isAdmin
       || (!downloadLimited(this.props.beatmapset)
         && this.isOwn

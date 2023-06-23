@@ -175,6 +175,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => '',
+        'cannot_nominate' => '',
         'delete' => '刪除',
         'delete_own_confirm' => '你確定嗎？這個圖譜將被刪除，刪除後你將重新導向到你的個人資料頁面。',
         'delete_other_confirm' => '你確定嗎？這個圖譜將被刪除，刪除後你將重新導向到他的個人資料頁面。',

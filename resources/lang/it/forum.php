@@ -48,7 +48,7 @@ return [
         'confirm_restore' => 'Vuoi veramente ripristinare il post?',
         'edited' => 'Ultima modifica di :user :when, modificato :count_delimited volta in totale.|Ultima modifica di :user :when, modificato :count_delimited volte in totale.',
         'posted_at' => 'postato :when',
-        'posted_by_in' => '',
+        'posted_by_in' => 'inviato da :username in :forum',
 
         'actions' => [
             'destroy' => 'Elimina post',

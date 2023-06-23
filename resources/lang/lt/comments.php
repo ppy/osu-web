@@ -11,6 +11,7 @@ return [
     'edited' => 'redaguota :timeago pateikė :user',
     'pinned' => 'prisegta',
     'empty' => 'Dar komentarų nėra.',
+    'empty_other' => 'Dar nėra kitų komentarų.',
     'load_replies' => 'krauti atsakymus',
     'replies_count' => ':count_delimited atsakymas|:count_delimited atsakymų',
     'title' => 'Komentarai',

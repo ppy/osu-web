@@ -163,12 +163,10 @@ class AccountController extends Controller
         $previousEmail = $user->user_email;
 
         if ($user->update($params) === true) {
-            $addresses = [$user->user_email];
-            if (present($previousEmail)) {
-                $addresses[] = $previousEmail;
-            }
-            foreach ($addresses as $address) {
-                Mail::to($address)->locale($user->preferredLocale())->send(new UserEmailUpdated($user));
+            foreach ([$previousEmail, $user->user_email] as $address) {
+                if (is_valid_email_format($address)) {
+                    Mail::to($address)->locale($user->preferredLocale())->send(new UserEmailUpdated($user));
+                }
             }
 
             UserAccountHistory::logUserUpdateEmail($user, $previousEmail);
@@ -265,7 +263,7 @@ class AccountController extends Controller
         $user = Auth::user()->validateCurrentPassword()->validatePasswordConfirmation();
 
         if ($user->update($params) === true) {
-            if (present($user->user_email)) {
+            if (is_valid_email_format($user->user_email)) {
                 Mail::to($user)->send(new UserPasswordUpdated($user));
             }
 
