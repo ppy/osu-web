@@ -1219,7 +1219,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, HasLoc
 
     public function beatmaps()
     {
-        return $this->hasManyThrough(Beatmap::class, Beatmapset::class);
+        return $this->hasMany(Beatmap::class);
     }
 
     public function clients()

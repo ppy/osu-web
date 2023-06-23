@@ -365,7 +365,11 @@ class BeatmapsetSearch extends RecordSearch
                 break;
             case 'mine':
                 if ($this->params->user !== null) {
-                    $maps = model_pluck($this->params->user->beatmapsets(), 'beatmapset_id');
+                    $maps = $this->params->user->beatmaps()
+                        ->select('beatmapset_id')
+                        ->distinct()
+                        ->pluck('beatmapset_id')
+                        ->all();
                 }
                 $query->must(['ids' => ['values' => $maps ?? []]]);
                 $queryForFilter = $mainQuery;
