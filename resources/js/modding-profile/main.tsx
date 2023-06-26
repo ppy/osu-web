@@ -132,34 +132,22 @@ export class Main extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    if (props.container.dataset.profilePageState != null) {
-      const parsedState = JSON.parse(props.container.dataset.profilePageState) as State;
-      if (parsedState != null) {
-        this.state = parsedState;
-        this.restoredState = true;
-      }
+    const page = validPage(currentUrl().hash.slice(1));
+    if (page != null) {
+      this.initialPage = page;
     }
 
-    if (!this.restoredState) {
-      const page = validPage(currentUrl().hash.slice(1));
-      if (page != null) {
-        this.initialPage = page;
-      }
-
-      this.state = {
-        beatmaps: props.beatmaps,
-        beatmapsets: props.beatmapsets,
-        currentPage: this.initialPage,
-        discussions: props.discussions,
-        events: props.events,
-        posts: props.posts,
-        profileOrder: ['events', 'discussions', 'posts', 'votes', 'kudosu'],
-        user: props.user,
-        users: props.users,
-        votes: props.votes,
-
-      };
-    }
+    this.state = {
+      beatmaps: props.beatmaps,
+      beatmapsets: props.beatmapsets,
+      currentPage: this.initialPage,
+      discussions: props.discussions,
+      events: props.events,
+      posts: props.posts,
+      user: props.user,
+      users: props.users,
+      votes: props.votes,
+    };
   }
 
   componentDidMount() {
@@ -172,12 +160,10 @@ export class Main extends React.PureComponent<Props, State> {
 
     this.modeScrollUrl = currentUrlRelative();
 
-    if (!this.restoredState) {
-      this.disposers.add(core.reactTurbolinks.runAfterPageLoad(() =>
-        // The scroll is a bit off on Firefox if not using timeout.
-        window.setTimeout(() => this.pageJump(null, this.initialPage), 0),
-      ));
-    }
+    this.disposers.add(core.reactTurbolinks.runAfterPageLoad(() =>
+      // The scroll is a bit off on Firefox if not using timeout.
+      window.setTimeout(() => this.pageJump(null, this.currentPage), 0),
+    ));
   }
 
   componentWillUnmount() {
