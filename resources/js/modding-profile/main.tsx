@@ -42,7 +42,6 @@ import Votes, { Direction, VoteSummary } from './votes';
 const moddingExtraPages = ['events', 'discussions', 'posts', 'votes', 'kudosu'] as const;
 type ModdingExtraPage = (typeof moddingExtraPages)[number];
 
-
 interface Props {
   beatmaps: BeatmapExtendedJson[];
   beatmapsets: BeatmapsetExtendedJson[];
@@ -85,7 +84,6 @@ export class Main extends React.PureComponent<Props> {
   @observable private currentPage: Page = 'main';
   private readonly disposers = new Set<(() => void) | undefined>();
   private readonly eventId = `users-modding-history-index-${nextVal()}`;
-  private modeScrollTimeout: number | undefined;
   private pageJumpingTo: Page | null = null;
   private readonly pageRefs: Record<Page, React.RefObject<HTMLDivElement>> = {
     discussions: React.createRef(),
@@ -118,8 +116,6 @@ export class Main extends React.PureComponent<Props> {
   }
 
   componentDidMount() {
-    $.subscribe(`user:update.${this.eventId}`, this.userUpdate);
-    $.subscribe(`profile:page:jump.${this.eventId}`, this.pageJump);
     // pageScan does not need to run at 144 fps...
     $(window).on(`scroll.${this.eventId}`, throttle(() => this.pageScan(), 20));
 
@@ -137,11 +133,8 @@ export class Main extends React.PureComponent<Props> {
   }
 
   componentWillUnmount() {
-    $.unsubscribe(`.${this.eventId}`);
     $(window).off(`.${this.eventId}`);
 
-    $(window).stop();
-    window.clearTimeout(this.modeScrollTimeout);
     this.disposers.forEach((disposer) => disposer?.());
   }
 
@@ -348,15 +341,5 @@ export class Main extends React.PureComponent<Props> {
     e.preventDefault();
 
     this.pageJump(validPage(e.currentTarget.dataset.pageId));
-  };
-
-
-  private userUpdate = (_e: unknown, user: UserJson) => {
-    if (user?.id !== this.props.user.id) {
-      return this.forceUpdate();
-    }
-
-    // this component needs full user object but sometimes this event only sends part of it
-    this.setState({ user: Object.assign({}, this.props.user, user) });
   };
 }
