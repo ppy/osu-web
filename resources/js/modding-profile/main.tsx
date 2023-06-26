@@ -40,6 +40,7 @@ import { Posts } from './posts'
 import Stats from './stats'
 import Votes, { Direction, VoteSummary } from './votes'
 import BeatmapExtendedJson from 'interfaces/beatmap-extended-json';
+import UserModdingProfileJson from 'interfaces/user-modding-profile-json';
 
 const moddingExtraPages = ['events', 'discussions', 'posts', 'votes', 'kudosu'] as const;
 type ModdingExtraPage = (typeof moddingExtraPages)[number];
@@ -61,7 +62,7 @@ interface Props {
     recentlyReceivedKudosu: number;
   };
   posts: BeatmapsetDiscussionMessagePostJson[];
-  user: UserExtendedJson;
+  user: UserModdingProfileJson;
   users: UserJson[];
   votes: Record<Direction, VoteSummary[]>;
 }
