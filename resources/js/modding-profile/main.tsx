@@ -17,7 +17,7 @@ import KudosuHistoryJson from 'interfaces/kudosu-history-json';
 import UserJson from 'interfaces/user-json';
 import UserModdingProfileJson from 'interfaces/user-modding-profile-json';
 import _, { first, isEmpty, keyBy, last, throttle } from 'lodash';
-import { action, makeObservable, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import Kudosu from 'modding-profile/kudosu';
 import { deletedUser } from 'models/user';
@@ -45,7 +45,6 @@ type ModdingExtraPage = (typeof moddingExtraPages)[number];
 interface Props {
   beatmaps: BeatmapExtendedJson[];
   beatmapsets: BeatmapsetExtendedJson[];
-  container: HTMLElement;
   discussions: BeatmapsetDiscussionJsonForBundle[];
   events: BeatmapsetEventJson[];
   extras: {
@@ -60,14 +59,6 @@ interface Props {
   votes: Record<Direction, VoteSummary[]>;
 }
 
-interface Cache {
-  beatmaps: Partial<Record<number, BeatmapExtendedJson>>;
-  beatmapsets: Partial<Record<number, BeatmapsetExtendedJson>>;
-  discussions: Partial<Record<number, BeatmapsetDiscussionJsonForBundle>>;
-  userDiscussions: BeatmapsetDiscussionJsonForBundle[];
-  users: Partial<Record<number | string, UserJson>>;
-}
-
 type Page = ModdingExtraPage | 'main';
 
 function validPage(page: unknown) {
@@ -80,7 +71,6 @@ function validPage(page: unknown) {
 
 @observer
 export class Main extends React.PureComponent<Props> {
-  private cache: Partial<Cache> = {};
   @observable private currentPage: Page = 'main';
   private readonly disposers = new Set<(() => void) | undefined>();
   private readonly eventId = `users-modding-history-index-${nextVal()}`;
@@ -97,16 +87,47 @@ export class Main extends React.PureComponent<Props> {
   private readonly pagesOffsetRef = React.createRef<HTMLDivElement>();
   private readonly tabs = React.createRef<HTMLDivElement>();
 
+  @computed
+  private get beatmaps() {
+    return keyBy(this.props.beatmaps, 'id');
+  }
+
+  @computed
+  private get beatmapsets() {
+    return keyBy(this.props.beatmapsets, 'id');
+  }
+
+  @computed
   private get discussions() {
     // skipped discussions
     // - not privileged (deleted discussion)
     // - deleted beatmap
-    this.cache.discussions ??= _(this.props.discussions)
+    return _(this.props.discussions)
       .filter((d) => !isEmpty(d))
       .keyBy('id')
       .value();
+  }
 
-    return this.cache.discussions;
+  private get pagesOffset() {
+    return this.pagesOffsetRef.current;
+  }
+
+  private get stickyHeaderOffset() {
+    return core.stickyHeader.headerHeight + (this.pagesOffset?.getBoundingClientRect().height ?? 0);
+  }
+
+  @computed
+  private get userDiscussions() {
+    return this.props.discussions.filter((d) => d.user_id === this.props.user.id);
+  }
+
+  @computed
+  private get users() {
+    const values = keyBy(this.props.users, 'id');
+    // eslint-disable-next-line id-blacklist
+    values.null = values.undefined = deletedUser.toJson();
+
+    return values;
   }
 
   constructor(props: Props) {
@@ -136,39 +157,6 @@ export class Main extends React.PureComponent<Props> {
     $(window).off(`.${this.eventId}`);
 
     this.disposers.forEach((disposer) => disposer?.());
-  }
-
-  private get beatmaps() {
-    this.cache.beatmaps ??= keyBy(this.props.beatmaps, 'id');
-    return this.cache.beatmaps;
-  }
-
-  private get beatmapsets() {
-    this.cache.beatmapsets ??= keyBy(this.props.beatmapsets, 'id');
-    return this.cache.beatmapsets;
-  }
-
-  private get pagesOffset() {
-    return this.pagesOffsetRef.current;
-  }
-
-  private get stickyHeaderOffset() {
-    return core.stickyHeader.headerHeight + (this.pagesOffset?.getBoundingClientRect().height ?? 0);
-  }
-
-  private get users() {
-    if (this.cache.users == null) {
-      this.cache.users = keyBy(this.props.users, 'id');
-      // eslint-disable-next-line id-blacklist
-      this.cache.users.null = this.cache.users.undefined = deletedUser.toJson();
-    }
-
-    return this.cache.users;
-  }
-
-  private get userDiscussions() {
-    this.cache.userDiscussions ??= this.props.discussions.filter((d) => d.user_id === this.props.user.id);
-    return this.cache.userDiscussions;
   }
 
   render() {
@@ -212,17 +200,17 @@ export class Main extends React.PureComponent<Props> {
                     ref={this.tabs}
                     className='page-mode page-mode--profile-page-extra'
                   >
-                    {moddingExtraPages.map((m) => (
+                    {moddingExtraPages.map((page) => (
                       <a
-                        key={m}
+                        key={page}
                         className='page-mode__item'
-                        data-page-id={m}
-                        href={`#${m}`}
+                        data-page-id={page}
+                        href={`#${page}`}
                         onClick={this.tabClick}
                       >
                         <ProfilePageExtraTab
                           currentPage={this.currentPage}
-                          page={m}
+                          page={page}
                         />
                       </a>
                     ))}
